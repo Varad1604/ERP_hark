@@ -1,0 +1,25 @@
+# OS Metadata files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor and IDE configurations
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Node and presentation build outputs (if any)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Local scratch files
+scratch/
+tmp/
+.gemini/

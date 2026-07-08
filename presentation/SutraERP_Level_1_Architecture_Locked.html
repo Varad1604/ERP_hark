@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SutraERP Level 1 Architecture Locked</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px;
+      background: #ffffff;
+      color: #191919;
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: 30px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin: 34px 0 16px;
+      color: #37352f;
+      font-size: 22px;
+      font-weight: 700;
+      border-bottom: 1px solid #e8e8e5;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      margin: 24px 0 12px;
+      color: #37352f;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    h4, h5, h6 {
+      margin: 20px 0 10px;
+      color: #37352f;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: #333333;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    ul, ol {
+      margin: 0 0 16px;
+      color: #333333;
+      font-size: 15px;
+      line-height: 1.6;
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    a {
+      color: #25613a;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    blockquote {
+      padding: 18px 20px;
+      border-left: 4px solid #37352f;
+      border-radius: 4px 8px 8px 4px;
+      background: #f7f7f5;
+      margin: 0 0 20px;
+    }
+
+    blockquote p {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.6;
+      color: #191919;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 34px;
+    }
+
+    th, td {
+      border: 1px solid #e8e8e5;
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background: #fafaf9;
+      color: #999999;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    td {
+      color: #292929;
+    }
+
+    pre {
+      background: #f1f1ef;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 0 0 20px;
+    }
+
+    code {
+      font-family: monospace;
+      background: #f1f1ef;
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #db4b4b;
+    }
+
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: #37352f;
+      font-size: 14px;
+    }
+    
+    pre code.language-mermaid {
+      background: transparent;
+      padding: 0;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #e8e8e5;
+      margin: 40px 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid #e8e8e5;
+      margin-bottom: 16px;
+    }
+    
+    /* Center mermaid diagrams */
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>SutraERP Level 1 Architecture --- Locked Lifecycle</h1>
+<p><strong>Status:</strong> Locked<br><strong>Scope:</strong> Complete institute lifecycle at Level 1<br><strong>Purpose:</strong> Define the main business stages, ownership boundaries,
+lifecycle rules, and cross-domain responsibilities before Level 2
+workflows.</p>
+<hr>
+<h2>1. Core Architecture Rules</h2>
+<h3>1.1 Tenant, Institute, and Academic Unit</h3>
+<pre><code class="language-mermaid">flowchart TD
+    A[SutraERP Platform] --&gt; B[Tenant]
+    B --&gt; C[Institute]
+    C --&gt; D[College / School]
+</code></pre>
+<ul>
+<li><strong>Tenant</strong> is the SaaS isolation boundary.</li>
+<li><strong>Institute</strong> is the institutional organisation using SutraERP.</li>
+<li><strong>College / School</strong> is an independent academic operating unit
+inside the institute.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-mermaid">flowchart TD
+    T[Tenant: ABC Education Society] --&gt; I[Institute: ABC Group of Institutions]
+    I --&gt; C1[ABC Engineering College]
+    I --&gt; C2[ABC Pharmacy College]
+    I --&gt; C3[ABC School]
+</code></pre>
+<p><strong>Locked rule:</strong> Tenant and Institute are separate concepts.</p>
+<hr>
+<h3>1.2 College and School Data Separation</h3>
+<p>College and school operational data must always remain separately
+scoped.</p>
+<p>The following records belong to a specific College or School:</p>
+<ul>
+<li>Admission Cycle and Application</li>
+<li>Student Academic Context</li>
+<li>Academic Year and Academic Period</li>
+<li>Programme / Class structure</li>
+<li>Course Offering</li>
+<li>Attendance</li>
+<li>Examination academic context</li>
+<li>Finance context</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-text">ABC Engineering College
+└── Academic Year AY-ENG-2026
+
+ABC School
+└── Academic Year AY-SCHOOL-2026
+</code></pre>
+<p>Both may display <code>2026–27</code>, but they are separate records.</p>
+<p>Institute-wide shared data may include:</p>
+<ul>
+<li>Person</li>
+<li>Tenant</li>
+<li>Institute</li>
+<li>Platform Identity</li>
+<li>Canonical Infrastructure</li>
+<li>Approved shared master data</li>
+</ul>
+<p><strong>Locked rule:</strong> Shared Person does not mean shared College/School
+operational data.</p>
+<p>College/School scope must later be enforced in authorization, contracts,
+queries, and database constraints. It must not be treated only as a UI
+filter.</p>
+<hr>
+<h3>1.3 Canonical Person and Student Context</h3>
+<p>One real person has one canonical <code>Person</code> identity inside the
+institute.</p>
+<p>A Person may have multiple historical Student Contexts, but only one
+Student Context may be <code>ACTIVE</code> at a time within the Institute.</p>
+<p>Example:</p>
+<pre><code class="language-text">Person P001
+↓
+Student Persona
+
+├── ABC School
+│   └── Student Context: COMPLETED
+│
+└── ABC Engineering College
+    └── Student Context: ACTIVE
+</code></pre>
+<p>Not allowed:</p>
+<pre><code class="language-text">Person P001
+
+ABC School
+Student Context: ACTIVE
+
+AND
+
+ABC Engineering College
+Student Context: ACTIVE
+</code></pre>
+<p>Before a new Student Context becomes active, the current active context
+must be closed through a valid lifecycle state such as:</p>
+<pre><code class="language-text">COMPLETED
+TRANSFERRED
+WITHDRAWN
+DISCONTINUED
+TERMINATED
+</code></pre>
+<p><strong>Locked rule:</strong> One Person may have many historical Student Contexts
+but a maximum of one active Student Context per Institute.</p>
+<p>Dual or parallel enrollment is outside the current scope and must not be
+allowed accidentally.</p>
+<hr>
+<h3>1.4 Cross-Domain Ownership</h3>
+<p>A domain owns its data and lifecycle.</p>
+<p>Other domains must not directly update its tables.</p>
+<p>Use:</p>
+<ul>
+<li><strong>Synchronous contracts</strong> when an immediate authoritative answer or
+action is required.</li>
+<li><strong>Domain events</strong> for completed business facts and asynchronous
+reactions.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-text">Examination
+↓ asks Academics
+&quot;What is the student&#39;s finalized attendance?&quot;
+</code></pre>
+<p>Not:</p>
+<pre><code class="language-text">Examination
+↓
+Direct SQL against Attendance tables
+</code></pre>
+<hr>
+<h2>2. Locked Level 1 Lifecycle</h2>
+<pre><code class="language-text">L1-01 Tenant Provisioning
+↓
+L1-02 Institute Creation
+↓
+L1-03 College / School and Institutional Structure Setup
+↓
+L1-04 Academic Structure Setup
+↓
+L1-05 Academic Year and Academic Period Setup
+↓
+L1-06 Operational Readiness Check
+↓
+L1-07 College / School Admission Cycle
+↓
+L1-08 Student Activation and Academic Registration
+↓
+L1-09 Teaching and Academic Delivery
+↓
+L1-10 Examination Cycle
+↓
+L1-11 Academic Progression
+↓
+L1-12 Graduation / Student Exit
+↓
+L1-13 Academic Year / Period Closure
+↓
+L1-14 Next Academic Cycle
+        ↓
+      L1-05
+</code></pre>
+<p>Graduation and exit branch from the repeating academic cycle.</p>
+<pre><code class="language-text">Academic Progression
+├── NEXT PERIOD
+│   ↓
+│   Next Academic Cycle
+│
+└── PROGRAMME COMPLETE / EXIT
+    ↓
+    Graduation / Student Exit
+</code></pre>
+<hr>
+<h1>3. L1-01 --- Tenant Provisioning</h1>
+<p><strong>Purpose:</strong> Create an isolated SutraERP operating boundary.</p>
+<p><strong>Owner:</strong> Platform<br><strong>Actor:</strong> SutraERP Platform Admin or automated provisioning<br><strong>Team:</strong> Team 2</p>
+<pre><code class="language-text">REQUESTED
+↓
+PROVISIONING
+↓
+ACTIVE
+</code></pre>
+<p>Possible failure state:</p>
+<pre><code class="language-text">PROVISIONING_FAILED
+</code></pre>
+<p>Main responsibilities:</p>
+<ul>
+<li>Create Tenant identity.</li>
+<li>Initialize platform configuration.</li>
+<li>Initialize Module Registry.</li>
+<li>Initialize audit and identity infrastructure.</li>
+<li>Prevent duplicate Tenant creation.</li>
+</ul>
+<p><strong>Locked rule:</strong> Tenant provisioning is a platform operation. Registrar
+or Principal does not provision a Tenant.</p>
+<hr>
+<h1>4. L1-02 --- Institute Creation</h1>
+<p><strong>Purpose:</strong> Create the institutional identity inside an active Tenant.</p>
+<p><strong>Owner:</strong> Institution Domain<br><strong>Actors:</strong> Platform Admin / Institute Admin<br><strong>Team:</strong> Team 2</p>
+<pre><code class="language-text">DRAFT
+↓
+SETUP_PENDING
+↓
+ACTIVE
+</code></pre>
+<p>Main responsibilities:</p>
+<ul>
+<li>Create Institute.</li>
+<li>Link Institute to Tenant.</li>
+<li>Configure core Institute profile.</li>
+<li>Audit major Institute changes.</li>
+</ul>
+<p><strong>Locked rule:</strong> Tenant and Institute must not use the same business
+entity.</p>
+<hr>
+<h1>5. L1-03 --- College / School and Institutional Structure Setup</h1>
+<p><strong>Purpose:</strong> Define the academic operating units, organisation
+structure, and physical operating locations.</p>
+<p><strong>Owner:</strong> Organisation Domain<br><strong>Actors:</strong> Institute Admin / Registrar<br><strong>Team:</strong> Team 2</p>
+<p>Example:</p>
+<pre><code class="language-text">ABC Group of Institutions
+├── ABC Engineering College
+│   ├── Computer Engineering Department
+│   └── Mechanical Engineering Department
+│
+└── ABC School
+    ├── Primary Section
+    └── Secondary Section
+</code></pre>
+<p>Campuses may include:</p>
+<pre><code class="language-text">Main Campus
+City Campus
+Research Campus
+</code></pre>
+<p>Important distinction:</p>
+<pre><code class="language-text">Organisation Unit ≠ Campus
+</code></pre>
+<ul>
+<li>Organisation Unit represents institutional responsibility or
+structure.</li>
+<li>Campus represents a physical operating location.</li>
+</ul>
+<p><strong>Locked rule:</strong> Organisation structure and physical location remain
+separate concepts and are connected using canonical IDs.</p>
+<hr>
+<h1>6. L1-04 --- Academic Structure Setup</h1>
+<p><strong>Purpose:</strong> Define how education is organised inside each College or
+School.</p>
+<p><strong>Owner:</strong> Academic Structure Domain<br><strong>Actors:</strong> Registrar / Academic Admin<br><strong>Team:</strong> Team 2</p>
+<p>School model:</p>
+<pre><code class="language-text">Class
+↓
+Section
+↓
+Subject
+</code></pre>
+<p>College model:</p>
+<pre><code class="language-text">Programme
+↓
+Programme Version
+↓
+Batch / Cohort
+↓
+Academic Period
+↓
+Course
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-text">Programme:
+B.Tech Computer Engineering
+
+Programme Version:
+2026 Curriculum
+
+Cohort:
+2026–2030
+</code></pre>
+<p>Programme versions preserve curriculum history.</p>
+<pre><code class="language-text">B.Tech Computer Engineering
+├── 2024 Curriculum
+└── 2026 Curriculum
+</code></pre>
+<p><strong>Locked rule:</strong> Do not directly overwrite an active curriculum. Create
+a new Programme Version when the curriculum changes.</p>
+<p><strong>Locked rule:</strong> School and College academic models coexist. One must
+not be forced into the other.</p>
+<hr>
+<h1>7. L1-05 --- Academic Year and Academic Period Setup</h1>
+<p><strong>Purpose:</strong> Create, approve, and open the academic cycle for a College
+or School.</p>
+<p><strong>Owner:</strong> Academic Structure / Academic Calendar<br><strong>Actor:</strong> Registrar<br><strong>Default Approver:</strong> Principal<br><strong>Team:</strong> Team 2</p>
+<h2>7.1 Academic Year</h2>
+<p>The main academic cycle.</p>
+<p>Example:</p>
+<pre><code class="language-text">2026–27
+</code></pre>
+<h2>7.2 Academic Period</h2>
+<p>A part of an Academic Year.</p>
+<p>College example:</p>
+<pre><code class="language-text">Academic Year 2026–27
+├── Semester 1
+└── Semester 2
+</code></pre>
+<p>School example:</p>
+<pre><code class="language-text">Academic Year 2026–27
+├── Term 1
+├── Term 2
+└── Term 3
+</code></pre>
+<p>Final hierarchy:</p>
+<pre><code class="language-text">College / School
+↓
+Academic Year
+↓
+Academic Period
+</code></pre>
+<p><strong>Locked rule:</strong> <code>AcademicYear</code> and <code>AcademicPeriod</code> are separate
+canonical entities.</p>
+<p><strong>Locked rule:</strong> Academic Year is College/School scoped.</p>
+<h2>7.3 Academic Year State</h2>
+<pre><code class="language-text">DRAFT
+↓
+PENDING_APPROVAL
+↓
+APPROVED
+↓
+OPEN
+↓
+CLOSING
+↓
+CLOSED
+</code></pre>
+<p>Approval alternatives:</p>
+<pre><code class="language-text">PENDING_APPROVAL
+├── APPROVED
+├── RETURNED
+└── REJECTED
+</code></pre>
+<p>Default workflow:</p>
+<pre><code class="language-text">Registrar creates
+↓
+Registrar submits
+↓
+Principal approves / returns / rejects
+</code></pre>
+<p>The approval workflow must later be configurable through the Workflow
+Engine.</p>
+<p>Important distinction:</p>
+<pre><code class="language-text">APPROVED ≠ OPEN
+</code></pre>
+<p><code>APPROVED</code> means the Academic Year is officially accepted.</p>
+<p><code>OPEN</code> means academic operations may start when their readiness
+requirements are satisfied.</p>
+<p><strong>Locked rule:</strong> <code>APPROVED</code> and <code>OPEN</code> remain separate states.</p>
+<hr>
+<h1>8. L1-06 --- Operational Readiness Check</h1>
+<p><strong>Purpose:</strong> Check whether a specific business operation can start.</p>
+<p>Readiness is evaluated for the requested capability.</p>
+<p>Example:</p>
+<pre><code class="language-text">Start Teaching
+
+Academic Year OPEN       YES
+Academic Period OPEN     YES
+Course Offering Active   YES
+Faculty Assigned         NO
+
+Result:
+NOT READY
+</code></pre>
+<p>Do not use one global flag:</p>
+<pre><code class="language-text">institute_ready = true
+</code></pre>
+<p>Do not treat a stored readiness flag as authoritative.</p>
+<p>Final model:</p>
+<pre><code class="language-text">Operation Requested
+↓
+Readiness Rules Evaluated
+↓
+READY / NOT READY
+</code></pre>
+<p>Examples of capabilities:</p>
+<pre><code class="language-text">Admission
+Teaching
+Attendance
+Examination
+</code></pre>
+<p><strong>Locked rule:</strong> Readiness is primarily evaluated dynamically. Caching
+may be added later but is not authoritative.</p>
+<hr>
+<h1>9. L1-07 --- College / School Admission Cycle</h1>
+<p><strong>Purpose:</strong> Accept and decide admissions for a specific College or
+School.</p>
+<p><strong>Owner:</strong> Admissions Domain<br><strong>Actors:</strong> Applicant / Admission Team<br><strong>Team:</strong> Team 2</p>
+<p>Admission Cycle is College/School scoped.</p>
+<p>Example:</p>
+<pre><code class="language-text">Engineering College
+├── 2026 Engineering Admission
+└── 2026 Direct Second Year Admission
+
+School
+├── 2026 Primary Admission
+└── 2026 Secondary Admission
+</code></pre>
+<p>An Admission Cycle is created only when admissions are required.</p>
+<p>Basic flow:</p>
+<pre><code class="language-text">Admission Cycle Created
+↓
+Applications Open
+↓
+Applicant Applies
+↓
+Person Checked / Created
+↓
+Application Reviewed
+↓
+Documents Checked
+↓
+Admission Decision
+├── APPROVED
+├── REJECTED
+└── WAITLISTED
+↓
+Admission Completed
+</code></pre>
+<p>Important distinction:</p>
+<pre><code class="language-text">ADMISSION APPROVED
+≠
+ACTIVE STUDENT
+</code></pre>
+<p>Person handling:</p>
+<pre><code class="language-text">Applicant details received
+↓
+Check canonical Person
+├── Existing Person found → Link Person
+└── No Person found → Create Person
+</code></pre>
+<p>Automatic Person matching may suggest a match. Sensitive Person merges
+require controlled confirmation.</p>
+<p><strong>Locked rule:</strong> Admission Cycle and admission data are College/School
+scoped.</p>
+<p><strong>Locked rule:</strong> Admission Cycle is created only when required.</p>
+<p><strong>Locked rule:</strong> Admission approval does not automatically activate the
+Student.</p>
+<hr>
+<h1>10. L1-08 --- Student Activation and Academic Registration</h1>
+<p><strong>Purpose:</strong> Convert an accepted applicant into an active Student and
+place the Student in the correct academic structure.</p>
+<p><strong>Owner:</strong> Student Academic Lifecycle<br><strong>Actors:</strong> Student Administration / Academic Admin / System<br><strong>Team:</strong> Team 2</p>
+<h2>10.1 Student Activation</h2>
+<pre><code class="language-text">Admission Completed
+↓
+Required Documents Checked
+↓
+Required Financial Condition Checked
+↓
+Student Context Created
+↓
+PENDING_ACTIVATION
+↓
+ACTIVE
+</code></pre>
+<p>Finance belongs to Team 1.</p>
+<p>Student Domain must ask Finance through an approved contract.</p>
+<p>Example:</p>
+<pre><code class="language-text">Student Domain
+↓ asks Finance
+&quot;Is the required admission financial condition satisfied?&quot;
+↓
+YES / NO
+</code></pre>
+<p>Student Domain must not directly read or update Finance tables.</p>
+<h2>10.2 Active Student Context Rule</h2>
+<p>Before activating a Student Context:</p>
+<pre><code class="language-text">Check Person
+↓
+Find ACTIVE Student Context in Institute
+├── Found → Reject new activation
+└── Not found → Continue activation
+</code></pre>
+<p>A new Student Context may become active only after the previous active
+context is validly closed.</p>
+<h2>10.3 Academic Registration</h2>
+<p>College example:</p>
+<pre><code class="language-text">Student ACTIVE
+↓
+Programme
+↓
+Programme Version
+↓
+Cohort
+↓
+Academic Period
+↓
+Course Enrollment
+</code></pre>
+<p>School example:</p>
+<pre><code class="language-text">Student ACTIVE
+↓
+Class
+↓
+Section
+↓
+Subject Allocation
+</code></pre>
+<p>Important ownership boundary:</p>
+<pre><code class="language-text">Student Academic Lifecycle
+→ Student lifecycle and academic placement
+
+Academics
+→ Course definitions, offerings, teaching, timetable, attendance
+</code></pre>
+<p><strong>Locked rule:</strong> Student progression and placement remain historical.
+They must not be reduced to one current semester/class field.</p>
+<hr>
+<h1>11. L1-09 --- Teaching and Academic Delivery</h1>
+<p><strong>Purpose:</strong> Prepare and conduct teaching.</p>
+<p><strong>Owner:</strong> Academics Domain<br><strong>Actors:</strong> Academic Admin / HOD / Faculty<br><strong>Team:</strong> Team 2</p>
+<p>Basic flow:</p>
+<pre><code class="language-text">Academic Period OPEN
+↓
+Course / Subject Offerings Created
+↓
+Faculty Assigned
+↓
+Teaching Spaces Referenced
+↓
+Timetable Prepared
+↓
+Timetable Published
+↓
+Teaching Starts
+↓
+Teaching Sessions Conducted
+↓
+Attendance Recorded
+↓
+Attendance Finalized
+↓
+Academic Monitoring
+↓
+Teaching Period Completed
+</code></pre>
+<h2>11.1 Course and Course Offering</h2>
+<pre><code class="language-text">Course
+= What is taught
+
+Course Offering
+= When and to whom the Course is taught
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-text">Course:
+CS101 Programming
+</code></pre>
+<pre><code class="language-text">Course Offering:
+CS101
+Semester 1
+2026 Cohort
+ABC Engineering College
+</code></pre>
+<p>Attendance, timetable, faculty academic assignment, and examination
+academic context should normally reference <code>CourseOfferingId</code>.</p>
+<p><strong>Locked rule:</strong> Course Offering is the central academic delivery unit.</p>
+<h2>11.2 Faculty Assignment</h2>
+<pre><code class="language-text">Person
+↓
+Workforce Profile
+↓
+Faculty Academic Assignment
+↓
+Course Offering
+</code></pre>
+<p>A Course Offering may have a primary faculty member and supporting
+faculty members.</p>
+<h2>11.3 Timetable and Space</h2>
+<pre><code class="language-text">Course Offering
++
+Faculty Assignment
++
+Student Group
++
+Time
++
+Infrastructure Space
+↓
+Timetable Entry
+</code></pre>
+<p>Operational modules must reference canonical physical spaces.</p>
+<p>They must not create duplicate classroom, laboratory, or room
+identities.</p>
+<h2>11.4 Lab Teaching</h2>
+<pre><code class="language-text">Academics
+→ Owns academic teaching context
+
+Lab Management
+→ Owns laboratory operations
+
+Infrastructure
+→ Owns physical space
+</code></pre>
+<h2>11.5 Attendance</h2>
+<pre><code class="language-text">Teaching Session
+↓
+Expected Students
+↓
+Attendance Recorded
+↓
+SUBMITTED
+↓
+FINALIZED
+</code></pre>
+<p>Normal edits should not be allowed after finalization.</p>
+<p>Corrections require a controlled, audited correction process.</p>
+<p><strong>Locked rule:</strong> Finalized attendance remains stable and later
+corrections are audited.</p>
+<h2>11.6 Academic Monitoring</h2>
+<p>Academic monitoring may identify conditions such as attendance risk.</p>
+<p>Example:</p>
+<pre><code class="language-text">Student: Rahul
+Attendance: 62%
+Required: 75%
+
+Status:
+ATTENDANCE RISK
+</code></pre>
+<p>Academics provides authoritative academic context to Examination through
+contracts.</p>
+<p>Academics does not directly update Examination data.</p>
+<hr>
+<h1>12. L1-10 --- Examination Cycle</h1>
+<p><strong>Purpose:</strong> Check eligibility, conduct examinations, process marks, and
+publish the official result.</p>
+<p><strong>Owner:</strong> Examination Domain<br><strong>Team:</strong> Team 1</p>
+<p>Basic flow:</p>
+<pre><code class="language-text">Examination Setup
+↓
+Eligibility Check
+↓
+Hall Ticket / Exam Access
+↓
+Examination Conducted
+↓
+Marks Entered
+↓
+Evaluation
+↓
+Result Processed
+↓
+Result Approved
+↓
+Result Published
+</code></pre>
+<p>Examination references canonical IDs such as:</p>
+<pre><code class="language-text">AcademicPeriodId
+CourseOfferingId
+StudentId
+</code></pre>
+<p>Examination must not create duplicate Students, Courses, or Academic
+Periods.</p>
+<h2>12.1 Eligibility</h2>
+<p>Example:</p>
+<pre><code class="language-text">Student Active        YES
+Course Enrolled       YES
+Final Attendance      78%
+Required Attendance   75%
+
+Result:
+ELIGIBLE
+</code></pre>
+<p>Examination asks owning domains for authoritative information.</p>
+<h2>12.2 Result Ownership</h2>
+<p>Examination owns:</p>
+<pre><code class="language-text">PASS / FAIL
+GRADE
+CREDITS
+RESULT STATUS
+OFFICIAL RESULT
+</code></pre>
+<p>After publication, Examination states the official academic result.</p>
+<p>Examination does not decide student promotion.</p>
+<p><strong>Locked rule:</strong> Team 1 Examination owns the official result.</p>
+<hr>
+<h1>13. L1-11 --- Academic Progression</h1>
+<p><strong>Purpose:</strong> Decide what happens to the Student after the official
+result is published.</p>
+<p><strong>Owner:</strong> Student Academic Lifecycle<br><strong>Team:</strong> Team 2</p>
+<p>Basic flow:</p>
+<pre><code class="language-text">Official Result Published
+↓
+Student Academic Context Loaded
+↓
+Progression Policy Applied
+↓
+Progression Decision
+↓
+Decision Applied
+↓
+Student Academic History Updated
+</code></pre>
+<p>Possible decisions:</p>
+<pre><code class="language-text">PROMOTE
+CONTINUE_WITH_BACKLOG
+REPEAT_PERIOD
+DETAIN
+PROGRAMME_COMPLETE
+MANUAL_REVIEW
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-text">Semester 1 Result:
+5 Passed
+1 Failed
+
+Policy:
+Maximum 2 failed courses allowed
+
+Decision:
+CONTINUE_WITH_BACKLOG
+</code></pre>
+<p>Progression policy may be scoped by:</p>
+<pre><code class="language-text">Institute
+↓
+College / School
+↓
+Programme
+↓
+Programme Version
+</code></pre>
+<p>Local policy may override inherited policy where allowed.</p>
+<h2>13.1 Historical Academic Progression</h2>
+<p>Do not rely only on:</p>
+<pre><code class="language-text">student.current_semester = 4
+</code></pre>
+<p>Authoritative history should remain:</p>
+<pre><code class="language-text">Semester 1   COMPLETED
+Semester 2   COMPLETED
+Semester 3   COMPLETED
+Semester 4   ACTIVE
+</code></pre>
+<p>A current position may exist as a read convenience.</p>
+<p><strong>Locked rule:</strong> Historical academic progression is authoritative.</p>
+<p><strong>Locked rule:</strong> Team 2 Student Academic Lifecycle owns progression.</p>
+<hr>
+<h1>14. L1-12 --- Graduation / Student Exit</h1>
+<p><strong>Purpose:</strong> Close the active Student lifecycle when the Student
+completes the programme or exits.</p>
+<p><strong>Owner:</strong> Student Lifecycle<br><strong>Actors:</strong> Registrar / Student Administration<br><strong>Team:</strong> Team 2</p>
+<p>Basic flow:</p>
+<pre><code class="language-text">Exit Trigger
+↓
+Exit Type Identified
+↓
+Required Checks
+↓
+Exit Decision
+↓
+Student Academic Lifecycle Closed
+↓
+Alumni Persona Created if Applicable
+↓
+Records Retained
+</code></pre>
+<p>Exit types:</p>
+<pre><code class="language-text">GRADUATED
+PROGRAMME_COMPLETED
+WITHDRAWN
+TRANSFERRED
+DISCONTINUED
+TERMINATED
+OTHER_EXIT
+</code></pre>
+<p>Do not represent every exit as:</p>
+<pre><code class="language-text">student.status = INACTIVE
+</code></pre>
+<p>The actual exit reason must be retained.</p>
+<h2>14.1 Graduation</h2>
+<pre><code class="language-text">PROGRAMME_COMPLETE
+↓
+Graduation Requirements Checked
+↓
+Graduation Approved
+↓
+Student Context Closed as GRADUATED
+↓
+Alumni Persona Added
+</code></pre>
+<p>The Student Persona and academic history remain part of the Person&#39;s
+history.</p>
+<h2>14.2 Clearance</h2>
+<p>Clearance is based on policy and applicability.</p>
+<pre><code class="language-text">Policy Requires Clearance
++
+Student Used Applicable Capability
+↓
+Clearance Required
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-text">Library     REQUIRED
+Finance     REQUIRED
+Hostel      NOT APPLICABLE
+Transport   NOT APPLICABLE
+</code></pre>
+<p>An enabled module does not automatically create a clearance requirement
+for every Student.</p>
+<p><strong>Locked rule:</strong> Exit type is explicit.</p>
+<p><strong>Locked rule:</strong> Clearance is policy and applicability based.</p>
+<hr>
+<h1>15. L1-13 --- Academic Year / Period Closure</h1>
+<p><strong>Purpose:</strong> Officially close an Academic Year or Academic Period after
+required academic work is complete.</p>
+<p><strong>Owner:</strong> Academic Structure / Academic Calendar<br><strong>Actor:</strong> Registrar<br><strong>Default Approver:</strong> Principal<br><strong>Team:</strong> Team 2</p>
+<p>Basic flow:</p>
+<pre><code class="language-text">OPEN
+↓
+Closure Requested
+↓
+Required Checks
+↓
+CLOSING
+↓
+Approval
+↓
+CLOSED
+</code></pre>
+<p>Typical closure checks:</p>
+<pre><code class="language-text">Teaching completed?
+Attendance finalized?
+Required examination processing completed?
+Progression processing completed?
+</code></pre>
+<p>Optional modules must not block closure unless policy explicitly
+requires them.</p>
+<h2>15.1 Closed Period Corrections</h2>
+<p>Do not reopen the complete Academic Year for a normal correction.</p>
+<p>Use:</p>
+<pre><code class="language-text">CLOSED Period
+↓
+Correction Request
+↓
+Approval
+↓
+Specific Record Corrected
+↓
+Audit Recorded
+</code></pre>
+<p>The Academic Year or Academic Period remains <code>CLOSED</code>.</p>
+<p><strong>Locked rule:</strong> Closed periods use controlled corrections instead of
+normal reopening.</p>
+<hr>
+<h1>16. L1-14 --- Next Academic Cycle</h1>
+<p><strong>Purpose:</strong> Prepare the next academic cycle without copying old
+operational transactions.</p>
+<p>The next cycle is College/School scoped.</p>
+<p>Example:</p>
+<pre><code class="language-text">ABC Engineering College
+2026–27
+↓
+2027–28
+</code></pre>
+<pre><code class="language-text">ABC School
+2026–27
+↓
+2027–28
+</code></pre>
+<p>Final reuse rule:</p>
+<pre><code class="language-text">Reusable Structure
+→ Reference / inherit
+
+Versioned Academic Data
+→ Reuse version or create a new version
+
+Period Operational Data
+→ Create new
+</code></pre>
+<p>  Data                       Next Academic Year</p>
+<hr>
+<p>  College / School           Reuse
+  Department                 Reuse
+  Programme                  Reuse
+  Programme Version          Reuse or create new
+  Academic Year              New
+  Academic Period            New
+  Course Offering            New
+  Faculty Assignment         Revalidate / new
+  Timetable                  New
+  Attendance                 Never copy
+  Examination transactions   Never copy</p>
+<p><strong>Locked rule:</strong> Academic Year cloning must not be implemented as a raw
+database copy.</p>
+<hr>
+<h1>17. Locked Domain Ownership Boundaries</h1>
+<p>  Business Area                     Owner</p>
+<hr>
+<p>  Tenant provisioning               Platform --- Team 2
+  Institute                         Institution Domain --- Team 2
+  Organisation structure            Organisation Domain --- Team 2
+  Academic structure                Academic Structure --- Team 2
+  Academic Year / Period            Academic Structure / Calendar --- Team 2
+  Admission                         Admissions --- Team 2
+  Student lifecycle                 Student Domain --- Team 2
+  Student academic progression      Student Academic Lifecycle --- Team 2
+  Teaching and academic delivery    Academics --- Team 2
+  Attendance                        Academics / Attendance --- Team 2
+  Examination and official result   Examination --- Team 1
+  Finance                           Finance --- Team 1
+  Physical space identity           Infrastructure --- Team 1
+  Workflow execution                Workflow Engine --- Team 2</p>
+<p>Critical ownership boundary:</p>
+<pre><code class="language-text">TEAM 1 — Examination
+↓
+Official Result
+↓
+TEAM 2 — Student Academic Lifecycle
+↓
+Progression Decision
+↓
+Student Academic History
+</code></pre>
+<p><strong>Locked rule:</strong> Examination owns the official result. Student Academic
+Lifecycle owns progression.</p>
+<hr>
+<h1>18. Final Level 1 Lock Decisions</h1>
+<hr>
+<p>  Decision                            Status</p>
+<hr>
+<p>  Tenant separate from Institute      LOCKED</p>
+<p>  College/School operational data     LOCKED
+  separated by mandatory scope        </p>
+<p>  Canonical Person institute-wide     LOCKED</p>
+<p>  Multiple historical Student         LOCKED
+  Contexts allowed                    </p>
+<p>  Maximum one ACTIVE Student Context  LOCKED
+  per Institute                       </p>
+<p>  Parallel / dual active enrollment   LOCKED
+  outside current scope               </p>
+<p>  Admission Cycle College/School      LOCKED
+  scoped                              </p>
+<p>  Admission Cycle created only when   LOCKED
+  required                            </p>
+<p>  Admission approval does not         LOCKED
+  activate Student automatically      </p>
+<p>  Academic Year canonical entity      LOCKED</p>
+<p>  Academic Period canonical entity    LOCKED</p>
+<p>  Academic Year College/School scoped LOCKED</p>
+<p>  <code>APPROVED</code> and <code>OPEN</code> are separate  LOCKED</p>
+<p>  Readiness evaluated dynamically     LOCKED</p>
+<p>  School and College academic models  LOCKED
+  coexist                             </p>
+<p>  Programme curriculum changes use    LOCKED
+  Programme Version                   </p>
+<p>  Course Offering central to teaching LOCKED
+  delivery                            </p>
+<p>  Canonical Infrastructure Space      LOCKED
+  referenced by operational modules   </p>
+<p>  Finalized attendance uses           LOCKED
+  controlled corrections              </p>
+<p>  Examination owns official result    LOCKED</p>
+<p>  Student Academic Lifecycle owns     LOCKED
+  progression                         </p>
+<p>  Academic progression remains        LOCKED
+  historical                          </p>
+<p>  Student exit type is explicit       LOCKED</p>
+<p>  Clearance is policy and             LOCKED
+  applicability based                 </p>
+<p>  Closed periods use controlled       LOCKED
+  corrections                         </p>
+<p>  No raw Academic Year cloning        LOCKED</p>
+<h2>Cross-domain direct writes          LOCKED
+  prohibited</h2>
+<hr>
+<h1>19. Level 1 Completion</h1>
+<p>Level 1 defines the complete institutional lifecycle and the main domain
+ownership boundaries.</p>
+<p>The next architecture stage is <strong>Level 2 --- Domain Workflows</strong>.</p>
+<p>Recommended starting order:</p>
+<pre><code class="language-text">Platform / Tenant
+↓
+Institution
+↓
+Organisation
+↓
+Academic Structure
+↓
+Academic Year / Period
+</code></pre>
+<p>These foundation workflows should be defined before Student, Finance,
+and Examination integration contracts are expanded.</p>
+
+
+  </main>
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: false, theme: 'default' });
+    
+    // Marked puts mermaid in <pre><code class="language-mermaid">
+    // We need to unwrap or convert them so mermaid can render properly.
+    document.addEventListener("DOMContentLoaded", async () => {
+      const mermaidNodes = document.querySelectorAll('code.language-mermaid');
+      for (const node of mermaidNodes) {
+        const pre = node.parentElement;
+        const div = document.createElement('div');
+        div.className = 'mermaid';
+        div.textContent = node.textContent;
+        pre.parentNode.replaceChild(div, pre);
+      }
+      await mermaid.run({ querySelector: '.mermaid' });
+    });
+  </script>
+</body>
+</html>
