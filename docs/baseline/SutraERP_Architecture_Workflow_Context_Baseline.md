@@ -387,122 +387,10 @@ Approved Tier 2 domains:
 -   Directory.
 -   Scholarships.
 -   Reports.
--   **Lab Management.**
--   **Infrastructure Management.**
+-   Lab Management.
+-   Infrastructure Management.
+-   Teacher Guardian Scheme(TGS)
 
-#### Lab Management
-
-Lab Management is accepted as a separate operational capability.
-
-It may own:
-
--   Laboratory Registry.
--   Lab Type.
--   Lab Location.
--   Lab Capacity.
--   Lab Equipment Assignment.
--   Lab Inventory Context.
--   Lab Schedule.
--   Lab Access Rules.
--   Lab Maintenance Requests.
--   Lab Safety Records.
--   Lab Session Records.
--   Lab In-charge Assignments.
--   Lab Technician Assignments.
-
-**Lab In-charge is not a module.**
-
-Lab In-charge is a **position/assignment/persona within Lab Management
-and the workforce/organisation model**.
-
-Correct conceptual model:
-
-``` text
-Person
-  ↓
-Workforce Profile
-  ↓
-Engagement
-  ↓
-Position / Responsibility Assignment
-  ↓
-Lab In-charge Assignment
-  ↓
-Laboratory
-```
-
-This prevents creating a separate `lab_incharge` identity system.
-
-**Validation result:** Lab Management should be added to Tier 2. Lab
-In-charge should be modelled as a position/assignment, not as a
-standalone module.
-
-#### Infrastructure Management
-
-Infrastructure Management is accepted as a separate Tier 2 operational
-domain.
-
-It should be broader than Facilities request handling.
-
-Conceptual ownership may include:
-
--   Building Registry.
--   Block Registry.
--   Floor Registry.
--   Room / Space Registry.
--   Space Classification.
--   Asset-to-Space Mapping.
--   Infrastructure Condition.
--   Utility Context.
--   Capacity.
--   Maintenance Planning.
--   Inspection.
--   Infrastructure Projects.
--   Contractor Work Context.
--   Compliance/inspection records.
--   Infrastructure Manager Assignments.
-
-Recommended distinction:
-
-``` text
-INFRASTRUCTURE MANAGEMENT
-"What physical infrastructure exists, where is it, what condition is it in,
-and how is its lifecycle managed?"
-
-FACILITIES
-"What operational facility services and requests are being delivered?"
-```
-
-Example:
-
-``` text
-Infrastructure Management owns:
-Building A
-Floor 2
-Room 204
-Type: Computer Laboratory
-Capacity: 60
-Condition: Operational
-
-Facilities owns:
-AC not cooling in Room 204
-Cleaning request for Room 204
-Electrical maintenance ticket for Room 204
-```
-
-**Validation result:** Infrastructure Management should be added to Tier
-2 as a separate domain. It should not be merged blindly into Facilities.
-
-Risk:
-
--   Facilities, Infrastructure, Lab Management, Hostel, and Security can
-    duplicate location/asset records if boundaries are not defined.
-
-Required rule:
-
-> Physical location and space identity must be canonical. Operational
-> modules reference canonical infrastructure/space IDs rather than
-> creating independent room/building records.
 
 ### Tier 3 --- Extension Modules
 
@@ -573,6 +461,7 @@ Additional approved operational capabilities:
 
 29. Lab Management.
 30. Infrastructure Management.
+31. Teacher Guardian Scheme
 
 This is a **business/UI capability list**, not the final backend
 architectural domain map.
