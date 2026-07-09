@@ -66,6 +66,7 @@ This index lists all current and scheduled architectural documentation, mapping 
 | L2-G06 — Medical Workflows | Pallav | 0.1 | Draft | Section A |
 | L2-G07 — Security Operations Workflows | Pallav | 0.1 | Draft | Section B |
 | L2-G08 — Housekeeping Operations Workflows | Pallav | 0.1 | Draft | Section B |
+| L2-G09 — Teacher Guardian Scheme | Pallav | 0.1 | Draft | Section B |
 | L2-G00 — Campus Operations Review | Pallav | 0.1 | Draft | All Section G |
 | **Section H — Institutional Services & Intelligence** | | | | |
 | L2-H01 — Document Domain Workflows | Pallav | 0.1 | Draft | Section A |
