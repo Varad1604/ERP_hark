@@ -162,9 +162,16 @@ Status: \[ \]
 
 Status: \[ \]
 
+### L2-D06 --- Open Electives & MOOCs Workflows
+
+Status: \[ \]
+
 ### L2-D00 --- Academic Delivery Review
 
 Status: \[ \]
+
+
+
 
 ------------------------------------------------------------------------
 
@@ -256,6 +263,10 @@ Status: \[ \]
 
 Status: \[ \]
 
+## L2-G09 --- Teacher Guardian Scheme 
+
+Status: \[ \]
+
 ### L2-G00 --- Campus Operations Review
 
 Status: \[ \]
@@ -321,18 +332,7 @@ Status: \[ \]
 
 Status: \[ \] Status: \[ \]
 
-------------------------------------------------------------------------
 
-# SECTION J --- Team Planning
-
-Purpose: Planning and ownership allocation for the five architecture
-contributors.
-
-Contributors: 1. Dhruv 2. Devang 3. Varad 4. Pallav 5. Chetan
-
-> Task allocation will be defined in a separate planning document.
-
-------------------------------------------------------------------------
 
 # Final Review
 

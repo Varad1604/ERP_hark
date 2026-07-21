@@ -23,7 +23,7 @@
 |----------|-------|--------|
 | SutraERP Architecture Workflow Context Baseline | Dhruv | Locked |
 | SutraERP Level 1 Architecture | Dhruv | Locked |
-| SutraERP Level 2 Collaboration Guide | Dhruv | Locked |
+| DEPENDENCY_MAP | Dhruv | Locked |
 | Level 2 Matrix | Dhruv | Active |
 | Architecture Index | Dhruv | Active |
 
