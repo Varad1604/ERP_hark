@@ -24,6 +24,7 @@ scratch/
 tmp/
 .gemini/
 tools/code.txt
+architecture_audit_report.md
 
 # Generated outputs
 generated/
