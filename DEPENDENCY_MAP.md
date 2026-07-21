@@ -24,9 +24,6 @@ Repository governance, Git workflows, collaboration rules, and development pract
 Baseline
     │
     ▼
-Level 0
-    │
-    ▼
 Level 1
     │
     ▼

@@ -82,11 +82,10 @@ Status: \[ \]
 
 Status: \[ \]
 
-## L2-B04 --- Academic Structure Workflows
-
+## L2-B04 --- Curriculum Framework Workflows
 Status: \[ \]
 
-## L2-B05 --- Academic Year & Academic Period Workflows
+## L2-B05 --- Flexible Academic Calendar Workflows
 
 Status: \[ \]
 
@@ -128,7 +127,7 @@ Status: \[ \]
 
 Status: \[ \]
 
-## L2-C07 --- Scholarship Workflows
+## L2-C07 --- Scholarship Eligibilty Workflows
 
 Status: \[ \]
 
@@ -162,9 +161,16 @@ Status: \[ \]
 
 Status: \[ \]
 
+### L2-D06 --- Open Electives & MOOCs Workflows
+
+Status: \[ \]
+
 ### L2-D00 --- Academic Delivery Review
 
 Status: \[ \]
+
+
+
 
 ------------------------------------------------------------------------
 
@@ -256,6 +262,10 @@ Status: \[ \]
 
 Status: \[ \]
 
+## L2-G09 --- Teacher Guardian Scheme 
+
+Status: \[ \]
+
 ### L2-G00 --- Campus Operations Review
 
 Status: \[ \]
@@ -266,7 +276,7 @@ Status: \[ \]
 
 Purpose: Supporting institutional services and read models.
 
-## L2-H01 --- Document Domain Workflows
+## L2-H01 --- APAAR & DigiLocker Workflows
 
 Status: \[ \]
 
@@ -319,20 +329,9 @@ Status: \[ \]
 
 ### L2-I00 --- Examination Review
 
-Status: \[ \] Status: \[ \]
+Status: \[ \] 
 
-------------------------------------------------------------------------
 
-# SECTION J --- Team Planning
-
-Purpose: Planning and ownership allocation for the five architecture
-contributors.
-
-Contributors: 1. Dhruv 2. Devang 3. Varad 4. Pallav 5. Chetan
-
-> Task allocation will be defined in a separate planning document.
-
-------------------------------------------------------------------------
 
 # Final Review
 
@@ -362,10 +361,10 @@ flowchart TD
     K --> L[Section F: Finance & Examination]
     L --> M[Section F Review: Finance & Examination Review]
     M --> N[Section I: Examination]
-    N --> O[Section G: Campus Operations]
+    N --> N_REV[Section I Review: Examination Review]
+    N_REV --> O[Section G: Campus Operations]
     O --> O_REV[Section G Review: Campus Operations Review]
     O_REV --> P[Section H: Institutional Services & Intelligence]
     P --> R[Section H Review: Services & Intelligence Review]
-    R --> S[Section J: Team Planning]
-    S --> T[L2-99 Final Architecture Review]
+    R --> T[L2-99 Final Architecture Review]
 ```

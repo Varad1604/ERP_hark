@@ -23,7 +23,7 @@
 |----------|-------|--------|
 | SutraERP Architecture Workflow Context Baseline | Dhruv | Locked |
 | SutraERP Level 1 Architecture | Dhruv | Locked |
-| SutraERP Level 2 Collaboration Guide | Dhruv | Locked |
+| DEPENDENCY_MAP | Dhruv | Locked |
 | Level 2 Matrix | Dhruv | Active |
 | Architecture Index | Dhruv | Active |
 
@@ -94,7 +94,7 @@
 | L2-C04 | Academic Progression & Credit Ledger Workflows | Varad | Draft |
 | L2-C05 | Qualification Completion & Student Exit Workflows | Varad | Draft |
 | L2-C06 | Guardian Workflows | Varad | Draft |
-| L2-C07 | Scholarship Workflows | Varad | Draft |
+| L2-C07 | Scholarship Eligibility Workflows | Varad | Draft |
 | L2-C00 | Student Lifecycle Review | Varad | Draft |
 
 **Section Total:** 8 Documents
