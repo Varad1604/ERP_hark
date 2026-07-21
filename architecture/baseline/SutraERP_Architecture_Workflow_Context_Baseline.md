@@ -33,6 +33,14 @@ The product must support:
     universities.
 -   Parent/guardian access as a first-class ERP persona.
 -   Institutional document management rather than generic file storage.
+- National Education Policy (NEP 2020) compliant academic workflows.
+- Multiple Entry Multiple Exit (MEME).
+- Academic Bank of Credits (ABC) integration.
+- APAAR-based student identity.
+- Flexible curriculum and multidisciplinary education.
+- Choice Based Credit Registration (CBCR).
+- Academic Credit Ledger.
+- National education platform integrations (ABC, APAAR, DigiLocker, SWAYAM).
 
 SutraERP is to be treated as an **Institution Operating Platform**, not
 a collection of CRUD pages.
@@ -145,7 +153,25 @@ configurable through the central Workflow Engine.
 The workflow must not permanently hardcode `Registrar → Principal` in
 domain service logic.
 
-### 2.5 Guided Institute Setup
+## 2.5 NEP 2020 Academic Framework
+
+The platform shall support the academic principles defined under the National Education Policy (NEP 2020).
+
+These include:
+
+- Multiple Entry Multiple Exit (MEME)
+- Academic Bank of Credits (ABC)
+- Academic Credit Ledger
+- APAAR identity integration
+- Flexible curriculum
+- Choice Based Credit Registration (CBCR)
+- Multidisciplinary education
+- Major / Minor programme structures
+- Skill and vocational education
+
+NEP capabilities shall be implemented as cross-domain architecture rather than a standalone module.
+
+### 2.6 Guided Institute Setup
 
 A guided Institute Setup workflow/wizard is approved as a future
 capability.
@@ -1467,7 +1493,7 @@ College / School / Campus Setup
 ↓
 Department and Organisational Unit Setup
 ↓
-Academic Structure Setup
+Academic Structure & Flexible Curriculum Setup
 ↓
 Academic Year / Operating Period Created
 ↓
