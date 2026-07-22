@@ -9,7 +9,7 @@ Status: LOCKED
 Owner: Lead Architect
 
 Purpose:
-Central navigation document for the entire SutraERP repository.
+Central navigation document for the current SutraERP repository.
 
 ---
 
@@ -20,27 +20,22 @@ flowchart TD
 
 Repository["SutraERP Repository"]
 
-Repository --> Constitution
 Repository --> README
-Repository --> ADR
+Repository --> CONTRIBUTING
+Repository --> DEPENDENCY_MAP
+Repository --> CHANGELOG
+Repository --> Architecture
+Repository --> Governance
 Repository --> Templates
-Repository --> Assets
-Repository --> Archive
-
-Repository --> L0
-Repository --> L1
-Repository --> L2
-Repository --> L3
-Repository --> L4
-Repository --> L5
-Repository --> L6
+Repository --> Generated
+Repository --> Tools
 ```
 
 ---
 
 # Repository Navigation
 
-## Constitution
+## Governance
 
 The Repository Constitution defines governance and engineering standards.
 
@@ -59,214 +54,31 @@ The Repository Constitution defines governance and engineering standards.
 
 ```mermaid
 flowchart LR
-
-L0["Vision"]
-
--->L1["Business Architecture"]
-
--->L2["Domain Architecture"]
-
--->L3["Service Architecture"]
-
--->L4["API Architecture"]
-
--->L5["Database Architecture"]
-
--->L6["Experience Architecture"]
+L0["Business Vision"] --> L1["Business Domain Architecture"] --> L2["Domain Workflow Architecture"] --> L3["Business Scenario Architecture"] --> L4["System Behavior Specification"] --> L5["Solution Architecture"] --> L6["UI / UX Architecture"]
 ```
 
 ---
 
-## Level 0
+## Current Source Documents Present
 
-Strategic vision
+- L0 Business Vision
+- L1 Business Domain Architecture
+- L2 Domain Workflow control artifacts
 
-Examples
-
-- Vision
-- Mission
-- Product Strategy
-
----
-
-## Level 1
-
-Business Architecture
-
-Current Modules
-
-- Platform Foundation
-- Institute Lifecycle
-- Student Lifecycle
-- Human Resource
-- Academics
-- Examination
-- Finance
-- Library
-- Hostel
-- Inventory
-- CRM
-- TGS
-- Communication
-- Analytics
-- Security
-
----
-
-## Level 2
-
-Domain Architecture
-
-Each Level 1 module expands into detailed domain documentation.
-
-Example
-
-Student Lifecycle
-
-↓
-
-Admission
-
-↓
-
-Enrollment
-
-↓
-
-Promotion
-
-↓
-
-Transfer
-
-↓
-
-Graduation
-
-↓
-
-Alumni
-
----
-
-## Level 3
-
-Service Architecture
-
-Contains
-
-- Application Services
-- Domain Services
-- Integration Services
-
----
-
-## Level 4
-
-API Architecture
-
-Contains
-
-- REST APIs
-- Contracts
-- DTOs
-- Authentication
-- API Versioning
-
----
-
-## Level 5
-
-Database Architecture
-
-Contains
-
-- Entity Models
-- Database Schema
-- Relationships
-- Indexing
-- Migration Strategy
-
----
-
-## Level 6
-
-Experience Architecture
-
-Contains
-
-- Student Portal
-
-- Faculty Portal
-
-- Parent Portal
-
-- Admin Portal
-
-- Mobile Apps
-
-- Dashboards
-
----
-
-# Architecture Decision Records
-
-```mermaid
-flowchart TD
-
-ADR
-
--->ADR001
-
--->ADR002
-
--->ADR003
-
--->ADR004
-
--->ADR005
-```
-
-Every major architectural decision shall have an ADR.
+L3 through L6 are defined by the hierarchy but are not yet present as source documents in this workspace.
 
 ---
 
 # Templates
 
-Available Templates
+Available templates in the current repository:
 
-- L0 Template
-- L1 Template
-- L2 Template
-- ADR Template
-- API Template
-- Database Template
-- Workflow Template
-- State Machine Template
-
----
-
-# Repository Workflow
-
-```mermaid
-flowchart LR
-
-Idea
-
--->Architecture
-
--->Review
-
--->Approval
-
--->Implementation
-
--->Testing
-
--->Documentation
-
--->Release
-```
+- L1 Business Domain Template
+- L2 Domain Workflow Template
+- L3 Business Scenario Template
+- L4 System Behavior Template
+- L5 Solution Architecture Template
+- L6 UI / UX Template
 
 ---
 
@@ -274,88 +86,19 @@ Idea
 
 ```mermaid
 flowchart TD
-
-Constitution
-
--->README
-
--->L0
-
--->L1
-
--->L2
-
--->L3
-
--->L4
-
--->L5
-
--->L6
-
--->Implementation
-```
-
----
-
-# Module Dependency Overview
-
-```mermaid
-flowchart LR
-
-Platform
-
--->Institute
-
-Institute
-
--->Student
-
-Student
-
--->Academics
-
-Academics
-
--->Examination
-
-Student
-
--->Finance
-
-Student
-
--->Library
-
-Student
-
--->Hostel
-
-Student
-
--->TGS
-
-Student
-
--->Communication
-
-Communication
-
--->Analytics
+Constitution --> README --> L0 --> L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> Implementation
 ```
 
 ---
 
 # Repository Health
 
-Repository should always maintain
+Repository health should always maintain:
 
 - Constitutional Compliance
-- Complete Documentation
-- Updated ADRs
+- Complete Cross References
 - Version Consistency
 - Valid Mermaid Diagrams
-- Cross References
 - Traceability
 - Dependency Integrity
 
@@ -364,63 +107,30 @@ Repository should always maintain
 # Quick Links
 
 ## Governance
-
 - Repository Constitution
 
 ## Strategy
-
 - Level 0
 
 ## Business
-
 - Level 1
 
 ## Domain Design
-
 - Level 2
 
-## Services
-
-- Level 3
-
-## APIs
-
-- Level 4
-
-## Database
-
-- Level 5
-
-## Experience
-
-- Level 6
-
-## ADR
-
-Architecture Decision Records
-
 ## Templates
-
-Standard Documentation Templates
-
-## Assets
-
-Images and Diagrams
-
-## Archive
-
-Deprecated Documentation
+- Standard Documentation Templates
 
 ---
 
 # Repository Principles
 
-The repository shall always remain
+The repository shall always remain:
 
 - Modular
 - Traceable
 - Version Controlled
-- Technology Independent
+- Technology Independent at the business architecture level
 - Domain Driven
 - Well Documented
 - AI Readable

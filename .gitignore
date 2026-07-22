@@ -25,6 +25,7 @@ tmp/
 .gemini/
 tools/code.txt
 architecture_audit_report.md
+Exam_review.md
 
 # Generated outputs
 generated/

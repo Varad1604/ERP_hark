@@ -23,8 +23,8 @@ To make tracking, version history, and reverting architectural decisions straigh
 1. **One Domain File per Commit**: Do not bundle changes to multiple domain specifications in a single commit.
 2. **Commit Message Format**:
    - `docs(L2-A01): draft initial platform tenant workflows`
-   - `docs(L2-C02): update student lifecycle states to locked`
-   - `docs(L1): clarify multi-tenancy schema policy`
+   - `docs(L3-Admissions): update student admission scenario to locked`
+   - `docs(L5): clarify multi-tenancy solution architecture policy`
 3. **Draft Commits**: Mark unfinished drafts with a `[WIP]` prefix in the commit message if working in shared feature branches.
 
 ---
@@ -33,7 +33,7 @@ To make tracking, version history, and reverting architectural decisions straigh
 
 All additions, edits, or promotions of documents to `Locked` must go through a Pull Request targeting `main`.
 
-- **PR Titles**: Follow the commit format, e.g. `docs(Level 2): lock Platform Foundation workflows`.
+- **PR Titles**: Follow the commit format, e.g. `docs(L2): lock Platform Foundation workflows`.
 - **Description Requirements**:
   - Summarize the business workflows modified or introduced.
   - List cross-domain impacts or side effects.
@@ -52,7 +52,7 @@ Before a document can be merged into `main`, it undergoes a formal review proces
 Draft Created  ──>  Self-Review  ──>  Pull Request  ──>  Cross-Review  ──>  Locked Status  ──>  Merge
 ```
 
-1. **Alignment Check**: Reviewer ensures that the specifications do not conflict with the baseline requirements and the locked Level 1 Architecture.
+1. **Alignment Check**: Reviewer ensures that the specifications do not conflict with the L0 Business Vision, L1 Business Domain Architecture, and L5 Solution Architecture.
 2. **Constraint Enforcement**: Verify that the document includes all required standard sections (e.g. Failure Scenarios, Audit Requirements, Synchronous Contracts) as per the templates.
 3. **No Code Check**: Verify that the spec does not include language-specific types (e.g., Rust structs), concrete database tables, or UI/UX layouts.
 
@@ -73,8 +73,8 @@ We use a semantic versioning system for all architectural documents:
 
 Whenever an architectural specification or workflow document is successfully reviewed and merged into `main`, the author of the changes must immediately update the repository indexes to reflect the new state. This guarantees that `main` is always self-consistent:
 
-1. **[ARCHITECTURE_INDEX.md](file:///g:/Pravaha/ERP_Planning/ARCHITECTURE_INDEX.md)**: Update the version number, owner, status, and dependency mapping.
-2. **[CHANGELOG.md](file:///g:/Pravaha/ERP_Planning/CHANGELOG.md)**: Record the exact changes, folder relocations, or new document locked status under the appropriate version release block.
-3. **[Level 2 matrix.md](file:///g:/Pravaha/ERP_Planning/docs/level-2/Level%202%20matrix.md)**: Mark the target domain checkboxes or statuses as completed.
-4. **[DEPENDENCY_MAP.md](file:///g:/Pravaha/ERP_Planning/DEPENDENCY_MAP.md)**: If the document alters domain relationships or dependencies, the corresponding maps must be updated immediately.
+1. **[ARCHITECTURE_INDEX.md](file:///f:/Pravaha/ERP_Planning/architecture/ARCHITECTURE_INDEX.md)**: Update the version number, owner, status, and dependency mapping.
+2. **[CHANGELOG.md](file:///f:/Pravaha/ERP_Planning/CHANGELOG.md)**: Record the exact changes, folder relocations, or new document locked status under the appropriate version release block.
+3. **[L2_DOMAIN_WORKFLOW_MATRIX.md](file:///f:/Pravaha/ERP_Planning/architecture/L2_Domain_Workflow_Architecture/L2_DOMAIN_WORKFLOW_MATRIX.md)**: Mark the target domain checkboxes or statuses as completed.
+4. **[DEPENDENCY_MAP.md](file:///f:/Pravaha/ERP_Planning/DEPENDENCY_MAP.md)**: If the document alters domain relationships or dependencies, the corresponding maps must be updated immediately.
 

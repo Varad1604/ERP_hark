@@ -21,15 +21,15 @@
 
 | Document | Owner | Status |
 |----------|-------|--------|
-| SutraERP Architecture Workflow Context Baseline | Dhruv | Locked |
-| SutraERP Level 1 Architecture | Dhruv | Locked |
+| SutraERP L0 Business Vision | Dhruv | Locked |
+| SutraERP L1 Business Domain Architecture | Dhruv | Locked |
 | DEPENDENCY_MAP | Dhruv | Locked |
-| Level 2 Matrix | Dhruv | Active |
+| L2 Domain Workflow Matrix | Dhruv | Active |
 | Architecture Index | Dhruv | Active |
 
 ---
 
-# Level 2 Section Ownership
+# L1 Business Domain Ownership
 
 | Section | Domain | Owner |
 |----------|--------|-------|
@@ -45,7 +45,7 @@
 
 ---
 
-# Level 2 Architecture Documents
+# L2 Domain Workflow Documents
 
 ---
 
@@ -215,6 +215,71 @@
 
 ---
 
+# L3 Business Scenario Specifications
+
+| ID | Document | Owner | Status |
+|----|----------|-------|--------|
+| L3-Admission | Student Admission Scenario | Varad | Draft |
+| L3-SemesterRegistration | Semester Registration Scenario | Varad | Draft |
+| L3-Graduation | Graduation Scenario | Varad | Draft |
+| L3-FacultyRecruitment | Faculty Recruitment Scenario | Varad | Draft |
+| L3-HostelAllocation | Hostel Allocation Scenario | Dhruv | Draft |
+| L3-PlacementDrive | Placement Drive Scenario | Dhruv | Draft |
+| L3-FeeCollection | Fee Collection Scenario | Chetan | Draft |
+| L3-ResultPublication | Result Publication Scenario | Devang | Draft |
+| L3-LeaveManagement | Leave Management Scenario | Varad | Draft |
+
+---
+
+# L4 System Behavior Specifications
+
+| ID | Document | Owner | Status |
+|----|----------|-------|--------|
+| L4-Admission | Admission System Behavior | Varad | Draft |
+| L4-SemesterReg | Semester Reg System Behavior | Varad | Draft |
+| L4-Graduation | Graduation System Behavior | Varad | Draft |
+| L4-FacultyRecruit | Faculty Recruit System Behavior | Varad | Draft |
+| L4-HostelAlloc | Hostel Alloc System Behavior | Dhruv | Draft |
+| L4-Placement | Placement System Behavior | Dhruv | Draft |
+| L4-FeeCollection | Fee Collection System Behavior | Chetan | Draft |
+| L4-ResultPub | Result Publication System Behavior | Devang | Draft |
+| L4-LeaveMgmt | Leave Management System Behavior | Varad | Draft |
+
+---
+
+# L5 Solution Architectures
+
+| ID | Document | Owner | Status |
+|----|----------|-------|--------|
+| L5-Core | Core L5 Solution Architecture | Dhruv | Locked |
+| L5-Admission | Admission Tech Design | Varad | Draft |
+| L5-SemesterReg | Semester Reg Tech Design | Varad | Draft |
+| L5-Graduation | Graduation Tech Design | Varad | Draft |
+| L5-FacultyRecruit | Faculty Recruit Tech Design | Varad | Draft |
+| L5-HostelAlloc | Hostel Alloc Tech Design | Dhruv | Draft |
+| L5-Placement | Placement Tech Design | Dhruv | Draft |
+| L5-FeeCollection | Fee Collection Tech Design | Chetan | Draft |
+| L5-ResultPub | Result Publication Tech Design | Devang | Draft |
+| L5-LeaveMgmt | Leave Management Tech Design | Varad | Draft |
+
+---
+
+# L6 UI / UX Architectures
+
+| ID | Document | Owner | Status |
+|----|----------|-------|--------|
+| L6-Admission | Admission UI/UX | Varad | Draft |
+| L6-SemesterReg | Semester Reg UI/UX | Varad | Draft |
+| L6-Graduation | Graduation UI/UX | Varad | Draft |
+| L6-FacultyRecruit | Faculty Recruit UI/UX | Varad | Draft |
+| L6-HostelAlloc | Hostel Alloc UI/UX | Dhruv | Draft |
+| L6-Placement | Placement UI/UX | Dhruv | Draft |
+| L6-FeeCollection | Fee Collection UI/UX | Chetan | Draft |
+| L6-ResultPub | Result Publication UI/UX | Devang | Draft |
+| L6-LeaveMgmt | Leave Management UI/UX | Varad | Draft |
+
+---
+
 # Architecture Summary
 
 | Section | Documents | Owner |
@@ -236,10 +301,14 @@
 | Item | Count |
 |------|------:|
 | Core Architecture Documents | 5 |
-| Level 2 Sections | 9 |
-| Level 2 Workflow Documents | 63 |
+| L1 Business Domains | 9 |
+| L2 Workflow Documents | 63 |
+| L3 Scenario Documents Present  | 0 |
+| L4 System Behavior Documents | 9 |
+| L5 Solution Architecture Documents | 10 |
+| L6 UI/UX Documents | 9 |
 | Section Review Documents | 9 |
-| Total Level 2 Documents | 72 |
+| Total Architecture Documents | 114 |
 | Active Architects | 5 |
 
 ---
