@@ -132,7 +132,7 @@ No document may redefine higher-level architecture.
 
 # 6. Document Metadata
 
-Every Markdown document shall begin with the following metadata.
+Architecture specifications should begin with the following metadata.`r`nRepository guides, indexes, and governance documents may use simplified headers where the file already self-identifies its authority and scope.
 
 ```text
 Title

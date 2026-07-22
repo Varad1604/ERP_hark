@@ -1098,6 +1098,15 @@ Owns:
 -   Revaluation.
 -   Examination-owned workflows.
 
+#### Selected Operational Services
+
+-   Library.
+-   Hostel.
+-   Transport.
+-   Infrastructure Management.
+-   Procurement.
+-   Inventory.
+
 ### Team 2
 
 Owns:
@@ -1116,7 +1125,9 @@ Owns:
 -   Admissions.
 -   Academics.
 -   People/HR platform domains.
--   Campus Operations.
+-   Facilities and remaining Campus Operations workflows except the
+    Team 1 operational services listed above.
+-   Institutional Services & Intelligence.
 -   Remaining modules.
 
 ### Shared Platform Contracts
@@ -1658,8 +1669,12 @@ The following decisions are accepted as the baseline:
 17. Outsourced security and cleaning workers use workforce engagements
     and are not automatically institute employees.
 18. Organisation Position and System Role are separate concepts.
-19. Team 1 owns Finance and Examination.
-20. Team 2 owns the broader platform and remaining domains.
+19. Team 1 owns Finance, Examination, and the explicitly assigned
+    operational services: Library, Hostel, Transport, Infrastructure
+    Management, Procurement, and Inventory.
+20. Team 2 owns the broader platform, academic foundation, student and
+    people domains, remaining campus operations, and institutional
+    services.
 21. Cross-domain writes are prohibited.
 22. Cross-domain operational reads use approved read contracts.
 23. Dashboard is a composition surface.
@@ -1729,3 +1744,4 @@ For each lifecycle stage, define:
 
 This document is the architecture context baseline for subsequent
 SutraERP workflow design.
+

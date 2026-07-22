@@ -173,19 +173,19 @@ Level 2 — Domain Architecture
 
 ↓
 
-Level 3 — Service Architecture
+Level 3 — Business Scenario Architecture
 
 ↓
 
-Level 4 — API Architecture
+Level 4 — System Behavior Specification
 
 ↓
 
-Level 5 — Database Architecture
+Level 5 — Solution Architecture
 
 ↓
 
-Level 6 — User Experience
+Level 6 — UI / UX Architecture
 
 Lower levels shall never redefine higher-level decisions.
 
@@ -285,23 +285,23 @@ Never defines APIs.
 
 ## Level 3
 
-Defines services.
+Defines end-to-end business scenarios.
 
-Never defines persistence.
+Never defines implementation design.
 
 ---
 
 ## Level 4
 
-Defines interfaces.
+Defines expected system behavior.
 
-Never defines storage.
+Never defines technical solution design.
 
 ---
 
 ## Level 5
 
-Defines persistence.
+Defines engineering solution architecture.
 
 Never changes business rules.
 
@@ -309,7 +309,7 @@ Never changes business rules.
 
 ## Level 6
 
-Defines presentation.
+Defines user interaction and experience.
 
 Never owns business logic.
 

@@ -40,13 +40,13 @@ A["Repository Constitution"]
 
 -->C["Domain Architecture"]
 
--->D["Service Design"]
+-->D["Business Scenario Design"]
 
--->E["API Design"]
+-->E["System Behavior Design"]
 
--->F["Database Design"]
+-->F["Solution Architecture Design"]
 
--->G["Experience Design"]
+-->G["UI / UX Design"]
 
 -->H["Implementation"]
 
@@ -181,10 +181,10 @@ Each architectural level produces specific deliverables.
 | L0 | Vision |
 | L1 | Business Architecture |
 | L2 | Domain Design |
-| L3 | Services |
-| L4 | APIs |
-| L5 | Database |
-| L6 | Experience |
+| L3 | Business Scenarios |
+| L4 | System Behavior |
+| L5 | Solution Architecture |
+| L6 | UI / UX |
 | Engineering | Source Code |
 | QA | Test Artifacts |
 

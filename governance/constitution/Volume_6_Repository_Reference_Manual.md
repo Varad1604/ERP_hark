@@ -1,5 +1,5 @@
 # SutraERP Repository Constitution
-## Volume 6 — Repository Reference Manual
+## Volume 6 - Repository Reference Manual
 
 ---
 
@@ -25,69 +25,38 @@ Depends On:
 
 This volume serves as the permanent reference manual for the SutraERP repository.
 
-It standardizes terminology, document templates, repository structure, architectural checklists, naming conventions, and reference material used throughout the project.
+It standardizes terminology, template references, repository structure, architectural checklists, naming conventions, and other reference material used throughout the project.
 
-This volume is informative but authoritative regarding terminology and templates.
+This volume is authoritative for terminology and repository reference conventions.
 
 ---
 
-# 2. Repository Folder Structure
+# 2. Current Repository Folder Structure
 
 ```text
 SutraERP/
-
-│
-
-├── Constitution/
-
-│   ├── Volume1.md
-
-│   ├── Volume2.md
-
-│   ├── Volume3.md
-
-│   ├── Volume4.md
-
-│   ├── Volume5.md
-
-│   └── Volume6.md
-
-│
-
-├── README.md
-
-│
-
-├── L0/
-
-├── L1/
-
-├── L2/
-
-├── L3/
-
-├── L4/
-
-├── L5/
-
-├── L6/
-
-│
-
-├── ADR/
-
-│
-
-├── Assets/
-
-│
-
-├── Templates/
-
-│
-
-└── Archive/
+|
+|-- README.md
+|-- CONTRIBUTING.md
+|-- DEPENDENCY_MAP.md
+|-- CHANGELOG.md
+|
+|-- architecture/
+|   |-- ARCHITECTURE_INDEX.md
+|   |-- migration_report.md
+|   |-- L0_Business_Vision/
+|   |-- L1_Business_Domain_Architecture/
+|   `-- L2_Domain_Workflow_Architecture/
+|
+|-- governance/
+|   `-- constitution/
+|
+|-- templates/
+|-- generated/
+`-- tools/
 ```
+
+Planned folders such as `ADR/`, `assets/`, and `archive/` are not part of the current repository structure until they are created.
 
 ---
 
@@ -96,57 +65,19 @@ SutraERP/
 ```mermaid
 flowchart TD
 
-Repository
+Repository --> README
+Repository --> CONTRIBUTING
+Repository --> DEPENDENCY_MAP
+Repository --> CHANGELOG
+Repository --> Architecture
+Repository --> Governance
+Repository --> Templates
+Repository --> Generated
+Repository --> Tools
 
--->Constitution
-
-Repository
-
--->README
-
-Repository
-
--->L0
-
-Repository
-
--->L1
-
-Repository
-
--->L2
-
-Repository
-
--->L3
-
-Repository
-
--->L4
-
-Repository
-
--->L5
-
-Repository
-
--->L6
-
-Repository
-
--->ADR
-
-Repository
-
--->Templates
-
-Repository
-
--->Assets
-
-Repository
-
--->Archive
+Architecture --> L0
+Architecture --> L1
+Architecture --> L2
 ```
 
 ---
@@ -154,17 +85,16 @@ Repository
 # 4. Canonical Terminology
 
 | Term | Meaning |
-|-------|---------|
+|------|---------|
 | Domain | Independent business capability |
 | Entity | Business object with identity |
-| Aggregate | Consistent business boundary |
 | Contract | Public capability exposed by a domain |
 | Event | Completed business fact |
 | Workflow | Ordered business process |
 | Lifecycle | Valid state transitions |
 | Canonical Owner | Single authoritative owner |
-| ADR | Architecture Decision Record |
 | Context | Logical business boundary |
+| Qualification Completion | Canonical replacement for the legacy term Graduation |
 
 ---
 
@@ -172,13 +102,13 @@ Repository
 
 | Abbreviation | Meaning |
 |-------------|---------|
-| L0 | Vision |
-| L1 | Business Architecture |
-| L2 | Domain Architecture |
-| L3 | Service Architecture |
-| L4 | API Architecture |
-| L5 | Database Architecture |
-| L6 | Experience Architecture |
+| L0 | Business Vision |
+| L1 | Business Domain Architecture |
+| L2 | Domain Workflow Architecture |
+| L3 | Business Scenario Architecture |
+| L4 | System Behavior Specification |
+| L5 | Solution Architecture |
+| L6 | UI / UX Architecture |
 | ADR | Architecture Decision Record |
 | API | Application Programming Interface |
 | DDD | Domain Driven Design |
@@ -187,16 +117,16 @@ Repository
 
 # 6. Standard Templates
 
-Repository includes templates for
+The repository currently includes templates for:
 
-- Level 0
-- Level 1
-- Level 2
-- ADR
-- API
-- Database
-- Workflow
-- State Machine
+- L1
+- L2
+- L3
+- L4
+- L5
+- L6
+
+No ADR-specific template is present in the current workspace.
 
 ---
 
@@ -206,123 +136,53 @@ Repository includes templates for
 
 ```mermaid
 flowchart LR
-
-Input
-
--->Validation
-
--->BusinessRules
-
--->Processing
-
--->Output
+Input --> Validation --> BusinessRules --> Processing --> Output
 ```
-
----
 
 ## State Machine
 
 ```mermaid
 stateDiagram-v2
-
 [*] --> Draft
-
 Draft --> Active
-
 Active --> Closed
-
 Closed --> Archived
 ```
-
----
 
 ## Domain Dependency
 
 ```mermaid
 flowchart LR
-
-DomainA
-
--->DomainB
-
-DomainB
-
--->DomainC
+DomainA --> DomainB
+DomainB --> DomainC
 ```
-
----
 
 ## Event Flow
 
 ```mermaid
 flowchart LR
-
-BusinessProcess
-
--->BusinessEvent
-
-BusinessEvent
-
--->Subscribers
-```
-
----
-
-## Sequence Diagram
-
-```mermaid
-sequenceDiagram
-
-participant Client
-
-participant API
-
-participant Service
-
-participant Database
-
-Client->>API: Request
-
-API->>Service: Execute
-
-Service->>Database: Persist
-
-Database-->>Service: Success
-
-Service-->>API: Response
-
-API-->>Client: Result
+BusinessProcess --> BusinessEvent
+BusinessEvent --> Subscribers
 ```
 
 ---
 
 # 8. Standard Document Structure
 
-Every architecture document should contain
+Every architecture document should contain:
 
 ```text
 Purpose
-
 Scope
-
 Actors
-
 Entities
-
 Business Rules
-
 Workflow
-
 State Machine
-
 Contracts
-
 Events
-
 Dependencies
-
 Examples
-
 Locked Decisions
 ```
 
@@ -330,55 +190,37 @@ Locked Decisions
 
 # 9. Architecture Checklist
 
-Before locking a document verify
+Before locking a document verify:
 
-☐ Metadata
-
-☐ Version
-
-☐ Dependencies
-
-☐ Mermaid diagrams
-
-☐ Canonical ownership
-
-☐ Events
-
-☐ Contracts
-
-☐ State Machine
-
-☐ Traceability
-
-☐ Cross references
+- Metadata or an approved simplified header
+- Version
+- Dependencies
+- Mermaid diagrams
+- Canonical ownership
+- Events
+- Contracts
+- State machine
+- Traceability
+- Cross references
 
 ---
 
 # 10. Pull Request Checklist
 
-Before merging
+Before merging:
 
-☐ Documentation updated
-
-☐ ADR created (if needed)
-
-☐ Version updated
-
-☐ Diagrams updated
-
-☐ Dependencies updated
-
-☐ README updated
-
-☐ Tests completed
-
-☐ Review approved
+- Documentation updated
+- Version updated
+- Diagrams updated
+- Dependencies updated
+- README updated if repository behavior changed
+- Review approved
 
 ---
 
 # 11. Architectural Quality Checklist
 
-Every architecture shall satisfy
+Every architecture shall satisfy:
 
 - Modular
 - Traceable
@@ -393,29 +235,14 @@ Every architecture shall satisfy
 
 # 12. Repository Health Indicators
 
-Repository health is evaluated through
+Repository health is evaluated through:
 
-```mermaid
-mindmap
-
-root((Repository))
-
-Documentation
-
-Architecture
-
-Dependencies
-
-Reviews
-
-Versioning
-
-ADRs
-
-Tests
-
-Diagrams
-```
+- Documentation
+- Architecture
+- Dependencies
+- Reviews
+- Versioning
+- Diagrams
 
 ---
 
@@ -423,22 +250,7 @@ Diagrams
 
 ```mermaid
 flowchart LR
-
-Plan
-
--->Design
-
--->Review
-
--->Approve
-
--->Implement
-
--->Validate
-
--->Release
-
--->Maintain
+Plan --> Design --> Review --> Approve --> Implement --> Validate --> Release --> Maintain
 ```
 
 ---
@@ -447,41 +259,15 @@ Plan
 
 ```mermaid
 flowchart TD
-
-Volume1
-
--->Volume2
-
--->Volume3
-
--->Volume4
-
--->Volume5
-
--->Volume6
-
-Volume6
-
--->Level0
-
--->Level1
-
--->Level2
-
--->Level3
-
--->Level4
-
--->Level5
-
--->Level6
+Volume1 --> Volume2 --> Volume3 --> Volume4 --> Volume5 --> Volume6
+Volume6 --> L0 --> L1 --> L2 --> L3 --> L4 --> L5 --> L6
 ```
 
 ---
 
 # 15. Constitutional Summary
 
-The Constitution establishes
+The Constitution establishes:
 
 - Governance
 - Repository Standards
@@ -496,15 +282,13 @@ Every repository artifact derives from these six constitutional volumes.
 
 # 16. Future Expansion
 
-Future constitutional volumes may be added if required.
+Future repository additions may include:
 
-Examples
+- ADR/
+- assets/
+- archive/
 
-- Security Constitution
-- Compliance Constitution
-- Enterprise Integration Constitution
-
-These shall not replace existing constitutional volumes.
+These additions must be created before other documents reference them as existing paths.
 
 ---
 
@@ -512,7 +296,7 @@ These shall not replace existing constitutional volumes.
 
 The SutraERP Repository Constitution represents the highest authority governing the repository.
 
-Every document, architectural decision, implementation, review, release, and contribution shall conform to this Constitution.
+Every document, architectural decision, review, release, and contribution shall conform to this Constitution.
 
 Conflicts shall always be resolved in favor of the Constitution.
 

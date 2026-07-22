@@ -14,15 +14,15 @@ This document defines ownership of Level 2 architecture development for each arc
 
 ## Architecture Ownership
 
-- Section A — Platform Foundation
-- Section G — Campus Operations
-- Section H — Institutional Services & Intelligence
+- Section A - Platform Foundation
+- Section G - Campus Operations
+- Section H - Institutional Services & Intelligence
 
 ## Responsibilities
 
 ### Architecture
 
-- Design and maintain Sections A, G and H.
+- Design and maintain Sections A, G and H, including Infrastructure Management within Section G.
 - Ensure architectural consistency across the ERP.
 - Resolve cross-domain architectural conflicts.
 - Maintain repository architecture.
@@ -48,8 +48,8 @@ This document defines ownership of Level 2 architecture development for each arc
 
 ## Architecture Ownership
 
-- Section B — Institution & Structure
-- Section D — Academic Delivery
+- Section B - Institution & Structure
+- Section D - Academic Delivery
 
 ## Responsibilities
 
@@ -68,8 +68,8 @@ This document defines ownership of Level 2 architecture development for each arc
 
 ## Architecture Ownership
 
-- Section C — Student Lifecycle
-- Section E — People & Workforce
+- Section C - Student Lifecycle
+- Section E - People & Workforce
 
 ## Responsibilities
 
@@ -88,7 +88,7 @@ This document defines ownership of Level 2 architecture development for each arc
 
 ## Architecture Ownership
 
-- Section F — Finance
+- Section F - Finance
 
 ## Responsibilities
 
@@ -107,7 +107,7 @@ This document defines ownership of Level 2 architecture development for each arc
 
 ## Architecture Ownership
 
-- Section I — Examination
+- Section I - Examination
 
 ## Responsibilities
 
