@@ -69,7 +69,7 @@ This document covers:
 - Role Management
 - Person Lifecycle
 - Identity Lifecycle
-- Membership Relationships
+- Context Resolution References
 - Identity Resolution
 - Duplicate Handling
 - Merge & Split Operations
@@ -144,7 +144,7 @@ This document specifies only the additional rules that are unique to the Person 
 
 The Person & Identity domain establishes the canonical digital identity framework for every human and system actor interacting with the SutraERP platform.
 
-Its primary objective is to ensure that every individual is represented by a single canonical Person record within a Tenant while allowing that Person to participate across multiple institutions, campuses, departments, programs, and business domains through controlled memberships and role assignments.
+Its primary objective is to ensure that every individual is represented by a single canonical Person record within a Tenant while allowing that Person to participate across multiple institutions, campuses, departments, programs, and business domains through business-domain associations and scoped role assignments
 
 The domain eliminates identity duplication, enforces centralized identity governance, enables secure authentication and authorization, and provides a stable identity foundation for every downstream business capability.
 
@@ -179,7 +179,8 @@ The Person & Identity domain is responsible for:
 - Authentication identity
 - Authorization identity
 - Role assignment
-- Membership management
+- Context resolution
+- Organizational context consumption
 - Login credential management
 - Multi-factor authentication
 - Identity verification
@@ -305,13 +306,13 @@ Supported scopes include:
 
 Once created, the canonical Person identifier shall never change.
 
-Names, contact information, login credentials, and memberships may change throughout the lifecycle, but the Person identifier remains permanent.
+Names, contact information, login credentials, and business-domain association may change throughout the lifecycle, but the Person identifier remains permanent.
 
 ---
 
 ## Principle 8 — Complete Auditability
 
-Every identity creation, modification, authentication event, authorization change, membership assignment, archive, anonymization, merge, split, and deletion approval shall be permanently audited.
+Every identity creation, modification, authentication event, authorization change, business association changes, archive, anonymization, merge, split, and deletion approval shall be permanently audited.
 
 ---
 
@@ -326,7 +327,6 @@ The following terminology is used consistently throughout the SutraERP architect
 | User Account | A login-enabled account associated with a Person. |
 | Role | A responsibility assigned to a Person within a defined scope. |
 | Scope | The organizational boundary in which a role is valid. |
-| Membership | The relationship between a Person and an organizational unit. |
 | Tenant | The highest isolation boundary within the platform. |
 | Institution | An educational institution operating under a Tenant. |
 | Authentication | Verification of user identity. |
@@ -367,7 +367,7 @@ Every downstream domain references the Person aggregate through immutable identi
 
 # Bounded Context
 
-The Person & Identity bounded context encapsulates every capability related to identity ownership, authentication, authorization, memberships, and user lifecycle.
+The Person & Identity bounded context encapsulates every capability related to identity ownership, authentication, authorization, and user lifecycle.
 
 The boundary ends where business-specific information begins.
 
@@ -389,8 +389,6 @@ The boundary ends where business-specific information begins.
         ├──────── Authorization
         │
         ├──────── Role Assignment
-        │
-        ├──────── Membership
         │
         ├──────── Session
         │
@@ -433,7 +431,6 @@ The following aggregates are owned exclusively by this domain.
 | Person | Canonical | Represents a real human within a Tenant |
 | Identity | Canonical | Digital identity associated with a Person |
 | User Account | Canonical | Login-enabled account |
-| Membership | Canonical | Organizational association of a Person |
 | Role Assignment | Canonical | Authorization assignments |
 | Session | Canonical | Active authenticated interaction |
 | Authentication Credential | Canonical | Login secrets and authentication factors |
@@ -452,7 +449,7 @@ No downstream module may create or own these aggregates.
      │                 │                  │
      ▼                 ▼                  ▼
 
- Identity        Membership       User Account
+ Identity      User Account      Context References
      │                 │                  │
      │                 │                  │
      ▼                 ▼                  ▼
@@ -526,25 +523,6 @@ Does NOT own:
 
 ---
 
-## Membership
-
-Represents the relationship between a Person and an organizational unit.
-
-Examples:
-
-- Institution
-- Campus
-- Department
-- Program
-- Batch
-- Hostel
-- Library
-- Committee
-
-Memberships define where a Person belongs.
-
----
-
 ## Role Assignment
 
 Represents what a Person is allowed to do.
@@ -586,7 +564,7 @@ Person
 
 ↓
 
-N Identity
+1 Identity
 
 ↓
 
@@ -594,7 +572,7 @@ N Identity
 
 ↓
 
-N User Accounts
+1 User Accounts
 
 ↓
 
@@ -614,7 +592,7 @@ Person
 
 ↓
 
-N Memberships
+Role Assignments
 
 ↓
 
@@ -628,7 +606,7 @@ N Role Assignments
 
 A Person may have:
 
-- Multiple memberships
+
 - Multiple roles
 - Multiple sessions
 - Multiple authentication methods
@@ -665,17 +643,9 @@ The following rules shall always remain true.
 
 ---
 
-### Membership
-
-- Membership references one Person.
-- Membership belongs to one organizational scope.
-- Membership may expire.
-
----
-
 ### Role Assignment
 
-- Role Assignment references one Membership.
+- Role Assignment references one Person and one Authorization Scope.
 - Authorization is determined by role + scope.
 - Expired roles grant no permissions.
 
@@ -696,7 +666,6 @@ The Person & Identity domain exposes the following logical services.
 - Person Service
 - Identity Service
 - User Account Service
-- Membership Service
 - Role Management Service
 - Authentication Service
 - Authorization Service
@@ -1061,7 +1030,7 @@ A Person
 - belongs to exactly one Tenant.
 - owns one immutable PersonID.
 - may have multiple business roles.
-- may have multiple User Accounts.
+- owns exactly one User Account per Tenant.
 - may exist without any login account.
 - may exist before admissions.
 - may exist before employment.
@@ -1205,23 +1174,23 @@ An Identity cannot exist independently.
 
 The Identity aggregate owns:
 
-- Digital identity
-- Login identity
-- Authentication status
-- Verification status
-- Account status
-- Security status
+- Canonical digital identity
+- Identity lifecycle
+- Identity verification state
+- Identity activation state
+- Identity linkage to Person
+
+The Identity aggregate does not own:
+
+- Passwords
 - Login identifiers
+- Account lock status
+- Sessions
+- Authentication credentials
+- MFA configuration
 
-The Identity aggregate does NOT own:
+These responsibilities belong to the User Account aggregate.
 
-- Personal demographics
-- Academic information
-- Employment information
-- Financial information
-- Organizational memberships
-
-Those remain within their canonical domains.
 
 ---
 
@@ -1279,6 +1248,18 @@ IdentityID remains immutable throughout the lifecycle.
 # User Account Model
 
 Each Person owns exactly one User Account within a Tenant.
+The User Account is the authentication container for the Identity.
+
+It owns:
+
+- Username
+- Password
+- Login Methods
+- MFA
+- Sessions
+- Account Lock Status
+
+The User Account does not own the Person or Identity lifecycle.
 
 The User Account provides a single authentication context while supporting multiple authentication methods.
 
@@ -1941,7 +1922,7 @@ Tenant Administrator
 
 Institution Administrator
 
-↓
+↓   
 
 Campus Administrator
 
