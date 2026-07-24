@@ -52,6 +52,7 @@ The domain owns:
 - Duplicate detection
 - Identity merge operations
 - Identity audit trail
+- Workspace reference fields
 
 The domain does **not** own business-specific information such as admissions, enrollments, examinations, payroll, finance, hostel allocations, or library memberships. Those remain under their respective canonical domains.
 
@@ -100,6 +101,9 @@ The following capabilities are intentionally excluded from this domain:
 - Academic Records
 - Learning Management
 - Finance Operations
+- Workspace ownership
+- Workspace lifecycle
+- Workspace switching
 
 These domains consume Person entities but remain the canonical owners of their respective business data.
 
@@ -1277,6 +1281,13 @@ Future extensions may include:
 - Enterprise Identity Providers
 
 without changing the domain model.
+
+It may reference:
+
+- Available Workspaces
+- Preferred Default Workspace
+
+These references are informational only and do not create ownership, lifecycle control, or authorization authority.
 
 ---
 

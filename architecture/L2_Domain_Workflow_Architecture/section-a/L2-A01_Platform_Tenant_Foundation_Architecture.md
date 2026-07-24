@@ -78,6 +78,7 @@ The following responsibilities are intentionally excluded from L2-A01 and are de
 | Identity Management | L2-A02 |
 | Authentication | L2-A03 |
 | Authorization | L2-A04 |
+| Workspace Ownership | L2-A04 |
 | Institution Lifecycle | L2-B01 |
 | Organisation Structure | L2-B02 |
 | Academic Structure | Academic Foundation |
@@ -1323,6 +1324,7 @@ The Canonical Execution Context consists of the following logical components.
 | Organisation Context | Organisational scope | L2-B02 |
 | Academic Context | Academic execution scope | Academic Foundation |
 | Identity Context | Authenticated identity | L2-A02 |
+| Workspace Context | Active workspace presentation context | L2-A04, resolved by Authorization domain |
 | Security Context | Authentication & Authorization | L2-A03 / L2-A04 |
 | Operational Context | Current execution metadata | Platform Foundation |
 
@@ -1356,6 +1358,9 @@ Resolve Identity
 Resolve Authorization
         │
         ▼
+Resolve Active Workspace
+        │
+        ▼
 Validate Context
         │
         ▼
@@ -1380,6 +1385,7 @@ Before execution begins, the Platform shall validate:
 - Academic Context is valid.
 - Authenticated Identity belongs to the Tenant.
 - Authorization Scope is valid.
+- Active Workspace is resolved by the Authorization domain and is valid for the authenticated identity.
 - Platform configuration is available.
 - Required platform services are accessible.
 
@@ -1500,7 +1506,7 @@ The following constraints apply.
 
 ## Architecture Note
 
-The Context Resolution Foundation establishes the execution boundary of the SutraERP Platform. By resolving Tenant, Institution, Organisation, Academic Scope, Identity, and Authorization into a single Canonical Execution Context before business execution begins, the Platform ensures that every downstream Level 2 domain operates within a consistent, secure, and deterministic environment. This eliminates duplicate context-resolution logic, preserves tenant isolation, and provides a common execution contract for the entire ERP.
+The Context Resolution Foundation establishes the execution boundary of the SutraERP Platform. By resolving Tenant, Institution, Organisation, Academic Scope, Identity, Authorization, and Active Workspace into a single Canonical Execution Context before business execution begins, the Platform ensures that every downstream Level 2 domain operates within a consistent, secure, and deterministic environment. This eliminates duplicate context-resolution logic, preserves tenant isolation, and provides a common execution contract for the entire ERP.
 
 ---
 

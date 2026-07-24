@@ -39,16 +39,16 @@ Status: [Approved]
 Status: [Approved]
 
 ## L2-A03 - Authentication Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-A04 - Authorization & Policy Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-A05 - Workflow Engine Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-A06 - Event Infrastructure Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-A07 - Audit Infrastructure Workflows
 Status: [ ]
@@ -96,7 +96,7 @@ Status: [ ]
 Purpose: Complete student lifecycle from admission through qualification completion, exit, and alumni transition.
 
 ## L2-C01 - Admissions Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-C02 - Student Lifecycle & Activation Workflows
 Status: [ ]
