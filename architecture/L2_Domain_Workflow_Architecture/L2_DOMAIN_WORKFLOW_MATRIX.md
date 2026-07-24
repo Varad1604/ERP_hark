@@ -33,10 +33,10 @@ Status: [ ] In Progress
 Purpose: Core platform infrastructure used by every business domain.
 
 ## L2-A01 - Platform & Tenant Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-A02 - Person & Identity Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-A03 - Authentication Workflows
 Status: [ ]
@@ -69,10 +69,10 @@ Status: [ ]
 Purpose: Institutional hierarchy and academic foundation.
 
 ## L2-B01 - Institution Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-B02 - Organisation Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-B03 - Campus Workflows
 Status: [ ]
