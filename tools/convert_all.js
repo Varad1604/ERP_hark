@@ -4,8 +4,8 @@ function processDiagram(text) {
     let originalText = text;
     
     text = text.replace(/[^\w\s]*\+"\s*/g, '--> ');
-    text = text.replace(/[^\w\s]*"o[^\w\s]*"\?[^\w\s]*"\?\s*/g, '--> ');
-    text = text.replace(/[^\w\s]*""[^\w\s]*"\?[^\w\s]*"\?\s*/g, '--> ');
+    text = text.replace(/[^\w\s]*"o[^\w\s]*"\[^\w\s]*"\\s*/g, '--> ');
+    text = text.replace(/[^\w\s]*""[^\w\s]*"\[^\w\s]*"\\s*/g, '--> ');
     text = text.replace(/[^\w\s]*",\s*/g, '');
     
     // Catch down arrows and other common ascii arrows
@@ -60,7 +60,7 @@ function processDiagram(text) {
 function processFile(filePath) {
     if (!fs.existsSync(filePath)) return;
     let content = fs.readFileSync(filePath, 'utf8');
-    const regex = /\`\`\` text\\s*\\n([\\s\\S]*?)\\n\\s*\`\`\`/g;
+    const regex = /\`\`\` text\\s*\\n([\\s\\S]*)\\n\\s*\`\`\`/g;
     content = content.replace(regex, (match, p1) => {
         return processDiagram(p1);
     });

@@ -10,10 +10,10 @@
 | Document Name | Event Infrastructure Workflows |
 | Layer | Level 2 – Core Platform Architecture |
 | Domain | Platform Event Infrastructure |
-| Owner | Platform Architecture Team |
+| Owner | Dhruv |
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Workflows, L2-A04 Authorization & Policy Workflows, L2-A05 Workflow Engine Workflows |
 | Referenced By | All Business Domains (Admissions, Academic, Curriculum, Examination, Finance, HR, Library, Hostel, Transport, Procurement, Inventory, CRM, Analytics, Notifications, Reporting, APIs, Mobile Applications and Future Domains) |
-| Status | Architecture Baseline |
+| Status | Draft |
 | Version | 1.0 |
 
 ---
@@ -108,9 +108,9 @@ The following responsibilities belong to other architecture documents.
 - Human Task Management
 - Workflow Orchestration
 
-### Notification Platform
+### Notifications Infrastructure
 
-The Notification platform owns:
+The Notifications Infrastructure owns:
 
 - Email Delivery
 - SMS Delivery
@@ -119,11 +119,11 @@ The Notification platform owns:
 - In-App Notification Delivery
 - Notification Templates
 
-The Event Infrastructure only publishes events that notification services may consume.
+The Event Infrastructure only publishes events that notifications services may consume.
 
-### Audit Platform
+### Audit Infrastructure
 
-The Audit platform owns:
+The Audit Infrastructure owns:
 
 - Audit Storage
 - Audit Retention
@@ -475,7 +475,7 @@ Consumers independently subscribe to events according to business needs.
 Consumers may include:
 
 - Workflow Engine
-- Notification Platform
+- Notifications Infrastructure
 - Finance
 - Examination
 - Academic
@@ -612,7 +612,7 @@ These domains remain authoritative owners of their published business facts.
 The following bounded contexts may consume events.
 
 - Workflow Engine
-- Notification Platform
+- Notifications Infrastructure
 - Reporting
 - Analytics
 - Finance
@@ -656,7 +656,7 @@ The Event Infrastructure recognizes the following canonical event categories.
 | Business Events | Owned by the originating business domain. | Describe completed business facts within a domain boundary. |
 | Platform Events | Owned by the platform capability that emits the event. | Describe platform state changes, governance outcomes, and shared platform behavior. |
 | Integration Events | Owned by the originating domain and exposed through governed integration contracts. | Support approved cross-boundary exchange without redefining business ownership. |
-| Notification Events | Owned by the Notification Platform. | Describe notification lifecycle and delivery-related facts. |
+| Notification Events | Owned by the Notifications Infrastructure. | Describe notification lifecycle and delivery-related facts. |
 | System Events | Owned by the platform capability that emits them. | Describe operational, lifecycle, and governance facts within the platform. |
 
 Each event shall have exactly one canonical owner.
@@ -3363,7 +3363,7 @@ The following matrix illustrates the logical interaction between the Event Infra
 | Library | Yes | Yes | Business Events |
 | Hostel | Yes | Yes | Business Events |
 | Transport | Yes | Yes | Business Events |
-| Notification Platform | No | Yes | Notification Events |
+| Notifications Infrastructure | No | Yes | Notification Events |
 | Reporting | No | Yes | Analytical Consumption |
 | Analytics | No | Yes | Analytical Consumption |
 | Integration Platform | Yes | Yes | External Event Exchange |
@@ -4135,7 +4135,7 @@ The following architecture domains consume Event Infrastructure capabilities.
 | Library | Library operational events |
 | Hostel | Hostel operational events |
 | Transport | Transport operational events |
-| Notification Platform | Event-driven notifications |
+| Notifications Infrastructure | Event-driven notifications |
 | Reporting | Analytical event consumption |
 | Analytics | Enterprise analytics |
 | Integration Platform | External event exchange |
@@ -4483,7 +4483,7 @@ subgraph Platform["Event Infrastructure"]
 end
 
 subgraph Consumers["Consumer Domains"]
-    N[Notification Platform]
+    N[Notifications Infrastructure]
     R[Reporting]
     A[Analytics]
     I[Integration Platform]
@@ -4596,7 +4596,7 @@ Business domains consuming this architecture include, but are not limited to:
 - CRM
 - Reporting
 - Analytics
-- Notification Platform
+- Notifications Infrastructure
 - Integration Platform
 
 ---

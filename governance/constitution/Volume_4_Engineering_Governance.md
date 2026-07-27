@@ -497,14 +497,14 @@ Every engineering artifact shall satisfy
 
 Every implementation shall answer
 
-- Which architectural document does this implement?
-- Which domain owns it?
-- Which entities change?
-- Which contracts change?
-- Which events change?
-- Which APIs change?
-- Which database objects change?
-- Which documents require updates?
+- Which architectural document does this implement
+- Which domain owns it
+- Which entities change
+- Which contracts change
+- Which events change
+- Which APIs change
+- Which database objects change
+- Which documents require updates
 
 ---
 

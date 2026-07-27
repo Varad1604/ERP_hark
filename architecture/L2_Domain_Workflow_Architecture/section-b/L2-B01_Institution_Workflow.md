@@ -4,7 +4,7 @@
 **Status:** 🔒 LOCKED v1.0  
 **Owner:** Section B Architect  
 **Depends On:** L2-A01 — Platform & Tenant Foundation  
-**Used By:** L2-B02, L2-B03, L2-B04, L2-B05, L2-B06 and all downstream domains
+**Used By:** L2-B02, L2-B03, L2-B04, L2-B05, L2-A10 and all downstream domains
 
 ---
 
@@ -60,7 +60,7 @@ Those domains are defined separately.
 
 # 3. Domain Definition
 
-## What is an Institution?
+## What is an Institution
 
 An Institution is a legally recognized educational organization operating under a Tenant that delivers educational services through one or more campuses.
 
@@ -186,7 +186,7 @@ Characteristics
 - Can configure academic structure (L2-B04)
 - Can configure academic calendar (L2-B05)
 
-Operational readiness is still pending (L2-B06).
+Operational readiness is still pending (L2-A10).
 
 ---
 
@@ -320,10 +320,10 @@ The following categories must be configured.
                                                             │
                                                             ▼
                                       Institution Available for
-                                    L2-B02 → L2-B06 Configuration
+                                    L2-B02 → L2-A10 Configuration
                                                             │
                                                             ▼
-                                   Operational Readiness (L2-B06)
+                                   Operational Readiness (L2-A10)
                                                             │
                                                             ▼
                               Ready for Admissions & Academic Operations
@@ -345,7 +345,7 @@ The following categories must be configured.
                  │                              ▼
                  │                     Reactivation Request
                  │                              │
-                 │                    Validation Successful?
+                 │                    Validation Successful
                  │                              │
                  └──────────────────────────────┼───────────────────────┐
                                                 │                       │
@@ -430,11 +430,24 @@ Consumed by:
 - L2-B03 — Campus & Infrastructure
 - L2-B04 — Curriculum Framework
 - L2-B05 — Academic Calendar
-- L2-B06 — Operational Readiness
+- L2-A10 — Operational Readiness
 
 ---
 
-# 13. Business Rules
+# 13. Audit Integration
+
+Institution lifecycle transitions and mandatory configuration changes are auditable business facts.
+
+The Institution domain shall:
+
+- Emit audit-relevant facts for create, configure, activate, update, suspend, reactivate, and archive actions.
+- Preserve immutable historical traceability for all lifecycle transitions.
+- Publish audit-relevant events through the platform audit infrastructure.
+- Treat audit storage and retention as platform responsibilities owned by L2-A07.
+
+---
+
+# 14. Business Rules
 
 1. Every Institution belongs to exactly one Tenant.
 2. One Tenant may own multiple Institutions.
@@ -447,7 +460,7 @@ Consumed by:
 
 ---
 
-# 14. Cross-Domain Dependencies
+# 15. Cross-Domain Dependencies
 
 ## Consumes
 
@@ -467,21 +480,21 @@ Consumed by:
 - Campus & Infrastructure (L2-B03)
 - Curriculum Framework (L2-B04)
 - Academic Calendar (L2-B05)
-- Operational Readiness (L2-B06)
+- Operational Readiness (L2-A10)
 
 ---
 
-# 15. Architecture Notes
+# 16. Architecture Notes
 
 - Institution is the canonical business entity representing an educational organization.
 - Institution is independent of the academic programs it offers.
 - Academic programs are defined in L2-B04.
-- Operational readiness is not part of Institution activation and is completed separately in L2-B06.
+- Operational readiness is not part of Institution activation and is completed separately in L2-A10.
 - Admissions and academic operations can begin only after Operational Readiness is complete.
 
 ---
 
-# 16. Architecture Lock
+# 17. Architecture Lock
 
 **Document Status:** 🔒 LOCKED
 

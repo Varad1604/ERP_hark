@@ -5,7 +5,7 @@ level: Level 2 Architecture
 section: A - Platform Foundation
 version: 1.0.0
 status: Draft
-owner: Platform Architecture Team
+owner: Dhruv
 reviewers:
   - Platform Architecture Team
   - Enterprise Architecture Board
@@ -33,7 +33,7 @@ last_updated: YYYY-MM-DD
 | Module | Authentication |
 | Status | Draft |
 | Version | 1.0.0 |
-| Owner | Platform Architecture Team |
+| Owner | Dhruv |
 | Architecture Layer | Foundation |
 | Parent Architecture | L2-A02 — Person & Identity Workflows |
 | Child Architectures | L2-A04 Authorization & Policy Workflows, All Business Domains |
@@ -2908,7 +2908,7 @@ Select Authentication Method
 Verify Credential
         │
         ▼
-MFA Required?
+MFA Required
    ┌────┴─────┐
    │          │
  No          Yes
@@ -3237,7 +3237,7 @@ Authentication Request
 Risk Evaluation
         │
         ▼
-Challenge Required?
+Challenge Required
     ┌───┴────┐
     │        │
  No        Yes
@@ -3375,7 +3375,7 @@ Evaluate Reset Policy
 Verify Recovery Method
         │
         ▼
-Recovery Successful?
+Recovery Successful
      ┌────┴─────┐
      │          │
     No         Yes
@@ -3466,7 +3466,7 @@ Authentication Success
 Evaluate MFA Policy
         │
         ▼
-MFA Required?
+MFA Required
      ┌────┴─────┐
      │          │
     No         Yes
@@ -3559,7 +3559,7 @@ Locate Trusted Device
 Evaluate Device Policy
         │
         ▼
-Trusted?
+Trusted
     ┌────┴─────┐
     │          │
    No         Yes
@@ -3663,7 +3663,7 @@ Increment Failure Counter
 Evaluate Restriction Policy
         │
         ▼
-Threshold Reached?
+Threshold Reached
      ┌────┴─────┐
      │          │
     No         Yes
@@ -4816,7 +4816,7 @@ Authentication Request
 Evaluate Tenant Policy
         │
         ▼
-Preferred Provider Available?
+Preferred Provider Available
       ┌────┴────┐
       │         │
      Yes       No
@@ -4977,6 +4977,20 @@ Cross-domain contracts ensure that Authentication remains loosely coupled while 
 Authentication never directly manipulates aggregates owned by other domains.
 
 All interactions occur through published contracts, domain events, or application services.
+
+---
+
+## Non-Human Identity Governance
+
+The Authentication domain shall explicitly govern non-human identities used by platform services, background jobs, integration agents, and external system actors.
+
+The following rules apply:
+
+- Service accounts and machine identities are non-human identities and shall be tenant-aware.
+- API credentials shall be used only for system integrations and shall not be treated as human login credentials.
+- Non-human identities shall follow the same canonical authentication, audit, and revocation boundary as human identities.
+- Creation, rotation, suspension, and revocation of service identities shall remain policy governed and fully auditable.
+- No business domain may directly assume a non-human identity without an approved platform authorization path.
 
 ---
 
@@ -5961,4 +5975,4 @@ This document complies with the SutraERP Level-2 Architecture Standards.
 
 **Canonical Owner:** Authentication Domain
 
-**Status:** Complete
+**Status:** Draft

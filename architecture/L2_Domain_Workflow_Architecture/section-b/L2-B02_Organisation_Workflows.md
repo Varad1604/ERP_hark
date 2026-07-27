@@ -730,11 +730,11 @@ The purpose of the Domain Model is to define the **canonical business concepts**
 
 This phase answers:
 
-- What business entities exist?
-- Which entity owns which business responsibility?
-- How are entities related?
-- What are the aggregate boundaries?
-- Which business rules are always true?
+- What business entities exist
+- Which entity owns which business responsibility
+- How are entities related
+- What are the aggregate boundaries
+- Which business rules are always true
 
 This phase defines **business semantics only**.
 
@@ -4603,11 +4603,11 @@ Business Approval is independent from security authorization.
 
 Authorization answers:
 
-> "May this identity attempt this operation?"
+> "May this identity attempt this operation"
 
 Business Approval answers:
 
-> "Has the required organizational authority approved this business decision?"
+> "Has the required organizational authority approved this business decision"
 
 Both are required where applicable.
 
@@ -5284,3 +5284,289 @@ Any modification to this document shall require formal approval through the Sutr
 ---
 
 **Document Complete — L2-B02 Organization Domain Architecture**
+
+---
+
+                                           ┌──────────────────────────────────────────────┐
+                                           │            L2-A01 Platform Foundation        │
+                                           │----------------------------------------------│
+                                           │ Tenant                                       │
+                                           │ Identity                                     │
+                                           │ Authentication                               │
+                                           │ Authorization                                │
+                                           │ Audit                                        │
+                                           │ Configuration                                │
+                                           └──────────────────────┬───────────────────────┘
+                                                                  │
+                                                                  ▼
+                                           ┌──────────────────────────────────────────────┐
+                                           │      L2-B01 Institution Lifecycle            │
+                                           │----------------------------------------------│
+                                           │ Institution                                  │
+                                           │ Institution Lifecycle                        │
+                                           │ Institution Configuration                    │
+                                           │ Institution Identity                         │
+                                           └──────────────────────┬───────────────────────┘
+                                                                  │
+                                  Institution must be ACTIVE before Organization Domain
+                                                                  │
+                                                                  ▼
+══════════════════════════════════════════════════════════════════════════════════════════════════════
+                         L2-B02 — ORGANIZATION DOMAIN (Canonical)
+══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+DOMAIN PURPOSE
+──────────────
+Owns the complete internal organizational model of an Institution.
+
+Owns:
+• Organization
+• Organization Units
+• Organization Types
+• Organization Type Versions
+• Organization Structure
+• Governance Configuration
+• Organization Resolution
+
+Does NOT Own:
+• Institution
+• Campus
+• Academic Structure
+• Academic Calendar
+• Students
+• Faculty
+• Finance
+• Examination
+
+
+==========================================================================================
+PHASE 2 — DOMAIN MODEL
+==========================================================================================
+
+                         ┌──────────────────────────────┐
+                         │      Organization            │
+                         │------------------------------│
+                         │ Administrative Boundary      │
+                         │ Identity                     │
+                         │ Lifecycle                    │
+                         └──────────────┬───────────────┘
+                                        │
+                                        ▼
+                         ┌──────────────────────────────┐
+                         │      Organization Unit       │
+                         │------------------------------│
+                         │ University                   │
+                         │ Campus                       │
+                         │ College                      │
+                         │ School                       │
+                         │ Department                   │
+                         │ Section                      │
+                         └──────────────┬───────────────┘
+                                        │
+                      Built From         │
+                                        ▼
+                         ┌──────────────────────────────┐
+                         │   Organization Type Version  │
+                         │------------------------------│
+                         │ Blueprint                    │
+                         │ Capabilities                 │
+                         │ Validation Rules             │
+                         │ Effective Dating             │
+                         └──────────────┬───────────────┘
+                                        │
+                         derives rules  │
+                                        ▼
+                         ┌──────────────────────────────┐
+                         │ Organization Structure       │
+                         │------------------------------│
+                         │ Parent/Child Rules           │
+                         │ Hierarchy                    │
+                         └──────────────┬───────────────┘
+                                        │
+                                        ▼
+                         ┌──────────────────────────────┐
+                         │ Governance Configuration     │
+                         │------------------------------│
+                         │ Authorities                  │
+                         │ Approvals                    │
+                         │ Administrative Policies      │
+                         └──────────────┬───────────────┘
+                                        │
+                                        ▼
+                         ┌──────────────────────────────┐
+                         │ Organization Resolution      │
+                         │------------------------------│
+                         │ Read Model                   │
+                         │ Lookup                       │
+                         │ Resolution Cache             │
+                         └──────────────────────────────┘
+
+
+==========================================================================================
+PHASE 3 — BUSINESS COMPONENTS
+==========================================================================================
+
+                  ┌──────────────────────────────────────────────────────┐
+                  │ BC01 Organization Coordination Service               │
+                  │------------------------------------------------------│
+                  │ Validation                                           │
+                  │ Workflow Entry                                       │
+                  │ Business Coordination                                │
+                  └──────────────┬───────────────────────────────────────┘
+                                 │
+      ┌──────────────────────────┼──────────────────────────┐
+      ▼                          ▼                          ▼
+┌──────────────┐        ┌────────────────┐        ┌────────────────────┐
+│ BC02         │        │ BC03           │        │ BC04               │
+│ Organization │        │ Organization   │        │ Organization       │
+│ Unit Service │        │ Type Service   │        │ Structure Service  │
+└──────┬───────┘        └──────┬─────────┘        └─────────┬──────────┘
+       │                       │                            │
+       └──────────────┬────────┴──────────────┬────────────┘
+                      ▼                       ▼
+             ┌──────────────────────┐  ┌──────────────────────┐
+             │ BC05 Governance      │  │ BC06 Resolution      │
+             │ Service              │  │ Service              │
+             └──────────┬───────────┘  └──────────┬───────────┘
+                        └──────────────┬───────────┘
+                                       ▼
+                     ┌──────────────────────────────────┐
+                     │ BC07 Integration Service         │
+                     │----------------------------------│
+                     │ REST API                         │
+                     │ Integration Events               │
+                     │ Public Contracts                 │
+                     └──────────────────────────────────┘
+
+
+==========================================================================================
+PHASE 4 — BUSINESS WORKFLOWS
+==========================================================================================
+
+WF01  Organization Registration
+WF02  Organization Unit Lifecycle
+WF03  Organization Type Version Management
+WF04  Organization Structure Management
+WF05  Governance Configuration
+WF06  Capability Resolution
+WF07  Organizational Transformation
+WF08  Suspension / Reactivation / Decommission
+
+
+==========================================================================================
+PHASE 5 — EVENT MODEL
+==========================================================================================
+
+Business Events
+────────────────
+Organization Created
+Organization Activated
+Organization Suspended
+Organization Archived
+Organization Unit Created
+Organization Type Published
+Governance Updated
+...
+
+        │
+        ▼
+
+Internal Domain Events
+──────────────────────
+Aggregate coordination
+Projection updates
+Workflow coordination
+
+        │
+        ▼
+
+BC07 Integration Service
+
+        │
+        ▼
+
+Integration Events
+──────────────────
+OrganizationCreated
+OrganizationActivated
+OrganizationSuspended
+OrganizationArchived
+OrganizationUnitCreated
+OrganizationTypePublished
+GovernanceUpdated
+...
+
+
+==========================================================================================
+PHASE 6 — DEPENDENCY MODEL
+==========================================================================================
+
+Platform Foundation
+        │
+        ▼
+Institution Domain (B01)
+        │
+        ▼
+Organization Domain (B02)
+        │
+        ├──────────────► B03 Campus & Infrastructure
+        ├──────────────► B04 Academic Structure
+        ├──────────────► B05 Academic Calendar
+        ├──────────────► A10 Operational Readiness
+        ├──────────────► Student
+        ├──────────────► Faculty
+        ├──────────────► HR
+        ├──────────────► Finance
+        ├──────────────► Examination
+        ├──────────────► Library
+        ├──────────────► Hostel
+        ├──────────────► Transport
+        ├──────────────► Placement
+        └──────────────► Reporting / Analytics
+
+
+==========================================================================================
+PHASE 7 — SECURITY
+==========================================================================================
+
+Identity
+        │
+Authorization
+        │
+Organization Context
+        │
+Governance Policies
+        │
+Permission Resolution
+        │
+Audit Logging
+
+
+==========================================================================================
+PHASE 8 — ARCHITECTURE LOCK
+==========================================================================================
+
+Canonical Ownership
+
+Institution (B01)
+        │
+        ▼
+Organization Domain (B02)
+        │
+        ▼
+Campus (B03)
+        ▼
+Academic Structure (B04)
+        ▼
+Academic Calendar (B05)
+        ▼
+Operational Readiness (A10)
+
+No downstream domain may redefine:
+
+• Organization
+• Organization Unit
+• Organization Type
+• Organization Structure
+• Governance
+• Resolution

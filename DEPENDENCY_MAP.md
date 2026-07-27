@@ -120,6 +120,7 @@ Owns:
 - Audit
 - Module Registry
 - Master Data
+- Operational Readiness
 
 ## Section B - Institution & Structure
 

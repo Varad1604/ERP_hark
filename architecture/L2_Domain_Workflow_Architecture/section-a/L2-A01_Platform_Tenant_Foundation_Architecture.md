@@ -4,20 +4,20 @@ title: Platform & Tenant Foundation
 level: Level 2 Architecture
 section: A - Platform Foundation
 version: 1.0.0
-status: Locked
-owner: Architecture Review Board
+status: Draft
+owner: Dhruv
 reviewers:
   - Platform Architecture Team
   - Enterprise Architecture Board
 approved_by: Architecture Governance Board
 depends_on:
-  - L1 Platform Architecture
+  - SutraERP Level 1 Architecture
 required_by:
-  - L2-A02 Identity Foundation
-  - L2-A03 Authentication Foundation
-  - L2-A04 Authorization Foundation
-  - L2-B01 Institution Foundation
-  - L2-B02 Organisation Foundation
+  - L2-A02 Person & Identity Workflows
+  - L2-A03 Authentication Workflows
+  - L2-A04 Authorization and Policy Workflows
+  - L2-B01 Institution Workflows
+  - L2-B02 Organisation Workflows
   - All subsequent Level 2 domains
 last_updated: YYYY-MM-DD
 ---
@@ -33,8 +33,8 @@ last_updated: YYYY-MM-DD
 | Document ID | L2-A01 |
 | Architecture Level | Level 2 |
 | Domain | Platform Foundation |
-| Status | Locked |
-| Owner | Platform Architecture |
+| Status | Draft |
+| Owner | Dhruv |
 | Architecture Layer | Foundation |
 | Parent Architecture | Level 1 Platform Architecture |
 | Child Architectures | All remaining Level 2 Domains |
@@ -2459,6 +2459,28 @@ The following constraints apply.
 
 ---
 
+## 7.19 Security, Identity, and Cryptographic Governance
+
+The Platform owns the shared security services required by every downstream Level 2 architecture.
+
+These shared security services include:
+
+- Machine identity and service account governance
+- Credential lifecycle governance for platform-issued secrets
+- Certificate and key governance for platform-controlled cryptographic material
+- Security event publication and audit integration
+- Recovery and revocation governance for shared security assets
+
+The following architectural rules apply:
+
+- Non-human identities shall be explicitly modeled and tenant-aware.
+- Service-to-service trust shall be established only through published Platform security contracts.
+- Shared cryptographic material shall have a single canonical owner within the Platform.
+- Business domains shall not independently define or manage shared machine identities, shared secrets, or shared cryptographic keys.
+- Security governance shall define approval, rotation, revocation, and recovery authority for shared security assets.
+
+---
+
 ## Architecture Note
 
 Shared Platform Services provide the reusable capabilities upon which all SutraERP domains depend. By centralizing common infrastructure such as configuration, events, notifications, scheduling, auditing, logging, file management, and governance, the Platform eliminates duplication, enforces architectural consistency, and enables independent evolution of business domains while maintaining a stable enterprise foundation.
@@ -3471,3 +3493,5 @@ These keywords shall be interpreted consistently across all Level 2 architecture
 ---
 
 # End of Document
+
+Status: Draft

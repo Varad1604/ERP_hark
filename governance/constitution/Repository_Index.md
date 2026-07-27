@@ -63,7 +63,7 @@ L0["Business Vision"] --> L1["Business Domain Architecture"] --> L2["Domain Work
 
 - L0 Business Vision
 - L1 Business Domain Architecture
-- L2 Domain Workflow control artifacts
+- L2 Domain Workflow control artifacts and present section files
 
 L3 through L6 are defined by the hierarchy but are not yet present as source documents in this workspace.
 
@@ -141,3 +141,4 @@ The repository shall always remain:
 Status: LOCKED
 
 END OF INDEX
+

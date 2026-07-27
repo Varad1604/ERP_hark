@@ -6,7 +6,7 @@ Welcome to the official **SutraERP Architecture & Planning Repository**. This re
 
 ## 1. Project Overview
 
-### What is SutraERP?
+### What is SutraERP
 SutraERP is a modular ERP platform for educational institutions. It is designed to support multi-tenant operation, academic administration, student lifecycle management, workforce administration, institutional services, campus operations, and financial and examination workflows.
 
 ### Purpose of this Repository
@@ -31,7 +31,7 @@ This repository stores and governs the architecture and planning artifacts that 
 The current repository structure is:
 
 - [architecture/](/F:/Pravaha/ERP_Planning/architecture/)
-  Authoritative architecture documents currently present in the workspace, including L0, L1, L2 control artifacts, the architecture index, and migration notes.
+  Authoritative architecture documents currently present in the workspace, including the L0 and L1 source documents, the L2 control artifacts, the architecture index, and migration notes. L3 through L6 are reserved as downstream levels and remain empty placeholders until their source documents are created.
 - [governance/](/F:/Pravaha/ERP_Planning/governance/)
   Repository constitution and governance volumes.
 - [templates/](/F:/Pravaha/ERP_Planning/templates/)
@@ -77,7 +77,7 @@ The architecture is divided into seven levels. Each level answers a different qu
 - **Purpose**: defines user interaction, navigation, screens, and user journeys.
 - **Output**: UI / UX architecture.
 
-Only L0, L1, and L2 control documents currently exist in this workspace. L3 through L6 are planned downstream levels and are not yet present as source documents.
+L0 and L1 source documents currently exist in this workspace, along with the L2 control matrix and a subset of L2 section files. L3 through L6 are planned downstream levels and are not yet present as source documents.
 
 ---
 
@@ -214,3 +214,4 @@ Core governance and control documents include:
 - [architecture/L2_Domain_Workflow_Architecture/TEAM_ASSIGNMENTS.md](/F:/Pravaha/ERP_Planning/architecture/L2_Domain_Workflow_Architecture/TEAM_ASSIGNMENTS.md)
 
 These documents must remain synchronized on ownership, hierarchy, dependency direction, and terminology.
+

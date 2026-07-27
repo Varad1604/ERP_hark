@@ -11,7 +11,7 @@
 | Module | Person & Identity |
 | Architecture Level | Level 2 |
 | Document Type | Canonical Domain Workflow Specification |
-| Owner | Platform Architecture Team |
+| Owner | Dhruv |
 | Status | Draft |
 | Version | 1.0 |
 | Depends On | L2-A01 — Platform & Tenant Foundation |
@@ -44,10 +44,7 @@ The domain owns:
 - Identity lifecycle
 - User account lifecycle
 - Authentication identity
-- Authorization identity
-- Role assignments
-- Active Context Resolution
-- Role Assignments
+- Active Context Resolution References
 - Identity resolution
 - Duplicate detection
 - Identity merge operations
@@ -66,8 +63,7 @@ This document covers:
 - Identity Aggregate
 - User Account
 - Authentication Identity
-- Authorization Identity
-- Role Management
+- Context Reference
 - Person Lifecycle
 - Identity Lifecycle
 - Context Resolution References
@@ -77,7 +73,6 @@ This document covers:
 - Security Policies
 - Session Ownership
 - Authentication Contracts
-- Authorization Contracts
 - Cross-Domain Identity Events
 - Identity Audit
 - Identity Governance
@@ -118,7 +113,6 @@ The Person & Identity domain is the exclusive owner of:
 - User Account
 - Login Credentials
 - Authentication Factors
-- Authorization Roles
 - Identity Status
 - Account Status
 - Identity Events
@@ -181,8 +175,6 @@ The Person & Identity domain is responsible for:
 - Identity lifecycle management
 - User account management
 - Authentication identity
-- Authorization identity
-- Role assignment
 - Context resolution
 - Organizational context consumption
 - Login credential management
@@ -283,11 +275,11 @@ Roles are additive rather than mutually exclusive.
 
 ---
 
-## Principle 6 — Scoped Authorization
+## Principle 6 — Scoped Identity References
 
-Permissions are granted through scoped role assignments rather than globally assigned roles.
+Scoped identity context references may be stored for downstream authorization evaluation.
 
-Authorization scope determines where a role is effective.
+Authorization scope is owned by L2-A04 and determines where a role is effective.
 
 Supported scopes include:
 
@@ -329,12 +321,9 @@ The following terminology is used consistently throughout the SutraERP architect
 | Person | A real human represented within the Tenant. |
 | Identity | The digital representation of a Person used for authentication and authorization. |
 | User Account | A login-enabled account associated with a Person. |
-| Role | A responsibility assigned to a Person within a defined scope. |
-| Scope | The organizational boundary in which a role is valid. |
 | Tenant | The highest isolation boundary within the platform. |
 | Institution | An educational institution operating under a Tenant. |
 | Authentication | Verification of user identity. |
-| Authorization | Determination of permitted actions after authentication. |
 | Session | A temporary authenticated interaction between a user and the platform. |
 | Identity Provider | The component responsible for validating identities. |
 | Duplicate Person | Multiple Person records representing the same real human. |
@@ -351,7 +340,7 @@ The Person & Identity domain shall be considered architecturally successful when
 - Every human within a Tenant has a single canonical Person record.
 - No downstream domain owns Person data.
 - Duplicate identities are minimized and governed.
-- Authorization is consistently enforced through scoped roles.
+- Identity references remain consistent across scoped downstream domains.
 - Identity history remains fully auditable.
 - Business domains consume Person references without duplicating identity information.
 - Future authentication standards can be integrated without redesigning the domain.
@@ -371,7 +360,7 @@ Every downstream domain references the Person aggregate through immutable identi
 
 # Bounded Context
 
-The Person & Identity bounded context encapsulates every capability related to identity ownership, authentication, authorization, and user lifecycle.
+The Person & Identity bounded context encapsulates every capability related to identity ownership, identity references, and user lifecycle.
 
 The boundary ends where business-specific information begins.
 
@@ -388,11 +377,7 @@ The boundary ends where business-specific information begins.
         │
         ├──────── Credentials
         │
-        ├──────── Authentication
-        │
-        ├──────── Authorization
-        │
-        ├──────── Role Assignment
+        ├──────── Authentication Reference
         │
         ├──────── Session
         │
@@ -435,7 +420,7 @@ The following aggregates are owned exclusively by this domain.
 | Person | Canonical | Represents a real human within a Tenant |
 | Identity | Canonical | Digital identity associated with a Person |
 | User Account | Canonical | Login-enabled account |
-| Role Assignment | Canonical | Authorization assignments |
+| Context Reference | Canonical | Scoped downstream identity reference data |
 | Session | Canonical | Active authenticated interaction |
 | Authentication Credential | Canonical | Login secrets and authentication factors |
 | Identity Verification | Canonical | Verification status and methods |
@@ -670,9 +655,9 @@ The Person & Identity domain exposes the following logical services.
 - Person Service
 - Identity Service
 - User Account Service
-- Role Management Service
-- Authentication Service
-- Authorization Service
+- Context Reference Service
+- Authentication Reference Service
+- Authorization Reference Service
 - Session Management Service
 - MFA Service
 - Identity Verification Service
@@ -2052,17 +2037,13 @@ The following constraints are mandatory.
 
 ---
 
-# Role Management
+# Context Reference Management
 
-Role Management defines how responsibilities are assigned to Persons and how permissions are granted within organizational boundaries.
+Context Reference Management defines how identity-related references are stored for downstream authorization evaluation without owning roles or permissions.
 
-Roles describe responsibilities.
+Context references describe downstream identity associations.
 
-Permissions describe capabilities.
-
-Scopes define where those capabilities are effective.
-
-The three concepts remain independent.
+Authorization, roles, permissions, and scopes remain owned by L2-A04.
 
 ---
 
@@ -2547,7 +2528,7 @@ Authenticated Person
 
 ↓
 
-Active Role Assignments
+Active Context References
 
 ↓
 
@@ -2590,7 +2571,7 @@ The following rules are mandatory.
 
 # Published Events
 
-The Role Management subsystem publishes:
+The Context Reference Management subsystem publishes:
 
 - RoleCreated
 - RoleUpdated
@@ -4072,7 +4053,7 @@ Administrative Review
 
 ↓
 
-Confirm Duplicate?
+Confirm Duplicate
 
 ↓
 
@@ -5040,6 +5021,26 @@ The architecture distinguishes:
 - Credential Storage
 
 Encryption implementation remains an infrastructure responsibility and is not embedded within domain logic.
+
+---
+
+## Privacy Boundary and Cryptographic Governance
+
+The Person & Identity domain shall expose only the minimum identity attributes required by the consuming domain, workflow, or approval context.
+
+The following privacy rules apply:
+
+- Identity references may be shared cross-domain only in scoped, purpose-bound form.
+- Government identity data, contact data, and privacy preferences shall not be globally visible by default.
+- Downstream domains shall not duplicate raw identity records unless explicitly required by architectural contract.
+- Data minimization and purpose limitation shall govern identity propagation and export.
+- Anonymized or deleted identity states shall not reintroduce personal data into downstream domains.
+
+The following cryptographic rules apply:
+
+- The Platform Security and Cryptographic Governance model owns shared key, certificate, and secret lifecycle governance.
+- The Person & Identity domain shall not independently own shared encryption keys or certificates.
+- Identity data that requires encryption shall consume the platform-approved cryptographic governance model.
 
 ---
 
@@ -6509,15 +6510,15 @@ Validation
 
 ↓
 
-Business Exception?
+Business Exception
 
 ↓
 
-Technical Exception?
+Technical Exception
 
 ↓
 
-Administrative Exception?
+Administrative Exception
 
 ↓
 
@@ -6826,7 +6827,7 @@ Severity Assessment
 
 ↓
 
-Automatic Recovery?
+Automatic Recovery
 
 ↓
 
@@ -7855,9 +7856,9 @@ Each interaction has defined ownership and direction.
 | Person | Person & Identity | All Domains |
 | Identity | Person & Identity | All Domains |
 | User Account | Person & Identity | All Domains |
-| Authentication | Person & Identity | All Domains |
-| Authorization | Person & Identity | All Domains |
-| Security Context | Person & Identity | All Domains |
+| Authentication | L2-A03 Authentication | All Domains |
+| Authorization | L2-A04 Authorization & Policy | All Domains |
+| Security Context | L2-A03 / L2-A04 | All Domains |
 | Student Enrollment | Student Lifecycle | Academics, Exams, Finance |
 | Employee Assignment | HR | Payroll, Attendance |
 | Institution | Institution | All Domains |
@@ -8033,12 +8034,12 @@ Business domains shall not:
 
 | Capability | Owner | Consumers |
 |------------|-------|-----------|
-| Authentication | Person & Identity | All Domains |
-| Authorization | Person & Identity | All Domains |
-| Session Management | Person & Identity | All Domains |
+| Authentication | L2-A03 Authentication | All Domains |
+| Authorization | L2-A04 Authorization & Policy | All Domains |
+| Session Management | L2-A03 Authentication | All Domains |
 | Identity Verification | Person & Identity | Admissions, HR |
 | Duplicate Detection | Person & Identity | Import Services |
-| Context Resolution | Person & Identity | All Domains |
+| Context Resolution | L2-A03 Authentication | All Domains |
 
 ---
 
@@ -8447,7 +8448,7 @@ Matching Engine
 
       ▼
 
-Potential Duplicate?
+Potential Duplicate
 
       │
 
@@ -8771,7 +8772,7 @@ Classify Exception
 
       ▼
 
-Retry Possible?
+Retry Possible
 
       │
 
@@ -9023,12 +9024,12 @@ These invariants shall never be overridden by configuration or customization.
 
 Before approving any architectural change, verify:
 
-- Does the Person aggregate remain the canonical owner?
-- Has ownership moved between domains?
-- Are aggregate boundaries preserved?
-- Are responsibilities duplicated?
-- Are dependencies unidirectional?
-- Are integration contracts unchanged or versioned?
+- Does the Person aggregate remain the canonical owner
+- Has ownership moved between domains
+- Are aggregate boundaries preserved
+- Are responsibilities duplicated
+- Are dependencies unidirectional
+- Are integration contracts unchanged or versioned
 
 Any violation requires architectural review.
 

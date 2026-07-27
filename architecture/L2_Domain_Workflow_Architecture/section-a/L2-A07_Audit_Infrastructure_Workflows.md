@@ -1,4 +1,4 @@
-﻿# L2-A07 â€” Audit Infrastructure Workflows
+# L2-A07 — Audit Infrastructure Workflows
 
 ---
 
@@ -8,12 +8,12 @@
 |-----------|-------|
 | Document ID | L2-A07 |
 | Document Name | Audit Infrastructure Workflows |
-| Layer | Level 2 â€“ Core Platform Architecture |
+| Layer | Level 2 – Core Platform Architecture |
 | Domain | Platform Audit Infrastructure |
-| Owner | Platform Architecture Team |
+| Owner | Dhruv |
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Workflows, L2-A04 Authorization & Policy Workflows, L2-A05 Workflow Engine Workflows, L2-A06 Event Infrastructure Workflows |
 | Referenced By | All Business Domains (Admissions, Academic, Curriculum, Examination, Finance, HR, Library, Hostel, Transport, Procurement, Inventory, CRM, Analytics, Notifications, Reporting, APIs, Mobile Applications and Future Domains) |
-| Status | Architecture Baseline |
+| Status | Draft |
 | Version | 1.0 |
 
 ---
@@ -61,21 +61,21 @@ This document defines:
 
 The following responsibilities belong to other architecture documents.
 
-### L2-A01 â€” Platform & Tenant Foundation
+### L2-A01 — Platform & Tenant Foundation
 
 - Platform Infrastructure
 - Tenant Isolation
 - Platform Configuration
 - Runtime Foundation
 
-### L2-A02 â€” Person & Identity
+### L2-A02 — Person & Identity
 
 - Person Lifecycle
 - Identity Lifecycle
 - Identity Resolution
 - User Account Management
 
-### L2-A03 â€” Authentication
+### L2-A03 — Authentication
 
 - Authentication
 - Credentials
@@ -83,7 +83,7 @@ The following responsibilities belong to other architecture documents.
 - Authentication Sessions
 - Multi-Factor Authentication
 
-### L2-A04 â€” Authorization & Policy
+### L2-A04 — Authorization & Policy
 
 - Roles
 - Permissions
@@ -92,7 +92,7 @@ The following responsibilities belong to other architecture documents.
 - Delegation
 - Workspace Security
 
-### L2-A05 â€” Workflow Engine
+### L2-A05 — Workflow Engine
 
 - Workflow Definitions
 - Workflow Execution
@@ -100,7 +100,7 @@ The following responsibilities belong to other architecture documents.
 - Human Task Management
 - Workflow Orchestration
 
-### L2-A06 â€” Event Infrastructure
+### L2-A06 — Event Infrastructure
 
 The Event Infrastructure owns:
 
@@ -217,20 +217,20 @@ Repository hierarchy:
 
 ```
 L0 Business Vision
-        â”‚
+        │
 L1 Business Domain Architecture
-        â”‚
+        │
 L2 Platform Foundation
-        â”‚
-â”œâ”€â”€ L2-A01 Platform & Tenant Foundation
-â”œâ”€â”€ L2-A02 Person & Identity
-â”œâ”€â”€ L2-A03 Authentication
-â”œâ”€â”€ L2-A04 Authorization & Policy
-â”œâ”€â”€ L2-A05 Workflow Engine
-â”œâ”€â”€ L2-A06 Event Infrastructure
-â”œâ”€â”€ L2-A07 Audit Infrastructure
-â”œâ”€â”€ L2-A08 Module Registry
-â””â”€â”€ L2-A09 Master Data
+        │
+├── L2-A01 Platform & Tenant Foundation
+├── L2-A02 Person & Identity
+├── L2-A03 Authentication
+├── L2-A04 Authorization & Policy
+├── L2-A05 Workflow Engine
+├── L2-A06 Event Infrastructure
+├── L2-A07 Audit Infrastructure
+├── L2-A08 Module Registry
+└── L2-A09 Master Data
 ```
 
 The Audit Infrastructure consumes canonical business events produced through the Event Infrastructure and transforms them into immutable audit evidence that can be trusted across every business domain.
@@ -338,11 +338,36 @@ The Audit Infrastructure shall never perform authorization decisions independent
 
 ---
 
+### 7.7.1 Cross-Tenant Audit Access Governance
+
+Cross-tenant evidence access shall be exceptional, narrowly scoped, and time bound.
+
+The following rules apply:
+
+- Cross-tenant evidence access shall be restricted to explicitly authorized audit and governance roles.
+- Cross-tenant access shall require an auditable approval path separate from ordinary business access approval.
+- Cross-tenant access shall never be implied by general tenant administration privileges.
+- Cross-tenant access shall preserve tenant attribution, actor attribution, and correlation history.
+
+---
+
+### 7.7.2 Legal Preservation Governance
+
+Audit evidence under legal or regulatory preservation shall remain under governed retention until the preservation obligation is released.
+
+The following rules apply:
+
+- Legal preservation directives shall override ordinary disposal or archival completion decisions.
+- Preservation status shall be auditable and retrievable as part of the evidence record.
+- Retention completion shall not remove evidence from governed storage when a preservation directive is active.
+
+---
+
 ## 7.8 Tenant Isolation
 
 Audit evidence belonging to one tenant shall remain logically isolated from every other tenant.
 
-Cross-tenant evidence access shall never occur unless explicitly governed by platform-level administrative policy.
+Cross-tenant evidence access shall only occur under the cross-tenant audit governance rules defined in this document and shall remain time bound, auditable, and separately approved.
 
 ---
 
@@ -409,20 +434,20 @@ The Audit Infrastructure operates immediately after the Event Infrastructure wit
 
 ```
 Business Domain
-        â”‚
-        â–¼
+        │
+        ▼
 Workflow Engine
-        â”‚
-        â–¼
+        │
+        ▼
 Event Infrastructure
-        â”‚
-        â–¼
+        │
+        ▼
 Audit Infrastructure
-        â”‚
-        â–¼
+        │
+        ▼
 Immutable Audit Evidence
-        â”‚
-        â–¼
+        │
+        ▼
 Investigation
 Compliance
 Reporting
@@ -488,16 +513,16 @@ The following table defines ownership boundaries for the Audit Infrastructure.
 
 | Capability | Owned by Audit Infrastructure | Owned Elsewhere |
 |------------|------------------------------|-----------------|
-| Audit Evidence | âœ“ | |
-| Audit Entries | âœ“ | |
-| Change Attribution | âœ“ | |
-| Correlation | âœ“ | |
-| Causation | âœ“ | |
-| Evidence Packages | âœ“ | |
-| Timeline Projection Read Model | âœ“ | |
-| Investigation Support | âœ“ | |
-| Audit Metadata | âœ“ | |
-| Retention Governance | âœ“ | |
+| Audit Evidence | ✓ | |
+| Audit Entries | ✓ | |
+| Change Attribution | ✓ | |
+| Correlation | ✓ | |
+| Causation | ✓ | |
+| Evidence Packages | ✓ | |
+| Timeline Projection Read Model | ✓ | |
+| Investigation Support | ✓ | |
+| Audit Metadata | ✓ | |
+| Retention Governance | ✓ | |
 | Business Transactions | | Business Domains |
 | Business Data | | Business Domains |
 | Workflow Execution | | L2-A05 |
@@ -524,20 +549,20 @@ The model is intentionally technology independent and represents the logical arc
 
 ```text
                           Audit Evidence
-                                â”‚
-        â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-        â”‚                       â”‚                        â”‚
-        â–¼                       â–¼                        â–¼
+                                │
+        ┌───────────────────────┼────────────────────────┐
+        │                       │                        │
+        ▼                       ▼                        ▼
    Audit Entry             Audit Context          Change Set
-        â”‚                       â”‚                        â”‚
-        â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”         â”‚                        â”‚
-        â–¼              â–¼         â–¼                        â–¼
+        │                       │                        │
+        ├──────────────┐         │                        │
+        ▼              ▼         ▼                        ▼
 Correlation      Causation   Audit Actor        Business Entity Reference
-        â”‚
-        â–¼
+        │
+        ▼
 Evidence Package
-        â”‚
-        â–¼
+        │
+        ▼
 Timeline Projection Read Model
 ```
 
@@ -1376,7 +1401,7 @@ All workflows are initiated through canonical business events published by the E
 
 ---
 
-# 19.1 A07-W01 â€” Audit Evidence Generation
+# 19.1 A07-W01 — Audit Evidence Generation
 
 ## Purpose
 
@@ -1443,7 +1468,7 @@ Receipt of an approved canonical business event from the Event Infrastructure.
 
 ---
 
-# 19.2 A07-W02 â€” Audit Context Resolution
+# 19.2 A07-W02 — Audit Context Resolution
 
 ## Purpose
 
@@ -1477,7 +1502,7 @@ Context shall contain logical references only.
 
 ---
 
-# 19.3 A07-W03 â€” Actor Attribution
+# 19.3 A07-W03 — Actor Attribution
 
 ## Purpose
 
@@ -1509,7 +1534,7 @@ Actor attribution shall remain immutable after evidence generation.
 
 ---
 
-# 19.4 A07-W04 â€” Change Attribution
+# 19.4 A07-W04 — Change Attribution
 
 ## Purpose
 
@@ -1540,7 +1565,7 @@ Complete business aggregates shall never be copied into audit evidence.
 
 ---
 
-# 19.5 A07-W05 â€” Correlation Management
+# 19.5 A07-W05 — Correlation Management
 
 ## Purpose
 
@@ -1570,7 +1595,7 @@ Correlation groups related evidence but does not define execution order.
 
 ---
 
-# 19.6 A07-W06 â€” Causation Management
+# 19.6 A07-W06 — Causation Management
 
 ## Purpose
 
@@ -1600,7 +1625,7 @@ Only direct predecessor relationships shall be maintained.
 
 ---
 
-# 19.7 A07-W07 â€” Evidence Packaging
+# 19.7 A07-W07 — Evidence Packaging
 
 ## Purpose
 
@@ -1637,7 +1662,7 @@ Packages may be generated on demand and may be persisted when governed.
 
 ---
 
-# 19.8 A07-W08 â€” Timeline Generation
+# 19.8 A07-W08 — Timeline Generation
 
 ## Purpose
 
@@ -1672,7 +1697,7 @@ Original Audit Evidence remains authoritative.
 
 ---
 
-# 19.9 A07-W09 â€” Audit Investigation
+# 19.9 A07-W09 — Audit Investigation
 
 ## Purpose
 
@@ -1706,7 +1731,7 @@ Investigations shall never modify audit evidence.
 
 ---
 
-# 19.10 A07-W10 â€” Integrity Verification
+# 19.10 A07-W10 — Integrity Verification
 
 ## Purpose
 
@@ -1740,7 +1765,7 @@ Integrity verification shall not assign a verification label to evidence.
 
 ---
 
-# 19.11 A07-W11 â€” Retention Governance
+# 19.11 A07-W11 — Retention Governance
 
 ## Purpose
 
@@ -1774,7 +1799,7 @@ Retention governance shall not modify evidence content.
 
 ---
 
-# 19.12 A07-W12 â€” Evidence Archival
+# 19.12 A07-W12 — Evidence Archival
 
 ## Purpose
 
@@ -1807,7 +1832,7 @@ Archival shall affect storage status and availability status only.
 
 ---
 
-# 19.13 A07-W13 â€” Evidence Restoration
+# 19.13 A07-W13 — Evidence Restoration
 
 ## Purpose
 
@@ -2285,20 +2310,20 @@ Retention governance does not mutate evidence.
 
 ```text
 Evidence Created Once
-      │
-      ▼
+      |
+      v
 Storage Status: Active Storage
-      │
-      ▼
+      |
+      v
 Storage Status: Archived Storage
-      │
-      ▼
+      |
+      v
 Availability Status: Restricted Access
-      │
-      ▼
+      |
+      v
 Availability Status: Restored Access
-      │
-      ▼
+      |
+      v
 Governance Status: Retention Completed
 ```
 
@@ -2312,7 +2337,7 @@ Retention completion leaves evidence preserved and governed by storage and acces
 
 ---
 
-## ADR-001 â€” Event-Driven Audit Generation
+## ADR-001 — Event-Driven Audit Generation
 
 **Decision**
 
@@ -2324,7 +2349,7 @@ This guarantees consistent enterprise-wide evidence generation while eliminating
 
 ---
 
-## ADR-002 â€” Immutable Audit Evidence
+## ADR-002 — Immutable Audit Evidence
 
 **Decision**
 
@@ -2336,7 +2361,7 @@ Historical trust depends upon permanent preservation of original evidence.
 
 ---
 
-## ADR-003 â€” Audit as Business Evidence
+## ADR-003 — Audit as Business Evidence
 
 **Decision**
 
@@ -2348,7 +2373,7 @@ Operational diagnostics belong to monitoring infrastructure rather than enterpri
 
 ---
 
-## ADR-004 â€” Timeline as Derived Read Model
+## ADR-004 — Timeline as Derived Read Model
 
 **Decision**
 
@@ -2360,7 +2385,7 @@ Maintaining timelines as derived read models prevents divergence from authoritat
 
 ---
 
-## ADR-005 â€” No Business Snapshot Storage
+## ADR-005 — No Business Snapshot Storage
 
 **Decision**
 
@@ -2419,12 +2444,12 @@ This document is governed by and depends upon the following Level 2 architecture
 
 | Document | Purpose |
 |----------|---------|
-| L2-A01 â€“ Platform & Tenant Foundation | Platform, tenant, and institution context |
-| L2-A02 â€“ Person & Identity | Identity ownership and actor references |
-| L2-A03 â€“ Authentication | Authentication references |
-| L2-A04 â€“ Authorization & Policy | Authorization and policy governance |
-| L2-A05 â€“ Workflow Engine | Workflow execution references |
-| L2-A06 â€“ Event Infrastructure | Canonical business event publication |
+| L2-A01 – Platform & Tenant Foundation | Platform, tenant, and institution context |
+| L2-A02 – Person & Identity | Identity ownership and actor references |
+| L2-A03 – Authentication | Authentication references |
+| L2-A04 – Authorization & Policy | Authorization and policy governance |
+| L2-A05 – Workflow Engine | Workflow execution references |
+| L2-A06 – Event Infrastructure | Canonical business event publication |
 | L2 Domain Workflow Matrix | Repository workflow ownership and dependencies |
 | Architecture Index | Repository organization and document ownership |
 
@@ -2434,28 +2459,28 @@ This document is governed by and depends upon the following Level 2 architecture
 
 | Requirement | Status |
 |-------------|--------|
-| Domain responsibilities defined | âœ“ |
-| Architectural boundaries defined | âœ“ |
-| Canonical aggregates defined | âœ“ |
-| Entities defined | âœ“ |
-| Value Objects defined | âœ“ |
-| Domain services defined | âœ“ |
-| Workflow catalogue completed | âœ“ |
-| Workflow specifications completed | âœ“ |
-| Lifecycle model defined | âœ“ |
-| State machine defined | âœ“ |
-| Consumed events defined | âœ“ |
-| Produced events defined | âœ“ |
-| Integration contracts defined | âœ“ |
-| Cross-domain interactions defined | âœ“ |
-| Dependency matrix completed | âœ“ |
-| Security model documented | âœ“ |
-| Policy model documented | âœ“ |
-| Retention governance documented | âœ“ |
-| Architectural decisions recorded | âœ“ |
-| Traceability matrix completed | âœ“ |
-| Glossary completed | âœ“ |
-| References completed | âœ“ |
+| Domain responsibilities defined | ✓ |
+| Architectural boundaries defined | ✓ |
+| Canonical aggregates defined | ✓ |
+| Entities defined | ✓ |
+| Value Objects defined | ✓ |
+| Domain services defined | ✓ |
+| Workflow catalogue completed | ✓ |
+| Workflow specifications completed | ✓ |
+| Lifecycle model defined | ✓ |
+| State machine defined | ✓ |
+| Consumed events defined | ✓ |
+| Produced events defined | ✓ |
+| Integration contracts defined | ✓ |
+| Cross-domain interactions defined | ✓ |
+| Dependency matrix completed | ✓ |
+| Security model documented | ✓ |
+| Policy model documented | ✓ |
+| Retention governance documented | ✓ |
+| Architectural decisions recorded | ✓ |
+| Traceability matrix completed | ✓ |
+| Glossary completed | ✓ |
+| References completed | ✓ |
 
 ---
 

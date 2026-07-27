@@ -448,7 +448,7 @@ Examination Eligibility
 Examination Status
 Results
 
-Admissions has no ownership after successful graduation.
+Admissions has no ownership after successful qualification completion.
 
 | Business Concept                 | Owner     |
 | -------------------------------- | --------- |
@@ -3225,7 +3225,7 @@ A --> B[Validate Admission]
 
 B --> C[Check Existing Student]
 
-C --> D{Student Already Exists?}
+C --> D{Student Already Exists}
 
 D -->|Yes| E[Return Existing Student]
 
@@ -3545,7 +3545,7 @@ Institutions may configure:
 
 This workflow represents the definitive ownership transfer between the Admission Domain and the Student Domain.
 
-The Admission Domain concludes its operational responsibility by creating the canonical Student entity. All subsequent student-centric operations—including registration, enrollment, academic progression, attendance, examinations, fees, and graduation—are managed by their respective downstream domains using the newly created Student identity as the primary reference.
+The Admission Domain concludes its operational responsibility by creating the canonical Student entity. All subsequent student-centric operations—including registration, enrollment, academic progression, attendance, examinations, fees, and qualification completion—are managed by their respective downstream domains using the newly created Student identity as the primary reference.
 
 Student creation is therefore the contractual boundary between **L2-C01 — Admissions** and **L2-C02 — Student Lifecycle**.
 
@@ -7913,7 +7913,7 @@ A([Admission Initiated])
 
 --> D[Document Verification]
 
---> E{Documents Valid?}
+--> E{Documents Valid}
 
 E -- No --> X1[Pending / Resubmission]
 
@@ -7921,13 +7921,13 @@ X1 --> D
 
 E -- Yes --> F[Admission Approval]
 
-F --> G{Approved?}
+F --> G{Approved}
 
 G -- No --> X2[Admission Rejected]
 
 G -- Yes --> H[Financial Clearance]
 
-H --> I{Financial Policy Satisfied?}
+H --> I{Financial Policy Satisfied}
 
 I -- No --> X3[Await Payment / Waiver / Scholarship]
 
@@ -7998,7 +7998,7 @@ A([Admission Approved])
 %% Decision
 %% ==========================================================
 
-F --> G{All Conditions Satisfied?}
+F --> G{All Conditions Satisfied}
 
 G -- No --> H[Reject Confirmation]
 
@@ -8071,7 +8071,7 @@ A([Admission Confirmed])
 
 --> B[Validate Student Creation Policy]
 
---> C{Student Already Exists?}
+--> C{Student Already Exists}
 
 C -- Yes --> D[Reject Duplicate Creation]
 

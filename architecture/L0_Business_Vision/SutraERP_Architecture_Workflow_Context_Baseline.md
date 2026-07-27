@@ -3,8 +3,40 @@
 **Document Status:** Architecture Context Baseline\
 **Date:** 2026-07-05\
 **Purpose:** Preserve the agreed architectural, institutional,
-team-boundary, tiering, and workflow context before beginning Level 1
-Institute Lifecycle design.
+team-boundary, tiering, and workflow context before beginning
+downstream architecture design.
+
+------------------------------------------------------------------------
+
+## 0. Final Architecture Dependency Hierarchy
+
+This repository uses the following final architecture hierarchy:
+
+```text
+L0 - Business Vision
+    |
+    v
+L1 - Business Domain Architecture
+    |
+    v
+L2 - Domain Workflow Architecture
+    |
+    v
+L3 - Business Scenario Architecture
+    |
+    v
+L4 - System Behavior Specification
+    |
+    v
+L5 - Solution Architecture
+    |
+    v
+L6 - UI / UX Architecture
+```
+
+L0 establishes the business vision and operating context for all lower
+levels. L1 through L6 must inherit from this hierarchy without
+reversing dependency direction.
 
 ------------------------------------------------------------------------
 
@@ -176,7 +208,7 @@ NEP capabilities shall be implemented as cross-domain architecture rather than a
 A guided Institute Setup workflow/wizard is approved as a future
 capability.
 
-It is **not a current Level 1 dependency**.
+It is **not a current downstream dependency**.
 
 The future wizard should orchestrate existing configuration capabilities
 rather than own a separate setup data model.
@@ -727,16 +759,16 @@ SutraERP must distinguish:
 
 ``` text
 ORGANISATION UNIT
-Where in the institution does responsibility exist?
+Where in the institution does responsibility exist
 
 POSITION
-What institutional responsibility does a person hold?
+What institutional responsibility does a person hold
 
 REPORTING RELATIONSHIP
-Who reports to or is supervised by whom, and in what context?
+Who reports to or is supervised by whom, and in what context
 
 SYSTEM ROLE / PERMISSION
-What system action may the identity perform?
+What system action may the identity perform
 ```
 
 Example:
@@ -976,7 +1008,7 @@ Example:
 
 ``` text
 Examination asks:
-"Is this student academically eligible for this examination?"
+"Is this student academically eligible for this examination"
 ```
 
 This requires an authoritative synchronous contract.
@@ -1610,7 +1642,7 @@ Role / Position-Based Workflows
 Screen + API + Contract + Event + State Workflow
 ```
 
-At Level 6, workflow specifications should contain:
+At L6, UI / UX specifications should contain:
 
 ``` text
 Workflow ID
@@ -1639,7 +1671,7 @@ Team Ownership
 
 ------------------------------------------------------------------------
 
-## 24. Decisions Locked Before Level 1
+## 24. Decisions Locked Before Downstream Design
 
 The following decisions are accepted as the baseline:
 
@@ -1654,7 +1686,7 @@ The following decisions are accepted as the baseline:
     Principal approves.
 7.  The approval architecture must remain configurable.
 8.  Guided Institute Setup is a future capability and is not a current
-    Level 1 dependency.
+    downstream dependency.
 9.  SutraERP owns the complete student lifecycle.
 10. SutraERP supports affiliated, autonomous, and university examination
     contexts.
@@ -1694,9 +1726,9 @@ The following decisions are accepted as the baseline:
 
 The next architecture activity is:
 
-# LEVEL 1 --- COMPLETE INSTITUTE LIFECYCLE
+# L1 --- COMPLETE INSTITUTE LIFECYCLE
 
-The Level 1 design will cover:
+The L1 design will cover:
 
 ``` text
 Tenant Provisioning

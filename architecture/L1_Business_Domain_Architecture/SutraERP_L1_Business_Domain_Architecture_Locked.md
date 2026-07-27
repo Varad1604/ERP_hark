@@ -1501,7 +1501,7 @@ A[Business Operation Requested]
 
 -->C[Evaluate Dependencies]
 
--->D{All Conditions Satisfied?}
+-->D{All Conditions Satisfied}
 
 D -->|Yes| E[READY]
 

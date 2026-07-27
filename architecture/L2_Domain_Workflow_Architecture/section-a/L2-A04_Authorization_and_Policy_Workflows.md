@@ -10,10 +10,10 @@
 | Document Name | Authorization and Policy Workflows |
 | Layer | Level 2 – Core Platform Architecture |
 | Domain | Platform Security & Authorization |
-| Owner | Platform Architecture Team |
+| Owner | Dhruv |
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Architecture |
 | Referenced By | All Business Domains (Academic, Examination, Finance, HR, Library, Hostel, Transport, CRM, Analytics, Mobile, APIs, Dashboard, Reporting) |
-| Status | Architecture Baseline |
+| Status | Draft |
 | Version | 1.0 |
 
 ---
