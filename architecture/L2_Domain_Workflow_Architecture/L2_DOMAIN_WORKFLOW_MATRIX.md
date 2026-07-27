@@ -39,28 +39,31 @@ Status: [Approved]
 Status: [Approved]
 
 ## L2-A03 - Authentication Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-A04 - Authorization & Policy Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-A05 - Workflow Engine Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-A06 - Event Infrastructure Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-A07 - Audit Infrastructure Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-A08 - Module Registry & Configuration Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-A09 - Master Data Workflows
+Status: [Approved]
+
+## L2-A10 - Operational Readiness Workflows
 Status: [ ]
 
 ### L2-A00 - Platform Foundation Review
-Status: [ ]
+Status: [Aprroved]
 
 ---
 
@@ -83,9 +86,6 @@ Status: [ ]
 ## L2-B05 - Academic Calendar Workflows
 Status: [ ]
 
-## L2-B06 - Operational Readiness Workflows
-Status: [ ]
-
 ### L2-B00 - Institution & Structure Review
 Status: [ ]
 
@@ -96,7 +96,7 @@ Status: [ ]
 Purpose: Complete student lifecycle from admission through qualification completion, exit, and alumni transition.
 
 ## L2-C01 - Admissions Workflows
-Status: [ ]
+Status: [Approved]
 
 ## L2-C02 - Student Lifecycle & Activation Workflows
 Status: [ ]
@@ -182,13 +182,49 @@ Status: [ ]
 
 Purpose: Financial business domains.
 
-## L2-F01 - Finance Domain Workflows
+## L2-F00 - Finance Domain Model & Foundation
 Status: [ ]
 
-## L2-F02 - Scholarship Financial Processing Workflows
+## L2-F01 - Student Charge & Fee Management
 Status: [ ]
 
-### L2-F00 - Finance Review
+## L2-F02 - Payment Management Architecture
+Status: [ ]
+
+## L2-F03 - Refund Management
+Status: [ ]
+
+## L2-F04 - Financial Adjustment Management
+Status: [ ]
+
+## L2-F05 - Accounting & General Ledger Management
+Status: [ ]
+
+## L2-F06 - Budget & Cost Center Management
+Status: [ ]
+
+## L2-F07 - Accounts Receivable Management
+Status: [ ]
+
+## L2-F08 - Accounts Payable Management
+Status: [ ]
+
+## L2-F09 - Financial Period & Closing
+Status: [ ]
+
+## L2-F10 - Treasury & Banking
+Status: [ ]
+
+## L2-F11 - Scholarship & Financial Aid
+Status: [ ]
+
+## L2-F12 - Asset Management Workflows
+Status: [ ]
+
+## L2-F13 - Financial Reporting & Analytics Workflows
+Status: [ ]
+
+## L2-F14 - Procurement & Supply Chain Workflows
 Status: [ ]
 
 ---
@@ -272,10 +308,55 @@ Status: [ ]
 
 Purpose: Assessment, examination, and academic evaluation.
 
-## L2-I01 - Examination Domain Workflows
+## L2-I00 - Examination Review
 Status: [ ]
 
-## L2-I02 - Assessment, Results & Grade Processing Workflows
+## L2-I01 - Examination Policy & Configuration Workflows
+Status: [ ]
+
+## L2-I02 - Examination Session Management Workflows
+Status: [ ]
+
+## L2-I03 - Examination Planning & Scheduling Workflows
+Status: [ ]
+
+## L2-I04 - Examination Registration Workflows
+Status: [ ]
+
+## L2-I05 - Hall Ticket Management Workflows
+Status: [ ]
+
+## L2-I06 - Practical & Viva Examination Conduct Workflows
+Status: [ ]
+
+## L2-I07 - Theory Examination Conduct Workflows
+Status: [ ]
+
+## L2-I08 - Marks Collection & Evaluation Workflows
+Status: [ ]
+
+## L2-I09 - Result Processing & Computation Workflows
+Status: [ ]
+
+## L2-I10 - Result Publication Workflows
+Status: [ ]
+
+## L2-I11 - Revaluation & Rechecking Workflows
+Status: [ ]
+
+## L2-I12 - Supplementary / Backlog / Improvement Examination Execution Workflows
+Status: [ ]
+
+## L2-I13 - Academic Completion, CGPA & Completion Evidence Workflows
+Status: [ ]
+
+## L2-I14 - Malpractice & Examination Committee Workflows
+Status: [ ]
+
+## L2-I15 - Examination Exception & Contingency Workflows
+Status: [ ]
+
+## L2-I16 - Examination Session Closure & Archival Workflows
 Status: [ ]
 
 ### L2-I00 - Examination Review
@@ -303,7 +384,8 @@ Status: [ ]
 ```mermaid
 flowchart TD
     A[L2-00 Architecture Control] --> B[Section A: Platform Foundation]
-    B --> C[Section A Review: Platform Foundation Review]
+    B --> A10[Section A: Operational Readiness]
+    A10 --> C[Section A Review: Platform Foundation Review]
     C --> D[Section B: Institution & Structure]
     D --> E[Section B Review: Institution & Structure Review]
     E --> F[Section C: Student Lifecycle]
@@ -313,12 +395,26 @@ flowchart TD
     I --> J[Section E: People & Workforce]
     J --> K[Section E Review: People & Workforce Review]
     K --> L[Section F: Finance]
-    L --> M[Section F Review: Finance Review]
-    M --> N[Section I: Examination]
-    N --> N_REV[Section I Review: Examination Review]
-    N_REV --> O[Section G: Campus Operations]
-    O --> O_REV[Section G Review: Campus Operations Review]
-    O_REV --> P[Section H: Institutional Services & Intelligence]
-    P --> R[Section H Review: Services & Intelligence Review]
-    R --> T[L2-99 Final Architecture Review]
+    L --> F0[L2-F00: Finance Foundation]
+    F0 --> F1[L2-F01]
+    F1 --> F2[L2-F02]
+    F2 --> F3[L2-F03]
+    F3 --> F4[L2-F04]
+    F4 --> F5[L2-F05]
+    F5 --> F6[L2-F06]
+    F6 --> F7[L2-F07]
+    F7 --> F8[L2-F08]
+    F8 --> F9[L2-F09]
+    F9 --> F10[L2-F10]
+    F10 --> F11[L2-F11]
+    F11 --> F12[L2-F12]
+    F12 --> F13[L2-F13]
+    F13 --> F14[L2-F14]
+    F14 --> M[Section I: Examination]
+    M --> M_REV[Section I Review: Examination Review]
+    M_REV --> N[Section G: Campus Operations]
+    N --> N_REV[Section G Review: Campus Operations Review]
+    N_REV --> O[Section H: Institutional Services & Intelligence]
+    O --> O_REV[Section H Review: Services & Intelligence Review]
+    O_REV --> T[L2-99 Final Architecture Review]
 ```

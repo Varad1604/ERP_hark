@@ -319,21 +319,21 @@ Never owns business logic.
 
 Every architectural decision shall satisfy the following questions.
 
-Why is the change required?
+Why is the change required
 
-Which problem is solved?
+Which problem is solved
 
-Which documents are affected?
+Which documents are affected
 
-Which domains are affected?
+Which domains are affected
 
-Which contracts change?
+Which contracts change
 
-Which events change?
+Which events change
 
-Which entities change?
+Which entities change
 
-Which architectural levels change?
+Which architectural levels change
 
 No architectural change shall be accepted without traceability.
 

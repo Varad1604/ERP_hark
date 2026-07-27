@@ -4,20 +4,20 @@ title: Platform & Tenant Foundation
 level: Level 2 Architecture
 section: A - Platform Foundation
 version: 1.0.0
-status: Locked
-owner: Architecture Review Board
+status: Draft
+owner: Dhruv
 reviewers:
   - Platform Architecture Team
   - Enterprise Architecture Board
 approved_by: Architecture Governance Board
 depends_on:
-  - L1 Platform Architecture
+  - SutraERP Level 1 Architecture
 required_by:
-  - L2-A02 Identity Foundation
-  - L2-A03 Authentication Foundation
-  - L2-A04 Authorization Foundation
-  - L2-B01 Institution Foundation
-  - L2-B02 Organisation Foundation
+  - L2-A02 Person & Identity Workflows
+  - L2-A03 Authentication Workflows
+  - L2-A04 Authorization and Policy Workflows
+  - L2-B01 Institution Workflows
+  - L2-B02 Organisation Workflows
   - All subsequent Level 2 domains
 last_updated: YYYY-MM-DD
 ---
@@ -33,8 +33,8 @@ last_updated: YYYY-MM-DD
 | Document ID | L2-A01 |
 | Architecture Level | Level 2 |
 | Domain | Platform Foundation |
-| Status | Locked |
-| Owner | Platform Architecture |
+| Status | Draft |
+| Owner | Dhruv |
 | Architecture Layer | Foundation |
 | Parent Architecture | Level 1 Platform Architecture |
 | Child Architectures | All remaining Level 2 Domains |
@@ -78,6 +78,7 @@ The following responsibilities are intentionally excluded from L2-A01 and are de
 | Identity Management | L2-A02 |
 | Authentication | L2-A03 |
 | Authorization | L2-A04 |
+| Workspace Ownership | L2-A04 |
 | Institution Lifecycle | L2-B01 |
 | Organisation Structure | L2-B02 |
 | Academic Structure | Academic Foundation |
@@ -1323,6 +1324,7 @@ The Canonical Execution Context consists of the following logical components.
 | Organisation Context | Organisational scope | L2-B02 |
 | Academic Context | Academic execution scope | Academic Foundation |
 | Identity Context | Authenticated identity | L2-A02 |
+| Workspace Context | Active workspace presentation context | L2-A04, resolved by Authorization domain |
 | Security Context | Authentication & Authorization | L2-A03 / L2-A04 |
 | Operational Context | Current execution metadata | Platform Foundation |
 
@@ -1356,6 +1358,9 @@ Resolve Identity
 Resolve Authorization
         │
         ▼
+Resolve Active Workspace
+        │
+        ▼
 Validate Context
         │
         ▼
@@ -1380,6 +1385,7 @@ Before execution begins, the Platform shall validate:
 - Academic Context is valid.
 - Authenticated Identity belongs to the Tenant.
 - Authorization Scope is valid.
+- Active Workspace is resolved by the Authorization domain and is valid for the authenticated identity.
 - Platform configuration is available.
 - Required platform services are accessible.
 
@@ -1500,7 +1506,7 @@ The following constraints apply.
 
 ## Architecture Note
 
-The Context Resolution Foundation establishes the execution boundary of the SutraERP Platform. By resolving Tenant, Institution, Organisation, Academic Scope, Identity, and Authorization into a single Canonical Execution Context before business execution begins, the Platform ensures that every downstream Level 2 domain operates within a consistent, secure, and deterministic environment. This eliminates duplicate context-resolution logic, preserves tenant isolation, and provides a common execution contract for the entire ERP.
+The Context Resolution Foundation establishes the execution boundary of the SutraERP Platform. By resolving Tenant, Institution, Organisation, Academic Scope, Identity, Authorization, and Active Workspace into a single Canonical Execution Context before business execution begins, the Platform ensures that every downstream Level 2 domain operates within a consistent, secure, and deterministic environment. This eliminates duplicate context-resolution logic, preserves tenant isolation, and provides a common execution contract for the entire ERP.
 
 ---
 
@@ -2450,6 +2456,28 @@ The following constraints apply.
 - Shared services shall remain technology independent.
 - Future Platform Services shall preserve existing architectural contracts.
 - Governance applies throughout the complete service lifecycle.
+
+---
+
+## 7.19 Security, Identity, and Cryptographic Governance
+
+The Platform owns the shared security services required by every downstream Level 2 architecture.
+
+These shared security services include:
+
+- Machine identity and service account governance
+- Credential lifecycle governance for platform-issued secrets
+- Certificate and key governance for platform-controlled cryptographic material
+- Security event publication and audit integration
+- Recovery and revocation governance for shared security assets
+
+The following architectural rules apply:
+
+- Non-human identities shall be explicitly modeled and tenant-aware.
+- Service-to-service trust shall be established only through published Platform security contracts.
+- Shared cryptographic material shall have a single canonical owner within the Platform.
+- Business domains shall not independently define or manage shared machine identities, shared secrets, or shared cryptographic keys.
+- Security governance shall define approval, rotation, revocation, and recovery authority for shared security assets.
 
 ---
 
@@ -3465,3 +3493,5 @@ These keywords shall be interpreted consistently across all Level 2 architecture
 ---
 
 # End of Document
+
+Status: Draft

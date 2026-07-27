@@ -5,7 +5,7 @@ level: Level 2 Architecture
 section: A - Platform Foundation
 version: 1.0.0
 status: Draft
-owner: Platform Architecture Team
+owner: Dhruv
 reviewers:
   - Platform Architecture Team
   - Enterprise Architecture Board
@@ -33,7 +33,7 @@ last_updated: YYYY-MM-DD
 | Module | Authentication |
 | Status | Draft |
 | Version | 1.0.0 |
-| Owner | Platform Architecture Team |
+| Owner | Dhruv |
 | Architecture Layer | Foundation |
 | Parent Architecture | L2-A02 — Person & Identity Workflows |
 | Child Architectures | L2-A04 Authorization & Policy Workflows, All Business Domains |
@@ -96,6 +96,7 @@ The following responsibilities are intentionally excluded from this architecture
 | User Account Lifecycle | L2-A02 |
 | Identity Resolution | L2-A02 |
 | Person Profile Management | L2-A02 |
+| Workspace Ownership | L2-A04 |
 | Authorization | L2-A04 |
 | Roles | L2-A04 |
 | Permissions | L2-A04 |
@@ -106,6 +107,8 @@ The following responsibilities are intentionally excluded from this architecture
 Authentication verifies identity.
 
 Authorization determines what an authenticated identity is permitted to perform.
+
+Workspace selection is stored in the session after successful login or workspace switching, but it never affects authorization decisions.
 
 Business domains remain responsible for enforcing business-specific authorization decisions using the contracts exposed by L2-A04.
 
@@ -118,6 +121,7 @@ Within the SutraERP architecture, Authentication is a foundational platform doma
 Authentication consumes canonical identities managed by L2-A02 and establishes authenticated execution contexts that are subsequently evaluated by L2-A04 for authorization.
 
 The Authentication domain does not own person records, identity information, roles, permissions, or business access policies.
+It also does not own workspace definitions, workspace lifecycle, or workspace authorization.
 
 Instead, it provides secure identity verification services that enable downstream domains to execute authenticated business operations.
 
@@ -171,6 +175,7 @@ The Authentication domain is the exclusive owner of the following platform capab
 - MFA Enrollment
 - Authentication Policy
 - Authentication Attempt
+- Active Workspace Reference
 
 ---
 
@@ -185,6 +190,7 @@ Authentication exclusively owns:
 - Trusted device lifecycle
 - MFA enrollment lifecycle
 - Authentication provider lifecycle
+- Active workspace persistence within the session
 
 No other domain may directly create, modify, expire, revoke, or manage these aggregates outside the published architectural contracts.
 
@@ -207,6 +213,7 @@ The Authentication domain is responsible for:
 - Authentication policy evaluation
 - Authentication audit publication
 - Authentication event publication
+- Active workspace persistence
 
 ---
 
@@ -221,6 +228,8 @@ Authentication shall never own:
 - Permissions
 - Organizational Membership
 - Business Access Policies
+- Workspace
+- Workspace Configuration
 - Institutional Data
 - Student Data
 - Employee Data
@@ -761,7 +770,7 @@ Domain Services coordinate business behaviour across aggregates but never own bu
 |---------|---------|------------------|---------------------|------------------|---------------------------|
 | AuthenticationService | Orchestrates the end-to-end authentication process. | Evaluates request context, coordinates policy evaluation, selects method and provider, and finalizes the authentication outcome. | Credential, Authentication Attempt, Authentication Policy, Authentication Method, Authentication Provider, MFA Enrollment, Trusted Device, Authentication Session | AuthenticationStarted, AuthenticationSucceeded, AuthenticationFailed, AuthenticationChallenged, AuthenticationCompleted | Consumes identity references from L2-A02 and produces authenticated execution context for L2-A04 and downstream business domains. |
 | CredentialValidationService | Applies credential eligibility rules. | Validates credential state, expiration, rotation eligibility, and revocation constraints before authentication proceeds. | Credential, Authentication Policy, Authentication Attempt | CredentialActivated, CredentialSuspended, CredentialExpired, CredentialRevoked, CredentialRotated | Uses canonical identity and tenant context from L2-A02 and L2-A01. |
-| SessionService | Governs authenticated session behavior. | Establishes, renews, suspends, terminates, and revokes sessions within policy constraints. | Authentication Session, Refresh Token, Trusted Device, Authentication Policy | SessionCreated, SessionActivated, SessionRenewed, SessionSuspended, SessionResumed, SessionExpired, SessionTerminated, SessionRevoked | Publishes authenticated context to L2-A04 and session-aware business domains. |
+| SessionService | Governs authenticated session behavior. | Establishes, renews, suspends, terminates, and revokes sessions within policy constraints. | Authentication Session, Refresh Token, Trusted Device, Authentication Policy | SessionCreated, SessionActivated, SessionRenewed, SessionSuspended, SessionResumed, SessionExpired, SessionTerminated, SessionRevoked | Publishes authenticated context, including the active workspace reference, to L2-A04 and session-aware business domains. |
 | TrustedDeviceService | Governs trusted device recognition. | Registers devices, confirms trust, suspends trust, expires trust, and removes trust records. | Trusted Device, Authentication Policy, Authentication Attempt | TrustedDeviceRegistered, TrustedDeviceVerified, TrustedDeviceSuspended, TrustedDeviceExpired, TrustedDeviceRemoved | Consumes tenant and identity context from L2-A01 and L2-A02. |
 | MFAService | Governs multi-factor enrollment and verification. | Enrolls factors, verifies factor ownership, activates factors, and manages factor replacement or retirement. | MFA Enrollment, Authentication Policy, Authentication Context | MFAEnrollmentStarted, MFAEnrollmentVerified, MFAActivated, MFAChallengeStarted, MFAChallengeSucceeded, MFAChallengeFailed, MFADisabled | Supports downstream authorization strength requirements without owning authorization policy. |
 | ProviderSelectionService | Selects the appropriate authentication provider. | Applies provider priority, fallback, maintenance, availability, and recovery rules. | Authentication Provider, Authentication Method, Authentication Policy | AuthenticationStarted, AuthenticationFailed, AuthenticationCompleted | Consumes provider availability signals and tenant configuration from platform contracts. |
@@ -927,6 +936,7 @@ Authentication Session
 | IdentityId | Referenced identity. |
 | SessionClassification | Interactive, API, Integration, Background, or Service. |
 | AuthenticationLevel | Assurance level established for the session. |
+| ActiveWorkspaceId | Selected workspace reference for the session. |
 | SessionStatus | Current lifecycle state. |
 | StartedAt | Session creation timestamp. |
 | LastAuthenticatedAt | Last successful authentication timestamp. |
@@ -943,6 +953,7 @@ Authentication Session
 
 - One tenant owns one session record.
 - One identity owns one session context record.
+- One session stores at most one active workspace reference.
 - Closed sessions are immutable.
 - A refresh token belongs to exactly one session.
 - A terminated session cannot renew.
@@ -958,6 +969,7 @@ Authentication Session
 | ResumeSession | Restore a suspended session. |
 | TerminateSession | Close the session. |
 | RevokeSession | Administratively end the session. |
+| SwitchWorkspace | Update the active workspace reference stored in the session. |
 
 ### Published Events
 
@@ -971,6 +983,7 @@ Authentication Session
 | SessionExpired | Session ended by policy or time. |
 | SessionTerminated | Session was closed. |
 | SessionRevoked | Session was forcibly terminated. |
+| WorkspaceSwitched | Active workspace reference changed for the session. |
 
 ### Lifecycle Ownership
 
@@ -2895,7 +2908,7 @@ Select Authentication Method
 Verify Credential
         │
         ▼
-MFA Required?
+MFA Required
    ┌────┴─────┐
    │          │
  No          Yes
@@ -2980,6 +2993,7 @@ Complete
 - Logout affects only the requested session unless policy specifies global logout.
 - Logout invalidates associated refresh tokens.
 - Logout always generates audit events.
+- Logout clears the active workspace reference with the session.
 
 ---
 
@@ -3010,6 +3024,9 @@ Associate Tenant
 Apply Session Policy
         │
         ▼
+Persist Active Workspace Reference
+        │
+        ▼
 Activate Session
 ```
 
@@ -3020,6 +3037,7 @@ Activate Session
 - Session identifiers are globally unique.
 - Sessions belong to exactly one tenant.
 - Sessions belong to exactly one authenticated identity.
+- Sessions may persist one active workspace reference selected by the Authorization domain.
 - Session policies determine expiration.
 - Sessions begin in Active state.
 
@@ -3219,7 +3237,7 @@ Authentication Request
 Risk Evaluation
         │
         ▼
-Challenge Required?
+Challenge Required
     ┌───┴────┐
     │        │
  No        Yes
@@ -3357,7 +3375,7 @@ Evaluate Reset Policy
 Verify Recovery Method
         │
         ▼
-Recovery Successful?
+Recovery Successful
      ┌────┴─────┐
      │          │
     No         Yes
@@ -3448,7 +3466,7 @@ Authentication Success
 Evaluate MFA Policy
         │
         ▼
-MFA Required?
+MFA Required
      ┌────┴─────┐
      │          │
     No         Yes
@@ -3541,7 +3559,7 @@ Locate Trusted Device
 Evaluate Device Policy
         │
         ▼
-Trusted?
+Trusted
     ┌────┴─────┐
     │          │
    No         Yes
@@ -3645,7 +3663,7 @@ Increment Failure Counter
 Evaluate Restriction Policy
         │
         ▼
-Threshold Reached?
+Threshold Reached
      ┌────┴─────┐
      │          │
     No         Yes
@@ -4798,7 +4816,7 @@ Authentication Request
 Evaluate Tenant Policy
         │
         ▼
-Preferred Provider Available?
+Preferred Provider Available
       ┌────┴────┐
       │         │
      Yes       No
@@ -4959,6 +4977,20 @@ Cross-domain contracts ensure that Authentication remains loosely coupled while 
 Authentication never directly manipulates aggregates owned by other domains.
 
 All interactions occur through published contracts, domain events, or application services.
+
+---
+
+## Non-Human Identity Governance
+
+The Authentication domain shall explicitly govern non-human identities used by platform services, background jobs, integration agents, and external system actors.
+
+The following rules apply:
+
+- Service accounts and machine identities are non-human identities and shall be tenant-aware.
+- API credentials shall be used only for system integrations and shall not be treated as human login credentials.
+- Non-human identities shall follow the same canonical authentication, audit, and revocation boundary as human identities.
+- Creation, rotation, suspension, and revocation of service identities shall remain policy governed and fully auditable.
+- No business domain may directly assume a non-human identity without an approved platform authorization path.
 
 ---
 
@@ -5943,4 +5975,4 @@ This document complies with the SutraERP Level-2 Architecture Standards.
 
 **Canonical Owner:** Authentication Domain
 
-**Status:** Complete
+**Status:** Draft

@@ -1,4 +1,4 @@
-# L2-B03 Campus & Infrastructure Workflows
+# L2-B03 Campus Workflows
 
 ---
 
@@ -7,7 +7,7 @@
 | Attribute | Value |
 |------------|-------|
 | **Document ID** | L2-B03 |
-| **Document Name** | Campus & Infrastructure Workflows |
+| **Document Name** | Campus Workflows |
 | **Architecture Level** | Level 2 – Domain Architecture |
 | **Domain Code** | B03 |
 | **Domain Category** | Foundation Domain |
@@ -7615,7 +7615,7 @@ Authentication
 Authorization Check
       │
       ▼
-Permission Granted?
+Permission Granted
       │
  ┌────┴────┐
  │         │
@@ -9584,4 +9584,6 @@ This final section concludes the Campus & Infrastructure domain architecture by 
 - Repository Compliance Checklist
 - Final Architectural Statement
 
-With this section, the **L2-B03 — Campus & Infrastructure Workflows** document is architecturally complete and ready for independent validation, repository compliance review, and merge approval.
+With this section, the **L2-B03 — Campus Workflows** document is architecturally complete and ready for independent validation, repository compliance review, and merge approval.
+
+
