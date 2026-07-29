@@ -1,13 +1,13 @@
 # SutraERP Architecture Repository
 
-Welcome to the official **SutraERP Architecture & Planning Repository**. This repository is the single source of truth for the business architecture, workflow architecture, governance rules, and planning controls for SutraERP.
+Welcome to the official **SutraERP Architecture & Planning Repository**. This repository is the single source of truth for the business architecture, domain workflow architecture, business scenario architecture, governance rules, and planning controls for SutraERP.
 
 ---
 
 ## 1. Project Overview
 
 ### What is SutraERP
-SutraERP is a modular ERP platform for educational institutions. It is designed to support multi-tenant operation, academic administration, student lifecycle management, workforce administration, institutional services, campus operations, and financial and examination workflows.
+SutraERP is a modular ERP platform for educational institutions. It is designed to support multi-tenant operation, academic administration, student lifecycle management, workforce administration, institutional services, campus operations, financial workflows, examination workflows, and enterprise resource management.
 
 ### Purpose of this Repository
 This repository stores and governs the architecture and planning artifacts that must exist before implementation work begins. It is used to align architects, product stakeholders, and engineering teams on:
@@ -22,6 +22,7 @@ This repository stores and governs the architecture and planning artifacts that 
 - **Design Before Code**: implementation must follow approved architecture.
 - **Traceability**: every downstream artifact must trace to an upstream architectural source.
 - **Canonical Ownership**: every business concept has exactly one authoritative owner.
+- **Hierarchy Discipline**: the canonical architecture hierarchy is L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6.
 - **Planning Repository Only**: this repository contains architecture, governance, templates, generated presentation artifacts, and helper scripts. It does not contain application runtime code.
 
 ---
@@ -49,35 +50,25 @@ Planned folders such as `assets/`, `archive/`, and `ADR/` are not yet present in
 
 The architecture is divided into seven levels. Each level answers a different question.
 
-### L0 - Business Vision
-- **Purpose**: defines why SutraERP exists and the architectural context it must satisfy.
-- **Output**: business vision / architecture context document.
+| Level | Name | Definition |
+|-------|------|------------|
+| L0 | Business Vision | Defines why SutraERP exists, strategic intent, architectural context, and constraints. |
+| L1 | Business Domain Architecture | Defines the canonical business domains, domain boundaries, and ownership. |
+| L2 | Domain Workflow Architecture | Defines workflows, lifecycles, rules, and dependencies within an individual business domain. |
+| L3 | Business Scenario Architecture | Defines independent end-to-end business scenarios that may derive information from one or many L2 workflow documents; L3 numbering is not dependent on L2 numbering. |
+| L4 | System Behavior Specification | Defines expected system behavior for approved business scenarios without implementation design. |
+| L5 | Solution Architecture | Defines engineering solution architecture needed to implement L4 behavior without changing business rules. |
+| L6 | UI / UX Architecture | Defines user interaction, navigation, screens, and user journeys derived from L5 solution architecture without owning business logic. |
 
-### L1 - Business Domain Architecture
-- **Purpose**: defines what domains exist and who owns them.
-- **Output**: canonical business domain architecture.
+The dependency direction is:
 
-### L2 - Domain Workflow Architecture
-- **Purpose**: defines how an individual domain works, including lifecycle, workflow, rules, and dependencies.
-- **Output**: domain workflow specifications.
-
-### L3 - Business Scenario Architecture
-- **Purpose**: defines end-to-end multi-domain business scenarios.
-- **Output**: business scenario specifications.
-
-### L4 - System Behavior Specification
-- **Purpose**: defines system behavior without introducing implementation design.
-- **Output**: non-technical behavior specifications.
-
-### L5 - Solution Architecture
-- **Purpose**: defines the engineering solution needed to implement L4 behavior.
-- **Output**: technical solution architecture.
-
-### L6 - UI / UX Architecture
-- **Purpose**: defines user interaction, navigation, screens, and user journeys.
-- **Output**: UI / UX architecture.
+```text
+L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
+```
 
 L0 and L1 source documents currently exist in this workspace, along with the L2 control matrix and a subset of L2 section files. L3 through L6 are planned downstream levels and are not yet present as source documents.
+
+L3 Business Scenario Architecture is independent of L2 numbering. A business scenario may derive information from one or many L2 workflow documents, but it must not redefine L2 domain ownership or workflow logic.
 
 ---
 
@@ -101,6 +92,8 @@ Implementation in the application repository
 4. Locked architecture is merged to `main`.
 5. Engineering teams implement from the locked architecture.
 
+Business Scenario Architecture, System Behavior Specification, Solution Architecture, and UI / UX Architecture must be authored only after their upstream sources are approved and traceable.
+
 ---
 
 ## 5. Git Workflow
@@ -121,7 +114,6 @@ Commit -> Pull Request -> Architecture Review -> Approval -> Merge to main
 ### Dhruv (Lead Architect)
 - Primary ownership:
   - Section A (Platform Foundation)
-  - Section G (Campus Operations)
   - Section H (Institutional Services & Intelligence)
 - Repository governance:
   - reviews every Level 2 architecture document
@@ -131,7 +123,7 @@ Commit -> Pull Request -> Architecture Review -> Approval -> Merge to main
 ### Pallav (Architect)
 - Primary ownership:
   - Section B (Institution & Structure)
-  - Section D (Academic Delivery)
+  - Section D (Academic Delivery, including D07 Internal Assessment)
 
 ### Varad (Architect)
 - Primary ownership:
@@ -141,9 +133,15 @@ Commit -> Pull Request -> Architecture Review -> Approval -> Merge to main
 ### Chetan (Architect)
 - Primary ownership:
   - Section F (Finance)
+  - Section J (Enterprise Resource Management)
+- Finance review team:
+  - Varad
+  - Devang
+- Finance review team responsibility is review-only. Chetan remains the implementation and domain owner of Finance.
 
 ### Devang (Architect)
 - Primary ownership:
+  - Section G (Campus Operations)
   - Section I (Examination)
 
 The owner map above must match `architecture/L2_Domain_Workflow_Architecture/TEAM_ASSIGNMENTS.md` and `architecture/ARCHITECTURE_INDEX.md`.
@@ -178,7 +176,7 @@ Documents should use stable level-oriented names that clearly identify scope.
 - **L2**: `L2-[section][number]`
 - **L3**: `L3-[ScenarioName]`
 
-Examples should use current canonical terminology such as `QualificationCompletion`, not superseded terminology such as `Graduation`.
+Examples should use current canonical terminology such as `QualificationCompletion`.
 
 ---
 
@@ -200,6 +198,8 @@ The [templates/](/F:/Pravaha/ERP_Planning/templates/) directory currently contai
 - New architecture documents must be created from the correct template and then added to [architecture/ARCHITECTURE_INDEX.md](/F:/Pravaha/ERP_Planning/architecture/ARCHITECTURE_INDEX.md).
 - A planned folder must not be referenced as if it exists until the folder is created in the repository.
 - Downstream L3-L6 artifacts must not be indexed as present until their files are created.
+- Future Section J ownership includes Enterprise Resource Management capabilities such as vendor management, supplier management, procurement, inventory management, stock management, warehouse management, asset lifecycle management, and resource management.
+- Future L3 Business Scenario Architecture references must remain independent of L2 numbering and may derive from one or many L2 workflow documents.
 
 ---
 

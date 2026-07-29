@@ -29,6 +29,24 @@
 
 ---
 
+# Canonical Architecture Definitions
+
+| Level | Name | Definition |
+|-------|------|------------|
+| L0 | Business Vision | Defines why SutraERP exists, strategic intent, architectural context, and constraints. |
+| L1 | Business Domain Architecture | Defines the canonical business domains, domain boundaries, and ownership. |
+| L2 | Domain Workflow Architecture | Defines workflows, lifecycles, rules, and dependencies within an individual business domain. |
+| L3 | Business Scenario Architecture | Defines independent end-to-end business scenarios that may derive information from one or many L2 workflow documents; L3 numbering is not dependent on L2 numbering. |
+| L4 | System Behavior Specification | Defines expected system behavior for approved business scenarios without implementation design. |
+| L5 | Solution Architecture | Defines engineering solution architecture needed to implement L4 behavior without changing business rules. |
+| L6 | UI / UX Architecture | Defines user interaction, navigation, screens, and user journeys derived from L5 solution architecture without owning business logic. |
+
+```text
+L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
+```
+
+---
+
 # L1 Business Domain Ownership
 
 | Section | Domain | Owner |
@@ -39,9 +57,10 @@
 | Section D | Academic Delivery | Pallav |
 | Section E | People & Workforce | Varad |
 | Section F | Finance | Chetan |
-| Section G | Campus Operations | Dhruv |
+| Section G | Campus Operations | Devang |
 | Section H | Institutional Services & Intelligence | Dhruv |
 | Section I | Examination | Devang |
+| Section J | Enterprise Resource Management | Chetan |
 
 ---
 
@@ -49,7 +68,7 @@
 
 ---
 
-# Section A â€” Platform Foundation
+# Section A — Platform Foundation
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
@@ -69,7 +88,7 @@
 
 ---
 
-# Section B â€” Institution & Structure
+# Section B — Institution & Structure
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
@@ -84,7 +103,7 @@
 
 ---
 
-# Section C â€” Student Lifecycle
+# Section C — Student Lifecycle
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
@@ -101,23 +120,24 @@
 **Section Total:** 9 Documents
 
 ---
-# Section D â€” Academic Delivery
+# Section D — Academic Delivery
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-D01 | Course & Course Offering Workflows | Pallav | Draft |
-| L2-D02 | Faculty Academic Assignment Workflows | Pallav | Draft |
-| L2-D03 | Timetable Workflows | Pallav | Draft |
-| L2-D04 | Teaching Session & Attendance Workflows | Pallav | Draft |
-| L2-D05 | Academic Monitoring Workflows | Pallav | Draft |
-| L2-D06 | Open Electives & MOOCs Workflows | Pallav | Draft |
-| L2-D00 | Academic Delivery Review | Pallav | Draft |
+| L2-D01 | Course & Course Offering Workflows | Pallav | Architecture Locked |
+| L2-D02 | Faculty Academic Assignment Workflows | Pallav | Approved Baseline |
+| L2-D03 | Timetable Workflows | Pallav | Architecture Baseline |
+| L2-D04 | Teaching Session & Attendance Workflows | Pallav | Architecture Locked |
+| L2-D05 | Academic Monitoring Workflows | Pallav | Architecture Approved |
+| L2-D06 | Open Electives & MOOCs Workflows | Pallav | Architecture Locked |
+| L2-D07 | Internal Assessment Workflows | Pallav | Architecture Locked |
+| L2-D00 | Academic Delivery Review | Pallav | Certified & Locked |
 
-**Section Total:** 7 Documents
+**Section Total:** 8 Documents
 
 ---
 
-# Section E â€” People & Workforce
+# Section E — People & Workforce
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
@@ -127,13 +147,14 @@
 | L2-E04 | HR Workflows | Varad | Draft |
 | L2-E05 | Leave Management Workflows | Varad | Draft |
 | L2-E06 | Payroll Workflows | Varad | Draft |
+| L2-E07 | Employee Profile Workflows | Varad | Draft |
 | L2-E00 | People & Workforce Review | Varad | Draft |
 
-**Section Total:** 7 Documents
+**Section Total:** 8 Documents
 
 ---
 
-# Section F â€” Finance
+# Section F — Finance
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
@@ -164,33 +185,33 @@
 | Section A | 11 |
 | Section B | 6 |
 | Section C | 9 |
-| Section D | 7 |
-| Section E | 7 |
+| Section D | 8 |
+| Section E | 8 |
 | Section F | 15 |
-| **Total So Far** | **55 Documents** |
+| **Total So Far** | **57 Documents** |
 
 ---
-# Section G â€” Campus Operations
+# Section G — Campus Operations
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-G01 | Facilities Workflows | Dhruv | Draft |
-| L2-G02 | Laboratory Management Workflows | Dhruv | Draft |
-| L2-G03 | Hostel Workflows | Dhruv | Draft |
-| L2-G04 | Transport Workflows | Dhruv | Draft |
-| L2-G05 | Library Workflows | Dhruv | Draft |
-| L2-G06 | Medical Workflows | Dhruv | Draft |
-| L2-G07 | Security Operations Workflows | Dhruv | Draft |
-| L2-G08 | Housekeeping Operations Workflows | Dhruv | Draft |
-| L2-G09 | Teacher Guardian Scheme (TGS) Workflows | Dhruv | Draft |
-| L2-G10 | Infrastructure Management Workflows | Dhruv | Draft |
-| L2-G00 | Campus Operations Review | Dhruv | Draft |
+| L2-G01 | Facilities Workflows | Devang | Draft |
+| L2-G02 | Laboratory Management Workflows | Devang | Draft |
+| L2-G03 | Hostel Workflows | Devang | Draft |
+| L2-G04 | Transport Workflows | Devang | Draft |
+| L2-G05 | Library Workflows | Devang | Draft |
+| L2-G06 | Medical Workflows | Devang | Draft |
+| L2-G07 | Security Operations Workflows | Devang | Draft |
+| L2-G08 | Housekeeping Operations Workflows | Devang | Draft |
+| L2-G09 | Teacher Guardian Scheme (TGS) Workflows | Devang | Draft |
+| L2-G10 | Infrastructure Management Workflows | Devang | Draft |
+| L2-G00 | Campus Operations Review | Devang | Draft |
 
 **Section Total:** 11 Documents
 
 ---
 
-# Section H â€” Institutional Services & Intelligence
+# Section H — Institutional Services & Intelligence
 
 ## Institutional Services
 
@@ -198,25 +219,26 @@
 |----|----------|-------|--------|
 | L2-H01 | APAAR & DigiLocker Workflows | Dhruv | Draft |
 | L2-H02 | Notification Workflows | Dhruv | Draft |
-| L2-H03 | Directory Workflows | Dhruv | Draft |
+| L2-H03 | Enterprise Directory & Search Workflows | Dhruv | Draft |
 | L2-H04 | Placement Workflows | Dhruv | Draft |
 | L2-H05 | Research Workflows | Dhruv | Draft |
+| L2-H06 | Alumni Workflows | Dhruv | Draft |
 
 ## Institutional Intelligence
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-H07 | Dashboard Workflows | Dhruv | Draft |
+| L2-H07 | Enterprise Dashboard Workflows | Dhruv | Draft |
 | L2-H08 | NEP, NAAC & AISHE Reporting Workflows | Dhruv | Draft |
 | L2-H09 | Accreditation & Compliance Workflows | Dhruv | Draft |
 | L2-H10 | External Education Integration Workflows | Dhruv | Draft |
 | L2-H00 | Services & Intelligence Review | Dhruv | Draft |
 
-**Section Total:** 10 Documents
+**Section Total:** 11 Documents
 
 ---
 
-# Section I â€” Examination
+# Section I — Examination
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
@@ -242,76 +264,36 @@
 
 ---
 
-# Planned L3 Business Scenario Specifications
-
-> These rows are planning entries only. No L3 source documents are present in this workspace yet.
+# Section J — Enterprise Resource Management
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L3-Admission | Student Admission Scenario | Varad | Draft |
-| L3-SemesterRegistration | Semester Registration Scenario | Varad | Draft |
-| L3-Graduation | Graduation Scenario | Varad | Draft |
-| L3-FacultyRecruitment | Faculty Recruitment Scenario | Varad | Draft |
-| L3-HostelAllocation | Hostel Allocation Scenario | Dhruv | Draft |
-| L3-PlacementDrive | Placement Drive Scenario | Dhruv | Draft |
-| L3-FeeCollection | Fee Collection Scenario | Chetan | Draft |
-| L3-ResultPublication | Result Publication Scenario | Devang | Draft |
-| L3-LeaveManagement | Leave Management Scenario | Varad | Draft |
+| L2-J00 | Enterprise Resource Management Architecture & Governance | Chetan | Draft |
+| L2-J01 | Procurement Planning & Sourcing Workflows | Chetan | Draft |
+| L2-J02 | Vendor & Supplier Management Workflows | Chetan | Draft |
+| L2-J03 | Purchase Requisition & Approval Workflows | Chetan | Draft |
+| L2-J04 | Purchase Order Management | Chetan | Draft |
+| L2-J05 | Goods Receipt, Inspection & Acceptance | Chetan | Draft |
+| L2-J06 | Inventory & Warehouse Management | Chetan | Draft |
+| L2-J07 | Stock Operations & Distribution | Chetan | Draft |
+| L2-J08 | Asset Lifecycle Management | Chetan | Draft |
+| L2-J09 | Physical Verification, Audit & Reconciliation | Chetan | Draft |
+| L2-J10 | Disposal, Scrap & Write-Off | Chetan | Draft |
+
+**Section Total:** 11 Documents
 
 ---
 
-# Planned L4 System Behavior Specifications
+# Future L3-L6 Architecture Placeholders
 
-> These rows are planning entries only. No L4 source documents are present in this workspace yet.
+> These are level placeholders only. No L3, L4, L5, or L6 source documents are present in this workspace yet.
 
-| ID | Document | Owner | Status |
-|----|----------|-------|--------|
-| L4-Admission | Admission System Behavior | Varad | Draft |
-| L4-SemesterReg | Semester Reg System Behavior | Varad | Draft |
-| L4-Graduation | Graduation System Behavior | Varad | Draft |
-| L4-FacultyRecruit | Faculty Recruit System Behavior | Varad | Draft |
-| L4-HostelAlloc | Hostel Alloc System Behavior | Dhruv | Draft |
-| L4-Placement | Placement System Behavior | Dhruv | Draft |
-| L4-FeeCollection | Fee Collection System Behavior | Chetan | Draft |
-| L4-ResultPub | Result Publication System Behavior | Devang | Draft |
-| L4-LeaveMgmt | Leave Management System Behavior | Varad | Draft |
-
----
-
-# Planned L5 Solution Architectures
-
-> These rows are planning entries only. No L5 source documents are present in this workspace yet.
-
-| ID | Document | Owner | Status |
-|----|----------|-------|--------|
-| L5-Core | Core L5 Solution Architecture | Dhruv | Locked |
-| L5-Admission | Admission Tech Design | Varad | Draft |
-| L5-SemesterReg | Semester Reg Tech Design | Varad | Draft |
-| L5-Graduation | Graduation Tech Design | Varad | Draft |
-| L5-FacultyRecruit | Faculty Recruit Tech Design | Varad | Draft |
-| L5-HostelAlloc | Hostel Alloc Tech Design | Dhruv | Draft |
-| L5-Placement | Placement Tech Design | Dhruv | Draft |
-| L5-FeeCollection | Fee Collection Tech Design | Chetan | Draft |
-| L5-ResultPub | Result Publication Tech Design | Devang | Draft |
-| L5-LeaveMgmt | Leave Management Tech Design | Varad | Draft |
-
----
-
-# Planned L6 UI / UX Architectures
-
-> These rows are planning entries only. No L6 source documents are present in this workspace yet.
-
-| ID | Document | Owner | Status |
-|----|----------|-------|--------|
-| L6-Admission | Admission UI/UX | Varad | Draft |
-| L6-SemesterReg | Semester Reg UI/UX | Varad | Draft |
-| L6-Graduation | Graduation UI/UX | Varad | Draft |
-| L6-FacultyRecruit | Faculty Recruit UI/UX | Varad | Draft |
-| L6-HostelAlloc | Hostel Alloc UI/UX | Dhruv | Draft |
-| L6-Placement | Placement UI/UX | Dhruv | Draft |
-| L6-FeeCollection | Fee Collection UI/UX | Chetan | Draft |
-| L6-ResultPub | Result Publication UI/UX | Devang | Draft |
-| L6-LeaveMgmt | Leave Management UI/UX | Varad | Draft |
+| Level | Future Artifact Type | Indexing Rule |
+|-------|----------------------|---------------|
+| L3 | Business Scenario Architecture | Add only after an approved L3 source document exists. L3 numbering is independent of L2 numbering. |
+| L4 | System Behavior Specification | Add only after an approved L4 source document exists and traces to L3. |
+| L5 | Solution Architecture | Add only after an approved L5 source document exists and traces to L4. |
+| L6 | UI / UX Architecture | Add only after an approved L6 source document exists and traces to L5. |
 
 ---
 
@@ -319,15 +301,16 @@
 
 | Section | Documents | Owner |
 |----------|----------:|-------|
-| Section A â€“ Platform Foundation | 11 | Dhruv |
-| Section B â€“ Institution & Structure | 6 | Pallav |
+| Section A — Platform Foundation | 11 | Dhruv |
+| Section B — Institution & Structure | 6 | Pallav |
 | Section C – Student Lifecycle | 9 | Varad |
-| Section D â€“ Academic Delivery | 7 | Pallav |
-| Section E â€“ People & Workforce | 7 | Varad |
-| Section F â€“ Finance | 15 | Chetan |
-| Section G â€“ Campus Operations | 10 | Dhruv |
-| Section H â€“ Institutional Services & Intelligence | 11 | Dhruv |
-| Section I â€“ Examination | 17 | Devang |
+| Section D — Academic Delivery | 8 | Pallav |
+| Section E — People & Workforce | 8 | Varad |
+| Section F — Finance | 15 | Chetan |
+| Section G — Campus Operations | 11 | Devang |
+| Section H — Institutional Services & Intelligence | 11 | Dhruv |
+| Section I — Examination | 17 | Devang |
+| Section J — Enterprise Resource Management | 11 | Chetan |
 
 ---
 
@@ -336,14 +319,14 @@
 | Item | Count |
 |------|------:|
 | Core Architecture Documents | 5 |
-| L1 Business Domains | 9 |
-| L2 Workflow Documents | 93 |
+| L1 Business Domains | 10 |
+| L2 Workflow Documents | 107 |
 | L3 Scenario Documents Present  | 0 |
-| L4 System Behavior Documents | 9 |
-| L5 Solution Architecture Documents | 10 |
-| L6 UI/UX Documents | 9 |
-| Section Review Documents | 9 |
-| Total Architecture Documents | 144 |
+| L4 System Behavior Documents Present | 0 |
+| L5 Solution Architecture Documents Present | 0 |
+| L6 UI/UX Documents Present | 0 |
+| Section Review Documents | 10 |
+| Total Indexed Architecture Documents Present | 112 |
 | Active Architects | 5 |
 
 ---
@@ -354,7 +337,14 @@
 |--------|---------|
 | Draft | Under development |
 | Review | Under architecture review |
+| Architecture Approved | Approved by architecture review, not yet locked |
+| Approved Baseline | Approved baseline state pending broader freeze controls |
+| Architecture Baseline | Baseline architecture state used for controlled reference |
+| Architecture Locked | Approved and frozen for architectural use |
+| Certified & Locked | Certified final state and frozen |
 | Locked | Approved and frozen |
+
+> Status values in this repository are intentional and exact. Do not collapse them into a single generic state when updating index rows or review controls.
 
 ---
     
@@ -363,6 +353,9 @@
 **Repository:** SutraERP
 
 **Maintained By:** Dhruv
+
+
+
 
 
 

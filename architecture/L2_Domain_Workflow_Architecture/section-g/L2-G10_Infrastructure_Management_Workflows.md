@@ -41,7 +41,7 @@ It provides the authoritative representation of campuses, physical assets, build
 
 Infrastructure Management establishes the enterprise-wide physical model used by every operational business domain.
 
-The domain provides the physical foundation upon which Campus Operations, Academic Operations, Student Operations, Examination Management, Workforce Management, Institutional Services, and future enterprise capabilities operate.
+The domain provides the physical foundation upon which Campus Operations, Academic Delivery, Student Operations, Examination Management, Workforce Management, Institutional Services, and future enterprise capabilities operate.
 
 This document defines:
 
@@ -139,7 +139,7 @@ Infrastructure Management is the authoritative source of truth for physical inst
 
 The following responsibilities are intentionally excluded.
 
-## Academic Operations
+## Academic Delivery
 
 Owned by Section D.
 
@@ -593,7 +593,7 @@ Produces:
 
 ---
 
-### Section D — Academic Operations
+### Section D — Academic Delivery
 
 Consumes:
 

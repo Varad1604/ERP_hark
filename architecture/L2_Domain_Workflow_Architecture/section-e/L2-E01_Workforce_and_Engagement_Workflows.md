@@ -5,7 +5,7 @@
 | **Document ID** | L2-E01 |
 | **Document Title** | Workforce & Engagement Workflows |
 | **Architecture Level** | Level 2 — Domain Workflow Architecture |
-| **Domain** | Workforce Management System (WMS) |
+| **Domain** | Workforce & Engagement |
 | **Bounded Context** | Workforce & Engagement |
 | **Architecture Style** | Domain-Driven Design (DDD), Event-Driven Architecture |
 | **Primary Aggregate** | Workforce Engagement |
@@ -6727,7 +6727,7 @@ IAM[Identity & Access]
 POL[Policy Engine]
 WFE[Workflow Engine]
 
-subgraph WMS["Workforce & Engagement Domain"]
+subgraph WFE["Workforce & Engagement Domain"]
 WF[Workforce Management]
 end
 

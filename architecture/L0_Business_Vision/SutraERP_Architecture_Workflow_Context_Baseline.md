@@ -201,7 +201,7 @@ These include:
 - Major / Minor programme structures
 - Skill and vocational education
 
-NEP capabilities shall be implemented as cross-domain architecture rather than a standalone module.
+NEP capabilities shall be implemented through Business Scenario Architecture and domain-owned capabilities rather than a standalone module.
 
 ### 2.6 Guided Institute Setup
 
@@ -324,7 +324,7 @@ Reasons:
 Risk:
 
 -   Without enforcement, developers may continue using direct
-    cross-domain SQL and shared files, creating a distributed-monolith
+    inter-domain SQL and shared files, creating a distributed-monolith
     style coupling inside one binary.
 
 ------------------------------------------------------------------------
@@ -916,7 +916,7 @@ Expected broader scope includes:
 
 Team 2 should not implement Team 1 finance business logic.
 
-Cross-domain financial requirements must be expressed through approved
+Multi-domain financial requirements must be expressed through approved
 command/read contracts and domain events.
 
 ------------------------------------------------------------------------
@@ -1051,7 +1051,7 @@ critical ERP workflow consistency because it has no transactional
 outbox, durable retry, or dead-letter handling.
 
 It may remain for non-critical internal signalling during transition,
-but critical cross-domain workflows must not depend solely on ephemeral
+but critical business scenarios must not depend solely on ephemeral
 events.
 
 ------------------------------------------------------------------------
@@ -1065,7 +1065,7 @@ events.
 
 > A module may never write another domain's owned table directly.
 
-Cross-domain state changes occur through:
+Multi-domain state changes occur through:
 
 1.  Command Contract.
 2.  Domain Event.
@@ -1707,8 +1707,8 @@ The following decisions are accepted as the baseline:
 20. Team 2 owns the broader platform, academic foundation, student and
     people domains, remaining campus operations, and institutional
     services.
-21. Cross-domain writes are prohibited.
-22. Cross-domain operational reads use approved read contracts.
+21. Multi-domain writes are prohibited.
+22. Multi-domain operational reads use approved read contracts.
 23. Dashboard is a composition surface.
 24. Reports do not own operational source data.
 25. Directory does not own Person.

@@ -16,7 +16,7 @@
 | Owner | Finance Architecture Team |
 | Parent Architecture | L2-F00 — Finance Domain Model & Foundation |
 | Depends On | L2-F00, L2-F06, L2-F08, L2-F12 |
-| Referenced By | Inventory, Asset Management, Accounts Payable, Budget, Analytics, Audit |
+| Referenced By | Section J, Accounts Payable, Budget, Analytics, Audit |
 
 ---
 
@@ -30,7 +30,7 @@ This document establishes canonical ownership boundaries, aggregate design, proc
 
 Procurement governs acquisition activities.
 
-It does not own inventory, accounting, payments, or asset lifecycle.
+It does not own inventory, warehouse, goods receipt, accounting, payments, or asset lifecycle.
 
 ---
 
@@ -68,9 +68,9 @@ The following responsibilities remain outside this architecture.
 | Accounts Payable | L2-F08 Accounts Payable |
 | Treasury Payments | L2-F10 Treasury |
 | Asset Registration | L2-F12 Asset Management |
-| Inventory Stock | Inventory Domain |
-| Warehouse Operations | Inventory Domain |
-| Goods Receipt Ownership | Inventory Domain |
+| Inventory Stock | Section J |
+| Warehouse Operations | Section J |
+| Goods Receipt Ownership | Section J |
 | Accounting Entries | L2-F05 General Ledger |
 | Vendor Payment | Treasury |
 | Financial Reporting | L2-F13 Financial Reporting |
@@ -92,12 +92,12 @@ graph TD
     Approval --> RFQ
     RFQ --> QuotationEvaluation["Quotation Evaluation"]
     QuotationEvaluation --> PurchaseOrder["Purchase Order"]
-    PurchaseOrder --> GoodsReceipt["Goods Receipt (Inventory)"]
+    PurchaseOrder --> GoodsReceipt["Goods Receipt (Section J)"]
     GoodsReceipt --> AccountsPayable["Accounts Payable"]
     AccountsPayable --> TreasuryPayment["Treasury Payment"]
 ```
 
-Procurement owns the acquisition lifecycle.
+Section J owns the acquisition lifecycle.
 
 Downstream domains own fulfillment, financial settlement, and operational management.
 
@@ -133,7 +133,7 @@ The Procurement Aggregate is the single consistency boundary for institutional a
 
 ## PP-01 — Single Procurement Ownership
 
-Procurement owns institutional acquisition.
+Section J owns institutional acquisition.
 
 No other domain shall manage procurement workflows.
 
@@ -143,7 +143,7 @@ No other domain shall manage procurement workflows.
 
 Procurement ends when acquisition is completed.
 
-Inventory, Accounts Payable, Asset Management, and Treasury own subsequent business lifecycles.
+Section J, Accounts Payable, and Treasury own subsequent business lifecycles.
 
 ---
 
@@ -192,7 +192,7 @@ The Procurement & Supply Chain domain exists to:
 - Support competitive procurement.
 - Improve procurement transparency.
 - Enable enterprise procurement analytics.
-- Integrate seamlessly with Finance and Inventory.
+- Integrate seamlessly with Finance and Section J.
 - Preserve procurement traceability.
 - Support multi-campus procurement.
 - Remain configuration driven.
@@ -339,7 +339,7 @@ Procurement never owns:
 
 Procurement never registers institutional assets.
 
-Asset Management owns institutional asset lifecycle.
+Section J owns institutional asset lifecycle.
 
 ---
 
@@ -392,7 +392,7 @@ graph TD
     OperationalHandover --> Analytics
 ```
 
-Procurement owns acquisition.
+Section J owns acquisition.
 
 Downstream domains own fulfillment.
 
@@ -961,8 +961,8 @@ Internal implementation details shall never be exposed.
 | ProcurementRFQPublished | Procurement Aggregate | Supplier Portal, Monitoring |
 | VendorEvaluationCompleted | Procurement Aggregate | Procurement Committee |
 | VendorSelected | Procurement Aggregate | Purchase Order Processing |
-| PurchaseOrderIssued | Procurement Aggregate | Inventory, Accounts Payable, Asset Management |
-| ProcurementCompleted | Procurement Aggregate | Inventory, Accounts Payable, Asset Management, Analytics, Audit |
+| PurchaseOrderIssued | Procurement Aggregate | Section J, Accounts Payable, Asset Management |
+| ProcurementCompleted | Procurement Aggregate | Section J, Accounts Payable, Asset Management, Analytics, Audit |
 
 ---
 
@@ -986,7 +986,7 @@ Downstream domains consume immutable procurement business facts independently wh
 
 The Procurement & Supply Chain domain collaborates with enterprise domains through canonical business contracts and immutable domain events.
 
-Procurement owns institutional acquisition.
+Section J owns institutional acquisition.
 
 Operational fulfillment remains the responsibility of downstream domains.
 
@@ -1090,7 +1090,7 @@ Procurement publishes acquisition business facts consumed by downstream enterpri
 
 ---
 
-## 32.1 Inventory
+## 32.1 Section J Inventory & Warehouse Management
 
 Consumes
 
@@ -1099,14 +1099,14 @@ Consumes
 
 Purpose
 
-Inventory manages:
+Section J manages:
 
 - Goods Receipt
 - Stock
 - Warehouse Operations
 - Inventory Valuation
 
-Inventory owns operational fulfillment.
+Section J owns operational fulfillment.
 
 ---
 
@@ -1206,8 +1206,8 @@ Supports enterprise decision-making.
 | Institution Lifecycle | Institution | Reference |
 | Vendor Master | Vendor Management | Reference |
 | Procurement Lifecycle | Procurement | Owner |
-| Goods Receipt | Inventory | Publisher |
-| Inventory Management | Inventory | Publisher |
+| Goods Receipt | Section J | Publisher |
+| Inventory Management | Section J | Publisher |
 | Supplier Liability | Accounts Payable | Publisher |
 | Supplier Payment | Treasury | Publisher |
 | Asset Registration | Asset Management | Publisher |
@@ -1534,7 +1534,7 @@ The Procurement architecture supports institutional compliance through:
 
 ## ADR-01
 
-Procurement owns the institutional acquisition lifecycle.
+Section J owns the institutional acquisition lifecycle.
 
 Status: Accepted
 
@@ -1542,7 +1542,7 @@ Status: Accepted
 
 ## ADR-02
 
-Inventory owns goods receipt and inventory operations.
+Section J owns goods receipt and inventory operations.
 
 Status: Accepted
 

@@ -705,12 +705,12 @@ The following capabilities SHALL NOT belong to E03.
 Owned by:
 
 ```text
-HR / Identity Domain
+E07 Employee Profile
 ```
 
 Includes:
 
-- Employee master record
+- Employee profile record
 - Personal identity information
 - Employment number generation
 - Employee lifecycle
@@ -1033,7 +1033,7 @@ EmployeeUpdated
 
 HR owns:
 
-- Employee master identity
+- Employee profile identity
 - Employment relationship
 - Contract information
 - Payroll-related status
@@ -1972,7 +1972,7 @@ The following capabilities SHALL be exclusively owned by E03.
 
 ## E03 Does Not Own
 
-- Employee master identity
+- Employee profile identity
 - Government identity records
 - Payroll identifiers
 

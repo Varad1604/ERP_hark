@@ -67,7 +67,7 @@ flowchart LR
 
 HR["L2-E04 HR Workflows"]
 
-Employee["E02 Employee Profile"]
+Employee["E07 Employee Profile"]
 
 Payroll["Payroll Domain"]
 
@@ -160,7 +160,7 @@ The domain focuses on:
 
   Capability                      Owning Domain
   ------------------------------- ------------------------------
-  Employee master/profile data    E02 Employee Profile
+  Employee profile data           E07 Employee Profile
   Faculty capability management   E03 Faculty Workforce
   Authentication                  Identity Domain
   Organization hierarchy          Organization Domain
@@ -195,7 +195,7 @@ External Domain Data Ownership
   Leave Workflows          Included
   HR Documents             Included
   HR Compliance            Included
-  Employee Master Data     Excluded
+  Employee Profile Data    Excluded
   Payroll Processing       Excluded
   Attendance Processing    Excluded
 
@@ -231,17 +231,17 @@ HR Workflow Execution
 
 # 3.2 Primary Upstream Dependencies
 
-## E02 --- Employee Profile Domain
+## E07 --- Employee Profile Domain
 
 ### Dependency Purpose
 
 E04 depends on Employee Profile for authoritative employee identity and
 profile information.
 
-E02 owns:
+E07 owns:
 
 -   Employee identity.
--   Employee master record.
+-   Employee profile record.
 -   Employment profile representation.
 -   Personal information.
 -   Employee identifiers.
@@ -252,7 +252,7 @@ E04 consumes:
 -   Employment context required for workflow execution.
 -   Employee lifecycle updates after approved HR decisions.
 
-E04 SHALL NOT directly modify employee master records.
+E04 SHALL NOT directly modify employee profile records.
 
 Integration Pattern:
 
@@ -260,7 +260,7 @@ Integration Pattern:
 sequenceDiagram
 
 participant HR as E04 HR Workflow
-participant EP as E02 Employee Profile
+participant EP as E07 Employee Profile
 
 HR->>HR: Approve HR Process
 
@@ -447,7 +447,7 @@ E04 provides:
 
   Dependency             Purpose                       Ownership
   ---------------------- ----------------------------- -------------------
-  Employee Profile       Employee master information   External
+  Employee Profile       Employee profile information  External
   Recruitment            Hiring decisions              External
   Organization           Structure and hierarchy       External
   Identity               Authentication and access     External
@@ -477,7 +477,7 @@ E04 SHALL NOT expose internal workflow storage.
 
 # 4.2 Primary Downstream Consumers
 
-## Employee Profile Domain
+## E07 --- Employee Profile Domain
 
 Consumes:
 
@@ -674,7 +674,7 @@ L2-E04 owns:
 
   Capability                      Owner
   ------------------------------- ----------------------
-  Employee master data            E02 Employee Profile
+  Employee profile data            E07 Employee Profile
   Organization hierarchy          Organization Domain
   Authentication                  Identity Domain
   Salary calculation              Payroll Domain
@@ -692,7 +692,7 @@ flowchart TB
 
 HR["E04 HR Workflows"]
 
-E02["Employee Profile"]
+E07["Employee Profile"]
 
 ORG["Organization"]
 
@@ -707,7 +707,7 @@ ID["Identity"]
 ANA["Analytics"]
 
 
-HR -->|Workflow Decisions| E02
+HR -->|Workflow Decisions| E07
 
 HR -->|Assignment Requests| ORG
 
@@ -753,7 +753,7 @@ The core principle:
 Employee Data Ownership
         |
         ↓
-E02 Employee Profile
+E07 Employee Profile
 
 HR Process Ownership
         |
@@ -772,7 +772,7 @@ E04 manages:
 
 E04 does not manage:
 
--   Employee master identity.
+-   Employee profile identity.
 -   Organizational structure.
 -   Payroll records.
 -   Attendance records.
@@ -942,7 +942,7 @@ Examples:
 
 ### Does Not Own
 
--   Employee master data.
+-   Employee profile data.
 -   Documents.
 -   Notification delivery.
 
@@ -1125,7 +1125,7 @@ Examples:
 
 ## Employee Reference
 
-Represents a reference to an employee owned by E02.
+Represents a reference to an employee owned by E07.
 
 Example:
 
@@ -1287,7 +1287,7 @@ Case --> Events
   Lifecycle Element            Owner
   ---------------------------- ----------------------
   HR workflow state            E04 HR Workflows
-  Employee identity state      E02 Employee Profile
+  Employee identity state      E07 Employee Profile
   Organization assignment      Organization Domain
   Payroll impact               Payroll Domain
   Attendance impact            Attendance Domain
@@ -1731,7 +1731,7 @@ The following rules SHALL apply:
   Transfer Process         E04 HR Workflows
   Separation Process       E04 HR Workflows
   Payroll Calculation      Payroll Domain
-  Employee Master Update   E02 Employee Profile
+  Employee Profile Update   E07 Employee Profile
   Organization Update      Organization Domain
 
 ------------------------------------------------------------------------
@@ -2422,7 +2422,7 @@ Employee onboarding SHALL NOT complete until:
 
 ## BR-HR-006 --- Employee Activation Rule
 
-Employee activation SHALL update employee lifecycle status through E02
+Employee activation SHALL update employee lifecycle status through E07
 Employee Profile.
 
 E04 SHALL publish an activation event.
@@ -2907,7 +2907,7 @@ Synchronize approved employee lifecycle changes.
 Contract:
 
 ``` text
-E04 → E02
+E04 → E07
 
 EmployeeLifecycleUpdate
 ```
@@ -3092,7 +3092,7 @@ Other domains decide:
   Promotion approval        E04 HR Workflows    Organization
   Salary calculation        Payroll             E04
   Department assignment     Organization        E04
-  Employee profile update   E02                 E04
+  Employee profile update   E07                 E04
   Document storage          Document Platform   E04
   Authentication access     Identity            E04
 
@@ -4365,7 +4365,7 @@ flowchart LR
 
 HR["L2-E04 HR Workflows"]
 
-Employee["E02 Employee Profile"]
+Employee["E07 Employee Profile"]
 
 Faculty["E03 Faculty Workforce"]
 
@@ -4566,7 +4566,7 @@ participant User
 
 participant HR as E04 HR Workflow
 
-participant Employee as E02 Employee Profile
+participant Employee as E07 Employee Profile
 
 participant Payroll
 
@@ -4779,7 +4779,7 @@ architecture.
 
 # 22. Architecture Decision Records (ADR)
 
-# ADR-001 --- HR Workflow Domain Does Not Own Employee Master Data
+# ADR-001 --- HR Workflow Domain Does Not Own Employee Profile Data
 
 ## Status
 
@@ -4796,7 +4796,7 @@ records.
 
 E04 owns HR processes.
 
-E02 Employee Profile owns employee master data.
+E07 Employee Profile owns employee profile data.
 
 ## Consequences
 
@@ -5070,7 +5070,7 @@ Examples:
 A reference identifier pointing to employee information owned by the
 Employee Profile domain.
 
-E04 stores references, not employee master data.
+E04 stores references, not employee profile data.
 
 ------------------------------------------------------------------------
 
@@ -5315,7 +5315,7 @@ flowchart LR
 
 HR["E04 HR Workflows"]
 
-Employee["E02 Employee Profile"]
+Employee["E07 Employee Profile"]
 
 Payroll["Payroll Domain"]
 
@@ -5360,7 +5360,7 @@ HR -->|Document Requests| Documents
 
   Capability               Owner
   ------------------------ ----------------------
-  Employee master data     E02 Employee Profile
+  Employee profile data    E07 Employee Profile
   Salary calculation       Payroll Domain
   Attendance records       Attendance Domain
   Organization hierarchy   Organization Domain
@@ -5547,7 +5547,7 @@ The document SHALL remain synchronized with:
   Capability                     Owner
   ------------------------------ -----------------------
   HR Workflow Execution          L2-E04 HR Workflows
-  Employee Master Data           E02 Employee Profile
+  Employee Profile Data           E07 Employee Profile
   Faculty Workforce Capability   E03 Faculty Workforce
   Payroll Processing             Payroll Domain
   Attendance Processing          Attendance Domain

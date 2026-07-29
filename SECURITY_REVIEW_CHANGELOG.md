@@ -39,7 +39,7 @@ This file records the architectural changes made to Section A after the security
 
 ### L2-A06 - Event Infrastructure Workflows
 
-- Reviewed for cross-domain trust, tenant isolation, and event governance.
+- Reviewed for multi-domain trust, tenant isolation, and event governance.
 - No changes were required for the reported issues.
 
 ### L2-A07 - Audit Infrastructure Workflows

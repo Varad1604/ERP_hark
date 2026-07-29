@@ -12,13 +12,13 @@
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
-- Section B — Institution & Infrastructure
+- Section B — Institution & Structure
 - Section E — People & Workforce
 - G10 — Infrastructure Management
 
 **Downstream Consumers**
 
-- Academic Operations
+- Academic Delivery
 - Student Operations
 - Hostel Management
 - Library Management
@@ -127,7 +127,7 @@ Repository Position
 Platform Foundation
         │
         ▼
-Institution & Infrastructure
+Institution & Structure
         │
         ▼
 G10 Infrastructure Management
@@ -571,7 +571,7 @@ People domain owns personnel.
 
 Facilities publishes operational information to:
 
-### Academic Operations
+### Academic Delivery
 
 Consumes:
 
@@ -2994,4 +2994,3 @@ Facilities Management follows the enterprise architectural principles establishe
 
 **Version:** 1.0  
 **Status:** Architecture Draft (Ready for Architectural Review)
-

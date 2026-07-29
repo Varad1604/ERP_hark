@@ -1,5 +1,5 @@
 # SutraERP Repository Constitution
-## Volume 3 — Architectural Framework
+## Volume 3 - Architectural Framework
 
 ---
 
@@ -22,39 +22,38 @@ Depends On:
 
 This document defines the architectural framework used throughout the SutraERP platform.
 
-It establishes how business domains are designed, how ownership is assigned, how domains communicate, how dependencies are managed, and how business architecture evolves.
+It establishes how business domains are designed, how ownership is assigned, how domains communicate, how dependencies are managed, and how architecture evolves across L0 through L6.
 
-Every Level 1 and Level 2 document shall conform to this framework.
+Every architecture document shall conform to this framework.
 
 ---
 
-# 2. Architecture Layers
+# 2. Canonical Architecture Hierarchy
 
 ```mermaid
 flowchart TD
-
-A["Repository Constitution"]
-
--->B["Level 0 Vision"]
-
--->C["Level 1 Business Architecture"]
-
--->D["Level 2 Domain Architecture"]
-
--->E["Level 3 Services"]
-
--->F["Level 4 APIs"]
-
--->G["Level 5 Database"]
-
--->H["Level 6 Experience"]
+L0["L0 - Business Vision"]
+-->L1["L1 - Business Domain Architecture"]
+-->L2["L2 - Domain Workflow Architecture"]
+-->L3["L3 - Business Scenario Architecture"]
+-->L4["L4 - System Behavior Specification"]
+-->L5["L5 - Solution Architecture"]
+-->L6["L6 - UI / UX Architecture"]
 ```
 
----
+| Level | Name | Definition |
+|-------|------|------------|
+| L0 | Business Vision | Defines why SutraERP exists, strategic intent, architectural context, and constraints. |
+| L1 | Business Domain Architecture | Defines the canonical business domains, domain boundaries, and ownership. |
+| L2 | Domain Workflow Architecture | Defines workflows, lifecycles, rules, and dependencies within an individual business domain. |
+| L3 | Business Scenario Architecture | Defines independent end-to-end business scenarios that may derive information from one or many L2 workflow documents; L3 numbering is not dependent on L2 numbering. |
+| L4 | System Behavior Specification | Defines expected system behavior for approved business scenarios without implementation design. |
+| L5 | Solution Architecture | Defines engineering solution architecture needed to implement L4 behavior without changing business rules. |
+| L6 | UI / UX Architecture | Defines user interaction, navigation, screens, and user journeys derived from L5 solution architecture without owning business logic. |
 
 Business intent flows downward.
 
-Implementation flows upward.
+Downstream design and implementation trace upward.
 
 ---
 
@@ -64,48 +63,16 @@ SutraERP follows Domain Driven Design.
 
 Every business capability belongs to one domain.
 
-Every domain owns
+Every domain owns:
 
-- Business Rules
-- Business Validation
-- Business Lifecycle
-- Canonical Entities
-- Published Events
-- Public Contracts
+- Business rules
+- Business validation
+- Business lifecycle
+- Canonical entities
+- Published events
+- Public contracts
 
 No domain owns another domain's data.
-
----
-
-## Domain Model
-
-```mermaid
-flowchart LR
-
-BusinessCapability
-
--->Domain
-
-Domain
-
--->Entities
-
-Domain
-
--->BusinessRules
-
-Domain
-
--->Events
-
-Domain
-
--->Contracts
-
-Domain
-
--->Services
-```
 
 ---
 
@@ -113,43 +80,7 @@ Domain
 
 Every domain shall remain autonomous.
 
-```mermaid
-flowchart LR
-
-A["Admissions"]
-
--->Contract
-
-Contract
-
--->B["Student Lifecycle"]
-
-B
-
--->Contract2
-
-Contract2
-
--->C["Academics"]
-
-C
-
--->Contract3
-
-Contract3
-
--->D["Examination"]
-
-D
-
--->Contract4
-
-Contract4
-
--->E["Finance"]
-```
-
-Domains communicate only through contracts.
+Domains communicate only through approved contracts and published events.
 
 ---
 
@@ -157,51 +88,19 @@ Domains communicate only through contracts.
 
 Every entity has one owner.
 
-```mermaid
-flowchart TD
-
-Person
-
--->Identity
-
-StudentContext
-
--->StudentLifecycle
-
-Programme
-
--->AcademicStructure
-
-CourseOffering
-
--->Academics
-
-OfficialResult
-
--->Examination
-
-AcademicCreditLedger
-
--->StudentLifecycle
-
-FeeLedger
-
--->Finance
-```
-
-Ownership includes
+Ownership includes:
 
 - Create
 - Modify
 - Validate
-- Delete (where applicable)
+- Delete where applicable
 - Lifecycle
 
 No shared ownership exists.
 
 ---
 
-# 6. Cross Domain Communication
+# 6. Multi-Domain Communication
 
 Two communication mechanisms exist.
 
@@ -209,38 +108,20 @@ Two communication mechanisms exist.
 
 ```mermaid
 sequenceDiagram
-
 participant A as Domain A
-
 participant B as Domain B
-
 A->>B: Business Contract
-
 B-->>A: Response
 ```
-
----
 
 ## Event Driven
 
 ```mermaid
 flowchart LR
-
-DomainA
-
--->BusinessEvent
-
-BusinessEvent
-
--->DomainB
-
-BusinessEvent
-
--->DomainC
-
-BusinessEvent
-
--->DomainD
+DomainA --> BusinessEvent
+BusinessEvent --> DomainB
+BusinessEvent --> DomainC
+BusinessEvent --> DomainD
 ```
 
 Events never expect responses.
@@ -249,28 +130,19 @@ Events never expect responses.
 
 # 7. Business Events
 
-Business Events represent completed business facts.
+Business events represent completed business facts.
 
-Example
+Examples:
 
 ```text
 AdmissionApproved
-
 StudentActivated
-
 AttendanceFinalized
-
 ResultPublished
-
 QualificationAwarded
 ```
 
-Business Events
-
-- Immutable
-- Historical
-- Versionable
-- Publish Only
+Business events are immutable, historical, versionable, and publish-only.
 
 Events shall never be modified after publication.
 
@@ -280,55 +152,24 @@ Events shall never be modified after publication.
 
 Business contracts expose capabilities.
 
-Contracts
+Contracts validate requests, return results, and never expose implementation.
 
-- validate requests
-- return results
-- never expose implementation
-
-```mermaid
-flowchart LR
-
-Consumer
-
--->BusinessContract
-
-BusinessContract
-
--->Provider
-```
-
-Contracts are synchronous.
-
-Events are asynchronous.
+Contracts are synchronous. Events are asynchronous.
 
 ---
 
 # 9. Dependency Rules
 
-Allowed dependency direction
+Allowed dependency direction:
 
 ```mermaid
 flowchart TD
-
-RepositoryConstitution
-
--->L0
-
--->L1
-
--->L2
-
--->L3
-
--->L4
-
--->L5
-
--->L6
+L0 --> L1 --> L2 --> L3 --> L4 --> L5 --> L6
 ```
 
 Reverse dependencies are prohibited.
+
+L3 Business Scenario Architecture is independent of L2 numbering. An L3 business scenario may derive information from one or many L2 workflow documents, but it shall not redefine L2 domain ownership or workflow logic.
 
 ---
 
@@ -336,45 +177,9 @@ Reverse dependencies are prohibited.
 
 Dependencies shall form an acyclic graph.
 
-```mermaid
-flowchart LR
-
-Admissions
-
--->StudentLifecycle
-
-StudentLifecycle
-
--->Academics
-
-Academics
-
--->Examination
-
-Examination
-
--->Finance
-```
-
-Forbidden
-
-```mermaid
-flowchart LR
-
-A
-
--->B
-
-B
-
--->C
-
-C
-
--->A
-```
-
 Circular dependencies are prohibited.
+
+Runtime event consumption does not transfer canonical ownership.
 
 ---
 
@@ -382,103 +187,34 @@ Circular dependencies are prohibited.
 
 Business lifecycles shall be represented using state diagrams.
 
-Example
+Every lifecycle entity shall define:
 
-```mermaid
-stateDiagram-v2
-
-[*] --> Draft
-
-Draft --> Approved
-
-Approved --> Active
-
-Active --> Closed
-
-Closed --> Archived
-```
-
-Every lifecycle entity shall define
-
-- Initial State
-- Valid Transitions
-- Terminal States
+- Initial state
+- Valid transitions
+- Terminal states
 
 ---
 
 # 12. Workflow Standards
 
-Every workflow shall define
+Every workflow shall define:
 
+```text
 Inputs
-
-↓
-
 Validation
-
-↓
-
 Business Rules
-
-↓
-
 Processing
-
-↓
-
 Events
-
-↓
-
 Outputs
-
-```mermaid
-flowchart TD
-
-Input
-
--->Validation
-
--->BusinessRules
-
--->Processing
-
--->PublishEvents
-
--->Output
 ```
 
 ---
 
 # 13. Business Rules
 
-Business Rules belong only to Domains.
+Business rules belong only to domains.
 
-```mermaid
-flowchart TD
-
-BusinessRequirement
-
--->Domain
-
-Domain
-
--->BusinessRule
-
-BusinessRule
-
--->Service
-
-Service
-
--->API
-```
-
-Business Rules shall never exist in
-
-- API
-- Database
-- UI
+Business rules shall never be owned by APIs, databases, or UI.
 
 ---
 
@@ -486,44 +222,21 @@ Business Rules shall never exist in
 
 Entities progress through controlled states.
 
-```mermaid
-stateDiagram-v2
-
-[*] --> Created
-
-Created --> Active
-
-Active --> Suspended
-
-Suspended --> Active
-
-Active --> Closed
-
-Closed --> Archived
-```
-
 Historical records remain immutable.
 
 ---
 
 # 15. Architecture Evolution
 
-Architecture changes occur through controlled evolution.
+Architecture changes occur through controlled evolution:
 
-```mermaid
-flowchart TD
-
+```text
 Proposal
-
--->ImpactAnalysis
-
--->ArchitectureReview
-
--->Approval
-
--->RepositoryUpdate
-
--->Implementation
+Impact Analysis
+Architecture Review
+Approval
+Repository Update
+Implementation
 ```
 
 No architecture shall evolve through implementation-first development.
@@ -532,7 +245,7 @@ No architecture shall evolve through implementation-first development.
 
 # 16. Architectural Constraints
 
-The following constraints are permanent.
+The following constraints are permanent:
 
 - Domain ownership is exclusive.
 - Direct database sharing is prohibited.
@@ -549,100 +262,62 @@ The following constraints are permanent.
 
 # 17. Domain Design Checklist
 
-Every new domain shall define
+Every domain shall define:
 
 - Purpose
 - Scope
 - Owner
-- Canonical Entities
-- Business Rules
+- Canonical entities
+- Business rules
 - Workflows
 - Contracts
 - Events
-- State Machines
+- State machines
 - Dependencies
-- Integration Points
-- Locked Decisions
+- Integration points
+- Locked decisions
 
 ---
 
-# 18. Domain Architecture Template
+# 18. Domain Workflow Architecture Template
+
+Every Level 2 document shall define:
 
 ```text
 Purpose
-
-↓
-
 Scope
-
-↓
-
 Actors
-
-↓
-
 Entities
-
-↓
-
 Business Rules
-
-↓
-
 Workflow
-
-↓
-
 State Machine
-
-↓
-
 Contracts
-
-↓
-
 Events
-
-↓
-
 Dependencies
-
-↓
-
 Locked Decisions
 ```
-
-Every Level 2 document shall follow this structure.
 
 ---
 
 # 19. Architectural Review Gates
 
-Every architecture review shall validate
+Every architecture review shall validate:
 
-✓ Domain Ownership
-
-✓ Entity Ownership
-
-✓ Contracts
-
-✓ Events
-
-✓ Workflow
-
-✓ State Machine
-
-✓ Cross Domain Dependencies
-
-✓ Version Compatibility
-
-✓ Constitutional Compliance
+- Domain ownership
+- Entity ownership
+- Contracts
+- Events
+- Workflow
+- State machine
+- Multi-domain dependencies
+- Version compatibility
+- Constitutional compliance
 
 ---
 
 # 20. Locked Architectural Principles
 
-The following principles are constitutional.
+The following principles are constitutional:
 
 - Domain Driven Design
 - Canonical Ownership
@@ -654,7 +329,7 @@ The following principles are constitutional.
 - Services Implement Business Rules
 - APIs Expose Services
 - Databases Persist State
-- Experience Layer Consumes APIs
+- UI / UX Consumes APIs
 
 These principles may only be modified through a constitutional amendment.
 
@@ -664,8 +339,8 @@ Status: LOCKED
 
 Authority Level: Architectural Framework
 
-Next Document
+Next Document:
 
 Repository Constitution
 
-Volume 4 — Engineering & Development Standards
+Volume 4 - Engineering & Development Standards

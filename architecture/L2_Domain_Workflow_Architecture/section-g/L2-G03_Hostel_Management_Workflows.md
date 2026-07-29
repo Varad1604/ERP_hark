@@ -12,7 +12,7 @@
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
-- Section B — Institution & Infrastructure
+- Section B — Institution & Structure
 - Section C — Student Lifecycle
 - Section E — People & Workforce
 - G10 — Infrastructure Management

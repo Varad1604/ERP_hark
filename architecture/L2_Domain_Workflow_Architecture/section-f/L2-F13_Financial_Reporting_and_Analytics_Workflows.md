@@ -422,7 +422,7 @@ Treasury owns banking operations, liquidity, and cash management.
 
 Financial Reporting reports asset information.
 
-Asset Management owns asset registration, assignment, valuation, and retirement.
+Section J owns asset registration, assignment, valuation, and retirement.
 
 ---
 

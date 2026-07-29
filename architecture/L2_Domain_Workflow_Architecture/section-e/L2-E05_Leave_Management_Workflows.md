@@ -81,7 +81,7 @@ attendance, and authorization context from other enterprise domains.
 
   Capability               Owner
   ------------------------ -------------------------
-  Employee Master Data     Employee Profile Domain
+  Employee Profile Data    E07 Employee Profile
   Organization Hierarchy   Organization Domain
   Attendance Calculation   Attendance Domain
   Salary Calculation       Payroll Domain
@@ -4012,7 +4012,7 @@ architecture documentation standards.
 ``` mermaid
 flowchart LR
 
-Employee["Employee Profile Domain"]
+Employee["E07 Employee Profile"]
 
 Organization["Organization Domain"]
 
@@ -5103,7 +5103,7 @@ Leave Events
 ## E05 Does Not Own
 
 ``` text
-Employee Master Data
+Employee Profile Data
 
 Organization Hierarchy
 
@@ -5211,7 +5211,7 @@ Responsibilities:
 
   Area                       Owner
   -------------------------- -------------------------
-  Employee context           Employee Profile Domain
+  Employee context           E07 Employee Profile
   Attendance integration     Attendance Domain
   Payroll integration        Payroll Domain
   Notifications              Notification Domain

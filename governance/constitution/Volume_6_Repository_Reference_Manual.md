@@ -60,11 +60,28 @@ Planned folders such as `ADR/`, `assets/`, and `archive/` are not part of the cu
 
 ---
 
-# 3. Repository Map
+# 3. Canonical Architecture Hierarchy
+
+```text
+L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
+```
+
+| Level | Name | Definition |
+|-------|------|------------|
+| L0 | Business Vision | Defines why SutraERP exists, strategic intent, architectural context, and constraints. |
+| L1 | Business Domain Architecture | Defines the canonical business domains, domain boundaries, and ownership. |
+| L2 | Domain Workflow Architecture | Defines workflows, lifecycles, rules, and dependencies within an individual business domain. |
+| L3 | Business Scenario Architecture | Defines independent end-to-end business scenarios that may derive information from one or many L2 workflow documents; L3 numbering is not dependent on L2 numbering. |
+| L4 | System Behavior Specification | Defines expected system behavior for approved business scenarios without implementation design. |
+| L5 | Solution Architecture | Defines engineering solution architecture needed to implement L4 behavior without changing business rules. |
+| L6 | UI / UX Architecture | Defines user interaction, navigation, screens, and user journeys derived from L5 solution architecture without owning business logic. |
+
+---
+
+# 4. Repository Map
 
 ```mermaid
 flowchart TD
-
 Repository --> README
 Repository --> CONTRIBUTING
 Repository --> DEPENDENCY_MAP
@@ -74,7 +91,6 @@ Repository --> Governance
 Repository --> Templates
 Repository --> Generated
 Repository --> Tools
-
 Architecture --> L0
 Architecture --> L1
 Architecture --> L2
@@ -82,7 +98,7 @@ Architecture --> L2
 
 ---
 
-# 4. Canonical Terminology
+# 5. Canonical Terminology
 
 | Term | Meaning |
 |------|---------|
@@ -90,18 +106,20 @@ Architecture --> L2
 | Entity | Business object with identity |
 | Contract | Public capability exposed by a domain |
 | Event | Completed business fact |
-| Workflow | Ordered business process |
+| Workflow | Ordered business process within a domain |
+| Business Scenario | Independent end-to-end business scenario that may derive from one or many L2 workflow documents |
 | Lifecycle | Valid state transitions |
 | Canonical Owner | Single authoritative owner |
 | Context | Logical business boundary |
-| Qualification Completion | Canonical replacement for the legacy term Graduation |
+| Enterprise Resource Management | Section J domain for vendor, supplier, procurement, inventory, stock, warehouse, asset lifecycle, and resource management |
+| Qualification Completion | Canonical term for completion of academic qualification |
 
 ---
 
-# 5. Standard Abbreviations
+# 6. Standard Abbreviations
 
 | Abbreviation | Meaning |
-|-------------|---------|
+|--------------|---------|
 | L0 | Business Vision |
 | L1 | Business Domain Architecture |
 | L2 | Domain Workflow Architecture |
@@ -115,22 +133,22 @@ Architecture --> L2
 
 ---
 
-# 6. Standard Templates
+# 7. Standard Templates
 
 The repository currently includes templates for:
 
-- L1
-- L2
-- L3
-- L4
-- L5
-- L6
+- L1 Business Domain Architecture
+- L2 Domain Workflow Architecture
+- L3 Business Scenario Architecture
+- L4 System Behavior Specification
+- L5 Solution Architecture
+- L6 UI / UX Architecture
 
 No ADR-specific template is present in the current workspace.
 
 ---
 
-# 7. Standard Mermaid Templates
+# 8. Standard Mermaid Templates
 
 ## Business Workflow
 
@@ -167,7 +185,7 @@ BusinessEvent --> Subscribers
 
 ---
 
-# 8. Standard Document Structure
+# 9. Standard Document Structure
 
 Every architecture document should contain:
 
@@ -188,7 +206,7 @@ Locked Decisions
 
 ---
 
-# 9. Architecture Checklist
+# 10. Architecture Checklist
 
 Before locking a document verify:
 
@@ -205,7 +223,7 @@ Before locking a document verify:
 
 ---
 
-# 10. Pull Request Checklist
+# 11. Pull Request Checklist
 
 Before merging:
 
@@ -218,7 +236,7 @@ Before merging:
 
 ---
 
-# 11. Architectural Quality Checklist
+# 12. Architectural Quality Checklist
 
 Every architecture shall satisfy:
 
@@ -226,14 +244,14 @@ Every architecture shall satisfy:
 - Traceable
 - Testable
 - Extendable
-- Technology Independent
-- Domain Driven
+- Technology independent
+- Domain driven
 - Documented
 - Reviewable
 
 ---
 
-# 12. Repository Health Indicators
+# 13. Repository Health Indicators
 
 Repository health is evaluated through:
 
@@ -243,15 +261,7 @@ Repository health is evaluated through:
 - Reviews
 - Versioning
 - Diagrams
-
----
-
-# 13. Repository Lifecycle
-
-```mermaid
-flowchart LR
-Plan --> Design --> Review --> Approve --> Implement --> Validate --> Release --> Maintain
-```
+- Ownership consistency
 
 ---
 
@@ -265,22 +275,7 @@ Volume6 --> L0 --> L1 --> L2 --> L3 --> L4 --> L5 --> L6
 
 ---
 
-# 15. Constitutional Summary
-
-The Constitution establishes:
-
-- Governance
-- Repository Standards
-- Architectural Framework
-- Engineering Governance
-- Change Management
-- Repository Reference Standards
-
-Every repository artifact derives from these six constitutional volumes.
-
----
-
-# 16. Future Expansion
+# 15. Future Expansion
 
 Future repository additions may include:
 
@@ -290,9 +285,11 @@ Future repository additions may include:
 
 These additions must be created before other documents reference them as existing paths.
 
+Future L3 Business Scenario Architecture documents are independent of L2 numbering and may derive information from one or many L2 workflow documents.
+
 ---
 
-# 17. Final Constitutional Declaration
+# 16. Final Constitutional Declaration
 
 The SutraERP Repository Constitution represents the highest authority governing the repository.
 

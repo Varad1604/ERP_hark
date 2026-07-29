@@ -12,7 +12,7 @@
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
-- Section B — Institution & Academic Structure
+- Section B — Institution & Structure
 - G01 — Facilities Management
 - G02 — Laboratory Management
 - G03 — Hostel Management
@@ -88,7 +88,9 @@ Finance owns vendor payments and contracts.
 
 Section E owns employee identities.
 
-G01 owns maintenance and physical assets.
+G01 owns maintenance execution.
+
+G10 owns physical assets.
 
 This document defines:
 

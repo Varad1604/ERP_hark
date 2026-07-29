@@ -7,6 +7,18 @@
 **Architecture Level:** Enterprise Business Workflow  
 **Status:** Architecture Locked
 
+**Upstream Dependencies**
+
+- Section A — Platform Foundation
+- Section B — Institution & Structure
+- Section C — Student Lifecycle
+- Section D — Academic Delivery
+- Section E — People & Workforce
+- Section F — Finance
+- G03 — Hostel Management
+- G05 — Library Management
+- G06 — Institutional Health Services
+
 ---
 
 # 1. Purpose
@@ -1343,7 +1355,45 @@ Events never modify records owned by external domains.
 
 ---
 
-# 22. Read Models
+# 22. Service Contracts
+
+The Teacher Guardian Scheme exposes canonical service contracts for governed mentoring interactions.
+
+These contracts provide the only supported synchronous integration surface for external domains.
+
+---
+
+## Command Contracts
+
+- ActivateMentorshipRelationship
+- RecordMentoringDiscussion
+- RecordParentInteraction
+- RecordReferral
+- CreateFollowUp
+- CloseMentorshipCase
+
+---
+
+## Query Contracts
+
+- GetAssignedStudents
+- GetStudentMentorshipProfile
+- GetMentoringDiscussionHistory
+- GetReferralHistory
+- GetFollowUpHistory
+- GetMentorshipTimeline
+
+---
+
+## Contract Principles
+
+- Service Contracts shall be versioned.
+- Service Contracts shall preserve mentorship ownership boundaries.
+- External domains shall not modify mentorship aggregates directly.
+
+---
+
+# 23. Read Models
 
 Teacher Guardian Scheme exposes optimized read models for mentoring operations.
 
@@ -1443,7 +1493,7 @@ Examples include:
 
 ---
 
-# 23. Reporting
+# 24. Reporting
 
 Teacher Guardian Scheme provides operational reporting to assist institutional mentoring activities.
 
@@ -1505,7 +1555,7 @@ Reports remain configurable according to institutional policies.
 
 ---
 
-# 24. Authorization Model
+# 25. Authorization Model
 
 Authorization follows enterprise role-based access principles.
 
@@ -1569,7 +1619,7 @@ May:
 
 ---
 
-# 25. Audit Architecture
+# 26. Audit Architecture
 
 Every significant mentoring activity shall be permanently auditable.
 
@@ -1619,7 +1669,7 @@ Audit records are:
 Audit records are never physically modified after creation.
 
 They become part of the permanent institutional mentoring history.
-# 26. Security Considerations
+# 27. Security Considerations
 
 The Teacher Guardian Scheme manages mentoring information that may contain sensitive personal discussions.
 
@@ -1693,7 +1743,7 @@ Audit history shall be:
 
 ---
 
-# 27. Performance & Scalability
+# 28. Performance & Scalability
 
 The Teacher Guardian Scheme is a relationship-centric business domain with relatively low transaction volume and high historical value.
 
@@ -1760,7 +1810,7 @@ Scalability shall remain independent of operational domains.
 
 ---
 
-# 28. Extension Points
+# 29. Extension Points
 
 The Teacher Guardian Scheme has been intentionally designed to support future institutional expansion without changing its core architecture.
 
@@ -1832,7 +1882,7 @@ Configuration shall never alter canonical ownership boundaries.
 
 ---
 
-# 29. Architecture Decision Records (ADR)
+# 30. Architecture Decision Records (ADR)
 
 ## ADR-G09-001
 
@@ -1910,7 +1960,7 @@ Provides a complete historical record of mentoring interactions while maintainin
 
 ---
 
-# 30. Glossary
+# 31. Glossary
 
 | Term | Definition |
 |------|------------|
@@ -1930,7 +1980,7 @@ Provides a complete historical record of mentoring interactions while maintainin
 
 ---
 
-# 31. Domain Summary
+# 32. Domain Summary
 
 The Teacher Guardian Scheme domain provides the enterprise mentoring capability within SutraERP.
 

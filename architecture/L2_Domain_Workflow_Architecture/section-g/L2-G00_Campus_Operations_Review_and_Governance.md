@@ -21,6 +21,7 @@
 - G07 — Security Operations
 - G08 — Housekeeping Operations
 - G09 — Teacher Guardian Scheme
+- G10 — Infrastructure Management
 
 **Downstream Consumers**
 
@@ -88,7 +89,7 @@ Instead, it provides enterprise governance through:
 
 Campus Operations Review consumes operational information from every Campus Operations domain while preserving canonical ownership.
 
-The domain never modifies operational data owned by G01–G09.
+The domain never modifies operational data owned by G01–G10.
 
 ---
 
@@ -106,6 +107,7 @@ Campus Operations Review represents the governance layer of Campus Operations.
             G07
             G08
             G09
+            G10
               │
               ▼
  G00 Campus Operations Review
@@ -158,6 +160,7 @@ Owned by:
 - G07
 - G08
 - G09
+- G10
 
 ---
 
@@ -224,7 +227,7 @@ Transactional ownership remains with source domains.
 
 ## Event Driven Governance
 
-Campus Reviews are initiated from domain events published by G01–G09.
+Campus Reviews are initiated from domain events published by G01–G10.
 
 ---
 
@@ -453,6 +456,16 @@ Provides:
 
 ---
 
+### G10 — Infrastructure Management
+
+Provides:
+
+- Infrastructure Readiness
+- Physical Asset Status
+- Capacity and Availability Status
+
+---
+
 ## Downstream Consumers
 
 Campus Operations Review publishes governance information to:
@@ -648,7 +661,7 @@ Campus Operations Review governs the following workflow families.
 The following invariants shall always remain true.
 
 - Campus Readiness shall reference readiness information published by operational domains.
-- G00 shall never modify operational data owned by G01–G09.
+- G00 shall never modify operational data owned by G01–G10.
 - Every Operational Review shall generate findings or explicitly record no findings.
 - Every Action Plan shall reference one governance finding.
 - Every Operational Risk shall reference one responsible operational domain.
@@ -670,7 +683,7 @@ Campus Operations Review shall not:
 - Replace project management systems
 - Replace issue tracking systems
 - Duplicate operational master data
-- Own transactional information from G01–G09
+- Own transactional information from G01–G10
 
 Campus Operations Review shall operate exclusively through published business contracts and domain events.
 
@@ -723,6 +736,7 @@ Campus readiness may consume operational readiness from:
 - G07 — Security Operations
 - G08 — Housekeeping Operations
 - G09 — Teacher Guardian Scheme
+- G10 — Infrastructure Management
 
 Ownership of readiness remains with the publishing domain.
 
@@ -1736,6 +1750,7 @@ Closure
 | Security Operations | G07 Security Operations |
 | Housekeeping Operations | G08 Housekeeping Operations |
 | Teacher Guardian Operations | G09 Teacher Guardian Scheme |
+| Infrastructure Management | G10 Infrastructure Management |
 | Authentication | Section A |
 | Notifications | Section H |
 

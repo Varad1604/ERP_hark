@@ -9,7 +9,7 @@
 | Document ID | L2-F12 |
 | Document Name | Asset Management Workflows |
 | Layer | Level 2 – Domain Workflow Architecture |
-| Domain | Finance – Asset Management |
+| Domain | Finance – Asset Accounting |
 | Owner | Finance Architecture Team |
 | Depends On | L2-F00 Finance Domain Model & Foundation, L2-A01 Platform & Tenant Foundation, L2-B01 Institution Lifecycle, L2-B02 Organisation Workflows, L2-B03 Campus & Infrastructure |
 | Referenced By | Financial Reporting, Procurement & Supply Chain, Inventory, HR, Maintenance, Audit, Analytics |
@@ -22,9 +22,9 @@
 
 This document defines the canonical Asset Management architecture for the SutraERP platform.
 
-The Asset Management domain governs the complete lifecycle of institutional assets from acquisition through registration, capitalization, assignment, transfer, verification, depreciation, revaluation, maintenance linkage, retirement, disposal, and archival.
+This document governs the financial accounting treatment of institutional assets after operational ownership has been established by Section J.
 
-The architecture establishes Asset Management as the single authoritative owner of institutional asset records while integrating with Procurement, Finance, Human Resources, Campus Infrastructure, Inventory, Reporting, and Audit through well-defined domain contracts.
+The architecture establishes Finance as the authoritative owner of asset financial records, depreciation posting, valuation reporting, and disposal accounting while Section J owns the operational asset lifecycle.
 
 This document defines business architecture only.
 
@@ -69,11 +69,11 @@ The following responsibilities are intentionally excluded.
 
 | Capability | Canonical Owner |
 |------------|-----------------|
-| Purchase Requests | Procurement & Supply Chain |
-| Request for Quotations | Procurement & Supply Chain |
-| Vendor Management | Procurement & Supply Chain |
-| Purchase Orders | Procurement & Supply Chain |
-| Goods Receipt | Procurement & Supply Chain |
+| Purchase Requests | Section J |
+| Request for Quotations | Section J |
+| Vendor Management | Section J |
+| Purchase Orders | Section J |
+| Goods Receipt | Section J |
 | Invoice Processing | Accounts Payable |
 | Vendor Payments | Treasury |
 | Accounting Entries | General Ledger |
@@ -81,23 +81,23 @@ The following responsibilities are intentionally excluded.
 | Employee Lifecycle | Human Resources |
 | Department Lifecycle | Organisation |
 | Building & Room Lifecycle | Campus & Infrastructure |
-| Inventory Stock Management | Inventory Domain |
+| Inventory Stock Management | Section J |
 | Maintenance Work Orders | Maintenance Domain |
 | Financial Statements | Financial Reporting & Analytics |
 
-Asset Management owns institutional assets.
+Section J owns institutional assets.
 
-It does not own procurement, accounting, payments, maintenance execution, inventory operations, or human resource management.
+It does not own procurement execution, operational asset lifecycle, payments, maintenance execution, inventory operations, or human resource management.
 
 ---
 
 # 4. Architectural Position
 
-Within the SutraERP architecture, Asset Management serves as the canonical enterprise asset domain positioned between Procurement and Financial Reporting.
+Within the SutraERP architecture, this document serves as the canonical finance-side asset accounting domain positioned downstream of Section J and upstream of Financial Reporting.
 
-Assets originate through acquisition processes, become managed enterprise resources throughout their operational life, and ultimately provide financial, operational, and governance information to downstream domains.
+Assets originate through Section J acquisition and operational governance, then provide financial, operational, and governance information to downstream domains.
 
-The Asset Management domain owns the lifecycle of assets but consumes procurement decisions and publishes business facts to Finance, Reporting, Audit, and Analytics.
+Section J owns the lifecycle of assets. This finance document consumes Section J business facts and publishes accounting outcomes to Finance, Reporting, Audit, and Analytics.
 
 ```text
                   Procurement & Supply Chain
@@ -280,7 +280,7 @@ Technology choices shall not influence business responsibilities.
 
 ## Principle 8 — Domain Isolation
 
-Asset Management owns only asset-related responsibilities.
+Section J owns the operational asset responsibilities. Finance owns only the accounting treatment.
 
 Responsibilities owned by Procurement, Finance, HR, Infrastructure, Inventory, Maintenance, and Reporting remain outside this bounded context.
 
@@ -321,11 +321,11 @@ The Asset Management architecture shall continuously support:
 
 # 10. Domain Responsibilities
 
-The Asset Management domain is the canonical owner of institutional asset lifecycle governance.
+Section J is the canonical owner of institutional asset lifecycle governance.
 
 Its primary responsibility is to maintain accurate, auditable, and authoritative information about every managed asset throughout its operational existence.
 
-The domain owns the complete business lifecycle of assets after acquisition and before archival, ensuring consistent governance across all institutions.
+Finance owns the financial treatment of assets after Section J has registered them, ensuring consistent accounting across all institutions.
 
 The Asset Management domain is responsible for the following capabilities.
 
@@ -481,13 +481,13 @@ The following capabilities are explicitly excluded from the Asset Management bou
 
 | Capability | Canonical Owner |
 |------------|-----------------|
-| Purchase Requisition | Procurement & Supply Chain |
-| Vendor Management | Procurement & Supply Chain |
-| Request for Quotation | Procurement & Supply Chain |
-| Purchase Orders | Procurement & Supply Chain |
-| Goods Receipt | Procurement & Supply Chain |
-| Inventory Stock Control | Inventory Domain |
-| Warehouse Operations | Inventory Domain |
+| Purchase Requisition | Section J |
+| Vendor Management | Section J |
+| Request for Quotation | Section J |
+| Purchase Orders | Section J |
+| Goods Receipt | Section J |
+| Inventory Stock Control | Section J |
+| Warehouse Operations | Section J |
 | Maintenance Planning | Maintenance Domain |
 | Maintenance Scheduling | Maintenance Domain |
 | Work Orders | Maintenance Domain |
@@ -1162,7 +1162,7 @@ Every successful Asset Management workflow concludes by publishing a canonical b
 
 Events represent completed business facts.
 
-The Asset Management domain owns the business meaning of these events.
+Section J owns the business meaning of these events. Finance owns the accounting meaning of asset-related postings.
 
 Event publication, routing, delivery, replay, and infrastructure governance are delegated to the Platform Event Infrastructure (L2-A06).
 
@@ -1410,7 +1410,7 @@ Events never represent:
 
 ## Principle 2 — Canonical Ownership
 
-Asset Management owns:
+Section J owns:
 
 - Event meaning
 - Event timing
@@ -1495,7 +1495,7 @@ The Asset Management domain remains responsible only for the business semantics 
 
 The Asset Management domain collaborates with other enterprise domains through stable business contracts and canonical domain events.
 
-Asset Management owns only the institutional asset lifecycle.
+Section J owns only the institutional asset lifecycle.
 
 Every collaborating domain retains ownership of its own business concepts, rules, workflows, and aggregates.
 
@@ -1579,7 +1579,7 @@ Asset Management references physical locations.
 
 Infrastructure owns physical entities.
 
-Asset Management owns only the relationship between assets and locations.
+Section J owns only the relationship between assets and locations.
 
 ---
 
@@ -1644,7 +1644,7 @@ Creates accounting entries.
 
 General Ledger owns accounting.
 
-Asset Management owns asset lifecycle.
+Section J owns asset lifecycle.
 
 ---
 
@@ -1812,7 +1812,7 @@ This collaboration model preserves:
 
 ## ADR-01
 
-Asset Management owns the complete institutional asset lifecycle.
+Section J owns the complete institutional asset lifecycle.
 
 Status: Accepted
 

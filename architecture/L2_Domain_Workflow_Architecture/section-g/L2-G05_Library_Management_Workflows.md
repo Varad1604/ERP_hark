@@ -12,9 +12,9 @@
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
-- Section B — Institution & Academic Structure
+- Section B — Institution & Structure
 - Section C — Student Lifecycle
-- Section D — Academic Operations
+- Section D — Academic Delivery
 - Section E — People & Workforce
 - Finance Domain
 

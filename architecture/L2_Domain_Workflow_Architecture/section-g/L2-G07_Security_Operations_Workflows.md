@@ -12,7 +12,7 @@
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
-- Section B — Institution & Academic Structure
+- Section B — Institution & Structure
 - Section C — Student Lifecycle
 - Section E — People & Workforce
 - G01 — Facilities Management
@@ -214,7 +214,7 @@ Security Operations references security agencies operationally.
 
 ## Physical Security Assets
 
-Owned by G01.
+Owned by G10.
 
 Examples:
 

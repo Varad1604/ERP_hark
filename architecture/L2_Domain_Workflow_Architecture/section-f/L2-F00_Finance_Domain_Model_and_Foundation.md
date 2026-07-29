@@ -53,8 +53,8 @@ The Finance Domain is responsible for:
 - Financial reporting
 - Statutory accounting
 - Audit compliance
-- Asset Management Accounting
-- Inventory Accounting
+- Asset Financial Accounting
+- Inventory Valuation Accounting
 - Mess Accounting
 
 The Finance Domain does NOT own:
@@ -1220,9 +1220,9 @@ Finance owns
 
 ---
 
-## Procurement Domain
+## Resource Lifecycle Finance Interface
 
-Procurement owns
+Section J owns
 
 • Purchase Requests
 
@@ -1230,7 +1230,7 @@ Procurement owns
 
 • Goods Receipt
 
-Finance owns
+Finance owns monetary processing for
 
 • Vendor Accounting
 
@@ -1242,14 +1242,14 @@ Finance owns
 
 ---
 
-## Asset Management Domain
+## Asset Financial Accounting Domain
 
-Asset Management owns
+Section J owns
 • Asset Tracking
 • Inventory Control
 • Depreciation Computation
 
-Finance owns
+Finance owns monetary processing for
 • Fixed Asset Ledger
 • Depreciation Accounting entries
 • Inventory Financial Valuation

@@ -12,15 +12,15 @@
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
-- Section B — Institution & Academic Structure
-- Section D — Academic Operations
+- Section B — Institution & Structure
+- Section D — Academic Delivery
 - Section E — People & Workforce
 - G10 — Infrastructure Management
 - G01 — Facilities Management
 
 **Downstream Consumers**
 
-- Academic Operations
+- Academic Delivery
 - Student Operations
 - Examination Management
 - Accreditation & Compliance
@@ -118,7 +118,7 @@ Repository Position
 Platform Foundation
         │
         ▼
-Academic Operations
+Academic Delivery
         │
         ▼
 G10 Infrastructure
@@ -514,7 +514,7 @@ Provides:
 
 ---
 
-### Section D — Academic Operations
+### Section D — Academic Delivery
 
 Provides:
 
