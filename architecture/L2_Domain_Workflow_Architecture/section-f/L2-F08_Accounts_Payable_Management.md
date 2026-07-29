@@ -142,7 +142,7 @@ Accounts Payable collaborates with neighbouring domains exclusively through publ
 
 The bounded context shall never perform direct modifications within external aggregates.
 
-All cross-domain consistency shall be achieved through asynchronous collaboration.
+All multi-domain consistency shall be achieved through asynchronous collaboration.
 
 ---
 
@@ -359,7 +359,7 @@ The architecture follows these immutable principles.
 
 3. Aggregate consistency always precedes event publication.
 
-4. Cross-domain communication occurs only through published contracts.
+4. Multi-domain communication occurs only through published contracts.
 
 5. Business history is immutable.
 
@@ -818,7 +818,7 @@ The following architectural rules are mandatory.
 - Relationships are reference-based.
 - External identity is immutable.
 - Aggregate consistency is local.
-- Cross-domain consistency is eventual.
+- Multi-domain consistency is eventual.
 - Integration occurs only through published contracts.
 - Internal Aggregate structures remain private.
 # 11. Business Capabilities
@@ -1944,7 +1944,7 @@ Consumers react only to published business facts.
 
 ## Eventual Consistency
 
-Cross-domain consistency shall be achieved through asynchronous event-driven collaboration.
+Multi-domain consistency shall be achieved through asynchronous event-driven collaboration.
 
 Strong consistency shall remain local to the Payable Aggregate.
 
@@ -2518,7 +2518,7 @@ The following principles govern every integration.
 
 5. References remain immutable.
 
-6. Cross-domain consistency is eventual.
+6. Multi-domain consistency is eventual.
 
 7. Canonical ownership always prevails.
 
@@ -3003,11 +3003,11 @@ Accounts Payable references settlement outcomes only.
 
 ---
 
-## Cross-Domain Consistency
+## Multi-Domain Consistency
 
 Strong consistency exists only within the Aggregate.
 
-Cross-domain consistency is eventually achieved through business events.
+Multi-domain consistency is eventually achieved through business events.
 
 Illustrative flow:
 

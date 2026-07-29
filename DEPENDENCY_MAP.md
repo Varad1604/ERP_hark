@@ -87,10 +87,13 @@ Section C  ----+----> Section D  Academic Delivery
 Section E  ---------------^
 Section D  ------------------> Section I  Examination
 Section C  ------------------> Section F  Finance
-Section A/B/C/D/E/F/G/H/I ----------> Section J  Enterprise Resource Management
+Section A/B/C/D/E/F/G/I ------------> Section J  Enterprise Resource Management
 
 Section H consumes approved read contracts and published events from
 all sections but does not own canonical business entities.
+
+Cross-cutting services exposed by Section H do not, by themselves,
+create a foundational upstream dependency for every consuming section.
 ```
 
 ---
@@ -111,7 +114,7 @@ Runtime event feedback does not reverse ownership or create a new upstream depen
 | Section G - Campus Operations | Sections A, B, E |
 | Section H - Institutional Services & Intelligence | All Sections |
 | Section I - Examination | Sections C, D, F |
-| Section J - Enterprise Resource Management | Sections A, B, C, D, E, F, G, H, I |
+| Section J - Enterprise Resource Management | Sections A, B, C, D, E, F, G, I |
 
 Special rule:
 

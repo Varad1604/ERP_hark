@@ -1,13 +1,13 @@
 ﻿# L2-J06 — Inventory & Warehouse Management
 
-**Repository:** SutraERP  
-**Section:** J — Enterprise Resource Management  
-**Domain:** J06 — Inventory & Warehouse Management  
-**Document ID:** L2-J06  
-**Version:** 1.0  
-**Status:** Architecture Draft  
-**Classification:** Level 2 Domain Workflow Architecture  
-**Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance  
+**Repository:** SutraERP
+**Section:** J — Enterprise Resource Management
+**Domain:** J06 — Inventory & Warehouse Management
+**Document ID:** L2-J06
+**Version:** 1.0
+**Status:** Trust Certification Ready
+**Classification:** Level 2 Domain Workflow Architecture
+**Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
 **Canonical Owner:** Inventory & Warehouse Management
 
 ---
@@ -52,13 +52,21 @@ It records what stock exists, where it exists, how much is available, and how mo
 
 J06 does not own:
 
-- Purchase Requisition
-- Purchase Order
-- Goods Receipt Decision
-- Asset Lifecycle
-- Vendor Invoice
-- Vendor Payment
-- Accounting Entries
+| Capability | Canonical Owner |
+|---|---|
+| Purchase Requisition | J03 — Purchase Requisition & Approval |
+| Purchase Order | J04 — Purchase Order Management |
+| Goods Receipt Decision and Inspection | J05 — Goods Receipt, Inspection & Acceptance |
+| Stock Movement Execution and Distribution | J07 — Stock Operations & Distribution |
+| Operational Asset Lifecycle | J08 — Asset Lifecycle Management |
+| Physical Verification / Audit Conclusion | J09 — Physical Verification, Audit & Reconciliation |
+| Disposal / Write-Off Case | J10 — Disposal, Scrap & Write-Off |
+| Vendor Invoice, Payment, Accounting Entries | Section F — Finance |
+| Authentication | L2-A03 — Authentication |
+| Authorization Policy and SoD | L2-A04 — Authorization and Policy |
+| Workflow Routing | L2-A05 — Workflow Engine |
+| Event Transport | L2-A06 — Event Infrastructure |
+| Enterprise Audit Persistence | L2-A07 — Audit Infrastructure |
 
 ---
 
@@ -109,7 +117,74 @@ J06 depends on:
 
 # 8. Completion Criteria
 
-J06 is complete when the enterprise stock ledger, item master, and warehouse model are canonical and no other domain maintains a competing inventory truth.
+J06 is complete when the enterprise item master, warehouse model, stock ledger, stock availability, inventory controls, authorization semantics, audit evidence, tenant isolation, integration contracts, and domain events are canonical and no other domain maintains a competing inventory truth.
 
+---
 
+# 9. Authorization & Segregation of Duties
 
+J06 defines inventory and warehouse authorization semantics while L2-A04 owns policy evaluation.
+
+Authorization may consider:
+
+- Tenant and institution.
+- Campus, warehouse, store, location, and bin.
+- Item category, batch, serial, expiry, and controlled-resource classification.
+- Inventory transaction type.
+- Quantity and value band.
+- Adjustment reason and variance tolerance.
+- Actor role and delegated authority.
+- Inventory lifecycle state.
+
+Representative SoD rules include:
+
+```text
+Stock Adjuster != Stock Adjustment Approver
+Warehouse Configurator != Physical Verifier where configured
+Inventory Balance Viewer for controlled stock requires explicit policy authorization
+```
+
+---
+
+# 10. Audit & Evidence
+
+J06 produces domain evidence for:
+
+- Item creation, classification, amendment, and archival.
+- Warehouse, store, location, and bin configuration.
+- Inventory receipt consequences from J05.
+- Stock reservation, issue, return, transfer consequence, and adjustment.
+- Batch, serial, expiry, and controlled-resource state.
+- Reorder threshold and stock availability changes.
+
+L2-A07 owns enterprise audit persistence, retention governance, access governance, and evidence integrity.
+
+---
+
+# 11. Tenant and Institution Isolation
+
+Every inventory command, aggregate, event, read model, and audit reference shall preserve tenant and institution context.
+
+An Item Identifier, Warehouse Identifier, or Stock Ledger Identifier alone shall not authorize access.
+
+Cross-institution inventory visibility or transfer consequence processing shall require explicit governed authorization.
+
+---
+
+# 12. Event and Workflow Integration
+
+J06 owns the business meaning and timing of inventory events.
+
+L2-A06 owns event transport, routing, retry, replay, and event registry governance.
+
+L2-A05 owns workflow routing where inventory configuration, adjustment, or controlled-stock approvals require human workflow. J06 owns resulting inventory business state.
+
+---
+
+# 13. Privacy, Retention, and Recovery
+
+J06 shall minimize copied supplier, employee, student, department, finance, and asset information by referencing canonical identifiers from owning domains.
+
+Inventory and stock-ledger history shall remain reconstructable according to enterprise and institutional retention policy.
+
+Retried commands shall be idempotent for item creation, warehouse configuration, stock receipt consequence, reservation, issue consequence, return consequence, transfer consequence, and adjustment.

@@ -109,7 +109,7 @@ H00 validates that every capability has exactly one canonical owner and that own
 
 The corresponding Level-1 Enterprise Architecture standard shall be followed.
 
-H00 validates that cross-domain coupling is limited to governed contracts and approved dependencies.
+H00 validates that multi-domain coupling is limited to governed contracts and approved dependencies.
 
 ## 5.3 API-First Integration
 
@@ -325,7 +325,7 @@ When all Level-2 specifications comply with this governance framework, Section H
 
 - Clear separation of business responsibilities.
 - Zero duplication of canonical ownership.
-- Predictable cross-domain collaboration.
+- Predictable multi-domain collaboration.
 - Consistent implementation standards.
 - Scalable integration architecture.
 - Independent domain evolution.
@@ -398,7 +398,7 @@ It does not imply implementation dependency.
 
 ---
 
-# 16. Cross-Domain Responsibility Boundaries
+# 16. Multi-Domain Responsibility Boundaries
 
 To prevent architectural erosion, every domain shall respect the following boundaries.
 
@@ -578,7 +578,7 @@ These requirements ensure long-term maintainability, bounded context integrity, 
 
 ---
 
-# 19. Cross-Domain Integration Governance
+# 19. Multi-Domain Integration Governance
 
 Section H is intentionally designed as a loosely coupled ecosystem of autonomous domains.
 
@@ -699,7 +699,7 @@ Synchronous integration is permitted only when the consumer requires a governed 
 
 The corresponding Level-1 Enterprise Architecture standard shall be followed.
 
-Asynchronous collaboration is preferred for cross-domain propagation of completed business facts.
+Asynchronous collaboration is preferred for multi-domain propagation of completed business facts.
 
 | Validation Evidence | Compliance Criteria | Review Frequency | Pass / Fail Criteria | Reviewer |
 |---------------------|---------------------|------------------|----------------------|----------|
@@ -729,7 +729,7 @@ Section H may share data only through governed ownership boundaries.
 
 The corresponding Level-1 Enterprise Architecture standard shall be followed.
 
-Section H designs shall avoid failure propagation across domains.
+Section H designs shall avoid failure propagation amulti-domains.
 
 | Validation Evidence | Compliance Criteria | Review Frequency | Pass / Fail Criteria | Reviewer |
 |---------------------|---------------------|------------------|----------------------|----------|
@@ -769,7 +769,7 @@ This section governs compliance verification only. It does not restate Domain-Dr
 | Domain boundary statement | One domain, one owner, no overlap | Per release | Pass if boundaries are explicit; Fail if they are ambiguous | Enterprise Architect |
 | Ubiquitous language register | Terms are consistent within the domain | Quarterly | Pass if terminology is stable; Fail if conflicting terms exist | Domain Architect |
 | Ownership matrix | Every capability has one owner | Per release | Pass if ownership is unique; Fail if duplicated | Enterprise Architect |
-| Cross-domain overlap review | Overlap is explicitly rejected or governed | Per change | Pass if overlaps are resolved; Fail if overlap remains unresolved | Architecture Review Board |
+| Multi-domain overlap review | Overlap is explicitly rejected or governed | Per change | Pass if overlaps are resolved; Fail if overlap remains unresolved | Architecture Review Board |
 
 ---
 
@@ -1019,14 +1019,14 @@ This matrix maps governance requirements back to enterprise architecture princip
 | Hexagonal | Level-1 hexagonal standard | Domains with internal application services | Review port-adapter separation |
 | API First | Level-1 API governance standard | All contracts and integrations | Review API inventory and version policy |
 | Metadata Driven | Level-1 metadata standard | Configurable capabilities | Review metadata register and change control |
-| Event Driven | Level-1 event standard | Cross-domain propagation | Review event catalog and lineage |
+| Event Driven | Level-1 event standard | Multi-domain propagation | Review event catalog and lineage |
 | Security | Level-1 security standard | All Section H domains | Review control evidence and threat model |
 | Auditability | Level-1 audit standard | All Section H domains | Review immutable audit trail evidence |
 | Observability | Level-1 observability standard | All Section H domains | Review logging, tracing, metrics, and alerts |
 | Independent Deployment | Level-1 deployability standard | All Section H domains | Review release isolation and dependency map |
 | Loose Coupling | Level-1 coupling standard | All Section H domains | Review dependency direction and contract boundaries |
 | Versioning | Level-1 versioning standard | Contracts, metadata, events, APIs | Review version register and deprecation policy |
-| Integration Governance | Level-1 integration standard | All cross-domain links | Review contract approval and consumer map |
+| Integration Governance | Level-1 integration standard | All multi-domain links | Review contract approval and consumer map |
 | Architecture Review | Level-1 review standard | All governance decisions | Review approval records and findings register |
 
 ---
@@ -1077,7 +1077,7 @@ The following matrix defines the mandatory validation criteria for each Section 
 | Metadata Usage | Configurable behavior identified | Metadata register | Domain Architect |
 | Security | Authentication, authorization, and audit addressed | Security control matrix | Security Architect |
 | Compliance | Regulatory obligations documented where applicable | Compliance evidence | Compliance Reviewer |
-| Dependencies | Cross-domain interactions governed | Dependency matrix | Enterprise Architect |
+| Dependencies | Multi-domain interactions governed | Dependency matrix | Enterprise Architect |
 | Documentation Quality | Consistent with enterprise architecture standards | Document review record | Enterprise Architect |
 
 Each validation area shall be reviewed during architecture governance and implementation readiness assessments.
@@ -1213,7 +1213,7 @@ The following anti-patterns are explicitly prohibited within Section H.
 |--------------|--------------------|
 | Duplicate canonical ownership | Conflicting business authority |
 | Shared database between domains | Tight coupling |
-| Cross-domain transactions | Loss of bounded context independence |
+| Multi-domain transactions | Loss of bounded context independence |
 | Shared business logic | Ownership ambiguity |
 | Chatty synchronous integrations | Runtime dependency amplification |
 | Reporting database as source of truth | Data inconsistency |
@@ -1272,7 +1272,7 @@ The ongoing governance of Section H shall involve multiple architectural stakeho
 | Architecture Review Board | Enterprise architectural approval and governance |
 | Domain Architects | Domain ownership and consistency |
 | Solution Architects | Solution-level alignment |
-| Integration Architects | Cross-domain integration governance |
+| Integration Architects | Multi-domain integration governance |
 | Security Architects | Security architecture compliance |
 | Platform Engineering | Shared platform capability enablement |
 | Quality Assurance Architects | Architecture validation and implementation readiness |
@@ -1402,14 +1402,14 @@ The following checklist was completed before issuing architectural certification
 |-----------------|-------------------|----------|-------------|--------|
 | Business responsibilities clearly defined | Section H landscape and boundary statements | Enterprise Architect | 2026-07-29 | Verified |
 | Canonical ownership verified | Ownership matrix | Enterprise Architect | 2026-07-29 | Verified |
-| Domain boundaries validated | Cross-domain boundary review | Domain Architect | 2026-07-29 | Verified |
+| Domain boundaries validated | Multi-domain boundary review | Domain Architect | 2026-07-29 | Verified |
 | Integration contracts reviewed | Contract register | Integration Architect | 2026-07-29 | Approved |
 | API governance verified | API inventory and version policy | Integration Architect | 2026-07-29 | Approved |
 | Event governance verified | Event catalog and lineage | Integration Architect | 2026-07-29 | Approved |
 | Security architecture reviewed | Security control evidence | Security Architect | 2026-07-29 | Verified |
 | Metadata governance reviewed | Metadata register | Domain Architect | 2026-07-29 | Verified |
 | Architecture documentation complete | Document inventory | Enterprise Architect | 2026-07-29 | Completed |
-| Cross-domain dependencies approved | Dependency validation matrix | Enterprise Architect | 2026-07-29 | Approved |
+| Multi-domain dependencies approved | Dependency validation matrix | Enterprise Architect | 2026-07-29 | Approved |
 | Quality gates passed | Quality gate register | Architecture Review Board | 2026-07-29 | Verified |
 | Governance review completed | Review minutes and sign-off | Architecture Review Board | 2026-07-29 | Completed |
 
@@ -1493,7 +1493,7 @@ The following activities require formal revision of this document:
 - Modification of enterprise architectural standards.
 - Changes to canonical ownership responsibilities.
 - Introduction of new mandatory governance principles.
-- Significant changes to cross-domain integration strategy.
+- Significant changes to multi-domain integration strategy.
 
 Document revisions shall be version controlled and approved through the Architecture Review Board.
 
@@ -1527,7 +1527,7 @@ The governance model defined in this document ensures that:
 
 - Every business capability has a single canonical owner.
 - Domain boundaries remain explicit and enforceable.
-- Cross-domain collaboration occurs through governed contracts and approved dependencies.
+- Multi-domain collaboration occurs through governed contracts and approved dependencies.
 - Enterprise architectural standards are applied consistently.
 - Security, observability, auditability, and compliance are treated as foundational concerns.
 - Future architectural evolution can occur without compromising maintainability or bounded context integrity.

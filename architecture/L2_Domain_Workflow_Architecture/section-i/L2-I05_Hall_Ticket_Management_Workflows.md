@@ -182,7 +182,7 @@ Candidates without valid Hall Tickets shall not participate in examination condu
 
 ---
 
-## 4.8 Cross-Domain Governance
+## 4.8 Multi-Domain Governance
 
 Hall Ticket Management collaborates with multiple business domains.
 
@@ -880,7 +880,7 @@ Consumed events influence Hall Ticket decisions without transferring ownership.
 
 ---
 
-# 13. Cross-Domain Interactions
+# 13. Multi-Domain Interactions
 
 The Hall Ticket Management domain collaborates with multiple business domains to establish authoritative examination entry authorisation.
 

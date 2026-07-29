@@ -55,7 +55,7 @@
 16. Campus Readiness Management
 17. Operational Reviews
 18. Risk & Governance Management
-19. Cross-Domain Action Management
+19. Multi-Domain Action Management
 20. Notifications
 21. Domain Events
 22. Service Contracts
@@ -80,12 +80,12 @@ Instead, it provides enterprise governance through:
 
 - Campus Readiness Assessment
 - Operational Reviews
-- Cross-Domain Governance
+- Multi-Domain Governance
 - Operational Risk Management
 - Executive Recommendations
 - Action Plan Tracking
 - Campus Operational Health
-- Cross-Domain SLA Governance
+- Multi-Domain SLA Governance
 
 Campus Operations Review consumes operational information from every Campus Operations domain while preserving canonical ownership.
 
@@ -132,9 +132,9 @@ Campus Operations Review owns:
 - Campus Readiness Assessments
 - Operational Reviews
 - Executive Governance Reviews
-- Cross-Domain Risk Register
+- Multi-Domain Risk Register
 - Operational Recommendations
-- Cross-Domain Action Plans
+- Multi-Domain Action Plans
 - Campus Operational Health
 - Governance KPIs
 - Operational Maturity Assessments
@@ -202,7 +202,7 @@ Campus Operations Review owns:
 - Action Tracking
 - Executive Review
 - Governance Recommendations
-- Cross-Domain Coordination
+- Multi-Domain Coordination
 - Governance Audit
 
 ---
@@ -249,7 +249,7 @@ Supports:
 
 - Multi Campus
 - Multi Institution
-- Cross-Domain Governance
+- Multi-Domain Governance
 - Executive Reviews
 - Accreditation Readiness
 - Future AI Governance
@@ -263,12 +263,12 @@ without redesign.
 | Campus Readiness Assessment | Enterprise assessment determining the operational readiness of one or more campuses. |
 | Operational Review | Structured governance review of campus operations over a defined review period. |
 | Governance Review | Executive review evaluating operational health, risks, KPIs, and strategic improvements. |
-| Operational Risk | Cross-domain risk affecting one or more Campus Operations domains. |
+| Operational Risk | Multi-domain risk affecting one or more Campus Operations domains. |
 | Action Plan | Governance initiative created to resolve findings identified during operational reviews. |
 | Action Item | Individual corrective action within an Action Plan. |
 | Operational Health | Aggregated operational condition of campus services derived from all Campus Operations domains. |
 | Readiness Indicator | Published readiness status received from operational domains. |
-| Governance KPI | Cross-domain performance indicator used for executive governance. |
+| Governance KPI | Multi-domain performance indicator used for executive governance. |
 | Operational Maturity | Governance evaluation of campus operational capability and effectiveness. |
 
 ---
@@ -284,7 +284,7 @@ Unlike other Campus Operations domains, G00 contains a small number of governanc
 - Campus Readiness Assessment
 - Operational Review
 - Operational Risk
-- Cross-Domain Action Plan
+- Multi-Domain Action Plan
 
 These aggregates govern enterprise operations.
 
@@ -332,7 +332,7 @@ Owns:
 
 ---
 
-### Cross-Domain Action Plan
+### Multi-Domain Action Plan
 
 Owns:
 
@@ -650,7 +650,7 @@ Campus Operations Review governs the following workflow families.
 ## Executive Governance
 
 - Operational Health Review
-- Cross-Domain SLA Review
+- Multi-Domain SLA Review
 - Governance KPI Review
 - Continuous Improvement Review
 
@@ -899,7 +899,7 @@ Scorecard definitions shall remain configurable.
 
 ## Purpose
 
-Risk & Governance Management governs cross-domain operational risks affecting institutional campus operations.
+Risk & Governance Management governs multi-domain operational risks affecting institutional campus operations.
 
 Individual domains own operational incidents.
 
@@ -936,7 +936,7 @@ Examples include:
 - Security Risk
 - Housekeeping Risk
 - Student Welfare Risk
-- Cross-Domain Risk
+- Multi-Domain Risk
 
 Categories shall remain configurable.
 
@@ -979,17 +979,17 @@ Governance KPIs may include:
 - Risk Exposure Index
 - Action Completion Rate
 - SLA Compliance
-- Cross-Domain Coordination Score
+- Multi-Domain Coordination Score
 
 KPIs reference source-domain information.
 
 ---
 
-# 19. Cross-Domain Action Management
+# 19. Multi-Domain Action Management
 
 ## Purpose
 
-Cross-Domain Action Management governs institutional improvement initiatives resulting from operational reviews.
+Multi-Domain Action Management governs institutional improvement initiatives resulting from operational reviews.
 
 Action Plans coordinate multiple operational domains without modifying their internal workflows.
 
@@ -1060,7 +1060,7 @@ Monitoring remains governance only.
 
 ---
 
-## Cross-Domain Dependencies
+## Multi-Domain Dependencies
 
 Action plans may coordinate:
 
@@ -1189,7 +1189,7 @@ Every significant governance transition shall publish a canonical domain event.
 
 | Event | Description |
 |--------|-------------|
-| ActionPlanCreated | Cross-domain action plan created |
+| ActionPlanCreated | Multi-domain action plan created |
 | ActionAssigned | Action assigned |
 | ActionOverdue | Action overdue |
 | ActionVerified | Action verified |
@@ -1203,7 +1203,7 @@ Every significant governance transition shall publish a canonical domain event.
 |--------|-------------|
 | CampusOperationalHealthUpdated | Operational health recalculated |
 | GovernanceKPIPublished | Governance KPI updated |
-| CrossDomainReviewCompleted | Cross-domain governance completed |
+| MultiDomainReviewCompleted | Multi-domain governance completed |
 
 ---
 
@@ -1277,7 +1277,7 @@ All interactions shall occur exclusively through published business service cont
 | Campus Readiness Assessment | Scheduled → Collecting → Calculated → Reviewed → Closed |
 | Operational Review | Planned → Active → Findings Recorded → Completed → Closed |
 | Operational Risk | Identified → Assessed → Mitigation → Monitoring → Closed |
-| Cross-Domain Action Plan | Created → Assigned → In Progress → Verified → Closed |
+| Multi-Domain Action Plan | Created → Assigned → In Progress → Verified → Closed |
 
 Lifecycle extensions shall remain configuration driven.
 
@@ -1391,7 +1391,7 @@ Examples include:
 - Campus Operational Health
 - Executive Governance Summary
 - Operational Risk Register
-- Cross-Domain Readiness
+- Multi-Domain Readiness
 - Action Plan Status
 - Governance KPI Summary
 - Continuous Improvement Summary
@@ -1407,7 +1407,7 @@ Executive dashboards may include:
 - Open Governance Reviews
 - Active Operational Risks
 - Overdue Action Plans
-- Cross-Domain SLA Status
+- Multi-Domain SLA Status
 - Governance KPIs
 - Operational Health Index
 - Executive Recommendations
@@ -1644,7 +1644,7 @@ The architecture shall support:
 - Multiple Concurrent Reviews
 - Thousands of Governance Records
 - Long-Term Governance History
-- Cross-Domain Governance
+- Multi-Domain Governance
 - Executive Decision Support
 - Accreditation Readiness
 - Future AI Governance Assistance
@@ -1662,8 +1662,8 @@ The architecture shall remain horizontally scalable without domain redesign.
 | Campus Readiness Assessment | Enterprise evaluation of operational preparedness across Campus Operations domains. |
 | Operational Review | Structured governance review of campus operational performance. |
 | Governance Review | Executive governance activity evaluating operational effectiveness and improvement opportunities. |
-| Operational Risk | Cross-domain governance risk affecting campus operations. |
-| Cross-Domain Action Plan | Governance initiative coordinating corrective actions across operational domains. |
+| Operational Risk | Multi-domain governance risk affecting campus operations. |
+| Multi-Domain Action Plan | Governance initiative coordinating corrective actions across operational domains. |
 | Governance KPI | Enterprise performance indicator used for campus operational governance. |
 | Operational Health | Consolidated view of campus operational condition derived from all Campus Operations domains. |
 | Readiness Indicator | Published readiness status supplied by an operational domain. |
@@ -1737,7 +1737,7 @@ Closure
 | Operational Review | G00 Campus Operations Review |
 | Governance Review | G00 Campus Operations Review |
 | Operational Risk | G00 Campus Operations Review |
-| Cross-Domain Action Plan | G00 Campus Operations Review |
+| Multi-Domain Action Plan | G00 Campus Operations Review |
 | Governance KPI | G00 Campus Operations Review |
 | Executive Governance Recommendation | G00 Campus Operations Review |
 | Campus Operational Health | G00 Campus Operations Review |
@@ -1771,7 +1771,7 @@ Campus Operations Review follows the enterprise architectural principles establi
 - Immutable Governance History
 - Multi-Campus Architecture
 - Multi-Institution Architecture
-- Cross-Domain Coordination
+- Multi-Domain Coordination
 - Audit First
 - High Cohesion
 - Loose Coupling

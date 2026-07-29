@@ -73,7 +73,7 @@ This document covers:
 - Security Policies
 - Session Ownership
 - Authentication Contracts
-- Cross-Domain Identity Events
+- Multi-Domain Identity Events
 - Identity Audit
 - Identity Governance
 
@@ -187,7 +187,7 @@ The Person & Identity domain is responsible for:
 - Identity deletion approval workflows
 - Session ownership
 - Identity audit trail
-- Cross-domain identity references
+- Multi-domain identity references
 
 ---
 
@@ -677,7 +677,7 @@ The following constraints are mandatory.
 - Person is the root identity aggregate.
 - Every aggregate references Person through immutable PersonID.
 - Downstream domains consume Person references only.
-- Cross-domain writes into Person aggregates are prohibited.
+- Multi-domain writes into Person aggregates are prohibited.
 - Authorization decisions shall be scope-aware.
 - Aggregate invariants shall never be bypassed.
 - Identity integrity takes precedence over business convenience.
@@ -1118,7 +1118,7 @@ The Person aggregate follows these mandatory rules.
 - Immutable identifiers.
 - Business domains reference PersonID only.
 - No duplicate Person creation without warning.
-- No cross-domain ownership.
+- No multi-domain ownership.
 - Full auditability.
 - Tenant isolation enforced.
 - Archive before deletion.
@@ -2959,7 +2959,7 @@ The Person & Identity domain never directly modifies business domain data.
 
 Similarly, business domains never directly modify Person or Identity aggregates.
 
-All cross-domain communication shall occur through published contracts and platform messaging.
+All multi-domain communication shall occur through published contracts and platform messaging.
 
 ---
 
@@ -4660,7 +4660,7 @@ These integrations extend authentication without modifying the Person aggregate.
 
 # SCIM Readiness
 
-The architecture is designed to support System for Cross-domain Identity Management (SCIM).
+The architecture is designed to support System for Multi-domain Identity Management (SCIM).
 
 Potential capabilities include:
 
@@ -5030,7 +5030,7 @@ The Person & Identity domain shall expose only the minimum identity attributes r
 
 The following privacy rules apply:
 
-- Identity references may be shared cross-domain only in scoped, purpose-bound form.
+- Identity references may be shared multi-domain only in scoped, purpose-bound form.
 - Government identity data, contact data, and privacy preferences shall not be globally visible by default.
 - Downstream domains shall not duplicate raw identity records unless explicitly required by architectural contract.
 - Data minimization and purpose limitation shall govern identity propagation and export.
@@ -5340,7 +5340,7 @@ Each request carries:
 - Span ID
 - Correlation ID
 
-Tracing enables end-to-end visibility across domain interactions.
+Tracing enables end-to-end visibility amulti-domain interactions.
 
 ---
 
@@ -7812,7 +7812,7 @@ The following rules are mandatory.
 
 ---
 
-# Cross-Domain Interaction Matrix
+# Multi-Domain Interaction Matrix
 
 The Person & Identity domain serves as the canonical identity provider for the entire SutraERP platform.
 
@@ -7822,13 +7822,13 @@ Business domains shall never modify canonical identity data directly.
 
 ---
 
-# Cross-Domain Interaction Principles
+# Multi-Domain Interaction Principles
 
 The following principles govern all domain interactions.
 
 - Person & Identity owns canonical Person records.
 - Business domains own business-specific data.
-- Cross-domain communication occurs through APIs and domain events.
+- Multi-domain communication occurs through APIs and domain events.
 - Aggregate ownership shall never be violated.
 - Circular dependencies are prohibited.
 - Downstream domains consume identity services but do not redefine them.
@@ -8043,7 +8043,7 @@ Business domains shall not:
 
 ---
 
-# Cross-Domain Workflow Example
+# Business Scenario Example
 
 Student Admission
 
@@ -8093,7 +8093,7 @@ The following rules are mandatory.
 - Identity data shall never be duplicated as a source of truth.
 - Business domains shall consume only published contracts.
 - Domain ownership shall remain singular.
-- Cross-domain writes shall execute through application services.
+- Multi-domain writes shall execute through application services.
 - Circular dependencies are prohibited.
 - Integration shall remain event-driven wherever practical.
 
@@ -8117,7 +8117,7 @@ Breaking changes require formal versioning.
 
 - Person & Identity is the canonical identity provider.
 - Business domains remain autonomous within their own aggregate boundaries.
-- Cross-domain interactions shall preserve loose coupling.
+- Multi-domain interactions shall preserve loose coupling.
 - Ownership shall never transfer through integration.
 - Every dependency shall be explicitly documented and governed.
 - Integration contracts shall remain backward compatible.
@@ -8867,7 +8867,7 @@ User Re-authentication Required
 
 ---
 
-# Cross-Domain Workflow Integration
+# Business Scenario Integration
 
 The following domains participate in selected workflows.
 
@@ -8975,7 +8975,7 @@ ADRs provide historical traceability for architectural evolution.
 | ADR-006 | Context Resolution consumes business memberships but does not own them |
 | ADR-007 | Domain Events are immutable integration contracts |
 | ADR-008 | Aggregate ownership is singular and explicit |
-| ADR-009 | Cross-domain communication uses APIs and Events |
+| ADR-009 | Multi-domain communication uses APIs and Events |
 | ADR-010 | Platform invariants are not tenant configurable |
 
 Future ADRs shall extend this register rather than modify historical decisions.
@@ -9014,7 +9014,7 @@ The following architectural rules are immutable.
 - Domain Events are immutable.
 - Audit records are immutable.
 - Aggregate ownership is singular.
-- Cross-domain writes occur only through approved application services.
+- Multi-domain writes occur only through approved application services.
 
 These invariants shall never be overridden by configuration or customization.
 
@@ -9266,7 +9266,7 @@ The Person & Identity architecture is considered complete when:
 - Observability is complete.
 - Configuration governance is complete.
 - Operational workflows are defined.
-- Cross-domain dependencies are documented.
+- Multi-domain dependencies are documented.
 - Architecture review has been approved.
 
 ---

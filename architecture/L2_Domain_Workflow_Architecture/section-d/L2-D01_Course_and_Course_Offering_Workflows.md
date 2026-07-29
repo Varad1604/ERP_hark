@@ -529,7 +529,7 @@ The Course Offering aggregate shall not:
 - Maintain dashboards
 - Schedule notifications
 
-Cross-domain interaction shall occur through:
+Multi-domain interaction shall occur through:
 
 - Domain events
 - Platform services
@@ -2168,7 +2168,7 @@ All events shall be immutable and published through the Platform Event Bus.
 
 Versioning, Merge, Split, Freeze, Rollback, and Archive shall remain transactional responsibilities of the Course Offering aggregate.
 
-Cross-domain operations shall be coordinated through domain events and platform services.
+Multi-domain operations shall be coordinated through domain events and platform services.
 
 The aggregate shall never directly modify downstream bounded contexts.
 

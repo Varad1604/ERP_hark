@@ -1,13 +1,13 @@
 ﻿# L2-J01 — Procurement Planning & Sourcing Workflows
 
-**Repository:** SutraERP  
-**Section:** J — Enterprise Resource Management  
-**Domain:** J01 — Procurement Planning & Sourcing  
-**Document ID:** L2-J01  
-**Version:** 1.0  
-**Status:** Architecture Draft  
-**Classification:** Level 2 Domain Workflow Architecture  
-**Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance  
+**Repository:** SutraERP
+**Section:** J — Enterprise Resource Management
+**Domain:** J01 — Procurement Planning & Sourcing
+**Document ID:** L2-J01
+**Version:** 1.0
+**Status:** Trust Certification Ready
+**Classification:** Level 2 Domain Workflow Architecture
+**Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
 **Canonical Owner:** Procurement Planning & Sourcing
 
 ---
@@ -57,7 +57,7 @@
 41. Exception & Reconciliation Architecture
 42. Notifications
 43. Documents & Evidence
-44. Cross-Domain Integration
+44. Multi-Domain Integration
 45. Reporting & KPIs
 46. Future Extension Points
 47. Architectural Constraints
@@ -80,35 +80,35 @@ The primary lifecycle is:
 
 ```text
 Institutional Requirement
-          │
-          ▼
+          ¦
+          ?
 Procurement Planning
-          │
-          ▼
+          ¦
+          ?
 Approved Procurement Demand
-          │
-          ▼
+          ¦
+          ?
 Procurement Method
-          │
-          ▼
+          ¦
+          ?
 Sourcing
-          │
-          ▼
+          ¦
+          ?
 Supplier Participation
-          │
-          ▼
+          ¦
+          ?
 Evaluation
-          │
-          ▼
+          ¦
+          ?
 Selection Recommendation
-          │
-          ▼
+          ¦
+          ?
 Approval
-          │
-          ▼
+          ¦
+          ?
 Approved Sourcing Outcome
-          │
-          ▼
+          ¦
+          ?
 J04 Purchase Order Management
 ```
 
@@ -144,30 +144,30 @@ J01 is the sourcing and procurement-planning bounded context within Section J.
 
 ```text
               Requesting Domains
-                     │
-                     ▼
+                     ¦
+                     ?
             J03 Purchase Requisition
-                     │
-                     ▼
-        ┌─────────────────────────┐
-        │          J01            │
-        │ Procurement Planning &  │
-        │        Sourcing         │
-        └─────────────────────────┘
-                     │
-          ┌──────────┼──────────┐
-          │          │          │
-          ▼          ▼          ▼
+                     ¦
+                     ?
+        +-------------------------+
+        ¦          J01            ¦
+        ¦ Procurement Planning &  ¦
+        ¦        Sourcing         ¦
+        +-------------------------+
+                     ¦
+          +----------+----------+
+          ¦          ¦          ¦
+          ?          ?          ?
          J02       Finance   Documents /
       Suppliers               Workflow
-          │
-          └──────────┬──────────
-                     │
-                     ▼
+          ¦
+          +---------------------
+                     ¦
+                     ?
             Approved Sourcing
                 Outcome
-                     │
-                     ▼
+                     ¦
+                     ?
           J04 Purchase Order
 ```
 
@@ -283,8 +283,8 @@ J01 does not own supplier identity.
 ```text
 J02
 Supplier Master
-     │
-     ▼
+     ¦
+     ?
 J01
 Supplier Participation
 ```
@@ -316,8 +316,8 @@ J01 does not create the canonical Purchase Order.
 ```text
 J01
 Approved Supplier Selection
-          │
-          ▼
+          ¦
+          ?
 J04
 Purchase Order Management
 ```
@@ -369,9 +369,9 @@ For example:
 
 ```text
 Academic / Laboratory Domain
-         │
-         │ Technical Requirement
-         ▼
+         ¦
+         ¦ Technical Requirement
+         ?
 J01 Procurement Specification Reference
 ```
 
@@ -393,17 +393,17 @@ Suitable for institutions or transactions requiring limited procurement formalit
 
 ```text
 Approved Requirement
-        │
-        ▼
+        ¦
+        ?
 Direct / Quotation Purchase
-        │
-        ▼
+        ¦
+        ?
 Approval
-        │
-        ▼
+        ¦
+        ?
 Supplier Selection
-        │
-        ▼
+        ¦
+        ?
 Purchase Order
 ```
 
@@ -413,23 +413,23 @@ Purchase Order
 
 ```text
 Approved Requirement
-        │
-        ▼
+        ¦
+        ?
 RFQ / Sourcing
-        │
-        ▼
+        ¦
+        ?
 Multiple Suppliers
-        │
-        ▼
+        ¦
+        ?
 Quotation Comparison
-        │
-        ▼
+        ¦
+        ?
 Recommendation
-        │
-        ▼
+        ¦
+        ?
 Approval
-        │
-        ▼
+        ¦
+        ?
 Purchase Order
 ```
 
@@ -439,35 +439,35 @@ Purchase Order
 
 ```text
 Approved Requirement
-        │
-        ▼
+        ¦
+        ?
 Tender Preparation
-        │
-        ▼
+        ¦
+        ?
 Publication / Invitation
-        │
-        ▼
+        ¦
+        ?
 Bid Submission
-        │
-        ▼
+        ¦
+        ?
 Bid Opening
-        │
-        ▼
+        ¦
+        ?
 Technical Evaluation
-        │
-        ▼
+        ¦
+        ?
 Commercial Evaluation
-        │
-        ▼
+        ¦
+        ?
 Committee Recommendation
-        │
-        ▼
+        ¦
+        ?
 Approval
-        │
-        ▼
+        ¦
+        ?
 Award Outcome
-        │
-        ▼
+        ¦
+        ?
 Purchase Order
 ```
 
@@ -503,14 +503,14 @@ An institution may operate:
 
 ```text
 Departments / Campuses
-          │
-          ▼
+          ¦
+          ?
 Purchase Requisitions
-          │
-          ▼
+          ¦
+          ?
 Central Procurement Office
-          │
-          ▼
+          ¦
+          ?
 J01 Sourcing
 ```
 
@@ -524,10 +524,10 @@ Institutions may permit authorised campuses or departments to perform procuremen
 
 ```text
 Institution
-    │
-    ├── Campus A Procurement
-    ├── Campus B Procurement
-    └── Central Procurement
+    ¦
+    +-- Campus A Procurement
+    +-- Campus B Procurement
+    +-- Central Procurement
 ```
 
 Authorization and value limits shall determine permitted actions.
@@ -542,15 +542,15 @@ Institutions may configure:
 
 ```text
 Low-Value Procurement
-        ↓
+        ?
 Department / Campus
 
 Medium-Value Procurement
-        ↓
+        ?
 Central Procurement
 
 High-Value Procurement
-        ↓
+        ?
 Tender / Committee
 ```
 
@@ -564,20 +564,20 @@ J01 shall support an `External Execution` model.
 
 ```text
 Approved Procurement Requirement
-            │
-            ▼
+            ¦
+            ?
 External Procurement Process
-            │
-      ┌─────┴─────┐
-      │           │
+            ¦
+      +-----------+
+      ¦           ¦
  External       SutraERP
  Execution      Tracking
-      │           │
-      └─────┬─────┘
-            ▼
+      ¦           ¦
+      +-----------+
+            ?
       Approved Outcome
-            │
-            ▼
+            ¦
+            ?
      J04 Purchase Order
 ```
 
@@ -650,15 +650,15 @@ A university may require:
 
 ```text
 Threshold
-    ↓
+    ?
 Procurement Method
-    ↓
+    ?
 Minimum Competition
-    ↓
+    ?
 Committee
-    ↓
+    ?
 Evaluation
-    ↓
+    ?
 Approval Authority
 ```
 
@@ -709,7 +709,7 @@ It shall not create artificial internal events implying SutraERP conducted activ
 
 ---
 
-## 7.9 No Cross-Domain Ownership Leakage
+## 7.9 No Multi-Domain Ownership Leakage
 
 J01 shall communicate through stable identifiers, commands, queries, and events.
 
@@ -748,9 +748,9 @@ Institutions shall be capable of enforcing:
 
 ```text
 Requester
-    ≠
+    ?
 Evaluator
-    ≠
+    ?
 Final Approver
 ```
 
@@ -758,17 +758,17 @@ or more detailed separation:
 
 ```text
 Procurement Officer
-        │
-        ▼
+        ¦
+        ?
 Technical Evaluator
-        │
-        ▼
+        ¦
+        ?
 Commercial Evaluator
-        │
-        ▼
+        ¦
+        ?
 Recommendation Committee
-        │
-        ▼
+        ¦
+        ?
 Approval Authority
 ```
 
@@ -824,14 +824,14 @@ A Procurement Plan may apply to:
 
 ```text
 Institution
-    │
-    ├── Campus
-    │
-    ├── Department
-    │
-    ├── School / Faculty
-    │
-    └── Other Organisational Unit
+    ¦
+    +-- Campus
+    ¦
+    +-- Department
+    ¦
+    +-- School / Faculty
+    ¦
+    +-- Other Organisational Unit
 ```
 
 Organisational identities remain externally owned.
@@ -864,24 +864,24 @@ Estimated values are planning information and shall not become authoritative fin
 
 ```text
 Draft
-  │
-  ▼
+  ¦
+  ?
 Submitted
-  │
-  ▼
+  ¦
+  ?
 Under Review
-  │
-  ├────────► Returned for Revision
-  │
-  ▼
+  ¦
+  +--------? Returned for Revision
+  ¦
+  ?
 Approved
-  │
-  ▼
+  ¦
+  ?
 Active
-  │
-  ├────────► Revised through controlled version
-  │
-  ▼
+  ¦
+  +--------? Revised through controlled version
+  ¦
+  ?
 Completed / Closed
 ```
 
@@ -927,11 +927,11 @@ Similar planned requirements may be consolidated.
 Example:
 
 ```text
-Computer Science Department ── 20 Laptops ──┐
-                                            │
-Administration ─────────────── 10 Laptops ──┼──► Consolidated Procurement
-                                            │
-Library ────────────────────── 15 Laptops ──┘
+Computer Science Department -- 20 Laptops --+
+                                            ¦
+Administration --------------- 10 Laptops --+--? Consolidated Procurement
+                                            ¦
+Library ---------------------- 15 Laptops --+
 
                                             45 Laptops
 ```
@@ -950,17 +950,17 @@ Therefore:
 
 ```text
 Procurement Plan
-       │
-       ▼
+       ¦
+       ?
 Planned Requirement
-       │
-       ▼
+       ¦
+       ?
 J03 Purchase Requisition
-       │
-       ▼
+       ¦
+       ?
 Approved Procurement Demand
-       │
-       ▼
+       ¦
+       ?
 J01 Sourcing
 ```
 
@@ -991,30 +991,30 @@ The standard workflow is:
 
 ```text
 J03 Purchase Requisition Approved
-              │
-              ▼
+              ¦
+              ?
 Procurement Demand Received by J01
-              │
-              ▼
+              ¦
+              ?
 Validate Procurement Eligibility
-              │
-              ▼
+              ¦
+              ?
 Determine Procurement Context
-              │
-       ┌──────┼─────────┐
-       │      │         │
+              ¦
+       +------+---------+
+       ¦      ¦         ¦
      Normal  Rate     Emergency /
              Contract  Exceptional
-       │      │         │
-       ▼      ▼         ▼
+       ¦      ¦         ¦
+       ?      ?         ?
  Procurement Method Determination
-              │
-              ▼
+              ¦
+              ?
        Sourcing Required?
            /       \
          Yes        No
-          │          │
-          ▼          ▼
+          ¦          ¦
+          ?          ?
      Sourcing       Direct /
       Event         Contract Route
 ```
@@ -1047,14 +1047,14 @@ Where a Purchase Requisition originated from a Procurement Plan:
 
 ```text
 Procurement Plan
-      │
-      ▼
+      ¦
+      ?
 Planned Requirement
-      │
-      ▼
+      ¦
+      ?
 Purchase Requisition
-      │
-      ▼
+      ¦
+      ?
 Sourcing Event
 ```
 
@@ -1085,11 +1085,11 @@ Multiple approved Purchase Requisitions may be sourced together where appropriat
 Example:
 
 ```text
-PR-001 ── 20 Desktop Computers ──┐
-                                 │
-PR-014 ── 10 Desktop Computers ──┼──► Consolidated Sourcing Requirement
-                                 │
-PR-021 ── 15 Desktop Computers ──┘
+PR-001 -- 20 Desktop Computers --+
+                                 ¦
+PR-014 -- 10 Desktop Computers --+--? Consolidated Sourcing Requirement
+                                 ¦
+PR-021 -- 15 Desktop Computers --+
 ```
 
 Consolidation shall preserve:
@@ -1115,10 +1115,10 @@ Example:
 Purchase Requisition
 
 Laboratory Setup
-       │
-       ├── Equipment ─────► Sourcing Event A
-       ├── Furniture ─────► Sourcing Event B
-       └── Installation ──► Sourcing Event C
+       ¦
+       +-- Equipment -----? Sourcing Event A
+       +-- Furniture -----? Sourcing Event B
+       +-- Installation --? Sourcing Event C
 ```
 
 J01 shall preserve fulfilment allocation between requisition lines and sourcing events.
@@ -1184,15 +1184,15 @@ Conceptually:
 
 ```text
 Estimated Procurement Value
-           │
-           ▼
+           ¦
+           ?
    Procurement Policy
-           │
-   ┌───────┼────────┐
-   │       │        │
+           ¦
+   +-------+--------+
+   ¦       ¦        ¦
 Low      Medium    High
-   │       │        │
-   ▼       ▼        ▼
+   ¦       ¦        ¦
+   ?       ?        ?
 Direct   RFQ /    Tender /
 Purchase Quotes   Committee
 ```
@@ -1211,14 +1211,14 @@ Example:
 
 ```text
 Approved Requirement
-        │
-        ▼
+        ¦
+        ?
 Evaluate Policy
-        │
-        ▼
+        ¦
+        ?
 Recommended Method
-        │
-        ▼
+        ¦
+        ?
 Procurement Officer Review
 ```
 
@@ -1244,19 +1244,19 @@ Example:
 ```text
 Recommended:
 Competitive RFQ
-       │
-       ▼
+       ¦
+       ?
 Override Requested
-       │
-       ▼
+       ¦
+       ?
 Emergency Justification
-       │
-       ▼
+       ¦
+       ?
 Authorised?
    /       \
  No         Yes
- │           │
- ▼           ▼
+ ¦           ¦
+ ?           ?
 Reject     Emergency Procurement
 ```
 
@@ -1321,32 +1321,32 @@ A configurable baseline lifecycle is:
 
 ```text
 Draft
-  │
-  ▼
+  ¦
+  ?
 Preparation
-  │
-  ▼
+  ¦
+  ?
 Approved for Publication / Invitation
-  │
-  ▼
+  ¦
+  ?
 Open for Supplier Response
-  │
-  ▼
+  ¦
+  ?
 Submission Closed
-  │
-  ▼
+  ¦
+  ?
 Opening
-  │
-  ▼
+  ¦
+  ?
 Evaluation
-  │
-  ▼
+  ¦
+  ?
 Recommendation
-  │
-  ▼
+  ¦
+  ?
 Approval
-  │
-  ▼
+  ¦
+  ?
 Completed
 ```
 
@@ -1389,8 +1389,8 @@ Where procurement concerns an existing institutional Item:
 
 ```text
 J06 Item Master
-      │
-      ▼
+      ¦
+      ?
 J01 Sourcing Line
 ```
 
@@ -1408,8 +1408,8 @@ J01 shall support both:
 
 ```text
 Goods Procurement
-        │
-        ▼
+        ¦
+        ?
 Potential J05/J06/J08 Lifecycle
 ```
 
@@ -1417,8 +1417,8 @@ and:
 
 ```text
 Service Procurement
-        │
-        ▼
+        ¦
+        ?
 Service Confirmation /
 Contractual Fulfilment
 ```
@@ -1441,26 +1441,26 @@ J01 shall provide a simplified procurement path for institutions and transaction
 
 ```text
 Approved Procurement Demand
-            │
-            ▼
+            ¦
+            ?
 Simplified Procurement Eligible?
           /     \
         No       Yes
-        │         │
-        ▼         ▼
+        ¦         ¦
+        ?         ?
 Standard       Supplier /
 Sourcing       Quotation Selection
-                  │
-                  ▼
+                  ¦
+                  ?
              Justification
-                  │
-                  ▼
+                  ¦
+                  ?
                Approval
-                  │
-                  ▼
+                  ¦
+                  ?
           Approved Sourcing Outcome
-                  │
-                  ▼
+                  ¦
+                  ?
                  J04
 ```
 
@@ -1498,19 +1498,19 @@ Example:
 
 ```text
 Requirement
-    │
-    ▼
+    ¦
+    ?
 Quotation 1
 Quotation 2
 Quotation 3
-    │
-    ▼
+    ¦
+    ?
 Simple Comparison
-    │
-    ▼
+    ¦
+    ?
 Supplier Recommendation
-    │
-    ▼
+    ¦
+    ?
 Approval
 ```
 
@@ -1551,14 +1551,14 @@ An RFQ may contain:
 
 ```text
 J02 Eligible Suppliers
-         │
-         ▼
+         ¦
+         ?
 Category / Capability Filter
-         │
-         ▼
+         ¦
+         ?
 Procurement Officer Review
-         │
-         ▼
+         ¦
+         ?
 Approved Invitation List
 ```
 
@@ -1574,18 +1574,18 @@ Example:
 
 ```text
 Required Quotations: 3
-         │
-         ▼
+         ¦
+         ?
 Responses Received: 2
-         │
-      ┌──┴──┐
-      │     │
+         ¦
+      +-----+
+      ¦     ¦
 Continue?  Re-Solicit
-      │
-      ▼
+      ¦
+      ?
 Exception Justification
-      │
-      ▼
+      ¦
+      ?
 Approval where required
 ```
 
@@ -1624,11 +1624,11 @@ Amendment shall preserve:
 
 ```text
 RFQ Version 1
-      │
-      ▼
+      ¦
+      ?
 Amendment
-      │
-      ▼
+      ¦
+      ?
 RFQ Version 2
 ```
 
@@ -1684,20 +1684,20 @@ RFP evaluation may use:
 
 ```text
 Technical Proposal
-       │
-       ▼
+       ¦
+       ?
 Technical Evaluation
-       │
-       ▼
+       ¦
+       ?
 Qualified Suppliers
-       │
-       ▼
+       ¦
+       ?
 Commercial Evaluation
-       │
-       ▼
+       ¦
+       ?
 Combined Evaluation
-       │
-       ▼
+       ¦
+       ?
 Recommendation
 ```
 
@@ -1732,44 +1732,44 @@ Single-source and emergency procurement remain separate exception methods.
 
 ```text
 Approved Procurement Demand
-          │
-          ▼
+          ¦
+          ?
 Tender Method Selected
-          │
-          ▼
+          ¦
+          ?
 Tender Drafted
-          │
-          ▼
+          ¦
+          ?
 Tender Approval
-          │
-          ▼
+          ¦
+          ?
 Publication / Invitation
-          │
-          ▼
+          ¦
+          ?
 Clarification Period
-          │
-          ▼
+          ¦
+          ?
 Bid Submission
-          │
-          ▼
+          ¦
+          ?
 Submission Deadline
-          │
-          ▼
+          ¦
+          ?
 Bid Opening
-          │
-          ▼
+          ¦
+          ?
 Technical Evaluation
-          │
-          ▼
+          ¦
+          ?
 Commercial Evaluation
-          │
-          ▼
+          ¦
+          ?
 Committee / Recommendation
-          │
-          ▼
+          ¦
+          ?
 Approval
-          │
-          ▼
+          ¦
+          ?
 Approved Sourcing Outcome
 ```
 
@@ -1896,12 +1896,12 @@ Possible states include:
 
 ```text
 Invited
-   │
-   ├── Accepted Invitation
-   ├── Declined
-   ├── No Response
-   ├── Response Submitted
-   └── Withdrawn
+   ¦
+   +-- Accepted Invitation
+   +-- Declined
+   +-- No Response
+   +-- Response Submitted
+   +-- Withdrawn
 ```
 
 Exact status terminology may be configured but the business history shall remain preserved.
@@ -1949,10 +1949,10 @@ Suppliers may quote:
 
 ```text
 Sourcing Event
-     │
-     ├── Line 1 → Supplier Price / Terms
-     ├── Line 2 → Supplier Price / Terms
-     └── Line 3 → Supplier Price / Terms
+     ¦
+     +-- Line 1 ? Supplier Price / Terms
+     +-- Line 2 ? Supplier Price / Terms
+     +-- Line 3 ? Supplier Price / Terms
 ```
 
 Partial bidding may be enabled or disabled per sourcing event.
@@ -1965,11 +1965,11 @@ Where policy permits, suppliers may revise their response before the submission 
 
 ```text
 Response V1
-     │
-     ▼
+     ¦
+     ?
 Response V2
-     │
-     ▼
+     ¦
+     ?
 Final Response
 ```
 
@@ -2028,17 +2028,17 @@ Where required, J01 shall support a logical sealed-bid model.
 
 ```text
 Supplier Submission
-        │
-        ▼
+        ¦
+        ?
 Received / Locked
-        │
-        ▼
+        ¦
+        ?
 Submission Deadline
-        │
-        ▼
+        ¦
+        ?
 Authorised Opening
-        │
-        ▼
+        ¦
+        ?
 Evaluation
 ```
 
@@ -2070,19 +2070,19 @@ Example:
 
 ```text
 Supplier Responses Closed
-          │
-          ▼
+          ¦
+          ?
 Formal Opening Required?
        /         \
      No           Yes
-     │             │
-     ▼             ▼
+     ¦             ¦
+     ?             ?
 Evaluation     Opening Scheduled
-                    │
-                    ▼
+                    ¦
+                    ?
              Authorised Opening
-                    │
-                    ▼
+                    ¦
+                    ?
                 Evaluation
 ```
 
@@ -2142,17 +2142,17 @@ Where suppliers submit physical sealed bids, SutraERP may record:
 
 ```text
 Physical Bid Received
-        │
-        ▼
+        ¦
+        ?
 Receipt Evidence
-        │
-        ▼
+        ¦
+        ?
 Secure Physical Custody
-        │
-        ▼
+        ¦
+        ?
 Opening Meeting
-        │
-        ▼
+        ¦
+        ?
 Opening Record
 ```
 
@@ -2166,14 +2166,14 @@ Where bids are opened through an external procurement platform:
 
 ```text
 External Platform
-      │
-      ▼
+      ¦
+      ?
 Bid Opening
-      │
-      ▼
+      ¦
+      ?
 External Opening Evidence
-      │
-      ▼
+      ¦
+      ?
 J01 External Opening Record
 ```
 
@@ -2235,20 +2235,20 @@ J01 shall support:
 
 ```text
 Criterion
-   │
-   ├── Compliant
-   └── Non-Compliant
+   ¦
+   +-- Compliant
+   +-- Non-Compliant
 ```
 
 ### Scored Evaluation
 
 ```text
 Criterion
-     │
-     ▼
+     ¦
+     ?
 Score
-     │
-     ▼
+     ¦
+     ?
 Weighted Score
 ```
 
@@ -2277,16 +2277,16 @@ Where policy requires technical evaluation before commercial opening:
 
 ```text
 Technical Response
-       │
-       ▼
+       ¦
+       ?
 Technical Evaluation
-       │
-       ▼
+       ¦
+       ?
 Qualified?
    /       \
  No         Yes
- │           │
- ▼           ▼
+ ¦           ¦
+ ?           ?
 Stop      Commercial
 Commercial Evaluation
 Evaluation
@@ -2367,11 +2367,11 @@ Example:
 ```text
 Item A
 
-Supplier 1 ── Quoted Terms
-Supplier 2 ── Quoted Terms
-Supplier 3 ── Quoted Terms
-      │
-      ▼
+Supplier 1 -- Quoted Terms
+Supplier 2 -- Quoted Terms
+Supplier 3 -- Quoted Terms
+      ¦
+      ?
 Comparative View
 ```
 
@@ -2439,17 +2439,17 @@ A Comparative Statement may include:
 
 ```text
 Evaluation Data
-      │
-      ▼
+      ¦
+      ?
 Draft Comparative Statement
-      │
-      ▼
+      ¦
+      ?
 Review
-      │
-      ▼
+      ¦
+      ?
 Finalised Comparative Statement
-      │
-      ▼
+      ¦
+      ?
 Supplier Recommendation
 ```
 
@@ -2463,21 +2463,21 @@ Where institutions use weighted evaluation:
 
 ```text
 Technical Score
-      │
-      ├────► Weight
-      │
-      ▼
+      ¦
+      +----? Weight
+      ¦
+      ?
 Weighted Technical Score
 
 Commercial Score
-      │
-      ├────► Weight
-      │
-      ▼
+      ¦
+      +----? Weight
+      ¦
+      ?
 Weighted Commercial Score
 
-          │
-          ▼
+          ¦
+          ?
 Combined Score
 ```
 
@@ -2567,14 +2567,14 @@ Negotiated offers shall not overwrite original supplier submissions.
 
 ```text
 Original Bid
-     │
-     ▼
+     ¦
+     ?
 Negotiation
-     │
-     ▼
+     ¦
+     ?
 Revised Offer
-     │
-     ▼
+     ¦
+     ?
 Final Evaluated Offer
 ```
 
@@ -2666,21 +2666,21 @@ J01 shall not itself define which justification is legally sufficient for every 
 
 ```text
 Supplier Recommendation
-          │
-          ▼
+          ¦
+          ?
 Approval Required?
       /        \
     No          Yes
-    │            │
-    ▼            ▼
+    ¦            ¦
+    ?            ?
 Approved     Approval Queue
-Outcome           │
-             ┌────┴────┐
-             │         │
+Outcome           ¦
+             +---------+
+             ¦         ¦
           Approved   Rejected /
-             │       Returned
-             ▼         │
-          Outcome      ▼
+             ¦       Returned
+             ?         ¦
+          Outcome      ?
                   Re-Evaluation
 ```
 
@@ -2721,10 +2721,10 @@ Example:
 ```text
 Sourcing Event
 
-Line 1 ─────► Supplier A
-Line 2 ─────► Supplier B
-Line 3 ─────► Supplier A
-Line 4 ─────► Supplier C
+Line 1 -----? Supplier A
+Line 2 -----? Supplier B
+Line 3 -----? Supplier A
+Line 4 -----? Supplier C
 ```
 
 J01 shall support line-level supplier recommendations.
@@ -2738,8 +2738,8 @@ Where policy permits, a quantity may be split.
 ```text
 100 Units Required
 
-Supplier A ── 60 Units
-Supplier B ── 40 Units
+Supplier A -- 60 Units
+Supplier B -- 40 Units
 ```
 
 The allocation and reason shall be recorded.
@@ -2752,10 +2752,10 @@ An approved split award may result in multiple J04 Purchase Orders.
 
 ```text
 J01 Approved Sourcing Outcome
-            │
-       ┌────┼────┐
-       │    │    │
-       ▼    ▼    ▼
+            ¦
+       +----+----+
+       ¦    ¦    ¦
+       ?    ?    ?
       PO-A PO-B PO-C
            J04
 ```
@@ -2842,13 +2842,13 @@ Where quorum is enabled:
 
 ```text
 Committee Meeting
-      │
-      ▼
+      ¦
+      ?
 Quorum Valid?
    /       \
  No         Yes
- │           │
- ▼           ▼
+ ¦           ¦
+ ?           ?
 Cannot      Decision
 Finalise    Permitted
 ```
@@ -2894,19 +2894,19 @@ A Rate Contract may define:
 
 ```text
 Draft
-  │
-  ▼
+  ¦
+  ?
 Review
-  │
-  ▼
+  ¦
+  ?
 Approved
-  │
-  ▼
+  ¦
+  ?
 Active
-  │
-  ├──► Suspended
-  │
-  ▼
+  ¦
+  +--? Suspended
+  ¦
+  ?
 Expired / Closed
 ```
 
@@ -2916,20 +2916,20 @@ Expired / Closed
 
 ```text
 Approved Requirement
-       │
-       ▼
+       ¦
+       ?
 Applicable Active Rate Contract?
         /       \
       No         Yes
-      │           │
-      ▼           ▼
+      ¦           ¦
+      ?           ?
 Normal          Validate
 Sourcing        Eligibility
-                  │
-                  ▼
+                  ¦
+                  ?
             Approved Supplier
-                  │
-                  ▼
+                  ¦
+                  ?
                  J04
 ```
 
@@ -2974,24 +2974,24 @@ Examples may include:
 
 ```text
 Approved Requirement
-       │
-       ▼
+       ¦
+       ?
 Single-Source Proposed
-       │
-       ▼
+       ¦
+       ?
 Justification
-       │
-       ▼
+       ¦
+       ?
 Supplier Eligibility
-       │
-       ▼
+       ¦
+       ?
 Required Approval
-       │
-    ┌──┴──┐
-    │     │
+       ¦
+    +-----+
+    ¦     ¦
  Approved Rejected
-    │     │
-    ▼     ▼
+    ¦     ¦
+    ?     ?
 Source   Competitive /
 Supplier Alternative Route
 ```
@@ -3034,26 +3034,26 @@ Emergency procurement shall remain exceptional and auditable.
 
 ```text
 Urgent Approved Requirement
-          │
-          ▼
+          ¦
+          ?
 Emergency Classification
-          │
-          ▼
+          ¦
+          ?
 Emergency Justification
-          │
-          ▼
+          ¦
+          ?
 Emergency Authority
-          │
-          ▼
+          ¦
+          ?
 Abbreviated Procurement
-          │
-          ▼
+          ¦
+          ?
 Supplier Selection
-          │
-          ▼
+          ¦
+          ?
 Purchase Order / Permitted Commitment
-          │
-          ▼
+          ¦
+          ?
 Post-Facto Review
        if required
 ```
@@ -3142,23 +3142,23 @@ Example:
 
 ```text
 J03 Approved Requirement
-          │
-          ▼
+          ¦
+          ?
 J01 Procurement Initiation
-          │
-          ▼
+          ¦
+          ?
 External E-Tender Process
-          │
-          ▼
+          ¦
+          ?
 External Evaluation Outcome
-          │
-          ▼
+          ¦
+          ?
 J01 Outcome Registration
-          │
-          ▼
+          ¦
+          ?
 Institutional Approval
-          │
-          ▼
+          ¦
+          ?
 J04 Purchase Order
 ```
 
@@ -3237,14 +3237,14 @@ Where responses exist but none are acceptable:
 
 ```text
 Evaluation
-    │
-    ▼
+    ¦
+    ?
 No Suitable Bid
-    │
-    ├──► Re-Sourcing
-    ├──► Specification Review
-    ├──► Procurement Method Review
-    └──► Requirement Cancellation
+    ¦
+    +--? Re-Sourcing
+    +--? Specification Review
+    +--? Procurement Method Review
+    +--? Requirement Cancellation
 ```
 
 ---
@@ -3255,14 +3255,14 @@ A new sourcing event created after a failed or cancelled event shall retain a re
 
 ```text
 Sourcing Event J01-SE-001
-        │
-        ▼
+        ¦
+        ?
 No Suitable Bid
-        │
-        ▼
+        ¦
+        ?
 Re-Sourcing
-        │
-        ▼
+        ¦
+        ?
 Sourcing Event J01-SE-002
 ```
 
@@ -3324,25 +3324,25 @@ Conceptual structure:
 
 ```text
 ProcurementPlan
-│
-├── PlanId
-├── InstitutionId
-├── PlanningPeriod
-├── Scope
-├── Status
-├── Version
-│
-└── PlannedRequirements[]
-    ├── RequirementId
-    ├── Description
-    ├── ItemReference?
-    ├── Category
-    ├── EstimatedQuantity
-    ├── EstimatedCostReference
-    ├── ExpectedDate
-    ├── RequestingUnit
-    ├── Priority
-    └── SpecificationReference?
+¦
++-- PlanId
++-- InstitutionId
++-- PlanningPeriod
++-- Scope
++-- Status
++-- Version
+¦
++-- PlannedRequirements[]
+    +-- RequirementId
+    +-- Description
+    +-- ItemReference?
+    +-- Category
+    +-- EstimatedQuantity
+    +-- EstimatedCostReference
+    +-- ExpectedDate
+    +-- RequestingUnit
+    +-- Priority
+    +-- SpecificationReference?
 ```
 
 ### Invariants
@@ -3376,18 +3376,18 @@ Conceptual structure:
 
 ```text
 SourcingEvent
-│
-├── SourcingEventId
-├── InstitutionId
-├── ProcurementMethod
-├── Status
-├── PolicyReference
-├── ProcurementOfficer
-├── SubmissionDeadline
-├── RequisitionReferences[]
-├── PlanReferences[]
-├── SourcingLines[]
-└── Version
+¦
++-- SourcingEventId
++-- InstitutionId
++-- ProcurementMethod
++-- Status
++-- PolicyReference
++-- ProcurementOfficer
++-- SubmissionDeadline
++-- RequisitionReferences[]
++-- PlanReferences[]
++-- SourcingLines[]
++-- Version
 ```
 
 ### Invariants
@@ -3445,18 +3445,18 @@ A SupplierResponse may contain:
 
 ```text
 SupplierResponse
-│
-├── ResponseId
-├── SourcingEventId
-├── SupplierId
-├── Version
-├── SubmissionTimestamp
-├── SubmissionChannel
-├── ResponseLines[]
-├── TechnicalSubmissionReference?
-├── CommercialSubmissionReference?
-├── SupportingDocuments[]
-└── Status
+¦
++-- ResponseId
++-- SourcingEventId
++-- SupplierId
++-- Version
++-- SubmissionTimestamp
++-- SubmissionChannel
++-- ResponseLines[]
++-- TechnicalSubmissionReference?
++-- CommercialSubmissionReference?
++-- SupportingDocuments[]
++-- Status
 ```
 
 ### Invariants
@@ -3687,7 +3687,7 @@ J01 commands shall:
 - Support idempotency where integration requires it.
 - Produce explicit success or rejection outcomes.
 
-Cross-domain commands shall not be implemented as direct database writes.
+Multi-domain commands shall not be implemented as direct database writes.
 
 ---
 
@@ -4071,20 +4071,20 @@ Requesting departments may receive a simplified view:
 
 ```text
 Requirement Approved
-       │
-       ▼
+       ¦
+       ?
 Sourcing Preparation
-       │
-       ▼
+       ¦
+       ?
 Supplier Responses
-       │
-       ▼
+       ¦
+       ?
 Evaluation
-       │
-       ▼
+       ¦
+       ?
 Approval
-       │
-       ▼
+       ¦
+       ?
 Purchase Order Initiated
 ```
 
@@ -4107,26 +4107,26 @@ A procurement officer read model may include:
 Procurement Workbench
 
 Planning
-├── Plans Pending Review
-└── Upcoming Requirements
++-- Plans Pending Review
++-- Upcoming Requirements
 
 Sourcing
-├── Draft Events
-├── Awaiting Publication
-├── Open Events
-├── Closing Soon
-└── Delayed Events
++-- Draft Events
++-- Awaiting Publication
++-- Open Events
++-- Closing Soon
++-- Delayed Events
 
 Evaluation
-├── Awaiting Opening
-├── Technical Evaluation
-├── Commercial Evaluation
-└── Recommendation Pending
++-- Awaiting Opening
++-- Technical Evaluation
++-- Commercial Evaluation
++-- Recommendation Pending
 
 Exceptions
-├── Insufficient Responses
-├── Method Overrides
-└── Emergency Cases
++-- Insufficient Responses
++-- Method Overrides
++-- Emergency Cases
 ```
 
 The workbench is a projection, not a new aggregate.
@@ -4569,7 +4569,7 @@ It does not itself constitute the canonical Purchase Order.
 
 ---
 
-## 37.20 Cross-Domain Consistency
+## 37.20 Multi-Domain Consistency
 
 J01 shall not require synchronous distributed transactions with J02, J03, J04, J06, Finance, or other domains.
 
@@ -4635,22 +4635,22 @@ Exact permission naming shall conform to platform authorization conventions.
 Institutions may configure restrictions such as:
 
 ```text
-Requester ≠ Final Approver
+Requester ? Final Approver
 
-Evaluator ≠ Supplier Selection Approver
+Evaluator ? Supplier Selection Approver
 
-Procurement Officer ≠ Exception Approver
+Procurement Officer ? Exception Approver
 ```
 
 For higher-control procurement:
 
 ```text
 Bid Recorder
-      ≠
+      ?
 Bid Opener
-      ≠
+      ?
 Evaluator
-      ≠
+      ?
 Award Approver
 ```
 
@@ -4743,7 +4743,7 @@ An institution may configure workflows such as:
 
 ```text
 Simple Purchase
-Requirement → Approval → Supplier → J04
+Requirement ? Approval ? Supplier ? J04
 ```
 
 or:
@@ -4751,19 +4751,19 @@ or:
 ```text
 Formal Procurement
 Requirement
-   ↓
+   ?
 Tender
-   ↓
+   ?
 Opening
-   ↓
+   ?
 Technical Evaluation
-   ↓
+   ?
 Commercial Evaluation
-   ↓
+   ?
 Committee
-   ↓
+   ?
 Approval
-   ↓
+   ?
 J04
 ```
 
@@ -4813,35 +4813,35 @@ J01 shall support tracing:
 
 ```text
 Procurement Plan
-       │
-       ▼
+       ¦
+       ?
 Planned Requirement
-       │
-       ▼
+       ¦
+       ?
 Purchase Requisition
-       │
-       ▼
+       ¦
+       ?
 Sourcing Event
-       │
-       ▼
+       ¦
+       ?
 Supplier Invitations
-       │
-       ▼
+       ¦
+       ?
 Supplier Responses
-       │
-       ▼
+       ¦
+       ?
 Evaluation
-       │
-       ▼
+       ¦
+       ?
 Recommendation
-       │
-       ▼
+       ¦
+       ?
 Approval
-       │
-       ▼
+       ¦
+       ?
 Approved Sourcing Outcome
-       │
-       ▼
+       ¦
+       ?
 Purchase Order Reference
 ```
 
@@ -4921,28 +4921,28 @@ A baseline exception lifecycle is:
 
 ```text
 Exception Detected
-       │
-       ▼
+       ¦
+       ?
 Exception Recorded
-       │
-       ▼
+       ¦
+       ?
 Supporting Reason / Evidence
-       │
-       ▼
+       ¦
+       ?
 Authority Determined
-       │
-       ▼
+       ¦
+       ?
 Review
-   ┌───┼────┐
-   │        │
+   +---+----+
+   ¦        ¦
 Approve   Reject
-   │        │
-   ▼        ▼
+   ¦        ¦
+   ?        ?
 Controlled  Normal /
 Exception   Alternative
 Path        Process
-   │
-   ▼
+   ¦
+   ?
 Resolved
 ```
 
@@ -4954,20 +4954,20 @@ Where configured competition requires a minimum number of responses:
 
 ```text
 Required Responses: N
-         │
-         ▼
+         ¦
+         ?
 Actual Valid Responses < N
-         │
-         ▼
+         ¦
+         ?
 Competition Exception
-         │
-    ┌────┼───────────┐
-    │    │           │
+         ¦
+    +----+-----------+
+    ¦    ¦           ¦
 Reissue  Invite     Request
          More       Exception
-         │           │
-         └─────┬─────┘
-               ▼
+         ¦           ¦
+         +-----------+
+               ?
         Authorised Decision
 ```
 
@@ -4977,16 +4977,16 @@ The architecture shall not universally require procurement cancellation merely b
 
 ## 41.5 Integration Reconciliation
 
-Cross-domain failures may occur after J01 completes a business action.
+Multi-domain failures may occur after J01 completes a business action.
 
 Example:
 
 ```text
 ApprovedSourcingOutcomeFinalised
-              │
-              ▼
+              ¦
+              ?
         Event Published
-              │
+              ¦
               X
         J04 Temporarily
           Unavailable
@@ -5014,13 +5014,13 @@ For example:
 ```text
 Approved Sourcing Outcome
         OutcomeId = X
-              │
-              ├────► Delivery Attempt 1
-              └────► Delivery Attempt 2
+              ¦
+              +----? Delivery Attempt 1
+              +----? Delivery Attempt 2
 
 J04 recognises same OutcomeId
-              │
-              ▼
+              ¦
+              ?
 One Logical Processing Result
 ```
 
@@ -5144,11 +5144,11 @@ Example:
 
 ```text
 Tender Document V1
-       │
-       ▼
+       ¦
+       ?
 Corrigendum
-       │
-       ▼
+       ¦
+       ?
 Tender Document V2
 ```
 
@@ -5164,7 +5164,7 @@ The architecture shall support document-level authorization consistent with sour
 
 ---
 
-# 44. Cross-Domain Integration
+# 44. Multi-Domain Integration
 
 ## 44.1 Integration Principle
 
@@ -5189,14 +5189,14 @@ J01 produces sourcing participation and outcome information that may contribute 
 
 ```text
 J02 Supplier
-     │
-     ▼
+     ¦
+     ?
 J01 Sourcing Participation
-     │
-     ▼
+     ¦
+     ?
 Procurement Outcome
-     │
-     └────────► J02 Performance Context
+     ¦
+     +--------? J02 Performance Context
 ```
 
 J01 shall not modify Supplier Master records directly.
@@ -5209,15 +5209,15 @@ J03 provides authorised procurement demand.
 
 ```text
 Requesting Domain
-       │
-       ▼
+       ¦
+       ?
       J03
 Purchase Requisition
-       │
-       ▼
+       ¦
+       ?
 Approved Demand
-       │
-       ▼
+       ¦
+       ?
       J01
 ```
 
@@ -5232,14 +5232,14 @@ J01 produces approved sourcing outcomes.
 ```text
 J01
 Evaluation
-   ↓
+   ?
 Recommendation
-   ↓
+   ?
 Approval
-   ↓
+   ?
 Approved Sourcing Outcome
-   │
-   ▼
+   ¦
+   ?
 J04
 Purchase Order
 ```
@@ -5256,9 +5256,9 @@ The primary lifecycle is:
 
 ```text
 J01 Sourcing
-     ↓
+     ?
 J04 Purchase Order
-     ↓
+     ?
 J05 Goods Receipt
 ```
 
@@ -5272,8 +5272,8 @@ J01 may reference J06 Item Master entries during procurement.
 
 ```text
 J06 Item
-   │
-   ▼
+   ¦
+   ?
 J01 Sourcing Line
 ```
 
@@ -5316,15 +5316,15 @@ Any authorised institutional domain may initiate procurement demand through the 
 Representative consumers may include:
 
 ```text
-Academic Operations ───────┐
-People & Workforce ────────┤
-Campus Operations ─────────┤
-Examinations ──────────────┤
-Administration ────────────┼──► J03 → J01
-Research ──────────────────┤
-Library ───────────────────┤
-Hostel ────────────────────┤
-Medical / Security ────────┘
+Academic Operations -------+
+People & Workforce --------¦
+Campus Operations ---------¦
+Examinations --------------¦
+Administration ------------+--? J03 ? J01
+Research ------------------¦
+Library -------------------¦
+Hostel --------------------¦
+Medical / Security --------+
 ```
 
 The requesting domain owns the operational reason for procurement.
@@ -5384,17 +5384,17 @@ These metrics shall support governance review without automatically asserting wr
 Possible metrics include:
 
 ```text
-Demand Approval → Sourcing Start
+Demand Approval ? Sourcing Start
 
-Sourcing Start → Publication
+Sourcing Start ? Publication
 
-Publication → Submission Close
+Publication ? Submission Close
 
-Submission Close → Evaluation Complete
+Submission Close ? Evaluation Complete
 
-Evaluation Complete → Recommendation
+Evaluation Complete ? Recommendation
 
-Recommendation → Approval
+Recommendation ? Approval
 
 Overall Procurement Sourcing Cycle Time
 ```
@@ -5535,7 +5535,7 @@ J01 shall comply with the following constraints:
 15. J01 shall support institution-configurable procurement complexity.
 16. J01 shall support multi-campus authorization where required.
 17. J01 shall support controlled procurement exceptions.
-18. J01 shall use cross-domain contracts rather than cross-domain database ownership.
+18. J01 shall use multi-domain contracts rather than multi-domain database ownership.
 
 ---
 
@@ -5677,45 +5677,45 @@ J01 architecture shall be considered complete when implementation can support th
 
 ```text
 Procurement Need
-      │
-      ▼
+      ¦
+      ?
 Approved Demand
-      │
-      ▼
+      ¦
+      ?
 Procurement Method
-      │
-      ├── Direct / Simplified
-      │
-      ├── RFQ
-      │
-      ├── RFP
-      │
-      ├── Tender
-      │
-      ├── Rate Contract
-      │
-      ├── Single Source
-      │
-      ├── Emergency
-      │
-      └── External Procurement
-      │
-      ▼
+      ¦
+      +-- Direct / Simplified
+      ¦
+      +-- RFQ
+      ¦
+      +-- RFP
+      ¦
+      +-- Tender
+      ¦
+      +-- Rate Contract
+      ¦
+      +-- Single Source
+      ¦
+      +-- Emergency
+      ¦
+      +-- External Procurement
+      ¦
+      ?
 Supplier Participation
-      │
-      ▼
+      ¦
+      ?
 Evaluation
-      │
-      ▼
+      ¦
+      ?
 Recommendation
-      │
-      ▼
+      ¦
+      ?
 Approval
-      │
-      ▼
+      ¦
+      ?
 Approved Sourcing Outcome
-      │
-      ▼
+      ¦
+      ?
 J04 Purchase Order Management
 ```
 
@@ -5750,31 +5750,29 @@ The implementation shall additionally demonstrate:
           Procurement Planning & Sourcing
 
                            OWNS
-                             │
-       ┌─────────────────────┼─────────────────────┐
-       │                     │                     │
-       ▼                     ▼                     ▼
+                             ¦
+       +---------------------+---------------------+
+       ¦                     ¦                     ¦
+       ?                     ?                     ?
  Procurement Planning    Sourcing             Evaluation
-       │                     │                     │
-       └─────────────────────┼─────────────────────┘
-                             │
-                             ▼
+       ¦                     ¦                     ¦
+       +---------------------+---------------------+
+                             ¦
+                             ?
                     Supplier Recommendation
-                             │
-                             ▼
+                             ¦
+                             ?
                    Approved Sourcing Outcome
 
                            DOES NOT OWN
-                             │
-       ┌──────────┬──────────┼──────────┬──────────┐
-       ▼          ▼          ▼          ▼          ▼
+                             ¦
+       +---------------------+---------------------+
+       ?          ?          ?          ?          ?
     Supplier   Purchase    Purchase    Budget    Inventory
      Master   Requisition   Order     /Payment    /Assets
-       │          │          │          │          │
-       ▼          ▼          ▼          ▼          ▼
+       ¦          ¦          ¦          ¦          ¦
+       ?          ?          ?          ?          ?
       J02        J03        J04      Finance    J06/J08
 ```
 
 > **J01 determines how an authorised institutional procurement requirement is sourced, evaluated, and converted into an approved supplier-selection outcome. It does not own the supplier, the originating demand, the resulting Purchase Order, the money, or the physical resource lifecycle.**
-
-

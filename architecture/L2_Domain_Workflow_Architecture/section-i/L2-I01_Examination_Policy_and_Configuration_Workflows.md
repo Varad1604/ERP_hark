@@ -58,7 +58,7 @@ This document includes:
 - Revaluation policy
 - Examination fee policy definition
 - Examination governance policies
-- Cross-domain policy dependencies
+- Multi-domain policy dependencies
 - Policy audit requirements
 
 This document excludes:
@@ -239,7 +239,7 @@ No regulation shall be hardcoded into examination workflows.
 
 ---
 
-## 4.8 Cross-Domain Collaboration
+## 4.8 Multi-Domain Collaboration
 
 Although examination policies are owned by the Examination Domain, they depend upon information owned by other domains.
 
@@ -760,7 +760,7 @@ Validate policy correctness before institutional approval.
 
 1. Draft policy is submitted for review.
 2. Institutional academic regulations are verified.
-3. Cross-domain dependencies are validated.
+3. Multi-domain dependencies are validated.
 4. Policy conflicts are identified.
 5. Required revisions are incorporated.
 6. Policy becomes eligible for approval.
@@ -906,7 +906,7 @@ Operational workflows shall not contain institution-specific business logic.
 
 ---
 
-## BR-007 Cross-Domain Ownership
+## BR-007 Multi-Domain Ownership
 
 Examination policies may reference information owned by other domains.
 
@@ -1052,7 +1052,7 @@ Policy workflows consume business events only.
 
 They do not assume ownership of external business information.
 
-# 13. Cross-Domain Interactions
+# 13. Multi-Domain Interactions
 
 The Examination Policy & Configuration Domain collaborates with multiple business domains while maintaining clear ownership boundaries.
 

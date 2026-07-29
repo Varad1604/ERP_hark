@@ -175,7 +175,7 @@ Typical responsibilities include:
 - CAPA governance
 - Institutional quality governance
 - Readiness monitoring
-- Cross-domain compliance coordination
+- Multi-domain compliance coordination
 - Institutional risk consumption where required, without assuming enterprise risk ownership
 
 ---
@@ -1112,7 +1112,7 @@ The aggregate relationship model bridges the canonical domain model and the aggr
 
 - Ownership remains with the parent aggregate unless explicitly stated as reference-only.
 - Lifecycle dependencies flow from framework to cycle to criterion to metric to evidence to assessment.
-- Reference relationships never transfer business ownership across domains.
+- Reference relationships never transfer business ownership amulti-domains.
 - Governance relationships ensure that findings, readiness outputs, compliance reviews, and SSR packages remain reviewable, approvable, and auditable within H09.
 
 ---
@@ -2146,7 +2146,7 @@ H09 consumes institutional risk information where required but is not the owner 
 
 ---
 
-# 9. Cross-Domain Integrations
+# 9. Multi-Domain Integrations
 
 The Accreditation & Compliance domain functions as an enterprise governance layer and consumes operational information from multiple domains without becoming the system of record.
 
@@ -3056,7 +3056,7 @@ AI assists by:
 - Identifying weak institutional areas across accreditation and compliance domains
 - Predicting enterprise readiness trends
 - Highlighting unresolved governance risks
-- Consolidating cross-domain quality signals into executive narratives
+- Consolidating multi-domain quality signals into executive narratives
 
 ---
 

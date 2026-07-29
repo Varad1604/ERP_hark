@@ -58,7 +58,7 @@ The scope includes:
 - Academic Version Evolution
 - Curriculum Publication
 - Curriculum Retirement
-- Cross-domain interactions
+- Multi-domain interactions
 - Workflow governance
 - Exception handling
 - Repository traceability
@@ -204,7 +204,7 @@ Every workflow shall be traceable to:
 - Repository standards
 - Architectural decisions
 - Domain ownership
-- Cross-domain interactions
+- Multi-domain interactions
 
 ---
 
@@ -308,7 +308,7 @@ Architecture shall remain consistent with:
 - Existing architectural artifacts
 - Domain ownership
 - Enterprise governance
-- Cross-domain consistency
+- Multi-domain consistency
 
 ---
 
@@ -485,7 +485,7 @@ Validation dimensions include:
 
 ---
 
-## Cross-Domain Validation
+## Multi-Domain Validation
 
 Every decision shall be evaluated for its impact on dependent domains and enterprise-wide workflows.
 
@@ -537,7 +537,7 @@ No workflow shall be analyzed in isolation.
 
 Every architectural decision must be made with a complete understanding of the repository's existing architectural landscape.
 
-This phase ensures that all subsequent architectural activities remain aligned with the institutional business vision, enterprise architecture strategy, repository governance policies, and cross-domain dependencies.
+This phase ensures that all subsequent architectural activities remain aligned with the institutional business vision, enterprise architecture strategy, repository governance policies, and multi-domain dependencies.
 
 ---
 
@@ -713,7 +713,7 @@ Examples include:
 
 ---
 
-### Cross-Domain Dependencies
+### Multi-Domain Dependencies
 
 Interactions with peer domains.
 
@@ -762,7 +762,7 @@ The architect shall:
 This phase shall produce:
 
 - Dependency matrix.
-- Cross-domain interaction baseline.
+- Multi-domain interaction baseline.
 - Ownership confirmation.
 - Repository consistency report.
 - Integration baseline.
@@ -775,7 +775,7 @@ Before progressing:
 
 - Upstream dependencies verified.
 - Downstream dependencies identified.
-- Cross-domain interactions validated.
+- Multi-domain interactions validated.
 - Ownership conflicts resolved.
 - Repository consistency confirmed.
 
@@ -894,7 +894,7 @@ Every responsibility shall satisfy the following principles:
 - Institutionally governed
 - Repository traceable
 
-Responsibilities must never overlap across domains.
+Responsibilities must never overlap amulti-domains.
 
 ---
 
@@ -955,7 +955,7 @@ Every business capability shall have exactly one owning domain.
 
 Shared ownership is prohibited.
 
-Cross-domain collaboration shall occur through defined interactions rather than shared ownership.
+Multi-domain collaboration shall occur through defined interactions rather than shared ownership.
 
 ---
 
@@ -999,7 +999,7 @@ Before completion verify:
 
 ✓ Repository alignment confirmed
 
-✓ Cross-domain conflicts resolved
+✓ Multi-domain conflicts resolved
 
 ---
 
@@ -1315,7 +1315,7 @@ Changes to approved terminology require:
 
 - Business justification.
 - Repository impact assessment.
-- Cross-domain validation.
+- Multi-domain validation.
 - Architecture review.
 - Repository approval.
 
@@ -1570,7 +1570,7 @@ Phase 3 shall be considered complete only when:
 - The Canonical Domain Model accurately represents the business.
 - Aggregate ownership has been validated.
 - Repository consistency has been confirmed.
-- Cross-domain interactions have been reviewed.
+- Multi-domain interactions have been reviewed.
 - Every modelling decision is traceable.
 
 Successful completion authorizes progression to Phase 3.5.
@@ -1670,7 +1670,7 @@ Verify consistency with:
 - Dependency Map
 - Repository Standards
 - Existing L2 Architecture
-- Cross-domain ownership
+- Multi-domain ownership
 
 ---
 
@@ -1692,7 +1692,7 @@ Certification succeeds only when:
 
 ✓ Repository consistency is maintained.
 
-✓ Cross-domain conflicts do not exist.
+✓ Multi-domain conflicts do not exist.
 
 ✓ Business invariants remain valid.
 
@@ -1909,7 +1909,7 @@ Identify:
 - Event producer.
 - Event consumers.
 - Business significance.
-- Cross-domain impact.
+- Multi-domain impact.
 
 ---
 
@@ -1923,7 +1923,7 @@ Every event shall satisfy:
 
 ✓ Aggregate ownership
 
-✓ Cross-domain validation
+✓ Multi-domain validation
 
 ✓ Traceability
 
@@ -2324,7 +2324,7 @@ Workflow orchestration coordinates business activities without violating domain 
 Orchestration shall:
 
 - Preserve aggregate autonomy.
-- Coordinate cross-domain collaboration.
+- Coordinate multi-domain collaboration.
 - Maintain workflow sequencing.
 - Ensure business consistency.
 - Preserve auditability.
@@ -2743,7 +2743,7 @@ Successful completion authorizes progression to Phase 7 — Repository Validatio
 
 ## 65.1 Purpose
 
-Repository Validation verifies that the completed architecture conforms to repository standards, enterprise architecture principles, governance requirements, and cross-domain consistency before it is accepted as a canonical repository artifact.
+Repository Validation verifies that the completed architecture conforms to repository standards, enterprise architecture principles, governance requirements, and multi-domain consistency before it is accepted as a canonical repository artifact.
 
 The objective of this phase is to ensure architectural integrity, completeness, traceability, and consistency across every level of the enterprise architecture repository.
 
@@ -2758,7 +2758,7 @@ The objectives of Repository Validation are to:
 - Verify repository compliance.
 - Validate document completeness.
 - Confirm architectural traceability.
-- Validate cross-domain consistency.
+- Validate multi-domain consistency.
 - Verify dependency integrity.
 - Confirm repository standards compliance.
 - Identify unresolved architectural issues.
@@ -2806,7 +2806,7 @@ Repository validation shall verify:
 
 - Upstream dependencies.
 - Downstream dependencies.
-- Cross-domain dependencies.
+- Multi-domain dependencies.
 - Shared business concepts.
 - Shared policies.
 - Shared workflows.
@@ -2843,7 +2843,7 @@ Before completion verify:
 
 ✓ Dependencies validated.
 
-✓ Cross-domain consistency confirmed.
+✓ Multi-domain consistency confirmed.
 
 ✓ Architectural traceability complete.
 
@@ -2902,7 +2902,7 @@ The review shall verify:
 - Architectural correctness.
 - Repository compliance.
 - Enterprise compliance.
-- Cross-domain consistency.
+- Multi-domain consistency.
 - Governance compliance.
 - Documentation completeness.
 
@@ -3276,7 +3276,7 @@ Enterprise models shall be organized into the following logical layers.
 | Domain Layer | Business ownership and responsibilities |
 | Behaviour Layer | Business behaviour and lifecycle |
 | Workflow Layer | Business process orchestration |
-| Enterprise Layer | Cross-domain collaboration |
+| Enterprise Layer | Multi-domain collaboration |
 | Repository Layer | Governance and traceability |
 
 Each layer shall remain independent while supporting downstream architectural development.
@@ -3400,7 +3400,7 @@ Relationship direction shall follow business dependency.
 
 Domain Boundary Discovery establishes the limits of business ownership.
 
-Proper boundaries ensure that responsibilities remain cohesive and prevent ownership leakage across domains.
+Proper boundaries ensure that responsibilities remain cohesive and prevent ownership leakage amulti-domains.
 
 ---
 
@@ -3511,7 +3511,7 @@ Each Aggregate shall:
 - Participate in one bounded context.
 - Expose well-defined business interactions.
 
-Cross-domain ownership is prohibited.
+Multi-domain ownership is prohibited.
 
 ---
 
@@ -4227,7 +4227,7 @@ Policy evolution shall include:
 
 ✓ Effective lifecycle documented.
 
-✓ Cross-domain impact assessed.
+✓ Multi-domain impact assessed.
 
 ---
 
@@ -4310,7 +4310,7 @@ Aggregate Behaviour
 
 Every rule shall belong to exactly one Domain.
 
-Cross-domain ownership is prohibited.
+Multi-domain ownership is prohibited.
 
 ---
 
@@ -4721,9 +4721,9 @@ Relationships shall remain consistent throughout all repository levels.
 
 ---
 
-## 96.5 Cross-Domain Relationships
+## 96.5 Multi-Domain Relationships
 
-Cross-domain relationships shall occur only when justified by legitimate business collaboration.
+Multi-domain relationships shall occur only when justified by legitimate business collaboration.
 
 Such relationships shall:
 
@@ -4744,7 +4744,7 @@ Before repository approval verify:
 
 ✓ Aggregate boundaries respected.
 
-✓ Cross-domain dependencies minimized.
+✓ Multi-domain dependencies minimized.
 
 ✓ Repository consistency maintained.
 
@@ -4926,32 +4926,32 @@ Ownership Matrix Engineering Standards, Canonical Relationship Engineering Stand
 
 - Ownership has been assigned to every architectural element.
 - Canonical relationships have been identified and validated.
-- Cross-domain dependencies have been reviewed.
+- Multi-domain dependencies have been reviewed.
 - Repository traceability has been established.
 - Impact analysis procedures have been documented.
 - Governance responsibilities have been confirmed.
 - Repository validation has successfully completed.
 
-The architecture may now proceed to **Part 11E – Cross-Domain Modelling Standards and Enterprise Modelling Validation Framework**, completing the Enterprise Modelling Standards chapter.
+The architecture may now proceed to **Part 11E – Multi-Domain Modelling Standards and Enterprise Modelling Validation Framework**, completing the Enterprise Modelling Standards chapter.
 
 ---
 ---
 
-# 98. Cross-Domain Modelling Standards
+# 98. Multi-Domain Modelling Standards
 
 ## 98.1 Purpose
 
-Cross-Domain Modelling Standards establish the canonical methodology for representing business collaboration between independent domains while preserving domain autonomy, ownership integrity, and architectural consistency.
+Multi-Domain Modelling Standards establish the canonical methodology for representing business collaboration between independent domains while preserving domain autonomy, ownership integrity, and architectural consistency.
 
 Business domains rarely operate in complete isolation. Institutional operations frequently require multiple domains to collaborate in achieving a common business objective. These collaborations shall be modelled explicitly to ensure that dependencies remain visible, governed, and maintainable throughout repository evolution.
 
-Cross-domain modelling shall never compromise the autonomy of participating domains.
+Multi-domain modelling shall never compromise the autonomy of participating domains.
 
 ---
 
 ## 98.2 Objectives
 
-Cross-Domain Modelling Standards shall:
+Multi-Domain Modelling Standards shall:
 
 - Preserve bounded contexts.
 - Prevent ownership leakage.
@@ -4966,7 +4966,7 @@ Cross-Domain Modelling Standards shall:
 
 ## 98.3 Guiding Principles
 
-Cross-domain collaboration shall comply with the following principles.
+Multi-domain collaboration shall comply with the following principles.
 
 ### Domain Autonomy
 
@@ -4986,7 +4986,7 @@ Implicit business interactions are prohibited.
 
 ### Business-Driven Communication
 
-Cross-domain interactions shall represent genuine business collaboration rather than technical convenience.
+Multi-domain interactions shall represent genuine business collaboration rather than technical convenience.
 
 ---
 
@@ -5006,7 +5006,7 @@ Unnecessary dependencies increase repository complexity and shall be avoided.
 
 ## 98.4 Collaboration Types
 
-Cross-domain collaboration may occur through the following patterns.
+Multi-domain collaboration may occur through the following patterns.
 
 ### Request Collaboration
 
@@ -5070,7 +5070,7 @@ Domains reference shared institutional information while preserving ownership.
 
 ## 98.5 Collaboration Constraints
 
-Cross-domain collaboration shall satisfy:
+Multi-domain collaboration shall satisfy:
 
 - Explicit ownership.
 - Stable business contracts.
@@ -5081,7 +5081,7 @@ Cross-domain collaboration shall satisfy:
 
 ---
 
-## 98.6 Cross-Domain Validation
+## 98.6 Multi-Domain Validation
 
 Before repository approval verify:
 
@@ -5097,7 +5097,7 @@ Before repository approval verify:
 
 ---
 
-## 98.7 Cross-Domain Anti-Patterns
+## 98.7 Multi-Domain Anti-Patterns
 
 The following represent repository defects.
 
@@ -5234,7 +5234,7 @@ Repository validation shall evaluate:
 
 - Model completeness.
 - Repository consistency.
-- Cross-domain coupling.
+- Multi-domain coupling.
 - Traceability coverage.
 - Documentation completeness.
 - Governance compliance.

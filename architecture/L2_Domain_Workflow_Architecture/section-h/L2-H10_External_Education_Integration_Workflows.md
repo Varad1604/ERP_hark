@@ -1456,7 +1456,7 @@ They only orchestrate workflow progression, compensation, timeout handling, and 
 
 ### External Enrollment Saga
 
-- Purpose: coordinate cross-domain enrollment exchange between SutraERP and an external education provider.
+- Purpose: coordinate multi-domain enrollment exchange between SutraERP and an external education provider.
 - Trigger: enrollment request approved by the owning student or academic workflow.
 - Participating aggregates: External Enrollment, External Provider, Integration Connector, Integration Configuration, Synchronization Job, and the student or academic enrollment aggregate in the owning domain.
 - Consumed Events: EnrollmentRequested, ProviderActivated, ConnectorCertified, EnrollmentValidated, StudentApprovedForExternalEnrollment.
@@ -7110,7 +7110,7 @@ Business Rule Validation
 
         ▼
 
-Cross-Domain Validation
+Multi-Domain Validation
 
         │
 
@@ -7540,11 +7540,11 @@ Resolution history is immutable.
 
 ---
 
-# 12.12 Cross-Domain Validation Rules
+# 12.12 Multi-Domain Validation Rules
 
 The External Education Integration domain never assumes ownership of business data belonging to other bounded contexts.
 
-Cross-domain references must always be validated against authoritative domains.
+Multi-domain references must always be validated against authoritative domains.
 
 | Validation | Authoritative Domain |
 |------------|---------------------|
@@ -7692,7 +7692,7 @@ Business Rule Validation
 
         ▼
 
-Cross-Domain Validation
+Multi-Domain Validation
 
         │
 
@@ -8122,11 +8122,11 @@ Resolution history is immutable.
 
 ---
 
-# 12.12 Cross-Domain Validation Rules
+# 12.12 Multi-Domain Validation Rules
 
 The External Education Integration domain never assumes ownership of business data belonging to other bounded contexts.
 
-Cross-domain references must always be validated against authoritative domains.
+Multi-domain references must always be validated against authoritative domains.
 
 | Validation | Authoritative Domain |
 |------------|---------------------|
@@ -11387,7 +11387,7 @@ The External Education Integration domain owns only integration-specific busines
 | Identity & Access | Authentication and authorization identities |
 | Document Management | Supporting document references |
 | Notification | Enterprise communication delivery |
-| Dashboard & Analytics | Cross-domain reporting and visualization |
+| Dashboard & Analytics | Multi-domain reporting and visualization |
 
 No duplication of canonical business ownership is permitted.
 
@@ -11415,7 +11415,7 @@ The domain is not responsible for academic decision-making, student lifecycle ma
 
 ---
 
-# 20.5 Cross-Domain Collaboration
+# 20.5 Multi-Domain Collaboration
 
 H10 collaborates with multiple bounded contexts while maintaining strict architectural isolation.
 

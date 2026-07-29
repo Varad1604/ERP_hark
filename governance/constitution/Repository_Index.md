@@ -23,8 +23,12 @@ Repository --> CONTRIBUTING
 Repository --> DEPENDENCY_MAP
 Repository --> CHANGELOG
 Repository --> Architecture
+Repository --> AI_CONTEXT
 Repository --> Governance
+Repository --> Prompts
 Repository --> Templates
+Repository --> Assets
+Repository --> Archive
 Repository --> Generated
 Repository --> Tools
 ```
@@ -73,7 +77,7 @@ L0["Business Vision"] --> L1["Business Domain Architecture"] --> L2["Domain Work
 - L1 Business Domain Architecture
 - L2 Domain Workflow control artifacts and present section files
 
-L3 through L6 are defined by the hierarchy but are not yet present as source documents in this workspace.
+L3 through L6 are present as placeholder folders only. They are not yet present as source architecture documents in this workspace.
 
 ---
 
@@ -111,6 +115,7 @@ Repository health should always maintain:
 - Dependency integrity
 - Ownership consistency
 - Canonical terminology
+- Level-specific validation expectations
 
 ---
 
@@ -135,6 +140,10 @@ Repository health should always maintain:
 ## Templates
 
 - Standard Documentation Templates
+
+## Validation
+
+- Architecture Level Validation Standards
 
 ---
 

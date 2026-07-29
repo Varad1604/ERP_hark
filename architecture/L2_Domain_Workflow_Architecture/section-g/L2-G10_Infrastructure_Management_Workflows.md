@@ -810,7 +810,7 @@ The Infrastructure Management Domain shall not:
 - Maintain dashboards
 - Compute KPIs
 
-Cross-domain interaction shall occur through:
+Multi-domain interaction shall occur through:
 
 - Domain Events
 - Published Service Contracts

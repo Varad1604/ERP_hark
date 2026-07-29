@@ -583,7 +583,7 @@ Recognition records SHALL be owned by H06 regardless of whether the recognition 
 
 # 8. Aggregate Ownership
 
-The Alumni Domain SHALL implement aggregate boundaries that preserve transactional consistency while minimizing cross-domain coupling.
+The Alumni Domain SHALL implement aggregate boundaries that preserve transactional consistency while minimizing multi-domain coupling.
 
 ---
 
@@ -1591,7 +1591,7 @@ All workflows SHALL comply with the following enterprise principles:
 - Canonical Data Ownership
 - Eventual Consistency
 - Loose Coupling
-- Zero Cross-Domain Data Ownership
+- Zero Multi-Domain Data Ownership
 
 Each workflow identifies:
 
@@ -4624,7 +4624,7 @@ Representative historical analytics include:
 
 ---
 
-# 22. Cross-Domain Interaction Matrix
+# 22. Multi-Domain Interaction Matrix
 
 | Domain | Interaction | Ownership |
 |---------|-------------|-----------|
@@ -4912,7 +4912,7 @@ The following checklist SHALL be used during architecture reviews, implementatio
 | Security architecture documented | ✓ |
 | Privacy controls documented | ✓ |
 | Audit requirements documented | ✓ |
-| Cross-domain dependencies documented | ✓ |
+| Multi-domain dependencies documented | ✓ |
 | Reporting requirements documented | ✓ |
 | Error handling defined | ✓ |
 | Governance responsibilities documented | ✓ |

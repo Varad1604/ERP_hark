@@ -751,7 +751,7 @@ The Charge Source Architecture exists to achieve the following objectives.
 - Separate business ownership from financial ownership.
 - Enable event-driven financial obligation creation.
 - Preserve complete business traceability.
-- Standardize cross-domain financial integration.
+- Standardize multi-domain financial integration.
 - Support future operational domains without architectural redesign.
 - Ensure every financial obligation has a verifiable business context.
 
@@ -2900,7 +2900,7 @@ The Integration Architecture exists to:
 - Preserve aggregate ownership.
 - Support independent domain evolution.
 - Enable scalable enterprise architecture.
-- Ensure consistent financial interpretation across domains.
+- Ensure consistent financial interpretation amulti-domains.
 
 ---
 
@@ -3091,7 +3091,7 @@ Equivalent business obligations shall always produce equivalent financial obliga
 
 ### Traceability Principle
 
-Every cross-domain interaction shall remain traceable.
+Every multi-domain interaction shall remain traceable.
 
 ---
 
@@ -3223,7 +3223,7 @@ The architecture exists to:
 - Preserve aggregate ownership.
 - Prevent unauthorized modification.
 - Support institutional governance.
-- Enable secure cross-domain integration.
+- Enable secure multi-domain integration.
 
 ---
 
@@ -3659,7 +3659,7 @@ Ownership boundaries are immutable.
 
 ---
 
-# 29. Cross-Domain Contracts
+# 29. Multi-Domain Contracts
 
 The Student Charge Domain participates in enterprise architecture through canonical domain contracts.
 
@@ -3748,7 +3748,7 @@ The Student Charge Domain shall satisfy the following validation criteria before
 | Configuration Architecture Defined | ✓ |
 | Exception Architecture Defined | ✓ |
 | Domain Constraints Defined | ✓ |
-| Cross-Domain Contracts Defined | ✓ |
+| Multi-Domain Contracts Defined | ✓ |
 | Repository Standards Satisfied | ✓ |
 
 ---
@@ -3768,7 +3768,7 @@ This document is ready for repository integration when the following conditions 
 | No Business Rule Logic Included | ✓ |
 | No Scenario Workflows Included | ✓ |
 | Domain Ownership Clearly Defined | ✓ |
-| Cross-Domain Dependencies Identified | ✓ |
+| Multi-Domain Dependencies Identified | ✓ |
 | Canonical Aggregates Established | ✓ |
 | Enterprise Architecture Consistent | ✓ |
 | DDD Principles Preserved | ✓ |

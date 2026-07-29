@@ -62,7 +62,7 @@ This architecture defines:
 - Reporting Governance
 - Reporting Configuration
 - CQRS Read Models
-- Cross-Domain Reporting Contracts
+- Multi-Domain Reporting Contracts
 
 ---
 
@@ -835,7 +835,7 @@ All Financial Reporting workflows shall comply with the following architectural 
 - Report publication requires successful validation.
 - Published reports remain immutable.
 - Workflow execution shall generate complete audit evidence.
-- Cross-domain collaboration occurs only through published financial facts.
+- Multi-domain collaboration occurs only through published financial facts.
 - Failed workflows publish no terminal business events.
 - Successful workflows publish exactly one business completion event.
 ---
@@ -1136,7 +1136,7 @@ The Platform Event Infrastructure owns:
 Consumers receive immutable financial reporting facts without coupling to the internal implementation of the Financial Reporting domain.
 ---
 
-# 34. Cross-Domain Integration Architecture
+# 34. Multi-Domain Integration Architecture
 
 The Financial Reporting & Analytics domain collaborates with other enterprise domains through canonical business contracts and immutable domain events.
 
@@ -1144,7 +1144,7 @@ Financial Reporting owns financial information products.
 
 Operational Finance domains own financial business facts.
 
-Cross-domain collaboration shall preserve canonical ownership at all times.
+Multi-domain collaboration shall preserve canonical ownership at all times.
 
 ---
 
@@ -1452,11 +1452,11 @@ The following architectural constraints are mandatory.
 - Integration shall preserve tenant boundaries.
 - Integration shall preserve institution boundaries.
 - Financial Reporting shall remain technology independent.
-- Cross-domain ownership shall never overlap.
+- Multi-domain ownership shall never overlap.
 
 ---
 
-# 40. Cross-Domain Architecture Summary
+# 40. Business Scenario Architecture Summary
 
 Financial Reporting serves as the institutional financial information layer.
 
@@ -1811,7 +1811,7 @@ The document defines:
 - Report lifecycle
 - Workflow architecture
 - Event model
-- Cross-domain integration
+- Multi-domain integration
 - Configuration model
 - CQRS responsibilities
 - Security responsibilities

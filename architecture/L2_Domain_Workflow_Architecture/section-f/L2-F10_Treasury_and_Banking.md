@@ -988,7 +988,7 @@ The following architectural rules are mandatory.
 - Treasury governs cash, not liabilities.
 - Treasury governs settlement execution, not settlement approval.
 - Aggregate consistency remains local.
-- Cross-domain consistency is eventual.
+- Multi-domain consistency is eventual.
 - Internal Aggregate structures remain private.
 - Business collaboration occurs through immutable Domain Events.
 # 11. Business Capabilities
@@ -3484,7 +3484,7 @@ The following principles govern every integration.
 - Treasury does not own receivables.
 - Treasury does not own accounting.
 - Treasury does not own financial periods.
-- Cross-domain consistency is eventual.
+- Multi-domain consistency is eventual.
 - Integration occurs through published business facts.
 
 ---
@@ -3780,7 +3780,7 @@ Treasury remains the canonical owner.
 
 ---
 
-# Cross-Domain Consistency
+# Multi-Domain Consistency
 
 Enterprise financial consistency follows eventual consistency principles.
 

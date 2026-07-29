@@ -1,13 +1,13 @@
 ﻿# L2-J03 — Purchase Requisition & Approval Workflows
 
-**Repository:** SutraERP  
-**Section:** J — Enterprise Resource Management  
-**Domain:** J03 — Purchase Requisition & Approval  
-**Document ID:** L2-J03  
-**Version:** 1.0  
-**Status:** Architecture Draft  
-**Classification:** Level 2 Domain Workflow Architecture  
-**Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance  
+**Repository:** SutraERP
+**Section:** J — Enterprise Resource Management
+**Domain:** J03 — Purchase Requisition & Approval
+**Document ID:** L2-J03
+**Version:** 1.0
+**Status:** Trust Certification Ready
+**Classification:** Level 2 Domain Workflow Architecture
+**Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
 **Canonical Owner:** Purchase Requisition & Approval
 
 ---
@@ -53,14 +53,21 @@ It ensures purchase demand is visible, approvable, auditable, and ready for proc
 
 J03 does not own:
 
-- Supplier Master
-- Purchase Order
-- Goods Receipt
-- Inventory Stock
-- Warehouse Operations
-- Asset Lifecycle
-- Accounting Entries
-- Vendor Payments
+| Capability | Canonical Owner |
+|---|---|
+| Supplier Master | J02 — Vendor & Supplier Management |
+| Procurement planning and sourcing | J01 — Procurement Planning & Sourcing |
+| Purchase Order | J04 — Purchase Order Management |
+| Goods Receipt | J05 — Goods Receipt, Inspection & Acceptance |
+| Inventory Stock and Warehouse Operations | J06 — Inventory & Warehouse Management |
+| Stock Movement | J07 — Stock Operations & Distribution |
+| Asset Lifecycle | J08 — Asset Lifecycle Management |
+| Accounting Entries, Budget, Invoice, Payment | Section F — Finance |
+| Authentication | L2-A03 — Authentication |
+| Authorization Policy and SoD | L2-A04 — Authorization and Policy |
+| Workflow Routing | L2-A05 — Workflow Engine |
+| Event Transport | L2-A06 — Event Infrastructure |
+| Enterprise Audit Persistence | L2-A07 — Audit Infrastructure |
 
 ---
 
@@ -106,7 +113,74 @@ J03 depends on:
 
 # 8. Completion Criteria
 
-J03 is complete when requisitions, approvals, release conditions, and integration events are defined without overlap with supplier, order, inventory, or asset ownership.
+J03 is complete when requisitions, approvals, release conditions, authorization semantics, audit evidence, tenant isolation, integration contracts, and domain events are defined without overlap with supplier, order, inventory, asset, or finance ownership.
 
+---
 
+# 9. Authorization & Segregation of Duties
 
+J03 defines requisition authorization semantics while L2-A04 owns policy evaluation.
+
+Authorization may consider:
+
+- Tenant and institution.
+- Requesting campus, department, programme, office, or operational unit.
+- Item category and controlled-resource classification.
+- Estimated value band.
+- Funding source and budget-validation reference.
+- Requesting actor role.
+- Approval authority and delegated authority.
+- Requisition lifecycle state.
+
+Representative SoD rules include:
+
+```text
+Requester != Final Approver
+Budget Validator != Requisition Requester where configured
+Emergency Requisition Approver requires explicit emergency authority
+```
+
+---
+
+# 10. Audit & Evidence
+
+J03 produces domain evidence for:
+
+- Requisition creation and submission.
+- Line addition, amendment, cancellation, or withdrawal.
+- Budget-validation request and response reference.
+- Policy-validation result.
+- Approval, rejection, return, release, and emergency override.
+- Downstream sourcing or purchase-order release reference.
+
+L2-A07 owns enterprise audit persistence, retention governance, access governance, and evidence integrity.
+
+---
+
+# 11. Tenant and Institution Isolation
+
+Every requisition command, aggregate, event, read model, and audit reference shall preserve tenant and institution context.
+
+A Requisition Identifier alone shall not authorize access.
+
+Cross-institution requisition processing shall require explicit governed authorization.
+
+---
+
+# 12. Event and Workflow Integration
+
+J03 owns the business meaning and timing of requisition events.
+
+L2-A06 owns event transport, routing, retry, replay, and event registry governance.
+
+L2-A05 owns workflow routing, approval tasks, escalation, timeout, and orchestration. J03 owns the requisition business state that results from workflow decisions.
+
+---
+
+# 13. Privacy, Retention, and Recovery
+
+J03 shall minimize copied requester, student, employee, department, and financial information by referencing canonical identifiers from owning domains.
+
+Requisition history shall remain reconstructable according to enterprise and institutional retention policy.
+
+Retried commands shall be idempotent for submission, approval, rejection, release, cancellation, and amendment.

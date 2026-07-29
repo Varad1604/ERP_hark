@@ -161,7 +161,7 @@ Unofficial or incomplete review outcomes shall not alter academic records.
 
 ---
 
-## 4.7 Cross-Domain Collaboration
+## 4.7 Multi-Domain Collaboration
 
 Revaluation & Rechecking collaborates with Examination Policy, Result Processing & Computation, Result Publication, Finance, Academic Calendar, Organisation, Person & Identity, and Platform Foundation while preserving ownership boundaries.
 
@@ -1059,7 +1059,7 @@ Consumed events initiate or influence review workflows without transferring owne
 
 ---
 
-# 13. Cross-Domain Interactions
+# 13. Multi-Domain Interactions
 
 The Revaluation & Rechecking domain collaborates with multiple business domains while preserving clear ownership boundaries.
 

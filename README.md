@@ -32,17 +32,30 @@ This repository stores and governs the architecture and planning artifacts that 
 The current repository structure is:
 
 - [architecture/](/F:/Pravaha/ERP_Planning/architecture/)
-  Authoritative architecture documents currently present in the workspace, including the L0 and L1 source documents, the L2 control artifacts, the architecture index, and migration notes. L3 through L6 are reserved as downstream levels and remain empty placeholders until their source documents are created.
+  Authoritative architecture documents currently present in the workspace, including the L0 and L1 source documents, the L2 control artifacts, the architecture index, migration notes, and placeholder folders for L3 through L6.
+- [AI_CONTEXT/](/F:/Pravaha/ERP_Planning/AI_CONTEXT/)
+  Generated and pending AI context artifacts for Sections A through J.
 - [governance/](/F:/Pravaha/ERP_Planning/governance/)
-  Repository constitution and governance volumes.
+  Repository constitution, policy, and ADR folders.
+- [prompts/](/F:/Pravaha/ERP_Planning/prompts/)
+  Reusable repository prompts for AI context and dependency contract generation.
 - [templates/](/F:/Pravaha/ERP_Planning/templates/)
   Standard templates for L1 through L6 documents.
+- [assets/](/F:/Pravaha/ERP_Planning/assets/)
+  Repository assets, diagrams, icons, images, and logos.
 - [generated/](/F:/Pravaha/ERP_Planning/generated/)
   Generated HTML presentation artifacts derived from architecture documents.
+- [archive/](/F:/Pravaha/ERP_Planning/archive/)
+  Archived repository material.
 - [tools/](/F:/Pravaha/ERP_Planning/tools/)
   Local helper scripts used for presentation and conversion support.
 
-Planned folders such as `assets/`, `archive/`, and `ADR/` are not yet present in this workspace and must not be treated as existing repository paths until they are created.
+Architecture placeholder folders currently present:
+
+- `architecture/L3_Business_Scenario_Architecture/`
+- `architecture/L4_System_Behavior_Specification/`
+- `architecture/L5_Solution_Architecture/`
+- `architecture/L6_UI_UX_Architecture/`
 
 ---
 
@@ -66,7 +79,7 @@ The dependency direction is:
 L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 ```
 
-L0 and L1 source documents currently exist in this workspace, along with the L2 control matrix and a subset of L2 section files. L3 through L6 are planned downstream levels and are not yet present as source documents.
+L0 and L1 source documents currently exist in this workspace, along with the L2 control matrix and L2 section files. L3 through L6 have placeholder folders only and are not yet present as source architecture documents.
 
 L3 Business Scenario Architecture is independent of L2 numbering. A business scenario may derive information from one or many L2 workflow documents, but it must not redefine L2 domain ownership or workflow logic.
 
@@ -154,7 +167,8 @@ Architecture documents move through these states:
 
 1. **Draft**: being authored or revised.
 2. **Review**: submitted for architectural review.
-3. **Locked**: approved and frozen as the current authoritative version.
+3. **Trust Certification Ready**: complete enough for final repository-integrity certification review, but not yet locked or merged.
+4. **Locked**: approved and frozen as the current authoritative version.
 
 Documents should not be described as merged, present, or implemented unless the corresponding file actually exists in the repository.
 
@@ -167,6 +181,10 @@ Current architecture folders follow level-prefixed names such as:
 - `L0_Business_Vision`
 - `L1_Business_Domain_Architecture`
 - `L2_Domain_Workflow_Architecture`
+- `L3_Business_Scenario_Architecture`
+- `L4_System_Behavior_Specification`
+- `L5_Solution_Architecture`
+- `L6_UI_UX_Architecture`
 
 ### Document Naming
 Documents should use stable level-oriented names that clearly identify scope.
@@ -198,7 +216,7 @@ The [templates/](/F:/Pravaha/ERP_Planning/templates/) directory currently contai
 - New architecture documents must be created from the correct template and then added to [architecture/ARCHITECTURE_INDEX.md](/F:/Pravaha/ERP_Planning/architecture/ARCHITECTURE_INDEX.md).
 - A planned folder must not be referenced as if it exists until the folder is created in the repository.
 - Downstream L3-L6 artifacts must not be indexed as present until their files are created.
-- Future Section J ownership includes Enterprise Resource Management capabilities such as vendor management, supplier management, procurement, inventory management, stock management, warehouse management, asset lifecycle management, and resource management.
+- Section J ownership includes Enterprise Resource Management capabilities such as vendor management, supplier management, procurement, inventory management, stock management, warehouse management, asset lifecycle management, and resource management.
 - Future L3 Business Scenario Architecture references must remain independent of L2 numbering and may derive from one or many L2 workflow documents.
 
 ---

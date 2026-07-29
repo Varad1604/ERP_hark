@@ -1,7 +1,16 @@
 # L2 Domain Workflow Architecture: [Workflow Name]
 
+## Template Governance
+Architectural Level: L2 - Domain Workflow Architecture
+
+Depends On: L1 - Business Domain Architecture
+
+Expected Output: domain-owned workflow, lifecycle, rule, event, entity, and dependency architecture.
+
+Downstream Reference: L3 Business Scenario Architecture.
+
 ## 1. Purpose
-How this individual domain works independently.
+Define how this individual domain works independently without redefining L1 ownership.
 
 ## 2. Domain Lifecycle
 The lifecycle of the entities in this domain.

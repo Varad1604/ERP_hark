@@ -188,7 +188,7 @@ Research Management SHALL consume faculty capacity projections from L2-E03 Facul
 
 Research Management owns only research-related aggregates and business rules.
 
-Cross-domain updates occur exclusively through published events and enterprise service contracts.
+Multi-domain updates occur exclusively through published events and enterprise service contracts.
 
 ---
 
@@ -310,7 +310,7 @@ The following ownership rules are mandatory throughout the enterprise.
 | Enterprise documents remain owned by the Enterprise Document Management Platform. |
 | Research owns only research metadata and workflow state. |
 | Research never duplicates authoritative master data. |
-| Cross-domain updates occur only through APIs or Domain Events. |
+| Multi-domain updates occur only through APIs or Domain Events. |
 
 ---
 
@@ -435,7 +435,7 @@ Research Management communicates with external domains using the following mecha
 - Workflow Engine
 - Enterprise Authorization Services
 
-Direct database access across domains is strictly prohibited.
+Direct database access amulti-domains is strictly prohibited.
 
 ---
 
@@ -991,7 +991,7 @@ The following matrix defines workflow dependencies within the Research Managemen
 
 ---
 
-## 20.1 Cross-Domain Dependencies
+## 20.1 Multi-Domain Dependencies
 
 Research workflows depend upon enterprise services provided by other bounded contexts.
 
@@ -1495,7 +1495,7 @@ The Research Proposal aggregate shall enforce the following consistency guarante
 - Every successful command produces at most one state transition.
 - Aggregate version shall increment after every successful update.
 - Concurrent modifications shall use optimistic concurrency control.
-- Cross-domain validations shall occur before aggregate persistence.
+- Multi-domain validations shall occur before aggregate persistence.
 - Cross-aggregate updates shall occur asynchronously using published domain events.
 - Proposal history shall remain immutable after lifecycle completion.
 - Every proposal shall maintain complete audit traceability from creation through closure.
@@ -1839,7 +1839,7 @@ The Research Project aggregate shall enforce the following consistency guarantee
 - Progress reports shall never overwrite historical reports.
 - Aggregate concurrency shall use optimistic locking.
 - Project closure shall be irreversible under normal operating conditions.
-- Cross-domain synchronization shall occur through published domain events only.
+- Multi-domain synchronization shall occur through published domain events only.
 
 ---
 
@@ -2110,7 +2110,7 @@ Publish FundingAllocated
 - Funding allocations shall never exceed awarded funding.
 - Utilization history is immutable.
 - Aggregate version shall increment after every successful update.
-- Cross-domain financial synchronization shall occur asynchronously through enterprise events or APIs. Finance remains the authoritative owner of accounting and posting decisions.
+- Multi-domain financial synchronization shall occur asynchronously through enterprise events or APIs. Finance remains the authoritative owner of accounting and posting decisions.
 - Grant closure permanently freezes administrative modifications while preserving read-model accessibility.
 
 # 28. Workflow Specifications — Ethics Management
@@ -2386,7 +2386,7 @@ Publish EthicsApplicationSubmitted
 - Approval validity shall never overlap for the same approval version.
 - Renewal creates a new approval version while preserving previous versions.
 - Aggregate version increments after every successful update.
-- Cross-domain synchronization occurs through domain events only.
+- Multi-domain synchronization occurs through domain events only.
 - Historical ethics decisions shall never be modified.
 
 ---
@@ -3083,7 +3083,7 @@ All workflows operate on the **Collaboration Aggregate**.
 - Agreement history remains immutable.
 - Activity history shall never be deleted.
 - Aggregate version increments after successful updates.
-- Cross-domain synchronization occurs through enterprise events.
+- Multi-domain synchronization occurs through enterprise events.
 - Completed collaborations become immutable.
 - Historical collaboration data remains permanently queryable.
 
@@ -4536,7 +4536,7 @@ Metrics are generated asynchronously through event-driven processing.
 - Student master data is owned by Student Lifecycle.
 - Authentication and authorization are owned by Identity & Access Management.
 - Dashboards consume CQRS read models only.
-- Cross-domain communication occurs through immutable domain events.
+- Multi-domain communication occurs through immutable domain events.
 - External systems are never updated synchronously unless explicitly required by institutional policy.
 - Aggregate boundaries shall never be violated by direct database access.
 - Every state mutation shall occur only through validated commands.

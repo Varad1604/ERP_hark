@@ -2283,7 +2283,7 @@ Exception history shall remain permanently available.
 
 ---
 
-# 26. Cross-Domain Contracts
+# 26. Multi-Domain Contracts
 
 ## Upstream Domains
 
@@ -2358,7 +2358,7 @@ Downstream domains consume Payment information without assuming ownership.
 | Configuration Architecture | ✓ |
 | Exception Architecture | ✓ |
 | Domain Constraints Defined | ✓ |
-| Cross-Domain Contracts Defined | ✓ |
+| Multi-Domain Contracts Defined | ✓ |
 | Repository Standards Satisfied | ✓ |
 
 ---
@@ -2379,7 +2379,7 @@ Downstream domains consume Payment information without assuming ownership.
 | Event-Driven Architecture Preserved | ✓ |
 | Configuration-Driven Architecture | ✓ |
 | Bounded Context Preserved | ✓ |
-| Cross-Domain Dependencies Defined | ✓ |
+| Multi-Domain Dependencies Defined | ✓ |
 | Ready for L3 Decomposition | ✓ |
 | Ready for Repository Merge | ✓ |
 

@@ -24,6 +24,7 @@
 | SutraERP L0 Business Vision | Dhruv | Locked |
 | SutraERP L1 Business Domain Architecture | Dhruv | Locked |
 | DEPENDENCY_MAP | Dhruv | Locked |
+| Architecture Level Validation Standards | Lead Architect | Active |
 | L2 Domain Workflow Matrix | Dhruv | Active |
 | Architecture Index | Dhruv | Active |
 
@@ -170,9 +171,9 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 | L2-F09 | Financial Period & Closing | Chetan | Draft |
 | L2-F10 | Treasury & Banking | Chetan | Draft |
 | L2-F11 | Scholarship & Financial Aid | Chetan | Draft |
-| L2-F12 | Asset Management Workflows | Chetan | Draft |
+| L2-F12 | Asset Financial Accounting Workflows | Chetan | Draft |
 | L2-F13 | Financial Reporting & Analytics Workflows | Chetan | Draft |
-| L2-F14 | Procurement & Supply Chain Workflows | Chetan | Draft |
+| L2-F14 | Procurement Finance Consumption Workflows | Chetan | Draft |
 
 **Section Total:** 15 Documents
 
@@ -268,17 +269,17 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-J00 | Enterprise Resource Management Architecture & Governance | Chetan | Draft |
-| L2-J01 | Procurement Planning & Sourcing Workflows | Chetan | Draft |
-| L2-J02 | Vendor & Supplier Management Workflows | Chetan | Draft |
-| L2-J03 | Purchase Requisition & Approval Workflows | Chetan | Draft |
-| L2-J04 | Purchase Order Management | Chetan | Draft |
-| L2-J05 | Goods Receipt, Inspection & Acceptance | Chetan | Draft |
-| L2-J06 | Inventory & Warehouse Management | Chetan | Draft |
-| L2-J07 | Stock Operations & Distribution | Chetan | Draft |
-| L2-J08 | Asset Lifecycle Management | Chetan | Draft |
-| L2-J09 | Physical Verification, Audit & Reconciliation | Chetan | Draft |
-| L2-J10 | Disposal, Scrap & Write-Off | Chetan | Draft |
+| L2-J00 | Enterprise Resource Management Architecture & Governance | Chetan | Trust Certification Ready |
+| L2-J01 | Procurement Planning & Sourcing Workflows | Chetan | Trust Certification Ready |
+| L2-J02 | Vendor & Supplier Management Workflows | Chetan | Trust Certification Ready |
+| L2-J03 | Purchase Requisition & Approval Workflows | Chetan | Trust Certification Ready |
+| L2-J04 | Purchase Order Management | Chetan | Trust Certification Ready |
+| L2-J05 | Goods Receipt, Inspection & Acceptance | Chetan | Trust Certification Ready |
+| L2-J06 | Inventory & Warehouse Management | Chetan | Trust Certification Ready |
+| L2-J07 | Stock Operations & Distribution | Chetan | Trust Certification Ready |
+| L2-J08 | Asset Lifecycle Management | Chetan | Trust Certification Ready |
+| L2-J09 | Physical Verification, Audit & Reconciliation | Chetan | Trust Certification Ready |
+| L2-J10 | Disposal, Scrap & Write-Off | Chetan | Trust Certification Ready |
 
 **Section Total:** 11 Documents
 
@@ -286,7 +287,7 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 # Future L3-L6 Architecture Placeholders
 
-> These are level placeholders only. No L3, L4, L5, or L6 source documents are present in this workspace yet.
+> These are level placeholders only. Placeholder README files are present to preserve folder structure. No L3, L4, L5, or L6 source architecture documents are present in this workspace yet.
 
 | Level | Future Artifact Type | Indexing Rule |
 |-------|----------------------|---------------|
@@ -337,6 +338,7 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 |--------|---------|
 | Draft | Under development |
 | Review | Under architecture review |
+| Trust Certification Ready | Complete and certification-ready, pending final lock decision |
 | Architecture Approved | Approved by architecture review, not yet locked |
 | Approved Baseline | Approved baseline state pending broader freeze controls |
 | Architecture Baseline | Baseline architecture state used for controlled reference |
@@ -347,16 +349,9 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 > Status values in this repository are intentional and exact. Do not collapse them into a single generic state when updating index rows or review controls.
 
 ---
-    
+
 **Last Updated:** July 2026
 
 **Repository:** SutraERP
 
 **Maintained By:** Dhruv
-
-
-
-
-
-
-

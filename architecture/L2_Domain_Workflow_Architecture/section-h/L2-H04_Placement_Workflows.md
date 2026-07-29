@@ -3207,7 +3207,7 @@ The Placement domain maintains optimized read models to support query performanc
 
 The Placement Management domain participates in the enterprise event ecosystem by consuming authoritative information from upstream domains and publishing placement-related business events for downstream consumers.
 
-The domain never directly modifies data owned by other bounded contexts. All cross-domain interactions occur through enterprise APIs, commands, read models, or published events.
+The domain never directly modifies data owned by other bounded contexts. All multi-domain interactions occur through enterprise APIs, commands, read models, or published events.
 
 ---
 

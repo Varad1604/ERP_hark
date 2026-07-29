@@ -1382,7 +1382,7 @@ Scheduling engines may evolve without changing business semantics.
 
 ---
 
-# 4.13 Cross-Domain Responsibilities
+# 4.13 Multi-Domain Responsibilities
 
 D03 collaborates with multiple enterprise domains.
 
@@ -1593,7 +1593,7 @@ Examples include:
 - Publication
 - Revision
 
-These meanings shall not vary across domains.
+These meanings shall not vary amulti-domains.
 
 ---
 
@@ -1922,7 +1922,7 @@ The D03 domain shall adhere to the following boundary principles:
 - Every business capability shall have exactly one authoritative owner.
 - Master data ownership shall never be duplicated.
 - Scheduling ownership shall remain exclusive to D03.
-- Cross-domain collaboration shall occur only through canonical APIs and domain events.
+- Multi-domain collaboration shall occur only through canonical APIs and domain events.
 - Business responsibilities shall remain clearly separated.
 
 ---
@@ -2055,7 +2055,7 @@ These remain the responsibility of their respective enterprise domains.
 
 # 6.9 Boundary Interactions
 
-Cross-domain interaction shall occur through:
+Multi-domain interaction shall occur through:
 
 - Canonical REST APIs
 - Domain Events
@@ -2165,7 +2165,7 @@ Security policies shall comply with enterprise governance.
 
 A single business transaction shall never span multiple domains.
 
-Cross-domain consistency shall be achieved through:
+Multi-domain consistency shall be achieved through:
 
 - Domain Events
 - Eventual Consistency
@@ -2182,7 +2182,7 @@ The following architectural constraints shall always hold.
 - No shared database ownership.
 - No duplicate business logic.
 - No duplicate scheduling engine.
-- No cross-domain entity modification.
+- No multi-domain entity modification.
 - No hidden dependencies.
 - No implicit ownership.
 - No undocumented integrations.
@@ -2555,7 +2555,7 @@ The following constraints govern domain interactions.
 - Communication shall be versioned.
 - Published events shall remain immutable.
 - Reference data shall remain authoritative.
-- Cross-domain consistency shall be maintained through published contracts.
+- Multi-domain consistency shall be maintained through published contracts.
 
 ---
 
@@ -6396,7 +6396,7 @@ The data model establishes:
 - Referential integrity.
 - Lifecycle ownership.
 - Business identity.
-- Cross-domain references.
+- Multi-domain references.
 
 The data model is technology-independent and defines business semantics rather than database implementation.
 
@@ -6701,7 +6701,7 @@ Allocation      Allocation
 
 ---
 
-# 17.18 Cross-Domain References
+# 17.18 Multi-Domain References
 
 | Referenced Entity | Source Domain |
 |-------------------|---------------|
@@ -7185,7 +7185,7 @@ The integration architecture shall satisfy the following principles.
 | Asynchronous Events | Business notifications |
 | Batch Exchange | Analytics and reporting |
 | Reference Data Lookup | Master data consumption |
-| Workflow Invocation | Cross-domain orchestration |
+| Workflow Invocation | Multi-domain orchestration |
 
 ---
 
@@ -7378,7 +7378,7 @@ Integration reliability shall satisfy the following requirements.
 
 ---
 
-# 19.15 Cross-Domain Ownership Rules
+# 19.15 Multi-Domain Ownership Rules
 
 The following ownership boundaries shall be maintained.
 
@@ -7393,7 +7393,7 @@ The following ownership boundaries shall be maintained.
 | Faculty Assignment | D02 |
 | Timetable | D03 |
 
-Ownership shall never be duplicated across domains.
+Ownership shall never be duplicated amulti-domains.
 
 ---
 
@@ -7405,7 +7405,7 @@ The following constraints are mandatory.
 - No direct table access.
 - No synchronous dependency on downstream consumers.
 - No consumer-specific payload customization.
-- No business logic leakage across domains.
+- No business logic leakage amulti-domains.
 - No bypass of published APIs or events.
 
 ---
@@ -8487,7 +8487,7 @@ The reporting framework shall satisfy the following principles.
 - Business-oriented reporting.
 - Near real-time operational visibility where appropriate.
 - Historical trend analysis.
-- Cross-domain consistency.
+- Multi-domain consistency.
 - Immutable reporting data.
 - Role-based access.
 - Enterprise-wide interoperability.
@@ -8984,7 +8984,7 @@ Trade-offs have been evaluated against enterprise architectural objectives.
 The following constraints are mandatory.
 
 - No shared database integration.
-- No cross-domain business logic duplication.
+- No multi-domain business logic duplication.
 - No modification of published timetable versions.
 - No bypass of governance workflows.
 - No undocumented APIs.
@@ -9101,7 +9101,7 @@ The appendix serves as the authoritative reference for:
 
 - Terminology.
 - Acronyms.
-- Cross-domain references.
+- Multi-domain references.
 - Enterprise dependencies.
 - Architectural conventions.
 - Document metadata.
@@ -9152,7 +9152,7 @@ The appendix is normative unless explicitly identified as informational.
 
 ---
 
-# 25.4 Cross-Domain Dependencies
+# 25.4 Multi-Domain Dependencies
 
 The Timetable domain depends upon the following enterprise domains.
 
@@ -9289,7 +9289,7 @@ Future enhancements to the D03 domain shall:
 - Preserve domain event semantics.
 - Maintain immutable version history.
 - Respect enterprise governance processes.
-- Avoid cross-domain business logic duplication.
+- Avoid multi-domain business logic duplication.
 - Preserve backward compatibility unless an approved major version change is introduced.
 
 All significant changes shall be documented through Architecture Decision Records (ADRs).
@@ -9304,7 +9304,7 @@ This specification shall be interpreted in conjunction with the following enterp
 |-----------|---------|
 | Enterprise Architecture Constitution | Architectural governance |
 | Canonical AI Context | Enterprise semantic alignment |
-| Dependency Map | Cross-domain dependencies |
+| Dependency Map | Multi-domain dependencies |
 | Architecture Index | Enterprise architecture navigation |
 | Domain Workflow Matrix | Workflow ownership and relationships |
 | Architecture Decision Records | Architectural rationale |

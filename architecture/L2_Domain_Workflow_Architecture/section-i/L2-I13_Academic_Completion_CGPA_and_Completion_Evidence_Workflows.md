@@ -70,7 +70,7 @@ The scope includes:
 - Academic Completion Status
 - Completion Audit
 - Completion Evidence Domain Events
-- Cross-domain Integration
+- Multi-domain Integration
 
 ---
 
@@ -1405,13 +1405,13 @@ Updates completion evidence policy evaluation rules where applicable.
 
 ---
 
-# 13. Cross-Domain Interactions
+# 13. Multi-Domain Interactions
 
 ## 13.1 Overview
 
 The Academic Completion domain collaborates with multiple enterprise domains while preserving strict ownership boundaries.
 
-No cross-domain interaction transfers ownership.
+No multi-domain interaction transfers ownership.
 
 ---
 

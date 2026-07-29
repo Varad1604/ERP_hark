@@ -12,7 +12,7 @@
 | Bounded Context | Disposal, Scrap & Write-Off |
 | Architectural Style | Domain-Driven Design (DDD), CQRS, Event-Driven Architecture |
 | Primary Aggregate | Disposal & Write-off Case |
-| Status | Architecture Frozen |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 
 ---
@@ -67,7 +67,7 @@ The architecture follows:
 - Immutable business evidence
 - Segregation of duties
 - Canonical ownership
-- Reliable cross-domain integration
+- Reliable multi-domain integration
 - Institution-aware multi-tenant isolation
 
 ---
@@ -102,63 +102,63 @@ J10 governs the institutional decision and execution process required to remove 
 
 ```text
 Inventory & Warehouse Management (J06)
-          │
-          │ Inventory / Item Reference
-          ▼
+          ¦
+          ¦ Inventory / Item Reference
+          ?
 Disposal Requirement Identified
-          │
-          ├──────────────► Inventory Audit (J09)
-          │                Audit Finding / Variance
-          │
-          ├──────────────► Asset Lifecycle Management (J08)
-          │                Asset Retirement Requirement
-          │
-          ▼
+          ¦
+          +--------------? Inventory Audit (J09)
+          ¦                Audit Finding / Variance
+          ¦
+          +--------------? Asset Lifecycle Management (J08)
+          ¦                Asset Retirement Requirement
+          ¦
+          ?
 Disposal / Write-off Case
-          │
-          ▼
+          ¦
+          ?
 Eligibility Assessment
-          │
-          ▼
+          ¦
+          ?
 Condition / Evidence Review
-          │
-          ▼
+          ¦
+          ?
 Valuation Reference
-          │
-          ▼
+          ¦
+          ?
 Committee / Authority Review
-          │
-          ▼
+          ¦
+          ?
 Approval
-          │
-          ▼
+          ¦
+          ?
 Approved Disposal Method
-          │
-          ▼
+          ¦
+          ?
 Physical Disposal / Write-off Execution
-          │
-          ▼
+          ¦
+          ?
 Execution Evidence
-          │
-          ▼
+          ¦
+          ?
 Inventory Adjustment Request
-          │
-          ▼
+          ¦
+          ?
 Inventory & Warehouse Management (J06)
-          │
-          ▼
+          ¦
+          ?
 Financial / Asset Consequences
-          │
-          ▼
+          ¦
+          ?
 Reconciliation
-          │
-          ▼
+          ¦
+          ?
 Case Completion & Closure
 ```
 
 J10 records why disposal/write-off was proposed, how it was authorized, how it was executed, and what institutional evidence proves the outcome.
 
-J02 remains responsible for authoritative inventory-state modification.
+J06 remains responsible for authoritative inventory-state modification.
 
 ---
 
@@ -238,9 +238,9 @@ The following capabilities remain outside J10:
 | Inventory Audit | Physical Verification, Audit & Reconciliation (J09) |
 | Physical Count Evidence | Physical Verification, Audit & Reconciliation (J09) |
 | Audit Variance | Physical Verification, Audit & Reconciliation (J09) |
-| Purchase Order | Purchase Order Management (J06) |
+| Purchase Order | Purchase Order Management (J04) |
 | Supplier Goods Receipt | Goods Receipt, Inspection & Acceptance (J05) |
-| Vendor Master | Vendor & Contract Management (J04) |
+| Vendor Master | Vendor & Supplier Management (J02) |
 | General Ledger | Finance |
 | Financial Journal Posting | Finance |
 | Payment Processing | Finance |
@@ -394,9 +394,9 @@ Witness Confirmation
 Disposal Certificate
 ```
 
-J10 then requests the appropriate inventory-state adjustment from J02.
+J10 then requests the appropriate inventory-state adjustment from J06.
 
-J02 remains responsible for changing the authoritative inventory quantity/state.
+J06 remains responsible for changing the authoritative inventory quantity/state.
 
 ---
 
@@ -417,7 +417,7 @@ Disposal Outcome
 ```
 
 ```text
-J03
+J08
 =
 Canonical Asset Lifecycle
 +
@@ -426,7 +426,7 @@ Asset Retirement State
 Asset Disposal Linkage
 ```
 
-J10 shall provide disposal outcome facts to J03 through governed integration.
+J10 shall provide disposal outcome facts to J08 through governed integration.
 
 ---
 
@@ -450,13 +450,13 @@ The relationship is:
 
 ```text
 Inventory Audit (J09)
-        │
-        │ Audit Finding / Recommendation
-        ▼
+        ¦
+        ¦ Audit Finding / Recommendation
+        ?
 Disposal, Scrap & Write-Off (J10)
-        │
-        │ Governed Disposal / Write-off Process
-        ▼
+        ¦
+        ¦ Governed Disposal / Write-off Process
+        ?
 Approved Outcome
 ```
 
@@ -529,7 +529,7 @@ Examples may include:
 
 A Write-off Request is not itself an inventory adjustment.
 
-J02 executes the canonical inventory adjustment after the required J10 authorization.
+J06 executes the canonical inventory adjustment after the required J10 authorization.
 
 ---
 
@@ -661,7 +661,7 @@ Write-off represents the governed institutional authorization that inventory sha
 
 Write-off authorization is a J10 business fact.
 
-Canonical quantity adjustment remains a J02 responsibility.
+Canonical quantity adjustment remains a J06 responsibility.
 
 Financial write-off accounting remains a Finance responsibility.
 
@@ -717,20 +717,20 @@ Execution may involve:
 
 ```text
 Approved Inventory
-        │
-        ▼
+        ¦
+        ?
 Physical Verification
-        │
-        ▼
+        ¦
+        ?
 Authorized Handover / Destruction
-        │
-        ▼
+        ¦
+        ?
 Witness Confirmation
-        │
-        ▼
+        ¦
+        ?
 Supporting Evidence
-        │
-        ▼
+        ¦
+        ?
 Execution Confirmation
 ```
 
@@ -881,7 +881,7 @@ The aggregate model shall ensure that:
 - Execution cannot exceed approved scope.
 - Historical approvals remain immutable.
 - Physical disposal evidence remains immutable.
-- Cross-domain ownership boundaries remain intact.
+- Multi-domain ownership boundaries remain intact.
 - External aggregates are never directly modified.
 - Concurrent operations cannot silently corrupt disposal state.
 - Every material lifecycle transition remains traceable.
@@ -1177,43 +1177,43 @@ The principal aggregate relationships within J10 are:
 
 ```text
                      Disposal & Write-off Case
-                               │
-          ┌────────────────────┼─────────────────────┐
-          │                    │                     │
-          ▼                    ▼                     ▼
+                               ¦
+          +--------------------+---------------------+
+          ¦                    ¦                     ¦
+          ?                    ?                     ?
  Disposal Case Line    Disposal Assessment    Committee Review
-          │                    │                     │
-          └────────────────────┼─────────────────────┘
-                               │
-                               ▼
+          ¦                    ¦                     ¦
+          +--------------------+---------------------+
+                               ¦
+                               ?
                     Disposal Authorization
-                               │
-                               ▼
+                               ¦
+                               ?
                      Disposal Execution
-                               │
-                               ▼
+                               ¦
+                               ?
                   Disposal Reconciliation
-                               │
-                               ▼
+                               ¦
+                               ?
                      Completion / Closure
 ```
 
-Cross-domain relationships are:
+Multi-domain relationships are:
 
 ```text
 Inventory & Warehouse Management (J06)
-        │
-        │ Inventory Facts / References
-        ▼
+        ¦
+        ¦ Inventory Facts / References
+        ?
 Disposal, Scrap & Write-Off (J10)
-        │
-        ├──────────────► Asset Lifecycle Management (J08)
-        │                Asset-linked Disposal Outcome
-        │
-        ├──────────────► Finance
-        │                Approved Financial Consequence Facts
-        │
-        └──────────────► Inventory & Warehouse Management (J06)
+        ¦
+        +--------------? Asset Lifecycle Management (J08)
+        ¦                Asset-linked Disposal Outcome
+        ¦
+        +--------------? Finance
+        ¦                Approved Financial Consequence Facts
+        ¦
+        +--------------? Inventory & Warehouse Management (J06)
                          Inventory Adjustment Request
 ```
 
@@ -1221,17 +1221,17 @@ Where disposal originates from an inventory audit:
 
 ```text
 Physical Verification, Audit & Reconciliation (J09)
-        │
-        │ Audit Finding /
-        │ Write-off Recommendation
-        ▼
+        ¦
+        ¦ Audit Finding /
+        ¦ Write-off Recommendation
+        ?
 Disposal, Scrap & Write-Off (J10)
-        │
-        ▼
+        ¦
+        ?
 Governed Disposal / Write-off
 ```
 
-J10 shall never directly modify persistence owned by J02, J03, J09, Finance, or another bounded context.
+J10 shall never directly modify persistence owned by J06, J08, J09, Finance, or another bounded context.
 
 ---
 
@@ -1241,74 +1241,74 @@ The canonical lifecycle is:
 
 ```text
 Draft
-  │
-  ▼
+  ¦
+  ?
 Submitted
-  │
-  ▼
+  ¦
+  ?
 Under Assessment
-  │
-  ▼
+  ¦
+  ?
 Assessed
-  │
-  ▼
+  ¦
+  ?
 Recommended
-  │
-  ├────────────► Further Investigation
-  │                    │
-  │                    ▼
-  │               Re-Assessed
-  │                    │
-  └────────────────────┘
-  │
-  ▼
+  ¦
+  +------------? Further Investigation
+  ¦                    ¦
+  ¦                    ?
+  ¦               Re-Assessed
+  ¦                    ¦
+  +--------------------+
+  ¦
+  ?
 Committee Review
-  │
-  ▼
+  ¦
+  ?
 Approval Pending
-  │
-  ├────────────► Returned
-  │                  │
-  │                  ▼
-  │              Corrected
-  │                  │
-  │                  ▼
-  │              Resubmitted
-  │
-  ├────────────► Rejected
-  │
-  ▼
+  ¦
+  +------------? Returned
+  ¦                  ¦
+  ¦                  ?
+  ¦              Corrected
+  ¦                  ¦
+  ¦                  ?
+  ¦              Resubmitted
+  ¦
+  +------------? Rejected
+  ¦
+  ?
 Approved
-  │
-  ▼
+  ¦
+  ?
 Authorized
-  │
-  ▼
+  ¦
+  ?
 Ready for Execution
-  │
-  ├────────────► Partially Executed
-  │                    │
-  │                    ▼
-  │              Awaiting Balance
-  │                    │
-  └────────────────────┘
-  │
-  ▼
+  ¦
+  +------------? Partially Executed
+  ¦                    ¦
+  ¦                    ?
+  ¦              Awaiting Balance
+  ¦                    ¦
+  +--------------------+
+  ¦
+  ?
 Executed
-  │
-  ▼
+  ¦
+  ?
 Reconciliation Pending
-  │
-  ▼
+  ¦
+  ?
 Reconciled
-  │
-  ▼
+  ¦
+  ?
 Completed
-  │
-  ▼
+  ¦
+  ?
 Closed
-  │
-  ▼
+  ¦
+  ?
 Archived
 ```
 
@@ -1336,7 +1336,7 @@ Committee Review may be skipped where institutional policy does not require comm
 | Partially Executed | Only part of the approved disposal has been completed |
 | Awaiting Balance | Approved quantity remains to be executed or otherwise resolved |
 | Executed | Required physical disposal/write-off execution has completed |
-| Reconciliation Pending | Cross-domain consequences remain to be reconciled |
+| Reconciliation Pending | Multi-domain consequences remain to be reconciled |
 | Reconciled | Required inventory/asset/financial references have been reconciled |
 | Completed | Business processing is complete |
 | Closed | Operational processing has formally ended |
@@ -1424,29 +1424,29 @@ The Disposal / Write-off Request Workflow initiates the governed process for inv
 
 ```text
 Disposal Requirement Identified
-          │
-          ▼
+          ¦
+          ?
 Identify Inventory
-          │
-          ▼
+          ¦
+          ?
 Select Disposal / Write-off Reason
-          │
-          ▼
+          ¦
+          ?
 Record Proposed Quantity
-          │
-          ▼
+          ¦
+          ?
 Reference Location / Custodian
-          │
-          ▼
+          ¦
+          ?
 Attach Supporting Evidence
-          │
-          ▼
+          ¦
+          ?
 Reference Audit / Asset Finding
-          │
-          ▼
+          ¦
+          ?
 Validate Request
-          │
-          ▼
+          ¦
+          ?
 Save Draft
 ```
 
@@ -1479,7 +1479,7 @@ A request should capture:
 ## Request Rules
 
 - Every request shall belong to one tenant and institution.
-- Inventory references shall be validated against J02.
+- Inventory references shall be validated against J06.
 - Proposed quantity shall be greater than zero.
 - Asset linkage shall be preserved where applicable.
 - An audit-originated request shall preserve the J09 finding reference.
@@ -1501,30 +1501,30 @@ The Eligibility & Condition Assessment Workflow determines whether proposed inve
 
 ```text
 Submitted Case
-      │
-      ▼
+      ¦
+      ?
 Review Inventory Reference
-      │
-      ▼
+      ¦
+      ?
 Inspect / Review Condition
-      │
-      ▼
+      ¦
+      ?
 Review Supporting Evidence
-      │
-      ▼
+      ¦
+      ?
 Check Repair / Reuse Feasibility
-      │
-      ▼
+      ¦
+      ?
 Check Audit / Asset References
-      │
-      ▼
+      ¦
+      ?
 Determine Eligibility
-      │
-  ┌───┴──────────────┐
-  │                  │
+      ¦
+  +------------------+
+  ¦                  ¦
 Eligible         Not Eligible
-  │                  │
-  ▼                  ▼
+  ¦                  ¦
+  ?                  ?
 Recommend         Reject /
 Treatment         Return to Use
 ```
@@ -1559,8 +1559,8 @@ Assessment may consider:
 - Assessment evidence shall identify its source.
 - Finalized assessment evidence shall be immutable.
 - Changes require supplemental or revised assessment evidence.
-- Assessment shall not directly alter J02 inventory.
-- Assessment shall not directly retire J03 assets.
+- Assessment shall not directly alter J06 inventory.
+- Assessment shall not directly retire J08 assets.
 - Eligibility shall not automatically constitute disposal authorization.
 
 ---
@@ -1577,26 +1577,26 @@ The Disposal Recommendation Workflow determines the proposed treatment for eligi
 
 ```text
 Assessment Complete
-        │
-        ▼
+        ¦
+        ?
 Review Eligibility
-        │
-        ▼
+        ¦
+        ?
 Review Condition
-        │
-        ▼
+        ¦
+        ?
 Review Institutional Need
-        │
-        ▼
+        ¦
+        ?
 Review Disposal Options
-        │
-        ▼
+        ¦
+        ?
 Select Recommendation
-        │
-        ▼
+        ¦
+        ?
 Record Rationale
-        │
-        ▼
+        ¦
+        ?
 Submit for Committee /
 Approval Processing
 ```
@@ -1649,24 +1649,24 @@ J10 does not become the canonical valuation engine.
 
 ```text
 Eligible Disposal Lines
-        │
-        ▼
+        ¦
+        ?
 Request Valuation References
-        │
-        ▼
+        ¦
+        ?
 Receive Authoritative Values
-        │
-        ▼
+        ¦
+        ?
 Determine Materiality
-        │
-        ▼
+        ¦
+        ?
 Determine Required Governance
-        │
-        ├────────► Standard Approval
-        │
-        ├────────► Committee Review
-        │
-        └────────► Higher Authority Review
+        ¦
+        +--------? Standard Approval
+        ¦
+        +--------? Committee Review
+        ¦
+        +--------? Higher Authority Review
 ```
 
 ---
@@ -1710,29 +1710,29 @@ The Disposal Committee Review Workflow provides formal collective governance whe
 
 ```text
 Case Recommended
-       │
-       ▼
+       ¦
+       ?
 Determine Committee Requirement
-       │
-   ┌───┴───────────┐
-   │               │
+       ¦
+   +---------------+
+   ¦               ¦
 Not Required    Required
-   │               │
-   │               ▼
-   │        Schedule / Reference Review
-   │               │
-   │               ▼
-   │          Validate Quorum
-   │               │
-   │               ▼
-   │          Review Evidence
-   │               │
-   │               ▼
-   │        Record Recommendation
-   │               │
-   └───────────────┘
-           │
-           ▼
+   ¦               ¦
+   ¦               ?
+   ¦        Schedule / Reference Review
+   ¦               ¦
+   ¦               ?
+   ¦          Validate Quorum
+   ¦               ¦
+   ¦               ?
+   ¦          Review Evidence
+   ¦               ¦
+   ¦               ?
+   ¦        Record Recommendation
+   ¦               ¦
+   +---------------+
+           ¦
+           ?
      Approval Processing
 ```
 
@@ -1786,30 +1786,30 @@ Workflow routing remains owned by the enterprise Workflow Engine.
 
 ```text
 Recommended Case
-       │
-       ▼
+       ¦
+       ?
 Validate Approval Preconditions
-       │
-       ▼
+       ¦
+       ?
 Submit to Workflow Engine
-       │
-       ├────────► Returned
-       │              │
-       │              ▼
-       │          Corrected
-       │              │
-       │              ▼
-       │         Resubmitted
-       │
-       ├────────► Rejected
-       │
-       ▼
+       ¦
+       +--------? Returned
+       ¦              ¦
+       ¦              ?
+       ¦          Corrected
+       ¦              ¦
+       ¦              ?
+       ¦         Resubmitted
+       ¦
+       +--------? Rejected
+       ¦
+       ?
 Approved
-       │
-       ▼
+       ¦
+       ?
 Create Disposal Authorization
-       │
-       ▼
+       ¦
+       ?
 Ready for Execution
 ```
 
@@ -1857,32 +1857,32 @@ The Physical Disposal Execution Workflow records actual removal of approved inve
 
 ```text
 Authorized Disposal
-        │
-        ▼
+        ¦
+        ?
 Prepare Execution
-        │
-        ▼
+        ¦
+        ?
 Verify Inventory / Quantity
-        │
-        ▼
+        ¦
+        ?
 Verify Authorization
-        │
-        ▼
+        ¦
+        ?
 Verify Disposal Method
-        │
-        ▼
+        ¦
+        ?
 Record Recipient / Witnesses
-        │
-        ▼
+        ¦
+        ?
 Execute Disposal
-        │
-        ▼
+        ¦
+        ?
 Capture Evidence
-        │
-        ▼
+        ¦
+        ?
 Confirm Execution
-        │
-        ▼
+        ¦
+        ?
 Publish DisposalExecuted
 ```
 
@@ -1923,7 +1923,7 @@ Execution may capture:
 - Execution evidence shall preserve actor and timestamp.
 - Disposal method shall match authorization.
 - Physical execution shall generate the appropriate domain event.
-- J10 shall not directly reduce J02 stock quantities.
+- J10 shall not directly reduce J06 stock quantities.
 
 ---
 
@@ -1939,26 +1939,26 @@ The Destruction Workflow governs disposal where inventory must be physically des
 
 ```text
 Authorized Destruction
-        │
-        ▼
+        ¦
+        ?
 Verify Items
-        │
-        ▼
+        ¦
+        ?
 Verify Quantities
-        │
-        ▼
+        ¦
+        ?
 Verify Required Witnesses
-        │
-        ▼
+        ¦
+        ?
 Perform Destruction
-        │
-        ▼
+        ¦
+        ?
 Record Destruction Evidence
-        │
-        ▼
+        ¦
+        ?
 Generate / Reference Certificate
-        │
-        ▼
+        ¦
+        ?
 Confirm Destruction
 ```
 
@@ -2006,26 +2006,26 @@ The Scrap Disposal Workflow governs inventory authorized for disposal as scrap.
 
 ```text
 Scrap Authorization
-       │
-       ▼
+       ¦
+       ?
 Identify Scrap Inventory
-       │
-       ▼
+       ¦
+       ?
 Verify Quantity / Weight
-       │
-       ▼
+       ¦
+       ?
 Identify Approved Recipient
-       │
-       ▼
+       ¦
+       ?
 Record Handover
-       │
-       ▼
+       ¦
+       ?
 Record Scrap Outcome
-       │
-       ▼
+       ¦
+       ?
 Capture Evidence
-       │
-       ▼
+       ¦
+       ?
 Confirm Execution
 ```
 
@@ -2073,29 +2073,29 @@ J10 governs the disposal outcome but does not become a procurement, auction-plat
 
 ```text
 Sale / Auction Authorization
-          │
-          ▼
+          ¦
+          ?
 Reference Approved Disposal Process
-          │
-          ▼
+          ¦
+          ?
 Record Successful Outcome
-          │
-          ▼
+          ¦
+          ?
 Record Recipient / Buyer Reference
-          │
-          ▼
+          ¦
+          ?
 Record Approved Quantity
-          │
-          ▼
+          ¦
+          ?
 Record Sale / Auction Reference
-          │
-          ▼
+          ¦
+          ?
 Confirm Physical Handover
-          │
-          ▼
+          ¦
+          ?
 Capture Evidence
-          │
-          ▼
+          ¦
+          ?
 Publish Disposal Execution Facts
 ```
 
@@ -2141,26 +2141,26 @@ The Donation & External Transfer-out Workflow governs authorized transfer of ins
 
 ```text
 Donation / Transfer-out Approval
-            │
-            ▼
+            ¦
+            ?
 Identify Recipient
-            │
-            ▼
+            ¦
+            ?
 Verify Authorized Inventory
-            │
-            ▼
+            ¦
+            ?
 Prepare Handover
-            │
-            ▼
+            ¦
+            ?
 Record Recipient Acknowledgement
-            │
-            ▼
+            ¦
+            ?
 Confirm Handover
-            │
-            ▼
+            ¦
+            ?
 Capture Evidence
-            │
-            ▼
+            ¦
+            ?
 Confirm Disposal Execution
 ```
 
@@ -2189,32 +2189,32 @@ The Inventory Loss & Write-off Workflow governs cases where inventory cannot be 
 
 ```text
 Loss / Missing Inventory Identified
-           │
-           ▼
+           ¦
+           ?
 Reference Audit / Incident Evidence
-           │
-           ▼
+           ¦
+           ?
 Validate Investigation Requirement
-           │
-           ▼
+           ¦
+           ?
 Complete Required Investigation
-           │
-           ▼
+           ¦
+           ?
 Assess Write-off Eligibility
-           │
-           ▼
+           ¦
+           ?
 Committee / Authority Review
-           │
-           ▼
+           ¦
+           ?
 Approve Write-off
-           │
-           ▼
+           ¦
+           ?
 Create Write-off Authorization
-           │
-           ▼
+           ¦
+           ?
 Request J06 Inventory Adjustment
-           │
-           ▼
+           ¦
+           ?
 Reconcile Outcome
 ```
 
@@ -2242,7 +2242,7 @@ Write-off may include:
 - J09 audit findings may initiate or support the case but do not replace J10 authorization.
 - Required investigation shall complete before write-off where policy mandates it.
 - J10 authorizes the business write-off outcome.
-- J02 executes the authoritative inventory adjustment.
+- J06 executes the authoritative inventory adjustment.
 - Finance owns financial recognition.
 - Historical loss evidence shall remain immutable.
 
@@ -2252,7 +2252,7 @@ Write-off may include:
 
 ## Purpose
 
-The Inventory Adjustment Integration Workflow communicates an approved disposal/write-off outcome to J02 for canonical inventory processing.
+The Inventory Adjustment Integration Workflow communicates an approved disposal/write-off outcome to J06 for canonical inventory processing.
 
 ---
 
@@ -2260,31 +2260,31 @@ The Inventory Adjustment Integration Workflow communicates an approved disposal/
 
 ```text
 Disposal / Write-off Executed
-          │
-          ▼
+          ¦
+          ?
 Prepare Adjustment Request
-          │
-          ▼
+          ¦
+          ?
 Validate Execution / Authorization
-          │
-          ▼
-Send Request to J02
-          │
-          ▼
-J02 Validates Inventory State
-          │
-     ┌────┴────────┐
-     │             │
+          ¦
+          ?
+Send Request to J06
+          ¦
+          ?
+J06 Validates Inventory State
+          ¦
+     +-------------+
+     ¦             ¦
  Accepted       Rejected
-     │             │
-     ▼             ▼
+     ¦             ¦
+     ?             ?
 Inventory       Exception /
 Adjusted        Reconciliation
-     │
-     ▼
+     ¦
+     ?
 Return Adjustment Reference
-     │
-     ▼
+     ¦
+     ?
 Record in J10
 ```
 
@@ -2292,13 +2292,13 @@ Record in J10
 
 ## Integration Rules
 
-- J10 shall never directly update J02 storage.
+- J10 shall never directly update J06 storage.
 - Adjustment requests shall identify the disposal/write-off case.
 - Adjustment requests shall identify applicable inventory items and quantities.
 - Requests shall be idempotent.
-- J02 shall return authoritative processing status.
+- J06 shall return authoritative processing status.
 - J10 shall preserve the returned adjustment reference.
-- J02 rejection shall not erase the approved disposal fact.
+- J06 rejection shall not erase the approved disposal fact.
 - Rejected or uncertain adjustment outcomes shall enter reconciliation/exception processing.
 
 ---
@@ -2307,7 +2307,7 @@ Record in J10
 
 ## Purpose
 
-The Asset Retirement Integration Workflow communicates applicable disposal facts to J03 when disposed inventory is linked to a canonical institutional asset.
+The Asset Retirement Integration Workflow communicates applicable disposal facts to J08 when disposed inventory is linked to a canonical institutional asset.
 
 ---
 
@@ -2315,26 +2315,26 @@ The Asset Retirement Integration Workflow communicates applicable disposal facts
 
 ```text
 Asset-linked Disposal Executed
-          │
-          ▼
+          ¦
+          ?
 Identify Asset References
-          │
-          ▼
+          ¦
+          ?
 Publish Disposal Outcome
-          │
-          ▼
+          ¦
+          ?
 Asset Lifecycle Management (J08)
-          │
-          ▼
+          ¦
+          ?
 Validate Asset State
-          │
-          ▼
+          ¦
+          ?
 Process Asset Retirement
-          │
-          ▼
+          ¦
+          ?
 Return Asset Outcome Reference
-          │
-          ▼
+          ¦
+          ?
 Record Reconciliation Reference
 ```
 
@@ -2343,10 +2343,10 @@ Record Reconciliation Reference
 ## Rules
 
 - J10 shall not directly change asset lifecycle state.
-- J03 determines valid asset retirement processing.
+- J08 determines valid asset retirement processing.
 - Asset retirement failure shall not erase physical disposal evidence.
 - Exceptions shall be reconciled.
-- J10 shall preserve the applicable J03 reference.
+- J10 shall preserve the applicable J08 reference.
 - Asset and inventory consequences may complete independently and shall be reconciled before final closure where required.
 
 ---
@@ -2382,20 +2382,20 @@ Depending on institutional policy and the disposed item, consequences may includ
 
 ```text
 J10 Disposal / Write-off Fact
-          │
-          ▼
+          ¦
+          ?
 Finance Integration Contract
-          │
-          ▼
+          ¦
+          ?
 Finance Domain
-          │
-          ▼
+          ¦
+          ?
 Accounting Decision / Posting
-          │
-          ▼
+          ¦
+          ?
 Financial Reference
-          │
-          ▼
+          ¦
+          ?
 J10 Reconciliation
 ```
 
@@ -2423,27 +2423,27 @@ The Disposal Reconciliation Workflow confirms that the approved institutional di
 
 ```text
 Execution Complete
-       │
-       ▼
+       ¦
+       ?
 Check Approved vs Executed Quantity
-       │
-       ▼
-Check J02 Adjustment
-       │
-       ▼
-Check J03 Outcome if Applicable
-       │
-       ▼
+       ¦
+       ?
+Check J06 Adjustment
+       ¦
+       ?
+Check J08 Outcome if Applicable
+       ¦
+       ?
 Check Finance Reference if Required
-       │
-       ▼
+       ¦
+       ?
 Check Evidence Completeness
-       │
-   ┌───┴─────────────┐
-   │                 │
+       ¦
+   +-----------------+
+   ¦                 ¦
 Complete         Exception
-   │                 │
-   ▼                 ▼
+   ¦                 ¦
+   ?                 ?
 Reconciled      Resolution Required
 ```
 
@@ -2458,8 +2458,8 @@ J10 may reconcile:
 - Quantity approved
 - Quantity physically executed
 - Quantity written off
-- J02 adjusted quantity
-- J03 asset outcome
+- J06 adjusted quantity
+- J08 asset outcome
 - Finance processing reference
 - Recipient handover
 - Required certificates
@@ -2499,12 +2499,12 @@ The Disposal Exception Workflow governs abnormal conditions preventing normal di
 - Required witness unavailable
 - Certificate missing
 - Execution quantity exceeds approval
-- J02 adjustment rejected
+- J06 adjustment rejected
 - Asset retirement rejected
 - Financial processing rejected
 - Duplicate execution attempt
 - Evidence incomplete
-- Cross-domain reference mismatch
+- Multi-domain reference mismatch
 
 ---
 
@@ -2512,28 +2512,28 @@ The Disposal Exception Workflow governs abnormal conditions preventing normal di
 
 ```text
 Exception Detected
-       │
-       ▼
+       ¦
+       ?
 Classify Exception
-       │
-       ▼
+       ¦
+       ?
 Preserve Current State
-       │
-       ▼
+       ¦
+       ?
 Record Evidence
-       │
-       ▼
+       ¦
+       ?
 Determine Recoverability
-       │
-   ┌───┴────────────┐
-   │                │
+       ¦
+   +----------------+
+   ¦                ¦
 Recoverable     Non-Recoverable
-   │                │
-   ▼                ▼
+   ¦                ¦
+   ?                ?
 Correct / Retry   Escalate /
-   │             Governed Resolution
-   ▼                │
-Resume              ▼
+   ¦             Governed Resolution
+   ?                ¦
+Resume              ?
 Processing      Record Outcome
 ```
 
@@ -2562,24 +2562,24 @@ The Disposal Cancellation Workflow provides controlled termination of a case bef
 
 ```text
 Eligible Case
-     │
-     ▼
+     ¦
+     ?
 Request Cancellation
-     │
-     ▼
+     ¦
+     ?
 Validate Lifecycle
-     │
-     ▼
+     ¦
+     ?
 Validate Authorization
-     │
-     ▼
+     ¦
+     ?
 Check Execution History
-     │
-  ┌──┴────────────┐
-  │               │
+     ¦
+  +---------------+
+  ¦               ¦
 None          Execution Exists
-  │               │
-  ▼               ▼
+  ¦               ¦
+  ?               ?
 Cancel         Reject Normal
 Case           Cancellation
 ```
@@ -2593,7 +2593,7 @@ Case           Cancellation
 - Unused authorization may be revoked or cancelled according to policy.
 - Cancellation reason shall be mandatory.
 - Cancellation evidence shall be immutable.
-- Cancellation shall not automatically modify J02, J03, or Finance records.
+- Cancellation shall not automatically modify J06, J08, or Finance records.
 
 ---
 
@@ -2629,20 +2629,20 @@ A case may be completed only when:
 
 ```text
 Reconciliation Complete
-        │
-        ▼
+        ¦
+        ?
 Validate Completion Preconditions
-        │
-        ▼
+        ¦
+        ?
 Complete Case
-        │
-        ▼
+        ¦
+        ?
 Publish DisposalCaseCompleted
-        │
-        ▼
+        ¦
+        ?
 Close Case
-        │
-        ▼
+        ¦
+        ?
 Archive
 ```
 
@@ -2690,11 +2690,11 @@ Archive
 For each Disposal Case Line:
 
 - Proposed Quantity > 0.
-- Eligible Quantity ≥ 0.
-- Approved Quantity ≥ 0.
-- Executed Quantity ≥ 0.
-- Rejected Quantity ≥ 0.
-- Pending Quantity ≥ 0.
+- Eligible Quantity = 0.
+- Approved Quantity = 0.
+- Executed Quantity = 0.
+- Rejected Quantity = 0.
+- Pending Quantity = 0.
 - Executed Quantity shall not exceed authorized quantity.
 - Quantities shall remain reconcilable throughout the lifecycle.
 
@@ -2875,7 +2875,7 @@ Commands shall execute only after authentication, authorization, validation, and
 | RecordLossEvidence | Record loss/missing evidence |
 | RecordInvestigationReference | Record governed investigation reference |
 | ApproveInventoryWriteOff | Record approved write-off outcome |
-| RequestInventoryWriteOffAdjustment | Request J02 adjustment |
+| RequestInventoryWriteOffAdjustment | Request J06 adjustment |
 
 ---
 
@@ -2883,8 +2883,8 @@ Commands shall execute only after authentication, authorization, validation, and
 
 | Command | Purpose |
 |---|---|
-| RecordInventoryAdjustmentReference | Record J02 processing reference |
-| RecordAssetRetirementReference | Record J03 processing reference |
+| RecordInventoryAdjustmentReference | Record J06 processing reference |
+| RecordAssetRetirementReference | Record J08 processing reference |
 | RecordFinancialProcessingReference | Record Finance reference |
 | RecordDisposalReconciliationException | Record reconciliation exception |
 | ResolveDisposalReconciliationException | Resolve reconciliation exception |
@@ -3067,20 +3067,20 @@ The logical sequence is:
 
 ```text
 Command
-   │
-   ▼
+   ¦
+   ?
 Validate Aggregate
-   │
-   ▼
+   ¦
+   ?
 Commit State
-   │
-   ▼
+   ¦
+   ?
 Persist Event for Publication
-   │
-   ▼
+   ¦
+   ?
 Publish Event
-   │
-   ▼
+   ¦
+   ?
 Consumer Processing
 ```
 
@@ -3183,7 +3183,7 @@ Read models shall not permit modification of immutable evidence.
 
 ---
 
-# 38. Cross-Domain Integration Contracts
+# 38. Multi-Domain Integration Contracts
 
 J10 integrates with other SutraERP bounded contexts only through governed contracts.
 
@@ -3206,7 +3206,7 @@ J10 publishes/provides:
 - Approved write-off facts
 - Inventory adjustment requests
 
-J02 remains authoritative for inventory state.
+J06 remains authoritative for inventory state.
 
 ---
 
@@ -3226,7 +3226,7 @@ J10 provides:
 - Disposal method
 - Execution evidence reference
 
-J03 remains authoritative for asset lifecycle state.
+J08 remains authoritative for asset lifecycle state.
 
 ---
 
@@ -3309,32 +3309,32 @@ Enterprise audit infrastructure owns canonical audit persistence, retention gove
 
 # 39. Integration Failure Handling
 
-Cross-domain failures shall not corrupt committed J10 business facts.
+Multi-domain failures shall not corrupt committed J10 business facts.
 
 Example:
 
 ```text
 Physical Disposal Confirmed
-          │
-          ▼
+          ¦
+          ?
 J10 Commit Successful
-          │
-          ▼
+          ¦
+          ?
 Inventory Adjustment Request
-          │
-          ▼
-J02 Temporarily Unavailable
-          │
-          ▼
+          ¦
+          ?
+J06 Temporarily Unavailable
+          ¦
+          ?
 Retry / Exception Processing
-          │
-          ▼
+          ¦
+          ?
 Reconciliation Pending
 ```
 
-J10 shall not reverse confirmed physical disposal merely because J02 is temporarily unavailable.
+J10 shall not reverse confirmed physical disposal merely because J06 is temporarily unavailable.
 
-Similarly, a Finance or J03 failure shall become a reconciliation concern rather than rewriting historical disposal evidence.
+Similarly, a Finance or J08 failure shall become a reconciliation concern rather than rewriting historical disposal evidence.
 
 ---
 
@@ -3604,7 +3604,7 @@ J10 shall expose operational visibility sufficient for authorized operators to d
 
 ## 45.1 Correlation & Traceability
 
-Material cross-domain interactions shall preserve:
+Material multi-domain interactions shall preserve:
 
 | Attribute | Purpose |
 |---|---|
@@ -3617,7 +3617,7 @@ Material cross-domain interactions shall preserve:
 | Asset Reference | Links asset context where applicable |
 | Authorization Reference | Links approved execution scope |
 | Execution Reference | Links physical disposal evidence |
-| Adjustment Reference | Links J02 processing |
+| Adjustment Reference | Links J06 processing |
 | Event ID | Supports event deduplication |
 | Aggregate Version | Supports ordering/concurrency |
 
@@ -3632,8 +3632,8 @@ Alert conditions may include:
 - Execution overdue
 - Disposal quantity mismatch
 - Missing mandatory evidence
-- J02 adjustment failure
-- J03 retirement failure
+- J06 adjustment failure
+- J08 retirement failure
 - Finance processing failure
 - Reconciliation backlog
 - Duplicate execution attempt
@@ -3691,22 +3691,22 @@ Only recoverable technical failures shall be automatically retried.
 
 ```text
 Failure
-   │
-   ├────────► Recoverable
-   │              │
-   │              ▼
-   │          Retry Policy
-   │              │
-   │       ┌──────┴──────┐
-   │       │             │
-   │    Success       Exhausted
-   │       │             │
-   │       ▼             ▼
-   │    Continue      Exception
-   │
-   └────────► Business Failure
-                  │
-                  ▼
+   ¦
+   +--------? Recoverable
+   ¦              ¦
+   ¦              ?
+   ¦          Retry Policy
+   ¦              ¦
+   ¦       +-------------+
+   ¦       ¦             ¦
+   ¦    Success       Exhausted
+   ¦       ¦             ¦
+   ¦       ?             ?
+   ¦    Continue      Exception
+   ¦
+   +--------? Business Failure
+                  ¦
+                  ?
              No Blind Retry
 ```
 
@@ -3761,7 +3761,7 @@ Configuration shall not weaken mandatory canonical ownership boundaries.
 
 **Decision:** J10 owns disposal/write-off lifecycle, authorization, execution evidence, and reconciliation state.
 
-J02 remains authoritative for inventory quantities.
+J06 remains authoritative for inventory quantities.
 
 **Rationale:** Disposal governance and inventory accounting are separate consistency boundaries.
 
@@ -3771,7 +3771,7 @@ J02 remains authoritative for inventory quantities.
 
 **Decision:** Confirmation of physical disposal does not directly modify canonical inventory balances.
 
-**Rationale:** J10 records physical/business execution while J02 controls inventory state.
+**Rationale:** J10 records physical/business execution while J06 controls inventory state.
 
 ---
 
@@ -3791,11 +3791,11 @@ J02 remains authoritative for inventory quantities.
 
 ---
 
-### ADR-J10-005 — Asset Retirement Remains Owned by J03
+### ADR-J10-005 — Asset Retirement Remains Owned by J08
 
 **Decision:** J10 publishes asset-linked disposal facts but does not directly retire canonical assets.
 
-**Rationale:** Asset lifecycle integrity remains within J03.
+**Rationale:** Asset lifecycle integrity remains within J08.
 
 ---
 
@@ -3823,7 +3823,7 @@ J02 remains authoritative for inventory quantities.
 
 ---
 
-### ADR-J10-009 — Reconciliation Is Required for Cross-Domain Completion
+### ADR-J10-009 — Reconciliation Is Required for Multi-Domain Completion
 
 **Decision:** Physical execution alone does not necessarily complete a disposal case.
 
@@ -3845,8 +3845,8 @@ L2-J10 shall be considered architecturally complete when:
 
 - Disposal/write-off cases possess canonical J10 identity.
 - Disposal lines preserve inventory references and quantities.
-- J02 remains authoritative for inventory balances.
-- J03 remains authoritative for asset lifecycle.
+- J06 remains authoritative for inventory balances.
+- J08 remains authoritative for asset lifecycle.
 - J09 remains authoritative for inventory audit findings.
 - Finance remains authoritative for accounting.
 - Eligibility assessment is explicitly modeled.
@@ -3861,10 +3861,10 @@ L2-J10 shall be considered architecturally complete when:
 - Sale/auction disposal preserves appropriate references.
 - Donation and external transfer-out are governed.
 - Loss/write-off processing requires sufficient evidence.
-- Inventory adjustment occurs through J02.
-- Asset retirement occurs through J03.
+- Inventory adjustment occurs through J06.
+- Asset retirement occurs through J08.
 - Financial consequences occur through Finance.
-- Cross-domain outcomes are reconciled.
+- Multi-domain outcomes are reconciled.
 - Exceptions cannot silently disappear.
 - Segregation of duties can be enforced.
 - Commands support appropriate idempotency.
@@ -3897,37 +3897,37 @@ J10 governs:
 - External transfer-out
 - Inventory loss write-off
 - Disposal evidence
-- Cross-domain reconciliation
+- Multi-domain reconciliation
 - Disposal completion and closure
 
 The architecture preserves the fundamental ownership separation:
 
 ```text
 Inventory / Audit / Asset Requirement
-              │
-              ▼
+              ¦
+              ?
      Disposal, Scrap & Write-Off (J10)
-              │
-              │ Assessment
-              │ Recommendation
-              │ Approval
-              │ Authorization
-              ▼
+              ¦
+              ¦ Assessment
+              ¦ Recommendation
+              ¦ Approval
+              ¦ Authorization
+              ?
        Disposal Execution
-              │
-       ┌──────┼───────────┐
-       │      │           │
-       ▼      ▼           ▼
-      J02    J03       Finance
+              ¦
+       +------+-----------+
+       ¦      ¦           ¦
+       ?      ?           ?
+      J06    J08       Finance
    Inventory Asset     Accounting
     State   Lifecycle
-       │      │           │
-       └──────┼───────────┘
-              │
-              ▼
+       ¦      ¦           ¦
+       +------+-----------+
+              ¦
+              ?
         Reconciliation
-              │
-              ▼
+              ¦
+              ?
        Completion / Closure
 ```
 
@@ -3935,11 +3935,11 @@ J10 therefore answers:
 
 > **Why was institutional inventory disposed of or written off, who authorized that decision, what exactly was executed, and what evidence proves the final outcome?**
 
-J02 answers:
+J06 answers:
 
 > **What is the authoritative inventory state after the resulting inventory transaction?**
 
-J03 answers:
+J08 answers:
 
 > **What is the authoritative lifecycle state of any associated institutional asset?**
 
@@ -3956,10 +3956,3 @@ This separation prevents duplicate systems of record while providing a complete,
 ---
 
 **End of L2-J10 — Disposal, Scrap & Write-Off**
-
-
-
-
-
-
-

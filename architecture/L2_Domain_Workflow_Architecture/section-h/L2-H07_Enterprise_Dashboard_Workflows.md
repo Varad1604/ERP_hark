@@ -318,7 +318,7 @@ The Enterprise Dashboard domain shall be considered successful when:
 - Dashboard rendering remains resilient under partial failures.
 - Authorization is consistently enforced.
 - Dashboard evolution remains backward compatible.
-- Cross-domain composition remains loosely coupled.
+- Multi-domain composition remains loosely coupled.
 - Enterprise scalability is preserved.
 - Dashboard governance remains fully auditable.
 
@@ -3361,7 +3361,7 @@ Every request shall carry:
 - Tenant Context
 - Institution Context
 
-Cross-domain tracing shall use the same Correlation ID throughout the request lifecycle.
+Multi-domain tracing shall use the same Correlation ID throughout the request lifecycle.
 
 ---
 

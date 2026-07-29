@@ -1,12 +1,12 @@
 ﻿# L2-J00 — Enterprise Resource Management Architecture & Governance
 
-**Repository:** SutraERP  
-**Section:** J — Enterprise Resource Management  
-**Domain:** J00 — Enterprise Resource Management Architecture & Governance  
-**Document ID:** L2-J00  
-**Version:** 1.0  
-**Status:** Architecture Draft  
-**Classification:** Level 2 Section Architecture  
+**Repository:** SutraERP
+**Section:** J — Enterprise Resource Management
+**Domain:** J00 — Enterprise Resource Management Architecture & Governance
+**Document ID:** L2-J00
+**Version:** 1.0
+**Status:** Trust Certification Ready
+**Classification:** Level 2 Section Architecture
 **Owner:** Enterprise Resource Management
 
 ---
@@ -24,7 +24,7 @@
 9. Enterprise Resource Lifecycle
 10. Canonical Ownership Model
 11. Domain Responsibility Matrix
-12. Cross-Domain Boundaries
+12. Multi-Domain Boundaries
 13. Enterprise Integration Model
 14. Procurement Architecture
 15. Supplier & Vendor Architecture
@@ -41,7 +41,7 @@
 26. Query & Read Model Catalogue
 27. Domain Event Catalogue
 28. Consumed Event Catalogue
-29. Cross-Domain Event Matrix
+29. Multi-Domain Event Matrix
 30. Business Rules & Invariants
 31. Authorization & Segregation of Duties
 32. Configuration Architecture
@@ -127,32 +127,32 @@ Enterprise Resource Management is a peer enterprise section within SutraERP.
 ```text
                          SutraERP
 
-                            │
-        ┌───────────────────┼───────────────────┐
-        │                   │                   │
-        ▼                   ▼                   ▼
+                            ¦
+        +-------------------+-------------------+
+        ¦                   ¦                   ¦
+        ?                   ?                   ?
 
    Enterprise           Institutional       Operational
    Foundation             Domains             Domains
 
-        │                   │                   │
-        └───────────────────┼───────────────────┘
-                            │
-                            ▼
+        ¦                   ¦                   ¦
+        +-------------------+-------------------+
+                            ¦
+                            ?
 
              J — Enterprise Resource Management
 
-                            │
-          ┌─────────────────┼─────────────────┐
-          │                 │                 │
-          ▼                 ▼                 ▼
+                            ¦
+          +-----------------+-----------------+
+          ¦                 ¦                 ¦
+          ?                 ?                 ?
 
      Procurement         Inventory          Assets
 
-          │                 │                 │
-          └─────────────────┼─────────────────┘
-                            │
-                            ▼
+          ¦                 ¦                 ¦
+          +-----------------+-----------------+
+                            ¦
+                            ?
 
                 Enterprise Resource Services
 ```
@@ -242,12 +242,12 @@ For example:
 
 ```text
 Employee
-   │
-   │ reference
-   ▼
+   ¦
+   ¦ reference
+   ?
 Asset Assignment
-   │
-   ▼
+   ¦
+   ?
 Laptop / Equipment / Institutional Resource
 ```
 
@@ -267,17 +267,17 @@ Example:
 
 ```text
 Laboratory Requirement
-        │
-        ▼
+        ¦
+        ?
 Material Request
-        │
-        ▼
+        ¦
+        ?
 Inventory Availability
        / \
       /   \
 Available  Unavailable
-   │           │
-   ▼           ▼
+   ¦           ¦
+   ?           ?
 Stock Issue   Procurement
 ```
 
@@ -554,12 +554,12 @@ For example:
 
 ```text
 G08 Housekeeping
-       │
-       │ Cleaning Material Requirement
-       ▼
+       ¦
+       ¦ Cleaning Material Requirement
+       ?
 J07 Stock Operations
-       │
-       ▼
+       ¦
+       ?
 J06 Inventory
 ```
 
@@ -599,7 +599,7 @@ The system shall support institutions that currently perform significant resourc
 
 ## 7.6 Event-Driven Integration
 
-Cross-domain communication shall use published business contracts and domain events.
+Multi-domain communication shall use published business contracts and domain events.
 
 Direct modification of another domain's canonical data is prohibited.
 
@@ -634,17 +634,17 @@ Inventory and asset architecture shall support:
 
 ```text
 Institution
-    │
-    ├── Campus A
-    │      ├── Central Store
-    │      └── Department Store
-    │
-    ├── Campus B
-    │      ├── Central Store
-    │      └── Laboratory Store
-    │
-    └── Campus C
-           └── Medical Store
+    ¦
+    +-- Campus A
+    ¦      +-- Central Store
+    ¦      +-- Department Store
+    ¦
+    +-- Campus B
+    ¦      +-- Central Store
+    ¦      +-- Laboratory Store
+    ¦
+    +-- Campus C
+           +-- Medical Store
 ```
 
 Inter-campus movement shall be treated as an auditable resource transaction.
@@ -657,17 +657,17 @@ The architecture shall permit institutions to separate responsibilities such as:
 
 ```text
 Requester
-    ↓
+    ?
 Approver
-    ↓
+    ?
 Procurement Officer
-    ↓
+    ?
 Receiver
-    ↓
+    ?
 Inspector
-    ↓
+    ?
 Store Officer
-    ↓
+    ?
 Finance
 ```
 
@@ -685,21 +685,21 @@ A resource may be:
 
 ```text
 Requested
-    ↓
+    ?
 Procured
-    ↓
+    ?
 Received
-    ↓
+    ?
 Stored
-    ↓
+    ?
 Issued / Assigned
-    ↓
+    ?
 Used / Maintained
-    ↓
+    ?
 Verified
-    ↓
+    ?
 Returned / Retired
-    ↓
+    ?
 Disposed
 ```
 
@@ -722,7 +722,7 @@ The decomposition prevents Procurement, Inventory, Assets, Finance, and operatio
 
 | Domain | Name | Primary Responsibility |
 |---|---|---|
-| J00 | Enterprise Resource Management Architecture & Governance | Section architecture, ownership, governance, cross-domain rules |
+| J00 | Enterprise Resource Management Architecture & Governance | Section architecture, ownership, governance, multi-domain rules |
 | J01 | Procurement Planning & Sourcing | Procurement strategy, sourcing, RFQ/RFP/tender and supplier selection |
 | J02 | Vendor & Supplier Management | Supplier master, qualification, status, performance and contract references |
 | J03 | Purchase Requisition & Approval | Purchase demand, requisitions, approval and budget-validation coordination |
@@ -745,7 +745,7 @@ J00 owns:
 - Section-Level Architecture
 - Canonical Ownership Rules
 - Resource Governance Principles
-- Cross-Domain Integration Standards
+- Multi-Domain Integration Standards
 - Section-Level Business Invariants
 - Resource Classification Standards
 - Governance Review
@@ -919,20 +919,20 @@ The canonical flow is:
 
 ```text
 Purchase Order
-      │
-      ▼
+      ¦
+      ?
 Supplier Delivery
-      │
-      ▼
+      ¦
+      ?
 Goods Receipt
-      │
-      ▼
+      ¦
+      ?
 Inspection
-   ┌──┴──┐
-   │     │
+   +-----+
+   ¦     ¦
 Accept Reject
-   │     │
-   ▼     ▼
+   ¦     ¦
+   ?     ?
 Stock / Asset    Supplier Return
 ```
 
@@ -975,11 +975,11 @@ An institution may configure:
 Formal Model
 
 Warehouse
-   ↓
+   ?
 Storage Location
-   ↓
+   ?
 Bin
-   ↓
+   ?
 Stock
 ```
 
@@ -989,7 +989,7 @@ or:
 Simple Model
 
 Campus / Department Store
-          ↓
+          ?
          Stock
 ```
 
@@ -1021,8 +1021,8 @@ The separation is:
 ```text
 J07
 Business reason and movement operation
-                │
-                ▼
+                ¦
+                ?
 J06
 Canonical stock consequence
 ```
@@ -1031,14 +1031,14 @@ For example:
 
 ```text
 Housekeeping Material Request
-            │
-            ▼
+            ¦
+            ?
       Stock Reservation
-            │
-            ▼
+            ¦
+            ?
         Stock Issue
-            │
-            ▼
+            ¦
+            ?
        J06 Stock Ledger
 ```
 
@@ -1089,9 +1089,9 @@ Finance owns the **financial accounting lifecycle**.
 ```text
                Asset
 
-          ┌──────┴──────┐
-          │             │
-          ▼             ▼
+          +-------------+
+          ¦             ¦
+          ?             ?
 
      J08 Operational    Finance
         Lifecycle      Accounting
@@ -1132,20 +1132,20 @@ A discrepancy shall follow an auditable process:
 
 ```text
 Physical Verification
-        │
-        ▼
+        ¦
+        ?
 Variance Detected
-        │
-        ▼
+        ¦
+        ?
 Investigation
-        │
-        ▼
+        ¦
+        ?
 Reconciliation Decision
-        │
-        ▼
+        ¦
+        ?
 Approved Adjustment
-        │
-        ▼
+        ¦
+        ?
 J06 Stock Ledger
 ```
 
@@ -1197,53 +1197,53 @@ Section J governs the enterprise physical-resource lifecycle.
 
 ```text
 Requirement Identified
-        │
-        ▼
+        ¦
+        ?
 Availability Determined
       /     \
      /       \
 Available   Not Available
-   │             │
-   ▼             ▼
+   ¦             ¦
+   ?             ?
 Reservation   Purchase Requisition
-   │             │
-   │             ▼
-   │          Approval
-   │             │
-   │             ▼
-   │          Sourcing
-   │             │
-   │             ▼
-   │       Purchase Order
-   │             │
-   │             ▼
-   │        Goods Receipt
-   │             │
-   │             ▼
-   │         Inspection
-   │             │
-   └─────────────┤
-                 ▼
+   ¦             ¦
+   ¦             ?
+   ¦          Approval
+   ¦             ¦
+   ¦             ?
+   ¦          Sourcing
+   ¦             ¦
+   ¦             ?
+   ¦       Purchase Order
+   ¦             ¦
+   ¦             ?
+   ¦        Goods Receipt
+   ¦             ¦
+   ¦             ?
+   ¦         Inspection
+   ¦             ¦
+   +-------------¦
+                 ?
              Inventory
-                 │
-                 ▼
+                 ¦
+                 ?
         Issue / Distribution
-                 │
-          ┌──────┴──────┐
-          │             │
-          ▼             ▼
+                 ¦
+          +-------------+
+          ¦             ¦
+          ?             ?
      Consumption       Asset
-                          │
-                          ▼
+                          ¦
+                          ?
                        Custody
-                          │
-                          ▼
+                          ¦
+                          ?
                      Verification
-                          │
-                          ▼
+                          ¦
+                          ?
                        Retirement
-                          │
-                          ▼
+                          ¦
+                          ?
                        Disposal
 ```
 
@@ -1261,13 +1261,13 @@ Typical lifecycle:
 
 ```text
 Procure
-  ↓
+  ?
 Receive
-  ↓
+  ?
 Store
-  ↓
+  ?
 Issue
-  ↓
+  ?
 Consume
 ```
 
@@ -1287,15 +1287,15 @@ Typical lifecycle:
 
 ```text
 Procure
-  ↓
+  ?
 Receive
-  ↓
+  ?
 Store
-  ↓
+  ?
 Issue
-  ↓
+  ?
 Custody / Usage
-  ↓
+  ?
 Return / Disposal
 ```
 
@@ -1307,21 +1307,21 @@ Typical lifecycle:
 
 ```text
 Procure
-  ↓
+  ?
 Receive
-  ↓
+  ?
 Inspect
-  ↓
+  ?
 Register Asset
-  ↓
+  ?
 Assign
-  ↓
+  ?
 Transfer / Maintain
-  ↓
+  ?
 Verify
-  ↓
+  ?
 Retire
-  ↓
+  ?
 Dispose
 ```
 
@@ -1364,15 +1364,15 @@ Example:
 
 ```text
 Service Requirement
-       ↓
+       ?
 Purchase Requisition
-       ↓
+       ?
 Sourcing
-       ↓
+       ?
 Purchase Order / Contract
-       ↓
+       ?
 Service Confirmation
-       ↓
+       ?
 Finance
 ```
 
@@ -1457,9 +1457,9 @@ Item Code: CHEM-001
 Unit: Litre
 Stock Controlled: Yes
 
-            │
-            │ reference
-            ▼
+            ¦
+            ¦ reference
+            ?
 
 G02 Laboratory Definition
 
@@ -1483,9 +1483,9 @@ Finance may own the supplier's financial account.
 
 ```text
 J02 Supplier
-     │
-     ├───────────────┐
-     ▼               ▼
+     ¦
+     +---------------+
+     ?               ?
 
 Procurement       Finance
 
@@ -1504,21 +1504,21 @@ J08 owns the operational representation of an asset.
 
 Finance owns its accounting representation.
 
-Both shall share a stable cross-domain reference.
+Both shall share a stable multi-domain reference.
 
 Example:
 
 ```text
 Operational Asset ID
-        │
-        ├──────── J08
-        │
-        │   Location
-        │   Custodian
-        │   Condition
-        │   Warranty
-        │
-        └──────── Finance
+        ¦
+        +-------- J08
+        ¦
+        ¦   Location
+        ¦   Custodian
+        ¦   Condition
+        ¦   Warranty
+        ¦
+        +-------- Finance
 
             Capitalized Value
             Depreciation
@@ -1554,7 +1554,7 @@ No responsibility marked `R` grants canonical ownership.
 
 ---
 
-# 12. Cross-Domain Boundaries
+# 12. Multi-Domain Boundaries
 
 ## 12.1 Finance Boundary
 
@@ -1590,31 +1590,31 @@ Examples:
 
 ```text
 G01 Maintenance
-      ↓
+      ?
 Spare Part Requirement
 
 G02 Laboratory
-      ↓
+      ?
 Consumable Requirement
 
 G03 Hostel
-      ↓
+      ?
 Hostel Supply Requirement
 
 G04 Transport
-      ↓
+      ?
 Operational Material Requirement
 
 G06 Health
-      ↓
+      ?
 Medical Supply Requirement
 
 G07 Security
-      ↓
+      ?
 Security Equipment Requirement
 
 G08 Housekeeping
-      ↓
+      ?
 Cleaning Material Requirement
 ```
 
@@ -1632,11 +1632,11 @@ Example:
 
 ```text
 Employee Onboarded
-       │
-       ▼
+       ¦
+       ?
 Resource Requirement
-       │
-       ▼
+       ¦
+       ?
 Asset Assignment
 ```
 
@@ -1644,11 +1644,11 @@ Employee separation may trigger:
 
 ```text
 Employee Separation
-       │
-       ▼
+       ¦
+       ?
 Assigned Asset Query
-       │
-       ▼
+       ¦
+       ?
 Return / Transfer / Exception
 ```
 
@@ -1731,16 +1731,16 @@ The preferred integration model is:
 
 ```text
 Requesting Domain
-       │
-       │ Business Request / Domain Event
-       ▼
+       ¦
+       ¦ Business Request / Domain Event
+       ?
 Section J Contract
-       │
-       ▼
+       ¦
+       ?
 J-Domain Processing
-       │
-       │ Domain Event
-       ▼
+       ¦
+       ¦ Domain Event
+       ?
 Requesting Domain Read Model / Reaction
 ```
 
@@ -1748,7 +1748,7 @@ Requesting Domain Read Model / Reaction
 
 ## 13.2 Integration Principles
 
-Cross-domain integration shall follow these principles:
+Multi-domain integration shall follow these principles:
 
 - Published contracts over shared databases
 - Domain events over direct aggregate modification
@@ -1814,27 +1814,27 @@ The selected procurement model shall not change canonical ownership.
 
 ```text
 Requirement
-    │
-    ▼
+    ¦
+    ?
 Purchase Requisition
-    │
-    ▼
+    ¦
+    ?
 Approval
-    │
-    ▼
+    ¦
+    ?
 Budget Validation
-    │
-    ▼
+    ¦
+    ?
 Procurement Method
-    │
-    ├───────────────┐
-    ▼               ▼
+    ¦
+    +---------------+
+    ?               ?
 Direct Purchase    Sourcing
-                    │
-                    ▼
+                    ¦
+                    ?
                Supplier Selection
-                    │
-                    ▼
+                    ¦
+                    ?
               Purchase Order
 ```
 
@@ -1846,26 +1846,26 @@ Budget validation may be mandatory, optional, or unavailable depending on instit
 
 ```text
 Sourcing Requirement
-        │
-        ▼
+        ¦
+        ?
 Sourcing Method Selected
-        │
-        ▼
+        ¦
+        ?
 Eligible Suppliers Identified
-        │
-        ▼
+        ¦
+        ?
 RFQ / RFP / Tender
-        │
-        ▼
+        ¦
+        ?
 Responses Received
-        │
-        ▼
+        ¦
+        ?
 Evaluation
-        │
-        ▼
+        ¦
+        ?
 Recommendation
-        │
-        ▼
+        ¦
+        ?
 Selection / Approval
 ```
 
@@ -1896,17 +1896,17 @@ Institutions may configure an emergency procurement path.
 
 ```text
 Emergency Requirement
-        │
-        ▼
+        ¦
+        ?
 Emergency Authority
-        │
-        ▼
+        ¦
+        ?
 Expedited Procurement
-        │
-        ▼
+        ¦
+        ?
 Receipt
-        │
-        ▼
+        ¦
+        ?
 Post-Facto Review
 ```
 
@@ -1941,24 +1941,24 @@ All such interactions shall reference the same enterprise Supplier ID.
 
 ```text
 Prospective
-    │
-    ▼
+    ¦
+    ?
 Registered
-    │
-    ▼
+    ¦
+    ?
 Under Evaluation
-    │
-    ▼
+    ¦
+    ?
 Approved
-    │
-    ▼
+    ¦
+    ?
 Active
-    │
-    ├──────────────► Suspended
-    │
-    ├──────────────► Blacklisted
-    │
-    ▼
+    ¦
+    +--------------? Suspended
+    ¦
+    +--------------? Blacklisted
+    ¦
+    ?
 Inactive
 ```
 
@@ -2029,12 +2029,12 @@ It shall not be confused with an internal stock request.
 
 ```text
 Need Existing Stock?
-       │
-   ┌───┴───┐
-   │       │
+       ¦
+   +-------+
+   ¦       ¦
   Yes      No
-   │       │
-   ▼       ▼
+   ¦       ¦
+   ?       ?
 J07 Stock  J03 Purchase
 Request    Requisition
 ```
@@ -2071,31 +2071,31 @@ J03 owns the Purchase Requisition.
 
 ```text
 Draft
-  │
-  ▼
+  ¦
+  ?
 Submitted
-  │
-  ▼
+  ¦
+  ?
 Validation
-  │
-  ▼
+  ¦
+  ?
 Approval
-  │
-  ├────────► Rejected
-  │
-  ▼
+  ¦
+  +--------? Rejected
+  ¦
+  ?
 Budget Validation
-  │
-  ▼
+  ¦
+  ?
 Approved for Procurement
-  │
-  ▼
+  ¦
+  ?
 Sourcing / Purchase Order
-  │
-  ▼
+  ¦
+  ?
 Fulfilled
-  │
-  ▼
+  ¦
+  ?
 Closed
 ```
 
@@ -2110,13 +2110,13 @@ Multiple approved demands may be consolidated for procurement.
 Example:
 
 ```text
-Department A ── 20 Chairs ──┐
-                            │
-Department B ── 30 Chairs ──┼──► Consolidated Requirement
-                            │
-Department C ── 10 Chairs ──┘
-                                      │
-                                      ▼
+Department A -- 20 Chairs --+
+                            ¦
+Department B -- 30 Chairs --+--? Consolidated Requirement
+                            ¦
+Department C -- 10 Chairs --+
+                                      ¦
+                                      ?
                                   60 Chairs
 ```
 
@@ -2130,15 +2130,15 @@ Where required:
 
 ```text
 Purchase Requisition
-        │
-        ▼
+        ¦
+        ?
 Finance Budget Validation
-        │
-     ┌──┴──┐
-     │     │
+        ¦
+     +-----+
+     ¦     ¦
 Available Insufficient
-     │     │
-     ▼     ▼
+     ¦     ¦
+     ?     ?
 Continue  Hold / Reject /
           Override Workflow
 ```
@@ -2178,26 +2178,26 @@ The source shall remain traceable.
 
 ```text
 Draft
-  │
-  ▼
+  ¦
+  ?
 Prepared
-  │
-  ▼
+  ¦
+  ?
 Approval
-  │
-  ▼
+  ¦
+  ?
 Issued
-  │
-  ▼
+  ¦
+  ?
 Supplier Acknowledged
-  │
-  ▼
+  ¦
+  ?
 Partially Fulfilled
-  │
-  ▼
+  ¦
+  ?
 Fully Fulfilled
-  │
-  ▼
+  ¦
+  ?
 Closed
 ```
 
@@ -2241,15 +2241,15 @@ The architecture shall support:
 PO Quantity: 100
 
 Delivery 1: 40
-      ↓
+      ?
 Remaining: 60
 
 Delivery 2: 30
-      ↓
+      ?
 Remaining: 30
 
 Delivery 3: 30
-      ↓
+      ?
 Fulfilled
 ```
 
@@ -2273,29 +2273,29 @@ Receipt does not automatically mean acceptance.
 
 ```text
 Delivery Arrived
-       │
-       ▼
+       ¦
+       ?
 Receipt Recorded
-       │
-       ▼
+       ¦
+       ?
 Quantity Verification
-       │
-       ▼
+       ¦
+       ?
 Inspection Required?
      /     \
    No       Yes
-   │         │
-   │         ▼
-   │      Inspection
-   │       /      \
-   │    Accept   Reject
-   │       │        │
-   └───────┤        ▼
-           │    Return / Resolution
-           ▼
+   ¦         ¦
+   ¦         ?
+   ¦      Inspection
+   ¦       /      \
+   ¦    Accept   Reject
+   ¦       ¦        ¦
+   +-------¦        ?
+           ¦    Return / Resolution
+           ?
        Accepted
-           │
-           ▼
+           ¦
+           ?
  Inventory / Asset Processing
 ```
 
@@ -2344,12 +2344,12 @@ Accepted goods may result in:
 
 ```text
 Accepted Goods
-      │
-      ├────────► J06 Inventory Receipt
-      │
-      ├────────► J08 Asset Registration
-      │
-      └────────► Direct Consumption / Delivery
+      ¦
+      +--------? J06 Inventory Receipt
+      ¦
+      +--------? J08 Asset Registration
+      ¦
+      +--------? Direct Consumption / Delivery
 ```
 
 The correct route depends on item classification and institutional policy.
@@ -2362,17 +2362,17 @@ Rejected goods shall not become available inventory.
 
 ```text
 Rejected Goods
-      │
-      ▼
+      ¦
+      ?
 Quarantine / Hold
-      │
-      ▼
+      ¦
+      ?
 Supplier Resolution
-   ┌──┴──────────────┐
-   │                 │
+   +-----------------+
+   ¦                 ¦
 Replacement       Return
-   │                 │
-   ▼                 ▼
+   ¦                 ¦
+   ?                 ?
 Reinspection      Closure
 ```
 
@@ -2435,17 +2435,17 @@ The architecture supports:
 
 ```text
 Institution
-     │
-     ▼
+     ¦
+     ?
 Campus
-     │
-     ▼
+     ¦
+     ?
 Warehouse / Store
-     │
-     ▼
+     ¦
+     ?
 Storage Location
-     │
-     ▼
+     ¦
+     ?
 Bin
 ```
 
@@ -2597,20 +2597,20 @@ An internal material request asks for existing inventory.
 
 ```text
 Department
-    │
-    ▼
+    ¦
+    ?
 Material Request
-    │
-    ▼
+    ¦
+    ?
 Availability
    / \
   /   \
 Yes    No
- │      │
- ▼      ▼
+ ¦      ¦
+ ?      ?
 Reserve Procurement Requirement
- │
- ▼
+ ¦
+ ?
 Issue
 ```
 
@@ -2624,11 +2624,11 @@ Reservation does not represent physical issue.
 
 ```text
 Available Stock
-      │
-      ▼
+      ¦
+      ?
 Reserved
-      │
-      ▼
+      ¦
+      ?
 Issued
 ```
 
@@ -2690,20 +2690,20 @@ For controlled transfers:
 
 ```text
 Transfer Requested
-       │
-       ▼
+       ¦
+       ?
 Approved
-       │
-       ▼
+       ¦
+       ?
 Dispatched
-       │
-       ▼
+       ¦
+       ?
 In Transit
-       │
-       ▼
+       ¦
+       ?
 Received
-       │
-       ▼
+       ¦
+       ?
 Completed
 ```
 
@@ -2804,34 +2804,34 @@ Financial values shall remain Finance-owned where applicable.
 
 ```text
 Asset Identified
-      │
-      ▼
+      ¦
+      ?
 Registered
-      │
-      ▼
+      ¦
+      ?
 Available
-      │
-      ▼
+      ¦
+      ?
 Assigned / Deployed
-      │
-      ▼
+      ¦
+      ?
 In Use
-      │
-      ├────────► Transfer
-      │
-      ├────────► Return
-      │
-      ├────────► Maintenance Reference
-      │
-      ├────────► Verification
-      │
-      ▼
+      ¦
+      +--------? Transfer
+      ¦
+      +--------? Return
+      ¦
+      +--------? Maintenance Reference
+      ¦
+      +--------? Verification
+      ¦
+      ?
 Retirement Proposed
-      │
-      ▼
+      ¦
+      ?
 Retired
-      │
-      ▼
+      ¦
+      ?
 Disposal
 ```
 
@@ -2873,12 +2873,12 @@ J08 stores only the employee reference required for custody.
 ```text
 Section E
 Employee
-   │
-   │ Employee ID
-   ▼
+   ¦
+   ¦ Employee ID
+   ?
 J08 Asset Assignment
-   │
-   ▼
+   ¦
+   ?
 Institutional Asset
 ```
 
@@ -2951,12 +2951,12 @@ Returned assets may become:
 
 ```text
 Returned
-   │
-   ├────────► Available
-   ├────────► Reassigned
-   ├────────► Repair / Maintenance
-   ├────────► Hold
-   └────────► Retirement
+   ¦
+   +--------? Available
+   +--------? Reassigned
+   +--------? Repair / Maintenance
+   +--------? Hold
+   +--------? Retirement
 ```
 
 ---
@@ -3007,16 +3007,16 @@ For example:
 
 ```text
 J08 Asset
-    │
-    │ Maintenance Required
-    ▼
+    ¦
+    ¦ Maintenance Required
+    ?
 G01 Facilities / Relevant Maintenance Capability
-    │
-    ▼
+    ¦
+    ?
 Maintenance Performed
-    │
-    │ Maintenance Result
-    ▼
+    ¦
+    ¦ Maintenance Result
+    ?
 J08 Asset History Reference
 ```
 
@@ -3042,14 +3042,14 @@ Retirement does not automatically mean disposal.
 
 ```text
 Active Asset
-     │
-     ▼
+     ¦
+     ?
 Retirement
-     │
-     ▼
+     ¦
+     ?
 Retired Asset
-     │
-     ▼
+     ¦
+     ?
 J10 Disposal Process
 ```
 
@@ -3106,28 +3106,28 @@ A Verification Plan may define:
 
 ```text
 Verification Planned
-        │
-        ▼
+        ¦
+        ?
 Scope Frozen / Snapshot Referenced
-        │
-        ▼
+        ¦
+        ?
 Physical Count
-        │
-        ▼
+        ¦
+        ?
 Recorded Quantity Compared
-        │
-      ┌─┴─┐
-      │   │
+        ¦
+      +---+
+      ¦   ¦
     Match Variance
-      │   │
-      │   ▼
-      │ Investigation
-      │   │
-      │   ▼
-      │ Reconciliation Recommendation
-      │   │
-      └───┤
-          ▼
+      ¦   ¦
+      ¦   ?
+      ¦ Investigation
+      ¦   ¦
+      ¦   ?
+      ¦ Reconciliation Recommendation
+      ¦   ¦
+      +---¦
+          ?
     Verification Closure
 ```
 
@@ -3145,20 +3145,20 @@ Institutions may configure:
 
 ```text
 Asset Register
-      │
-      ▼
+      ¦
+      ?
 Verification Scope
-      │
-      ▼
+      ¦
+      ?
 Physical Verification
-      │
-      ├────────► Found
-      ├────────► Location Mismatch
-      ├────────► Custody Mismatch
-      ├────────► Condition Difference
-      └────────► Not Found
-                       │
-                       ▼
+      ¦
+      +--------? Found
+      +--------? Location Mismatch
+      +--------? Custody Mismatch
+      +--------? Condition Difference
+      +--------? Not Found
+                       ¦
+                       ?
                    Investigation
 ```
 
@@ -3217,9 +3217,9 @@ Institutions shall be able to separate:
 
 ```text
 Stock Custodian
-      ≠
+      ?
 Physical Verifier
-      ≠
+      ?
 Adjustment Approver
 ```
 
@@ -3262,29 +3262,29 @@ A disposal process may originate from:
 
 ```text
 Disposal Candidate
-       │
-       ▼
+       ¦
+       ?
 Assessment
-       │
-       ▼
+       ¦
+       ?
 Disposal Proposal
-       │
-       ▼
+       ¦
+       ?
 Approval
-       │
-       ▼
+       ¦
+       ?
 Disposal Method Selected
-       │
-       ▼
+       ¦
+       ?
 Execution
-       │
-       ▼
+       ¦
+       ?
 Verification
-       │
-       ▼
+       ¦
+       ?
 Resource Closed
-       │
-       ▼
+       ¦
+       ?
 Financial Consequence Published
 ```
 
@@ -3367,13 +3367,13 @@ Operational disposal and financial write-off are distinct.
 ```text
 J10
 Physical Disposal
-      │
-      │ AssetDisposed / InventoryDisposed
-      ▼
+      ¦
+      ¦ AssetDisposed / InventoryDisposed
+      ?
 Finance
 Financial Write-Off
-      │
-      ▼
+      ¦
+      ?
 Accounting Closure
 ```
 
@@ -3391,7 +3391,7 @@ J10 shall not directly alter:
 
 ## 24.1 Purpose
 
-Section J uses aggregates to protect transactional consistency while preventing oversized cross-domain transaction boundaries.
+Section J uses aggregates to protect transactional consistency while preventing oversized multi-domain transaction boundaries.
 
 No transaction shall require direct atomic modification of aggregates belonging to multiple bounded contexts.
 
@@ -3447,10 +3447,10 @@ Example:
 
 ```text
 PurchaseOrder
-    │
-    ├── SupplierId
-    ├── PurchaseRequisitionId
-    └── SourcingEventId
+    ¦
+    +-- SupplierId
+    +-- PurchaseRequisitionId
+    +-- SourcingEventId
 ```
 
 The Purchase Order shall not contain authoritative copies of those aggregates.
@@ -3651,7 +3651,7 @@ Direct stock-balance editing shall not be exposed as a command.
 
 Queries shall not mutate domain state.
 
-Section J shall use CQRS-oriented read models where cross-aggregate or cross-domain information is required.
+Section J shall use CQRS-oriented read models where cross-aggregate or multi-domain information is required.
 
 Read models may be eventually consistent.
 
@@ -3789,18 +3789,18 @@ Examples include:
 
 ## 26.11 Enterprise Resource Read Models
 
-Cross-domain governance may use read models such as:
+Multi-domain governance may use read models such as:
 
 ```text
 Enterprise Resource Health
-        │
-        ├── Procurement Backlog
-        ├── Supplier Performance
-        ├── Inventory Availability
-        ├── Critical Stock
-        ├── Asset Utilisation
-        ├── Verification Variances
-        └── Disposal Backlog
+        ¦
+        +-- Procurement Backlog
+        +-- Supplier Performance
+        +-- Inventory Availability
+        +-- Critical Stock
+        +-- Asset Utilisation
+        +-- Verification Variances
+        +-- Disposal Backlog
 ```
 
 These read models shall not become canonical owners of the underlying information.
@@ -3810,7 +3810,7 @@ These read models shall not become canonical owners of the underlying informatio
 
 Domain events represent immutable business facts produced after successful state transitions within Section J.
 
-Events enable Section J bounded contexts and external SutraERP domains to collaborate without direct database coupling or cross-domain aggregate modification.
+Events enable Section J bounded contexts and external SutraERP domains to collaborate without direct database coupling or multi-domain aggregate modification.
 
 Every event shall identify, where applicable:
 
@@ -4141,15 +4141,15 @@ The preferred decision path is:
 
 ```text
 Operational Requirement
-        │
-        ▼
+        ¦
+        ?
 Check Existing Resource Availability
-        │
-      ┌─┴─┐
-      │   │
+        ¦
+      +---+
+      ¦   ¦
 Available Unavailable
-      │   │
-      ▼   ▼
+      ¦   ¦
+      ?   ?
 J07 Issue J03 Procurement Demand
 ```
 
@@ -4181,7 +4181,7 @@ Sensitive examination resources may invoke stricter authorisation and custody ru
 
 ---
 
-# 29. Cross-Domain Event Matrix
+# 29. Multi-Domain Event Matrix
 
 ## 29.1 Internal Section J Event Flow
 
@@ -4214,28 +4214,28 @@ Typical Section J events relevant to Finance include:
 
 ```text
 PurchaseRequisitionApproved
-        │
-        ▼
+        ¦
+        ?
 Budget / Commitment Processing
 
 PurchaseOrderIssued
-        │
-        ▼
+        ¦
+        ?
 Financial Commitment Reference
 
 GoodsAccepted
-        │
-        ▼
+        ¦
+        ?
 Payables / Matching Eligibility
 
 AssetRegistered
-        │
-        ▼
+        ¦
+        ?
 Capitalisation Processing
 
 AssetDisposalExecuted
-        │
-        ▼
+        ¦
+        ?
 Financial Write-Off / Disposal Accounting
 ```
 
@@ -4372,7 +4372,7 @@ Section J shall not directly modify authoritative Finance ledgers, budgets, paym
 
 ---
 
-### BR-J00-016 — Cross-Domain Reference Integrity
+### BR-J00-016 — Multi-Domain Reference Integrity
 
 Section J shall reference externally owned entities through stable identifiers and contracts.
 
@@ -4473,23 +4473,23 @@ The architecture shall support configurable separation such as:
 
 ```text
 Requester
-    ≠
+    ?
 Approver
 
 Purchase Order Creator
-    ≠
+    ?
 Purchase Order Approver
 
 Goods Receiver
-    ≠
+    ?
 Goods Inspector
 
 Store Custodian
-    ≠
+    ?
 Physical Verifier
 
 Disposal Proposer
-    ≠
+    ?
 Disposal Approver
 ```
 
@@ -4507,14 +4507,14 @@ Conceptually:
 
 ```text
 Purchase Value
-      │
-      ▼
+      ¦
+      ?
 Configured Authority Matrix
-      │
-      ├── Level 1
-      ├── Level 2
-      ├── Committee
-      └── Executive Authority
+      ¦
+      +-- Level 1
+      +-- Level 2
+      +-- Committee
+      +-- Executive Authority
 ```
 
 Section J shall not hard-code monetary thresholds.
@@ -4687,19 +4687,19 @@ The architecture should permit:
 
 ```text
 Requirement
-    ↓
+    ?
 Purchase Requisition
-    ↓
+    ?
 Approval
-    ↓
+    ?
 Sourcing
-    ↓
+    ?
 Supplier Selection
-    ↓
+    ?
 Purchase Order
-    ↓
+    ?
 Goods Receipt
-    ↓
+    ?
 Inspection
 ```
 
@@ -4711,19 +4711,19 @@ For a stock-controlled item:
 
 ```text
 Goods Receipt
-     ↓
+     ?
 Inventory Receipt
-     ↓
+     ?
 Stock Ledger
-     ↓
+     ?
 Reservation
-     ↓
+     ?
 Issue
-     ↓
+     ?
 Return / Consumption
-     ↓
+     ?
 Verification
-     ↓
+     ?
 Disposal where applicable
 ```
 
@@ -4735,21 +4735,21 @@ For an asset:
 
 ```text
 Acquisition
-    ↓
+    ?
 Goods Receipt
-    ↓
+    ?
 Asset Registration
-    ↓
+    ?
 Assignment
-    ↓
+    ?
 Transfer
-    ↓
+    ?
 Condition History
-    ↓
+    ?
 Verification
-    ↓
+    ?
 Retirement
-    ↓
+    ?
 Disposal
 ```
 
@@ -4805,9 +4805,9 @@ The fundamental boundary is:
 ```text
 Section J
 Physical / Operational Truth
-        │
-        │ Business Facts
-        ▼
+        ¦
+        ¦ Business Facts
+        ?
 Section F
 Financial Truth
 ```
@@ -4867,17 +4867,17 @@ Where budget control is enabled:
 
 ```text
 J03 Purchase Requisition
-        │
-        │ Budget Validation Request
-        ▼
+        ¦
+        ¦ Budget Validation Request
+        ?
 F — Finance
-        │
-        ├── Available
-        ├── Insufficient
-        ├── Conditional
-        └── Not Applicable
-        │
-        ▼
+        ¦
+        +-- Available
+        +-- Insufficient
+        +-- Conditional
+        +-- Not Applicable
+        ¦
+        ?
 J03 Requisition Decision
 ```
 
@@ -4898,23 +4898,23 @@ Where Finance supports commitment accounting, a procurement lifecycle may result
 
 ```text
 Purchase Requisition
-        │
-        ▼
+        ¦
+        ?
 Budget Validation
-        │
-        ▼
+        ¦
+        ?
 Purchase Order Issued
-        │
-        ▼
+        ¦
+        ?
 Financial Commitment
-        │
-        ▼
+        ¦
+        ?
 Goods Accepted
-        │
-        ▼
+        ¦
+        ?
 Invoice / Liability Processing
-        │
-        ▼
+        ¦
+        ?
 Commitment Adjustment / Release
 ```
 
@@ -4973,19 +4973,19 @@ An operational asset may require financial capitalisation.
 
 ```text
 J05 Goods Accepted
-        │
-        ▼
+        ¦
+        ?
 J08 Asset Registered
-        │
-        │ AssetRegistered
-        ▼
+        ¦
+        ¦ AssetRegistered
+        ?
 Finance
-        │
-        ▼
+        ¦
+        ?
 Capitalisation
-        │
-        │ Financial Reference
-        ▼
+        ¦
+        ¦ Financial Reference
+        ?
 J08 Read Model / Reference
 ```
 
@@ -5020,17 +5020,17 @@ Operational useful-life or condition information may exist in J08 for maintenanc
 
 ```text
 J10 Disposal Executed
-        │
-        ▼
+        ¦
+        ?
 Finance Notification
-        │
-        ▼
+        ¦
+        ?
 Financial Assessment
-        │
-        ├── Write-Off
-        ├── Sale Proceeds
-        ├── Gain / Loss
-        └── Asset Accounting Closure
+        ¦
+        +-- Write-Off
+        +-- Sale Proceeds
+        +-- Gain / Loss
+        +-- Asset Accounting Closure
 ```
 
 Physical disposal shall not directly manipulate financial balances.
@@ -5052,12 +5052,12 @@ The boundary shall be:
 ```text
 Section G
 Operational Need
-      │
-      ▼
+      ¦
+      ?
 Section J
 Resource Fulfilment
-      │
-      ▼
+      ¦
+      ?
 Section G
 Operational Consumption
 ```
@@ -5079,15 +5079,15 @@ Typical interaction:
 
 ```text
 G01 Maintenance Requirement
-          │
-          ▼
+          ¦
+          ?
 J07 Material Request
-          │
-      ┌───┴────┐
-      │        │
+          ¦
+      +--------+
+      ¦        ¦
  Available   Unavailable
-      │        │
-      ▼        ▼
+      ¦        ¦
+      ?        ?
 Stock Issue   J03 Purchase Requisition
 ```
 
@@ -5276,14 +5276,14 @@ Example:
 
 ```text
 Employee Onboarded
-       │
-       ▼
+       ¦
+       ?
 Configured Resource Requirement
-       │
-       ▼
+       ¦
+       ?
 Stock / Asset Availability
-       │
-       ▼
+       ¦
+       ?
 Asset Assignment
 ```
 
@@ -5323,14 +5323,14 @@ Employee separation may trigger:
 
 ```text
 Separation Initiated
-       │
-       ▼
+       ¦
+       ?
 Assigned Resource Review
-       │
-       ▼
+       ¦
+       ?
 Outstanding Assets Identified
-       │
-       ▼
+       ¦
+       ?
 Return / Exception / Approval
 ```
 
@@ -5371,17 +5371,17 @@ Example:
 ```text
 I — Examination
 Material Requirement
-        │
-        ▼
+        ¦
+        ?
 J — Resource Fulfilment
-        │
-        ▼
+        ¦
+        ?
 Controlled Issue
-        │
-        ▼
+        ¦
+        ?
 I — Examination Usage
-        │
-        ▼
+        ¦
+        ?
 Return / Reconciliation
 ```
 
@@ -5508,23 +5508,23 @@ Reconciliation shall follow:
 
 ```text
 Exception
-    │
-    ▼
+    ¦
+    ?
 Record
-    │
-    ▼
+    ¦
+    ?
 Investigate
-    │
-    ▼
+    ¦
+    ?
 Decision
-    │
-    ▼
+    ¦
+    ?
 Approval where required
-    │
-    ▼
+    ¦
+    ?
 Corrective Transaction
-    │
-    ▼
+    ¦
+    ?
 Closure
 ```
 
@@ -5532,7 +5532,7 @@ Deletion of evidence shall not constitute reconciliation.
 
 ---
 
-## 37.8 Cross-Domain Reconciliation
+## 37.8 Multi-Domain Reconciliation
 
 Some exceptions require multiple domains.
 
@@ -5540,14 +5540,14 @@ Example:
 
 ```text
 Physical Stock Difference
-        │
-        ▼
+        ¦
+        ?
 J09 Verification
-        │
-        ▼
+        ¦
+        ?
 J06 Adjustment
-        │
-        ▼
+        ¦
+        ?
 Finance
 Financial Consequence
 ```
@@ -5678,26 +5678,26 @@ An enterprise resource dashboard may combine read models such as:
 Enterprise Resource Management
 
 Procurement
-├── Open Requisitions
-├── Pending Approvals
-└── Open Purchase Orders
++-- Open Requisitions
++-- Pending Approvals
++-- Open Purchase Orders
 
 Inventory
-├── Critical Stock
-├── Low Stock
-├── Near Expiry
-└── Transfers in Transit
++-- Critical Stock
++-- Low Stock
++-- Near Expiry
++-- Transfers in Transit
 
 Assets
-├── Active Assets
-├── Unassigned Assets
-├── Verification Due
-└── Retirement Pending
++-- Active Assets
++-- Unassigned Assets
++-- Verification Due
++-- Retirement Pending
 
 Governance
-├── Verification Variances
-├── Disposal Backlog
-└── Supplier Exceptions
++-- Verification Variances
++-- Disposal Backlog
++-- Supplier Exceptions
 ```
 
 Dashboard presentation may be provided through the enterprise dashboard capability.
@@ -5856,7 +5856,7 @@ J10 disposal shall not directly modify Finance ledgers.
 
 ### AC-J00-009
 
-Cross-domain integrations shall not rely on direct shared-table writes.
+Multi-domain integrations shall not rely on direct shared-table writes.
 
 ### AC-J00-010
 
@@ -5892,7 +5892,7 @@ Historical business evidence shall not be destroyed by later master-data changes
 
 ### AC-J00-018
 
-Cross-domain failures shall be recoverable through idempotency, retry, reconciliation, or compensating transactions rather than distributed database transactions.
+Multi-domain failures shall be recoverable through idempotency, retry, reconciliation, or compensating transactions rather than distributed database transactions.
 
 ---
 
@@ -6032,10 +6032,10 @@ Example:
 Item
 Laptop — Dell Latitude Series
 
-          │
-          ├── Asset Instance: LAP-0001
-          ├── Asset Instance: LAP-0002
-          └── Asset Instance: LAP-0003
+          ¦
+          +-- Asset Instance: LAP-0001
+          +-- Asset Instance: LAP-0002
+          +-- Asset Instance: LAP-0003
 ```
 
 ---
@@ -6082,15 +6082,15 @@ Procurement may include:
 
 ```text
 Requirement
-   ↓
+   ?
 Requisition
-   ↓
+   ?
 Sourcing
-   ↓
+   ?
 Supplier Selection
-   ↓
+   ?
 Purchase Order
-   ↓
+   ?
 Receipt
 ```
 
@@ -6135,11 +6135,11 @@ The distinction is:
 
 ```text
 Material Request
-     ↓
+     ?
 Existing Stock
 
 Purchase Requisition
-     ↓
+     ?
 External Procurement
 ```
 
@@ -6685,8 +6685,8 @@ A dependency shall not imply shared database ownership.
 ### Rule 1 — Finance Integration
 
 ```text
-J ──business facts──► F
-J ◄─financial status─ F
+J --business facts--? F
+J ?-financial status- F
 ```
 
 Neither section directly modifies the other's aggregates.
@@ -6697,13 +6697,13 @@ Neither section directly modifies the other's aggregates.
 
 ```text
 Operational Domain
-        │
-        │ Requirement
-        ▼
+        ¦
+        ¦ Requirement
+        ?
         J
-        │
-        │ Fulfilment Status
-        ▼
+        ¦
+        ¦ Fulfilment Status
+        ?
 Operational Domain
 ```
 
@@ -6715,9 +6715,9 @@ The operational domain remains owner of the business purpose.
 
 ```text
 Institution / HR / Student
-           │
-           │ Stable Identifier
-           ▼
+           ¦
+           ¦ Stable Identifier
+           ?
            J
 ```
 
@@ -6733,9 +6733,9 @@ For example:
 
 ```text
 J05 GoodsAccepted
-        │
-        │ Event
-        ▼
+        ¦
+        ¦ Event
+        ?
 J06 InventoryReceived
 ```
 
@@ -6745,7 +6745,7 @@ If J06 processing temporarily fails, the system shall retry or reconcile the eve
 
 ## 44.5 Failure Handling
 
-Cross-domain integration shall support:
+Multi-domain integration shall support:
 
 - Idempotent Consumers
 - Retry
@@ -6770,7 +6770,7 @@ J00 is considered architecture-ready when:
 - Campus Operations versus inventory ownership is explicit.
 - Operational versus financial Asset ownership is explicit.
 - Supplier and Item Master ownership is singular.
-- Cross-domain integration follows contract-based boundaries.
+- Multi-domain integration follows contract-based boundaries.
 - Commands and events have defined ownership.
 - Manual and configurable operating models are supported.
 - Multi-campus requirements are supported.
@@ -6816,39 +6816,39 @@ Its canonical responsibility is:
 
 ```text
                      RESOURCE REQUIREMENT
-                              │
-                              ▼
+                              ¦
+                              ?
                          PROCUREMENT
-                              │
-                              ▼
+                              ¦
+                              ?
                            SUPPLIER
-                              │
-                              ▼
+                              ¦
+                              ?
                        PURCHASE ORDER
-                              │
-                              ▼
+                              ¦
+                              ?
                          GOODS RECEIPT
-                              │
-                              ▼
+                              ¦
+                              ?
                           INSPECTION
-                              │
-                              ▼
+                              ¦
+                              ?
                     INVENTORY / WAREHOUSE
-                              │
-                              ▼
+                              ¦
+                              ?
                    DISTRIBUTION / ASSIGNMENT
-                         ┌────┴────┐
-                         │         │
-                         ▼         ▼
+                         +---------+
+                         ¦         ¦
+                         ?         ?
                     CONSUMPTION   ASSET
-                                   │
-                                   ▼
+                                   ¦
+                                   ?
                               VERIFICATION
-                                   │
-                                   ▼
+                                   ¦
+                                   ?
                                RETIREMENT
-                                   │
-                                   ▼
+                                   ¦
+                                   ?
                                 DISPOSAL
 ```
 
@@ -6862,6 +6862,46 @@ Section J therefore becomes the enterprise-wide **system of record for the physi
 
 ---
 
+# 48. Enterprise Trust Certification Closure
+
+Section J is certification-ready only when every Enterprise Resource Management workflow preserves the trust ownership model defined in this document and in J01 through J10.
+
+## 48.1 Certification Ownership Matrix
+
+| Trust Capability | Canonical Owner | Section J Certification Position |
+|------------------|-----------------|----------------------------------|
+| Authentication | Section A03 | Consumed by Section J; not re-owned. |
+| Authorization and entitlement infrastructure | Section A04 | Consumed by Section J; Section J defines business permissions and segregation-of-duties constraints. |
+| Workflow runtime | Section A05 | Consumed by Section J; Section J defines workflow states, approvals, and business transitions. |
+| Event infrastructure | Section A06 | Consumed by Section J; Section J defines domain event semantics. |
+| Audit and evidence infrastructure | Section A07 | Consumed by Section J; Section J emits auditable business facts and evidence references. |
+| Procurement planning and sourcing | J01 | Section J-owned and complete. |
+| Supplier master and supplier governance | J02 | Section J-owned and complete. |
+| Purchase requisition and approval | J03 | Section J-owned and complete. |
+| Purchase order lifecycle | J04 | Section J-owned and complete. |
+| Goods receipt, inspection, and acceptance | J05 | Section J-owned and complete. |
+| Inventory and warehouse stock ledger | J06 | Section J-owned and complete. |
+| Stock movement, issue, return, transfer, and distribution | J07 | Section J-owned and complete. |
+| Operational asset register and custody lifecycle | J08 | Section J-owned and complete. |
+| Physical verification, audit, and reconciliation | J09 | Section J-owned and complete. |
+| Disposal, scrap, and write-off business execution | J10 | Section J-owned and complete. |
+| Financial accounting consequences | Section F | Integrated downstream; not re-owned by Section J. |
+
+## 48.2 Certification Gate
+
+Future Section J changes must not pass architecture review unless they satisfy all of the following conditions:
+
+- Canonical ownership is explicitly identified.
+- No Section J workflow duplicates Section A platform security, identity, authorization, workflow, event, or audit infrastructure.
+- No Section J workflow duplicates Section F financial accounting ownership.
+- Every approval-producing workflow defines traceable actor, role, tenant, institution, decision, timestamp, state transition, and evidence requirements.
+- Every sensitive supplier, procurement, inventory, asset, verification, reconciliation, disposal, and write-off action enforces authorization and segregation-of-duties boundaries.
+- Every workflow preserves tenant, institution, campus, warehouse, supplier, asset, inventory, and finance integration boundaries.
+- Every workflow emits auditable domain events through the platform event and audit architecture.
+- Every retention, archive, deletion, or recovery behavior protects audit evidence and financial traceability.
+
+Failure of any certification gate condition is an architecture defect and requires correction before the affected Section J change may be considered production-ready.
+
+---
+
 **End of L2-J00 — Enterprise Resource Management Architecture & Governance**
-
-

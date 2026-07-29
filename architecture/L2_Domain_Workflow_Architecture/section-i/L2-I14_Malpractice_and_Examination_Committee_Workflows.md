@@ -1775,7 +1775,7 @@ The Malpractice & Examination Committee domain shall adhere to the following dep
 - Circular dependencies are prohibited.
 - Domain ownership shall not be violated.
 - Integration shall occur through canonical contracts.
-- Cross-domain communication shall be event-driven.
+- Multi-domain communication shall be event-driven.
 - Downstream domains shall not modify malpractice aggregate state.
 - Published events shall remain backward compatible.
 

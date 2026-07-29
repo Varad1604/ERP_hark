@@ -281,6 +281,19 @@ Before a document becomes Approved or Locked it shall satisfy:
 - No broken references
 - No architectural conflicts
 - No undefined terms
+- Applicable level-specific validation expectations
+
+---
+
+# 19.1 Level-Specific Validation Expectations
+
+Level-specific validation expectations are maintained in:
+
+```text
+governance/policies/Architecture_Level_Validation_Standards.md
+```
+
+These expectations align review gates with the approved L0 through L6 hierarchy.
 
 ---
 

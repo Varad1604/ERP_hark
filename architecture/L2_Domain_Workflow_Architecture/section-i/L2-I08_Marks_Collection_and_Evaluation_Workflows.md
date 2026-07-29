@@ -167,7 +167,7 @@ No downstream workflow shall modify evaluation history maintained by this domain
 
 ---
 
-## 4.8 Cross-Domain Collaboration
+## 4.8 Multi-Domain Collaboration
 
 Marks Collection & Evaluation collaborates with Examination Conduct, Registration, Hall Ticket Management, Examination Policy, Academic Calendar, Organisation, Identity, and Platform Foundation domains while preserving ownership boundaries.
 
@@ -1011,7 +1011,7 @@ Consumed events influence evaluation without transferring ownership.
 
 ---
 
-# 13. Cross-Domain Interactions
+# 13. Multi-Domain Interactions
 
 The Marks Collection & Evaluation domain collaborates with multiple business domains while preserving ownership boundaries.
 

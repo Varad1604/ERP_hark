@@ -1164,11 +1164,11 @@ The following rules always apply:
 
 ## L2-D05 — Academic Monitoring Workflows.md
 
-## Part 3 — Cross Domain Integration & Ownership Boundaries
+## Part 3 — Multi-Domain Integration & Ownership Boundaries
 
 
 ```markdown
-# 9. Cross Domain Integration & Ownership Boundaries
+# 9. Multi-Domain Integration & Ownership Boundaries
 
 ## 9.1 Integration Philosophy
 
@@ -1594,7 +1594,7 @@ D05 shall not:
 
 ---
 
-# 9.7 Cross Domain Evidence Model
+# 9.7 Multi-Domain Evidence Model
 
 D05 maintains references to external evidence.
 
@@ -1680,7 +1680,7 @@ All changes must happen through:
 
 ---
 
-# 9.9 Cross Domain Workflow Interaction
+# 9.9 Business Scenario Interaction
 
 A typical monitoring flow:
 
@@ -1740,7 +1740,7 @@ The architecture shall ensure:
 
 1. Canonical ownership remains with source domains.
 2. D05 consumes academic context but does not own it.
-3. Cross-domain communication uses approved contracts.
+3. Multi-domain communication uses approved contracts.
 4. Evidence references preserve traceability.
 5. External domain changes are not directly modified by D05.
 6. Domain boundaries remain protected.
@@ -1748,7 +1748,7 @@ The architecture shall ensure:
 
 ---
 
-# 9.11 Cross Domain Event Consistency Model
+# 9.11 Multi-Domain Event Consistency Model
 
 - **Eventual Consistency:** D05 relies on eventual consistency for all integrated external domain information, reacting asynchronously to incoming domain events.
 - **Asynchronous Event Delivery:** External domain events may arrive out-of-order or asynchronously. D05 must not assume strict temporal ordering unless explicitly guaranteed by inter-context contracts.
@@ -7264,7 +7264,7 @@ Maintainability is achieved through:
 
 ---
 
-# 18.11 Cross-Domain Integration Validation
+# 18.11 Multi-Domain Integration Validation
 
 D05 integration rules:
 
@@ -7375,7 +7375,7 @@ The D05 architecture shall ensure:
 | CQRS Alignment | PASS |
 | Clean Architecture Alignment | PASS |
 | Canonical Ownership | PASS |
-| Cross Domain Boundaries | PASS |
+| Multi-Domain Boundaries | PASS |
 | Workflow Completeness | PASS |
 | Auditability | PASS |
 | Security Model | PASS |

@@ -2136,7 +2136,7 @@ The Exception Architecture defines the canonical handling of exceptional conditi
 
 ---
 
-# 24. Cross-Domain Contracts
+# 24. Multi-Domain Contracts
 
 ## Upstream Domains
 
@@ -2198,7 +2198,7 @@ The Exception Architecture defines the canonical handling of exceptional conditi
 | Configuration Architecture | ✓ |
 | Exception Architecture | ✓ |
 | Domain Constraints | ✓ |
-| Cross-Domain Contracts | ✓ |
+| Multi-Domain Contracts | ✓ |
 | Repository Standards | ✓ |
 
 ---
@@ -2217,7 +2217,7 @@ The Exception Architecture defines the canonical handling of exceptional conditi
 | Event-Driven Architecture Preserved | ✓ |
 | Configuration-Driven Architecture | ✓ |
 | Bounded Context Preserved | ✓ |
-| Cross-Domain Dependencies Defined | ✓ |
+| Multi-Domain Dependencies Defined | ✓ |
 | Ready for L3 Decomposition | ✓ |
 | Ready for Repository Merge | ✓ |
 

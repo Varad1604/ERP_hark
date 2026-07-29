@@ -170,7 +170,7 @@ Institutionally Approved Results become the sole input for Result Publication.
 
 ---
 
-## 4.8 Cross-Domain Collaboration
+## 4.8 Multi-Domain Collaboration
 
 Result Processing & Computation collaborates with Examination Policy, Marks Collection & Evaluation, Academic Calendar, Organisation, Person & Identity, and Platform Foundation domains while preserving ownership boundaries.
 
@@ -1122,7 +1122,7 @@ Consumed events influence Result Processing without transferring ownership.
 
 ---
 
-# 13. Cross-Domain Interactions
+# 13. Multi-Domain Interactions
 
 The Result Processing & Computation domain collaborates with multiple business domains while preserving clear ownership boundaries.
 

@@ -42,7 +42,7 @@ To make tracking, version history, and reverting architectural decisions straigh
 1. **One Domain File per Commit**: Do not bundle changes to multiple domain specifications in a single commit unless the change is an approved governance synchronization.
 2. **Commit Message Format**:
    - `docs(L2-A01): draft initial platform tenant workflows`
-   - `docs(L3-Admissions): update student admission scenario to locked`
+   - `docs(L3-QualificationCompletion): update approved business scenario status`
    - `docs(L5): clarify multi-tenancy solution architecture policy`
 3. **Draft Commits**: Mark unfinished drafts with a `[WIP]` prefix in the commit message if working in shared feature branches.
 
@@ -70,7 +70,7 @@ All additions, edits, or promotions of documents to `Locked` must go through a P
 Before a document can be merged into `main`, it undergoes a formal review process:
 
 ```text
-Draft Created -> Self-Review -> Pull Request -> Architecture Review -> Locked Status -> Merge
+Draft Created -> Self-Review -> Pull Request -> Architecture Review -> Trust Certification Ready -> Locked Status -> Merge
 ```
 
 1. **Alignment Check**: Reviewer ensures that the specification does not conflict with upstream architecture in the L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6 hierarchy.
@@ -85,6 +85,7 @@ Draft Created -> Self-Review -> Pull Request -> Architecture Review -> Locked St
 We use semantic versioning for architectural documents:
 
 - **`v0.x` (Draft)**: Work in progress. Sections are being filled, questions are open, and review comments are being resolved.
+- **Trust Certification Ready**: Repository-consistent and ready for final certification review, but not yet locked or merged.
 - **`v1.0` (Locked / Base Version)**: Approved, locked, and merged to `main`. This is ready to guide development.
 - **`v1.x` (Minor Revision)**: Backward-compatible clarifications, additional failures, or sub-workflow details.
 - **`v2.0` (Major Revision)**: Breaking architectural change, such as merging domains, transferring ownership, or altering baseline dependency rules. Requires a new round of approvals and team sync.
@@ -99,4 +100,3 @@ Whenever an architectural specification or workflow document is successfully rev
 2. **[CHANGELOG.md](/F:/Pravaha/ERP_Planning/CHANGELOG.md)**: Record exact changes, folder relocations, or new document locked status under the appropriate version release block.
 3. **[L2_DOMAIN_WORKFLOW_MATRIX.md](/F:/Pravaha/ERP_Planning/architecture/L2_Domain_Workflow_Architecture/L2_DOMAIN_WORKFLOW_MATRIX.md)**: Mark the target domain checkboxes or statuses as completed.
 4. **[DEPENDENCY_MAP.md](/F:/Pravaha/ERP_Planning/DEPENDENCY_MAP.md)**: If the document alters domain relationships or dependencies, update the corresponding maps immediately.
-

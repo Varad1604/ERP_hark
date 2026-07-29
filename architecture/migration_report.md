@@ -12,7 +12,7 @@ This report records the governance migration to the canonical architecture hiera
 L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 ```
 
-No L3 documents were created. No L2 business workflow logic was modified.
+No L3 documents were created. L2 business workflow logic was not redesigned; only terminology was normalized.
 
 ---
 
@@ -32,7 +32,7 @@ No L3 documents were created. No L2 business workflow logic was modified.
 
 ## Governance Changes Applied
 
-- Replaced legacy multi-domain workflow and architecture terminology in governance documents with Business Scenario and Business Scenario Architecture terminology.
+- Replaced legacy workflow and architecture terminology across governance, overview, template, AI context, prompt, and L2 Markdown files.
 - Standardized L0 through L6 definitions across governance documents.
 - Updated dependency direction to L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6.
 - Clarified that L3 Business Scenario Architecture is independent of L2 numbering and may derive from one or many L2 workflow documents.
@@ -56,18 +56,18 @@ No L3 documents were created. No L2 business workflow logic was modified.
 | Canonical architecture definitions synchronized across governance documents | Passed |
 | Legacy workflow terminology removed from governance documents | Passed |
 | Legacy architecture terminology removed from governance documents | Passed |
+| Legacy terminology removed from L2 business-content files | Passed |
 | Section J consistently represented as Enterprise Resource Management | Passed |
 | Team assignments synchronized across README, Architecture Index, and Team Assignments | Passed |
 | L3 independence from L2 numbering documented | Passed |
 | No L3 source documents created | Passed |
-| No L2 business workflow logic intentionally modified | Passed |
-| No broken Markdown links introduced by this migration | Passed |
+| No L2 business workflow logic redesigned | Passed |
+| Repository-wide Markdown file-link validation | Passed |
 
 ---
 
 ## Manual Review Notes
 
 - The repository had pre-existing uncommitted L2 file additions, deletions, and renames before this migration. They were not normalized by this governance phase.
-- Some L2 business-content files still contain legacy multi-domain wording. They were intentionally not modified because this phase prohibited L2 business content changes.
 - Existing generated artifacts were not regenerated.
-- Template content was not modified beyond existing governance references.
+- Template content was modified only for terminology alignment.

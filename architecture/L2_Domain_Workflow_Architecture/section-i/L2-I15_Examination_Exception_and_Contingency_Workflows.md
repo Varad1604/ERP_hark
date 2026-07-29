@@ -1639,7 +1639,7 @@ The Examination Exception & Contingency domain shall adhere to the following dep
 - Circular dependencies are prohibited.
 - Domain ownership shall never be violated.
 - Communication shall occur through canonical business contracts.
-- Cross-domain integration shall be event-driven.
+- Multi-domain integration shall be event-driven.
 - Downstream domains shall not modify Exception Case aggregates.
 - Published events shall remain backward compatible.
 

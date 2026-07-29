@@ -200,7 +200,7 @@ Registration serves as the authoritative source for candidate examination partic
 
 ---
 
-## 4.8 Cross-Domain Governance
+## 4.8 Multi-Domain Governance
 
 Examination Registration collaborates with multiple business domains.
 
@@ -947,7 +947,7 @@ Consumed events influence registration decisions without transferring ownership.
 
 ---
 
-# 13. Cross-Domain Interactions
+# 13. Multi-Domain Interactions
 
 The Examination Registration domain collaborates with multiple business domains to determine candidate eligibility and establish authoritative examination registrations.
 

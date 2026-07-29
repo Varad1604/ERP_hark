@@ -108,7 +108,7 @@ The Guardian Workflows Domain shall adhere to the following architectural princi
 - Every upstream domain remains the single source of truth for its own business information.
 - Guardian Workflows shall consume upstream business information without duplicating ownership.
 - Upstream identifiers shall be referenced but never recreated.
-- Cross-domain communication shall preserve bounded-context autonomy.
+- Multi-domain communication shall preserve bounded-context autonomy.
 - Guardian business rules shall never modify upstream domain state directly.
 - All integrations shall occur through defined service contracts and domain events.
 
@@ -338,7 +338,7 @@ The following business capabilities belong to other bounded contexts and shall n
 
 ---
 
-## Cross-Domain Ownership Rules
+## Multi-Domain Ownership Rules
 
 The following rules preserve bounded-context integrity across the SutraERP platform.
 
@@ -1369,7 +1369,7 @@ Verification, approval, suspension, and termination may require different instit
 
 ---
 
-# 9.10 Cross-Domain Rules
+# 9.10 Multi-Domain Rules
 
 ### BR-028 — Identity Ownership
 
@@ -2856,7 +2856,7 @@ These outcomes represent business decisions and are independent of transport-lay
 
 ---
 
-# 16.8 Cross-Domain Authorization Boundaries
+# 16.8 Multi-Domain Authorization Boundaries
 
 The Guardian Workflows Domain shall observe the following ownership boundaries.
 
@@ -3080,7 +3080,7 @@ Historical evidence shall never be altered.
 
 ---
 
-# 17.9 Cross-Domain Audit Responsibilities
+# 17.9 Multi-Domain Audit Responsibilities
 
 | Business Concern | Responsible Domain |
 |------------------|--------------------|
@@ -3323,7 +3323,7 @@ Business security events affecting Guardian Relationships shall be auditable.
 
 ---
 
-# 18.7 Cross-Domain Security Boundaries
+# 18.7 Multi-Domain Security Boundaries
 
 The Guardian Workflows Domain shall consume security services provided by other bounded contexts without duplicating their responsibilities.
 
@@ -3407,7 +3407,7 @@ The Guardian Workflows Domain shall ensure that:
 
 The Security Considerations establish the canonical business security framework for the Guardian Workflows Domain.
 
-By defining security principles, access control requirements, information classification, business authorization responsibilities, privacy expectations, monitoring requirements, and cross-domain security boundaries, the Guardian Workflows Domain protects sensitive guardian information while preserving aggregate integrity, deterministic business behavior, bounded-context ownership, and alignment with the enterprise security architecture of the SutraERP platform.
+By defining security principles, access control requirements, information classification, business authorization responsibilities, privacy expectations, monitoring requirements, and multi-domain security boundaries, the Guardian Workflows Domain protects sensitive guardian information while preserving aggregate integrity, deterministic business behavior, bounded-context ownership, and alignment with the enterprise security architecture of the SutraERP platform.
 
 # 19. Performance & Scalability
 
@@ -3557,7 +3557,7 @@ Historical growth shall not compromise current business operations.
 
 ---
 
-# 19.8 Cross-Domain Scalability
+# 19.8 Multi-Domain Scalability
 
 The Guardian Workflows Domain shall remain independently scalable while collaborating with other bounded contexts.
 
@@ -3569,7 +3569,7 @@ The Guardian Workflows Domain shall remain independently scalable while collabor
 | Finance | Independent |
 | Communication Services | Independent |
 
-Cross-domain collaboration shall not introduce architectural coupling that limits independent scalability.
+Multi-domain collaboration shall not introduce architectural coupling that limits independent scalability.
 
 ---
 
@@ -3842,7 +3842,7 @@ Regulatory extensions shall preserve the canonical domain architecture while ena
 
 ---
 
-# 20.13 Cross-Domain Extension Boundaries
+# 20.13 Multi-Domain Extension Boundaries
 
 Extensions shall respect bounded-context ownership.
 
@@ -4507,7 +4507,7 @@ Positive
 
 - Eliminates duplication.
 - Preserves identity consistency.
-- Simplifies cross-domain integration.
+- Simplifies multi-domain integration.
 
 Negative
 
@@ -4800,7 +4800,7 @@ Historical records shall remain immutable for the lifetime of the repository.
 
 These Architecture Decision Records capture the foundational architectural decisions governing the Guardian Workflows Domain.
 
-Together they establish the aggregate model, ownership boundaries, lifecycle governance, authorization strategy, event publication model, historical integrity, and cross-domain responsibilities.
+Together they establish the aggregate model, ownership boundaries, lifecycle governance, authorization strategy, event publication model, historical integrity, and multi-domain responsibilities.
 
 Future architectural evolution shall preserve these decisions unless explicitly superseded through an approved repository governance process and accompanied by a new Architecture Decision Record.
 
@@ -4822,7 +4822,7 @@ The glossary shall:
 - Align with bounded-context ownership.
 - Prevent semantic drift across the repository.
 - Preserve consistency between architecture and implementation.
-- Distinguish similarly named concepts across domains.
+- Distinguish similarly named concepts amulti-domains.
 
 ---
 
@@ -5052,7 +5052,7 @@ These constraints preserve bounded-context integrity.
 
 ---
 
-# 24.8 Cross-Domain Collaboration
+# 24.8 Multi-Domain Collaboration
 
 The Guardian Workflows Domain collaborates with external bounded contexts through published Service Contracts and Domain Events.
 
@@ -5246,7 +5246,7 @@ Every future revision shall preserve:
 - Technology independence.
 - Auditability.
 - Architectural traceability.
-- Cross-domain consistency.
+- Multi-domain consistency.
 - Repository structural consistency.
 
 No revision shall reduce the architectural quality established by this document.
@@ -5261,7 +5261,7 @@ Ownership of this document includes responsibility for:
 
 - Architectural correctness.
 - Repository consistency.
-- Cross-domain alignment.
+- Multi-domain alignment.
 - Canonical terminology.
 - ADR governance.
 - Long-term architectural evolution.
@@ -5286,7 +5286,7 @@ Before any revision is accepted, the following checklist shall be satisfied.
 | ADRs updated where required | □ |
 | Visual Models synchronized | □ |
 | Glossary consistency verified | □ |
-| Cross-domain impacts assessed | □ |
+| Multi-domain impacts assessed | □ |
 | Repository review completed | □ |
 
 Completion of this checklist is mandatory for repository acceptance.

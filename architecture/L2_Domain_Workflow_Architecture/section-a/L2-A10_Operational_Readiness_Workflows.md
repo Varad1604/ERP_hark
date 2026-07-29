@@ -292,7 +292,7 @@ The domain follows the principles of Domain-Driven Design by ensuring:
 - Domain Services execute business capabilities.
 - Business policies determine governance outcomes.
 - Domain Events communicate immutable governance facts.
-- Cross-domain collaboration occurs exclusively through published contracts.
+- Multi-domain collaboration occurs exclusively through published contracts.
 
 ---
 
@@ -2851,7 +2851,7 @@ This architecture preserves low coupling, bounded-context autonomy, and independ
 
 ---
 
-# 35. Cross-Domain Dependencies
+# 35. Multi-Domain Dependencies
 
 ## 35.1 Dependency Philosophy
 
@@ -2859,7 +2859,7 @@ The Operational Readiness Domain functions as a governance orchestration domain.
 
 It does not own operational business capabilities implemented by collaborating domains. Instead, it evaluates operational preparedness using published business facts, readiness declarations, and governance policies.
 
-All cross-domain interaction shall occur exclusively through published Commands, Queries, and Domain Events.
+All multi-domain interaction shall occur exclusively through published Commands, Queries, and Domain Events.
 
 Direct database access, shared persistence, and internal service invocation across bounded contexts are prohibited.
 
@@ -2972,7 +2972,7 @@ These domains consume governance outcomes without becoming dependent upon Operat
 
 # 35.4 Collaboration Principles
 
-Cross-domain collaboration follows the repository architectural principles.
+Multi-domain collaboration follows the repository architectural principles.
 
 The Operational Readiness Domain:
 
@@ -3078,7 +3078,7 @@ The Operational Readiness Domain implements the following repository principles.
 | Rich Domain Service Principle | Business capabilities implemented through Domain Services |
 | Business Facts vs Governance Decisions | Consumes facts, publishes governance outcomes |
 | Capability-Oriented Service Contracts | Commands and Queries express business intent |
-| Published Boundary Principle | Cross-domain collaboration through published contracts |
+| Published Boundary Principle | Multi-domain collaboration through published contracts |
 | Business Command Principle | Commands express business capabilities |
 | Business Query Principle | Queries provide read-only business information |
 | Business Fact Event Principle | Events represent immutable business facts |
@@ -3103,7 +3103,7 @@ Each workflow maps to:
 - Domain Events.
 - Business Rules.
 - Repository Principles.
-- Cross-domain dependencies.
+- Multi-domain dependencies.
 
 This ensures complete governance traceability throughout the repository.
 

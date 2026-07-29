@@ -169,7 +169,7 @@ Every attempt shall remain uniquely identifiable and completely traceable throug
 
 ---
 
-## 4.7 Cross-Domain Collaboration
+## 4.7 Multi-Domain Collaboration
 
 The Supplementary Examination domain collaborates with:
 
@@ -1114,7 +1114,7 @@ Consumed events influence supplementary examination workflows without transferri
 
 ---
 
-# 13. Cross-Domain Interactions
+# 13. Multi-Domain Interactions
 
 The Supplementary / Backlog / Improvement Examination domain collaborates with multiple repository domains while maintaining strict ownership boundaries.
 

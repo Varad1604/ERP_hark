@@ -4429,7 +4429,7 @@ All integrations with the Accounting domain shall comply with the following prin
 - Operational domains shall never modify Ledger data directly.
 - Financial integration shall be event-driven wherever feasible.
 - Accounting services shall validate all incoming financial requests.
-- Cross-domain communication shall preserve loose coupling.
+- Multi-domain communication shall preserve loose coupling.
 - Financial consistency shall take precedence over integration performance.
 - Every integration shall generate complete audit trails.
 
@@ -4469,7 +4469,7 @@ Downstream domains consume accounting information but never update Accounting ag
 
 ---
 
-# 38.4 Cross-Domain Integration Flow
+# 38.4 Multi-Domain Integration Flow
 
 ```mermaid
 flowchart LR
@@ -5786,4 +5786,4 @@ This document serves as the definitive Level-2 architectural specification for t
 
 # 48. L3 Event Catalog Explicit Mapping
 
-While the General Ledger consumes generic "Canonical Financial Facts," the exhaustive 1-to-1 event mapping (connecting the 40+ specific operational events from F01-F14 directly to GL Journal Entry handlers) is formally maintained and governed in the **Enterprise Event Catalog (L3)** to ensure cross-domain integration integrity and eliminate ambiguity for downstream implementation.
+While the General Ledger consumes generic "Canonical Financial Facts," the exhaustive 1-to-1 event mapping (connecting the 40+ specific operational events from F01-F14 directly to GL Journal Entry handlers) is formally maintained and governed in the **Enterprise Event Catalog (L3)** to ensure multi-domain integration integrity and eliminate ambiguity for downstream implementation.

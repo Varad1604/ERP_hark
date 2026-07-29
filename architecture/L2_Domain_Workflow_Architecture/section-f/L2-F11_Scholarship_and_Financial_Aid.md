@@ -1150,7 +1150,7 @@ Business capabilities collaborate through the Financial Aid Aggregate.
 
 Capabilities shall never directly manipulate neighbouring bounded contexts.
 
-Cross-domain collaboration occurs exclusively through:
+Multi-domain collaboration occurs exclusively through:
 
 - Domain Events
 - Integration Events
@@ -2872,7 +2872,7 @@ Ownership overlap is prohibited.
 
 ## Eventual Consistency
 
-Cross-domain consistency is achieved through immutable published business facts.
+Multi-domain consistency is achieved through immutable published business facts.
 
 Neighbouring bounded contexts independently determine:
 

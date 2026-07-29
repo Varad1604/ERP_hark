@@ -233,7 +233,7 @@ Implementation technologies belong to L3.
 
 Completed business facts shall be propagated through Integration Events.
 
-Cross-domain polling shall be minimized.
+Multi-domain polling shall be minimized.
 
 ---
 
@@ -1495,7 +1495,7 @@ Responsible for
 
 - Read model generation
 - Canonical lookup
-- Cross-domain resolution
+- Multi-domain resolution
 
 ---
 
@@ -3923,7 +3923,7 @@ Phase 5 is complete when:
 
 **Architecture Decision:** **Phase 5 – Domain Events is formally LOCKED.**
 
-This event model becomes the canonical event architecture for the Organization Domain and establishes the foundation for cross-domain communication throughout SutraERP.
+This event model becomes the canonical event architecture for the Organization Domain and establishes the foundation for multi-domain communication throughout SutraERP.
 
 ---
 
@@ -4199,7 +4199,7 @@ Characteristics:
 Used for:
 
 - Completed business facts
-- Cross-domain notifications
+- Multi-domain notifications
 - Event propagation
 - Read-model synchronization
 
@@ -4679,7 +4679,7 @@ Delegation never transfers ownership.
 
 # L2-B02-P7-09 Identity Propagation
 
-Every cross-domain business request shall propagate:
+Every multi-domain business request shall propagate:
 
 - Original User Identity
 - Calling Service Identity
@@ -5096,7 +5096,7 @@ The document satisfies repository requirements.
 | Canonical Ownership | ✅ |
 | Phase Separation | ✅ |
 | Architecture Lock | ✅ |
-| Cross-domain Ready | ✅ |
+| Multi-domain Ready | ✅ |
 | Technology Independent | ✅ |
 | Version Controlled | ✅ |
 

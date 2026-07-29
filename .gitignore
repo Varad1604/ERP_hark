@@ -28,7 +28,11 @@ tools/code.txt
 
 # Generated outputs
 generated/
-AI_CONTEXT/
-architecture_audit_report.md
+AI_CONTEXT/*
+!AI_CONTEXT/README.md
+!AI_CONTEXT/INDEX.md
+!AI_CONTEXT/SECTION_H/
+!AI_CONTEXT/SECTION_H/README.md
+!AI_CONTEXT/SECTION_J/
+!AI_CONTEXT/SECTION_J/README.md
 Exam_review.md
-prompts/

@@ -122,7 +122,7 @@ Provide configurable validation mechanisms capable of evaluating:
 
 - Structural completeness
 - Business consistency
-- Cross-domain integrity
+- Multi-domain integrity
 - Regulatory compliance
 
 before institutional submissions are approved.
@@ -181,7 +181,7 @@ The Regulatory Reporting & Compliance domain shall be responsible for:
 - Report template management.
 - Reporting metadata management.
 - Reporting execution.
-- Cross-domain data collection orchestration.
+- Multi-domain data collection orchestration.
 - Validation orchestration.
 - Reporting snapshot generation.
 - Compliance evidence mapping.
@@ -391,7 +391,7 @@ The Regulatory Reporting & Compliance domain includes responsibility for the fol
 
 ### Enterprise Data Collection
 
-- Cross-domain data orchestration
+- Multi-domain data orchestration
 - Data collection execution
 - Query coordination
 - Read model aggregation
@@ -403,7 +403,7 @@ The Regulatory Reporting & Compliance domain includes responsibility for the fol
 
 - Structural validation
 - Business validation
-- Cross-domain validation
+- Multi-domain validation
 - Regulatory validation
 - Validation reporting
 - Validation history
@@ -582,7 +582,7 @@ All upstream integrations SHALL satisfy the following architectural principles.
 - Operational domains retain canonical ownership.
 - H08 consumes information exclusively through published enterprise contracts.
 - H08 never duplicates operational systems of record.
-- Cross-domain synchronization shall be contract-driven.
+- Multi-domain synchronization shall be contract-driven.
 - Event-driven synchronization is preferred whenever available.
 - Scheduled synchronization may supplement event-driven updates.
 - Reporting snapshots SHALL preserve immutable reporting history.
@@ -1604,7 +1604,7 @@ Validation ensures regulatory completeness and institutional consistency before 
 
 - Execute structural validation.
 - Execute business validation.
-- Execute cross-domain validation.
+- Execute multi-domain validation.
 - Execute compliance validation.
 - Record validation findings.
 - Maintain validation history.
@@ -1616,7 +1616,7 @@ Validation ensures regulatory completeness and institutional consistency before 
 |-----------|---------|
 | Structural Validation | Required fields and report completeness |
 | Business Validation | Institutional business rules |
-| Cross-Domain Validation | Consistency across canonical domains |
+| Multi-Domain Validation | Consistency across canonical domains |
 | Compliance Validation | Regulatory framework conformance |
 
 ### Lifecycle
@@ -2216,7 +2216,7 @@ Enterprise Data Collection completed.
 
 1. Structural Validation
 2. Business Validation
-3. Cross-Domain Validation
+3. Multi-Domain Validation
 4. Regulatory Validation
 
 ---
@@ -2232,7 +2232,7 @@ A[Start Validation]
 
 --> C[Business Validation]
 
---> D[Cross-Domain Validation]
+--> D[Multi-Domain Validation]
 
 --> E[Compliance Validation]
 
@@ -2261,7 +2261,7 @@ Failed validation returns Reporting Cycle to Data Collection.
 
 - ExecuteStructuralValidation
 - ExecuteBusinessValidation
-- ExecuteCrossDomainValidation
+- ExecuteMultiDomainValidation
 - ExecuteComplianceValidation
 - PublishValidationResult
 
@@ -3123,7 +3123,7 @@ Commands SHALL NEVER directly modify aggregates owned by other bounded contexts.
 |----------|-----------|---------|
 | ExecuteStructuralValidation | Validation Result | Validate report completeness |
 | ExecuteBusinessValidation | Validation Result | Validate institutional business rules |
-| ExecuteCrossDomainValidation | Validation Result | Validate cross-domain consistency |
+| ExecuteMultiDomainValidation | Validation Result | Validate multi-domain consistency |
 | ExecuteComplianceValidation | Validation Result | Validate regulatory compliance |
 | PublishValidationResult | Validation Result | Publish validation outcome |
 
@@ -3867,7 +3867,7 @@ Reporting --> Authorities
 | REST APIs | Synchronous communication |
 | CQRS Read Models | Reporting projections |
 | Domain Events | Enterprise synchronization |
-| Service Contracts | Cross-domain integration |
+| Service Contracts | Multi-domain integration |
 | Immutable Snapshots | Regulatory submissions |
 
 ---
@@ -3883,7 +3883,7 @@ The following rules are mandatory.
 - Domain events SHALL remain replayable.
 - Consumers SHALL remain loosely coupled.
 - Every integration SHALL support version evolution.
-- Cross-domain ownership boundaries SHALL remain intact.
+- Multi-domain ownership boundaries SHALL remain intact.
 ```
 # 15. Security Architecture
 
@@ -4067,7 +4067,7 @@ Validation rules may define:
 
 - Mandatory fields
 - Business constraints
-- Cross-domain consistency rules
+- Multi-domain consistency rules
 - Threshold values
 - Compliance checks
 - Framework-specific validations
@@ -4122,7 +4122,7 @@ BR-005
 Validation SHALL complete successfully before Reporting Snapshot generation.
 
 BR-006  
-Validation SHALL evaluate structural, business, cross-domain, and compliance rules.
+Validation SHALL evaluate structural, business, multi-domain, and compliance rules.
 
 BR-007  
 Validation failures SHALL prevent institutional approval.
@@ -4690,7 +4690,7 @@ The architecture guarantees:
 
 ---
 
-## 24.6 Cross-Domain Relationship Summary
+## 24.6 Multi-Domain Relationship Summary
 
 H08 consumes authoritative information from enterprise operational domains while publishing reporting outcomes to enterprise services.
 

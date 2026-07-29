@@ -1,11 +1,11 @@
-# L2-F00 — Finance Domain Model & Foundation
+﻿# L2-F00 â€” Finance Domain Model & Foundation
 
-**Section:** F — Finance & Accounting
+**Section:** F â€” Finance & Accounting
 **Architecture Level:** Level 2 (Domain Architecture)
-**Status:** 🟡 DRAFT
+**Status:** ðŸŸ¡ DRAFT
 **Version:** 1.0
 **Owner:** Section F Architect
-**Depends On:** L2-A01 — Platform & Tenant Foundation, L2-A05 — Workflow Engine Workflows
+**Depends On:** L2-A01 â€” Platform & Tenant Foundation, L2-A05 â€” Workflow Engine Workflows
 **Used By:** L2-F01 to L2-F14, Admissions, Student Lifecycle, Examination, HR, Procurement, Hostel, Library, Transport, Assets, Reporting
 
 ---
@@ -81,7 +81,7 @@ Finance validates, records, accounts, controls, and reports the financial conseq
 
 The Finance Domain follows the following architectural principles.
 
-## Principle 1 — Finance is the Financial Authority
+## Principle 1 â€” Finance is the Financial Authority
 
 Only the Finance Domain may create accounting records.
 
@@ -90,33 +90,33 @@ Business domains may request financial actions but shall never directly create l
 Examples:
 
 Admission Module
-→ creates Admission Event
+â†’ creates Admission Event
 
 Finance
-→ creates Student Charge
+â†’ creates Student Charge
 
 Finance
-→ posts accounting entries
+â†’ posts accounting entries
 
 ---
 
 Hostel Module
 
-→ creates Hostel Damage Event
+â†’ creates Hostel Damage Event
 
 Finance
 
-→ creates Financial Charge
+â†’ creates Financial Charge
 
 Finance
 
-→ updates accounting records
+â†’ updates accounting records
 
 The Finance Domain is therefore the single source of truth for institutional accounting.
 
 ---
 
-## Principle 2 — Event Driven Architecture
+## Principle 2 â€” Event Driven Architecture
 
 Finance reacts to business events.
 
@@ -126,23 +126,23 @@ Examples:
 
 Admission Approved
 
-↓
+â†“
 
 Admission Module publishes event
 
-↓
+â†“
 
 Finance creates Admission Charges
 
-↓
+â†“
 
 Accounting updated
 
-↓
+â†“
 
 Receipt available
 
-↓
+â†“
 
 Notification published
 
@@ -150,7 +150,7 @@ Every financial workflow begins with a business event.
 
 ---
 
-## Principle 3 — Configuration Over Customization
+## Principle 3 â€” Configuration Over Customization
 
 Institutional policies shall be configurable.
 
@@ -169,7 +169,7 @@ All such behavior shall be controlled through configurable policies.
 
 ---
 
-## Principle 4 — Canonical Financial Records
+## Principle 4 â€” Canonical Financial Records
 
 Every monetary obligation inside the ERP shall exist as a canonical financial object.
 
@@ -199,7 +199,7 @@ with different origins.
 
 ---
 
-## Principle 5 — Business Ownership Separation
+## Principle 5 â€” Business Ownership Separation
 
 Business departments own business decisions.
 
@@ -229,7 +229,7 @@ Audit
 
 ---
 
-## Principle 6 — Complete Auditability
+## Principle 6 â€” Complete Auditability
 
 Every financial operation shall be:
 
@@ -249,7 +249,7 @@ No financial transaction shall be silently modified.
 
 ---
 
-## Principle 7 — Immutable Financial History
+## Principle 7 â€” Immutable Financial History
 
 Once accounting entries are posted:
 
@@ -271,7 +271,7 @@ Never by modifying historical accounting records.
 
 ---
 
-## Principle 8 — Multi-Institution Ready
+## Principle 8 â€” Multi-Institution Ready
 
 The Finance Domain shall support:
 
@@ -291,7 +291,7 @@ without architectural modification.
 
 ---
 
-## Principle 9 — Regulatory Neutral Architecture
+## Principle 9 â€” Regulatory Neutral Architecture
 
 Finance shall support:
 
@@ -315,7 +315,7 @@ Regulatory compliance shall never require architectural redesign.
 
 ---
 
-## Principle 10 — Workflow Before Interface
+## Principle 10 â€” Workflow Before Interface
 
 Architecture is driven by business workflows.
 
@@ -329,25 +329,25 @@ Every workflow defined within Section F shall remain valid irrespective of UI te
 
 The Finance Domain shall provide:
 
-• Complete accounting integrity
+â€¢ Complete accounting integrity
 
-• Enterprise scalability
+â€¢ Enterprise scalability
 
-• Modular financial services
+â€¢ Modular financial services
 
-• Event-driven financial processing
+â€¢ Event-driven financial processing
 
-• Configurable institutional policies
+â€¢ Configurable institutional policies
 
-• Strong audit capabilities
+â€¢ Strong audit capabilities
 
-• Complete financial traceability
+â€¢ Complete financial traceability
 
-• High automation
+â€¢ High automation
 
-• Cross-domain interoperability
+â€¢ Multi-domain interoperability
 
-• Secure financial controls
+â€¢ Secure financial controls
 
 ---
 
@@ -355,27 +355,27 @@ The Finance Domain shall provide:
 
 Finance is responsible for:
 
-• Accounting
+â€¢ Accounting
 
-• Ledger
+â€¢ Ledger
 
-• Receipts
+â€¢ Receipts
 
-• Payments
+â€¢ Payments
 
-• Refunds
+â€¢ Refunds
 
-• Budgets
+â€¢ Budgets
 
-• Banking
+â€¢ Banking
 
-• Financial Reporting
+â€¢ Financial Reporting
 
-• Vendor Finance
+â€¢ Vendor Finance
 
-• Payroll Accounting
+â€¢ Payroll Accounting
 
-• Tax Compliance (GST, TDS, Income Tax)
+â€¢ Tax Compliance (GST, TDS, Income Tax)
 
 Business departments remain responsible for operational decisions.
 
@@ -434,23 +434,23 @@ All workflows defined under Section F shall operate on these entities.
 
 The Finance Domain classifies entities into the following categories.
 
-• Foundation Entities
+â€¢ Foundation Entities
 
-• Master Data
+â€¢ Master Data
 
-• Operational Financial Entities
+â€¢ Operational Financial Entities
 
-• Accounting Entities
+â€¢ Accounting Entities
 
-• Banking Entities
+â€¢ Banking Entities
 
-• Procurement Entities
+â€¢ Procurement Entities
 
-• Payroll Entities
+â€¢ Payroll Entities
 
-• Governance Entities
+â€¢ Governance Entities
 
-• Integration Entities
+â€¢ Integration Entities
 
 ---
 
@@ -466,13 +466,13 @@ Represents the legal accounting entity.
 
 Responsibilities
 
-• Financial ownership
+â€¢ Financial ownership
 
-• Regulatory ownership
+â€¢ Regulatory ownership
 
-• Accounting boundary
+â€¢ Accounting boundary
 
-• Financial reporting boundary
+â€¢ Financial reporting boundary
 
 One institution maintains independent books of accounts.
 
@@ -484,9 +484,9 @@ Represents a specific time boundary for financial reporting, typically aligned w
 
 Responsibilities
 
-• Time-bound financial reporting
-• Ledger isolation by period
-• Soft close and hard close state management
+â€¢ Time-bound financial reporting
+â€¢ Ledger isolation by period
+â€¢ Soft close and hard close state management
 
 ---
 
@@ -496,13 +496,13 @@ Represents a physical or administrative accounting location.
 
 Responsibilities
 
-• Campus-wise accounting
+â€¢ Campus-wise accounting
 
-• Cash collection
+â€¢ Cash collection
 
-• Cost allocation
+â€¢ Cost allocation
 
-• Department financial ownership
+â€¢ Department financial ownership
 
 Every campus belongs to exactly one Institution.
 
@@ -514,21 +514,21 @@ Represents the accounting period.
 
 Responsibilities
 
-• Accounting segregation
+â€¢ Accounting segregation
 
-• Financial closing
+â€¢ Financial closing
 
-• Budget cycle
+â€¢ Budget cycle
 
-• Reporting period
+â€¢ Reporting period
 
 Rules
 
-• Every financial transaction belongs to one Financial Year.
+â€¢ Every financial transaction belongs to one Financial Year.
 
-• Closed Financial Years become immutable.
+â€¢ Closed Financial Years become immutable.
 
-• Reopening requires approval.
+â€¢ Reopening requires approval.
 
 ---
 
@@ -546,15 +546,15 @@ Defines the accounting structure.
 
 Contains
 
-• Assets
+â€¢ Assets
 
-• Liabilities
+â€¢ Liabilities
 
-• Income
+â€¢ Income
 
-• Expenses
+â€¢ Expenses
 
-• Equity
+â€¢ Equity
 
 The Chart of Accounts is configurable.
 
@@ -610,11 +610,11 @@ Research
 
 Purpose
 
-• Expense allocation
+â€¢ Expense allocation
 
-• Budget tracking
+â€¢ Budget tracking
 
-• Financial reporting
+â€¢ Financial reporting
 
 ---
 
@@ -624,13 +624,13 @@ Represents planned financial allocation.
 
 Supports
 
-• Department Budgets
+â€¢ Department Budgets
 
-• Cost Center Budgets
+â€¢ Cost Center Budgets
 
-• Institutional Budgets
+â€¢ Institutional Budgets
 
-• Project Budgets
+â€¢ Project Budgets
 
 Budgets are configurable.
 
@@ -668,15 +668,15 @@ Represents approval definitions.
 
 Supports
 
-• Sequential Approval
+â€¢ Sequential Approval
 
-• Parallel Approval
+â€¢ Parallel Approval
 
-• Delegation
+â€¢ Delegation
 
-• Acting Authority
+â€¢ Acting Authority
 
-• Emergency Override
+â€¢ Emergency Override
 
 The Approval Engine executes these workflows.
 
@@ -854,29 +854,29 @@ No module shall create independent financial objects outside Student Charge.
 
 Student Charge contains
 
-• Origin Module
+â€¢ Origin Module
 
-• Origin Department
+â€¢ Origin Department
 
-• Charge Category
+â€¢ Charge Category
 
-• Financial Head
+â€¢ Financial Head
 
-• Amount
+â€¢ Amount
 
-• Due Date
+â€¢ Due Date
 
-• Installments
+â€¢ Installments
 
-• Outstanding Amount
+â€¢ Outstanding Amount
 
-• Status
+â€¢ Status
 
-• Approval Information
+â€¢ Approval Information
 
-• Accounting Reference
+â€¢ Accounting Reference
 
-• Audit Reference
+â€¢ Audit Reference
 
 Student Charge becomes the financial source of truth.
 
@@ -1040,8 +1040,8 @@ Other domains may only consume the published information or request financial op
 | Debit Note | Finance | Yes | No | No | Immutable |
 | Scholarship Allocation | Finance | Yes | Yes | No | Linked to Charge |
 | Financial Hold | Finance | Yes | Yes | No | Rule Based |
-| Vendor Master | Finance | Yes | Yes | Archive Only | Single Canonical Owner |
-| Purchase Order | Procurement | Yes | Limited | No | Finance Consumes |
+| Vendor Master | Section J (J02) | No | No | No | Finance consumes approved supplier profile |
+| Purchase Order | Section J (J04) | No | No | No | Finance consumes procurement commitment facts |
 | Vendor Invoice | Finance | Yes | Workflow Controlled | No | Accounting Entity |
 | Payroll Computation | HR | Auto | Locked After Posting | No | Single Canonical Owner |
 | Payroll Accounting | Finance | Auto | Locked After Posting | No | Single Canonical Owner |
@@ -1064,25 +1064,25 @@ The following boundaries are mandatory.
 
 Admissions owns
 
-• Admission Process
+â€¢ Admission Process
 
-• Admission Decision
+â€¢ Admission Decision
 
-• Seat Allocation
+â€¢ Seat Allocation
 
-• Enrollment
+â€¢ Enrollment
 
 Finance owns
 
-• Admission Charges
+â€¢ Admission Charges
 
-• Admission Receipts
+â€¢ Admission Receipts
 
-• Refunds
+â€¢ Refunds
 
-• Accounting
+â€¢ Accounting
 
-• Financial Reporting
+â€¢ Financial Reporting
 
 Admissions shall never calculate accounting entries.
 
@@ -1092,25 +1092,25 @@ Admissions shall never calculate accounting entries.
 
 Academics owns
 
-• Programs
+â€¢ Programs
 
-• Courses
+â€¢ Courses
 
-• Credits
+â€¢ Credits
 
-• Semester Registration
+â€¢ Semester Registration
 
-• Academic Progress
+â€¢ Academic Progress
 
 Finance owns
 
-• Tuition Charges
+â€¢ Tuition Charges
 
-• Registration Fees
+â€¢ Registration Fees
 
-• Academic Penalties
+â€¢ Academic Penalties
 
-• Financial Holds
+â€¢ Financial Holds
 
 ---
 
@@ -1118,23 +1118,23 @@ Finance owns
 
 Examination owns
 
-• Exam Registration
+â€¢ Exam Registration
 
-• Hall Ticket
+â€¢ Hall Ticket
 
-• Results
+â€¢ Results
 
-• Revaluation
+â€¢ Revaluation
 
 Finance owns
 
-• Exam Fees
+â€¢ Exam Fees
 
-• Revaluation Charges
+â€¢ Revaluation Charges
 
-• Refunds
+â€¢ Refunds
 
-• Accounting
+â€¢ Accounting
 
 ---
 
@@ -1142,19 +1142,19 @@ Finance owns
 
 Hostel owns
 
-• Room Allocation
+â€¢ Room Allocation
 
-• Occupancy
+â€¢ Occupancy
 
-• Hostel Discipline
+â€¢ Hostel Discipline
 
 Finance owns
 
-• Hostel Fees
+â€¢ Hostel Fees
 
-• Damage Charges
+â€¢ Damage Charges
 
-• Refundable Deposits
+â€¢ Refundable Deposits
 
 ---
 
@@ -1162,19 +1162,19 @@ Finance owns
 
 Library owns
 
-• Books
+â€¢ Books
 
-• Membership
+â€¢ Membership
 
-• Borrowing
+â€¢ Borrowing
 
 Finance owns
 
-• Library Fines
+â€¢ Library Fines
 
-• Membership Charges
+â€¢ Membership Charges
 
-• Lost Book Recovery
+â€¢ Lost Book Recovery
 
 ---
 
@@ -1182,17 +1182,17 @@ Finance owns
 
 Transport owns
 
-• Routes
+â€¢ Routes
 
-• Vehicles
+â€¢ Vehicles
 
-• Stops
+â€¢ Stops
 
 Finance owns
 
-• Transport Charges
+â€¢ Transport Charges
 
-• Route Fee Adjustments
+â€¢ Route Fee Adjustments
 
 ---
 
@@ -1200,23 +1200,23 @@ Finance owns
 
 HR owns
 
-• Employee
+â€¢ Employee
 
-• Attendance
+â€¢ Attendance
 
-• Leave
+â€¢ Leave
 
-• Payroll Inputs
+â€¢ Payroll Inputs
 
 Finance owns
 
-• Payroll Accounting
+â€¢ Payroll Accounting
 
-• Salary Posting
+â€¢ Salary Posting
 
-• Tax Accounting
+â€¢ Tax Accounting
 
-• Expense Accounting
+â€¢ Expense Accounting
 
 ---
 
@@ -1224,63 +1224,64 @@ Finance owns
 
 Section J owns
 
-• Purchase Requests
+â€¢ Purchase Requests
 
-• Purchase Orders
+â€¢ Purchase Orders
 
-• Goods Receipt
+â€¢ Goods Receipt
 
 Finance owns monetary processing for
 
-• Vendor Accounting
+â€¢ Vendor Accounting
 
-• Vendor Payments
+â€¢ Vendor Payments
 
-• Expense Posting
+â€¢ Expense Posting
 
-• Tax Accounting
+â€¢ Tax Accounting
 
 ---
 
 ## Asset Financial Accounting Domain
 
 Section J owns
-• Asset Tracking
-• Inventory Control
-• Depreciation Computation
+â€¢ Asset Tracking
+â€¢ Inventory Control
+â€¢ Operational Asset Lifecycle
+â€¢ Disposal / Write-off Business Case and Execution Evidence
 
 Finance owns monetary processing for
-• Fixed Asset Ledger
-• Depreciation Accounting entries
-• Inventory Financial Valuation
-• Write-offs & Disposals
+â€¢ Fixed Asset Ledger
+â€¢ Depreciation Policy, Computation, and Accounting Entries
+â€¢ Inventory Financial Valuation
+â€¢ Write-off and Disposal Accounting Consequences
 
 ---
 
 ## Mess & Auxiliary Domain
 
 Mess Domain owns
-• Student Mess Registration
-• Daily Food Operations
+â€¢ Student Mess Registration
+â€¢ Daily Food Operations
 
 Finance owns
-• Mess Fee Collection
-• Mess Provider Payments
-• GST on Auxiliary Services
+â€¢ Mess Fee Collection
+â€¢ Mess Provider Payments
+â€¢ GST on Auxiliary Services
 
 ---
 
 ## Medical, Security & Placement Domains
 
 Operational Domains own
-• Student Medical Records
-• Security Deployment
-• Placement Drives
+â€¢ Student Medical Records
+â€¢ Security Deployment
+â€¢ Placement Drives
 
 Finance owns
-• Medical Billing & Receipts
-• Security Vendor Payments
-• Placement Fee Collection
+â€¢ Medical Billing & Receipts
+â€¢ Security Vendor Payments
+â€¢ Placement Fee Collection
 
 ---
 
@@ -1290,43 +1291,43 @@ Every Finance workflow follows one universal lifecycle.
 
 Business Event
 
-↓
+â†“
 
 Validation
 
-↓
+â†“
 
 Rule Evaluation
 
-↓
+â†“
 
 Approval
 
-↓
+â†“
 
 Financial Processing
 
-↓
+â†“
 
 Bank Confirmation (if applicable)
 
-↓
+â†“
 
 Accounting
 
-↓
+â†“
 
 Audit
 
-↓
+â†“
 
 Notification
 
-↓
+â†“
 
 Reporting
 
-↓
+â†“
 
 Domain Event Publication
 
@@ -1342,39 +1343,39 @@ Every financial entity shall exist in one of the following states where applicab
 
 Draft
 
-↓
+â†“
 
 Pending Validation
 
-↓
+â†“
 
 Validated
 
-↓
+â†“
 
 Pending Approval
 
-↓
+â†“
 
 Approved
 
-↓
+â†“
 
 Processing
 
-↓
+â†“
 
 Posted
 
-↓
+â†“
 
 Settled
 
-↓
+â†“
 
 Closed
 
-↓
+â†“
 
 Archived
 
@@ -1402,37 +1403,37 @@ Each workflow defines the applicable subset.
 
 Draft
 
-↓
+â†“
 
 Calculated
 
-↓
+â†“
 
 Validated
 
-↓
+â†“
 
 Approved
 
-↓
+â†“
 
 Published
 
-↓
+â†“
 
 Partially Paid
 
-↓
+â†“
 
 Fully Paid
 
 Alternative terminal states from Published:
 
-Published → Waived (Full waiver granted)
-Published → Written Off (Board approved write-off)
-Published → Disputed (Legal/Regulatory hold)
+Published â†’ Waived (Full waiver granted)
+Published â†’ Written Off (Board approved write-off)
+Published â†’ Disputed (Legal/Regulatory hold)
 
-↓
+â†“
 
 Closed
 
@@ -1440,41 +1441,41 @@ Possible alternate transitions
 
 Published
 
-↓
+â†“
 
 Adjusted
 
-↓ (Must pass limit checks to prevent infinite loops)
+â†“ (Must pass limit checks to prevent infinite loops)
 
 Published
 
 Published
 
-↓
+â†“
 
 Credit Note
 
-↓
+â†“
 
 Reduced Liability
 
 Published
 
-↓
+â†“
 
 Debit Note
 
-↓
+â†“
 
 Increased Liability
 
 Published
 
-↓
+â†“
 
 Refund Initiated
 
-↓
+â†“
 
 Refund Completed
 
@@ -1488,35 +1489,35 @@ Historical edits are prohibited.
 
 Initiated
 
-↓
+â†“
 
 Payment Pending
 
-↓
+â†“
 
 Gateway Processing
 
-↓
+â†“
 
 Gateway Settlement Pending
 
-↓
+â†“
 
 Payment Authorized
 
-↓
+â†“
 
 Payment Captured
 
-↓
+â†“
 
 Receipt Generated
 
-↓
+â†“
 
 Accounting Posted
 
-↓
+â†“
 
 Completed
 
@@ -1540,31 +1541,31 @@ Duplicate payment posting is prohibited.
 
 Refund Requested
 
-↓
+â†“
 
 Eligibility Validation
 
-↓
+â†“
 
 Approval Pending
 
-↓
+â†“
 
 Approved
 
-↓
+â†“
 
 Accounting Posted
 
-↓
+â†“
 
 Payment Initiated
 
-↓
+â†“
 
 Bank Processing
 
-↓
+â†“
 
 Refund Completed
 
@@ -1576,19 +1577,19 @@ Rejected refunds remain permanently visible.
 
 Draft
 
-↓
+â†“
 
 Validated
 
-↓
+â†“
 
 Approved
 
-↓
+â†“
 
 Posted
 
-↓
+â†“
 
 Closed
 
@@ -1602,27 +1603,27 @@ Corrections require reversal entries.
 
 Draft
 
-↓
+â†“
 
 Department Review
 
-↓
+â†“
 
 Finance Review
 
-↓
+â†“
 
 Approved
 
-↓
+â†“
 
 Active
 
-↓
+â†“
 
 Revised
 
-↓
+â†“
 
 Closed
 
@@ -1649,22 +1650,22 @@ Manage all student financial obligations.
 
 Responsibilities
 
-• Create Student Charges
-• Generate Installments
-• Apply Scholarships
-• Apply Concessions
-• Calculate Outstanding Balance
-• Generate Financial Holds
-• Generate Student Statements
+â€¢ Create Student Charges
+â€¢ Generate Installments
+â€¢ Apply Scholarships
+â€¢ Apply Concessions
+â€¢ Calculate Outstanding Balance
+â€¢ Generate Financial Holds
+â€¢ Generate Student Statements
 
 Used By
 
-• Admissions
-• Academics
-• Examination
-• Hostel
-• Library
-• Transport
+â€¢ Admissions
+â€¢ Academics
+â€¢ Examination
+â€¢ Hostel
+â€¢ Library
+â€¢ Transport
 
 ---
 
@@ -1676,23 +1677,23 @@ Manage all incoming payments.
 
 Responsibilities
 
-• Accept Payments
-• Validate Payment Source
-• Allocate Payments
-• Generate Receipts
-• Update Outstanding Amount
-• Publish Payment Events
+â€¢ Accept Payments
+â€¢ Validate Payment Source
+â€¢ Allocate Payments
+â€¢ Generate Receipts
+â€¢ Update Outstanding Amount
+â€¢ Publish Payment Events
 
 Supports
 
-• Cash
-• Bank Transfer
-• UPI
-• Credit Card
-• Debit Card
-• Payment Gateway
-• Sponsor Payment
-• Education Loan
+â€¢ Cash
+â€¢ Bank Transfer
+â€¢ UPI
+â€¢ Credit Card
+â€¢ Debit Card
+â€¢ Payment Gateway
+â€¢ Sponsor Payment
+â€¢ Education Loan
 
 ---
 
@@ -1704,19 +1705,19 @@ Manage all refund operations.
 
 Responsibilities
 
-• Refund Validation
-• Refund Approval
-• Refund Processing
-• Refund Accounting
-• Refund Notifications
+â€¢ Refund Validation
+â€¢ Refund Approval
+â€¢ Refund Processing
+â€¢ Refund Accounting
+â€¢ Refund Notifications
 
 Supports
 
-• Full Refund
-• Partial Refund
-• Security Deposit Refund
-• Scholarship Reversal
-• Hostel Refund
+â€¢ Full Refund
+â€¢ Partial Refund
+â€¢ Security Deposit Refund
+â€¢ Scholarship Reversal
+â€¢ Hostel Refund
 
 ---
 
@@ -1728,12 +1729,12 @@ Maintain institutional books of accounts.
 
 Responsibilities
 
-• Journal Posting
-• Ledger Posting
-• Trial Balance
-• Financial Statements
-• Accounting Validation
-• Double Entry Verification
+â€¢ Journal Posting
+â€¢ Ledger Posting
+â€¢ Trial Balance
+â€¢ Financial Statements
+â€¢ Accounting Validation
+â€¢ Double Entry Verification
 
 This service is the only component authorized to create accounting entries.
 
@@ -1747,11 +1748,11 @@ Manage institutional budgets.
 
 Responsibilities
 
-• Budget Allocation
-• Budget Revision
-• Budget Utilization
-• Budget Monitoring
-• Budget Alerts
+â€¢ Budget Allocation
+â€¢ Budget Revision
+â€¢ Budget Utilization
+â€¢ Budget Monitoring
+â€¢ Budget Alerts
 
 ---
 
@@ -1763,11 +1764,11 @@ Manage institutional banking activities.
 
 Responsibilities
 
-• Bank Accounts
-• Bank Reconciliation
-• Deposit Management
-• Online Payment Settlement
-• Cash Book
+â€¢ Bank Accounts
+â€¢ Bank Reconciliation
+â€¢ Deposit Management
+â€¢ Online Payment Settlement
+â€¢ Cash Book
 
 ---
 
@@ -1779,10 +1780,10 @@ Manage vendor financial operations.
 
 Responsibilities
 
-• Vendor Invoice Validation
-• Vendor Payment
-• Purchase Accounting
-• Tax Accounting
+â€¢ Vendor Invoice Validation
+â€¢ Vendor Payment
+â€¢ Purchase Accounting
+â€¢ Tax Accounting
 
 ---
 
@@ -1794,11 +1795,11 @@ Manage employee financial accounting.
 
 Responsibilities
 
-• Salary Posting
-• Tax Deduction
-• PF Accounting
-• ESI Accounting
-• Payroll Journal
+â€¢ Salary Posting
+â€¢ Tax Deduction
+â€¢ PF Accounting
+â€¢ ESI Accounting
+â€¢ Payroll Journal
 
 ---
 
@@ -1812,18 +1813,18 @@ This service is the canonical owner of statutory tax compliance within Section F
 
 Responsibilities
 
-• Calculate GST
-• Calculate TDS
-• Manage Income Tax deductions
-• Generate Tax Reports
-• Prepare Statutory Returns
+â€¢ Calculate GST
+â€¢ Calculate TDS
+â€¢ Manage Income Tax deductions
+â€¢ Generate Tax Reports
+â€¢ Prepare Statutory Returns
 
 Used By
 
-• Student Financial Service
-• Payment Service
-• Vendor Finance Service
-• Payroll Accounting Service
+â€¢ Student Financial Service
+â€¢ Payment Service
+â€¢ Vendor Finance Service
+â€¢ Payroll Accounting Service
 
 ---
 
@@ -2007,11 +2008,11 @@ StudentActivated
 
 Finance Response
 
-• Generate Admission Charges
+â€¢ Generate Admission Charges
 
-• Generate Student Ledger
+â€¢ Generate Student Ledger
 
-• Publish Charge Generated Event
+â€¢ Publish Charge Generated Event
 
 ---
 
@@ -2031,13 +2032,13 @@ AcademicReactivated
 
 Finance Response
 
-• Tuition Charge
+â€¢ Tuition Charge
 
-• Credit Adjustment
+â€¢ Credit Adjustment
 
-• Semester Fee
+â€¢ Semester Fee
 
-• Additional Charges
+â€¢ Additional Charges
 
 ---
 
@@ -2055,11 +2056,11 @@ CertificateRequested
 
 Finance Response
 
-• Exam Fee
+â€¢ Exam Fee
 
-• Certificate Fee
+â€¢ Certificate Fee
 
-• Revaluation Charges
+â€¢ Revaluation Charges
 
 ---
 
@@ -2077,11 +2078,11 @@ HostelDepositEligible
 
 Finance Response
 
-• Hostel Charges
+â€¢ Hostel Charges
 
-• Hostel Refund
+â€¢ Hostel Refund
 
-• Damage Recovery
+â€¢ Damage Recovery
 
 ---
 
@@ -2099,9 +2100,9 @@ MembershipCancelled
 
 Finance Response
 
-• Library Fine
+â€¢ Library Fine
 
-• Membership Fee
+â€¢ Membership Fee
 
 ---
 
@@ -2117,9 +2118,9 @@ TransportCancelled
 
 Finance Response
 
-• Transport Charges
+â€¢ Transport Charges
 
-• Adjustment Charges
+â€¢ Adjustment Charges
 
 ---
 
@@ -2135,9 +2136,9 @@ EmployeeSeparated
 
 Finance Response
 
-• Payroll Posting
+â€¢ Payroll Posting
 
-• Expense Accounting
+â€¢ Expense Accounting
 
 ---
 
@@ -2153,11 +2154,11 @@ VendorInvoiceSubmitted
 
 Finance Response
 
-• Vendor Liability
+â€¢ Vendor Liability
 
-• Expense Posting
+â€¢ Expense Posting
 
-• Tax Accounting
+â€¢ Tax Accounting
 
 ---
 
@@ -2195,13 +2196,13 @@ Finance exposes standardized integration contracts.
 
 Integration shall occur only through:
 
-• Domain Events
+â€¢ Domain Events
 
-• Approved APIs
+â€¢ Approved APIs
 
-• Batch Import Services
+â€¢ Batch Import Services
 
-• Scheduled Synchronization
+â€¢ Scheduled Synchronization
 
 Direct database dependency between domains is prohibited.
 
@@ -2253,25 +2254,25 @@ ERP Integrations
 
 Every financial transaction shall satisfy the following conditions.
 
-✓ Belongs to one Institution
+âœ“ Belongs to one Institution
 
-✓ Belongs to one Financial Year
+âœ“ Belongs to one Financial Year
 
-✓ Has one Business Origin
+âœ“ Has one Business Origin
 
-✓ Has one Accounting Impact
+âœ“ Has one Accounting Impact
 
-✓ Has complete Audit Trail
+âœ“ Has complete Audit Trail
 
-✓ Has immutable Transaction ID
+âœ“ Has immutable Transaction ID
 
-✓ Has Workflow Reference
+âœ“ Has Workflow Reference
 
-✓ Has Event Reference
+âœ“ Has Event Reference
 
-✓ Has User Accountability
+âœ“ Has User Accountability
 
-✓ Has Approval Reference (where applicable)
+âœ“ Has Approval Reference (where applicable)
 
 Violation of any rule shall reject transaction posting.
 
@@ -2284,17 +2285,17 @@ The Accounting Architecture defines how every financial transaction generated wi
 
 This architecture ensures:
 
-• Double-entry accounting
+â€¢ Double-entry accounting
 
-• Financial integrity
+â€¢ Financial integrity
 
-• Ledger consistency
+â€¢ Ledger consistency
 
-• Statutory compliance
+â€¢ Statutory compliance
 
-• Complete auditability
+â€¢ Complete auditability
 
-• Financial reporting accuracy
+â€¢ Financial reporting accuracy
 
 Accounting records represent the official books of accounts for the institution.
 
@@ -2306,25 +2307,25 @@ The Finance Domain follows internationally accepted double-entry accounting prin
 
 Every accounting transaction shall satisfy the following principles.
 
-## Principle 1 — Double Entry Accounting
+## Principle 1 â€” Double Entry Accounting
 
 Every financial transaction shall produce balanced accounting entries.
 
 Example
 
-Student pays Tuition Fee ₹50,000
+Student pays Tuition Fee â‚¹50,000
 
 Debit
 
 Bank Account
 
-₹50,000
+â‚¹50,000
 
 Credit
 
 Student Fee Income
 
-₹50,000
+â‚¹50,000
 
 Total Debit = Total Credit
 
@@ -2332,29 +2333,29 @@ Posting is rejected if entries are unbalanced.
 
 ---
 
-## Principle 2 — Immutable Accounting
+## Principle 2 â€” Immutable Accounting
 
 Once accounting entries are posted:
 
-• Editing is prohibited.
+â€¢ Editing is prohibited.
 
-• Deletion is prohibited.
+â€¢ Deletion is prohibited.
 
-• Historical modification is prohibited.
+â€¢ Historical modification is prohibited.
 
 Corrections shall only occur through:
 
-• Reversal Entry
+â€¢ Reversal Entry
 
-• Credit Note
+â€¢ Credit Note
 
-• Debit Note
+â€¢ Debit Note
 
-• Adjustment Journal
+â€¢ Adjustment Journal
 
 ---
 
-## Principle 3 — One Business Event = One Accounting Context
+## Principle 3 â€” One Business Event = One Accounting Context
 
 Every accounting transaction shall reference exactly one originating business event.
 
@@ -2376,7 +2377,7 @@ This ensures traceability from accounting records back to operational activities
 
 ---
 
-## Principle 4 — Accounting Independence
+## Principle 4 â€” Accounting Independence
 
 Business modules never create accounting entries.
 
@@ -2388,7 +2389,7 @@ Finance creates accounting entries.
 
 ---
 
-## Principle 5 — Financial Period Integrity
+## Principle 5 â€” Financial Period Integrity
 
 Every accounting transaction belongs to one Financial Year.
 
@@ -2418,25 +2419,25 @@ Represents one accounting transaction.
 
 Contains
 
-• Journal Number
+â€¢ Journal Number
 
-• Posting Date
+â€¢ Posting Date
 
-• Financial Year
+â€¢ Financial Year
 
-• Institution
+â€¢ Institution
 
-• Campus
+â€¢ Campus
 
-• Business Reference
+â€¢ Business Reference
 
-• Workflow Reference
+â€¢ Workflow Reference
 
-• Approval Reference
+â€¢ Approval Reference
 
-• Status
+â€¢ Status
 
-• Audit Reference
+â€¢ Audit Reference
 
 Each Journal Entry contains one or more Journal Lines.
 
@@ -2448,19 +2449,19 @@ Represents an individual debit or credit entry.
 
 Contains
 
-• Ledger Account
+â€¢ Ledger Account
 
-• Debit Amount
+â€¢ Debit Amount
 
-• Credit Amount
+â€¢ Credit Amount
 
-• Cost Center
+â€¢ Cost Center
 
-• Department
+â€¢ Department
 
-• Narration
+â€¢ Narration
 
-• Tax Reference
+â€¢ Tax Reference
 
 ---
 
@@ -2470,13 +2471,13 @@ Represents accumulated accounting balances.
 
 Each Ledger records
 
-• Opening Balance
+â€¢ Opening Balance
 
-• Debit Total
+â€¢ Debit Total
 
-• Credit Total
+â€¢ Credit Total
 
-• Closing Balance
+â€¢ Closing Balance
 
 Ledger balances are derived from Journal Entries and shall never be edited directly.
 
@@ -2498,15 +2499,15 @@ Generated from Ledger and Trial Balance.
 
 Supports
 
-• Balance Sheet
+â€¢ Balance Sheet
 
-• Income & Expenditure Statement
+â€¢ Income & Expenditure Statement
 
-• Receipt & Payment Account
+â€¢ Receipt & Payment Account
 
-• Cash Flow Statement
+â€¢ Cash Flow Statement
 
-• Departmental Financial Statements
+â€¢ Departmental Financial Statements
 
 ---
 
@@ -2516,39 +2517,39 @@ Every accounting transaction follows the same processing lifecycle.
 
 Business Event
 
-↓
+â†“
 
 Financial Validation
 
-↓
+â†“
 
 Rule Engine Evaluation
 
-↓
+â†“
 
 Approval Verification
 
-↓
+â†“
 
 Journal Generation
 
-↓
+â†“
 
 Double Entry Validation
 
-↓
+â†“
 
 Ledger Posting
 
-↓
+â†“
 
 Trial Balance Update
 
-↓
+â†“
 
 Audit Logging
 
-↓
+â†“
 
 Domain Event Publication
 
@@ -2568,27 +2569,27 @@ Workflow
 
 Student Payment
 
-↓
+â†“
 
 Payment Validation
 
-↓
+â†“
 
 Receipt Generation
 
-↓
+â†“
 
 Journal Creation
 
-↓
+â†“
 
 Ledger Posting
 
-↓
+â†“
 
 Student Outstanding Updated
 
-↓
+â†“
 
 Accounting Completed
 
@@ -2614,15 +2615,15 @@ Workflow
 
 Hostel Event
 
-↓
+â†“
 
 Student Charge
 
-↓
+â†“
 
 Payment
 
-↓
+â†“
 
 Accounting
 
@@ -2648,11 +2649,11 @@ Workflow
 
 Scholarship Allocation
 
-↓
+â†“
 
 Charge Adjustment
 
-↓
+â†“
 
 Accounting
 
@@ -2682,11 +2683,11 @@ Workflow
 
 Invoice
 
-↓
+â†“
 
 Payment
 
-↓
+â†“
 
 Accounting
 
@@ -2712,11 +2713,11 @@ Workflow
 
 Payroll
 
-↓
+â†“
 
 Journal Generation
 
-↓
+â†“
 
 Accounting
 
@@ -2746,29 +2747,29 @@ Bank Account
 
 Before posting, the Accounting Engine validates:
 
-✓ Financial Year is Active
+âœ“ Financial Year is Active
 
-✓ Accounting Period is Open
+âœ“ Accounting Period is Open
 
-✓ Institution Exists
+âœ“ Institution Exists
 
-✓ Campus Exists
+âœ“ Campus Exists
 
-✓ Ledger Exists
+âœ“ Ledger Exists
 
-✓ Cost Center Exists (if mandatory)
+âœ“ Cost Center Exists (if mandatory)
 
-✓ Debit equals Credit
+âœ“ Debit equals Credit
 
-✓ Business Reference Exists
+âœ“ Business Reference Exists
 
-✓ Journal Number is Unique
+âœ“ Journal Number is Unique
 
-✓ Approval Completed
+âœ“ Approval Completed
 
-✓ User Authorization Verified
+âœ“ User Authorization Verified
 
-✓ Currency Valid
+âœ“ Currency Valid
 
 Posting is rejected if any validation fails.
 
@@ -2778,21 +2779,21 @@ Posting is rejected if any validation fails.
 
 The Finance Domain supports:
 
-• Financial Year Opening
+â€¢ Financial Year Opening
 
-• Accounting Period Opening
+â€¢ Accounting Period Opening
 
-• Period Closing
+â€¢ Period Closing
 
-• Year-End Closing & Trial Balance Generation
+â€¢ Year-End Closing & Trial Balance Generation
 
-• Opening Balance Migration
+â€¢ Opening Balance Migration
 
-• Soft Close
+â€¢ Soft Close
 
-• Hard Close
+â€¢ Hard Close
 
-• Period Reopening
+â€¢ Period Reopening
 
 Soft Close
 
@@ -2812,17 +2813,17 @@ Each campus may operate independently while remaining part of a consolidated ins
 
 Supports
 
-• Campus-specific ledgers
+â€¢ Campus-specific ledgers
 
-• Campus budgets
+â€¢ Campus budgets
 
-• Campus bank accounts
+â€¢ Campus bank accounts
 
-• Campus cash books
+â€¢ Campus cash books
 
-• Campus reports
+â€¢ Campus reports
 
-• Consolidated institutional reporting
+â€¢ Consolidated institutional reporting
 
 Inter-campus accounting shall be supported through configurable journal mappings.
 
@@ -2850,13 +2851,13 @@ Research Centre
 
 This enables:
 
-• Budget monitoring
+â€¢ Budget monitoring
 
-• Department profitability
+â€¢ Department profitability
 
-• Internal financial reporting
+â€¢ Internal financial reporting
 
-• Grant utilization tracking
+â€¢ Grant utilization tracking
 
 ---
 
@@ -2866,13 +2867,13 @@ The Finance Domain shall support configurable taxation.
 
 Supports
 
-• GST
+â€¢ GST
 
-• TDS
+â€¢ TDS
 
-• Professional Tax
+â€¢ Professional Tax
 
-• Other statutory deductions
+â€¢ Other statutory deductions
 
 Tax applicability is determined through the Rule Engine.
 
@@ -2932,7 +2933,7 @@ All authorization shall be validated by the platform authorization layer before 
 
 The Finance Domain follows the following principles.
 
-## Principle 1 — Least Privilege
+## Principle 1 â€” Least Privilege
 
 Every user receives only the minimum permissions required to perform assigned responsibilities.
 
@@ -2940,7 +2941,7 @@ No role shall automatically receive administrative privileges.
 
 ---
 
-## Principle 2 — Segregation of Duties (SoD)
+## Principle 2 â€” Segregation of Duties (SoD)
 
 Critical financial activities shall be divided among different users.
 
@@ -2956,7 +2957,7 @@ This prevents fraud and internal control failures.
 
 ---
 
-## Principle 3 — Role Based Access Control (RBAC)
+## Principle 3 â€” Role Based Access Control (RBAC)
 
 Finance-specific permissions are evaluated through platform roles and permissions.
 
@@ -2990,7 +2991,7 @@ Custom roles shall be supported through configuration.
 
 ---
 
-## Principle 4 — Policy Based Authorization
+## Principle 4 â€” Policy Based Authorization
 
 Access decisions may additionally depend upon finance policy constraints and institutional policies.
 
@@ -3198,25 +3199,25 @@ Level 1
 
 Accounts Officer
 
-↓
+â†“
 
 Level 2
 
 Finance Manager
 
-↓
+â†“
 
 Level 3
 
 Registrar
 
-↓
+â†“
 
 Level 4
 
 Principal / Director
 
-↓
+â†“
 
 Level 5
 
@@ -3312,35 +3313,35 @@ Every protected financial operation follows:
 
 User Authentication
 
-↓
+â†“
 
 Permission Validation
 
-↓
+â†“
 
 Role Validation
 
-↓
+â†“
 
 Policy Validation
 
-↓
+â†“
 
 Approval Requirement Check
 
-↓
+â†“
 
 Business Validation
 
-↓
+â†“
 
 Execution
 
-↓
+â†“
 
 Audit Logging
 
-↓
+â†“
 
 Notification
 
@@ -3352,27 +3353,27 @@ If any validation fails, execution is rejected.
 
 The following operations are classified as High Risk.
 
-• Financial Year Closing
+â€¢ Financial Year Closing
 
-• Financial Year Reopening
+â€¢ Financial Year Reopening
 
-• Journal Reversal
+â€¢ Journal Reversal
 
-• Refund Release
+â€¢ Refund Release
 
-• Manual Ledger Adjustment
+â€¢ Manual Ledger Adjustment
 
-• Bank Reconciliation Approval
+â€¢ Bank Reconciliation Approval
 
-• Budget Override
+â€¢ Budget Override
 
-• Payroll Release
+â€¢ Payroll Release
 
-• Vendor Payment Release
+â€¢ Vendor Payment Release
 
-• Scholarship Override
+â€¢ Scholarship Override
 
-• Fee Waiver Approval
+â€¢ Fee Waiver Approval
 
 High Risk operations require enhanced authorization.
 
@@ -3510,27 +3511,27 @@ Rules may be defined at multiple scopes.
 
 Platform
 
-↓
+â†“
 
 Institution
 
-↓
+â†“
 
 Campus
 
-↓
+â†“
 
 Department
 
-↓
+â†“
 
 Programme
 
-↓
+â†“
 
 Financial Category
 
-↓
+â†“
 
 Specific Transaction
 
@@ -3696,35 +3697,35 @@ Every rule evaluation follows the same sequence.
 
 Trigger Event
 
-↓
+â†“
 
 Load Applicable Rules
 
-↓
+â†“
 
 Resolve Configuration Scope
 
-↓
+â†“
 
 Resolve Rule Version
 
-↓
+â†“
 
 Evaluate Conditions
 
-↓
+â†“
 
 Generate Decision
 
-↓
+â†“
 
 Generate Explanation
 
-↓
+â†“
 
 Return Result
 
-↓
+â†“
 
 Continue Business Processing
 
@@ -3823,31 +3824,31 @@ Every rule progresses through:
 
 Draft
 
-↓
+â†“
 
 Validation
 
-↓
+â†“
 
 Testing
 
-↓
+â†“
 
 Approval
 
-↓
+â†“
 
 Published
 
-↓
+â†“
 
 Active
 
-↓
+â†“
 
 Deprecated
 
-↓
+â†“
 
 Archived
 
@@ -4158,23 +4159,23 @@ Every financial transaction shall support complete forward and backward traceabi
 
 ```text
 Business Event
-        │
-        ▼
+        â”‚
+        â–¼
 Workflow Instance
-        │
-        ▼
+        â”‚
+        â–¼
 Financial Transaction
-        │
-        ▼
+        â”‚
+        â–¼
 Accounting Entry
-        │
-        ▼
+        â”‚
+        â–¼
 Ledger Posting
-        │
-        ▼
+        â”‚
+        â–¼
 Bank Settlement
-        │
-        ▼
+        â”‚
+        â–¼
 Audit Record
 ```
 
@@ -4281,31 +4282,31 @@ Every financial operation shall undergo compliance validation.
 ```text
 Business Request
 
-↓
+â†“
 
 Workflow Validation
 
-↓
+â†“
 
 Rule Evaluation
 
-↓
+â†“
 
 Compliance Validation
 
-↓
+â†“
 
 Approval Validation
 
-↓
+â†“
 
 Accounting Validation
 
-↓
+â†“
 
 Audit Recording
 
-↓
+â†“
 
 Financial Execution
 ```
@@ -4393,19 +4394,19 @@ Audit records shall support lifecycle states.
 ```text
 Active
 
-↓
+â†“
 
 Historical
 
-↓
+â†“
 
 Archived
 
-↓
+â†“
 
 Retention Expired
 
-↓
+â†“
 
 Secure Disposal
 ```
@@ -4462,19 +4463,19 @@ The Finance Domain shall support multiple regulatory frameworks simultaneously.
 
 Examples include:
 
-• UGC
+â€¢ UGC
 
-• AICTE
+â€¢ AICTE
 
-• NEP 2020
+â€¢ NEP 2020
 
-• State Universities
+â€¢ State Universities
 
-• Autonomous Institutions
+â€¢ Autonomous Institutions
 
-• Private Universities
+â€¢ Private Universities
 
-• Deemed Universities
+â€¢ Deemed Universities
 
 The architecture shall remain independent of any single regulatory body.
 
@@ -4708,31 +4709,31 @@ Every regulated financial transaction follows:
 
 Business Request
 
-↓
+â†“
 
 Financial Validation
 
-↓
+â†“
 
 Rule Evaluation
 
-↓
+â†“
 
 Regulatory Compliance Validation
 
-↓
+â†“
 
 Approval Validation
 
-↓
+â†“
 
 Accounting Validation
 
-↓
+â†“
 
 Audit Recording
 
-↓
+â†“
 
 Financial Commitment
 
@@ -4902,23 +4903,23 @@ Finance configuration inherits from the Platform Configuration Framework.
 
 ```text
 Platform Defaults
-        │
-        ▼
+        â”‚
+        â–¼
 Tenant Configuration
-        │
-        ▼
+        â”‚
+        â–¼
 Institution Finance Configuration
-        │
-        ▼
+        â”‚
+        â–¼
 Campus Finance Configuration
-        │
-        ▼
+        â”‚
+        â–¼
 Department Finance Configuration
-        │
-        ▼
+        â”‚
+        â–¼
 Programme Finance Configuration
-        │
-        ▼
+        â”‚
+        â–¼
 Transaction Configuration
 ```
 
@@ -5064,15 +5065,15 @@ Payment Gateway Mapping
 
 ---
 
-## Procurement Configuration
+## Procurement Finance Configuration
 
 Examples
 
-Purchase Thresholds
+Budget Validation Rules
 
-Approval Limits
+Financial Approval Limits
 
-Vendor Categories
+Supplier Financial Profile Consumption
 
 Invoice Policies
 
@@ -5144,26 +5145,26 @@ Every Finance operation resolves configuration using the following sequence.
 
 ```text
 Business Request
-        │
-        ▼
+        â”‚
+        â–¼
 Resolve Platform Configuration
-        │
-        ▼
+        â”‚
+        â–¼
 Resolve Tenant Configuration
-        │
-        ▼
+        â”‚
+        â–¼
 Resolve Institution Finance Configuration
-        │
-        ▼
+        â”‚
+        â–¼
 Resolve Scoped Finance Overrides
-        │
-        ▼
+        â”‚
+        â–¼
 Validate Configuration
-        │
-        ▼
+        â”‚
+        â–¼
 Publish Effective Configuration
-        │
-        ▼
+        â”‚
+        â–¼
 Execute Financial Operation
 ```
 
@@ -5177,23 +5178,23 @@ Every Finance configuration progresses through the following lifecycle.
 
 ```text
 Draft
-   │
-   ▼
+   â”‚
+   â–¼
 Validation
-   │
-   ▼
+   â”‚
+   â–¼
 Approval
-   │
-   ▼
+   â”‚
+   â–¼
 Published
-   │
-   ▼
+   â”‚
+   â–¼
 Active
-   │
-   ▼
+   â”‚
+   â–¼
 Superseded
-   │
-   ▼
+   â”‚
+   â–¼
 Archived
 ```
 
@@ -5259,20 +5260,20 @@ Configuration changes shall follow controlled governance.
 
 ```text
 Configuration Draft
-        │
-        ▼
+        â”‚
+        â–¼
 Validation
-        │
-        ▼
+        â”‚
+        â–¼
 Impact Assessment
-        │
-        ▼
+        â”‚
+        â–¼
 Approval Workflow
-        │
-        ▼
+        â”‚
+        â–¼
 Publication
-        │
-        ▼
+        â”‚
+        â–¼
 Activation
 ```
 
@@ -5680,23 +5681,23 @@ Architecture Governance is mandatory for every Finance subdomain.
 
 The governance framework ensures:
 
-• Architectural consistency
+â€¢ Architectural consistency
 
-• Stable domain boundaries
+â€¢ Stable domain boundaries
 
-• Clear ownership
+â€¢ Clear ownership
 
-• Controlled extensibility
+â€¢ Controlled extensibility
 
-• Backward compatibility
+â€¢ Backward compatibility
 
-• Configuration-first evolution
+â€¢ Configuration-first evolution
 
-• Enterprise maintainability
+â€¢ Enterprise maintainability
 
-• Independent subdomain evolution
+â€¢ Independent subdomain evolution
 
-• Long-term architectural stability
+â€¢ Long-term architectural stability
 
 ---
 
@@ -5807,29 +5808,29 @@ Dependency order:
 ```text
 Platform Foundation (L2-A)
 
-↓
+â†“
 
 Shared Services
 
-↓
+â†“
 
 Institution Foundation
 
-↓
+â†“
 
 Student Foundation
 
-↓
+â†“
 
 Academic Foundation
 
-↓
+â†“
 
 Finance Foundation (L2-F00)
 
-↓
+â†“
 
-Finance Functional Domains (L2-F01–L2-F14)
+Finance Functional Domains (L2-F01â€“L2-F14)
 ```
 
 Reverse dependencies are prohibited.
@@ -5863,27 +5864,27 @@ Changes affecting canonical Finance architecture shall follow the governance wor
 ```text
 Architecture Proposal
 
-↓
+â†“
 
 Impact Analysis
 
-↓
+â†“
 
-Cross-Domain Review
+Multi-Domain Review
 
-↓
+â†“
 
 Architecture Approval
 
-↓
+â†“
 
 Canonical Update
 
-↓
+â†“
 
 Version Publication
 
-↓
+â†“
 
 Downstream Impact Review
 ```
@@ -5938,7 +5939,7 @@ The following governance constraints are mandatory.
 
 8. Architecture decisions shall be documented and versioned.
 
-9. Cross-domain contracts shall be reviewed before approval.
+9. Multi-domain contracts shall be reviewed before approval.
 
 10. Governance applies uniformly across every Finance subdomain.
 
@@ -5950,20 +5951,20 @@ The following matrix defines the dependency relationship between the Finance Fou
 
 | Document | Primary Responsibility | Depends on L2-F00 |
 |-----------|------------------------|-------------------|
-| L2-F01 | Student Charge & Fee Management | ✓ |
-| L2-F02 | Payment Management Architecture | ✓ |
-| L2-F03 | Refund Management | ✓ |
-| L2-F04 | Financial Adjustment Management | ✓ |
-| L2-F05 | Accounting & General Ledger Management | ✓ |
-| L2-F06 | Budget & Cost Center Management | ✓ |
-| L2-F07 | Accounts Receivable Management | ✓ |
-| L2-F08 | Accounts Payable Management | ✓ |
-| L2-F09 | Financial Period & Closing | ✓ |
-| L2-F10 | Treasury & Banking | ✓ |
-| L2-F11 | Scholarship & Financial Aid | ✓ |
-| L2-F12 | Asset Management Workflows | ✓ |
-| L2-F13 | Financial Reporting & Analytics Workflows | ✓ |
-| L2-F14 | Procurement & Supply Chain Workflows | ✓ |
+| L2-F01 | Student Charge & Fee Management | âœ“ |
+| L2-F02 | Payment Management Architecture | âœ“ |
+| L2-F03 | Refund Management | âœ“ |
+| L2-F04 | Financial Adjustment Management | âœ“ |
+| L2-F05 | Accounting & General Ledger Management | âœ“ |
+| L2-F06 | Budget & Cost Center Management | âœ“ |
+| L2-F07 | Accounts Receivable Management | âœ“ |
+| L2-F08 | Accounts Payable Management | âœ“ |
+| L2-F09 | Financial Period & Closing | âœ“ |
+| L2-F10 | Treasury & Banking | âœ“ |
+| L2-F11 | Scholarship & Financial Aid | âœ“ |
+| L2-F12 | Asset Financial Accounting Workflows | âœ“ |
+| L2-F13 | Financial Reporting & Analytics Workflows | âœ“ |
+| L2-F14 | Procurement Finance Consumption Workflows | âœ“ |
 
 Each downstream document inherits the following from L2-F00:
 
@@ -5996,12 +5997,12 @@ Passing this checklist indicates architectural completeness, not implementation 
 
 | Validation Item | Status |
 |-----------------|--------|
-| Finance vision clearly defined | ☑ |
-| Domain scope completely defined | ☑ |
-| Domain boundaries established | ☑ |
-| Canonical ownership defined | ☑ |
-| Architectural objectives documented | ☑ |
-| Architectural principles documented | ☑ |
+| Finance vision clearly defined | â˜‘ |
+| Domain scope completely defined | â˜‘ |
+| Domain boundaries established | â˜‘ |
+| Canonical ownership defined | â˜‘ |
+| Architectural objectives documented | â˜‘ |
+| Architectural principles documented | â˜‘ |
 
 ---
 
@@ -6009,11 +6010,11 @@ Passing this checklist indicates architectural completeness, not implementation 
 
 | Validation Item | Status |
 |-----------------|--------|
-| Canonical entities identified | ☑ |
-| Aggregate ownership established | ☑ |
-| Entity responsibilities defined | ☑ |
-| Cross-domain ownership verified | ☑ |
-| Domain model independent of implementation | ☑ |
+| Canonical entities identified | â˜‘ |
+| Aggregate ownership established | â˜‘ |
+| Entity responsibilities defined | â˜‘ |
+| Multi-domain ownership verified | â˜‘ |
+| Domain model independent of implementation | â˜‘ |
 
 ---
 
@@ -6021,11 +6022,11 @@ Passing this checklist indicates architectural completeness, not implementation 
 
 | Validation Item | Status |
 |-----------------|--------|
-| Universal workflow model defined | ☑ |
-| Lifecycle standards defined | ☑ |
-| State transition standards defined | ☑ |
-| Approval architecture integrated | ☑ |
-| Exception handling documented | ☑ |
+| Universal workflow model defined | â˜‘ |
+| Lifecycle standards defined | â˜‘ |
+| State transition standards defined | â˜‘ |
+| Approval architecture integrated | â˜‘ |
+| Exception handling documented | â˜‘ |
 
 ---
 
@@ -6033,11 +6034,11 @@ Passing this checklist indicates architectural completeness, not implementation 
 
 | Validation Item | Status |
 |-----------------|--------|
-| Published events identified | ☑ |
-| Consumed events identified | ☑ |
-| Event ownership defined | ☑ |
-| Event immutability documented | ☑ |
-| Event reliability rules defined | ☑ |
+| Published events identified | â˜‘ |
+| Consumed events identified | â˜‘ |
+| Event ownership defined | â˜‘ |
+| Event immutability documented | â˜‘ |
+| Event reliability rules defined | â˜‘ |
 
 ---
 
@@ -6045,11 +6046,11 @@ Passing this checklist indicates architectural completeness, not implementation 
 
 | Validation Item | Status |
 |-----------------|--------|
-| Accounting principles documented | ☑ |
-| Journal architecture complete | ☑ |
-| Ledger architecture complete | ☑ |
-| Posting workflow documented | ☑ |
-| Double-entry integrity enforced | ☑ |
+| Accounting principles documented | â˜‘ |
+| Journal architecture complete | â˜‘ |
+| Ledger architecture complete | â˜‘ |
+| Posting workflow documented | â˜‘ |
+| Double-entry integrity enforced | â˜‘ |
 
 ---
 
@@ -6057,11 +6058,11 @@ Passing this checklist indicates architectural completeness, not implementation 
 
 | Validation Item | Status |
 |-----------------|--------|
-| Authorization architecture complete | ☑ |
-| RBAC defined | ☑ |
-| Approval model documented | ☑ |
-| Segregation of Duties documented | ☑ |
-| Audit integration complete | ☑ |
+| Authorization architecture complete | â˜‘ |
+| RBAC defined | â˜‘ |
+| Approval model documented | â˜‘ |
+| Segregation of Duties documented | â˜‘ |
+| Audit integration complete | â˜‘ |
 
 ---
 
@@ -6069,11 +6070,11 @@ Passing this checklist indicates architectural completeness, not implementation 
 
 | Validation Item | Status |
 |-----------------|--------|
-| Rule categories identified | ☑ |
-| Rule lifecycle defined | ☑ |
-| Conflict resolution documented | ☑ |
-| Rule governance defined | ☑ |
-| Rule auditability documented | ☑ |
+| Rule categories identified | â˜‘ |
+| Rule lifecycle defined | â˜‘ |
+| Conflict resolution documented | â˜‘ |
+| Rule governance defined | â˜‘ |
+| Rule auditability documented | â˜‘ |
 
 ---
 
@@ -6081,11 +6082,11 @@ Passing this checklist indicates architectural completeness, not implementation 
 
 | Validation Item | Status |
 |-----------------|--------|
-| Regulatory framework supported | ☑ |
-| Configuration-first compliance | ☑ |
-| Compliance versioning defined | ☑ |
-| Compliance workflow documented | ☑ |
-| Compliance constraints documented | ☑ |
+| Regulatory framework supported | â˜‘ |
+| Configuration-first compliance | â˜‘ |
+| Compliance versioning defined | â˜‘ |
+| Compliance workflow documented | â˜‘ |
+| Compliance constraints documented | â˜‘ |
 
 ---
 
@@ -6093,11 +6094,11 @@ Passing this checklist indicates architectural completeness, not implementation 
 
 | Validation Item | Status |
 |-----------------|--------|
-| Configuration hierarchy defined | ☑ |
-| Configuration ownership established | ☑ |
-| Versioning documented | ☑ |
-| Resolution workflow complete | ☑ |
-| Governance documented | ☑ |
+| Configuration hierarchy defined | â˜‘ |
+| Configuration ownership established | â˜‘ |
+| Versioning documented | â˜‘ |
+| Resolution workflow complete | â˜‘ |
+| Governance documented | â˜‘ |
 
 ---
 
@@ -6105,11 +6106,11 @@ Passing this checklist indicates architectural completeness, not implementation 
 
 | Validation Item | Status |
 |-----------------|--------|
-| Audit model complete | ☑ |
-| Traceability complete | ☑ |
-| Immutable history enforced | ☑ |
-| Compliance audit supported | ☑ |
-| Retention architecture defined | ☑ |
+| Audit model complete | â˜‘ |
+| Traceability complete | â˜‘ |
+| Immutable history enforced | â˜‘ |
+| Compliance audit supported | â˜‘ |
+| Retention architecture defined | â˜‘ |
 
 ---
 
@@ -6117,11 +6118,11 @@ Passing this checklist indicates architectural completeness, not implementation 
 
 | Validation Item | Status |
 |-----------------|--------|
-| Scalability principles documented | ☑ |
-| Concurrency addressed | ☑ |
-| Availability principles defined | ☑ |
-| Resilience documented | ☑ |
-| Performance constraints defined | ☑ |
+| Scalability principles documented | â˜‘ |
+| Concurrency addressed | â˜‘ |
+| Availability principles defined | â˜‘ |
+| Resilience documented | â˜‘ |
+| Performance constraints defined | â˜‘ |
 
 ---
 
@@ -6129,11 +6130,11 @@ Passing this checklist indicates architectural completeness, not implementation 
 
 | Validation Item | Status |
 |-----------------|--------|
-| Canonical ownership defined | ☑ |
-| Dependency hierarchy documented | ☑ |
-| Extension principles defined | ☑ |
-| Version governance complete | ☑ |
-| Cross-document dependencies documented | ☑ |
+| Canonical ownership defined | â˜‘ |
+| Dependency hierarchy documented | â˜‘ |
+| Extension principles defined | â˜‘ |
+| Version governance complete | â˜‘ |
+| Cross-document dependencies documented | â˜‘ |
 
 ---
 
@@ -6151,11 +6152,11 @@ Merge readiness confirms that the document satisfies architectural quality stand
 
 | Requirement | Status |
 |-------------|--------|
-| Document follows L2 template | ☑ |
-| Section numbering complete | ☑ |
-| Internal references verified | ☑ |
-| Consistent terminology used | ☑ |
-| No duplicate architecture sections | ☑ |
+| Document follows L2 template | â˜‘ |
+| Section numbering complete | â˜‘ |
+| Internal references verified | â˜‘ |
+| Consistent terminology used | â˜‘ |
+| No duplicate architecture sections | â˜‘ |
 
 ---
 
@@ -6163,23 +6164,23 @@ Merge readiness confirms that the document satisfies architectural quality stand
 
 | Requirement | Status |
 |-------------|--------|
-| Domain responsibilities finalized | ☑ |
-| Canonical ownership finalized | ☑ |
-| Aggregate ownership finalized | ☑ |
-| Dependencies validated | ☑ |
-| Governance complete | ☑ |
+| Domain responsibilities finalized | â˜‘ |
+| Canonical ownership finalized | â˜‘ |
+| Aggregate ownership finalized | â˜‘ |
+| Dependencies validated | â˜‘ |
+| Governance complete | â˜‘ |
 
 ---
 
-# 102.4 Cross-Domain Readiness
+# 102.4 Multi-Domain Readiness
 
 | Requirement | Status |
 |-------------|--------|
-| Platform dependencies verified | ☑ |
-| Institution dependencies verified | ☑ |
-| Student dependencies verified | ☑ |
-| Academic dependencies verified | ☑ |
-| Shared service dependencies verified | ☑ |
+| Platform dependencies verified | â˜‘ |
+| Institution dependencies verified | â˜‘ |
+| Student dependencies verified | â˜‘ |
+| Academic dependencies verified | â˜‘ |
+| Shared service dependencies verified | â˜‘ |
 
 ---
 
@@ -6187,10 +6188,10 @@ Merge readiness confirms that the document satisfies architectural quality stand
 
 | Requirement | Status |
 |-------------|--------|
-| L2-F01 dependency contract established | ☑ |
-| L2-F02 dependency contract established | ☑ |
-| L2-F03 dependency contract established | ☑ |
-| L2-F04–L2-F14 dependency contracts established | ☑ |
+| L2-F01 dependency contract established | â˜‘ |
+| L2-F02 dependency contract established | â˜‘ |
+| L2-F03 dependency contract established | â˜‘ |
+| L2-F04â€“L2-F14 dependency contracts established | â˜‘ |
 
 ---
 
@@ -6198,11 +6199,11 @@ Merge readiness confirms that the document satisfies architectural quality stand
 
 | Requirement | Status |
 |-------------|--------|
-| No ownership conflicts | ☑ |
-| No circular dependencies | ☑ |
-| No duplicated business logic | ☑ |
-| No implementation details | ☑ |
-| Configuration-first architecture maintained | ☑ |
+| No ownership conflicts | â˜‘ |
+| No circular dependencies | â˜‘ |
+| No duplicated business logic | â˜‘ |
+| No implementation details | â˜‘ |
+| Configuration-first architecture maintained | â˜‘ |
 
 ---
 
@@ -6212,7 +6213,7 @@ The document shall be considered merge-ready only when:
 
 - All validation checkpoints are complete.
 - Canonical ownership is approved.
-- Cross-domain dependencies are validated.
+- Multi-domain dependencies are validated.
 - Architecture governance is approved.
 - Repository naming conventions are satisfied.
 - Version metadata is finalized.
@@ -6222,9 +6223,9 @@ The document shall be considered merge-ready only when:
 
 # 102.8 Canonical Declaration
 
-Upon approval, **L2-F00 – Finance Domain Model & Foundation** becomes the authoritative architectural contract for the Finance Domain.
+Upon approval, **L2-F00 â€“ Finance Domain Model & Foundation** becomes the authoritative architectural contract for the Finance Domain.
 
-All downstream Finance documents (L2-F01–L2-F14):
+All downstream Finance documents (L2-F01â€“L2-F14):
 
 - SHALL inherit the architectural principles defined in L2-F00.
 - SHALL reference L2-F00 rather than duplicate foundational architecture.

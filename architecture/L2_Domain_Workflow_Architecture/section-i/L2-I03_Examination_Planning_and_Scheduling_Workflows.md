@@ -221,7 +221,7 @@ Version management ensures operational consistency throughout the examination li
 
 ---
 
-## 4.9 Cross-Domain Collaboration
+## 4.9 Multi-Domain Collaboration
 
 Examination Planning collaborates with multiple business domains.
 
@@ -1046,7 +1046,7 @@ The Examination Planning & Scheduling workflows consume business events publishe
 
 Consumed events influence planning decisions while ownership remains with the originating business domain.
 
-# 13. Cross-Domain Interactions
+# 13. Multi-Domain Interactions
 
 The Examination Planning & Scheduling domain collaborates with multiple business domains to produce institutionally governed examination schedules.
 

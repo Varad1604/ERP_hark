@@ -744,7 +744,7 @@ The Technical Architecture Board certifies the Academic Delivery Section (Sectio
 
 The Technical Architecture Board hereby declares the **Academic Delivery Section (Section D)** of the SutraERP system to be **LOCKED**.
 
-All aggregates, commands, events, read models, and cross-domain dependencies are frozen. Future modifications require a formal Architecture Decision Record (ADR) and review board approval.
+All aggregates, commands, events, read models, and multi-domain dependencies are frozen. Future modifications require a formal Architecture Decision Record (ADR) and review board approval.
 
 ---
 
@@ -800,7 +800,7 @@ All aggregates, commands, events, read models, and cross-domain dependencies are
 - `POST /api/v1/internal-assessments/windows` (D07)
 - `POST /api/v1/internal-assessments/submissions` (D07)
 
-### Appendix G — Cross-Domain References
+### Appendix G — Multi-Domain References
 - `Room ID` (References Section B)
 - `Student ID` (References Section C)
 - `Transcript ID` (References External Academic Records)

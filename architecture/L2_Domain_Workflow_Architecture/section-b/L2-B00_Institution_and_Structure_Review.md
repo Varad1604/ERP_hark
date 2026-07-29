@@ -76,7 +76,7 @@ Operational readiness is excluded from this certification because it is canonica
 **Assessment:** The reviewed Section B documents are complete and canonically aligned.
 
 - **Finding (Required Capabilities):** All baseline institutional, structural, spatial, academic, and calendar capabilities are represented.
-  - **Evidence:** [L2-B01](file:///d:/MD_files/%23%20L2-B01%20%E2%80%94%20Institution%20Workflow.md), [L2-B02](file:///d:/MD_files/%23%20L2-B02%20%E2%80%94%20Organisation%20Workflows.md), [L2-B03](file:///d:/MD_files/%23%20L2-B03%20%E2%80%94%20Campus%20&%20Infrastructure%20Workflows.md), [L2-B04](file:///d:/MD_files/%23%20L2-B04%20%E2%80%94%20Curriculum%20Framework%20Workflows.md), [L2-B05](file:///d:/MD_files/%23%20L2-B05%20%E2%80%94%20Flexible%20Academic%20Calendar%20Workflows.md).
+  - **Evidence:** [L2-B01](L2-B01_Institution_Workflow.md), [L2-B02](L2-B02_Organisation_Workflows.md), [L2-B03](L2-B03_Campus_Workflows.md), [L2-B04](L2-B04_Curriculum_Framework_Workflows.md), [L2-B05](L2-B05_Academic_Calendar_Workflows.md).
 - **Finding (No Missing Ownership):** No canonical ownership gaps were identified inside Section B.
 - **Finding (No Duplicate Ownership):** No two Section B documents attempt to authoritatively master the same business concept.
 - **Finding (No Boundary Leakage):** Each document remains within its intended bounded context and avoids platform responsibilities.
@@ -156,7 +156,7 @@ Operational readiness is excluded from this certification because it is canonica
 
 ---
 
-# 9. Cross-Domain Dependency Validation
+# 9. Multi-Domain Dependency Validation
 
 **Assessment:** The dependency graph across Section B is strictly uni-directional and consistent with the locked Level 1 model.
 

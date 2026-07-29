@@ -99,7 +99,7 @@ The architecture is governed by the following principles.
 
 Every reusable enterprise data element shall have one authoritative owner.
 
-Duplicate ownership across domains is prohibited.
+Duplicate ownership amulti-domains is prohibited.
 
 ---
 
@@ -309,7 +309,7 @@ The platform does **not**:
 
 Master Data, Reference Data, and Configuration Data are related but distinct architectural concerns.
 
-The Master Data Platform governs the lifecycle, governance, publication, synchronization, discovery, and auditability of enterprise data that is intended to be shared across domains.
+The Master Data Platform governs the lifecycle, governance, publication, synchronization, discovery, and auditability of enterprise data that is intended to be shared amulti-domains.
 
 Reference Data remains governed through the same platform rules when it is published as a reusable enterprise value set, but its business meaning continues to belong to the owning domain.
 
@@ -317,11 +317,11 @@ Configuration Data is different. It controls runtime behaviour, tenant-specific 
 
 The ownership and governance distinctions are as follows:
 
-- Master Data: enterprise entities shared across domains, such as Institutions, Departments, Buildings, or Vendors.
+- Master Data: enterprise entities shared amulti-domains, such as Institutions, Departments, Buildings, or Vendors.
 - Reference Data: controlled code sets or lookup values, such as Country Codes, Gender Codes, Currency Codes, or Leave Types.
 - Configuration Data: operational settings, such as workflow thresholds, locale defaults, notification toggles, or tenant-specific feature settings.
 
-The Master Data Platform shall not absorb configuration ownership, even when configuration values are reused across domains.
+The Master Data Platform shall not absorb configuration ownership, even when configuration values are reused amulti-domains.
 
 ---
 

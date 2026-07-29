@@ -2582,7 +2582,7 @@ Decision ownership prevents domain responsibility conflicts.
 
 ------------------------------------------------------------------------
 
-# 13.4 Cross-Domain Decision Matrix
+# 13.4 Multi-Domain Decision Matrix
 
   Scenario                    Owner
   --------------------------- ---------------------
@@ -5202,7 +5202,7 @@ Enterprise Architecture Team
 Responsibilities:
 
 -   Validate architecture alignment
--   Review cross-domain impacts
+-   Review multi-domain impacts
 -   Approve major architectural changes
 
 ------------------------------------------------------------------------

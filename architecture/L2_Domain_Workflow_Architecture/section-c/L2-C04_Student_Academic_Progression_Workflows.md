@@ -182,7 +182,7 @@ The architecture exists to achieve the following objectives.
 - Support Academic Bank of Credits (ABC).
 - Maintain an institutional Academic Credit Ledger.
 - Preserve canonical ownership of progression decisions.
-- Eliminate duplicate progression logic across domains.
+- Eliminate duplicate progression logic amulti-domains.
 - Enable configurable progression policies.
 - Support autonomous, affiliated, and university institutions.
 - Maintain complete auditability.
@@ -1948,7 +1948,7 @@ Duplicate synchronisation requests shall be safely ignored using idempotent proc
 
 ---
 
-# 6.15 Cross-Domain Rules
+# 6.15 Multi-Domain Rules
 
 | Rule | Description |
 |------|-------------|
@@ -3539,7 +3539,7 @@ Typical attributes include:
 | Decision | Academic decision taken |
 | Responsible Actor | User, system, or workflow |
 | Approval Reference | Workflow instance (if applicable) |
-| Correlation Identifier | Cross-domain traceability |
+| Correlation Identifier | Multi-domain traceability |
 
 ---
 
@@ -4092,7 +4092,7 @@ Requirements include:
 - Clear ownership.
 - Configuration-driven policies.
 - Versioned business rules.
-- Minimal cross-domain coupling.
+- Minimal multi-domain coupling.
 - Consistent architectural patterns.
 
 Changes to academic policy should primarily require configuration updates rather than software redesign.
@@ -4192,7 +4192,7 @@ The following principles conclude the non-functional architecture.
 - Operational resilience shall not compromise academic integrity.
 - Quality attributes shall apply uniformly across all progression workflows.
 - Non-functional requirements shall remain technology independent.
-- Cross-domain integrations shall preserve reliability and consistency.
+- Multi-domain integrations shall preserve reliability and consistency.
 - Future enhancements shall maintain compliance with established architectural standards.
 - All implementations shall conform to the Platform Foundation and dependency architecture.
 - Non-functional characteristics shall be validated during architecture and implementation reviews.
@@ -4235,7 +4235,7 @@ Centralizing ownership eliminates conflicting progression logic across multiple 
 ## Consequences
 
 - No other domain may directly modify progression state.
-- Cross-domain consumers shall use approved contracts or published events.
+- Multi-domain consumers shall use approved contracts or published events.
 - Business ownership remains explicit.
 
 ---
@@ -4310,7 +4310,7 @@ Institutions follow different academic regulations that evolve over time.
 
 ---
 
-# ADR-005 — Event-Driven Cross-Domain Communication
+# ADR-005 — Event-Driven Multi-Domain Communication
 
 ## Status
 
@@ -4380,7 +4380,7 @@ Standing communicates overall academic status independent of individual examinat
 
 ---
 
-# ADR-008 — NEP 2020 as a Cross-Domain Capability
+# ADR-008 — NEP 2020 as a Multi-Domain Capability
 
 ## Status
 
@@ -4471,7 +4471,7 @@ Audit capabilities are shared platform services with centralized governance.
 - Consistent enterprise auditing.
 - Reduced duplication.
 - Centralized compliance management.
-- Uniform audit standards across domains.
+- Uniform audit standards amulti-domains.
 
 ---
 
@@ -4489,7 +4489,7 @@ Academic Progression shall neither duplicate nor directly modify entities owned 
 
 ## Rationale
 
-Canonical ownership prevents architectural drift and cross-domain inconsistency.
+Canonical ownership prevents architectural drift and multi-domain inconsistency.
 
 ## Consequences
 
@@ -4510,7 +4510,7 @@ Architectural Decision Records shall comply with the following governance princi
 - Every major architectural change shall reference affected ADRs.
 - ADR approval shall follow repository governance processes.
 - Business implementation shall remain consistent with accepted ADRs.
-- Cross-domain architectural changes require Lead Architect approval.
+- Multi-domain architectural changes require Lead Architect approval.
 - ADRs shall remain traceable throughout the architecture lifecycle.
 
 ---
@@ -4658,7 +4658,7 @@ The matrix ensures that every major architectural capability is traceable throug
 
 ---
 
-# 18.10 Cross-Domain Dependency Traceability
+# 18.10 Multi-Domain Dependency Traceability
 
 | External Domain | Dependency Purpose |
 |-----------------|--------------------|
@@ -4684,7 +4684,7 @@ All dependencies shall comply with approved dependency direction and canonical o
 | L0 | Institutional Vision |
 | L1 | Student Lifecycle Domain |
 | L2 | Academic Progression Domain |
-| L3 | Cross-Domain Academic Scenarios |
+| L3 | Multi-Domain Academic Scenarios |
 | L4 | System Behaviour Specifications |
 | L5 | Technical Solution Architecture |
 | L6 | User Experience & Interface |
@@ -4886,7 +4886,7 @@ The glossary shall comply with the following principles.
 - Domain-specific terminology shall not redefine Platform terminology.
 - Future terminology additions shall preserve backward compatibility.
 - Superseded terminology shall remain historically traceable.
-- Cross-domain definitions shall reference the owning architecture where applicable.
+- Multi-domain definitions shall reference the owning architecture where applicable.
 - Repository-wide terminology shall remain standardized across all Level 2 documents.
 
 ---
@@ -5519,10 +5519,10 @@ classDef decision fill:#FFF4CC,stroke:#C49A00,color:#000;
 class STUDENT,ELIGIBLE decision;
 ```
 
-20.7 Cross Domain Sequence
-## 20.7 Cross Domain Sequence
+20.7 Multi-Domain Sequence
+## 20.7 Multi-Domain Sequence
 
-The following sequence diagram illustrates the canonical cross-domain interaction during the academic progression process.
+The following sequence diagram illustrates the canonical multi-domain interaction during the academic progression process.
 
 The diagram demonstrates ownership boundaries, synchronous service interactions, asynchronous event publication, and downstream event consumption.
 
@@ -6347,7 +6347,7 @@ The following principles govern all state transitions.
 - Invalid transitions shall be rejected.
 - Historical state changes shall remain immutable.
 - State transitions shall preserve aggregate consistency.
-- Cross-domain workflows shall not bypass this lifecycle.
+- business scenarios shall not bypass this lifecycle.
 
 ---
 
@@ -6533,7 +6533,7 @@ The following governance principles apply.
 
 - Every workflow shall have a single canonical owner.
 - Workflow execution shall follow approved business rules.
-- Cross-domain workflows shall use approved service contracts or domain events.
+- business scenarios shall use approved service contracts or domain events.
 - Every workflow shall produce complete audit records.
 - Workflow execution shall preserve aggregate consistency.
 - Workflow implementations shall remain idempotent where retries are supported.
@@ -6697,17 +6697,17 @@ The following governance principles apply.
 
 - Every event shall represent a completed business fact.
 - Every event shall have exactly one canonical publisher.
-- Event ownership shall never be shared across domains.
+- Event ownership shall never be shared amulti-domains.
 - Consumers shall never modify publisher-owned aggregates.
 - Events shall not replace authoritative business queries where current state is required.
 - Event contracts shall remain version controlled.
-- Cross-domain communication shall follow the repository dependency architecture.
+- Multi-domain communication shall follow the repository dependency architecture.
 - New events shall be introduced only through approved architectural governance.
 
 ---
 ---
 
-# 24. Appendix D — Cross-Domain Dependency Matrix
+# 24. Appendix D — Multi-Domain Dependency Matrix
 
 ## 24.1 Purpose
 
@@ -6732,7 +6732,7 @@ The Student Academic Progression domain shall comply with the following principl
 - Every business capability shall have exactly one canonical owner.
 - Dependencies shall follow approved repository direction.
 - Circular dependencies are prohibited.
-- Cross-domain communication shall occur only through approved service contracts or domain events.
+- Multi-domain communication shall occur only through approved service contracts or domain events.
 - External domains shall never directly modify Academic Progression aggregates.
 - Business ownership shall never be duplicated.
 
@@ -6819,7 +6819,7 @@ The following architectural rules shall always apply.
 |----------|-----------------|
 | DEP-01 | No circular dependencies are permitted. |
 | DEP-02 | Business ownership shall remain unique. |
-| DEP-03 | Cross-domain updates require approved contracts. |
+| DEP-03 | Multi-domain updates require approved contracts. |
 | DEP-04 | Published events shall never violate ownership boundaries. |
 | DEP-05 | Read models shall never become systems of record. |
 | DEP-06 | Platform services shall not contain business logic. |
@@ -6871,7 +6871,7 @@ This architecture aligns with the following repository artifacts.
 | Dependency Map | Dependency validation |
 | Platform Foundation | Shared infrastructure services |
 | Architecture Index | Repository organization |
-| Domain Interaction Matrix | Cross-domain communication |
+| Domain Interaction Matrix | Multi-domain communication |
 | Repository Governance Standards | Architectural compliance |
 
 ---
@@ -6881,7 +6881,7 @@ This architecture aligns with the following repository artifacts.
 The Student Academic Progression domain shall comply with the following governance principles.
 
 - Academic Progression remains the canonical owner of progression, academic standing, credit ledger, and qualification eligibility.
-- Cross-domain communication shall occur exclusively through approved service contracts, read contracts, or published domain events.
+- Multi-domain communication shall occur exclusively through approved service contracts, read contracts, or published domain events.
 - Platform services shall provide shared infrastructure capabilities without assuming business ownership.
 - Architectural dependencies shall remain acyclic and repository compliant.
 - Future integrations shall preserve domain autonomy and backward compatibility.

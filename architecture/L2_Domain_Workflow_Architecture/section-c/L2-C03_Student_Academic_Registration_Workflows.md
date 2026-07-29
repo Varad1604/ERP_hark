@@ -280,7 +280,7 @@ The architecture shall ensure:
 - Immutable registration history.
 - Version-controlled configurations.
 - Architecture compliance.
-- Cross-domain consistency.
+- Multi-domain consistency.
 
 ---
 
@@ -514,7 +514,7 @@ Downstream domains shall react to published events rather than directly accessin
 
 # 3.8 Service-Oriented Communication
 
-Cross-domain communication shall occur exclusively through governed Service Contracts and published Domain Events.
+Multi-domain communication shall occur exclusively through governed Service Contracts and published Domain Events.
 
 Direct database access between domains is strictly prohibited.
 
@@ -532,7 +532,7 @@ Consistency shall be maintained through:
 - Optimistic concurrency
 - Transaction boundaries
 
-Cross-domain consistency shall be achieved through asynchronous integration patterns.
+Multi-domain consistency shall be achieved through asynchronous integration patterns.
 
 ---
 
@@ -980,7 +980,7 @@ The aggregate guarantees transactional consistency for all business operations w
 
 ---
 
-# 5.7 Cross-Domain Ownership Matrix
+# 5.7 Multi-Domain Ownership Matrix
 
 | Capability | Owning Domain | Student Academic Registration Access |
 |------------|---------------|--------------------------------------|
@@ -1049,7 +1049,7 @@ The Student Academic Registration Domain shall enforce the following architectur
 
 - Registration ownership shall never be shared.
 - Registration aggregates shall remain immutable outside approved workflows.
-- Cross-domain updates shall occur only through Service Contracts or Domain Events.
+- Multi-domain updates shall occur only through Service Contracts or Domain Events.
 - Direct database access from external domains is prohibited.
 - Administrative overrides shall remain fully auditable.
 - Registration history shall never be physically deleted.
@@ -1319,7 +1319,7 @@ Examples include:
 - Registration cancellation.
 - Registration freeze.
 
-Cross-domain consistency shall be achieved through published Domain Events rather than distributed transactions.
+Multi-domain consistency shall be achieved through published Domain Events rather than distributed transactions.
 
 ---
 
@@ -1629,7 +1629,7 @@ All workflows shall comply with the following governance principles:
 - Validation before persistence.
 - Audit generation for every state transition.
 - Event publication after successful completion.
-- No direct cross-domain data modification.
+- No direct multi-domain data modification.
 - Idempotent workflow execution where applicable.
 
 ---
@@ -3349,7 +3349,7 @@ All policy modifications shall be version-controlled and auditable.
 
 The Student Academic Registration Domain implements a comprehensive authorization framework that combines authentication, role-based access control, policy-driven permissions, tenant isolation, and immutable auditing. This architecture ensures that every academic registration operation is executed securely, consistently, and in compliance with institutional governance across the SutraERP platform.
 
-# 14. Cross-Domain Integrations
+# 14. Multi-Domain Integrations
 
 ## 14.1 Overview
 
@@ -3363,7 +3363,7 @@ Direct database access between domains is strictly prohibited.
 
 # 14.2 Integration Principles
 
-Cross-domain integration shall follow these principles:
+Multi-domain integration shall follow these principles:
 
 - Single Source of Truth
 - Domain Ownership
@@ -3442,7 +3442,7 @@ All service invocations shall be authenticated and authorized.
 
 # 14.6 Domain Event Integrations
 
-The following Domain Events are published for cross-domain communication.
+The following Domain Events are published for multi-domain communication.
 
 | Domain Event | Primary Consumers |
 |--------------|------------------|
@@ -3519,7 +3519,7 @@ Ownership boundaries shall never overlap.
 
 The Student Academic Registration Domain shall enforce the following integration constraints:
 
-- Cross-domain updates are prohibited.
+- Multi-domain updates are prohibited.
 - Master data shall remain read-only.
 - Registration data shall remain exclusively owned by this domain.
 - Distributed transactions shall be avoided.
@@ -3578,7 +3578,7 @@ All integration changes shall undergo architecture review before implementation.
 
 ---
 
-# 14.13 Cross-Domain Integration Summary
+# 14.13 Multi-Domain Integration Summary
 
 The Student Academic Registration Domain integrates with upstream master-data domains and downstream academic execution domains through standardized Service Contracts and immutable Domain Events. This architecture preserves clear ownership boundaries, enables scalable enterprise integration, and ensures that academic registration remains the authoritative source for academic enrollment throughout the SutraERP platform.
 
@@ -4647,7 +4647,7 @@ Operational monitoring shall include:
 | Validation Failure Rate | Business validation failures |
 | Average Submission Time | Registration completion latency |
 | Approval Turnaround Time | Approval processing duration |
-| Integration Failure Rate | Cross-domain communication failures |
+| Integration Failure Rate | Multi-domain communication failures |
 | Event Delivery Success | Successful event publication |
 | Concurrent Registration Load | Peak registration traffic |
 
@@ -5009,7 +5009,7 @@ Supported deployment environments include:
 | Environment | Purpose |
 |-------------|---------|
 | Development | Feature development |
-| Integration | Cross-domain integration testing |
+| Integration | Multi-domain integration testing |
 | Quality Assurance | Functional validation |
 | User Acceptance Testing | Institutional validation |
 | Staging | Production simulation |
@@ -5109,7 +5109,7 @@ The following operational metrics shall be monitored:
 | Average Response Time | Service latency |
 | Validation Failure Rate | Business validation issues |
 | Approval Processing Time | Workflow efficiency |
-| Integration Success Rate | Cross-domain reliability |
+| Integration Success Rate | Multi-domain reliability |
 | Event Delivery Rate | Messaging effectiveness |
 | Error Rate | Operational stability |
 
@@ -5180,7 +5180,7 @@ This section provides the canonical architectural visualizations for the Student
 
 The visual models complement the normative architectural definitions contained throughout this document by illustrating aggregate relationships, workflows, state transitions, service interactions, event flows, integration boundaries, governance structures, deployment topology, and architectural dependencies.
 
-These diagrams are normative architectural representations intended to support implementation consistency, architectural governance, onboarding, and cross-domain understanding.
+These diagrams are normative architectural representations intended to support implementation consistency, architectural governance, onboarding, and multi-domain understanding.
 
 Unless explicitly stated otherwise, all diagrams inherit the architectural principles, ownership rules, and domain boundaries defined elsewhere in this document.
 
@@ -6458,11 +6458,11 @@ flowchart LR
     style ADMIN fill:#FFF8DC,stroke:#B8860B,stroke-width:2px
 ```
 
-## 21.21 Cross-Domain Integration Map
+## 21.21 Multi-Domain Integration Map
 
 ### Purpose
 
-The Cross-Domain Integration Map illustrates the canonical dependencies of the Student Academic Registration Domain within the SutraERP platform.
+The Multi-Domain Integration Map illustrates the canonical dependencies of the Student Academic Registration Domain within the SutraERP platform.
 
 The diagram identifies upstream domains that provide authoritative reference information required for registration processing and downstream domains that consume finalized registration information through governed Service Contracts and Domain Events.
 
@@ -7148,7 +7148,7 @@ All registration operations require transactional consistency across registratio
 
 ## Decision
 
-Cross-domain communication shall primarily use immutable Domain Events.
+Multi-domain communication shall primarily use immutable Domain Events.
 
 ## Rationale
 
@@ -7960,7 +7960,7 @@ Cancelled
 
 ---
 
-# Appendix E — Cross-Domain Interaction Matrix
+# Appendix E — Multi-Domain Interaction Matrix
 
 | Domain | Purpose | Communication |
 |----------|---------|---------------|
@@ -8047,7 +8047,7 @@ Cancelled
 | Domain Events Defined | ✅ |
 | Service Contracts Defined | ✅ |
 | Authorization Model Defined | ✅ |
-| Cross-Domain Dependencies Defined | ✅ |
+| Multi-Domain Dependencies Defined | ✅ |
 | Configuration Model Defined | ✅ |
 | Audit Requirements Defined | ✅ |
 | Error Handling Defined | ✅ |

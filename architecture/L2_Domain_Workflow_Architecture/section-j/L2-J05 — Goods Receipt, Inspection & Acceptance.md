@@ -1,13 +1,13 @@
 ﻿# L2-J05 — Goods Receipt, Inspection & Acceptance
 
-**Repository:** SutraERP  
-**Section:** J — Enterprise Resource Management  
-**Domain:** J05 — Goods Receipt, Inspection & Acceptance  
-**Document ID:** L2-J05  
-**Version:** 1.0  
-**Status:** Architecture Draft  
-**Classification:** Level 2 Domain Workflow Architecture  
-**Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance  
+**Repository:** SutraERP
+**Section:** J — Enterprise Resource Management
+**Domain:** J05 — Goods Receipt, Inspection & Acceptance
+**Document ID:** L2-J05
+**Version:** 1.0
+**Status:** Trust Certification Ready
+**Classification:** Level 2 Domain Workflow Architecture
+**Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
 **Canonical Owner:** Goods Receipt & Acceptance
 
 ---
@@ -51,14 +51,21 @@ It records what physically arrived, whether it was acceptable, and what downstre
 
 J05 does not own:
 
-- Purchase Order
-- Supplier Master
-- Stock Ledger
-- Inventory Balances
-- Warehouse Structure
-- Asset Lifecycle
-- Vendor Invoice
-- Vendor Payment
+| Capability | Canonical Owner |
+|---|---|
+| Purchase Order | J04 — Purchase Order Management |
+| Supplier Master | J02 — Vendor & Supplier Management |
+| Stock Ledger, Inventory Balances, Warehouse Structure | J06 — Inventory & Warehouse Management |
+| Stock Movement and Distribution | J07 — Stock Operations & Distribution |
+| Operational Asset Lifecycle | J08 — Asset Lifecycle Management |
+| Physical Verification / Audit Conclusion | J09 — Physical Verification, Audit & Reconciliation |
+| Disposal / Write-Off Case | J10 — Disposal, Scrap & Write-Off |
+| Vendor Invoice, Accounting, Payment | Section F — Finance |
+| Authentication | L2-A03 — Authentication |
+| Authorization Policy and SoD | L2-A04 — Authorization and Policy |
+| Workflow Routing | L2-A05 — Workflow Engine |
+| Event Transport | L2-A06 — Event Infrastructure |
+| Enterprise Audit Persistence | L2-A07 — Audit Infrastructure |
 
 ---
 
@@ -105,7 +112,74 @@ J05 depends on:
 
 # 8. Completion Criteria
 
-J05 is complete when receipt and inspection are canonical, auditable, and clearly separated from stock ledger, asset, and payment ownership.
+J05 is complete when receipt and inspection are canonical, auditable, tenant-scoped, event-driven, recoverable, and clearly separated from purchase order, stock ledger, asset, invoice, and payment ownership.
 
+---
 
+# 9. Authorization & Segregation of Duties
 
+J05 defines receipt and inspection authorization semantics while L2-A04 owns policy evaluation.
+
+Authorization may consider:
+
+- Tenant and institution.
+- Receiving campus, warehouse, store, or department.
+- Purchase Order reference and lifecycle state.
+- Supplier status.
+- Item category and controlled-resource classification.
+- Inspection requirement and quality policy.
+- Quantity and variance tolerance.
+- Actor role and delegated authority.
+
+Representative SoD rules include:
+
+```text
+Goods Receiver != Goods Inspector where configured
+PO Creator != Receipt Approver where configured
+Receipt Variance Approver requires explicit variance authority
+```
+
+---
+
+# 10. Audit & Evidence
+
+J05 produces domain evidence for:
+
+- Delivery arrival.
+- Receipt header and lines.
+- Short, excess, damaged, rejected, or substituted delivery.
+- Inspection outcome.
+- Acceptance, rejection, supplier return, and closure.
+- Downstream inventory, asset, and finance handoff references.
+
+L2-A07 owns enterprise audit persistence, retention governance, access governance, and evidence integrity.
+
+---
+
+# 11. Tenant and Institution Isolation
+
+Every goods-receipt command, aggregate, event, read model, and audit reference shall preserve tenant and institution context.
+
+A Goods Receipt Number alone shall not authorize access.
+
+Cross-institution receiving shall require explicit governed authorization.
+
+---
+
+# 12. Event and Workflow Integration
+
+J05 owns the business meaning and timing of receipt and inspection events.
+
+L2-A06 owns event transport, routing, retry, replay, and event registry governance.
+
+L2-A05 owns workflow routing, inspection tasks, approval tasks, escalation, timeout, and orchestration. J05 owns the resulting receipt and inspection business state.
+
+---
+
+# 13. Privacy, Retention, and Recovery
+
+J05 shall minimize copied supplier, employee, finance, and warehouse data by preserving canonical identifiers and transaction-time snapshots only where required.
+
+Finalized receipt and inspection evidence shall remain reconstructable according to enterprise and institutional retention policy.
+
+Retried commands shall be idempotent for receipt creation, inspection recording, acceptance, rejection, variance recording, supplier return, and closure.

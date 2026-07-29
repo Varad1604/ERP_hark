@@ -151,7 +151,7 @@ Business state transitions shall be controlled, auditable, and governed by insti
 
 ---
 
-## 4.8 Cross-Domain Collaboration
+## 4.8 Multi-Domain Collaboration
 
 Theory Examination Conduct collaborates with Registration, Hall Ticket Management, Examination Planning, Campus & Infrastructure, Academic Calendar, Identity, Organisation, and Platform Foundation domains while preserving ownership boundaries.
 
@@ -987,7 +987,7 @@ Consumed events influence examination conduct without transferring ownership.
 
 ---
 
-# 13. Cross-Domain Interactions
+# 13. Multi-Domain Interactions
 
 The Theory Examination Conduct domain collaborates with multiple business domains to execute authorised written examinations.
 

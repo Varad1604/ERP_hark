@@ -1618,7 +1618,7 @@ Domain Workflows
 
 ↓ LEVEL 3
 
-Cross-Module Workflows
+Business Scenario Architecture
 Examples:
 Admission → Student → Finance → Documents
 Attendance → Eligibility → Examination

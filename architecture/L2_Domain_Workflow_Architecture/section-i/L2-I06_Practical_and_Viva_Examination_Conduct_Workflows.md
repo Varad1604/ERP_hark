@@ -149,7 +149,7 @@ Institutions may configure examination conduct policies, assessment categories, 
 
 ---
 
-## 4.8 Cross-Domain Collaboration
+## 4.8 Multi-Domain Collaboration
 
 Practical & Viva Examination Conduct collaborates with Registration, Hall Ticket Management, Examination Planning, Academic Calendar, Identity, Organisation, and Platform Foundation domains while preserving clear ownership boundaries.
 
@@ -977,7 +977,7 @@ Consumed events influence assessment execution without transferring ownership.
 
 ---
 
-# 13. Cross-Domain Interactions
+# 13. Multi-Domain Interactions
 
 The Practical & Viva Examination Conduct domain collaborates with multiple business domains to execute authorised assessments.
 

@@ -12,7 +12,7 @@
 | Bounded Context | Physical Verification, Audit & Reconciliation |
 | Architectural Style | Domain-Driven Design (DDD), CQRS, Event-Driven Architecture |
 | Primary Aggregate | Inventory Audit |
-| Status | Architecture Frozen |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 
 ---
@@ -78,7 +78,7 @@ The architecture supports:
 
 The fundamental architecture principle is:
 
-> **J09 determines and proves what was physically found. J02 determines and maintains the authoritative inventory state.**
+> **J09 determines and proves what was physically found. J06 determines and maintains the authoritative inventory state.**
 
 A physical inventory difference recorded by J09 shall therefore never silently or directly alter canonical inventory balances.
 
@@ -113,9 +113,9 @@ Inventory operations continuously create and modify inventory state through acti
 - Write-off
 - Other governed inventory transactions
 
-J02 maintains the authoritative inventory representation resulting from those transactions.
+J06 maintains the authoritative inventory representation resulting from those transactions.
 
-J09 provides an independent control process for determining whether inventory physically present within institutional custody corresponds with the inventory state expected according to J02 and applicable movement records.
+J09 provides an independent control process for determining whether inventory physically present within institutional custody corresponds with the inventory state expected according to J06 and applicable movement records.
 
 Inventory auditing is therefore not merely a stock-counting capability.
 
@@ -152,70 +152,70 @@ The domain must be capable of answering:
 
 ```text
 Inventory & Warehouse Management (J06)
-          │
-          │ Authoritative Inventory State
-          ▼
+          ¦
+          ¦ Authoritative Inventory State
+          ?
 Inventory Audit Requirement
-          │
-          ▼
+          ¦
+          ?
 Audit Planning
-          │
-          ▼
+          ¦
+          ?
 Define Audit Scope
-          │
-          ▼
+          ¦
+          ?
 Approval / Authorization
-          │
-          ▼
+          ¦
+          ?
 Capture Audit Baseline
-          │
-          ▼
+          ¦
+          ?
 Freeze Effective Audit Scope
-          │
-          ▼
+          ¦
+          ?
 Activate Audit
-          │
-          ▼
+          ¦
+          ?
 Physical Stock Verification
-          │
-          ▼
+          ¦
+          ?
 Submit Count Evidence
-          │
-          ▼
+          ¦
+          ?
 Compare Expected vs Verified
-          │
-     ┌────┴─────┐
-     │          │
+          ¦
+     +----------+
+     ¦          ¦
  No Variance   Variance
-     │          │
-     │          ▼
-     │       Recount
-     │          │
-     │          ▼
-     │     Investigation
-     │          │
-     │          ▼
-     │   Movement Reconciliation
-     │          │
-     │          ▼
-     │    Final Determination
-     │          │
-     └────┬─────┘
-          │
-          ▼
+     ¦          ¦
+     ¦          ?
+     ¦       Recount
+     ¦          ¦
+     ¦          ?
+     ¦     Investigation
+     ¦          ¦
+     ¦          ?
+     ¦   Movement Reconciliation
+     ¦          ¦
+     ¦          ?
+     ¦    Final Determination
+     ¦          ¦
+     +----------+
+          ¦
+          ?
 Governed Reconciliation
-          │
-          ├────────► J06 Inventory Adjustment Request
-          │
-          └────────► J10 Disposal / Write-off Referral
-          │
-          ▼
+          ¦
+          +--------? J06 Inventory Adjustment Request
+          ¦
+          +--------? J10 Disposal / Write-off Referral
+          ¦
+          ?
 Audit Completion
-          │
-          ▼
+          ¦
+          ?
 Audit Closure
-          │
-          ▼
+          ¦
+          ?
 Immutable Audit Evidence
 ```
 
@@ -235,8 +235,8 @@ J09 establishes a separation between:
 
 ```text
 Recorded Inventory
-        │
-        ▼
+        ¦
+        ?
 What the System Expects
 ```
 
@@ -244,8 +244,8 @@ and:
 
 ```text
 Physical Verification
-        │
-        ▼
+        ¦
+        ?
 What the Institution Actually Finds
 ```
 
@@ -343,8 +343,8 @@ The following capabilities remain outside J09:
 | Transfer In-Transit State | Stock Operations & Distribution (J07) |
 | Asset Master | Asset Lifecycle Management (J08) |
 | Asset Lifecycle | Asset Lifecycle Management (J08) |
-| Purchase Orders | Purchase Order Management (J06) |
-| Vendor Master | Vendor & Contract Management (J04) |
+| Purchase Orders | Purchase Order Management (J04) |
+| Vendor Master | Vendor & Supplier Management (J02) |
 | Disposal Execution | Disposal, Scrap & Write-Off (J10) |
 | Write-off Execution | Disposal, Scrap & Write-Off (J10) |
 | Financial Posting | Finance |
@@ -369,32 +369,32 @@ For example:
 
 ```text
 Physical Count
-      │
-      ▼
+      ¦
+      ?
 Variance
-      │
-      ▼
+      ¦
+      ?
 Investigation
-      │
-      ▼
+      ¦
+      ?
 Approved Adjustment Required
-      │
-      ▼
-J02
+      ¦
+      ?
+J06
 ```
 
 or:
 
 ```text
 Physical Verification
-      │
-      ▼
+      ¦
+      ?
 Confirmed Irrecoverable Loss
-      │
-      ▼
+      ¦
+      ?
 Approved Write-off Requirement
-      │
-      ▼
+      ¦
+      ?
 J10
 ```
 
@@ -500,7 +500,7 @@ J09 shall therefore never independently maintain a competing canonical stock bal
 
 ## 5.1 Expected Quantity
 
-Expected Quantity represents the quantity derived from the applicable authoritative J02 inventory state for the audit baseline or cutoff.
+Expected Quantity represents the quantity derived from the applicable authoritative J06 inventory state for the audit baseline or cutoff.
 
 J09 may preserve the Expected Quantity as part of its audit baseline evidence.
 
@@ -514,7 +514,7 @@ Physical Count Quantity represents the quantity physically observed by an author
 
 It is an independent audit observation.
 
-A physical count shall not automatically alter Expected Quantity or the J02 stock balance.
+A physical count shall not automatically alter Expected Quantity or the J06 stock balance.
 
 ---
 
@@ -532,7 +532,7 @@ Final Verified Quantity represents the quantity accepted by J09 after applicable
 
 It represents the final audit determination for the applicable audit line.
 
-Final Verified Quantity remains distinct from canonical J02 inventory quantity until any required inventory consequence has been processed by J02.
+Final Verified Quantity remains distinct from canonical J06 inventory quantity until any required inventory consequence has been processed by J06.
 
 ---
 
@@ -586,7 +586,7 @@ This convention shall remain consistent throughout J09 commands, events, read mo
 
 An audit verifies inventory item `ITEM-000425`.
 
-J02 baseline:
+J06 baseline:
 
 ```text
 Inventory Item:
@@ -627,32 +627,32 @@ Required
 J09 does not perform:
 
 ```text
-J02 Stock Balance:
-100 → 94
+J06 Stock Balance:
+100 ? 94
 ```
 
 Instead:
 
 ```text
 Variance Confirmed
-       │
-       ▼
+       ¦
+       ?
 Investigation
-       │
-       ▼
+       ¦
+       ?
 Reconciliation Determination
-       │
-       ▼
+       ¦
+       ?
 Required Approval
-       │
-       ▼
+       ¦
+       ?
 Inventory Adjustment Request
-       │
-       ▼
+       ¦
+       ?
 Inventory & Warehouse Management (J06)
 ```
 
-J02 independently validates and executes the resulting canonical inventory transaction.
+J06 independently validates and executes the resulting canonical inventory transaction.
 
 ---
 
@@ -664,32 +664,32 @@ The mandatory architecture sequence is:
 
 ```text
 Physical Observation
-        │
-        ▼
+        ¦
+        ?
 Variance Detection
-        │
-        ▼
+        ¦
+        ?
 Tolerance Evaluation
-        │
-        ▼
+        ¦
+        ?
 Recount if Required
-        │
-        ▼
+        ¦
+        ?
 Investigation if Required
-        │
-        ▼
+        ¦
+        ?
 Movement Reconciliation
-        │
-        ▼
+        ¦
+        ?
 Final Determination
-        │
-        ▼
+        ¦
+        ?
 Governed Approval
-        │
-        ▼
+        ¦
+        ?
 Adjustment Request
-        │
-        ▼
+        ¦
+        ?
 J06 Inventory Processing
 ```
 
@@ -702,17 +702,17 @@ This prevents:
 - Timing differences being treated as loss
 - In-transit stock being treated as missing
 - Uninvestigated discrepancies altering canonical inventory
-- Cross-domain ownership violations
+- Multi-domain ownership violations
 
 ---
 
-# 6. Cross-Domain Boundaries
+# 6. Multi-Domain Boundaries
 
-## 6.1 J09 ↔ J06 — Inventory & Warehouse Management
+## 6.1 J09 ? J06 — Inventory & Warehouse Management
 
-J02 provides authoritative inventory information required for verification.
+J06 provides authoritative inventory information required for verification.
 
-Typical J02 information consumed by J09 includes:
+Typical J06 information consumed by J09 includes:
 
 - Inventory Item reference
 - Item description
@@ -740,25 +740,25 @@ J09 provides:
 The boundary shall be:
 
 ```text
-J02
- │
- │ Inventory Baseline / Inventory Facts
- ▼
+J06
+ ¦
+ ¦ Inventory Baseline / Inventory Facts
+ ?
 J09
- │
- │ Verification / Audit / Reconciliation
- ▼
+ ¦
+ ¦ Verification / Audit / Reconciliation
+ ?
 Approved Inventory Consequence Request
- │
- ▼
-J02
+ ¦
+ ?
+J06
 ```
 
 J09 shall never directly update J06 persistence.
 
 ---
 
-## 6.2 J09 ↔ J07 — Stock Operations & Distribution
+## 6.2 J09 ? J07 — Stock Operations & Distribution
 
 Stock may legitimately be moving between institutional custody locations while an audit is taking place.
 
@@ -807,7 +807,7 @@ J09 remains authoritative for the audit interpretation of those facts.
 
 ---
 
-## 6.3 J09 ↔ J10 — Disposal, Scrap & Write-Off
+## 6.3 J09 ? J10 — Disposal, Scrap & Write-Off
 
 Inventory audit may establish evidence that stock is:
 
@@ -839,20 +839,20 @@ The boundary is:
 
 ```text
 J09
- │
- ▼
+ ¦
+ ?
 Verified Loss / Damage
- │
- ▼
+ ¦
+ ?
 Investigation
- │
- ▼
+ ¦
+ ?
 Approved Audit Determination
- │
- ▼
+ ¦
+ ?
 Disposal / Write-off Referral
- │
- ▼
+ ¦
+ ?
 J10
 ```
 
@@ -860,7 +860,7 @@ J09 shall not execute disposal or write-off.
 
 ---
 
-## 6.4 J09 ↔ J08 — Asset Lifecycle Management
+## 6.4 J09 ? J08 — Asset Lifecycle Management
 
 Inventory verification may encounter items that are also governed as individually identifiable institutional assets.
 
@@ -877,15 +877,15 @@ J09 shall not:
 
 - Create a competing Asset Master
 - Independently alter asset lifecycle state
-- Transfer asset custody outside J03-owned workflows
-- Replace J03 asset-verification responsibilities
+- Transfer asset custody outside J08-owned workflows
+- Replace J08 asset-verification responsibilities
 - Treat an inventory audit conclusion as an automatic asset-state transition
 
 Where both inventory and asset reconciliation are required, each domain shall preserve its canonical ownership.
 
 ---
 
-## 6.5 J09 ↔ Workflow Engine
+## 6.5 J09 ? Workflow Engine
 
 The enterprise Workflow Engine owns:
 
@@ -909,7 +909,7 @@ Workflow routing shall not become embedded as hard-coded J09 business logic.
 
 ---
 
-## 6.6 J09 ↔ Notification Infrastructure
+## 6.6 J09 ? Notification Infrastructure
 
 J09 may generate notification requirements for events such as:
 
@@ -1038,7 +1038,7 @@ Where institutional policy prohibits changing an activated audit, a supplemental
 
 The Audit Baseline represents the point-in-time inventory reference used for comparison with physical verification.
 
-The baseline originates from J02.
+The baseline originates from J06.
 
 J09 may preserve:
 
@@ -1227,7 +1227,7 @@ Final Verified Quantity represents the quantity accepted by J09 after applicable
 
 It is the final audit quantity for comparison and reconciliation purposes.
 
-It does not automatically become J02's canonical inventory balance.
+It does not automatically become J06's canonical inventory balance.
 
 ---
 
@@ -1296,7 +1296,7 @@ Possible determinations include:
 
 The determination is an audit conclusion.
 
-Execution of the resulting cross-domain consequence remains with the canonical owning domain.
+Execution of the resulting multi-domain consequence remains with the canonical owning domain.
 
 ---
 
@@ -1376,20 +1376,20 @@ Conceptually:
 
 ```text
 Establish Audit Cutoff
-        │
-        ▼
+        ¦
+        ?
 Capture Baseline
-        │
-        ▼
+        ¦
+        ?
 Restrict Applicable Inventory Movement
-        │
-        ▼
+        ¦
+        ?
 Physical Verification
-        │
-        ▼
+        ¦
+        ?
 Complete Count
-        │
-        ▼
+        ¦
+        ?
 Release Restriction
 ```
 
@@ -1407,27 +1407,27 @@ Conceptually:
 
 ```text
 Capture Baseline
-      │
-      ▼
+      ¦
+      ?
 Begin Verification
-      │
-      ├────────► Inventory Movement Occurs
-      │                    │
-      │                    ▼
-      │             Preserve Movement Fact
-      │
-      ▼
+      ¦
+      +--------? Inventory Movement Occurs
+      ¦                    ¦
+      ¦                    ?
+      ¦             Preserve Movement Fact
+      ¦
+      ?
 Complete Physical Count
-      │
-      ▼
+      ¦
+      ?
 Reconcile:
 Baseline
    +
 Applicable Movement Facts
    +
 Physical Count
-      │
-      ▼
+      ¦
+      ?
 Determine Audit Variance
 ```
 
@@ -1662,11 +1662,11 @@ The aggregate model shall ensure that:
 - Recounts preserve previous count evidence.
 - Investigation conclusions remain traceable to their supporting evidence.
 - Reconciliation decisions do not directly alter externally owned inventory state.
-- Cross-domain ownership boundaries are preserved.
+- Multi-domain ownership boundaries are preserved.
 - External aggregates are never directly modified.
 - Concurrent audit operations cannot silently corrupt verification state.
 - Every material lifecycle transition remains auditable.
-- Cross-domain consistency is achieved through governed APIs, immutable events, and stable references.
+- Multi-domain consistency is achieved through governed APIs, immutable events, and stable references.
 
 ---
 
@@ -1811,7 +1811,7 @@ It provides explicit evidence of what the institution intended to verify.
 
 The Audit Baseline aggregate preserves the point-in-time inventory reference against which physical observations are evaluated.
 
-The baseline is derived from J02 authoritative inventory information.
+The baseline is derived from J06 authoritative inventory information.
 
 ---
 
@@ -2099,7 +2099,7 @@ Root causes may include:
 - Investigation conclusions shall identify the responsible investigator.
 - Completed investigation conclusions shall be immutable.
 - Reopening an investigation shall create additional governed history.
-- Investigation shall not directly modify J02 inventory quantities.
+- Investigation shall not directly modify J06 inventory quantities.
 - Investigation shall not directly execute J10 disposal or write-off.
 
 ---
@@ -2110,7 +2110,7 @@ Root causes may include:
 
 The Reconciliation Determination aggregate records the governed audit conclusion regarding treatment of a verified inventory variance.
 
-It separates audit determination from execution of resulting cross-domain consequences.
+It separates audit determination from execution of resulting multi-domain consequences.
 
 ---
 
@@ -2128,7 +2128,7 @@ It separates audit determination from execution of resulting cross-domain conseq
 - Approval State
 - Approval Reference
 - Target Domain
-- Cross-Domain Request Reference
+- Multi-Domain Request Reference
 - Execution Status Reference
 - Resolution Evidence
 - Determination Status
@@ -2157,7 +2157,7 @@ It separates audit determination from execution of resulting cross-domain conseq
 - Every determination shall reference applicable audit evidence.
 - Determinations requiring approval shall not become executable before approval.
 - Determination history shall remain immutable.
-- Cross-domain execution shall use governed integration contracts.
+- Multi-domain execution shall use governed integration contracts.
 - J09 shall not directly modify external domain persistence.
 - Failure of downstream execution shall not erase the audit determination.
 - Rejected downstream requests shall remain traceable and require governed resolution.
@@ -2168,33 +2168,33 @@ It separates audit determination from execution of resulting cross-domain conseq
 
 ```text
                          Inventory Audit
-                                │
-          ┌─────────────────────┼──────────────────────┐
-          │                     │                      │
-          ▼                     ▼                      ▼
+                                ¦
+          +---------------------+----------------------+
+          ¦                     ¦                      ¦
+          ?                     ?                      ?
      Audit Scope          Audit Baseline      Verification Session
-                                                    │
-                                                    ▼
+                                                    ¦
+                                                    ?
                                               Physical Count
-                                                    │
-                                                    ▼
+                                                    ¦
+                                                    ?
                                           Final Verified Quantity
-                                                    │
-                          ┌─────────────────────────┴──────────────┐
-                          │                                        │
-                          ▼                                        ▼
+                                                    ¦
+                          +----------------------------------------+
+                          ¦                                        ¦
+                          ?                                        ?
                    No Variance                              Inventory Variance
-                                                                   │
-                                                                   ▼
+                                                                   ¦
+                                                                   ?
                                                         Variance Investigation
-                                                                   │
-                                                                   ▼
+                                                                   ¦
+                                                                   ?
                                                     Reconciliation Determination
-                                                                   │
-                                      ┌────────────────────────────┼─────────────┐
-                                      │                            │             │
-                                      ▼                            ▼             ▼
-                                    J02                           J10           J03
+                                                                   ¦
+                                      +----------------------------+-------------+
+                                      ¦                            ¦             ¦
+                                      ?                            ?             ?
+                                    J06                           J10           J08
                               Inventory Adjustment          Disposal /      Asset
                                    Processing               Write-off    Reconciliation
 ```
@@ -2211,64 +2211,64 @@ The canonical Inventory Audit lifecycle is:
 
 ```text
 Draft
-  │
-  ▼
+  ¦
+  ?
 Planned
-  │
-  ▼
+  ¦
+  ?
 Submitted
-  │
-  ▼
+  ¦
+  ?
 Approved
-  │
-  ▼
+  ¦
+  ?
 Baseline Captured
-  │
-  ▼
+  ¦
+  ?
 Scope Frozen
-  │
-  ▼
+  ¦
+  ?
 Active
-  │
-  ▼
+  ¦
+  ?
 Counting
-  │
-  ├──────────────► Recount Required
-  │                        │
-  │                        ▼
-  │                     Recount
-  │                        │
-  └────────────────────────┘
-  │
-  ▼
+  ¦
+  +--------------? Recount Required
+  ¦                        ¦
+  ¦                        ?
+  ¦                     Recount
+  ¦                        ¦
+  +------------------------+
+  ¦
+  ?
 Verification Complete
-  │
-  ▼
+  ¦
+  ?
 Variance Evaluation
-  │
-  ├──────────────► No Material Variance
-  │
-  └──────────────► Investigation Required
-                           │
-                           ▼
+  ¦
+  +--------------? No Material Variance
+  ¦
+  +--------------? Investigation Required
+                           ¦
+                           ?
                       Investigation
-                           │
-                           ▼
+                           ¦
+                           ?
                      Reconciliation
-                           │
-                           ▼
+                           ¦
+                           ?
                  Awaiting External Action
-                           │
-                           ▼
+                           ¦
+                           ?
                       Reconciled
-                           │
-                           ▼
+                           ¦
+                           ?
                        Completed
-                           │
-                           ▼
+                           ¦
+                           ?
                          Closed
-                           │
-                           ▼
+                           ¦
+                           ?
                         Archived
 ```
 
@@ -2278,11 +2278,11 @@ For example, an audit with no variance may proceed from:
 
 ```text
 Verification Complete
-        │
-        ▼
+        ¦
+        ?
 Variance Evaluation
-        │
-        ▼
+        ¦
+        ?
 Completed
 ```
 
@@ -2298,7 +2298,7 @@ provided all applicable completion rules are satisfied.
 | Planned | Audit scope, schedule, and policy have been defined |
 | Submitted | Audit has been submitted for authorization |
 | Approved | Required approval has completed successfully |
-| Baseline Captured | Applicable J02 inventory baseline has been preserved |
+| Baseline Captured | Applicable J06 inventory baseline has been preserved |
 | Scope Frozen | Effective verification population has been established |
 | Active | Audit is operationally active |
 | Counting | Physical verification is underway |
@@ -2309,7 +2309,7 @@ provided all applicable completion rules are satisfied.
 | Investigation Required | One or more variances require investigation |
 | Investigation | Variance investigation is underway |
 | Reconciliation | Audit conclusions are being determined |
-| Awaiting External Action | Required J02, J10, J03, or other owned action remains pending |
+| Awaiting External Action | Required J06, J10, J08, or other owned action remains pending |
 | Reconciled | Required audit reconciliation has reached an acceptable outcome |
 | Completed | Audit execution and mandatory reconciliation are complete |
 | Closed | Operational audit processing is formally closed |
@@ -2390,35 +2390,35 @@ Planning defines what will be verified, why verification is required, and under 
 
 ```text
 Audit Requirement
-       │
-       ▼
+       ¦
+       ?
 Select Audit Type
-       │
-       ▼
+       ¦
+       ?
 Define Audit Purpose
-       │
-       ▼
+       ¦
+       ?
 Define Audit Scope
-       │
-       ▼
+       ¦
+       ?
 Select Verification Policy
-       │
-       ▼
+       ¦
+       ?
 Select Count Policy
-       │
-       ▼
+       ¦
+       ?
 Select Tolerance Policy
-       │
-       ▼
+       ¦
+       ?
 Define Schedule
-       │
-       ▼
+       ¦
+       ?
 Assign Preliminary Audit Team
-       │
-       ▼
+       ¦
+       ?
 Validate Audit Plan
-       │
-       ▼
+       ¦
+       ?
 Save Audit Plan
 ```
 
@@ -2461,8 +2461,8 @@ An Inventory Audit Plan should capture:
 - Audit scope shall remain within tenant and institution boundaries.
 - Scope references shall resolve to valid enterprise entities.
 - Audit type shall be valid.
-- Applicable verification policy shall be defined.
-- Applicable tolerance policy shall be defined where variance tolerance is used.
+- Applicable verification policy must be selected from institution-approved Section J verification configuration before audit planning is completed.
+- Applicable tolerance policy must be selected from institution-approved Section J reconciliation configuration where variance tolerance is used.
 - Planning shall not alter inventory quantities.
 - Planning shall not itself freeze inventory transactions.
 - Planning shall not expose expected quantities to counters where blind-count policy prohibits it.
@@ -2483,25 +2483,25 @@ Workflow routing remains owned by the enterprise Workflow Engine.
 
 ```text
 Draft / Planned Audit
-          │
-          ▼
+          ¦
+          ?
 Validate Audit Plan
-          │
-          ▼
+          ¦
+          ?
 Submit Audit
-          │
-          ▼
+          ¦
+          ?
 Workflow Engine
-          │
-     ┌────┼───────────────┐
-     │    │               │
-     ▼    ▼               ▼
+          ¦
+     +----+---------------+
+     ¦    ¦               ¦
+     ?    ?               ?
  Returned Rejected      Approved
-     │
-     ▼
+     ¦
+     ?
 Correct Audit
-     │
-     ▼
+     ¦
+     ?
 Resubmit
 ```
 
@@ -2533,29 +2533,29 @@ This workflow is critical for ensuring that audit variance represents a meaningf
 
 ```text
 Approved Audit
-      │
-      ▼
+      ¦
+      ?
 Establish Audit Cutoff
-      │
-      ▼
-Request Inventory Snapshot from J02
-      │
-      ▼
+      ¦
+      ?
+Request Inventory Snapshot from J06
+      ¦
+      ?
 Validate Snapshot
-      │
-      ▼
+      ¦
+      ?
 Capture Baseline Lines
-      │
-      ▼
+      ¦
+      ?
 Record Source Version / Watermark
-      │
-      ▼
+      ¦
+      ?
 Freeze Effective Audit Scope
-      │
-      ▼
+      ¦
+      ?
 Baseline Captured
-      │
-      ▼
+      ¦
+      ?
 Audit Ready for Activation
 ```
 
@@ -2582,13 +2582,13 @@ The baseline shall preserve, where applicable:
 - Inventory State Reference
 - Source Version
 - Transaction Watermark
-- J02 Source Reference
+- J06 Source Reference
 
 ---
 
 ## Baseline Rules
 
-- Baseline data shall originate from J02.
+- Baseline data shall originate from J06.
 - J09 shall not independently invent expected inventory quantity.
 - Applicable cutoff shall be explicit.
 - Baseline shall be reproducible or traceable to its source reference.
@@ -2612,29 +2612,29 @@ The Audit Activation Workflow begins controlled physical verification after requ
 
 ```text
 Approved Audit
-      │
-      ▼
+      ¦
+      ?
 Baseline Captured
-      │
-      ▼
+      ¦
+      ?
 Scope Frozen
-      │
-      ▼
+      ¦
+      ?
 Validate Audit Preconditions
-      │
-      ▼
+      ¦
+      ?
 Create Verification Sessions
-      │
-      ▼
+      ¦
+      ?
 Assign Counters / Teams
-      │
-      ▼
+      ¦
+      ?
 Apply Blind-Count Rules
-      │
-      ▼
+      ¦
+      ?
 Activate Audit
-      │
-      ▼
+      ¦
+      ?
 Physical Verification Begins
 ```
 
@@ -2683,32 +2683,32 @@ This workflow creates the primary physical evidence used by J09.
 
 ```text
 Active Audit
-     │
-     ▼
+     ¦
+     ?
 Open Verification Session
-     │
-     ▼
+     ¦
+     ?
 Identify Assigned Location / Population
-     │
-     ▼
+     ¦
+     ?
 Physically Inspect Inventory
-     │
-     ▼
+     ¦
+     ?
 Count Inventory
-     │
-     ▼
+     ¦
+     ?
 Record Quantity
-     │
-     ▼
+     ¦
+     ?
 Record Condition / Evidence
-     │
-     ▼
+     ¦
+     ?
 Validate Count
-     │
-     ▼
+     ¦
+     ?
 Submit Physical Count
-     │
-     ▼
+     ¦
+     ?
 Immutable Count Evidence
 ```
 
@@ -2747,7 +2747,7 @@ A submitted count shall preserve:
 - Expected quantity shall remain hidden where blind-count policy requires it.
 - Duplicate submission shall not create duplicate count evidence.
 - Every submitted count shall remain attributable to the submitting actor.
-- Physical verification shall not directly modify J02 stock balance.
+- Physical verification shall not directly modify J06 stock balance.
 
 ---
 
@@ -2763,23 +2763,23 @@ The Blind Count & Independent Verification Workflow provides stronger control fo
 
 ```text
 Verification Assignment
-        │
-        ▼
+        ¦
+        ?
 Blind Count Required
-        │
-        ▼
+        ¦
+        ?
 Hide Expected Quantity
-        │
-        ▼
+        ¦
+        ?
 Counter Performs Physical Count
-        │
-        ▼
+        ¦
+        ?
 Submit Count
-        │
-        ▼
+        ¦
+        ?
 Lock Count Evidence
-        │
-        ▼
+        ¦
+        ?
 Expected Quantity May Become
 Available to Authorized Reviewers
 ```
@@ -2792,25 +2792,25 @@ The counter shall not receive the expected system quantity before count submissi
 
 ```text
 Inventory Population
-       │
-       ├────────────► Counter A
-       │                  │
-       │                  ▼
-       │              Count A
-       │
-       └────────────► Counter B
-                          │
-                          ▼
+       ¦
+       +------------? Counter A
+       ¦                  ¦
+       ¦                  ?
+       ¦              Count A
+       ¦
+       +------------? Counter B
+                          ¦
+                          ?
                       Count B
-                          │
-                          ▼
+                          ¦
+                          ?
                    Compare Counts
-                          │
-                 ┌────────┴────────┐
-                 │                 │
+                          ¦
+                 +-----------------+
+                 ¦                 ¦
               Match            Disagree
-                 │                 │
-                 ▼                 ▼
+                 ¦                 ¦
+                 ?                 ?
           Accept according      Recount /
              to policy       Supervisor Review
 ```
@@ -2859,28 +2859,28 @@ A recount may be required because of:
 
 ```text
 Submitted Count
-      │
-      ▼
+      ¦
+      ?
 Evaluate Recount Policy
-      │
-  ┌───┴─────────┐
-  │             │
+      ¦
+  +-------------+
+  ¦             ¦
 No Recount    Recount Required
-  │             │
-  │             ▼
-  │       Create Recount Assignment
-  │             │
-  │             ▼
-  │        Perform Recount
-  │             │
-  │             ▼
-  │        Submit New Count
-  │             │
-  │             ▼
-  │       Compare Evidence
-  │             │
-  └─────────────┤
-                ▼
+  ¦             ¦
+  ¦             ?
+  ¦       Create Recount Assignment
+  ¦             ¦
+  ¦             ?
+  ¦        Perform Recount
+  ¦             ¦
+  ¦             ?
+  ¦        Submit New Count
+  ¦             ¦
+  ¦             ?
+  ¦       Compare Evidence
+  ¦             ¦
+  +-------------¦
+                ?
       Determine Final Verified Quantity
 ```
 
@@ -2928,29 +2928,29 @@ Determination may consider:
 
 ```text
 Physical Count Evidence
-        │
-        ▼
+        ¦
+        ?
 Evaluate Count Consistency
-        │
-   ┌────┴──────────────┐
-   │                   │
+        ¦
+   +-------------------+
+   ¦                   ¦
 Consistent        Inconsistent
-   │                   │
-   │                   ▼
-   │             Recount / Review
-   │                   │
-   └───────────┬───────┘
-               │
-               ▼
+   ¦                   ¦
+   ¦                   ?
+   ¦             Recount / Review
+   ¦                   ¦
+   +-------------------+
+               ¦
+               ?
 Validate Verification Policy
-               │
-               ▼
+               ¦
+               ?
 Determine Final Verified Quantity
-               │
-               ▼
+               ¦
+               ?
 Record Determination Evidence
-               │
-               ▼
+               ¦
+               ?
 Proceed to Variance Evaluation
 ```
 
@@ -2964,7 +2964,7 @@ Proceed to Variance Evaluation
 - Manual determination shall require authorization and justification.
 - Final Verified Quantity shall be immutable after confirmation except through a governed supplemental correction process.
 - Correction shall preserve the original determination and its evidence.
-- Final Verified Quantity shall not automatically update J02.
+- Final Verified Quantity shall not automatically update J06.
 
 ---
 
@@ -2982,25 +2982,25 @@ The Variance Detection & Classification Workflow compares the Final Verified Qua
 Expected Quantity
        +
 Final Verified Quantity
-       │
-       ▼
+       ¦
+       ?
 Calculate Variance
-       │
-   ┌───┴─────────┐
-   │             │
+       ¦
+   +-------------+
+   ¦             ¦
 Zero           Non-Zero
-   │             │
-   ▼             ▼
+   ¦             ¦
+   ?             ?
 No Quantity    Create Inventory
 Variance       Variance
-                 │
-                 ▼
+                 ¦
+                 ?
           Classify Variance
-                 │
-                 ▼
+                 ¦
+                 ?
          Evaluate Tolerance
-                 │
-                 ▼
+                 ¦
+                 ?
        Determine Required Action
 ```
 
@@ -3077,31 +3077,31 @@ It determines how the variance must be handled.
 
 ```text
 Inventory Variance
-       │
-       ▼
+       ¦
+       ?
 Load Applicable Tolerance Policy
-       │
-       ▼
+       ¦
+       ?
 Evaluate Quantity Difference
-       │
-       ▼
+       ¦
+       ?
 Evaluate Percentage Difference
-       │
-       ▼
+       ¦
+       ?
 Evaluate Value / Materiality
-       │
-       ▼
+       ¦
+       ?
 Evaluate Item Criticality
-       │
-       ▼
+       ¦
+       ?
 Determine Tolerance Result
-       │
-   ┌───┴─────────────┐
-   │                 │
+       ¦
+   +-----------------+
+   ¦                 ¦
 Within             Outside
 Tolerance          Tolerance
-   │                 │
-   ▼                 ▼
+   ¦                 ¦
+   ?                 ?
 Policy-Based      Recount /
 Treatment         Investigation /
                   Escalation
@@ -3145,44 +3145,44 @@ The Variance Investigation Workflow determines the reason for a material or othe
 
 ```text
 Variance Requires Investigation
-            │
-            ▼
+            ¦
+            ?
 Create Investigation
-            │
-            ▼
+            ¦
+            ?
 Assign Investigator
-            │
-            ▼
+            ¦
+            ?
 Review Physical Count Evidence
-            │
-            ▼
+            ¦
+            ?
 Review Inventory Transactions
-            │
-            ▼
+            ¦
+            ?
 Review Stock Transfers
-            │
-            ▼
+            ¦
+            ?
 Review Receipts / Issues / Returns
-            │
-            ▼
+            ¦
+            ?
 Review Adjustments
-            │
-            ▼
+            ¦
+            ?
 Review Location / Custody Evidence
-            │
-            ▼
+            ¦
+            ?
 Determine Root Cause
-            │
-       ┌────┴─────────┐
-       │              │
+            ¦
+       +--------------+
+       ¦              ¦
 Cause Found       Cause Unresolved
-       │              │
-       ▼              ▼
+       ¦              ¦
+       ?              ?
 Record Finding    Record Unresolved
-       │              │
-       └──────┬───────┘
-              │
-              ▼
+       ¦              ¦
+       +--------------+
+              ¦
+              ?
      Reconciliation Determination
 ```
 
@@ -3195,13 +3195,13 @@ Investigation may reference:
 - Physical Count records
 - Recount records
 - Audit Baseline
-- J02 inventory transactions
-- J07 goods receipt records
+- J06 inventory transactions
+- J05 goods receipt records
 - J07 stock-transfer records
 - Inventory issue records
 - Inventory return records
 - Inventory adjustment records
-- J03 asset references
+- J08 asset references
 - Supporting documents
 - Custody records
 - User explanations
@@ -3220,7 +3220,7 @@ Investigation may reference:
 - Root cause shall be explicitly classified where determined.
 - Unresolved cause shall be represented explicitly rather than fabricated.
 - Investigation completion shall identify the responsible actor and timestamp.
-- Investigation conclusions shall not directly alter J02 inventory.
+- Investigation conclusions shall not directly alter J06 inventory.
 - Suspected fraud or misconduct shall be referred to the appropriate institutional process rather than adjudicated by J09.
 
 ---
@@ -3239,29 +3239,29 @@ This workflow is especially important where inventory activity continues during 
 
 ```text
 Detected Variance
-      │
-      ▼
+      ¦
+      ?
 Identify Audit Cutoff
-      │
-      ▼
+      ¦
+      ?
 Retrieve Applicable Movement Facts
-      │
-      ├────────► J06 Inventory Transactions
-      │
-      ├────────► J07 Goods Receipts
-      │
-      └────────► J08 Stock Transfers
-      │
-      ▼
+      ¦
+      +--------? J06 Inventory Transactions
+      ¦
+      +--------? J05 Goods Receipts
+      ¦
+      +--------? J07 Stock Transfers
+      ¦
+      ?
 Classify Movement Timing
-      │
-      ▼
+      ¦
+      ?
 Determine Before / After Cutoff
-      │
-      ▼
+      ¦
+      ?
 Reconcile Physical Observation
-      │
-      ▼
+      ¦
+      ?
 Determine Residual Variance
 ```
 
@@ -3289,7 +3289,7 @@ Movement may be classified as:
 Audit Cutoff:
 31 March 23:59
 
-J02 Expected Quantity:
+J06 Expected Quantity:
 100
 
 Physical Count:
@@ -3315,7 +3315,7 @@ Residual Unexplained Variance:
 0
 ```
 
-This does not modify J08 or J02 records.
+This does not modify J08 or J06 records.
 
 It records J09's audit interpretation of the applicable movement facts.
 
@@ -3342,7 +3342,7 @@ The Inventory Reconciliation Workflow determines whether a verified audit differ
 
 J09 determines the required outcome.
 
-J02 executes inventory adjustment where appropriate.
+J06 executes inventory adjustment where appropriate.
 
 ---
 
@@ -3350,36 +3350,36 @@ J02 executes inventory adjustment where appropriate.
 
 ```text
 Verified Variance
-      │
-      ▼
+      ¦
+      ?
 Investigation Complete
-      │
-      ▼
+      ¦
+      ?
 Determine Reconciliation Outcome
-      │
-      ├────────► No Adjustment Required
-      │
-      ├────────► Timing Difference
-      │
-      ├────────► Further Investigation
-      │
-      └────────► Inventory Adjustment Required
-                         │
-                         ▼
+      ¦
+      +--------? No Adjustment Required
+      ¦
+      +--------? Timing Difference
+      ¦
+      +--------? Further Investigation
+      ¦
+      +--------? Inventory Adjustment Required
+                         ¦
+                         ?
                   Required Approval
-                         │
-                         ▼
-                 Submit Request to J02
-                         │
-                  ┌──────┴───────┐
-                  │              │
+                         ¦
+                         ?
+                 Submit Request to J06
+                         ¦
+                  +--------------+
+                  ¦              ¦
                Accepted        Rejected
-                  │              │
-                  ▼              ▼
-            Record J02       Record Failure /
+                  ¦              ¦
+                  ?              ?
+            Record J06       Record Failure /
              Reference       Resolution Required
-                  │
-                  ▼
+                  ¦
+                  ?
              Reconciled
 ```
 
@@ -3387,7 +3387,7 @@ Determine Reconciliation Outcome
 
 ## Adjustment Request Information
 
-Where an adjustment is required, J09 may provide J02:
+Where an adjustment is required, J09 may provide J06:
 
 - Tenant Identifier
 - Institution Identifier
@@ -3410,10 +3410,10 @@ Where an adjustment is required, J09 may provide J02:
 
 ## Adjustment Rules
 
-- J09 shall never directly update J02 inventory balance.
+- J09 shall never directly update J06 inventory balance.
 - Adjustment requests shall require applicable authorization.
-- J02 may independently validate the requested adjustment.
-- J02 may accept, reject, or require further action according to its own invariants.
+- J06 may independently validate the requested adjustment.
+- J06 may accept, reject, or require further action according to its own invariants.
 - Rejected adjustment requests shall not erase J09 audit conclusions.
 - Duplicate requests shall not create duplicate inventory adjustments.
 - Adjustment outcome references shall remain linked to the originating audit variance.
@@ -3445,29 +3445,29 @@ J10 governs disposal or write-off execution.
 
 ```text
 Audit Variance / Condition
-          │
-          ▼
+          ¦
+          ?
 Investigation
-          │
-          ▼
+          ¦
+          ?
 Confirmed Loss / Damage
-          │
-          ▼
+          ¦
+          ?
 Determine Required Treatment
-          │
-          ▼
+          ¦
+          ?
 Required Approval
-          │
-          ▼
+          ¦
+          ?
 Create J10 Referral
-          │
-          ▼
+          ¦
+          ?
 Disposal / Write-off Workflow
-          │
-          ▼
+          ¦
+          ?
 Receive J10 Outcome Reference
-          │
-          ▼
+          ¦
+          ?
 Update Audit Reconciliation State
 ```
 
@@ -3508,7 +3508,7 @@ An Inventory Audit may be completed only when:
 - Mandatory investigations have completed.
 - Required reconciliation determinations exist.
 - Mandatory approvals have completed.
-- Required J02 adjustment outcomes are recorded where policy requires completion before closure.
+- Required J06 adjustment outcomes are recorded where policy requires completion before closure.
 - Required J10 referral outcomes are recorded where policy requires completion before closure.
 - Required audit evidence exists.
 - No mandatory unresolved audit exception prevents completion.
@@ -3519,33 +3519,33 @@ An Inventory Audit may be completed only when:
 
 ```text
 Verification Complete
-         │
-         ▼
+         ¦
+         ?
 Validate Count Completion
-         │
-         ▼
+         ¦
+         ?
 Validate Variance Evaluation
-         │
-         ▼
+         ¦
+         ?
 Validate Investigations
-         │
-         ▼
+         ¦
+         ?
 Validate Reconciliation
-         │
-    ┌────┴───────────┐
-    │                │
+         ¦
+    +----------------+
+    ¦                ¦
 Incomplete        Complete
-    │                │
-    ▼                ▼
+    ¦                ¦
+    ?                ?
 Remain Open     Complete Audit
-                     │
-                     ▼
+                     ¦
+                     ?
               Publish Completion
-                     │
-                     ▼
+                     ¦
+                     ?
                   Close
-                     │
-                     ▼
+                     ¦
+                     ?
                  Archive
 ```
 
@@ -3577,27 +3577,27 @@ Closed audit history shall not be destructively edited.
 
 ```text
 Closed Audit
-    │
-    ▼
+    ¦
+    ?
 New Material Evidence
-    │
-    ▼
+    ¦
+    ?
 Request Supplemental Review
-    │
-    ▼
+    ¦
+    ?
 Authorize Supplemental Action
-    │
-    ├────────► Supplemental Audit
-    │
-    └────────► Supplemental Evidence Record
-    │
-    ▼
+    ¦
+    +--------? Supplemental Audit
+    ¦
+    +--------? Supplemental Evidence Record
+    ¦
+    ?
 Perform Required Verification
-    │
-    ▼
+    ¦
+    ?
 Record Additional Conclusion
-    │
-    ▼
+    ¦
+    ?
 Link to Original Audit
 ```
 
@@ -3610,7 +3610,7 @@ Link to Original Audit
 - Original counts shall remain unchanged.
 - Original variance shall remain unchanged.
 - New findings shall be separately identifiable.
-- Any resulting inventory consequence shall use the normal governed J02/J10 integration.
+- Any resulting inventory consequence shall use the normal governed J06/J10 integration.
 - Supplemental activity shall preserve complete actor, timestamp, reason, and authorization evidence.
 
 ---
@@ -3633,7 +3633,7 @@ Link to Original Audit
 ## 29.2 Inventory Ownership Rules
 
 - J09 shall never maintain canonical inventory balances.
-- Expected Quantity originates from J02.
+- Expected Quantity originates from J06.
 - Physical Count Quantity originates from J09 verification.
 - Final Verified Quantity is owned by J09 as an audit conclusion.
 - Inventory Variance is owned by J09.
@@ -3708,7 +3708,7 @@ Link to Original Audit
 
 - Every material variance shall reach an approved reconciliation state before closure where policy requires it.
 - Reconciliation determination shall remain separate from external execution.
-- J02 adjustments shall use governed contracts.
+- J06 adjustments shall use governed contracts.
 - J10 referrals shall use governed contracts.
 - Downstream rejection shall remain visible.
 - Reconciliation history shall be immutable.
@@ -3796,7 +3796,7 @@ Commands shall execute only after:
 | Command | Purpose |
 |---|---|
 | EstablishAuditCutoff | Establish audit reference timestamp |
-| RequestAuditBaseline | Request inventory snapshot from J02 |
+| RequestAuditBaseline | Request inventory snapshot from J06 |
 | CaptureAuditBaseline | Preserve returned inventory baseline |
 | ValidateAuditBaseline | Validate baseline completeness |
 | FinalizeAuditBaseline | Protect baseline before counting |
@@ -3886,8 +3886,8 @@ Commands shall execute only after:
 | SubmitReconciliationForApproval | Submit required determination approval |
 | RecordReconciliationApproval | Record approved determination |
 | RecordReconciliationRejection | Record rejected determination |
-| RequestInventoryAdjustment | Send approved adjustment request to J02 |
-| RecordInventoryAdjustmentOutcome | Record J02 adjustment result |
+| RequestInventoryAdjustment | Send approved adjustment request to J06 |
+| RecordInventoryAdjustmentOutcome | Record J06 adjustment result |
 | RequestDisposalReferral | Refer applicable outcome to J10 |
 | RequestWriteOffReferral | Refer applicable outcome to J10 |
 | RecordDisposalWriteOffOutcome | Record J10 outcome reference |
@@ -4162,26 +4162,26 @@ Conceptually:
 
 ```text
 Command
-   │
-   ▼
+   ¦
+   ?
 Application Service
-   │
-   ▼
+   ¦
+   ?
 Authorization / Validation
-   │
-   ▼
+   ¦
+   ?
 Aggregate
-   │
-   ▼
+   ¦
+   ?
 Invariant Enforcement
-   │
-   ▼
+   ¦
+   ?
 State Change
-   │
-   ▼
+   ¦
+   ?
 Persist Aggregate
-   │
-   ▼
+   ¦
+   ?
 Record Outbox Event
 ```
 
@@ -4286,9 +4286,9 @@ Get Closed Audit History
 
 ---
 
-## 33.3 J02 Integration Contract
+## 33.3 J06 Integration Contract
 
-J09 requires governed integration with J02 for:
+J09 requires governed integration with J06 for:
 
 - Inventory baseline
 - Inventory item references
@@ -4297,7 +4297,7 @@ J09 requires governed integration with J02 for:
 - Inventory adjustment requests
 - Inventory adjustment outcomes
 
-J09 shall not depend on J02 internal database structures.
+J09 shall not depend on J06 internal database structures.
 
 ---
 
@@ -4341,12 +4341,12 @@ Conceptually:
 
 ```text
 Begin Transaction
-      │
-      ├── Validate Aggregate Version
-      ├── Apply State Transition
-      ├── Persist Aggregate
-      └── Persist Outbox Event
-      │
+      ¦
+      +-- Validate Aggregate Version
+      +-- Apply State Transition
+      +-- Persist Aggregate
+      +-- Persist Outbox Event
+      ¦
 Commit
 ```
 
@@ -4368,11 +4368,11 @@ The architecture shall guarantee that a successfully committed material business
 
 ---
 
-## 34.3 Cross-Domain Transactions
+## 34.3 Multi-Domain Transactions
 
-J09 shall not use distributed database transactions across J02, J08, J10, J03, Workflow, Notification, or other domains.
+J09 shall not use distributed database transactions across J06, J08, J10, Workflow, Notification, or other domains.
 
-Cross-domain consistency shall be achieved through:
+Multi-domain consistency shall be achieved through:
 
 - Commands
 - Events
@@ -4388,25 +4388,25 @@ Cross-domain consistency shall be achieved through:
 ```text
 J09:
 InventoryAdjustmentRequested
-          │
-          ▼
-J02:
+          ¦
+          ?
+J06:
 Validate Adjustment
-          │
-     ┌────┴────┐
-     │         │
+          ¦
+     +---------+
+     ¦         ¦
  Accept      Reject
-     │         │
-     ▼         ▼
+     ¦         ¦
+     ?         ?
 Execute      Return
 Adjustment   Rejection
-     │         │
-     └────┬────┘
-          ▼
+     ¦         ¦
+     +---------+
+          ?
 J09 Records Outcome
 ```
 
-Failure of J02 processing shall not roll back or erase the J09 audit conclusion.
+Failure of J06 processing shall not roll back or erase the J09 audit conclusion.
 
 ---
 
@@ -4483,7 +4483,7 @@ Duplicate adjustment or referral execution shall be prevented using:
 - Reconciliation status
 - Idempotency key
 - External request identifier
-- Cross-domain outcome reference
+- Multi-domain outcome reference
 
 ---
 
@@ -4521,7 +4521,7 @@ Examples include:
 
 - Messaging failure
 - Database unavailability
-- J02 service timeout
+- J06 service timeout
 - J07 service timeout
 - J10 service timeout
 - Projection failure
@@ -4537,19 +4537,19 @@ Retries shall be applied only to operations classified as technically recoverabl
 
 ```text
 Failure
-   │
-   ├──── Business Failure ───► Reject
-   │
-   └──── Technical Failure
-              │
-              ▼
+   ¦
+   +---- Business Failure ---? Reject
+   ¦
+   +---- Technical Failure
+              ¦
+              ?
           Retry Policy
-              │
-        ┌─────┴─────┐
-        │           │
+              ¦
+        +-----------+
+        ¦           ¦
      Success     Exhausted
-        │           │
-        ▼           ▼
+        ¦           ¦
+        ?           ?
      Continue   Exception Queue /
                 Operational Review
 ```
@@ -4595,7 +4595,7 @@ The institution shall be able to determine:
 - What investigation occurred
 - What evidence was considered
 - What reconciliation was determined
-- What cross-domain actions were requested
+- What multi-domain actions were requested
 - What final outcomes occurred
 - Who approved completion
 - When the audit was closed
@@ -4797,31 +4797,31 @@ Potentially incompatible responsibilities may include:
 
 ```text
 Inventory Custodian
-        ≠
+        ?
 Independent Inventory Counter
 ```
 
 ```text
 Physical Counter
-        ≠
+        ?
 Final Variance Approver
 ```
 
 ```text
 Variance Investigator
-        ≠
+        ?
 Adjustment Approver
 ```
 
 ```text
 Adjustment Requester
-        ≠
+        ?
 Adjustment Approver
 ```
 
 ```text
 Audit Subject Custodian
-        ≠
+        ?
 Independent Audit Reviewer
 ```
 
@@ -4847,24 +4847,24 @@ Conceptually:
 
 ```text
 Counter Assignment
-       │
-       ▼
+       ¦
+       ?
 Blind Count Policy?
-       │
-   ┌───┴────┐
-   │        │
+       ¦
+   +--------+
+   ¦        ¦
   No       Yes
-   │        │
-   │        ▼
-   │   Hide Expected Quantity
-   │        │
-   │   Hide Prior Counts
-   │        │
-   │        ▼
-   │   Submit Physical Count
-   │        │
-   └────┬───┘
-        ▼
+   ¦        ¦
+   ¦        ?
+   ¦   Hide Expected Quantity
+   ¦        ¦
+   ¦   Hide Prior Counts
+   ¦        ¦
+   ¦        ?
+   ¦   Submit Physical Count
+   ¦        ¦
+   +--------+
+        ?
 Authorized Comparison
 ```
 
@@ -4948,7 +4948,7 @@ A command shall be rejected when:
 - Aggregate belongs to another tenant.
 - Aggregate belongs to another institution.
 - Referenced inventory belongs outside the permitted institutional boundary.
-- Cross-domain references do not satisfy applicable ownership constraints.
+- Multi-domain references do not satisfy applicable ownership constraints.
 
 ---
 
@@ -4999,7 +4999,7 @@ Authorized institutional operators shall be able to determine:
 - Which variances exceed tolerance
 - Which investigations remain open
 - Which reconciliation actions remain pending
-- Which J02 adjustment requests remain unresolved
+- Which J06 adjustment requests remain unresolved
 - Which J10 referrals remain unresolved
 - Which audits are ready for completion
 - Which integration operations have failed
@@ -5036,7 +5036,7 @@ Correlation identifiers shall propagate through applicable:
 - Commands
 - Domain events
 - Workflow interactions
-- J02 interactions
+- J06 interactions
 - J07 evidence retrieval
 - J10 referrals
 - Notification requests
@@ -5105,16 +5105,16 @@ Audit progress may be represented conceptually as:
 
 ```text
 Effective Audit Scope
-        │
-        ├── Verified Population
-        │
-        ├── Pending Population
-        │
-        ├── Recount Population
-        │
-        ├── Variance Population
-        │
-        └── Reconciled Population
+        ¦
+        +-- Verified Population
+        ¦
+        +-- Pending Population
+        ¦
+        +-- Recount Population
+        ¦
+        +-- Variance Population
+        ¦
+        +-- Reconciled Population
 ```
 
 Progress indicators may include:
@@ -5127,7 +5127,7 @@ Progress indicators may include:
 - Location completion
 - Counter assignment completion
 
-Progress calculations shall use J09 operational facts and shall not reinterpret canonical J02 inventory quantities.
+Progress calculations shall use J09 operational facts and shall not reinterpret canonical J06 inventory quantities.
 
 ---
 
@@ -5145,7 +5145,7 @@ Operational alerts may be generated for conditions such as:
 - Critical inventory variance detected
 - Investigation overdue
 - Reconciliation overdue
-- J02 adjustment request failure
+- J06 adjustment request failure
 - J10 referral failure
 - Event publication failure
 - Dead-letter accumulation
@@ -5346,8 +5346,8 @@ The architecture shall support recovery of:
 
 - Pending event publication
 - Failed projections
-- J02 baseline requests
-- J02 adjustment requests
+- J06 baseline requests
+- J06 adjustment requests
 - J10 referral requests
 - Notification requests
 - Integration callbacks where applicable
@@ -5362,14 +5362,14 @@ A common failure scenario is:
 
 ```text
 Counter Submits Count
-       │
-       ▼
+       ¦
+       ?
 Server Commits Count
-       │
-       ▼
+       ¦
+       ?
 Client Loses Response
-       │
-       ▼
+       ¦
+       ?
 Counter Retries Submission
 ```
 
@@ -5538,13 +5538,13 @@ Audit Evidence
 
 ---
 
-# 46. Cross-Domain Dependency Matrix
+# 46. Multi-Domain Dependency Matrix
 
 | Domain / Capability | J09 Interaction | Ownership Boundary |
 |---|---|---|
 | J06 — Inventory & Warehouse Management | Inventory baseline, item/location references, inventory transactions, adjustment execution | J06 owns canonical inventory state |
 | J08 — Asset Lifecycle Management | Asset references and asset reconciliation where inventory is asset-linked | J08 owns canonical asset state |
-| J05 — Goods Receipt, Inspection & Acceptance | Goods receipt evidence during investigation | J07 owns supplier receipt facts |
+| J05 — Goods Receipt, Inspection & Acceptance | Goods receipt evidence during investigation | J05 owns supplier receipt facts |
 | J07 — Stock Operations & Distribution | Transfer dispatch, receipt, and in-transit evidence | J07 owns transfer execution facts |
 | J10 — Disposal, Scrap & Write-Off | Disposal/write-off referral and outcome | J10 owns disposal/write-off workflow |
 | Identity Management | Authentication context | Identity capability owns authentication |
@@ -5562,7 +5562,7 @@ Audit Evidence
 
 **Decision:** J09 owns inventory-audit execution, physical-count evidence, Final Verified Quantity, variance, investigation, and reconciliation determination.
 
-J02 remains authoritative for inventory quantity and inventory state.
+J06 remains authoritative for inventory quantity and inventory state.
 
 **Rationale:** Physical verification and canonical inventory accounting are related but distinct responsibilities. Separating them prevents duplicate inventory systems of record.
 
@@ -5570,7 +5570,7 @@ J02 remains authoritative for inventory quantity and inventory state.
 
 ## ADR-J09-002 — Audit Baseline Originates from J06
 
-**Decision:** Expected Quantity used by J09 shall originate from J02 through a governed point-in-time baseline.
+**Decision:** Expected Quantity used by J09 shall originate from J06 through a governed point-in-time baseline.
 
 **Rationale:** J09 shall not independently reconstruct or maintain canonical inventory balance.
 
@@ -5612,9 +5612,9 @@ Corrections require recount or supplemental evidence.
 
 ## ADR-J09-007 — J09 Determines Adjustment Need but J06 Executes Adjustment
 
-**Decision:** J09 may determine that an inventory adjustment is required and submit a governed request, but J02 executes the canonical inventory adjustment.
+**Decision:** J09 may determine that an inventory adjustment is required and submit a governed request, but J06 executes the canonical inventory adjustment.
 
-**Rationale:** Inventory-state ownership remains centralized in J02.
+**Rationale:** Inventory-state ownership remains centralized in J06.
 
 ---
 
@@ -5652,11 +5652,11 @@ It is not automatically the new canonical inventory quantity.
 
 ---
 
-## ADR-J09-012 — Cross-Domain Consistency Is Eventual
+## ADR-J09-012 — Multi-Domain Consistency Is Eventual
 
-**Decision:** J09 shall not require distributed database transactions with J02, J08, J10, Workflow, Notification, or other domains.
+**Decision:** J09 shall not require distributed database transactions with J06, J08, J10, Workflow, Notification, or other domains.
 
-**Rationale:** Cross-domain workflows require independently owned transactional boundaries and resilient integration.
+**Rationale:** business scenarios require independently owned transactional boundaries and resilient integration.
 
 ---
 
@@ -5689,9 +5689,9 @@ It is not automatically the new canonical inventory quantity.
 L2-J09 shall be considered architecturally complete when:
 
 - Inventory Audit is established as the J09 root business concept.
-- J09 ownership is explicitly separated from J02 inventory ownership.
+- J09 ownership is explicitly separated from J06 inventory ownership.
 - Audit scope is explicitly modeled.
-- Audit baseline is sourced from J02.
+- Audit baseline is sourced from J06.
 - Audit cutoff is traceable.
 - Effective audit scope is frozen or versioned before verification.
 - Physical verification is explicitly modeled.
@@ -5705,9 +5705,9 @@ L2-J09 shall be considered architecturally complete when:
 - Materiality and tolerance are governed.
 - Investigation preserves evidence provenance.
 - Movement reconciliation can consume J07 facts.
-- Inventory adjustment execution remains owned by J02.
+- Inventory adjustment execution remains owned by J06.
 - Disposal/write-off execution remains owned by J10.
-- Cross-domain calls use governed contracts.
+- Multi-domain calls use governed contracts.
 - Duplicate commands cannot create duplicate audit evidence.
 - Concurrent operations cannot silently overwrite audit state.
 - Domain events are explicitly defined.
@@ -5760,38 +5760,38 @@ The fundamental ownership boundary remains:
 
 ```text
 Inventory & Warehouse Management (J06)
-        │
-        │ Authoritative Inventory Baseline
-        ▼
+        ¦
+        ¦ Authoritative Inventory Baseline
+        ?
 Physical Verification, Audit & Reconciliation (J09)
-        │
-        │ Physical Verification
-        ▼
+        ¦
+        ¦ Physical Verification
+        ?
 Physical Count Evidence
-        │
-        ▼
+        ¦
+        ?
 Final Verified Quantity
-        │
-        ▼
+        ¦
+        ?
 Variance Evaluation
-        │
-        ▼
+        ¦
+        ?
 Investigation / Reconciliation
-        │
-        ├──────────────► J02
-        │                Inventory Adjustment
-        │
-        ├──────────────► J10
-        │                Disposal / Write-off
-        │
-        └──────────────► Other Owning Domain
+        ¦
+        +--------------? J06
+        ¦                Inventory Adjustment
+        ¦
+        +--------------? J10
+        ¦                Disposal / Write-off
+        ¦
+        +--------------? Other Owning Domain
                          Where Applicable
 ```
 
 The essential distinction is:
 
 ```text
-J02
+J06
 =
 What inventory the institution canonically records as existing
 ```
@@ -5806,17 +5806,8 @@ and what audit conclusion was reached
 
 J09 therefore provides a controlled and independently traceable bridge between **recorded inventory state** and **physical inventory reality** without creating a competing inventory ledger.
 
-Through immutable physical-count evidence, governed recounts, explicit variance handling, controlled investigation, segregation of duties, cross-domain reconciliation, reliable event publication, tenant isolation, and permanent audit traceability, J09 provides the architectural foundation required for trustworthy institutional stock verification across warehouses, stores, campuses, departments, locations, and bins.
+Through immutable physical-count evidence, governed recounts, explicit variance handling, controlled investigation, segregation of duties, multi-domain reconciliation, reliable event publication, tenant isolation, and permanent audit traceability, J09 provides the architectural foundation required for trustworthy institutional stock verification across warehouses, stores, campuses, departments, locations, and bins.
 
 ---
 
 **End of L2-J09 — Physical Verification, Audit & Reconciliation**
-
-
-
-
-
-
-
-
-

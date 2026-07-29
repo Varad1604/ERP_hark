@@ -2,6 +2,20 @@
 
 This document tracks changes to the SutraERP Architecture Repository layout, guidelines, baseline, and locks.
 
+## [1.3.0] - 2026-07-29
+
+### Added
+- Added placeholder infrastructure for L3 through L6 architecture folders.
+- Added Section J AI context placeholders for Enterprise Resource Management.
+- Added `governance/policies/Architecture_Level_Validation_Standards.md`.
+
+### Changed
+- Standardized future-level architecture folder names to the approved L0-L6 hierarchy.
+- Updated templates, prompts, repository metadata, and validation references for Phase 2 governance migration.
+- Updated Section J repository references to Enterprise Resource Management.
+
+---
+
 ## [1.2.0] - 2026-07-08
 
 ### Added

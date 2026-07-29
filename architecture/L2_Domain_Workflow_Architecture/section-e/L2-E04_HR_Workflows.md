@@ -630,7 +630,7 @@ The domain boundary exists to prevent:
 -   Duplicate employee records.
 -   Conflicting lifecycle states.
 -   Shared database ownership.
--   Cross-domain coupling.
+-   Multi-domain coupling.
 
 ------------------------------------------------------------------------
 
@@ -3115,7 +3115,7 @@ If ownership conflict occurs:
   ----------------------- -------------------
   Workflow Commands       Command API
   Workflow Queries        Query API
-  Cross-domain updates    Domain Events
+  Multi-domain updates    Domain Events
   Document generation     Service Contract
   Employee updates        Event Integration
   Payroll communication   Event Integration
@@ -4049,7 +4049,7 @@ The following operations SHOULD support asynchronous execution:
 
 # 19.5 Event Processing Scalability
 
-E04 SHALL use event-driven processing for cross-domain communication.
+E04 SHALL use event-driven processing for multi-domain communication.
 
 Example:
 
@@ -4848,7 +4848,7 @@ Negative:
 
 ------------------------------------------------------------------------
 
-# ADR-003 --- Event Driven Cross-Domain Communication
+# ADR-003 --- Event Driven Multi-Domain Communication
 
 ## Status
 

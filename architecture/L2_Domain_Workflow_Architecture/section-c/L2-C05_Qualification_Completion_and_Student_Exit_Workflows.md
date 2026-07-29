@@ -1641,7 +1641,7 @@ The following architectural constraints apply across the Qualification Completio
 - No external domain may directly modify qualification completion records.
 - All business state transitions shall occur through aggregate methods.
 - Every externally visible business transition shall publish domain events.
-- Cross-domain communication shall occur through events or application services rather than direct database access.
+- Multi-domain communication shall occur through events or application services rather than direct database access.
 - All business invariants defined in this section shall be enforced consistently regardless of deployment topology or integration mechanism.
 
 # 11. Workflows
@@ -2293,7 +2293,7 @@ The Qualification Completion & Student Exit Domain operates as the terminal boun
 
 The domain never assumes ownership of external business capabilities. Instead, it consumes verified information, applies qualification completion-specific business policies, and publishes immutable business events representing completed academic outcomes.
 
-All integrations shall preserve bounded context autonomy and prevent direct cross-domain data modification.
+All integrations shall preserve bounded context autonomy and prevent direct multi-domain data modification.
 
 ---
 
@@ -2302,7 +2302,7 @@ All integrations shall preserve bounded context autonomy and prevent direct cros
 The Qualification Completion & Student Exit Domain follows the following architectural integration principles.
 
 - Bounded contexts remain independently authoritative.
-- Cross-domain communication shall occur through well-defined application services or domain events.
+- Multi-domain communication shall occur through well-defined application services or domain events.
 - Direct database access between domains is prohibited.
 - Business ownership shall never be transferred implicitly.
 - Eventual consistency shall be used for asynchronous workflows.
@@ -3809,7 +3809,7 @@ Canonical architecture must remain stable while supporting diverse institutional
 
 ## Decision
 
-Strong consistency is enforced within the Qualification Completion Aggregate, while cross-domain communication follows eventual consistency.
+Strong consistency is enforced within the Qualification Completion Aggregate, while multi-domain communication follows eventual consistency.
 
 ## Rationale
 

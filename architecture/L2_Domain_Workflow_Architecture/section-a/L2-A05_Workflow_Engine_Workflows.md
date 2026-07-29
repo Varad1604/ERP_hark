@@ -22,7 +22,7 @@
 
 This document defines the complete Workflow Engine architecture of the SutraERP platform.
 
-It establishes the architectural standards governing workflow definition management, workflow execution, orchestration, runtime lifecycle, human task management, system workflow orchestration, workflow versioning, execution state management, workflow events, workflow monitoring, integration contracts, runtime policies, workflow governance, and cross-domain orchestration across every module within the platform.
+It establishes the architectural standards governing workflow definition management, workflow execution, orchestration, runtime lifecycle, human task management, system workflow orchestration, workflow versioning, execution state management, workflow events, workflow monitoring, integration contracts, runtime policies, workflow governance, and multi-domain orchestration across every module within the platform.
 
 The Workflow Engine provides a unified, reusable, event-driven, policy-aware, and domain-independent orchestration capability that enables business domains to automate business processes without embedding workflow execution logic within domain implementations.
 
@@ -55,7 +55,7 @@ This document defines:
 - Workflow Security Context
 - Workflow Extension Model
 - Workflow Governance
-- Cross-Domain Workflow Contracts
+- Business Scenario Contracts
 
 This document does not define:
 
@@ -1024,7 +1024,7 @@ Cross-aggregate coordination shall occur through Domain Services.
 
 ## DDD-03
 
-Cross-domain communication shall occur through published contracts only.
+Multi-domain communication shall occur through published contracts only.
 
 ---
 
@@ -1271,7 +1271,7 @@ Validation includes:
 | Policy Validation | Authorization references |
 | Event Validation | Event subscriptions |
 | Version Validation | Compatibility rules |
-| Dependency Validation | Cross-domain references |
+| Dependency Validation | Multi-domain references |
 
 Validation failures SHALL prevent publication.
 
@@ -4333,11 +4333,11 @@ Telemetry retention SHALL follow platform governance policies.
 
 ---
 
-# 172. Cross-Domain Contracts
+# 172. Multi-Domain Contracts
 
 The Workflow Engine interacts with platform and business domains exclusively through published contracts.
 
-Cross-domain contracts define stable integration boundaries that allow domains to evolve independently while maintaining interoperability.
+Multi-domain contracts define stable integration boundaries that allow domains to evolve independently while maintaining interoperability.
 
 The Workflow Engine SHALL communicate through contracts.
 
@@ -4347,7 +4347,7 @@ It SHALL NOT directly depend upon internal implementations of other domains.
 
 # 173. Contract Architecture Principles
 
-Every cross-domain contract SHALL satisfy the following principles.
+Every multi-domain contract SHALL satisfy the following principles.
 
 | Principle | Description |
 |-----------|-------------|
@@ -4498,7 +4498,7 @@ Minimum context includes:
 | Execution Identity | Authenticated principal |
 | Workflow Version | Runtime version consistency |
 
-Workflow Runtime Context SHALL accompany every cross-domain interaction.
+Workflow Runtime Context SHALL accompany every multi-domain interaction.
 
 ---
 
@@ -4600,7 +4600,7 @@ The Workflow Engine SHALL consume only published contract versions.
 
 # 186. Contract Security
 
-Cross-domain contracts SHALL execute within validated security boundaries.
+Multi-domain contracts SHALL execute within validated security boundaries.
 
 Security requirements include:
 
@@ -4633,7 +4633,7 @@ Contract telemetry SHALL integrate with platform observability.
 
 ---
 
-# 188. Cross-Domain Contract Principles
+# 188. Multi-Domain Contract Principles
 
 ## CDC-01
 
@@ -4681,7 +4681,7 @@ Published contracts SHALL be governed through centralized repository approval.
 
 ## CDC-08
 
-Cross-domain interactions SHALL generate observable telemetry and audit records.
+Multi-domain interactions SHALL generate observable telemetry and audit records.
 
 ---
 
@@ -5621,7 +5621,7 @@ Metrics --> Alerts
 
 ---
 
-# 225. Cross-Domain Contract Model
+# 225. Multi-Domain Contract Model
 
 ```mermaid
 flowchart TD
@@ -5799,7 +5799,7 @@ A centralized orchestration engine provides:
 - Consistent lifecycle management
 - Standardized monitoring
 - Unified human task management
-- Cross-domain orchestration
+- Multi-domain orchestration
 - Reduced duplication
 
 ## Consequences
@@ -6178,7 +6178,7 @@ The Workflow Engine architecture SHALL satisfy all repository governance require
 | Monitoring Architecture Defined | Required |
 | ADRs Documented | Required |
 | Mermaid Diagrams Validated | Required |
-| Cross-Domain Dependencies Verified | Required |
+| Multi-Domain Dependencies Verified | Required |
 
 Every item SHALL pass architectural review before repository merge.
 
@@ -6267,7 +6267,7 @@ It defines:
 - Assignment and policy interaction
 - Lifecycle management
 - Monitoring and observability
-- Cross-domain contracts
+- Multi-domain contracts
 - Persistence architecture
 - Canonical architectural diagrams
 - Architecture Decision Records

@@ -1,4 +1,4 @@
-# L2-H03 — Enterprise Directory & Search Workflows
+﻿# L2-H03 â€” Enterprise Directory & Search Workflows
 
 ---
 
@@ -106,15 +106,15 @@ Search projections are generated from upstream canonical events, synchronization
 
 | Domain | Dependency Type | Purpose |
 |---------|-----------------|---------|
-| L2-A02 — Person and Identity Workflows | Canonical | User, person, actor and identity presentation data |
-| L2-B01 — Institution Workflow | Canonical | Institution boundaries, institutional identity and hierarchy |
-| L2-C01 — Admissions Workflows | Canonical | Applicant, intake and admission searchable projections |
-| L2-D01 — Course & Course Offering Workflows | Canonical | Course, offering and academic catalog discovery |
-| L2-I01 — Examination Policy & Configuration Workflows | Canonical | Examination policy and configuration lookup |
-| L2-F01 — Student Charge & Fee Management | Canonical | Fee charge discovery metadata |
-| L2-G01 — Facilities Workflows | Canonical | Facilities discovery metadata |
-| L2-H02 — Notification Workflows | Canonical | Notification preferences, delivery context and message lookup |
-| L2-H03 — Directory Workflows | Internal | Search-directory coordination and enterprise listing metadata |
+| L2-A02 â€” Person and Identity Workflows | Canonical | User, person, actor and identity presentation data |
+| L2-B01 â€” Institution Workflow | Canonical | Institution boundaries, institutional identity and hierarchy |
+| L2-C01 â€” Admissions Workflows | Canonical | Applicant, intake and admission searchable projections |
+| L2-D01 â€” Course & Course Offering Workflows | Canonical | Course, offering and academic catalog discovery |
+| L2-I01 â€” Examination Policy & Configuration Workflows | Canonical | Examination policy and configuration lookup |
+| L2-F01 â€” Student Charge & Fee Management | Canonical | Fee charge discovery metadata |
+| L2-G01 â€” Facilities Workflows | Canonical | Facilities discovery metadata |
+| L2-H02 â€” Notification Workflows | Canonical | Notification preferences, delivery context and message lookup |
+| L2-H03 â€” Directory Workflows | Internal | Search-directory coordination and enterprise listing metadata |
 
 ### Dependency Principles
 
@@ -138,58 +138,58 @@ Typical downstream consumers include:
 
 | Consumer | Usage |
 |----------|-------|
-| L2-A02 — Person and Identity Workflows | User discovery and permission-aware person lookup |
-| L2-A03 — Authentication Workflows | Authenticated lookup context and session-aware navigation |
-| L2-A04 — Authorization and Policy Workflows | Permission-aware discovery and policy-constrained lookup |
-| L2-B01 — Institution Workflow | Institution, unit and hierarchy discovery |
-| L2-B02 — Organisation Workflows | Organization structure and unit discovery |
-| L2-B03 — Campus Workflows | Campus, site and location discovery |
-| L2-B04 — Curriculum Framework Workflows | Program and curriculum discovery |
-| L2-B05 — Academic Calendar Workflows | Academic session and calendar discovery |
-| L2-C01 — Admissions Workflows | Applicant and intake discovery |
-| L2-C02 — Student Lifecycle & Activation | Student identity and lifecycle discovery |
-| L2-C03 — Student Academic Registration Workflows | Student enrollment and registration navigation |
-| L2-C04 — Student Academic Progression Workflows | Progression, standing and continuity lookup |
-| L2-C05 — Qualification Completion & Student Exit Workflows | Completion and exit discovery |
-| L2-C06 — Guardian Workflows | Guardian relationship discovery |
-| L2-C07 — Scholarship Eligibility Workflows | Scholarship and eligibility lookup |
-| L2-C08 — Alumni Transition Workflows | Alumni search and transition discovery |
-| L2-D01 — Course & Course Offering Workflows | Course and offering discovery |
-| L2-D02 — Faculty Academic Assignment Workflows | Faculty assignment discovery |
-| L2-D03 — Timetable Workflows | Timetable and schedule discovery |
-| L2-D04 — Teaching Session & Attendance Workflows | Teaching session and attendance lookup |
-| L2-D05 — Academic Monitoring Workflows | Academic monitoring discovery |
-| L2-D06 — Open Electives & MOOCs Workflows | Elective and MOOC discovery |
-| L2-E01 — Workforce & Engagement Workflows | Workforce profile discovery |
-| L2-E02 — Position & Assignment Workflows | Position and assignment discovery |
-| L2-E03 — Faculty Workforce Workflows | Faculty profile discovery |
-| L2-F05 — Accounting & General Ledger Management | Account and ledger lookup |
-| L2-F09 — Financial Period & Closing | Financial period lookup |
-| L2-F12 — Asset Management Workflows | Asset discovery |
-| L2-F13 — Financial Reporting & Analytics Workflows | Financial reporting discovery |
-| L2-F14 — Procurement & Supply Chain Workflows | Procurement and supplier discovery |
-| L2-G01 — Facilities Workflows | Facilities lookup |
-| L2-G03 — Hostel Workflows | Hostel and accommodation lookup |
-| L2-G05 — Library Workflows | Library resource discovery |
-| L2-G07 — Security Operations Workflows | Security operations lookup |
-| L2-G10 — Infrastructure Management Workflows | Infrastructure lookup |
-| L2-H02 — Notification Workflows | Notification-aware discovery and message navigation |
-| L2-H03 — Directory Workflows | Enterprise directory search and listing navigation |
-| L2-H04 — Placement Workflows | Placement discovery |
-| L2-H05 — Research Workflows | Research discovery |
-| L2-H07 — Dashboard Workflows | Executive dashboard drill-down and discovery |
-| L2-H08 — NEP, NAAC & AISHE Reporting Workflows | Reporting discovery |
-| L2-H09 — Accreditation & Compliance Workflows | Compliance discovery |
-| L2-H10 — External Education Integration Workflows | External integration discovery |
-| L2-I01 — Examination Policy & Configuration Workflows | Examination policy discovery |
-| L2-I02 — Examination Session Management Workflows | Session discovery |
-| L2-I03 — Examination Planning & Scheduling Workflows | Examination schedule discovery |
-| L2-I04 — Examination Registration Workflows | Registration discovery |
-| L2-I05 — Hall Ticket Management Workflows | Hall ticket lookup |
-| L2-I09 — Result Processing & Computation Workflows | Result lookup |
-| L2-I10 — Result Publication Workflows | Result publication lookup |
-| L2-I11 — Revaluation & Rechecking Workflows | Revaluation lookup |
-| L2-I13 — Academic Completion, CGPA & Completion Evidence Workflows | Completion evidence lookup |
+| L2-A02 â€” Person and Identity Workflows | User discovery and permission-aware person lookup |
+| L2-A03 â€” Authentication Workflows | Authenticated lookup context and session-aware navigation |
+| L2-A04 â€” Authorization and Policy Workflows | Permission-aware discovery and policy-constrained lookup |
+| L2-B01 â€” Institution Workflow | Institution, unit and hierarchy discovery |
+| L2-B02 â€” Organisation Workflows | Organization structure and unit discovery |
+| L2-B03 â€” Campus Workflows | Campus, site and location discovery |
+| L2-B04 â€” Curriculum Framework Workflows | Program and curriculum discovery |
+| L2-B05 â€” Academic Calendar Workflows | Academic session and calendar discovery |
+| L2-C01 â€” Admissions Workflows | Applicant and intake discovery |
+| L2-C02 â€” Student Lifecycle & Activation | Student identity and lifecycle discovery |
+| L2-C03 â€” Student Academic Registration Workflows | Student enrollment and registration navigation |
+| L2-C04 â€” Student Academic Progression Workflows | Progression, standing and continuity lookup |
+| L2-C05 â€” Qualification Completion & Student Exit Workflows | Completion and exit discovery |
+| L2-C06 â€” Guardian Workflows | Guardian relationship discovery |
+| L2-C07 â€” Scholarship Eligibility Workflows | Scholarship and eligibility lookup |
+| L2-C08 â€” Alumni Transition Workflows | Alumni search and transition discovery |
+| L2-D01 â€” Course & Course Offering Workflows | Course and offering discovery |
+| L2-D02 â€” Faculty Academic Assignment Workflows | Faculty assignment discovery |
+| L2-D03 â€” Timetable Workflows | Timetable and schedule discovery |
+| L2-D04 â€” Teaching Session & Attendance Workflows | Teaching session and attendance lookup |
+| L2-D05 â€” Academic Monitoring Workflows | Academic monitoring discovery |
+| L2-D06 â€” Open Electives & MOOCs Workflows | Elective and MOOC discovery |
+| L2-E01 â€” Workforce & Engagement Workflows | Workforce profile discovery |
+| L2-E02 â€” Position & Assignment Workflows | Position and assignment discovery |
+| L2-E03 â€” Faculty Workforce Workflows | Faculty profile discovery |
+| L2-F05 â€” Accounting & General Ledger Management | Account and ledger lookup |
+| L2-F09 â€” Financial Period & Closing | Financial period lookup |
+| L2-F12 â€” Asset Financial Accounting Workflows | Asset accounting discovery |
+| L2-F13 â€” Financial Reporting & Analytics Workflows | Financial reporting discovery |
+| L2-F14 â€” Procurement Finance Consumption Workflows | Procurement finance and supplier-finance discovery |
+| L2-G01 â€” Facilities Workflows | Facilities lookup |
+| L2-G03 â€” Hostel Workflows | Hostel and accommodation lookup |
+| L2-G05 â€” Library Workflows | Library resource discovery |
+| L2-G07 â€” Security Operations Workflows | Security operations lookup |
+| L2-G10 â€” Infrastructure Management Workflows | Infrastructure lookup |
+| L2-H02 â€” Notification Workflows | Notification-aware discovery and message navigation |
+| L2-H03 â€” Directory Workflows | Enterprise directory search and listing navigation |
+| L2-H04 â€” Placement Workflows | Placement discovery |
+| L2-H05 â€” Research Workflows | Research discovery |
+| L2-H07 â€” Dashboard Workflows | Executive dashboard drill-down and discovery |
+| L2-H08 â€” NEP, NAAC & AISHE Reporting Workflows | Reporting discovery |
+| L2-H09 â€” Accreditation & Compliance Workflows | Compliance discovery |
+| L2-H10 â€” External Education Integration Workflows | External integration discovery |
+| L2-I01 â€” Examination Policy & Configuration Workflows | Examination policy discovery |
+| L2-I02 â€” Examination Session Management Workflows | Session discovery |
+| L2-I03 â€” Examination Planning & Scheduling Workflows | Examination schedule discovery |
+| L2-I04 â€” Examination Registration Workflows | Registration discovery |
+| L2-I05 â€” Hall Ticket Management Workflows | Hall ticket lookup |
+| L2-I09 â€” Result Processing & Computation Workflows | Result lookup |
+| L2-I10 â€” Result Publication Workflows | Result publication lookup |
+| L2-I11 â€” Revaluation & Rechecking Workflows | Revaluation lookup |
+| L2-I13 â€” Academic Completion, CGPA & Completion Evidence Workflows | Completion evidence lookup |
 | Administrative Portal | Global enterprise search |
 | Faculty Portal | Academic search services |
 | Student Portal | Student-specific discovery |
@@ -401,19 +401,19 @@ The aggregate intentionally excludes operational business rules belonging to sou
 
 ```
 Canonical Entity
-        │
-        ▼
+        â”‚
+        â–¼
 Searchable Projection
-        │
-        ├──────── Search Metadata
-        │
-        ├──────── Permission Metadata
-        │
-        ├──────── Search Index
-        │
-        ├──────── Analytics Metadata
-        │
-        └──────── Synchronization Metadata
+        â”‚
+        â”œâ”€â”€â”€â”€â”€â”€â”€â”€ Search Metadata
+        â”‚
+        â”œâ”€â”€â”€â”€â”€â”€â”€â”€ Permission Metadata
+        â”‚
+        â”œâ”€â”€â”€â”€â”€â”€â”€â”€ Search Index
+        â”‚
+        â”œâ”€â”€â”€â”€â”€â”€â”€â”€ Analytics Metadata
+        â”‚
+        â””â”€â”€â”€â”€â”€â”€â”€â”€ Synchronization Metadata
 ```
 
 Each canonical entity produces exactly one logical searchable projection while multiple physical indexes may exist for optimization purposes.
@@ -426,32 +426,32 @@ A Searchable Projection progresses through a controlled lifecycle from creation 
 
 ```
 Detected
-    │
-    ▼
+    â”‚
+    â–¼
 Validated
-    │
-    ▼
+    â”‚
+    â–¼
 Projected
-    │
-    ▼
+    â”‚
+    â–¼
 Indexed
-    │
-    ▼
+    â”‚
+    â–¼
 Published
-    │
-    ▼
+    â”‚
+    â–¼
 Searchable
-    │
-    ├──────── Updated
-    │
-    ├──────── Reindexed
-    │
-    ├──────── Rebuilt
-    │
-    ▼
+    â”‚
+    â”œâ”€â”€â”€â”€â”€â”€â”€â”€ Updated
+    â”‚
+    â”œâ”€â”€â”€â”€â”€â”€â”€â”€ Reindexed
+    â”‚
+    â”œâ”€â”€â”€â”€â”€â”€â”€â”€ Rebuilt
+    â”‚
+    â–¼
 Archived
-    │
-    ▼
+    â”‚
+    â–¼
 Removed
 ```
 
@@ -511,14 +511,14 @@ Unlike operational business domains, these workflows do not create or modify bus
 |-------------|---------------|-------------------|
 | H03-W01 | Enterprise Search | Provide unified permission-aware enterprise search results |
 | H03-W02 | Directory Lookup | Resolve structured enterprise listings and authoritative directory entries |
-| H03-W03 | Entity Discovery | Discover related and cross-domain enterprise entities |
+| H03-W03 | Entity Discovery | Discover related and multi-domain enterprise entities |
 | H03-W04 | People Search | Locate people, users, faculty and workforce identities |
 | H03-W05 | Academic Object Search | Search academic objects such as courses, offerings, timetable entities and academic artifacts |
 | H03-W06 | Saved Search Management | Manage saved searches, bookmarks, history and recently viewed discovery state |
 | H03-W07 | Search Preference Management | Manage caller-specific search preferences, default facets and result presentation behavior |
 | H03-W08 | Search Result Navigation | Navigate, refine and traverse search results through secure discovery interactions |
 
-## H03-W01 — Enterprise Search
+## H03-W01 â€” Enterprise Search
 
 ### Purpose
 
@@ -557,7 +557,7 @@ Only authorized and relevant search results are returned.
 
 ---
 
-## H03-W02 — Directory Lookup
+## H03-W02 â€” Directory Lookup
 
 ### Purpose
 
@@ -595,17 +595,17 @@ The caller receives a structured, permission-aware directory entry.
 
 ---
 
-## H03-W03 — Entity Discovery
+## H03-W03 â€” Entity Discovery
 
 ### Purpose
 
-Provides cross-domain discovery of related enterprise entities and navigable search trails.
+Provides multi-domain discovery of related enterprise entities and navigable search trails.
 
 ### Trigger
 
 - Related entity request.
 - Faceted discovery request.
-- Cross-domain discovery request.
+- Multi-domain discovery request.
 - Recommendation-driven search request.
 
 ### Preconditions
@@ -633,7 +633,7 @@ Related and discoverable entities are returned with secure navigation context.
 
 ---
 
-## H03-W04 — People Search
+## H03-W04 â€” People Search
 
 ### Purpose
 
@@ -671,7 +671,7 @@ Authorized people-centric search results are returned.
 
 ---
 
-## H03-W05 — Academic Object Search
+## H03-W05 â€” Academic Object Search
 
 ### Purpose
 
@@ -709,7 +709,7 @@ Academic discovery results remain accurate, secure and permission aware.
 
 ---
 
-## H03-W06 — Saved Search Management
+## H03-W06 â€” Saved Search Management
 
 ### Purpose
 
@@ -747,7 +747,7 @@ Caller-specific search state is stored and retrievable without changing canonica
 
 ---
 
-## H03-W07 — Search Preference Management
+## H03-W07 â€” Search Preference Management
 
 ### Purpose
 
@@ -785,7 +785,7 @@ Search behavior reflects caller-specific preferences without changing source-dom
 
 ---
 
-## H03-W08 — Search Result Navigation
+## H03-W08 â€” Search Result Navigation
 
 ### Purpose
 
@@ -825,7 +825,7 @@ Users can navigate, refine and traverse search results without losing security c
 
 # 8. Workflow Specifications
 
-## H03-W01 — Enterprise Search
+## H03-W01 â€” Enterprise Search
 
 | Attribute | Specification |
 |-----------|---------------|
@@ -846,7 +846,7 @@ Users can navigate, refine and traverse search results without losing security c
 
 ---
 
-## H03-W02 — Directory Lookup
+## H03-W02 â€” Directory Lookup
 
 | Attribute | Specification |
 |-----------|---------------|
@@ -867,7 +867,7 @@ Users can navigate, refine and traverse search results without losing security c
 
 ---
 
-## H03-W03 — Entity Discovery
+## H03-W03 â€” Entity Discovery
 
 | Attribute | Specification |
 |-----------|---------------|
@@ -879,7 +879,7 @@ Users can navigate, refine and traverse search results without losing security c
 | Primary Events | EntityDiscoveryRequested, EntityDiscoveryCompleted, EntityDiscoveryFailed |
 | Success State | Discovery Completed |
 | Failure State | Discovery Failed |
-| Postconditions | Related and cross-domain entities are returned with secure navigation context |
+| Postconditions | Related and multi-domain entities are returned with secure navigation context |
 | Failure Conditions | No eligible entities, invalid scope, security denial, search timeout |
 | Business Constraints | Discovery must preserve canonical ownership and security boundaries |
 | Retry Policy | Client initiated |
@@ -888,7 +888,7 @@ Users can navigate, refine and traverse search results without losing security c
 
 ---
 
-## H03-W04 — People Search
+## H03-W04 â€” People Search
 
 | Attribute | Specification |
 |-----------|---------------|
@@ -909,7 +909,7 @@ Users can navigate, refine and traverse search results without losing security c
 
 ---
 
-## H03-W05 — Academic Object Search
+## H03-W05 â€” Academic Object Search
 
 | Attribute | Specification |
 |-----------|---------------|
@@ -930,7 +930,7 @@ Users can navigate, refine and traverse search results without losing security c
 
 ---
 
-## H03-W06 — Saved Search Management
+## H03-W06 â€” Saved Search Management
 
 | Attribute | Specification |
 |-----------|---------------|
@@ -951,7 +951,7 @@ Users can navigate, refine and traverse search results without losing security c
 
 ---
 
-## H03-W07 — Search Preference Management
+## H03-W07 â€” Search Preference Management
 
 | Attribute | Specification |
 |-----------|---------------|
@@ -972,7 +972,7 @@ Users can navigate, refine and traverse search results without losing security c
 
 ---
 
-## H03-W08 — Search Result Navigation
+## H03-W08 â€” Search Result Navigation
 
 | Attribute | Specification |
 |-----------|---------------|
@@ -1345,3 +1345,5 @@ Validation within the Enterprise Directory & Search domain ensures that searchab
 | VR-H03-031 | Blocking | Event contracts shall remain version controlled and backward compatible. |
 | VR-H03-032 | Blocking | New searchable entity types shall integrate through canonical indexing contracts without architectural modification. |
 # End of Document
+
+

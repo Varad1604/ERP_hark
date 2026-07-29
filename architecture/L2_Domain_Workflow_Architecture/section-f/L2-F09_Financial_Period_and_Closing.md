@@ -330,7 +330,7 @@ No neighbouring bounded context may directly modify:
 - Validation State
 - Aggregate Version
 
-Cross-domain collaboration shall occur exclusively through immutable business events.
+Multi-domain collaboration shall occur exclusively through immutable business events.
 
 ---
 
@@ -700,7 +700,7 @@ The following architectural rules are mandatory.
 - Ownership never crosses bounded contexts.
 - Relationships are reference-based.
 - Aggregate consistency is local.
-- Cross-domain consistency is eventual.
+- Multi-domain consistency is eventual.
 - Financial Period state is canonical.
 - Internal Aggregate structures remain private.
 - Governance decisions are published as immutable Domain Events.
@@ -2936,7 +2936,7 @@ Every Integration Contract shall satisfy the following principles.
 
 3. Business semantics remain stable.
 
-4. Cross-domain consistency is eventual.
+4. Multi-domain consistency is eventual.
 
 5. References remain immutable.
 
@@ -3385,7 +3385,7 @@ Financial Period & Closing exchanges only approved business information.
 
 ---
 
-## Cross-Domain Consistency
+## Multi-Domain Consistency
 
 Strong consistency exists only within the Financial Period Aggregate.
 

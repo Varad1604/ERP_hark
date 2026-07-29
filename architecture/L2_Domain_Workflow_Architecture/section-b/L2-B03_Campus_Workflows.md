@@ -386,7 +386,7 @@ This part establishes the architectural foundation of the **Campus & Infrastruct
 - Architecture Position
 - Architecture Characteristics
 
-Subsequent parts build upon these principles to define the complete canonical infrastructure model, workflows, aggregates, business rules, events, public contracts, and cross-domain interactions.
+Subsequent parts build upon these principles to define the complete canonical infrastructure model, workflows, aggregates, business rules, events, public contracts, and multi-domain interactions.
 
 ---
 
@@ -878,7 +878,7 @@ This section establishes:
 - Ubiquitous Language
 - Domain Responsibilities
 - Ownership Boundaries
-- Cross-Domain Responsibilities
+- Multi-Domain Responsibilities
 - Interaction Principles
 - Strategic Position within SutraERP
 
@@ -2555,7 +2555,7 @@ Business rules ensure:
 - Physical consistency
 - Data integrity
 - Operational correctness
-- Cross-domain reliability
+- Multi-domain reliability
 - Regulatory readiness
 - Long-term maintainability
 
@@ -3854,7 +3854,7 @@ Business validation precedes persistence.
 
 ## WDP-05
 
-Cross-domain orchestration is prohibited.
+Multi-domain orchestration is prohibited.
 
 Infrastructure publishes events.
 
@@ -4434,7 +4434,7 @@ CampusArchived
 
 ---
 
-# 113. Cross-Domain Consumers
+# 113. Multi-Domain Consumers
 
 | Consumer Domain | Campus Information Used |
 |-----------------|-------------------------|
@@ -5232,7 +5232,7 @@ BuildingArchived
 
 ---
 
-# 132. Cross-Domain Consumers
+# 132. Multi-Domain Consumers
 
 | Consumer Domain | Building Information Used |
 |-----------------|---------------------------|
@@ -6128,7 +6128,7 @@ SpaceArchived
 
 ---
 
-# 153. Cross-Domain Consumers
+# 153. Multi-Domain Consumers
 
 | Consumer Domain | Space Information Consumed |
 |-----------------|----------------------------|
@@ -6820,7 +6820,7 @@ Infrastructure does not belong physically beneath them.
 
 ---
 
-# 173. Cross-Domain Consumers
+# 173. Multi-Domain Consumers
 
 | Consumer Domain | Usage |
 |-----------------|-------|
@@ -6958,7 +6958,7 @@ This section defines the canonical workflows for **Zones**, **Collections**, and
 - Portfolio Management
 - Portfolio Membership
 - Logical Relationship Model
-- Cross-Domain Consumers
+- Multi-Domain Consumers
 - Business Rules
 - Domain Events
 - Workflow Design Principles
@@ -8543,7 +8543,7 @@ These principles ensure that the persistence implementation faithfully supports 
 
 ---
 
-# Part 15 — Cross-Domain Dependencies, Consumption Matrix & Architecture Boundaries
+# Part 15 — Multi-Domain Dependencies, Consumption Matrix & Architecture Boundaries
 
 ---
 
@@ -8983,7 +8983,7 @@ Consumer domains shall not modify Infrastructure aggregates.
 
 ## IDR-04
 
-Cross-domain communication shall occur through published contracts and domain events.
+Multi-domain communication shall occur through published contracts and domain events.
 
 ---
 
@@ -8995,7 +8995,7 @@ Infrastructure remains implementation independent.
 
 ## IDR-06
 
-Business ownership shall never overlap across domains.
+Business ownership shall never overlap amulti-domains.
 
 ---
 
@@ -9114,7 +9114,7 @@ Domain ownership shall remain explicit and non-overlapping.
 
 # Part 15 Completion
 
-This section defines the enterprise architecture boundaries and cross-domain interactions for the Campus & Infrastructure domain, including:
+This section defines the enterprise architecture boundaries and multi-domain interactions for the Campus & Infrastructure domain, including:
 
 - Upstream Dependencies
 - Downstream Consumers
@@ -9124,7 +9124,7 @@ This section defines the enterprise architecture boundaries and cross-domain int
 - Dependency Direction
 - Anti-Corruption Principles
 - Future Extensibility
-- Cross-Domain Design Principles
+- Multi-Domain Design Principles
 
 These boundaries establish the Campus & Infrastructure domain as the authoritative master data provider for institutional physical infrastructure while ensuring clear ownership, loose coupling, and scalable integration across the SutraERP enterprise architecture.
 
@@ -9387,7 +9387,7 @@ Testing levels include:
 | Integration Tests | Repository and event publication |
 | Contract Tests | Public read contracts |
 | Workflow Tests | Business workflows |
-| End-to-End Tests | Cross-domain interactions |
+| End-to-End Tests | Multi-domain interactions |
 
 Business rules should be testable independently of persistence and UI.
 
@@ -9540,7 +9540,7 @@ This document is repository-complete when it satisfies the following.
 | Public Contracts Defined | ✅ |
 | Security Model Defined | ✅ |
 | Persistence Strategy Defined | ✅ |
-| Cross-Domain Boundaries Defined | ✅ |
+| Multi-Domain Boundaries Defined | ✅ |
 | Quality Attributes Defined | ✅ |
 | Future Evolution Defined | ✅ |
 

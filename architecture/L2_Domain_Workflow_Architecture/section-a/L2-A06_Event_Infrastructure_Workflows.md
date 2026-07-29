@@ -61,7 +61,7 @@ This document defines:
 - Event Lifecycle
 - Event Security Model
 - Operational Monitoring
-- Cross-Domain Event Contracts
+- Multi-Domain Event Contracts
 
 ---
 
@@ -339,7 +339,7 @@ The Event Infrastructure is responsible for:
 - Maintaining correlation and causation metadata.
 - Providing operational observability.
 - Enforcing event governance policies.
-- Supporting cross-domain integration.
+- Supporting multi-domain integration.
 
 ---
 
@@ -417,11 +417,11 @@ The Event Infrastructure shall be considered architecturally successful when the
 ## Governance Success
 
 - Event ownership is clearly assigned.
-- Event naming remains consistent across domains.
+- Event naming remains consistent amulti-domains.
 - Unauthorized publication is prevented.
 - Unauthorized subscription is prevented.
 - Deprecated event versions remain traceable.
-- Cross-domain event contracts remain stable and discoverable.
+- Multi-domain event contracts remain stable and discoverable.
 
 ---
 
@@ -1655,7 +1655,7 @@ The Event Registry shall:
 - Maintain a complete inventory of enterprise events.
 - Prevent duplicate event definitions.
 - Establish clear ownership.
-- Support event discovery across domains.
+- Support event discovery amulti-domains.
 - Govern event version evolution.
 - Associate schemas with event definitions.
 - Maintain lifecycle history.
@@ -1895,7 +1895,7 @@ Earlier versions may continue to exist for compatibility purposes where governan
 
 An Event Contract defines the formal agreement between publishers and consumers regarding the structure, semantics, and lifecycle of an event.
 
-The contract enables independent evolution while maintaining interoperability across domains.
+The contract enables independent evolution while maintaining interoperability amulti-domains.
 
 ---
 
@@ -3092,13 +3092,13 @@ Idempotency shall be achieved through architectural behavior rather than relianc
 
 Duplicate detection, replay processing, retry execution, and idempotent outcomes shall remain observable through operational monitoring and audit records.
 
-# 46. Cross-Domain Integration
+# 46. Multi-Domain Integration
 
 ## 46.1 Purpose
 
 The Event Infrastructure enables independent business and platform domains to exchange canonical business facts without introducing direct runtime dependencies.
 
-Cross-domain integration is achieved through standardized event contracts, governed publication, authorized subscriptions, and asynchronous communication.
+Multi-domain integration is achieved through standardized event contracts, governed publication, authorized subscriptions, and asynchronous communication.
 
 Each participating domain remains autonomous while sharing enterprise business events through the Event Infrastructure.
 
@@ -3106,7 +3106,7 @@ Each participating domain remains autonomous while sharing enterprise business e
 
 ## 46.2 Integration Objectives
 
-The Cross-Domain Integration architecture shall:
+The Multi-Domain Integration architecture shall:
 
 - Eliminate point-to-point integrations.
 - Promote loose coupling between domains.
@@ -3147,7 +3147,7 @@ The originating domain remains the authoritative owner of the business fact.
 
 ### CDI-04 — Canonical Contracts
 
-All cross-domain communication shall use approved Event Contracts.
+All multi-domain communication shall use approved Event Contracts.
 
 Private event formats between domains are prohibited.
 
@@ -3155,7 +3155,7 @@ Private event formats between domains are prohibited.
 
 ### CDI-05 — Asynchronous Communication
 
-Cross-domain integration shall occur asynchronously unless another architecture explicitly governs synchronous interaction.
+Multi-domain integration shall occur asynchronously unless another architecture explicitly governs synchronous interaction.
 
 ---
 
@@ -3410,7 +3410,7 @@ Governance applies to:
 - Metadata Standards
 - Naming Standards
 - Lifecycle Management
-- Cross-Domain Integrations
+- Multi-Domain Integrations
 
 ---
 
@@ -3910,7 +3910,7 @@ Planning activities should consider:
 - Replay Frequency
 - Dead-Letter Queue Growth
 - Tenant Growth
-- Cross-Domain Integrations
+- Multi-Domain Integrations
 - Historical Retention Requirements
 
 Capacity planning shall be based on observed operational metrics rather than assumptions.
@@ -4502,7 +4502,7 @@ EI --> I
 
 ---
 
-## 71.11 Cross-Domain Event Flow
+## 71.11 Multi-Domain Event Flow
 
 ```mermaid
 flowchart LR

@@ -689,7 +689,7 @@ Every dependency is API-first.
 
 ## Principle 5
 
-All cross-domain communication is event-driven whenever possible.
+All multi-domain communication is event-driven whenever possible.
 
 ---
 
@@ -711,7 +711,7 @@ No downstream domain may modify the internal state of L2-D06.
 
 ---
 
-# Cross-Domain Events
+# Multi-Domain Events
 
 Typical incoming events include:
 
@@ -756,7 +756,7 @@ This section prevents:
 - Circular dependencies
 - Business ambiguity
 - Data inconsistency
-- Cross-domain conflicts
+- Multi-domain conflicts
 - Transaction boundary violations
 
 Every capability within the enterprise must have exactly **one canonical owner**.
@@ -1195,7 +1195,7 @@ Ownership never changes because of workflow participation.
 
 ## Principle 3
 
-Cross-domain updates occur only through APIs, commands, or domain events.
+Multi-domain updates occur only through APIs, commands, or domain events.
 
 ---
 
@@ -2589,7 +2589,7 @@ Domain Services are stateless and orchestrate aggregates using commands and even
 - Value Objects are immutable.
 - Canonical references never duplicate upstream data.
 - Snapshots preserve historical consistency.
-- Cross-domain references use canonical identifiers only.
+- Multi-domain references use canonical identifiers only.
 - Aggregate Roots are the only transactional consistency boundaries.
 
 ---
@@ -2875,7 +2875,7 @@ Archival & Audit
 
 - Every workflow has exactly one canonical owner.
 - Workflow identifiers are immutable and never reused.
-- Cross-domain interactions occur only through Commands, Events, Queries, or APIs.
+- Multi-domain interactions occur only through Commands, Events, Queries, or APIs.
 - Every workflow produces a complete audit trail.
 - Long-running workflows are coordinated using Saga/Process Manager patterns.
 - All workflows are idempotent where retries are possible.
@@ -11942,7 +11942,7 @@ Subscribed Domains
 - Every event is linked to exactly one aggregate transaction.
 - Event consumers must remain loosely coupled from aggregate implementation.
 - Event replay shall produce identical historical outcomes for the same aggregate version.
-- Cross-domain communication shall occur only through canonical events or approved integration contracts.
+- Multi-domain communication shall occur only through canonical events or approved integration contracts.
 
 ---
 
@@ -15265,7 +15265,7 @@ The ADRs collectively reinforce the following enterprise principles:
 
 - Architectural decisions are authoritative until superseded by a newer ADR.
 - No implementation may violate canonical ownership established by these ADRs.
-- Cross-domain communication shall conform to approved integration contracts and event models.
+- Multi-domain communication shall conform to approved integration contracts and event models.
 - Institutional academic authority always supersedes external provider outcomes.
 - Configuration shall be preferred over source-code customization for institution-specific behavior.
 - Every architectural change affecting business boundaries requires a new Architecture Decision Record.
@@ -15518,7 +15518,7 @@ The domain contains complete specifications for all workflow groups.
 |------------|--------|
 | Single Source of Truth Preserved | ✅ |
 | No Shared Database | ✅ |
-| No Cross-Domain Writes | ✅ |
+| No Multi-Domain Writes | ✅ |
 | Canonical References Only | ✅ |
 
 ---
@@ -15573,7 +15573,7 @@ The domain contains complete specifications for all workflow groups.
 
 ---
 
-# Cross-Domain Consistency Check
+# Multi-Domain Consistency Check
 
 | Domain | Relationship | Status |
 |---------|--------------|--------|

@@ -159,7 +159,7 @@ The domain exposes canonical commands:
 
 ---
 
-# 9. Cross-Domain Rules
+# 9. Multi-Domain Rules
 
 - D01 provides the published course offering context.
 - D04 provides teaching completion and attendance evidence.

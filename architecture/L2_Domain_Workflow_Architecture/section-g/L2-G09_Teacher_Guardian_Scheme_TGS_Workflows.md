@@ -1700,7 +1700,7 @@ Examples:
 
 ---
 
-## Cross-Domain Protection
+## Multi-Domain Protection
 
 Teacher Guardian Scheme consumes enterprise information from other domains as read-only contextual information.
 

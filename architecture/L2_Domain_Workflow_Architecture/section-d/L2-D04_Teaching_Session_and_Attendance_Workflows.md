@@ -460,7 +460,7 @@ Teaching Session
 
 Only references to external aggregates are maintained.
 
-Cross-domain aggregates are never embedded.
+Multi-domain aggregates are never embedded.
 
 ---
 
@@ -676,7 +676,7 @@ Responsibilities outside the boundary include:
 - Reporting
 - Search indexing
 
-Consistency across domains is achieved through asynchronous Domain Events.
+Consistency amulti-domains is achieved through asynchronous Domain Events.
 
 ---
 
@@ -1920,13 +1920,13 @@ Search indexes are:
 **End of Part 5**
 ````
 
-# 51. Cross-Domain Interactions
+# 51. Multi-Domain Interactions
 
 The Teaching Session & Attendance domain collaborates with other enterprise domains through canonical APIs and immutable Domain Events.
 
 The domain never directly owns data belonging to another bounded context.
 
-Cross-domain interactions are reference-based and event-driven.
+Multi-domain interactions are reference-based and event-driven.
 
 ---
 
@@ -1970,7 +1970,7 @@ They never modify Teaching Session state.
 
 ---
 
-# 54. Cross-Domain Responsibilities
+# 54. Multi-Domain Responsibilities
 
 ## D01 — Course & Course Offering
 
@@ -2274,7 +2274,7 @@ No circular dependencies exist.
 
 ---
 
-# 63. Cross-Domain Consistency Rules
+# 63. Multi-Domain Consistency Rules
 
 The Teaching Session & Attendance domain shall:
 
@@ -2284,7 +2284,7 @@ The Teaching Session & Attendance domain shall:
 - Preserve tenant isolation.
 - Preserve campus isolation.
 - Preserve canonical terminology.
-- Maintain eventual consistency across domains.
+- Maintain eventual consistency amulti-domains.
 - Never compute downstream business outcomes.
 
 These rules preserve bounded context integrity.
@@ -3035,7 +3035,7 @@ Every architectural change shall include:
 
 - Business motivation.
 - Architectural impact.
-- Cross-domain impact.
+- Multi-domain impact.
 - Compatibility assessment.
 - DDD validation.
 - EDA validation.
@@ -3098,7 +3098,7 @@ The architecture is governed through:
 - Enterprise Architecture Review.
 - Architecture Decision Records (ADRs).
 - Repository validation.
-- Cross-domain compatibility assessment.
+- Multi-domain compatibility assessment.
 - Semantic versioning.
 - Backward-compatible evolution.
 
@@ -3146,7 +3146,7 @@ No implementation shall diverge from this architecture without approved enterpri
 
 **Repository Consistency:** PASS
 
-**Cross-Domain Validation:** PASS
+**Multi-Domain Validation:** PASS
 
 **Architecture Readiness:** APPROVED FOR IMPLEMENTATION
 

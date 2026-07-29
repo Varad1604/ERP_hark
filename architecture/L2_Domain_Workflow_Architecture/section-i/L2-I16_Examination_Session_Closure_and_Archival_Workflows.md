@@ -432,7 +432,7 @@ The domain shall operate according to the following ownership principles:
 
 - Single ownership of examination session closure.
 - Single ownership of archival lifecycle.
-- No cross-domain modification of archived records.
+- No multi-domain modification of archived records.
 - Immutable finalized examination sessions.
 - Policy-driven retention management.
 - Event-driven integration with dependent domains.
@@ -1546,7 +1546,7 @@ The Examination Session Closure & Archival domain shall adhere to the following 
 - Circular dependencies are prohibited.
 - Domain ownership shall never be violated.
 - Communication shall occur through canonical business contracts.
-- Cross-domain integration shall be event-driven.
+- Multi-domain integration shall be event-driven.
 - Downstream domains shall not modify finalized Examination Session aggregates.
 - Published events shall remain backward compatible.
 

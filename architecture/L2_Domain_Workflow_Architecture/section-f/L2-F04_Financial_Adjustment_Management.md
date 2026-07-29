@@ -421,7 +421,7 @@ The Adjustment Source Architecture exists to:
 - Standardize business origins.
 - Preserve financial lineage.
 - Enable enterprise traceability.
-- Support cross-domain integration.
+- Support multi-domain integration.
 - Maintain deterministic source resolution.
 
 ---
@@ -2261,7 +2261,7 @@ Exception history shall remain permanently reconstructable.
 
 ---
 
-# 25. Cross-Domain Contracts
+# 25. Multi-Domain Contracts
 
 ## Upstream Domains
 
@@ -2329,7 +2329,7 @@ Published Financial Adjustments may be consumed by:
 | Configuration Architecture Complete | ✓ |
 | Exception Architecture Complete | ✓ |
 | Domain Constraints Defined | ✓ |
-| Cross-Domain Contracts Defined | ✓ |
+| Multi-Domain Contracts Defined | ✓ |
 | Repository Standards Satisfied | ✓ |
 
 ---
@@ -2348,7 +2348,7 @@ Published Financial Adjustments may be consumed by:
 | No Business Rule Implementation | ✓ |
 | Event-Driven Architecture Preserved | ✓ |
 | Configuration-Driven Architecture | ✓ |
-| Cross-Domain Dependencies Defined | ✓ |
+| Multi-Domain Dependencies Defined | ✓ |
 | Ready for Level-3 Decomposition | ✓ |
 | Ready for Repository Merge | ✓ |
 

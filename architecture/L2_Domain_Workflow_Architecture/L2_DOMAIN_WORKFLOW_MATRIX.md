@@ -224,13 +224,13 @@ Status: [ ]
 ## L2-F11 - Scholarship & Financial Aid
 Status: [ ]
 
-## L2-F12 - Asset Management Workflows
+## L2-F12 - Asset Financial Accounting Workflows
 Status: [ ]
 
 ## L2-F13 - Financial Reporting & Analytics Workflows
 Status: [ ]
 
-## L2-F14 - Procurement & Supply Chain Workflows
+## L2-F14 - Procurement Finance Consumption Workflows
 Status: [ ]
 
 ---
@@ -410,7 +410,7 @@ Status: [ ]
 ## L2-J10 - Disposal, Scrap & Write-Off
 Status: [ ]
 
-### L2-J00 - Enterprise Resource Management Review
+### Section J Review - Governed by L2-J00 and L2-J01 to L2-J10
 Status: [ ]
 
 ---
@@ -469,6 +469,6 @@ flowchart TD
     N_REV --> O[Section H: Institutional Services & Intelligence]
     O --> O_REV[Section H Review: Services & Intelligence Review]
     O_REV --> P[Section J: Enterprise Resource Management]
-    P --> P_REV[Section J Review: Enterprise Resource Management Review]
+    P --> P_REV[Section J Review: Governed by L2-J00 and J01-J10]
     P_REV --> T[L2-99 Final Architecture Review]
 ```

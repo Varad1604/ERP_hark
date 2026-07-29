@@ -15,7 +15,7 @@ This document defines the canonical Admission Workflows for the Student Lifecycl
 
 The objective of this document is to establish a single authoritative architectural specification governing the transition of an Applicant through the Admission lifecycle into a canonical Student identity while preserving complete institutional history, auditability, and compliance with NEP 2020.
 
-This document defines business workflow architecture, domain ownership, state transitions, business rules, workflow boundaries, cross-domain interactions, and canonical events.
+This document defines business workflow architecture, domain ownership, state transitions, business rules, workflow boundaries, multi-domain interactions, and canonical events.
 
 It intentionally does not define:
 
@@ -119,7 +119,7 @@ shall all be configurable through the Workflow Engine.
 
 Business logic must never hardcode institutional policies.
 
-Principle 6 — Cross-Domain Ownership
+Principle 6 — Multi-Domain Ownership
 
 Admission may collaborate with other domains.
 
@@ -539,7 +539,7 @@ Events shall only be published after successful transaction commit.
 
 ---
 
-### LP-06 — Cross-Domain Isolation
+### LP-06 — Multi-Domain Isolation
 
 The lifecycle may consume services from other domains but shall never modify data owned by another domain.
 
@@ -952,7 +952,7 @@ No workflow shall hardcode institutional behaviour.
 
 A workflow may consume information from another domain but shall never modify data owned by another domain.
 
-Cross-domain collaboration shall occur through synchronous contracts or published domain events.
+Multi-domain collaboration shall occur through synchronous contracts or published domain events.
 
 ---
 
@@ -1475,7 +1475,7 @@ No other lifecycle transitions are permitted.
 
 ---
 
-## 3.4 Cross-Domain Interactions
+## 3.4 Multi-Domain Interactions
 
 | Domain | Interaction |
 |----------|------------|
@@ -1592,7 +1592,7 @@ without modifying the canonical workflow.
 - Finance remains the owner of financial records.
 - Workflow execution shall be idempotent.
 - Historical confirmation records are immutable.
-- Cross-domain writes are prohibited.
+- Multi-domain writes are prohibited.
 
 ---
 
@@ -2060,7 +2060,7 @@ No other transitions are permitted.
 
 ---
 
-## 3.4 Cross-Domain Interactions
+## 3.4 Multi-Domain Interactions
 
 | Domain | Interaction |
 |----------|----------------------------|
@@ -2536,7 +2536,7 @@ Admission Approved
 
 ---
 
-## 3.4 Cross-Domain Interactions
+## 3.4 Multi-Domain Interactions
 
 | Domain | Interaction |
 |----------|----------------------------|
@@ -2999,7 +2999,7 @@ Financial Cleared
 
 ---
 
-## 3.4 Cross-Domain Interactions
+## 3.4 Multi-Domain Interactions
 
 | Domain | Interaction |
 |----------|------------------------------|
@@ -3073,7 +3073,7 @@ Institutions may configure:
 - Admission consumes only financial outcomes.
 - Workflow shall be idempotent.
 - Financial history is immutable.
-- Cross-domain ownership shall never be violated.
+- Multi-domain ownership shall never be violated.
 
 ---
 
@@ -3445,7 +3445,7 @@ Ownership transfers from the Admission Domain to the Student Domain.
 
 ---
 
-## 3.4 Cross-Domain Interactions
+## 3.4 Multi-Domain Interactions
 
 | Domain | Interaction |
 |----------|----------------------------|
@@ -3828,7 +3828,7 @@ Cancelled
 
 ---
 
-## 3.4 Cross-Domain Interactions
+## 3.4 Multi-Domain Interactions
 
 | Domain | Interaction |
 |----------|--------------------------|
@@ -4212,7 +4212,7 @@ Withdrawn
 
 ---
 
-## 3.4 Cross-Domain Interactions
+## 3.4 Multi-Domain Interactions
 
 | Domain | Interaction |
 |----------|-----------------------------|
@@ -4614,7 +4614,7 @@ Revoked
 
 ---
 
-## 3.4 Cross-Domain Interactions
+## 3.4 Multi-Domain Interactions
 
 | Domain | Interaction |
 |----------|------------------------------|
@@ -5023,7 +5023,7 @@ Readmitted
 
 ---
 
-## 3.4 Cross-Domain Interactions
+## 3.4 Multi-Domain Interactions
 
 | Domain | Interaction |
 |----------|------------------------------|
@@ -5424,7 +5424,7 @@ Consumes every canonical Admission Domain Event including:
 
 ---
 
-## 3.4 Cross-Domain Interactions
+## 3.4 Multi-Domain Interactions
 
 | Domain | Interaction |
 |----------|-------------------------------|
@@ -5684,7 +5684,7 @@ Every Admission Domain Event shall contain the following canonical attributes.
 
 Domain Events are the canonical integration contracts of the Admission Domain.
 
-All inter-domain communication shall occur through these immutable business events. Direct cross-domain business operations are prohibited unless explicitly defined by architecture contracts.
+All inter-domain communication shall occur through these immutable business events. Direct multi-domain business operations are prohibited unless explicitly defined by architecture contracts.
 
 # 10. State Model
 
@@ -6215,7 +6215,7 @@ The Authorization Model ensures that every Admission operation is executed only 
 
 Authorization remains policy-driven, auditable, and independent of business workflows, preserving both institutional governance and domain ownership across the SutraERP platform.
 
-# 13. Cross-Domain Integrations
+# 13. Multi-Domain Integrations
 
 ## 13.1 Overview
 
@@ -6229,11 +6229,11 @@ The Admission Domain shall never directly modify business entities owned by anot
 
 ## 13.2 Integration Principles
 
-Cross-domain integrations shall adhere to the following principles:
+Multi-domain integrations shall adhere to the following principles:
 
 - Domain ownership shall be respected.
 - Communication shall use canonical service contracts or domain events.
-- Cross-domain writes are prohibited unless explicitly defined.
+- Multi-domain writes are prohibited unless explicitly defined.
 - Integrations shall be idempotent.
 - Failures shall be isolated.
 - All interactions shall be auditable.
@@ -6456,12 +6456,12 @@ All external integrations shall use canonical integration contracts.
 | Rule ID | Constraint |
 |----------|--------------------------------------------------------------|
 | IN-C01-001 | Domain ownership shall never be violated. |
-| IN-C01-002 | Cross-domain writes are prohibited unless architecturally defined. |
+| IN-C01-002 | Multi-domain writes are prohibited unless architecturally defined. |
 | IN-C01-003 | Integrations shall be idempotent. |
 | IN-C01-004 | Published events shall be immutable. |
 | IN-C01-005 | Service contracts shall remain versioned. |
 | IN-C01-006 | Integration failures shall not corrupt Admission state. |
-| IN-C01-007 | All cross-domain interactions shall be auditable. |
+| IN-C01-007 | All multi-domain interactions shall be auditable. |
 
 ---
 
@@ -6724,7 +6724,7 @@ The Admission Domain follows these validation principles:
 | Financial Validation | Validate financial clearance |
 | Security Validation | Validate authorization |
 | Configuration Validation | Validate institutional configuration |
-| Cross-Domain Validation | Validate external dependencies |
+| Multi-Domain Validation | Validate external dependencies |
 
 ---
 
@@ -6814,7 +6814,7 @@ Financial computations remain owned by the Finance Domain.
 
 ---
 
-# 15.10 Cross-Domain Validation
+# 15.10 Multi-Domain Validation
 
 The Admission Domain validates responses from:
 
@@ -6876,7 +6876,7 @@ Every validation operation shall return:
 | VAL-C01-004 | Validation shall be auditable. |
 | VAL-C01-005 | Validation results shall be immutable. |
 | VAL-C01-006 | Validation shall support idempotent retries. |
-| VAL-C01-007 | Cross-domain validation shall respect ownership boundaries. |
+| VAL-C01-007 | Multi-domain validation shall respect ownership boundaries. |
 
 ---
 
@@ -7746,7 +7746,7 @@ ADMISSION -->|All Admission Events| REPORT
 - Financial records remain owned by Finance.
 - Physical document storage remains owned by Document Platform.
 - Student ownership transfers to the Student Lifecycle domain only after successful Student creation.
-- Cross-domain communication occurs exclusively through canonical service contracts and immutable domain events.
+- Multi-domain communication occurs exclusively through canonical service contracts and immutable domain events.
 
 ## 20.2 Aggregate Model
 
@@ -7821,7 +7821,7 @@ STUDENT --> PROFILE
 - The Admission Aggregate owns the Admission lifecycle exclusively.
 - Verification, Approval, Financial Clearance, Student Creation, and Audit are internal entities of the Admission Aggregate.
 - Programme, Person, Institution, Academic Session, Finance, and Document Platform remain external aggregates referenced only by identity.
-- Cross-domain writes are prohibited.
+- Multi-domain writes are prohibited.
 - Aggregate consistency is maintained transactionally within the Admission Domain.
 
 20.3 State Machine
@@ -7886,7 +7886,7 @@ Readmitted --> Submitted : New Admission Cycle
 - Every successful transition generates:
   - Immutable Audit Record
   - Canonical Domain Event
-- Cross-domain state changes are prohibited.
+- Multi-domain state changes are prohibited.
 - Student creation is the final operational responsibility of the Admission Domain.
 - After **StudentCreated**, lifecycle ownership transfers to **L2-C02 – Student Lifecycle**.
 - Readmission never modifies historical admission records; it initiates a new policy-driven admission cycle while preserving complete history.
@@ -8047,7 +8047,7 @@ O --> P([Eligible for Student Creation])
 
 - Student creation is prohibited before successful Admission Confirmation.
 - Duplicate confirmations are prevented through idempotent execution.
-- Cross-domain writes are prohibited.
+- Multi-domain writes are prohibited.
 - Finance remains the owner of all financial records.
 - Programme information is consumed as read-only.
 
@@ -8141,8 +8141,8 @@ end
 - Student identity is globally unique within the tenant.
 - All operations are fully auditable.
 
-20.7 Cross Domain Sequence
-## 20.7 Cross-Domain Sequence
+20.7 Multi-Domain Sequence
+## 20.7 Multi-Domain Sequence
 
 The following sequence diagram illustrates the canonical interaction between the Admission Domain and its collaborating domains during the end-to-end Admission process.
 
@@ -8235,7 +8235,7 @@ Student-->>Notification: Student Created Notification
 
 - Each domain owns its own data.
 - No domain directly updates another domain's database.
-- Cross-domain communication occurs through service contracts or immutable domain events.
+- Multi-domain communication occurs through service contracts or immutable domain events.
 - Domain events are published only after successful transaction commit.
 - The Admission Domain remains the orchestration boundary until `StudentCreated`.
 - Ownership transfers to the Student Lifecycle domain immediately after the `StudentCreated` event.
@@ -8517,7 +8517,7 @@ ADM1 -. Index Events .-> SEARCH
 
 - Admission owns no external data.
 - All synchronous dependencies are read-only service interactions.
-- Cross-domain database access is prohibited.
+- Multi-domain database access is prohibited.
 - Downstream domains consume immutable domain events.
 - Event consumers must be independently deployable.
 - Optional integrations shall never block Admission processing.
@@ -9057,7 +9057,7 @@ The Admission Domain is the sole owner of the Admission aggregate.
 
 ### Rationale
 
-Maintains clear ownership boundaries and prevents cross-domain coupling.
+Maintains clear ownership boundaries and prevents multi-domain coupling.
 
 ### Consequence
 
@@ -9083,13 +9083,13 @@ Ownership transfers from the Admission Domain to the Student Lifecycle Domain up
 
 ---
 
-# ADR-C01-003 — Event-Driven Cross-Domain Communication
+# ADR-C01-003 — Event-Driven Multi-Domain Communication
 
 **Status:** Accepted
 
 ### Decision
 
-Cross-domain communication shall use immutable Domain Events or canonical service contracts.
+Multi-domain communication shall use immutable Domain Events or canonical service contracts.
 
 ### Rationale
 
@@ -9330,7 +9330,7 @@ All terms shall have a single authoritative meaning within the SutraERP architec
 
 ---
 
-# 22.6 Cross-Domain Terms
+# 22.6 Multi-Domain Terms
 
 | Term | Owning Domain |
 |------|-----------------------------|
@@ -9438,7 +9438,7 @@ This document references the following architecture artifacts.
 | Document | Purpose |
 |-----------|------------------------------------------|
 | Architecture Index | Repository navigation |
-| Dependency Map | Cross-domain dependency graph |
+| Dependency Map | Multi-domain dependency graph |
 | L2-A01 | Platform Foundation |
 | L2-B01 | Institution & Structure |
 | L2-C02 | Student Lifecycle (Downstream) |
@@ -9455,7 +9455,7 @@ Admission dependencies shall follow these principles:
 - Dependencies shall be explicit.
 - Circular dependencies are prohibited.
 - Domain ownership shall remain preserved.
-- Cross-domain communication shall use canonical contracts.
+- Multi-domain communication shall use canonical contracts.
 - Integration contracts shall remain versioned.
 - Dependency changes require architecture review.
 
@@ -9517,7 +9517,7 @@ All extensions shall preserve the canonical architecture defined in this documen
 Changes to this document require:
 
 - Architecture review
-- Cross-domain dependency validation
+- Multi-domain dependency validation
 - Backward compatibility assessment
 - ADR approval (where applicable)
 - Repository version update

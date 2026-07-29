@@ -25,7 +25,7 @@ The review verifies:
 - Aggregate ownership
 - Command consistency
 - Event consistency
-- Cross-domain integrations
+- Multi-domain integrations
 - Read model coverage
 - Security model
 - Audit model
@@ -105,7 +105,7 @@ The following architecture documents were reviewed during certification.
 |----------|---------|
 | Level 1 Architecture | Enterprise domain boundaries |
 | Canonical Context | Enterprise standards |
-| Dependency Map | Cross-domain ownership |
+| Dependency Map | Multi-domain ownership |
 | Workflow Matrix | Workflow inventory |
 | Team Assignments | Domain ownership |
 | E01 | Workforce & Engagement Workflows |
@@ -275,10 +275,10 @@ The objective of the domain completeness review is to verify that every workforc
 This review ensures that:
 
 - No workforce capability is omitted.
-- No capability is duplicated across domains.
+- No capability is duplicated amulti-domains.
 - Every responsibility has a clear owner.
 - Every workflow belongs to exactly one domain.
-- Cross-domain interactions follow canonical ownership rules.
+- Multi-domain interactions follow canonical ownership rules.
 
 ---
 
@@ -564,7 +564,7 @@ All identified workforce business processes are represented within the architect
 ```
 
 ```md
-# Part 3 — Cross-Domain Dependency Review
+# Part 3 — Multi-Domain Dependency Review
 
 ## 3.1 Purpose
 
@@ -579,7 +579,7 @@ This review validates:
 - Data flow direction
 - Integration responsibilities
 - Canonical ownership
-- Cross-domain consistency
+- Multi-domain consistency
 
 ---
 
@@ -825,14 +825,14 @@ Section F never recalculates payroll.
 
 ---
 
-# 3.10 Cross-Domain Dependency Assessment
+# 3.10 Multi-Domain Dependency Assessment
 
 | Validation Area | Result |
 |-----------------|--------|
 | Ownership Boundaries | ✔ Verified |
 | Circular Dependencies | None |
 | Duplicate Master Data | None |
-| Cross-Domain Violations | None |
+| Multi-Domain Violations | None |
 | Reference Integrity | ✔ Verified |
 | Integration Responsibility | Clearly Defined |
 
@@ -852,7 +852,7 @@ This review confirms that:
 - Workflow transitions are deterministic.
 - No circular workflow dependencies exist.
 - Every business process terminates in a valid state.
-- Cross-domain interactions occur only through approved integration contracts.
+- Multi-domain interactions occur only through approved integration contracts.
 
 ---
 
@@ -1147,7 +1147,7 @@ Separation clearance is managed asynchronously. Section E publishes the `Employe
 
 ---
 
-# 4.11 Cross-Domain Workflow Validation
+# 4.11 Business Scenario Validation
 
 | Source Domain | Target Domain | Validation |
 |---------------|---------------|------------|
@@ -1172,7 +1172,7 @@ All workflow transitions follow approved domain boundaries.
 | Circular Dependencies | None |
 | Invalid Workflow Paths | None |
 | Aggregate Consistency | ✔ Verified |
-| Cross-Domain Coordination | ✔ Verified |
+| Multi-Domain Coordination | ✔ Verified |
 | Lifecycle Coverage | ✔ Complete |
 
 The end-to-end workforce lifecycle is fully modeled with consistent sequencing, valid ownership boundaries, and complete workflow coverage across all People & Workforce domains.
@@ -1681,7 +1681,7 @@ Event-driven projection updated in near real-time. Consumed by L2-D03 (Timetable
 | Payroll Run | E06 | None |
 | Payslip | E06 | None |
 
-No aggregate permits cross-domain write operations.
+No aggregate permits multi-domain write operations.
 
 ---
 
@@ -1692,7 +1692,7 @@ No aggregate permits cross-domain write operations.
 | Aggregate Inventory | ✔ Complete |
 | Ownership Boundaries | ✔ Verified |
 | Duplicate Aggregates | None |
-| Cross-Domain Writes | None |
+| Multi-Domain Writes | None |
 | Lifecycle Definitions | ✔ Complete |
 | Command Ownership | ✔ Verified |
 | Event Ownership | ✔ Verified |
@@ -1973,7 +1973,7 @@ The following principles are enforced:
 
 ---
 
-# 6.10 Cross-Domain Command Validation
+# 6.10 Multi-Domain Command Validation
 
 The review confirms that no command in Section E directly modifies aggregates owned by another section.
 
@@ -1986,7 +1986,7 @@ The review confirms that no command in Section E directly modifies aggregates ow
 | Section G | None | ✔ |
 | Section H | None | ✔ |
 
-All cross-domain interactions occur through integration events or APIs.
+All multi-domain interactions occur through integration events or APIs.
 
 ---
 
@@ -2026,7 +2026,7 @@ No inconsistent naming patterns were identified.
 | Aggregate Ownership | ✔ Verified |
 | Duplicate Commands | None |
 | Missing Commands | None |
-| Cross-Domain Writes | None |
+| Multi-Domain Writes | None |
 | CQRS Compliance | ✔ |
 | Business Rule Enforcement | ✔ |
 | Naming Consistency | ✔ |
@@ -2298,7 +2298,7 @@ The following principles are enforced:
 
 ---
 
-# 7.10 Cross-Domain Event Consumption Matrix
+# 7.10 Multi-Domain Event Consumption Matrix
 
 | Publisher | Primary Consumers |
 |------------|-------------------|
@@ -2347,7 +2347,7 @@ No inconsistent naming patterns were identified.
 | Publisher Ownership | ✔ Verified |
 | Duplicate Events | None |
 | Missing Events | None |
-| Cross-Domain Ownership Violations | None |
+| Multi-Domain Ownership Violations | None |
 | Event Immutability | ✔ Verified |
 | EDA Compliance | ✔ Certified |
 
@@ -2751,7 +2751,7 @@ This review validates that the People & Workforce domain integrates with other S
 The review ensures that:
 
 - No direct database dependencies exist.
-- Cross-domain communication follows canonical interfaces.
+- Multi-domain communication follows canonical interfaces.
 - Integration contracts are versioned.
 - Domain ownership is preserved.
 - APIs remain backward compatible.
@@ -3052,7 +3052,7 @@ All integrations must enforce:
 |-----------------|--------|
 | API Coverage | ✔ Complete |
 | Event Contracts | ✔ Complete |
-| Cross-Domain Interfaces | ✔ Verified |
+| Multi-Domain Interfaces | ✔ Verified |
 | Shared Database Access | None |
 | Contract Versioning | ✔ Verified |
 | Security Compliance | ✔ Verified |
@@ -3175,7 +3175,7 @@ No external domain may override business rules owned by Section E.
 
 ---
 
-# 10.9 Cross-Domain Business Rules
+# 10.9 Multi-Domain Business Rules
 
 The following rules involve multiple domains while preserving ownership.
 
@@ -3753,7 +3753,7 @@ Recommended optimization strategies include:
 - Partitioning of historical payroll and audit data
 - Optimistic concurrency control where appropriate
 
-No cross-domain joins should be performed across independently owned aggregates.
+No multi-domain joins should be performed across independently owned aggregates.
 
 ---
 
@@ -3834,7 +3834,7 @@ Operational visibility should include:
 ## Traces
 
 - End-to-end request tracing
-- Cross-domain correlation
+- Multi-domain correlation
 - Distributed transaction correlation
 
 ---
@@ -4030,7 +4030,7 @@ The aggregate inventory was reviewed for:
 | Duplicate Aggregates | None |
 | Missing Aggregates | None |
 | Shared Ownership | None |
-| Cross-Domain Mutation | None |
+| Multi-Domain Mutation | None |
 
 Aggregate design complies with Domain-Driven Design principles.
 
@@ -4091,7 +4091,7 @@ The read model inventory satisfies operational and analytical requirements.
 
 ---
 
-# 13.8 Cross-Domain Dependency Validation
+# 13.8 Multi-Domain Dependency Validation
 
 Dependencies were evaluated against the canonical dependency map.
 
@@ -4109,7 +4109,7 @@ All dependencies comply with enterprise architecture standards.
 
 # 13.9 Business Rule Consistency
 
-Business rules were validated across domains.
+Business rules were validated amulti-domains.
 
 Validation confirms:
 
@@ -4397,7 +4397,7 @@ Overall Domain Coverage: **100%**
 | State Transitions | ✔ |
 | Exception Handling | ✔ |
 | Lifecycle Completeness | ✔ |
-| Cross-Domain Coordination | ✔ |
+| Multi-Domain Coordination | ✔ |
 
 Certification Result:
 
@@ -4477,7 +4477,7 @@ Certification Result:
 | API Contracts | ✔ |
 | Event Contracts | ✔ |
 | Versioning | ✔ |
-| Cross-Domain Interfaces | ✔ |
+| Multi-Domain Interfaces | ✔ |
 | Ownership Preservation | ✔ |
 
 Certification Result:

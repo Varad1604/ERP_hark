@@ -3027,7 +3027,7 @@ Dashboard (H07) / Audit (H01) / Notification (H02)
 
 ---
 
-# 66. Cross-Domain Event Dependencies
+# 66. Multi-Domain Event Dependencies
 
 ## Incoming Events
 

@@ -134,7 +134,7 @@ The Accounts Receivable bounded context governs the architecture of:
 - Receivable settlement references
 - Receivable financial visibility
 - Receivable reporting participation
-- Cross-domain receivable references
+- Multi-domain receivable references
 
 ---
 
@@ -305,7 +305,7 @@ Accounts Receivable provides information to:
 
 The Accounts Receivable bounded context shall never directly modify another Finance aggregate.
 
-Cross-domain consistency shall be achieved exclusively through:
+Multi-domain consistency shall be achieved exclusively through:
 
 - Canonical domain events
 - Published financial facts
@@ -483,7 +483,7 @@ The following Value Objects provide immutable descriptive information.
 | Receivable Identifier | Immutable aggregate identifier. |
 | Due Date | Represents contractual due information. |
 | Collection Priority | Represents collection priority classification. |
-| Financial Reference | Immutable cross-domain reference. |
+| Financial Reference | Immutable multi-domain reference. |
 
 Value Objects are immutable.
 
@@ -1177,7 +1177,7 @@ Whenever possible, business communication shall occur through Domain Events.
 
 ### Immutable References
 
-Cross-domain references shall be immutable once established.
+Multi-domain references shall be immutable once established.
 
 ---
 
@@ -1218,7 +1218,7 @@ The following architectural constraints apply.
 
 ---
 
-## 12.6 Cross-Domain Consistency
+## 12.6 Multi-Domain Consistency
 
 Enterprise consistency shall be achieved through eventual consistency driven by canonical Domain Events.
 
@@ -1264,7 +1264,7 @@ The following concepts are constitutional and shall never be configurable.
 - Integration principles
 - DDD classifications
 - Repository architecture
-- Cross-domain ownership
+- Multi-domain ownership
 
 ---
 
@@ -1418,7 +1418,7 @@ No architectural component shall belong to multiple DDD classifications.
 |-----------------|--------|
 | Upstream bounded contexts identified | ☒ |
 | Downstream bounded contexts identified | ☒ |
-| Cross-domain ownership respected | ☒ |
+| Multi-domain ownership respected | ☒ |
 | Shared aggregate ownership avoided | ☒ |
 | Direct aggregate modification prohibited | ☒ |
 
@@ -1441,7 +1441,7 @@ No architectural component shall belong to multiple DDD classifications.
 | Validation Item | Status |
 |-----------------|--------|
 | Integration contracts documented | ☒ |
-| Cross-domain dependencies minimized | ☒ |
+| Multi-domain dependencies minimized | ☒ |
 | No implementation coupling introduced | ☒ |
 | Event-driven communication maintained | ☒ |
 | Reference integrity preserved | ☒ |

@@ -46,17 +46,27 @@ SutraERP/
 |   |-- migration_report.md
 |   |-- L0_Business_Vision/
 |   |-- L1_Business_Domain_Architecture/
-|   `-- L2_Domain_Workflow_Architecture/
+|   |-- L2_Domain_Workflow_Architecture/
+|   |-- L3_Business_Scenario_Architecture/
+|   |-- L4_System_Behavior_Specification/
+|   |-- L5_Solution_Architecture/
+|   `-- L6_UI_UX_Architecture/
 |
+|-- AI_CONTEXT/
+|-- archive/
+|-- assets/
 |-- governance/
-|   `-- constitution/
+|   |-- adr/
+|   |-- constitution/
+|   `-- policies/
 |
+|-- prompts/
 |-- templates/
 |-- generated/
 `-- tools/
 ```
 
-Planned folders such as `ADR/`, `assets/`, and `archive/` are not part of the current repository structure until they are created.
+The L3 through L6 architecture folders are placeholders only until approved source documents are created.
 
 ---
 
@@ -94,6 +104,10 @@ Repository --> Tools
 Architecture --> L0
 Architecture --> L1
 Architecture --> L2
+Architecture --> L3
+Architecture --> L4
+Architecture --> L5
+Architecture --> L6
 ```
 
 ---
@@ -279,9 +293,9 @@ Volume6 --> L0 --> L1 --> L2 --> L3 --> L4 --> L5 --> L6
 
 Future repository additions may include:
 
-- ADR/
-- assets/
-- archive/
+- additional governance policies
+- generated publication formats
+- approved downstream architecture artifacts
 
 These additions must be created before other documents reference them as existing paths.
 

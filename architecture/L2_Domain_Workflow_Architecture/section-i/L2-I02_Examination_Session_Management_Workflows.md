@@ -56,7 +56,7 @@ This document includes:
 - Session closure
 - Session governance
 - Session version management
-- Cross-domain session dependencies
+- Multi-domain session dependencies
 
 This document excludes:
 
@@ -208,7 +208,7 @@ Historical examination records shall preserve the session context under which th
 
 ---
 
-## 4.8 Cross-Domain Collaboration
+## 4.8 Multi-Domain Collaboration
 
 Examination Sessions consume business information from collaborating domains without assuming ownership.
 
@@ -620,7 +620,7 @@ The review process verifies:
 - Academic applicability
 - Administrative approval
 - Institutional governance
-- Cross-domain consistency
+- Multi-domain consistency
 
 Only approved sessions may proceed to activation.
 
@@ -995,7 +995,7 @@ The Examination Session Management workflows consume business events published b
 
 Consumed events influence session governance while ownership remains with the originating domain.
 
-# 13. Cross-Domain Interactions
+# 13. Multi-Domain Interactions
 
 The Examination Session Management domain collaborates with multiple business domains to establish and govern examination sessions.
 

@@ -171,7 +171,7 @@ Published Results become the official institutional communication of academic ou
 
 ---
 
-## 4.8 Cross-Domain Collaboration
+## 4.8 Multi-Domain Collaboration
 
 Result Publication collaborates with Examination Policy, Result Processing & Computation, Academic Calendar, Organisation, Person & Identity, Notification Workflows, and Platform Foundation while preserving ownership boundaries.
 
@@ -1056,7 +1056,7 @@ Consumed events influence Result Publication without transferring ownership.
 
 ---
 
-# 13. Cross-Domain Interactions
+# 13. Multi-Domain Interactions
 
 The Result Publication domain collaborates with multiple business domains while preserving clear ownership boundaries.
 

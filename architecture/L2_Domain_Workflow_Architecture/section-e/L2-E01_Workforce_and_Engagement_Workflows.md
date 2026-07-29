@@ -748,7 +748,7 @@ The Workforce Domain shall remain a consumer of authoritative enterprise master 
 
 No upstream dependency shall directly modify Workforce aggregates.
 
-All cross-domain interaction shall occur through:
+All multi-domain interaction shall occur through:
 
 - Canonical Read Contracts
 - Published Domain Events
@@ -1122,7 +1122,7 @@ This architecture minimizes inter-domain coupling, enables independent domain ev
 
 The Workforce & Engagement Domain establishes the authoritative ownership boundaries for all workforce-related business capabilities within SutraERP.
 
-The primary objective of these boundaries is to ensure that every workforce business capability has exactly one authoritative owner, thereby eliminating ownership ambiguity, duplicated business logic, conflicting state transitions, and cross-domain coupling.
+The primary objective of these boundaries is to ensure that every workforce business capability has exactly one authoritative owner, thereby eliminating ownership ambiguity, duplicated business logic, conflicting state transitions, and multi-domain coupling.
 
 The ownership model defined within this section shall govern every workforce-related integration across the enterprise architecture.
 
@@ -1307,7 +1307,7 @@ The Workforce Domain explicitly does **not** own the following business capabili
 
 ---
 
-## 5.6 Cross-Domain Ownership Matrix
+## 5.6 Multi-Domain Ownership Matrix
 
 | Capability | Workforce | Payroll | Academic | Identity | Organisation |
 |------------|:---------:|:-------:|:--------:|:--------:|:------------:|
@@ -1396,7 +1396,7 @@ External domains shall never directly modify Workforce aggregates.
 
 ---
 
-### Cross-Domain Commands
+### Multi-Domain Commands
 
 Business commands targeting Workforce capabilities shall be processed exclusively by the Workforce Domain.
 
@@ -1410,7 +1410,7 @@ Consumers shall retrieve workforce information exclusively through canonical rea
 
 ### Domain Events
 
-Cross-domain business communication shall occur through published workforce domain events.
+Multi-domain business communication shall occur through published workforce domain events.
 
 Events shall represent completed business facts.
 
@@ -1438,7 +1438,7 @@ The following architectural patterns are explicitly prohibited.
 - Identity creating workforce records.
 - Organisation performing workforce transfers directly.
 - Historical workforce record deletion.
-- Cross-domain business logic embedded inside Workforce aggregates.
+- Multi-domain business logic embedded inside Workforce aggregates.
 
 ---
 
@@ -3208,7 +3208,7 @@ No downstream domain shall modify these aggregates.
 
 ---
 
-## BR-WF-028 — Cross-Domain Modification
+## BR-WF-028 — Multi-Domain Modification
 
 External domains shall request Workforce changes through published application services.
 
@@ -4125,7 +4125,7 @@ Every state transition shall originate from an approved business workflow.
 
 Only the owning aggregate may change its own lifecycle state.
 
-Cross-domain state manipulation is prohibited.
+Multi-domain state manipulation is prohibited.
 
 ---
 
@@ -4480,7 +4480,7 @@ Operational Availability shall not alter Workforce Engagement ownership.
 
 ---
 
-# 13.8 Cross-Domain Decisions
+# 13.8 Multi-Domain Decisions
 
 | Decision ID | Business Decision | Outcome |
 |-------------|-------------------|---------|
@@ -4916,7 +4916,7 @@ Identical business inputs shall always produce identical validation outcomes.
 | Effective Date Validation | Validate temporal correctness |
 | Concurrency Validation | Prevent conflicting updates |
 | Historical Validation | Protect historical integrity |
-| Cross-Domain Validation | Validate external dependencies |
+| Multi-Domain Validation | Validate external dependencies |
 
 ---
 
@@ -5097,7 +5097,7 @@ Last-write-wins shall not be permitted.
 
 ---
 
-# 15.15 Cross-Domain Validation
+# 15.15 Multi-Domain Validation
 
 Before workflow execution, Workforce shall validate:
 
@@ -5701,7 +5701,7 @@ The audit subsystem shall ensure:
 - Chronological consistency.
 - Immutable storage.
 - Business-level traceability.
-- Correlation across domains.
+- Correlation amulti-domains.
 - Long-term preservation.
 - High-volume scalability.
 - Enterprise reliability.
@@ -5719,7 +5719,7 @@ This audit model ensures:
 - Legal defensibility.
 - Historical reconstruction.
 - Operational transparency.
-- Cross-domain traceability.
+- Multi-domain traceability.
 - Long-term architectural integrity.
 
 Audit is a foundational architectural capability supporting every authoritative Workforce business operation within the SutraERP platform.
@@ -5730,7 +5730,7 @@ Audit is a foundational architectural capability supporting every authoritative 
 
 The Workforce & Engagement Domain manages highly sensitive workforce information and therefore shall enforce enterprise-grade security principles throughout the complete workforce lifecycle.
 
-Security within this domain extends beyond authentication and authorization to include data protection, privacy, integrity, tenant isolation, operational resilience, and secure cross-domain collaboration.
+Security within this domain extends beyond authentication and authorization to include data protection, privacy, integrity, tenant isolation, operational resilience, and secure multi-domain collaboration.
 
 The Workforce Domain shall consume enterprise security capabilities while remaining responsible for protecting the confidentiality, integrity, and availability of workforce business information.
 
@@ -5745,7 +5745,7 @@ The security architecture shall satisfy the following objectives.
 - Prevent unauthorized business operations.
 - Enforce tenant isolation.
 - Protect personally identifiable information (PII).
-- Maintain secure cross-domain communication.
+- Maintain secure multi-domain communication.
 - Support regulatory compliance.
 - Preserve audit integrity.
 - Ensure operational resilience.
@@ -6045,7 +6045,7 @@ Examples include:
 - Privileged operations.
 - Bulk modifications.
 - Sensitive data access.
-- Cross-domain administrative actions.
+- Multi-domain administrative actions.
 
 Security monitoring shall integrate with enterprise monitoring and audit capabilities.
 
@@ -6062,7 +6062,7 @@ This security model ensures:
 - Availability of critical workforce services.
 - Regulatory compliance.
 - Enterprise resilience.
-- Secure cross-domain collaboration.
+- Secure multi-domain collaboration.
 - Long-term architectural trustworthiness.
 
 Security is an integral architectural characteristic of the Workforce Domain and shall govern every authoritative workforce business operation throughout its lifecycle.
@@ -6120,7 +6120,7 @@ Aggregate isolation enables parallel execution of unrelated business operations.
 
 ### Event-Driven Scalability
 
-Cross-domain collaboration shall occur through asynchronous Domain Events.
+Multi-domain collaboration shall occur through asynchronous Domain Events.
 
 The Workforce Domain shall not synchronously wait for downstream processing.
 
@@ -6702,7 +6702,7 @@ Each diagram addresses a distinct architectural concern and collectively describ
 - Aggregate relationships
 - Lifecycle progression
 - Workflow orchestration
-- Cross-domain collaboration
+- Multi-domain collaboration
 - Event propagation
 - Service interactions
 - State transitions
@@ -6860,7 +6860,7 @@ I --> J[Downstream Domains]
 
 ---
 
-# 21.6 Cross-Domain Event Collaboration
+# 21.6 Multi-Domain Event Collaboration
 
 **Purpose**
 
@@ -7696,7 +7696,7 @@ All terms shall be interpreted consistently across architecture documents, workf
 |---------|------------|
 | Canonical Owner | Single domain responsible for authoritative business state. |
 | Bounded Context | Explicit business boundary with independent ownership. |
-| Event-Driven Integration | Cross-domain collaboration through immutable events. |
+| Event-Driven Integration | Multi-domain collaboration through immutable events. |
 | CQRS | Separation of transactional write operations from read models. |
 | Effective Dating | Temporal validity of business information. |
 | Immutable History | Historical business records are never overwritten. |
@@ -7758,7 +7758,7 @@ This separation enables:
 - Accurate historical reconstruction.
 - Enterprise scalability.
 - Flexible institutional governance.
-- Cross-domain interoperability.
+- Multi-domain interoperability.
 - Long-term architectural stability.
 
 The domain collaborates with the remainder of SutraERP exclusively through canonical contracts, immutable domain events, and platform services while preserving strict ownership boundaries and transactional consistency.
@@ -7864,7 +7864,7 @@ Breaking architectural changes shall require:
 1. Architectural impact assessment.
 2. ADR approval.
 3. Repository-wide dependency validation.
-4. Cross-domain compatibility verification.
+4. Multi-domain compatibility verification.
 5. Enterprise architecture review.
 
 ---
@@ -7907,7 +7907,7 @@ Future enhancements to the Workforce Domain shall:
 - Maintain immutable historical records.
 - Preserve workflow-driven execution.
 - Maintain enterprise scalability.
-- Avoid introducing cross-domain transactional coupling.
+- Avoid introducing multi-domain transactional coupling.
 
 ---
 
@@ -7918,7 +7918,7 @@ The Workforce & Engagement Domain Architecture is considered complete when:
 - All canonical business capabilities are represented.
 - Aggregate ownership is fully defined.
 - Lifecycle behavior is formally specified.
-- Cross-domain dependencies are documented.
+- Multi-domain dependencies are documented.
 - Service Contracts and Domain Events are established.
 - Governance, audit, security, and scalability considerations are addressed.
 - Architectural decisions are formally recorded.
@@ -8598,7 +8598,7 @@ The Workforce Domain shall reference these capabilities through approved contrac
 
 ---
 
-# G.4 Cross-Domain Read Contracts
+# G.4 Multi-Domain Read Contracts
 
 The Workforce Domain consumes authoritative information through read contracts.
 
@@ -8613,7 +8613,7 @@ The Workforce Domain consumes authoritative information through read contracts.
 
 ---
 
-# G.5 Cross-Domain Command Contracts
+# G.5 Multi-Domain Command Contracts
 
 The Workforce Domain exposes command contracts for other domains.
 

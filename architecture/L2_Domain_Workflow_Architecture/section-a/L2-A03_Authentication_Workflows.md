@@ -46,7 +46,7 @@ L2-A03 defines the canonical authentication architecture of the SutraERP platfor
 
 The Authentication domain is responsible for verifying the identity of users, systems, and external providers before they are permitted to establish authenticated sessions within the platform.
 
-This document defines the complete authentication lifecycle, authentication workflows, credential management architecture, session lifecycle, multi-factor authentication architecture, trusted device management, authentication provider abstraction, authentication events, audit responsibilities, and cross-domain contracts required to authenticate identities securely across all tenants.
+This document defines the complete authentication lifecycle, authentication workflows, credential management architecture, session lifecycle, multi-factor authentication architecture, trusted device management, authentication provider abstraction, authentication events, audit responsibilities, and multi-domain contracts required to authenticate identities securely across all tenants.
 
 Authentication is a platform capability shared by every business domain within SutraERP.
 
@@ -75,7 +75,7 @@ This document defines the architecture for:
 - Device Trust Management
 - Authentication Event Model
 - Authentication Audit Architecture
-- Cross-Domain Authentication Contracts
+- Multi-Domain Authentication Contracts
 - CQRS Responsibilities
 - Multi-Tenant Authentication Architecture
 - Authentication Security Principles
@@ -327,7 +327,7 @@ The Authentication domain establishes a unified, secure, extensible, and provide
 
 It enables users, institutions, external identity providers, and system integrations to authenticate through a consistent architectural model while preserving strict tenant isolation, security governance, and platform-wide interoperability.
 
-Authentication serves as the trusted gateway through which all authenticated execution begins, providing a secure foundation for authorization, business operations, and cross-domain collaboration.
+Authentication serves as the trusted gateway through which all authenticated execution begins, providing a secure foundation for authorization, business operations, and multi-domain collaboration.
 
 ---
 
@@ -766,7 +766,7 @@ Authentication Domain Services orchestrate authentication behavior that spans mu
 
 Domain Services coordinate business behaviour across aggregates but never own business state and never replace Aggregate responsibilities.
 
-| Service | Purpose | Responsibilities | Consumed Aggregates | Published Events | Cross-domain Interactions |
+| Service | Purpose | Responsibilities | Consumed Aggregates | Published Events | Multi-domain Interactions |
 |---------|---------|------------------|---------------------|------------------|---------------------------|
 | AuthenticationService | Orchestrates the end-to-end authentication process. | Evaluates request context, coordinates policy evaluation, selects method and provider, and finalizes the authentication outcome. | Credential, Authentication Attempt, Authentication Policy, Authentication Method, Authentication Provider, MFA Enrollment, Trusted Device, Authentication Session | AuthenticationStarted, AuthenticationSucceeded, AuthenticationFailed, AuthenticationChallenged, AuthenticationCompleted | Consumes identity references from L2-A02 and produces authenticated execution context for L2-A04 and downstream business domains. |
 | CredentialValidationService | Applies credential eligibility rules. | Validates credential state, expiration, rotation eligibility, and revocation constraints before authentication proceeds. | Credential, Authentication Policy, Authentication Attempt | CredentialActivated, CredentialSuspended, CredentialExpired, CredentialRevoked, CredentialRotated | Uses canonical identity and tenant context from L2-A02 and L2-A01. |
@@ -895,7 +895,7 @@ Credential owns the lifecycle from pending activation through active, suspended,
 - An expired credential cannot return to active service without a new lifecycle event.
 - A credential cannot move across identities or tenants.
 
-### Cross-Domain Dependencies
+### Multi-Domain Dependencies
 
 - L2-A01 for tenant context and platform defaults.
 - L2-A02 for identity reference and account eligibility.
@@ -1002,7 +1002,7 @@ Authentication Session owns the lifecycle from created through active, idle, sus
 - A closed session cannot re-open.
 - Session renewal cannot outlive policy limits.
 
-### Cross-Domain Dependencies
+### Multi-Domain Dependencies
 
 - L2-A01 for tenant and execution context.
 - L2-A02 for identity eligibility.
@@ -1096,7 +1096,7 @@ Refresh Token owns the lifecycle from generated through active, rotated, expired
 - A rotated token must supersede the previous token version.
 - A token cannot cross session boundaries.
 
-### Cross-Domain Dependencies
+### Multi-Domain Dependencies
 
 - L2-A01 for tenant context.
 - L2-A02 for identity reference.
@@ -1193,7 +1193,7 @@ Trusted Device owns the lifecycle from registered through pending verification, 
 - A removed device requires a new registration to return.
 - Trusted device status never substitutes for authentication.
 
-### Cross-Domain Dependencies
+### Multi-Domain Dependencies
 
 - L2-A01 for tenant isolation.
 - L2-A02 for identity reference.
@@ -1292,7 +1292,7 @@ Authentication Provider owns the lifecycle from registered through configured, v
 - Fallback selection must respect policy.
 - A retired provider cannot be reactivated without a new registration path.
 
-### Cross-Domain Dependencies
+### Multi-Domain Dependencies
 
 - L2-A01 for tenant configuration and platform defaults.
 - Authentication Policy for selection and fallback rules.
@@ -1382,7 +1382,7 @@ Authentication Method owns the lifecycle from registered through enabled, disabl
 - Authentication methods do not own credentials or sessions.
 - A method cannot bypass provider and policy evaluation.
 
-### Cross-Domain Dependencies
+### Multi-Domain Dependencies
 
 - L2-A01 for tenant context.
 - Authentication Provider for execution selection.
@@ -1488,7 +1488,7 @@ Authentication Policy owns the lifecycle from created through active, superseded
 - A policy cannot silently override a higher-priority active policy.
 - Policy evaluation never mutates identity or authorization ownership.
 
-### Cross-Domain Dependencies
+### Multi-Domain Dependencies
 
 - L2-A01 for tenant defaults and platform context.
 - L2-A02 for identity category and contextual resolution.
@@ -1581,7 +1581,7 @@ Authentication Attempt owns the lifecycle from received through processing, chal
 - Attempts never own credentials, sessions, or identities.
 - An attempt cannot outlive tenant isolation boundaries.
 
-### Cross-Domain Dependencies
+### Multi-Domain Dependencies
 
 - L2-A01 for tenant and execution context.
 - L2-A02 for identity resolution.
@@ -1677,7 +1677,7 @@ MFA Enrollment owns the lifecycle from enrolled through pending verification, ve
 - MFA enrollment does not own identity or authorization.
 - Enrollment state cannot bypass policy-based challenges.
 
-### Cross-Domain Dependencies
+### Multi-Domain Dependencies
 
 - L2-A01 for tenant context.
 - L2-A02 for identity reference.
@@ -4480,7 +4480,7 @@ Events shall remain isolated within tenant boundaries unless platform-level cont
 
 ---
 
-# Cross-Domain Event Flow
+# Multi-Domain Event Flow
 
 ```text
                 L2-A02
@@ -4968,11 +4968,11 @@ Implementation-specific storage mechanisms remain outside the scope of this arch
 Authentication Policies provide the decision-making layer for the entire Authentication domain while remaining completely independent from Identity Management (L2-A02) and Authorization (L2-A04).
 
 ---
-# Cross-Domain Contracts
+# Multi-Domain Contracts
 
 The Authentication domain collaborates with multiple platform domains through well-defined architectural contracts.
 
-Cross-domain contracts ensure that Authentication remains loosely coupled while providing secure authentication services across the SutraERP platform.
+Multi-domain contracts ensure that Authentication remains loosely coupled while providing secure authentication services across the SutraERP platform.
 
 Authentication never directly manipulates aggregates owned by other domains.
 
@@ -4996,7 +4996,7 @@ The following rules apply:
 
 # Contract Principles
 
-Cross-domain interactions follow these principles.
+Multi-domain interactions follow these principles.
 
 ## CDC1. Canonical Ownership
 
@@ -5028,7 +5028,7 @@ Business state changes propagate through Domain Events whenever possible.
 
 ## CDC5. Tenant Isolation
 
-Cross-domain contracts shall preserve tenant boundaries.
+Multi-domain contracts shall preserve tenant boundaries.
 
 ---
 
@@ -5760,7 +5760,7 @@ EventBus --> Monitoring
 
 ---
 
-# Cross-Domain Interaction
+# Multi-Domain Interaction
 
 ```mermaid
 flowchart LR
@@ -5940,7 +5940,7 @@ The Authentication architecture satisfies the following architectural objectives
 | Credential Lifecycle Defined | ✓ |
 | Policy-Driven Authentication | ✓ |
 | Tenant Isolation | ✓ |
-| Cross-Domain Contracts | ✓ |
+| Multi-Domain Contracts | ✓ |
 | Audit Architecture | ✓ |
 | Future Extensibility | ✓ |
 
@@ -5957,7 +5957,7 @@ This document complies with the SutraERP Level-2 Architecture Standards.
 | CQRS Pattern | ✓ |
 | Domain Event Model | ✓ |
 | Mermaid Architecture Diagrams | ✓ |
-| Cross-Domain Contracts | ✓ |
+| Multi-Domain Contracts | ✓ |
 | ADR Documentation | ✓ |
 | Non-Functional Requirements | ✓ |
 | Architecture Governance | ✓ |

@@ -1049,7 +1049,7 @@ The domain model is designed around the following principles:
 - Business behaviour is implemented by Domain Services.
 - Business decisions are evaluated through Policy Services.
 - Workflow orchestration is delegated to Platform Workflow Infrastructure (A05).
-- Cross-domain communication occurs exclusively through published APIs and domain events.
+- Multi-domain communication occurs exclusively through published APIs and domain events.
 - Technical concerns remain outside the domain model.
 
 This separation ensures long-term maintainability, extensibility, and alignment with the SutraERP enterprise architecture.
@@ -1657,7 +1657,7 @@ Manages immutable calendar versions throughout their lifecycle.
 
 ### Note on Active vs Activated
 
-For the canonical definitions and distinction between "Active" and "Activated" states, refer to the authoritative lifecycle rules in [Section 29](file:///d:/MD_files/%23%20L2-B05%20%E2%80%94%20Flexible%20Academic%20Calendar%20Workflows.md#29-calendar-version-lifecycle).
+For the canonical definitions and distinction between "Active" and "Activated" states, refer to the authoritative lifecycle rules in [Section 29](#29-calendar-version-lifecycle).
 
 ---
 
@@ -4348,7 +4348,7 @@ business domains.
 - Stateless services
 - Efficient caching
 - Immutable published versions
-- Minimal cross-domain dependencies
+- Minimal multi-domain dependencies
 
 ---
 
@@ -4510,7 +4510,7 @@ long-term maintainability.
 | Dedicated Resolution Engine | Ensures deterministic calendar resolution |
 | Configuration-driven calendar structures | Enables institutional flexibility |
 | Policy-based governance | Centralizes business decision evaluation |
-| Event-driven integration | Promotes loose coupling across domains |
+| Event-driven integration | Promotes loose coupling amulti-domains |
 | Workflow orchestration delegated to A05 | Separates process execution from business logic |
 | Audit delegated to A07 | Maintains consistent enterprise audit strategy |
 
