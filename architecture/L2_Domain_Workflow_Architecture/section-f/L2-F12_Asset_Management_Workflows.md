@@ -1,4 +1,4 @@
-﻿# L2-F12 â€” Asset Financial Accounting Workflows
+﻿# L2-F12 — Asset Financial Accounting Workflows
 
 ---
 
@@ -8,8 +8,8 @@
 |-----------|-------|
 | Document ID | L2-F12 |
 | Document Name | Asset Financial Accounting Workflows |
-| Layer | Level 2 â€” Domain Workflow Architecture |
-| Domain | Finance â€” Asset Accounting |
+| Layer | Level 2 — Domain Workflow Architecture |
+| Domain | Finance — Asset Accounting |
 | Owner | Finance Architecture Team |
 | Depends On | L2-F00 Finance Domain Model & Foundation, L2-F05 General Ledger, L2-F09 Financial Period & Closing, Section J |
 | Referenced By | Financial Reporting, Accounts Payable, Treasury, Section J, Audit, Analytics |
@@ -20,7 +20,7 @@
 
 # 1. Purpose
 
-This document defines the Finance-side accounting treatment of institutional assets whose operational lifecycle is owned by **Section J â€” Enterprise Resource Management**.
+This document defines the Finance-side accounting treatment of institutional assets whose operational lifecycle is owned by **Section J — Enterprise Resource Management**.
 
 Finance does not own the operational Asset Register.
 
@@ -49,17 +49,17 @@ The following capabilities remain outside Finance Asset Financial Accounting.
 
 | Capability | Canonical Owner |
 |------------|-----------------|
-| Operational Asset Register | J08 â€” Asset Lifecycle Management |
-| Asset identity and tag governance | J08 â€” Asset Lifecycle Management |
-| Asset custody and assignment | J08 â€” Asset Lifecycle Management |
-| Asset operational transfer | J08 â€” Asset Lifecycle Management |
-| Asset condition and warranty tracking | J08 â€” Asset Lifecycle Management |
+| Operational Asset Register | J08 — Asset Lifecycle Management |
+| Asset identity and tag governance | J08 — Asset Lifecycle Management |
+| Asset custody and assignment | J08 — Asset Lifecycle Management |
+| Asset operational transfer | J08 — Asset Lifecycle Management |
+| Asset condition and warranty tracking | J08 — Asset Lifecycle Management |
 | Asset retirement business decision | J08/J10 according to Section J policy |
-| Physical disposal execution evidence | J10 â€” Disposal, Scrap & Write-Off |
-| Inventory stock and item master | J06 â€” Inventory & Warehouse Management |
-| Goods receipt and inspection | J05 â€” Goods Receipt, Inspection & Acceptance |
-| Purchase orders | J04 â€” Purchase Order Management |
-| Supplier master | J02 â€” Vendor & Supplier Management |
+| Physical disposal execution evidence | J10 — Disposal, Scrap & Write-Off |
+| Inventory stock and item master | J06 — Inventory & Warehouse Management |
+| Goods receipt and inspection | J05 — Goods Receipt, Inspection & Acceptance |
+| Purchase orders | J04 — Purchase Order Management |
+| Supplier master | J02 — Vendor & Supplier Management |
 
 Finance shall not maintain an independent operational asset lifecycle or duplicate asset custody state.
 

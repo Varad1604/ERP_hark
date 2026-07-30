@@ -1,4 +1,4 @@
-# L2-C05 â€” Qualification Completion & Student Exit Workflows
+# L2-C05 — Qualification Completion & Student Exit Workflows
 
 **Document ID:** L2-C05
 
@@ -6,7 +6,7 @@
 
 **Bounded Context:** Student Lifecycle
 
-**Architecture Level:** Level 2 â€” Domain Workflows
+**Architecture Level:** Level 2 — Domain Workflows
 
 **Document Status:** Draft
 
@@ -348,25 +348,25 @@ This domain does **not** own:
 
 ### Student Admission
 
-Owned by **L2-C01 â€” Student Admission Workflows**
+Owned by **L2-C01 — Student Admission Workflows**
 
 ---
 
 ### Student Identity & Lifecycle
 
-Owned by **L2-C02 â€” Student Lifecycle Workflows**
+Owned by **L2-C02 — Student Lifecycle Workflows**
 
 ---
 
 ### Academic Registration
 
-Owned by **L2-C03 â€” Student Academic Registration Workflows**
+Owned by **L2-C03 — Student Academic Registration Workflows**
 
 ---
 
 ### Academic Progression
 
-Owned by **L2-C04 â€” Academic Progression Workflows**
+Owned by **L2-C04 — Academic Progression Workflows**
 
 ---
 
@@ -916,7 +916,7 @@ The Qualification Completion & Student Exit Domain governs the terminal phase of
 
 Unlike previous domains that support continuous academic progression, this domain is responsible for determining and recording the authoritative outcome that permanently concludes a student's academic relationship with an institution.
 
-Every student entering this domain shall ultimately reach oneâ€”and only oneâ€”terminal institutional outcome. These outcomes may represent successful academic completion or an authorized non-qualification completion exit.
+Every student entering this domain shall ultimately reach one—and only one—terminal institutional outcome. These outcomes may represent successful academic completion or an authorized non-qualification completion exit.
 
 The lifecycle is governed by institutional regulations, programme requirements, academic policies, approval workflows, and organizational governance.
 
@@ -2569,7 +2569,7 @@ The security architecture of the Qualification Completion & Student Exit Domain 
 
 Every interaction with the Qualification Completion Domain shall originate from an authenticated user, service, or trusted integration.
 
-Authentication responsibilities remain within L2-A03 â€” Authentication Workflows. Authorization and policy evaluation remain the responsibility of L2-A04 â€” Authorization & Policy Workflows.
+Authentication responsibilities remain within L2-A03 — Authentication Workflows. Authorization and policy evaluation remain the responsibility of L2-A04 — Authorization & Policy Workflows.
 
 The Qualification Completion Domain consumes authenticated identities but does not perform identity verification itself.
 
@@ -3602,7 +3602,7 @@ Future architectural changes should evaluate these decisions before introducing 
 
 ---
 
-# ADR-001 â€” Qualification Completion as an Independent Bounded Context
+# ADR-001 — Qualification Completion as an Independent Bounded Context
 
 ## Decision
 
@@ -3625,7 +3625,7 @@ These represent different business capabilities with different responsibilities,
 
 ---
 
-# ADR-002 â€” Qualification Completion Aggregate as the Single Source of Truth
+# ADR-002 — Qualification Completion Aggregate as the Single Source of Truth
 
 ## Decision
 
@@ -3643,7 +3643,7 @@ Maintaining multiple authoritative sources would introduce inconsistency across 
 
 ---
 
-# ADR-003 â€” Student Exit Included Within the Same Domain
+# ADR-003 — Student Exit Included Within the Same Domain
 
 ## Decision
 
@@ -3674,7 +3674,7 @@ Managing them within a single bounded context ensures consistent lifecycle manag
 
 ---
 
-# ADR-004 â€” Policy-Driven Qualification Completion
+# ADR-004 — Policy-Driven Qualification Completion
 
 ## Decision
 
@@ -3692,7 +3692,7 @@ Institutions differ in curriculum structures, approval hierarchies, qualificatio
 
 ---
 
-# ADR-005 â€” Degree Conferment Requires Explicit Approval
+# ADR-005 — Degree Conferment Requires Explicit Approval
 
 ## Decision
 
@@ -3712,7 +3712,7 @@ Academic completion and institutional recognition are separate business decision
 
 ---
 
-# ADR-006 â€” Event-Driven Integration
+# ADR-006 — Event-Driven Integration
 
 ## Decision
 
@@ -3731,7 +3731,7 @@ Event-driven integration reduces runtime coupling and enables independent evolut
 
 ---
 
-# ADR-007 â€” Immutable Academic Outcomes
+# ADR-007 — Immutable Academic Outcomes
 
 ## Decision
 
@@ -3749,7 +3749,7 @@ Official academic outcomes become part of the institution's permanent academic r
 
 ---
 
-# ADR-008 â€” Separation of Academic Validation and Administrative Clearance
+# ADR-008 — Separation of Academic Validation and Administrative Clearance
 
 ## Decision
 
@@ -3769,7 +3769,7 @@ Neither process owns the other's business rules.
 
 ---
 
-# ADR-009 â€” Alumni Transition Through Domain Events
+# ADR-009 — Alumni Transition Through Domain Events
 
 ## Decision
 
@@ -3787,7 +3787,7 @@ Alumni Management represents an independent bounded context with its own lifecyc
 
 ---
 
-# ADR-010 â€” Configuration Without Domain Model Changes
+# ADR-010 — Configuration Without Domain Model Changes
 
 ## Decision
 
@@ -3805,7 +3805,7 @@ Canonical architecture must remain stable while supporting diverse institutional
 
 ---
 
-# ADR-011 â€” Aggregate-Level Consistency
+# ADR-011 — Aggregate-Level Consistency
 
 ## Decision
 
@@ -3823,7 +3823,7 @@ Business invariants must remain protected inside the aggregate without sacrifici
 
 ---
 
-# ADR-012 â€” Technology-Independent Architecture
+# ADR-012 — Technology-Independent Architecture
 
 ## Decision
 
@@ -4362,7 +4362,7 @@ The appendices are informative unless explicitly referenced by a normative secti
 
 ---
 
-# Appendix A â€” Domain Ownership Matrix
+# Appendix A — Domain Ownership Matrix
 
 This appendix summarizes the ownership boundaries of the Qualification Completion & Student Exit Domain and its relationship with adjacent bounded contexts.
 
@@ -4384,7 +4384,7 @@ This appendix summarizes the ownership boundaries of the Qualification Completio
 
 ---
 
-# Appendix B â€” Qualification Completion Aggregate Reference
+# Appendix B — Qualification Completion Aggregate Reference
 
 ## Aggregate Root
 
@@ -4443,7 +4443,7 @@ The aggregate shall always enforce the following invariants:
 
 ---
 
-# Appendix C â€” Canonical Lifecycle Reference
+# Appendix C — Canonical Lifecycle Reference
 
 | Lifecycle State | Description | Terminal |
 |-----------------|-------------|----------|
@@ -4460,27 +4460,27 @@ The aggregate shall always enforce the following invariants:
 
 ---
 
-# Appendix D â€” Business Rule Catalogue
+# Appendix D — Business Rule Catalogue
 
 | Rule Range | Subject Area |
 |------------|--------------|
-| BR-001 â€“ BR-006 | Programme Completion |
-| BR-007 â€“ BR-011 | Qualification Completion Eligibility |
-| BR-012 â€“ BR-016 | Degree Audit |
-| BR-017 â€“ BR-020 | Credit Completion |
-| BR-021 â€“ BR-026 | Institutional Clearance |
-| BR-027 â€“ BR-031 | Qualification Completion Approval |
-| BR-032 â€“ BR-036 | Degree Conferment |
-| BR-037 â€“ BR-041 | Student Exit |
-| BR-042 â€“ BR-045 | Academic Record Finalization |
-| BR-046 â€“ BR-049 | Domain Events |
-| BR-050 â€“ BR-054 | Audit & Compliance |
-| BR-055 â€“ BR-058 | Security |
-| BR-059 â€“ BR-063 | Configuration |
+| BR-001 – BR-006 | Programme Completion |
+| BR-007 – BR-011 | Qualification Completion Eligibility |
+| BR-012 – BR-016 | Degree Audit |
+| BR-017 – BR-020 | Credit Completion |
+| BR-021 – BR-026 | Institutional Clearance |
+| BR-027 – BR-031 | Qualification Completion Approval |
+| BR-032 – BR-036 | Degree Conferment |
+| BR-037 – BR-041 | Student Exit |
+| BR-042 – BR-045 | Academic Record Finalization |
+| BR-046 – BR-049 | Domain Events |
+| BR-050 – BR-054 | Audit & Compliance |
+| BR-055 – BR-058 | Security |
+| BR-059 – BR-063 | Configuration |
 
 ---
 
-# Appendix E â€” Domain Event Catalogue
+# Appendix E — Domain Event Catalogue
 
 | Domain Event | Publisher | Primary Consumers |
 |--------------|-----------|-------------------|
@@ -4498,7 +4498,7 @@ The aggregate shall always enforce the following invariants:
 
 ---
 
-# Appendix F â€” Integration Matrix
+# Appendix F — Integration Matrix
 
 | External Domain | Direction | Integration Type | Purpose |
 |-----------------|-----------|------------------|---------|
@@ -4517,7 +4517,7 @@ The aggregate shall always enforce the following invariants:
 
 ---
 
-# Appendix G â€” Security Responsibility Matrix
+# Appendix G — Security Responsibility Matrix
 
 | Business Activity | Authorized Authority |
 |-------------------|----------------------|
@@ -4535,7 +4535,7 @@ Actual organizational roles remain institution configurable.
 
 ---
 
-# Appendix H â€” Configuration Matrix
+# Appendix H — Configuration Matrix
 
 | Configuration Area | Institution Configurable |
 |--------------------|--------------------------|
@@ -4552,7 +4552,7 @@ Actual organizational roles remain institution configurable.
 
 Configuration changes shall never require modification of the canonical domain model.
 
-# Appendix I â€” Future Extension Points
+# Appendix I — Future Extension Points
 
 The Qualification Completion & Student Exit Domain has been designed to support future functional expansion without requiring changes to its core architectural principles or aggregate boundaries.
 
@@ -4625,7 +4625,7 @@ Future enhancements shall preserve:
 
 ---
 
-# Appendix J â€” Repository Reference Map
+# Appendix J — Repository Reference Map
 
 The Qualification Completion & Student Exit Domain occupies the terminal academic phase of the Student Lifecycle architecture.
 
@@ -4698,23 +4698,23 @@ The authoritative outputs produced by this domain are consumed by:
 
 ---
 
-# Appendix K â€” Domain Traceability Matrix
+# Appendix K — Domain Traceability Matrix
 
 The following matrix provides end-to-end traceability between the major architectural elements defined throughout this document.
 
 | Domain Responsibility | Primary Workflow | Business Rule Range | Primary Domain Events | Related ADRs |
 |----------------------|------------------|---------------------|-----------------------|--------------|
-| Qualification Completion Eligibility | Qualification Completion Eligibility Evaluation | BR-007 â€“ BR-011 | Qualification CompletionEligibilityEvaluated | ADR-001, ADR-004 |
-| Degree Audit | Degree Audit Workflow | BR-012 â€“ BR-016 | DegreeAuditCompleted | ADR-002 |
-| Institutional Clearance | Institutional Clearance Workflow | BR-021 â€“ BR-026 | InstitutionalClearanceCompleted | ADR-008 |
-| Qualification Completion Approval | Qualification Completion Approval Workflow | BR-027 â€“ BR-031 | QualificationCompletionApproved | ADR-005 |
-| Degree Conferment | Degree Conferment Workflow | BR-032 â€“ BR-036 | DegreeConferred | ADR-002, ADR-005 |
-| Student Exit | Student Exit Workflow | BR-037 â€“ BR-041 | StudentExitCompleted | ADR-003 |
-| Academic Record Finalization | Academic Record Finalization Workflow | BR-042 â€“ BR-045 | AcademicRecordFinalized | ADR-007 |
-| Domain Event Publication | Domain Event Processing | BR-046 â€“ BR-049 | All Domain Events | ADR-006 |
-| Audit & Compliance | Cross-Cutting Governance | BR-050 â€“ BR-054 | Audit records generated through the Audit Infrastructure (L2-A07) | ADR-007 |
-| Security & Authorization | Security Controls | BR-055 â€“ BR-058 | Security Audit Records | ADR-011 |
-| Configuration | Configuration Management | BR-059 â€“ BR-063 | Configuration Audit Events | ADR-004, ADR-010 |
+| Qualification Completion Eligibility | Qualification Completion Eligibility Evaluation | BR-007 – BR-011 | Qualification CompletionEligibilityEvaluated | ADR-001, ADR-004 |
+| Degree Audit | Degree Audit Workflow | BR-012 – BR-016 | DegreeAuditCompleted | ADR-002 |
+| Institutional Clearance | Institutional Clearance Workflow | BR-021 – BR-026 | InstitutionalClearanceCompleted | ADR-008 |
+| Qualification Completion Approval | Qualification Completion Approval Workflow | BR-027 – BR-031 | QualificationCompletionApproved | ADR-005 |
+| Degree Conferment | Degree Conferment Workflow | BR-032 – BR-036 | DegreeConferred | ADR-002, ADR-005 |
+| Student Exit | Student Exit Workflow | BR-037 – BR-041 | StudentExitCompleted | ADR-003 |
+| Academic Record Finalization | Academic Record Finalization Workflow | BR-042 – BR-045 | AcademicRecordFinalized | ADR-007 |
+| Domain Event Publication | Domain Event Processing | BR-046 – BR-049 | All Domain Events | ADR-006 |
+| Audit & Compliance | Cross-Cutting Governance | BR-050 – BR-054 | Audit records generated through the Audit Infrastructure (L2-A07) | ADR-007 |
+| Security & Authorization | Security Controls | BR-055 – BR-058 | Security Audit Records | ADR-011 |
+| Configuration | Configuration Management | BR-059 – BR-063 | Configuration Audit Events | ADR-004, ADR-010 |
 
 ---
 
