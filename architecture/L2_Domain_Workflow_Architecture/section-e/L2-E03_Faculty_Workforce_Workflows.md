@@ -46,7 +46,7 @@
 | Domain-Driven Design | Bounded context, aggregates, domain ownership |
 | CQRS | Separation of commands and queries |
 | Event-Driven Architecture | Domain event communication |
-| Enterprise Integration Patterns | Cross-domain interaction |
+| Enterprise Integration Patterns | Multi-domain interaction |
 | SutraERP Architecture Principles | Domain separation and ownership |
 
 ---
@@ -705,12 +705,12 @@ The following capabilities SHALL NOT belong to E03.
 Owned by:
 
 ```text
-HR / Identity Domain
+E07 Employee Profile
 ```
 
 Includes:
 
-- Employee master record
+- Employee profile record
 - Personal identity information
 - Employment number generation
 - Employee lifecycle
@@ -1033,7 +1033,7 @@ EmployeeUpdated
 
 HR owns:
 
-- Employee master identity
+- Employee profile identity
 - Employment relationship
 - Contract information
 - Payroll-related status
@@ -1868,7 +1868,7 @@ This section defines the authoritative ownership boundaries of the **L2-E03 Facu
 The objective is to prevent:
 
 - Duplicate ownership
-- Cross-domain responsibility conflicts
+- Multi-domain responsibility conflicts
 - Data inconsistency
 - Workflow duplication
 - Architectural boundary erosion
@@ -1972,7 +1972,7 @@ The following capabilities SHALL be exclusively owned by E03.
 
 ## E03 Does Not Own
 
-- Employee master identity
+- Employee profile identity
 - Government identity records
 - Payroll identifiers
 
@@ -5288,7 +5288,7 @@ A domain event is:
 
 Domain events enable:
 
--   Cross-domain communication
+-   Multi-domain communication
 -   Event-driven architecture
 -   Audit traceability
 -   Workflow integration
@@ -11016,7 +11016,7 @@ The document SHALL maintain:
 -   Correct file naming.
 -   Consistent section structure.
 -   Mermaid diagram compatibility.
--   Cross-domain reference consistency.
+-   Multi-domain reference consistency.
 -   Alignment with SutraERP architecture standards.
 
 ------------------------------------------------------------------------

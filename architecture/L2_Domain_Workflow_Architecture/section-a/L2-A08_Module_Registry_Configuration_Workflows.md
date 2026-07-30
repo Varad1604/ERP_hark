@@ -4405,7 +4405,7 @@ Audit Infrastructure determines how audit information is recorded and preserved.
 
 ---
 
-## 19.11 Cross-Domain Responsibilities
+## 19.11 Multi-Domain Responsibilities
 
 The following table summarizes responsibility allocation.
 
@@ -4436,7 +4436,7 @@ Security and audit integration enforce the following invariants.
 - The Module Registry shall publish only events for concepts it canonically owns.
 - Audit recording shall remain the responsibility of Audit Infrastructure.
 - Security responsibilities shall never duplicate platform services.
-- Cross-domain integration shall preserve canonical ownership boundaries.
+- Multi-domain integration shall preserve canonical ownership boundaries.
 - Every governance action shall remain fully traceable across the Platform Foundation.
 
 These invariants ensure secure, auditable, and well-governed integration while maintaining the architectural separation of responsibilities established throughout the SutraERP Platform Foundation.
@@ -4464,7 +4464,7 @@ Architectural invariants are established to:
 - Support long-term maintainability.
 - Enable predictable governance.
 - Preserve historical integrity.
-- Protect cross-domain consistency.
+- Protect multi-domain consistency.
 
 ---
 
@@ -4510,7 +4510,7 @@ The following ownership invariants shall always hold.
 - Every capability shall belong to exactly one module.
 - Module ownership shall not be duplicated by any other domain.
 - Architectural metadata shall be managed only by the Module Registry.
-- Cross-domain integrations shall respect established ownership boundaries.
+- Multi-domain integrations shall respect established ownership boundaries.
 
 ---
 
@@ -4574,7 +4574,7 @@ Repository documentation shall satisfy the following requirements.
 
 ---
 
-## 20.10 Cross-Domain Invariants
+## 20.10 Multi-Domain Invariants
 
 The Module Registry shall maintain the following relationships with other Platform Foundation domains.
 
@@ -4588,7 +4588,7 @@ The Module Registry shall maintain the following relationships with other Platfo
 | L2-A06 — Event Infrastructure Workflows | Distributes published Domain Events. |
 | L2-A07 — Audit Infrastructure Workflows | Preserves immutable governance history. |
 
-Cross-domain collaboration shall not alter canonical ownership boundaries.
+Multi-domain collaboration shall not alter canonical ownership boundaries.
 
 ---
 
@@ -4619,7 +4619,7 @@ Architectural compliance shall verify that:
 - Dependencies remain consistent.
 - Repository references remain complete.
 - Architectural documentation remains synchronized.
-- Cross-domain relationships remain correct.
+- Multi-domain relationships remain correct.
 - Repository standards remain satisfied.
 
 ---
@@ -4635,7 +4635,7 @@ The following conditions represent architectural non-compliance.
 - Unauthorized governance changes.
 - Inconsistent architectural terminology.
 - Invalid dependency relationships.
-- Broken cross-domain ownership boundaries.
+- Broken multi-domain ownership boundaries.
 
 Architectural non-compliance shall prevent governance progression until resolved.
 
@@ -4651,7 +4651,7 @@ Successful compliance ensures:
 - Accurate dependency analysis.
 - Complete historical traceability.
 - Stable repository evolution.
-- Consistent cross-domain integration.
+- Consistent multi-domain integration.
 - Long-term maintainability.
 
 ---
@@ -4664,7 +4664,7 @@ The Module Registry shall permanently preserve the following enterprise invarian
 - Architectural metadata shall have a single source of truth.
 - Lifecycle progression shall remain governed.
 - Historical architectural information shall remain immutable.
-- Cross-domain ownership boundaries shall never be violated.
+- Multi-domain ownership boundaries shall never be violated.
 - Repository traceability shall remain complete.
 - Architectural terminology shall remain consistent throughout the repository.
 - Repository compliance shall be maintained independently of implementation technologies.
@@ -4801,7 +4801,7 @@ The following checklist summarizes the expected characteristics of a compliant M
 | CQRS Model | Defined |
 | Domain Events | Defined |
 | Repository Traceability | Complete |
-| Cross-Domain Integration | Defined |
+| Multi-Domain Integration | Defined |
 
 This checklist provides a high-level verification reference for architectural reviews.
 

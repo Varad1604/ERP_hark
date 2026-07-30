@@ -287,7 +287,7 @@ The Platform shall act as the single authoritative foundation responsible for:
 - Context resolution
 - Shared platform capabilities
 - Platform-wide configuration
-- Cross-domain architectural consistency
+- Multi-domain architectural consistency
 
 Business domains shall consume these capabilities without duplicating or redefining them.
 
@@ -504,7 +504,7 @@ Examples:
 - Shared Events
 - Platform Contracts
 - Context Propagation
-- Cross-Domain Communication Standards
+- Multi-Domain Communication Standards
 
 ---
 
@@ -568,7 +568,7 @@ The following dependency rules are mandatory.
 2. Business domains shall consume Platform capabilities.
 3. Shared Platform Services shall remain independent of business logic.
 4. Circular dependencies are prohibited.
-5. Platform contracts shall govern all cross-domain interactions.
+5. Platform contracts shall govern all multi-domain interactions.
 6. Every dependency shall be explicit and traceable.
 7. Canonical ownership determines dependency direction.
 
@@ -618,7 +618,7 @@ The following constraints are mandatory.
 3. Shared capabilities shall be implemented once.
 4. Every architectural capability shall have exactly one owner.
 5. Architectural dependencies shall remain acyclic.
-6. Cross-domain interaction shall occur through published platform contracts.
+6. Multi-domain interaction shall occur through published platform contracts.
 7. Tenant isolation shall be preserved across all Platform capabilities.
 8. Future architectural evolution shall remain compatible with the Platform Foundation.
 
@@ -1229,7 +1229,7 @@ The Context Resolution Foundation exists to:
 - Provide a consistent operational context.
 - Prevent duplicate context resolution.
 - Preserve security boundaries.
-- Enable cross-domain interoperability.
+- Enable multi-domain interoperability.
 - Standardize request execution.
 - Support scalable platform operations.
 
@@ -1439,7 +1439,7 @@ Propagation shall be transparent to business domains.
 
 ---
 
-# 4.11 Cross-Domain Context Contract
+# 4.11 Multi-Domain Context Contract
 
 The Platform publishes the Canonical Execution Context as a shared architectural contract.
 
@@ -2184,7 +2184,7 @@ The Shared Platform Services framework exists to:
 - Standardize common capabilities.
 - Simplify business-domain implementation.
 - Centralize platform governance.
-- Enable cross-domain interoperability.
+- Enable multi-domain interoperability.
 - Improve maintainability.
 - Reduce implementation complexity.
 - Support enterprise scalability.
@@ -2378,7 +2378,7 @@ Shared Platform Services shall satisfy the following dependency principles.
 
 ---
 
-# 7.14 Cross-Domain Usage
+# 7.14 Multi-Domain Usage
 
 Multiple domains may simultaneously consume the same Shared Platform Service.
 
@@ -2452,7 +2452,7 @@ The following constraints apply.
 - Business domains shall not duplicate shared capabilities.
 - Service ownership shall never overlap.
 - Service contracts shall remain stable and versioned.
-- Cross-domain interaction shall occur through published contracts.
+- Multi-domain interaction shall occur through published contracts.
 - Shared services shall remain technology independent.
 - Future Platform Services shall preserve existing architectural contracts.
 - Governance applies throughout the complete service lifecycle.
@@ -2858,7 +2858,7 @@ The Platform Dependency Contract exists to:
 
 - Prevent circular dependencies.
 - Preserve layered architecture.
-- Standardize cross-domain interaction.
+- Standardize multi-domain interaction.
 - Define dependency ownership.
 - Enable independent domain evolution.
 - Protect Platform stability.
@@ -2970,9 +2970,9 @@ Business domains shall never depend directly upon another domain's internal impl
 
 ---
 
-# 9.9 Cross-Domain Dependencies
+# 9.9 Multi-Domain Dependencies
 
-Cross-domain interaction shall occur through approved architectural contracts.
+Multi-domain interaction shall occur through approved architectural contracts.
 
 ```text
 Admission Domain
@@ -3118,7 +3118,7 @@ The following constraints apply.
 - Business domains shall not bypass Platform contracts.
 - Shared Platform Services shall remain the preferred integration mechanism where applicable.
 - Providers shall not depend upon Consumers.
-- Cross-domain implementation dependencies are prohibited.
+- Multi-domain implementation dependencies are prohibited.
 - Dependency contracts shall be versioned.
 - Future dependencies shall comply with this contract.
 - Dependency governance is mandatory for every architectural change.

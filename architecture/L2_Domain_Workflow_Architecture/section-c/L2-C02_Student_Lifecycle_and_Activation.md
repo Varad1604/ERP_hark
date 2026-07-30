@@ -66,7 +66,7 @@ The Student Lifecycle Domain provides:
 - Programme Association
 - Academic Relationship Management
 - Administrative Activation
-- Cross-domain Student Master Data
+- Multi-domain Student Master Data
 
 It intentionally does **not** own academic teaching, finance, attendance, examinations, hostel operations, or library transactions.
 
@@ -599,7 +599,7 @@ The following invariants shall always hold true:
 - Deleted students shall never be physically removed.
 - Duplicate active Student identities are prohibited.
 - Every aggregate modification shall produce an audit record.
-- Cross-domain updates shall occur only through approved contracts.
+- Multi-domain updates shall occur only through approved contracts.
 
 ---
 
@@ -750,7 +750,7 @@ Downstream domains may invoke these workflows through approved service contracts
 
 ---
 
-# 7.7 Cross-Domain Participation
+# 7.7 Multi-Domain Participation
 
 | Workflow | External Domain Participation |
 |----------|-------------------------------|
@@ -765,7 +765,7 @@ Downstream domains may invoke these workflows through approved service contracts
 | Qualification Completion Handoff | Academic Delivery / Examination |
 | Exit / Archive | Alumni / Analytics / Audit |
 
-Cross-domain participation shall occur only through canonical service contracts and domain events.
+Multi-domain participation shall occur only through canonical service contracts and domain events.
 
 ---
 
@@ -1655,7 +1655,7 @@ E --> F[Complete]
 
 The **Student Document & Certificate Request Workflow** governs the canonical business process through which a Student requests institution-issued documents and certificates during or after their academic lifecycle.
 
-This workflow establishes the Student Lifecycle Domain as the authoritative owner of document request initiation, eligibility validation, request lifecycle management, approval orchestration, and cross-domain coordination while preserving the **Document Services Domain** as the exclusive owner of document generation, rendering, issuance, storage, verification, and lifecycle management of generated documents.
+This workflow establishes the Student Lifecycle Domain as the authoritative owner of document request initiation, eligibility validation, request lifecycle management, approval orchestration, and multi-domain coordination while preserving the **Document Services Domain** as the exclusive owner of document generation, rendering, issuance, storage, verification, and lifecycle management of generated documents.
 
 The workflow provides a standardized mechanism for requesting institution-issued documents while ensuring policy compliance, institutional approvals, auditability, and secure delegation to downstream document generation services.
 
@@ -1691,7 +1691,7 @@ This workflow governs:
 - Request rejection
 - Request tracking
 - Audit generation
-- Cross-domain coordination
+- Multi-domain coordination
 - Notification initiation
 
 This workflow does **not** govern:
@@ -1792,7 +1792,7 @@ Successful workflow execution produces:
 - Audit Record
 - StudentDocumentRequested event
 - Notification Request
-- Cross-domain document generation request
+- Multi-domain document generation request
 
 ---
 
@@ -1815,7 +1815,7 @@ Failures shall not modify business state.
 
 ---
 
-## WF-C02-11.10 Cross-Domain Dependencies
+## WF-C02-11.10 Multi-Domain Dependencies
 
 | Domain | Purpose |
 |----------|----------------------------------------------|
@@ -2113,7 +2113,7 @@ Successful workflow execution produces:
 - StudentProfileUpdated event
 - Notification Request
 - Updated Read Models
-- Cross-domain synchronization request
+- Multi-domain synchronization request
 
 ---
 
@@ -2134,7 +2134,7 @@ Failures shall not modify business state.
 
 ---
 
-## WF-C02-12.12 Cross-Domain Dependencies
+## WF-C02-12.12 Multi-Domain Dependencies
 
 | Domain | Purpose |
 |----------|----------------------------------------------|
@@ -2437,7 +2437,7 @@ Failures shall not modify business state.
 
 ---
 
-## WF-C02-13.11 Cross-Domain Dependencies
+## WF-C02-13.11 Multi-Domain Dependencies
 
 | Domain | Purpose |
 |----------|----------------------------------------------|
@@ -2739,7 +2739,7 @@ Failures shall not modify business state.
 
 ---
 
-## WF-C02-14.11 Cross-Domain Dependencies
+## WF-C02-14.11 Multi-Domain Dependencies
 
 | Domain | Purpose |
 |----------|----------------------------------------------|
@@ -2895,7 +2895,7 @@ The objectives of this workflow are to:
 - Synchronize corrected identity information.
 - Maintain complete audit history.
 - Preserve regulatory compliance.
-- Protect cross-domain referential integrity.
+- Protect multi-domain referential integrity.
 
 ---
 
@@ -3022,7 +3022,7 @@ Successful workflow execution produces:
 - Historical identity record
 - Audit record
 - StudentIdentityCorrected event
-- Cross-domain synchronization request
+- Multi-domain synchronization request
 - Notification request
 
 ---
@@ -3043,7 +3043,7 @@ Failures shall not modify business state.
 
 ---
 
-## WF-C02-15.11 Cross-Domain Dependencies
+## WF-C02-15.11 Multi-Domain Dependencies
 
 | Domain | Purpose |
 |----------|----------------------------------------------|
@@ -3168,7 +3168,7 @@ style P fill:#2E7D32,color:#fff
 
 ## WF-C02-15.16 Summary
 
-The Student Identity Correction Workflow establishes the canonical process for correcting legally significant Student identity information while preserving immutable primary identifiers, historical traceability, institutional governance, and cross-domain consistency. By requiring documentary evidence, configurable approvals, comprehensive auditing, and event-driven synchronization, the workflow ensures that identity corrections remain secure, compliant, and fully governed throughout the SutraERP platform.
+The Student Identity Correction Workflow establishes the canonical process for correcting legally significant Student identity information while preserving immutable primary identifiers, historical traceability, institutional governance, and multi-domain consistency. By requiring documentary evidence, configurable approvals, comprehensive auditing, and event-driven synchronization, the workflow ensures that identity corrections remain secure, compliant, and fully governed throughout the SutraERP platform.
 
 ---
 
@@ -3215,7 +3215,7 @@ This workflow governs:
 - Reference migration
 - Duplicate archival
 - Merge audit history
-- Cross-domain synchronization
+- Multi-domain synchronization
 
 This workflow does **not** govern:
 
@@ -3362,7 +3362,7 @@ Failures shall not modify business state.
 
 ---
 
-## WF-C02-16.12 Cross-Domain Dependencies
+## WF-C02-16.12 Multi-Domain Dependencies
 
 | Domain | Purpose |
 |----------|----------------------------------------------|
@@ -3500,7 +3500,7 @@ style Q fill:#2E7D32,color:#fff
 
 ## WF-C02-16.17 Summary
 
-The Student Merge & Duplicate Resolution Workflow establishes the canonical Master Data Management (MDM) process for resolving duplicate Student records across the SutraERP platform. By enforcing governed duplicate validation, controlled survivor selection, attribute reconciliation, immutable auditing, and event-driven synchronization, the workflow preserves a single authoritative Student identity while maintaining referential integrity, historical traceability, and consistent cross-domain interoperability throughout the enterprise.
+The Student Merge & Duplicate Resolution Workflow establishes the canonical Master Data Management (MDM) process for resolving duplicate Student records across the SutraERP platform. By enforcing governed duplicate validation, controlled survivor selection, attribute reconciliation, immutable auditing, and event-driven synchronization, the workflow preserves a single authoritative Student identity while maintaining referential integrity, historical traceability, and consistent multi-domain interoperability throughout the enterprise.
 
 ---
 
@@ -3636,12 +3636,12 @@ All implementations shall enforce these rules before committing business transac
 
 ---
 
-# 9.10 Cross-Domain Rules
+# 9.10 Multi-Domain Rules
 
 | Rule ID | Business Rule |
 |----------|---------------|
 | BR-C02-041 | Downstream domains shall consume Student data through approved contracts only. |
-| BR-C02-042 | Cross-domain updates shall not directly modify the Student Aggregate. |
+| BR-C02-042 | Multi-domain updates shall not directly modify the Student Aggregate. |
 | BR-C02-043 | Domain ownership shall remain exclusive to the Student Lifecycle Domain. |
 | BR-C02-044 | Domain events shall be immutable. |
 | BR-C02-045 | Service contracts shall remain version controlled. |
@@ -3747,7 +3747,7 @@ The following rules govern controlled correction of Student identity information
 | BR-C02-086 | Supporting evidence shall be recorded where required. |
 | BR-C02-087 | Identity corrections shall be fully auditable. |
 | BR-C02-088 | Previous identity values shall remain historically traceable. |
-| BR-C02-089 | Identity corrections shall preserve cross-domain referential integrity. |
+| BR-C02-089 | Identity corrections shall preserve multi-domain referential integrity. |
 | BR-C02-090 | Identity correction shall publish a canonical domain event. |
 | BR-C02-091 | Identity correction shall not create duplicate Student identities. |
 
@@ -4119,7 +4119,7 @@ Typical business scenarios include:
 - Reporting synchronization
 - Notification generation
 - Institutional dashboards
-- Cross-domain policy evaluation
+- Multi-domain policy evaluation
 
 Consumer domains shall not infer specialised lifecycle transitions from this event when a dedicated canonical event exists.
 
@@ -5032,7 +5032,7 @@ The Domain Events defined within the Student Lifecycle Domain establish the cano
 
 Each published event represents an immutable business fact that has successfully completed within the Student Lifecycle Domain and serves as the authoritative notification mechanism for downstream academic, administrative, analytical, and operational domains.
 
-By enforcing strict domain ownership, standardized event structures, version-controlled schemas, reliable publication mechanisms, governed evolution, and idempotent consumption, the architecture enables loosely coupled, highly scalable, and operationally resilient cross-domain communication without compromising aggregate consistency or business integrity.
+By enforcing strict domain ownership, standardized event structures, version-controlled schemas, reliable publication mechanisms, governed evolution, and idempotent consumption, the architecture enables loosely coupled, highly scalable, and operationally resilient multi-domain communication without compromising aggregate consistency or business integrity.
 
 Together with the Platform Event Infrastructure, these Domain Events provide the foundation for enterprise-wide event-driven architecture across cloud, hybrid, and on-premises deployments while preserving long-term maintainability, interoperability, auditability, and deployment independence throughout the SutraERP ecosystem.
 
@@ -5047,7 +5047,7 @@ The state model ensures:
 
 - Predictable business behavior
 - Lifecycle integrity
-- Consistent cross-domain interactions
+- Consistent multi-domain interactions
 - Complete auditability
 - Deterministic workflow execution
 
@@ -5310,7 +5310,7 @@ The following conditions shall always remain true:
 - Every transition publishes a domain event.
 - Historical states remain immutable.
 - Invalid transitions are rejected.
-- Cross-domain systems consume state changes through canonical events or service contracts.
+- Multi-domain systems consume state changes through canonical events or service contracts.
 - Lifecycle execution shall remain deterministic.
 
 ---
@@ -6936,7 +6936,7 @@ By combining Role-Based Access Control (RBAC), Attribute-Based Access Control (A
 
 This authorization model preserves strict ownership of the Student Aggregate, protects sensitive institutional information, supports regulatory compliance, and provides a secure, scalable, and maintainable authorization foundation fully aligned with the canonical Platform Authorization Framework of the SutraERP architecture.
 
-# 14. Cross-Domain Integrations
+# 14. Multi-Domain Integrations
 
 ## 14.1 Overview
 
@@ -6948,8 +6948,8 @@ To preserve architectural integrity:
 
 - Student Lifecycle owns Student Master data.
 - Downstream domains consume Student information.
-- Cross-domain communication occurs only through approved Service Contracts and Domain Events.
-- Direct database access across domains is prohibited.
+- Multi-domain communication occurs only through approved Service Contracts and Domain Events.
+- Direct database access amulti-domains is prohibited.
 
 ---
 
@@ -6993,7 +6993,7 @@ The Student Lifecycle Domain supports the following integration patterns.
 |----------|--------------------------------------------|---------------------------------------------|
 | Synchronous Service Calls | Real-time validation and queries | ValidateStudent(), GetStudentIdentity() |
 | Asynchronous Domain Events | Business state propagation | StudentCreated, StudentQualificationCompleted |
-| Workflow Integration | Cross-domain orchestration | Student lifecycle execution |
+| Workflow Integration | Multi-domain orchestration | Student lifecycle execution |
 | Read Model Consumption | Reporting and analytics | Dashboards, KPIs |
 | Configuration Lookup | Policy-driven execution | Institutional policies |
 
@@ -7044,7 +7044,7 @@ Consumer domains shall never assume ownership of Student business data.
 
 ---
 
-# 14.5 Cross-Domain Integration Matrix
+# 14.5 Multi-Domain Integration Matrix
 
 | Domain | Query Services | Command Services | Consumes Events | Publishes Events to Student Domain |
 |----------|---------------|------------------|-----------------|-------------------------------------|
@@ -7171,13 +7171,13 @@ The following architectural constraints govern every integration involving the S
 | INT-C02-002 | External domains shall never modify Student business data directly. |
 | INT-C02-003 | Synchronous communication shall occur only through approved Service Contracts. |
 | INT-C02-004 | Asynchronous communication shall occur only through canonical Domain Events. |
-| INT-C02-005 | Cross-domain transactions shall preserve eventual consistency. |
+| INT-C02-005 | Multi-domain transactions shall preserve eventual consistency. |
 | INT-C02-006 | Service Contracts and Domain Events shall remain version controlled. |
 | INT-C02-007 | Breaking integration changes require Architecture Review Board approval. |
 | INT-C02-008 | Circular dependencies between business domains are prohibited. |
 | INT-C02-009 | Event consumers shall implement idempotent processing. |
 | INT-C02-010 | Integration shall preserve tenant isolation. |
-| INT-C02-011 | Cross-domain communication shall remain technology independent. |
+| INT-C02-011 | Multi-domain communication shall remain technology independent. |
 | INT-C02-012 | Integration failures shall never compromise Student Aggregate consistency. |
 | INT-C02-013 | Consumer domains shall tolerate temporary service unavailability through resilient integration patterns. |
 | INT-C02-014 | Direct database sharing between business domains is strictly prohibited. |
@@ -7223,7 +7223,7 @@ The following architectural constraints govern every integration involving the S
 
 The Student Lifecycle Domain serves as the canonical provider of Student identity, lifecycle, enrollment, and academic assignment information for the SutraERP ecosystem.
 
-All cross-domain communication shall preserve domain ownership and comply with approved Service Contracts or Domain Events.
+All multi-domain communication shall preserve domain ownership and comply with approved Service Contracts or Domain Events.
 
 ---
 
@@ -7238,7 +7238,7 @@ Every integration involving the Student Lifecycle Domain shall comply with the f
 - Breaking changes require Architecture Review Board (ARB) approval.
 - Consumer domains shall tolerate duplicate event delivery through idempotent processing.
 - Integration retries shall never produce duplicate business operations.
-- Cross-domain communication shall remain technology independent.
+- Multi-domain communication shall remain technology independent.
 - All integrations shall preserve tenant isolation.
 - Integration failures shall be observable through centralized logging, metrics, tracing, and immutable audit records.
 - Every integration shall include Correlation ID for end-to-end traceability.
@@ -7254,7 +7254,7 @@ All future integrations shall conform to the canonical enterprise integration ar
 
 # 14.11 Workflow Integration Matrix
 
-The following matrix summarizes the primary cross-domain interactions performed by each governed Student Lifecycle workflow.
+The following matrix summarizes the primary multi-domain interactions performed by each governed Student Lifecycle workflow.
 
 | Workflow | Upstream Dependencies | Downstream Consumers |
 |----------|------------------------------------------------------|--------------------------------------------------------------|
@@ -7282,7 +7282,7 @@ This matrix provides an implementation reference for service orchestration, even
 
 # 14.12 Summary
 
-The Cross-Domain Integration architecture establishes the Student Lifecycle Domain as the canonical provider of Student identity, enrollment, academic assignment, and lifecycle information across the SutraERP platform.
+The Multi-Domain Integration architecture establishes the Student Lifecycle Domain as the canonical provider of Student identity, enrollment, academic assignment, and lifecycle information across the SutraERP platform.
 
 Through governed Service Contracts, immutable Domain Events, standardized integration patterns, strict ownership boundaries, and configuration-driven integration governance, the Student Lifecycle Domain enables reliable, scalable, and loosely coupled collaboration among all academic and administrative domains.
 
@@ -7763,7 +7763,7 @@ The Validation Framework shall achieve the following architectural objectives.
 | Academic Integrity | Validate academic references before assignment. |
 | Authorization Compliance | Prevent unauthorized operations. |
 | Configuration Compliance | Enforce active institutional policies. |
-| Cross-Domain Consistency | Validate external references through approved service contracts. |
+| Multi-Domain Consistency | Validate external references through approved service contracts. |
 | Regulatory Compliance | Enforce institution and regulatory requirements. |
 | Auditability | Record governed validation outcomes where required. |
 
@@ -7800,7 +7800,7 @@ Lifecycle Validation
 Academic & Enrollment Validation
         │
         ▼
-Cross-Domain Validation
+Multi-Domain Validation
         │
         ▼
 Configuration Validation
@@ -8011,9 +8011,9 @@ Authorization failures shall terminate request processing immediately and shall 
 
 ---
 
-# 16.10 Cross-Domain Validation
+# 16.10 Multi-Domain Validation
 
-Cross-domain validation verifies dependent business entities.
+Multi-domain validation verifies dependent business entities.
 
 | Validation ID | Rule |
 |---------------|------------------------------------------------|
@@ -8023,9 +8023,9 @@ Cross-domain validation verifies dependent business entities.
 | VAL-C02-034 | Academic Session shall exist. |
 | VAL-C02-035 | External references shall be validated using approved service contracts. |
 
-### Cross-Domain Validation Governance
+### Multi-Domain Validation Governance
 
-Cross-domain validation verifies references owned by external business domains while preserving strict domain ownership.
+Multi-domain validation verifies references owned by external business domains while preserving strict domain ownership.
 
 Validation shall occur exclusively through approved Service Contracts.
 
@@ -8040,7 +8040,7 @@ Typical validations include:
 - Academic Session verification.
 - External reference integrity.
 
-Cross-domain validation shall never directly access another domain's database or persistence model.
+Multi-domain validation shall never directly access another domain's database or persistence model.
 
 
 ---
@@ -8092,7 +8092,7 @@ Validation failures shall return standardized business errors.
 | STU-VAL-007 | Invalid Institution Reference |
 | STU-VAL-008 | Invalid Configuration |
 | STU-VAL-009 | Missing Mandatory Data |
-| STU-VAL-010 | Cross-Domain Validation Failed |
+| STU-VAL-010 | Multi-Domain Validation Failed |
 
 ### Validation Error Governance
 
@@ -8124,7 +8124,7 @@ The Validation Framework shall comply with the following governance requirements
 | Configuration | Institutions may extend configurable validations without violating canonical rules. |
 | Auditability | Governed validation outcomes shall be auditable. |
 | Security | Authorization validation shall execute before protected business validation. |
-| Ownership | Cross-domain validation shall preserve domain ownership boundaries. |
+| Ownership | Multi-domain validation shall preserve domain ownership boundaries. |
 | Consistency | Validation behavior shall remain consistent across all deployment models. |
 | Extensibility | Additional validation rules shall be introduced without breaking existing behavior. |
 
@@ -8144,7 +8144,7 @@ The validation framework shall support monitoring of:
 | Validation Failure Rate | Identify recurring validation failures |
 | Most Frequent Validation Errors | Improve business usability |
 | Average Validation Duration | Monitor validation performance |
-| Cross-Domain Validation Failures | Detect upstream dependency issues |
+| Multi-Domain Validation Failures | Detect upstream dependency issues |
 | Authorization Failure Trends | Detect security anomalies |
 | Configuration Validation Failures | Detect configuration quality issues |
 
@@ -8170,7 +8170,7 @@ These quality attributes shall guide future evolution of the Validation Framewor
 
 # 16.16 Summary
 
-The Validation Framework establishes the canonical protection mechanism for the Student Lifecycle Domain by enforcing layered, deterministic, and policy-driven validation before any business state modification occurs. Through governed validation of identity, lifecycle transitions, academic assignments, enrollment, authorization, configuration, and cross-domain dependencies, the framework preserves the integrity of the Student Aggregate while ensuring security, regulatory compliance, auditability, and enterprise-wide consistency.
+The Validation Framework establishes the canonical protection mechanism for the Student Lifecycle Domain by enforcing layered, deterministic, and policy-driven validation before any business state modification occurs. Through governed validation of identity, lifecycle transitions, academic assignments, enrollment, authorization, configuration, and multi-domain dependencies, the framework preserves the integrity of the Student Aggregate while ensuring security, regulatory compliance, auditability, and enterprise-wide consistency.
 
 By combining standardized validation pipelines, governed validation rules, comprehensive observability, and extensible architecture, the framework provides a robust foundation for reliable execution of all Student Lifecycle operations across the SutraERP platform.
 
@@ -8184,7 +8184,7 @@ The objective is to ensure that failures do not compromise:
 
 - Student data integrity
 - Lifecycle consistency
-- Cross-domain synchronization
+- Multi-domain synchronization
 - Auditability
 - Regulatory compliance
 - Platform stability
@@ -8207,7 +8207,7 @@ The Student Lifecycle Domain follows the canonical Platform Exception Handling F
 | Immutable Audit Trail | Exception handling shall preserve complete auditability. |
 | Standardized Error Contracts | Consumers shall receive governed error responses. |
 | Idempotent Retry Support | Retry operations shall safely handle duplicate execution where applicable. |
-| Eventual Consistency | Cross-domain consistency shall be preserved through governed recovery mechanisms. |
+| Eventual Consistency | Multi-domain consistency shall be preserved through governed recovery mechanisms. |
 | Observability | Exception execution shall support monitoring, tracing, and diagnostics. |
 
 These principles ensure consistent exception handling throughout every Student Lifecycle workflow.
@@ -8636,7 +8636,7 @@ The Audit & Compliance Framework shall achieve the following objectives.
 | Security Monitoring | Detect unauthorized or suspicious activities |
 | Forensic Investigation | Support incident response and investigations |
 | Long-Term Retention | Preserve legally significant audit records |
-| Cross-Domain Correlation | Trace transactions across multiple domains |
+| Multi-Domain Correlation | Trace transactions across multiple domains |
 | Governance Verification | Demonstrate compliance with approved architecture |
 
 The framework shall support both operational auditing and long-term institutional compliance without impacting transactional business processing.
@@ -8992,7 +8992,7 @@ The Reporting & Analytics Framework shall achieve the following objectives.
 | Executive Decision Support | Provide institution-wide dashboards and KPIs |
 | Regulatory Reporting | Support statutory and accreditation reporting |
 | Historical Analysis | Preserve long-term Student lifecycle trends |
-| Cross-Domain Analytics | Enable enterprise-wide reporting across domains |
+| Multi-Domain Analytics | Enable enterprise-wide reporting amulti-domains |
 | Read-Optimized Queries | Avoid transactional database contention |
 | Self-Service Reporting | Enable governed business reporting |
 | Predictive Analytics Readiness | Provide trusted datasets for AI and predictive models |
@@ -9579,7 +9579,7 @@ The diagrams contained within this section collectively represent:
 - Event propagation
 - Validation flow
 - Authorization model
-- Cross-domain integrations
+- Multi-domain integrations
 - Reporting architecture
 - Deployment context
 - Enterprise traceability
@@ -10958,7 +10958,7 @@ style K fill:#4CAF50,color:#fff
 style U fill:#8E24AA,color:#fff
 ```
 
-# 21.21 Cross-Domain Integration Architecture
+# 21.21 Multi-Domain Integration Architecture
 ```mermaid
 flowchart LR
 
@@ -11677,7 +11677,7 @@ These diagrams shall remain synchronized with:
 - Exception Handling
 - Configuration Model
 - Reporting Architecture
-- Cross-Domain Integrations
+- Multi-Domain Integrations
 - Architecture Decision Records (ADRs)
 
 Any architectural modification affecting these areas shall include corresponding updates to the affected visual models before approval.
@@ -11770,7 +11770,7 @@ Separating Applicant and Student lifecycles preserves clear business boundaries.
 
 ## Decision
 
-Cross-domain notifications shall use Domain Events.
+Multi-domain notifications shall use Domain Events.
 
 ## Context
 
@@ -11840,7 +11840,7 @@ Immutable identifiers simplify:
 - Referential integrity
 - Audit
 - Reporting
-- Cross-domain relationships
+- Multi-domain relationships
 
 ## Consequences
 
@@ -11925,7 +11925,7 @@ Business logic remains reusable across deployments.
 
 ---
 
-# 22.10 ADR-C02-009 — Cross-Domain Communication Shall Preserve Domain Ownership
+# 22.10 ADR-C02-009 — Multi-Domain Communication Shall Preserve Domain Ownership
 
 ## Decision
 
@@ -12212,7 +12212,7 @@ Unless explicitly superseded by a platform-wide glossary, the definitions in thi
 | Downstream Domain | Domain consuming Student Lifecycle information. |
 | Event-Driven Integration | Communication through published domain events. |
 | Synchronous Integration | Real-time communication using service contracts. |
-| Eventual Consistency | Consistency achieved across domains after asynchronous processing. |
+| Eventual Consistency | Consistency achieved amulti-domains after asynchronous processing. |
 | Consumer | Domain or service subscribing to published events or APIs. |
 | Publisher | Domain responsible for publishing canonical Domain Events. |
 | Integration Contract | A governed agreement defining how two domains communicate using Service Contracts or Domain Events. |
@@ -12287,7 +12287,7 @@ The following governance rules apply to terminology used within the Student Life
 - Domain-specific terminology shall not conflict with canonical platform definitions.
 - Glossary updates shall follow architecture version control procedures.
 - Canonical workflow names shall remain consistent across workflows, service contracts, domain events, visual models, and architecture decision records.
-- Business terminology shall not be duplicated with conflicting meanings across domains.
+- Business terminology shall not be duplicated with conflicting meanings amulti-domains.
 - Renamed architectural concepts shall be updated throughout the repository as part of the same architecture change.
 ---
 
@@ -12295,7 +12295,7 @@ The following governance rules apply to terminology used within the Student Life
 
 The Glossary establishes the canonical vocabulary for the Student Lifecycle Domain, providing standardized definitions for business concepts, lifecycle states, architectural constructs, security terminology, audit and compliance concepts, integration patterns, reporting terminology, configuration models, and commonly used abbreviations.
 
-By maintaining a single, governed source of terminology, the glossary ensures consistent interpretation across business stakeholders, architects, developers, testers, implementation teams, and operational users. It minimizes ambiguity, strengthens cross-domain communication, supports architecture governance, and ensures that all workflows, service contracts, domain events, visual models, and implementation artifacts use a common and consistent language throughout the SutraERP platform.
+By maintaining a single, governed source of terminology, the glossary ensures consistent interpretation across business stakeholders, architects, developers, testers, implementation teams, and operational users. It minimizes ambiguity, strengthens multi-domain communication, supports architecture governance, and ensures that all workflows, service contracts, domain events, visual models, and implementation artifacts use a common and consistent language throughout the SutraERP platform.
 
 # 24. Domain Summary
 
@@ -12593,7 +12593,7 @@ The Student Lifecycle Domain shall comply with the following architecture requir
 | Audit Framework Defined | ✓ |
 | Reporting Framework Defined | ✓ |
 | Configuration Model Defined | ✓ |
-| Cross-Domain Integrations Defined | ✓ |
+| Multi-Domain Integrations Defined | ✓ |
 | Non-Functional Requirements Defined | ✓ |
 | ADRs Documented | ✓ |
 | Glossary Included | ✓ |
@@ -12649,7 +12649,7 @@ This document completely defines the canonical architecture of the Student Lifec
 - Service contracts
 - Integration contracts
 - Authorization model
-- Cross-domain integrations
+- Multi-domain integrations
 - Configuration model
 - Validation framework
 - Exception handling
@@ -12741,7 +12741,7 @@ Architecture reviews shall verify:
 - Business consistency
 - Aggregate integrity
 - Workflow correctness
-- Cross-domain dependencies
+- Multi-domain dependencies
 - Service contract compatibility
 - Event compatibility
 - Aggregate invariant compliance
@@ -12868,7 +12868,7 @@ This matrix serves as a verification artifact during architecture reviews and im
 | Lifecycle Validation | Section 16 |
 | Authorization Validation | Section 16 |
 | Configuration Validation | Section 16 |
-| Cross-Domain Validation | Section 16 |
+| Multi-Domain Validation | Section 16 |
 
 ---
 
@@ -12892,7 +12892,7 @@ This matrix serves as a verification artifact during architecture reviews and im
 |------------------|-------------------|
 | Service Contracts | Section 12 |
 | Domain Events | Section 10 |
-| Cross-Domain Integration | Section 14 |
+| Multi-Domain Integration | Section 14 |
 | Validation Dependencies | Section 16 |
 | Reporting Integration | Section 19 |
 
@@ -12930,7 +12930,7 @@ This matrix serves as a verification artifact during architecture reviews and im
 | State Model | ✓ Complete |
 | Service Contracts | ✓ Complete |
 | Authorization | ✓ Complete |
-| Cross-Domain Integration | ✓ Complete |
+| Multi-Domain Integration | ✓ Complete |
 | Configuration Model | ✓ Complete |
 | Validation Framework | ✓ Complete |
 | Exception Handling | ✓ Complete |
@@ -12976,7 +12976,7 @@ The objective is to provide architects, developers, reviewers, QA teams, impleme
 | 11 | State Model |
 | 12 | Service Contracts |
 | 13 | Authorization & Access Control |
-| 14 | Cross-Domain Integrations |
+| 14 | Multi-Domain Integrations |
 | 15 | Configuration Model |
 | 16 | Validation Framework |
 | 17 | Exception Handling Framework |
@@ -13133,7 +13133,7 @@ This appendix defines the canonical dependency relationships between the Student
 
 Its purpose is to provide implementation teams with a single authoritative reference for domain interactions, ownership boundaries, service dependencies, and event consumption.
 
-This appendix complements Section 14 (Cross-Domain Integrations) by presenting a consolidated dependency matrix.
+This appendix complements Section 14 (Multi-Domain Integrations) by presenting a consolidated dependency matrix.
 
 ---
 
@@ -13221,7 +13221,7 @@ No ownership overlap shall exist between business domains.
 
 The following governance rules apply:
 
-- Cross-domain communication shall occur only through approved Service Contracts or Domain Events.
+- Multi-domain communication shall occur only through approved Service Contracts or Domain Events.
 - Downstream domains shall never directly modify the Student Aggregate.
 - Integration contracts shall remain version-controlled.
 - Event consumers shall implement idempotent processing.
@@ -13473,7 +13473,7 @@ This matrix supports:
 | Academic Validation | Section 16 |
 | Lifecycle Validation | Section 16 |
 | Configuration Validation | Section 16 |
-| Cross-Domain Validation | Section 16 |
+| Multi-Domain Validation | Section 16 |
 | Authorization Validation | Section 16 |
 
 ---
@@ -13484,7 +13484,7 @@ This matrix supports:
 |-------------------------|-----------------------------|
 | Service Contracts | Section 12 |
 | Domain Events | Section 10 |
-| Cross-Domain Integration | Section 14 |
+| Multi-Domain Integration | Section 14 |
 | Event Publication | Sections 10 & 14 |
 | Service Consumption | Sections 12 & 14 |
 

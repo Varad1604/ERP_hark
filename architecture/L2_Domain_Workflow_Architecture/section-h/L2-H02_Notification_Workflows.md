@@ -71,7 +71,7 @@ This document defines:
 - Notification Governance
 - Security Architecture
 - Configuration Architecture
-- Cross-Domain Notification Contracts
+- Multi-Domain Notification Contracts
 
 ---
 

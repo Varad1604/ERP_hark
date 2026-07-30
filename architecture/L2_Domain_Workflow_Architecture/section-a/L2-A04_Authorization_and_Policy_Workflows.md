@@ -556,7 +556,7 @@ The Authorization domain consumes these concepts but does not redefine or own th
 
 ---
 
-# 13. Cross-Domain Dependencies
+# 13. Multi-Domain Dependencies
 
 The Authorization domain provides foundational services to every business domain.
 
@@ -2636,7 +2636,7 @@ The following invariants shall always remain true.
 - Monitoring shall remain observational.
 - Authorization traceability shall remain complete throughout the lifecycle of every protected operation.
 
-# 86. Cross-Domain Integration
+# 86. Multi-Domain Integration
 
 The Authorization domain provides centralized authorization services to every platform and business domain within SutraERP.
 
@@ -2648,7 +2648,7 @@ The Authorization domain establishes architectural contracts that define how oth
 
 # 87. Integration Principles
 
-Cross-domain integration shall follow the following principles.
+Multi-domain integration shall follow the following principles.
 
 - Authorization remains centralized.
 - Business domains own business rules.
@@ -3132,7 +3132,7 @@ AutomaticExpiry --> AuditReview
 
 ---
 
-# 98.9 Cross-Domain Integration
+# 98.9 Multi-Domain Integration
 
 ```mermaid
 flowchart LR
@@ -3373,7 +3373,7 @@ Governance observes authorization but never participates in authorization decisi
 
 ---
 
-## Cross-Domain Integration
+## Multi-Domain Integration
 
 Authorization provides centralized services for:
 

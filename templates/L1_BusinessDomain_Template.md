@@ -1,7 +1,16 @@
 # L1 Business Domain Architecture: [Domain Name]
 
+## Template Governance
+Architectural Level: L1 - Business Domain Architecture
+
+Depends On: L0 - Business Vision
+
+Expected Output: canonical business domain boundaries, ownership, and relationships.
+
+Downstream Reference: L2 Domain Workflow Architecture.
+
 ## 1. Purpose
-Define what this business domain is and its scope.
+Define what this business domain is, why it exists, and its scope within the approved architecture hierarchy.
 
 ## 2. Domain Boundaries
 What belongs in this domain and what does not.

@@ -53,7 +53,7 @@ This document defines:
 - Audit Restoration Governance
 - Audit Access Governance
 - Audit Security Model
-- Cross-Domain Audit Contracts
+- Multi-Domain Audit Contracts
 
 ---
 
@@ -194,7 +194,7 @@ The Audit Infrastructure architecture shall provide:
 - Actor accountability
 - Change attribution
 - End-to-end workflow traceability
-- Cross-domain evidence consistency
+- Multi-domain evidence consistency
 - Policy-governed audit retention
 - Multi-tenant isolation
 - Evidence integrity verification
@@ -416,7 +416,7 @@ The Audit Infrastructure is responsible for:
 - Business change attribution
 - Actor attribution
 - Context preservation
-- Cross-domain traceability
+- Multi-domain traceability
 - Audit correlation
 - Audit causation
 - Evidence integrity
@@ -594,7 +594,7 @@ The Audit Evidence aggregate shall:
 - Reference business entities
 - Preserve actor attribution
 - Preserve workflow context
-- Maintain cross-domain traceability
+- Maintain multi-domain traceability
 - Coordinate subordinate audit components
 
 ---
@@ -759,7 +759,7 @@ Correlation shall:
 
 - Group related evidence
 - Support process reconstruction
-- Enable cross-domain investigation
+- Enable multi-domain investigation
 - Preserve workflow continuity
 
 ---
@@ -2119,7 +2119,7 @@ Integration contracts remain logical architectural agreements rather than implem
 
 ---
 
-# 26. Cross-Domain Interaction Matrix
+# 26. Multi-Domain Interaction Matrix
 
 | Domain | Interaction with Audit Infrastructure |
 |---------|---------------------------------------|
@@ -2472,7 +2472,7 @@ This document is governed by and depends upon the following Level 2 architecture
 | Consumed events defined | ✓ |
 | Produced events defined | ✓ |
 | Integration contracts defined | ✓ |
-| Cross-domain interactions defined | ✓ |
+| Multi-domain interactions defined | ✓ |
 | Dependency matrix completed | ✓ |
 | Security model documented | ✓ |
 | Policy model documented | ✓ |

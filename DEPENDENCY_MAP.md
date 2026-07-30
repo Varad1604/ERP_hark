@@ -41,21 +41,35 @@ L6 - UI / UX Architecture
 
 ---
 
-## 3. Level Dependency Matrix
+## 3. Canonical Architecture Definitions
 
-| Architecture Level | Depends On | Used By | Purpose |
-|--------------------|------------|---------|---------|
-| L0 - Business Vision | None | L1 | Context, constraints, and institutional operating model |
-| L1 - Business Domain Architecture | L0 | L2, L3 | Canonical domains and ownership |
-| L2 - Domain Workflow Architecture | L1 | L3, L4 | Domain workflows, lifecycles, and boundaries |
-| L3 - Business Scenario Architecture | L1, L2 | L4, L5 | End-to-end multi-domain scenarios |
-| L4 - System Behavior Specification | L3 | L5 | Expected system behavior without solution design |
-| L5 - Solution Architecture | L4 | L6 | Engineering implementation design |
-| L6 - UI / UX Architecture | L5 | Development | Interaction and experience design |
+| Level | Name | Definition |
+|-------|------|------------|
+| L0 | Business Vision | Defines why SutraERP exists, strategic intent, architectural context, and constraints. |
+| L1 | Business Domain Architecture | Defines the canonical business domains, domain boundaries, and ownership. |
+| L2 | Domain Workflow Architecture | Defines workflows, lifecycles, rules, and dependencies within an individual business domain. |
+| L3 | Business Scenario Architecture | Defines independent end-to-end business scenarios that may derive information from one or many L2 workflow documents; L3 numbering is not dependent on L2 numbering. |
+| L4 | System Behavior Specification | Defines expected system behavior for approved business scenarios without implementation design. |
+| L5 | Solution Architecture | Defines engineering solution architecture needed to implement L4 behavior without changing business rules. |
+| L6 | UI / UX Architecture | Defines user interaction, navigation, screens, and user journeys derived from L5 solution architecture without owning business logic. |
 
 ---
 
-## 4. L1 Business Domain Dependency Graph
+## 4. Level Dependency Matrix
+
+| Architecture Level | Depends On | Used By | Purpose |
+|--------------------|------------|---------|---------|
+| L0 - Business Vision | None | L1 | Strategic intent, architectural context, and constraints |
+| L1 - Business Domain Architecture | L0 | L2 | Canonical domains, boundaries, and ownership |
+| L2 - Domain Workflow Architecture | L1 | L3 | Domain workflows, lifecycles, rules, and dependencies |
+| L3 - Business Scenario Architecture | L2 | L4 | Independent end-to-end business scenarios that may derive from one or many L2 workflow documents |
+| L4 - System Behavior Specification | L3 | L5 | Expected system behavior without implementation design |
+| L5 - Solution Architecture | L4 | L6 | Engineering solution architecture without changing business rules |
+| L6 - UI / UX Architecture | L5 | Development | Interaction, navigation, screens, and user journeys |
+
+---
+
+## 5. L1 Business Domain Dependency Graph
 
 ```text
 Section A  Platform Foundation
@@ -73,14 +87,18 @@ Section C  ----+----> Section D  Academic Delivery
 Section E  ---------------^
 Section D  ------------------> Section I  Examination
 Section C  ------------------> Section F  Finance
+Section A/B/C/D/E/F/G/I ------------> Section J  Enterprise Resource Management
 
 Section H consumes approved read contracts and published events from
 all sections but does not own canonical business entities.
+
+Cross-cutting services exposed by Section H do not, by themselves,
+create a foundational upstream dependency for every consuming section.
 ```
 
 ---
 
-## 5. L1 Business Domain Dependency Matrix
+## 6. L1 Business Domain Dependency Matrix
 
 The matrix below records **foundational architectural dependencies** only.
 Runtime event feedback does not reverse ownership or create a new upstream dependency.
@@ -96,6 +114,7 @@ Runtime event feedback does not reverse ownership or create a new upstream depen
 | Section G - Campus Operations | Sections A, B, E |
 | Section H - Institutional Services & Intelligence | All Sections |
 | Section I - Examination | Sections C, D, F |
+| Section J - Enterprise Resource Management | Sections A, B, C, D, E, F, G, I |
 
 Special rule:
 
@@ -104,7 +123,7 @@ Special rule:
 
 ---
 
-## 6. Cross-Section Dependency Principles
+## 7. Cross-Section Dependency Principles
 
 ## Section A - Platform Foundation
 
@@ -187,6 +206,7 @@ Owns workforce information.
 Examples:
 
 - Employees
+- Employee Profile
 - Faculty workforce profile
 - HR
 - Leave
@@ -252,6 +272,7 @@ Consumes:
 - Student Lifecycle context
 - Academic Delivery inputs
 - Finance status where policy requires it
+- Finalized Internal Assessment outputs where policy requires it
 
 Owns:
 
@@ -266,7 +287,26 @@ No other section owns official examination results.
 
 ---
 
-## 7. Dependency Rules
+## Section J - Enterprise Resource Management
+
+Consumes approved demand, policy, budget, institutional, workforce, and operational context from upstream domains as required.
+
+Owns Enterprise Resource Management capabilities such as:
+
+- Vendor Management
+- Supplier Management
+- Procurement
+- Inventory Management
+- Stock Management
+- Warehouse Management
+- Asset Lifecycle Management
+- Resource Management
+
+No other section owns the enterprise resource lifecycle for procurement, stock, warehouse, inventory, vendor, supplier, asset, or resource governance.
+
+---
+
+## 8. Dependency Rules
 
 1. Dependencies are one-directional at the architectural level.
 2. Upstream documents define architecture.
@@ -274,15 +314,17 @@ No other section owns official examination results.
 4. Downstream documents must never redefine upstream decisions.
 5. Every business concept has exactly one canonical owner.
 6. Runtime events do not transfer ownership.
-7. Cross-domain workflows must reference the owning domain instead of duplicating logic.
+7. Business scenarios must reference the owning domains instead of duplicating domain workflow logic.
 8. Any dependency change must be reviewed before implementation.
+9. L3 Business Scenario Architecture is independent of L2 numbering.
+10. An L3 business scenario may derive information from one or many L2 workflow documents.
 
 ---
 
-## 8. Future Expansion Rules
+## 9. Future Expansion Rules
 
 - Every new L1 or L2 document must declare upstream dependencies.
-- Cross-domain orchestration belongs in L3 Business Scenarios.
+- Multi-domain orchestration belongs in L3 Business Scenario Architecture.
 - L4 defines system behavior without redefining business logic.
 - L5 derives technical constraints from L4.
 - L6 derives user interaction specifications from L5.
@@ -290,7 +332,7 @@ No other section owns official examination results.
 
 ---
 
-## 9. Dependency Change Policy
+## 10. Dependency Change Policy
 
 Whenever a new architectural dependency is introduced:
 

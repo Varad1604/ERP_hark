@@ -1,7 +1,16 @@
 # L4 System Behavior Specification: [Behavior Name]
 
+## Template Governance
+Architectural Level: L4 - System Behavior Specification
+
+Depends On: L3 - Business Scenario Architecture
+
+Expected Output: system behavior specification for approved business scenarios without implementation design.
+
+Downstream Reference: L5 Solution Architecture.
+
 ## 1. Purpose
-Defines exactly how the ERP must behave for a specific business step.
+Defines exactly how the ERP must behave for a specific approved business scenario or business step.
 > [!WARNING]
 > This level must NOT contain Database Tables, APIs, Services, UI, Technical Classes, or Technology Decisions.
 

@@ -11,7 +11,7 @@
 > - implementation code
 > - DTOs
 > - event payloads
-> - L3 scenario orchestration
+> - L3 Business Scenario Architecture orchestration
 
 ---
 
@@ -146,6 +146,9 @@ Status: [ ]
 ## L2-D06 - Open Electives & MOOCs Workflows
 Status: [ ]
 
+## L2-D07 - Internal Assessment Workflows
+Status: [ ]
+
 ### L2-D00 - Academic Delivery Review
 Status: [ ]
 
@@ -171,6 +174,9 @@ Status: [ ]
 Status: [ ]
 
 ## L2-E06 - Payroll Workflows
+Status: [ ]
+
+## L2-E07 - Employee Profile Workflows
 Status: [ ]
 
 ### L2-E00 - People & Workforce Review
@@ -218,13 +224,13 @@ Status: [ ]
 ## L2-F11 - Scholarship & Financial Aid
 Status: [ ]
 
-## L2-F12 - Asset Management Workflows
+## L2-F12 - Asset Financial Accounting Workflows
 Status: [ ]
 
 ## L2-F13 - Financial Reporting & Analytics Workflows
 Status: [ ]
 
-## L2-F14 - Procurement & Supply Chain Workflows
+## L2-F14 - Procurement Finance Consumption Workflows
 Status: [ ]
 
 ---
@@ -278,7 +284,7 @@ Status: [ ]
 ## L2-H02 - Notification Workflows
 Status: [ ]
 
-## L2-H03 - Directory Workflows
+## L2-H03 - Enterprise Directory & Search Workflows
 Status: [ ]
 
 ## L2-H04 - Placement Workflows
@@ -287,7 +293,10 @@ Status: [ ]
 ## L2-H05 - Research Workflows
 Status: [ ]
 
-## L2-H07 - Dashboard Workflows
+## L2-H06 - Alumni Workflows
+Status: [ ]
+
+## L2-H07 - Enterprise Dashboard Workflows
 Status: [ ]
 
 ## L2-H08 - NEP, NAAC & AISHE Reporting Workflows
@@ -364,12 +373,54 @@ Status: [ ]
 
 ---
 
+# SECTION J - Enterprise Resource Management
+
+Purpose: Physical-resource lifecycle, procurement, inventory, asset, warehouse, verification, and disposal governance.
+
+## L2-J00 - Enterprise Resource Management Architecture & Governance
+Status: [ ]
+
+## L2-J01 - Procurement Planning & Sourcing Workflows
+Status: [ ]
+
+## L2-J02 - Vendor & Supplier Management Workflows
+Status: [ ]
+
+## L2-J03 - Purchase Requisition & Approval Workflows
+Status: [ ]
+
+## L2-J04 - Purchase Order Management
+Status: [ ]
+
+## L2-J05 - Goods Receipt, Inspection & Acceptance
+Status: [ ]
+
+## L2-J06 - Inventory & Warehouse Management
+Status: [ ]
+
+## L2-J07 - Stock Operations & Distribution
+Status: [ ]
+
+## L2-J08 - Asset Lifecycle Management
+Status: [ ]
+
+## L2-J09 - Physical Verification, Audit & Reconciliation
+Status: [ ]
+
+## L2-J10 - Disposal, Scrap & Write-Off
+Status: [ ]
+
+### Section J Review - Governed by L2-J00 and L2-J01 to L2-J10
+Status: [ ]
+
+---
+
 # Final Review
 
 ## L2-99 - Complete L2 Architecture Review
 
 Purpose:
-- cross-domain consistency
+- multi-domain consistency
 - ownership validation
 - dependency validation
 - contradiction removal
@@ -390,7 +441,8 @@ flowchart TD
     D --> E[Section B Review: Institution & Structure Review]
     E --> F[Section C: Student Lifecycle]
     F --> G[Section D: Academic Delivery]
-    G --> H[Section D Review: Academic Delivery Review]
+    G --> D7[L2-D07: Internal Assessment]
+    D7 --> H[Section D Review: Academic Delivery Review]
     H --> I[Section C Review: Student Lifecycle Review]
     I --> J[Section E: People & Workforce]
     J --> K[Section E Review: People & Workforce Review]
@@ -416,5 +468,7 @@ flowchart TD
     N --> N_REV[Section G Review: Campus Operations Review]
     N_REV --> O[Section H: Institutional Services & Intelligence]
     O --> O_REV[Section H Review: Services & Intelligence Review]
-    O_REV --> T[L2-99 Final Architecture Review]
+    O_REV --> P[Section J: Enterprise Resource Management]
+    P --> P_REV[Section J Review: Governed by L2-J00 and J01-J10]
+    P_REV --> T[L2-99 Final Architecture Review]
 ```

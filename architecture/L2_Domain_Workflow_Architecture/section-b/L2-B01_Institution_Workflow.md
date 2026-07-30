@@ -460,7 +460,7 @@ The Institution domain shall:
 
 ---
 
-# 15. Cross-Domain Dependencies
+# 15. Multi-Domain Dependencies
 
 ## Consumes
 

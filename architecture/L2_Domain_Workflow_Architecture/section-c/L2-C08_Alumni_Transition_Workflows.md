@@ -119,7 +119,7 @@ The Alumni Transition bounded context shall adhere to the following principles:
 
 - Business ownership shall remain singular.
 - Aggregate consistency shall be maintained at all times.
-- Cross-domain collaboration shall occur through published business facts.
+- Multi-domain collaboration shall occur through published business facts.
 - Completed business history shall be immutable.
 - Corrections shall be version-based.
 - Business rules shall be policy-driven.
@@ -366,7 +366,7 @@ The Alumni Transition bounded context follows these ownership principles:
 - One business capability has one canonical owner.
 - Aggregate ownership never crosses bounded contexts.
 - Business facts are consumed, never re-owned.
-- Cross-domain collaboration occurs through published contracts.
+- Multi-domain collaboration occurs through published contracts.
 - Business state cannot be modified externally.
 - Domain ownership remains stable over time.
 - Historical ownership is preserved for auditability.
@@ -592,7 +592,7 @@ The Alumni Transition Aggregate follows these principles:
 - External aggregates are referenced, never owned.
 - Aggregate identity is immutable.
 - Completed transitions cannot be modified.
-- Cross-domain consistency is achieved through published business events.
+- Multi-domain consistency is achieved through published business events.
 - Aggregate boundaries are explicit.
 - Business behavior remains technology independent.
 
@@ -1180,7 +1180,7 @@ All Domain Workflows operate under the following governance principles:
 - Workflow execution preserves aggregate consistency.
 - Business decisions remain policy-driven.
 - Historical integrity is never compromised.
-- Cross-domain communication occurs through published business facts.
+- Multi-domain communication occurs through published business facts.
 - Technology implementation remains outside the scope of workflow definitions.
 
 # 8. Workflow Specifications
@@ -2261,7 +2261,7 @@ Referenced upstream business facts shall never be modified by this bounded conte
 
 ---
 
-## BR-AT-019 — Cross-Domain Isolation
+## BR-AT-019 — Multi-Domain Isolation
 
 External bounded contexts shall never modify Alumni Transition business state directly.
 
@@ -4721,7 +4721,7 @@ The following business security activities shall be auditable:
 | Access to Restricted Business Information | Yes |
 | Transition Correction | Yes |
 | Administrative Business Override | Yes |
-| Cross-Domain Business Exchange | Yes |
+| Multi-Domain Business Exchange | Yes |
 | Domain Event Publication | Yes |
 
 Security auditing complements the business audit requirements defined in Section 17.
@@ -5156,7 +5156,7 @@ Business evolution within the Alumni Transition bounded context is governed by t
 
 This section provides the canonical visual representation of the **Alumni Transition Domain Architecture**.
 
-The visual models complement the textual architecture by illustrating business structures, domain boundaries, workflows, decision paths, state transitions, service interactions, ownership boundaries, event propagation, and cross-domain collaboration.
+The visual models complement the textual architecture by illustrating business structures, domain boundaries, workflows, decision paths, state transitions, service interactions, ownership boundaries, event propagation, and multi-domain collaboration.
 
 These diagrams are normative architectural artifacts and shall be treated as part of the architecture specification.
 
@@ -5199,7 +5199,7 @@ Implementation details such as databases, APIs, frameworks, deployment topology,
 | D13 | Failure Handling Flow | flowchart | Exception handling |
 | D14 | Domain Event Flow | sequenceDiagram | Event publication |
 | D15 | Service Collaboration | sequenceDiagram | Domain service interactions |
-| D16 | Cross-Domain Collaboration | sequenceDiagram | Inter-domain communication |
+| D16 | Multi-Domain Collaboration | sequenceDiagram | Inter-domain communication |
 | D17 | Audit Flow | sequenceDiagram | Audit lifecycle |
 | D18 | Data Ownership Map | flowchart | Canonical ownership |
 | D19 | Extension Architecture | flowchart | Future extensibility |
@@ -5265,7 +5265,7 @@ Collectively, the diagrams defined in this section describe:
 - Authorization decisions
 - Failure handling
 - Audit behavior
-- Cross-domain collaboration
+- Multi-domain collaboration
 - Extension points
 - Complete business lifecycle
 
@@ -5801,7 +5801,7 @@ sequenceDiagram
     Workflow->>Event: Publish Domain Events
 ```
 
-# D16 — Cross-Domain Collaboration
+# D16 — Multi-Domain Collaboration
 
 ```mermaid
 flowchart LR
@@ -6255,7 +6255,7 @@ Positive
 
 Negative
 
-- Additional cross-domain references
+- Additional multi-domain references
 
 ---
 
@@ -6435,7 +6435,7 @@ No downstream architecture may redefine these terms without formal architecture 
 
 ---
 
-## 23.6 Cross-Domain Terms
+## 23.6 Multi-Domain Terms
 
 | Term | Canonical Owner |
 |------|-----------------|
@@ -6491,8 +6491,8 @@ The following naming conventions apply throughout this document.
 The glossary shall be governed according to the following principles.
 
 - Every business term shall have exactly one canonical definition.
-- Duplicate terminology across domains is prohibited.
-- Cross-domain terms shall reference the owning domain rather than redefining them.
+- Duplicate terminology amulti-domains is prohibited.
+- Multi-domain terms shall reference the owning domain rather than redefining them.
 - New terminology introduced into this domain shall be added to this glossary before architecture approval.
 - Changes to existing definitions require architecture governance review.
 
@@ -6520,7 +6520,7 @@ These references provide the normative foundation for architectural decisions, w
 |--------------|----------|---------|
 | L1-ARCH | SutraERP Level 1 Enterprise Architecture | Defines the enterprise architecture vision and domain decomposition. |
 | ARCH-INDEX | Architecture Index | Provides the complete catalogue of architectural documents and dependencies. |
-| DEP-MAP | Dependency Map | Defines cross-domain dependencies and ownership relationships. |
+| DEP-MAP | Dependency Map | Defines multi-domain dependencies and ownership relationships. |
 | L2-MATRIX | Level 2 Architecture Matrix | Identifies the complete Level 2 bounded context structure. |
 | A01 | L2-A01 Platform Foundation | Platform services, infrastructure, and shared architectural capabilities. |
 | A02 | L2-A02 Person & Identity | Canonical ownership of person and identity information. |
@@ -6619,7 +6619,7 @@ The following documents shall be considered prerequisites for understanding or m
 | L2-A03 Authentication | Authentication prerequisites. |
 | L2-A04 Authorization & Policy | Authorization and policy evaluation. |
 | L2-C05 Qualification Completion & Student Exit | Primary upstream workflow. |
-| Dependency Map | Cross-domain dependencies. |
+| Dependency Map | Multi-domain dependencies. |
 | Architecture Index | Repository navigation and traceability. |
 
 ---
@@ -6631,7 +6631,7 @@ The following governance rules apply to all references used within this document
 - References shall point only to approved architectural or business sources.
 - Canonical ownership shall always be respected.
 - Superseded references shall be replaced through formal architecture governance.
-- Cross-domain references shall not duplicate or redefine external domain responsibilities.
+- Multi-domain references shall not duplicate or redefine external domain responsibilities.
 - Architectural traceability shall be maintained throughout future revisions.
 
 ---

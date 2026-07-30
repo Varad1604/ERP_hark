@@ -1,5 +1,5 @@
 # SutraERP Repository Constitution
-## Volume 2 — Repository Standards
+## Volume 2 - Repository Standards
 
 ---
 
@@ -27,104 +27,78 @@ All documents shall comply with these standards unless explicitly exempted by th
 
 # 2. Scope
 
-These standards apply to
+These standards apply to:
 
-- Markdown Documents
-- Architecture Specifications
-- Business Documentation
-- Technical Documentation
-- API Specifications
-- Database Documentation
-- UI Documentation
-- Repository Assets
+- Markdown documents
+- Architecture specifications
+- Business documentation
+- Technical documentation
+- API specifications
+- Database documentation
+- UI documentation
+- Repository assets
 - Diagrams
-- AI Generated Documents
+- AI-generated documents
 
 ---
 
-# 3. Repository Structure
+# 3. Canonical Architecture Hierarchy
 
-The repository follows the following hierarchy.
+```text
+L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
+```
+
+| Level | Name | Definition |
+|-------|------|------------|
+| L0 | Business Vision | Defines why SutraERP exists, strategic intent, architectural context, and constraints. |
+| L1 | Business Domain Architecture | Defines the canonical business domains, domain boundaries, and ownership. |
+| L2 | Domain Workflow Architecture | Defines workflows, lifecycles, rules, and dependencies within an individual business domain. |
+| L3 | Business Scenario Architecture | Defines independent end-to-end business scenarios that may derive information from one or many L2 workflow documents; L3 numbering is not dependent on L2 numbering. |
+| L4 | System Behavior Specification | Defines expected system behavior for approved business scenarios without implementation design. |
+| L5 | Solution Architecture | Defines engineering solution architecture needed to implement L4 behavior without changing business rules. |
+| L6 | UI / UX Architecture | Defines user interaction, navigation, screens, and user journeys derived from L5 solution architecture without owning business logic. |
+
+Every document belongs to exactly one level unless it is a repository governance or metadata document.
+
+---
+
+# 4. Repository Structure
+
+The repository follows this structure:
 
 ```text
 Repository Constitution
-│
-├── README
-│
-├── Level 0
-│
-├── Level 1
-│
-├── Level 2
-│
-├── Level 3
-│
-├── Level 4
-│
-├── Level 5
-│
-├── Level 6
-│
-├── Assets
-│
-└── Archive
+|-- README
+|-- L0 Business Vision
+|-- L1 Business Domain Architecture
+|-- L2 Domain Workflow Architecture
+|-- L3 Business Scenario Architecture
+|-- L4 System Behavior Specification
+|-- L5 Solution Architecture
+|-- L6 UI / UX Architecture
+|-- Assets
+`-- Archive
 ```
 
-Every document belongs to exactly one level.
-
----
-
-# 4. Repository Principles
-
-The repository shall remain
-
-- Consistent
-- Modular
-- Discoverable
-- Traceable
-- Version Controlled
-- Human Readable
-- AI Readable
+Planned folders shall not be referenced as existing paths until they are created.
 
 ---
 
 # 5. Documentation Hierarchy
 
-Every lower-level document inherits from higher-level documents.
+Every lower-level document inherits from higher-level documents:
 
+```text
 Repository Constitution
-
-↓
-
 README
-
-↓
-
-Level 0
-
-↓
-
-Level 1
-
-↓
-
-Level 2
-
-↓
-
-Level 3
-
-↓
-
-Level 4
-
-↓
-
-Level 5
-
-↓
-
-Level 6
+L0
+L1
+L2
+L3
+L4
+L5
+L6
+```
 
 No document may redefine higher-level architecture.
 
@@ -132,215 +106,81 @@ No document may redefine higher-level architecture.
 
 # 6. Document Metadata
 
-Architecture specifications should begin with the following metadata.`r`nRepository guides, indexes, and governance documents may use simplified headers where the file already self-identifies its authority and scope.
+Architecture specifications should begin with:
 
 ```text
 Title
-
 Version
-
 Status
-
 Owner
-
 Architectural Level
-
 Domain
-
 Last Updated
-
 Depends On
-
 Referenced By
 ```
 
-Example
-
-```text
-Title: Student Lifecycle
-
-Version: 2.1
-
-Status: LOCKED
-
-Owner: Student Lifecycle Architect
-
-Architectural Level: L2
-
-Domain: Student Lifecycle
-
-Depends On:
-
-Level 1 Architecture
-
-Referenced By:
-
-Academics
-
-Examination
-
-Finance
-```
+Repository guides, indexes, and governance documents may use simplified headers where the file already self-identifies its authority and scope.
 
 ---
 
 # 7. Document Status
 
-Every document shall have exactly one status.
+Every document shall have exactly one status:
 
-Draft
-
-Proposed
-
-Approved
-
-Locked
-
-Deprecated
-
-Archived
+- Draft
+- Proposed
+- Approved
+- Locked
+- Deprecated
+- Archived
 
 ---
 
 # 8. Versioning Standard
 
-Versioning follows Semantic Versioning.
+Versioning follows semantic versioning:
 
-Major
-
-Breaking architectural change.
-
-Minor
-
-New architectural capability.
-
-Patch
-
-Corrections
-
-Examples
-
-Formatting
-
-Clarifications
+- **Major**: breaking architectural change.
+- **Minor**: new architectural capability.
+- **Patch**: corrections, examples, formatting, and clarifications.
 
 ---
 
 # 9. Naming Conventions
 
-## Documents
+Documents use stable level-oriented identifiers:
 
 ```text
-L0-XX
-
-L1-XX
-
-L2-AXX
-
-L3-XXX
-
-README
-
-Repository Constitution
+L0-[name]
+L1-[domain-id]
+L2-[section][number]
+L3-[ScenarioName]
+L4-[BehaviorName]
+L5-[SolutionName]
+L6-[InteractionName]
 ```
 
----
+Entities use PascalCase, such as `StudentContext`, `ProgrammeVersion`, `AcademicCreditLedger`, and `CourseOffering`.
 
-## Entities
+Events use past tense, such as `AdmissionApproved`, `StudentActivated`, `AttendanceFinalized`, `ResultPublished`, and `QualificationAwarded`.
 
-Entity names use
+Commands use imperative form, such as `CreateStudent`, `PublishResult`, `ActivateStudent`, and `GenerateHallTicket`.
 
-PascalCase
-
-Examples
-
-```text
-StudentContext
-
-ProgrammeVersion
-
-AcademicCreditLedger
-
-CourseOffering
-```
-
----
-
-## Events
-
-Events use
-
-Past Tense
-
-Examples
-
-```text
-AdmissionApproved
-
-StudentActivated
-
-AttendanceFinalized
-
-ResultPublished
-
-QualificationAwarded
-```
-
----
-
-## Commands
-
-Commands use
-
-Imperative Form
-
-Examples
-
-```text
-CreateStudent
-
-PublishResult
-
-ActivateStudent
-
-GenerateHallTicket
-```
-
----
-
-## APIs
-
-REST Endpoints
-
-```text
-GET
-
-POST
-
-PUT
-
-DELETE
-```
-
-Resources use plural nouns.
+REST resources use plural nouns.
 
 ---
 
 # 10. Markdown Standards
 
-Markdown documents shall use
+Markdown documents shall use:
 
-Heading hierarchy
-
-Lists
-
-Tables
-
-Code blocks
-
-Mermaid diagrams
-
-Horizontal separators
+- Heading hierarchy
+- Lists
+- Tables
+- Code blocks
+- Mermaid diagrams
+- Horizontal separators
 
 Large paragraphs should be avoided.
 
@@ -350,67 +190,21 @@ Large paragraphs should be avoided.
 
 Mermaid diagrams are the official diagram language.
 
-Supported diagram types
+Supported diagram types include flowchart, state diagram, sequence diagram, entity relationship, class diagram, journey, Gantt, and mindmap.
 
-Flowchart
-
-State Diagram
-
-Sequence Diagram
-
-Entity Relationship
-
-Class Diagram
-
-Journey
-
-Gantt
-
-Mindmap
-
----
-
-## Diagram Rules
-
-Every workflow document shall include at least one Mermaid workflow.
-
-Every lifecycle shall include a state diagram.
-
-Every dependency shall include a dependency diagram where appropriate.
-
-Images shall never replace editable diagrams.
+Every workflow document shall include at least one Mermaid workflow. Every lifecycle shall include a state diagram. Images shall never replace editable diagrams.
 
 ---
 
 # 12. Tables
 
-Tables shall be used for
-
-Ownership
-
-Responsibilities
-
-Entity Definitions
-
-Version History
-
-Dependencies
-
-Decision Matrices
-
-Business Rules
+Tables shall be used for ownership, responsibilities, entity definitions, version history, dependencies, decision matrices, and business rules.
 
 ---
 
 # 13. Cross References
 
-Documents shall reference
-
-Parent documents
-
-Dependent documents
-
-Related domains
+Documents shall reference parent documents, dependent documents, and related domains.
 
 No orphan documents shall exist.
 
@@ -420,31 +214,15 @@ No orphan documents shall exist.
 
 Business entities shall always reference their canonical owner.
 
-Example
-
-Student Context
-
-Owner
-
-Student Lifecycle
-
-Never
-
-Academics
+Example: Student Context is owned by Student Lifecycle, not Academic Delivery.
 
 ---
 
 # 15. Examples
 
-Examples shall
+Examples illustrate architecture. They do not define architecture.
 
-Illustrate architecture
-
-Not define architecture
-
-Examples are informative.
-
-Architecture is normative.
+Examples are informative. Architecture is normative.
 
 ---
 
@@ -454,159 +232,99 @@ Text defines architecture.
 
 Diagrams explain architecture.
 
-If a conflict exists,
-
-Text takes precedence.
+If a conflict exists, text takes precedence.
 
 ---
 
-# 17. File Naming Standard
+# 17. AI-Generated Content
 
-Markdown
+AI-generated content shall:
 
-```text
-PascalCase.md
-```
+- Follow repository standards.
+- Reference canonical architecture.
+- Never invent entities.
+- Never duplicate ownership.
+- Never contradict locked decisions.
+- Preserve canonical terminology.
 
-Examples
-
-```text
-StudentLifecycle.md
-
-AcademicStructure.md
-
-Finance.md
-```
-
-Images
-
-```text
-kebab-case.png
-```
-
-Assets
-
-```text
-camelCase
-```
+Every AI-generated architectural change requires human review.
 
 ---
 
-# 18. AI Generated Content
+# 18. Traceability
 
-AI generated content shall
+Every architectural decision shall be traceable through:
 
-Follow repository standards.
-
-Reference canonical architecture.
-
-Never invent entities.
-
-Never duplicate ownership.
-
-Never contradict locked decisions.
-
-Every AI generated architectural change requires human review.
-
----
-
-# 19. Traceability
-
-Every architectural decision shall be traceable to
-
+```text
 Higher Level
-
-↓
-
 Business Requirement
-
-↓
-
 Affected Domains
-
-↓
-
 Dependent Documents
-
-↓
-
 Implementation
+```
 
 No undocumented architectural changes are permitted.
 
 ---
 
-# 20. Repository Quality Gates
+# 19. Repository Quality Gates
 
-Before a document becomes Approved or Locked it shall satisfy
+Before a document becomes Approved or Locked it shall satisfy:
 
-Correct Metadata
-
-Valid Markdown
-
-Renderable Mermaid
-
-Correct Version
-
-Dependency References
-
-Canonical Ownership
-
-No Duplicate Entities
-
-No Broken References
-
-No Architectural Conflicts
-
-No Undefined Terms
+- Correct metadata
+- Valid Markdown
+- Renderable Mermaid
+- Correct version
+- Dependency references
+- Canonical ownership
+- No duplicate entities
+- No broken references
+- No architectural conflicts
+- No undefined terms
+- Applicable level-specific validation expectations
 
 ---
 
-# 21. Repository Review Checklist
+# 19.1 Level-Specific Validation Expectations
 
-Every architectural review shall verify
+Level-specific validation expectations are maintained in:
 
-Repository hierarchy
+```text
+governance/policies/Architecture_Level_Validation_Standards.md
+```
 
-Naming conventions
-
-Entity ownership
-
-Business consistency
-
-Cross-domain dependencies
-
-Event naming
-
-Diagram accuracy
-
-Version correctness
-
-Document completeness
-
-Traceability
+These expectations align review gates with the approved L0 through L6 hierarchy.
 
 ---
 
-# 22. Repository Standards Compliance
+# 20. Repository Review Checklist
 
-Every document is expected to comply with this volume.
+Every architectural review shall verify:
 
-Exceptions require approval from the Lead Architect.
+- Repository hierarchy
+- Naming conventions
+- Entity ownership
+- Business consistency
+- Multi-domain dependencies
+- Event naming
+- Diagram accuracy
+- Version correctness
+- Document completeness
+- Traceability
 
 ---
 
-# 23. Locked Repository Standards
+# 21. Locked Repository Standards
 
-The following standards are constitutional.
+The following standards are constitutional:
 
 - Markdown is the official documentation format.
 - Mermaid is the official diagram language.
-- Semantic Versioning is mandatory.
-- Every document requires metadata.
+- Semantic versioning is mandatory.
+- Every document requires metadata or an approved simplified header.
 - Every architectural decision requires traceability.
 - Every entity has one canonical owner.
-- Every document belongs to one architectural level.
+- Every architecture document belongs to one architectural level.
 - AI-generated content requires human review.
 - Images shall never replace editable architecture diagrams.
 - Repository hierarchy shall not be violated.
@@ -617,8 +335,8 @@ Status: LOCKED
 
 Authority Level: Repository Standards
 
-Next Document
+Next Document:
 
 Repository Constitution
 
-Volume 3 — Architecture Standards
+Volume 3 - Architecture Standards

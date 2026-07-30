@@ -17,16 +17,18 @@ Central navigation document for the current SutraERP repository.
 
 ```mermaid
 flowchart TD
-
 Repository["SutraERP Repository"]
-
 Repository --> README
 Repository --> CONTRIBUTING
 Repository --> DEPENDENCY_MAP
 Repository --> CHANGELOG
 Repository --> Architecture
+Repository --> AI_CONTEXT
 Repository --> Governance
+Repository --> Prompts
 Repository --> Templates
+Repository --> Assets
+Repository --> Archive
 Repository --> Generated
 Repository --> Tools
 ```
@@ -40,7 +42,7 @@ Repository --> Tools
 The Repository Constitution defines governance and engineering standards.
 
 | Volume | Description |
-|---------|-------------|
+|--------|-------------|
 | Volume 1 | Governance & Principles |
 | Volume 2 | Repository Standards |
 | Volume 3 | Architectural Framework |
@@ -50,12 +52,22 @@ The Repository Constitution defines governance and engineering standards.
 
 ---
 
-# Architecture Levels
+# Canonical Architecture Hierarchy
 
 ```mermaid
 flowchart LR
 L0["Business Vision"] --> L1["Business Domain Architecture"] --> L2["Domain Workflow Architecture"] --> L3["Business Scenario Architecture"] --> L4["System Behavior Specification"] --> L5["Solution Architecture"] --> L6["UI / UX Architecture"]
 ```
+
+| Level | Name | Definition |
+|-------|------|------------|
+| L0 | Business Vision | Defines why SutraERP exists, strategic intent, architectural context, and constraints. |
+| L1 | Business Domain Architecture | Defines the canonical business domains, domain boundaries, and ownership. |
+| L2 | Domain Workflow Architecture | Defines workflows, lifecycles, rules, and dependencies within an individual business domain. |
+| L3 | Business Scenario Architecture | Defines independent end-to-end business scenarios that may derive information from one or many L2 workflow documents; L3 numbering is not dependent on L2 numbering. |
+| L4 | System Behavior Specification | Defines expected system behavior for approved business scenarios without implementation design. |
+| L5 | Solution Architecture | Defines engineering solution architecture needed to implement L4 behavior without changing business rules. |
+| L6 | UI / UX Architecture | Defines user interaction, navigation, screens, and user journeys derived from L5 solution architecture without owning business logic. |
 
 ---
 
@@ -65,7 +77,7 @@ L0["Business Vision"] --> L1["Business Domain Architecture"] --> L2["Domain Work
 - L1 Business Domain Architecture
 - L2 Domain Workflow control artifacts and present section files
 
-L3 through L6 are defined by the hierarchy but are not yet present as source documents in this workspace.
+L3 through L6 are present as placeholder folders only. They are not yet present as source architecture documents in this workspace.
 
 ---
 
@@ -95,31 +107,43 @@ Constitution --> README --> L0 --> L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> Imp
 
 Repository health should always maintain:
 
-- Constitutional Compliance
-- Complete Cross References
-- Version Consistency
-- Valid Mermaid Diagrams
+- Constitutional compliance
+- Complete cross references
+- Version consistency
+- Valid Mermaid diagrams
 - Traceability
-- Dependency Integrity
+- Dependency integrity
+- Ownership consistency
+- Canonical terminology
+- Level-specific validation expectations
 
 ---
 
 # Quick Links
 
 ## Governance
+
 - Repository Constitution
 
 ## Strategy
-- Level 0
 
-## Business
-- Level 1
+- Level 0 Business Vision
 
-## Domain Design
-- Level 2
+## Business Domain Architecture
+
+- Level 1 Business Domain Architecture
+
+## Domain Workflow Architecture
+
+- Level 2 Domain Workflow Architecture
 
 ## Templates
+
 - Standard Documentation Templates
+
+## Validation
+
+- Architecture Level Validation Standards
 
 ---
 
@@ -129,16 +153,15 @@ The repository shall always remain:
 
 - Modular
 - Traceable
-- Version Controlled
-- Technology Independent at the business architecture level
-- Domain Driven
-- Well Documented
-- AI Readable
-- Human Readable
+- Version controlled
+- Technology independent at the business architecture level
+- Domain driven
+- Well documented
+- AI readable
+- Human readable
 
 ---
 
 Status: LOCKED
 
 END OF INDEX
-

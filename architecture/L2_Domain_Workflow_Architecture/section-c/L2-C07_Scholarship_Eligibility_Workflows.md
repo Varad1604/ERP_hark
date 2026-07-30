@@ -164,7 +164,7 @@ To preserve architectural integrity:
 - Upstream domains shall remain independently deployable and independently governed.
 - Dependency relationships shall remain business-oriented rather than implementation-oriented.
 - Eligibility calculations shall rely only on authoritative information published by upstream bounded contexts.
-- Cross-domain ownership violations are prohibited regardless of implementation architecture.
+- Multi-domain ownership violations are prohibited regardless of implementation architecture.
 # 4. Downstream Dependencies
 
 The Scholarship Eligibility domain publishes authoritative eligibility outcomes, scholarship recommendations, reassessment results, renewal decisions, and eligibility events for consumption by downstream bounded contexts. Downstream domains consume these published outcomes while maintaining ownership of their respective business capabilities.
@@ -1731,7 +1731,7 @@ All Scholarship Eligibility service contracts shall comply with the following pr
 - Consumers shall rely only on published business capabilities.
 - Service contracts shall preserve canonical business rules and domain invariants.
 - Service contracts shall remain stable as implementation technologies evolve.
-- Cross-domain interactions shall respect bounded context ownership and published business contracts.
+- Multi-domain interactions shall respect bounded context ownership and published business contracts.
 
 ---
 

@@ -3,7 +3,7 @@
 **Version:** 2.0
 **Status:** LOCKED
 **Scope:** Canonical Institutional Lifecycle
-**Purpose:** Define the complete institutional business architecture, ownership boundaries, lifecycle rules, and cross-domain responsibilities before Level 2 domain design.
+**Purpose:** Define the complete institutional business architecture, ownership boundaries, lifecycle rules, and multi-domain responsibilities before Level 2 domain design.
 
 ---
 
@@ -20,9 +20,9 @@ It intentionally avoids implementation details and instead establishes:
 - Canonical entities
 - Integration boundaries
 - Institutional operating model
-- Cross-domain responsibilities
+- Multi-domain responsibilities
 
-Every Level 2 workflow, Level 3 service, Level 4 API, Level 5 database model, and Level 6 UI implementation must conform to this document.
+Every L2 Domain Workflow Architecture document, L3 Business Scenario Architecture document, L4 System Behavior Specification, L5 Solution Architecture, and L6 UI / UX Architecture artifact must conform to this document.
 
 ---
 
@@ -442,7 +442,7 @@ AcademicStructure
 - Flexible Curriculum belongs to Academic Structure.
 - CBCR belongs to Student Lifecycle.
 - APAAR belongs to Identity.
-- NEP is a cross-domain capability.
+- NEP is a multi-domain capability.
 
 ---
 
@@ -851,7 +851,7 @@ Institutional policy determines:
 
 ---
 
-# 9. Cross-Domain Lifecycle Ownership
+# 9. Multi-Domain Lifecycle Ownership
 
 | Lifecycle Stage | Owner |
 |----------------|-------|
@@ -979,7 +979,7 @@ A[Tenant Request]
 
 ---
 
-## Cross-Domain Contracts
+## Multi-Domain Contracts
 
 Consumes
 
@@ -2257,7 +2257,7 @@ Academic Credit Ledger updates occur only after progression has completed succes
 
 ---
 
-## Cross-Domain Contracts
+## Multi-Domain Contracts
 
 Consumes
 
@@ -2445,7 +2445,7 @@ Administrative exits do not create Alumni Personas.
 
 ---
 
-## Cross-Domain Contracts
+## Multi-Domain Contracts
 
 Consumes
 
@@ -2768,7 +2768,7 @@ style Examination fill:#f2dede
 
 ---
 
-# 26. Cross-Domain Communication
+# 26. Multi-Domain Communication
 
 Domains communicate only through published contracts.
 
@@ -2959,7 +2959,7 @@ The following architectural decisions are permanently locked.
 |----------|--------|
 | Tenant separate from Institute | LOCKED |
 | Domain Driven Ownership | LOCKED |
-| Cross-domain direct writes prohibited | LOCKED |
+| Multi-domain direct writes prohibited | LOCKED |
 | Canonical Person | LOCKED |
 | Single ACTIVE Student Context | LOCKED |
 | Historical Student Contexts preserved | LOCKED |

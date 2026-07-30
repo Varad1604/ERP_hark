@@ -366,7 +366,7 @@ can participate in payroll processing.
 
 -   Employee creation
 -   Employment lifecycle
--   Employee master data
+-   Employee profile data
 
 ------------------------------------------------------------------------
 
@@ -1272,7 +1272,7 @@ Controls a complete payroll execution cycle.
 
 ### Does Not Own
 
--   Employee master
+-   Employee profile
 -   Attendance records
 -   Leave balances
 -   Compensation policy
@@ -6229,7 +6229,7 @@ Payroll does not own:
 
   Capability             Owner
   ---------------------- -------------------------
-  Employee Master Data   Workforce Domain
+  Employee Profile Data  E07 Employee Profile
   Attendance Facts       Attendance Domain
   Leave Facts            Leave Management Domain
   Compensation Policy    Compensation Domain

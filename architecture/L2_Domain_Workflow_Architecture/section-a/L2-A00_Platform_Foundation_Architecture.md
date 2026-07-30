@@ -837,7 +837,7 @@ Every architectural capability SHALL have exactly one canonical owner.
 
 ### Law G-004
 
-Architectural ownership SHALL never be shared across domains.
+Architectural ownership SHALL never be shared amulti-domains.
 
 ### Law G-005
 
@@ -2544,7 +2544,7 @@ The following dependencies are constitutionally prohibited.
 - Database-level dependencies.
 - Shared implementation dependencies.
 - Undocumented dependencies.
-- Cross-domain ownership dependencies.
+- Multi-domain ownership dependencies.
 - Runtime implementation coupling.
 - Platform dependency upon business domains.
 - Platform dependency upon implementation technologies.
