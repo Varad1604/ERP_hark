@@ -1,4 +1,4 @@
-﻿# L2-F14 â€” Procurement Finance Consumption Workflows
+﻿# L2-F14 — Procurement Finance Consumption Workflows
 
 ---
 
@@ -8,13 +8,13 @@
 |-----------|-------|
 | Document ID | L2-F14 |
 | Document Name | Procurement Finance Consumption Workflows |
-| Architecture Level | Level 2 â€” Domain Workflow Architecture |
+| Architecture Level | Level 2 — Domain Workflow Architecture |
 | Domain | Finance |
 | Module | Procurement Finance Interface |
 | Status | Draft |
 | Version | 1.1.0 |
 | Owner | Finance Architecture Team |
-| Parent Architecture | L2-F00 â€” Finance Domain Model & Foundation |
+| Parent Architecture | L2-F00 — Finance Domain Model & Foundation |
 | Depends On | L2-F00, L2-F06, L2-F08, L2-F10, Section J |
 | Referenced By | Section J, Accounts Payable, Budget, Treasury, Analytics, Audit |
 
@@ -22,7 +22,7 @@
 
 # 1. Purpose
 
-This document defines the Finance-side consumption architecture for procurement and supply-chain facts produced by **Section J â€” Enterprise Resource Management**.
+This document defines the Finance-side consumption architecture for procurement and supply-chain facts produced by **Section J — Enterprise Resource Management**.
 
 It does not define canonical procurement ownership.
 
@@ -60,18 +60,18 @@ Finance does not own the following Section J capabilities.
 
 | Capability | Canonical Owner |
 |------------|-----------------|
-| Supplier Master | J02 â€” Vendor & Supplier Management |
-| Supplier operational eligibility | J02 â€” Vendor & Supplier Management |
-| Procurement planning and sourcing | J01 â€” Procurement Planning & Sourcing |
-| Purchase Requisition | J03 â€” Purchase Requisition & Approval |
-| Purchase Order | J04 â€” Purchase Order Management |
-| Goods Receipt and Inspection | J05 â€” Goods Receipt, Inspection & Acceptance |
-| Item Master | J06 â€” Inventory & Warehouse Management |
-| Warehouse and Stock Ledger | J06 â€” Inventory & Warehouse Management |
-| Stock issue, return, transfer, and distribution | J07 â€” Stock Operations & Distribution |
-| Operational Asset Register | J08 â€” Asset Lifecycle Management |
-| Physical verification and inventory-audit evidence | J09 â€” Physical Verification, Audit & Reconciliation |
-| Disposal/write-off business case and execution evidence | J10 â€” Disposal, Scrap & Write-Off |
+| Supplier Master | J02 — Vendor & Supplier Management |
+| Supplier operational eligibility | J02 — Vendor & Supplier Management |
+| Procurement planning and sourcing | J01 — Procurement Planning & Sourcing |
+| Purchase Requisition | J03 — Purchase Requisition & Approval |
+| Purchase Order | J04 — Purchase Order Management |
+| Goods Receipt and Inspection | J05 — Goods Receipt, Inspection & Acceptance |
+| Item Master | J06 — Inventory & Warehouse Management |
+| Warehouse and Stock Ledger | J06 — Inventory & Warehouse Management |
+| Stock issue, return, transfer, and distribution | J07 — Stock Operations & Distribution |
+| Operational Asset Register | J08 — Asset Lifecycle Management |
+| Physical verification and inventory-audit evidence | J09 — Physical Verification, Audit & Reconciliation |
+| Disposal/write-off business case and execution evidence | J10 — Disposal, Scrap & Write-Off |
 
 Finance shall not create a Procurement Aggregate, Supplier Master, Purchase Order lifecycle, Goods Receipt lifecycle, Stock Ledger, or Operational Asset Register.
 
