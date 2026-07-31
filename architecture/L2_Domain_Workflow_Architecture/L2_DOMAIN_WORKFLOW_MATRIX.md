@@ -33,37 +33,37 @@ Status: [ ] In Progress
 Purpose: Core platform infrastructure used by every business domain.
 
 ## L2-A01 - Platform & Tenant Workflows
-Status: [Approved]
+Status: [ ]
 
 ## L2-A02 - Person & Identity Workflows
-Status: [Approved]
+Status: [ ]
 
 ## L2-A03 - Authentication Workflows
-Status: [Approved]
+Status: [ ]
 
 ## L2-A04 - Authorization & Policy Workflows
-Status: [Approved]
+Status: [ ]
 
 ## L2-A05 - Workflow Engine Workflows
-Status: [Approved]
+Status: [ ]
 
 ## L2-A06 - Event Infrastructure Workflows
-Status: [Approved]
+Status: [ ]
 
 ## L2-A07 - Audit Infrastructure Workflows
-Status: [Approved]
+Status: [ ]
 
 ## L2-A08 - Module Registry & Configuration Workflows
-Status: [Approved]
+Status: [ ]
 
 ## L2-A09 - Master Data Workflows
-Status: [Approved]
+Status: [ ]
 
 ## L2-A10 - Operational Readiness Workflows
 Status: [ ]
 
 ### L2-A00 - Platform Foundation Review
-Status: [Aprroved]
+Status: [Approved Baseline]
 
 ---
 
@@ -72,10 +72,10 @@ Status: [Aprroved]
 Purpose: Institutional hierarchy and academic foundation.
 
 ## L2-B01 - Institution Workflows
-Status: [Approved]
+Status: [Locked]
 
 ## L2-B02 - Organisation Workflows
-Status: [Approved]
+Status: [Architecture Locked]
 
 ## L2-B03 - Campus Workflows
 Status: [ ]
@@ -96,7 +96,7 @@ Status: [ ]
 Purpose: Complete student lifecycle from admission through qualification completion, exit, and alumni transition.
 
 ## L2-C01 - Admissions Workflows
-Status: [Approved]
+Status: [ ]
 
 ## L2-C02 - Student Lifecycle & Activation Workflows
 Status: [ ]
@@ -129,28 +129,28 @@ Status: [ ]
 Purpose: Teaching operations and academic execution.
 
 ## L2-D01 - Course Offering Workflows
-Status: [ ]
+Status: [Architecture Locked]
 
 ## L2-D02 - Faculty Academic Assignment Workflows
-Status: [ ]
+Status: [Approved Baseline]
 
 ## L2-D03 - Timetable Workflows
-Status: [ ]
+Status: [Architecture Baseline]
 
 ## L2-D04 - Teaching Session & Attendance Workflows
-Status: [ ]
+Status: [Architecture Locked]
 
 ## L2-D05 - Academic Monitoring Workflows
-Status: [ ]
+Status: [Architecture Approved]
 
 ## L2-D06 - Open Electives & MOOCs Workflows
-Status: [ ]
+Status: [Architecture Locked]
 
 ## L2-D07 - Internal Assessment Workflows
-Status: [ ]
+Status: [Architecture Locked]
 
 ### L2-D00 - Academic Delivery Review
-Status: [ ]
+Status: [Certified & Locked]
 
 ---
 
@@ -239,10 +239,10 @@ Status: [ ]
 
 Purpose: Operational institutional services.
 
-## L2-G01 - Facilities Workflows
+## L2-G01 - Facilities Management Workflows
 Status: [ ]
 
-## L2-G02 - Lab Management Workflows
+## L2-G02 - Laboratory Management Workflows
 Status: [ ]
 
 ## L2-G03 - Hostel Workflows
@@ -260,7 +260,7 @@ Status: [ ]
 ## L2-G07 - Security Operations Workflows
 Status: [ ]
 
-## L2-G08 - Housekeeping Operations Workflows
+## L2-G08 - Housekeeping Operations & Service Governance Workflows
 Status: [ ]
 
 ## L2-G09 - Teacher Guardian Scheme (TGS) Workflows
@@ -378,40 +378,40 @@ Status: [ ]
 Purpose: Physical-resource lifecycle, procurement, inventory, asset, warehouse, verification, and disposal governance.
 
 ## L2-J00 - Enterprise Resource Management Architecture & Governance
-Status: [ ]
+Status: [Trust Certification Ready]
 
 ## L2-J01 - Procurement Planning & Sourcing Workflows
-Status: [ ]
+Status: [Trust Certification Ready]
 
 ## L2-J02 - Vendor & Supplier Management Workflows
-Status: [ ]
+Status: [Trust Certification Ready]
 
 ## L2-J03 - Purchase Requisition & Approval Workflows
-Status: [ ]
+Status: [Trust Certification Ready]
 
 ## L2-J04 - Purchase Order Management
-Status: [ ]
+Status: [Trust Certification Ready]
 
 ## L2-J05 - Goods Receipt, Inspection & Acceptance
-Status: [ ]
+Status: [Trust Certification Ready]
 
 ## L2-J06 - Inventory & Warehouse Management
-Status: [ ]
+Status: [Trust Certification Ready]
 
 ## L2-J07 - Stock Operations & Distribution
-Status: [ ]
+Status: [Trust Certification Ready]
 
 ## L2-J08 - Asset Lifecycle Management
-Status: [ ]
+Status: [Trust Certification Ready]
 
 ## L2-J09 - Physical Verification, Audit & Reconciliation
-Status: [ ]
+Status: [Trust Certification Ready]
 
 ## L2-J10 - Disposal, Scrap & Write-Off
-Status: [ ]
+Status: [Trust Certification Ready]
 
 ### Section J Review - Governed by L2-J00 and L2-J01 to L2-J10
-Status: [ ]
+Status: [Trust Certification Ready]
 
 ---
 

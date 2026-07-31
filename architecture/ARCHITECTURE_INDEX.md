@@ -83,7 +83,7 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 | L2-A08 | Module Registry & Configuration Workflows | Dhruv | Draft |
 | L2-A09 | Master Data Workflows | Dhruv | Draft |
 | L2-A10 | Operational Readiness Workflows | Dhruv | Draft |
-| L2-A00 | Platform Foundation Review | Dhruv | Draft |
+| L2-A00 | Platform Foundation Review | Dhruv | Approved Baseline |
 
 **Section Total:** 11 Documents
 
@@ -93,8 +93,8 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-B01 | Institution Workflows | Pallav | Draft |
-| L2-B02 | Organisation Workflows | Pallav | Draft |
+| L2-B01 | Institution Workflows | Pallav | Locked |
+| L2-B02 | Organisation Workflows | Pallav | Architecture Locked |
 | L2-B03 | Campus Workflows | Pallav | Draft |
 | L2-B04 | Curriculum Framework Workflows | Pallav | Draft |
 | L2-B05 | Academic Calendar Workflows | Pallav | Draft |
@@ -196,14 +196,14 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-G01 | Facilities Workflows | Devang | Draft |
+| L2-G01 | Facilities Management Workflows | Devang | Draft |
 | L2-G02 | Laboratory Management Workflows | Devang | Draft |
 | L2-G03 | Hostel Workflows | Devang | Draft |
 | L2-G04 | Transport Workflows | Devang | Draft |
 | L2-G05 | Library Workflows | Devang | Draft |
 | L2-G06 | Medical Workflows | Devang | Draft |
 | L2-G07 | Security Operations Workflows | Devang | Draft |
-| L2-G08 | Housekeeping Operations Workflows | Devang | Draft |
+| L2-G08 | Housekeeping Operations & Service Governance Workflows | Devang | Draft |
 | L2-G09 | Teacher Guardian Scheme (TGS) Workflows | Devang | Draft |
 | L2-G10 | Infrastructure Management Workflows | Devang | Draft |
 | L2-G00 | Campus Operations Review | Devang | Draft |
