@@ -1,3 +1,12 @@
+# L2-C03 — Academic Registration Workflows
+
+**Section:** C — Student Lifecycle  
+**Architecture Level:** Level 2 (Domain Architecture)  
+**Status:** Draft  
+**Document Owner:** Varad
+
+---
+
 # 1. Introduction
 
 ## 1.1 Purpose

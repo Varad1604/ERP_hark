@@ -1,5 +1,9 @@
 ﻿# L2-H03 — Enterprise Directory & Search Workflows
 
+**Section:** H — Institutional Services & Intelligence  
+**Status:** Draft  
+**Document Owner:** Dhruv
+
 ---
 
 # 1. Purpose

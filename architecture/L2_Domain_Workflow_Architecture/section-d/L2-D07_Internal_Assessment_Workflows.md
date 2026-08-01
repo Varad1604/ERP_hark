@@ -197,3 +197,9 @@ Representative canonical APIs:
 Internal assessment is an academic delivery capability and belongs in Section D.
 
 Examination consumes the finalized outcome, but does not own the internal assessment lifecycle.
+
+---
+
+## Workflows
+
+Workflow behavior is not restated in a single consolidated section; it is expressed through the Lifecycle Overview (Section 5) state sequence and the Commands catalogue (Section 8): blueprint definition and publication, assessment window opening/extension/closure, submission capture and mark entry, moderation request/approval/rejection, and finalization/archival. See Sections 5 and 8 for the operational sequence and canonical command set.

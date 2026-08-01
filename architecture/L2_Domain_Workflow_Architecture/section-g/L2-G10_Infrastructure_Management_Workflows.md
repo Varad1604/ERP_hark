@@ -5,9 +5,10 @@
 **Domain:** G10 — Infrastructure Management  
 **Document ID:** L2-G10  
 **Version:** 1.0  
-**Status:** Architecture Draft  
+**Status:** Draft  
 **Classification:** Level 2 Domain Architecture  
 **Owner:** Campus Operations Domain  
+**Document Owner:** Devang  
 **Dependencies:** Section A – Platform Foundation, Section B – Institution & Structure, Section E – People & Workforce
 
 ---

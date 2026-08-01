@@ -1,4 +1,4 @@
-L2-C01 — Admissions Workflows
+# L2-C01 — Admissions Workflows
 
 Version: 1.0 (Draft)
 Architecture Level: L2 – Domain Workflow Architecture

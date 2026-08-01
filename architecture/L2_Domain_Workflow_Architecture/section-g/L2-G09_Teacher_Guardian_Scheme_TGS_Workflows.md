@@ -5,7 +5,8 @@
 **Domain Code:** G09  
 **Domain Name:** Teacher Guardian Scheme (TGS)  
 **Architecture Level:** Enterprise Business Workflow  
-**Status:** Architecture Locked
+**Status:** Architecture Locked  
+**Document Owner:** Devang
 
 **Upstream Dependencies**
 

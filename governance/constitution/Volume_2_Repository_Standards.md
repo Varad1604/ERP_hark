@@ -3,7 +3,7 @@
 
 ---
 
-Version: 1.0
+Version: 1.1
 
 Status: LOCKED
 
@@ -126,14 +126,25 @@ Repository guides, indexes, and governance documents may use simplified headers 
 
 # 7. Document Status
 
-Every document shall have exactly one status:
+Every document shall have exactly one status, drawn from this canonical list:
 
-- Draft
-- Proposed
-- Approved
-- Locked
-- Deprecated
-- Archived
+| Status | Meaning |
+|--------|---------|
+| Draft | Under development |
+| Proposed | Not yet in active use; reserved for documents submitted for review before drafting begins |
+| Review | Under architecture review |
+| Trust Certification Ready | Complete and certification-ready, pending final lock decision |
+| Architecture Approved | Approved by architecture review, not yet locked |
+| Approved | Not yet in active use; reserved for a general post-review approval state distinct from the Architecture-prefixed states below |
+| Approved Baseline | Approved baseline state pending broader freeze controls |
+| Architecture Baseline | Baseline architecture state used for controlled reference |
+| Architecture Locked | Approved and frozen for architectural use |
+| Certified & Locked | Certified final state and frozen |
+| Locked | Approved and frozen |
+| Deprecated | Not yet in active use; reserved for superseded documents kept for historical reference |
+| Archived | Not yet in active use; reserved for retired documents removed from active governance |
+
+This list is the single canonical status vocabulary for the repository. `ARCHITECTURE_INDEX.md`'s Document Status Legend mirrors this table exactly and shall be kept in sync with it; if the two ever diverge, this section governs.
 
 ---
 

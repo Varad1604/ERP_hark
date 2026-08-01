@@ -5,9 +5,10 @@
 **Domain:** G02 — Laboratory Management  
 **Document ID:** L2-G02  
 **Version:** 1.0  
-**Status:** Architecture Draft  
+**Status:** Draft  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain
+**Owner:** Campus Operations Domain  
+**Document Owner:** Devang
 
 **Upstream Dependencies**
 

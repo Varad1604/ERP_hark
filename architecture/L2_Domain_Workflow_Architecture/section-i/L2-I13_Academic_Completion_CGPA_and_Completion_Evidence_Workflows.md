@@ -11,6 +11,7 @@
 | **Architecture Level** | Level 2 – Domain Workflow Architecture |
 | **Domain Code** | I13 |
 | **Domain Category** | Examination Domain |
+| **Document Owner** | Devang |
 | **Status** | Draft |
 | **Repository** | SutraERP Enterprise Architecture |
 | **Depends On** | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity, L2-A04 Authorization & Policy, L2-A06 Event Infrastructure, L2-A07 Audit Infrastructure, L2-B04 Curriculum Framework, L2-B05 Academic Calendar, L2-I01 through L2-I12 |
@@ -2332,6 +2333,13 @@ It establishes the authoritative business responsibilities, lifecycle workflows,
 
 This document is implementation-independent and serves as the canonical Level 2 architectural specification for academic completion evidence workflows across the SutraERP repository.
 
+---
+
+## Entities / Aggregates
+
+This document does not define a dedicated entities/aggregates catalogue. Business objects referenced throughout the workflow include Candidate, Programme, Curriculum, Credits, Completion Evidence Register, Degree Classification, Academic Completion Status, and Audit Record (see Sections 5.9, 14.2, and 20 for where each is referenced).
+
+Detailed data/entity modelling is outside the scope of this Level 2 workflow architecture document and is not separately defined here.
 
 
 

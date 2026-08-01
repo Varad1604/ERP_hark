@@ -1164,7 +1164,7 @@ Financial accounting remains centralized.
 | Certificate Verification | L2-D06 |
 | Credit Recognition Workflow | L2-D06 |
 | Credit Posting Request | L2-D06 |
-| Course Master | L2-D01 |
+| Course Master | L2-B04 |
 | Course Offering | L2-D01 |
 | Faculty Assignment | L2-D02 |
 | Timetable | L2-D03 |

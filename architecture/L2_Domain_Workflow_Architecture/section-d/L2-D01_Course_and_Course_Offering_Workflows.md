@@ -1,4 +1,4 @@
-# L2-D01 — Course Offering Workflows
+# L2-D01 — Course & Course Offering Workflows
 
 **Repository:** SutraERP  
 **Section:** D — Academic Delivery  

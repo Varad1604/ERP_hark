@@ -3484,6 +3484,24 @@ These keywords shall be interpreted consistently across all Level 2 architecture
 
 ---
 
+## Workflows
+
+L2-A01 is a foundation architecture and does not define end-to-end business workflows. It does define several canonical platform process flows: Tenant Provisioning (Section 2.8), the Context Resolution Pipeline (Section 4.7), the Configuration Consumption flow (Section 6.11), the Governance Decision Model (Section 8.8), and the Compliance Process (Section 10.16). These flows collectively describe how platform-owned processes execute prior to business-domain workflows.
+
+---
+
+## Events
+
+Dedicated event cataloguing is not performed in this document. Events are referenced as a category of Shared Platform Service — see "Event Publishing" and "Event Service" under Core Platform Services (Section 7.5), "Event Bus" and "Shared Events" under Integration Services (Sections 7.6 and AP-03 in Section 1.3), the "Event" dependency type (Section 9.5), and security event publication under Section 7.19. Canonical event definitions belong to the Platform Event Infrastructure and are not restated here.
+
+---
+
+## Entities / Aggregates
+
+L2-A01 defines canonical platform concepts rather than a data-model entity catalog. The principal concepts — Platform, Tenant, Institution, Context, Provider, Consumer, Contract — are defined in Appendix B (Glossary) and positioned structurally in the Canonical Hierarchy (Section 2.4) and Canonical Hierarchy diagrams (Section 3.3). Tenant and Institution are explicitly established as distinct canonical entities (Section 3.2); no further entity/aggregate breakdown is defined in this document.
+
+---
+
 # Appendix C — Revision History
 
 | Version | Date | Author | Description |

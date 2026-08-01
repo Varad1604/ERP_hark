@@ -725,6 +725,24 @@ Section D maintains loose coupling with other SutraERP domain sections.
 
 ---
 
+## Lifecycle
+
+Lifecycle is not consolidated into a single section; each of the 22 aggregates documented in Part 5 (Aggregate Ownership Review) specifies its own lifecycle state chain via the "Lifecycle:" field — for example, `CourseOffering`: Draft -> Published -> Active -> Suspended -> Closed, and `TeachingSession`: Scheduled -> Active -> Completed -> Archived. The Complete Academic Delivery Workflow Chain diagram further sequences these per-aggregate lifecycles across the seven bounded contexts (L2-D01 through L2-D07).
+
+---
+
+## States
+
+State values are recorded per aggregate as the "Lifecycle:" transition chains in Part 5 (Aggregate Ownership Review) rather than in a separate state catalogue. No additional state machine section exists beyond these per-aggregate chains and the Command Ownership Matrix (Part 6), which records the precondition and postcondition state changes triggered by each command.
+
+---
+
+## Rules / Invariants
+
+Business rules are recorded per aggregate as the "Business Invariants:" field in Part 5 (Aggregate Ownership Review) — for example, "Max Capacity must exceed current allocated seats" (`CourseOffering`) and "Workload allocation hours cannot exceed maximum allowed limits" (`FacultyAssignment`). Command-level preconditions and postconditions enforcing these invariants are additionally listed in the Command Ownership Matrix (Part 6).
+
+---
+
 # Part 15 — Section Readiness Certification
 
 The Technical Architecture Board certifies the Academic Delivery Section (Section D):

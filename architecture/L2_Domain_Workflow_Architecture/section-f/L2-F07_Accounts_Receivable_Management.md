@@ -11,6 +11,7 @@
 | **Version** | 1.0.0 |
 | **Status** | Draft |
 | **Owner** | Finance Architecture Board |
+| **Document Owner** | Chetan |
 | **Depends On** | L2-F00, L2-F01, L2-F02, L2-F03, L2-F04, L2-F05, L2-F06 |
 | **Consumed By** | L3 Finance Workflows, L4 Finance Business Rules, L5 Technical Architecture |
 
@@ -1600,4 +1601,22 @@ Through strict adherence to the Finance Architecture Constitution, this bounded 
 - Repository-wide consistency.
 
 This document serves as the authoritative Level-2 architectural specification for Accounts Receivable Management and provides the foundation for all downstream workflow, business rule, and implementation artifacts within the SutraERP Finance Architecture repository.
+
+---
+
+## Workflows
+
+This document does not define a dedicated procedural workflow section; workflow orchestration is explicitly excluded from this bounded context's scope (Section 4.4 "Responsibilities Explicitly Excluded" — "Implement collection workflows"; Section 12.5 "Integration Constraints" — "No workflow orchestration responsibilities").
+
+The closest architectural analog is the Business Capabilities catalog in Section 10 (10.2–10.11), which enumerates the discrete capabilities through which the Receivable Aggregate participates in the enterprise: Receivable Registration, Receivable Balance Management, Receivable Classification, Aging Management, Collection Visibility, Settlement Tracking, Financial Traceability, Reporting Participation, and Domain Event Publication.
+
+Detailed step-by-step workflow definitions are the responsibility of Level 3 Finance Workflows, as referenced in the document header ("Consumed By").
+
+---
+
+## States
+
+A dedicated state-machine section is not separately defined in this document, but receivable state concepts are addressed across several sections: Receivable Status and the Receivable Status Record entity (Sections 6.3, 6.4, 7.3), and the Aggregate Lifecycle Principle (Section 6.5), which describes the lifecycle beginning at obligation establishment and concluding through settlement, adjustment, cancellation, or another constitutionally permitted outcome.
+
+Collection Visibility (Section 10.7) lists example collection states — Active Collection, Under Review, Collection Suspended, Collection Escalated, Collection Completed — and Aging Management (Section 10.6) lists example aging states — Current, Short Outstanding, Medium Outstanding, Long Outstanding, Critical Outstanding. The Published Domain Events (Section 11.3) further imply resulting aggregate states, including Created, Settled, Written Off, Reopened, and Closed.
 

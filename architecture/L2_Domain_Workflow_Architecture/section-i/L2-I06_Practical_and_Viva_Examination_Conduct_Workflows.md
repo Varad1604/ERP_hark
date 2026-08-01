@@ -1,5 +1,9 @@
 # L2-I06 — Practical & Viva Examination Conduct Workflows
 
+**Section:** I — Examination  
+**Status:** Draft  
+**Document Owner:** Devang
+
 ---
 
 # 1. Purpose

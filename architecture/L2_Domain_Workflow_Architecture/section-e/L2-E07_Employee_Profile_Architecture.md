@@ -1,7 +1,8 @@
 # L2-E07 — Employee Profile Workflows
 
 **Document Version:** 1.0  
-**Status:** Canonical Architecture Baseline  
+**Status:** Architecture Baseline  
+**Document Owner:** Varad  
 **Classification:** Enterprise Architecture  
 **Bounded Context:** Employee Profile  
 **Parent Domain:** Section E — People & Workforce Management  

@@ -14,6 +14,7 @@
 | Status | Draft |
 | Version | 1.1.0 |
 | Owner | Finance Architecture Team |
+| Document Owner | Chetan |
 | Parent Architecture | L2-F00 — Finance Domain Model & Foundation |
 | Depends On | L2-F00, L2-F06, L2-F08, L2-F10, Section J |
 | Referenced By | Section J, Accounts Payable, Budget, Treasury, Analytics, Audit |
@@ -207,3 +208,25 @@ L2-F14 is a Finance consumption and financial-consequence architecture for procu
 It is not the canonical Procurement & Supply Chain architecture.
 
 Canonical procurement and enterprise resource ownership remains exclusively with Section J.
+
+---
+
+## Lifecycle
+
+This document does not define a standalone Finance lifecycle. Operational lifecycle ownership (requisition, purchase order, goods receipt, inventory, asset, verification, and disposal lifecycles) remains with Section J as enumerated in Section 3 — Explicit Non-Ownership. Finance's own progression is expressed as monetary state transitions in Section 5 — Canonical Integration Model, moving from a consumed Section J fact through Finance validation/accounting interpretation to a Finance-owned monetary state.
+
+## Workflows
+
+Finance's consumption workflow is described in Section 5 — Canonical Integration Model: a Section J procurement/resource fact flows into Finance validation or accounting interpretation, producing a Finance-owned monetary state. Section 2 — Scope enumerates the specific consumption workflows covered, including budget validation, AP handoff, vendor invoice validation, tax accounting interpretation, treasury payment readiness, and financial posting for procurement, receipt, valuation, capitalization, write-off, and disposal events.
+
+## States
+
+No explicit state machine is separately defined in this document. Section 5 references a generic "Finance-Owned Monetary State" as the outcome of validation/accounting interpretation, and the Finance-published events in Section 7 (e.g., BudgetValidationCompleted, VendorInvoiceApproved, PaymentReadyForRelease, PaymentReleased) imply the monetary state transitions Finance tracks without formally enumerating them as states.
+
+## Rules / Invariants
+
+Rule-like constraints appear across several sections rather than in a dedicated section. Section 3 — Explicit Non-Ownership states Finance shall not create a Procurement Aggregate, Supplier Master, Purchase Order lifecycle, Goods Receipt lifecycle, Stock Ledger, or Operational Asset Register. Section 8 — Authorization, Audit, and Governance requires preservation of tenant/institution context, Section J source references, decision traceability, and segregation between procurement and financial approval/payment actors. Section 9 — Completion Criteria further codifies ownership-boundary invariants for this document.
+
+## Entities / Aggregates
+
+Finance does not own or create procurement/resource entities or aggregates; per Section 3, it shall not create a Procurement Aggregate, Supplier Master, Purchase Order lifecycle, Goods Receipt lifecycle, Stock Ledger, or Operational Asset Register — these remain owned by Section J (J01-J10) as tabulated in Section 3. Section 4 — Finance Ownership lists the monetary/accounting concerns Finance does own (budget, AP liability, tax accounting, payment, GL postings, asset accounting), which are addressed as their own aggregates in the referenced documents L2-F05, L2-F10, and L2-F12 rather than in this document.

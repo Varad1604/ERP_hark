@@ -1,10 +1,11 @@
-# L2-A00 — Platform Foundation Architecture
+# L2-A00 — Platform Foundation Review
 
 **Document ID:** L2-A00  
 **Architecture Level:** Level 2 — Platform Foundation  
 **Domain:** Enterprise Platform Architecture  
-**Status:** Approved (Constitutional Baseline)  
+**Status:** Approved Baseline  
 **Owner:** Enterprise Architecture Board  
+**Document Owner:** Dhruv  
 **Primary Audience:** Enterprise Architects, Domain Architects, Platform Architects, Technical Governance Teams, Solution Architects, Engineering Leadership
 
 ---

@@ -1,13 +1,14 @@
-# L2-G00 — Campus Operations Review & Governance
+# L2-G00 — Campus Operations Review
 
 **Repository:** SutraERP  
 **Section:** G — Campus Operations  
 **Domain:** G00 — Campus Operations Review & Governance  
 **Document ID:** L2-G00  
 **Version:** 1.0  
-**Status:** Architecture Draft  
+**Status:** Draft  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain
+**Owner:** Campus Operations Domain  
+**Document Owner:** Devang
 
 **Upstream Dependencies**
 

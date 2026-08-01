@@ -1398,6 +1398,12 @@ Its responsibility is to establish the governed business context within which al
 
 ---
 
+## Entities / Aggregates
+
+This document does not use "Entity" or "Aggregate" terminology directly. Its canonical business object is the Examination Session, whose supported types are catalogued in the Examination Session Catalogue (Section 18) — Regular, Supplementary, Improvement, Makeup, Special, Entrance, Certification, and Exit Examination Sessions. Ownership of the Examination Session business capability is further defined under Ownership Boundaries (Section 14).
+
+---
+
 # End of Document
 
 

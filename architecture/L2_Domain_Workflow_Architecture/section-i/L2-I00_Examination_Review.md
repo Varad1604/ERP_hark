@@ -89,6 +89,48 @@ Section I review is complete when:
 
 ---
 
+## Lifecycle
+
+Not separately defined in this document. This is a Section I control review document; it does not define examination business workflows or their lifecycle. Lifecycle definitions for the domains listed in Scope (Section 2) are owned by L2-I01 through L2-I16.
+
+---
+
+## Workflows
+
+This document does not own or define individual workflows (see Scope, Section 2). Per Review Criteria (Section 3), it instead confirms that every Section I workflow has one canonical owner and a valid upstream/downstream dependency chain, with the actual workflows defined in L2-I01 through L2-I16.
+
+---
+
+## States
+
+Not separately defined in this document.
+
+---
+
+## Rules / Invariants
+
+The Review Criteria in Section 3 function as this document's rule set: every Section I document must exist and be named consistently, every cross-reference must resolve to a real repository document, every workflow must have one canonical owner and a valid dependency chain, no Section I document may conflict with the locked L1 ownership model, and Section I terminology must remain aligned with repository terminology.
+
+---
+
+## Events
+
+Not separately defined in this document.
+
+---
+
+## Dependencies / Integration
+
+Per Document Control, this document depends on L2-I01 through L2-I16 Examination Workflows, L0 Business Vision, L1 Business Domain Architecture, the Architecture Index, the Dependency Map, and the L2 Domain Workflow Matrix. Review Criteria (Section 3) additionally requires every Section I workflow sequence to have a valid upstream and downstream dependency chain.
+
+---
+
+## Entities / Aggregates
+
+Not separately defined in this document.
+
+---
+
 # End of Document
 
 

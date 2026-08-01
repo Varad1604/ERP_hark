@@ -186,3 +186,21 @@ J04 shall preserve supplier, requester, finance, and item references using stabl
 Issued purchase orders and amendments shall remain reconstructable according to enterprise and institutional retention policy.
 
 Retried commands shall be idempotent for draft creation, approval, issue, amendment, cancellation, and closure.
+
+---
+
+## Lifecycle
+
+The purchase order lifecycle is described as a flow in Section 1 (Purpose): Released Purchase Requisition -> Sourcing Outcome -> Purchase Order Draft -> Approval/Validation -> Issued Purchase Order -> Goods Receipt/Financial Settlement.
+
+## Workflows
+
+Purchase order workflow steps are captured in Section 5 (Core Responsibilities): order creation and amendment, supplier acknowledgement and approval capture, order issue publication for receiving and finance, and cancellation/closure/fulfilment tracking.
+
+## States
+
+This document does not define a discrete state machine separate from the lifecycle flow in Section 1; order progression is expressed through the stages Drafted, Approved, Issued, Amended, Cancelled, and Closed referenced in the Domain Events (Section 6) and Audit & Evidence (Section 10).
+
+## Rules / Invariants
+
+Purchase order rules are stated across the document rather than consolidated: SoD rules (Section 9), tenant/institution isolation rules (Section 11), and idempotency guarantees for draft creation, approval, issue, amendment, cancellation, and closure (Section 13).

@@ -9,6 +9,7 @@
 **Classification:** Level 2 Domain Workflow Architecture
 **Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
 **Canonical Owner:** Inventory & Warehouse Management
+**Document Owner:** Chetan
 
 ---
 
@@ -188,3 +189,21 @@ J06 shall minimize copied supplier, employee, student, department, finance, and 
 Inventory and stock-ledger history shall remain reconstructable according to enterprise and institutional retention policy.
 
 Retried commands shall be idempotent for item creation, warehouse configuration, stock receipt consequence, reservation, issue consequence, return consequence, transfer consequence, and adjustment.
+
+---
+
+## Lifecycle
+
+The inventory lifecycle is described as a flow in Section 1 (Purpose): Goods Accepted -> Inventory Receipt -> Stock Ledger Update -> Available Stock, branching into Reservation, Issue, Transfer, or Adjustment.
+
+## Workflows
+
+Inventory and warehouse workflow steps are captured in Section 5 (Core Responsibilities): maintaining the enterprise item master, maintaining warehouses and storage locations, recording inventory receipt consequences from J05, governing reservation/issue/return/transfer/adjustment, and maintaining authoritative stock balances and availability.
+
+## States
+
+This document does not define a discrete state machine separate from the lifecycle flow in Section 1; stock position progression is expressed through Received, Reserved, Issued, Returned, Transferred, and Adjusted, as referenced in the Domain Events (Section 6) and Audit & Evidence (Section 10).
+
+## Rules / Invariants
+
+Inventory rules are stated across the document rather than consolidated: SoD rules (Section 9), tenant/institution isolation rules (Section 11), and idempotency guarantees for item creation, warehouse configuration, stock receipt consequence, reservation, issue, return, transfer, and adjustment (Section 13).
