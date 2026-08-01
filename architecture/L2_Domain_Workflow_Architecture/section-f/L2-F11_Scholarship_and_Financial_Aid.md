@@ -8,6 +8,7 @@
 | Status | Draft |
 | Version | 1.0 |
 | Canonical Owner | Finance Architecture |
+| Document Owner | Chetan |
 | Last Updated | TBD |
 
 ---
@@ -4233,6 +4234,12 @@ Upon successful completion of architectural review and repository governance app
 All subsequent Level 3 (Component), Level 4 (Service), implementation, and integration architectures shall conform to the principles, Aggregate boundaries, Domain Events, Integration Contracts, and ownership model established by this document.
 
 Architectural deviations shall require formal governance review and explicit approval before adoption.
+
+---
+
+## Workflows
+
+This document does not present a dedicated "Workflows" heading. The equivalent business process detail is expressed through Section 14 (Financial Aid Aggregate Specification) — "Aggregate Behaviour" (register financial assistance, record eligibility assessment, record approval outcome, allocate approved benefit, associate funding source, activate, record utilization, renew, suspend, reactivate, revoke, expire, archive) and "Aggregate Commands" — together with Section 12 (Business Capability Architecture), whose capability groups (Eligibility Management, Scholarship Management, Financial Aid Management, Sponsorship Management, Waiver Management, Concession Management, Benefit Allocation Management, Renewal Management, Utilization Management, Suspension & Revocation Management) describe the operational responsibilities exercised across the financial assistance lifecycle.
 
 ---
 

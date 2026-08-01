@@ -9,6 +9,7 @@
 | Bounded Context | Alumni Transition |
 | Canonical Aggregate | Alumni Transition Record |
 | Primary Owner | Student Lifecycle Domain |
+| Document Owner | Varad |
 | Version | 1.0 |
 | Status | Draft |
 | Dependencies | See Sections 3 & 4 |

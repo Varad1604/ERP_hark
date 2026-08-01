@@ -11,6 +11,7 @@
 | Layer | Level 2 — Domain Workflow Architecture |
 | Domain | Finance — Asset Accounting |
 | Owner | Finance Architecture Team |
+| Document Owner | Chetan |
 | Depends On | L2-F00 Finance Domain Model & Foundation, L2-F05 General Ledger, L2-F09 Financial Period & Closing, Section J |
 | Referenced By | Financial Reporting, Accounts Payable, Treasury, Section J, Audit, Analytics |
 | Status | Draft |
@@ -149,3 +150,39 @@ L2-F12 owns asset financial accounting.
 Section J owns the operational asset lifecycle.
 
 Finance and Section J collaborate through stable contracts and immutable events without shared ownership.
+
+---
+
+## Lifecycle
+
+This document does not define a single Finance-owned lifecycle state machine. Accounting-stage lifecycle content is distributed across Section 2 (Scope: capitalization accounting decision, depreciation accounting lifecycle, revaluation/impairment accounting, disposal and write-off accounting) and Section 5 (Integration with Section J), where consumed operational events — AssetRegistered, AssetCapitalizationRequested, AssetAssigned, AssetTransferred, AssetVerified, AssetRetired, DisposalApproved, DisposalExecuted, WriteOffApproved — mark the operational stages that drive Finance's accounting treatment. Section 3 confirms the operational asset lifecycle itself is owned by Section J / J08, while Section 4 confirms Finance owns only the accounting lifecycle stages (capitalization, depreciation, revaluation, impairment, disposal, write-off).
+
+---
+
+## Workflows
+
+No section is titled "Workflows," but workflow-equivalent content appears in Section 2 (Scope — capitalization accounting decision, depreciation accounting lifecycle, revaluation and impairment accounting, financial disposal and write-off accounting, reconciliation against Section J asset facts) and Section 5 (Integration with Section J — Finance consumes operational asset facts and, in response, publishes financial outcomes such as AssetCapitalizationCompleted, DepreciationPosted, AssetRevaluationPosted, AssetImpairmentPosted, AssetDisposalAccountingCompleted, and AssetWriteOffAccountingCompleted).
+
+---
+
+## States
+
+Not separately defined as a formal state model in this document. Section 4 (Finance Ownership) references state-like concepts such as "Capitalization Accounting Status" and "Book Value," but no state enumeration or transition table is provided anywhere in the file.
+
+---
+
+## Rules / Invariants
+
+Rule-like content exists as ownership and governance boundaries rather than a dedicated "Rules" section. Section 3 (Explicit Non-Ownership) states Finance shall not maintain an independent operational asset lifecycle or duplicate asset custody state. Section 6 (Authorization, Audit, and Governance) states Finance users shall not gain operational asset custody, assignment, transfer, or disposal authority through financial accounting permissions, and lists context/reference fields Finance shall preserve. Section 7 (Completion Criteria) states invariants such as: no claim to own operational asset lifecycle state, Finance ownership restricted to monetary/accounting treatment, and every operational asset reference pointing to Section J/J08 or J10.
+
+---
+
+## Events
+
+Section 5 (Integration with Section J) lists the events this domain consumes and publishes. Consumed operational events: AssetRegistered, AssetCapitalizationRequested, AssetAssigned, AssetTransferred, AssetVerified, AssetRetired, DisposalApproved, DisposalExecuted, WriteOffApproved. Finance-published outcome events: AssetCapitalizationCompleted, DepreciationPosted, AssetRevaluationPosted, AssetImpairmentPosted, AssetDisposalAccountingCompleted, AssetWriteOffAccountingCompleted. Per Section 5, Finance outcomes reference the Section J asset identifier but do not modify Section J asset state.
+
+---
+
+## Entities / Aggregates
+
+Section 4 (Finance Ownership) enumerates the canonical Finance-owned entities: Financial Asset Accounting Record, Capitalization Accounting Status, Book Value, Depreciation Method and depreciation accounting schedule, Depreciation postings, Revaluation accounting, Impairment accounting, Disposal accounting, Write-off accounting, Asset accounting ledger references, and Asset financial reporting facts.

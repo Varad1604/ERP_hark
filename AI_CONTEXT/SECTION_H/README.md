@@ -4,6 +4,6 @@ Status: Canonical AI Context generated.
 
 Generated artifact:
 
-- `Canonical_AI_Context.md`
+- `H_Canonical_AI_Context.md`
 
 Source architecture documents remain authoritative.

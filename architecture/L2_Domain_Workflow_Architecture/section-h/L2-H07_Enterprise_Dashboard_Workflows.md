@@ -9,6 +9,7 @@
 | Parent Architecture | SutraERP Level 1 Enterprise Architecture |
 | Architecture Style | Domain-Driven Design (DDD), CQRS, Event-Driven Architecture (EDA), API-First Architecture |
 | Canonical Owner | Enterprise Dashboard Domain |
+| Document Owner | Dhruv |
 | Primary Aggregate | Dashboard |
 | Supporting Aggregates | Dashboard Template, Workspace, Widget Configuration, Dashboard Layout |
 | Communication Pattern | Commands, Queries, Domain Events |

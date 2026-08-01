@@ -183,3 +183,21 @@ J05 shall minimize copied supplier, employee, finance, and warehouse data by pre
 Finalized receipt and inspection evidence shall remain reconstructable according to enterprise and institutional retention policy.
 
 Retried commands shall be idempotent for receipt creation, inspection recording, acceptance, rejection, variance recording, supplier return, and closure.
+
+---
+
+## Lifecycle
+
+The goods receipt lifecycle is described as a flow in Section 1 (Purpose): Issued Purchase Order -> Delivery Arrival -> Goods Receipt -> Inspection -> Acceptance, or Rejection/Variance/Return.
+
+## Workflows
+
+Receipt and inspection workflow steps are captured in Section 5 (Core Responsibilities): recording receipt against an issued purchase order, recording inspection and acceptance outcomes, capturing short/excess delivery, damage and variance references, and publishing completion facts to inventory, asset, and finance consumers.
+
+## States
+
+This document does not define a discrete state machine separate from the lifecycle flow in Section 1; receipt progression is expressed through the stages Received, Accepted, Rejected, Variance Recorded, and Closed referenced in the Domain Events (Section 6) and Audit & Evidence (Section 10).
+
+## Rules / Invariants
+
+Receipt and inspection rules are stated across the document rather than consolidated: SoD rules (Section 9), tenant/institution isolation rules (Section 11), and idempotency guarantees for receipt creation, inspection recording, acceptance, rejection, variance recording, supplier return, and closure (Section 13).

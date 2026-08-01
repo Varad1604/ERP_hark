@@ -10,6 +10,7 @@
 | **Architecture Style** | Domain-Driven Design (DDD) |
 | **Primary Aggregate** | Guardian Relationship |
 | **Authoritative Owner** | Student Information System Domain |
+| **Document Owner** | Varad |
 | **Status** | Draft |
 | **Version** | 1.0 |
 
@@ -64,7 +65,8 @@ The following capabilities are owned by other bounded contexts and shall not be 
 | Capability | Authoritative Domain |
 |------------|----------------------|
 | Person identity | L2-A02 — Person & Identity |
-| Authentication & authorization | L2-A03 — Authentication & Authorization |
+| Authentication | L2-A03 — Authentication |
+| Authorization | L2-A04 — Authorization |
 | Student lifecycle | Student Lifecycle |
 | Academic registration | Academic Registration |
 | Academic progression | Academic Progression |
@@ -119,11 +121,12 @@ The Guardian Workflows Domain shall adhere to the following architectural princi
 | Upstream Domain | Dependency Type | Business Purpose | Consumed Information |
 |-----------------|-----------------|------------------|----------------------|
 | L2-A02 — Person & Identity | Authoritative | Guardian identity resolution | Person identifiers, demographic identity, contact identity |
-| L2-A03 — Authentication & Authorization | Authoritative | Guardian authentication and institutional access | Authentication status, authorization context, security identity |
+| L2-A03 — Authentication | Authoritative | Guardian authentication | Authentication status, security identity |
+| L2-A04 — Authorization | Authoritative | Institutional access | Authorization context |
 | L2-B01 — Institution Lifecycle | Context | Institutional ownership | Institution identifier, institutional policies |
 | L2-B02 — Organisation Workflows | Context | Organizational ownership | Departments, schools, divisions, administrative units |
 | L2-B03 — Campus & Infrastructure | Context | Campus association | Campus identifiers, campus hierarchy |
-| L2-C01 — Student Lifecycle | Authoritative | Student existence and lifecycle state | Student identity, enrollment status, lifecycle status |
+| L2-C02 — Student Lifecycle | Authoritative | Student existence and lifecycle state | Student identity, enrollment status, lifecycle status |
 | Admission Domain | Context | Initial guardian establishment | Admission application guardian information |
 | Academic Registration | Reference | Academic relationship validation | Academic session and registration context |
 
@@ -306,8 +309,8 @@ The following business capabilities belong to other bounded contexts and shall n
 |---------------------|----------------------|
 | Person Identity | L2-A02 — Person & Identity |
 | Identity Resolution | L2-A02 — Person & Identity |
-| Authentication | L2-A03 — Authentication & Authorization |
-| Authorization Credentials | L2-A03 — Authentication & Authorization |
+| Authentication | L2-A03 — Authentication |
+| Authorization Credentials | L2-A04 — Authorization |
 | Student Identity | Student Lifecycle |
 | Academic Registration | Academic Registration |
 | Academic Progression | Academic Progression |
@@ -5512,7 +5515,7 @@ Before implementation or architectural review, verify:
 - Published Service Contracts remain compatible.
 - Published Domain Events remain compatible.
 - Business Rules remain internally consistent.
-- Authorization model remains aligned with L2-A03.
+- Authorization model remains aligned with L2-A04.
 - Audit requirements remain satisfied.
 - Extension Points are respected.
 - Architecture Decision Records remain valid.

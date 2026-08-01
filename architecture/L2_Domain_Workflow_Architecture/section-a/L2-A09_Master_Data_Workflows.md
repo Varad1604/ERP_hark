@@ -5,6 +5,7 @@
 **Version:** 1.0  
 **Status:** Draft  
 **Owner:** Platform Architecture Team  
+**Document Owner:** Dhruv  
 **Classification:** Core Platform Domain
 
 ---

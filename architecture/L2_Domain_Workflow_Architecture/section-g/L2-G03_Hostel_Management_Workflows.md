@@ -1,13 +1,14 @@
-# L2-G03 — Hostel Management Workflows
+# L2-G03 — Hostel Workflows
 
 **Repository:** SutraERP  
 **Section:** G — Campus Operations  
 **Domain:** G03 — Hostel Management  
 **Document ID:** L2-G03  
 **Version:** 1.0  
-**Status:** Architecture Draft  
+**Status:** Draft  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain
+**Owner:** Campus Operations Domain  
+**Document Owner:** Devang
 
 **Upstream Dependencies**
 

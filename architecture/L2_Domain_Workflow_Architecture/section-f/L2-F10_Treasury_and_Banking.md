@@ -8,6 +8,7 @@
 | Status | Draft |
 | Version | 1.0 |
 | Canonical Owner | Finance Architecture |
+| Document Owner | Chetan |
 | Last Updated | TBD |
 
 ---
@@ -5201,6 +5202,16 @@ Upon successful completion of architectural review and repository governance app
 All subsequent Level 3 (Component), Level 4 (Service), implementation, and integration architectures shall conform to the principles, ownership model, Aggregate boundaries, Domain Events, and Integration Contracts established by this document.
 
 Architectural deviations shall require formal governance review and explicit approval prior to adoption.
+
+---
+
+## Workflows
+
+Not headed separately in this document; workflow-equivalent detail is distributed across Section 11 (Business Capabilities), which defines sixteen named capabilities — including Treasury Registration, Cash Position Management, Liquidity Management, Payment Scheduling, Payment Batch Management, Payment Execution, Settlement Management, Bank Transaction Management, and Bank Reconciliation Coordination — each specified with a Purpose, Responsibilities, and Business Outcomes.
+
+The "Capability Relationships" subsection of Section 11 illustrates the end-to-end operational sequence: Treasury Registration → Cash Position Management → Liquidity Management → Payment Scheduling → Payment Batch Management → Payment Execution → Settlement Management → Bank Transaction Management → Bank Reconciliation Coordination → Treasury Monitoring.
+
+Section 13 ("Aggregate Behaviour" and "Aggregate State Transition Rules") further enumerates the governed commands and state transitions (Register Treasury, Configure Treasury, Activate Treasury, Schedule Payment, Execute Payment, Complete Settlement, Suspend Treasury, Archive Treasury) that realize this sequence.
 
 ---
 

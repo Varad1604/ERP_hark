@@ -6,7 +6,8 @@
 **Status:** Locked  
 **Version:** 1.0  
 **Architecture Level:** L2 Review Document  
-**Owner:** Enterprise Architecture Team
+**Owner:** Enterprise Architecture Team  
+**Document Owner:** Varad
 
 ---
 

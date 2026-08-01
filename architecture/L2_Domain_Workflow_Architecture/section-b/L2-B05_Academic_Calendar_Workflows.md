@@ -6,11 +6,12 @@ document-level: Level 2 (L2) Domain Architecture
 domain: Academic Management
 repository: SutraERP Enterprise Architecture Repository
 architecture-layer: Business Domain
-status: Canonical
+status: Architecture Locked
 architecture-state: Frozen
 validation-level: Enterprise Architecture Review (V1–V10)
 confidence-level: Very High
 owner: Enterprise Architecture Team
+document-owner: Pallav
 review-authority: Architecture Review Board
 repository-baseline: Current Repository Baseline
 last-updated: July 2026

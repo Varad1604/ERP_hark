@@ -13,6 +13,7 @@
 | Status | Draft |
 | Version | 1.0.0 |
 | Owner | Finance Domain |
+| Document Owner | Chetan |
 | Depends On | L2-F00 Finance Domain Foundation, L2-F01 Student Charge & Fee Management, L2-F02 Payment Management |
 | Consumed By | L2-F05 Accounting, L2-F09 Financial Reporting, L2-F12 Analytics |
 
@@ -2220,6 +2221,18 @@ The Exception Architecture defines the canonical handling of exceptional conditi
 | Multi-Domain Dependencies Defined | ✓ |
 | Ready for L3 Decomposition | ✓ |
 | Ready for Repository Merge | ✓ |
+
+---
+
+## Workflows
+
+This document intentionally does not define operational business workflows; per the Merge Readiness Checklist (Section 26, "No Business Workflows"), workflow step definitions belong to L3/L4 architecture. The nearest architectural equivalent is the domain-level process flow in Section 5 (Domain Architecture): Refund Initiation → Refund Source → Refund Validation → Refund Authorization Participation → Refund Aggregate → Refund Publication → Domain Events. Related architectural-position flows appear per sub-capability in Sections 8.3, 9.3, 10.3, 11.3, 12.3, 15.3, and 19.3. Approval workflow execution itself is explicitly owned externally by the Enterprise Governance capability (Section 10).
+
+---
+
+## Rules / Invariants
+
+Not expressed under a single "Rules" or "Invariants" heading; instead this document encodes rules as "Architectural Constraints" and "Architectural Principles" distributed per section (Section 6 Architectural Principles; Section 7.7 Aggregate Constraints; Sections 8.7, 9.7, 10.6, 11.6, 12.6, 13.6, 14.6, 15.6, 16.7, 17.7, 18.5, 19.5, 20.4, 21.4, and 22.4; consolidated in Section 23 Domain Constraints). Key invariants include: Refund is the sole canonical outbound monetary aggregate (Sections 4.1, 23); Net Refund Amount = Gross Refund Amount − Total Deductions, with Total Deductions ≤ Gross Refund Amount (Section 11.4 Financial Validation); a Refund holds exactly one active operational state at a time (Sections 14.5, 23); lifecycle progression and published records are immutable and move forward only (Sections 13.5, 15.5). Per the Merge Readiness Checklist (Section 26), detailed L4 business rules are explicitly out of scope for this L2 document.
 
 ---
 

@@ -1,5 +1,11 @@
 # SutraERP Architecture Consistency & Contradiction Audit
 
+**Status:** Superseded — 2026-07-31
+
+This audit reviewed only 5 documents and predates the current 107-file L2 corpus. It no longer reflects repository state and must not be treated as a current certification. See `generated/reviews/integrity-2026-07-31-complete.md` for the current, full-corpus integrity review.
+
+---
+
 # Executive Summary
 
 Total Documents Reviewed: 5

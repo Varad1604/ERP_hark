@@ -11,6 +11,7 @@
 | **Primary Aggregate** | Workforce Engagement |
 | **Supporting Aggregates** | Workforce Profile, Position Assignment, Responsibility Assignment |
 | **Authoritative Owner** | Workforce Management Domain |
+| **Document Owner** | Varad |
 | **Upstream Dependencies** | Platform Foundation (Person), Organisation Management, Identity & Access Management, Policy Engine, Workflow Engine |
 | **Downstream Consumers** | Payroll, Leave Management, Academic Delivery, Examination, Research, Library, Hostel, Notifications, Analytics, Audit |
 | **Status** | Draft |

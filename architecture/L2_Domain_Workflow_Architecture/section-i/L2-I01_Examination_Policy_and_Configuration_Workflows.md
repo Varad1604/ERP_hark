@@ -1447,6 +1447,12 @@ Operational execution remains the responsibility of subsequent Examination workf
 
 L2-I01 establishes the governance foundation consumed by every operational Examination workflow within the SutraERP repository.
 
+---
+
+## Entities / Aggregates
+
+This document does not use "Entity" or "Aggregate" terminology directly. Its canonical business objects are the policy artefacts listed in the Examination Policy Catalogue (Section 18) — including the Examination Type Policy, Examination Session Policy, Examination Eligibility Policy, Registration Policy, Hall Ticket Policy, Practical/Theory Examination Policies, Marks Evaluation Policy, Result Computation Policy, Result Publication Policy, Revaluation Policy, Supplementary Examination Policy, Graduation Policy, Merit & Rank Policy, Malpractice Policy, Examination Exception Policy, and Examination Closure Policy. Ownership of these artefacts is further defined under Ownership Boundaries (Section 14).
+
 
 
 

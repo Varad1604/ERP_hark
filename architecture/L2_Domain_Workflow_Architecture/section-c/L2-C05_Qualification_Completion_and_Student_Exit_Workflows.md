@@ -12,6 +12,8 @@
 
 **Owner:** Student Lifecycle Domain Team
 
+**Document Owner:** Varad
+
 ---
 
 # 1. Introduction

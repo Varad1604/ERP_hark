@@ -6,6 +6,7 @@ section: Section C – Student Lifecycle
 version: 1.0.0
 status: Draft
 owner: Student Lifecycle Architecture
+document_owner: Varad
 parent: L1 Business Domain Architecture
 architectural_tier: Level 2 – Domain Workflow Architecture
 domain_owner: Student Lifecycle Domain

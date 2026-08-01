@@ -8,6 +8,7 @@
 | Status | Draft |
 | Version | 1.0 |
 | Canonical Owner | Finance Architecture |
+| Document Owner | Chetan |
 | Last Updated | TBD |
 
 ---
@@ -4141,4 +4142,12 @@ All subsequent Level 3 (Component), Level 4 (Service), and implementation-level 
 Architectural deviations shall require formal governance review and explicit approval before adoption.
 
 **Document Status:** Ready for Architecture Lock (subject to repository validation)
+
+---
+
+## Workflows
+
+This document does not define a dedicated section titled "Workflows"; domain workflows are instead expressed through Section 11 (Business Capabilities), which enumerates the operational processes governing a payable across its lifecycle — Payable Registration, Liability Validation, Outstanding Liability Management, Due Schedule Management, Payment Readiness Evaluation, Liability Ageing, Settlement Reference Management, Payable Suspension, Payable Reopening, Liability Closure, Payable Write-Off, and Aggregate Consistency Enforcement (Capabilities 1–12).
+
+These capability-driven processes are operationalised through the "Aggregate Commands" (Register Payable, Validate Payable, Update Due Schedule, Evaluate Payment Readiness, Record Settlement Reference, Suspend Payable, Reopen Payable, Write Off Payable, Close Payable), each governed by explicit preconditions and postconditions that together constitute the domain's workflow steps.
 

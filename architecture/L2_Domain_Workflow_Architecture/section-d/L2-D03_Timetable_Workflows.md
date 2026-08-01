@@ -4,7 +4,7 @@
 **Domain Code:** D03  
 **Domain Name:** Timetable Workflows  
 **Architecture Level:** L2 — Domain Workflow Specification  
-**Status:** Architecture Locked (80/80 Decisions Approved)  
+**Status:** Architecture Locked  
 **Version:** 1.0  
 **Owner:** Pallav  
 **Dependencies:** B01, B02, B03, B04, B05, D01, D02, Section G (Master Data), Section H (Cross-Cutting Services), Section I (Enterprise Governance)

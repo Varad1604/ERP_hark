@@ -1,4 +1,4 @@
-# L2-B02 — Organization Domain Architecture
+# L2-B02 — Organisation Workflows
 
 ## Part 1 — Front Matter, Governance & Architecture Principles
 
@@ -7,7 +7,8 @@
 **Architecture Level:** Level 2 (Business Domain Architecture)  
 **Domain:** Organization Domain  
 **Project:** SutraERP  
-**Status:** Architecture Locked
+**Status:** Architecture Locked  
+**Document Owner:** Pallav
 
 ---
 

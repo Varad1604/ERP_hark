@@ -11,6 +11,7 @@
 | **Primary Aggregates** | Position Assignment, Responsibility Assignment |
 | **Supporting References** | Position Definition (Organisation Domain), Workforce Engagement (Workforce Domain) |
 | **Authoritative Owner** | Workforce & Engagement Domain |
+| **Document Owner** | Varad |
 | **Status** | Draft |
 | **Version** | 1.0 |
 | **Repository** | SutraERP Canonical Architecture Repository |

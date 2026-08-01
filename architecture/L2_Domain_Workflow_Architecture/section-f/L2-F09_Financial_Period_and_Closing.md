@@ -8,6 +8,7 @@
 | Status | Draft |
 | Version | 1.0 |
 | Canonical Owner | Finance Architecture |
+| Document Owner | Chetan |
 | Last Updated | TBD |
 
 ---
@@ -4735,6 +4736,14 @@ Upon successful completion of architectural review and repository governance app
 All subsequent Level 3 (Component), Level 4 (Service), implementation, and integration architectures shall conform to the principles, ownership model, Aggregate boundaries, Domain Events, and Integration Contracts established by this document.
 
 Architectural deviations shall require formal governance review and explicit approval prior to adoption.
+
+---
+
+## Workflows
+
+This document does not define a standalone "Workflows" section; its operational processes are documented as Business Capabilities in Section 14 (Financial Period Registration, Financial Year Association, Opening, Activation, Lock Management, Closing Readiness Evaluation, Enterprise Closing Coordination, Closing, Reopening, Fiscal Calendar Governance, Period Status Management, Closing Validation, Governance Policy Enforcement, and Period Query Support), each specified with a Purpose, Responsibilities, and (where applicable) Business Rules and Business Outcome.
+
+The ordered flow between these capabilities is illustrated by the Capability Relationship Overview diagram (Section 14) and by the Aggregate Lifecycle diagrams (Section 10 and Section 16).
 
 ---
 

@@ -1,7 +1,8 @@
-# L2-H00 - Section H Architecture Governance and Certification
+# L2-H00 — Services & Intelligence Review
 
 Version: 2.0
 Status: Locked
+Document Owner: Dhruv
 Classification: Enterprise Architecture Governance
 Parent Document:
 - SutraERP Level-1 Enterprise Architecture
@@ -1533,6 +1534,28 @@ The governance model defined in this document ensures that:
 - Future architectural evolution can occur without compromising maintainability or bounded context integrity.
 
 By adhering to these governance principles, Section H provides a scalable, interoperable, and enterprise-ready architectural foundation capable of supporting institutional growth, regulatory evolution, and long-term digital transformation while remaining fully aligned with the SutraERP Level-1 Enterprise Architecture.
+
+---
+
+## Lifecycle
+
+This document does not define workflow lifecycles. Lifecycle control is referenced only as a canonical-ownership responsibility (see Section 14, "Canonical Ownership Governance" — "Lifecycle control"). Concrete lifecycle definitions are owned by the individual Section H Level-2 domain documents (H01-H10), consistent with Section 4, "Out of Scope".
+
+## Workflows
+
+This document is a governance/certification framework and does not define workflow steps; business workflows and workflow orchestration are explicitly excluded (see Section 4, "Out of Scope"). Workflow definitions are owned by the individual Section H Level-2 domain documents referenced in Section 3, "Scope", and Appendix A.
+
+## States
+
+Not separately defined in this document. "State ownership" is referenced only as a canonical-ownership accountability in Section 14, "Canonical Ownership Governance". Concrete state machines and lifecycle states are owned by the respective Section H Level-2 domain documents, per Section 4, "Out of Scope".
+
+## Rules / Invariants
+
+Rules governing Section H are expressed throughout this document rather than under a single heading. See Section 5, "Governance Principles"; Section 16, "Multi-Domain Responsibility Boundaries" (May / Shall Not per domain); Section 17, "Ownership Conflict Resolution Principles"; and the validation rules in Section 45, "Dependency Validation Matrix" (no cyclic dependencies, no reverse ownership, no direct persistence dependency, no shared transaction, no database coupling).
+
+## Entities / Aggregates
+
+This document does not define entities or aggregates; it governs domain ownership boundaries rather than data models (see Section 4, "Out of Scope"). The closest analogue is the business-capability ownership recorded in Section 15, "Canonical Ownership Matrix", which lists canonical owners and consumers per capability rather than literal entities. Entity and aggregate definitions are owned by the individual Section H Level-2 domain documents.
 
 ---
 

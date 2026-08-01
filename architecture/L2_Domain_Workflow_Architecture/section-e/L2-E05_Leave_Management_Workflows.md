@@ -29,8 +29,9 @@
 
   Version                             1.0
 
-  Status                              Architecture Locked --- Authoring
-                                      Phase
+  Status                              Draft
+
+  Document Owner                      Varad
   -----------------------------------------------------------------------
 
 ------------------------------------------------------------------------

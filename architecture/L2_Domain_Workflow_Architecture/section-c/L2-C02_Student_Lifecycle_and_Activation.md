@@ -1,9 +1,10 @@
-# L2-C02 — Student Lifecycle & Activation
+# L2-C02 — Student Lifecycle & Activation Workflows
 
 **Section:** C — Student Lifecycle  
 **Architecture Level:** Level 2 (Domain Architecture)  
-**Status:** 🔒 LOCKED v1.0  
+**Status:** Locked  
 **Owner:** Section C Architect  
+**Document Owner:** Varad  
 
 **Depends On:**
 - L2-A01 — Platform Foundation

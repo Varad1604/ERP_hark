@@ -1,4 +1,4 @@
-# L2-H05_Research_Workflows
+# L2-H05 — Research Workflows
 
 **Document ID:** L2-H05  
 **Domain:** Section H — Institutional Services & Intelligence  
@@ -6,8 +6,9 @@
 **Document Type:** Level 2 Enterprise Workflow Specification  
 **Architecture Style:** Domain-Driven Design (DDD), CQRS, Event-Driven Architecture (EDA)  
 **Version:** 1.0  
-**Status:** Draft – Architecture Baseline  
+**Status:** Architecture Baseline  
 **Owner:** Enterprise Architecture Team  
+**Document Owner:** Dhruv  
 
 ---
 

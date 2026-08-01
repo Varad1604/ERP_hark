@@ -13,6 +13,7 @@
 | Parent Architecture | L2-J00 - Enterprise Resource Management Architecture & Governance |
 | Primary Aggregate | StockMovement |
 | Canonical Owner | Stock Operations & Distribution |
+| Document Owner | Chetan |
 | Status | Trust Certification Ready |
 | Version | 1.1 |
 
@@ -226,3 +227,13 @@ J07 is complete when:
 J07 is the canonical owner of stock movement execution and distribution evidence.
 
 J06 owns inventory truth; J08 owns operational asset lifecycle; Finance owns financial truth.
+
+---
+
+## Workflows
+
+Stock operations workflow steps are captured in Section 2 (Scope): stock reservation execution, stock issue, stock return, stock transfer request/dispatch/receipt, stock distribution, consumption recording, movement exception, movement cancellation, and movement completion, sequenced through the Canonical Lifecycle in Section 5.
+
+## States
+
+This document does not define a discrete state machine separate from the lifecycle flow in Section 5; movement progression is expressed through the stages Requested, Approved, Issued, Dispatched, Received, Discrepancy Recorded, Completed, and Cancelled referenced in the Domain Events (Section 10).

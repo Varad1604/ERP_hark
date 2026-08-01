@@ -3779,4 +3779,16 @@ This document is ready for repository integration when the following conditions 
 
 ---
 
+## Workflows
+
+This document defines charge architecture rather than named scenario workflows. Section 10 (Charge Generation Architecture) describes the architectural flow from business event to published charge, and Section 18 (Charge Lifecycle Architecture) describes lifecycle stage progression, but neither constitutes a workflow walkthrough. Per Section 31 (Merge Readiness Checklist), "No Scenario Workflows Included" is a stated conformance criterion — operational workflows are explicitly out of scope and deferred to L3/L4 documentation.
+
+---
+
+## Rules / Invariants
+
+Architectural rules are expressed as principles and constraints distributed across the document rather than consolidated under a single "Rules" heading. See Section 6 (Architectural Principles), the "Architectural Principles" and "Architectural Constraints" subsections within Sections 9–27, and Section 28 (Domain Constraints), which enumerates Aggregate, Ownership, Lifecycle, Financial, Integration, Configuration, and Audit constraints. Per Section 31 (Merge Readiness Checklist), "No Business Rule Logic Included" is a stated conformance criterion — detailed business rule logic is explicitly deferred to L4 documentation.
+
+---
+
 # End of Document

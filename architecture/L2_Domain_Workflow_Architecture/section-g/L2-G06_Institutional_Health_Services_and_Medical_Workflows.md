@@ -1,13 +1,14 @@
-# L2-G06 — Institutional Health Services & Medical Workflows
+# L2-G06 — Medical Workflows
 
 **Repository:** SutraERP  
 **Section:** G — Campus Operations  
 **Domain:** G06 — Institutional Health Services & Medical Workflows  
 **Document ID:** L2-G06  
 **Version:** 1.0  
-**Status:** Architecture Draft  
+**Status:** Draft  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain
+**Owner:** Campus Operations Domain  
+**Document Owner:** Devang
 
 **Upstream Dependencies**
 

@@ -389,3 +389,17 @@ J02 is complete when:
 J02 is the canonical owner of supplier identity and supplier governance within SutraERP.
 
 It preserves trusted supplier information, sensitive supplier data controls, supplier governance evidence, and supplier lifecycle history while procurement, finance, inventory, assets, audit, reporting, and platform capabilities retain their separate canonical responsibilities.
+
+---
+
+## Workflows
+
+J02's core workflows are enumerated in Section 3 (Scope): supplier registration, identity resolution and duplicate merge, onboarding, verification, approval and activation, classification and qualification, sensitive-data change, performance and incident recording, and restriction/suspension/blacklisting/reactivation/inactivation/closure. Step-level detail for these workflows is expressed through the lifecycle transitions in Section 6 and the governance rules in Sections 7-12.
+
+## States
+
+Supplier lifecycle states (Prospective/Registered, Submitted for Onboarding, Verification Pending, Returned/Rejected, Approved, Active, Restricted, Suspended, Blacklisted, Inactive, Closed/Archived) are defined in the Supplier Lifecycle diagram (Section 6).
+
+## Rules / Invariants
+
+Domain rules and invariants are stated throughout the document rather than consolidated separately: identity/duplicate governance rules (Section 7), sensitive-data controls (Section 8), authorization and segregation-of-duties rules (Section 10), portal self-service restrictions (Section 11), and operational/idempotency guarantees (Section 16).

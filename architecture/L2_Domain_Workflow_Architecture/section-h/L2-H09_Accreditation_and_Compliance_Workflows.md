@@ -1,5 +1,9 @@
 # L2-H09 – Accreditation & Compliance Workflows
 
+**Section:** H — Institutional Services & Intelligence  
+**Status:** Draft  
+**Document Owner:** Dhruv
+
 ---
 
 # 1. Domain Overview

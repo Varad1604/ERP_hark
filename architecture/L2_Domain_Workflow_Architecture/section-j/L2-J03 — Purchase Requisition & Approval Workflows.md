@@ -184,3 +184,21 @@ J03 shall minimize copied requester, student, employee, department, and financia
 Requisition history shall remain reconstructable according to enterprise and institutional retention policy.
 
 Retried commands shall be idempotent for submission, approval, rejection, release, cancellation, and amendment.
+
+---
+
+## Lifecycle
+
+The requisition lifecycle is described as a flow in Section 1 (Purpose): Requesting Domain -> Purchase Requisition -> Budget/Policy Validation -> Approval Review -> Released for Procurement -> J01 Procurement Planning & Sourcing.
+
+## Workflows
+
+Requisition workflow steps are captured in Section 5 (Core Responsibilities): requisition creation, line/quantity management, budget and policy validation coordination, approval/rejection capture, and release publication to J01 and J04.
+
+## States
+
+This document does not define a discrete requisition state machine separate from the lifecycle flow in Section 1; requisition progression is expressed through the stages Submitted, Approved, Rejected, and Released for Procurement referenced in the Domain Events (Section 6) and Audit & Evidence (Section 10).
+
+## Rules / Invariants
+
+Requisition rules are stated across the document rather than consolidated: SoD rules (Section 9), tenant/institution isolation rules (Section 11), and idempotency guarantees for submission, approval, rejection, release, cancellation, and amendment (Section 13).

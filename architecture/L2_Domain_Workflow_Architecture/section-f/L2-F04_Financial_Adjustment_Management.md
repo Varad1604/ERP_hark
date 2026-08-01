@@ -13,6 +13,7 @@
 | Status | Draft |
 | Version | 1.0.0 |
 | Owner | Finance Domain |
+| Document Owner | Chetan |
 | Depends On | L2-F00 Finance Foundation, L2-F01 Student Charge & Fee Management, L2-F02 Payment Management, L2-F03 Refund Management |
 | Consumed By | L2-F05 Accounting, L2-F09 Reporting, L2-F12 Analytics |
 
@@ -2301,6 +2302,14 @@ Published Financial Adjustments may be consumed by:
 - Deterministic Processing
 - Configuration-Driven Architecture
 - Financial Traceability
+
+---
+
+## Workflows
+
+This document does not define named business workflows as a distinct section. The end-to-end adjustment flow is instead expressed through the Domain Architecture diagram in Section 5 (Business Context → Adjustment Source → Adjustment Classification → Adjustment Validation → Approval Participation → Financial Adjustment Aggregate → Adjustment Publication → Enterprise Events) and the per-component "Architectural Position" diagrams in Sections 8–16 (Source, Category, Reason, Approval Participation, Validation, Reference, Lifecycle, State, Publication).
+
+Taken together with the Lifecycle stages in Section 14.3 and the Validation layers in Section 12.4, these describe the procedural progression of a Financial Adjustment from initiation through archival.
 
 ---
 

@@ -10,6 +10,7 @@
 | **Architecture Style** | Domain-Driven Design (DDD) |
 | **Primary Aggregate** | Student Scholarship Eligibility Record |
 | **Authoritative Owner** | Student Lifecycle Domain |
+| **Document Owner** | Varad |
 | **Status** | Draft |
 | **Version** | 1.0 |
 
@@ -127,7 +128,7 @@ The Scholarship Eligibility domain consumes authoritative business information f
 | **L2-A02 â€” Person & Identity** | Student identity, demographic profile, category, disability status, guardian relationships, citizenship, residency, identity attributes | Evaluate identity-based scholarship eligibility criteria. |
 | **L2-B01 â€” Institution Lifecycle** | Institution profile, institutional policies, operational status | Determine institution-specific scholarship availability and governance. |
 | **L2-B02 â€” Organisation Workflows** | Campus, faculty, department, school, organizational hierarchy | Resolve organization-specific scholarship applicability and eligibility constraints. |
-| **L2-B03 â€” Programme Portfolio** | Programme definitions, academic structure, qualification hierarchy, programme offerings | Evaluate programme-specific scholarship eligibility. |
+| **L2-B04 â€” Curriculum Framework** | Programme definitions, academic structure, qualification hierarchy, programme offerings | Evaluate programme-specific scholarship eligibility. |
 | **L2-C01 â€” Admissions** | Admission status, admission category, admission quota, admission type, admission cycle | Determine admission-based scholarship eligibility. |
 | **L2-C02 â€” Student Lifecycle** | Student lifecycle status, enrolment status, academic standing, progression status | Validate active student eligibility and lifecycle-dependent scholarship conditions. |
 | **L2-C03 â€” Academic Registration** | Programme registrations, semester registrations, course registrations | Evaluate registration-dependent scholarship requirements. |
@@ -2743,7 +2744,7 @@ B01["L2-B01<br/>Institution Lifecycle"]
 
 B02["L2-B02<br/>Organisation Workflows"]
 
-B03["L2-B03<br/>Programme Portfolio"]
+B03["L2-B04<br/>Curriculum Framework"]
 
 C01["L2-C01<br/>Admissions"]
 
@@ -2889,7 +2890,7 @@ INST["L2-B01<br/>Institution Lifecycle"]
 
 ORG["L2-B02<br/>Organisation"]
 
-PROG["L2-B03<br/>Programme Portfolio"]
+PROG["L2-B04<br/>Curriculum Framework"]
 
 ADM["L2-C01<br/>Admissions"]
 
@@ -5818,12 +5819,12 @@ The Scholarship Eligibility bounded context collaborates with several other ente
 
 | Related Document | Relationship |
 |------------------|--------------|
-| L2-C01 â€” Student Lifecycle | Provides student business information. |
-| L2-C02 â€” Admissions | Provides admission context. |
+| L2-C01 â€” Admissions | Provides admission context. |
+| L2-C02 â€” Student Lifecycle | Provides student business information. |
 | L2-C03 â€” Academic Registration | Provides registration status. |
 | L2-C04 â€” Academic Progression | Provides academic performance information. |
 | L2-C05 â€” Qualification Completion | Provides qualification status. |
-| L2-C06 â€” Student Documents | Provides supporting business evidence. |
+| L2-C06 â€” Guardian Workflows | Provides supporting business evidence. |
 | Finance Architecture | Consumes scholarship recommendations for downstream financial processing. |
 | Workflow Architecture | Coordinates approval and operational workflows. |
 | Reporting & Analytics | Consumes published business events and eligibility information. |

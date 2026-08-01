@@ -186,3 +186,27 @@ Future changes to B01 through B05 must preserve:
 - repository traceability
 
 **Final Verdict:** Section B Certified
+
+---
+
+## Lifecycle
+
+Section B does not define a single consolidated lifecycle section; lifecycle ownership is instead evaluated per aggregate in the Aggregate Validation table (Section 7), which confirms that Institution, Organisation, and AcademicCalendar each maintain a self-contained lifecycle and AcademicProgramme maintains a version-level lifecycle. Institution Lifecycle, Institution Configuration, and Institution Activation are further itemized as certified responsibilities in the Responsibility Matrix (Section 5).
+
+---
+
+## States
+
+State-transition behavior is addressed as a Workflow Validation finding rather than in a dedicated section: Section 8 confirms that "Lifecycle transitions are well-defined and event-backed" and that "Validation gates prevent invalid state transitions and downstream leakage."
+
+---
+
+## Rules / Invariants
+
+Rules and invariants are referenced as a Workflow Validation finding in Section 8 ("Each workflow defines strict preconditions and validations") and as ongoing obligations in the Final Certification (Section 10), which requires future changes to B01–B05 to preserve canonical ownership, bounded-context integrity, unidirectional dependencies, event-driven collaboration, and repository traceability.
+
+---
+
+## Events
+
+Event-based collaboration is noted as a cross-cutting characteristic rather than documented in its own section: Section 8 states that lifecycle transitions are "event-backed," and Section 10 lists "event-driven collaboration" among the properties that future changes to B01–B05 must preserve.

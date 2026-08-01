@@ -2455,6 +2455,18 @@ This document is governed by and depends upon the following Level 2 architecture
 
 ---
 
+## States
+
+Audit Evidence itself does not transition through mutable states; instead the Audit Infrastructure models three independent status dimensions — Storage Status, Availability Status, and Governance Status (see Section 21.2 "Lifecycle Dimensions" and Sections 21.4–21.6). Valid values and transitions between these statuses are enumerated in the Lifecycle Transition Matrix (Section 22.1). No unified state machine beyond these three status dimensions is separately modeled in this document.
+
+---
+
+## Rules / Invariants
+
+Binding rules and invariants are expressed throughout this document as "Constraints" subsections attached to each aggregate (Section 12), entity (Section 13), value object (Section 14), domain service (Section 15), and workflow (Section 19), rather than being consolidated into a single list. Cross-cutting governance rules are additionally captured in the Policy Enforcement Model (Section 28), the Lifecycle Principles (Sections 22.2 and 31.1), the Integrity Principles (Section 30.1), and the Security Principles (Section 29.2). See those sections for the authoritative rule set.
+
+---
+
 # 36. Repository Completion Checklist
 
 | Requirement | Status |

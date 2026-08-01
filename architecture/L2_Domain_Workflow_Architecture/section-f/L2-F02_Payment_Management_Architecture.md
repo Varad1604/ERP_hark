@@ -2385,5 +2385,21 @@ Downstream domains consume Payment information without assuming ownership.
 
 ---
 
+## Workflows
+
+This document intentionally does not define operational or business workflows; Section 1.3 (Scope) excludes "operational workflows" from the Payment Domain's governance, and the Merge Readiness Checklist (Section 28) explicitly confirms "No Business Workflow" and "No Approval Workflow" as satisfied constraints.
+
+The closest architectural equivalents are the structural/sequencing diagrams provided per component: the layered flow in Section 5 (Domain Architecture), the per-aggregate "Architectural Position" diagrams in Sections 8–17 (e.g., Payment Source → Payment Reception → Payment Validation → Payment Aggregate), and the canonical progression in Section 15.3 (Payment Lifecycle: Received → Validated → Published → Allocated → Settled → Archived). These describe architectural sequencing, not operational workflow steps.
+
+Not separately defined in this document as an operational workflow section.
+
+---
+
+## Rules / Invariants
+
+Rules are not consolidated under a single "Rules" heading but are distributed as "Architectural Principles" and "Architectural Constraints" throughout the document: Section 6 (Architectural Principles), the per-component principles/constraints in Sections 8–17 and 21–24, and Section 25 (Domain Constraints), which enumerates Aggregate, Lifecycle, State, and Integration Constraints. Together these govern payment aggregate ownership, allocation, settlement, and state transition behaviour.
+
+---
+
 # End of Document
 

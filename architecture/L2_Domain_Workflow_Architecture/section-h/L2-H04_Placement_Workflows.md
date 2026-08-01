@@ -1,4 +1,4 @@
-# L2-H04_Placement_Workflows
+# L2-H04 — Placement Workflows
 
 **Document ID:** L2-H04  
 **Domain:** Section H — Institutional Services & Intelligence  
@@ -6,8 +6,9 @@
 **Document Type:** Level 2 Enterprise Workflow Specification  
 **Architecture Style:** Domain-Driven Design (DDD), CQRS, Event-Driven Architecture (EDA)  
 **Version:** 1.0  
-**Status:** Draft – Architecture Baseline  
+**Status:** Architecture Baseline  
 **Owner:** Enterprise Architecture Team  
+**Document Owner:** Dhruv  
 
 ---
 
@@ -3940,3 +3941,9 @@ The architecture adheres to Domain-Driven Design, CQRS, and Event-Driven Archite
 By separating transactional aggregates from query projections and integrating with upstream enterprise domains through commands, events, APIs, and read models, the module provides a robust foundation for employer engagement, student recruitment, placement governance, internship management, and institutional placement intelligence.
 
 This document serves as the authoritative Level 2 specification for the Placement Management bounded context and forms the baseline for subsequent Level 3 workflow decomposition, service implementation, API contracts, and user interface design.
+
+---
+
+## States
+
+State machines for each aggregate (Employer, PlacementDrive, Position, CandidateApplication, RecruitmentWorkflow, PlacementOffer, Internship, JoiningConfirmation) are defined via the per-aggregate Lifecycle diagrams and Transition Tables in Section 17 Aggregate Specifications. Each Transition Table enumerates the aggregate's valid states, the command that triggers each transition, and the resulting next state. No separate unified state-machine catalogue exists outside these per-aggregate definitions.

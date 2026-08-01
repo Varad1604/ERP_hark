@@ -13,6 +13,7 @@
 | Parent Architecture | L2-J00 - Enterprise Resource Management Architecture & Governance |
 | Primary Aggregate | Asset |
 | Canonical Owner | Operational Asset Lifecycle Management |
+| Document Owner | Chetan |
 | Status | Trust Certification Ready |
 | Version | 1.1 |
 
@@ -267,3 +268,13 @@ J08 is complete when:
 J08 is the canonical owner of operational asset lifecycle truth.
 
 It preserves asset identity, custody, assignment, movement, condition, retirement, and operational evidence while Finance owns financial accounting and J10 owns disposal/write-off execution.
+
+---
+
+## Workflows
+
+Asset lifecycle workflow steps are captured in Section 2 (Scope): asset registration, identity and tagging, classification, custody, assignment, holder/location/condition history, warranty/AMC/insurance reference, transfer, return, and retirement recommendation, sequenced through the Canonical Lifecycle in Section 5.
+
+## States
+
+This document does not define a discrete state table separate from the lifecycle flow in Section 5; asset progression is expressed through the stages Asset Candidate, Registered, Available/In Custody, Assigned, Returned, Transferred, Under Repair/Maintenance Reference, Verification Pending/Verified, Retirement Recommended, Retired/Disposal Coordinated, and Archived.

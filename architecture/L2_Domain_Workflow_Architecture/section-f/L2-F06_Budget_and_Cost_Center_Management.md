@@ -1,3 +1,11 @@
+# L2-F06 — Budget & Cost Center Management
+
+**Section:** F — Finance  
+**Status:** Draft  
+**Document Owner:** Chetan
+
+---
+
 # 1. Introduction
 
 The Budget & Cost Center Management domain provides the financial planning and budget administration capabilities of the SutraERP Finance Architecture.
@@ -1963,3 +1971,9 @@ Every modification to `AllocatedAmount` or `UtilizedAmount` must generate an imm
 
 ## 17.3 Statutory Grant Ring-Fencing
 Grant Budgets (e.g., UGC Grants) MUST NOT be subjected to Virement into General Revenue or Capital pools. They are strictly ring-fenced to their designated Cost Centers.
+
+---
+
+## Workflows
+
+Workflow-level detail is expressed through the Business Capability Architecture (Section 7), which walks through the sequential Responsibilities for Budget Planning, Budget Allocation, Cost Center Management, Budget Monitoring, Budget Revision, and Reporting & Analysis (Sections 7.2-7.7). The recurring Budget Planning Cycle (Section 5.6: Planning -> Preparation -> Approval -> Allocation -> Monitoring -> Revision -> Closure -> Performance Review) and the Virement re-appropriation process (Section 12.2) further describe how budget activities proceed operationally, culminating in the formal transitions captured by the State Transition Architecture (Section 13).

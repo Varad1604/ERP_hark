@@ -403,7 +403,6 @@ Mandatory core operating domains.
 -   Fees.
 -   Accounts / General Ledger.
 -   Budget.
--   Procurement.
 -   Payables.
 -   Receivables.
 -   Financial Reporting.
@@ -586,7 +585,6 @@ FINANCE — TEAM 1
 ├── Scholarship Financial Processing
 ├── Accounts / GL
 ├── Budget
-├── Procurement
 ├── Payables
 ├── Receivables
 └── Financial Reports
@@ -906,7 +904,6 @@ Expected broader scope includes:
 -   General Ledger.
 -   Budget.
 -   Cost Centres.
--   Procurement/Purchase.
 -   Vendor/External Organisation financial context.
 -   Payroll Accounting.
 -   Scholarship Accounting.
@@ -1114,7 +1111,6 @@ Owns:
 -   Accounts / General Ledger.
 -   Financial reporting.
 -   Budget.
--   Procurement.
 -   Payables.
 -   Receivables.
 -   Finance-owned workflows.

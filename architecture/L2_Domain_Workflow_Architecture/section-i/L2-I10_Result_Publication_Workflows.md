@@ -1,5 +1,9 @@
 # L2-I10 — Result Publication Workflows
 
+**Section:** I — Examination  
+**Status:** Draft  
+**Document Owner:** Devang
+
 ---
 
 # 1. Purpose
@@ -185,7 +189,7 @@ Examples include:
 
 - Publication Scheduled
 - Publication Started
-- Results Published
+- ResultPublished
 - Candidate Accessed Result
 - Publication Closed
 
@@ -1022,7 +1026,7 @@ These events communicate authoritative publication outcomes to downstream workfl
 | Publication Scheduled | Publication schedule confirmed | Notification Workflows |
 | Publication Authorised | Institutional publication approval completed | Publication Workflow |
 | Publication Started | Publication process initiated | Audit |
-| Results Published | Official publication completed | L2-I11, L2-I12, L2-I13 |
+| ResultPublished | Official publication completed | L2-I11, L2-I12, L2-I13 |
 | Candidate Result Accessed | Candidate views published result | Audit |
 | Institutional Result Accessed | Institutional user accesses published result | Audit |
 | Publication Notification Sent | Publication notification dispatched | Audit |
@@ -1565,7 +1569,7 @@ Publication Authorised
 Publication Ready
         │
         ▼
-Results Published
+ResultPublished
         │
         ▼
 Accessible

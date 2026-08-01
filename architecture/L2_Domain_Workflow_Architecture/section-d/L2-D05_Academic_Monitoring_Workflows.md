@@ -16,6 +16,7 @@
 | Communication Pattern | Event-Driven Architecture (EDA) |
 | Application Pattern | CQRS |
 | Ownership Model | Canonical Domain Ownership |
+| Document Owner | Pallav |
 | Status | Architecture Approved |
 | Version | 1.0 |
 

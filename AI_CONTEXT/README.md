@@ -9,16 +9,17 @@ Generated sections:
 - Section A - Platform Foundation
 - Section B - Institution & Structure
 - Section C - Student Lifecycle
+- Section D - Academic Delivery
 - Section E - People & Workforce
 - Section F - Finance & Accounting
 - Section G - Campus Operations
 - Section H - Institutional Services & Intelligence
+- Section I - Examination
 - Section J - Enterprise Resource Management
 
 Pending sections:
 
-- Section D
-- Section I - Examination
+- None
 
 Conventions:
 
