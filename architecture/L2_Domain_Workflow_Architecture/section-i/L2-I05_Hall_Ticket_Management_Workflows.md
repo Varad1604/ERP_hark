@@ -1432,7 +1432,7 @@ The Hall Ticket Management domain does **not** own:
 - Marks Collection
 - Evaluation
 - Result Processing
-- Graduation Decisions
+- Qualification Completion Decisions
 
 Those responsibilities belong to their respective workflow documents.
 

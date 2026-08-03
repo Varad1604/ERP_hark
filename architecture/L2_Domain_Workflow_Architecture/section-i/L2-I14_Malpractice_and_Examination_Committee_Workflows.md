@@ -176,7 +176,7 @@ The following responsibilities are owned by other canonical domains.
 
 The Malpractice & Examination Committee domain is a governance domain within the Examination bounded context.
 
-It operates after examination conduct and may influence downstream workflows such as result processing, result publication, supplementary examinations, and graduation by issuing authoritative disciplinary decisions.
+It operates after examination conduct and may influence downstream workflows such as result processing, result publication, supplementary examinations, and qualification completion by issuing authoritative disciplinary decisions.
 
 No other domain may independently investigate or adjudicate examination malpractice.
 
@@ -1181,7 +1181,7 @@ Direct database dependencies between domains are prohibited.
 | Result Processing | Apply disciplinary impact on results. |
 | Result Publication | Withhold or publish results according to disciplinary outcome. |
 | Supplementary Examination | Determine eligibility where required. |
-| Academic Completion | Apply graduation restrictions where applicable. |
+| Academic Completion | Apply qualification completion restrictions where applicable. |
 | Student Lifecycle | Update disciplinary history. |
 | Notification | Inform stakeholders. |
 | Analytics | Institutional reporting. |
@@ -1761,7 +1761,7 @@ Archived aggregates become read-only and may only be accessed by authorized user
 | L2-I09 Result Processing | Penalty impact | Result modification decisions |
 | L2-I10 Result Publication | Publication restrictions | Withhold or publish results |
 | L2-I12 Supplementary Examination | Eligibility | Determine supplementary eligibility |
-| L2-I13 Academic Completion | Graduation eligibility | Restrict academic completion where applicable |
+| L2-I13 Academic Completion | qualification eligibility | Restrict academic completion where applicable |
 | Student Lifecycle | Disciplinary history | Student profile updates |
 | Notification Services | Stakeholder communication | Notifications |
 | Reporting & Analytics | Institutional reporting | KPIs and dashboards |

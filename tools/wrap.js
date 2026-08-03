@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { execSync } = require('child_process');
 
-const files = [
-    { md: 'SutraERP_Architecture_Workflow_Context_Baseline.md', html: 'SutraERP_Architecture_Workflow_Context_Baseline.html' },
-    { md: 'SutraERP_Level_1_Architecture_Locked.md', html: 'SutraERP_Level_1_Architecture_Locked.html' }
-];
+// Source and output paths resolve from the repository root, not from tools/.
+// Closes integrity finding INT-022.
+const { DOCS, HTML_DIR } = require('./paths');
 
 const template = (title, body) => `<!DOCTYPE html>
 <html lang="en">
@@ -214,18 +214,44 @@ const template = (title, body) => `<!DOCTYPE html>
 </body>
 </html>`;
 
-for (const file of files) {
-    const mdPath = path.join(__dirname, file.md);
-    const htmlPath = path.join(__dirname, file.html);
-    
-    if (fs.existsSync(mdPath)) {
-        console.log("Converting " + file.md);
-        const bodyContent = execSync('npx marked "' + mdPath + '"').toString();
-        const titleName = file.md.replace('.md', '').replace(/_/g, ' ');
-        const wrappedContent = template(titleName, bodyContent);
-        fs.writeFileSync(htmlPath, wrappedContent);
-        console.log("Processed " + file.html);
-    } else {
-        console.log("File " + file.md + " not found.");
+if (!fs.existsSync(HTML_DIR)) {
+    fs.mkdirSync(HTML_DIR, { recursive: true });
+}
+
+let missing = 0;
+
+for (const doc of DOCS) {
+    if (!fs.existsSync(doc.md)) {
+        console.error('MISSING SOURCE: ' + doc.md);
+        missing++;
+        continue;
     }
+
+    console.log('Converting ' + doc.id + ': ' + path.relative(process.cwd(), doc.md));
+
+    const source = fs.readFileSync(doc.md);
+    const sourceHash = crypto.createHash('sha256').update(source).digest('hex');
+    const generatedAt = new Date().toISOString();
+
+    const bodyContent = execSync('npx marked "' + doc.md + '"').toString();
+
+    // Provenance stamp so a stale artifact is detectable without diffing.
+    // Closes integrity finding INT-021.
+    const relSource = path.relative(path.dirname(doc.html), doc.md).split(path.sep).join('/');
+    const provenance = [
+        '<!-- generated-from: ' + relSource + ' -->',
+        '<!-- source-sha256: ' + sourceHash + ' -->',
+        '<!-- generated-at: ' + generatedAt + ' -->',
+        ''
+    ].join('\n');
+
+    const wrapped = provenance + template(doc.title, bodyContent);
+    fs.writeFileSync(doc.html, wrapped);
+    console.log('  -> ' + path.relative(process.cwd(), doc.html));
+    console.log('     source sha256 ' + sourceHash.slice(0, 16) + '  at ' + generatedAt);
+}
+
+if (missing > 0) {
+    console.error(missing + ' source file(s) missing. Aborting.');
+    process.exit(1);
 }

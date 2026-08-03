@@ -11,6 +11,7 @@ architecture-state: Frozen
 validation-level: Enterprise Architecture Review (V1–V10)
 confidence-level: Very High
 owner: Enterprise Architecture Team
+document_owner: Pallav
 document-owner: Pallav
 review-authority: Architecture Review Board
 repository-baseline: Current Repository Baseline
@@ -32,7 +33,7 @@ last-updated: July 2026
 | Repository | SutraERP Enterprise Architecture Repository |
 | Architecture Layer | Business Domain |
 | Current Version | 1.0 |
-| Status | Canonical |
+| Status | Architecture Locked |
 | Architecture State | Frozen |
 | Validation Status | Enterprise Reviewed (V1–V10) |
 | Confidence Level | Very High |

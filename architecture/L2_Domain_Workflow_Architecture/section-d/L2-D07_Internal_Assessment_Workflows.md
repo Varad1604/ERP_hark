@@ -6,6 +6,7 @@
 **Document ID:** L2-D07  
 **Version:** 1.0  
 **Status:** Architecture Locked  
+**Document Owner:** Pallav  
 **Classification:** Level 2 Domain Architecture  
 **Owner:** Pallav  
 **Dependencies:** Section B, L2-D01, L2-D04, L2-I01, Student Lifecycle reference data
@@ -203,3 +204,21 @@ Examination consumes the finalized outcome, but does not own the internal assess
 ## Workflows
 
 Workflow behavior is not restated in a single consolidated section; it is expressed through the Lifecycle Overview (Section 5) state sequence and the Commands catalogue (Section 8): blueprint definition and publication, assessment window opening/extension/closure, submission capture and mark entry, moderation request/approval/rejection, and finalization/archival. See Sections 5 and 8 for the operational sequence and canonical command set.
+
+---
+
+## States
+
+Assessment lifecycle states are defined in **Section 5 — Lifecycle Overview**. This heading exists
+so the document satisfies the standard L2 template section set; it adds no new definitions.
+
+---
+
+## Dependencies / Integration
+
+Upstream and downstream dependencies for Internal Assessment are recorded in the Document Control
+metadata and in **Section 9 — Multi-Domain Rules**. Canonical upstream sources are Curriculum
+Framework (L2-B04), Academic Calendar (L2-B05), Course & Course Offering (L2-D01) and Student
+Academic Registration (L2-C03); assessment outcomes are consumed by Examination (Section I).
+
+---

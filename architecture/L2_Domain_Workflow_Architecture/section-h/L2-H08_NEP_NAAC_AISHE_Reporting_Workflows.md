@@ -597,7 +597,7 @@ All upstream integrations SHALL satisfy the following architectural principles.
 |-----------------|---------------------|---------|
 | Platform Foundation | Institution, Tenant, Identity Context | Reporting scope and security |
 | Organization Management | Campus, Faculty, Department, Organization Hierarchy | Institutional structure reporting |
-| Student Lifecycle | Student demographics, enrollment, progression, graduation | Student reporting |
+| Student Lifecycle | Student demographics, enrollment, progression, qualification completion | Student reporting |
 | Academic Delivery | Courses, Curriculum, Timetable, Academic Operations | Academic reporting |
 | People & Workforce | Employees, Faculty, Positions, Workforce Metrics | HR reporting |
 | Finance | Fee, Accounting, Budget, Financial Metrics | Financial reporting |
@@ -658,7 +658,7 @@ Examples include:
 - Enrollment
 - Registration
 - Progression
-- Graduation
+- Qualification Completion
 - Student Categories
 - Reservation Statistics
 - Scholarship Statistics

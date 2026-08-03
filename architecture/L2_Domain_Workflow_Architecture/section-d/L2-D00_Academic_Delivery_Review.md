@@ -7,6 +7,7 @@
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-D00 |
+| Document Owner | Pallav |
 | Domain Section | Academic Delivery (Section D) |
 | Layer | L2 — Academic Operations |
 | Architecture Level | Enterprise Domain Review & Certification |
@@ -700,3 +701,20 @@ All aggregates, commands, events, read models, and cross-domain dependencies are
 ---
 **End of Document**
   
+
+---
+
+
+## Lifecycle
+
+Not separately defined in this document. As a section review document, L2-D00 validates the
+lifecycle definitions owned by L2-D01 through L2-D07 rather than defining lifecycle behaviour.
+
+---
+
+## Rules / Invariants
+
+Not separately defined in this document. The review criteria applied here are recorded in the
+sections above; canonical business rules and invariants remain owned by L2-D01 through L2-D07.
+
+---

@@ -186,7 +186,7 @@ D02 does not own:
 * Student admission.
 * Student registration.
 * Student academic progression.
-* Student graduation lifecycle.
+* Student qualification completion lifecycle.
 * Student identity records.
 
 ---

@@ -1,5 +1,7 @@
 # L2-D06 — Open Electives & MOOCs Workflows
 
+**Document Owner:** Pallav  
+
 ---
 
 # Document Metadata
@@ -13492,7 +13494,7 @@ Retrieve canonical student profile.
 Consumes
 
 - StudentActivated
-- StudentGraduated
+- QualificationAwarded
 - StudentSuspended
 
 ---

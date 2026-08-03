@@ -2,7 +2,7 @@
 
 **Version:** 2.1
 **Status:** LOCKED
-**Last Amended:** 2026-08-03 — Institute lifecycle extended (INT-008)
+**Last Amended:** 2026-08-03 — Institute lifecycle extended (INT-008); Campus ownership split into Institutional vs Physical (INT-001); residual Graduation terminology replaced by Qualification Completion (INT-021/INT-033)
 **Scope:** Canonical Institutional Lifecycle
 **Purpose:** Define the complete institutional business architecture, ownership boundaries, lifecycle rules, and multi-domain responsibilities before Level 2 domain design.
 
@@ -140,7 +140,7 @@ Examples include:
 - Promotion Rules
 - Attendance Policies
 - Examination Eligibility
-- Graduation Requirements
+- Qualification Completion Requirements
 - MEME Policies
 
 Policies are evaluated through the Workflow Engine rather than embedded into business logic.
@@ -398,7 +398,7 @@ ACTIVE
 A previous Student Context must transition into one of the following states before another becomes ACTIVE.
 
 - Completed
-- Graduated
+- Qualification Completed
 - Withdrawn
 - Transferred
 - Discontinued
@@ -1843,7 +1843,7 @@ stateDiagram-v2
 
 PendingActivation --> Active
 
-Active --> Graduated
+Active --> QualificationCompleted
 
 Active --> Withdrawn
 
@@ -2695,7 +2695,8 @@ No other domain may directly modify these entities.
 | Platform Configuration | Platform |
 | Institute | Institution |
 | Organisation Structure | Organisation |
-| Campus | Organisation |
+| Institutional Campus (identity, Institution association, institutional status) | Organisation |
+| Physical Infrastructure Campus (site boundary, buildings, floors, spaces) | Infrastructure |
 | Department | Organisation |
 | Academic Structure | Academic Structure |
 | Programme | Academic Structure |

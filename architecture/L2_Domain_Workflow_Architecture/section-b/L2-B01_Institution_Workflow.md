@@ -2,9 +2,10 @@
 **Section:** B — Institution & Structure  
 **Architecture Level:** Level 2 (Domain Architecture)  
 **Status:** Locked  
+**Document Owner:** Pallav  
 **Owner:** Section B Architect  
 **Depends On:** L2-A01 — Platform & Tenant Foundation  
-**Used By:** L2-B02, L2-B03, L2-B04, L2-B05, L2-B06 and all downstream domains
+**Used By:** L2-B02, L2-B03, L2-B04, L2-B05, L2-A10 (Operational Readiness, Section A) and all downstream domains
 
 ---
 
@@ -227,7 +228,7 @@ Characteristics
 - Can configure academic structure (L2-B04)
 - Can configure academic calendar (L2-B05)
 
-Operational readiness is still pending (L2-B06).
+Operational readiness is still pending (L2-A10, Section A).
 
 ---
 
@@ -361,10 +362,10 @@ The following categories must be configured.
                                                             │
                                                             ▼
                                       Institution Available for
-                                    L2-B02 → L2-B06 Configuration
+                                    L2-B02 → L2-A10 Readiness
                                                             │
                                                             ▼
-                                   Operational Readiness (L2-B06)
+                                   Operational Readiness (L2-A10)
                                                             │
                                                             ▼
                               Ready for Admissions & Academic Operations
@@ -477,7 +478,7 @@ Consumed by:
 - L2-B03 — Campus & Infrastructure
 - L2-B04 — Curriculum Framework
 - L2-B05 — Academic Calendar
-- L2-B06 — Operational Readiness
+- L2-A10 — Operational Readiness (Section A)
 
 ---
 
@@ -515,7 +516,7 @@ Consumed by:
 - Campus & Infrastructure (L2-B03)
 - Curriculum Framework (L2-B04)
 - Academic Calendar (L2-B05)
-- Operational Readiness (L2-B06)
+- Operational Readiness (L2-A10, Section A)
 
 ---
 
@@ -524,7 +525,7 @@ Consumed by:
 - Institution is the canonical business entity representing an educational organization.
 - Institution is independent of the academic programs it offers.
 - Academic programs are defined in L2-B04.
-- Operational readiness is not part of Institution activation and is completed separately in L2-B06.
+- Operational readiness is not part of Institution activation and is completed separately in L2-A10 (Section A).
 - Admissions and academic operations can begin only after Operational Readiness is complete.
 
 ---

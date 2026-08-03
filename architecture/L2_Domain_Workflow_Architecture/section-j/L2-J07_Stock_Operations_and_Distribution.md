@@ -1,4 +1,4 @@
-﻿# L2-J07 - Stock Operations & Distribution
+﻿# L2-J07 — Stock Operations & Distribution
 
 ## Document Metadata
 

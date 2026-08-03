@@ -2629,7 +2629,7 @@ Associate financial assistance with organisational ownership.
 - StudentRegistered
 - StudentActivated
 - StudentStatusChanged
-- StudentGraduated
+- QualificationAwarded
 - StudentWithdrawn
 
 Purpose:

@@ -627,7 +627,7 @@ Finalized records become immutable except through institutionally governed corre
 
 The business event through which a qualification completed student transitions from active student status into alumni status.
 
-Ownership of the relationship transfers to the Alumni Domain.
+Ownership of the **engagement** relationship passes to the Alumni Engagement domain (L2-H06). The Alumni Persona remains owned by Student Lifecycle (L2-C08).
 
 ---
 
@@ -1097,7 +1097,7 @@ This represents the terminal state of every Qualification Completion Aggregate.
 
 ### Alumni Transition
 
-For qualification completed students, ownership of the institutional relationship transfers to the Alumni Domain through published domain events.
+For qualification completed students, the Alumni Transition domain (L2-C08) creates the Alumni Persona on consuming `QualificationAwarded`. Alumni **engagement** — profile, membership, chapters, mentoring — is then owned by L2-H06, which acts on `AlumniTransitionCompleted`. Institutional identity ownership remains within Student Lifecycle; only engagement passes to Section H.
 
 This is an integration outcome rather than an aggregate state.
 
@@ -2218,7 +2218,7 @@ Published after academic records become immutable.
 
 ## AlumniTransitionInitiated
 
-Published when ownership transfers to the Alumni Domain.
+Published when engagement ownership passes to the Alumni Engagement domain (L2-H06).
 
 ### Consumers
 

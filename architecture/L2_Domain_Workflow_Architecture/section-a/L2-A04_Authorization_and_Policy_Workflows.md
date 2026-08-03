@@ -1,4 +1,4 @@
-# L2-A04 — Authorization and Policy Workflows
+# L2-A04 — Authorization & Policy Workflows
 
 ---
 
@@ -7,6 +7,7 @@
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-A04 |
+| Document Owner | Dhruv |
 | Document Name | Authorization and Policy Workflows |
 | Layer | Level 2 – Core Platform Architecture |
 | Domain | Platform Security & Authorization |

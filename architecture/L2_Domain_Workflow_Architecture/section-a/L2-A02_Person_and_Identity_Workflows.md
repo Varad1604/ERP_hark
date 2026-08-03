@@ -7,6 +7,7 @@
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-A02 |
+| Document Owner | Dhruv |
 | Domain | Platform Foundation |
 | Module | Person & Identity |
 | Architecture Level | Level 2 |
@@ -2894,7 +2895,7 @@ A context becomes invalid when:
 
 - Membership removed
 - Employment terminated
-- Student graduated
+- Student qualification completed
 - Role expired
 - Institution access revoked
 - Session expired
@@ -7943,7 +7944,7 @@ Examples include:
 Student Lifecycle
 
 - StudentEnrolled
-- StudentGraduated
+- QualificationAwarded
 - StudentWithdrawn
 
 HR

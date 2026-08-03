@@ -6,6 +6,7 @@ section: Section C – Student Lifecycle
 version: 1.0.0
 status: Draft
 owner: Student Lifecycle Architecture
+document_owner: Varad
 parent: L1 Business Domain Architecture
 architectural_tier: Level 2 – Domain Workflow Architecture
 domain_owner: Student Lifecycle Domain
@@ -25,7 +26,7 @@ depends_on:
   - L2-C03 Student Academic Registration Workflows
 required_by:
   - L2-C05 Qualification Completion & Student Exit Workflows
-  - L3 Graduation Scenario
+  - L3 Qualification Completion Scenario
   - L3 Academic Progression Scenario
 last_updated: YYYY-MM-DD
 ---
@@ -269,7 +270,7 @@ Student Academic Progression does not own:
 - Attendance.
 - Course delivery.
 - Registration.
-- Graduation execution.
+- qualification completion execution.
 
 ---
 
@@ -286,7 +287,7 @@ After implementing this architecture, SutraERP shall provide a single authoritat
 - Universities.
 - Future academic policy extensions.
 
-This architecture forms the authoritative foundation for Qualification Completion & Student Exit, Student Exit, Graduation Processing, Alumni Transition, and long-term Academic Credit Ledger management.
+This architecture forms the authoritative foundation for Qualification Completion & Student Exit, Student Exit, Qualification Completion Processing, Alumni Transition, and long-term Academic Credit Ledger management.
 
 ---
 
@@ -2272,7 +2273,7 @@ Student satisfies all progression requirements.
 ### Consumers
 
 - L2-C05 Qualification Completion & Student Exit
-- Graduation Processing
+- Qualification Completion Processing
 - Student Exit
 
 ---
@@ -3234,7 +3235,7 @@ Institution-specific configurations shall remain isolated within tenant boundari
 | Programme Migration | Migration eligibility policies |
 | Academic Break | Leave and interruption rules |
 | Probation Policies | Academic monitoring rules |
-| Qualification Eligibility | Graduation readiness parameters |
+| Qualification Eligibility | qualification completion readiness parameters |
 | Notification Policies | Progression communication rules |
 
 ---
@@ -3769,7 +3770,7 @@ Typical operational reports include:
 | Programme Migration Register | Approved programme migrations |
 | Academic Break Register | Students on approved academic break |
 | Student Rejoining Register | Students successfully rejoined |
-| Qualification Eligibility Register | Eligible graduating students |
+| Qualification Eligibility Register | Eligible students completing their qualification |
 
 ---
 
@@ -3785,7 +3786,7 @@ Institutional management reports include:
 - Programme migration trends.
 - Student retention analysis.
 - Academic interruption analysis.
-- Graduation readiness summary.
+- qualification completion readiness summary.
 - Historical progression comparison.
 
 ---
@@ -3797,7 +3798,7 @@ Executive dashboards may present:
 - Overall progression rate.
 - Probation percentage.
 - Detention percentage.
-- Graduation readiness.
+- qualification completion readiness.
 - Credit completion trends.
 - Academic performance indicators.
 - Student success metrics.
@@ -3852,7 +3853,7 @@ Student-focused analytics include:
 - Qualification readiness.
 - Programme movement history.
 - Academic interruption history.
-- Graduation prediction indicators.
+- qualification completion prediction indicators.
 - Historical academic progression.
 
 ---
@@ -3867,7 +3868,7 @@ Institution-wide analytics include:
 - Academic year comparison.
 - Semester comparison.
 - Student retention.
-- Graduation success.
+- qualification completion success.
 - Progression bottlenecks.
 - Credit utilization.
 - Curriculum effectiveness indicators.
@@ -4537,7 +4538,7 @@ The matrix ensures that every major architectural capability is traceable throug
 | Credit Management | Academic Credit Ledger |
 | Academic Standing | Standing Evaluation |
 | Student Success | Progression Policies |
-| Graduation Readiness | Qualification Eligibility |
+| Qualification Completion Readiness | Qualification Eligibility |
 | Academic Mobility | Programme Migration |
 | Academic Continuity | Academic Break & Rejoining |
 | Regulatory Compliance | Policy & Audit Framework |
@@ -4587,7 +4588,7 @@ The matrix ensures that every major architectural capability is traceable throug
 | Evaluate Progression               | Academic progression evaluation |
 | Update Credit Ledger               | Credit accumulation             |
 | Update Academic Standing           | Standing maintenance            |
-| Validate Qualification Eligibility | Graduation readiness            |
+| Validate Qualification Eligibility | qualification completion readiness            |
 | Process Programme Migration        | Migration handling              |
 | Approve Academic Break             | Academic interruption           |
 | Process Student Rejoining          | Academic continuation           |
@@ -4650,7 +4651,7 @@ The matrix ensures that every major architectural capability is traceable throug
 | Progression Status | Operational Reports |
 | Academic Standing | Executive Dashboard |
 | Credit Ledger | Student Analytics |
-| Qualification Eligibility | Graduation Reports |
+| Qualification Eligibility | Qualification Completion Reports |
 | Migration History | Management Reports |
 | Academic Break | Compliance Reports |
 | Rejoining Statistics | Institutional Analytics |
@@ -4665,7 +4666,7 @@ The matrix ensures that every major architectural capability is traceable throug
 | Student Lifecycle | Student status |
 | Academic Delivery | Course completion context |
 | Examination | Official examination outcomes |
-| Qualification Completion & Student Exit | Graduation processing |
+| Qualification Completion & Student Exit | qualification completion processing |
 | Platform Audit | Enterprise audit |
 | Authorization | Access control |
 | Workflow Engine | Approval orchestration |
@@ -4792,7 +4793,7 @@ Where a term is canonically owned by another domain, this glossary adopts that d
 |------|------------|
 | Qualification Eligibility | Determination that all academic requirements for qualification have been satisfied. |
 | Qualification Completion & Student Exit | Formal award of an academic qualification by the owning domain. |
-| Graduation Readiness | Institutional indication that a student is eligible for qualification processing. |
+| Qualification Completion Readiness | Institutional indication that a student is eligible for qualification processing. |
 
 ---
 
@@ -6246,7 +6247,7 @@ This appendix is intended as a reference for architects, reviewers, developers, 
 | Academic Probation | Good Standing | Probation Cleared | Standing Updated |
 | Academic Probation | Academic Detention | Conditions Not Satisfied | Student Detained |
 | Academic Detention | Under Evaluation | Authorized Reassessment | Re-evaluation Initiated |
-| Progressed | Qualification Eligible | Qualification Requirements Met | Graduation Ready |
+| Progressed | Qualification Eligible | Qualification Requirements Met | Qualification Completion Ready |
 | Progressed | Programme Migration | Migration Approved | Programme Changed |
 | Progressed | Academic Break | Break Approved | Academic Interruption |
 | Academic Break | Rejoined | Rejoining Approved | Academic Continuation |
@@ -6483,7 +6484,7 @@ This appendix summarizes workflows already defined in the Business Workflow Arch
 | Programme Migration | Academic Administration Approval |
 | Academic Break Processing | Academic Administration Approval |
 | Student Rejoining | Academic Administration Approval |
-| Qualification Eligibility Evaluation | Graduation Evaluation |
+| Qualification Eligibility Evaluation | Qualification Completion Evaluation |
 | ABC Synchronization | System Integration |
 | Manual Academic Review | Senior Academic Authority |
 

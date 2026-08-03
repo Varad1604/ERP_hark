@@ -6,6 +6,7 @@ section: A - Platform Foundation
 version: 1.0.0
 status: Draft
 owner: Dhruv
+document_owner: Dhruv
 reviewers:
   - Platform Architecture Team
   - Enterprise Architecture Board

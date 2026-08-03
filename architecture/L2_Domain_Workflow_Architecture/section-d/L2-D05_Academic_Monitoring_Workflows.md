@@ -7417,3 +7417,12 @@ READY FOR IMPLEMENTATION
 # End of L2-D05 — Academic Monitoring Workflows
 ```
 
+---
+
+## Entities / Aggregates
+
+The canonical entities and aggregates of this domain are defined in **Section 8 — Academic
+Monitoring Domain Model**. This heading exists so the document satisfies the standard L2 template
+section set; it adds no new definitions.
+
+---

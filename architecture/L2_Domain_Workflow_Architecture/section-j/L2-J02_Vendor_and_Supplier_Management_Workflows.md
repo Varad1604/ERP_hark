@@ -1,4 +1,4 @@
-﻿# L2-J02 - Vendor & Supplier Management Workflows
+﻿# L2-J02 — Vendor & Supplier Management Workflows
 
 ## Document Metadata
 

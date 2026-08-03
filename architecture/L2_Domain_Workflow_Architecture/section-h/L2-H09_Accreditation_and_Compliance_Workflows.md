@@ -2163,7 +2163,7 @@ Consumes
 - Student demographics
 - Enrollment statistics
 - Academic progression
-- Graduation statistics
+- Qualification Completion statistics
 - Student achievements
 
 Produces

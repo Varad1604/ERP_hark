@@ -68,5 +68,33 @@ function processFile(filePath) {
     console.log("Processed " + filePath);
 }
 
-processFile('SutraERP_Level_1_Architecture_Locked.md');
-processFile('SutraERP_Architecture_Workflow_Context_Baseline.md');
+// --- driver -----------------------------------------------------------------
+// Paths resolve from the repository root, not from tools/. Missing sources are a
+// hard error. This tool REWRITES the source Markdown in place, including the
+// locked L1, so it requires an explicit --write flag. Closes INT-022.
+
+const { DOCS } = require('./paths');
+
+const write = process.argv.includes('--write');
+let missing = 0;
+
+for (const doc of DOCS) {
+    if (!fs.existsSync(doc.md)) {
+        console.error('MISSING SOURCE: ' + doc.md);
+        missing++;
+        continue;
+    }
+    if (!write) {
+        console.log('[dry run] would process ' + doc.id + ': ' + doc.md);
+        continue;
+    }
+    processFile(doc.md);
+}
+
+if (missing > 0) {
+    console.error(missing + ' source file(s) missing. Aborting.');
+    process.exit(1);
+}
+if (!write) {
+    console.log('Dry run only. Pass --write to modify source Markdown in place.');
+}

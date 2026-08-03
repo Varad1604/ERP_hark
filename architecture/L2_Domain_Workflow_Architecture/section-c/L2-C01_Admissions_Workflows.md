@@ -448,7 +448,7 @@ Examination Eligibility
 Examination Status
 Results
 
-Admissions has no ownership after successful graduation.
+Admissions has no ownership after successful qualification completion.
 
 | Business Concept                 | Owner     |
 | -------------------------------- | --------- |
@@ -3545,7 +3545,7 @@ Institutions may configure:
 
 This workflow represents the definitive ownership transfer between the Admission Domain and the Student Domain.
 
-The Admission Domain concludes its operational responsibility by creating the canonical Student entity. All subsequent student-centric operations—including registration, enrollment, academic progression, attendance, examinations, fees, and graduation—are managed by their respective downstream domains using the newly created Student identity as the primary reference.
+The Admission Domain concludes its operational responsibility by creating the canonical Student entity. All subsequent student-centric operations—including registration, enrollment, academic progression, attendance, examinations, fees, and qualification completion—are managed by their respective downstream domains using the newly created Student identity as the primary reference.
 
 Student creation is therefore the contractual boundary between **L2-C01 — Admissions** and **L2-C02 — Student Lifecycle**.
 

@@ -35,7 +35,7 @@ An Examination Session represents a governed academic examination cycle conducte
 
 This document establishes how examination sessions are created, configured, activated, managed, suspended, completed, and closed before operational examination activities begin.
 
-Operational workflows such as examination planning, registration, hall ticket generation, marks processing, result publication, and graduation consume approved examination sessions defined in this document.
+Operational workflows such as examination planning, registration, hall ticket generation, marks processing, result publication, and qualification completion consume approved examination sessions defined in this document.
 
 This document defines business workflows only.
 
@@ -71,7 +71,7 @@ This document excludes:
 - Theory examination conduct
 - Marks entry
 - Result processing
-- Graduation processing
+- qualification completion processing
 
 These activities are defined in subsequent Examination workflow documents.
 
@@ -150,7 +150,7 @@ The session itself shall not redefine:
 - Grading Rules
 - Result Policies
 - Revaluation Rules
-- Graduation Policies
+- Qualification Completion Policies
 
 These policies are consumed from the Examination Policy Domain.
 
@@ -606,7 +606,7 @@ Policy association determines:
 - Registration governance
 - Result governance
 - Evaluation governance
-- Graduation governance
+- Qualification Completion governance
 
 The session consumes policy definitions rather than creating new business rules.
 
@@ -1078,7 +1078,7 @@ Business interactions include:
 - Registration Policies
 - Evaluation Policies
 - Result Policies
-- Graduation Policies
+- Qualification Completion Policies
 - Revaluation Policies
 
 The Examination Session domain applies approved policies but does not create or modify them.

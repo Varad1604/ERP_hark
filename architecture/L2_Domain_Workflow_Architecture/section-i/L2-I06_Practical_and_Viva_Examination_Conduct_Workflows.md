@@ -58,7 +58,7 @@ This document does not govern:
 - Revaluation & Rechecking
 - Supplementary Examination Processing
 - Academic Completion
-- Graduation Processing
+- Qualification Completion Processing
 
 Ownership of these business capabilities remains with their respective workflow documents.
 

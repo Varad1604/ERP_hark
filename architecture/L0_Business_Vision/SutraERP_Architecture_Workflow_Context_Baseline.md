@@ -841,7 +841,7 @@ Result
 ↓
 Promotion / Progression
 ↓
-Graduation / Exit
+Qualification Completion / Exit
 ↓
 Alumni
 ↓
@@ -1636,7 +1636,7 @@ Result Processing
 ↓
 Academic Progression
 ↓
-Next Period / Graduation / Exit
+Next Period / Qualification Completion / Exit
 ↓
 Alumni / Archival
 ```
@@ -1822,7 +1822,7 @@ Examination Cycle
 ↓
 Progression
 ↓
-Graduation / Exit
+Qualification Completion / Exit
 ↓
 Academic Year Closure
 ```

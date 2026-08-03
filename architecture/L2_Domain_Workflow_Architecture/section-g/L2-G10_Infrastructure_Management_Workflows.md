@@ -489,7 +489,7 @@ Aggregate Identity shall never change.
 
 ---
 
-# 9. Bounded Context Relationships
+# 9. Dependencies & Integration (Bounded Context Relationships)
 
 ## Upstream Domains
 

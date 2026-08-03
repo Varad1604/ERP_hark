@@ -7,6 +7,7 @@
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-A06 |
+| Document Owner | Dhruv |
 | Document Name | Event Infrastructure Workflows |
 | Layer | Level 2 – Core Platform Architecture |
 | Domain | Platform Event Infrastructure |

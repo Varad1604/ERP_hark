@@ -121,3 +121,13 @@ Not separately defined in this document. As a control/review document, L2-C00 do
 ---
 
 # End of Document
+
+---
+
+## Rules / Invariants
+
+Not separately defined in this document. As a review document, L2-C00 applies the review criteria
+in Section 3 rather than defining business rules; canonical rules and invariants remain owned by
+L2-C01 through L2-C08.
+
+---

@@ -6,6 +6,7 @@ section: Section A – Platform Foundation
 version: 1.0.0
 status: Draft
 owner: Dhruv
+document_owner: Dhruv
 parent: L1 Business Domain Architecture
 architectural_tier: Level 2 – Domain Workflow Architecture
 domain_owner: Platform Governance

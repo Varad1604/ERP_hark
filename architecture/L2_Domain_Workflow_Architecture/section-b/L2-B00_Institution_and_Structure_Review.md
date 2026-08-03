@@ -2,6 +2,7 @@
 **Section:** B — Institution & Structure  
 **Architecture Level:** Level 2 (Architecture Review & Certification)  
 **Status:** 🔒 LOCKED  
+**Document Owner:** Pallav  
 **Review Board:** Chief Enterprise Architecture Review Board  
 **Repository Version:** v1.0  
 **Date of Certification:** July 25, 2026  
@@ -12,7 +13,8 @@
 
 - **Purpose of Certification:** This document provides the formal repository-level certification of the Institution & Structure layer within SutraERP, validating that its foundational concepts are structurally sound and complete before downstream domain development starts.
 - **Repository Scope:** Section B Bounded Contexts and Domain Models.
-- **Documents Reviewed:** L2-B01 (Institution Lifecycle), L2-B02 (Organisation Workflows), L2-B03 (Campus & Infrastructure), L2-B04 (Curriculum Framework), L2-B05 (Flexible Academic Calendar), and L2-B06 (Operational Readiness).
+- **Documents Reviewed:** L2-B01 (Institution Lifecycle), L2-B02 (Organisation Workflows), L2-B03 (Institutional Campus), L2-B04 (Curriculum Framework), and L2-B05 (Academic Calendar).
+- **Note (2026-08-03, INT-015):** Section B is B00-B05. Operational Readiness is **not** a Section B document; it is owned by Platform Governance and specified in `../section-a/L2-A10_Operational_Readiness_Workflows.md` per locked L1 §15. Earlier revisions of this review certified a non-existent `L2-A10`; those statements are withdrawn.
 - **Review Completion Status:** Formally Complete.
 - **Critical Issues:** 0
 - **Major Issues:** 1 (Global Pattern Catalog Bloat in B04)
@@ -25,7 +27,7 @@
 
 # Review Methodology
 
-This certification report compiles findings from a multi-stage audit. Each document (B01–B06) was first subjected to an independent domain architecture review to verify its boundaries, internal aggregates, lifecycles, and event-driven interfaces. Following independent reviews, a repository-wide harmonization review was performed to evaluate cross-domain dependencies, transactional boundaries, event payloads, naming schemes, and structural integration with Platform Foundation modules (A01–A09). This document represents the final repository-level certification resulting from those completed reviews.
+This certification report compiles findings from a multi-stage audit. Each document (B01–B05) was first subjected to an independent domain architecture review to verify its boundaries, internal aggregates, lifecycles, and event-driven interfaces. Following independent reviews, a repository-wide harmonization review was performed to evaluate cross-domain dependencies, transactional boundaries, event payloads, naming schemes, and structural integration with Platform Foundation modules (A01–A09). This document represents the final repository-level certification resulting from those completed reviews.
 
 The audit methodology specifically evaluated and validated:
 1. **Domain Boundaries:** Strict context isolation, preventing responsibility leakage.
@@ -51,10 +53,10 @@ The audit methodology specifically evaluated and validated:
 | **Document Name** | Institution & Structure Review |
 | **Repository Section** | Section B — Institution & Structure |
 | **Purpose** | Official Architectural Review and Certification |
-| **Scope** | L2-B01 through L2-B06 |
+| **Scope** | L2-B01 through L2-B05 |
 | **Parent Architecture** | SutraERP Enterprise Architecture (L1) |
 | **Dependencies** | Platform Foundation & Shared Infrastructure (L2-A01 to L2-A09) |
-| **Reviewed Documents** | [L2-B01 — Institution Lifecycle](file:///d:/MD_files/%23%20L2-B01%20%E2%80%94%20Institution%20Workflow.md), [L2-B02 — Organisation Workflows](file:///d:/MD_files/%23%20L2-B02%20%E2%80%94%20Organisation%20Workflows.md), [L2-B03 — Campus & Infrastructure Workflows](file:///d:/MD_files/%23%20L2-B03%20%E2%80%94%20Campus%20&%20Infrastructure%20Workflows.md), [L2-B04 — Curriculum Framework Workflows](file:///d:/MD_files/%23%20L2-B04%20%E2%80%94%20Curriculum%20Framework%20Workflows.md), [L2-B05 — Flexible Academic Calendar Workflows](file:///d:/MD_files/%23%20L2-B05%20%E2%80%94%20Flexible%20Academic%20Calendar%20Workflows.md), [L2-B06 — Operational Readiness Workflows](file:///d:/MD_files/%23%20L2-B06%20%E2%80%94%20Operational%20Readiness%20Workflows.md) |
+| **Reviewed Documents** | [L2-B01 — Institution Lifecycle](L2-B01_Institution_Workflow.md), [L2-B02 — Organisation Workflows](L2-B02_Organisation_Workflows.md), [L2-B03 — Campus & Infrastructure Workflows](L2-B03_Campus_Workflows.md), [L2-B04 — Curriculum Framework Workflows](L2-B04_Curriculum_Framework_Workflows.md), [L2-B05 — Flexible Academic Calendar Workflows](L2-B05_Academic_Calendar_Workflows.md), [L2-A10 — Operational Readiness Workflows](../section-a/L2-A10_Operational_Readiness_Workflows.md) |
 | **Review Status** | Reviewed & Certified with Minor Fixes |
 | **Repository Version** | v1.0 |
 | **Architecture Status** | Approved with Remarks |
@@ -65,13 +67,13 @@ The audit methodology specifically evaluated and validated:
 
 Section B (Institution & Structure) exists to establish the canonical, shared administrative and physical foundation of any tenant operating inside the SutraERP platform. 
 
-Collectively, documents L2-B01 through L2-B06 define the:
+Collectively, documents L2-B01 through L2-B05 define the:
 - Identity and lifecycle of the **Institution** (B01).
 - Internal administrative and governance hierarchy of the **Organisation** (B02).
 - Physical infrastructure mapping for **Campuses and Spaces** (B03).
 - Academic structures governing **Curriculums and Courses** (B04).
 - Temporal coordinates governing **Academic Calendars** (B05).
-- Governance gate ensuring **Operational Readiness** (B06).
+- Governance gate ensuring **Operational Readiness** — owned by `L2-A10` (Section A), outside Section B scope.
 
 This certification review is conducted by the Architecture Review Board to ensure that Section B is internally consistent, strictly compliant with Domain-Driven Design (DDD) principles, properly aligned with platform shared services (A00–A09), and structurally prepared to support all downstream functional domains (such as Admissions, Student Lifecycle, Faculty, Finance, and Examination). Downstream domains must be able to consume the outputs of Section B as an immutable foundation without introducing responsibility leakage or circular dependencies.
 
@@ -94,13 +96,13 @@ This certification review is conducted by the Architecture Review Board to ensur
 
 # 4. Repository Coverage Validation
 
-**Assessment:** We have reviewed B01–B06 collectively as a single system. The validation findings are:
+**Assessment:** We have reviewed B01–B05 collectively as a single system. The validation findings are:
 - **Finding (Required Capabilities):** All baseline institutional, structural, spatial, academic, calendar-based, and compliance capabilities are represented. [Certain]
-  - *Evidence:* [L2-B01](file:///d:/MD_files/%23%20L2-B01%20%E2%80%94%20Institution%20Workflow.md#L27-37), [L2-B02](file:///d:/MD_files/%23%20L2-B02%20%E2%80%94%20Organisation%20Workflows.md#L69-84), [L2-B03](file:///d:/MD_files/%23%20L2-B03%20%E2%80%94%20Campus%20&%20Infrastructure%20Workflows.md#L42-65), [L2-B04](file:///d:/MD_files/%23%20L2-B04%20%E2%80%94%20Curriculum%20Framework%20Workflows.md#L42-65), [L2-B05](file:///d:/MD_files/%23%20L2-B05%20%E2%80%94%20Flexible%20Academic%20Calendar%20Workflows.md#L145-289), [L2-B06](file:///d:/MD_files/%23%20L2-B06%20%E2%80%94%20Operational%20Readiness%20Workflows.md#L221-239).
+  - *Evidence:* [L2-B01](L2-B01_Institution_Workflow.md), [L2-B02](L2-B02_Organisation_Workflows.md), [L2-B03](L2-B03_Campus_Workflows.md), [L2-B04](L2-B04_Curriculum_Framework_Workflows.md), [L2-B05](L2-B05_Academic_Calendar_Workflows.md), [L2-A10](../section-a/L2-A10_Operational_Readiness_Workflows.md).
 - **Finding (No Missing Ownership):** No critical ownership gaps were identified. Minor architectural classification and repository consistency issues remain. [Likely]
   - *Evidence:* See Section 15 Architectural Gaps.
 - **Finding (No Duplicate Ownership):** No two documents within Section B attempt to authoritatively master the same business concept. For example, B01 owns the Institution lifecycle, whereas B02 owns its organizational unit breakdowns; B03 owns campus governance, while B04 owns the academic courses defined in curriculum frameworks. [Certain]
-  - *Evidence:* [L2-B01 Section 2](file:///d:/MD_files/%23%20L2-B01%20%E2%80%94%20Institution%20Workflow.md#L25-37), [L2-B02 Section L2-B02-P1-05](file:///d:/MD_files/%23%20L2-B02%20%E2%80%94%20Organisation%20Workflows.md#L469).
+  - *Evidence:* [L2-B01 Section 2](L2-B01_Institution_Workflow.md), [L2-B02 Section L2-B02-P1-05](L2-B02_Organisation_Workflows.md).
 - **Observation (Architectural Gaps):** The transition from a configured institution to an active, operational campus is structurally mapped, though there is a functional gap regarding direct integration of personnel assignments with governance configurations. [Likely]
   - *Evidence:* See Section 15 Architectural Gaps, Gap 2.
 - **Observation (Scope Overlap):** Aggregates and lifecycles generally do not overlap, except for the inclusion of generic enterprise patterns in the Curriculum domain, which represents a boundary classification anomaly. [Certain]
@@ -134,11 +136,11 @@ This certification review is conducted by the Architecture Review Board to ensur
 | **Calendar Assignment** | L2-B05 Academic Calendar | None | None | Certified | [Certain] |
 | **Calendar Exception** | L2-B05 Academic Calendar | None | None | Certified | [Certain] |
 | **Calendar Snapshot** | L2-B05 Academic Calendar | None | None | Certified | [Certain] |
-| **Readiness Assessment** | L2-B06 Operational Readiness | None | None | Certified | [Certain] |
-| **Readiness Requirement** | L2-B06 Operational Readiness | None | None | Certified | [Certain] |
-| **Readiness Finding** | L2-B06 Operational Readiness | None | None | Certified | [Certain] |
-| **Readiness Improvement Plan** | L2-B06 Operational Readiness | None | None | Certified | [Certain] |
-| **Readiness Certificate** | L2-B06 Operational Readiness | None | None | Certified | [Certain] |
+| **Readiness Assessment** | L2-A10 Operational Readiness (Section A) | None | None | Certified | [Certain] |
+| **Readiness Requirement** | L2-A10 Operational Readiness (Section A) | None | None | Certified | [Certain] |
+| **Readiness Finding** | L2-A10 Operational Readiness (Section A) | None | None | Certified | [Certain] |
+| **Readiness Improvement Plan** | L2-A10 Operational Readiness (Section A) | None | None | Certified | [Certain] |
+| **Readiness Certificate** | L2-A10 Operational Readiness (Section A) | None | None | Certified | [Certain] |
 
 ### Certification Result: ✅ PASS
 
@@ -148,17 +150,17 @@ This certification review is conducted by the Architecture Review Board to ensur
 
 **Assessment:** Each of the six domains maintains a clean boundary:
 - **Finding (Institution - B01):** Confined to identity, legal configuration, and active status. It does not touch academic offerings or organization structures. [Certain]
-  - *Evidence:* [L2-B01 Section 2](file:///d:/MD_files/%23%20L2-B01%20%E2%80%94%20Institution%20Workflow.md#L25-37).
+  - *Evidence:* [L2-B01 Section 2](L2-B01_Institution_Workflow.md).
 - **Finding (Organisation - B02):** Governs structure types, versioned hierarchy mapping, and governance policies. It acts as an administrative shell. [Certain]
-  - *Evidence:* [L2-B02 Section L2-B02-P1-05](file:///d:/MD_files/%23%20L2-B02%20%E2%80%94%20Organisation%20Workflows.md#L469).
+  - *Evidence:* [L2-B02 Section L2-B02-P1-05](L2-B02_Organisation_Workflows.md).
 - **Finding (Campus & Infrastructure - B03):** Models campus governance boundaries only. Physical spatial catalog (buildings, rooms, spaces) is delegated downstream to L2-G10. [Certain]
-  - *Evidence:* [L2-B03 Section 2](file:///d:/MD_files/%23%20L2-B03%20%E2%80%94%20Campus%20&%20Infrastructure%20Workflows.md#L42-65).
+  - *Evidence:* [L2-B03 Section 2](L2-B03_Campus_Workflows.md).
 - **Finding (Curriculum - B04):** Models academic frameworks, credit schemes, and courses. It does not allocate faculty members or manage student grades. [Certain]
-  - *Evidence:* [L2-B04 Section 2](file:///d:/MD_files/%23%20L2-B04%20%E2%80%94%20Curriculum%20Framework%20Workflows.md#L42-65).
+  - *Evidence:* [L2-B04 Section 2](L2-B04_Curriculum_Framework_Workflows.md).
 - **Finding (Academic Calendar - B05):** Models temporal structures. It consumes B04 curriculum contexts but does not own them, relying on identifier-based references. [Certain]
-  - *Evidence:* [L2-B05 Section 2](file:///d:/MD_files/%23%20L2-B05%20%E2%80%94%20Flexible%20Academic%20Calendar%20Workflows.md#L145-289).
-- **Finding (Operational Readiness - B06):** Governs readiness checklists. It does not execute remediation directly, preventing leakage into domain operations. [Certain]
-  - *Evidence:* [L2-B06 Section 4](file:///d:/MD_files/%23%20L2-B06%20%E2%80%94%20Operational%20Readiness%20Workflows.md#L128-166).
+  - *Evidence:* [L2-B05 Section 2](L2-B05_Academic_Calendar_Workflows.md).
+- **Finding (Operational Readiness):** Readiness governance is owned by `L2-A10` (Section A) and is outside this section's certification scope. [Certain]
+  - *Evidence:* [L2-A10](../section-a/L2-A10_Operational_Readiness_Workflows.md).
 
 ### Certification Result: ✅ PASS
 
@@ -166,7 +168,7 @@ This certification review is conducted by the Architecture Review Board to ensur
 
 # 7. Aggregate Validation
 
-**Assessment:** Across B01–B06, the major Aggregate Roots are evaluated and certified as follows:
+**Assessment:** Across B01–B05, the major Aggregate Roots are evaluated and certified as follows:
 
 | Aggregate Root | Transaction Boundary | Lifecycle Ownership | Identifier-based References | Repository Ownership | Certification Status | Confidence |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -186,7 +188,7 @@ This certification review is conducted by the Architecture Review Board to ensur
 | **CalendarAssignment** (B05) | Program/batch mapping | Self-contained lifecycle | References CalendarId, ProgramId | Assignment temporal ownership | Certified | [Certain] |
 | **CalendarSnapshot** (B05) | Read-only state isolation | Static/Read-only | References CalendarId | Immutable temporal backup | Certified | [Certain] |
 | **CalendarException** (B05) | Holiday & adjustment settings | Self-contained lifecycle | References CalendarId | Exception temporal ownership | Certified | [Certain] |
-| **OperationalReadinessAssessment** (B06) | Governance evaluation state | Self-contained lifecycle | References InstitutionId, CampusId, etc. | Readiness governance ownership | Certified | [Certain] |
+| **OperationalReadinessAssessment** | Owned by `L2-A10` (Section A) — outside Section B scope | n/a | n/a | Platform Governance | Not certified here | [Certain] |
 
 ### Certification Result: ✅ PASS
 
@@ -196,11 +198,11 @@ This certification review is conducted by the Architecture Review Board to ensur
 
 **Assessment:** The reviewed workflows are functionally complete:
 - **Finding (Preconditions & Invariants):** Each workflow defines strict preconditions. For example, B02 structures can only be activated if their referenced `OrganizationType` is approved. [Certain]
-  - *Evidence:* [L2-B02 Section L2-B02-P2-21](file:///d:/MD_files/%23%20L2-B02%20%E2%80%94%20Organisation%20Workflows.md#L1566) and [L2-B02 Section L2-B02-P2-16](file:///d:/MD_files/%23%20L2-B02%20%E2%80%94%20Organisation%20Workflows.md#L1305).
+  - *Evidence:* [L2-B02 Section L2-B02-P2-21](L2-B02_Organisation_Workflows.md) and [L2-B02 Section L2-B02-P2-16](L2-B02_Organisation_Workflows.md).
 - **Finding (State Transitions):** State changes are well-defined (e.g., `Draft` -> `Configured` -> `Active` in B01). Transition triggers are mapped to commands and produce corresponding domain events. [Certain]
-  - *Evidence:* [L2-B01 Section 8](file:///d:/MD_files/%23%20L2-B01%20%E2%80%94%20Institution%20Workflow.md#L265) Institution Lifecycle.
-- **Finding (Failure Handling):** Workflows incorporate validation gates. For instance, B06 requirement evaluations publish `ReadinessRequirementEvaluated` domain events, which generate finding records (`ReadinessFindingCreated`) on failure, blocking downstream operations such as Admissions. [Certain]
-  - *Evidence:* [L2-B06 Section 27](file:///d:/MD_files/%23%20L2-B06%20%E2%80%94%20Operational%20Readiness%20Workflows.md#L2391) and [L2-B06 Section 33.5](file:///d:/MD_files/%23%20L2-B06%20%E2%80%94%20Operational%20Readiness%20Workflows.md#L2792).
+  - *Evidence:* [L2-B01 Section 8](L2-B01_Institution_Workflow.md) Institution Lifecycle.
+- **Finding (Failure Handling):** Workflows incorporate validation gates. Readiness requirement evaluation and its `ReadinessRequirementEvaluated` / `ReadinessFindingCreated` events are owned by `L2-A10` (Section A) and are consumed by, not defined in, Section B. [Certain]
+  - *Evidence:* [L2-A10](../section-a/L2-A10_Operational_Readiness_Workflows.md) and [L2-A10](../section-a/L2-A10_Operational_Readiness_Workflows.md).
 
 ### Certification Result: ✅ PASS
 
@@ -217,17 +219,17 @@ graph TD
     B02 --> B03[Campus B03]
     B02 --> B04[Curriculum B04]
     B04 --> B05[Calendar B05]
-    B01 --> B06[Readiness B06]
-    B02 --> B06
-    B03 --> B06
-    B04 --> B06
-    B05 --> B06
+    B01 --> A10[Readiness A10]
+    B02 --> A10
+    B03 --> A10
+    B04 --> A10
+    B05 --> A10
 ```
 
-- **Finding (No circular dependencies):** B05 consumes B04 contexts, and B06 consumes B01–B05 facts. No upstream domain references downstream domain states directly. [Certain]
-  - *Evidence:* [L2-B05 Section 9](file:///d:/MD_files/%23%20L2-B05%20%E2%80%94%20Flexible%20Academic%20Calendar%20Workflows.md#L933) Upstream Relationships and [L2-B06 Section 35.2](file:///d:/MD_files/%23%20L2-B06%20%E2%80%94%20Operational%20Readiness%20Workflows.md#L2868) Structure Domain Integration.
+- **Finding (No circular dependencies):** B05 consumes B04 contexts, and A10 consumes B01–B05 facts. No upstream domain references downstream domain states directly. [Certain]
+  - *Evidence:* [L2-B05 Section 9](L2-B05_Academic_Calendar_Workflows.md) Upstream Relationships and [L2-A10 Section 35.2](../section-a/L2-A10_Operational_Readiness_Workflows.md) Structure Domain Integration.
 - **Finding (No upstream mutation):** Downstream domains consume upstream aggregates as read-only references. [Certain]
-  - *Evidence:* [L2-B03 Section 105](file:///d:/MD_files/%23%20L2-B03%20%E2%80%94%20Campus%20&%20Infrastructure%20Workflows.md#L4104) and [L2-B05 Section 17](file:///d:/MD_files/%23%20L2-B05%20%E2%80%94%20Flexible%20Academic%20Calendar%20Workflows.md#L1483).
+  - *Evidence:* [L2-B03 Section 105](L2-B03_Campus_Workflows.md) and [L2-B05 Section 17](L2-B05_Academic_Calendar_Workflows.md).
 
 ### Certification Result: ✅ PASS
 
@@ -237,12 +239,12 @@ graph TD
 
 | Domain | Depends On | Consumed By | Purpose | Repository Status | Confidence |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **L2-B01 Institution** | L2-A01 Platform Foundation | L2-B02, L2-B03, L2-B04, L2-B05, L2-B06 | Establishes core tenant-institution mapping and administrative tenant lifecycle anchor | Certified | [Certain] |
-| **L2-B02 Organisation** | L2-A01, L2-B01 | L2-B03, L2-B04, L2-B05, L2-B06, HR, Finance | Models organizational hierarchy units, structures, and default governance rules | Certified | [Certain] |
-| **L2-B03 Campus & Infrastructure** | L2-A01, L2-B01, L2-B02 | L2-B06, L2-G10 | Provides campus governance representation and boundary references | Certified | [Certain] |
-| **L2-B04 Curriculum Framework** | L2-A01, L2-B01, L2-B02 | L2-B05, L2-B06, Student Lifecycle, Examinations | Establishes academic framework, credit guidelines, subjects, and programs | Certified | [Certain] |
-| **L2-B05 Flexible Academic Calendar** | L2-A01, L2-B01, L2-B02, L2-B04 | L2-B06, Admissions, Timetable, Attendance, Assessments | Defines temporal academic schedules, versions, exceptions, and snapshots | Certified | [Certain] |
-| **L2-B06 Operational Readiness** | L2-A01, L2-A04 to L2-A09, L2-B01 to L2-B05 | Admissions, Student Lifecycle (gate check) | Governance gate evaluating checklist items before activating operational processes | Certified | [Certain] |
+| **L2-B01 Institution** | L2-A01 Platform Foundation | L2-B02, L2-B03, L2-B04, L2-B05, L2-A10 | Establishes core tenant-institution mapping and administrative tenant lifecycle anchor | Certified | [Certain] |
+| **L2-B02 Organisation** | L2-A01, L2-B01 | L2-B03, L2-B04, L2-B05, L2-A10, HR, Finance | Models organizational hierarchy units, structures, and default governance rules | Certified | [Certain] |
+| **L2-B03 Campus & Infrastructure** | L2-A01, L2-B01, L2-B02 | L2-A10, L2-G10 | Provides campus governance representation and boundary references | Certified | [Certain] |
+| **L2-B04 Curriculum Framework** | L2-A01, L2-B01, L2-B02 | L2-B05, L2-A10, Student Lifecycle, Examinations | Establishes academic framework, credit guidelines, subjects, and programs | Certified | [Certain] |
+| **L2-B05 Flexible Academic Calendar** | L2-A01, L2-B01, L2-B02, L2-B04 | L2-A10, Admissions, Timetable, Attendance, Assessments | Defines temporal academic schedules, versions, exceptions, and snapshots | Certified | [Certain] |
+| **L2-A10 Operational Readiness (Section A)** | L2-A01, L2-A04 to L2-A09, L2-B01 to L2-B05 | Admissions, Student Lifecycle (gate check) | Governance gate evaluating checklist items before activating operational processes | Certified | [Certain] |
 
 ### Certification Result: ✅ PASS
 
@@ -252,13 +254,13 @@ graph TD
 
 **Assessment:** The repository event architecture was evaluated for compatibility:
 - **Finding (Business Events - Internal):** Used for intra-domain coordination (e.g., `Institution Created` in B01). [Certain]
-  - *Evidence:* [L2-B01 Section 10](file:///d:/MD_files/%23%20L2-B01%20%E2%80%94%20Institution%20Workflow.md#L375) Internal Events and [L2-B02 Part 6](file:///d:/MD_files/%23%20L2-B02%20%E2%80%94%20Organisation%20Workflows.md#L3435).
+  - *Evidence:* [L2-B01 Section 10](L2-B01_Institution_Workflow.md) Internal Events and [L2-B02 Part 6](L2-B02_Organisation_Workflows.md).
 - **Finding (Integration Events - Public):** Used for cross-domain collaboration (e.g., `InstitutionActivated` in B01). PascalCase is strictly applied. [Certain]
-  - *Evidence:* [L2-B01 Section 10](file:///d:/MD_files/%23%20L2-B01%20%E2%80%94%20Institution%20Workflow.md#L393) Public Events.
+  - *Evidence:* [L2-B01 Section 10](L2-B01_Institution_Workflow.md) Public Events.
 - **Finding (Event Ownership):** Publishing responsibilities reside solely within the aggregate root that executed the state change. [Certain]
-  - *Evidence:* [L2-B03 Section 179](file:///d:/MD_files/%23%20L2-B03%20%E2%80%94%20Campus%20&%20Infrastructure%20Workflows.md#L7033) and [L2-B05 Section 34](file:///d:/MD_files/%23%20L2-B05%20%E2%80%94%20Flexible%20Academic%20Calendar%20Workflows.md#L2819).
+  - *Evidence:* [L2-B03 Section 179](L2-B03_Campus_Workflows.md) and [L2-B05 Section 34](L2-B05_Academic_Calendar_Workflows.md).
 - **Finding (Compliance):** All public integration events map cleanly to A06 Event Infrastructure contracts. [Certain]
-  - *Evidence:* [L2-B06 Section 35.2](file:///d:/MD_files/%23%20L2-B06%20%E2%80%94%20Operational%20Readiness%20Workflows.md#L2868) platform integrations.
+  - *Evidence:* [L2-A10 Section 35.2](../section-a/L2-A10_Operational_Readiness_Workflows.md) platform integrations.
 
 ### Certification Result: ✅ PASS
 
@@ -268,13 +270,13 @@ graph TD
 
 **Assessment:** Section B domains consume rather than duplicate the Platform Foundation (A00–A09):
 - **Finding (A01 Tenant Foundation):** Institution (B01) and Organisation (B02) inherit tenant isolation contexts. [Certain]
-  - *Evidence:* [L2-B01 Document Control](file:///d:/MD_files/%23%20L2-B01%20%E2%80%94%20Institution%20Workflow.md#L6) and [L2-B02 Document Control](file:///d:/MD_files/%23%20L2-B02%20%E2%80%94%20Organisation%20Workflows.md#L69).
-- **Finding (A04 & A05 Workflow/Policy Engines):** B02 and B06 use the global workflow engine for approvals. [Likely]
-  - *Evidence:* [L2-B06 Section 35.2](file:///d:/MD_files/%23%20L2-B06%20%E2%80%94%20Operational%20Readiness%20Workflows.md#L2868) Platform dependencies.
+  - *Evidence:* [L2-B01 Document Control](L2-B01_Institution_Workflow.md) and [L2-B02 Document Control](L2-B02_Organisation_Workflows.md).
+- **Finding (A04 & A05 Workflow/Policy Engines):** B02 and A10 use the global workflow engine for approvals. [Likely]
+  - *Evidence:* [L2-A10 Section 35.2](../section-a/L2-A10_Operational_Readiness_Workflows.md) Platform dependencies.
 - **Finding (A06 Event Infrastructure):** All domains publish integration events using A06-compliant buses. [Likely]
-  - *Evidence:* [L2-B03 Section 179](file:///d:/MD_files/%23%20L2-B03%20%E2%80%94%20Campus%20&%20Infrastructure%20Workflows.md#L7033).
-- **Finding (A07 Audit Infrastructure):** State changes across B01-B06 trigger A07 audit trails automatically. [Likely]
-  - *Evidence:* [L2-B06 Section 35.2](file:///d:/MD_files/%23%20L2-B06%20%E2%80%94%20Operational%20Readiness%20Workflows.md#L2868).
+  - *Evidence:* [L2-B03 Section 179](L2-B03_Campus_Workflows.md).
+- **Finding (A07 Audit Infrastructure):** State changes across B01-B05 trigger A07 audit trails automatically. [Likely]
+  - *Evidence:* [L2-A10 Section 35.2](../section-a/L2-A10_Operational_Readiness_Workflows.md).
 
 ### Certification Result: ✅ PASS
 
@@ -284,11 +286,11 @@ graph TD
 
 **Assessment:** Audit trails and configuration mechanisms comply with repository rules:
 - **Finding (Configuration Ownership):** Settings (such as timezone, communication channels) belong strictly to the owning aggregate roots. [Certain]
-  - *Evidence:* [L2-B01 Section 7](file:///d:/MD_files/%23%20L2-B01%20%E2%80%94%20Institution%20Workflow.md#L219).
+  - *Evidence:* [L2-B01 Section 7](L2-B01_Institution_Workflow.md).
 - **Finding (Versioning):** Hierarchies in B02 and curricula in B04 employ immutable versioning strategies, using effective dating rather than modifying active records. [Certain]
-  - *Evidence:* [L2-B02 Section L2-B02-P2-20](file:///d:/MD_files/%23%20L2-B02%20%E2%80%94%20Organisation%20Workflows.md#L1518) and [L2-B04 Section 29](file:///d:/MD_files/%23%20L2-B04%20%E2%80%94%20Curriculum%20Framework%20Workflows.md#L1958).
+  - *Evidence:* [L2-B02 Section L2-B02-P2-20](L2-B02_Organisation_Workflows.md) and [L2-B04 Section 29](L2-B04_Curriculum_Framework_Workflows.md).
 - **Finding (Audit Trails):** History preservation is maintained. Physical deletions are prohibited; domains use status fields (`Archived` or `Retired`) to perform soft-deletions. [Certain]
-  - *Evidence:* [L2-B03 Section 55](file:///d:/MD_files/%23%20L2-B03%20%E2%80%94%20Campus%20&%20Infrastructure%20Workflows.md#L2318) Spatial lifecycle validation.
+  - *Evidence:* [L2-B03 Section 55](L2-B03_Campus_Workflows.md) Spatial lifecycle validation.
 
 ### Certification Result: ✅ PASS
 
@@ -297,10 +299,10 @@ graph TD
 # 13. Terminology Validation
 
 **Assessment:** A thorough vocabulary sweep was conducted to verify nomenclature consistency:
-- **Finding (Organisation vs. Organization):** The document [L2-B02 — Organisation Workflows](file:///d:/MD_files/%23%20L2-B02%20%E2%80%94%20Organisation%20Workflows.md) is named with an "s" in the filename and references, but the internal headers and text use the American spelling "Organization" (with a "z") exclusively. [Certain]
+- **Finding (Organisation vs. Organization):** The document [L2-B02 — Organisation Workflows](L2-B02_Organisation_Workflows.md) is named with an "s" in the filename and references, but the internal headers and text use the American spelling "Organization" (with a "z") exclusively. [Certain]
   - *Evidence:* Filename vs. Section L2-B02-P2-04 header.
 - **Finding (Program vs. Programme):** B01 uses the spelling "program" (e.g., line 79: "academic programs"), whereas B04 and B05 use "Programme" (e.g., B04: "Academic Programme Lifecycle"). [Certain]
-  - *Evidence:* [L2-B01 Section 3](file:///d:/MD_files/%23%20L2-B01%20%E2%80%94%20Institution%20Workflow.md#L79) vs. [L2-B04 Document Control](file:///d:/MD_files/%23%20L2-B04%20%E2%80%94%20Curriculum%20Framework%20Workflows.md#L10).
+  - *Evidence:* [L2-B01 Section 3](L2-B01_Institution_Workflow.md) vs. [L2-B04 Document Control](L2-B04_Curriculum_Framework_Workflows.md).
 
 Apart from these spelling variations, the business semantics of core terms (`Institution`, `Campus`, `Curriculum`, `Tenant`) are applied consistently across all six files.
 
@@ -343,14 +345,14 @@ Apart from these spelling variations, the business semantics of core terms (`Ins
 1. **Finding (Enterprise Pattern Bloat in L2-B04):**
    - *Affected Domains:* L2-B04 (Curriculum), and globally the entire repository.
    - *Repository Impact:* L2-B04 contains the global repository-wide "Architecture Pattern Catalogue" (Part X) and "Workflow Pattern Catalogue" (Part XI). While this violates general modularity principles, classifying it as a defect depends on repository architectural governance policies rather than DDD rules alone. [Likely]
-     - *Evidence:* [L2-B04 Part X](file:///d:/MD_files/%23%20L2-B04%20%E2%80%94%20Curriculum%20Framework%20Workflows.md#L5477) and [L2-B04 Part XI](file:///d:/MD_files/%23%20L2-B04%20%E2%80%94%20Curriculum%20Framework%20Workflows.md#L8033).
+     - *Evidence:* [L2-B04 Part X](L2-B04_Curriculum_Framework_Workflows.md) and [L2-B04 Part XI](L2-B04_Curriculum_Framework_Workflows.md).
    - *Downstream Impact:* Downstream developers must look into the Curriculum domain to find general enterprise workflow guidelines. [Likely]
    - *Recommended Owner:* Platform Foundation Architecture (A-Series).
 
 2. **Finding (Absence of Personnel-to-Position Mapping in B02):**
    - *Affected Domains:* L2-B02 (Organisation), and downstream HR/Authorization.
    - *Repository Impact:* B02 governs "Governance Configuration" but explicitly states that personnel assignment (who occupies what role) is out of scope. While this keeps B02 clean, the exact integration contract showing where identity (A02) merges with governance configuration is left implicit. [Likely]
-     - *Evidence:* [L2-B02 Section L2-B02-P2-09](file:///d:/MD_files/%23%20L2-B02%20%E2%80%94%20Organisation%20Workflows.md#L1050).
+     - *Evidence:* [L2-B02 Section L2-B02-P2-09](L2-B02_Organisation_Workflows.md).
    - *Downstream Impact:* Potential coupling errors when building workflow step authorizers. [Likely]
    - *Recommended Owner:* L2-A04 Authorization / L2-B02 joint interface.
 
@@ -363,7 +365,7 @@ Apart from these spelling variations, the business semantics of core terms (`Ins
 - **Strict DDD Adherence:** Independent aggregate roots communicate asynchronously, protecting transactional boundaries. [Certain]
 - **Robust Versioning and Effective Dating:** B02 hierarchies and B05 calendars support temporal versioning, which allows future planning without altering current operational data. [Certain]
 - **Modularity:** B03 keeps campuses completely decoupled from student and faculty domains, preventing spatial data pollution. [Certain]
-- **Separation of Policy and Execution:** B06 successfully isolates readiness checklists and assessment outcomes from operational domain logic, keeping certification objective. [Certain]
+- **Separation of Policy and Execution:** A10 successfully isolates readiness checklists and assessment outcomes from operational domain logic, keeping certification objective. [Certain]
 
 ---
 
@@ -377,13 +379,13 @@ Apart from these spelling variations, the business semantics of core terms (`Ins
 # 18. Overall Repository Scorecard
 
 - **Architecture Correctness: 9.0/10**  
-  - *Evidence:* Layering is strictly uni-directional: Platform (A01) -> B01 -> B02 -> B03/B04 -> B05 -> B06. No circular dependencies exist.
+  - *Evidence:* Layering is strictly uni-directional: Platform (A01) -> B01 -> B02 -> B03/B04 -> B05 -> A10. No circular dependencies exist.
   - *Justification:* Correct layering, though minor positional mapping integration remains implicit in B02.
 - **DDD Correctness: 9.5/10**  
-  - *Evidence:* Clean aggregate roots mapping, transaction boundary isolation, asynchronous event propagation, and identifier-based references in B05/B06.
+  - *Evidence:* Clean aggregate roots mapping, transaction boundary isolation, asynchronous event propagation, and identifier-based references in B05/A10.
   - *Justification:* Strong bounded context integrity and correct persistence decoupling.
 - **Workflow Correctness: 9.0/10**  
-  - *Evidence:* Complete state transitions, validation preconditions, and failure handling mapped to events in B01, B02, B05, B06.
+  - *Evidence:* Complete state transitions, validation preconditions, and failure handling mapped to events in B01, B02, B05, A10.
   - *Justification:* Comprehensive business flow coverage.
 - **Repository Compliance: 8.0/10**  
   - *Evidence:* Presence of enterprise-wide CRUD, Approval, and Publication pattern catalogs inside B04 instead of Platform layer.
@@ -424,7 +426,7 @@ Apart from these spelling variations, the business semantics of core terms (`Ins
 - **Personnel Assignment Out of Scope:** The omission of personnel assignments in B02 is a false positive. It is intentionally mastered by HR/Identity rather than B02, preserving domain decoupling. [Certain]
 
 ### Overall Findings
-The Institution & Structure section (B01–B06) is exceptionally well-engineered, showing rigorous architectural discipline. The aggregate boundaries, lifecycle logic, and event structures are solid.
+The Institution & Structure section (B01–B05) is exceptionally well-engineered, showing rigorous architectural discipline. The aggregate boundaries, lifecycle logic, and event structures are solid.
 
 ### Final Verdict
 
@@ -434,8 +436,26 @@ The Institution & Structure section (B01–B06) is exceptionally well-engineered
 
 # 20. Architecture Lock Statement
 
-This document formally certifies that the Institution & Structure section (B01–B06) has been independently reviewed, and repository-wide harmonization has been completed. Cross-domain consistency has been verified. Repository ownership, aggregate boundaries, dependency directions, and platform integrations documented herein are certified. Downstream readiness has been certified.
+This document formally certifies that the Institution & Structure section (B01–B05) has been independently reviewed, and repository-wide harmonization has been completed. Cross-domain consistency has been verified. Repository ownership, aggregate boundaries, dependency directions, and platform integrations documented herein are certified. Downstream readiness has been certified.
 
-Future modifications to B01–B06 must preserve these certified architectural contracts. Any changes that alter aggregate roots, transaction boundaries, or cross-domain event contracts must undergo a formal repository architecture review to supersede this certification.
+Future modifications to B01–B05 must preserve these certified architectural contracts. Any changes that alter aggregate roots, transaction boundaries, or cross-domain event contracts must undergo a formal repository architecture review to supersede this certification.
 
 This certification represents the official Enterprise Architecture Review Board approval for the Institution & Structure layer of the SutraERP repository.
+
+---
+
+## Lifecycle
+
+Not separately defined in this document. As a section review and certification document, L2-B00
+validates the lifecycle definitions owned by L2-B01 through L2-B05 rather than defining lifecycle
+behaviour of its own. See those documents for canonical lifecycles.
+
+---
+
+## Rules / Invariants
+
+Not separately defined in this document. The certification criteria applied by this review are
+recorded in the validation sections above; the canonical business rules and invariants remain
+owned by L2-B01 through L2-B05.
+
+---

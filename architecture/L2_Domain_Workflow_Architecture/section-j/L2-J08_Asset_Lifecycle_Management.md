@@ -1,4 +1,4 @@
-﻿# L2-J08 - Asset Lifecycle Management
+﻿# L2-J08 — Asset Lifecycle Management
 
 ## Document Metadata
 

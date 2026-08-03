@@ -1,5 +1,7 @@
 # L2-C03 — Academic Registration Workflows
 
+**Document Owner:** Varad  
+
 ---
 
 # 1. Introduction
@@ -71,7 +73,7 @@ Attendance
 Examination
       │
       ▼
-Graduation
+Qualification Completion
 ```
 
 The domain publishes registration outcomes that become the authoritative source for downstream academic processes.

@@ -1595,7 +1595,7 @@ Library Clearance governs verification of library obligations before institution
 
 Library Clearance supports:
 
-- Student Graduation
+- Student Qualification Completion
 - Student Transfer
 - Student Exit
 - Employee Separation
@@ -1655,7 +1655,7 @@ Library Clearance may publish completion status to:
 
 - Student Exit
 - Employee Exit
-- Graduation
+- Qualification Completion
 - Transfer Workflow
 
 Library Management remains the canonical owner of clearance status.

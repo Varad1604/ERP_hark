@@ -133,7 +133,7 @@ The Scholarship Eligibility domain consumes authoritative business information f
 | **L2-C02 — Student Lifecycle** | Student lifecycle status, enrolment status, academic standing, progression status | Validate active student eligibility and lifecycle-dependent scholarship conditions. |
 | **L2-C03 — Academic Registration** | Programme registrations, semester registrations, course registrations | Evaluate registration-dependent scholarship requirements. |
 | **L2-C04 — Academic Progression** | Academic performance, CGPA, SGPA, credits earned, academic standing, progression decisions | Evaluate merit-based and academic performance scholarship criteria. |
-| **L2-C05 — Qualification Completion** | Qualification completion status, graduation status, completion outcomes | Determine eligibility for completion-based scholarships and post-completion schemes. |
+| **L2-C05 — Qualification Completion** | Qualification completion status, qualification completion status, completion outcomes | Determine eligibility for completion-based scholarships and post-completion schemes. |
 | **L2-C06 — Guardian Workflows** | Guardian profile, guardian relationship, declared family information | Support scholarships requiring guardian-based eligibility evaluation. |
 | **Document Management Domain** | Submitted document references, document verification outcomes, document validity status | Validate documentary evidence required by scholarship policies without owning document lifecycle. |
 | **Institution Configuration Domain** | Scholarship policies, configurable eligibility rules, institutional parameters, academic calendars | Apply institution-specific eligibility policies and operational rules. |

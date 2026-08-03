@@ -95,7 +95,7 @@ It produces business outcomes consumed by:
 
 This document owns supplementary examination execution only.
 
-It does not own academic evaluation, academic computation, official result publication, or graduation decisions.
+It does not own academic evaluation, academic computation, official result publication, or qualification completion decisions.
 
 ---
 
@@ -221,7 +221,7 @@ Every significant supplementary examination activity shall generate immutable au
 
 ## 4.10 Authoritative Academic Continuation
 
-Successful completion of supplementary examination workflows may initiate downstream academic result processing and graduation eligibility determination.
+Successful completion of supplementary examination workflows may initiate downstream academic result processing and qualification completion eligibility determination.
 
 Academic decisions remain owned by downstream domains.
 
@@ -1357,7 +1357,7 @@ The domain does not own:
 - Result Computation
 - Result Publication
 - Revaluation
-- Graduation
+- Qualification Completion
 - Finance Processing
 - Identity Management
 
@@ -1446,7 +1446,7 @@ The Supplementary / Backlog / Improvement Examination lifecycle is considered co
 - Audit Generated
 - Attempt Closed
 
-Completion of supplementary examination execution does not imply completion of academic result computation, result publication, or graduation.
+Completion of supplementary examination execution does not imply completion of academic result computation, result publication, or qualification completion.
 
 These remain downstream workflows owned by their respective domains.
 ```
@@ -1611,7 +1611,7 @@ The domain does **not** own:
 - Result Processing
 - Result Publication
 - Revaluation
-- Graduation
+- Qualification Completion
 - Finance Processing
 
 Business ownership remains separated according to repository boundaries.
@@ -1655,7 +1655,7 @@ The repository maintains a single authoritative owner for:
 - Academic Evaluation
 - Academic Computation
 - Official Result Publication
-- Graduation Processing
+- Qualification Completion Processing
 
 No ownership overlaps exist across repository domains.
 
@@ -1813,7 +1813,7 @@ It does not own:
 - Academic Evaluation
 - Result Computation
 - Result Publication
-- Graduation
+- Qualification Completion
 - Financial Processing
 
 These responsibilities remain within their respective repository domains.

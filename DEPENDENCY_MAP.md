@@ -149,7 +149,7 @@ Owns:
 
 - Institution
 - Organisation hierarchy
-- Campus
+- Institutional Campus (identity and Institution association; the physical site model is owned by Section G / L2-G10)
 - Academic Structure
 - Curriculum framework
 - Academic Calendar

@@ -75,7 +75,7 @@ This document excludes:
 - Marks collection
 - Evaluation
 - Result processing
-- Graduation processing
+- qualification completion processing
 
 These capabilities are defined in their respective Examination workflow documents.
 

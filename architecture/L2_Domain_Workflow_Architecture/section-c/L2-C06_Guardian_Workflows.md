@@ -4370,11 +4370,12 @@ Extensions shall preserve aggregate integrity and canonical contracts.
 flowchart TD
     A[A01 Platform Foundation]
     B[A02 Person & Identity]
-    C[A03 Authentication & Authorization]
+    C[A03 Authentication]
+    C2[A04 Authorization & Policy]
     D[B01 Institution]
     E[B02 Organisation]
-    F[B03 Campus & Infrastructure]
-    SL[C01 Student Lifecycle]
+    F[B03 Institutional Campus]
+    SL[C02 Student Lifecycle]
     G[Guardian Workflows]
 
     H[Finance]
@@ -4384,6 +4385,7 @@ flowchart TD
     A --> G
     B --> G
     C --> G
+    C2 --> G
     D --> G
     E --> G
     F --> G

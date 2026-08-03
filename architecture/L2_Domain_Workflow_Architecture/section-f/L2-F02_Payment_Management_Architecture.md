@@ -1,4 +1,4 @@
-# L2-F02 — Payment Management
+# L2-F02 — Payment Management Architecture
 
 ---
 

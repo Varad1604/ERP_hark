@@ -1584,7 +1584,7 @@ The Result Processing & Computation domain governs academic computation from Fin
 | Supplementary Examination Execution | — | L2-I12 |
 | Academic Completion & Completion Evidence | — | L2-I13 |
 
-The Result Processing & Computation domain governs academic computation only and does not own publication, revaluation, supplementary examinations, or graduation.
+The Result Processing & Computation domain governs academic computation only and does not own publication, revaluation, supplementary examinations, or qualification completion.
 
 ---
 
@@ -1783,7 +1783,7 @@ The domain does **not** own:
 - Result Publication
 - Revaluation
 - Supplementary Examination Execution
-- Graduation
+- Qualification Completion
 - Degree Award
 
 ---

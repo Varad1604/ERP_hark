@@ -56,7 +56,7 @@ This document does not govern:
 - Result Processing & Computation
 - Revaluation & Rechecking
 - Supplementary / Backlog / Improvement Examination Execution
-- Academic Completion & Graduation
+- Academic Completion & Qualification Completion
 
 Ownership of these business capabilities remains with their respective workflow documents.
 
@@ -87,7 +87,7 @@ It produces authoritative published results consumed by:
 
 - L2-I11 — Revaluation & Rechecking Workflows
 - L2-I12 — Supplementary / Backlog / Improvement Examination Execution Workflows
-- L2-I13 — Academic Completion, CGPA & Graduation Workflows
+- L2-I13 — Academic Completion, CGPA & Qualification Completion Workflows
 
 I09 — Result Processing & Computation
 
@@ -1280,7 +1280,7 @@ The following business capabilities belong to other workflow documents.
 | Result Processing & Computation | L2-I09 |
 | Revaluation & Rechecking | L2-I11 |
 | Supplementary / Backlog / Improvement Examination Execution | L2-I12 |
-| Academic Completion & Graduation | L2-I13 |
+| Academic Completion & Qualification Completion | L2-I13 |
 | Malpractice & Examination Committee | L2-I14 |
 | Examination Exception & Contingency Management | L2-I15 |
 | Examination Session Closure & Archival | L2-I16 |
@@ -1498,9 +1498,9 @@ The Result Publication domain governs publication of Institutionally Approved Re
 | Publication Closure | ✓ | — |
 | Revaluation & Rechecking | — | L2-I11 |
 | Supplementary Examination Execution | — | L2-I12 |
-| Academic Completion & Graduation | — | L2-I13 |
+| Academic Completion & Qualification Completion | — | L2-I13 |
 
-The Result Publication domain governs publication only and does not own academic computation, evaluation, revaluation, supplementary examinations, or graduation.
+The Result Publication domain governs publication only and does not own academic computation, evaluation, revaluation, supplementary examinations, or qualification completion.
 
 ---
 
@@ -1526,7 +1526,7 @@ The relationship between Examination workflow documents is as follows:
 | **L2-I10** | **Result Publication** |
 | L2-I11 | Revaluation & Rechecking |
 | L2-I12 | Supplementary / Backlog / Improvement Examination Execution |
-| L2-I13 | Academic Completion, CGPA & Graduation |
+| L2-I13 | Academic Completion, CGPA & Qualification Completion |
 | L2-I14 | Malpractice & Examination Committee |
 | L2-I15 | Examination Exception & Contingency Management |
 | L2-I16 | Examination Session Closure & Archival |
@@ -1673,7 +1673,7 @@ The domain does **not** own:
 - Academic Computation
 - Revaluation
 - Supplementary Examination Execution
-- Graduation
+- Qualification Completion
 - Degree Award
 
 ---

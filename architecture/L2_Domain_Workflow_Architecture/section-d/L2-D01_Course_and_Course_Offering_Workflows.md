@@ -6,6 +6,7 @@
 **Document ID:** L2-D01  
 **Version:** 1.0  
 **Status:** Architecture Locked  
+**Document Owner:** Pallav  
 **Classification:** Level 2 Domain Architecture  
 **Owner:** Academic Operations Domain  
 **Dependencies:** Section A, Section B, Section C

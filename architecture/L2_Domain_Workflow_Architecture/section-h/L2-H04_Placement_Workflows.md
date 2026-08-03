@@ -306,7 +306,7 @@ Capabilities include:
 - Active Backlog Validation
 - Branch Eligibility
 - Program Eligibility
-- Graduation Year Validation
+- Qualification Completion Year Validation
 - Skills Validation
 - Certification Validation
 - Resume Completeness Validation
@@ -534,7 +534,7 @@ Examples include:
 - AcademicResultPublished
 - SemesterCompleted
 - BacklogUpdated
-- StudentGraduationRecorded
+- QualificationAwarded
 - StudentStatusChanged
 - UserActivated
 - UserDeactivated
@@ -1825,7 +1825,7 @@ Eligibility may include:
 - Active Backlogs
 - Branch
 - Program
-- Graduation Year
+- Qualification Completion Year
 - Skills
 - Certifications
 - Resume Completeness
@@ -3252,7 +3252,7 @@ None
 
 - StudentCreated
 - StudentUpdated
-- StudentGraduated
+- QualificationAwarded
 - StudentStatusChanged
 
 ### Published Events

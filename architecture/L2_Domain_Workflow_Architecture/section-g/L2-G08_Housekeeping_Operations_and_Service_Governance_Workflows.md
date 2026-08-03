@@ -1,8 +1,8 @@
-﻿# L2-G08 â€” Housekeeping Operations & Service Governance Workflows
+﻿# L2-G08 — Housekeeping Operations & Service Governance Workflows
 
 **Repository:** SutraERP  
-**Section:** G â€” Campus Operations  
-**Domain:** G08 â€” Housekeeping Operations & Service Governance  
+**Section:** G — Campus Operations  
+**Domain:** G08 — Housekeeping Operations & Service Governance  
 **Document ID:** L2-G08  
 **Version:** 1.0  
 **Status:** Draft  
@@ -12,12 +12,12 @@
 
 **Upstream Dependencies**
 
-- Section A â€” Platform Foundation
-- Section B â€” Institution & Structure
-- G01 â€” Facilities Management
-- G02 â€” Laboratory Management
-- G03 â€” Hostel Management
-- G06 â€” Institutional Health Services
+- Section A — Platform Foundation
+- Section B — Institution & Structure
+- G01 — Facilities Management
+- G02 — Laboratory Management
+- G03 — Hostel Management
+- G06 — Institutional Health Services
 - Finance Domain
 
 **Downstream Consumers**
@@ -122,15 +122,15 @@ Repository Position
 
 ```text
 Platform Foundation
-        â”‚
-        â–¼
+        │
+        ▼
 Campus Operations
-        â”‚
-        â–¼
+        │
+        ▼
 Housekeeping Operations
-        â”‚
- â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
- â–¼            â–¼              â–¼
+        │
+ ┌────────────┼──────────────┬──────────────┐
+ ▼            ▼              ▼
 Facilities  Notifications  Institutional Reporting
 ```
 
@@ -471,7 +471,7 @@ Aggregate identity shall remain immutable throughout its lifecycle.
 
 ---
 
-# 9. Bounded Context Relationships
+# 9. Dependencies & Integration (Bounded Context Relationships)
 
 ## Upstream Domains
 
@@ -490,7 +490,7 @@ Provides:
 
 ---
 
-### G01 â€” Facilities Management
+### G01 — Facilities Management
 
 Provides:
 
@@ -506,7 +506,7 @@ Maintenance ownership remains external.
 
 ---
 
-### G02 â€” Laboratory Management
+### G02 — Laboratory Management
 
 Provides:
 
@@ -518,7 +518,7 @@ Housekeeping Operations consumes laboratory references.
 
 ---
 
-### G03 â€” Hostel Management
+### G03 — Hostel Management
 
 Provides:
 
@@ -531,7 +531,7 @@ Housekeeping Operations coordinates hostel cleaning.
 
 ---
 
-### G06 â€” Institutional Health Services
+### G06 — Institutional Health Services
 
 Provides:
 
@@ -598,15 +598,15 @@ Housekeeping Operations governs operational service delivery throughout the camp
 
 ```text
 Housekeeping Zone
-        â”‚
+        │
 Cleaning Schedule
-        â”‚
+        │
 Cleaning Task
-        â”‚
+        │
 Completion
-        â”‚
+        │
 Quality Inspection
-        â”‚
+        │
 Operational Closure
 ```
 
@@ -614,15 +614,15 @@ Complaint-driven workflow
 
 ```text
 Complaint
-     â”‚
+     │
 Cleaning Request
-     â”‚
+     │
 Assignment
-     â”‚
+     │
 Execution
-     â”‚
+     │
 Inspection
-     â”‚
+     │
 Closure
 ```
 
@@ -630,15 +630,15 @@ Supporting operational model
 
 ```text
 Housekeeping Operations
-          â”‚
-          â”œâ”€â”€ Zones
-          â”œâ”€â”€ Cleaning Schedules
-          â”œâ”€â”€ Cleaning Requests
-          â”œâ”€â”€ Hygiene Inspections
-          â”œâ”€â”€ Waste Collection
-          â”œâ”€â”€ Quality Assessment
-          â”œâ”€â”€ SLA Monitoring
-          â””â”€â”€ Audit
+          │
+          ├── Zones
+          ├── Cleaning Schedules
+          ├── Cleaning Requests
+          ├── Hygiene Inspections
+          ├── Waste Collection
+          ├── Quality Assessment
+          ├── SLA Monitoring
+          └── Audit
 ```
 
 ---
@@ -649,13 +649,13 @@ Housekeeping Operations
 
 ```text
 Draft
-   â”‚
+   │
 Approved
-   â”‚
+   │
 Active
-   â”‚
+   │
 Executed
-   â”‚
+   │
 Completed
 ```
 
@@ -665,15 +665,15 @@ Completed
 
 ```text
 Reported
-     â”‚
+     │
 Validated
-     â”‚
+     │
 Assigned
-     â”‚
+     │
 Completed
-     â”‚
+     │
 Verified
-     â”‚
+     │
 Closed
 ```
 
@@ -683,13 +683,13 @@ Closed
 
 ```text
 Scheduled
-     â”‚
+     │
 Inspection
-     â”‚
+     │
 Evaluation
-     â”‚
+     │
 Corrective Action (Optional)
-     â”‚
+     │
 Closed
 ```
 
@@ -699,11 +699,11 @@ Closed
 
 ```text
 Scheduled
-     â”‚
+     │
 Collected
-     â”‚
+     │
 Verified
-     â”‚
+     │
 Closed
 ```
 
@@ -713,11 +713,11 @@ Closed
 
 ```text
 Reported
-     â”‚
+     │
 Assessment
-     â”‚
+     │
 Resolution
-     â”‚
+     │
 Closed
 ```
 
@@ -847,15 +847,15 @@ The architecture supports the following hierarchy:
 
 ```text
 Institution
-      â”‚
+      │
 Campus
-      â”‚
+      │
 Building
-      â”‚
+      │
 Floor
-      â”‚
+      │
 Housekeeping Zone
-      â”‚
+      │
 Room / Area
 ```
 
@@ -886,13 +886,13 @@ Zone categories shall remain configurable.
 
 ```text
 Zone Created
-      â”‚
+      │
 Configuration
-      â”‚
+      │
 Cleaning Policies Assigned
-      â”‚
+      │
 Inspection Policies Assigned
-      â”‚
+      │
 Zone Activated
 ```
 
@@ -959,15 +959,15 @@ Cleaning categories shall remain configurable.
 
 ```text
 Cleaning Schedule
-        â”‚
+        │
 Task Generation
-        â”‚
+        │
 Operational Assignment
-        â”‚
+        │
 Cleaning Performed
-        â”‚
+        │
 Quality Inspection
-        â”‚
+        │
 Completed
 ```
 
@@ -1062,17 +1062,17 @@ Complaint sources shall remain configurable.
 
 ```text
 Complaint Registered
-        â”‚
+        │
 Validation
-        â”‚
+        │
 Priority Assignment
-        â”‚
+        │
 Operational Assignment
-        â”‚
+        │
 Cleaning Completed
-        â”‚
+        │
 Inspection
-        â”‚
+        │
 Closure
 ```
 
@@ -1150,15 +1150,15 @@ Waste Management governs operational waste collection while ownership of special
 
 ```text
 Inspection Scheduled
-        â”‚
+        │
 Inspection Conducted
-        â”‚
+        │
 Checklist Evaluation
-        â”‚
+        │
 Score Assigned
-        â”‚
+        │
 Corrective Action (If Required)
-        â”‚
+        │
 Inspection Closed
 ```
 
@@ -1387,13 +1387,13 @@ Notification templates shall remain configurable.
 
 ```text
 Business Event
-      â”‚
+      │
 Domain Event Published
-      â”‚
+      │
 Notification Framework
-      â”‚
+      │
 Recipient Resolution
-      â”‚
+      │
 Delivery
 ```
 
@@ -1558,14 +1558,14 @@ All interactions shall occur exclusively through published business service cont
 
 | Aggregate | Primary Lifecycle |
 |-----------|-------------------|
-| Housekeeping Zone | Draft â†’ Configured â†’ Active â†’ Closed |
-| Cleaning Schedule | Draft â†’ Approved â†’ Active â†’ Completed |
-| Cleaning Request | Reported â†’ Assigned â†’ Completed â†’ Verified â†’ Closed |
-| Cleaning Task | Generated â†’ Assigned â†’ Executing â†’ Completed |
-| Hygiene Inspection | Scheduled â†’ Inspection â†’ Evaluated â†’ Closed |
-| Waste Collection | Scheduled â†’ Collected â†’ Verified â†’ Closed |
-| Housekeeping Incident | Reported â†’ Assessment â†’ Resolved â†’ Closed |
-| Service Quality Assessment | Initiated â†’ Evaluated â†’ Approved â†’ Closed |
+| Housekeeping Zone | Draft → Configured → Active → Closed |
+| Cleaning Schedule | Draft → Approved → Active → Completed |
+| Cleaning Request | Reported → Assigned → Completed → Verified → Closed |
+| Cleaning Task | Generated → Assigned → Executing → Completed |
+| Hygiene Inspection | Scheduled → Inspection → Evaluated → Closed |
+| Waste Collection | Scheduled → Collected → Verified → Closed |
+| Housekeeping Incident | Reported → Assessment → Resolved → Closed |
+| Service Quality Assessment | Initiated → Evaluated → Approved → Closed |
 
 Lifecycle extensions shall remain configuration driven.
 
@@ -1903,17 +1903,17 @@ Examples include:
 
 ```text
 Business Exception
-        â”‚
+        │
 Validation
-        â”‚
+        │
 Recovery Strategy
-        â”‚
+        │
 Audit Recorded
-        â”‚
+        │
 Domain Event Published
-        â”‚
+        │
 Notification Published
-        â”‚
+        │
 Operational Continuation
 ```
 
@@ -1979,23 +1979,23 @@ The architecture shall remain horizontally scalable without domain redesign.
 
 ---
 
-# Appendix A â€” Canonical Operational Flow
+# Appendix A — Canonical Operational Flow
 
 ## Scheduled Housekeeping
 
 ```text
 Housekeeping Zone
-        â”‚
+        │
 Cleaning Schedule
-        â”‚
+        │
 Cleaning Task
-        â”‚
+        │
 Execution
-        â”‚
+        │
 Quality Inspection
-        â”‚
+        │
 Completion
-        â”‚
+        │
 Audit History
 ```
 
@@ -2005,15 +2005,15 @@ Audit History
 
 ```text
 Complaint
-     â”‚
+     │
 Cleaning Request
-     â”‚
+     │
 Assignment
-     â”‚
+     │
 Cleaning
-     â”‚
+     │
 Inspection
-     â”‚
+     │
 Closure
 ```
 
@@ -2023,19 +2023,19 @@ Closure
 
 ```text
 Inspection Schedule
-        â”‚
+        │
 Inspection
-        â”‚
+        │
 Evaluation
-        â”‚
+        │
 Corrective Action
-        â”‚
+        │
 Compliance
 ```
 
 ---
 
-# Appendix B â€” Canonical Ownership Matrix
+# Appendix B — Canonical Ownership Matrix
 
 | Business Concept | Canonical Owner |
 |------------------|-----------------|
@@ -2060,7 +2060,7 @@ Compliance
 
 ---
 
-# Appendix C â€” Enterprise Design Principles
+# Appendix C — Enterprise Design Principles
 
 Housekeeping Operations follows the enterprise architectural principles established by SutraERP.
 
@@ -2092,7 +2092,7 @@ Housekeeping Operations follows the enterprise architectural principles establis
 
 **End of Document**
 
-**L2-G08 â€” Housekeeping Operations & Service Governance Workflows**
+**L2-G08 — Housekeeping Operations & Service Governance Workflows**
 
 **Version:** 1.0  
 **Status:** Architecture Draft (Ready for Architectural Review)

@@ -1,8 +1,8 @@
-﻿# L2-G01 â€” Facilities Management Workflows
+﻿# L2-G01 — Facilities Management Workflows
 
 **Repository:** SutraERP  
-**Section:** G â€” Campus Operations  
-**Domain:** G01 â€” Facilities Management  
+**Section:** G — Campus Operations  
+**Domain:** G01 — Facilities Management  
 **Document ID:** L2-G01  
 **Version:** 1.0  
 **Status:** Draft  
@@ -12,10 +12,10 @@
 
 **Upstream Dependencies**
 
-- Section A â€” Platform Foundation
-- Section B â€” Institution & Structure
-- Section E â€” People & Workforce
-- G10 â€” Infrastructure Management
+- Section A — Platform Foundation
+- Section B — Institution & Structure
+- Section E — People & Workforce
+- G10 — Infrastructure Management
 
 **Downstream Consumers**
 
@@ -85,7 +85,7 @@ The domain owns operational execution.
 
 It does not own physical infrastructure.
 
-Physical infrastructure ownership remains within **G10 â€” Infrastructure Management**.
+Physical infrastructure ownership remains within **G10 — Infrastructure Management**.
 
 Facilities Management consumes infrastructure published by G10 and performs operational activities upon that infrastructure.
 
@@ -126,18 +126,18 @@ Repository Position
 
 ```text
 Platform Foundation
-        â”‚
-        â–¼
+        │
+        ▼
 Institution & Structure
-        â”‚
-        â–¼
+        │
+        ▼
 G10 Infrastructure Management
-        â”‚
-        â–¼
+        │
+        ▼
 G01 Facilities Management
-        â”‚
- â”Œâ”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
- â–¼      â–¼         â–¼         â–¼         â–¼
+        │
+ ┌──────┼─────────┬─────────┬─────────┬──────────┐
+ ▼      ▼         ▼         ▼         ▼
 Hostel Library Laboratory Security Examination
 ```
 
@@ -515,7 +515,7 @@ Business codes may change through authorised administrative processes.
 
 ---
 
-# 9. Bounded Context Relationships
+# 9. Dependencies & Integration (Bounded Context Relationships)
 
 ## Upstream Domains
 
@@ -634,24 +634,24 @@ The Facilities domain models operational maintenance activities performed upon i
 
 ```text
 Infrastructure (G10)
-        â”‚
-        â–¼
+        │
+        ▼
 Service Request
-        â”‚
-        â–¼
+        │
+        ▼
 Complaint
-        â”‚
-        â–¼
+        │
+        ▼
 Work Order
-        â”‚
- â”Œâ”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
- â–¼      â–¼           â–¼
+        │
+ ┌──────┼───────────┬───────────┐
+ ▼      ▼           ▼
 Technician Vendor Inspection
-        â”‚
-        â–¼
+        │
+        ▼
 Verification
-        â”‚
-        â–¼
+        │
+        ▼
 Closure
 ```
 
@@ -659,28 +659,28 @@ Supporting aggregates:
 
 ```text
 Work Order
-     â”‚
-     â”œâ”€â”€ Checklist
-     â”œâ”€â”€ SOP
-     â”œâ”€â”€ Attachments
-     â”œâ”€â”€ Consumables
-     â”œâ”€â”€ Cost
-     â”œâ”€â”€ Time Log
-     â”œâ”€â”€ SLA
-     â””â”€â”€ Audit
+     │
+     ├── Checklist
+     ├── SOP
+     ├── Attachments
+     ├── Consumables
+     ├── Cost
+     ├── Time Log
+     ├── SLA
+     └── Audit
 ```
 
 Utility Operations:
 
 ```text
 Utility
-    â”‚
+    │
 Meter
-    â”‚
+    │
 Reading
-    â”‚
+    │
 Consumption
-    â”‚
+    │
 Alert
 ```
 
@@ -692,13 +692,13 @@ Alert
 
 ```text
 Draft
-   â”‚
+   │
 Submitted
-   â”‚
+   │
 Validated
-   â”‚
+   │
 Accepted
-   â”‚
+   │
 Converted to Complaint
 ```
 
@@ -708,17 +708,17 @@ Converted to Complaint
 
 ```text
 Open
-   â”‚
+   │
 Assigned
-   â”‚
+   │
 Work Order Created
-   â”‚
+   │
 In Progress
-   â”‚
+   │
 Resolved
-   â”‚
+   │
 Verified
-   â”‚
+   │
 Closed
 ```
 
@@ -728,19 +728,19 @@ Closed
 
 ```text
 Created
-    â”‚
+    │
 Assigned
-    â”‚
+    │
 Accepted
-    â”‚
+    │
 In Progress
-    â”‚
+    │
 Paused
-    â”‚
+    │
 Completed
-    â”‚
+    │
 Verified
-    â”‚
+    │
 Closed
 ```
 
@@ -752,15 +752,15 @@ Work Orders may reopen following authorised verification failure.
 
 ```text
 Planned
-     â”‚
+     │
 Scheduled
-     â”‚
+     │
 Generated
-     â”‚
+     │
 Executed
-     â”‚
+     │
 Verified
-     â”‚
+     │
 Completed
 ```
 
@@ -770,15 +770,15 @@ Completed
 
 ```text
 Scheduled
-      â”‚
+      │
 Assigned
-      â”‚
+      │
 Inspection
-      â”‚
+      │
 Findings
-      â”‚
+      │
 Approved
-      â”‚
+      │
 Closed
 ```
 
@@ -1013,17 +1013,17 @@ Severity may influence SLA and escalation policies.
 
 ```text
 Request Submitted
-        â”‚
+        │
 Authorization Validation
-        â”‚
+        │
 Category Validation
-        â”‚
+        │
 Priority Assignment
-        â”‚
+        │
 Infrastructure Validation
-        â”‚
+        │
 Service Request Created
-        â”‚
+        │
 Publish Domain Event
 ```
 
@@ -1104,24 +1104,24 @@ Institutions may configure additional classifications.
 
 ```text
 Complaint Registered
-          â”‚
+          │
 Validation
-          â”‚
+          │
 Classification
-          â”‚
+          │
 Assignment
-          â”‚
+          │
 Investigation
-          â”‚
+          │
 Work Order Required?
-      â”Œâ”€â”€â”€â”´â”€â”€â”€â”€â”
-      â”‚        â”‚
+      ┌───┴────┐
+      │        │
      No       Yes
-      â”‚        â”‚
+      │        │
  Administrative
  Resolution
-               â”‚
-               â–¼
+               │
+               ▼
          Work Order Created
 ```
 
@@ -1149,7 +1149,7 @@ Example:
 
 Electrical Failure
 
-â†“
+↓
 
 Electrical Team
 
@@ -1226,19 +1226,19 @@ Typical information includes:
 
 ```text
 Created
-    â”‚
+    │
 Assignment
-    â”‚
+    │
 Accepted
-    â”‚
+    │
 Planning
-    â”‚
+    │
 Execution
-    â”‚
+    │
 Verification
-    â”‚
+    │
 Completed
-    â”‚
+    │
 Closed
 ```
 
@@ -1351,15 +1351,15 @@ Supported assignment models include:
 
 ```text
 Work Order Created
-         â”‚
+         │
 Skill Matching
-         â”‚
+         │
 Availability Validation
-         â”‚
+         │
 Assignment Rules
-         â”‚
+         │
 Technician Assigned
-         â”‚
+         │
 Notification Published
 ```
 
@@ -1486,19 +1486,19 @@ Supported schedules include:
 
 ```text
 Maintenance Plan
-        â”‚
+        │
 Scheduler Trigger
-        â”‚
+        │
 Work Order Generated
-        â”‚
+        │
 Technician Assignment
-        â”‚
+        │
 Execution
-        â”‚
+        │
 Verification
-        â”‚
+        │
 Completion
-        â”‚
+        │
 Next Schedule Generated
 ```
 
@@ -1574,17 +1574,17 @@ Corrective Maintenance may originate from:
 
 ```text
 Issue Identified
-        â”‚
+        │
 Assessment
-        â”‚
+        │
 Work Order
-        â”‚
+        │
 Technician Assignment
-        â”‚
+        │
 Repair
-        â”‚
+        │
 Verification
-        â”‚
+        │
 Closure
 ```
 
@@ -1650,17 +1650,17 @@ Emergency Maintenance governs immediate operational response to incidents that t
 
 ```text
 Emergency Reported
-        â”‚
+        │
 Immediate Classification
-        â”‚
+        │
 Emergency Work Order
-        â”‚
+        │
 Technician / Vendor Dispatch
-        â”‚
+        │
 Emergency Repair
-        â”‚
+        │
 Safety Verification
-        â”‚
+        │
 Operational Restoration
 ```
 
@@ -1726,15 +1726,15 @@ Institution-specific vendor services shall be configurable.
 
 ```text
 Vendor Required
-       â”‚
+       │
 Vendor Selection
-       â”‚
+       │
 Assignment
-       â”‚
+       │
 Work Execution
-       â”‚
+       │
 Verification
-       â”‚
+       │
 Performance Review
 ```
 
@@ -1806,17 +1806,17 @@ Examples include:
 
 ```text
 AMC Registered
-       â”‚
+       │
 Maintenance Schedule
-       â”‚
+       │
 Vendor Notification
-       â”‚
+       │
 Scheduled Service
-       â”‚
+       │
 Inspection
-       â”‚
+       │
 Verification
-       â”‚
+       │
 AMC Updated
 ```
 
@@ -1878,15 +1878,15 @@ Institutions may configure additional utilities.
 
 ```text
 Utility Reading
-        â”‚
+        │
 Validation
-        â”‚
+        │
 Consumption Recorded
-        â”‚
+        │
 Threshold Evaluation
-        â”‚
+        │
 Alert Generated
-        â”‚
+        │
 Operational Review
 ```
 
@@ -1975,18 +1975,18 @@ Additional inspection types shall remain configurable.
 
 ```text
 Inspection Planned
-         â”‚
+         │
 Inspector Assigned
-         â”‚
+         │
 Inspection Conducted
-         â”‚
+         │
 Observations Recorded
-         â”‚
+         │
 Corrective Action Required?
-      â”Œâ”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”
-      â”‚             â”‚
+      ┌──────┴──────┐
+      │             │
      No            Yes
-      â”‚             â”‚
+      │             │
 Inspection     Work Order
 Completed      Generated
 ```
@@ -2063,18 +2063,18 @@ An SLA may define:
 
 ```text
 Work Created
-      â”‚
+      │
 Applicable SLA Identified
-      â”‚
+      │
 SLA Activated
-      â”‚
+      │
 Operational Monitoring
-      â”‚
+      │
 SLA Met?
-   â”Œâ”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”
-   â”‚             â”‚
+   ┌──────┴──────┐
+   │             │
  Yes            No
-   â”‚             â”‚
+   │             │
 Complete     Escalation
 ```
 
@@ -2138,13 +2138,13 @@ Typical escalation hierarchy:
 
 ```text
 Technician
-     â”‚
+     │
 Supervisor
-     â”‚
+     │
 Facilities Manager
-     â”‚
+     │
 Campus Administrator
-     â”‚
+     │
 Institution Administration
 ```
 
@@ -2156,15 +2156,15 @@ Institutions may configure alternative escalation hierarchies.
 
 ```text
 SLA Violation
-      â”‚
+      │
 Escalation Rule Evaluation
-      â”‚
+      │
 Escalation Level Determined
-      â”‚
+      │
 Notifications Published
-      â”‚
+      │
 Management Review
-      â”‚
+      │
 Operational Resolution
 ```
 
@@ -2224,15 +2224,15 @@ Applicable verification rules shall remain configurable.
 
 ```text
 Work Completed
-      â”‚
+      │
 Verification Required
-      â”‚
+      │
 Evidence Review
-      â”‚
+      │
 Quality Validation
-      â”‚
+      │
 Verification Approved
-      â”‚
+      │
 Work Order Closed
 ```
 
@@ -2301,13 +2301,13 @@ Institutions may configure additional consumables.
 
 ```text
 Work Order
-      â”‚
+      │
 Consumable Recorded
-      â”‚
+      │
 Quantity Validated
-      â”‚
+      │
 Usage History Updated
-      â”‚
+      │
 Work Order Completed
 ```
 
@@ -2501,13 +2501,13 @@ All interactions shall occur through published service contracts.
 
 | Aggregate | Primary Lifecycle |
 |-----------|-------------------|
-| Service Request | Draft â†’ Submitted â†’ Accepted â†’ Converted â†’ Closed |
-| Complaint | Open â†’ Assigned â†’ In Progress â†’ Resolved â†’ Verified â†’ Closed |
-| Work Order | Created â†’ Assigned â†’ Accepted â†’ In Progress â†’ Completed â†’ Verified â†’ Closed |
-| Preventive Maintenance | Planned â†’ Scheduled â†’ Generated â†’ Executed â†’ Verified â†’ Completed |
-| Inspection | Planned â†’ Assigned â†’ Conducted â†’ Reviewed â†’ Approved â†’ Closed |
-| Vendor Assignment | Assigned â†’ Accepted â†’ Working â†’ Completed |
-| Utility Incident | Reported â†’ Investigating â†’ Resolved â†’ Closed |
+| Service Request | Draft → Submitted → Accepted → Converted → Closed |
+| Complaint | Open → Assigned → In Progress → Resolved → Verified → Closed |
+| Work Order | Created → Assigned → Accepted → In Progress → Completed → Verified → Closed |
+| Preventive Maintenance | Planned → Scheduled → Generated → Executed → Verified → Completed |
+| Inspection | Planned → Assigned → Conducted → Reviewed → Approved → Closed |
+| Vendor Assignment | Assigned → Accepted → Working → Completed |
+| Utility Incident | Reported → Investigating → Resolved → Closed |
 
 Lifecycle extensions shall remain configuration driven.
 
@@ -2847,15 +2847,15 @@ Examples include:
 
 ```text
 Business Exception
-        â”‚
+        │
 Validation
-        â”‚
+        │
 Recovery Strategy
-        â”‚
+        │
 Audit Recorded
-        â”‚
+        │
 Notification Published
-        â”‚
+        │
 Operational Continuation
 ```
 
@@ -2918,31 +2918,31 @@ The architecture shall remain horizontally scalable.
 
 ---
 
-# Appendix A â€” Canonical Operational Flow
+# Appendix A — Canonical Operational Flow
 
 ```text
 Service Request
-        â”‚
+        │
 Complaint
-        â”‚
+        │
 Assessment
-        â”‚
+        │
 Work Order
-        â”‚
+        │
 Technician / Vendor Assignment
-        â”‚
+        │
 Execution
-        â”‚
+        │
 Inspection
-        â”‚
+        │
 Verification
-        â”‚
+        │
 Closure
 ```
 
 ---
 
-# Appendix B â€” Canonical Ownership Matrix
+# Appendix B — Canonical Ownership Matrix
 
 | Business Concept | Canonical Owner |
 |------------------|-----------------|
@@ -2967,7 +2967,7 @@ Closure
 
 ---
 
-# Appendix C â€” Enterprise Design Principles
+# Appendix C — Enterprise Design Principles
 
 Facilities Management follows the enterprise architectural principles established by SutraERP.
 
@@ -2991,7 +2991,7 @@ Facilities Management follows the enterprise architectural principles establishe
 
 **End of Document**
 
-**L2-G01 â€” Facilities Management Workflows**
+**L2-G01 — Facilities Management Workflows**
 
 **Version:** 1.0  
 **Status:** Architecture Draft (Ready for Architectural Review)

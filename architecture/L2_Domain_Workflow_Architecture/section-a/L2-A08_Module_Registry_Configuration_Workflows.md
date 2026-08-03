@@ -7,6 +7,7 @@
 | Field | Value |
 |--------|-------|
 | Document ID | L2-A08 |
+| Document Owner | Dhruv |
 | Document Name | Module Registry & Configuration Workflows |
 | Domain | Platform Foundation |
 | Parent Domain | L2-A01 — Platform & Tenant Foundation |

@@ -1229,7 +1229,7 @@ The domain does not own:
 - Result Computation
 - Result Publication
 - Supplementary Examination Management
-- Graduation Management
+- Qualification Completion Management
 - Finance Processing
 - Identity Management
 
@@ -1468,7 +1468,7 @@ The domain does **not** own:
 - Academic Standing
 - Official Result Publication
 - Supplementary Examination Management
-- Graduation Processing
+- Qualification Completion Processing
 
 Business ownership remains separated according to repository boundaries.
 
@@ -1658,7 +1658,7 @@ It does not own:
 - Original Evaluation
 - Result Computation
 - Result Publication
-- Graduation
+- Qualification Completion
 - Financial Processing
 
 These responsibilities remain within their respective repository domains.

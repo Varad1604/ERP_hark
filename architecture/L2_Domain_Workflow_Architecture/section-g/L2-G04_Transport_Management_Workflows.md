@@ -505,7 +505,7 @@ Aggregate identity shall remain immutable throughout its lifecycle.
 
 ---
 
-# 9. Bounded Context Relationships
+# 9. Dependencies & Integration (Bounded Context Relationships)
 
 ## Upstream Domains
 

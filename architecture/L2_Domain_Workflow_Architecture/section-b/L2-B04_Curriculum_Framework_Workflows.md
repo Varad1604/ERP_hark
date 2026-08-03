@@ -7027,7 +7027,7 @@ Typical examples include:
 
 - Student Admission
 - Examination Registration
-- Graduation Processing
+- Qualification Completion Processing
 - Employee Recruitment
 - Procurement
 
@@ -7159,7 +7159,7 @@ Examples include:
 - Research Approval
 - Procurement Lifecycle
 - Recruitment Process
-- Graduation Process
+- Qualification Completion Process
 
 ---
 
@@ -7649,7 +7649,7 @@ Archival shall never imply deletion.
 
 Typical examples include:
 
-- Graduated Student Records
+- Qualification Completed Student Records
 - Retired Employee Records
 - Historical Examination Sessions
 - Obsolete Academic Calendars
@@ -10569,7 +10569,7 @@ Institutional history shall remain permanently available.
 
 Typical examples include:
 
-- Student Graduation
+- Student Qualification Completion
 - Admission Completion
 - Procurement Completion
 - Project Completion

@@ -6,6 +6,7 @@
 **Parent Architecture:** SutraERP Level-1 Enterprise Architecture  
 **Architecture Style:** Domain-Driven Design (DDD), Event-Driven Architecture (EDA), Clean Architecture, API-First  
 **Status:** Architecture Locked  
+**Document Owner:** Pallav  
 **Version:** 1.0  
 **Classification:** Canonical Enterprise Architecture  
 **Owner:** Pallav  

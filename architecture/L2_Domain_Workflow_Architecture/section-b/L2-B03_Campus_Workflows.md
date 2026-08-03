@@ -22,11 +22,15 @@
 
 # 1. Purpose
 
-The **Campus & Infrastructure** domain defines the **canonical representation of all physical infrastructure** managed within SutraERP.
+The **Institutional Campus** domain defines the **canonical representation of the Campus as an institutional entity** within SutraERP.
 
-It establishes the enterprise model for campuses, buildings, floors, spaces, facilities, utilities, infrastructure groupings, operational characteristics, compliance metadata, lifecycle states, and physical relationships.
+It establishes how an Institution registers, governs and retires its campuses: campus identity, institutional status, Institution-to-Campus association, governance metadata and institutional addressing.
 
-This domain serves as the **authoritative source of truth** for all physical infrastructure across the platform.
+This domain serves as the **authoritative source of truth for institutional campus governance**.
+
+It is **not** the owner of the physical model. Buildings, floors, spaces, facilities, utilities, physical hierarchy, capacity, availability, compliance characteristics and infrastructure lifecycle are owned by `L2-G10 --- Infrastructure Management Workflows`, consistent with L0 §20, which assigns canonical physical structure and lifecycle to Infrastructure.
+
+> **Ownership split (INT-001, 2026-08-03).** B03 owns the *institutional* Campus — the fact that an Institution has a campus, its identity, and its institutional status. G10 owns the *physical* Campus — the site boundary containing buildings and spaces, and everything beneath it. Where the two refer to the same real-world site, G10's PhysicalInfrastructureCampus references the InstitutionalCampus identity issued here.
 
 It provides a stable, extensible, and future-proof foundation upon which every infrastructure-dependent business domain operates.
 
@@ -34,7 +38,9 @@ It provides a stable, extensible, and future-proof foundation upon which every i
 
 # 2. Domain Mission
 
-The mission of this domain is to provide a single, authoritative, and technology-independent representation of institutional infrastructure that enables every other domain to understand, reference, and utilize physical facilities consistently without duplicating infrastructure knowledge.
+The mission of this domain is to provide a single, authoritative, and technology-independent representation of the **institutional campus**, so that every other domain can resolve which campuses an Institution operates and what their institutional standing is, without duplicating campus identity.
+
+Physical facility knowledge is resolved from `L2-G10`, not from this domain.
 
 This domain describes:
 
@@ -49,44 +55,53 @@ This domain **does not** manage operational activities performed within that inf
 
 # 3. Scope
 
-The Campus & Infrastructure domain governs the complete lifecycle and structure of physical infrastructure, including:
+The Institutional Campus domain governs the institutional lifecycle of a Campus, including:
 
-- Campuses
-- Campus Sites
-- Buildings
-- Building Wings
-- Floors
-- Rooms
-- Laboratories
-- Auditoriums
-- Libraries
-- Hostels *(physical facilities only)*
-- Sports Infrastructure
-- Utility Infrastructure
-- Roads
-- Parking Areas
-- Open Spaces
-- Service Facilities
-- Physical Zones
-- Infrastructure Collections
-- Infrastructure Portfolios
-- Physical Relationships
-- Infrastructure Classification
-- Capacity Information
-- Accessibility Characteristics
-- Sustainability Capabilities
-- Compliance Characteristics
-- Infrastructure Health
-- Infrastructure Criticality
-- Infrastructure Lifecycle
-- Infrastructure Availability
-- Canonical Infrastructure Events
+- Campus institutional identity and code
+- Campus registration against an Institution
+- Institution-to-Campus association and cardinality
+- Campus institutional status (planned, operational, suspended, retired)
+- Campus governance metadata
+- Campus institutional addressing and geographic reference
+- Campus regulatory and accreditation reference held at institutional level
+- Canonical institutional campus events
+
+### Explicitly delegated to L2-G10
+
+The following are **owned by `L2-G10 --- Infrastructure Management Workflows`** and are not in
+this domain's scope:
+
+Campus Sites, Buildings, Building Wings, Floors, Rooms, Laboratories, Auditoriums, Libraries,
+Hostels (physical facilities), Sports Infrastructure, Utility Infrastructure, Roads, Parking Areas,
+Open Spaces, Service Facilities, Physical Zones, Infrastructure Collections, Infrastructure
+Portfolios, Physical Relationships, Infrastructure Classification, Capacity Information,
+Accessibility Characteristics, Sustainability Capabilities, Compliance Characteristics,
+Infrastructure Health, Infrastructure Criticality, Infrastructure Lifecycle, Infrastructure
+Availability, and all canonical infrastructure events.
 
 ---
 
 # 4. Out of Scope
 
 The following responsibilities explicitly belong to other domains.
+
+## 4.0 Physical Infrastructure
+
+This domain does **not** own:
+
+- Physical campus structure, buildings, wings, floors, rooms or spaces
+- Physical hierarchy and physical relationships
+- Infrastructure capacity, availability or utilisation
+- Infrastructure compliance, health, criticality or classification
+- Infrastructure lifecycle and infrastructure domain events
+- Maintenance, facilities operations or space allocation
+
+All of the above are owned by `L2-G10 --- Infrastructure Management Workflows`, per L0 §20.
+This domain publishes institutional campus identity, which G10 references.
+
+Added 2026-08-03 to close integrity finding INT-001.
+
+---
 
 ## 4.1 Academic Operations
 
@@ -705,20 +720,17 @@ Provide stable integration contracts without exposing internal implementation.
 
 # 14. Ownership Boundaries
 
-## Campus & Infrastructure Owns
+## Institutional Campus Owns
 
-- Physical entities
-- Infrastructure hierarchy
-- Physical relationships
-- Infrastructure metadata
-- Infrastructure lifecycle
-- Capacity facts
-- Availability facts
-- Infrastructure events
+- Campus institutional identity and code
+- Institution-to-Campus association
+- Campus institutional status and its lifecycle
+- Campus governance metadata
+- Institutional campus events
 
 ---
 
-## Campus & Infrastructure References
+## Institutional Campus References
 
 The domain references but does not own:
 
@@ -726,6 +738,7 @@ The domain references but does not own:
 - Organisation
 - Geographic Location
 - Regulatory Authorities
+- **Physical infrastructure (Building, Floor, Space, capacity, availability) --- owned by `L2-G10`**
 
 ---
 
@@ -756,16 +769,20 @@ This domain is consumed by:
 
 | Business Capability | Owner Domain |
 |---------------------|--------------|
-| Campus | L2-B03 |
-| Building | L2-B03 |
-| Room | L2-B03 |
-| Infrastructure Hierarchy | L2-B03 |
-| Capacity Facts | L2-B03 |
-| Accessibility Facts | L2-B03 |
-| Sustainability Capabilities | L2-B03 |
-| Infrastructure Health | L2-B03 |
-| Infrastructure Lifecycle | L2-B03 |
-| Infrastructure Criticality | L2-B03 |
+| Institutional Campus (identity, code, institutional status) | L2-B03 |
+| Institution-to-Campus association | L2-B03 |
+| Campus governance metadata | L2-B03 |
+| Physical Campus (site boundary) | L2-G10 |
+| Building | L2-G10 |
+| Floor | L2-G10 |
+| Space / Room | L2-G10 |
+| Infrastructure Hierarchy | L2-G10 |
+| Capacity Facts | L2-G10 |
+| Accessibility Facts | L2-G10 |
+| Sustainability Capabilities | L2-G10 |
+| Infrastructure Health | L2-G10 |
+| Infrastructure Lifecycle | L2-G10 |
+| Infrastructure Criticality | L2-G10 |
 | Timetable Allocation | Timetable |
 | Student Allocation | Admissions |
 | Examination Allocation | Examination |
@@ -939,17 +956,26 @@ without affecting its physical hierarchy.
 
 The domain consists of the following canonical aggregates.
 
-| Aggregate | Purpose |
-|------------|---------|
-| Campus | Represents a physical institutional site |
-| Building | Represents a physical structure |
-| Floor | Represents a building floor |
-| Space | Represents any usable physical location |
-| Zone | Operational grouping of infrastructure |
-| Collection | Logical grouping of infrastructure |
-| Portfolio | Strategic governance grouping |
+| Aggregate | Purpose | Owner |
+|------------|---------|-------|
+| InstitutionalCampus | Represents a campus as an institutional entity registered against an Institution | **L2-B03** |
 
-Infrastructure Unit is a conceptual business abstraction representing managed physical infrastructure and is NOT an Aggregate Root. The canonical persisted Aggregate Roots remain: Campus, Building, Floor, Space, Zone, Collection, and Portfolio.
+This domain has exactly **one** aggregate root: `InstitutionalCampus`.
+
+The following are **not aggregates of this domain**. They are owned by `L2-G10 --- Infrastructure
+Management Workflows` and are listed here only so cross-references resolve:
+
+| Aggregate | Purpose | Owner |
+|------------|---------|-------|
+| PhysicalInfrastructureCampus | Physical site boundary containing buildings and spaces | L2-G10 |
+| Building | Represents a physical structure | L2-G10 |
+| Floor | Represents a building floor | L2-G10 |
+| Space | Represents any usable physical location | L2-G10 |
+| Zone | Operational grouping of infrastructure | L2-G10 |
+| Collection | Logical grouping of infrastructure | L2-G10 |
+| Portfolio | Strategic governance grouping | L2-G10 |
+
+Infrastructure Unit is a conceptual business abstraction owned by L2-G10 and is not an Aggregate Root.
 
 ---
 
@@ -975,11 +1001,15 @@ The hierarchy remains flexible without enforcing unnecessary structural levels.
 
 ---
 
-# 23. Campus Aggregate
+# 23. InstitutionalCampus Aggregate
 
 ## Purpose
 
-Represents a geographically identifiable institutional site.
+Represents a campus as an **institutional entity** — the fact that an Institution operates a
+geographically identifiable site, and that site's institutional standing.
+
+The corresponding *physical* site — its buildings, floors and spaces — is modelled separately by
+`L2-G10` as PhysicalInfrastructureCampus, which references the identity issued here.
 
 Examples:
 

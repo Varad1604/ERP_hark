@@ -23,7 +23,7 @@
 | Parent Architecture | L1 Enterprise Architecture |
 | Depends On | L2-A01 Platform Foundation |
 | Version | 1.0 |
-| Status | Locked |
+| Status | Architecture Locked |
 | Owner | Architecture Review Board |
 | Approval Status | Approved |
 | Repository Status | Ready |

@@ -7,6 +7,7 @@
 | Attribute | Value |
 |------------|-------|
 | **Document ID** | L2-I13 |
+| **Document Owner** | Devang |
 | **Document Name** | Academic Completion, CGPA & Completion Evidence Workflows |
 | **Architecture Level** | Level 2 – Domain Workflow Architecture |
 | **Domain Code** | I13 |
@@ -2324,3 +2325,19 @@ It establishes the authoritative business responsibilities, lifecycle workflows,
 
 This document is implementation-independent and serves as the canonical Level 2 architectural specification for academic completion and academic completion workflows across the SutraERP repository.
 
+---
+
+## Entities / Aggregates
+
+This domain does not own a persisted business aggregate of its own. It operates on examination
+outcomes owned by L2-I01 through L2-I12 and produces **completion evidence**, published as
+`ExaminationCompletionEvidencePrepared` for Student Lifecycle (L2-C05) review.
+
+| Concept | Role here | Canonical owner |
+|---|---|---|
+| Completion Evidence | Produced by this domain | L2-I13 |
+| Result / CGPA | Consumed | L2-I09, L2-I10 |
+| Qualification Completion | Consumed decision, never owned | L2-C05 |
+| StudentContext | Referenced | L2-C02 |
+
+---
