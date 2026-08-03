@@ -4,12 +4,12 @@
 |--------|-------|
 | Document ID | L2-C08 |
 | Document Name | Alumni Transition Workflows |
+| Document Owner | Varad |
 | Architecture Level | Level 2 — Bounded Context |
 | Domain | Student Lifecycle Domain |
 | Bounded Context | Alumni Transition |
 | Canonical Aggregate | Alumni Transition Record |
 | Primary Owner | Student Lifecycle Domain |
-| Document Owner | Varad |
 | Version | 1.0 |
 | Status | Draft |
 | Dependencies | See Sections 3 & 4 |
@@ -72,7 +72,7 @@ The Alumni Transition bounded context is responsible for:
 - Approval coordination.
 - Transition execution.
 - Student relationship closure.
-- Alumni relationship activation.
+- Publication of the authoritative AlumniRelationshipActivated business event for downstream consumption.
 - Transition lifecycle management.
 - Transition history management.
 - Transition correction management.
@@ -87,7 +87,7 @@ The following capabilities are owned by other bounded contexts:
 - Person Identity management.
 - Student lifecycle management.
 - Qualification management.
-- qualification completion verification.
+- Qualification Completion verification.
 - Academic result processing.
 - Alumni profile management.
 - Alumni networking.
@@ -120,7 +120,7 @@ The Alumni Transition bounded context shall adhere to the following principles:
 
 - Business ownership shall remain singular.
 - Aggregate consistency shall be maintained at all times.
-- Multi-domain collaboration shall occur through published business facts.
+- Cross-domain collaboration shall occur through published business facts.
 - Completed business history shall be immutable.
 - Corrections shall be version-based.
 - Business rules shall be policy-driven.
@@ -158,8 +158,8 @@ All upstream integrations shall adhere to the following architectural principles
 | Person & Identity | Person identity and institutional identity resolution | Alumni Transition |
 | Student Lifecycle | Student relationship and enrolment status | Alumni Transition |
 | Institution Management | Institution ownership and organisational hierarchy | Alumni Transition |
-| Qualification Completion | Qualification completion outcome | Alumni Transition |
-| Examination | Qualification completion verification and academic completion | Alumni Transition |
+| Qualification Completion (L2-C05) | Qualification completion outcome, published as the canonical `QualificationAwarded` event | Alumni Transition |
+| Examination (L2-I13) | Examination-owned completion evidence via `ExaminationCompletionEvidencePrepared` | Alumni Transition |
 | Policy Management | Institutional transition policies | Alumni Transition |
 | Approval Management | Institutional approval workflows | Alumni Transition |
 | Clearance Management | Financial, library, hostel and administrative clearances | Alumni Transition |
@@ -174,7 +174,8 @@ The Alumni Transition domain consumes the following authoritative business facts
 - Student Identity
 - Institution Identity
 - Programme Identity
-- Qualification Completion
+- Qualification Completion, received as the canonical `QualificationAwarded` event published by the Qualification Completion domain (L2-C05)
+- Examination Completion Evidence
 - Qualification Completion Verification
 - Institutional Clearance Status
 - Approval Outcome
@@ -326,7 +327,7 @@ The Alumni Transition domain does **not** own:
 - Academic programmes.
 - Qualifications.
 - Examination results.
-- qualification completion verification.
+- Qualification Completion verification.
 - Institutional hierarchy.
 - Alumni profiles.
 - Alumni engagement.
@@ -367,7 +368,7 @@ The Alumni Transition bounded context follows these ownership principles:
 - One business capability has one canonical owner.
 - Aggregate ownership never crosses bounded contexts.
 - Business facts are consumed, never re-owned.
-- Multi-domain collaboration occurs through published contracts.
+- Cross-domain collaboration occurs through published contracts.
 - Business state cannot be modified externally.
 - Domain ownership remains stable over time.
 - Historical ownership is preserved for auditability.
@@ -381,14 +382,14 @@ The following questions should always evaluate to **Yes**:
 
 | Validation Question | Expected Answer |
 |---------------------|-----------------|
-| Does this domain own the transition process | Yes |
-| Does this domain own Alumni Profiles | No |
-| Does this domain own Student records | No |
-| Does this domain own Qualification Completion Verification | No |
-| Does this domain consume upstream business facts | Yes |
-| Does this domain publish completed business facts | Yes |
-| Can another domain change transition state | No |
-| Is ownership singular and explicit | Yes |
+| Does this domain own the transition process? | Yes |
+| Does this domain own Alumni Profiles? | No |
+| Does this domain own Student records? | No |
+| Does this domain own Qualification Completion Verification? | No |
+| Does this domain consume upstream business facts? | Yes |
+| Does this domain publish completed business facts? | Yes |
+| Can another domain change transition state? | No |
+| Is ownership singular and explicit? | Yes |
 
 # 6. Domain Model
 
@@ -582,6 +583,16 @@ Clearance Results
 
 Referenced business concepts remain under the ownership of their canonical bounded contexts.
 
+### Alumni Ownership Boundary
+
+The Alumni Transition Aggregate does not create, own, or manage Alumni entities or Alumni lifecycle state.
+
+Upon successful completion of the transition process, the Aggregate publishes the canonical `AlumniTransitionCompleted` domain event.
+
+Ownership of the post-transition Alumni relationship, Alumni Profile, Alumni Membership, Alumni lifecycle, and all subsequent Alumni business capabilities transfers exclusively to the Alumni Domain (L2-H06).
+
+The Alumni Transition Aggregate shall never modify Alumni-owned aggregates after publication of the completion event.
+
 ---
 
 # 6.7 Aggregate Design Principles
@@ -593,7 +604,7 @@ The Alumni Transition Aggregate follows these principles:
 - External aggregates are referenced, never owned.
 - Aggregate identity is immutable.
 - Completed transitions cannot be modified.
-- Multi-domain consistency is achieved through published business events.
+- Cross-domain consistency is achieved through published business events.
 - Aggregate boundaries are explicit.
 - Business behavior remains technology independent.
 
@@ -909,7 +920,7 @@ The Aggregate Root enforces the following invariants:
 
 - One completed transition per Student–Institution–Programme–Qualification Completion Event.
 - Aggregate identity is immutable.
-- qualification completion verification is mandatory.
+- Qualification Completion verification is mandatory.
 - Qualification completion is mandatory.
 - Required institutional approvals must exist.
 - Transition history is immutable.
@@ -1181,7 +1192,7 @@ All Domain Workflows operate under the following governance principles:
 - Workflow execution preserves aggregate consistency.
 - Business decisions remain policy-driven.
 - Historical integrity is never compromised.
-- Multi-domain communication occurs through published business facts.
+- Cross-domain communication occurs through published business facts.
 - Technology implementation remains outside the scope of workflow definitions.
 
 # 8. Workflow Specifications
@@ -1227,7 +1238,7 @@ Initiate an Alumni Transition for an eligible Student by creating the canonical 
 
 One of the following business events initiates this workflow:
 
-- qualification completion verification completed.
+- `QualificationAwarded` event received from the Qualification Completion domain (L2-C05).
 - Authorized institutional transition request.
 - Approved batch qualification completion processing.
 
@@ -1348,7 +1359,7 @@ Completion of Transition Initiation.
 | Participant | Responsibility |
 |-------------|----------------|
 | Qualification Completion | Qualification outcome. |
-| Examination | qualification completion verification. |
+| Examination | Qualification Completion verification. |
 | Clearance Management | Clearance status. |
 | Policy Management | Eligibility policies. |
 | Alumni Transition | Eligibility evaluation. |
@@ -1358,7 +1369,7 @@ Completion of Transition Initiation.
 ## Preconditions
 
 - Transition Record exists.
-- qualification completion verification available.
+- Qualification Completion verification available.
 - Qualification completion available.
 
 ---
@@ -1585,7 +1596,7 @@ Determine Required Approvers
 Collect Approval Decisions
            │
            ▼
-All Required Approvals Received
+All Required Approvals Received?
         │             │
        No            Yes
         │             │
@@ -1697,7 +1708,7 @@ Publish StudentRelationshipClosed
         │
         ▼
 
-Publish AlumniRelationshipActivated
+Publish AlumniTransitionCompleted
             │
             ▼
 Update Aggregate
@@ -1725,8 +1736,8 @@ Publish Domain Events
 
 Upon successful completion:
 
-- Student relationship closed.
-- Alumni relationship activated.
+- StudentRelationshipClosed
+- AlumniTransitionCompleted
 - Aggregate enters Activated state.
 - Business history updated.
 
@@ -2262,7 +2273,7 @@ Referenced upstream business facts shall never be modified by this bounded conte
 
 ---
 
-## BR-AT-019 — Multi-Domain Isolation
+## BR-AT-019 — Cross-Domain Isolation
 
 External bounded contexts shall never modify Alumni Transition business state directly.
 
@@ -2457,7 +2468,7 @@ The Alumni Transition bounded context consumes business events published by upst
 
 | Publishing Domain | Consumed Event | Purpose |
 |-------------------|---------------|---------|
-| Examination | Qualification CompletionVerified | Initiate transition eligibility |
+| Examination | QualificationCompletionVerified | Initiate transition eligibility |
 | Qualification Completion | QualificationCompleted | Validate academic completion |
 | Clearance Management | ClearanceCompleted | Validate institutional clearance |
 | Approval Management | ApprovalCompleted | Record approval outcome |
@@ -2877,7 +2888,7 @@ The Alumni Transition bounded context collaborates with external bounded context
 | External Domain | Contract Purpose |
 |-----------------|------------------|
 | Student Lifecycle | Student relationship reference |
-| Examination | qualification completion verification |
+| Examination | Qualification Completion verification |
 | Qualification Completion | Qualification completion |
 | Policy Management | Policy resolution |
 | Approval Management | Approval workflow |
@@ -3598,7 +3609,7 @@ Business failures are classified into the following categories.
 
 | Failure ID | Failure Scenario | Detected During | Aggregate Impact | Recovery Action | Event Published |
 |------------|------------------|-----------------|------------------|-----------------|-----------------|
-| FM-AT-001 | Qualification completion not verified | Eligibility Evaluation | No state progression | Await verified Qualification Completion Event | None |
+| FM-AT-001 | Qualification Completion not verified | Eligibility Evaluation | No state progression | Await verified Qualification Completion Event | None |
 | FM-AT-002 | Qualification incomplete | Eligibility Evaluation | No state progression | Complete qualification requirements | None |
 | FM-AT-003 | Mandatory clearance pending | Eligibility Evaluation | Remain Pending Verification | Complete outstanding clearances | None |
 | FM-AT-004 | Policy validation failed | Policy Validation | Transition rejected | Resolve policy violations | None |
@@ -4357,7 +4368,7 @@ Determine Business Authority
 Evaluate Authorization Rules
              │
              ▼
-Authorized
+Authorized?
       │             │
      No            Yes
       │             │
@@ -4722,7 +4733,7 @@ The following business security activities shall be auditable:
 | Access to Restricted Business Information | Yes |
 | Transition Correction | Yes |
 | Administrative Business Override | Yes |
-| Multi-Domain Business Exchange | Yes |
+| Cross-Domain Business Exchange | Yes |
 | Domain Event Publication | Yes |
 
 Security auditing complements the business audit requirements defined in Section 17.
@@ -5048,7 +5059,7 @@ Representative integrations include:
 
 | Integration Domain | Purpose |
 |--------------------|---------|
-| Career Services | Graduate employability programs |
+| Career Services | Qualification Completed Student employability programs |
 | Alumni Engagement | Alumni community onboarding |
 | Learning Management | Lifelong learning access |
 | Credential Services | Digital credential management |
@@ -5079,7 +5090,7 @@ Institutions may introduce additional reporting capabilities.
 
 Representative examples include:
 
-- Graduate employment reports.
+- Qualification Completed Student employment reports.
 - Alumni engagement statistics.
 - Institutional completion analytics.
 - Accreditation reporting.
@@ -5157,7 +5168,7 @@ Business evolution within the Alumni Transition bounded context is governed by t
 
 This section provides the canonical visual representation of the **Alumni Transition Domain Architecture**.
 
-The visual models complement the textual architecture by illustrating business structures, domain boundaries, workflows, decision paths, state transitions, service interactions, ownership boundaries, event propagation, and multi-domain collaboration.
+The visual models complement the textual architecture by illustrating business structures, domain boundaries, workflows, decision paths, state transitions, service interactions, ownership boundaries, event propagation, and cross-domain collaboration.
 
 These diagrams are normative architectural artifacts and shall be treated as part of the architecture specification.
 
@@ -5200,7 +5211,7 @@ Implementation details such as databases, APIs, frameworks, deployment topology,
 | D13 | Failure Handling Flow | flowchart | Exception handling |
 | D14 | Domain Event Flow | sequenceDiagram | Event publication |
 | D15 | Service Collaboration | sequenceDiagram | Domain service interactions |
-| D16 | Multi-Domain Collaboration | sequenceDiagram | Inter-domain communication |
+| D16 | Cross-Domain Collaboration | sequenceDiagram | Inter-domain communication |
 | D17 | Audit Flow | sequenceDiagram | Audit lifecycle |
 | D18 | Data Ownership Map | flowchart | Canonical ownership |
 | D19 | Extension Architecture | flowchart | Future extensibility |
@@ -5266,7 +5277,7 @@ Collectively, the diagrams defined in this section describe:
 - Authorization decisions
 - Failure handling
 - Audit behavior
-- Multi-domain collaboration
+- Cross-domain collaboration
 - Extension points
 - Complete business lifecycle
 
@@ -5446,11 +5457,11 @@ AlumniProfile "1" --> "*" Engagement
 ```mermaid
 flowchart TD
 
-Graduate["Qualification Completed"]
+Qualification Completed Student["Qualification Completed"]
 
 Validate["Validate Eligibility"]
 
-Decision{"Eligible"}
+Decision{"Eligible?"}
 
 Reject["Remain Student"]
 
@@ -5464,7 +5475,7 @@ Publish["Publish Alumni Transition Event"]
 
 Complete["Transition Completed"]
 
-Graduate --> Validate
+Qualification Completed Student --> Validate
 Validate --> Decision
 
 Decision -- No --> Reject
@@ -5567,15 +5578,15 @@ Start([Qualification Completed])
 
 Validate["Validate Qualification Completion"]
 
-Decision1{"Qualification Completion Valid"}
+Decision1{"Qualification Completion Valid?"}
 
-Decision2{"Outstanding Academic Obligations"}
+Decision2{"Outstanding Academic Obligations?"}
 
-Decision3{"Administrative Clearance Complete"}
+Decision3{"Administrative Clearance Complete?"}
 
-Decision4{"Financial Clearance Complete"}
+Decision4{"Financial Clearance Complete?"}
 
-Decision5{"Approval Required"}
+Decision5{"Approval Required?"}
 
 Reject["Transition Rejected"]
 
@@ -5635,7 +5646,7 @@ V6["Duplicate Alumni Check"]
 
 V7["Business Rule Validation"]
 
-Decision{"All Validations Passed"}
+Decision{"All Validations Passed?"}
 
 Create["Create Alumni"]
 
@@ -5700,11 +5711,11 @@ flowchart TD
 
 Start([Transition Started])
 
-Validation{"Validation Failed"}
+Validation{"Validation Failed?"}
 
-Approval{"Approval Failed"}
+Approval{"Approval Failed?"}
 
-Processing{"Processing Failed"}
+Processing{"Processing Failed?"}
 
 Retry["Retry"]
 
@@ -5802,7 +5813,7 @@ sequenceDiagram
     Workflow->>Event: Publish Domain Events
 ```
 
-# D16 — Multi-Domain Collaboration
+# D16 — Cross-Domain Collaboration
 
 ```mermaid
 flowchart LR
@@ -6256,7 +6267,7 @@ Positive
 
 Negative
 
-- Additional multi-domain references
+- Additional cross-domain references
 
 ---
 
@@ -6436,7 +6447,7 @@ No downstream architecture may redefine these terms without formal architecture 
 
 ---
 
-## 23.6 Multi-Domain Terms
+## 23.6 Cross-Domain Terms
 
 | Term | Canonical Owner |
 |------|-----------------|
@@ -6492,8 +6503,8 @@ The following naming conventions apply throughout this document.
 The glossary shall be governed according to the following principles.
 
 - Every business term shall have exactly one canonical definition.
-- Duplicate terminology amulti-domains is prohibited.
-- Multi-domain terms shall reference the owning domain rather than redefining them.
+- Duplicate terminology across domains is prohibited.
+- Cross-domain terms shall reference the owning domain rather than redefining them.
 - New terminology introduced into this domain shall be added to this glossary before architecture approval.
 - Changes to existing definitions require architecture governance review.
 
@@ -6521,7 +6532,7 @@ These references provide the normative foundation for architectural decisions, w
 |--------------|----------|---------|
 | L1-ARCH | SutraERP Level 1 Enterprise Architecture | Defines the enterprise architecture vision and domain decomposition. |
 | ARCH-INDEX | Architecture Index | Provides the complete catalogue of architectural documents and dependencies. |
-| DEP-MAP | Dependency Map | Defines multi-domain dependencies and ownership relationships. |
+| DEP-MAP | Dependency Map | Defines cross-domain dependencies and ownership relationships. |
 | L2-MATRIX | Level 2 Architecture Matrix | Identifies the complete Level 2 bounded context structure. |
 | A01 | L2-A01 Platform Foundation | Platform services, infrastructure, and shared architectural capabilities. |
 | A02 | L2-A02 Person & Identity | Canonical ownership of person and identity information. |
@@ -6536,7 +6547,7 @@ These references provide the normative foundation for architectural decisions, w
 | Domain | Purpose |
 |--------|---------|
 | Alumni Engagement | Alumni communication, participation, and relationship management. |
-| Placement | Graduate placement services and employer engagement. |
+| Placement | Qualification Completed Student placement services and employer engagement. |
 | Research | Alumni participation in institutional research activities. |
 | Reporting & Analytics | Operational and executive reporting. |
 | Notification | Communication of Alumni Transition events. |
@@ -6620,7 +6631,7 @@ The following documents shall be considered prerequisites for understanding or m
 | L2-A03 Authentication | Authentication prerequisites. |
 | L2-A04 Authorization & Policy | Authorization and policy evaluation. |
 | L2-C05 Qualification Completion & Student Exit | Primary upstream workflow. |
-| Dependency Map | Multi-domain dependencies. |
+| Dependency Map | Cross-domain dependencies. |
 | Architecture Index | Repository navigation and traceability. |
 
 ---
@@ -6632,7 +6643,7 @@ The following governance rules apply to all references used within this document
 - References shall point only to approved architectural or business sources.
 - Canonical ownership shall always be respected.
 - Superseded references shall be replaced through formal architecture governance.
-- Multi-domain references shall not duplicate or redefine external domain responsibilities.
+- Cross-domain references shall not duplicate or redefine external domain responsibilities.
 - Architectural traceability shall be maintained throughout future revisions.
 
 ---

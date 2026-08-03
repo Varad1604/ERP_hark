@@ -11,11 +11,10 @@
 | **Architecture Level** | Level 2 – Domain Workflow Architecture |
 | **Domain Code** | I13 |
 | **Domain Category** | Examination Domain |
-| **Document Owner** | Devang |
 | **Status** | Draft |
 | **Repository** | SutraERP Enterprise Architecture |
 | **Depends On** | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity, L2-A04 Authorization & Policy, L2-A06 Event Infrastructure, L2-A07 Audit Infrastructure, L2-B04 Curriculum Framework, L2-B05 Academic Calendar, L2-I01 through L2-I12 |
-| **Consumed By** | Degree Certificate, Convocation, Alumni, Student Lifecycle, Analytics, Regulatory Reporting, Future Academic Domains |
+| **Consumed By** | Degree Certificate, Convocation, Student Lifecycle, Analytics, Regulatory Reporting, Future Academic Domains |
 | **Architecture Style** | Domain-Driven Design (DDD), Event-Driven Architecture, CQRS Compatible, Modular Monolith Ready, Microservice Compatible |
 
 ---
@@ -26,9 +25,11 @@
 
 The **Academic Completion, CGPA & Completion Evidence Workflows** domain defines the canonical business workflows governing the successful completion of an academic programme and the institutional award of academic qualifications within SutraERP.
 
-This domain establishes the institutional processes through which published academic outcomes are evaluated against programme completion requirements, completion-evidence policies, and institutional policies before a candidate is handed to Student Lifecycle for completion-evidence review.
+This domain establishes the institutional processes through which published academic outcomes are evaluated against programme completion requirements, academic completion regulations, and institutional policies before a candidate is officially recognised as academically complete.
 
-The domain governs the completion-input lifecycle from academic completion verification through completion evidence recommendation while preserving strict ownership boundaries across the Examination repository.
+The domain governs the examination-owned completion evidence lifecycle from academic outcome consumption through preparation of completion evidence for Student Lifecycle review.
+
+The domain does not determine Qualification Completion or degree award decisions.
 
 This architecture is implementation independent and defines business workflow architecture only.
 
@@ -42,10 +43,10 @@ The Academic Completion, CGPA & Completion Evidence Workflows shall achieve the 
 
 - Establish a canonical academic completion workflow.
 - Verify programme completion consistently across institutions.
-- Validate completion evidence eligibility using institutional policies.
+- Validate academic completion eligibility using institutional policies.
 - Support configurable academic regulations.
-- Prepare completion evidence for Student Lifecycle review.
-- Preserve complete completion evidence history.
+- Govern institutional academic completion approval.
+- Preserve complete academic completion history.
 - Maintain full auditability.
 - Support multiple academic frameworks.
 - Enable event-driven collaboration.
@@ -55,46 +56,51 @@ The Academic Completion, CGPA & Completion Evidence Workflows shall achieve the 
 
 # 2. Scope
 
-The Academic Completion domain governs the complete workflow architecture for determining whether a candidate has successfully completed all academic requirements necessary to produce completion evidence for Student Lifecycle review.
+The Academic Completion domain governs the examination-owned workflow for preparing completion evidence based on approved academic outcomes.
+
+The domain verifies examination-owned completion inputs and prepares completion evidence for Student Lifecycle (L2-C05) review.
+
+The final Qualification Completion decision remains owned exclusively by Student Lifecycle.
 
 The scope includes:
 
-- Academic Completion Verification
-- Programme Completion Verification
-- Credit Completion Verification
-- Mandatory Requirement Verification
-- Completion Evidence Assessment
-- Degree Classification Assignment
-- Award Recommendation
-- Completion Evidence Recommendation Workflow
-- Completion Evidence Register
-- Academic Completion Status
-- Completion Audit
-- Completion Evidence Domain Events
-- Multi-domain Integration
+- Examination-owned Completion Evidence Preparation
+- Academic Outcome Verification
+- Credit Evidence Verification
+- Result Classification Consumption
+- Completion Evidence Recommendation Preparation
 
 ---
 
 ## 2.1 In Scope
 
-The Academic Completion domain provides:
+The Academic Completion domain owns:
 
-- Academic Completion Lifecycle
-- Programme Completion Assessment
-- Completion Evidence Determination
-- Degree Classification Assignment
-- Degree Award Recommendation
-- Completion Evidence Recommendation
-- Completion Evidence Register Management
-- Academic Completion Governance
-- Completion Evidence Audit
-- Completion Evidence Event Publication
+- Examination-owned Completion Evidence Preparation
+- Academic Outcome Verification
+- Credit Evidence Verification
+- Result Classification Consumption
+- Completion Evidence Recommendation Preparation
 
 ---
 
 ## 2.2 Out of Scope
 
 The following capabilities belong to other canonical domains.
+
+### Student Lifecycle Qualification Completion
+
+Owned by L2-C05.
+
+Includes:
+
+- Final Qualification Completion Decision
+- Student Exit Decision
+- Student Lifecycle Status Transition
+- Alumni Transition Trigger
+- Degree Award Authorization
+
+---
 
 ### L2-I08 — Marks Collection & Evaluation
 
@@ -148,7 +154,6 @@ This document does not own:
 - Degree Certificate Generation
 - Digital Certificate Issuance
 - Convocation Management
-- Alumni Management
 - Finance Clearance
 - Hostel Clearance
 - Library Clearance
@@ -160,9 +165,9 @@ Those responsibilities remain with their respective canonical domains.
 
 # 3. Repository Context
 
-The Academic Completion, CGPA & Completion Evidence Workflows represent the final Examination-domain support workflow before Student Lifecycle completion evidence.
+The Academic Completion, CGPA & Completion Evidence Workflows represent the final business workflow within the Examination domain.
 
-This domain consumes officially approved academic outcomes from preceding examination workflows and determines whether a candidate satisfies all institutional requirements necessary for successful programme completion and completion evidence.
+This domain consumes officially approved academic outcomes from preceding examination workflows and determines whether a candidate satisfies all institutional requirements necessary for successful programme completion and academic completion.
 
 Repository hierarchy:
 
@@ -185,12 +190,12 @@ L2 Examination Domain
 ├── I10 Result Publication
 ├── I11 Revaluation & Rechecking
 ├── I12 Supplementary / Backlog / Improvement Examination
-└── I13 Academic Completion, CGPA & Completion Evidence
+└── I13 Academic Completion, CGPA & Academic Completion
 ```
 
 The Academic Completion domain shall consume canonical academic outcomes without modifying them.
 
-It shall determine completion evidence eligibility through institutional governance rather than academic computation.
+It shall determine academic completion eligibility through institutional governance rather than academic computation.
 
 ---
 
@@ -219,7 +224,6 @@ Business outcomes published by this domain may be consumed by:
 
 - Degree Certificate Management
 - Convocation Management
-- Alumni Management
 - Student Lifecycle
 - Regulatory Reporting
 - Academic Analytics
@@ -232,14 +236,14 @@ Business outcomes published by this domain may be consumed by:
 
 The Academic Completion domain answers one business question:
 
-> **"Has the candidate successfully completed every institutional and academic requirement required for the academic award"**
+> **"Has the candidate successfully completed every examination-owned academic requirement required to prepare completion evidence for Student Lifecycle's Qualification Completion decision"**
 
 The domain does **not** answer:
 
-- What marks were obtained
-- What grades were awarded
-- What SGPA or CGPA was calculated
-- What result should be published
+- What marks were obtained?
+- What grades were awarded?
+- What SGPA or CGPA was calculated?
+- What result should be published?
 - How supplementary examinations are conducted.
 
 Those responsibilities remain with their respective canonical owners.
@@ -263,15 +267,15 @@ In addition, the following principles govern this domain.
 
 Academic completion verification shall begin only after official academic results have been published.
 
-No completion evidence decision shall be based upon unpublished or provisional academic outcomes.
+No academic completion decision shall be based upon unpublished or provisional academic outcomes.
 
 ---
 
-## Principle 2 — Completion Evidence Before Student Lifecycle Review
+## Principle 2 — Completion Before Academic Completion
 
-Completion Evidence eligibility shall only be evaluated after programme completion has been verified.
+completion eligibility shall only be evaluated after programme completion has been verified.
 
-Programme completion is a prerequisite for completion evidence.
+Programme completion is a prerequisite for academic completion.
 
 ---
 
@@ -292,9 +296,9 @@ These remain owned by L2-I09.
 
 ---
 
-## Principle 4 — Policy-Driven Completion Evidence
+## Principle 4 — Policy-Driven Academic Completion
 
-Completion Evidence eligibility shall be governed entirely by configurable institutional policies.
+completion eligibility shall be governed entirely by configurable institutional policies.
 
 Institution-specific regulations shall influence workflow behaviour without modifying the canonical architecture.
 
@@ -302,14 +306,16 @@ Institution-specific regulations shall influence workflow behaviour without modi
 
 ## Principle 5 — Canonical Ownership
 
-Academic Completion support owns:
+Academic Completion owns:
 
 - Completion Verification
-- Completion Evidence Assessment
+- Completion Eligibility
 - Degree Recommendation
-- Completion Evidence Recommendation
+- Completion Evidence Approval
 
-It does not own completion evidence, student exit, student exit, or upstream examination processing.
+It does not own upstream examination processing.
+
+This domain does not own Qualification Completion, which remains owned by Student Lifecycle (L2-C05). Examination prepares and publishes completion evidence only; the Qualification Completion decision, the qualification award, and student exit remain outside this domain per locked L1.
 
 ---
 
@@ -323,7 +329,7 @@ Downstream domains shall consume these events independently.
 
 ## Principle 7 — Complete Auditability
 
-Every completion evidence decision shall generate immutable audit records sufficient to reconstruct the complete academic completion history.
+Every academic completion decision shall generate immutable audit records sufficient to reconstruct the complete academic completion history.
 
 ---
 
@@ -335,7 +341,7 @@ Implementation technologies remain outside the scope of this document.
 
 # 5. Business Capabilities
 
-The Academic Completion, CGPA & Completion Evidence domain provides the canonical business capabilities required to prepare institutional academic completion evidence and completion evidence recommendations.
+The Academic Completion, CGPA & Academic Completion domain provides the canonical business capabilities required to govern institutional academic completion and academic completion.
 
 Each capability has a clearly defined business responsibility and shall not overlap with any other Examination domain.
 
@@ -343,15 +349,14 @@ Each capability has a clearly defined business responsibility and shall not over
 
 ## 5.1 Academic Completion Management
 
-The domain governs the complete lifecycle of academic completion.
+The domain governs the complete lifecycle of examination-owned completion evidence preparation.
 
 Responsibilities include:
 
-- Completion Verification
-- Completion Status Management
-- Completion Governance
-- Completion Lifecycle
-- Completion Audit
+- Completion Evidence Verification
+- Completion Evidence Status Management
+- Completion Evidence Governance
+- Completion Evidence Audit
 
 Academic completion represents the transition from successful academic performance to institutional completion verification.
 
@@ -410,9 +415,9 @@ The verification process is policy-driven.
 
 ---
 
-## 5.5 Completion Evidence Eligibility Management
+## 5.5 Completion Eligibility Management
 
-The domain determines whether the candidate is eligible for completion evidence.
+The domain determines whether the candidate is eligible for academic completion.
 
 Eligibility evaluation considers:
 
@@ -420,9 +425,9 @@ Eligibility evaluation considers:
 - Credit Completion
 - Academic Standing
 - Institutional Policies
-- Completion Evidence Rules
+- Completion Rules
 
-Only candidates satisfying every required condition may progress to completion evidence approval.
+Only candidates satisfying every required condition may progress to academic completion approval.
 
 ---
 
@@ -443,25 +448,27 @@ The domain never recalculates academic results.
 
 ---
 
-## 5.7 Degree Award Recommendation
+## 5.7 Completion Evidence Recommendation Preparation
 
-After successful verification, the domain prepares an official recommendation for degree award.
+After successful verification, the domain prepares examination-owned completion evidence recommendation.
 
 The recommendation includes:
 
 - Candidate Identity
 - Programme
-- Award
-- Classification
-- Completion Evidence Recommendation
+- Academic Outcome Summary
+- Result Classification
+- Completion Evidence Information
 
-The recommendation itself does not constitute institutional approval.
+The recommendation does not constitute Qualification Completion or degree award approval.
+
+Student Lifecycle (L2-C05) remains responsible for the final Qualification Completion decision.
 
 ---
 
 ## 5.8 Completion Evidence Approval Management
 
-The domain governs institutional approval prior to official completion evidence.
+The domain governs institutional approval prior to official academic completion.
 
 Responsibilities include:
 
@@ -477,7 +484,7 @@ Approval workflows remain configurable according to institutional governance.
 
 ## 5.9 Completion Evidence Register Management
 
-The domain maintains the canonical institutional completion evidence register.
+The domain maintains the canonical institutional academic completion register.
 
 The register records:
 
@@ -485,10 +492,10 @@ The register records:
 - Programme
 - Academic Award
 - Classification
-- Completion Evidence Date
+- Completion Date
 - Approval Reference
 
-The completion evidence register serves as the institutional record of academic completion.
+The academic completion register serves as the institutional record of academic completion.
 
 ---
 
@@ -511,7 +518,7 @@ State transitions occur only through authorised business workflows.
 
 ## 5.11 Completion Evidence Audit
 
-Every completion evidence activity generates complete institutional audit evidence.
+Every academic completion activity generates complete institutional audit evidence.
 
 Audited activities include:
 
@@ -528,7 +535,7 @@ Audit records remain immutable.
 
 ## 5.12 Completion Evidence Governance
 
-The domain provides governance over institutional completion evidence activities.
+The domain provides governance over institutional academic completion activities.
 
 Governance includes:
 
@@ -538,13 +545,13 @@ Governance includes:
 - Audit Governance
 - Regulatory Compliance
 
-Governance ensures that completion evidence decisions remain consistent, transparent, and institutionally compliant.
+Governance ensures that academic completion decisions remain consistent, transparent, and institutionally compliant.
 
 ---
 
 # 6. Business Actors
 
-The following actors participate in Academic Completion and Completion Evidence workflows.
+The following actors participate in Academic Completion and completion evidence workflows.
 
 ---
 
@@ -553,10 +560,10 @@ The following actors participate in Academic Completion and Completion Evidence 
 The Student:
 
 - Completes academic requirements.
-- Receives completion evidence status.
+- Receives academic completion status.
 - Receives completion notifications.
 
-The Student does not approve completion evidence.
+The Student does not approve academic completion.
 
 ---
 
@@ -565,8 +572,8 @@ The Student does not approve completion evidence.
 The Controller of Examination is responsible for:
 
 - Reviewing completion outcomes.
-- Initiating completion evidence processes.
-- Managing completion evidence approvals.
+- Initiating academic completion processes.
+- Managing academic completion approvals.
 - Supervising academic completion governance.
 
 ---
@@ -576,18 +583,18 @@ The Controller of Examination is responsible for:
 The Academic Registrar is responsible for:
 
 - Institutional verification.
-- Completion Evidence approval.
+- completion evidence approval.
 - Academic record validation.
-- Completion Evidence register oversight.
+- completion evidence register oversight.
 
 ---
 
 ## 6.4 Completion Evidence Officer
 
-The Completion Evidence Officer manages operational completion evidence activities including:
+The Completion Evidence Officer manages operational academic completion activities including:
 
 - Completion verification.
-- Completion Evidence register maintenance.
+- completion evidence register maintenance.
 - Approval coordination.
 - Candidate communication.
 
@@ -599,7 +606,7 @@ Department Authorities participate by:
 
 - Confirming programme completion.
 - Validating departmental academic requirements.
-- Supporting completion evidence verification.
+- Supporting academic completion verification.
 
 ---
 
@@ -609,7 +616,7 @@ Where institutional policy requires, an Academic Governance Committee may partic
 
 - Exceptional approvals.
 - Policy interpretation.
-- Completion Evidence governance.
+- Academic Completion governance.
 - Institutional oversight.
 
 ---
@@ -637,34 +644,22 @@ The Academic Completion domain follows a canonical institutional workflow.
 Published Academic Results
             │
             ▼
-Academic Completion Verification
+Academic Outcome Verification
             │
             ▼
-Programme Completion Verification
+Completion Evidence Eligibility Assessment
             │
             ▼
-Credit Verification
+Result Classification Reference
             │
             ▼
-Mandatory Requirement Verification
+Completion Evidence Recommendation Preparation
             │
             ▼
-Completion Evidence Eligibility
+ExaminationCompletionEvidencePrepared
             │
             ▼
-Degree Classification
-            │
-            ▼
-Award Recommendation
-            │
-            ▼
-Completion Evidence Approval
-            │
-            ▼
-Completion Evidence Register
-            │
-            ▼
-Academic Completion Closed
+Student Lifecycle Qualification Completion Review
 ```
 
 Each stage represents a completed business milestone.
@@ -689,9 +684,9 @@ The Academic Completion workflow may begin only when:
 The workflow completes when:
 
 - Academic completion is verified.
-- Completion Evidence eligibility is confirmed.
+- completion eligibility is confirmed.
 - Institutional approval is completed.
-- Completion Evidence register is updated.
+- completion evidence register is updated.
 - Completion audit is generated.
 - Academic completion status becomes **Completed**.
 
@@ -699,7 +694,7 @@ The workflow completes when:
 
 ## 8.1 Overview
 
-The Academic Completion, CGPA & Completion Evidence domain governs the canonical business workflow through which an institution verifies academic completion and prepares completion evidence for Student Lifecycle review.
+The Academic Completion, CGPA & Academic Completion domain governs the canonical business workflow through which an institution verifies academic completion and formally approves academic completion.
 
 The workflow begins only after official academic results have been published and every applicable examination process has concluded.
 
@@ -725,7 +720,7 @@ Credit Requirement Verification
 Mandatory Requirement Verification
         │
         ▼
-Completion Evidence Eligibility Assessment
+Completion Eligibility Assessment
         │
         ▼
 Degree Classification Assignment
@@ -820,19 +815,19 @@ Requirements remain configurable according to institutional policy.
 
 ---
 
-## 8.6 Completion Evidence Eligibility Assessment
+## 8.6 Completion Eligibility Assessment
 
-Following successful verification, the institution evaluates completion evidence eligibility.
+Following successful verification, the institution evaluates academic completion eligibility.
 
 Assessment considers:
 
 - Programme Completion
 - Credit Completion
 - Academic Standing
-- Institutional Completion Evidence Rules
+- Institutional Completion Rules
 - Regulatory Compliance
 
-Only eligible candidates proceed to completion evidence recommendation.
+Only eligible candidates proceed to academic completion recommendation.
 
 ---
 
@@ -875,7 +870,7 @@ Institutional approval remains mandatory.
 
 ## 8.9 Completion Evidence Approval
 
-The institution performs formal completion evidence approval.
+The institution performs formal academic completion approval.
 
 Activities include:
 
@@ -891,7 +886,7 @@ Approval workflows remain institution configurable.
 
 ## 8.10 Completion Evidence Register Creation
 
-Following approval, the institutional completion evidence register is updated.
+Following approval, the institutional academic completion register is updated.
 
 The register records:
 
@@ -899,16 +894,16 @@ The register records:
 - Programme
 - Award
 - Classification
-- Completion Evidence Date
+- Completion Date
 - Approval Reference
 
-The completion evidence register becomes the official institutional completion record.
+The academic completion register becomes the official institutional completion record.
 
 ---
 
 ## 8.11 Candidate Notification
 
-Following successful completion evidence processing, notification workflows are initiated.
+Following successful academic completion processing, notification workflows are initiated.
 
 Notifications may include:
 
@@ -941,12 +936,12 @@ After closure, the academic completion lifecycle becomes read-only.
 
 ## 8.13 Academic Record Archival
 
-Completed completion evidence records enter institutional archival.
+Completed academic completion records enter institutional archival.
 
 Archived information includes:
 
 - Completion History
-- Completion Evidence History
+- Academic Completion History
 - Approval History
 - Classification History
 - Audit References
@@ -958,7 +953,7 @@ Historical records remain permanently traceable.
 
 # 9. Business Rules
 
-The following business rules govern Academic Completion and Completion Evidence workflows.
+The following business rules govern Academic Completion and completion evidence workflows.
 
 ---
 
@@ -972,9 +967,9 @@ Unofficial or provisional results shall not be used.
 
 ## 9.2 Programme Completion Rule
 
-Completion Evidence shall require successful completion of the approved academic programme.
+Academic Completion shall require successful completion of the approved academic programme.
 
-Incomplete programmes shall not qualify for completion evidence.
+Incomplete programmes shall not qualify for academic completion.
 
 ---
 
@@ -982,13 +977,13 @@ Incomplete programmes shall not qualify for completion evidence.
 
 Candidates shall satisfy every required academic credit defined by institutional policy.
 
-Credit deficiencies shall prevent completion evidence.
+Credit deficiencies shall prevent academic completion.
 
 ---
 
 ## 9.4 Mandatory Requirement Rule
 
-Every mandatory academic requirement shall be completed before completion evidence approval.
+Every mandatory academic requirement shall be completed before academic completion approval.
 
 Institutional policies determine mandatory requirements.
 
@@ -1009,14 +1004,14 @@ Those responsibilities remain exclusively owned by L2-I09.
 
 ---
 
-## 9.6 Completion Evidence Eligibility Rule
+## 9.6 Completion Eligibility Rule
 
-Completion Evidence eligibility shall be determined using:
+completion eligibility shall be determined using:
 
 - Published Academic Outcomes
 - Institutional Policies
 - Programme Rules
-- Completion Evidence Regulations
+- Academic Completion Regulations
 
 Eligibility decisions shall remain fully auditable.
 
@@ -1032,7 +1027,7 @@ Classification shall never modify academic computation.
 
 ## 9.8 Approval Rule
 
-Completion Evidence requires formal institutional approval before becoming effective.
+Academic Completion requires formal institutional approval before becoming effective.
 
 Administrative recommendation alone is insufficient.
 
@@ -1040,7 +1035,7 @@ Administrative recommendation alone is insufficient.
 
 ## 9.9 Audit Rule
 
-Every significant completion evidence activity shall generate immutable audit records.
+Every significant academic completion activity shall generate immutable audit records.
 
 Audit history shall remain permanently available.
 
@@ -1095,19 +1090,19 @@ One or more mandatory academic requirements remain incomplete.
 
 Outcome:
 
-- Completion Evidence Suspended
+- Academic Completion Suspended
 - Requirement Recorded
 - Candidate Notification Initiated
 
 ---
 
-## 10.4 Completion Evidence Eligibility Failure
+## 10.4 Completion Eligibility Failure
 
-The candidate fails institutional completion evidence eligibility criteria.
+The candidate fails institutional academic completion eligibility criteria.
 
 Outcome:
 
-- Completion Evidence Rejected
+- Academic Completion Rejected
 - Eligibility Failure Recorded
 - Audit Generated
 
@@ -1127,7 +1122,7 @@ Outcome:
 
 ## 10.6 Administrative Override
 
-Authorised institutional authorities invoke an exceptional completion evidence decision.
+Authorised institutional authorities invoke an exceptional academic completion decision.
 
 Outcome:
 
@@ -1140,7 +1135,7 @@ Outcome:
 
 ## 11.1 Overview
 
-The Academic Completion, CGPA & Completion Evidence domain publishes canonical business events representing completed business facts.
+The Academic Completion, CGPA & Academic Completion domain publishes canonical business events representing completed business facts.
 
 Published events shall:
 
@@ -1164,11 +1159,11 @@ Academic completion verification completes successfully.
 
 ### Business Meaning
 
-The candidate has successfully passed academic completion verification and may proceed to completion evidence eligibility assessment.
+The candidate has successfully passed academic completion verification and may proceed to academic completion eligibility assessment.
 
 ### Possible Consumers
 
-- Completion Evidence Management
+- Academic Completion Management
 - Student Lifecycle
 - Academic Analytics
 - Audit Infrastructure
@@ -1187,7 +1182,7 @@ All academic programme requirements have been satisfied.
 
 ### Possible Consumers
 
-- Completion Evidence Workflow
+- Academic Completion Workflow
 - Academic Reporting
 - Student Lifecycle
 
@@ -1205,28 +1200,27 @@ The candidate satisfies institutional credit requirements.
 
 ### Possible Consumers
 
-- Completion Evidence Eligibility
+- Completion Eligibility
 - Academic Analytics
 - Regulatory Reporting
 
 ---
 
-## 11.5 Completion Evidence Eligibility Determined
+## 11.5 CompletionEligibilityApproved
 
 ### Published When
 
-Completion Evidence eligibility has been confirmed.
+completion eligibility has been confirmed.
 
 ### Business Meaning
 
-The candidate satisfies every institutional completion evidence requirement.
+The candidate satisfies every institutional academic completion requirement.
 
 ### Possible Consumers
 
-- Completion Evidence Recommendation Workflow
+- Completion Evidence Approval Workflow
 - Degree Certificate Domain
 - Convocation Domain
-- Alumni Domain
 
 ---
 
@@ -1248,59 +1242,62 @@ The official academic classification has been determined.
 
 ---
 
-## 11.7 DegreeAwardRecommended
+## 11.7 ExaminationCompletionEvidencePrepared
 
 ### Published When
 
-The institution formally recommends the candidate for award.
+The institution formally prepares completion evidence.
 
 ### Business Meaning
 
-Completion Evidence recommendation has completed successfully.
+The Examination domain has prepared examination-owned completion evidence for Student Lifecycle (L2-C05).
+
+This event does not represent:
+
+- Qualification Completion
+- Degree Award Approval
+- Student Exit
+- Alumni Transition
 
 ### Possible Consumers
 
-- Completion Evidence Approval
-- Convocation
-- Degree Certificate
+- Student Lifecycle
 
 ---
 
-## 11.8 Completion Evidence Recommended
+## 11.8 CompletionEvidenceApproved
 
 ### Published When
 
-Institutional completion evidence recommendation has completed.
+Institutional academic completion approval has completed.
 
 ### Business Meaning
 
-The candidate is officially recommended for completion evidence review.
+The candidate is officially approved for academic completion.
 
 ### Possible Consumers
 
 - Degree Certificate
 - Convocation
-- Alumni
 - Student Lifecycle
 - Notification Platform
 
 ---
 
-## 11.9 Completion Evidence Record Created
+## 11.9 CompletionEvidenceRecordCreated
 
 ### Published When
 
-The completion evidence register has been updated.
+The academic completion register has been updated.
 
 ### Business Meaning
 
-The institutional completion evidence record has been created.
+The institutional academic completion record has been created.
 
 ### Possible Consumers
 
 - Regulatory Reporting
 - Student Lifecycle
-- Alumni
 - Audit Infrastructure
 
 ---
@@ -1330,7 +1327,7 @@ The candidate's academic completion lifecycle has concluded.
 
 The Academic Completion domain consumes canonical business events published by upstream domains.
 
-Consumed events initiate completion evidence workflows but never transfer ownership of upstream business concepts.
+Consumed events initiate academic completion workflows but never transfer ownership of upstream business concepts.
 
 ---
 
@@ -1354,7 +1351,7 @@ L2-I11 — Revaluation & Rechecking
 
 ### Purpose
 
-Updates completion evidence eligibility following completion of revaluation.
+Updates academic completion eligibility following completion of revaluation.
 
 ---
 
@@ -1366,7 +1363,7 @@ L2-I12 — Supplementary / Backlog / Improvement Examination
 
 ### Purpose
 
-Allows previously ineligible candidates to re-enter completion evidence assessment.
+Allows previously ineligible candidates to re-enter academic completion assessment.
 
 ---
 
@@ -1402,17 +1399,17 @@ L2-I01 — Examination Policy & Configuration
 
 ### Purpose
 
-Updates completion evidence policy evaluation rules where applicable.
+Updates academic completion policy evaluation rules where applicable.
 
 ---
 
-# 13. Multi-Domain Interactions
+# 13. Cross-Domain Interactions
 
 ## 13.1 Overview
 
 The Academic Completion domain collaborates with multiple enterprise domains while preserving strict ownership boundaries.
 
-No multi-domain interaction transfers ownership.
+No cross-domain interaction transfers ownership.
 
 ---
 
@@ -1423,11 +1420,11 @@ Consumes:
 - Programme Definitions
 - Curriculum Structures
 - Credit Requirements
-- Completion Evidence Rules
+- Completion Rules
 
 Does Not Own:
 
-- Completion Evidence Decisions
+- Academic Completion Decisions
 
 ---
 
@@ -1469,7 +1466,7 @@ Consumes:
 
 Depends Upon:
 
-Published academic outcomes before completion evidence assessment begins.
+Published academic outcomes before academic completion assessment begins.
 
 ---
 
@@ -1481,7 +1478,7 @@ Consumes:
 
 Allows:
 
-Completion Evidence reassessment where institutional policy requires.
+Academic Completion reassessment where institutional policy requires.
 
 ---
 
@@ -1493,7 +1490,7 @@ Consumes:
 
 Allows:
 
-Candidates to become completion evidence eligible after clearing outstanding academic requirements.
+Candidates to become academic completion eligible after clearing outstanding academic requirements.
 
 ---
 
@@ -1513,7 +1510,7 @@ Authorization remains outside this domain.
 
 Publishes:
 
-Canonical completion evidence events.
+Canonical academic completion events.
 
 Owns:
 
@@ -1525,7 +1522,7 @@ Event transport only.
 
 Consumes:
 
-Completion Evidence events for immutable audit evidence generation.
+completion evidence events for immutable audit evidence generation.
 
 Audit persistence remains outside this domain.
 
@@ -1535,12 +1532,12 @@ Audit persistence remains outside this domain.
 
 ## 14.1 Academic Completion Owns
 
-The Academic Completion domain exclusively provides:
+The Academic Completion domain exclusively owns:
 
 - Academic Completion Verification
 - Programme Completion Verification
 - Credit Requirement Verification
-- Completion Evidence Eligibility
+- Completion Eligibility
 - Degree Classification Assignment
 - Degree Award Recommendation
 - Completion Evidence Approval
@@ -1579,12 +1576,8 @@ The Academic Completion domain shall never own:
 - Result Publication
 - Revaluation
 - Supplementary Examination Execution
-- Completion Evidence
-- Student Exit
-- Student Exit
 - Degree Certificate Generation
 - Convocation Management
-- Alumni Management
 
 These responsibilities remain with their respective canonical domains.
 
@@ -1594,13 +1587,13 @@ These responsibilities remain with their respective canonical domains.
 
 | Configuration Area | Configurable | Owner |
 |--------------------|-------------|-------|
-| Completion Evidence Policies | ✓ | Institution |
+| Completion Policies | ✓ | Institution |
 | Programme Completion Rules | ✓ | Institution |
 | Credit Thresholds | ✓ | Curriculum Framework |
 | Mandatory Academic Requirements | ✓ | Institution |
 | Degree Classification Rules | ✓ | Institution |
 | Approval Workflow | ✓ | Institution |
-| Completion Evidence Calendar | ✓ | Academic Calendar |
+| Completion Calendar | ✓ | Academic Calendar |
 | Administrative Override Policy | ✓ | Institution |
 | Notification Rules | ✓ | Notification Platform |
 | Audit Retention Policy | ✓ | Audit Infrastructure |
@@ -1613,7 +1606,7 @@ Institutions configure business behaviour through policy rather than architectur
 
 ## 16.1 Overview
 
-The Academic Completion, CGPA & Completion Evidence domain shall maintain complete, immutable, and institutionally verifiable audit records for every business activity affecting academic completion and completion evidence.
+The Academic Completion, CGPA & Academic Completion domain shall maintain complete, immutable, and institutionally verifiable audit records for every business activity affecting academic completion and academic completion.
 
 Audit records support:
 
@@ -1691,7 +1684,7 @@ Audit:
 
 ---
 
-### Completion Evidence Eligibility Assessment
+### Completion Eligibility Assessment
 
 Audit:
 
@@ -1810,7 +1803,7 @@ The workflow shall be considered complete only when all of the following have be
 - Programme Completion Verified
 - Credit Requirement Verified
 - Mandatory Academic Requirements Verified
-- Completion Evidence Eligibility Determined
+- Completion Eligibility Approved
 - Degree Classification Assigned
 - Award Recommendation Generated
 - Completion Evidence Approved
@@ -1825,7 +1818,7 @@ The workflow shall be considered complete only when all of the following have be
 Upon successful completion:
 
 - Academic Completion Status becomes **Completed**.
-- Completion Evidence Status becomes **Approved**.
+- Completion Status becomes **Approved**.
 - Completion Evidence Register becomes authoritative.
 - Completion history becomes immutable.
 - Downstream events are published.
@@ -1839,7 +1832,7 @@ The workflow remains incomplete if:
 - Programme completion fails.
 - Credit requirements remain unsatisfied.
 - Mandatory academic requirements remain incomplete.
-- Completion Evidence approval is pending.
+- completion evidence approval is pending.
 - Administrative review is incomplete.
 
 Incomplete workflows remain active until resolved.
@@ -1850,10 +1843,10 @@ Incomplete workflows remain active until resolved.
 
 The workflow shall terminate unsuccessfully when:
 
-- Completion Evidence eligibility is rejected.
+- completion eligibility is rejected.
 - Institutional approval is permanently denied.
 - Candidate becomes academically ineligible.
-- Institutional policy prohibits completion evidence.
+- Institutional policy prohibits academic completion.
 
 Failure shall generate:
 
@@ -1871,14 +1864,14 @@ Failure shall generate:
 | I13-BC-02 | Programme Completion Verification | Verifies programme completion requirements. |
 | I13-BC-03 | Credit Requirement Verification | Validates academic credit completion. |
 | I13-BC-04 | Mandatory Requirement Verification | Validates mandatory academic obligations. |
-| I13-BC-05 | Completion Evidence Eligibility | Determines completion evidence eligibility. |
+| I13-BC-05 | Completion Eligibility | Determines academic completion eligibility. |
 | I13-BC-06 | Degree Classification Assignment | Assigns institutional degree classification. |
 | I13-BC-07 | Degree Award Recommendation | Creates degree award recommendation. |
-| I13-BC-08 | Completion Evidence Approval | Governs institutional completion evidence approval. |
-| I13-BC-09 | Completion Evidence Register Management | Maintains institutional completion evidence records. |
+| I13-BC-08 | Completion Evidence Approval | Governs institutional academic completion approval. |
+| I13-BC-09 | Completion Evidence Register Management | Maintains institutional academic completion records. |
 | I13-BC-10 | Completion Status Management | Maintains lifecycle status. |
-| I13-BC-11 | Completion Evidence Audit | Produces completion evidence audit records. |
-| I13-BC-12 | Completion Evidence Governance | Governs completion evidence policies and approvals. |
+| I13-BC-11 | Completion Evidence Audit | Produces academic completion audit records. |
+| I13-BC-12 | Completion Evidence Governance | Governs academic completion policies and approvals. |
 
 ---
 
@@ -1903,7 +1896,7 @@ Failure shall generate:
 
 ## 20.1 Overview
 
-The Academic Completion domain manages the lifecycle of a candidate from completion verification through institutional completion evidence approval.
+The Academic Completion domain manages the lifecycle of a candidate from completion verification through institutional academic completion approval.
 
 Each state represents a stable business milestone.
 
@@ -1940,7 +1933,7 @@ State transitions shall occur only through authorised business workflows.
                            │
                            ▼
           ┌────────────────────────────────────┐
-          │ Completion Evidence Eligible                │
+          │ Completion Eligible                │
           └────────────────┬───────────────────┘
                            │
                            ▼
@@ -2012,9 +2005,9 @@ Every mandatory academic requirement has been completed.
 
 ---
 
-### Completion Evidence Eligible
+### Completion Eligible
 
-The candidate satisfies every institutional completion evidence requirement.
+The candidate satisfies every institutional academic completion requirement.
 
 ---
 
@@ -2032,21 +2025,21 @@ The institution has formally recommended the candidate for academic award.
 
 ### Completion Evidence Approved
 
-Institutional authorities have officially approved completion evidence.
+Institutional authorities have officially approved academic completion.
 
 ---
 
 ### Completion Evidence Registered
 
-The institutional completion evidence register has been updated.
+The institutional academic completion register has been updated.
 
-This becomes the authoritative completion evidence record.
+This becomes the authoritative academic completion record.
 
 ---
 
 ### Academic Completion Closed
 
-The completion evidence workflow has successfully concluded.
+The academic completion workflow has successfully concluded.
 
 The business record becomes read-only.
 
@@ -2066,8 +2059,8 @@ The following transitions shall not be permitted.
 |--------------------|--------|
 | Pending Verification → Completion Evidence Approved | Mandatory verification skipped |
 | Programme Completion Verified → Completion Evidence Registered | Approval not completed |
-| Completion Evidence Eligible → Archived | Completion Evidence workflow incomplete |
-| Award Recommended → Archived | Completion Evidence approval missing |
+| Completion Eligible → Archived | completion evidence workflow incomplete |
+| Award Recommended → Archived | completion evidence approval missing |
 | Completion Evidence Approved → Programme Completion Verified | Reverse progression prohibited |
 | Academic Completion Closed → Pending Verification | Closed workflows cannot be reopened |
 
@@ -2081,15 +2074,15 @@ The Academic Completion domain supports institutional configuration without modi
 
 | Parameter | Description |
 |-----------|-------------|
-| Completion Evidence Eligibility Rules | Defines institutional eligibility criteria. |
+| Completion Eligibility Rules | Defines institutional eligibility criteria. |
 | Programme Completion Rules | Defines programme completion requirements. |
 | Credit Threshold Rules | Defines minimum academic credit requirements. |
 | Mandatory Academic Requirements | Configures mandatory academic components. |
 | Degree Classification Policy | Defines institutional classification logic. |
-| Completion Evidence Recommendation Workflow | Defines institutional recommendation hierarchy. |
-| Administrative Override Policy | Controls exceptional completion evidence decisions. |
+| Completion Evidence Approval Workflow | Defines institutional approval hierarchy. |
+| Administrative Override Policy | Controls exceptional academic completion decisions. |
 | Completion Evidence Register Format | Defines institutional register structure. |
-| Notification Policy | Controls completion evidence notification behaviour. |
+| Notification Policy | Controls academic completion notification behaviour. |
 | Audit Policy Reference | References institutional audit policies. |
 
 Configuration values shall influence business behaviour only.
@@ -2102,19 +2095,19 @@ They shall not alter the canonical workflow.
 
 ## 22.1 Owns
 
-The Academic Completion domain provides:
+The Academic Completion domain owns:
 
 - Academic Completion Verification
 - Programme Completion Verification
 - Credit Requirement Verification
 - Mandatory Requirement Verification
-- Completion Evidence Assessment
+- Completion Eligibility Assessment
 - Degree Classification Assignment
 - Degree Award Recommendation
-- Completion Evidence Recommendation
+- Completion Evidence Approval
 - Completion Evidence Register
 - Completion Status Management
-- Completion Evidence Business Events
+- Academic Completion Business Events
 - Completion Evidence Audit Facts
 
 ---
@@ -2144,7 +2137,7 @@ The Academic Completion domain publishes:
 - Academic Completion Events
 - Completion Evidence Events
 - Degree Recommendation Events
-- Completion Evidence Recommendation Events
+- Completion Evidence Approval Events
 - Completion Closure Events
 
 Business event transport is owned by L2-A06.
@@ -2165,7 +2158,6 @@ This domain shall never own:
 - Supplementary Examination Processing
 - Degree Certificate Generation
 - Convocation Management
-- Alumni Management
 
 Ownership remains with the respective canonical domains.
 
@@ -2173,9 +2165,9 @@ Ownership remains with the respective canonical domains.
 
 # 23. Repository Integration Summary
 
-The Academic Completion, CGPA & Completion Evidence Workflows document represents the canonical completion evidence support workflow within the Examination repository.
+The Academic Completion, CGPA & Completion Evidence Workflows document represents the canonical academic completion decision workflow within the Examination repository.
 
-It concludes the examination lifecycle by consuming institutionally approved academic outcomes and preparing the evidence required for Student Lifecycle to determine completion evidence.
+It concludes the examination lifecycle by consuming institutionally approved academic outcomes and determining whether a candidate has satisfied every academic and institutional requirement necessary for the award of a qualification.
 
 This domain:
 
@@ -2183,12 +2175,12 @@ This domain:
 - Verifies programme completion.
 - Verifies academic credit requirements.
 - Validates mandatory academic obligations.
-- Determines completion evidence eligibility.
+- Determines academic completion eligibility.
 - Assigns institutional degree classification.
 - Produces degree award recommendations.
-- Governs completion evidence approval.
-- Maintains the institutional completion evidence register.
-- Publishes canonical completion evidence events.
+- Governs academic completion approval.
+- Maintains the institutional academic completion register.
+- Publishes canonical academic completion events.
 
 The domain intentionally excludes:
 
@@ -2221,7 +2213,7 @@ Credit Requirement Verification
 Mandatory Requirement Verification
         │
         ▼
-Completion Evidence Eligibility
+Completion Eligibility
         │
         ▼
 Degree Classification
@@ -2248,11 +2240,11 @@ Academic Completion Closed
 - AcademicCompletionVerificationCompleted
 - ProgrammeCompletionVerified
 - CreditRequirementVerified
-- Completion Evidence Eligibility Approved
+- CompletionEligibilityApproved
 - DegreeClassificationAssigned
 - DegreeAwardRecommended
-- Completion Evidence Recommended
-- Completion Evidence Record Created
+- CompletionEvidenceApproved
+- CompletionEvidenceRecordCreated
 - AcademicCompletionClosed
 
 ### Events Consumed
@@ -2272,10 +2264,10 @@ Academic Completion Closed
 |------|---------------|
 | Academic Completion Verification | Grade Calculation |
 | Programme Completion Verification | SGPA Calculation |
-| Completion Evidence Assessment | CGPA Calculation |
+| Completion Eligibility | CGPA Calculation |
 | Degree Classification Assignment | Credit Calculation |
 | Degree Award Recommendation | Result Publication |
-| Completion Evidence Recommendation | Revaluation |
+| Completion Evidence Approval | Revaluation |
 | Completion Evidence Register | Supplementary Examination |
 | Completion Status | Degree Certificate Generation |
 | Completion Evidence Events | Convocation Management |
@@ -2303,7 +2295,6 @@ Academic Completion Closed
 
 - Degree Certificate Management
 - Convocation Management
-- Alumni Management
 - Student Lifecycle
 - Academic Analytics
 - Regulatory Reporting
@@ -2315,9 +2306,9 @@ Academic Completion Closed
 # Appendix A.6 — Canonical Principles
 
 - Published Results First
-- Completion Evidence Before Student Lifecycle Review
+- Completion Before Academic Completion
 - Consumption Rather Than Computation
-- Policy-Driven Completion Evidence
+- Policy-Driven Academic Completion
 - Canonical Ownership
 - Event-Driven Collaboration
 - Complete Auditability
@@ -2329,22 +2320,7 @@ Academic Completion Closed
 
 This document defines the complete canonical business workflow architecture for **L2-I13 — Academic Completion, CGPA & Completion Evidence Workflows**.
 
-It establishes the authoritative business responsibilities, lifecycle workflows, ownership boundaries, events, state model, business capabilities, audit requirements, configurable policies, and repository integrations governing academic completion evidence within the SutraERP Examination Domain.
+It establishes the authoritative business responsibilities, lifecycle workflows, ownership boundaries, events, state model, business capabilities, audit requirements, configurable policies, and repository integrations governing academic completion and academic completion within the SutraERP Examination Domain.
 
-This document is implementation-independent and serves as the canonical Level 2 architectural specification for academic completion evidence workflows across the SutraERP repository.
-
----
-
-## Entities / Aggregates
-
-This document does not define a dedicated entities/aggregates catalogue. Business objects referenced throughout the workflow include Candidate, Programme, Curriculum, Credits, Completion Evidence Register, Degree Classification, Academic Completion Status, and Audit Record (see Sections 5.9, 14.2, and 20 for where each is referenced).
-
-Detailed data/entity modelling is outside the scope of this Level 2 workflow architecture document and is not separately defined here.
-
-
-
-
-
-
-
+This document is implementation-independent and serves as the canonical Level 2 architectural specification for academic completion and academic completion workflows across the SutraERP repository.
 

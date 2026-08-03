@@ -2363,4 +2363,10 @@ Taken together with the Lifecycle stages in Section 14.3 and the Validation laye
 
 ---
 
+## Rules / Invariants
+
+Rules are not consolidated under a single "Rules" heading but are expressed as "Architectural Principles" and "Architectural Constraints" distributed per section: Section 6 (Architectural Principles), the per-component principles/constraints in Sections 8–23, and Section 24 (Domain Constraints), which enumerates the mandatory constraints governing adjustment sourcing, categorization, approval participation, validation, lifecycle, and state behaviour.
+
+---
+
 # End of L2-F04 — Financial Adjustment Management

@@ -1,16 +1,16 @@
-# L2-C07 â€” Scholarship Eligibility Workflows
+# L2-C07 — Scholarship Eligibility Workflows
 
 | Metadata | Value |
 |----------|-------|
 | **Document ID** | L2-C07 |
 | **Document Title** | Scholarship Eligibility Workflows |
-| **Architecture Level** | Level 2 â€” Domain Architecture |
-| **Domain** | Student Lifecycle |
+| **Document Owner** | Varad |
+| **Architecture Level** | Level 2 — Domain Architecture |
+| **Domain** | Student Information System (SIS) |
 | **Bounded Context** | Scholarship Eligibility |
 | **Architecture Style** | Domain-Driven Design (DDD) |
 | **Primary Aggregate** | Student Scholarship Eligibility Record |
-| **Authoritative Owner** | Student Lifecycle Domain |
-| **Document Owner** | Varad |
+| **Authoritative Owner** | Student Information System Domain |
 | **Status** | Draft |
 | **Version** | 1.0 |
 
@@ -125,16 +125,16 @@ The Scholarship Eligibility domain consumes authoritative business information f
 
 | Upstream Domain | Authoritative Information Consumed | Purpose |
 |-----------------|------------------------------------|---------|
-| **L2-A02 â€” Person & Identity** | Student identity, demographic profile, category, disability status, guardian relationships, citizenship, residency, identity attributes | Evaluate identity-based scholarship eligibility criteria. |
-| **L2-B01 â€” Institution Lifecycle** | Institution profile, institutional policies, operational status | Determine institution-specific scholarship availability and governance. |
-| **L2-B02 â€” Organisation Workflows** | Campus, faculty, department, school, organizational hierarchy | Resolve organization-specific scholarship applicability and eligibility constraints. |
-| **L2-B04 â€” Curriculum Framework** | Programme definitions, academic structure, qualification hierarchy, programme offerings | Evaluate programme-specific scholarship eligibility. |
-| **L2-C01 â€” Admissions** | Admission status, admission category, admission quota, admission type, admission cycle | Determine admission-based scholarship eligibility. |
-| **L2-C02 â€” Student Lifecycle** | Student lifecycle status, enrolment status, academic standing, progression status | Validate active student eligibility and lifecycle-dependent scholarship conditions. |
-| **L2-C03 â€” Academic Registration** | Programme registrations, semester registrations, course registrations | Evaluate registration-dependent scholarship requirements. |
-| **L2-C04 â€” Academic Progression** | Academic performance, CGPA, SGPA, credits earned, academic standing, progression decisions | Evaluate merit-based and academic performance scholarship criteria. |
-| **L2-C05 â€” Qualification Completion** | Qualification completion status, qualification completion status, completion outcomes | Determine eligibility for completion-based scholarships and post-completion schemes. |
-| **L2-C06 â€” Guardian Workflows** | Guardian profile, guardian relationship, declared family information | Support scholarships requiring guardian-based eligibility evaluation. |
+| **L2-A02 — Person & Identity** | Student identity, demographic profile, category, disability status, guardian relationships, citizenship, residency, identity attributes | Evaluate identity-based scholarship eligibility criteria. |
+| **L2-B01 — Institution Lifecycle** | Institution profile, institutional policies, operational status | Determine institution-specific scholarship availability and governance. |
+| **L2-B02 — Organisation Workflows** | Campus, faculty, department, school, organizational hierarchy | Resolve organization-specific scholarship applicability and eligibility constraints. |
+| **L2-B03 — Programme Portfolio** | Programme definitions, academic structure, qualification hierarchy, programme offerings | Evaluate programme-specific scholarship eligibility. |
+| **L2-C01 — Admissions** | Admission status, admission category, admission quota, admission type, admission cycle | Determine admission-based scholarship eligibility. |
+| **L2-C02 — Student Lifecycle** | Student lifecycle status, enrolment status, academic standing, progression status | Validate active student eligibility and lifecycle-dependent scholarship conditions. |
+| **L2-C03 — Academic Registration** | Programme registrations, semester registrations, course registrations | Evaluate registration-dependent scholarship requirements. |
+| **L2-C04 — Academic Progression** | Academic performance, CGPA, SGPA, credits earned, academic standing, progression decisions | Evaluate merit-based and academic performance scholarship criteria. |
+| **L2-C05 — Qualification Completion** | Qualification completion status, graduation status, completion outcomes | Determine eligibility for completion-based scholarships and post-completion schemes. |
+| **L2-C06 — Guardian Workflows** | Guardian profile, guardian relationship, declared family information | Support scholarships requiring guardian-based eligibility evaluation. |
 | **Document Management Domain** | Submitted document references, document verification outcomes, document validity status | Validate documentary evidence required by scholarship policies without owning document lifecycle. |
 | **Institution Configuration Domain** | Scholarship policies, configurable eligibility rules, institutional parameters, academic calendars | Apply institution-specific eligibility policies and operational rules. |
 | **Hostel & Accommodation Domain** *(where implemented)* | Hostel allocation status, accommodation category, residential information | Evaluate accommodation and hostel-based scholarship eligibility. |
@@ -165,7 +165,7 @@ To preserve architectural integrity:
 - Upstream domains shall remain independently deployable and independently governed.
 - Dependency relationships shall remain business-oriented rather than implementation-oriented.
 - Eligibility calculations shall rely only on authoritative information published by upstream bounded contexts.
-- Multi-domain ownership violations are prohibited regardless of implementation architecture.
+- Cross-domain ownership violations are prohibited regardless of implementation architecture.
 # 4. Downstream Dependencies
 
 The Scholarship Eligibility domain publishes authoritative eligibility outcomes, scholarship recommendations, reassessment results, renewal decisions, and eligibility events for consumption by downstream bounded contexts. Downstream domains consume these published outcomes while maintaining ownership of their respective business capabilities.
@@ -232,27 +232,34 @@ The Scholarship Eligibility domain is the authoritative bounded context responsi
 
 The Scholarship Eligibility domain exclusively owns the following business capabilities:
 
+### Scholarship Definition & Availability
+
+- Scholarship registration.
+- Scholarship catalogue management.
+- Scholarship lifecycle management.
+- Scholarship publication and retirement.
+- Scholarship categorization.
+- Scholarship provider association.
+- Scholarship availability within an institution.
+
+---
+
 ### Eligibility Management
 
 - Eligibility policy definition.
 - Eligibility criteria management.
-- Policy-driven eligibility evaluation.
+- Eligibility rule composition.
 - Eligibility assessment.
+- Eligibility evaluation.
 - Eligibility decision generation.
+- Conditional eligibility determination.
 - Eligibility explanation generation.
 - Eligibility validity management.
+- Eligibility expiration.
 - Eligibility reassessment.
 - Eligibility renewal.
 - Eligibility history.
 - Eligibility version management.
-
----
-
-### Scholarship Recommendation Management
-
-- Scholarship recommendation generation.
-- Recommendation lifecycle management.
-- Recommendation validity management.
 
 ---
 
@@ -280,7 +287,7 @@ The Scholarship Eligibility domain exclusively owns the following business capab
 
 ## 5.2 Referenced Business Capabilities
 
-The Scholarship Eligibility domain referencesâ€”but does not ownâ€”the following business information from other bounded contexts:
+The Scholarship Eligibility domain references—but does not own—the following business information from other bounded contexts:
 
 ### Person & Identity
 
@@ -397,9 +404,9 @@ The Scholarship Eligibility domain shall adhere to the following ownership princ
 
 | Business Capability | Owner |
 |---------------------|-------|
-| Scholarship Definition | Finance / Scholarship & Financial Aid |
-| Scholarship Catalogue | Finance / Scholarship & Financial Aid |
-| Scholarship Availability | Finance / Scholarship & Financial Aid |
+| Scholarship Definition | Scholarship Eligibility |
+| Scholarship Catalogue | Scholarship Eligibility |
+| Scholarship Availability | Scholarship Eligibility |
 | Eligibility Policies | Scholarship Eligibility |
 | Eligibility Rules | Scholarship Eligibility |
 | Eligibility Assessment | Scholarship Eligibility |
@@ -428,7 +435,7 @@ The Scholarship Eligibility domain shall adhere to the following ownership princ
 
 The Scholarship Eligibility domain governs the lifecycle of scholarship definitions and student scholarship eligibility by evaluating institutional policies, academic information, eligibility criteria, and supporting evidence to produce transparent, explainable, and auditable eligibility outcomes.
 
-The domain maintains read-only scholarship references independently of individual students while managing eligibility through version-controlled Student Scholarship Eligibility Records.
+The domain maintains canonical scholarship definitions independently of individual students while managing eligibility through version-controlled Student Scholarship Eligibility Records.
 
 ---
 
@@ -461,9 +468,9 @@ Only one active eligibility record shall exist for the same combination at any p
 
 ## 6.3 Supporting Aggregates
 
-### Scholarship Reference
+### Scholarship Definition
 
-Represents a published scholarship definition owned by the Finance / Scholarship & Financial Aid bounded context and consumed as read-only reference data by this domain.
+Represents the canonical definition of a scholarship offered by an institution or external provider.
 
 Responsibilities include:
 
@@ -475,7 +482,7 @@ Responsibilities include:
 - Publication lifecycle.
 - Validity period.
 
-A Scholarship Reference exists independently of student eligibility and serves as the reference for all eligibility evaluations.
+A Scholarship Definition exists independently of student eligibility and serves as the reference for all eligibility evaluations.
 
 ---
 
@@ -501,21 +508,21 @@ Eligibility Policies may be shared across multiple scholarship definitions.
 
 ```
 Scholarship Definition
-        â”‚
-        â”‚ references
-        â–¼
+        │
+        │ references
+        ▼
 Eligibility Policy
-        â”‚
-        â”‚ evaluated against
-        â–¼
+        │
+        │ evaluated against
+        ▼
 Student Scholarship Eligibility Record
-        â”‚
-        â”œâ”€â”€ Eligibility Assessment
-        â”œâ”€â”€ Eligibility Decision
-        â”œâ”€â”€ Recommendation
-        â”œâ”€â”€ Reassessment History
-        â”œâ”€â”€ Renewal History
-        â””â”€â”€ Version History
+        │
+        ├── Eligibility Assessment
+        ├── Eligibility Decision
+        ├── Recommendation
+        ├── Reassessment History
+        ├── Renewal History
+        └── Version History
 ```
 
 ---
@@ -537,40 +544,40 @@ The following invariants shall always be enforced:
 
 ---
 
-## 6.6 Scholarship Reference Lifecycle
+## 6.6 Scholarship Definition Lifecycle
 
 ```
 Draft
-   â”‚
-   â–¼
+   │
+   ▼
 Published
-   â”‚
-   â–¼
+   │
+   ▼
 Active
-   â”‚
-   â”œâ”€â”€â”€â”€â”€â”€â”€â”€â–º Suspended
-   â”‚               â”‚
-   â”‚               â–¼
-   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–º Active
-   â”‚
-   â–¼
+   │
+   ├────────► Suspended
+   │               │
+   │               ▼
+   └────────────► Active
+   │
+   ▼
 Expired
-   â”‚
-   â–¼
+   │
+   ▼
 Archived
 ```
 
 ### Eligibility Policy Lifecycle
 
 Draft
-   â”‚
-   â–¼
+   │
+   ▼
 Active
-   â”‚
-   â–¼
+   │
+   ▼
 Retired
-   â”‚
-   â–¼
+   │
+   ▼
 Archived
 
 ---
@@ -579,33 +586,33 @@ Archived
 
 ```
 Created
-   â”‚
-   â–¼
+   │
+   ▼
 Assessment Pending
-   â”‚
-   â–¼
+   │
+   ▼
 Under Evaluation
-   â”œâ”€â”€â”€â”€â”€â”€â”€â”€â–º Conditionally Eligible
-   â”‚                 â”‚
-   â”‚                 â–¼
-   â”‚          Re-evaluate
-   â”‚                 â”‚
-   â–¼                 â”‚
-Eligible â—„â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-   â”‚
-   â–¼
+   ├────────► Conditionally Eligible
+   │                 │
+   │                 ▼
+   │          Re-evaluate
+   │                 │
+   ▼                 │
+Eligible ◄───────────┘
+   │
+   ▼
 Recommendation Generated
-   â”‚
-   â–¼
+   │
+   ▼
 Active
-   â”œâ”€â”€â”€â”€â”€â”€â”€â”€â–º Reassessment
-   â”œâ”€â”€â”€â”€â”€â”€â”€â”€â–º Renewal
-   â”œâ”€â”€â”€â”€â”€â”€â”€â”€â–º Expired
-   â””â”€â”€â”€â”€â”€â”€â”€â”€â–º Archived
+   ├────────► Reassessment
+   ├────────► Renewal
+   ├────────► Expired
+   └────────► Archived
 
 Under Evaluation
-   â”‚
-   â–¼
+   │
+   ▼
 Not Eligible
 
 ```
@@ -626,7 +633,7 @@ The Scholarship Eligibility domain governs the complete business lifecycle of sc
 
 ---
 
-## DW-01 â€” Scholarship Definition & Publication
+## DW-01 — Scholarship Definition & Publication
 
 **Purpose**
 
@@ -638,7 +645,7 @@ Published scholarship definitions become available for student eligibility asses
 
 ---
 
-## DW-02 â€” Eligibility Policy Management
+## DW-02 — Eligibility Policy Management
 
 **Purpose**
 
@@ -650,7 +657,7 @@ Approved eligibility policies become available for scholarship eligibility evalu
 
 ---
 
-## DW-03 â€” Student Eligibility Assessment
+## DW-03 — Student Eligibility Assessment
 
 **Purpose**
 
@@ -662,7 +669,7 @@ A Student Scholarship Eligibility Record is created or updated with an explainab
 
 ---
 
-## DW-04 â€” Scholarship Recommendation Generation
+## DW-04 — Scholarship Recommendation Generation
 
 **Purpose**
 
@@ -676,7 +683,7 @@ Eligible scholarship recommendations become available for downstream consumption
 
 ---
 
-## DW-05 â€” Conditional Eligibility Processing
+## DW-05 — Conditional Eligibility Processing
 
 **Purpose**
 
@@ -689,7 +696,7 @@ If required conditions remain unresolved beyond the applicable institutional or 
 
 ---
 
-## DW-06 â€” Eligibility Reassessment
+## DW-06 — Eligibility Reassessment
 
 **Purpose**
 
@@ -701,7 +708,7 @@ A new immutable eligibility assessment version is produced while preserving comp
 
 ---
 
-## DW-07 â€” Scholarship Renewal Evaluation
+## DW-07 — Scholarship Renewal Evaluation
 
 **Purpose**
 
@@ -713,7 +720,7 @@ Renewal eligibility is approved, conditionally approved, or rejected while prese
 
 ---
 
-## DW-08 â€” Eligibility Expiration & Archival
+## DW-08 — Eligibility Expiration & Archival
 
 **Purpose**
 
@@ -725,7 +732,7 @@ Expired eligibility records are archived without loss of historical information.
 
 ---
 
-## DW-09 â€” External Scholarship Synchronization *(Optional)*
+## DW-09 — External Scholarship Synchronization *(Optional)*
 
 **Purpose**
 
@@ -739,7 +746,7 @@ Institutional eligibility information remains synchronized with supported extern
 
 ---
 
-## DW-10 â€” Bulk Eligibility Recalculation
+## DW-10 — Bulk Eligibility Recalculation
 
 **Purpose**
 
@@ -770,7 +777,7 @@ This section defines the canonical business specifications for each workflow own
 
 ---
 
-# WS-01 â€” Scholarship Definition & Publication
+# WS-01 — Scholarship Definition & Publication
 
 ## Purpose
 
@@ -819,7 +826,7 @@ Register, manage, publish, update, suspend, retire, and archive scholarship defi
 
 ---
 
-# WS-02 â€” Eligibility Policy Management
+# WS-02 — Eligibility Policy Management
 
 ## Purpose
 
@@ -866,7 +873,7 @@ Manage configurable eligibility policies governing scholarship qualification.
 
 ---
 
-# WS-03 â€” Student Eligibility Assessment
+# WS-03 — Student Eligibility Assessment
 
 ## Purpose
 
@@ -915,7 +922,7 @@ Determine whether a student satisfies scholarship eligibility requirements.
 
 ---
 
-# WS-04 â€” Scholarship Recommendation Generation
+# WS-04 — Scholarship Recommendation Generation
 
 ## Purpose
 
@@ -954,7 +961,7 @@ Generate scholarship recommendations from validated eligibility outcomes.
 
 ---
 
-# WS-05 â€” Conditional Eligibility Processing
+# WS-05 — Conditional Eligibility Processing
 
 ## Purpose
 
@@ -994,7 +1001,7 @@ Manage eligibility requiring additional evidence before final determination.
 
 ---
 
-# WS-06 â€” Eligibility Reassessment
+# WS-06 — Eligibility Reassessment
 
 ## Purpose
 
@@ -1036,7 +1043,7 @@ Recalculate eligibility following business changes.
 
 ---
 
-# WS-07 â€” Scholarship Renewal Evaluation
+# WS-07 — Scholarship Renewal Evaluation
 
 ## Purpose
 
@@ -1078,7 +1085,7 @@ Determine continued eligibility for renewable scholarships.
 
 ---
 
-# WS-08 â€” Eligibility Expiration & Archival
+# WS-08 — Eligibility Expiration & Archival
 
 ## Purpose
 
@@ -1116,7 +1123,7 @@ Retire expired eligibility while preserving history.
 
 ---
 
-# WS-09 â€” External Scholarship Synchronization
+# WS-09 — External Scholarship Synchronization
 
 ## Purpose
 
@@ -1154,7 +1161,7 @@ Synchronize eligibility references with supported external scholarship providers
 
 ---
 
-# WS-10 â€” Bulk Eligibility Recalculation
+# WS-10 — Bulk Eligibility Recalculation
 
 ## Purpose
 
@@ -1201,19 +1208,19 @@ The following business rules govern all eligibility determination, recommendatio
 
 ---
 
-## BR-001 â€” Scholarship Availability
+## BR-001 — Scholarship Availability
 
 Only scholarships in an **Active** lifecycle state shall be considered for eligibility evaluation and recommendation.
 
 ---
 
-## BR-002 â€” Published Eligibility Policy
+## BR-002 — Published Eligibility Policy
 
 Every scholarship shall reference at least one published and active Eligibility Policy before eligibility evaluation can occur.
 
 ---
 
-## BR-003 â€” Single Active Eligibility Record
+## BR-003 — Single Active Eligibility Record
 
 Only one active **Student Scholarship Eligibility Record** shall exist for the same:
 
@@ -1226,7 +1233,7 @@ at any given time.
 
 ---
 
-## BR-004 â€” Explainable Decisions
+## BR-004 — Explainable Decisions
 
 Every eligibility decision shall include sufficient information to explain how the outcome was determined.
 
@@ -1234,7 +1241,7 @@ Eligibility decisions shall never be opaque.
 
 ---
 
-## BR-005 â€” Canonical Eligibility Ownership
+## BR-005 — Canonical Eligibility Ownership
 
 Scholarship Eligibility is the sole authoritative source for eligibility decisions.
 
@@ -1242,7 +1249,7 @@ Downstream domains shall not independently determine scholarship eligibility.
 
 ---
 
-## BR-006 â€” Recommendation Dependency
+## BR-006 — Recommendation Dependency
 
 Scholarship recommendations shall only be generated from completed eligibility assessments.
 
@@ -1250,7 +1257,7 @@ Recommendations shall never exist independently of eligibility.
 
 ---
 
-## BR-007 â€” No Recommendation Ranking
+## BR-007 — No Recommendation Ranking
 
 The domain shall recommend all scholarships for which the student is eligible.
 
@@ -1258,7 +1265,7 @@ Recommendation prioritization or ranking is outside the scope of this domain.
 
 ---
 
-## BR-008 â€” Conditional Eligibility
+## BR-008 — Conditional Eligibility
 
 Eligibility may remain in a conditional state while mandatory requirements remain unresolved.
 
@@ -1266,7 +1273,7 @@ Conditional eligibility shall not be treated as Eligible or Not Eligible.
 
 ---
 
-## BR-009 â€” Immutable History
+## BR-009 — Immutable History
 
 Historical eligibility assessments shall never be modified or deleted.
 
@@ -1274,7 +1281,7 @@ Every reassessment shall produce a new immutable historical version.
 
 ---
 
-## BR-010 â€” Policy Version Preservation
+## BR-010 — Policy Version Preservation
 
 Eligibility assessments shall always reference the exact Eligibility Policy version used during evaluation.
 
@@ -1282,7 +1289,7 @@ Historical assessments shall remain reproducible even after policy changes.
 
 ---
 
-## BR-011 â€” Reassessment
+## BR-011 — Reassessment
 
 Eligibility reassessment may occur when:
 
@@ -1294,7 +1301,7 @@ Eligibility reassessment may occur when:
 
 ---
 
-## BR-012 â€” Renewal
+## BR-012 — Renewal
 
 Renewable scholarships shall undergo renewal eligibility evaluation before entering a new renewal period.
 
@@ -1302,7 +1309,7 @@ Renewal assessments shall preserve complete historical continuity.
 
 ---
 
-## BR-013 â€” Eligibility Expiration
+## BR-013 — Eligibility Expiration
 
 Eligibility shall expire according to scholarship validity rules or institutional policy.
 
@@ -1310,7 +1317,7 @@ Expired eligibility shall not participate in future recommendations until reasse
 
 ---
 
-## BR-014 â€” Scholarship Conflicts
+## BR-014 — Scholarship Conflicts
 
 Where scholarship policies define mutually exclusive scholarships, conflict validation shall occur before recommendation publication.
 
@@ -1322,13 +1329,13 @@ Financial allocation decisions remain outside this domain.
 
 ---
 
-## BR-015 â€” Missing Information
+## BR-015 — Missing Information
 
 Missing required business information shall prevent a final eligibility decision unless explicitly permitted by the associated Eligibility Policy.
 
 ---
 
-## BR-016 â€” Document Verification
+## BR-016 — Document Verification
 
 Where scholarship policies require supporting documentation, eligibility evaluation shall consider only verified document outcomes.
 
@@ -1336,7 +1343,7 @@ Document ownership remains within the Document Management domain.
 
 ---
 
-## BR-017 â€” External Scholarship References
+## BR-017 — External Scholarship References
 
 External scholarship application references may be associated with eligibility records.
 
@@ -1344,37 +1351,37 @@ External application processing shall remain outside this domain.
 
 ---
 
-## BR-018 â€” Bulk Recalculation
+## BR-018 — Bulk Recalculation
 
 Bulk eligibility recalculation shall preserve historical eligibility versions and shall not overwrite previously published assessments.
 
 ---
 
-## BR-019 â€” Auditability
+## BR-019 — Auditability
 
 Every business action affecting scholarship eligibility shall produce a complete audit trail.
 
 ---
 
-## BR-020 â€” Event Publication
+## BR-020 — Event Publication
 
 Every significant business outcome shall publish canonical domain events for downstream bounded contexts.
 
 ---
 
-## BR-021 â€” Authorization
+## BR-021 — Authorization
 
 Only authorized actors shall create, modify, reassess, renew, suspend, publish, or archive scholarship definitions and eligibility policies.
 
 ---
 
-## BR-022 â€” Policy Configuration
+## BR-022 — Policy Configuration
 
 Eligibility Policies may contain nested logical rule groups using configurable AND / OR evaluation semantics.
 
 ---
 
-## BR-023 â€” Policy Activation
+## BR-023 — Policy Activation
 
 Only one active version of an Eligibility Policy shall govern eligibility evaluation at a given point in time.
 
@@ -1385,7 +1392,7 @@ Superseded policy versions shall remain available for historical assessment repl
 
 ---
 
-## BR-024 â€” Scholarship Lifecycle Integrity
+## BR-024 — Scholarship Lifecycle Integrity
 
 Scholarship lifecycle transitions shall follow approved lifecycle states.
 
@@ -1393,7 +1400,7 @@ Direct transitions that violate the defined lifecycle model are prohibited.
 
 ---
 
-## BR-025 â€” Eligibility Integrity
+## BR-025 — Eligibility Integrity
 
 Eligibility decisions shall always be derived from authoritative upstream business information.
 
@@ -1401,13 +1408,13 @@ Locally modified or manually overridden upstream data shall never become the bas
 
 ---
 
-## BR-026 â€” Soft Deletion Prohibited
+## BR-026 — Soft Deletion Prohibited
 
 Scholarship Definitions, Eligibility Policies, and Student Scholarship Eligibility Records shall be archived rather than permanently deleted whenever historical retention is required.
 
 ---
 
-## BR-027 â€” Institutional Isolation
+## BR-027 — Institutional Isolation
 
 Eligibility evaluation shall occur only within the context of the owning institution and its applicable scholarship policies.
 
@@ -1415,7 +1422,7 @@ Cross-institution eligibility leakage is prohibited.
 
 ---
 
-## BR-028 â€” Business Rule Governance
+## BR-028 — Business Rule Governance
 
 Institution-specific eligibility rules may extend the evaluation model but shall not violate canonical architectural ownership or domain invariants defined by the Scholarship Eligibility bounded context.
 
@@ -1541,19 +1548,19 @@ These contracts define **what business capability is provided**, not **how it is
 
 ---
 
-## SC-01 — Scholarship Reference Management
+## SC-01 — Scholarship Definition Management
 
 ### Purpose
 
-Manage the complete lifecycle of scholarship references.
+Manage the complete lifecycle of scholarship definitions.
 
 ### Business Capability
 
-- Register scholarship references.
-- Update reference metadata.
-- Publish scholarship availability references.
-- Suspend reference visibility.
-- Archive historical references.
+- Register scholarship definitions.
+- Update scholarship information.
+- Publish scholarships.
+- Suspend scholarships.
+- Archive scholarships.
 
 ### Consumers
 
@@ -1562,7 +1569,7 @@ Manage the complete lifecycle of scholarship references.
 
 ---
 
-## SC-02 â€” Eligibility Policy Management
+## SC-02 — Eligibility Policy Management
 
 ### Purpose
 
@@ -1583,7 +1590,7 @@ Manage scholarship eligibility policies and rule definitions.
 
 ---
 
-## SC-03 â€” Student Eligibility Assessment
+## SC-03 — Student Eligibility Assessment
 
 ### Purpose
 
@@ -1604,7 +1611,7 @@ Evaluate scholarship eligibility for an individual student.
 
 ---
 
-## SC-04 â€” Scholarship Recommendation
+## SC-04 — Scholarship Recommendation
 
 ### Purpose
 
@@ -1623,7 +1630,7 @@ Generate scholarship recommendations based on validated eligibility outcomes.
 
 ---
 
-## SC-05 â€” Eligibility Reassessment
+## SC-05 — Eligibility Reassessment
 
 ### Purpose
 
@@ -1642,7 +1649,7 @@ Reassess previously evaluated scholarship eligibility.
 
 ---
 
-## SC-06 â€” Scholarship Renewal
+## SC-06 — Scholarship Renewal
 
 ### Purpose
 
@@ -1661,7 +1668,7 @@ Evaluate renewal eligibility for renewable scholarships.
 
 ---
 
-## SC-07 â€” Eligibility Inquiry
+## SC-07 — Eligibility Inquiry
 
 ### Purpose
 
@@ -1685,7 +1692,7 @@ The Eligibility Inquiry service contract provides read-only access to canonical 
 
 ---
 
-## SC-08 â€” Bulk Eligibility Processing
+## SC-08 — Bulk Eligibility Processing
 
 ### Purpose
 
@@ -1704,7 +1711,7 @@ Perform institution-wide eligibility evaluation following policy or academic cha
 
 ---
 
-## SC-09 â€” External Scholarship Synchronization
+## SC-09 — External Scholarship Synchronization
 
 ### Purpose
 
@@ -1732,7 +1739,7 @@ All Scholarship Eligibility service contracts shall comply with the following pr
 - Consumers shall rely only on published business capabilities.
 - Service contracts shall preserve canonical business rules and domain invariants.
 - Service contracts shall remain stable as implementation technologies evolve.
-- Multi-domain interactions shall respect bounded context ownership and published business contracts.
+- Cross-domain interactions shall respect bounded context ownership and published business contracts.
 
 ---
 
@@ -1740,7 +1747,7 @@ All Scholarship Eligibility service contracts shall comply with the following pr
 
 | Service Contract | Authoritative Owner | Primary Consumers |
 |------------------|---------------------|-------------------|
-| Scholarship Reference Management | Finance / Scholarship & Financial Aid | Scholarship Eligibility |
+| Scholarship Definition Management | Scholarship Eligibility | Institution Administration |
 | Eligibility Policy Management | Scholarship Eligibility | Scholarship Administration |
 | Student Eligibility Assessment | Scholarship Eligibility | Student Services, Workflow |
 | Scholarship Recommendation | Scholarship Eligibility | Student Portal |
@@ -1758,7 +1765,7 @@ Invalid state transitions are prohibited unless explicitly authorized by future 
 
 ---
 
-# 12.1 Scholarship Reference Lifecycle
+# 12.1 Scholarship Definition Lifecycle
 
 | Current State | Allowed Transition | Next State | Business Rule |
 |---------------|-------------------|------------|---------------|
@@ -1777,12 +1784,12 @@ Invalid state transitions are prohibited unless explicitly authorized by future 
 
 The following transitions are prohibited:
 
-- Draft â†’ Active
-- Draft â†’ Archived
-- Active â†’ Draft
-- Archived â†’ Active
-- Archived â†’ Published
-- Expired â†’ Active
+- Draft → Active
+- Draft → Archived
+- Active → Draft
+- Archived → Active
+- Archived → Published
+- Expired → Active
 
 ---
 
@@ -1801,11 +1808,11 @@ The following transitions are prohibited:
 
 The following transitions are prohibited:
 
-- Draft â†’ Retired
-- Draft â†’ Archived
-- Archived â†’ Active
-- Retired â†’ Active
-- Archived â†’ Draft
+- Draft → Retired
+- Draft → Archived
+- Archived → Active
+- Retired → Active
+- Archived → Draft
 
 ---
 
@@ -1835,14 +1842,14 @@ The following transitions are prohibited:
 
 The following transitions are prohibited:
 
-- Created â†’ Eligible
-- Created â†’ Active
-- Assessment Pending â†’ Active
-- Not Eligible â†’ Recommendation Generated
-- Not Eligible â†’ Active
-- Archived â†’ Active
-- Archived â†’ Under Evaluation
-- Expired â†’ Eligible
+- Created → Eligible
+- Created → Active
+- Assessment Pending → Active
+- Not Eligible → Recommendation Generated
+- Not Eligible → Active
+- Archived → Active
+- Archived → Under Evaluation
+- Expired → Eligible
 
 ---
 
@@ -1975,7 +1982,7 @@ Validation shall ensure business integrity while preserving canonical ownership 
 
 | Validation Rule | Validation Outcome |
 |-----------------|-------------------|
-| Scholarship Reference shall exist. | Reject operation. |
+| Scholarship Definition shall exist. | Reject operation. |
 | Scholarship shall be published or active. | Reject operation. |
 | Scholarship shall belong to the current institution. | Reject operation. |
 | Scholarship validity period shall be active where applicable. | Reject operation. |
@@ -2115,23 +2122,23 @@ The Scholarship Eligibility domain shall comply with the following authorization
 
 | Business Operation | Student | Guardian | Faculty | Scholarship Administrator | Institution Administrator | System Process |
 |--------------------|:------:|:--------:|:-------:|:--------------------------:|:--------------------------:|:--------------:|
-| View Published Scholarships | âœ“ | âœ“* | âœ“ | âœ“ | âœ“ | â€” |
-| Create Scholarship Definition | â€” | â€” | â€” | âœ“ | âœ“ | â€” |
-| Modify Scholarship Definition | â€” | â€” | â€” | âœ“ | âœ“ | â€” |
-| Publish Scholarship | â€” | â€” | â€” | âœ“ | âœ“ | â€” |
-| Suspend Scholarship | â€” | â€” | â€” | âœ“ | âœ“ | â€” |
-| Archive Scholarship | â€” | â€” | â€” | âœ“ | âœ“ | â€” |
-| Manage Eligibility Policies | â€” | â€” | â€” | âœ“ | âœ“ | â€” |
-| Initiate Eligibility Assessment | âœ“** | â€” | âœ“ | âœ“ | âœ“ | âœ“ |
-| View Own Eligibility | âœ“ | â€” | â€” | âœ“ | âœ“ | â€” |
-| View Student Eligibility | â€” | â€” | âœ“*** | âœ“ | âœ“ | â€” |
-| Generate Recommendations | â€” | â€” | â€” | âœ“ | âœ“ | âœ“ |
-| Initiate Reassessment | âœ“** | â€” | âœ“ | âœ“ | âœ“ | âœ“ |
-| Approve Administrative Reassessment | â€” | â€” | â€” | âœ“ | âœ“ | â€” |
-| Perform Renewal Evaluation | â€” | â€” | â€” | âœ“ | âœ“ | âœ“ |
-| Execute Bulk Recalculation | â€” | â€” | â€” | âœ“ | âœ“ | âœ“ |
-| View Eligibility History | âœ“**** | â€” | âœ“*** | âœ“ | âœ“ | â€” |
-| Synchronize External References | â€” | â€” | â€” | âœ“ | âœ“ | âœ“ |
+| View Published Scholarships | ✓ | ✓* | ✓ | ✓ | ✓ | — |
+| Create Scholarship Definition | — | — | — | ✓ | ✓ | — |
+| Modify Scholarship Definition | — | — | — | ✓ | ✓ | — |
+| Publish Scholarship | — | — | — | ✓ | ✓ | — |
+| Suspend Scholarship | — | — | — | ✓ | ✓ | — |
+| Archive Scholarship | — | — | — | ✓ | ✓ | — |
+| Manage Eligibility Policies | — | — | — | ✓ | ✓ | — |
+| Initiate Eligibility Assessment | ✓** | — | ✓ | ✓ | ✓ | ✓ |
+| View Own Eligibility | ✓ | — | — | ✓ | ✓ | — |
+| View Student Eligibility | — | — | ✓*** | ✓ | ✓ | — |
+| Generate Recommendations | — | — | — | ✓ | ✓ | ✓ |
+| Initiate Reassessment | ✓** | — | ✓ | ✓ | ✓ | ✓ |
+| Approve Administrative Reassessment | — | — | — | ✓ | ✓ | — |
+| Perform Renewal Evaluation | — | — | — | ✓ | ✓ | ✓ |
+| Execute Bulk Recalculation | — | — | — | ✓ | ✓ | ✓ |
+| View Eligibility History | ✓**** | — | ✓*** | ✓ | ✓ | — |
+| Synchronize External References | — | — | — | ✓ | ✓ | ✓ |
 
 ---
 
@@ -2211,27 +2218,27 @@ The following business operations shall always produce audit records:
 
 | Business Operation | Audit Required |
 |--------------------|:--------------:|
-| Scholarship Definition Created | âœ“ |
-| Scholarship Definition Updated | âœ“ |
-| Scholarship Published | âœ“ |
-| Scholarship Suspended | âœ“ |
-| Scholarship Archived | âœ“ |
-| Eligibility Policy Created | âœ“ |
-| Eligibility Policy Modified | âœ“ |
-| Eligibility Policy Activated | âœ“ |
-| Eligibility Policy Retired | âœ“ |
-| Eligibility Assessment Performed | âœ“ |
-| Eligibility Decision Generated | âœ“ |
-| Conditional Eligibility Assigned | âœ“ |
-| Recommendation Generated | âœ“ |
-| Recommendation Withdrawn | âœ“ |
-| Eligibility Reassessment | âœ“ |
-| Renewal Evaluation | âœ“ |
-| Eligibility Expired | âœ“ |
-| Eligibility Archived | âœ“ |
-| Administrative Override | âœ“ |
-| Bulk Eligibility Recalculation | âœ“ |
-| External Synchronization | âœ“ |
+| Scholarship Definition Created | ✓ |
+| Scholarship Definition Updated | ✓ |
+| Scholarship Published | ✓ |
+| Scholarship Suspended | ✓ |
+| Scholarship Archived | ✓ |
+| Eligibility Policy Created | ✓ |
+| Eligibility Policy Modified | ✓ |
+| Eligibility Policy Activated | ✓ |
+| Eligibility Policy Retired | ✓ |
+| Eligibility Assessment Performed | ✓ |
+| Eligibility Decision Generated | ✓ |
+| Conditional Eligibility Assigned | ✓ |
+| Recommendation Generated | ✓ |
+| Recommendation Withdrawn | ✓ |
+| Eligibility Reassessment | ✓ |
+| Renewal Evaluation | ✓ |
+| Eligibility Expired | ✓ |
+| Eligibility Archived | ✓ |
+| Administrative Override | ✓ |
+| Bulk Eligibility Recalculation | ✓ |
+| External Synchronization | ✓ |
 
 ---
 
@@ -2463,7 +2470,7 @@ The Scholarship Eligibility domain shall comply with the following principles:
 
 This section defines the business security requirements for the Scholarship Eligibility domain.
 
-Technical security controlsâ€”including authentication, authorization enforcement, encryption, key management, secure communication, infrastructure security, vulnerability management, and operational monitoringâ€”are governed by the enterprise security architecture and remain outside the scope of this document.
+Technical security controls—including authentication, authorization enforcement, encryption, key management, secure communication, infrastructure security, vulnerability management, and operational monitoring—are governed by the enterprise security architecture and remain outside the scope of this document.
 
 # 19. Performance & Scalability
 
@@ -2493,7 +2500,7 @@ The domain shall efficiently support the following business operations:
 
 | Business Capability | Scalability Expectation |
 |---------------------|-------------------------|
-| Scholarship Reference Management | Scalable across multiple institutions and scholarship providers. |
+| Scholarship Definition Management | Scalable across multiple institutions and scholarship providers. |
 | Eligibility Assessment | Support high-volume individual and institutional evaluations. |
 | Recommendation Generation | Scale proportionally with eligible student populations. |
 | Eligibility Reassessment | Efficiently process policy-driven and event-driven reassessments. |
@@ -2540,7 +2547,7 @@ Bulk processing shall be treated as a business capability rather than a technica
 
 The domain shall support concurrent business operations while ensuring:
 
-- Only one active Student Scholarship Eligibility Record exists for the same Studentâ€“Scholarshipâ€“Institutionâ€“Academic Period combination.
+- Only one active Student Scholarship Eligibility Record exists for the same Student–Scholarship–Institution–Academic Period combination.
 - Concurrent reassessments preserve historical integrity.
 (Where concurrent reassessments target the same active Student Scholarship Eligibility Record, the domain shall ensure that only one resulting assessment version becomes the active version. Competing reassessments shall be reconciled according to institutional governance while preserving complete historical traceability.)
 
@@ -2567,7 +2574,7 @@ The Scholarship Eligibility domain shall adhere to the following architectural p
 
 The Scholarship Eligibility domain shall remain capable of supporting future institutional growth, additional scholarship providers, evolving eligibility policies, and increased assessment volumes without requiring changes to canonical business responsibilities or bounded context ownership.
 
-Implementation-specific scalability mechanismsâ€”including distributed processing, parallel execution, caching, indexing, asynchronous execution, workload scheduling, infrastructure scaling, and deployment topologyâ€”remain outside the scope of this architectural specification.
+Implementation-specific scalability mechanisms—including distributed processing, parallel execution, caching, indexing, asynchronous execution, workload scheduling, infrastructure scaling, and deployment topology—remain outside the scope of this architectural specification.
 
 # 20. Extension Points
 
@@ -2727,7 +2734,7 @@ Architectural changes affecting bounded context ownership or domain responsibili
 
 # 21. Architecture Visual Models
 
-### AVM-01 â€” Enterprise Context Diagram
+### AVM-01 — Enterprise Context Diagram
 
 ```mermaid
 flowchart LR
@@ -2744,7 +2751,7 @@ B01["L2-B01<br/>Institution Lifecycle"]
 
 B02["L2-B02<br/>Organisation Workflows"]
 
-B03["L2-B04<br/>Curriculum Framework"]
+B03["L2-B03<br/>Programme Portfolio"]
 
 C01["L2-C01<br/>Admissions"]
 
@@ -2776,7 +2783,7 @@ end
 %% Scholarship Eligibility
 %% ===========================
 
-subgraph C07["L2-C07 â€” Scholarship Eligibility"]
+subgraph C07["L2-C07 — Scholarship Eligibility"]
 
 SD["Scholarship Definition"]
 
@@ -2873,7 +2880,7 @@ REA --> WF
 
 ```
 
-### AVM-02 â€” Bounded Context Interaction Model
+### AVM-02 — Bounded Context Interaction Model
 
 ```mermaid
 flowchart LR
@@ -2890,7 +2897,7 @@ INST["L2-B01<br/>Institution Lifecycle"]
 
 ORG["L2-B02<br/>Organisation"]
 
-PROG["L2-B04<br/>Curriculum Framework"]
+PROG["L2-B03<br/>Programme Portfolio"]
 
 ADM["L2-C01<br/>Admissions"]
 
@@ -2916,13 +2923,13 @@ end
 %% Scholarship Eligibility BC
 %%==================================================
 
-subgraph BC["L2-C07 â€” Scholarship Eligibility Bounded Context"]
+subgraph BC["L2-C07 — Scholarship Eligibility Bounded Context"]
 
 direction TB
 
 subgraph CORE["Core Business Capabilities"]
 
-SD["Scholarship Reference Management"]
+SD["Scholarship Definition Management"]
 
 POL["Eligibility Policy Management"]
 
@@ -3065,7 +3072,7 @@ class OWN1,OWN2,OWN3,OWN4,OWN5,OWN6 notes;
 
 ```
 
-### AVM-03 â€” Internal Domain Model
+### AVM-03 — Internal Domain Model
 
 ```mermaid
 classDiagram
@@ -3186,7 +3193,7 @@ StudentScholarshipEligibilityRecord --> Programme : evaluatesWithin
 ScholarshipDefinition --> ScholarshipProvider : offeredBy
 ```
 
-### AVM-04 â€” Aggregate Collaboration & Consistency Boundaries
+### AVM-04 — Aggregate Collaboration & Consistency Boundaries
 
 ```mermaid
 flowchart LR
@@ -3210,7 +3217,7 @@ end
 %% Aggregate : Scholarship Definition
 %%==================================================
 
-subgraph AGG1["Aggregate â€” Scholarship Definition"]
+subgraph AGG1["Aggregate — Scholarship Definition"]
 
 direction TB
 
@@ -3235,7 +3242,7 @@ end
 %% Aggregate : Eligibility Policy
 %%==================================================
 
-subgraph AGG2["Aggregate â€” Eligibility Policy"]
+subgraph AGG2["Aggregate — Eligibility Policy"]
 
 direction TB
 
@@ -3260,7 +3267,7 @@ end
 %% Aggregate : Student Scholarship Eligibility Record
 %%==================================================
 
-subgraph AGG3["Aggregate â€” Student Scholarship Eligibility Record"]
+subgraph AGG3["Aggregate — Student Scholarship Eligibility Record"]
 
 direction TB
 
@@ -3353,7 +3360,7 @@ class OUT,DEC output;
 
 ```
 
-### AVM-05 — Scholarship Reference Lifecycle
+### AVM-05 — Scholarship Definition Lifecycle
 
 ```mermaid
 stateDiagram-v2
@@ -3412,7 +3419,7 @@ stateDiagram-v2
     end note
 ```
 
-### AVM-06 â€” Student Scholarship Eligibility Record Lifecycle
+### AVM-06 — Student Scholarship Eligibility Record Lifecycle
 
 ```mermaid
 stateDiagram-v2
@@ -3464,7 +3471,7 @@ stateDiagram-v2
     Archived --> [*]
 ```
 
-### AVM-07 â€” Scholarship Eligibility Assessment Workflow
+### AVM-07 — Scholarship Eligibility Assessment Workflow
 
 ```mermaid
 flowchart LR
@@ -3495,13 +3502,13 @@ E["Collect Institutional Context"]
 
 F["Collect Supporting Evidence"]
 
-G{"Required Evidence Complete"}
+G{"Required Evidence Complete?"}
 
 H["Request Additional Evidence"]
 
 I["Evaluate Eligibility Policy"]
 
-J{"Eligibility Criteria Satisfied"}
+J{"Eligibility Criteria Satisfied?"}
 
 K["Create Eligibility Record"]
 
@@ -3629,7 +3636,7 @@ class Actor actor;
 
 ```
 
-### AVM-08 â€” Scholarship Recommendation Workflow
+### AVM-08 — Scholarship Recommendation Workflow
 
 ```mermaid
 flowchart LR
@@ -3650,13 +3657,13 @@ direction LR
 
 A["Receive Eligibility Decision"]
 
-B{"Eligible"}
+B{"Eligible?"}
 
 C["Retrieve Active Scholarship Definition"]
 
 D["Verify Scholarship Availability"]
 
-E{"Scholarship Active"}
+E{"Scholarship Active?"}
 
 F["Generate Recommendation"]
 
@@ -3798,7 +3805,7 @@ class Portal,Workflow,Notification,Reporting,Finance downstream;
 
 ```
 
-### AVM-09 â€” Scholarship Eligibility Renewal Workflow
+### AVM-09 — Scholarship Eligibility Renewal Workflow
 
 ```mermaid
 flowchart LR
@@ -3819,7 +3826,7 @@ direction LR
 
 A["Identify Active Eligibility Record"]
 
-B{"Renewal Required"}
+B{"Renewal Required?"}
 
 C["Load Current Scholarship Definition"]
 
@@ -3831,13 +3838,13 @@ F["Collect Latest Academic Information"]
 
 G["Collect Updated Supporting Evidence"]
 
-H{"Required Evidence Complete"}
+H{"Required Evidence Complete?"}
 
 I["Request Additional Evidence"]
 
 J["Evaluate Renewal Eligibility"]
 
-K{"Renewal Approved"}
+K{"Renewal Approved?"}
 
 L["Create New Eligibility Version"]
 
@@ -3956,7 +3963,7 @@ class EV1,EV2,EV3,EV4 event;
 
 ```
 
-### AVM-10 â€” Scholarship Eligibility Reassessment Workflow
+### AVM-10 — Scholarship Eligibility Reassessment Workflow
 
 ```mermaid
 flowchart LR
@@ -3999,13 +4006,13 @@ F["Collect Updated Student Information"]
 
 G["Collect Updated Supporting Evidence"]
 
-H{"Sufficient Information Available"}
+H{"Sufficient Information Available?"}
 
 I["Request Missing Information"]
 
 J["Execute Eligibility Reassessment"]
 
-K{"Eligibility Changed"}
+K{"Eligibility Changed?"}
 
 L["Create New Eligibility Version"]
 
@@ -4140,7 +4147,7 @@ class AR1,AR2,AR3 aggregate;
 class EV1,EV2,EV3,EV4,EV5 event;
 
 ```
-### AVM-11 â€” Business Event Flow Architecture
+### AVM-11 — Business Event Flow Architecture
 
 ```mermaid
 flowchart LR
@@ -4151,7 +4158,7 @@ flowchart LR
 
 subgraph CAP["Business Capabilities"]
 
-SD["Scholarship Reference Management"]
+SD["Scholarship Definition Management"]
 
 EP["Eligibility Policy Management"]
 
@@ -4300,7 +4307,7 @@ class Finance,Workflow,Notification,Reporting,StudentPortal,EnterpriseIntegratio
 
 ```
 
-### AVM-12 â€” Business Information Dependency Flow
+### AVM-12 — Business Information Dependency Flow
 
 ```mermaid
 flowchart LR
@@ -4523,7 +4530,7 @@ class SD,EP,EA,ER,REC,HIS domain;
 class Finance,Workflow,Notification,Reporting,StudentPortal,EnterpriseIntegration,Audit consumer;
 
 ```
-### AVM-13 â€” Eligibility Policy Evaluation Architecture
+### AVM-13 — Eligibility Policy Evaluation Architecture
 
 ```mermaid
 flowchart LR
@@ -4568,7 +4575,7 @@ Load["Load Active Policy Version"]
 
 Validate["Validate Required Information"]
 
-Check{"Complete Business Information"}
+Check{"Complete Business Information?"}
 
 Evidence["Request Missing Evidence"]
 
@@ -4700,7 +4707,7 @@ class EV1,EV2,EV3 event;
 
 ```
 
-### AVM-14 â€” Bulk Eligibility Recalculation Workflow
+### AVM-14 — Bulk Eligibility Recalculation Workflow
 
 ```mermaid
 flowchart LR
@@ -4743,7 +4750,7 @@ E["Group Records by Institution"]
 
 F["Process Eligibility Records"]
 
-G{"Eligibility Changed"}
+G{"Eligibility Changed?"}
 
 H["Create New Eligibility Version"]
 
@@ -4869,7 +4876,7 @@ class EV1,EV2,EV3,EV4,EV5 event;
 
 ```
 
-### AVM-15 â€” Scholarship Eligibility End-to-End Business Capability Map
+### AVM-15 — Scholarship Eligibility End-to-End Business Capability Map
 
 ```mermaid
 flowchart LR
@@ -4902,7 +4909,7 @@ end
 %% Scholarship Eligibility Domain
 %%==================================================
 
-subgraph DOMAIN["L2-C07 â€” Scholarship Eligibility"]
+subgraph DOMAIN["L2-C07 — Scholarship Eligibility"]
 
 direction LR
 
@@ -5093,12 +5100,12 @@ The following Architecture Decision Records document the significant architectur
 
 ---
 
-## ADR-001 â€” Dedicated Scholarship Eligibility Bounded Context
+## ADR-001 — Dedicated Scholarship Eligibility Bounded Context
 
 | Attribute | Value |
 |----------|-------|
 | **Status** | Accepted |
-| **Decision** | Scholarship Eligibility shall exist as an independent bounded context within the Student Lifecycle domain. |
+| **Decision** | Scholarship Eligibility shall exist as an independent bounded context within the Student Information System. |
 
 ### Context
 
@@ -5123,7 +5130,7 @@ A dedicated bounded context shall own all scholarship eligibility responsibiliti
 
 ---
 
-## ADR-002 â€” Student Scholarship Eligibility Record as Primary Aggregate
+## ADR-002 — Student Scholarship Eligibility Record as Primary Aggregate
 
 | Attribute | Value |
 |----------|-------|
@@ -5152,7 +5159,7 @@ The Student Scholarship Eligibility Record shall act as the Aggregate Root.
 
 ---
 
-## ADR-003 â€” Independent Scholarship Definition and Eligibility Policy Aggregates
+## ADR-003 — Independent Scholarship Definition and Eligibility Policy Aggregates
 
 | Attribute | Value |
 |----------|-------|
@@ -5180,7 +5187,7 @@ Separate aggregates shall own scholarship lifecycle and policy lifecycle.
 
 ---
 
-## ADR-004 â€” Immutable Eligibility History
+## ADR-004 — Immutable Eligibility History
 
 | Attribute | Value |
 |----------|-------|
@@ -5208,7 +5215,7 @@ Every reassessment or renewal shall create a new historical version.
 
 ---
 
-## ADR-005 â€” Deterministic Policy Evaluation
+## ADR-005 — Deterministic Policy Evaluation
 
 | Attribute | Value |
 |----------|-------|
@@ -5236,7 +5243,7 @@ Policy evaluation shall not depend on subjective or non-repeatable behaviour.
 
 ---
 
-## ADR-006 â€” Explainable Eligibility Decisions
+## ADR-006 — Explainable Eligibility Decisions
 
 | Attribute | Value |
 |----------|-------|
@@ -5264,7 +5271,7 @@ Each decision shall preserve the business rationale supporting the outcome.
 
 ---
 
-## ADR-007 â€” Recommendation Without Ranking
+## ADR-007 — Recommendation Without Ranking
 
 | Attribute | Value |
 |----------|-------|
@@ -5293,7 +5300,7 @@ Recommendations shall identify eligibility only.
 
 ---
 
-## ADR-008 â€” Versioned Eligibility Policies
+## ADR-008 — Versioned Eligibility Policies
 
 | Attribute | Value |
 |----------|-------|
@@ -5321,7 +5328,7 @@ Only one policy version shall be active while historical versions remain immutab
 
 ---
 
-## ADR-009 â€” Event Publication at Business Milestones
+## ADR-009 — Event Publication at Business Milestones
 
 | Attribute | Value |
 |----------|-------|
@@ -5349,7 +5356,7 @@ Events shall represent completed business outcomes rather than intermediate proc
 
 ---
 
-## ADR-010 â€” Strict Bounded Context Ownership
+## ADR-010 — Strict Bounded Context Ownership
 
 | Attribute | Value |
 |----------|-------|
@@ -5383,7 +5390,7 @@ Business Invariants define the non-negotiable rules that govern the Scholarship 
 
 ---
 
-## BI-001 â€” Single Active Eligibility Record
+## BI-001 — Single Active Eligibility Record
 
 For a given combination of:
 
@@ -5396,7 +5403,7 @@ there shall be at most one Active Student Scholarship Eligibility Record.
 
 ---
 
-## BI-002 â€” Immutable Historical Records
+## BI-002 — Immutable Historical Records
 
 Historical Scholarship Eligibility Records shall never be modified or deleted.
 
@@ -5404,7 +5411,7 @@ All historical versions shall remain permanently available for audit, reporting,
 
 ---
 
-## BI-003 â€” Every Eligibility Record References Exactly One Scholarship Definition
+## BI-003 — Every Eligibility Record References Exactly One Scholarship Definition
 
 Each Student Scholarship Eligibility Record shall reference one and only one Scholarship Definition.
 
@@ -5412,7 +5419,7 @@ An eligibility record shall never span multiple scholarships.
 
 ---
 
-## BI-004 â€” Every Eligibility Assessment Uses One Policy Version
+## BI-004 — Every Eligibility Assessment Uses One Policy Version
 
 Each eligibility assessment shall be performed using exactly one published Eligibility Policy version.
 
@@ -5420,7 +5427,7 @@ The policy version used during assessment shall remain permanently associated wi
 
 ---
 
-## BI-005 â€” Published Policies Are Immutable
+## BI-005 — Published Policies Are Immutable
 
 Once an Eligibility Policy version has been published and activated, it shall not be modified.
 
@@ -5428,7 +5435,7 @@ Changes require creation of a new policy version.
 
 ---
 
-## BI-006 â€” Scholarship Definitions Preserve Version History
+## BI-006 — Scholarship Definitions Preserve Version History
 
 Changes to Scholarship Definitions shall preserve historical versions whenever the change affects eligibility semantics.
 
@@ -5436,13 +5443,13 @@ Historical eligibility decisions shall remain reproducible using the definition 
 
 ---
 
-## BI-007 â€” Eligibility Decisions Are Deterministic
+## BI-007 — Eligibility Decisions Are Deterministic
 
 Identical business inputs evaluated against the same Scholarship Definition and Eligibility Policy version shall always produce identical eligibility outcomes.
 
 ---
 
-## BI-008 â€” Every Decision Is Explainable
+## BI-008 — Every Decision Is Explainable
 
 Every eligibility decision shall preserve sufficient business rationale to explain why the decision was produced.
 
@@ -5450,7 +5457,7 @@ An eligibility outcome without business justification is invalid.
 
 ---
 
-## BI-009 â€” Eligibility Does Not Award Scholarships
+## BI-009 — Eligibility Does Not Award Scholarships
 
 Determining eligibility does not constitute scholarship approval, allocation, or financial award.
 
@@ -5458,7 +5465,7 @@ This bounded context concludes with recommendation.
 
 ---
 
-## BI-010 â€” Recommendations Reflect Eligibility Only
+## BI-010 — Recommendations Reflect Eligibility Only
 
 Scholarship recommendations shall identify every scholarship for which the student is eligible.
 
@@ -5466,7 +5473,7 @@ Recommendations shall not rank, prioritize, score, or optimize scholarships.
 
 ---
 
-## BI-011 â€” Renewal Creates a New Eligibility Version
+## BI-011 — Renewal Creates a New Eligibility Version
 
 A renewal shall never overwrite an existing eligibility record.
 
@@ -5474,7 +5481,7 @@ Each successful renewal creates a new immutable eligibility version while preser
 
 ---
 
-## BI-012 â€” Reassessment Creates a New Eligibility Version
+## BI-012 — Reassessment Creates a New Eligibility Version
 
 A reassessment resulting from policy changes, appeals, academic updates, or supporting evidence shall create a new eligibility version.
 
@@ -5482,7 +5489,7 @@ Previous versions shall remain unchanged.
 
 ---
 
-## BI-013 â€” Eligibility History Is Chronological
+## BI-013 — Eligibility History Is Chronological
 
 Eligibility versions shall form a complete chronological history representing the evolution of eligibility over time.
 
@@ -5490,7 +5497,7 @@ Historical ordering shall never be ambiguous.
 
 ---
 
-## BI-014 â€” Only Published Scholarships May Be Assessed
+## BI-014 — Only Published Scholarships May Be Assessed
 
 Eligibility assessment shall only occur for Scholarship Definitions that are currently published and active.
 
@@ -5498,7 +5505,7 @@ Draft, suspended, expired, or archived scholarships are not eligible for assessm
 
 ---
 
-## BI-015 â€” Only Active Policies May Be Evaluated
+## BI-015 — Only Active Policies May Be Evaluated
 
 Eligibility assessment shall only use Eligibility Policies that are currently active.
 
@@ -5506,7 +5513,7 @@ Inactive, draft, superseded, or archived policy versions shall never be used for
 
 ---
 
-## BI-016 â€” Supporting Evidence Must Be Traceable
+## BI-016 — Supporting Evidence Must Be Traceable
 
 Every eligibility decision that depends on supporting evidence shall retain references to the evidence used during assessment.
 
@@ -5514,7 +5521,7 @@ The decision shall remain reproducible throughout its lifecycle.
 
 ---
 
-## BI-017 â€” Published Business Events Represent Completed Business Facts
+## BI-017 — Published Business Events Represent Completed Business Facts
 
 Business events shall only be published after the corresponding business activity has reached a completed and authoritative state.
 
@@ -5522,7 +5529,7 @@ Intermediate processing shall not be exposed as published business events.
 
 ---
 
-## BI-018 â€” Aggregate Ownership Shall Not Be Violated
+## BI-018 — Aggregate Ownership Shall Not Be Violated
 
 The Student Scholarship Eligibility Record Aggregate shall be modified only through business operations owned by the Scholarship Eligibility bounded context.
 
@@ -5530,7 +5537,7 @@ External bounded contexts shall not directly alter eligibility state.
 
 ---
 
-## BI-019 â€” Every Eligibility Record Belongs to One Institution
+## BI-019 — Every Eligibility Record Belongs to One Institution
 
 A Student Scholarship Eligibility Record shall belong to exactly one Institution.
 
@@ -5538,7 +5545,7 @@ Eligibility ownership shall not span multiple institutions.
 
 ---
 
-## BI-020 â€” Business Consistency Overrides Operational Convenience
+## BI-020 — Business Consistency Overrides Operational Convenience
 
 Whenever operational efficiency conflicts with business correctness, preservation of business consistency, historical integrity, and auditability shall take precedence.
 
@@ -5556,10 +5563,10 @@ Each item shall be reviewed before approving any significant architectural or fu
 
 | Validation Item | Status |
 |-----------------|--------|
-| Scholarship Eligibility remains an independent bounded context. | â˜ |
-| Responsibilities have not expanded into Finance or Award Management. | â˜ |
-| External bounded contexts do not modify eligibility state directly. | â˜ |
-| Ownership boundaries remain clearly defined. | â˜ |
+| Scholarship Eligibility remains an independent bounded context. | ☐ |
+| Responsibilities have not expanded into Finance or Award Management. | ☐ |
+| External bounded contexts do not modify eligibility state directly. | ☐ |
+| Ownership boundaries remain clearly defined. | ☐ |
 
 ---
 
@@ -5567,10 +5574,10 @@ Each item shall be reviewed before approving any significant architectural or fu
 
 | Validation Item | Status |
 |-----------------|--------|
-| Student Scholarship Eligibility Record remains the Aggregate Root. | â˜ |
-| Scholarship Definition remains an independent supporting aggregate. | â˜ |
-| Eligibility Policy remains an independent supporting aggregate. | â˜ |
-| Aggregate boundaries remain unchanged. | â˜ |
+| Student Scholarship Eligibility Record remains the Aggregate Root. | ☐ |
+| Scholarship Definition remains an independent supporting aggregate. | ☐ |
+| Eligibility Policy remains an independent supporting aggregate. | ☐ |
+| Aggregate boundaries remain unchanged. | ☐ |
 
 ---
 
@@ -5578,10 +5585,10 @@ Each item shall be reviewed before approving any significant architectural or fu
 
 | Validation Item | Status |
 |-----------------|--------|
-| Policy evaluation remains deterministic. | â˜ |
-| Nested AND/OR rule evaluation is preserved. | â˜ |
-| Every decision remains explainable. | â˜ |
-| Eligibility recommendations remain business-rule driven. | â˜ |
+| Policy evaluation remains deterministic. | ☐ |
+| Nested AND/OR rule evaluation is preserved. | ☐ |
+| Every decision remains explainable. | ☐ |
+| Eligibility recommendations remain business-rule driven. | ☐ |
 
 ---
 
@@ -5589,11 +5596,11 @@ Each item shall be reviewed before approving any significant architectural or fu
 
 | Validation Item | Status |
 |-----------------|--------|
-| Published Scholarship Definitions remain version controlled. | â˜ |
-| Published Eligibility Policies remain immutable. | â˜ |
-| Renewals create new eligibility versions. | â˜ |
-| Reassessments create new eligibility versions. | â˜ |
-| Historical versions remain immutable. | â˜ |
+| Published Scholarship Definitions remain version controlled. | ☐ |
+| Published Eligibility Policies remain immutable. | ☐ |
+| Renewals create new eligibility versions. | ☐ |
+| Reassessments create new eligibility versions. | ☐ |
+| Historical versions remain immutable. | ☐ |
 
 ---
 
@@ -5601,10 +5608,10 @@ Each item shall be reviewed before approving any significant architectural or fu
 
 | Validation Item | Status |
 |-----------------|--------|
-| Scholarship lifecycle remains unchanged. | â˜ |
-| Eligibility lifecycle remains unchanged. | â˜ |
-| Lifecycle transitions preserve business consistency. | â˜ |
-| Invalid transitions are prevented by business rules. | â˜ |
+| Scholarship lifecycle remains unchanged. | ☐ |
+| Eligibility lifecycle remains unchanged. | ☐ |
+| Lifecycle transitions preserve business consistency. | ☐ |
+| Invalid transitions are prevented by business rules. | ☐ |
 
 ---
 
@@ -5612,10 +5619,10 @@ Each item shall be reviewed before approving any significant architectural or fu
 
 | Validation Item | Status |
 |-----------------|--------|
-| Only one active eligibility record exists per Studentâ€“Scholarshipâ€“Institutionâ€“Academic Period combination. | â˜ |
-| Eligibility decisions never award scholarships. | â˜ |
-| Recommendations never perform ranking or prioritization. | â˜ |
-| Eligibility history remains immutable. | â˜ |
+| Only one active eligibility record exists per Student–Scholarship–Institution–Academic Period combination. | ☐ |
+| Eligibility decisions never award scholarships. | ☐ |
+| Recommendations never perform ranking or prioritization. | ☐ |
+| Eligibility history remains immutable. | ☐ |
 
 ---
 
@@ -5623,10 +5630,10 @@ Each item shall be reviewed before approving any significant architectural or fu
 
 | Validation Item | Status |
 |-----------------|--------|
-| Events represent completed business facts. | â˜ |
-| Intermediate processing is not published as business events. | â˜ |
-| Event ownership remains within the bounded context. | â˜ |
-| Downstream consumers rely only on published events. | â˜ |
+| Events represent completed business facts. | ☐ |
+| Intermediate processing is not published as business events. | ☐ |
+| Event ownership remains within the bounded context. | ☐ |
+| Downstream consumers rely only on published events. | ☐ |
 
 ---
 
@@ -5634,9 +5641,9 @@ Each item shall be reviewed before approving any significant architectural or fu
 
 | Validation Item | Status |
 |-----------------|--------|
-| Scholarship Eligibility consumes business information without assuming ownership. | â˜ |
-| Published business information remains authoritative. | â˜ |
-| Information ownership boundaries remain unchanged. | â˜ |
+| Scholarship Eligibility consumes business information without assuming ownership. | ☐ |
+| Published business information remains authoritative. | ☐ |
+| Information ownership boundaries remain unchanged. | ☐ |
 
 ---
 
@@ -5644,10 +5651,10 @@ Each item shall be reviewed before approving any significant architectural or fu
 
 | Validation Item | Status |
 |-----------------|--------|
-| Architecture Decision Records remain valid. | â˜ |
-| Business Invariants continue to hold. | â˜ |
-| New capabilities do not violate existing architectural principles. | â˜ |
-| All architectural changes undergo review before approval. | â˜ |
+| Architecture Decision Records remain valid. | ☐ |
+| Business Invariants continue to hold. | ☐ |
+| New capabilities do not violate existing architectural principles. | ☐ |
+| All architectural changes undergo review before approval. | ☐ |
 
 ---
 
@@ -5655,9 +5662,9 @@ Each item shall be reviewed before approving any significant architectural or fu
 
 | Result | Status |
 |----------|--------|
-| Architecture complies with all mandatory design principles. | â˜ Pass |
-| Minor deviations require documented architectural approval. | â˜ Review Required |
-| Major deviations require architecture redesign before implementation. | â˜ Fail |
+| Architecture complies with all mandatory design principles. | ☐ Pass |
+| Minor deviations require documented architectural approval. | ☐ Review Required |
+| Major deviations require architecture redesign before implementation. | ☐ Fail |
 
 ---
 
@@ -5684,7 +5691,7 @@ The appendices provide supporting reference material for the Scholarship Eligibi
 
 ---
 
-# Appendix A â€” Business Terminology
+# Appendix A — Business Terminology
 
 The following terminology shall be used consistently throughout the Scholarship Eligibility bounded context.
 
@@ -5707,9 +5714,9 @@ The following terminology shall be used consistently throughout the Scholarship 
 
 ---
 
-# Appendix B â€” State Transition Matrix
+# Appendix B — State Transition Matrix
 
-## B.1 Scholarship Reference Lifecycle
+## B.1 Scholarship Definition Lifecycle
 
 | Current State | Business Action | Next State |
 |---------------|----------------|------------|
@@ -5749,7 +5756,7 @@ The following terminology shall be used consistently throughout the Scholarship 
 
 ---
 
-# Appendix C â€” Business Event Catalogue
+# Appendix C — Business Event Catalogue
 
 The following business events represent completed business facts published by the Scholarship Eligibility bounded context.
 
@@ -5774,13 +5781,13 @@ The following business events represent completed business facts published by th
 
 ---
 
-# Appendix D â€” Business Rule Catalogue
+# Appendix D — Business Rule Catalogue
 
 | Rule ID | Business Rule |
 |---------|---------------|
 | BR-001 | Scholarship Definition must be Active before eligibility assessment may begin. |
 | BR-002 | Eligibility assessment shall use exactly one Active Eligibility Policy version. |
-| BR-003 | A Student may have only one Active Eligibility Record per Studentâ€“Scholarshipâ€“Institutionâ€“Academic Period combination. |
+| BR-003 | A Student may have only one Active Eligibility Record per Student–Scholarship–Institution–Academic Period combination. |
 | BR-004 | Eligibility decisions shall be deterministic. |
 | BR-005 | Every eligibility decision shall be explainable. |
 | BR-006 | Published Eligibility Policies are immutable. |
@@ -5796,7 +5803,7 @@ The following business events represent completed business facts published by th
 
 ---
 
-# Appendix E â€” Representative Business Scenarios
+# Appendix E — Representative Business Scenarios
 
 The following scenarios illustrate representative business behaviour supported by the architecture.
 
@@ -5813,25 +5820,25 @@ The following scenarios illustrate representative business behaviour supported b
 
 ---
 
-# Appendix F â€” Cross-Document References
+# Appendix F — Cross-Document References
 
 The Scholarship Eligibility bounded context collaborates with several other enterprise domains.
 
 | Related Document | Relationship |
 |------------------|--------------|
-| L2-C01 â€” Admissions | Provides admission context. |
-| L2-C02 â€” Student Lifecycle | Provides student business information. |
-| L2-C03 â€” Academic Registration | Provides registration status. |
-| L2-C04 â€” Academic Progression | Provides academic performance information. |
-| L2-C05 â€” Qualification Completion | Provides qualification status. |
-| L2-C06 â€” Guardian Workflows | Provides supporting business evidence. |
+| L2-C01 — Student Lifecycle | Provides student business information. |
+| L2-C02 — Admissions | Provides admission context. |
+| L2-C03 — Academic Registration | Provides registration status. |
+| L2-C04 — Academic Progression | Provides academic performance information. |
+| L2-C05 — Qualification Completion | Provides qualification status. |
+| L2-C06 — Student Documents | Provides supporting business evidence. |
 | Finance Architecture | Consumes scholarship recommendations for downstream financial processing. |
 | Workflow Architecture | Coordinates approval and operational workflows. |
 | Reporting & Analytics | Consumes published business events and eligibility information. |
 
 ---
 
-# Appendix G â€” Requirements Traceability Matrix
+# Appendix G — Requirements Traceability Matrix
 
 The following matrix maps key architectural requirements to their defining sections within this document.
 
@@ -5861,4 +5868,3 @@ The following matrix maps key architectural requirements to their defining secti
 This concludes the Level 2 architecture specification for the **Scholarship Eligibility** bounded context. Together, the architecture, visual models, Architecture Decision Records, Business Invariants, validation checklist, and appendices establish the authoritative business architecture governing scholarship eligibility within the SutraERP platform.
 
 ---
-

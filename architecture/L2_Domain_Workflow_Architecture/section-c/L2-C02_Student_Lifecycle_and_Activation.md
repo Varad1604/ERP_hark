@@ -12,15 +12,16 @@
 - L2-C01 — Admissions
 
 **Used By:**
-- L2-D01 — Academic Delivery
+- L2-D01 — Course & Course Offering Workflows
+- L2-D04 — Teaching Session & Attendance Workflows
+- L2-I01 — Examination Policy & Configuration Workflows
 - L2-F01 — Student Charge & Fee Management
-- L2-G03 — Hostel Workflows
-- L2-G04 — Transport Workflows
-- L2-G05 — Library Workflows
-- L2-H02 — Notification Workflows
+- L2-G03 — Hostel Management Workflows
+- L2-G05 — Library Management Workflows
+- L2-G04 — Transport Management Workflows
 - L2-H04 — Placement Workflows
-- L2-H07 — Dashboard Workflows
 - L2-C08 — Alumni Transition Workflows
+- L2-C06 — Guardian Workflows
 - Analytics & Reporting
 
 ---
@@ -48,8 +49,8 @@ At this point:
 - Applicant becomes Student.
 - Permanent Student Identity is established.
 - Institutional relationship begins.
-- Academic lifecycle starts.
-- Administrative lifecycle starts.
+- StudentContext is established.
+- Academic and administrative lifecycle begins within the StudentContext.
 - Student becomes eligible for downstream services.
 
 Every subsequent academic operation—including attendance, examinations, finance, hostel allocation, library membership, transport allocation, placement activities, and alumni transition—depends upon the Student aggregate managed by this domain.
@@ -67,7 +68,7 @@ The Student Lifecycle Domain provides:
 - Programme Association
 - Academic Relationship Management
 - Administrative Activation
-- Multi-domain Student Master Data
+- Cross-domain Student Master Data
 
 It intentionally does **not** own academic teaching, finance, attendance, examinations, hostel operations, or library transactions.
 
@@ -187,7 +188,11 @@ Student identifiers are immutable.
 
 ### SP-004
 
-Exactly one Student aggregate shall exist for each active institutional identity.
+- A Student shall have a single canonical Student Aggregate representing the student persona.
+
+- A Student may own multiple historical StudentContexts across institutional history.
+
+- At most one StudentContext may be Active within a given Institute at any point in time.
 
 ---
 
@@ -276,9 +281,13 @@ Historical Student records shall never be physically deleted.
 | Section Assignment | Student Lifecycle |
 | Student Lifecycle | Student Lifecycle |
 
-The Student Lifecycle Domain is the exclusive owner of the Student aggregate.
+The Student Lifecycle Domain is the exclusive owner of the Student Aggregate and the associated StudentContext.
 
-No downstream domain may directly modify Student master information except through approved architecture contracts.
+The Student Aggregate represents the canonical student persona.
+
+The StudentContext represents the student's academic and institutional relationship with a specific Institute and owns the academic lifecycle.
+
+No downstream domain may directly modify Student master information or StudentContext lifecycle information except through approved architecture contracts.
 
 ---
 # 6. Student Aggregate Model
@@ -600,7 +609,7 @@ The following invariants shall always hold true:
 - Deleted students shall never be physically removed.
 - Duplicate active Student identities are prohibited.
 - Every aggregate modification shall produce an audit record.
-- Multi-domain updates shall occur only through approved contracts.
+- Cross-domain updates shall occur only through approved contracts.
 
 ---
 
@@ -626,13 +635,21 @@ Academic Lifecycle
         └── Exit
 ```
 
-The Student Aggregate exists until archival following completion of the institutional lifecycle.
+The Student Aggregate represents the canonical Student persona.
+
+The academic and institutional lifecycle is owned by the associated StudentContext.
+Each StudentContext represents a student's relationship with a specific Institute and progresses independently through the institutional lifecycle.
+A Student may have multiple historical StudentContexts; however, at most one StudentContext may be Active for a given Institute at any point in time.
+The Student Aggregate remains the canonical identity anchor, while StudentContext owns institutional lifecycle progression, qualification completion, transfer, withdrawal, and other academic state transitions.
 
 ---
 
 # 6.8 Summary
 
-The Student Aggregate establishes the canonical master record for every enrolled student within SutraERP. It centralizes identity, enrollment, institutional association, academic assignment, lifecycle state, and supporting master information while maintaining strict ownership boundaries. All downstream domains consume the Student Aggregate through approved contracts without assuming ownership of its data.
+The Student Aggregate establishes the canonical master record representing the student persona within SutraERP.
+The associated StudentContext owns the student's institutional relationship, academic assignment, and lifecycle state for a specific Institute.
+Together, the Student Aggregate and StudentContext provide the authoritative model consumed by downstream domains through approved architecture contracts without transferring ownership.
+
 
 # 7. Core Workflows
 
@@ -666,7 +683,7 @@ All workflows shall:
 | WF-C02-06 | Student Suspension | Temporarily suspend student |
 | WF-C02-07 | Student Restoration | Restore suspended student |
 | WF-C02-08 | Student Transfer | Transfer student within institution |
-| WF-C02-09 | Student Qualification Completion Handoff | Transfer ownership towards Alumni |
+| WF-C02-09 | Qualification Completion Handoff | Transfer ownership towards Alumni |
 | WF-C02-10 | Student Exit / Archive | Complete institutional relationship |
 
 ---
@@ -751,7 +768,7 @@ Downstream domains may invoke these workflows through approved service contracts
 
 ---
 
-# 7.7 Multi-Domain Participation
+# 7.7 Cross-Domain Participation
 
 | Workflow | External Domain Participation |
 |----------|-------------------------------|
@@ -766,7 +783,7 @@ Downstream domains may invoke these workflows through approved service contracts
 | Qualification Completion Handoff | Academic Delivery / Examination |
 | Exit / Archive | Alumni / Analytics / Audit |
 
-Multi-domain participation shall occur only through canonical service contracts and domain events.
+Cross-domain participation shall occur only through canonical service contracts and domain events.
 
 ---
 
@@ -803,7 +820,7 @@ The following sections define each workflow in detail.
 - **WF-C02-06 — Student Suspension**
 - **WF-C02-07 — Student Restoration**
 - **WF-C02-08 — Student Transfer**
-- **WF-C02-09 — Student Qualification Completion Handoff**
+- **WF-C02-09 — Qualification Completion Handoff**
 - **WF-C02-10 — Student Exit / Archive**
 - **WF-C02-11 — Student Document & Certificate Request**
 
@@ -844,8 +861,9 @@ Ownership transfers from the Admission Domain to the Student Lifecycle Domain du
 
 ### Trigger
 
-- Admission Confirmed
-- Student Creation Requested
+The workflow is initiated upon consumption of the canonical `StudentCreationRequested` domain event published by the Admissions Domain after successful admission confirmation.
+
+The Student Lifecycle Domain validates the request, creates the Student Aggregate, persists the aggregate, and publishes the canonical `StudentCreated` domain event.
 
 ### Preconditions
 
@@ -875,7 +893,7 @@ A[Admission Confirmed]
 
 A --> B[Validate Admission]
 
-B --> C{Already Student}
+B --> C{Already Student?}
 
 C -->|Yes| X[Reject Request]
 
@@ -1072,7 +1090,7 @@ F --> G[Complete]
 
 ### Domain Events
 
-- StudentEnrollmentUpdated
+- EnrollmentUpdated
 
 ### Service Contracts
 
@@ -1151,7 +1169,7 @@ G --> H[Complete]
 
 ### Domain Events
 
-- StudentAcademicAssignmentCompleted
+- AcademicAssignmentCompleted
 
 ### Service Contracts
 
@@ -1177,7 +1195,7 @@ The following workflow specifications continue using the identical repository te
 - **WF-C02-06 — Student Suspension**
 - **WF-C02-07 — Student Restoration**
 - **WF-C02-08 — Student Transfer**
-- **WF-C02-09 — Student Qualification Completion Handoff**
+- **WF-C02-09 — Qualification Completion Handoff**
 - **WF-C02-10 — Student Exit / Archive**
 
 Each workflow shall contain:
@@ -1240,7 +1258,7 @@ A --> B[Validate Student]
 
 B --> C[Validate Transition]
 
-C --> D{Transition Allowed}
+C --> D{Transition Allowed?}
 
 D -->|No| X[Reject]
 
@@ -1509,7 +1527,7 @@ F --> G[Complete]
 
 ---
 
-# WF-C02-09 — Student Qualification Completion Handoff
+# WF-C02-09 — Qualification Completion Handoff
 
 ## 1. Workflow Definition
 
@@ -1531,7 +1549,7 @@ Ownership of the Student Aggregate remains with the Student Lifecycle Domain, wh
 
 ### Postconditions
 
-- Student marked QualificationCompleted
+- Student marked Qualification Completed
 - Alumni handoff initiated
 - Events published
 
@@ -1546,11 +1564,11 @@ A[Qualification Completion Approved]
 
 A --> B[Validate Completion]
 
-B --> C[Mark QualificationCompleted]
+B --> C[Mark Qualification Completed]
 
 C --> D[Initiate Alumni Handoff]
 
-D --> E[Publish StudentQualificationCompleted]
+D --> E[Synchronize Local Qualification Completion Status]
 
 E --> F[Audit]
 
@@ -1563,7 +1581,7 @@ F --> G[Complete]
 
 ### Domain Events
 
-- StudentQualificationCompleted
+- None. This workflow consumes `QualificationAwarded`, published by the Qualification Completion domain (L2-C05); it does not publish a competing canonical event.
 
 ### Service Contracts
 
@@ -1656,7 +1674,7 @@ E --> F[Complete]
 
 The **Student Document & Certificate Request Workflow** governs the canonical business process through which a Student requests institution-issued documents and certificates during or after their academic lifecycle.
 
-This workflow establishes the Student Lifecycle Domain as the authoritative owner of document request initiation, eligibility validation, request lifecycle management, approval orchestration, and multi-domain coordination while preserving the **Document Services Domain** as the exclusive owner of document generation, rendering, issuance, storage, verification, and lifecycle management of generated documents.
+This workflow establishes the Student Lifecycle Domain as the authoritative owner of document request initiation, eligibility validation, request lifecycle management, approval orchestration, and cross-domain coordination while preserving the **Document Services Domain** as the exclusive owner of document generation, rendering, issuance, storage, verification, and lifecycle management of generated documents.
 
 The workflow provides a standardized mechanism for requesting institution-issued documents while ensuring policy compliance, institutional approvals, auditability, and secure delegation to downstream document generation services.
 
@@ -1692,7 +1710,7 @@ This workflow governs:
 - Request rejection
 - Request tracking
 - Audit generation
-- Multi-domain coordination
+- Cross-domain coordination
 - Notification initiation
 
 This workflow does **not** govern:
@@ -1793,7 +1811,7 @@ Successful workflow execution produces:
 - Audit Record
 - StudentDocumentRequested event
 - Notification Request
-- Multi-domain document generation request
+- Cross-domain document generation request
 
 ---
 
@@ -1816,7 +1834,7 @@ Failures shall not modify business state.
 
 ---
 
-## WF-C02-11.10 Multi-Domain Dependencies
+## WF-C02-11.10 Cross-Domain Dependencies
 
 | Domain | Purpose |
 |----------|----------------------------------------------|
@@ -1895,13 +1913,13 @@ F[Validate Institutional Policy]
 
 G[Validate Clearances]
 
-H{Eligible}
+H{Eligible?}
 
 I[Reject Request]
 
 J[Create Student Document Request]
 
-K{Approval Required}
+K{Approval Required?}
 
 L[Execute Approval Workflow]
 
@@ -2114,7 +2132,7 @@ Successful workflow execution produces:
 - StudentProfileUpdated event
 - Notification Request
 - Updated Read Models
-- Multi-domain synchronization request
+- Cross-domain synchronization request
 
 ---
 
@@ -2135,7 +2153,7 @@ Failures shall not modify business state.
 
 ---
 
-## WF-C02-12.12 Multi-Domain Dependencies
+## WF-C02-12.12 Cross-Domain Dependencies
 
 | Domain | Purpose |
 |----------|----------------------------------------------|
@@ -2212,7 +2230,7 @@ F[Validate Editable Fields]
 
 G[Validate Business Rules]
 
-H{Approval Required}
+H{Approval Required?}
 
 I[Reject Request]
 
@@ -2438,7 +2456,7 @@ Failures shall not modify business state.
 
 ---
 
-## WF-C02-13.11 Multi-Domain Dependencies
+## WF-C02-13.11 Cross-Domain Dependencies
 
 | Domain | Purpose |
 |----------|----------------------------------------------|
@@ -2517,7 +2535,7 @@ F[Validate Guardian Information]
 
 G[Validate Relationship]
 
-H{Approval Required}
+H{Approval Required?}
 
 I[Reject Request]
 
@@ -2740,7 +2758,7 @@ Failures shall not modify business state.
 
 ---
 
-## WF-C02-14.11 Multi-Domain Dependencies
+## WF-C02-14.11 Cross-Domain Dependencies
 
 | Domain | Purpose |
 |----------|----------------------------------------------|
@@ -2817,7 +2835,7 @@ F[Validate Communication Preferences]
 
 G[Validate Institutional Policy]
 
-H{Approval Required}
+H{Approval Required?}
 
 I[Reject Request]
 
@@ -2896,7 +2914,7 @@ The objectives of this workflow are to:
 - Synchronize corrected identity information.
 - Maintain complete audit history.
 - Preserve regulatory compliance.
-- Protect multi-domain referential integrity.
+- Protect cross-domain referential integrity.
 
 ---
 
@@ -3023,7 +3041,7 @@ Successful workflow execution produces:
 - Historical identity record
 - Audit record
 - StudentIdentityCorrected event
-- Multi-domain synchronization request
+- Cross-domain synchronization request
 - Notification request
 
 ---
@@ -3044,7 +3062,7 @@ Failures shall not modify business state.
 
 ---
 
-## WF-C02-15.11 Multi-Domain Dependencies
+## WF-C02-15.11 Cross-Domain Dependencies
 
 | Domain | Purpose |
 |----------|----------------------------------------------|
@@ -3121,7 +3139,7 @@ F[Validate Supporting Documents]
 
 G[Validate Institutional Policy]
 
-H{Approved}
+H{Approved?}
 
 I[Reject Request]
 
@@ -3169,7 +3187,7 @@ style P fill:#2E7D32,color:#fff
 
 ## WF-C02-15.16 Summary
 
-The Student Identity Correction Workflow establishes the canonical process for correcting legally significant Student identity information while preserving immutable primary identifiers, historical traceability, institutional governance, and multi-domain consistency. By requiring documentary evidence, configurable approvals, comprehensive auditing, and event-driven synchronization, the workflow ensures that identity corrections remain secure, compliant, and fully governed throughout the SutraERP platform.
+The Student Identity Correction Workflow establishes the canonical process for correcting legally significant Student identity information while preserving immutable primary identifiers, historical traceability, institutional governance, and cross-domain consistency. By requiring documentary evidence, configurable approvals, comprehensive auditing, and event-driven synchronization, the workflow ensures that identity corrections remain secure, compliant, and fully governed throughout the SutraERP platform.
 
 ---
 
@@ -3216,7 +3234,7 @@ This workflow governs:
 - Reference migration
 - Duplicate archival
 - Merge audit history
-- Multi-domain synchronization
+- Cross-domain synchronization
 
 This workflow does **not** govern:
 
@@ -3363,7 +3381,7 @@ Failures shall not modify business state.
 
 ---
 
-## WF-C02-16.12 Multi-Domain Dependencies
+## WF-C02-16.12 Cross-Domain Dependencies
 
 | Domain | Purpose |
 |----------|----------------------------------------------|
@@ -3450,7 +3468,7 @@ F[Select Canonical Student]
 
 G[Validate Merge Policy]
 
-H{Approved}
+H{Approved?}
 
 I[Reject Merge]
 
@@ -3501,7 +3519,7 @@ style Q fill:#2E7D32,color:#fff
 
 ## WF-C02-16.17 Summary
 
-The Student Merge & Duplicate Resolution Workflow establishes the canonical Master Data Management (MDM) process for resolving duplicate Student records across the SutraERP platform. By enforcing governed duplicate validation, controlled survivor selection, attribute reconciliation, immutable auditing, and event-driven synchronization, the workflow preserves a single authoritative Student identity while maintaining referential integrity, historical traceability, and consistent multi-domain interoperability throughout the enterprise.
+The Student Merge & Duplicate Resolution Workflow establishes the canonical Master Data Management (MDM) process for resolving duplicate Student records across the SutraERP platform. By enforcing governed duplicate validation, controlled survivor selection, attribute reconciliation, immutable auditing, and event-driven synchronization, the workflow preserves a single authoritative Student identity while maintaining referential integrity, historical traceability, and consistent cross-domain interoperability throughout the enterprise.
 
 ---
 
@@ -3618,7 +3636,7 @@ All implementations shall enforce these rules before committing business transac
 | Rule ID | Business Rule |
 |----------|---------------|
 | BR-C02-031 | Qualification Completion requires successful completion of institutional academic requirements. |
-| BR-C02-032 | Qualification Completion shall publish StudentQualificationCompleted event. |
+| BR-C02-032 | Qualification Completion status shall be updated upon consuming the `QualificationAwarded` event published by the Qualification Completion domain (L2-C05). Student Lifecycle shall not publish a competing canonical event for this transition. |
 | BR-C02-033 | Qualification Completion shall initiate Alumni handoff. |
 | BR-C02-034 | Qualification Completion shall preserve the complete Student history. |
 | BR-C02-035 | Qualification Completion shall not delete Student records. |
@@ -3637,12 +3655,12 @@ All implementations shall enforce these rules before committing business transac
 
 ---
 
-# 9.10 Multi-Domain Rules
+# 9.10 Cross-Domain Rules
 
 | Rule ID | Business Rule |
 |----------|---------------|
 | BR-C02-041 | Downstream domains shall consume Student data through approved contracts only. |
-| BR-C02-042 | Multi-domain updates shall not directly modify the Student Aggregate. |
+| BR-C02-042 | Cross-domain updates shall not directly modify the Student Aggregate. |
 | BR-C02-043 | Domain ownership shall remain exclusive to the Student Lifecycle Domain. |
 | BR-C02-044 | Domain events shall be immutable. |
 | BR-C02-045 | Service contracts shall remain version controlled. |
@@ -3748,7 +3766,7 @@ The following rules govern controlled correction of Student identity information
 | BR-C02-086 | Supporting evidence shall be recorded where required. |
 | BR-C02-087 | Identity corrections shall be fully auditable. |
 | BR-C02-088 | Previous identity values shall remain historically traceable. |
-| BR-C02-089 | Identity corrections shall preserve multi-domain referential integrity. |
+| BR-C02-089 | Identity corrections shall preserve cross-domain referential integrity. |
 | BR-C02-090 | Identity correction shall publish a canonical domain event. |
 | BR-C02-091 | Identity correction shall not create duplicate Student identities. |
 
@@ -3813,13 +3831,13 @@ Every domain event shall satisfy the following principles:
 |-----------|-------------------------------|----------------------------------------------|
 | EVT-C02-001 | StudentCreated | Student Aggregate successfully created |
 | EVT-C02-002 | StudentActivated | Student activated for institutional services |
-| EVT-C02-003 | StudentEnrollmentUpdated | Enrollment information modified |
-| EVT-C02-004 | StudentAcademicAssignmentCompleted | Academic assignment completed |
+| EVT-C02-003 | EnrollmentUpdated | Enrollment information modified |
+| EVT-C02-004 | AcademicAssignmentCompleted | Academic assignment completed |
 | EVT-C02-005 | StudentStatusChanged | Lifecycle status updated |
 | EVT-C02-006 | StudentSuspended | Student temporarily suspended |
 | EVT-C02-007 | StudentRestored | Suspended Student restored |
 | EVT-C02-008 | StudentTransferred | Student transferred within institution |
-| EVT-C02-009 | StudentQualificationCompleted | Qualification completion successfully completed |
+| EVT-C02-009 | QualificationAwarded (consumed) | Consumed from L2-C05; not published by Student Lifecycle |
 | EVT-C02-010 | StudentArchived | Student lifecycle archived |
 
 ---
@@ -3943,7 +3961,7 @@ Typical examples include:
 
 Downstream domains shall treat this event as the canonical indication that the Student has entered active institutional participation.
 
-# 10.6 StudentEnrollmentUpdated
+# 10.6 EnrollmentUpdated
 
 ## Description
 
@@ -3988,7 +4006,7 @@ Student Lifecycle Domain
 
 ### Business Purpose
 
-The StudentEnrollmentUpdated event ensures that all downstream domains maintain a consistent understanding of the Student's institutional enrollment.
+The EnrollmentUpdated event ensures that all downstream domains maintain a consistent understanding of the Student's institutional enrollment.
 
 Typical business scenarios include:
 
@@ -4000,7 +4018,7 @@ Typical business scenarios include:
 
 Consumer domains shall treat this event as the authoritative notification of enrollment changes.
 
-# 10.7 StudentAcademicAssignmentCompleted
+# 10.7 AcademicAssignmentCompleted
 
 ## Description
 
@@ -4049,7 +4067,7 @@ Student Lifecycle Domain
 
 ### Business Purpose
 
-The StudentAcademicAssignmentCompleted event synchronizes the Student's academic placement across the enterprise.
+The AcademicAssignmentCompleted event synchronizes the Student's academic placement across the enterprise.
 
 Typical business scenarios include:
 
@@ -4070,7 +4088,7 @@ Published immediately after a governed change to the Student's operational statu
 
 This event represents a generic lifecycle status transition that does not require a dedicated domain event. It enables downstream domains to synchronize operational behaviour whenever the Student's status changes according to the canonical lifecycle model.
 
-Dedicated lifecycle events such as StudentSuspended, StudentRestored, StudentQualificationCompleted, and StudentArchived shall continue to be published independently for significant business transitions.
+Dedicated lifecycle events such as StudentSuspended, StudentRestored, and StudentArchived shall continue to be published independently for significant business transitions. Qualification Completion status is instead synchronized locally upon consuming `QualificationAwarded`, published by the Qualification Completion domain (L2-C05); see Section 10.12.
 
 ### Trigger
 
@@ -4120,7 +4138,7 @@ Typical business scenarios include:
 - Reporting synchronization
 - Notification generation
 - Institutional dashboards
-- Multi-domain policy evaluation
+- Cross-domain policy evaluation
 
 Consumer domains shall not infer specialised lifecycle transitions from this event when a dedicated canonical event exists.
 
@@ -4317,7 +4335,7 @@ The Student Aggregate identity shall remain unchanged throughout the transfer.
 
 ---
 
-# 10.12 StudentQualificationCompleted
+# 10.12 QualificationAwarded (Consumed)
 
 ## Description
 
@@ -4363,7 +4381,7 @@ Student Lifecycle Domain
 
 ### Business Purpose
 
-The StudentQualificationCompleted event initiates institutional post-qualification completion processes.
+The `QualificationAwarded` event is published by the Qualification Completion domain (L2-C05) and consumed here so the Student Aggregate can synchronize its local lifecycle status with that authoritative decision. Downstream institutional post-qualification-completion processes are triggered from L2-C05's event and the downstream Alumni Transition chain (L2-C08), not republished by Student Lifecycle.
 
 Typical business actions include:
 
@@ -4862,10 +4880,10 @@ StudentCreated
 StudentActivated
         │
         ▼
-StudentEnrollmentUpdated
+EnrollmentUpdated
         │
         ▼
-StudentAcademicAssignmentCompleted
+AcademicAssignmentCompleted
         │
         ▼
 StudentStatusChanged
@@ -4878,7 +4896,7 @@ StudentSuspended   StudentTransferred
 StudentRestored       │
  └─────────┬──────────┘
            ▼
-StudentQualificationCompleted
+QualificationAwarded
            │
            ▼
 StudentArchived
@@ -5033,7 +5051,7 @@ The Domain Events defined within the Student Lifecycle Domain establish the cano
 
 Each published event represents an immutable business fact that has successfully completed within the Student Lifecycle Domain and serves as the authoritative notification mechanism for downstream academic, administrative, analytical, and operational domains.
 
-By enforcing strict domain ownership, standardized event structures, version-controlled schemas, reliable publication mechanisms, governed evolution, and idempotent consumption, the architecture enables loosely coupled, highly scalable, and operationally resilient multi-domain communication without compromising aggregate consistency or business integrity.
+By enforcing strict domain ownership, standardized event structures, version-controlled schemas, reliable publication mechanisms, governed evolution, and idempotent consumption, the architecture enables loosely coupled, highly scalable, and operationally resilient cross-domain communication without compromising aggregate consistency or business integrity.
 
 Together with the Platform Event Infrastructure, these Domain Events provide the foundation for enterprise-wide event-driven architecture across cloud, hybrid, and on-premises deployments while preserving long-term maintainability, interoperability, auditability, and deployment independence throughout the SutraERP ecosystem.
 
@@ -5048,15 +5066,22 @@ The state model ensures:
 
 - Predictable business behavior
 - Lifecycle integrity
-- Consistent multi-domain interactions
+- Consistent cross-domain interactions
 - Complete auditability
 - Deterministic workflow execution
 
 A Student shall always exist in **exactly one current lifecycle state**.
 
+This domain governs **two related state machines**, and they must not be conflated:
+
+- The **Student Aggregate** state machine (sections 11.2 to 11.9) governs the canonical student persona — the institution-wide identity created once from a confirmed Admission.
+- The **StudentContext** state machine (section 11.10) governs one student's academic and institutional relationship with **one specific Institute**. A Student may hold many StudentContexts over time, but at most one may be Active within a given Institute.
+
+`StudentContext` is the aggregate name defined in locked L1. Section 11.10 publishes its canonical state list and the mapping between the two machines.
+
 ---
 
-# 11.2 Canonical Lifecycle States
+# 11.2 Canonical Lifecycle States — Student Aggregate
 
 | State | Description |
 |---------|--------------------------------------------|
@@ -5068,7 +5093,7 @@ A Student shall always exist in **exactly one current lifecycle state**.
 | Suspended | Student temporarily restricted by institutional policy. |
 | Restored | Student returned to Active state after suspension. |
 | Transferred | Student reassigned within the institution. |
-| QualificationCompleted | Academic programme successfully completed. |
+| Qualification Completed | Academic programme successfully completed. |
 | Archived | Institutional lifecycle completed and record retained for history. |
 
 ---
@@ -5098,9 +5123,9 @@ Active --> Transferred
 
 Transferred --> Active
 
-Active --> QualificationCompleted
+Active --> Qualification Completed
 
-QualificationCompleted --> Archived
+Qualification Completed --> Archived
 ```
 
 ---
@@ -5210,7 +5235,7 @@ Student identity remains unchanged.
 
 ---
 
-## QualificationCompleted
+## Qualification Completed
 
 Academic programme completed successfully.
 
@@ -5239,11 +5264,11 @@ Characteristics:
 | Activated | Enrolled |
 | Enrolled | Academically Assigned |
 | Academically Assigned | Active |
-| Active | Suspended, Transferred, QualificationCompleted |
+| Active | Suspended, Transferred, Qualification Completed |
 | Suspended | Restored |
 | Restored | Active |
 | Transferred | Active |
-| QualificationCompleted | Archived |
+| Qualification Completed | Archived |
 | Archived | None |
 
 ---
@@ -5255,11 +5280,11 @@ The following transitions are prohibited:
 | Invalid Transition | Reason |
 |--------------------|-----------------------------------------|
 | Created → Active | Activation required. |
-| Activated → QualificationCompleted | Academic lifecycle incomplete. |
+| Activated → Qualification Completed | Academic lifecycle incomplete. |
 | Active → Created | Reverse lifecycle prohibited. |
 | Archived → Active | Archived records are immutable unless a governed reactivation process is explicitly supported by institutional policy. |
-| QualificationCompleted → Suspended | Qualification Completion completes the active academic lifecycle. |
-| Suspended → QualificationCompleted | Restoration required before qualification completion processing. |
+| Qualification Completed → Suspended | Qualification Completion completes the active academic lifecycle. |
+| Suspended → Qualification Completed | Restoration required before qualification completion processing. |
 | Archived → Deleted | Physical deletion prohibited. |
 
 ---
@@ -5276,7 +5301,7 @@ The following transitions are prohibited:
 | Suspended | Student Lifecycle |
 | Restored | Student Lifecycle |
 | Transferred | Student Lifecycle |
-| QualificationCompleted | Student Lifecycle |
+| Qualification Completed | Student Lifecycle |
 | Archived | Student Lifecycle |
 
 No external domain may directly modify lifecycle state.
@@ -5296,8 +5321,8 @@ No external domain may directly modify lifecycle state.
 | Restored → Active | Restoration Complete |
 | Active → Transferred | Transfer Workflow |
 | Transferred → Active | Transfer Completed |
-| Active → QualificationCompleted | Qualification Completion Workflow |
-| QualificationCompleted → Archived | Archive Workflow |
+| Active → Qualification Completed | Qualification Completion Workflow |
+| Qualification Completed → Archived | Archive Workflow |
 
 ---
 
@@ -5311,14 +5336,90 @@ The following conditions shall always remain true:
 - Every transition publishes a domain event.
 - Historical states remain immutable.
 - Invalid transitions are rejected.
-- Multi-domain systems consume state changes through canonical events or service contracts.
+- Cross-domain systems consume state changes through canonical events or service contracts.
 - Lifecycle execution shall remain deterministic.
 
 ---
 
-# 11.10 Summary
+# 11.10 Canonical Lifecycle States — StudentContext
 
-The Student Lifecycle State Model defines the authoritative progression of the Student Aggregate from creation through archival. By enforcing valid transitions, preserving historical state information, and centralizing lifecycle ownership within the Student Lifecycle Domain, it provides a consistent foundation for all downstream academic and administrative processes across the SutraERP platform.
+`StudentContext` is the canonical aggregate defined in locked L1 for a student's relationship with a
+single Institute. The Student Aggregate is the institution-wide persona; the StudentContext is the
+per-Institute academic relationship. Both are owned exclusively by the Student Lifecycle Domain.
+
+## 11.10.1 Canonical StudentContext States
+
+| State | Description | Terminal |
+|---|---|---|
+| Pending Activation | Context created for an Institute; academic relationship not yet live. | No |
+| Active | The student's academic relationship with this Institute is live. | No |
+| Suspended | Relationship temporarily restricted by institutional policy; reversible to Active. | No |
+| Qualification Completed | The student completed the qualification at this Institute. | Yes |
+| Withdrawn | The student voluntarily ended the relationship with this Institute. | Yes |
+| Transferred | The relationship moved to another Institute; a new StudentContext is opened there. | Yes |
+| Discontinued | The relationship lapsed without a formal exit decision. | Yes |
+| Terminated | The institution ended the relationship by administrative or disciplinary decision. | Yes |
+
+## 11.10.2 StudentContext Invariants
+
+| ID | Invariant |
+|---|---|
+| SC-INV-001 | At most one StudentContext may be `Active` within a given Institute at any point in time. Inherited directly from locked L1. |
+| SC-INV-002 | A Student may own multiple historical StudentContexts across institutional history. |
+| SC-INV-003 | A StudentContext in any terminal state is immutable and shall be retained for history. |
+| SC-INV-004 | A new StudentContext may only be opened for an Institute once every prior StudentContext for that Institute is terminal. |
+| SC-INV-005 | Every StudentContext belongs to exactly one Student Aggregate and exactly one Institute. |
+
+## 11.10.3 Mapping — Student Aggregate to StudentContext
+
+The Student Aggregate reflects the institution-wide persona; the StudentContext reflects one Institute
+relationship. The mapping below is the authoritative reconciliation between the two machines.
+
+| Student Aggregate state | Corresponding StudentContext state | Notes |
+|---|---|---|
+| Created | *(none yet)* | Persona exists; no Institute relationship opened. |
+| Activated | Pending Activation | Context created for the admitting Institute. |
+| Enrolled | Active | Academic relationship established. |
+| Academically Assigned | Active | Programme/Batch/Section assigned within the same Active context. |
+| Active | Active | Steady state. |
+| Suspended | Suspended | Suspension applies to the Active context for that Institute. |
+| Restored | Active | Restoration returns the context to Active. |
+| Transferred | Transferred (closed) + Pending Activation (new) | The originating context becomes terminal; a new context opens at the receiving Institute. |
+| Qualification Completed | Qualification Completed | Terminal for that Institute; triggers `QualificationAwarded` handling in L2-C05. |
+| Archived | *(all contexts terminal)* | Persona archived only once every StudentContext is terminal. |
+
+### Exit-state reconciliation
+
+Terminal StudentContext states that have no distinct Student Aggregate state are recorded on the
+context, not the persona:
+
+| StudentContext terminal state | Student Aggregate outcome |
+|---|---|
+| Withdrawn | Persona remains; Aggregate moves to Archived once no Active context remains. |
+| Discontinued | Persona remains; Aggregate moves to Archived once no Active context remains. |
+| Terminated | Persona remains; Aggregate moves to Archived once no Active context remains. |
+
+## 11.10.4 Ownership
+
+| Concern | Owner |
+|---|---|
+| Student Aggregate identity and persona lifecycle | Student Lifecycle (L2-C02) |
+| StudentContext lifecycle and per-Institute relationship | Student Lifecycle (L2-C02) |
+| Qualification Completion decision | Qualification Completion (L2-C05) |
+| Student-to-Alumni transition | Alumni Transition (L2-C08) |
+
+No downstream domain may modify StudentContext lifecycle state except through approved
+architecture contracts.
+
+Added 2026-08-03 to close integrity finding INT-009: the StudentContext state list was previously
+present only inside a master-data reference table, with no published mapping to the Student
+Aggregate state machine.
+
+---
+
+# 11.11 Summary
+
+The Student Lifecycle State Model defines the authoritative progression of both the Student Aggregate (the institution-wide persona) and the StudentContext (the per-Institute academic relationship, section 11.10) from creation through archival. By enforcing valid transitions, preserving historical state information, and centralizing lifecycle ownership within the Student Lifecycle Domain, it provides a consistent foundation for all downstream academic and administrative processes across the SutraERP platform.
 
 # 12. Service Contracts
 
@@ -5374,13 +5475,13 @@ Every Command Service shall:
 |-------------|-------------------------------|------------------|----------------------------------------------|
 | SC-C02-001 | CreateStudent() | WF-C02-01 | StudentCreated |
 | SC-C02-002 | ActivateStudent() | WF-C02-02 | StudentActivated |
-| SC-C02-003 | UpdateEnrollment() | WF-C02-03 | StudentEnrollmentUpdated |
-| SC-C02-004 | AssignAcademicStructure() | WF-C02-04 | StudentAcademicAssignmentCompleted |
+| SC-C02-003 | UpdateEnrollment() | WF-C02-03 | EnrollmentUpdated |
+| SC-C02-004 | AssignAcademicStructure() | WF-C02-04 | AcademicAssignmentCompleted |
 | SC-C02-005 | ChangeStudentStatus() | WF-C02-05 | StudentStatusChanged |
 | SC-C02-006 | SuspendStudent() | WF-C02-06 | StudentSuspended |
 | SC-C02-007 | RestoreStudent() | WF-C02-07 | StudentRestored |
 | SC-C02-008 | TransferStudent() | WF-C02-08 | StudentTransferred |
-| SC-C02-009 | CompleteQualification() | WF-C02-09 | StudentQualificationCompleted |
+| SC-C02-009 | CompleteQualification() | WF-C02-09 | None (consumes QualificationAwarded from L2-C05) |
 | SC-C02-010 | ArchiveStudent() | WF-C02-10 | StudentArchived |
 | SC-C02-011 | RequestStudentDocument() | WF-C02-11 | StudentDocumentRequested |
 | SC-C02-012 | UpdateStudentProfile() | WF-C02-12 | StudentProfileUpdated |
@@ -5598,11 +5699,11 @@ Academic Office
 - Enrollment updated
 - Historical enrollment preserved
 - Audit generated
-- StudentEnrollmentUpdated published
+- EnrollmentUpdated published
 
 ### Published Event
 
-- StudentEnrollmentUpdated
+- EnrollmentUpdated
 
 ### Failure Conditions
 
@@ -5662,11 +5763,11 @@ Updated Academic Assignment
 - Academic Assignment updated.
 - Previous assignment preserved where applicable.
 - Audit record generated.
-- StudentAcademicAssignmentCompleted event published.
+- AcademicAssignmentCompleted event published.
 
 ### Published Event
 
-- StudentAcademicAssignmentCompleted
+- AcademicAssignmentCompleted
 
 ### Validation
 
@@ -5920,7 +6021,7 @@ Duplicate transfer requests shall not create duplicate assignment history.
 
 Completes the academic lifecycle of a Student after all institutional qualification completion requirements have been successfully satisfied.
 
-Qualification Completion represents the transition from an Active Student to a QualificationCompleted Student while preserving the complete academic and operational history.
+Qualification Completion represents the transition from an Active Student to a Qualification Completed Student while preserving the complete academic and operational history.
 
 ### Workflow
 
@@ -5940,7 +6041,7 @@ Examination Authority
 
 ### Output
 
-Student Lifecycle = QualificationCompleted
+Student Lifecycle = Qualification Completed
 
 ### Preconditions
 
@@ -5952,14 +6053,14 @@ Student Lifecycle = QualificationCompleted
 
 ### Postconditions
 
-- Student marked as QualificationCompleted.
+- Student marked as Qualification Completed.
 - Qualification Completion details recorded.
 - Audit record generated.
-- StudentQualificationCompleted event published.
+- Local Qualification Completion status synchronized from the consumed `QualificationAwarded` event (L2-C05).
 
 ### Published Event
 
-- StudentQualificationCompleted
+- QualificationAwarded
 
 ### Validation
 
@@ -5973,7 +6074,7 @@ Refer Section 16.
 
 ### Idempotency
 
-Duplicate qualification completion requests shall safely return the existing QualificationCompleted state without creating duplicate business operations.
+Duplicate qualification completion requests shall safely return the existing Qualification Completed state without creating duplicate business operations.
 
 ## 12.6.10 ArchiveStudent()
 
@@ -6696,7 +6797,7 @@ Authorization within the Student Lifecycle Domain shall be evaluated against bus
 | Suspension Management | Suspend Student |
 | Restoration Management | Restore Student |
 | Transfer Management | Transfer Student |
-| Qualification Completion Management | Graduate Student |
+| Qualification Completion Management | Qualification Completed Student |
 | Archive Management | Archive Student |
 | Document Requests | Request official institutional documents |
 | Student Merge | Merge duplicate Student records |
@@ -6748,7 +6849,7 @@ Additional institution-specific roles may be configured through the Platform Aut
 | Suspend Student | ✗ | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ |
 | Restore Student | ✗ | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ |
 | Transfer Student | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ |
-| Graduate Student | ✗ | ✗ | ✓ | Limited | ✗ | ✗ | ✗ |
+| Qualification Completed Student | ✗ | ✗ | ✓ | Limited | ✗ | ✗ | ✗ |
 | Archive Student | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ | Read |
 | Merge Students | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ |
 | View Reports | ✓ | ✓ | ✓ | ✓ | Self | Limited | ✓ |
@@ -6937,7 +7038,7 @@ By combining Role-Based Access Control (RBAC), Attribute-Based Access Control (A
 
 This authorization model preserves strict ownership of the Student Aggregate, protects sensitive institutional information, supports regulatory compliance, and provides a secure, scalable, and maintainable authorization foundation fully aligned with the canonical Platform Authorization Framework of the SutraERP architecture.
 
-# 14. Multi-Domain Integrations
+# 14. Cross-Domain Integrations
 
 ## 14.1 Overview
 
@@ -6949,8 +7050,8 @@ To preserve architectural integrity:
 
 - Student Lifecycle owns Student Master data.
 - Downstream domains consume Student information.
-- Multi-domain communication occurs only through approved Service Contracts and Domain Events.
-- Direct database access amulti-domains is prohibited.
+- Cross-domain communication occurs only through approved Service Contracts and Domain Events.
+- Direct database access across domains is prohibited.
 
 ---
 
@@ -6993,8 +7094,8 @@ The Student Lifecycle Domain supports the following integration patterns.
 | Pattern | Purpose | Typical Usage |
 |----------|--------------------------------------------|---------------------------------------------|
 | Synchronous Service Calls | Real-time validation and queries | ValidateStudent(), GetStudentIdentity() |
-| Asynchronous Domain Events | Business state propagation | StudentCreated, StudentQualificationCompleted |
-| Workflow Integration | Multi-domain orchestration | Student lifecycle execution |
+| Asynchronous Domain Events | Business state propagation | StudentCreated, StudentTransferred |
+| Workflow Integration | Cross-domain orchestration | Student lifecycle execution |
 | Read Model Consumption | Reporting and analytics | Dashboards, KPIs |
 | Configuration Lookup | Policy-driven execution | Institutional policies |
 
@@ -7045,7 +7146,7 @@ Consumer domains shall never assume ownership of Student business data.
 
 ---
 
-# 14.5 Multi-Domain Integration Matrix
+# 14.5 Cross-Domain Integration Matrix
 
 | Domain | Query Services | Command Services | Consumes Events | Publishes Events to Student Domain |
 |----------|---------------|------------------|-----------------|-------------------------------------|
@@ -7077,13 +7178,13 @@ Events shall be published only after successful transaction commitment through t
 |--------------|-----------------------------------------------|---------------------------------------------|
 | StudentCreated | Academic Delivery, Finance, Library, Notification Platform | Student Aggregate creation |
 | StudentActivated | Attendance, Examination, Finance | Student becomes operational |
-| StudentEnrollmentUpdated | Examination, Analytics | Enrollment synchronization |
-| StudentAcademicAssignmentCompleted | Attendance, Timetable, Academic Delivery | Academic assignment synchronization |
+| EnrollmentUpdated | Examination, Analytics | Enrollment synchronization |
+| AcademicAssignmentCompleted | Attendance, Timetable, Academic Delivery | Academic assignment synchronization |
 | StudentStatusChanged | All authorized domains | Lifecycle status synchronization |
 | StudentSuspended | Library, Hostel, Finance, Notification Platform | Restrict institutional services |
 | StudentRestored | Library, Hostel, Finance | Restore institutional participation |
 | StudentTransferred | Academic Delivery, Attendance, Examination | Academic mobility |
-| StudentQualificationCompleted | Alumni, Document Services, Analytics | Qualification Completion completion |
+| QualificationAwarded (consumed from L2-C05) | Not republished by Student Lifecycle | Local status synchronization only |
 | StudentArchived | Archive Platform, Analytics | Historical archival |
 | StudentDocumentRequested | Document Services, Notification Platform | Official document processing |
 | StudentProfileUpdated | Analytics Platform, Notification Platform | Profile synchronization |
@@ -7121,7 +7222,7 @@ All services shall be version controlled and accessed exclusively through approv
 | SuspendStudent() | Suspend Student |
 | RestoreStudent() | Restore Student |
 | TransferStudent() | Transfer Student |
-| CompleteQualification() | Graduate Student |
+| CompleteQualification() | Qualification Completed Student |
 | ArchiveStudent() | Archive Student |
 | RequestStudentDocument() | Request official documents |
 | UpdateStudentProfile() | Update profile |
@@ -7172,13 +7273,13 @@ The following architectural constraints govern every integration involving the S
 | INT-C02-002 | External domains shall never modify Student business data directly. |
 | INT-C02-003 | Synchronous communication shall occur only through approved Service Contracts. |
 | INT-C02-004 | Asynchronous communication shall occur only through canonical Domain Events. |
-| INT-C02-005 | Multi-domain transactions shall preserve eventual consistency. |
+| INT-C02-005 | Cross-domain transactions shall preserve eventual consistency. |
 | INT-C02-006 | Service Contracts and Domain Events shall remain version controlled. |
 | INT-C02-007 | Breaking integration changes require Architecture Review Board approval. |
 | INT-C02-008 | Circular dependencies between business domains are prohibited. |
 | INT-C02-009 | Event consumers shall implement idempotent processing. |
 | INT-C02-010 | Integration shall preserve tenant isolation. |
-| INT-C02-011 | Multi-domain communication shall remain technology independent. |
+| INT-C02-011 | Cross-domain communication shall remain technology independent. |
 | INT-C02-012 | Integration failures shall never compromise Student Aggregate consistency. |
 | INT-C02-013 | Consumer domains shall tolerate temporary service unavailability through resilient integration patterns. |
 | INT-C02-014 | Direct database sharing between business domains is strictly prohibited. |
@@ -7224,7 +7325,7 @@ The following architectural constraints govern every integration involving the S
 
 The Student Lifecycle Domain serves as the canonical provider of Student identity, lifecycle, enrollment, and academic assignment information for the SutraERP ecosystem.
 
-All multi-domain communication shall preserve domain ownership and comply with approved Service Contracts or Domain Events.
+All cross-domain communication shall preserve domain ownership and comply with approved Service Contracts or Domain Events.
 
 ---
 
@@ -7239,7 +7340,7 @@ Every integration involving the Student Lifecycle Domain shall comply with the f
 - Breaking changes require Architecture Review Board (ARB) approval.
 - Consumer domains shall tolerate duplicate event delivery through idempotent processing.
 - Integration retries shall never produce duplicate business operations.
-- Multi-domain communication shall remain technology independent.
+- Cross-domain communication shall remain technology independent.
 - All integrations shall preserve tenant isolation.
 - Integration failures shall be observable through centralized logging, metrics, tracing, and immutable audit records.
 - Every integration shall include Correlation ID for end-to-end traceability.
@@ -7255,7 +7356,7 @@ All future integrations shall conform to the canonical enterprise integration ar
 
 # 14.11 Workflow Integration Matrix
 
-The following matrix summarizes the primary multi-domain interactions performed by each governed Student Lifecycle workflow.
+The following matrix summarizes the primary cross-domain interactions performed by each governed Student Lifecycle workflow.
 
 | Workflow | Upstream Dependencies | Downstream Consumers |
 |----------|------------------------------------------------------|--------------------------------------------------------------|
@@ -7283,7 +7384,7 @@ This matrix provides an implementation reference for service orchestration, even
 
 # 14.12 Summary
 
-The Multi-Domain Integration architecture establishes the Student Lifecycle Domain as the canonical provider of Student identity, enrollment, academic assignment, and lifecycle information across the SutraERP platform.
+The Cross-Domain Integration architecture establishes the Student Lifecycle Domain as the canonical provider of Student identity, enrollment, academic assignment, and lifecycle information across the SutraERP platform.
 
 Through governed Service Contracts, immutable Domain Events, standardized integration patterns, strict ownership boundaries, and configuration-driven integration governance, the Student Lifecycle Domain enables reliable, scalable, and loosely coupled collaboration among all academic and administrative domains.
 
@@ -7452,7 +7553,7 @@ Institutional policies may configure:
 - Suspension approval workflow
 - Restoration approval workflow
 - Transfer approval workflow
-- qualification completion approval sequence
+- Qualification Completion approval sequence
 - Archive retention policy
 
 Lifecycle configuration shall not bypass mandatory state validation.
@@ -7470,7 +7571,7 @@ Supported configuration includes:
 - Institution-specific suspension approval hierarchy.
 - Restoration authorization policies.
 - Transfer approval workflows.
-- qualification completion verification sequence.
+- Qualification Completion verification sequence.
 - Archive eligibility period.
 - Archive execution schedule.
 
@@ -7764,7 +7865,7 @@ The Validation Framework shall achieve the following architectural objectives.
 | Academic Integrity | Validate academic references before assignment. |
 | Authorization Compliance | Prevent unauthorized operations. |
 | Configuration Compliance | Enforce active institutional policies. |
-| Multi-Domain Consistency | Validate external references through approved service contracts. |
+| Cross-Domain Consistency | Validate external references through approved service contracts. |
 | Regulatory Compliance | Enforce institution and regulatory requirements. |
 | Auditability | Record governed validation outcomes where required. |
 
@@ -7801,7 +7902,7 @@ Lifecycle Validation
 Academic & Enrollment Validation
         │
         ▼
-Multi-Domain Validation
+Cross-Domain Validation
         │
         ▼
 Configuration Validation
@@ -8012,9 +8113,9 @@ Authorization failures shall terminate request processing immediately and shall 
 
 ---
 
-# 16.10 Multi-Domain Validation
+# 16.10 Cross-Domain Validation
 
-Multi-domain validation verifies dependent business entities.
+Cross-domain validation verifies dependent business entities.
 
 | Validation ID | Rule |
 |---------------|------------------------------------------------|
@@ -8024,9 +8125,9 @@ Multi-domain validation verifies dependent business entities.
 | VAL-C02-034 | Academic Session shall exist. |
 | VAL-C02-035 | External references shall be validated using approved service contracts. |
 
-### Multi-Domain Validation Governance
+### Cross-Domain Validation Governance
 
-Multi-domain validation verifies references owned by external business domains while preserving strict domain ownership.
+Cross-domain validation verifies references owned by external business domains while preserving strict domain ownership.
 
 Validation shall occur exclusively through approved Service Contracts.
 
@@ -8041,7 +8142,7 @@ Typical validations include:
 - Academic Session verification.
 - External reference integrity.
 
-Multi-domain validation shall never directly access another domain's database or persistence model.
+Cross-domain validation shall never directly access another domain's database or persistence model.
 
 
 ---
@@ -8093,7 +8194,7 @@ Validation failures shall return standardized business errors.
 | STU-VAL-007 | Invalid Institution Reference |
 | STU-VAL-008 | Invalid Configuration |
 | STU-VAL-009 | Missing Mandatory Data |
-| STU-VAL-010 | Multi-Domain Validation Failed |
+| STU-VAL-010 | Cross-Domain Validation Failed |
 
 ### Validation Error Governance
 
@@ -8125,7 +8226,7 @@ The Validation Framework shall comply with the following governance requirements
 | Configuration | Institutions may extend configurable validations without violating canonical rules. |
 | Auditability | Governed validation outcomes shall be auditable. |
 | Security | Authorization validation shall execute before protected business validation. |
-| Ownership | Multi-domain validation shall preserve domain ownership boundaries. |
+| Ownership | Cross-domain validation shall preserve domain ownership boundaries. |
 | Consistency | Validation behavior shall remain consistent across all deployment models. |
 | Extensibility | Additional validation rules shall be introduced without breaking existing behavior. |
 
@@ -8145,7 +8246,7 @@ The validation framework shall support monitoring of:
 | Validation Failure Rate | Identify recurring validation failures |
 | Most Frequent Validation Errors | Improve business usability |
 | Average Validation Duration | Monitor validation performance |
-| Multi-Domain Validation Failures | Detect upstream dependency issues |
+| Cross-Domain Validation Failures | Detect upstream dependency issues |
 | Authorization Failure Trends | Detect security anomalies |
 | Configuration Validation Failures | Detect configuration quality issues |
 
@@ -8171,7 +8272,7 @@ These quality attributes shall guide future evolution of the Validation Framewor
 
 # 16.16 Summary
 
-The Validation Framework establishes the canonical protection mechanism for the Student Lifecycle Domain by enforcing layered, deterministic, and policy-driven validation before any business state modification occurs. Through governed validation of identity, lifecycle transitions, academic assignments, enrollment, authorization, configuration, and multi-domain dependencies, the framework preserves the integrity of the Student Aggregate while ensuring security, regulatory compliance, auditability, and enterprise-wide consistency.
+The Validation Framework establishes the canonical protection mechanism for the Student Lifecycle Domain by enforcing layered, deterministic, and policy-driven validation before any business state modification occurs. Through governed validation of identity, lifecycle transitions, academic assignments, enrollment, authorization, configuration, and cross-domain dependencies, the framework preserves the integrity of the Student Aggregate while ensuring security, regulatory compliance, auditability, and enterprise-wide consistency.
 
 By combining standardized validation pipelines, governed validation rules, comprehensive observability, and extensible architecture, the framework provides a robust foundation for reliable execution of all Student Lifecycle operations across the SutraERP platform.
 
@@ -8185,7 +8286,7 @@ The objective is to ensure that failures do not compromise:
 
 - Student data integrity
 - Lifecycle consistency
-- Multi-domain synchronization
+- Cross-domain synchronization
 - Auditability
 - Regulatory compliance
 - Platform stability
@@ -8208,7 +8309,7 @@ The Student Lifecycle Domain follows the canonical Platform Exception Handling F
 | Immutable Audit Trail | Exception handling shall preserve complete auditability. |
 | Standardized Error Contracts | Consumers shall receive governed error responses. |
 | Idempotent Retry Support | Retry operations shall safely handle duplicate execution where applicable. |
-| Eventual Consistency | Multi-domain consistency shall be preserved through governed recovery mechanisms. |
+| Eventual Consistency | Cross-domain consistency shall be preserved through governed recovery mechanisms. |
 | Observability | Exception execution shall support monitoring, tracing, and diagnostics. |
 
 These principles ensure consistent exception handling throughout every Student Lifecycle workflow.
@@ -8309,9 +8410,9 @@ Examples include:
 
 - Activating an already Active Student
 - Restoring a Student who is not Suspended
-- Graduating an Archived Student
+- Completing the qualification of an Archived Student
 - Archiving an Active Student without satisfying institutional policy
-- Suspending a QualificationCompleted Student where prohibited
+- Suspending a Qualification Completed Student where prohibited
 
 Lifecycle validation shall occur before state modification.
 
@@ -8637,7 +8738,7 @@ The Audit & Compliance Framework shall achieve the following objectives.
 | Security Monitoring | Detect unauthorized or suspicious activities |
 | Forensic Investigation | Support incident response and investigations |
 | Long-Term Retention | Preserve legally significant audit records |
-| Multi-Domain Correlation | Trace transactions across multiple domains |
+| Cross-Domain Correlation | Trace transactions across multiple domains |
 | Governance Verification | Demonstrate compliance with approved architecture |
 
 The framework shall support both operational auditing and long-term institutional compliance without impacting transactional business processing.
@@ -8678,7 +8779,7 @@ The following operations shall always generate immutable audit records.
 | AUD-C02-006 | Student Suspended | Warning | ✓ |
 | AUD-C02-007 | Student Restored | Warning | ✓ |
 | AUD-C02-008 | Student Transferred | Information | ✓ |
-| AUD-C02-009 | Student QualificationCompleted | Information | ✓ |
+| AUD-C02-009 | Student Qualification Completed | Information | ✓ |
 | AUD-C02-010 | Student Archived | Information | ✓ |
 | AUD-C02-011 | Authorization Failure | Critical | ✓ |
 | AUD-C02-012 | Authentication Failure | Critical | ✓ |
@@ -8993,7 +9094,7 @@ The Reporting & Analytics Framework shall achieve the following objectives.
 | Executive Decision Support | Provide institution-wide dashboards and KPIs |
 | Regulatory Reporting | Support statutory and accreditation reporting |
 | Historical Analysis | Preserve long-term Student lifecycle trends |
-| Multi-Domain Analytics | Enable enterprise-wide reporting amulti-domains |
+| Cross-Domain Analytics | Enable enterprise-wide reporting across domains |
 | Read-Optimized Queries | Avoid transactional database contention |
 | Self-Service Reporting | Enable governed business reporting |
 | Predictive Analytics Readiness | Provide trusted datasets for AI and predictive models |
@@ -9055,7 +9156,7 @@ The Student Lifecycle Domain shall provide the following canonical operational r
 | REP-C02-007 | Batch-wise Student List | Academic Office |
 | REP-C02-008 | Section-wise Student List | Faculty Administration |
 | REP-C02-009 | Suspended Students | Registrar |
-| REP-C02-010 | QualificationCompleted Students | Examination Domain |
+| REP-C02-010 | Qualification Completed Students | Examination Domain |
 | REP-C02-011 | Archived Students | Records Management |
 | REP-C02-012 | Student Transfer Register | Academic Administration |
 | REP-C02-013 | Identity Correction Register | Compliance Team |
@@ -9073,7 +9174,7 @@ The framework shall support configurable executive dashboards.
 | Student Population Dashboard | Total, Active, Archived Students |
 | Enrollment Dashboard | New Admissions, Activations, Enrollment Trends |
 | Academic Dashboard | Programme, Batch and Department Distribution |
-| Lifecycle Dashboard | Active, Suspended, Restored, QualificationCompleted Students |
+| Lifecycle Dashboard | Active, Suspended, Restored, Qualification Completed Students |
 | Institutional Growth Dashboard | Year-over-Year Student Growth |
 | Student Mobility Dashboard | Transfers and Campus Movements |
 | Compliance Dashboard | Regulatory reporting readiness |
@@ -9121,7 +9222,7 @@ The Student Lifecycle Domain supports multidimensional analytical reporting.
 | Academic | Programme, Department, Batch, Section | Academic Delivery |
 | Time | Academic Year, Session, Semester | Academic Calendar |
 | Student | Gender, Category, Nationality | Student Lifecycle |
-| Lifecycle | Status, Activation, Suspension, Qualification Completion | Student Lifecycle |
+| StudentContext Lifecycle | Pending Activation, Active, Suspended, Qualification Completed, Withdrawn, Transferred, Discontinued, Terminated | StudentContext |
 | Geography | Country, State, District | Student Lifecycle |
 | Enrollment | Enrollment Type, Enrollment Status | Student Lifecycle |
 | Mobility | Transfers, Campus Changes | Student Lifecycle |
@@ -9142,7 +9243,7 @@ The Student Lifecycle Domain shall provide standardized institutional KPIs.
 | Enrollment Growth | Student growth over time | Analytics Platform |
 | Suspension Rate | Suspended Student percentage | Student Lifecycle |
 | Restoration Rate | Restored Student percentage | Student Lifecycle |
-| Qualification Completion Rate | Successful qualification completions | Examination Domain |
+| Qualification Completion Rate | Successfully completed StudentContexts | Student Lifecycle |
 | Transfer Rate | Student transfers | Student Lifecycle |
 | Archive Rate | Archived Student percentage | Student Lifecycle |
 | Profile Completion Rate | Student profile completeness | Student Lifecycle |
@@ -9580,7 +9681,7 @@ The diagrams contained within this section collectively represent:
 - Event propagation
 - Validation flow
 - Authorization model
-- Multi-domain integrations
+- Cross-domain integrations
 - Reporting architecture
 - Deployment context
 - Enterprise traceability
@@ -9783,7 +9884,7 @@ class EnrollmentInformation {
     EnrollmentDate
     AdmissionDate
     JoiningDate
-    ExpectedQualification CompletionDate
+    ExpectedQualificationCompletionDate
 }
 
 class CommunicationPreferences {
@@ -9815,7 +9916,7 @@ class LifecycleHistory {
     StatusHistory
     SuspensionHistory
     TransferHistory
-    Qualification CompletionHistory
+    QualificationCompletionHistory
 }
 
 Student *-- PersonalInformation
@@ -9864,9 +9965,9 @@ ActiveStudent --> Merge
 
 Merge --> ActiveStudent
 
-ActiveStudent --> Graduate
+ActiveStudent --> Qualification Completed Student
 
-Graduate --> Archive
+Qualification Completed Student --> Archive
 ```
 
 ---
@@ -9931,7 +10032,7 @@ A([Admission Confirmed])
 %% Validation Phase
 B[Receive CreateStudent Command]
 C[Validate Admission Reference]
-D{Admission Valid}
+D{Admission Valid?}
 
 %% Failure
 E[Reject Request]
@@ -9988,7 +10089,7 @@ B[Receive ActivateStudent Command]
 C[Validate Student Record]
 D[Validate Enrollment Prerequisites]
 E[Validate Academic Assignment]
-F{All Validations Successful}
+F{All Validations Successful?}
 
 %% Failure
 G[Reject Activation]
@@ -10043,7 +10144,7 @@ B[Receive UpdateEnrollment Command]
 C[Validate Student Status]
 D[Validate Academic Session]
 E[Validate Enrollment Policy]
-F{Enrollment Valid}
+F{Enrollment Valid?}
 
 %% Failure
 G[Reject Enrollment Update]
@@ -10101,7 +10202,7 @@ F[Validate Batch]
 G[Validate Section]
 H[Validate Academic Session]
 
-I{All References Valid}
+I{All References Valid?}
 
 %% Failure
 J[Reject Assignment]
@@ -10158,7 +10259,7 @@ B[Receive SuspendStudent Command]
 C[Validate Student Status]
 D[Validate Suspension Reason]
 E[Validate Authorisation]
-F{Suspension Approved}
+F{Suspension Approved?}
 
 %% Failure
 G[Reject Suspension]
@@ -10215,7 +10316,7 @@ C[Validate Student Status]
 D[Validate Restoration Eligibility]
 E[Validate Authorisation]
 
-F{Eligible for Restoration}
+F{Eligible for Restoration?}
 
 %% Failure
 G[Reject Restoration]
@@ -10274,7 +10375,7 @@ E[Validate Target Academic Structure]
 F[Validate Transfer Policy]
 G[Validate Authorisation]
 
-H{Transfer Approved}
+H{Transfer Approved?}
 
 %% Failure
 I[Reject Transfer]
@@ -10326,7 +10427,7 @@ flowchart TD
 A([Student Active])
 
 %% Command
-B[Receive GraduateStudent Command]
+B[Receive CompleteQualification Command]
 
 %% Validation
 C[Validate Student Status]
@@ -10335,22 +10436,22 @@ E[Validate Financial Clearance]
 F[Validate Institutional Clearance]
 G[Validate Authorisation]
 
-H{Eligible for Qualification Completion}
+H{Eligible for Qualification Completion?}
 
 %% Failure
 I[Reject Qualification Completion]
 
 %% Processing
-J[Update Lifecycle State = QualificationCompleted]
+J[Update Lifecycle State = Qualification Completed]
 K[Record Qualification Completion Details]
 L[Persist Transaction]
 
 %% Audit & Event
 M[Create Audit Record]
-N[Publish StudentQualificationCompleted Event]
+N[Synchronize Local Qualification Completion Status]
 
 %% End
-O([Student QualificationCompleted])
+O([Student Qualification Completed])
 
 %% Flow
 A --> B
@@ -10384,7 +10485,7 @@ style O fill:#2E7D32,color:#fff
 flowchart TD
 
 %% Start
-A([Student QualificationCompleted / Terminal State])
+A([Student Qualification Completed / Terminal State])
 
 %% Command
 B[Receive ArchiveStudent Command]
@@ -10395,7 +10496,7 @@ D[Validate Retention Policy]
 E[Validate Institutional Approval]
 F[Validate Authorisation]
 
-G{Eligible for Archival}
+G{Eligible for Archival?}
 
 %% Failure
 H[Reject Archival]
@@ -10449,8 +10550,8 @@ A[Student Aggregate]
 %% Domain Events
 B(StudentCreated)
 C(StudentActivated)
-D(StudentEnrollmentUpdated)
-E(StudentAcademicAssignmentCompleted)
+D(EnrollmentUpdated)
+E(AcademicAssignmentCompleted)
 F(StudentProfileUpdated)
 G(StudentGuardianUpdated)
 H(StudentCommunicationPreferencesUpdated)
@@ -10461,7 +10562,7 @@ L(StudentSuspended)
 M(StudentRestored)
 N(StudentTransferred)
 O(StudentMerged)
-P(StudentQualificationCompleted)
+P(QualificationAwarded)
 Q(StudentArchived)
 
 %% Event Consumers
@@ -10603,7 +10704,7 @@ O --> X
 O --> AC
 O --> AD
 
-%% QualificationCompleted
+%% Qualification Completed
 P --> Y
 P --> Z
 P --> AA
@@ -10718,9 +10819,9 @@ Active --> Active : UpdateCommunicationPreferences
 Active --> Active : RequestDocument
 Active --> Active : CorrectIdentity
 Active --> Active : TransferStudent
-Active --> QualificationCompleted : GraduateStudent
+Active --> Qualification Completed : CompleteQualification
 
-QualificationCompleted --> Archived : ArchiveStudent
+Qualification Completed --> Archived : ArchiveStudent
 
 Archived --> [*]
 
@@ -10741,7 +10842,7 @@ Aggregate remains active
 for audit and history.
 end note
 
-note right of QualificationCompleted
+note right of Qualification Completed
 Academic lifecycle completed.
 Historical record retained.
 end note
@@ -10778,7 +10879,7 @@ M[Assign Academic Structure]
 N[Suspend Student]
 O[Restore Student]
 P[Transfer Student]
-Q[Graduate Student]
+Q[Qualification Completed Student]
 R[Archive Student]
 AA[Update Profile]
 AB[Manage Guardian]
@@ -10908,7 +11009,7 @@ O[Assign Academic Structure]
 P[Suspend Student]
 Q[Restore Student]
 R[Transfer Student]
-S[Graduate Student]
+S[Qualification Completed Student]
 T[Archive Student]
 U[Update Profile]
 V[Manage Guardian]
@@ -10959,7 +11060,7 @@ style K fill:#4CAF50,color:#fff
 style U fill:#8E24AA,color:#fff
 ```
 
-# 21.21 Multi-Domain Integration Architecture
+# 21.21 Cross-Domain Integration Architecture
 ```mermaid
 flowchart LR
 
@@ -11043,7 +11144,7 @@ G[Business Rule Validation]
 H[Aggregate Invariant Validation]
 
 %% Decision
-I{Validation Successful}
+I{Validation Successful?}
 
 %% Success Path
 J[Execute Command]
@@ -11092,7 +11193,7 @@ A([Command Received])
 B[Execute Validation & Business Logic]
 
 %% Decision
-C{Exception Occurred}
+C{Exception Occurred?}
 
 %% Success
 D[Commit Transaction]
@@ -11678,7 +11779,7 @@ These diagrams shall remain synchronized with:
 - Exception Handling
 - Configuration Model
 - Reporting Architecture
-- Multi-Domain Integrations
+- Cross-Domain Integrations
 - Architecture Decision Records (ADRs)
 
 Any architectural modification affecting these areas shall include corresponding updates to the affected visual models before approval.
@@ -11771,7 +11872,7 @@ Separating Applicant and Student lifecycles preserves clear business boundaries.
 
 ## Decision
 
-Multi-domain notifications shall use Domain Events.
+Cross-domain notifications shall use Domain Events.
 
 ## Context
 
@@ -11841,7 +11942,7 @@ Immutable identifiers simplify:
 - Referential integrity
 - Audit
 - Reporting
-- Multi-domain relationships
+- Cross-domain relationships
 
 ## Consequences
 
@@ -11926,7 +12027,7 @@ Business logic remains reusable across deployments.
 
 ---
 
-# 22.10 ADR-C02-009 — Multi-Domain Communication Shall Preserve Domain Ownership
+# 22.10 ADR-C02-009 — Cross-Domain Communication Shall Preserve Domain Ownership
 
 ## Decision
 
@@ -12138,7 +12239,7 @@ Unless explicitly superseded by a platform-wide glossary, the definitions in thi
 | Active | Student is eligible for academic participation. |
 | Suspended | Student participation is temporarily restricted. |
 | Transferred | Student has been reassigned according to institutional policy. |
-| QualificationCompleted | Student has successfully completed programme requirements. |
+| Qualification Completed | Student has successfully completed programme requirements. |
 | Archived | Student record is retained for historical purposes and is no longer operational. |
 | Lifecycle Transition | Movement between valid lifecycle states. |
 | State Machine | Canonical model governing lifecycle transitions. |
@@ -12213,7 +12314,7 @@ Unless explicitly superseded by a platform-wide glossary, the definitions in thi
 | Downstream Domain | Domain consuming Student Lifecycle information. |
 | Event-Driven Integration | Communication through published domain events. |
 | Synchronous Integration | Real-time communication using service contracts. |
-| Eventual Consistency | Consistency achieved amulti-domains after asynchronous processing. |
+| Eventual Consistency | Consistency achieved across domains after asynchronous processing. |
 | Consumer | Domain or service subscribing to published events or APIs. |
 | Publisher | Domain responsible for publishing canonical Domain Events. |
 | Integration Contract | A governed agreement defining how two domains communicate using Service Contracts or Domain Events. |
@@ -12288,7 +12389,7 @@ The following governance rules apply to terminology used within the Student Life
 - Domain-specific terminology shall not conflict with canonical platform definitions.
 - Glossary updates shall follow architecture version control procedures.
 - Canonical workflow names shall remain consistent across workflows, service contracts, domain events, visual models, and architecture decision records.
-- Business terminology shall not be duplicated with conflicting meanings amulti-domains.
+- Business terminology shall not be duplicated with conflicting meanings across domains.
 - Renamed architectural concepts shall be updated throughout the repository as part of the same architecture change.
 ---
 
@@ -12296,7 +12397,7 @@ The following governance rules apply to terminology used within the Student Life
 
 The Glossary establishes the canonical vocabulary for the Student Lifecycle Domain, providing standardized definitions for business concepts, lifecycle states, architectural constructs, security terminology, audit and compliance concepts, integration patterns, reporting terminology, configuration models, and commonly used abbreviations.
 
-By maintaining a single, governed source of terminology, the glossary ensures consistent interpretation across business stakeholders, architects, developers, testers, implementation teams, and operational users. It minimizes ambiguity, strengthens multi-domain communication, supports architecture governance, and ensures that all workflows, service contracts, domain events, visual models, and implementation artifacts use a common and consistent language throughout the SutraERP platform.
+By maintaining a single, governed source of terminology, the glossary ensures consistent interpretation across business stakeholders, architects, developers, testers, implementation teams, and operational users. It minimizes ambiguity, strengthens cross-domain communication, supports architecture governance, and ensures that all workflows, service contracts, domain events, visual models, and implementation artifacts use a common and consistent language throughout the SutraERP platform.
 
 # 24. Domain Summary
 
@@ -12444,7 +12545,7 @@ The domain publishes the following canonical outputs:
 - StudentSuspended
 - StudentRestored
 - StudentTransferred
-- StudentQualificationCompleted
+- QualificationAwarded
 - StudentArchived
 - StudentDocumentRequested
 - StudentProfileUpdated
@@ -12565,7 +12666,7 @@ Enrollment  Academic   Profile   Guardian   Communication  Document
      Restore
          │
          ▼
-     Graduate
+     Qualification Completed Student
          │
          ▼
       Archive
@@ -12594,7 +12695,7 @@ The Student Lifecycle Domain shall comply with the following architecture requir
 | Audit Framework Defined | ✓ |
 | Reporting Framework Defined | ✓ |
 | Configuration Model Defined | ✓ |
-| Multi-Domain Integrations Defined | ✓ |
+| Cross-Domain Integrations Defined | ✓ |
 | Non-Functional Requirements Defined | ✓ |
 | ADRs Documented | ✓ |
 | Glossary Included | ✓ |
@@ -12650,7 +12751,7 @@ This document completely defines the canonical architecture of the Student Lifec
 - Service contracts
 - Integration contracts
 - Authorization model
-- Multi-domain integrations
+- Cross-domain integrations
 - Configuration model
 - Validation framework
 - Exception handling
@@ -12742,7 +12843,7 @@ Architecture reviews shall verify:
 - Business consistency
 - Aggregate integrity
 - Workflow correctness
-- Multi-domain dependencies
+- Cross-domain dependencies
 - Service contract compatibility
 - Event compatibility
 - Aggregate invariant compliance
@@ -12839,7 +12940,7 @@ This matrix serves as a verification artifact during architecture reviews and im
 | Suspension | WF-C02-06 | BR-C02-034–038 | SuspendStudent() | StudentSuspended | Suspended |
 | Restoration | WF-C02-07 | BR-C02-039–043 | RestoreStudent() | StudentRestored | Active |
 | Transfer | WF-C02-08 | BR-C02-044–048 | TransferStudent() | StudentTransferred | Active |
-| Qualification Completion | WF-C02-09 | BR-C02-049–052 | CompleteQualification() | StudentQualificationCompleted | QualificationCompleted |
+| Qualification Completion | WF-C02-09 | BR-C02-049–052 | CompleteQualification() | None (consumes QualificationAwarded from L2-C05) | Qualification Completed |
 | Archive | WF-C02-10 | BR-C02-053–055 | ArchiveStudent() | StudentArchived | Archived |
 
 ---
@@ -12869,7 +12970,7 @@ This matrix serves as a verification artifact during architecture reviews and im
 | Lifecycle Validation | Section 16 |
 | Authorization Validation | Section 16 |
 | Configuration Validation | Section 16 |
-| Multi-Domain Validation | Section 16 |
+| Cross-Domain Validation | Section 16 |
 
 ---
 
@@ -12893,7 +12994,7 @@ This matrix serves as a verification artifact during architecture reviews and im
 |------------------|-------------------|
 | Service Contracts | Section 12 |
 | Domain Events | Section 10 |
-| Multi-Domain Integration | Section 14 |
+| Cross-Domain Integration | Section 14 |
 | Validation Dependencies | Section 16 |
 | Reporting Integration | Section 19 |
 
@@ -12931,7 +13032,7 @@ This matrix serves as a verification artifact during architecture reviews and im
 | State Model | ✓ Complete |
 | Service Contracts | ✓ Complete |
 | Authorization | ✓ Complete |
-| Multi-Domain Integration | ✓ Complete |
+| Cross-Domain Integration | ✓ Complete |
 | Configuration Model | ✓ Complete |
 | Validation Framework | ✓ Complete |
 | Exception Handling | ✓ Complete |
@@ -12977,7 +13078,7 @@ The objective is to provide architects, developers, reviewers, QA teams, impleme
 | 11 | State Model |
 | 12 | Service Contracts |
 | 13 | Authorization & Access Control |
-| 14 | Multi-Domain Integrations |
+| 14 | Cross-Domain Integrations |
 | 15 | Configuration Model |
 | 16 | Validation Framework |
 | 17 | Exception Handling Framework |
@@ -13055,7 +13156,7 @@ The objective is to provide architects, developers, reviewers, QA teams, impleme
 | StudentSuspended |
 | StudentRestored |
 | StudentTransferred |
-| StudentQualificationCompleted |
+| QualificationAwarded |
 | StudentArchived |
 
 ---
@@ -13068,7 +13169,7 @@ The objective is to provide architects, developers, reviewers, QA teams, impleme
 | Active |
 | Suspended |
 | Transferred |
-| QualificationCompleted |
+| Qualification Completed |
 | Archived |
 
 ---
@@ -13134,7 +13235,7 @@ This appendix defines the canonical dependency relationships between the Student
 
 Its purpose is to provide implementation teams with a single authoritative reference for domain interactions, ownership boundaries, service dependencies, and event consumption.
 
-This appendix complements Section 14 (Multi-Domain Integrations) by presenting a consolidated dependency matrix.
+This appendix complements Section 14 (Cross-Domain Integrations) by presenting a consolidated dependency matrix.
 
 ---
 
@@ -13195,7 +13296,7 @@ This appendix complements Section 14 (Multi-Domain Integrations) by presenting a
 | StudentSuspended | Library, Hostel, Finance |
 | StudentRestored | Library, Hostel |
 | StudentTransferred | Academic Delivery |
-| StudentQualificationCompleted | Alumni, Certificates |
+| QualificationAwarded (consumed from L2-C05) | Not republished by Student Lifecycle |
 | StudentArchived | Analytics, Archive Services |
 
 ---
@@ -13222,7 +13323,7 @@ No ownership overlap shall exist between business domains.
 
 The following governance rules apply:
 
-- Multi-domain communication shall occur only through approved Service Contracts or Domain Events.
+- Cross-domain communication shall occur only through approved Service Contracts or Domain Events.
 - Downstream domains shall never directly modify the Student Aggregate.
 - Integration contracts shall remain version-controlled.
 - Event consumers shall implement idempotent processing.
@@ -13340,7 +13441,7 @@ This appendix defines business attributes only and does not prescribe physical d
 | EnrollmentDate | Date | Yes | No | Effective enrollment date |
 | AdmissionDate | Date | Yes | No | Admission confirmation date |
 | JoiningDate | Date | No | Yes | Date of joining |
-| ExpectedQualification CompletionDate | Date | No | Yes | Planned qualification completion |
+| ExpectedQualificationCompletionDate | Date | No | Yes | Planned qualification completion |
 | Qualification CompletionDate | Date | No | Yes | Actual qualification completion |
 
 ---
@@ -13429,7 +13530,7 @@ This matrix supports:
 | FR-C02-006 | Suspend Student | WF-C02-06, SC-C02-006 |
 | FR-C02-007 | Restore Student | WF-C02-07, SC-C02-007 |
 | FR-C02-008 | Transfer Student | WF-C02-08, SC-C02-008 |
-| FR-C02-009 | Graduate Student | WF-C02-09, SC-C02-009 |
+| FR-C02-009 | Qualification Completed Student | WF-C02-09, SC-C02-009 |
 | FR-C02-010 | Archive Student | WF-C02-10, SC-C02-010 |
 
 ---
@@ -13474,7 +13575,7 @@ This matrix supports:
 | Academic Validation | Section 16 |
 | Lifecycle Validation | Section 16 |
 | Configuration Validation | Section 16 |
-| Multi-Domain Validation | Section 16 |
+| Cross-Domain Validation | Section 16 |
 | Authorization Validation | Section 16 |
 
 ---
@@ -13485,7 +13586,7 @@ This matrix supports:
 |-------------------------|-----------------------------|
 | Service Contracts | Section 12 |
 | Domain Events | Section 10 |
-| Multi-Domain Integration | Section 14 |
+| Cross-Domain Integration | Section 14 |
 | Event Publication | Sections 10 & 14 |
 | Service Consumption | Sections 12 & 14 |
 

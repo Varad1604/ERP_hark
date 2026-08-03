@@ -1,4 +1,4 @@
-﻿# L2-F00 — Finance Domain Model & Foundation
+# L2-F00 — Finance Domain Model & Foundation
 
 **Section:** F — Finance & Accounting
 **Architecture Level:** Level 2 (Domain Architecture)
@@ -4068,17 +4068,16 @@ Audit includes:
 
 ---
 
-## Procurement
+## Procurement Finance Consequences
 
-Audit includes:
+Finance audits the financial consequences of procurement activity owned by Section J.
 
-- Purchase requests
-- Quotations
-- Approvals
-- Purchase Orders
-- Goods Receipt
+Audit includes Finance-owned items:
+
 - Invoice Processing
 - Vendor Payment
+
+Operational procurement activities (Purchase Requests, Quotations, Purchase Orders, Goods Receipt) are owned by Section J and audited within Section J.
 
 ---
 

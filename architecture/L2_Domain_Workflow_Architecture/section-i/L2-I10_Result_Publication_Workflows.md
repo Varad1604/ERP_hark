@@ -8,11 +8,11 @@
 
 # 1. Purpose
 
-This document defines the canonical business workflows governing Result Publication within the SutraERP Examination domain.
+The Result Publication domain manages the official publication lifecycle of approved academic results.
 
-It establishes the enterprise framework for publishing institutionally approved academic results to authorised stakeholders through controlled, auditable, and policy-compliant publication processes.
+The domain receives approved academic outcomes from Result Processing and makes them officially available to authorized consumers.
 
-The document governs the complete Result Publication lifecycle beginning with Institutionally Approved Results received from Result Processing & Computation and concluding with successful publication, authorised access, acknowledgement, and publication closure.
+The domain does not calculate results, grades, CGPA, credits, or determine academic completion.
 
 This document standardises Result Publication while allowing institutions to configure publication schedules, publication channels, visibility policies, notification mechanisms, embargo periods, and access controls without modifying the canonical repository architecture.
 
@@ -39,6 +39,10 @@ The scope includes:
 - Publication Closure
 - Result Publication Lifecycle Governance
 
+Result Publication consumes finalized academic outcomes.
+
+It does not modify academic computation results.
+
 This document does not govern:
 
 - Examination Policy Management
@@ -52,7 +56,7 @@ This document does not govern:
 - Result Processing & Computation
 - Revaluation & Rechecking
 - Supplementary / Backlog / Improvement Examination Execution
-- Academic Completion & Completion Evidence
+- Academic Completion & Graduation
 
 Ownership of these business capabilities remains with their respective workflow documents.
 
@@ -76,14 +80,35 @@ It collaborates with:
 - Academic Calendar Domain
 - Person & Identity Domain
 - Organisation Domain
-- Notification Workflows
+- Notification Infrastructure
 - Platform Foundation Services
 
 It produces authoritative published results consumed by:
 
 - L2-I11 — Revaluation & Rechecking Workflows
 - L2-I12 — Supplementary / Backlog / Improvement Examination Execution Workflows
-- L2-I13 — Academic Completion, CGPA & Completion Evidence Workflows
+- L2-I13 — Academic Completion, CGPA & Graduation Workflows
+
+I09 — Result Processing & Computation
+
+Owns:
+- Marks
+- Grades
+- SGPA
+- CGPA
+- Credits
+- Result Calculation
+
+        |
+        | Approved Result
+        ↓
+
+I10 — Result Publication
+
+Owns:
+- Official Publication
+- Result Availability
+- Publication Events
 
 This document owns Result Publication only.
 
@@ -175,9 +200,9 @@ Published Results become the official institutional communication of academic ou
 
 ---
 
-## 4.8 Multi-Domain Collaboration
+## 4.8 Cross-Domain Collaboration
 
-Result Publication collaborates with Examination Policy, Result Processing & Computation, Academic Calendar, Organisation, Person & Identity, Notification Workflows, and Platform Foundation while preserving ownership boundaries.
+Result Publication collaborates with Examination Policy, Result Processing & Computation, Academic Calendar, Organisation, Person & Identity, Notification Infrastructure, and Platform Foundation while preserving ownership boundaries.
 
 ---
 
@@ -200,6 +225,14 @@ Examples include:
 Every significant Result Publication activity shall generate auditable business records supporting institutional governance, regulatory compliance, publication transparency, and historical traceability.
 
 ---
+
+## 4.11 Correction / Republish Workflow
+
+Published result corrections shall preserve historical publication records.
+
+A correction shall not overwrite previous published states.
+
+The corrected result shall be published as a new version with complete audit history.
 
 # 5. Business Capabilities
 
@@ -367,7 +400,7 @@ Publication events may generate authorised institutional notifications.
 
 Notification capabilities include:
 
-- Result Published Notification
+- ResultPublished Notification
 - Publication Announcement
 - Candidate Notification
 - Department Notification
@@ -458,7 +491,7 @@ The following business actors participate in Result Publication workflows.
 - Person & Identity Domain
 - Organisation Domain
 - Academic Calendar Domain
-- Notification Workflows
+- Notification Infrastructure
 - Platform Foundation
 - Audit Infrastructure
 
@@ -495,34 +528,22 @@ The primary objectives of this domain are:
 The canonical publication framework is:
 
 ```text
-Institutionally Approved Results
-               │
-               ▼
-Approved Result Consumption
-               │
-               ▼
-Publication Planning
-               │
-               ▼
-Publication Scheduling
-               │
-               ▼
-Publication Authorisation
-               │
-               ▼
-Publication Readiness Verification
-               │
-               ▼
-Result Publication
-               │
-               ▼
-Publication Notifications
-               │
-               ▼
-Authorised Result Access
-               │
-               ▼
-Publication Closure
+Result Publication Workflow
+        │
+        ▼
+Approved Result Received
+        │
+        ▼
+Publication Validation
+        │
+        ▼
+Authorization Check
+        │
+        ▼
+ResultPublished
+        │
+        ▼
+ResultPublished Event
 ```
 
 The framework preserves the separation between academic computation and academic publication.
@@ -1016,27 +1037,36 @@ Every override shall:
 
 # 11. Events Published
 
-The Result Publication domain publishes business events representing significant publication lifecycle transitions.
+## ResultPublished
 
-These events communicate authoritative publication outcomes to downstream workflows while preserving ownership boundaries.
+### Published When
 
-| Event | Published When | Primary Consumers |
-|-------|----------------|-------------------|
-| Publication Planned | Publication plan established | Audit |
-| Publication Scheduled | Publication schedule confirmed | Notification Workflows |
-| Publication Authorised | Institutional publication approval completed | Publication Workflow |
-| Publication Started | Publication process initiated | Audit |
-| ResultPublished | Official publication completed | L2-I11, L2-I12, L2-I13 |
-| Candidate Result Accessed | Candidate views published result | Audit |
-| Institutional Result Accessed | Institutional user accesses published result | Audit |
-| Publication Notification Sent | Publication notification dispatched | Audit |
-| Publication Acknowledged | Publication acknowledgement completed | Audit |
-| Publication Closed | Publication lifecycle completed | Audit |
-| Publication Archived | Publication records archived | Reporting, Audit |
+Official academic results have successfully completed the publication workflow.
 
-Business events represent authoritative publication lifecycle transitions.
+### Business Meaning
 
----
+The institution has officially released approved academic results for authorized consumption.
+
+### Consumers
+
+- Student Lifecycle
+- Student Portal
+- Academic Analytics
+- Reporting Systems
+- Academic Completion Workflows
+
+### Event Ownership Boundary
+
+I10 owns the ResultPublished event.
+
+The event represents publication of an approved result.
+
+It does not represent:
+
+- Result calculation completion
+- Academic completion
+- Qualification completion
+- Degree award
 
 # 12. Events Consumed
 
@@ -1053,14 +1083,14 @@ Ownership of business information remains with the originating domain.
 | Academic Calendar Updated | Academic Calendar Domain |
 | Candidate Information Updated | Person & Identity Domain |
 | Organisation Structure Updated | Organisation Domain |
-| Notification Service Available | Notification Workflows |
+| Notification Service Available | Notification Infrastructure |
 | Audit Request Raised | Audit Infrastructure |
 
 Consumed events influence Result Publication without transferring ownership.
 
 ---
 
-# 13. Multi-Domain Interactions
+# 13. Cross-Domain Interactions
 
 The Result Publication domain collaborates with multiple business domains while preserving clear ownership boundaries.
 
@@ -1176,9 +1206,9 @@ Organisation ownership remains external.
 
 ---
 
-## 13.8 Notification Workflows
+## 13.8 Notification Infrastructure
 
-Notification Workflows provides enterprise notification services.
+Notification Infrastructure provides enterprise notification services.
 
 Business interactions include:
 
@@ -1200,7 +1230,7 @@ Supporting services include:
 - Authentication
 - Authorization
 - Event Infrastructure
-- Notification Workflows
+- Notification Infrastructure
 - Audit Infrastructure
 
 Platform services support publication workflows without owning publication decisions.
@@ -1250,7 +1280,7 @@ The following business capabilities belong to other workflow documents.
 | Result Processing & Computation | L2-I09 |
 | Revaluation & Rechecking | L2-I11 |
 | Supplementary / Backlog / Improvement Examination Execution | L2-I12 |
-| Academic Completion & Completion Evidence | L2-I13 |
+| Academic Completion & Graduation | L2-I13 |
 | Malpractice & Examination Committee | L2-I14 |
 | Examination Exception & Contingency Management | L2-I15 |
 | Examination Session Closure & Archival | L2-I16 |
@@ -1366,7 +1396,7 @@ These capabilities are consumed by downstream workflows without redefining publi
 | Publication Channel Management | Manage publication channels | I10 |
 | Candidate Result Access | Provide candidate access | Candidates |
 | Institutional Result Access | Provide institutional access | Institution |
-| Publication Notifications | Notify authorised stakeholders | Notification Workflows |
+| Publication Notifications | Notify authorised stakeholders | Notification Infrastructure |
 | Publication Acknowledgement | Record publication completion | Audit |
 | Publication Audit | Maintain publication history | Audit |
 | Publication Lifecycle Governance | Govern complete publication lifecycle | Audit |
@@ -1392,7 +1422,7 @@ Ownership remains with the originating business domains.
 | Publication Channel Management | Platform Foundation |
 | Candidate Result Access | Published Results |
 | Institutional Result Access | Published Results |
-| Publication Notifications | Notification Workflows |
+| Publication Notifications | Notification Infrastructure |
 | Publication Acknowledgement | Successful Publication |
 | Publication Audit | Publication Lifecycle |
 | Publication Closure | Publication Completion |
@@ -1463,12 +1493,12 @@ The Result Publication domain governs publication of Institutionally Approved Re
 | Publication Channel Management | ✓ | Platform provides channels |
 | Candidate Result Access | ✓ | Identity provided by Person & Identity |
 | Institutional Result Access | ✓ | Organisation provides authority structure |
-| Publication Notifications | ✓ | Notification Workflows delivers notifications |
+| Publication Notifications | ✓ | Notification Infrastructure delivers notifications |
 | Publication Audit | ✓ | Audit Infrastructure stores audit records |
 | Publication Closure | ✓ | — |
 | Revaluation & Rechecking | — | L2-I11 |
 | Supplementary Examination Execution | — | L2-I12 |
-| Academic Completion & Completion Evidence | — | L2-I13 |
+| Academic Completion & Graduation | — | L2-I13 |
 
 The Result Publication domain governs publication only and does not own academic computation, evaluation, revaluation, supplementary examinations, or graduation.
 
@@ -1496,7 +1526,7 @@ The relationship between Examination workflow documents is as follows:
 | **L2-I10** | **Result Publication** |
 | L2-I11 | Revaluation & Rechecking |
 | L2-I12 | Supplementary / Backlog / Improvement Examination Execution |
-| L2-I13 | Academic Completion, CGPA & Completion Evidence Workflows |
+| L2-I13 | Academic Completion, CGPA & Graduation |
 | L2-I14 | Malpractice & Examination Committee |
 | L2-I15 | Examination Exception & Contingency Management |
 | L2-I16 | Examination Session Closure & Archival |
@@ -1520,34 +1550,22 @@ The appendix defines the conceptual structure governing publication while preser
 The Result Publication domain transforms Institutionally Approved Results into officially published institutional academic results.
 
 ```text
-Institutionally Approved Results
-              │
-              ▼
-Approved Result Consumption
-              │
-              ▼
-Publication Planning
-              │
-              ▼
-Publication Scheduling
-              │
-              ▼
-Publication Authorisation
-              │
-              ▼
-Publication Readiness Verification
-              │
-              ▼
-Result Publication
-              │
-              ▼
-Publication Notifications
-              │
-              ▼
-Authorised Result Access
-              │
-              ▼
-Publication Closure
+Result Publication Workflow
+        │
+        ▼
+Approved Result Received
+        │
+        ▼
+Publication Validation
+        │
+        ▼
+Authorization Check
+        │
+        ▼
+ResultPublished
+        │
+        ▼
+ResultPublished Event
 ```
 
 ---
@@ -1677,8 +1695,32 @@ The Result Publication domain is governed by the following principles:
 **End of Document**
 
 
+# 24. Inter-Domain Flow
+
+```text
+I09
+ |
+ | Approved Academic Result
+ ↓
+I10
+ |
+ | ResultPublished
+ ↓
+Consumers
 
 
+I11
+ |
+ | Revised Approved Result
+ ↓
+I10
 
 
-
+I13
+ |
+ | Completion Evidence
+ ↓
+C05
+ |
+ | Qualification Completion
+```

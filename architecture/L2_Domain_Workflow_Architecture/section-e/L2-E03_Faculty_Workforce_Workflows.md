@@ -7,6 +7,7 @@
 | Attribute | Value |
 |---|---|
 | Document Name | L2-E03 — Faculty Workforce Workflows |
+| Document Owner | Varad |
 | Domain Code | E03 |
 | Domain Name | Faculty Workforce |
 | Architecture Layer | L2 — Domain Workflow Architecture |
@@ -14,7 +15,6 @@
 | Document Type | Domain Architecture Specification |
 | Version | 1.0.0 |
 | Status | Architecture Baseline |
-| Document Owner | Varad |
 | Classification | Internal Architecture Document |
 | Primary Domain Owner | Faculty Workforce Domain |
 | Architecture Owner | SutraERP Enterprise Architecture |
@@ -47,7 +47,7 @@
 | Domain-Driven Design | Bounded context, aggregates, domain ownership |
 | CQRS | Separation of commands and queries |
 | Event-Driven Architecture | Domain event communication |
-| Enterprise Integration Patterns | Multi-domain interaction |
+| Enterprise Integration Patterns | Cross-domain interaction |
 | SutraERP Architecture Principles | Domain separation and ownership |
 
 ---
@@ -706,12 +706,12 @@ The following capabilities SHALL NOT belong to E03.
 Owned by:
 
 ```text
-E07 Employee Profile
+HR / Identity Domain
 ```
 
 Includes:
 
-- Employee profile record
+- Employee master record
 - Personal identity information
 - Employment number generation
 - Employee lifecycle
@@ -1034,7 +1034,7 @@ EmployeeUpdated
 
 HR owns:
 
-- Employee profile identity
+- Employee master identity
 - Employment relationship
 - Contract information
 - Payroll-related status
@@ -1869,7 +1869,7 @@ This section defines the authoritative ownership boundaries of the **L2-E03 Facu
 The objective is to prevent:
 
 - Duplicate ownership
-- Multi-domain responsibility conflicts
+- Cross-domain responsibility conflicts
 - Data inconsistency
 - Workflow duplication
 - Architectural boundary erosion
@@ -1973,7 +1973,7 @@ The following capabilities SHALL be exclusively owned by E03.
 
 ## E03 Does Not Own
 
-- Employee profile identity
+- Employee master identity
 - Government identity records
 - Payroll identifiers
 
@@ -5289,7 +5289,7 @@ A domain event is:
 
 Domain events enable:
 
--   Multi-domain communication
+-   Cross-domain communication
 -   Event-driven architecture
 -   Audit traceability
 -   Workflow integration
@@ -11017,7 +11017,7 @@ The document SHALL maintain:
 -   Correct file naming.
 -   Consistent section structure.
 -   Mermaid diagram compatibility.
--   Multi-domain reference consistency.
+-   Cross-domain reference consistency.
 -   Alignment with SutraERP architecture standards.
 
 ------------------------------------------------------------------------

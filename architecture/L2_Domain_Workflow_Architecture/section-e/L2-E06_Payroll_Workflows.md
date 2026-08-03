@@ -9,7 +9,8 @@
   -----------------------------------------------------------------------
   Attribute                           Value
   ----------------------------------- -----------------------------------
-  Document Name                       L2-E06 --- Payroll Workflows
+  Document Name                       L2-E06 --- Payroll Workflows
+  Document Owner                      Varad
 
   Domain Classification               Financial Transaction Processing
                                       Domain
@@ -34,8 +35,6 @@
   Security Classification             Sensitive Financial Data
 
   Status                              Architecture Locked
-
-  Document Owner                      Varad
 
   Version                             1.0
   -----------------------------------------------------------------------
@@ -368,7 +367,7 @@ can participate in payroll processing.
 
 -   Employee creation
 -   Employment lifecycle
--   Employee profile data
+-   Employee master data
 
 ------------------------------------------------------------------------
 
@@ -1274,7 +1273,7 @@ Controls a complete payroll execution cycle.
 
 ### Does Not Own
 
--   Employee profile
+-   Employee master
 -   Attendance records
 -   Leave balances
 -   Compensation policy
@@ -6231,7 +6230,7 @@ Payroll does not own:
 
   Capability             Owner
   ---------------------- -------------------------
-  Employee Profile Data  E07 Employee Profile
+  Employee Master Data   Workforce Domain
   Attendance Facts       Attendance Domain
   Leave Facts            Leave Management Domain
   Compensation Policy    Compensation Domain

@@ -208,7 +208,7 @@ The following capabilities belong to other Finance domains.
 
 ---
 
-### Procurement (F07)
+### Procurement (Section J)
 
 - Purchase Requests
 - Purchase Orders

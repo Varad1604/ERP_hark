@@ -9,7 +9,8 @@
   -----------------------------------------------------------------------
   Attribute                           Value
   ----------------------------------- -----------------------------------
-  Document Name                       L2-E05 --- Leave Management
+  Document Name                       L2-E05 --- Leave Management
+  Document Owner                      Varad
                                       Workflows
 
   Document Layer                      Level 2 --- Domain Workflow
@@ -30,8 +31,7 @@
   Version                             1.0
 
   Status                              Draft
-
-  Document Owner                      Varad
+                                      Phase
   -----------------------------------------------------------------------
 
 ------------------------------------------------------------------------
@@ -82,7 +82,7 @@ attendance, and authorization context from other enterprise domains.
 
   Capability               Owner
   ------------------------ -------------------------
-  Employee Profile Data    E07 Employee Profile
+  Employee Master Data     Employee Profile Domain
   Organization Hierarchy   Organization Domain
   Attendance Calculation   Attendance Domain
   Salary Calculation       Payroll Domain
@@ -2583,7 +2583,7 @@ Decision ownership prevents domain responsibility conflicts.
 
 ------------------------------------------------------------------------
 
-# 13.4 Multi-Domain Decision Matrix
+# 13.4 Cross-Domain Decision Matrix
 
   Scenario                    Owner
   --------------------------- ---------------------
@@ -4013,7 +4013,7 @@ architecture documentation standards.
 ``` mermaid
 flowchart LR
 
-Employee["E07 Employee Profile"]
+Employee["Employee Profile Domain"]
 
 Organization["Organization Domain"]
 
@@ -5104,7 +5104,7 @@ Leave Events
 ## E05 Does Not Own
 
 ``` text
-Employee Profile Data
+Employee Master Data
 
 Organization Hierarchy
 
@@ -5203,7 +5203,7 @@ Enterprise Architecture Team
 Responsibilities:
 
 -   Validate architecture alignment
--   Review multi-domain impacts
+-   Review cross-domain impacts
 -   Approve major architectural changes
 
 ------------------------------------------------------------------------
@@ -5212,7 +5212,7 @@ Responsibilities:
 
   Area                       Owner
   -------------------------- -------------------------
-  Employee context           E07 Employee Profile
+  Employee context           Employee Profile Domain
   Attendance integration     Attendance Domain
   Payroll integration        Payroll Domain
   Notifications              Notification Domain

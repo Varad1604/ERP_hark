@@ -4,14 +4,15 @@
 |----------|-------|
 | **Document ID** | L2-E01 |
 | **Document Title** | Workforce & Engagement Workflows |
+| **Document Owner** | Varad |
 | **Architecture Level** | Level 2 — Domain Workflow Architecture |
-| **Domain** | Workforce & Engagement |
+| **Domain** | Workforce Management System (WMS) |
 | **Bounded Context** | Workforce & Engagement |
 | **Architecture Style** | Domain-Driven Design (DDD), Event-Driven Architecture |
 | **Primary Aggregate** | Workforce Engagement |
-| **Supporting Aggregates** | Workforce Profile, Position Assignment, Responsibility Assignment |
+| **Supporting Aggregates** | Workforce Profile |
+| **Referenced Aggregates (owned by L2-E02)** | Position Assignment, Responsibility Assignment, Reporting Relationship, Assignment History |
 | **Authoritative Owner** | Workforce Management Domain |
-| **Document Owner** | Varad |
 | **Upstream Dependencies** | Platform Foundation (Person), Organisation Management, Identity & Access Management, Policy Engine, Workflow Engine |
 | **Downstream Consumers** | Payroll, Leave Management, Academic Delivery, Examination, Research, Library, Hostel, Notifications, Analytics, Audit |
 | **Status** | Draft |
@@ -214,13 +215,17 @@ The Workforce & Engagement Domain shall include responsibility for the following
 
 ---
 
-### Position Assignment Management
+### Position Assignment Consumption
 
-- Position assignment creation.
-- Position assignment modification.
-- Position assignment transfer.
-- Position assignment closure.
-- Historical position assignment management.
+Position Assignment lifecycle is **owned exclusively by L2-E02 — Position & Assignment Workflows**.
+This domain does not create, modify, transfer, close or version Position Assignments.
+
+This domain shall:
+
+- Request Position Assignment changes through published L2-E02 service contracts.
+- Consume Position Assignment state through L2-E02 read contracts and domain events.
+- Reference the active Position Assignment when resolving workforce organisational context.
+- Never persist a competing Position Assignment record or history.
 
 ---
 
@@ -236,13 +241,9 @@ The Workforce & Engagement Domain shall include responsibility for the following
 
 ### Workforce Responsibilities
 
-- Responsibility assignment.
-- Responsibility delegation.
-- Responsibility activation.
-- Responsibility suspension.
-- Responsibility completion.
-- Responsibility withdrawal.
-- Responsibility history.
+Responsibility Assignment lifecycle is **owned exclusively by L2-E02**. This domain consumes
+responsibility information and never allocates, delegates, activates, suspends, completes,
+withdraws or versions responsibilities itself.
 
 ---
 
@@ -312,6 +313,23 @@ The Workforce & Engagement Domain shall include responsibility for the following
 ## 2.3 Out of Scope
 
 The following capabilities are explicitly outside the responsibility of the Workforce & Engagement Domain.
+
+### Position & Responsibility Assignment
+
+The Workforce Domain shall not own:
+
+- Position Assignment creation, modification, transfer or closure.
+- Responsibility allocation, delegation, activation, completion or withdrawal.
+- Reporting relationships and organisational authority resolution.
+- Assignment effective dating, versioning or history.
+
+These are owned exclusively by `L2-E02 — Position & Assignment Workflows`. The Workforce Domain
+publishes employment eligibility, invokes L2-E02 service contracts to request changes, and consumes
+L2-E02 read contracts and domain events. It shall never persist a competing assignment record.
+
+Added 2026-08-03 to close integrity finding INT-002.
+
+---
 
 ### Recruitment
 
@@ -749,7 +767,7 @@ The Workforce Domain shall remain a consumer of authoritative enterprise master 
 
 No upstream dependency shall directly modify Workforce aggregates.
 
-All multi-domain interaction shall occur through:
+All cross-domain interaction shall occur through:
 
 - Canonical Read Contracts
 - Published Domain Events
@@ -1123,7 +1141,7 @@ This architecture minimizes inter-domain coupling, enables independent domain ev
 
 The Workforce & Engagement Domain establishes the authoritative ownership boundaries for all workforce-related business capabilities within SutraERP.
 
-The primary objective of these boundaries is to ensure that every workforce business capability has exactly one authoritative owner, thereby eliminating ownership ambiguity, duplicated business logic, conflicting state transitions, and multi-domain coupling.
+The primary objective of these boundaries is to ensure that every workforce business capability has exactly one authoritative owner, thereby eliminating ownership ambiguity, duplicated business logic, conflicting state transitions, and cross-domain coupling.
 
 The ownership model defined within this section shall govern every workforce-related integration across the enterprise architecture.
 
@@ -1209,30 +1227,23 @@ Ownership includes:
 
 ---
 
-### Position Assignment
+### Position Assignment — Not Owned
 
-Ownership includes:
+Position Assignment is **owned exclusively by L2-E02 — Position & Assignment Workflows**.
 
-- Position assignment lifecycle
-- Position assignment movement
-- Position assignment history
-- Effective dating
-- Assignment closure
+The Workforce Domain does not own position assignment lifecycle, movement, history, effective
+dating or closure. It consumes them through L2-E02 contracts and events.
 
-The Workforce Domain remains the authoritative owner of all Position Assignments.
+See L2-E02 Invariant O-001: a Position Assignment SHALL belong exclusively to the Position &
+Assignment Domain.
 
 ---
 
-### Responsibility Assignment
+### Responsibility Assignment — Not Owned
 
-Ownership includes:
-
-- Responsibility assignment
-- Responsibility delegation
-- Responsibility activation
-- Responsibility completion
-- Responsibility withdrawal
-- Responsibility history
+Responsibility Assignment is **owned exclusively by L2-E02**. The Workforce Domain consumes
+responsibility state and never owns its allocation, delegation, activation, completion,
+withdrawal or history.
 
 ---
 
@@ -1308,7 +1319,7 @@ The Workforce Domain explicitly does **not** own the following business capabili
 
 ---
 
-## 5.6 Multi-Domain Ownership Matrix
+## 5.6 Cross-Domain Ownership Matrix
 
 | Capability | Workforce | Payroll | Academic | Identity | Organisation |
 |------------|:---------:|:-------:|:--------:|:--------:|:------------:|
@@ -1397,7 +1408,7 @@ External domains shall never directly modify Workforce aggregates.
 
 ---
 
-### Multi-Domain Commands
+### Cross-Domain Commands
 
 Business commands targeting Workforce capabilities shall be processed exclusively by the Workforce Domain.
 
@@ -1411,7 +1422,7 @@ Consumers shall retrieve workforce information exclusively through canonical rea
 
 ### Domain Events
 
-Multi-domain business communication shall occur through published workforce domain events.
+Cross-domain business communication shall occur through published workforce domain events.
 
 Events shall represent completed business facts.
 
@@ -1439,7 +1450,7 @@ The following architectural patterns are explicitly prohibited.
 - Identity creating workforce records.
 - Organisation performing workforce transfers directly.
 - Historical workforce record deletion.
-- Multi-domain business logic embedded inside Workforce aggregates.
+- Cross-domain business logic embedded inside Workforce aggregates.
 
 ---
 
@@ -1510,8 +1521,10 @@ These aggregates collectively model the complete workforce lifecycle while maint
 
 - One Person may own exactly one Workforce Profile.
 - One Workforce Profile may own multiple historical Workforce Engagements.
-- Every Workforce Engagement owns its Position Assignment history.
-- Every Position Assignment owns its Responsibility Assignment history.
+- Every Position Assignment references exactly one Workforce Engagement. The assignment and its
+  history are owned by L2-E02, not by the Workforce Engagement.
+- Every Responsibility Assignment references exactly one Position Assignment and is likewise owned
+  by L2-E02.
 - Historical ownership shall never be reassigned.
 
 ---
@@ -1604,64 +1617,58 @@ Future employment shall create a new Workforce Engagement.
 
 ---
 
-# 6.6 Position Assignment
+# 6.6 Position Assignment (Referenced — owned by L2-E02)
 
-## Purpose
+## Ownership
 
-The Position Assignment aggregate represents the organisational position currently occupied by a Workforce Engagement.
+Position Assignment is **not an aggregate of this domain**. It is owned exclusively by
+`L2-E02 — Position & Assignment Workflows`, which defines its aggregate model, lifecycle,
+states, effective dating, versioning and history.
 
-It records organisational placement rather than employment.
-
-Position Assignments provide the organisational context required for institutional operations.
-
----
-
-## Responsibilities
-
-The aggregate governs:
-
-- Position occupancy.
-- Department assignment.
-- Organisation assignment.
-- Campus assignment.
-- Reporting hierarchy.
-- Effective dating.
-- Historical movement.
+This section exists only to describe how Workforce & Engagement *relates* to it.
 
 ---
 
-## Lifecycle
+## Relationship to Workforce Engagement
 
-```text
-Draft
-   │
-   ▼
-Active
-   │
-   ├────────► Suspended
-   │              │
-   ▼              ▼
-Transferred    Resumed
-   │
-   ▼
-Closed
-```
-
-Every organisational movement creates a new Position Assignment history.
-
-Historical Position Assignments become immutable.
+- A Position Assignment references exactly one active Workforce Engagement.
+- Workforce Engagement is the employment relationship; Position Assignment is the organisational
+  placement. The two lifecycles are independent.
+- Closing a Workforce Engagement is a business trigger for L2-E02 to close the associated Position
+  Assignments; this domain publishes the engagement event and does not perform the closure.
 
 ---
 
-# 6.7 Responsibility Assignment
+## How this domain uses it
 
-## Purpose
+| Need | Mechanism | Owner |
+|---|---|---|
+| Resolve current organisational placement | L2-E02 read contract | L2-E02 |
+| React to placement change | L2-E02 domain events | L2-E02 |
+| Request a placement change | L2-E02 service contract | L2-E02 |
+| Employment eligibility for placement | Published by this domain | L2-E01 |
+
+For the canonical lifecycle, states and invariants, see `L2-E02_Position_and_Assignment_Workflows.md`.
+
+---
+
+# 6.7 Responsibility Assignment (Referenced — owned by L2-E02)
+
+## Ownership
+
+Responsibility Assignment is **not an aggregate of this domain**. It is owned exclusively by
+`L2-E02 — Position & Assignment Workflows`.
+
+## Purpose (for reference)
 
 Responsibilities represent operational duties allocated to a Position Assignment.
 
 Responsibilities describe what an individual performs in addition to holding an organisational position.
 
 Responsibilities are operational constructs rather than employment constructs.
+
+This domain consumes responsibility information to resolve workforce operational availability; it
+does not allocate, delegate or close responsibilities.
 
 ---
 
@@ -1737,7 +1744,9 @@ The following invariants shall always hold.
 
 ---
 
-### Position Assignment
+### Position Assignment (enforced by L2-E02)
+
+These invariants are stated here for context only. They are **defined and enforced by L2-E02**:
 
 - Exactly one primary active Position Assignment per Workforce Engagement.
 - Historical assignments are immutable.
@@ -1745,7 +1754,9 @@ The following invariants shall always hold.
 
 ---
 
-### Responsibility Assignment
+### Responsibility Assignment (enforced by L2-E02)
+
+These invariants are stated here for context only. They are **defined and enforced by L2-E02**:
 
 - Every Responsibility belongs to a Position Assignment.
 - Multiple active responsibilities are permitted.
@@ -1981,43 +1992,47 @@ Transfers shall never create new Workforce Engagements.
 
 ---
 
-# 7.7 Position Assignment Workflows
+# 7.7 Position Assignment Interaction
 
-## WF-005 — Manage Position Assignment
+Position Assignment workflows are **owned by L2-E02**. This domain holds no Position Assignment
+workflow of its own.
 
-Responsible for:
+## WF-005 — Request Position Assignment Change *(invokes L2-E02)*
 
-- Position Assignment creation
-- Position Assignment modification
-- Position Assignment closure
-- Historical versioning
-- Effective dating
+This domain raises a request and awaits the L2-E02 outcome. It does not perform the transition.
+
+| Step | Actor | Contract |
+|---|---|---|
+| 1 | L2-E01 | Validate that the Workforce Engagement is Active and eligible |
+| 2 | L2-E01 | Invoke the L2-E02 position assignment service contract |
+| 3 | L2-E02 | Create / modify / close the Position Assignment and write history |
+| 4 | L2-E02 | Publish the assignment domain event |
+| 5 | L2-E01 | Consume the event and refresh local organisational read context |
+
+Creation, modification, closure, historical versioning and effective dating all remain with L2-E02.
 
 Position Assignments remain independent of Workforce Engagement lifecycle transitions.
 
 ---
 
-# 7.8 Responsibility Management Workflows
+# 7.8 Responsibility Management Interaction
 
-## WF-006 — Manage Responsibility Assignment
+Responsibility workflows are **owned by L2-E02**. This domain holds no responsibility workflow
+of its own.
 
-Responsible for:
+## WF-006 — Request Responsibility Change *(invokes L2-E02)*
 
-- Responsibility allocation
-- Responsibility activation
-- Responsibility completion
-- Responsibility withdrawal
-- Responsibility history
+Allocation, activation, completion, withdrawal and history all remain with L2-E02. This domain
+supplies workforce eligibility and consumes the resulting events.
 
 Responsibilities remain operational constructs attached to Position Assignments.
 
 ---
 
-## WF-007 — Delegate Responsibilities
+## WF-007 — Responsibility Delegation *(owned by L2-E02)*
 
-Temporarily delegates operational responsibilities while preserving original assignment ownership.
-
-Delegation shall never transfer historical ownership.
+Delegation is executed by L2-E02. Delegation temporarily transfers operational execution while
+preserving original assignment ownership, and shall never transfer historical ownership.
 
 ---
 
@@ -3009,7 +3024,10 @@ Each engagement shall independently govern:
 
 ---
 
-# 9.4 Position Assignment Rules
+# 9.4 Position Assignment Rules (defined and enforced by L2-E02)
+
+The rules in this section are **owned by L2-E02**. They are restated here because they constrain how
+Workforce Engagement relates to organisational placement. L2-E02 governs any change to them.
 
 ## BR-WF-008 — Position Ownership
 
@@ -3037,7 +3055,9 @@ Additional Position Assignments, where supported by policy, shall be explicitly 
 
 ---
 
-# 9.5 Responsibility Rules
+# 9.5 Responsibility Rules (defined and enforced by L2-E02)
+
+The rules in this section are **owned by L2-E02** and restated here for context only.
 
 ## BR-WF-011 — Responsibility Ownership
 
@@ -3209,7 +3229,7 @@ No downstream domain shall modify these aggregates.
 
 ---
 
-## BR-WF-028 — Multi-Domain Modification
+## BR-WF-028 — Cross-Domain Modification
 
 External domains shall request Workforce changes through published application services.
 
@@ -4126,7 +4146,7 @@ Every state transition shall originate from an approved business workflow.
 
 Only the owning aggregate may change its own lifecycle state.
 
-Multi-domain state manipulation is prohibited.
+Cross-domain state manipulation is prohibited.
 
 ---
 
@@ -4210,7 +4230,10 @@ The following transitions shall never occur.
 
 ---
 
-# 12.5 Position Assignment Lifecycle
+# 12.5 Position Assignment Lifecycle (owned by L2-E02)
+
+Reproduced for cross-domain reference. The authoritative state machine and its workflow bindings
+live in `L2-E02_Position_and_Assignment_Workflows.md`; on any difference, L2-E02 governs.
 
 | Current State | Allowed Transition | Target State | Workflow |
 |---------------|-------------------|--------------|----------|
@@ -4231,7 +4254,9 @@ The following transitions shall never occur.
 
 ---
 
-# 12.6 Responsibility Assignment Lifecycle
+# 12.6 Responsibility Assignment Lifecycle (owned by L2-E02)
+
+Reproduced for cross-domain reference. L2-E02 governs on any difference.
 
 | Current State | Allowed Transition | Target State | Workflow |
 |---------------|-------------------|--------------|----------|
@@ -4481,7 +4506,7 @@ Operational Availability shall not alter Workforce Engagement ownership.
 
 ---
 
-# 13.8 Multi-Domain Decisions
+# 13.8 Cross-Domain Decisions
 
 | Decision ID | Business Decision | Outcome |
 |-------------|-------------------|---------|
@@ -4917,7 +4942,7 @@ Identical business inputs shall always produce identical validation outcomes.
 | Effective Date Validation | Validate temporal correctness |
 | Concurrency Validation | Prevent conflicting updates |
 | Historical Validation | Protect historical integrity |
-| Multi-Domain Validation | Validate external dependencies |
+| Cross-Domain Validation | Validate external dependencies |
 
 ---
 
@@ -5098,7 +5123,7 @@ Last-write-wins shall not be permitted.
 
 ---
 
-# 15.15 Multi-Domain Validation
+# 15.15 Cross-Domain Validation
 
 Before workflow execution, Workforce shall validate:
 
@@ -5702,7 +5727,7 @@ The audit subsystem shall ensure:
 - Chronological consistency.
 - Immutable storage.
 - Business-level traceability.
-- Correlation amulti-domains.
+- Correlation across domains.
 - Long-term preservation.
 - High-volume scalability.
 - Enterprise reliability.
@@ -5720,7 +5745,7 @@ This audit model ensures:
 - Legal defensibility.
 - Historical reconstruction.
 - Operational transparency.
-- Multi-domain traceability.
+- Cross-domain traceability.
 - Long-term architectural integrity.
 
 Audit is a foundational architectural capability supporting every authoritative Workforce business operation within the SutraERP platform.
@@ -5731,7 +5756,7 @@ Audit is a foundational architectural capability supporting every authoritative 
 
 The Workforce & Engagement Domain manages highly sensitive workforce information and therefore shall enforce enterprise-grade security principles throughout the complete workforce lifecycle.
 
-Security within this domain extends beyond authentication and authorization to include data protection, privacy, integrity, tenant isolation, operational resilience, and secure multi-domain collaboration.
+Security within this domain extends beyond authentication and authorization to include data protection, privacy, integrity, tenant isolation, operational resilience, and secure cross-domain collaboration.
 
 The Workforce Domain shall consume enterprise security capabilities while remaining responsible for protecting the confidentiality, integrity, and availability of workforce business information.
 
@@ -5746,7 +5771,7 @@ The security architecture shall satisfy the following objectives.
 - Prevent unauthorized business operations.
 - Enforce tenant isolation.
 - Protect personally identifiable information (PII).
-- Maintain secure multi-domain communication.
+- Maintain secure cross-domain communication.
 - Support regulatory compliance.
 - Preserve audit integrity.
 - Ensure operational resilience.
@@ -6046,7 +6071,7 @@ Examples include:
 - Privileged operations.
 - Bulk modifications.
 - Sensitive data access.
-- Multi-domain administrative actions.
+- Cross-domain administrative actions.
 
 Security monitoring shall integrate with enterprise monitoring and audit capabilities.
 
@@ -6063,7 +6088,7 @@ This security model ensures:
 - Availability of critical workforce services.
 - Regulatory compliance.
 - Enterprise resilience.
-- Secure multi-domain collaboration.
+- Secure cross-domain collaboration.
 - Long-term architectural trustworthiness.
 
 Security is an integral architectural characteristic of the Workforce Domain and shall govern every authoritative workforce business operation throughout its lifecycle.
@@ -6121,7 +6146,7 @@ Aggregate isolation enables parallel execution of unrelated business operations.
 
 ### Event-Driven Scalability
 
-Multi-domain collaboration shall occur through asynchronous Domain Events.
+Cross-domain collaboration shall occur through asynchronous Domain Events.
 
 The Workforce Domain shall not synchronously wait for downstream processing.
 
@@ -6703,7 +6728,7 @@ Each diagram addresses a distinct architectural concern and collectively describ
 - Aggregate relationships
 - Lifecycle progression
 - Workflow orchestration
-- Multi-domain collaboration
+- Cross-domain collaboration
 - Event propagation
 - Service interactions
 - State transitions
@@ -6728,7 +6753,7 @@ IAM[Identity & Access]
 POL[Policy Engine]
 WFE[Workflow Engine]
 
-subgraph WFE["Workforce & Engagement Domain"]
+subgraph WMS["Workforce & Engagement Domain"]
 WF[Workforce Management]
 end
 
@@ -6861,7 +6886,7 @@ I --> J[Downstream Domains]
 
 ---
 
-# 21.6 Multi-Domain Event Collaboration
+# 21.6 Cross-Domain Event Collaboration
 
 **Purpose**
 
@@ -7154,7 +7179,12 @@ Benefits include:
 
 ## Status
 
-Accepted
+Accepted — superseded in part 2026-08-03 (INT-002)
+
+## Amendment
+
+Position Assignment remains an independent aggregate, but it is **owned by L2-E02**, not by this
+domain. References below to this domain owning or modelling the aggregate are historical.
 
 ---
 
@@ -7184,7 +7214,11 @@ Transfers create new Position Assignments instead of modifying Workforce Engagem
 
 ## Status
 
-Accepted
+Accepted — superseded in part 2026-08-03 (INT-002)
+
+## Amendment
+
+Responsibilities remain independent aggregates, but they are **owned by L2-E02**, not by this domain.
 
 ---
 
@@ -7697,7 +7731,7 @@ All terms shall be interpreted consistently across architecture documents, workf
 |---------|------------|
 | Canonical Owner | Single domain responsible for authoritative business state. |
 | Bounded Context | Explicit business boundary with independent ownership. |
-| Event-Driven Integration | Multi-domain collaboration through immutable events. |
+| Event-Driven Integration | Cross-domain collaboration through immutable events. |
 | CQRS | Separation of transactional write operations from read models. |
 | Effective Dating | Temporal validity of business information. |
 | Immutable History | Historical business records are never overwritten. |
@@ -7759,7 +7793,7 @@ This separation enables:
 - Accurate historical reconstruction.
 - Enterprise scalability.
 - Flexible institutional governance.
-- Multi-domain interoperability.
+- Cross-domain interoperability.
 - Long-term architectural stability.
 
 The domain collaborates with the remainder of SutraERP exclusively through canonical contracts, immutable domain events, and platform services while preserving strict ownership boundaries and transactional consistency.
@@ -7865,7 +7899,7 @@ Breaking architectural changes shall require:
 1. Architectural impact assessment.
 2. ADR approval.
 3. Repository-wide dependency validation.
-4. Multi-domain compatibility verification.
+4. Cross-domain compatibility verification.
 5. Enterprise architecture review.
 
 ---
@@ -7908,7 +7942,7 @@ Future enhancements to the Workforce Domain shall:
 - Maintain immutable historical records.
 - Preserve workflow-driven execution.
 - Maintain enterprise scalability.
-- Avoid introducing multi-domain transactional coupling.
+- Avoid introducing cross-domain transactional coupling.
 
 ---
 
@@ -7919,7 +7953,7 @@ The Workforce & Engagement Domain Architecture is considered complete when:
 - All canonical business capabilities are represented.
 - Aggregate ownership is fully defined.
 - Lifecycle behavior is formally specified.
-- Multi-domain dependencies are documented.
+- Cross-domain dependencies are documented.
 - Service Contracts and Domain Events are established.
 - Governance, audit, security, and scalability considerations are addressed.
 - Architectural decisions are formally recorded.
@@ -8599,7 +8633,7 @@ The Workforce Domain shall reference these capabilities through approved contrac
 
 ---
 
-# G.4 Multi-Domain Read Contracts
+# G.4 Cross-Domain Read Contracts
 
 The Workforce Domain consumes authoritative information through read contracts.
 
@@ -8614,7 +8648,7 @@ The Workforce Domain consumes authoritative information through read contracts.
 
 ---
 
-# G.5 Multi-Domain Command Contracts
+# G.5 Cross-Domain Command Contracts
 
 The Workforce Domain exposes command contracts for other domains.
 

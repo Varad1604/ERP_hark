@@ -1,7 +1,8 @@
 # SutraERP Level 1 Architecture
 
-**Version:** 2.0
+**Version:** 2.1
 **Status:** LOCKED
+**Last Amended:** 2026-08-03 — Institute lifecycle extended (INT-008)
 **Scope:** Canonical Institutional Lifecycle
 **Purpose:** Define the complete institutional business architecture, ownership boundaries, lifecycle rules, and multi-domain responsibilities before Level 2 domain design.
 
@@ -148,20 +149,24 @@ Policies are evaluated through the Workflow Engine rather than embedded into bus
 
 # 3. Institutional Operating Model
 
-## 3.1 Multi-Tenant Architecture
+## 3.1 Institutional Hierarchy
+
+(Multi-tenant isolation across separate Tenants is defined in
+`L2-A01_Platform_Tenant_Foundation_Architecture.md` §2.6-2.7. This
+section defines the hierarchy depth *within* a single Tenant.)
 
 ```mermaid
 flowchart TD
 
 Platform[SutraERP Platform]
 
-Platform-->Tenant
+Platform-->Tenant[Tenant]
 
-Tenant-->Institute
+Tenant-->Institute[One or More Institutions]
 
-Institute-->College
+Institute-->College[One or More Colleges / Schools]
 
-College-->Department
+College-->Department[One or More Departments]
 ```
 
 Definitions
@@ -193,26 +198,36 @@ Example
 ```mermaid
 flowchart TD
 
-T[ABC Education Society]
+T[Education Trust]
 
--->I[ABC Group of Institutions]
+T-->I1[Institute of Engineering and Technology]
 
-I-->C1[Engineering College]
+T-->I2[Institute of Polytechnic Studies]
 
-I-->C2[Pharmacy College]
+T-->I3[Institute of School Education]
 
-I-->C3[School]
+I1-->C1[Engineering College]
 
 C1-->D1[Computer Engineering]
 
 C1-->D2[Mechanical Engineering]
 
-C2-->D3[Pharmacy]
+I2-->C2[Polytechnic College]
 
-C3-->D4[Primary]
+C2-->D3[Diploma Engineering]
 
-C3-->D5[Secondary]
+I3-->C3[Primary School]
+
+I3-->C4[Secondary School]
 ```
+
+This example shows one Tenant (the Trust) operating three separate
+Institutions, each independently recognised (for example, under
+different regulatory approvals for degree-Engineering, Diploma, and
+school education), each with its own College(s)/School and Department
+structure. A Tenant is not required to have more than one Institution —
+one Institution is equally valid — but the architecture must not assume
+exactly one.
 
 **Locked Rule**
 
@@ -1043,14 +1058,43 @@ stateDiagram-v2
 
 [*] --> Draft
 
-Draft --> PendingApproval
+Draft --> Configured
+
+Configured --> PendingApproval
 
 PendingApproval --> Active
 
 PendingApproval --> Returned
 
 PendingApproval --> Rejected
+
+Returned --> Configured
+
+Active --> Suspended
+
+Suspended --> Active
+
+Active --> Archived
+
+Suspended --> Archived
+
+Archived --> [*]
 ```
+
+State meanings:
+
+| State | Meaning | Operational |
+|---|---|---|
+| Draft | Institute record created; configuration incomplete. | No |
+| Configured | Mandatory Institute Configuration complete and validated; ready to submit for approval. | No |
+| PendingApproval | Activation request submitted and awaiting approval. | No |
+| Returned | Activation request returned for correction; re-enters Configured. | No |
+| Rejected | Activation request denied. Terminal for that request. | No |
+| Active | Institute is an operational business entity. | Yes |
+| Suspended | Institute temporarily disabled; history preserved, reversible to Active. | No |
+| Archived | Institute permanently retired; read-only. Terminal. | No |
+
+Amendment note (2026-08-03, closes integrity finding INT-008): `Configured`, `Suspended` and `Archived` are added to this lifecycle with the explicit transitions shown above. They were already implemented in `L2-B01_Institution_Workflow.md`; this amendment grants them L1 authority so B01 is a strict extension of L1 rather than a divergent state machine. `Draft`, `PendingApproval`, `Active`, `Returned` and `Rejected` are unchanged.
 
 ---
 
@@ -1105,6 +1149,9 @@ Consumes
 
 - Tenant and Institute remain separate.
 - Institute identity is immutable.
+- The Institute lifecycle is exactly Draft, Configured, PendingApproval, Returned, Rejected, Active, Suspended, Archived. No L2 document may add, remove or rename an Institute lifecycle state without an L1 amendment.
+- Suspension is reversible; Archival is terminal and read-only.
+- Rejected and Archived are terminal states.
 
 ---
 
@@ -2458,9 +2505,9 @@ Consumes
 Publishes
 
 - StudentExited
-- StudentGraduated
 - QualificationAwarded
-- AlumniCreated
+- AlumniTransitionCompleted
+- AlumniProfileCreated
 
 ---
 

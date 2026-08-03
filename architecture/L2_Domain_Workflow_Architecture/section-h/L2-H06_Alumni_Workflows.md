@@ -321,9 +321,9 @@ The Alumni Domain SHALL never create duplicate identity records.
 
 ---
 
-## AP-04 Graduation-Based Activation
+## AP-04 Transition-Based Activation
 
-An Alumni Profile SHALL only be created after consumption of the canonical **StudentGraduated** domain event.
+An Alumni Profile SHALL only be created after consumption of the canonical **AlumniTransitionCompleted** domain event published by the Alumni Transition domain (L2-C08).
 
 Manual alumni creation SHALL NOT be permitted under normal enterprise operations.
 
@@ -377,7 +377,7 @@ Administrative intervention SHALL be required only for governed activities.
 
 The Alumni Domain represents the university's long-term engagement platform after the completion of academic studies.
 
-The domain begins when the Academic Core publishes the canonical **StudentGraduated** event, indicating that an individual has successfully completed all academic requirements and has officially transitioned from the Student lifecycle.
+The domain begins when the Alumni Transition domain (L2-C08) publishes the canonical **AlumniTransitionCompleted** event, indicating that the Student-to-Alumni transition has been completed. H06 does not own Qualification Completion or the Student-to-Alumni transition; those remain owned by Student Lifecycle (L2-C05 and L2-C08 respectively).
 
 From that point onward, H06 becomes the authoritative owner of alumni engagement, maintaining the institutional relationship throughout the alumnus's lifetime.
 
@@ -1099,7 +1099,7 @@ The Alumni Domain maintains canonical ownership of all entities representing the
 
 The Alumni aggregate is the root entity of the Alumni bounded context.
 
-It represents an individual who has successfully completed a university-recognized academic program and has transitioned into the alumni lifecycle following the publication of the canonical **StudentGraduated** event.
+It represents an individual who has successfully completed a university-recognized academic program and has transitioned into the alumni lifecycle following the publication of the canonical **AlumniTransitionCompleted** event by the Alumni Transition domain (L2-C08).
 
 Every Alumni SHALL reference an existing canonical Person and Student record and SHALL never create duplicate identity information.
 
@@ -1496,7 +1496,10 @@ Person (A)
         ▼
 Student (C)
         │
-StudentGraduated Event
+        ▼
+Alumni Transition (L2-C08)
+        │
+AlumniTransitionCompleted Event
         │
         ▼
 Alumni
@@ -1536,7 +1539,7 @@ An Alumni record SHALL reference exactly one canonical Student.
 
 ## INV-03
 
-An Alumni profile SHALL only be created after successful consumption of the **StudentGraduated** domain event.
+An Alumni profile SHALL only be created after successful consumption of the **AlumniTransitionCompleted** domain event published by the Alumni Transition domain (L2-C08).
 
 ---
 
@@ -1624,19 +1627,18 @@ This workflow establishes the institutional relationship between the university 
 
 Consumption of the canonical domain event:
 
-**StudentGraduated**
+**AlumniTransitionCompleted**
 
-published by the Academic Core.
+published by the Alumni Transition domain (L2-C08).
 
 ---
 
 ## Preconditions
 
 - Student exists.
-- Graduation is finalized.
+- Student-to-Alumni transition is completed by L2-C08.
 - Person record exists.
 - Student has not already transitioned to Alumni.
-- Graduation has been officially approved.
 
 ---
 
@@ -1644,9 +1646,9 @@ published by the Academic Core.
 
 ### Step 1
 
-Academic Core publishes:
+Alumni Transition domain (L2-C08) publishes:
 
-**StudentGraduated**
+**AlumniTransitionCompleted**
 
 ↓
 
@@ -1755,7 +1757,7 @@ No Alumni record SHALL be created.
 
 ## Consumed Events
 
-- StudentGraduated
+- AlumniTransitionCompleted
 
 ---
 
@@ -3552,7 +3554,7 @@ These responsibilities SHALL remain exclusively within the Finance domain.
 
 | Workflow ID | Workflow Name | Primary Aggregate | Trigger | Published Event |
 |-------------|---------------|-------------------|---------|-----------------|
-| WF-H06-001 | Alumni Profile Creation | Alumni | StudentGraduated event from Academic Core | AlumniProfileCreated |
+| WF-H06-001 | Alumni Profile Creation | Alumni | AlumniTransitionCompleted event from Alumni Transition (L2-C08) | AlumniProfileCreated |
 | WF-H06-002 | Alumni Membership Activation | Alumni | Alumni acceptance, administrator activation, or activation policy | AlumniMembershipActivated |
 | WF-H06-003 | Professional Profile Update | Professional Profile | Alumni profile update request | ProfessionalProfileUpdated |
 | WF-H06-004 | Communication Preference Management | Communication Preference State | Preference change request | CommunicationPreferencesUpdated |
@@ -4027,7 +4029,7 @@ The following payload ownership rules SHALL govern the enterprise event contract
 
 | Event | Owned Fields |
 |-------|--------------|
-| StudentGraduated | StudentId, PersonId, GraduationId, DegreeId, Timestamp |
+| AlumniTransitionCompleted | StudentId, PersonId, TransitionId, ProgrammeId, Timestamp |
 | AlumniProfileCreated | AlumniId, PersonId, GraduationId, MembershipId, Status, Timestamp |
 | AlumniMembershipActivated | AlumniId, MembershipId, ActivationMethod, ActivatedBy, Timestamp |
 | MentorRegistered | MentorId, AlumniId, ExpertiseAreas, AvailabilityStatus, Timestamp |
@@ -4047,8 +4049,7 @@ The following payload ownership rules SHALL govern the enterprise event contract
 
 | Event | Publisher |
 |--------|-----------|
-| StudentGraduated | Academic Core |
-| DegreeAwarded | Academic Core |
+| AlumniTransitionCompleted | Alumni Transition (L2-C08) |
 | PersonUpdated | Identity Domain |
 | IdentityMerged | Identity Domain |
 | EventCreated | Event Management |
@@ -4123,7 +4124,7 @@ External integrations SHALL comply with enterprise security, consent, privacy, a
 | Integration | Event Producers | Event Consumers | API Providers | API Consumers |
 |-------------|-----------------|-----------------|---------------|---------------|
 | Identity Domain | PersonUpdated, IdentityMerged | AlumniProfileCreated, AlumniMembershipActivated | Identity reference APIs | Alumni Domain |
-| Academic Core | StudentGraduated, DegreeAwarded | AlumniProfileCreated | Graduation reference APIs | Alumni Domain |
+| Alumni Transition (L2-C08) | AlumniTransitionCompleted | AlumniProfileCreated | Transition reference APIs | Alumni Domain |
 | Academic Delivery | AcademicAchievement events | ProfessionalProfileUpdated, ProfessionalAchievementRecorded | Academic achievement APIs | Alumni Domain |
 | Notification Domain | NotificationDeliveryCompleted | AlumniProfileCreated, AlumniMembershipActivated, MentorRegistered, MentorshipCreated, GuestLectureScheduled, GuestLectureCompleted, IndustryCollaborationAssigned, IndustryCollaborationCompleted, Verification events, DonationIntent events | Message delivery APIs | Alumni Domain |
 | Finance Domain | PaymentCompleted | DonationIntentSubmitted, DonationIntentUpdated, DonationIntentWithdrawn | Payment and receipt APIs | Alumni Domain |
@@ -4682,7 +4683,7 @@ Business rules are authoritative and SHALL be enforced consistently across user 
 
 | Rule ID | Business Rule |
 |----------|---------------|
-| BR-H06-001 | Alumni Profile SHALL only be created after consumption of the canonical **StudentGraduated** event. |
+| BR-H06-001 | Alumni Profile SHALL only be created after consumption of the canonical **AlumniTransitionCompleted** event published by the Alumni Transition domain (L2-C08). |
 | BR-H06-002 | Every Alumni SHALL reference exactly one canonical Person. |
 | BR-H06-003 | Every Alumni SHALL reference exactly one canonical Student. |
 | BR-H06-004 | Duplicate Alumni Profiles SHALL NOT exist. |

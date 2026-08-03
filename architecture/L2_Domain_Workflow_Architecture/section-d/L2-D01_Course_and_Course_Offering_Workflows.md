@@ -1,13 +1,13 @@
 # L2-D01 — Course & Course Offering Workflows
 
 **Repository:** SutraERP  
-**Section:** D — Academic Delivery  
+**Section:** D — Academic Operations  
 **Domain:** D01 — Course Offering  
 **Document ID:** L2-D01  
 **Version:** 1.0  
 **Status:** Architecture Locked  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Pallav  
+**Owner:** Academic Operations Domain  
 **Dependencies:** Section A, Section B, Section C
 
 ---
@@ -57,7 +57,7 @@ This document intentionally excludes implementation details.
 
 # 2. Architectural Position
 
-The Course Offering domain belongs to Academic Delivery.
+The Course Offering domain belongs to Academic Operations.
 
 It acts as the bridge between Academic Structure and operational academic execution.
 
@@ -80,8 +80,8 @@ Course Offering (D01)
         │
  ┌──────┼─────────┬──────────┬───────────┐
  ▼      ▼         ▼          ▼           ▼
-D02     D03     Section C   Section I   Resources
-Faculty Timetable Enrollment Section I Resources Management
+D02     D03     Section C   Section F   Resources
+Faculty Timetable Enrollment Assessment Management
 ```
 
 ---
@@ -171,7 +171,7 @@ Includes:
 
 ## Assessment
 
-Owned by Section I.
+Owned by Section F.
 
 Includes:
 
@@ -406,7 +406,7 @@ Produces:
 
 ---
 
-### Section I
+### Section F
 
 Consumes:
 
@@ -529,7 +529,7 @@ The Course Offering aggregate shall not:
 - Maintain dashboards
 - Schedule notifications
 
-Multi-domain interaction shall occur through:
+Cross-domain interaction shall occur through:
 
 - Domain events
 - Platform services
@@ -2168,7 +2168,7 @@ All events shall be immutable and published through the Platform Event Bus.
 
 Versioning, Merge, Split, Freeze, Rollback, and Archive shall remain transactional responsibilities of the Course Offering aggregate.
 
-Multi-domain operations shall be coordinated through domain events and platform services.
+Cross-domain operations shall be coordinated through domain events and platform services.
 
 The aggregate shall never directly modify downstream bounded contexts.
 
@@ -2764,7 +2764,7 @@ All integrations shall respect Domain-Driven Design boundaries.
 | D02 | Published Course Offerings |
 | D03 | Published Course Offerings |
 | Section C | Enrollment Availability |
-| Section I | Assessment Planning |
+| Section F | Assessment Planning |
 | Resource Management | Resource Requirements |
 | Analytics Platform | Domain Events |
 | Monitoring Platform | Operational Events |
@@ -3167,7 +3167,7 @@ Cross-cutting concerns remain platform capabilities.
 | Faculty Assignment | D02 |
 | Timetable | D03 |
 | Student Enrollment | Section C |
-| Assessment | Section I |
+| Assessment | Section F |
 | Resource Allocation | Resource Management |
 | Analytics | Analytics Platform |
 | Monitoring | Monitoring Platform |

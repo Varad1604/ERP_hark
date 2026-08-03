@@ -125,9 +125,9 @@ The following capabilities are intentionally excluded from this domain and remai
 | Financial Adjustments | L2-F04 |
 | Budget Planning | L2-F06 |
 | Cost Center Budget Allocation | L2-F06 |
-| Procurement Workflow | L2-F07 |
-| Purchase Orders | L2-F07 |
-| Vendor Management | L2-F07 |
+| Procurement Workflow | Section J — J01 Procurement Planning & Sourcing |
+| Purchase Orders | Section J — J04 Purchase Order Management |
+| Vendor Management | Section J — J02 Vendor & Supplier Management |
 | GST Configuration | L2-F00 Tax Compliance Service |
 | TDS Configuration | L2-F00 Tax Compliance Service |
 | Banking Operations | L2-F09 |
@@ -574,7 +574,7 @@ Budget preparation, allocation, monitoring, and utilization are owned by L2-F06.
 
 ## Procurement Operations
 
-Purchase requisitions, purchase orders, vendor procurement workflows, and invoice processing are owned by L2-F07.
+Purchase requisitions, purchase orders, vendor procurement workflows, and goods receipt are owned by Section J (J01 through J05). Section J completes procurement activities and provides approved procurement information to Finance for financial consequence processing. Vendor invoice processing as a Finance consequence is owned by L2-F08.
 
 ---
 
@@ -655,7 +655,7 @@ The Accounting domain receives financial events from:
 - L2-F02 — Payment Management
 - L2-F03 — Refund Management
 - L2-F04 — Financial Adjustment Management
-- L2-F07 — Procurement Finance
+- L2-F14 — Procurement Finance Consumption
 - L2-F09 — Treasury
 - L2-F10 — Asset Management
 
@@ -1014,7 +1014,7 @@ Accounting receives accounting events from:
 - L2-F02 — Payment Management
 - L2-F03 — Refund Management
 - L2-F04 — Financial Adjustment Management
-- L2-F07 — Procurement Finance
+- L2-F14 — Procurement Finance Consumption
 - L2-F09 — Treasury Management
 - L2-F10 — Asset Management
 
@@ -4446,7 +4446,7 @@ The following domains generate accounting events consumed by the Accounting doma
 | L2-F02 Payment Management | Cash receipt and settlement postings |
 | L2-F03 Refund Management | Refund accounting entries |
 | L2-F04 Financial Adjustments | Adjustment journals |
-| L2-F07 Procurement Finance | Expense and payable recognition |
+| L2-F14 Procurement Finance Consumption | Expense and payable recognition |
 | L2-F00 Tax Compliance Service | GST, TDS, statutory accounting |
 | L2-F09 Treasury | Bank and cash accounting |
 | L2-F10 Asset Management | Asset capitalization and depreciation |

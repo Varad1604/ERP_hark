@@ -4,13 +4,13 @@
 |----------|-------|
 | **Document ID** | L2-C06 |
 | **Document Title** | Guardian Workflows |
+| **Document Owner** | Varad |
 | **Architecture Level** | Level 2 — Domain Architecture |
 | **Domain** | Student Information System (SIS) |
 | **Bounded Context** | Guardian Workflows |
 | **Architecture Style** | Domain-Driven Design (DDD) |
 | **Primary Aggregate** | Guardian Relationship |
 | **Authoritative Owner** | Student Information System Domain |
-| **Document Owner** | Varad |
 | **Status** | Draft |
 | **Version** | 1.0 |
 
@@ -65,8 +65,7 @@ The following capabilities are owned by other bounded contexts and shall not be 
 | Capability | Authoritative Domain |
 |------------|----------------------|
 | Person identity | L2-A02 — Person & Identity |
-| Authentication | L2-A03 — Authentication |
-| Authorization | L2-A04 — Authorization |
+| Authentication & authorization | L2-A03 — Authentication & Authorization |
 | Student lifecycle | Student Lifecycle |
 | Academic registration | Academic Registration |
 | Academic progression | Academic Progression |
@@ -110,7 +109,7 @@ The Guardian Workflows Domain shall adhere to the following architectural princi
 - Every upstream domain remains the single source of truth for its own business information.
 - Guardian Workflows shall consume upstream business information without duplicating ownership.
 - Upstream identifiers shall be referenced but never recreated.
-- Multi-domain communication shall preserve bounded-context autonomy.
+- Cross-domain communication shall preserve bounded-context autonomy.
 - Guardian business rules shall never modify upstream domain state directly.
 - All integrations shall occur through defined service contracts and domain events.
 
@@ -121,12 +120,11 @@ The Guardian Workflows Domain shall adhere to the following architectural princi
 | Upstream Domain | Dependency Type | Business Purpose | Consumed Information |
 |-----------------|-----------------|------------------|----------------------|
 | L2-A02 — Person & Identity | Authoritative | Guardian identity resolution | Person identifiers, demographic identity, contact identity |
-| L2-A03 — Authentication | Authoritative | Guardian authentication | Authentication status, security identity |
-| L2-A04 — Authorization | Authoritative | Institutional access | Authorization context |
+| L2-A03 — Authentication & Authorization | Authoritative | Guardian authentication and institutional access | Authentication status, authorization context, security identity |
 | L2-B01 — Institution Lifecycle | Context | Institutional ownership | Institution identifier, institutional policies |
 | L2-B02 — Organisation Workflows | Context | Organizational ownership | Departments, schools, divisions, administrative units |
 | L2-B03 — Campus & Infrastructure | Context | Campus association | Campus identifiers, campus hierarchy |
-| L2-C02 — Student Lifecycle | Authoritative | Student existence and lifecycle state | Student identity, enrollment status, lifecycle status |
+| L2-C01 — Student Lifecycle | Authoritative | Student existence and lifecycle state | Student identity, enrollment status, lifecycle status |
 | Admission Domain | Context | Initial guardian establishment | Admission application guardian information |
 | Academic Registration | Reference | Academic relationship validation | Academic session and registration context |
 
@@ -309,8 +307,8 @@ The following business capabilities belong to other bounded contexts and shall n
 |---------------------|----------------------|
 | Person Identity | L2-A02 — Person & Identity |
 | Identity Resolution | L2-A02 — Person & Identity |
-| Authentication | L2-A03 — Authentication |
-| Authorization Credentials | L2-A04 — Authorization |
+| Authentication | L2-A03 — Authentication & Authorization |
+| Authorization Credentials | L2-A03 — Authentication & Authorization |
 | Student Identity | Student Lifecycle |
 | Academic Registration | Academic Registration |
 | Academic Progression | Academic Progression |
@@ -341,7 +339,7 @@ The following business capabilities belong to other bounded contexts and shall n
 
 ---
 
-## Multi-Domain Ownership Rules
+## Cross-Domain Ownership Rules
 
 The following rules preserve bounded-context integrity across the SutraERP platform.
 
@@ -1372,7 +1370,7 @@ Verification, approval, suspension, and termination may require different instit
 
 ---
 
-# 9.10 Multi-Domain Rules
+# 9.10 Cross-Domain Rules
 
 ### BR-028 — Identity Ownership
 
@@ -2859,7 +2857,7 @@ These outcomes represent business decisions and are independent of transport-lay
 
 ---
 
-# 16.8 Multi-Domain Authorization Boundaries
+# 16.8 Cross-Domain Authorization Boundaries
 
 The Guardian Workflows Domain shall observe the following ownership boundaries.
 
@@ -3083,7 +3081,7 @@ Historical evidence shall never be altered.
 
 ---
 
-# 17.9 Multi-Domain Audit Responsibilities
+# 17.9 Cross-Domain Audit Responsibilities
 
 | Business Concern | Responsible Domain |
 |------------------|--------------------|
@@ -3326,7 +3324,7 @@ Business security events affecting Guardian Relationships shall be auditable.
 
 ---
 
-# 18.7 Multi-Domain Security Boundaries
+# 18.7 Cross-Domain Security Boundaries
 
 The Guardian Workflows Domain shall consume security services provided by other bounded contexts without duplicating their responsibilities.
 
@@ -3410,7 +3408,7 @@ The Guardian Workflows Domain shall ensure that:
 
 The Security Considerations establish the canonical business security framework for the Guardian Workflows Domain.
 
-By defining security principles, access control requirements, information classification, business authorization responsibilities, privacy expectations, monitoring requirements, and multi-domain security boundaries, the Guardian Workflows Domain protects sensitive guardian information while preserving aggregate integrity, deterministic business behavior, bounded-context ownership, and alignment with the enterprise security architecture of the SutraERP platform.
+By defining security principles, access control requirements, information classification, business authorization responsibilities, privacy expectations, monitoring requirements, and cross-domain security boundaries, the Guardian Workflows Domain protects sensitive guardian information while preserving aggregate integrity, deterministic business behavior, bounded-context ownership, and alignment with the enterprise security architecture of the SutraERP platform.
 
 # 19. Performance & Scalability
 
@@ -3560,7 +3558,7 @@ Historical growth shall not compromise current business operations.
 
 ---
 
-# 19.8 Multi-Domain Scalability
+# 19.8 Cross-Domain Scalability
 
 The Guardian Workflows Domain shall remain independently scalable while collaborating with other bounded contexts.
 
@@ -3572,7 +3570,7 @@ The Guardian Workflows Domain shall remain independently scalable while collabor
 | Finance | Independent |
 | Communication Services | Independent |
 
-Multi-domain collaboration shall not introduce architectural coupling that limits independent scalability.
+Cross-domain collaboration shall not introduce architectural coupling that limits independent scalability.
 
 ---
 
@@ -3845,7 +3843,7 @@ Regulatory extensions shall preserve the canonical domain architecture while ena
 
 ---
 
-# 20.13 Multi-Domain Extension Boundaries
+# 20.13 Cross-Domain Extension Boundaries
 
 Extensions shall respect bounded-context ownership.
 
@@ -4510,7 +4508,7 @@ Positive
 
 - Eliminates duplication.
 - Preserves identity consistency.
-- Simplifies multi-domain integration.
+- Simplifies cross-domain integration.
 
 Negative
 
@@ -4803,7 +4801,7 @@ Historical records shall remain immutable for the lifetime of the repository.
 
 These Architecture Decision Records capture the foundational architectural decisions governing the Guardian Workflows Domain.
 
-Together they establish the aggregate model, ownership boundaries, lifecycle governance, authorization strategy, event publication model, historical integrity, and multi-domain responsibilities.
+Together they establish the aggregate model, ownership boundaries, lifecycle governance, authorization strategy, event publication model, historical integrity, and cross-domain responsibilities.
 
 Future architectural evolution shall preserve these decisions unless explicitly superseded through an approved repository governance process and accompanied by a new Architecture Decision Record.
 
@@ -4825,7 +4823,7 @@ The glossary shall:
 - Align with bounded-context ownership.
 - Prevent semantic drift across the repository.
 - Preserve consistency between architecture and implementation.
-- Distinguish similarly named concepts amulti-domains.
+- Distinguish similarly named concepts across domains.
 
 ---
 
@@ -5055,7 +5053,7 @@ These constraints preserve bounded-context integrity.
 
 ---
 
-# 24.8 Multi-Domain Collaboration
+# 24.8 Cross-Domain Collaboration
 
 The Guardian Workflows Domain collaborates with external bounded contexts through published Service Contracts and Domain Events.
 
@@ -5249,7 +5247,7 @@ Every future revision shall preserve:
 - Technology independence.
 - Auditability.
 - Architectural traceability.
-- Multi-domain consistency.
+- Cross-domain consistency.
 - Repository structural consistency.
 
 No revision shall reduce the architectural quality established by this document.
@@ -5264,7 +5262,7 @@ Ownership of this document includes responsibility for:
 
 - Architectural correctness.
 - Repository consistency.
-- Multi-domain alignment.
+- Cross-domain alignment.
 - Canonical terminology.
 - ADR governance.
 - Long-term architectural evolution.
@@ -5289,7 +5287,7 @@ Before any revision is accepted, the following checklist shall be satisfied.
 | ADRs updated where required | □ |
 | Visual Models synchronized | □ |
 | Glossary consistency verified | □ |
-| Multi-domain impacts assessed | □ |
+| Cross-domain impacts assessed | □ |
 | Repository review completed | □ |
 
 Completion of this checklist is mandatory for repository acceptance.
@@ -5515,7 +5513,7 @@ Before implementation or architectural review, verify:
 - Published Service Contracts remain compatible.
 - Published Domain Events remain compatible.
 - Business Rules remain internally consistent.
-- Authorization model remains aligned with L2-A04.
+- Authorization model remains aligned with L2-A03.
 - Audit requirements remain satisfied.
 - Extension Points are respected.
 - Architecture Decision Records remain valid.

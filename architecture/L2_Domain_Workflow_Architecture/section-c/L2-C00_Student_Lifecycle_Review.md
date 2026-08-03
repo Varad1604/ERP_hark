@@ -8,6 +8,8 @@
 
 **Owner:** Student Lifecycle Domain
 
+**Document Owner:** Varad
+
 ---
 
 # Document Control

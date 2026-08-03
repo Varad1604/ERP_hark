@@ -9,7 +9,7 @@
 **Classification:** Level 2 Domain Architecture  
 **Owner:** Campus Operations Domain  
 **Document Owner:** Devang  
-**Dependencies:** Section A – Platform Foundation, Section B – Institution & Structure, Section E – People & Workforce
+**Dependencies:** Section A – Platform Foundation, Section B – Institution & Structure (Institutional Campus Governance Reference), Section E – People & Workforce
 
 ---
 
@@ -36,17 +36,29 @@
 
 # 1. Purpose
 
-The Infrastructure Management Domain is the canonical business owner of all physical institutional infrastructure within SutraERP.
+The Infrastructure Management Domain is the canonical business owner of physical institutional infrastructure within SutraERP.
 
-It provides the authoritative representation of campuses, physical assets, buildings, blocks, wings, floors, operational spaces, infrastructure capacity, operational availability, infrastructure lifecycle, compliance status, maintenance governance, and infrastructure allocation.
+It provides the authoritative representation of physical infrastructure including:
 
-Infrastructure Management establishes the enterprise-wide physical model used by every operational business domain.
+- Physical Campus Structures
+- Buildings
+- Blocks
+- Wings
+- Floors
+- Operational Spaces
+- Infrastructure Capacity
+- Infrastructure Availability
+- Infrastructure Lifecycle
+- Compliance Status
+- Infrastructure Allocation
 
-The domain provides the physical foundation upon which Campus Operations, Academic Delivery, Student Operations, Examination Management, Workforce Management, Institutional Services, and future enterprise capabilities operate.
+Institutional campus governance, institution-level campus definition, and Institution-to-Campus association remain owned by Section B — Institution & Structure.
+
+Infrastructure Management establishes the enterprise-wide physical model used by operational business domains.
 
 This document defines:
 
-- Infrastructure ownership
+- Physical infrastructure ownership
 - Physical hierarchy
 - Infrastructure lifecycle
 - Space lifecycle
@@ -68,17 +80,26 @@ This document intentionally excludes implementation design, database structure, 
 
 # 2. Architectural Position
 
-Infrastructure Management is the canonical physical domain of SutraERP.
+Infrastructure Management is the canonical physical infrastructure domain of SutraERP.
 
 Every physical location referenced anywhere within the ERP shall originate from this domain.
 
 The Infrastructure Management Domain acts as the enterprise Digital Physical Twin of the institution at the business architecture level.
 
-The domain owns physical infrastructure.
+The domain owns physical infrastructure representation and lifecycle.
 
-It does not own academic activities, student activities, examinations, hostel operations, library operations, laboratory operations, or facility maintenance execution.
+The domain does not own institutional campus governance.
 
-Those domains consume Infrastructure through published contracts.
+Section B — Institution & Structure remains responsible for:
+
+- Institution-level campus definition.
+- Institutional campus governance.
+- Institution-to-campus association.
+- Institutional governance metadata.
+
+Within G10, the term Physical Campus represents the physical infrastructure boundary containing buildings, spaces, and operational facilities.
+
+It does not represent institutional governance ownership.
 
 Repository Position
 
@@ -106,9 +127,11 @@ No downstream domain shall redefine physical infrastructure already owned by thi
 
 Infrastructure Management owns the complete business lifecycle of institutional physical infrastructure.
 
+This includes the physical representation of campus structures but excludes institutional campus governance.
+
 Responsibilities include:
 
-- Campus hierarchy management
+- Physical Campus hierarchy management
 - Infrastructure registration
 - Building management
 - Zone management
@@ -140,7 +163,7 @@ Infrastructure Management is the authoritative source of truth for physical inst
 
 The following responsibilities are intentionally excluded.
 
-## Academic Delivery
+## Academic Operations
 
 Owned by Section D.
 
@@ -344,8 +367,8 @@ The architecture shall remain independent of deployment size.
 
 | Term | Definition |
 |------|------------|
-| Infrastructure | The complete physical environment owned by an Institution including campuses, buildings, spaces, supporting facilities, and operational physical resources. |
-| Campus | A geographically identifiable institutional location containing one or more buildings and operational facilities. |
+| Infrastructure | The complete physical environment represented by Infrastructure Management including physical campus structures, buildings, spaces, supporting facilities, and operational physical resources. |
+| Physical Campus | A physical infrastructure boundary managed by Infrastructure Management containing buildings, spaces, supporting facilities, and operational resources. Institutional campus governance remains owned by Section B. |
 | Zone | An optional logical grouping of buildings or spaces within a campus used for operational, security, or administrative purposes. |
 | Building | A permanent physical structure owned or managed by the Institution. |
 | Wing | A logical subdivision of a Building used for operational organisation. |
@@ -385,9 +408,9 @@ No downstream domain shall create independent physical location aggregates.
 
 ## Primary Aggregates
 
-The Infrastructure domain owns the following aggregates:
+The Infrastructure domain owns the following physical infrastructure aggregates:
 
-- Campus
+- Physical Campus
 - Zone
 - Building
 - Wing / Block
@@ -401,6 +424,18 @@ The Infrastructure domain owns the following aggregates:
 - Inspection Record
 
 Each aggregate owns its own lifecycle while remaining part of the Infrastructure bounded context.
+
+The Physical Campus aggregate represents the physical infrastructure structure.
+
+It must not be confused with the institutional Campus governance concept maintained by Section B.
+
+Section B owns:
+
+Institution → Campus Association
+
+G10 owns:
+
+Physical Campus → Building → Floor → Space hierarchy
 
 ---
 
@@ -477,13 +512,23 @@ Provides:
 
 Provides:
 
-- Institution
-- Organisation
-- Campus Governance
+- Institution Identity
+- Organisation Structure
+- Institutional Campus Governance Reference
 - Department Structure
-- Academic Organisation
+- Academic Organisation Context
 
-Infrastructure consumes organisational context but owns physical implementation.
+Infrastructure consumes institutional context but owns physical implementation.
+
+Section B does not own:
+
+- Buildings
+- Floors
+- Rooms
+- Spaces
+- Infrastructure Lifecycle
+- Infrastructure Capacity
+- Infrastructure Availability
 
 ---
 
@@ -594,7 +639,7 @@ Produces:
 
 ---
 
-### Section D — Academic Delivery
+### Section D — Academic Operations
 
 Consumes:
 
@@ -629,7 +674,10 @@ The Infrastructure domain models the complete physical enterprise hierarchy.
 Institution
         │
         ▼
-Campus
+Institutional Campus Reference
+        │
+        ▼
+Physical Campus
         │
         ▼
 Zone (Optional)
@@ -646,6 +694,10 @@ Floor
         ▼
 Space
 ```
+
+Institutional Campus Reference is provided by Section B.
+
+Physical Campus and all downstream physical infrastructure entities are owned by G10.
 
 Every operational location within SutraERP shall resolve to a canonical **Infrastructure Space**.
 
@@ -777,7 +829,7 @@ The following invariants shall always hold.
 
 - Every Space belongs to exactly one Floor.
 - Every Floor belongs to exactly one Building.
-- Every Building belongs to exactly one Campus.
+- Every Building belongs to exactly one Physical Campus.
 - Aggregate Identity is immutable.
 - Business Codes may change without affecting Identity.
 - A Reservation shall reference an existing Space.
@@ -789,6 +841,10 @@ The following invariants shall always hold.
 - Infrastructure ownership shall remain exclusively within this domain.
 - Downstream domains shall reference Infrastructure rather than duplicate physical models.
 - Infrastructure shall support effective-dated operational allocations where required by institutional policy.
+- Institutional Campus governance remains exclusively within Section B.
+- Physical Campus ownership remains exclusively within Infrastructure Management.
+- Downstream domains shall consume physical infrastructure information from G10.
+- No downstream domain shall create independent physical infrastructure models.
 
 Violation of these invariants shall reject the transaction.
 
@@ -811,13 +867,20 @@ The Infrastructure Management Domain shall not:
 - Maintain dashboards
 - Compute KPIs
 
-Multi-domain interaction shall occur through:
+Cross-domain interaction shall occur through:
 
 - Domain Events
 - Published Service Contracts
 - Platform Services
 - Reservation Interfaces
 - Configuration Framework
+
+The Infrastructure Management Domain shall not:
+
+- Own institutional campus governance.
+- Define Institution-to-Campus governance relationships.
+- Replace Section B organisational ownership.
+- Manage institutional approval of campus existence.
 
 ---
 
