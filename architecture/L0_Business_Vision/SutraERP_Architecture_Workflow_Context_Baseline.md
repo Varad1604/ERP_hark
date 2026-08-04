@@ -259,86 +259,29 @@ independently.
 
 ## 3. Current Repository Architecture
 
-The audited repository is currently an **Early Modular ERP** implemented
-as a **Modular Rust Monolith**.
+SutraERP is delivered as a single, modular platform rather than a set of
+independently deployed services. Business capabilities are separated by domain
+ownership and explicit contracts, not by deployment boundaries.
 
-### Current stack
+**Architecture decision:** SutraERP will not be redesigned as a distributed
+service architecture at this stage. The platform evolves into a
+**Contract-Driven Modular ERP Platform**, because current scale does not justify
+distributed operational complexity, separate teams can be supported through
+domain ownership and explicit contracts, and a single deployable permits
+transactional consistency where the business requires it. Future extraction into
+services remains possible if domain boundaries stay disciplined.
 
--   Backend: Rust.
--   Web framework: Axum 0.7.
--   Async runtime: Tokio.
--   Database: PostgreSQL 16.
--   Database access: SQLx raw asynchronous SQL.
--   Pooling: PgBouncer.
--   Cache/support infrastructure: Redis.
--   Frontend: React 19.
--   Build tool: Vite.
--   Language: TypeScript.
--   Frontend state: Zustand for authentication.
--   HTTP client: Axios.
--   File infrastructure declared: MinIO, but complete Rust S3
-    integration is not confirmed.
--   Authentication: JWT HS256 with refresh tokens and Argon2id password
-    hashing.
--   Authorization: mixed database-backed RBAC and hardcoded role-name
-    checks.
+**Standing risk:** without enforcement, direct inter-domain data access can
+reintroduce coupling inside a single deployable, producing distributed-monolith
+behaviour without distributed-system benefits.
 
-### Current backend model
-
-``` text
-One Rust Binary
-      ↓
-Axum Router
-      ↓
-Internal Domain Modules
-      ↓
-Shared AppState
-      ↓
-Single PostgreSQL Database
-```
-
-Current backend modules include:
-
--   Auth.
--   Student.
--   Academics.
--   Examination.
--   Finance.
--   Library.
--   Hostel.
--   Transport.
--   Placement.
--   Medical.
--   HR.
--   Health.
-
-The current database uses one PostgreSQL database and one public schema
-with logical domain separation.
-
-### Architecture decision
-
-**SutraERP will not be redesigned as microservices at this stage.**
-
-The current modular monolith will evolve into a:
-
-> **Contract-Driven Modular ERP Platform**
-
-Reasons:
-
--   Current scale does not justify distributed-service operational
-    complexity.
--   Separate teams can be supported using domain ownership and explicit
-    contracts.
--   A modular monolith permits transactional consistency where
-    appropriate.
--   Future extraction into services remains possible if domain
-    boundaries are disciplined.
-
-Risk:
-
--   Without enforcement, developers may continue using direct
-    inter-domain SQL and shared files, creating a distributed-monolith
-    style coupling inside one binary.
+> **Implementation technology is deliberately not specified here.** L0 is
+> business-facing and technology-independent
+> (`governance/constitution/Volume_1_Governance.md` lines 152-168). The recorded
+> technology baseline — languages, frameworks, datastores, and runtime choices —
+> lives in
+> `architecture/L5_Solution_Architecture/L5-00_Technology_Stack_Baseline.md`.
+> Moved there on 2026-08-04 under integrity finding INT-002.
 
 ------------------------------------------------------------------------
 
@@ -1060,13 +1003,16 @@ Event Delivery
 Subscribers
 ```
 
-The current in-memory Tokio broadcast channel is not sufficient for
-critical ERP workflow consistency because it has no transactional
-outbox, durable retry, or dead-letter handling.
+Ephemeral in-process eventing is not sufficient for critical ERP workflow
+consistency, because it provides no transactional outbox, no durable retry,
+and no dead-letter handling.
 
-It may remain for non-critical internal signalling during transition,
-but critical business scenarios must not depend solely on ephemeral
-events.
+Ephemeral eventing may remain for non-critical internal signalling during
+transition, but critical business scenarios must not depend solely on it.
+
+(The current implementation's eventing mechanism is recorded in
+`architecture/L5_Solution_Architecture/L5-00_Technology_Stack_Baseline.md`,
+not here.)
 
 ------------------------------------------------------------------------
 
@@ -1793,11 +1739,19 @@ The following decisions are accepted as the baseline:
 
 ## 25. Next Design Stage
 
-The next architecture activity is:
+> **Historical note (2026-08-04).** This section recorded the L1 design brief
+> at the time this baseline was written. The L1 Business Domain Architecture has
+> since been authored and locked; see
+> `architecture/L1_Business_Domain_Architecture/SutraERP_L1_Business_Domain_Architecture_Locked.md`.
+> The brief below is retained as provenance and is not a statement of
+> outstanding work. The heading level was corrected under INT-002: an H1 inside
+> L0 previously asserted itself as L1 content.
+>
+> The wider hierarchy contradiction in this section remains open as INT-001.
 
-# L1 --- COMPLETE INSTITUTE LIFECYCLE
+### L1 Design Brief — Complete Institute Lifecycle (historical)
 
-The L1 design will cover:
+The L1 design was scoped to cover:
 
 ``` text
 Tenant Provisioning

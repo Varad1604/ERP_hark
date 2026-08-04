@@ -31,6 +31,16 @@ Remediation round 1 against `generated/reviews/integrity-2026-08-03-repository-w
   first: its diagram showed Upgrade while its state table (5.5) and transition table
   (5.8) omitted it, and the Provisioning Failed retry transition was undeclared.
 
+- INT-002: **L0 content boundary restored.** Volume 1 requires L0 to be
+  business-facing and technology-independent. L0 section 3 prescribed a concrete
+  stack (Rust, Axum, Tokio, PostgreSQL, SQLx, PgBouncer, Redis, React, Vite,
+  TypeScript, Zustand, Axios, MinIO, JWT/Argon2id). That content moved verbatim to
+  the new `architecture/L5_Solution_Architecture/L5-00_Technology_Stack_Baseline.md`
+  (Draft, explicitly not yet re-reviewed as L5). L0 section 3 now states the modular
+  platform decision and its standing risk without naming technology. The event-bus
+  passage in section 13 was restated technology-independently, and section 25's
+  stray H1 asserting L1 content inside L0 was demoted and marked historical.
+
 ### Removed
 - INT-003: Deleted `generated/html/` (untracked, gitignored). To be regenerated with
   `tools/convert_all.js` after remediation completes.
