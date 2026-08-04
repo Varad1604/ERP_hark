@@ -18,7 +18,7 @@ repository-baseline: Current Repository Baseline
 last-updated: July 2026
 ---
 
-# L2-B05 – Academic Calendar Workflows
+# L2-B05 — Academic Calendar Workflows
 
 ---
 

@@ -1,6 +1,6 @@
 # L2-F00 — Finance Domain Model & Foundation
 
-**Section:** F — Finance & Accounting
+**Section:** F — Finance
 **Architecture Level:** Level 2 (Domain Architecture)
 **Status:** Draft
 **Version:** 1.0

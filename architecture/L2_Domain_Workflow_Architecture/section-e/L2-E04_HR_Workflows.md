@@ -1,4 +1,4 @@
-# L2-E04 --- HR Workflows
+# L2-E04 — HR Workflows
 
 **Document Owner:** Varad  
 

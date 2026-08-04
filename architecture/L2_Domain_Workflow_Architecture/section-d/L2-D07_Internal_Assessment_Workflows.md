@@ -1,4 +1,4 @@
-# L2-D07 - Internal Assessment Workflows
+# L2-D07 — Internal Assessment Workflows
 
 **Repository:** SutraERP  
 **Section:** D - Academic Delivery  

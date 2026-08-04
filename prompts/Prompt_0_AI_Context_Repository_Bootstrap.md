@@ -78,7 +78,7 @@ Read:
 
 -   README.md
 -   INDEX.md
--   Every Canonical_AI_Context.md
+-   Every {{SECTION_PREFIX}}_Canonical_AI_Context.md
 -   Every Dependency_Contract.md
 -   Every Audit
 
@@ -212,7 +212,7 @@ Never fabricate links.
 
 Generate:
 
-AI_CONTEXT/SECTION\_{{SECTION_PREFIX}}/Canonical_AI_Context.md
+AI_CONTEXT/SECTION\_{{SECTION_PREFIX}}/{{SECTION_PREFIX}}\_Canonical_AI_Context.md
 
 AI_CONTEXT/SECTION\_{{SECTION_PREFIX}}/Dependency_Contract.md
 

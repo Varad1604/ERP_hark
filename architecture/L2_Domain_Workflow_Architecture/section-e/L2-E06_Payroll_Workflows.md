@@ -1,4 +1,4 @@
-# L2-E06 --- Payroll Workflows
+# L2-E06 — Payroll Workflows
 
 # Part 1 --- Metadata + Purpose + Scope
 
@@ -18,7 +18,7 @@
   Document Level                      Level 2 --- Domain Workflow
                                       Architecture
 
-  ERP Section                         Section E --- Enterprise Operations
+  ERP Section                         Section E --- People & Workforce
 
   Domain Owner                        Payroll Domain
 

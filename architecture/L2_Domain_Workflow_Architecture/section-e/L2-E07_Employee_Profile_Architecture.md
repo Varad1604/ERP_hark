@@ -5,7 +5,7 @@
 **Document Owner:** Varad  
 **Classification:** Enterprise Architecture  
 **Bounded Context:** Employee Profile  
-**Parent Domain:** Section E — People & Workforce Management  
+**Parent Domain:** Section E — People & Workforce  
 **Architecture Pattern:** Domain-Driven Design (DDD) + CQRS + Event-Driven Architecture  
 **Prepared By:** Enterprise Architecture Office  
 **Approval Authority:** Architecture Review Board

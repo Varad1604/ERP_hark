@@ -319,7 +319,7 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | Item | Count |
 |------|------:|
-| Core Architecture Documents | 5 |
+| Core Architecture Documents | 6 |
 | L1 Business Domains | 10 |
 | L2 Workflow Documents | 107 |
 | L3 Scenario Documents Present  | 0 |
@@ -327,7 +327,7 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 | L5 Solution Architecture Documents Present | 0 |
 | L6 UI/UX Documents Present | 0 |
 | Section Review Documents | 10 |
-| Total Indexed Architecture Documents Present | 112 |
+| Total Indexed Architecture Documents Present | 113 |
 | Active Architects | 5 |
 
 ---

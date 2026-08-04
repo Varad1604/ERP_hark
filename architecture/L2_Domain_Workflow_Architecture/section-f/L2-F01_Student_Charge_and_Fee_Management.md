@@ -1,6 +1,6 @@
 # L2-F01 — Student Charge & Fee Management
 
-**Section:** F — Finance & Accounting  
+**Section:** F — Finance  
 **Status:** Draft  
 **Document Owner:** Chetan
 

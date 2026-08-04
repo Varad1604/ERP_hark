@@ -1,4 +1,4 @@
-# L2-B03 Campus Workflows
+# L2-B03 — Campus Workflows
 
 ---
 

@@ -34,7 +34,7 @@ OUTPUT_DIRECTORY={{OUTPUT_DIRECTORY}}
 
 Create:
 
-`AI_CONTEXT/SECTION_{{SECTION_PREFIX}}/Canonical_AI_Context.md`
+`AI_CONTEXT/SECTION_{{SECTION_PREFIX}}/{{SECTION_PREFIX}}_Canonical_AI_Context.md`
 
 The file is optimized for AI agents, not humans.
 

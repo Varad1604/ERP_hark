@@ -24,8 +24,8 @@ DEPENDENT_SECTIONS={{DEPENDENT_SECTIONS}}
 2.  Execute Prompt 1.
 3.  Read:
     -   AI_CONTEXT/INDEX.md
-    -   AI_CONTEXT/SECTION\_\*/Canonical_AI_Context.md (existing)
-    -   AI_CONTEXT/SECTION\_{{SECTION_PREFIX}}/Canonical_AI_Context.md
+    -   AI_CONTEXT/SECTION\_\*/\*\_Canonical_AI_Context.md (existing)
+    -   AI_CONTEXT/SECTION\_{{SECTION_PREFIX}}/{{SECTION_PREFIX}}\_Canonical_AI_Context.md
 4.  The source repository remains authoritative.
 
 ------------------------------------------------------------------------

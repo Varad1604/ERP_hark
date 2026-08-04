@@ -1,7 +1,7 @@
 # L2-D01 — Course & Course Offering Workflows
 
 **Repository:** SutraERP  
-**Section:** D — Academic Operations  
+**Section:** D — Academic Delivery  
 **Domain:** D01 — Course Offering  
 **Document ID:** L2-D01  
 **Version:** 1.0  
@@ -58,7 +58,7 @@ This document intentionally excludes implementation details.
 
 # 2. Architectural Position
 
-The Course Offering domain belongs to Academic Operations.
+The Course Offering domain belongs to Academic Delivery.
 
 It acts as the bridge between Academic Structure and operational academic execution.
 
@@ -556,7 +556,7 @@ The Course Offering domain shall conform to the following repository principles.
 - Loose Coupling
 - Single Aggregate Ownership
 
-This concludes **Part 1** of `L2-D01_Course_Offering_Workflows.md`.
+This concludes **Part 1** of `L2-D01_Course_and_Course_Offering_Workflows.md`.
 
 **Next Part:** **Course Offering Creation, Validation, Approval, and Publication Workflows.**
 
@@ -3226,7 +3226,7 @@ The Course Offering domain satisfies the following architectural objectives:
 
 # End of Document
 
-**Document:** L2-D01_Course_Offering_Workflows.md
+**Document:** L2-D01_Course_and_Course_Offering_Workflows.md
 
 **Status:** Repository Architecture Complete
 

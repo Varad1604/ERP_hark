@@ -1,4 +1,4 @@
-# L2-H09 – Accreditation & Compliance Workflows
+# L2-H09 — Accreditation & Compliance Workflows
 
 **Section:** H — Institutional Services & Intelligence  
 **Status:** Draft  

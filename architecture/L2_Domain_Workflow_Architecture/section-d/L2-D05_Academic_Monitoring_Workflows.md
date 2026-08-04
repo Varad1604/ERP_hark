@@ -1,4 +1,4 @@
-# L2-D05 — Academic Monitoring Workflows.md
+# L2-D05 — Academic Monitoring Workflows
 
 ## Part 1 — Document Foundation
 
@@ -528,7 +528,7 @@ D05 workflows support:
 # End of Part 1
 ```
 
-## L2-D05 — Academic Monitoring Workflows.md
+## L2-D05 — Academic Monitoring Workflows
 
 ## Part 2 — Academic Monitoring Domain Model
 
@@ -1163,7 +1163,7 @@ The following rules always apply:
 # End of Part 2
 ```
 
-## L2-D05 — Academic Monitoring Workflows.md
+## L2-D05 — Academic Monitoring Workflows
 
 ## Part 3 — Multi-Domain Integration & Ownership Boundaries
 
@@ -1764,7 +1764,7 @@ The architecture shall ensure:
 # End of Part 3
 ```
 
-## L2-D05 — Academic Monitoring Workflows.md
+## L2-D05 — Academic Monitoring Workflows
 
 ## Part 4 — Academic Monitoring Setup Workflows
 
@@ -2413,7 +2413,7 @@ The architecture shall ensure:
 
 **Part 4 complete.**
 
-## L2-D05 — Academic Monitoring Workflows.md
+## L2-D05 — Academic Monitoring Workflows
 
 ## Part 5 — Academic Monitoring Execution Workflows
 
@@ -3180,7 +3180,7 @@ The architecture shall ensure:
 # End of Part 5
 ```
 
-## L2-D05 — Academic Monitoring Workflows.md
+## L2-D05 — Academic Monitoring Workflows
 
 ## Part 6 — Academic Risk Detection & Governance Exception Workflows
 
@@ -3919,7 +3919,7 @@ The architecture shall ensure:
 # End of Part 6
 ```
 
-## L2-D05 — Academic Monitoring Workflows.md
+## L2-D05 — Academic Monitoring Workflows
 
 ## Part 7 — Governance Review & Decision Workflows
 
@@ -4598,7 +4598,7 @@ The architecture shall ensure:
 # End of Part 7
 ```
 
-## L2-D05 — Academic Monitoring Workflows.md
+## L2-D05 — Academic Monitoring Workflows
 
 ## Part 8 — Monitoring Closure, Reopening & Completion Certification Workflows
 
@@ -5214,7 +5214,7 @@ The architecture shall ensure:
 # End of Part 8
 ```
 
-## L2-D05 — Academic Monitoring Workflows.md
+## L2-D05 — Academic Monitoring Workflows
 
 ## Part 9 — Operational Workflow Governance & Execution Controls
 
@@ -5916,7 +5916,7 @@ The architecture shall ensure:
 # End of Part 9
 ```
 
-## L2-D05 — Academic Monitoring Workflows.md
+## L2-D05 — Academic Monitoring Workflows
 
 ## Part 10 — Commands, Events, Read Models & Audit Architecture
 
@@ -6397,7 +6397,7 @@ The architecture shall ensure:
 # End of Part 10
 ```
 
-## L2-D05 — Academic Monitoring Workflows.md
+## L2-D05 — Academic Monitoring Workflows
 
 ## Part 11 — Security, Authorization, Compliance & Observability Architecture
 
@@ -6845,7 +6845,7 @@ The architecture shall ensure:
 # End of Part 11
 ```
 
-## L2-D05 — Academic Monitoring Workflows.md
+## L2-D05 — Academic Monitoring Workflows
 
 ## Part 12 — Final Architecture Alignment, Non-Functional Requirements & Validation Checklist
 

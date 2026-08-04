@@ -20,7 +20,7 @@ Available sections:
 | G | `AI_CONTEXT/SECTION_G` | Generated | `G_Canonical_AI_Context.md`, `Dependency_Contract.md` |
 | H | `AI_CONTEXT/SECTION_H` | Generated | `H_Canonical_AI_Context.md`, `README.md` |
 | I | `AI_CONTEXT/SECTION_I` | Generated | `I_Canonical_AI_Context.md` |
-| J | `AI_CONTEXT/SECTION_J` | Generated | `Canonical_AI_Context.md`, `J_Canonical_AI_Context.md` (deprecated alias), `README.md` |
+| J | `AI_CONTEXT/SECTION_J` | Generated | `J_Canonical_AI_Context.md`, `Canonical_AI_Context.md` (deprecated alias), `README.md` |
 
 Notes:
 

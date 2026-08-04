@@ -3088,7 +3088,7 @@ L1["Level 1 Architecture"]
 
 # Architecture Status
 
-**Version:** 2.0
+**Version:** 2.1
 
 **Status:** LOCKED
 
