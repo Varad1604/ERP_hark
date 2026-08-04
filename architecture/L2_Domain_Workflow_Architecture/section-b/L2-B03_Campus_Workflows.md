@@ -1082,7 +1082,7 @@ Examples include:
 
 ---
 
-# 24. Building Aggregate
+# 24. Building Aggregate (Owned by L2-G10)
 
 ## Purpose
 
@@ -1124,7 +1124,7 @@ Examples include:
 
 ---
 
-# 25. Floor Aggregate
+# 25. Floor Aggregate (Owned by L2-G10)
 
 ## Purpose
 
@@ -1156,7 +1156,7 @@ Examples:
 
 ---
 
-# 26. Space Aggregate
+# 26. Space Aggregate (Owned by L2-G10)
 
 ## Purpose
 
@@ -1357,21 +1357,24 @@ Examples:
 
 # 31. Aggregate Ownership Rules
 
-Each aggregate owns its own lifecycle.
+Each aggregate owns its own lifecycle, and that lifecycle is governed by the
+domain that owns the aggregate. Per Section 15, B03 owns only the Institutional
+Campus; every physical aggregate belongs to `L2-G10`.
 
-Examples:
+| Aggregate | Owns Its Lifecycle | Owning Domain |
+|------------|-------------------|---------------|
+| Institutional Campus | Yes | L2-B03 |
+| Physical Campus (site boundary) | Yes | L2-G10 |
+| Building | Yes | L2-G10 |
+| Floor | Yes | L2-G10 |
+| Space | Yes | L2-G10 |
+| Zone | Yes | L2-G10 |
+| Collection | Yes | L2-G10 |
+| Portfolio | Yes | L2-G10 |
 
-| Aggregate | Owns Lifecycle |
-|------------|---------------|
-| Campus | Yes |
-| Building | Yes |
-| Floor | Yes |
-| Space | Yes |
-| Zone | Yes |
-| Collection | Yes |
-| Portfolio | Yes |
-
-Lifecycle ownership never crosses aggregate boundaries.
+Lifecycle ownership never crosses aggregate boundaries, and never crosses domain
+boundaries. B03 shall not transition the lifecycle of any `L2-G10` aggregate; it
+consumes their published state.
 
 ---
 
@@ -1588,7 +1591,7 @@ The Campus aggregate is responsible for:
 
 ---
 
-# 37. Building Aggregate
+# 37. Building Aggregate (Owned by L2-G10)
 
 ## Purpose
 
@@ -1644,7 +1647,7 @@ The Building aggregate owns:
 
 ---
 
-# 38. Floor Aggregate
+# 38. Floor Aggregate (Owned by L2-G10)
 
 ## Purpose
 
@@ -1694,7 +1697,7 @@ The Floor aggregate owns:
 
 ---
 
-# 39. Space Aggregate
+# 39. Space Aggregate (Owned by L2-G10)
 
 ## Purpose
 
@@ -1757,7 +1760,7 @@ The Space aggregate owns:
 
 ---
 
-# 40. Zone Aggregate
+# 40. Zone Aggregate (Owned by L2-G10)
 
 ## Purpose
 
@@ -2370,23 +2373,33 @@ The following transitions are prohibited.
 
 # 55. Aggregate Lifecycle Ownership
 
-Each aggregate independently owns its lifecycle.
+Each aggregate independently owns its lifecycle. **Long-term physical
+infrastructure lifecycle (Physical Campus, Building, Floor, Space, Zone,
+Collection, Portfolio) is owned and managed by `L2-G10`.** B03 manages only the
+Institutional Campus lifecycle and consumes G10's published physical states.
 
-| Aggregate | Lifecycle Managed |
-|------------|-------------------|
-| Campus | Yes |
-| Building | Yes |
-| Floor | Yes |
-| Space | Yes |
-| Zone | Yes |
-| Collection | Yes |
-| Portfolio | Yes |
+| Aggregate | Lifecycle Managed By |
+|------------|---------------------|
+| Institutional Campus | L2-B03 |
+| Physical Campus (site boundary) | L2-G10 |
+| Building | L2-G10 |
+| Floor | L2-G10 |
+| Space | L2-G10 |
+| Zone | L2-G10 |
+| Collection | L2-G10 |
+| Portfolio | L2-G10 |
 
-Child aggregates may never exceed the lifecycle maturity of their parent.
+Child aggregates may never exceed the lifecycle maturity of their parent. The
+lifecycle model documented in this Part describes G10-owned behaviour for
+reference; it is not a second authority over it.
 
 ---
 
 # 56. Lifecycle Dependency Rules
+
+> Rules LR-02 through LR-06 govern `L2-G10` aggregates and are **enforced by
+> `L2-G10`**. They are recorded here because Institutional Campus state depends on
+> them. Only LR-01 is enforced by B03.
 
 ## LR-01
 
@@ -3328,7 +3341,7 @@ Publish CampusUpdated
 
 ---
 
-# 86. WF-INF-003 — Register Building
+# 86. WF-INF-003 — Register Building (Executed in L2-G10)
 
 ## Purpose
 
@@ -3381,7 +3394,7 @@ Publish BuildingCreated
 
 ---
 
-# 87. WF-INF-004 — Register Floor
+# 87. WF-INF-004 — Register Floor (Executed in L2-G10)
 
 ## Purpose
 
@@ -3426,7 +3439,7 @@ Publish FloorCreated
 
 ---
 
-# 88. WF-INF-005 — Register Space
+# 88. WF-INF-005 — Register Space (Executed in L2-G10)
 
 ## Purpose
 

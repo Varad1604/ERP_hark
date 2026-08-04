@@ -299,7 +299,6 @@ The Operational Readiness Domain consumes readiness declarations from collaborat
 ---
 
 **End of Part 1**
-````markdown
 # 8. Domain Model
 
 ## 8.1 Domain Overview

@@ -1970,8 +1970,8 @@ The Notification Platform shall publish events including:
 - DeliveryFailed
 - NotificationCancelled
 - NotificationExpired
-- RetryStarted
-- RetryCompleted
+- NotificationRetryStarted
+- NotificationRetryCompleted
 - NotificationDelivered
 
 ---

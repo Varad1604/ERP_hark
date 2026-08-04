@@ -2555,7 +2555,7 @@ Security remains independent from business logic.
 Representative security events include:
 
 - AuthenticationSucceeded
-- AuthenticationFailed
+- PlatformAuthenticationFailed
 - AuthorizationDenied
 - TenantAccessDenied
 - SecurityPolicyViolation

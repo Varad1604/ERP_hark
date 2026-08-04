@@ -2002,7 +2002,6 @@ To prevent duplicate publication and ensure reliable retries:
 - Government transaction identifiers shall be persisted after acknowledgement.
 - Retry execution shall reuse the original Correlation ID.
 - Completed publications cannot be executed again unless initiated through an approved republish or revocation workflow.
-```
 
 # 41. Internal APIs
 

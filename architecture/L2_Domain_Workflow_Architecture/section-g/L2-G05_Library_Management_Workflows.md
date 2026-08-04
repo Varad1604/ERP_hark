@@ -1825,8 +1825,8 @@ Every significant business transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| VerificationStarted | Stock verification initiated |
-| VerificationCompleted | Verification completed |
+| LibraryVerificationStarted | Stock verification initiated |
+| LibraryVerificationCompleted | Verification completed |
 | MissingResourceIdentified | Missing resource detected |
 
 ---

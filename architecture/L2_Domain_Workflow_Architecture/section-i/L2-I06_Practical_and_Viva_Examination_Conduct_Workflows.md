@@ -1199,7 +1199,6 @@ Institutions may configure assessment conduct without modifying the canonical wo
 | Notification Policy | Candidate, Examiner, Administrator |
 
 Configuration changes operational behaviour while preserving repository-standard business workflows.
-```
 
 # 16. Audit Requirements
 

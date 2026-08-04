@@ -4411,7 +4411,6 @@ The Reporting domain shall provide:
 - Read models may be horizontally replicated.
 - Reporting workflows shall support parallel execution where business rules permit.
 - Enterprise integrations shall remain loosely coupled.
-```
 # 21. Architecture Decision Records (ADRs)
 
 ## ADR-001 — Metadata-Driven Reporting Frameworks

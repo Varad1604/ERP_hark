@@ -547,7 +547,6 @@ Published Hall Tickets become available to authorised candidates through institu
 
 Availability does not alter Hall Ticket ownership or validity.
 
-```
 # 8.7 Hall Ticket Validation
 
 Before examination participation, Hall Tickets may undergo institutional validation.
