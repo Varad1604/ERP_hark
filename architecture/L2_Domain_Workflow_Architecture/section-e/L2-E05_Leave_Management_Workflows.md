@@ -2,6 +2,26 @@
 
 
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose; §24.1 Domain Purpose |
+| Scope | §2 Scope; §16.5 Organization Scope Security; §2.1 In Scope |
+| Actors | Actors |
+| Entities | Core Entities |
+| Business Rules | §9 Business Rules |
+| Workflow | §7 Domain Workflows; §7.1 Leave Request Workflow; §7.2 Leave Approval Workflow |
+| State Machine | §12.1 Leave Request State Machine; §12.3 Leave Policy State Machine |
+| Contracts | §11 Service Contracts; §11.1 Command Contracts; §11.2 Query Contracts |
+| Events | §10 Domain Events; §10.1 Event Ownership Model; §10.2 Core Domain Events |
+| Dependencies | §3 Upstream Dependencies; §4 Downstream Dependencies |
+| Locked Decisions | §6.10 Final Aggregate Decision; §13 Decision Matrix; §13.1 Leave Request Decision Matrix |
+
+---
+
 ------------------------------------------------------------------------
 
 # 0. Document Metadata

@@ -7,6 +7,26 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §2.1 In Scope; §2.2 Out of Scope |
+| Actors | §14.4 Role-Based Authorization |
+| Entities | §6 Domain Model / Aggregate / Lifecycle; §6.3 Aggregate Design Principles; Approval Process Aggregate |
+| Business Rules | §5.4 Business Rule Ownership Boundary; §9 Business Rules; §9.1 Business Rule Ownership Principle |
+| Workflow | §7 Domain Workflows; §7.1 Workflow Design Principles; §7.2 Faculty Academic Assignment Workflow |
+| State Machine | §9.5 State Transition Rules; §12 State Transition Matrix; §12.1 Faculty Assignment State Transition Matrix |
+| Contracts | §11 Service Contracts; §11.1 Service Contract Principles; §11.2 D02 Service Contract Categories |
+| Events | §7.5 Integration Event Publishing Workflow; §8.4 Event Publication Workflow Specification; §9.9 Event Generation Rules |
+| Dependencies | §3 Upstream Dependencies; §3.1 D01 — Foundation and Institutional Context Dependency; §3.2 Identity and Access Dependency |
+| Locked Decisions | §22 Architecture Decision References; §22.2 D02 Architecture Decision Categories; §22.6 Architecture Decision Validation |
+
+---
+
 # 1. Purpose
 
 The purpose of the D02 — D02 — Faculty Academic Assignment domain is to define and govern the operational execution layer of academic activities within SutraERP.

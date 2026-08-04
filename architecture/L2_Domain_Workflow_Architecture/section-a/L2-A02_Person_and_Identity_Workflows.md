@@ -2,6 +2,26 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | Purpose |
+| Scope | Scope; Out of Scope; Authorization Scope |
+| Actors | Role Assignment; Role; Role Types |
+| Entities | Canonical Entity Relationships |
+| Business Rules | Business Rules; Lifecycle Business Rules; Security Business Rules |
+| Workflow | L2-A02 — Person & Identity Workflows; Authentication Workflow; Context Resolution Workflow |
+| State Machine | Lifecycle State Machine |
+| Contracts | Domain Events & Integration Contracts; Integration Contracts; Person Service Contracts |
+| Events | Published Events; Domain Events & Integration Contracts; Event Architecture |
+| Dependencies | Dependency Direction; Context Resolution Dependencies; Dependency Rules |
+| Locked Decisions | Authorization Decision Outcomes; Workflow 4 — Authorization Decision; Architecture Decision Records (ADRs) |
+
+---
+
 # Document Information
 
 | Attribute | Value |

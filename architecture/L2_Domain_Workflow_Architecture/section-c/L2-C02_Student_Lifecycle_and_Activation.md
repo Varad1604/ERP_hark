@@ -26,6 +26,26 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose; WF-C02-11.2 Purpose; WF-C02-12.2 Purpose |
+| Scope | §4 Domain Scope; §25.2 Scope Confirmation; §1.6 Out of Scope |
+| Actors | WF-C02-11.4 Primary Actors; WF-C02-12.4 Primary Actors; WF-C02-13.4 Primary Actors |
+| Entities | §6 Student Aggregate Model; §6.2 Aggregate Root; §6.3 Aggregate Composition |
+| Business Rules | §9 Business Rules; §17.5 Business Rule Exceptions; §9.13 Student Document Request Business Rules |
+| Workflow | §7 Core Workflows; §7.2 Workflow Catalogue; §7.3 Workflow Dependencies |
+| State Machine | §22.7 ADR-C02-006 — Lifecycle Controlled Through Canonical State Machine |
+| Contracts | §12 Service Contracts; §12.2 Service Contract Principles; §12.8 Canonical Error Contracts |
+| Events | §10 Domain Events; §10.2 Event Publishing Principles; §10.3 Event Catalogue |
+| Dependencies | §7.3 Workflow Dependencies; §14.3 Upstream Dependencies; §21.28 Architecture Dependency Graph |
+| Locked Decisions | §22 Architecture Decision Records (ADR); Decision |
+
+---
+
 # 1. Overview
 
 ## 1.1 Purpose

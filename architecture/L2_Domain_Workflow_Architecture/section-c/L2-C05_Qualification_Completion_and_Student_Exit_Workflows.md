@@ -16,6 +16,26 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §2 Purpose |
+| Scope | §3 Scope; Explicitly Out of Scope |
+| Actors | §14.4 Role-Based Access Control |
+| Entities | Child Entities; Entities; Entity |
+| Business Rules | §10 Business Rules; Appendix D — Business Rule Catalogue |
+| Workflow | §11 Workflows; §11.1 Qualification Completion Processing Workflow; §11.2 Programme Completion Verification Workflow |
+| State Machine | §9.2 Canonical Lifecycle States |
+| Contracts | §13.6 Integration Contracts; Integration Contract |
+| Events | §10.10 Domain Event Rules; §12 Domain Events; §12.1 Domain Event Principles |
+| Dependencies | §13.2 Upstream Domain Dependencies; Upstream Dependencies |
+| Locked Decisions | §22 Architectural Decision Records (ADRs) |
+
+---
+
 # 1. Introduction
 
 The Qualification Completion & Student Exit Domain represents the final bounded context within the academic lifecycle of the SutraERP platform. It governs the business capabilities responsible for determining how a student's formal relationship with an academic institution reaches its authorized conclusion.

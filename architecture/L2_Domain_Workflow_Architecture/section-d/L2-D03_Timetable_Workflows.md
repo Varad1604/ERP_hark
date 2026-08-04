@@ -12,6 +12,26 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §2.3 Functional Scope; §2.4 Business Scope |
+| Actors | §10 Actors & Roles; §10.2 Actor Classification; §10.3 Business Actor Catalog |
+| Entities | §17.5 Canonical Business Entities; §17.17 Entity Relationships |
+| Business Rules | §14 Business Rules; §14.17 Business Rule Principles |
+| Workflow | §11 Business Workflow Catalogue; §11.2 Workflow Classification; §11.3 Workflow Catalogue |
+| State Machine | §12 State Transition Matrix; §12.2 State Principles; §12.4 State Definitions |
+| Contracts | §19 Integration Contracts; §19.8 Event Contracts; §19.10 Contract Versioning |
+| Events | §2.11 Event Scope; §12.8 Transition Events; §18 Domain Events |
+| Dependencies | §6.5 Upstream Dependencies; §7.11 Dependency Direction; §8.16 Capability Dependencies |
+| Locked Decisions | §13 Decision Matrix; §13.2 Decision Principles; §13.3 Decision Categories |
+
+---
+
 # 1. Purpose
 
 ## 1.1 Purpose

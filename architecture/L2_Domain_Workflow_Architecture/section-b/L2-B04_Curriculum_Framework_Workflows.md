@@ -2,6 +2,26 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | §40 Workflow Participants; §102.3 Participants |
+| Entities | §87 Entity Engineering Standards; §88 Entity Lifecycle Engineering; §90 Entity and Value Object Relationship Standards |
+| Business Rules | §93 Business Rule Engineering Standards; §102.9 Business Rules |
+| Workflow | §35 Phase 5 — Business Workflows; §36 Workflow Engineering Principles; §37 Workflow Discovery |
+| State Machine | §106 State Machine Pattern |
+| Contracts | §25 Command Modelling; §102.6 Commands; §103.6 Business Commands |
+| Events | §27 Domain Event Discovery; §54 Event-Driven Architecture Validation; §102.8 Domain Events |
+| Dependencies | §16 Phase 0.5 — Dependency Review; §68 Dependency Validation; §16.3 Dependency Categories |
+| Locked Decisions | Architectural Decisions |
+
+---
+
 # Document Control
 
 | Attribute | Value |

@@ -12,6 +12,26 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §4 Scope; §5 Out of Scope |
+| Actors | §31.2 Typical Roles |
+| Entities | §24 Aggregate Catalogue; §24.2 Section Aggregate Catalogue; §24.3 Aggregate Identity |
+| Business Rules | §30 Business Rules & Invariants |
+| Workflow | §14.4 Sourcing Workflow; §22.4 Stock Verification Workflow; §22.5 Asset Verification Workflow |
+| State Machine | §9 Enterprise Resource Lifecycle; §21 Asset Lifecycle Architecture; §7.10 Resource Lifecycle Integrity |
+| Contracts | §15.5 Contract Boundary |
+| Events | §27 Domain Event Catalogue; §28 Consumed Event Catalogue; §29 Multi-Domain Event Matrix |
+| Dependencies | §44 Dependency Matrix; §44.1 Dependency Principles; §44.2 Internal Section J Dependency Matrix |
+| Locked Decisions | §41 Governance Decisions |
+
+---
+
 # Table of Contents
 
 1. Purpose

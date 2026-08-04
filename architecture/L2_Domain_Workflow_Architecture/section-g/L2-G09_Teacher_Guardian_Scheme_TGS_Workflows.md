@@ -22,6 +22,26 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Domain Scope; §4 Explicitly Out of Scope; Audit Scope |
+| Actors | §5 Domain Actors; Primary Actors; Secondary Actors |
+| Entities | §9 Aggregate Model; Primary Aggregate |
+| Business Rules | §19 Business Rules |
+| Workflow | §11 Workflow 1 — Mentorship Relationship Activation; §12 Workflow 2 — Scheduled Mentorship Session; §13 Workflow 3 — Student Mentoring Discussion |
+| State Machine | §18 Mentorship Case State Model |
+| Contracts | §22 Service Contracts; Command Contracts; Query Contracts |
+| Events | §21 Domain Events; Relationship Events; Discussion Events |
+| Dependencies | §6 Enterprise Dependencies |
+| Locked Decisions | §30 Architecture Decision Records (ADR) |
+
+---
+
 # 1. Purpose
 
 The Teacher Guardian Scheme (TGS) domain governs the enterprise workflows that support structured faculty mentorship for students throughout an academic session.

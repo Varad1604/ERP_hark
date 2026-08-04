@@ -12,6 +12,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Scope; §4 Out of Scope |
+| Actors | — not present — |
+| Entities | §12 Aggregate Ownership; §16 Domain Aggregate Architecture; §17 Aggregate Specifications |
+| Business Rules | Business Rules |
+| Workflow | §19 Workflow Specifications; §19.1 Employer Registration Workflow; §19.2 Employer Verification Workflow |
+| State Machine | States |
+| Contracts | §23.3 Enterprise API Catalogue |
+| Events | §14 Upstream Events Consumed; §15 Downstream Events Published; §21 Domain Events Catalogue |
+| Dependencies | §13 External Dependencies |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Locked Decisions. Recorded, not authored.
+
+---
+
 # 1. Purpose
 
 This document defines the complete enterprise workflow architecture for the Placement Management domain within SutraERP.

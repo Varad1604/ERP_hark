@@ -2,6 +2,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose |
+| Scope | §1.3 Scope; §21.3 Audit Scope; §22.3 Configuration Scope |
+| Actors | — not present — |
+| Entities | §4 Canonical Aggregate; §4.2 Aggregate Ownership; §7.3 Primary Aggregate |
+| Business Rules | Rules / Invariants |
+| Workflow | Workflows |
+| State Machine | §15 Financial Adjustment State Architecture; §15.3 Canonical Operational States; §15.4 State Transition Architecture |
+| Contracts | §25 Multi-Domain Contracts |
+| Events | §17 Financial Adjustment Event Architecture; §17.3 Event Architecture; §17.4 Canonical Lifecycle Events |
+| Dependencies | §18.4 Upstream Domains |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Locked Decisions. Recorded, not authored.
+
+---
+
 # Document Metadata
 
 | Attribute | Value |

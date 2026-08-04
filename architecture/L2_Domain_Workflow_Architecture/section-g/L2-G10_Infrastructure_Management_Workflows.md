@@ -13,6 +13,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Scope; §4 Out of Scope |
+| Actors | — not present — |
+| Entities | §8 Aggregate Design; Aggregate Root; Aggregate Responsibilities |
+| Business Rules | §47 Business Rules |
+| Workflow | §12 Workflow Catalogue; §16 Infrastructure Registration Workflows; §17 Campus Management Workflows |
+| State Machine | §46 State Transition Matrix; Availability States |
+| Contracts | §45 Service Contracts |
+| Events | §44 Domain Events; Event-Driven Architecture; Registration Events |
+| Dependencies | §9 Dependencies & Integration (Bounded Context Relationships) |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Locked Decisions. Recorded, not authored.
+
+---
+
 # Table of Contents
 
 1. Purpose

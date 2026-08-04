@@ -16,6 +16,26 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §2.1 In Scope; §2.2 Out of Scope |
+| Actors | Primary Actors |
+| Entities | §6 Domain Model / Aggregate / Lifecycle; §6.2 Primary Aggregate; §6.4 Aggregate Relationships |
+| Business Rules | §9 Business Rules; Appendix D — Business Rule Catalogue; BR-028 — Business Rule Governance |
+| Workflow | §7 Domain Workflows; §8 Workflow Specifications; L2-C07 — Scholarship Eligibility Workflows |
+| State Machine | §12 State Transition Matrix; Appendix B — State Transition Matrix |
+| Contracts | §11 Service Contracts; Service Contract Principles |
+| Events | §10 Domain Events; §10.1 Scholarship Lifecycle Events; §10.2 Eligibility Policy Events |
+| Dependencies | §3 Upstream Dependencies; §4 Downstream Dependencies; Dependency Principles |
+| Locked Decisions | §13 Decision Matrix; §13.1 Scholarship Eligibility Decision Matrix; §13.2 Recommendation Decision Matrix |
+
+---
+
 # 1. Purpose
 
 The **Scholarship Eligibility** domain establishes the canonical business capability responsible for determining, maintaining, and governing student eligibility for scholarship opportunities throughout the academic lifecycle. It provides a centralized, policy-driven, and auditable framework for evaluating student eligibility against institutional, governmental, private, sponsored, CSR, alumni, research, and externally managed scholarship programs while preserving clear separation from scholarship financial management and disbursement.

@@ -22,6 +22,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose; §8.1 Domain Purpose |
+| Scope | §3 Scope; §4 Out of Scope; §10.4 Workflow D05-W02 — Monitoring Scope Definition |
+| Actors | Actors |
+| Entities | Entities / Aggregates |
+| Business Rules | §8.15 Domain Invariants |
+| Workflow | §7 Workflow Design Principles; §10 Academic Monitoring Setup Workflows; §10.2 Setup Workflow Overview |
+| State Machine | §14.7 Closed Monitoring State Rules; State Changes; State Transition |
+| Contracts | §16 Commands, Events, Read Models & Audit Architecture; §16.2 Command Architecture; §16.3 Command Principles |
+| Events | §6.2 Event-Driven Architecture Alignment; §9.11 Multi-Domain Event Consistency Model; §16 Commands, Events, Read Models & Audit Architecture |
+| Dependencies | — not present — |
+| Locked Decisions | §13 Governance Review & Decision Workflows; §13.5 Workflow D05-W22 — Governance Decision Evaluation; §13.6 Governance Decision Record |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Dependencies. Recorded, not authored.
+
+---
+
 # 1. Purpose
 
 The purpose of this document is to define the canonical workflows owned by the D05 — Academic Monitoring domain within SutraERP.

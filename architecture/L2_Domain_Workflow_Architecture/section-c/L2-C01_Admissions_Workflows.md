@@ -1,5 +1,25 @@
 # L2-C01 — Admissions Workflows
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §7.1 Purpose |
+| Scope | §1.4 Scope |
+| Actors | §12.3 Role Categories |
+| Entities | §20.2 Aggregate Model; ADR-C01-001 — Admission Owns the Admission Aggregate |
+| Business Rules | §3.5 Business Rules |
+| Workflow | §7 Domain Workflows; §7.4 Workflow Relationship Diagram; §1 Workflow Definition |
+| State Machine | §20.3 State Machine |
+| Contracts | §3 Architecture Contracts; §11 Service Contracts |
+| Events | §9 Domain Events; §9.4 Admission Lifecycle Events; §9.5 Verification Events |
+| Dependencies | §23 References & Dependencies; §23.2 Upstream Dependencies; §23.5 Dependency Principles |
+| Locked Decisions | §21 Architecture Decisions (ADRs); §21.2 Future Architecture Decisions; §3.6 Decision Matrix |
+
+---
+
 Version: 1.0 (Draft)
 Architecture Level: L2 – Domain Workflow Architecture
 Section: C – Student Lifecycle

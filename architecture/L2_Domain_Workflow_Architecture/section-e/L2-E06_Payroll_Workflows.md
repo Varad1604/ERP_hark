@@ -1,5 +1,25 @@
 # L2-E06 — Payroll Workflows
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose; §24.1 Payroll Domain Purpose; Part 1 --- Metadata + Purpose + Scope |
+| Scope | §2 Scope; §2.1 In Scope; §2.2 Out of Scope |
+| Actors | Actors |
+| Entities | §6.1 Aggregate Overview; §7 Aggregate Design; §7.2 Payroll Result Aggregate |
+| Business Rules | §10 Business Rules; §10.1 Payroll Run Business Rules; Final Business Rule and Event Statement |
+| Workflow | §8 Domain Workflows; §8.1 Payroll Workflow Overview; §8.2 Workflow 1 --- Payroll Run Creation |
+| State Machine | §13.1 Payroll Run State Machine |
+| Contracts | §12 Service Contracts; §12.4 Integration Contracts; §16 Service Contract Governance |
+| Events | §11 Domain Events; §12 Event Flow Model; §13 Event Consumers |
+| Dependencies | §3 Upstream Dependencies; §3.1 Upstream Dependency Model; §3.2 Workforce Domain Dependency |
+| Locked Decisions | §5.6 Ownership Decision Principle; §17 Decision Ownership Model; §17.1 Decision Authority Matrix |
+
+---
+
 # Part 1 --- Metadata + Purpose + Scope
 
 ------------------------------------------------------------------------

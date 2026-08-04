@@ -20,6 +20,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose; §1.1 Purpose Statement; §1.4 Business Purpose |
+| Scope | §2 Scope; §2.1 Domain Scope; §2.2 Functional Scope |
+| Actors | — not present — |
+| Entities | §6 Domain Model / Aggregate / Lifecycle; §5.6 Aggregate Ownership Model; §6.2 Aggregate Overview |
+| Business Rules | §17 Business Rules |
+| Workflow | §7 Workflow Specifications; §7.1 Workflow Overview; §7.2 Workflow Catalogue |
+| State Machine | §18.1 Reporting Cycle State Machine; §18.2 Reporting Snapshot State Machine; §18.3 Submission Package State Machine |
+| Contracts | §12 Service Contracts; §13 API Contracts; §12.2 Internal Service Contracts |
+| Events | §10 Domain Events Catalogue; §10.2 Reporting Framework Events; §10.3 Reporting Cycle Events |
+| Dependencies | §3 Upstream Dependencies; §4 Downstream Dependencies; §3.2 Dependency Principles |
+| Locked Decisions | §21 Architecture Decision Records (ADRs); §5.5 Ownership Decision Tree |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
+
+---
+
 # 1. Purpose
 
 ## 1.1 Purpose Statement

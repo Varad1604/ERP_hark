@@ -11,6 +11,26 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Scope; §60 Audit Scope |
+| Actors | Principle 3 — Role Based Access Control (RBAC) |
+| Entities | §8.1 Entity Classification; §9 Foundation Entities; §10 Master Data Entities |
+| Business Rules | Principle 4 — Policy Based Authorization |
+| Workflow | §14 Finance Workflow Lifecycle Philosophy; §30 Accounting Posting Workflow; §45 Authorization Validation Workflow |
+| State Machine | §15 Universal Finance State Model |
+| Contracts | §26 Integration Contracts |
+| Events | §22 Finance Event Architecture; §23 Published Domain Events; §24 Consumed Domain Events |
+| Dependencies | §99.5 Architectural Dependency Rules; §100 Cross-Document Dependency Matrix |
+| Locked Decisions | Explainable Decisions; Explainable Financial Decisions |
+
+---
+
 # 1. Purpose
 
 This document establishes the canonical architecture for the Finance Domain within SutraERP.

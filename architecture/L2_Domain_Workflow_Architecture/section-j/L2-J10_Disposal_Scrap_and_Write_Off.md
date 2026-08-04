@@ -18,6 +18,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Domain Scope; §3.1 In Scope; §3.2 Out of Scope |
+| Actors | — not present — |
+| Entities | §9 Canonical Aggregate Model; §11 Aggregate Relationships; §9.1 Aggregate Design Principles |
+| Business Rules | §32 Business Rules |
+| Workflow | §13 Disposal / Write-off Request Workflow; §14 Eligibility & Condition Assessment Workflow; §15 Disposal Recommendation Workflow |
+| State Machine | §12.1 Lifecycle State Definitions |
+| Contracts | §38 Multi-Domain Integration Contracts |
+| Events | §34 Domain Events; §35 Event Envelope; §36 Event Delivery & Reliability |
+| Dependencies | — not present — |
+| Locked Decisions | §48 Architectural Decision Records |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Dependencies. Recorded, not authored.
+
+---
+
 # 1. Purpose
 
 The Disposal, Scrap & Write-Off domain governs the controlled retirement, disposal, destruction, sale, donation, transfer-out, scrap processing, and write-off of institution-owned inventory within SutraERP.

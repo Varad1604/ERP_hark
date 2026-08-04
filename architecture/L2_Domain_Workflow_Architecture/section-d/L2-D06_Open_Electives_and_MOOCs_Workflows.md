@@ -4,6 +4,26 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | Purpose; Aggregate Purpose; Business Purpose |
+| Scope | Scope; Out of Scope |
+| Actors | Primary Actors |
+| Entities | Part 5 — Canonical Domain Model (Entities, Value Objects & References); Entity Catalogue; Supporting Entity — LearningOpportunitySnapshot |
+| Business Rules | Business Rules |
+| Workflow | L2-D06 — Open Electives & MOOCs Workflows; Part 6 — Workflow Catalogue; Workflow Classification |
+| State Machine | Category A State Transition; Category B State Transition; Category C State Transition |
+| Contracts | Part 11 — Integration Contracts & External Interfaces (Next Section); Part 11 — Integration Contracts & External Interfaces; Webhook Contracts |
+| Events | Multi-Domain Events; Part 8 — Domain Events Catalogue (Next Section); Part 8 — Domain Events Catalogue |
+| Dependencies | Upstream Dependencies; Downstream Dependencies; Dependency Principles |
+| Locked Decisions | Workflow D06-W16 — Generate Eligibility Decision; Recognition Decision Matrix; Part 14 — Architecture Decision Records (ADR) & Enterprise Design Decisions (Next Section) |
+
+---
+
 # Document Metadata
 
 | Attribute | Value |

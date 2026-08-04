@@ -13,6 +13,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §3 Out of Scope |
+| Actors | §18.4 Integration Role Matrix; §20.4 Role Catalogue |
+| Entities | §13 Entity Relationships; §7.2 Canonical Entities Owned by H06; §7.3 Canonical Entities Consumed |
+| Business Rules | §24 Business Rules Catalogue; Business Rules |
+| Workflow | §15 Workflow Specifications; L2-H06 — Alumni Workflows; Primary Workflow |
+| State Machine | Lifecycle States |
+| Contracts | §18 Integration Contracts; §17.3 Event Payload Contracts |
+| Events | §16.7 Event Commands; §17 Domain Events; §17.1 Published Domain Events |
+| Dependencies | §9 Upstream Dependencies |
+| Locked Decisions | — not present — |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Locked Decisions. Recorded, not authored.
+
+---
+
 # 1. Purpose
 
 The Alumni Domain establishes the enterprise capabilities required to manage the lifelong relationship between the university and its alumni after the successful completion of their academic programs.

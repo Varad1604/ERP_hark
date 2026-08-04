@@ -1,5 +1,25 @@
 # L2-E04 — HR Workflows
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose; §1.1 Purpose Statement |
+| Scope | §2 Scope; §2.2 In Scope Capabilities; §2.3 Out of Scope |
+| Actors | Actors; VR-HR-002 --- Actor Validation |
+| Entities | §6.5 Entity Model; HR Case Entity; Certificate Request Entity |
+| Business Rules | §9 Business Rules; §9.1 Business Rule Philosophy |
+| Workflow | §6.2 HR Workflow Domain Model; §6.8 Employee Lifecycle Workflow Model; §7 Domain Workflows |
+| State Machine | §12 State Transition Matrix; §12.2 HR Case State Transition; §12.3 Leave Request State Transition (owned by L2-E05) |
+| Contracts | §8.8 HR-WF-007 --- Contract Renewal Workflow; §11 Service Contracts; §11.2 Command Contracts |
+| Events | §9.9 Domain Events; §10.2 Event Publishing Model; §10.3 Employee Lifecycle Case Events |
+| Dependencies | §3 Upstream Dependencies; §3.2 Primary Upstream Dependencies; §3.3 Secondary Upstream Dependencies |
+| Locked Decisions | §13 Decision Matrix; §13.2 Business Decision Matrix; §22 Architecture Decision Records (ADR) |
+
+---
+
 **Document Owner:** Varad  
 
 ## Document Metadata

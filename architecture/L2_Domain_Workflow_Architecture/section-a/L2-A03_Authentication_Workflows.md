@@ -20,6 +20,28 @@ required_by:
 last_updated: YYYY-MM-DD
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | Purpose |
+| Scope | Scope; Out of Scope; Policy Scope |
+| Actors | — not present — |
+| Entities | Aggregate Landscape; Aggregate Relationships; Aggregate Specifications |
+| Business Rules | Business Rules; Login Business Rules |
+| Workflow | L2-A03 — Authentication Workflows; Aggregate to Workflow Matrix; Core Authentication Workflows |
+| State Machine | Credential Lifecycle States |
+| Contracts | Authentication Domain Contracts; Repository Contracts; Event Contracts |
+| Events | Aggregate to Event Matrix; Event to Consumer Matrix; Authentication Domain Events |
+| Dependencies | Upstream Dependencies; Downstream Dependencies; Dependency Matrix |
+| Locked Decisions | Architectural Decision Records (ADR) |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
+
+---
+
 # L2-A03 — Authentication Workflows
 
 ---

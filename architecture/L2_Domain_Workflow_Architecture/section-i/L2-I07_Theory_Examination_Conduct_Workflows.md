@@ -6,6 +6,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | §6 Business Actors |
+| Entities | — not present — |
+| Business Rules | §9 Business Rules |
+| Workflow | §8 Theory Examination Lifecycle Workflows; §17 Workflow Completion Criteria; L2-I07 — Theory Examination Conduct Workflows |
+| State Machine | §20 Theory Examination Conduct State Model |
+| Contracts | — not present — |
+| Events | §11 Events Published; §12 Events Consumed; §4.9 Event-Driven Examination Conduct |
+| Dependencies | §19 Theory Examination Dependency Matrix |
+| Locked Decisions | — not present — |
+
+> **Gap:** 3 required section(s) have no counterpart in this document: Entities, Contracts, Locked Decisions. Recorded, not authored.
+
+---
+
 # 1. Purpose
 
 This document defines the canonical business workflows governing the conduct of written and theory examinations within the SutraERP Examination domain.

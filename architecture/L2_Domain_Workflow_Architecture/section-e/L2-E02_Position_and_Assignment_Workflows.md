@@ -29,6 +29,26 @@ It serves as the enterprise-wide runtime organizational identity engine upon whi
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose; §2.1 Purpose of Scope |
+| Scope | §2 Scope; §2.3 Functional Scope; §2.5 Explicit In Scope |
+| Actors | §8.2.4 Actors |
+| Entities | §5.7 Aggregate Ownership Model; §6 Domain Model / Aggregate / Lifecycle; §6.3 Aggregate Architecture |
+| Business Rules | §8.2.16 Business Rules; §14.11 Failure Business Rules; §15.10 Validation Business Rules |
+| Workflow | §6.15.12 Transition to Domain Workflows; §7 Domain Workflows; §7.2 Workflow Philosophy |
+| State Machine | §12.9 Enterprise State Machine |
+| Contracts | §4.5 Integration Contracts; §10.10 Canonical Event Contract; §10.10.11 Event Contract Summary |
+| Events | §4.7 Event Consumption Principles; §6.5.8 Domain Events Published; §6.6.8 Commands & Events |
+| Dependencies | §3 Upstream Dependencies; §3.2 Dependency Architecture; §3.3 Canonical Upstream Dependency Matrix |
+| Locked Decisions | §5.6 Ownership Decision Tree; §13 Decision Matrix; §13.2 Decision Principles |
+
+---
+
 ## 1.2 Business Goals
 
 The Position & Assignment Domain exists to achieve the following objectives:

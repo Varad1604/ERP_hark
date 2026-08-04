@@ -13,6 +13,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | — not present — |
+| Entities | §6 Aggregate Ownership |
+| Business Rules | §9 Multi-Domain Rules |
+| Workflow | L2-D07 — Internal Assessment Workflows; Workflows |
+| State Machine | States |
+| Contracts | §10 API Surface |
+| Events | §7 Business Events |
+| Dependencies | Dependencies / Integration |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Locked Decisions. Recorded, not authored.
+
+---
+
 # 1. Purpose
 
 The Internal Assessment domain owns the institution-controlled assessment activities that occur during academic delivery before final examination computation.

@@ -12,6 +12,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | §6 Business Actors |
+| Entities | — not present — |
+| Business Rules | §9 Business Rules |
+| Workflow | §17 Workflow Completion Criteria; L2-I04 — Examination Registration Workflows |
+| State Machine | §20 Registration State Model |
+| Contracts | — not present — |
+| Events | §11 Events Published; §12 Events Consumed; §4.9 Event-Driven Registration |
+| Dependencies | §19 Registration Dependency Matrix |
+| Locked Decisions | — not present — |
+
+> **Gap:** 3 required section(s) have no counterpart in this document: Entities, Contracts, Locked Decisions. Recorded, not authored.
+
+---
+
 # Document Control
 
 | Item | Value |

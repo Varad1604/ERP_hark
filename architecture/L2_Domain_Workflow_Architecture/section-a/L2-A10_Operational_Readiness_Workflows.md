@@ -44,6 +44,28 @@ canonical_entities:
   - Operational Readiness Certificate
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose |
+| Scope | §6 Operational Readiness Scope Hierarchy; §24.3 Operational Scope Readiness Consolidation Workflow; §1.2 Scope |
+| Actors | — not present — |
+| Entities | §10 Domain Entities; Appendix B. Canonical Business Entities |
+| Business Rules | §36 Business Rules |
+| Workflow | §22 Workflow Architecture; §23 Assessment Lifecycle Workflows; §23.1 Operational Readiness Assessment Initiation Workflow |
+| State Machine | §16.2 Assessment Lifecycle States; §16.3 Lifecycle State Definitions; §17.3 Lifecycle States |
+| Contracts | §35.2 Upstream Dependencies and Integration Contracts |
+| Events | §33 Domain Events; §33.2 Assessment Events; §33.3 Readiness Evaluation Events |
+| Dependencies | §29 Workflow Dependency Model; §35 Multi-Domain Dependencies; §35.2 Upstream Dependencies and Integration Contracts |
+| Locked Decisions | §5.2 Policy-Driven Decision Making |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
+
+---
+
 # L2-A10 — Operational Readiness Workflows
 
 ---

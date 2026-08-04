@@ -18,6 +18,26 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §17.3 Audit Scope; §2.1 In Scope |
+| Actors | §7.6 Workflow Participants; Primary Participants |
+| Entities | §6.8 Entities; D05 — Domain Entity Relationship Diagram |
+| Business Rules | §9 Business Rules; §9.2 Business Rule Classification; §9.12 Business Rule Dependency Matrix |
+| Workflow | §7 Domain Workflows; §7.2 Workflow Design Principles; §7.3 Workflow Landscape |
+| State Machine | §12.3 Canonical State Machine; D09 — Alumni Lifecycle State Machine |
+| Contracts | §10.9 Event Contract; §11 Service Contracts; §11.2 Service Contract Principles |
+| Events | §9.9 Event Rules; §10 Domain Events; §10.2 Event Principles |
+| Dependencies | §3 Upstream Dependencies; §4 Downstream Dependencies; §8.11 Workflow Dependency Matrix |
+| Locked Decisions | §13 Decision Matrix; §13.2 Decision Principles; §13.3 Decision Lifecycle |
+
+---
+
 # 1. Purpose
 
 ## 1.1 Overview

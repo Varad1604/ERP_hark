@@ -2,6 +2,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §3 Out of Scope |
+| Actors | — not present — |
+| Entities | §17 Aggregate Landscape; §18 Primary Aggregate; §19 Aggregate Structure |
+| Business Rules | §20 Aggregate Invariants |
+| Workflow | §25 Aggregate Workflows; §26 Workflow Ownership Matrix; §27 Workflow Constraints |
+| State Machine | Lifecycle State Descriptions |
+| Contracts | IP-04 — Stable Business Contracts |
+| Events | §28 Workflow-to-Event Mapping; §29 Domain Event Catalog; §30 Event Principles |
+| Dependencies | §13 Upstream Dependencies; §24 Capability Dependency Flow; §32 Event Dependency Matrix |
+| Locked Decisions | §56 Architectural Decision Records (ADRs) |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
+
+---
+
 # Document Metadata
 
 | Attribute | Value |

@@ -10,6 +10,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §2 Purpose |
+| Scope | §3 Scope; §3.1 In Scope; §3.2 Out of Scope |
+| Actors | — not present — |
+| Entities | §12 Entities |
+| Business Rules | §16 Domain Invariants |
+| Workflow | §26 Workflow Specifications; §27 Workflow H01-W01 — APAAR Account Linking; §28 Workflow H01-W02 — DigiLocker Account Linking |
+| State Machine | §60 Publication State Machine; §61 Connector State Machine; §62 Consent State Machine |
+| Contracts | §42 External Integration Contracts; Publication Contract; Linking Contract |
+| Events | §37 Domain Events Catalogue; §38 Event Payload Standards; §39 Event Ordering Rules |
+| Dependencies | §65 Domain Dependency Matrix; §66 Multi-Domain Event Dependencies |
+| Locked Decisions | §67 Architecture Decisions Record (ADR); §47.1 Retry Decision Matrix |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
+
+---
+
 # 1. Revision History
 
 | Version | Date | Author | Description |

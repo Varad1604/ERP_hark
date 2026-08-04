@@ -13,6 +13,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | — not present — |
+| Actors | — not present — |
+| Entities | §4 Primary Aggregate |
+| Business Rules | Rules / Invariants |
+| Workflow | §12 Event and Workflow Integration; Workflows |
+| State Machine | States |
+| Contracts | — not present — |
+| Events | §6 Domain Events; §12 Event and Workflow Integration |
+| Dependencies | §7 Dependencies |
+| Locked Decisions | — not present — |
+
+> **Gap:** 4 required section(s) have no counterpart in this document: Scope, Actors, Contracts, Locked Decisions. Recorded, not authored.
+
+---
+
 # 1. Purpose
 
 J04 defines the canonical architecture for converting an approved procurement outcome into an authorised purchase order.

@@ -9,6 +9,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §2 Purpose of the Review |
+| Scope | §3 Scope of Certification |
+| Actors | — not present — |
+| Entities | §7 Aggregate Validation |
+| Business Rules | Rules / Invariants |
+| Workflow | §8 Workflow Validation |
+| State Machine | Lifecycle |
+| Contracts | — not present — |
+| Events | §10 Event Architecture Validation |
+| Dependencies | §9 Cross-Domain Dependency Validation; §9.5 Repository Dependency & Consumption Matrix |
+| Locked Decisions | — not present — |
+
+> **Gap:** 3 required section(s) have no counterpart in this document: Actors, Contracts, Locked Decisions. Recorded, not authored.
+
+---
+
 # Executive Certification Summary
 
 - **Purpose of Certification:** This document provides the formal repository-level certification of the Institution & Structure layer within SutraERP, validating that its foundational concepts are structurally sound and complete before downstream domain development starts.
