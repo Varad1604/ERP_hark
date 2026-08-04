@@ -1,7 +1,7 @@
 # L2-B00 — Institution & Structure Review
 **Section:** B — Institution & Structure  
 **Architecture Level:** Level 2 (Architecture Review & Certification)  
-**Status:** 🔒 LOCKED  
+**Status:** Draft  
 **Document Owner:** Pallav  
 **Review Board:** Chief Enterprise Architecture Review Board  
 **Repository Version:** v1.0  

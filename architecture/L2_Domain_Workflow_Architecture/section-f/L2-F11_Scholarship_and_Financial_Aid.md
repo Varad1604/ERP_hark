@@ -4250,7 +4250,7 @@ This document does not present a dedicated "Workflows" heading. The equivalent b
 | Document | L2-F11 — Scholarship & Financial Aid |
 | Architecture Level | Level 2 |
 | Domain | Finance |
-| Status | Architecture Locked |
+| Status | Draft |
 | Canonical Owner | Finance Architecture |
 | Merge Readiness | Validated & Approved |
 | Downstream Dependency | L3 Component Architecture, L4 Service Architecture, Implementation Architecture |

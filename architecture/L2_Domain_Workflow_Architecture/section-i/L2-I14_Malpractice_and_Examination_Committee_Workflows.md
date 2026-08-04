@@ -1870,7 +1870,7 @@ The architecture follows the enterprise principles established throughout the Su
 
 # End of Document
 **L2-I14 — Malpractice & Examination Committee Workflows**
-**Status:** Architecture Draft
+**Status:** Draft
 **Next Document:** **L2-I15 — Examination Exception & Contingency Workflows**
 
 

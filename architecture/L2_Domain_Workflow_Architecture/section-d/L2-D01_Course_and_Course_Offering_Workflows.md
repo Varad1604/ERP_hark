@@ -5,7 +5,7 @@
 **Domain:** D01 — Course Offering  
 **Document ID:** L2-D01  
 **Version:** 1.0  
-**Status:** Architecture Locked  
+**Status:** Draft  
 **Document Owner:** Pallav  
 **Classification:** Level 2 Domain Architecture  
 **Owner:** Academic Operations Domain  
@@ -3228,7 +3228,7 @@ The Course Offering domain satisfies the following architectural objectives:
 
 **Document:** L2-D01_Course_and_Course_Offering_Workflows.md
 
-**Status:** Repository Architecture Complete
+**Status:** Draft
 
 **Architecture Validation**
 

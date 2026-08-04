@@ -17,7 +17,7 @@
 | Application Pattern | CQRS |
 | Ownership Model | Canonical Domain Ownership |
 | Document Owner | Pallav |
-| Status | Architecture Approved |
+| Status | Draft |
 | Version | 1.0 |
 
 ---

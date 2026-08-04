@@ -1,7 +1,7 @@
 # L2-B01 — Institution Workflows
 **Section:** B — Institution & Structure  
 **Architecture Level:** Level 2 (Domain Architecture)  
-**Status:** Locked  
+**Status:** Draft  
 **Document Owner:** Pallav  
 **Owner:** Section B Architect  
 **Depends On:** L2-A01 — Platform & Tenant Foundation  
@@ -532,7 +532,7 @@ Consumed by:
 
 # 16. Architecture Lock
 
-**Document Status:** 🔒 LOCKED
+**Document Status:** Draft
 
 This document establishes the canonical Institution Aggregate for SutraERP.
 

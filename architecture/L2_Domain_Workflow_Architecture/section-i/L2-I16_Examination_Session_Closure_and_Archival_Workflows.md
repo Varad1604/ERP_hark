@@ -1639,7 +1639,7 @@ The architecture follows the enterprise principles established throughout the Su
 
 **L2-I16 — Examination Session Closure & Archival Workflows**
 
-**Status:** Architecture Draft
+**Status:** Draft
 
 **This document represents the canonical terminal lifecycle of the Examination domain within the SutraERP Enterprise Architecture repository.**
 

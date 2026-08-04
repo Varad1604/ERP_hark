@@ -9489,7 +9489,7 @@ This document shall follow repository version governance.
 | Domain | Admissions |
 | Document ID | L2-C01 |
 | Version | v1.0 |
-| Status | 🔒 LOCKED |
+| Status | Draft |
 | Change Control | Architecture Governance Process |
 
 Future revisions shall increment the document version while preserving historical versions.
@@ -9541,4 +9541,4 @@ This document serves as the authoritative architectural contract for the Admissi
 **Document ID:** L2-C01 — Admissions  
 **Architecture Level:** Level 2  
 **Version:** v1.0  
-**Status:** 🔒 LOCKED  
+**Status:** Draft  

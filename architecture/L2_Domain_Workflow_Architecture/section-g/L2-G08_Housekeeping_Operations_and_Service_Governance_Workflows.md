@@ -2095,6 +2095,6 @@ Housekeeping Operations follows the enterprise architectural principles establis
 **L2-G08 — Housekeeping Operations & Service Governance Workflows**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Architectural Review)
+**Status:** Draft
 
 

@@ -2994,5 +2994,5 @@ Facilities Management follows the enterprise architectural principles establishe
 **L2-G01 — Facilities Management Workflows**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Architectural Review)
+**Status:** Draft
 

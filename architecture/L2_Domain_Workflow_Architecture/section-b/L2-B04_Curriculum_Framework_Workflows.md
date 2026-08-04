@@ -12,7 +12,7 @@
 | **Architecture Level** | Level 2 – Domain Architecture |
 | **Domain Code** | B04 |
 | **Domain Category** | Foundation Domain |
-| **Status** | Architecture Locked |
+| **Status** | Draft |
 | **Repository** | SutraERP Enterprise Architecture |
 | **Depends On** | L1 Platform Foundation, L2-B01 Institution, L2-B02 Organisation |
 | **Consumed By** | All academic and curriculum-dependent domains |

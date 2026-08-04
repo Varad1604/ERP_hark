@@ -5,7 +5,7 @@
 **Domain:** D07 - Internal Assessment  
 **Document ID:** L2-D07  
 **Version:** 1.0  
-**Status:** Architecture Locked  
+**Status:** Draft  
 **Document Owner:** Pallav  
 **Classification:** Level 2 Domain Architecture  
 **Owner:** Pallav  

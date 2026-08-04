@@ -14,7 +14,7 @@
 | Primary Aggregate | StockMovement |
 | Canonical Owner | Stock Operations & Distribution |
 | Document Owner | Chetan |
-| Status | Trust Certification Ready |
+| Status | Draft |
 | Version | 1.1 |
 
 ---

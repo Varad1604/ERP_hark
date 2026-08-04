@@ -14,7 +14,7 @@
 | Primary Aggregate | Asset |
 | Canonical Owner | Operational Asset Lifecycle Management |
 | Document Owner | Chetan |
-| Status | Trust Certification Ready |
+| Status | Draft |
 | Version | 1.1 |
 
 ---

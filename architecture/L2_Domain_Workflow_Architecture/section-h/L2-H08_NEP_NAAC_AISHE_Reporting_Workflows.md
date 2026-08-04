@@ -13,7 +13,7 @@
 | **Communication Pattern** | Commands, Queries, Domain Events |
 | **Canonical Owner** | Regulatory Reporting & Compliance Domain |
 | **Document Owner** | Dhruv |
-| **Status** | Architecture Locked |
+| **Status** | Draft |
 | **Version** | 1.0 |
 | **Repository** | SutraERP Canonical Enterprise Repository |
 | **Classification** | Canonical Enterprise Architecture |

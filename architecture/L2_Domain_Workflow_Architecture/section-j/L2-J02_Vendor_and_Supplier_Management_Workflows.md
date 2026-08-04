@@ -13,7 +13,7 @@
 | Document Owner | Chetan |
 | Primary Aggregate | Supplier |
 | Canonical Owner | Vendor & Supplier Management |
-| Status | Trust Certification Ready |
+| Status | Draft |
 | Version | 1.1 |
 
 ---

@@ -2461,4 +2461,4 @@ Hostel Management follows the enterprise architectural principles established by
 **L2-G03 — Hostel Management Workflows**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Architectural Review)
+**Status:** Draft

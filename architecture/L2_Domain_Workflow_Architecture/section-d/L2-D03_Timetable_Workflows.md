@@ -4,7 +4,7 @@
 **Domain Code:** D03  
 **Domain Name:** Timetable Workflows  
 **Architecture Level:** L2 — Domain Workflow Specification  
-**Status:** Architecture Locked  
+**Status:** Draft  
 **Document Owner:** Pallav  
 **Version:** 1.0  
 **Owner:** Pallav  
@@ -9234,7 +9234,7 @@ Naming conventions shall remain stable across future versions.
 | Domain | D03 — Timetable Workflows |
 | Architecture Level | Level 2 |
 | Document Type | Canonical Enterprise Domain Architecture |
-| Status | Architecture Baseline |
+| Status | Draft |
 | Governance | Enterprise Architecture |
 | Versioning | Semantic Versioning |
 | Ownership | Timetable Domain Team |

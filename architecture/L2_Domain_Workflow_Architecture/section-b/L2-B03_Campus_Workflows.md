@@ -11,7 +11,7 @@
 | **Architecture Level** | Level 2 – Domain Architecture |
 | **Domain Code** | B03 |
 | **Domain Category** | Foundation Domain |
-| **Status** | Architecture Locked |
+| **Status** | Draft |
 | **Document Owner** | Pallav |
 | **Repository** | SutraERP Enterprise Architecture |
 | **Depends On** | L1 Platform Foundation, L2-B01 Institution, L2-B02 Organisation |

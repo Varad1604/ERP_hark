@@ -83,7 +83,7 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 | L2-A08 | Module Registry & Configuration Workflows | Dhruv | Draft |
 | L2-A09 | Master Data Workflows | Dhruv | Draft |
 | L2-A10 | Operational Readiness Workflows | Dhruv | Draft |
-| L2-A00 | Platform Foundation Review | Dhruv | Approved Baseline |
+| L2-A00 | Platform Foundation Review | Dhruv | Draft |
 
 **Section Total:** 11 Documents
 
@@ -93,12 +93,12 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-B01 | Institution Workflows | Pallav | Locked |
-| L2-B02 | Organisation Workflows | Pallav | Architecture Locked |
-| L2-B03 | Campus Workflows | Pallav | Architecture Locked |
-| L2-B04 | Curriculum Framework Workflows | Pallav | Architecture Locked |
-| L2-B05 | Academic Calendar Workflows | Pallav | Architecture Locked |
-| L2-B00 | Institution & Structure Review | Pallav | Locked |
+| L2-B01 | Institution Workflows | Pallav | Draft |
+| L2-B02 | Organisation Workflows | Pallav | Draft |
+| L2-B03 | Campus Workflows | Pallav | Draft |
+| L2-B04 | Curriculum Framework Workflows | Pallav | Draft |
+| L2-B05 | Academic Calendar Workflows | Pallav | Draft |
+| L2-B00 | Institution & Structure Review | Pallav | Draft |
 
 **Section Total:** 6 Documents
 
@@ -109,7 +109,7 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
 | L2-C01 | Admissions Workflows | Varad | Draft |
-| L2-C02 | Student Lifecycle & Activation Workflows | Varad | Locked |
+| L2-C02 | Student Lifecycle & Activation Workflows | Varad | Draft |
 | L2-C03 | Academic Registration Workflows | Varad | Draft |
 | L2-C04 | Student Academic Progression Workflows | Varad | Draft |
 | L2-C05 | Qualification Completion & Student Exit Workflows | Varad | Draft |
@@ -125,14 +125,14 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-D01 | Course & Course Offering Workflows | Pallav | Architecture Locked |
-| L2-D02 | Faculty Academic Assignment Workflows | Pallav | Approved Baseline |
-| L2-D03 | Timetable Workflows | Pallav | Architecture Locked |
-| L2-D04 | Teaching Session & Attendance Workflows | Pallav | Architecture Locked |
-| L2-D05 | Academic Monitoring Workflows | Pallav | Architecture Approved |
-| L2-D06 | Open Electives & MOOCs Workflows | Pallav | Architecture Locked |
-| L2-D07 | Internal Assessment Workflows | Pallav | Architecture Locked |
-| L2-D00 | Academic Delivery Review | Pallav | Certified & Locked |
+| L2-D01 | Course & Course Offering Workflows | Pallav | Draft |
+| L2-D02 | Faculty Academic Assignment Workflows | Pallav | Draft |
+| L2-D03 | Timetable Workflows | Pallav | Draft |
+| L2-D04 | Teaching Session & Attendance Workflows | Pallav | Draft |
+| L2-D05 | Academic Monitoring Workflows | Pallav | Draft |
+| L2-D06 | Open Electives & MOOCs Workflows | Pallav | Draft |
+| L2-D07 | Internal Assessment Workflows | Pallav | Draft |
+| L2-D00 | Academic Delivery Review | Pallav | Draft |
 
 **Section Total:** 8 Documents
 
@@ -144,12 +144,12 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 |----|----------|-------|--------|
 | L2-E01 | Workforce & Engagement Workflows | Varad | Draft |
 | L2-E02 | Position & Assignment Workflows | Varad | Draft |
-| L2-E03 | Faculty Workforce Workflows | Varad | Architecture Baseline |
+| L2-E03 | Faculty Workforce Workflows | Varad | Draft |
 | L2-E04 | HR Workflows | Varad | Draft |
 | L2-E05 | Leave Management Workflows | Varad | Draft |
-| L2-E06 | Payroll Workflows | Varad | Architecture Locked |
-| L2-E07 | Employee Profile Workflows | Varad | Architecture Baseline |
-| L2-E00 | People & Workforce Review | Varad | Locked |
+| L2-E06 | Payroll Workflows | Varad | Draft |
+| L2-E07 | Employee Profile Workflows | Varad | Draft |
+| L2-E00 | People & Workforce Review | Varad | Draft |
 
 **Section Total:** 8 Documents
 
@@ -204,7 +204,7 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 | L2-G06 | Medical Workflows | Devang | Draft |
 | L2-G07 | Security Operations Workflows | Devang | Draft |
 | L2-G08 | Housekeeping Operations & Service Governance Workflows | Devang | Draft |
-| L2-G09 | Teacher Guardian Scheme (TGS) Workflows | Devang | Architecture Locked |
+| L2-G09 | Teacher Guardian Scheme (TGS) Workflows | Devang | Draft |
 | L2-G10 | Infrastructure Management Workflows | Devang | Draft |
 | L2-G00 | Campus Operations Review | Devang | Draft |
 
@@ -218,22 +218,22 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-H01 | APAAR & DigiLocker Workflows | Dhruv | Locked |
-| L2-H02 | Notification Workflows | Dhruv | Architecture Baseline |
+| L2-H01 | APAAR & DigiLocker Workflows | Dhruv | Draft |
+| L2-H02 | Notification Workflows | Dhruv | Draft |
 | L2-H03 | Enterprise Directory & Search Workflows | Dhruv | Draft |
-| L2-H04 | Placement Workflows | Dhruv | Architecture Baseline |
-| L2-H05 | Research Workflows | Dhruv | Architecture Baseline |
+| L2-H04 | Placement Workflows | Dhruv | Draft |
+| L2-H05 | Research Workflows | Dhruv | Draft |
 | L2-H06 | Alumni Workflows | Dhruv | Draft |
 
 ## Institutional Intelligence
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-H07 | Enterprise Dashboard Workflows | Dhruv | Architecture Locked |
-| L2-H08 | NEP, NAAC & AISHE Reporting Workflows | Dhruv | Architecture Locked |
+| L2-H07 | Enterprise Dashboard Workflows | Dhruv | Draft |
+| L2-H08 | NEP, NAAC & AISHE Reporting Workflows | Dhruv | Draft |
 | L2-H09 | Accreditation & Compliance Workflows | Dhruv | Draft |
-| L2-H10 | External Education Integration Workflows | Dhruv | Architecture Locked |
-| L2-H00 | Services & Intelligence Review | Dhruv | Locked |
+| L2-H10 | External Education Integration Workflows | Dhruv | Draft |
+| L2-H00 | Services & Intelligence Review | Dhruv | Draft |
 
 **Section Total:** 11 Documents
 
@@ -269,17 +269,17 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-J00 | Enterprise Resource Management Architecture & Governance | Chetan | Trust Certification Ready |
-| L2-J01 | Procurement Planning & Sourcing Workflows | Chetan | Trust Certification Ready |
-| L2-J02 | Vendor & Supplier Management Workflows | Chetan | Trust Certification Ready |
-| L2-J03 | Purchase Requisition & Approval Workflows | Chetan | Trust Certification Ready |
-| L2-J04 | Purchase Order Management | Chetan | Trust Certification Ready |
-| L2-J05 | Goods Receipt, Inspection & Acceptance | Chetan | Trust Certification Ready |
-| L2-J06 | Inventory & Warehouse Management | Chetan | Trust Certification Ready |
-| L2-J07 | Stock Operations & Distribution | Chetan | Trust Certification Ready |
-| L2-J08 | Asset Lifecycle Management | Chetan | Trust Certification Ready |
-| L2-J09 | Physical Verification, Audit & Reconciliation | Chetan | Trust Certification Ready |
-| L2-J10 | Disposal, Scrap & Write-Off | Chetan | Trust Certification Ready |
+| L2-J00 | Enterprise Resource Management Architecture & Governance | Chetan | Draft |
+| L2-J01 | Procurement Planning & Sourcing Workflows | Chetan | Draft |
+| L2-J02 | Vendor & Supplier Management Workflows | Chetan | Draft |
+| L2-J03 | Purchase Requisition & Approval Workflows | Chetan | Draft |
+| L2-J04 | Purchase Order Management | Chetan | Draft |
+| L2-J05 | Goods Receipt, Inspection & Acceptance | Chetan | Draft |
+| L2-J06 | Inventory & Warehouse Management | Chetan | Draft |
+| L2-J07 | Stock Operations & Distribution | Chetan | Draft |
+| L2-J08 | Asset Lifecycle Management | Chetan | Draft |
+| L2-J09 | Physical Verification, Audit & Reconciliation | Chetan | Draft |
+| L2-J10 | Disposal, Scrap & Write-Off | Chetan | Draft |
 
 **Section Total:** 11 Documents
 
@@ -348,7 +348,9 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 > Status values in this repository are intentional and exact. Do not collapse them into a single generic state when updating index rows or review controls.
 >
-> This legend mirrors the canonical status vocabulary defined in `governance/constitution/Volume_2_Repository_Standards.md` §7, which is the single canonical source and governs if the two ever diverge. Volume 2 defines **13** status values; the nine above are those in active use. Four constitutional values — Proposed, Approved, Deprecated, Archived — are valid but not yet in active use by any indexed document, so they are omitted from the table above.
+> This legend mirrors the canonical status vocabulary defined in `governance/constitution/Volume_2_Repository_Standards.md` §7, which is the single canonical source and governs if the two ever diverge. Volume 2 defines **13** status values, all of which remain legal; the table above lists those the repository has used.
+>
+> **As of 2026-08-04 every L2 document is `Draft` (INT-020).** The repository carries a `REJECT` merge decision from `generated/reviews/integrity-2026-08-03-repository-wide-review.md` with unresolved Critical ownership conflicts, so no L2 document is currently claiming an approved or locked state. Previously the corpus mixed Draft, Locked, Architecture Locked, Trust Certification Ready, Architecture Baseline, Approved Baseline, Architecture Approved and Certified & Locked, and 22 documents contradicted themselves between their header and a status-like footer.
 
 ---
 

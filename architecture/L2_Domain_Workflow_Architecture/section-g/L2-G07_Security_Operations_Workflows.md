@@ -2176,5 +2176,5 @@ Security Operations follows the enterprise architectural principles established 
 **L2-G07 — Security Operations Workflows**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Architectural Review)
+**Status:** Draft
 

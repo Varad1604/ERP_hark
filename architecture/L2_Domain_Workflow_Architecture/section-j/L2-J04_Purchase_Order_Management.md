@@ -5,7 +5,7 @@
 **Domain:** J04 — Purchase Order Management
 **Document ID:** L2-J04
 **Version:** 1.0
-**Status:** Trust Certification Ready
+**Status:** Draft
 **Classification:** Level 2 Domain Workflow Architecture
 **Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
 **Canonical Owner:** Purchase Order Management

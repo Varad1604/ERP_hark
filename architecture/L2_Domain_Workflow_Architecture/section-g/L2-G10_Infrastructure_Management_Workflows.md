@@ -3152,4 +3152,4 @@ Downstream domains consume Infrastructure through published service contracts an
 **L2-G10 — Infrastructure Management Workflows**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Review)
+**Status:** Draft

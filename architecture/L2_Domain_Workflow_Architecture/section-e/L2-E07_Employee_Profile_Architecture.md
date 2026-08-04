@@ -1,7 +1,7 @@
 # L2-E07 — Employee Profile Workflows
 
 **Document Version:** 1.0  
-**Status:** Architecture Baseline  
+**Status:** Draft  
 **Document Owner:** Varad  
 **Classification:** Enterprise Architecture  
 **Bounded Context:** Employee Profile  

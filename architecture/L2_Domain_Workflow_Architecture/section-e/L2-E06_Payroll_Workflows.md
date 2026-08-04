@@ -34,7 +34,7 @@
 
   Security Classification             Sensitive Financial Data
 
-  Status                              Architecture Locked
+  Status                              Draft
 
   Version                             1.0
   -----------------------------------------------------------------------
@@ -6343,7 +6343,7 @@ The objective is to ensure:
   Document             L2-E06 --- Payroll Workflows
   Architecture Level   Level 2 Domain Workflow Architecture
   Domain               Enterprise Payroll
-  Status               Architecture Defined
+  Status               Draft
   Lifecycle            Controlled Evolution
   Ownership            Payroll Domain Architecture Owner
 

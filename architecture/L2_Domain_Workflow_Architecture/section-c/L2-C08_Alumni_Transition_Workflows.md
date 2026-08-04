@@ -6795,7 +6795,7 @@ Future evolution of the Alumni Transition domain shall comply with the following
 
 | Attribute | Value |
 |-----------|-------|
-| Document Status | Architecture Complete |
+| Document Status | Draft |
 | Architecture Level | Level 2 (Bounded Context) |
 | Domain | Alumni Transition |
 | Review Status | Ready for Architecture Review |
@@ -6822,7 +6822,7 @@ By combining Domain-Driven Design, event-driven integration, policy-based decisi
 | Bounded Context | Alumni Transition |
 | Document Type | Enterprise Architecture Specification |
 | Version | 1.0 |
-| Status | Baseline |
+| Status | Draft |
 | Classification | Internal Architecture |
 | Language | English |
 

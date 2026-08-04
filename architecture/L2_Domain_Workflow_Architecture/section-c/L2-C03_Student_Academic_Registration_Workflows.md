@@ -1,6 +1,7 @@
 # L2-C03 — Academic Registration Workflows
 
 **Document Owner:** Varad  
+**Status:** Draft  
 
 ---
 

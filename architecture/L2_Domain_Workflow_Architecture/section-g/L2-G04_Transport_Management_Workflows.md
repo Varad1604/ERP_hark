@@ -2391,4 +2391,4 @@ Transport Management follows the enterprise architectural principles established
 **L2-G04 — Transport Management Workflows**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Architectural Review)
+**Status:** Draft

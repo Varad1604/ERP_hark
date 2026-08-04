@@ -2176,4 +2176,4 @@ Institutional Health Services follows the enterprise architectural principles es
 **L2-G06 — Institutional Health Services & Medical Workflows**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Architectural Review)
+**Status:** Draft

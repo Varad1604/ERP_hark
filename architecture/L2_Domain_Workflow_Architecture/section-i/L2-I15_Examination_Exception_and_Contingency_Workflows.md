@@ -1742,7 +1742,7 @@ The architecture follows the enterprise principles established throughout the Su
 
 **L2-I15 — Examination Exception & Contingency Workflows**
 
-**Status:** Architecture Draft
+**Status:** Draft
 
 **Next Document:** **L2-I16 — Examination Session Closure & Archival Workflows**
 

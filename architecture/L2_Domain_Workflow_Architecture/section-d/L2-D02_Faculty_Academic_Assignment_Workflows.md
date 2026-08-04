@@ -2,7 +2,7 @@
 # L2-D02 — Faculty Academic Assignment Workflows
 
 **Section:** D — Academic Delivery  
-**Status:** Approved Baseline  
+**Status:** Draft  
 **Document Owner:** Pallav
 
 ---

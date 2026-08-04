@@ -17,7 +17,7 @@
 | Technical Owner | Academic ERP Team |
 | Canonical Owner | Pallav |
 | Version | 1.0 |
-| Status | Architecture Locked |
+| Status | Draft |
 | Repository | SutraERP Enterprise Repository |
 
 ---
@@ -15703,7 +15703,7 @@ This architecture is approved as the canonical baseline for all future developme
 
 **Document:** L2-D06 — Open Electives & MOOCs Workflows  
 **Architecture Version:** 1.0  
-**Status:** 🔒 **ARCHITECTURE LOCKED**  
+**Status:** Draft  
 **Implementation Status:** ✅ **READY FOR DEVELOPMENT**
 
 ```

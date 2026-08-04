@@ -5,7 +5,7 @@
 **Domain:** J00 — Enterprise Resource Management Architecture & Governance
 **Document ID:** L2-J00
 **Version:** 1.0
-**Status:** Trust Certification Ready
+**Status:** Draft
 **Classification:** Level 2 Section Architecture
 **Owner:** Enterprise Resource Management
 **Document Owner:** Chetan

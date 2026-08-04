@@ -3,7 +3,7 @@
 **Document ID:** L2-A00  
 **Architecture Level:** Level 2 — Platform Foundation  
 **Domain:** Enterprise Platform Architecture  
-**Status:** Approved Baseline  
+**Status:** Draft  
 **Owner:** Enterprise Architecture Board  
 **Document Owner:** Dhruv  
 **Primary Audience:** Enterprise Architects, Domain Architects, Platform Architects, Technical Governance Teams, Solution Architects, Engineering Leadership

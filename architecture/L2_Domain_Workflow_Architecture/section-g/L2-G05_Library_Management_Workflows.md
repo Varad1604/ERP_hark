@@ -2374,4 +2374,4 @@ Library Management follows the enterprise architectural principles established b
 **L2-G05 — Library Management Workflows**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Architectural Review)
+**Status:** Draft

@@ -5,7 +5,7 @@
 **Domain:** J03 — Purchase Requisition & Approval
 **Document ID:** L2-J03
 **Version:** 1.0
-**Status:** Trust Certification Ready
+**Status:** Draft
 **Classification:** Level 2 Domain Workflow Architecture
 **Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
 **Canonical Owner:** Purchase Requisition & Approval

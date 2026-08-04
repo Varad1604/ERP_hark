@@ -4754,7 +4754,7 @@ The ordered flow between these capabilities is illustrated by the Capability Rel
 | Document | L2-F09 — Financial Period & Closing |
 | Architecture Level | Level 2 |
 | Domain | Finance |
-| Status | Ready for Architecture Lock (Subject to Repository Validation) |
+| Status | Draft |
 | Canonical Owner | Finance Architecture |
 | Merge Readiness | Ready for Governance Validation |
 | Downstream Dependency | L3 Component Architecture, L4 Service Architecture, Implementation Architecture |

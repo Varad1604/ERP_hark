@@ -73,7 +73,7 @@ Status: [Draft]
 Owner: Dhruv
 
 ### L2-A00 - Platform Foundation Review
-Status: [Approved Baseline]
+Status: [Draft]
 Owner: Dhruv
 
 ---
@@ -83,27 +83,27 @@ Owner: Dhruv
 Purpose: Institutional hierarchy and academic foundation.
 
 ## L2-B01 - Institution Workflows
-Status: [Locked]
+Status: [Draft]
 Owner: Pallav
 
 ## L2-B02 - Organisation Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Pallav
 
 ## L2-B03 - Campus Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Pallav
 
 ## L2-B04 - Curriculum Framework Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Pallav
 
 ## L2-B05 - Academic Calendar Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Pallav
 
 ### L2-B00 - Institution & Structure Review
-Status: [Locked]
+Status: [Draft]
 Owner: Pallav
 
 ---
@@ -117,7 +117,7 @@ Status: [Draft]
 Owner: Varad
 
 ## L2-C02 - Student Lifecycle & Activation Workflows
-Status: [Locked]
+Status: [Draft]
 Owner: Varad
 
 ## L2-C03 - Academic Registration Workflows
@@ -155,35 +155,35 @@ Owner: Varad
 Purpose: Teaching operations and academic execution.
 
 ## L2-D01 - Course & Course Offering Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Pallav
 
 ## L2-D02 - Faculty Academic Assignment Workflows
-Status: [Approved Baseline]
+Status: [Draft]
 Owner: Pallav
 
 ## L2-D03 - Timetable Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Pallav
 
 ## L2-D04 - Teaching Session & Attendance Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Pallav
 
 ## L2-D05 - Academic Monitoring Workflows
-Status: [Architecture Approved]
+Status: [Draft]
 Owner: Pallav
 
 ## L2-D06 - Open Electives & MOOCs Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Pallav
 
 ## L2-D07 - Internal Assessment Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Pallav
 
 ### L2-D00 - Academic Delivery Review
-Status: [Certified & Locked]
+Status: [Draft]
 Owner: Pallav
 
 ---
@@ -201,7 +201,7 @@ Status: [Draft]
 Owner: Varad
 
 ## L2-E03 - Faculty Workforce Workflows
-Status: [Architecture Baseline]
+Status: [Draft]
 Owner: Varad
 
 ## L2-E04 - HR Workflows
@@ -213,15 +213,15 @@ Status: [Draft]
 Owner: Varad
 
 ## L2-E06 - Payroll Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Varad
 
 ## L2-E07 - Employee Profile Workflows
-Status: [Architecture Baseline]
+Status: [Draft]
 Owner: Varad
 
 ### L2-E00 - People & Workforce Review
-Status: [Locked]
+Status: [Draft]
 Owner: Varad
 
 ---
@@ -329,7 +329,7 @@ Status: [Draft]
 Owner: Devang
 
 ## L2-G09 - Teacher Guardian Scheme (TGS) Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Devang
 
 ## L2-G10 - Infrastructure Management Workflows
@@ -347,11 +347,11 @@ Owner: Devang
 Purpose: Supporting institutional services and read-model surfaces.
 
 ## L2-H01 - APAAR & DigiLocker Workflows
-Status: [Locked]
+Status: [Draft]
 Owner: Dhruv
 
 ## L2-H02 - Notification Workflows
-Status: [Architecture Baseline]
+Status: [Draft]
 Owner: Dhruv
 
 ## L2-H03 - Enterprise Directory & Search Workflows
@@ -359,11 +359,11 @@ Status: [Draft]
 Owner: Dhruv
 
 ## L2-H04 - Placement Workflows
-Status: [Architecture Baseline]
+Status: [Draft]
 Owner: Dhruv
 
 ## L2-H05 - Research Workflows
-Status: [Architecture Baseline]
+Status: [Draft]
 Owner: Dhruv
 
 ## L2-H06 - Alumni Workflows
@@ -371,11 +371,11 @@ Status: [Draft]
 Owner: Dhruv
 
 ## L2-H07 - Enterprise Dashboard Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Dhruv
 
 ## L2-H08 - NEP, NAAC & AISHE Reporting Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Dhruv
 
 ## L2-H09 - Accreditation & Compliance Workflows
@@ -383,11 +383,11 @@ Status: [Draft]
 Owner: Dhruv
 
 ## L2-H10 - External Education Integration Workflows
-Status: [Architecture Locked]
+Status: [Draft]
 Owner: Dhruv
 
 ### L2-H00 - Services & Intelligence Review
-Status: [Locked]
+Status: [Draft]
 Owner: Dhruv
 
 ---
@@ -471,51 +471,51 @@ Owner: Devang
 Purpose: Physical-resource lifecycle, procurement, inventory, asset, warehouse, verification, and disposal governance.
 
 ## L2-J00 - Enterprise Resource Management Architecture & Governance
-Status: [Trust Certification Ready]
+Status: [Draft]
 Owner: Chetan
 
 ## L2-J01 - Procurement Planning & Sourcing Workflows
-Status: [Trust Certification Ready]
+Status: [Draft]
 Owner: Chetan
 
 ## L2-J02 - Vendor & Supplier Management Workflows
-Status: [Trust Certification Ready]
+Status: [Draft]
 Owner: Chetan
 
 ## L2-J03 - Purchase Requisition & Approval Workflows
-Status: [Trust Certification Ready]
+Status: [Draft]
 Owner: Chetan
 
 ## L2-J04 - Purchase Order Management
-Status: [Trust Certification Ready]
+Status: [Draft]
 Owner: Chetan
 
 ## L2-J05 - Goods Receipt, Inspection & Acceptance
-Status: [Trust Certification Ready]
+Status: [Draft]
 Owner: Chetan
 
 ## L2-J06 - Inventory & Warehouse Management
-Status: [Trust Certification Ready]
+Status: [Draft]
 Owner: Chetan
 
 ## L2-J07 - Stock Operations & Distribution
-Status: [Trust Certification Ready]
+Status: [Draft]
 Owner: Chetan
 
 ## L2-J08 - Asset Lifecycle Management
-Status: [Trust Certification Ready]
+Status: [Draft]
 Owner: Chetan
 
 ## L2-J09 - Physical Verification, Audit & Reconciliation
-Status: [Trust Certification Ready]
+Status: [Draft]
 Owner: Chetan
 
 ## L2-J10 - Disposal, Scrap & Write-Off
-Status: [Trust Certification Ready]
+Status: [Draft]
 Owner: Chetan
 
 ### Section J Review - Governed by L2-J00 and L2-J01 to L2-J10
-Status: [Trust Certification Ready]
+Status: [Draft]
 Owner: Chetan
 
 ---

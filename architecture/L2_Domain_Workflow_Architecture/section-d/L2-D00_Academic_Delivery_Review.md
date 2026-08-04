@@ -16,7 +16,7 @@
 | Technical Owner | Technical Architecture Board |
 | Canonical Owner | Academic Delivery Domain Group |
 | Version | 1.0 |
-| Status | Certified & Locked |
+| Status | Draft |
 | Review Date | 2026-07-27 |
 | Repository | SutraERP Enterprise Repository |
 | Target Scope | L2-D01, L2-D02, L2-D03, L2-D04, L2-D05, L2-D06 |
