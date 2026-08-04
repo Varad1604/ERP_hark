@@ -163,12 +163,17 @@ The owner map above must match `architecture/L2_Domain_Workflow_Architecture/TEA
 
 ## 7. Document Lifecycle
 
-Architecture documents move through these states:
+Architecture documents follow this **simplified progression**. It is a reading
+aid, not the status vocabulary -- the complete and canonical list is the
+**13-value** table in `governance/constitution/Volume_2_Repository_Standards.md`
+§7, and every document carries exactly one status drawn from it.
 
 1. **Draft**: being authored or revised.
 2. **Review**: submitted for architectural review.
 3. **Trust Certification Ready**: complete enough for final repository-integrity certification review, but not yet locked or merged.
 4. **Locked**: approved and frozen as the current authoritative version.
+
+Do not treat these four stages as the set of legal status values.
 
 Documents should not be described as merged, present, or implemented unless the corresponding file actually exists in the repository.
 

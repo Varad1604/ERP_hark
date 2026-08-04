@@ -103,12 +103,21 @@ J03 publishes:
 
 # 7. Dependencies
 
-J03 depends on:
+## Depends On
+
+Upstream capabilities J03 requires in order to function:
 
 - Requesting domains for demand origin.
 - Finance for budget-validation references where policy requires it.
-- J01 for downstream sourcing.
-- J04 for order creation after release.
+
+## Referenced By (Downstream Consumers)
+
+Domains that consume J03 output. Per J00, "depends on" means requiring an
+upstream capability; J03 produces approved demand that these domains consume,
+so they are not dependencies of J03:
+
+- J01 consumes released requisitions for downstream sourcing.
+- J04 consumes released requisitions for order creation after release.
 
 ---
 

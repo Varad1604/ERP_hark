@@ -348,7 +348,7 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 > Status values in this repository are intentional and exact. Do not collapse them into a single generic state when updating index rows or review controls.
 >
-> This legend mirrors the canonical status vocabulary defined in `governance/constitution/Volume_2_Repository_Standards.md` §7. Three constitutional values — Proposed, Deprecated, Archived — are valid but not yet in active use by any indexed document, so they are omitted from the table above.
+> This legend mirrors the canonical status vocabulary defined in `governance/constitution/Volume_2_Repository_Standards.md` §7, which is the single canonical source and governs if the two ever diverge. Volume 2 defines **13** status values; the nine above are those in active use. Four constitutional values — Proposed, Approved, Deprecated, Archived — are valid but not yet in active use by any indexed document, so they are omitted from the table above.
 
 ---
 
