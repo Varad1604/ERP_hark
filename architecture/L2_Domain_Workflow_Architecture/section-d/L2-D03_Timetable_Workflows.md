@@ -6135,7 +6135,7 @@ Resolve scheduling conflicts.
 
 ## Published Events
 
-- ConflictDetected
+- TimetableConflictDetected
 - ConflictResolved
 
 Critical conflicts prevent workflow completion.
@@ -6860,7 +6860,7 @@ The domain event architecture shall satisfy the following principles.
 | EVT-004 | TimetableValidated | Validation |
 | EVT-005 | TimetableValidationFailed | Validation |
 | EVT-006 | TimetableOptimized | Optimization |
-| EVT-007 | ConflictDetected | Conflict |
+| EVT-007 | TimetableConflictDetected | Conflict |
 | EVT-008 | ConflictResolved | Conflict |
 | EVT-009 | TimetableApproved | Governance |
 | EVT-010 | TimetableRejected | Governance |
@@ -6947,7 +6947,7 @@ Optimization events shall preserve references to the original timetable version.
 
 # 18.9 Conflict Events
 
-## ConflictDetected
+## TimetableConflictDetected
 
 Published immediately after a scheduling conflict is identified.
 

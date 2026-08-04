@@ -1307,7 +1307,7 @@ Produces
 
 Produces
 
-- EmergencyContactUpdated
+- EmployeeEmergencyContactUpdated
 
 ---
 
@@ -1604,7 +1604,7 @@ Raised after emergency contact registration.
 
 ---
 
-### EmergencyContactUpdated
+### EmployeeEmergencyContactUpdated
 
 Raised after modification.
 
@@ -2339,7 +2339,7 @@ Notification Service receives communication update.
 ## Domain Events
 
 - EmergencyContactAdded
-- EmergencyContactUpdated
+- EmployeeEmergencyContactUpdated
 - EmergencyContactRemoved
 
 ---

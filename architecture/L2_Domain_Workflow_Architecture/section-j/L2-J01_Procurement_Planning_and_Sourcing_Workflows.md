@@ -4294,7 +4294,7 @@ ApprovedSourcingOutcomeFinalised
 ```text
 ProcurementCommitteeAssociated
 CommitteeQuorumValidated
-CommitteeRecommendationRecorded
+ProcurementCommitteeRecommendationRecorded
 CommitteeDecisionFinalised
 ```
 

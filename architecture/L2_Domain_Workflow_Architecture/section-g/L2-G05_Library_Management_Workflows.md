@@ -1794,10 +1794,10 @@ Every significant business transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| ReservationCreated | Reservation registered |
+| LibraryReservationCreated | Reservation registered |
 | ReservationAvailable | Resource available |
 | ReservationCollected | Reservation fulfilled |
-| ReservationExpired | Reservation expired |
+| LibraryReservationExpired | Reservation expired |
 
 ---
 

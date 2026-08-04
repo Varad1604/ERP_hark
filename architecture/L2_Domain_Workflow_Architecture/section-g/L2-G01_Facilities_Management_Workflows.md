@@ -2374,7 +2374,7 @@ Every significant business transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| ComplaintRegistered | Complaint created |
+| FacilityComplaintRegistered | Complaint created |
 | ComplaintAssigned | Complaint assigned |
 | ComplaintMerged | Complaint merged |
 | ComplaintSplit | Multiple work orders created |
@@ -2436,9 +2436,9 @@ Every significant business transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| InspectionScheduled | Inspection planned |
-| InspectionStarted | Inspection commenced |
-| InspectionCompleted | Inspection finished |
+| FacilityInspectionScheduled | Inspection planned |
+| FacilityInspectionStarted | Inspection commenced |
+| FacilityInspectionCompleted | Inspection finished |
 | InspectionApproved | Inspection accepted |
 | CorrectiveActionRaised | Follow-up required |
 

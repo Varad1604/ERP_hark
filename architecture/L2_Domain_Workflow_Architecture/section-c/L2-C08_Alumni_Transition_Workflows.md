@@ -2491,8 +2491,8 @@ The Alumni Transition bounded context consumes business events published by upst
 | Examination | QualificationCompletionVerified | Initiate transition eligibility |
 | Qualification Completion | QualificationCompleted | Validate academic completion |
 | Clearance Management | ClearanceCompleted | Validate institutional clearance |
-| Approval Management | ApprovalCompleted | Record approval outcome |
-| Policy Management | PolicyUpdated | Resolve applicable transition policies |
+| Approval Management | AlumniTransitionApprovalCompleted | Record approval outcome |
+| Policy Management | AlumniTransitionPolicyUpdated | Resolve applicable transition policies |
 
 The Alumni Transition domain never assumes ownership of consumed events.
 

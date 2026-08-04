@@ -2011,12 +2011,12 @@ The workflow enforces:
 
 | Event             | Description                     |
 | ----------------- | ------------------------------- |
-| ApprovalInitiated | Approval started                |
+| FacultyAssignmentApprovalInitiated | Approval started                |
 | ApprovalRouted    | Approval assigned               |
 | ApprovalGranted   | Approval completed successfully |
 | ApprovalRejected  | Approval rejected               |
 | ApprovalEscalated | Approval escalated              |
-| ApprovalCompleted | Approval process completed      |
+| FacultyAssignmentApprovalCompleted | Approval process completed      |
 
 ---
 
@@ -2026,7 +2026,7 @@ Examples:
 
 | Event                | Purpose                  |
 | -------------------- | ------------------------ |
-| ApprovalCompleted.v1 | Notify dependent systems |
+| FacultyAssignmentApprovalCompleted.v1 | Notify dependent systems |
 | ApprovalRejected.v1  | Communicate rejection    |
 
 ---
@@ -2670,7 +2670,7 @@ Examples:
 ```text
 FacultyAssignmentApproved
 
-ApprovalCompleted
+FacultyAssignmentApprovalCompleted
 
 OperationalChangeApplied
 ```
@@ -2778,12 +2778,12 @@ D02 domain events follow:
 
 | Event             | Description              |
 | ----------------- | ------------------------ |
-| ApprovalInitiated | Approval process created |
+| FacultyAssignmentApprovalInitiated | Approval process created |
 | ApprovalRouted    | Approval assigned        |
 | ApprovalGranted   | Approval approved        |
 | ApprovalRejected  | Approval rejected        |
 | ApprovalEscalated | Approval escalated       |
-| ApprovalCompleted | Approval completed       |
+| FacultyAssignmentApprovalCompleted | Approval completed       |
 
 ---
 
@@ -3559,13 +3559,13 @@ The Approval Process Aggregate manages controlled approval execution.
 
 | Current State    | Command          | Validation Required          | Next State       | Domain Event      |
 | ---------------- | ---------------- | ---------------------------- | ---------------- | ----------------- |
-| None             | InitiateApproval | Approval requirement exists  | Created          | ApprovalInitiated |
+| None             | InitiateApproval | Approval requirement exists  | Created          | FacultyAssignmentApprovalInitiated |
 | Created          | RouteApproval    | Approval path available      | Pending Approval | ApprovalRouted    |
 | Pending Approval | ApproveRequest   | Approver authorized          | Approved         | ApprovalGranted   |
 | Pending Approval | RejectRequest    | Rejection reason provided    | Rejected         | ApprovalRejected  |
 | Pending Approval | EscalateApproval | Escalation criteria met      | Pending Approval | ApprovalEscalated |
-| Approved         | CompleteApproval | Finalization rules satisfied | Completed        | ApprovalCompleted |
-| Rejected         | CompleteApproval | Closure criteria satisfied   | Completed        | ApprovalCompleted |
+| Approved         | CompleteApproval | Finalization rules satisfied | Completed        | FacultyAssignmentApprovalCompleted |
+| Rejected         | CompleteApproval | Closure criteria satisfied   | Completed        | FacultyAssignmentApprovalCompleted |
 
 ---
 
@@ -7150,7 +7150,7 @@ Events:
 Examples:
 
 * FacultyAssignmentApproved.
-* ApprovalCompleted.
+* FacultyAssignmentApprovalCompleted.
 * OperationalChangeApplied.
 
 Result:

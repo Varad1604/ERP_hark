@@ -1084,7 +1084,7 @@ Active → Modified
 
 Published Events
 
-- EmergencyContactUpdated
+- GuardianEmergencyContactUpdated
 
 ---
 
@@ -1523,7 +1523,7 @@ Published Domain Events shall become part of the permanent business history of t
 | GDE-007 | GuardianConsentGranted | Institutional consent granted |
 | GDE-008 | GuardianConsentWithdrawn | Institutional consent withdrawn |
 | GDE-009 | CommunicationAuthorizationUpdated | Communication permissions changed |
-| GDE-010 | EmergencyContactUpdated | Emergency contact hierarchy changed |
+| GDE-010 | GuardianEmergencyContactUpdated | Emergency contact hierarchy changed |
 | GDE-011 | FinancialResponsibilityAssigned | Financial responsibility assigned |
 | GDE-012 | PickupAuthorizationUpdated | Pickup authorization modified |
 | GDE-013 | GuardianRelationshipSuspended | Relationship suspended |
@@ -1564,7 +1564,7 @@ The following business operations produce Domain Events.
 | Consent Granted | GuardianConsentGranted |
 | Consent Withdrawn | GuardianConsentWithdrawn |
 | Communication Permission Update | CommunicationAuthorizationUpdated |
-| Emergency Contact Update | EmergencyContactUpdated |
+| Emergency Contact Update | GuardianEmergencyContactUpdated |
 | Financial Responsibility Assignment | FinancialResponsibilityAssigned |
 | Pickup Authorization Update | PickupAuthorizationUpdated |
 | Relationship Suspension | GuardianRelationshipSuspended |
@@ -5449,7 +5449,7 @@ Refer to Section 12 for the authoritative State Transition Matrix.
 | GDE-007 | GuardianConsentGranted |
 | GDE-008 | GuardianConsentWithdrawn |
 | GDE-009 | CommunicationAuthorizationUpdated |
-| GDE-010 | EmergencyContactUpdated |
+| GDE-010 | GuardianEmergencyContactUpdated |
 | GDE-011 | FinancialResponsibilityAssigned |
 | GDE-012 | PickupAuthorizationUpdated |
 | GDE-013 | GuardianRelationshipSuspended |

@@ -1127,8 +1127,8 @@ Events are immutable and published only after successful completion of the assoc
 | EVT-010 | ExaminationResumed |
 | EVT-011 | ExaminationCancelled |
 | EVT-012 | StakeholdersNotified |
-| EVT-013 | ExceptionResolved |
-| EVT-014 | ExceptionCaseClosed |
+| EVT-013 | ExamExceptionResolved |
+| EVT-014 | ExamExceptionCaseClosed |
 | EVT-015 | ExceptionCaseArchived |
 
 ---

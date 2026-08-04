@@ -6603,7 +6603,7 @@ This appendix summarizes event interactions defined throughout this architecture
 | ExaminationResultsPublished | Examination | Trigger progression evaluation |
 | AssessmentRevaluationCompleted | Examination | Re-Evaluate Student Progression |
 | StudentProgrammeChanged | Student Lifecycle | Maintain academic context |
-| StudentStatusChanged | Student Lifecycle | Validate progression eligibility |
+| ProgressionStudentStatusChanged | Student Lifecycle | Validate progression eligibility |
 | AcademicCalendarActivated | Academic Administration | Open progression cycle |
 | AcademicPeriodClosed | Academic Administration | Finalize progression processing |
 | MigrationRequestApproved | Programme Management | Execute programme migration |

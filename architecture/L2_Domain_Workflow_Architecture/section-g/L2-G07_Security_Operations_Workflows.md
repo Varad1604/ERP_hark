@@ -1523,10 +1523,10 @@ Every significant business transition shall publish a canonical domain event.
 
 | Event | Description |
 |--------|-------------|
-| VisitorRegistered | Visitor registered |
-| VisitorApproved | Visit approved |
-| VisitorCheckedIn | Visitor entered campus |
-| VisitorCheckedOut | Visitor exited campus |
+| SecurityVisitorRegistered | Visitor registered |
+| SecurityVisitorApproved | Visit approved |
+| SecurityVisitorCheckedIn | Visitor entered campus |
+| SecurityVisitorCheckedOut | Visitor exited campus |
 | VisitorPassExpired | Visitor pass expired |
 
 ---
@@ -1567,10 +1567,10 @@ Every significant business transition shall publish a canonical domain event.
 
 | Event | Description |
 |--------|-------------|
-| IncidentReported | Security incident registered |
+| SecurityIncidentReported | Security incident registered |
 | IncidentEscalated | Incident escalated |
-| InvestigationStarted | Investigation initiated |
-| IncidentResolved | Incident resolved |
+| SecurityInvestigationStarted | Investigation initiated |
+| SecurityIncidentResolved | Incident resolved |
 | IncidentClosed | Incident closed |
 
 ---

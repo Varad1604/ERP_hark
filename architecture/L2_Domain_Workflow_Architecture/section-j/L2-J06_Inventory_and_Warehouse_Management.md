@@ -120,8 +120,8 @@ J06 publishes:
 - ItemCreated
 - StockReceived
 - StockReserved
-- StockIssued
-- StockReturned
+- InventoryStockIssued
+- InventoryStockReturned
 - StockTransferred
 - StockAdjusted
 - ReorderThresholdReached

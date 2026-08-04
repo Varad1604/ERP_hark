@@ -526,12 +526,12 @@ Typical events include:
 
 - RegistrationCreated
 - RegistrationSubmitted
-- RegistrationApproved
+- StudentRegistrationApproved
 - RegistrationRejected
 - CourseRegistered
 - CourseDropped
 - ElectiveSelected
-- RegistrationCancelled
+- StudentRegistrationCancelled
 - RegistrationFrozen
 - RegistrationCompleted
 
@@ -1057,9 +1057,9 @@ Typical events include:
 - RegistrationCreated
 - RegistrationValidated
 - RegistrationSubmitted
-- RegistrationApproved
+- StudentRegistrationApproved
 - RegistrationRejected
-- RegistrationCancelled
+- StudentRegistrationCancelled
 - RegistrationFrozen
 - CourseRegistered
 - CourseDropped
@@ -1883,7 +1883,7 @@ Approve registration according to institutional workflow.
 2. Execute workflow.
 3. Record approval.
 4. Update registration state.
-5. Publish RegistrationApproved event.
+5. Publish StudentRegistrationApproved event.
 
 ---
 
@@ -1928,7 +1928,7 @@ Cancel an approved or pending registration.
 - Record reason.
 - Update registration state.
 - Notify downstream systems.
-- Publish RegistrationCancelled event.
+- Publish StudentRegistrationCancelled event.
 
 ---
 
@@ -2307,11 +2307,11 @@ Events shall never be published before successful transaction completion.
 | EVT-C03-005 | SubjectRegistered | Subject successfully registered |
 | EVT-C03-006 | ElectiveRegistered | Elective successfully selected |
 | EVT-C03-007 | RegistrationSubmitted | Registration submitted for approval |
-| EVT-C03-008 | RegistrationApproved | Registration approved |
+| EVT-C03-008 | StudentRegistrationApproved | Registration approved |
 | EVT-C03-009 | RegistrationRejected | Registration rejected |
 | EVT-C03-010 | RegistrationModified | Registration successfully modified |
 | EVT-C03-011 | CourseDropped | Registered course removed |
-| EVT-C03-012 | RegistrationCancelled | Registration cancelled |
+| EVT-C03-012 | StudentRegistrationCancelled | Registration cancelled |
 | EVT-C03-013 | RegistrationFrozen | Registration finalized |
 | EVT-C03-014 | RegistrationCompleted | Registration lifecycle completed |
 
@@ -2330,11 +2330,11 @@ The following aggregate operations publish Domain Events.
 | Register Subject | SubjectRegistered |
 | Register Elective | ElectiveRegistered |
 | Submit Registration | RegistrationSubmitted |
-| Approve Registration | RegistrationApproved |
+| Approve Registration | StudentRegistrationApproved |
 | Reject Registration | RegistrationRejected |
 | Modify Registration | RegistrationModified |
 | Drop Course | CourseDropped |
-| Cancel Registration | RegistrationCancelled |
+| Cancel Registration | StudentRegistrationCancelled |
 | Freeze Registration | RegistrationFrozen |
 | Complete Registration | RegistrationCompleted |
 
@@ -2346,11 +2346,11 @@ Published events may be consumed by the following domains.
 
 | Consumer Domain | Consumed Events |
 |-----------------|-----------------|
-| Academic Delivery | RegistrationApproved, RegistrationFrozen |
-| Timetable | RegistrationApproved, CourseRegistered |
+| Academic Delivery | StudentRegistrationApproved, RegistrationFrozen |
+| Timetable | StudentRegistrationApproved, CourseRegistered |
 | Attendance | RegistrationFrozen |
 | Examination | RegistrationFrozen |
-| Finance | RegistrationApproved, RegistrationCancelled |
+| Finance | StudentRegistrationApproved, StudentRegistrationCancelled |
 | Learning Management System | CourseRegistered, RegistrationFrozen |
 | Notification Platform | All major events |
 | Analytics Platform | All events |
@@ -2405,7 +2405,7 @@ CourseRegistered
 RegistrationSubmitted
         │
         ▼
-RegistrationApproved
+StudentRegistrationApproved
         │
         ▼
 RegistrationFrozen
@@ -2741,10 +2741,10 @@ Failure of any validation shall prevent the transition.
 | Draft → In Progress | RegistrationCreated |
 | In Progress → Validation Pending | RegistrationSubmitted |
 | Validation Pending → Awaiting Approval | RegistrationValidated |
-| Awaiting Approval → Approved | RegistrationApproved |
+| Awaiting Approval → Approved | StudentRegistrationApproved |
 | Awaiting Approval → Rejected | RegistrationRejected |
 | Approved → Frozen | RegistrationFrozen |
-| Any Active State → Cancelled | RegistrationCancelled |
+| Any Active State → Cancelled | StudentRegistrationCancelled |
 | Frozen → Archived | RegistrationCompleted |
 
 Events shall be published only after successful state persistence.
@@ -2905,7 +2905,7 @@ Cancels an existing registration.
 
 ### Published Event
 
-RegistrationCancelled
+StudentRegistrationCancelled
 
 ---
 
@@ -2977,7 +2977,7 @@ Approves registration.
 
 ### Published Event
 
-RegistrationApproved
+StudentRegistrationApproved
 
 ---
 
@@ -3482,12 +3482,12 @@ The following Domain Events are published for cross-domain communication.
 | RegistrationWindowOpened | Notification Platform |
 | RegistrationCreated | Analytics |
 | RegistrationSubmitted | Workflow Engine |
-| RegistrationApproved | Academic Delivery, Timetable |
+| StudentRegistrationApproved | Academic Delivery, Timetable |
 | RegistrationRejected | Notification Platform |
 | CourseRegistered | LMS, Timetable |
 | CourseDropped | LMS, Timetable |
 | RegistrationModified | Analytics |
-| RegistrationCancelled | Examination, Finance |
+| StudentRegistrationCancelled | Examination, Finance |
 | RegistrationFrozen | Attendance, Examination, Academic Delivery |
 | RegistrationCompleted | Analytics, Audit Platform |
 

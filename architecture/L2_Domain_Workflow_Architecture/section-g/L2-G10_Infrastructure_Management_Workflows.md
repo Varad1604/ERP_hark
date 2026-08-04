@@ -2832,7 +2832,7 @@ Every significant business transition shall generate an event.
 | Event | Description |
 |--------|-------------|
 | DepartmentAllocated | Department allocation completed |
-| AllocationUpdated | Allocation modified |
+| InfrastructureAllocationUpdated | Allocation modified |
 | AllocationEnded | Allocation closed |
 
 ---
@@ -2841,10 +2841,10 @@ Every significant business transition shall generate an event.
 
 | Event | Description |
 |--------|-------------|
-| ReservationCreated | Reservation successful |
+| InfrastructureReservationCreated | Reservation successful |
 | ReservationModified | Reservation updated |
 | ReservationCancelled | Reservation cancelled |
-| ReservationExpired | Reservation completed |
+| InfrastructureReservationExpired | Reservation completed |
 
 ---
 
@@ -2873,8 +2873,8 @@ Every significant business transition shall generate an event.
 
 | Event | Description |
 |--------|-------------|
-| InspectionScheduled | Inspection scheduled |
-| InspectionCompleted | Inspection completed |
+| InfrastructureInspectionScheduled | Inspection scheduled |
+| InfrastructureInspectionCompleted | Inspection completed |
 | FindingRecorded | Finding recorded |
 
 ---

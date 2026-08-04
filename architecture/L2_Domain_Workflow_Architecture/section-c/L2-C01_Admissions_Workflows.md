@@ -338,7 +338,7 @@ Consumes
 
 AdmissionConfirmed
 
-StudentCreated
+AdmissionStudentCreated
 
 (StudentActivated is published exclusively by L2-C02 — Student Lifecycle.)
 
@@ -378,7 +378,7 @@ APAAR Integration
 
 Consumes
 
-StudentCreated
+AdmissionStudentCreated
 
 for identity synchronization.
 
@@ -394,7 +394,7 @@ Directory
 
 Consumes
 
-StudentCreated
+AdmissionStudentCreated
 
 to expose institutional directory entries.
 
@@ -879,7 +879,7 @@ Typical lifecycle events include:
 - AdmissionApproved
 - FinancialClearanceCompleted
 - AdmissionConfirmed
-- StudentCreated
+- AdmissionStudentCreated
 - AdmissionCompleted
 - AdmissionCancelled
 - AdmissionWithdrawn
@@ -3263,7 +3263,7 @@ J --> K[Persist Admission-Student Link]
 
 K --> L[Generate Audit]
 
-L --> M[Publish StudentCreated]
+L --> M[Publish AdmissionStudentCreated]
 
 M --> N[Workflow Complete]
 
@@ -3354,7 +3354,7 @@ Generate audit trail.
 
 ### Step 8
 
-Publish StudentCreated event.
+Publish AdmissionStudentCreated event.
 
 ---
 
@@ -3425,7 +3425,7 @@ Successful execution results in:
 - Student created.
 - Student Identifier assigned.
 - Admission linked.
-- StudentCreated event published.
+- AdmissionStudentCreated event published.
 - Student Lifecycle becomes active.
 
 ---
@@ -3453,7 +3453,7 @@ Ownership transfers from the Admission Domain to the Student Domain.
 
 | Event | Description |
 |---------|----------------------------|
-| StudentCreated | Student successfully created |
+| AdmissionStudentCreated | Student successfully created |
 | StudentCreationFailed | Creation failed |
 | StudentAlreadyExists | Existing Student found |
 
@@ -3507,7 +3507,7 @@ This workflow represents the contractual ownership handoff between the Admission
 | BR-C01-034 | Student creation shall be idempotent. |
 | BR-C01-035 | Admission–Student relationship shall be immutable. |
 | BR-C01-036 | Student lifecycle begins after successful creation. |
-| BR-C01-037 | Downstream services shall consume StudentCreated event. |
+| BR-C01-037 | Downstream services shall consume AdmissionStudentCreated event. |
 
 ---
 
@@ -5422,7 +5422,7 @@ It records lifecycle transitions initiated by other workflows.
 
 | Event | Description |
 |---------|----------------------------|
-| AuditRecorded | Audit successfully stored |
+| AdmissionAuditRecorded | Audit successfully stored |
 | AuditFailed | Audit persistence failure |
 
 ---
@@ -5436,7 +5436,7 @@ Consumes every canonical Admission Domain Event including:
 - AdmissionApproved
 - FinancialCleared
 - AdmissionConfirmed
-- StudentCreated
+- AdmissionStudentCreated
 - AdmissionCancelled
 - AdmissionWithdrawn
 - AdmissionRevoked
@@ -5639,7 +5639,7 @@ The Admission Domain publishes the following categories of events:
 
 | Event | Trigger |
 |---------|----------------------------|
-| StudentCreated | Student successfully created |
+| AdmissionStudentCreated | Student successfully created |
 | StudentCreationFailed | Creation failed |
 | StudentAlreadyExists | Duplicate prevented |
 
@@ -5649,7 +5649,7 @@ The Admission Domain publishes the following categories of events:
 
 | Event | Trigger |
 |---------|----------------------------|
-| AuditRecorded | Audit persisted |
+| AdmissionAuditRecorded | Audit persisted |
 | AuditFailed | Audit persistence failure |
 
 ---
@@ -5691,9 +5691,9 @@ Every Admission Domain Event shall contain the following canonical attributes.
 
 | Domain | Consumed Events |
 |----------|----------------------------------------------------|
-| Student Lifecycle | AdmissionConfirmed, StudentCreated |
+| Student Lifecycle | AdmissionConfirmed, AdmissionStudentCreated |
 | Finance | AdmissionApproved, AdmissionCancelled |
-| Academic Delivery | StudentCreated |
+| Academic Delivery | AdmissionStudentCreated |
 | Notification | All major lifecycle events |
 | Audit | All Admission events |
 | Analytics | All business events |
@@ -5745,7 +5745,7 @@ The Admission State Model follows these principles:
 | FinancialPending | Awaiting financial clearance |
 | FinancialCleared | Financial obligations completed |
 | Confirmed | Admission officially confirmed |
-| StudentCreated | Student successfully created |
+| AdmissionStudentCreated | Student successfully created |
 | Cancelled | Admission cancelled |
 | Withdrawn | Admission withdrawn by applicant |
 | Revoked | Admission revoked by institution |
@@ -5776,7 +5776,7 @@ FinancialPending --> FinancialCleared
 
 FinancialCleared --> Confirmed
 
-Confirmed --> StudentCreated
+Confirmed --> AdmissionStudentCreated
 
 Submitted --> Cancelled
 
@@ -5811,7 +5811,7 @@ Readmitted --> Confirmed
 | Approved | FinancialPending, Cancelled |
 | FinancialPending | FinancialCleared, Cancelled |
 | FinancialCleared | Confirmed |
-| Confirmed | StudentCreated, Withdrawn, Revoked |
+| Confirmed | AdmissionStudentCreated, Withdrawn, Revoked |
 | Withdrawn | Readmitted |
 | Cancelled | Readmitted |
 | Readmitted | Confirmed |
@@ -5825,12 +5825,12 @@ The following transitions are prohibited:
 | Invalid Transition | Reason |
 |--------------------|----------------------------------------------|
 | Draft → Approved | Verification skipped |
-| Draft → StudentCreated | Admission incomplete |
+| Draft → AdmissionStudentCreated | Admission incomplete |
 | Submitted → Confirmed | Approval missing |
-| Verified → StudentCreated | Financial clearance missing |
+| Verified → AdmissionStudentCreated | Financial clearance missing |
 | Cancelled → Approved | Must follow Readmission policy |
 | Revoked → Confirmed | Institution must initiate Readmission |
-| StudentCreated → Draft | Historical state rollback prohibited |
+| AdmissionStudentCreated → Draft | Historical state rollback prohibited |
 
 ---
 
@@ -5840,7 +5840,7 @@ The following states are considered terminal under normal workflow execution.
 
 | State | Readmission Allowed |
 |---------|--------------------|
-| StudentCreated | No |
+| AdmissionStudentCreated | No |
 | Cancelled | Yes (Policy Driven) |
 | Withdrawn | Yes (Policy Driven) |
 | Revoked | Institution Policy |
@@ -5977,7 +5977,7 @@ The Admission Domain consumes financial outcomes but does not perform financial 
 |----------|---------------------------------------------|
 | Create Student | Create Student after confirmation |
 | Validate Existing Student | Prevent duplicates |
-| Publish StudentCreated | Notify Student Domain |
+| Publish AdmissionStudentCreated | Notify Student Domain |
 
 ---
 
@@ -6309,7 +6309,7 @@ Admission transfers ownership after successful confirmation.
 
 ### Published Events
 
-- StudentCreated
+- AdmissionStudentCreated
 
 ### Consumed Events
 
@@ -6460,7 +6460,7 @@ All external integrations shall use canonical integration contracts.
 |----------|-------------------------------|------------------------------|
 | Platform | Authentication, Identity | None |
 | Institution | Institution Structure | None |
-| Student Lifecycle | Student Creation Outcome | StudentCreated Event |
+| Student Lifecycle | Student Creation Outcome | AdmissionStudentCreated Event |
 | Academic | Programme Information | None |
 | Finance | Financial Clearance | AdmissionApproved |
 | Documents | Verification Results | DocumentsUploaded |
@@ -7000,10 +7000,10 @@ Examples:
 | Invalid Transition | Reason |
 |--------------------|--------------------------------------|
 | Draft → Confirmed | Verification not completed |
-| Submitted → StudentCreated | Approval skipped |
+| Submitted → AdmissionStudentCreated | Approval skipped |
 | Cancelled → Approved | Readmission required |
 | Revoked → Confirmed | Institutional restoration required |
-| StudentCreated → Draft | Historical rollback prohibited |
+| AdmissionStudentCreated → Draft | Historical rollback prohibited |
 
 No invalid transition shall modify Admission state.
 
@@ -7743,7 +7743,7 @@ DOC --> ADMISSION
 %% Published Business Events
 %% ==========================================================
 
-ADMISSION -->|StudentCreated| STU
+ADMISSION -->|AdmissionStudentCreated| STU
 
 ADMISSION -->|AdmissionConfirmed| REG
 
@@ -7751,7 +7751,7 @@ ADMISSION -->|AdmissionCancelled| NOTIFY
 ADMISSION -->|AdmissionWithdrawn| NOTIFY
 ADMISSION -->|AdmissionRevoked| NOTIFY
 
-ADMISSION -->|StudentCreated| DIR
+ADMISSION -->|AdmissionStudentCreated| DIR
 
 STU -->|StudentActivated| ABC
 
@@ -7882,11 +7882,11 @@ FinancialPending --> Revoked : Policy / Fraud / Legal Action
 
 FinancialCleared --> Confirmed : Confirm Admission
 
-Confirmed --> StudentCreated : Create Student
+Confirmed --> AdmissionStudentCreated : Create Student
 Confirmed --> Withdrawn : Applicant Withdrawal
 Confirmed --> Revoked : Administrative Revocation
 
-StudentCreated --> [*]
+AdmissionStudentCreated --> [*]
 
 Cancelled --> [*]
 Withdrawn --> [*]
@@ -7908,7 +7908,7 @@ Readmitted --> Submitted : New Admission Cycle
   - Canonical Domain Event
 - Cross-domain state changes are prohibited.
 - Student creation is the final operational responsibility of the Admission Domain.
-- After **StudentCreated**, lifecycle ownership transfers to **L2-C02 – Student Lifecycle**.
+- After **AdmissionStudentCreated**, lifecycle ownership transfers to **L2-C02 – Student Lifecycle**.
 - Readmission never modifies historical admission records; it initiates a new policy-driven admission cycle while preserving complete history.
 
 20.4 Admission Lifecycle
@@ -7957,7 +7957,7 @@ I -- Yes --> J[Admission Confirmation]
 
 J --> K[Create Canonical Student]
 
-K --> L[Publish StudentCreated]
+K --> L[Publish AdmissionStudentCreated]
 
 L --> M([Ownership Transfers to<br/>Student Lifecycle])
 
@@ -8109,7 +8109,7 @@ H --> I[Commit Transaction]
 
 I --> J[Generate Immutable Audit Record]
 
-J --> K[Publish StudentCreated]
+J --> K[Publish AdmissionStudentCreated]
 
 end
 
@@ -8125,7 +8125,7 @@ K --> L{{Ownership Transfer}}
 
 subgraph SD["Student Lifecycle Domain"]
 
-L --> M[Receive StudentCreated]
+L --> M[Receive AdmissionStudentCreated]
 
 M --> N[Initialize Student Lifecycle]
 
@@ -8143,11 +8143,11 @@ end
 - Student identity is generated before persistence.
 - Admission and Student are linked through immutable identifiers.
 - The transaction is committed before publishing any domain events.
-- Ownership transfers immediately after the `StudentCreated` event is published.
+- Ownership transfers immediately after the `AdmissionStudentCreated` event is published.
 
 ### Published Event
 
-- `StudentCreated`
+- `AdmissionStudentCreated`
 
 ### Consuming Domain
 
@@ -8227,11 +8227,11 @@ Admission-->>Reporting: AdmissionConfirmed Event
 
 Admission->>Admission: Create Canonical Student
 
-Admission-->>Student: StudentCreated Event
+Admission-->>Student: AdmissionStudentCreated Event
 
 Student->>Student: Initialize Student Lifecycle
 
-Student-->>Reporting: StudentCreated Event
+Student-->>Reporting: AdmissionStudentCreated Event
 
 Student-->>Notification: Student Created Notification
 
@@ -8249,7 +8249,7 @@ Student-->>Notification: Student Created Notification
 | Admission Confirmation | Local Transaction |
 | Student Creation | Local Transaction |
 | AdmissionConfirmed | Asynchronous Domain Event |
-| StudentCreated | Asynchronous Domain Event |
+| AdmissionStudentCreated | Asynchronous Domain Event |
 
 ### Architectural Principles
 
@@ -8257,8 +8257,8 @@ Student-->>Notification: Student Created Notification
 - No domain directly updates another domain's database.
 - Cross-domain communication occurs through service contracts or immutable domain events.
 - Domain events are published only after successful transaction commit.
-- The Admission Domain remains the orchestration boundary until `StudentCreated`.
-- Ownership transfers to the Student Lifecycle domain immediately after the `StudentCreated` event.
+- The Admission Domain remains the orchestration boundary until `AdmissionStudentCreated`.
+- Ownership transfers to the Student Lifecycle domain immediately after the `AdmissionStudentCreated` event.
 
 20.8 Event Flow
 ## 20.8 Event Flow
@@ -8282,7 +8282,7 @@ E1((AdmissionSubmitted))
 E2((AdmissionVerified))
 E3((AdmissionApproved))
 E4((AdmissionConfirmed))
-E5((StudentCreated))
+E5((AdmissionStudentCreated))
 E6((AdmissionCancelled))
 E7((AdmissionWithdrawn))
 E8((AdmissionRevoked))
@@ -8380,7 +8380,7 @@ E8 --> RP
 | AdmissionVerified | Verification successfully completed |
 | AdmissionApproved | Institutional approval completed |
 | AdmissionConfirmed | Admission finalized |
-| StudentCreated | Canonical Student successfully created |
+| AdmissionStudentCreated | Canonical Student successfully created |
 | AdmissionCancelled | Admission cancelled |
 | AdmissionWithdrawn | Applicant withdrew admission |
 | AdmissionRevoked | Admission revoked administratively |
@@ -8403,7 +8403,7 @@ E8 --> RP
 | AdmissionVerified | Admission Domain |
 | AdmissionApproved | Admission Domain |
 | AdmissionConfirmed | Admission Domain |
-| StudentCreated | Admission Domain |
+| AdmissionStudentCreated | Admission Domain |
 | AdmissionCancelled | Admission Domain |
 | AdmissionWithdrawn | Admission Domain |
 | AdmissionRevoked | Admission Domain |
@@ -8496,13 +8496,13 @@ CFG --> ADM1
 %% Event-Based Dependencies
 %% ==========================================================
 
-ADM1 -. StudentCreated .-> STU
+ADM1 -. AdmissionStudentCreated .-> STU
 
 ADM1 -. AdmissionConfirmed .-> REG
 
-ADM1 -. StudentCreated .-> DIR
+ADM1 -. AdmissionStudentCreated .-> DIR
 
-ADM1 -. StudentCreated .-> ABC
+ADM1 -. AdmissionStudentCreated .-> ABC
 
 ADM1 -. Admission Events .-> NOTIFY
 
@@ -8841,7 +8841,7 @@ E1((AdmissionSubmitted))
 E2((AdmissionVerified))
 E3((AdmissionApproved))
 E4((AdmissionConfirmed))
-E5((StudentCreated))
+E5((AdmissionStudentCreated))
 E6((AdmissionCancelled))
 E7((AdmissionWithdrawn))
 E8((AdmissionRevoked))
@@ -9442,9 +9442,9 @@ The following domains consume Admission outputs.
 
 | Consumer Domain | Consumed Information |
 |-----------------|--------------------------------|
-| L2-C02 — Student Lifecycle | StudentCreated |
+| L2-C02 — Student Lifecycle | AdmissionStudentCreated |
 | Finance | AdmissionApproved |
-| Academic Delivery | StudentCreated |
+| Academic Delivery | AdmissionStudentCreated |
 | Notification Services | Admission Events |
 | Analytics Platform | Business Events |
 | Audit Platform | Audit Records |

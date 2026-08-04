@@ -555,7 +555,7 @@ Examples:
 ``` text
 CompensationChangeApproved
 
-LeaveApproved
+EmployeeLeaveApproved
 
 EmployeeSeparated
 ```
@@ -572,7 +572,7 @@ Consumes:
 Examples:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
 LeaveCancelled
 ```
@@ -588,7 +588,7 @@ Consumes:
 Examples:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
 CertificateGenerated
 
@@ -2365,7 +2365,7 @@ The following rules SHALL apply to all HR workflows:
   Employee Onboarding     Employee Onboarding     EmployeeOnboardingCompleted
                           Aggregate               
 
-  Leave Request           Leave Request Aggregate LeaveApproved
+  Leave Request           Leave Request Aggregate EmployeeLeaveApproved
 
   HR Case                 HR Case Aggregate       HRCaseResolved
 
@@ -2749,8 +2749,8 @@ or close HR cases and for compliance reporting. HR shall not publish any of them
 
   Event            Description                 Publisher
   ---------------- --------------------------- -----------
-  LeaveRequested   Leave request submitted     L2-E05
-  LeaveApproved    Leave approved              L2-E05
+  EmployeeLeaveRequested   Leave request submitted     L2-E05
+  EmployeeLeaveApproved    Leave approved              L2-E05
   LeaveRejected    Leave rejected              L2-E05
   LeaveCancelled   Leave cancelled             L2-E05
 
@@ -5216,7 +5216,7 @@ by other domains.
 Examples:
 
 -   EmployeeOnboardingCompleted.
--   LeaveApproved.
+-   EmployeeLeaveApproved.
 
 ------------------------------------------------------------------------
 
@@ -5728,7 +5728,7 @@ The document SHALL remain synchronized with:
   Event Category       Examples
   -------------------- ------------------------------------------------
   Employee Lifecycle   EmployeeOnboardingCompleted, EmployeeSeparated
-  Leave                LeaveApproved, LeaveCancelled
+  Leave                EmployeeLeaveApproved, LeaveCancelled
   Employment Change    PromotionApproved, EmployeeTransferred
   Certificates         CertificateGenerated
   HR Cases             HRCaseResolved

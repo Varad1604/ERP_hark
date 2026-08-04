@@ -1241,14 +1241,14 @@ Events are immutable and shall be published only after successful completion of 
 | EVT-001 | MalpracticeIncidentRegistered |
 | EVT-002 | MalpracticeCaseCreated |
 | EVT-003 | InvestigationAssigned |
-| EVT-004 | InvestigationStarted |
+| EVT-004 | ExamCommitteeInvestigationStarted |
 | EVT-005 | InvestigationCompleted |
 | EVT-006 | EvidenceCollected |
 | EVT-007 | CandidateExplanationRecorded |
 | EVT-008 | WitnessStatementRecorded |
 | EVT-009 | CommitteeMeetingScheduled |
 | EVT-010 | CommitteeHearingCompleted |
-| EVT-011 | CommitteeRecommendationRecorded |
+| EVT-011 | ExamCommitteeRecommendationRecorded |
 | EVT-012 | CommitteeDecisionRecorded |
 | EVT-013 | PenaltyAssigned |
 | EVT-014 | StakeholdersNotified |

@@ -107,7 +107,7 @@ Below is the verified registry of the six bounded contexts constituting the Acad
   - `FacultyAssignment`: Owns assignment status, loading hours, and specific course offering references.
   - `AssignmentApprovalCase`: Governs institutional approval workflows for manual exceptions.
   - `OperationalChange`: Controls modifications during execution.
-- **Publishes Events**: `FacultyAssignmentCreated`, `FacultyAssignmentSubmitted`, `FacultyAssignmentReviewed`, `FacultyAssignmentApproved`, `FacultyAssignmentRejected`, `FacultyAssignmentActivated`, `FacultyAssignmentCompleted`, `FacultyAssignmentArchived`, `ApprovalInitiated`, `ApprovalRouted`, `ApprovalGranted`, `ApprovalRejected`, `ApprovalEscalated`, `ApprovalCompleted`, `OperationalChangeRequested`, `OperationalChangeValidated`, `OperationalChangeApproved`, `OperationalChangeApplied`, `OperationalChangeClosed`.
+- **Publishes Events**: `FacultyAssignmentCreated`, `FacultyAssignmentSubmitted`, `FacultyAssignmentReviewed`, `FacultyAssignmentApproved`, `FacultyAssignmentRejected`, `FacultyAssignmentActivated`, `FacultyAssignmentCompleted`, `FacultyAssignmentArchived`, `FacultyAssignmentApprovalInitiated`, `ApprovalRouted`, `ApprovalGranted`, `ApprovalRejected`, `ApprovalEscalated`, `FacultyAssignmentApprovalCompleted`, `OperationalChangeRequested`, `OperationalChangeValidated`, `OperationalChangeApproved`, `OperationalChangeApplied`, `OperationalChangeClosed`.
 - **Consumes Events**: `CourseOfferingPublished`, `CourseOfferingCancelled` (from L2-D01).
 - **Depends On**: L2-D01, Human Resources (Reference data).
 - **Downstream Domains**: L2-D03, L2-D04.
@@ -120,7 +120,7 @@ Below is the verified registry of the six bounded contexts constituting the Acad
   - `TimetableStructure`: Defines timeslots, days, and period patterns.
   - `TimetableSlotAssignment`: Owns Room, Slot, Faculty, and Course Offering bindings.
   - `SchedulingConflictRegister`: Tracks conflicts and exceptions.
-- **Publishes Events**: `TimetablePlanningStarted`, `TimetablePlanningCompleted`, `TimetableDraftCreated`, `TimetableValidated`, `TimetableValidationFailed`, `TimetableOptimized`, `ConflictDetected`, `ConflictResolved`, `TimetableApproved`, `TimetableRejected`, `TimetablePublished`, `TimetableActivated`, `TimetableRevisionCreated`.
+- **Publishes Events**: `TimetablePlanningStarted`, `TimetablePlanningCompleted`, `TimetableDraftCreated`, `TimetableValidated`, `TimetableValidationFailed`, `TimetableOptimized`, `TimetableConflictDetected`, `ConflictResolved`, `TimetableApproved`, `TimetableRejected`, `TimetablePublished`, `TimetableActivated`, `TimetableRevisionCreated`.
 - **Consumes Events**: `CourseOfferingPublished` (L2-D01), `FacultyAssignmentApproved` (L2-D02).
 - **Depends On**: L2-D01, L2-D02, Campus Infrastructure (L2-B03).
 - **Downstream Domains**: L2-D04, L2-D05.
@@ -163,7 +163,7 @@ Below is the verified registry of the six bounded contexts constituting the Acad
   - `LearningProgress`: Tracks progress synchronization.
   - `CertificateVerification`: Audits certificate uploads.
   - `CreditRecognition`: Manages credit mapping and transcript posting retries.
-- **Publishes Events**: `LearningOpportunityPublished`, `LearningOpportunityUpdated`, `LearningOpportunityActivated`, `LearningOpportunitySuspended`, `LearningOpportunityArchived`, `LearningOpportunityCapacityUpdated`, `LearningOpportunityClosed`, `EnrollmentRequested`, `EnrollmentValidated`, `EnrollmentApproved`, `EnrollmentRejected`, `EnrollmentCancelled`, `EnrollmentWithdrawn`, `EnrollmentClosed`, `EligibilityValidated`, `EligibilityRejected`, `SeatAllocated`, `SeatReserved`, `SeatReleased`, `WaitlistEntryCreated`, `WaitlistedStudentPromoted`, `WaitlistEntryExpired`, `WaitlistEntryRemoved`, `LearnerRegisteredWithProvider`, `EnrollmentStatusSynchronized`, `LearningProgressSynchronized`, `AssessmentStatusSynchronized`, `ExternalCourseCompleted`, `SynchronizationRecovered`, `SynchronizationFailureResolved`, `LearningProgressInitialized`, `LearningProgressUpdated`, `LearningCompletionValidated`, `LearningCompleted`, `LearningActivityClosed`, `CertificateReceived`, `CertificateAuthenticityValidated`, `LearnerIdentityVerified`, `ProviderVerified`, `CertificateAccepted`, `CertificateRejected`, `CertificateFraudSuspected`, `CreditRecognitionRequested`, `CreditRecognitionApproved`, `CreditRecognitionRejected`, `TranscriptPostingRequested`, `TranscriptPostingCompleted`, `CreditRecognitionCaseClosed`, `LearningProviderConfigured`, `ElectivePolicyPublished`, `CreditMappingRulesPublished`, `EnrollmentWindowConfigured`, `ApprovalPolicyPublished`, `ProviderIntegrationConfigured`, `IntegrationHealthUpdated`, `AcademicSessionArchived`, `EnrollmentRecovered`, `SeatConflictResolved`, `ProviderSynchronizationRecovered`, `LearningRecordsReconciled`, `AdministrativeOverrideExecuted`, `WorkflowRecovered`, `ExceptionCaseClosed`.
+- **Publishes Events**: `LearningOpportunityPublished`, `LearningOpportunityUpdated`, `LearningOpportunityActivated`, `LearningOpportunitySuspended`, `LearningOpportunityArchived`, `LearningOpportunityCapacityUpdated`, `LearningOpportunityClosed`, `EnrollmentRequested`, `EnrollmentValidated`, `EnrollmentApproved`, `ElectiveEnrollmentRejected`, `EnrollmentCancelled`, `EnrollmentWithdrawn`, `EnrollmentClosed`, `EligibilityValidated`, `EligibilityRejected`, `SeatAllocated`, `SeatReserved`, `SeatReleased`, `WaitlistEntryCreated`, `WaitlistedStudentPromoted`, `WaitlistEntryExpired`, `WaitlistEntryRemoved`, `LearnerRegisteredWithProvider`, `EnrollmentStatusSynchronized`, `LearningProgressSynchronized`, `AssessmentStatusSynchronized`, `ExternalCourseCompleted`, `SynchronizationRecovered`, `SynchronizationFailureResolved`, `LearningProgressInitialized`, `LearningProgressUpdated`, `LearningCompletionValidated`, `LearningCompleted`, `LearningActivityClosed`, `CertificateReceived`, `CertificateAuthenticityValidated`, `LearnerIdentityVerified`, `ProviderVerified`, `CertificateAccepted`, `CertificateRejected`, `CertificateFraudSuspected`, `CreditRecognitionRequested`, `CreditRecognitionApproved`, `CreditRecognitionRejected`, `TranscriptPostingRequested`, `TranscriptPostingCompleted`, `CreditRecognitionCaseClosed`, `LearningProviderConfigured`, `ElectivePolicyPublished`, `CreditMappingRulesPublished`, `EnrollmentWindowConfigured`, `ApprovalPolicyPublished`, `ProviderIntegrationConfigured`, `IntegrationHealthUpdated`, `AcademicSessionArchived`, `EnrollmentRecovered`, `SeatConflictResolved`, `ProviderSynchronizationRecovered`, `LearningRecordsReconciled`, `AdministrativeOverrideExecuted`, `WorkflowRecovered`, `ElectiveExceptionCaseClosed`.
 - **Consumes Events**: `CourseOfferingPublished` (from L2-D01).
 - **Depends On**: L2-D01, Student Lifecycle, Curriculum Management, Academic Records (Posting target).
 - **Downstream Domains**: Academic Records, Examinations.
@@ -283,7 +283,7 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - External References: Role Registry ID, FacultyAssignmentId
 - Canonical IDs Used: ApprovalCaseId
 - Commands Targeting: ApproveWorkloadException, EscalateApproval
-- Events Published: ApprovalInitiated, ApprovalGranted
+- Events Published: FacultyAssignmentApprovalInitiated, ApprovalGranted
 - Events Consumed: None
 - Read Models: Pending Approval Case Grid (RM-D02-02)
 - Boundary Validation: Separates override actions from core assignment states.
@@ -355,7 +355,7 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - External References: Room ID, Faculty ID
 - Canonical IDs Used: ConflictRegisterId
 - Commands Targeting: LogConflict, ResolveConflict
-- Events Published: ConflictDetected, ConflictResolved
+- Events Published: TimetableConflictDetected, ConflictResolved
 - Events Consumed: SlotScheduled
 - Read Models: Conflict Dashboard (RM-D03-03)
 - Boundary Validation: Encapsulated as a tracking entity.

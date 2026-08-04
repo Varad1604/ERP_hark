@@ -970,7 +970,7 @@ Examples include:
 - StudentExitInitiated
 - AcademicRecordFinalized
 - StudentExitCompleted
-- AlumniTransitionInitiated
+- QualificationAlumniTransitionInitiated
 
 ---
 
@@ -2236,7 +2236,7 @@ Published after academic records become immutable.
 
 ---
 
-## AlumniTransitionInitiated
+## QualificationAlumniTransitionInitiated
 
 Published when engagement ownership passes to the Alumni Engagement domain (L2-H06).
 
@@ -2325,7 +2325,7 @@ For successful qualification completion, events shall be published in the follow
 6. QualificationAwarded
 7. AcademicRecordFinalized
 8. StudentExitCompleted
-9. AlumniTransitionInitiated
+9. QualificationAlumniTransitionInitiated
 
 Alternative exit pathways publish only the events relevant to their respective lifecycle.
 
@@ -2345,7 +2345,7 @@ The Qualification Completion Aggregate exclusively owns publication of:
 - StudentExitInitiated
 - StudentExitCompleted
 - AcademicRecordFinalized
-- AlumniTransitionInitiated
+- QualificationAlumniTransitionInitiated
 
 No external bounded context shall publish or modify these business events.
 
@@ -4576,7 +4576,7 @@ The aggregate shall always enforce the following invariants:
 | StudentExitInitiated | Qualification Completion Aggregate | Reporting |
 | StudentExitCompleted | Qualification Completion Aggregate | Identity, Reporting |
 | AcademicRecordFinalized | Qualification Completion Aggregate | Transcript, Archive |
-| AlumniTransitionInitiated | Qualification Completion Aggregate | Alumni Domain |
+| QualificationAlumniTransitionInitiated | Qualification Completion Aggregate | Alumni Domain |
 
 ---
 

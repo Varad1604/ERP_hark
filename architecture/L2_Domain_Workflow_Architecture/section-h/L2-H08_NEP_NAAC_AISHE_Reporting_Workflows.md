@@ -2621,7 +2621,7 @@ Rejected packages return to correction workflow.
 
 ## Domain Events
 
-- ApprovalInitiated
+- ComplianceReportApprovalInitiated
 - SubmissionApproved
 - SubmissionRejected
 - SubmissionReturnedForCorrection
@@ -3426,7 +3426,7 @@ Events are immutable, versioned, replayable, and form the foundation of enterpri
 
 | Domain Event | Published When |
 |--------------|----------------|
-| ApprovalInitiated | Approval workflow started |
+| ComplianceReportApprovalInitiated | Approval workflow started |
 | SubmissionApproved | Submission approved |
 | SubmissionRejected | Submission rejected |
 | SubmissionReturnedForCorrection | Returned for correction |

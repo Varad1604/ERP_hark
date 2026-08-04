@@ -5869,7 +5869,7 @@ Typical events include:
 - ApprovalReturned
 - ApprovalEscalated
 - ApprovalDelegated
-- WorkflowCompleted
+- CurriculumWorkflowCompleted
 
 ---
 
@@ -6749,9 +6749,9 @@ Typical commands include:
 
 Typical events include:
 
-- RetryScheduled
+- CurriculumRetryScheduled
 - RetryStarted
-- RetryCompleted
+- CurriculumRetryCompleted
 - RetryFailed
 - RetryCancelled
 - RetryExhausted
@@ -7940,9 +7940,9 @@ Typical commands include:
 
 Typical events include:
 
-- MigrationStarted
+- CurriculumMigrationStarted
 - MigrationValidated
-- MigrationCompleted
+- CurriculumMigrationCompleted
 - MigrationVerified
 
 ---
@@ -8733,10 +8733,10 @@ Typical events include:
 
 - RegistrationRequested
 - RegistrationValidated
-- RegistrationApproved
+- CurriculumRegistrationApproved
 - RegistrationActivated
 - RegistrationSuspended
-- RegistrationCancelled
+- CurriculumRegistrationCancelled
 
 ---
 
@@ -9158,12 +9158,12 @@ Typical commands include:
 
 Typical events include:
 
-- VerificationRequested
-- VerificationStarted
+- CurriculumVerificationRequested
+- CurriculumVerificationStarted
 - AdditionalInformationRequested
 - VerificationCompleted
-- VerificationFailed
-- VerificationExpired
+- CurriculumVerificationFailed
+- CurriculumVerificationExpired
 
 ---
 
@@ -9433,7 +9433,7 @@ Typical commands include:
 Typical events include:
 
 - SchedulingRequested
-- ConflictDetected
+- CurriculumConflictDetected
 - SchedulePublished
 - ScheduleModified
 - ScheduleCancelled
@@ -9918,7 +9918,7 @@ Typical events include:
 
 - ExceptionDetected
 - ExceptionClassified
-- ExceptionResolved
+- CurriculumExceptionResolved
 - ProcessingResumed
 - ExceptionClosed
 
@@ -10066,7 +10066,7 @@ Typical events include:
 
 - CancellationRequested
 - CancellationApproved
-- WorkflowCancelled
+- CurriculumWorkflowCancelled
 - WorkflowArchived
 
 ---
@@ -10385,7 +10385,7 @@ Typical events include:
 
 - SuspensionRequested
 - SuspensionApproved
-- WorkflowSuspended
+- CurriculumWorkflowSuspended
 - ResumeRequested
 - WorkflowResumed
 
@@ -10672,7 +10672,7 @@ Typical commands include:
 
 Typical events include:
 
-- WorkflowCompleted
+- CurriculumWorkflowCompleted
 - WorkflowArchived
 - BusinessProcessClosed
 

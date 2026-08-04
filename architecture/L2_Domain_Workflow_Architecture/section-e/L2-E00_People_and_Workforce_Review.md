@@ -1554,7 +1554,7 @@ Event-driven projection updated in near real-time. Consumed by L2-D03 (Timetable
 ### Events
 
 - LeaveApplied
-- LeaveApproved
+- EmployeeLeaveApproved
 - LeaveRejected
 - LeaveCancelled
 - LeaveWithdrawn
@@ -2252,7 +2252,7 @@ The following principles are enforced:
 |--------|--------------|
 | LeaveApplied | Leave Application |
 | LeaveValidated | Leave Application |
-| LeaveApproved | Leave Application |
+| EmployeeLeaveApproved | Leave Application |
 | LeaveRejected | Leave Application |
 | LeaveCancelled | Leave Application |
 | LeaveWithdrawn | Leave Application |
@@ -2985,7 +2985,7 @@ Section H consumes workforce events to build analytical projections.
 - EmployeeTransferred
 - EmployeePromoted
 - EmployeeSeparated
-- LeaveApproved
+- EmployeeLeaveApproved
 - PayrollApproved
 - PayrollClosed
 
@@ -3002,7 +3002,7 @@ Notifications are triggered through domain events.
 | Event | Notification |
 |--------|--------------|
 | EmployeeCreated | Welcome Notification |
-| LeaveApproved | Leave Approval |
+| EmployeeLeaveApproved | Leave Approval |
 | LeaveRejected | Leave Rejection |
 | PayrollPublished | Payslip Available |
 | EmployeeTransferred | Transfer Notice |

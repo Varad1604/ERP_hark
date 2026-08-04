@@ -1609,9 +1609,9 @@ The Identity aggregate publishes:
 - MFAEnabled
 - MFADisabled
 - UserAuthenticated
-- AuthenticationFailed
+- PersonAuthenticationFailed
 - SessionStarted
-- SessionExpired
+- PersonSessionExpired
 - SessionEnded
 
 Downstream domains consume these events without directly modifying Identity.
@@ -2029,9 +2029,9 @@ The Authentication & Authorization subsystem publishes:
 
 - AuthenticationStarted
 - AuthenticationSucceeded
-- AuthenticationFailed
-- SessionCreated
-- SessionExpired
+- PersonAuthenticationFailed
+- PersonSessionCreated
+- PersonSessionExpired
 - SessionTerminated
 - RoleAssigned
 - RoleRevoked
@@ -3081,7 +3081,7 @@ Authentication publishes:
 
 - AuthenticationStarted
 - AuthenticationSucceeded
-- AuthenticationFailed
+- PersonAuthenticationFailed
 - MFARequested
 - MFASucceeded
 - MFAFailed
@@ -3107,7 +3107,7 @@ Authorization publishes:
 Session Management publishes:
 
 - SessionStarted
-- SessionExpired
+- PersonSessionExpired
 - SessionEnded
 - SessionTimedOut
 - SessionTerminated
@@ -5535,7 +5535,7 @@ Personally identifiable information shall be logged only where explicitly permit
 
 The observability subsystem publishes:
 
-- AuditRecorded
+- PersonAuditRecorded
 - LogThresholdExceeded
 - HealthStatusChanged
 - AlertGenerated
@@ -5967,7 +5967,7 @@ The following rules are mandatory.
 Configuration services publish:
 
 - PolicyCreated
-- PolicyUpdated
+- PersonPolicyUpdated
 - PolicyActivated
 - PolicyArchived
 - ConfigurationImported
@@ -6487,10 +6487,10 @@ Operational processing publishes:
 - BulkJobStarted
 - BulkJobCompleted
 - BulkJobFailed
-- MigrationStarted
-- MigrationCompleted
-- SynchronizationStarted
-- SynchronizationCompleted
+- PersonMigrationStarted
+- PersonMigrationCompleted
+- PersonSynchronizationStarted
+- PersonSynchronizationCompleted
 - SynchronizationConflictDetected
 - IdentityImported
 
@@ -6984,8 +6984,8 @@ Exception management publishes:
 - RecoveryStarted
 - RecoveryCompleted
 - RecoveryFailed
-- RetryScheduled
-- RetryCompleted
+- PersonRetryScheduled
+- PersonRetryCompleted
 - CircuitOpened
 - CircuitClosed
 
@@ -8855,7 +8855,7 @@ Release Security Context
 
       ▼
 
-Publish SessionExpired
+Publish PersonSessionExpired
 
       │
 
@@ -8884,7 +8884,7 @@ User Re-authentication Required
 | Password Reset | User Account | PasswordChanged |
 | Administrative Override | Identity | AdministrativeOverrideApproved |
 | Exception Recovery | Recovery Service | RecoveryCompleted |
-| Session Expiration | Session | SessionExpired |
+| Session Expiration | Session | PersonSessionExpired |
 
 ---
 

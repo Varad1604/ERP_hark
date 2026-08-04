@@ -1740,8 +1740,8 @@ The H01 command model follows CQRS principles. Commands express intent to change
 | DisableConnector | Connector | Disable connector | Authorization valid | ConnectorDisabled |
 | UpdateConnectorConfiguration | Connector | Modify connector configuration | Configuration valid | ConnectorConfigurationUpdated |
 | ValidateConnectorHealth | Connector | Execute connector health check | Connector exists | ConnectorHealthValidated |
-| StartSynchronization | Synchronization | Begin synchronization | Connector active | SynchronizationStarted |
-| CompleteSynchronization | Synchronization | Finish synchronization | Execution completed | SynchronizationCompleted |
+| StartSynchronization | Synchronization | Begin synchronization | Connector active | ExternalProviderSynchronizationStarted |
+| CompleteSynchronization | Synchronization | Finish synchronization | Execution completed | ApaarSynchronizationCompleted |
 | RecordSynchronizationFailure | Synchronization | Record synchronization failure | Failure classified | SynchronizationFailed |
 
 ---
@@ -1896,8 +1896,8 @@ Events are immutable.
 
 | Event | Producer | Consumers |
 |--------|----------|-----------|
-| SynchronizationStarted | Synchronization | Dashboard |
-| SynchronizationCompleted | Synchronization | Dashboard, Audit |
+| ExternalProviderSynchronizationStarted | Synchronization | Dashboard |
+| ApaarSynchronizationCompleted | Synchronization | Dashboard, Audit |
 | SynchronizationFailed | Synchronization | Monitoring |
 
 ---
@@ -1988,7 +1988,7 @@ The following ordering constraints apply.
 
 8. ConnectorActivated must occur before connector usage.
 
-9. SynchronizationCompleted or SynchronizationFailed terminates every synchronization execution.
+9. ApaarSynchronizationCompleted or SynchronizationFailed terminates every synchronization execution.
 
 ---
 
@@ -3078,7 +3078,7 @@ H01 publishes:
 - PublicationFailed
 - PublicationRetryScheduled
 - CredentialRevoked
-- SynchronizationCompleted
+- ApaarSynchronizationCompleted
 - ConnectorActivated
 - ConsentGranted
 - ConsentWithdrawn

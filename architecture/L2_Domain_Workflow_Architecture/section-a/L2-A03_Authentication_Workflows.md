@@ -792,8 +792,8 @@ Domain Services coordinate business behaviour across aggregates but never own bu
 | Service | Purpose | Responsibilities | Consumed Aggregates | Published Events | Multi-domain Interactions |
 |---------|---------|------------------|---------------------|------------------|---------------------------|
 | AuthenticationService | Orchestrates the end-to-end authentication process. | Evaluates request context, coordinates policy evaluation, selects method and provider, and finalizes the authentication outcome. | Credential, Authentication Attempt, Authentication Policy, Authentication Method, Authentication Provider, MFA Enrollment, Trusted Device, Authentication Session | AuthenticationStarted, AuthenticationSucceeded, AuthenticationFailed, AuthenticationChallenged, AuthenticationCompleted | Consumes identity references from L2-A02 and produces authenticated execution context for L2-A04 and downstream business domains. |
-| CredentialValidationService | Applies credential eligibility rules. | Validates credential state, expiration, rotation eligibility, and revocation constraints before authentication proceeds. | Credential, Authentication Policy, Authentication Attempt | CredentialActivated, CredentialSuspended, CredentialExpired, CredentialRevoked, CredentialRotated | Uses canonical identity and tenant context from L2-A02 and L2-A01. |
-| SessionService | Governs authenticated session behavior. | Establishes, renews, suspends, terminates, and revokes sessions within policy constraints. | Authentication Session, Refresh Token, Trusted Device, Authentication Policy | SessionCreated, SessionActivated, SessionRenewed, SessionSuspended, SessionResumed, SessionExpired, SessionTerminated, SessionRevoked | Publishes authenticated context, including the active workspace reference, to L2-A04 and session-aware business domains. |
+| CredentialValidationService | Applies credential eligibility rules. | Validates credential state, expiration, rotation eligibility, and revocation constraints before authentication proceeds. | Credential, Authentication Policy, Authentication Attempt | CredentialActivated, CredentialSuspended, AuthCredentialExpired, CredentialRevoked, CredentialRotated | Uses canonical identity and tenant context from L2-A02 and L2-A01. |
+| SessionService | Governs authenticated session behavior. | Establishes, renews, suspends, terminates, and revokes sessions within policy constraints. | Authentication Session, Refresh Token, Trusted Device, Authentication Policy | AuthSessionCreated, SessionActivated, SessionRenewed, SessionSuspended, SessionResumed, AuthSessionExpired, SessionTerminated, SessionRevoked | Publishes authenticated context, including the active workspace reference, to L2-A04 and session-aware business domains. |
 | TrustedDeviceService | Governs trusted device recognition. | Registers devices, confirms trust, suspends trust, expires trust, and removes trust records. | Trusted Device, Authentication Policy, Authentication Attempt | TrustedDeviceRegistered, TrustedDeviceVerified, TrustedDeviceSuspended, TrustedDeviceExpired, TrustedDeviceRemoved | Consumes tenant and identity context from L2-A01 and L2-A02. |
 | MFAService | Governs multi-factor enrollment and verification. | Enrolls factors, verifies factor ownership, activates factors, and manages factor replacement or retirement. | MFA Enrollment, Authentication Policy, Authentication Context | MFAEnrollmentStarted, MFAEnrollmentVerified, MFAActivated, MFAChallengeStarted, MFAChallengeSucceeded, MFAChallengeFailed, MFADisabled | Supports downstream authorization strength requirements without owning authorization policy. |
 | ProviderSelectionService | Selects the appropriate authentication provider. | Applies provider priority, fallback, maintenance, availability, and recovery rules. | Authentication Provider, Authentication Method, Authentication Policy | AuthenticationStarted, AuthenticationFailed, AuthenticationCompleted | Consumes provider availability signals and tenant configuration from platform contracts. |
@@ -897,7 +897,7 @@ Credential
 | CredentialRotated | Credential was replaced by a later version. |
 | CredentialSuspended | Credential was temporarily disabled. |
 | CredentialReactivated | Credential was restored after suspension. |
-| CredentialExpired | Credential validity ended. |
+| AuthCredentialExpired | Credential validity ended. |
 | CredentialRevoked | Credential was permanently invalidated. |
 | CredentialArchived | Credential entered immutable history. |
 
@@ -998,12 +998,12 @@ Authentication Session
 
 | Event | Purpose |
 |-------|---------|
-| SessionCreated | Session was established. |
+| AuthSessionCreated | Session was established. |
 | SessionActivated | Session became usable. |
 | SessionRenewed | Session lifetime was extended. |
 | SessionSuspended | Session was temporarily disabled. |
 | SessionResumed | Session was restored. |
-| SessionExpired | Session ended by policy or time. |
+| AuthSessionExpired | Session ended by policy or time. |
 | SessionTerminated | Session was closed. |
 | SessionRevoked | Session was forcibly terminated. |
 | WorkspaceSwitched | Active workspace reference changed for the session. |
@@ -1761,8 +1761,8 @@ MFA Enrollment owns the lifecycle from enrolled through pending verification, ve
 
 | Aggregate | Published Events | Consumers |
 |-----------|------------------|-----------|
-| Credential | CredentialCreated, CredentialActivated, CredentialRotated, CredentialSuspended, CredentialReactivated, CredentialExpired, CredentialRevoked, CredentialArchived | Authentication Attempt, Read Models, Audit, Monitoring |
-| Authentication Session | SessionCreated, SessionActivated, SessionRenewed, SessionSuspended, SessionResumed, SessionExpired, SessionTerminated, SessionRevoked | Authorization, Read Models, Audit, Monitoring, Business Domains |
+| Credential | CredentialCreated, CredentialActivated, CredentialRotated, CredentialSuspended, CredentialReactivated, AuthCredentialExpired, CredentialRevoked, CredentialArchived | Authentication Attempt, Read Models, Audit, Monitoring |
+| Authentication Session | AuthSessionCreated, SessionActivated, SessionRenewed, SessionSuspended, SessionResumed, AuthSessionExpired, SessionTerminated, SessionRevoked | Authorization, Read Models, Audit, Monitoring, Business Domains |
 | Refresh Token | RefreshTokenGenerated, RefreshTokenRotated, RefreshTokenExpired, RefreshTokenRevoked | Authentication Session, Read Models, Audit, Monitoring |
 | Trusted Device | TrustedDeviceRegistered, TrustedDeviceVerified, TrustedDeviceSuspended, TrustedDeviceExpired, TrustedDeviceRemoved | Policy Evaluation, Authentication Attempt, Read Models, Audit, Monitoring |
 | Authentication Provider | AuthenticationProviderRegistered, AuthenticationProviderEnabled, AuthenticationProviderDisabled, AuthenticationProviderPlacedInMaintenance, AuthenticationProviderRecovered, AuthenticationProviderRetired | Provider Selection, Policy Evaluation, Read Models, Audit, Monitoring |
@@ -1782,15 +1782,15 @@ MFA Enrollment owns the lifecycle from enrolled through pending verification, ve
 | CredentialRotated | Authentication Attempt, Read Models, Audit, Monitoring |
 | CredentialSuspended | Authentication Attempt, Read Models, Audit, Monitoring |
 | CredentialReactivated | Authentication Attempt, Read Models, Audit, Monitoring |
-| CredentialExpired | Authentication Attempt, Read Models, Audit, Monitoring |
+| AuthCredentialExpired | Authentication Attempt, Read Models, Audit, Monitoring |
 | CredentialRevoked | Authentication Attempt, Read Models, Audit, Monitoring |
 | CredentialArchived | Read Models, Audit |
-| SessionCreated | Authorization, Read Models, Audit, Monitoring, Business Domains |
+| AuthSessionCreated | Authorization, Read Models, Audit, Monitoring, Business Domains |
 | SessionActivated | Authorization, Read Models, Audit, Monitoring, Business Domains |
 | SessionRenewed | Authorization, Read Models, Audit, Monitoring, Business Domains |
 | SessionSuspended | Authorization, Read Models, Audit, Monitoring, Business Domains |
 | SessionResumed | Authorization, Read Models, Audit, Monitoring, Business Domains |
-| SessionExpired | Authorization, Read Models, Audit, Monitoring, Business Domains |
+| AuthSessionExpired | Authorization, Read Models, Audit, Monitoring, Business Domains |
 | SessionTerminated | Authorization, Read Models, Audit, Monitoring, Business Domains |
 | SessionRevoked | Authorization, Read Models, Audit, Monitoring, Business Domains |
 | RefreshTokenGenerated | Authentication Session, Read Models, Audit, Monitoring |
@@ -4249,7 +4249,7 @@ The Credential Aggregate publishes the following events.
 | CredentialRotated | Credential replaced. |
 | CredentialSuspended | Credential temporarily disabled. |
 | CredentialReactivated | Suspended credential restored. |
-| CredentialExpired | Credential validity ended. |
+| AuthCredentialExpired | Credential validity ended. |
 | CredentialRevoked | Credential permanently invalidated. |
 | CredentialArchived | Credential archived for audit. |
 
@@ -4293,12 +4293,12 @@ Authentication Sessions publish:
 
 | Event | Description |
 |--------|-------------|
-| SessionCreated | Session established. |
+| AuthSessionCreated | Session established. |
 | SessionActivated | Session available for use. |
 | SessionRenewed | Session extended. |
 | SessionSuspended | Session temporarily disabled. |
 | SessionResumed | Session restored. |
-| SessionExpired | Session automatically terminated. |
+| AuthSessionExpired | Session automatically terminated. |
 | SessionTerminated | Session closed. |
 | SessionRevoked | Administrative termination. |
 

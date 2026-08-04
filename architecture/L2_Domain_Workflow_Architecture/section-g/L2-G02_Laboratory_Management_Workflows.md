@@ -1793,10 +1793,10 @@ Every significant operational transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| IncidentReported | Incident registered |
+| LaboratoryIncidentReported | Incident registered |
 | IncidentClassified | Incident classified |
 | MaintenanceRecommended | Maintenance recommendation issued |
-| IncidentResolved | Incident resolved |
+| LaboratoryIncidentResolved | Incident resolved |
 
 ---
 
@@ -1804,9 +1804,9 @@ Every significant operational transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| InspectionScheduled | Inspection planned |
-| InspectionStarted | Inspection commenced |
-| InspectionCompleted | Inspection completed |
+| LaboratoryInspectionScheduled | Inspection planned |
+| LaboratoryInspectionStarted | Inspection commenced |
+| LaboratoryInspectionCompleted | Inspection completed |
 | InspectionRecommendationIssued | Operational recommendation generated |
 
 ---

@@ -1062,7 +1062,7 @@ Consumed events shall never modify upstream aggregate ownership.
 | Result Processing | ResultProcessingCompleted |
 | Result Publication | ResultsPublished |
 | Malpractice Management | InvestigationClosed |
-| Examination Exception Management | ExceptionCaseClosed |
+| Examination Exception Management | ExamExceptionCaseClosed |
 | Workflow Infrastructure | WorkflowCompleted |
 | Authorization | AuthorizationGranted |
 | Audit Infrastructure | AuditCompleted |

@@ -1240,7 +1240,7 @@ Employee initiates a leave request.
 ## Domain Events
 
 ``` text
-LeaveRequested
+EmployeeLeaveRequested
 ```
 
 ------------------------------------------------------------------------
@@ -1291,7 +1291,7 @@ Request moves to approved or rejected state.
 ## Domain Events
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 LeaveRejected
 ```
 
@@ -2022,7 +2022,7 @@ Events --> Consumers
 
 # 10.2 Core Domain Events
 
-## LeaveRequested
+## EmployeeLeaveRequested
 
 ### Purpose
 
@@ -2041,7 +2041,7 @@ Consumers:
 
 ------------------------------------------------------------------------
 
-## LeaveApproved
+## EmployeeLeaveApproved
 
 ### Purpose
 
@@ -2150,7 +2150,7 @@ Events should not contain:
 Example:
 
 ``` text
-LeaveApproved Event
+EmployeeLeaveApproved Event
 
 Contains:
 
@@ -2325,7 +2325,7 @@ Returns active applicable policy.
 Consumes:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
 LeaveCancelled
 ```
@@ -2344,7 +2344,7 @@ CompOff Eligibility
 Consumes:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
 LeaveEncashmentEligible
 ```
@@ -2364,9 +2364,9 @@ All external contracts must support versioning.
 Example:
 
 ``` text
-LeaveApproved.v1
+EmployeeLeaveApproved.v1
 
-LeaveApproved.v2
+EmployeeLeaveApproved.v2
 ```
 
 Breaking changes require new versions.
@@ -3326,7 +3326,7 @@ Example:
 Good:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
 EmployeeId
 
@@ -4410,7 +4410,7 @@ E05 communicates important business outcomes through domain events.
 Examples:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
 LeaveCancelled
 
@@ -4902,7 +4902,7 @@ A statement that a meaningful business fact has occurred.
 Examples:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
 LeaveCancelled
 
@@ -5467,8 +5467,8 @@ Policy Activation
 
   Event                   Producer                  Purpose
   ----------------------- ------------------------- ------------------------------
-  LeaveRequested          Leave Request Aggregate   Request submitted
-  LeaveApproved           Leave Request Aggregate   Approval completed
+  EmployeeLeaveRequested          Leave Request Aggregate   Request submitted
+  EmployeeLeaveApproved           Leave Request Aggregate   Approval completed
   LeaveRejected           Leave Request Aggregate   Approval denied
   LeaveCancelled          Leave Request Aggregate   Leave cancelled
   LeaveBalanceUpdated     Leave Ledger              Balance changed

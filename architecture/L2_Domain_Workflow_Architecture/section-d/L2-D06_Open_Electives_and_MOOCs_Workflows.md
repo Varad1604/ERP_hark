@@ -737,12 +737,12 @@ No downstream domain may modify the internal state of L2-D06.
 
 Typical incoming events include:
 
-- CourseOfferingPublished
+- ElectiveCourseOfferingPublished
 - StudentRegistered
 - CurriculumUpdated
 - AcademicPolicyChanged
 - FeeStatusUpdated
-- StudentStatusChanged
+- ElectiveStudentStatusChanged
 
 Typical outgoing events include:
 
@@ -4997,7 +4997,7 @@ Approval workflow completed.
 
 ## Domain Events
 
-- EnrollmentRejected
+- ElectiveEnrollmentRejected
 
 ---
 
@@ -10495,7 +10495,7 @@ Recovery completed or case terminated.
 
 ## Domain Events
 
-- ExceptionCaseClosed
+- ElectiveExceptionCaseClosed
 
 ---
 
@@ -11581,7 +11581,7 @@ Published after approval.
 
 ---
 
-## D06-E11 EnrollmentRejected
+## D06-E11 ElectiveEnrollmentRejected
 
 ---
 
@@ -11842,7 +11842,7 @@ Published after approval.
 
 ---
 
-## D06-E65 ExceptionCaseClosed
+## D06-E65 ElectiveExceptionCaseClosed
 
 ---
 
@@ -12176,7 +12176,7 @@ Produces
 
 Produces
 
-- EnrollmentRejected
+- ElectiveEnrollmentRejected
 
 ---
 
@@ -12654,7 +12654,7 @@ Produces
 
 Produces
 
-- ExceptionCaseClosed
+- ElectiveExceptionCaseClosed
 
 ---
 
@@ -13337,7 +13337,7 @@ The following query models provide optimized API responses.
 | CertificateAccepted | RM-31, RM-34 |
 | CreditRecognitionApproved | RM-36, RM-38, RM-39 |
 | AcademicSessionArchived | RM-49 |
-| ExceptionCaseClosed | RM-50 |
+| ElectiveExceptionCaseClosed | RM-50 |
 
 ---
 

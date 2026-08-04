@@ -4087,7 +4087,7 @@ The following payload ownership rules SHALL govern the enterprise event contract
 | Event | Publisher |
 |--------|-----------|
 | AlumniTransitionCompleted | Alumni Transition (L2-C08) |
-| PersonUpdated | Identity Domain |
+| AlumniPersonUpdated | Identity Domain |
 | IdentityMerged | Identity Domain |
 | EventCreated | Event Management |
 | EventCancelled | Event Management |
@@ -4160,7 +4160,7 @@ External integrations SHALL comply with enterprise security, consent, privacy, a
 
 | Integration | Event Producers | Event Consumers | API Providers | API Consumers |
 |-------------|-----------------|-----------------|---------------|---------------|
-| Identity Domain | PersonUpdated, IdentityMerged | AlumniProfileCreated, AlumniMembershipActivated | Identity reference APIs | Alumni Domain |
+| Identity Domain | AlumniPersonUpdated, IdentityMerged | AlumniProfileCreated, AlumniMembershipActivated | Identity reference APIs | Alumni Domain |
 | Alumni Transition (L2-C08) | AlumniTransitionCompleted | AlumniProfileCreated | Transition reference APIs | Alumni Domain |
 | Academic Delivery | AcademicAchievement events | ProfessionalProfileUpdated, ProfessionalAchievementRecorded | Academic achievement APIs | Alumni Domain |
 | Notification Domain | NotificationDeliveryCompleted | AlumniProfileCreated, AlumniMembershipActivated, MentorRegistered, MentorshipCreated, GuestLectureScheduled, GuestLectureCompleted, IndustryCollaborationAssigned, IndustryCollaborationCompleted, Verification events, DonationIntent events | Message delivery APIs | Alumni Domain |

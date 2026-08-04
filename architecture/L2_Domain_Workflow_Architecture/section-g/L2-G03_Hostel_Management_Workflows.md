@@ -1879,8 +1879,8 @@ Every significant business transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| LeaveRequested | Leave submitted |
-| LeaveApproved | Leave approved |
+| HostelLeaveRequested | Leave submitted |
+| HostelLeaveApproved | Leave approved |
 | ResidentDeparted | Resident left hostel |
 | ResidentReturned | Resident returned |
 
@@ -1890,10 +1890,10 @@ Every significant business transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| VisitorRegistered | Visitor registered |
-| VisitorApproved | Visitor approved |
-| VisitorCheckedIn | Visitor entered |
-| VisitorCheckedOut | Visitor exited |
+| HostelVisitorRegistered | Visitor registered |
+| HostelVisitorApproved | Visitor approved |
+| HostelVisitorCheckedIn | Visitor entered |
+| HostelVisitorCheckedOut | Visitor exited |
 
 ---
 

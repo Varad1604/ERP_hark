@@ -1798,7 +1798,7 @@ Every significant operational transition shall publish a domain event.
 | Event | Description |
 |--------|-------------|
 | TransportAllocated | Transport allocation completed |
-| AllocationUpdated | Allocation modified |
+| TransportAllocationUpdated | Allocation modified |
 | AllocationWithdrawn | Allocation withdrawn |
 
 ---
@@ -1849,7 +1849,7 @@ Every significant operational transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| ComplaintRegistered | Complaint recorded |
+| TransportComplaintRegistered | Complaint recorded |
 | ComplaintResolved | Complaint resolved |
 | OperationalIssueEscalated | Issue escalated |
 

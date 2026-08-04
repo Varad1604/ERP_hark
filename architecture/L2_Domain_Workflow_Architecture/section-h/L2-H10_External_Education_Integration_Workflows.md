@@ -2775,7 +2775,7 @@ Cancelled
 - EnrollmentRequested
 - EnrollmentSubmitted
 - EnrollmentConfirmed
-- EnrollmentRejected
+- ExternalProviderEnrollmentRejected
 - EnrollmentCancelled
 
 ---
@@ -3152,11 +3152,11 @@ Archived
 
 ## Published Events
 
-- VerificationRequested
-- VerificationStarted
+- ExternalProviderVerificationRequested
+- ExternalProviderVerificationStarted
 - VerificationSucceeded
-- VerificationFailed
-- VerificationExpired
+- ExternalProviderVerificationFailed
+- ExternalProviderVerificationExpired
 
 ---
 
@@ -3300,9 +3300,9 @@ Archived
 ## Published Events
 
 - SynchronizationScheduled
-- SynchronizationStarted
+- ExternalProviderSynchronizationStarted
 - SynchronizationCheckpointCreated
-- SynchronizationCompleted
+- ExternalProviderSynchronizationCompleted
 - SynchronizationRetried
 - SynchronizationFailed
 
@@ -3723,8 +3723,8 @@ Authentication is established before every protected interaction.
 ## Published Events
 
 - AuthenticationSucceeded
-- AuthenticationFailed
-- CredentialExpired
+- ExternalProviderAuthenticationFailed
+- ExternalProviderCredentialExpired
 - CredentialRotated
 
 ---
@@ -3818,8 +3818,8 @@ The service guarantees reliable, recoverable synchronization while preserving ca
 ## Published Events
 
 - SynchronizationScheduled
-- SynchronizationStarted
-- SynchronizationCompleted
+- ExternalProviderSynchronizationStarted
+- ExternalProviderSynchronizationCompleted
 - SynchronizationFailed
 - SynchronizationRetried
 
@@ -3866,7 +3866,7 @@ Academic ownership remains with Student and Academic domains.
 - EnrollmentRequested
 - EnrollmentSubmitted
 - EnrollmentConfirmed
-- EnrollmentRejected
+- ExternalProviderEnrollmentRejected
 
 ---
 
@@ -3996,9 +3996,9 @@ Provides secure verification of externally issued academic credentials.
 
 ## Published Events
 
-- VerificationRequested
+- ExternalProviderVerificationRequested
 - VerificationSucceeded
-- VerificationFailed
+- ExternalProviderVerificationFailed
 - VerificationArchived
 
 ---
@@ -4413,7 +4413,7 @@ Establishes authenticated session.
 ### Events
 
 - AuthenticationSucceeded
-- AuthenticationFailed
+- ExternalProviderAuthenticationFailed
 
 ---
 
@@ -4465,7 +4465,7 @@ Starts synchronization immediately.
 
 ### Events
 
-- SynchronizationStarted
+- ExternalProviderSynchronizationStarted
 
 ---
 
@@ -4534,7 +4534,7 @@ Updates enrollment lifecycle.
 ### Events
 
 - EnrollmentConfirmed
-- EnrollmentRejected
+- ExternalProviderEnrollmentRejected
 - EnrollmentCompleted
 
 ---
@@ -4651,7 +4651,7 @@ Initiates credential verification.
 
 ### Events
 
-- VerificationRequested
+- ExternalProviderVerificationRequested
 
 ---
 
@@ -5621,7 +5621,7 @@ Published following successful provider authentication.
 
 ---
 
-## AuthenticationFailed
+## ExternalProviderAuthenticationFailed
 
 Published whenever authentication cannot be established.
 
@@ -5639,7 +5639,7 @@ Published following secret rotation.
 
 ---
 
-## CredentialExpired
+## ExternalProviderCredentialExpired
 
 Published when credentials expire.
 
@@ -5671,7 +5671,7 @@ Job successfully scheduled.
 
 ---
 
-## SynchronizationStarted
+## ExternalProviderSynchronizationStarted
 
 Execution begins.
 
@@ -5685,7 +5685,7 @@ Supports resumable execution.
 
 ---
 
-## SynchronizationCompleted
+## ExternalProviderSynchronizationCompleted
 
 Synchronization completed successfully.
 
@@ -5743,7 +5743,7 @@ Provider accepted enrollment.
 
 ---
 
-## EnrollmentRejected
+## ExternalProviderEnrollmentRejected
 
 Provider declined enrollment.
 
@@ -5845,13 +5845,13 @@ Entire orchestration completed.
 
 ---
 
-## VerificationRequested
+## ExternalProviderVerificationRequested
 
 Verification initiated.
 
 ---
 
-## VerificationStarted
+## ExternalProviderVerificationStarted
 
 Provider verification begins.
 
@@ -5863,13 +5863,13 @@ Credential verified successfully.
 
 ---
 
-## VerificationFailed
+## ExternalProviderVerificationFailed
 
 Verification unsuccessful.
 
 ---
 
-## VerificationExpired
+## ExternalProviderVerificationExpired
 
 Credential expired.
 
@@ -6399,7 +6399,7 @@ Authenticated Session
 
 ## Failure
 
-- AuthenticationFailed
+- ExternalProviderAuthenticationFailed
 
 ---
 
@@ -6548,7 +6548,7 @@ Resume Execution
 
 ## Success Events
 
-- SynchronizationCompleted
+- ExternalProviderSynchronizationCompleted
 
 ---
 
@@ -6630,7 +6630,7 @@ Enrollment Confirmed
 
 ## Failure
 
-- EnrollmentRejected
+- ExternalProviderEnrollmentRejected
 
 ---
 
@@ -6861,7 +6861,7 @@ Audit Archive
 
 ## Failure
 
-- VerificationFailed
+- ExternalProviderVerificationFailed
 
 ---
 
