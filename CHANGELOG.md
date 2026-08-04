@@ -2,6 +2,30 @@
 
 This document tracks changes to the SutraERP Architecture Repository layout, guidelines, baseline, and locks.
 
+## [1.4.0] - 2026-08-04
+
+Remediation round 1 against `generated/reviews/integrity-2026-08-03-repository-wide-review.md`.
+
+### Changed
+- INT-005: L1 closing metadata version corrected to 2.1 to match its header.
+- INT-019: `ARCHITECTURE_INDEX.md` core-document count corrected to 6 and total to 113.
+- INT-021: Normalised L2 H1 separators and corrected section-name drift in D01, E06,
+  E07, F00, and F01 to match `ARCHITECTURE_INDEX.md` verbatim.
+- INT-022: Corrected D01 self-references to its real filename.
+- INT-024: Prompts 0/1/2 now use the prefixed AI-context basename; Section J file
+  layout inverted to match Sections A-I.
+- INT-025: Section J README trust-source labels replaced with exact A03-A07 names.
+- INT-003: **L1 section 25 replaced.** The obsolete two-team ownership model was removed
+  from the locked L1 document and from L0, and replaced with Section-based ownership
+  sourced from `TEAM_ASSIGNMENTS.md`. L1 is a LOCKED document; this amendment is
+  recorded here and in the L1 header.
+
+### Removed
+- INT-003: Deleted `generated/html/` (untracked, gitignored). To be regenerated with
+  `tools/convert_all.js` after remediation completes.
+
+---
+
 ## [1.3.0] - 2026-07-29
 
 ### Added

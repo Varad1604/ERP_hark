@@ -3,7 +3,7 @@
 **Document Status:** Architecture Context Baseline\
 **Date:** 2026-07-05\
 **Last Amended:** 2026-08-01 --- Procurement removed from Finance
-scope (Section J is sole owner); "Team 1 / Team 2" ownership model
+scope (Section J is sole owner); the legacy two-team ownership model
 replaced with Section-based ownership per `TEAM_ASSIGNMENTS.md`.\
 **Purpose:** Preserve the agreed architectural, institutional,
 section-boundary, tiering, and workflow context before beginning
@@ -585,7 +585,7 @@ ACADEMICS
 ├── Attendance
 └── Quizzes
 
-EXAMINATION — TEAM 1
+EXAMINATION
 ├── Exams
 ├── Eligibility
 ├── Hall Tickets
@@ -594,7 +594,7 @@ EXAMINATION — TEAM 1
 ├── Revaluation
 └── Results
 
-FINANCE — TEAM 1
+FINANCE
 ├── Fees
 ├── Scholarship Financial Processing
 ├── Accounts / GL
@@ -1117,10 +1117,10 @@ Finance-owned tables
 ## 15. Section & Domain Ownership
 
 > **Superseded model notice:** This baseline originally described
-> ownership using a two-team split ("Team 1" / "Team 2"). That model
+> ownership using a two-team split. That model
 > is obsolete: it grouped domains that now belong to different section
 > architects (for example, Finance and Infrastructure Management were
-> both labelled "Team 1" despite being owned by different people under
+> grouped together despite being owned by different people under
 > the current structure). Ownership is now organised by architecture
 > Section (A through J), each assigned to one primary architect.
 > `TEAM_ASSIGNMENTS.md` is the canonical, current source for exactly
@@ -1774,7 +1774,7 @@ The following decisions are accepted as the baseline:
     including Procurement and Inventory).
 20. Sections A, B, C, D, E, and H own the broader platform, academic
     foundation, student and people domains, and institutional
-    services. The legacy "Team 1 / Team 2" split is superseded by this
+    services. The legacy two-team split is superseded by this
     section-based model.
 21. Multi-domain writes are prohibited.
 22. Multi-domain operational reads use approved read contracts.

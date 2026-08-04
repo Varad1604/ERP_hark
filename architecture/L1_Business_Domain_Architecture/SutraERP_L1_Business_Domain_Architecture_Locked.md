@@ -2,7 +2,8 @@
 
 **Version:** 2.1
 **Status:** LOCKED
-**Last Amended:** 2026-08-03 — Institute lifecycle extended (INT-008); Campus ownership split into Institutional vs Physical (INT-001); residual Graduation terminology replaced by Qualification Completion (INT-021/INT-033)
+**Last Amended:** 2026-08-04 — Section 25 replaced: obsolete two-team ownership model removed in favour of Section-based ownership per TEAM_ASSIGNMENTS.md (INT-003)
+**Previously Amended:** 2026-08-03 — Institute lifecycle extended (INT-008); Campus ownership split into Institutional vs Physical (INT-001); residual Graduation terminology replaced by Qualification Completion (INT-021/INT-033)
 **Scope:** Canonical Institutional Lifecycle
 **Purpose:** Define the complete institutional business architecture, ownership boundaries, lifecycle rules, and multi-domain responsibilities before Level 2 domain design.
 
@@ -2736,53 +2737,68 @@ No other domain may directly modify these entities.
 
 ---
 
-# 25. Team Ownership
+# 25. Section Ownership
 
-The implementation responsibilities are divided across engineering teams.
+Implementation and architectural responsibilities are organised by
+architecture Section. Each Section has exactly one primary architect.
 
-## Team 1
+`architecture/L2_Domain_Workflow_Architecture/TEAM_ASSIGNMENTS.md` is the
+canonical, current source for who holds each Section. The domain groupings
+below define the architectural boundary, not a fixed roster, and remain valid
+even if the named architect changes.
 
-Owns institutional operational services.
+## Section Ownership Matrix
 
-Responsible Domains
+| Section | Domain | Primary Architect |
+|---------|--------|-------------------|
+| A | Platform Foundation | Dhruv |
+| B | Institution & Structure | Pallav |
+| C | Student Lifecycle | Varad |
+| D | Academic Delivery | Pallav |
+| E | People & Workforce | Varad |
+| F | Finance | Chetan |
+| G | Campus Operations | Devang |
+| H | Institutional Services & Intelligence | Dhruv |
+| I | Examination | Devang |
+| J | Enterprise Resource Management | Chetan |
 
-- Finance
-- Examination
-- Library
-- Hostel
-- Transport
-- Infrastructure
-- Procurement
-- Inventory
+## Domain to Section Mapping
 
----
+| Domain | Owning Section |
+|--------|----------------|
+| Platform | A |
+| Identity | A |
+| Workflow Engine | A |
+| Institution | B |
+| Organisation | B |
+| Academic Structure | B |
+| Academic Calendar | B |
+| Student Lifecycle | C |
+| Academics | D |
+| Human Resource | E |
+| Finance | F |
+| Library | G |
+| Hostel | G |
+| Transport | G |
+| Infrastructure | G |
+| Communication | H |
+| Document Management | H |
+| Examination | I |
+| Procurement | J |
+| Inventory | J |
 
-## Team 2
+**Locked Rule**
 
-Owns institutional academic foundation.
+Ownership is assigned by Section. The legacy two-team split is obsolete and
+must not be reintroduced in any architecture document, generated artifact, or
+implementation plan.
 
-Responsible Domains
-
-- Platform
-- Identity
-- Institution
-- Organisation
-- Academic Structure
-- Academic Calendar
-- Student Lifecycle
-- Academics
-- Workflow
-- Communication
-- Document Management
-
----
-
-## Ownership Boundary
+## Academic Result Ownership Flow
 
 ```mermaid
 flowchart LR
 
-Team2["TEAM 2"]
+AcademicDelivery["Section D: Academic Delivery"]
 
 -->Academics
 
@@ -2810,7 +2826,7 @@ QualificationCompletion
 
 -->Alumni
 
-style Team2 fill:#dff0d8
+style AcademicDelivery fill:#dff0d8
 style Examination fill:#f2dede
 ```
 
