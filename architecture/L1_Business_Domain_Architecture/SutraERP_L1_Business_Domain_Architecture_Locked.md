@@ -2,7 +2,7 @@
 
 **Version:** 2.1
 **Status:** LOCKED
-**Last Amended:** 2026-08-04 — Section 25 replaced: obsolete two-team ownership model removed in favour of Section-based ownership per TEAM_ASSIGNMENTS.md (INT-003)
+**Last Amended:** 2026-08-04 — Section 25 replaced: obsolete two-team ownership model removed in favour of Section-based ownership per TEAM_ASSIGNMENTS.md (INT-003); StudentContext gate corrected to the five terminal states and Suspended added (INT-007); Tenant lifecycle expanded to match L2-A01 (INT-006)
 **Previously Amended:** 2026-08-03 — Institute lifecycle extended (INT-008); Campus ownership split into Institutional vs Physical (INT-001); residual Graduation terminology replaced by Qualification Completion (INT-021/INT-033)
 **Scope:** Canonical Institutional Lifecycle
 **Purpose:** Define the complete institutional business architecture, ownership boundaries, lifecycle rules, and multi-domain responsibilities before Level 2 domain design.
@@ -375,7 +375,7 @@ Student
 
 ├── School
 
-│     COMPLETED
+│     QUALIFICATION COMPLETED
 
 │
 
@@ -396,14 +396,17 @@ School
 ACTIVE
 ```
 
-A previous Student Context must transition into one of the following states before another becomes ACTIVE.
+A previous Student Context must transition into one of the following terminal states before another becomes ACTIVE.
 
-- Completed
 - Qualification Completed
 - Withdrawn
 - Transferred
 - Discontinued
 - Terminated
+
+Pending Activation, Active and Suspended are non-terminal and do not satisfy
+this gate. This enumeration is canonical and is reproduced verbatim in
+`L2-C02_Student_Lifecycle_and_Activation.md` section 11.10.1.
 
 **Locked Rule**
 
@@ -946,10 +949,40 @@ Requested --> Provisioning
 
 Provisioning --> Active
 
-Provisioning --> Failed
+Provisioning --> ProvisioningFailed
 
-Failed --> Provisioning
+ProvisioningFailed --> Provisioning
+
+Active --> Maintenance
+
+Maintenance --> Active
+
+Active --> Suspended
+
+Suspended --> Active
+
+Active --> Upgrade
+
+Upgrade --> Active
+
+Active --> Archived
+
+Archived --> [*]
 ```
+
+| State | Description | Terminal |
+|---|---|---|
+| Requested | Tenant registration accepted but provisioning has not started. | No |
+| Provisioning | Platform initialization is in progress. | No |
+| Provisioning Failed | Provisioning terminated unsuccessfully; may retry Provisioning. | No |
+| Active | Tenant is fully operational. | No |
+| Maintenance | Controlled maintenance operations are being performed. | No |
+| Suspended | Business execution is temporarily disabled while preserving all data. | No |
+| Upgrade | A controlled platform upgrade is being applied to the Tenant. | No |
+| Archived | Tenant is permanently retired and retained for history or regulation. | Yes |
+
+This enumeration is canonical and is reproduced in
+`L2-A01_Platform_Tenant_Foundation_Architecture.md` sections 5.4, 5.5 and 5.8.
 
 ---
 
@@ -1844,6 +1877,10 @@ stateDiagram-v2
 
 PendingActivation --> Active
 
+Active --> Suspended
+
+Suspended --> Active
+
 Active --> QualificationCompleted
 
 Active --> Withdrawn
@@ -1853,9 +1890,33 @@ Active --> Transferred
 Active --> Discontinued
 
 Active --> Terminated
+
+QualificationCompleted --> [*]
+
+Withdrawn --> [*]
+
+Transferred --> [*]
+
+Discontinued --> [*]
+
+Terminated --> [*]
 ```
 
 Only one Student Context may remain Active within an Institute.
+
+| State | Terminal |
+|---|---|
+| Pending Activation | No |
+| Active | No |
+| Suspended | No |
+| Qualification Completed | Yes |
+| Withdrawn | Yes |
+| Transferred | Yes |
+| Discontinued | Yes |
+| Terminated | Yes |
+
+Suspended is reversible to Active. A new Student Context may only be opened for
+an Institute once every prior Context for that Institute is terminal.
 
 ---
 

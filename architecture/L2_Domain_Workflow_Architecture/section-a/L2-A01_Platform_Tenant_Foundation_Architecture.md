@@ -1579,6 +1579,10 @@ Provisioning Failed                 Active
 
 Lifecycle transitions shall occur only through approved Platform operations.
 
+A Tenant in Provisioning Failed may re-enter Provisioning once the cause of
+failure is remediated. That retry transition is listed in Section 5.8 and is
+not drawn above.
+
 ---
 
 # 5.5 Lifecycle States
@@ -1591,6 +1595,7 @@ Lifecycle transitions shall occur only through approved Platform operations.
 | Active | Tenant is fully operational. |
 | Maintenance | Controlled maintenance operations are being performed. |
 | Suspended | Business execution is temporarily disabled while preserving all data. |
+| Upgrade | A controlled platform upgrade is being applied to the Tenant. |
 | Archived | Tenant is permanently retired and retained for historical or regulatory purposes. |
 
 ---
@@ -1700,10 +1705,13 @@ The following transitions are permitted.
 | Requested | Provisioning |
 | Provisioning | Active |
 | Provisioning | Provisioning Failed |
+| Provisioning Failed | Provisioning |
 | Active | Maintenance |
 | Maintenance | Active |
 | Active | Suspended |
 | Suspended | Active |
+| Active | Upgrade |
+| Upgrade | Active |
 | Active | Archived |
 
 Any transition not listed above is considered architecturally invalid.

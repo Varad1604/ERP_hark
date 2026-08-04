@@ -20,6 +20,17 @@ Remediation round 1 against `generated/reviews/integrity-2026-08-03-repository-w
   sourced from `TEAM_ASSIGNMENTS.md`. L1 is a LOCKED document; this amendment is
   recorded here and in the L1 header.
 
+- INT-007: **L1 StudentContext corrected.** Section 3.5 gated a new Context on a
+  "Completed" state that exists in neither L1's own state machine nor C02's canonical
+  list. The gate is now the five terminal states, and Suspended (non-terminal,
+  reversible) was added to L1's machine to match C02 section 11.10.1. A terminal-state
+  table was added so the enumeration is unambiguous.
+- INT-006: **L1 Tenant lifecycle expanded.** L1 defined only Requested/Provisioning/
+  Active/Failed. L2-A01 adds Maintenance, Suspended, Upgrade and Archived. L1 now
+  carries the full set with a terminal-state table. A01's own contradiction was fixed
+  first: its diagram showed Upgrade while its state table (5.5) and transition table
+  (5.8) omitted it, and the Provisioning Failed retry transition was undeclared.
+
 ### Removed
 - INT-003: Deleted `generated/html/` (untracked, gitignored). To be regenerated with
   `tools/convert_all.js` after remediation completes.
