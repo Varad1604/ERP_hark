@@ -4,7 +4,7 @@
 |----------|-------|
 | **Document ID** | L2-C07 |
 | **Document Title** | Scholarship Eligibility Workflows |
-| **Document Owner** | Varad |
+| **Document Owner** | Student Lifecycle — Scholarship Eligibility |
 | **Architecture Level** | Level 2 — Domain Architecture |
 | **Domain** | Student Information System (SIS) |
 | **Bounded Context** | Scholarship Eligibility |
@@ -43,6 +43,8 @@ The **Scholarship Eligibility** domain establishes the canonical business capabi
 This domain enables institutions to define and evaluate scholarship eligibility using configurable eligibility policies, scholarship-specific criteria, institutional regulations, and supporting evidence to produce transparent, explainable, and version-controlled eligibility decisions. Based on these evaluations, the domain identifies scholarship opportunities applicable to individual students, manages reassessment and renewal processes, maintains complete historical traceability, and publishes canonical eligibility outcomes for consumption by downstream business domains.
 
 The Scholarship Eligibility domain serves as the authoritative source of truth for **student scholarship eligibility records** and ensures that every eligibility determination is consistent, reproducible, auditable, and aligned with institutional governance and scholarship provider policies.
+
+> **Ownership split with L2-F11 (INT-005, 2026-08-05).** C07 owns scholarship eligibility policy, its evaluation, and the resulting Student Scholarship Eligibility Record. `L2-F11 --- Scholarship and Financial Aid` consumes the published eligibility outcome (`EligibilityGranted`, `EligibilityConditionallyGranted`, `EligibilityRejected`) and owns financial approval, allocation, disbursement, settlement and financial-aid accounting. F11 shall not re-evaluate eligibility policy or write to the eligibility record.
 
 The domain is designed to support diverse scholarship ecosystems, including institution-funded scholarships, government scholarship schemes, private foundations, corporate sponsorships, research fellowships, alumni-funded programs, NGO initiatives, and externally administered scholarship providers without requiring architectural changes to the underlying business model.
 

@@ -29,10 +29,11 @@
   -----------------------------------------------------------------------
   Attribute                           Value
   ----------------------------------- -----------------------------------
-  Document Name                       L2-E06 --- Payroll Workflows
-  Document Owner                      Varad
+  Document Name                       L2-E06 --- Payroll Workflows
 
-  Domain Classification               Financial Transaction Processing
+  Document Owner                      People & Workforce — Payroll
+
+  Domain Classification               People & Workforce --- Payroll
                                       Domain
 
   Document Level                      Level 2 --- Domain Workflow
@@ -58,6 +59,15 @@
 
   Version                             1.0
   -----------------------------------------------------------------------
+
+> **Section classification corrected 2026-08-05 under integrity finding INT-017.**
+> E06 was previously classified as a "Financial Transaction Processing Domain",
+> which conflicted with its `ERP Section` value and with Section E controls. Payroll
+> is a **Section E --- People & Workforce** domain. Finance (Section F) is a
+> **review and consuming authority**: it owns payment execution, accounting and
+> general-ledger posting of payroll outcomes, which this document already excludes
+> from scope. Ownership of payroll calculation and the payroll execution lifecycle
+> remains with Section E.
 
 ------------------------------------------------------------------------
 

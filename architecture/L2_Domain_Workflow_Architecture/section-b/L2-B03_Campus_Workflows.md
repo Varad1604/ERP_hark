@@ -39,7 +39,7 @@
 | **Domain Code** | B03 |
 | **Domain Category** | Foundation Domain |
 | **Status** | Draft |
-| **Document Owner** | Pallav |
+| **Document Owner** | Institution & Structure — Institutional Campus |
 | **Repository** | SutraERP Enterprise Architecture |
 | **Depends On** | L1 Platform Foundation, L2-B01 Institution, L2-B02 Organisation |
 | **Consumed By** | All infrastructure-dependent domains |
@@ -149,13 +149,13 @@ This domain does **not** manage:
 - Admission capacity
 - Intake planning
 
-Infrastructure only publishes physical capacities.
+The Institutional Campus domain does not publish physical capacities; `L2-G10` does.
 
 ---
 
 ## 4.3 Asset Management
 
-Infrastructure is **not** an asset register.
+The Institutional Campus domain is **not** an asset register.
 
 Examples excluded:
 
@@ -168,13 +168,13 @@ Examples excluded:
 
 Those belong to the Asset Management domain.
 
-Infrastructure only defines **where assets exist**.
+`L2-G10` defines **where assets exist**; this domain defines only which campuses an Institution operates.
 
 ---
 
 ## 4.4 Maintenance
 
-Infrastructure does **not** manage:
+The Institutional Campus domain does **not** manage:
 
 - Work orders
 - Preventive maintenance
@@ -188,7 +188,7 @@ It only exposes infrastructure health and lifecycle information.
 
 ## 4.5 Security
 
-Infrastructure does **not** manage:
+The Institutional Campus domain does **not** manage:
 
 - Guards
 - CCTV operations
@@ -196,13 +196,13 @@ Infrastructure does **not** manage:
 - Visitor management
 - Physical security operations
 
-Infrastructure merely identifies physical locations and security-related characteristics.
+The Institutional Campus domain identifies only the institutional campus record; physical locations and security-related characteristics belong to `L2-G10`.
 
 ---
 
 ## 4.6 Disaster Management
 
-Infrastructure does **not** execute:
+The Institutional Campus domain does **not** execute:
 
 - Emergency response
 - Crisis management
@@ -220,7 +220,7 @@ It only defines:
 
 ## 4.7 Analytics
 
-Infrastructure does **not** calculate:
+The Institutional Campus domain does **not** calculate:
 
 - KPIs
 - Trends
@@ -234,7 +234,7 @@ It publishes canonical operational facts.
 
 ## 4.8 Artificial Intelligence
 
-Infrastructure does **not** maintain:
+The Institutional Campus domain does **not** maintain:
 
 - AI semantic models
 - Knowledge graphs
@@ -242,7 +242,7 @@ Infrastructure does **not** maintain:
 - Recommendations
 - Predictive intelligence
 
-Future AI platforms derive meaning from canonical infrastructure facts.
+Future AI platforms derive meaning from canonical institutional campus facts.
 
 ---
 
@@ -275,15 +275,15 @@ The domain is governed by the following architectural principles.
 
 ## GP-01 — Single Source of Truth
 
-Every physical infrastructure entity shall exist only once within the enterprise model.
+Every InstitutionalCampus identity shall exist only once within the enterprise model.
 
-Duplicate infrastructure definitions are prohibited.
+Duplicate institutional campus definitions are prohibited. Uniqueness of the corresponding *physical* site is governed by `L2-G10`.
 
 ---
 
 ## GP-02 — Facts Over Interpretation
 
-Infrastructure owns business facts.
+The Institutional Campus domain owns institutional facts.
 
 It does **not** own:
 
@@ -294,17 +294,17 @@ It does **not** own:
 
 ---
 
-## GP-03 — Physical World Representation
+## GP-03 — Institutional Representation
 
-Infrastructure represents the physical world.
+The Institutional Campus domain represents the institution's declared campus structure — which campuses an Institution operates and under what institutional status.
 
-It does **not** represent business processes executed inside the physical world.
+It does **not** represent the physical world, which is modelled by `L2-G10`, nor the business processes executed inside it.
 
 ---
 
 ## GP-04 — Long-Lived Records
 
-Infrastructure records are persistent enterprise objects.
+InstitutionalCampus records are persistent enterprise objects.
 
 Deletion is exceptional.
 
@@ -326,17 +326,17 @@ The domain model shall remain independent of:
 
 ## GP-06 — Event-Driven Integration
 
-Infrastructure publishes canonical business events.
+The Institutional Campus domain publishes canonical institutional campus events.
 
 Consumer domains decide how to respond.
 
-Infrastructure never orchestrates downstream workflows.
+This domain never orchestrates downstream workflows.
 
 ---
 
 ## GP-07 — Stable Public Contracts
 
-Infrastructure owns its internal model.
+The Institutional Campus domain owns its internal model.
 
 External domains consume only published contracts and canonical events.
 
@@ -346,17 +346,14 @@ Internal implementation details remain private.
 
 ## GP-08 — Future Extensibility
 
-The domain shall accommodate future capabilities without architectural redesign, including:
+The domain shall accommodate future institutional capabilities without architectural redesign, including:
 
-- Smart Campus
-- IoT Integration
-- Digital Twins
-- GIS Integration
-- Facilities Management
-- Building Automation
-- Sustainability Platforms
-- Disaster Management
-- Enterprise Analytics
+- Multi-campus and multi-institute expansion
+- Campus reorganisation and institutional transfer
+- Regulatory campus accreditation contexts
+- Enterprise Analytics consumption of institutional campus facts
+
+Physical-world capabilities — Smart Campus, IoT Integration, Digital Twins, GIS Integration, Facilities Management, Building Automation, Sustainability Platforms and Disaster Management — are extensibility concerns of `L2-G10`, not of this domain.
 
 ---
 
@@ -364,7 +361,7 @@ The domain shall accommodate future capabilities without architectural redesign,
 
 Within the SutraERP architecture, Institutional Campus is a **Foundation Domain**.
 
-It provides enterprise-wide physical context consumed by numerous operational domains.
+It provides enterprise-wide institutional campus context consumed by numerous operational domains. Physical context for the same sites is provided by `L2-G10`.
 
 ```text
                     SutraERP Platform
@@ -389,7 +386,7 @@ Institutional Campus (L2-B03)      Other Foundation Domains
  Analytics, AI, Disaster Management
 ```
 
-The domain supplies the canonical physical infrastructure model while remaining independent of business workflows executed by consuming domains.
+The domain supplies the canonical institutional campus model while remaining independent of both the physical model owned by `L2-G10` and the business workflows executed by consuming domains.
 
 ---
 
@@ -429,7 +426,7 @@ This part establishes the architectural foundation of the **Institutional Campus
 - Architecture Position
 - Architecture Characteristics
 
-Subsequent parts build upon these principles to define the complete canonical infrastructure model, workflows, aggregates, business rules, events, public contracts, and multi-domain interactions.
+Subsequent parts build upon these principles to define the complete canonical institutional campus model, workflows, aggregates, business rules, events, public contracts, and multi-domain interactions.
 
 ---
 
@@ -451,37 +448,32 @@ The domain serves as the enterprise-wide foundation upon which all infrastructur
 
 The Institutional Campus domain exists to achieve the following strategic objectives.
 
-## SO-01 — Establish a Canonical Physical Model
+## SO-01 — Establish a Canonical Institutional Campus Model
 
 Provide a single enterprise-wide model representing:
 
-- Campuses
-- Buildings
-- Physical Spaces
-- Infrastructure Hierarchies
-- Infrastructure Relationships
+- The Institution-to-Campus association
+- Institutional campus identity and code
+- Institutional campus status and its lifecycle
+- Institutional campus governance metadata
 
 No other domain shall redefine these concepts.
 
+The canonical *physical* model — buildings, floors, spaces, facilities, physical hierarchy and physical relationships — is established by `L2-G10 --- Infrastructure Management Workflows`.
+
 ---
 
-## SO-02 — Eliminate Infrastructure Duplication
+## SO-02 — Eliminate Institutional Campus Duplication
 
-Prevent multiple domains from maintaining independent definitions of:
+Prevent multiple domains from maintaining independent definitions of which campuses an Institution operates.
 
-- Buildings
-- Rooms
-- Laboratories
-- Auditoriums
-- Facilities
-
-Infrastructure information shall originate only from this domain.
+Institutional campus identity shall originate only from this domain. Physical site definitions originate only from `L2-G10`.
 
 ---
 
 ## SO-03 — Enable Enterprise Consistency
 
-Every business workflow referencing physical infrastructure shall reference the same canonical infrastructure entity.
+Every business workflow referencing an institutional campus shall reference the same canonical `InstitutionalCampus` identity.
 
 Examples include:
 
@@ -491,35 +483,33 @@ Examples include:
 - Hostel
 - Transport
 - Library
-- Maintenance
 - Asset Management
-- Security
+
+Workflows referencing a *physical* location shall reference the corresponding `L2-G10` aggregate, which in turn references the `InstitutionalCampus` identity issued here.
 
 ---
 
 ## SO-04 — Support Long-Term Evolution
 
-The domain shall remain stable while supporting future capabilities including:
+The domain shall remain stable while supporting future institutional capabilities including:
 
-- Smart Campus
-- Digital Twin
-- GIS Integration
-- IoT
-- AI
-- Sustainability Platforms
-- Enterprise Facilities Management
+- Multi-campus and multi-institute expansion
+- Campus reorganisation and institutional transfer
+- Regulatory and accreditation contexts attached to a campus
 
-without requiring redesign of the core infrastructure model.
+without requiring redesign of the core institutional model.
+
+Physical-world evolution — Smart Campus, Digital Twin, GIS, IoT, Sustainability Platforms and Enterprise Facilities Management — is a `L2-G10` concern.
 
 ---
 
 ## SO-05 — Enable Loose Coupling
 
-Infrastructure publishes business facts.
+The Institutional Campus domain publishes institutional business facts.
 
 Consumer domains independently implement business workflows.
 
-No downstream domain shall become tightly coupled to Infrastructure's internal implementation.
+No downstream domain shall become tightly coupled to this domain's internal implementation.
 
 ---
 
@@ -527,9 +517,9 @@ No downstream domain shall become tightly coupled to Infrastructure's internal i
 
 Within the SutraERP Domain-Driven Design architecture, Institutional Campus represents an independent **Bounded Context**.
 
-It owns every concept describing the physical infrastructure of an institution.
+It owns every concept describing the *institutional* existence of a campus — that an Institution operates it, its identity, and its institutional status.
 
-Other domains may reference infrastructure but shall never redefine or own infrastructure concepts.
+It does **not** own the physical model. Other domains may reference institutional campus identity but shall never redefine or own it.
 
 ---
 
@@ -537,18 +527,11 @@ Other domains may reference infrastructure but shall never redefine or own infra
 
 This bounded context owns:
 
-- Physical locations
-- Infrastructure hierarchy
-- Infrastructure classifications
-- Capacity metadata
-- Accessibility metadata
-- Sustainability capabilities
-- Infrastructure lifecycle
-- Infrastructure health
-- Infrastructure criticality
-- Infrastructure relationships
-- Infrastructure availability
-- Canonical infrastructure events
+- InstitutionalCampus identity and code
+- Institution-to-Campus association
+- Institutional campus status and lifecycle
+- Institutional campus governance metadata
+- Canonical institutional campus events
 
 ---
 
@@ -556,6 +539,9 @@ This bounded context owns:
 
 This bounded context explicitly excludes:
 
+- Physical locations, buildings, floors, spaces and facilities (`L2-G10`)
+- Physical hierarchy, capacity, accessibility, sustainability and criticality metadata (`L2-G10`)
+- Infrastructure lifecycle, health and availability (`L2-G10`)
 - Academic scheduling
 - Student allocation
 - Examination planning
@@ -571,171 +557,65 @@ This bounded context explicitly excludes:
 
 # 12. Ubiquitous Language
 
-The following terminology is canonical throughout SutraERP.
+The following terminology is canonical throughout SutraERP for the *institutional* campus concept.
 
 | Term | Meaning |
 |------|----------|
-| Campus | A geographically identifiable institutional site. |
-| Building | A physical structure within a campus. |
-| Wing | An optional child entity owned by the Building Aggregate representing a building subdivision. |
-| Floor | A physical floor within a building or wing. |
-| Space | Any usable physical location. |
-| Room | An enclosed physical space. |
-| Facility | A specialized infrastructure resource serving a business purpose. |
-| Infrastructure | Any managed physical entity within institutional premises. |
-| Zone | Logical grouping of nearby infrastructure for operational purposes. |
-| Collection | Logical grouping based upon business characteristics. |
-| Portfolio | Strategic grouping used for governance and investment planning. |
-| Capacity | Maximum supported physical occupancy or utilization limit. |
-| Accessibility | Characteristics enabling inclusive access. |
-| Criticality | Importance of infrastructure for business continuity. |
-| Lifecycle | Represents the long-term business existence of infrastructure rather than its current operational condition. |
-| Availability | Whether infrastructure is currently usable. |
+| Institutional Campus | The institutional fact that an Institution operates a campus, together with its identity, code and institutional status. |
+| Campus Code | The institution-scoped unique identifier issued for an InstitutionalCampus. |
+| Institutional Status | The lifecycle state of the institutional campus record. |
+| Institution-to-Campus Association | The governed relationship linking an InstitutionalCampus to its owning Institution. |
 
 These definitions are authoritative across all SutraERP domains.
+
+Physical terminology — Building, Wing, Floor, Space, Room, Facility, Infrastructure, Zone, Collection, Portfolio, Capacity, Accessibility, Criticality, Lifecycle and Availability — is defined canonically in `L2-G10 --- Infrastructure Management Workflows` section 7 (Domain Terminology). This document shall not restate those definitions.
 
 ---
 
 # 13. Domain Responsibilities
 
-Institutional Campus owns the complete lifecycle of physical infrastructure.
+Institutional Campus owns the complete lifecycle of the institutional campus record.
 
 Responsibilities include:
 
-## Infrastructure Registration
+## Institutional Campus Registration
 
-- Create infrastructure
-- Update infrastructure
-- Retire infrastructure
-- Archive infrastructure
-
----
-
-## Hierarchy Management
-
-Manage enterprise physical hierarchy including:
-
-- Campus
-- Building
-- Wing
-- Floor
-- Space
+- Register an institutional campus
+- Update institutional campus attributes
+- Retire an institutional campus
+- Archive an institutional campus
 
 ---
 
-## Classification
+## Institutional Association Management
 
-Assign and manage:
-
-- Infrastructure Type
-- Infrastructure Category
-- Functional Classification
-- Operational Classification
+Maintain the governed Institution-to-Campus association, including transfer of a campus between institutions where institutional policy permits it.
 
 ---
 
-## Capacity Management
+## Institutional Status Management
 
-Maintain canonical capacity information.
+Manage institutional status transitions.
 
 Examples:
 
-- Seating Capacity
-- Standing Capacity
-- Operational Capacity
-- Occupancy Limit
-
----
-
-## Accessibility
-
-Maintain physical accessibility characteristics including:
-
-- Wheelchair Accessibility
-- Elevator Availability
-- Accessible Restrooms
-- Accessible Parking
-
----
-
-## Sustainability
-
-Maintain infrastructure sustainability capabilities.
-
-Examples:
-
-- Solar Ready
-- Rainwater Harvesting
-- EV Charging
-- Green Building Certification
-
-Performance metrics remain outside this domain.
-
----
-
-## Compliance Metadata
-
-Maintain infrastructure compliance classifications.
-
-Examples:
-
-- Fire Compliance
-- Structural Certification
-- Accessibility Certification
-
-Operational audits belong elsewhere.
-
----
-
-## Health Classification
-
-Maintain canonical infrastructure health.
-
-Examples:
-
-- Excellent
-- Good
-- Fair
-- Poor
-
-Maintenance determines health changes.
-
-Infrastructure stores current status.
-
----
-
-## Criticality
-
-Maintain business continuity classifications.
-
-Examples:
-
-- Mission Critical
-- High Priority
-- Standard
-- Low Priority
-
-Emergency response remains outside this domain.
-
----
-
-## Lifecycle Management
-
-Manage lifecycle transitions.
-
-Examples:
-
-- Planned
-- Operational
-- Renovation
+- Registered
+- Active
+- Suspended
 - Decommissioned
 - Archived
 
 ---
 
+## Governance Metadata
+
+Maintain institutional governance metadata attached to the campus record, such as regulatory registration context and institutional ownership designation.
+
+---
+
 ## Event Publication
 
-Publish canonical business events for downstream consumers.
+Publish canonical institutional campus events for downstream consumers.
 
 ---
 
@@ -830,7 +710,7 @@ The following architectural principles govern interactions.
 
 ## DIP-01
 
-Infrastructure owns facts.
+The Institutional Campus domain owns institutional facts.
 
 Consumers own business decisions.
 
@@ -838,7 +718,7 @@ Consumers own business decisions.
 
 ## DIP-02
 
-Infrastructure publishes events.
+The Institutional Campus domain publishes events.
 
 Consumers subscribe independently.
 
@@ -846,13 +726,13 @@ Consumers subscribe independently.
 
 ## DIP-03
 
-Infrastructure never invokes downstream business workflows.
+The Institutional Campus domain never invokes downstream business workflows.
 
 ---
 
 ## DIP-04
 
-Infrastructure exposes contracts.
+The Institutional Campus domain exposes contracts.
 
 Consumers never access internal persistence directly.
 
@@ -860,7 +740,7 @@ Consumers never access internal persistence directly.
 
 ## DIP-05
 
-Infrastructure evolves independently without breaking consuming domains.
+The Institutional Campus domain evolves independently without breaking consuming domains.
 
 ---
 
@@ -900,11 +780,11 @@ No operational domain may redefine infrastructure concepts.
 The Institutional Campus domain is governed by the following constitutional principles:
 
 1. Single Source of Truth
-2. Canonical Physical Representation
+2. Canonical Institutional Representation
 3. Facts Over Interpretation
 4. Stable Public Contracts
 5. Event-Driven Integration
-6. Long-Lived Infrastructure Records
+6. Long-Lived Institutional Campus Records
 7. Technology Independence
 8. Domain Isolation
 9. Enterprise Scalability
@@ -1179,37 +1059,13 @@ Portfolios are used by executive leadership.
 
 # 30. Relationship Model
 
-Infrastructure relationships are classified into three categories.
-
----
-
-## Physical Relationships
-
-Represent structural containment.
-
-Examples:
-
-- Campus contains Building
-- Building contains Floor
-- Floor contains Space
-
----
-
-## Logical Relationships
-
-Represent organizational associations.
-
-Examples:
-
-- Member of Zone
-- Member of Collection
-- Member of Portfolio
+InstitutionalCampus relationships are classified into two categories.
 
 ---
 
 ## Reference Relationships
 
-Represent external references.
+Represent external references held by the institutional campus record.
 
 Examples:
 
@@ -1217,6 +1073,18 @@ Examples:
 - Organisation
 - Geographic Region
 - Municipality
+
+---
+
+## Physical and Logical Relationships (defined by L2-G10)
+
+> Migrated 2026-08-05 under integrity finding INT-004. Structural containment
+> (Campus contains Building, Building contains Floor, Floor contains Space) and
+> logical grouping membership (Zone, Collection, Portfolio) describe the physical
+> model and are owned and defined by `L2-G10 --- Infrastructure Management Workflows`.
+
+`L2-G10`'s PhysicalInfrastructureCampus references the InstitutionalCampus identity
+issued by this domain. This document does not restate the physical relationship model.
 
 ---
 
@@ -1277,7 +1145,7 @@ Lifecycle transition must occur instead.
 
 ## ACR-05
 
-Infrastructure identifiers are immutable.
+InstitutionalCampus identifiers are immutable.
 
 Business names may change.
 
@@ -1317,7 +1185,7 @@ Separate physical hierarchy from logical organization.
 
 ## DM-03
 
-Infrastructure is long-lived.
+The InstitutionalCampus record is long-lived.
 
 ---
 
@@ -1335,7 +1203,7 @@ Relationships are explicit.
 
 ## DM-06
 
-Infrastructure facts are authoritative.
+Institutional campus facts are authoritative.
 
 ---
 
@@ -1550,7 +1418,7 @@ Examples include:
 
 A Campus does **not** own academic, administrative, or financial operations.
 
-It owns only the physical representation of the campus.
+It owns only the institutional representation of the campus. The physical representation is owned by `L2-G10`.
 
 ---
 
@@ -1927,7 +1795,7 @@ consumed here where institutional status depends on them:
 
 ## CWP-01
 
-Campus owns only physical infrastructure information.
+Campus owns only institutional campus information.
 
 ---
 
@@ -2015,7 +1883,7 @@ This section defines the canonical workflows for the **Floor** and **Space** agg
 - Lifecycle Management
 - Decommissioning and Archival
 
-These workflows establish the authoritative operational model for the lowest levels of the Institutional Campus hierarchy and provide the canonical infrastructure entities consumed by scheduling, examination, admissions, maintenance, security, and other enterprise domains.
+These workflows establish the authoritative operational model for the lowest levels of the Institutional Campus hierarchy and provide the canonical institutional campus identities referenced by scheduling, examination, admissions, maintenance, security, and other enterprise domains.
 
 ---
 
@@ -2034,7 +1902,7 @@ This section defines the canonical workflows for **Zones**, **Collections**, and
 - Domain Events
 - Workflow Design Principles
 
-These workflows establish the enterprise-standard logical organization model for Institutional Campus, enabling operational grouping, business categorization, and strategic governance while preserving the integrity of the canonical physical hierarchy.
+These workflows establish the enterprise-standard logical organization model for Institutional Campus, enabling operational grouping, business categorization, and strategic governance while preserving the integrity of the canonical institutional campus record.
 
 ---
 
@@ -2186,15 +2054,16 @@ These principles ensure that the persistence implementation faithfully supports 
 
 The Institutional Campus domain is a **foundational master data domain**.
 
-It provides the authoritative representation of institutional physical infrastructure that is consumed by multiple operational and analytical domains.
+It provides the authoritative representation of the institutional campus record that is consumed by multiple operational and analytical domains.
 
 The domain owns:
 
-- Physical infrastructure hierarchy
-- Infrastructure lifecycle
-- Infrastructure metadata
-- Operational availability
-- Logical infrastructure organization
+- InstitutionalCampus identity and code
+- Institution-to-Campus association
+- Institutional campus status and lifecycle
+- Institutional campus governance metadata
+
+The domain does **not** own the physical infrastructure hierarchy, infrastructure lifecycle, infrastructure metadata, operational availability or logical infrastructure organization — these are owned by `L2-G10 --- Infrastructure Management Workflows`.
 
 The domain does **not** own business activities performed within infrastructure.
 
@@ -2211,13 +2080,13 @@ The Institutional Campus domain depends upon the following enterprise domains.
 | Institution Management | Mandatory | Parent Institution ownership |
 | Organization Management | Optional | Organizational associations for administration |
 
-Infrastructure cannot function independently of these foundational domains.
+The Institutional Campus domain cannot function independently of these foundational domains.
 
 ---
 
 # 244. Downstream Consumers
 
-The following domains consume Infrastructure information.
+The following domains consume Institutional Campus information.
 
 | Domain | Dependency Type |
 |----------|----------------|
@@ -2238,13 +2107,13 @@ The following domains consume Infrastructure information.
 | Disaster Management | Optional |
 | Notifications | Optional |
 
-Infrastructure publishes canonical facts to all consumers.
+The Institutional Campus domain publishes canonical facts to all consumers.
 
 ---
 
 # 245. Dependency Philosophy
 
-Infrastructure follows a publish-and-consume model.
+The Institutional Campus domain follows a publish-and-consume model.
 
 ```text
 Infrastructure
@@ -2266,7 +2135,7 @@ Consumer Domains
 Business Decisions
 ```
 
-Infrastructure never performs downstream orchestration.
+The Institutional Campus domain never performs downstream orchestration.
 
 ---
 
@@ -2313,7 +2182,7 @@ needing rooms, capacity, accessibility or physical availability consume G10 dire
 
 ## IDR-01
 
-Infrastructure publishes facts.
+The Institutional Campus domain publishes facts.
 
 Consumers interpret them.
 
@@ -2321,13 +2190,13 @@ Consumers interpret them.
 
 ## IDR-02
 
-Infrastructure never executes consumer workflows.
+The Institutional Campus domain never executes consumer workflows.
 
 ---
 
 ## IDR-03
 
-Consumer domains shall not modify Infrastructure aggregates.
+Consumer domains shall not modify InstitutionalCampus aggregates.
 
 ---
 
@@ -2339,7 +2208,7 @@ Multi-domain communication shall occur through published contracts and domain ev
 
 ## IDR-05
 
-Infrastructure remains implementation independent.
+The Institutional Campus domain remains implementation independent.
 
 ---
 
@@ -2379,7 +2248,7 @@ Dependency flow is unidirectional.
 
 Consumer domains depend on Infrastructure.
 
-Infrastructure does not depend on operational domains.
+The Institutional Campus domain does not depend on operational domains.
 
 ---
 
@@ -2393,7 +2262,7 @@ To preserve architectural integrity:
 - Integration shall remain loosely coupled.
 - Domain events shall remain immutable.
 
-Anti-Corruption Layers (ACLs) should be introduced when integrating with external or legacy systems to translate external models into canonical Infrastructure concepts.
+Anti-Corruption Layers (ACLs) should be introduced when integrating with external or legacy systems to translate external models into canonical Institutional Campus concepts.
 
 ---
 
@@ -2414,7 +2283,7 @@ Potential future integrations include:
 - Parking Management
 - Environmental Monitoring
 
-These capabilities should extend the domain through composition, integration contracts, or adjacent domains rather than modifying the canonical Infrastructure model.
+These capabilities should extend the domain through composition, integration contracts, or adjacent domains rather than modifying the canonical Institutional Campus model.
 
 ---
 
@@ -2422,7 +2291,7 @@ These capabilities should extend the domain through composition, integration con
 
 ## ADP-01
 
-Infrastructure owns physical infrastructure only.
+The Institutional Campus domain owns institutional campus facts only. Physical infrastructure is owned by `L2-G10`.
 
 ---
 
@@ -2446,7 +2315,7 @@ AI owns semantic understanding.
 
 ## ADP-05
 
-Infrastructure publishes immutable business facts.
+The Institutional Campus domain publishes immutable business facts.
 
 ---
 
@@ -2696,7 +2565,7 @@ Partial updates are prohibited.
 
 # 279. Availability Principles
 
-Infrastructure master data should remain highly available.
+Institutional campus master data should remain highly available.
 
 Recommended practices include:
 
@@ -2793,7 +2662,7 @@ The architecture anticipates future enhancements such as:
 - Capital planning
 - Infrastructure forecasting
 
-These capabilities should consume or extend canonical Infrastructure facts rather than redefining them.
+These capabilities should consume or extend canonical Institutional Campus facts rather than redefining them.
 
 ---
 
@@ -2816,7 +2685,7 @@ Potential risks include:
 
 ## AP-01
 
-Infrastructure is the authoritative master for physical infrastructure.
+The Institutional Campus domain is the authoritative master for institutional campus identity. `L2-G10` is the authoritative master for physical infrastructure.
 
 ---
 
@@ -2834,7 +2703,7 @@ Logical organization never replaces physical ownership.
 
 ## AP-04
 
-Infrastructure publishes immutable business facts.
+The Institutional Campus domain publishes immutable business facts.
 
 ---
 
