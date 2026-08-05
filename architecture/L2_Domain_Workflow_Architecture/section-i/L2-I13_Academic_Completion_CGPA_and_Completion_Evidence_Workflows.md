@@ -1362,7 +1362,7 @@ Consumed events initiate academic completion workflows but never transfer owners
 
 ---
 
-## 12.2 FinalResultPublished
+## 12.2 ExaminationResultPublished
 
 ### Published By
 
@@ -1371,6 +1371,12 @@ L2-I10 — Result Publication
 ### Purpose
 
 Initiates Academic Completion processing after official publication.
+
+> Renamed 2026-08-05 under integrity finding INT-008. This event was previously
+> named `FinalResultPublished` here and nowhere else in the repository. `L2-I10`
+> publishes exactly one publication event, `ExaminationResultPublished`, and never
+> declared a `FinalResultPublished`, so this document was subscribing to an event no
+> publisher emitted. The two are the same fact.
 
 ---
 
@@ -2280,7 +2286,7 @@ Academic Completion Closed
 
 ### Events Consumed
 
-- FinalResultPublished
+- ExaminationResultPublished
 - RevaluationCompleted
 - SupplementaryExaminationCompleted
 - AcademicCalendarClosed
