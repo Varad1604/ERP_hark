@@ -36,9 +36,10 @@
 | Status | Draft |
 | Version | 1.1.0 |
 | Owner | Finance Architecture Team |
-| Document Owner | Chetan |
+| Document Owner | Finance — Procurement Consumption |
 | Parent Architecture | L2-F00 — Finance Domain Model & Foundation |
-| Depends On | L2-F00, L2-F06, L2-F08, L2-F10, Section J |
+| Depends On | L2-F00, L2-F06, L2-F08, L2-F10 |
+| Consumes From | Section J — Enterprise Resource Management (published procurement and resource facts) |
 | Referenced By | Section J, Accounts Payable, Budget, Treasury, Analytics, Audit |
 
 ---

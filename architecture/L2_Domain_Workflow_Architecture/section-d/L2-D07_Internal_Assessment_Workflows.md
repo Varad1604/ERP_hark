@@ -6,10 +6,11 @@
 **Document ID:** L2-D07  
 **Version:** 1.0  
 **Status:** Draft  
-**Document Owner:** Pallav  
+**Document Owner:** Academic Delivery — Internal Assessment  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Pallav  
-**Dependencies:** Section B, L2-D01, L2-D04, L2-I01, Student Lifecycle reference data
+**Owner:** Academic Delivery — Internal Assessment  
+**Dependencies:** Section B, L2-D01, L2-D04, Student Lifecycle reference data  
+**Consumed By:** L2-I01 and downstream Examination workflows, which consume finalized internal-assessment outcomes published by this domain
 
 ---
 
