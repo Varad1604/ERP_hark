@@ -5,21 +5,17 @@
 
 ------------------------------------------------------------------------
 
-# Placeholders (Edit Before Running)
+# Execution Mode
 
-<!-- ``` text
-SECTION_NAME={{SECTION_NAME}}
-SECTION_PREFIX={{SECTION_PREFIX}}
-SOURCE_DIRECTORY={{SOURCE_DIRECTORY}}
-OUTPUT_DIRECTORY={{OUTPUT_DIRECTORY}}
-DEPENDENT_SECTIONS={{DEPENDENT_SECTIONS}}
-``` -->
+This prompt runs **once** and bootstraps the repository for **all ten sections**
+(A-J). There are no placeholders to edit. Do not run it per section.
 
 ------------------------------------------------------------------------
 
 # Objective
 
-Generate AI context artifacts for one architecture section.
+Bootstrap the AI context repository and generate its artifacts for every
+architecture section.
 
 These artifacts are **AI context**, not documentation.
 
@@ -53,13 +49,8 @@ AI_CONTEXT/
 ├── SECTION_F/
 ├── SECTION_G/
 ├── SECTION_H/
-└── SECTION_I/
-```
-
-The bootstrap structure must also include:
-
-```text
-AI_CONTEXT/SECTION_J/
+├── SECTION_I/
+└── SECTION_J/
 ```
 
 3.  Open `.gitignore`.
@@ -78,7 +69,7 @@ Read:
 
 -   README.md
 -   INDEX.md
--   Every {{SECTION_PREFIX}}_Canonical_AI_Context.md
+-   Every existing `<PREFIX>_Canonical_AI_Context.md`
 -   Every Dependency_Contract.md
 -   Every Audit
 
@@ -90,9 +81,9 @@ The original source documents remain authoritative.
 
 # Source Discovery
 
-Process every markdown file inside:
+Process every markdown file inside each section's source directory:
 
-{{SOURCE_DIRECTORY}}
+`architecture/L2_Domain_Workflow_Architecture/section-a/` through `section-j/`
 
 Sort files alphabetically.
 
@@ -210,23 +201,44 @@ Never fabricate links.
 
 # Output Files
 
-Generate:
+For every section prefix P in A, B, C, D, E, F, G, H, I, J generate:
 
-AI_CONTEXT/SECTION\_{{SECTION_PREFIX}}/{{SECTION_PREFIX}}\_Canonical_AI_Context.md
+AI_CONTEXT/SECTION\_P/P\_Canonical_AI_Context.md
 
-AI_CONTEXT/SECTION\_{{SECTION_PREFIX}}/Dependency_Contract.md
+AI_CONTEXT/SECTION\_P/Dependency_Contract.md
 
-AI_CONTEXT/AUDITS/{{SECTION_PREFIX}}\_Canonical_Audit.md
+AI_CONTEXT/AUDITS/P\_Canonical_Audit.md
+
+Source directory for each is
+`architecture/L2_Domain_Workflow_Architecture/section-<lowercase P>/`.
+
+Expected source counts: A 11, B 6, C 9, D 8, E 8, F 15, G 11, H 11, I 17, J 11 -
+**107 files total.** A mismatch is a stop condition for that section.
+
+------------------------------------------------------------------------
+
+# Replacement Policy
+
+Every generated file is **fully replaced**, not merged or patched. Read an
+existing file only to produce a difference report afterwards, never to carry
+content forward.
+
+Prior contexts contain known ownership errors (INT-027, INT-029 through
+INT-033) that were generated before the source documents were corrected.
+Regenerating from current sources is what removes them.
+
+**Do not regenerate or read** `AI_CONTEXT/SECTION_J/Canonical_AI_Context.md`;
+it is a deprecated unprefixed alias retained for backward compatibility only.
 
 ------------------------------------------------------------------------
 
 # Update INDEX.md
 
-Maintain generated status.
+Rewrite `AI_CONTEXT/INDEX.md` from the filesystem after all sections complete.
 
-Update timestamp.
-
-Update available sections.
+Record, per section: prefix, directory, generated status, and the exact basenames
+present. Record the generation timestamp. Never hand-edit it from memory, and
+never describe a file as generated unless it was written in this run.
 
 ------------------------------------------------------------------------
 
@@ -243,13 +255,21 @@ Before finishing verify:
 -   Missing information reported
 -   Deterministic ordering maintained
 
-If any gate fails:
+If any gate fails for a section:
 
-Stop.
+Stop that section. Report the failure. Leave its existing files untouched.
+Continue to the next section - one failing section must not block the other nine.
 
-Report failures.
+------------------------------------------------------------------------
 
-Do not silently continue.
+# Final Report
+
+Report per section: files written, source count processed against the expected
+count, and any gate failure. Then report which ownership statements changed from
+the previous version across the whole run, since those are the INT-027 and
+INT-029 through INT-033 corrections landing.
+
+Do not report success for any section whose files were not written.
 
 ------------------------------------------------------------------------
 

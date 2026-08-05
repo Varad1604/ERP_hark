@@ -1,40 +1,66 @@
-# Prompt 2 --- Dependency Contract Generator
+# Prompt 2 --- Dependency Contract Generator (All Sections)
 
-> Generate a compact, deterministic dependency contract for a single
-> architecture section. This artifact is optimized for downstream AI
-> agents and cross-section integration.
+> Generate the public dependency contract for **every** architecture section,
+> replacing any existing contract in place.
 
 ------------------------------------------------------------------------
 
-# Placeholders (Edit Before Running)
+# Execution Mode
 
-``` text
-SECTION_NAME={{SECTION_NAME}}
-SECTION_PREFIX={{SECTION_PREFIX}}
-SOURCE_DIRECTORY={{SOURCE_DIRECTORY}}
-OUTPUT_DIRECTORY={{OUTPUT_DIRECTORY}}
-DEPENDENT_SECTIONS={{DEPENDENT_SECTIONS}}
-```
+This prompt runs **once** and processes **all ten sections**. There are no
+placeholders to edit. Do not run it per section.
+
+Run it **after** Prompt 1, so each contract is derived from a freshly generated
+Canonical AI Context rather than a stale one.
+
+------------------------------------------------------------------------
+
+# Section Register
+
+| Prefix | Source Directory | Canonical Context | Output Contract |
+|---|---|---|---|
+| A | `.../section-a/` | `AI_CONTEXT/SECTION_A/A_Canonical_AI_Context.md` | `AI_CONTEXT/SECTION_A/Dependency_Contract.md` |
+| B | `.../section-b/` | `AI_CONTEXT/SECTION_B/B_Canonical_AI_Context.md` | `AI_CONTEXT/SECTION_B/Dependency_Contract.md` |
+| C | `.../section-c/` | `AI_CONTEXT/SECTION_C/C_Canonical_AI_Context.md` | `AI_CONTEXT/SECTION_C/Dependency_Contract.md` |
+| D | `.../section-d/` | `AI_CONTEXT/SECTION_D/D_Canonical_AI_Context.md` | `AI_CONTEXT/SECTION_D/Dependency_Contract.md` |
+| E | `.../section-e/` | `AI_CONTEXT/SECTION_E/E_Canonical_AI_Context.md` | `AI_CONTEXT/SECTION_E/Dependency_Contract.md` |
+| F | `.../section-f/` | `AI_CONTEXT/SECTION_F/F_Canonical_AI_Context.md` | `AI_CONTEXT/SECTION_F/Dependency_Contract.md` |
+| G | `.../section-g/` | `AI_CONTEXT/SECTION_G/G_Canonical_AI_Context.md` | `AI_CONTEXT/SECTION_G/Dependency_Contract.md` |
+| H | `.../section-h/` | `AI_CONTEXT/SECTION_H/H_Canonical_AI_Context.md` | `AI_CONTEXT/SECTION_H/Dependency_Contract.md` |
+| I | `.../section-i/` | `AI_CONTEXT/SECTION_I/I_Canonical_AI_Context.md` | `AI_CONTEXT/SECTION_I/Dependency_Contract.md` |
+| J | `.../section-j/` | `AI_CONTEXT/SECTION_J/J_Canonical_AI_Context.md` | `AI_CONTEXT/SECTION_J/Dependency_Contract.md` |
+
+Source directories are under
+`architecture/L2_Domain_Workflow_Architecture/`.
+
+**Only Sections A and G currently have a Dependency Contract.** The other eight
+must be created. Do not treat a missing file as a reason to skip a section.
+
+------------------------------------------------------------------------
+
+# Replacement Policy
+
+Each contract is **fully replaced**, not merged or patched. Generate entirely
+from the current Canonical AI Context and the current source documents. Never
+carry a statement forward because a previous version contained it.
 
 ------------------------------------------------------------------------
 
 # Prerequisites
 
-1.  Execute Prompt 0.
-2.  Execute Prompt 1.
-3.  Read:
-    -   AI_CONTEXT/INDEX.md
-    -   AI_CONTEXT/SECTION\_\*/\*\_Canonical_AI_Context.md (existing)
-    -   AI_CONTEXT/SECTION\_{{SECTION_PREFIX}}/{{SECTION_PREFIX}}\_Canonical_AI_Context.md
-4.  The source repository remains authoritative.
+1.  Execute Prompt 0, then Prompt 1.
+2.  Read:
+    -   `AI_CONTEXT/INDEX.md`
+    -   The section's own Canonical AI Context from the register
+    -   `DEPENDENCY_MAP.md`, in particular Section 7A dependency classes
+3.  The source repository remains authoritative.
 
 ------------------------------------------------------------------------
 
 # Objective
 
-Generate:
-
-`AI_CONTEXT/SECTION_{{SECTION_PREFIX}}/Dependency_Contract.md`
+For each section in the register, generate its Dependency Contract at the path
+listed.
 
 This file is **not** documentation. It is the public contract other AI
 agents use when reasoning about this section.
@@ -109,7 +135,8 @@ List:
 -   Depends On
 -   Consumed By
 
-Reference sections using: {{DEPENDENT_SECTIONS}}
+Reference sections by prefix (A-J), and state for each whether the
+dependency is foundational or runtime per `DEPENDENCY_MAP.md` Section 7A.
 
 ## 13. Architectural Constraints
 
@@ -164,10 +191,19 @@ Verify:
 -   Source references present
 -   Missing information explicitly marked
 
-If validation fails:
+If validation fails for a section:
 
-Stop generation.
+Stop that section. Report the failure. Leave any existing file untouched.
+Continue to the next section - one failing section must not block the others.
 
-Report failures.
+------------------------------------------------------------------------
 
-Do not emit partial output.
+# Final Report
+
+After all ten sections, report:
+
+-   Contracts written, and sections skipped with the reason
+-   Which contracts were newly created versus replaced
+-   Any published/consumed event that appears in a contract but not in the
+    corresponding Canonical AI Context, which indicates the two disagree
+-   Any conflict encountered and how it was recorded
