@@ -2171,7 +2171,7 @@ Consumes
 
 Publishes
 
-- ResultPublished
+- ExaminationResultPublished
 
 ---
 
@@ -2623,7 +2623,7 @@ TeachingCompleted
 
 -->AttendanceFinalized
 
--->ResultsPublished
+-->ExaminationResultPublished
 
 -->ProgressionCompleted
 
@@ -2924,7 +2924,7 @@ StudentActivated
 
 AttendanceFinalized
 
-ResultPublished
+ExaminationResultPublished
 
 AcademicCreditLedgerUpdated
 
@@ -3057,7 +3057,7 @@ AttendanceFinalized
 
 InternalAssessmentCompleted
 
-ResultPublished
+ExaminationResultPublished
 
 AcademicCreditLedgerUpdated
 

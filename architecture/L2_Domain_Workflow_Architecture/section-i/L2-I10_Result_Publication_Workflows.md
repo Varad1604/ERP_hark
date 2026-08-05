@@ -2,7 +2,7 @@
 
 **Section:** I — Examination  
 **Status:** Draft  
-**Document Owner:** Devang
+**Document Owner:** Examinations — Result Publication
 
 ---
 
@@ -236,7 +236,7 @@ Examples include:
 
 - Publication Scheduled
 - Publication Started
-- ResultPublished
+- ExaminationResultPublished
 - Candidate Accessed Result
 - Publication Closed
 
@@ -422,7 +422,7 @@ Publication events may generate authorised institutional notifications.
 
 Notification capabilities include:
 
-- ResultPublished Notification
+- ExaminationResultPublished Notification
 - Publication Announcement
 - Candidate Notification
 - Department Notification
@@ -562,10 +562,10 @@ Publication Validation
 Authorization Check
         │
         ▼
-ResultPublished
+ExaminationResultPublished
         │
         ▼
-ResultPublished Event
+ExaminationResultPublished Event
 ```
 
 The framework preserves the separation between academic computation and academic publication.
@@ -1059,7 +1059,7 @@ Every override shall:
 
 # 11. Events Published
 
-## ResultPublished
+## ExaminationResultPublished
 
 ### Published When
 
@@ -1079,7 +1079,7 @@ The institution has officially released approved academic results for authorized
 
 ### Event Ownership Boundary
 
-I10 owns the ResultPublished event.
+I10 owns the ExaminationResultPublished event.
 
 The event represents publication of an approved result.
 
@@ -1584,10 +1584,10 @@ Publication Validation
 Authorization Check
         │
         ▼
-ResultPublished
+ExaminationResultPublished
         │
         ▼
-ResultPublished Event
+ExaminationResultPublished Event
 ```
 
 ---
@@ -1609,7 +1609,7 @@ Publication Authorised
 Publication Ready
         │
         ▼
-ResultPublished
+ExaminationResultPublished
         │
         ▼
 Accessible
@@ -1726,7 +1726,7 @@ I09
  ↓
 I10
  |
- | ResultPublished
+ | ExaminationResultPublished
  ↓
 Consumers
 

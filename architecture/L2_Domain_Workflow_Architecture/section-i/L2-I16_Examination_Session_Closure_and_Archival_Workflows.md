@@ -33,7 +33,7 @@
 | Domain | Examination Domain |
 | Architecture Level | L2 – Canonical Domain Workflow |
 | Owner | Examination Domain |
-| Document Owner | Devang |
+| Document Owner | Examinations — Session Closure & Archival |
 | Repository | SutraERP Enterprise Architecture Repository |
 | Status | Draft |
 | Depends On | L1 Business Domain Architecture, L2-A01–A08, L2-B01–B05, L2-I01–L2-I15 |
@@ -1060,7 +1060,7 @@ Consumed events shall never modify upstream aggregate ownership.
 | Examination Conduct | ExaminationCompleted |
 | Evaluation | EvaluationCompleted |
 | Result Processing | ResultProcessingCompleted |
-| Result Publication | ResultsPublished |
+| Result Publication | ExaminationResultPublished |
 | Malpractice Management | InvestigationClosed |
 | Examination Exception Management | ExamExceptionCaseClosed |
 | Workflow Infrastructure | WorkflowCompleted |

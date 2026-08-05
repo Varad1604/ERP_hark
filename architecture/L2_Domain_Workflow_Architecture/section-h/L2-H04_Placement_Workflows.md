@@ -8,7 +8,7 @@
 **Version:** 1.0  
 **Status:** Draft  
 **Owner:** Enterprise Architecture Team  
-**Document Owner:** Dhruv  
+**Document Owner:** Institutional Services — Placement  
 
 ---
 
@@ -553,7 +553,7 @@ Examples include:
 
 - StudentCreated
 - StudentProfileUpdated
-- AcademicResultPublished
+- ExaminationResultPublished
 - SemesterCompleted
 - BacklogUpdated
 - QualificationAwarded
@@ -3298,7 +3298,7 @@ None
 
 ### Consumed Events
 
-- AcademicResultPublished
+- ExaminationResultPublished
 - BacklogUpdated
 - SemesterCompleted
 - AcademicStandingUpdated

@@ -6,7 +6,7 @@ section: Section C – Student Lifecycle
 version: 1.0.0
 status: Draft
 owner: Student Lifecycle Architecture
-document_owner: Varad
+document_owner: Student Lifecycle — Academic Progression
 parent: L1 Business Domain Architecture
 architectural_tier: Level 2 – Domain Workflow Architecture
 domain_owner: Student Lifecycle Domain
@@ -1140,7 +1140,7 @@ Determine whether a student satisfies institutional progression requirements aft
 
 One or more of the following:
 
-- Official Examination Results Published
+- ExaminationResultPublished (official examination results)
 - Academic Evaluation Window Opens
 - Manual Institutional Evaluation
 - Approved Re-evaluation
@@ -1163,7 +1163,7 @@ One or more of the following:
 ### Workflow
 
 ```text
-Results Published
+ExaminationResultPublished
         │
         ▼
 Collect Academic Data
@@ -2066,9 +2066,9 @@ The Academic Progression domain subscribes to the following business events.
 | Event | Published By | Purpose |
 |--------|--------------|---------|
 | StudentActivated | Student Lifecycle | Student becomes academically active |
-| ExaminationResultsPublished | Examination | Primary progression trigger |
-| RevaluationResultsPublished | Examination | Recalculate progression |
-| SupplementaryResultsPublished | Examination | Recalculate progression |
+| ExaminationResultPublished | Examination | Primary progression trigger |
+| RevaluationResultPublished | Examination | Recalculate progression |
+| SupplementaryResultPublished | Examination | Recalculate progression |
 | CurriculumUpdated | Curriculum Framework | Validate curriculum impact |
 | AcademicPolicyUpdated | Policy Management | Future evaluations use revised policies |
 | CreditTransferApproved | Credit Transfer | Update Academic Credit Ledger |
@@ -2315,7 +2315,7 @@ Academic Credit Ledger successfully synchronised.
 # 7.6 Event Lifecycle
 
 ```text
-Official Results Published
+ExaminationResultPublished
             │
             ▼
 ProgressionEvaluationStarted
@@ -5268,7 +5268,7 @@ flowchart TD
 %% START
 %% =====================================================
 
-START([Official Examination Results Published])
+START([ExaminationResultPublished])
 
 START --> ELIGIBLE{Student Eligible for Evaluation?}
 
@@ -5385,7 +5385,7 @@ flowchart TD
 %% CREDIT SOURCE
 %% =====================================================
 
-RESULTS([Official Examination Results Published])
+RESULTS([ExaminationResultPublished])
 
 RESULTS --> PASS{Component Successfully Completed?}
 
@@ -5566,7 +5566,7 @@ participant QC as Qualification Completion & Student Exit
 %% START
 %% =====================================================
 
-EX->>AP: Official Examination Results Published
+EX->>AP: ExaminationResultPublished
 
 %% =====================================================
 %% EVALUATION
@@ -6600,7 +6600,7 @@ This appendix summarizes event interactions defined throughout this architecture
 
 | Consumed Event | Published By | Purpose |
 |----------------|--------------|---------|
-| ExaminationResultsPublished | Examination | Trigger progression evaluation |
+| ExaminationResultPublished | Examination | Trigger progression evaluation |
 | AssessmentRevaluationCompleted | Examination | Re-Evaluate Student Progression |
 | StudentProgrammeChanged | Student Lifecycle | Maintain academic context |
 | ProgressionStudentStatusChanged | Student Lifecycle | Validate progression eligibility |
