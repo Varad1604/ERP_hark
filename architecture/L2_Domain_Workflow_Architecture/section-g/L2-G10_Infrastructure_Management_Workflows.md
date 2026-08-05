@@ -15,6 +15,8 @@
 
 
 
+
+
 ## Canonical Section Crosswalk
 
 > Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
@@ -24,12 +26,12 @@
 | Purpose | §1 Purpose |
 | Scope | §3 Scope; §4 Out of Scope |
 | Actors | 48A.204 Infrastructure Roles |
-| Entities | Child Entities |
+| Entities | Child Entities; 8B.44 Entity Relationships |
 | Business Rules | §47 Business Rules; 13A.62 Business Rule Philosophy; 13A.63 Business Rule Categories |
 | Workflow | §12 Workflow Catalogue; §16 Infrastructure Registration Workflows; §17 Campus Management Workflows |
 | State Machine | 11A.51 Canonical Lifecycle States; 11A.52 Lifecycle State Definitions |
-| Contracts | §45 Service Contracts; 13A.77 Public Contract Rules |
-| Events | §44 Domain Events; Event-Driven Architecture; 11A.58 Lifecycle Events |
+| Contracts | §45 Service Contracts; 44A. Infrastructure Events, Integration Contracts & External Interfaces; 13A.77 Public Contract Rules |
+| Events | §44 Domain Events; 44A. Infrastructure Events, Integration Contracts & External Interfaces; Event-Driven Architecture |
 | Dependencies | §9 Dependencies & Integration (Bounded Context Relationships); 11A.56 Lifecycle Dependency Rules |
 | Locked Decisions | — not present — |
 
@@ -1058,6 +1060,112 @@ Rules:
 - A Space belongs to exactly one Floor.
 - A Space cannot belong to multiple Floors.
 - Circular relationships are prohibited.
+
+---
+
+# 8B. Aggregate Relationships, Communication & Evolution
+
+> Migrated from `L2-B03_Campus_Workflows.md` Part 4 on 2026-08-05 under integrity finding
+> INT-008, completing step 1. These sections state generic aggregate patterns but
+> illustrate every one of them with Building, Floor and Space - G10's aggregates.
+
+---
+
+## 8B.44 Entity Relationships
+
+```text
+Campus
+ │
+ ├────────── Building
+ │               │
+ │               ├──────── Floor
+ │               │              │
+ │               │              └──────── Space
+ │               │
+ │               └──────── Utilities
+ │
+ ├──────── Zones
+ │
+ ├──────── Collections
+ │
+ └──────── Portfolios
+```
+
+---
+
+## 8B.45 Aggregate Communication
+
+Aggregates communicate using domain events.
+
+Example:
+
+```text
+Building Activated
+
+↓
+
+BuildingActivated Event
+
+↓
+
+Floor Aggregate
+
+↓
+
+Operational Validation
+```
+
+No aggregate directly modifies another aggregate.
+
+---
+
+## 8B.46 Aggregate Transaction Rules
+
+Each aggregate represents an independent transactional consistency boundary.
+
+Rules:
+
+- Transactions never span multiple aggregates.
+- Cross-aggregate updates occur using events.
+- Eventual consistency is acceptable across aggregates.
+- Business invariants are enforced only within the owning aggregate.
+
+---
+
+## 8B.47 Aggregate Size Guidelines
+
+Aggregates should remain cohesive and manageable.
+
+Recommended approach:
+
+- Campus: Coarse-grained
+- Building: Medium-grained
+- Floor: Lightweight
+- Space: Rich aggregate
+- Zone: Lightweight
+- Collection: Lightweight
+- Portfolio: Lightweight
+
+Avoid large aggregates that own excessive unrelated responsibilities.
+
+---
+
+## 8B.48 Aggregate Evolution Principles
+
+Future capabilities such as:
+
+- Digital Twin
+- IoT Devices
+- Smart Sensors
+- Building Automation
+- GIS Mapping
+- Predictive Maintenance
+
+shall extend existing aggregates through composition or related domains.
+
+Core aggregates defined in this document should remain stable over time.
+
+---
 
 ---
 
@@ -7862,6 +7970,520 @@ Every significant business transition shall generate an event.
 |--------|-------------|
 | UtilityConsumptionRecorded | Utility usage recorded |
 | SustainabilityMetricUpdated | Sustainability data updated |
+
+---
+
+# 44A. Infrastructure Events, Integration Contracts & External Interfaces
+
+> Migrated from `L2-B03_Campus_Workflows.md` Part 12 on 2026-08-05 under integrity finding
+> INT-008. The part described the event architecture and read contracts of the
+> Infrastructure aggregate throughout - it was G10's integration architecture held in B03.
+> Sections 44 and 45 above remain the summary; the detail is below.
+
+Section 44A.190 was titled "Campus Summary Contract" in the source and mixed institutional
+fields with physical ones. It is retitled Physical Campus Summary Contract here and carries
+the physical fields; the institutional counterpart stays in `L2-B03`.
+
+---
+
+
+---
+
+## 44A.177 Integration Philosophy
+
+The Campus & Infrastructure domain is an **authoritative master data domain**.
+
+It owns canonical facts regarding institutional physical infrastructure.
+
+The domain shall integrate with the remainder of SutraERP using:
+
+- Canonical Domain Events
+- Public Read Contracts
+- Query APIs
+- Integration Services
+
+External systems shall **never depend upon internal persistence models**.
+
+---
+
+## 44A.178 Integration Principles
+
+The domain follows these integration principles.
+
+#### IP-01
+
+Infrastructure publishes facts.
+
+Consumers determine business behaviour.
+
+---
+
+#### IP-02
+
+Infrastructure never invokes downstream business processes.
+
+---
+
+#### IP-03
+
+Integration shall be event-driven wherever possible.
+
+---
+
+#### IP-04
+
+Public contracts remain stable across implementation changes.
+
+---
+
+#### IP-05
+
+Internal aggregate models remain private.
+
+---
+
+#### IP-06
+
+Infrastructure is the single source of truth for physical infrastructure.
+
+---
+
+## 44A.179 Event Architecture
+
+```text
+Infrastructure Aggregate
+          │
+          ▼
+Business Validation
+          │
+          ▼
+State Change
+          │
+          ▼
+Persist Aggregate
+          │
+          ▼
+Publish Domain Event
+          │
+          ▼
+Enterprise Event Bus
+          │
+          ▼
+Consumer Domains
+```
+
+Events are published **after successful transaction completion**.
+
+Events never represent commands.
+
+---
+
+## 44A.180 Event Categories
+
+Infrastructure publishes four categories of events.
+
+| Category | Purpose |
+|-----------|---------|
+| Lifecycle Events | State transitions |
+| Structural Events | Physical hierarchy changes |
+| Classification Events | Metadata updates |
+| Relationship Events | Logical organization changes |
+
+---
+
+## 44A.181 Lifecycle Events
+
+Lifecycle Events communicate changes in operational existence.
+
+Examples include:
+
+- CampusActivated
+- CampusDecommissioned
+- BuildingActivated
+- BuildingDecommissioned
+- FloorActivated
+- FloorArchived
+- SpaceOperational
+- SpaceArchived
+
+Lifecycle Events are immutable business facts.
+
+---
+
+## 44A.182 Structural Events
+
+Structural Events communicate changes to the physical hierarchy.
+
+Examples include:
+
+- CampusCreated
+- BuildingCreated
+- FloorCreated
+- SpaceCreated
+- BuildingUpdated
+- FloorUpdated
+- SpaceUpdated
+- SpaceMoved *(future extension if relocation is supported)*
+
+Structural Events communicate authoritative infrastructure facts.
+
+---
+
+## 44A.183 Classification Events
+
+Classification Events describe changes in infrastructure metadata.
+
+Examples include:
+
+- InfrastructureClassificationChanged
+- RoomCapacityChanged
+- SpaceAreaUpdated
+- SpaceAccessibilityUpdated
+- SustainabilityProfileUpdated
+- SpaceHealthUpdated
+- SpaceCriticalityChanged
+
+These events notify consumers that canonical metadata has changed.
+
+---
+
+## 44A.184 Relationship Events
+
+Relationship Events communicate logical organization changes.
+
+Examples include:
+
+- AssignedToZone
+- RemovedFromZone
+- AssignedToCollection
+- RemovedFromCollection
+- AssignedToPortfolio
+- RemovedFromPortfolio
+
+Relationship Events never modify the physical hierarchy.
+
+---
+
+## 44A.185 Event Structure
+
+Every Domain Event contains a common envelope.
+
+```text
+Event ID
+
+Event Type
+
+Aggregate Type
+
+Aggregate Identifier
+
+Institution Identifier
+
+Tenant Identifier
+
+Occurred Timestamp
+
+Event Version
+
+Correlation Identifier
+
+Initiated By
+
+Payload
+```
+
+---
+
+## 44A.186 Event Payload Principles
+
+Event payloads shall contain only canonical business facts.
+
+Payloads shall not contain:
+
+- UI information
+- Calculated KPIs
+- Analytics
+- Temporary processing data
+- Consumer-specific projections
+
+Events remain implementation-independent.
+
+---
+
+## 44A.187 Event Versioning
+
+Every event shall be versioned.
+
+Example
+
+```text
+SpaceCreated
+
+Version 1
+```
+
+Future changes shall create new event versions without breaking existing consumers.
+
+Example
+
+```text
+SpaceCreated V1
+
+↓
+
+SpaceCreated V2
+```
+
+Older versions remain supported according to enterprise integration policy.
+
+---
+
+## 44A.188 Event Consumers
+
+| Consumer Domain | Event Usage |
+|-----------------|-------------|
+| Admissions | Campus & room availability |
+| Timetable | Classroom allocation |
+| Examination | Examination hall availability |
+| HR | Workplace locations |
+| Hostel | Hostel infrastructure |
+| Library | Branch infrastructure |
+| Maintenance | Maintenance scheduling |
+| Asset Management | Physical hierarchy |
+| Security | Access planning |
+| Transport | Pickup infrastructure |
+| Analytics | Infrastructure facts |
+| AI | Semantic interpretation |
+| Disaster Management | Recovery planning |
+| Notifications | Business notifications |
+
+---
+
+## 44A.189 Public Read Contracts
+
+Infrastructure exposes stable read models.
+
+Examples include:
+
+- Campus Summary
+- Building Summary
+- Floor Summary
+- Space Summary
+- Infrastructure Capacity Profile
+- Accessibility Profile
+- Sustainability Profile
+- Criticality Profile
+- Lifecycle Status
+- Operational Availability
+
+Consumers retrieve information through these contracts.
+
+---
+
+## 44A.190 Physical Campus Summary Contract
+
+Provides canonical Campus information.
+
+Fields include:
+
+- Campus Identifier
+- Campus Code
+- Campus Name
+- Institution Identifier
+- Lifecycle State
+- Operational Status
+- Address
+- Geo Coordinates
+
+Consumers shall not access Campus aggregates directly.
+
+---
+
+## 44A.191 Building Summary Contract
+
+Fields include:
+
+- Building Identifier
+- Building Code
+- Building Name
+- Campus Identifier
+- Building Type
+- Lifecycle
+- Operational Status
+
+---
+
+## 44A.192 Floor Summary Contract
+
+Fields include:
+
+- Floor Identifier
+- Floor Number
+- Floor Name
+- Parent Building
+- Operational Status
+
+---
+
+## 44A.193 Space Summary Contract
+
+Fields include:
+
+- Space Identifier
+- Space Code
+- Space Name
+- Space Type
+- Parent Floor
+- Capacity
+- Area
+- Operational Status
+- Lifecycle
+
+This is the most frequently consumed Infrastructure contract.
+
+---
+
+## 44A.194 Capacity Profile Contract
+
+Contains canonical capacity facts.
+
+Examples:
+
+- Seating Capacity
+- Standing Capacity
+- Maximum Occupancy
+- Operational Capacity
+
+Analytics derives utilization independently.
+
+---
+
+## 44A.195 Accessibility Profile Contract
+
+Contains accessibility capabilities.
+
+Examples:
+
+- Wheelchair Access
+- Lift Access
+- Braille Signage
+- Hearing Assistance
+
+Infrastructure exposes facts only.
+
+Compliance interpretation belongs elsewhere.
+
+---
+
+## 44A.196 Sustainability Profile Contract
+
+Contains sustainability capabilities.
+
+Examples:
+
+- Solar Installed
+- Rainwater Harvesting
+- LED Lighting
+- EV Charging
+
+Infrastructure does not expose sustainability KPIs.
+
+---
+
+## 44A.197 Query Services
+
+Infrastructure supports enterprise query services.
+
+Typical queries include:
+
+- Find Campus
+- Find Building
+- Find Floor
+- Find Space
+- Search by Capacity
+- Search by Classification
+- Search by Accessibility
+- Search by Zone
+- Search by Collection
+- Search by Portfolio
+- Search by Lifecycle
+
+Queries never expose aggregate internals.
+
+---
+
+## 44A.198 Consumer Responsibilities
+
+Consumers are responsible for:
+
+- Business Decisions
+- Scheduling
+- Allocations
+- Analytics
+- Reporting
+- AI Interpretation
+- Notifications
+
+Infrastructure remains responsible only for physical facts.
+
+---
+
+## 44A.199 Integration Constraints
+
+External consumers shall **not**:
+
+- Modify Infrastructure aggregates directly.
+- Depend on database schemas.
+- Assume event ordering across aggregates.
+- Infer undocumented business meaning.
+
+Consumers interact only through supported contracts and events.
+
+---
+
+## 44A.200 Integration Design Principles
+
+#### ICP-01
+
+Infrastructure publishes immutable business facts.
+
+---
+
+#### ICP-02
+
+Events describe completed business actions.
+
+---
+
+#### ICP-03
+
+Public contracts shield consumers from implementation changes.
+
+---
+
+#### ICP-04
+
+Consumers own business reactions.
+
+---
+
+#### ICP-05
+
+Infrastructure never embeds consumer-specific behaviour.
+
+---
+
+#### ICP-06
+
+Integration remains asynchronous wherever practical.
+
+---
+
+#### ICP-07
+
+Infrastructure remains the canonical master for physical infrastructure data.
+
+---
 
 ---
 
