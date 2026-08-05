@@ -10,7 +10,7 @@
 | Domain | J02 - Vendor & Supplier Management |
 | Architecture Level | Level 2 - Domain Workflow Architecture |
 | Parent Architecture | L2-J00 - Enterprise Resource Management Architecture & Governance |
-| Document Owner | Chetan |
+| Document Owner | Enterprise Resource Management — Vendor & Supplier |
 | Primary Aggregate | Supplier |
 | Canonical Owner | Vendor & Supplier Management |
 | Status | Draft |

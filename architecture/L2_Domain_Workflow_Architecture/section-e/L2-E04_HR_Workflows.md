@@ -20,7 +20,7 @@
 
 ---
 
-**Document Owner:** Varad  
+**Document Owner:** People & Workforce — HR  
 
 ## Document Metadata
 

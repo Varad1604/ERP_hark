@@ -8,7 +8,7 @@
 
 **Owner:** Examination Domain
 
-**Document Owner:** Devang
+**Document Owner:** Examinations — Policy & Configuration
 
 ---
 

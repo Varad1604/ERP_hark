@@ -29,7 +29,7 @@
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-D00 |
-| Document Owner | Pallav |
+| Document Owner | Academic Delivery |
 | Domain Section | Academic Delivery (Section D) |
 | Layer | L2 — Academic Operations |
 | Architecture Level | Enterprise Domain Review & Certification |

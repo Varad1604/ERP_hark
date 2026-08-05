@@ -5,7 +5,7 @@
 **Version:** 1.0  
 **Status:** Draft  
 **Owner:** Platform Architecture Team  
-**Document Owner:** Dhruv  
+**Document Owner:** Platform Foundation — Master Data  
 **Classification:** Core Platform Domain
 
 ---

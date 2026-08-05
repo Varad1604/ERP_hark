@@ -9,7 +9,7 @@
 **Classification:** Level 2 Domain Workflow Architecture
 **Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
 **Canonical Owner:** Purchase Order Management
-**Document Owner:** Chetan
+**Document Owner:** Enterprise Resource Management — Purchase Orders
 
 ---
 

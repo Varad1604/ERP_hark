@@ -29,11 +29,11 @@
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-A05 |
-| Document Owner | Dhruv |
+| Document Owner | Platform Foundation — Workflow Engine |
 | Document Name | Workflow Engine Workflows |
 | Layer | Level 2 – Core Platform Architecture |
 | Domain | Platform Workflow Engine |
-| Owner | Dhruv |
+| Owner | Platform Foundation — Workflow Engine |
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Workflows, L2-A04 Authorization and Policy Workflows |
 | Referenced By | All Business Domains (Admissions, Academic, Examination, Finance, HR, Library, Hostel, Transport, CRM, Analytics, Mobile, APIs, Dashboard, Reporting and Future Domains) |
 | Status | Draft |

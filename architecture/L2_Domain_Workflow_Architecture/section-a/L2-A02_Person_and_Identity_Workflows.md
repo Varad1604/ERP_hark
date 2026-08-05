@@ -27,12 +27,12 @@
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-A02 |
-| Document Owner | Dhruv |
+| Document Owner | Platform Foundation — Identity |
 | Domain | Platform Foundation |
 | Module | Person & Identity |
 | Architecture Level | Level 2 |
 | Document Type | Canonical Domain Workflow Specification |
-| Owner | Dhruv |
+| Owner | Platform Foundation — Identity |
 | Status | Draft |
 | Version | 1.0 |
 | Depends On | L2-A01 — Platform & Tenant Foundation |

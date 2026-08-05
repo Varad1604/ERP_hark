@@ -11,8 +11,8 @@ architecture-state: Frozen
 validation-level: Enterprise Architecture Review (V1–V10)
 confidence-level: Very High
 owner: Enterprise Architecture Team
-document_owner: Pallav
-document-owner: Pallav
+document_owner: Institution & Structure — Academic Calendar
+document-owner: Institution & Structure — Academic Calendar
 review-authority: Architecture Review Board
 repository-baseline: Current Repository Baseline
 last-updated: July 2026

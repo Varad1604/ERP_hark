@@ -16,7 +16,7 @@
 | Communication Pattern | Event-Driven Architecture (EDA) |
 | Application Pattern | CQRS |
 | Ownership Model | Canonical Domain Ownership |
-| Document Owner | Pallav |
+| Document Owner | Academic Delivery — Academic Monitoring |
 | Status | Draft |
 | Version | 1.0 |
 

@@ -24,7 +24,7 @@ Version: 1.0 (Draft)
 Architecture Level: L2 – Domain Workflow Architecture
 Section: C – Student Lifecycle
 Domain Owner: Student Lifecycle (Section C)
-Document Owner: Varad
+Document Owner: Student Lifecycle — Admissions
 Lead Architect Approval: Pending
 Status: Draft
 

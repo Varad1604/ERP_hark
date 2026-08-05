@@ -5,7 +5,7 @@
 **Status:** Draft
 **Version:** 1.0
 **Owner:** Section F Architect
-**Document Owner:** Chetan
+**Document Owner:** Finance
 **Depends On:** L2-A01 — Platform & Tenant Foundation, L2-A05 — Workflow Engine Workflows
 **Used By:** L2-F01 to L2-F14, Admissions, Student Lifecycle, Examination, HR, Procurement, Hostel, Library, Transport, Assets, Reporting
 

@@ -13,7 +13,7 @@
 | Parent Architecture | L2-J00 - Enterprise Resource Management Architecture & Governance |
 | Primary Aggregate | Asset |
 | Canonical Owner | Operational Asset Lifecycle Management |
-| Document Owner | Chetan |
+| Document Owner | Enterprise Resource Management — Asset Lifecycle |
 | Status | Draft |
 | Version | 1.1 |
 

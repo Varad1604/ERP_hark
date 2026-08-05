@@ -10,7 +10,7 @@
 | Architecture Level | Level 2 |
 | Document Type | Domain Workflow Architecture |
 | Bounded Context | Physical Verification, Audit & Reconciliation |
-| Document Owner | Chetan |
+| Document Owner | Enterprise Resource Management — Physical Verification |
 | Architectural Style | Domain-Driven Design (DDD), CQRS, Event-Driven Architecture |
 | Primary Aggregate | Inventory Audit |
 | Status | Draft |

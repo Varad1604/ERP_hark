@@ -4,7 +4,7 @@
 |----------|-------|
 | **Document ID** | L2-C06 |
 | **Document Title** | Guardian Workflows |
-| **Document Owner** | Varad |
+| **Document Owner** | Student Lifecycle — Guardian |
 | **Architecture Level** | Level 2 — Domain Architecture |
 | **Domain** | Student Information System (SIS) |
 | **Bounded Context** | Guardian Workflows |

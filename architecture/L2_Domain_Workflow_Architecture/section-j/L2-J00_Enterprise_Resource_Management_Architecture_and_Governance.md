@@ -8,7 +8,7 @@
 **Status:** Draft
 **Classification:** Level 2 Section Architecture
 **Owner:** Enterprise Resource Management
-**Document Owner:** Chetan
+**Document Owner:** Enterprise Resource Management
 
 ---
 

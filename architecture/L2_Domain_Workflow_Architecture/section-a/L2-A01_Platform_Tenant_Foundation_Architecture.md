@@ -5,8 +5,8 @@ level: Level 2 Architecture
 section: A - Platform Foundation
 version: 1.0.0
 status: Draft
-owner: Dhruv
-document_owner: Dhruv
+owner: Platform Foundation — Tenancy
+document_owner: Platform Foundation — Tenancy
 reviewers:
   - Platform Architecture Team
   - Enterprise Architecture Board
@@ -57,7 +57,7 @@ last_updated: YYYY-MM-DD
 | Architecture Level | Level 2 |
 | Domain | Platform Foundation |
 | Status | Draft |
-| Owner | Dhruv |
+| Owner | Platform Foundation — Tenancy |
 | Architecture Layer | Foundation |
 | Parent Architecture | Level 1 Platform Architecture |
 | Child Architectures | All remaining Level 2 Domains |

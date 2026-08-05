@@ -35,7 +35,7 @@
 | Status | Draft |
 | Version | 1.0.0 |
 | Owner | Finance Domain |
-| Document Owner | Chetan |
+| Document Owner | Finance — Financial Adjustments |
 | Depends On | L2-F00 Finance Foundation, L2-F01 Student Charge & Fee Management, L2-F02 Payment Management, L2-F03 Refund Management |
 | Consumed By | L2-F05 Accounting, L2-F09 Reporting, L2-F12 Analytics |
 

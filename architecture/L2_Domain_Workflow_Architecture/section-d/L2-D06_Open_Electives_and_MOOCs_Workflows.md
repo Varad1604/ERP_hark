@@ -1,6 +1,6 @@
 # L2-D06 — Open Electives & MOOCs Workflows
 
-**Document Owner:** Pallav  
+**Document Owner:** Academic Delivery — Electives & MOOCs  
 
 ---
 
@@ -33,9 +33,9 @@
 | Layer | L2 — Domain Workflow Architecture |
 | Architecture Level | Enterprise Domain Workflow |
 | Architecture Style | Domain Driven Design (DDD), CQRS, Event Driven Architecture (EDA) |
-| Primary Owner | Pallav |
+| Primary Owner | Academic Delivery — Electives & MOOCs |
 | Technical Owner | Academic ERP Team |
-| Canonical Owner | Pallav |
+| Canonical Owner | Academic Delivery — Electives & MOOCs |
 | Version | 1.0 |
 | Status | Draft |
 | Repository | SutraERP Enterprise Repository |

@@ -4,7 +4,7 @@
 |--------|-------|
 | Document ID | L2-C08 |
 | Document Name | Alumni Transition Workflows |
-| Document Owner | Varad |
+| Document Owner | Student Lifecycle — Alumni Transition |
 | Architecture Level | Level 2 — Bounded Context |
 | Domain | Student Lifecycle Domain |
 | Bounded Context | Alumni Transition |

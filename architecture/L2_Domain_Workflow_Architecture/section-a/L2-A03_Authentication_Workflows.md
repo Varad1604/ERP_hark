@@ -5,8 +5,8 @@ level: Level 2 Architecture
 section: A - Platform Foundation
 version: 1.0.0
 status: Draft
-owner: Dhruv
-document_owner: Dhruv
+owner: Platform Foundation — Authentication
+document_owner: Platform Foundation — Authentication
 reviewers:
   - Platform Architecture Team
   - Enterprise Architecture Board
@@ -56,7 +56,7 @@ last_updated: YYYY-MM-DD
 | Module | Authentication |
 | Status | Draft |
 | Version | 1.0.0 |
-| Owner | Dhruv |
+| Owner | Platform Foundation — Authentication |
 | Architecture Layer | Foundation |
 | Parent Architecture | L2-A02 — Person & Identity Workflows |
 | Child Architectures | L2-A04 Authorization & Policy Workflows, All Business Domains |

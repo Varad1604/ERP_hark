@@ -29,13 +29,13 @@
 | Field | Value |
 |--------|-------|
 | Document ID | L2-A08 |
-| Document Owner | Dhruv |
+| Document Owner | Platform Foundation — Module Registry |
 | Document Name | Module Registry & Configuration Workflows |
 | Domain | Platform Foundation |
 | Parent Domain | L2-A01 — Platform & Tenant Foundation |
 | Version | 1.0.0 |
 | Status | Draft |
-| Owner | Dhruv |
+| Owner | Platform Foundation — Module Registry |
 | Repository | SutraERP |
 | Classification | Canonical Level 2 Architecture |
 | Architecture Level | Level 2 |

@@ -2,7 +2,7 @@
 
 **Section:** I — Examination  
 **Status:** Draft  
-**Document Owner:** Devang
+**Document Owner:** Examinations — Marks Collection & Evaluation
 
 ---
 

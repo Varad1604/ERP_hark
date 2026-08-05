@@ -27,7 +27,7 @@
 | Attribute | Value |
 |---|---|
 | Document Name | L2-E03 — Faculty Workforce Workflows |
-| Document Owner | Varad |
+| Document Owner | People & Workforce — Faculty Workforce |
 | Domain Code | E03 |
 | Domain Name | Faculty Workforce |
 | Architecture Layer | L2 — Domain Workflow Architecture |

@@ -29,8 +29,9 @@
   -----------------------------------------------------------------------
   Attribute                           Value
   ----------------------------------- -----------------------------------
-  Document Name                       L2-E05 --- Leave Management
-  Document Owner                      Varad
+  Document Name                       L2-E05 --- Leave Management
+
+  Document Owner                      People & Workforce — Leave Management
                                       Workflows
 
   Document Layer                      Level 2 --- Domain Workflow

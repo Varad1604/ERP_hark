@@ -29,7 +29,7 @@
 | Attribute | Value |
 |------------|-------|
 | **Document ID** | L2-I13 |
-| **Document Owner** | Devang |
+| **Document Owner** | Examinations — Academic Completion & CGPA |
 | **Document Name** | Academic Completion, CGPA & Completion Evidence Workflows |
 | **Architecture Level** | Level 2 – Domain Workflow Architecture |
 | **Domain Code** | I13 |

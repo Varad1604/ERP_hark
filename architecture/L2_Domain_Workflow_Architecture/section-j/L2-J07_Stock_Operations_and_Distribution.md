@@ -13,7 +13,7 @@
 | Parent Architecture | L2-J00 - Enterprise Resource Management Architecture & Governance |
 | Primary Aggregate | StockMovement |
 | Canonical Owner | Stock Operations & Distribution |
-| Document Owner | Chetan |
+| Document Owner | Enterprise Resource Management — Stock Operations |
 | Status | Draft |
 | Version | 1.1 |
 

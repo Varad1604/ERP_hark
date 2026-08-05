@@ -34,7 +34,7 @@
 | Architecture Level | Level 2 |
 | Document Type | Canonical Domain Workflow Specification |
 | Owner | Finance Architecture Team |
-| Document Owner | Chetan |
+| Document Owner | Finance — Accounting & General Ledger |
 | Status | Draft |
 | Version | 1.0 |
 | Depends On | L2-F00 — Finance Foundation |

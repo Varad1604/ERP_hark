@@ -24,7 +24,7 @@ Purpose:
 - dependency sequencing
 - final L2 review planning
 
-Status: [ ] In Progress
+Status: [Draft]
 
 ---
 
@@ -531,7 +531,7 @@ Purpose:
 - contradiction removal
 - L2 lock readiness
 
-Status: [ ]
+Status: [Draft]
 
 ---
 

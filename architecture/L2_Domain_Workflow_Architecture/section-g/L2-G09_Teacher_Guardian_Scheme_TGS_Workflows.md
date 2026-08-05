@@ -6,7 +6,7 @@
 **Domain Name:** Teacher Guardian Scheme (TGS)  
 **Architecture Level:** Enterprise Business Workflow  
 **Status:** Draft  
-**Document Owner:** Devang
+**Document Owner:** Campus Operations — Teacher Guardian Scheme
 
 **Upstream Dependencies**
 

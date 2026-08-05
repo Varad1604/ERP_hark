@@ -10,7 +10,7 @@
 | Architecture Level | Level 2 |
 | Document Type | Domain Workflow Architecture |
 | Bounded Context | Disposal, Scrap & Write-Off |
-| Document Owner | Chetan |
+| Document Owner | Enterprise Resource Management — Disposal & Write-Off |
 | Architectural Style | Domain-Driven Design (DDD), CQRS, Event-Driven Architecture |
 | Primary Aggregate | Disposal & Write-off Case |
 | Status | Draft |

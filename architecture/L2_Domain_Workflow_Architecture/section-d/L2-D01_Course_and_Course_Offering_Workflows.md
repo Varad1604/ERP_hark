@@ -6,7 +6,7 @@
 **Document ID:** L2-D01  
 **Version:** 1.0  
 **Status:** Draft  
-**Document Owner:** Pallav  
+**Document Owner:** Academic Delivery — Course & Offering  
 **Classification:** Level 2 Domain Architecture  
 **Owner:** Academic Operations Domain  
 **Dependencies:** Section A, Section B, Section C

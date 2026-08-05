@@ -4,7 +4,7 @@
 |----------|-------|
 | **Document ID** | L2-E01 |
 | **Document Title** | Workforce & Engagement Workflows |
-| **Document Owner** | Varad |
+| **Document Owner** | People & Workforce — Workforce & Engagement |
 | **Architecture Level** | Level 2 — Domain Workflow Architecture |
 | **Domain** | Workforce Management System (WMS) |
 | **Bounded Context** | Workforce & Engagement |

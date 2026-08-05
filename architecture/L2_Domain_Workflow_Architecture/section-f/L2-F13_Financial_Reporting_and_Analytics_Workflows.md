@@ -34,7 +34,7 @@
 | Domain | Finance |
 | Module | Financial Reporting & Analytics |
 | Status | Draft |
-| Document Owner | Chetan |
+| Document Owner | Finance — Reporting & Analytics |
 | Version | 1.0.0 |
 | Owner | Finance Architecture Team |
 | Parent Architecture | L2-F00 — Finance Domain Model & Foundation |

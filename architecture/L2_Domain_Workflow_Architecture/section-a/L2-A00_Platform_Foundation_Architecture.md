@@ -5,7 +5,7 @@
 **Domain:** Enterprise Platform Architecture  
 **Status:** Draft  
 **Owner:** Enterprise Architecture Board  
-**Document Owner:** Dhruv  
+**Document Owner:** Platform Foundation  
 **Primary Audience:** Enterprise Architects, Domain Architects, Platform Architects, Technical Governance Teams, Solution Architects, Engineering Leadership
 
 ---

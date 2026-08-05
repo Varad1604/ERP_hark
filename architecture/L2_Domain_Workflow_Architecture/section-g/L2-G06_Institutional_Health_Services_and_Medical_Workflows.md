@@ -8,7 +8,7 @@
 **Status:** Draft  
 **Classification:** Level 2 Domain Architecture  
 **Owner:** Campus Operations Domain  
-**Document Owner:** Devang
+**Document Owner:** Campus Operations — Health Services
 
 **Upstream Dependencies**
 

@@ -27,11 +27,11 @@
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-A06 |
-| Document Owner | Dhruv |
+| Document Owner | Platform Foundation — Event Infrastructure |
 | Document Name | Event Infrastructure Workflows |
 | Layer | Level 2 – Core Platform Architecture |
 | Domain | Platform Event Infrastructure |
-| Owner | Dhruv |
+| Owner | Platform Foundation — Event Infrastructure |
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Workflows, L2-A04 Authorization & Policy Workflows, L2-A05 Workflow Engine Workflows |
 | Referenced By | All Business Domains (Admissions, Academic, Curriculum, Examination, Finance, HR, Library, Hostel, Transport, Procurement, Inventory, CRM, Analytics, Notifications, Reporting, APIs, Mobile Applications and Future Domains) |
 | Status | Draft |

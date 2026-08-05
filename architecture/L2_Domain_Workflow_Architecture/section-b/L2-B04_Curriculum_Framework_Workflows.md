@@ -28,7 +28,7 @@
 |------------|-------|
 | **Document ID** | L2-B04 |
 | **Document Name** | Curriculum Framework Workflows |
-| **Document Owner** | Pallav |
+| **Document Owner** | Institution & Structure — Curriculum Framework |
 | **Architecture Level** | Level 2 – Domain Architecture |
 | **Domain Code** | B04 |
 | **Domain Category** | Foundation Domain |

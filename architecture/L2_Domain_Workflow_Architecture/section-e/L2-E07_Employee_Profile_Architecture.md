@@ -2,7 +2,7 @@
 
 **Document Version:** 1.0  
 **Status:** Draft  
-**Document Owner:** Varad  
+**Document Owner:** People & Workforce — Employee Profile  
 **Classification:** Enterprise Architecture  
 **Bounded Context:** Employee Profile  
 **Parent Domain:** Section E — People & Workforce  

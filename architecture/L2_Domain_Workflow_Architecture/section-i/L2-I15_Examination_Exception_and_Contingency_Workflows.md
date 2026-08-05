@@ -33,7 +33,7 @@
 | Domain | Examination Domain |
 | Architecture Level | L2 – Canonical Domain Workflow |
 | Owner | Examination Domain |
-| Document Owner | Devang |
+| Document Owner | Examinations — Exception & Contingency |
 | Repository | SutraERP Enterprise Architecture Repository |
 | Status | Draft |
 | Depends On | L1 Business Domain Architecture, L2-A01–A08, L2-B01–B05, L2-I01–L2-I14 |

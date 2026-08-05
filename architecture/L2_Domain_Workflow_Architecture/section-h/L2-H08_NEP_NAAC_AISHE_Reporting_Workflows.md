@@ -12,7 +12,7 @@
 | **Supporting Aggregates** | Validation Result, Compliance Evidence Mapping, Submission Record |
 | **Communication Pattern** | Commands, Queries, Domain Events |
 | **Canonical Owner** | Regulatory Reporting & Compliance Domain |
-| **Document Owner** | Dhruv |
+| **Document Owner** | Institutional Intelligence — Statutory Reporting |
 | **Status** | Draft |
 | **Version** | 1.0 |
 | **Repository** | SutraERP Canonical Enterprise Repository |

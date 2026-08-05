@@ -8,7 +8,7 @@
 
 **Owner:** Student Lifecycle Domain
 
-**Document Owner:** Varad
+**Document Owner:** Student Lifecycle
 
 ---
 

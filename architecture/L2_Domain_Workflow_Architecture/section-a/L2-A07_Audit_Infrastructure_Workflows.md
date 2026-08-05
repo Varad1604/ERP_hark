@@ -27,11 +27,11 @@
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-A07 |
-| Document Owner | Dhruv |
+| Document Owner | Platform Foundation — Audit |
 | Document Name | Audit Infrastructure Workflows |
 | Layer | Level 2 – Core Platform Architecture |
 | Domain | Platform Audit Infrastructure |
-| Owner | Dhruv |
+| Owner | Platform Foundation — Audit |
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Workflows, L2-A04 Authorization & Policy Workflows, L2-A05 Workflow Engine Workflows, L2-A06 Event Infrastructure Workflows |
 | Referenced By | All Business Domains (Admissions, Academic, Curriculum, Examination, Finance, HR, Library, Hostel, Transport, Procurement, Inventory, CRM, Analytics, Notifications, Reporting, APIs, Mobile Applications and Future Domains) |
 | Status | Draft |

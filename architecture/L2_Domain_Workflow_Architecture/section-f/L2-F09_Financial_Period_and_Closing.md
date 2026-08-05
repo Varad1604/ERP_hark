@@ -8,7 +8,7 @@
 | Status | Draft |
 | Version | 1.0 |
 | Canonical Owner | Finance Architecture |
-| Document Owner | Chetan |
+| Document Owner | Finance — Period & Closing |
 | Last Updated | TBD |
 
 ---

@@ -4,7 +4,7 @@
 |----------|-------|
 | **Document ID** | L2-E02 |
 | **Document Title** | Position & Assignment Workflows |
-| **Document Owner** | Varad |
+| **Document Owner** | People & Workforce — Position & Assignment |
 | **Architecture Level** | Level 2 — Domain Architecture |
 | **Domain** | Workforce & Engagement |
 | **Bounded Context** | Position & Assignment Management |

@@ -4,7 +4,7 @@
 **Architecture Level:** Level 2 (Domain Architecture)  
 **Status:** Draft  
 **Owner:** Section C Architect  
-**Document Owner:** Varad  
+**Document Owner:** Student Lifecycle — Activation  
 
 **Depends On:**
 - L2-A01 — Platform Foundation

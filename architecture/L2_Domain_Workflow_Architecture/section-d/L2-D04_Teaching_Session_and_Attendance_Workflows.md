@@ -6,10 +6,10 @@
 **Parent Architecture:** SutraERP Level-1 Enterprise Architecture  
 **Architecture Style:** Domain-Driven Design (DDD), Event-Driven Architecture (EDA), Clean Architecture, API-First  
 **Status:** Draft  
-**Document Owner:** Pallav  
+**Document Owner:** Academic Delivery — Teaching Session & Attendance  
 **Version:** 1.0  
 **Classification:** Canonical Enterprise Architecture  
-**Owner:** Pallav  
+**Owner:** Academic Delivery — Teaching Session & Attendance  
 **Depends On:** D01 — Course & Course Offering, D02 — Faculty Academic Assignment, D03 — Timetable  
 **Consumed By:** D05 — Assessment, H02 — Notification, Analytics, Reporting, AI Advisory Services
 

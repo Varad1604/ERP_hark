@@ -8,7 +8,7 @@
 **Domain:** Organization Domain  
 **Project:** SutraERP  
 **Status:** Draft  
-**Document Owner:** Pallav
+**Document Owner:** Institution & Structure — Organisation
 
 ---
 

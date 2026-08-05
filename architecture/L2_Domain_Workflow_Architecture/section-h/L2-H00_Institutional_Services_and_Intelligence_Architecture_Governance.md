@@ -2,7 +2,7 @@
 
 Version: 2.0
 Status: Draft
-Document Owner: Dhruv
+Document Owner: Institutional Services & Intelligence
 Classification: Enterprise Architecture Governance
 Parent Document:
 - SutraERP Level-1 Enterprise Architecture

@@ -2,7 +2,7 @@
 **Section:** B — Institution & Structure  
 **Architecture Level:** Level 2 (Architecture Review & Certification)  
 **Status:** Draft  
-**Document Owner:** Pallav  
+**Document Owner:** Institution & Structure  
 **Review Board:** Chief Enterprise Architecture Review Board  
 **Repository Version:** v1.0  
 **Date of Certification:** July 25, 2026  

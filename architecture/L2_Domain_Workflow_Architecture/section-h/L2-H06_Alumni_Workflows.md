@@ -7,7 +7,7 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Alumni Domain Team  
-**Document Owner:** Dhruv  
+**Document Owner:** Institutional Services — Alumni Engagement  
 **Canonical Owner:** H06 – Alumni **Engagement** (Alumni Profile and engagement aggregates)  
 **Not Owned:** Alumni Persona — the institutional identity fact, owned by Student Lifecycle (L2-C08) per locked L1
 

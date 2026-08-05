@@ -8,7 +8,7 @@
 **Status:** Draft  
 **Classification:** Level 2 Domain Architecture  
 **Owner:** Campus Operations Domain  
-**Document Owner:** Devang  
+**Document Owner:** Campus Operations — Infrastructure Management  
 **Dependencies:** Section A – Platform Foundation, Section B – Institution & Structure (Institutional Campus Governance Reference), Section E – People & Workforce
 
 ---

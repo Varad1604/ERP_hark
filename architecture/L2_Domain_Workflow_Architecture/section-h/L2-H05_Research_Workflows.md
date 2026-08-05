@@ -8,7 +8,7 @@
 **Version:** 1.0  
 **Status:** Draft  
 **Owner:** Enterprise Architecture Team  
-**Document Owner:** Dhruv  
+**Document Owner:** Institutional Services — Research  
 
 ---
 

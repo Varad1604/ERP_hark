@@ -2,7 +2,7 @@
 
 **Section:** H — Institutional Services & Intelligence  
 **Status:** Draft  
-**Document Owner:** Dhruv
+**Document Owner:** Institutional Services — Directory & Search
 
 ---
 

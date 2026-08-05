@@ -9,7 +9,7 @@
 | Parent Architecture | SutraERP Level 1 Enterprise Architecture |
 | Architecture Style | Domain-Driven Design (DDD), CQRS, Event-Driven Architecture (EDA), API-First Architecture, Hexagonal Architecture |
 | Canonical Owner | External Education Integration Domain |
-| Document Owner | Dhruv |
+| Document Owner | Institutional Services — External Education Integration |
 | Primary Aggregate | External Integration |
 | Supporting Aggregates | External Provider, Integration Connector, Integration Configuration, External Enrollment, Learning Synchronization, Credit Transfer Request, Certificate Verification, Synchronization Job |
 | Communication Pattern | Commands, Queries, Domain Events, Integration Events, Webhooks |

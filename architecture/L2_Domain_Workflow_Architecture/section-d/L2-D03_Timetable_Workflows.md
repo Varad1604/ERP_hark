@@ -5,9 +5,9 @@
 **Domain Name:** Timetable Workflows  
 **Architecture Level:** L2 — Domain Workflow Specification  
 **Status:** Draft  
-**Document Owner:** Pallav  
+**Document Owner:** Academic Delivery — Timetable  
 **Version:** 1.0  
-**Owner:** Pallav  
+**Owner:** Academic Delivery — Timetable  
 **Dependencies:** B01, B02, B03, B04, B05, D01, D02, Section G (Master Data), Section H (Cross-Cutting Services), Section I (Enterprise Governance)
 
 ---

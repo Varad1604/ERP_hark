@@ -3,7 +3,7 @@
 
 **Section:** D — Academic Delivery  
 **Status:** Draft  
-**Document Owner:** Pallav
+**Document Owner:** Academic Delivery — Faculty Assignment
 
 ---
 

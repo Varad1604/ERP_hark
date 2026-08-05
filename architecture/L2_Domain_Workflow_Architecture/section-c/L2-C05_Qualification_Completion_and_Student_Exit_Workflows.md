@@ -12,7 +12,7 @@
 
 **Owner:** Student Lifecycle Domain Team
 
-**Document Owner:** Varad
+**Document Owner:** Student Lifecycle — Qualification Completion & Exit
 
 ---
 
