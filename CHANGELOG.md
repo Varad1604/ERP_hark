@@ -41,6 +41,27 @@ Remediation round 1 against `generated/reviews/integrity-2026-08-03-repository-w
   passage in section 13 was restated technology-independently, and section 25's
   stray H1 asserting L1 content inside L0 was demoted and marked historical.
 
+- INT-001: **Architecture hierarchy made single-valued.** L0 Section 23 gave the levels
+  different meanings from Section 0, calling L4 "Individual Module Workflows" and L5
+  "Role / Position-Based Workflows". Section 0 confirmed canonical by the repository
+  owner; Section 23 now reproduces it verbatim. L2-C02 carried a separate non-canonical
+  five-level scheme ending at "L4 Technical Design & Implementation" and was corrected
+  to the canonical seven levels.
+- INT-004: **L1 dependency order replaced.** L1 described a single serial chain ending
+  with Communication and then the Workflow Engine. The Workflow Engine is L2-A05, inside
+  foundational Section A, so it cannot be terminal; the chain also placed Examination
+  before Finance, reversing the canonical matrix and creating a false cycle. Per the
+  owner's decision, DEPENDENCY_MAP.md governs. L1 now carries its directed matrix and a
+  locked rule that Section A is foundational.
+- INT-035: **Dependency classes added to DEPENDENCY_MAP.md** (new Section 7A). The register
+  recorded only foundational dependencies, so runtime integrations were invisible.
+  Foundational, runtime-contract, event-consumption and read-model classes are now defined,
+  with a register recording F14 to Section J, Section C to Section I, and the J07 stock
+  movement events. Only foundational dependencies constrain build order.
+- INT-009, INT-010, INT-011, INT-014: ownership boundaries reconciled in I13, C08 and J06.
+  Fixing J06's stock ownership removed the InventoryStockIssued/InventoryStockReturned
+  names entirely rather than renaming them.
+
 ### Removed
 - INT-003: Deleted `generated/html/` (untracked, gitignored). To be regenerated with
   `tools/convert_all.js` after remediation completes.

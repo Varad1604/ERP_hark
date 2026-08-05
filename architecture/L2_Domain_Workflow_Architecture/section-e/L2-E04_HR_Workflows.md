@@ -574,7 +574,7 @@ Examples:
 ``` text
 EmployeeLeaveApproved
 
-LeaveCancelled
+EmployeeLeaveCancelled
 ```
 
 ------------------------------------------------------------------------
@@ -2751,8 +2751,8 @@ or close HR cases and for compliance reporting. HR shall not publish any of them
   ---------------- --------------------------- -----------
   EmployeeLeaveRequested   Leave request submitted     L2-E05
   EmployeeLeaveApproved    Leave approved              L2-E05
-  LeaveRejected    Leave rejected              L2-E05
-  LeaveCancelled   Leave cancelled             L2-E05
+  EmployeeLeaveRejected    Leave rejected              L2-E05
+  EmployeeLeaveCancelled   Leave cancelled             L2-E05
 
 ------------------------------------------------------------------------
 
@@ -5728,7 +5728,7 @@ The document SHALL remain synchronized with:
   Event Category       Examples
   -------------------- ------------------------------------------------
   Employee Lifecycle   EmployeeOnboardingCompleted, EmployeeSeparated
-  Leave                EmployeeLeaveApproved, LeaveCancelled
+  Leave                EmployeeLeaveApproved, EmployeeLeaveCancelled
   Employment Change    PromotionApproved, EmployeeTransferred
   Certificates         CertificateGenerated
   HR Cases             HRCaseResolved

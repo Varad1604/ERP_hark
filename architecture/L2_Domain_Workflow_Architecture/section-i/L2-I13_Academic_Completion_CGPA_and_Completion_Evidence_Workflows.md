@@ -329,12 +329,20 @@ Institution-specific regulations shall influence workflow behaviour without modi
 
 ## Principle 5 — Canonical Ownership
 
-Academic Completion owns:
+Academic Completion owns the **examination-derived evidence** behind completion,
+and nothing beyond it:
 
-- Completion Verification
-- Completion Eligibility
-- Degree Recommendation
-- Completion Evidence Approval
+- Completion Verification --- confirming examination outcomes are complete and official
+- Completion Eligibility --- evaluating whether examination evidence satisfies programme
+  requirements. This is an *evidentiary* finding, not an institutional decision.
+- Degree Recommendation --- a recommendation only, never an award
+- Completion Evidence Approval --- approving the evidence package for publication
+
+Each capability terminates at the publication of evidence. None of them authorises,
+confers or records a qualification. `L2-C05 --- Qualification Completion & Student Exit
+Workflows` alone decides completion eligibility as an institutional matter, authorises
+the qualification, and closes the student relationship. Where this domain's evidentiary
+finding and C05's institutional decision differ, C05 governs.
 
 It does not own upstream examination processing.
 

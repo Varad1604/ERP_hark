@@ -1604,19 +1604,29 @@ Reporting
 
 ## 23. Workflow Design Levels
 
-The agreed workflow design process is:
+> **Corrected 2026-08-05 under integrity finding INT-001.** This section
+> previously gave the levels different meanings from Section 0 — for example it
+> called L4 "Individual Module Workflows" and L5 "Role / Position-Based
+> Workflows". Section 0 is canonical, and its definitions are reproduced verbatim
+> below. Where any document disagrees with Section 0 about what a level means,
+> Section 0 governs.
+
+The workflow design process follows the canonical hierarchy:
 
 ``` text
-LEVEL 0
-SutraERP Institutional Operating Model
+LEVEL 0 — Business Vision
+Why SutraERP exists: strategic intent, institutional operating model,
+architectural context and constraints.
 
-↓ LEVEL 1
+↓ LEVEL 1 — Business Domain Architecture
 
-Complete Institute Lifecycle
+The canonical business domains, domain boundaries and ownership across the
+complete institute lifecycle.
 
-↓ LEVEL 2
+↓ LEVEL 2 — Domain Workflow Architecture
 
-Domain Workflows
+Workflows, lifecycles, rules and dependencies within an individual business
+domain:
 - Platform
 - Student
 - Academic
@@ -1626,10 +1636,10 @@ Domain Workflows
 - Campus Operations
 - Governance
 
-↓ LEVEL 3
+↓ LEVEL 3 — Business Scenario Architecture
 
-Business Scenario Architecture
-Examples:
+Independent end-to-end business scenarios that may draw on one or many L2
+domains. Examples:
 Admission → Student → Finance → Documents
 Attendance → Eligibility → Examination
 HR → Payroll → Accounts
@@ -1639,17 +1649,20 @@ Infrastructure → Facilities
 Hostel → Finance
 Transport → Finance
 
-↓ LEVEL 4
+↓ LEVEL 4 — System Behavior Specification
 
-Individual Module Workflows
+Expected system behaviour for approved business scenarios, without implementation
+design.
 
-↓ LEVEL 5
+↓ LEVEL 5 — Solution Architecture
 
-Role / Position-Based Workflows
+The engineering solution architecture needed to implement L4 behaviour, without
+changing business rules.
 
-↓ LEVEL 6
+↓ LEVEL 6 — UI / UX Architecture
 
-Screen + API + Contract + Event + State Workflow
+User interaction, navigation, screens and user journeys derived from L5, without
+owning business logic.
 ```
 
 At L6, UI / UX specifications should contain:

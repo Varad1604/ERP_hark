@@ -12793,13 +12793,21 @@ The Student Lifecycle Domain Architecture shall be interpreted together with the
 
 | Architecture Level | Purpose |
 |--------------------|----------------------------------------------|
-| L0 | Enterprise Vision & Capability Map |
-| L1 | Platform Architecture |
-| L2 | Business Domain Architecture |
-| L3 | Solution Design |
-| L4 | Technical Design & Implementation |
+| L0 | Business Vision |
+| L1 | Business Domain Architecture |
+| L2 | Domain Workflow Architecture |
+| L3 | Business Scenario Architecture |
+| L4 | System Behavior Specification |
+| L5 | Solution Architecture |
+| L6 | UI / UX Architecture |
 
-Implementation teams shall treat this document as the authoritative source for all L3 and L4 design activities related to the Student Lifecycle Domain.
+Level definitions are canonical and taken verbatim from Section 0 of
+`architecture/L0_Business_Vision/SutraERP_Architecture_Workflow_Context_Baseline.md`
+(corrected 2026-08-05 under integrity finding INT-001; this table previously used a
+non-canonical five-level scheme that ended at "L4 Technical Design & Implementation").
+
+This document is the authoritative Level 2 source for the Student Lifecycle Domain.
+Downstream L3 and L4 work shall trace to it without redefining business ownership.
 
 ---
 

@@ -2,7 +2,7 @@
 
 **Version:** 2.1
 **Status:** LOCKED
-**Last Amended:** 2026-08-04 — Section 25 replaced: obsolete two-team ownership model removed in favour of Section-based ownership per TEAM_ASSIGNMENTS.md (INT-003); StudentContext gate corrected to the five terminal states and Suspended added (INT-007); Tenant lifecycle expanded to match L2-A01 (INT-006)
+**Last Amended:** 2026-08-04 — Section 25 replaced: obsolete two-team ownership model removed in favour of Section-based ownership per TEAM_ASSIGNMENTS.md (INT-003); StudentContext gate corrected to the five terminal states and Suspended added (INT-007); Tenant lifecycle expanded to match L2-A01 (INT-006); Level 2 Dependency Order replaced with the canonical directed matrix from DEPENDENCY_MAP.md (INT-004)
 **Previously Amended:** 2026-08-03 — Institute lifecycle extended (INT-008); Campus ownership split into Institutional vs Physical (INT-001); residual Graduation terminology replaced by Qualification Completion (INT-021/INT-033)
 **Scope:** Canonical Institutional Lifecycle
 **Purpose:** Define the complete institutional business architecture, ownership boundaries, lifecycle rules, and multi-domain responsibilities before Level 2 domain design.
@@ -3131,35 +3131,68 @@ No Level 2 workflow may violate a locked decision defined in this document.
 
 ## Level 2 Dependency Order
 
+> **Corrected 2026-08-05 under integrity finding INT-004.** This section previously
+> described a single serial chain that ended with Communication and then the Workflow
+> Engine. That was wrong in two ways: the Workflow Engine is `L2-A05`, inside Section A,
+> which is foundational and therefore upstream of everything; and the chain placed
+> Examination before Finance, the reverse of the canonical matrix. `DEPENDENCY_MAP.md`
+> is the repository's declared foundational dependency register and governs. The
+> directed matrix below is reproduced from it verbatim.
+
+Dependencies form a **directed graph, not a queue.** A section may be built once every
+section it depends on exists.
+
+| Section | Foundational Depends On |
+|----------|-------------------------|
+| Section A - Platform Foundation | L0 |
+| Section B - Institution & Structure | Section A |
+| Section C - Student Lifecycle | Sections A, B |
+| Section D - Academic Delivery | Sections A, B, C, E, G |
+| Section E - People & Workforce | Sections A, B |
+| Section F - Finance | Sections A, B, C |
+| Section G - Campus Operations | Sections A, B, E |
+| Section H - Institutional Services & Intelligence | All Sections |
+| Section I - Examination | Sections C, D, F |
+| Section J - Enterprise Resource Management | Sections A, B, C, D, E, F, G, I |
+
 ```mermaid
 flowchart TD
 
-L1["Level 1 Architecture"]
+L0["L0 Business Vision"] --> A["A - Platform Foundation<br/>(incl. Workflow Engine A05)"]
 
--->A["Platform & Identity"]
-
--->B["Institution & Organisation"]
-
--->C["Academic Structure"]
-
--->D["Academic Calendar"]
-
--->E["Admissions"]
-
--->F["Student Lifecycle"]
-
--->G["Academics"]
-
--->H["Examination"]
-
--->I["Finance"]
-
--->J["Campus Operations"]
-
--->K["Communication"]
-
--->L["Workflow Engine"]
+A --> B["B - Institution & Structure"]
+A --> C["C - Student Lifecycle"]
+A --> E["E - People & Workforce"]
+B --> C
+B --> E
+B --> F["F - Finance"]
+C --> F
+A --> G["G - Campus Operations"]
+B --> G
+E --> G
+C --> D["D - Academic Delivery"]
+E --> D
+G --> D
+C --> I["I - Examination"]
+D --> I
+F --> I
+I --> J["J - Enterprise Resource Management"]
+F --> J
+G --> J
+D --> J
+J --> H["H - Institutional Services & Intelligence"]
+I --> H
 ```
+
+**Locked Rule**
+
+Section A is foundational. Every other section depends on it, directly or transitively.
+The Workflow Engine is part of Section A and is therefore available before any domain
+that requires approvals, not after them.
+
+Runtime event feedback does not reverse a foundational dependency. Student Lifecycle may
+consume published examination results without Examination becoming upstream of Section C.
+Dependency classes are defined in `DEPENDENCY_MAP.md`.
 
 ---
 

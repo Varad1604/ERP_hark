@@ -1292,7 +1292,7 @@ Request moves to approved or rejected state.
 
 ``` text
 EmployeeLeaveApproved
-LeaveRejected
+EmployeeLeaveRejected
 ```
 
 ------------------------------------------------------------------------
@@ -1333,8 +1333,8 @@ Scheduled accrual event or policy-defined trigger.
 ## Domain Events
 
 ``` text
-LeaveAccrualCompleted
-LeaveBalanceUpdated
+EmployeeLeaveAccrualCompleted
+EmployeeLeaveBalanceUpdated
 ```
 
 ------------------------------------------------------------------------
@@ -1370,7 +1370,7 @@ Approved leave reaches consumption date.
 
 ``` text
 LeaveConsumed
-LeaveBalanceUpdated
+EmployeeLeaveBalanceUpdated
 ```
 
 ------------------------------------------------------------------------
@@ -1407,8 +1407,8 @@ Employee or authorized user requests cancellation.
 ## Domain Events
 
 ``` text
-LeaveCancelled
-LeaveBalanceUpdated
+EmployeeLeaveCancelled
+EmployeeLeaveBalanceUpdated
 ```
 
 ------------------------------------------------------------------------
@@ -1452,7 +1452,7 @@ All corrections require ledger transactions.
 
 ``` text
 LeaveAdjusted
-LeaveBalanceUpdated
+EmployeeLeaveBalanceUpdated
 ```
 
 ------------------------------------------------------------------------
@@ -1590,7 +1590,7 @@ New policy version submitted.
 ## Domain Events
 
 ``` text
-LeavePolicyActivated
+EmployeeLeavePolicyActivated
 ```
 
 ------------------------------------------------------------------------
@@ -2061,7 +2061,7 @@ Consumers:
 
 ------------------------------------------------------------------------
 
-## LeaveRejected
+## EmployeeLeaveRejected
 
 ### Purpose
 
@@ -2074,7 +2074,7 @@ Consumers:
 
 ------------------------------------------------------------------------
 
-## LeaveCancelled
+## EmployeeLeaveCancelled
 
 ### Purpose
 
@@ -2088,7 +2088,7 @@ Consumers:
 
 ------------------------------------------------------------------------
 
-## LeaveBalanceUpdated
+## EmployeeLeaveBalanceUpdated
 
 ### Purpose
 
@@ -2107,7 +2107,7 @@ Consumers:
 
 ------------------------------------------------------------------------
 
-## LeaveAccrualCompleted
+## EmployeeLeaveAccrualCompleted
 
 ### Purpose
 
@@ -2120,7 +2120,7 @@ Consumers:
 
 ------------------------------------------------------------------------
 
-## LeavePolicyActivated
+## EmployeeLeavePolicyActivated
 
 ### Purpose
 
@@ -2327,7 +2327,7 @@ Consumes:
 ``` text
 EmployeeLeaveApproved
 
-LeaveCancelled
+EmployeeLeaveCancelled
 ```
 
 Provides:
@@ -4412,11 +4412,11 @@ Examples:
 ``` text
 EmployeeLeaveApproved
 
-LeaveCancelled
+EmployeeLeaveCancelled
 
-LeaveBalanceUpdated
+EmployeeLeaveBalanceUpdated
 
-LeaveAccrualCompleted
+EmployeeLeaveAccrualCompleted
 ```
 
 ## Consequences
@@ -4904,9 +4904,9 @@ Examples:
 ``` text
 EmployeeLeaveApproved
 
-LeaveCancelled
+EmployeeLeaveCancelled
 
-LeaveBalanceUpdated
+EmployeeLeaveBalanceUpdated
 ```
 
 Events communicate facts, not commands.
@@ -5469,11 +5469,11 @@ Policy Activation
   ----------------------- ------------------------- ------------------------------
   EmployeeLeaveRequested          Leave Request Aggregate   Request submitted
   EmployeeLeaveApproved           Leave Request Aggregate   Approval completed
-  LeaveRejected           Leave Request Aggregate   Approval denied
-  LeaveCancelled          Leave Request Aggregate   Leave cancelled
-  LeaveBalanceUpdated     Leave Ledger              Balance changed
-  LeaveAccrualCompleted   Accrual Process           Accrual completed
-  LeavePolicyActivated    Policy Aggregate          Policy activated
+  EmployeeLeaveRejected           Leave Request Aggregate   Approval denied
+  EmployeeLeaveCancelled          Leave Request Aggregate   Leave cancelled
+  EmployeeLeaveBalanceUpdated     Leave Ledger              Balance changed
+  EmployeeLeaveAccrualCompleted   Accrual Process           Accrual completed
+  EmployeeLeavePolicyActivated    Policy Aggregate          Policy activated
   LeaveAdjusted           Adjustment Workflow       Balance correction completed
 
 ------------------------------------------------------------------------

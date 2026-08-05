@@ -306,6 +306,37 @@ No other section owns the enterprise resource lifecycle for procurement, stock, 
 
 ---
 
+## 7A. Dependency Classes
+
+> Added 2026-08-05 under integrity finding INT-035. This register previously recorded
+> only foundational dependencies, so genuine runtime integrations were invisible to any
+> reader treating it as the repository dependency register.
+
+A dependency between two sections belongs to exactly one of the following classes. Only
+**foundational** dependencies constrain build order; the others do not, and must never be
+used to argue that ownership or upstream direction has changed.
+
+| Class | Meaning | Constrains build order | Reverses ownership |
+|---|---|---|---|
+| **Foundational** | The section cannot be architected or built without the upstream capability. Recorded in Section 6. | Yes | No |
+| **Runtime contract** | The section calls a published synchronous contract of another section at run time. | No | No |
+| **Event consumption** | The section subscribes to business events published by another section. | No | No |
+| **Read model** | The section reads a published read model or projection owned elsewhere. | No | No |
+
+### Runtime Contract and Event Consumption Register
+
+| Consumer | Provider | Class | Fact consumed |
+|---|---|---|---|
+| `L2-F14` Procurement Finance Consumption | Section J | Event consumption | Procurement and resource facts published by Section J, consumed for finance recognition. F14 metadata declares "Depends On ... Section J"; this is a runtime dependency, **not** a foundational one. Finance remains foundationally dependent on A, B and C only. |
+| Section C Student Lifecycle | Section I Examination | Event consumption | Published official results, consumed for progression and qualification completion. Does not make Examination upstream of Section C. |
+| Section J | `L2-J07` Stock Operations | Event consumption | `StockIssued`, `StockReturned`, `StockTransferDispatched`, `StockTransferReceived`. J06 applies ledger consequences; J07 remains sole publisher. |
+
+New entries shall be added here whenever a section declares a dependency that is not
+foundational. A section listing another section under "Depends On" without a matching
+entry in Section 6 is a defect in that section, not a new foundational dependency.
+
+---
+
 ## 8. Dependency Rules
 
 1. Dependencies are one-directional at the architectural level.

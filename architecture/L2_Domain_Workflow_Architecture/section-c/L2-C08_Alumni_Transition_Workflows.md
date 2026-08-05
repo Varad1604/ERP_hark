@@ -91,7 +91,6 @@ The Alumni Transition bounded context is responsible for:
 - Institutional policy validation.
 - Approval coordination.
 - Transition execution.
-- Student relationship closure.
 - Publication of the authoritative AlumniRelationshipActivated business event for downstream consumption.
 - Transition lifecycle management.
 - Transition history management.
@@ -106,6 +105,12 @@ The following capabilities are owned by other bounded contexts:
 
 - Person Identity management.
 - Student lifecycle management.
+- **Student relationship closure and StudentContext mutation.** The exit decision and
+  its authorisation are owned by `L2-C05 --- Qualification Completion & Student Exit
+  Workflows`, which names itself the sole business authority for Student Exit. The
+  StudentContext aggregate itself is owned by `L2-C02 --- Student Lifecycle Workflows`.
+  Alumni Transition consumes the completed-exit fact and shall never close, mutate or
+  terminate a StudentContext.
 - Qualification management.
 - Qualification Completion verification.
 - Academic result processing.
@@ -5547,11 +5552,9 @@ sequenceDiagram
 
     Approval-->>Alumni: Approved
 
-    Alumni->>Alumni: Create Alumni Profile
+    Qualification->>Alumni: StudentExitCompleted
 
-    Alumni->>Alumni: Close Student Relationship
-
-    Alumni->>Alumni: Activate Alumni Membership
+    Alumni->>Alumni: Record Transition Evidence
 
     Alumni-->>Notification: AlumniTransitionCompleted
 
@@ -5826,11 +5829,9 @@ sequenceDiagram
 
     Approval-->>Workflow: Approved
 
-    Workflow->>Membership: Activate Alumni Membership
-
-    Membership-->>Workflow: Membership Activated
-
     Workflow->>Event: Publish Domain Events
+
+    Event-->>Membership: AlumniTransitionCompleted consumed by L2-H06
 ```
 
 # D16 — Cross-Domain Collaboration
@@ -6276,7 +6277,8 @@ Canonical ownership remains with upstream domains.
 | Student | Student Lifecycle |
 | Qualification | Qualification Completion |
 | Alumni Transition | Alumni Transition |
-| Alumni Membership | Alumni Transition |
+| Alumni Membership | L2-H06 Alumni Workflows |
+| Alumni Profile | L2-H06 Alumni Workflows |
 
 ### Consequences
 
@@ -6477,7 +6479,8 @@ No downstream architecture may redefine these terms without formal architecture 
 | Authentication | L2-A03 Authentication |
 | Authorization | L2-A04 Authorization |
 | Alumni Transition | Alumni Transition Domain |
-| Alumni Membership | Alumni Transition Domain |
+| Alumni Membership | L2-H06 Alumni Domain |
+| Alumni Profile | L2-H06 Alumni Domain |
 | Placement | Placement Domain |
 | Research | Research Domain |
 | Notification | Notification Domain |

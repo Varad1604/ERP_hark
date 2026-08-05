@@ -108,8 +108,15 @@ J06 does not own:
 - Maintain the enterprise item master.
 - Maintain warehouses and storage locations.
 - Record inventory receipt consequences from J05.
-- Govern reservation, issue, return, transfer, and adjustment.
-- Maintain authoritative stock balances and availability.
+- Maintain authoritative stock balances and availability, updated from the movement
+  facts published by J07.
+- Govern stock adjustment, which corrects the ledger itself.
+
+**Not owned here.** Operational stock movement --- reservation, issue, return and
+transfer --- is owned and executed by `L2-J07 --- Stock Operations & Distribution`,
+which J00's canonical publisher matrix names as the sole publisher of `StockIssued`,
+`StockReturned`, `StockTransferDispatched` and `StockTransferReceived`. J06 consumes
+those facts and applies their ledger consequences; it never performs the movement.
 
 ---
 
@@ -119,12 +126,16 @@ J06 publishes:
 
 - ItemCreated
 - StockReceived
-- StockReserved
-- InventoryStockIssued
-- InventoryStockReturned
-- StockTransferred
 - StockAdjusted
 - ReorderThresholdReached
+
+J06 consumes, and does not publish, the operational movement events owned by J07:
+
+- StockReserved
+- StockIssued
+- StockReturned
+- StockTransferDispatched
+- StockTransferReceived
 
 ---
 
@@ -220,7 +231,7 @@ The inventory lifecycle is described as a flow in Section 1 (Purpose): Goods Acc
 
 ## Workflows
 
-Inventory and warehouse workflow steps are captured in Section 5 (Core Responsibilities): maintaining the enterprise item master, maintaining warehouses and storage locations, recording inventory receipt consequences from J05, governing reservation/issue/return/transfer/adjustment, and maintaining authoritative stock balances and availability.
+Inventory and warehouse workflow steps are captured in Section 5 (Core Responsibilities): maintaining the enterprise item master, maintaining warehouses and storage locations, recording inventory receipt consequences from J05, governing stock adjustment, and maintaining authoritative stock balances and availability from the movement facts published by J07.
 
 ## States
 

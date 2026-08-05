@@ -1555,8 +1555,8 @@ Event-driven projection updated in near real-time. Consumed by L2-D03 (Timetable
 
 - LeaveApplied
 - EmployeeLeaveApproved
-- LeaveRejected
-- LeaveCancelled
+- EmployeeLeaveRejected
+- EmployeeLeaveCancelled
 - LeaveWithdrawn
 - LeaveRequestExpired
 
@@ -2244,7 +2244,7 @@ The following principles are enforced:
 | LeaveBalanceAdjusted | Leave Account |
 | LeaveCarriedForward | Leave Account |
 | LeaveEncashed | Leave Account |
-| LeaveExpired | Leave Account |
+| EmployeeLeaveExpired | Leave Account |
 
 ## Leave Application Events
 
@@ -2253,8 +2253,8 @@ The following principles are enforced:
 | LeaveApplied | Leave Application |
 | LeaveValidated | Leave Application |
 | EmployeeLeaveApproved | Leave Application |
-| LeaveRejected | Leave Application |
-| LeaveCancelled | Leave Application |
+| EmployeeLeaveRejected | Leave Application |
+| EmployeeLeaveCancelled | Leave Application |
 | LeaveWithdrawn | Leave Application |
 | LeaveModified | Leave Application |
 | MedicalCertificateRecorded | Leave Application |
@@ -3003,7 +3003,7 @@ Notifications are triggered through domain events.
 |--------|--------------|
 | EmployeeCreated | Welcome Notification |
 | EmployeeLeaveApproved | Leave Approval |
-| LeaveRejected | Leave Rejection |
+| EmployeeLeaveRejected | Leave Rejection |
 | PayrollPublished | Payslip Available |
 | EmployeeTransferred | Transfer Notice |
 | EmployeeRetired | Retirement Notice |
