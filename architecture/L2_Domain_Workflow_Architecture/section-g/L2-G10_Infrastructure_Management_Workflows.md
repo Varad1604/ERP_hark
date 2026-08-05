@@ -14,6 +14,7 @@
 ---
 
 
+
 ## Canonical Section Crosswalk
 
 > Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
@@ -22,7 +23,7 @@
 |---|---|
 | Purpose | §1 Purpose |
 | Scope | §3 Scope; §4 Out of Scope |
-| Actors | Actors |
+| Actors | 48A.204 Infrastructure Roles |
 | Entities | Child Entities |
 | Business Rules | §47 Business Rules; 13A.62 Business Rule Philosophy; 13A.63 Business Rule Categories |
 | Workflow | §12 Workflow Catalogue; §16 Infrastructure Registration Workflows; §17 Campus Management Workflows |
@@ -2774,6 +2775,273 @@ Examples:
 Deactivation shall not delete infrastructure.
 
 Historical integrity shall remain preserved.
+
+---
+
+# 17A. Physical Campus Attribute Workflows
+
+> Migrated from `L2-B03_Campus_Workflows.md` Part 8 on 2026-08-05 under integrity finding
+> INT-008. Campus workflows split by the boundary in B03 Section 15: institutional campus
+> identity, registration, activation, decommission and archive remain with `L2-B03`; the
+> physical-site attribute workflows below belong here, because boundary, capacity,
+> accessibility, sustainability, criticality and operational status describe the physical
+> site rather than the institution's relationship to it.
+
+Corresponding events - `CampusBoundaryUpdated`, `CampusCapacityUpdated`,
+`CampusAccessibilityUpdated`, `CampusSustainabilityUpdated`, `CampusCriticalityChanged`
+and `CampusOperationalStatusChanged` - are published by this domain, not by B03.
+
+---
+
+## 17A.105 Campus Boundary Management
+
+Campus boundaries define the physical extent of institutional property.
+
+Examples include:
+
+- Land Parcel
+- Survey Boundary
+- GIS Polygon
+- Administrative Boundary
+
+---
+
+#### Workflow
+
+```text
+Campus
+      │
+      ▼
+Update Boundary
+      │
+      ▼
+Validate Geometry
+      │
+      ▼
+Persist
+      │
+      ▼
+Publish CampusBoundaryUpdated
+```
+
+---
+
+#### Published Events
+
+- CampusBoundaryUpdated
+
+---
+
+## 17A.106 Campus Operational Status Workflow
+
+Operational Status represents whether a campus is available for institutional operations.
+
+Possible statuses include:
+
+- Operational
+- Temporarily Closed
+- Restricted Access
+- Permanently Closed
+
+---
+
+#### Workflow
+
+```text
+Campus
+     │
+     ▼
+Status Change
+     │
+     ▼
+Business Validation
+     │
+     ▼
+Persist
+     │
+     ▼
+CampusOperationalStatusChanged
+```
+
+---
+
+#### Published Events
+
+- CampusOperationalStatusChanged
+
+---
+
+## 17A.107 Campus Capacity Profile Workflow
+
+A Campus may maintain aggregate capacity information.
+
+Examples include:
+
+- Maximum Student Capacity
+- Maximum Staff Capacity
+- Parking Capacity
+- Building Count
+- Total Area
+
+These are canonical facts.
+
+Derived utilization metrics belong to Analytics.
+
+---
+
+#### Workflow
+
+```text
+Campus
+      │
+      ▼
+Update Capacity Profile
+      │
+      ▼
+Validate
+      │
+      ▼
+Persist
+      │
+      ▼
+CampusCapacityUpdated
+```
+
+---
+
+#### Published Events
+
+- CampusCapacityUpdated
+
+---
+
+## 17A.108 Campus Accessibility Workflow
+
+Maintain accessibility capabilities at campus level.
+
+Examples:
+
+- Accessible Entrances
+- Accessible Parking
+- Campus Shuttle
+- Accessible Navigation
+- Emergency Evacuation Routes
+
+---
+
+#### Workflow
+
+```text
+Campus
+      │
+      ▼
+Update Accessibility
+      │
+      ▼
+Validate
+      │
+      ▼
+Persist
+      │
+      ▼
+CampusAccessibilityUpdated
+```
+
+---
+
+#### Published Events
+
+- CampusAccessibilityUpdated
+
+---
+
+## 17A.109 Campus Sustainability Workflow
+
+Maintain sustainability capabilities.
+
+Examples:
+
+- Solar Infrastructure
+- Rainwater Harvesting
+- Waste Management
+- Green Certification
+- EV Charging
+
+The Campus domain stores capabilities only.
+
+Performance metrics belong to Analytics or ESG domains.
+
+---
+
+#### Workflow
+
+```text
+Campus
+      │
+      ▼
+Update Sustainability
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+CampusSustainabilityUpdated
+```
+
+---
+
+#### Published Events
+
+- CampusSustainabilityUpdated
+
+---
+
+## 17A.110 Campus Criticality Workflow
+
+Maintain business continuity classification.
+
+Examples:
+
+- Mission Critical
+- High Priority
+- Standard
+
+Maintain associated recovery metadata including:
+
+- Recovery Priority
+- Alternate Campus
+- Backup Utilities
+
+---
+
+#### Workflow
+
+```text
+Campus
+      │
+      ▼
+Update Criticality
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+CampusCriticalityChanged
+```
+
+---
+
+#### Published Events
+
+- CampusCriticalityChanged
+
+---
 
 ---
 
@@ -7706,6 +7974,451 @@ Authorization shall support:
 - Hierarchical Authorization
 - Delegated Responsibility
 - Effective-Dated Delegation
+
+---
+
+# 48A. Infrastructure Security, Authorization, Audit & Governance
+
+> Migrated from `L2-B03_Campus_Workflows.md` Part 13 on 2026-08-05 under integrity
+> finding INT-008. Sections 48-51 above remain the summary; the detail is below.
+
+---
+
+
+---
+
+## 48A.201 Security Philosophy
+
+The Campus & Infrastructure domain protects institutional physical infrastructure master data.
+
+Security objectives include:
+
+- Protecting infrastructure integrity
+- Preventing unauthorized modification
+- Ensuring traceability
+- Supporting institutional governance
+- Preserving historical accuracy
+- Enforcing least-privilege access
+
+Security policies define **who may perform an action**, while business rules define **whether the action is valid**.
+
+---
+
+## 48A.202 Security Architecture Principles
+
+The domain follows the enterprise security architecture established by the Platform Foundation.
+
+Infrastructure does **not** implement authentication.
+
+Authentication is delegated to:
+
+- Identity Domain
+- Authorization Domain
+- Platform Foundation
+
+The Infrastructure domain consumes authenticated user context.
+
+---
+
+## 48A.203 Authorization Model
+
+Authorization is permission-based.
+
+Permissions are evaluated before any business operation.
+
+Authorization decisions consider:
+
+- Tenant
+- Institution
+- User
+- Role
+- Permission
+- Scope
+
+Business rules execute only after authorization succeeds.
+
+---
+
+## 48A.204 Infrastructure Roles
+
+The following logical roles represent common access patterns.
+
+| Role | Typical Responsibilities |
+|------|---------------------------|
+| Platform Administrator | Global platform administration |
+| Tenant Administrator | Tenant-level governance |
+| Institution Administrator | Institution-wide infrastructure oversight |
+| Infrastructure Administrator | Full infrastructure management |
+| Campus Administrator | Campus-level administration |
+| Building Administrator | Building-level administration |
+| Facilities Manager | Operational facility management |
+| Maintenance Coordinator | Infrastructure maintenance coordination |
+| Auditor | Read-only audit access |
+| Read-Only User | Infrastructure viewing only |
+
+Role definitions remain configurable through the Identity & Access Management domain.
+
+---
+
+## 48A.205 Permission Categories
+
+Infrastructure permissions are grouped into functional categories.
+
+| Category | Examples |
+|----------|----------|
+| View | View Campus, Building, Space |
+| Create | Register Infrastructure |
+| Update | Modify Metadata |
+| Lifecycle | Activate, Decommission, Archive |
+| Classification | Update Classification |
+| Relationship | Manage Zones, Collections, Portfolios |
+| Administration | Infrastructure Configuration |
+| Audit | View History & Audit Trail |
+
+Permissions are fine-grained and independently assignable.
+
+---
+
+## 48A.206 Resource Scoping
+
+Permissions may be scoped to different organizational levels.
+
+Examples include:
+
+- Tenant
+- Institution
+- Campus
+- Building
+- Zone
+
+Illustrative examples:
+
+- A Campus Administrator may manage only infrastructure within assigned campuses.
+- A Building Administrator may update spaces only within assigned buildings.
+
+Scope evaluation is performed by the Authorization domain.
+
+---
+
+## 48A.207 Authorization Workflow
+
+```text
+User Request
+      │
+      ▼
+Authentication
+      │
+      ▼
+Authorization Check
+      │
+      ▼
+Permission Granted
+      │
+ ┌────┴────┐
+ │         │
+ ▼         ▼
+Yes       No
+ │         │
+ ▼         ▼
+Business   Access
+Rules      Denied
+ │
+ ▼
+Persist
+ │
+ ▼
+Audit
+ │
+ ▼
+Publish Event
+```
+
+Authorization failures terminate processing before any state mutation.
+
+---
+
+## 48A.208 Audit Philosophy
+
+Every significant business action shall be auditable.
+
+Audit records provide:
+
+- Accountability
+- Regulatory compliance
+- Operational traceability
+- Historical reconstruction
+- Governance evidence
+
+Audit history is immutable.
+
+---
+
+## 48A.209 Auditable Operations
+
+The following operations shall generate audit records.
+
+#### Infrastructure Creation
+
+Examples:
+
+- Campus Created
+- Building Created
+- Floor Created
+- Space Created
+
+---
+
+#### Infrastructure Modification
+
+Examples:
+
+- Name Changed
+- Capacity Updated
+- Accessibility Updated
+- Sustainability Updated
+- Classification Updated
+
+---
+
+#### Lifecycle Operations
+
+Examples:
+
+- Activated
+- Decommissioned
+- Archived
+- Reopened
+- Temporarily Closed
+
+---
+
+#### Relationship Operations
+
+Examples:
+
+- Assigned to Zone
+- Removed from Zone
+- Assigned to Collection
+- Assigned to Portfolio
+
+---
+
+#### Administrative Operations
+
+Examples:
+
+- Configuration Changes
+- Governance Overrides
+- Bulk Updates
+
+---
+
+## 48A.210 Audit Record Structure
+
+Every audit entry shall include:
+
+- Audit Identifier
+- Timestamp
+- User Identifier
+- Tenant Identifier
+- Institution Identifier
+- Aggregate Type
+- Aggregate Identifier
+- Operation Type
+- Previous Values (where applicable)
+- New Values
+- Business Reason (if supplied)
+- Correlation Identifier
+- Source System
+
+Audit records shall be immutable after creation.
+
+---
+
+## 48A.211 Governance Overrides
+
+Some operations require elevated approval.
+
+Examples include:
+
+- Archive Operational Infrastructure
+- Decommission Critical Buildings
+- Bulk Lifecycle Changes
+- Administrative Data Corrections
+
+Governance approval requirements are configurable.
+
+Infrastructure records the approval outcome but does not implement workflow routing.
+
+Approval orchestration belongs to Workflow or Governance domains.
+
+---
+
+## 48A.212 Data Retention
+
+Infrastructure master data is retained according to institutional retention policies.
+
+General principles include:
+
+- Operational infrastructure is never physically deleted.
+- Archived infrastructure remains queryable for authorized users.
+- Audit history is retained independently of operational status.
+- Historical references remain valid across the platform.
+
+Retention periods are configured by institutional governance policies.
+
+---
+
+## 48A.213 Privacy & Sensitive Data
+
+The Campus & Infrastructure domain stores infrastructure metadata only.
+
+It does **not** own or manage:
+
+- Student personal information
+- Employee personal information
+- Academic records
+- Financial records
+- Medical records
+
+Infrastructure references individuals only where operationally required (e.g., "Building Administrator"), with identity details resolved through the Identity domain.
+
+---
+
+## 48A.214 Compliance Considerations
+
+The architecture supports institutional compliance obligations, including:
+
+- Accreditation audits
+- Government inspections
+- Fire and safety audits
+- Accessibility reviews
+- Infrastructure governance reviews
+- Internal audit requirements
+
+The domain provides authoritative evidence but does not interpret regulatory requirements.
+
+---
+
+## 48A.215 Data Integrity Controls
+
+The following controls protect master data integrity.
+
+| Control | Purpose |
+|---------|---------|
+| Immutable Identifiers | Stable entity identity |
+| Business Rule Validation | Prevent invalid states |
+| Lifecycle Enforcement | Controlled state transitions |
+| Authorization Checks | Prevent unauthorized actions |
+| Audit Logging | Complete traceability |
+| Event Publication | Enterprise consistency |
+
+These controls operate together to preserve authoritative infrastructure records.
+
+---
+
+## 48A.216 Multi-Tenant Governance
+
+Infrastructure data is isolated by Tenant.
+
+Governance principles include:
+
+- Tenant data isolation
+- Institution-level ownership
+- No cross-tenant visibility
+- Tenant-specific configuration
+- Independent audit history
+
+Platform Foundation enforces isolation boundaries.
+
+---
+
+## 48A.217 Error Handling Principles
+
+Security and governance failures follow consistent handling rules.
+
+Examples:
+
+| Failure | Outcome |
+|---------|---------|
+| Authentication Failure | Reject request |
+| Authorization Failure | Reject request |
+| Validation Failure | Reject request with validation details |
+| Business Rule Violation | Reject request |
+| Audit Failure | Transaction fails |
+| Event Publication Failure* | Retry according to enterprise messaging policy |
+
+\*Where the enterprise uses reliable messaging (e.g., transactional outbox), persistence succeeds before asynchronous event delivery.
+
+No partial business updates are permitted.
+
+---
+
+## 48A.218 Governance Principles
+
+#### GP-01
+
+Authentication is external to the Infrastructure domain.
+
+---
+
+#### GP-02
+
+Authorization precedes business validation.
+
+---
+
+#### GP-03
+
+Every successful state change is auditable.
+
+---
+
+#### GP-04
+
+Operational infrastructure is preserved for historical integrity.
+
+---
+
+#### GP-05
+
+Security policies remain independent of business rules.
+
+---
+
+#### GP-06
+
+Governance approvals supplement business validation; they do not replace it.
+
+---
+
+#### GP-07
+
+Audit records are immutable and independently retained.
+
+---
+
+#### GP-08
+
+Infrastructure remains the authoritative source for physical infrastructure master data.
+
+---
+
+## 48A.219 Responsibility Matrix
+
+| Capability | Owning Domain |
+|------------|---------------|
+| Authentication | Identity & Access Management |
+| Authorization | Identity & Access Management |
+| Infrastructure Business Rules | Campus & Infrastructure |
+| Audit Logging | Platform Foundation |
+| Workflow Approval | Workflow / Governance |
+| Data Retention Policy | Governance |
+| Tenant Isolation | Platform Foundation |
+| Event Delivery | Integration Platform |
+| Regulatory Reporting | Analytics / Compliance Domains |
+
+---
 
 ---
 
