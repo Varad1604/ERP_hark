@@ -17,6 +17,7 @@
 
 
 
+
 ## Canonical Section Crosswalk
 
 > Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
@@ -1343,6 +1344,317 @@ Consumes:
 ### Future Domains
 
 Future enterprise domains shall reference Infrastructure rather than defining independent physical location models.
+
+---
+
+# 9A. Consuming-Domain Integration
+
+> Migrated from `L2-B03_Campus_Workflows.md` Part 15 on 2026-08-05 under integrity finding
+> INT-008. Every section below describes what **Infrastructure** provides to a consuming
+> domain - classrooms and capacity to Timetable, buildings to Hostel, locations to Security.
+> That is this domain's consumption surface, not B03's.
+
+---
+
+## 9A.246 Admissions Integration
+
+Admissions consumes Infrastructure for:
+
+- Campus selection
+- Admission centres
+- Interview rooms
+- Counselling locations
+- Document verification facilities
+
+Admissions owns:
+
+- Seat allocation
+- Student admission workflow
+- Admission scheduling
+
+Infrastructure provides only physical location information.
+
+---
+
+## 9A.247 Student Lifecycle Integration
+
+Student Lifecycle consumes:
+
+- Campus assignment
+- Hostel locations
+- Learning facilities
+- Student service centres
+
+Infrastructure does not manage student movement.
+
+---
+
+## 9A.248 Timetable Integration
+
+Timetable is one of the largest Infrastructure consumers.
+
+Infrastructure provides:
+
+- Classrooms
+- Laboratories
+- Seminar Rooms
+- Capacity
+- Accessibility
+- Operational Status
+
+Timetable determines:
+
+- Allocation
+- Scheduling
+- Conflict detection
+- Resource optimization
+
+Infrastructure never performs scheduling.
+
+---
+
+## 9A.249 Examination Integration
+
+Examination consumes:
+
+- Examination Halls
+- Capacity
+- Accessibility
+- Operational Availability
+- Campus Information
+
+Examination owns:
+
+- Seating plans
+- Invigilation
+- Scheduling
+- Candidate allocation
+
+Infrastructure owns only examination facilities.
+
+---
+
+## 9A.250 Attendance Integration
+
+Attendance consumes:
+
+- Classroom master data
+- Lecture halls
+- Practical laboratories
+- Campus information
+
+Attendance owns:
+
+- Attendance recording
+- Attendance policies
+- Attendance calculation
+
+Infrastructure provides locations only.
+
+---
+
+## 9A.251 Hostel Integration
+
+Hostel consumes:
+
+- Hostel Buildings
+- Hostel Floors
+- Hostel Rooms
+
+Hostel owns:
+
+- Room allocation
+- Student occupancy
+- Hostel operations
+
+Infrastructure owns the physical hostel.
+
+---
+
+## 9A.252 Library Integration
+
+Library consumes:
+
+- Library Buildings
+- Reading Rooms
+- Discussion Rooms
+- Digital Learning Spaces
+
+Infrastructure provides locations.
+
+Library owns library operations.
+
+---
+
+## 9A.253 Asset Management Integration
+
+Infrastructure and Asset Management are complementary.
+
+Infrastructure owns:
+
+- Buildings
+- Floors
+- Rooms
+- Physical hierarchy
+
+Asset Management owns:
+
+- Furniture
+- Equipment
+- Computers
+- Laboratory Instruments
+- HVAC Assets
+- Electrical Equipment
+
+Assets are located within Infrastructure.
+
+Infrastructure does not own movable assets.
+
+---
+
+## 9A.254 Maintenance Integration
+
+Infrastructure provides:
+
+- Physical infrastructure
+- Health Status
+- Criticality
+- Operational Availability
+
+Maintenance owns:
+
+- Work Orders
+- Preventive Maintenance
+- Repairs
+- Inspection Scheduling
+- Maintenance History
+
+Infrastructure stores only current business facts.
+
+---
+
+## 9A.255 Security Integration
+
+Security consumes:
+
+- Buildings
+- Restricted Areas
+- Security Zones
+- Access Points
+- Criticality
+
+Security owns:
+
+- Guards
+- Patrols
+- Access Control
+- CCTV Operations
+- Incident Response
+
+Infrastructure provides physical topology.
+
+---
+
+## 9A.256 HR Integration
+
+HR consumes:
+
+- Office Locations
+- Department Buildings
+- Staff Facilities
+
+HR owns:
+
+- Employee assignments
+- Department administration
+
+Infrastructure owns physical offices only.
+
+---
+
+## 9A.257 Analytics Integration
+
+Infrastructure publishes canonical facts.
+
+Analytics derives:
+
+- Utilization
+- Occupancy Trends
+- Capacity Forecasting
+- Infrastructure KPIs
+- Dashboards
+- Executive Reports
+
+Infrastructure never computes KPIs.
+
+---
+
+## 9A.258 AI Integration
+
+Infrastructure provides canonical enterprise facts.
+
+Examples:
+
+- Building hierarchy
+- Space relationships
+- Capacity
+- Accessibility
+- Sustainability capabilities
+- Criticality
+
+AI derives:
+
+- Semantic understanding
+- Recommendations
+- Optimization
+- Predictions
+- Natural language interpretation
+
+Infrastructure intentionally avoids semantic interpretation.
+
+---
+
+## 9A.259 Disaster Management Integration
+
+Infrastructure provides:
+
+- Criticality
+- Recovery Metadata
+- Alternate Facilities
+- Backup Utilities
+
+Disaster Management owns:
+
+- Emergency Plans
+- Recovery Procedures
+- Incident Management
+- Crisis Response
+
+Infrastructure stores resilience facts only.
+
+---
+
+## 9A.260 Notification Integration
+
+Infrastructure publishes business events.
+
+Notification consumes:
+
+- InfrastructureActivated
+- BuildingClosed
+- MaintenanceStarted
+- SpaceUnavailable
+
+Notification determines:
+
+- Delivery Channels
+- Templates
+- Recipients
+- Escalation
+
+Infrastructure never sends notifications directly.
+
+---
 
 ---
 

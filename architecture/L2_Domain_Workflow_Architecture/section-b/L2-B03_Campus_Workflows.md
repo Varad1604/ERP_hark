@@ -6,6 +6,7 @@
 
 
 
+
 ## Canonical Section Crosswalk
 
 > Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
@@ -18,9 +19,9 @@
 | Entities | Part 4 — Canonical Aggregates, Entities & Value Objects |
 | Business Rules | §114 Business Rules; Part 5 — Infrastructure Lifecycle & Business Rules (defined by L2-G10) |
 | Workflow | §102 Campus Registration Workflow; §103 Campus Activation Workflow; §104 Campus Modification Workflow |
-| State Machine | §101 Campus Lifecycle; §247 Student Lifecycle Integration; Part 5 — Infrastructure Lifecycle & Business Rules (defined by L2-G10) |
-| Contracts | §178 InstitutionalCampus Summary Contract; Part 12 — InstitutionalCampus Events & Contracts; GP-07 — Stable Public Contracts |
-| Events | §115 Campus Events Summary; §237 Event Publication Strategy; §177 Published Events |
+| State Machine | §101 Campus Lifecycle; Part 5 — Infrastructure Lifecycle & Business Rules (defined by L2-G10); Lifecycle Management |
+| Contracts | §178 InstitutionalCampus Summary Contract; Part 8 — InstitutionalCampus Events & Contracts; GP-07 — Stable Public Contracts |
+| Events | §115 Campus Events Summary; §177 Published Events; Part 8 — InstitutionalCampus Events & Contracts |
 | Dependencies | §243 Upstream Dependencies; §245 Dependency Philosophy; §263 Dependency Direction |
 | Locked Decisions | — not present — |
 
@@ -247,7 +248,7 @@ Future AI platforms derive meaning from canonical infrastructure facts.
 
 # 5. Domain Vision
 
-The Campus & Infrastructure domain enables SutraERP to maintain a single enterprise-wide understanding of every physical facility regardless of institution size, educational model, or deployment architecture.
+The Institutional Campus domain enables SutraERP to maintain a single enterprise-wide understanding of which campuses an Institution operates, regardless of institution size, educational model, or deployment architecture. The corresponding physical facilities are modelled by `L2-G10`.
 
 It supports:
 
@@ -361,7 +362,7 @@ The domain shall accommodate future capabilities without architectural redesign,
 
 # 7. Architecture Position
 
-Within the SutraERP architecture, Campus & Infrastructure is a **Foundation Domain**.
+Within the SutraERP architecture, Institutional Campus is a **Foundation Domain**.
 
 It provides enterprise-wide physical context consumed by numerous operational domains.
 
@@ -376,7 +377,7 @@ It provides enterprise-wide physical context consumed by numerous operational do
           ┌─────────────────────────────────┐
           │                                 │
           ▼                                 ▼
-Campus & Infrastructure (L2-B03)      Other Foundation Domains
+Institutional Campus (L2-B03)      Other Foundation Domains
           │
           ├───────────────┬───────────────┬───────────────┐
           ▼               ▼               ▼               ▼
@@ -417,7 +418,7 @@ The domain supplies the canonical physical infrastructure model while remaining 
 
 # Part 1 Completion
 
-This part establishes the architectural foundation of the **Campus & Infrastructure** domain by defining:
+This part establishes the architectural foundation of the **Institutional Campus** domain by defining:
 
 - Purpose
 - Domain Mission
@@ -438,7 +439,7 @@ Subsequent parts build upon these principles to define the complete canonical in
 
 # 9. Domain Vision
 
-The **Campus & Infrastructure** domain establishes the canonical enterprise representation of every physical location within the SutraERP ecosystem.
+The **Institutional Campus** domain establishes the canonical enterprise representation of the Institution-to-Campus relationship within the SutraERP ecosystem. Physical locations are represented by `L2-G10 --- Infrastructure Management Workflows`.
 
 Its objective is to ensure that every domain refers to the same physical infrastructure using a consistent business language, regardless of deployment model, institution type, or organizational complexity.
 
@@ -448,7 +449,7 @@ The domain serves as the enterprise-wide foundation upon which all infrastructur
 
 # 10. Strategic Objectives
 
-The Campus & Infrastructure domain exists to achieve the following strategic objectives.
+The Institutional Campus domain exists to achieve the following strategic objectives.
 
 ## SO-01 — Establish a Canonical Physical Model
 
@@ -524,7 +525,7 @@ No downstream domain shall become tightly coupled to Infrastructure's internal i
 
 # 11. Bounded Context
 
-Within the SutraERP Domain-Driven Design architecture, Campus & Infrastructure represents an independent **Bounded Context**.
+Within the SutraERP Domain-Driven Design architecture, Institutional Campus represents an independent **Bounded Context**.
 
 It owns every concept describing the physical infrastructure of an institution.
 
@@ -597,7 +598,7 @@ These definitions are authoritative across all SutraERP domains.
 
 # 13. Domain Responsibilities
 
-Campus & Infrastructure owns the complete lifecycle of physical infrastructure.
+Institutional Campus owns the complete lifecycle of physical infrastructure.
 
 Responsibilities include:
 
@@ -768,7 +769,7 @@ The domain references but does not own:
 
 ---
 
-## Campus & Infrastructure Is Referenced By
+## Institutional Campus Is Referenced By
 
 This domain is consumed by:
 
@@ -865,7 +866,7 @@ Infrastructure evolves independently without breaking consuming domains.
 
 # 17. Strategic Position Within SutraERP
 
-Campus & Infrastructure is one of the foundational enterprise domains.
+Institutional Campus is one of the foundational enterprise domains.
 
 It establishes the physical context required by nearly every operational capability.
 
@@ -876,7 +877,7 @@ It establishes the physical context required by nearly every operational capabil
                │
         Organisation
                │
-    Campus & Infrastructure
+    Institutional Campus
                │
 ─────────────────────────────────────────────
  Academic      Administrative      Enterprise
@@ -896,7 +897,7 @@ No operational domain may redefine infrastructure concepts.
 
 # 18. Architecture Principles Summary
 
-The Campus & Infrastructure domain is governed by the following constitutional principles:
+The Institutional Campus domain is governed by the following constitutional principles:
 
 1. Single Source of Truth
 2. Canonical Physical Representation
@@ -936,7 +937,7 @@ These definitions serve as the constitutional foundation for all subsequent doma
 
 # 19. Domain Model Overview
 
-The Campus & Infrastructure domain models the complete physical infrastructure of an institution using a hierarchical, aggregate-oriented domain model.
+The Institutional Campus domain models the institutional standing of each campus using a single aggregate. The physical infrastructure beneath a campus - buildings, floors, spaces and their hierarchy - is modelled by `L2-G10`.
 
 The model represents physical reality while remaining independent of operational workflows performed within those physical entities.
 
@@ -1346,7 +1347,7 @@ Consumer domains extend infrastructure through references rather than modificati
 
 # Part 3 Completion
 
-This section establishes the canonical domain model for Campus & Infrastructure by defining:
+This section establishes the canonical domain model for Institutional Campus by defining:
 
 - Core Aggregates
 - Physical Hierarchy
@@ -1366,7 +1367,7 @@ These concepts form the structural foundation upon which lifecycle management, b
 
 # 34. Aggregate Design Philosophy
 
-The Campus & Infrastructure domain follows **Domain-Driven Design (DDD)**.
+The Institutional Campus domain follows **Domain-Driven Design (DDD)**.
 
 Each Aggregate represents a consistency boundary responsible for maintaining business invariants within its scope.
 
@@ -1414,7 +1415,7 @@ beyond the Campus Identifier it issues.
 
 # Part 4 Completion
 
-This section defines the canonical aggregate model for the Campus & Infrastructure domain, including:
+This section defines the canonical aggregate model for the Institutional Campus domain, including:
 
 - Aggregate Roots
 - Child Entities
@@ -1453,7 +1454,7 @@ consumes G10's published physical states and never transitions them.
 ---
 
 
-This section defines the canonical lifecycle architecture for Campus & Infrastructure, including:
+This section defines the canonical lifecycle architecture for Institutional Campus, including:
 
 - Lifecycle philosophy
 - Canonical lifecycle states
@@ -1470,7 +1471,7 @@ This lifecycle model provides the foundation for all infrastructure state transi
 ---
 
 
-This section defines the constitutional business rules governing the Campus & Infrastructure domain.
+This section defines the constitutional business rules governing the Institutional Campus domain.
 
 It establishes:
 
@@ -1490,7 +1491,7 @@ These rules ensure that every infrastructure entity remains consistent, authorit
 ---
 
 
-This section defines the canonical operational workflows of the Campus & Infrastructure domain, including:
+This section defines the canonical operational workflows of the Institutional Campus domain, including:
 
 - Campus Management
 - Building Management
@@ -1508,7 +1509,7 @@ These workflows represent the authoritative business processes for managing inst
 
 ---
 
-# Part 7 — Physical Workflow Specifications (defined by L2-G10)
+# Part 6 — Physical Workflow Specifications (defined by L2-G10)
 
 > Migrated 2026-08-05 under integrity finding INT-008. Parts 7, 9, 10 and 11 held detailed
 > workflow specifications for aggregates owned by `L2-G10`. They moved to
@@ -1528,7 +1529,7 @@ publishes.
 
 ---
 
-# Part 8 — Campus Management Workflows
+# Part 7 — Campus Management Workflows
 
 ---
 
@@ -1956,7 +1957,7 @@ Every successful workflow shall publish canonical business events.
 
 ---
 
-# Part 8 Completion
+# Part 7 Completion
 
 This section defines the complete canonical Campus Management workflows for the Campus aggregate, including:
 
@@ -1993,7 +1994,7 @@ This section defines the complete canonical Building Management workflows for th
 - Decommissioning
 - Archival
 
-These workflows establish the authoritative business processes governing the lifecycle and management of Buildings within the Campus & Infrastructure domain.
+These workflows establish the authoritative business processes governing the lifecycle and management of Buildings within the Institutional Campus domain.
 
 ---
 
@@ -2014,7 +2015,7 @@ This section defines the canonical workflows for the **Floor** and **Space** agg
 - Lifecycle Management
 - Decommissioning and Archival
 
-These workflows establish the authoritative operational model for the lowest levels of the Campus & Infrastructure hierarchy and provide the canonical infrastructure entities consumed by scheduling, examination, admissions, maintenance, security, and other enterprise domains.
+These workflows establish the authoritative operational model for the lowest levels of the Institutional Campus hierarchy and provide the canonical infrastructure entities consumed by scheduling, examination, admissions, maintenance, security, and other enterprise domains.
 
 ---
 
@@ -2033,11 +2034,11 @@ This section defines the canonical workflows for **Zones**, **Collections**, and
 - Domain Events
 - Workflow Design Principles
 
-These workflows establish the enterprise-standard logical organization model for Campus & Infrastructure, enabling operational grouping, business categorization, and strategic governance while preserving the integrity of the canonical physical hierarchy.
+These workflows establish the enterprise-standard logical organization model for Institutional Campus, enabling operational grouping, business categorization, and strategic governance while preserving the integrity of the canonical physical hierarchy.
 
 ---
 
-# Part 12 — InstitutionalCampus Events & Contracts
+# Part 8 — InstitutionalCampus Events & Contracts
 
 > Rewritten 2026-08-05 under integrity finding INT-008. The previous Part 12 described the
 > Infrastructure aggregate's event architecture and read contracts throughout, which belong
@@ -2085,7 +2086,7 @@ readiness. It never mutates a G10 aggregate and never republishes a G10 fact as 
 ---
 
 
-This section defines the enterprise integration architecture for the Campus & Infrastructure domain, including:
+This section defines the enterprise integration architecture for the Institutional Campus domain, including:
 
 - Integration Philosophy
 - Event Architecture
@@ -2098,11 +2099,11 @@ This section defines the enterprise integration architecture for the Campus & In
 - Integration Constraints
 - Integration Design Principles
 
-These integration mechanisms establish the Campus & Infrastructure domain as the authoritative source of physical infrastructure master data while enabling scalable, event-driven interoperability across all SutraERP domains.
+These integration mechanisms establish the Institutional Campus domain as the authoritative source of physical infrastructure master data while enabling scalable, event-driven interoperability across all SutraERP domains.
 
 ---
 
-# Part 13 — Infrastructure Security & Governance (defined by L2-G10)
+# Part 9 — Infrastructure Security & Governance (defined by L2-G10)
 
 > Migrated 2026-08-05 under integrity finding INT-008. Part 13 held the security,
 > authorization, audit and governance model for physical infrastructure, owned by
@@ -2120,7 +2121,7 @@ its own.
 ---
 
 
-This section defines the enterprise security and governance architecture for the Campus & Infrastructure domain, including:
+This section defines the enterprise security and governance architecture for the Institutional Campus domain, including:
 
 - Security Philosophy
 - Authorization Model
@@ -2135,590 +2136,29 @@ This section defines the enterprise security and governance architecture for the
 - Error Handling
 - Responsibility Matrix
 
-These principles ensure that Campus & Infrastructure master data remains secure, auditable, governable, and compliant while delegating authentication, authorization, workflow approval, and platform-level enforcement to their respective enterprise domains.
+These principles ensure that Institutional Campus master data remains secure, auditable, governable, and compliant while delegating authentication, authorization, workflow approval, and platform-level enforcement to their respective enterprise domains.
 
 ---
 
-# Part 14 — Data Model, Persistence Strategy & Repository Architecture
+# Part 10 — Persistence & Repository Architecture (extracted to L5)
+
+> Extracted 2026-08-05 under integrity finding INT-008.
+
+Persistence philosophy, aggregate persistence strategy, repository responsibilities, the
+canonical persistence model, identity and key model, versioning, soft and physical delete
+policy, relationship and value-object persistence, query and search strategy, indexing,
+transaction strategy, event publication strategy, audit and historical data strategy moved
+to `architecture/L5_Solution_Architecture/L5-01_Infrastructure_Persistence_Baseline.md`.
+
+**This content belonged in neither L2 document.** Volume 3 scopes L2 to workflows,
+lifecycles, rules and dependencies; storage mechanisms, keys and indexing are L5 Solution
+Architecture. The aggregates it describes are owned by `L2-G10`, so the extracted document
+records G10's persistence baseline, not B03's.
 
 ---
 
-# 220. Persistence Philosophy
 
-The Campus & Infrastructure domain owns the **canonical business model**, not the physical database implementation.
-
-Persistence exists solely to preserve authoritative business facts.
-
-The persistence layer shall never dictate:
-
-- Business Rules
-- Aggregate Design
-- Workflow Behaviour
-- Domain Relationships
-
-The Domain Model remains the source of truth.
-
----
-
-# 221. Persistence Architecture Principles
-
-The Infrastructure domain follows the following principles.
-
-## PAP-01
-
-Domain Model is technology independent.
-
----
-
-## PAP-02
-
-Persistence models remain internal.
-
----
-
-## PAP-03
-
-Consumers never access Infrastructure database tables.
-
----
-
-## PAP-04
-
-Repositories persist Aggregate Roots only.
-
----
-
-## PAP-05
-
-Persistence must preserve Aggregate consistency.
-
----
-
-## PAP-06
-
-Read Contracts are independent of storage implementation.
-
----
-
-# 222. Aggregate Persistence Strategy
-
-Each Aggregate Root owns its persistence boundary.
-
-| Aggregate | Repository |
-|------------|------------|
-| Campus | Campus Repository |
-| Building | Building Repository |
-| Floor | Floor Repository |
-| Space | Space Repository |
-| Zone | Zone Repository |
-| Collection | Collection Repository |
-| Portfolio | Portfolio Repository |
-
-Repositories never expose internal child entities directly.
-
----
-
-# 223. Repository Responsibilities
-
-Repositories are responsible for:
-
-- Aggregate Persistence
-- Aggregate Retrieval
-- Identity Resolution
-- Optimistic Concurrency
-- Transaction Boundary Management
-
-Repositories are **not responsible** for:
-
-- Business Rules
-- Authorization
-- Workflow Orchestration
-- Validation Logic
-- Reporting
-
----
-
-# 224. Canonical Persistence Model
-
-```text
-Campus
-   │
-   ├──────── Building
-   │             │
-   │             ├──────── Floor
-   │             │              │
-   │             │              └──────── Space
-   │
-   ├──────── Zone Membership
-   │
-   ├──────── Collection Membership
-   │
-   └──────── Portfolio Membership
-```
-
-Logical relationships are stored independently of the physical hierarchy.
-
----
-
-# 225. Identity Model
-
-Every Infrastructure Aggregate contains:
-
-```text
-Identifier (UUID)
-
-Business Code
-
-Display Name
-```
-
-Characteristics:
-
-- Identifier is immutable.
-- Business Code is immutable after operational activation.
-- Display Name is editable.
-
-Identifiers are used for internal references.
-
-Business Codes support institutional operations.
-
----
-
-# 226. Infrastructure Keys
-
-Recommended key hierarchy:
-
-| Key | Purpose |
-|------|---------|
-| UUID | Internal identity |
-| Business Code | Institutional reference |
-| External Reference | Third-party integration (optional) |
-
-Only UUID is guaranteed globally unique.
-
----
-
-# 227. Versioning Strategy
-
-Every Aggregate shall support optimistic concurrency.
-
-Each Aggregate contains:
-
-```text
-Version Number
-```
-
-Example:
-
-```text
-Building
-
-Version = 15
-```
-
-Updates require matching version values.
-
-Version mismatch results in concurrency conflict.
-
----
-
-# 228. Soft Delete Strategy
-
-Infrastructure uses lifecycle management rather than soft deletion.
-
-Instead of:
-
-```text
-Deleted = True
-```
-
-Infrastructure transitions through:
-
-```text
-Operational
-
-↓
-
-Decommissioned
-
-↓
-
-Archived
-```
-
-Soft-delete flags are discouraged for Aggregate state management.
-
----
-
-# 229. Physical Deletion Policy
-
-Physical deletion is exceptional.
-
-Permitted only when:
-
-- Record created in error.
-- No downstream references exist.
-- Governance approval granted.
-
-Deletion shall generate an audit record.
-
-Operational infrastructure shall never be physically deleted.
-
----
-
-# 230. Relationship Persistence
-
-Physical hierarchy relationships are mandatory.
-
-```text
-Campus
-
-↓
-
-Building
-
-↓
-
-Floor
-
-↓
-
-Space
-```
-
-Logical relationships are independent.
-
-Examples:
-
-```text
-Space
-
-↓
-
-Zone Membership
-
-↓
-
-Collection Membership
-
-↓
-
-Portfolio Membership
-```
-
-Logical relationships use reference mappings.
-
----
-
-# 231. Value Object Persistence
-
-Value Objects persist with the owning Aggregate.
-
-Examples include:
-
-Capacity
-
-```text
-Seating
-
-Standing
-
-Maximum Occupancy
-```
-
-Accessibility
-
-```text
-Wheelchair
-
-Lift
-
-Braille
-
-Hearing Assistance
-```
-
-Criticality
-
-```text
-Priority
-
-Downtime
-
-Recovery Level
-```
-
-Value Objects have no independent lifecycle.
-
----
-
-# 232. Repository Interface Principles
-
-Repositories expose aggregate-oriented operations.
-
-Examples:
-
-```text
-Save Aggregate
-
-Load Aggregate
-
-Find by Identifier
-
-Find by Business Code
-
-Exists
-```
-
-Repositories shall not expose generic CRUD interfaces.
-
----
-
-# 233. Query Model
-
-Operational queries use dedicated read models.
-
-Examples:
-
-- Campus Summary
-- Building Summary
-- Space Summary
-- Capacity View
-- Accessibility View
-
-Queries may use optimized read storage.
-
-Read models are disposable projections. They may be regenerated from authoritative Aggregate data and Domain Events, and they are never the system of record.
-
----
-
-# 234. Search Strategy
-
-Infrastructure supports enterprise search.
-
-Search criteria include:
-
-- Campus
-- Building
-- Floor
-- Space
-- Classification
-- Capacity
-- Accessibility
-- Lifecycle
-- Zone
-- Collection
-- Portfolio
-
-Search operates against published query models.
-
----
-
-# 235. Indexing Principles
-
-Typical indexes include:
-
-Identity
-
-- Identifier
-- Business Code
-
-Hierarchy
-
-- Campus
-- Building
-- Floor
-
-Operational
-
-- Lifecycle
-- Operational Status
-
-Classification
-
-- Infrastructure Type
-- Accessibility
-- Criticality
-
-Indexes are implementation decisions and may vary by persistence technology.
-
----
-
-# 236. Transaction Strategy
-
-Each Aggregate modification executes within a single transaction.
-
-```text
-Load Aggregate
-
-↓
-
-Validate
-
-↓
-
-Modify
-
-↓
-
-Persist
-
-↓
-
-Commit
-
-↓
-
-Publish Event
-```
-
-Transactions never span multiple Aggregates.
-
-Cross-aggregate consistency is achieved through domain events.
-
----
-
-# 237. Event Publication Strategy
-
-The recommended persistence pattern is:
-
-```text
-Aggregate Updated
-
-↓
-
-Database Commit
-
-↓
-
-Transactional Outbox
-
-↓
-
-Message Broker
-
-↓
-
-Consumers
-```
-
-This ensures:
-
-- Reliable event delivery
-- No lost events
-- Consistent state
-- Eventual consistency
-
-Infrastructure remains independent of the messaging technology.
-
----
-
-# 238. Audit Persistence
-
-Audit records are persisted separately from Aggregate data.
-
-Audit records contain:
-
-- Who
-- What
-- When
-- Previous State
-- New State
-- Correlation Identifier
-
-Audit history shall not modify Aggregate state.
-
----
-
-# 239. Historical Data Strategy
-
-Historical Infrastructure remains queryable.
-
-Historical information includes:
-
-- Lifecycle History
-- Capacity Changes
-- Classification Changes
-- Relationship Changes
-- Health Assessments
-
-Historical information supports:
-
-- Analytics
-- Governance
-- Compliance
-- Audit
-
----
-
-# 240. Repository Design Principles
-
-## RDP-01
-
-Repositories manage Aggregate persistence only.
-
----
-
-## RDP-02
-
-Aggregate boundaries define transaction boundaries.
-
----
-
-## RDP-03
-
-Persistence technology remains replaceable.
-
----
-
-## RDP-04
-
-Read models remain independent of write models.
-
----
-
-## RDP-05
-
-Infrastructure remains the authoritative source of physical master data.
-
----
-
-## RDP-06
-
-Logical relationships never compromise physical hierarchy.
-
----
-
-## RDP-07
-
-Lifecycle replaces deletion as the primary state management mechanism.
-
----
-
-## RDP-08
-
-Events are published only after successful persistence.
-
----
-
-# 241. Responsibility Matrix
-
-| Responsibility | Owner |
-|---------------|-------|
-| Aggregate Persistence | Repository |
-| Business Rules | Aggregate |
-| Validation | Application Layer + Aggregate |
-| Authorization | Identity & Access Management |
-| Audit Logging | Platform Foundation |
-| Read Models | Query Layer |
-| Analytics | Analytics Domain |
-| Event Delivery | Integration Platform |
-
----
-
-# Part 14 Completion
-
-This section defines the canonical persistence architecture for the Campus & Infrastructure domain, including:
+This section defines the canonical persistence architecture for the Institutional Campus domain, including:
 
 - Persistence Philosophy
 - Repository Architecture
@@ -2738,13 +2178,13 @@ These principles ensure that the persistence implementation faithfully supports 
 
 ---
 
-# Part 15 — Multi-Domain Dependencies, Consumption Matrix & Architecture Boundaries
+# Part 11 — Multi-Domain Dependencies, Consumption Matrix & Architecture Boundaries
 
 ---
 
 # 242. Domain Position in SutraERP
 
-The Campus & Infrastructure domain is a **foundational master data domain**.
+The Institutional Campus domain is a **foundational master data domain**.
 
 It provides the authoritative representation of institutional physical infrastructure that is consumed by multiple operational and analytical domains.
 
@@ -2762,7 +2202,7 @@ The domain does **not** own business activities performed within infrastructure.
 
 # 243. Upstream Dependencies
 
-The Campus & Infrastructure domain depends upon the following enterprise domains.
+The Institutional Campus domain depends upon the following enterprise domains.
 
 | Domain | Dependency | Purpose |
 |---------|------------|---------|
@@ -2830,303 +2270,18 @@ Infrastructure never performs downstream orchestration.
 
 ---
 
-# 246. Admissions Integration
+# 246. Consuming-Domain Integration (defined by L2-G10)
 
-Admissions consumes Infrastructure for:
+> Migrated 2026-08-05 under integrity finding INT-008 to `L2-G10` Section 9A.
 
-- Campus selection
-- Admission centres
-- Interview rooms
-- Counselling locations
-- Document verification facilities
+Integration with Admissions, Student Lifecycle, Timetable, Examination, Attendance, Hostel,
+Library, Asset Management, Maintenance, Security, HR, Analytics, AI, Disaster Management and
+Notification describes what **physical infrastructure** provides to those domains. It is
+owned by `L2-G10 --- Infrastructure Management Workflows`, Section 9A.
 
-Admissions owns:
-
-- Seat allocation
-- Student admission workflow
-- Admission scheduling
-
-Infrastructure provides only physical location information.
-
----
-
-# 247. Student Lifecycle Integration
-
-Student Lifecycle consumes:
-
-- Campus assignment
-- Hostel locations
-- Learning facilities
-- Student service centres
-
-Infrastructure does not manage student movement.
-
----
-
-# 248. Timetable Integration
-
-Timetable is one of the largest Infrastructure consumers.
-
-Infrastructure provides:
-
-- Classrooms
-- Laboratories
-- Seminar Rooms
-- Capacity
-- Accessibility
-- Operational Status
-
-Timetable determines:
-
-- Allocation
-- Scheduling
-- Conflict detection
-- Resource optimization
-
-Infrastructure never performs scheduling.
-
----
-
-# 249. Examination Integration
-
-Examination consumes:
-
-- Examination Halls
-- Capacity
-- Accessibility
-- Operational Availability
-- Campus Information
-
-Examination owns:
-
-- Seating plans
-- Invigilation
-- Scheduling
-- Candidate allocation
-
-Infrastructure owns only examination facilities.
-
----
-
-# 250. Attendance Integration
-
-Attendance consumes:
-
-- Classroom master data
-- Lecture halls
-- Practical laboratories
-- Campus information
-
-Attendance owns:
-
-- Attendance recording
-- Attendance policies
-- Attendance calculation
-
-Infrastructure provides locations only.
-
----
-
-# 251. Hostel Integration
-
-Hostel consumes:
-
-- Hostel Buildings
-- Hostel Floors
-- Hostel Rooms
-
-Hostel owns:
-
-- Room allocation
-- Student occupancy
-- Hostel operations
-
-Infrastructure owns the physical hostel.
-
----
-
-# 252. Library Integration
-
-Library consumes:
-
-- Library Buildings
-- Reading Rooms
-- Discussion Rooms
-- Digital Learning Spaces
-
-Infrastructure provides locations.
-
-Library owns library operations.
-
----
-
-# 253. Asset Management Integration
-
-Infrastructure and Asset Management are complementary.
-
-Infrastructure owns:
-
-- Buildings
-- Floors
-- Rooms
-- Physical hierarchy
-
-Asset Management owns:
-
-- Furniture
-- Equipment
-- Computers
-- Laboratory Instruments
-- HVAC Assets
-- Electrical Equipment
-
-Assets are located within Infrastructure.
-
-Infrastructure does not own movable assets.
-
----
-
-# 254. Maintenance Integration
-
-Infrastructure provides:
-
-- Physical infrastructure
-- Health Status
-- Criticality
-- Operational Availability
-
-Maintenance owns:
-
-- Work Orders
-- Preventive Maintenance
-- Repairs
-- Inspection Scheduling
-- Maintenance History
-
-Infrastructure stores only current business facts.
-
----
-
-# 255. Security Integration
-
-Security consumes:
-
-- Buildings
-- Restricted Areas
-- Security Zones
-- Access Points
-- Criticality
-
-Security owns:
-
-- Guards
-- Patrols
-- Access Control
-- CCTV Operations
-- Incident Response
-
-Infrastructure provides physical topology.
-
----
-
-# 256. HR Integration
-
-HR consumes:
-
-- Office Locations
-- Department Buildings
-- Staff Facilities
-
-HR owns:
-
-- Employee assignments
-- Department administration
-
-Infrastructure owns physical offices only.
-
----
-
-# 257. Analytics Integration
-
-Infrastructure publishes canonical facts.
-
-Analytics derives:
-
-- Utilization
-- Occupancy Trends
-- Capacity Forecasting
-- Infrastructure KPIs
-- Dashboards
-- Executive Reports
-
-Infrastructure never computes KPIs.
-
----
-
-# 258. AI Integration
-
-Infrastructure provides canonical enterprise facts.
-
-Examples:
-
-- Building hierarchy
-- Space relationships
-- Capacity
-- Accessibility
-- Sustainability capabilities
-- Criticality
-
-AI derives:
-
-- Semantic understanding
-- Recommendations
-- Optimization
-- Predictions
-- Natural language interpretation
-
-Infrastructure intentionally avoids semantic interpretation.
-
----
-
-# 259. Disaster Management Integration
-
-Infrastructure provides:
-
-- Criticality
-- Recovery Metadata
-- Alternate Facilities
-- Backup Utilities
-
-Disaster Management owns:
-
-- Emergency Plans
-- Recovery Procedures
-- Incident Management
-- Crisis Response
-
-Infrastructure stores resilience facts only.
-
----
-
-# 260. Notification Integration
-
-Infrastructure publishes business events.
-
-Notification consumes:
-
-- InfrastructureActivated
-- BuildingClosed
-- MaintenanceStarted
-- SpaceUnavailable
-
-Notification determines:
-
-- Delivery Channels
-- Templates
-- Recipients
-- Escalation
-
-Infrastructure never sends notifications directly.
+B03's own consumption surface is narrow: domains that need to know **which campuses an
+Institution operates** consume the InstitutionalCampus Summary Contract (Part 12). Domains
+needing rooms, capacity, accessibility or physical availability consume G10 directly.
 
 ---
 
@@ -3203,7 +2358,7 @@ Platform Foundation
 Institution Management
          │
          ▼
-Campus & Infrastructure
+Institutional Campus
          │
          ├──────── Admissions
          ├──────── Timetable
@@ -3307,9 +2462,9 @@ Domain ownership shall remain explicit and non-overlapping.
 
 ---
 
-# Part 15 Completion
+# Part 11 Completion
 
-This section defines the enterprise architecture boundaries and multi-domain interactions for the Campus & Infrastructure domain, including:
+This section defines the enterprise architecture boundaries and multi-domain interactions for the Institutional Campus domain, including:
 
 - Upstream Dependencies
 - Downstream Consumers
@@ -3321,17 +2476,17 @@ This section defines the enterprise architecture boundaries and multi-domain int
 - Future Extensibility
 - Multi-Domain Design Principles
 
-These boundaries establish the Campus & Infrastructure domain as the authoritative master data provider for institutional physical infrastructure while ensuring clear ownership, loose coupling, and scalable integration across the SutraERP enterprise architecture.
+These boundaries establish the Institutional Campus domain as the authoritative master data provider for institutional physical infrastructure while ensuring clear ownership, loose coupling, and scalable integration across the SutraERP enterprise architecture.
 
 ---
 
-# Part 16 — Canonical Architecture Principles, Quality Attributes & Future Evolution
+# Part 12 — Canonical Architecture Principles, Quality Attributes & Future Evolution
 
 ---
 
 # 267. Architecture Vision
 
-The Campus & Infrastructure domain establishes the enterprise-wide canonical representation of physical infrastructure.
+The Institutional Campus domain establishes the enterprise-wide canonical representation of physical infrastructure.
 
 Its architecture is designed to be:
 
@@ -3367,7 +2522,7 @@ The architecture shall achieve the following goals.
 
 # 269. Domain Quality Attributes
 
-The Campus & Infrastructure domain is designed around the following quality attributes.
+The Institutional Campus domain is designed around the following quality attributes.
 
 | Quality Attribute | Priority |
 |-------------------|----------|
@@ -3406,7 +2561,7 @@ Scaling concerns shall be addressed by infrastructure and deployment architectur
 
 # 271. Deployment Independence
 
-The Campus & Infrastructure domain is deployment agnostic.
+The Institutional Campus domain is deployment agnostic.
 
 It supports:
 
@@ -3743,7 +2898,7 @@ This document is repository-complete when it satisfies the following.
 
 # 287. Final Architectural Statement
 
-The Campus & Infrastructure domain provides the canonical enterprise model for institutional physical infrastructure within SutraERP.
+The Institutional Campus domain provides the canonical enterprise model for institutional physical infrastructure within SutraERP.
 
 It establishes:
 
@@ -3761,9 +2916,9 @@ This architecture serves as the authoritative foundation upon which all infrastr
 
 ---
 
-# Part 16 Completion
+# Part 12 Completion
 
-This final section concludes the Campus & Infrastructure domain architecture by defining:
+This final section concludes the Institutional Campus domain architecture by defining:
 
 - Enterprise Architecture Vision
 - Quality Attributes
