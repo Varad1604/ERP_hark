@@ -312,7 +312,7 @@ graph TD
 - **Finding (Versioning):** Hierarchies in B02 and curricula in B04 employ immutable versioning strategies, using effective dating rather than modifying active records. [Certain]
   - *Evidence:* [L2-B02 Section L2-B02-P2-20](L2-B02_Organisation_Workflows.md) and [L2-B04 Section 29](L2-B04_Curriculum_Framework_Workflows.md).
 - **Finding (Audit Trails):** History preservation is maintained. Physical deletions are prohibited; domains use status fields (`Archived` or `Retired`) to perform soft-deletions. [Certain]
-  - *Evidence:* [L2-B03 Section 55](L2-B03_Campus_Workflows.md) Spatial lifecycle validation.
+  - *Evidence:* [L2-G10 Section 11A.55](../section-g/L2-G10_Infrastructure_Management_Workflows.md) Spatial lifecycle validation (migrated from L2-B03 under INT-008).
 
 ### Certification Result: ✅ PASS
 

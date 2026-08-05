@@ -13,6 +13,7 @@
 
 ---
 
+
 ## Canonical Section Crosswalk
 
 > Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
@@ -21,17 +22,17 @@
 |---|---|
 | Purpose | §1 Purpose |
 | Scope | §3 Scope; §4 Out of Scope |
-| Actors | — not present — |
-| Entities | §8 Aggregate Design; Aggregate Root; Aggregate Responsibilities |
-| Business Rules | §47 Business Rules |
+| Actors | Actors |
+| Entities | Child Entities |
+| Business Rules | §47 Business Rules; 13A.62 Business Rule Philosophy; 13A.63 Business Rule Categories |
 | Workflow | §12 Workflow Catalogue; §16 Infrastructure Registration Workflows; §17 Campus Management Workflows |
-| State Machine | §46 State Transition Matrix; Availability States |
-| Contracts | §45 Service Contracts |
-| Events | §44 Domain Events; Event-Driven Architecture; Registration Events |
-| Dependencies | §9 Dependencies & Integration (Bounded Context Relationships) |
+| State Machine | 11A.51 Canonical Lifecycle States; 11A.52 Lifecycle State Definitions |
+| Contracts | §45 Service Contracts; 13A.77 Public Contract Rules |
+| Events | §44 Domain Events; Event-Driven Architecture; 11A.58 Lifecycle Events |
+| Dependencies | §9 Dependencies & Integration (Bounded Context Relationships); 11A.56 Lifecycle Dependency Rules |
 | Locked Decisions | — not present — |
 
-> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Locked Decisions. Recorded, not authored.
+> **Gap:** 1 required section(s) have no counterpart in this document: Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -511,6 +512,554 @@ Aggregate Identity shall never change.
 
 ---
 
+## 8A. Canonical Aggregate Definitions
+
+> Migrated from `L2-B03_Campus_Workflows.md` on 2026-08-05 under integrity finding
+> INT-008. B03 defined these physical aggregates in full while G10, their canonical
+> owner, listed only their names. The definitions now live with the owner. B03 retains
+> the InstitutionalCampus aggregate and references these by identity.
+
+The aggregates named in Section 8 are defined below. Section 36 of the source document
+described the *physical* campus site; it is titled Physical Campus Aggregate here to
+distinguish it from the InstitutionalCampus governed by `L2-B03`.
+
+---
+
+## 8.1 Physical Campus Aggregate
+
+## Purpose
+
+Represents an independent physical campus.
+
+---
+
+## Aggregate Root
+
+```text
+Campus
+```
+
+---
+
+## Child Entities
+
+- Campus Address
+- Campus Contact
+- Campus Boundary
+- Campus Facilities
+- Campus Metadata
+
+---
+
+## Value Objects
+
+- Campus Name
+- Campus Code
+- Geo Location
+- Postal Address
+- Time Zone
+
+---
+
+## Responsibilities
+
+The Campus aggregate is responsible for:
+
+- Campus Identity
+- Campus Lifecycle
+- Campus Availability
+- Campus Status
+- Campus Metadata
+
+---
+
+## Business Invariants
+
+- Campus Code must be unique.
+- Campus belongs to exactly one Institution.
+- Campus lifecycle governs operational availability.
+- Campus cannot be deleted once operational.
+
+---
+
+## 8.2 Building Aggregate
+
+## Purpose
+
+Represents a permanent physical structure.
+
+---
+
+## Aggregate Root
+
+```text
+Building
+```
+
+---
+
+## Child Entities
+
+- Building Wing (Optional child entity; not an Aggregate Root)
+- Building Entrance
+- Building Utilities
+- Building Contacts
+
+---
+
+## Value Objects
+
+- Building Name
+- Building Code
+- Building Classification
+- Area Measurement
+
+---
+
+## Responsibilities
+
+The Building aggregate owns:
+
+- Building Identity
+- Building Lifecycle
+- Physical Characteristics
+- Operational Characteristics
+- Structural Metadata
+
+---
+
+## Business Invariants
+
+- Building belongs to exactly one Campus.
+- Building Code must be unique within Campus.
+- Building cannot exist without Campus.
+- Gross Area must be greater than zero.
+- Construction Year cannot be in the future.
+
+---
+
+## 8.3 Floor Aggregate
+
+## Purpose
+
+Represents a floor within a building.
+
+---
+
+## Aggregate Root
+
+```text
+Floor
+```
+
+---
+
+## Child Entities
+
+- Floor Facilities
+- Floor Metadata
+
+---
+
+## Value Objects
+
+- Floor Number
+- Floor Name
+- Accessibility Profile
+
+---
+
+## Responsibilities
+
+The Floor aggregate owns:
+
+- Floor Identity
+- Floor Ordering
+- Accessibility Characteristics
+- Operational Status
+
+---
+
+## Business Invariants
+
+- Floor belongs to exactly one Building.
+- Floor Number must be unique within Building.
+- Floor lifecycle cannot exceed parent Building lifecycle.
+
+---
+
+## 8.4 Space Aggregate
+
+## Purpose
+
+Represents a usable physical location.
+
+---
+
+## Aggregate Root
+
+```text
+Space
+```
+
+---
+
+## Child Entities
+
+- Space Access Point
+- Space Facility
+- Space Feature
+- Space Compliance Record
+
+---
+
+## Value Objects
+
+- Capacity
+- Area
+- Accessibility Profile
+- Availability Profile
+- Criticality Profile
+- Health Profile
+
+---
+
+## Responsibilities
+
+The Space aggregate owns:
+
+- Identity
+- Classification
+- Capacity
+- Physical Characteristics
+- Accessibility
+- Availability
+- Lifecycle
+- Compliance
+- Criticality
+- Sustainability Capabilities
+
+---
+
+## Business Invariants
+
+- Space belongs to exactly one Floor.
+- Space Code must be unique within Building.
+- Capacity cannot be negative.
+- Area cannot be negative.
+- Lifecycle transitions follow approved workflow.
+
+---
+
+## 8.5 Zone Aggregate
+
+## Purpose
+
+Represents an operational grouping of infrastructure.
+
+Examples:
+
+- North Zone
+- Examination Zone
+- Residential Zone
+- Academic Zone
+
+---
+
+## Aggregate Root
+
+```text
+Zone
+```
+
+---
+
+## Child Entities
+
+- Zone Membership
+
+---
+
+## Value Objects
+
+- Zone Name
+- Zone Type
+
+---
+
+## Responsibilities
+
+- Zone Membership
+- Zone Metadata
+- Zone Lifecycle
+
+---
+
+## Business Invariants
+
+- Infrastructure may belong to multiple Zones.
+- Zone membership never changes physical hierarchy.
+
+---
+
+## 8.6 Collection Aggregate
+
+## Purpose
+
+Represents logical business categorization.
+
+Examples:
+
+- Smart Classrooms
+- Accessible Facilities
+- Research Laboratories
+- Heritage Buildings
+
+---
+
+## Aggregate Root
+
+```text
+Collection
+```
+
+---
+
+## Child Entities
+
+- Collection Membership
+
+---
+
+## Value Objects
+
+- Collection Name
+- Collection Category
+
+---
+
+## Responsibilities
+
+- Business Classification
+- Collection Membership
+- Collection Metadata
+
+---
+
+## Business Invariants
+
+Collections never own infrastructure.
+
+Collections reference infrastructure.
+
+---
+
+## 8.7 Portfolio Aggregate
+
+## Purpose
+
+Represents executive governance grouping.
+
+Examples:
+
+- Capital Investment Portfolio
+- Green Campus Portfolio
+- Digital Infrastructure Portfolio
+
+---
+
+## Aggregate Root
+
+```text
+Portfolio
+```
+
+---
+
+## Child Entities
+
+- Portfolio Membership
+
+---
+
+## Value Objects
+
+- Portfolio Name
+- Investment Category
+- Governance Category
+
+---
+
+## Responsibilities
+
+- Strategic Grouping
+- Investment Classification
+- Executive Governance
+
+---
+
+## Business Invariants
+
+Portfolio membership has no effect on physical hierarchy.
+
+---
+
+## 8.8 Shared Value Objects
+
+The following Value Objects are reusable across multiple aggregates.
+
+---
+
+## Identity
+
+Contains:
+
+- Identifier
+- Business Code
+- Display Name
+
+---
+
+## Lifecycle
+
+Contains:
+
+- Current State
+- Effective Date
+- Activation Date
+- Deactivation Date
+
+---
+
+## Capacity
+
+Contains:
+
+- Seating Capacity
+- Standing Capacity
+- Maximum Occupancy
+
+---
+
+## Area
+
+Contains:
+
+- Built-up Area
+- Carpet Area
+- Measurement Unit
+
+---
+
+## Accessibility
+
+Contains:
+
+- Wheelchair Access
+- Lift Access
+- Accessible Restroom
+- Accessible Parking
+
+---
+
+## Criticality
+
+Contains:
+
+- Criticality Level
+- Recovery Priority
+- Maximum Downtime
+
+---
+
+## Sustainability
+
+Contains:
+
+- Solar Infrastructure
+- Rainwater Harvesting
+- Grey Water Recycling
+- EV Charging
+- Green Certification
+
+---
+
+## Health
+
+Contains:
+
+- Current Health
+- Assessment Date
+- Assessment Authority
+
+---
+
+## Compliance
+
+Contains:
+
+- Fire Compliance
+- Structural Compliance
+- Accessibility Compliance
+- Regulatory Certifications
+
+---
+
+---
+
+
+> Sections 8.9 and 8.10 were recovered on 2026-08-05: they existed only in the
+> B03 Part 3 block removed during migration and had no Part 4 counterpart.
+
+## 8.9 Infrastructure Unit
+
+Infrastructure Unit is a conceptual business abstraction representing managed physical infrastructure and is NOT an Aggregate Root.
+
+It represents any managed physical entity within institutional premises.
+
+Examples include:
+
+- Generator Room
+- Parking Area
+- Cafeteria
+- Water Tank
+- Sports Ground
+- Amphitheatre
+- Server Room
+- Security Cabin
+
+Every Infrastructure Unit belongs to exactly one physical parent.
+
+---
+
+## 8.10 Physical Hierarchy Rules
+
+The following hierarchy is canonical.
+
+```text
+Campus
+    │
+Building
+    │
+Wing (Optional)
+    │
+Floor
+    │
+Space
+```
+
+Rules:
+
+- A Campus contains multiple Buildings.
+- A Building belongs to exactly one Campus.
+- A Floor belongs to exactly one Building (or optionally to a Wing within that Building).
+- A Wing is an optional child entity owned by the Building Aggregate and is not an independent Aggregate Root. It exists only where required by institutional building layouts; buildings without wings remain completely valid.
+- A Space belongs to exactly one Floor.
+- A Space cannot belong to multiple Floors.
+- Circular relationships are prohibited.
+
+---
+
 # 9. Dependencies & Integration (Bounded Context Relationships)
 
 ## Upstream Domains
@@ -789,6 +1338,468 @@ Lifecycle transitions shall:
 
 ---
 
+## 11A. Canonical Infrastructure Lifecycle
+
+> Migrated from `L2-B03_Campus_Workflows.md` Part 5 on 2026-08-05 under integrity
+> finding INT-008. B03 held the detailed lifecycle model for aggregates G10 owns.
+> Section 11 above remains the summary; the canonical detail is below.
+
+---
+
+
+---
+
+## 11A.49 Lifecycle Philosophy
+
+Infrastructure entities are **long-lived enterprise objects**.
+
+Unlike transactional records, physical infrastructure represents real-world assets that evolve over many years or decades.
+
+Infrastructure shall therefore follow a **controlled business lifecycle** rather than relying on record creation and deletion.
+
+The lifecycle represents the operational existence of infrastructure rather than its persistence within the database.
+
+---
+
+## 11A.50 Lifecycle Objectives
+
+The infrastructure lifecycle exists to achieve the following objectives.
+
+## LO-01 — Preserve Historical Integrity
+
+Infrastructure shall remain historically traceable even after it is no longer operational.
+
+---
+
+## LO-02 — Maintain Referential Integrity
+
+Historical references from:
+
+- Timetable
+- Examination
+- Admissions
+- Asset Management
+- Maintenance
+- Analytics
+
+shall remain valid throughout the infrastructure lifecycle.
+
+---
+
+## LO-03 — Prevent Unsafe Deletion
+
+Operational infrastructure shall never be physically deleted.
+
+Lifecycle transitions shall replace deletion.
+
+---
+
+## LO-04 — Enable Operational Planning
+
+Infrastructure shall support future operational states such as:
+
+- Planned Expansion
+- Construction
+- Renovation
+- Temporary Closure
+- Retirement
+
+---
+
+## LO-05 — Support Regulatory Compliance
+
+Lifecycle history shall remain auditable for regulatory, accreditation, and institutional governance purposes.
+
+---
+
+## 11A.51 Canonical Lifecycle States
+
+Every Infrastructure Aggregate shall exist in exactly one lifecycle state.
+
+```text
+Proposed
+     │
+     ▼
+Planned
+     │
+     ▼
+Approved
+     │
+     ▼
+Under Construction
+     │
+     ▼
+Operational
+     │
+     ├─────────────► Under Maintenance
+     │                    │
+     │                    ▼
+     │               Operational
+     │
+     ├─────────────► Under Renovation
+     │                    │
+     │                    ▼
+     │               Operational
+     │
+     ├─────────────► Temporarily Closed
+     │                    │
+     │                    ▼
+     │               Operational
+     │
+     ▼
+Decommissioned
+     │
+     ▼
+Archived
+```
+
+---
+
+## 11A.52 Lifecycle State Definitions
+
+## Proposed
+
+Infrastructure has been identified but has not yet received formal approval.
+
+Examples:
+
+- New Building Proposal
+- New Campus Proposal
+- Future Hostel
+
+---
+
+## Planned
+
+Infrastructure has entered planning activities.
+
+Examples:
+
+- Architectural Planning
+- Budget Allocation
+- Site Survey
+
+---
+
+## Approved
+
+Infrastructure has received institutional approval for implementation.
+
+Construction may begin.
+
+---
+
+## Under Construction
+
+Physical construction is in progress.
+
+Infrastructure cannot be allocated to business operations.
+
+---
+
+## Operational
+
+Infrastructure is available for normal institutional use.
+
+Only operational infrastructure may be allocated by other domains.
+
+---
+
+## Under Maintenance
+
+Infrastructure is temporarily unavailable due to maintenance activities.
+
+Maintenance workflows belong to the Maintenance domain.
+
+Infrastructure stores only its lifecycle state.
+
+---
+
+## Under Renovation
+
+Infrastructure is undergoing renovation or major modification.
+
+Allocation is prohibited during this state.
+
+---
+
+## Temporarily Closed
+
+Infrastructure has been intentionally closed without permanent retirement.
+
+Examples:
+
+- Summer Closure
+- Safety Inspection
+- Government Restrictions
+
+---
+
+## Decommissioned
+
+Infrastructure has permanently ceased operational use.
+
+Historical records remain available.
+
+No future allocations are permitted.
+
+---
+
+## Archived
+
+Infrastructure remains part of institutional history.
+
+It is excluded from operational workflows.
+
+---
+
+## 11A.53 Lifecycle Transition Rules
+
+The following transitions are permitted.
+
+| From | To |
+|------|----|
+| Proposed | Planned |
+| Planned | Approved |
+| Approved | Under Construction |
+| Under Construction | Operational |
+| Operational | Under Maintenance |
+| Operational | Under Renovation |
+| Operational | Temporarily Closed |
+| Operational | Decommissioned |
+| Under Maintenance | Operational |
+| Under Renovation | Operational |
+| Temporarily Closed | Operational |
+| Decommissioned | Archived |
+
+All other transitions require explicit administrative override and audit approval.
+
+---
+
+## 11A.54 Invalid Lifecycle Transitions
+
+The following transitions are prohibited.
+
+| Invalid Transition | Reason |
+|-------------------|--------|
+| Archived → Operational | Archived infrastructure is permanently retired. |
+| Proposed → Operational | Planning stages cannot be skipped. |
+| Decommissioned → Construction | Requires creation of new infrastructure. |
+| Archived → Planned | Historical records cannot be reactivated. |
+
+---
+
+## 11A.55 Aggregate Lifecycle Ownership
+
+
+| Aggregate | Lifecycle Managed |
+|------------|---------------------|
+| Physical Campus (site boundary) | Yes |
+| Building | Yes |
+| Floor | Yes |
+| Space | Yes |
+| Zone | Yes |
+| Collection | Yes |
+| Portfolio | Yes |
+
+Child aggregates may never exceed the lifecycle maturity of their parent. The
+
+---
+
+## 11A.56 Lifecycle Dependency Rules
+
+
+## LR-01
+
+A Campus cannot become Operational unless required institutional prerequisites are satisfied.
+
+---
+
+## LR-02
+
+A Building cannot become Operational unless its parent Campus is Operational.
+
+---
+
+## LR-03
+
+A Floor cannot become Operational unless its parent Building is Operational.
+
+---
+
+## LR-04
+
+A Space cannot become Operational unless its parent Floor is Operational.
+
+---
+
+## LR-05
+
+A parent infrastructure entity cannot transition to Archived while active child entities remain Operational.
+
+---
+
+## LR-06
+
+Decommissioning a parent infrastructure entity requires evaluation of all dependent child entities.
+
+---
+
+## 11A.57 Operational Availability
+
+To resolve semantic ambiguity, the system explicitly distinguishes these concepts:
+- **Lifecycle** represents long-term business existence.
+- **Operational Status** represents the current operational condition.
+- **Availability** is a derived business fact determined from Lifecycle together with Operational Status (and any other applicable operational constraints).
+
+Lifecycle state determines operational availability.
+
+| Lifecycle State | Operationally Available |
+|-----------------|-------------------------|
+| Proposed | No |
+| Planned | No |
+| Approved | No |
+| Under Construction | No |
+| Operational | Yes |
+| Under Maintenance | No |
+| Under Renovation | No |
+| Temporarily Closed | No |
+| Decommissioned | No |
+| Archived | No |
+
+Only infrastructure in the **Operational** state may be used by operational domains.
+
+---
+
+## 11A.58 Lifecycle Events
+
+Every lifecycle transition publishes a canonical business event.
+
+Examples include:
+
+- InfrastructurePlanned
+- InfrastructureApproved
+- ConstructionStarted
+- InfrastructureOperational
+- MaintenanceStarted
+- MaintenanceCompleted
+- RenovationStarted
+- RenovationCompleted
+- InfrastructureTemporarilyClosed
+- InfrastructureReopened
+- InfrastructureDecommissioned
+- InfrastructureArchived
+
+Events represent completed business facts and are immutable.
+
+---
+
+## 11A.59 Consumer Behaviour
+
+Consumer domains shall interpret lifecycle states according to their own business rules.
+
+Examples:
+
+### Timetable
+
+- Ignore non-operational spaces.
+- Stop allocating decommissioned classrooms.
+
+---
+
+### Examination
+
+- Exclude archived examination halls.
+- Prevent scheduling in renovated buildings.
+
+---
+
+### Admissions
+
+- Consider only operational intake facilities.
+
+---
+
+### Analytics
+
+- Preserve historical utilization.
+- Report lifecycle trends.
+
+---
+
+### Maintenance
+
+- Initiate work orders based on lifecycle transitions.
+
+---
+
+## 11A.60 Lifecycle Audit Requirements
+
+Every lifecycle transition shall be auditable.
+
+Audit information includes:
+
+- Previous State
+- New State
+- Transition Timestamp
+- Effective Date
+- Initiated By
+- Approval Authority
+- Transition Reason
+- Supporting Documentation Reference
+
+Lifecycle history is immutable and retained according to institutional retention policies.
+
+---
+
+## 11A.61 Lifecycle Design Principles
+
+The lifecycle model follows these principles.
+
+## LP-01
+
+Infrastructure has a business lifecycle, not merely a database lifecycle.
+
+---
+
+## LP-02
+
+Lifecycle transitions represent business decisions.
+
+---
+
+## LP-03
+
+Historical infrastructure remains visible for audit and reporting.
+
+---
+
+## LP-04
+
+Deletion is exceptional and governed by platform-level data governance.
+
+---
+
+## LP-05
+
+Operational availability is determined by lifecycle state.
+
+---
+
+## LP-06
+
+Lifecycle events are authoritative business events published to the enterprise.
+
+---
+
+## LP-07
+
+Parent-child lifecycle consistency shall always be maintained.
+
+---
+
+---
+
 # 12. Workflow Catalogue
 
 The Infrastructure Management domain governs the following workflow families:
@@ -872,6 +1883,587 @@ Violation of these invariants shall reject the transaction.
 
 ---
 
+## 13A. Canonical Business, Validation & Constraint Rules
+
+> Migrated from `L2-B03_Campus_Workflows.md` Part 6 on 2026-08-05 under integrity
+> finding INT-008. Section 13 above remains the invariant summary; the canonical
+> rule set is below.
+
+---
+
+
+---
+
+## 13A.62 Business Rule Philosophy
+
+The Campus & Infrastructure domain protects the integrity of the enterprise physical model by enforcing canonical business rules.
+
+Business rules ensure:
+
+- Physical consistency
+- Data integrity
+- Operational correctness
+- Multi-domain reliability
+- Regulatory readiness
+- Long-term maintainability
+
+Every Infrastructure Aggregate is responsible for enforcing its own invariants.
+
+No external domain may bypass these rules.
+
+---
+
+## 13A.63 Business Rule Categories
+
+Business rules are classified into six categories.
+
+| Category | Purpose |
+|----------|---------|
+| Identity Rules | Ensure unique identification |
+| Structural Rules | Protect physical hierarchy |
+| Operational Rules | Govern operational use |
+| Lifecycle Rules | Govern lifecycle transitions |
+| Relationship Rules | Maintain infrastructure associations |
+| Integrity Rules | Preserve enterprise consistency |
+
+---
+
+## 13A.64 Identity Rules
+
+## BR-ID-01
+
+Every Infrastructure entity shall possess a globally unique identifier.
+
+Identifiers are immutable.
+
+---
+
+## BR-ID-02
+
+Every Infrastructure entity shall possess a unique business code.
+
+Business Codes shall be unique within the owning Institution.
+
+Examples:
+
+- CAMP-MAIN
+- BLDG-A
+- ROOM-101
+
+---
+
+## BR-ID-03
+
+Infrastructure names may change.
+
+Identifiers shall never change.
+
+---
+
+## BR-ID-04
+
+Duplicate infrastructure records are prohibited.
+
+---
+
+## 13A.65 Structural Rules
+
+## BR-ST-01
+
+Every Campus belongs to exactly one Institution.
+
+---
+
+## BR-ST-02
+
+Every Building belongs to exactly one Campus.
+
+---
+
+## BR-ST-03
+
+Every Floor belongs to exactly one Building.
+
+---
+
+## BR-ST-04
+
+Every Space belongs to exactly one Floor.
+
+---
+
+## BR-ST-05
+
+Every Infrastructure Unit belongs to exactly one parent in the physical hierarchy.
+
+---
+
+## BR-ST-06
+
+Circular hierarchy relationships are prohibited.
+
+Example:
+
+```text
+Building A
+
+↓
+
+Floor 1
+
+↓
+
+Room 101
+
+↓
+
+Building A ❌
+```
+
+---
+
+## BR-ST-07
+
+Physical hierarchy depth shall remain canonical.
+
+Example:
+
+```text
+Campus
+   ↓
+Building
+   ↓
+Floor
+   ↓
+Space
+```
+
+Additional arbitrary hierarchy levels are prohibited unless introduced through future architectural revisions.
+
+---
+
+## 13A.66 Operational Rules
+
+## BR-OP-01
+
+Only Operational infrastructure may participate in institutional operations.
+
+---
+
+## BR-OP-02
+
+Infrastructure Under Construction shall never be allocated.
+
+---
+
+## BR-OP-03
+
+Infrastructure Under Renovation shall never be allocated.
+
+---
+
+## BR-OP-04
+
+Temporarily Closed infrastructure shall not be available for scheduling.
+
+---
+
+## BR-OP-05
+
+Decommissioned infrastructure shall remain visible for historical purposes but unavailable for future operational use.
+
+---
+
+## BR-OP-06
+
+Archived infrastructure shall not appear in operational searches by default.
+
+---
+
+## 13A.67 Capacity Rules
+
+## BR-CP-01
+
+Capacity shall never be negative.
+
+---
+
+## BR-CP-02
+
+Standing Capacity shall not exceed Maximum Occupancy.
+
+---
+
+## BR-CP-03
+
+Seating Capacity shall not exceed Maximum Occupancy.
+
+---
+
+## BR-CP-04
+
+Operational Capacity shall be less than or equal to Maximum Occupancy.
+
+---
+
+## BR-CP-05
+
+Capacity values shall use approved measurement units.
+
+---
+
+## 13A.68 Area Rules
+
+## BR-AR-01
+
+Physical Area shall be greater than zero.
+
+---
+
+## BR-AR-02
+
+Measurement units shall follow enterprise configuration.
+
+Examples:
+
+- Square Feet
+- Square Metres
+
+---
+
+## BR-AR-03
+
+Gross Area shall be greater than or equal to Carpet Area.
+
+---
+
+## 13A.69 Lifecycle Rules
+
+## BR-LC-01
+
+Lifecycle transitions shall follow the approved lifecycle model.
+
+---
+
+## BR-LC-02
+
+Skipped lifecycle transitions are prohibited.
+
+Example:
+
+```text
+Planned
+
+↓
+
+Operational ❌
+```
+
+---
+
+## BR-LC-03
+
+Only authorized users may perform lifecycle transitions.
+
+---
+
+## BR-LC-04
+
+Every lifecycle transition shall generate an audit record.
+
+---
+
+## BR-LC-05
+
+Every lifecycle transition shall publish a canonical business event.
+
+---
+
+## 13A.70 Relationship Rules
+
+## BR-RL-01
+
+Zone membership shall never modify physical hierarchy.
+
+---
+
+## BR-RL-02
+
+Collection membership shall never imply ownership.
+
+---
+
+## BR-RL-03
+
+Portfolio membership shall never alter infrastructure lifecycle.
+
+---
+
+## BR-RL-04
+
+Logical relationships shall remain independent of physical relationships.
+
+---
+
+## 13A.71 Accessibility Rules
+
+## BR-AC-01
+
+Accessibility characteristics describe infrastructure capabilities.
+
+They do not certify regulatory compliance.
+
+---
+
+## BR-AC-02
+
+Accessibility metadata shall remain configurable.
+
+---
+
+## BR-AC-03
+
+Infrastructure shall support multiple accessibility characteristics simultaneously.
+
+Examples:
+
+- Wheelchair Accessible
+- Braille Signage
+- Lift Access
+- Hearing Assistance
+
+---
+
+## 13A.72 Sustainability Rules
+
+## BR-SU-01
+
+Infrastructure stores sustainability capabilities.
+
+---
+
+## BR-SU-02
+
+Infrastructure does not calculate sustainability performance.
+
+---
+
+## BR-SU-03
+
+Capability metadata shall remain configurable.
+
+Examples:
+
+- Solar Installed
+- Solar Ready
+- Rainwater Harvesting
+- EV Charging
+
+---
+
+## 13A.73 Health Rules
+
+## BR-HL-01
+
+Infrastructure Health represents current business status.
+
+---
+
+## BR-HL-02
+
+Health assessments shall include assessment date.
+
+---
+
+## BR-HL-03
+
+Historical health assessments shall remain auditable.
+
+---
+
+## BR-HL-04
+
+Health changes shall publish canonical business events.
+
+---
+
+## 13A.74 Criticality Rules
+
+## BR-CR-01
+
+Every Infrastructure entity may possess one Business Continuity Classification.
+
+---
+
+## BR-CR-02
+
+Criticality classifications are configurable.
+
+Examples:
+
+- Mission Critical
+- Business Critical
+- Standard
+- Low Priority
+
+---
+
+## BR-CR-03
+
+Criticality classification does not perform disaster recovery.
+
+It only provides recovery metadata.
+
+---
+
+## 13A.75 Availability Rules
+
+Infrastructure Availability is derived from multiple business facts.
+
+Availability depends upon:
+
+- Lifecycle
+- Operational Status
+- Closure Status
+- Maintenance State
+
+Availability shall never be manually overridden without authorization.
+
+---
+
+## 13A.76 Event Rules
+
+Infrastructure shall publish business events whenever significant business facts change.
+
+Examples include:
+
+- SpaceCreated
+- InfrastructureActivated
+- RoomCapacityChanged
+- SpaceAccessibilityUpdated
+- InfrastructureLifecycleChanged
+- SpaceCriticalityChanged
+
+Events represent completed business facts.
+
+Events shall be immutable.
+
+---
+
+## 13A.77 Public Contract Rules
+
+Infrastructure exposes stable public contracts.
+
+External domains:
+
+- Shall not access internal entities.
+- Shall not depend upon persistence models.
+- Shall consume canonical contracts only.
+
+---
+
+## 13A.78 Validation Rules
+
+The following validations are mandatory before an Infrastructure entity becomes Operational.
+
+| Validation | Required |
+|------------|----------|
+| Identifier Present | Yes |
+| Business Code Present | Yes |
+| Name Present | Yes |
+| Parent Hierarchy Valid | Yes |
+| Lifecycle Valid | Yes |
+| Capacity Valid | Yes |
+| Area Valid | Yes |
+| Operational Status Defined | Yes |
+
+If any mandatory validation fails:
+
+- Activation shall be rejected.
+- Validation errors shall be returned.
+- No business events shall be published.
+
+---
+
+## 13A.79 Cross-Aggregate Validation
+
+Cross-aggregate validation shall be minimized.
+
+Permitted examples include:
+
+- Parent lifecycle verification.
+- Parent existence verification.
+- Parent operational status verification.
+
+Cross-aggregate business logic is prohibited.
+
+---
+
+## 13A.80 Data Integrity Principles
+
+The Campus & Infrastructure domain follows these integrity principles.
+
+## DIP-01
+
+Every Infrastructure record shall be uniquely identifiable.
+
+---
+
+## DIP-02
+
+Every Infrastructure record shall have exactly one owner.
+
+---
+
+## DIP-03
+
+Business rules are enforced by the owning Aggregate.
+
+---
+
+## DIP-04
+
+Business rules shall remain technology independent.
+
+---
+
+## DIP-05
+
+Validation shall occur before state mutation.
+
+---
+
+## DIP-06
+
+Infrastructure facts are authoritative.
+
+Derived interpretations belong to downstream domains.
+
+---
+
+## DIP-07
+
+Infrastructure integrity takes precedence over operational convenience.
+
+---
+
+## 13A.81 Rule Enforcement Responsibility
+
+| Rule Type | Enforced By |
+|-----------|-------------|
+| Identity Rules | Aggregate |
+| Structural Rules | Aggregate |
+| Lifecycle Rules | Aggregate |
+| Capacity Rules | Aggregate |
+| Relationship Rules | Aggregate |
+| Validation Rules | Application Layer |
+| Authorization Rules | Security Domain |
+| Audit Rules | Platform Foundation |
+
+---
+
+---
+
 # 14. Architectural Constraints
 
 The Infrastructure Management Domain shall not:
@@ -933,6 +2525,8 @@ The Infrastructure Management Domain shall conform to the following repository p
 **Next Part:** **Infrastructure Registration, Campus Hierarchy, Building Management, Floor Management, Space Management, Department Allocation, and Validation Workflows.**
 
 # 16. Infrastructure Registration Workflows
+
+> Detailed workflow specification for this area is in Section 22A (migrated from L2-B03 under INT-008).
 
 ## Purpose
 
@@ -1083,6 +2677,8 @@ The infrastructure entity shall not yet be operational.
 ---
 
 # 17. Campus Management Workflows
+
+> Detailed workflow specification for this area is in Section 22A (migrated from L2-B03 under INT-008).
 
 ## Purpose
 
@@ -1246,6 +2842,8 @@ Structural changes shall:
 
 # 19. Building Management Workflows
 
+> Detailed workflow specification for this area is in Section 22A (migrated from L2-B03 under INT-008).
+
 ## Purpose
 
 Building Management governs the complete lifecycle of institutional buildings.
@@ -1327,6 +2925,8 @@ Closure policies shall be institution configurable.
 
 # 20. Floor Management Workflows
 
+> Detailed workflow specification for this area is in Section 22A (migrated from L2-B03 under INT-008).
+
 ## Purpose
 
 Floor Management governs operational organisation within Buildings.
@@ -1367,6 +2967,8 @@ Closed Floors shall prevent operational use of dependent Spaces unless explicitl
 ---
 
 # 21. Space Management Workflows
+
+> Detailed workflow specification for this area is in Section 22A (migrated from L2-B03 under INT-008).
 
 ## Purpose
 
@@ -1480,6 +3082,3103 @@ Examples include:
 Institutions may define custom classifications.
 
 Classification changes shall be auditable and shall never affect Aggregate Identity.
+
+---
+
+# 22A. Detailed Physical Workflow Specifications
+
+> Migrated from `L2-B03_Campus_Workflows.md` Parts 7, 9, 10 and 11 on 2026-08-05 under
+> integrity finding INT-008. B03 held detailed workflow specifications for aggregates this
+> document owns, while Sections 16-22 here carried only catalogue summaries of the same
+> ground. The specifications now live with the owner. Sections 16-22 remain the catalogue;
+> this section is the detail they refer to.
+
+---
+
+### Infrastructure Business Workflows (WF-INF series)
+
+
+---
+
+#### 82. Workflow Architecture
+
+The Campus & Infrastructure domain manages the complete business lifecycle of institutional physical infrastructure.
+
+Every workflow shall:
+
+- Preserve domain integrity
+- Enforce aggregate boundaries
+- Publish canonical business events
+- Maintain audit history
+- Support future extensibility
+
+The workflows defined in this section represent **canonical business workflows**, independent of implementation technology.
+
+---
+
+#### 83. Workflow Classification
+
+Infrastructure workflows are grouped into the following categories.
+
+| Workflow Category | Purpose |
+|-------------------|---------|
+| Campus Workflows | Campus lifecycle management |
+| Building Workflows | Building lifecycle management |
+| Floor Workflows | Floor management |
+| Space Workflows | Room and facility management |
+| Classification Workflows | Infrastructure categorization |
+| Relationship Workflows | Zones, Collections & Portfolios |
+| Operational Workflows | Activation, Closure & Availability |
+| Lifecycle Workflows | Infrastructure lifecycle transitions |
+
+---
+
+#### 84. WF-INF-001 — Create Campus
+
+##### Purpose
+
+Register a new institutional campus.
+
+---
+
+##### Preconditions
+
+- Institution exists.
+- User possesses Infrastructure Administration permission.
+- Campus Code is unique.
+
+---
+
+##### Primary Flow
+
+```text
+Administrator
+        │
+        ▼
+Create Campus
+        │
+        ▼
+Validate Campus Information
+        │
+        ▼
+Generate Campus Identifier
+        │
+        ▼
+Persist Campus Aggregate
+        │
+        ▼
+Publish CampusCreated Event
+        │
+        ▼
+Campus Available
+```
+
+---
+
+##### Business Rules
+
+- Campus Code must be unique.
+- Campus belongs to exactly one Institution.
+- Initial Lifecycle = Proposed or Planned.
+- Campus is unavailable until Operational.
+
+---
+
+##### Published Events
+
+- CampusCreated
+
+---
+
+#### 85. WF-INF-002 — Update Campus
+
+##### Purpose
+
+Modify campus information.
+
+---
+
+##### Editable Information
+
+- Name
+- Address
+- Contact Information
+- Geographical Metadata
+- Operational Metadata
+
+Infrastructure Identity remains immutable.
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Update Campus
+      │
+      ▼
+Business Validation
+      │
+      ▼
+Persist Changes
+      │
+      ▼
+Publish CampusUpdated
+```
+
+---
+
+##### Published Events
+
+- CampusUpdated
+
+---
+
+#### 86. WF-INF-003 — Register Building (Executed in L2-G10)
+
+##### Purpose
+
+Register a building within an operational campus.
+
+---
+
+##### Preconditions
+
+- Campus exists.
+- Campus is Operational.
+- Building Code is unique.
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Create Building
+      │
+      ▼
+Validate Parent Campus
+      │
+      ▼
+Validate Building Metadata
+      │
+      ▼
+Persist Building
+      │
+      ▼
+Publish BuildingCreated
+```
+
+---
+
+##### Business Rules
+
+- Building belongs to one Campus.
+- Building cannot exist independently.
+- Initial Lifecycle follows configured defaults.
+
+---
+
+##### Published Events
+
+- BuildingCreated
+
+---
+
+#### 87. WF-INF-004 — Register Floor (Executed in L2-G10)
+
+##### Purpose
+
+Create a floor within an existing building.
+
+---
+
+##### Workflow
+
+```text
+Building
+      │
+      ▼
+Create Floor
+      │
+      ▼
+Validate Building
+      │
+      ▼
+Validate Floor Number
+      │
+      ▼
+Persist Floor
+      │
+      ▼
+Publish FloorCreated
+```
+
+---
+
+##### Business Rules
+
+- Floor Number unique within Building.
+- Parent Building must exist.
+- Parent Building lifecycle validated.
+
+---
+
+##### Published Events
+
+- FloorCreated
+
+---
+
+#### 88. WF-INF-005 — Register Space (Executed in L2-G10)
+
+##### Purpose
+
+Register a usable physical space.
+
+Examples:
+
+- Classroom
+- Laboratory
+- Office
+- Auditorium
+- Library Hall
+- Hostel Room
+
+---
+
+##### Workflow
+
+```text
+Floor
+     │
+     ▼
+Create Space
+     │
+     ▼
+Validate Parent Floor
+     │
+     ▼
+Validate Capacity
+     │
+     ▼
+Validate Area
+     │
+     ▼
+Persist Space
+     │
+     ▼
+Publish SpaceCreated
+```
+
+---
+
+##### Business Rules
+
+- Space belongs to exactly one Floor.
+- Capacity must be valid.
+- Area must be positive.
+
+---
+
+##### Published Events
+
+- SpaceCreated
+
+---
+
+#### 89. WF-INF-006 — Update Infrastructure
+
+##### Purpose
+
+Modify infrastructure metadata.
+
+Examples:
+
+- Name
+- Description
+- Capacity
+- Area
+- Classification
+- Accessibility
+- Sustainability Capabilities
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Select Infrastructure
+      │
+      ▼
+Modify Metadata
+      │
+      ▼
+Business Validation
+      │
+      ▼
+Persist Changes
+      │
+      ▼
+Publish InfrastructureUpdated
+```
+
+---
+
+##### Published Events
+
+- InfrastructureUpdated
+
+---
+
+#### 90. WF-INF-007 — Change Infrastructure Classification
+
+##### Purpose
+
+Modify the business classification of infrastructure.
+
+Examples:
+
+- Classroom → Smart Classroom
+- Laboratory → AI Laboratory
+- Office → Administrative Office
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Select Infrastructure
+      │
+      ▼
+Choose Classification
+      │
+      ▼
+Validate Configuration
+      │
+      ▼
+Persist
+      │
+      ▼
+Publish ClassificationChanged
+```
+
+---
+
+##### Published Events
+
+- InfrastructureClassificationChanged
+
+---
+
+#### 91. WF-INF-008 — Update Capacity
+
+##### Purpose
+
+Maintain canonical infrastructure capacity.
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Select Space
+      │
+      ▼
+Update Capacity
+      │
+      ▼
+Capacity Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+Publish CapacityChanged
+```
+
+---
+
+##### Business Rules
+
+- Capacity ≥ 0
+- Capacity complies with institutional configuration.
+
+---
+
+##### Published Events
+
+- RoomCapacityChanged
+
+---
+
+#### 92. WF-INF-009 — Update Accessibility Profile
+
+##### Purpose
+
+Maintain accessibility characteristics.
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Select Infrastructure
+      │
+      ▼
+Modify Accessibility
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+Publish SpaceAccessibilityUpdated
+```
+
+---
+
+##### Published Events
+
+- SpaceAccessibilityUpdated
+
+---
+
+#### 93. WF-INF-010 — Update Sustainability Profile
+
+##### Purpose
+
+Maintain sustainability capabilities.
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Update Sustainability
+      │
+      ▼
+Validate
+      │
+      ▼
+Persist
+      │
+      ▼
+Publish SustainabilityUpdated
+```
+
+---
+
+##### Published Events
+
+- SustainabilityProfileUpdated
+
+---
+
+#### 94. WF-INF-011 — Change Operational Status
+
+##### Purpose
+
+Enable or disable operational use.
+
+Examples:
+
+- Open Building
+- Close Building
+- Reopen Campus
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Select Infrastructure
+      │
+      ▼
+Change Operational Status
+      │
+      ▼
+Business Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+Publish Campus/Building/SpaceOperationalStatusChanged
+```
+
+---
+
+##### Published Events
+
+- InfrastructureActivated
+- InfrastructureDeactivated
+
+---
+
+#### 95. WF-INF-012 — Lifecycle Transition
+
+##### Purpose
+
+Transition infrastructure through approved lifecycle states.
+
+---
+
+##### Workflow
+
+```text
+Current State
+       │
+       ▼
+Requested Transition
+       │
+       ▼
+Lifecycle Validation
+       │
+       ▼
+Authorization
+       │
+       ▼
+Persist New State
+       │
+       ▼
+Publish Lifecycle Event
+```
+
+---
+
+##### Business Rules
+
+- Transition must be valid.
+- Transition requires authorization.
+- Audit record mandatory.
+
+---
+
+##### Published Events
+
+Examples:
+
+- ConstructionStarted
+- InfrastructureOperational
+- RenovationStarted
+- InfrastructureDecommissioned
+- InfrastructureArchived
+
+---
+
+#### 96. WF-INF-013 — Decommission Infrastructure
+
+##### Purpose
+
+Retire infrastructure permanently.
+
+---
+
+##### Preconditions
+
+- No active operational dependencies.
+- Approval completed.
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Request Decommission
+      │
+      ▼
+Dependency Validation
+      │
+      ▼
+Approval
+      │
+      ▼
+Update Lifecycle
+      │
+      ▼
+Publish InfrastructureDecommissioned
+```
+
+---
+
+##### Business Rules
+
+Infrastructure remains historically available.
+
+Deletion does not occur.
+
+---
+
+#### 97. WF-INF-014 — Archive Infrastructure
+
+##### Purpose
+
+Move permanently retired infrastructure into historical state.
+
+---
+
+##### Workflow
+
+```text
+Decommissioned
+        │
+        ▼
+Archive Request
+        │
+        ▼
+Validation
+        │
+        ▼
+Archive
+        │
+        ▼
+Publish InfrastructureArchived
+```
+
+---
+
+#### 98. Workflow Events Summary
+
+| Workflow | Published Event |
+|-----------|-----------------|
+| Create Campus | CampusCreated |
+| Update Campus | CampusUpdated |
+| Create Building | BuildingCreated |
+| Create Floor | FloorCreated |
+| Create Space | SpaceCreated |
+| Update Infrastructure | InfrastructureUpdated |
+| Change Classification | InfrastructureClassificationChanged |
+| Update Capacity | RoomCapacityChanged |
+| Update Accessibility | SpaceAccessibilityUpdated |
+| Update Sustainability | SustainabilityProfileUpdated |
+| Activate Infrastructure | InfrastructureActivated |
+| Deactivate Infrastructure | InfrastructureDeactivated |
+| Lifecycle Transition | InfrastructureLifecycleChanged |
+| Decommission | InfrastructureDecommissioned |
+| Archive | InfrastructureArchived |
+
+---
+
+#### 99. Workflow Design Principles
+
+##### WDP-01
+
+Every workflow modifies exactly one Aggregate Root.
+
+---
+
+##### WDP-02
+
+Every successful workflow publishes at least one canonical domain event.
+
+---
+
+##### WDP-03
+
+Every workflow is fully auditable.
+
+---
+
+##### WDP-04
+
+Business validation precedes persistence.
+
+---
+
+##### WDP-05
+
+Multi-domain orchestration is prohibited.
+
+Infrastructure publishes events.
+
+Consumer domains determine their own reactions.
+
+---
+
+##### WDP-06
+
+Infrastructure workflows manage physical entities only.
+
+Operational activities (Admissions, Timetable, Examination, Maintenance, Security, etc.) belong to their respective domains.
+
+---
+
+---
+
+### Building Management Workflows
+
+
+---
+
+#### 117. Building Domain Overview
+
+A **Building** represents a permanent physical structure located within a Campus.
+
+Buildings provide the physical environment in which institutional activities occur.
+
+Examples include:
+
+- Academic Building
+- Administrative Building
+- Library
+- Auditorium
+- Hostel
+- Sports Complex
+- Research Centre
+- Medical Block
+- Cafeteria
+- Utility Building
+
+A Building is a physical entity.
+
+It does **not** represent departments, academic programs, organizational units, or assets.
+
+---
+
+#### 118. Building Lifecycle
+
+Every Building follows the canonical Infrastructure Lifecycle.
+
+```text
+Proposed
+     │
+     ▼
+Planned
+     │
+     ▼
+Approved
+     │
+     ▼
+Under Construction
+     │
+     ▼
+Operational
+     │
+     ├────────► Under Maintenance
+     │                 │
+     │                 ▼
+     │            Operational
+     │
+     ├────────► Under Renovation
+     │                 │
+     │                 ▼
+     │            Operational
+     │
+     ├────────► Temporarily Closed
+     │                 │
+     │                 ▼
+     │            Operational
+     │
+     ▼
+Decommissioned
+     │
+     ▼
+Archived
+```
+
+---
+
+#### 119. Building Registration Workflow
+
+##### Purpose
+
+Register a new Building within an Operational Campus.
+
+---
+
+##### Actors
+
+- Infrastructure Administrator
+- Campus Administrator
+
+---
+
+##### Preconditions
+
+- Parent Campus exists.
+- Parent Campus is Operational.
+- Building Code is unique within Campus.
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Create Building
+      │
+      ▼
+Select Campus
+      │
+      ▼
+Enter Building Details
+      │
+      ▼
+Validate Business Rules
+      │
+      ▼
+Persist Building Aggregate
+      │
+      ▼
+Publish BuildingCreated
+```
+
+---
+
+##### Business Rules
+
+- Building belongs to one Campus.
+- Building Code is immutable.
+- Initial Lifecycle follows configuration.
+- Parent Campus must exist.
+
+---
+
+##### Published Events
+
+- BuildingCreated
+
+---
+
+#### 120. Building Activation Workflow
+
+##### Purpose
+
+Make a Building operational.
+
+---
+
+##### Preconditions
+
+- Parent Campus is Operational.
+- Building lifecycle permits activation.
+- Mandatory metadata completed.
+
+---
+
+##### Workflow
+
+```text
+Building
+      │
+      ▼
+Activation Request
+      │
+      ▼
+Business Validation
+      │
+      ▼
+Lifecycle Validation
+      │
+      ▼
+Operational
+      │
+      ▼
+Publish BuildingActivated
+```
+
+---
+
+##### Published Events
+
+- BuildingActivated
+
+---
+
+#### 121. Building Metadata Workflow
+
+Maintain Building information.
+
+Editable attributes include:
+
+- Building Name
+- Description
+- Building Type
+- Number of Floors
+- Construction Year
+- Gross Area
+- Operational Notes
+
+Immutable:
+
+- Building Identifier
+- Building Code
+- Parent Campus
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Update Building
+      │
+      ▼
+Validate Changes
+      │
+      ▼
+Persist
+      │
+      ▼
+BuildingUpdated
+```
+
+---
+
+##### Published Events
+
+- BuildingUpdated
+
+---
+
+#### 122. Building Structure Workflow
+
+Manage structural characteristics.
+
+Examples include:
+
+- Number of Floors
+- Wings
+- Entrances
+- Emergency Exits
+- Lift Availability
+- Staircases
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Modify Building Structure
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+BuildingStructureUpdated
+```
+
+---
+
+##### Published Events
+
+- BuildingStructureUpdated
+
+---
+
+#### 123. Building Classification Workflow
+
+Buildings may be classified according to institutional configuration.
+
+Examples:
+
+Functional Classification
+
+- Academic
+- Administrative
+- Residential
+- Research
+- Sports
+- Utility
+
+Construction Classification
+
+- Permanent
+- Temporary
+- Heritage
+
+Operational Classification
+
+- Public
+- Restricted
+- High Security
+
+---
+
+##### Workflow
+
+```text
+Building
+      │
+      ▼
+Update Classification
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+BuildingClassificationChanged
+```
+
+---
+
+##### Published Events
+
+- BuildingClassificationChanged
+
+---
+
+#### 124. Building Capacity Workflow
+
+Maintain canonical building capacity.
+
+Examples:
+
+- Maximum Occupancy
+- Total Seating Capacity
+- Parking Capacity
+- Emergency Capacity
+
+Infrastructure stores facts only.
+
+Derived utilization belongs to Analytics.
+
+---
+
+##### Workflow
+
+```text
+Building
+      │
+      ▼
+Update Capacity
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+BuildingCapacityUpdated
+```
+
+---
+
+##### Published Events
+
+- BuildingCapacityUpdated
+
+---
+
+#### 125. Building Accessibility Workflow
+
+Maintain accessibility capabilities.
+
+Examples:
+
+- Wheelchair Accessible
+- Lift Available
+- Accessible Toilets
+- Braille Signage
+- Accessible Entrance
+- Accessible Parking
+
+---
+
+##### Workflow
+
+```text
+Building
+      │
+      ▼
+Update Accessibility
+      │
+      ▼
+Validate
+      │
+      ▼
+Persist
+      │
+      ▼
+BuildingAccessibilityUpdated
+```
+
+---
+
+##### Published Events
+
+- BuildingAccessibilityUpdated
+
+---
+
+#### 126. Building Sustainability Workflow
+
+Maintain sustainability capabilities.
+
+Examples:
+
+- Solar Installed
+- Solar Ready
+- Rainwater Harvesting
+- Grey Water Recycling
+- Waste Segregation
+- EV Charging
+- Green Building Certification
+
+The Building aggregate stores capabilities only.
+
+Performance metrics belong to Analytics or ESG domains.
+
+---
+
+##### Workflow
+
+```text
+Building
+      │
+      ▼
+Update Sustainability
+      │
+      ▼
+Validate
+      │
+      ▼
+Persist
+      │
+      ▼
+BuildingSustainabilityUpdated
+```
+
+---
+
+##### Published Events
+
+- BuildingSustainabilityUpdated
+
+---
+
+#### 127. Building Health Workflow
+
+Maintain the current health assessment of the Building.
+
+Examples:
+
+- Excellent
+- Good
+- Fair
+- Poor
+- Critical
+
+Maintenance determines health.
+
+Infrastructure stores the current health classification.
+
+---
+
+##### Workflow
+
+```text
+Building
+      │
+      ▼
+Update Health
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+BuildingHealthUpdated
+```
+
+---
+
+##### Published Events
+
+- BuildingHealthUpdated
+
+---
+
+#### 128. Building Criticality Workflow
+
+Maintain Business Continuity classification.
+
+Examples:
+
+- Mission Critical
+- Business Critical
+- Standard
+- Low Priority
+
+Associated metadata includes:
+
+- Recovery Priority
+- Maximum Downtime
+- Backup Utility Availability
+- Alternate Facility
+
+---
+
+##### Workflow
+
+```text
+Building
+      │
+      ▼
+Update Criticality
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+BuildingCriticalityChanged
+```
+
+---
+
+##### Published Events
+
+- BuildingCriticalityChanged
+
+---
+
+#### 129. Building Operational Status Workflow
+
+Manage operational availability.
+
+Possible statuses:
+
+- Operational
+- Restricted
+- Temporarily Closed
+- Emergency Closure
+
+Operational Status works together with Lifecycle to determine availability.
+
+---
+
+##### Workflow
+
+```text
+Building
+      │
+      ▼
+Change Status
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+BuildingOperationalStatusChanged
+```
+
+---
+
+##### Published Events
+
+- BuildingOperationalStatusChanged
+
+---
+
+#### 130. Building Decommission Workflow
+
+Retire a Building permanently.
+
+---
+
+##### Preconditions
+
+- Child Floors transitioned.
+- Child Spaces transitioned.
+- Required approvals completed.
+
+---
+
+##### Workflow
+
+```text
+Building
+      │
+      ▼
+Request Decommission
+      │
+      ▼
+Dependency Validation
+      │
+      ▼
+Approval
+      │
+      ▼
+Lifecycle Transition
+      │
+      ▼
+BuildingDecommissioned
+```
+
+---
+
+##### Business Rules
+
+- Historical references remain valid.
+- Physical deletion prohibited.
+- Building becomes unavailable.
+
+---
+
+##### Published Events
+
+- BuildingDecommissioned
+
+---
+
+#### 131. Building Archive Workflow
+
+Archive permanently retired Buildings.
+
+---
+
+##### Workflow
+
+```text
+Decommissioned
+      │
+      ▼
+Archive Request
+      │
+      ▼
+Validation
+      │
+      ▼
+Archive
+      │
+      ▼
+BuildingArchived
+```
+
+---
+
+##### Published Events
+
+- BuildingArchived
+
+---
+
+#### 132. Multi-Domain Consumers
+
+| Consumer Domain | Building Information Used |
+|-----------------|---------------------------|
+| Admissions | Academic infrastructure availability |
+| Timetable | Building operational status |
+| Examination | Examination centres |
+| HR | Workplace assignment |
+| Hostel | Hostel buildings |
+| Asset Management | Building location hierarchy |
+| Maintenance | Physical infrastructure |
+| Security | Building security planning |
+| Transport | Building access planning |
+| Analytics | Building facts |
+| AI | Infrastructure facts |
+| Disaster Management | Recovery planning |
+
+---
+
+#### 133. Business Rules
+
+##### BM-01
+
+A Building belongs to exactly one Campus.
+
+---
+
+##### BM-02
+
+Building Code is unique within Campus.
+
+---
+
+##### BM-03
+
+Building Identifier is immutable.
+
+---
+
+##### BM-04
+
+Only Operational Buildings may contain Operational Floors.
+
+---
+
+##### BM-05
+
+Building deletion is prohibited after operational activation.
+
+---
+
+##### BM-06
+
+Parent Campus lifecycle limits Building lifecycle.
+
+---
+
+##### BM-07
+
+Every significant Building change publishes a canonical business event.
+
+---
+
+#### 134. Building Events Summary
+
+| Workflow | Event |
+|----------|-------|
+| Register Building | BuildingCreated |
+| Update Building | BuildingUpdated |
+| Activate Building | BuildingActivated |
+| Structure Update | BuildingStructureUpdated |
+| Classification Update | BuildingClassificationChanged |
+| Capacity Update | BuildingCapacityUpdated |
+| Accessibility Update | BuildingAccessibilityUpdated |
+| Sustainability Update | BuildingSustainabilityUpdated |
+| Health Update | BuildingHealthUpdated |
+| Criticality Update | BuildingCriticalityChanged |
+| Operational Status | BuildingOperationalStatusChanged |
+| Decommission | BuildingDecommissioned |
+| Archive | BuildingArchived |
+
+---
+
+#### 135. Workflow Design Principles
+
+##### BWP-01
+
+Building owns only Building-related business rules.
+
+---
+
+##### BWP-02
+
+Building does not manage activities performed inside the Building.
+
+---
+
+##### BWP-03
+
+Building publishes canonical facts.
+
+Consumers determine business behaviour.
+
+---
+
+##### BWP-04
+
+Every Building workflow shall be fully auditable.
+
+---
+
+##### BWP-05
+
+Every successful Building workflow shall publish canonical business events.
+
+---
+
+##### BWP-06
+
+Building remains independent of Timetable, Admissions, Examination, Maintenance, Asset Management, and Analytics implementations.
+
+---
+
+---
+
+### Floor & Space Management Workflows
+
+
+---
+
+#### 136. Domain Overview
+
+Floors and Spaces represent the operational infrastructure used by institutional business processes.
+
+They provide the physical locations where teaching, administration, research, examinations, accommodation, healthcare, and student services occur.
+
+Unlike Campus and Building, these aggregates are directly consumed by many operational domains.
+
+Examples of Spaces include:
+
+- Classroom
+- Laboratory
+- Seminar Hall
+- Examination Hall
+- Faculty Office
+- Principal Office
+- Library Reading Hall
+- Hostel Room
+- Medical Room
+- Server Room
+- Auditorium
+- Conference Room
+- Cafeteria
+- Sports Hall
+
+---
+
+#### 137. Aggregate Responsibilities
+
+##### Floor Aggregate
+
+Owns:
+
+- Floor Identity
+- Floor Ordering
+- Floor Metadata
+- Floor Accessibility
+- Floor Operational Status
+- Parent Building Relationship
+
+---
+
+##### Space Aggregate
+
+Owns:
+
+- Space Identity
+- Space Classification
+- Capacity
+- Physical Characteristics
+- Accessibility
+- Sustainability Capabilities
+- Health Status
+- Criticality
+- Operational Availability
+- Lifecycle
+
+---
+
+#### 138. Floor Registration Workflow
+
+##### Purpose
+
+Register a Floor within a Building.
+
+---
+
+##### Actors
+
+- Infrastructure Administrator
+
+---
+
+##### Preconditions
+
+- Parent Building exists.
+- Parent Building is Operational.
+- Floor Number is unique.
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Create Floor
+      │
+      ▼
+Select Building
+      │
+      ▼
+Enter Floor Details
+      │
+      ▼
+Business Validation
+      │
+      ▼
+Persist Floor
+      │
+      ▼
+Publish FloorCreated
+```
+
+---
+
+##### Business Rules
+
+- Floor belongs to exactly one Building.
+- Floor Number is immutable after operational use.
+- Parent lifecycle validated.
+
+---
+
+##### Published Events
+
+- FloorCreated
+
+---
+
+#### 139. Floor Update Workflow
+
+Editable information includes:
+
+- Floor Name
+- Description
+- Accessibility Metadata
+- Operational Metadata
+
+Immutable:
+
+- Identifier
+- Parent Building
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Modify Floor
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+FloorUpdated
+```
+
+---
+
+##### Published Events
+
+- FloorUpdated
+
+---
+
+#### 140. Space Registration Workflow
+
+##### Purpose
+
+Register a usable Space.
+
+---
+
+##### Preconditions
+
+- Parent Floor exists.
+- Parent Floor is Operational.
+- Space Code is unique within Building.
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Create Space
+      │
+      ▼
+Select Floor
+      │
+      ▼
+Enter Space Details
+      │
+      ▼
+Business Validation
+      │
+      ▼
+Persist Space
+      │
+      ▼
+Publish SpaceCreated
+```
+
+---
+
+##### Mandatory Information
+
+- Space Name
+- Space Code
+- Space Type
+- Capacity
+- Area
+- Parent Floor
+
+---
+
+##### Published Events
+
+- SpaceCreated
+
+---
+
+#### 141. Space Classification Workflow
+
+Infrastructure classifications are configurable.
+
+Examples:
+
+Academic
+
+- Classroom
+- Laboratory
+- Workshop
+- Seminar Hall
+
+Administrative
+
+- Office
+- Meeting Room
+- Record Room
+
+Residential
+
+- Hostel Room
+- Guest Room
+
+Utility
+
+- Washroom
+- Pantry
+- Storage
+- Server Room
+
+Healthcare
+
+- Clinic
+- Medical Room
+- Isolation Room
+
+Sports
+
+- Indoor Court
+- Gymnasium
+
+---
+
+##### Workflow
+
+```text
+Space
+     │
+     ▼
+Update Classification
+     │
+     ▼
+Validation
+     │
+     ▼
+Persist
+     │
+     ▼
+SpaceClassificationChanged
+```
+
+---
+
+##### Published Events
+
+- SpaceClassificationChanged
+
+---
+
+#### 142. Space Capacity Workflow
+
+Maintain canonical capacity information.
+
+Capacity includes:
+
+- Seating Capacity
+- Standing Capacity
+- Maximum Occupancy
+- Operational Capacity
+
+Infrastructure stores facts only.
+
+Utilization belongs to Analytics.
+
+---
+
+##### Workflow
+
+```text
+Space
+     │
+     ▼
+Update Capacity
+     │
+     ▼
+Validate
+     │
+     ▼
+Persist
+     │
+     ▼
+RoomCapacityChanged
+```
+
+---
+
+##### Business Rules
+
+- Capacity cannot be negative.
+- Operational Capacity ≤ Maximum Occupancy.
+
+---
+
+##### Published Events
+
+- RoomCapacityChanged
+
+---
+
+#### 143. Space Area Workflow
+
+Maintain physical measurements.
+
+Examples:
+
+- Carpet Area
+- Built-up Area
+- Volume (optional future extension)
+
+Measurement units follow enterprise configuration.
+
+---
+
+##### Workflow
+
+```text
+Space
+     │
+     ▼
+Update Area
+     │
+     ▼
+Validation
+     │
+     ▼
+Persist
+     │
+     ▼
+SpaceAreaUpdated
+```
+
+---
+
+##### Published Events
+
+- SpaceAreaUpdated
+
+---
+
+#### 144. Space Accessibility Workflow
+
+Maintain accessibility capabilities.
+
+Examples:
+
+- Wheelchair Accessible
+- Braille Signage
+- Hearing Assistance
+- Lift Accessible
+- Adjustable Furniture
+- Accessible Restroom Nearby
+
+---
+
+##### Workflow
+
+```text
+Space
+     │
+     ▼
+Update Accessibility
+     │
+     ▼
+Validation
+     │
+     ▼
+Persist
+     │
+     ▼
+SpaceAccessibilityUpdated
+```
+
+---
+
+##### Published Events
+
+- SpaceAccessibilityUpdated
+
+---
+
+#### 145. Space Facility Workflow
+
+Maintain facilities available within the Space.
+
+Examples:
+
+- Projection Capability
+- Presentation Capability
+- Audio Capability
+- Climate Control
+- Network Connectivity
+- Power Availability
+- Environmental Controls
+
+Facilities describe available infrastructure.
+
+Assets remain owned by Asset Management.
+
+---
+
+##### Workflow
+
+```text
+Space
+     │
+     ▼
+Update Facilities
+     │
+     ▼
+Validation
+     │
+     ▼
+Persist
+     │
+     ▼
+SpaceFacilitiesUpdated
+```
+
+---
+
+##### Published Events
+
+- SpaceFacilitiesUpdated
+
+---
+
+#### 146. Space Sustainability Workflow
+
+Maintain sustainability capabilities.
+
+Examples:
+
+- Solar Powered
+- Natural Ventilation
+- LED Lighting
+- Occupancy Sensors
+- Rainwater Usage
+- Smart Energy Controls
+
+Infrastructure stores capability metadata only.
+
+---
+
+##### Workflow
+
+```text
+Space
+     │
+     ▼
+Update Sustainability
+     │
+     ▼
+Validation
+     │
+     ▼
+Persist
+     │
+     ▼
+SustainabilityProfileUpdated
+```
+
+---
+
+##### Published Events
+
+- SustainabilityProfileUpdated
+
+---
+
+#### 147. Space Health Workflow
+
+Maintain current health classification.
+
+Examples:
+
+- Excellent
+- Good
+- Fair
+- Poor
+- Critical
+
+Maintenance determines condition.
+
+Infrastructure stores the latest assessment.
+
+---
+
+##### Workflow
+
+```text
+Space
+     │
+     ▼
+Update Health
+     │
+     ▼
+Validation
+     │
+     ▼
+Persist
+     │
+     ▼
+SpaceHealthUpdated
+```
+
+---
+
+##### Published Events
+
+- SpaceHealthUpdated
+
+---
+
+#### 148. Space Criticality Workflow
+
+Maintain Business Continuity classification.
+
+Examples:
+
+- Mission Critical
+- High Priority
+- Standard
+- Low Priority
+
+Associated metadata:
+
+- Recovery Priority
+- Maximum Downtime
+- Alternate Facility
+
+---
+
+##### Workflow
+
+```text
+Space
+     │
+     ▼
+Update Criticality
+     │
+     ▼
+Validation
+     │
+     ▼
+Persist
+     │
+     ▼
+SpaceCriticalityChanged
+```
+
+---
+
+##### Published Events
+
+- SpaceCriticalityChanged
+
+---
+
+#### 149. Space Operational Status Workflow
+
+Operational Status determines whether a Space is currently available.
+
+Possible statuses include:
+
+- Available
+- Restricted
+- Reserved
+- Closed
+- Emergency Closure
+
+Operational Status complements—but does not replace—the canonical Lifecycle.
+
+---
+
+##### Workflow
+
+```text
+Space
+     │
+     ▼
+Status Change
+     │
+     ▼
+Business Validation
+     │
+     ▼
+Persist
+     │
+     ▼
+SpaceOperationalStatusChanged
+```
+
+---
+
+##### Published Events
+
+- SpaceOperationalStatusChanged
+
+---
+
+#### 150. Space Lifecycle Workflow
+
+Space follows the canonical infrastructure lifecycle.
+
+```text
+Proposed
+      │
+      ▼
+Planned
+      │
+      ▼
+Approved
+      │
+      ▼
+Operational
+      │
+      ├────────► Under Maintenance
+      │
+      ├────────► Under Renovation
+      │
+      ├────────► Temporarily Closed
+      │
+      ▼
+Decommissioned
+      │
+      ▼
+Archived
+```
+
+All lifecycle transitions follow the enterprise lifecycle rules defined earlier.
+
+---
+
+#### 151. Space Decommission Workflow
+
+Retire a Space permanently.
+
+---
+
+##### Preconditions
+
+- No active operational allocations.
+- Required approvals completed.
+
+---
+
+##### Workflow
+
+```text
+Space
+     │
+     ▼
+Request Decommission
+     │
+     ▼
+Dependency Validation
+     │
+     ▼
+Approval
+     │
+     ▼
+Lifecycle Transition
+     │
+     ▼
+SpaceDecommissioned
+```
+
+---
+
+##### Published Events
+
+- SpaceDecommissioned
+
+---
+
+#### 152. Space Archive Workflow
+
+Archive permanently retired Spaces.
+
+---
+
+##### Workflow
+
+```text
+Decommissioned
+      │
+      ▼
+Archive
+      │
+      ▼
+Validation
+      │
+      ▼
+SpaceArchived
+```
+
+---
+
+##### Published Events
+
+- SpaceArchived
+
+---
+
+#### 153. Multi-Domain Consumers
+
+| Consumer Domain | Space Information Consumed |
+|-----------------|----------------------------|
+| Timetable | Classroom allocation |
+| Examination | Examination hall allocation |
+| Admissions | Interview rooms and counselling spaces |
+| Library | Reading rooms and study spaces |
+| Hostel | Hostel room master data |
+| HR | Office assignment |
+| Asset Management | Physical asset location |
+| Maintenance | Work order location |
+| Security | Access control and patrol routes |
+| Attendance | Classroom location |
+| Transport | Pickup/drop infrastructure |
+| Analytics | Capacity and utilization facts |
+| AI | Canonical infrastructure facts |
+
+---
+
+#### 154. Business Rules
+
+##### FSM-01
+
+Every Floor belongs to exactly one Building.
+
+---
+
+##### FSM-02
+
+Every Space belongs to exactly one Floor.
+
+---
+
+##### FSM-03
+
+Space Code is unique within the parent Building.
+
+---
+
+##### FSM-04
+
+Only Operational Spaces may be allocated by consumer domains.
+
+---
+
+##### FSM-05
+
+Facilities describe capabilities, not owned assets.
+
+---
+
+##### FSM-06
+
+Operational Status and Lifecycle together determine availability.
+
+---
+
+##### FSM-07
+
+Every significant change publishes a canonical domain event.
+
+---
+
+#### 155. Floor & Space Events Summary
+
+| Workflow | Published Event |
+|----------|-----------------|
+| Register Floor | FloorCreated |
+| Update Floor | FloorUpdated |
+| Register Space | SpaceCreated |
+| Update Space | SpaceUpdated |
+| Classification | SpaceClassificationChanged |
+| Capacity | RoomCapacityChanged |
+| Area | SpaceAreaUpdated |
+| Accessibility | SpaceAccessibilityUpdated |
+| Facilities | SpaceFacilitiesUpdated |
+| Sustainability | SustainabilityProfileUpdated |
+| Health | SpaceHealthUpdated |
+| Criticality | SpaceCriticalityChanged |
+| Operational Status | SpaceOperationalStatusChanged |
+| Decommission | SpaceDecommissioned |
+| Archive | SpaceArchived |
+
+---
+
+#### 156. Workflow Design Principles
+
+##### FSWP-01
+
+Floor manages only floor-level metadata.
+
+---
+
+##### FSWP-02
+
+Space is the primary operational aggregate consumed by enterprise workflows.
+
+---
+
+##### FSWP-03
+
+Infrastructure publishes canonical physical facts.
+
+Operational domains determine business usage.
+
+---
+
+##### FSWP-04
+
+Facilities represent infrastructure capabilities.
+
+Physical assets remain under Asset Management ownership.
+
+---
+
+##### FSWP-05
+
+Every successful workflow publishes immutable domain events.
+
+---
+
+##### FSWP-06
+
+Floor and Space remain independent of scheduling, examinations, admissions, maintenance execution, and analytics logic.
+
+---
+
+---
+
+### Zone, Collection & Portfolio Management Workflows
+
+
+---
+
+#### 157. Domain Overview
+
+The Campus & Infrastructure domain supports three logical organizational mechanisms in addition to the physical hierarchy:
+
+- **Zones**
+- **Collections**
+- **Portfolios**
+
+These constructs **never modify the physical hierarchy**.
+
+Instead, they provide independent business views of the same infrastructure for operational management, strategic planning, and governance.
+
+```text
+Physical Hierarchy
+
+Campus
+   │
+Building
+   │
+ Floor
+   │
+ Space
+
+↓
+
+Logical Views
+
+Zones
+Collections
+Portfolios
+```
+
+---
+
+#### 158. Logical Organization Principles
+
+Logical organization exists to support:
+
+- Operational management
+- Administrative grouping
+- Executive governance
+- Strategic investment
+- Reporting
+- Search and discovery
+
+Logical organization shall never redefine ownership.
+
+---
+
+#### 159. Zone Overview
+
+A **Zone** represents an operational grouping of infrastructure.
+
+Examples include:
+
+- Academic Zone
+- Residential Zone
+- Examination Zone
+- Administrative Zone
+- North Campus Zone
+- South Campus Zone
+- High Security Zone
+- Sports Zone
+
+Zones simplify operational administration.
+
+---
+
+#### 160. Zone Lifecycle
+
+Zones follow the canonical lifecycle.
+
+```text
+Proposed
+      │
+      ▼
+Operational
+      │
+      ▼
+Archived
+```
+
+Most institutions will primarily use Operational and Archived states.
+
+---
+
+#### 161. Zone Registration Workflow
+
+##### Purpose
+
+Create a new operational Zone.
+
+---
+
+##### Actors
+
+- Infrastructure Administrator
+
+---
+
+##### Preconditions
+
+- Zone Name unique.
+- Zone Type configured.
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Create Zone
+      │
+      ▼
+Enter Metadata
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+ZoneCreated
+```
+
+---
+
+##### Published Events
+
+- ZoneCreated
+
+---
+
+#### 162. Zone Membership Workflow
+
+Assign infrastructure into operational Zones.
+
+Infrastructure may belong to multiple Zones.
+
+Examples:
+
+Room 101
+
+↓
+
+Academic Zone
+
+↓
+
+Smart Classroom Zone
+
+↓
+
+Examination Zone
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Select Zone
+      │
+      ▼
+Select Infrastructure
+      │
+      ▼
+Validate
+      │
+      ▼
+Assign
+      │
+      ▼
+AssignedToZone
+```
+
+---
+
+##### Business Rules
+
+- Multiple memberships permitted.
+- Membership does not alter hierarchy.
+- Membership is independently auditable.
+
+---
+
+##### Published Events
+
+- AssignedToZone
+
+---
+
+#### 163. Zone Removal Workflow
+
+Remove infrastructure from a Zone.
+
+---
+
+##### Workflow
+
+```text
+Infrastructure
+      │
+      ▼
+Remove Membership
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+RemovedFromZone
+```
+
+---
+
+##### Published Events
+
+- RemovedFromZone
+
+---
+
+#### 164. Collection Overview
+
+Collections represent logical business categorization.
+
+Collections support discovery, reporting, and administration.
+
+Examples:
+
+- Smart Classrooms
+- Heritage Buildings
+- Research Laboratories
+- Accessible Facilities
+- Digital Learning Spaces
+- Innovation Centres
+
+Collections are descriptive.
+
+They never imply ownership.
+
+---
+
+#### 165. Collection Registration Workflow
+
+##### Purpose
+
+Create a Collection.
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Create Collection
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+CollectionCreated
+```
+
+---
+
+##### Published Events
+
+- CollectionCreated
+
+---
+
+#### 166. Collection Membership Workflow
+
+Assign infrastructure into Collections.
+
+Examples:
+
+Research Lab
+
+↓
+
+Research Infrastructure
+
+↓
+
+AI Research Collection
+
+↓
+
+Innovation Collection
+
+---
+
+##### Workflow
+
+```text
+Infrastructure
+      │
+      ▼
+Assign Collection
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+AssignedToCollection
+```
+
+---
+
+##### Business Rules
+
+- Infrastructure may belong to multiple Collections.
+- Collections never own infrastructure.
+- Membership remains independent.
+
+---
+
+##### Published Events
+
+- AssignedToCollection
+
+---
+
+#### 167. Collection Removal Workflow
+
+Remove Collection membership.
+
+---
+
+##### Workflow
+
+```text
+Infrastructure
+      │
+      ▼
+Remove Collection
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+RemovedFromCollection
+```
+
+---
+
+##### Published Events
+
+- RemovedFromCollection
+
+---
+
+#### 168. Portfolio Overview
+
+A Portfolio represents a strategic governance grouping.
+
+Unlike Zones and Collections, Portfolios support executive planning and investment decisions.
+
+Examples:
+
+- Capital Investment Portfolio
+- Green Campus Portfolio
+- Digital Infrastructure Portfolio
+- Research Infrastructure Portfolio
+- Heritage Preservation Portfolio
+
+Portfolios enable institutional governance without affecting operational ownership.
+
+---
+
+#### 169. Portfolio Registration Workflow
+
+##### Purpose
+
+Create a strategic Portfolio.
+
+---
+
+##### Workflow
+
+```text
+Administrator
+      │
+      ▼
+Create Portfolio
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+PortfolioCreated
+```
+
+---
+
+##### Published Events
+
+- PortfolioCreated
+
+---
+
+#### 170. Portfolio Membership Workflow
+
+Assign infrastructure to Portfolios.
+
+Examples:
+
+Engineering Block
+
+↓
+
+Research Portfolio
+
+↓
+
+Capital Investment Portfolio
+
+↓
+
+Green Campus Portfolio
+
+---
+
+##### Workflow
+
+```text
+Infrastructure
+      │
+      ▼
+Assign Portfolio
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+AssignedToPortfolio
+```
+
+---
+
+##### Business Rules
+
+- Multiple memberships permitted.
+- Membership never changes lifecycle.
+- Membership never changes ownership.
+- Membership supports governance only.
+
+---
+
+##### Published Events
+
+- AssignedToPortfolio
+
+---
+
+#### 171. Portfolio Removal Workflow
+
+Remove Portfolio membership.
+
+---
+
+##### Workflow
+
+```text
+Infrastructure
+      │
+      ▼
+Remove Portfolio
+      │
+      ▼
+Validation
+      │
+      ▼
+Persist
+      │
+      ▼
+RemovedFromPortfolio
+```
+
+---
+
+##### Published Events
+
+- RemovedFromPortfolio
+
+---
+
+#### 172. Logical Relationship Model
+
+```text
+Campus
+ │
+ ├──────── Building
+ │             │
+ │             ├──────── Floor
+ │             │              │
+ │             │              └──────── Space
+ │
+ │
+ ├──────────── Zones
+ │
+ ├──────────── Collections
+ │
+ └──────────── Portfolios
+```
+
+Logical structures reference Infrastructure.
+
+Infrastructure does not belong physically beneath them.
+
+---
+
+#### 173. Multi-Domain Consumers
+
+| Consumer Domain | Usage |
+|-----------------|-------|
+| Timetable | Academic Zones |
+| Examination | Examination Zones |
+| Admissions | Campus and Facility Collections |
+| Security | Restricted Zones |
+| Maintenance | Maintenance Zones |
+| Asset Management | Infrastructure Collections |
+| Analytics | Portfolio reporting |
+| Executive Dashboard | Strategic Portfolios |
+| AI | Infrastructure relationships |
+| Disaster Management | Criticality Zones |
+
+---
+
+#### 174. Business Rules
+
+##### ZCP-01
+
+Logical structures shall never alter physical hierarchy.
+
+---
+
+##### ZCP-02
+
+Infrastructure may belong to multiple Zones.
+
+---
+
+##### ZCP-03
+
+Infrastructure may belong to multiple Collections.
+
+---
+
+##### ZCP-04
+
+Infrastructure may belong to multiple Portfolios.
+
+---
+
+##### ZCP-05
+
+Membership is many-to-many.
+
+---
+
+##### ZCP-06
+
+Logical structures never own infrastructure.
+
+---
+
+##### ZCP-07
+
+Removing membership never deletes infrastructure.
+
+---
+
+##### ZCP-08
+
+Logical structures remain independent from lifecycle.
+
+---
+
+#### 175. Domain Events Summary
+
+| Workflow | Published Event |
+|----------|-----------------|
+| Create Zone | ZoneCreated |
+| Assign Zone | AssignedToZone |
+| Remove Zone | RemovedFromZone |
+| Create Collection | CollectionCreated |
+| Assign Collection | AssignedToCollection |
+| Remove Collection | RemovedFromCollection |
+| Create Portfolio | PortfolioCreated |
+| Assign Portfolio | AssignedToPortfolio |
+| Remove Portfolio | RemovedFromPortfolio |
+
+---
+
+#### 176. Workflow Design Principles
+
+##### ZCPWP-01
+
+Zones support operational organization.
+
+---
+
+##### ZCPWP-02
+
+Collections support logical categorization.
+
+---
+
+##### ZCPWP-03
+
+Portfolios support executive governance and investment planning.
+
+---
+
+##### ZCPWP-04
+
+Logical structures never replace the physical hierarchy.
+
+---
+
+##### ZCPWP-05
+
+Infrastructure ownership always remains with the physical aggregates.
+
+---
+
+##### ZCPWP-06
+
+Every membership change publishes a canonical domain event.
+
+---
+
+##### ZCPWP-07
+
+Logical organization remains fully configurable to support diverse institutional structures without requiring architectural changes.
+
+---
 
 ---
 
