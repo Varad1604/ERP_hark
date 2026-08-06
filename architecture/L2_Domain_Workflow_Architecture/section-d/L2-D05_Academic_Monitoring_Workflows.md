@@ -17,7 +17,7 @@
 | Application Pattern | CQRS |
 | Ownership Model | Canonical Domain Ownership |
 | Document Owner | Academic Delivery — Academic Monitoring |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 
 ---

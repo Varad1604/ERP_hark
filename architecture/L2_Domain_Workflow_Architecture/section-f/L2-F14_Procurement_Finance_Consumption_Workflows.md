@@ -33,9 +33,9 @@
 | Architecture Level | Level 2 — Domain Workflow Architecture |
 | Domain | Finance |
 | Module | Procurement Finance Interface |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.1.0 |
-| Owner | Finance Architecture Team |
+| Review Authority | Finance Architecture Team |
 | Document Owner | Finance — Procurement Consumption |
 | Parent Architecture | L2-F00 — Finance Domain Model & Foundation |
 | Depends On | L2-F00, L2-F06, L2-F08, L2-F10 |

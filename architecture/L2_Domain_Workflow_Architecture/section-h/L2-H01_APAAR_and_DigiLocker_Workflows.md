@@ -3,7 +3,7 @@
 **Section:** H — Institutional Services & Intelligence  
 **Domain:** H01 — APAAR & DigiLocker Workflows  
 **Architecture Level:** Level 2 (Workflow Architecture)  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Document Owner:** Institutional Services — APAAR & DigiLocker  
 **Version:** 1.0  
 **Parent Architecture:** SutraERP Level 1 Enterprise Architecture

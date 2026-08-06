@@ -5,21 +5,22 @@
 **Domain:** G06 — Institutional Health Services & Medical Workflows  
 **Document ID:** L2-G06  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
 **Document Owner:** Campus Operations — Health Services
 
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
 - Section B — Institution & Structure
-- Section C — Student Lifecycle
-- Section D — Academic Delivery
 - Section E — People & Workforce
 - G01 — Facilities Management
 - G03 — Hostel Management
-- Finance Domain
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section C — Student Lifecycle — Student Identity
+- Section F — Finance — Medical Billing
 
 **Downstream Consumers**
 
@@ -2198,4 +2199,4 @@ Institutional Health Services follows the enterprise architectural principles es
 **L2-G06 — Institutional Health Services & Medical Workflows**
 
 **Version:** 1.0  
-**Status:** Draft
+**Status:** Trust Certification Ready

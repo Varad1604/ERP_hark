@@ -4,9 +4,8 @@
 
 **Domain:** I – Examination
 
-**Status:** Draft
+**Status:** Trust Certification Ready
 
-**Owner:** Examination Domain
 
 **Document Owner:** Examinations — Policy & Configuration
 
@@ -42,7 +41,6 @@
 | Document Name | Examination Policy & Configuration Workflows |
 | Domain | Examination |
 | Level | L2 – Business Workflow Architecture |
-| Owner | Examination Domain |
 | Depends On | A01 Platform Foundation, A02 Person & Identity, A03 Authentication, A04 Authorization, H02 Notification Workflows, A06 Event Infrastructure, A07 Audit Infrastructure, B01 Institution, B02 Organisation, B04 Curriculum Framework, B05 Academic Calendar, F00 Finance Domain Model & Foundation |
 | Consumed By | L2-I02 through L2-I16 Examination Workflows |
 | Canonical Owner | Examination Domain |

@@ -13,7 +13,7 @@
 | Document Owner | Enterprise Resource Management — Vendor & Supplier |
 | Primary Aggregate | Supplier |
 | Canonical Owner | Vendor & Supplier Management |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.1 |
 
 ---

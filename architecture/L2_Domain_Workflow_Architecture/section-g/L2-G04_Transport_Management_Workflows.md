@@ -5,21 +5,22 @@
 **Domain:** G04 — Transport Management  
 **Document ID:** L2-G04  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
 **Document Owner:** Campus Operations — Transport
 
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
 - Section B — Institution & Structure
-- Section C — Student Lifecycle
-- Section D — Academic Delivery
 - Section E — People & Workforce
 - G01 — Facilities Management
 - G10 — Infrastructure Management
-- Finance Domain
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section C — Student Lifecycle — Student Identity
+- Section F — Finance — Transport Billing
 
 **Downstream Consumers**
 
@@ -2413,4 +2414,4 @@ Transport Management follows the enterprise architectural principles established
 **L2-G04 — Transport Management Workflows**
 
 **Version:** 1.0  
-**Status:** Draft
+**Status:** Trust Certification Ready

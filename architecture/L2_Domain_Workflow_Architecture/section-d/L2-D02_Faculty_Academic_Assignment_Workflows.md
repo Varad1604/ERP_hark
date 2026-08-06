@@ -2,7 +2,7 @@
 # L2-D02 — Faculty Academic Assignment Workflows
 
 **Section:** D — Academic Delivery  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Document Owner:** Academic Delivery — Faculty Assignment
 
 ---

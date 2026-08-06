@@ -2,8 +2,7 @@
 
 **Section:** C — Student Lifecycle  
 **Architecture Level:** Level 2 (Domain Architecture)  
-**Status:** Draft  
-**Owner:** Section C Architect  
+**Status:** Trust Certification Ready  
 **Document Owner:** Student Lifecycle — Activation  
 
 **Depends On:**
@@ -12746,10 +12745,10 @@ As a core enterprise domain, it enables secure and consistent interoperability a
 | Document ID | L2-C02 |
 | Domain Name | Student Lifecycle Domain |
 | Architecture Level | Level 2 (Domain Architecture) |
-| Document Status | Draft |
+| Document Status | Trust Certification Ready |
 | Classification | Canonical Architecture |
 | Version | 1.0 |
-| Owner | Architecture Review Board |
+| Review Authority | Architecture Review Board |
 | Repository | SutraERP Architecture Repository |
 
 ---
@@ -14001,13 +14000,13 @@ This roadmap establishes a controlled path for future evolution of the Student L
 
 **Architecture Level:** Level 2
 
-**Status:** Draft
+**Status:** Trust Certification Ready
 
 **Version:** 1.0.0
 
 **Classification:** Canonical Domain Architecture
 
-**Owner:** Student Domain Architecture Team
+**Review Authority:** Student Domain Architecture Team
 
 **Governance Authority:** Architecture Review Board (ARB)
 

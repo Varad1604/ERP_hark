@@ -1,7 +1,7 @@
 # L2-I07 — Theory Examination Conduct Workflows
 
 **Section:** I — Examination  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Document Owner:** Examinations — Theory Conduct
 
 ---

@@ -5,10 +5,9 @@
 **Domain:** D01 — Course Offering  
 **Document ID:** L2-D01  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Document Owner:** Academic Delivery — Course & Offering  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Academic Operations Domain  
 **Dependencies:** Section A, Section B, Section C
 
 ---
@@ -3250,7 +3249,7 @@ The Course Offering domain satisfies the following architectural objectives:
 
 **Document:** L2-D01_Course_and_Course_Offering_Workflows.md
 
-**Status:** Draft
+**Status:** Trust Certification Ready
 
 **Architecture Validation**
 

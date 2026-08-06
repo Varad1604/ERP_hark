@@ -1,6 +1,6 @@
 # L5-01 — Infrastructure Persistence & Repository Baseline
 
-**Status:** Draft
+**Status:** Trust Certification Ready
 **Architecture Level:** L5 — Solution Architecture
 **Document Owner:** Devang
 **Created:** 2026-08-05

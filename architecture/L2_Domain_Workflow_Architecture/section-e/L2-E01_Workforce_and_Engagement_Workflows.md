@@ -15,7 +15,7 @@
 | **Authoritative Owner** | Workforce Management Domain |
 | **Upstream Dependencies** | Platform Foundation (Person), Organisation Management, Identity & Access Management, Policy Engine, Workflow Engine |
 | **Downstream Consumers** | Payroll, Leave Management, Academic Delivery, Examination, Research, Library, Hostel, Notifications, Analytics, Audit |
-| **Status** | Draft |
+| **Status** | Trust Certification Ready |
 | **Version** | 1.0 |
 | **Last Updated** | YYYY-MM-DD |
 | **Classification** | Enterprise Internal Architecture |
@@ -7820,7 +7820,7 @@ The domain collaborates with the remainder of SutraERP exclusively through canon
 
 ---
 
-**Document Status:** Draft  
+**Document Status:** Trust Certification Ready  
 **Architecture Level:** Level 2 Domain Workflow Specification  
 **Repository Status:** Ready for Repository Validation  
 **Architecture Verdict:** Production-Ready

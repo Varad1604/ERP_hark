@@ -33,7 +33,7 @@
 | Architecture Level | Level 2 |
 | Document Type | Canonical Domain Workflow Specification |
 | Owner | Platform Foundation — Identity |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 | Depends On | L2-A01 — Platform & Tenant Foundation |
 | Followed By | All Business Domains |

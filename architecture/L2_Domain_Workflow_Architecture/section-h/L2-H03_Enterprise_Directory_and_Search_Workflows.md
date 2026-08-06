@@ -1,7 +1,7 @@
 ﻿# L2-H03 — Enterprise Directory & Search Workflows
 
 **Section:** H — Institutional Services & Intelligence  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Document Owner:** Institutional Services — Directory & Search
 
 ---

@@ -5,19 +5,21 @@
 **Domain:** G02 — Laboratory Management  
 **Document ID:** L2-G02  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
 **Document Owner:** Campus Operations — Laboratory
 
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
 - Section B — Institution & Structure
-- Section D — Academic Delivery
 - Section E — People & Workforce
 - G10 — Infrastructure Management
 - G01 — Facilities Management
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section D — Academic Delivery — Practical Timetable; academic execution scheduling remains in Section D
 
 **Downstream Consumers**
 
@@ -2367,4 +2369,4 @@ Laboratory Management follows the enterprise architectural principles establishe
 **L2-G02 — Laboratory Management Workflows**
 
 **Version:** 1.0  
-**Status:** Draft
+**Status:** Trust Certification Ready

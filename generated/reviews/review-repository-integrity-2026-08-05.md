@@ -437,7 +437,7 @@ remediated"* — and this report re-raised it anyway.
 | INT-014 | Stale generated HTML retains Graduation terminology | Zero `.html` files exist in the repository |
 | INT-015 | AI_CONTEXT indexes say D and I pending | `AI_CONTEXT/INDEX.md:10` states "Pending: none"; D and I marked Generated |
 | INT-016 | L2-F06 has no ID, status or owner metadata | F06 carried title, Section, `Status: Draft` and Owner |
-| INT-018 | `architecture_audit_report.md` is a stale baseline | File does not exist in the repository |
+| INT-018 | `architecture_audit_report.md` is a stale baseline | ~~File does not exist in the repository~~ — **wrong reason, corrected 2026-08-06 (INT-201 review).** The file exists (10,420 bytes, tracked). The finding is nonetheless resolved: `architecture_audit_report.md:3-5` already carries "**Status:** Superseded — 2026-07-31 … must not be treated as a current certification." |
 
 ## Confirmed and remediated
 

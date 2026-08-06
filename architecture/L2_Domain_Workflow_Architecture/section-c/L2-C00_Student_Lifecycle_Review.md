@@ -4,9 +4,8 @@
 
 **Domain:** C - Student Lifecycle
 
-**Status:** Draft
+**Status:** Trust Certification Ready
 
-**Owner:** Student Lifecycle Domain
 
 **Document Owner:** Student Lifecycle
 
@@ -42,7 +41,6 @@
 | Document Name | Student Lifecycle Review |
 | Domain | Student Lifecycle |
 | Level | L2 - Business Workflow Architecture |
-| Owner | Student Lifecycle Domain |
 | Depends On | L2-C01 through L2-C08 Student Lifecycle workflows, L0 Business Vision, L1 Business Domain Architecture, Architecture Index, Dependency Map, L2 Domain Workflow Matrix |
 | Canonical Owner | Student Lifecycle Domain |
 

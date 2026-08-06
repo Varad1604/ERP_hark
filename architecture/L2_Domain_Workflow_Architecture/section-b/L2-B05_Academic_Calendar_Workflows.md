@@ -6,13 +6,11 @@ document-level: Level 2 (L2) Domain Architecture
 domain: Academic Management
 repository: SutraERP Enterprise Architecture Repository
 architecture-layer: Business Domain
-status: Draft
+status: Trust Certification Ready
 architecture-state: Frozen
 validation-level: Enterprise Architecture Review (V1–V10)
 confidence-level: Very High
-owner: Enterprise Architecture Team
 document_owner: Institution & Structure — Academic Calendar
-document-owner: Institution & Structure — Academic Calendar
 review-authority: Architecture Review Board
 repository-baseline: Current Repository Baseline
 last-updated: July 2026
@@ -55,11 +53,10 @@ last-updated: July 2026
 | Repository | SutraERP Enterprise Architecture Repository |
 | Architecture Layer | Business Domain |
 | Current Version | 1.0 |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Architecture State | Frozen |
 | Validation Status | Enterprise Reviewed (V1–V10) |
 | Confidence Level | Very High |
-| Owner | Enterprise Architecture Team |
 | Review Authority | Architecture Review Board |
 | Repository Alignment | L1 Architecture + A01–A07 + B01–B04 |
 | Implementation Status | Architecture Approved |

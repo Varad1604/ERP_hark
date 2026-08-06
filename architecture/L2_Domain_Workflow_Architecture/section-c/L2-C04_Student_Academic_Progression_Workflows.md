@@ -4,8 +4,7 @@ title: Student Academic Progression Workflows
 level: Level 2 Architecture
 section: Section C – Student Lifecycle
 version: 1.0.0
-status: Draft
-owner: Student Lifecycle Architecture
+status: Trust Certification Ready
 document_owner: Student Lifecycle — Academic Progression
 parent: L1 Business Domain Architecture
 architectural_tier: Level 2 – Domain Workflow Architecture
@@ -17,11 +16,11 @@ depends_on:
   - L2-A04 Authorization & Policy Workflows
   - L2-A05 Workflow Engine Workflows
   - L2-A06 Event Infrastructure Workflows
-  - L2-A07 Audit Infrastructure WorkflowsUpstream Domain Dependencies
+  - L2-A07 Audit Infrastructure Workflows
   - L2-B01 Institution Workflows
   - L2-B02 Organisation Workflows
   - L2-B04 Curriculum Framework Workflows
-  - L2-B05 Flexible Academic Calendar Workflows
+  - L2-B05 Academic Calendar Workflows
   - L2-C02 Student Lifecycle & Activation Workflows
   - L2-C03 Student Academic Registration Workflows
 required_by:
@@ -449,7 +448,7 @@ Academic Progression consumes authoritative information from multiple business d
 | Curriculum Framework | Curriculum structure and credit rules |
 | Examination | Official examination results |
 | Academic Delivery | Completion status where applicable |
-| Policy Management | Progression regulations |
+| Policy Management — **unresolved, no owner** | Progression regulations |
 | Finance | Financial clearance where institution requires |
 | Identity Platform | Authentication and audit context |
 
@@ -2070,7 +2069,7 @@ The Academic Progression domain subscribes to the following business events.
 | RevaluationResultPublished | Examination | Recalculate progression |
 | SupplementaryResultPublished | Examination | Recalculate progression |
 | CurriculumUpdated | Curriculum Framework | Validate curriculum impact |
-| AcademicPolicyUpdated | Policy Management | Future evaluations use revised policies |
+| AcademicPolicyUpdated | Policy Management — **no publisher exists** | Future evaluations use revised policies |
 | CreditTransferApproved | Credit Transfer | Update Academic Credit Ledger |
 | AcademicBreakApproved | Student Lifecycle | Suspend progression |
 | StudentRestored | Student Lifecycle | Resume progression evaluation |
@@ -2474,7 +2473,14 @@ Academic Progression consumes services owned by other business domains.
 | Get Registration Details | Academic Registration | Validate enrolment |
 | Get Examination Results | Examination | Obtain official results |
 | Get Curriculum Structure | Curriculum Framework | Validate curriculum |
-| Get Academic Policy | Policy Management | Execute progression rules |
+| Get Academic Policy | Policy Management — **unresolved, no owner** | Execute progression rules |
+
+> **Marked 2026-08-06 under integrity finding INT-206.** "Policy Management" is not a
+> repository section and no document defines, owns or publishes it. `AcademicPolicyUpdated`
+> has no publisher anywhere. The dependency is recorded as a known missing bounded context
+> in `DEPENDENCY_MAP.md` section 7B, together with the evidence excluding A04 and A08 as
+> its home. **Do not implement a subscriber or query client against Policy Management
+> until an owner is assigned.**
 | Get Programme Details | Programme Management | Programme validation |
 | Get Financial Clearance | Finance | Institutional prerequisite where applicable |
 | Get ABC Credits | ABC Integration | Credit verification |

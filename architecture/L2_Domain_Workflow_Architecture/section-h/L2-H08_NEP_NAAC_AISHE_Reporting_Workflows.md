@@ -13,7 +13,7 @@
 | **Communication Pattern** | Commands, Queries, Domain Events |
 | **Canonical Owner** | Regulatory Reporting & Compliance Domain |
 | **Document Owner** | Institutional Intelligence — Statutory Reporting |
-| **Status** | Draft |
+| **Status** | Trust Certification Ready |
 | **Version** | 1.0 |
 | **Repository** | SutraERP Canonical Enterprise Repository |
 | **Classification** | Canonical Enterprise Architecture |

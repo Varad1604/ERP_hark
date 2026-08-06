@@ -5,9 +5,8 @@
 **Domain:** G01 — Facilities Management  
 **Document ID:** L2-G01  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
 **Document Owner:** Campus Operations — Facilities
 
 **Upstream Dependencies**
@@ -3016,5 +3015,5 @@ Facilities Management follows the enterprise architectural principles establishe
 **L2-G01 — Facilities Management Workflows**
 
 **Version:** 1.0  
-**Status:** Draft
+**Status:** Trust Certification Ready
 

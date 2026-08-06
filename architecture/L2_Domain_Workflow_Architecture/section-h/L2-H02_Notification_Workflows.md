@@ -32,11 +32,10 @@
 | Document Name | Notification Workflows |
 | Layer | Level 2 – Enterprise Platform & Business Services Architecture |
 | Domain | Notification Platform |
-| Owner | Notification Domain |
 | Document Owner | Institutional Services — Notifications |
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Workflows, L2-A04 Authorization & Policy Workflows, L2-A05 Workflow Engine Workflows, L2-A06 Event Infrastructure Workflows, L2-A07 Audit Infrastructure Workflows |
 | Referenced By | All Business Domains and Platform Services |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 
 ---

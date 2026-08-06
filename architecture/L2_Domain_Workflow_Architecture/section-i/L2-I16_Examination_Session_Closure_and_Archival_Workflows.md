@@ -32,10 +32,9 @@
 | Document Name | Examination Session Closure & Archival Workflows |
 | Domain | Examination Domain |
 | Architecture Level | L2 – Canonical Domain Workflow |
-| Owner | Examination Domain |
 | Document Owner | Examinations — Session Closure & Archival |
 | Repository | SutraERP Enterprise Architecture Repository |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Depends On | L1 Business Domain Architecture, L2-A01–A08, L2-B01–B05, L2-I01–L2-I15 |
 | Version | 0.1 |
 
@@ -1661,7 +1660,7 @@ The architecture follows the enterprise principles established throughout the Su
 
 **L2-I16 — Examination Session Closure & Archival Workflows**
 
-**Status:** Draft
+**Status:** Trust Certification Ready
 
 **This document represents the canonical terminal lifecycle of the Examination domain within the SutraERP Enterprise Architecture repository.**
 

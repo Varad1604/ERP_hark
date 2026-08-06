@@ -4,7 +4,7 @@
 **Domain Code:** D03  
 **Domain Name:** Timetable Workflows  
 **Architecture Level:** L2 — Domain Workflow Specification  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Document Owner:** Academic Delivery — Timetable  
 **Version:** 1.0  
 **Owner:** Academic Delivery — Timetable  
@@ -2412,18 +2412,25 @@ These services remain independently deployable.
 
 # 7.6 Enterprise Governance Context
 
-Enterprise governance responsibilities are provided by Section I.
+> **Corrected 2026-08-06 under integrity finding INT-206.** This section previously read
+> "Enterprise governance responsibilities are provided by Section I." That is false —
+> Section I is Examination, and `DEPENDENCY_MAP.md` lines 277-286 scope it to Assessment,
+> Examination, Evaluation, Grade Processing, Result Processing and Academic outcomes. None
+> of the capabilities below belongs to Section I. Each is routed to its verified owner.
 
-Governance includes:
+Enterprise governance responsibilities are provided by the owners below. Timetable
+consumes them; it owns none of them.
 
-- Policy Management
-- Compliance Validation
-- Audit Governance
-- Risk Management
-- Architectural Governance
-- Decision Governance
-- Operational Readiness
-- Enterprise Standards
+| Governance capability | Owner |
+|---|---|
+| Compliance Validation | Section H — `L2-H09` Accreditation & Compliance |
+| Audit Governance | Section A — `L2-A07` Audit Infrastructure |
+| Operational Readiness | Section A — `L2-A10` Operational Readiness |
+| Architectural Governance | Repository Constitution — `governance/constitution/Volume_3_Architecture_Framework.md` |
+| Enterprise Standards | Repository Constitution — `governance/constitution/Volume_2_Repository_Standards.md` |
+| Policy Management | **Unresolved — no owner.** Recorded as a missing bounded context in `DEPENDENCY_MAP.md` section 7B. |
+| Risk Management | **Unresolved — no owner.** No document in the repository claims it. |
+| Decision Governance | **Unresolved — no owner.** No document in the repository claims it. |
 
 D03 shall comply with all applicable governance requirements.
 
@@ -9254,7 +9261,7 @@ Naming conventions shall remain stable across future versions.
 | Domain | D03 — Timetable Workflows |
 | Architecture Level | Level 2 |
 | Document Type | Canonical Enterprise Domain Architecture |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Governance | Enterprise Architecture |
 | Versioning | Semantic Versioning |
 | Ownership | Timetable Domain Team |

@@ -5,20 +5,23 @@
 **Domain Code:** G09  
 **Domain Name:** Teacher Guardian Scheme (TGS)  
 **Architecture Level:** Enterprise Business Workflow  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Document Owner:** Campus Operations — Teacher Guardian Scheme
 
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
 - Section B — Institution & Structure
-- Section C — Student Lifecycle
-- Section D — Academic Delivery
 - Section E — People & Workforce
-- Section F — Finance
 - G03 — Hostel Management
 - G05 — Library Management
 - G06 — Institutional Health Services
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section C — Student Lifecycle — Student master, Student profile, Student admission, Student academic lifecycle
+- Section D — Academic Delivery — Academic Session, TGS Timetable Schedule, Attendance Summary, Academic Performance Summary
+- Section F — Finance — Fee Summary, Outstanding Amount, Installment Status, Financial Hold Status
 
 ---
 

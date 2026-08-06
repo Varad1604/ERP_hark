@@ -4,9 +4,8 @@
 **Parent Domain:** Section H – Institutional Services & Intelligence  
 **Architecture Level:** Level 2 Enterprise Workflow Specification  
 **Architecture Style:** Domain-Driven Design (DDD), CQRS, Event-Driven Architecture (EDA)  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Version:** 1.0  
-**Owner:** Alumni Domain Team  
 **Document Owner:** Institutional Services — Alumni Engagement  
 **Canonical Owner:** H06 – Alumni **Engagement** (Alumni Profile and engagement aggregates)  
 **Not Owned:** Alumni Persona — the institutional identity fact, owned by Student Lifecycle (L2-C08) per locked L1

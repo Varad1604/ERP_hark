@@ -38,7 +38,7 @@
 | **Architecture Level** | Level 2 – Domain Architecture |
 | **Domain Code** | B03 |
 | **Domain Category** | Foundation Domain |
-| **Status** | Draft |
+| **Status** | Trust Certification Ready |
 | **Document Owner** | Institution & Structure — Institutional Campus |
 | **Repository** | SutraERP Enterprise Architecture |
 | **Depends On** | L1 Platform Foundation, L2-B01 Institution, L2-B02 Organisation |

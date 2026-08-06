@@ -11,7 +11,7 @@
 | Canonical Aggregate | Alumni Transition Record |
 | Primary Owner | Student Lifecycle Domain |
 | Version | 1.0 |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Dependencies | See Sections 3 & 4 |
 | Audience | Enterprise Architects, Solution Architects, Developers, Business Analysts |
 | Last Updated | YYYY-MM-DD |
@@ -185,9 +185,37 @@ All upstream integrations shall adhere to the following architectural principles
 | Institution Management | Institution ownership and organisational hierarchy | Alumni Transition |
 | Qualification Completion (L2-C05) | Qualification completion outcome, published as the canonical `QualificationAwarded` event | Alumni Transition |
 | Examination (L2-I13) | Examination-owned completion evidence via `ExaminationCompletionEvidencePrepared` | Alumni Transition |
-| Policy Management | Institutional transition policies | Alumni Transition |
-| Approval Management | Institutional approval workflows | Alumni Transition |
-| Clearance Management | Financial, library, hostel and administrative clearances | Alumni Transition |
+| Institutional Clearance (aggregated by `L2-C05`) | Financial, library, hostel and administrative clearances, aggregated by the Qualification Completion Aggregate and published as `InstitutionalClearanceCompleted` | Alumni Transition |
+| Policy Management — **unresolved, no owner** | Institutional transition policies | Alumni Transition |
+
+> **Corrected 2026-08-06 under integrity finding INT-206.** This table previously named
+> three upstream bounded contexts that do not exist in the repository:
+>
+> - **Clearance Management** — replaced above. `L2-C05` line 287 states that each
+>   participating domain owns its own clearance decision and the Qualification Completion
+>   Aggregate aggregates them; line 4085 confirms it owns institutional clearance
+>   coordination. The clearances themselves originate in Sections F, G03 and G05.
+> - **Approval Management** — row removed. Alumni transition approval is not upstream of
+>   this context; this document publishes `AlumniTransitionApproved` itself (see §10.4,
+>   "Institutional approval completed / Approval workflow completed").
+> - **Policy Management** — retained and marked. No document in the repository defines,
+>   owns or publishes it. Recorded as a missing bounded context in `DEPENDENCY_MAP.md`
+>   section 7B, with the evidence excluding `L2-A04` and `L2-A08` as its home.
+>
+> **This note governs every occurrence of all three names throughout this document** —
+> the service-contract, workflow, failure-mode and sequence tables further below still use
+> them as shorthand, and are to be read as follows:
+>
+> | Name as written elsewhere in this document | Read as |
+> |---|---|
+> | Clearance Management | `L2-C05` Qualification Completion, aggregating clearances from Sections F, G03 and G05 |
+> | Approval Management | This context's own approval workflow, publishing `AlumniTransitionApproved` (§10.4) — **not an upstream domain** |
+> | Policy Management | **Unresolved.** No owner. See `DEPENDENCY_MAP.md` section 7B. |
+>
+> Those occurrences were left in place rather than rewritten across fifteen tables, to
+> avoid churn in a document of this size. They carry no independent authority; this note
+> governs. **Do not implement a subscriber or query client against Policy Management until
+> an owner is assigned.**
 
 ---
 
@@ -2493,11 +2521,28 @@ The Alumni Transition bounded context consumes business events published by upst
 
 | Publishing Domain | Consumed Event | Purpose |
 |-------------------|---------------|---------|
-| Examination | QualificationCompletionVerified | Initiate transition eligibility |
-| Qualification Completion | QualificationCompleted | Validate academic completion |
-| Clearance Management | ClearanceCompleted | Validate institutional clearance |
-| Approval Management | AlumniTransitionApprovalCompleted | Record approval outcome |
-| Policy Management | AlumniTransitionPolicyUpdated | Resolve applicable transition policies |
+| Examination (`L2-I13`) | ProgrammeCompletionVerified | Initiate transition eligibility |
+| Qualification Completion (`L2-C05`) | QualificationAwarded | Validate academic completion |
+| Qualification Completion (`L2-C05`) | InstitutionalClearanceCompleted | Validate institutional clearance |
+| **Unresolved — no publisher** | AlumniTransitionPolicyUpdated | Resolve applicable transition policies |
+
+> **Corrected 2026-08-06 under integrity finding INT-206.** Every row in this table
+> previously named an event or a publishing domain that does not exist. Each was traced to
+> its real publisher:
+>
+> | Was | Now | Why |
+> |---|---|---|
+> | Examination / `QualificationCompletionVerified` | `L2-I13` / `ProgrammeCompletionVerified` | `L2-I13` §11.3 defines it with a "Published When" clause and lists it under Events Published. `QualificationCompletionVerified` occurred nowhere in the repository. |
+> | Qualification Completion / `QualificationCompleted` | `L2-C05` / `QualificationAwarded` | The canonical completion event, named as C05-published in `L2-C02` lines 1604, 3659 and 4404, and listed in `Volume_2_Repository_Standards.md` line 177. |
+> | Clearance Management / `ClearanceCompleted` | `L2-C05` / `InstitutionalClearanceCompleted` | "Clearance Management" is not a repository section. `L2-C05` line 4085 states the Qualification Completion Aggregate owns institutional clearance coordination, and publishes `InstitutionalClearanceCompleted`. |
+> | Approval Management / `AlumniTransitionApprovalCompleted` | **row deleted** | Not a consumed event. This bounded context publishes `AlumniTransitionApproved` itself — see §10.4, "Institutional approval completed / Approval workflow completed". The row duplicated our own published event under an invented upstream domain. |
+>
+> **One row remains unresolved.** `AlumniTransitionPolicyUpdated` has no publisher
+> anywhere in the repository. No document defines or updates Alumni Transition policy:
+> this context publishes `TransitionPolicyValidated` (it *evaluates* policy) but owns no
+> policy aggregate, and Sections A04 and A08 declare no policy-change events. The row is
+> retained and marked so the missing upstream contract stays visible rather than being
+> silently dropped. **Do not implement a subscriber for it.**
 
 The Alumni Transition domain never assumes ownership of consumed events.
 
@@ -5780,7 +5825,7 @@ sequenceDiagram
     participant Reporting as Reporting
     participant Notification as Notification
 
-    Qualification->>Alumni: QualificationCompleted
+    Qualification->>Alumni: QualificationAwarded
 
     Alumni->>Alumni: Validate Eligibility
     Alumni->>Alumni: Execute Transition
@@ -6818,7 +6863,7 @@ Future evolution of the Alumni Transition domain shall comply with the following
 
 | Attribute | Value |
 |-----------|-------|
-| Document Status | Draft |
+| Document Status | Trust Certification Ready |
 | Architecture Level | Level 2 (Bounded Context) |
 | Domain | Alumni Transition |
 | Review Status | Ready for Architecture Review |
@@ -6845,7 +6890,7 @@ By combining Domain-Driven Design, event-driven integration, policy-based decisi
 | Bounded Context | Alumni Transition |
 | Document Type | Enterprise Architecture Specification |
 | Version | 1.0 |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Classification | Internal Architecture |
 | Language | English |
 
@@ -6855,7 +6900,7 @@ By combining Domain-Driven Design, event-driven integration, policy-based decisi
 
 | Role | Responsibility |
 |------|----------------|
-| Document Owner | Enterprise Architecture Team |
+| Document Owner | Student Lifecycle — Alumni Transition |
 | Business Owner | Student Lifecycle Domain Owner |
 | Technical Owner | Solution Architecture Team |
 | Governance Authority | Architecture Review Board |
@@ -6949,7 +6994,15 @@ This architecture specification includes the following deliverables:
 
 ---
 
-## 26.8 Repository Structure
+## 26.8 Proposed Repository Structure — Not Yet Created
+
+> Corrected 2026-08-06 under integrity finding INT-212. This section previously presented
+> the tree below as the document's actual layout. It is not. `L2-C08` is a single flat
+> file at `architecture/L2_Domain_Workflow_Architecture/section-c/`, consistent with all
+> 107 L2 documents. None of the `diagrams/`, `adr/` or `assets/` paths below exist, and
+> the eight ADRs referenced are unwritten. `governance/constitution/Volume_2_Repository_Standards.md`
+> line 83 requires that planned folders not be referenced as existing paths until they are
+> created. Treat the tree as a proposal awaiting Lead Architect approval.
 
 ```text
 L2-C08_Alumni_Transition_Workflows/

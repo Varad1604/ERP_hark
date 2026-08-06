@@ -7,7 +7,7 @@
 **Architecture Level:** Level 2 (Business Domain Architecture)  
 **Domain:** Organization Domain  
 **Project:** SutraERP  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Document Owner:** Institution & Structure — Organisation
 
 ---
@@ -45,8 +45,8 @@
 | Parent Architecture | L1 Enterprise Architecture |
 | Depends On | L2-A01 Platform Foundation |
 | Version | 1.0 |
-| Status | Draft |
-| Owner | Architecture Review Board |
+| Status | Trust Certification Ready |
+| Review Authority | Architecture Review Board |
 | Approval Status | Approved |
 | Repository Status | Ready |
 

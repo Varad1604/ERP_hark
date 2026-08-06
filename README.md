@@ -23,7 +23,7 @@ This repository stores and governs the architecture and planning artifacts that 
 - **Traceability**: every downstream artifact must trace to an upstream architectural source.
 - **Canonical Ownership**: every business concept has exactly one authoritative owner.
 - **Hierarchy Discipline**: the canonical architecture hierarchy is L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6.
-- **Planning Repository Only**: this repository contains architecture, governance, templates, generated presentation artifacts, and helper scripts. It does not contain application runtime code.
+- **Planning Repository Only**: this repository contains architecture, governance, templates, and generated review artifacts. It does not contain application runtime code.
 
 ---
 
@@ -44,18 +44,18 @@ The current repository structure is:
 - [assets/](/F:/Pravaha/ERP_Planning/assets/)
   Repository assets, diagrams, icons, images, and logos.
 - [generated/](/F:/Pravaha/ERP_Planning/generated/)
-  Generated HTML presentation artifacts derived from architecture documents.
+  Generated review and analysis artifacts derived from architecture documents.
 - [archive/](/F:/Pravaha/ERP_Planning/archive/)
   Archived repository material.
-- [tools/](/F:/Pravaha/ERP_Planning/tools/)
-  Local helper scripts used for presentation and conversion support.
 
 Architecture placeholder folders currently present:
 
 - `architecture/L3_Business_Scenario_Architecture/`
 - `architecture/L4_System_Behavior_Specification/`
-- `architecture/L5_Solution_Architecture/`
 - `architecture/L6_UI_UX_Architecture/`
+
+`architecture/L5_Solution_Architecture/` is **no longer a placeholder** — it holds two
+`Draft` documents. See `architecture/ARCHITECTURE_INDEX.md`.
 
 ---
 
@@ -79,7 +79,7 @@ The dependency direction is:
 L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 ```
 
-L0 and L1 source documents currently exist in this workspace, along with the L2 control matrix and L2 section files. L3 through L6 have placeholder folders only and are not yet present as source architecture documents.
+L0 and L1 source documents currently exist in this workspace, along with the L2 control matrix and L2 section files. Two L5 Solution Architecture documents also exist (`L5-00_Technology_Stack_Baseline.md` and `L5-01_Infrastructure_Persistence_Baseline.md`); both are `Draft` extractions created to remove level violations from L0 and L2, and neither traces to an approved L4. L3, L4 and L6 have placeholder folders only and are not yet present as source architecture documents.
 
 L3 Business Scenario Architecture is independent of L2 numbering. A business scenario may derive information from one or many L2 workflow documents, but it must not redefine L2 domain ownership or workflow logic.
 

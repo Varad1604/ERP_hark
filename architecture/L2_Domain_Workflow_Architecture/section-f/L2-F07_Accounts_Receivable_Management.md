@@ -9,8 +9,8 @@
 | **Bounded Context** | Accounts Receivable |
 | **Document Type** | Domain Architecture |
 | **Version** | 1.0.0 |
-| **Status** | Draft |
-| **Owner** | Finance Architecture Board |
+| **Status** | Trust Certification Ready |
+| **Review Authority** | Finance Architecture Board |
 | **Document Owner** | Finance — Accounts Receivable |
 | **Depends On** | L2-F00, L2-F01, L2-F02, L2-F03, L2-F04, L2-F05, L2-F06 |
 | **Consumed By** | L3 Finance Workflows, L4 Finance Business Rules, L5 Technical Architecture |

@@ -34,7 +34,7 @@
 | Domain | Platform Foundation |
 | Parent Domain | L2-A01 — Platform & Tenant Foundation |
 | Version | 1.0.0 |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Owner | Platform Foundation — Module Registry |
 | Repository | SutraERP |
 | Classification | Canonical Level 2 Architecture |

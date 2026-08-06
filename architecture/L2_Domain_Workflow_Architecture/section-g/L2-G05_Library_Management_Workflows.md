@@ -5,19 +5,20 @@
 **Domain:** G05 — Library Management  
 **Document ID:** L2-G05  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
 **Document Owner:** Campus Operations — Library
 
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
 - Section B — Institution & Structure
-- Section C — Student Lifecycle
-- Section D — Academic Delivery
 - Section E — People & Workforce
-- Finance Domain
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section C — Student Lifecycle — Student Identity
+- Section F — Finance — Finance & Payments
 
 **Downstream Consumers**
 
@@ -2396,4 +2397,4 @@ Library Management follows the enterprise architectural principles established b
 **L2-G05 — Library Management Workflows**
 
 **Version:** 1.0  
-**Status:** Draft
+**Status:** Trust Certification Ready

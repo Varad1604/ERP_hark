@@ -4,9 +4,8 @@
 
 **Domain:** I – Examination
 
-**Status:** Draft
+**Status:** Trust Certification Ready
 
-**Owner:** Examination Domain
 
 **Document Owner:** Examinations — Session Management
 
@@ -42,7 +41,6 @@
 | Document Name | Examination Session Management Workflows |
 | Domain | Examination |
 | Level | L2 – Business Workflow Architecture |
-| Owner | Examination Domain |
 | Depends On | L2-I01 Examination Policy & Configuration, A01 Platform Foundation, A02 Person & Identity, A03 Authentication, A04 Authorization, H02 Notification Workflows, A06 Event Infrastructure, A07 Audit Infrastructure, B01 Institution, B02 Organisation, B04 Curriculum Framework, B05 Academic Calendar |
 | Consumed By | L2-I03 through L2-I16 Examination Workflows |
 | Canonical Owner | Examination Domain |

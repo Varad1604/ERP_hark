@@ -32,11 +32,11 @@
 | Document Name | Asset Financial Accounting Workflows |
 | Layer | Level 2 — Domain Workflow Architecture |
 | Domain | Finance — Asset Accounting |
-| Owner | Finance Architecture Team |
+| Review Authority | Finance Architecture Team |
 | Document Owner | Finance — Asset Accounting |
 | Depends On | L2-F00 Finance Domain Model & Foundation, L2-F05 General Ledger, L2-F09 Financial Period & Closing, Section J |
 | Referenced By | Financial Reporting, Accounts Payable, Treasury, Section J, Audit, Analytics |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.1.0 |
 
 ---

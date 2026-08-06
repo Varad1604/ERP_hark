@@ -4,9 +4,8 @@
 
 **Domain:** I – Examination
 
-**Status:** Draft
+**Status:** Trust Certification Ready
 
-**Owner:** Examination Domain
 
 **Document Owner:** Examinations — Hall Ticket
 
@@ -42,7 +41,6 @@
 | Document Name | Hall Ticket Management Workflows |
 | Domain | Examination |
 | Level | L2 – Business Workflow Architecture |
-| Owner | Examination Domain |
 | Depends On | L2-I01 Examination Policy & Configuration, L2-I02 Examination Session Management, L2-I03 Examination Planning & Scheduling, L2-I04 Examination Registration, A01 Platform Foundation, A02 Person & Identity, A03 Authentication, A04 Authorization, H02 Notification Workflows, A06 Event Infrastructure, A07 Audit Infrastructure, B01 Institution, B02 Organisation, B03 Campus & Infrastructure, B04 Curriculum Framework, B05 Academic Calendar |
 | Consumed By | L2-I06 through L2-I16 Examination Workflows |
 | Canonical Owner | Examination Domain |

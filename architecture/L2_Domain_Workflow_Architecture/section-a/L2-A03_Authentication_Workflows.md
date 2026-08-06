@@ -4,7 +4,7 @@ title: Authentication Workflows
 level: Level 2 Architecture
 section: A - Platform Foundation
 version: 1.0.0
-status: Draft
+status: Trust Certification Ready
 owner: Platform Foundation — Authentication
 document_owner: Platform Foundation — Authentication
 reviewers:
@@ -54,7 +54,7 @@ last_updated: YYYY-MM-DD
 | Architecture Level | Level 2 |
 | Domain | Platform Foundation |
 | Module | Authentication |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0.0 |
 | Owner | Platform Foundation — Authentication |
 | Architecture Layer | Foundation |
@@ -5998,4 +5998,4 @@ This document complies with the SutraERP Level-2 Architecture Standards.
 
 **Canonical Owner:** Authentication Domain
 
-**Status:** Draft
+**Status:** Trust Certification Ready

@@ -13,7 +13,7 @@
 | Document Owner | Enterprise Resource Management — Disposal & Write-Off |
 | Architectural Style | Domain-Driven Design (DDD), CQRS, Event-Driven Architecture |
 | Primary Aggregate | Disposal & Write-off Case |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 
 ---

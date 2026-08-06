@@ -5,19 +5,21 @@
 **Domain:** G03 — Hostel Management  
 **Document ID:** L2-G03  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
 **Document Owner:** Campus Operations — Hostel
 
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
 - Section B — Institution & Structure
-- Section C — Student Lifecycle
 - Section E — People & Workforce
 - G10 — Infrastructure Management
 - G01 — Facilities Management
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section C — Student Lifecycle — Student Identity
 
 **Downstream Consumers**
 
@@ -2483,4 +2485,4 @@ Hostel Management follows the enterprise architectural principles established by
 **L2-G03 — Hostel Management Workflows**
 
 **Version:** 1.0  
-**Status:** Draft
+**Status:** Trust Certification Ready

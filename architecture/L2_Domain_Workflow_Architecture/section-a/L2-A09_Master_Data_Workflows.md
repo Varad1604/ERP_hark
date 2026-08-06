@@ -3,8 +3,8 @@
 **Domain:** A09 — Master Data Platform  
 **Layer:** L2 — Platform Architecture  
 **Version:** 1.0  
-**Status:** Draft  
-**Owner:** Platform Architecture Team  
+**Status:** Trust Certification Ready  
+**Review Authority:** Platform Architecture Team  
 **Document Owner:** Platform Foundation — Master Data  
 **Classification:** Core Platform Domain
 

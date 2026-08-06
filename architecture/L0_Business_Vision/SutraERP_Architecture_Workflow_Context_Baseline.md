@@ -1,8 +1,11 @@
 # SutraERP --- Architecture & Workflow Context Baseline
 
-**Document Status:** Architecture Context Baseline\
+**Document Status:** Locked\
 **Date:** 2026-07-05\
-**Last Amended:** 2026-08-01 --- Procurement removed from Finance
+**Last Amended:** 2026-08-05 --- Document status aligned to Locked;
+technology and solution architecture decisions assigned exclusively to L5;
+Sections 23 and 25 reconciled to close the architecture-level contradiction.\
+**Previously Amended:** 2026-08-01 --- Procurement removed from Finance
 scope (Section J is sole owner); the legacy two-team ownership model
 replaced with Section-based ownership per `TEAM_ASSIGNMENTS.md`.\
 **Purpose:** Preserve the agreed architectural, institutional,
@@ -257,31 +260,13 @@ independently.
 
 ------------------------------------------------------------------------
 
-## 3. Current Repository Architecture
+## 3. Solution Architecture Boundary
 
-SutraERP is delivered as a single, modular platform rather than a set of
-independently deployed services. Business capabilities are separated by domain
-ownership and explicit contracts, not by deployment boundaries.
-
-**Architecture decision:** SutraERP will not be redesigned as a distributed
-service architecture at this stage. The platform evolves into a
-**Contract-Driven Modular ERP Platform**, because current scale does not justify
-distributed operational complexity, separate teams can be supported through
-domain ownership and explicit contracts, and a single deployable permits
-transactional consistency where the business requires it. Future extraction into
-services remains possible if domain boundaries stay disciplined.
-
-**Standing risk:** without enforcement, direct inter-domain data access can
-reintroduce coupling inside a single deployable, producing distributed-monolith
-behaviour without distributed-system benefits.
-
-> **Implementation technology is deliberately not specified here.** L0 is
-> business-facing and technology-independent
-> (`governance/constitution/Volume_1_Governance.md` lines 152-168). The recorded
-> technology baseline — languages, frameworks, datastores, and runtime choices —
-> lives in
-> `architecture/L5_Solution_Architecture/L5-00_Technology_Stack_Baseline.md`.
-> Moved there on 2026-08-04 under integrity finding INT-002.
+L0 is business-facing and technology-independent. It does not select deployment
+topology, languages, frameworks, datastores, runtimes, or implementation
+patterns. Those decisions belong exclusively to L5 Solution Architecture and
+are recorded in
+`architecture/L5_Solution_Architecture/L5-00_Technology_Stack_Baseline.md`.
 
 ------------------------------------------------------------------------
 
@@ -1279,8 +1264,9 @@ academic_period_id
 current_status
 ```
 
-These are architectural directions. Exact Rust traits, DTOs, and
-versioning will be designed after workflow contracts are identified.
+These are architectural directions. Implementation contracts, DTOs, and
+versioning decisions belong to L5 Solution Architecture or later implementation
+artifacts after workflow contracts are identified.
 
 ------------------------------------------------------------------------
 
@@ -1510,8 +1496,8 @@ The repository audit identified the following major risks:
 14. Leave approval is not connected to attendance/payroll workflows.
 15. Multi-tenant provisioning is incomplete.
 
-These risks must inform workflow design. They do not require an
-immediate microservice rewrite.
+These risks must inform workflow design without selecting or rejecting a
+solution architecture at L0. Their technical resolution belongs to L5.
 
 ------------------------------------------------------------------------
 
@@ -1604,7 +1590,7 @@ Reporting
 
 ## 23. Workflow Design Levels
 
-> **Corrected 2026-08-05 under integrity finding INT-001.** This section
+> **Hierarchy reconciliation (2026-08-05; INT-001 resolved).** This section
 > previously gave the levels different meanings from Section 0 — for example it
 > called L4 "Individual Module Workflows" and L5 "Role / Position-Based
 > Workflows". Section 0 is canonical, and its definitions are reproduced verbatim
@@ -1715,7 +1701,8 @@ The following decisions are accepted as the baseline:
     contexts.
 11. Parent/guardian is a first-class ERP persona.
 12. Documents are institutional records, not generic cloud-drive files.
-13. Architecture remains a modular Rust monolith at this stage.
+13. Technology and solution architecture decisions belong to L5 and are not
+    locked by this L0 baseline.
 14. Communication architecture is hybrid: synchronous contracts plus
     domain events.
 15. Modules are classified by architectural tiers, separate from
@@ -1760,7 +1747,9 @@ The following decisions are accepted as the baseline:
 > outstanding work. The heading level was corrected under INT-002: an H1 inside
 > L0 previously asserted itself as L1 content.
 >
-> The wider hierarchy contradiction in this section remains open as INT-001.
+> The former hierarchy contradiction tracked as INT-001 is resolved by the
+> canonical definitions in Sections 0 and 23. The historical brief below does
+> not redefine architecture levels.
 
 ### L1 Design Brief — Complete Institute Lifecycle (historical)
 

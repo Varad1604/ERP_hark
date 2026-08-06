@@ -5,7 +5,7 @@
 | Architecture Level | Level 2 — Domain Architecture |
 | Domain | Finance |
 | Document Code | L2-F10 |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 | Canonical Owner | Finance Architecture |
 | Document Owner | Finance — Treasury & Banking |
@@ -5244,7 +5244,7 @@ Section 13 ("Aggregate Behaviour" and "Aggregate State Transition Rules") furthe
 | Document | L2-F10 — Treasury & Banking |
 | Architecture Level | Level 2 |
 | Domain | Finance |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Canonical Owner | Finance Architecture |
 | Merge Readiness | Ready for Governance Validation |
 | Downstream Dependency | L3 Component Architecture, L4 Service Architecture, Implementation Architecture |

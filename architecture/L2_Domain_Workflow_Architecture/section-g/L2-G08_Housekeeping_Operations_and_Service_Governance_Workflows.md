@@ -5,9 +5,8 @@
 **Domain:** G08 — Housekeeping Operations & Service Governance  
 **Document ID:** L2-G08  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
 **Document Owner:** Campus Operations — Housekeeping
 
 **Upstream Dependencies**
@@ -18,7 +17,10 @@
 - G02 — Laboratory Management
 - G03 — Hostel Management
 - G06 — Institutional Health Services
-- Finance Domain
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section F — Finance — accounting and payment consequences of Vendor Contracts
 
 **Downstream Consumers**
 
@@ -2117,6 +2119,6 @@ Housekeeping Operations follows the enterprise architectural principles establis
 **L2-G08 — Housekeeping Operations & Service Governance Workflows**
 
 **Version:** 1.0  
-**Status:** Draft
+**Status:** Trust Certification Ready
 
 

@@ -5,20 +5,22 @@
 **Domain:** G07 — Security Operations  
 **Document ID:** L2-G07  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
 **Document Owner:** Campus Operations — Security
 
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
 - Section B — Institution & Structure
-- Section C — Student Lifecycle
 - Section E — People & Workforce
 - G01 — Facilities Management
 - G06 — Institutional Health Services
-- Finance Domain
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section C — Student Lifecycle — Student Identity
+- Section F — Finance — accounting and payment consequences of Security Vendor Contracts
 
 **Downstream Consumers**
 
@@ -2198,5 +2200,5 @@ Security Operations follows the enterprise architectural principles established 
 **L2-G07 — Security Operations Workflows**
 
 **Version:** 1.0  
-**Status:** Draft
+**Status:** Trust Certification Ready
 

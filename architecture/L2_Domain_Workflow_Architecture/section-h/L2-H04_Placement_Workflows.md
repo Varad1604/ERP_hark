@@ -6,8 +6,8 @@
 **Document Type:** Level 2 Enterprise Workflow Specification  
 **Architecture Style:** Domain-Driven Design (DDD), CQRS, Event-Driven Architecture (EDA)  
 **Version:** 1.0  
-**Status:** Draft  
-**Owner:** Enterprise Architecture Team  
+**Status:** Trust Certification Ready  
+**Review Authority:** Enterprise Architecture Team  
 **Document Owner:** Institutional Services — Placement  
 
 ---

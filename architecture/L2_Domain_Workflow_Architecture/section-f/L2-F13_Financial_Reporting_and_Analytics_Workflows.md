@@ -33,10 +33,10 @@
 | Architecture Level | Level 2 – Domain Workflow Architecture |
 | Domain | Finance |
 | Module | Financial Reporting & Analytics |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Document Owner | Finance — Reporting & Analytics |
 | Version | 1.0.0 |
-| Owner | Finance Architecture Team |
+| Review Authority | Finance Architecture Team |
 | Parent Architecture | L2-F00 — Finance Domain Model & Foundation |
 | Depends On | L2-F00, L2-F05, L2-F06, L2-F07, L2-F08, L2-F09, L2-F10, L2-F11, L2-F12 |
 | Referenced By | Dashboards, Analytics, Regulatory Reporting, Executive MIS, BI Platform, External Reporting |
