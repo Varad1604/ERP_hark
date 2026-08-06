@@ -23,7 +23,7 @@
 |----------|-------|--------|
 | SutraERP L0 Business Vision | Dhruv | Locked |
 | SutraERP L1 Business Domain Architecture | Dhruv | Locked |
-| DEPENDENCY_MAP | Dhruv | Locked |
+| DEPENDENCY_MAP | Dhruv | Active |
 | Architecture Level Validation Standards | Lead Architect | Active |
 | L2 Domain Workflow Matrix | Dhruv | Active |
 | Architecture Index | Dhruv | Active |
@@ -73,17 +73,17 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-A01 | Platform & Tenant Workflows | Dhruv | Draft |
-| L2-A02 | Person & Identity Workflows | Dhruv | Draft |
-| L2-A03 | Authentication Workflows | Dhruv | Draft |
-| L2-A04 | Authorization & Policy Workflows | Dhruv | Draft |
-| L2-A05 | Workflow Engine Workflows | Dhruv | Draft |
-| L2-A06 | Event Infrastructure Workflows | Dhruv | Draft |
-| L2-A07 | Audit Infrastructure Workflows | Dhruv | Draft |
-| L2-A08 | Module Registry & Configuration Workflows | Dhruv | Draft |
-| L2-A09 | Master Data Workflows | Dhruv | Draft |
-| L2-A10 | Operational Readiness Workflows | Dhruv | Draft |
-| L2-A00 | Platform Foundation Review | Dhruv | Draft |
+| L2-A01 | Platform & Tenant Workflows | Platform Foundation — Tenancy | Draft |
+| L2-A02 | Person & Identity Workflows | Platform Foundation — Identity | Draft |
+| L2-A03 | Authentication Workflows | Platform Foundation — Authentication | Draft |
+| L2-A04 | Authorization & Policy Workflows | Platform Foundation — Authorization | Draft |
+| L2-A05 | Workflow Engine Workflows | Platform Foundation — Workflow Engine | Draft |
+| L2-A06 | Event Infrastructure Workflows | Platform Foundation — Event Infrastructure | Draft |
+| L2-A07 | Audit Infrastructure Workflows | Platform Foundation — Audit | Draft |
+| L2-A08 | Module Registry & Configuration Workflows | Platform Foundation — Module Registry | Draft |
+| L2-A09 | Master Data Workflows | Platform Foundation — Master Data | Draft |
+| L2-A10 | Operational Readiness Workflows | Platform Foundation — Operational Readiness | Draft |
+| L2-A00 | Platform Foundation Review | Platform Foundation | Draft |
 
 **Section Total:** 11 Documents
 
@@ -93,12 +93,12 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-B01 | Institution Workflows | Pallav | Draft |
-| L2-B02 | Organisation Workflows | Pallav | Draft |
-| L2-B03 | Campus Workflows | Pallav | Draft |
-| L2-B04 | Curriculum Framework Workflows | Pallav | Draft |
-| L2-B05 | Academic Calendar Workflows | Pallav | Draft |
-| L2-B00 | Institution & Structure Review | Pallav | Draft |
+| L2-B01 | Institution Workflows | Institution & Structure — Institution | Draft |
+| L2-B02 | Organisation Workflows | Institution & Structure — Organisation | Draft |
+| L2-B03 | Campus Workflows | Institution & Structure — Institutional Campus | Draft |
+| L2-B04 | Curriculum Framework Workflows | Institution & Structure — Curriculum Framework | Draft |
+| L2-B05 | Academic Calendar Workflows | Institution & Structure — Academic Calendar | Draft |
+| L2-B00 | Institution & Structure Review | Institution & Structure | Draft |
 
 **Section Total:** 6 Documents
 
@@ -108,15 +108,15 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-C01 | Admissions Workflows | Varad | Draft |
-| L2-C02 | Student Lifecycle & Activation Workflows | Varad | Draft |
-| L2-C03 | Academic Registration Workflows | Varad | Draft |
-| L2-C04 | Student Academic Progression Workflows | Varad | Draft |
-| L2-C05 | Qualification Completion & Student Exit Workflows | Varad | Draft |
-| L2-C06 | Guardian Workflows | Varad | Draft |
-| L2-C07 | Scholarship Eligibility Workflows | Varad | Draft |
-| L2-C08 | Alumni Transition Workflows | Varad | Draft |
-| L2-C00 | Student Lifecycle Review | Varad | Draft |
+| L2-C01 | Admissions Workflows | Student Lifecycle — Admissions | Draft |
+| L2-C02 | Student Lifecycle & Activation Workflows | Student Lifecycle — Activation | Draft |
+| L2-C03 | Academic Registration Workflows | Student Lifecycle — Academic Registration | Draft |
+| L2-C04 | Student Academic Progression Workflows | Student Lifecycle — Academic Progression | Draft |
+| L2-C05 | Qualification Completion & Student Exit Workflows | Student Lifecycle — Qualification Completion & Exit | Draft |
+| L2-C06 | Guardian Workflows | Student Lifecycle — Guardian | Draft |
+| L2-C07 | Scholarship Eligibility Workflows | Student Lifecycle — Scholarship Eligibility | Draft |
+| L2-C08 | Alumni Transition Workflows | Student Lifecycle — Alumni Transition | Draft |
+| L2-C00 | Student Lifecycle Review | Student Lifecycle | Draft |
 
 **Section Total:** 9 Documents
 
@@ -125,14 +125,14 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-D01 | Course & Course Offering Workflows | Pallav | Draft |
-| L2-D02 | Faculty Academic Assignment Workflows | Pallav | Draft |
-| L2-D03 | Timetable Workflows | Pallav | Draft |
-| L2-D04 | Teaching Session & Attendance Workflows | Pallav | Draft |
-| L2-D05 | Academic Monitoring Workflows | Pallav | Draft |
-| L2-D06 | Open Electives & MOOCs Workflows | Pallav | Draft |
-| L2-D07 | Internal Assessment Workflows | Pallav | Draft |
-| L2-D00 | Academic Delivery Review | Pallav | Draft |
+| L2-D01 | Course & Course Offering Workflows | Academic Delivery — Course & Offering | Draft |
+| L2-D02 | Faculty Academic Assignment Workflows | Academic Delivery — Faculty Assignment | Draft |
+| L2-D03 | Timetable Workflows | Academic Delivery — Timetable | Draft |
+| L2-D04 | Teaching Session & Attendance Workflows | Academic Delivery — Teaching Session & Attendance | Draft |
+| L2-D05 | Academic Monitoring Workflows | Academic Delivery — Academic Monitoring | Draft |
+| L2-D06 | Open Electives & MOOCs Workflows | Academic Delivery — Electives & MOOCs | Draft |
+| L2-D07 | Internal Assessment Workflows | Academic Delivery — Internal Assessment | Draft |
+| L2-D00 | Academic Delivery Review | Academic Delivery | Draft |
 
 **Section Total:** 8 Documents
 
@@ -142,14 +142,14 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-E01 | Workforce & Engagement Workflows | Varad | Draft |
-| L2-E02 | Position & Assignment Workflows | Varad | Draft |
-| L2-E03 | Faculty Workforce Workflows | Varad | Draft |
-| L2-E04 | HR Workflows | Varad | Draft |
-| L2-E05 | Leave Management Workflows | Varad | Draft |
-| L2-E06 | Payroll Workflows | Varad | Draft |
-| L2-E07 | Employee Profile Workflows | Varad | Draft |
-| L2-E00 | People & Workforce Review | Varad | Draft |
+| L2-E01 | Workforce & Engagement Workflows | People & Workforce — Workforce & Engagement | Draft |
+| L2-E02 | Position & Assignment Workflows | People & Workforce — Position & Assignment | Draft |
+| L2-E03 | Faculty Workforce Workflows | People & Workforce — Faculty Workforce | Draft |
+| L2-E04 | HR Workflows | People & Workforce — HR | Draft |
+| L2-E05 | Leave Management Workflows | People & Workforce — Leave Management | Draft |
+| L2-E06 | Payroll Workflows | People & Workforce — Payroll | Draft |
+| L2-E07 | Employee Profile Workflows | People & Workforce — Employee Profile | Draft |
+| L2-E00 | People & Workforce Review | People & Workforce | Draft |
 
 **Section Total:** 8 Documents
 
@@ -159,21 +159,21 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-F00 | Finance Domain Model & Foundation | Chetan | Draft |
-| L2-F01 | Student Charge & Fee Management | Chetan | Draft |
-| L2-F02 | Payment Management Architecture | Chetan | Draft |
-| L2-F03 | Refund Management | Chetan | Draft |
-| L2-F04 | Financial Adjustment Management | Chetan | Draft |
-| L2-F05 | Accounting & General Ledger Management | Chetan | Draft |
-| L2-F06 | Budget & Cost Center Management | Chetan | Draft |
-| L2-F07 | Accounts Receivable Management | Chetan | Draft |
-| L2-F08 | Accounts Payable Management | Chetan | Draft |
-| L2-F09 | Financial Period & Closing | Chetan | Draft |
-| L2-F10 | Treasury & Banking | Chetan | Draft |
-| L2-F11 | Scholarship & Financial Aid | Chetan | Draft |
-| L2-F12 | Asset Financial Accounting Workflows | Chetan | Draft |
-| L2-F13 | Financial Reporting & Analytics Workflows | Chetan | Draft |
-| L2-F14 | Procurement Finance Consumption Workflows | Chetan | Draft |
+| L2-F00 | Finance Domain Model & Foundation | Finance | Draft |
+| L2-F01 | Student Charge & Fee Management | Finance — Student Charges & Fees | Draft |
+| L2-F02 | Payment Management Architecture | Finance — Payments | Draft |
+| L2-F03 | Refund Management | Finance — Refunds | Draft |
+| L2-F04 | Financial Adjustment Management | Finance — Financial Adjustments | Draft |
+| L2-F05 | Accounting & General Ledger Management | Finance — Accounting & General Ledger | Draft |
+| L2-F06 | Budget & Cost Center Management | Finance — Budgeting & Cost Centers | Draft |
+| L2-F07 | Accounts Receivable Management | Finance — Accounts Receivable | Draft |
+| L2-F08 | Accounts Payable Management | Finance — Accounts Payable | Draft |
+| L2-F09 | Financial Period & Closing | Finance — Period & Closing | Draft |
+| L2-F10 | Treasury & Banking | Finance — Treasury & Banking | Draft |
+| L2-F11 | Scholarship & Financial Aid | Finance — Financial Aid | Draft |
+| L2-F12 | Asset Financial Accounting Workflows | Finance — Asset Accounting | Draft |
+| L2-F13 | Financial Reporting & Analytics Workflows | Finance — Reporting & Analytics | Draft |
+| L2-F14 | Procurement Finance Consumption Workflows | Finance — Procurement Consumption | Draft |
 
 **Section Total:** 15 Documents
 
@@ -196,17 +196,17 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-G01 | Facilities Management Workflows | Devang | Draft |
-| L2-G02 | Laboratory Management Workflows | Devang | Draft |
-| L2-G03 | Hostel Workflows | Devang | Draft |
-| L2-G04 | Transport Workflows | Devang | Draft |
-| L2-G05 | Library Workflows | Devang | Draft |
-| L2-G06 | Medical Workflows | Devang | Draft |
-| L2-G07 | Security Operations Workflows | Devang | Draft |
-| L2-G08 | Housekeeping Operations & Service Governance Workflows | Devang | Draft |
-| L2-G09 | Teacher Guardian Scheme (TGS) Workflows | Devang | Draft |
-| L2-G10 | Infrastructure Management Workflows | Devang | Draft |
-| L2-G00 | Campus Operations Review | Devang | Draft |
+| L2-G01 | Facilities Management Workflows | Campus Operations — Facilities | Draft |
+| L2-G02 | Laboratory Management Workflows | Campus Operations — Laboratory | Draft |
+| L2-G03 | Hostel Workflows | Campus Operations — Hostel | Draft |
+| L2-G04 | Transport Workflows | Campus Operations — Transport | Draft |
+| L2-G05 | Library Workflows | Campus Operations — Library | Draft |
+| L2-G06 | Medical Workflows | Campus Operations — Health Services | Draft |
+| L2-G07 | Security Operations Workflows | Campus Operations — Security | Draft |
+| L2-G08 | Housekeeping Operations & Service Governance Workflows | Campus Operations — Housekeeping | Draft |
+| L2-G09 | Teacher Guardian Scheme (TGS) Workflows | Campus Operations — Teacher Guardian Scheme | Draft |
+| L2-G10 | Infrastructure Management Workflows | Campus Operations — Infrastructure Management | Draft |
+| L2-G00 | Campus Operations Review | Campus Operations | Draft |
 
 **Section Total:** 11 Documents
 
@@ -218,22 +218,22 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-H01 | APAAR & DigiLocker Workflows | Dhruv | Draft |
-| L2-H02 | Notification Workflows | Dhruv | Draft |
-| L2-H03 | Enterprise Directory & Search Workflows | Dhruv | Draft |
-| L2-H04 | Placement Workflows | Dhruv | Draft |
-| L2-H05 | Research Workflows | Dhruv | Draft |
-| L2-H06 | Alumni Workflows | Dhruv | Draft |
+| L2-H01 | APAAR & DigiLocker Workflows | Institutional Services — APAAR & DigiLocker | Draft |
+| L2-H02 | Notification Workflows | Institutional Services — Notifications | Draft |
+| L2-H03 | Enterprise Directory & Search Workflows | Institutional Services — Directory & Search | Draft |
+| L2-H04 | Placement Workflows | Institutional Services — Placement | Draft |
+| L2-H05 | Research Workflows | Institutional Services — Research | Draft |
+| L2-H06 | Alumni Workflows | Institutional Services — Alumni Engagement | Draft |
 
 ## Institutional Intelligence
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-H07 | Enterprise Dashboard Workflows | Dhruv | Draft |
-| L2-H08 | NEP, NAAC & AISHE Reporting Workflows | Dhruv | Draft |
-| L2-H09 | Accreditation & Compliance Workflows | Dhruv | Draft |
-| L2-H10 | External Education Integration Workflows | Dhruv | Draft |
-| L2-H00 | Services & Intelligence Review | Dhruv | Draft |
+| L2-H07 | Enterprise Dashboard Workflows | Institutional Intelligence — Enterprise Dashboard | Draft |
+| L2-H08 | NEP, NAAC & AISHE Reporting Workflows | Institutional Intelligence — Statutory Reporting | Draft |
+| L2-H09 | Accreditation & Compliance Workflows | Institutional Intelligence — Accreditation & Compliance | Draft |
+| L2-H10 | External Education Integration Workflows | Institutional Services — External Education Integration | Draft |
+| L2-H00 | Services & Intelligence Review | Institutional Services & Intelligence | Draft |
 
 **Section Total:** 11 Documents
 
@@ -243,23 +243,23 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-I00 | Examination Review | Devang | Draft |
-| L2-I01 | Examination Policy & Configuration Workflows | Devang | Draft |
-| L2-I02 | Examination Session Management Workflows | Devang | Draft |
-| L2-I03 | Examination Planning & Scheduling Workflows | Devang | Draft |
-| L2-I04 | Examination Registration Workflows | Devang | Draft |
-| L2-I05 | Hall Ticket Management Workflows | Devang | Draft |
-| L2-I06 | Practical & Viva Examination Conduct Workflows | Devang | Draft |
-| L2-I07 | Theory Examination Conduct Workflows | Devang | Draft |
-| L2-I08 | Marks Collection & Evaluation Workflows | Devang | Draft |
-| L2-I09 | Result Processing & Computation Workflows | Devang | Draft |
-| L2-I10 | Result Publication Workflows | Devang | Draft |
-| L2-I11 | Revaluation & Rechecking Workflows | Devang | Draft |
-| L2-I12 | Supplementary / Backlog / Improvement Examination Execution Workflows | Devang | Draft |
-| L2-I13 | Academic Completion, CGPA & Completion Evidence Workflows | Devang | Draft |
-| L2-I14 | Malpractice & Examination Committee Workflows | Devang | Draft |
-| L2-I15 | Examination Exception & Contingency Workflows | Devang | Draft |
-| L2-I16 | Examination Session Closure & Archival Workflows | Devang | Draft |
+| L2-I00 | Examination Review | Examinations | Draft |
+| L2-I01 | Examination Policy & Configuration Workflows | Examinations — Policy & Configuration | Draft |
+| L2-I02 | Examination Session Management Workflows | Examinations — Session Management | Draft |
+| L2-I03 | Examination Planning & Scheduling Workflows | Examinations — Planning & Scheduling | Draft |
+| L2-I04 | Examination Registration Workflows | Examinations — Registration | Draft |
+| L2-I05 | Hall Ticket Management Workflows | Examinations — Hall Ticket | Draft |
+| L2-I06 | Practical & Viva Examination Conduct Workflows | Examinations — Practical & Viva Conduct | Draft |
+| L2-I07 | Theory Examination Conduct Workflows | Examinations — Theory Conduct | Draft |
+| L2-I08 | Marks Collection & Evaluation Workflows | Examinations — Marks Collection & Evaluation | Draft |
+| L2-I09 | Result Processing & Computation Workflows | Examinations — Result Processing | Draft |
+| L2-I10 | Result Publication Workflows | Examinations — Result Publication | Draft |
+| L2-I11 | Revaluation & Rechecking Workflows | Examinations — Revaluation & Rechecking | Draft |
+| L2-I12 | Supplementary / Backlog / Improvement Examination Execution Workflows | Examinations — Supplementary & Backlog | Draft |
+| L2-I13 | Academic Completion, CGPA & Completion Evidence Workflows | Examinations — Academic Completion & CGPA | Draft |
+| L2-I14 | Malpractice & Examination Committee Workflows | Examinations — Malpractice & Committee | Draft |
+| L2-I15 | Examination Exception & Contingency Workflows | Examinations — Exception & Contingency | Draft |
+| L2-I16 | Examination Session Closure & Archival Workflows | Examinations — Session Closure & Archival | Draft |
 
 **Section Total:** 17 Documents
 
@@ -269,17 +269,17 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-J00 | Enterprise Resource Management Architecture & Governance | Chetan | Draft |
-| L2-J01 | Procurement Planning & Sourcing Workflows | Chetan | Draft |
-| L2-J02 | Vendor & Supplier Management Workflows | Chetan | Draft |
-| L2-J03 | Purchase Requisition & Approval Workflows | Chetan | Draft |
-| L2-J04 | Purchase Order Management | Chetan | Draft |
-| L2-J05 | Goods Receipt, Inspection & Acceptance | Chetan | Draft |
-| L2-J06 | Inventory & Warehouse Management | Chetan | Draft |
-| L2-J07 | Stock Operations & Distribution | Chetan | Draft |
-| L2-J08 | Asset Lifecycle Management | Chetan | Draft |
-| L2-J09 | Physical Verification, Audit & Reconciliation | Chetan | Draft |
-| L2-J10 | Disposal, Scrap & Write-Off | Chetan | Draft |
+| L2-J00 | Enterprise Resource Management Architecture & Governance | Enterprise Resource Management | Draft |
+| L2-J01 | Procurement Planning & Sourcing Workflows | Enterprise Resource Management — Procurement Planning | Draft |
+| L2-J02 | Vendor & Supplier Management Workflows | Enterprise Resource Management — Vendor & Supplier | Draft |
+| L2-J03 | Purchase Requisition & Approval Workflows | Enterprise Resource Management — Requisition & Approval | Draft |
+| L2-J04 | Purchase Order Management | Enterprise Resource Management — Purchase Orders | Draft |
+| L2-J05 | Goods Receipt, Inspection & Acceptance | Enterprise Resource Management — Goods Receipt | Draft |
+| L2-J06 | Inventory & Warehouse Management | Enterprise Resource Management — Inventory & Warehouse | Draft |
+| L2-J07 | Stock Operations & Distribution | Enterprise Resource Management — Stock Operations | Draft |
+| L2-J08 | Asset Lifecycle Management | Enterprise Resource Management — Asset Lifecycle | Draft |
+| L2-J09 | Physical Verification, Audit & Reconciliation | Enterprise Resource Management — Physical Verification | Draft |
+| L2-J10 | Disposal, Scrap & Write-Off | Enterprise Resource Management — Disposal & Write-Off | Draft |
 
 **Section Total:** 11 Documents
 
@@ -356,11 +356,17 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 # Recent Changes
 
+**2026-08-05 — Core context alignment:** Confirmed the L0 Business Vision as
+`Locked`, retained the Dependency Map as `Active`, and aligned its document
+responsibility metadata to Dhruv as Lead Architect.
+
+---
+
 **2026-07-31 — Status reconciliation (INT-011/012/013/023):** Resolved 47 file-vs-Index/Matrix document status conflicts (each document's own declared status was taken as authoritative and normalized to the canonical legend wording, then mirrored into this Index and the Domain Workflow Matrix), added or corrected the `Document Owner` metadata field on 92 L2 files to match the architect named in `TEAM_ASSIGNMENTS.md`, corrected 19 H1 headings to match their Index title, and amended `governance/constitution/Volume_2_Repository_Standards.md` (v1.0 → v1.1) to formally adopt the 9-value status vocabulary already in use here. See `generated/reviews/integrity-2026-07-31-complete.md` for the source findings.
 
 ---
 
-**Last Updated:** July 2026
+**Last Updated:** August 2026
 
 **Repository:** SutraERP
 
