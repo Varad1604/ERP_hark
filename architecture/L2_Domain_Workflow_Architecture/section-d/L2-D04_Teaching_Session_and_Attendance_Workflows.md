@@ -5,12 +5,35 @@
 **Level:** L2 — Domain Workflow Architecture  
 **Parent Architecture:** SutraERP Level-1 Enterprise Architecture  
 **Architecture Style:** Domain-Driven Design (DDD), Event-Driven Architecture (EDA), Clean Architecture, API-First  
-**Status:** Architecture Locked  
+**Status:** Trust Certification Ready  
+**Document Owner:** Academic Delivery — Teaching Session & Attendance  
 **Version:** 1.0  
 **Classification:** Canonical Enterprise Architecture  
-**Owner:** Pallav  
+**Owner:** Academic Delivery — Teaching Session & Attendance  
 **Depends On:** D01 — Course & Course Offering, D02 — Faculty Academic Assignment, D03 — Timetable  
 **Consumed By:** D05 — Assessment, H02 — Notification, Analytics, Reporting, AI Advisory Services
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | — not present — |
+| Entities | §14 Domain Entities; §15 Entity Definitions |
+| Business Rules | §31 Business Rules; §32 Attendance Business Rules; §40 Business Rules Summary |
+| Workflow | L2-D04 — Teaching Session & Attendance Workflows |
+| State Machine | §21.1 Lifecycle States |
+| Contracts | §44 API Design Principles; §6.5 API-First Design |
+| Events | §46 Domain Events; §47 Event Publication Principles; §48 Event Consumers |
+| Dependencies | §52 Upstream Dependencies; §62 Dependency Matrix |
+| Locked Decisions | §10 Core Architectural Decisions |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
 
 ---
 
@@ -2532,7 +2555,7 @@ Security remains independent from business logic.
 Representative security events include:
 
 - AuthenticationSucceeded
-- AuthenticationFailed
+- PlatformAuthenticationFailed
 - AuthorizationDenied
 - TenantAccessDenied
 - SecurityPolicyViolation
@@ -3150,7 +3173,7 @@ No implementation shall diverge from this architecture without approved enterpri
 
 **Architecture Readiness:** APPROVED FOR IMPLEMENTATION
 
-**Document Status:** COMPLETE
+**Document Status:** Trust Certification Ready
 
 ---
 

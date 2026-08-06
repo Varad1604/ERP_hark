@@ -4,8 +4,9 @@ title: Operational Readiness Workflows
 level: Level 2 Architecture
 section: Section A – Platform Foundation
 version: 1.0.0
-status: Draft
-owner: Dhruv
+status: Trust Certification Ready
+owner: Platform Foundation — Operational Readiness
+document_owner: Platform Foundation — Operational Readiness
 parent: L1 Business Domain Architecture
 architectural_tier: Level 2 – Domain Workflow Architecture
 domain_owner: Platform Governance
@@ -17,6 +18,7 @@ depends_on:
   - L2-A07 Audit Infrastructure Workflows
   - L2-A08 Module Registry & Configuration Workflows
   - L2-A09 Master Data Workflows
+consumed_by:
   - L2-B01 Institution Workflows
   - L2-B02 Organisation Workflows
   - L2-B03 Campus Workflows
@@ -41,6 +43,28 @@ canonical_entities:
   - Readiness Finding
   - Readiness Improvement Plan
   - Operational Readiness Certificate
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose |
+| Scope | §6 Operational Readiness Scope Hierarchy; §24.3 Operational Scope Readiness Consolidation Workflow; §1.2 Scope |
+| Actors | — not present — |
+| Entities | §10 Domain Entities; Appendix B. Canonical Business Entities |
+| Business Rules | §36 Business Rules |
+| Workflow | §22 Workflow Architecture; §23 Assessment Lifecycle Workflows; §23.1 Operational Readiness Assessment Initiation Workflow |
+| State Machine | §16.2 Assessment Lifecycle States; §16.3 Lifecycle State Definitions; §17.3 Lifecycle States |
+| Contracts | §35.2 Upstream Dependencies and Integration Contracts |
+| Events | §33 Domain Events; §33.2 Assessment Events; §33.3 Readiness Evaluation Events |
+| Dependencies | §29 Workflow Dependency Model; §35 Multi-Domain Dependencies; §35.2 Upstream Dependencies and Integration Contracts |
+| Locked Decisions | §5.2 Policy-Driven Decision Making |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
+
 ---
 
 # L2-A10 — Operational Readiness Workflows
@@ -276,7 +300,6 @@ The Operational Readiness Domain consumes readiness declarations from collaborat
 ---
 
 **End of Part 1**
-````markdown
 # 8. Domain Model
 
 ## 8.1 Domain Overview
@@ -2867,7 +2890,7 @@ Direct database access, shared persistence, and internal service invocation acro
 
 # 35.2 Upstream Dependencies and Integration Contracts
 
-The Operational Readiness Domain depends upon the following platform and structure domains.
+The Operational Readiness Domain has architectural dependencies on platform foundation domains only. Section A is foundational; Section B structure domains are downstream consumers of readiness contracts and shall never be declared as upstream dependencies of A10.
 
 ### Platform Foundation Dependencies
 
@@ -2884,6 +2907,8 @@ The Operational Readiness Domain depends upon the following platform and structu
 ### Structure Domain Integration Contracts
 
 The domain integrates with structure domains (L2-B01 through L2-B05) exclusively through published contracts as specified below.
+
+These are **runtime integration contracts, not architectural dependencies**. A10 reads published structure facts to evaluate readiness evidence, and structure domains consume A10's readiness certificates. Neither direction establishes a build-time or architectural dependency of Section A upon Section B.
 
 #### 1. L2-B01 — Institution Lifecycle
 - **Commands Received**: None.
@@ -2940,15 +2965,22 @@ The Operational Readiness Domain depends upon the following domains.
 | L2-A07 Audit Infrastructure | Immutable governance audit trail |
 | L2-A08 Module Registry | Module capability discovery |
 | L2-A09 Master Data | Canonical reference data |
-| L2-B01 Institution Workflows | Institutional governance context |
-| L2-B02 Organisation Workflows | Organisation hierarchy and governance ownership |
-| L2-B03 Campus Workflows | Campus operational readiness context |
-| L2-B04 Curriculum Framework Workflows | Academic capability readiness |
-| L2-B05 Academic Calendar Workflows | Calendar readiness validation |
+
+### Structure Domain Integration (Non-Dependency)
+
+The following domains exchange published contracts with A10. They are **not** upstream dependencies.
+
+| Domain | Integration Purpose | Direction |
+|----------|-------------------|-----------|
+| L2-B01 Institution Workflows | Institutional governance context | Bidirectional contract exchange |
+| L2-B02 Organisation Workflows | Organisation hierarchy and governance ownership | Bidirectional contract exchange |
+| L2-B03 Campus Workflows | Campus operational readiness context | Bidirectional contract exchange |
+| L2-B04 Curriculum Framework Workflows | Academic capability readiness | A10 reads published facts |
+| L2-B05 Academic Calendar Workflows | Calendar readiness validation | A10 reads published facts |
 
 ---
 
-# 35.3 Downstream Consumers
+# 35.4 Downstream Consumers
 
 The Operational Readiness Domain publishes governance outcomes consumed by other business domains.
 

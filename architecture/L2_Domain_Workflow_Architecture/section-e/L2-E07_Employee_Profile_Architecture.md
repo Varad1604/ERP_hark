@@ -1,14 +1,34 @@
 # L2-E07 — Employee Profile Workflows
 
 **Document Version:** 1.0  
-**Status:** Architecture Baseline  
-**Document Owner:** Varad  
+**Status:** Trust Certification Ready  
+**Document Owner:** People & Workforce — Employee Profile  
 **Classification:** Enterprise Architecture  
 **Bounded Context:** Employee Profile  
-**Parent Domain:** Section E — People & Workforce Management  
+**Parent Domain:** Section E — People & Workforce  
 **Architecture Pattern:** Domain-Driven Design (DDD) + CQRS + Event-Driven Architecture  
 **Prepared By:** Enterprise Architecture Office  
 **Approval Authority:** Architecture Review Board
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose; §2.1 Business Purpose |
+| Scope | §2 Business Scope; §1.2 Scope |
+| Actors | §6 Business Actors; Primary Actors; Secondary Actors |
+| Entities | §8 Domain Entity Model; §8.1 Entity Design Principles; §8.2 Employee Personal Information Entity |
+| Business Rules | Business Rules |
+| Workflow | §26 Workflow Specifications; §26.1 Workflow Architecture Principles; L2-E07 — Employee Profile Workflows |
+| State Machine | §11 Lifecycle State Machine |
+| Contracts | §53 Integration Contracts; Part 5 — API Architecture & Integration Contracts; Contract Characteristics |
+| Events | §17 Domain Event Catalogue; §17.2 Domain Events; §18 Integration Event Catalogue |
+| Dependencies | §76 Upstream Dependencies; §84 Dependency Matrix |
+| Locked Decisions | §99 Architecture Decision Records (ADR) |
 
 ---
 
@@ -1287,7 +1307,7 @@ Produces
 
 Produces
 
-- EmergencyContactUpdated
+- EmployeeEmergencyContactUpdated
 
 ---
 
@@ -1584,7 +1604,7 @@ Raised after emergency contact registration.
 
 ---
 
-### EmergencyContactUpdated
+### EmployeeEmergencyContactUpdated
 
 Raised after modification.
 
@@ -2319,7 +2339,7 @@ Notification Service receives communication update.
 ## Domain Events
 
 - EmergencyContactAdded
-- EmergencyContactUpdated
+- EmployeeEmergencyContactUpdated
 - EmergencyContactRemoved
 
 ---

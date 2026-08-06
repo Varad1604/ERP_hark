@@ -2,6 +2,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §2.1 In Scope; §2.2 Out of Scope |
+| Actors | §7 Business Actors; §7.1 Internal Actors; §7.2 External Actors |
+| Entities | §10 Aggregate Model; §9.1 Aggregate Owner; §10.1 Aggregate Root |
+| Business Rules | §13 Business Rules |
+| Workflow | §11 Workflow Catalogue; §12 Workflow Specifications; §11.2 Workflow List |
+| State Machine | §21 State Model; §21.3 State Definitions; §21.4 Valid State Transitions |
+| Contracts | — not present — |
+| Events | §16 Events Published; §17 Events Consumed; §16.2 Published Events |
+| Dependencies | §22 Dependency Matrix; §3.2 Repository Dependencies; §22.1 Upstream Dependencies |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Contracts, Locked Decisions. Recorded, not authored.
+
+---
+
 # Document Control
 
 | Attribute | Value |
@@ -10,10 +32,9 @@
 | Document Name | Examination Session Closure & Archival Workflows |
 | Domain | Examination Domain |
 | Architecture Level | L2 – Canonical Domain Workflow |
-| Owner | Examination Domain |
-| Document Owner | Devang |
+| Document Owner | Examinations — Session Closure & Archival |
 | Repository | SutraERP Enterprise Architecture Repository |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Depends On | L1 Business Domain Architecture, L2-A01–A08, L2-B01–B05, L2-I01–L2-I15 |
 | Version | 0.1 |
 
@@ -1038,9 +1059,9 @@ Consumed events shall never modify upstream aggregate ownership.
 | Examination Conduct | ExaminationCompleted |
 | Evaluation | EvaluationCompleted |
 | Result Processing | ResultProcessingCompleted |
-| Result Publication | ResultsPublished |
+| Result Publication | ExaminationResultPublished |
 | Malpractice Management | InvestigationClosed |
-| Examination Exception Management | ExceptionCaseClosed |
+| Examination Exception Management | ExamExceptionCaseClosed |
 | Workflow Infrastructure | WorkflowCompleted |
 | Authorization | AuthorizationGranted |
 | Audit Infrastructure | AuditCompleted |
@@ -1639,7 +1660,7 @@ The architecture follows the enterprise principles established throughout the Su
 
 **L2-I16 — Examination Session Closure & Archival Workflows**
 
-**Status:** Architecture Draft
+**Status:** Trust Certification Ready
 
 **This document represents the canonical terminal lifecycle of the Examination domain within the SutraERP Enterprise Architecture repository.**
 

@@ -9,7 +9,27 @@
 **Classification:** Level 2 Domain Workflow Architecture
 **Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
 **Canonical Owner:** Procurement Planning & Sourcing
-**Document Owner:** Chetan
+**Document Owner:** Enterprise Resource Management — Procurement Planning
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §4 Scope; §5 Out of Scope; §9.3 Planning Scope |
+| Actors | §8 Actors & Roles |
+| Entities | §32 Aggregate Catalogue; §32.2 Aggregate Summary; §32.3 ProcurementPlan Aggregate |
+| Business Rules | §37 Business Rules & Invariants |
+| Workflow | §10 Procurement Demand & Planning Workflow; §14 Quotation / RFQ Workflow; §15 RFP Workflow |
+| State Machine | §9.5 Procurement Plan Lifecycle; §12.3 Sourcing Event Lifecycle; §22.3 Comparative Statement Lifecycle |
+| Contracts | §27 Rate Contract & Framework Procurement; §27.2 Rate Contract; §27.3 Rate Contract Lifecycle |
+| Events | §35 Domain Event Catalogue; §36 Consumed Event Catalogue; §12.2 Sourcing Event Creation |
+| Dependencies | §50 Dependency Matrix |
+| Locked Decisions | §48 Governance Decisions; §26.5 Committee Decision |
 
 ---
 
@@ -4274,7 +4294,7 @@ ApprovedSourcingOutcomeFinalised
 ```text
 ProcurementCommitteeAssociated
 CommitteeQuorumValidated
-CommitteeRecommendationRecorded
+ProcurementCommitteeRecommendationRecorded
 CommitteeDecisionFinalised
 ```
 

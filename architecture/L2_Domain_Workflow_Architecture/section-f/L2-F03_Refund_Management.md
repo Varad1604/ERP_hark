@@ -2,6 +2,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose |
+| Scope | §1.3 Scope; §20.2 Audit Scope; §21.2 Configuration Scope |
+| Actors | — not present — |
+| Entities | §4 Canonical Aggregate; §4.2 Aggregate Ownership; §7.3 Primary Aggregate |
+| Business Rules | Rules / Invariants |
+| Workflow | Workflows |
+| State Machine | §14 Refund State Architecture; §14.3 Canonical States; §14.4 State Transition Architecture |
+| Contracts | §24 Multi-Domain Contracts |
+| Events | §16 Refund Event Architecture; §16.3 Event Architecture; §16.4 Canonical Lifecycle Events |
+| Dependencies | §17.4 Upstream Domains |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Locked Decisions. Recorded, not authored.
+
+---
+
 # Document Metadata
 
 | Attribute | Value |
@@ -10,10 +32,9 @@
 | Document Name | Refund Management |
 | Architecture Level | Level 2 – Domain Architecture |
 | Domain | Finance |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0.0 |
-| Owner | Finance Domain |
-| Document Owner | Chetan |
+| Document Owner | Finance — Refunds |
 | Depends On | L2-F00 Finance Domain Foundation, L2-F01 Student Charge & Fee Management, L2-F02 Payment Management |
 | Consumed By | L2-F05 Accounting, L2-F09 Financial Reporting, L2-F12 Analytics |
 

@@ -4,10 +4,31 @@
 **Domain Code:** D03  
 **Domain Name:** Timetable Workflows  
 **Architecture Level:** L2 — Domain Workflow Specification  
-**Status:** Architecture Locked  
+**Status:** Trust Certification Ready  
+**Document Owner:** Academic Delivery — Timetable  
 **Version:** 1.0  
-**Owner:** Pallav  
+**Owner:** Academic Delivery — Timetable  
 **Dependencies:** B01, B02, B03, B04, B05, D01, D02, Section G (Master Data), Section H (Cross-Cutting Services), Section I (Enterprise Governance)
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §2.3 Functional Scope; §2.4 Business Scope |
+| Actors | §10 Actors & Roles; §10.2 Actor Classification; §10.3 Business Actor Catalog |
+| Entities | §17.5 Canonical Business Entities; §17.17 Entity Relationships |
+| Business Rules | §14 Business Rules; §14.17 Business Rule Principles |
+| Workflow | §11 Business Workflow Catalogue; §11.2 Workflow Classification; §11.3 Workflow Catalogue |
+| State Machine | §12 State Transition Matrix; §12.2 State Principles; §12.4 State Definitions |
+| Contracts | §19 Integration Contracts; §19.8 Event Contracts; §19.10 Contract Versioning |
+| Events | §2.11 Event Scope; §12.8 Transition Events; §18 Domain Events |
+| Dependencies | §6.5 Upstream Dependencies; §7.11 Dependency Direction; §8.16 Capability Dependencies |
+| Locked Decisions | §13 Decision Matrix; §13.2 Decision Principles; §13.3 Decision Categories |
 
 ---
 
@@ -2391,18 +2412,25 @@ These services remain independently deployable.
 
 # 7.6 Enterprise Governance Context
 
-Enterprise governance responsibilities are provided by Section I.
+> **Corrected 2026-08-06 under integrity finding INT-206.** This section previously read
+> "Enterprise governance responsibilities are provided by Section I." That is false —
+> Section I is Examination, and `DEPENDENCY_MAP.md` lines 277-286 scope it to Assessment,
+> Examination, Evaluation, Grade Processing, Result Processing and Academic outcomes. None
+> of the capabilities below belongs to Section I. Each is routed to its verified owner.
 
-Governance includes:
+Enterprise governance responsibilities are provided by the owners below. Timetable
+consumes them; it owns none of them.
 
-- Policy Management
-- Compliance Validation
-- Audit Governance
-- Risk Management
-- Architectural Governance
-- Decision Governance
-- Operational Readiness
-- Enterprise Standards
+| Governance capability | Owner |
+|---|---|
+| Compliance Validation | Section H — `L2-H09` Accreditation & Compliance |
+| Audit Governance | Section A — `L2-A07` Audit Infrastructure |
+| Operational Readiness | Section A — `L2-A10` Operational Readiness |
+| Architectural Governance | Repository Constitution — `governance/constitution/Volume_3_Architecture_Framework.md` |
+| Enterprise Standards | Repository Constitution — `governance/constitution/Volume_2_Repository_Standards.md` |
+| Policy Management | **Unresolved — no owner.** Recorded as a missing bounded context in `DEPENDENCY_MAP.md` section 7B. |
+| Risk Management | **Unresolved — no owner.** No document in the repository claims it. |
+| Decision Governance | **Unresolved — no owner.** No document in the repository claims it. |
 
 D03 shall comply with all applicable governance requirements.
 
@@ -6114,7 +6142,7 @@ Resolve scheduling conflicts.
 
 ## Published Events
 
-- ConflictDetected
+- TimetableConflictDetected
 - ConflictResolved
 
 Critical conflicts prevent workflow completion.
@@ -6839,7 +6867,7 @@ The domain event architecture shall satisfy the following principles.
 | EVT-004 | TimetableValidated | Validation |
 | EVT-005 | TimetableValidationFailed | Validation |
 | EVT-006 | TimetableOptimized | Optimization |
-| EVT-007 | ConflictDetected | Conflict |
+| EVT-007 | TimetableConflictDetected | Conflict |
 | EVT-008 | ConflictResolved | Conflict |
 | EVT-009 | TimetableApproved | Governance |
 | EVT-010 | TimetableRejected | Governance |
@@ -6926,7 +6954,7 @@ Optimization events shall preserve references to the original timetable version.
 
 # 18.9 Conflict Events
 
-## ConflictDetected
+## TimetableConflictDetected
 
 Published immediately after a scheduling conflict is identified.
 
@@ -9233,7 +9261,7 @@ Naming conventions shall remain stable across future versions.
 | Domain | D03 — Timetable Workflows |
 | Architecture Level | Level 2 |
 | Document Type | Canonical Enterprise Domain Architecture |
-| Status | Architecture Baseline |
+| Status | Trust Certification Ready |
 | Governance | Enterprise Architecture |
 | Versioning | Semantic Versioning |
 | Ownership | Timetable Domain Team |

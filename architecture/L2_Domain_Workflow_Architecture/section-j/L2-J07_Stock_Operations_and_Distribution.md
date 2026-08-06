@@ -1,4 +1,4 @@
-﻿# L2-J07 - Stock Operations & Distribution
+﻿# L2-J07 — Stock Operations & Distribution
 
 ## Document Metadata
 
@@ -13,9 +13,31 @@
 | Parent Architecture | L2-J00 - Enterprise Resource Management Architecture & Governance |
 | Primary Aggregate | StockMovement |
 | Canonical Owner | Stock Operations & Distribution |
-| Document Owner | Chetan |
+| Document Owner | Enterprise Resource Management — Stock Operations |
 | Status | Trust Certification Ready |
 | Version | 1.1 |
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | — not present — |
+| Entities | — not present — |
+| Business Rules | §6 Business Rules |
+| Workflow | Workflows |
+| State Machine | States |
+| Contracts | — not present — |
+| Events | §10 Domain Events |
+| Dependencies | — not present — |
+| Locked Decisions | — not present — |
+
+> **Gap:** 5 required section(s) have no counterpart in this document: Actors, Entities, Contracts, Dependencies, Locked Decisions. Recorded, not authored.
 
 ---
 

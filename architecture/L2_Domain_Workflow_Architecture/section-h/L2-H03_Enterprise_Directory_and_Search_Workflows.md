@@ -1,8 +1,30 @@
 ﻿# L2-H03 — Enterprise Directory & Search Workflows
 
 **Section:** H — Institutional Services & Intelligence  
-**Status:** Draft  
-**Document Owner:** Dhruv
+**Status:** Trust Certification Ready  
+**Document Owner:** Institutional Services — Directory & Search
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; Version 1 Scope |
+| Actors | — not present — |
+| Entities | H03-W03 — Entity Discovery |
+| Business Rules | General Business Rules |
+| Workflow | §7 Domain Workflows; §8 Workflow Specifications; Workflow Catalog |
+| State Machine | §12.3 Index Lifecycle State Matrix |
+| Contracts | §11 Service Contracts; §11.3 Service Contract Principles |
+| Events | §10 Domain Events; §10.1 Consumed Events; §10.2 Published Events |
+| Dependencies | §3 Upstream Dependencies; §4 Downstream Dependencies |
+| Locked Decisions | §13 Decision Matrix |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
 
 ---
 

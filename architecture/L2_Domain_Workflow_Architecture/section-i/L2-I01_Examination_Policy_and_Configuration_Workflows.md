@@ -4,9 +4,32 @@
 
 **Domain:** I – Examination
 
-**Status:** Draft
+**Status:** Trust Certification Ready
 
-**Owner:** Examination Domain
+
+**Document Owner:** Examinations — Policy & Configuration
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | §6 Business Actors |
+| Entities | Entities / Aggregates |
+| Business Rules | §9 Business Rules |
+| Workflow | §8 Policy Lifecycle Workflows; §17 Workflow Completion Criteria; §8.1 Policy Creation Workflow |
+| State Machine | §20 Examination Policy State Model |
+| Contracts | — not present — |
+| Events | §11 Events Published; §12 Events Consumed |
+| Dependencies | §19 Policy Dependency Matrix; EX-004 External Dependency Changed |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Contracts, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -18,7 +41,6 @@
 | Document Name | Examination Policy & Configuration Workflows |
 | Domain | Examination |
 | Level | L2 – Business Workflow Architecture |
-| Owner | Examination Domain |
 | Depends On | A01 Platform Foundation, A02 Person & Identity, A03 Authentication, A04 Authorization, H02 Notification Workflows, A06 Event Infrastructure, A07 Audit Infrastructure, B01 Institution, B02 Organisation, B04 Curriculum Framework, B05 Academic Calendar, F00 Finance Domain Model & Foundation |
 | Consumed By | L2-I02 through L2-I16 Examination Workflows |
 | Canonical Owner | Examination Domain |
@@ -33,7 +55,7 @@ Rather than embedding institution-specific examination rules into operational wo
 
 The objective is to ensure that institutions with differing academic regulations, grading philosophies, examination structures, eligibility criteria, and result processing rules can operate using a common workflow architecture while maintaining complete policy flexibility.
 
-This document establishes the business ownership of examination policies and defines how policy configuration influences examination planning, registration, evaluation, result processing, graduation eligibility, and academic governance.
+This document establishes the business ownership of examination policies and defines how policy configuration influences examination planning, registration, evaluation, result processing, qualification completion eligibility, and academic governance.
 
 This document defines business workflows only.
 
@@ -131,7 +153,7 @@ Examples include:
 - Grading methodology
 - Result publication policies
 - Revaluation policies
-- Graduation requirements
+- qualification completion requirements
 
 ---
 
@@ -184,7 +206,7 @@ Examples include:
 - Registration
 - Evaluation
 - Result Processing
-- Graduation
+- Qualification Completion
 - Academic Completion
 
 ---
@@ -233,7 +255,7 @@ Therefore, the architecture shall support configurable rules including, but not 
 - Improvement examination eligibility
 - Supplementary examination eligibility
 - Result classification methodology
-- Graduation requirements
+- qualification completion requirements
 
 No regulation shall be hardcoded into examination workflows.
 
@@ -319,7 +341,7 @@ Typical policy categories include:
 - Grading
 - Result Processing
 - Revaluation
-- Graduation
+- Qualification Completion
 - Examination Governance
 
 ---
@@ -491,7 +513,7 @@ The Examination Domain consumes payment status during operational workflows.
 
 ---
 
-## 5.11 Graduation Policy Configuration
+## 5.11 Qualification Completion Policy Configuration
 
 Institutions shall configure examination policies governing academic completion.
 
@@ -500,7 +522,7 @@ Examples include:
 - Credit Completion
 - CGPA Requirements
 - Mandatory Course Completion
-- Graduation Eligibility
+- Qualification Eligibility
 - Academic Classification
 - Merit Eligibility
 - Rank Determination
@@ -684,9 +706,9 @@ Operational processing is defined within L2-I11.
 
 ---
 
-## 7.9 Graduation Policies
+## 7.9 Qualification Completion Policies
 
-Graduation policies define examination-related academic completion requirements.
+Qualification Completion policies define examination-related academic completion requirements.
 
 Examples include:
 
@@ -697,7 +719,7 @@ Examples include:
 - Degree Classification
 - Merit Rules
 - Rank Rules
-- Graduation Eligibility
+- Qualification Eligibility
 
 These policies support Academic Completion workflows.
 
@@ -1211,7 +1233,7 @@ The Examination Domain is the canonical owner of:
 - Grading Policies
 - Result Policies
 - Revaluation Policies
-- Graduation Policies
+- Qualification Completion Policies
 - Examination Fee Policy Definitions
 - Examination Policy Lifecycle
 
@@ -1255,7 +1277,7 @@ The following examination policy categories are institution configurable.
 | Result Governance | Yes | Yes | I09, I10 |
 | Revaluation Rules | Yes | No | I11 |
 | Examination Fee Policies | Yes | Yes | I04 |
-| Graduation Rules | Yes | Yes | I13 |
+| Qualification Completion Rules | Yes | Yes | I13 |
 | Merit & Rank Rules | Yes | No | I13 |
 | Grace Mark Policies | Yes | No | I09 |
 | Administrative Approval Rules | Yes | No | Multiple Examination Workflows |
@@ -1326,7 +1348,7 @@ Operational examination workflows consume these policies without redefining busi
 | Result Publication Policy | Governs approval and publication of examination results | I10 |
 | Revaluation Policy | Defines revaluation and rechecking regulations | I11 |
 | Supplementary Examination Policy | Governs supplementary, backlog and improvement examinations | I12 |
-| Graduation Policy | Defines academic completion and completion evidence requirements | I13 |
+| Qualification Completion Policy | Defines academic completion and completion evidence requirements | I13 |
 | Merit & Rank Policy | Governs merit list and rank computation | I13 |
 | Malpractice Policy | Defines malpractice investigation and disciplinary actions | I14 |
 | Examination Exception Policy | Governs exceptional examination situations | I15 |
@@ -1356,8 +1378,8 @@ Ownership remains unchanged.
 | Result Publication Policy | Result Computation Policy |
 | Revaluation Policy | Result Publication Policy |
 | Supplementary Examination Policy | Result Computation Policy |
-| Graduation Policy | Curriculum, Result Computation Policy |
-| Merit & Rank Policy | Graduation Policy |
+| Qualification Completion Policy | Curriculum, Result Computation Policy |
+| Merit & Rank Policy | Qualification Completion Policy |
 | Malpractice Policy | Institution |
 | Examination Exception Policy | Institution |
 | Examination Closure Policy | All Operational Examination Workflows |
@@ -1411,7 +1433,7 @@ The following configuration categories are supported.
 | Result Processing | Grace Marks, Moderation Rules, Classification |
 | Result Publication | Publication Date, Publication Approval, Withheld Results |
 | Revaluation | Application Window, Subject Limits, Approval Requirements |
-| Graduation | Credit Completion, CGPA Requirement, Degree Classification |
+| Qualification Completion | Credit Completion, CGPA Requirement, Degree Classification |
 | Merit & Rank | Rank Methodology, Merit Eligibility |
 | Governance | Approval Authority, Review Frequency, Policy Versioning |
 
@@ -1451,7 +1473,7 @@ L2-I01 establishes the governance foundation consumed by every operational Exami
 
 ## Entities / Aggregates
 
-This document does not use "Entity" or "Aggregate" terminology directly. Its canonical business objects are the policy artefacts listed in the Examination Policy Catalogue (Section 18) — including the Examination Type Policy, Examination Session Policy, Examination Eligibility Policy, Registration Policy, Hall Ticket Policy, Practical/Theory Examination Policies, Marks Evaluation Policy, Result Computation Policy, Result Publication Policy, Revaluation Policy, Supplementary Examination Policy, Graduation Policy, Merit & Rank Policy, Malpractice Policy, Examination Exception Policy, and Examination Closure Policy. Ownership of these artefacts is further defined under Ownership Boundaries (Section 14).
+This document does not use "Entity" or "Aggregate" terminology directly. Its canonical business objects are the policy artefacts listed in the Examination Policy Catalogue (Section 18) — including the Examination Type Policy, Examination Session Policy, Examination Eligibility Policy, Registration Policy, Hall Ticket Policy, Practical/Theory Examination Policies, Marks Evaluation Policy, Result Computation Policy, Result Publication Policy, Revaluation Policy, Supplementary Examination Policy, Qualification Completion Policy, Merit & Rank Policy, Malpractice Policy, Examination Exception Policy, and Examination Closure Policy. Ownership of these artefacts is further defined under Ownership Boundaries (Section 14).
 
 
 

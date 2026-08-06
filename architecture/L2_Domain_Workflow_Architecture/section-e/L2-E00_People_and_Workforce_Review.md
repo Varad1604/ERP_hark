@@ -3,11 +3,31 @@
 
 **Section:** E — People & Workforce  
 **Document Type:** L2 Domain Review & Architecture Certification  
-**Status:** Locked  
+**Status:** Trust Certification Ready  
 **Version:** 1.0  
 **Architecture Level:** L2 Review Document  
-**Owner:** Enterprise Architecture Team  
-**Document Owner:** Varad
+**Review Authority:** Enterprise Architecture Team  
+**Document Owner:** People & Workforce
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose; §14.1 Certification Purpose; Part 1 — Purpose, Scope & Domain Overview |
+| Scope | §1.2 Scope; Part 1 — Purpose, Scope & Domain Overview |
+| Actors | §11.4 Role-Based Access Control (RBAC); Primary Roles |
+| Entities | §5.2 Aggregate Ownership Principles; §5.3 Aggregate Inventory; §5.4 Employee Aggregate Review |
+| Business Rules | §10.2 Business Rule Ownership Principles; §10.9 Multi-Domain Business Rules; §10.13 Business Rule Governance |
+| Workflow | §2.6 E04 — HR Workflows Review; §2.10 Workflow Coverage Summary; §4.6 HR Workflows Administration Sequence |
+| State Machine | §3.5 Dependency with Section C — Student Lifecycle; §4.2 Workforce Lifecycle Overview; §10.3 Workforce Lifecycle Rules (E01) |
+| Contracts | §9.14 Event Contract Standards; §13.11 API Contract Validation; Part 9 — Integration Contracts, APIs, Events & Cross-Section Interfaces |
+| Events | §7.2 Event Architecture Principles; §7.3 Event Distribution by Domain; §7.4 E01 — Workforce & Engagement Events |
+| Dependencies | §3.2 Dependency Classification; §3.3 Dependency with Section A — Platform & Identity; §3.4 Dependency with Section B — Organization Structure |
+| Locked Decisions | §14.18 Certification Decision; Final Decision |
 
 ---
 
@@ -1534,9 +1554,9 @@ Event-driven projection updated in near real-time. Consumed by L2-D03 (Timetable
 ### Events
 
 - LeaveApplied
-- LeaveApproved
-- LeaveRejected
-- LeaveCancelled
+- EmployeeLeaveApproved
+- EmployeeLeaveRejected
+- EmployeeLeaveCancelled
 - LeaveWithdrawn
 - LeaveRequestExpired
 
@@ -2224,7 +2244,7 @@ The following principles are enforced:
 | LeaveBalanceAdjusted | Leave Account |
 | LeaveCarriedForward | Leave Account |
 | LeaveEncashed | Leave Account |
-| LeaveExpired | Leave Account |
+| EmployeeLeaveExpired | Leave Account |
 
 ## Leave Application Events
 
@@ -2232,9 +2252,9 @@ The following principles are enforced:
 |--------|--------------|
 | LeaveApplied | Leave Application |
 | LeaveValidated | Leave Application |
-| LeaveApproved | Leave Application |
-| LeaveRejected | Leave Application |
-| LeaveCancelled | Leave Application |
+| EmployeeLeaveApproved | Leave Application |
+| EmployeeLeaveRejected | Leave Application |
+| EmployeeLeaveCancelled | Leave Application |
 | LeaveWithdrawn | Leave Application |
 | LeaveModified | Leave Application |
 | MedicalCertificateRecorded | Leave Application |
@@ -2965,7 +2985,7 @@ Section H consumes workforce events to build analytical projections.
 - EmployeeTransferred
 - EmployeePromoted
 - EmployeeSeparated
-- LeaveApproved
+- EmployeeLeaveApproved
 - PayrollApproved
 - PayrollClosed
 
@@ -2982,8 +3002,8 @@ Notifications are triggered through domain events.
 | Event | Notification |
 |--------|--------------|
 | EmployeeCreated | Welcome Notification |
-| LeaveApproved | Leave Approval |
-| LeaveRejected | Leave Rejection |
+| EmployeeLeaveApproved | Leave Approval |
+| EmployeeLeaveRejected | Leave Rejection |
 | PayrollPublished | Payslip Available |
 | EmployeeTransferred | Transfer Notice |
 | EmployeeRetired | Retirement Notice |
@@ -4945,7 +4965,7 @@ All future implementations of Section E shall conform to this baseline unless su
 |----------|-------|
 | Document | L2-E00 — People & Workforce Review |
 | Architecture Level | L2 |
-| Status | **LOCKED** |
+| Status | Trust Certification Ready |
 | Certification | **PASSED** |
 | Enterprise Compliance | **100%** |
 | Architecture Readiness | **APPROVED** |

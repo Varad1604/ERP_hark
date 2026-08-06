@@ -5,19 +5,20 @@
 **Domain:** G05 — Library Management  
 **Document ID:** L2-G05  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
-**Document Owner:** Devang
+**Document Owner:** Campus Operations — Library
 
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
 - Section B — Institution & Structure
-- Section C — Student Lifecycle
-- Section D — Academic Delivery
 - Section E — People & Workforce
-- Finance Domain
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section C — Student Lifecycle — Student Identity
+- Section F — Finance — Finance & Payments
 
 **Downstream Consumers**
 
@@ -28,6 +29,28 @@
 - Institutional Reporting
 - Accreditation
 - Notification Services
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Scope; §4 Out of Scope |
+| Actors | Typical Operational Roles |
+| Entities | §8 Aggregate Design; Aggregate Roots; Aggregate Responsibilities |
+| Business Rules | §13 Business Invariants |
+| Workflow | §12 Workflow Catalogue; §16 Library Membership Workflows; L2-G05 — Library Workflows |
+| State Machine | §29 State Transition Matrix |
+| Contracts | §28 Service Contracts |
+| Events | §27 Domain Events; Event Driven Architecture; Membership Events |
+| Dependencies | Upstream Domains |
+| Locked Decisions | — not present — |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -1595,7 +1618,7 @@ Library Clearance governs verification of library obligations before institution
 
 Library Clearance supports:
 
-- Student Graduation
+- Student Qualification Completion
 - Student Transfer
 - Student Exit
 - Employee Separation
@@ -1655,7 +1678,7 @@ Library Clearance may publish completion status to:
 
 - Student Exit
 - Employee Exit
-- Graduation
+- Qualification Completion
 - Transfer Workflow
 
 Library Management remains the canonical owner of clearance status.
@@ -1772,10 +1795,10 @@ Every significant business transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| ReservationCreated | Reservation registered |
+| LibraryReservationCreated | Reservation registered |
 | ReservationAvailable | Resource available |
 | ReservationCollected | Reservation fulfilled |
-| ReservationExpired | Reservation expired |
+| LibraryReservationExpired | Reservation expired |
 
 ---
 
@@ -1803,8 +1826,8 @@ Every significant business transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| VerificationStarted | Stock verification initiated |
-| VerificationCompleted | Verification completed |
+| LibraryVerificationStarted | Stock verification initiated |
+| LibraryVerificationCompleted | Verification completed |
 | MissingResourceIdentified | Missing resource detected |
 
 ---
@@ -2374,4 +2397,4 @@ Library Management follows the enterprise architectural principles established b
 **L2-G05 — Library Management Workflows**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Architectural Review)
+**Status:** Trust Certification Ready

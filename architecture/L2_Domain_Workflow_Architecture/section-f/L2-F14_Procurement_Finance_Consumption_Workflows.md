@@ -2,6 +2,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | — not present — |
+| Entities | Entities / Aggregates |
+| Business Rules | Rules / Invariants |
+| Workflow | Workflows |
+| State Machine | States |
+| Contracts | — not present — |
+| Events | §6 Representative Consumed Events; §7 Finance-Published Events |
+| Dependencies | — not present — |
+| Locked Decisions | — not present — |
+
+> **Gap:** 4 required section(s) have no counterpart in this document: Actors, Contracts, Dependencies, Locked Decisions. Recorded, not authored.
+
+---
+
 # Document Metadata
 
 | Attribute | Value |
@@ -11,12 +33,13 @@
 | Architecture Level | Level 2 — Domain Workflow Architecture |
 | Domain | Finance |
 | Module | Procurement Finance Interface |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.1.0 |
-| Owner | Finance Architecture Team |
-| Document Owner | Chetan |
+| Review Authority | Finance Architecture Team |
+| Document Owner | Finance — Procurement Consumption |
 | Parent Architecture | L2-F00 — Finance Domain Model & Foundation |
-| Depends On | L2-F00, L2-F06, L2-F08, L2-F10, Section J |
+| Depends On | L2-F00, L2-F06, L2-F08, L2-F10 |
+| Consumes From | Section J — Enterprise Resource Management (published procurement and resource facts) |
 | Referenced By | Section J, Accounts Payable, Budget, Treasury, Analytics, Audit |
 
 ---

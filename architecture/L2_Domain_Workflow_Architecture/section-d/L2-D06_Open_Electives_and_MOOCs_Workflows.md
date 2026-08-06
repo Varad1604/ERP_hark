@@ -1,5 +1,27 @@
 # L2-D06 — Open Electives & MOOCs Workflows
 
+**Document Owner:** Academic Delivery — Electives & MOOCs  
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | Purpose; Aggregate Purpose; Business Purpose |
+| Scope | Scope; Out of Scope |
+| Actors | Primary Actors |
+| Entities | Part 5 — Canonical Domain Model (Entities, Value Objects & References); Entity Catalogue; Supporting Entity — LearningOpportunitySnapshot |
+| Business Rules | Business Rules |
+| Workflow | L2-D06 — Open Electives & MOOCs Workflows; Part 6 — Workflow Catalogue; Workflow Classification |
+| State Machine | Category A State Transition; Category B State Transition; Category C State Transition |
+| Contracts | Part 11 — Integration Contracts & External Interfaces (Next Section); Part 11 — Integration Contracts & External Interfaces; Webhook Contracts |
+| Events | Multi-Domain Events; Part 8 — Domain Events Catalogue (Next Section); Part 8 — Domain Events Catalogue |
+| Dependencies | Upstream Dependencies; Downstream Dependencies; Dependency Principles |
+| Locked Decisions | Workflow D06-W16 — Generate Eligibility Decision; Recognition Decision Matrix; Part 14 — Architecture Decision Records (ADR) & Enterprise Design Decisions (Next Section) |
+
 ---
 
 # Document Metadata
@@ -11,11 +33,11 @@
 | Layer | L2 — Domain Workflow Architecture |
 | Architecture Level | Enterprise Domain Workflow |
 | Architecture Style | Domain Driven Design (DDD), CQRS, Event Driven Architecture (EDA) |
-| Primary Owner | Pallav |
+| Primary Owner | Academic Delivery — Electives & MOOCs |
 | Technical Owner | Academic ERP Team |
-| Canonical Owner | Pallav |
+| Canonical Owner | Academic Delivery — Electives & MOOCs |
 | Version | 1.0 |
-| Status | Architecture Locked |
+| Status | Trust Certification Ready |
 | Repository | SutraERP Enterprise Repository |
 
 ---
@@ -715,12 +737,12 @@ No downstream domain may modify the internal state of L2-D06.
 
 Typical incoming events include:
 
-- CourseOfferingPublished
+- ElectiveCourseOfferingPublished
 - StudentRegistered
 - CurriculumUpdated
 - AcademicPolicyChanged
 - FeeStatusUpdated
-- StudentStatusChanged
+- ElectiveStudentStatusChanged
 
 Typical outgoing events include:
 
@@ -4975,7 +4997,7 @@ Approval workflow completed.
 
 ## Domain Events
 
-- EnrollmentRejected
+- ElectiveEnrollmentRejected
 
 ---
 
@@ -10473,7 +10495,7 @@ Recovery completed or case terminated.
 
 ## Domain Events
 
-- ExceptionCaseClosed
+- ElectiveExceptionCaseClosed
 
 ---
 
@@ -11559,7 +11581,7 @@ Published after approval.
 
 ---
 
-## D06-E11 EnrollmentRejected
+## D06-E11 ElectiveEnrollmentRejected
 
 ---
 
@@ -11820,7 +11842,7 @@ Published after approval.
 
 ---
 
-## D06-E65 ExceptionCaseClosed
+## D06-E65 ElectiveExceptionCaseClosed
 
 ---
 
@@ -12154,7 +12176,7 @@ Produces
 
 Produces
 
-- EnrollmentRejected
+- ElectiveEnrollmentRejected
 
 ---
 
@@ -12632,7 +12654,7 @@ Produces
 
 Produces
 
-- ExceptionCaseClosed
+- ElectiveExceptionCaseClosed
 
 ---
 
@@ -13315,7 +13337,7 @@ The following query models provide optimized API responses.
 | CertificateAccepted | RM-31, RM-34 |
 | CreditRecognitionApproved | RM-36, RM-38, RM-39 |
 | AcademicSessionArchived | RM-49 |
-| ExceptionCaseClosed | RM-50 |
+| ElectiveExceptionCaseClosed | RM-50 |
 
 ---
 
@@ -13492,7 +13514,7 @@ Retrieve canonical student profile.
 Consumes
 
 - StudentActivated
-- StudentGraduated
+- QualificationAwarded
 - StudentSuspended
 
 ---
@@ -15701,7 +15723,7 @@ This architecture is approved as the canonical baseline for all future developme
 
 **Document:** L2-D06 — Open Electives & MOOCs Workflows  
 **Architecture Version:** 1.0  
-**Status:** 🔒 **ARCHITECTURE LOCKED**  
+**Status:** Trust Certification Ready  
 **Implementation Status:** ✅ **READY FOR DEVELOPMENT**
 
 ```

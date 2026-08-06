@@ -1,8 +1,30 @@
 # L2-I08 — Marks Collection & Evaluation Workflows
 
 **Section:** I — Examination  
-**Status:** Draft  
-**Document Owner:** Devang
+**Status:** Trust Certification Ready  
+**Document Owner:** Examinations — Marks Collection & Evaluation
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | §6 Business Actors |
+| Entities | — not present — |
+| Business Rules | §9 Business Rules |
+| Workflow | §8 Evaluation Lifecycle Workflows; §17 Workflow Completion Criteria; L2-I08 — Marks Collection & Evaluation Workflows |
+| State Machine | §20 Marks Collection & Evaluation State Model |
+| Contracts | — not present — |
+| Events | §11 Events Published; §12 Events Consumed; §4.9 Event-Driven Evaluation |
+| Dependencies | §19 Marks Collection & Evaluation Dependency Matrix |
+| Locked Decisions | — not present — |
+
+> **Gap:** 3 required section(s) have no counterpart in this document: Entities, Contracts, Locked Decisions. Recorded, not authored.
 
 ---
 

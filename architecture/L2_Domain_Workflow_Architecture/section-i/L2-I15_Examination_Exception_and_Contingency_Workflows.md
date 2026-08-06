@@ -2,6 +2,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §2.1 In Scope; §2.2 Out of Scope |
+| Actors | §7 Business Actors; §7.1 Internal Actors; §7.2 External Actors |
+| Entities | §10 Aggregate Model; §10.1 Aggregate Overview; §10.2 Aggregate Root |
+| Business Rules | §13 Business Rules |
+| Workflow | §11 Workflow Catalogue; §12 Workflow Specifications; §11.1 Workflow Overview |
+| State Machine | §21 State Model; §21.3 State Definitions; §21.4 Valid State Transitions |
+| Contracts | — not present — |
+| Events | §16 Events Published; §17 Events Consumed; §16.2 Published Events |
+| Dependencies | §22 Dependency Matrix; §3.2 Repository Dependencies; §22.1 Upstream Dependencies |
+| Locked Decisions | §18.9 Decision Validation |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Contracts. Recorded, not authored.
+
+---
+
 # Document Control
 
 | Attribute | Value |
@@ -10,10 +32,9 @@
 | Document Name | Examination Exception & Contingency Workflows |
 | Domain | Examination Domain |
 | Architecture Level | L2 – Canonical Domain Workflow |
-| Owner | Examination Domain |
-| Document Owner | Devang |
+| Document Owner | Examinations — Exception & Contingency |
 | Repository | SutraERP Enterprise Architecture Repository |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Depends On | L1 Business Domain Architecture, L2-A01–A08, L2-B01–B05, L2-I01–L2-I14 |
 | Version | 0.1 |
 
@@ -1105,8 +1126,8 @@ Events are immutable and published only after successful completion of the assoc
 | EVT-010 | ExaminationResumed |
 | EVT-011 | ExaminationCancelled |
 | EVT-012 | StakeholdersNotified |
-| EVT-013 | ExceptionResolved |
-| EVT-014 | ExceptionCaseClosed |
+| EVT-013 | ExamExceptionResolved |
+| EVT-014 | ExamExceptionCaseClosed |
 | EVT-015 | ExceptionCaseArchived |
 
 ---
@@ -1742,7 +1763,7 @@ The architecture follows the enterprise principles established throughout the Su
 
 **L2-I15 — Examination Exception & Contingency Workflows**
 
-**Status:** Architecture Draft
+**Status:** Trust Certification Ready
 
 **Next Document:** **L2-I16 — Examination Session Closure & Archival Workflows**
 

@@ -1,8 +1,30 @@
 # L2-I09 — Result Processing & Computation Workflows
 
 **Section:** I — Examination  
-**Status:** Draft  
-**Document Owner:** Devang
+**Status:** Trust Certification Ready  
+**Document Owner:** Examinations — Result Processing
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | §6 Business Actors; Primary Business Actors; Supporting Business Actors |
+| Entities | — not present — |
+| Business Rules | §9 Business Rules |
+| Workflow | §8 Result Processing Lifecycle Workflows; §17 Workflow Completion Criteria; L2-I09 — Result Processing & Computation Workflows |
+| State Machine | §20 Result Processing & Computation State Model |
+| Contracts | — not present — |
+| Events | §11 Events Published; §12 Events Consumed; §4.9 Event-Driven Result Processing |
+| Dependencies | §19 Result Processing & Computation Dependency Matrix |
+| Locked Decisions | — not present — |
+
+> **Gap:** 3 required section(s) have no counterpart in this document: Entities, Contracts, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -1584,7 +1606,7 @@ The Result Processing & Computation domain governs academic computation from Fin
 | Supplementary Examination Execution | — | L2-I12 |
 | Academic Completion & Completion Evidence | — | L2-I13 |
 
-The Result Processing & Computation domain governs academic computation only and does not own publication, revaluation, supplementary examinations, or graduation.
+The Result Processing & Computation domain governs academic computation only and does not own publication, revaluation, supplementary examinations, or qualification completion.
 
 ---
 
@@ -1783,7 +1805,7 @@ The domain does **not** own:
 - Result Publication
 - Revaluation
 - Supplementary Examination Execution
-- Graduation
+- Qualification Completion
 - Degree Award
 
 ---

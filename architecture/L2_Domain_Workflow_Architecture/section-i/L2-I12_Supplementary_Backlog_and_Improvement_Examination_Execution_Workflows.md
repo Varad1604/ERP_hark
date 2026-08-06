@@ -1,8 +1,30 @@
 # L2-I12 — Supplementary / Backlog / Improvement Examination Execution Workflows
 
 **Section:** I — Examination  
-**Status:** Draft  
-**Document Owner:** Devang
+**Status:** Trust Certification Ready  
+**Document Owner:** Examinations — Supplementary & Backlog
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | §6 Business Actors; Primary Business Actors; Supporting Business Actors |
+| Entities | — not present — |
+| Business Rules | §9 Business Rules |
+| Workflow | §8 Lifecycle Workflows; §17 Workflow Completion Criteria; L2-I12 — Supplementary / Backlog / Improvement Examination Execution Workflows |
+| State Machine | §20 State Model |
+| Contracts | — not present — |
+| Events | §11 Events Published; §12 Events Consumed; §4.8 Event-Driven Examination Lifecycle |
+| Dependencies | §19 Dependency Matrix |
+| Locked Decisions | — not present — |
+
+> **Gap:** 3 required section(s) have no counterpart in this document: Entities, Contracts, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -95,7 +117,7 @@ It produces business outcomes consumed by:
 
 This document owns supplementary examination execution only.
 
-It does not own academic evaluation, academic computation, official result publication, or graduation decisions.
+It does not own academic evaluation, academic computation, official result publication, or qualification completion decisions.
 
 ---
 
@@ -221,7 +243,7 @@ Every significant supplementary examination activity shall generate immutable au
 
 ## 4.10 Authoritative Academic Continuation
 
-Successful completion of supplementary examination workflows may initiate downstream academic result processing and graduation eligibility determination.
+Successful completion of supplementary examination workflows may initiate downstream academic result processing and qualification completion eligibility determination.
 
 Academic decisions remain owned by downstream domains.
 
@@ -1357,7 +1379,7 @@ The domain does not own:
 - Result Computation
 - Result Publication
 - Revaluation
-- Graduation
+- Qualification Completion
 - Finance Processing
 - Identity Management
 
@@ -1446,7 +1468,7 @@ The Supplementary / Backlog / Improvement Examination lifecycle is considered co
 - Audit Generated
 - Attempt Closed
 
-Completion of supplementary examination execution does not imply completion of academic result computation, result publication, or graduation.
+Completion of supplementary examination execution does not imply completion of academic result computation, result publication, or qualification completion.
 
 These remain downstream workflows owned by their respective domains.
 ```
@@ -1611,7 +1633,7 @@ The domain does **not** own:
 - Result Processing
 - Result Publication
 - Revaluation
-- Graduation
+- Qualification Completion
 - Finance Processing
 
 Business ownership remains separated according to repository boundaries.
@@ -1655,7 +1677,7 @@ The repository maintains a single authoritative owner for:
 - Academic Evaluation
 - Academic Computation
 - Official Result Publication
-- Graduation Processing
+- Qualification Completion Processing
 
 No ownership overlaps exist across repository domains.
 
@@ -1813,7 +1835,7 @@ It does not own:
 - Academic Evaluation
 - Result Computation
 - Result Publication
-- Graduation
+- Qualification Completion
 - Financial Processing
 
 These responsibilities remain within their respective repository domains.

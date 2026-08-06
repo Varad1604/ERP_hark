@@ -174,7 +174,7 @@ L6-[InteractionName]
 
 Entities use PascalCase, such as `StudentContext`, `ProgrammeVersion`, `AcademicCreditLedger`, and `CourseOffering`.
 
-Events use past tense, such as `AdmissionApproved`, `StudentActivated`, `AttendanceFinalized`, `ResultPublished`, and `QualificationAwarded`.
+Events use past tense, such as `AdmissionApproved`, `StudentActivated`, `AttendanceFinalized`, `ExaminationResultPublished`, and `QualificationAwarded`.
 
 Commands use imperative form, such as `CreateStudent`, `PublishResult`, `ActivateStudent`, and `GenerateHallTicket`.
 

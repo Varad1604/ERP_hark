@@ -2,19 +2,39 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose Statement; §1.2 Business Purpose; §1.5 Architectural Purpose |
+| Scope | §1.7 Scope Intent; §2 Scope; §2.1 Scope Statement |
+| Actors | §16.4 Authorization Actors; §23.12 Actor Terms |
+| Entities | Owned Entities |
+| Business Rules | §9 Business Rules; §9.1 Business Rule Overview; §9.2 Business Rule Classification |
+| Workflow | §2.5 Workflow Scope; §5.8 Workflow Ownership Boundary; §5.9 Workflow Ownership Exclusions |
+| State Machine | §6.12 Lifecycle State Definitions; §12.2 Faculty Workforce Lifecycle State Model |
+| Contracts | §11 Service Contracts; §11.1 Service Contract Overview; §11.2 Service Contract Principles |
+| Events | §4.11 Published Domain Events; §8.17 Workflow Event Publication Rules; §8.18 Faculty Workforce Workflow Event Catalogue |
+| Dependencies | §3 Upstream Dependencies; §3.2 Upstream Dependency Model; §3.3 Dependency Summary |
+| Locked Decisions | §5.6 Decision Ownership Matrix; §13 Decision Matrix; §13.1 Decision Matrix Overview |
+
+---
+
 # Document Metadata
 
 | Attribute | Value |
 |---|---|
 | Document Name | L2-E03 — Faculty Workforce Workflows |
+| Document Owner | People & Workforce — Faculty Workforce |
 | Domain Code | E03 |
 | Domain Name | Faculty Workforce |
 | Architecture Layer | L2 — Domain Workflow Architecture |
 | Platform | SutraERP |
 | Document Type | Domain Architecture Specification |
 | Version | 1.0.0 |
-| Status | Architecture Baseline |
-| Document Owner | Varad |
+| Status | Trust Certification Ready |
 | Classification | Internal Architecture Document |
 | Primary Domain Owner | Faculty Workforce Domain |
 | Architecture Owner | SutraERP Enterprise Architecture |
@@ -47,7 +67,7 @@
 | Domain-Driven Design | Bounded context, aggregates, domain ownership |
 | CQRS | Separation of commands and queries |
 | Event-Driven Architecture | Domain event communication |
-| Enterprise Integration Patterns | Multi-domain interaction |
+| Enterprise Integration Patterns | Cross-domain interaction |
 | SutraERP Architecture Principles | Domain separation and ownership |
 
 ---
@@ -706,12 +726,12 @@ The following capabilities SHALL NOT belong to E03.
 Owned by:
 
 ```text
-E07 Employee Profile
+HR / Identity Domain
 ```
 
 Includes:
 
-- Employee profile record
+- Employee master record
 - Personal identity information
 - Employment number generation
 - Employee lifecycle
@@ -1034,7 +1054,7 @@ EmployeeUpdated
 
 HR owns:
 
-- Employee profile identity
+- Employee master identity
 - Employment relationship
 - Contract information
 - Payroll-related status
@@ -1869,7 +1889,7 @@ This section defines the authoritative ownership boundaries of the **L2-E03 Facu
 The objective is to prevent:
 
 - Duplicate ownership
-- Multi-domain responsibility conflicts
+- Cross-domain responsibility conflicts
 - Data inconsistency
 - Workflow duplication
 - Architectural boundary erosion
@@ -1973,7 +1993,7 @@ The following capabilities SHALL be exclusively owned by E03.
 
 ## E03 Does Not Own
 
-- Employee profile identity
+- Employee master identity
 - Government identity records
 - Payroll identifiers
 
@@ -5289,7 +5309,7 @@ A domain event is:
 
 Domain events enable:
 
--   Multi-domain communication
+-   Cross-domain communication
 -   Event-driven architecture
 -   Audit traceability
 -   Workflow integration
@@ -11017,7 +11037,7 @@ The document SHALL maintain:
 -   Correct file naming.
 -   Consistent section structure.
 -   Mermaid diagram compatibility.
--   Multi-domain reference consistency.
+-   Cross-domain reference consistency.
 -   Alignment with SutraERP architecture standards.
 
 ------------------------------------------------------------------------

@@ -2,18 +2,39 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §3 Out of Scope |
+| Actors | §19.3 A07-W03 — Actor Attribution; §12.5 Audit Actor; §15.3 Actor Attribution Service |
+| Entities | §13 Entity Definitions |
+| Business Rules | Rules / Invariants |
+| Workflow | §17 Workflow Catalogue; §18 Workflow Classification; §19 Workflow Specifications |
+| State Machine | States |
+| Contracts | §25 Integration Contracts |
+| Events | §23 Consumed Domain Events; §24 Produced Domain Events; §7.2 Event-Driven Audit Generation |
+| Dependencies | §20 Cross-Workflow Dependency Matrix; §27 Dependency Matrix |
+| Locked Decisions | §32 Architectural Decision Records (ADR) |
+
+---
+
 # Document Metadata
 
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-A07 |
+| Document Owner | Platform Foundation — Audit |
 | Document Name | Audit Infrastructure Workflows |
 | Layer | Level 2 – Core Platform Architecture |
 | Domain | Platform Audit Infrastructure |
-| Owner | Dhruv |
+| Owner | Platform Foundation — Audit |
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Workflows, L2-A04 Authorization & Policy Workflows, L2-A05 Workflow Engine Workflows, L2-A06 Event Infrastructure Workflows |
 | Referenced By | All Business Domains (Admissions, Academic, Curriculum, Examination, Finance, HR, Library, Hostel, Transport, Procurement, Inventory, CRM, Analytics, Notifications, Reporting, APIs, Mobile Applications and Future Domains) |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 
 ---

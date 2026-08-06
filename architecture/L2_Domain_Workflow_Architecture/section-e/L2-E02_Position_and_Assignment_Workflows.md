@@ -4,6 +4,7 @@
 |----------|-------|
 | **Document ID** | L2-E02 |
 | **Document Title** | Position & Assignment Workflows |
+| **Document Owner** | People & Workforce — Position & Assignment |
 | **Architecture Level** | Level 2 — Domain Architecture |
 | **Domain** | Workforce & Engagement |
 | **Bounded Context** | Position & Assignment Management |
@@ -11,8 +12,7 @@
 | **Primary Aggregates** | Position Assignment, Responsibility Assignment |
 | **Supporting References** | Position Definition (Organisation Domain), Workforce Engagement (Workforce Domain) |
 | **Authoritative Owner** | Workforce & Engagement Domain |
-| **Document Owner** | Varad |
-| **Status** | Draft |
+| **Status** | Trust Certification Ready |
 | **Version** | 1.0 |
 | **Repository** | SutraERP Canonical Architecture Repository |
 | **Last Updated** | July 2026 |
@@ -25,7 +25,27 @@ The Position & Assignment Domain provides the canonical enterprise architecture 
 
 The domain establishes the authoritative relationship between an active Workforce Engagement and the organizational Position(s) occupied by that workforce member.
 
-It serves as the enterprise-wide runtime organizational identity engine upon which workflow resolution, authorization, reporting, operational governance, institutional hierarchy, and multi-domain integrations depend.
+It serves as the enterprise-wide runtime organizational identity engine upon which workflow resolution, authorization, reporting, operational governance, institutional hierarchy, and cross-domain integrations depend.
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose; §2.1 Purpose of Scope |
+| Scope | §2 Scope; §2.3 Functional Scope; §2.5 Explicit In Scope |
+| Actors | §8.2.4 Actors |
+| Entities | §5.7 Aggregate Ownership Model; §6 Domain Model / Aggregate / Lifecycle; §6.3 Aggregate Architecture |
+| Business Rules | §8.2.16 Business Rules; §14.11 Failure Business Rules; §15.10 Validation Business Rules |
+| Workflow | §6.15.12 Transition to Domain Workflows; §7 Domain Workflows; §7.2 Workflow Philosophy |
+| State Machine | §12.9 Enterprise State Machine |
+| Contracts | §4.5 Integration Contracts; §10.10 Canonical Event Contract; §10.10.11 Event Contract Summary |
+| Events | §4.7 Event Consumption Principles; §6.5.8 Domain Events Published; §6.6.8 Commands & Events |
+| Dependencies | §3 Upstream Dependencies; §3.2 Dependency Architecture; §3.3 Canonical Upstream Dependency Matrix |
+| Locked Decisions | §5.6 Ownership Decision Tree; §13 Decision Matrix; §13.2 Decision Principles |
 
 ---
 
@@ -176,7 +196,7 @@ Successful implementation of this architecture ensures:
 - Every organizational authority is uniquely traceable.
 - Every Position Assignment is historically reconstructable.
 - Organizational restructuring preserves complete lineage.
-- Multi-domain integrations remain loosely coupled.
+- Cross-domain integrations remain loosely coupled.
 - Workflow routing remains dynamic and position-driven.
 - Enterprise reporting remains historically accurate.
 - Institutional governance remains auditable.
@@ -890,7 +910,7 @@ The following architectural constraints are mandatory.
 - Integration shall remain contract-first.
 - Position Assignment remains the single runtime organizational identity.
 - Read Models shall never become systems of record.
-- Business ownership shall remain unchanged amulti-domain boundaries.
+- Business ownership shall remain unchanged across domain boundaries.
 - Domain Events shall be published only after successful transaction completion.
 
 ---
@@ -1376,7 +1396,7 @@ The domain has been designed to support enterprise-scale organizational complexi
 - Historical reconstruction
 - Government administration
 - Enterprise audit
-- business scenario resolution
+- Cross-domain workflow resolution
 
 No architectural changes shall be required to support these organizational models.
 
@@ -3877,7 +3897,7 @@ Version lineage SHALL remain continuous.
 
 ---
 
-# 6.9.11 Multi-Domain Behaviour
+# 6.9.11 Cross-Domain Behaviour
 
 The temporal model SHALL support:
 
@@ -4474,7 +4494,7 @@ The Position & Assignment Domain follows four levels of consistency.
 |--------|-------|-------------|
 | Aggregate Consistency | Single Aggregate | Immediate Transaction |
 | Domain Consistency | Multiple Aggregates | Domain Services |
-| Multi-Domain Consistency | Multiple Bounded Contexts | Domain Events & Read Models |
+| Cross-Domain Consistency | Multiple Bounded Contexts | Domain Events & Read Models |
 | Enterprise Consistency | Entire ERP | Eventual Consistency |
 
 Strong consistency SHALL exist only within aggregate boundaries.
@@ -4570,7 +4590,7 @@ Cross-aggregate validation SHALL occur through Domain Services.
 
 ---
 
-# 6.12.6 Multi-Domain Consistency
+# 6.12.6 Cross-Domain Consistency
 
 The Position & Assignment Domain SHALL maintain contractual consistency with upstream and downstream bounded contexts.
 
@@ -4861,7 +4881,7 @@ Every architectural component derives its validity from the Domain Constitution.
 | CG-002 | Downstream domains SHALL consume but SHALL NEVER own Position Assignments. |
 | CG-003 | Domain Events SHALL be published only after successful transaction commit. |
 | CG-004 | Read Models SHALL NEVER become systems of record. |
-| CG-005 | Multi-domain communication SHALL remain contract-driven. |
+| CG-005 | Cross-domain communication SHALL remain contract-driven. |
 
 ---
 
@@ -5050,7 +5070,7 @@ Admin->>Application: Submit Business Command
 
 Application->>PositionAssignment: Execute Command
 
-PositionAssignment->>DomainServices: Validate Multi-Domain Rules
+PositionAssignment->>DomainServices: Validate Cross-Domain Rules
 
 DomainServices-->>PositionAssignment: Validation Result
 
@@ -5253,7 +5273,7 @@ The architecture guarantees that:
 - Organizational authority is deterministic.
 - Business execution is auditable.
 - Historical reconstruction is complete.
-- Multi-domain integrations remain loosely coupled.
+- Cross-domain integrations remain loosely coupled.
 - Runtime organizational identity remains canonical.
 - Downstream systems consume consistent organizational truth.
 - Business evolution never compromises historical integrity.
@@ -5298,7 +5318,7 @@ The Position & Assignment Domain has been designed to satisfy the following ente
 - Preserve organizational history without rewriting business facts.
 - Support organizational evolution through versioned lineage.
 - Enable enterprise-scale workflow resolution.
-- Eliminate duplicated organizational hierarchy amulti-domains.
+- Eliminate duplicated organizational hierarchy across domains.
 - Maintain strict bounded context ownership.
 - Support unlimited organizational complexity through configuration rather than customization.
 - Provide deterministic organizational behavior across every downstream domain.
@@ -5863,7 +5883,7 @@ No workflow may bypass validation, authorization, or event publication.
 | Organizational Operations | Organizational restructuring |
 | Authority Management | Operational authority |
 | Governance | Temporal correctness |
-| Enterprise Operations | Bulk and multi-domain processing |
+| Enterprise Operations | Bulk and cross-domain processing |
 
 ---
 
@@ -14179,7 +14199,7 @@ No workflow SHALL bypass integrity validation.
 
 ### BR-169
 
-Multi-domain integrations SHALL preserve Position Assignment integrity.
+Cross-domain integrations SHALL preserve Position Assignment integrity.
 
 Downstream domains SHALL NOT directly modify Position Assignment aggregates.
 
@@ -14773,7 +14793,7 @@ No downstream domain SHALL bypass Position Assignment authorization.
 
 ### BR-248
 
-Every multi-domain integration SHALL preserve Position Assignment security constraints.
+Every cross-domain integration SHALL preserve Position Assignment security constraints.
 
 ---
 
@@ -16411,7 +16431,7 @@ The integration model preserves aggregate ownership, bounded context isolation, 
 
 No downstream domain SHALL directly access or modify Position Assignment aggregates.
 
-All multi-domain communication SHALL occur through approved integration contracts.
+All cross-domain communication SHALL occur through approved integration contracts.
 
 ---
 
@@ -18654,7 +18674,7 @@ No external domain SHALL directly modify Position Assignment aggregates.
 
 ### IC-003
 
-Multi-domain synchronization SHALL occur through Domain Events.
+Cross-domain synchronization SHALL occur through Domain Events.
 
 ---
 
@@ -22521,7 +22541,7 @@ Aggregate boundaries provide predictable transactional consistency.
 
 ## Decision
 
-Multi-domain communication SHALL occur through Domain Events.
+Cross-domain communication SHALL occur through Domain Events.
 
 ## Context
 
@@ -23064,7 +23084,7 @@ The Position & Assignment domain integrates with other bounded contexts through:
 
 No downstream bounded context SHALL directly manipulate Position & Assignment aggregates.
 
-Multi-domain consistency SHALL be achieved through Domain Events.
+Cross-domain consistency SHALL be achieved through Domain Events.
 
 ---
 
@@ -23130,7 +23150,7 @@ Aggregate ownership SHALL remain strictly enforced.
 
 ### DS-003
 
-Multi-domain integration SHALL occur exclusively through approved Service Contracts and Domain Events.
+Cross-domain integration SHALL occur exclusively through approved Service Contracts and Domain Events.
 
 ---
 

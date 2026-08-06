@@ -9,6 +9,29 @@
 **Classification:** Level 2 Domain Workflow Architecture
 **Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
 **Canonical Owner:** Purchase Requisition & Approval
+**Document Owner:** Enterprise Resource Management — Requisition & Approval
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | — not present — |
+| Actors | — not present — |
+| Entities | §4 Primary Aggregate |
+| Business Rules | Rules / Invariants |
+| Workflow | §12 Event and Workflow Integration; Workflows |
+| State Machine | States |
+| Contracts | — not present — |
+| Events | §6 Domain Events; §12 Event and Workflow Integration |
+| Dependencies | §7 Dependencies |
+| Locked Decisions | — not present — |
+
+> **Gap:** 4 required section(s) have no counterpart in this document: Scope, Actors, Contracts, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -102,12 +125,21 @@ J03 publishes:
 
 # 7. Dependencies
 
-J03 depends on:
+## Depends On
+
+Upstream capabilities J03 requires in order to function:
 
 - Requesting domains for demand origin.
 - Finance for budget-validation references where policy requires it.
-- J01 for downstream sourcing.
-- J04 for order creation after release.
+
+## Referenced By (Downstream Consumers)
+
+Domains that consume J03 output. Per J00, "depends on" means requiring an
+upstream capability; J03 produces approved demand that these domains consume,
+so they are not dependencies of J03:
+
+- J01 consumes released requisitions for downstream sourcing.
+- J04 consumes released requisitions for order creation after release.
 
 ---
 

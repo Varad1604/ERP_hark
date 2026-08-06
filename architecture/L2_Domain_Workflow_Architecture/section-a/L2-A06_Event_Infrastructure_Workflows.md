@@ -2,18 +2,39 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §3 Out of Scope; §37.4 Ordering Scope |
+| Actors | §57 Operational Roles |
+| Entities | §14 Aggregate Landscape; §15 Aggregate Relationships; §16 Aggregate Lifecycle Principles |
+| Business Rules | §53 Policy Integration; EIP-08 — Policy-Governed Infrastructure; ADR-006 — Policy-Based Governance |
+| Workflow | §28.3 Publication Workflow; §36.2 Delivery Workflow; L2-A06 — Event Infrastructure Workflows |
+| State Machine | §22.1 Lifecycle States |
+| Contracts | §27 Event Contracts; §48 Integration Contracts; §27.2 Contract Components |
+| Events | §21 Event Lifecycle; §22 Event Definition Lifecycle; §23 Event Instance Lifecycle |
+| Dependencies | §67 Dependency Matrix; §67.1 Upstream Dependencies; §67.2 Downstream Dependencies |
+| Locked Decisions | §66 Architecture Decision Records (ADRs) |
+
+---
+
 # Document Metadata
 
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-A06 |
+| Document Owner | Platform Foundation — Event Infrastructure |
 | Document Name | Event Infrastructure Workflows |
 | Layer | Level 2 – Core Platform Architecture |
 | Domain | Platform Event Infrastructure |
-| Owner | Dhruv |
+| Owner | Platform Foundation — Event Infrastructure |
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Workflows, L2-A04 Authorization & Policy Workflows, L2-A05 Workflow Engine Workflows |
 | Referenced By | All Business Domains (Admissions, Academic, Curriculum, Examination, Finance, HR, Library, Hostel, Transport, Procurement, Inventory, CRM, Analytics, Notifications, Reporting, APIs, Mobile Applications and Future Domains) |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 
 ---

@@ -4,11 +4,32 @@
 
 **Domain:** I – Examination
 
-**Status:** Draft
+**Status:** Trust Certification Ready
 
-**Owner:** Examination Domain
 
-**Document Owner:** Devang
+**Document Owner:** Examinations — Planning & Scheduling
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | §6 Business Actors |
+| Entities | — not present — |
+| Business Rules | §9 Business Rules |
+| Workflow | §17 Workflow Completion Criteria; L2-I03 — Examination Planning & Scheduling Workflows |
+| State Machine | §20 Examination Planning State Model |
+| Contracts | — not present — |
+| Events | §11 Events Published; §12 Events Consumed |
+| Dependencies | §19 Planning Dependency Matrix |
+| Locked Decisions | — not present — |
+
+> **Gap:** 3 required section(s) have no counterpart in this document: Entities, Contracts, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -20,7 +41,6 @@
 | Document Name | Examination Planning & Scheduling Workflows |
 | Domain | Examination |
 | Level | L2 – Business Workflow Architecture |
-| Owner | Examination Domain |
 | Depends On | L2-I01 Examination Policy & Configuration, L2-I02 Examination Session Management, A01 Platform Foundation, A02 Person & Identity, A03 Authentication, A04 Authorization, H02 Notification Workflows, A06 Event Infrastructure, A07 Audit Infrastructure, B01 Institution, B02 Organisation, B03 Campus & Infrastructure, B04 Curriculum Framework, B05 Academic Calendar |
 | Consumed By | L2-I04 through L2-I16 Examination Workflows |
 | Canonical Owner | Examination Domain |
@@ -75,7 +95,7 @@ This document excludes:
 - Marks collection
 - Evaluation
 - Result processing
-- Graduation processing
+- qualification completion processing
 
 These capabilities are defined in their respective Examination workflow documents.
 

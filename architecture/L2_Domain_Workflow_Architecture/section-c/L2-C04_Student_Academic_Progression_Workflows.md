@@ -4,9 +4,8 @@ title: Student Academic Progression Workflows
 level: Level 2 Architecture
 section: Section C – Student Lifecycle
 version: 1.0.0
-status: Draft
-owner: Student Lifecycle Architecture
-document_owner: Varad
+status: Trust Certification Ready
+document_owner: Student Lifecycle — Academic Progression
 parent: L1 Business Domain Architecture
 architectural_tier: Level 2 – Domain Workflow Architecture
 domain_owner: Student Lifecycle Domain
@@ -29,6 +28,26 @@ required_by:
   - L3 Qualification Completion Scenario
   - L3 Academic Progression Scenario
 last_updated: YYYY-MM-DD
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose |
+| Scope | §1.4 Scope; §1.5 Out of Scope |
+| Actors | §11.4 Role-Based Authorization |
+| Entities | §3.5 Entities |
+| Business Rules | §6 Business Rules Architecture; §18.4 Business Rule Traceability |
+| Workflow | §5 Business Workflow Architecture; §9.13 Exception Resolution Workflow; §19.8 Workflow Terms |
+| State Machine | §20.3 State Machine |
+| Contracts | §8 Service Contract Architecture; §8.3 Inbound Service Contracts; §8.4 Outbound Service Contracts |
+| Events | §7 Domain Events Architecture; §7.2 Event Design Principles; §7.3 Upstream Event Consumption |
+| Dependencies | §18.10 Cross-Domain Dependency Traceability; §22.3 Workflow Dependency Matrix; §24 Appendix D — Cross-Domain Dependency Matrix |
+| Locked Decisions | §17 Architectural Decision Records (ADR) |
+
 ---
 
 # L2-C04 — Student Academic Progression Workflows
@@ -183,7 +202,7 @@ The architecture exists to achieve the following objectives.
 - Support Academic Bank of Credits (ABC).
 - Maintain an institutional Academic Credit Ledger.
 - Preserve canonical ownership of progression decisions.
-- Eliminate duplicate progression logic amulti-domains.
+- Eliminate duplicate progression logic across domains.
 - Enable configurable progression policies.
 - Support autonomous, affiliated, and university institutions.
 - Maintain complete auditability.
@@ -270,7 +289,7 @@ Student Academic Progression does not own:
 - Attendance.
 - Course delivery.
 - Registration.
-- Qualification Completion execution.
+- qualification completion execution.
 
 ---
 
@@ -429,7 +448,7 @@ Academic Progression consumes authoritative information from multiple business d
 | Curriculum Framework | Curriculum structure and credit rules |
 | Examination | Official examination results |
 | Academic Delivery | Completion status where applicable |
-| Policy Management | Progression regulations |
+| Policy Management — **unresolved, no owner** | Progression regulations |
 | Finance | Financial clearance where institution requires |
 | Identity Platform | Authentication and audit context |
 
@@ -1120,7 +1139,7 @@ Determine whether a student satisfies institutional progression requirements aft
 
 One or more of the following:
 
-- Official Examination Results Published
+- ExaminationResultPublished (official examination results)
 - Academic Evaluation Window Opens
 - Manual Institutional Evaluation
 - Approved Re-evaluation
@@ -1143,7 +1162,7 @@ One or more of the following:
 ### Workflow
 
 ```text
-Results Published
+ExaminationResultPublished
         │
         ▼
 Collect Academic Data
@@ -1308,7 +1327,7 @@ Conditional Promotion
 Condition Monitoring
         │
         ▼
-Satisfied 
+Satisfied ?
       /     \
     Yes      No
     │         │
@@ -1949,7 +1968,7 @@ Duplicate synchronisation requests shall be safely ignored using idempotent proc
 
 ---
 
-# 6.15 Multi-Domain Rules
+# 6.15 Cross-Domain Rules
 
 | Rule | Description |
 |------|-------------|
@@ -2046,14 +2065,14 @@ The Academic Progression domain subscribes to the following business events.
 | Event | Published By | Purpose |
 |--------|--------------|---------|
 | StudentActivated | Student Lifecycle | Student becomes academically active |
-| ExaminationResultsPublished | Examination | Primary progression trigger |
-| RevaluationResultsPublished | Examination | Recalculate progression |
-| SupplementaryResultsPublished | Examination | Recalculate progression |
+| ExaminationResultPublished | Examination | Primary progression trigger |
+| RevaluationResultPublished | Examination | Recalculate progression |
+| SupplementaryResultPublished | Examination | Recalculate progression |
 | CurriculumUpdated | Curriculum Framework | Validate curriculum impact |
-| AcademicPolicyUpdated | Policy Management | Future evaluations use revised policies |
+| AcademicPolicyUpdated | Policy Management — **no publisher exists** | Future evaluations use revised policies |
 | CreditTransferApproved | Credit Transfer | Update Academic Credit Ledger |
 | AcademicBreakApproved | Student Lifecycle | Suspend progression |
-| StudentRejoined | Student Lifecycle | Resume progression |
+| StudentRestored | Student Lifecycle | Resume progression evaluation |
 
 These events initiate or influence progression workflows but never directly alter progression decisions.
 
@@ -2295,7 +2314,7 @@ Academic Credit Ledger successfully synchronised.
 # 7.6 Event Lifecycle
 
 ```text
-Official Results Published
+ExaminationResultPublished
             │
             ▼
 ProgressionEvaluationStarted
@@ -2454,7 +2473,14 @@ Academic Progression consumes services owned by other business domains.
 | Get Registration Details | Academic Registration | Validate enrolment |
 | Get Examination Results | Examination | Obtain official results |
 | Get Curriculum Structure | Curriculum Framework | Validate curriculum |
-| Get Academic Policy | Policy Management | Execute progression rules |
+| Get Academic Policy | Policy Management — **unresolved, no owner** | Execute progression rules |
+
+> **Marked 2026-08-06 under integrity finding INT-206.** "Policy Management" is not a
+> repository section and no document defines, owns or publishes it. `AcademicPolicyUpdated`
+> has no publisher anywhere. The dependency is recorded as a known missing bounded context
+> in `DEPENDENCY_MAP.md` section 7B, together with the evidence excluding A04 and A08 as
+> its home. **Do not implement a subscriber or query client against Policy Management
+> until an owner is assigned.**
 | Get Programme Details | Programme Management | Programme validation |
 | Get Financial Clearance | Finance | Institutional prerequisite where applicable |
 | Get ABC Credits | ABC Integration | Credit verification |
@@ -3235,7 +3261,7 @@ Institution-specific configurations shall remain isolated within tenant boundari
 | Programme Migration | Migration eligibility policies |
 | Academic Break | Leave and interruption rules |
 | Probation Policies | Academic monitoring rules |
-| Qualification Eligibility | Qualification Completion readiness parameters |
+| Qualification Eligibility | qualification completion readiness parameters |
 | Notification Policies | Progression communication rules |
 
 ---
@@ -3540,7 +3566,7 @@ Typical attributes include:
 | Decision | Academic decision taken |
 | Responsible Actor | User, system, or workflow |
 | Approval Reference | Workflow instance (if applicable) |
-| Correlation Identifier | Multi-domain traceability |
+| Correlation Identifier | Cross-domain traceability |
 
 ---
 
@@ -3770,7 +3796,7 @@ Typical operational reports include:
 | Programme Migration Register | Approved programme migrations |
 | Academic Break Register | Students on approved academic break |
 | Student Rejoining Register | Students successfully rejoined |
-| Qualification Eligibility Register | Eligible graduating students |
+| Qualification Eligibility Register | Eligible students completing their qualification |
 
 ---
 
@@ -3786,7 +3812,7 @@ Institutional management reports include:
 - Programme migration trends.
 - Student retention analysis.
 - Academic interruption analysis.
-- Qualification Completion readiness summary.
+- qualification completion readiness summary.
 - Historical progression comparison.
 
 ---
@@ -3798,7 +3824,7 @@ Executive dashboards may present:
 - Overall progression rate.
 - Probation percentage.
 - Detention percentage.
-- Qualification Completion readiness.
+- qualification completion readiness.
 - Credit completion trends.
 - Academic performance indicators.
 - Student success metrics.
@@ -3853,7 +3879,7 @@ Student-focused analytics include:
 - Qualification readiness.
 - Programme movement history.
 - Academic interruption history.
-- Qualification Completion prediction indicators.
+- qualification completion prediction indicators.
 - Historical academic progression.
 
 ---
@@ -3868,7 +3894,7 @@ Institution-wide analytics include:
 - Academic year comparison.
 - Semester comparison.
 - Student retention.
-- Qualification Completion success.
+- qualification completion success.
 - Progression bottlenecks.
 - Credit utilization.
 - Curriculum effectiveness indicators.
@@ -4093,7 +4119,7 @@ Requirements include:
 - Clear ownership.
 - Configuration-driven policies.
 - Versioned business rules.
-- Minimal multi-domain coupling.
+- Minimal cross-domain coupling.
 - Consistent architectural patterns.
 
 Changes to academic policy should primarily require configuration updates rather than software redesign.
@@ -4193,7 +4219,7 @@ The following principles conclude the non-functional architecture.
 - Operational resilience shall not compromise academic integrity.
 - Quality attributes shall apply uniformly across all progression workflows.
 - Non-functional requirements shall remain technology independent.
-- Multi-domain integrations shall preserve reliability and consistency.
+- Cross-domain integrations shall preserve reliability and consistency.
 - Future enhancements shall maintain compliance with established architectural standards.
 - All implementations shall conform to the Platform Foundation and dependency architecture.
 - Non-functional characteristics shall be validated during architecture and implementation reviews.
@@ -4236,7 +4262,7 @@ Centralizing ownership eliminates conflicting progression logic across multiple 
 ## Consequences
 
 - No other domain may directly modify progression state.
-- Multi-domain consumers shall use approved contracts or published events.
+- Cross-domain consumers shall use approved contracts or published events.
 - Business ownership remains explicit.
 
 ---
@@ -4311,7 +4337,7 @@ Institutions follow different academic regulations that evolve over time.
 
 ---
 
-# ADR-005 — Event-Driven Multi-Domain Communication
+# ADR-005 — Event-Driven Cross-Domain Communication
 
 ## Status
 
@@ -4381,7 +4407,7 @@ Standing communicates overall academic status independent of individual examinat
 
 ---
 
-# ADR-008 — NEP 2020 as a Multi-Domain Capability
+# ADR-008 — NEP 2020 as a Cross-Domain Capability
 
 ## Status
 
@@ -4472,7 +4498,7 @@ Audit capabilities are shared platform services with centralized governance.
 - Consistent enterprise auditing.
 - Reduced duplication.
 - Centralized compliance management.
-- Uniform audit standards amulti-domains.
+- Uniform audit standards across domains.
 
 ---
 
@@ -4490,7 +4516,7 @@ Academic Progression shall neither duplicate nor directly modify entities owned 
 
 ## Rationale
 
-Canonical ownership prevents architectural drift and multi-domain inconsistency.
+Canonical ownership prevents architectural drift and cross-domain inconsistency.
 
 ## Consequences
 
@@ -4511,7 +4537,7 @@ Architectural Decision Records shall comply with the following governance princi
 - Every major architectural change shall reference affected ADRs.
 - ADR approval shall follow repository governance processes.
 - Business implementation shall remain consistent with accepted ADRs.
-- Multi-domain architectural changes require Lead Architect approval.
+- Cross-domain architectural changes require Lead Architect approval.
 - ADRs shall remain traceable throughout the architecture lifecycle.
 
 ---
@@ -4588,7 +4614,7 @@ The matrix ensures that every major architectural capability is traceable throug
 | Evaluate Progression               | Academic progression evaluation |
 | Update Credit Ledger               | Credit accumulation             |
 | Update Academic Standing           | Standing maintenance            |
-| Validate Qualification Eligibility | Qualification Completion readiness            |
+| Validate Qualification Eligibility | qualification completion readiness            |
 | Process Programme Migration        | Migration handling              |
 | Approve Academic Break             | Academic interruption           |
 | Process Student Rejoining          | Academic continuation           |
@@ -4659,14 +4685,14 @@ The matrix ensures that every major architectural capability is traceable throug
 
 ---
 
-# 18.10 Multi-Domain Dependency Traceability
+# 18.10 Cross-Domain Dependency Traceability
 
 | External Domain | Dependency Purpose |
 |-----------------|--------------------|
 | Student Lifecycle | Student status |
 | Academic Delivery | Course completion context |
 | Examination | Official examination outcomes |
-| Qualification Completion & Student Exit | Qualification Completion processing |
+| Qualification Completion & Student Exit | qualification completion processing |
 | Platform Audit | Enterprise audit |
 | Authorization | Access control |
 | Workflow Engine | Approval orchestration |
@@ -4685,7 +4711,7 @@ All dependencies shall comply with approved dependency direction and canonical o
 | L0 | Institutional Vision |
 | L1 | Student Lifecycle Domain |
 | L2 | Academic Progression Domain |
-| L3 | Multi-Domain Academic Scenarios |
+| L3 | Cross-Domain Academic Scenarios |
 | L4 | System Behaviour Specifications |
 | L5 | Technical Solution Architecture |
 | L6 | User Experience & Interface |
@@ -4887,7 +4913,7 @@ The glossary shall comply with the following principles.
 - Domain-specific terminology shall not redefine Platform terminology.
 - Future terminology additions shall preserve backward compatibility.
 - Superseded terminology shall remain historically traceable.
-- Multi-domain definitions shall reference the owning architecture where applicable.
+- Cross-domain definitions shall reference the owning architecture where applicable.
 - Repository-wide terminology shall remain standardized across all Level 2 documents.
 
 ---
@@ -5248,9 +5274,9 @@ flowchart TD
 %% START
 %% =====================================================
 
-START([Official Examination Results Published])
+START([ExaminationResultPublished])
 
-START --> ELIGIBLE{Student Eligible for Evaluation}
+START --> ELIGIBLE{Student Eligible for Evaluation?}
 
 ELIGIBLE -->|No| END1([Evaluation Rejected])
 
@@ -5266,7 +5292,7 @@ CREDIT --> POLICY[Load Applicable Progression Policy]
 
 POLICY --> RULES[Evaluate Student Progression Rules]
 
-RULES --> DECISION{Policy Satisfied}
+RULES --> DECISION{Policy Satisfied?}
 
 %% =====================================================
 %% DECISION PATHS
@@ -5314,7 +5340,7 @@ LEDGER[Update Academic Credit Ledger]
 
 LEDGER --> QUALIFICATION[Evaluate Qualification Eligibility]
 
-QUALIFICATION --> MANUAL{Manual Academic Review Required}
+QUALIFICATION --> MANUAL{Manual Academic Review Required?}
 
 %% =====================================================
 %% MANUAL REVIEW
@@ -5365,9 +5391,9 @@ flowchart TD
 %% CREDIT SOURCE
 %% =====================================================
 
-RESULTS([Official Examination Results Published])
+RESULTS([ExaminationResultPublished])
 
-RESULTS --> PASS{Component Successfully Completed}
+RESULTS --> PASS{Component Successfully Completed?}
 
 PASS -->|No| END1([No Credit Awarded])
 
@@ -5391,7 +5417,7 @@ CREDITTYPE --> LEDGER[Update Academic Credit Ledger]
 
 LEDGER --> TOTAL[Recalculate Total Earned Credits]
 
-TOTAL --> REQUIREMENT{Programme Credit Requirement Satisfied}
+TOTAL --> REQUIREMENT{Programme Credit Requirement Satisfied?}
 
 %% =====================================================
 %% QUALIFICATION
@@ -5451,7 +5477,7 @@ flowchart TD
 
 START([Qualification Evaluation Initiated])
 
-START --> STUDENT{Student Active}
+START --> STUDENT{Student Active?}
 
 STUDENT -->|No| END1([Evaluation Rejected])
 
@@ -5475,7 +5501,7 @@ POLICY --> RULES[Evaluate Qualification Rules]
 %% DECISION
 %% =====================================================
 
-RULES --> ELIGIBLE{All Requirements Satisfied}
+RULES --> ELIGIBLE{All Requirements Satisfied?}
 
 ELIGIBLE -->|No| NOTELIGIBLE[Mark Not Eligible]
 
@@ -5520,10 +5546,10 @@ classDef decision fill:#FFF4CC,stroke:#C49A00,color:#000;
 class STUDENT,ELIGIBLE decision;
 ```
 
-20.7 Multi-Domain Sequence
-## 20.7 Multi-Domain Sequence
+20.7 Cross Domain Sequence
+## 20.7 Cross Domain Sequence
 
-The following sequence diagram illustrates the canonical multi-domain interaction during the academic progression process.
+The following sequence diagram illustrates the canonical cross-domain interaction during the academic progression process.
 
 The diagram demonstrates ownership boundaries, synchronous service interactions, asynchronous event publication, and downstream event consumption.
 
@@ -5546,7 +5572,7 @@ participant QC as Qualification Completion & Student Exit
 %% START
 %% =====================================================
 
-EX->>AP: Official Examination Results Published
+EX->>AP: ExaminationResultPublished
 
 %% =====================================================
 %% EVALUATION
@@ -5963,7 +5989,7 @@ VALIDATE --> EXECUTE[Execute Aggregate Operation]
 %% TRANSACTION
 %% =====================================================
 
-EXECUTE --> COMMIT{Transaction Committed}
+EXECUTE --> COMMIT{Transaction Committed?}
 
 COMMIT -->|No| ROLLBACK[Rollback Transaction]
 
@@ -6348,7 +6374,7 @@ The following principles govern all state transitions.
 - Invalid transitions shall be rejected.
 - Historical state changes shall remain immutable.
 - State transitions shall preserve aggregate consistency.
-- business scenarios shall not bypass this lifecycle.
+- Cross-domain workflows shall not bypass this lifecycle.
 
 ---
 
@@ -6534,7 +6560,7 @@ The following governance principles apply.
 
 - Every workflow shall have a single canonical owner.
 - Workflow execution shall follow approved business rules.
-- business scenarios shall use approved service contracts or domain events.
+- Cross-domain workflows shall use approved service contracts or domain events.
 - Every workflow shall produce complete audit records.
 - Workflow execution shall preserve aggregate consistency.
 - Workflow implementations shall remain idempotent where retries are supported.
@@ -6580,10 +6606,10 @@ This appendix summarizes event interactions defined throughout this architecture
 
 | Consumed Event | Published By | Purpose |
 |----------------|--------------|---------|
-| ExaminationResultsPublished | Examination | Trigger progression evaluation |
+| ExaminationResultPublished | Examination | Trigger progression evaluation |
 | AssessmentRevaluationCompleted | Examination | Re-Evaluate Student Progression |
 | StudentProgrammeChanged | Student Lifecycle | Maintain academic context |
-| StudentStatusChanged | Student Lifecycle | Validate progression eligibility |
+| ProgressionStudentStatusChanged | Student Lifecycle | Validate progression eligibility |
 | AcademicCalendarActivated | Academic Administration | Open progression cycle |
 | AcademicPeriodClosed | Academic Administration | Finalize progression processing |
 | MigrationRequestApproved | Programme Management | Execute programme migration |
@@ -6698,17 +6724,17 @@ The following governance principles apply.
 
 - Every event shall represent a completed business fact.
 - Every event shall have exactly one canonical publisher.
-- Event ownership shall never be shared amulti-domains.
+- Event ownership shall never be shared across domains.
 - Consumers shall never modify publisher-owned aggregates.
 - Events shall not replace authoritative business queries where current state is required.
 - Event contracts shall remain version controlled.
-- Multi-domain communication shall follow the repository dependency architecture.
+- Cross-domain communication shall follow the repository dependency architecture.
 - New events shall be introduced only through approved architectural governance.
 
 ---
 ---
 
-# 24. Appendix D — Multi-Domain Dependency Matrix
+# 24. Appendix D — Cross-Domain Dependency Matrix
 
 ## 24.1 Purpose
 
@@ -6733,7 +6759,7 @@ The Student Academic Progression domain shall comply with the following principl
 - Every business capability shall have exactly one canonical owner.
 - Dependencies shall follow approved repository direction.
 - Circular dependencies are prohibited.
-- Multi-domain communication shall occur only through approved service contracts or domain events.
+- Cross-domain communication shall occur only through approved service contracts or domain events.
 - External domains shall never directly modify Academic Progression aggregates.
 - Business ownership shall never be duplicated.
 
@@ -6820,7 +6846,7 @@ The following architectural rules shall always apply.
 |----------|-----------------|
 | DEP-01 | No circular dependencies are permitted. |
 | DEP-02 | Business ownership shall remain unique. |
-| DEP-03 | Multi-domain updates require approved contracts. |
+| DEP-03 | Cross-domain updates require approved contracts. |
 | DEP-04 | Published events shall never violate ownership boundaries. |
 | DEP-05 | Read models shall never become systems of record. |
 | DEP-06 | Platform services shall not contain business logic. |
@@ -6872,7 +6898,7 @@ This architecture aligns with the following repository artifacts.
 | Dependency Map | Dependency validation |
 | Platform Foundation | Shared infrastructure services |
 | Architecture Index | Repository organization |
-| Domain Interaction Matrix | Multi-domain communication |
+| Domain Interaction Matrix | Cross-domain communication |
 | Repository Governance Standards | Architectural compliance |
 
 ---
@@ -6882,7 +6908,7 @@ This architecture aligns with the following repository artifacts.
 The Student Academic Progression domain shall comply with the following governance principles.
 
 - Academic Progression remains the canonical owner of progression, academic standing, credit ledger, and qualification eligibility.
-- Multi-domain communication shall occur exclusively through approved service contracts, read contracts, or published domain events.
+- Cross-domain communication shall occur exclusively through approved service contracts, read contracts, or published domain events.
 - Platform services shall provide shared infrastructure capabilities without assuming business ownership.
 - Architectural dependencies shall remain acyclic and repository compliant.
 - Future integrations shall preserve domain autonomy and backward compatibility.
@@ -6892,5 +6918,4 @@ The Student Academic Progression domain shall comply with the following governan
 ---
 
 **End of Document**
-
 

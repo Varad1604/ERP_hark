@@ -9,14 +9,36 @@
 | Parent Architecture | SutraERP Level 1 Enterprise Architecture |
 | Architecture Style | Domain-Driven Design (DDD), CQRS, Event-Driven Architecture (EDA), API-First Architecture |
 | Canonical Owner | Enterprise Dashboard Domain |
-| Document Owner | Dhruv |
+| Document Owner | Institutional Intelligence — Enterprise Dashboard |
 | Primary Aggregate | Dashboard |
 | Supporting Aggregates | Dashboard Template, Workspace, Widget Configuration, Dashboard Layout |
 | Communication Pattern | Commands, Queries, Domain Events |
-| Status | Architecture Locked |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 | Repository | SutraERP Canonical Enterprise Repository |
 | Classification | Canonical Enterprise Architecture |
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose; §1.1 Purpose Statement; §1.4 Business Purpose |
+| Scope | §2 Scope; §2.1 Domain Scope; §2.2 Functional Scope |
+| Actors | — not present — |
+| Entities | §10.2 Primary Domain Entities |
+| Business Rules | §16 Business Rules; §19 Business Rule Enforcement Matrix; Part 5 — Business Rules, Authorization & Validation |
+| Workflow | §51 Workflow Specifications; §52 Workflow Catalogue; §51.1 Workflow Specification Framework |
+| State Machine | §12 Aggregate Lifecycle; §12.1 Dashboard Lifecycle; §12.2 Template Lifecycle |
+| Contracts | §29 Service Contracts; §29.1 Contract Principles; §29.2 Dashboard Management Contracts |
+| Events | §23 Domain Events; §24 Event Publishing Rules; §30 Event Integration |
+| Dependencies | §4 Dependency Architecture; §27 Upstream Dependencies; §4.1 Direct Dependencies |
+| Locked Decisions | §44 Architectural Decision Records (ADR) |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
 
 ---
 

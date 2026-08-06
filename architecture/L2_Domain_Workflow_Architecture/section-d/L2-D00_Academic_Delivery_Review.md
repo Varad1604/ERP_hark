@@ -2,23 +2,46 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | Purpose |
+| Scope | Scope |
+| Actors | — not present — |
+| Entities | Part 5 — Aggregate Ownership Review |
+| Business Rules | Rules / Invariants |
+| Workflow | Complete Academic Delivery Workflow Chain; L2-D03 — Timetable Workflows |
+| State Machine | Lifecycle |
+| Contracts | Part 10 — Integration Contracts & External Interfaces |
+| Events | Part 7 — Event Catalogue Review |
+| Dependencies | — not present — |
+| Locked Decisions | — not present — |
+
+> **Gap:** 3 required section(s) have no counterpart in this document: Actors, Dependencies, Locked Decisions. Recorded, not authored.
+
+---
+
 # Document Metadata
 
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-D00 |
+| Document Owner | Academic Delivery |
 | Domain Section | Academic Delivery (Section D) |
-| Layer | L2 — Domain Workflow Architecture |
+| Layer | L2 — Academic Operations |
 | Architecture Level | Enterprise Domain Review & Certification |
 | Architecture Style | Domain Driven Design (DDD), CQRS, Event Driven Architecture (EDA), Clean & Hexagonal Architecture |
 | Primary Owner | Enterprise Architecture Review Board |
 | Technical Owner | Technical Architecture Board |
-| Canonical Owner | Pallav |
+| Canonical Owner | Academic Delivery Domain Group |
 | Version | 1.0 |
-| Status | Certified & Locked |
+| Status | Trust Certification Ready |
 | Review Date | 2026-07-27 |
 | Repository | SutraERP Enterprise Repository |
-| Target Scope | L2-D01, L2-D02, L2-D03, L2-D04, L2-D05, L2-D06, L2-D07 |
+| Target Scope | L2-D01, L2-D02, L2-D03, L2-D04, L2-D05, L2-D06 |
 
 ---
 
@@ -26,7 +49,7 @@
 
 The purpose of this document is to establish a unified architecture review, boundary verification, dependency validation, and governance lock for the entire **Academic Delivery Section (Section D)** of the SutraERP platform.
 
-This review certifies that all constituent sub-domains (L2-D01 through L2-D07) adhere strictly to the enterprise standards of Domain-Driven Design (DDD), Command-Query Responsibility Segregation (CQRS), Event-Driven Architecture (EDA), Canonical Data Ownership, and Hexagonal Architecture. It acts as the final gate to prevent domain leakage, circular dependencies, transactional integrity failures, and canonical ownership violations before final implementation locking.
+This review certifies that all constituent sub-domains (L2-D01 through L2-D06) adhere strictly to the enterprise standards of Domain-Driven Design (DDD), Command-Query Responsibility Segregation (CQRS), Event-Driven Architecture (EDA), Canonical Data Ownership, and Hexagonal Architecture. It acts as the final gate to prevent domain leakage, circular dependencies, transactional integrity failures, and canonical ownership violations before final implementation locking.
 
 ---
 
@@ -39,7 +62,6 @@ This review covers the complete architectural definitions, boundaries, and integ
 - **L2-D04**: Teaching Session & Attendance Workflows
 - **L2-D05**: Academic Monitoring Workflows
 - **L2-D06**: Open Electives & MOOCs Workflows
-- **L2-D07**: Internal Assessment Workflows
 
 This document does *not* duplicate the detailed operational workflows of the individual sub-domains but rather defines their transactional boundaries, structural dependencies, and behavioral relationships.
 
@@ -65,12 +87,12 @@ The Academic Delivery section of SutraERP governs the operational execution of a
 
 # Section Domain Inventory
 
-Below is the verified registry of the seven bounded contexts constituting the Academic Delivery Section.
+Below is the verified registry of the six bounded contexts constituting the Academic Delivery Section.
 
 ## L2-D01 — Course & Course Offering
 - **Purpose**: Governs canonical course definitions and course offering lifecycles (creation, validation, capacity limits, publication).
 - **Core Aggregates**:
-  - `CourseMaster`: Canonical course definition owned by Section B and referenced by D01 for offering validation.
+  - `CourseMaster`: Owns course code, credits, structure.
   - `CourseOffering`: Owns offering session, department eligibility, capacity, availability status.
 - **Publishes Events**: `CourseOfferingCreated`, `CourseOfferingUpdated`, `CourseOfferingSubmittedForApproval`, `CourseOfferingApproved`, `CourseOfferingRejected`, `CourseOfferingPublished`, `CourseOfferingPublicationScheduled`, `CourseOfferingActivated`, `CourseOfferingActivationFailed`, `CourseOfferingSuspended`, `CourseOfferingReactivated`, `CourseOfferingCancelled`.
 - **Consumes Events**: None (Upstream foundation).
@@ -85,7 +107,7 @@ Below is the verified registry of the seven bounded contexts constituting the Ac
   - `FacultyAssignment`: Owns assignment status, loading hours, and specific course offering references.
   - `AssignmentApprovalCase`: Governs institutional approval workflows for manual exceptions.
   - `OperationalChange`: Controls modifications during execution.
-- **Publishes Events**: `FacultyAssignmentCreated`, `FacultyAssignmentSubmitted`, `FacultyAssignmentReviewed`, `FacultyAssignmentApproved`, `FacultyAssignmentRejected`, `FacultyAssignmentActivated`, `FacultyAssignmentCompleted`, `FacultyAssignmentArchived`, `ApprovalInitiated`, `ApprovalRouted`, `ApprovalGranted`, `ApprovalRejected`, `ApprovalEscalated`, `ApprovalCompleted`, `OperationalChangeRequested`, `OperationalChangeValidated`, `OperationalChangeApproved`, `OperationalChangeApplied`, `OperationalChangeClosed`.
+- **Publishes Events**: `FacultyAssignmentCreated`, `FacultyAssignmentSubmitted`, `FacultyAssignmentReviewed`, `FacultyAssignmentApproved`, `FacultyAssignmentRejected`, `FacultyAssignmentActivated`, `FacultyAssignmentCompleted`, `FacultyAssignmentArchived`, `FacultyAssignmentApprovalInitiated`, `ApprovalRouted`, `ApprovalGranted`, `ApprovalRejected`, `ApprovalEscalated`, `FacultyAssignmentApprovalCompleted`, `OperationalChangeRequested`, `OperationalChangeValidated`, `OperationalChangeApproved`, `OperationalChangeApplied`, `OperationalChangeClosed`.
 - **Consumes Events**: `CourseOfferingPublished`, `CourseOfferingCancelled` (from L2-D01).
 - **Depends On**: L2-D01, Human Resources (Reference data).
 - **Downstream Domains**: L2-D03, L2-D04.
@@ -98,7 +120,7 @@ Below is the verified registry of the seven bounded contexts constituting the Ac
   - `TimetableStructure`: Defines timeslots, days, and period patterns.
   - `TimetableSlotAssignment`: Owns Room, Slot, Faculty, and Course Offering bindings.
   - `SchedulingConflictRegister`: Tracks conflicts and exceptions.
-- **Publishes Events**: `TimetablePlanningStarted`, `TimetablePlanningCompleted`, `TimetableDraftCreated`, `TimetableValidated`, `TimetableValidationFailed`, `TimetableOptimized`, `ConflictDetected`, `ConflictResolved`, `TimetableApproved`, `TimetableRejected`, `TimetablePublished`, `TimetableActivated`, `TimetableRevisionCreated`.
+- **Publishes Events**: `TimetablePlanningStarted`, `TimetablePlanningCompleted`, `TimetableDraftCreated`, `TimetableValidated`, `TimetableValidationFailed`, `TimetableOptimized`, `TimetableConflictDetected`, `ConflictResolved`, `TimetableApproved`, `TimetableRejected`, `TimetablePublished`, `TimetableActivated`, `TimetableRevisionCreated`.
 - **Consumes Events**: `CourseOfferingPublished` (L2-D01), `FacultyAssignmentApproved` (L2-D02).
 - **Depends On**: L2-D01, L2-D02, Campus Infrastructure (L2-B03).
 - **Downstream Domains**: L2-D04, L2-D05.
@@ -141,26 +163,12 @@ Below is the verified registry of the seven bounded contexts constituting the Ac
   - `LearningProgress`: Tracks progress synchronization.
   - `CertificateVerification`: Audits certificate uploads.
   - `CreditRecognition`: Manages credit mapping and transcript posting retries.
-- **Publishes Events**: `LearningOpportunityPublished`, `LearningOpportunityUpdated`, `LearningOpportunityActivated`, `LearningOpportunitySuspended`, `LearningOpportunityArchived`, `LearningOpportunityCapacityUpdated`, `LearningOpportunityClosed`, `EnrollmentRequested`, `EnrollmentValidated`, `EnrollmentApproved`, `EnrollmentRejected`, `EnrollmentCancelled`, `EnrollmentWithdrawn`, `EnrollmentClosed`, `EligibilityValidated`, `EligibilityRejected`, `SeatAllocated`, `SeatReserved`, `SeatReleased`, `WaitlistEntryCreated`, `WaitlistedStudentPromoted`, `WaitlistEntryExpired`, `WaitlistEntryRemoved`, `LearnerRegisteredWithProvider`, `EnrollmentStatusSynchronized`, `LearningProgressSynchronized`, `AssessmentStatusSynchronized`, `ExternalCourseCompleted`, `SynchronizationRecovered`, `SynchronizationFailureResolved`, `LearningProgressInitialized`, `LearningProgressUpdated`, `LearningCompletionValidated`, `LearningCompleted`, `LearningActivityClosed`, `CertificateReceived`, `CertificateAuthenticityValidated`, `LearnerIdentityVerified`, `ProviderVerified`, `CertificateAccepted`, `CertificateRejected`, `CertificateFraudSuspected`, `CreditRecognitionRequested`, `CreditRecognitionApproved`, `CreditRecognitionRejected`, `TranscriptPostingRequested`, `TranscriptPostingCompleted`, `CreditRecognitionCaseClosed`, `LearningProviderConfigured`, `ElectivePolicyPublished`, `CreditMappingRulesPublished`, `EnrollmentWindowConfigured`, `ApprovalPolicyPublished`, `ProviderIntegrationConfigured`, `IntegrationHealthUpdated`, `AcademicSessionArchived`, `EnrollmentRecovered`, `SeatConflictResolved`, `ProviderSynchronizationRecovered`, `LearningRecordsReconciled`, `AdministrativeOverrideExecuted`, `WorkflowRecovered`, `ExceptionCaseClosed`.
+- **Publishes Events**: `LearningOpportunityPublished`, `LearningOpportunityUpdated`, `LearningOpportunityActivated`, `LearningOpportunitySuspended`, `LearningOpportunityArchived`, `LearningOpportunityCapacityUpdated`, `LearningOpportunityClosed`, `EnrollmentRequested`, `EnrollmentValidated`, `EnrollmentApproved`, `ElectiveEnrollmentRejected`, `EnrollmentCancelled`, `EnrollmentWithdrawn`, `EnrollmentClosed`, `EligibilityValidated`, `EligibilityRejected`, `SeatAllocated`, `SeatReserved`, `SeatReleased`, `WaitlistEntryCreated`, `WaitlistedStudentPromoted`, `WaitlistEntryExpired`, `WaitlistEntryRemoved`, `LearnerRegisteredWithProvider`, `EnrollmentStatusSynchronized`, `LearningProgressSynchronized`, `AssessmentStatusSynchronized`, `ExternalCourseCompleted`, `SynchronizationRecovered`, `SynchronizationFailureResolved`, `LearningProgressInitialized`, `LearningProgressUpdated`, `LearningCompletionValidated`, `LearningCompleted`, `LearningActivityClosed`, `CertificateReceived`, `CertificateAuthenticityValidated`, `LearnerIdentityVerified`, `ProviderVerified`, `CertificateAccepted`, `CertificateRejected`, `CertificateFraudSuspected`, `CreditRecognitionRequested`, `CreditRecognitionApproved`, `CreditRecognitionRejected`, `TranscriptPostingRequested`, `TranscriptPostingCompleted`, `CreditRecognitionCaseClosed`, `LearningProviderConfigured`, `ElectivePolicyPublished`, `CreditMappingRulesPublished`, `EnrollmentWindowConfigured`, `ApprovalPolicyPublished`, `ProviderIntegrationConfigured`, `IntegrationHealthUpdated`, `AcademicSessionArchived`, `EnrollmentRecovered`, `SeatConflictResolved`, `ProviderSynchronizationRecovered`, `LearningRecordsReconciled`, `AdministrativeOverrideExecuted`, `WorkflowRecovered`, `ElectiveExceptionCaseClosed`.
 - **Consumes Events**: `CourseOfferingPublished` (from L2-D01).
 - **Depends On**: L2-D01, Student Lifecycle, Curriculum Management, Academic Records (Posting target).
 - **Downstream Domains**: Academic Records, Examinations.
 - **Current Status**: Certified & Locked (Refactored 1.0).
 - **Architecture Health**: Fully Compliant.
-
-## L2-D07 â€” Internal Assessment
-- **Purpose**: Governs institution-controlled internal and continuous assessment activities, including blueprinting, window control, submission capture, moderation, and finalization of internal assessment marks.
-- **Core Aggregates**:
-  - `InternalAssessmentBlueprint`: Defines assessment components, weightage, and policy bindings.
-  - `AssessmentWindow`: Owns release, deadline, extension, and closure rules.
-  - `AssessmentSubmission`: Captures student submission evidence and awarded internal marks.
-  - `AssessmentModerationCase`: Governs moderation, correction, and approval of internal assessment outcomes.
-- **Publishes Events**: `InternalAssessmentBlueprintPublished`, `AssessmentWindowOpened`, `AssessmentWindowExtended`, `AssessmentSubmissionRecorded`, `AssessmentSubmissionUpdated`, `AssessmentModerationRequested`, `AssessmentModerationCompleted`, `InternalAssessmentFinalized`, `InternalAssessmentArchived`.
-- **Consumes Events**: `CourseOfferingPublished` (from L2-D01), `TeachingSessionCompleted` (from L2-D04), `AttendanceFinalized` (from L2-D04).
-- **Depends On**: L2-D01, L2-D04, L2-I01 (assessment policy reference), Student Lifecycle reference data.
-- **Downstream Domains**: L2-I08, L2-I09.
-- **Current Status**: Architecture Locked.
-- **Architecture Health**: High.
 
 ---
 
@@ -195,7 +203,7 @@ Below is the verified registry of the seven bounded contexts constituting the Ac
   [Institutional Grading] (Exam Domain)                   [Certificate Verification] (L2-D06)
            │                                                       │
            ▼                                                       ▼
-  [Internal Assessment Finalization] (L2-D07)             [Credit Recognition Saga] (L2-D06)
+  [Standard Grade Posting]                                [Credit Recognition Saga] (L2-D06)
            │                                                       │
            └───────────────────────────┬───────────────────────────┘
                                        ▼
@@ -212,19 +220,19 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 ========================================================================================
 1. CourseMaster
 ========================================================================================
-- Source Document: L2-B04 — Curriculum Framework
-- Owner Domain: L2-B04 (Curriculum Framework Context)
+- Source Document: L2-B04 — Curriculum Framework Workflows
+- Owner Domain: L2-B04 (Curriculum Framework)
 - Aggregate Root: CourseMaster
-- Purpose: Governs canonical course definitions and curriculum mappings consumed by Section D offering workflows.
+- Purpose: Governs course syllabus framework, credit values, and foundational curriculum mappings.
 - Lifecycle: Proposed -> Active -> Superseded -> Archived
 - Business Invariants: Course Code must be unique. Credits cannot be negative.
 - External References: L2-B04 Curriculum Framework ID
 - Canonical IDs Used: CourseMasterId
-- Commands Targeting: CreateCourse
-- Events Published: CourseCreated, CourseUpdated
+- Commands Targeting: CreateCourseMaster, UpdateCourseMaster
+- Events Published: CourseMasterCreated, CourseMasterUpdated
 - Events Consumed: None
-- Read Models: Course Catalog (RM-B04-01)
-- Boundary Validation: Strictly encapsulated; referenced in L2-D01, L2-D02, and L2-D03 by CourseMasterId only.
+- Read Models: Course Catalog (RM-D01-01)
+- Boundary Validation: Strictly encapsulated; referenced in L2-D02 and L2-D03 by CourseMasterId only.
 - Aggregate Leakage: PASS. No direct reference properties exposed.
 
 ========================================================================================
@@ -275,7 +283,7 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - External References: Role Registry ID, FacultyAssignmentId
 - Canonical IDs Used: ApprovalCaseId
 - Commands Targeting: ApproveWorkloadException, EscalateApproval
-- Events Published: ApprovalInitiated, ApprovalGranted
+- Events Published: FacultyAssignmentApprovalInitiated, ApprovalGranted
 - Events Consumed: None
 - Read Models: Pending Approval Case Grid (RM-D02-02)
 - Boundary Validation: Separates override actions from core assignment states.
@@ -347,7 +355,7 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - External References: Room ID, Faculty ID
 - Canonical IDs Used: ConflictRegisterId
 - Commands Targeting: LogConflict, ResolveConflict
-- Events Published: ConflictDetected, ConflictResolved
+- Events Published: TimetableConflictDetected, ConflictResolved
 - Events Consumed: SlotScheduled
 - Read Models: Conflict Dashboard (RM-D03-03)
 - Boundary Validation: Encapsulated as a tracking entity.
@@ -532,89 +540,17 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - Read Models: Credit Mapping History (RM-D06-04)
 - Boundary Validation: Employs outbox pattern for transactional operations.
 - Aggregate Leakage: PASS.
-
-========================================================================================
-19. InternalAssessmentBlueprint
-========================================================================================
-- Source Document: L2-D07 â€” Internal Assessment
-- Owner Domain: L2-D07 (Internal Assessment Context)
-- Aggregate Root: InternalAssessmentBlueprint
-- Purpose: Defines canonical internal assessment components, weightage, and policy binding for a course offering or academic term.
-- Lifecycle: Draft -> Published -> Active -> Closed -> Archived
-- Business Invariants: Component weightage must comply with institutional policy.
-- External References: CourseOfferingId, AcademicSessionId, TeachingSessionId
-- Canonical IDs Used: InternalAssessmentBlueprintId
-- Commands Targeting: CreateInternalAssessmentBlueprint, PublishInternalAssessmentBlueprint
-- Events Published: InternalAssessmentBlueprintPublished, AssessmentWindowOpened
-- Events Consumed: CourseOfferingPublished
-- Read Models: Internal Assessment Blueprint View (RM-D07-01)
-- Boundary Validation: Reference-only to D01 and D04.
-- Aggregate Leakage: PASS.
-
-========================================================================================
-20. AssessmentWindow
-========================================================================================
-- Source Document: L2-D07 â€” Internal Assessment
-- Owner Domain: L2-D07 (Internal Assessment Context)
-- Aggregate Root: AssessmentWindow
-- Purpose: Governs release, deadline, extension, and closure of assessment windows.
-- Lifecycle: Scheduled -> Open -> Extended -> Closed -> Archived
-- Business Invariants: Windows must fall within approved academic periods.
-- External References: InternalAssessmentBlueprintId, AcademicCalendarId
-- Canonical IDs Used: AssessmentWindowId
-- Commands Targeting: OpenAssessmentWindow, ExtendAssessmentWindow, CloseAssessmentWindow
-- Events Published: AssessmentWindowOpened, AssessmentWindowExtended, AssessmentWindowClosed
-- Events Consumed: None
-- Read Models: Assessment Window Board (RM-D07-02)
-- Boundary Validation: Window control is local to Section D.
-- Aggregate Leakage: PASS.
-
-========================================================================================
-21. AssessmentSubmission
-========================================================================================
-- Source Document: L2-D07 â€” Internal Assessment
-- Owner Domain: L2-D07 (Internal Assessment Context)
-- Aggregate Root: AssessmentSubmission
-- Purpose: Captures student submission evidence and awarded internal marks.
-- Lifecycle: Created -> Submitted -> Evaluated -> Moderated -> Finalized -> Archived
-- Business Invariants: A student may have only one final submission per component per window.
-- External References: StudentId, AssessmentWindowId
-- Canonical IDs Used: AssessmentSubmissionId
-- Commands Targeting: RecordAssessmentSubmission, UpdateAssessmentMarks
-- Events Published: AssessmentSubmissionRecorded, AssessmentSubmissionUpdated, InternalAssessmentFinalized
-- Events Consumed: AssessmentWindowOpened
-- Read Models: Student Assessment Ledger (RM-D07-03)
-- Boundary Validation: Marks remain internal-assessment only until exported to Examination.
-- Aggregate Leakage: PASS.
-
-========================================================================================
-22. AssessmentModerationCase
-========================================================================================
-- Source Document: L2-D07 â€” Internal Assessment
-- Owner Domain: L2-D07 (Internal Assessment Context)
-- Aggregate Root: AssessmentModerationCase
-- Purpose: Governs moderation, correction, and approval of internal assessment outcomes.
-- Lifecycle: Initiated -> UnderReview -> Approved -> Rejected -> Closed
-- Business Invariants: Moderation decisions must preserve the original submission audit trail.
-- External References: AssessmentSubmissionId, ApproverRoleId
-- Canonical IDs Used: AssessmentModerationCaseId
-- Commands Targeting: RequestAssessmentModeration, ApproveAssessmentModeration, RejectAssessmentModeration
-- Events Published: AssessmentModerationRequested, AssessmentModerationCompleted, AssessmentModerationRejected
-- Events Consumed: AssessmentSubmissionRecorded
-- Read Models: Moderation Queue (RM-D07-04)
-- Boundary Validation: Moderation cannot recalculate examination results.
-- Aggregate Leakage: PASS.
 ```
 
 ---
 
 # Part 6 — Command Ownership Matrix
 
-This matrix documents **every command** defined across contexts L2-D01 to L2-D07.
+This matrix documents **every command** defined across contexts L2-D01 to L2-D06.
 
 | Command Name | Owning Domain | Target Aggregate | Preconditions | Postconditions | Events Produced | Auth Scope |
 |---|---|---|---|---|---|---|
-| **B04-C01 CreateCourse** | L2-B04 | `CourseMaster` | Curriculum template exists | CourseMaster initialized | CourseCreated | Registrar |
+| **B04-C01 CreateCourseMaster** | L2-B04 | `CourseMaster` | Curriculum template exists | CourseMaster initialized | CourseMasterCreated | Registrar |
 | **D01-C02 PublishOffering** | L2-D01 | `CourseOffering` | Offering validations pass | Offering status: Published | CourseOfferingPublished | Dept Head |
 | **D02-C01 AssignFaculty** | L2-D02 | `FacultyAssignment` | Faculty qualified; load slot open | Assignment status: Draft | FacultyAssignmentCreated | Admin |
 | **D02-C02 ApproveWorkload** | L2-D02 | `AssignmentApprovalCase`| Workload exception case active | Exception status: Approved | ApprovalGranted | Dean |
@@ -631,11 +567,6 @@ This matrix documents **every command** defined across contexts L2-D01 to L2-D07
 | **D06-C43 RecordLearningComplete**| L2-D06 | `FlexibleLearningEnrollment`| Progress sync validation passes | Completion: Completed (FLE SoR) | LearningCompletionRecorded | Provider Sync |
 | **D06-C59 InitiateTranscriptPost**| L2-D06 | `CreditRecognition` | Recognition status: Approved | Status: CreditPostedRequest | TranscriptPostingRequested | System |
 | **D06-C60 RetryTranscriptPosting**| L2-D06 | `CreditRecognition` | Connection fail; retry pending | Outbox task retried | TranscriptPostingRequested | System |
-| **D07-C01 CreateInternalAssessmentBlueprint** | L2-D07 | `InternalAssessmentBlueprint` | Course offering published | Blueprint established | InternalAssessmentBlueprintPublished | Academic Staff |
-| **D07-C02 OpenAssessmentWindow** | L2-D07 | `AssessmentWindow` | Blueprint published; term active | Window opened | AssessmentWindowOpened | Academic Staff |
-| **D07-C03 RecordAssessmentSubmission** | L2-D07 | `AssessmentSubmission` | Window open; student eligible | Submission recorded | AssessmentSubmissionRecorded | Faculty |
-| **D07-C04 RequestAssessmentModeration** | L2-D07 | `AssessmentModerationCase` | Submission requires review | Moderation case initiated | AssessmentModerationRequested | Faculty |
-| **D07-C05 FinalizeInternalAssessment** | L2-D07 | `AssessmentSubmission` | Moderation completed; approval granted | Final internal marks locked | InternalAssessmentFinalized | Academic Staff |
 
 ---
 
@@ -659,11 +590,6 @@ This catalogue records **every domain event** published by Section D aggregates.
 | **TranscriptPostingRequested** | `CreditRecognition` | L2-D06 | 1.0 | Credit approval granted | Academic Records |
 | **TranscriptPostingCompleted** | Academic Records (External)| Academic Records | 1.0 | Transcript callback | L2-D06 |
 | **TranscriptPostingFailed** | `CreditRecognition` | L2-D06 | 1.0 | Retry count exhausted | Alert Registry, Audit |
-| **InternalAssessmentBlueprintPublished** | `InternalAssessmentBlueprint` | L2-D07 | 1.0 | Blueprint approved | L2-I08, L2-I09 |
-| **AssessmentWindowOpened** | `AssessmentWindow` | L2-D07 | 1.0 | Assessment window released | L2-I08 |
-| **AssessmentSubmissionRecorded** | `AssessmentSubmission` | L2-D07 | 1.0 | Student submission captured | L2-I08 |
-| **AssessmentModerationCompleted** | `AssessmentModerationCase` | L2-D07 | 1.0 | Moderation approved | L2-I08 |
-| **InternalAssessmentFinalized** | `AssessmentSubmission` | L2-D07 | 1.0 | Final marks locked | L2-I08, L2-I09 |
 
 ---
 
@@ -695,14 +621,14 @@ Section D maintains loose coupling with other SutraERP domain sections.
 - Validation: Enrollment rejected if student status is Inactive.
 
 ========================================================================================
-3. Downstream Academic Records Integration (External)
+3. Downstream Academic Records (Section H)
 ========================================================================================
 - Commands Consumed: Request Transcript Posting (Post mapping)
 - Events Consumed: TranscriptPostingCompleted, TranscriptPostingRejected
 - Events Published: TranscriptPostingRequested (Outbox pattern)
 - Read Models Accessed: None
 - APIs Used: Transcript Registry POST /api/v1/transcripts/credits
-- Dependency Type: Outbound Command execution (D06 -> External Academic Records)
+- Dependency Type: Outbound Command execution (D06 -> H01)
 - Validation: Resilient outbox retries to recover transient transaction errors.
 ```
 
@@ -712,34 +638,12 @@ Section D maintains loose coupling with other SutraERP domain sections.
 
 | Read Model Name | Owner | Source Events | Refresh Strategy | Consistency | Cache Policy |
 |---|---|---|---|---|---|
-| **Course Catalog (RM-B04-01)** | L2-B04 | `CourseCreated`, `CourseUpdated` | Projection on event | Eventual | Redis; 24-hr TTL |
+| **Course Catalog (RM-D01-01)** | L2-D01 | `CourseMasterCreated`, `CourseMasterUpdated` | Projection on event | Eventual | Redis; 24-hr TTL |
 | **Faculty Workload Board (RM-D02-01)** | L2-D02 | `FacultyAssignmentApproved`, `AssignmentCancelled` | Event-driven projection | Eventual | Invalidated on change |
 | **Student Class Calendar (RM-D03-01)** | L2-D03 | `TimetablePublished`, `ScheduleModified` | Real-time project | Eventual | CDN cached |
 | **Daily Attendance Grid (RM-D04-01)** | L2-D04 | `AttendanceRegisterOpened`, `AttendanceRecorded` | Real-time Query | Eventual | No cache |
 | **Academic Risk Dashboard (RM-D05-01)**| L2-D05 | `AcademicMonitoringStarted`, `InterventionTriggered` | Event-driven projection | Eventual | CDN cached |
 | **Electives Registry Board (RM-D06-01)**| L2-D06 | `SeatReserved`, `SeatAllocated`, `SeatReleased` | Projection on event | Eventual | Invalidated on seat release |
-| **Internal Assessment Blueprint View (RM-D07-01)** | L2-D07 | `InternalAssessmentBlueprintPublished` | Projection on event | Eventual | Invalidated on update |
-| **Assessment Window Board (RM-D07-02)** | L2-D07 | `AssessmentWindowOpened`, `AssessmentWindowClosed` | Projection on event | Eventual | TTL based |
-| **Student Assessment Ledger (RM-D07-03)** | L2-D07 | `AssessmentSubmissionRecorded`, `AssessmentSubmissionUpdated`, `InternalAssessmentFinalized` | Projection on event | Eventual | Invalidated on finalization |
-| **Moderation Queue (RM-D07-04)** | L2-D07 | `AssessmentModerationRequested`, `AssessmentModerationCompleted` | Projection on event | Eventual | No cache |
-
----
-
-## Lifecycle
-
-Lifecycle is not consolidated into a single section; each of the 22 aggregates documented in Part 5 (Aggregate Ownership Review) specifies its own lifecycle state chain via the "Lifecycle:" field — for example, `CourseOffering`: Draft -> Published -> Active -> Suspended -> Closed, and `TeachingSession`: Scheduled -> Active -> Completed -> Archived. The Complete Academic Delivery Workflow Chain diagram further sequences these per-aggregate lifecycles across the seven bounded contexts (L2-D01 through L2-D07).
-
----
-
-## States
-
-State values are recorded per aggregate as the "Lifecycle:" transition chains in Part 5 (Aggregate Ownership Review) rather than in a separate state catalogue. No additional state machine section exists beyond these per-aggregate chains and the Command Ownership Matrix (Part 6), which records the precondition and postcondition state changes triggered by each command.
-
----
-
-## Rules / Invariants
-
-Business rules are recorded per aggregate as the "Business Invariants:" field in Part 5 (Aggregate Ownership Review) — for example, "Max Capacity must exceed current allocated seats" (`CourseOffering`) and "Workload allocation hours cannot exceed maximum allowed limits" (`FacultyAssignment`). Command-level preconditions and postconditions enforcing these invariants are additionally listed in the Command Ownership Matrix (Part 6).
 
 ---
 
@@ -747,7 +651,7 @@ Business rules are recorded per aggregate as the "Business Invariants:" field in
 
 The Technical Architecture Board certifies the Academic Delivery Section (Section D):
 
-- **Aggregate Completeness**: Verified. All 22 aggregates are mapped with zero transaction leaks.
+- **Aggregate Completeness**: Verified. All 18 aggregates are mapped with zero transaction leaks.
 - **Boundary Validation**: PASS.
 - **Dependency Validation**: PASS.
 
@@ -762,14 +666,14 @@ The Technical Architecture Board certifies the Academic Delivery Section (Sectio
 
 The Technical Architecture Board hereby declares the **Academic Delivery Section (Section D)** of the SutraERP system to be **LOCKED**.
 
-All aggregates, commands, events, read models, and multi-domain dependencies are frozen. Future modifications require a formal Architecture Decision Record (ADR) and review board approval.
+All aggregates, commands, events, read models, and cross-domain dependencies are frozen. Future modifications require a formal Architecture Decision Record (ADR) and review board approval.
 
 ---
 
 # Appendices
 
 ### Appendix A — Frozen Aggregates (Source Referencing)
-1. `CourseMaster` (Source: L2-B04)
+1. `CourseMaster` (Source: L2-D01)
 2. `CourseOffering` (Source: L2-D01)
 3. `FacultyAssignment` (Source: L2-D02)
 4. `AssignmentApprovalCase` (Source: L2-D02)
@@ -787,24 +691,20 @@ All aggregates, commands, events, read models, and multi-domain dependencies are
 16. `SeatAllocation` (Source: L2-D06)
 17. `WaitlistEntry` (Source: L2-D06)
 18. `CreditRecognition` (Source: L2-D06)
-19. `InternalAssessmentBlueprint` (Source: L2-D07)
-20. `AssessmentWindow` (Source: L2-D07)
-21. `AssessmentSubmission` (Source: L2-D07)
-22. `AssessmentModerationCase` (Source: L2-D07)
 
 ### Appendix B — Frozen Commands
-- `CreateCourse` (B04), `PublishOffering` (D01), `AssignFaculty` (D02), `ApproveWorkload` (D02), `CreateTimetable` (D03), `AllocateSlot` (D03), `StartTeachingSession` (D04), `RecordAttendance` (D04), `CorrectAttendance` (D04), `CreateMonitoringPlan` (D05), `TriggerIntervention` (D05), `ValidateEligibility` (D06), `SubmitEnrollment` (D06), `ApproveEnrollment` (D06), `RecordLearningComplete` (D06), `InitiateTranscriptPost` (D06), `RetryTranscriptPosting` (D06), `CreateInternalAssessmentBlueprint` (D07), `OpenAssessmentWindow` (D07), `RecordAssessmentSubmission` (D07), `RequestAssessmentModeration` (D07), `FinalizeInternalAssessment` (D07).
+- `CreateCourse` (D01), `PublishOffering` (D01), `AssignFaculty` (D02), `ApproveWorkload` (D02), `CreateTimetable` (D03), `AllocateSlot` (D03), `StartTeachingSession` (D04), `RecordAttendance` (D04), `CorrectAttendance` (D04), `CreateMonitoringPlan` (D05), `TriggerIntervention` (D05), `ValidateEligibility` (D06), `SubmitEnrollment` (D06), `ApproveEnrollment` (D06), `RecordLearningComplete` (D06), `InitiateTranscriptPost` (D06), `RetryTranscriptPosting` (D06).
 
 ### Appendix C — Frozen Domain Events
-- `CourseOfferingPublished` (D01), `FacultyAssignmentApproved` (D02), `TimetablePublished` (D03), `ScheduleModified` (D03), `TeachingSessionStarted` (D04), `AttendanceFinalized` (D04), `TeachingProgressRecorded` (D04), `AcademicMonitoringStarted` (D05), `EnrollmentRequested` (D06), `EnrollmentApproved` (D06), `LearningCompletionRecorded` (D06), `TranscriptPostingRequested` (D06), `TranscriptPostingCompleted` (D06), `TranscriptPostingFailed` (D06), `InternalAssessmentBlueprintPublished` (D07), `AssessmentWindowOpened` (D07), `AssessmentSubmissionRecorded` (D07), `AssessmentModerationCompleted` (D07), `InternalAssessmentFinalized` (D07).
+- `CourseOfferingPublished` (D01), `FacultyAssignmentApproved` (D02), `TimetablePublished` (D03), `ScheduleModified` (D03), `TeachingSessionStarted` (D04), `AttendanceFinalized` (D04), `TeachingProgressRecorded` (D04), `AcademicMonitoringStarted` (D05), `EnrollmentRequested` (D06), `EnrollmentApproved` (D06), `LearningCompletionRecorded` (D06), `TranscriptPostingRequested` (D06), `TranscriptPostingCompleted` (D06), `TranscriptPostingFailed` (D06).
 
 ### Appendix D — Frozen Read Models
-- `Course Catalog (RM-B04-01)`, `Faculty Workload Board (RM-D02-01)`, `Student Class Calendar (RM-D03-01)`, `Daily Attendance Grid (RM-D04-01)`, `Academic Risk Dashboard (RM-D05-01)`, `Electives Registry Board (RM-D06-01)`, `Internal Assessment Blueprint View (RM-D07-01)`, `Assessment Window Board (RM-D07-02)`, `Student Assessment Ledger (RM-D07-03)`, `Moderation Queue (RM-D07-04)`.
+- `Course Catalog (RM-D01-01)`, `Faculty Workload Board (RM-D02-01)`, `Student Class Calendar (RM-D03-01)`, `Daily Attendance Grid (RM-D04-01)`, `Academic Risk Dashboard (RM-D05-01)`, `Electives Registry Board (RM-D06-01)`.
 
 ### Appendix E — Frozen Integration Contracts
 - `Section B Integration (Timetable Slots / Room Change Mapping)`
 - `Section C Integration (Lifecycle Checks / Student Inactive Lock)`
-- `External Academic Records Integration (Credit Posting / Resilient Transcript Outbox Saga)`
+- `Section H Integration (Credit Posting / Resilient Transcript Outbox Saga)`
 
 ### Appendix F — Published APIs
 - `GET /api/v1/offerings` (D01)
@@ -814,15 +714,29 @@ All aggregates, commands, events, read models, and multi-domain dependencies are
 - `POST /api/v1/attendance` (D04)
 - `GET /api/v1/monitoring/cases` (D05)
 - `POST /api/v1/electives/enrollments` (D06)
-- `GET /api/v1/internal-assessments/blueprints` (D07)
-- `POST /api/v1/internal-assessments/windows` (D07)
-- `POST /api/v1/internal-assessments/submissions` (D07)
 
-### Appendix G — Multi-Domain References
+### Appendix G — Cross-Domain References
 - `Room ID` (References Section B)
 - `Student ID` (References Section C)
-- `Transcript ID` (References External Academic Records)
+- `Transcript ID` (References Section H)
 
 ---
 **End of Document**
   
+
+---
+
+
+## Lifecycle
+
+Not separately defined in this document. As a section review document, L2-D00 validates the
+lifecycle definitions owned by L2-D01 through L2-D07 rather than defining lifecycle behaviour.
+
+---
+
+## Rules / Invariants
+
+Not separately defined in this document. The review criteria applied here are recorded in the
+sections above; canonical business rules and invariants remain owned by L2-D01 through L2-D07.
+
+---

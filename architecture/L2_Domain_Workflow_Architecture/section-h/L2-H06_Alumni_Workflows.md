@@ -4,19 +4,41 @@
 **Parent Domain:** Section H – Institutional Services & Intelligence  
 **Architecture Level:** Level 2 Enterprise Workflow Specification  
 **Architecture Style:** Domain-Driven Design (DDD), CQRS, Event-Driven Architecture (EDA)  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Version:** 1.0  
-**Owner:** Alumni Domain Team  
-**Document Owner:** Dhruv  
-**Canonical Owner:** H06 – Alumni Domain
+**Document Owner:** Institutional Services — Alumni Engagement  
+**Canonical Owner:** H06 – Alumni **Engagement** (Alumni Profile and engagement aggregates)  
+**Not Owned:** Alumni Persona — the institutional identity fact, owned by Student Lifecycle (L2-C08) per locked L1
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §3 Out of Scope |
+| Actors | §18.4 Integration Role Matrix; §20.4 Role Catalogue |
+| Entities | §13 Entity Relationships; §7.2 Canonical Entities Owned by H06; §7.3 Canonical Entities Consumed |
+| Business Rules | §24 Business Rules Catalogue; Business Rules |
+| Workflow | §15 Workflow Specifications; L2-H06 — Alumni Workflows; Primary Workflow |
+| State Machine | Lifecycle States |
+| Contracts | §18 Integration Contracts; §17.3 Event Payload Contracts |
+| Events | §16.7 Event Commands; §17 Domain Events; §17.1 Published Domain Events |
+| Dependencies | §9 Upstream Dependencies |
+| Locked Decisions | — not present — |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Locked Decisions. Recorded, not authored.
 
 ---
 
 # 1. Purpose
 
-The Alumni Domain establishes the enterprise capabilities required to manage the lifelong relationship between the university and its graduates after the successful completion of their academic programs.
+The Alumni Domain establishes the enterprise capabilities required to manage the lifelong relationship between the university and its alumni after the successful completion of their academic programs.
 
-Unlike academic administration, which concludes at graduation, alumni engagement represents a continuous institutional relationship that supports professional networking, mentoring, knowledge sharing, institutional collaboration, fundraising participation, volunteering, guest lectures, and lifelong community engagement.
+Unlike academic administration, which concludes at qualification completion, alumni engagement represents a continuous institutional relationship that supports professional networking, mentoring, knowledge sharing, institutional collaboration, fundraising participation, volunteering, guest lectures, and lifelong community engagement.
 
 This domain SHALL provide a centralized, governed, and scalable platform for alumni relationship management while maintaining strict separation from Academic, Identity, Finance, Human Resources, Placement, and Research domains.
 
@@ -24,7 +46,7 @@ The architecture SHALL ensure that alumni information remains synchronized with 
 
 The domain SHALL support:
 
-- Alumni identity establishment after graduation
+- Alumni identity establishment after qualification completion
 - Alumni lifecycle management
 - Alumni membership administration
 - Professional profile management
@@ -47,7 +69,7 @@ The domain SHALL NOT manage academic records, financial accounting, degree issua
 
 # 2. Scope
 
-The Alumni Domain SHALL own the complete business lifecycle of alumni engagement after the Academic domain formally recognizes a student as graduated.
+The Alumni Domain SHALL own the complete business lifecycle of alumni **engagement** after Student Lifecycle creates the Alumni Persona on qualification completion. It does not own the persona itself.
 
 Its responsibilities include managing alumni relationships from activation through lifelong institutional engagement while consuming canonical information from upstream domains.
 
@@ -213,17 +235,17 @@ Including:
 
 ---
 
-## 3.4 Graduation Administration
+## 3.4 Qualification Completion Administration
 
 Including:
 
-- Graduation eligibility
+- qualification eligibility
 - Degree issuance
 - Certificate generation
 - Convocation
 - Academic completion
 
-The Alumni Domain SHALL consume graduation events but SHALL NOT determine graduation eligibility.
+The Alumni Domain SHALL consume qualification completion events but SHALL NOT determine qualification completion eligibility.
 
 ---
 
@@ -321,9 +343,9 @@ The Alumni Domain SHALL never create duplicate identity records.
 
 ---
 
-## AP-04 Graduation-Based Activation
+## AP-04 Transition-Based Activation
 
-An Alumni Profile SHALL only be created after consumption of the canonical **StudentGraduated** domain event.
+An Alumni Profile SHALL only be created after consumption of the canonical **AlumniTransitionCompleted** domain event published by the Alumni Transition domain (L2-C08).
 
 Manual alumni creation SHALL NOT be permitted under normal enterprise operations.
 
@@ -331,9 +353,9 @@ Manual alumni creation SHALL NOT be permitted under normal enterprise operations
 
 ## AP-05 Relationship Ownership
 
-The Alumni Domain owns the institutional relationship after graduation.
+The Alumni Domain owns the institutional **engagement** relationship after qualification completion.
 
-Academic ownership ends when graduation is completed.
+The Alumni Persona, and the institutional identity it represents, remain owned by Student Lifecycle (L2-C08).
 
 ---
 
@@ -377,7 +399,7 @@ Administrative intervention SHALL be required only for governed activities.
 
 The Alumni Domain represents the university's long-term engagement platform after the completion of academic studies.
 
-The domain begins when the Academic Core publishes the canonical **StudentGraduated** event, indicating that an individual has successfully completed all academic requirements and has officially transitioned from the Student lifecycle.
+The domain begins when the Alumni Transition domain (L2-C08) publishes the canonical **AlumniTransitionCompleted** event, indicating that the Student-to-Alumni transition has been completed. H06 does not own Qualification Completion or the Student-to-Alumni transition; those remain owned by Student Lifecycle (L2-C05 and L2-C08 respectively).
 
 From that point onward, H06 becomes the authoritative owner of alumni engagement, maintaining the institutional relationship throughout the alumnus's lifetime.
 
@@ -405,7 +427,7 @@ All academic, financial, and identity information consumed by H06 SHALL remain c
 
 ## 6.2 Domain Mission
 
-The mission of the Alumni Domain is to establish and maintain a lifelong institutional relationship with graduates by providing enterprise capabilities for engagement, networking, mentoring, collaboration, communication, recognition, and fundraising participation.
+The mission of the Alumni Domain is to establish and maintain a lifelong institutional relationship with alumni by providing enterprise capabilities for engagement, networking, mentoring, collaboration, communication, recognition, and fundraising participation.
 
 The domain SHALL function independently of academic administration while remaining synchronized with enterprise master data through canonical events.
 
@@ -453,7 +475,7 @@ The Alumni Domain SHALL enable the university to:
 
 - Person identity
 - Student information
-- Graduation status
+- qualification completion status
 - Degree information
 - Academic achievements
 - Event definitions
@@ -487,11 +509,24 @@ The Alumni Domain SHALL enable the university to:
 
 ## 7.1 Ownership Philosophy
 
-The Alumni Domain SHALL own only those entities that describe the university's post-graduation relationship with an alumnus.
+The Alumni Domain SHALL own only those entities that describe the university's post-qualification-completion **engagement** relationship with an alumnus.
 
-All master entities created before graduation SHALL continue to remain under their original canonical owners.
+All master entities created before qualification completion SHALL continue to remain under their original canonical owners.
 
 No aggregate SHALL have shared ownership.
+
+### Alumni Persona versus Alumni Profile
+
+These are **two aggregates on one identity**, and the distinction is normative (settled 2026-08-03, closes integrity finding INT-006):
+
+| Aggregate | Meaning | Canonical owner | Created by |
+|---|---|---|---|
+| **Alumni Persona** | The institutional identity fact: this Person is an alumnus of this Institution. Locked L1 assigns Alumni to Student Lifecycle and creates the persona through `CreateAlumniPersona`. | **Student Lifecycle** | `L2-C08 — Alumni Transition Workflows`, on qualification completion |
+| **Alumni Profile** | The engagement projection: membership, chapters, professional profile, mentoring, communication preferences, recognition, donation intent. | **L2-H06** | This domain, on consuming `AlumniTransitionCompleted` |
+
+The Alumni Profile references the Alumni Persona identity. It never creates, re-issues or
+re-defines it. If no persona exists, no profile may be created — enforced by BR-H06-001, which
+makes profile creation conditional on `AlumniTransitionCompleted` from L2-C08.
 
 ---
 
@@ -499,7 +534,7 @@ No aggregate SHALL have shared ownership.
 
 | Entity | Ownership |
 |---------|-----------|
-| Alumni | Canonical |
+| Alumni Persona | **Referenced — canonical owner is Student Lifecycle (L2-C08)** |
 | Alumni Profile | Canonical |
 | Alumni Membership | Canonical |
 | Alumni Chapter | Canonical |
@@ -524,8 +559,9 @@ No aggregate SHALL have shared ownership.
 | Person | Section A |
 | User Account | Section A |
 | Student | Section C |
-| Graduation Record | Section C |
-| Degree | Section C |
+| Alumni Persona | Section C (L2-C08) |
+| Qualification Completion Record | Section C (L2-C05) |
+| Degree / Qualification Award | Section C (L2-C05) |
 | Academic Program | Section C |
 | Organization | Enterprise Foundation |
 | Event | H02 / Event Management |
@@ -1057,7 +1093,7 @@ The Alumni Domain depends upon enterprise events and canonical data published by
 | Domain | Dependency |
 |---------|------------|
 | Section A | Person Identity |
-| Section C | Student & Graduation |
+| Section C | Student & Qualification Completion |
 | Section D | Academic Achievements |
 | H02 | Notifications |
 | Finance | Donation Payment Outcome |
@@ -1089,7 +1125,7 @@ All downstream integrations SHALL be event-driven or API-mediated in accordance 
 
 # 11. Canonical Domain Model
 
-The Alumni Domain maintains canonical ownership of all entities representing the university's relationship with its alumni after graduation. These entities collectively model engagement, collaboration, networking, mentoring, communication, recognition, and institutional participation while remaining independent of academic administration.
+The Alumni Domain maintains canonical ownership of all entities representing the university's relationship with its alumni after qualification completion. These entities collectively model engagement, collaboration, networking, mentoring, communication, recognition, and institutional participation while remaining independent of academic administration.
 
 ---
 
@@ -1099,7 +1135,7 @@ The Alumni Domain maintains canonical ownership of all entities representing the
 
 The Alumni aggregate is the root entity of the Alumni bounded context.
 
-It represents an individual who has successfully completed a university-recognized academic program and has transitioned into the alumni lifecycle following the publication of the canonical **StudentGraduated** event.
+It represents an individual who has successfully completed a university-recognized academic program and has transitioned into the alumni lifecycle following the publication of the canonical **AlumniTransitionCompleted** event by the Alumni Transition domain (L2-C08).
 
 Every Alumni SHALL reference an existing canonical Person and Student record and SHALL never create duplicate identity information.
 
@@ -1122,7 +1158,7 @@ Every Alumni SHALL reference an existing canonical Person and Student record and
 - Alumni Identifier
 - Person Identifier (Reference)
 - Student Identifier (Reference)
-- Graduation Identifier (Reference)
+- Qualification Completion Identifier (Reference)
 - Alumni Number
 - Membership Status
 - Activation Date
@@ -1148,7 +1184,7 @@ Every Alumni SHALL reference an existing canonical Person and Student record and
 
 ## Description
 
-The Alumni Profile contains the self-managed profile information maintained by the alumnus throughout the post-graduation relationship.
+The Alumni Profile contains the self-managed profile information maintained by the alumnus throughout the post-qualification completion relationship.
 
 The profile complements canonical identity data without replacing or modifying enterprise master records.
 
@@ -1496,7 +1532,10 @@ Person (A)
         ▼
 Student (C)
         │
-StudentGraduated Event
+        ▼
+Alumni Transition (L2-C08)
+        │
+AlumniTransitionCompleted Event
         │
         ▼
 Alumni
@@ -1514,7 +1553,7 @@ Alumni
  └── Communication Preferences
 ```
 
-The Person and Student entities SHALL remain canonically owned by their respective domains. The Alumni aggregate references these entities and becomes the authoritative owner only for post-graduation engagement data.
+The Person and Student entities SHALL remain canonically owned by their respective domains. The Alumni aggregate references these entities and becomes the authoritative owner only for post-qualification completion engagement data.
 
 ---
 
@@ -1536,7 +1575,7 @@ An Alumni record SHALL reference exactly one canonical Student.
 
 ## INV-03
 
-An Alumni profile SHALL only be created after successful consumption of the **StudentGraduated** domain event.
+An Alumni profile SHALL only be created after successful consumption of the **AlumniTransitionCompleted** domain event published by the Alumni Transition domain (L2-C08).
 
 ---
 
@@ -1614,9 +1653,9 @@ Each workflow identifies:
 
 ## Purpose
 
-Create the canonical Alumni aggregate immediately after successful graduation.
+Create the canonical Alumni aggregate immediately after successful qualification completion.
 
-This workflow establishes the institutional relationship between the university and the graduate.
+This workflow establishes the institutional relationship between the university and the alumnus.
 
 ---
 
@@ -1624,19 +1663,18 @@ This workflow establishes the institutional relationship between the university 
 
 Consumption of the canonical domain event:
 
-**StudentGraduated**
+**AlumniTransitionCompleted**
 
-published by the Academic Core.
+published by the Alumni Transition domain (L2-C08).
 
 ---
 
 ## Preconditions
 
 - Student exists.
-- Graduation is finalized.
+- Student-to-Alumni transition is completed by L2-C08.
 - Person record exists.
 - Student has not already transitioned to Alumni.
-- Graduation has been officially approved.
 
 ---
 
@@ -1644,9 +1682,9 @@ published by the Academic Core.
 
 ### Step 1
 
-Academic Core publishes:
+Alumni Transition domain (L2-C08) publishes:
 
-**StudentGraduated**
+**AlumniTransitionCompleted**
 
 ↓
 
@@ -1656,7 +1694,7 @@ H06 validates
 
 - Person exists
 - Student exists
-- Graduation record exists
+- Qualification Completion record exists
 - Alumni profile does not already exist
 
 ↓
@@ -1755,7 +1793,7 @@ No Alumni record SHALL be created.
 
 ## Consumed Events
 
-- StudentGraduated
+- AlumniTransitionCompleted
 
 ---
 
@@ -2337,7 +2375,7 @@ If chapter capacity or governance rules prevent enrollment:
 
 ## Purpose
 
-Provide a governed, privacy-controlled directory enabling alumni to discover and connect with fellow graduates.
+Provide a governed, privacy-controlled directory enabling alumni to discover and connect with fellow alumni.
 
 ---
 
@@ -2386,7 +2424,7 @@ Apply privacy filters.
 Search directory using:
 
 - Name
-- Graduation Year
+- Qualification Completion Year
 - Program
 - Department
 - Chapter
@@ -2742,7 +2780,7 @@ Notify requester.
 
 ## Purpose
 
-Enable qualified alumni to register as institutional mentors for students, recent graduates, research scholars, or fellow alumni.
+Enable qualified alumni to register as institutional mentors for students, recent alumni, research scholars, or fellow alumni.
 
 The Alumni Domain SHALL own the complete mentor registration lifecycle.
 
@@ -3552,7 +3590,7 @@ These responsibilities SHALL remain exclusively within the Finance domain.
 
 | Workflow ID | Workflow Name | Primary Aggregate | Trigger | Published Event |
 |-------------|---------------|-------------------|---------|-----------------|
-| WF-H06-001 | Alumni Profile Creation | Alumni | StudentGraduated event from Academic Core | AlumniProfileCreated |
+| WF-H06-001 | Alumni Profile Creation | Alumni | AlumniTransitionCompleted event from Alumni Transition (L2-C08) | AlumniProfileCreated |
 | WF-H06-002 | Alumni Membership Activation | Alumni | Alumni acceptance, administrator activation, or activation policy | AlumniMembershipActivated |
 | WF-H06-003 | Professional Profile Update | Professional Profile | Alumni profile update request | ProfessionalProfileUpdated |
 | WF-H06-004 | Communication Preference Management | Communication Preference State | Preference change request | CommunicationPreferencesUpdated |
@@ -3593,7 +3631,7 @@ Commands SHALL NEVER directly modify aggregates owned by another bounded context
 
 | Command | Aggregate | Purpose |
 |----------|-----------|---------|
-| CreateAlumniProfile | Alumni | Create Alumni Aggregate after graduation |
+| CreateAlumniProfile | Alumni | Create Alumni Aggregate after qualification completion |
 | ActivateAlumniMembership | Alumni | Activate alumni membership |
 | SuspendMembership | Alumni | Suspend alumni participation |
 | ReactivateMembership | Alumni | Restore suspended membership |
@@ -3814,7 +3852,7 @@ The Alumni Domain SHALL maintain dedicated read models for query-side consumptio
 
 | Command | Idempotent | Reason |
 |---------|------------|--------|
-| CreateAlumniProfile | YES | Uses a canonical graduation identity and replays to the same Alumni aggregate. |
+| CreateAlumniProfile | YES | Uses a canonical qualification completion identity and replays to the same Alumni aggregate. |
 | ActivateAlumniMembership | YES | Repeated activation requests SHALL converge on the active membership state. |
 | SuspendMembership | YES | Repeated suspension requests SHALL not create additional state transitions. |
 | ReactivateMembership | YES | Repeated reactivation requests SHALL converge on the active membership state. |
@@ -4027,8 +4065,8 @@ The following payload ownership rules SHALL govern the enterprise event contract
 
 | Event | Owned Fields |
 |-------|--------------|
-| StudentGraduated | StudentId, PersonId, GraduationId, DegreeId, Timestamp |
-| AlumniProfileCreated | AlumniId, PersonId, GraduationId, MembershipId, Status, Timestamp |
+| AlumniTransitionCompleted | StudentId, PersonId, TransitionId, ProgrammeId, Timestamp |
+| AlumniProfileCreated | AlumniId, PersonId, Qualification CompletionId, MembershipId, Status, Timestamp |
 | AlumniMembershipActivated | AlumniId, MembershipId, ActivationMethod, ActivatedBy, Timestamp |
 | MentorRegistered | MentorId, AlumniId, ExpertiseAreas, AvailabilityStatus, Timestamp |
 | MentorshipCreated | MentorshipId, MentorId, MenteeId, AssignmentSource, Timestamp |
@@ -4047,9 +4085,8 @@ The following payload ownership rules SHALL govern the enterprise event contract
 
 | Event | Publisher |
 |--------|-----------|
-| StudentGraduated | Academic Core |
-| DegreeAwarded | Academic Core |
-| PersonUpdated | Identity Domain |
+| AlumniTransitionCompleted | Alumni Transition (L2-C08) |
+| AlumniPersonUpdated | Identity Domain |
 | IdentityMerged | Identity Domain |
 | EventCreated | Event Management |
 | EventCancelled | Event Management |
@@ -4074,7 +4111,7 @@ Direct database access between bounded contexts SHALL NOT be permitted.
 | Domain | Purpose |
 |----------|---------|
 | Identity | Canonical Person reference |
-| Academic Core | Student and Graduation |
+| Academic Core | Student and Qualification Completion |
 | Academic Delivery | Academic achievements |
 | Notification | Message delivery |
 | Finance | Donation payment outcome |
@@ -4122,8 +4159,8 @@ External integrations SHALL comply with enterprise security, consent, privacy, a
 
 | Integration | Event Producers | Event Consumers | API Providers | API Consumers |
 |-------------|-----------------|-----------------|---------------|---------------|
-| Identity Domain | PersonUpdated, IdentityMerged | AlumniProfileCreated, AlumniMembershipActivated | Identity reference APIs | Alumni Domain |
-| Academic Core | StudentGraduated, DegreeAwarded | AlumniProfileCreated | Graduation reference APIs | Alumni Domain |
+| Identity Domain | AlumniPersonUpdated, IdentityMerged | AlumniProfileCreated, AlumniMembershipActivated | Identity reference APIs | Alumni Domain |
+| Alumni Transition (L2-C08) | AlumniTransitionCompleted | AlumniProfileCreated | Transition reference APIs | Alumni Domain |
 | Academic Delivery | AcademicAchievement events | ProfessionalProfileUpdated, ProfessionalAchievementRecorded | Academic achievement APIs | Alumni Domain |
 | Notification Domain | NotificationDeliveryCompleted | AlumniProfileCreated, AlumniMembershipActivated, MentorRegistered, MentorshipCreated, GuestLectureScheduled, GuestLectureCompleted, IndustryCollaborationAssigned, IndustryCollaborationCompleted, Verification events, DonationIntent events | Message delivery APIs | Alumni Domain |
 | Finance Domain | PaymentCompleted | DonationIntentSubmitted, DonationIntentUpdated, DonationIntentWithdrawn | Payment and receipt APIs | Alumni Domain |
@@ -4145,7 +4182,7 @@ Representative APIs include:
 
 | Operation | Purpose | Aggregate |
 |-----------|---------|-----------|
-| POST /alumni | Create alumni profile after graduation | Alumni |
+| POST /alumni | Create alumni profile after qualification completion | Alumni |
 | GET /alumni/{id} | Retrieve alumni profile and membership details | Alumni |
 | PATCH /alumni/{id} | Update alumni profile information | Alumni |
 | POST /alumni/{id}/activate | Activate alumni membership | Alumni |
@@ -4429,7 +4466,7 @@ The following operational reports SHALL be supported.
 - Pending Activation
 - Suspended Memberships
 - Inactive Alumni
-- Alumni by Graduation Year
+- Alumni by Qualification Completion Year
 - Alumni by Academic Program
 
 ---
@@ -4535,7 +4572,7 @@ The Alumni Domain SHALL publish KPIs including:
 
 Representative analytical dimensions include:
 
-- Graduation Year
+- Qualification Completion Year
 - Program
 - Department
 - Faculty
@@ -4576,7 +4613,7 @@ Strategic analytics SHALL support institutional planning, alumni engagement stra
 
 Representative strategic analytics include:
 
-- Alumni population by graduation cohort
+- Alumni population by qualification completion cohort
 - Chapter growth by region
 - Mentor supply versus demand
 - Donation intent participation by campaign
@@ -4630,7 +4667,7 @@ Representative historical analytics include:
 | Domain | Interaction | Ownership |
 |---------|-------------|-----------|
 | A – Identity | Consume Person Identity | External |
-| C – Academic Core | Consume Graduation & Student | External |
+| C – Academic Core | Consume Qualification Completion & Student | External |
 | D – Academic Delivery | Consume Academic Achievements | External |
 | E – HR | No Direct Ownership | External |
 | F – Student Life | Student Engagement References | External |
@@ -4654,7 +4691,7 @@ Representative business errors include:
 | Error Code | Description |
 |------------|-------------|
 | ALUMNI-001 | Alumni Profile Already Exists |
-| ALUMNI-002 | Invalid Graduation Reference |
+| ALUMNI-002 | Invalid Qualification Completion Reference |
 | ALUMNI-003 | Membership Not Active |
 | ALUMNI-004 | Mentor Not Approved |
 | ALUMNI-005 | Chapter Not Found |
@@ -4682,7 +4719,7 @@ Business rules are authoritative and SHALL be enforced consistently across user 
 
 | Rule ID | Business Rule |
 |----------|---------------|
-| BR-H06-001 | Alumni Profile SHALL only be created after consumption of the canonical **StudentGraduated** event. |
+| BR-H06-001 | Alumni Profile SHALL only be created after consumption of the canonical **AlumniTransitionCompleted** event published by the Alumni Transition domain (L2-C08). |
 | BR-H06-002 | Every Alumni SHALL reference exactly one canonical Person. |
 | BR-H06-003 | Every Alumni SHALL reference exactly one canonical Student. |
 | BR-H06-004 | Duplicate Alumni Profiles SHALL NOT exist. |
@@ -4970,7 +5007,7 @@ Future capabilities SHALL reuse existing aggregates, commands, and events wherev
 
 | Term | Definition |
 |------|------------|
-| Alumni | Individual who has officially graduated from the institution and entered the Alumni lifecycle. |
+| Alumni | Individual who has officially qualification completed from the institution and entered the Alumni lifecycle. |
 | Alumni Aggregate | Root aggregate governing alumni relationship management. |
 | Chapter | Organized alumni community based on geography, interest, or batch. |
 | Mentor | Approved alumnus participating in mentoring programs. |

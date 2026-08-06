@@ -4,8 +4,9 @@ title: Platform & Tenant Foundation
 level: Level 2 Architecture
 section: A - Platform Foundation
 version: 1.0.0
-status: Draft
-owner: Dhruv
+status: Trust Certification Ready
+owner: Platform Foundation — Tenancy
+document_owner: Platform Foundation — Tenancy
 reviewers:
   - Platform Architecture Team
   - Enterprise Architecture Board
@@ -22,7 +23,29 @@ required_by:
 last_updated: YYYY-MM-DD
 ---
 
-# L2-A01 — Platform & Tenant Foundation
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose |
+| Scope | §8.4 Governance Scope; §10.4 Scope; Out of Scope |
+| Actors | — not present — |
+| Entities | Entities / Aggregates |
+| Business Rules | §1.13 Architectural Constraints |
+| Workflow | L2-A01 — Platform & Tenant Workflows; Workflows |
+| State Machine | §5.5 Lifecycle States; §5.7 Lifecycle State Characteristics |
+| Contracts | §4.11 Multi-Domain Context Contract; §6.14 Configuration Resolution Contract; §7.12 Service Contracts |
+| Events | Events |
+| Dependencies | §1.10 Architectural Dependency Rules; §5.10 Business Domain Dependency; §6.13 Configuration Dependency Rules |
+| Locked Decisions | §8.8 Governance Decision Model |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
+
+---
+
+# L2-A01 — Platform & Tenant Workflows
 
 ---
 
@@ -33,8 +56,8 @@ last_updated: YYYY-MM-DD
 | Document ID | L2-A01 |
 | Architecture Level | Level 2 |
 | Domain | Platform Foundation |
-| Status | Draft |
-| Owner | Dhruv |
+| Status | Trust Certification Ready |
+| Owner | Platform Foundation — Tenancy |
 | Architecture Layer | Foundation |
 | Parent Architecture | Level 1 Platform Architecture |
 | Child Architectures | All remaining Level 2 Domains |
@@ -1578,6 +1601,10 @@ Provisioning Failed                 Active
 
 Lifecycle transitions shall occur only through approved Platform operations.
 
+A Tenant in Provisioning Failed may re-enter Provisioning once the cause of
+failure is remediated. That retry transition is listed in Section 5.8 and is
+not drawn above.
+
 ---
 
 # 5.5 Lifecycle States
@@ -1590,6 +1617,7 @@ Lifecycle transitions shall occur only through approved Platform operations.
 | Active | Tenant is fully operational. |
 | Maintenance | Controlled maintenance operations are being performed. |
 | Suspended | Business execution is temporarily disabled while preserving all data. |
+| Upgrade | A controlled platform upgrade is being applied to the Tenant. |
 | Archived | Tenant is permanently retired and retained for historical or regulatory purposes. |
 
 ---
@@ -1699,10 +1727,13 @@ The following transitions are permitted.
 | Requested | Provisioning |
 | Provisioning | Active |
 | Provisioning | Provisioning Failed |
+| Provisioning Failed | Provisioning |
 | Active | Maintenance |
 | Maintenance | Active |
 | Active | Suspended |
 | Suspended | Active |
+| Active | Upgrade |
+| Upgrade | Active |
 | Active | Archived |
 
 Any transition not listed above is considered architecturally invalid.
@@ -3512,4 +3543,4 @@ L2-A01 defines canonical platform concepts rather than a data-model entity catal
 
 # End of Document
 
-Status: Draft
+Status: Trust Certification Ready

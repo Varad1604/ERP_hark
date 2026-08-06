@@ -1,8 +1,30 @@
 # L2-I06 — Practical & Viva Examination Conduct Workflows
 
 **Section:** I — Examination  
-**Status:** Draft  
-**Document Owner:** Devang
+**Status:** Trust Certification Ready  
+**Document Owner:** Examinations — Practical & Viva Conduct
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | §6 Business Actors |
+| Entities | — not present — |
+| Business Rules | §9 Business Rules |
+| Workflow | §8 Practical & Viva Examination Lifecycle Workflows; §17 Workflow Completion Criteria; L2-I06 — Practical & Viva Examination Conduct Workflows |
+| State Machine | §20 Assessment Conduct State Model |
+| Contracts | — not present — |
+| Events | §11 Events Published; §12 Events Consumed; §4.9 Event-Driven Examination Conduct |
+| Dependencies | §19 Assessment Dependency Matrix |
+| Locked Decisions | — not present — |
+
+> **Gap:** 3 required section(s) have no counterpart in this document: Entities, Contracts, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -58,7 +80,7 @@ This document does not govern:
 - Revaluation & Rechecking
 - Supplementary Examination Processing
 - Academic Completion
-- Graduation Processing
+- Qualification Completion Processing
 
 Ownership of these business capabilities remains with their respective workflow documents.
 
@@ -1177,7 +1199,6 @@ Institutions may configure assessment conduct without modifying the canonical wo
 | Notification Policy | Candidate, Examiner, Administrator |
 
 Configuration changes operational behaviour while preserving repository-standard business workflows.
-```
 
 # 16. Audit Requirements
 

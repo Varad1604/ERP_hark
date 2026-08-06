@@ -3,10 +3,32 @@
 **Domain:** A09 — Master Data Platform  
 **Layer:** L2 — Platform Architecture  
 **Version:** 1.0  
-**Status:** Draft  
-**Owner:** Platform Architecture Team  
-**Document Owner:** Dhruv  
+**Status:** Trust Certification Ready  
+**Review Authority:** Platform Architecture Team  
+**Document Owner:** Platform Foundation — Master Data  
 **Classification:** Core Platform Domain
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose |
+| Scope | §1.3 Scope; §31.3 Scope-Based Authorization; Appendix E — Out of Scope |
+| Actors | — not present — |
+| Entities | §23 Entity Relationships; §22.2 Core Entities |
+| Business Rules | §27 Business Rules; §44.3 Business Rule Errors |
+| Workflow | §19 Workflow Catalogue; §20 Workflow Definitions; §19.2 Workflow Summary |
+| State Machine | §25 Lifecycle State Models |
+| Contracts | §57 API Summary; §21.4 API Integration Principles |
+| Events | §56 Event Catalogue; §21.5 Event Integration; §43.2 Logged Events |
+| Dependencies | §28 Dependency Model; §55 Dependency Matrix; §21.2 Upstream Dependencies |
+| Locked Decisions | §54 Architectural Decisions |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
 
 ---
 

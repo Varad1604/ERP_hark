@@ -5,11 +5,33 @@
 | Architecture Level | Level 2 — Domain Architecture |
 | Domain | Finance |
 | Document Code | L2-F11 |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 | Canonical Owner | Finance Architecture |
-| Document Owner | Chetan |
+| Document Owner | Finance — Financial Aid |
 | Last Updated | TBD |
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §3 Purpose |
+| Scope | §4 Scope |
+| Actors | — not present — |
+| Entities | Internal Entities; Entities; Entity Validation |
+| Business Rules | §17 Domain Constraints & Business Invariants; Aggregate Invariants; Identity Invariants |
+| Workflow | Workflows |
+| State Machine | Aggregate State Transition Rules |
+| Contracts | §15 Integration Contracts; Repository Contract |
+| Events | Event-Driven Financial Assistance; Domain Event Publication Rules; Domain Event Philosophy |
+| Dependencies | §1 Dependency Classification |
+| Locked Decisions | Approval Decision |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
 
 ---
 
@@ -67,9 +89,11 @@ Enterprise Financial Assistance Governance Domain
 
 The Scholarship & Financial Aid bounded context establishes the canonical enterprise architecture for governing institutional financial assistance provided to students.
 
-The domain determines eligibility, approval, allocation, renewal, suspension, revocation, and utilization of financial assistance.
+The domain governs approval, allocation, renewal, suspension, revocation, and utilization of financial assistance.
 
-It is the authoritative owner of student financial assistance decisions.
+Eligibility is **not** determined here. `L2-C07 --- Scholarship Eligibility Workflows` is the authoritative owner of scholarship eligibility policy evaluation and eligibility records; this domain consumes the published eligibility outcome as an input to its financial decisions.
+
+It is the authoritative owner of student financial assistance **financial** decisions.
 
 ---
 
@@ -84,13 +108,15 @@ The bounded context owns:
 - Fee Concession
 - Benefit Allocation
 - Benefit Approval
-- Eligibility Evaluation
+- Eligibility Outcome Reference (consumed from `L2-C07`)
 - Funding Source
 - Benefit Utilization
 - Benefit Renewal
 
 The bounded context explicitly does not own:
 
+- Scholarship eligibility policy evaluation (`L2-C07`)
+- Scholarship eligibility records and eligibility decisions (`L2-C07`)
 - Student
 - Admission
 - Academic Performance
@@ -174,9 +200,9 @@ Provide one authoritative representation of institutional financial assistance.
 
 ---
 
-## Goal 2 — Deterministic Eligibility Evaluation
+## Goal 2 — Deterministic Eligibility Consumption
 
-Ensure every assistance decision follows governed eligibility evaluation.
+Ensure every assistance decision is traceable to a governed eligibility outcome published by `L2-C07`. This domain does not re-evaluate eligibility policy.
 
 ---
 
@@ -224,7 +250,7 @@ The bounded context owns:
 - Scholarship
 - Sponsorship
 - Benefit Allocation
-- Eligibility
+- Eligibility Outcome Reference
 - Approval
 - Utilization
 - Renewal
@@ -254,7 +280,7 @@ Scholarship & Financial Aid owns:
 
 - Financial Aid Aggregate
 - Benefit Allocation
-- Eligibility Evaluation
+- Eligibility Outcome Reference (consumed from `L2-C07`)
 - Funding Source Assignment
 - Benefit Lifecycle
 - Benefit Utilization
@@ -305,8 +331,8 @@ Illustrative example:
 
 ```mermaid
 graph TD
-    Student --> EligibilityEvaluation["Eligibility Evaluation"]
-    EligibilityEvaluation --> FinancialAidDecision["Financial Aid Decision"]
+    Student --> EligibilityEvaluation["Eligibility Evaluation (L2-C07)"]
+    EligibilityEvaluation --> FinancialAidDecision["Financial Aid Decision (L2-F11)"]
     FinancialAidDecision --> BenefitAllocation["Benefit Allocation"]
     BenefitAllocation --> SCFM["Student Charge & Fee Management"]
     SCFM --> AccountsReceivable["Accounts Receivable"]
@@ -339,7 +365,7 @@ The Financial Aid Aggregate is the sole transactional consistency boundary of th
 
 It governs:
 
-- eligibility
+- the referenced eligibility outcome
 - assistance approval
 - scholarship lifecycle
 - sponsorship lifecycle
@@ -360,7 +386,7 @@ The Aggregate publishes immutable Domain Events after successful state transitio
 The Financial Aid Aggregate is responsible for:
 
 - registering financial assistance
-- evaluating eligibility outcomes
+- referencing eligibility outcomes published by `L2-C07`
 - recording approval decisions
 - allocating financial benefits
 - managing funding sources
@@ -472,11 +498,11 @@ Illustrative sources include:
 
 ---
 
-## Eligibility Assessment
+## Eligibility Assessment Reference
 
-Represents the evaluated eligibility outcome supporting a financial assistance decision.
+Represents the eligibility outcome published by `L2-C07` that supports a financial assistance decision.
 
-Eligibility references external business facts but owns the resulting assessment.
+This domain references the eligibility assessment; it does not own or re-derive it. The authoritative assessment remains in the Student Scholarship Eligibility Record owned by `L2-C07`.
 
 ---
 
@@ -2629,7 +2655,7 @@ Associate financial assistance with organisational ownership.
 - StudentRegistered
 - StudentActivated
 - StudentStatusChanged
-- StudentGraduated
+- QualificationAwarded
 - StudentWithdrawn
 
 Purpose:
@@ -2656,11 +2682,30 @@ Admission decisions remain externally owned.
 
 ---
 
+## Scholarship Eligibility (L2-C07)
+
+### Consumed Business Facts
+
+- EligibilityGranted
+- EligibilityConditionallyGranted
+- EligibilityRejected
+
+Purpose:
+
+Supply the authoritative eligibility outcome that gates a financial assistance
+decision. `L2-C07` owns the eligibility policy, its evaluation and the resulting
+Student Scholarship Eligibility Record. This domain consumes the outcome and shall
+never re-evaluate eligibility policy or write to the eligibility record.
+
+Eligibility ownership remains external.
+
+---
+
 ## Academic Domain
 
 ### Consumed Business Facts
 
-- AcademicResultPublished
+- ExaminationResultPublished
 - AcademicStandingUpdated
 - ProgrammeAssigned
 - AcademicSessionStarted
@@ -4250,7 +4295,7 @@ This document does not present a dedicated "Workflows" heading. The equivalent b
 | Document | L2-F11 — Scholarship & Financial Aid |
 | Architecture Level | Level 2 |
 | Domain | Finance |
-| Status | Architecture Locked |
+| Status | Trust Certification Ready |
 | Canonical Owner | Finance Architecture |
 | Merge Readiness | Validated & Approved |
 | Downstream Dependency | L3 Component Architecture, L4 Service Architecture, Implementation Architecture |

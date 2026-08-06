@@ -113,8 +113,16 @@ Runtime event feedback does not reverse ownership or create a new upstream depen
 | Section F - Finance | Sections A, B, C |
 | Section G - Campus Operations | Sections A, B, E |
 | Section H - Institutional Services & Intelligence | All Sections |
-| Section I - Examination | Sections C, D, F |
+| Section I - Examination | Sections A, B, C, D, F |
 | Section J - Enterprise Resource Management | Sections A, B, C, D, E, F, G, I |
+
+> **Corrected 2026-08-06 under integrity finding INT-204.** The Section I row previously
+> read "Sections C, D, F", omitting A and B. It was the only row in this matrix that
+> excluded Section A, which section 7 below describes as providing "shared infrastructure
+> used by every business domain". `L2-I13` line 39 depends on L2-A01/A02/A04/A06/A07 and
+> on L2-B04 Curriculum Framework and L2-B05 Academic Calendar; `L2-I14`, `L2-I15` and
+> `L2-I16` line 39 each depend on L2-A01–A08 and L2-B01–B05. The four Section I documents
+> were correct and this row was wrong.
 
 Special rule:
 
@@ -149,7 +157,7 @@ Owns:
 
 - Institution
 - Organisation hierarchy
-- Campus
+- Institutional Campus (identity and Institution association; the physical site model is owned by Section G / L2-G10)
 - Academic Structure
 - Curriculum framework
 - Academic Calendar
@@ -306,6 +314,122 @@ No other section owns the enterprise resource lifecycle for procurement, stock, 
 
 ---
 
+## 7A. Dependency Classes
+
+> Added 2026-08-05 under integrity finding INT-035. This register previously recorded
+> only foundational dependencies, so genuine runtime integrations were invisible to any
+> reader treating it as the repository dependency register.
+
+A dependency between two sections belongs to exactly one of the following classes. Only
+**foundational** dependencies constrain build order; the others do not, and must never be
+used to argue that ownership or upstream direction has changed.
+
+| Class | Meaning | Constrains build order | Reverses ownership |
+|---|---|---|---|
+| **Foundational** | The section cannot be architected or built without the upstream capability. Recorded in Section 6. | Yes | No |
+| **Runtime contract** | The section calls a published synchronous contract of another section at run time. | No | No |
+| **Event consumption** | The section subscribes to business events published by another section. | No | No |
+| **Read model** | The section reads a published read model or projection owned elsewhere. | No | No |
+
+### Runtime Contract and Event Consumption Register
+
+| Consumer | Provider | Class | Fact consumed |
+|---|---|---|---|
+| `L2-F14` Procurement Finance Consumption | Section J | Event consumption | Procurement and resource facts published by Section J, consumed for finance recognition. F14 metadata declares "Depends On ... Section J"; this is a runtime dependency, **not** a foundational one. Finance remains foundationally dependent on A, B and C only. |
+| Section C Student Lifecycle | Section I Examination | Event consumption | Published official results, consumed for progression and qualification completion. Does not make Examination upstream of Section C. |
+| Section J | `L2-J07` Stock Operations | Event consumption | `StockIssued`, `StockReturned`, `StockTransferDispatched`, `StockTransferReceived`. J06 applies ledger consequences; J07 remains sole publisher. |
+| `L2-G02` Laboratory | Section D | Read model | Practical Timetable. Academic execution scheduling remains owned by Section D. |
+| `L2-G03` Hostel | Section C | Read model | Student Identity. |
+| `L2-G04` Transport | Section C | Read model | Student Identity. |
+| `L2-G04` Transport | Section F | Runtime contract | Transport Billing. |
+| `L2-G05` Library | Section C | Read model | Student Identity. |
+| `L2-G05` Library | Section F | Runtime contract | Finance & Payments. |
+| `L2-G06` Health Services | Section C | Read model | Student Identity. |
+| `L2-G06` Health Services | Section F | Runtime contract | Medical Billing. |
+| `L2-G07` Security | Section C | Read model | Student Identity. |
+| `L2-G07` Security | Section F | Runtime contract | Accounting and payment consequences of Security Vendor Contracts. Supplier and procurement operations belong to Section J. |
+| `L2-G08` Housekeeping | Section F | Runtime contract | Accounting and payment consequences of Vendor Contracts. Supplier and procurement operations belong to Section J. |
+| `L2-G09` Teacher Guardian Scheme | Section C | Read model | Student master, Student profile, Student admission, Student academic lifecycle. |
+| `L2-G09` Teacher Guardian Scheme | Section D | Read model | Academic Session, TGS Timetable Schedule, Attendance Summary, Academic Performance Summary. Academic remains canonical owner of scheduling and assignment. |
+| `L2-G09` Teacher Guardian Scheme | Section F | Read model | Fee Summary, Outstanding Amount, Installment Status, Financial Hold Status. Financial ownership remains with Finance. |
+| `L2-G07` Security | Section J | Runtime contract | Security Vendor Contracts — supplier and procurement operations (`L2-G07` line 2162). Accounting and payment consequences route to Section F, above. |
+| `L2-G08` Housekeeping | Section J | Runtime contract | Vendor Contracts — supplier and procurement operations (`L2-G08` line 2080). Accounting and payment consequences route to Section F, above. |
+
+> **Section G entries added 2026-08-06 under integrity finding INT-202.** Ten Section G
+> documents declared Sections C, D and F under a `**Upstream Dependencies**` heading,
+> against a foundational set of A, B and E at section 6. Because section 6 also makes
+> Section D dependent on Section G, the Section D declarations formed a **D ↔ G cycle**,
+> contrary to the acyclicity requirement in section 1.
+>
+> Each declaration was checked against the document's Appendix B Canonical Ownership
+> Matrix and body text. All of the entries above resolve to ownership routing — "another
+> section owns this concept, we consume it" — so they are recorded here as runtime
+> dependencies and have been moved to a `**Consumed From**` block in each source file.
+> **Section G's foundational set at section 6 is unchanged, and the D ↔ G cycle is
+> resolved.**
+>
+> Three declarations were deleted rather than reclassified: `L2-G04`, `L2-G05` and
+> `L2-G06` each listed Section D upstream while containing no Academic Delivery
+> consumption anywhere in the document. They were boilerplate.
+>
+> Not yet reconciled: several Section G ownership matrices route concepts to **Section H**
+> (Notifications) and **Section J** (supplier and procurement operations) without
+> declaring either in any dependency block. Those routings are real but undeclared, and
+> are left for a later round.
+
+New entries shall be added here whenever a section declares a dependency that is not
+foundational. A section listing another section under "Depends On" without a matching
+entry in Section 6 is a defect in that section, not a new foundational dependency.
+
+### Section H notification routing — registered exemption
+
+> Added 2026-08-06. Nine Section G documents route Notifications to Section H in their
+> Appendix B ownership matrices (`L2-G00` line 1777, `G01` 2987, `G02` 2340, `G03` 2457,
+> `G04` 2384, `G05` 2364, `G06` 2165, `G07` 2165, `G08` 2083) without declaring Section H
+> in any dependency block. This is **not** a defect: section 5 of this document states
+> that cross-cutting services exposed by Section H do not, by themselves, create a
+> foundational upstream dependency for every consuming section. Notification routing is
+> therefore exempt from the register. The same exemption applies to any section routing
+> notifications to Section H.
+
+## 7B. Known Missing Bounded Contexts
+
+> Added 2026-08-06. A **missing bounded context** is one that L2 documents depend on by
+> name but that no document in this repository defines, owns, or assigns to a section. It
+> is not a naming error to be corrected by renaming — the capability genuinely does not
+> exist in the architecture. Recorded here so the gap is visible repository-wide rather
+> than buried in the consuming documents.
+
+| Missing context | Depended on by | What is consumed | Status |
+|---|---|---|---|
+| **Policy Management** | `L2-C08` (10 references), `L2-C04` (3 references) | Institutional business policy definitions and their change events — `AlumniTransitionPolicyUpdated` (C08), `AcademicPolicyUpdated` (C04), and a `Get Academic Policy` query contract (C04). Neither event has a publisher anywhere in the repository. | **Open.** No owner assigned. |
+
+**Why no owner has been assigned.** The three candidate homes were each checked and
+excluded on the evidence:
+
+- **The consuming domain itself.** `L2-C08` line 5037 states "Policy ownership remains
+  external to the Alumni Transition Aggregate," and line 3754 names "the canonical Policy
+  Management bounded context" as the source. C08 evaluates policy and publishes
+  `TransitionPolicyValidated`; it does not define policy.
+- **`L2-A04` Authorization & Policy.** Its stated purpose is access control — authorization
+  decisions, permissions, roles and policy *evaluation* — and it is explicitly
+  "independent from business domain implementations." It governs who may act, not what
+  institutional rules apply.
+- **`L2-A08` Module Registry & Configuration.** Its section 18 policy material governs
+  "architectural metadata only" and explicitly excludes implementation, runtime and
+  operational concerns. It is architectural governance policy, not business policy.
+
+**Rule until an owner is assigned:** no subscriber or query client shall be implemented
+against Policy Management. Consuming documents carry the same instruction at the point of
+use. Assigning an owner is an architecture decision, not a documentation correction, and
+requires Lead Architect sign-off.
+
+Note that *qualified* policy capabilities are owned and are not part of this gap:
+`Examination Policy Management` is `L2-I01`, `Leave Policy Management` is `L2-E05`, and
+`Eligibility Policy Management` is a workflow within `L2-C07`.
+
+---
+
 ## 8. Dependency Rules
 
 1. Dependencies are one-directional at the architectural level.
@@ -350,4 +474,8 @@ Whenever a new architectural dependency is introduced:
 
 **Status:** Active
 
-**Maintained By:** Lead Architect
+**Document Owner:** Dhruv
+
+**Maintained By:** Dhruv (Lead Architect)
+
+**Last Updated:** 2026-08-05

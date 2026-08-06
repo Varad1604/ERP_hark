@@ -2,6 +2,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §25.1 Aggregate Purpose; Purpose |
+| Scope | §40.2 Audit Scope; Scope; Out of Scope |
+| Actors | §39.4 Role-Based Authorization |
+| Entities | §23 Aggregate Ownership Rules; §24 Aggregate Lifecycles; §25 Accounting Ledger Aggregate |
+| Business Rules | §36 Business Rules; §36.11 Business Rule Classification |
+| Workflow | §35 Business Workflows; §35.1 Standard Journal Posting Workflow; §35.2 Manual Journal Workflow |
+| State Machine | §25.5 Aggregate State |
+| Contracts | §38.5 Integration Contracts |
+| Events | §37 Domain Events; §37.1 Event Publishing Principles; §37.2 Journal Events |
+| Dependencies | External Dependencies |
+| Locked Decisions | — not present — |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Locked Decisions. Recorded, not authored.
+
+---
+
 # Document Information
 
 | Attribute | Value |
@@ -11,9 +33,9 @@
 | Module | Accounting & General Ledger Management |
 | Architecture Level | Level 2 |
 | Document Type | Canonical Domain Workflow Specification |
-| Owner | Finance Architecture Team |
-| Document Owner | Chetan |
-| Status | Draft |
+| Review Authority | Finance Architecture Team |
+| Document Owner | Finance — Accounting & General Ledger |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 | Depends On | L2-F00 — Finance Foundation |
 | Integrates With | L2-F01, L2-F02, L2-F03, L2-F04 |
@@ -125,9 +147,9 @@ The following capabilities are intentionally excluded from this domain and remai
 | Financial Adjustments | L2-F04 |
 | Budget Planning | L2-F06 |
 | Cost Center Budget Allocation | L2-F06 |
-| Procurement Workflow | L2-F07 |
-| Purchase Orders | L2-F07 |
-| Vendor Management | L2-F07 |
+| Procurement Workflow | Section J — J01 Procurement Planning & Sourcing |
+| Purchase Orders | Section J — J04 Purchase Order Management |
+| Vendor Management | Section J — J02 Vendor & Supplier Management |
 | GST Configuration | L2-F00 Tax Compliance Service |
 | TDS Configuration | L2-F00 Tax Compliance Service |
 | Banking Operations | L2-F09 |
@@ -574,7 +596,7 @@ Budget preparation, allocation, monitoring, and utilization are owned by L2-F06.
 
 ## Procurement Operations
 
-Purchase requisitions, purchase orders, vendor procurement workflows, and invoice processing are owned by L2-F07.
+Purchase requisitions, purchase orders, vendor procurement workflows, and goods receipt are owned by Section J (J01 through J05). Section J completes procurement activities and provides approved procurement information to Finance for financial consequence processing. Vendor invoice processing as a Finance consequence is owned by L2-F08.
 
 ---
 
@@ -655,7 +677,7 @@ The Accounting domain receives financial events from:
 - L2-F02 — Payment Management
 - L2-F03 — Refund Management
 - L2-F04 — Financial Adjustment Management
-- L2-F07 — Procurement Finance
+- L2-F14 — Procurement Finance Consumption
 - L2-F09 — Treasury
 - L2-F10 — Asset Management
 
@@ -1014,7 +1036,7 @@ Accounting receives accounting events from:
 - L2-F02 — Payment Management
 - L2-F03 — Refund Management
 - L2-F04 — Financial Adjustment Management
-- L2-F07 — Procurement Finance
+- L2-F14 — Procurement Finance Consumption
 - L2-F09 — Treasury Management
 - L2-F10 — Asset Management
 
@@ -4446,7 +4468,7 @@ The following domains generate accounting events consumed by the Accounting doma
 | L2-F02 Payment Management | Cash receipt and settlement postings |
 | L2-F03 Refund Management | Refund accounting entries |
 | L2-F04 Financial Adjustments | Adjustment journals |
-| L2-F07 Procurement Finance | Expense and payable recognition |
+| L2-F14 Procurement Finance Consumption | Expense and payable recognition |
 | L2-F00 Tax Compliance Service | GST, TDS, statutory accounting |
 | L2-F09 Treasury | Bank and cash accounting |
 | L2-F10 Asset Management | Asset capitalization and depreciation |

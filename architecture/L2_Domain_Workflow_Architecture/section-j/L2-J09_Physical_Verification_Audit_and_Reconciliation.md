@@ -10,11 +10,31 @@
 | Architecture Level | Level 2 |
 | Document Type | Domain Workflow Architecture |
 | Bounded Context | Physical Verification, Audit & Reconciliation |
-| Document Owner | Chetan |
+| Document Owner | Enterprise Resource Management — Physical Verification |
 | Architectural Style | Domain-Driven Design (DDD), CQRS, Event-Driven Architecture |
 | Primary Aggregate | Inventory Audit |
 | Status | Trust Certification Ready |
 | Version | 1.0 |
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Domain Scope; §3.1 In Scope; §3.2 Out of Scope |
+| Actors | §38.4 Representative Audit Roles |
+| Entities | §11 Aggregate Relationships; §9.1 Aggregate Design Principles; §9.2 Root Aggregate — Inventory Audit |
+| Business Rules | §29 Business Rules |
+| Workflow | §13 Inventory Audit Planning Workflow; §14 Submission & Approval Workflow; §15 Audit Baseline & Cutoff Workflow |
+| State Machine | §12.1 Lifecycle State Definitions |
+| Contracts | §33 API & Integration Contracts; §33.3 J06 Integration Contract; §33.4 J08 Integration Contract |
+| Events | §31 Domain Events; §31.1 Inventory Audit Events; §31.2 Audit Scope Events |
+| Dependencies | §46 Multi-Domain Dependency Matrix; §43.5 External Dependency Failure |
+| Locked Decisions | §47 Architectural Decision Records |
 
 ---
 

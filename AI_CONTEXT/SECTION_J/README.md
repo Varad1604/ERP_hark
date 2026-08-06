@@ -30,11 +30,11 @@ Section J consumes platform trust services from Section A:
 
 | Trust Service | Canonical Owner | Section J Responsibility |
 |---------------|-----------------|--------------------------|
-| Authentication | A03 Identity and Access Management | Consume authenticated actors and service identities. |
-| Authorization | A04 Authorization and Entitlements | Define Section J business permissions, approval duties, and segregation-of-duties requirements. |
-| Workflow Runtime | A05 Workflow and Business Process Foundation | Define Section J workflow states, approvals, and routing semantics. |
-| Events | A06 Notification and Eventing Architecture | Emit and consume Section J domain events without owning event infrastructure. |
-| Audit | A07 Audit, Compliance and Evidence Architecture | Emit Section J audit facts and preserve business evidence. |
+| Authentication | A03 Authentication Workflows | Consume authenticated actors and service identities. |
+| Authorization | A04 Authorization & Policy Workflows | Define Section J business permissions, approval duties, and segregation-of-duties requirements. |
+| Workflow Runtime | A05 Workflow Engine Workflows | Define Section J workflow states, approvals, and routing semantics. |
+| Events | A06 Event Infrastructure Workflows | Emit and consume Section J domain events without owning event infrastructure. |
+| Audit | A07 Audit Infrastructure Workflows | Emit Section J audit facts and preserve business evidence. |
 
 ## Section J Domain Boundaries
 

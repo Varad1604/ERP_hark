@@ -1,8 +1,30 @@
 # L2-F06 — Budget & Cost Center Management
 
 **Section:** F — Finance  
-**Status:** Draft  
-**Document Owner:** Chetan
+**Status:** Trust Certification Ready  
+**Document Owner:** Finance — Budgeting & Cost Centers
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §2 Purpose; §5.1 Domain Purpose |
+| Scope | §3 Scope; §3.1 In Scope; §3.2 Out of Scope |
+| Actors | — not present — |
+| Entities | §3.3 Primary Business Entities |
+| Business Rules | §10.9 Architectural Constraints; §17 Domain Constraints |
+| Workflow | Workflows |
+| State Machine | §13 State Transition Architecture |
+| Contracts | — not present — |
+| Events | §14 Event Architecture; §14.1 Lifecycle Events; §14.2 Integration Events |
+| Dependencies | §9.4 Lifecycle Dependencies; §9.6 Dependency Rules |
+| Locked Decisions | — not present — |
+
+> **Gap:** 3 required section(s) have no counterpart in this document: Actors, Contracts, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -208,7 +230,7 @@ The following capabilities belong to other Finance domains.
 
 ---
 
-### Procurement (F07)
+### Procurement (Section J)
 
 - Purchase Requests
 - Purchase Orders

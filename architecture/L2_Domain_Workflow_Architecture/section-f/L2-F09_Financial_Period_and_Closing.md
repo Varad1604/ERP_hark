@@ -5,11 +5,33 @@
 | Architecture Level | Level 2 — Domain Architecture |
 | Domain | Finance |
 | Document Code | L2-F09 |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 | Canonical Owner | Finance Architecture |
-| Document Owner | Chetan |
+| Document Owner | Finance — Period & Closing |
 | Last Updated | TBD |
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §3 Purpose; Architectural Purpose |
+| Scope | §4 Scope |
+| Actors | — not present — |
+| Entities | Internal Entities; Internal Entity Specifications; Entity Validation |
+| Business Rules | Business Rules |
+| Workflow | Workflows |
+| State Machine | Lifecycle State |
+| Contracts | §18 Integration Contracts; Repository Contracts |
+| Events | §17 Domain Event Architecture; Event-Driven Collaboration; Domain Event Publication Rules |
+| Dependencies | §1 Dependency Classification |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -4754,7 +4776,7 @@ The ordered flow between these capabilities is illustrated by the Capability Rel
 | Document | L2-F09 — Financial Period & Closing |
 | Architecture Level | Level 2 |
 | Domain | Finance |
-| Status | Ready for Architecture Lock (Subject to Repository Validation) |
+| Status | Trust Certification Ready |
 | Canonical Owner | Finance Architecture |
 | Merge Readiness | Ready for Governance Validation |
 | Downstream Dependency | L3 Component Architecture, L4 Service Architecture, Implementation Architecture |

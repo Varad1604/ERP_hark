@@ -1,4 +1,26 @@
-# L2-E04 --- HR Workflows
+# L2-E04 — HR Workflows
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose; §1.1 Purpose Statement |
+| Scope | §2 Scope; §2.2 In Scope Capabilities; §2.3 Out of Scope |
+| Actors | Actors; VR-HR-002 --- Actor Validation |
+| Entities | §6.5 Entity Model; HR Case Entity; Certificate Request Entity |
+| Business Rules | §9 Business Rules; §9.1 Business Rule Philosophy |
+| Workflow | §6.2 HR Workflow Domain Model; §6.8 Employee Lifecycle Workflow Model; §7 Domain Workflows |
+| State Machine | §12 State Transition Matrix; §12.2 HR Case State Transition; §12.3 Leave Request State Transition (owned by L2-E05) |
+| Contracts | §8.8 HR-WF-007 --- Contract Renewal Workflow; §11 Service Contracts; §11.2 Command Contracts |
+| Events | §9.9 Domain Events; §10.2 Event Publishing Model; §10.3 Employee Lifecycle Case Events |
+| Dependencies | §3 Upstream Dependencies; §3.2 Primary Upstream Dependencies; §3.3 Secondary Upstream Dependencies |
+| Locked Decisions | §13 Decision Matrix; §13.2 Business Decision Matrix; §22 Architecture Decision Records (ADR) |
+
+---
+
+**Document Owner:** People & Workforce — HR  
 
 ## Document Metadata
 
@@ -13,7 +35,6 @@
   Status               Draft
   Version              1.0
   Owner                SutraERP Architecture Team
-  Document Owner       Varad
 
 ------------------------------------------------------------------------
 
@@ -29,24 +50,26 @@ The domain acts as the enterprise HR process orchestration layer
 responsible for executing, coordinating, and governing HR operations
 while maintaining strict ownership boundaries with specialized domains.
 
-HR Workflows SHALL provide controlled lifecycle management for:
+HR Workflows is a **pure orchestration domain**. It owns the HR *case* — intake, approval
+routing, SLA, checklists, evidence and closure — and never owns the employment state a case
+results in. Employment state is owned by `L2-E01 --- Workforce & Engagement Workflows`; leave
+state by `L2-E05`; position and responsibility state by `L2-E02`; employee master data by `L2-E07`.
 
--   Employee onboarding.
--   Probation management.
--   Confirmation workflows.
--   Employee requests.
--   HR case management.
--   Leave workflows.
--   Absence workflows.
--   Employee document workflows.
--   Certificate workflows.
--   Employment change workflows.
--   Promotion workflows.
--   Transfer workflows.
--   Contract renewal workflows.
--   Separation and exit workflows.
--   HR compliance workflows.
--   Retention case workflows.
+HR Workflows SHALL provide controlled **case** management for:
+
+-   Onboarding cases.
+-   Probation and confirmation cases.
+-   Employee and manager requests.
+-   HR administrative cases and grievances.
+-   Absence cases (wrapping L2-E05 outcomes).
+-   Employee document and certificate workflows.
+-   Employment change cases (promotion, transfer, contract renewal).
+-   Separation and exit clearance cases.
+-   HR compliance and retention cases.
+
+For every case that results in an employment state change, HR Workflows validates, routes and
+approves, then **invokes L2-E01 to perform the transition**. L2-E01 publishes the authoritative
+employment event. HR Workflows records only the case outcome.
 
 ------------------------------------------------------------------------
 
@@ -109,17 +132,24 @@ The domain focuses on:
 
 # 2.2 In Scope Capabilities
 
-## Employee Lifecycle Workflows
+## Employee Lifecycle Case Workflows
 
--   Employee onboarding.
--   Probation workflows.
--   Confirmation workflows.
--   Employment status changes.
--   Promotion workflows.
--   Transfer workflows.
--   Contract renewal workflows.
--   Separation workflows.
--   Exit clearance workflows.
+Employment lifecycle **state** is owned exclusively by `L2-E01 --- Workforce & Engagement
+Workflows`. This domain owns only the HR case that precedes and requests each transition.
+
+In scope here (case orchestration):
+
+-   Onboarding case: document collection, verification, approval routing, readiness check.
+-   Probation and confirmation cases: review scheduling, appraisal capture, approval.
+-   Employment change cases: promotion, transfer and contract renewal request, routing, approval.
+-   Separation case: resignation intake, notice tracking, exit clearance checklist, final approval.
+
+Out of scope here (owned by L2-E01):
+
+-   The WorkforceEngagement state itself and every transition of it.
+-   Activation, probation status, confirmation status, promotion, transfer, renewal, separation
+    and retirement as *employment facts*.
+-   The authoritative employment domain events published on those transitions.
 
 ## HR Case Management
 
@@ -133,11 +163,20 @@ The domain focuses on:
 
 ## Leave and Absence Workflows
 
--   Leave requests.
--   Leave approvals.
--   Leave cancellation.
--   Leave policy execution.
--   Absence case management.
+Leave lifecycle is **owned exclusively by L2-E05 --- Leave Management Workflows**. This domain
+does not own leave requests, approvals, cancellation or policy execution.
+
+In scope here:
+
+-   Absence case management (HR case wrapper around an L2-E05 outcome).
+-   Raising an HR case when a leave outcome requires HR follow-up.
+-   Consuming L2-E05 leave events for HR reporting and compliance.
+
+Out of scope here (owned by L2-E05):
+
+-   Leave requests, approvals and cancellation.
+-   Leave policy definition, eligibility and execution.
+-   Leave balances, accrual, entitlement and the leave ledger.
 
 ## HR Document Workflows
 
@@ -161,7 +200,12 @@ The domain focuses on:
 
   Capability                      Owning Domain
   ------------------------------- ------------------------------
-  Employee profile data           E07 Employee Profile
+  Leave lifecycle                 E05 Leave Management
+  Position/responsibility assign. E02 Position & Assignment
+  Workforce employment lifecycle  E01 Workforce & Engagement
+  Employment state transitions    E01 Workforce & Engagement
+  Employment domain events        E01 Workforce & Engagement
+  Employee master/profile data    E07 Employee Profile
   Faculty capability management   E03 Faculty Workforce
   Authentication                  Identity Domain
   Organization hierarchy          Organization Domain
@@ -193,10 +237,10 @@ External Domain Data Ownership
   HR Lifecycle Workflows   Included
   HR Case Management       Included
   Employee Requests        Included
-  Leave Workflows          Included
+  Leave Workflows          Excluded (owned by L2-E05)
   HR Documents             Included
   HR Compliance            Included
-  Employee Profile Data    Excluded
+  Employee Master Data     Excluded
   Payroll Processing       Excluded
   Attendance Processing    Excluded
 
@@ -232,17 +276,17 @@ HR Workflow Execution
 
 # 3.2 Primary Upstream Dependencies
 
-## E07 --- Employee Profile Domain
+## E02 --- Employee Profile Domain
 
 ### Dependency Purpose
 
 E04 depends on Employee Profile for authoritative employee identity and
 profile information.
 
-E07 owns:
+E02 owns:
 
 -   Employee identity.
--   Employee profile record.
+-   Employee master record.
 -   Employment profile representation.
 -   Personal information.
 -   Employee identifiers.
@@ -253,7 +297,7 @@ E04 consumes:
 -   Employment context required for workflow execution.
 -   Employee lifecycle updates after approved HR decisions.
 
-E04 SHALL NOT directly modify employee profile records.
+E04 SHALL NOT directly modify employee master records.
 
 Integration Pattern:
 
@@ -448,7 +492,7 @@ E04 provides:
 
   Dependency             Purpose                       Ownership
   ---------------------- ----------------------------- -------------------
-  Employee Profile       Employee profile information  External
+  Employee Profile       Employee master information   External
   Recruitment            Hiring decisions              External
   Organization           Structure and hierarchy       External
   Identity               Authentication and access     External
@@ -478,7 +522,7 @@ E04 SHALL NOT expose internal workflow storage.
 
 # 4.2 Primary Downstream Consumers
 
-## E07 --- Employee Profile Domain
+## Employee Profile Domain
 
 Consumes:
 
@@ -511,7 +555,7 @@ Examples:
 ``` text
 CompensationChangeApproved
 
-LeaveApproved
+EmployeeLeaveApproved
 
 EmployeeSeparated
 ```
@@ -528,9 +572,9 @@ Consumes:
 Examples:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
-LeaveCancelled
+EmployeeLeaveCancelled
 ```
 
 ------------------------------------------------------------------------
@@ -544,7 +588,7 @@ Consumes:
 Examples:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
 CertificateGenerated
 
@@ -631,7 +675,7 @@ The domain boundary exists to prevent:
 -   Duplicate employee records.
 -   Conflicting lifecycle states.
 -   Shared database ownership.
--   Multi-domain coupling.
+-   Cross-domain coupling.
 
 ------------------------------------------------------------------------
 
@@ -675,7 +719,7 @@ L2-E04 owns:
 
   Capability                      Owner
   ------------------------------- ----------------------
-  Employee profile data            E07 Employee Profile
+  Employee master data            E07 Employee Profile
   Organization hierarchy          Organization Domain
   Authentication                  Identity Domain
   Salary calculation              Payroll Domain
@@ -693,7 +737,7 @@ flowchart TB
 
 HR["E04 HR Workflows"]
 
-E07["Employee Profile"]
+E02["Employee Profile"]
 
 ORG["Organization"]
 
@@ -708,7 +752,7 @@ ID["Identity"]
 ANA["Analytics"]
 
 
-HR -->|Workflow Decisions| E07
+HR -->|Workflow Decisions| E02
 
 HR -->|Assignment Requests| ORG
 
@@ -773,7 +817,7 @@ E04 manages:
 
 E04 does not manage:
 
--   Employee profile identity.
+-   Employee master identity.
 -   Organizational structure.
 -   Payroll records.
 -   Attendance records.
@@ -943,17 +987,32 @@ Examples:
 
 ### Does Not Own
 
--   Employee profile data.
+-   Employee master data.
 -   Documents.
 -   Notification delivery.
 
 ------------------------------------------------------------------------
 
-## 6.4.2 Employee Onboarding Aggregate
+## 6.4.2 HR Onboarding Case Aggregate
 
 ### Responsibility
 
-Controls employee joining workflow after approved hiring.
+Controls the **HR onboarding case** after approved hiring: document collection, verification,
+approval routing and readiness confirmation.
+
+Owns:
+
+-   Onboarding case state (the lifecycle shown below).
+-   Document checklist and verification outcome.
+-   Approval routing and decision record.
+
+Does not own:
+
+-   Employee activation or any WorkforceEngagement state --- owned by `L2-E01`.
+-   Employee master data --- owned by `L2-E07`.
+
+On case completion this domain invokes L2-E01 to activate the engagement. L2-E01 performs the
+transition and publishes the authoritative employment event.
 
 Lifecycle:
 
@@ -983,23 +1042,27 @@ Completed
 
 ------------------------------------------------------------------------
 
-## 6.4.3 Leave Request Aggregate
+## 6.4.3 Leave Request (Referenced --- owned by L2-E05)
 
 ### Responsibility
 
-Controls leave business process execution.
+Leave Request is **not an aggregate of this domain**. It is owned exclusively by
+`L2-E05 --- Leave Management Workflows`, which governs its lifecycle, approval state, policy
+evaluation, balances and cancellation.
 
-Owns:
+This domain does not own:
 
--   Leave request.
--   Approval state.
+-   Leave request or its state.
+-   Approval state or approval rules.
 -   Policy evaluation result.
 -   Cancellation workflow.
-
-Does not own:
-
 -   Attendance records.
 -   Payroll deductions.
+
+This domain may:
+
+-   Open an HR Case that references a Leave Request by identifier.
+-   Consume L2-E05 leave events for HR reporting, compliance and case closure.
 
 ------------------------------------------------------------------------
 
@@ -1029,11 +1092,11 @@ Does not own:
 
 ------------------------------------------------------------------------
 
-## 6.4.5 Employment Change Aggregate
+## 6.4.5 HR Employment Change Case Aggregate
 
 ### Responsibility
 
-Controls employee-related change workflows.
+Controls the **HR case** that requests an employment change.
 
 Examples:
 
@@ -1044,25 +1107,39 @@ Examples:
 
 Owns:
 
--   Change request.
--   Approval process.
--   Effective date.
--   Business decision.
+-   Change request and its case state.
+-   Approval process and decision record.
+-   Requested effective date.
+
+Does not own:
+
+-   The employment change itself, or the resulting WorkforceEngagement state --- owned by `L2-E01`.
+-   Position or reporting placement --- owned by `L2-E02`.
+
+An approved case invokes L2-E01 (and, where organisational placement changes, L2-E01 in turn
+invokes L2-E02). This domain records the case outcome, not the employment fact.
 
 ------------------------------------------------------------------------
 
-## 6.4.6 Separation Aggregate
+## 6.4.6 HR Separation Case Aggregate
 
 ### Responsibility
 
-Controls employee exit workflows.
+Controls the **HR separation case**.
 
 Owns:
 
--   Resignation workflow.
--   Exit clearance.
--   Completion state.
--   Exit events.
+-   Resignation intake and notice tracking.
+-   Exit clearance checklist and clearance outcomes.
+-   Separation case completion state.
+-   HR case events (`HRSeparationCaseClosed` and similar).
+
+Does not own:
+
+-   Employment closure or retirement as employment facts --- owned by `L2-E01`.
+-   The authoritative `EmployeeSeparated`-class employment event --- published by `L2-E01`.
+
+A cleared separation case invokes L2-E01 to close the WorkforceEngagement.
 
 Does not own:
 
@@ -1099,15 +1176,18 @@ Examples:
 
 ------------------------------------------------------------------------
 
-## Leave Request Entity
+## Leave Request Reference (owned by L2-E05)
+
+Attributes are reproduced for cross-domain reference only. L2-E05 owns the canonical entity;
+this domain holds no more than the identifier.
 
   Attribute            Description
   -------------------- ----------------------------
-  Leave Request ID     Unique identifier
+  Leave Request ID     Reference to the L2-E05 Leave Request
   Employee Reference   External employee identity
-  Leave Type           Policy category
-  Requested Period     Duration
-  Approval State       Workflow state
+  Leave Type           Policy category (L2-E05)
+  Requested Period     Duration (L2-E05)
+  Approval State       Workflow state (L2-E05)
 
 ------------------------------------------------------------------------
 
@@ -1126,7 +1206,7 @@ Examples:
 
 ## Employee Reference
 
-Represents a reference to an employee owned by E07.
+Represents a reference to an employee owned by E02.
 
 Example:
 
@@ -1286,8 +1366,11 @@ Case --> Events
 # 6.10 Lifecycle Ownership Rules
 
   Lifecycle Element            Owner
-  ---------------------------- ----------------------
-  HR workflow state            E04 HR Workflows
+  ---------------------------- ------------------------------
+  HR case state                E04 HR Workflows
+  Employment lifecycle state   E01 Workforce & Engagement
+  Leave lifecycle state        E05 Leave Management
+  Position/responsibility      E02 Position & Assignment
   Employee identity state      E07 Employee Profile
   Organization assignment      Organization Domain
   Payroll impact               Payroll Domain
@@ -1458,11 +1541,13 @@ G --> H
 
 ------------------------------------------------------------------------
 
-# 7.4 Leave Workflow
+# 7.4 Leave Interaction (owned by L2-E05)
 
 ## Purpose
 
-Manage employee leave requests and approval processes.
+Describe how HR interacts with the leave lifecycle owned by `L2-E05`. This domain does not manage
+leave requests or approval processes; the state machine below is reproduced for reference and
+L2-E05 governs on any difference.
 
 ## Trigger
 
@@ -1732,7 +1817,7 @@ The following rules SHALL apply:
   Transfer Process         E04 HR Workflows
   Separation Process       E04 HR Workflows
   Payroll Calculation      Payroll Domain
-  Employee Profile Update   E07 Employee Profile
+  Employee Master Update   E07 Employee Profile
   Organization Update      Organization Domain
 
 ------------------------------------------------------------------------
@@ -1879,11 +1964,13 @@ FAILED
 
 ------------------------------------------------------------------------
 
-# 8.3 HR-WF-002 --- Leave Request Workflow
+# 8.3 HR-WF-002 --- Leave Case Workflow *(invokes L2-E05)*
 
 ## Purpose
 
-Manage employee leave requests through policy validation and approvals.
+Open and track an HR case arising from a leave outcome. Policy validation, approval and the
+leave request lifecycle itself are executed by `L2-E05 --- Leave Management Workflows`; this
+workflow neither validates leave policy nor records an approval decision.
 
 ## Trigger
 
@@ -2278,7 +2365,7 @@ The following rules SHALL apply to all HR workflows:
   Employee Onboarding     Employee Onboarding     EmployeeOnboardingCompleted
                           Aggregate               
 
-  Leave Request           Leave Request Aggregate LeaveApproved
+  Leave Request           Leave Request Aggregate EmployeeLeaveApproved
 
   HR Case                 HR Case Aggregate       HRCaseResolved
 
@@ -2409,11 +2496,14 @@ Examples:
 
 ------------------------------------------------------------------------
 
-# 9.3 Employee Lifecycle Rules
+# 9.3 Employee Lifecycle Case Rules
 
-## BR-HR-005 --- Onboarding Completion Rule
+These rules govern the HR **case**. The employment state transition each case requests is owned
+and executed by `L2-E01`, which enforces its own preconditions independently.
 
-Employee onboarding SHALL NOT complete until:
+## BR-HR-005 --- Onboarding Case Completion Rule
+
+The HR onboarding case SHALL NOT complete until:
 
 -   Required information is collected.
 -   Required verification is completed.
@@ -2423,16 +2513,18 @@ Employee onboarding SHALL NOT complete until:
 
 ## BR-HR-006 --- Employee Activation Rule
 
-Employee activation SHALL update employee lifecycle status through E07
-Employee Profile.
+Employee activation is performed by `L2-E01 --- Workforce & Engagement Workflows`, which owns
+WorkforceEngagement state and publishes the authoritative activation event.
 
-E04 SHALL publish an activation event.
+On onboarding case completion, E04 SHALL invoke the L2-E01 activation contract and SHALL NOT
+publish a competing activation event. E04 publishes only its own case event
+(`HROnboardingCaseClosed`). Employee master data is updated by `L2-E07`.
 
 ------------------------------------------------------------------------
 
-## BR-HR-007 --- Separation Completion Rule
+## BR-HR-007 --- Separation Case Completion Rule
 
-Employee separation SHALL NOT complete until:
+The HR separation case SHALL NOT complete until:
 
 -   Exit approvals are completed.
 -   Required clearance workflows are completed.
@@ -2440,7 +2532,10 @@ Employee separation SHALL NOT complete until:
 
 ------------------------------------------------------------------------
 
-# 9.4 Leave Workflow Rules
+# 9.4 Leave Workflow Rules (defined and enforced by L2-E05)
+
+The rules in this section are **owned by L2-E05** and restated here for HR context only. L2-E05
+governs any change to them, and HR shall not implement a competing evaluation.
 
 ## BR-HR-008 --- Leave Eligibility Rule
 
@@ -2478,7 +2573,10 @@ HR --> Decision
 
 ------------------------------------------------------------------------
 
-# 9.5 Employment Change Rules
+# 9.5 Employment Change Case Rules
+
+These rules govern the HR case only. The resulting employment change is executed and published
+by `L2-E01`; organisational placement changes are executed by `L2-E02`.
 
 ## BR-HR-010 --- Promotion Rule
 
@@ -2619,38 +2717,62 @@ Bus --> Consumers
 
 ------------------------------------------------------------------------
 
-# 10.3 Employee Lifecycle Events
+# 10.3 Employee Lifecycle Case Events
 
-  Event                         Description
-  ----------------------------- -------------------------------
-  EmployeeOnboardingStarted     Onboarding workflow initiated
-  EmployeeOnboardingCompleted   Employee onboarding completed
-  EmployeeActivated             Employee became active
-  EmployeeProbationStarted      Probation started
-  EmployeeConfirmed             Employment confirmed
-  EmployeeSeparated             Separation completed
+This domain publishes **case** events only. The authoritative employment events are published by
+`L2-E01`, which owns the underlying state. E04 shall not publish an employment fact.
+
+Published by this domain:
+
+  Event                        Description
+  ---------------------------- -------------------------------------
+  HROnboardingCaseOpened       Onboarding case initiated
+  HROnboardingCaseClosed       Onboarding case completed; L2-E01 invoked
+  HRProbationCaseOpened        Probation review case opened
+  HRConfirmationCaseClosed     Confirmation case decided; L2-E01 invoked
+  HRSeparationCaseClosed       Separation cleared; L2-E01 invoked
+
+Consumed from L2-E01 (authoritative employment facts, not republished here):
+
+  Event                  Publisher
+  ---------------------- -----------
+  EmployeeActivated      L2-E01
+  EmployeeConfirmed      L2-E01
+  EmployeeSeparated      L2-E01
 
 ------------------------------------------------------------------------
 
-# 10.4 Leave Events
+# 10.4 Leave Events (consumed --- published by L2-E05)
 
-  Event            Description
-  ---------------- -------------------------
-  LeaveRequested   Leave request submitted
-  LeaveApproved    Leave approved
-  LeaveRejected    Leave rejected
-  LeaveCancelled   Leave cancelled
+These events are **published by L2-E05**, not by this domain. HR consumes them to open, progress
+or close HR cases and for compliance reporting. HR shall not publish any of them.
+
+  Event            Description                 Publisher
+  ---------------- --------------------------- -----------
+  EmployeeLeaveRequested   Leave request submitted     L2-E05
+  EmployeeLeaveApproved    Leave approved              L2-E05
+  EmployeeLeaveRejected    Leave rejected              L2-E05
+  EmployeeLeaveCancelled   Leave cancelled             L2-E05
 
 ------------------------------------------------------------------------
 
-# 10.5 Employment Change Events
+# 10.5 Employment Change Case Events
 
-  Event                 Description
-  --------------------- ------------------------------
-  PromotionRequested    Promotion workflow initiated
-  PromotionApproved     Promotion approved
-  EmployeeTransferred   Transfer completed
-  ContractRenewed       Contract renewal completed
+Published by this domain (case decisions):
+
+  Event                        Description
+  ---------------------------- --------------------------------------
+  HRPromotionCaseOpened        Promotion case initiated
+  HRPromotionCaseApproved      Promotion approved; L2-E01 invoked
+  HRTransferCaseApproved       Transfer approved; L2-E01 invoked
+  HRContractRenewalApproved    Renewal approved; L2-E01 invoked
+
+Consumed from L2-E01 (authoritative employment facts):
+
+  Event                  Publisher
+  ---------------------- -----------
+  EmployeeTransferred    L2-E01
+  ContractRenewed        L2-E01
 
 ------------------------------------------------------------------------
 
@@ -2785,7 +2907,7 @@ Creates a new HR operational case.
 
 ------------------------------------------------------------------------
 
-## CMD-HR-002 --- Submit Leave Request
+## CMD-HR-002 --- Forward Leave Request to L2-E05
 
 ### Purpose
 
@@ -2824,7 +2946,7 @@ Approves a pending HR workflow.
 
 ------------------------------------------------------------------------
 
-## CMD-HR-004 --- Initiate Employee Onboarding
+## CMD-HR-004 --- Open HR Onboarding Case
 
 ### Purpose
 
@@ -2842,7 +2964,7 @@ Output:
 
 ------------------------------------------------------------------------
 
-## CMD-HR-005 --- Submit Employment Change
+## CMD-HR-005 --- Open HR Employment Change Case *(approved case invokes L2-E01)*
 
 Supports:
 
@@ -2908,7 +3030,7 @@ Synchronize approved employee lifecycle changes.
 Contract:
 
 ``` text
-E04 → E07
+E04 → E02
 
 EmployeeLifecycleUpdate
 ```
@@ -3008,7 +3130,10 @@ State transitions SHALL:
 
 ------------------------------------------------------------------------
 
-# 12.3 Leave Request State Transition
+# 12.3 Leave Request State Transition (owned by L2-E05)
+
+Reproduced for cross-domain reference. The authoritative leave state machine lives in
+`L2-E05_Leave_Management_Workflows.md`; on any difference, L2-E05 governs.
 
   Current State      Action     Next State
   ------------------ ---------- ------------------
@@ -3019,7 +3144,10 @@ State transitions SHALL:
 
 ------------------------------------------------------------------------
 
-# 12.4 Onboarding State Transition
+# 12.4 Onboarding Case State Transition
+
+This is the **HR case** state machine. The employment activation it triggers is a separate
+transition owned by `L2-E01`.
 
   Current State          Action         Next State
   ---------------------- -------------- ----------------------
@@ -3030,7 +3158,9 @@ State transitions SHALL:
 
 ------------------------------------------------------------------------
 
-# 12.5 Separation State Transition
+# 12.5 Separation Case State Transition
+
+This is the **HR case** state machine. Employment closure is owned by `L2-E01`.
 
   Current State        Action               Next State
   -------------------- -------------------- --------------------
@@ -3093,7 +3223,7 @@ Other domains decide:
   Promotion approval        E04 HR Workflows    Organization
   Salary calculation        Payroll             E04
   Department assignment     Organization        E04
-  Employee profile update   E07                 E04
+  Employee profile update   E02                 E04
   Document storage          Document Platform   E04
   Authentication access     Identity            E04
 
@@ -3116,7 +3246,7 @@ If ownership conflict occurs:
   ----------------------- -------------------
   Workflow Commands       Command API
   Workflow Queries        Query API
-  Multi-domain updates    Domain Events
+  Cross-domain updates    Domain Events
   Document generation     Service Contract
   Employee updates        Event Integration
   Payroll communication   Event Integration
@@ -3390,7 +3520,10 @@ Approval actions SHALL validate:
 
 ------------------------------------------------------------------------
 
-# 15.4 Leave Validation Rules
+# 15.4 Leave Validation Rules (performed by L2-E05)
+
+Leave validation is executed by `L2-E05`. HR consumes the validation outcome and shall not
+re-evaluate eligibility.
 
 ## VR-HR-005 --- Leave Eligibility
 
@@ -4050,7 +4183,7 @@ The following operations SHOULD support asynchronous execution:
 
 # 19.5 Event Processing Scalability
 
-E04 SHALL use event-driven processing for multi-domain communication.
+E04 SHALL use event-driven processing for cross-domain communication.
 
 Example:
 
@@ -4780,7 +4913,7 @@ architecture.
 
 # 22. Architecture Decision Records (ADR)
 
-# ADR-001 --- HR Workflow Domain Does Not Own Employee Profile Data
+# ADR-001 --- HR Workflow Domain Does Not Own Employee Master Data
 
 ## Status
 
@@ -4797,7 +4930,7 @@ records.
 
 E04 owns HR processes.
 
-E07 Employee Profile owns employee profile data.
+E07 Employee Profile owns employee master data.
 
 ## Consequences
 
@@ -4849,7 +4982,7 @@ Negative:
 
 ------------------------------------------------------------------------
 
-# ADR-003 --- Event Driven Multi-Domain Communication
+# ADR-003 --- Event Driven Cross-Domain Communication
 
 ## Status
 
@@ -5071,7 +5204,7 @@ Examples:
 A reference identifier pointing to employee information owned by the
 Employee Profile domain.
 
-E04 stores references, not employee profile data.
+E04 stores references, not employee master data.
 
 ------------------------------------------------------------------------
 
@@ -5083,7 +5216,7 @@ by other domains.
 Examples:
 
 -   EmployeeOnboardingCompleted.
--   LeaveApproved.
+-   EmployeeLeaveApproved.
 
 ------------------------------------------------------------------------
 
@@ -5338,22 +5471,37 @@ HR -->|Document Requests| Documents
 
 # 24.4 What E04 Owns
 
-## Business Processes
+E04 is a pure HR **case orchestration** domain. It owns the case, never the resulting fact.
 
--   Onboarding.
--   Leave workflows.
--   HR cases.
--   Promotion workflows.
--   Transfer workflows.
--   Separation workflows.
+## Business Processes (cases)
+
+-   Onboarding cases.
+-   Probation and confirmation cases.
+-   HR cases, requests and grievances.
+-   Employment change cases (promotion, transfer, contract renewal).
+-   Separation and exit clearance cases.
+-   Absence cases wrapping L2-E05 outcomes.
+-   Employee document and certificate workflows.
 
 ## Business Governance
 
--   Approvals.
--   State transitions.
+-   Case approvals and routing.
+-   HR **case** state transitions.
 -   SLA tracking.
 -   Escalations.
--   Audit history.
+-   Audit history of HR cases.
+
+## What E04 does not own
+
+  Concern                          Owner
+  -------------------------------- ------------------------------
+  Employment lifecycle state       E01 Workforce & Engagement
+  Employment domain events         E01 Workforce & Engagement
+  Position/responsibility assign.  E02 Position & Assignment
+  Leave lifecycle and ledger       E05 Leave Management
+  Employee master/profile data     E07 Employee Profile
+
+Recast 2026-08-03 to close integrity finding INT-003.
 
 ------------------------------------------------------------------------
 
@@ -5361,7 +5509,7 @@ HR -->|Document Requests| Documents
 
   Capability               Owner
   ------------------------ ----------------------
-  Employee profile data    E07 Employee Profile
+  Employee master data     E07 Employee Profile
   Salary calculation       Payroll Domain
   Attendance records       Attendance Domain
   Organization hierarchy   Organization Domain
@@ -5548,7 +5696,7 @@ The document SHALL remain synchronized with:
   Capability                     Owner
   ------------------------------ -----------------------
   HR Workflow Execution          L2-E04 HR Workflows
-  Employee Profile Data           E07 Employee Profile
+  Employee Master Data           E07 Employee Profile
   Faculty Workforce Capability   E03 Faculty Workforce
   Payroll Processing             Payroll Domain
   Attendance Processing          Attendance Domain
@@ -5580,7 +5728,7 @@ The document SHALL remain synchronized with:
   Event Category       Examples
   -------------------- ------------------------------------------------
   Employee Lifecycle   EmployeeOnboardingCompleted, EmployeeSeparated
-  Leave                LeaveApproved, LeaveCancelled
+  Leave                EmployeeLeaveApproved, EmployeeLeaveCancelled
   Employment Change    PromotionApproved, EmployeeTransferred
   Certificates         CertificateGenerated
   HR Cases             HRCaseResolved

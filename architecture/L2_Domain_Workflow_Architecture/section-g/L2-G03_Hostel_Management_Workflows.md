@@ -5,19 +5,21 @@
 **Domain:** G03 — Hostel Management  
 **Document ID:** L2-G03  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
-**Document Owner:** Devang
+**Document Owner:** Campus Operations — Hostel
 
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
 - Section B — Institution & Structure
-- Section C — Student Lifecycle
 - Section E — People & Workforce
 - G10 — Infrastructure Management
 - G01 — Facilities Management
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section C — Student Lifecycle — Student Identity
 
 **Downstream Consumers**
 
@@ -27,6 +29,28 @@
 - Institutional Reporting
 - Parent Communication
 - Notifications
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Scope; §4 Out of Scope |
+| Actors | Typical Operational Roles |
+| Entities | §8 Aggregate Design; Aggregate Roots; Aggregate Responsibilities |
+| Business Rules | §13 Business Invariants |
+| Workflow | §12 Workflow Catalogue; §16 Hostel Admission Workflows; §17 Room Allocation Workflows |
+| State Machine | §30 State Transition Matrix |
+| Contracts | §29 Service Contracts |
+| Events | §28 Domain Events; Event Driven Architecture; Admission Events |
+| Dependencies | §9 Dependencies & Integration (Bounded Context Relationships) |
+| Locked Decisions | — not present — |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -529,7 +553,7 @@ Aggregate identity shall remain immutable throughout its lifecycle.
 
 ---
 
-# 9. Bounded Context Relationships
+# 9. Dependencies & Integration (Bounded Context Relationships)
 
 ## Upstream Domains
 
@@ -1857,8 +1881,8 @@ Every significant business transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| LeaveRequested | Leave submitted |
-| LeaveApproved | Leave approved |
+| HostelLeaveRequested | Leave submitted |
+| HostelLeaveApproved | Leave approved |
 | ResidentDeparted | Resident left hostel |
 | ResidentReturned | Resident returned |
 
@@ -1868,10 +1892,10 @@ Every significant business transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| VisitorRegistered | Visitor registered |
-| VisitorApproved | Visitor approved |
-| VisitorCheckedIn | Visitor entered |
-| VisitorCheckedOut | Visitor exited |
+| HostelVisitorRegistered | Visitor registered |
+| HostelVisitorApproved | Visitor approved |
+| HostelVisitorCheckedIn | Visitor entered |
+| HostelVisitorCheckedOut | Visitor exited |
 
 ---
 
@@ -2461,4 +2485,4 @@ Hostel Management follows the enterprise architectural principles established by
 **L2-G03 — Hostel Management Workflows**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Architectural Review)
+**Status:** Trust Certification Ready

@@ -2,6 +2,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §2.1 In Scope; §2.2 Out of Scope |
+| Actors | §7 Business Actors; §7.1 Internal Actors; §7.2 External Actors |
+| Entities | §10 Aggregate Model; §10.1 Aggregate Overview; §10.2 Aggregate Root |
+| Business Rules | §13 Business Rules |
+| Workflow | §11 Workflow Catalogue; §12 Workflow Specifications; §11.1 Workflow Overview |
+| State Machine | §21 State Model; §21.3 State Definitions; §21.4 Valid State Transitions |
+| Contracts | — not present — |
+| Events | §16 Events Published; §17 Events Consumed; §16.2 Published Events |
+| Dependencies | §22 Dependency Matrix; §3.2 Repository Dependencies; §22.1 Upstream Dependencies |
+| Locked Decisions | §14.5 Decision Exceptions; §18.9 Decision Validation; MW-12 Record Committee Decision |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Contracts. Recorded, not authored.
+
+---
+
 # Document Control
 
 | Attribute | Value |
@@ -10,10 +32,9 @@
 | Document Name | Malpractice & Examination Committee Workflows |
 | Domain | Examination Domain |
 | Architecture Level | L2 – Canonical Domain Workflow |
-| Owner | Examination Domain |
-| Document Owner | Devang |
+| Document Owner | Examinations — Malpractice & Committee |
 | Repository | SutraERP Enterprise Architecture Repository |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Depends On | L1 Business Domain Architecture, L2-A01–A08, L2-B01–B05, L2-I01–L2-I13 |
 | Version | 0.1 |
 
@@ -176,7 +197,7 @@ The following responsibilities are owned by other canonical domains.
 
 The Malpractice & Examination Committee domain is a governance domain within the Examination bounded context.
 
-It operates after examination conduct and may influence downstream workflows such as result processing, result publication, supplementary examinations, and graduation by issuing authoritative disciplinary decisions.
+It operates after examination conduct and may influence downstream workflows such as result processing, result publication, supplementary examinations, and qualification completion by issuing authoritative disciplinary decisions.
 
 No other domain may independently investigate or adjudicate examination malpractice.
 
@@ -1181,7 +1202,7 @@ Direct database dependencies between domains are prohibited.
 | Result Processing | Apply disciplinary impact on results. |
 | Result Publication | Withhold or publish results according to disciplinary outcome. |
 | Supplementary Examination | Determine eligibility where required. |
-| Academic Completion | Apply graduation restrictions where applicable. |
+| Academic Completion | Apply qualification completion restrictions where applicable. |
 | Student Lifecycle | Update disciplinary history. |
 | Notification | Inform stakeholders. |
 | Analytics | Institutional reporting. |
@@ -1219,14 +1240,14 @@ Events are immutable and shall be published only after successful completion of 
 | EVT-001 | MalpracticeIncidentRegistered |
 | EVT-002 | MalpracticeCaseCreated |
 | EVT-003 | InvestigationAssigned |
-| EVT-004 | InvestigationStarted |
+| EVT-004 | ExamCommitteeInvestigationStarted |
 | EVT-005 | InvestigationCompleted |
 | EVT-006 | EvidenceCollected |
 | EVT-007 | CandidateExplanationRecorded |
 | EVT-008 | WitnessStatementRecorded |
 | EVT-009 | CommitteeMeetingScheduled |
 | EVT-010 | CommitteeHearingCompleted |
-| EVT-011 | CommitteeRecommendationRecorded |
+| EVT-011 | ExamCommitteeRecommendationRecorded |
 | EVT-012 | CommitteeDecisionRecorded |
 | EVT-013 | PenaltyAssigned |
 | EVT-014 | StakeholdersNotified |
@@ -1761,7 +1782,7 @@ Archived aggregates become read-only and may only be accessed by authorized user
 | L2-I09 Result Processing | Penalty impact | Result modification decisions |
 | L2-I10 Result Publication | Publication restrictions | Withhold or publish results |
 | L2-I12 Supplementary Examination | Eligibility | Determine supplementary eligibility |
-| L2-I13 Academic Completion | Graduation eligibility | Restrict academic completion where applicable |
+| L2-I13 Academic Completion | qualification eligibility | Restrict academic completion where applicable |
 | Student Lifecycle | Disciplinary history | Student profile updates |
 | Notification Services | Stakeholder communication | Notifications |
 | Reporting & Analytics | Institutional reporting | KPIs and dashboards |
@@ -1870,7 +1891,7 @@ The architecture follows the enterprise principles established throughout the Su
 
 # End of Document
 **L2-I14 — Malpractice & Examination Committee Workflows**
-**Status:** Architecture Draft
+**Status:** Trust Certification Ready
 **Next Document:** **L2-I15 — Examination Exception & Contingency Workflows**
 
 

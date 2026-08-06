@@ -5,10 +5,32 @@
 **Domain:** D01 — Course Offering  
 **Document ID:** L2-D01  
 **Version:** 1.0  
-**Status:** Architecture Locked  
+**Status:** Trust Certification Ready  
+**Document Owner:** Academic Delivery — Course & Offering  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Pallav  
 **Dependencies:** Section A, Section B, Section C
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Scope; §4 Out of Scope |
+| Actors | Approval Participants |
+| Entities | §8 Aggregate Design; Appendix A — Aggregate Ownership; Single Aggregate Ownership |
+| Business Rules | §12 Business Invariants |
+| Workflow | §15 Course Offering Creation Workflow; §17 Course Offering Approval Workflow; §18 Course Offering Publication Workflow |
+| State Machine | §71 State Transition Matrix; Seat States; Enrollment States |
+| Contracts | — not present — |
+| Events | §25 Domain Events (Creation & Lifecycle); §42 Domain Events (Capacity & Enrollment); §56 Domain Events (Version & Lifecycle) |
+| Dependencies | Upstream Dependencies |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Contracts, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -80,8 +102,8 @@ Course Offering (D01)
         │
  ┌──────┼─────────┬──────────┬───────────┐
  ▼      ▼         ▼          ▼           ▼
-D02     D03     Section C   Section I   Resources
-Faculty Timetable Enrollment Section I Resources Management
+D02     D03     Section C   Section F   Resources
+Faculty Timetable Enrollment Assessment Management
 ```
 
 ---
@@ -171,7 +193,7 @@ Includes:
 
 ## Assessment
 
-Owned by Section I.
+Owned by Section F.
 
 Includes:
 
@@ -406,7 +428,7 @@ Produces:
 
 ---
 
-### Section I
+### Section F
 
 Consumes:
 
@@ -529,7 +551,7 @@ The Course Offering aggregate shall not:
 - Maintain dashboards
 - Schedule notifications
 
-Multi-domain interaction shall occur through:
+Cross-domain interaction shall occur through:
 
 - Domain events
 - Platform services
@@ -555,7 +577,7 @@ The Course Offering domain shall conform to the following repository principles.
 - Loose Coupling
 - Single Aggregate Ownership
 
-This concludes **Part 1** of `L2-D01_Course_Offering_Workflows.md`.
+This concludes **Part 1** of `L2-D01_Course_and_Course_Offering_Workflows.md`.
 
 **Next Part:** **Course Offering Creation, Validation, Approval, and Publication Workflows.**
 
@@ -2168,7 +2190,7 @@ All events shall be immutable and published through the Platform Event Bus.
 
 Versioning, Merge, Split, Freeze, Rollback, and Archive shall remain transactional responsibilities of the Course Offering aggregate.
 
-Multi-domain operations shall be coordinated through domain events and platform services.
+Cross-domain operations shall be coordinated through domain events and platform services.
 
 The aggregate shall never directly modify downstream bounded contexts.
 
@@ -2764,7 +2786,7 @@ All integrations shall respect Domain-Driven Design boundaries.
 | D02 | Published Course Offerings |
 | D03 | Published Course Offerings |
 | Section C | Enrollment Availability |
-| Section I | Assessment Planning |
+| Section F | Assessment Planning |
 | Resource Management | Resource Requirements |
 | Analytics Platform | Domain Events |
 | Monitoring Platform | Operational Events |
@@ -3167,7 +3189,7 @@ Cross-cutting concerns remain platform capabilities.
 | Faculty Assignment | D02 |
 | Timetable | D03 |
 | Student Enrollment | Section C |
-| Assessment | Section I |
+| Assessment | Section F |
 | Resource Allocation | Resource Management |
 | Analytics | Analytics Platform |
 | Monitoring | Monitoring Platform |
@@ -3225,9 +3247,9 @@ The Course Offering domain satisfies the following architectural objectives:
 
 # End of Document
 
-**Document:** L2-D01_Course_Offering_Workflows.md
+**Document:** L2-D01_Course_and_Course_Offering_Workflows.md
 
-**Status:** Repository Architecture Complete
+**Status:** Trust Certification Ready
 
 **Architecture Validation**
 

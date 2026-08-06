@@ -3,10 +3,32 @@
 **Document ID:** L2-A00  
 **Architecture Level:** Level 2 — Platform Foundation  
 **Domain:** Enterprise Platform Architecture  
-**Status:** Approved Baseline  
-**Owner:** Enterprise Architecture Board  
-**Document Owner:** Dhruv  
+**Status:** Trust Certification Ready  
+**Review Authority:** Enterprise Architecture Board  
+**Document Owner:** Platform Foundation  
 **Primary Audience:** Enterprise Architects, Domain Architects, Platform Architects, Technical Governance Teams, Solution Architects, Engineering Leadership
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §9.2.1 Purpose; Document Purpose; A.1 Purpose |
+| Scope | §5.4 Governance Scope; Scope; Out of Scope |
+| Actors | — not present — |
+| Entities | — not present — |
+| Business Rules | §10 Platform Quality Attributes and Architectural Invariants; §10.15 Architectural Invariants |
+| Workflow | §2.8 Workflow Laws; §4.12 Workflow Context; §7.10 Workflow Ownership |
+| State Machine | §3.4 Capability Lifecycle; §5.18 Governance Lifecycle; §8.16 Integration Lifecycle |
+| Contracts | §5.13 Governance of Public Contracts; §7.8 Contract Ownership; §8.6 Integration Contracts |
+| Events | §2.9 Event Laws; §4.11 Event Context; §7.9 Event Ownership |
+| Dependencies | §2.4 Dependency Laws; §4.13 Dependency Context; §5.12 Governance of Dependencies |
+| Locked Decisions | §11.13 Architectural Decision Records; Architectural Decision Hierarchy |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Entities. Recorded, not authored.
 
 ---
 

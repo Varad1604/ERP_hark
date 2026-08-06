@@ -9,7 +9,29 @@
 **Classification:** Level 2 Domain Workflow Architecture
 **Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
 **Canonical Owner:** Inventory & Warehouse Management
-**Document Owner:** Chetan
+**Document Owner:** Enterprise Resource Management — Inventory & Warehouse
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | — not present — |
+| Actors | — not present — |
+| Entities | — not present — |
+| Business Rules | Rules / Invariants |
+| Workflow | §12 Event and Workflow Integration; Workflows |
+| State Machine | States |
+| Contracts | — not present — |
+| Events | §6 Domain Events; §12 Event and Workflow Integration |
+| Dependencies | §7 Dependencies |
+| Locked Decisions | — not present — |
+
+> **Gap:** 5 required section(s) have no counterpart in this document: Scope, Actors, Entities, Contracts, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -86,8 +108,15 @@ J06 does not own:
 - Maintain the enterprise item master.
 - Maintain warehouses and storage locations.
 - Record inventory receipt consequences from J05.
-- Govern reservation, issue, return, transfer, and adjustment.
-- Maintain authoritative stock balances and availability.
+- Maintain authoritative stock balances and availability, updated from the movement
+  facts published by J07.
+- Govern stock adjustment, which corrects the ledger itself.
+
+**Not owned here.** Operational stock movement --- reservation, issue, return and
+transfer --- is owned and executed by `L2-J07 --- Stock Operations & Distribution`,
+which J00's canonical publisher matrix names as the sole publisher of `StockIssued`,
+`StockReturned`, `StockTransferDispatched` and `StockTransferReceived`. J06 consumes
+those facts and applies their ledger consequences; it never performs the movement.
 
 ---
 
@@ -97,12 +126,16 @@ J06 publishes:
 
 - ItemCreated
 - StockReceived
+- StockAdjusted
+- ReorderThresholdReached
+
+J06 consumes, and does not publish, the operational movement events owned by J07:
+
 - StockReserved
 - StockIssued
 - StockReturned
-- StockTransferred
-- StockAdjusted
-- ReorderThresholdReached
+- StockTransferDispatched
+- StockTransferReceived
 
 ---
 
@@ -198,7 +231,7 @@ The inventory lifecycle is described as a flow in Section 1 (Purpose): Goods Acc
 
 ## Workflows
 
-Inventory and warehouse workflow steps are captured in Section 5 (Core Responsibilities): maintaining the enterprise item master, maintaining warehouses and storage locations, recording inventory receipt consequences from J05, governing reservation/issue/return/transfer/adjustment, and maintaining authoritative stock balances and availability.
+Inventory and warehouse workflow steps are captured in Section 5 (Core Responsibilities): maintaining the enterprise item master, maintaining warehouses and storage locations, recording inventory receipt consequences from J05, governing stock adjustment, and maintaining authoritative stock balances and availability from the movement facts published by J07.
 
 ## States
 

@@ -2,17 +2,38 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | Purpose |
+| Scope | Scope; Out of Scope; Authorization Scope |
+| Actors | Role Assignment; Role; Role Types |
+| Entities | Canonical Entity Relationships |
+| Business Rules | Business Rules; Lifecycle Business Rules; Security Business Rules |
+| Workflow | L2-A02 — Person & Identity Workflows; Authentication Workflow; Context Resolution Workflow |
+| State Machine | Lifecycle State Machine |
+| Contracts | Domain Events & Integration Contracts; Integration Contracts; Person Service Contracts |
+| Events | Published Events; Domain Events & Integration Contracts; Event Architecture |
+| Dependencies | Dependency Direction; Context Resolution Dependencies; Dependency Rules |
+| Locked Decisions | Authorization Decision Outcomes; Workflow 4 — Authorization Decision; Architecture Decision Records (ADRs) |
+
+---
+
 # Document Information
 
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-A02 |
+| Document Owner | Platform Foundation — Identity |
 | Domain | Platform Foundation |
 | Module | Person & Identity |
 | Architecture Level | Level 2 |
 | Document Type | Canonical Domain Workflow Specification |
-| Owner | Dhruv |
-| Status | Draft |
+| Owner | Platform Foundation — Identity |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 | Depends On | L2-A01 — Platform & Tenant Foundation |
 | Followed By | All Business Domains |
@@ -1588,9 +1609,9 @@ The Identity aggregate publishes:
 - MFAEnabled
 - MFADisabled
 - UserAuthenticated
-- AuthenticationFailed
+- PersonAuthenticationFailed
 - SessionStarted
-- SessionExpired
+- PersonSessionExpired
 - SessionEnded
 
 Downstream domains consume these events without directly modifying Identity.
@@ -2008,9 +2029,9 @@ The Authentication & Authorization subsystem publishes:
 
 - AuthenticationStarted
 - AuthenticationSucceeded
-- AuthenticationFailed
-- SessionCreated
-- SessionExpired
+- PersonAuthenticationFailed
+- PersonSessionCreated
+- PersonSessionExpired
 - SessionTerminated
 - RoleAssigned
 - RoleRevoked
@@ -2894,7 +2915,7 @@ A context becomes invalid when:
 
 - Membership removed
 - Employment terminated
-- Student graduated
+- Student qualification completed
 - Role expired
 - Institution access revoked
 - Session expired
@@ -3060,7 +3081,7 @@ Authentication publishes:
 
 - AuthenticationStarted
 - AuthenticationSucceeded
-- AuthenticationFailed
+- PersonAuthenticationFailed
 - MFARequested
 - MFASucceeded
 - MFAFailed
@@ -3086,7 +3107,7 @@ Authorization publishes:
 Session Management publishes:
 
 - SessionStarted
-- SessionExpired
+- PersonSessionExpired
 - SessionEnded
 - SessionTimedOut
 - SessionTerminated
@@ -5514,7 +5535,7 @@ Personally identifiable information shall be logged only where explicitly permit
 
 The observability subsystem publishes:
 
-- AuditRecorded
+- PersonAuditRecorded
 - LogThresholdExceeded
 - HealthStatusChanged
 - AlertGenerated
@@ -5946,7 +5967,7 @@ The following rules are mandatory.
 Configuration services publish:
 
 - PolicyCreated
-- PolicyUpdated
+- PersonPolicyUpdated
 - PolicyActivated
 - PolicyArchived
 - ConfigurationImported
@@ -6466,10 +6487,10 @@ Operational processing publishes:
 - BulkJobStarted
 - BulkJobCompleted
 - BulkJobFailed
-- MigrationStarted
-- MigrationCompleted
-- SynchronizationStarted
-- SynchronizationCompleted
+- PersonMigrationStarted
+- PersonMigrationCompleted
+- PersonSynchronizationStarted
+- PersonSynchronizationCompleted
 - SynchronizationConflictDetected
 - IdentityImported
 
@@ -6963,8 +6984,8 @@ Exception management publishes:
 - RecoveryStarted
 - RecoveryCompleted
 - RecoveryFailed
-- RetryScheduled
-- RetryCompleted
+- PersonRetryScheduled
+- PersonRetryCompleted
 - CircuitOpened
 - CircuitClosed
 
@@ -7943,7 +7964,7 @@ Examples include:
 Student Lifecycle
 
 - StudentEnrolled
-- StudentGraduated
+- QualificationAwarded
 - StudentWithdrawn
 
 HR
@@ -8834,7 +8855,7 @@ Release Security Context
 
       ▼
 
-Publish SessionExpired
+Publish PersonSessionExpired
 
       │
 
@@ -8863,7 +8884,7 @@ User Re-authentication Required
 | Password Reset | User Account | PasswordChanged |
 | Administrative Override | Identity | AdministrativeOverrideApproved |
 | Exception Recovery | Recovery Service | RecoveryCompleted |
-| Session Expiration | Session | SessionExpired |
+| Session Expiration | Session | PersonSessionExpired |
 
 ---
 

@@ -5,19 +5,21 @@
 **Domain:** G02 — Laboratory Management  
 **Document ID:** L2-G02  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
-**Document Owner:** Devang
+**Document Owner:** Campus Operations — Laboratory
 
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
 - Section B — Institution & Structure
-- Section D — Academic Delivery
 - Section E — People & Workforce
 - G10 — Infrastructure Management
 - G01 — Facilities Management
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section D — Academic Delivery — Practical Timetable; academic execution scheduling remains in Section D
 
 **Downstream Consumers**
 
@@ -26,6 +28,28 @@
 - Examination Management
 - Accreditation & Compliance
 - Institutional Reporting
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Scope; §4 Out of Scope |
+| Actors | Typical Operational Roles |
+| Entities | §8 Aggregate Design; Aggregate Roots; Aggregate Responsibilities |
+| Business Rules | §13 Business Invariants |
+| Workflow | §12 Workflow Catalogue; §16 Laboratory Readiness Workflows; §23 Laboratory Inspection Workflows |
+| State Machine | §29 State Transition Matrix |
+| Contracts | §28 Service Contracts |
+| Events | §27 Domain Events; Event Driven Architecture; Laboratory Readiness Events |
+| Dependencies | §9 Dependencies & Integration (Bounded Context Relationships) |
+| Locked Decisions | — not present — |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -496,7 +520,7 @@ Aggregate identity shall remain immutable throughout its lifecycle.
 
 ---
 
-# 9. Bounded Context Relationships
+# 9. Dependencies & Integration (Bounded Context Relationships)
 
 ## Upstream Domains
 
@@ -1771,10 +1795,10 @@ Every significant operational transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| IncidentReported | Incident registered |
+| LaboratoryIncidentReported | Incident registered |
 | IncidentClassified | Incident classified |
 | MaintenanceRecommended | Maintenance recommendation issued |
-| IncidentResolved | Incident resolved |
+| LaboratoryIncidentResolved | Incident resolved |
 
 ---
 
@@ -1782,9 +1806,9 @@ Every significant operational transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| InspectionScheduled | Inspection planned |
-| InspectionStarted | Inspection commenced |
-| InspectionCompleted | Inspection completed |
+| LaboratoryInspectionScheduled | Inspection planned |
+| LaboratoryInspectionStarted | Inspection commenced |
+| LaboratoryInspectionCompleted | Inspection completed |
 | InspectionRecommendationIssued | Operational recommendation generated |
 
 ---
@@ -2345,4 +2369,4 @@ Laboratory Management follows the enterprise architectural principles establishe
 **L2-G02 — Laboratory Management Workflows**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Architectural Review)
+**Status:** Trust Certification Ready

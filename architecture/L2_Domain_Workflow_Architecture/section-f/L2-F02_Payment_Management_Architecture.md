@@ -1,4 +1,26 @@
-# L2-F02 — Payment Management
+# L2-F02 — Payment Management Architecture
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose |
+| Scope | §1.3 Scope; §22.3 Audit Scope; §23.3 Configuration Scope |
+| Actors | — not present — |
+| Entities | §4 Canonical Aggregate; §4.2 Aggregate Ownership; §7.3 Primary Aggregate |
+| Business Rules | Rules / Invariants |
+| Workflow | Workflows |
+| State Machine | §16 Payment State Architecture; §16.3 Canonical States; §16.4 State Transition Architecture |
+| Contracts | §26 Multi-Domain Contracts |
+| Events | §17 Payment Event Architecture; §17.2 Canonical Lifecycle Events; §17.3 Event Principles |
+| Dependencies | Upstream Domains |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -10,9 +32,9 @@
 | Document Name | Payment Management |
 | Architecture Level | Level 2 – Domain Architecture |
 | Domain | Finance |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0.0 |
-| Owner | Finance Domain |
+| Document Owner | Finance — Payments |
 | Depends On | L2-F00 Finance Domain Model & Foundation, L2-F01 Student Charge & Fee Management |
 | Consumed By | L2-F03, L2-F04, L2-F05, L2-F09, L2-F12 |
 

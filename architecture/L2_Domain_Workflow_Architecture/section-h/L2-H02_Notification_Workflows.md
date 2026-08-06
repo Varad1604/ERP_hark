@@ -2,6 +2,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §3 Out of Scope; §20.2 Preference Scope |
+| Actors | — not present — |
+| Entities | §11.5 Canonical Notification Entity |
+| Business Rules | §11.4 Aggregate Invariants |
+| Workflow | §5.3 Workflow Engine Owns; L2-H02 — Notification Workflows |
+| State Machine | §12.4 Notification Lifecycle State Machine; §15.2 Lifecycle State Machine |
+| Contracts | §33 Integration Contracts; §33.1 Upstream Contracts; §33.2 Downstream Contracts |
+| Events | §32 Notification Events; §5.4 Event Infrastructure Owns; §32.2 Standard Events |
+| Dependencies | §9.1 Upstream Contexts; §33.1 Upstream Contracts |
+| Locked Decisions | §38 Architecture Decision Records (ADRs) |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
+
+---
+
 # Document Metadata
 
 | Attribute | Value |
@@ -10,11 +32,10 @@
 | Document Name | Notification Workflows |
 | Layer | Level 2 – Enterprise Platform & Business Services Architecture |
 | Domain | Notification Platform |
-| Owner | Notification Domain |
-| Document Owner | Dhruv |
+| Document Owner | Institutional Services — Notifications |
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Workflows, L2-A04 Authorization & Policy Workflows, L2-A05 Workflow Engine Workflows, L2-A06 Event Infrastructure Workflows, L2-A07 Audit Infrastructure Workflows |
 | Referenced By | All Business Domains and Platform Services |
-| Status | Architecture Baseline |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 
 ---
@@ -1948,8 +1969,8 @@ The Notification Platform shall publish events including:
 - DeliveryFailed
 - NotificationCancelled
 - NotificationExpired
-- RetryStarted
-- RetryCompleted
+- NotificationRetryStarted
+- NotificationRetryCompleted
 - NotificationDelivered
 
 ---

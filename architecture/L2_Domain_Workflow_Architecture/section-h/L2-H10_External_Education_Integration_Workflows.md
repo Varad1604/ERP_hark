@@ -9,14 +9,36 @@
 | Parent Architecture | SutraERP Level 1 Enterprise Architecture |
 | Architecture Style | Domain-Driven Design (DDD), CQRS, Event-Driven Architecture (EDA), API-First Architecture, Hexagonal Architecture |
 | Canonical Owner | External Education Integration Domain |
-| Document Owner | Dhruv |
+| Document Owner | Institutional Services — External Education Integration |
 | Primary Aggregate | External Integration |
 | Supporting Aggregates | External Provider, Integration Connector, Integration Configuration, External Enrollment, Learning Synchronization, Credit Transfer Request, Certificate Verification, Synchronization Job |
 | Communication Pattern | Commands, Queries, Domain Events, Integration Events, Webhooks |
-| Status | Architecture Locked |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 | Repository | SutraERP Canonical Enterprise Repository |
 | Classification | Canonical Enterprise Architecture |
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose; §1.1 Purpose Statement; §1.4 Business Purpose |
+| Scope | §2 Domain Scope; §2.1 Scope Statement; §2.2 In Scope |
+| Actors | §13.5 Enterprise Roles |
+| Entities | Child Entities |
+| Business Rules | §12 Business Rules & Validation Framework |
+| Workflow | §11 Workflow Architecture; §11.2 Workflow Classification; §11.3 Workflow — External Provider Onboarding |
+| State Machine | §4.8 Integration Connector Lifecycle State Machine |
+| Contracts | §14 Integration Contracts & External Communication; §14.2 Integration Contract Categories; §14.3 REST API Contracts |
+| Events | §10 Domain Event Model; §10.2 Event Classification; §10.3 Provider Events |
+| Dependencies | §3.3 Upstream Domains |
+| Locked Decisions | — not present — |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -2753,7 +2775,7 @@ Cancelled
 - EnrollmentRequested
 - EnrollmentSubmitted
 - EnrollmentConfirmed
-- EnrollmentRejected
+- ExternalProviderEnrollmentRejected
 - EnrollmentCancelled
 
 ---
@@ -3130,11 +3152,11 @@ Archived
 
 ## Published Events
 
-- VerificationRequested
-- VerificationStarted
+- ExternalProviderVerificationRequested
+- ExternalProviderVerificationStarted
 - VerificationSucceeded
-- VerificationFailed
-- VerificationExpired
+- ExternalProviderVerificationFailed
+- ExternalProviderVerificationExpired
 
 ---
 
@@ -3278,9 +3300,9 @@ Archived
 ## Published Events
 
 - SynchronizationScheduled
-- SynchronizationStarted
+- ExternalProviderSynchronizationStarted
 - SynchronizationCheckpointCreated
-- SynchronizationCompleted
+- ExternalProviderSynchronizationCompleted
 - SynchronizationRetried
 - SynchronizationFailed
 
@@ -3701,8 +3723,8 @@ Authentication is established before every protected interaction.
 ## Published Events
 
 - AuthenticationSucceeded
-- AuthenticationFailed
-- CredentialExpired
+- ExternalProviderAuthenticationFailed
+- ExternalProviderCredentialExpired
 - CredentialRotated
 
 ---
@@ -3796,8 +3818,8 @@ The service guarantees reliable, recoverable synchronization while preserving ca
 ## Published Events
 
 - SynchronizationScheduled
-- SynchronizationStarted
-- SynchronizationCompleted
+- ExternalProviderSynchronizationStarted
+- ExternalProviderSynchronizationCompleted
 - SynchronizationFailed
 - SynchronizationRetried
 
@@ -3844,7 +3866,7 @@ Academic ownership remains with Student and Academic domains.
 - EnrollmentRequested
 - EnrollmentSubmitted
 - EnrollmentConfirmed
-- EnrollmentRejected
+- ExternalProviderEnrollmentRejected
 
 ---
 
@@ -3974,9 +3996,9 @@ Provides secure verification of externally issued academic credentials.
 
 ## Published Events
 
-- VerificationRequested
+- ExternalProviderVerificationRequested
 - VerificationSucceeded
-- VerificationFailed
+- ExternalProviderVerificationFailed
 - VerificationArchived
 
 ---
@@ -4391,7 +4413,7 @@ Establishes authenticated session.
 ### Events
 
 - AuthenticationSucceeded
-- AuthenticationFailed
+- ExternalProviderAuthenticationFailed
 
 ---
 
@@ -4443,7 +4465,7 @@ Starts synchronization immediately.
 
 ### Events
 
-- SynchronizationStarted
+- ExternalProviderSynchronizationStarted
 
 ---
 
@@ -4512,7 +4534,7 @@ Updates enrollment lifecycle.
 ### Events
 
 - EnrollmentConfirmed
-- EnrollmentRejected
+- ExternalProviderEnrollmentRejected
 - EnrollmentCompleted
 
 ---
@@ -4629,7 +4651,7 @@ Initiates credential verification.
 
 ### Events
 
-- VerificationRequested
+- ExternalProviderVerificationRequested
 
 ---
 
@@ -5599,7 +5621,7 @@ Published following successful provider authentication.
 
 ---
 
-## AuthenticationFailed
+## ExternalProviderAuthenticationFailed
 
 Published whenever authentication cannot be established.
 
@@ -5617,7 +5639,7 @@ Published following secret rotation.
 
 ---
 
-## CredentialExpired
+## ExternalProviderCredentialExpired
 
 Published when credentials expire.
 
@@ -5649,7 +5671,7 @@ Job successfully scheduled.
 
 ---
 
-## SynchronizationStarted
+## ExternalProviderSynchronizationStarted
 
 Execution begins.
 
@@ -5663,7 +5685,7 @@ Supports resumable execution.
 
 ---
 
-## SynchronizationCompleted
+## ExternalProviderSynchronizationCompleted
 
 Synchronization completed successfully.
 
@@ -5721,7 +5743,7 @@ Provider accepted enrollment.
 
 ---
 
-## EnrollmentRejected
+## ExternalProviderEnrollmentRejected
 
 Provider declined enrollment.
 
@@ -5823,13 +5845,13 @@ Entire orchestration completed.
 
 ---
 
-## VerificationRequested
+## ExternalProviderVerificationRequested
 
 Verification initiated.
 
 ---
 
-## VerificationStarted
+## ExternalProviderVerificationStarted
 
 Provider verification begins.
 
@@ -5841,13 +5863,13 @@ Credential verified successfully.
 
 ---
 
-## VerificationFailed
+## ExternalProviderVerificationFailed
 
 Verification unsuccessful.
 
 ---
 
-## VerificationExpired
+## ExternalProviderVerificationExpired
 
 Credential expired.
 
@@ -6377,7 +6399,7 @@ Authenticated Session
 
 ## Failure
 
-- AuthenticationFailed
+- ExternalProviderAuthenticationFailed
 
 ---
 
@@ -6526,7 +6548,7 @@ Resume Execution
 
 ## Success Events
 
-- SynchronizationCompleted
+- ExternalProviderSynchronizationCompleted
 
 ---
 
@@ -6608,7 +6630,7 @@ Enrollment Confirmed
 
 ## Failure
 
-- EnrollmentRejected
+- ExternalProviderEnrollmentRejected
 
 ---
 
@@ -6839,7 +6861,7 @@ Audit Archive
 
 ## Failure
 
-- VerificationFailed
+- ExternalProviderVerificationFailed
 
 ---
 

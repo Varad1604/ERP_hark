@@ -27,7 +27,16 @@ tools/code.txt
 
 
 # Generated outputs
-generated/
+generated/*
+
+# Integrity reviews and their resolutions are governance records, not build
+# output. They must be version-controlled: a review that cannot see which
+# findings were already resolved re-raises them, which is how INT-004 was
+# reported by three consecutive reviews.
+# (generated/* rather than generated/ — git will not descend into an excluded
+# directory, so a negation cannot re-include from one.)
+!generated/reviews/
+
 AI_CONTEXT/*
 !AI_CONTEXT/README.md
 !AI_CONTEXT/INDEX.md
@@ -37,3 +46,4 @@ AI_CONTEXT/*
 !AI_CONTEXT/SECTION_J/README.md
 Exam_review.md
 F:\Pravaha\ERP_Planning\fix_mojibake.py
+l3_dist.md

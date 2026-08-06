@@ -4,9 +4,32 @@
 
 **Domain:** I – Examination
 
-**Status:** Draft
+**Status:** Trust Certification Ready
 
-**Owner:** Examination Domain
+
+**Document Owner:** Examinations — Session Management
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §7.7 Organisational Scope |
+| Actors | §6 Business Actors |
+| Entities | Entities / Aggregates |
+| Business Rules | §9 Business Rules |
+| Workflow | §8 Examination Session Lifecycle Workflows; §17 Workflow Completion Criteria; L2-I02 — Examination Session Management Workflows |
+| State Machine | §20 Examination Session State Model |
+| Contracts | — not present — |
+| Events | §11 Events Published; §12 Events Consumed |
+| Dependencies | §19 Session Dependency Matrix |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Contracts, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -18,7 +41,6 @@
 | Document Name | Examination Session Management Workflows |
 | Domain | Examination |
 | Level | L2 – Business Workflow Architecture |
-| Owner | Examination Domain |
 | Depends On | L2-I01 Examination Policy & Configuration, A01 Platform Foundation, A02 Person & Identity, A03 Authentication, A04 Authorization, H02 Notification Workflows, A06 Event Infrastructure, A07 Audit Infrastructure, B01 Institution, B02 Organisation, B04 Curriculum Framework, B05 Academic Calendar |
 | Consumed By | L2-I03 through L2-I16 Examination Workflows |
 | Canonical Owner | Examination Domain |
@@ -33,7 +55,7 @@ An Examination Session represents a governed academic examination cycle conducte
 
 This document establishes how examination sessions are created, configured, activated, managed, suspended, completed, and closed before operational examination activities begin.
 
-Operational workflows such as examination planning, registration, hall ticket generation, marks processing, result publication, and graduation consume approved examination sessions defined in this document.
+Operational workflows such as examination planning, registration, hall ticket generation, marks processing, result publication, and qualification completion consume approved examination sessions defined in this document.
 
 This document defines business workflows only.
 
@@ -69,7 +91,7 @@ This document excludes:
 - Theory examination conduct
 - Marks entry
 - Result processing
-- Graduation processing
+- qualification completion processing
 
 These activities are defined in subsequent Examination workflow documents.
 
@@ -148,7 +170,7 @@ The session itself shall not redefine:
 - Grading Rules
 - Result Policies
 - Revaluation Rules
-- Graduation Policies
+- Qualification Completion Policies
 
 These policies are consumed from the Examination Policy Domain.
 
@@ -604,7 +626,7 @@ Policy association determines:
 - Registration governance
 - Result governance
 - Evaluation governance
-- Graduation governance
+- Qualification Completion governance
 
 The session consumes policy definitions rather than creating new business rules.
 
@@ -1076,7 +1098,7 @@ Business interactions include:
 - Registration Policies
 - Evaluation Policies
 - Result Policies
-- Graduation Policies
+- Qualification Completion Policies
 - Revaluation Policies
 
 The Examination Session domain applies approved policies but does not create or modify them.

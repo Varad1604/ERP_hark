@@ -1,7 +1,9 @@
 # SutraERP Level 1 Architecture
 
-**Version:** 2.0
+**Version:** 2.1
 **Status:** LOCKED
+**Last Amended:** 2026-08-04 — Section 25 replaced: obsolete two-team ownership model removed in favour of Section-based ownership per TEAM_ASSIGNMENTS.md (INT-003); StudentContext gate corrected to the five terminal states and Suspended added (INT-007); Tenant lifecycle expanded to match L2-A01 (INT-006); Level 2 Dependency Order replaced with the canonical directed matrix from DEPENDENCY_MAP.md (INT-004)
+**Previously Amended:** 2026-08-03 — Institute lifecycle extended (INT-008); Campus ownership split into Institutional vs Physical (INT-001); residual Graduation terminology replaced by Qualification Completion (INT-021/INT-033)
 **Scope:** Canonical Institutional Lifecycle
 **Purpose:** Define the complete institutional business architecture, ownership boundaries, lifecycle rules, and multi-domain responsibilities before Level 2 domain design.
 
@@ -139,7 +141,7 @@ Examples include:
 - Promotion Rules
 - Attendance Policies
 - Examination Eligibility
-- Graduation Requirements
+- Qualification Completion Requirements
 - MEME Policies
 
 Policies are evaluated through the Workflow Engine rather than embedded into business logic.
@@ -148,20 +150,24 @@ Policies are evaluated through the Workflow Engine rather than embedded into bus
 
 # 3. Institutional Operating Model
 
-## 3.1 Multi-Tenant Architecture
+## 3.1 Institutional Hierarchy
+
+(Multi-tenant isolation across separate Tenants is defined in
+`L2-A01_Platform_Tenant_Foundation_Architecture.md` §2.6-2.7. This
+section defines the hierarchy depth *within* a single Tenant.)
 
 ```mermaid
 flowchart TD
 
 Platform[SutraERP Platform]
 
-Platform-->Tenant
+Platform-->Tenant[Tenant]
 
-Tenant-->Institute
+Tenant-->Institute[One or More Institutions]
 
-Institute-->College
+Institute-->College[One or More Colleges / Schools]
 
-College-->Department
+College-->Department[One or More Departments]
 ```
 
 Definitions
@@ -193,26 +199,36 @@ Example
 ```mermaid
 flowchart TD
 
-T[ABC Education Society]
+T[Education Trust]
 
--->I[ABC Group of Institutions]
+T-->I1[Institute of Engineering and Technology]
 
-I-->C1[Engineering College]
+T-->I2[Institute of Polytechnic Studies]
 
-I-->C2[Pharmacy College]
+T-->I3[Institute of School Education]
 
-I-->C3[School]
+I1-->C1[Engineering College]
 
 C1-->D1[Computer Engineering]
 
 C1-->D2[Mechanical Engineering]
 
-C2-->D3[Pharmacy]
+I2-->C2[Polytechnic College]
 
-C3-->D4[Primary]
+C2-->D3[Diploma Engineering]
 
-C3-->D5[Secondary]
+I3-->C3[Primary School]
+
+I3-->C4[Secondary School]
 ```
+
+This example shows one Tenant (the Trust) operating three separate
+Institutions, each independently recognised (for example, under
+different regulatory approvals for degree-Engineering, Diploma, and
+school education), each with its own College(s)/School and Department
+structure. A Tenant is not required to have more than one Institution —
+one Institution is equally valid — but the architecture must not assume
+exactly one.
 
 **Locked Rule**
 
@@ -359,7 +375,7 @@ Student
 
 ├── School
 
-│     COMPLETED
+│     QUALIFICATION COMPLETED
 
 │
 
@@ -380,14 +396,17 @@ School
 ACTIVE
 ```
 
-A previous Student Context must transition into one of the following states before another becomes ACTIVE.
+A previous Student Context must transition into one of the following terminal states before another becomes ACTIVE.
 
-- Completed
-- Graduated
+- Qualification Completed
 - Withdrawn
 - Transferred
 - Discontinued
 - Terminated
+
+Pending Activation, Active and Suspended are non-terminal and do not satisfy
+this gate. This enumeration is canonical and is reproduced verbatim in
+`L2-C02_Student_Lifecycle_and_Activation.md` section 11.10.1.
 
 **Locked Rule**
 
@@ -930,10 +949,40 @@ Requested --> Provisioning
 
 Provisioning --> Active
 
-Provisioning --> Failed
+Provisioning --> ProvisioningFailed
 
-Failed --> Provisioning
+ProvisioningFailed --> Provisioning
+
+Active --> Maintenance
+
+Maintenance --> Active
+
+Active --> Suspended
+
+Suspended --> Active
+
+Active --> Upgrade
+
+Upgrade --> Active
+
+Active --> Archived
+
+Archived --> [*]
 ```
+
+| State | Description | Terminal |
+|---|---|---|
+| Requested | Tenant registration accepted but provisioning has not started. | No |
+| Provisioning | Platform initialization is in progress. | No |
+| Provisioning Failed | Provisioning terminated unsuccessfully; may retry Provisioning. | No |
+| Active | Tenant is fully operational. | No |
+| Maintenance | Controlled maintenance operations are being performed. | No |
+| Suspended | Business execution is temporarily disabled while preserving all data. | No |
+| Upgrade | A controlled platform upgrade is being applied to the Tenant. | No |
+| Archived | Tenant is permanently retired and retained for history or regulation. | Yes |
+
+This enumeration is canonical and is reproduced in
+`L2-A01_Platform_Tenant_Foundation_Architecture.md` sections 5.4, 5.5 and 5.8.
 
 ---
 
@@ -1043,14 +1092,43 @@ stateDiagram-v2
 
 [*] --> Draft
 
-Draft --> PendingApproval
+Draft --> Configured
+
+Configured --> PendingApproval
 
 PendingApproval --> Active
 
 PendingApproval --> Returned
 
 PendingApproval --> Rejected
+
+Returned --> Configured
+
+Active --> Suspended
+
+Suspended --> Active
+
+Active --> Archived
+
+Suspended --> Archived
+
+Archived --> [*]
 ```
+
+State meanings:
+
+| State | Meaning | Operational |
+|---|---|---|
+| Draft | Institute record created; configuration incomplete. | No |
+| Configured | Mandatory Institute Configuration complete and validated; ready to submit for approval. | No |
+| PendingApproval | Activation request submitted and awaiting approval. | No |
+| Returned | Activation request returned for correction; re-enters Configured. | No |
+| Rejected | Activation request denied. Terminal for that request. | No |
+| Active | Institute is an operational business entity. | Yes |
+| Suspended | Institute temporarily disabled; history preserved, reversible to Active. | No |
+| Archived | Institute permanently retired; read-only. Terminal. | No |
+
+Amendment note (2026-08-03, closes integrity finding INT-008): `Configured`, `Suspended` and `Archived` are added to this lifecycle with the explicit transitions shown above. They were already implemented in `L2-B01_Institution_Workflow.md`; this amendment grants them L1 authority so B01 is a strict extension of L1 rather than a divergent state machine. `Draft`, `PendingApproval`, `Active`, `Returned` and `Rejected` are unchanged.
 
 ---
 
@@ -1105,6 +1183,9 @@ Consumes
 
 - Tenant and Institute remain separate.
 - Institute identity is immutable.
+- The Institute lifecycle is exactly Draft, Configured, PendingApproval, Returned, Rejected, Active, Suspended, Archived. No L2 document may add, remove or rename an Institute lifecycle state without an L1 amendment.
+- Suspension is reversible; Archival is terminal and read-only.
+- Rejected and Archived are terminal states.
 
 ---
 
@@ -1796,7 +1877,11 @@ stateDiagram-v2
 
 PendingActivation --> Active
 
-Active --> Graduated
+Active --> Suspended
+
+Suspended --> Active
+
+Active --> QualificationCompleted
 
 Active --> Withdrawn
 
@@ -1805,9 +1890,33 @@ Active --> Transferred
 Active --> Discontinued
 
 Active --> Terminated
+
+QualificationCompleted --> [*]
+
+Withdrawn --> [*]
+
+Transferred --> [*]
+
+Discontinued --> [*]
+
+Terminated --> [*]
 ```
 
 Only one Student Context may remain Active within an Institute.
+
+| State | Terminal |
+|---|---|
+| Pending Activation | No |
+| Active | No |
+| Suspended | No |
+| Qualification Completed | Yes |
+| Withdrawn | Yes |
+| Transferred | Yes |
+| Discontinued | Yes |
+| Terminated | Yes |
+
+Suspended is reversible to Active. A new Student Context may only be opened for
+an Institute once every prior Context for that Institute is terminal.
 
 ---
 
@@ -2062,7 +2171,7 @@ Consumes
 
 Publishes
 
-- ResultPublished
+- ExaminationResultPublished
 
 ---
 
@@ -2458,9 +2567,9 @@ Consumes
 Publishes
 
 - StudentExited
-- StudentGraduated
 - QualificationAwarded
-- AlumniCreated
+- AlumniTransitionCompleted
+- AlumniProfileCreated
 
 ---
 
@@ -2514,7 +2623,7 @@ TeachingCompleted
 
 -->AttendanceFinalized
 
--->ResultsPublished
+-->ExaminationResultPublished
 
 -->ProgressionCompleted
 
@@ -2648,7 +2757,8 @@ No other domain may directly modify these entities.
 | Platform Configuration | Platform |
 | Institute | Institution |
 | Organisation Structure | Organisation |
-| Campus | Organisation |
+| Institutional Campus (identity, Institution association, institutional status) | Organisation |
+| Physical Infrastructure Campus (site boundary, buildings, floors, spaces) | Infrastructure |
 | Department | Organisation |
 | Academic Structure | Academic Structure |
 | Programme | Academic Structure |
@@ -2688,53 +2798,68 @@ No other domain may directly modify these entities.
 
 ---
 
-# 25. Team Ownership
+# 25. Section Ownership
 
-The implementation responsibilities are divided across engineering teams.
+Implementation and architectural responsibilities are organised by
+architecture Section. Each Section has exactly one primary architect.
 
-## Team 1
+`architecture/L2_Domain_Workflow_Architecture/TEAM_ASSIGNMENTS.md` is the
+canonical, current source for who holds each Section. The domain groupings
+below define the architectural boundary, not a fixed roster, and remain valid
+even if the named architect changes.
 
-Owns institutional operational services.
+## Section Ownership Matrix
 
-Responsible Domains
+| Section | Domain | Primary Architect |
+|---------|--------|-------------------|
+| A | Platform Foundation | Dhruv |
+| B | Institution & Structure | Pallav |
+| C | Student Lifecycle | Varad |
+| D | Academic Delivery | Pallav |
+| E | People & Workforce | Varad |
+| F | Finance | Chetan |
+| G | Campus Operations | Devang |
+| H | Institutional Services & Intelligence | Dhruv |
+| I | Examination | Devang |
+| J | Enterprise Resource Management | Chetan |
 
-- Finance
-- Examination
-- Library
-- Hostel
-- Transport
-- Infrastructure
-- Procurement
-- Inventory
+## Domain to Section Mapping
 
----
+| Domain | Owning Section |
+|--------|----------------|
+| Platform | A |
+| Identity | A |
+| Workflow Engine | A |
+| Institution | B |
+| Organisation | B |
+| Academic Structure | B |
+| Academic Calendar | B |
+| Student Lifecycle | C |
+| Academics | D |
+| Human Resource | E |
+| Finance | F |
+| Library | G |
+| Hostel | G |
+| Transport | G |
+| Infrastructure | G |
+| Communication | H |
+| Document Management | H |
+| Examination | I |
+| Procurement | J |
+| Inventory | J |
 
-## Team 2
+**Locked Rule**
 
-Owns institutional academic foundation.
+Ownership is assigned by Section. The legacy two-team split is obsolete and
+must not be reintroduced in any architecture document, generated artifact, or
+implementation plan.
 
-Responsible Domains
-
-- Platform
-- Identity
-- Institution
-- Organisation
-- Academic Structure
-- Academic Calendar
-- Student Lifecycle
-- Academics
-- Workflow
-- Communication
-- Document Management
-
----
-
-## Ownership Boundary
+## Academic Result Ownership Flow
 
 ```mermaid
 flowchart LR
 
-Team2["TEAM 2"]
+AcademicDelivery["Section D: Academic Delivery"]
 
 -->Academics
 
@@ -2762,7 +2887,7 @@ QualificationCompletion
 
 -->Alumni
 
-style Team2 fill:#dff0d8
+style AcademicDelivery fill:#dff0d8
 style Examination fill:#f2dede
 ```
 
@@ -2799,7 +2924,7 @@ StudentActivated
 
 AttendanceFinalized
 
-ResultPublished
+ExaminationResultPublished
 
 AcademicCreditLedgerUpdated
 
@@ -2932,7 +3057,7 @@ AttendanceFinalized
 
 InternalAssessmentCompleted
 
-ResultPublished
+ExaminationResultPublished
 
 AcademicCreditLedgerUpdated
 
@@ -3006,41 +3131,74 @@ No Level 2 workflow may violate a locked decision defined in this document.
 
 ## Level 2 Dependency Order
 
+> **Corrected 2026-08-05 under integrity finding INT-004.** This section previously
+> described a single serial chain that ended with Communication and then the Workflow
+> Engine. That was wrong in two ways: the Workflow Engine is `L2-A05`, inside Section A,
+> which is foundational and therefore upstream of everything; and the chain placed
+> Examination before Finance, the reverse of the canonical matrix. `DEPENDENCY_MAP.md`
+> is the repository's declared foundational dependency register and governs. The
+> directed matrix below is reproduced from it verbatim.
+
+Dependencies form a **directed graph, not a queue.** A section may be built once every
+section it depends on exists.
+
+| Section | Foundational Depends On |
+|----------|-------------------------|
+| Section A - Platform Foundation | L0 |
+| Section B - Institution & Structure | Section A |
+| Section C - Student Lifecycle | Sections A, B |
+| Section D - Academic Delivery | Sections A, B, C, E, G |
+| Section E - People & Workforce | Sections A, B |
+| Section F - Finance | Sections A, B, C |
+| Section G - Campus Operations | Sections A, B, E |
+| Section H - Institutional Services & Intelligence | All Sections |
+| Section I - Examination | Sections C, D, F |
+| Section J - Enterprise Resource Management | Sections A, B, C, D, E, F, G, I |
+
 ```mermaid
 flowchart TD
 
-L1["Level 1 Architecture"]
+L0["L0 Business Vision"] --> A["A - Platform Foundation<br/>(incl. Workflow Engine A05)"]
 
--->A["Platform & Identity"]
-
--->B["Institution & Organisation"]
-
--->C["Academic Structure"]
-
--->D["Academic Calendar"]
-
--->E["Admissions"]
-
--->F["Student Lifecycle"]
-
--->G["Academics"]
-
--->H["Examination"]
-
--->I["Finance"]
-
--->J["Campus Operations"]
-
--->K["Communication"]
-
--->L["Workflow Engine"]
+A --> B["B - Institution & Structure"]
+A --> C["C - Student Lifecycle"]
+A --> E["E - People & Workforce"]
+B --> C
+B --> E
+B --> F["F - Finance"]
+C --> F
+A --> G["G - Campus Operations"]
+B --> G
+E --> G
+C --> D["D - Academic Delivery"]
+E --> D
+G --> D
+C --> I["I - Examination"]
+D --> I
+F --> I
+I --> J["J - Enterprise Resource Management"]
+F --> J
+G --> J
+D --> J
+J --> H["H - Institutional Services & Intelligence"]
+I --> H
 ```
+
+**Locked Rule**
+
+Section A is foundational. Every other section depends on it, directly or transitively.
+The Workflow Engine is part of Section A and is therefore available before any domain
+that requires approvals, not after them.
+
+Runtime event feedback does not reverse a foundational dependency. Student Lifecycle may
+consume published examination results without Examination becoming upstream of Section C.
+Dependency classes are defined in `DEPENDENCY_MAP.md`.
 
 ---
 
 # Architecture Status
 
-**Version:** 2.0
+**Version:** 2.1
 
 **Status:** LOCKED
 

@@ -6,18 +6,39 @@ document-level: Level 2 (L2) Domain Architecture
 domain: Academic Management
 repository: SutraERP Enterprise Architecture Repository
 architecture-layer: Business Domain
-status: Architecture Locked
+status: Trust Certification Ready
 architecture-state: Frozen
 validation-level: Enterprise Architecture Review (V1–V10)
 confidence-level: Very High
-owner: Enterprise Architecture Team
-document-owner: Pallav
+document_owner: Institution & Structure — Academic Calendar
 review-authority: Architecture Review Board
 repository-baseline: Current Repository Baseline
 last-updated: July 2026
 ---
 
-# L2-B05 – Academic Calendar Workflows
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose; §7.1 Purpose of the Bounded Context |
+| Scope | §2 Scope; In Scope; Out of Scope |
+| Actors | — not present — |
+| Entities | §15 Entities |
+| Business Rules | Business Rules |
+| Workflow | §37 Workflow Architecture; §38 Calendar Creation Workflow; §39 Calendar Publication Workflow |
+| State Machine | §32.1 Calendar State Machine; §32.2 Version State Machine; §32.3 Assignment State Machine |
+| Contracts | §36 Integration Contracts |
+| Events | §34 Domain Events; Part 5 — Lifecycle, State Machines, Commands, Events & APIs; Calendar Events |
+| Dependencies | §10.1 Upstream Dependencies; Dependencies; Platform Dependencies |
+| Locked Decisions | Appendix A — Key Architectural Decisions |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
+
+---
+
+# L2-B05 — Academic Calendar Workflows
 
 ---
 
@@ -32,11 +53,10 @@ last-updated: July 2026
 | Repository | SutraERP Enterprise Architecture Repository |
 | Architecture Layer | Business Domain |
 | Current Version | 1.0 |
-| Status | Canonical |
+| Status | Trust Certification Ready |
 | Architecture State | Frozen |
 | Validation Status | Enterprise Reviewed (V1–V10) |
 | Confidence Level | Very High |
-| Owner | Enterprise Architecture Team |
 | Review Authority | Architecture Review Board |
 | Repository Alignment | L1 Architecture + A01–A07 + B01–B04 |
 | Implementation Status | Architecture Approved |

@@ -1,11 +1,32 @@
 # L2-B01 — Institution Workflows
 **Section:** B — Institution & Structure  
 **Architecture Level:** Level 2 (Domain Architecture)  
-**Status:** Locked  
-**Owner:** Section B Architect  
-**Document Owner:** Pallav  
+**Status:** Trust Certification Ready  
+**Document Owner:** Institution & Structure — Institution  
 **Depends On:** L2-A01 — Platform & Tenant Foundation  
-**Used By:** L2-B02, L2-B03, L2-B04, L2-B05, L2-A10 and all downstream domains
+**Used By:** L2-B02, L2-B03, L2-B04, L2-B05, L2-A10 (Operational Readiness, Section A) and all downstream domains
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | — not present — |
+| Entities | — not present — |
+| Business Rules | §13 Business Rules |
+| Workflow | §8 Institution Lifecycle Workflow; L2-B01 — Institution Workflows |
+| State Machine | §6 Institution Lifecycle States |
+| Contracts | — not present — |
+| Events | §10 Domain Events; Business Events (Internal); Integration Events (Public) |
+| Dependencies | §14 Cross-Domain Dependencies |
+| Locked Decisions | — not present — |
+
+> **Gap:** 4 required section(s) have no counterpart in this document: Actors, Entities, Contracts, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -61,7 +82,7 @@ Those domains are defined separately.
 
 # 3. Domain Definition
 
-## What is an Institution
+## What is an Institution?
 
 An Institution is a legally recognized educational organization operating under a Tenant that delivers educational services through one or more campuses.
 
@@ -131,18 +152,16 @@ Institution does NOT own:
 Draft
    │
    ▼
-Configured
-   │
-   ▼
-Active
-   │
- ┌─┴──────────────┐
- │                │
- ▼                ▼
-Suspended     Archived
- │
- ▼
-Active
+Configured ◄──────────────────────┐
+   │                             │
+   ▼                             │
+Pending Approval ────────────────┼────┘ (Returned)
+   ┌────┴────────────────────────┐ │
+   ▼                             ▼ │
+Active                       Rejected
+┌─┴──────────────┐
+▼                ▼
+Suspended       Archived (Terminal)
 ```
 
 ---
@@ -175,6 +194,49 @@ Institution is still not operational.
 
 ---
 
+## Pending Approval
+
+Institution activation request has been submitted and is awaiting authorization.
+
+Characteristics
+
+- Configuration locked during review
+- Validation passed
+- Awaiting admin/board decision
+
+Institution is not operational.
+
+---
+
+## Returned
+
+Activation request has been returned to the configuration stage for corrections.
+
+Characteristics
+
+- Unlock configuration for edit
+- Corrections required by approval authority
+- Transitions back to Configured once resaved
+
+Institution is not operational.
+
+---
+
+## Rejected
+
+Activation request was explicitly denied. This represents the end of the current approval request cycle.
+
+Characteristics
+
+- Locked state
+- Activation denied
+- Direct transition back to Active is prohibited
+- Re-submission requires resetting back to Configured or launching a new configuration/approval request case
+
+Institution is not operational.
+
+---
+
 ## Active
 
 Institution becomes an active business entity inside SutraERP.
@@ -187,7 +249,7 @@ Characteristics
 - Can configure academic structure (L2-B04)
 - Can configure academic calendar (L2-B05)
 
-Operational readiness is still pending (L2-A10).
+Operational readiness is still pending (L2-A10, Section A).
 
 ---
 
@@ -321,7 +383,7 @@ The following categories must be configured.
                                                             │
                                                             ▼
                                       Institution Available for
-                                    L2-B02 → L2-A10 Configuration
+                                    L2-B02 → L2-A10 Readiness
                                                             │
                                                             ▼
                                    Operational Readiness (L2-A10)
@@ -346,7 +408,7 @@ The following categories must be configured.
                  │                              ▼
                  │                     Reactivation Request
                  │                              │
-                 │                    Validation Successful
+                 │                    Validation Successful?
                  │                              │
                  └──────────────────────────────┼───────────────────────┐
                                                 │                       │
@@ -385,6 +447,9 @@ Business Events communicate business facts within the Institution domain and rem
 |---|---|
 | Institution Created | Institution record created |
 | Institution Configured | Mandatory configuration completed |
+| Institution Submitted for Approval | Institution submitted for activation review |
+| Institution Returned for Correction | Activation request returned for correction |
+| Institution Rejected | Activation request denied |
 | Institution Activated | Institution activated |
 | Institution Updated | Institution information modified |
 | Institution Suspended | Institution temporarily disabled |
@@ -399,6 +464,9 @@ Integration Events communicate business facts to external domains (e.g., L2-B02 
 |---|---|
 | InstitutionCreated | Institution record created |
 | InstitutionConfigured | Mandatory configuration completed |
+| InstitutionSubmittedForApproval | Institution submitted for activation review |
+| InstitutionReturnedForCorrection | Activation request returned for correction |
+| InstitutionRejected | Activation request denied |
 | InstitutionActivated | Institution activated |
 | InstitutionUpdated | Institution information modified |
 | InstitutionSuspended | Institution temporarily disabled |
@@ -431,24 +499,11 @@ Consumed by:
 - L2-B03 — Campus & Infrastructure
 - L2-B04 — Curriculum Framework
 - L2-B05 — Academic Calendar
-- L2-A10 — Operational Readiness
+- L2-A10 — Operational Readiness (Section A)
 
 ---
 
-# 13. Audit Integration
-
-Institution lifecycle transitions and mandatory configuration changes are auditable business facts.
-
-The Institution domain shall:
-
-- Emit audit-relevant facts for create, configure, activate, update, suspend, reactivate, and archive actions.
-- Preserve immutable historical traceability for all lifecycle transitions.
-- Publish audit-relevant events through the platform audit infrastructure.
-- Treat audit storage and retention as platform responsibilities owned by L2-A07.
-
----
-
-# 14. Business Rules
+# 13. Business Rules
 
 1. Every Institution belongs to exactly one Tenant.
 2. One Tenant may own multiple Institutions.
@@ -456,12 +511,13 @@ The Institution domain shall:
 4. Institution cannot become Active unless mandatory validation succeeds.
 5. Suspended Institutions retain all historical information.
 6. Archived Institutions are read-only.
-7. Institution never owns Students, Faculty, Courses, Finance, or Examination.
-8. Institution serves as the root aggregate for all Section B domains.
+7. Institution in Rejected state cannot become Active directly; it must be returned to Configured/Draft or a new activation request must be submitted.
+8. Institution never owns Students, Faculty, Courses, Finance, or Examination.
+9. Institution serves as the root aggregate for all Section B domains.
 
 ---
 
-# 15. Multi-Domain Dependencies
+# 14. Cross-Domain Dependencies
 
 ## Consumes
 
@@ -481,23 +537,23 @@ The Institution domain shall:
 - Campus & Infrastructure (L2-B03)
 - Curriculum Framework (L2-B04)
 - Academic Calendar (L2-B05)
-- Operational Readiness (L2-A10)
+- Operational Readiness (L2-A10, Section A)
 
 ---
 
-# 16. Architecture Notes
+# 15. Architecture Notes
 
 - Institution is the canonical business entity representing an educational organization.
 - Institution is independent of the academic programs it offers.
 - Academic programs are defined in L2-B04.
-- Operational readiness is not part of Institution activation and is completed separately in L2-A10.
+- Operational readiness is not part of Institution activation and is completed separately in L2-A10 (Section A).
 - Admissions and academic operations can begin only after Operational Readiness is complete.
 
 ---
 
-# 17. Architecture Lock
+# 16. Architecture Lock
 
-**Document Status:** 🔒 LOCKED
+**Document Status:** Trust Certification Ready
 
 This document establishes the canonical Institution Aggregate for SutraERP.
 

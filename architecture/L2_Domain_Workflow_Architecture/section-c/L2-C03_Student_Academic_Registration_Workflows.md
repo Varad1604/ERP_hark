@@ -1,9 +1,27 @@
 # L2-C03 — Academic Registration Workflows
 
-**Section:** C — Student Lifecycle  
-**Architecture Level:** Level 2 (Domain Architecture)  
-**Status:** Draft  
-**Document Owner:** Varad
+**Document Owner:** Student Lifecycle — Academic Registration  
+**Status:** Trust Certification Ready  
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §6.2 Aggregate Purpose; §1.1 Purpose |
+| Scope | §1.2 Scope; §1.5 Out of Scope; §4 Domain Scope |
+| Actors | §13.5 Supported Roles |
+| Entities | §6.6 Child Entities; §16.4 Primary Entities; §16.6 AcademicRegistration Entity |
+| Business Rules | §9 Business Rules; §9.15 Business Rule Summary; Appendix D — Business Rule Index |
+| Workflow | §7 Core Workflows; §7.2 Workflow Architecture; §7.8 WF-C03-06 — Registration Approval Workflow |
+| State Machine | §21.18 Registration State Machine; Appendix C — Registration State Machine |
+| Contracts | §12 Service Contracts; §12.12 Error Contracts; §12.15 Service Contract Summary |
+| Events | §3.7 Event-Driven Architecture; §5.9 Published Domain Events; §10 Domain Events |
+| Dependencies | §4.7 Upstream Dependencies; §7.13 Workflow Dependencies; §12.10 Service Dependencies |
+| Locked Decisions | §22 Architectural Decision Records (ADRs); §22.3 Architectural Decision Summary |
 
 ---
 
@@ -289,7 +307,7 @@ The architecture shall ensure:
 - Immutable registration history.
 - Version-controlled configurations.
 - Architecture compliance.
-- Multi-domain consistency.
+- Cross-domain consistency.
 
 ---
 
@@ -508,12 +526,12 @@ Typical events include:
 
 - RegistrationCreated
 - RegistrationSubmitted
-- RegistrationApproved
+- StudentRegistrationApproved
 - RegistrationRejected
 - CourseRegistered
 - CourseDropped
 - ElectiveSelected
-- RegistrationCancelled
+- StudentRegistrationCancelled
 - RegistrationFrozen
 - RegistrationCompleted
 
@@ -523,7 +541,7 @@ Downstream domains shall react to published events rather than directly accessin
 
 # 3.8 Service-Oriented Communication
 
-Multi-domain communication shall occur exclusively through governed Service Contracts and published Domain Events.
+Cross-domain communication shall occur exclusively through governed Service Contracts and published Domain Events.
 
 Direct database access between domains is strictly prohibited.
 
@@ -541,7 +559,7 @@ Consistency shall be maintained through:
 - Optimistic concurrency
 - Transaction boundaries
 
-Multi-domain consistency shall be achieved through asynchronous integration patterns.
+Cross-domain consistency shall be achieved through asynchronous integration patterns.
 
 ---
 
@@ -777,7 +795,7 @@ The following capabilities belong to other domains.
 | Examination Registration | Examination Domain |
 | Fee Assessment | Finance |
 | Scholarship Processing | Finance |
-| Degree Award | Qualification Completion Domain |
+| Degree Award | Qualification Completion Domain (L2-C05) |
 
 This domain consumes these services but shall not modify their canonical business data.
 
@@ -989,7 +1007,7 @@ The aggregate guarantees transactional consistency for all business operations w
 
 ---
 
-# 5.7 Multi-Domain Ownership Matrix
+# 5.7 Cross-Domain Ownership Matrix
 
 | Capability | Owning Domain | Student Academic Registration Access |
 |------------|---------------|--------------------------------------|
@@ -1039,9 +1057,9 @@ Typical events include:
 - RegistrationCreated
 - RegistrationValidated
 - RegistrationSubmitted
-- RegistrationApproved
+- StudentRegistrationApproved
 - RegistrationRejected
-- RegistrationCancelled
+- StudentRegistrationCancelled
 - RegistrationFrozen
 - CourseRegistered
 - CourseDropped
@@ -1058,7 +1076,7 @@ The Student Academic Registration Domain shall enforce the following architectur
 
 - Registration ownership shall never be shared.
 - Registration aggregates shall remain immutable outside approved workflows.
-- Multi-domain updates shall occur only through Service Contracts or Domain Events.
+- Cross-domain updates shall occur only through Service Contracts or Domain Events.
 - Direct database access from external domains is prohibited.
 - Administrative overrides shall remain fully auditable.
 - Registration history shall never be physically deleted.
@@ -1328,7 +1346,7 @@ Examples include:
 - Registration cancellation.
 - Registration freeze.
 
-Multi-domain consistency shall be achieved through published Domain Events rather than distributed transactions.
+Cross-domain consistency shall be achieved through published Domain Events rather than distributed transactions.
 
 ---
 
@@ -1638,7 +1656,7 @@ All workflows shall comply with the following governance principles:
 - Validation before persistence.
 - Audit generation for every state transition.
 - Event publication after successful completion.
-- No direct multi-domain data modification.
+- No direct cross-domain data modification.
 - Idempotent workflow execution where applicable.
 
 ---
@@ -1865,7 +1883,7 @@ Approve registration according to institutional workflow.
 2. Execute workflow.
 3. Record approval.
 4. Update registration state.
-5. Publish RegistrationApproved event.
+5. Publish StudentRegistrationApproved event.
 
 ---
 
@@ -1910,7 +1928,7 @@ Cancel an approved or pending registration.
 - Record reason.
 - Update registration state.
 - Notify downstream systems.
-- Publish RegistrationCancelled event.
+- Publish StudentRegistrationCancelled event.
 
 ---
 
@@ -2289,11 +2307,11 @@ Events shall never be published before successful transaction completion.
 | EVT-C03-005 | SubjectRegistered | Subject successfully registered |
 | EVT-C03-006 | ElectiveRegistered | Elective successfully selected |
 | EVT-C03-007 | RegistrationSubmitted | Registration submitted for approval |
-| EVT-C03-008 | RegistrationApproved | Registration approved |
+| EVT-C03-008 | StudentRegistrationApproved | Registration approved |
 | EVT-C03-009 | RegistrationRejected | Registration rejected |
 | EVT-C03-010 | RegistrationModified | Registration successfully modified |
 | EVT-C03-011 | CourseDropped | Registered course removed |
-| EVT-C03-012 | RegistrationCancelled | Registration cancelled |
+| EVT-C03-012 | StudentRegistrationCancelled | Registration cancelled |
 | EVT-C03-013 | RegistrationFrozen | Registration finalized |
 | EVT-C03-014 | RegistrationCompleted | Registration lifecycle completed |
 
@@ -2312,11 +2330,11 @@ The following aggregate operations publish Domain Events.
 | Register Subject | SubjectRegistered |
 | Register Elective | ElectiveRegistered |
 | Submit Registration | RegistrationSubmitted |
-| Approve Registration | RegistrationApproved |
+| Approve Registration | StudentRegistrationApproved |
 | Reject Registration | RegistrationRejected |
 | Modify Registration | RegistrationModified |
 | Drop Course | CourseDropped |
-| Cancel Registration | RegistrationCancelled |
+| Cancel Registration | StudentRegistrationCancelled |
 | Freeze Registration | RegistrationFrozen |
 | Complete Registration | RegistrationCompleted |
 
@@ -2328,11 +2346,11 @@ Published events may be consumed by the following domains.
 
 | Consumer Domain | Consumed Events |
 |-----------------|-----------------|
-| Academic Delivery | RegistrationApproved, RegistrationFrozen |
-| Timetable | RegistrationApproved, CourseRegistered |
+| Academic Delivery | StudentRegistrationApproved, RegistrationFrozen |
+| Timetable | StudentRegistrationApproved, CourseRegistered |
 | Attendance | RegistrationFrozen |
 | Examination | RegistrationFrozen |
-| Finance | RegistrationApproved, RegistrationCancelled |
+| Finance | StudentRegistrationApproved, StudentRegistrationCancelled |
 | Learning Management System | CourseRegistered, RegistrationFrozen |
 | Notification Platform | All major events |
 | Analytics Platform | All events |
@@ -2387,7 +2405,7 @@ CourseRegistered
 RegistrationSubmitted
         │
         ▼
-RegistrationApproved
+StudentRegistrationApproved
         │
         ▼
 RegistrationFrozen
@@ -2723,10 +2741,10 @@ Failure of any validation shall prevent the transition.
 | Draft → In Progress | RegistrationCreated |
 | In Progress → Validation Pending | RegistrationSubmitted |
 | Validation Pending → Awaiting Approval | RegistrationValidated |
-| Awaiting Approval → Approved | RegistrationApproved |
+| Awaiting Approval → Approved | StudentRegistrationApproved |
 | Awaiting Approval → Rejected | RegistrationRejected |
 | Approved → Frozen | RegistrationFrozen |
-| Any Active State → Cancelled | RegistrationCancelled |
+| Any Active State → Cancelled | StudentRegistrationCancelled |
 | Frozen → Archived | RegistrationCompleted |
 
 Events shall be published only after successful state persistence.
@@ -2887,7 +2905,7 @@ Cancels an existing registration.
 
 ### Published Event
 
-RegistrationCancelled
+StudentRegistrationCancelled
 
 ---
 
@@ -2959,7 +2977,7 @@ Approves registration.
 
 ### Published Event
 
-RegistrationApproved
+StudentRegistrationApproved
 
 ---
 
@@ -3358,7 +3376,7 @@ All policy modifications shall be version-controlled and auditable.
 
 The Student Academic Registration Domain implements a comprehensive authorization framework that combines authentication, role-based access control, policy-driven permissions, tenant isolation, and immutable auditing. This architecture ensures that every academic registration operation is executed securely, consistently, and in compliance with institutional governance across the SutraERP platform.
 
-# 14. Multi-Domain Integrations
+# 14. Cross-Domain Integrations
 
 ## 14.1 Overview
 
@@ -3372,7 +3390,7 @@ Direct database access between domains is strictly prohibited.
 
 # 14.2 Integration Principles
 
-Multi-domain integration shall follow these principles:
+Cross-domain integration shall follow these principles:
 
 - Single Source of Truth
 - Domain Ownership
@@ -3404,6 +3422,12 @@ The Student Academic Registration Domain depends upon the following upstream dom
 | Workflow Engine | Approval workflow execution | Service |
 
 These domains remain the canonical owners of their respective data.
+
+Consumes the canonical Student Aggregate and Student lifecycle state from the Student Lifecycle Domain.
+
+Registration processing shall begin only after successful Student creation and activation have been completed by L2-C02.
+
+
 
 ---
 
@@ -3451,19 +3475,19 @@ All service invocations shall be authenticated and authorized.
 
 # 14.6 Domain Event Integrations
 
-The following Domain Events are published for multi-domain communication.
+The following Domain Events are published for cross-domain communication.
 
 | Domain Event | Primary Consumers |
 |--------------|------------------|
 | RegistrationWindowOpened | Notification Platform |
 | RegistrationCreated | Analytics |
 | RegistrationSubmitted | Workflow Engine |
-| RegistrationApproved | Academic Delivery, Timetable |
+| StudentRegistrationApproved | Academic Delivery, Timetable |
 | RegistrationRejected | Notification Platform |
 | CourseRegistered | LMS, Timetable |
 | CourseDropped | LMS, Timetable |
 | RegistrationModified | Analytics |
-| RegistrationCancelled | Examination, Finance |
+| StudentRegistrationCancelled | Examination, Finance |
 | RegistrationFrozen | Attendance, Examination, Academic Delivery |
 | RegistrationCompleted | Analytics, Audit Platform |
 
@@ -3528,7 +3552,7 @@ Ownership boundaries shall never overlap.
 
 The Student Academic Registration Domain shall enforce the following integration constraints:
 
-- Multi-domain updates are prohibited.
+- Cross-domain updates are prohibited.
 - Master data shall remain read-only.
 - Registration data shall remain exclusively owned by this domain.
 - Distributed transactions shall be avoided.
@@ -3587,7 +3611,7 @@ All integration changes shall undergo architecture review before implementation.
 
 ---
 
-# 14.13 Multi-Domain Integration Summary
+# 14.13 Cross-Domain Integration Summary
 
 The Student Academic Registration Domain integrates with upstream master-data domains and downstream academic execution domains through standardized Service Contracts and immutable Domain Events. This architecture preserves clear ownership boundaries, enables scalable enterprise integration, and ensures that academic registration remains the authoritative source for academic enrollment throughout the SutraERP platform.
 
@@ -4656,7 +4680,7 @@ Operational monitoring shall include:
 | Validation Failure Rate | Business validation failures |
 | Average Submission Time | Registration completion latency |
 | Approval Turnaround Time | Approval processing duration |
-| Integration Failure Rate | Multi-domain communication failures |
+| Integration Failure Rate | Cross-domain communication failures |
 | Event Delivery Success | Successful event publication |
 | Concurrent Registration Load | Peak registration traffic |
 
@@ -5018,7 +5042,7 @@ Supported deployment environments include:
 | Environment | Purpose |
 |-------------|---------|
 | Development | Feature development |
-| Integration | Multi-domain integration testing |
+| Integration | Cross-domain integration testing |
 | Quality Assurance | Functional validation |
 | User Acceptance Testing | Institutional validation |
 | Staging | Production simulation |
@@ -5118,7 +5142,7 @@ The following operational metrics shall be monitored:
 | Average Response Time | Service latency |
 | Validation Failure Rate | Business validation issues |
 | Approval Processing Time | Workflow efficiency |
-| Integration Success Rate | Multi-domain reliability |
+| Integration Success Rate | Cross-domain reliability |
 | Event Delivery Rate | Messaging effectiveness |
 | Error Rate | Operational stability |
 
@@ -5189,7 +5213,7 @@ This section provides the canonical architectural visualizations for the Student
 
 The visual models complement the normative architectural definitions contained throughout this document by illustrating aggregate relationships, workflows, state transitions, service interactions, event flows, integration boundaries, governance structures, deployment topology, and architectural dependencies.
 
-These diagrams are normative architectural representations intended to support implementation consistency, architectural governance, onboarding, and multi-domain understanding.
+These diagrams are normative architectural representations intended to support implementation consistency, architectural governance, onboarding, and cross-domain understanding.
 
 Unless explicitly stated otherwise, all diagrams inherit the architectural principles, ownership rules, and domain boundaries defined elsewhere in this document.
 
@@ -5564,17 +5588,17 @@ flowchart TD
 
     START([Student Requests Registration])
 
-    WINDOW{"Registration Window Active"}
+    WINDOW{"Registration Window Active?"}
 
-    STATUS{"Student Active"}
+    STATUS{"Student Active?"}
 
-    PROGRAMME{"Programme Enrollment Valid"}
+    PROGRAMME{"Programme Enrollment Valid?"}
 
-    SEMESTER{"Semester Eligible"}
+    SEMESTER{"Semester Eligible?"}
 
-    HOLD{"Administrative Hold Exists"}
+    HOLD{"Administrative Hold Exists?"}
 
-    FINANCE{"Financial Clearance Available"}
+    FINANCE{"Financial Clearance Available?"}
 
     ELIGIBLE["Eligible for Registration"]
 
@@ -5836,7 +5860,7 @@ flowchart TD
 
     START([Registration Submitted])
 
-    POLICY{"Approval Required"}
+    POLICY{"Approval Required?"}
 
     AUTO["Automatically Approve"]
 
@@ -5914,9 +5938,9 @@ flowchart TD
 
     LOAD["Load Existing Registration"]
 
-    CHECK_WINDOW{"Registration Window Open"}
+    CHECK_WINDOW{"Registration Window Open?"}
 
-    CHECK_STATE{"Registration Modifiable"}
+    CHECK_STATE{"Registration Modifiable?"}
 
     APPLY["Apply Requested Changes"]
 
@@ -5979,13 +6003,13 @@ flowchart TD
 
     LOAD["Load Registration"]
 
-    WINDOW{"Cancellation Window Open"}
+    WINDOW{"Cancellation Window Open?"}
 
-    STATE{"Registration Cancellable"}
+    STATE{"Registration Cancellable?"}
 
-    DEPENDENCY{"Downstream Dependencies"}
+    DEPENDENCY{"Downstream Dependencies?"}
 
-    POLICY{"Institutional Policy Allows"}
+    POLICY{"Institutional Policy Allows?"}
 
     CANCEL["Cancel Registration"]
 
@@ -6047,7 +6071,7 @@ flowchart TD
 
     START([Approved Registration])
 
-    CHECK{"Eligible for Freeze"}
+    CHECK{"Eligible for Freeze?"}
 
     VERIFY["Verify Outstanding Activities"]
 
@@ -6467,11 +6491,11 @@ flowchart LR
     style ADMIN fill:#FFF8DC,stroke:#B8860B,stroke-width:2px
 ```
 
-## 21.21 Multi-Domain Integration Map
+## 21.21 Cross-Domain Integration Map
 
 ### Purpose
 
-The Multi-Domain Integration Map illustrates the canonical dependencies of the Student Academic Registration Domain within the SutraERP platform.
+The Cross-Domain Integration Map illustrates the canonical dependencies of the Student Academic Registration Domain within the SutraERP platform.
 
 The diagram identifies upstream domains that provide authoritative reference information required for registration processing and downstream domains that consume finalized registration information through governed Service Contracts and Domain Events.
 
@@ -6641,7 +6665,7 @@ flowchart TD
 
     EXECUTE["Execute Business Operation"]
 
-    SUCCESS{"Operation Successful"}
+    SUCCESS{"Operation Successful?"}
 
     COMMIT["Commit Transaction"]
 
@@ -7157,7 +7181,7 @@ All registration operations require transactional consistency across registratio
 
 ## Decision
 
-Multi-domain communication shall primarily use immutable Domain Events.
+Cross-domain communication shall primarily use immutable Domain Events.
 
 ## Rationale
 
@@ -7969,7 +7993,7 @@ Cancelled
 
 ---
 
-# Appendix E — Multi-Domain Interaction Matrix
+# Appendix E — Cross-Domain Interaction Matrix
 
 | Domain | Purpose | Communication |
 |----------|---------|---------------|
@@ -8056,7 +8080,7 @@ Cancelled
 | Domain Events Defined | ✅ |
 | Service Contracts Defined | ✅ |
 | Authorization Model Defined | ✅ |
-| Multi-Domain Dependencies Defined | ✅ |
+| Cross-Domain Dependencies Defined | ✅ |
 | Configuration Model Defined | ✅ |
 | Audit Requirements Defined | ✅ |
 | Error Handling Defined | ✅ |

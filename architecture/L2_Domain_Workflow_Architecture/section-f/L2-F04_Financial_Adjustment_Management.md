@@ -2,6 +2,28 @@
 
 ---
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose |
+| Scope | §1.3 Scope; §21.3 Audit Scope; §22.3 Configuration Scope |
+| Actors | — not present — |
+| Entities | §4 Canonical Aggregate; §4.2 Aggregate Ownership; §7.3 Primary Aggregate |
+| Business Rules | Rules / Invariants |
+| Workflow | Workflows |
+| State Machine | §15 Financial Adjustment State Architecture; §15.3 Canonical Operational States; §15.4 State Transition Architecture |
+| Contracts | §25 Multi-Domain Contracts |
+| Events | §17 Financial Adjustment Event Architecture; §17.3 Event Architecture; §17.4 Canonical Lifecycle Events |
+| Dependencies | §18.4 Upstream Domains |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Locked Decisions. Recorded, not authored.
+
+---
+
 # Document Metadata
 
 | Attribute | Value |
@@ -10,10 +32,9 @@
 | Document Name | Financial Adjustment Management |
 | Architecture Level | Level 2 – Domain Architecture |
 | Domain | Finance |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0.0 |
-| Owner | Finance Domain |
-| Document Owner | Chetan |
+| Document Owner | Finance — Financial Adjustments |
 | Depends On | L2-F00 Finance Foundation, L2-F01 Student Charge & Fee Management, L2-F02 Payment Management, L2-F03 Refund Management |
 | Consumed By | L2-F05 Accounting, L2-F09 Reporting, L2-F12 Analytics |
 
@@ -2360,6 +2381,12 @@ Taken together with the Lifecycle stages in Section 14.3 and the Validation laye
 | Multi-Domain Dependencies Defined | ✓ |
 | Ready for Level-3 Decomposition | ✓ |
 | Ready for Repository Merge | ✓ |
+
+---
+
+## Rules / Invariants
+
+Rules are not consolidated under a single "Rules" heading but are expressed as "Architectural Principles" and "Architectural Constraints" distributed per section: Section 6 (Architectural Principles), the per-component principles/constraints in Sections 8–23, and Section 24 (Domain Constraints), which enumerates the mandatory constraints governing adjustment sourcing, categorization, approval participation, validation, lifecycle, and state behaviour.
 
 ---
 

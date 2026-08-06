@@ -2,379 +2,348 @@
 
 Section: H - Institutional Services & Intelligence
 Source directory: `architecture/L2_Domain_Workflow_Architecture/section-h`
-Files processed: 11
-Generation timestamp: 2026-07-29 20:16:23 +05:30
+Files processed: 11 of 11 expected
+Generation timestamp: 2026-08-05 13:11:08 +0530
+
+> Fully regenerated from current source documents. No content was carried forward from the previous version of this file.
 
 ## AI Executive Summary
 
-- Section H defines SutraERP enterprise shared services, institutional services, governance/reporting services, and external education integration boundaries for H01 through H10.
-- `L2-H00` establishes section-wide ownership, dependency hierarchy, integration topology, API/event governance, certification controls, and glossary terms.
-- `L2-H01` and `L2-H10` own governed external integration orchestration; `L2-H02`, `L2-H03`, and `L2-H07` provide reusable enterprise notification, discovery, and dashboard capabilities; `L2-H04`, `L2-H05`, and `L2-H06` own placement, research, and alumni business capabilities; `L2-H08` and `L2-H09` own regulatory reporting and accreditation/compliance governance without taking operational ownership.
-- Section H repeatedly enforces single canonical ownership, API-first and event-driven collaboration, read-model non-ownership, tenant/institution isolation, auditable lifecycle control, and prohibition of direct cross-domain persistence coupling.
-- Source documents were processed alphabetically. Source documents remain authoritative. No inferred content is added.
+- Section H defines institutional services and intelligence: APAAR & DigiLocker (`H01`), Notification (`H02`), Enterprise Directory & Search (`H03`), Placement (`H04`), Research (`H05`), Alumni (`H06`), Enterprise Dashboard (`H07`), NEP/NAAC/AISHE Reporting (`H08`), Accreditation & Compliance (`H09`) and External Education Integration (`H10`). `H00` is the section governance and review document.
+- Several Section H domains are explicitly non-owning services. `H01` "Owns Integration, Not Business Data"; `H03` "is **not** a business ownership domain and therefore does not own any canonical business entity"; `H07` "shall never become an alternative system of record"; `H08` owns reporting metadata while "operational business data remains owned by operational domains".
+- `H00` §15 Canonical Ownership Matrix is "the authoritative governance reference for Section H ownership".
+- Source files were processed in alphabetical order: H00 through H10.
 
 ## Dependency Manifest
 
-| Dependency | Source File | Original Heading |
-|---|---|---|
-| Section H dependency hierarchy; H04->H02 allowed; H05->H07 allowed; H08->H05 allowed; H09->H08 allowed; H07->H04/H05/H06 allowed; H10->H01 restricted; H03->H02 restricted; H04->H03 restricted; direct cross-domain database coupling and shared transactions prohibited | `L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md` | `L2-H00 - Section H Architecture Governance and Certification` |
-| Consumes Foundation, Student Lifecycle, Academic Management, Academic Delivery, Examination, H03 directory references, Document Platform references; publishes events to H02 notifications and H07 dashboards; no direct dependency on Workforce or Campus Operations | `L2-H01_APAAR_and_DigiLocker_Workflows.md` | `L2-H01 — APAAR & DigiLocker Workflows` |
-| Consumes governed requests and events from platform and business domains; depends on approved provider contracts, monitoring, reporting, analytics, and audit collaboration; does not own workflow execution, business state, or enterprise event transport | `L2-H02_Notification_Workflows.md` | `L2-H02 — Notification Workflows` |
-| Consumes canonical business data and events from authoritative domains including identity, institution, student, academic, examination, finance, campus, and H02 notification contexts; exposes search services to authorized downstream domains through service contracts only | `L2-H03_Enterprise_Directory_and_Search_Workflows.md` | `L2-H03 — Enterprise Directory & Search Workflows` |
-| Depends on Section A, Section C, Section D, Section E, H02, H03, H07, and approved external services including LinkedIn, AI resume screening, email, SMS, and WhatsApp | `L2-H04_Placement_Workflows.md` | `L2-H04_Placement_Workflows` |
-| Collaborates through published domain events, enterprise APIs, CQRS read models, workflow engine, and authorization services; integrates with Sections A-F and H; explicit faculty workforce integration through `L2-E03`; direct database access prohibited | `L2-H05_Research_Workflows.md` | `L2-H05_Research_Workflows` |
-| Integrates exclusively through governed APIs, commands, and domain events; upstream dependencies include Identity, Academic Core, Academic Delivery, Notification, Finance, Placement, Research, and Enterprise Directory; downstream consumers include Dashboard, Analytics, Reporting, Mobile Apps, Notification, Finance, Placement, and Research | `L2-H06_Alumni_Workflows.md` | `L2-H06_Alumni_Workflows` |
-| Depends on published query APIs, CQRS read models, and domain events from platform, academic delivery, student lifecycle, examination, finance, workforce, procurement/inventory, library, analytics, placement, research, and alumni domains; never consumes internal repositories | `L2-H07_Enterprise_Dashboard_Workflows.md` | `L2-H07 — Enterprise Dashboard Workflows` |
-| Consumes institution, organization, student, academic, workforce, finance, examination, research, campus, and approved analytics inputs; publishes reporting outputs to notification, dashboard, directory/search, analytics, audit, document, leadership, and external regulatory consumers | `L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md` | `L2-H08 — NEP, NAAC & AISHE Reporting Workflows` |
-| Functions as an enterprise governance layer consuming cross-domain operational information; explicitly integrates with H08 reporting, enterprise platform services, and external accreditation/regulatory agencies | `L2-H09_Accreditation_and_Compliance_Workflows.md` | `L2-H09 – Accreditation & Compliance Workflows` |
-| Depends on H02 notifications and H07 dashboard/analytics consumers; provides governed external provider, connector, configuration, synchronization, enrollment, learning, credit-transfer, certificate-verification, and reconciliation contracts without taking academic ownership | `L2-H10_External_Education_Integration_Workflows.md` | `L2-H10 — External Education Integration Workflows` |
+| Source File | Declared cross-references |
+|---|---|
+| `L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md` | L2-H00 through L2-H10 |
+| `L2-H01_APAAR_and_DigiLocker_Workflows.md` | L2-H01 |
+| `L2-H02_Notification_Workflows.md` | L2-A01, L2-A02, L2-A03, L2-A04, L2-A05, L2-A06, L2-A07, L2-H02 |
+| `L2-H03_Enterprise_Directory_and_Search_Workflows.md` | L2-A02 to L2-A04; L2-B01 to L2-B05; L2-C01 to L2-C08; L2-D01 to L2-D06; L2-E01 to L2-E03; L2-F01, L2-F05, L2-F09, L2-F12, L2-F13, L2-F14; L2-G01, L2-G03, L2-G05, L2-G07, L2-G10; L2-H02 to L2-H05, L2-H07 to L2-H10; L2-I01 to L2-I05, L2-I09, L2-I10, L2-I11, L2-I13 |
+| `L2-H04_Placement_Workflows.md` | L2-H04 |
+| `L2-H05_Research_Workflows.md` | L2-E03, L2-H05 |
+| `L2-H06_Alumni_Workflows.md` | L2-C05, L2-C08, L2-H06 |
+| `L2-H07_Enterprise_Dashboard_Workflows.md` | L2-H07 |
+| `L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md` | L2-H08 |
+| `L2-H09_Accreditation_and_Compliance_Workflows.md` | L2-H08, L2-H09 |
+| `L2-H10_External_Education_Integration_Workflows.md` | L2-H02, L2-H07, L2-H10 |
+
+> `L2-H03` declares the widest cross-reference set in the corpus, spanning 53 documents across Sections A through I. This is consistent with its role as an enterprise search and directory service that projects from every authoritative domain.
 
 ## Source Hierarchy
 
 ### `L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`
 
 - Source File: `architecture/L2_Domain_Workflow_Architecture/section-h/L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`
-- Original Heading: `L2-H00 - Section H Architecture Governance and Certification`
-- Extracted Content: purpose; objectives; scope; out of scope; governance principles; intended audience; Section H positioning and domain landscape; functional classification; enterprise responsibilities; dependency philosophy; design principles; governance outcomes; ownership governance and matrix; multi-domain responsibility boundaries for H01-H10; conflict resolution; independence requirements; integration governance and topology; API and event governance; data sharing; failure isolation; DDD, CQRS, EDA, hexagonal, and metadata-driven compliance; API governance standards; ADRs; compliance checklist; security, identity/access, data protection, audit, privacy, monitoring, continuity, change management, traceability, validation, quality gates, risk register, certification evidence, KPI dashboard, scorecard, maturity assessment, anti-patterns, future evolution, governance responsibilities, roadmap, glossary, certification scope, review findings, exception management, and document governance.
+- Original Heading: `L2-H00 -- Services & Intelligence Review`
+- Extracted Content: §4 Out of Scope; §5.1 Single Canonical Ownership; §14 Canonical Ownership Governance; §15 Canonical Ownership Matrix; §16 Multi-Domain Responsibility Boundaries.
+- Role: governance and validation only. "This document references these artifacts only for governance validation purposes."
 
 ### `L2-H01_APAAR_and_DigiLocker_Workflows.md`
 
 - Source File: `architecture/L2_Domain_Workflow_Architecture/section-h/L2-H01_APAAR_and_DigiLocker_Workflows.md`
-- Original Heading: `L2-H01 — APAAR & DigiLocker Workflows`
-- Extracted Content: purpose; scope; in scope; out of scope; ownership and event-driven publication principles; domain responsibilities; read/write ownership matrix; external systems; ubiquitous language; domain model; publication, consent, connector, and synchronization aggregates; entities; value objects; aggregate relationships; aggregate lifecycle; domain invariants; commands and queries; read models; integration architecture; hybrid government integration framework; connector lifecycle; APAAR account linking, DigiLocker account linking, credential publication, consent management, credential revocation, bulk publication, publication retry, and government synchronization workflows; domain events catalogue; event payload standards; event ordering rules; internal APIs; external integration contracts; generic API adapter; configuration management and catalog; publication, connector, consent, and synchronization state machines; domain dependency matrix; multi-domain event dependencies.
+- Original Heading: `L2-H01 -- APAAR & DigiLocker Workflows`
+- Extracted Content: §3.2 Out of Scope; Principle 1 H01 Owns Integration, Not Business Data; H01 Owns; H01 Never Owns; §7.1 Read / Write Ownership Matrix.
 
 ### `L2-H02_Notification_Workflows.md`
 
 - Source File: `architecture/L2_Domain_Workflow_Architecture/section-h/L2-H02_Notification_Workflows.md`
-- Original Heading: `L2-H02 — Notification Workflows`
-- Extracted Content: purpose; scope; out of scope; platform ownership boundaries; canonical ownership; architectural boundary rules; ubiquitous language; domain model and capabilities; bounded context; aggregate overview and relationships; notification aggregate, lifecycle, expiration model, recipient resolution, template management, template version lifecycle, variable resolution, notification channels, multi-channel delivery, scheduling, preferences, quiet hours, subscriptions, campaign management, digest notifications, delivery coordination, delivery attempts, retry management, dead-letter queue, provider abstraction, provider failover, delivery receipts, notification events, integration contracts, monitoring and observability, security architecture, configuration management, glossary, and ADRs.
+- Original Heading: `L2-H02 -- Notification Workflows`
+- Extracted Content: §3 Out of Scope; NP-02 Canonical Ownership; §5 Canonical Ownership with §5.1 Notification Platform Owns, §5.3 Workflow Engine Owns, §5.4 Event Infrastructure Owns, §5.5 Audit Infrastructure Owns; §10 Aggregate Model.
 
 ### `L2-H03_Enterprise_Directory_and_Search_Workflows.md`
 
 - Source File: `architecture/L2_Domain_Workflow_Architecture/section-h/L2-H03_Enterprise_Directory_and_Search_Workflows.md`
-- Original Heading: `L2-H03 — Enterprise Directory & Search Workflows`
-- Extracted Content: purpose; scope; included responsibilities; version 1 scope; excluded responsibilities; upstream and downstream dependencies with dependency principles; domain ownership boundaries; searchable projection aggregate model and lifecycle; enterprise search, directory lookup, entity discovery, people search, academic object search, saved search management, search preference management, and search result navigation workflows; detailed workflow specifications; consumed and published events; search and administrative service contracts; searchable projection, synchronization, and index lifecycle state transition matrices.
+- Original Heading: `L2-H03 -- Enterprise Directory & Search Workflows`
+- Extracted Content: §5 Domain Ownership Boundaries with its `Owns` list.
 
 ### `L2-H04_Placement_Workflows.md`
 
 - Source File: `architecture/L2_Domain_Workflow_Architecture/section-h/L2-H04_Placement_Workflows.md`
-- Original Heading: `L2-H04_Placement_Workflows`
-- Extracted Content: purpose; objectives; scope; out of scope; architectural position; DDD/CQRS/EDA/configurable policy principles; business vision; domain overview; business capabilities; bounded context; core responsibilities; aggregate ownership matrix; external dependencies; upstream and downstream events; event producer/consumer matrix; aggregate architecture; employer, placement drive, position, candidate application, recruitment workflow, placement offer, internship, and joining confirmation aggregates; aggregate relationships; employer registration, employer verification, placement drive creation, position creation, eligibility configuration, student registration, candidate screening, candidate shortlisting, pre-placement talk, recruitment round, candidate reconsideration, offer generation, offer acceptance, offer withdrawal, joining confirmation, placement drive closure, and internship management workflows; commands; domain events catalogue; read models; integration architecture; enterprise API catalogue; reporting and analytics; glossary.
+- Original Heading: `L2-H04 -- Placement Workflows`
+- Extracted Content: §4 Out of Scope; §12 Aggregate Ownership; §12.1 Aggregate Ownership Matrix with aggregate root, owner role, primary commands, primary events and primary read models per aggregate.
 
 ### `L2-H05_Research_Workflows.md`
 
 - Source File: `architecture/L2_Domain_Workflow_Architecture/section-h/L2-H05_Research_Workflows.md`
-- Original Heading: `L2-H05_Research_Workflows`
-- Extracted Content: purpose; objectives; scope; out of scope; guiding principles; ownership boundaries; bounded context; business capabilities; ownership matrix; aggregate catalogue and relationships; research proposal, research project, research grant, ethics approval, publication, patent, collaboration, consultancy project, research portfolio, and repository registration aggregates; lifecycle states; workflow catalogue, classification, dependency matrix, interaction diagram, orchestration principles, and execution rules; RM-01 through RM-44 workflow specifications across proposal, project, grant, ethics, publication, intellectual property, collaboration, consultancy, and repository/portfolio management; proposal, project, grant, ethics, publication, patent, collaboration, consultancy, and repository lifecycle state machines; business rules; validation rules; events published and consumed by each aggregate family; domain events catalogue; CQRS read models; internal and external integrations; configuration matrix; permission groups; reporting catalogue; enterprise search metadata; enterprise dashboard metrics; non-functional requirements; architectural constraints; section summary.
+- Original Heading: `L2-H05 -- Research Workflows`
+- Extracted Content: §4 Out of Scope; §10 Ownership Matrix; §12.1 Aggregate Ownership Principles.
 
 ### `L2-H06_Alumni_Workflows.md`
 
 - Source File: `architecture/L2_Domain_Workflow_Architecture/section-h/L2-H06_Alumni_Workflows.md`
-- Original Heading: `L2-H06_Alumni_Workflows`
-- Extracted Content: purpose; scope; out of scope; architectural principles; domain overview; bounded context; canonical ownership; aggregate ownership; alumni, professional profile, chapter, mentor, mentorship, event participation, volunteer, recognition, donation intent, and verification aggregates; canonical domain model; WF-H06-001 through WF-H06-018 workflow specifications covering alumni profile creation, membership activation, professional profile updates, communication preferences, suspension, chapter membership, directory management, networking, portal self-service, verification, mentor registration, mentor-student matching, mentorship lifecycle, volunteer management, guest lecture participation, industry collaboration participation, recognition management, and donation intent/campaign participation; commands catalogue; query catalogue; read models; command authorization matrix; idempotency; published and consumed domain events; event consumer matrix; event payload contracts; integration contracts; API catalogue; reporting and analytics; business rules; state transition matrix; glossary.
+- Original Heading: `L2-H06 -- Alumni Workflows`
+- Extracted Content: §3 Out of Scope; §7 Canonical Ownership with §7.4 Canonical Ownership Rules; §8 Aggregate Ownership with a per-aggregate `Owns Transaction` block.
 
 ### `L2-H07_Enterprise_Dashboard_Workflows.md`
 
 - Source File: `architecture/L2_Domain_Workflow_Architecture/section-h/L2-H07_Enterprise_Dashboard_Workflows.md`
-- Original Heading: `L2-H07 — Enterprise Dashboard Workflows`
-- Extracted Content: purpose; scope; enterprise position; dependency architecture; ownership boundaries; bounded context; dashboard, dashboard template, workspace, widget configuration, personal layout, dashboard version, and dashboard sharing aggregates; aggregate relationships; aggregate lifecycle and invariants; commands and queries; domain events and event publishing rules; CQRS enforcement rules; integration architecture; upstream dependencies; dashboard consumer responsibilities; service contracts; event integration; failure handling; integration constraints; operational constraints; workflow specifications for create/update/clone/archive/restore/publish/unpublish/assign dashboard, template/workspace management, widget registration/configuration, personalization, sharing, rollback, import, and export; workflow catalogue; query mapping; widget catalog model; state machines; widget dependency graph; configuration schemas; enterprise operational metrics.
+- Original Heading: `L2-H07 -- Enterprise Dashboard Workflows`
+- Extracted Content: Canonical Ownership Preservation; Principle 1 Single Canonical Ownership; Canonical Ownership; Part 3 Ownership Boundaries & Aggregate Architecture; §6 Ownership Boundaries with §6.1 Canonical Ownership Principle; §10.2 Primary Domain Entities.
 
 ### `L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`
 
 - Source File: `architecture/L2_Domain_Workflow_Architecture/section-h/L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`
-- Original Heading: `L2-H08 — NEP, NAAC & AISHE Reporting Workflows`
-- Extracted Content: purpose; scope; upstream and downstream dependency matrices and rules; ownership boundaries; domain overview; reporting framework, reporting cycle, report template, reporting snapshot, validation result, compliance evidence mapping, submission package, and submission record aggregates; workflow overview and H08-W01 through H08-W12 workflow catalogue; commands; queries; domain events catalogue; CQRS read models; service contracts; API contracts; integration architecture and rules; configuration architecture; reporting rules; reporting cycle, snapshot, submission package, and validation state machines; glossary; ADRs.
+- Original Heading: `L2-H08 -- NEP, NAAC & AISHE Reporting Workflows`
+- Extracted Content: Canonical Ownership Preservation; Principle 1 Single Canonical Ownership; §5 Domain Ownership Boundaries with §5.2 Canonical Ownership Matrix, §5.3 Explicitly Not Owned and §5.6 Aggregate Ownership Model.
 
 ### `L2-H09_Accreditation_and_Compliance_Workflows.md`
 
 - Source File: `architecture/L2_Domain_Workflow_Architecture/section-h/L2-H09_Accreditation_and_Compliance_Workflows.md`
-- Original Heading: `L2-H09 – Accreditation & Compliance Workflows`
-- Extracted Content: domain overview; purpose; scope; ownership relationships and matrix; business capabilities; core business workflows; H09-01 through H09-11 workflow specifications for accreditation framework, planning, compliance requirement management, evidence repository management, evidence validation, internal audit, external assessment coordination, observation management, finding/non-conformity management, CAPA, and continuous quality improvement; aggregate relationships; H09-A01 through H09-A12 domain aggregates; state transition rules; multi-domain and external integrations; events; notification workflows; automation rules; AI-assisted capabilities; dashboards; standard reports; KPIs; security and access control; permission groups; audit trail requirements.
+- Original Heading: `L2-H09 -- Accreditation & Compliance Workflows`
+- Extracted Content: accreditation and compliance architecture, cross-referencing `L2-H08`. Per `L2-H00` §15 it owns Compliance Policies, Accreditation Evidence Templates and the Compliance Evidence Repository.
 
 ### `L2-H10_External_Education_Integration_Workflows.md`
 
 - Source File: `architecture/L2_Domain_Workflow_Architecture/section-h/L2-H10_External_Education_Integration_Workflows.md`
-- Original Heading: `L2-H10 — External Education Integration Workflows`
-- Extracted Content: purpose; business purpose; scope and out of scope; bounded context and canonical ownership; supported integration patterns; integration architecture layers; connector and provider trust lifecycles; business capability map; external provider, integration connector, integration configuration, external enrollment, learning synchronization, credit transfer request, certificate verification, synchronization job, and reconciliation record aggregates; domain services; commands and queries; workflow architecture and workflow catalogue for provider onboarding, connector deployment, configuration activation, authentication establishment, synchronization execution, external enrollment, learning synchronization, credit transfer, certificate verification, reconciliation, and disaster recovery; domain event model; authorization, security, and integration governance; integration contracts; reporting/analytics/KPIs; glossary and architectural terminology.
+- Original Heading: `L2-H10 -- External Education Integration Workflows`
+- Extracted Content: external education integration architecture, cross-referencing `L2-H02` and `L2-H07`. Per `L2-H00` §15 it owns External Integration Mapping Metadata, Integration Connectors, Integration Credentials and Metadata Configuration. At 11,536 lines it is the largest Section H document.
+
+## Canonical Ownership Statements
+
+Verbatim ownership declarations extracted from the sources.
+
+### `L2-H00` -- Section Governance
+
+- Original Heading: `14. Canonical Ownership Governance`. "Each business capability shall have exactly one authoritative owner responsible for:" Business rule custody; Lifecycle control; State ownership; Validation authority; Audit evidence; Integration contract stewardship; Versioning accountability; Certification evidence. "Consumer domains may reference, project, analyze, or integrate canonical information, but shall never redefine or assume ownership of another domain's business entities."
+- Original Heading: `15. Canonical Ownership Matrix`. "The following matrix is the authoritative governance reference for Section H ownership."
+
+| Business Capability | Canonical Owner | Consumers |
+|---|---|---|
+| APAAR Identity Integration | H01 | H04, H08, H09, H10 |
+| DigiLocker Document Exchange | H01 | H04, H05, H09, H10 |
+| Notification Templates | H02 | All Section H domains |
+| Notification Preferences | H02 | All Section H domains |
+| Notification Delivery Policies | H02 | All Section H domains |
+| Enterprise Directory Metadata | H03 | All Section H domains |
+| Search Metadata | H03 | All Section H domains |
+| Search Indexes | H03 | All Section H domains |
+| Search Configuration | H03 | All Section H domains |
+| Placement Operations | H04 | H07, H08, H09 |
+| Placement Analytics | H04 | H07, H08, H09 |
+| Employer Relationship Records | H04 | H07 |
+| Research Lifecycle | H05 | H07, H08, H09 |
+| Research Analytics | H05 | H07, H08, H09 |
+| Publications and Grants | H05 | H07, H08, H09 |
+| Alumni Lifecycle | H06 | H07, H09 |
+| Alumni Analytics | H06 | H07, H09 |
+| Dashboard Metadata | H07 | Leadership, H08, H09 |
+| Dashboard Configuration | H07 | Leadership, H08, H09 |
+| Executive Projections | H07 | Leadership, H08, H09 |
+| Reporting Templates | H08 | Leadership, Regulatory Authorities |
+| Regulatory Submission Packages | H08 | Leadership, Regulatory Authorities |
+| Compliance Policies | H09 | H01, H04, H05, H06, H07, H08, H10 |
+| Accreditation Evidence Templates | H09 | H08, Accreditation Authorities |
+| Compliance Evidence Repository | H09 | H08, Accreditation Authorities |
+| External Integration Mapping Metadata | H10 | H01, H08, H09 |
+| Integration Connectors | H10 | H01, H08, H09 |
+| Integration Credentials | H10 | H01, Security Functions |
+| Metadata Configuration | H10 | H01, H02, H03, H07, H08, H09 |
+
+"The matrix defines ownership responsibility only. It does not imply implementation dependency."
+
+- Original Heading: `4. Out of Scope`. Business workflows; Aggregate definitions; Commands; Queries; Domain events; Read models; UI behavior; API payload definitions; Persistence models; Integration protocol specifications; Workflow orchestration; Business validation rules -- "remain exclusively owned by their respective Level-2 documents."
+
+### `L2-H01` -- APAAR & DigiLocker
+
+- Original Heading: `Principle 1 -- H01 Owns Integration, Not Business Data`. "Student records, examination results, certificates, transcripts, and academic data remain owned by their respective business domains. H01 only orchestrates their secure publication after they become officially available."
+- Original Heading: `H01 Owns`. Government publication workflows; Integration orchestration; Connector framework; Generic API adapter; Publication transactions; Publication status; Consent records; Retry lifecycle; Synchronization lifecycle; Government acknowledgements; Operational metrics; Connector configuration.
+- Original Heading: `H01 Never Owns`. Student master data; Faculty data; Examination data; Academic records; Certificates; Mark sheets; Degrees; Transcripts; Course information; Enrollment; Identity records; Authentication; Authorization; Document repository.
+- Original Heading: `7.1 Read / Write Ownership Matrix`. Read-only in H01: Student -> Student Domain; Institution -> Institution / Foundation Domain; Academic Program -> Academic Domain; Examination Result, Certificate, Transcript, Degree -> Examination Domain. Read and write in H01: Publication; Consent; Connector; Synchronization; Government Acknowledgement. "H01 only owns Publication, Consent, Connector, Synchronization, and Government Acknowledgement. All other referenced entities remain read-only within H01."
+
+### `L2-H02` -- Notification
+
+- Original Heading: `NP-02 -- Canonical Ownership`. "The Notification Platform owns notification orchestration. Business domains remain the canonical owners of business events and business decisions."
+- Original Heading: `5. Canonical Ownership`. "The Notification Platform owns only notification responsibilities. Business ownership shall never migrate into the Notification Platform."
+- Original Heading: `5.1 Notification Platform Owns`. Notification Aggregate; Notification Lifecycle; Recipient Resolution; Recipient Expansion; Notification Scheduling; Delivery Coordination; Channel Selection; Template Resolution; Template Versioning; Localization; Variable Resolution; Delivery Retry; Dead-Letter Processing; Provider Abstraction; Provider Failover; Delivery Receipt Management; Notification Preferences; Subscription Management; Notification Campaigns; Digest Processing; Operational Monitoring; Notification Metrics; Notification Configuration.
+- Original Heading: `5.3 Workflow Engine Owns`. Workflow Definitions; Workflow Execution; Workflow State; Human Tasks; Workflow Runtime; Workflow Orchestration. "The Notification Platform may notify workflow participants but shall never own workflow execution."
+- Original Heading: `5.4 Event Infrastructure Owns`. Event Publication; Event Routing; Event Delivery; Event Replay; Event Registry; Event Contracts; Event Metadata; Event Ordering. "The Notification Platform consumes events but never governs enterprise event transport."
+- Original Heading: `5.5 Audit Infrastructure Owns`. Audit Records; Audit Timeline; Evidence Management; Investigation Support; Retention; Integrity Verification. "The Notification Platform supplies notification evidence but does not own audit persistence."
+
+### `L2-H03` -- Enterprise Directory & Search
+
+- Original Heading: `5. Domain Ownership Boundaries`. "The Enterprise Directory & Search domain is a **cross-cutting enterprise service** responsible for discovery and retrieval of searchable information. It is **not** a business ownership domain and therefore does not own any canonical business entity."
+- Original Heading: `Owns`. Searchable projections; Enterprise search indexes; Search metadata; Search configuration; Search ranking policies; Search synonym dictionaries; Search analytics; "Saved searches, user bookmarks, recent search history, and recently viewed entities, owned by H03 until a dedicated User Preference domain exists"; Index synchronization metadata; Search health metadata; Search performance metrics; Index lifecycle metadata; Search configuration policies; Search service contracts; Enterprise search APIs.
+
+### `L2-H04` -- Placement
+
+- Original Heading: `12. Aggregate Ownership`. Employer; PlacementDrive; Position; CandidateApplication; RecruitmentWorkflow; PlacementOffer; Internship; JoiningConfirmation. "No other enterprise domain shall directly modify these aggregates."
+- Original Heading: `4. Out of Scope`. Student Master -> Section C; Student Admissions -> Section C; Academic Records -> Section D; **Examination Results -> Section D**; Attendance -> Section D; Faculty Management -> Section E; Employee Management -> Section E; Authentication -> Section A; Authorization -> Section A; Enterprise Notifications -> Section H02; Enterprise Search -> Section H03; Enterprise Dashboards -> Section H07; **Financial Accounting -> Section K**; **Fee Management -> Section K**; Procurement -> Section J. The Section K rows and the Examination Results row are recorded as conflict H-01, not resolved.
+
+### `L2-H05` -- Research
+
+- Original Heading: `10. Ownership Matrix`. Full Ownership by Research: Research Proposal; Research Project; Grant; Funding Allocation Metadata; Ethics Approval; Publication; Patent; Intellectual Property Metadata; Collaboration; Consultancy Project; Research Portfolio; Research KPI. Read Only: Faculty and Faculty Workload -> `L2-E03 Faculty Workforce`; Student -> Section C; Academic Assignment -> Section D; Financial Ledger -> Section F. Consumed: Notification -> H02; Audit Record and Workflow Instance -> Section A. Published: Search Index -> H03; Dashboard -> H07.
+- Original Heading: `4. Out of Scope`. Faculty Master and Faculty Workload & Capacity -> `L2-E03 Faculty Workforce`; Employee Master -> Section E; Academic Assignments -> Section D; Student Master and Student Academic Lifecycle -> Section C; Authentication, Authorization, Workflow Engine, Event Infrastructure and Audit Infrastructure -> Section A; Enterprise Notifications -> Section H02; Enterprise Directory & Search -> Section H03; Enterprise Dashboards -> Section H07; **Financial Accounting -> Section F**; Budget & Payments -> Section F; Enterprise Document Management -> Platform Shared Service.
+- "Research Management SHALL consume Faculty Research Capability, Faculty Availability, Faculty Capacity information and Faculty Eligibility decisions from L2-E03 Faculty Workforce."
+
+### `L2-H06` -- Alumni
+
+- Original Heading: `8. Aggregate Ownership`. "The Alumni Domain SHALL implement aggregate boundaries that preserve transactional consistency while minimizing multi-domain coupling." Per-aggregate `Owns Transaction` blocks cover: alumni core profile, membership and activation state; employment, designation, industry, business and entrepreneurship profile; chapter profile, governance settings, officer assignments and geographic coverage; mentor registration, expertise, availability, capacity and approval; mentor and student assignment, mentorship lifecycle, session tracking, outcomes and feedback; registration, attendance, participation and certificate issuance; volunteer opportunity and assignment; award, distinction, honor and publication metadata; campaign selection, pledge and donation preference; verification request, supporting evidence, approval workflow and verification outcome.
+
+### `L2-H07` -- Enterprise Dashboard
+
+- Original Heading: `Canonical Ownership Preservation`. "Ensure business ownership remains exclusively within operational bounded contexts. The Dashboard domain shall never become an alternative system of record."
+- Original Heading: `Principle 1 -- Single Canonical Ownership`. "The Dashboard domain owns dashboard composition only. Business data remains owned by operational domains."
+- Original Heading: `6.1 Canonical Ownership Principle`. "The Enterprise Dashboard domain is responsible exclusively for dashboard composition and presentation. Every business fact displayed within a dashboard originates from its authoritative bounded context. The Dashboard domain shall never become a secondary system of record for enterprise business information. Its ownership is limited to presentation metadata and dashboard configuration."
+- Original Heading: `Owns`. Dashboard Identity; Dashboard Name; Dashboard Description; Dashboard Status; Dashboard Type; Dashboard Scope; Dashboard Metadata.
+
+### `L2-H08` -- NEP, NAAC & AISHE Reporting
+
+- Original Heading: `Principle 1 -- Single Canonical Ownership`. "The Reporting domain owns reporting metadata, reporting lifecycle, compliance validation, reporting snapshots, and submission governance. Operational business data remains owned by operational domains."
+- Original Heading: `5.2 Canonical Ownership Matrix`. Owned by H08: Reporting Framework; Reporting Cycle; Report Template; Reporting Metadata; Reporting Snapshot; Validation Result; Compliance Evidence Mapping; Submission Package; Submission Record; Reporting Version History; Reporting Configuration; Reporting Schedule; Reporting Lifecycle; Reporting Approval State; Compliance Readiness Status.
+- Original Heading: `5.3 Explicitly Not Owned`. Student Master -> Student Lifecycle Domains; Applicant Information -> Admissions Domains; Academic Structure, Curriculum, Timetable and Attendance -> Academic Delivery Domains; Faculty Profile, Employee Profile, Position Assignment, Leave Records and Payroll Records -> People & Workforce; Financial Ledger and Student Fees -> Finance Domains; Examination Results -> Examination Domains; Research Projects -> Research Domains; Notifications -> Notification Platform; Search Indexes -> Enterprise Directory & Search; Dashboard Layouts -> Enterprise Dashboard; Identity and Authorization Policies -> Platform Foundation. "The Reporting domain SHALL reference these concepts through approved enterprise contracts but SHALL NEVER own or modify them."
 
 ## Normalized Index
 
-### 1. Domain Overview
+### Entities
 
-- Section H governance, ownership, dependency hierarchy, certification, and glossary baseline [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- APAAR and DigiLocker publication integration domain [`L2-H01_APAAR_and_DigiLocker_Workflows.md`]
-- Enterprise notification orchestration and communication governance [`L2-H02_Notification_Workflows.md`]
-- Enterprise directory and search discovery layer [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Placement management domain [`L2-H04_Placement_Workflows.md`]
-- Research management domain [`L2-H05_Research_Workflows.md`]
-- Alumni lifecycle and engagement domain [`L2-H06_Alumni_Workflows.md`]
-- Enterprise dashboard and visualization domain [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- NEP, NAAC, AISHE, and regulatory reporting orchestration domain [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- Accreditation and compliance governance domain [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- External education interoperability gateway [`L2-H10_External_Education_Integration_Workflows.md`]
+- Publication; Consent; Connector; Synchronization; Government Acknowledgement (`L2-H01`, the only entities it owns).
+- Notification Aggregate and the notification lifecycle model (`L2-H02` §10).
+- Searchable projections; search indexes; search metadata and configuration (`L2-H03`; no canonical business entity).
+- Employer; PlacementDrive; Position; CandidateApplication; RecruitmentWorkflow; PlacementOffer; Internship; JoiningConfirmation (`L2-H04`).
+- Research Proposal; Research Project; Grant; Funding Allocation Metadata; Ethics Approval; Publication; Patent; Intellectual Property Metadata; Collaboration; Consultancy Project; Research Portfolio; Research KPI (`L2-H05`).
+- Alumni profile, membership, chapter, mentor, mentorship, event participation, volunteer, award, donation and verification aggregates (`L2-H06` §8).
+- Dashboard with Identity, Name, Description, Status, Type, Scope and Metadata (`L2-H07`).
+- ReportingFramework; ReportingCycle; ReportTemplate; ReportingSnapshot; ValidationResult; SubmissionPackage; SubmissionRecord (`L2-H08` §5.6).
+- Compliance Policies; Accreditation Evidence Templates; Compliance Evidence Repository (`L2-H09`, per `L2-H00` §15).
+- External Integration Mapping Metadata; Integration Connectors; Integration Credentials; Metadata Configuration (`L2-H10`, per `L2-H00` §15).
 
-### 2. Owned Entities
+### Services
 
-- Section H ownership matrices, responsibility boundaries, governance evidence, and certification artifacts [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- Publication, Consent, Connector, Synchronization; Publication, Consent Record, Connector, Synchronization Job [`L2-H01_APAAR_and_DigiLocker_Workflows.md`]
-- Notification, Notification Template, Recipient Resolution, Delivery, Delivery Attempt, Notification Schedule, Notification Preference, Notification Subscription, Notification Campaign, Notification Digest, Provider Configuration [`L2-H02_Notification_Workflows.md`]
-- Searchable Projection aggregate and synchronized searchable/indexed projection lifecycle assets [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Employer, Placement Drive, Position, Candidate Application, Recruitment Workflow, Placement Offer, Internship, Joining Confirmation [`L2-H04_Placement_Workflows.md`]
-- Research Proposal, Research Project, Research Grant, Ethics Approval, Publication, Patent, Collaboration, Consultancy Project, Research Portfolio, Repository Registration [`L2-H05_Research_Workflows.md`]
-- Alumni, Professional Profile, Chapter, Mentor, Mentorship, Event Participation, Volunteer, Recognition, Donation Intent, Verification [`L2-H06_Alumni_Workflows.md`]
-- Dashboard, Dashboard Template, Workspace, Widget Configuration, Personal Layout, Dashboard Version, Dashboard Sharing [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- Reporting Framework, Reporting Cycle, Report Template, Reporting Snapshot, Validation Result, Compliance Evidence Mapping, Submission Package, Submission Record [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- Accreditation Framework, Accreditation Cycle, Compliance Requirement, Evidence Repository Item, Audit, Observation, Finding, CAPA, Quality Improvement Initiative, Readiness Assessment, Compliance Review, SSR Package [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- External Provider, Integration Connector, Integration Configuration, External Enrollment, Learning Synchronization, Credit Transfer Request, Certificate Verification, Synchronization Job, Reconciliation Record [`L2-H10_External_Education_Integration_Workflows.md`]
+- `L2-H02` Notification Platform: provider abstraction, provider failover, delivery coordination, channel selection.
+- `L2-H03` Search service contracts and Enterprise search APIs.
+- `L2-H01` Connector framework and Generic API adapter.
+- `L2-H05` consumes via enterprise APIs and read models.
 
-### 3. Business Capabilities
+### Events
 
-- Section-wide canonical ownership governance, dependency validation, certification, maturity assessment, and architecture review control [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- APAAR/DigiLocker account linking, credential publication, consent governance, revocation, bulk publication, retry, and government synchronization [`L2-H01_APAAR_and_DigiLocker_Workflows.md`]
-- Notification orchestration, recipient resolution, template management, channel selection, scheduling, preferences, campaigns, digests, provider management, retries, and delivery receipts [`L2-H02_Notification_Workflows.md`]
-- Enterprise search, directory lookup, entity discovery, people search, academic object search, saved search, search preferences, and result navigation [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Employer management, placement drives, positions, eligibility, candidate progression, offers, internships, joining confirmation, and placement analytics [`L2-H04_Placement_Workflows.md`]
-- Proposal, project, grant, ethics, publication, patent, collaboration, consultancy, repository, KPI, and research reporting capabilities [`L2-H05_Research_Workflows.md`]
-- Alumni relationship management, chaptering, networking, mentoring, volunteering, recognition, verification, self-service, and donation intent coordination [`L2-H06_Alumni_Workflows.md`]
-- Dashboard lifecycle, workspace management, template reuse, widget registry/configuration, personalization, sharing, import/export, and visualization runtime orchestration [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- Regulatory framework management, reporting cycle planning, data collection, validation, immutable snapshots, evidence mapping, approval, submission, acknowledgement, correction, and archival [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- Accreditation planning, evidence governance, internal audit, external assessment coordination, observations/findings, CAPA, quality improvement, readiness assessment, compliance review, and SSR governance [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- Provider onboarding, connector management, metadata-driven configuration, authentication, synchronization, external enrollment, learning synchronization, credit transfer orchestration, certificate verification, reconciliation, monitoring, and analytics [`L2-H10_External_Education_Integration_Workflows.md`]
+- `L2-H04` §12.1 records primary events per aggregate, including EmployerRegistered; PlacementDriveCreated; PositionPublished; CandidateShortlisted; RecruitmentRoundCompleted; PlacementOfferAccepted; InternshipCompleted; PlacementCompleted.
+- `L2-H02` consumes enterprise events but "never governs enterprise event transport"; `L2-A06` Event Infrastructure owns publication, routing, delivery, replay, registry, contracts, metadata and ordering.
+- `L2-H05` publishes to Search Index (H03) and Dashboard (H07) read models.
+- `L2-H00` §15 records consumer domains per owned capability.
 
-### 4. Services
+### Workflows
 
-- Section H classifies enterprise platform services, institutional business services, regulatory/governance services, and external integration services [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- Enterprise Search Service, Advanced Search Service, Autocomplete Service, Entity Lookup Service, Saved Search Service, Bookmark Service, Recent Activity Service; Projection Registration Service, Synchronization Service, Index Management Service, Search Configuration Service, Analytics Service, Search Health Service [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Dashboard Management Service, Workspace Management Service, Template Management Service, Widget Registry Service, Personalization Service, Dashboard Sharing Service [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- External Provider Service, Connector Service, Integration Configuration Service, Authentication Service, Transformation Service, Synchronization Service, Enrollment Integration Service, Learning Synchronization Service, Credit Transfer Service, Certificate Verification Service, Reconciliation Service, Monitoring Service, Analytics Service [`L2-H10_External_Education_Integration_Workflows.md`]
-- Not specified in Source as standalone service catalogues for H01, H02, H04, H05, H06, H08, and H09 [`L2-H01_APAAR_and_DigiLocker_Workflows.md`, `L2-H02_Notification_Workflows.md`, `L2-H04_Placement_Workflows.md`, `L2-H05_Research_Workflows.md`, `L2-H06_Alumni_Workflows.md`, `L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`, `L2-H09_Accreditation_and_Compliance_Workflows.md`]
+- `L2-H01` Government publication workflows; retry and synchronization lifecycles.
+- `L2-H04` recruitment workflow across drive, position, application, offer, internship and joining.
+- `L2-H06` alumni lifecycle, mentorship, events, volunteering, awards, donations and verification.
+- `L2-H08` reporting cycle, validation, submission and approval workflows.
+- `L2-H09` accreditation and compliance workflows.
+- `L2-H10` external education integration workflows.
 
-### 5. Workflows
+### Rules
 
-- Section-level ownership, integration, validation, certification, review, exception, roadmap, and evolution governance flows [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- H01-W01 APAAR Account Linking; H01-W02 DigiLocker Account Linking; H01-W03 Credential Publication; H01-W04 Consent Management; H01-W05 Credential Revocation; H01-W06 Bulk Publication; H01-W07 Publication Retry; H01-W08 Government Synchronization [`L2-H01_APAAR_and_DigiLocker_Workflows.md`]
-- Notification lifecycle, template lifecycle, recipient resolution, multi-channel delivery, scheduling, preferences, subscriptions, campaigns, digests, retries, DLQ, provider failover, and receipt processing workflows [`L2-H02_Notification_Workflows.md`]
-- H03-W01 Enterprise Search; H03-W02 Directory Lookup; H03-W03 Entity Discovery; H03-W04 People Search; H03-W05 Academic Object Search; H03-W06 Saved Search Management; H03-W07 Search Preference Management; H03-W08 Search Result Navigation [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Employer registration; employer verification; placement drive creation; position creation; eligibility configuration; student registration; candidate screening; candidate shortlisting; pre-placement talk; recruitment round; candidate reconsideration; offer generation; offer acceptance; offer withdrawal; joining confirmation; placement drive closure; internship management [`L2-H04_Placement_Workflows.md`]
-- RM-01 through RM-44 proposal, project, grant, ethics, publication, patent, collaboration, consultancy, repository, KPI, and research reporting workflows [`L2-H05_Research_Workflows.md`]
-- WF-H06-001 through WF-H06-018 alumni profile, activation, professional profile, preferences, suspension, chapter, directory, networking, self-service, verification, mentor, mentorship, volunteer, guest lecture, industry collaboration, recognition, and donation-intent workflows [`L2-H06_Alumni_Workflows.md`]
-- Create/update/clone/archive/restore/publish/unpublish/assign dashboard; template and workspace creation/assignment; widget register/configure/enable/disable; create/update/reset personal layout; share/accept/expire share; rollback/import/export dashboard [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- H08-W01 Reporting Framework Management through H08-W12 Reporting Closure & Archival [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- H09-01 Accreditation Framework Management through H09-11 Continuous Quality Improvement; H09-12 SSR Governance appears in aggregate and governance sections [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- External provider onboarding, connector deployment, configuration activation, authentication establishment, synchronization execution, external enrollment, learning synchronization, credit transfer, certificate verification, reconciliation, and disaster recovery [`L2-H10_External_Education_Integration_Workflows.md`]
+- `L2-H00` §14 Canonical Ownership Governance; §5.1 Single Canonical Ownership.
+- `L2-H02` NP-02 Canonical Ownership.
+- `L2-H05` §12.1 Aggregate Ownership Principles: each aggregate owns its lifecycle; aggregates are modified only through commands; successful state changes publish immutable domain events; aggregates reference one another using identifiers; cross-aggregate consistency is maintained through eventual consistency; business rules remain encapsulated inside aggregate boundaries.
+- `L2-H06` §7.4 Canonical Ownership Rules.
+- `L2-H07` §6.1 Canonical Ownership Principle.
+- `L2-H08` §5.3 Explicitly Not Owned.
+- Duplicate rules across files are preserved as stated in each source.
 
-### 6. State Machines
+### Integrations
 
-- Publication, Connector, Consent, and Synchronization state machines [`L2-H01_APAAR_and_DigiLocker_Workflows.md`]
-- Notification lifecycle state machine; template version lifecycle state machine [`L2-H02_Notification_Workflows.md`]
-- Searchable projection, synchronization, and index lifecycle state matrices [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Proposal, Research Project, Grant, Ethics, Publication, Patent, Collaboration, Consultancy, and Repository lifecycle state machines [`L2-H05_Research_Workflows.md`]
-- Alumni membership, mentor, mentorship, verification request, chapter membership, volunteer assignment, donation intent, recognition, and networking connection state transition matrices [`L2-H06_Alumni_Workflows.md`]
-- Dashboard, Workspace, Template, Widget Configuration, Personal Layout, Dashboard Version, and Dashboard Share state machines [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- Reporting Cycle, Reporting Snapshot, Submission Package, and Validation state machines [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- Domain state transition rules for accreditation/compliance aggregates [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- Integration Connector lifecycle state machine; provider trust lifecycle; aggregate lifecycles for provider, connector, configuration, enrollment, learning synchronization, credit transfer, certificate verification, synchronization job, and reconciliation [`L2-H10_External_Education_Integration_Workflows.md`]
+- `L2-H01` integration orchestration with APAAR and DigiLocker; connector framework; government acknowledgements.
+- `L2-H10` External Integration Mapping Metadata; Integration Connectors; Integration Credentials.
+- `L2-H03` projects from 53 declared upstream documents across Sections A through I.
+- `L2-H00` §16 Multi-Domain Responsibility Boundaries.
 
-### 7. Events Published
+### Reports
 
-- Section H event governance baseline and allowed publication rules [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- Publication, Consent, Connector, and Synchronization event families [`L2-H01_APAAR_and_DigiLocker_Workflows.md`]
-- Standard notification lifecycle events [`L2-H02_Notification_Workflows.md`]
-- SearchProjectionRegistered, SearchProjectionUpdated, SearchProjectionRemoved, SearchSynchronizationCompleted, SearchSynchronizationFailed, SearchIndexUpdated, SearchIndexRebuilt, SearchConfigurationUpdated, SearchHealthChanged, SearchAnalyticsUpdated [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Employer, Placement Drive, Position, Candidate Application, Recruitment, Placement Offer, Internship, and Joining event families; representative events include EmployerRegistered, PlacementDriveCreated, CandidateShortlisted, PlacementOfferGenerated, and PlacementCompleted [`L2-H04_Placement_Workflows.md`]
-- Proposal, Research Project, Grant, Ethics, Publication, Intellectual Property, Collaboration, Consultancy, Repository & Portfolio, and Faculty Workforce Integration event families [`L2-H05_Research_Workflows.md`]
-- Alumni lifecycle, profile, chapter, networking, mentorship, volunteer, recognition, verification, event participation, and donation-intent published domain events [`L2-H06_Alumni_Workflows.md`]
-- Dashboard, Workspace, Template, Widget, Personalization, Sharing, and Version events [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- Reporting Framework, Reporting Cycle, Data Collection, Validation, Snapshot, Evidence, Approval, Submission, Correction, and Archival events [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- Accreditation Framework, Accreditation Cycle, Compliance, Evidence, Audit, Observation, Finding, CAPA, Quality Improvement, Readiness Assessment, Compliance Review, and SSR Package events [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- Provider, Connector, Configuration, Authentication, Synchronization, Enrollment, Learning Synchronization, Credit Transfer, Certificate Verification, Reconciliation, Monitoring, and analytics/integration events [`L2-H10_External_Education_Integration_Workflows.md`]
+- `L2-H08` Reporting Templates; Regulatory Submission Packages; Reporting Snapshot; Compliance Readiness Status.
+- `L2-H07` Dashboard Metadata; Dashboard Configuration; Executive Projections.
+- `L2-H04` Placement Analytics and the read models listed per aggregate in §12.1.
+- `L2-H05` Research Analytics; Research KPI; Research Portfolio.
+- `L2-H06` Alumni Analytics.
 
-### 8. Events Consumed
+### Configurations
 
-- Section-level event lineage and governed consumer rules [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- Incoming events from originating business domains for approved credentials and institutional context [`L2-H01_APAAR_and_DigiLocker_Workflows.md`]
-- Notification requests and canonical business events from platform and business domains [`L2-H02_Notification_Workflows.md`]
-- CanonicalEntityCreated, CanonicalEntityUpdated, CanonicalEntityArchived, CanonicalEntityRemoved, OrganizationStructureChanged, DepartmentUpdated, CampusUpdated, UserRoleChanged, PermissionPolicyUpdated, SynchronizationRequested [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Student, academic, identity, employee, and notification completion event families consumed by placement workflows [`L2-H04_Placement_Workflows.md`]
-- Aggregate-specific consumed events across proposal, project, grant, ethics, publication, patent, collaboration, consultancy, repository, and faculty workforce integration [`L2-H05_Research_Workflows.md`]
-- Identity, graduation, academic achievement, notification, finance, placement, research, dashboard, analytics, reporting, and mobile-app related consumed event relationships [`L2-H06_Alumni_Workflows.md`]
-- Consumed business events and read-model refresh inputs from upstream enterprise domains [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- Cross-domain operational information consumed for reporting snapshots and validation [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- Cross-domain governance and reporting evidence inputs, including H08 outputs [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- Provider callbacks, event contracts, enterprise events, and synchronization inputs from external providers and internal authoritative domains [`L2-H10_External_Education_Integration_Workflows.md`]
+- `L2-H02` Notification Configuration; Notification Preferences; Template Versioning; Localization.
+- `L2-H03` Search configuration; ranking policies; synonym dictionaries; configuration policies.
+- `L2-H07` Dashboard Configuration.
+- `L2-H08` Reporting Configuration; Reporting Schedule.
+- `L2-H10` Metadata Configuration; `L2-H01` Connector configuration.
 
-### 9. Read Models
+### Permissions
 
-- Publication Status, Connector Health, Consent, Synchronization, and Publication Queue read models [`L2-H01_APAAR_and_DigiLocker_Workflows.md`]
-- Standalone read-model catalogue Not specified in Source; monitoring, metrics, and operational views are explicit [`L2-H02_Notification_Workflows.md`]
-- Search projections and query-side search/index lifecycle views [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Placement read models updated by workflow steps; standalone read-model names grouped under `22. Read Models` [`L2-H04_Placement_Workflows.md`]
-- Research Proposal, Research Project, Grant, Ethics, Publication, Patent, Collaboration, Consultancy, Research Portfolio, Repository, and Research KPI read models [`L2-H05_Research_Workflows.md`]
-- Alumni Dashboard View, Alumni Directory View, Professional Profile View, Mentor Directory View, Mentorship Dashboard View, Chapter Dashboard View, Volunteer Dashboard View, Recognition Dashboard View, Donation Engagement View, Verification Dashboard View [`L2-H06_Alumni_Workflows.md`]
-- Runtime query contracts and dashboard layout/configuration resolution views [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- ReportingFrameworkView, ReportingCycleView, ReportingProgressView, ReportingSnapshotView, Submission and history-oriented enterprise read model catalogue [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- Dashboard layer consolidates readiness, compliance, evidence, audit, CAPA, and quality indicators; standalone read-model catalogue Not specified in Source [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- Read model architecture and persistence for external integration views [`L2-H10_External_Education_Integration_Workflows.md`]
+- `L2-H01` Consent records; consent as an owned entity.
+- `L2-H10` Integration Credentials, consumed by H01 and Security Functions.
+- Authentication and Authorization are routed to Section A by `L2-H01`, `L2-H04`, `L2-H05` and `L2-H08`.
 
-### 10. Integrations
+### Dependencies
 
-- Section H integration topology and approved mechanisms: versioned APIs, domain events, read-only query access where allowed, metadata-driven contracts, approved messaging infrastructure [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- Government connector SDKs, generic API adapters, asynchronous government communication, and external integration contracts [`L2-H01_APAAR_and_DigiLocker_Workflows.md`]
-- Upstream platform/business contracts; downstream provider, monitoring, reporting, analytics, and audit integrations [`L2-H02_Notification_Workflows.md`]
-- Authoritative upstream domain synchronization and downstream search service consumption [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Internal enterprise integrations with identity, student, academic, workforce, notification, dashboard, and approved external integrations with LinkedIn, AI screening, email, SMS, and WhatsApp [`L2-H04_Placement_Workflows.md`]
-- Internal enterprise integrations, faculty workforce integration, and external research-related integrations [`L2-H05_Research_Workflows.md`]
-- Upstream, downstream, and approved third-party alumni integrations including LinkedIn, WhatsApp Business, email marketing, SMS, video conferencing, event management, digital badges, and social media publishing [`L2-H06_Alumni_Workflows.md`]
-- Query API, CQRS read-model, and event-driven dashboard integrations across operational and analytics domains [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- Enterprise integration overview, upstream/downstream matrices, REST APIs, CQRS read models, domain events, service contracts, immutable snapshots, and external regulatory portals [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- Multi-domain governance integrations and structured external accreditation/regulatory integrations [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- REST, webhook, event, batch, secure-file, authentication, monitoring, and SLA contracts for external education ecosystems [`L2-H10_External_Education_Integration_Workflows.md`]
+- `L2-H00` §15 records the consumers of every owned capability.
+- `L2-H04` §4, `L2-H05` §4 and `L2-H08` §5.3 each declare an out-of-scope table naming the owning domain.
+- `L2-H05` declares four explicit `SHALL consume` statements against `L2-E03`.
+- `L2-H03` declares its upstream projection sources by document identifier.
 
-### 11. Configuration
+## State Machines
 
-- Section-level metadata-driven governance and compliance baselines [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- Publication, Connector, and Consent configuration; supported configuration; configuration catalog [`L2-H01_APAAR_and_DigiLocker_Workflows.md`]
-- Configurable components for templates, channels, schedules, preferences, providers, retries, and governance policies [`L2-H02_Notification_Workflows.md`]
-- Search configuration service and configurable indexing/search policies [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Eligibility configuration workflow and configurable recruitment workflows/policies [`L2-H04_Placement_Workflows.md`]
-- Institution configuration, workflow configuration, and integration configuration [`L2-H05_Research_Workflows.md`]
-- Not specified in Source as a standalone configuration catalogue for H06 [`L2-H06_Alumni_Workflows.md`]
-- Configuration governance, widget configuration lifecycle/invariants, configuration schemas, and widget configuration schema [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- Framework configuration, validation configuration, submission configuration, and configuration principles [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- Framework and governance configuration are explicit; standalone configuration catalogue Not specified in Source [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- Metadata-driven integration configuration, endpoint/authentication/retry/schedule/mapping configuration, configuration commands/queries/events, configuration validation rules, and configuration repository [`L2-H10_External_Education_Integration_Workflows.md`]
-
-### 12. Permissions
-
-- Identity and access governance baseline [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- Standalone permission catalogue Not specified in Source for H01 [`L2-H01_APAAR_and_DigiLocker_Workflows.md`]
-- Security responsibilities are explicit; standalone permission catalogue Not specified in Source for H02 [`L2-H02_Notification_Workflows.md`]
-- Permission-aware visibility and caller authorization context govern H03 search outputs [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Section A identity and access management dependency governs placement access; role-based placement workflow authority is explicit in workflow and aggregate sections [`L2-H04_Placement_Workflows.md`]
-- Permission groups [`L2-H05_Research_Workflows.md`]
-- Command Authorization Matrix across alumni, mentor, chapter administrator, alumni administrator, and institutional administrator roles [`L2-H06_Alumni_Workflows.md`]
-- Permission Requirements and Permission Validation [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- Standalone permission catalogue Not specified in Source for H08 [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- Role-Based Access Matrix; Accreditation Administration; Compliance Administration; Evidence Management; Audit Management; CAPA Management; Reporting & Analytics [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- Permission Matrix [`L2-H10_External_Education_Integration_Workflows.md`]
-
-### 13. Reports
-
-- Section H certification report and governance KPI dashboard [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- Standalone report catalogue Not specified in Source for H01, H02, and H03 [`L2-H01_APAAR_and_DigiLocker_Workflows.md`, `L2-H02_Notification_Workflows.md`, `L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Placement operational, employer, student, and institutional reports [`L2-H04_Placement_Workflows.md`]
-- Research operational, executive, and statutory reports [`L2-H05_Research_Workflows.md`]
-- Alumni operational reports, KPIs, operational analytics, strategic analytics, executive KPIs, and historical analytics [`L2-H06_Alumni_Workflows.md`]
-- Enterprise operational metrics are explicit; standalone report catalogue Not specified in Source for H07 [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- Reporting domain manages submissions and compliance-ready views; standalone report catalogue Not specified in Source for H08 [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- Accreditation, Compliance, Evidence, Audit, CAPA, and Quality report families [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- Provider, Connector, Synchronization, Enrollment Integration, Learning Synchronization, Credit Transfer, Certificate Verification, Reconciliation, Security, SLA, and operational report families [`L2-H10_External_Education_Integration_Workflows.md`]
-
-### 14. Dependencies
-
-- Section H dependencies must flow from platform services to business domains to analytics/reporting to external integrations, with governed one-way contracts and no direct persistence coupling [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- H01 depends on authoritative upstream credential domains and publishes governed integration outputs without owning business data [`L2-H01_APAAR_and_DigiLocker_Workflows.md`]
-- H02 depends on governed requests/events and provider abstractions while remaining independent of business workflows and event transport ownership [`L2-H02_Notification_Workflows.md`]
-- H03 depends on authoritative upstream domains for searchable projections and serves all authorized downstream consumers through contracts [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- H04 depends on enterprise master/academic/notification/search/dashboard services and approved external tools [`L2-H04_Placement_Workflows.md`]
-- H05 depends on enterprise authorization, workflow, and research-adjacent domains while preserving research ownership boundaries [`L2-H05_Research_Workflows.md`]
-- H06 depends on identity, academic, notification, finance, placement, research, and directory references while publishing alumni projections and engagement outputs [`L2-H06_Alumni_Workflows.md`]
-- H07 depends on upstream business query APIs, read models, and events and remains a presentation-only consumer [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- H08 depends on operational domains and approved analytics inputs while remaining the owner of reporting snapshots, packages, and submission history [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- H09 depends on multi-domain evidence and H08 reporting outputs while governing accreditation/compliance artifacts and SSR preparation [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- H10 depends on internal authoritative domains plus external provider contracts while remaining the enterprise interoperability gateway [`L2-H10_External_Education_Integration_Workflows.md`]
-
-### 15. Constraints
-
-- Single canonical ownership, bounded-context isolation, reviewable contracts, and no hidden dependency expansion [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- H01 owns integration lifecycle only; business data ownership remains upstream [`L2-H01_APAAR_and_DigiLocker_Workflows.md`]
-- Notification processing shall not modify business transactions, repeat business transactions, or embed provider-specific business logic [`L2-H02_Notification_Workflows.md`]
-- H03 searchable projections are non-authoritative and may not modify upstream business records [`L2-H03_Enterprise_Directory_and_Search_Workflows.md`]
-- Placement shall never manipulate external domain data directly [`L2-H04_Placement_Workflows.md`]
-- Research Management forbids direct multi-domain database access and preserves faculty workload and finance ownership boundaries [`L2-H05_Research_Workflows.md`]
-- H06 delegates payment processing to Finance and preserves upstream canonical ownership for identity, academic, placement, and research references [`L2-H06_Alumni_Workflows.md`]
-- Dashboard widgets execute queries only; H07 never owns business data or accesses operational databases directly [`L2-H07_Enterprise_Dashboard_Workflows.md`]
-- H08 never owns operational business records; reporting snapshots remain immutable; downstream consumers may not modify reporting artifacts [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- H09 evidence repository is not the operational system of record and must never duplicate source transactional data as substitute truth [`L2-H09_Accreditation_and_Compliance_Workflows.md`]
-- H10 never evaluates academic equivalence or owns academic decisions; business workflows remain independent of provider-specific implementation [`L2-H10_External_Education_Integration_Workflows.md`]
-
-### 16. Glossary
-
-- Canonical Owner; Consumer; Producer; Capability; Projection; Read Model; Contract; Bounded Context; Metadata; Governance; Architecture Review; Compliance; Certification [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- Notification; Notification Request; Recipient; Channel; Delivery; Delivery Attempt; Provider; Template; Template Version; Notification Preference; Quiet Hours; Campaign; Digest; Subscription; Delivery Receipt; Retry Policy; Dead-Letter Queue [`L2-H02_Notification_Workflows.md`]
-- Employer; Placement Drive; Position; Candidate Application; Recruitment Workflow; Screening; Shortlisting; Placement Offer; Internship; Joining Confirmation; Placement Policy [`L2-H04_Placement_Workflows.md`]
-- Alumni; Alumni Aggregate; Chapter; Mentor; Mentorship; Professional Profile; Recognition; Donation Intent; Verification Request; Communication Preference State [`L2-H06_Alumni_Workflows.md`]
-- Reporting Framework; Reporting Cycle; Report Template; Reporting Snapshot; Validation Result; Compliance Evidence; Submission Package; Submission Record; Regulatory Acknowledgement [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- External Provider; Integration Connector; Connector Registry; Integration Configuration; Integration Contract; Provider Capability; Protocol Adapter; Transformation Engine; Canonical Mapping Repository; Connector Certification; Provider Trust Lifecycle; Synchronization; Synchronization Job; Idempotency; Reconciliation; Operational Dashboard [`L2-H10_External_Education_Integration_Workflows.md`]
+- `L2-H01` Publication status; Retry lifecycle; Synchronization lifecycle.
+- `L2-H02` Notification Lifecycle; Dead-Letter Processing; Delivery Retry.
+- `L2-H04` recruitment progression across drive, screening, shortlist, offer, joining and completion states.
+- `L2-H06` alumni activation, suspension and reactivation state; mentorship lifecycle state; chapter lifecycle state.
+- `L2-H08` Reporting Lifecycle; Reporting Approval State; Compliance Readiness Status.
+- `L2-H03` Index lifecycle metadata.
 
 ## Source Mapping
 
 | File | Primary Trace |
 |---|---|
-| `L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md` | Section-wide governance, dependency philosophy, ownership matrix, certification controls, compliance standards, and glossary |
-| `L2-H01_APAAR_and_DigiLocker_Workflows.md` | Government credential publication orchestration, consent, connectors, synchronization, and H01 state machines |
-| `L2-H02_Notification_Workflows.md` | Enterprise notification orchestration, templates, channels, scheduling, retries, provider abstraction, and observability |
-| `L2-H03_Enterprise_Directory_and_Search_Workflows.md` | Enterprise discovery workflows, search service contracts, projection/event model, and search/index lifecycle controls |
-| `L2-H04_Placement_Workflows.md` | Placement aggregates, recruitment workflows, placement events, API catalogue, and reporting/analytics |
-| `L2-H05_Research_Workflows.md` | Research aggregate/workflow lattice, research events, read models, reporting catalogue, and constraints |
-| `L2-H06_Alumni_Workflows.md` | Alumni lifecycle, mentorship/networking/engagement workflows, read models, integration contracts, API catalogue, and analytics |
-| `L2-H07_Enterprise_Dashboard_Workflows.md` | Dashboard aggregates, service/query contracts, event model, workflow catalogue, state machines, dependency graph, and configuration schemas |
-| `L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md` | Regulatory reporting aggregates, workflow catalogue, events, read models, API/contracts, integration rules, and state machines |
-| `L2-H09_Accreditation_and_Compliance_Workflows.md` | Accreditation/compliance workflows, governance aggregates, dashboards, standard reports, KPIs, access control, and audit trail rules |
-| `L2-H10_External_Education_Integration_Workflows.md` | External provider/connector/configuration architecture, domain services, integration workflows, event model, governance, and integration reporting |
-
-## Missing Information
-
-- Standalone service catalogues are Not specified in Source for H01, H02, H04, H05, H06, H08, and H09.
-- Standalone report catalogues are Not specified in Source for H01, H02, H03, H07, and H08.
-- Standalone permission catalogues are Not specified in Source for H01, H02, and H08.
-- Standalone glossary sections are Not specified in Source for H01, H03, H05, H07, and H09.
-- Standalone configuration catalogue is Not specified in Source for H06; H09 configuration is implicit through framework/governance sections rather than a dedicated configuration catalogue.
+| `L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md` | Section governance, canonical ownership matrix, responsibility boundaries |
+| `L2-H01_APAAR_and_DigiLocker_Workflows.md` | Government publication, consent, connectors, synchronization |
+| `L2-H02_Notification_Workflows.md` | Notification orchestration, templates, channels, delivery, preferences |
+| `L2-H03_Enterprise_Directory_and_Search_Workflows.md` | Searchable projections, indexes, metadata, discovery services |
+| `L2-H04_Placement_Workflows.md` | Employer, drive, position, application, recruitment, offer, internship, joining |
+| `L2-H05_Research_Workflows.md` | Proposals, projects, grants, ethics, publications, patents, IP, consultancy |
+| `L2-H06_Alumni_Workflows.md` | Alumni profile, membership, chapters, mentorship, events, volunteering, giving |
+| `L2-H07_Enterprise_Dashboard_Workflows.md` | Dashboard composition, presentation metadata, executive projections |
+| `L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md` | Reporting frameworks, cycles, templates, snapshots, validation, submission |
+| `L2-H09_Accreditation_and_Compliance_Workflows.md` | Compliance policies, accreditation evidence, evidence repository |
+| `L2-H10_External_Education_Integration_Workflows.md` | External integration mapping, connectors, credentials, metadata configuration |
 
 ## Cross References
 
-- `L2-H00` sets the ownership, dependency, API, event, and certification contract that `L2-H01` through `L2-H10` must follow.
-- `L2-H01` publishes operational outputs to `H02` and `H07` while consuming approved credential context from upstream academic and examination domains.
-- `L2-H02` is the shared notification platform consumed explicitly by `H04`, `H06`, and downstream reporting/governance scenarios.
-- `L2-H03` consumes authoritative upstream events and metadata, then exposes governed discovery services that other domains may consume without taking search ownership.
-- `L2-H04` depends on `H02`, `H03`, and `H07` for communication, discovery, and dashboarding while owning placement aggregates and recruitment workflows.
-- `L2-H05` publishes research events and metrics that `H07` dashboards and `H08` reporting may consume; `L2-E03` remains the explicit faculty workforce integration boundary.
-- `L2-H06` consumes identity, academic, finance, placement, and research references, then publishes alumni KPIs and engagement signals to dashboard, analytics, reporting, finance, placement, and research consumers.
-- `L2-H07` is a visualization consumer of read-only business information from placement, research, alumni, and other operational domains and shall not become a system of record.
-- `L2-H08` consumes multi-domain operational truth, creates immutable reporting snapshots and submission artifacts, and publishes governed reporting outputs to notification, dashboard, analytics, audit, document, and external authority consumers.
-- `L2-H09` consumes cross-domain governance evidence and explicitly references `H08`; it governs accreditation/compliance artifacts and prepares SSR packages before transfer to H08-style submission flows.
-- `L2-H10` is the external interoperability gateway; it references `H02` and `H07`, exchanges governed information with external providers, and preserves academic ownership in Student and Academic domains.
+Only links explicitly declared in the sources are recorded.
+
+- `L2-H03` references 53 documents across Sections A, B, C, D, E, F, G, H and I.
+- `L2-H02` references `L2-A01` through `L2-A07`.
+- `L2-H05` references `L2-E03`.
+- `L2-H06` references `L2-C05` and `L2-C08`; `L2-C05` and `L2-C08` reciprocally reference `L2-H06`.
+- `L2-H09` references `L2-H08`; `L2-H10` references `L2-H02` and `L2-H07`.
+- `L2-H01`, `L2-H04`, `L2-H07` and `L2-H08` declare no outbound document identifiers; they name partner domains by section or capability.
+
+## Conflicts
+
+- Conflict H-01: `L2-H04` §4 Out of Scope routes Financial Accounting and Fee Management to "Section K", which does not exist in the A-J corpus, and routes Examination Results to Section D rather than Section I.
+- Recorded in `AI_CONTEXT/AUDITS/H_Canonical_Audit.md`, not resolved.
+
+## Missing Information
+
+- `L2-H01`, `L2-H04`, `L2-H07` and `L2-H08` name partner domains by section or capability rather than by `L2-` document identifier: Not specified in Source.
+- `L2-H06` §3 Out of Scope and §7 Canonical Ownership announce lists whose enumerations sit in following subsections rather than at those headings.
+- `L2-H03` records that saved searches, bookmarks, recent search history and recently viewed entities are "owned by H03 until a dedicated User Preference domain exists". No such domain exists in the corpus: Not specified in Source.
 
 ## Architectural Constraints
 
 - Source documents remain authoritative.
 - Never infer missing information.
-- Preserve source hierarchy and file ordering.
-- Preserve duplicate business rules where the source repeats them.
-- Single canonical ownership is mandatory across all Section H domains.
-- Direct cross-domain database access and shared transactions are prohibited.
-- Approved integration mechanisms are versioned APIs, published domain events, read-only query access where explicitly allowed, metadata-driven contracts, and approved messaging infrastructure.
-- Read models, projections, dashboards, evidence repositories, and reporting snapshots shall not become operational systems of record outside their explicit ownership boundary.
-- Tenant isolation and institution isolation are mandatory for commands, events, queries, configurations, audits, and integrations.
-- Contracts, events, and configuration changes must remain versioned, traceable, and reviewable.
-- H01 and H10 own integration orchestration, not upstream business ownership.
-- H02 shall not modify business transactions or own workflow execution, authorization, or event transport.
-- H07 is a presentation/visualization consumer only.
-- H08 reporting snapshots are immutable.
-- H09 evidence organization does not replace source-domain truth.
+- Preserve duplicate business rules.
+- Preserve dependency direction and ownership boundaries.
+- Record conflicts instead of resolving them silently.
 
 ## Glossary
 
-- Canonical Owner: single authoritative domain responsible for a capability or data set [`L2-H00_Institutional_Services_and_Intelligence_Architecture_Governance.md`]
-- Notification: governed communication request managed by the Notification Platform [`L2-H02_Notification_Workflows.md`]
-- Delivery Attempt: individual provider execution for a notification [`L2-H02_Notification_Workflows.md`]
-- Placement Drive: recruitment campaign conducted by an employer [`L2-H04_Placement_Workflows.md`]
-- Recruitment Workflow: configurable sequence of recruitment stages [`L2-H04_Placement_Workflows.md`]
-- Alumni: individual who has officially graduated from the institution and entered the Alumni lifecycle [`L2-H06_Alumni_Workflows.md`]
-- Mentorship: structured engagement between a mentor and mentee managed by H06 [`L2-H06_Alumni_Workflows.md`]
-- Reporting Snapshot: immutable reporting dataset used for submission [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- Compliance Evidence: supporting institutional evidence linked to reported values [`L2-H08_NEP_NAAC_AISHE_Reporting_Workflows.md`]
-- External Provider: trusted third-party educational institution, platform, or organization integrated with SutraERP [`L2-H10_External_Education_Integration_Workflows.md`]
-- Integration Connector: reusable component responsible for provider-specific communication [`L2-H10_External_Education_Integration_Workflows.md`]
-- Synchronization Job: managed execution responsible for exchanging information with an external provider [`L2-H10_External_Education_Integration_Workflows.md`]
-- Reconciliation: process of identifying and resolving inconsistencies between systems [`L2-H10_External_Education_Integration_Workflows.md`]
+- H00: Section governance and review. Validates ownership, does not define it.
+- H01: APAAR and DigiLocker. Owns integration, not business data.
+- H02: Notification. Owns notification orchestration only.
+- H03: Enterprise directory and search. A cross-cutting service owning no canonical business entity.
+- H04: Placement.
+- H05: Research.
+- H06: Alumni.
+- H07: Enterprise dashboard. Owns dashboard composition only; never a system of record.
+- H08: NEP, NAAC and AISHE reporting. Owns reporting metadata, not operational data.
+- H09: Accreditation and compliance.
+- H10: External education integration.

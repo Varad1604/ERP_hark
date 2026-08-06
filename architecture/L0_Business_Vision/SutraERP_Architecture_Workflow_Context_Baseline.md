@@ -1,9 +1,15 @@
 # SutraERP --- Architecture & Workflow Context Baseline
 
-**Document Status:** Architecture Context Baseline\
+**Document Status:** Locked\
 **Date:** 2026-07-05\
+**Last Amended:** 2026-08-05 --- Document status aligned to Locked;
+technology and solution architecture decisions assigned exclusively to L5;
+Sections 23 and 25 reconciled to close the architecture-level contradiction.\
+**Previously Amended:** 2026-08-01 --- Procurement removed from Finance
+scope (Section J is sole owner); the legacy two-team ownership model
+replaced with Section-based ownership per `TEAM_ASSIGNMENTS.md`.\
 **Purpose:** Preserve the agreed architectural, institutional,
-team-boundary, tiering, and workflow context before beginning
+section-boundary, tiering, and workflow context before beginning
 downstream architecture design.
 
 ------------------------------------------------------------------------
@@ -87,15 +93,25 @@ Initial operating model:
 
 ```mermaid
 flowchart TD
-    A[SutraERP SaaS Platform] --> B[Tenant / Institute]
-    B --> C[One or More Colleges and/or Schools]
-    C --> D[Campuses / Organisational Units]
+    A[SutraERP SaaS Platform] --> B[Tenant]
+    B --> C[One or More Institutions]
+    C --> D[One or More Colleges and/or Schools]
+    D --> E[Campuses / Organisational Units]
 ```
 
-A single tenant may contain both schools and colleges simultaneously.
+Tenant and Institution are separate architectural concepts, per L1. A
+Tenant (for example, a Trust) may operate one or more Institutions (for
+example, GSM operating multiple recognised institutes such as an
+Engineering Institute and a Polytechnic Institute); each Institution may
+in turn contain one or more Colleges and/or Schools simultaneously.
+
+A Trust that runs several independently-recognised Institutes is
+modelled as one Tenant with multiple Institution records underneath it,
+not as multiple Tenants — the Tenant is the platform/billing boundary,
+and Institution is the business/regulatory boundary beneath it.
 
 The architecture must therefore support different academic models within
-the same institute:
+the same institution:
 
 ```mermaid
 flowchart TD
@@ -244,88 +260,13 @@ independently.
 
 ------------------------------------------------------------------------
 
-## 3. Current Repository Architecture
+## 3. Solution Architecture Boundary
 
-The audited repository is currently an **Early Modular ERP** implemented
-as a **Modular Rust Monolith**.
-
-### Current stack
-
--   Backend: Rust.
--   Web framework: Axum 0.7.
--   Async runtime: Tokio.
--   Database: PostgreSQL 16.
--   Database access: SQLx raw asynchronous SQL.
--   Pooling: PgBouncer.
--   Cache/support infrastructure: Redis.
--   Frontend: React 19.
--   Build tool: Vite.
--   Language: TypeScript.
--   Frontend state: Zustand for authentication.
--   HTTP client: Axios.
--   File infrastructure declared: MinIO, but complete Rust S3
-    integration is not confirmed.
--   Authentication: JWT HS256 with refresh tokens and Argon2id password
-    hashing.
--   Authorization: mixed database-backed RBAC and hardcoded role-name
-    checks.
-
-### Current backend model
-
-``` text
-One Rust Binary
-      ↓
-Axum Router
-      ↓
-Internal Domain Modules
-      ↓
-Shared AppState
-      ↓
-Single PostgreSQL Database
-```
-
-Current backend modules include:
-
--   Auth.
--   Student.
--   Academics.
--   Examination.
--   Finance.
--   Library.
--   Hostel.
--   Transport.
--   Placement.
--   Medical.
--   HR.
--   Health.
-
-The current database uses one PostgreSQL database and one public schema
-with logical domain separation.
-
-### Architecture decision
-
-**SutraERP will not be redesigned as microservices at this stage.**
-
-The current modular monolith will evolve into a:
-
-> **Contract-Driven Modular ERP Platform**
-
-Reasons:
-
--   Current scale does not justify distributed-service operational
-    complexity.
--   Separate teams can be supported using domain ownership and explicit
-    contracts.
--   A modular monolith permits transactional consistency where
-    appropriate.
--   Future extraction into services remains possible if domain
-    boundaries are disciplined.
-
-Risk:
-
--   Without enforcement, developers may continue using direct
-    inter-domain SQL and shared files, creating a distributed-monolith
-    style coupling inside one binary.
+L0 is business-facing and technology-independent. It does not select deployment
+topology, languages, frameworks, datastores, runtimes, or implementation
+patterns. Those decisions belong exclusively to L5 Solution Architecture and
+are recorded in
+`architecture/L5_Solution_Architecture/L5-00_Technology_Stack_Baseline.md`.
 
 ------------------------------------------------------------------------
 
@@ -342,7 +283,8 @@ Mandatory architectural foundation.
 
 ``` text
 SUTRA PLATFORM CORE
-├── Tenant / Institution
+├── Tenant
+├── Institution
 ├── Organisation Structure
 ├── Academic Structure
 ├── Person & Identity
@@ -398,7 +340,7 @@ Mandatory core operating domains.
 -   Leave.
 -   Payroll.
 
-#### Finance Domain --- Team 1
+#### Finance Domain --- Section F
 
 -   Fees.
 -   Accounts / General Ledger.
@@ -407,7 +349,7 @@ Mandatory core operating domains.
 -   Receivables.
 -   Financial Reporting.
 
-#### Examination Domain --- Team 1
+#### Examination Domain --- Section I
 
 -   Examination.
 -   Eligibility.
@@ -571,7 +513,7 @@ ACADEMICS
 ├── Attendance
 └── Quizzes
 
-EXAMINATION — TEAM 1
+EXAMINATION
 ├── Exams
 ├── Eligibility
 ├── Hall Tickets
@@ -580,7 +522,7 @@ EXAMINATION — TEAM 1
 ├── Revaluation
 └── Results
 
-FINANCE — TEAM 1
+FINANCE
 ├── Fees
 ├── Scholarship Financial Processing
 ├── Accounts / GL
@@ -827,7 +769,7 @@ Result
 ↓
 Promotion / Progression
 ↓
-Graduation / Exit
+Qualification Completion / Exit
 ↓
 Alumni
 ↓
@@ -884,17 +826,19 @@ Result Approval
 Publication
 ```
 
-Finance and Examination are primarily owned by Team 1 and will be
-detailed by that team.
+Finance (Section F) and Examination (Section I) are primarily owned by
+their respective section architects and will be detailed at L2. See
+`TEAM_ASSIGNMENTS.md` for current architect assignment per section.
 
-Team 2 must provide stable platform, student, academic, identity, and
-organisational contracts.
+Sections A, B, C, D, and E must provide stable platform, student,
+academic, identity, and organisational contracts consumed by Finance
+and Examination.
 
 ------------------------------------------------------------------------
 
 ## 11. Finance Scope
 
-Finance is a major institutional domain and is owned by Team 1.
+Finance is a major institutional domain and is owned by Section F.
 
 Expected broader scope includes:
 
@@ -911,7 +855,8 @@ Expected broader scope includes:
 -   Financial Statements.
 -   Financial Reporting.
 
-Team 2 should not implement Team 1 finance business logic.
+No other section shall implement Finance's business logic; Section F
+is the sole owner of financial truth.
 
 Multi-domain financial requirements must be expressed through approved
 command/read contracts and domain events.
@@ -1043,13 +988,16 @@ Event Delivery
 Subscribers
 ```
 
-The current in-memory Tokio broadcast channel is not sufficient for
-critical ERP workflow consistency because it has no transactional
-outbox, durable retry, or dead-letter handling.
+Ephemeral in-process eventing is not sufficient for critical ERP workflow
+consistency, because it provides no transactional outbox, no durable retry,
+and no dead-letter handling.
 
-It may remain for non-critical internal signalling during transition,
-but critical business scenarios must not depend solely on ephemeral
-events.
+Ephemeral eventing may remain for non-critical internal signalling during
+transition, but critical business scenarios must not depend solely on it.
+
+(The current implementation's eventing mechanism is recorded in
+`architecture/L5_Solution_Architecture/L5-00_Technology_Stack_Baseline.md`,
+not here.)
 
 ------------------------------------------------------------------------
 
@@ -1097,15 +1045,23 @@ Finance-owned tables
 
 ------------------------------------------------------------------------
 
-## 15. Team Ownership
+## 15. Section & Domain Ownership
 
-There are two development teams.
+> **Superseded model notice:** This baseline originally described
+> ownership using a two-team split. That model
+> is obsolete: it grouped domains that now belong to different section
+> architects (for example, Finance and Infrastructure Management were
+> grouped together despite being owned by different people under
+> the current structure). Ownership is now organised by architecture
+> Section (A through J), each assigned to one primary architect.
+> `TEAM_ASSIGNMENTS.md` is the canonical, current source for exactly
+> who holds each section; the domain groupings below are the
+> architectural boundary, not a fixed roster, and remain valid even if
+> the named architect changes.
 
-### Team 1
+### Section F --- Finance
 
 Owns:
-
-#### Finance
 
 -   Fees.
 -   Accounts / General Ledger.
@@ -1115,7 +1071,9 @@ Owns:
 -   Receivables.
 -   Finance-owned workflows.
 
-#### Examination
+### Section I --- Examination
+
+Owns:
 
 -   Examination.
 -   Marks.
@@ -1126,41 +1084,80 @@ Owns:
 -   Revaluation.
 -   Examination-owned workflows.
 
-#### Selected Operational Services
+### Section G --- Campus Operations
+
+Owns:
 
 -   Library.
 -   Hostel.
 -   Transport.
 -   Infrastructure Management.
+-   Facilities and remaining Campus Operations workflows.
+
+### Section J --- Enterprise Resource Management
+
+Owns:
+
 -   Procurement.
 -   Inventory.
+-   Vendor & Supplier Management.
+-   Warehouse & Stock Operations.
+-   Asset Lifecycle Management.
+-   Physical Verification & Disposal.
 
-### Team 2
+### Section A --- Platform Foundation
 
 Owns:
 
 -   Platform architecture.
--   Institution.
--   Organisation.
--   Academic Structure.
 -   Identity.
 -   Authentication.
 -   Authorization.
 -   Workflow infrastructure.
 -   Event infrastructure.
 -   Audit infrastructure.
+
+### Section B --- Institution & Structure
+
+Owns:
+
+-   Institution.
+-   Organisation.
+-   Academic Structure.
+
+### Section C --- Student Lifecycle
+
+Owns:
+
 -   Student.
 -   Admissions.
+-   Student Lifecycle workflows.
+
+### Section D --- Academic Delivery
+
+Owns:
+
 -   Academics.
+-   Course Offerings.
+-   Timetable, Attendance.
+
+### Section E --- People & Workforce
+
+Owns:
+
 -   People/HR platform domains.
--   Facilities and remaining Campus Operations workflows except the
-    Team 1 operational services listed above.
+-   Workforce, Leave, Payroll.
+
+### Section H --- Institutional Services & Intelligence
+
+Owns:
+
 -   Institutional Services & Intelligence.
--   Remaining modules.
+-   Remaining modules not explicitly assigned above.
 
 ### Shared Platform Contracts
 
-Team 2 currently maintains the platform contracts for:
+Section A currently maintains the platform contracts for:
 
 ``` text
 PersonId
@@ -1192,12 +1189,12 @@ DocumentId
 InfrastructureSpaceId
 ```
 
-Team 1 consumes these contracts and must not redefine equivalent
-IDs/entities.
+Consuming sections (including F, G, I, and J) consume these contracts
+and must not redefine equivalent IDs/entities.
 
-### Team 1-Owned IDs
+### Section-Owned IDs (Examples)
 
-Finance examples:
+Finance (Section F) examples:
 
 ``` text
 FeeStructureId
@@ -1211,7 +1208,7 @@ FiscalPeriodId
 BudgetId
 ```
 
-Examination examples:
+Examination (Section I) examples:
 
 ``` text
 ExamId
@@ -1228,8 +1225,9 @@ ResultId
 
 ## 16. Shared Read Contract Direction
 
-Team 1 must not depend on arbitrary SQL joins into Team 2-owned tables
-for operational business logic.
+No section may depend on arbitrary SQL joins into another section's
+owned tables for operational business logic (for example, Section F
+or Section J reaching directly into Section A/B/C-owned tables).
 
 Conceptual read contracts:
 
@@ -1266,8 +1264,9 @@ academic_period_id
 current_status
 ```
 
-These are architectural directions. Exact Rust traits, DTOs, and
-versioning will be designed after workflow contracts are identified.
+These are architectural directions. Implementation contracts, DTOs, and
+versioning decisions belong to L5 Solution Architecture or later implementation
+artifacts after workflow contracts are identified.
 
 ------------------------------------------------------------------------
 
@@ -1480,8 +1479,9 @@ The repository audit identified the following major risks:
 2.  Monolithic `DomainEvent` enum creates cross-team edit and recompile
     coupling.
 3.  Audit coverage is incomplete for major mutations.
-4.  Team 1 has critical direct schema dependencies on Team 2-owned
-    entities.
+4.  Operational sections (e.g. Finance, Examination) have critical
+    direct schema dependencies on platform/foundation-owned entities
+    (Sections A/B/C).
 5.  Global RBAC path mapping can allow unmatched routes to bypass
     resource authorization.
 6.  No configurable workflow engine exists.
@@ -1496,8 +1496,8 @@ The repository audit identified the following major risks:
 14. Leave approval is not connected to attendance/payroll workflows.
 15. Multi-tenant provisioning is incomplete.
 
-These risks must inform workflow design. They do not require an
-immediate microservice rewrite.
+These risks must inform workflow design without selecting or rejecting a
+solution architecture at L0. Their technical resolution belongs to L5.
 
 ------------------------------------------------------------------------
 
@@ -1568,7 +1568,7 @@ Result Processing
 ↓
 Academic Progression
 ↓
-Next Period / Graduation / Exit
+Next Period / Qualification Completion / Exit
 ↓
 Alumni / Archival
 ```
@@ -1590,19 +1590,29 @@ Reporting
 
 ## 23. Workflow Design Levels
 
-The agreed workflow design process is:
+> **Hierarchy reconciliation (2026-08-05; INT-001 resolved).** This section
+> previously gave the levels different meanings from Section 0 — for example it
+> called L4 "Individual Module Workflows" and L5 "Role / Position-Based
+> Workflows". Section 0 is canonical, and its definitions are reproduced verbatim
+> below. Where any document disagrees with Section 0 about what a level means,
+> Section 0 governs.
+
+The workflow design process follows the canonical hierarchy:
 
 ``` text
-LEVEL 0
-SutraERP Institutional Operating Model
+LEVEL 0 — Business Vision
+Why SutraERP exists: strategic intent, institutional operating model,
+architectural context and constraints.
 
-↓ LEVEL 1
+↓ LEVEL 1 — Business Domain Architecture
 
-Complete Institute Lifecycle
+The canonical business domains, domain boundaries and ownership across the
+complete institute lifecycle.
 
-↓ LEVEL 2
+↓ LEVEL 2 — Domain Workflow Architecture
 
-Domain Workflows
+Workflows, lifecycles, rules and dependencies within an individual business
+domain:
 - Platform
 - Student
 - Academic
@@ -1612,10 +1622,10 @@ Domain Workflows
 - Campus Operations
 - Governance
 
-↓ LEVEL 3
+↓ LEVEL 3 — Business Scenario Architecture
 
-Business Scenario Architecture
-Examples:
+Independent end-to-end business scenarios that may draw on one or many L2
+domains. Examples:
 Admission → Student → Finance → Documents
 Attendance → Eligibility → Examination
 HR → Payroll → Accounts
@@ -1625,17 +1635,20 @@ Infrastructure → Facilities
 Hostel → Finance
 Transport → Finance
 
-↓ LEVEL 4
+↓ LEVEL 4 — System Behavior Specification
 
-Individual Module Workflows
+Expected system behaviour for approved business scenarios, without implementation
+design.
 
-↓ LEVEL 5
+↓ LEVEL 5 — Solution Architecture
 
-Role / Position-Based Workflows
+The engineering solution architecture needed to implement L4 behaviour, without
+changing business rules.
 
-↓ LEVEL 6
+↓ LEVEL 6 — UI / UX Architecture
 
-Screen + API + Contract + Event + State Workflow
+User interaction, navigation, screens and user journeys derived from L5, without
+owning business logic.
 ```
 
 At L6, UI / UX specifications should contain:
@@ -1662,7 +1675,7 @@ Retry Behaviour
 Audit Requirements
 Notification Requirements
 Optional Module Behaviour
-Team Ownership
+Section / Architect Ownership
 ```
 
 ------------------------------------------------------------------------
@@ -1688,7 +1701,8 @@ The following decisions are accepted as the baseline:
     contexts.
 11. Parent/guardian is a first-class ERP persona.
 12. Documents are institutional records, not generic cloud-drive files.
-13. Architecture remains a modular Rust monolith at this stage.
+13. Technology and solution architecture decisions belong to L5 and are not
+    locked by this L0 baseline.
 14. Communication architecture is hybrid: synchronous contracts plus
     domain events.
 15. Modules are classified by architectural tiers, separate from
@@ -1697,12 +1711,17 @@ The following decisions are accepted as the baseline:
 17. Outsourced security and cleaning workers use workforce engagements
     and are not automatically institute employees.
 18. Organisation Position and System Role are separate concepts.
-19. Team 1 owns Finance, Examination, and the explicitly assigned
-    operational services: Library, Hostel, Transport, Infrastructure
-    Management, Procurement, and Inventory.
-20. Team 2 owns the broader platform, academic foundation, student and
-    people domains, remaining campus operations, and institutional
-    services.
+19. Domain ownership is organised by architecture Section (A through
+    J), each assigned to one primary architect per
+    `TEAM_ASSIGNMENTS.md`: Section F (Finance) and Section I
+    (Examination) are owned separately from Section G (Campus
+    Operations, including Library, Hostel, Transport, Infrastructure
+    Management) and Section J (Enterprise Resource Management,
+    including Procurement and Inventory).
+20. Sections A, B, C, D, E, and H own the broader platform, academic
+    foundation, student and people domains, and institutional
+    services. The legacy two-team split is superseded by this
+    section-based model.
 21. Multi-domain writes are prohibited.
 22. Multi-domain operational reads use approved read contracts.
 23. Dashboard is a composition surface.
@@ -1720,11 +1739,21 @@ The following decisions are accepted as the baseline:
 
 ## 25. Next Design Stage
 
-The next architecture activity is:
+> **Historical note (2026-08-04).** This section recorded the L1 design brief
+> at the time this baseline was written. The L1 Business Domain Architecture has
+> since been authored and locked; see
+> `architecture/L1_Business_Domain_Architecture/SutraERP_L1_Business_Domain_Architecture_Locked.md`.
+> The brief below is retained as provenance and is not a statement of
+> outstanding work. The heading level was corrected under INT-002: an H1 inside
+> L0 previously asserted itself as L1 content.
+>
+> The former hierarchy contradiction tracked as INT-001 is resolved by the
+> canonical definitions in Sections 0 and 23. The historical brief below does
+> not redefine architecture levels.
 
-# L1 --- COMPLETE INSTITUTE LIFECYCLE
+### L1 Design Brief — Complete Institute Lifecycle (historical)
 
-The L1 design will cover:
+The L1 design was scoped to cover:
 
 ``` text
 Tenant Provisioning
@@ -1749,7 +1778,7 @@ Examination Cycle
 ↓
 Progression
 ↓
-Graduation / Exit
+Qualification Completion / Exit
 ↓
 Academic Year Closure
 ```
@@ -1768,7 +1797,7 @@ For each lifecycle stage, define:
 -   Failure conditions.
 -   Audit requirements.
 -   Optional module effects.
--   Team ownership.
+-   Section / architect ownership.
 
 This document is the architecture context baseline for subsequent
 SutraERP workflow design.

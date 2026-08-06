@@ -1,5 +1,31 @@
 # L2-F01 — Student Charge & Fee Management
 
+**Section:** F — Finance  
+**Status:** Trust Certification Ready  
+**Document Owner:** Finance — Student Charges & Fees
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose |
+| Scope | §1.3 Scope; §25.3 Audit Scope; §26.3 Configuration Scope |
+| Actors | — not present — |
+| Entities | §4 Canonical Aggregate; §7.3 Primary Aggregate; §7.5 Aggregate Ownership |
+| Business Rules | Rules / Invariants |
+| Workflow | Workflows |
+| State Machine | §19 Charge State Architecture; §19.3 Canonical States; §19.4 State Transition Architecture |
+| Contracts | §29 Multi-Domain Contracts; Upstream Contracts; Downstream Contracts |
+| Events | §21 Event Architecture; §21.3 Event Categories; §21.4 Canonical Lifecycle Events |
+| Dependencies | §22.4 Upstream Integrations; Upstream Contracts |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Locked Decisions. Recorded, not authored.
+
 ---
 
 # 1. Document Overview

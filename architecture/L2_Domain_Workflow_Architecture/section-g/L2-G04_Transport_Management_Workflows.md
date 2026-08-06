@@ -5,21 +5,22 @@
 **Domain:** G04 — Transport Management  
 **Document ID:** L2-G04  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
-**Document Owner:** Devang
+**Document Owner:** Campus Operations — Transport
 
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
 - Section B — Institution & Structure
-- Section C — Student Lifecycle
-- Section D — Academic Delivery
 - Section E — People & Workforce
 - G01 — Facilities Management
 - G10 — Infrastructure Management
-- Finance Domain
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section C — Student Lifecycle — Student Identity
+- Section F — Finance — Transport Billing
 
 **Downstream Consumers**
 
@@ -29,6 +30,28 @@
 - Security
 - Institutional Reporting
 - Notification Services
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Scope; §4 Out of Scope |
+| Actors | Typical Operational Roles |
+| Entities | §8 Aggregate Design; Aggregate Roots; Aggregate Responsibilities |
+| Business Rules | §13 Business Invariants |
+| Workflow | §12 Workflow Catalogue; §16 Route Management Workflows; §17 Stop Management Workflows |
+| State Machine | §29 State Transition Matrix |
+| Contracts | §28 Service Contracts |
+| Events | §27 Domain Events; Event Driven Architecture; Route Events |
+| Dependencies | §9 Dependencies & Integration (Bounded Context Relationships) |
+| Locked Decisions | — not present — |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -505,7 +528,7 @@ Aggregate identity shall remain immutable throughout its lifecycle.
 
 ---
 
-# 9. Bounded Context Relationships
+# 9. Dependencies & Integration (Bounded Context Relationships)
 
 ## Upstream Domains
 
@@ -1776,7 +1799,7 @@ Every significant operational transition shall publish a domain event.
 | Event | Description |
 |--------|-------------|
 | TransportAllocated | Transport allocation completed |
-| AllocationUpdated | Allocation modified |
+| TransportAllocationUpdated | Allocation modified |
 | AllocationWithdrawn | Allocation withdrawn |
 
 ---
@@ -1827,7 +1850,7 @@ Every significant operational transition shall publish a domain event.
 
 | Event | Description |
 |--------|-------------|
-| ComplaintRegistered | Complaint recorded |
+| TransportComplaintRegistered | Complaint recorded |
 | ComplaintResolved | Complaint resolved |
 | OperationalIssueEscalated | Issue escalated |
 
@@ -2391,4 +2414,4 @@ Transport Management follows the enterprise architectural principles established
 **L2-G04 — Transport Management Workflows**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Architectural Review)
+**Status:** Trust Certification Ready

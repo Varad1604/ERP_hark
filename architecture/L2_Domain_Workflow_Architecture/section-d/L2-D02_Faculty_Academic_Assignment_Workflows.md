@@ -2,8 +2,28 @@
 # L2-D02 — Faculty Academic Assignment Workflows
 
 **Section:** D — Academic Delivery  
-**Status:** Approved Baseline  
-**Document Owner:** Pallav
+**Status:** Trust Certification Ready  
+**Document Owner:** Academic Delivery — Faculty Assignment
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §2.1 In Scope; §2.2 Out of Scope |
+| Actors | §14.4 Role-Based Authorization |
+| Entities | §6 Domain Model / Aggregate / Lifecycle; §6.3 Aggregate Design Principles; Approval Process Aggregate |
+| Business Rules | §5.4 Business Rule Ownership Boundary; §9 Business Rules; §9.1 Business Rule Ownership Principle |
+| Workflow | §7 Domain Workflows; §7.1 Workflow Design Principles; §7.2 Faculty Academic Assignment Workflow |
+| State Machine | §9.5 State Transition Rules; §12 State Transition Matrix; §12.1 Faculty Assignment State Transition Matrix |
+| Contracts | §11 Service Contracts; §11.1 Service Contract Principles; §11.2 D02 Service Contract Categories |
+| Events | §7.5 Integration Event Publishing Workflow; §8.4 Event Publication Workflow Specification; §9.9 Event Generation Rules |
+| Dependencies | §3 Upstream Dependencies; §3.1 D01 — Foundation and Institutional Context Dependency; §3.2 Identity and Access Dependency |
+| Locked Decisions | §22 Architecture Decision References; §22.2 D02 Architecture Decision Categories; §22.6 Architecture Decision Validation |
 
 ---
 
@@ -186,7 +206,7 @@ D02 does not own:
 * Student admission.
 * Student registration.
 * Student academic progression.
-* Student graduation lifecycle.
+* Student qualification completion lifecycle.
 * Student identity records.
 
 ---
@@ -1991,12 +2011,12 @@ The workflow enforces:
 
 | Event             | Description                     |
 | ----------------- | ------------------------------- |
-| ApprovalInitiated | Approval started                |
+| FacultyAssignmentApprovalInitiated | Approval started                |
 | ApprovalRouted    | Approval assigned               |
 | ApprovalGranted   | Approval completed successfully |
 | ApprovalRejected  | Approval rejected               |
 | ApprovalEscalated | Approval escalated              |
-| ApprovalCompleted | Approval process completed      |
+| FacultyAssignmentApprovalCompleted | Approval process completed      |
 
 ---
 
@@ -2006,7 +2026,7 @@ Examples:
 
 | Event                | Purpose                  |
 | -------------------- | ------------------------ |
-| ApprovalCompleted.v1 | Notify dependent systems |
+| FacultyAssignmentApprovalCompleted.v1 | Notify dependent systems |
 | ApprovalRejected.v1  | Communicate rejection    |
 
 ---
@@ -2650,7 +2670,7 @@ Examples:
 ```text
 FacultyAssignmentApproved
 
-ApprovalCompleted
+FacultyAssignmentApprovalCompleted
 
 OperationalChangeApplied
 ```
@@ -2758,12 +2778,12 @@ D02 domain events follow:
 
 | Event             | Description              |
 | ----------------- | ------------------------ |
-| ApprovalInitiated | Approval process created |
+| FacultyAssignmentApprovalInitiated | Approval process created |
 | ApprovalRouted    | Approval assigned        |
 | ApprovalGranted   | Approval approved        |
 | ApprovalRejected  | Approval rejected        |
 | ApprovalEscalated | Approval escalated       |
-| ApprovalCompleted | Approval completed       |
+| FacultyAssignmentApprovalCompleted | Approval completed       |
 
 ---
 
@@ -3539,13 +3559,13 @@ The Approval Process Aggregate manages controlled approval execution.
 
 | Current State    | Command          | Validation Required          | Next State       | Domain Event      |
 | ---------------- | ---------------- | ---------------------------- | ---------------- | ----------------- |
-| None             | InitiateApproval | Approval requirement exists  | Created          | ApprovalInitiated |
+| None             | InitiateApproval | Approval requirement exists  | Created          | FacultyAssignmentApprovalInitiated |
 | Created          | RouteApproval    | Approval path available      | Pending Approval | ApprovalRouted    |
 | Pending Approval | ApproveRequest   | Approver authorized          | Approved         | ApprovalGranted   |
 | Pending Approval | RejectRequest    | Rejection reason provided    | Rejected         | ApprovalRejected  |
 | Pending Approval | EscalateApproval | Escalation criteria met      | Pending Approval | ApprovalEscalated |
-| Approved         | CompleteApproval | Finalization rules satisfied | Completed        | ApprovalCompleted |
-| Rejected         | CompleteApproval | Closure criteria satisfied   | Completed        | ApprovalCompleted |
+| Approved         | CompleteApproval | Finalization rules satisfied | Completed        | FacultyAssignmentApprovalCompleted |
+| Rejected         | CompleteApproval | Closure criteria satisfied   | Completed        | FacultyAssignmentApprovalCompleted |
 
 ---
 
@@ -7130,7 +7150,7 @@ Events:
 Examples:
 
 * FacultyAssignmentApproved.
-* ApprovalCompleted.
+* FacultyAssignmentApprovalCompleted.
 * OperationalChangeApplied.
 
 Result:

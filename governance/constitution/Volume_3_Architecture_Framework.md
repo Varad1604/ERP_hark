@@ -138,7 +138,7 @@ Examples:
 AdmissionApproved
 StudentActivated
 AttendanceFinalized
-ResultPublished
+ExaminationResultPublished
 QualificationAwarded
 ```
 

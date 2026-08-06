@@ -6,9 +6,29 @@
 **Document Type:** Level 2 Enterprise Workflow Specification  
 **Architecture Style:** Domain-Driven Design (DDD), CQRS, Event-Driven Architecture (EDA)  
 **Version:** 1.0  
-**Status:** Architecture Baseline  
-**Owner:** Enterprise Architecture Team  
-**Document Owner:** Dhruv  
+**Status:** Trust Certification Ready  
+**Review Authority:** Enterprise Architecture Team  
+**Document Owner:** Institutional Services — Research  
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Scope; §4 Out of Scope |
+| Actors | §39.2 Major Roles |
+| Entities | §14 Entity Definitions; §42.1 Searchable Entities |
+| Business Rules | §25.4 Proposal Business Rules; §26.9 Project Business Rules; §27.7 Grant Business Rules |
+| Workflow | §17 Workflow Catalogue; §18 Workflow Classification; §19 Complete Workflow List |
+| State Machine | §25 Proposal Lifecycle State Machine; §26.8 Research Project Lifecycle State Machine; §27.6 Grant Lifecycle State Machine |
+| Contracts | §34 Commands Catalogue; §34.1 Proposal Commands; §34.2 Research Project Commands |
+| Events | §25.6 Events Published by Proposal Aggregate; §25.7 Events Consumed by Proposal Aggregate; §26.11 Events Published by Project Aggregate |
+| Dependencies | §20 Workflow Dependency Matrix; §13.1 Aggregate Dependency Rules; §20.1 Multi-Domain Dependencies |
+| Locked Decisions | Architecture Decision |
 
 ---
 

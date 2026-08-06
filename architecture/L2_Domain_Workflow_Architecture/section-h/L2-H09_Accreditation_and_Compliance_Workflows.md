@@ -1,8 +1,30 @@
-# L2-H09 – Accreditation & Compliance Workflows
+# L2-H09 — Accreditation & Compliance Workflows
 
 **Section:** H — Institutional Services & Intelligence  
-**Status:** Draft  
-**Document Owner:** Dhruv
+**Status:** Trust Certification Ready  
+**Document Owner:** Institutional Intelligence — Accreditation & Compliance
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1.1 Purpose |
+| Scope | §1.3 Scope |
+| Actors | Actors |
+| Entities | Aggregate Relationships |
+| Business Rules | §8 Business Rules |
+| Workflow | §5 Core Business Workflows; §12 Notification Workflows; L2-H09 — Accreditation & Compliance Workflows |
+| State Machine | §7 State Transition Rules |
+| Contracts | — not present — |
+| Events | §11 Events; Domain Events |
+| Dependencies | — not present — |
+| Locked Decisions | — not present — |
+
+> **Gap:** 3 required section(s) have no counterpart in this document: Contracts, Dependencies, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -2163,7 +2185,7 @@ Consumes
 - Student demographics
 - Enrollment statistics
 - Academic progression
-- Graduation statistics
+- Qualification Completion statistics
 - Student achievements
 
 Produces

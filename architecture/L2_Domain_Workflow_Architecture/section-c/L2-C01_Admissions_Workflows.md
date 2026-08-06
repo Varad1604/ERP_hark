@@ -1,12 +1,31 @@
 # L2-C01 — Admissions Workflows
 
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §7.1 Purpose |
+| Scope | §1.4 Scope |
+| Actors | §12.3 Role Categories |
+| Entities | §20.2 Aggregate Model; ADR-C01-001 — Admission Owns the Admission Aggregate |
+| Business Rules | §3.5 Business Rules |
+| Workflow | §7 Domain Workflows; §7.4 Workflow Relationship Diagram; §1 Workflow Definition |
+| State Machine | §20.3 State Machine |
+| Contracts | §3 Architecture Contracts; §11 Service Contracts |
+| Events | §9 Domain Events; §9.4 Admission Lifecycle Events; §9.5 Verification Events |
+| Dependencies | §23 References & Dependencies; §23.2 Upstream Dependencies; §23.5 Dependency Principles |
+| Locked Decisions | §21 Architecture Decisions (ADRs); §21.2 Future Architecture Decisions; §3.6 Decision Matrix |
+
+---
+
 Version: 1.0 (Draft)
 Architecture Level: L2 – Domain Workflow Architecture
 Section: C – Student Lifecycle
-Domain Owner: Student Lifecycle (Section C)
-Document Owner: Varad
+Document Owner: Student Lifecycle — Admissions
 Lead Architect Approval: Pending
-Status: Draft
+Status: Trust Certification Ready
 
 1. Purpose
 1.1 Objective
@@ -15,7 +34,7 @@ This document defines the canonical Admission Workflows for the Student Lifecycl
 
 The objective of this document is to establish a single authoritative architectural specification governing the transition of an Applicant through the Admission lifecycle into a canonical Student identity while preserving complete institutional history, auditability, and compliance with NEP 2020.
 
-This document defines business workflow architecture, domain ownership, state transitions, business rules, workflow boundaries, multi-domain interactions, and canonical events.
+This document defines business workflow architecture, domain ownership, state transitions, business rules, workflow boundaries, cross-domain interactions, and canonical events.
 
 It intentionally does not define:
 
@@ -119,7 +138,7 @@ shall all be configurable through the Workflow Engine.
 
 Business logic must never hardcode institutional policies.
 
-Principle 6 — Multi-Domain Ownership
+Principle 6 — Cross-Domain Ownership
 
 Admission may collaborate with other domains.
 
@@ -166,8 +185,8 @@ Admission verification
 Admission document validation
 Admission fee initiation
 Admission approval
-Student creation
-Publication of StudentCreated domain event for downstream activation
+Student creation request initiation
+Publication of AdmissionConfirmed and StudentCreationRequested events for downstream Student Lifecycle processing.
 Admission cancellation
 Admission withdrawal
 Admission revocation
@@ -318,7 +337,7 @@ Consumes
 
 AdmissionConfirmed
 
-StudentCreated
+AdmissionStudentCreated
 
 (StudentActivated is published exclusively by L2-C02 — Student Lifecycle.)
 
@@ -358,7 +377,7 @@ APAAR Integration
 
 Consumes
 
-StudentCreated
+AdmissionStudentCreated
 
 for identity synchronization.
 
@@ -374,7 +393,7 @@ Directory
 
 Consumes
 
-StudentCreated
+AdmissionStudentCreated
 
 to expose institutional directory entries.
 
@@ -539,7 +558,7 @@ Events shall only be published after successful transaction commit.
 
 ---
 
-### LP-06 — Multi-Domain Isolation
+### LP-06 — Cross-Domain Isolation
 
 The lifecycle may consume services from other domains but shall never modify data owned by another domain.
 
@@ -859,7 +878,7 @@ Typical lifecycle events include:
 - AdmissionApproved
 - FinancialClearanceCompleted
 - AdmissionConfirmed
-- StudentCreated
+- AdmissionStudentCreated
 - AdmissionCompleted
 - AdmissionCancelled
 - AdmissionWithdrawn
@@ -952,7 +971,7 @@ No workflow shall hardcode institutional behaviour.
 
 A workflow may consume information from another domain but shall never modify data owned by another domain.
 
-Multi-domain collaboration shall occur through synchronous contracts or published domain events.
+Cross-domain collaboration shall occur through synchronous contracts or published domain events.
 
 ---
 
@@ -1475,7 +1494,7 @@ No other lifecycle transitions are permitted.
 
 ---
 
-## 3.4 Multi-Domain Interactions
+## 3.4 Cross-Domain Interactions
 
 | Domain | Interaction |
 |----------|------------|
@@ -1592,7 +1611,7 @@ without modifying the canonical workflow.
 - Finance remains the owner of financial records.
 - Workflow execution shall be idempotent.
 - Historical confirmation records are immutable.
-- Multi-domain writes are prohibited.
+- Cross-domain writes are prohibited.
 
 ---
 
@@ -2060,7 +2079,7 @@ No other transitions are permitted.
 
 ---
 
-## 3.4 Multi-Domain Interactions
+## 3.4 Cross-Domain Interactions
 
 | Domain | Interaction |
 |----------|----------------------------|
@@ -2536,7 +2555,7 @@ Admission Approved
 
 ---
 
-## 3.4 Multi-Domain Interactions
+## 3.4 Cross-Domain Interactions
 
 | Domain | Interaction |
 |----------|----------------------------|
@@ -2999,7 +3018,7 @@ Financial Cleared
 
 ---
 
-## 3.4 Multi-Domain Interactions
+## 3.4 Cross-Domain Interactions
 
 | Domain | Interaction |
 |----------|------------------------------|
@@ -3073,7 +3092,7 @@ Institutions may configure:
 - Admission consumes only financial outcomes.
 - Workflow shall be idempotent.
 - Financial history is immutable.
-- Multi-domain ownership shall never be violated.
+- Cross-domain ownership shall never be violated.
 
 ---
 
@@ -3225,7 +3244,7 @@ A --> B[Validate Admission]
 
 B --> C[Check Existing Student]
 
-C --> D{Student Already Exists}
+C --> D{Student Already Exists?}
 
 D -->|Yes| E[Return Existing Student]
 
@@ -3243,7 +3262,7 @@ J --> K[Persist Admission-Student Link]
 
 K --> L[Generate Audit]
 
-L --> M[Publish StudentCreated]
+L --> M[Publish AdmissionStudentCreated]
 
 M --> N[Workflow Complete]
 
@@ -3334,7 +3353,7 @@ Generate audit trail.
 
 ### Step 8
 
-Publish StudentCreated event.
+Publish AdmissionStudentCreated event.
 
 ---
 
@@ -3405,7 +3424,7 @@ Successful execution results in:
 - Student created.
 - Student Identifier assigned.
 - Admission linked.
-- StudentCreated event published.
+- AdmissionStudentCreated event published.
 - Student Lifecycle becomes active.
 
 ---
@@ -3433,7 +3452,7 @@ Ownership transfers from the Admission Domain to the Student Domain.
 
 | Event | Description |
 |---------|----------------------------|
-| StudentCreated | Student successfully created |
+| AdmissionStudentCreated | Student successfully created |
 | StudentCreationFailed | Creation failed |
 | StudentAlreadyExists | Existing Student found |
 
@@ -3445,7 +3464,7 @@ Ownership transfers from the Admission Domain to the Student Domain.
 
 ---
 
-## 3.4 Multi-Domain Interactions
+## 3.4 Cross-Domain Interactions
 
 | Domain | Interaction |
 |----------|----------------------------|
@@ -3487,7 +3506,7 @@ This workflow represents the contractual ownership handoff between the Admission
 | BR-C01-034 | Student creation shall be idempotent. |
 | BR-C01-035 | Admission–Student relationship shall be immutable. |
 | BR-C01-036 | Student lifecycle begins after successful creation. |
-| BR-C01-037 | Downstream services shall consume StudentCreated event. |
+| BR-C01-037 | Downstream services shall consume AdmissionStudentCreated event. |
 
 ---
 
@@ -3828,7 +3847,7 @@ Cancelled
 
 ---
 
-## 3.4 Multi-Domain Interactions
+## 3.4 Cross-Domain Interactions
 
 | Domain | Interaction |
 |----------|--------------------------|
@@ -4212,7 +4231,7 @@ Withdrawn
 
 ---
 
-## 3.4 Multi-Domain Interactions
+## 3.4 Cross-Domain Interactions
 
 | Domain | Interaction |
 |----------|-----------------------------|
@@ -4614,7 +4633,7 @@ Revoked
 
 ---
 
-## 3.4 Multi-Domain Interactions
+## 3.4 Cross-Domain Interactions
 
 | Domain | Interaction |
 |----------|------------------------------|
@@ -5023,7 +5042,7 @@ Readmitted
 
 ---
 
-## 3.4 Multi-Domain Interactions
+## 3.4 Cross-Domain Interactions
 
 | Domain | Interaction |
 |----------|------------------------------|
@@ -5402,7 +5421,7 @@ It records lifecycle transitions initiated by other workflows.
 
 | Event | Description |
 |---------|----------------------------|
-| AuditRecorded | Audit successfully stored |
+| AdmissionAuditRecorded | Audit successfully stored |
 | AuditFailed | Audit persistence failure |
 
 ---
@@ -5416,7 +5435,7 @@ Consumes every canonical Admission Domain Event including:
 - AdmissionApproved
 - FinancialCleared
 - AdmissionConfirmed
-- StudentCreated
+- AdmissionStudentCreated
 - AdmissionCancelled
 - AdmissionWithdrawn
 - AdmissionRevoked
@@ -5424,7 +5443,7 @@ Consumes every canonical Admission Domain Event including:
 
 ---
 
-## 3.4 Multi-Domain Interactions
+## 3.4 Cross-Domain Interactions
 
 | Domain | Interaction |
 |----------|-------------------------------|
@@ -5619,7 +5638,7 @@ The Admission Domain publishes the following categories of events:
 
 | Event | Trigger |
 |---------|----------------------------|
-| StudentCreated | Student successfully created |
+| AdmissionStudentCreated | Student successfully created |
 | StudentCreationFailed | Creation failed |
 | StudentAlreadyExists | Duplicate prevented |
 
@@ -5629,7 +5648,7 @@ The Admission Domain publishes the following categories of events:
 
 | Event | Trigger |
 |---------|----------------------------|
-| AuditRecorded | Audit persisted |
+| AdmissionAuditRecorded | Audit persisted |
 | AuditFailed | Audit persistence failure |
 
 ---
@@ -5671,9 +5690,9 @@ Every Admission Domain Event shall contain the following canonical attributes.
 
 | Domain | Consumed Events |
 |----------|----------------------------------------------------|
-| Student Lifecycle | AdmissionConfirmed, StudentCreated |
+| Student Lifecycle | AdmissionConfirmed, AdmissionStudentCreated |
 | Finance | AdmissionApproved, AdmissionCancelled |
-| Academic Delivery | StudentCreated |
+| Academic Delivery | AdmissionStudentCreated |
 | Notification | All major lifecycle events |
 | Audit | All Admission events |
 | Analytics | All business events |
@@ -5684,7 +5703,7 @@ Every Admission Domain Event shall contain the following canonical attributes.
 
 Domain Events are the canonical integration contracts of the Admission Domain.
 
-All inter-domain communication shall occur through these immutable business events. Direct multi-domain business operations are prohibited unless explicitly defined by architecture contracts.
+All inter-domain communication shall occur through these immutable business events. Direct cross-domain business operations are prohibited unless explicitly defined by architecture contracts.
 
 # 10. State Model
 
@@ -5725,7 +5744,7 @@ The Admission State Model follows these principles:
 | FinancialPending | Awaiting financial clearance |
 | FinancialCleared | Financial obligations completed |
 | Confirmed | Admission officially confirmed |
-| StudentCreated | Student successfully created |
+| AdmissionStudentCreated | Student successfully created |
 | Cancelled | Admission cancelled |
 | Withdrawn | Admission withdrawn by applicant |
 | Revoked | Admission revoked by institution |
@@ -5756,7 +5775,7 @@ FinancialPending --> FinancialCleared
 
 FinancialCleared --> Confirmed
 
-Confirmed --> StudentCreated
+Confirmed --> AdmissionStudentCreated
 
 Submitted --> Cancelled
 
@@ -5791,7 +5810,7 @@ Readmitted --> Confirmed
 | Approved | FinancialPending, Cancelled |
 | FinancialPending | FinancialCleared, Cancelled |
 | FinancialCleared | Confirmed |
-| Confirmed | StudentCreated, Withdrawn, Revoked |
+| Confirmed | AdmissionStudentCreated, Withdrawn, Revoked |
 | Withdrawn | Readmitted |
 | Cancelled | Readmitted |
 | Readmitted | Confirmed |
@@ -5805,12 +5824,12 @@ The following transitions are prohibited:
 | Invalid Transition | Reason |
 |--------------------|----------------------------------------------|
 | Draft → Approved | Verification skipped |
-| Draft → StudentCreated | Admission incomplete |
+| Draft → AdmissionStudentCreated | Admission incomplete |
 | Submitted → Confirmed | Approval missing |
-| Verified → StudentCreated | Financial clearance missing |
+| Verified → AdmissionStudentCreated | Financial clearance missing |
 | Cancelled → Approved | Must follow Readmission policy |
 | Revoked → Confirmed | Institution must initiate Readmission |
-| StudentCreated → Draft | Historical state rollback prohibited |
+| AdmissionStudentCreated → Draft | Historical state rollback prohibited |
 
 ---
 
@@ -5820,7 +5839,7 @@ The following states are considered terminal under normal workflow execution.
 
 | State | Readmission Allowed |
 |---------|--------------------|
-| StudentCreated | No |
+| AdmissionStudentCreated | No |
 | Cancelled | Yes (Policy Driven) |
 | Withdrawn | Yes (Policy Driven) |
 | Revoked | Institution Policy |
@@ -5957,7 +5976,7 @@ The Admission Domain consumes financial outcomes but does not perform financial 
 |----------|---------------------------------------------|
 | Create Student | Create Student after confirmation |
 | Validate Existing Student | Prevent duplicates |
-| Publish StudentCreated | Notify Student Domain |
+| Publish AdmissionStudentCreated | Notify Student Domain |
 
 ---
 
@@ -6215,7 +6234,7 @@ The Authorization Model ensures that every Admission operation is executed only 
 
 Authorization remains policy-driven, auditable, and independent of business workflows, preserving both institutional governance and domain ownership across the SutraERP platform.
 
-# 13. Multi-Domain Integrations
+# 13. Cross-Domain Integrations
 
 ## 13.1 Overview
 
@@ -6229,11 +6248,11 @@ The Admission Domain shall never directly modify business entities owned by anot
 
 ## 13.2 Integration Principles
 
-Multi-domain integrations shall adhere to the following principles:
+Cross-domain integrations shall adhere to the following principles:
 
 - Domain ownership shall be respected.
 - Communication shall use canonical service contracts or domain events.
-- Multi-domain writes are prohibited unless explicitly defined.
+- Cross-domain writes are prohibited unless explicitly defined.
 - Integrations shall be idempotent.
 - Failures shall be isolated.
 - All interactions shall be auditable.
@@ -6289,7 +6308,7 @@ Admission transfers ownership after successful confirmation.
 
 ### Published Events
 
-- StudentCreated
+- AdmissionStudentCreated
 
 ### Consumed Events
 
@@ -6440,7 +6459,7 @@ All external integrations shall use canonical integration contracts.
 |----------|-------------------------------|------------------------------|
 | Platform | Authentication, Identity | None |
 | Institution | Institution Structure | None |
-| Student Lifecycle | Student Creation Outcome | StudentCreated Event |
+| Student Lifecycle | Student Creation Outcome | AdmissionStudentCreated Event |
 | Academic | Programme Information | None |
 | Finance | Financial Clearance | AdmissionApproved |
 | Documents | Verification Results | DocumentsUploaded |
@@ -6456,12 +6475,12 @@ All external integrations shall use canonical integration contracts.
 | Rule ID | Constraint |
 |----------|--------------------------------------------------------------|
 | IN-C01-001 | Domain ownership shall never be violated. |
-| IN-C01-002 | Multi-domain writes are prohibited unless architecturally defined. |
+| IN-C01-002 | Cross-domain writes are prohibited unless architecturally defined. |
 | IN-C01-003 | Integrations shall be idempotent. |
 | IN-C01-004 | Published events shall be immutable. |
 | IN-C01-005 | Service contracts shall remain versioned. |
 | IN-C01-006 | Integration failures shall not corrupt Admission state. |
-| IN-C01-007 | All multi-domain interactions shall be auditable. |
+| IN-C01-007 | All cross-domain interactions shall be auditable. |
 
 ---
 
@@ -6724,7 +6743,7 @@ The Admission Domain follows these validation principles:
 | Financial Validation | Validate financial clearance |
 | Security Validation | Validate authorization |
 | Configuration Validation | Validate institutional configuration |
-| Multi-Domain Validation | Validate external dependencies |
+| Cross-Domain Validation | Validate external dependencies |
 
 ---
 
@@ -6814,7 +6833,7 @@ Financial computations remain owned by the Finance Domain.
 
 ---
 
-# 15.10 Multi-Domain Validation
+# 15.10 Cross-Domain Validation
 
 The Admission Domain validates responses from:
 
@@ -6876,7 +6895,7 @@ Every validation operation shall return:
 | VAL-C01-004 | Validation shall be auditable. |
 | VAL-C01-005 | Validation results shall be immutable. |
 | VAL-C01-006 | Validation shall support idempotent retries. |
-| VAL-C01-007 | Multi-domain validation shall respect ownership boundaries. |
+| VAL-C01-007 | Cross-domain validation shall respect ownership boundaries. |
 
 ---
 
@@ -6980,10 +6999,10 @@ Examples:
 | Invalid Transition | Reason |
 |--------------------|--------------------------------------|
 | Draft → Confirmed | Verification not completed |
-| Submitted → StudentCreated | Approval skipped |
+| Submitted → AdmissionStudentCreated | Approval skipped |
 | Cancelled → Approved | Readmission required |
 | Revoked → Confirmed | Institutional restoration required |
-| StudentCreated → Draft | Historical rollback prohibited |
+| AdmissionStudentCreated → Draft | Historical rollback prohibited |
 
 No invalid transition shall modify Admission state.
 
@@ -7723,7 +7742,7 @@ DOC --> ADMISSION
 %% Published Business Events
 %% ==========================================================
 
-ADMISSION -->|StudentCreated| STU
+ADMISSION -->|AdmissionStudentCreated| STU
 
 ADMISSION -->|AdmissionConfirmed| REG
 
@@ -7731,7 +7750,7 @@ ADMISSION -->|AdmissionCancelled| NOTIFY
 ADMISSION -->|AdmissionWithdrawn| NOTIFY
 ADMISSION -->|AdmissionRevoked| NOTIFY
 
-ADMISSION -->|StudentCreated| DIR
+ADMISSION -->|AdmissionStudentCreated| DIR
 
 STU -->|StudentActivated| ABC
 
@@ -7746,7 +7765,7 @@ ADMISSION -->|All Admission Events| REPORT
 - Financial records remain owned by Finance.
 - Physical document storage remains owned by Document Platform.
 - Student ownership transfers to the Student Lifecycle domain only after successful Student creation.
-- Multi-domain communication occurs exclusively through canonical service contracts and immutable domain events.
+- Cross-domain communication occurs exclusively through canonical service contracts and immutable domain events.
 
 ## 20.2 Aggregate Model
 
@@ -7821,7 +7840,7 @@ STUDENT --> PROFILE
 - The Admission Aggregate owns the Admission lifecycle exclusively.
 - Verification, Approval, Financial Clearance, Student Creation, and Audit are internal entities of the Admission Aggregate.
 - Programme, Person, Institution, Academic Session, Finance, and Document Platform remain external aggregates referenced only by identity.
-- Multi-domain writes are prohibited.
+- Cross-domain writes are prohibited.
 - Aggregate consistency is maintained transactionally within the Admission Domain.
 
 20.3 State Machine
@@ -7862,11 +7881,11 @@ FinancialPending --> Revoked : Policy / Fraud / Legal Action
 
 FinancialCleared --> Confirmed : Confirm Admission
 
-Confirmed --> StudentCreated : Create Student
+Confirmed --> AdmissionStudentCreated : Create Student
 Confirmed --> Withdrawn : Applicant Withdrawal
 Confirmed --> Revoked : Administrative Revocation
 
-StudentCreated --> [*]
+AdmissionStudentCreated --> [*]
 
 Cancelled --> [*]
 Withdrawn --> [*]
@@ -7886,9 +7905,9 @@ Readmitted --> Submitted : New Admission Cycle
 - Every successful transition generates:
   - Immutable Audit Record
   - Canonical Domain Event
-- Multi-domain state changes are prohibited.
+- Cross-domain state changes are prohibited.
 - Student creation is the final operational responsibility of the Admission Domain.
-- After **StudentCreated**, lifecycle ownership transfers to **L2-C02 – Student Lifecycle**.
+- After **AdmissionStudentCreated**, lifecycle ownership transfers to **L2-C02 – Student Lifecycle**.
 - Readmission never modifies historical admission records; it initiates a new policy-driven admission cycle while preserving complete history.
 
 20.4 Admission Lifecycle
@@ -7913,7 +7932,7 @@ A([Admission Initiated])
 
 --> D[Document Verification]
 
---> E{Documents Valid}
+--> E{Documents Valid?}
 
 E -- No --> X1[Pending / Resubmission]
 
@@ -7921,13 +7940,13 @@ X1 --> D
 
 E -- Yes --> F[Admission Approval]
 
-F --> G{Approved}
+F --> G{Approved?}
 
 G -- No --> X2[Admission Rejected]
 
 G -- Yes --> H[Financial Clearance]
 
-H --> I{Financial Policy Satisfied}
+H --> I{Financial Policy Satisfied?}
 
 I -- No --> X3[Await Payment / Waiver / Scholarship]
 
@@ -7937,7 +7956,7 @@ I -- Yes --> J[Admission Confirmation]
 
 J --> K[Create Canonical Student]
 
-K --> L[Publish StudentCreated]
+K --> L[Publish AdmissionStudentCreated]
 
 L --> M([Ownership Transfers to<br/>Student Lifecycle])
 
@@ -7998,7 +8017,7 @@ A([Admission Approved])
 %% Decision
 %% ==========================================================
 
-F --> G{All Conditions Satisfied}
+F --> G{All Conditions Satisfied?}
 
 G -- No --> H[Reject Confirmation]
 
@@ -8047,7 +8066,7 @@ O --> P([Eligible for Student Creation])
 
 - Student creation is prohibited before successful Admission Confirmation.
 - Duplicate confirmations are prevented through idempotent execution.
-- Multi-domain writes are prohibited.
+- Cross-domain writes are prohibited.
 - Finance remains the owner of all financial records.
 - Programme information is consumed as read-only.
 
@@ -8071,7 +8090,7 @@ A([Admission Confirmed])
 
 --> B[Validate Student Creation Policy]
 
---> C{Student Already Exists}
+--> C{Student Already Exists?}
 
 C -- Yes --> D[Reject Duplicate Creation]
 
@@ -8089,7 +8108,7 @@ H --> I[Commit Transaction]
 
 I --> J[Generate Immutable Audit Record]
 
-J --> K[Publish StudentCreated]
+J --> K[Publish AdmissionStudentCreated]
 
 end
 
@@ -8105,7 +8124,7 @@ K --> L{{Ownership Transfer}}
 
 subgraph SD["Student Lifecycle Domain"]
 
-L --> M[Receive StudentCreated]
+L --> M[Receive AdmissionStudentCreated]
 
 M --> N[Initialize Student Lifecycle]
 
@@ -8123,11 +8142,11 @@ end
 - Student identity is generated before persistence.
 - Admission and Student are linked through immutable identifiers.
 - The transaction is committed before publishing any domain events.
-- Ownership transfers immediately after the `StudentCreated` event is published.
+- Ownership transfers immediately after the `AdmissionStudentCreated` event is published.
 
 ### Published Event
 
-- `StudentCreated`
+- `AdmissionStudentCreated`
 
 ### Consuming Domain
 
@@ -8141,8 +8160,8 @@ end
 - Student identity is globally unique within the tenant.
 - All operations are fully auditable.
 
-20.7 Multi-Domain Sequence
-## 20.7 Multi-Domain Sequence
+20.7 Cross Domain Sequence
+## 20.7 Cross-Domain Sequence
 
 The following sequence diagram illustrates the canonical interaction between the Admission Domain and its collaborating domains during the end-to-end Admission process.
 
@@ -8207,11 +8226,11 @@ Admission-->>Reporting: AdmissionConfirmed Event
 
 Admission->>Admission: Create Canonical Student
 
-Admission-->>Student: StudentCreated Event
+Admission-->>Student: AdmissionStudentCreated Event
 
 Student->>Student: Initialize Student Lifecycle
 
-Student-->>Reporting: StudentCreated Event
+Student-->>Reporting: AdmissionStudentCreated Event
 
 Student-->>Notification: Student Created Notification
 
@@ -8229,16 +8248,16 @@ Student-->>Notification: Student Created Notification
 | Admission Confirmation | Local Transaction |
 | Student Creation | Local Transaction |
 | AdmissionConfirmed | Asynchronous Domain Event |
-| StudentCreated | Asynchronous Domain Event |
+| AdmissionStudentCreated | Asynchronous Domain Event |
 
 ### Architectural Principles
 
 - Each domain owns its own data.
 - No domain directly updates another domain's database.
-- Multi-domain communication occurs through service contracts or immutable domain events.
+- Cross-domain communication occurs through service contracts or immutable domain events.
 - Domain events are published only after successful transaction commit.
-- The Admission Domain remains the orchestration boundary until `StudentCreated`.
-- Ownership transfers to the Student Lifecycle domain immediately after the `StudentCreated` event.
+- The Admission Domain remains the orchestration boundary until `AdmissionStudentCreated`.
+- Ownership transfers to the Student Lifecycle domain immediately after the `AdmissionStudentCreated` event.
 
 20.8 Event Flow
 ## 20.8 Event Flow
@@ -8262,7 +8281,7 @@ E1((AdmissionSubmitted))
 E2((AdmissionVerified))
 E3((AdmissionApproved))
 E4((AdmissionConfirmed))
-E5((StudentCreated))
+E5((AdmissionStudentCreated))
 E6((AdmissionCancelled))
 E7((AdmissionWithdrawn))
 E8((AdmissionRevoked))
@@ -8360,7 +8379,7 @@ E8 --> RP
 | AdmissionVerified | Verification successfully completed |
 | AdmissionApproved | Institutional approval completed |
 | AdmissionConfirmed | Admission finalized |
-| StudentCreated | Canonical Student successfully created |
+| AdmissionStudentCreated | Canonical Student successfully created |
 | AdmissionCancelled | Admission cancelled |
 | AdmissionWithdrawn | Applicant withdrew admission |
 | AdmissionRevoked | Admission revoked administratively |
@@ -8383,7 +8402,7 @@ E8 --> RP
 | AdmissionVerified | Admission Domain |
 | AdmissionApproved | Admission Domain |
 | AdmissionConfirmed | Admission Domain |
-| StudentCreated | Admission Domain |
+| AdmissionStudentCreated | Admission Domain |
 | AdmissionCancelled | Admission Domain |
 | AdmissionWithdrawn | Admission Domain |
 | AdmissionRevoked | Admission Domain |
@@ -8476,13 +8495,13 @@ CFG --> ADM1
 %% Event-Based Dependencies
 %% ==========================================================
 
-ADM1 -. StudentCreated .-> STU
+ADM1 -. AdmissionStudentCreated .-> STU
 
 ADM1 -. AdmissionConfirmed .-> REG
 
-ADM1 -. StudentCreated .-> DIR
+ADM1 -. AdmissionStudentCreated .-> DIR
 
-ADM1 -. StudentCreated .-> ABC
+ADM1 -. AdmissionStudentCreated .-> ABC
 
 ADM1 -. Admission Events .-> NOTIFY
 
@@ -8517,7 +8536,7 @@ ADM1 -. Index Events .-> SEARCH
 
 - Admission owns no external data.
 - All synchronous dependencies are read-only service interactions.
-- Multi-domain database access is prohibited.
+- Cross-domain database access is prohibited.
 - Downstream domains consume immutable domain events.
 - Event consumers must be independently deployable.
 - Optional integrations shall never block Admission processing.
@@ -8821,7 +8840,7 @@ E1((AdmissionSubmitted))
 E2((AdmissionVerified))
 E3((AdmissionApproved))
 E4((AdmissionConfirmed))
-E5((StudentCreated))
+E5((AdmissionStudentCreated))
 E6((AdmissionCancelled))
 E7((AdmissionWithdrawn))
 E8((AdmissionRevoked))
@@ -9057,7 +9076,7 @@ The Admission Domain is the sole owner of the Admission aggregate.
 
 ### Rationale
 
-Maintains clear ownership boundaries and prevents multi-domain coupling.
+Maintains clear ownership boundaries and prevents cross-domain coupling.
 
 ### Consequence
 
@@ -9083,13 +9102,13 @@ Ownership transfers from the Admission Domain to the Student Lifecycle Domain up
 
 ---
 
-# ADR-C01-003 — Event-Driven Multi-Domain Communication
+# ADR-C01-003 — Event-Driven Cross-Domain Communication
 
 **Status:** Accepted
 
 ### Decision
 
-Multi-domain communication shall use immutable Domain Events or canonical service contracts.
+Cross-domain communication shall use immutable Domain Events or canonical service contracts.
 
 ### Rationale
 
@@ -9330,7 +9349,7 @@ All terms shall have a single authoritative meaning within the SutraERP architec
 
 ---
 
-# 22.6 Multi-Domain Terms
+# 22.6 Cross-Domain Terms
 
 | Term | Owning Domain |
 |------|-----------------------------|
@@ -9422,9 +9441,9 @@ The following domains consume Admission outputs.
 
 | Consumer Domain | Consumed Information |
 |-----------------|--------------------------------|
-| L2-C02 — Student Lifecycle | StudentCreated |
+| L2-C02 — Student Lifecycle | AdmissionStudentCreated |
 | Finance | AdmissionApproved |
-| Academic Delivery | StudentCreated |
+| Academic Delivery | AdmissionStudentCreated |
 | Notification Services | Admission Events |
 | Analytics Platform | Business Events |
 | Audit Platform | Audit Records |
@@ -9438,7 +9457,7 @@ This document references the following architecture artifacts.
 | Document | Purpose |
 |-----------|------------------------------------------|
 | Architecture Index | Repository navigation |
-| Dependency Map | Multi-domain dependency graph |
+| Dependency Map | Cross-domain dependency graph |
 | L2-A01 | Platform Foundation |
 | L2-B01 | Institution & Structure |
 | L2-C02 | Student Lifecycle (Downstream) |
@@ -9455,7 +9474,7 @@ Admission dependencies shall follow these principles:
 - Dependencies shall be explicit.
 - Circular dependencies are prohibited.
 - Domain ownership shall remain preserved.
-- Multi-domain communication shall use canonical contracts.
+- Cross-domain communication shall use canonical contracts.
 - Integration contracts shall remain versioned.
 - Dependency changes require architecture review.
 
@@ -9489,7 +9508,7 @@ This document shall follow repository version governance.
 | Domain | Admissions |
 | Document ID | L2-C01 |
 | Version | v1.0 |
-| Status | 🔒 LOCKED |
+| Status | Trust Certification Ready |
 | Change Control | Architecture Governance Process |
 
 Future revisions shall increment the document version while preserving historical versions.
@@ -9517,7 +9536,7 @@ All extensions shall preserve the canonical architecture defined in this documen
 Changes to this document require:
 
 - Architecture review
-- Multi-domain dependency validation
+- Cross-domain dependency validation
 - Backward compatibility assessment
 - ADR approval (where applicable)
 - Repository version update
@@ -9541,4 +9560,4 @@ This document serves as the authoritative architectural contract for the Admissi
 **Document ID:** L2-C01 — Admissions  
 **Architecture Level:** Level 2  
 **Version:** v1.0  
-**Status:** 🔒 LOCKED  
+**Status:** Trust Certification Ready  

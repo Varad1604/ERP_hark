@@ -5,10 +5,9 @@
 **Domain:** G00 — Campus Operations Review & Governance  
 **Document ID:** L2-G00  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
-**Document Owner:** Devang
+**Document Owner:** Campus Operations
 
 **Upstream Dependencies**
 
@@ -33,6 +32,28 @@
 - Notification Services
 - Audit
 - Accreditation
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Scope; §4 Out of Scope |
+| Actors | Typical Operational Roles |
+| Entities | §8 Aggregate Design; Aggregate Roots; Aggregate Responsibilities |
+| Business Rules | §13 Business Invariants |
+| Workflow | §12 Workflow Catalogue; Workflow Engine; Campus Readiness Workflow |
+| State Machine | §23 State Transition Matrix |
+| Contracts | §22 Service Contracts |
+| Events | §21 Domain Events; Event Driven Governance; Campus Readiness Events |
+| Dependencies | Multi-Domain Dependencies |
+| Locked Decisions | — not present — |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -1789,4 +1810,4 @@ Campus Operations Review follows the enterprise architectural principles establi
 **L2-G00 — Campus Operations Review & Governance**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Architectural Review)
+**Status:** Trust Certification Ready

@@ -7,8 +7,30 @@
 **Architecture Level:** Level 2 (Business Domain Architecture)  
 **Domain:** Organization Domain  
 **Project:** SutraERP  
-**Status:** Architecture Locked  
-**Document Owner:** Pallav
+**Status:** Trust Certification Ready  
+**Document Owner:** Institution & Structure — Organisation
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | Purpose; L2-B02-P1-01 Purpose |
+| Scope | Scope; Out of Scope; L2-B02-P8-01 Architecture Validation Scope |
+| Actors | — not present — |
+| Entities | L2-B02-P2-03 Aggregate Overview; L2-B02-P2-12 Aggregate Ownership; L2-B02-P2-16 Aggregate Relationships |
+| Business Rules | Part 3B — Phase 2: Domain Model (Relationships, Versioning & Business Rules); L2-B02-P2-43 Canonical Business Rules; Business Rule |
+| Workflow | L2-B02 — Organisation Workflows; Part 5 — Phase 4: Business Workflows; Workflow Principles |
+| State Machine | L2-B02-P2-38 Business State Machine |
+| Contracts | L2-B02-P6-08 Integration Contracts; L2-B02-P6-09 Contract Ownership; L2-B02-P6-12 Contract Versioning |
+| Events | L2-B02-P3-14 Event Responsibilities; Part 6 — Phase 5: Domain Events; Event Architecture Principles |
+| Dependencies | L2-B02-P3-11 Component Dependency Matrix; L2-B02-P6-04 Dependency Model; L2-B02-P6-05 Dependency Rules |
+| Locked Decisions | L2-B02-P6-07 Integration Decision Matrix; L2-B02-P7-04 Authorization Decision Model; Architecture Decision |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
 
 ---
 
@@ -23,8 +45,8 @@
 | Parent Architecture | L1 Enterprise Architecture |
 | Depends On | L2-A01 Platform Foundation |
 | Version | 1.0 |
-| Status | Locked |
-| Owner | Architecture Review Board |
+| Status | Trust Certification Ready |
+| Review Authority | Architecture Review Board |
 | Approval Status | Approved |
 | Repository Status | Ready |
 

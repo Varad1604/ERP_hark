@@ -5,20 +5,43 @@
 **Domain Code:** G09  
 **Domain Name:** Teacher Guardian Scheme (TGS)  
 **Architecture Level:** Enterprise Business Workflow  
-**Status:** Architecture Locked  
-**Document Owner:** Devang
+**Status:** Trust Certification Ready  
+**Document Owner:** Campus Operations — Teacher Guardian Scheme
 
 **Upstream Dependencies**
 
 - Section A — Platform Foundation
 - Section B — Institution & Structure
-- Section C — Student Lifecycle
-- Section D — Academic Delivery
 - Section E — People & Workforce
-- Section F — Finance
 - G03 — Hostel Management
 - G05 — Library Management
 - G06 — Institutional Health Services
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section C — Student Lifecycle — Student master, Student profile, Student admission, Student academic lifecycle
+- Section D — Academic Delivery — Academic Session, TGS Timetable Schedule, Attendance Summary, Academic Performance Summary
+- Section F — Finance — Fee Summary, Outstanding Amount, Installment Status, Financial Hold Status
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Domain Scope; §4 Explicitly Out of Scope; Audit Scope |
+| Actors | §5 Domain Actors; Primary Actors; Secondary Actors |
+| Entities | §9 Aggregate Model; Primary Aggregate |
+| Business Rules | §19 Business Rules |
+| Workflow | §11 Workflow 1 — Mentorship Relationship Activation; §12 Workflow 2 — Scheduled Mentorship Session; §13 Workflow 3 — Student Mentoring Discussion |
+| State Machine | §18 Mentorship Case State Model |
+| Contracts | §22 Service Contracts; Command Contracts; Query Contracts |
+| Events | §21 Domain Events; Relationship Events; Discussion Events |
+| Dependencies | §6 Enterprise Dependencies |
+| Locked Decisions | §30 Architecture Decision Records (ADR) |
 
 ---
 

@@ -4,9 +4,32 @@
 
 **Domain:** C - Student Lifecycle
 
-**Status:** Draft
+**Status:** Trust Certification Ready
 
-**Owner:** Student Lifecycle Domain
+
+**Document Owner:** Student Lifecycle
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | — not present — |
+| Entities | Entities / Aggregates |
+| Business Rules | Rules / Invariants |
+| Workflow | Workflows |
+| State Machine | States |
+| Contracts | — not present — |
+| Events | Events |
+| Dependencies | Dependencies / Integration |
+| Locked Decisions | — not present — |
+
+> **Gap:** 3 required section(s) have no counterpart in this document: Actors, Contracts, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -18,7 +41,6 @@
 | Document Name | Student Lifecycle Review |
 | Domain | Student Lifecycle |
 | Level | L2 - Business Workflow Architecture |
-| Owner | Student Lifecycle Domain |
 | Depends On | L2-C01 through L2-C08 Student Lifecycle workflows, L0 Business Vision, L1 Business Domain Architecture, Architecture Index, Dependency Map, L2 Domain Workflow Matrix |
 | Canonical Owner | Student Lifecycle Domain |
 
@@ -119,3 +141,13 @@ Not separately defined in this document. As a control/review document, L2-C00 do
 ---
 
 # End of Document
+
+---
+
+## Rules / Invariants
+
+Not separately defined in this document. As a review document, L2-C00 applies the review criteria
+in Section 3 rather than defining business rules; canonical rules and invariants remain owned by
+L2-C01 through L2-C08.
+
+---

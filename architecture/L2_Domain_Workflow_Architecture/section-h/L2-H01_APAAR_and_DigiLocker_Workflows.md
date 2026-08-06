@@ -3,10 +3,32 @@
 **Section:** H — Institutional Services & Intelligence  
 **Domain:** H01 — APAAR & DigiLocker Workflows  
 **Architecture Level:** Level 2 (Workflow Architecture)  
-**Architecture Status:** Locked  
-**Document Owner:** Dhruv  
+**Status:** Trust Certification Ready  
+**Document Owner:** Institutional Services — APAAR & DigiLocker  
 **Version:** 1.0  
 **Parent Architecture:** SutraERP Level 1 Enterprise Architecture
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §2 Purpose |
+| Scope | §3 Scope; §3.1 In Scope; §3.2 Out of Scope |
+| Actors | — not present — |
+| Entities | §12 Entities |
+| Business Rules | §16 Domain Invariants |
+| Workflow | §26 Workflow Specifications; §27 Workflow H01-W01 — APAAR Account Linking; §28 Workflow H01-W02 — DigiLocker Account Linking |
+| State Machine | §60 Publication State Machine; §61 Connector State Machine; §62 Consent State Machine |
+| Contracts | §42 External Integration Contracts; Publication Contract; Linking Contract |
+| Events | §37 Domain Events Catalogue; §38 Event Payload Standards; §39 Event Ordering Rules |
+| Dependencies | §65 Domain Dependency Matrix; §66 Multi-Domain Event Dependencies |
+| Locked Decisions | §67 Architecture Decisions Record (ADR); §47.1 Retry Decision Matrix |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
 
 ---
 
@@ -1527,7 +1549,7 @@ Efficiently publish large volumes of credentials.
 
 ## Trigger
 
-- Graduation processing
+- qualification completion processing
 - Semester completion
 - Migration exercise
 - Administrative request
@@ -1718,8 +1740,8 @@ The H01 command model follows CQRS principles. Commands express intent to change
 | DisableConnector | Connector | Disable connector | Authorization valid | ConnectorDisabled |
 | UpdateConnectorConfiguration | Connector | Modify connector configuration | Configuration valid | ConnectorConfigurationUpdated |
 | ValidateConnectorHealth | Connector | Execute connector health check | Connector exists | ConnectorHealthValidated |
-| StartSynchronization | Synchronization | Begin synchronization | Connector active | SynchronizationStarted |
-| CompleteSynchronization | Synchronization | Finish synchronization | Execution completed | SynchronizationCompleted |
+| StartSynchronization | Synchronization | Begin synchronization | Connector active | ExternalProviderSynchronizationStarted |
+| CompleteSynchronization | Synchronization | Finish synchronization | Execution completed | ApaarSynchronizationCompleted |
 | RecordSynchronizationFailure | Synchronization | Record synchronization failure | Failure classified | SynchronizationFailed |
 
 ---
@@ -1874,8 +1896,8 @@ Events are immutable.
 
 | Event | Producer | Consumers |
 |--------|----------|-----------|
-| SynchronizationStarted | Synchronization | Dashboard |
-| SynchronizationCompleted | Synchronization | Dashboard, Audit |
+| ExternalProviderSynchronizationStarted | Synchronization | Dashboard |
+| ApaarSynchronizationCompleted | Synchronization | Dashboard, Audit |
 | SynchronizationFailed | Synchronization | Monitoring |
 
 ---
@@ -1966,7 +1988,7 @@ The following ordering constraints apply.
 
 8. ConnectorActivated must occur before connector usage.
 
-9. SynchronizationCompleted or SynchronizationFailed terminates every synchronization execution.
+9. ApaarSynchronizationCompleted or SynchronizationFailed terminates every synchronization execution.
 
 ---
 
@@ -1980,7 +2002,6 @@ To prevent duplicate publication and ensure reliable retries:
 - Government transaction identifiers shall be persisted after acknowledgement.
 - Retry execution shall reuse the original Correlation ID.
 - Completed publications cannot be executed again unless initiated through an approved republish or revocation workflow.
-```
 
 # 41. Internal APIs
 
@@ -3056,7 +3077,7 @@ H01 publishes:
 - PublicationFailed
 - PublicationRetryScheduled
 - CredentialRevoked
-- SynchronizationCompleted
+- ApaarSynchronizationCompleted
 - ConnectorActivated
 - ConsentGranted
 - ConsentWithdrawn

@@ -1,4 +1,24 @@
-# L2-A04 — Authorization and Policy Workflows
+# L2-A04 — Authorization & Policy Workflows
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope; §5 Out of Scope; §73 Resource Scope Evaluation |
+| Actors | §23 Role Management; §24 Role Lifecycle; §25 Role Responsibilities |
+| Entities | §9 Aggregate Ownership; §10 Aggregate Responsibilities; §11 Aggregate Relationships |
+| Business Rules | §32 Role Invariants; §42 Permission Invariants; §51 Policy Invariants |
+| Workflow | §61 Advanced Authorization Workflows; §98.8 Break-Glass Workflow; L2-A04 — Authorization & Policy Workflows |
+| State Machine | §72 Resource State Evaluation |
+| Contracts | §95 Architectural Contracts |
+| Events | §78 Auditable Events; Administrative Events; Authorization Events |
+| Dependencies | §13 Multi-Domain Dependencies |
+| Locked Decisions | §100 Architectural Decisions |
 
 ---
 
@@ -7,13 +27,14 @@
 | Attribute | Value |
 |-----------|-------|
 | Document ID | L2-A04 |
+| Document Owner | Platform Foundation — Authorization |
 | Document Name | Authorization and Policy Workflows |
 | Layer | Level 2 – Core Platform Architecture |
 | Domain | Platform Security & Authorization |
-| Owner | Dhruv |
+| Owner | Platform Foundation — Authorization |
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Architecture |
 | Referenced By | All Business Domains (Academic, Examination, Finance, HR, Library, Hostel, Transport, CRM, Analytics, Mobile, APIs, Dashboard, Reporting) |
-| Status | Draft |
+| Status | Trust Certification Ready |
 | Version | 1.0 |
 
 ---

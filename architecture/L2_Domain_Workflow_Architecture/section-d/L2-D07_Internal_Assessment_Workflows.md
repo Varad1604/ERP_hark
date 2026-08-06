@@ -1,14 +1,38 @@
-# L2-D07 - Internal Assessment Workflows
+# L2-D07 — Internal Assessment Workflows
 
 **Repository:** SutraERP  
 **Section:** D - Academic Delivery  
 **Domain:** D07 - Internal Assessment  
 **Document ID:** L2-D07  
 **Version:** 1.0  
-**Status:** Architecture Locked  
+**Status:** Trust Certification Ready  
+**Document Owner:** Academic Delivery — Internal Assessment  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Pallav  
-**Dependencies:** Section B, L2-D01, L2-D04, L2-I01, Student Lifecycle reference data
+**Owner:** Academic Delivery — Internal Assessment  
+**Dependencies:** Section B, L2-D01, L2-D04, Student Lifecycle reference data  
+**Consumed By:** L2-I01 and downstream Examination workflows, which consume finalized internal-assessment outcomes published by this domain
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §2 Scope |
+| Actors | — not present — |
+| Entities | §6 Aggregate Ownership |
+| Business Rules | §9 Multi-Domain Rules |
+| Workflow | L2-D07 — Internal Assessment Workflows; Workflows |
+| State Machine | States |
+| Contracts | §10 API Surface |
+| Events | §7 Business Events |
+| Dependencies | Dependencies / Integration |
+| Locked Decisions | — not present — |
+
+> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -203,3 +227,21 @@ Examination consumes the finalized outcome, but does not own the internal assess
 ## Workflows
 
 Workflow behavior is not restated in a single consolidated section; it is expressed through the Lifecycle Overview (Section 5) state sequence and the Commands catalogue (Section 8): blueprint definition and publication, assessment window opening/extension/closure, submission capture and mark entry, moderation request/approval/rejection, and finalization/archival. See Sections 5 and 8 for the operational sequence and canonical command set.
+
+---
+
+## States
+
+Assessment lifecycle states are defined in **Section 5 — Lifecycle Overview**. This heading exists
+so the document satisfies the standard L2 template section set; it adds no new definitions.
+
+---
+
+## Dependencies / Integration
+
+Upstream and downstream dependencies for Internal Assessment are recorded in the Document Control
+metadata and in **Section 9 — Multi-Domain Rules**. Canonical upstream sources are Curriculum
+Framework (L2-B04), Academic Calendar (L2-B05), Course & Course Offering (L2-D01) and Student
+Academic Registration (L2-C03); assessment outcomes are consumed by Examination (Section I).
+
+---

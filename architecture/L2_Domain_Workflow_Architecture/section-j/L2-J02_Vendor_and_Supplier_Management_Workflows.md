@@ -1,4 +1,4 @@
-﻿# L2-J02 - Vendor & Supplier Management Workflows
+﻿# L2-J02 — Vendor & Supplier Management Workflows
 
 ## Document Metadata
 
@@ -10,10 +10,33 @@
 | Domain | J02 - Vendor & Supplier Management |
 | Architecture Level | Level 2 - Domain Workflow Architecture |
 | Parent Architecture | L2-J00 - Enterprise Resource Management Architecture & Governance |
+| Document Owner | Enterprise Resource Management — Vendor & Supplier |
 | Primary Aggregate | Supplier |
 | Canonical Owner | Vendor & Supplier Management |
 | Status | Trust Certification Ready |
 | Version | 1.1 |
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Scope |
+| Actors | — not present — |
+| Entities | — not present — |
+| Business Rules | Rules / Invariants |
+| Workflow | Workflows |
+| State Machine | States |
+| Contracts | — not present — |
+| Events | §13 Events |
+| Dependencies | — not present — |
+| Locked Decisions | — not present — |
+
+> **Gap:** 5 required section(s) have no counterpart in this document: Actors, Entities, Contracts, Dependencies, Locked Decisions. Recorded, not authored.
 
 ---
 

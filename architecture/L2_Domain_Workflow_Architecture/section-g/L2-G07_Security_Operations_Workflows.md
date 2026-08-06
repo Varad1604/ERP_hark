@@ -1,24 +1,26 @@
-﻿# L2-G07 â€” Security Operations Workflows
+﻿# L2-G07 — Security Operations Workflows
 
 **Repository:** SutraERP  
-**Section:** G â€” Campus Operations  
-**Domain:** G07 â€” Security Operations  
+**Section:** G — Campus Operations  
+**Domain:** G07 — Security Operations  
 **Document ID:** L2-G07  
 **Version:** 1.0  
-**Status:** Draft  
+**Status:** Trust Certification Ready  
 **Classification:** Level 2 Domain Architecture  
-**Owner:** Campus Operations Domain  
-**Document Owner:** Devang
+**Document Owner:** Campus Operations — Security
 
 **Upstream Dependencies**
 
-- Section A â€” Platform Foundation
-- Section B â€” Institution & Structure
-- Section C â€” Student Lifecycle
-- Section E â€” People & Workforce
-- G01 â€” Facilities Management
-- G06 â€” Institutional Health Services
-- Finance Domain
+- Section A — Platform Foundation
+- Section B — Institution & Structure
+- Section E — People & Workforce
+- G01 — Facilities Management
+- G06 — Institutional Health Services
+
+**Consumed From** — runtime consumption, not foundational (INT-202)
+
+- Section C — Student Lifecycle — Student Identity
+- Section F — Finance — accounting and payment consequences of Security Vendor Contracts
 
 **Downstream Consumers**
 
@@ -30,6 +32,28 @@
 - Notification Services
 - Analytics
 - Audit
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose |
+| Scope | §3 Scope; §4 Out of Scope |
+| Actors | Typical Operational Roles |
+| Entities | §8 Aggregate Design; Aggregate Roots; Aggregate Responsibilities |
+| Business Rules | §13 Business Invariants |
+| Workflow | §12 Workflow Catalogue; Authentication & Workflow; Gate Workflow |
+| State Machine | §25 State Transition Matrix |
+| Contracts | §24 Service Contracts; Vendor Contract Management |
+| Events | §23 Domain Events; Event Driven Architecture; Gate Operation Events |
+| Dependencies | §9 Dependencies & Integration (Bounded Context Relationships) |
+| Locked Decisions | — not present — |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Locked Decisions. Recorded, not authored.
 
 ---
 
@@ -122,15 +146,15 @@ Repository Position
 
 ```text
 Platform Foundation
-        â”‚
-        â–¼
+        │
+        ▼
 Campus Operations
-        â”‚
-        â–¼
+        │
+        ▼
 Security Operations
-        â”‚
- â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
- â–¼           â–¼              â–¼
+        │
+ ┌───────────┼──────────────┬─────────────┐
+ ▼           ▼              ▼
 Notifications Reporting Analytics
 ```
 
@@ -502,7 +526,7 @@ Aggregate identity shall remain immutable throughout its lifecycle.
 
 ---
 
-# 9. Bounded Context Relationships
+# 9. Dependencies & Integration (Bounded Context Relationships)
 
 ## Upstream Domains
 
@@ -521,7 +545,7 @@ Provides:
 
 ---
 
-### Section C â€” Student Lifecycle
+### Section C — Student Lifecycle
 
 Provides:
 
@@ -535,7 +559,7 @@ Student ownership remains external.
 
 ---
 
-### Section E â€” People & Workforce
+### Section E — People & Workforce
 
 Provides:
 
@@ -549,7 +573,7 @@ Personnel ownership remains external.
 
 ---
 
-### G01 â€” Facilities Management
+### G01 — Facilities Management
 
 Provides:
 
@@ -563,7 +587,7 @@ Security Operations consumes operational availability.
 
 ---
 
-### G06 â€” Institutional Health Services
+### G06 — Institutional Health Services
 
 Provides:
 
@@ -635,19 +659,19 @@ Security Operations governs institutional security workflows.
 
 ```text
 Visitor
-     â”‚
+     │
 Visitor Pass
-     â”‚
+     │
 Gate Entry
-     â”‚
+     │
 Campus Movement
-     â”‚
- â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
- â–¼              â–¼             â–¼
+     │
+ ┌──────────────┬─────────────┬──────────────┐
+ ▼              ▼             ▼
 Patrol      Incident     Emergency Response
-     â”‚              â”‚
-     â””â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”˜
-             â–¼
+     │              │
+     └───────┬──────┘
+             ▼
        Security Reporting
 ```
 
@@ -655,15 +679,15 @@ Supporting operational model:
 
 ```text
 Security Operations
-        â”‚
-        â”œâ”€â”€ Gate Operations
-        â”œâ”€â”€ Visitor Management
-        â”œâ”€â”€ Vehicle Movement
-        â”œâ”€â”€ Material Gate Pass
-        â”œâ”€â”€ Patrol
-        â”œâ”€â”€ Incident Management
-        â”œâ”€â”€ Lost & Found
-        â””â”€â”€ Audit
+        │
+        ├── Gate Operations
+        ├── Visitor Management
+        ├── Vehicle Movement
+        ├── Material Gate Pass
+        ├── Patrol
+        ├── Incident Management
+        ├── Lost & Found
+        └── Audit
 ```
 
 ---
@@ -674,15 +698,15 @@ Security Operations
 
 ```text
 Pre-Registered / Walk-in
-          â”‚
+          │
 Identity Verification
-          â”‚
+          │
 Visitor Pass Issued
-          â”‚
+          │
 Entry
-          â”‚
+          │
 Exit
-          â”‚
+          │
 Closed
 ```
 
@@ -692,13 +716,13 @@ Closed
 
 ```text
 Reported
-    â”‚
+    │
 Assessment
-    â”‚
+    │
 Investigation
-    â”‚
+    │
 Resolution
-    â”‚
+    │
 Closed
 ```
 
@@ -708,11 +732,11 @@ Closed
 
 ```text
 Scheduled
-     â”‚
+     │
 Started
-     â”‚
+     │
 Checkpoint Verification
-     â”‚
+     │
 Completed
 ```
 
@@ -722,11 +746,11 @@ Completed
 
 ```text
 Requested
-     â”‚
+     │
 Approved
-     â”‚
+     │
 Material Movement
-     â”‚
+     │
 Completed
 ```
 
@@ -736,11 +760,11 @@ Completed
 
 ```text
 Item Registered
-      â”‚
+      │
 Verification
-      â”‚
+      │
 Claimed
-      â”‚
+      │
 Closed
 ```
 
@@ -891,17 +915,17 @@ Gate categories shall remain configurable.
 
 ```text
 Arrival
-    â”‚
+    │
 Identity Verification
-    â”‚
+    │
 Access Validation
-    â”‚
+    │
 Gate Entry
-    â”‚
+    │
 Campus Movement
-    â”‚
+    │
 Gate Exit
-    â”‚
+    │
 Visit Closed
 ```
 
@@ -971,17 +995,17 @@ Visitor categories shall remain configurable.
 
 ```text
 Visitor Registration
-        â”‚
+        │
 Approval (If Required)
-        â”‚
+        │
 Visitor Pass Issued
-        â”‚
+        │
 Gate Entry
-        â”‚
+        │
 Campus Visit
-        â”‚
+        │
 Gate Exit
-        â”‚
+        │
 Visit Closed
 ```
 
@@ -1059,15 +1083,15 @@ Parking management remains outside this domain.
 
 ```text
 Vehicle Arrives
-       â”‚
+       │
 Identity Verification
-       â”‚
+       │
 Vehicle Validation
-       â”‚
+       │
 Gate Entry
-       â”‚
+       │
 Campus Movement
-       â”‚
+       │
 Gate Exit
 ```
 
@@ -1092,13 +1116,13 @@ Vehicle categories shall remain configurable.
 
 ```text
 Movement Requested
-        â”‚
+        │
 Approval
-        â”‚
+        │
 Gate Verification
-        â”‚
+        │
 Material Movement
-        â”‚
+        │
 Movement Closed
 ```
 
@@ -1162,13 +1186,13 @@ Operational patrols remain configurable and independent of HR attendance.
 
 ```text
 Patrol Scheduled
-        â”‚
+        │
 Route Assigned
-        â”‚
+        │
 Checkpoint Verification
-        â”‚
+        │
 Patrol Completed
-        â”‚
+        │
 Patrol Report Generated
 ```
 
@@ -1258,15 +1282,15 @@ Criminal investigations remain outside institutional ownership.
 
 ```text
 Incident Reported
-        â”‚
+        │
 Classification
-        â”‚
+        │
 Severity Assessment
-        â”‚
+        │
 Investigation
-        â”‚
+        │
 Resolution
-        â”‚
+        │
 Closure
 ```
 
@@ -1358,13 +1382,13 @@ Lost & Found governs operational management of property reported as lost or reco
 
 ```text
 Item Reported
-      â”‚
+      │
 Verification
-      â”‚
+      │
 Ownership Validation
-      â”‚
+      │
 Item Returned
-      â”‚
+      │
 Case Closed
 ```
 
@@ -1466,13 +1490,13 @@ Notification templates shall remain configurable.
 
 ```text
 Business Event
-      â”‚
+      │
 Domain Event Published
-      â”‚
+      │
 Notification Framework
-      â”‚
+      │
 Recipient Resolution
-      â”‚
+      │
 Delivery
 ```
 
@@ -1501,10 +1525,10 @@ Every significant business transition shall publish a canonical domain event.
 
 | Event | Description |
 |--------|-------------|
-| VisitorRegistered | Visitor registered |
-| VisitorApproved | Visit approved |
-| VisitorCheckedIn | Visitor entered campus |
-| VisitorCheckedOut | Visitor exited campus |
+| SecurityVisitorRegistered | Visitor registered |
+| SecurityVisitorApproved | Visit approved |
+| SecurityVisitorCheckedIn | Visitor entered campus |
+| SecurityVisitorCheckedOut | Visitor exited campus |
 | VisitorPassExpired | Visitor pass expired |
 
 ---
@@ -1545,10 +1569,10 @@ Every significant business transition shall publish a canonical domain event.
 
 | Event | Description |
 |--------|-------------|
-| IncidentReported | Security incident registered |
+| SecurityIncidentReported | Security incident registered |
 | IncidentEscalated | Incident escalated |
-| InvestigationStarted | Investigation initiated |
-| IncidentResolved | Incident resolved |
+| SecurityInvestigationStarted | Investigation initiated |
+| SecurityIncidentResolved | Incident resolved |
 | IncidentClosed | Incident closed |
 
 ---
@@ -1669,16 +1693,16 @@ All interactions shall occur exclusively through published business service cont
 
 | Aggregate | Primary Lifecycle |
 |-----------|-------------------|
-| Security Office | Draft â†’ Configured â†’ Active â†’ Closed |
-| Gate | Planned â†’ Active â†’ Maintenance â†’ Closed |
-| Visitor | Registered â†’ Approved â†’ Checked In â†’ Checked Out â†’ Closed |
-| Visitor Pass | Created â†’ Active â†’ Expired / Closed |
-| Vehicle Movement | Registered â†’ Entered â†’ Exited â†’ Closed |
-| Material Gate Pass | Requested â†’ Approved â†’ Movement â†’ Completed |
-| Patrol | Scheduled â†’ Started â†’ Executing â†’ Completed |
-| Security Incident | Reported â†’ Assessment â†’ Investigation â†’ Resolved â†’ Closed |
-| Lost & Found | Registered â†’ Verified â†’ Returned â†’ Closed |
-| Escort Request | Requested â†’ Assigned â†’ Active â†’ Completed |
+| Security Office | Draft → Configured → Active → Closed |
+| Gate | Planned → Active → Maintenance → Closed |
+| Visitor | Registered → Approved → Checked In → Checked Out → Closed |
+| Visitor Pass | Created → Active → Expired / Closed |
+| Vehicle Movement | Registered → Entered → Exited → Closed |
+| Material Gate Pass | Requested → Approved → Movement → Completed |
+| Patrol | Scheduled → Started → Executing → Completed |
+| Security Incident | Reported → Assessment → Investigation → Resolved → Closed |
+| Lost & Found | Registered → Verified → Returned → Closed |
+| Escort Request | Requested → Assigned → Active → Completed |
 
 Lifecycle extensions shall remain configuration driven.
 
@@ -2022,15 +2046,15 @@ Examples include:
 
 ```text
 Business Exception
-        â”‚
+        │
 Validation
-        â”‚
+        │
 Recovery Strategy
-        â”‚
+        │
 Audit Recorded
-        â”‚
+        │
 Notification Published
-        â”‚
+        │
 Operational Continuation
 ```
 
@@ -2096,29 +2120,29 @@ The architecture shall remain horizontally scalable without domain redesign.
 
 ---
 
-# Appendix A â€” Canonical Operational Flow
+# Appendix A — Canonical Operational Flow
 
 ```text
 Visitor Registration
-        â”‚
+        │
 Visitor Approval
-        â”‚
+        │
 Visitor Pass
-        â”‚
+        │
 Gate Entry
-        â”‚
+        │
 Campus Operations
-        â”‚
+        │
 Incident / Patrol / Escort (If Required)
-        â”‚
+        │
 Gate Exit
-        â”‚
+        │
 Audit History
 ```
 
 ---
 
-# Appendix B â€” Canonical Ownership Matrix
+# Appendix B — Canonical Ownership Matrix
 
 | Business Concept | Canonical Owner |
 |------------------|-----------------|
@@ -2142,7 +2166,7 @@ Audit History
 
 ---
 
-# Appendix C â€” Enterprise Design Principles
+# Appendix C — Enterprise Design Principles
 
 Security Operations follows the enterprise architectural principles established by SutraERP.
 
@@ -2173,8 +2197,8 @@ Security Operations follows the enterprise architectural principles established 
 
 **End of Document**
 
-**L2-G07 â€” Security Operations Workflows**
+**L2-G07 — Security Operations Workflows**
 
 **Version:** 1.0  
-**Status:** Architecture Draft (Ready for Architectural Review)
+**Status:** Trust Certification Ready
 

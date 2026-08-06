@@ -1,6 +1,26 @@
-# L2-E05 --- Leave Management Workflows
+# L2-E05 — Leave Management Workflows
 
 
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose; §24.1 Domain Purpose |
+| Scope | §2 Scope; §16.5 Organization Scope Security; §2.1 In Scope |
+| Actors | Actors |
+| Entities | Core Entities |
+| Business Rules | §9 Business Rules |
+| Workflow | §7 Domain Workflows; §7.1 Leave Request Workflow; §7.2 Leave Approval Workflow |
+| State Machine | §12.1 Leave Request State Machine; §12.3 Leave Policy State Machine |
+| Contracts | §11 Service Contracts; §11.1 Command Contracts; §11.2 Query Contracts |
+| Events | §10 Domain Events; §10.1 Event Ownership Model; §10.2 Core Domain Events |
+| Dependencies | §3 Upstream Dependencies; §4 Downstream Dependencies |
+| Locked Decisions | §6.10 Final Aggregate Decision; §13 Decision Matrix; §13.1 Leave Request Decision Matrix |
+
+---
 
 ------------------------------------------------------------------------
 
@@ -10,6 +30,8 @@
   Attribute                           Value
   ----------------------------------- -----------------------------------
   Document Name                       L2-E05 --- Leave Management
+
+  Document Owner                      People & Workforce — Leave Management
                                       Workflows
 
   Document Layer                      Level 2 --- Domain Workflow
@@ -30,8 +52,7 @@
   Version                             1.0
 
   Status                              Draft
-
-  Document Owner                      Varad
+                                      Phase
   -----------------------------------------------------------------------
 
 ------------------------------------------------------------------------
@@ -82,7 +103,7 @@ attendance, and authorization context from other enterprise domains.
 
   Capability               Owner
   ------------------------ -------------------------
-  Employee Profile Data    E07 Employee Profile
+  Employee Master Data     Employee Profile Domain
   Organization Hierarchy   Organization Domain
   Attendance Calculation   Attendance Domain
   Salary Calculation       Payroll Domain
@@ -1220,7 +1241,7 @@ Employee initiates a leave request.
 ## Domain Events
 
 ``` text
-LeaveRequested
+EmployeeLeaveRequested
 ```
 
 ------------------------------------------------------------------------
@@ -1271,8 +1292,8 @@ Request moves to approved or rejected state.
 ## Domain Events
 
 ``` text
-LeaveApproved
-LeaveRejected
+EmployeeLeaveApproved
+EmployeeLeaveRejected
 ```
 
 ------------------------------------------------------------------------
@@ -1313,8 +1334,8 @@ Scheduled accrual event or policy-defined trigger.
 ## Domain Events
 
 ``` text
-LeaveAccrualCompleted
-LeaveBalanceUpdated
+EmployeeLeaveAccrualCompleted
+EmployeeLeaveBalanceUpdated
 ```
 
 ------------------------------------------------------------------------
@@ -1350,7 +1371,7 @@ Approved leave reaches consumption date.
 
 ``` text
 LeaveConsumed
-LeaveBalanceUpdated
+EmployeeLeaveBalanceUpdated
 ```
 
 ------------------------------------------------------------------------
@@ -1387,8 +1408,8 @@ Employee or authorized user requests cancellation.
 ## Domain Events
 
 ``` text
-LeaveCancelled
-LeaveBalanceUpdated
+EmployeeLeaveCancelled
+EmployeeLeaveBalanceUpdated
 ```
 
 ------------------------------------------------------------------------
@@ -1432,7 +1453,7 @@ All corrections require ledger transactions.
 
 ``` text
 LeaveAdjusted
-LeaveBalanceUpdated
+EmployeeLeaveBalanceUpdated
 ```
 
 ------------------------------------------------------------------------
@@ -1570,7 +1591,7 @@ New policy version submitted.
 ## Domain Events
 
 ``` text
-LeavePolicyActivated
+EmployeeLeavePolicyActivated
 ```
 
 ------------------------------------------------------------------------
@@ -2002,7 +2023,7 @@ Events --> Consumers
 
 # 10.2 Core Domain Events
 
-## LeaveRequested
+## EmployeeLeaveRequested
 
 ### Purpose
 
@@ -2021,7 +2042,7 @@ Consumers:
 
 ------------------------------------------------------------------------
 
-## LeaveApproved
+## EmployeeLeaveApproved
 
 ### Purpose
 
@@ -2041,7 +2062,7 @@ Consumers:
 
 ------------------------------------------------------------------------
 
-## LeaveRejected
+## EmployeeLeaveRejected
 
 ### Purpose
 
@@ -2054,7 +2075,7 @@ Consumers:
 
 ------------------------------------------------------------------------
 
-## LeaveCancelled
+## EmployeeLeaveCancelled
 
 ### Purpose
 
@@ -2068,7 +2089,7 @@ Consumers:
 
 ------------------------------------------------------------------------
 
-## LeaveBalanceUpdated
+## EmployeeLeaveBalanceUpdated
 
 ### Purpose
 
@@ -2087,7 +2108,7 @@ Consumers:
 
 ------------------------------------------------------------------------
 
-## LeaveAccrualCompleted
+## EmployeeLeaveAccrualCompleted
 
 ### Purpose
 
@@ -2100,7 +2121,7 @@ Consumers:
 
 ------------------------------------------------------------------------
 
-## LeavePolicyActivated
+## EmployeeLeavePolicyActivated
 
 ### Purpose
 
@@ -2130,7 +2151,7 @@ Events should not contain:
 Example:
 
 ``` text
-LeaveApproved Event
+EmployeeLeaveApproved Event
 
 Contains:
 
@@ -2305,9 +2326,9 @@ Returns active applicable policy.
 Consumes:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
-LeaveCancelled
+EmployeeLeaveCancelled
 ```
 
 Provides:
@@ -2324,7 +2345,7 @@ CompOff Eligibility
 Consumes:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
 LeaveEncashmentEligible
 ```
@@ -2344,9 +2365,9 @@ All external contracts must support versioning.
 Example:
 
 ``` text
-LeaveApproved.v1
+EmployeeLeaveApproved.v1
 
-LeaveApproved.v2
+EmployeeLeaveApproved.v2
 ```
 
 Breaking changes require new versions.
@@ -2583,7 +2604,7 @@ Decision ownership prevents domain responsibility conflicts.
 
 ------------------------------------------------------------------------
 
-# 13.4 Multi-Domain Decision Matrix
+# 13.4 Cross-Domain Decision Matrix
 
   Scenario                    Owner
   --------------------------- ---------------------
@@ -3306,7 +3327,7 @@ Example:
 Good:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
 EmployeeId
 
@@ -4013,7 +4034,7 @@ architecture documentation standards.
 ``` mermaid
 flowchart LR
 
-Employee["E07 Employee Profile"]
+Employee["Employee Profile Domain"]
 
 Organization["Organization Domain"]
 
@@ -4390,13 +4411,13 @@ E05 communicates important business outcomes through domain events.
 Examples:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
-LeaveCancelled
+EmployeeLeaveCancelled
 
-LeaveBalanceUpdated
+EmployeeLeaveBalanceUpdated
 
-LeaveAccrualCompleted
+EmployeeLeaveAccrualCompleted
 ```
 
 ## Consequences
@@ -4882,11 +4903,11 @@ A statement that a meaningful business fact has occurred.
 Examples:
 
 ``` text
-LeaveApproved
+EmployeeLeaveApproved
 
-LeaveCancelled
+EmployeeLeaveCancelled
 
-LeaveBalanceUpdated
+EmployeeLeaveBalanceUpdated
 ```
 
 Events communicate facts, not commands.
@@ -5104,7 +5125,7 @@ Leave Events
 ## E05 Does Not Own
 
 ``` text
-Employee Profile Data
+Employee Master Data
 
 Organization Hierarchy
 
@@ -5203,7 +5224,7 @@ Enterprise Architecture Team
 Responsibilities:
 
 -   Validate architecture alignment
--   Review multi-domain impacts
+-   Review cross-domain impacts
 -   Approve major architectural changes
 
 ------------------------------------------------------------------------
@@ -5212,7 +5233,7 @@ Responsibilities:
 
   Area                       Owner
   -------------------------- -------------------------
-  Employee context           E07 Employee Profile
+  Employee context           Employee Profile Domain
   Attendance integration     Attendance Domain
   Payroll integration        Payroll Domain
   Notifications              Notification Domain
@@ -5447,13 +5468,13 @@ Policy Activation
 
   Event                   Producer                  Purpose
   ----------------------- ------------------------- ------------------------------
-  LeaveRequested          Leave Request Aggregate   Request submitted
-  LeaveApproved           Leave Request Aggregate   Approval completed
-  LeaveRejected           Leave Request Aggregate   Approval denied
-  LeaveCancelled          Leave Request Aggregate   Leave cancelled
-  LeaveBalanceUpdated     Leave Ledger              Balance changed
-  LeaveAccrualCompleted   Accrual Process           Accrual completed
-  LeavePolicyActivated    Policy Aggregate          Policy activated
+  EmployeeLeaveRequested          Leave Request Aggregate   Request submitted
+  EmployeeLeaveApproved           Leave Request Aggregate   Approval completed
+  EmployeeLeaveRejected           Leave Request Aggregate   Approval denied
+  EmployeeLeaveCancelled          Leave Request Aggregate   Leave cancelled
+  EmployeeLeaveBalanceUpdated     Leave Ledger              Balance changed
+  EmployeeLeaveAccrualCompleted   Accrual Process           Accrual completed
+  EmployeeLeavePolicyActivated    Policy Aggregate          Policy activated
   LeaveAdjusted           Adjustment Workflow       Balance correction completed
 
 ------------------------------------------------------------------------

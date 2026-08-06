@@ -12,11 +12,33 @@
 | **Supporting Aggregates** | Validation Result, Compliance Evidence Mapping, Submission Record |
 | **Communication Pattern** | Commands, Queries, Domain Events |
 | **Canonical Owner** | Regulatory Reporting & Compliance Domain |
-| **Document Owner** | Dhruv |
-| **Status** | Architecture Locked |
+| **Document Owner** | Institutional Intelligence — Statutory Reporting |
+| **Status** | Trust Certification Ready |
 | **Version** | 1.0 |
 | **Repository** | SutraERP Canonical Enterprise Repository |
 | **Classification** | Canonical Enterprise Architecture |
+
+---
+
+## Canonical Section Crosswalk
+
+> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+
+| Required section (Volume 3 §18) | Location in this document |
+|---|---|
+| Purpose | §1 Purpose; §1.1 Purpose Statement; §1.4 Business Purpose |
+| Scope | §2 Scope; §2.1 Domain Scope; §2.2 Functional Scope |
+| Actors | — not present — |
+| Entities | §6 Domain Model / Aggregate / Lifecycle; §5.6 Aggregate Ownership Model; §6.2 Aggregate Overview |
+| Business Rules | §17 Business Rules |
+| Workflow | §7 Workflow Specifications; §7.1 Workflow Overview; §7.2 Workflow Catalogue |
+| State Machine | §18.1 Reporting Cycle State Machine; §18.2 Reporting Snapshot State Machine; §18.3 Submission Package State Machine |
+| Contracts | §12 Service Contracts; §13 API Contracts; §12.2 Internal Service Contracts |
+| Events | §10 Domain Events Catalogue; §10.2 Reporting Framework Events; §10.3 Reporting Cycle Events |
+| Dependencies | §3 Upstream Dependencies; §4 Downstream Dependencies; §3.2 Dependency Principles |
+| Locked Decisions | §21 Architecture Decision Records (ADRs); §5.5 Ownership Decision Tree |
+
+> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
 
 ---
 
@@ -597,7 +619,7 @@ All upstream integrations SHALL satisfy the following architectural principles.
 |-----------------|---------------------|---------|
 | Platform Foundation | Institution, Tenant, Identity Context | Reporting scope and security |
 | Organization Management | Campus, Faculty, Department, Organization Hierarchy | Institutional structure reporting |
-| Student Lifecycle | Student demographics, enrollment, progression, graduation | Student reporting |
+| Student Lifecycle | Student demographics, enrollment, progression, qualification completion | Student reporting |
 | Academic Delivery | Courses, Curriculum, Timetable, Academic Operations | Academic reporting |
 | People & Workforce | Employees, Faculty, Positions, Workforce Metrics | HR reporting |
 | Finance | Fee, Accounting, Budget, Financial Metrics | Financial reporting |
@@ -658,7 +680,7 @@ Examples include:
 - Enrollment
 - Registration
 - Progression
-- Graduation
+- Qualification Completion
 - Student Categories
 - Reservation Statistics
 - Scholarship Statistics
@@ -2599,7 +2621,7 @@ Rejected packages return to correction workflow.
 
 ## Domain Events
 
-- ApprovalInitiated
+- ComplianceReportApprovalInitiated
 - SubmissionApproved
 - SubmissionRejected
 - SubmissionReturnedForCorrection
@@ -3404,7 +3426,7 @@ Events are immutable, versioned, replayable, and form the foundation of enterpri
 
 | Domain Event | Published When |
 |--------------|----------------|
-| ApprovalInitiated | Approval workflow started |
+| ComplianceReportApprovalInitiated | Approval workflow started |
 | SubmissionApproved | Submission approved |
 | SubmissionRejected | Submission rejected |
 | SubmissionReturnedForCorrection | Returned for correction |
@@ -4389,7 +4411,6 @@ The Reporting domain shall provide:
 - Read models may be horizontally replicated.
 - Reporting workflows shall support parallel execution where business rules permit.
 - Enterprise integrations shall remain loosely coupled.
-```
 # 21. Architecture Decision Records (ADRs)
 
 ## ADR-001 — Metadata-Driven Reporting Frameworks
