@@ -5,7 +5,7 @@
 **Level:** L2 — Domain Workflow Architecture  
 **Parent Architecture:** SutraERP Level-1 Enterprise Architecture  
 **Architecture Style:** Domain-Driven Design (DDD), Event-Driven Architecture (EDA), Clean Architecture, API-First  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Academic Delivery — Teaching Session & Attendance  
 **Version:** 1.0  
 **Classification:** Canonical Enterprise Architecture  
@@ -3173,7 +3173,7 @@ No implementation shall diverge from this architecture without approved enterpri
 
 **Architecture Readiness:** APPROVED FOR IMPLEMENTATION
 
-**Document Status:** Trust Certification Ready
+**Document Status:** Locked
 
 ---
 

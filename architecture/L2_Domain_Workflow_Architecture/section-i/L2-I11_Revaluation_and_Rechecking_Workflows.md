@@ -1,7 +1,7 @@
 # L2-I11 — Revaluation & Rechecking Workflows
 
 **Section:** I — Examination  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Examinations — Revaluation & Rechecking
 
 ---

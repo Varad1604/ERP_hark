@@ -32,7 +32,7 @@
 | Document Name | Refund Management |
 | Architecture Level | Level 2 – Domain Architecture |
 | Domain | Finance |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 1.0.0 |
 | Document Owner | Finance — Refunds |
 | Depends On | L2-F00 Finance Domain Foundation, L2-F01 Student Charge & Fee Management, L2-F02 Payment Management |

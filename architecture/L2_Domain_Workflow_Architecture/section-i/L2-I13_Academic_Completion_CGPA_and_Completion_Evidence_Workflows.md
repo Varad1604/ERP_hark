@@ -34,7 +34,7 @@
 | **Architecture Level** | Level 2 – Domain Workflow Architecture |
 | **Domain Code** | I13 |
 | **Domain Category** | Examination Domain |
-| **Status** | Trust Certification Ready |
+| **Status** | Locked |
 | **Repository** | SutraERP Enterprise Architecture |
 | **Depends On** | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity, L2-A04 Authorization & Policy, L2-A06 Event Infrastructure, L2-A07 Audit Infrastructure, L2-B04 Curriculum Framework, L2-B05 Academic Calendar, L2-I01 through L2-I12 |
 | **Consumed By** | Degree Certificate, Convocation, Student Lifecycle, Analytics, Regulatory Reporting, Future Academic Domains |

@@ -13,7 +13,7 @@
 | Primary Aggregate | External Integration |
 | Supporting Aggregates | External Provider, Integration Connector, Integration Configuration, External Enrollment, Learning Synchronization, Credit Transfer Request, Certificate Verification, Synchronization Job |
 | Communication Pattern | Commands, Queries, Domain Events, Integration Events, Webhooks |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 1.0 |
 | Repository | SutraERP Canonical Enterprise Repository |
 | Classification | Canonical Enterprise Architecture |

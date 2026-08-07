@@ -35,7 +35,7 @@
 | Document Type | Canonical Domain Workflow Specification |
 | Review Authority | Finance Architecture Team |
 | Document Owner | Finance — Accounting & General Ledger |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 1.0 |
 | Depends On | L2-F00 — Finance Foundation |
 | Integrates With | L2-F01, L2-F02, L2-F03, L2-F04 |

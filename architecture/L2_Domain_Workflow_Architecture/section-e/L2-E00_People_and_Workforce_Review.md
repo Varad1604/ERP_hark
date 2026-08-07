@@ -3,7 +3,7 @@
 
 **Section:** E — People & Workforce  
 **Document Type:** L2 Domain Review & Architecture Certification  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Version:** 1.0  
 **Architecture Level:** L2 Review Document  
 **Review Authority:** Enterprise Architecture Team  
@@ -4965,7 +4965,7 @@ All future implementations of Section E shall conform to this baseline unless su
 |----------|-------|
 | Document | L2-E00 — People & Workforce Review |
 | Architecture Level | L2 |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Certification | **PASSED** |
 | Enterprise Compliance | **100%** |
 | Architecture Readiness | **APPROVED** |

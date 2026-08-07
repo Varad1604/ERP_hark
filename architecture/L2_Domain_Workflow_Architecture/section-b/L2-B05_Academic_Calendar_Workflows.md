@@ -6,7 +6,7 @@ document-level: Level 2 (L2) Domain Architecture
 domain: Academic Management
 repository: SutraERP Enterprise Architecture Repository
 architecture-layer: Business Domain
-status: Trust Certification Ready
+status: Locked
 architecture-state: Frozen
 validation-level: Enterprise Architecture Review (V1–V10)
 confidence-level: Very High
@@ -53,7 +53,7 @@ last-updated: July 2026
 | Repository | SutraERP Enterprise Architecture Repository |
 | Architecture Layer | Business Domain |
 | Current Version | 1.0 |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Architecture State | Frozen |
 | Validation Status | Enterprise Reviewed (V1–V10) |
 | Confidence Level | Very High |

@@ -34,7 +34,7 @@
 | Owner | Platform Foundation — Authorization |
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Architecture |
 | Referenced By | All Business Domains (Academic, Examination, Finance, HR, Library, Hostel, Transport, CRM, Analytics, Mobile, APIs, Dashboard, Reporting) |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 1.0 |
 
 ---

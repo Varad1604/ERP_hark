@@ -11,7 +11,7 @@
 | **Architecture Style** | Domain-Driven Design (DDD) |
 | **Primary Aggregate** | Student Scholarship Eligibility Record |
 | **Authoritative Owner** | Student Information System Domain |
-| **Status** | Trust Certification Ready |
+| **Status** | Locked |
 | **Version** | 1.0 |
 
 ---

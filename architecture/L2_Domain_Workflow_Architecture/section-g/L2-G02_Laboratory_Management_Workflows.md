@@ -5,7 +5,7 @@
 **Domain:** G02 — Laboratory Management  
 **Document ID:** L2-G02  
 **Version:** 1.0  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Classification:** Level 2 Domain Architecture  
 **Document Owner:** Campus Operations — Laboratory
 
@@ -2369,4 +2369,4 @@ Laboratory Management follows the enterprise architectural principles establishe
 **L2-G02 — Laboratory Management Workflows**
 
 **Version:** 1.0  
-**Status:** Trust Certification Ready
+**Status:** Locked

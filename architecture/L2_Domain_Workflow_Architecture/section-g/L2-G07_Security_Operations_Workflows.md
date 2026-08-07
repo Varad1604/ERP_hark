@@ -5,7 +5,7 @@
 **Domain:** G07 — Security Operations  
 **Document ID:** L2-G07  
 **Version:** 1.0  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Classification:** Level 2 Domain Architecture  
 **Document Owner:** Campus Operations — Security
 
@@ -2200,5 +2200,5 @@ Security Operations follows the enterprise architectural principles established 
 **L2-G07 — Security Operations Workflows**
 
 **Version:** 1.0  
-**Status:** Trust Certification Ready
+**Status:** Locked
 

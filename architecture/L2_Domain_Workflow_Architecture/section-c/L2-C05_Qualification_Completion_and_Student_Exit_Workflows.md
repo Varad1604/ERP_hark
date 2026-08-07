@@ -8,7 +8,7 @@
 
 **Architecture Level:** Level 2 — Domain Workflows
 
-**Document Status:** Trust Certification Ready
+**Document Status:** Locked
 
 
 **Document Owner:** Student Lifecycle — Qualification Completion & Exit

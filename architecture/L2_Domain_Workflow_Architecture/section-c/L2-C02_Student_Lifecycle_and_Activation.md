@@ -2,7 +2,7 @@
 
 **Section:** C — Student Lifecycle  
 **Architecture Level:** Level 2 (Domain Architecture)  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Student Lifecycle — Activation  
 
 **Depends On:**
@@ -12745,7 +12745,7 @@ As a core enterprise domain, it enables secure and consistent interoperability a
 | Document ID | L2-C02 |
 | Domain Name | Student Lifecycle Domain |
 | Architecture Level | Level 2 (Domain Architecture) |
-| Document Status | Trust Certification Ready |
+| Document Status | Locked |
 | Classification | Canonical Architecture |
 | Version | 1.0 |
 | Review Authority | Architecture Review Board |
@@ -14000,7 +14000,7 @@ This roadmap establishes a controlled path for future evolution of the Student L
 
 **Architecture Level:** Level 2
 
-**Status:** Trust Certification Ready
+**Status:** Locked
 
 **Version:** 1.0.0
 

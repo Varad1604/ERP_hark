@@ -2,7 +2,7 @@
 
 **Section:** F — Finance
 **Architecture Level:** Level 2 (Domain Architecture)
-**Status:** Trust Certification Ready
+**Status:** Locked
 **Version:** 1.0
 **Document Owner:** Finance
 **Depends On:** L2-A01 — Platform & Tenant Foundation, L2-A05 — Workflow Engine Workflows

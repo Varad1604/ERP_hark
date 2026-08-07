@@ -34,7 +34,7 @@
 | Architecture Level | L2 – Canonical Domain Workflow |
 | Document Owner | Examinations — Malpractice & Committee |
 | Repository | SutraERP Enterprise Architecture Repository |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Depends On | L1 Business Domain Architecture, L2-A01–A08, L2-B01–B05, L2-I01–L2-I13 |
 | Version | 0.1 |
 
@@ -1891,7 +1891,7 @@ The architecture follows the enterprise principles established throughout the Su
 
 # End of Document
 **L2-I14 — Malpractice & Examination Committee Workflows**
-**Status:** Trust Certification Ready
+**Status:** Locked
 **Next Document:** **L2-I15 — Examination Exception & Contingency Workflows**
 
 

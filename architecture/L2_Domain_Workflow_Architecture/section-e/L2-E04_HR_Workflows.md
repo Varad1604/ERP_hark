@@ -32,7 +32,7 @@
   Architecture Layer   Level 2 Domain Workflow Architecture
   Architecture Style   Domain Driven Design (DDD)
   Domain Type          Workflow-Oriented Bounded Context
-  Status               Draft
+  Status               Locked
   Version              1.0
   Owner                SutraERP Architecture Team
 

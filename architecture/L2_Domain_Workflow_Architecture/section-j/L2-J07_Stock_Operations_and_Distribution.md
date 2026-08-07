@@ -14,7 +14,7 @@
 | Primary Aggregate | StockMovement |
 | Canonical Owner | Stock Operations & Distribution |
 | Document Owner | Enterprise Resource Management — Stock Operations |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 1.1 |
 
 ---

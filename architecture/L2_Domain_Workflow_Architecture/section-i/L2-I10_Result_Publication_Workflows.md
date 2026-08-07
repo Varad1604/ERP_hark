@@ -1,7 +1,7 @@
 # L2-I10 — Result Publication Workflows
 
 **Section:** I — Examination  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Examinations — Result Publication
 
 ---

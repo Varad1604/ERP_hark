@@ -1,7 +1,7 @@
 # L2-I08 — Marks Collection & Evaluation Workflows
 
 **Section:** I — Examination  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Examinations — Marks Collection & Evaluation
 
 ---

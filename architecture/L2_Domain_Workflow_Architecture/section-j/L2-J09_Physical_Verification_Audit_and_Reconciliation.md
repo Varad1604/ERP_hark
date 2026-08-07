@@ -13,7 +13,7 @@
 | Document Owner | Enterprise Resource Management — Physical Verification |
 | Architectural Style | Domain-Driven Design (DDD), CQRS, Event-Driven Architecture |
 | Primary Aggregate | Inventory Audit |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 1.0 |
 
 ---

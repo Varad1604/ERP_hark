@@ -5,7 +5,7 @@
 **Domain:** D07 - Internal Assessment  
 **Document ID:** L2-D07  
 **Version:** 1.0  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Academic Delivery — Internal Assessment  
 **Classification:** Level 2 Domain Architecture  
 **Owner:** Academic Delivery — Internal Assessment  

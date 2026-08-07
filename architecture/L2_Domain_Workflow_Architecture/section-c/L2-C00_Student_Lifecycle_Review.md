@@ -4,7 +4,7 @@
 
 **Domain:** C - Student Lifecycle
 
-**Status:** Trust Certification Ready
+**Status:** Locked
 
 
 **Document Owner:** Student Lifecycle

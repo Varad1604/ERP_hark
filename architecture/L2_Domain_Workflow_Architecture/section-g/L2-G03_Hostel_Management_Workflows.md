@@ -5,7 +5,7 @@
 **Domain:** G03 — Hostel Management  
 **Document ID:** L2-G03  
 **Version:** 1.0  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Classification:** Level 2 Domain Architecture  
 **Document Owner:** Campus Operations — Hostel
 
@@ -2485,4 +2485,4 @@ Hostel Management follows the enterprise architectural principles established by
 **L2-G03 — Hostel Management Workflows**
 
 **Version:** 1.0  
-**Status:** Trust Certification Ready
+**Status:** Locked

@@ -1,7 +1,7 @@
 # L2-I12 — Supplementary / Backlog / Improvement Examination Execution Workflows
 
 **Section:** I — Examination  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Examinations — Supplementary & Backlog
 
 ---

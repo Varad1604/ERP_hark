@@ -36,7 +36,7 @@
 | Owner | Platform Foundation — Workflow Engine |
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Workflows, L2-A04 Authorization and Policy Workflows |
 | Referenced By | All Business Domains (Admissions, Academic, Examination, Finance, HR, Library, Hostel, Transport, CRM, Analytics, Mobile, APIs, Dashboard, Reporting and Future Domains) |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 1.0 |
 
 ---
@@ -6304,7 +6304,7 @@ All lower architecture levels SHALL conform to the architectural constraints, ow
 
 # 235. End of Document
 
-**Document Status:** Trust Certification Ready
+**Document Status:** Locked
 
 **Architecture Level:** L2 – Domain Workflow Architecture
 

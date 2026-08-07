@@ -4,7 +4,7 @@
 
 **Domain:** I – Examination
 
-**Status:** Trust Certification Ready
+**Status:** Locked
 
 
 **Document Owner:** Examinations — Session Management

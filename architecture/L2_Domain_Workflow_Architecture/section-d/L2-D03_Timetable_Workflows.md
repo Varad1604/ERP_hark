@@ -4,7 +4,7 @@
 **Domain Code:** D03  
 **Domain Name:** Timetable Workflows  
 **Architecture Level:** L2 — Domain Workflow Specification  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Academic Delivery — Timetable  
 **Version:** 1.0  
 **Owner:** Academic Delivery — Timetable  
@@ -9261,7 +9261,7 @@ Naming conventions shall remain stable across future versions.
 | Domain | D03 — Timetable Workflows |
 | Architecture Level | Level 2 |
 | Document Type | Canonical Enterprise Domain Architecture |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Governance | Enterprise Architecture |
 | Versioning | Semantic Versioning |
 | Ownership | Timetable Domain Team |

@@ -1,7 +1,7 @@
 # L2-C03 — Academic Registration Workflows
 
 **Document Owner:** Student Lifecycle — Academic Registration  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 
 ---
 
