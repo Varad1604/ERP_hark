@@ -24,7 +24,7 @@ Purpose:
 - dependency sequencing
 - final L2 review planning
 
-Status: [Trust Certification Ready]
+Status: [Locked]
 
 ---
 
@@ -33,47 +33,47 @@ Status: [Trust Certification Ready]
 Purpose: Core platform infrastructure used by every business domain.
 
 ## L2-A01 - Platform & Tenant Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-A02 - Person & Identity Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-A03 - Authentication Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-A04 - Authorization & Policy Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-A05 - Workflow Engine Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-A06 - Event Infrastructure Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-A07 - Audit Infrastructure Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-A08 - Module Registry & Configuration Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-A09 - Master Data Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-A10 - Operational Readiness Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ### L2-A00 - Platform Foundation Review
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ---
@@ -83,27 +83,27 @@ Owner: Dhruv
 Purpose: Institutional hierarchy and academic foundation.
 
 ## L2-B01 - Institution Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ## L2-B02 - Organisation Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ## L2-B03 - Campus Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ## L2-B04 - Curriculum Framework Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ## L2-B05 - Academic Calendar Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ### L2-B00 - Institution & Structure Review
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ---
@@ -113,39 +113,39 @@ Owner: Pallav
 Purpose: Complete student lifecycle from admission through qualification completion, exit, and alumni transition.
 
 ## L2-C01 - Admissions Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ## L2-C02 - Student Lifecycle & Activation Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ## L2-C03 - Academic Registration Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ## L2-C04 - Student Academic Progression Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ## L2-C05 - Qualification Completion & Student Exit Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ## L2-C06 - Guardian Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ## L2-C07 - Scholarship Eligibility Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ## L2-C08 - Alumni Transition Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ### L2-C00 - Student Lifecycle Review
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ---
@@ -155,35 +155,35 @@ Owner: Varad
 Purpose: Teaching operations and academic execution.
 
 ## L2-D01 - Course & Course Offering Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ## L2-D02 - Faculty Academic Assignment Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ## L2-D03 - Timetable Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ## L2-D04 - Teaching Session & Attendance Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ## L2-D05 - Academic Monitoring Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ## L2-D06 - Open Electives & MOOCs Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ## L2-D07 - Internal Assessment Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ### L2-D00 - Academic Delivery Review
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Pallav
 
 ---
@@ -193,35 +193,35 @@ Owner: Pallav
 Purpose: Workforce management and employee lifecycle.
 
 ## L2-E01 - Workforce & Engagement Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ## L2-E02 - Position & Assignment Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ## L2-E03 - Faculty Workforce Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ## L2-E04 - HR Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ## L2-E05 - Leave Management Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ## L2-E06 - Payroll Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ## L2-E07 - Employee Profile Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ### L2-E00 - People & Workforce Review
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Varad
 
 ---
@@ -231,63 +231,63 @@ Owner: Varad
 Purpose: Financial business domains.
 
 ## L2-F00 - Finance Domain Model & Foundation
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F01 - Student Charge & Fee Management
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F02 - Payment Management Architecture
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F03 - Refund Management
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F04 - Financial Adjustment Management
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F05 - Accounting & General Ledger Management
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F06 - Budget & Cost Center Management
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F07 - Accounts Receivable Management
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F08 - Accounts Payable Management
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F09 - Financial Period & Closing
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F10 - Treasury & Banking
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F11 - Scholarship & Financial Aid
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F12 - Asset Financial Accounting Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F13 - Financial Reporting & Analytics Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-F14 - Procurement Finance Consumption Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ---
@@ -297,47 +297,47 @@ Owner: Chetan
 Purpose: Operational institutional services.
 
 ## L2-G01 - Facilities Management Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-G02 - Laboratory Management Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-G03 - Hostel Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-G04 - Transport Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-G05 - Library Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-G06 - Medical Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-G07 - Security Operations Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-G08 - Housekeeping Operations & Service Governance Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-G09 - Teacher Guardian Scheme (TGS) Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-G10 - Infrastructure Management Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ### L2-G00 - Campus Operations Review
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ---
@@ -347,47 +347,47 @@ Owner: Devang
 Purpose: Supporting institutional services and read-model surfaces.
 
 ## L2-H01 - APAAR & DigiLocker Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-H02 - Notification Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-H03 - Enterprise Directory & Search Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-H04 - Placement Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-H05 - Research Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-H06 - Alumni Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-H07 - Enterprise Dashboard Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-H08 - NEP, NAAC & AISHE Reporting Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-H09 - Accreditation & Compliance Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ## L2-H10 - External Education Integration Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ### L2-H00 - Services & Intelligence Review
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Dhruv
 
 ---
@@ -397,71 +397,71 @@ Owner: Dhruv
 Purpose: Assessment, examination, and academic evaluation.
 
 ## L2-I01 - Examination Policy & Configuration Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I02 - Examination Session Management Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I03 - Examination Planning & Scheduling Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I04 - Examination Registration Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I05 - Hall Ticket Management Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I06 - Practical & Viva Examination Conduct Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I07 - Theory Examination Conduct Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I08 - Marks Collection & Evaluation Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I09 - Result Processing & Computation Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I10 - Result Publication Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I11 - Revaluation & Rechecking Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I12 - Supplementary / Backlog / Improvement Examination Execution Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I13 - Academic Completion, CGPA & Completion Evidence Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I14 - Malpractice & Examination Committee Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I15 - Examination Exception & Contingency Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ## L2-I16 - Examination Session Closure & Archival Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ### L2-I00 - Examination Review
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Devang
 
 ---
@@ -471,51 +471,51 @@ Owner: Devang
 Purpose: Physical-resource lifecycle, procurement, inventory, asset, warehouse, verification, and disposal governance.
 
 ## L2-J00 - Enterprise Resource Management Architecture & Governance
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-J01 - Procurement Planning & Sourcing Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-J02 - Vendor & Supplier Management Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-J03 - Purchase Requisition & Approval Workflows
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-J04 - Purchase Order Management
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-J05 - Goods Receipt, Inspection & Acceptance
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-J06 - Inventory & Warehouse Management
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-J07 - Stock Operations & Distribution
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-J08 - Asset Lifecycle Management
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-J09 - Physical Verification, Audit & Reconciliation
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ## L2-J10 - Disposal, Scrap & Write-Off
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ### Section J Review - Governed by L2-J00 and L2-J01 to L2-J10
-Status: [Trust Certification Ready]
+Status: [Locked]
 Owner: Chetan
 
 ---
@@ -531,7 +531,7 @@ Purpose:
 - contradiction removal
 - L2 lock readiness
 
-Status: [Trust Certification Ready]
+Status: [Locked]
 
 ---
 

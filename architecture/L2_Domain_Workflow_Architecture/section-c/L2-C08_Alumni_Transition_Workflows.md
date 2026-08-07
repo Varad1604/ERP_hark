@@ -11,7 +11,7 @@
 | Canonical Aggregate | Alumni Transition Record |
 | Primary Owner | Student Lifecycle Domain |
 | Version | 1.0 |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Dependencies | See Sections 3 & 4 |
 | Audience | Enterprise Architects, Solution Architects, Developers, Business Analysts |
 | Last Updated | YYYY-MM-DD |
@@ -6863,7 +6863,7 @@ Future evolution of the Alumni Transition domain shall comply with the following
 
 | Attribute | Value |
 |-----------|-------|
-| Document Status | Trust Certification Ready |
+| Document Status | Locked |
 | Architecture Level | Level 2 (Bounded Context) |
 | Domain | Alumni Transition |
 | Review Status | Ready for Architecture Review |
@@ -6890,7 +6890,7 @@ By combining Domain-Driven Design, event-driven integration, policy-based decisi
 | Bounded Context | Alumni Transition |
 | Document Type | Enterprise Architecture Specification |
 | Version | 1.0 |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Classification | Internal Architecture |
 | Language | English |
 

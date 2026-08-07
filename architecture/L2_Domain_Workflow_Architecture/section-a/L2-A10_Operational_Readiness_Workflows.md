@@ -4,7 +4,7 @@ title: Operational Readiness Workflows
 level: Level 2 Architecture
 section: Section A – Platform Foundation
 version: 1.0.0
-status: Trust Certification Ready
+status: Locked
 owner: Platform Foundation — Operational Readiness
 document_owner: Platform Foundation — Operational Readiness
 parent: L1 Business Domain Architecture

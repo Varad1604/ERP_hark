@@ -5,7 +5,7 @@
 **Domain:** G04 — Transport Management  
 **Document ID:** L2-G04  
 **Version:** 1.0  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Classification:** Level 2 Domain Architecture  
 **Document Owner:** Campus Operations — Transport
 
@@ -2414,4 +2414,4 @@ Transport Management follows the enterprise architectural principles established
 **L2-G04 — Transport Management Workflows**
 
 **Version:** 1.0  
-**Status:** Trust Certification Ready
+**Status:** Locked

@@ -73,17 +73,17 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-A01 | Platform & Tenant Workflows | Platform Foundation — Tenancy | Trust Certification Ready |
-| L2-A02 | Person & Identity Workflows | Platform Foundation — Identity | Trust Certification Ready |
-| L2-A03 | Authentication Workflows | Platform Foundation — Authentication | Trust Certification Ready |
-| L2-A04 | Authorization & Policy Workflows | Platform Foundation — Authorization | Trust Certification Ready |
-| L2-A05 | Workflow Engine Workflows | Platform Foundation — Workflow Engine | Trust Certification Ready |
-| L2-A06 | Event Infrastructure Workflows | Platform Foundation — Event Infrastructure | Trust Certification Ready |
-| L2-A07 | Audit Infrastructure Workflows | Platform Foundation — Audit | Trust Certification Ready |
-| L2-A08 | Module Registry & Configuration Workflows | Platform Foundation — Module Registry | Trust Certification Ready |
-| L2-A09 | Master Data Workflows | Platform Foundation — Master Data | Trust Certification Ready |
-| L2-A10 | Operational Readiness Workflows | Platform Foundation — Operational Readiness | Trust Certification Ready |
-| L2-A00 | Platform Foundation Review | Platform Foundation | Trust Certification Ready |
+| L2-A01 | Platform & Tenant Workflows | Platform Foundation — Tenancy | Locked |
+| L2-A02 | Person & Identity Workflows | Platform Foundation — Identity | Locked |
+| L2-A03 | Authentication Workflows | Platform Foundation — Authentication | Locked |
+| L2-A04 | Authorization & Policy Workflows | Platform Foundation — Authorization | Locked |
+| L2-A05 | Workflow Engine Workflows | Platform Foundation — Workflow Engine | Locked |
+| L2-A06 | Event Infrastructure Workflows | Platform Foundation — Event Infrastructure | Locked |
+| L2-A07 | Audit Infrastructure Workflows | Platform Foundation — Audit | Locked |
+| L2-A08 | Module Registry & Configuration Workflows | Platform Foundation — Module Registry | Locked |
+| L2-A09 | Master Data Workflows | Platform Foundation — Master Data | Locked |
+| L2-A10 | Operational Readiness Workflows | Platform Foundation — Operational Readiness | Locked |
+| L2-A00 | Platform Foundation Review | Platform Foundation | Locked |
 
 **Section Total:** 11 Documents
 
@@ -93,12 +93,12 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-B01 | Institution Workflows | Institution & Structure — Institution | Trust Certification Ready |
-| L2-B02 | Organisation Workflows | Institution & Structure — Organisation | Trust Certification Ready |
-| L2-B03 | Campus Workflows | Institution & Structure — Institutional Campus | Trust Certification Ready |
-| L2-B04 | Curriculum Framework Workflows | Institution & Structure — Curriculum Framework | Trust Certification Ready |
-| L2-B05 | Academic Calendar Workflows | Institution & Structure — Academic Calendar | Trust Certification Ready |
-| L2-B00 | Institution & Structure Review | Institution & Structure | Trust Certification Ready |
+| L2-B01 | Institution Workflows | Institution & Structure — Institution | Locked |
+| L2-B02 | Organisation Workflows | Institution & Structure — Organisation | Locked |
+| L2-B03 | Campus Workflows | Institution & Structure — Institutional Campus | Locked |
+| L2-B04 | Curriculum Framework Workflows | Institution & Structure — Curriculum Framework | Locked |
+| L2-B05 | Academic Calendar Workflows | Institution & Structure — Academic Calendar | Locked |
+| L2-B00 | Institution & Structure Review | Institution & Structure | Locked |
 
 **Section Total:** 6 Documents
 
@@ -108,15 +108,15 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-C01 | Admissions Workflows | Student Lifecycle — Admissions | Trust Certification Ready |
-| L2-C02 | Student Lifecycle & Activation Workflows | Student Lifecycle — Activation | Trust Certification Ready |
-| L2-C03 | Academic Registration Workflows | Student Lifecycle — Academic Registration | Trust Certification Ready |
-| L2-C04 | Student Academic Progression Workflows | Student Lifecycle — Academic Progression | Trust Certification Ready |
-| L2-C05 | Qualification Completion & Student Exit Workflows | Student Lifecycle — Qualification Completion & Exit | Trust Certification Ready |
-| L2-C06 | Guardian Workflows | Student Lifecycle — Guardian | Trust Certification Ready |
-| L2-C07 | Scholarship Eligibility Workflows | Student Lifecycle — Scholarship Eligibility | Trust Certification Ready |
-| L2-C08 | Alumni Transition Workflows | Student Lifecycle — Alumni Transition | Trust Certification Ready |
-| L2-C00 | Student Lifecycle Review | Student Lifecycle | Trust Certification Ready |
+| L2-C01 | Admissions Workflows | Student Lifecycle — Admissions | Locked |
+| L2-C02 | Student Lifecycle & Activation Workflows | Student Lifecycle — Activation | Locked |
+| L2-C03 | Academic Registration Workflows | Student Lifecycle — Academic Registration | Locked |
+| L2-C04 | Student Academic Progression Workflows | Student Lifecycle — Academic Progression | Locked |
+| L2-C05 | Qualification Completion & Student Exit Workflows | Student Lifecycle — Qualification Completion & Exit | Locked |
+| L2-C06 | Guardian Workflows | Student Lifecycle — Guardian | Locked |
+| L2-C07 | Scholarship Eligibility Workflows | Student Lifecycle — Scholarship Eligibility | Locked |
+| L2-C08 | Alumni Transition Workflows | Student Lifecycle — Alumni Transition | Locked |
+| L2-C00 | Student Lifecycle Review | Student Lifecycle | Locked |
 
 **Section Total:** 9 Documents
 
@@ -125,14 +125,14 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-D01 | Course & Course Offering Workflows | Academic Delivery — Course & Offering | Trust Certification Ready |
-| L2-D02 | Faculty Academic Assignment Workflows | Academic Delivery — Faculty Assignment | Trust Certification Ready |
-| L2-D03 | Timetable Workflows | Academic Delivery — Timetable | Trust Certification Ready |
-| L2-D04 | Teaching Session & Attendance Workflows | Academic Delivery — Teaching Session & Attendance | Trust Certification Ready |
-| L2-D05 | Academic Monitoring Workflows | Academic Delivery — Academic Monitoring | Trust Certification Ready |
-| L2-D06 | Open Electives & MOOCs Workflows | Academic Delivery — Electives & MOOCs | Trust Certification Ready |
-| L2-D07 | Internal Assessment Workflows | Academic Delivery — Internal Assessment | Trust Certification Ready |
-| L2-D00 | Academic Delivery Review | Academic Delivery | Trust Certification Ready |
+| L2-D01 | Course & Course Offering Workflows | Academic Delivery — Course & Offering | Locked |
+| L2-D02 | Faculty Academic Assignment Workflows | Academic Delivery — Faculty Assignment | Locked |
+| L2-D03 | Timetable Workflows | Academic Delivery — Timetable | Locked |
+| L2-D04 | Teaching Session & Attendance Workflows | Academic Delivery — Teaching Session & Attendance | Locked |
+| L2-D05 | Academic Monitoring Workflows | Academic Delivery — Academic Monitoring | Locked |
+| L2-D06 | Open Electives & MOOCs Workflows | Academic Delivery — Electives & MOOCs | Locked |
+| L2-D07 | Internal Assessment Workflows | Academic Delivery — Internal Assessment | Locked |
+| L2-D00 | Academic Delivery Review | Academic Delivery | Locked |
 
 **Section Total:** 8 Documents
 
@@ -142,14 +142,14 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-E01 | Workforce & Engagement Workflows | People & Workforce — Workforce & Engagement | Trust Certification Ready |
-| L2-E02 | Position & Assignment Workflows | People & Workforce — Position & Assignment | Trust Certification Ready |
-| L2-E03 | Faculty Workforce Workflows | People & Workforce — Faculty Workforce | Trust Certification Ready |
-| L2-E04 | HR Workflows | People & Workforce — HR | Draft |
-| L2-E05 | Leave Management Workflows | People & Workforce — Leave Management | Draft |
-| L2-E06 | Payroll Workflows | People & Workforce — Payroll | Draft |
-| L2-E07 | Employee Profile Workflows | People & Workforce — Employee Profile | Trust Certification Ready |
-| L2-E00 | People & Workforce Review | People & Workforce | Trust Certification Ready |
+| L2-E01 | Workforce & Engagement Workflows | People & Workforce — Workforce & Engagement | Locked |
+| L2-E02 | Position & Assignment Workflows | People & Workforce — Position & Assignment | Locked |
+| L2-E03 | Faculty Workforce Workflows | People & Workforce — Faculty Workforce | Locked |
+| L2-E04 | HR Workflows | People & Workforce — HR | Locked |
+| L2-E05 | Leave Management Workflows | People & Workforce — Leave Management | Locked |
+| L2-E06 | Payroll Workflows | People & Workforce — Payroll | Locked |
+| L2-E07 | Employee Profile Workflows | People & Workforce — Employee Profile | Locked |
+| L2-E00 | People & Workforce Review | People & Workforce | Locked |
 
 **Section Total:** 8 Documents
 
@@ -159,21 +159,21 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-F00 | Finance Domain Model & Foundation | Finance | Trust Certification Ready |
-| L2-F01 | Student Charge & Fee Management | Finance — Student Charges & Fees | Trust Certification Ready |
-| L2-F02 | Payment Management Architecture | Finance — Payments | Trust Certification Ready |
-| L2-F03 | Refund Management | Finance — Refunds | Trust Certification Ready |
-| L2-F04 | Financial Adjustment Management | Finance — Financial Adjustments | Trust Certification Ready |
-| L2-F05 | Accounting & General Ledger Management | Finance — Accounting & General Ledger | Trust Certification Ready |
-| L2-F06 | Budget & Cost Center Management | Finance — Budgeting & Cost Centers | Trust Certification Ready |
-| L2-F07 | Accounts Receivable Management | Finance — Accounts Receivable | Trust Certification Ready |
-| L2-F08 | Accounts Payable Management | Finance — Accounts Payable | Trust Certification Ready |
-| L2-F09 | Financial Period & Closing | Finance — Period & Closing | Trust Certification Ready |
-| L2-F10 | Treasury & Banking | Finance — Treasury & Banking | Trust Certification Ready |
-| L2-F11 | Scholarship & Financial Aid | Finance — Financial Aid | Trust Certification Ready |
-| L2-F12 | Asset Financial Accounting Workflows | Finance — Asset Accounting | Trust Certification Ready |
-| L2-F13 | Financial Reporting & Analytics Workflows | Finance — Reporting & Analytics | Trust Certification Ready |
-| L2-F14 | Procurement Finance Consumption Workflows | Finance — Procurement Consumption | Trust Certification Ready |
+| L2-F00 | Finance Domain Model & Foundation | Finance | Locked |
+| L2-F01 | Student Charge & Fee Management | Finance — Student Charges & Fees | Locked |
+| L2-F02 | Payment Management Architecture | Finance — Payments | Locked |
+| L2-F03 | Refund Management | Finance — Refunds | Locked |
+| L2-F04 | Financial Adjustment Management | Finance — Financial Adjustments | Locked |
+| L2-F05 | Accounting & General Ledger Management | Finance — Accounting & General Ledger | Locked |
+| L2-F06 | Budget & Cost Center Management | Finance — Budgeting & Cost Centers | Locked |
+| L2-F07 | Accounts Receivable Management | Finance — Accounts Receivable | Locked |
+| L2-F08 | Accounts Payable Management | Finance — Accounts Payable | Locked |
+| L2-F09 | Financial Period & Closing | Finance — Period & Closing | Locked |
+| L2-F10 | Treasury & Banking | Finance — Treasury & Banking | Locked |
+| L2-F11 | Scholarship & Financial Aid | Finance — Financial Aid | Locked |
+| L2-F12 | Asset Financial Accounting Workflows | Finance — Asset Accounting | Locked |
+| L2-F13 | Financial Reporting & Analytics Workflows | Finance — Reporting & Analytics | Locked |
+| L2-F14 | Procurement Finance Consumption Workflows | Finance — Procurement Consumption | Locked |
 
 **Section Total:** 15 Documents
 
@@ -196,17 +196,17 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-G01 | Facilities Management Workflows | Campus Operations — Facilities | Trust Certification Ready |
-| L2-G02 | Laboratory Management Workflows | Campus Operations — Laboratory | Trust Certification Ready |
-| L2-G03 | Hostel Workflows | Campus Operations — Hostel | Trust Certification Ready |
-| L2-G04 | Transport Workflows | Campus Operations — Transport | Trust Certification Ready |
-| L2-G05 | Library Workflows | Campus Operations — Library | Trust Certification Ready |
-| L2-G06 | Medical Workflows | Campus Operations — Health Services | Trust Certification Ready |
-| L2-G07 | Security Operations Workflows | Campus Operations — Security | Trust Certification Ready |
-| L2-G08 | Housekeeping Operations & Service Governance Workflows | Campus Operations — Housekeeping | Trust Certification Ready |
-| L2-G09 | Teacher Guardian Scheme (TGS) Workflows | Campus Operations — Teacher Guardian Scheme | Trust Certification Ready |
-| L2-G10 | Infrastructure Management Workflows | Campus Operations — Infrastructure Management | Trust Certification Ready |
-| L2-G00 | Campus Operations Review | Campus Operations | Trust Certification Ready |
+| L2-G01 | Facilities Management Workflows | Campus Operations — Facilities | Locked |
+| L2-G02 | Laboratory Management Workflows | Campus Operations — Laboratory | Locked |
+| L2-G03 | Hostel Workflows | Campus Operations — Hostel | Locked |
+| L2-G04 | Transport Workflows | Campus Operations — Transport | Locked |
+| L2-G05 | Library Workflows | Campus Operations — Library | Locked |
+| L2-G06 | Medical Workflows | Campus Operations — Health Services | Locked |
+| L2-G07 | Security Operations Workflows | Campus Operations — Security | Locked |
+| L2-G08 | Housekeeping Operations & Service Governance Workflows | Campus Operations — Housekeeping | Locked |
+| L2-G09 | Teacher Guardian Scheme (TGS) Workflows | Campus Operations — Teacher Guardian Scheme | Locked |
+| L2-G10 | Infrastructure Management Workflows | Campus Operations — Infrastructure Management | Locked |
+| L2-G00 | Campus Operations Review | Campus Operations | Locked |
 
 **Section Total:** 11 Documents
 
@@ -218,22 +218,22 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-H01 | APAAR & DigiLocker Workflows | Institutional Services — APAAR & DigiLocker | Trust Certification Ready |
-| L2-H02 | Notification Workflows | Institutional Services — Notifications | Trust Certification Ready |
-| L2-H03 | Enterprise Directory & Search Workflows | Institutional Services — Directory & Search | Trust Certification Ready |
-| L2-H04 | Placement Workflows | Institutional Services — Placement | Trust Certification Ready |
-| L2-H05 | Research Workflows | Institutional Services — Research | Trust Certification Ready |
-| L2-H06 | Alumni Workflows | Institutional Services — Alumni Engagement | Trust Certification Ready |
+| L2-H01 | APAAR & DigiLocker Workflows | Institutional Services — APAAR & DigiLocker | Locked |
+| L2-H02 | Notification Workflows | Institutional Services — Notifications | Locked |
+| L2-H03 | Enterprise Directory & Search Workflows | Institutional Services — Directory & Search | Locked |
+| L2-H04 | Placement Workflows | Institutional Services — Placement | Locked |
+| L2-H05 | Research Workflows | Institutional Services — Research | Locked |
+| L2-H06 | Alumni Workflows | Institutional Services — Alumni Engagement | Locked |
 
 ## Institutional Intelligence
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-H07 | Enterprise Dashboard Workflows | Institutional Intelligence — Enterprise Dashboard | Trust Certification Ready |
-| L2-H08 | NEP, NAAC & AISHE Reporting Workflows | Institutional Intelligence — Statutory Reporting | Trust Certification Ready |
-| L2-H09 | Accreditation & Compliance Workflows | Institutional Intelligence — Accreditation & Compliance | Trust Certification Ready |
-| L2-H10 | External Education Integration Workflows | Institutional Services — External Education Integration | Trust Certification Ready |
-| L2-H00 | Services & Intelligence Review | Institutional Services & Intelligence | Trust Certification Ready |
+| L2-H07 | Enterprise Dashboard Workflows | Institutional Intelligence — Enterprise Dashboard | Locked |
+| L2-H08 | NEP, NAAC & AISHE Reporting Workflows | Institutional Intelligence — Statutory Reporting | Locked |
+| L2-H09 | Accreditation & Compliance Workflows | Institutional Intelligence — Accreditation & Compliance | Locked |
+| L2-H10 | External Education Integration Workflows | Institutional Services — External Education Integration | Locked |
+| L2-H00 | Services & Intelligence Review | Institutional Services & Intelligence | Locked |
 
 **Section Total:** 11 Documents
 
@@ -243,23 +243,23 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-I00 | Examination Review | Examinations | Trust Certification Ready |
-| L2-I01 | Examination Policy & Configuration Workflows | Examinations — Policy & Configuration | Trust Certification Ready |
-| L2-I02 | Examination Session Management Workflows | Examinations — Session Management | Trust Certification Ready |
-| L2-I03 | Examination Planning & Scheduling Workflows | Examinations — Planning & Scheduling | Trust Certification Ready |
-| L2-I04 | Examination Registration Workflows | Examinations — Registration | Trust Certification Ready |
-| L2-I05 | Hall Ticket Management Workflows | Examinations — Hall Ticket | Trust Certification Ready |
-| L2-I06 | Practical & Viva Examination Conduct Workflows | Examinations — Practical & Viva Conduct | Trust Certification Ready |
-| L2-I07 | Theory Examination Conduct Workflows | Examinations — Theory Conduct | Trust Certification Ready |
-| L2-I08 | Marks Collection & Evaluation Workflows | Examinations — Marks Collection & Evaluation | Trust Certification Ready |
-| L2-I09 | Result Processing & Computation Workflows | Examinations — Result Processing | Trust Certification Ready |
-| L2-I10 | Result Publication Workflows | Examinations — Result Publication | Trust Certification Ready |
-| L2-I11 | Revaluation & Rechecking Workflows | Examinations — Revaluation & Rechecking | Trust Certification Ready |
-| L2-I12 | Supplementary / Backlog / Improvement Examination Execution Workflows | Examinations — Supplementary & Backlog | Trust Certification Ready |
-| L2-I13 | Academic Completion, CGPA & Completion Evidence Workflows | Examinations — Academic Completion & CGPA | Trust Certification Ready |
-| L2-I14 | Malpractice & Examination Committee Workflows | Examinations — Malpractice & Committee | Trust Certification Ready |
-| L2-I15 | Examination Exception & Contingency Workflows | Examinations — Exception & Contingency | Trust Certification Ready |
-| L2-I16 | Examination Session Closure & Archival Workflows | Examinations — Session Closure & Archival | Trust Certification Ready |
+| L2-I00 | Examination Review | Examinations | Locked |
+| L2-I01 | Examination Policy & Configuration Workflows | Examinations — Policy & Configuration | Locked |
+| L2-I02 | Examination Session Management Workflows | Examinations — Session Management | Locked |
+| L2-I03 | Examination Planning & Scheduling Workflows | Examinations — Planning & Scheduling | Locked |
+| L2-I04 | Examination Registration Workflows | Examinations — Registration | Locked |
+| L2-I05 | Hall Ticket Management Workflows | Examinations — Hall Ticket | Locked |
+| L2-I06 | Practical & Viva Examination Conduct Workflows | Examinations — Practical & Viva Conduct | Locked |
+| L2-I07 | Theory Examination Conduct Workflows | Examinations — Theory Conduct | Locked |
+| L2-I08 | Marks Collection & Evaluation Workflows | Examinations — Marks Collection & Evaluation | Locked |
+| L2-I09 | Result Processing & Computation Workflows | Examinations — Result Processing | Locked |
+| L2-I10 | Result Publication Workflows | Examinations — Result Publication | Locked |
+| L2-I11 | Revaluation & Rechecking Workflows | Examinations — Revaluation & Rechecking | Locked |
+| L2-I12 | Supplementary / Backlog / Improvement Examination Execution Workflows | Examinations — Supplementary & Backlog | Locked |
+| L2-I13 | Academic Completion, CGPA & Completion Evidence Workflows | Examinations — Academic Completion & CGPA | Locked |
+| L2-I14 | Malpractice & Examination Committee Workflows | Examinations — Malpractice & Committee | Locked |
+| L2-I15 | Examination Exception & Contingency Workflows | Examinations — Exception & Contingency | Locked |
+| L2-I16 | Examination Session Closure & Archival Workflows | Examinations — Session Closure & Archival | Locked |
 
 **Section Total:** 17 Documents
 
@@ -269,17 +269,17 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
-| L2-J00 | Enterprise Resource Management Architecture & Governance | Enterprise Resource Management | Trust Certification Ready |
-| L2-J01 | Procurement Planning & Sourcing Workflows | Enterprise Resource Management — Procurement Planning | Trust Certification Ready |
-| L2-J02 | Vendor & Supplier Management Workflows | Enterprise Resource Management — Vendor & Supplier | Trust Certification Ready |
-| L2-J03 | Purchase Requisition & Approval Workflows | Enterprise Resource Management — Requisition & Approval | Trust Certification Ready |
-| L2-J04 | Purchase Order Management | Enterprise Resource Management — Purchase Orders | Trust Certification Ready |
-| L2-J05 | Goods Receipt, Inspection & Acceptance | Enterprise Resource Management — Goods Receipt | Trust Certification Ready |
-| L2-J06 | Inventory & Warehouse Management | Enterprise Resource Management — Inventory & Warehouse | Trust Certification Ready |
-| L2-J07 | Stock Operations & Distribution | Enterprise Resource Management — Stock Operations | Trust Certification Ready |
-| L2-J08 | Asset Lifecycle Management | Enterprise Resource Management — Asset Lifecycle | Trust Certification Ready |
-| L2-J09 | Physical Verification, Audit & Reconciliation | Enterprise Resource Management — Physical Verification | Trust Certification Ready |
-| L2-J10 | Disposal, Scrap & Write-Off | Enterprise Resource Management — Disposal & Write-Off | Trust Certification Ready |
+| L2-J00 | Enterprise Resource Management Architecture & Governance | Enterprise Resource Management | Locked |
+| L2-J01 | Procurement Planning & Sourcing Workflows | Enterprise Resource Management — Procurement Planning | Locked |
+| L2-J02 | Vendor & Supplier Management Workflows | Enterprise Resource Management — Vendor & Supplier | Locked |
+| L2-J03 | Purchase Requisition & Approval Workflows | Enterprise Resource Management — Requisition & Approval | Locked |
+| L2-J04 | Purchase Order Management | Enterprise Resource Management — Purchase Orders | Locked |
+| L2-J05 | Goods Receipt, Inspection & Acceptance | Enterprise Resource Management — Goods Receipt | Locked |
+| L2-J06 | Inventory & Warehouse Management | Enterprise Resource Management — Inventory & Warehouse | Locked |
+| L2-J07 | Stock Operations & Distribution | Enterprise Resource Management — Stock Operations | Locked |
+| L2-J08 | Asset Lifecycle Management | Enterprise Resource Management — Asset Lifecycle | Locked |
+| L2-J09 | Physical Verification, Audit & Reconciliation | Enterprise Resource Management — Physical Verification | Locked |
+| L2-J10 | Disposal, Scrap & Write-Off | Enterprise Resource Management — Disposal & Write-Off | Locked |
 
 **Section Total:** 11 Documents
 
@@ -383,17 +383,32 @@ Provenance:
 >
 > *(Corrected 2026-08-06 under integrity finding INT-207. This legend previously listed only the 9 values the repository had used, while `Volume_2_Repository_Standards.md` line 147 requires it to mirror the canonical table **exactly**. The four values added — Proposed, Approved, Deprecated, Archived — carry Volume 2's own "Not yet in active use" wording, so the distinction between legal and in-use is preserved without amending a LOCKED constitutional document.)*
 >
-> **As of 2026-08-06 every L2 document is `Trust Certification Ready`.** The 104 L2 documents that carried a status, plus both L5 baselines, were promoted from `Draft` on 2026-08-06; the index rows above and in `AI_CONTEXT/REPO_UNDERSTANDING.md` were synced in the same change. `Trust Certification Ready` means "complete and certification-ready, pending final lock decision" — no document claims an approved or locked state, and the final lock decision remains open.
+> **As of 2026-08-07 L0, L1 and every L2 document are `Locked`.** The final lock decision was taken on 2026-08-07: all 107 L2 documents now carry `Locked`, which Volume 2 §7 defines as "approved and frozen". L0 (`SutraERP_Architecture_Workflow_Context_Baseline.md`) and L1 (`SutraERP_L1_Business_Domain_Architecture_Locked.md`) were already locked and were not changed. The index rows above, `architecture/L2_Domain_Workflow_Architecture/L2_DOMAIN_WORKFLOW_MATRIX.md`, `AI_CONTEXT/REPO_UNDERSTANDING.md` and `AI_CONTEXT/SECTION_J/README.md` were synced in the same change.
 >
-> This promotion supersedes the 2026-08-04 normalisation under INT-020, which set every L2 document to `Draft` because the repository then carried a `REJECT` merge decision from `generated/reviews/integrity-2026-08-03-repository-wide-review.md` with unresolved Critical ownership conflicts. That `REJECT` was lifted to `PASS WITH MINOR CHANGES` in `generated/reviews/review-repository-integrity-2026-08-06.md`, with both Critical findings resolved and verified. The INT-020 invariant — exactly one canonical status per document, with no contradicting status-like footer — is preserved: header and footer statuses were promoted together.
+> `L2-E04`, `L2-E05` and `L2-E06` were previously excluded because they carried no header status line in the canonical format. They now carry `Locked` in their Document Metadata tables and their index rows have been promoted from `Draft` accordingly.
+>
+> The INT-020 invariant — exactly one canonical status per document, with no contradicting status-like footer — is preserved: header, metadata-table and footer statuses were promoted together in each document.
+>
+> This lock supersedes the 2026-08-06 promotion to `Trust Certification Ready`, which itself superseded the 2026-08-04 normalisation to `Draft` under INT-020. The `REJECT` merge decision from `generated/reviews/integrity-2026-08-03-repository-wide-review.md` was lifted to `PASS WITH MINOR CHANGES` in `generated/reviews/review-repository-integrity-2026-08-06.md`, with both Critical findings resolved and verified.
 >
 > Before INT-020 the corpus mixed Draft, Locked, Architecture Locked, Trust Certification Ready, Architecture Baseline, Approved Baseline, Architecture Approved and Certified & Locked, and 22 documents contradicted themselves between their header and a status-like footer.
 >
-> `L2-E04`, `L2-E05` and `L2-E06` are excluded: those three documents carry no status line at all, so their index rows still read `Draft` and their status is unresolved.
+> L5 is **not** covered by this lock: `L5-00` and `L5-01` remain `Trust Certification Ready`, since no approved L4 exists for them to trace to.
 
 ---
 
 # Recent Changes
+
+**2026-08-07 — L0/L1/L2 lock:** Took the final lock decision for the business
+architecture levels. All 107 L2 documents moved to `Locked` (104 from
+`Trust Certification Ready`; `L2-E04`, `L2-E05` and `L2-E06` from `Draft`, and
+those three gained a canonical status value in their Document Metadata tables).
+L0 and L1 were verified as already `Locked` and left unchanged. Index rows,
+`L2_DOMAIN_WORKFLOW_MATRIX.md`, `AI_CONTEXT/REPO_UNDERSTANDING.md` and
+`AI_CONTEXT/SECTION_J/README.md` were synced in the same change. L3 and L5 are
+out of scope and retain their existing statuses.
+
+---
 
 **2026-08-05 — Core context alignment:** Confirmed the L0 Business Vision as
 `Locked`, retained the Dependency Map as `Active`, and aligned its document

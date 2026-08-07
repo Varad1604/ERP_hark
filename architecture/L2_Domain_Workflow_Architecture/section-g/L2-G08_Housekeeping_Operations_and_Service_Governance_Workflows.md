@@ -5,7 +5,7 @@
 **Domain:** G08 — Housekeeping Operations & Service Governance  
 **Document ID:** L2-G08  
 **Version:** 1.0  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Classification:** Level 2 Domain Architecture  
 **Document Owner:** Campus Operations — Housekeeping
 
@@ -2119,6 +2119,6 @@ Housekeeping Operations follows the enterprise architectural principles establis
 **L2-G08 — Housekeeping Operations & Service Governance Workflows**
 
 **Version:** 1.0  
-**Status:** Trust Certification Ready
+**Status:** Locked
 
 

@@ -36,7 +36,7 @@
 | Document Owner | Finance — Asset Accounting |
 | Depends On | L2-F00 Finance Domain Model & Foundation, L2-F05 General Ledger, L2-F09 Financial Period & Closing, Section J |
 | Referenced By | Financial Reporting, Accounts Payable, Treasury, Section J, Audit, Analytics |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 1.1.0 |
 
 ---

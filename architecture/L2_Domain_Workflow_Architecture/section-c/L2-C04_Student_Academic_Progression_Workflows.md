@@ -4,7 +4,7 @@ title: Student Academic Progression Workflows
 level: Level 2 Architecture
 section: Section C – Student Lifecycle
 version: 1.0.0
-status: Trust Certification Ready
+status: Locked
 document_owner: Student Lifecycle — Academic Progression
 parent: L1 Business Domain Architecture
 architectural_tier: Level 2 – Domain Workflow Architecture

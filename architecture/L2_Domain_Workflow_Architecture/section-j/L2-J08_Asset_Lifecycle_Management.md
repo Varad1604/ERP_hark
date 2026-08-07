@@ -14,7 +14,7 @@
 | Primary Aggregate | Asset |
 | Canonical Owner | Operational Asset Lifecycle Management |
 | Document Owner | Enterprise Resource Management — Asset Lifecycle |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 1.1 |
 
 ---

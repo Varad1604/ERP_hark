@@ -13,7 +13,7 @@
 | Primary Aggregate | Dashboard |
 | Supporting Aggregates | Dashboard Template, Workspace, Widget Configuration, Dashboard Layout |
 | Communication Pattern | Commands, Queries, Domain Events |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 1.0 |
 | Repository | SutraERP Canonical Enterprise Repository |
 | Classification | Canonical Enterprise Architecture |

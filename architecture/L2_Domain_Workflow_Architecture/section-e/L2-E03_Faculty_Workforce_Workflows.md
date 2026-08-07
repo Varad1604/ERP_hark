@@ -34,7 +34,7 @@
 | Platform | SutraERP |
 | Document Type | Domain Architecture Specification |
 | Version | 1.0.0 |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Classification | Internal Architecture Document |
 | Primary Domain Owner | Faculty Workforce Domain |
 | Architecture Owner | SutraERP Enterprise Architecture |

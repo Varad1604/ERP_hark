@@ -1,7 +1,7 @@
 # L2-I09 — Result Processing & Computation Workflows
 
 **Section:** I — Examination  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Examinations — Result Processing
 
 ---

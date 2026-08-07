@@ -1,7 +1,7 @@
 # L2-E07 — Employee Profile Workflows
 
 **Document Version:** 1.0  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** People & Workforce — Employee Profile  
 **Classification:** Enterprise Architecture  
 **Bounded Context:** Employee Profile  

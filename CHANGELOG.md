@@ -2,6 +2,51 @@
 
 This document tracks changes to the SutraERP Architecture Repository layout, guidelines, baseline, and locks.
 
+## [1.6.0] - 2026-08-07
+
+L0, L1 and L2 locked. This is the final lock decision for the business architecture
+levels. No architectural content changed: only document status metadata and the
+status columns of the index, matrix and AI-context trackers were touched.
+
+### Changed
+- **All 107 L2 documents are now `Locked`.** 104 were promoted from
+  `Trust Certification Ready`; 252 status declarations across 105 files under
+  `architecture/L2_Domain_Workflow_Architecture/` were updated (header status lines,
+  Document Metadata tables, and status-like footers together, preserving the INT-020
+  one-canonical-status-per-document invariant).
+- `L2-E04_HR_Workflows.md`, `L2-E05_Leave_Management_Workflows.md` and
+  `L2-E06_Payroll_Workflows.md` carried `Draft` in their Document Metadata tables and no
+  header status line, and were the three documents the index recorded as unresolved.
+  Their metadata status is now `Locked` (E05's malformed multiline `Draft`/`Phase` cell
+  was collapsed to a single canonical value; E06 was corrected in both its header
+  metadata table and its §25.1 Document Status table).
+- `architecture/L2_Domain_Workflow_Architecture/L2_DOMAIN_WORKFLOW_MATRIX.md` — all 110
+  per-document status entries updated to `Status: [Locked]`.
+- `architecture/ARCHITECTURE_INDEX.md` — 104 L2 rows moved from
+  `Trust Certification Ready` to `Locked` and 3 from `Draft`; the status note under the
+  Document Status Legend rewritten to record the lock and to retire the
+  "E04/E05/E06 excluded" exception; a Recent Changes entry added.
+- `AI_CONTEXT/REPO_UNDERSTANDING.md` — 106 L2 rows synced to `Locked`. This also cleared
+  10 rows that had drifted out of sync with the index and still carried the pre-INT-020
+  values `Architecture Locked`, `Approved Baseline`, `Architecture Baseline`,
+  `Architecture Approved` and `Certified & Locked` (`L2-A00`, `L2-B02`, `L2-D00`
+  through `L2-D07`).
+- `AI_CONTEXT/SECTION_J/README.md` — section status synced to `Locked`.
+
+### Unchanged
+- **L0** (`SutraERP_Architecture_Workflow_Context_Baseline.md`, `Document Status: Locked`)
+  and **L1** (`SutraERP_L1_Business_Domain_Architecture_Locked.md`, `Status: LOCKED`)
+  were already locked. Verified, not edited.
+- **L3** and **L5** are outside the requested scope. L3 governance documents keep their
+  Phase 1 statuses and `L5-00`/`L5-01` remain `Trust Certification Ready`.
+- `TEAM_ASSIGNMENTS.md` remains `Active`: it is an ownership control document, not an
+  architecture specification, and the index records it as such.
+- The status vocabulary in `governance/constitution/Volume_2_Repository_Standards.md` §7,
+  the legend tables that mirror it, `README.md`, `CONTRIBUTING.md` and the historical
+  records under `generated/reviews/` were not modified.
+
+---
+
 ## [1.5.3] - 2026-08-07
 
 L3 Phase 1 discovery workload distribution locked. Scope is Phase 1 discovery only:

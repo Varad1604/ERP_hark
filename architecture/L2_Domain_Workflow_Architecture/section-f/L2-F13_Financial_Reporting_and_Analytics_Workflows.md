@@ -33,7 +33,7 @@
 | Architecture Level | Level 2 – Domain Workflow Architecture |
 | Domain | Finance |
 | Module | Financial Reporting & Analytics |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Document Owner | Finance — Reporting & Analytics |
 | Version | 1.0.0 |
 | Review Authority | Finance Architecture Team |

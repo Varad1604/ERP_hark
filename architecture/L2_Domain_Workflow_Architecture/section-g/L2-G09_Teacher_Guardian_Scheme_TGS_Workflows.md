@@ -5,7 +5,7 @@
 **Domain Code:** G09  
 **Domain Name:** Teacher Guardian Scheme (TGS)  
 **Architecture Level:** Enterprise Business Workflow  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Campus Operations — Teacher Guardian Scheme
 
 **Upstream Dependencies**

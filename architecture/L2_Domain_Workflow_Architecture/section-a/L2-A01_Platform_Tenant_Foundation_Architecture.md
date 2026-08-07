@@ -4,7 +4,7 @@ title: Platform & Tenant Foundation
 level: Level 2 Architecture
 section: A - Platform Foundation
 version: 1.0.0
-status: Trust Certification Ready
+status: Locked
 owner: Platform Foundation — Tenancy
 document_owner: Platform Foundation — Tenancy
 reviewers:
@@ -56,7 +56,7 @@ last_updated: YYYY-MM-DD
 | Document ID | L2-A01 |
 | Architecture Level | Level 2 |
 | Domain | Platform Foundation |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Owner | Platform Foundation — Tenancy |
 | Architecture Layer | Foundation |
 | Parent Architecture | Level 1 Platform Architecture |
@@ -3543,4 +3543,4 @@ L2-A01 defines canonical platform concepts rather than a data-model entity catal
 
 # End of Document
 
-Status: Trust Certification Ready
+Status: Locked

@@ -33,7 +33,7 @@
 | Architecture Level | Level 2 — Domain Workflow Architecture |
 | Domain | Finance |
 | Module | Procurement Finance Interface |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 1.1.0 |
 | Review Authority | Finance Architecture Team |
 | Document Owner | Finance — Procurement Consumption |

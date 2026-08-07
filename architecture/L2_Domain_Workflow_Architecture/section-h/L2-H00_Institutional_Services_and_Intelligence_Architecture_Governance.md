@@ -1,7 +1,7 @@
 # L2-H00 — Services & Intelligence Review
 
 Version: 2.0
-Status: Trust Certification Ready
+Status: Locked
 Document Owner: Institutional Services & Intelligence
 Classification: Enterprise Architecture Governance
 Parent Document:
@@ -1612,7 +1612,7 @@ The following documents constitute the normative references for Section H govern
 | Document Name | L2-H00 - Section H Architecture Governance and Certification |
 | Architecture Layer | Level-2 Enterprise Architecture |
 | Domain | Section H - Institutional Services and Intelligence |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 2.0 |
 | Classification | Enterprise Architecture Governance |
 | Approval Authority | Architecture Review Board |

@@ -32,7 +32,7 @@
 | Document Name | Financial Adjustment Management |
 | Architecture Level | Level 2 – Domain Architecture |
 | Domain | Finance |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 1.0.0 |
 | Document Owner | Finance — Financial Adjustments |
 | Depends On | L2-F00 Finance Foundation, L2-F01 Student Charge & Fee Management, L2-F02 Payment Management, L2-F03 Refund Management |

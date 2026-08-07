@@ -1,7 +1,7 @@
 # L2-H09 — Accreditation & Compliance Workflows
 
 **Section:** H — Institutional Services & Intelligence  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Institutional Intelligence — Accreditation & Compliance
 
 ---

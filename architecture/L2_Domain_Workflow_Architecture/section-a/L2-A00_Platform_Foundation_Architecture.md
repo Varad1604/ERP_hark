@@ -3,7 +3,7 @@
 **Document ID:** L2-A00  
 **Architecture Level:** Level 2 — Platform Foundation  
 **Domain:** Enterprise Platform Architecture  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Review Authority:** Enterprise Architecture Board  
 **Document Owner:** Platform Foundation  
 **Primary Audience:** Enterprise Architects, Domain Architects, Platform Architects, Technical Governance Teams, Solution Architects, Engineering Leadership

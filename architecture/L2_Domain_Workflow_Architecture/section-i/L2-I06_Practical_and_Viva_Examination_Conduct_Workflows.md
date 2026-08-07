@@ -1,7 +1,7 @@
 # L2-I06 — Practical & Viva Examination Conduct Workflows
 
 **Section:** I — Examination  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Examinations — Practical & Viva Conduct
 
 ---

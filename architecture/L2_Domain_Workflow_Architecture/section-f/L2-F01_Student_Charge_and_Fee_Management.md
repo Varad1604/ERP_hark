@@ -1,7 +1,7 @@
 # L2-F01 — Student Charge & Fee Management
 
 **Section:** F — Finance  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Finance — Student Charges & Fees
 
 ---

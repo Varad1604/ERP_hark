@@ -5,7 +5,7 @@
 **Domain:** G06 — Institutional Health Services & Medical Workflows  
 **Document ID:** L2-G06  
 **Version:** 1.0  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Classification:** Level 2 Domain Architecture  
 **Document Owner:** Campus Operations — Health Services
 
@@ -2199,4 +2199,4 @@ Institutional Health Services follows the enterprise architectural principles es
 **L2-G06 — Institutional Health Services & Medical Workflows**
 
 **Version:** 1.0  
-**Status:** Trust Certification Ready
+**Status:** Locked

@@ -5,7 +5,7 @@
 | Architecture Level | Level 2 — Domain Architecture |
 | Domain | Finance |
 | Document Code | L2-F08 |
-| Status | Trust Certification Ready |
+| Status | Locked |
 | Version | 1.0 |
 | Canonical Owner | Finance Architecture |
 | Document Owner | Finance — Accounts Payable |
@@ -4163,7 +4163,7 @@ All subsequent Level 3 (Component), Level 4 (Service), and implementation-level 
 
 Architectural deviations shall require formal governance review and explicit approval before adoption.
 
-**Document Status:** Trust Certification Ready
+**Document Status:** Locked
 
 ---
 

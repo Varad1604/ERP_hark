@@ -5,7 +5,7 @@
 **Domain:** G05 — Library Management  
 **Document ID:** L2-G05  
 **Version:** 1.0  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Classification:** Level 2 Domain Architecture  
 **Document Owner:** Campus Operations — Library
 
@@ -2397,4 +2397,4 @@ Library Management follows the enterprise architectural principles established b
 **L2-G05 — Library Management Workflows**
 
 **Version:** 1.0  
-**Status:** Trust Certification Ready
+**Status:** Locked

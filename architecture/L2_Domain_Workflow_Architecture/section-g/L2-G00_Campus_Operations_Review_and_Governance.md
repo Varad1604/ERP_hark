@@ -5,7 +5,7 @@
 **Domain:** G00 — Campus Operations Review & Governance  
 **Document ID:** L2-G00  
 **Version:** 1.0  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Classification:** Level 2 Domain Architecture  
 **Document Owner:** Campus Operations
 
@@ -1810,4 +1810,4 @@ Campus Operations Review follows the enterprise architectural principles establi
 **L2-G00 — Campus Operations Review & Governance**
 
 **Version:** 1.0  
-**Status:** Trust Certification Ready
+**Status:** Locked

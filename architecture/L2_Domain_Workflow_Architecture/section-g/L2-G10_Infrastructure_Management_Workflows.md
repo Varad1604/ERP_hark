@@ -5,7 +5,7 @@
 **Domain:** G10 — Infrastructure Management  
 **Document ID:** L2-G10  
 **Version:** 1.0  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Classification:** Level 2 Domain Architecture  
 **Document Owner:** Campus Operations — Infrastructure Management  
 **Dependencies:** Section A – Platform Foundation, Section B – Institution & Structure (Institutional Campus Governance Reference), Section E – People & Workforce
@@ -9519,4 +9519,4 @@ Downstream domains consume Infrastructure through published service contracts an
 **L2-G10 — Infrastructure Management Workflows**
 
 **Version:** 1.0  
-**Status:** Trust Certification Ready
+**Status:** Locked

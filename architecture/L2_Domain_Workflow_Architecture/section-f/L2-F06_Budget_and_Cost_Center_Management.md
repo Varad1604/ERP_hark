@@ -1,7 +1,7 @@
 # L2-F06 — Budget & Cost Center Management
 
 **Section:** F — Finance  
-**Status:** Trust Certification Ready  
+**Status:** Locked  
 **Document Owner:** Finance — Budgeting & Cost Centers
 
 ---
