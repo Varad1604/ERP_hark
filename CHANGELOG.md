@@ -2,6 +2,57 @@
 
 This document tracks changes to the SutraERP Architecture Repository layout, guidelines, baseline, and locks.
 
+## [1.5.3] - 2026-08-07
+
+L3 Phase 1 discovery workload distribution locked. Scope is Phase 1 discovery only:
+no canonical ownership, dependency, lifecycle, event or business-rule content changed.
+
+### Added
+- `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Workload_Distribution_Decision.md`
+  records the locked Phase 1 discovery distribution, its rationale, its non-impact on
+  canonical ownership, and its change-control rules. Registered in the L3 `README.md`
+  folder tree and governance document list.
+
+### Changed
+- **Locked Phase 1 discovery distribution** — Dhruv: Sections A and J, cross-domain
+  candidates, governance, pilot framing. Varad: Sections G, F and H. Pallav: Sections B,
+  D and E. Chetan: Section C. Devang: Section I. Applied to
+  `L3_Phase1_Team_Instructions.md` section 5 and to
+  `SutraERP_Level_3_Development_Path_Team_Discussion.md` section 12, replacing the
+  previous split (Dhruv: A + H; Varad: Student Lifecycle/Workforce; Pallav: Institution/
+  Delivery; Devang: Examination + Campus Operations; Chetan: Finance/Procurement/
+  Inventory/Asset). The mandatory non-impact wording accompanies every occurrence.
+- `SutraERP_Level_3_Development_Path_Team_Discussion.md` — removed the illustrative
+  Creator / Mandatory Reviewers example table. It embedded the superseded per-person
+  mapping and would have survived as a stale distribution reference. Replaced by a
+  statement that creator and reviewer assignment is decided during Phase 2 consolidation
+  and is not implied by the Phase 1 distribution. The file keeps its
+  `Discussion Draft — Not Yet Locked` status.
+- `AI_CONTEXT/L3_Phase1_Governance_Context.md` regenerated from the seven canonical L3
+  governance sources, now including the new decision file. The previous build was
+  mojibake-corrupted from an earlier cp1252 round-trip: every em dash, arrow and
+  box-drawing character had been mangled into a three-character sequence. The rebuild
+  reads and writes UTF-8, so em dashes, arrows, bullets and table pipes are correct. This file is a convenience AI context file only; the separate
+  governance files remain canonical.
+- `AI_CONTEXT/REPO_UNDERSTANDING.md` — the L3 section claimed "placeholder folder only,
+  NO SOURCE DOCUMENTS PRESENT" and quoted a README text that no longer exists. Corrected
+  to record that Phase 1 discovery is active with six governance documents present and no
+  L3 scenario documents, and to carry the Phase 1 distribution with an explicit warning
+  that it is not section ownership. The canonical Domain Map and Team Ownership tables in
+  the same file are unchanged.
+
+### Unchanged (deliberately)
+- `ARCHITECTURE_INDEX.md`, `DEPENDENCY_MAP.md`,
+  `SutraERP_Architecture_Workflow_Context_Baseline.md`,
+  `SutraERP_L1_Business_Domain_Architecture_Locked.md`, `L2_DOMAIN_WORKFLOW_MATRIX.md`,
+  `architecture/L2_Domain_Workflow_Architecture/TEAM_ASSIGNMENTS.md`, all
+  `*_Canonical_AI_Context.md` files, `README.md` and `CONTRIBUTING.md`. Canonical section
+  ownership (A and H: Dhruv; B and D: Pallav; C and E: Varad; F and J: Chetan; G and I:
+  Devang) and the Finance Review Team are untouched and continue to differ from the
+  Phase 1 discovery distribution by design.
+
+---
+
 ## [1.5.2] - 2026-08-06
 
 Remediation against `generated/reviews/review-repository-integrity-2026-08-06.md`.
