@@ -613,81 +613,35 @@ The exact daily Plus-review capacity is still open.
 
 # 12. Team Assignment Direction
 
-The exact scenario allocation will be finalized after Phase 1 and Phase 2.
+The exact final scenario allocation will be finalized after Phase 1 and Phase 2.
 
-The working responsibility areas are:
+## Phase 1 Discovery Workload Distribution — Locked Working Decision
 
-## Dhruv
+The following distribution is locked for Phase 1 discovery workload planning.
 
-- L3 governance;
-- template management;
-- platform;
-- identity;
-- authorization;
-- workflow;
-- events;
-- audit;
-- Section H;
-- cross-domain consolidation;
-- final architecture decisions.
+| Team Member | Phase 1 Discovery Responsibility |
+|---|---|
+| Dhruv | Section A — Platform Foundation; Section J — Enterprise Resource Management; cross-domain candidates; governance; pilot framing |
+| Varad | Section G — Campus Operations; Section F — Finance; Section H — Institutional Services & Intelligence |
+| Pallav | Section B — Institution & Structure; Section D — Academic Delivery; Section E — People & Workforce |
+| Chetan | Section C — Student Lifecycle |
+| Devang | Section I — Examination |
 
-## Pallav
+This replaces earlier working distribution assumptions.
 
-- institution;
-- organisation;
-- curriculum;
-- academic calendar;
-- operational readiness;
-- academic delivery;
-- timetable;
-- teaching and attendance.
+This is a Phase 1 discovery workload distribution only.
+It does not change L1/L2 canonical ownership.
+It does not change domain ownership.
+It does not lock final L3 scenario ownership.
+Final L3 scenario ownership will be confirmed during Phase 2 consolidation.
 
-## Varad
+The full rationale and change-control rules for this distribution are recorded in `00_Governance/L3_Phase1_Workload_Distribution_Decision.md`.
 
-- admissions;
-- student lifecycle;
-- registration;
-- progression;
-- qualification;
-- workforce;
-- HR;
-- leave;
-- payroll.
-
-## Chetan
-
-- fees;
-- payments;
-- refunds;
-- accounting;
-- budgeting;
-- procurement;
-- inventory;
-- assets;
-- payables and receivables.
-
-## Devang
-
-- campus services;
-- infrastructure;
-- hostel;
-- transport;
-- security;
-- housekeeping;
-- examination;
-- examination exceptions.
+## Cross-Domain Working Method
 
 For cross-domain scenarios, one person will be the creator and other affected domain owners will be mandatory reviewers.
 
-### Example
-
-| Scenario | Creator | Mandatory Reviewers |
-|---|---|---|
-| Approved Candidate to Active Student | Varad | Dhruv, Chetan |
-| Academic Registration to First Teaching Session | Pallav | Varad, Devang |
-| Examination to Result Publication | Devang | Pallav, Varad |
-| Procurement to Inventory | Chetan | Devang, Pallav |
-| Qualification to Alumni | Varad | Devang, Dhruv |
+The creator and reviewer assignment for each final L3 scenario is decided during Phase 2 consolidation. It is not implied by the Phase 1 discovery distribution above.
 
 Final assignments are not yet locked.
 

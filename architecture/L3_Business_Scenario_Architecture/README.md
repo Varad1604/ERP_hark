@@ -109,6 +109,7 @@ L3_Business_Scenario_Architecture/
 │   ├── L3_Naming_Numbering_Standard.md
 │   ├── L3_Phase1_Discovery_Rules.md
 │   ├── L3_Phase1_Team_Instructions.md
+│   ├── L3_Phase1_Workload_Distribution_Decision.md
 │   └── L3_Scenario_Type_and_Priority_Rules.md
 │
 └── 01_Phase1_Discovery/
@@ -140,6 +141,10 @@ Defines the allowed scenario type and priority values.
 ### `L3_Phase1_Team_Instructions.md`
 
 Defines how each team member should prepare and submit their Phase 1 inventory.
+
+### `L3_Phase1_Workload_Distribution_Decision.md`
+
+Records the locked Phase 1 discovery workload distribution, its rationale, and its non-impact on canonical L1/L2 ownership.
 
 ### `L3_Business_Scenario_Template_v1.0.md`
 

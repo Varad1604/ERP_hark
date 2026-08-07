@@ -1585,7 +1585,7 @@ Variance:
 -1
 
 Configured Tolerance:
-Â±2
+±2
 
 Tolerance Result:
 Within Tolerance

@@ -78,19 +78,25 @@ If extra notes are required, they may be kept separately by the author, but they
 
 The following split is locked for Phase 1 discovery only.
 
-It does not change L1 or L2 canonical ownership.
+| Team Member | Phase 1 Discovery Responsibility                                                                                                |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Dhruv       | Section A — Platform Foundation; Section J — Enterprise Resource Management; cross-domain candidates; governance; pilot framing |
+| Varad       | Section G — Campus Operations; Section F — Finance; Section H — Institutional Services & Intelligence                           |
+| Pallav      | Section B — Institution & Structure; Section D — Academic Delivery; Section E — People & Workforce                              |
+| Chetan      | Section C — Student Lifecycle                                                                                                   |
+| Devang      | Section I — Examination                                                                                                         |
 
+```text
+This is a Phase 1 discovery workload distribution only.
+It does not change L1/L2 canonical ownership.
+It does not change domain ownership.
 It does not lock final L3 scenario ownership.
-
-| Team Member | Phase 1 Discovery Responsibility                                                                                    |
-| ----------- | ------------------------------------------------------------------------------------------------------------------- |
-| Dhruv       | Platform Foundation, Section H, governance, cross-domain scenario candidates, pilot framing                         |
-| Varad       | Student Lifecycle, Academic Progression, Qualification Completion, Workforce, HR, Leave, Payroll-related candidates |
-| Pallav      | Institution, Organisation, Curriculum, Academic Calendar, Academic Delivery, Timetable, Teaching, Attendance        |
-| Devang      | Selected Examination and selected Campus Operations candidates                                                      |
-| Chetan      | Selected Finance, Procurement, Inventory, Asset, Payables/Receivables candidates                                    |
+Final L3 scenario ownership will be confirmed during Phase 2 consolidation.
+```
 
 Final scenario ownership, final scenario creator, and mandatory reviewers will be decided during Phase 2 consolidation.
+
+The full rationale and change-control rules for this distribution are recorded in `L3_Phase1_Workload_Distribution_Decision.md`.
 
 ---
 
