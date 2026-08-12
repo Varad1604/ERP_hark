@@ -110,7 +110,10 @@ L3_Business_Scenario_Architecture/
 │   ├── L3_Phase1_Discovery_Rules.md
 │   ├── L3_Phase1_Team_Instructions.md
 │   ├── L3_Phase1_Workload_Distribution_Decision.md
-│   └── L3_Scenario_Type_and_Priority_Rules.md
+│   ├── L3_Scenario_Type_and_Priority_Rules.md
+│   ├── L3_Section_A_Phase1_Audit_Application_Report_2026-08-08.md
+│   ├── L3_Section_A_Phase2_Consolidation_Watchlist.md
+│   └── L3_Section_C_Phase2_Consolidation_Watchlist.md
 │
 └── 01_Phase1_Discovery/
     ├── L3_Phase1_Inventory_Chetan.md
@@ -149,6 +152,24 @@ Records the locked Phase 1 discovery workload distribution, its rationale, and i
 ### `L3_Business_Scenario_Template_v1.0.md`
 
 Defines the approved L3 scenario document template for pilot use.
+
+### `L3_Section_A_Phase1_Audit_Application_Report_2026-08-08.md`
+
+Records the application of the independent Section A Phase 1 verification to the repository: the conflicts recorded, the corrections applied, every candidate change with its evidence, the candidates deliberately not added and why, the remaining blockers, and the final Section A coverage audit. It is a change record, not a governance standard — it does not add or amend any Phase 1 rule. Its section 7 Phase 2 watchlist is superseded; see below.
+
+Two blocking repository conflicts recorded by that application remain open and are held in `generated/reviews/review-l3-section-a-conflicts-2026-08-08.md` as integrity findings **INT-301** and **INT-302**. Affected Section A candidates are marked in `L3_Phase1_Inventory_Dhruv.md` and are not authorable until the Architecture Review Board rules.
+
+### `L3_Section_A_Phase2_Consolidation_Watchlist.md`
+
+The authoritative record of the eighteen Section A candidate relationship clusters and their resolution status: `CLOSED` where repository evidence settles the question, `DETERMINED` where a merge is decided but deliberately not executed in Phase 1, `OPEN` where a Phase 2 judgement is genuinely required, and `BLOCKED` where an integrity finding must be ruled on first. Nothing in it has been consolidated and the Section A candidate count is unchanged.
+
+Relationship analysis is held here rather than in an inventory file because `L3_Phase1_Discovery_Rules.md` section 3 requires each inventory to contain candidate scenario rows only.
+
+### `L3_Section_C_Phase2_Consolidation_Watchlist.md`
+
+The equivalent record for Section C — Student Lifecycle, produced by the independent verification of 2026-08-09 (`generated/reviews/l3-phase1-section-c-verification-2026-08-09.md`). It holds four candidate relationship clusters (2 `CLOSED`, 2 `OPEN`) and nine repository conflicts surfaced during discovery (2 `DETERMINED`, 5 `OPEN`, 1 `BLOCKED`, plus one conflict-dependent wording constraint). Nothing in it has been consolidated.
+
+One conflict is blocking: **Policy Management has no owner** (`DEPENDENCY_MAP` section 7, status Open; `L2-C04` §2.6). Until the Lead Architect assigns one, an academic-progression policy lifecycle candidate and an alumni-transition policy lifecycle candidate cannot be discovered. Their absence from `L3_Phase1_Inventory_Chetan.md` is correct, not an omission.
 
 ---
 

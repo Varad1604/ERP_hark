@@ -1,5 +1,9 @@
 # L2-A08 — Module Registry & Configuration Workflows
 
+> **Scope clarification, added 2026-08-08 under integrity finding INT-303.** The word "Configuration" in this document's title is historical and **does not establish configuration ownership**. This document owns module *registry* metadata only. Runtime configuration is explicitly excluded by section 2.2 and is assigned by section 5.1 to the Platform Foundation — specifically to the Platform Configuration Framework in `L2-A01_Platform_Tenant_Foundation_Architecture.md` section 6, whose section 6.5 distributes configuration ownership by layer. Section 5 (Canonical Ownership) lists seventeen owned concepts and none of them is configuration. No configuration ownership may be inferred from this document's title or filename.
+>
+> The title was retained rather than corrected because this document carries `Status: Locked` and its title string is referenced by `architecture/ARCHITECTURE_INDEX.md`, `L2_DOMAIN_WORKFLOW_MATRIX.md`, `L2-A09`, `L2-A10`, `SECURITY_REVIEW_CHANGELOG.md` and three generated `AI_CONTEXT` artifacts. Renaming a locked document's identity across eight files is a change-management decision under `governance/constitution/Volume_5_Change_Management.md` section 7, not a defect correction. This note is the minimal-impact correction; a rename remains available to the Architecture Review Board.
+
 ---
 
 ## Canonical Section Crosswalk
@@ -321,7 +325,7 @@ The Module Registry does **not** own:
 | Domain Events | L2-A06 — Event Infrastructure Workflows |
 | Audit Records | L2-A07 — Audit Infrastructure Workflows |
 | Business Entities | Individual Business Domains |
-| Runtime Configuration | Platform Foundation |
+| Runtime Configuration | Platform Foundation — `L2-A01` section 6 Platform Configuration Framework (ownership distributed by layer in section 6.5) |
 | Business Processes | Individual Domain Architectures |
 
 ---
