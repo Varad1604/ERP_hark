@@ -15,7 +15,7 @@
 | Canonical Owner | Operational Asset Lifecycle Management |
 | Document Owner | Enterprise Resource Management — Asset Lifecycle |
 | Status | Locked |
-| Version | 1.1 |
+| Version | 1.2 — INT-018 structural maintenance |
 
 ---
 
@@ -27,17 +27,17 @@
 |---|---|
 | Purpose | §1 Purpose |
 | Scope | §2 Scope |
-| Actors | — not present — |
-| Entities | — not present — |
+| Actors | §17 Canonical Actors |
+| Entities | §18 Canonical Entities |
 | Business Rules | §6 Business Rules |
 | Workflow | Workflows |
 | State Machine | States |
-| Contracts | — not present — |
+| Contracts | §19 Domain Contracts |
 | Events | §11 Domain Events |
-| Dependencies | — not present — |
-| Locked Decisions | — not present — |
+| Dependencies | §20 Dependencies |
+| Locked Decisions | §21 Locked Decisions |
 
-> **Gap:** 5 required section(s) have no counterpart in this document: Actors, Entities, Contracts, Dependencies, Locked Decisions. Recorded, not authored.
+> **INT-018 maintenance:** The five former structural gaps were closed on 2026-08-13 by consolidating semantics already present in §§2–15. No canonical ownership, lifecycle, event, or rule was added.
 
 ---
 
@@ -290,6 +290,44 @@ J08 is complete when:
 J08 is the canonical owner of operational asset lifecycle truth.
 
 It preserves asset identity, custody, assignment, movement, condition, retirement, and operational evidence while Finance owns financial accounting and J10 owns disposal/write-off execution.
+
+---
+
+# 17. Canonical Actors
+
+| Actor | Existing responsibility |
+|---|---|
+| Asset Registrar | Establishes the operational Asset identity and tagging record. |
+| Asset Approver | Independently authorizes registration where configured. |
+| Asset Custodian / Holder | Accepts and returns operational responsibility for an assigned asset. |
+| Transfer Requester / Approver | Requests and independently authorizes movement between custodial contexts. |
+| Independent Verifier | Supplies verification evidence without silently rewriting asset state. |
+| Retirement Recommender / Approver | Proposes and independently authorizes the governed retirement outcome. |
+
+# 18. Canonical Entities
+
+The canonical entity set is the aggregate set already defined in §4: `Asset`, `AssetAssignment`, `AssetTransfer`, and `AssetLifecycleEvent`. Stable external references link supplier, receipt, inventory, movement, verification, disposal and Finance facts without duplicating their masters.
+
+# 19. Domain Contracts
+
+| Contract direction | Existing contract |
+|---|---|
+| Consumes | J05 accepted-goods facts, J06 inventory/item references, J07 asset-linked movement facts, J09 verification findings, and canonical person/department/context references. |
+| Consumes platform outcomes | A03 authentication context, A04 authorization decisions, A05 workflow outcomes, A06 event transport and A07 audit persistence. |
+| Publishes | Asset identity, assignment, custody, condition, retirement and archive facts for J10 and Finance consumers. |
+| Publishes events | The asset facts enumerated in §11; J08 owns meaning and timing while A06 owns transport. |
+
+# 20. Dependencies
+
+J08 requires accepted receipt or other authorised asset-origin evidence plus canonical institution, person, department and location references. It consumes J06/J07 inventory and movement references where applicable and the A03–A07 platform trust services. J09, J10 and Finance remain separate canonical owners of audit conclusions, disposal execution and financial accounting.
+
+# 21. Locked Decisions
+
+1. J08 is the exclusive owner of the Operational Asset Register and operational asset lifecycle truth.
+2. Asset identity is stable; tag, custody, assignment, location and condition changes preserve historical evidence.
+3. J09 findings never silently overwrite J08 state, and J10 disposal facts never bypass governed J08 retirement processing.
+4. Finance owns capitalization, depreciation, book value, derecognition and other financial asset accounting.
+5. Asset lifecycle corrections use governed amendments or supplemental evidence rather than destructive editing.
 
 ---
 

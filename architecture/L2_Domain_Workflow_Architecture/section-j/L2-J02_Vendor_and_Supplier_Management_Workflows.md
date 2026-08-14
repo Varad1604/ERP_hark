@@ -14,7 +14,7 @@
 | Primary Aggregate | Supplier |
 | Canonical Owner | Vendor & Supplier Management |
 | Status | Locked |
-| Version | 1.1 |
+| Version | 1.2 — INT-018 structural maintenance |
 
 ---
 
@@ -26,17 +26,17 @@
 |---|---|
 | Purpose | §1 Purpose |
 | Scope | §3 Scope |
-| Actors | — not present — |
-| Entities | — not present — |
+| Actors | §21 Canonical Actors |
+| Entities | §22 Canonical Entities |
 | Business Rules | Rules / Invariants |
 | Workflow | Workflows |
 | State Machine | States |
-| Contracts | — not present — |
+| Contracts | §23 Domain Contracts |
 | Events | §13 Events |
-| Dependencies | — not present — |
-| Locked Decisions | — not present — |
+| Dependencies | §24 Dependencies |
+| Locked Decisions | §25 Locked Decisions |
 
-> **Gap:** 5 required section(s) have no counterpart in this document: Actors, Entities, Contracts, Dependencies, Locked Decisions. Recorded, not authored.
+> **INT-018 maintenance:** The five former structural gaps were closed on 2026-08-13 by consolidating semantics already present in §§3–16. No canonical ownership, lifecycle, event, or rule was added.
 
 ---
 
@@ -412,6 +412,48 @@ J02 is complete when:
 J02 is the canonical owner of supplier identity and supplier governance within SutraERP.
 
 It preserves trusted supplier information, sensitive supplier data controls, supplier governance evidence, and supplier lifecycle history while procurement, finance, inventory, assets, audit, reporting, and platform capabilities retain their separate canonical responsibilities.
+
+---
+
+# 21. Canonical Actors
+
+The following business actors are already established by the supplier lifecycle, authorization, portal, and audit sections:
+
+| Actor | Existing responsibility |
+|---|---|
+| Supplier Representative | Submits or maintains permitted supplier information through the portal trust boundary; cannot verify, qualify, approve, or remove institutional restrictions on itself. |
+| Supplier Creator / Onboarding Requester | Registers and submits a prospective supplier. |
+| Institutional Verifier | Performs supplier verification and evidence decisions independently of the supplier representative. |
+| Supplier Approver | Approves or rejects onboarding and activation under applicable authority. |
+| Qualification Authority | Grants, expires, or changes category- and scope-specific qualification. |
+| Sensitive-Change Requester / Approver | Requests and independently approves governed legal, tax, banking, contact, or other sensitive changes. |
+| Supplier Governance Authority | Proposes or approves restriction, suspension, blacklisting, reactivation, inactivation, closure, or merge decisions. |
+
+# 22. Canonical Entities
+
+The canonical entity set is the aggregate set already defined in §5: `Supplier`, `SupplierVerification`, `SupplierQualification`, `SupplierSensitiveChange`, `SupplierGovernanceCase`, and `SupplierMergeRecord`. Stable identifiers and evidence references preserve relationships without duplicating procurement, finance, identity, or audit masters.
+
+# 23. Domain Contracts
+
+| Contract direction | Existing contract |
+|---|---|
+| Consumes | Tenant/institution scope, A03 authentication context, A04 authorization decisions, A05 workflow outcomes, A06 event transport, and A07 audit persistence. |
+| Publishes to J01/J03/J04/J05 | Canonical supplier identifier, approval/activation status, qualification and eligibility, and supplier lifecycle facts required by sourcing, requisition, ordering, and receipt. |
+| Publishes to Finance | Authorised supplier tax, profile, and banking references; Finance independently authorizes accounting and payment consequences. |
+| Publishes to reporting | Governed supplier read models and evidence mappings that never become authoritative supplier truth. |
+| Publishes events | The supplier business facts enumerated in §13; A06 owns their transport and delivery. |
+
+# 24. Dependencies
+
+J02 requires tenant and institution context plus the A03–A07 platform trust services already named in §§4, 10–13 and 15. J01, J03, J04, J05, Finance and reporting are consumers of J02 supplier contracts, not co-owners of Supplier Master state. J02 shall not directly write their persistence.
+
+# 25. Locked Decisions
+
+1. J02 is the exclusive canonical owner of Supplier Master identity and supplier-governance lifecycle.
+2. Supplier approval does not imply supplier selection, purchase authorization, payment authorization, or tax-accounting approval.
+3. Supplier representatives cannot approve or verify their own governed supplier state or remove institutional restrictions.
+4. Finance retains accounting and payment authority even when it consumes approved supplier banking/profile references.
+5. Historical supplier identity, merge, sensitive-change, qualification, restriction, suspension, blacklisting, and closure evidence is preserved rather than destructively rewritten.
 
 ---
 

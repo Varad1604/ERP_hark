@@ -338,7 +338,7 @@ Reference Data remains governed through the same platform rules when it is publi
 
 Configuration Data is different. It controls runtime behaviour, tenant-specific settings, feature choices, or operational parameters, and is owned by the Platform Configuration Framework defined in `L2-A01_Platform_Tenant_Foundation_Architecture.md` section 6, whose section 6.5 distributes configuration ownership by layer: Platform Defaults and Tenant Configuration to L2-A01, Institution Configuration to L2-B01, Organisation Configuration to L2-B02, Business Domain Configuration to the respective Level 2 domain, and Operational Runtime Configuration to Platform Services.
 
-> **Corrected 2026-08-08 under integrity finding INT-304.** This paragraph previously read "owned by the configuration management domain that will be defined separately in A10". `L2-A10` is Operational Readiness Workflows and defines no configuration management responsibility; the reference was a dangling pointer to a domain that was never created at that address. The substantive boundary stated in this section — that the Master Data Platform does not own configuration — is unchanged and remains correct. No configuration ownership was created, moved or invented by this correction.
+> **Corrected 2026-08-08 under integrity finding INT-304.** This paragraph previously read "owned by the configuration management domain that will be defined separately in A10". `L2-A10` is Operational Readiness Governance & Certification Workflows and defines no configuration management responsibility; the reference was a dangling pointer to a domain that was never created at that address. The substantive boundary stated in this section — that the Master Data Platform does not own configuration — is unchanged and remains correct. No configuration ownership was created, moved or invented by this correction.
 
 The ownership and governance distinctions are as follows:
 
@@ -4261,5 +4261,4 @@ Business domains remain the authoritative owners of business meaning and operati
 The platform governs **how** enterprise data is managed—not **what** the data represents.
 
 By separating governance responsibilities from business ownership, the Master Data Platform provides a scalable, extensible, and technology-independent foundation for trusted enterprise information management across all SutraERP domains.
-
 

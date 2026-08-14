@@ -1,5 +1,7 @@
 # L2 Canonical Section Gap Report
 
+> **Follow-up — 2026-08-13:** The gaps listed here remain a historical repository-wide snapshot. The approved targeted maintenance pass has closed all listed crosswalk gaps in L2-J02 through L2-J08 and L2-J10. Other files in this report were outside that approval and were not changed by the Dhruv audit application.
+
 **Finding:** INT-018 | **Date:** 2026-08-04 | **Files:** 107
 
 Volume 3 section 18 requires eleven sections in every L2 document. The Canonical

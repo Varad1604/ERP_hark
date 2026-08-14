@@ -354,6 +354,10 @@ used to argue that ownership or upstream direction has changed.
 | `L2-G09` Teacher Guardian Scheme | Section F | Read model | Fee Summary, Outstanding Amount, Installment Status, Financial Hold Status. Financial ownership remains with Finance. |
 | `L2-G07` Security | Section J | Runtime contract | Security Vendor Contracts — supplier and procurement operations (`L2-G07` line 2162). Accounting and payment consequences route to Section F, above. |
 | `L2-G08` Housekeeping | Section J | Runtime contract | Vendor Contracts — supplier and procurement operations (`L2-G08` line 2080). Accounting and payment consequences route to Section F, above. |
+| `L2-C04` Academic Progression | `L2-H10` External Education Integration | Runtime contract | Verified external credit-transfer request, provider evidence and mapping context. C04 alone owns equivalency, academic approval/rejection and the Academic Credit Ledger. |
+| `L2-H10` External Education Integration | `L2-C04` Academic Progression | Event consumption | Authoritative `CreditTransferRecognised` or `CreditTransferRejected` decision reference, consumed only to synchronize the external request and provider boundary. |
+| `L2-H07` Enterprise Dashboard | Sections F and G | Read model | Financial and campus-operational reports, KPIs and governed projections. H07 owns dashboard composition; source domains retain fact, computation, report and KPI ownership. |
+| `L2-H09` Accreditation and Compliance | `L2-G00` Campus Operations Review | Runtime contract | Campus operational governance evidence, readiness reports and review history used as accreditation evidence. H09 owns the institutional accreditation-readiness decision. |
 
 > **Section G entries added 2026-08-06 under integrity finding INT-202.** Ten Section G
 > documents declared Sections C, D and F under a `**Upstream Dependencies**` heading,

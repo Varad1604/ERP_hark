@@ -19,12 +19,12 @@
 | Business Rules | §8 Business Rules |
 | Workflow | §5 Core Business Workflows; §12 Notification Workflows; L2-H09 — Accreditation & Compliance Workflows |
 | State Machine | §7 State Transition Rules |
-| Contracts | — not present — |
+| Contracts | §23 Integration Contracts |
 | Events | §11 Events; Domain Events |
-| Dependencies | — not present — |
-| Locked Decisions | — not present — |
+| Dependencies | §24 Dependency Model |
+| Locked Decisions | §25 Locked Architecture Decisions |
 
-> **Gap:** 3 required section(s) have no counterpart in this document: Contracts, Dependencies, Locked Decisions. Recorded, not authored.
+All eleven canonical Level-2 sections now have an explicit counterpart in this document.
 
 ---
 
@@ -3597,7 +3597,7 @@ Each audit log entry shall include:
 - Corrective & Preventive Actions (CAPA)
 - Institutional Quality Improvement
 - Accreditation Readiness
-- Compliance Dashboards
+- Compliance dashboard-ready projections
 - Quality Governance Analytics
 
 ---
@@ -3606,10 +3606,9 @@ Each audit log entry shall include:
 
 ### Section A
 
-- Student master data
-- Academic records
-- Enrollment information
-- Student outcomes
+- Identity, authentication and authorization context
+- Workflow, event and audit infrastructure
+- Master-data references
 
 ### Section B
 
@@ -3618,19 +3617,20 @@ Each audit log entry shall include:
 - Courses
 - Learning outcomes
 - Academic regulations
+- Institution, organisation and campus identity
+- Academic calendar
 
 ### Section C
 
-- Examination data
-- Assessment statistics
-- Result analytics
+- Student master and lifecycle context
+- Admissions and enrollment information
+- Academic progression and qualification outcomes
 
 ### Section D
 
-- Finance
-- Procurement
-- Assets
-- Budget utilization
+- Course offerings and academic delivery
+- Teaching, attendance and internal-assessment evidence
+- Academic performance and intervention facts
 
 ### Section E
 
@@ -3642,18 +3642,17 @@ Each audit log entry shall include:
 
 ### Section F
 
-- Research
-- Publications
-- Grants
-- Consultancy
+- Financial reports and statutory financial evidence
+- Budget, accounting, payment and aid outcomes
 
 ### Section G
 
+- Campus Operations evidence readiness
+- Facilities and infrastructure
 - Library
 - Hostel
 - Transport
-- Placement
-- Alumni
+- Laboratory, health, security and housekeeping operations
 
 ### Section H
 
@@ -3665,6 +3664,16 @@ Each audit log entry shall include:
 - H06 Alumni
 - H07 Enterprise Dashboard
 - H08 NEP, NAAC & AISHE Reporting
+
+### Section I
+
+- Examination sessions and conduct
+- Evaluation, grades, results and completion evidence
+
+### Section J
+
+- Procurement and supplier governance
+- Inventory, warehouse, stock and asset lifecycle evidence
 
 ---
 
@@ -3733,7 +3742,150 @@ These remain owned and governed by their own bounded contexts and are referenced
 
 ---
 
-# 23. Conclusion
+# 23. Integration Contracts
+
+H09 collaborates through business contracts that preserve the authority of source domains. A contract permits H09 to govern accreditation and compliance outcomes; it never permits H09 to rewrite the operational fact used as evidence.
+
+## 23.1 Source Evidence Reference Contract
+
+Authoritative domains provide governed evidence references containing, where applicable:
+
+- tenant, institution, organisation and campus context;
+- source-domain identifier and owning section;
+- source record identifier and immutable version reference;
+- effective date or reporting period;
+- evidence classification and permitted accreditation purpose;
+- verification status, provenance and integrity reference;
+- retention and access restrictions; and
+- correlation to the applicable framework, cycle, requirement, audit, finding or CAPA.
+
+H09 stores the evidence reference, governed metadata, approved evidence snapshot, validation decision and accreditation context. The source domain retains ownership of the operational record and its business lifecycle.
+
+## 23.2 Accreditation Readiness Evidence Contract
+
+Campus Operations and other participating domains publish verified readiness evidence and unresolved gaps. H09 consumes that evidence to produce the authoritative accreditation-readiness assessment and decision.
+
+The contract shall distinguish:
+
+- a source domain's operational readiness or health conclusion;
+- the evidence supplied for accreditation purposes; and
+- H09's institutionally governed accreditation-readiness decision.
+
+Providing evidence does not transfer the source domain's operational ownership to H09, and consuming the evidence does not give the source domain authority to publish the accreditation-readiness decision.
+
+## 23.3 CAPA Execution Contract
+
+H09 owns the Finding and CAPA lifecycles, including assignment, approval, effectiveness verification and closure. A responsible source domain owns any correction to its operational business state.
+
+The source domain returns execution evidence and the resulting authoritative business reference. H09 verifies that evidence against the CAPA and records the effectiveness and closure decision without reproducing the corrected operational aggregate.
+
+## 23.4 SSR Handoff Contract
+
+H09 owns Self-Study Report preparation, collaboration, internal review and institutional approval. After approval, H09 hands an immutable, versioned SSR package to H08.
+
+The handoff shall include:
+
+- approved SSR package identity and version;
+- governing accreditation framework and cycle;
+- approval authority and approval evidence;
+- evidence-reference manifest and integrity information;
+- submission deadline and applicable external authority; and
+- correlation information for acknowledgement, rejection, correction or resubmission.
+
+H08 owns external submission, external acknowledgement and reporting-cycle submission history. H08 shall not alter the approved H09 package; any correction requiring new institutional content returns to H09 for a governed successor version.
+
+## 23.5 Notification Request Contract
+
+H09 may request a notification by publishing the originating governance fact, intended audience context, urgency and correlation reference to H02.
+
+H09 owns the accreditation, audit, finding, CAPA or compliance fact. H02 owns recipient resolution, template resolution, channel selection, scheduling, delivery, retry, cancellation, expiry and final notification evidence.
+
+## 23.6 Dashboard and Intelligence Contract
+
+H09 owns the meaning and authoritative calculation of accreditation readiness indicators, compliance status, governance KPIs and quality metrics. H07 owns dashboard composition, workspace, widget configuration, layout, audience assignment, publication and presentation lifecycle.
+
+H09 supplies governed read contracts or immutable projections to H07. A dashboard never becomes the system of record for an H09 decision or metric.
+
+## 23.7 Audit Evidence Contract
+
+H09 owns business audit outcomes, findings and compliance decisions. A07 owns enterprise audit-record infrastructure, persistence and reconstruction services. H09 supplies the business subject, decision, actor, authority, correlation and source references needed for canonical audit evidence.
+
+---
+
+# 24. Dependency Model
+
+## 24.1 Foundational Dependencies
+
+H09 depends foundationally on:
+
+- Section A for tenancy, identity, authentication, authorization, workflow support, events and audit infrastructure; and
+- Section B for institution, organisation, campus identity, academic structure and calendar context.
+
+These dependencies provide context and shared services. They do not own H09 accreditation or compliance outcomes.
+
+## 24.2 Runtime Evidence Dependencies
+
+H09 consumes approved read contracts, evidence references and published facts from Sections C, D, E, F, G, I and J when a framework, compliance requirement, audit, readiness assessment, finding, CAPA or SSR package requires them.
+
+Runtime evidence consumption does not create reverse ownership and does not permit H09 to mutate the upstream domain.
+
+## 24.3 Section H Collaboration Dependencies
+
+| Collaborating domain | H09 dependency | Ownership boundary |
+|---|---|---|
+| H02 — Notifications | Governed delivery of H09 communications | H02 owns delivery; H09 owns the originating governance fact |
+| H07 — Enterprise Dashboard | Composition and presentation of H09 indicators | H07 owns dashboards; H09 owns metric meaning and readiness/compliance decisions |
+| H08 — Regulatory Reporting | External submission of approved SSR and applicable reporting packages | H09 owns preparation/approval; H08 owns submission/acknowledgement |
+| H03 — Directory & Search | Authorized discovery of H09 references and records | H03 owns search projection; H09 owns the record |
+
+## 24.4 Dependency Rules
+
+1. H09 shall consume references, contracts and published facts rather than operational databases.
+2. No dependency may transfer source-domain lifecycle ownership to H09.
+3. H09 shall not publish a source-domain correction; it shall request or track correction through the canonical owner.
+4. Every cross-domain handoff shall preserve tenant, institution, source owner, source identifier, version and correlation.
+5. Dashboard, notification, audit and workflow infrastructure participation alone does not make those services owners of an H09 business outcome.
+6. Any new dependency that changes ownership or dependency direction requires repository-level architecture review.
+
+---
+
+# 25. Locked Architecture Decisions
+
+## H09-ADR-001 — Accreditation Readiness Ownership
+
+**Decision:** H09 is the canonical owner of the institutional accreditation-readiness assessment and its approval, publication and closure lifecycle.
+
+Campus Operations and other source domains own their operational readiness facts and evidence. A10 owns operational go-live and certification-eligibility assessment. Neither G00 nor A10 owns H09's accreditation-readiness decision.
+
+**Status:** Accepted — user-authorized architecture correction, 2026-08-12.
+
+## H09-ADR-002 — Dashboard Composition Ownership
+
+**Decision:** H07 is the canonical owner of dashboard composition, layout, workspace, widgets, audience assignment and publication. H09 owns accreditation/compliance facts, readiness indicators, governance KPIs and metric definitions supplied to dashboards.
+
+**Status:** Accepted — user-authorized architecture correction, 2026-08-12.
+
+## H09-ADR-003 — SSR Preparation and Submission Boundary
+
+**Decision:** H09 owns SSR preparation, internal collaboration, review and approval. H08 owns external submission, acknowledgement and reporting submission history. Corrections to approved institutional content return to H09 for a successor package.
+
+**Status:** Accepted — existing H09/H08 boundary made explicit, 2026-08-12.
+
+## H09-ADR-004 — Source Evidence Non-Ownership
+
+**Decision:** H09 owns evidence governance, validation, accreditation mapping and approved evidence snapshots; originating domains retain ownership of operational records and business truth.
+
+**Status:** Accepted — existing H09 boundary made explicit, 2026-08-12.
+
+## H09-ADR-005 — CAPA and Operational Correction Boundary
+
+**Decision:** H09 owns findings, CAPA, effectiveness verification and closure. The source domain owns execution of any correction to its operational state and returns governed evidence to H09.
+
+**Status:** Accepted — existing H09 boundary made explicit, 2026-08-12.
+
+---
+
+# 26. Conclusion
 
 The Accreditation & Compliance domain establishes the institutional governance framework required to achieve and sustain accreditation readiness, regulatory compliance, and continuous quality improvement across the university.
 

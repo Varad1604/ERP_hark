@@ -4,7 +4,7 @@
 **Status:** Locked  
 **Document Owner:** Institution & Structure — Institution  
 **Depends On:** L2-A01 — Platform & Tenant Foundation  
-**Used By:** L2-B02, L2-B03, L2-B04, L2-B05, L2-A10 (Operational Readiness, Section A) and all downstream domains
+**Used By:** L2-B02, L2-B03, L2-B04, L2-B05, L2-A10 (Operational Readiness Governance & Certification, Section A) and all downstream domains
 
 ---
 
@@ -55,7 +55,28 @@ This document serves as the **single source of truth** for every Institution man
 - Institution Suspension
 - Institution Reactivation
 - Institution Archival
+- Institution Policy
+- Institution Policy Lifecycle
 - Institution Domain Events
+
+---
+
+## 2.1 Approved Institution Policy Ownership Clarification
+
+**Decision date:** 2026-08-14
+
+**Decision authority:** Human-approved outcome of the Pallav Sections B/D/E L3 Phase 1 audit, finding AUD-PAL2-010
+
+This clarification carries an existing locked L1 ownership statement down into L2. It establishes no new ownership.
+
+`SutraERP_L1_Business_Domain_Architecture_Locked.md` states in the Institution domain business rules that **"Institute owns institutional policies"**, and lists `Institute`, `Institute Policy` and `Institute Profile` as three distinct canonical entities of the Institution domain. Institutional Policies are also named as a primary output of the Institution capability.
+
+Accordingly:
+
+- **Institution Policy is a canonical entity of this domain, distinct from Institution Profile.** A change to institutional policy and a change to institutional profile information are separate business outcomes and shall not be modelled as one.
+- Institution Policy is versioned. An approved policy version becomes the authoritative institutional policy context, and superseded versions remain historically traceable.
+- This is **institutional business policy**. It is not authorization policy. `L2-A04` owns the Authorization Policy, Policy Engine and Authorization Engine; `L2-A00` states explicitly that the Platform Foundation "does not own institutional policies". Neither claim overlaps this one.
+- Domains that enforce or consume institutional policy do not thereby own it.
 
 ---
 
@@ -66,7 +87,7 @@ This document serves as the **single source of truth** for every Institution man
 - Campuses
 - Academic Structure
 - Academic Calendar
-- Operational Readiness
+- Operational Readiness Governance & Certification
 - Students
 - Faculty
 - Courses
@@ -249,7 +270,7 @@ Characteristics
 - Can configure academic structure (L2-B04)
 - Can configure academic calendar (L2-B05)
 
-Operational readiness is still pending (L2-A10, Section A).
+Institution activation does not create an authoritative readiness state. Applicable L2-A10 governance evidence may still be pending, and every downstream operation remains subject to dynamic `L1-06` Capability Readiness Evaluation.
 
 ---
 
@@ -383,13 +404,16 @@ The following categories must be configured.
                                                             │
                                                             ▼
                                       Institution Available for
-                                    L2-B02 → L2-A10 Readiness
-                                                            │
-                                                            ▼
-                                   Operational Readiness (L2-A10)
-                                                            │
-                                                            ▼
-                              Ready for Admissions & Academic Operations
+                            L2-B02 → L2-A10 Governance & Certification
+                                                             │
+                                                             ▼
+                              Applicable Governance Evidence (L2-A10)
+                                                             │
+                                                             ▼
+                           Dynamic Capability Readiness Evaluation (L1-06)
+                                                             │
+                                                             ▼
+                    READY / NOT READY for the Requested Operation
                                                             │
                                                             ▼
                                          Operational Lifecycle Management
@@ -499,7 +523,7 @@ Consumed by:
 - L2-B03 — Campus & Infrastructure
 - L2-B04 — Curriculum Framework
 - L2-B05 — Academic Calendar
-- L2-A10 — Operational Readiness (Section A)
+- L2-A10 — Operational Readiness Governance & Certification (Section A)
 
 ---
 
@@ -537,7 +561,7 @@ Consumed by:
 - Campus & Infrastructure (L2-B03)
 - Curriculum Framework (L2-B04)
 - Academic Calendar (L2-B05)
-- Operational Readiness (L2-A10, Section A)
+- Operational Readiness Governance & Certification evidence (L2-A10, Section A)
 
 ---
 
@@ -546,8 +570,8 @@ Consumed by:
 - Institution is the canonical business entity representing an educational organization.
 - Institution is independent of the academic programs it offers.
 - Academic programs are defined in L2-B04.
-- Operational readiness is not part of Institution activation and is completed separately in L2-A10 (Section A).
-- Admissions and academic operations can begin only after Operational Readiness is complete.
+- Operational readiness is not an Institution lifecycle state and no global Institution readiness flag exists.
+- L2-A10 governance assessments and certificates are persisted evidence; admissions and academic operations begin only when their operation-specific `L1-06` Capability Readiness Evaluation returns `READY` from current rules and dependencies.
 
 ---
 

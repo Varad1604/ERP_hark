@@ -479,7 +479,7 @@ L1["L1-01 Tenant Provisioning"]
 -->L3["L1-03 Organisation Structure Setup"]
 -->L4["L1-04 Academic Structure Setup"]
 -->L5["L1-05 Academic Calendar Setup"]
--->L6["L1-06 Operational Readiness"]
+-->L6["L1-06 Capability Readiness Evaluation"]
 -->L7["L1-07 Admission Management"]
 -->L8["L1-08 Student Activation & Academic Registration"]
 -->L9["L1-09 Teaching & Academic Delivery"]
@@ -588,7 +588,7 @@ Primary Output
 
 ---
 
-## L1-06 Operational Readiness
+## L1-06 Capability Readiness Evaluation
 
 Determines whether academic operations may begin.
 
@@ -1528,15 +1528,17 @@ Academic Years are never cloned using database copy operations.
 
 ---
 
-# 15. L1-06 — Operational Readiness
+# 15. L1-06 — Capability Readiness Evaluation
 
 ## Purpose
 
 Determine whether a business operation may begin by evaluating all mandatory prerequisites.
 
-Operational Readiness is evaluated dynamically for each business capability.
+Capability Readiness is evaluated dynamically for each requested business operation.
 
 No global "Institute Ready" flag exists.
+
+> **Amended 2026-08-13 under approved integrity finding INT-302.** This L1 capability is the runtime, operation-specific readiness evaluator. It produces a non-persisted `READY` or `NOT READY` result from current rules and dependencies. `L2-A10` separately owns **Operational Readiness Governance & Certification**: persisted assessments, evidence references, findings, improvement plans, and certificates. An A10 certificate is governance evidence that may be consumed by this evaluation; it is never a global readiness flag and never replaces this dynamic decision.
 
 ---
 
@@ -1615,7 +1617,7 @@ NOT READY
 
 ## Business Rules
 
-Operational Readiness
+Capability Readiness Evaluation
 
 - is calculated
 - is not stored
@@ -1649,7 +1651,7 @@ Publishes
 
 ## Locked Decisions
 
-Operational readiness is evaluated dynamically.
+Capability readiness is evaluated dynamically for each requested operation; governance certification is separate evidence and is not an authoritative runtime result.
 
 ---
 
@@ -3092,7 +3094,7 @@ The following architectural decisions are permanently locked.
 | Programme Version immutable | LOCKED |
 | Curriculum versioned | LOCKED |
 | Course Offering is canonical delivery unit | LOCKED |
-| Operational Readiness evaluated dynamically | LOCKED |
+| Capability Readiness evaluated dynamically per requested operation; no global readiness flag | LOCKED |
 | Attendance corrections controlled | LOCKED |
 | Examination owns Official Result | LOCKED |
 | Student Lifecycle owns Progression | LOCKED |

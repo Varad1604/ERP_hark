@@ -1,12 +1,12 @@
 ---
 document_id: L2-A10
-title: Operational Readiness Workflows
+title: Operational Readiness Governance & Certification Workflows
 level: Level 2 Architecture
 section: Section A – Platform Foundation
-version: 1.0.0
+version: 1.1.0
 status: Locked
-owner: Platform Foundation — Operational Readiness
-document_owner: Platform Foundation — Operational Readiness
+owner: Platform Foundation — Operational Readiness Governance & Certification
+document_owner: Platform Foundation — Operational Readiness Governance & Certification
 parent: L1 Business Domain Architecture
 architectural_tier: Level 2 – Domain Workflow Architecture
 domain_owner: Platform Governance
@@ -29,8 +29,8 @@ related_documents:
   - L1 Business Domain Architecture
   - L2-C01 Student Admission Workflows
 business_capabilities:
-  - Operational Readiness Assessment
-  - Readiness Evaluation
+  - Operational Readiness Governance Assessment
+  - Governance Requirement Evaluation
   - Evidence Governance
   - Readiness Finding Governance
   - Improvement Governance
@@ -53,7 +53,7 @@ canonical_entities:
 |---|---|
 | Purpose | §1.1 Purpose |
 | Scope | §6 Operational Readiness Scope Hierarchy; §24.3 Operational Scope Readiness Consolidation Workflow; §1.2 Scope |
-| Actors | — not present — |
+| Actors | §1.4 Capability Boundary and Actors |
 | Entities | §10 Domain Entities; Appendix B. Canonical Business Entities |
 | Business Rules | §36 Business Rules |
 | Workflow | §22 Workflow Architecture; §23 Assessment Lifecycle Workflows; §23.1 Operational Readiness Assessment Initiation Workflow |
@@ -63,11 +63,11 @@ canonical_entities:
 | Dependencies | §29 Workflow Dependency Model; §35 Multi-Domain Dependencies; §35.2 Upstream Dependencies and Integration Contracts |
 | Locked Decisions | §5.2 Policy-Driven Decision Making |
 
-> **Gap:** 1 required section(s) have no counterpart in this document: Actors. Recorded, not authored.
+> **INT-302 amendment:** The former Actors gap was closed on 2026-08-13 using actor roles already present in the assessment, evidence, remediation and certification workflows.
 
 ---
 
-# L2-A10 — Operational Readiness Workflows
+# L2-A10 — Operational Readiness Governance & Certification Workflows
 
 ---
 
@@ -75,11 +75,11 @@ canonical_entities:
 
 ## 1.1 Purpose
 
-The Operational Readiness Domain governs the institutional certification process that determines whether an educational institution, campus, organisational scope, or operational capability is prepared to commence or continue academic and administrative operations.
+The Operational Readiness Governance & Certification Domain governs the institutional assurance process that assesses and certifies whether an educational institution, campus, organisational scope, or operational capability has satisfied defined governance requirements.
 
 Unlike operational domains that execute institutional activities, this domain provides governance over operational preparedness by evaluating readiness requirements, validating supporting evidence, governing remediation activities, and issuing operational readiness certification according to institutional policies.
 
-Operational Readiness serves as the final governance layer before operational capability becomes available for production use. It consolidates readiness information published by multiple business domains into a unified governance decision while preserving complete auditability and institutional accountability.
+Operational Readiness Governance & Certification provides a governance-assurance layer whose persisted conclusions and certificates may be used as evidence by the separate L1 Capability Readiness Evaluation. It does not itself produce the runtime `READY` or `NOT READY` decision for a requested operation.
 
 The domain establishes a standardized, policy-driven readiness framework that supports initial institutional go-live, campus activation, operational expansion, regulatory reviews, accreditation readiness, and continuous governance throughout the institutional lifecycle.
 
@@ -103,13 +103,30 @@ The domain consolidates readiness information originating from multiple business
 
 ---
 
+## 1.4 Capability Boundary and Actors
+
+> **Approved and applied 2026-08-13 under integrity finding INT-302.** SutraERP now distinguishes two capabilities:
+>
+> 1. **Capability Readiness Evaluation (`L1-06`)** dynamically evaluates current rules and dependencies for one requested operation and returns non-persisted `READY` or `NOT READY`. Cached results are never authoritative.
+> 2. **Operational Readiness Governance & Certification (`L2-A10`)** persists assessments, requirement evaluations, evidence references, findings, improvement plans, governance decisions and certificates.
+>
+> A certificate or assessment conclusion is governance evidence. It may be consumed by the dynamic evaluator, but it is not a global “Institute Ready” flag, does not authorize every operation, and does not replace operation-specific evaluation.
+
+Actors already established by the workflows are:
+
+- **Governance Authority** — authorizes assessments, verifies evidence, acknowledges findings and issues or governs certificates.
+- **Responsible Domain** — retains ownership of operational evidence and remediation execution and reports remediation completion.
+- **System** — applies approved policies, monitors governance-significant events and initiates governed reassessment triggers.
+
+---
+
 ## 1.3 Architectural Objectives
 
 The architecture is designed to achieve the following objectives:
 
 - Establish a canonical operational readiness governance model.
 - Separate governance responsibilities from operational execution.
-- Provide deterministic, policy-driven certification decisions.
+- Provide deterministic, policy-driven governance and certification decisions without replacing runtime capability-readiness evaluation.
 - Support continuous institutional readiness monitoring.
 - Enable event-driven reassessment without modifying historical governance records.
 - Preserve complete governance traceability across the institutional lifecycle.
@@ -120,9 +137,9 @@ The architecture is designed to achieve the following objectives:
 
 # 2. Domain Vision
 
-The Operational Readiness Domain ensures that institutional operations commence and continue only after governance policies confirm that all required operational capabilities satisfy approved readiness criteria.
+The Operational Readiness Governance & Certification Domain provides persisted institutional assurance that approved governance requirements have been assessed and evidenced. Whether a particular operation may commence remains a dynamic `L1-06` decision using current dependencies and applicable evidence.
 
-Rather than managing operational activities directly, the domain evaluates operational preparedness through standardized governance processes that combine policy evaluation, evidence verification, readiness assessment, and certification into a unified institutional governance capability.
+Rather than managing operational activities directly, the domain evaluates governance preparedness through standardized processes that combine policy evaluation, evidence verification, readiness assessment, and certification into a unified institutional governance capability.
 
 The resulting architecture enables institutions to maintain continuous operational assurance while supporting independent evolution of the contributing business domains.
 
@@ -2171,7 +2188,7 @@ Certification decisions are derived from policy evaluation performed during read
 
 Issues an Operational Readiness Certificate following successful governance evaluation.
 
-The certificate represents the formal governance decision authorizing operational readiness for a defined institutional scope.
+The certificate represents a formal governance conclusion for a defined institutional scope. It is durable evidence for later capability-readiness evaluation; it does not itself authorize every operation and is never an institution-wide runtime readiness flag.
 
 ---
 
@@ -2908,7 +2925,7 @@ The Operational Readiness Domain has architectural dependencies on platform foun
 
 The domain integrates with structure domains (L2-B01 through L2-B05) exclusively through published contracts as specified below.
 
-These are **runtime integration contracts, not architectural dependencies**. A10 reads published structure facts to evaluate readiness evidence, and structure domains consume A10's readiness certificates. Neither direction establishes a build-time or architectural dependency of Section A upon Section B.
+These are **runtime integration contracts, not architectural dependencies**. A10 reads published structure facts to evaluate governance evidence, and structure domains consume A10 certificates and lifecycle facts as governance evidence or reassessment triggers. Neither direction establishes a build-time or architectural dependency of Section A upon Section B, and no certificate event may directly set a global readiness flag.
 
 #### 1. L2-B01 — Institution Lifecycle
 - **Commands Received**: None.
@@ -2917,7 +2934,7 @@ These are **runtime integration contracts, not architectural dependencies**. A10
   - `InstitutionCreated`: Triggers pre-initialization of draft readiness assessments.
   - `InstitutionActivated`: Triggers the initiation of go-live readiness assessments for the institution.
 - **Published Events Consumed by B01**:
-  - `OperationalReadinessCertificateIssued`: Notifies B01 to update the institution's readiness flag, enabling academic and admission operations.
+  - `OperationalReadinessCertificateIssued`: Notifies B01 that new governance evidence is available. B01 may retain the certificate reference and request operation-specific `L1-06` evaluation; it shall not update or maintain an institution-wide readiness flag.
 
 #### 2. L2-B02 — Organisation Workflows
 - **Commands Received**: None.
@@ -2925,7 +2942,7 @@ These are **runtime integration contracts, not architectural dependencies**. A10
 - **Consumed Events**:
   - `OrganisationActivated`: Triggers continuous monitoring checks for new organisational units added to the hierarchy.
 - **Published Events Consumed by B02**:
-  - `OperationalReadinessCertificateSuspended`, `OperationalReadinessCertificateRevoked`: Notifies B02 to restrict administrative operations within the affected organizational scopes.
+  - `OperationalReadinessCertificateSuspended`, `OperationalReadinessCertificateRevoked`: Notifies B02 that prior governance evidence changed and that affected operations require fresh `L1-06` evaluation. The event does not directly rewrite B02 operational state.
 
 #### 3. L2-B03 — Campus Workflows
 - **Commands Received**: None.
@@ -2934,7 +2951,7 @@ These are **runtime integration contracts, not architectural dependencies**. A10
   - `CampusCreated`: Registers the structural scope for new campus assessments.
   - `CampusActivated`: Triggers campus go-live operational readiness workflows.
 - **Published Events Consumed by B03**:
-  - `OperationalReadinessCertificateIssued`: Enables operational space availability updates within the campus infrastructure.
+  - `OperationalReadinessCertificateIssued`: Makes new governance evidence available for campus capability-readiness evaluation. It does not directly mark operational space available.
 
 #### 4. L2-B04 — Curriculum Framework Workflows
 - **Commands Received**: None.

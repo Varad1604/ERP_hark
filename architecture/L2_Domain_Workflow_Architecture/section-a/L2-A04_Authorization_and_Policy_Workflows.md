@@ -35,7 +35,7 @@
 | Depends On | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity Workflows, L2-A03 Authentication Architecture |
 | Referenced By | All Business Domains (Academic, Examination, Finance, HR, Library, Hostel, Transport, CRM, Analytics, Mobile, APIs, Dashboard, Reporting) |
 | Status | Locked |
-| Version | 1.0 |
+| Version | 1.1 — INT-301 ownership ruling |
 
 ---
 
@@ -57,6 +57,7 @@ This document defines:
 
 - Authorization Architecture
 - Role Architecture
+- Role Assignment Architecture
 - Permission Architecture
 - Workspace Architecture
 - Policy Engine
@@ -94,6 +95,7 @@ These remain the responsibility of their respective architectural documents.
 L2-A04 is the canonical owner of:
 
 - Roles
+- Role Assignments
 - Permissions
 - Authorization Policies
 - Authorization Decisions
@@ -108,6 +110,8 @@ L2-A04 is the canonical owner of:
 - Resource Authorization
 
 No other architecture document shall redefine ownership of these concepts.
+
+> **Canonical boundary approved 2026-08-13 under INT-301.** L2-A04 exclusively owns Role, Role Assignment, Delegation and authorization-policy lifecycles. L2-A02 owns Person, Identity, User Account and canonical identity/context references. L2-A03 owns Credential, Authentication Session, authentication factors/MFA Enrollment and Authentication Provider lifecycles. A04 consumes identity and authenticated-session references without changing their canonical state.
 
 Business domains consume this architecture but shall not redefine its core behaviour.
 
@@ -333,6 +337,7 @@ The following aggregates are owned exclusively by the Authorization domain.
 | Aggregate | Responsibility |
 |------------|----------------|
 | Role | Defines organizational responsibilities and groups business permissions. |
+| Role Assignment | Defines an approved, effective-dated assignment of a Role to an A02 Person/Identity reference within an authorization scope. |
 | Permission | Defines business operations that may be performed on business resources. |
 | Authorization Policy | Defines policy-driven authorization rules and evaluation logic. |
 | Workspace | Defines user experience context including navigation, dashboards, and workspace configuration. |
@@ -372,6 +377,8 @@ A Role never authenticates users.
 A Role never owns user interface behaviour.
 
 A Role never stores user identity.
+
+Role Assignment is the separately governed A04 aggregate that binds a Role to an A02 Person/Identity reference, scope, effective period, status and assignment authority. It owns assignment approval, activation, suspension, expiry and revocation; it never owns the referenced Person or Identity.
 
 ---
 

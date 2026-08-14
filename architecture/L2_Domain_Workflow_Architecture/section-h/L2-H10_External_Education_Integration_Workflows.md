@@ -1276,11 +1276,10 @@ Workflow includes:
 
 - Submission
 - Mapping
-- Review
-- Approval
+- L2-C04 decision handoff
 - Synchronization
 
-Academic approval remains external to H10.
+Academic approval and rejection remain owned by L2-C04.
 
 ---
 
@@ -1508,8 +1507,8 @@ They only orchestrate workflow progression, compensation, timeout handling, and 
 - Purpose: coordinate cross-institution credit recognition while preserving academic decision ownership.
 - Trigger: approved credit transfer request, equivalency review outcome, or external transcript intake.
 - Participating aggregates: Credit Transfer Request, External Provider, Integration Connector, Integration Configuration, Synchronization Job, and the academic credit or equivalency aggregate in the owning domain.
-- Consumed Events: CreditTransferRequested, TranscriptReceived, MappingValidated, AcademicReviewCompleted, ProviderCertified.
-- Published Events: CreditTransferSubmitted, CreditTransferMapped, CreditTransferApproved, CreditTransferRejected, CreditTransferCompensationRequested.
+- Consumed Events: CreditTransferRecognised and CreditTransferRejected from L2-C04, plus provider acknowledgement and verification facts.
+- Published Events: ExternalCreditTransferSubmitted, CreditTransferMappingPrepared, CreditTransferDecisionSynchronized, CreditTransferSynchronizationFailed.
 - Compensation strategy: revoke pending transfer submissions in the external boundary and restore the request to a review state in the owning academic workflow if required.
 - Failure handling: mapping mismatches or missing evidence are routed to review; provider failures remain isolated from academic approval state.
 - Retry behaviour: retries are permitted only for transport, acknowledgement, or transient integration failures.
@@ -2869,11 +2868,11 @@ Stores:
 
 Coordinates the institutional workflow for recognition and transfer of academic credits earned outside the institution.
 
-The aggregate orchestrates the communication, validation, synchronization, and approval lifecycle between SutraERP and external education providers.
+The aggregate orchestrates communication, validation and synchronization between SutraERP and external education providers while referencing the academic decision owned by L2-C04.
 
 It **does not** evaluate academic equivalence or award credits.
 
-Academic decisions remain the responsibility of the Academic Administration domain.
+Academic equivalency, approval, rejection and credit-ledger decisions remain the responsibility of L2-C04 — Student Academic Progression.
 
 ---
 
@@ -2888,11 +2887,11 @@ Academic decisions remain the responsibility of the Academic Administration doma
 - Create transfer request
 - Validate request
 - Coordinate provider communication
-- Track transfer lifecycle
+- Track external transfer and synchronization lifecycle
 - Manage synchronization
 - Record supporting references
 - Maintain audit history
-- Publish transfer events
+- Publish external integration and decision-synchronization events
 
 ---
 
@@ -2930,17 +2929,17 @@ Documents are referenced through the Document Management domain.
 
 ---
 
-### Approval Record
+### Academic Decision Reference
 
-Maintains the approval history.
+References the authoritative L2-C04 decision without recreating its approval history.
 
 Attributes:
 
-- Reviewer
+- L2-C04 Decision Reference
 - Decision
 - Decision Date
 - Comments
-- Approval Stage
+- Decision Version
 
 ---
 
@@ -2962,7 +2961,7 @@ Attributes:
 - Transfer requests require an active provider.
 - Duplicate transfer requests for the same academic activity are prohibited.
 - Supporting documentation must be available before submission.
-- Academic approval is mandatory before completion.
+- An authoritative L2-C04 decision reference is mandatory before approval or rejection can be synchronized externally.
 - Completed requests become immutable.
 
 ---
@@ -2981,19 +2980,19 @@ Submitted
 
 ↓
 
-Under Review
+Evidence Verified
 
 ↓
 
-Academic Evaluation
+Submitted to L2-C04
 
 ↓
 
-Approved
+Decision Received
 
 ↓
 
-Credit Synchronized
+Decision Synchronized
 
 ↓
 
@@ -3001,21 +3000,23 @@ Completed
 
 or
 
-Rejected
+Rejected, carrying the authoritative L2-C04 rejection reference
 
 or
 
 Withdrawn
 
+`Rejected` above is the terminal state of the H10 external request. It records and synchronizes the L2-C04 academic rejection; it is not an H10 academic decision.
+
 ---
 
 ## Published Events
 
-- CreditTransferRequested
-- CreditTransferSubmitted
-- CreditTransferValidated
-- CreditTransferApproved
-- CreditTransferRejected
+- ExternalCreditTransferRequested
+- ExternalCreditTransferSubmitted
+- CreditTransferMappingPrepared
+- CreditTransferDecisionSynchronized
+- CreditTransferSynchronizationFailed
 - CreditTransferCompleted
 
 ---
@@ -3928,7 +3929,7 @@ The service orchestrates communication but never determines academic equivalence
 - Submit transfer request
 - Validate documentation
 - Coordinate provider communication
-- Track approvals
+- Track authoritative L2-C04 decision references
 - Synchronize outcomes
 
 ---
@@ -3952,10 +3953,11 @@ The service orchestrates communication but never determines academic equivalence
 
 ## Published Events
 
-- CreditTransferRequested
-- CreditTransferValidated
-- CreditTransferApproved
-- CreditTransferRejected
+- ExternalCreditTransferRequested
+- ExternalCreditTransferSubmitted
+- CreditTransferMappingPrepared
+- CreditTransferDecisionSynchronized
+- CreditTransferSynchronizationFailed
 - CreditTransferCompleted
 
 ---
@@ -4605,7 +4607,7 @@ Creates transfer request.
 
 ### Events
 
-- CreditTransferRequested
+- ExternalCreditTransferRequested
 
 ---
 
@@ -4621,7 +4623,7 @@ Performs enterprise validation.
 
 ### Events
 
-- CreditTransferValidated
+- CreditTransferMappingPrepared
 
 ---
 
@@ -4629,7 +4631,7 @@ Performs enterprise validation.
 
 Completes orchestration.
 
-Academic approval is performed by Academic Administration.
+Completion requires an authoritative L2-C04 recognition or rejection decision reference and successful synchronization of that decision.
 
 ### Events
 
@@ -5805,39 +5807,39 @@ Workflow completed successfully.
 
 ---
 
-## CreditTransferRequested
+## ExternalCreditTransferRequested
 
-Transfer initiated.
-
----
-
-## CreditTransferValidated
-
-Enterprise validation completed.
+External transfer orchestration initiated.
 
 ---
 
-## CreditTransferSubmitted
+## ExternalCreditTransferSubmitted
 
-Transferred to Academic Administration.
-
----
-
-## CreditTransferApproved
-
-Academic approval completed.
+Verified external evidence submitted to L2-C04 for the academic decision.
 
 ---
 
-## CreditTransferRejected
+## CreditTransferMappingPrepared
 
-Academic review rejected request.
+Provider and curriculum mapping evidence prepared for L2-C04 evaluation.
+
+---
+
+## CreditTransferDecisionSynchronized
+
+An authoritative L2-C04 recognition or rejection decision is synchronized with the external request and provider boundary.
+
+---
+
+## CreditTransferSynchronizationFailed
+
+External synchronization of an authoritative L2-C04 decision failed and requires governed recovery or reconciliation; the academic decision itself is unchanged.
 
 ---
 
 ## CreditTransferCompleted
 
-Entire orchestration completed.
+External orchestration completed after the authoritative L2-C04 decision was synchronized.
 
 ---
 
@@ -6721,7 +6723,9 @@ Completed
 
 Coordinate institutional credit recognition.
 
-Academic evaluation remains outside H10.
+Academic evaluation, equivalency, approval, rejection and the Academic Credit Ledger update remain outside H10 and are canonically owned by **L2-C04 — Student Academic Progression Workflows**.
+
+H10 owns the external Credit Transfer Request, provider/institution verification, external-document exchange, integration mapping, decision synchronization, recovery and reconciliation. H10 shall not publish an academic approval or rejection unless it is carrying the authoritative L2-C04 decision reference.
 
 ---
 
@@ -6752,7 +6756,7 @@ Provider Verification
 
         ▼
 
-Academic Administration
+L2-C04 Academic Progression
 
         │
 
@@ -6777,13 +6781,14 @@ Transfer Completed
 
 ## Success
 
-- CreditTransferCompleted
+- CreditTransferCompleted, after an authoritative L2-C04 approval and ledger update are synchronized
 
 ---
 
-## Failure
+## Alternate and Failure Outcomes
 
-- CreditTransferRejected
+- CreditTransferDecisionSynchronized, carrying the authoritative L2-C04 rejection reference when the academic outcome is rejection
+- CreditTransferSynchronizationFailed, when the academic decision exists but external synchronization fails
 
 ---
 
@@ -6791,7 +6796,11 @@ Transfer Completed
 
 - Withdraw request
 - Archive documentation
-- Publish rejection event
+- Publish the external synchronization outcome without republishing the academic decision as an H10-owned fact
+
+## Ownership Decision
+
+The academic approval/rejection outcome belongs to L2-C04. The external synchronization/reconciliation outcome belongs to H10. This boundary is an accepted user-authorized architecture correction dated 2026-08-12.
 
 ---
 
@@ -7038,7 +7047,7 @@ Every long-running workflow maintains explicit execution state.
 | Synchronization | Scheduled → Running → Completed → Failed → Recovered |
 | Enrollment | Requested → Submitted → Confirmed → Completed |
 | Learning | Received → Validated → Synchronized → Completed |
-| Credit Transfer | Submitted → Review → Approved → Completed |
+| Credit Transfer | Created → Validated → Submitted → Evidence Verified → Decision Pending → Decision Received → Decision Synchronized → Completed / Rejected / Withdrawn |
 | Verification | Requested → Running → Verified → Archived |
 | Reconciliation | Detected → Assigned → Investigating → Resolved → Closed |
 
@@ -7471,7 +7480,7 @@ External institution must be trusted.
 
 ## Rule CT-004
 
-Academic approval remains mandatory.
+An authoritative L2-C04 decision reference remains mandatory before external decision synchronization can complete.
 
 ---
 
@@ -7483,7 +7492,7 @@ Completed transfers become immutable.
 
 ## Rule CT-006
 
-Rejected requests cannot bypass institutional review.
+H10 shall synchronize an L2-C04 rejection without changing, bypassing, or republishing it as an H10-owned academic decision.
 
 ---
 
@@ -8053,7 +8062,7 @@ External institution must be trusted.
 
 ## Rule CT-004
 
-Academic approval remains mandatory.
+An authoritative L2-C04 decision reference remains mandatory before external decision synchronization can complete.
 
 ---
 
@@ -8065,7 +8074,7 @@ Completed transfers become immutable.
 
 ## Rule CT-006
 
-Rejected requests cannot bypass institutional review.
+H10 shall synchronize an L2-C04 rejection without changing, bypassing, or republishing it as an H10-owned academic decision.
 
 ---
 
@@ -10610,7 +10619,7 @@ Credit transfer reports provide operational monitoring for cross-institutional c
 
 These reports monitor workflow execution only.
 
-Academic evaluation remains the responsibility of the Academic Administration domain.
+Academic evaluation and its approval or rejection remain the responsibility of L2-C04 — Student Academic Progression.
 
 ---
 

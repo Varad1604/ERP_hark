@@ -28,6 +28,30 @@
 
 ---
 
+## Ownership Resolution — Examination Registration
+
+> Recorded 2026-08-12 under Lead Architect ruling on repository conflict `I-RC-03`
+> (`architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Section_I_Phase2_Consolidation_Watchlist.md` section 10).
+>
+> This document and `L2-I04` both listed **Examination Registration** as an owned capability, and neither
+> document's non-ownership list excluded the other.
+>
+> **Ruling: `L2-I04` owns the Examination Registration aggregate and its lifecycle for every registration
+> category, including Supplementary, Backlog and Improvement.**
+>
+> The deciding evidence is `L2-I04` §7.3, which enumerates Regular, Backlog, Supplementary, Improvement and
+> Special as *categories of one registration mechanism*, and `L2-I04` §20, which defines a single
+> Registration State Model governing "Every Examination Registration".
+>
+> L2-I12 owns supplementary examination **administration**: eligibility verification, examination
+> application, fee verification, session allocation and attempt lifecycle management. It **initiates**
+> registration in `L2-I04` and does not own the registration record or its lifecycle. This is consistent
+> with the initiation-and-coordination scope this document already declares for Hall Tickets (§5.9),
+> evaluation (§5.11) and result processing (§5.12), and with §4.4, which limits this domain to
+> "supplementary examination administration".
+
+---
+
 # 1. Purpose
 
 This document defines the canonical business workflows governing Supplementary, Backlog, and Improvement Examination Execution within the SutraERP Examination domain.
@@ -52,7 +76,7 @@ The scope includes:
 - Examination Eligibility Verification
 - Examination Application Management
 - Fee Verification
-- Examination Registration
+- Examination Registration Initiation (the registration record is owned by `L2-I04`)
 - Examination Session Allocation
 - Supplementary Examination Scheduling
 - Hall Ticket Initiation
@@ -350,7 +374,11 @@ Financial processing remains owned by the Finance domain.
 
 ---
 
-## 5.7 Examination Registration
+## 5.7 Examination Registration Initiation
+
+**The Examination Registration aggregate and its lifecycle are owned by `L2-I04`.** See the Ownership
+Resolution note above. This domain converts an approved application into a registration request and
+initiates it in `L2-I04`; it does not own the resulting registration record or govern its states.
 
 Approved applications are converted into authorised supplementary examination registrations.
 
@@ -1351,7 +1379,7 @@ The domain owns:
 - Eligibility Verification
 - Examination Application
 - Fee Verification
-- Examination Registration
+- Examination Registration Initiation
 - Session Allocation
 - Supplementary Examination Coordination
 - Hall Ticket Initiation
@@ -1368,6 +1396,7 @@ The domain owns:
 
 The domain does not own:
 
+- Examination Registration (owned by `L2-I04` for all categories — see the Ownership Resolution note)
 - Examination Policies
 - Examination Sessions
 - Regular Examination Planning
@@ -1485,7 +1514,7 @@ The Supplementary / Backlog / Improvement Examination domain consists of the fol
 | Examination Eligibility Verification | Verifies candidate eligibility according to institutional regulations. |
 | Examination Application Management | Manages supplementary examination applications. |
 | Fee Verification | Verifies financial compliance before examination registration. |
-| Examination Registration | Registers approved supplementary examination candidates. |
+| Examination Registration Initiation | Initiates registration of approved supplementary examination candidates in `L2-I04`, which owns the registration record. |
 | Session Allocation | Allocates candidates to authorised examination sessions. |
 | Supplementary Examination Scheduling | Coordinates scheduling of supplementary examinations. |
 | Hall Ticket Initiation | Initiates downstream hall ticket generation. |
@@ -1608,7 +1637,7 @@ The domain owns:
 - Eligibility Verification
 - Examination Application
 - Fee Verification
-- Examination Registration
+- Examination Registration Initiation
 - Session Allocation
 - Supplementary Examination Coordination
 - Hall Ticket Initiation

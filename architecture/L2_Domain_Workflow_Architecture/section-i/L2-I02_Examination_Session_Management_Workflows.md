@@ -33,6 +33,27 @@
 
 ---
 
+## Ownership Resolution — Session Closure and Archival
+
+> Recorded 2026-08-12 under Lead Architect ruling on repository conflict `I-RC-01`
+> (`architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Section_I_Phase2_Consolidation_Watchlist.md` section 10).
+>
+> This document previously listed **Session Closure** as a capability owned by L2-I02 (section 14, section 22)
+> while the same section 14 assigned "Session Closure & Archival Operations" to L2-I16, and `L2-I16` section 9.1
+> declared exclusive ownership of the Examination Session Aggregate after operational conclusion.
+>
+> **Ruling: L2-I16 owns Examination Session closure and archival.**
+>
+> L2-I02 governs the Examination Session from `Draft` through `Active`, `Suspended` and `Reopened`. Its
+> governance concludes at the hand-off to L2-I16, which owns every state from `Closure Initiated` onward
+> (`L2-I16` section 21.3). The closure and archival material retained below is descriptive consuming context;
+> it is defined and owned by `L2-I16`.
+>
+> No other ownership was moved. Session creation, configuration, classification, approval, activation,
+> suspension, reopening and version management remain owned by L2-I02.
+
+---
+
 # Document Control
 
 | Item | Value |
@@ -53,7 +74,7 @@ This document defines the business workflows governing the lifecycle of Examinat
 
 An Examination Session represents a governed academic examination cycle conducted by an institution for one or more academic programmes, courses, semesters, or examination categories.
 
-This document establishes how examination sessions are created, configured, activated, managed, suspended, completed, and closed before operational examination activities begin.
+This document establishes how examination sessions are created, configured, activated, managed, suspended, and reopened before and during operational examination activities. Session closure and archival are owned by L2-I16.
 
 Operational workflows such as examination planning, registration, hall ticket generation, marks processing, result publication, and qualification completion consume approved examination sessions defined in this document.
 
@@ -75,7 +96,6 @@ This document includes:
 - Session publication
 - Session suspension
 - Session reopening
-- Session closure
 - Session governance
 - Session version management
 - Multi-domain session dependencies
@@ -92,6 +112,7 @@ This document excludes:
 - Marks entry
 - Result processing
 - qualification completion processing
+- Session closure and archival (owned by L2-I16)
 
 These activities are defined in subsequent Examination workflow documents.
 
@@ -144,9 +165,8 @@ Examples:
 - Session Creation
 - Session Activation
 - Session Governance
-- Session Closure
 
-are managed within this document.
+are managed within this document. Session Closure is owned by L2-I16.
 
 Examples:
 
@@ -365,7 +385,11 @@ Operational workflows resume only after the session returns to the Active state.
 
 ## 5.7 Session Closure
 
-Following completion of all examination activities, Examination Sessions may be formally closed.
+**Owned by L2-I16.** Retained here as consuming context only. See the Ownership Resolution note above.
+
+Following completion of all examination activities, Examination Sessions are formally closed through the
+closure lifecycle defined in `L2-I16` sections 11.2 and 21. L2-I02 hands the session over in the `Active`
+state and does not govern any subsequent transition.
 
 Closed sessions become read-only from a business perspective while remaining available for reporting, audit, and historical reference.
 
@@ -705,6 +729,8 @@ Upon reopening:
 
 ## 8.10 Session Closure
 
+**Owned by L2-I16** (`L2-I16` sections 11.2 SW-01 to SW-06, section 21.3). Retained here as consuming context only.
+
 Following successful completion of all examination activities, the Examination Session may be formally closed.
 
 Closure confirms that:
@@ -719,6 +745,8 @@ Closed sessions shall not accept new operational activities.
 ---
 
 ## 8.11 Session Archival
+
+**Owned by L2-I16** (`L2-I16` sections 11.2 SW-07 to SW-12, section 21.3). Retained here as consuming context only.
 
 Closed Examination Sessions enter the archival stage.
 
@@ -827,6 +855,8 @@ Suspended sessions:
 ---
 
 ## 9.7 Closure Rules
+
+**Owned by L2-I16.** The authoritative closure preconditions are `L2-I16` section 12 SW-02 Validate Session Completion.
 
 An Examination Session may be closed only after:
 
@@ -968,6 +998,8 @@ Reopened sessions shall preserve complete historical audit continuity.
 
 ## 10.9 Closure Validation Failure
 
+**Owned by L2-I16** (`L2-I16` section 14.2 Session Closure Exceptions).
+
 If pending examination activities remain incomplete:
 
 Examples include:
@@ -993,8 +1025,7 @@ The Examination Session Management domain publishes business events for downstre
 | Examination Session Activated | Session becomes operational | I03–I12 |
 | Examination Session Suspended | Operational pause initiated | All Active Examination Workflows |
 | Examination Session Reopened | Suspended session restored | I03–I12 |
-| Examination Session Closed | Operational completion confirmed | I16 |
-| Examination Session Archived | Historical retention begins | Reporting, Audit |
+| Examination Session Handed Over for Closure | Operational activities concluded and the session is released to L2-I16 | I16 |
 
 These events represent business milestones rather than technical implementation events.
 
@@ -1142,7 +1173,6 @@ The following business capabilities are owned by this domain:
 - Session Activation
 - Session Suspension
 - Session Reopening
-- Session Closure
 - Session Version Management
 - Session Governance
 
@@ -1249,10 +1279,10 @@ An Examination Session Management workflow is considered complete when:
 - Governing Examination Policy has been associated.
 - Institutional review has been completed.
 - Administrative approval has been obtained.
-- Session has been activated or appropriately closed.
+- Session has been activated, or released to L2-I16 for closure.
 - All lifecycle activities have been audited.
 - Business ownership has been established.
-- Session is available for downstream Examination workflows or has been formally archived.
+- Session is available for downstream Examination workflows, or has been handed over to L2-I16.
 
 Completion of this workflow establishes the governed business context required for all subsequent Examination operations.
 
@@ -1315,8 +1345,6 @@ Every Examination Session follows a governed business lifecycle.
 | Active | Session is available for operational examination workflows |
 | Suspended | Operational activities are temporarily paused |
 | Reopened | Previously suspended session restored to operational state |
-| Closed | Operational examination activities have concluded |
-| Archived | Historical session retained for audit and reference |
 
 Business rules governing state transitions:
 
@@ -1324,10 +1352,11 @@ Business rules governing state transitions:
 - Only reviewed sessions may become **Approved**.
 - Approved sessions may enter the **Scheduled** state.
 - Scheduled sessions become **Active** at the appropriate academic period.
-- Active sessions may be **Suspended** or **Closed**.
+- Active sessions may be **Suspended**.
 - Suspended sessions may be **Reopened**.
-- Closed sessions progress to **Archived**.
-- Archived sessions remain immutable for historical reference.
+- Active sessions are released to **L2-I16** for closure. The `Closure Initiated`, `Completion Validated`,
+  `Records Reconciled`, `Pending Approval`, `Closure Approved`, `Session Finalized` and `Archived` states,
+  and every transition between them, are defined and owned by `L2-I16` section 21.
 
 ---
 
@@ -1369,7 +1398,7 @@ Operational execution remains the responsibility of subsequent Examination workf
 | Session Activation | ✓ | — |
 | Session Suspension | ✓ | — |
 | Session Reopening | ✓ | — |
-| Session Closure | ✓ | — |
+| Session Closure | — | L2-I16 |
 | Examination Planning | — | L2-I03 |
 | Examination Registration | — | L2-I04 |
 | Hall Ticket Generation | — | L2-I05 |

@@ -1188,7 +1188,12 @@ Examples include:
 - Archive generation shall precede archival storage.
 - Archive storage shall precede retention management.
 - Archive disposal shall require retention expiry.
-- Closed archive lifecycles shall not be reopened unless permitted by institutional policy.
+- Closed archive lifecycles shall not be reopened. Where institutional policy permits post-closure access,
+  it is served by authorised retrieval and restoration (§21.4 `Retention Active → Retrieval / Restoration`),
+  which does not reopen the lifecycle. Clarified 2026-08-12 under `I-RC-06`: the previous wording read
+  "unless permitted by institutional policy", which contradicted §21.5, where reopening a closed archive
+  lifecycle is an invalid transition, and §9.3, which requires immutable finalized examination sessions.
+  §21.5 and §9.3 govern; no reopening transition exists.
 
 ---
 

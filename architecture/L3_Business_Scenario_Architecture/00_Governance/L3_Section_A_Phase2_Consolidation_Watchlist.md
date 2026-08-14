@@ -1,10 +1,12 @@
 # L3 Section A — Phase 2 Consolidation Watchlist
 
 **Architecture Level:** L3 — Business Scenario Architecture
-**Applies To:** Section A — Platform Foundation, candidates `CAN-L3-A-001` … `CAN-L3-A-064`
-**Status:** Active — Phase 2 input
+**Applies To:** Section A — Platform Foundation, active candidate IDs through `CAN-L3-A-068`; absorbed IDs remain traceable below
+**Status:** Resolved — all 18 relationship clusters have a recorded and applied or closed outcome
 **Created:** 2026-08-08
 **Resolved:** 2026-08-08
+**Applied:** 2026-08-13 — A-C01, A-C07 and A-C10; see `generated/reviews/L3_Phase1_Audit_Dhruv_Correction_Application_2026-08-13.md`
+**Approved and Applied:** 2026-08-13 — A-C05, A-C12, A-C14, A-C15, A-C17 and INT-301/INT-302; see `generated/reviews/L3_Phase1_Audit_Dhruv_Approved_Decisions_Application_2026-08-13.md`
 **Supersedes:** section 3.3 of `../01_Phase1_Discovery/L3_Phase1_Inventory_Dhruv.md` and section 7 of `L3_Section_A_Phase1_Audit_Application_Report_2026-08-08.md`
 
 ---
@@ -15,7 +17,7 @@ This document holds the candidate relationships identified during the independen
 
 It exists as a separate document because `L3_Phase1_Discovery_Rules.md` section 3 requires each Phase 1 inventory file to contain candidate scenario rows only, and section 16 requires the inventory to avoid long explanations. Relationship analysis is review output, not discovery output, and belongs here.
 
-**Nothing in this document has been consolidated.** Every candidate named below remains in the inventory under its original ID. `L3_Phase1_Discovery_Rules.md` section 17 places duplicate identification, merging and splitting in the post-Phase-1 review, and that review cannot begin while four of the five Phase 1 inventory files contain zero rows.
+The three evidence-determined clusters in section 4 were consolidated on 2026-08-13 under explicit user authorization. The same authority then approved the six decisions recorded in the Dhruv correction report and subsequently approved DEC-DHR-07 for newly unblocked A-C15. Temporary retained IDs were preserved, absorbed IDs were not reused, and split successors received new temporary IDs.
 
 This document is not a governance standard. It adds and amends no Phase 1 rule.
 
@@ -27,12 +29,13 @@ This document is not a governance standard. It adds and amends no Phase 1 rule.
 | ------ | ------- | -------------- |
 | `CLOSED` | Repository evidence establishes the candidates are distinct. No consolidation question remains. | None. Do not re-raise. |
 | `DETERMINED` | Repository evidence is one-sided. The consolidation is decided; only its execution is deferred. | Execute the recorded merge. |
+| `APPLIED` | An evidence-determined consolidation has been executed in the Phase 1 inventory with retained/absorbed IDs recorded. | Preserve the mapping; do not re-add the absorbed fragment. |
 | `OPEN` | Repository evidence supports both readings. A judgement is genuinely required. | Decide. |
 | `BLOCKED` | The cluster cannot be assessed until an integrity finding is ruled on. | Wait for the Enterprise Architecture Board. |
 
-Resolution counts: 10 `CLOSED`, 3 `DETERMINED`, 3 `OPEN`, 2 `BLOCKED`. Total 18.
+Resolution counts: 12 `CLOSED`, 6 `APPLIED`. Total 18. No `OPEN` or `BLOCKED` cluster remains.
 
-Only the 3 `OPEN` and 2 `BLOCKED` clusters carry unfinished Phase 2 work. The other 13 are recorded so the analysis is not repeated.
+All relationship decisions are complete. The register remains as retained/absorbed/split traceability evidence for Phase 2.
 
 ---
 
@@ -83,17 +86,17 @@ It is also triggered differently from 042: MD-14 is a consumer-initiated pull un
 
 ---
 
-## 4. Determined — Consolidation Decided, Execution Deferred
+## 4. Applied — Evidence-Determined Consolidations
 
-Repository evidence in these three clusters is one-sided. The decision is recorded here; only its execution waits for Phase 2, because Phase 1 must not delete a supported candidate.
+Repository evidence in these three clusters is one-sided. The consolidations were applied on 2026-08-13 without renumbering retained candidates.
 
 | Cluster | Candidates | Determination | Evidence |
 | ------- | ---------- | ------------- | -------- |
-| A-C01 Tenant reversible restriction | 002, 003 | **Merge 003 into 002.** | `L2-A01` defines no tenant restoration workflow. The only support for 003 is the section 5.8 transition-table row `Suspended → Active` at `L2-A01:1734`. A permitted transition is not a discovered business scenario. |
-| A-C07 Audit investigation family | 024, 025, 026 | **Merge 025 and 026 into 024.** | See section 4.1. |
-| A-C10 Module suspension and restoration | 033, 034 | **Merge 034 into 033.** | `L2-A08:3164` lists `Suspend Module` as a registry capability. Section 15 defines fifteen registry workflows and **no reactivation workflow**. The only support for 034 is the transition-table row `Suspended → Active` at `L2-A08:1305`. |
+| A-C01 Tenant reversible restriction | 002, 003 | **APPLIED — 003 absorbed into 002.** | `L2-A01` defines no tenant restoration workflow. The only support for 003 is the section 5.8 transition-table row `Suspended → Active` at `L2-A01:1734`. A permitted transition is not a discovered business scenario. |
+| A-C07 Audit investigation family | 024, 025, 026 | **APPLIED — 025 and 026 absorbed into 024.** | See section 4.1. |
+| A-C10 Module suspension and restoration | 033, 034 | **APPLIED — 034 absorbed into 033.** | `L2-A08:3164` lists `Suspend Module` as a registry capability. Section 15 defines fifteen registry workflows and **no reactivation workflow**. The only support for 034 is the transition-table row `Suspended → Active` at `L2-A08:1305`. |
 
-A-C01 and A-C10 are the same defect in two sections: a candidate resting on a state-machine edge with no workflow behind it. Phase 2 should settle the general rule once — **a permitted lifecycle transition with no source workflow is not an independent L3 scenario** — and apply it across all sections rather than re-litigating it per candidate. Applying that rule to Section A affects 003 and 034 only; 029 and 045 were previously grouped with them in error and are addressed in sections 3.1 and 5.
+A-C01 and A-C10 are the same defect in two sections: a candidate resting on a state-machine edge with no workflow behind it. The applied general rule is: **a permitted lifecycle transition with no source workflow is not an independent L3 scenario**. In Section A it affected 003 and 034 only; 029 and 045 were previously grouped with them in error and are addressed in sections 3.1 and 5.
 
 ### 4.1 A-C07 — determination
 
@@ -119,26 +122,26 @@ This is the discriminator that separates A-C07 from A-C08: the investigation fam
 
 ---
 
-## 5. Open — Phase 2 Decision Required
+## 5. Approved Phase 2 Judgements — Applied
 
-| Cluster | Candidates | Decision needed | Position |
+| Cluster | Candidates | Approved resolution | Application |
 | ------- | ---------- | --------------- | -------- |
-| A-C05 Workflow execution and human task | 016, 064 | Is human task resolution an outcome in its own right, or an internal phase of workflow instance execution? | 064 has its own canonical aggregate and an SLA and escalation dimension absent from 016. Leaning retain. 017 is settled — failure recovery is separable and stays. |
-| A-C12 Dataset version creation | 039, 046 | Is `L2-A09` MD-17 a second entry point into MD-10, or an independent outcome? | Genuinely balanced. Shared successor-creation core, but MD-17 has a different actor (Authorized Steward **or Platform Administrator** vs Data Steward), a different authorization gate (restoration policy), and a different published event (`HistoricalVersionRestored` vs `DatasetVersionCreated`). |
-| A-C14 Dataset lifecycle closure | 044, 045 | Is archival of a retired dataset an independent outcome? | **Downgraded from "merge" on 2026-08-08.** MD-18 has its own actor (Platform Administrator), its own authorization gate, its own event (`DatasetArchived`), and a success outcome that adds long-term archival storage and preserved searchability, which MD-11/MD-12 retirement does not deliver. Its precondition "Dataset is retired" establishes sequence, not equivalence. Leaning retain; decide in Phase 2. |
+| A-C05 Workflow execution and human task | 016, 064 | **CLOSED — retain separately.** Human-task resolution has its own aggregate, SLA and escalation outcome. | Titles and boundaries retained. |
+| A-C12 Dataset version creation | 039, 046 | **APPLIED — 046 absorbed into 039.** Historical restoration is a governed entry path to the same successor-version outcome. | A039 trigger/outcome expanded; A046 retired without ID reuse. |
+| A-C14 Dataset lifecycle closure | 044, 045 | **CLOSED — retain separately.** Retirement ends operational use; archival creates separately governed long-term storage and searchability. | Titles and boundaries retained. |
 
 ---
 
-## 6. Blocked — Awaiting Enterprise Architecture Board
+## 6. Formerly Blocked — Architecture Decisions Applied
 
-Both clusters sit inside the `L2-A10` Operational Readiness block and cannot be assessed while **INT-302** is open. See `generated/reviews/review-l3-section-a-conflicts-2026-08-08.md`.
+`INT-301` and `INT-302` were approved and applied on 2026-08-13. The L1/L2 sources now define single ownership and the two-capability readiness boundary, so neither cluster remains blocked.
 
-| Cluster | Candidates | Question | Provisional position |
+| Cluster | Candidates | Approved resolution | Application |
 | ------- | ---------- | -------- | -------------------- |
-| A-C15 Readiness assessment cycle | 047, 053, 054, 055 | Where does one governance cycle end and the next begin? `L2-A10` sections 23.1 and 28.1 share five trigger conditions, and 047's trigger list already contains 054's entry point. | Fold 054. Retain 053 — a "no reassessment required" decision is a real outcome. Review 055 against 047's closure phase. |
-| A-C17 Certificate lifecycle | 051, 052 | **052 is a compound outcome**, combining suspension, restoration, supersession, revocation and archival — outcomes with different approval models and different section 35.2 downstream consequences. | Recorded as a Phase 2 **split** candidate. Proposed three-way separation: (1) temporary suspension and restoration; (2) supersession by a successor certification; (3) revocation and historical closure. Archival remains lifecycle handling unless it independently qualifies. **Do not split before the Board rules.** |
+| A-C15 Readiness assessment cycle | 047, 053, 054, 055 | **APPLIED under DEC-DHR-07.** Retain 053's reassessment-required/no-reassessment-required decision; absorb 054's successor-assessment creation into 047's governed assessment cycle; retain 055's post-assessment/remediation/certification governance closure. | A047 now includes new/successor assessment initialization and predecessor linkage; A054 retired without ID reuse. |
+| A-C17 Certificate lifecycle | 051, 052, 067, 068 | **APPLIED — split A052 three ways.** Retain A052 for suspension/restoration; add A067 supersession and A068 revocation/terminal historical closure. | Certificate lifecycle split applied after INT-302 resolution. |
 
-A third blocked item is not a consolidation question but is recorded for completeness: candidates 008–012, 056–058 and 061 carry `[owner contested — INT-301]`. Their Primary Owner, not their boundary, is disputed.
+The former INT-301 owner markers were removed. Authentication candidates use A03 ownership; authorization candidates use A04 ownership. Candidates 056–058 were already correctly owned by A04 and required no wording change.
 
 ---
 
@@ -146,14 +149,14 @@ A third blocked item is not a consolidation question but is recorded for complet
 
 These were recorded in the audit application report as watchlist entries but are not candidate-relationship questions. They are restated here so section 7 of that report can be retired without loss.
 
-* **`X` in the Domains field** — 26 rows use `X` to mean a genuinely varying participant. Phase 2 must confirm the extension of the `L3_Naming_Numbering_Standard.md` section 5 discovery-area code into the Domains field, or define an alternative.
-* **Repository-wide Phase 1 completeness** — the Chetan, Devang, Pallav and Varad inventories contain zero candidate rows. Section A's `X` participants and cross-domain claims cannot be tested until Sections B, C and F are discovered.
-* **This inventory's own outstanding scope** — Section J, cross-domain (`X`), governance and pilot-framing candidates remain unrecorded, and are marked as such in inventory sections 4, 5 and 6.
+* **Variable Domains notation — resolved.** `L3_Phase1_Discovery_Rules.md` section 11 now governs `VAR:<role>`. Dhruv's inventory uses no `X` wildcard and no free-text “requesting domain” placeholder.
+* **Targeted peer comparison — completed 2026-08-13.** The available C, F/G/H and I registers now contain 879 candidate rows and were checked against every active A/J candidate. No exact normalized-title collision, material semantic duplicate, or competing canonical-owner claim was found. Pallav's B/D/E inventory remains empty, so those unavailable rows must be checked when populated; this is an external register limitation, not an open Section A relationship decision.
+* **Dhruv's additional assigned work — completed 2026-08-13.** Section J, governed variable-participant notation, targeted cross-domain comparison, governance traceability and the procurement-to-inventory pilot are recorded and verified. See `generated/reviews/L3_Phase1_Dhruv_Revised_Submission_Verification_2026-08-13.md`.
 
 ---
 
 ## 8. Effect on Section A Candidate Count
 
-No change. The inventory holds 64 candidates and continues to hold 64.
+The first three applied clusters absorbed A003, A025, A026 and A034 and added A065/A066, moving Section A from 64 to 62 rows. A-C12 then absorbed A046, A-C17 added A067/A068, and DEC-DHR-07 absorbed A054 into A047. Section A therefore now has **62 active candidate rows**.
 
-If Phase 2 executes the three determinations in section 4 without changing anything else, Section A would resolve to 60 candidates: 003, 025, 026 and 034 fold into 002, 024 and 033. That figure is indicative and is not a Phase 1 commitment.
+Retained IDs were not renumbered. The gaps preserve the audit trail, and absorbed IDs must not be reused.

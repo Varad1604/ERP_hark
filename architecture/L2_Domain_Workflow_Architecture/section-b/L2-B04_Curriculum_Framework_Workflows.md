@@ -90,6 +90,50 @@ Implementation details, technology choices, APIs, persistence models, and user i
 
 L2-B04 Curriculum Framework authoritatively owns the **CourseMaster** aggregate (representing the static Curriculum Definition including Course Code, Course Name, Credits, Learning Outcomes, Syllabus, and Prerequisites). Operational term-specific instances are managed downstream by L2-D01 as Course Offerings.
 
+## 2.2 Approved Canonical Curriculum Outcome Baseline
+
+**Decision date:** 2026-08-13
+
+**Decision authority:** Human-approved outcome of the Pallav Sections B/E L3 Phase 1 audit
+
+This section is the domain-specific business-workflow baseline for L3 discovery. The generic
+architecture and workflow pattern catalogs later in this document are reusable engineering
+guidance; they do not independently create Curriculum Framework business outcomes.
+
+### Canonical ownership
+
+B04 owns Programme, Programme Version, Curriculum, CourseMaster, curriculum composition,
+credit structures, baskets, major/minor/honours structures and the School academic definitions
+of Class, Section and Subject. L2-D01 owns term-specific Course Offerings and delivery state.
+
+### Canonical lifecycle
+
+```text
+Draft → Under Review → Approved → Published → Superseded or Retired → Archived
+```
+
+- A Draft or returned definition may be corrected and resubmitted.
+- A rejected proposal does not become Published and its decision evidence is retained.
+- Published Programme Versions and their Curriculum composition are immutable.
+- A material curriculum change creates a successor Programme Version; it never rewrites the
+  previously Published version.
+- Retirement prevents future governed use but preserves historical interpretation and existing
+  downstream references.
+
+### Material institutional outcomes
+
+| Outcome | Trigger | Final business result |
+| ------- | ------- | --------------------- |
+| College academic structure and curriculum establishment | An Institution requires a governed Programme and Curriculum | The Programme, Programme Version, Curriculum and required components are approved and Published for downstream use |
+| Curriculum revision | A Published Curriculum requires an approved academic or regulatory change | A successor Programme Version is Published and the predecessor remains immutable |
+| School academic model establishment | An Institution requires a Class/Section/Subject model | The governed School academic model is approved and Published without being forced into the College Programme Version model |
+| Academic definition retirement | A governed definition has no future permitted use | The definition is Retired and later Archived while historical use remains interpretable |
+
+Validation, approval routing, publication mechanics, impact analysis, consistency checks,
+historical reconstruction, event publication and correction are internal behavior or exception
+paths of these outcomes unless a later approved source explicitly establishes a separate final
+institutional result.
+
 ---
 
 # 3. Repository Context

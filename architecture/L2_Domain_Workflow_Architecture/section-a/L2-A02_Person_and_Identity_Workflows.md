@@ -10,7 +10,7 @@
 |---|---|
 | Purpose | Purpose |
 | Scope | Scope; Out of Scope; Authorization Scope |
-| Actors | Role Assignment; Role; Role Types |
+| Actors | Person; User Account administrator; downstream identity-reference consumers |
 | Entities | Canonical Entity Relationships |
 | Business Rules | Business Rules; Lifecycle Business Rules; Security Business Rules |
 | Workflow | L2-A02 — Person & Identity Workflows; Authentication Workflow; Context Resolution Workflow |
@@ -19,6 +19,21 @@
 | Events | Published Events; Domain Events & Integration Contracts; Event Architecture |
 | Dependencies | Dependency Direction; Context Resolution Dependencies; Dependency Rules |
 | Locked Decisions | Authorization Decision Outcomes; Workflow 4 — Authorization Decision; Architecture Decision Records (ADRs) |
+
+---
+
+## Canonical Ownership Amendment — INT-301
+
+> **Approved and applied 2026-08-13.** The Enterprise Architecture decision for `INT-301` assigns exactly one canonical owner to the previously duplicated security concepts. This amendment is authoritative over any later legacy wording in this document that has not yet been physically removed.
+
+| Concept | Canonical owner | A02 relationship |
+|---|---|---|
+| Person, Identity, User Account | L2-A02 — Person & Identity | Owns identity and account lifecycles. |
+| Identity and active-context references | L2-A02 — Person & Identity | Publishes stable references for consumers. |
+| Credential, Authentication Session, authentication factors/MFA enrollment, Authentication Provider | L2-A03 — Authentication | Consumes A02 identity/account references; A02 never creates or governs these lifecycles. |
+| Role, Role Assignment, Delegation, authorization-policy lifecycle | L2-A04 — Authorization & Policy | References A02 Person/Identity identifiers; A02 never grants or governs authorization. |
+
+Any later A02 diagram, table, workflow, service, or prose that describes a Credential, Authentication Session, authentication factor/MFA enrollment, Authentication Provider, Role, Role Assignment, Delegation, or authorization-policy lifecycle as A02-owned is superseded and shall be read only as non-authoritative integration context. A03 and A04 published contracts govern those concepts.
 
 ---
 
@@ -39,7 +54,7 @@
 | Followed By | All Business Domains |
 | Canonical Aggregate | Person |
 | Secondary Aggregate | Identity |
-| Last Updated | TBD |
+| Last Updated | 2026-08-13 — INT-301 ownership amendment |
 
 ---
 
@@ -64,7 +79,7 @@ The domain owns:
 - Person lifecycle
 - Identity lifecycle
 - User account lifecycle
-- Authentication identity
+- Authentication identity references supplied to L2-A03
 - Active Context Resolution References
 - Identity resolution
 - Duplicate detection
@@ -92,8 +107,7 @@ This document covers:
 - Duplicate Handling
 - Merge & Split Operations
 - Security Policies
-- Session Ownership
-- Authentication Contracts
+- Authentication identity-reference contracts
 - Multi-Domain Identity Events
 - Identity Audit
 - Identity Governance
@@ -132,8 +146,7 @@ The Person & Identity domain is the exclusive owner of:
 - Person
 - Identity
 - User Account
-- Login Credentials
-- Authentication Factors
+- Context Reference
 - Identity Status
 - Account Status
 - Identity Events
@@ -163,9 +176,9 @@ This document specifies only the additional rules that are unique to the Person 
 
 The Person & Identity domain establishes the canonical digital identity framework for every human and system actor interacting with the SutraERP platform.
 
-Its primary objective is to ensure that every individual is represented by a single canonical Person record within a Tenant while allowing that Person to participate across multiple institutions, campuses, departments, programs, and business domains through business-domain associations and scoped role assignments
+Its primary objective is to ensure that every individual is represented by a single canonical Person record within a Tenant while allowing that Person to participate across multiple institutions, campuses, departments, programs, and business domains through business-domain associations and authorization references governed by L2-A04.
 
-The domain eliminates identity duplication, enforces centralized identity governance, enables secure authentication and authorization, and provides a stable identity foundation for every downstream business capability.
+The domain eliminates identity duplication, enforces centralized identity governance, supplies canonical identity and account references to L2-A03 and L2-A04, and provides a stable identity foundation for every downstream business capability.
 
 Every business domain within SutraERP references the Person aggregate but never owns it.
 
@@ -180,7 +193,7 @@ The Person & Identity domain is designed to achieve the following objectives:
 - Support multi-institution identity sharing within a Tenant.
 - Support multiple simultaneous roles for a single Person.
 - Separate identity management from business operations.
-- Centralize authentication and authorization.
+- Supply canonical identity and account context to the separately owned authentication and authorization domains.
 - Maintain complete identity auditability.
 - Enable configurable security policies.
 - Support future identity federation standards.
@@ -198,15 +211,14 @@ The Person & Identity domain is responsible for:
 - Authentication identity
 - Context resolution
 - Organizational context consumption
-- Login credential management
-- Multi-factor authentication
+- Authentication identity-reference publication
 - Identity verification
 - Duplicate detection
 - Identity merge operations
 - Identity archival
 - Identity anonymization
 - Identity deletion approval workflows
-- Session ownership
+- Active-context reference ownership
 - Identity audit trail
 - Multi-domain identity references
 
@@ -396,13 +408,7 @@ The boundary ends where business-specific information begins.
         │
         ├──────── User Account
         │
-        ├──────── Credentials
-        │
         ├──────── Authentication Reference
-        │
-        ├──────── Session
-        │
-        ├──────── MFA
         │
         ├──────── Identity Verification
         │
@@ -442,11 +448,9 @@ The following aggregates are owned exclusively by this domain.
 | Identity | Canonical | Digital identity associated with a Person |
 | User Account | Canonical | Login-enabled account |
 | Context Reference | Canonical | Scoped downstream identity reference data |
-| Session | Canonical | Active authenticated interaction |
-| Authentication Credential | Canonical | Login secrets and authentication factors |
 | Identity Verification | Canonical | Verification status and methods |
 
-No downstream module may create or own these aggregates.
+No downstream module may create or own these A02 aggregates. Credentials, authentication sessions, authentication factors/MFA enrollment and authentication providers are A03 aggregates; roles, role assignments, delegations and authorization policies are A04 aggregates.
 
 ---
 
@@ -464,11 +468,11 @@ No downstream module may create or own these aggregates.
      │                 │                  │
      ▼                 ▼                  ▼
 
-Credentials      Role Assignment     Sessions
-     │                 │
-     ▼                 ▼
+ A03 Credential/Session Reference     A04 Role/Assignment Reference
+                 │                                  │
+                 ▼                                  ▼
 
-Authentication  Authorization
+          Authentication Context            Authorization Context
 
 ```
 
@@ -524,8 +528,7 @@ Owns:
 - Username
 - Login status
 - Lock status
-- Password lifecycle
-- MFA configuration
+- Identity/account eligibility supplied to authentication
 
 Does NOT own:
 
@@ -533,35 +536,15 @@ Does NOT own:
 
 ---
 
-## Role Assignment
+## Role Assignment Reference
 
-Represents what a Person is allowed to do.
-
-A Role Assignment always contains:
-
-- Person
-- Role
-- Scope
-- Effective Date
-- Expiry Date
-- Status
-
-Roles never exist independently of scope.
+A02 publishes stable Person and Identity references that L2-A04 uses in its canonical Role Assignment aggregate. A02 does not create, approve, activate, suspend, expire, revoke, or otherwise govern Role Assignment or Delegation.
 
 ---
 
-## Session
+## Authentication Session Reference
 
-Represents an authenticated interaction.
-
-Owns:
-
-- Login timestamp
-- Device
-- IP Address
-- Last Activity
-- Expiry Time
-- Logout Reason
+A02 supplies canonical Identity and User Account references to L2-A03. L2-A03 exclusively owns Authentication Session creation, state, timestamps, device and network context, activity, expiry, termination and revocation.
 
 ---
 
@@ -653,19 +636,17 @@ The following rules shall always remain true.
 
 ---
 
-### Role Assignment
+### Role Assignment Reference
 
-- Role Assignment references one Person and one Authorization Scope.
-- Authorization is determined by role + scope.
-- Expired roles grant no permissions.
+- A referenced Role Assignment must resolve to the canonical A04 aggregate.
+- A02 Person and Identity state may be consumed during authorization but does not grant permissions.
 
 ---
 
-### Session
+### Authentication Session Reference
 
-- Session belongs to one authenticated User Account.
-- Expired sessions are invalid.
-- Inactive sessions terminate automatically.
+- A referenced Authentication Session must resolve to the canonical A03 aggregate.
+- A02 cannot activate, expire, terminate, or revoke an Authentication Session.
 
 ---
 
@@ -1192,14 +1173,14 @@ The Identity aggregate owns:
 
 The Identity aggregate does not own:
 
-- Passwords
-- Login identifiers
-- Account lock status
-- Sessions
-- Authentication credentials
-- MFA configuration
+- User Account lifecycle and login identifiers
+- Authentication Sessions
+- Credentials
+- Authentication factors/MFA enrollment
+- Authentication Provider lifecycle
+- Roles, Role Assignments, Delegations, or authorization policy
 
-These responsibilities belong to the User Account aggregate.
+User Account lifecycle and login identifiers belong to A02. Authentication concepts belong to L2-A03 and authorization concepts belong to L2-A04 under the `INT-301` ownership amendment.
 
 
 ---
@@ -1223,17 +1204,13 @@ Tenant
 
 │
 
-├──────── Username
+├──────── Username / Login Identifier
 
-├──────── Mobile Login
+├──────── Account Status
 
-├──────── Password
+├──────── A03 Authentication References
 
-├──────── MFA
-
-├──────── Sessions
-
-└──────── Login History
+└──────── A04 Authorization References
 ```
 
 ---
@@ -1258,20 +1235,18 @@ IdentityID remains immutable throughout the lifecycle.
 # User Account Model
 
 Each Person owns exactly one User Account within a Tenant.
-The User Account is the authentication container for the Identity.
+The User Account is the canonical account record referenced by authentication and authorization.
 
 It owns:
 
 - Username
-- Password
-- Login Methods
-- MFA
-- Sessions
 - Account Lock Status
+- Login Enablement
+- Account Lifecycle
 
 The User Account does not own the Person or Identity lifecycle.
 
-The User Account provides a single authentication context while supporting multiple authentication methods.
+The User Account provides a stable account reference. L2-A03 owns authentication methods, credentials, factors, providers, and sessions associated with that reference.
 
 Supported authentication methods include:
 
@@ -1309,21 +1284,20 @@ These references are informational only and do not create ownership, lifecycle c
 
 ---
 
-## Authentication
+## Authentication References
 
-- Password Hash
-- Password Last Changed
-- Password Expiry
-- Password History
+- Credential Reference (opaque A03 identifier, where required)
+- Authentication Provider Reference (opaque A03 identifier, where required)
+- Authentication Eligibility Context
 
 ---
 
-## MFA
+## Authentication Factor References
 
-- MFA Enabled
-- MFA Type
-- Backup Codes
-- Recovery Options
+- MFA Enrollment Reference (opaque A03 identifier, where required)
+- Authentication Assurance Reference
+
+A02 does not store factor secrets, backup codes, recovery mechanisms, or factor lifecycle state.
 
 ---
 
@@ -1336,11 +1310,12 @@ These references are informational only and do not create ownership, lifecycle c
 
 ---
 
-## Session Configuration
+## Session Policy References
 
-- Maximum Sessions
-- Session Timeout
-- Device Trust Policy
+- Authentication Policy Reference
+- Tenant Security Configuration Reference
+
+Session limits, timeout, trusted-device behavior and session lifecycle remain owned by L2-A03.
 
 ---
 
@@ -1368,14 +1343,9 @@ Characteristics
 
 ---
 
-## Password
+## Credential Boundary
 
-Characteristics
-
-- Never stored in plain text
-- Securely hashed
-- Versioned
-- History maintained
+Passwords and all other credentials are authentication proofs, not login identifiers. Their storage, hashing, versioning, history and lifecycle are owned exclusively by L2-A03.
 
 ---
 
@@ -1563,9 +1533,9 @@ Captured information includes:
 
 ---
 
-# Session Ownership
+# Authentication Session Reference *(legacy integration context; A03 owns the session)*
 
-Each authenticated User Account may own multiple concurrent sessions.
+Each authenticated User Account may be referenced by multiple concurrent Authentication Sessions owned by L2-A03.
 
 Each session records:
 
@@ -1618,7 +1588,9 @@ Downstream domains consume these events without directly modifying Identity.
 
 ---
 
-# Authentication & Authorization
+# Authentication & Authorization *(legacy integration reference; normative ownership is A03/A04)*
+
+> **INT-301 boundary:** Sections from this point that describe authentication or authorization models document how A02 identity/account context is consumed. They are not canonical aggregate, lifecycle, policy, command, event, service, or repository definitions. L2-A03 governs authentication; L2-A04 governs authorization. Where this legacy reference prose says that A02, Identity, or User Account “owns”, “creates”, “publishes”, “assigns”, “grants”, or “manages” an A03/A04 concept, the statement is superseded by the Canonical Ownership Amendment near the start of this document.
 
 Authentication and Authorization are independent architectural capabilities.
 
@@ -4772,7 +4744,9 @@ Consumers shall treat events as immutable integration contracts.
 
 ---
 
-# Security Architecture
+# Security Architecture *(legacy cross-domain reference; A03/A04 contracts govern)*
+
+> Authentication proofs, sessions, factors, providers, and their policy evaluation below are A03 concepts. Roles, Role Assignments, Delegations, permissions, and authorization policies below are A04 concepts. A02 supplies canonical Person, Identity, User Account, and context references only.
 
 The Person & Identity domain serves as the security foundation for the SutraERP platform.
 
@@ -5731,7 +5705,7 @@ Password validation occurs during creation and modification.
 
 ---
 
-# Authentication Configuration
+# Authentication Configuration *(legacy A03 integration reference)*
 
 Tenant administrators may configure:
 

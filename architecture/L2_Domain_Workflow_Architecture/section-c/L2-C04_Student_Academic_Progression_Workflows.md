@@ -1426,6 +1426,20 @@ Recognise valid academic credits obtained outside the student's current programm
 - Institutional Approval
 - Ledger Update
 
+### Canonical Ownership and External Integration Handoff
+
+L2-C04 is the canonical owner of academic evaluation, equivalency, institutional approval or rejection, recognised-credit recording, and the resulting Academic Credit Ledger update.
+
+When the request concerns an external education provider, H10 may own the external request, provider verification, connector exchange, synchronization and reconciliation records. H10 submits the verified request and supporting documentation to L2-C04 for the academic decision.
+
+The handoff outcomes are:
+
+- `Approved` — L2-C04 records the recognised credit in the Academic Credit Ledger and returns the authoritative decision reference to H10 for external synchronization.
+- `Rejected` — L2-C04 records the academic rejection and returns the authoritative reason/reference to H10; no credit ledger entry is created.
+- `Revision Required` — L2-C04 identifies missing academic evidence or mapping information and H10 coordinates the external follow-up without making the academic decision.
+
+External integration completion does not replace or duplicate the L2-C04 academic decision.
+
 ---
 
 # APW-08 — Programme Migration Workflow
@@ -2070,7 +2084,7 @@ The Academic Progression domain subscribes to the following business events.
 | SupplementaryResultPublished | Examination | Recalculate progression |
 | CurriculumUpdated | Curriculum Framework | Validate curriculum impact |
 | AcademicPolicyUpdated | Policy Management — **no publisher exists** | Future evaluations use revised policies |
-| CreditTransferApproved | Credit Transfer | Update Academic Credit Ledger |
+| ExternalCreditTransferSubmitted | External Education Integration (L2-H10) | Start academic equivalency and credit-recognition evaluation using verified external evidence |
 | AcademicBreakApproved | Student Lifecycle | Suspend progression |
 | StudentRestored | Student Lifecycle | Resume progression evaluation |
 
@@ -2093,6 +2107,7 @@ The Academic Progression domain publishes the following authoritative events.
 | AcademicStandingUpdated | Standing updated |
 | CreditLedgerUpdated | Credits recalculated |
 | CreditTransferRecognised | Approved transfer recorded |
+| CreditTransferRejected | Academic credit-recognition request rejected |
 | ProgrammeMigrationApproved | Migration completed |
 | AcademicBreakApproved | Academic interruption started |
 | StudentRejoined | Rejoining completed |
@@ -2236,6 +2251,21 @@ Approved transfer credits recognised.
 
 - Academic Credit Ledger
 - Qualification Completion & Student Exit
+- External Education Integration (L2-H10), when an external request requires decision synchronization
+
+---
+
+## Event — CreditTransferRejected
+
+### Trigger
+
+Academic equivalency or institutional credit-recognition evaluation rejects the request.
+
+### Consumers
+
+- External Education Integration (L2-H10), when an external request requires rejection synchronization
+- Audit
+- Reporting
 
 ---
 
@@ -2357,6 +2387,7 @@ L2-C05
 | AcademicStandingUpdated | Academic Standing |
 | CreditLedgerUpdated | Academic Credit Ledger |
 | CreditTransferRecognised | Credit Transfer |
+| CreditTransferRejected | Credit Transfer |
 | ProgrammeMigrationApproved | Programme Migration |
 | AcademicBreakApproved | Academic Break |
 | StudentRejoined | Student Rejoining |
@@ -6408,16 +6439,17 @@ This appendix summarizes workflows already defined in the Business Workflow Arch
 |-------------|---------------|---------------|
 | APW-01 | Student Progression Evaluation | Academic Progression |
 | APW-02 | Academic Standing Assignment | Academic Progression |
-| APW-03 | Conditional Promotion | Academic Progression |
-| APW-04 | Academic Probation Management | Academic Progression |
-| APW-05 | Academic Detention Management | Academic Progression |
-| APW-06 | Academic Credit Ledger Update | Academic Progression |
-| APW-07 | Programme Migration | Academic Progression |
-| APW-08 | Academic Break Processing | Academic Progression |
-| APW-09 | Student Rejoining | Academic Progression |
-| APW-10 | Qualification Eligibility Evaluation | Academic Progression |
-| APW-11 | Academic Bank of Credits Synchronization | Academic Progression |
-| APW-12 | Manual Academic Review & Override | Academic Progression |
+| APW-03 | Academic Credit Ledger Update | Academic Progression |
+| APW-04 | Conditional Promotion | Academic Progression |
+| APW-05 | Academic Probation Management | Academic Progression |
+| APW-06 | Academic Detention Management | Academic Progression |
+| APW-07 | Credit Transfer Recognition | Academic Progression |
+| APW-08 | Programme Migration | Academic Progression |
+| APW-09 | Academic Break Processing | Academic Progression |
+| APW-10 | Student Rejoining | Academic Progression |
+| APW-11 | Qualification Eligibility Evaluation | Academic Progression |
+| APW-12 | Academic Bank of Credits Synchronization | Academic Progression |
+| APW-13 | Manual Academic Review & Override | Academic Progression |
 
 ---
 
@@ -6431,6 +6463,7 @@ This appendix summarizes workflows already defined in the Business Workflow Arch
 | Academic Probation Management | Standing Rules | Probation Assignment |
 | Academic Detention Management | Standing Rules | Detention Decision |
 | Credit Ledger Update | Passed Academic Components | Updated Credit Ledger |
+| Credit Transfer Recognition | Verified transfer request and evidence | Recognition/rejection decision and, when approved, updated Credit Ledger |
 | Programme Migration | Approved Migration Request | Updated Programme Association |
 | Academic Break Processing | Approved Break Request | Academic Break Status |
 | Student Rejoining | Approved Rejoining Request | Active Academic Status |
@@ -6450,6 +6483,7 @@ This appendix summarizes workflows already defined in the Business Workflow Arch
 | Academic Probation Management | Probation rules triggered |
 | Academic Detention Management | Detention rules triggered |
 | Credit Ledger Update | Academic component completed |
+| Credit Transfer Recognition | Internal, ABC, prior-learning, or H10-verified external request submitted |
 | Programme Migration | Approved migration request |
 | Academic Break Processing | Approved academic break |
 | Student Rejoining | Approved rejoining request |
@@ -6469,6 +6503,7 @@ This appendix summarizes workflows already defined in the Business Workflow Arch
 | Academic Probation Management | Assign Academic Probation |
 | Academic Detention Management | Apply Academic Detention |
 | Credit Ledger Update | Evaluate Student Progression |
+| Credit Transfer Recognition | Evaluate Credit Transfer Recognition |
 | Programme Migration | Submit Programme Migration |
 | Academic Break Processing | Approve Academic Break |
 | Student Rejoining | Approve Student Rejoining |
@@ -6488,6 +6523,7 @@ This appendix summarizes workflows already defined in the Business Workflow Arch
 | Academic Probation Management | AcademicProbationAssigned |
 | Academic Detention Management | AcademicDetentionApplied |
 | Credit Ledger Update | CreditLedgerUpdated |
+| Credit Transfer Recognition | CreditTransferRecognised, CreditTransferRejected |
 | Programme Migration | ProgrammeMigrationApproved |
 | Academic Break Processing | AcademicBreakApproved |
 | Student Rejoining | StudentRejoined |
@@ -6507,6 +6543,7 @@ This appendix summarizes workflows already defined in the Business Workflow Arch
 | Academic Probation Management | Academic Authority Approval |
 | Academic Detention Management | Academic Authority Approval |
 | Credit Ledger Update | Academic Progression Manage |
+| Credit Transfer Recognition | Academic Progression Approval |
 | Programme Migration | Academic Administration Approval |
 | Academic Break Processing | Academic Administration Approval |
 | Student Rejoining | Academic Administration Approval |
@@ -6526,6 +6563,7 @@ This appendix summarizes workflows already defined in the Business Workflow Arch
 | Academic Probation Management | Yes |
 | Academic Detention Management | Yes |
 | Credit Ledger Update | Yes |
+| Credit Transfer Recognition | Yes |
 | Programme Migration | Yes |
 | Academic Break Processing | Yes |
 | Student Rejoining | Yes |
@@ -6545,6 +6583,7 @@ This appendix summarizes workflows already defined in the Business Workflow Arch
 | Academic Probation Management | Retry after validation |
 | Academic Detention Management | Retry after validation |
 | Credit Ledger Update | Restore transactional consistency |
+| Credit Transfer Recognition | Return for evidence revision or record authoritative rejection without a Credit Ledger entry |
 | Programme Migration | Cancel migration transaction |
 | Academic Break Processing | Restore previous academic state |
 | Student Rejoining | Resume after validation |
@@ -6599,6 +6638,8 @@ This appendix summarizes event interactions defined throughout this architecture
 | APE-10 | QualificationEligible | Qualification eligibility confirmed | Academic Progression |
 | APE-11 | AcademicCreditsSynchronized | ABC synchronization completed | Academic Progression |
 | APE-12 | ManualAcademicDecisionRecorded | Authorized manual override completed | Academic Progression |
+| APE-13 | CreditTransferRecognised | Approved transferred credit is recorded in the Academic Credit Ledger | Academic Progression |
+| APE-14 | CreditTransferRejected | Academic equivalency or institutional recognition rejects the transfer request | Academic Progression |
 
 ---
 
@@ -6614,6 +6655,7 @@ This appendix summarizes event interactions defined throughout this architecture
 | AcademicPeriodClosed | Academic Administration | Finalize progression processing |
 | MigrationRequestApproved | Programme Management | Execute programme migration |
 | QualificationProcessCompleted | Qualification Completion & Student Exit | Complete progression lifecycle |
+| ExternalCreditTransferSubmitted | External Education Integration (L2-H10) | Start evaluation for a verified external credit-transfer request |
 
 ---
 
@@ -6627,6 +6669,8 @@ This appendix summarizes event interactions defined throughout this architecture
 | AcademicProbationAssigned | Student Portal, Notifications |
 | AcademicDetentionApplied | Notifications, Academic Administration |
 | CreditLedgerUpdated | Qualification Completion & Student Exit, ABC Integration |
+| CreditTransferRecognised | External Education Integration (L2-H10), Qualification Completion & Student Exit |
+| CreditTransferRejected | External Education Integration (L2-H10), Audit & Reporting |
 | ProgrammeMigrationApproved | Academic Delivery, Student Lifecycle |
 | AcademicBreakApproved | Student Lifecycle, Reporting |
 | StudentRejoined | Academic Delivery, Student Lifecycle |
@@ -6918,4 +6962,3 @@ The Student Academic Progression domain shall comply with the following governan
 ---
 
 **End of Document**
-

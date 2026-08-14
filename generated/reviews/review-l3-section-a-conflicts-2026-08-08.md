@@ -371,26 +371,19 @@ publishers in locked documents without altering ownership.
 
 | ID | Severity | Outcome |
 |---|---|---|
-| INT-301 | Critical | **OPEN — BLOCKER.** Recorded, not resolved. Requires Enterprise Architecture Board decision under `L2-A00:3031`. No L2 ownership statement amended. **Nine** Phase 1 candidates whose Primary Owner is directly contested retain their owner with an `owner contested — INT-301` marker: CAN-L3-A-008 through CAN-L3-A-012, and CAN-L3-A-056 through CAN-L3-A-058 and CAN-L3-A-061. The wider impact table above also lists candidates that are *adjacent* to the contested boundary but whose own Primary Owner is not disputed (CAN-L3-A-005, CAN-L3-A-006, CAN-L3-A-007, CAN-L3-A-059, CAN-L3-A-060 — all owned by Person & Identity, which is uncontested for Person and Identity); those rows are **not** marked. |
-| INT-302 | Critical | **OPEN — BLOCKER.** Recorded, not resolved. Requires Enterprise Architecture Board decision. Neither locked L1 nor `L2-A10` amended. Nine affected Phase 1 candidates retained and marked `provisional — INT-302`. |
+| INT-301 | Critical | **RESOLVED 2026-08-13 — APPROVED ARCHITECTURE DECISION.** A02 owns Person, Identity, User Account and identity/context references. A03 owns Credential, Authentication Session, authentication factors/MFA Enrollment, Authentication Provider and their lifecycles. A04 owns Role, Role Assignment, Delegation and authorization-policy lifecycles. Locked L2 sources and affected L3 owner markers were amended. |
+| INT-302 | Critical | **RESOLVED 2026-08-13 — APPROVED ARCHITECTURE DECISION.** L1-06 is dynamic, operation-specific Capability Readiness Evaluation and returns non-persisted `READY`/`NOT READY`. L2-A10 is Operational Readiness Governance & Certification and persists assessments, evidence references, findings, improvement plans and certificates. Certificates are evidence and never a global readiness flag. Locked L1/L2 sources, B01 handoff and affected L3 wording were amended. |
 | INT-303 | Medium | **Fixed by clarification.** Scope note added after `L2-A08:1`; section 5.1 pointer made precise. Title deliberately retained — rationale recorded. No ownership changed. |
 | INT-304 | Medium | **Fixed.** Two dangling `A10` configuration references in `L2-A09` repointed to `L2-A01` section 6.5. A09's substantive boundary statement unchanged. No configuration domain created. |
 
-## Open after remediation
+## Architecture decisions applied 2026-08-13
 
-Both open items are genuine conflicts between locked documents, not gaps where the
-repository is silent. Neither may be resolved by an editor, an audit, or an AI assistant.
+The user approved the audit recommendations as the required architecture authority for this repository change. The two conflicts are no longer open:
 
-1. **INT-301** — duplicate canonical ownership of Credential, Authentication Session, MFA,
-   Role, Role Assignment and Delegation across `L2-A02`, `L2-A03` and `L2-A04`. Evidence
-   within the sources favours A03 for authentication and A04 for authorization, but that is
-   an inference and is recorded as one. No L3 scenario touching these concepts shall be
-   authored until the Board rules.
-2. **INT-302** — locked L1's dynamic, non-persisted Operational Readiness model against
-   `L2-A10`'s persisted Assessment and Certificate aggregates, including the direct
-   contradiction between `L1:1539` ("No global 'Institute Ready' flag exists") and
-   `L2-A10:2920` (B01 updates "the institution's readiness flag"). No L3 scenario in the
-   A10 block shall be authored until the Board rules.
+1. **INT-301** now has a single-owner boundary across A02, A03 and A04. The A02 source carries an explicit authoritative amendment over remaining legacy implementation prose; the A03 and A04 canonical ownership sections record their exclusive concepts. Phase 2 may author the affected authentication and authorization candidates under those owners.
+2. **INT-302** now separates the runtime decision from governance evidence. Dynamic `L1-06` evaluation remains authoritative for one requested operation. A10 assessments and certificates remain durable governance artifacts, but no certificate event sets an institution-wide readiness flag. Phase 2 may author the A10 block within that boundary.
+
+The approval and exact recommended rulings are preserved in `generated/reviews/L3_Phase1_Audit_Dhruv_Correction_Application_2026-08-13.md`; the completed application is recorded in `generated/reviews/L3_Phase1_Audit_Dhruv_Approved_Decisions_Application_2026-08-13.md`.
 
 ## Verification note
 

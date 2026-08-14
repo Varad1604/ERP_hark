@@ -1,5 +1,7 @@
 # Section A Phase 1 Audit Application Report
 
+> **Follow-up — 2026-08-13:** The canonical architecture changes prohibited during this 2026-08-08 application were later explicitly approved. `INT-301` and `INT-302` are resolved in the locked L1/L2 sources, the affected L3 markers are removed, and all approved watchlist decisions—including DEC-DHR-07 for A-C15—are applied. See `generated/reviews/L3_Phase1_Audit_Dhruv_Approved_Decisions_Application_2026-08-13.md`. The report below remains the point-in-time 2026-08-08 application record.
+
 **Document:** L3 Section A Phase 1 Audit Application Report
 **Architecture Level:** L3 — Business Scenario Architecture
 **Phase:** Phase 1 — Scenario Discovery

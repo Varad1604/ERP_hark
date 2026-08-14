@@ -99,10 +99,44 @@ The Organization Domain governs:
 - Organization lifecycle
 - Organization governance
 - Organization type definitions
+- Position definitions as structural organisational roles
 - Organizational capabilities
 - Organizational resolution
 - Organizational integration contracts
 - Organization-related business events
+
+---
+
+## Approved Position Definition Ownership and Lifecycle Clarification
+
+**Decision date:** 2026-08-13
+
+**Decision authority:** Human-approved outcome of the Pallav Sections B/E L3 Phase 1 audit
+
+The Organisation Domain is the canonical owner of `PositionDefinition`. L2-E02 owns
+`PositionAssignment`, occupancy, responsibility, reporting relationship and operational authority;
+it consumes a Position Definition as an external structural reference and shall never create,
+change, retire or archive that definition.
+
+The canonical Position Definition lifecycle is:
+
+```text
+Draft → Under Review → Approved → Active → Retired → Archived
+```
+
+The material business outcomes are:
+
+| Outcome | Boundary |
+| ------- | -------- |
+| Establishment and activation | A governed structural role becomes Active and eligible for E02 assignment; it contains no occupant |
+| Effective-dated change | An approved structural change becomes effective without rewriting prior definition or assignment history |
+| Retirement and archive | A retired definition cannot receive new assignments; historical E02 references remain valid and the definition may later be archived under retention governance |
+
+Active definitions shall not be destructively edited. A material structural change shall preserve
+the prior effective representation and its assignment references. Retirement affects future
+assignment eligibility; it does not mutate or orphan historical Position Assignments. Position
+Definition integration facts shall be published through versioned B02 contracts, with canonical
+event names governed by the enterprise event registry.
 
 ---
 
