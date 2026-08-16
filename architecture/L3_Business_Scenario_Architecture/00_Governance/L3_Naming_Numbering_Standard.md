@@ -117,6 +117,8 @@ Use `X` only when the likely primary owner cannot be safely identified during di
 
 No final L3 scenario should remain under `X`.
 
+`X` is an identifier-area discovery code, not a wildcard for the inventory `Domains` field. A genuinely variable participant in that field uses the governed `VAR:<role>` notation defined by `L3_Phase1_Discovery_Rules.md` section 11.
+
 ---
 
 ## 6. Candidate ID Examples

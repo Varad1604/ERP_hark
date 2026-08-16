@@ -78,7 +78,7 @@ The audit methodology specifically evaluated and validated:
 | **Scope** | L2-B01 through L2-B05 |
 | **Parent Architecture** | SutraERP Enterprise Architecture (L1) |
 | **Dependencies** | Platform Foundation & Shared Infrastructure (L2-A01 to L2-A09) |
-| **Reviewed Documents** | [L2-B01 — Institution Lifecycle](L2-B01_Institution_Workflow.md), [L2-B02 — Organisation Workflows](L2-B02_Organisation_Workflows.md), [L2-B03 — Campus & Infrastructure Workflows](L2-B03_Campus_Workflows.md), [L2-B04 — Curriculum Framework Workflows](L2-B04_Curriculum_Framework_Workflows.md), [L2-B05 — Flexible Academic Calendar Workflows](L2-B05_Academic_Calendar_Workflows.md), [L2-A10 — Operational Readiness Workflows](../section-a/L2-A10_Operational_Readiness_Workflows.md) |
+| **Reviewed Documents** | [L2-B01 — Institution Lifecycle](L2-B01_Institution_Workflow.md), [L2-B02 — Organisation Workflows](L2-B02_Organisation_Workflows.md), [L2-B03 — Campus & Infrastructure Workflows](L2-B03_Campus_Workflows.md), [L2-B04 — Curriculum Framework Workflows](L2-B04_Curriculum_Framework_Workflows.md), [L2-B05 — Flexible Academic Calendar Workflows](L2-B05_Academic_Calendar_Workflows.md), [L2-A10 — Operational Readiness Governance & Certification Workflows](../section-a/L2-A10_Operational_Readiness_Workflows.md) |
 | **Review Status** | Reviewed & Certified with Minor Fixes |
 | **Repository Version** | v1.0 |
 | **Architecture Status** | Approved with Remarks |
@@ -106,7 +106,7 @@ This certification review is conducted by the Architecture Review Board to ensur
 - **Included in Certification:**
   - The lifecycle states, validations, and events of the `Institution` aggregate.
   - The organizational hierarchy, units, governance configuration, and versioned structures.
-  - The physical spatial catalog (Campuses, Buildings, Floors, Spaces, Zones, Collections, Portfolios).
+  - Institutional Campus identity, Institution association, institutional status, and governance metadata. The physical spatial catalog is owned by L2-G10 and is outside Section B.
   - Academic curriculum structures (Programmes, Versions, Courses, Subjects, Credits).
   - Calendar management (Academic Calendars, Assignments, Exceptions, Snapshots).
   - Readiness assessment workflows (Requirements, Findings, Improvement Plans, Readiness Certificates).
@@ -158,11 +158,11 @@ This certification review is conducted by the Architecture Review Board to ensur
 | **Calendar Assignment** | L2-B05 Academic Calendar | None | None | Certified | [Certain] |
 | **Calendar Exception** | L2-B05 Academic Calendar | None | None | Certified | [Certain] |
 | **Calendar Snapshot** | L2-B05 Academic Calendar | None | None | Certified | [Certain] |
-| **Readiness Assessment** | L2-A10 Operational Readiness (Section A) | None | None | Certified | [Certain] |
-| **Readiness Requirement** | L2-A10 Operational Readiness (Section A) | None | None | Certified | [Certain] |
-| **Readiness Finding** | L2-A10 Operational Readiness (Section A) | None | None | Certified | [Certain] |
-| **Readiness Improvement Plan** | L2-A10 Operational Readiness (Section A) | None | None | Certified | [Certain] |
-| **Readiness Certificate** | L2-A10 Operational Readiness (Section A) | None | None | Certified | [Certain] |
+| **Readiness Assessment** | L2-A10 Operational Readiness Governance & Certification (Section A) | None | None | Certified | [Certain] |
+| **Readiness Requirement** | L2-A10 Operational Readiness Governance & Certification (Section A) | None | None | Certified | [Certain] |
+| **Readiness Finding** | L2-A10 Operational Readiness Governance & Certification (Section A) | None | None | Certified | [Certain] |
+| **Readiness Improvement Plan** | L2-A10 Operational Readiness Governance & Certification (Section A) | None | None | Certified | [Certain] |
+| **Readiness Certificate** | L2-A10 Operational Readiness Governance & Certification (Section A) | None | None | Certified | [Certain] |
 
 ### Certification Result: ✅ PASS
 
@@ -266,7 +266,7 @@ graph TD
 | **L2-B03 Campus & Infrastructure** | L2-A01, L2-B01, L2-B02 | L2-A10, L2-G10 | Provides campus governance representation and boundary references | Certified | [Certain] |
 | **L2-B04 Curriculum Framework** | L2-A01, L2-B01, L2-B02 | L2-B05, L2-A10, Student Lifecycle, Examinations | Establishes academic framework, credit guidelines, subjects, and programs | Certified | [Certain] |
 | **L2-B05 Flexible Academic Calendar** | L2-A01, L2-B01, L2-B02, L2-B04 | L2-A10, Admissions, Timetable, Attendance, Assessments | Defines temporal academic schedules, versions, exceptions, and snapshots | Certified | [Certain] |
-| **L2-A10 Operational Readiness (Section A)** | L2-A01, L2-A04 to L2-A09, L2-B01 to L2-B05 | Admissions, Student Lifecycle (gate check) | Governance gate evaluating checklist items before activating operational processes | Certified | [Certain] |
+| **L2-A10 Operational Readiness Governance & Certification (Section A)** | L2-A01, L2-A04 to L2-A09, L2-B01 to L2-B05 | L1-06 capability-readiness evaluation, Admissions, Student Lifecycle | Persists governance assessments and certification evidence; does not replace the dynamic operation-specific gate | Certified | [Certain] |
 
 ### Certification Result: ✅ PASS
 
@@ -370,6 +370,7 @@ Apart from these spelling variations, the business semantics of core terms (`Ins
      - *Evidence:* [L2-B04 Part X](L2-B04_Curriculum_Framework_Workflows.md) and [L2-B04 Part XI](L2-B04_Curriculum_Framework_Workflows.md).
    - *Downstream Impact:* Downstream developers must look into the Curriculum domain to find general enterprise workflow guidelines. [Likely]
    - *Recommended Owner:* Platform Foundation Architecture (A-Series).
+   - *L3 Discovery Resolution (2026-08-13):* B04 §2.2 now defines the approved domain-specific ownership, lifecycle, and four material curriculum outcomes. Parts X and XI remain generic guidance and shall not generate independent L3 candidates. The future relocation of those generic catalogs remains a structural cleanup item.
 
 2. **Finding (Absence of Personnel-to-Position Mapping in B02):**
    - *Affected Domains:* L2-B02 (Organisation), and downstream HR/Authorization.
@@ -439,7 +440,7 @@ Apart from these spelling variations, the business semantics of core terms (`Ins
 - None. [Certain]
 
 ### Major Issues
-- **Global Pattern Catalog Bloat in B04:** The inclusion of repository-wide architectural and workflow patterns (CRUD, Approval, Publication, etc.) in `L2-B04` is a structural concern; moving it to a platform-level standard document depends on repository governance rules. [Likely]
+- **Global Pattern Catalog Bloat in B04:** The inclusion of repository-wide architectural and workflow patterns remains a structural concern, but B04 §2.2 now prevents those patterns from being treated as Curriculum outcomes during L3 discovery. Moving the catalogs remains a platform-governance cleanup item. [Certain]
 
 ### Minor Issues
 - **Spelling Inconsistencies:** Harmonize "Organisation" vs. "Organization" across filenames and headers, and update B01 to use the British spelling "Programme" to match B04 and B05. [Certain]

@@ -4,7 +4,7 @@
 **Section:** J — Enterprise Resource Management
 **Domain:** J06 — Inventory & Warehouse Management
 **Document ID:** L2-J06
-**Version:** 1.0
+**Version:** 1.1 — INT-018 structural maintenance
 **Status:** Locked
 **Classification:** Level 2 Domain Workflow Architecture
 **Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
@@ -20,18 +20,18 @@
 | Required section (Volume 3 §18) | Location in this document |
 |---|---|
 | Purpose | §1 Purpose |
-| Scope | — not present — |
-| Actors | — not present — |
-| Entities | — not present — |
+| Scope | §14 Scope |
+| Actors | §15 Canonical Actors |
+| Entities | §16 Canonical Entities |
 | Business Rules | Rules / Invariants |
 | Workflow | §12 Event and Workflow Integration; Workflows |
 | State Machine | States |
-| Contracts | — not present — |
+| Contracts | §17 Domain Contracts |
 | Events | §6 Domain Events; §12 Event and Workflow Integration |
 | Dependencies | §7 Dependencies |
-| Locked Decisions | — not present — |
+| Locked Decisions | §18 Locked Decisions |
 
-> **Gap:** 5 required section(s) have no counterpart in this document: Scope, Actors, Entities, Contracts, Locked Decisions. Recorded, not authored.
+> **INT-018 maintenance:** The five former structural gaps were closed on 2026-08-13 by consolidating semantics already present in §§1–13. No canonical ownership, lifecycle, event, or rule was added.
 
 ---
 
@@ -222,6 +222,47 @@ J06 shall minimize copied supplier, employee, student, department, finance, and 
 Inventory and stock-ledger history shall remain reconstructable according to enterprise and institutional retention policy.
 
 Retried commands shall be idempotent for item creation, warehouse configuration, stock receipt consequence, reservation, issue consequence, return consequence, transfer consequence, and adjustment.
+
+---
+
+# 14. Scope
+
+J06 owns the enterprise `Item` master, `Warehouse` and storage-location structure, and authoritative `InventoryPosition` stock ledger and availability. It applies accepted-receipt and J07 movement consequences, governs ledger adjustments, and maintains batch, lot, serial, expiry, controlled-resource and replenishment controls without executing operational stock movement or owning Finance truth.
+
+# 15. Canonical Actors
+
+| Actor | Existing responsibility |
+|---|---|
+| Item Master Administrator | Creates, classifies, amends and archives enterprise Item records under policy. |
+| Warehouse Configurator | Maintains warehouse, store, location and bin structure. |
+| Inventory Controller / Stock Adjuster | Requests and records governed ledger corrections and adjustment reasons. |
+| Stock Adjustment Approver | Independently authorizes adjustments where policy requires it. |
+| Controlled Stock Viewer | Reads controlled inventory only under explicit authorization. |
+
+# 16. Canonical Entities
+
+| Entity / Aggregate | Existing responsibility |
+|---|---|
+| `Item` | Enterprise item identity and classification. |
+| `Warehouse` | Institution-scoped warehouse and storage structure. |
+| `InventoryPosition` | Authoritative quantity, stock-ledger and availability state, including applicable batch/lot/serial/expiry traceability. |
+
+# 17. Domain Contracts
+
+| Contract direction | Existing contract |
+|---|---|
+| Consumes | J05 accepted-receipt facts, J07 movement facts, institution/organisation warehouse scope and Finance valuation references where required. |
+| Consumes platform outcomes | A03 authentication context, A04 authorization decisions, A05 workflow outcomes, A06 event transport and A07 audit persistence. |
+| Publishes | Item and inventory-position references, applied ledger consequences, stock-adjustment facts and availability/reorder facts. |
+| Publishes events | `ItemCreated`, `StockReceived`, `StockAdjusted`, and `ReorderThresholdReached`; J07 remains publisher of operational movement facts. |
+
+# 18. Locked Decisions
+
+1. J06 is the exclusive owner of enterprise physical inventory truth, stock ledger, stock balance and availability.
+2. J07 exclusively owns operational reservation, issue, return, transfer, distribution and movement facts; J06 only applies their ledger consequences.
+3. J05 owns receipt/inspection decisions; J06 recognizes only their accepted inventory consequence.
+4. Finance owns authoritative valuation and accounting consequences.
+5. No other domain may maintain a competing Item, Warehouse or InventoryPosition truth.
 
 ---
 

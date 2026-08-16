@@ -68,7 +68,7 @@ Owner: Dhruv
 Status: [Locked]
 Owner: Dhruv
 
-## L2-A10 - Operational Readiness Workflows
+## L2-A10 - Operational Readiness Governance & Certification Workflows
 Status: [Locked]
 Owner: Dhruv
 

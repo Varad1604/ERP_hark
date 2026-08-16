@@ -102,6 +102,8 @@ The Position & Assignment Domain is responsible for:
 
 The domain intentionally does not own workforce identity, employment contracts, payroll processing, leave transactions, teaching allocations, recruitment, or organizational structure definitions.
 
+> **Delegation scope clarification, approved 2026-08-15 (RC-01).** The delegation owned canonically here is `Assignment Delegation` — the organizational delegation of a position's responsibilities, covering acting, interim, concurrent and additional-charge assignment and officiating duty. It is distinct from `Authorization Delegation`, which `L2-A04` owns exclusively and which governs the temporary transfer of authorization-layer authority and its reversion on expiry. Assignment Delegation **consumes** A04 authorization primitives to take effect; it does not own, define or alter them. Where this document uses the unqualified word "delegation", it means Assignment Delegation.
+
 ---
 
 ## 1.5 Repository Role
@@ -972,7 +974,7 @@ Business ownership SHALL NEVER be duplicated.
 | Assignment Versioning | L2-E02 | Version lineage |
 | Assignment Effective Dating | L2-E02 | Historical reconstruction |
 | Organizational Authority | L2-E02 | Runtime authority resolution |
-| Delegation | L2-E02 | Operational delegation |
+| Assignment Delegation | L2-E02 | Organizational delegation of a position's responsibilities. Distinct from Authorization Delegation, owned by `L2-A04`. See the delegation scope clarification in section 1. |
 | Additional Charge | L2-E02 | Assignment variation |
 | Acting Assignment | L2-E02 | Assignment variation |
 | Interim Assignment | L2-E02 | Assignment variation |
@@ -10341,7 +10343,7 @@ The Assignment Extension workflow provides a canonical enterprise mechanism for 
 
 By centralizing extension behavior into a single workflow, the architecture eliminates duplicated extension logic across multiple assignment types and ensures consistent temporal governance throughout the SutraERP ecosystem.
 
-# 8.15 Workflow W-014 — Suspend Position Assignment
+# 8.15 Workflow W-014 — Suspend and Reactivate Position Assignment
 
 ---
 
@@ -10355,7 +10357,7 @@ By centralizing extension behavior into a single workflow, the architecture elim
 | Complexity | High |
 | Transaction Boundary | Position Assignment Aggregate |
 | Idempotent | Yes |
-| Compensating Workflow | W-015 Reactivate Assignment |
+| Compensating Path | W-014 Reactivate Assignment |
 | Enterprise Components | EARE, ETS |
 | Upstream Dependencies | Active Position Assignment |
 | Downstream Consumers | Workflow, Payroll, Leave, Identity, Examination, Notifications, Analytics |
@@ -10580,7 +10582,7 @@ Execution requires:
 - BR-W014-003 Suspension SHALL revoke operational authority.
 - BR-W014-004 Historical records SHALL remain immutable.
 - BR-W014-005 Suspension SHALL be fully auditable.
-- BR-W014-006 Reactivation SHALL occur only through W-015.
+- BR-W014-006 Reactivation SHALL occur only through the W-014 reactivation path.
 
 ---
 
@@ -10946,7 +10948,7 @@ By coordinating temporal validation, authority revocation, immutable history, an
 | Complexity | Very High |
 | Transaction Boundary | Position Assignment Aggregate |
 | Idempotent | No |
-| Compensating Workflow | W-018 Rollback Assignment |
+| Compensating Workflow | W-017 Rollback Assignment |
 | Enterprise Components | EARE, ETS, APE |
 | Upstream Dependencies | Existing Position Assignment |
 | Downstream Consumers | Audit, Workflow, Payroll, Leave, Identity, Examination, Analytics |
@@ -12805,7 +12807,7 @@ Archived assignments preserve complete historical lineage, remain available for 
 | W-011 | Committee Membership Assignment | Governance Management |
 | W-012 | Multi-Campus Position Assignment | Organizational Operations |
 | W-013 | Assignment Extension | Lifecycle Management |
-| W-014 | Suspend Position Assignment | Lifecycle Management |
+| W-014 | Suspend and Reactivate Position Assignment | Lifecycle Management |
 | W-015 | Assignment Expiry | Lifecycle Management |
 | W-016 | Administrative Correction | Governance Management |
 | W-017 | Rollback Assignment | Recovery Management |
@@ -19122,17 +19124,17 @@ Archived --> [*]
 | Current State | Transition | Next State | Workflow | Published Event |
 |---------------|------------|------------|----------|-----------------|
 | Draft | Submit | Pending Approval | W-001 | PositionAssignmentCreated |
-| Pending Approval | Approve | Approved | W-003 | PositionAssignmentApproved |
+| Pending Approval | Approve | Approved | W-002 | PositionAssignmentApproved |
 | Approved | Activate | Active | W-003 | PositionAssignmentActivated |
-| Active | Suspend | Suspended | W-013 | PositionAssignmentSuspended |
+| Active | Suspend | Suspended | W-014 | PositionAssignmentSuspended |
 | Suspended | Reactivate | Active | W-014 | PositionAssignmentReactivated |
-| Active | Extend | Extended | W-012 | PositionAssignmentExtended |
-| Extended | Resume | Active | W-012 | PositionAssignmentActivated |
-| Active | Expire | Expired | W-012 | PositionAssignmentExpired |
+| Active | Extend | Extended | W-013 | PositionAssignmentExtended |
+| Extended | Resume | Active | W-013 | PositionAssignmentActivated |
+| Active | Expire | Expired | W-015 | PositionAssignmentExpired |
 | Active | Freeze | Frozen | W-018 | AssignmentFrozen |
 | Frozen | Unfreeze | Active | W-018 | AssignmentUnfrozen |
-| Active | Rollback | Rollback | W-020 | AssignmentRollbackCompleted |
-| Rollback | Restore | Active | W-020 | AssignmentRecovered |
+| Active | Rollback | Rollback | W-017 | AssignmentRollbackCompleted |
+| Rollback | Restore | Active | W-017 | AssignmentRecovered |
 | Expired | Archive | Archived | W-021 | PositionAssignmentArchived |
 
 ---
@@ -23468,23 +23470,23 @@ The appendices SHALL remain synchronized with the canonical specification.
 | W-002 | Position Assignment Approval |
 | W-003 | Position Assignment Activation |
 | W-004 | Position Assignment Transfer |
-| W-005 | Concurrent Assignment |
-| W-006 | Temporary Assignment |
-| W-007 | Acting Assignment |
-| W-008 | Additional Charge Assignment |
-| W-009 | Responsibility Assignment |
-| W-010 | Reporting Relationship Management |
+| W-005 | Acting Position Assignment |
+| W-006 | Concurrent Position Assignment |
+| W-007 | Delegate Organizational Authority |
+| W-008 | Temporary Position Assignment |
+| W-009 | Additional Position Assignment |
+| W-010 | Additional Charge |
 | W-011 | Committee Membership Assignment |
-| W-012 | Assignment Extension & Expiry |
-| W-013 | Assignment Suspension |
-| W-014 | Assignment Reactivation |
-| W-015 | Delegated Authority |
-| W-016 | Matrix Reporting |
-| W-017 | Authority Resolution |
+| W-012 | Multi-Campus Position Assignment |
+| W-013 | Assignment Extension |
+| W-014 | Suspend and Reactivate Position Assignment |
+| W-015 | Assignment Expiry |
+| W-016 | Administrative Correction |
+| W-017 | Rollback Assignment |
 | W-018 | Assignment Freeze / Unfreeze |
-| W-019 | Administrative Correction |
-| W-020 | Rollback & Recovery |
-| W-021 | Archival & Historical Retention |
+| W-019 | Bulk Assignment Operations |
+| W-020 | Assignment Conflict Resolution |
+| W-021 | Archive Position Assignment |
 
 ---
 

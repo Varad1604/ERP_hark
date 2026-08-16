@@ -4,7 +4,7 @@
 **Section:** J — Enterprise Resource Management
 **Domain:** J04 — Purchase Order Management
 **Document ID:** L2-J04
-**Version:** 1.0
+**Version:** 1.1 — INT-018 structural maintenance
 **Status:** Locked
 **Classification:** Level 2 Domain Workflow Architecture
 **Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
@@ -20,18 +20,18 @@
 | Required section (Volume 3 §18) | Location in this document |
 |---|---|
 | Purpose | §1 Purpose |
-| Scope | — not present — |
-| Actors | — not present — |
+| Scope | §14 Scope |
+| Actors | §15 Canonical Actors |
 | Entities | §4 Primary Aggregate |
 | Business Rules | Rules / Invariants |
 | Workflow | §12 Event and Workflow Integration; Workflows |
 | State Machine | States |
-| Contracts | — not present — |
+| Contracts | §16 Domain Contracts |
 | Events | §6 Domain Events; §12 Event and Workflow Integration |
 | Dependencies | §7 Dependencies |
-| Locked Decisions | — not present — |
+| Locked Decisions | §17 Locked Decisions |
 
-> **Gap:** 4 required section(s) have no counterpart in this document: Scope, Actors, Contracts, Locked Decisions. Recorded, not authored.
+> **INT-018 maintenance:** The four former structural gaps were closed on 2026-08-13 by consolidating semantics already present in §§1–13. No canonical ownership, lifecycle, event, or rule was added.
 
 ---
 
@@ -209,6 +209,38 @@ J04 shall preserve supplier, requester, finance, and item references using stabl
 Issued purchase orders and amendments shall remain reconstructable according to enterprise and institutional retention policy.
 
 Retried commands shall be idempotent for draft creation, approval, issue, amendment, cancellation, and closure.
+
+---
+
+# 14. Scope
+
+J04 owns the `PurchaseOrder` lifecycle from creation against approved procurement authority through validation, approval, supplier acknowledgement, issue, governed amendment, cancellation and closure. It owns the institutional supplier-commitment record and its historical evidence, while the explicit non-ownership table in §3 preserves the requisition, sourcing, supplier, receipt, inventory, asset and Finance boundaries.
+
+# 15. Canonical Actors
+
+| Actor | Existing responsibility |
+|---|---|
+| Purchase Order Creator | Creates the order draft from released requisition and sourcing references. |
+| Purchase Order Approver | Applies value-, scope-, supplier- and authority-sensitive approval. |
+| PO Amendment Requester / Approver | Requests and independently authorizes governed changes within authority for the amended value or scope. |
+| Supplier Representative | Provides the supplier acknowledgement captured against the issued order. |
+
+# 16. Domain Contracts
+
+| Contract direction | Existing contract |
+|---|---|
+| Consumes | J01 sourcing recommendation, J02 supplier identity/status, J03 requisition-release context and Finance validation references where required. |
+| Consumes platform outcomes | A03 authentication context, A04 authorization decisions, A05 workflow outcomes, A06 event transport and A07 audit persistence. |
+| Publishes | Issued/amended/cancelled/closed Purchase Order facts for J05 receiving and Finance processing. |
+| Publishes events | The purchase-order facts enumerated in §6; J04 owns meaning and timing while A06 owns transport. |
+
+# 17. Locked Decisions
+
+1. J04 is the canonical institutional commitment boundary for external suppliers.
+2. J04 owns Purchase Order state; J03 owns requisition state, J01 owns sourcing decisions and J02 owns supplier identity.
+3. Goods receipt and financial settlement are downstream consequences and never modify issued order history destructively.
+4. A05 owns routing and approval tasks; J04 owns the resulting Purchase Order business state.
+5. Every purchase-order command, aggregate, event, read model and audit reference preserves tenant and institution context.
 
 ---
 

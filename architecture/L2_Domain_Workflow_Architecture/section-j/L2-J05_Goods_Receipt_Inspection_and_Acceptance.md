@@ -4,7 +4,7 @@
 **Section:** J — Enterprise Resource Management
 **Domain:** J05 — Goods Receipt, Inspection & Acceptance
 **Document ID:** L2-J05
-**Version:** 1.0
+**Version:** 1.1 — INT-018 structural maintenance
 **Status:** Locked
 **Classification:** Level 2 Domain Workflow Architecture
 **Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
@@ -20,18 +20,18 @@
 | Required section (Volume 3 §18) | Location in this document |
 |---|---|
 | Purpose | §1 Purpose |
-| Scope | — not present — |
-| Actors | — not present — |
+| Scope | §14 Scope |
+| Actors | §15 Canonical Actors |
 | Entities | §4 Primary Aggregate |
 | Business Rules | Rules / Invariants |
 | Workflow | §12 Event and Workflow Integration; Workflows |
 | State Machine | States |
-| Contracts | — not present — |
+| Contracts | §16 Domain Contracts |
 | Events | §6 Domain Events; §12 Event and Workflow Integration |
 | Dependencies | §7 Dependencies |
-| Locked Decisions | — not present — |
+| Locked Decisions | §17 Locked Decisions |
 
-> **Gap:** 4 required section(s) have no counterpart in this document: Scope, Actors, Contracts, Locked Decisions. Recorded, not authored.
+> **INT-018 maintenance:** The four former structural gaps were closed on 2026-08-13 by consolidating semantics already present in §§1–13. No canonical ownership, lifecycle, event, or rule was added.
 
 ---
 
@@ -206,6 +206,38 @@ J05 shall minimize copied supplier, employee, finance, and warehouse data by pre
 Finalized receipt and inspection evidence shall remain reconstructable according to enterprise and institutional retention policy.
 
 Retried commands shall be idempotent for receipt creation, inspection recording, acceptance, rejection, variance recording, supplier return, and closure.
+
+---
+
+# 14. Scope
+
+J05 owns physical delivery arrival, receipt header and lines, inspection, acceptance/rejection, short/excess/damaged/substituted-delivery variance, supplier-return references and receipt closure within the `GoodsReceipt` aggregate. It publishes receipt dispositions without owning the resulting stock ledger, asset register, invoice, payment, or accounting state identified in §3.
+
+# 15. Canonical Actors
+
+| Actor | Existing responsibility |
+|---|---|
+| Goods Receiver | Records delivery arrival and received quantities against valid purchase-order authority. |
+| Goods Inspector | Records condition, quality and inspection evidence independently where policy requires separation. |
+| Receipt Approver | Authorizes the governed acceptance or rejection outcome where approval is required. |
+| Receipt Variance Approver | Applies explicit variance authority to short, excess, damaged, substituted or otherwise exceptional receipts. |
+
+# 16. Domain Contracts
+
+| Contract direction | Existing contract |
+|---|---|
+| Consumes | J04 issued Purchase Order authority and J02 supplier identity/status. |
+| Consumes platform outcomes | A03 authentication context, A04 authorization decisions, A05 inspection/approval workflow outcomes, A06 event transport and A07 audit persistence. |
+| Publishes | Receipt, inspection, acceptance, rejection, variance, return and closure facts for J06 inventory consequences, J08 asset registration and Finance processing. |
+| Publishes events | The receipt facts enumerated in §6; J05 owns meaning and timing while A06 owns transport. |
+
+# 17. Locked Decisions
+
+1. J05 is the canonical physical receiving and inspection boundary for institutional procurement.
+2. The `GoodsReceipt` aggregate records one governed receipt/inspection/disposition lifecycle, including partial, cumulative, replacement and variance paths.
+3. Acceptance does not directly create inventory, asset, invoice, payment or accounting state; downstream owners consume J05 facts.
+4. A05 owns task routing; J05 owns the resulting receipt and inspection business state.
+5. Finalized receipt and inspection evidence is reconstructable and is never destructively rewritten.
 
 ---
 

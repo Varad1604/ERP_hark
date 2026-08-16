@@ -336,7 +336,9 @@ The Master Data Platform governs the lifecycle, governance, publication, synchro
 
 Reference Data remains governed through the same platform rules when it is published as a reusable enterprise value set, but its business meaning continues to belong to the owning domain.
 
-Configuration Data is different. It controls runtime behaviour, tenant-specific settings, feature choices, or operational parameters and is owned by the configuration management domain that will be defined separately in A10.
+Configuration Data is different. It controls runtime behaviour, tenant-specific settings, feature choices, or operational parameters, and is owned by the Platform Configuration Framework defined in `L2-A01_Platform_Tenant_Foundation_Architecture.md` section 6, whose section 6.5 distributes configuration ownership by layer: Platform Defaults and Tenant Configuration to L2-A01, Institution Configuration to L2-B01, Organisation Configuration to L2-B02, Business Domain Configuration to the respective Level 2 domain, and Operational Runtime Configuration to Platform Services.
+
+> **Corrected 2026-08-08 under integrity finding INT-304.** This paragraph previously read "owned by the configuration management domain that will be defined separately in A10". `L2-A10` is Operational Readiness Governance & Certification Workflows and defines no configuration management responsibility; the reference was a dangling pointer to a domain that was never created at that address. The substantive boundary stated in this section — that the Master Data Platform does not own configuration — is unchanged and remains correct. No configuration ownership was created, moved or invented by this correction.
 
 The ownership and governance distinctions are as follows:
 
@@ -4057,7 +4059,7 @@ All APIs are versioned, authenticated, authorized, and tenant-aware.
 |------|------------|
 | Master Data | Canonical business entities shared across multiple domains |
 | Reference Data | Standardized values used for classification and validation |
-| Configuration Data | Runtime or tenant-specific settings owned by the configuration management domain, not by the Master Data Platform |
+| Configuration Data | Runtime or tenant-specific settings owned by the Platform Configuration Framework (`L2-A01` section 6.5), not by the Master Data Platform |
 | Dataset | Governed collection of Master or Reference Data |
 | Metadata | Information describing a dataset |
 | Steward | Individual responsible for operational data governance |
@@ -4259,5 +4261,4 @@ Business domains remain the authoritative owners of business meaning and operati
 The platform governs **how** enterprise data is managed—not **what** the data represents.
 
 By separating governance responsibilities from business ownership, the Master Data Platform provides a scalable, extensible, and technology-independent foundation for trusted enterprise information management across all SutraERP domains.
-
 

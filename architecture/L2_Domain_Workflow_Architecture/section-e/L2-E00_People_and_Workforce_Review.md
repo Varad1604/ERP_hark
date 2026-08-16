@@ -305,7 +305,7 @@ This review ensures that:
 
 # 2.2 Domain Inventory Validation
 
-The People & Workforce section consists of six L2 domains.
+The People & Workforce section consists of seven L2 domains.
 
 | Domain | Status | Completeness |
 |----------|---------|--------------|
@@ -315,6 +315,7 @@ The People & Workforce section consists of six L2 domains.
 | E04 — HR Workflows | Complete | ✔ |
 | E05 — Leave Management | Complete | ✔ |
 | E06 — Payroll | Complete | ✔ |
+| E07 — Employee Profile | Complete | ✔ |
 
 No missing domains were identified during the review.
 
@@ -538,16 +539,17 @@ Certification: **Complete**
 
 # 2.9 Domain Boundary Validation
 
-The review confirms that ownership boundaries between the six domains are clearly defined.
+The review confirms that ownership boundaries between the seven domains are clearly defined.
 
 | Capability | Owning Domain |
 |------------|---------------|
 | Workforce Lifecycle | E01 |
 | Position Lifecycle | E02 |
 | Faculty Lifecycle | E03 |
-| Employee Master | E04 |
+| HR Case Administration | E04 |
 | Leave Administration | E05 |
 | Payroll Administration | E06 |
+| Employee Profile | E07 |
 
 No ownership conflicts were identified.
 
@@ -564,6 +566,7 @@ The complete People & Workforce architecture covers:
 - Human resource administration workflows
 - Leave administration workflows
 - Payroll administration workflows
+- Employee profile workflows
 
 All identified workforce business processes are represented within the architecture.
 
@@ -879,7 +882,7 @@ This review confirms that:
 
 # 4.2 Workforce Lifecycle Overview
 
-The complete workforce lifecycle consists of interconnected workflows spanning all six People & Workforce domains.
+The complete workforce lifecycle consists of interconnected workflows spanning all seven People & Workforce domains.
 
 ```text
 Recruitment Outcome
@@ -4020,7 +4023,7 @@ No missing functional capability was identified.
 
 # 13.3 Workflow Completeness Validation
 
-The workflow inventory was validated against all six L2 domains.
+The workflow inventory was validated against all seven L2 domains.
 
 | Domain | Workflow Coverage | Result |
 |----------|------------------|--------|
@@ -4030,6 +4033,7 @@ The workflow inventory was validated against all six L2 domains.
 | E04 | Complete | ✔ |
 | E05 | Complete | ✔ |
 | E06 | Complete | ✔ |
+| E07 | Complete | ✔ |
 
 All identified business workflows are represented.
 
@@ -4404,6 +4408,7 @@ The following artifacts were reviewed during certification.
 | E04 — HR Workflows | 100% | ✔ |
 | E05 — Leave Management | 100% | ✔ |
 | E06 — Payroll | 100% | ✔ |
+| E07 — Employee Profile | 100% | ✔ |
 
 Overall Domain Coverage: **100%**
 
@@ -4990,4 +4995,3 @@ All future implementations of Section E shall conform to this baseline unless su
 
 **This document is the authoritative Level-2 architecture review and certification for the People & Workforce domain of the SutraERP Enterprise Architecture.**
 ```
-

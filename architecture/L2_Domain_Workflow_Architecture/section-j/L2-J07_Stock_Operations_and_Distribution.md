@@ -15,7 +15,7 @@
 | Canonical Owner | Stock Operations & Distribution |
 | Document Owner | Enterprise Resource Management — Stock Operations |
 | Status | Locked |
-| Version | 1.1 |
+| Version | 1.2 — INT-018 structural maintenance |
 
 ---
 
@@ -27,17 +27,17 @@
 |---|---|
 | Purpose | §1 Purpose |
 | Scope | §2 Scope |
-| Actors | — not present — |
-| Entities | — not present — |
+| Actors | §14 Canonical Actors |
+| Entities | §15 Canonical Entities |
 | Business Rules | §6 Business Rules |
 | Workflow | Workflows |
 | State Machine | States |
-| Contracts | — not present — |
+| Contracts | §16 Domain Contracts |
 | Events | §10 Domain Events |
-| Dependencies | — not present — |
-| Locked Decisions | — not present — |
+| Dependencies | §17 Dependencies |
+| Locked Decisions | §18 Locked Decisions |
 
-> **Gap:** 5 required section(s) have no counterpart in this document: Actors, Entities, Contracts, Dependencies, Locked Decisions. Recorded, not authored.
+> **INT-018 maintenance:** The five former structural gaps were closed on 2026-08-13 by consolidating semantics already present in §§2–11. No canonical ownership, lifecycle, event, or rule was added.
 
 ---
 
@@ -249,6 +249,45 @@ J07 is complete when:
 J07 is the canonical owner of stock movement execution and distribution evidence.
 
 J06 owns inventory truth; J08 owns operational asset lifecycle; Finance owns financial truth.
+
+---
+
+# 14. Canonical Actors
+
+| Actor | Existing responsibility |
+|---|---|
+| Stock Requester | Initiates an issue, reservation, transfer, distribution, return, or other authorised movement requirement. |
+| Stock Movement Approver | Applies movement-, quantity-, value-, source- and destination-sensitive authority. |
+| Store Custodian / Dispatcher | Issues or dispatches authorised stock and preserves chain-of-custody evidence. |
+| Recipient / Independent Receiver | Acknowledges receipt, return, distribution, custody handover, or refusal. |
+| Transfer Reconciler | Independently reconciles dispatched, received and discrepant quantities where configured. |
+| Controlled Stock Viewer | Accesses controlled-resource movement evidence only under explicit policy authorization. |
+
+# 15. Canonical Entities
+
+The canonical entity set is the aggregate set already defined in §4: `StockMovement`, `StockReservationExecution`, and `MovementException`. These entities reference, but never own, J06 Item, Warehouse, InventoryPosition or stock-balance state.
+
+# 16. Domain Contracts
+
+| Contract direction | Existing contract |
+|---|---|
+| Consumes | J06 availability/allocation and inventory references, J05 acceptance facts where stock first becomes movable, and authorised requesting-domain context. |
+| Consumes platform outcomes | A03 authentication context, A04 authorization decisions, A05 workflow outcomes, A06 event transport and A07 audit persistence. |
+| Publishes to J06 | Reservation, issue, return, transfer and completion facts for canonical ledger consequences. |
+| Publishes to J08/J09/J10/Finance | Asset-linked custody facts, movement evidence, exceptions, and financially relevant consequences without transferring their ownership. |
+| Publishes events | The stock-movement facts enumerated in §10; J07 owns meaning and timing while A06 owns transport. |
+
+# 17. Dependencies
+
+J07 requires J06 inventory identity, availability and allocation references before executing movement. It may consume J05 acceptance facts and the A03–A07 platform trust services. J08, J09, J10 and Finance consume J07 evidence or consequences and remain downstream canonical owners of their respective states.
+
+# 18. Locked Decisions
+
+1. J07 is the exclusive owner and publisher of operational stock movement and distribution facts.
+2. J07 never directly changes J06 stock balances; J06 applies movement consequences to inventory truth.
+3. Completed movements are corrected by reversal, return, adjustment request, or governed exception rather than destructive editing.
+4. Receipt of stock does not transfer inventory ownership to the consuming department or domain.
+5. Material movement preserves tenant, institution, source, destination, item, quantity, actor and chain-of-custody context.
 
 ---
 

@@ -47,7 +47,7 @@
 
 This document defines the canonical Financial Reporting & Analytics architecture for the SutraERP platform.
 
-The Financial Reporting & Analytics domain is responsible for transforming canonical financial information into governed financial reports, statutory statements, management reports, analytical models, dashboards, key performance indicators, and institutional financial insights.
+The Financial Reporting & Analytics domain is responsible for transforming canonical financial information into governed financial reports, statutory statements, management reports, analytical models, dashboard-ready financial projections, key performance indicators, and institutional financial insights.
 
 This document establishes the complete reporting lifecycle, reporting ownership boundaries, reporting workflows, analytical architecture, reporting events, CQRS responsibilities, configuration model, and integration contracts required to deliver enterprise-grade financial reporting across educational institutions.
 
@@ -78,7 +78,7 @@ This architecture defines:
 - Asset Reports
 - Regulatory Reporting
 - Management Information System (MIS)
-- Financial Dashboards
+- Dashboard-Ready Financial Projections
 - KPI Framework
 - Financial Analytics
 - Reporting Events
@@ -108,7 +108,7 @@ The following responsibilities remain outside this architecture.
 | Scholarships | L2-F11 |
 | Asset Lifecycle | L2-F12 |
 | Procurement | L2-F14 |
-| Operational Dashboards | Platform Analytics |
+| Dashboard Composition, Lifecycle, Layout, Widgets and Publication | L2-H07 Enterprise Dashboard |
 | Data Warehouse Implementation | Lower Architecture Levels |
 
 Financial Reporting consumes financial information.
@@ -161,7 +161,6 @@ The Financial Reporting domain exclusively owns:
 - Report Template
 - Report Execution
 - KPI Definition
-- Financial Dashboard
 - Analytical Model
 - Reporting Schedule
 
@@ -177,7 +176,7 @@ Financial Reporting owns:
 - Report publication
 - KPI calculation
 - Analytical projections
-- Executive dashboards
+- Dashboard-ready financial projections and metrics
 - Financial metrics
 - Report archival
 - Report governance
@@ -197,6 +196,7 @@ Financial Reporting shall never own:
 - Treasury accounts
 - Asset lifecycle
 - Scholarship lifecycle
+- Dashboard composition, layout, workspace, widget, audience and publication lifecycle
 
 Those remain owned by their canonical finance domains.
 
@@ -289,7 +289,7 @@ The Financial Reporting & Analytics domain transforms canonical financial facts 
 
 It provides institutional visibility into financial performance without assuming ownership of operational financial data.
 
-Financial Reporting consumes financial information published by upstream Finance domains and produces reports, dashboards, KPIs, and analytical views.
+Financial Reporting consumes financial information published by upstream Finance domains and produces reports, dashboard-ready projections, KPIs, and analytical views for H07 and other authorized consumers.
 
 The domain owns only reporting artifacts and analytical models.
 
@@ -342,17 +342,19 @@ Provide analytical views including:
 
 ---
 
-## Dashboard Management
+## Dashboard Information Supply
 
-Provide reusable financial dashboards for different institutional roles.
+Provide governed financial reports, KPIs, metrics and read projections that H07 composes into role-appropriate dashboards.
 
 Examples include:
 
-- CFO Dashboard
-- Finance Officer Dashboard
-- Principal Dashboard
-- Trustee Dashboard
-- Department Financial Dashboard
+- CFO financial information projection
+- Finance Officer financial information projection
+- Principal financial information projection
+- Trustee financial information projection
+- Department financial information projection
+
+H07 remains the canonical owner of dashboard identity, composition, workspace, widgets, layout, audience assignment, publication and presentation lifecycle.
 
 ---
 
@@ -538,7 +540,7 @@ The following terminology is canonical throughout the Financial Reporting domain
 | Report Definition | Canonical specification governing report structure and content. |
 | Report Template | Configurable presentation model for reports. |
 | Report Execution | One generation of a report instance. |
-| Dashboard | Role-oriented financial information view. |
+| Dashboard-Ready Financial Projection | Governed financial information supplied to H07 for presentation without transferring financial fact or KPI ownership. |
 | KPI | Canonical financial performance indicator. |
 | Analytical Model | Business model used to derive financial insights. |
 | Reporting Schedule | Configuration governing report execution frequency. |
@@ -558,7 +560,7 @@ It owns:
 - Report Definitions
 - Report Templates
 - Report Executions
-- Dashboards
+- Dashboard-ready financial projections
 - KPI Definitions
 - Analytical Models
 - Reporting Schedules
@@ -580,7 +582,6 @@ The Financial Reporting domain consists of the following canonical aggregates.
 | Report Template | Owns presentation configuration. |
 | Report Execution | Owns report generation lifecycle. |
 | KPI Definition | Owns financial KPI configuration. |
-| Financial Dashboard | Owns dashboard lifecycle. |
 | Analytical Model | Owns analytical calculations and derived insights. |
 | Reporting Schedule | Owns scheduled report execution. |
 
@@ -791,7 +792,7 @@ The Financial Reporting domain provides the following business capabilities.
 | Report Validation | Verify report correctness |
 | Report Publication | Release reports to consumers |
 | Report Scheduling | Automate report execution |
-| Dashboard Management | Deliver role-based dashboards |
+| Dashboard Information Supply | Deliver governed financial projections and metrics to H07 |
 | KPI Management | Calculate financial metrics |
 | Financial Analytics | Produce derived business insights |
 | Report Distribution | Deliver reports to authorized consumers |
@@ -824,7 +825,7 @@ The Financial Report Aggregate supports the following canonical workflows.
 3. Report Generation Workflow
 4. Report Validation Workflow
 5. Report Publication Workflow
-6. Dashboard Refresh Workflow
+6. Dashboard Projection Refresh Workflow
 7. KPI Calculation Workflow
 8. Report Archival Workflow
 
@@ -841,7 +842,7 @@ Each workflow executes within aggregate boundaries and preserves aggregate invar
 | Report Generation | Financial Report |
 | Report Validation | Financial Report |
 | Report Publication | Financial Report |
-| Dashboard Refresh | Financial Dashboard |
+| Dashboard Projection Refresh | Analytical Model |
 | KPI Calculation | KPI Definition |
 | Report Archival | Financial Report |
 
@@ -874,7 +875,7 @@ Every successfully completed workflow publishes one canonical business event.
 | Report Generation Workflow | FinancialReportGenerated |
 | Report Validation Workflow | FinancialReportValidated |
 | Report Publication Workflow | FinancialReportPublished |
-| Dashboard Refresh Workflow | FinancialDashboardUpdated |
+| Dashboard Projection Refresh Workflow | FinancialDashboardProjectionUpdated |
 | KPI Calculation Workflow | FinancialKPICalculated |
 | Report Archival Workflow | FinancialReportArchived |
 
@@ -1002,19 +1003,19 @@ Financial Report Aggregate
 
 ---
 
-## FinancialDashboardUpdated
+## FinancialDashboardProjectionUpdated
 
 ### Trigger
 
-Dashboard projections are refreshed.
+Financial dashboard-ready projections are refreshed.
 
 ### Business Meaning
 
-Financial dashboards now reflect the latest published financial information.
+An authoritative financial projection is available for H07 to refresh governed dashboards.
 
 ### Published By
 
-Financial Dashboard Aggregate
+Analytical Model Aggregate
 
 ### Typical Consumers
 
@@ -1137,7 +1138,7 @@ Internal implementation details shall never be exposed.
 | FinancialReportGenerated | Financial Report | Validation Services, Dashboards |
 | FinancialReportValidated | Financial Report | Publication Services, Compliance |
 | FinancialReportPublished | Financial Report | Executive Dashboards, Finance, Regulatory Reporting, Analytics |
-| FinancialDashboardUpdated | Financial Dashboard | Executive Portals |
+| FinancialDashboardProjectionUpdated | Analytical Model | H07 Enterprise Dashboard |
 | FinancialKPICalculated | KPI Definition | Dashboards, Analytics |
 | FinancialReportArchived | Financial Report | Audit, Compliance |
 
@@ -1483,7 +1484,7 @@ The following architectural constraints are mandatory.
 
 Financial Reporting serves as the institutional financial information layer.
 
-It consumes authoritative financial information from operational Finance domains and transforms those business facts into governed reports, dashboards, KPIs, and analytical products.
+It consumes authoritative financial information from operational Finance domains and transforms those business facts into governed reports, dashboard-ready projections, KPIs, and analytical products.
 
 This architecture preserves:
 
@@ -1556,7 +1557,7 @@ The following reporting policies are configurable.
 | Financial Statement Templates | Statement presentation |
 | Report Definitions | Report structure |
 | KPI Definitions | Financial metric calculation |
-| Dashboard Layouts | Executive dashboards |
+| Dashboard Information Projection Rules | Financial information supplied to H07 |
 | Reporting Schedule | Automated execution |
 | Regulatory Templates | Statutory reporting |
 | Fiscal Calendar | Reporting periods |
@@ -1574,7 +1575,8 @@ The following reporting policies are configurable.
 |---------------|-----------------|
 | Report Definitions | Financial Reporting |
 | KPI Definitions | Financial Reporting |
-| Dashboard Configuration | Financial Reporting |
+| Financial Dashboard Information Projection | Financial Reporting |
+| Dashboard Composition, Layout, Widgets and Publication | H07 Enterprise Dashboard |
 | Regulatory Templates | Financial Reporting |
 | Fiscal Calendar | Financial Period & Closing |
 | Budget Policies | Budget & Cost Center |
@@ -1777,11 +1779,21 @@ Status: Accepted
 
 ## ADR-04
 
-Dashboards and KPI views are CQRS projections.
+Dashboard-ready financial projections and KPI views are CQRS projections.
 
 They are not transactional aggregates.
 
 Status: Accepted
+
+---
+
+## ADR-07
+
+H07 owns dashboard identity, composition, layout, workspace, widgets, audience assignment and publication. Financial Reporting owns financial reports, KPI meaning, analytical models and dashboard-ready financial projections supplied to H07.
+
+This decision resolves the former duplicate ownership claim in this document; no Finance report, KPI or source financial fact moves to H07.
+
+Status: Accepted — user-authorized architecture correction, 2026-08-12
 
 ---
 
@@ -1847,5 +1859,4 @@ Changes affecting canonical ownership, aggregate boundaries, lifecycle semantics
 ---
 
 # End of Document
-
 

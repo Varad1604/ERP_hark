@@ -28,6 +28,28 @@
 
 ---
 
+## Ownership Resolution — Interrupted Examination Continuation
+
+> Recorded 2026-08-12 under Lead Architect ruling on repository conflict `I-RC-02`
+> (`architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Section_I_Phase2_Consolidation_Watchlist.md` section 10).
+>
+> §10.7 of this document and `L2-I15` workflows EW-09 to EW-12 both appeared to govern suspension,
+> resumption, rescheduling and cancellation of an interrupted in-progress examination.
+>
+> **Ruling: `L2-I15` owns the continuation decision and its execution.**
+>
+> The deciding evidence is §10.7 of this document itself, which enumerates possible outcomes and then
+> defers — *"Institutional authorities shall govern continuation decisions"* — without defining a workflow,
+> preconditions or postconditions. `L2-I15` §11.1 defines EW-09 Reschedule, EW-10 Suspend, EW-11 Resume and
+> EW-12 Cancel as canonical workflows with full specifications, and `L2-I15` §9.1 reserves exception cases
+> exclusively to that domain.
+>
+> This domain **detects and reports** the interruption and records the resulting candidate participation
+> outcomes. It does not decide or execute continuation. Conducting a rescheduled or re-conducted examination
+> remains owned by this document.
+
+---
+
 # 1. Purpose
 
 This document defines the canonical business workflows governing the conduct of written and theory examinations within the SutraERP Examination domain.
@@ -56,6 +78,8 @@ The scope includes:
 - Examination Entry Verification
 - Invigilator Assignment
 - Attendance Management
+- Question Paper Intake
+- Question Paper Custody and Timed Release
 - Question Paper Distribution
 - Answer Book Distribution
 - Examination Supervision
@@ -73,15 +97,26 @@ This document does not govern:
 - Examination Registration
 - Hall Ticket Management
 - Practical & Viva Examination Conduct
-- Question Paper Creation
-- Question Paper Moderation
-- Question Paper Printing
 - Marks Collection & Evaluation
 - Result Processing
 - Revaluation & Rechecking
 - Academic Completion
 
 Ownership of these business capabilities remains with their respective workflow documents.
+
+> **Question paper scope, approved 2026-08-15 (RC-02).** Earlier revisions of this section
+> deferred *Question Paper Creation*, *Question Paper Moderation* and *Question Paper Printing*
+> to "their respective workflow documents." No such document exists anywhere in Section I, so
+> the capability had no owner. The institutional decision recorded on 2026-08-15 is that
+> SutraERP does **not** model external paper setting, moderation boards, printing or physical
+> custody chains. The Examination Controller authors the question paper directly — typed into
+> the system or uploaded as a document — and the system holds it and releases it at the
+> scheduled examination start.
+>
+> That intake, custody and timed release is therefore owned here, as the upstream of the
+> Question Paper Distribution this document already governs (see section 9.5). Where an
+> institution runs an external setting and moderation process, it happens outside SutraERP and
+> enters the system at intake.
 
 ---
 
@@ -939,6 +974,9 @@ Late participation shall comply with institutional examination regulations.
 
 ## 10.7 Examination Interrupted
 
+**The continuation decision is owned by `L2-I15`** (EW-09 to EW-12). This domain detects and reports the
+interruption and records candidate participation outcomes. See the Ownership Resolution note above.
+
 Theory examinations interrupted by emergencies may be:
 
 - Suspended
@@ -1194,6 +1232,7 @@ The following business capabilities belong to other workflow documents.
 | Examination Registration | L2-I04 |
 | Hall Ticket Management | L2-I05 |
 | Practical & Viva Examination Conduct | L2-I06 |
+| Interrupted Examination Suspension, Resumption, Rescheduling and Cancellation | L2-I15 |
 | Marks Collection & Evaluation | L2-I08 |
 | Result Processing & Computation | L2-I09 |
 | Result Publication | L2-I10 |

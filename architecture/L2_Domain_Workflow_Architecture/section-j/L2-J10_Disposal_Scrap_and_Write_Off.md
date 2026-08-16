@@ -14,7 +14,7 @@
 | Architectural Style | Domain-Driven Design (DDD), CQRS, Event-Driven Architecture |
 | Primary Aggregate | Disposal & Write-off Case |
 | Status | Locked |
-| Version | 1.0 |
+| Version | 1.1 — INT-018 structural maintenance |
 
 ---
 
@@ -26,17 +26,17 @@
 |---|---|
 | Purpose | §1 Purpose |
 | Scope | §3 Domain Scope; §3.1 In Scope; §3.2 Out of Scope |
-| Actors | — not present — |
+| Actors | §3.3 Canonical Actors |
 | Entities | §9 Canonical Aggregate Model; §11 Aggregate Relationships; §9.1 Aggregate Design Principles |
 | Business Rules | §32 Business Rules |
 | Workflow | §13 Disposal / Write-off Request Workflow; §14 Eligibility & Condition Assessment Workflow; §15 Disposal Recommendation Workflow |
 | State Machine | §12.1 Lifecycle State Definitions |
 | Contracts | §38 Multi-Domain Integration Contracts |
 | Events | §34 Domain Events; §35 Event Envelope; §36 Event Delivery & Reliability |
-| Dependencies | — not present — |
+| Dependencies | §38.8 Dependency Summary |
 | Locked Decisions | §48 Architectural Decision Records |
 
-> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Dependencies. Recorded, not authored.
+> **INT-018 maintenance:** The two former structural gaps were closed on 2026-08-13 by consolidating actor and dependency semantics already present in §§3, 6, 17, 38 and 41–42. No canonical ownership, lifecycle, event, or rule was added.
 
 ---
 
@@ -274,6 +274,22 @@ The following capabilities remain outside J10:
 | Enterprise Audit Repository | Audit Domain |
 
 J10 may consume or reference these capabilities but shall not duplicate their canonical state.
+
+---
+
+## 3.3 Canonical Actors
+
+The following roles are already established by the request, assessment, committee, authorization, execution, evidence and reconciliation workflows:
+
+| Actor | Existing responsibility |
+|---|---|
+| Disposal / Write-off Requester | Proposes a governed terminal disposition from warehouse, department, inventory, asset, audit, inspection, committee, or another authorised institutional process. |
+| Eligibility / Condition Assessor | Records eligibility, condition, inspection and supporting evidence without altering J06 or J08 state. |
+| Disposal Committee Member | Participates in policy-required collective review and records quorum and recommendation evidence. |
+| Approving Authority | Grants or denies exact disposal/write-off authorization under applicable scope and materiality. |
+| Execution Officer | Performs the authorised physical disposition method and records execution evidence. |
+| Witness | Independently confirms disposal, destruction, handover, sale, donation, transfer-out, recycling, return, or other execution evidence where required. |
+| Reconciliation Officer | Reconciles approved and executed quantities plus J06, J08 and Finance processing references before closure. |
 
 ---
 
@@ -3327,6 +3343,14 @@ J10 shall not independently implement email, SMS, push, or other notification in
 J10 generates domain audit evidence.
 
 Enterprise audit infrastructure owns canonical audit persistence, retention governance, and enterprise-wide audit access.
+
+---
+
+## 38.8 Dependency Summary
+
+J10 requires A03 authentication, A04 authorization decisions, A05 workflow outcomes, A06 event transport, and A07 audit persistence as platform trust services. Its business dependencies are J06 inventory identity and adjustment processing, J08 asset references and retirement outcomes where applicable, J09 audit provenance where a finding initiates or supports the case, and Finance processing references for accounting consequences. J05 receipt and J07 movement facts may provide historical evidence but do not transfer their ownership to J10.
+
+J10 is not dependent on downstream implementation details and never writes J06, J08, J09, Finance, or platform persistence directly. A temporary failure in any collaborating domain becomes an explicit reconciliation concern and shall not erase committed authorization or physical execution evidence.
 
 ---
 

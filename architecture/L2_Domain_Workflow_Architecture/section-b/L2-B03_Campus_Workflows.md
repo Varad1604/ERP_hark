@@ -71,10 +71,10 @@ Physical facility knowledge is resolved from `L2-G10`, not from this domain.
 
 This domain describes:
 
-- What infrastructure exists
-- How infrastructure is organized
-- What characteristics infrastructure possesses
-- How infrastructure changes throughout its lifecycle
+- Which Institutional Campuses an Institution has registered
+- Their canonical institutional identity and Institution association
+- Their institutional status, governance metadata, and institutional address
+- How the InstitutionalCampus changes through its B03 lifecycle
 
 This domain **does not** manage operational activities performed within that infrastructure.
 
@@ -589,7 +589,10 @@ Responsibilities include:
 
 ## Institutional Association Management
 
-Maintain the governed Institution-to-Campus association, including transfer of a campus between institutions where institutional policy permits it.
+Maintain the governed Institution-to-Campus association. The association is immutable after
+registration. A change of owning Institution requires governed decommissioning of the prior
+InstitutionalCampus and registration of a new InstitutionalCampus, with explicit lineage; it is
+not an in-place transfer.
 
 ---
 
@@ -1950,6 +1953,16 @@ are **not** in this contract. They belong to G10's Physical Campus Summary Contr
 
 B03 consumes G10's physical campus events where institutional status depends on physical
 readiness. It never mutates a G10 aggregate and never republishes a G10 fact as its own.
+
+**Approved L3 boundary clarification (2026-08-13).** Consumption of
+`CampusOperationalStatusChanged`, `CampusBoundaryUpdated`, `CampusCapacityUpdated`,
+`CampusAccessibilityUpdated`, `CampusSustainabilityUpdated`, or `CampusCriticalityChanged`
+does not create an independent B03 business outcome by itself. B03 evaluates whether the
+authoritative G10 fact affects an existing B03 activation, modification, or decommission decision.
+If it does, the institutional consequence completes through that canonical B03 workflow and B03
+publishes only its own `CampusActivated`, `CampusUpdated`, or `CampusDecommissioned` fact. If no
+institutional consequence is required, B03 records no synthetic lifecycle transition. G10 remains
+the sole owner and publisher of the physical fact.
 
 ---
 

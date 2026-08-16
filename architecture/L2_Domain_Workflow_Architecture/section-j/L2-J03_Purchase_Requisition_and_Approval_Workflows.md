@@ -4,7 +4,7 @@
 **Section:** J — Enterprise Resource Management
 **Domain:** J03 — Purchase Requisition & Approval
 **Document ID:** L2-J03
-**Version:** 1.0
+**Version:** 1.1 — INT-018 structural maintenance
 **Status:** Locked
 **Classification:** Level 2 Domain Workflow Architecture
 **Parent Architecture:** L2-J00 — Enterprise Resource Management Architecture & Governance
@@ -20,18 +20,18 @@
 | Required section (Volume 3 §18) | Location in this document |
 |---|---|
 | Purpose | §1 Purpose |
-| Scope | — not present — |
-| Actors | — not present — |
+| Scope | §14 Scope |
+| Actors | §15 Canonical Actors |
 | Entities | §4 Primary Aggregate |
 | Business Rules | Rules / Invariants |
 | Workflow | §12 Event and Workflow Integration; Workflows |
 | State Machine | States |
-| Contracts | — not present — |
+| Contracts | §16 Domain Contracts |
 | Events | §6 Domain Events; §12 Event and Workflow Integration |
 | Dependencies | §7 Dependencies |
-| Locked Decisions | — not present — |
+| Locked Decisions | §17 Locked Decisions |
 
-> **Gap:** 4 required section(s) have no counterpart in this document: Scope, Actors, Contracts, Locked Decisions. Recorded, not authored.
+> **INT-018 maintenance:** The four former structural gaps were closed on 2026-08-13 by consolidating semantics already present in §§1–13. No canonical ownership, lifecycle, event, or rule was added.
 
 ---
 
@@ -216,6 +216,38 @@ J03 shall minimize copied requester, student, employee, department, and financia
 Requisition history shall remain reconstructable according to enterprise and institutional retention policy.
 
 Retried commands shall be idempotent for submission, approval, rejection, release, cancellation, and amendment.
+
+---
+
+# 14. Scope
+
+J03 owns creation and controlled change of the `PurchaseRequisition`, its demand lines and quantities, validation references, approval/return/rejection decisions, emergency authority, withdrawal/cancellation, and release as authoritative procurement demand. The explicit non-ownership table in §3 remains the boundary for supplier, sourcing, purchase order, receipt, inventory, movement, asset and Finance lifecycles.
+
+# 15. Canonical Actors
+
+| Actor | Existing responsibility |
+|---|---|
+| Requesting Actor / Requesting Domain | Originates institutional demand and supplies the required purpose, scope and item/quantity information. |
+| Budget Validator | Supplies the Finance-owned budget-validation reference where policy requires it. |
+| Requisition Reviewer / Approver | Reviews demand, policy, authority and validation evidence and records approval, return, or rejection. |
+| Emergency Requisition Approver | Applies explicit emergency authority to the emergency requisition path. |
+
+# 16. Domain Contracts
+
+| Contract direction | Existing contract |
+|---|---|
+| Consumes | Demand context from the requesting domain and Finance-owned budget-validation references where required. |
+| Consumes platform outcomes | A03 authentication context, A04 authorization decisions, A05 workflow outcomes, A06 event transport and A07 audit persistence. |
+| Publishes | Approved/released Purchase Requisition identity and state to J01 for sourcing and J04 for downstream order creation. |
+| Publishes events | The requisition facts enumerated in §6; J03 owns meaning and timing while A06 owns transport. |
+
+# 17. Locked Decisions
+
+1. J03 is the authoritative demand-control boundary for resources not fulfilled directly from stock.
+2. J03 owns the Purchase Requisition business state produced by workflow decisions; A05 owns routing and human-task orchestration.
+3. Finance retains budget and accounting truth; a budget-validation reference does not transfer Finance ownership to J03.
+4. Released demand is consumed by J01 and J04 without transferring Purchase Requisition ownership.
+5. Every requisition command, aggregate, event, read model and audit reference preserves tenant and institution context.
 
 ---
 

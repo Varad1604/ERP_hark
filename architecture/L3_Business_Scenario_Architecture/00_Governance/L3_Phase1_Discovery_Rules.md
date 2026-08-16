@@ -204,7 +204,7 @@ Primary owner is still provisional in Phase 1 and will be confirmed during Phase
 
 ## 11. Domains Field Rule
 
-The Domains field must list participating areas using section letters or short names.
+The Domains field must list participating areas using section letters or governed variable-participant tokens.
 
 Examples:
 
@@ -219,6 +219,19 @@ A, H
 Use only domains that genuinely participate in the scenario.
 
 Do not list all domains by default.
+
+### Variable participant notation
+
+Use `VAR:<role>` only when all of the following are true:
+
+* the candidate's Primary Owner is already known;
+* a participant that varies by scenario instance materially initiates or co-produces the outcome;
+* the exact section participant will be resolved for each authored scenario instance; and
+* the role is precise, for example `VAR:Requesting Domain`, `VAR:Evidence-Owning Domain`, or `VAR:Task-Owning Domain`.
+
+`VAR` is a Domains-field participation notation only. It shall never be used as a candidate ownership area, final L3 identifier area, or substitute for an owner decision. A domain that merely consumes the final event, query, certificate, or capability is not listed unless it materially participates in producing the scenario outcome.
+
+The discovery-area code `X` remains reserved for an uncertain primary area under `L3_Naming_Numbering_Standard.md` section 5 and shall not be used as a Domains wildcard.
 
 ---
 
@@ -323,6 +336,39 @@ Each row must use the locked Phase 1 inventory format.
 The file should not include long explanations unless necessary.
 
 The goal is a clean candidate list that can be reviewed and consolidated.
+
+### 16.1 Conformance check before acceptance
+
+Added 2026-08-14 following the Pallav all-assigned Phase 1 audit.
+
+Every inventory must pass the repository conformance checker before it is accepted for review:
+
+```text id="l3chk1"
+python check_l3_inventory.py
+```
+
+The checker reads every file in `01_Phase1_Discovery/` by default, or specific files if given as arguments. It exits non-zero when any error is found. Warnings do not block acceptance but must be read and answered.
+
+It enforces the mechanical parts of these rules:
+
+| Level | Check |
+| ----- | ----- |
+| Error | Row does not carry exactly the eight locked fields (section 4) |
+| Error | Candidate ID does not match `CAN-L3-<AREA>-<NNN>` (section 6) |
+| Error | Duplicate candidate ID, within a file or across inventories |
+| Error | Empty Scenario Title, Trigger, Final Outcome, Primary Owner or Domains |
+| Error | Type or Priority outside the allowed values (Type and Priority Rules sections 3 and 8) |
+| Error | Domains token is neither a section letter nor a `VAR:<role>` token (section 11) |
+| Error | Distinct-outcome ratio below 85 percent |
+| Warning | Distinct-outcome ratio below 97 percent, or candidates sharing an identical Final Outcome |
+| Warning | Title begins with an action verb, or is too broad (sections 8 and 9) |
+| Warning | Type is fully predicted by the number of participating domains |
+| Warning | Type or Priority is near-uniform across the inventory |
+| Warning | Domains or Primary Owner mixes conventions |
+
+The distinct-outcome and derived-Type checks exist because a generated inventory can satisfy every field-level rule while still failing section 7. An inventory whose rows are path enumerations of the same outcome is not a discovery result, however many rows it holds.
+
+A clean checker run is a floor, not a pass. It cannot judge whether a candidate is a complete institutional business outcome, whether ownership is correct, or whether an outcome is missing. Those remain review responsibilities under section 17.
 
 ---
 

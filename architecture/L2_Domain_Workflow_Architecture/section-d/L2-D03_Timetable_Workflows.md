@@ -2425,7 +2425,7 @@ consumes them; it owns none of them.
 |---|---|
 | Compliance Validation | Section H — `L2-H09` Accreditation & Compliance |
 | Audit Governance | Section A — `L2-A07` Audit Infrastructure |
-| Operational Readiness | Section A — `L2-A10` Operational Readiness |
+| Operational Readiness Governance Evidence | Section A — `L2-A10` Operational Readiness Governance & Certification |
 | Architectural Governance | Repository Constitution — `governance/constitution/Volume_3_Architecture_Framework.md` |
 | Enterprise Standards | Repository Constitution — `governance/constitution/Volume_2_Repository_Standards.md` |
 | Policy Management | **Unresolved — no owner.** Recorded as a missing bounded context in `DEPENDENCY_MAP.md` section 7B. |

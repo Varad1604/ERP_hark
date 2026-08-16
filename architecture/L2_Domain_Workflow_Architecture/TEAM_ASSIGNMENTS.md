@@ -169,7 +169,7 @@ survives reassignment of people.
 | L2-A07 | Platform Foundation — Audit | Dhruv |
 | L2-A08 | Platform Foundation — Module Registry | Dhruv |
 | L2-A09 | Platform Foundation — Master Data | Dhruv |
-| L2-A10 | Platform Foundation — Operational Readiness | Dhruv |
+| L2-A10 | Platform Foundation — Operational Readiness Governance & Certification | Dhruv |
 | L2-B00 | Institution & Structure | Pallav |
 | L2-B01 | Institution & Structure — Institution | Pallav |
 | L2-B02 | Institution & Structure — Organisation | Pallav |

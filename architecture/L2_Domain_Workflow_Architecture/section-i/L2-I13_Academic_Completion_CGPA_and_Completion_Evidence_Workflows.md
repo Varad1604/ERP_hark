@@ -1567,6 +1567,13 @@ Audit persistence remains outside this domain.
 
 # 14. Ownership Boundaries
 
+> **Clarification recorded 2026-08-12 under `I-RC-04`.** This document is titled "Academic Completion,
+> **CGPA** & Completion Evidence Workflows", which read as a claim on CGPA ownership against §14.3 below.
+> "CGPA" in the title denotes CGPA **consumption** for completion verification and degree classification.
+> CGPA *calculation* is owned by `L2-I09` (§2.2 of this document, and `L2-I09` §5.9 and §14). The document
+> title is retained because `ARCHITECTURE_INDEX.md` and cross-references in `L2-I09`, `L2-I11` and `L2-I12`
+> depend on it; only the ambiguity is resolved.
+
 ## 14.1 Academic Completion Owns
 
 The Academic Completion domain exclusively owns:

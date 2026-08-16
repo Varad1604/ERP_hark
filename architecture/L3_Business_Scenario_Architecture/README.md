@@ -110,7 +110,14 @@ L3_Business_Scenario_Architecture/
 │   ├── L3_Phase1_Discovery_Rules.md
 │   ├── L3_Phase1_Team_Instructions.md
 │   ├── L3_Phase1_Workload_Distribution_Decision.md
-│   └── L3_Scenario_Type_and_Priority_Rules.md
+│   ├── L3_Scenario_Type_and_Priority_Rules.md
+│   ├── L3_Section_A_Phase1_Audit_Application_Report_2026-08-08.md
+│   ├── L3_Section_A_Phase2_Consolidation_Watchlist.md
+│   ├── L3_Section_C_Phase2_Consolidation_Watchlist.md
+│   ├── L3_Section_F_Phase2_Consolidation_Watchlist.md
+│   ├── L3_Section_G_Phase2_Consolidation_Watchlist.md
+│   ├── L3_Section_H_Phase2_Consolidation_Watchlist.md
+│   └── L3_Section_I_Phase2_Consolidation_Watchlist.md
 │
 └── 01_Phase1_Discovery/
     ├── L3_Phase1_Inventory_Chetan.md
@@ -149,6 +156,40 @@ Records the locked Phase 1 discovery workload distribution, its rationale, and i
 ### `L3_Business_Scenario_Template_v1.0.md`
 
 Defines the approved L3 scenario document template for pilot use.
+
+### `L3_Section_A_Phase1_Audit_Application_Report_2026-08-08.md`
+
+Records the application of the independent Section A Phase 1 verification to the repository: the conflicts recorded, the corrections applied, every candidate change with its evidence, the candidates deliberately not added and why, the remaining blockers, and the final Section A coverage audit. It is a change record, not a governance standard — it does not add or amend any Phase 1 rule. Its section 7 Phase 2 watchlist is superseded; see below.
+
+The two formerly blocking repository conflicts recorded by that application—**INT-301** and **INT-302**—were approved and resolved on 2026-08-13. The locked L1/L2 sources now define the identity/authentication/authorization ownership split and the dynamic Capability Readiness versus persisted Operational Readiness Governance & Certification boundary. Affected Section A provisional markers were removed; see `generated/reviews/L3_Phase1_Audit_Dhruv_Approved_Decisions_Application_2026-08-13.md`.
+
+### `L3_Section_A_Phase2_Consolidation_Watchlist.md`
+
+The authoritative record of the eighteen Section A candidate relationship clusters and their resolution status. All eighteen now have `CLOSED` or `APPLIED` outcomes. The register preserves retained/absorbed/split mappings, including A039/A046, A047/A054, and the A052/A067/A068 certificate-lifecycle split.
+
+Relationship analysis is held here rather than in an inventory file because `L3_Phase1_Discovery_Rules.md` section 3 requires each inventory to contain candidate scenario rows only.
+
+### `L3_Section_C_Phase2_Consolidation_Watchlist.md`
+
+The equivalent record for Section C — Student Lifecycle, produced by the independent verification of 2026-08-09 (`generated/reviews/l3-phase1-section-c-verification-2026-08-09.md`). It holds four candidate relationship clusters (2 `CLOSED`, 2 `OPEN`) and nine repository conflicts surfaced during discovery (2 `DETERMINED`, 5 `OPEN`, 1 `BLOCKED`, plus one conflict-dependent wording constraint). Nothing in it has been consolidated.
+
+One conflict is blocking: **Policy Management has no owner** (`DEPENDENCY_MAP` section 7, status Open; `L2-C04` §2.6). Until the Lead Architect assigns one, an academic-progression policy lifecycle candidate and an alumni-transition policy lifecycle candidate cannot be discovered. Their absence from `L3_Phase1_Inventory_Chetan.md` is correct, not an omission.
+
+### `L3_Section_F_Phase2_Consolidation_Watchlist.md`
+
+The traceability register for the Section F audit and its authorized consolidation from 1,858 step-level rows to 87 institutional-outcome candidates. It preserves former ranges and lower-level rules for L4 authoring.
+
+### `L3_Section_G_Phase2_Consolidation_Watchlist.md`
+
+The Section G boundary and overlap register. It records which clusters remain open and the resolved H02/H07/H09 cross-cutting ownership decisions.
+
+### `L3_Section_H_Phase2_Consolidation_Watchlist.md`
+
+The audit-correction register for Section H, including the former-to-current crosswalk from 893 malformed or fragmented rows to 85 outcome candidates and the accepted dashboard, credit-transfer, H09-completeness, and accreditation-readiness decisions.
+
+### `L3_Section_I_Phase2_Consolidation_Watchlist.md`
+
+The Section I consolidation and conflict register created by its independent Phase 1 audit and correction cycle.
 
 ---
 

@@ -273,7 +273,7 @@ Supports:
 - Multi Institution
 - Multi-Domain Governance
 - Executive Reviews
-- Accreditation Readiness
+- Accreditation Evidence Readiness for Campus Operations
 - Future AI Governance
 
 without redesign.
@@ -508,8 +508,10 @@ Consumes:
 Consumes:
 
 - Governance Evidence
-- Readiness Reports
+- Campus Operational Evidence Readiness Reports
 - Operational Review History
+
+L2-H09 consumes these campus-operational evidence outputs when it determines institutional accreditation readiness. Campus Operations Review does not own the accreditation framework, compliance decision, Self-Study Report, or institutional accreditation-readiness outcome.
 
 ---
 
@@ -792,7 +794,7 @@ Supported readiness assessments include:
 - Admission Readiness
 - Event Readiness
 - Emergency Readiness
-- Accreditation Readiness
+- Accreditation Evidence Readiness (campus operations only)
 
 Assessment types shall remain configurable.
 
@@ -1438,7 +1440,7 @@ Dashboard composition shall remain configurable.
 
 ---
 
-## Accreditation Reports
+## Accreditation Evidence Reports
 
 Examples include:
 
@@ -1449,7 +1451,7 @@ Examples include:
 - Operational Risk History
 - Corrective Action Evidence
 
-Accreditation reporting shall reference governance history without modifying source-domain records.
+Accreditation evidence reporting shall reference governance history without modifying source-domain records. These reports are inputs to L2-H09 accreditation governance and are not an institutional accreditation-readiness decision.
 
 # 26. Configuration Management
 
@@ -1668,7 +1670,7 @@ The architecture shall support:
 - Long-Term Governance History
 - Multi-Domain Governance
 - Executive Decision Support
-- Accreditation Readiness
+- Accreditation Evidence Readiness for Campus Operations
 - Future AI Governance Assistance
 - Future Predictive Operational Analytics
 - Future Digital Twin Governance

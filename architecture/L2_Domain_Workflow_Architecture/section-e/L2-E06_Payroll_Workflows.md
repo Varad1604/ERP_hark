@@ -1250,6 +1250,10 @@ The Payroll domain contains four primary aggregates:
   -----------------------------------------------------------------------
   Aggregate                           Responsibility
   ----------------------------------- -----------------------------------
+  Payroll Configuration Aggregate     Governs the versioned payroll
+                                      configuration that payroll runs
+                                      resolve against
+
   Payroll Run Aggregate               Controls payroll execution
                                       lifecycle
 

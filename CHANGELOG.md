@@ -2,6 +2,513 @@
 
 This document tracks changes to the SutraERP Architecture Repository layout, guidelines, baseline, and locks.
 
+## [1.10.0] - 2026-08-14
+
+Pallav's assigned Sections B, D and E were corrected following the independent all-assigned Phase 1 audit and the user's architecture rulings. **Minor class — this release carries one locked L1 ownership statement down into L2 and consolidates candidate boundaries.** Section D moves from 38 field-incomplete parents plus 954 generated variant rows to **48 institutional-outcome candidates**; Sections B and E move from 101 to **107** combined. The total inventory moves from 101 conformant candidates to **155**.
+
+### Changed — canonical ownership and contracts
+
+- **Institutional policy:** `L2-B01` §2 now lists `Institution Policy` and `Institution Policy Lifecycle` as owned, with a new §2.1 clarification. This carries down the locked L1 business rule "Institute owns institutional policies" and L1's designation of `Institute Policy` as a canonical entity distinct from `Institute Profile`. No new ownership is created. `L2-A04` retains Authorization Policy and the Policy Engine; `L2-A00` continues to disclaim institutional policy. The two do not overlap.
+
+### Fixed — L2 source defects
+
+- **`L2-E02`:** workflow W-016 Administrative Correction named `W-018 Rollback Assignment` as its compensating workflow. The document's own §8.23 catalogue defines W-017 as Rollback Assignment and W-018 as Assignment Freeze. Corrected to `W-017`.
+- **`L2-E06`:** §6.1 stated "four primary aggregates" while the table listed three. The `Payroll Configuration Aggregate`, already present in the section's aggregate diagram and carrying its own `Draft → Review → Approved → Active → Superseded → Archived` lifecycle, was restored to the table.
+
+### Consolidated and corrected — L3 Phase 1
+
+- `L3_Phase1_Inventory_Pallav.md` now contains 155 candidates: B 32, D 48, E 75. Every row has all eight required fields and approved Type/Priority values. File length falls from 1,490 to 247 lines.
+- **Section D locked-format register established.** The 38 canonical parents previously carried only ID, Title, Owner and variant count; Trigger, Final Outcome, Domains, Type and Priority were absent for all 38 and were derived from `L2-D01` through `L2-D07`.
+- **954 generated variant rows removed.** They used non-conforming `CAN-L3-D-001-V01` identifiers, added four columns beyond the locked eight, carried step-level fragment titles, and held only 458 distinct Final Outcome values across 954 rows. `Type` was fully determined by participating-domain count and `Priority` by scenario class, contrary to `L3_Scenario_Type_and_Priority_Rules.md` §6, §7 and §12. The FIND-D-01 through FIND-D-09 repository findings they carried are retained.
+- **Thirteen missing outcomes added:** campus suspension (B-010); the D06 learning-opportunity lifecycle (D-039, D-040), previously absent so that no candidate covered making an elective or MOOC available; D05 governance review, completion certification and case reopening (D-041 – D-043); offering freeze/unfreeze (D-044); finalized internal assessment correction (D-045); external certificate verification (D-046); E02 assignment administrative correction, rollback and bulk operations (E-099, E-100, E-102); and payroll configuration (E-101).
+- **Registration and activation ruled separate outcomes.** Adopted as the Section B convention; `CAN-L3-B-005` split into registration (B-005) and activation (B-023), matching the existing campus treatment and `L2-B02` WF01/WF02.
+- **Splits:** `CAN-L3-D-006` into eligibility/restrictions, enrollment window and quota (D-006, D-047, D-048); `CAN-L3-E-018` into supplementary occupancy, delegated authority and additional charge, and committee membership (E-018, E-103, E-104).
+- **Merges:** `CAN-L3-E-029` and `CAN-L3-E-030` retired into `E-028` and `E-031`; both described entities inside the FacultyWorkforce and Faculty Capability aggregates rather than independent outcomes.
+- **Boundary and classification:** `CAN-L3-D-020` extended to Attendance Finalization per `L2-D04` §23; `D-020` and `D-021` reclassified `Critical`, matching the examples named in `L3_Scenario_Type_and_Priority_Rules.md` §6 and §9.
+- FIND-D-06 and FIND-D-08 are superseded by D-041, D-042 and D-046.
+
+### Validation
+
+- Pallav inventory: 155 unique IDs; B 32, D 48, E 75; no duplicate IDs; no malformed rows; no invalid Type/Priority values; no empty Trigger or Final Outcome cells; retired IDs E-029 and E-030 absent.
+- Audit verdict for `L3_Phase1_Inventory_Pallav.md` moves from `FAIL — MATERIAL COVERAGE GAPS` to a recommended `PASS WITH MINOR CORRECTIONS`, subject to independent re-verification.
+- Original audit report remains unchanged as historical evidence; the correction application is recorded at `generated/reviews/L3_Phase1_Audit_Pallav_Correction_Application_2026-08-14.md`.
+
+### Added — Phase 1 conformance gate
+
+- **`check_l3_inventory.py`** at the repository root validates candidate inventories against the locked Phase 1 rules. `L3_Phase1_Discovery_Rules.md` §16.1 now requires a clean run before any inventory is accepted for review.
+- Beyond field, ID, duplicate and Type/Priority validation, it detects the generation pattern that produced the withdrawn 954-row Section D catalogue: a low distinct-outcome ratio, and `Type` fully predicted by participating-domain count rather than institutional risk.
+- Verified against known-bad inputs. The withdrawn 954-row catalogue fails with 954 errors; the 1,080-row pre-consolidation submission fails with 1,073, catching `P0<br><br>` HTML contamination across 990 rows and free-text Domains such as `A + B + E01` across 83.
+- All five current inventories pass: **1,206 candidates, 0 errors, 221 warnings.** The warnings are two open conventions — Dhruv's Section J uses subdomain codes in `Domains` and mixes owner formats — plus five step-verb titles and three duplicate outcome texts in Devang's Section I.
+
+### Open
+
+- `L2-B05` publishes a `CalendarRestored` event but its §28 lifecycle defines no restoration transition. Referred to the B05 owner: either add the transition or withdraw the event. Not resolved here because it changes domain behaviour.
+- `L2-E06` names an upstream "Compensation Domain" that has no L2 document and no Architecture Index entry. Compensation policy ownership remains unassigned.
+- `Domains` convention: Sections A–I use section letters, Dhruv's Section J uses subdomain codes (`J01`–`J10`). `L3_Phase1_Discovery_Rules.md` §11 specifies section letters. Needs a ruling; currently a checker warning rather than an error.
+- `Primary Owner` convention: most inventories use subdomain codes, Dhruv's Section A uses capability names. Needs one convention before Phase 2 grouping.
+
+---
+
+## [1.9.0] - 2026-08-13
+
+Varad's assigned Sections F, G and H were corrected following the independent all-assigned Phase 1 audit and the user's architecture rulings. **Minor class — this release clarifies canonical ownership and consolidates candidate boundaries.** Section F moves from 1,858 step-level rows to **87 institutional-outcome candidates**; Section H moves from 893 malformed/fragmented rows to **85 conformant candidates**; Section G moves from 541 to **391** after all identified boundary, overlap, handoff and classification recommendations were applied.
+
+### Changed — canonical ownership and contracts
+
+- **Dashboard composition:** H07 owns dashboard metadata, layouts, workspaces, widgets and publication. F13 and Campus Operations retain source facts, reports, KPI definitions and governed projections. L2-F13, L2-G00 and the Dependency Map now state the handoff explicitly.
+- **External credit recognition:** L2-C04 owns academic equivalency, approval/rejection, recognized credit and the Academic Credit Ledger. H10 owns provider verification, external evidence exchange, mapping, synchronization, recovery and reconciliation. C04 now publishes the authoritative recognition/rejection facts; H10 publishes only integration and decision-synchronization outcomes.
+- **Accreditation readiness:** H09 owns the institutional accreditation-readiness decision. G00 owns Campus Operations evidence readiness; A10's operational go-live/certification eligibility remains separate and provisional under INT-302.
+- **H09 source completion:** Added explicit integration contracts, dependency classes and locked decisions for evidence references, CAPA execution, SSR handoff, notifications, dashboards and audit evidence.
+
+### Consolidated and corrected — L3 Phase 1
+
+- `L3_Phase1_Inventory_Varad.md` now contains 563 candidates: G 391, F 87 and H 85. F/H IDs are contiguous and conform to `CAN-L3-<AREA>-NNN`; every row has all eight required fields and approved Type/Priority values.
+- Removed 237 foreign Section A–J summary rows formerly placed under H09 and the unsupported former H10 provider-reinstatement candidate.
+- Added the previously missing H05 research-proposal withdrawal and eleven material H09 outcomes.
+- Corrected the G00 accreditation-evidence and representative G07/G08 dashboard boundaries; corrected `CAN-L3-C-029` to show the C04/H10 credit-recognition handoff.
+- Applied all accepted Section G decisions: A07 audit-history ownership, one domain-owned configuration outcome per G subdomain, eight G07 security journeys, removal of vague exception catch-alls, consolidated mentoring context, J02 supplier-evidence handoffs, source-report/H07 dashboard separation, section-level Domains normalization, and final Type/Priority review. In total, 150 former G fragments were retired and 30 retained outcomes were rewritten.
+- Added Section F and H traceability registers under L3 governance and updated the Section G register to close the former H-dependent ownership blockers.
+
+### Validation
+
+- Varad inventory: 563 unique IDs; F 87, G 391, H 85; no malformed rows; no invalid Type/Priority or Domains values; no obsolete Fxx/Hxx identifiers; no mojibake detected.
+- Original audit reports remain unchanged as historical evidence; correction application and old-to-new crosswalks are recorded in the governance watchlists.
+
+---
+
+## [1.8.0] - 2026-08-12
+
+Section I ownership conflicts resolved and consolidation completed. **Minor class — this release moves
+canonical ownership in two further places.** Section I moves from 258 to **245 candidates**. The audit
+verdict for `L3_Phase1_Inventory_Devang.md` moves from `CONDITIONAL PASS` to
+`PASS — COMPLETE FOR PHASE 1`, readiness score 89 → 94.
+
+### Changed — L2 canonical ownership
+- **`I-RC-02` ruled: `L2-I15` owns suspension, resumption, rescheduling and cancellation of an
+  interrupted in-progress examination.** `L2-I06` §10.7 and `L2-I07` §10.7 enumerate possible outcomes
+  and then defer — "Institutional authorities shall govern continuation decisions" — without defining a
+  workflow, preconditions or postconditions, while `L2-I15` §11.1 specifies EW-09 to EW-12 in full and
+  §9.1 reserves exception cases exclusively to that domain. `L2-I06` and `L2-I07` each amended with an
+  Ownership Resolution note, a §10.7 redirect and a §14 non-ownership row. The conduct domains detect
+  and report; conducting a rescheduled or re-conducted examination remains theirs.
+- **`I-RC-03` ruled: `L2-I04` owns the Examination Registration aggregate and its lifecycle for every
+  registration category, including Supplementary, Backlog and Improvement.** `L2-I04` §7.3 enumerates
+  Regular, Backlog, Supplementary, Improvement and Special as categories of one registration mechanism,
+  and §20 defines a single Registration State Model governing "Every Examination Registration".
+  `L2-I12` amended in six places — Ownership Resolution note, §2, §5.7 retitled to Examination
+  Registration Initiation, §14 owned and non-owned lists, §18 capability catalogue, §22. `L2-I12`
+  retains application, eligibility, fee verification, session allocation and attempt lifecycle, and
+  initiates registration in `L2-I04`.
+
+### Fixed — L2 document integrity
+- `I-RC-04` — `L2-I13` §14 note recording that "CGPA" in the document title denotes CGPA consumption
+  for completion verification, not calculation, which `L2-I09` owns. Title retained because
+  `ARCHITECTURE_INDEX.md` and `L2-I09`, `L2-I11`, `L2-I12` reference it.
+- `I-RC-06` — `L2-I16` §13 read "Closed archive lifecycles shall not be reopened unless permitted by
+  institutional policy", contradicting §21.5 (reopening is an invalid transition) and §9.3 (immutable
+  finalized sessions). Re-worded: reopening is prohibited outright, and policy-permitted post-closure
+  access is served by authorised retrieval and restoration under §21.4.
+
+### Retracted
+- **`I-RC-05` withdrawn as an audit error.** The 1.7.0 entry recorded `L2-I00` as citing a non-existent
+  "L2 Domain Workflow Matrix". `architecture/L2_Domain_Workflow_Architecture/L2_DOMAIN_WORKFLOW_MATRIX.md`
+  exists (11,763 bytes); the original check ran from a drifted working directory. No defect, no change
+  required. Corrected in the audit report §3 and the Section I watchlist §16.2.
+
+### Added
+- `CAN-L3-I-314` Prepare and Authorize an Examination Contingency Plan — `L2-I15` EW-04, EW-05, split
+  out of the over-broad `CAN-L3-I-290`.
+- New repository conflict `I-RC-07`, unresolved: **question paper governance has no owner in Section I.**
+  `L2-I07` §2 excludes Question Paper Creation, Moderation and Printing and §9.5 states governance
+  "remains outside this document"; `L2-I14` §9.2 and `L2-I15` §9.2 both disclaim question papers.
+  `CAN-L3-I-111`, `-112` and `-113` rest on an unassigned capability. Cannot be settled between existing
+  documents; needs a new owner or a new L2 document.
+
+### Consolidated
+- 14 rows retired, 11 rewritten, 1 added. `I-DU-05` (six rows into `I-291`, `I-292`, `I-293` under the
+  `I-RC-02` ruling); `I-DU-07` (three rows into `I-033`, `I-035`, `I-037` under the `I-RC-03` ruling,
+  with `I-047` and `I-217` re-scoped); `I-FR-06`/`I-LS-01` (`I-036` into `I-035` — `L2-I04` §19 glosses
+  Registration Withdrawal as "controlled registration cancellation" and §20 defines no `Cancelled`
+  state); `I-FR-13`, newly found (`I-070`, `I-071` into `I-069`; `I-073` into `I-072`; `I-077` into
+  `I-076` — `L2-I06` §4.3 *Unified Assessment Conduct Framework* requires all non-theory assessment to
+  follow "a common business workflow regardless of assessment type"); `I-OB-03` and `I-OB-04` split and
+  narrowed. `I-DU-10` and `I-DU-11` examined and closed as genuinely distinct, both retained.
+
+### Known open
+- `I-RC-07` — question paper ownership. The only substantive item this round could not close.
+- `Priority` not re-derived: 41 `P0`, 203 `P1`, 1 `P2`. Reserved to Lead Architect review under
+  `L3_Scenario_Type_and_Priority_Rules.md` §15.
+- Cross-inventory boundaries with Sections C, G and D/E need the counterpart discovery owners.
+- Candidate IDs remain sparse (`CAN-L3-I-001` … `CAN-L3-I-314` with gaps); renumbering deferred to
+  Phase 2 close.
+- The 1.7.0 estimate of 90–110 material outcomes for Section I is withdrawn as too aggressive. Against
+  the sixteen L2 workflow catalogues a defensible target is 200–230; at 245 the section is close to it.
+
+---
+
+## [1.7.0] - 2026-08-12
+
+Section I Phase 1 inventory audited, corrected and consolidated. **Minor class — this release moves
+canonical ownership.** A Lead Architect ruling on repository conflict `I-RC-01` assigns Examination
+Session closure and archival to `L2-I16`, and `L2-I02` was amended accordingly. This is the first
+release in the L3 effort to change L2 content.
+
+Section I moves from 304 candidates as submitted, to 311 after conformance, to **258 after
+consolidation**. The audit verdict for `L3_Phase1_Inventory_Devang.md` moves from
+`FAIL — MATERIAL COVERAGE GAPS` to `CONDITIONAL PASS`, with one condition outstanding: repository
+conflict `I-RC-03` (`L2-I04` versus `L2-I12` ownership of supplementary, backlog and improvement
+registration) was raised for ruling and has not been answered.
+
+### Changed — L2 canonical ownership
+- `architecture/L2_Domain_Workflow_Architecture/section-i/L2-I02_Examination_Session_Management_Workflows.md`
+  — 17 edits under the `I-RC-01` ruling. `L2-I02` §14 previously listed Session Closure as owned
+  while the same section assigned "Session Closure & Archival Operations" to `L2-I16`, and `L2-I16`
+  §9.1 declared exclusive ownership of the Examination Session Aggregate after operational
+  conclusion. Session Closure removed from the owned lists in §2, §4, §14 and §22; §5.7, §8.10,
+  §8.11, §9.7 and §10.9 redirected to `L2-I16` as consuming context; the two closure events in §11
+  replaced with a single hand-over event; the §20 state model truncated at `Reopened` with the
+  hand-off to `L2-I16` §21 recorded; an Ownership Resolution note added. **No other L2 document was
+  changed and no other ownership was moved.**
+
+### Added
+- `generated/reviews/L3_Phase1_Audit_Devang_ALL_ASSIGNED.md` — the independent adversarial audit,
+  its post-conformance re-rating (Part II) and its post-consolidation re-rating (Part III).
+  Readiness score 63 → 79 → 89.
+- `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Section_I_Phase2_Consolidation_Watchlist.md`
+  — twelve fragmentation clusters, four over-broad candidates, eleven duplication findings, six
+  repository conflicts, five cross-inventory relationships, and the full execution record.
+- Nine candidates traced to repository evidence:
+  - `CAN-L3-I-305` Malpractice Case Adjudication to Penalty Determination. `L2-I14` §21.2 defines
+    `Decision Pending → Decision Recorded → Penalty Assigned`; MW-12 postconditions are "Official
+    decision finalized. Decision becomes immutable." No candidate produced this outcome, while
+    `I-170`, `I-188`, `I-256`, `I-268` and `I-286` all consumed it as a trigger.
+  - `CAN-L3-I-306` Malpractice Case Closure and Archival — `L2-I14` MW-17, MW-18, §21.6.
+  - `CAN-L3-I-307` Examination Exception Case Resolution to Closure — `L2-I15` EW-13, EW-14.
+  - `CAN-L3-I-308` Retire an Examination Policy with Historical Preservation — `L2-I01` §8.6, EX-005.
+  - `CAN-L3-I-309` Postpone and Reschedule an Examination Under Authorized Contingency — `L2-I15`
+    EW-08, EW-09.
+  - `CAN-L3-I-310` Authorized Disposal of Archived Examination Records After Retention Expiry —
+    `L2-I16` SW-11, §9.2 Disposal Authorization, §21.3 `Retention Expired → Pending Disposal → Disposed`.
+  - `CAN-L3-I-311` Apply and Release Legal Hold on Examination Records — `L2-I16` §9.2 Legal Hold
+    Record, §21.4 `Retention Active ↔ Legal Hold`.
+  - `CAN-L3-I-312` Examination Record Archival — `L2-I16` SW-07, SW-08, split from `I-301`.
+  - `CAN-L3-I-313` Subsequent Examination Execution Coordination — `L2-I12` §5.9–5.12, the
+    initiation and coordination outcomes that document actually owns.
+
+### Fixed
+- Seven rows were unedited template output, with Trigger reading `An authorized requirement triggers
+  <title>` and Final Outcome reading `The workflow <title> is successfully completed`. Six were
+  authored from their L2 source, including `CAN-L3-I-177` Publish Official Examination Results —
+  the flagship P0 outcome of the section. The seventh, `CAN-L3-I-302`, was removed instead: see below.
+- Twelve rows under the I12 heading asserted final outcomes that `L2-I12` §14 explicitly disclaims —
+  Hall Ticket Generation, Practical and Theory Conduct, Marks Collection and Academic Evaluation —
+  where `L2-I12` owns only the corresponding *initiation* and *coordination* capabilities. Removed;
+  their outcomes are carried by `CAN-L3-I-065`, `-083`, `-107` and `-145` under canonical owners.
+- `Primary Owner` read the flat value `Examination` on all 304 rows. Normalised to canonical
+  `I01`…`I16` codes, matching the `F00`…`F14` and `G00`…`G10` conventions.
+- `CAN-L3-I-255` claimed a CGPA outcome for the completion domain, which `L2-I13` §14.3 states it
+  "shall never own". Re-worded to consume the CGPA recomputed by `L2-I09`.
+- `Type` re-derived across all 258 rows against `L3_Scenario_Type_and_Priority_Rules.md` §7.
+  Final distribution: `Critical` 233, `Cross-domain` 18, `Simple` 7. Type remains provisional
+  under §15 and is not locked by this release.
+- Document header and per-block `Source` metadata added; blocks I04–I16 previously carried neither.
+
+### Removed
+- `CAN-L3-I-302` Reopen Closed Examination Session for Authorized Correction — unsupported.
+  `L2-I16` §21.4 defines no transition out of `Session Finalized`, §9.3 requires immutable finalized
+  sessions, and §21.5 lists reopening as invalid; reopening a *suspended* session is already
+  `CAN-L3-I-015` under `L2-I02` §5.6.
+
+### Consolidated
+- Eleven fragmentation clusters merged, retiring 45 rows into twelve rewritten candidates; two
+  over-broad candidates split or narrowed. Executed under explicit Lead Architect authorization,
+  ahead of the ordinary `L3_Phase1_Discovery_Rules.md` §17 sequence. Every cluster and its evidence
+  is recorded in the Section I watchlist §15.
+
+### Known open
+- `I-RC-03` — `L2-I04` §5.5–5.7 and `L2-I12` §5.7/§14 both claim supplementary, backlog and
+  improvement registration. Raised for ruling, unanswered. Leaves `CAN-L3-I-047` and `CAN-L3-I-217`
+  a known duplicate.
+- `I-RC-02` — suspend and resume of an in-progress examination claimed by `L2-I06`, `L2-I07` and
+  `L2-I15`. Keeps `CAN-L3-I-291` and cluster `I-DU-05` blocked.
+- `I-RC-06` — `L2-I16` §13 permits reopening a closed archive lifecycle "unless permitted by
+  institutional policy" while §21.5 lists it as an invalid transition. Document-integrity defect,
+  left for separate correction.
+- Candidate IDs are sparse after consolidation (`CAN-L3-I-001` … `CAN-L3-I-313` with gaps).
+  Renumbering deferred to Phase 2 close per `L3_Phase1_Discovery_Rules.md` §6.
+- `Priority` not re-derived: 42 `P0`, 215 `P1`, 1 `P2`.
+- Sections B, D and E contain no examination-facing candidates, while Section I names `E` in
+  roughly fifteen rows and `D` in roughly thirty. Not a Section I defect; unowned.
+
+---
+
+## [1.6.4] - 2026-08-11
+
+Section G Phase 1 inventory corrected following independent adversarial audit. Patch class —
+Phase 1 discovery corrections and documentation only. **No L1 or L2 content was changed, no
+canonical ownership moved, no repository conflict was resolved, and no candidate was renumbered,
+merged, split or removed.** Section G moves from 539 to 541 candidates.
+
+The audit verdict for `L3_Phase1_Inventory_Varad.md` as a whole remains
+`FAIL — MATERIAL COVERAGE GAPS`, and is **not** cleared by this release. Sections F (15 locked
+L2 documents) and H (11 locked L2 documents) are assigned to the same inventory under
+`L3_Phase1_Workload_Distribution_Decision.md` §2 and remain entirely undiscovered. This release
+corrects Section G only.
+
+### Added
+- `generated/reviews/l3-phase1-section-g-corrections-2026-08-11.md` — the correction manifest,
+  recording every changed row with its before and after value, the rules applied, the L2
+  evidence used, and the list of items deliberately not changed.
+- `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Section_G_Phase2_Consolidation_Watchlist.md`
+  — nine fragmentation clusters, six over-broad candidates, eight overlap clusters, three
+  cross-inventory relationships with Section J, and four open items.
+- Two Section G candidates, each traced to repository evidence:
+  - `CAN-L3-G-540` Academic Session Readiness Assessment to Session Commencement Decision.
+    `L2-G00` §16 enumerates seven readiness types; six had a candidate (`CAN-L3-G-001` through
+    `CAN-L3-G-006`). Academic Session Readiness had none. Its academic-calendar trigger and its
+    D and B participation distinguish it from the consolidated daily readiness candidate.
+  - `CAN-L3-G-541` Medical Clearance Request to Institutional Clearance Decision. `L2-G06` §12
+    Administrative Operations lists four operations; three were covered (Medical Certificates by
+    `CAN-L3-G-214`, Sick Leave Recommendation subsumed by the same via §22, Occupational Health
+    by `CAN-L3-G-220`). Medical Clearance had none. Structurally parallel to library clearance
+    (`CAN-L3-G-182`) and hostel exit clearance (`CAN-L3-G-108`).
+
+### Fixed
+- 109 candidate rows carried the Priority value `P1` in the Type column, which
+  `L3_Phase1_Discovery_Rules.md` §12 does not permit. Each was reassigned a valid Type.
+  Type remains provisional under §12 and is not locked by this release.
+- `CAN-L3-G-395` carried nine data cells against the locked eight-column schema. The stray Type
+  value was removed; `Cross-domain` was retained to match sibling referral rows `CAN-L3-G-391`
+  through `CAN-L3-G-397`, and the authored `P0` was preserved.
+- 43 rows carried unresolved placeholder text in the Domains column (`relevant affected domain`,
+  `responsible G domain(s)`, `participating domains` and six further variants), against
+  `L3_Phase1_Discovery_Rules.md` §11. Each was resolved to concrete section letters using the
+  Bounded Context Relationships section of the governing L2 document.
+- 59 rows used six non-canonical Domains tokens (`Finance`, `Security`, `Institutional
+  Reporting`, `Analytics`, `Accreditation`, `Audit`). Normalised to `F`, `G07`, `H`, `H`, `H`
+  and `A` respectively, with de-duplication. Four of the six had been concealing the Section H
+  dependency on 28 rows.
+- Inventory heading structure. The G09 block had no section heading; the G10 block used a
+  non-standard heading; a stray empty `#` heading followed the G09 notes.
+
+### Deferred
+- Approximately 122 fragmented candidates across nine clusters, and six over-broad candidates.
+  Merging and splitting are assigned to Phase 2 by `L3_Phase1_Discovery_Rules.md` §17 and are
+  recorded on the watchlist rather than applied.
+- Priority distribution (275 of 541 candidates at `P0`) and 235 `Critical` classifications
+  await an institutional P0 definition and risk threshold. Both remain provisional under §12
+  and §13.
+- Ownership of approximately 20 reporting and dashboard candidates against `L2-H07` §1.1, which
+  names the Enterprise Dashboard domain the authoritative owner of dashboard composition and
+  governance. Blocked until Section H is discovered.
+- Consolidation of `CAN-L3-G-006` with `CAN-L3-A-047`, blocked on INT-302.
+
+## [1.6.3] - 2026-08-09
+
+Section C Phase 1 inventory corrected following independent verification. Patch class —
+Phase 1 discovery corrections and documentation only. **No L1 or L2 content was changed, no
+canonical ownership moved, no repository conflict was resolved, and no candidate was
+removed.** Section C moves from 71 to 74 candidates.
+
+### Added
+- `generated/reviews/l3-phase1-section-c-verification-2026-08-09.md` — the independent
+  adversarial verification of `L3_Phase1_Inventory_Chetan.md`. Verdict at audit time:
+  `FAIL — BOTH COVERAGE AND ARCHITECTURE PROBLEMS`; `PASS` after application, subject to the
+  recorded conflicts. Supersedes the 2026-08-08 Section C review, which audited the
+  pre-remediation 45-row version.
+- `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Section_C_Phase2_Consolidation_Watchlist.md`
+  — four candidate relationship clusters (2 `CLOSED`, 2 `OPEN`) and nine repository conflicts
+  (2 `DETERMINED`, 5 `OPEN`, 1 `BLOCKED`, 1 conflict-dependent wording constraint).
+  Registered in the L3 `README.md` folder tree and governance list.
+- Three Section C candidates, each traced to repository evidence:
+  - `CAN-L3-C-072` Admission Document Verification and Approval Decision. The
+    `Admission Initiated → Admission Approved` span of `L2-C01` §6.4/§6.9.1 had no candidate:
+    `CAN-L3-C-001`'s trigger begins at "Admission is approved", placing WF-C01-02 Document
+    Verification and WF-C01-03 Admission Approval outside the inventory.
+  - `CAN-L3-C-073` Registration Hold Placement and Release. `L2-C03` §5.3 grants Academic
+    Registration **Full** ownership of `Registration Hold`, §6.6 defines it as an owned child
+    entity, and §12.8 defines the governed `OverrideRegistrationHold()` service. No candidate
+    placed or released a hold.
+  - `CAN-L3-C-074` Inter-Institute Student Transfer with Student Context Re-establishment.
+    `L2-C02` §11.10.3 defines Institute-crossing transfer as originating context terminal plus
+    a new context at the receiving Institute under SC-INV-004 — a different terminal outcome
+    from the intra-Institute form.
+
+### Changed
+- `CAN-L3-C-011` split. Retitled **Intra-Institute Student Academic Reassignment** and
+  restricted to same-Institute campus, department, batch and section change per `L2-C02`
+  WF-C02-08 §1. Its stated outcome ("Student Context reflects the completed transfer")
+  contradicted `L2-C02` §11.10.3 for the Institute-crossing case; that case is now
+  `CAN-L3-C-074`.
+- `CAN-L3-C-005` outcome corrected. It asserted that readmission restores the admission
+  lifecycle, contradicting `L2-C01` §6.13 ("No terminal Admission Record shall ever be
+  reopened") and §7.6 rule 6. Now states that a new Admission Record is created and linked to
+  the same canonical Person with the prior terminal record preserved and closed. `Domains`
+  `C` → `A, C`, which also resolves a `Cross-domain` type carrying a single domain.
+- `CAN-L3-C-004` extended to name the policy-controlled `Student Created → Revoked` path
+  (`L2-C01` §6.9.1) and the hand-off of the consequential Student Context disposition. The
+  unwinding behaviour itself remains unowned — recorded as conflict CF-06.
+- `CAN-L3-C-034` `Domains` `A, C` → `C, H`. `ARCHITECTURE_INDEX:221` and `L2-C04` §18.10 place
+  APAAR & ABC integration in `L2-H01`. `L1` §4 "APAAR belongs to Identity" governs
+  APAAR-as-identity, not ABC credit synchronisation. Credit Ledger ownership unchanged.
+- `CAN-L3-C-029` `Domains` `C` → `B, C, H`; `L2-C04` APW-07 lists External University, ABC,
+  NEP Transfer and Exchange Programme as credit sources.
+- `CAN-L3-C-022` extended to Improvement Registration (`L2-C03` §4.3, §15).
+- `CAN-L3-C-046` extended to qualification completion cancellation before conferment
+  (`L2-C05` §11.12).
+- `CAN-L3-C-059` retitled **Scholarship Definition Lifecycle Governance** and extended across
+  the full `L2-C07` §6.6 definition lifecycle including suspension, expiry and archival.
+- `CAN-L3-C-066` `Type` `Cross-domain` → `Simple`; it listed a single domain, and `L2-C07`
+  §2.2 places external portal business logic outside the domain.
+- `L3_Phase1_Inventory_Chetan.md` header gains a `Last Revised` line pointing at the
+  verification review and the Section C watchlist.
+
+### Not changed — recorded deliberately
+- **Policy Management remains unowned.** `L2-C08` (10 references) and `L2-C04` (3 references)
+  depend on it; no publisher exists (`DEPENDENCY_MAP` section 7, status Open; `L2-C04` §2.6
+  records it in-document as "unresolved, no owner"). The two policy-lifecycle candidates this
+  would support were **not** created. Their absence is correct until the Lead Architect rules.
+- **No standalone Admission Rejection candidate.** `L2-C01` WF-C01-03 §2.7 EX-01 places an
+  admission in a `Rejected` state and §3.2 publishes `AdmissionRejected`, but no canonical
+  state list (§6.8, §6.9, §6.9.1, §6.13, §10.3) contains `Rejected`. The negative decision is
+  carried inside `CAN-L3-C-072` rather than creating a candidate against an undefined state.
+- **Nine repository conflicts were surfaced, not resolved**, per
+  `L3_Phase1_Discovery_Rules.md` section 14. They include two incompatible admission state
+  vocabularies (`L2-C01` §6 vs §10.3), duplicate guardian capability definition (`L2-C02`
+  WF-C02-13.3 vs `L2-C06` §5), and Alumni Transition ownership stated three ways (`L2-C04`
+  §1.5, `L2-C05` §5/§11.10, `L2-C08` §5.2). All are held on the Section C watchlist.
+
+## [1.6.2] - 2026-08-08
+
+Section A Phase 2 consolidation watchlist resolved and relocated. Patch class — corrections
+and documentation structure only. **No candidate was consolidated, no candidate ID changed,
+and the Section A count remains 64.**
+
+### Added
+- `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Section_A_Phase2_Consolidation_Watchlist.md`
+  — the authoritative record of the eighteen Section A relationship clusters, each resolved
+  to `CLOSED` (10), `DETERMINED` (3), `OPEN` (3) or `BLOCKED` (2). Registered in the L3
+  `README.md` folder tree and governance list.
+
+### Changed
+- Two recommendations from the 2026-08-08 verification were **withdrawn on re-verification**:
+  - **A-C08** — "merge A-029 into A-028" was wrong. `L2-A07:1391-1393` defines A07-W11
+    Retention Governance, A07-W12 Evidence Archival and A07-W13 Evidence Restoration as
+    three separate workflows, and `L2-A07:1408-1409` places them in two different workflow
+    categories. A-028, A-029 and A-030 are retained as three candidates.
+  - **A-C14** — "merge A-045 into A-044" downgraded to an open Phase 2 question. `L2-A09`
+    MD-18 has its own actor, authorization gate and published event, and delivers archival
+    storage and preserved searchability that MD-11/MD-12 retirement does not. A precondition
+    establishes sequence, not equivalence.
+- Two clusters left unresolved by that verification were **closed**:
+  - **A-C07** — determined. `L2-A07:1407` places A07-W07, A07-W08 and A07-W09 in a single
+    `Investigation` category; `:1899-1901` shows W07 and W08 feeding W09; `:867`, `:1286`
+    and `:831` establish both inputs as derived artifacts owning no lifecycle. A-025 and
+    A-026 merge into A-024 in Phase 2.
+  - **A-C13** — closed. A-041 is retained. `L2-A09` MD-14 has its own service (§18.10),
+    export policy gate, `DatasetExported` event and failure outcome, and is a consumer pull
+    where MD-15 is a publication push.
+- Section 3.3 of `L3_Phase1_Inventory_Dhruv.md` reduced to a pointer, and section 3.1
+  condensed, restoring compliance with `L3_Phase1_Discovery_Rules.md` section 3 ("candidate
+  scenario rows only") and section 16 ("should not include long explanations").
+- Section 7 of `L3_Section_A_Phase1_Audit_Application_Report_2026-08-08.md` marked superseded
+  and reduced to a change record of the two withdrawals, eliminating a third divergent copy
+  of the same analysis.
+
+### Unchanged
+- **INT-301 and INT-302 remain open.** Clusters A-C15 and A-C17 stay `BLOCKED` and no
+  candidate in the A10 block is authorable. No locked L1 or L2 content was amended.
+
+---
+
+## [1.6.1] - 2026-08-08
+
+Section A L3 Phase 1 audit applied. Scope is Phase 1 discovery plus two Patch-class
+defect corrections. **No canonical ownership, lifecycle, event, dependency direction or
+business-rule content changed, and no locked decision was overridden.** Two blocking
+repository conflicts were recorded, not resolved.
+
+### Added
+- `generated/reviews/l3-phase1-section-a-verification-2026-08-08.md` — independent
+  verification of CAN-L3-A-001 through CAN-L3-A-055 against the L2 Section A corpus,
+  locked L1, the Dependency Map and the L3 Phase 1 governance standards.
+- `generated/reviews/review-l3-section-a-conflicts-2026-08-08.md` — conflict register in
+  the existing `Issue ID : INT-NNN` format, new `INT-3xx` block.
+  - **INT-301 (Critical, OPEN)** — `L2-A02`, `L2-A03` and `L2-A04` claim duplicate
+    *exclusive* ownership of Credential, Authentication Session, MFA / Authentication
+    Factors, Role, Role Assignment and Delegation, against `L2-A00:427` "Ownership SHALL
+    never be shared". Requires an Enterprise Architecture Board decision under
+    `L2-A00:3031`. **No L2 ownership statement amended.**
+  - **INT-302 (Critical, OPEN)** — locked L1 sections 15 and 29 define Operational
+    Readiness as calculated, not stored and dynamically evaluated, with canonical entities
+    Readiness Rule and Readiness Result; `L2-A10` defines five persisted aggregates
+    including an immutable Operational Readiness Certificate, and `L2-A10:2920` has B01
+    update an institution readiness flag that `L1:1539` says does not exist.
+    `L1:3128` states no Level 2 workflow may violate a locked decision. **Neither locked
+    L1 nor `L2-A10` amended.**
+  - INT-303 and INT-304 — Medium, both fixed; see Changed.
+- `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Section_A_Phase1_Audit_Application_Report_2026-08-08.md`
+  records the inputs reviewed, conflicts recorded, corrections applied, every candidate
+  change with evidence, the candidates deliberately **not** added and why, the Phase 2
+  watchlist, the remaining blockers, the validation results and the final Section A
+  coverage audit. Registered in the L3 `README.md` folder tree and governance list.
+- Nine Phase 1 candidates, `CAN-L3-A-056` through `CAN-L3-A-064`, from a second
+  source-first discovery pass over A01–A05. They close zero-coverage gaps on three
+  canonical `L2-A04` aggregates (Workspace, Separation of Duties Policy, Authorization
+  Policy), the `L2-A02` identity-closure and population-onboarding families, the `L2-A03`
+  Authentication Provider aggregate, the `L2-A01` §6 Platform Configuration Framework, the
+  Tenant Maintenance and Upgrade lifecycle states, and `L2-A05` Human Task Management.
+  Numbering continues sequentially; **no existing candidate ID was renumbered.**
+
+### Changed
+- `architecture/L2_Domain_Workflow_Architecture/section-a/L2-A09_Master_Data_Workflows.md`
+  (**INT-304**) — sections 3.4 and 59 assigned Configuration Data to "the configuration
+  management domain that will be defined separately in A10". `L2-A10` is Operational
+  Readiness Workflows and defines no configuration responsibility; the reference was a
+  dangling pointer. Both occurrences repointed to `L2-A01` section 6 with its section 6.5
+  layer distribution named. A09's substantive boundary statement — that the Master Data
+  Platform does not absorb configuration ownership — is unchanged. **No configuration
+  domain was created and no ownership was invented or moved.**
+- `architecture/L2_Domain_Workflow_Architecture/section-a/L2-A08_Module_Registry_Configuration_Workflows.md`
+  (**INT-303**) — the title says "Module Registry **& Configuration**" while section 2.2
+  excludes runtime configuration and section 5 lists seventeen owned concepts, none of
+  them configuration. A scope-clarification note was added after the H1 stating the title
+  establishes no configuration ownership, and section 5.1's ambiguous "Platform Foundation"
+  pointer was made precise. **The document was deliberately not renamed:** it is `Locked`,
+  its title string is referenced in eight files including the historical
+  `SECURITY_REVIEW_CHANGELOG.md`, and changing a locked document's identity is Major class
+  under `Volume_5_Change_Management.md` section 7, not a defect correction. A rename
+  remains available to the Architecture Review Board.
+- `architecture/L3_Business_Scenario_Architecture/01_Phase1_Discovery/L3_Phase1_Inventory_Dhruv.md`
+  — 52 of the 55 existing Section A candidates edited: 43 Domains fields converted from
+  role placeholders to section letters or the `X` code, 9 Type reclassifications under the
+  `L3_Scenario_Type_and_Priority_Rules.md` section 7 selection order (correcting the
+  zero-`Simple` imbalance that section 14 identifies as a classification mistake), 4
+  Priority reassessments, 24 wording corrections, and 14 conflict markers. Two invented
+  clauses were removed — "revalidated as required" (A-034) and "validated" (A-003) — and
+  one architecture-repository phrase was removed from an institutional outcome
+  ("repository traceability", A-055). A Phase 1 Governance Note and an 18-cluster Phase 2
+  Consolidation Watchlist were added. **No candidate was renumbered, merged, split or
+  deleted; discovery breadth is preserved and merge/split decisions are deferred to
+  Phase 2.**
+- `architecture/L3_Business_Scenario_Architecture/README.md` — the new application report
+  registered in the folder tree and the governance document list, with the two open
+  blockers named.
+
+### Unchanged
+- **L1** (`Status: LOCKED`) and every **L2** document except the two Patch-class
+  corrections above. `L2-A02`, `L2-A03`, `L2-A04` and `L2-A10` were read in full at their
+  ownership, lifecycle, aggregate, workflow and event sections and **deliberately not
+  edited**: their conflicts are recorded as INT-301 and INT-302 for board decision.
+- `ARCHITECTURE_INDEX.md`, `L2_DOMAIN_WORKFLOW_MATRIX.md`, `DEPENDENCY_MAP.md`,
+  `TEAM_ASSIGNMENTS.md`, the constitution volumes and the L3 Phase 1 governance standards.
+  No Phase 1 rule was added or amended.
+- The four other Phase 1 inventory files, which remain empty. Repository-wide Phase 1
+  discovery is incomplete and Section A cannot be consolidated against sections that have
+  not been discovered.
+
+---
+
 ## [1.6.0] - 2026-08-07
 
 L0, L1 and L2 locked. This is the final lock decision for the business architecture

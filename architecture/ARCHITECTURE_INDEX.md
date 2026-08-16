@@ -82,7 +82,7 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 | L2-A07 | Audit Infrastructure Workflows | Platform Foundation — Audit | Locked |
 | L2-A08 | Module Registry & Configuration Workflows | Platform Foundation — Module Registry | Locked |
 | L2-A09 | Master Data Workflows | Platform Foundation — Master Data | Locked |
-| L2-A10 | Operational Readiness Workflows | Platform Foundation — Operational Readiness | Locked |
+| L2-A10 | Operational Readiness Governance & Certification Workflows | Platform Foundation — Operational Readiness Governance & Certification | Locked |
 | L2-A00 | Platform Foundation Review | Platform Foundation | Locked |
 
 **Section Total:** 11 Documents

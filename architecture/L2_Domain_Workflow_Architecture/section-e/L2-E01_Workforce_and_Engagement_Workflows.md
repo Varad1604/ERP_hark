@@ -42,6 +42,22 @@
 
 ---
 
+## Approved Assignment-Ownership Precedence Clarification
+
+**Decision date:** 2026-08-13
+
+**Decision authority:** Human-approved outcome of the Pallav Sections B/E L3 Phase 1 audit
+
+E01 owns Workforce Engagement and workforce operational-availability facts. E02 exclusively owns
+Position Assignment, Responsibility Assignment, Reporting Relationship, Assignment History and
+the operational authority derived from those aggregates. Any later legacy statement in this
+document saying that Workforce/E01 “owns”, “manages”, “creates”, “modifies”, “closes” or “versions”
+an E02 aggregate is superseded by this clarification and shall be read only as orchestration,
+reference, request, or consumption through E02 contracts. E01 may coordinate transfer, deputation,
+long leave, suspension or exit, but E02 performs and publishes every assignment-state change.
+
+---
+
 # 1. Purpose
 
 ## 1.1 Domain Objective
