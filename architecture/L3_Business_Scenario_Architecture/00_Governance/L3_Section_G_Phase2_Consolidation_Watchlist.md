@@ -1,7 +1,7 @@
 # L3 Section G — Phase 2 Consolidation Watchlist
 
 **Architecture Level:** L3 — Business Scenario Architecture
-**Applies To:** Section G — Campus Operations, 391 current sparse candidates in range `CAN-L3-G-001` … `CAN-L3-G-541`; 541 former candidates
+**Applies To:** Section G — Campus Operations, 350 current sparse candidates in range `CAN-L3-G-001` … `CAN-L3-G-541`; 541 former candidates
 **Status:** Determined consolidation applied — open Phase 2 judgments retained
 **Created:** 2026-08-11
 **Source:** independent adversarial audit of `L3_Phase1_Inventory_Varad.md`, 2026-08-11
@@ -55,6 +55,27 @@ Sections F and H are now present. This watchlist covers Section G only; its form
 | G-FR-07 | G08 re-clean | 4 — `G-316, G-326, G-332, G-337` | Verified re-clean after quality or hygiene failure | `G-316` rewritten; distinct request/inspection origins retained | `APPLIED` — exact duplicate `G-337` retired. |
 | G-FR-08 | Notification and awareness | 39 — incl. `G-115, G-151, G-152, G-184…G-187, G-205, G-221…G-223, G-280, G-289…G-294, G-353…G-356, G-425…G-429` | Publisher-side business facts feed H02; H02 owns delivery | Preserved by source parents and `CAN-L3-H-010`/`H-014` | `APPLIED` — notification-only fragments retired; genuine source information outcomes retained. |
 | G-FR-09 | Reporting and dashboards | 43 former rows — incl. `G-193, G-228, G-303…G-306, G-351, G-352, G-366…G-369, G-432…G-437, G-448, G-530…G-537` | G owns source reports, KPIs and projections; H07 owns dashboard composition; A07 owns institutional audit reconstruction | Preserved by domain reports plus `CAN-L3-H-050`…`H-058` and A07 | `APPLIED` — consolidated security, housekeeping, mentoring and infrastructure report families; retired duplicate H07 dashboard and A07 reconstruction rows |
+
+---
+
+## 4A. Second-Pass Consolidation — 2026-08-14
+
+The all-scope Phase 1 audit of 2026-08-14 found that the reasoning accepted for `G-FR-08` (notification) and `G-FR-09` (reporting and dashboards) had not been extended to three further families. Applied under user authorization on 2026-08-14.
+
+| ID | Cluster | Retired | Absorbed into | Basis |
+| --- | --- | --- | --- | --- |
+| `G-FR-10` | G10 effective-dated attribute maintenance, one row per attribute class | `G-460`, `G-465`, `G-470`, `G-473`, `G-505`, `G-507` | `G-454`, rewritten as **Physical Infrastructure Attribute Change to Effective-Dated Governed Update** and retyped `Critical` to carry the inherited governance sensitivity of capability and security-classification changes | Six rows repeated one effective-dated attribute-maintenance outcome across Building, Space, capability, capacity, sustainability and security classification. Definition and establishment outcomes were **retained**; only the change outcomes were consolidated. |
+| `G-FR-11` | G10 physical campus profile population | `G-453` | `G-450`, Final Outcome extended to include the authorised physical attribute profile | Profile completion is part of establishing the Physical Campus, not a separate institutional outcome. |
+| `G-FR-12` | G10 event delivery, consumer refresh and read contract | `G-523`, `G-524`, `G-525`, `G-538` | Publishing parents (`G-454`, `G-475`) | Consumer-side event delivery, read-model reconciliation and a query contract are mechanism, not institutional outcomes. Same class as `G-FR-08`/`G-FR-09`. `L3_Phase1_Discovery_Rules.md` §8. |
+| `G-FR-13` | G01 work-order internal steps | `G-027`, `G-051`, `G-052` | `G-025` Facility Work Order to Verified Closure | `G-025`'s existing Final Outcome already reads "Work is **assigned, accepted**, executed, evidenced, **verified, and closed**" — the three retired rows were restatements of spans inside it. `G-027`'s outcome ("a technician… is ready to execute the work") is not an institutional result. **No rewrite of `G-025` was needed.** |
+
+### Domain participation correction
+
+`G-023`, `G-026`, `G-033`, `G-034`, `G-047` and `G-051` listed `D` and `I` as participating domains while their Final Outcomes are wholly internal to facilities operations. `Domains` narrowed to `G` per `L3_Phase1_Discovery_Rules.md` §11 ("Use only domains that genuinely participate"). Academic Delivery and Examination are *affected by* a facility issue; they perform no act in consolidating duplicate complaints or verifying maintenance.
+
+**`OPEN` — residual participation review.** Further G01/G02 rows list `D`, `I` or `H` on the same impacted-not-participating basis (for example `G-022`, `G-032`, `G-044`, `G-045`, `G-055`, `G-058`, `G-076`). These were **not** changed: each needs a row-by-row judgment, and `H` in particular requires distinguishing genuine Section H business participation from notification delivery, which §11 excludes. Phase 2 should complete this pass.
+
+Section G total: **391 → 377 candidates** at the 2026-08-13 correction, then **377 → 350** at the 2026-08-15 audit application (see section 10). Retired IDs must not be reused. Audit reference: `generated/reviews/l3-phase1-audit-all-2026-08-14.md` FIND-005, FIND-011, MG-07…MG-09.
 
 ---
 
@@ -118,7 +139,7 @@ Recorded so Phase 2 does not re-audit them.
 - **Lifecycle states.** Every state term used in the inventory was verified present in the governing L2 document. No invented state.
 - **Business events.** Candidates refer to events generically. No event name was fabricated.
 - **Implementation leakage.** None. No API, schema, class, screen, broker, queue or deployment reference appears in any candidate.
-- **Candidate IDs.** Unique across all 391 current rows; sparse former IDs preserve the consolidation crosswalk.
+- **Candidate IDs.** Unique across all 350 current rows; sparse former IDs preserve the consolidation crosswalk.
 - **L2 document coverage.** All eleven Section G documents are represented.
 
 ---
@@ -145,4 +166,36 @@ Applied groups:
 - duplicate housekeeping maintenance handoff `G-357` absorbed into rewritten `G-339`, and the remaining A07-owned infrastructure reconstruction row `G-517` retired; and
 - all Domains normalized to section-level identifiers, followed by a risk-first Type and first-release Priority review.
 
-No identified Section G audit decision remains open. Type and Priority remain subject to the repository's ordinary Phase 2 approval gate, but no known classification defect or unresolved ownership choice remains in this watchlist.
+**Superseded 2026-08-15.** The claim that no Section G decision remained open was incorrect when written: section 4A already recorded an `OPEN` residual participation review, and the 2026-08-14 re-audit identified further surviving instances of consolidation principles recorded as `APPLIED`. See section 10 for what was subsequently applied and what remains.
+
+
+---
+
+# 10. 2026-08-15 Audit Application
+
+Applied under Lead Architect approval following `generated/reviews/l3-phase1-audit-all-2026-08-14-2.md`.
+Full record: `generated/reviews/L3_Phase1_Tranche3_Application_Report_2026-08-15.md`.
+
+**Section G: 377 -> 350 candidates.** 27 retirements, 10 retained candidates rewritten to
+absorb the retired outcomes. Retired IDs must not be reused.
+
+| Cluster | Retired | Retained and rewritten |
+|---|---|---|
+| MG-01 rejection-only rows (extends `G-FR-03`, `G-FR-05`, `G-FR-13`) | `G-322`, `G-371`, `G-372`, `G-388`, `G-398`, `G-446` | `G-321`, `G-370`, `G-387` |
+| MG-05 consumer-side read model (extends `G-FR-12`) | `G-438`, `G-439` | — |
+| DUP-01 hostel exit span | `G-108`, `G-110` | `G-096` |
+| MG-09 publisher-side information delivery (extends `G-FR-08`) | `G-113`, `G-114`, `G-150`, `G-170` | `G-169` |
+| MG-02 mentoring session recording steps | `G-382`, `G-383`, `G-384`, `G-385` | `G-381` |
+| MG-03 mentoring follow-up transitions | `G-403`, `G-405`, `G-407`, `G-408` | `G-404` |
+| MG-04 mentoring disclosure requester variants | `G-422`, `G-423`, `G-424` | `G-421` |
+| MG-10 hostel visit span | `G-101` | `G-100` |
+| MG-11 resident leave span | `G-098` | `G-097` |
+
+**Root cause.** The principles behind `G-FR-05`, `G-FR-08` and `G-FR-12` were recorded as
+`APPLIED` but were applied cluster-by-cluster rather than swept across the section. Identical
+constructs survived in G08 Housekeeping and G09 Teacher Guardian, which no cluster had reached.
+Recording a principle as `APPLIED` should in future require a section-wide sweep for the
+construct, not only the enumerated cluster.
+
+**Still open.** The residual participation review at section 4A. Type and Priority remain
+subject to the ordinary Phase 2 approval gate.

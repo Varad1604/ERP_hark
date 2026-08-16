@@ -150,7 +150,7 @@ The former INT-301 owner markers were removed. Authentication candidates use A03
 These were recorded in the audit application report as watchlist entries but are not candidate-relationship questions. They are restated here so section 7 of that report can be retired without loss.
 
 * **Variable Domains notation — resolved.** `L3_Phase1_Discovery_Rules.md` section 11 now governs `VAR:<role>`. Dhruv's inventory uses no `X` wildcard and no free-text “requesting domain” placeholder.
-* **Targeted peer comparison — completed 2026-08-13.** The available C, F/G/H and I registers now contain 879 candidate rows and were checked against every active A/J candidate. No exact normalized-title collision, material semantic duplicate, or competing canonical-owner claim was found. Pallav's B/D/E inventory remains empty, so those unavailable rows must be checked when populated; this is an external register limitation, not an open Section A relationship decision.
+* **Targeted peer comparison — completed 2026-08-13.** The available C, F/G/H and I registers now contain 879 candidate rows and were checked against every active A/J candidate. No exact normalized-title collision, material semantic duplicate, or competing canonical-owner claim was found. **The deferred B/D/E comparison was completed on 2026-08-14** against Pallav's 164 populated rows, covering all 1,215 repository candidates. No duplicate outcome and no competing canonical-owner claim was found. One ownership conflict was identified and is recorded as `RC-01` in section 9 below: `CAN-L3-A-012` versus `CAN-L3-E-103`. Evidence: `generated/reviews/l3-phase1-audit-all-2026-08-14.md` §10.
 * **Dhruv's additional assigned work — completed 2026-08-13.** Section J, governed variable-participant notation, targeted cross-domain comparison, governance traceability and the procurement-to-inventory pilot are recorded and verified. See `generated/reviews/L3_Phase1_Dhruv_Revised_Submission_Verification_2026-08-13.md`.
 
 ---
@@ -160,3 +160,47 @@ These were recorded in the audit application report as watchlist entries but are
 The first three applied clusters absorbed A003, A025, A026 and A034 and added A065/A066, moving Section A from 64 to 62 rows. A-C12 then absorbed A046, A-C17 added A067/A068, and DEC-DHR-07 absorbed A054 into A047. Section A therefore now has **62 active candidate rows**.
 
 Retained IDs were not renumbered. The gaps preserve the audit trail, and absorbed IDs must not be reused.
+
+---
+
+## 9. Repository Conflicts Affecting Section A Discovery
+
+Added 2026-08-14 by the all-scope Phase 1 audit. Recorded so the conflict is visible at the point of use. **Not resolved here** — `L3_Phase1_Discovery_Rules.md` section 14 forbids silently resolving repository conflicts during Phase 1.
+
+### RC-01 — Delegation ownership
+
+| | |
+| --- | --- |
+| **Status** | `RESOLVED 2026-08-15` — amendment approved and applied. See resolution note below. |
+| **Affected candidates** | `CAN-L3-A-012` (Responsibility Delegation to Automatic Authority Reversion, owner Authorization & Policy); `CAN-L3-E-103` (Delegated Authority and Additional Charge Assignment, owner E02); `CAN-L3-G-362` (Housekeeping Delegation to Temporary Operational Authority, owner Housekeeping Operations) — **G-362 was omitted from this list until 2026-08-15** |
+| **Position A — `L2-A04`** | Line 114: "Canonical boundary approved 2026-08-13 under INT-301. L2-A04 **exclusively owns** Role, Role Assignment, **Delegation** and authorization-policy lifecycles." §10.5: "Delegation represents temporary transfer of business responsibility from one authorized user to another." |
+| **Position B — `L2-E02`** | Line 359: `Assignment Delegation \| Canonical`. Line 975: `Delegation \| L2-E02 \| Operational delegation`. Line 2644: command `DelegateAuthority`. Line 2662: event `PositionAssignmentDelegated`. |
+| **Authority analysis** | Unresolved by hierarchy. Both are locked L2 documents at the same authority tier. A04's claim carries a dated approval reference, which is suggestive but does not by itself override E02's canonical declaration together with its own command and event ownership. A reading exists in which A04 owns authorization-layer delegation and E02 owns organisational-assignment delegation — **but no repository source states that split**, and A04's "exclusively owns" wording forecloses it. |
+| **Phase 2 blocked?** | **Yes**, for these two candidates only. |
+| **Escalate to** | The authority that approved INT-301. |
+| **Required decision** | Either amend `L2-A04` line 114 to scope its exclusivity to authorization-layer delegation, or amend `L2-E02` to consume A04 delegation rather than own it. Then set the owner for both candidates. |
+| **Evidence** | `generated/reviews/l3-phase1-audit-all-2026-08-14.md` FIND-002, RC-01. Mirrored in `L3_Section_B_D_E_Phase2_Consolidation_Watchlist.md` §4. |
+
+Neither inventory recorded this conflict before 2026-08-14. Each proceeded on its own side's reading.
+
+**Resolution, approved 2026-08-15.** The conflict was one overloaded noun, not two competing
+claims. `L2-E02` already qualified its concept consistently — "Assignment Delegation" (line 359),
+"temporary operational authority delegation" (line 242), "operational delegation" (line 975).
+`L2-A04` was the only document using the bare word "Delegation", and it was the document
+asserting exclusivity. The two documents describe different things.
+
+Applied:
+
+1. `L2-A04` line 114 — `Delegation` scoped to `Authorization Delegation`, plus an explicit
+   delegation scope clarification recording that organisational assignment delegation belongs
+   to `L2-E02` and consumes A04 authorization primitives without owning them.
+2. `L2-A03` line 220 — the same sentence is mirrored there; qualified identically.
+3. `L2-E02` line 975 — `Delegation` renamed to `Assignment Delegation`, matching E02's own
+   canonical entity table, plus a reciprocal scope clarification in section 1.
+
+No entity moved between documents and no substantive ownership changed. Resulting assignment:
+`A-012` remains with Authorization & Policy (authorization-layer). `E-103` and `G-362` sit with
+organisational delegation — `E-103` with Position & Assignment, `G-362` with Housekeeping
+Operations consuming that concept.
+
+Full record: `generated/reviews/L3_Phase1_Tranche3_Application_Report_2026-08-15.md`.

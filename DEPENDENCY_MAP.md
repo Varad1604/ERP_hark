@@ -406,7 +406,7 @@ entry in Section 6 is a defect in that section, not a new foundational dependenc
 
 | Missing context | Depended on by | What is consumed | Status |
 |---|---|---|---|
-| **Policy Management** | `L2-C08` (10 references), `L2-C04` (3 references) | Institutional business policy definitions and their change events — `AlumniTransitionPolicyUpdated` (C08), `AcademicPolicyUpdated` (C04), and a `Get Academic Policy` query contract (C04). Neither event has a publisher anywhere in the repository. | **Open.** No owner assigned. |
+| **Policy Management** | `L2-C08` (10 references), `L2-C04` (3 references) | Institutional business policy definitions and their change events — `AlumniTransitionPolicyUpdated` (C08), `AcademicPolicyUpdated` (C04), and a `Get Academic Policy` query contract (C04). | **Resolved 2026-08-15 (RC-03).** Institutional policy is owned by `L2-B01`. Publishers assigned: `AcademicPolicyUpdated` → `L2-C04`, `AlumniTransitionPolicyUpdated` → `L2-C08`. |
 
 **Why no owner has been assigned.** The three candidate homes were each checked and
 excluded on the evidence:
@@ -423,12 +423,31 @@ excluded on the evidence:
   "architectural metadata only" and explicitly excludes implementation, runtime and
   operational concerns. It is architectural governance policy, not business policy.
 
-**Rule until an owner is assigned:** no subscriber or query client shall be implemented
-against Policy Management. Consuming documents carry the same instruction at the point of
-use. Assigning an owner is an architecture decision, not a documentation correction, and
-requires Lead Architect sign-off.
+- **`L2-B01` Institution.** **Not evaluated when this gap was first recorded.** On review it
+  is the owner. `L2-B01` section 2.1 *Approved Institution Policy Ownership Clarification*
+  cites `SutraERP_L1_Business_Domain_Architecture_Locked.md`, which states in the Institution
+  domain business rules that **"Institute owns institutional policies."** Institution Policy is
+  a canonical entity of that domain. The same section separates it explicitly from
+  authorization policy — "`L2-A04` owns the Authorization Policy" — and records that `L2-A00`
+  states the Platform Foundation "does not own institutional policies."
 
-Note that *qualified* policy capabilities are owned and are not part of this gap:
+**Resolution, approved 2026-08-15 (RC-03).** Institutional business policy is owned by
+`L2-B01` Institution, on the authority of the locked L1 Business Domain Architecture. The
+three exclusions above remain correct; the gap arose because B01 was not among the candidate
+homes originally checked. Under the L3 Phase 1 authority hierarchy the Locked L1 Architecture
+ranks above this Dependency Map, so this entry is a documentation correction bringing the
+register into line with L1 — not a new architecture decision.
+
+The two orphaned events are assigned to their own domains, following the convention already
+established for qualified policy capabilities below: `AcademicPolicyUpdated` is published by
+`L2-C04` and `AlumniTransitionPolicyUpdated` by `L2-C08`. Each domain publishes change events
+for the policy it applies, while the institutional policy definition itself remains B01's.
+The `Get Academic Policy` query contract is served by `L2-B01`.
+
+The prior rule barring subscribers and query clients against Policy Management is lifted.
+Consuming documents carrying that instruction at the point of use should be updated.
+
+Note that *qualified* policy capabilities are owned and were never part of this gap:
 `Examination Policy Management` is `L2-I01`, `Leave Policy Management` is `L2-E05`, and
 `Eligibility Policy Management` is a workflow within `L2-C07`.
 

@@ -217,7 +217,7 @@ Authentication exclusively owns:
 
 No other domain may directly create, modify, expire, revoke, or manage these aggregates outside the published architectural contracts.
 
-> **Canonical boundary approved 2026-08-13 under INT-301.** L2-A03 exclusively owns Credential, Authentication Session, authentication factors/MFA Enrollment, Authentication Provider and their lifecycles. L2-A02 exclusively owns Person, Identity, User Account and canonical identity/context references. L2-A04 exclusively owns Role, Role Assignment, Delegation and authorization-policy lifecycles. An Authentication Session may bind an active workspace identifier supplied by the owning context domains, but that binding does not transfer Workspace, Role, Role Assignment or authorization ownership into A03.
+> **Canonical boundary approved 2026-08-13 under INT-301.** L2-A03 exclusively owns Credential, Authentication Session, authentication factors/MFA Enrollment, Authentication Provider and their lifecycles. L2-A02 exclusively owns Person, Identity, User Account and canonical identity/context references. L2-A04 exclusively owns Role, Role Assignment, Authorization Delegation and authorization-policy lifecycles. An Authentication Session may bind an active workspace identifier supplied by the owning context domains, but that binding does not transfer Workspace, Role, Role Assignment or authorization ownership into A03.
 
 ---
 

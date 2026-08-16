@@ -110,3 +110,20 @@ No candidate introduced duplicate canonical ownership.
 | **Candidates after application** | **74** |
 
 Neither open cluster in section 3.2 proposes a merge. If Phase 2 decides C-C01 and C-C02 in favour of consolidation, Section C would resolve to 72 candidates. That figure is indicative and is not a Phase 1 commitment.
+
+### 6.1 Application execution record — 2026-08-14
+
+**This table described an application that had not in fact been made.** The all-scope Phase 1 audit of 2026-08-14 found `L3_Phase1_Inventory_Chetan.md` holding 71 rows with maximum ID `CAN-L3-C-071`, no `C-072`/`C-073`/`C-074`, and `C-011` still carrying its pre-split title. `CF-01` below therefore referenced a mitigation that did not exist in the repository, and section 5 cited a boundary check against an absent candidate.
+
+The recorded application was executed on 2026-08-14 under user authorization:
+
+| Change | Applied to | Basis |
+| --- | --- | --- |
+| Added `CAN-L3-C-072` Admission Document Verification and Approval Decision | `C01` table | `L2-C01` §6.4 Primary Lifecycle; §6.6 states *Documents Submitted*, *Verification Completed*, *Admission Approved*; §7.3 catalogue `WF-C01-02`, `WF-C01-03` |
+| Added `CAN-L3-C-073` Registration Hold Placement and Release | `C03` table | `L2-C03` §5.3 `Registration Hold — Full`; child entity `RegistrationHold`; `OverrideRegistrationHold()` |
+| Added `CAN-L3-C-074` Inter-Institute Student Transfer with Student Context Re-establishment | `C02` table | `L2-C02` §11.10.3: "the originating context becomes terminal; a new context opens at the receiving Institute" |
+| `CAN-L3-C-011` retitled *Intra-Institute Student Academic Reassignment* and restricted to same-Institute change | `C02` table | `L2-C02` WF-C02-08 §1; §11.5 `Transferred → Active` |
+
+Trigger and Final Outcome wording for the three added candidates was authored from the cited L2 sources at application time; the 2026-08-09 verification recorded only ID, Title, Owner, Domains, Type and Priority. `C-072` carries the negative admission decision as a governed disposition **without** asserting a `Rejected` state, preserving conflict `CF-01`.
+
+Section C now holds **74** rows, matching this table. Audit reference: `generated/reviews/l3-phase1-audit-all-2026-08-14.md` FIND-001, FIND-006, MC-01…MC-03.

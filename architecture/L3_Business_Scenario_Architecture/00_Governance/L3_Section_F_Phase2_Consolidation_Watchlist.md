@@ -215,3 +215,35 @@ The user accepted the all-assigned audit recommendations and authorized reposito
 Former Section F total: **1,858 rows**. Current Section F total: **87 candidates**.
 
 All former `Preserve…`, `Prevent…`, `Publish…`, `Consume…`, individual guard-rejection, audit-write and configuration-step rows were absorbed as rules, triggers, alternate outcomes, events or evidence inside the current scenario boundaries. They remain recoverable from this register and the audit reports for L4 authoring.
+
+---
+
+## 12. Cross-Section Duplication Correction — 2026-08-14
+
+The all-scope Phase 1 audit of 2026-08-14 found that two Section F rows carried a **Section H primary owner** and restated the generic H02/H07 outcome specialised to a Finance source. The same pattern had already been retired for Section G under watchlist clusters `G-FR-08` (notification) and `G-FR-09` (reporting and dashboards); Finance had not been given the same treatment.
+
+| Retired | Title | Owner it carried | Subsumed by | Basis |
+| --- | --- | --- | --- | --- |
+| `CAN-L3-F-086` | Financial Outcome to Governed Notification | `H02` | `CAN-L3-H-010` Authoritative Business Outcome to Governed Communication Outcome | `H-010` already covers any source domain and disclaims ownership of the originating transaction. `G-FR-08` precedent. |
+| `CAN-L3-F-087` | Financial Reports and Projections to Governed Dashboard Composition | `H07` | `CAN-L3-H-050` Dashboard Requirement to Governed Published Dashboard | `H-DEC-01` assigns dashboard composition to H07 and source facts/reports/KPI definitions to F13. `G-FR-09` precedent. |
+
+**No Finance-owned outcome was lost.** The publisher-side Finance outcome is held by `CAN-L3-F-077` (Financial Facts to Published KPI and Dashboard Projection), which remains in the inventory and retains F13 ownership of reports, KPI definitions and projections. The F13 row of the table in section 11 above should now read `F-073`…`F-079` only.
+
+Section F total: **87 → 85 candidates**. Retired IDs `F-086` and `F-087` must not be reused. Audit reference: `generated/reviews/l3-phase1-audit-all-2026-08-14.md` FIND-012, DU-01, DU-02.
+
+---
+
+## 13. Type and Priority Distribution — `OPEN`
+
+Recorded 2026-08-14. **Not re-derived**, for the same reason the Section I watchlist gives: `L3_Scenario_Type_and_Priority_Rules.md` §15 reserves Type and Priority confirmation for Lead Architect review, and re-deriving 85 values would be 85 unreviewed judgment calls.
+
+Section F carries **79 of 87 `Critical`, zero `Simple`, and zero `P2`** — two of the six governed tiers unused across the entire domain. `L3_Scenario_Type_and_Priority_Rules.md` §14 Mistake 2 names this pattern verbatim ("All Finance scenarios = Critical") as incorrect and states that "classification depends on the specific business outcome". 55 of 87 rows are `P0`.
+
+Candidates that read as lower-risk or lower-priority on their own wording, offered as starting points rather than conclusions:
+
+* `F-075` Management Reporting Request to Governed Financial Report — produces a report; no settlement, payroll or statutory consequence.
+* `F-076` Financial Definition Change to Approved KPI or Analytical Model — a versioned definition; historical results remain reproducible.
+* `F-079` Financial Evidence to Audit and Historical Reconstruction — read-only reconstruction that changes no financial fact; reads `P2`.
+* `F-055` Closed Financial Period to Governed Archival — retention activity after the period is already immutable.
+
+Phase 2 should re-derive Section F Type against §7 and Priority against §12. This item does not block consolidation; it blocks relying on Type or Priority to sequence L3 authoring.

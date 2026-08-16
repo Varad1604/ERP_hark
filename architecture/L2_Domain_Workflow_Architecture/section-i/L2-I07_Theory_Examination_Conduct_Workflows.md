@@ -78,6 +78,8 @@ The scope includes:
 - Examination Entry Verification
 - Invigilator Assignment
 - Attendance Management
+- Question Paper Intake
+- Question Paper Custody and Timed Release
 - Question Paper Distribution
 - Answer Book Distribution
 - Examination Supervision
@@ -95,15 +97,26 @@ This document does not govern:
 - Examination Registration
 - Hall Ticket Management
 - Practical & Viva Examination Conduct
-- Question Paper Creation
-- Question Paper Moderation
-- Question Paper Printing
 - Marks Collection & Evaluation
 - Result Processing
 - Revaluation & Rechecking
 - Academic Completion
 
 Ownership of these business capabilities remains with their respective workflow documents.
+
+> **Question paper scope, approved 2026-08-15 (RC-02).** Earlier revisions of this section
+> deferred *Question Paper Creation*, *Question Paper Moderation* and *Question Paper Printing*
+> to "their respective workflow documents." No such document exists anywhere in Section I, so
+> the capability had no owner. The institutional decision recorded on 2026-08-15 is that
+> SutraERP does **not** model external paper setting, moderation boards, printing or physical
+> custody chains. The Examination Controller authors the question paper directly — typed into
+> the system or uploaded as a document — and the system holds it and releases it at the
+> scheduled examination start.
+>
+> That intake, custody and timed release is therefore owned here, as the upstream of the
+> Question Paper Distribution this document already governs (see section 9.5). Where an
+> institution runs an external setting and moderation process, it happens outside SutraERP and
+> enters the system at intake.
 
 ---
 

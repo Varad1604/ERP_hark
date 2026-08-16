@@ -1,7 +1,7 @@
 # L3 Section I — Phase 2 Consolidation Watchlist
 
 **Architecture Level:** L3 — Business Scenario Architecture
-**Applies To:** Section I — Examination, candidates `CAN-L3-I-001` … `CAN-L3-I-313` (258 live rows; IDs are sparse after consolidation and are renumbered at Phase 2 close)
+**Applies To:** Section I — Examination, candidates `CAN-L3-I-001` … `CAN-L3-I-313` (245 live rows; IDs are sparse after consolidation and are renumbered at Phase 2 close)
 **Status:** Active — Phase 2 input
 **Created:** 2026-08-12
 **Source:** independent adversarial audit of Section I, 2026-08-12 — `generated/reviews/L3_Phase1_Audit_Devang_ALL_ASSIGNED.md`
@@ -54,6 +54,38 @@ At 245 the section is close to that range. Every evidenced fragmentation cluster
 For comparison, Section F carries 1,858 candidates at a ratio near 20:1 and Section G carries 541. **Section I is the least fragmented large section discovered so far**, and the consolidation task here is correspondingly smaller and more surgical.
 
 The estimate is audit inference from the L2 lifecycle, workflow, ownership and state-model sections. It is a consolidation target, not an approved number.
+
+---
+
+## 4A. Second-Pass Consolidation — 2026-08-14
+
+The all-scope Phase 1 audit of 2026-08-14 found 208 of 245 Section I titles verb-initial, and identified candidates matching the examples `L3_Phase1_Discovery_Rules.md` §8 explicitly disqualifies as standalone L3 scenarios ("Send Notification", "Approve Request", "Save Application"). The 2026-08-12 consolidation had worked against the L2 workflow catalogues; §8 is a different and stricter test, and it had not been applied.
+
+**A deliberate bright line was used.** Only rows that §8 disqualifies outright — procedural steps, notifications, receipt of a response, an approval treated as its own scenario — were retired. **Trigger-variant merges were not executed** (see 4B). Applied under user authorization on 2026-08-14.
+
+| ID | Cluster | Retired | Absorbed into | Basis |
+| --- | --- | --- | --- | --- |
+| `I-FR-10` | I14 malpractice procedure rendered as consecutive steps | `I-270`, `I-271`, `I-272`, `I-273`, `I-274`, `I-275`, `I-276`, `I-277`, `I-278`, `I-279`, `I-280` | `I-305`, rewritten as **Suspected Examination Malpractice to Adjudicated Penalty Determination** | One institutional journey — report, register, preserve evidence, refer, notify, receive response, hear, decide — split across twelve rows. `I-277` ("Notify Candidate") is the §8 *Send Notification* example verbatim; `I-278` ("Receive Candidate Response") and `I-273` ("Preserve Evidence") are process steps with no independent institutional outcome. Appeal and review outcomes (`I-281`…`I-288`, `I-286`) were **retained** — they are post-terminal decisions with distinct consequences. |
+| `I-FR-11` | I08 evaluation assignment, approval and pre-approval correction steps | `I-130`, `I-131`, `I-132`, `I-140`, `I-141`, `I-143`, `I-144`, `I-154`, `I-155` | `I-126`, rewritten as **Examination Evaluation to Final Approved Marks** and extended to `D, E, I` | `I-141` ("Approve Evaluated Marks") is the §8 *Approve Request* pattern and carries the journey's real terminal result, so the parent was extended to end at Final Approved Marks rather than at "evaluated marks". Evaluator assignment, reassignment, substitution and pre-approval correction are guards inside that outcome. `I-142` (withheld approval) **retained** as a genuine alternate terminal outcome. |
+| `I-FR-12` | I07 theory-conduct material handling steps | `I-114`, `I-115`, `I-118` | `I-093` Conduct a Scheduled Theory Examination | Question-paper distribution, script collection and custody transfer are spans inside conducting the examination. The script *exception* rows `I-116` and `I-117` were **retained** — a missing or misidentified script is a distinct recovery outcome. |
+| `I-FR-13` | I02 examination-session lifecycle transitions | `I-013`, `I-014`, `I-015`, `I-017` | `I-011` Establish an Examination Session | Activate, suspend, reopen and reject-and-return are lifecycle transitions of one aggregate. `L3_Phase1_Discovery_Rules.md` §8 lists "Update Student Status" as the analogous disqualified pattern. |
+
+Section I total: **245 → 218 candidates.** Retired IDs must not be reused. All three §8 checker warnings for this file are now clear.
+
+---
+
+## 4B. Deferred — Trigger-Variant Merges
+
+`OPEN`. These were analysed on 2026-08-14 and **deliberately not executed.** Each is a set of rows that reach the *same* terminal institutional outcome from different originating circumstances. Merging them is defensible but it is a judgment about outcome identity, not a rule application, and executing all of them would have retired roughly 90 further rows in a single unreviewed pass.
+
+| ID | Cluster | Candidates | Shared terminal outcome | Argument against merging |
+| --- | --- | --- | --- | --- |
+| `I-TV-01` | Hall Ticket issuance variants | `I-058`, `I-059`, `I-060`, `I-063`, `I-065`, `I-066` around `I-055` | An eligible candidate holds valid examination entry authorization | Supplementary and special-arrangement issuance may carry distinct eligibility authority. |
+| `I-TV-02` | Result publication state transitions and trigger variants | `I-178`…`I-182`, `I-185`…`I-192` around `I-177` | An official result is published | Withhold/release and delay/resume have real institutional consequence for candidates; post-revaluation and post-malpractice publication have distinct upstream authority. |
+| `I-TV-03` | Theory and practical conduct variants | `I-094`, `I-095`, `I-099`, `I-100`, `I-102`, `I-106`…`I-110` around `I-093`; `I-076`…`I-087` around `I-069` | The examination is conducted and participation outcomes established | Multi-centre and special-arrangement conduct carry materially different control obligations. |
+| `I-TV-04` | I08 marks validation-failure branches | `I-133`…`I-137`, `I-139`, `I-148`…`I-153`, `I-156` | Authoritative evaluated marks exist | Precedent exists both ways: Section G retired its equivalent `G-FR-05` validation-failure rows, but several of these carry independent policy authority (second/adjudicating evaluation). |
+
+Phase 2 should decide each cluster explicitly. The `I-074`/`I-096`, `I-079`/`I-102` and `I-092`/`I-121` identical-Final-Outcome pairs flagged by `check_l3_inventory.py` sit inside `I-TV-03` and should be resolved with it.
 
 ---
 
@@ -379,3 +411,34 @@ Final: **245 candidates · 245 unique IDs · 0 placeholders · 0 unsupported can
 ---
 
 **End of Watchlist**
+
+
+---
+
+# 2026-08-15 Audit Application: I-TV Cluster Rulings and Title Conformance
+
+Applied under Lead Architect approval. Record:
+`generated/reviews/L3_Phase1_Tranche3_Application_Report_2026-08-15.md`.
+Section I: 218 -> 197 candidates. Retired IDs must not be reused.
+
+| Cluster | Ruling | Retired | Retained |
+|---|---|---|---|
+| `I-TV-01` Hall ticket variants | **MERGE** into `I-055`. Terminal outcome is identical; differing eligibility authority is upstream input, not a distinct outcome | `I-058`, `I-059`, `I-060`, `I-063`, `I-065` | `I-066` — an approved special arrangement changes the Hall Ticket's own content obligation, not just its trigger |
+| `I-TV-02` Result publication | **KEEP SEPARATE.** Discovery Rules section 6 and section 10 name regular publication and revised result as distinct worked examples; withhold and release carry real candidate consequence | none | all |
+| `I-TV-03` Conduct variants | **MERGE logistics antecedents** into `I-093` (theory) and `I-069` (non-theory); merge accommodation variants into `I-108` | `I-094`, `I-099`, `I-100`, `I-102`, `I-107`, `I-109`, `I-110`, `I-076`, `I-078`, `I-079`, `I-083`, `I-087` | `I-095` multi-centre, `I-106` and `I-084` re-conduct decisions, `I-085` and `I-086` contingency resolutions |
+| `I-TV-04` Marks validation | **SPLIT.** Merge validity-failure branches into `I-133`; retain rows carrying independent policy authority | `I-134`, `I-135`, `I-136`, `I-137` | `I-151`, `I-152`, `I-153` |
+
+**Identical-outcome pairs — differentiated, not merged.** `I-074`/`I-096` and `I-092`/`I-121`
+are the practical and theory forms of the same situation, owned by `L2-I06` and `L2-I07`
+respectively. Section I mirrors the two conduct modes deliberately throughout. The duplication
+was in the Final Outcome *wording*, not in the scenarios; both pairs were re-worded to name
+their conduct mode. The `I-079`/`I-102` pair was resolved by the `I-TV-03` merge.
+
+**Title conformance.** 146 Section I titles were converted from imperative action-fragment form
+("Resolve X", "Conduct X") to the canonical `<condition> to <outcome>` form used across the rest
+of the repository, per Discovery Rules section 8. Every replacement was derived from the row's
+own recorded Final Outcome; no outcome, state, trigger or business rule was changed.
+
+**Still open for Phase 2.** `I-139`, `I-148`, `I-149`, `I-150` and `I-156` sit in the `I-TV-04`
+range but were outside the approved merge scope and remain undecided. Type and Priority for
+Section I were deliberately left unchanged — see the application report.

@@ -111,7 +111,9 @@ L2-A04 is the canonical owner of:
 
 No other architecture document shall redefine ownership of these concepts.
 
-> **Canonical boundary approved 2026-08-13 under INT-301.** L2-A04 exclusively owns Role, Role Assignment, Delegation and authorization-policy lifecycles. L2-A02 owns Person, Identity, User Account and canonical identity/context references. L2-A03 owns Credential, Authentication Session, authentication factors/MFA Enrollment and Authentication Provider lifecycles. A04 consumes identity and authenticated-session references without changing their canonical state.
+> **Canonical boundary approved 2026-08-13 under INT-301.** L2-A04 exclusively owns Role, Role Assignment, Authorization Delegation and authorization-policy lifecycles. L2-A02 owns Person, Identity, User Account and canonical identity/context references. L2-A03 owns Credential, Authentication Session, authentication factors/MFA Enrollment and Authentication Provider lifecycles. A04 consumes identity and authenticated-session references without changing their canonical state.
+>
+> **Delegation scope clarification, approved 2026-08-15 (RC-01).** The delegation owned exclusively here is *Authorization Delegation* — the temporary transfer of authorization-layer authority, and its reversion on expiry. It is not the only kind of delegation in the architecture. Organizational delegation of a position's responsibilities — acting, interim, concurrent and additional-charge assignment, and officiating duty — is `Assignment Delegation`, owned canonically by `L2-E02`. Assignment Delegation consumes A04 authorization primitives to take effect but does not own them, and A04 does not own the organizational assignment it derives from. The unqualified noun "Delegation" should not be read as claiming both.
 
 Business domains consume this architecture but shall not redefine its core behaviour.
 

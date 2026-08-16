@@ -100,3 +100,34 @@ Sections F and G have independent consolidation watchlists. Their broader fragme
 - H07 may compose dashboards but must not compute or own source-domain KPIs.
 - H10 may synchronize L2-C04 credit decisions but must not publish an H10-owned academic approval or rejection.
 - H09 may reference evidence but must not copy source-domain records into a competing canonical store.
+
+
+---
+
+# 2026-08-15 H03 / H07 Boundary Ruling
+
+Applied under Lead Architect approval. Record:
+`generated/reviews/L3_Phase1_Tranche3_Application_Report_2026-08-15.md`.
+
+Section H capability ownership prevails for composition and governed-availability outcomes.
+Rows describing *use* of a capability, or personal presentation state, sit below Phase 1
+altitude and are retired.
+
+| Decision | Candidates |
+|---|---|
+| Retired — use of the capability, or personal presentation state | `H-017`, `H-019`, `H-053` |
+| Retired — source-driven refresh is mechanism (precedent `G-FR-12`) | `H-058` |
+| Retained — governed composition, versioning and widget availability | `H-050`, `H-055`, `H-057` |
+| Retained — governed onboarding of a domain into enterprise search | `H-022` |
+| Retained under this ruling, flagged for Phase 2 | `H-020` |
+
+**Open point.** `H-020` (search projection currency) and the retired `H-058` (dashboard
+refresh) are the same construct applied to two capabilities. `H-020` was retained because the
+approved scope named it, but the `G-FR-12` precedent arguably retires it too. Phase 2 should
+settle H-020 explicitly rather than leave the asymmetry standing.
+
+`H-021` and `H-023` were re-titled to `Enterprise Search Index Failure to Verified Recovery`
+and `Enterprise Search Configuration Change to Effective Governed Behavior`. They were never
+action fragments — both were already noun-phrase outcome titles, and `check_l3_inventory.py`
+was matching the noun "Search" against its `FRAGMENT_VERBS` list. The prefix removes the
+ambiguity without changing meaning. Section H: 85 -> 81 candidates.

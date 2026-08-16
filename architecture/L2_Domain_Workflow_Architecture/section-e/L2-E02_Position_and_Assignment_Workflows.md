@@ -102,6 +102,8 @@ The Position & Assignment Domain is responsible for:
 
 The domain intentionally does not own workforce identity, employment contracts, payroll processing, leave transactions, teaching allocations, recruitment, or organizational structure definitions.
 
+> **Delegation scope clarification, approved 2026-08-15 (RC-01).** The delegation owned canonically here is `Assignment Delegation` — the organizational delegation of a position's responsibilities, covering acting, interim, concurrent and additional-charge assignment and officiating duty. It is distinct from `Authorization Delegation`, which `L2-A04` owns exclusively and which governs the temporary transfer of authorization-layer authority and its reversion on expiry. Assignment Delegation **consumes** A04 authorization primitives to take effect; it does not own, define or alter them. Where this document uses the unqualified word "delegation", it means Assignment Delegation.
+
 ---
 
 ## 1.5 Repository Role
@@ -972,7 +974,7 @@ Business ownership SHALL NEVER be duplicated.
 | Assignment Versioning | L2-E02 | Version lineage |
 | Assignment Effective Dating | L2-E02 | Historical reconstruction |
 | Organizational Authority | L2-E02 | Runtime authority resolution |
-| Delegation | L2-E02 | Operational delegation |
+| Assignment Delegation | L2-E02 | Organizational delegation of a position's responsibilities. Distinct from Authorization Delegation, owned by `L2-A04`. See the delegation scope clarification in section 1. |
 | Additional Charge | L2-E02 | Assignment variation |
 | Acting Assignment | L2-E02 | Assignment variation |
 | Interim Assignment | L2-E02 | Assignment variation |
