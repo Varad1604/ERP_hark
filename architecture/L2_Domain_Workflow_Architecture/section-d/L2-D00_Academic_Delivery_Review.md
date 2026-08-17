@@ -122,7 +122,7 @@ Below is the verified registry of the six bounded contexts constituting the Acad
   - `SchedulingConflictRegister`: Tracks conflicts and exceptions.
 - **Publishes Events**: `TimetablePlanningStarted`, `TimetablePlanningCompleted`, `TimetableDraftCreated`, `TimetableValidated`, `TimetableValidationFailed`, `TimetableOptimized`, `TimetableConflictDetected`, `ConflictResolved`, `TimetableApproved`, `TimetableRejected`, `TimetablePublished`, `TimetableActivated`, `TimetableRevisionCreated`.
 - **Consumes Events**: `CourseOfferingPublished` (L2-D01), `FacultyAssignmentApproved` (L2-D02).
-- **Depends On**: L2-D01, L2-D02, Campus Infrastructure (L2-B03).
+- **Depends On**: L2-D01, L2-D02, Institutional Campus context (L2-B03), Physical Infrastructure resources (L2-G10).
 - **Downstream Domains**: L2-D04, L2-D05.
 - **Current Status**: Implementation Ready.
 - **Architecture Health**: High.
@@ -334,13 +334,13 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - Purpose: Space-time bindings (Room ID, Slot ID, Offering ID, Faculty ID).
 - Lifecycle: Draft -> Scheduled -> Modified -> Archived
 - Business Invariants: Room, Slot, Faculty, and Course Offering must be clash-free.
-- External References: Room ID (L2-B03), Slot ID, Faculty ID
+- External References: Infrastructure Space ID (L2-G10; room/classroom classification), Slot ID, Faculty ID
 - Canonical IDs Used: TimetableSlotAssignmentId
 - Commands Targeting: AllocateSlot, RescheduleSlot
 - Events Published: SlotScheduled, ScheduleModified
 - Events Consumed: FacultyAssignmentApproved
 - Read Models: Student Class Calendar (RM-D03-01)
-- Boundary Validation: Room constraints mapped from L2-B03.
+- Boundary Validation: Infrastructure Space constraints mapped from L2-G10.
 - Aggregate Leakage: PASS.
 
 ========================================================================================
@@ -599,15 +599,15 @@ Section D maintains loose coupling with other SutraERP domain sections.
 
 ```text
 ========================================================================================
-1. Campus & Infrastructure Integration (Section B)
+1. Physical Infrastructure Integration (Section G / L2-G10)
 ========================================================================================
 - Commands Consumed: None
-- Events Consumed: RoomCreated, RoomStatusChanged (Section B)
+- Events Consumed: SpaceCreated, SpaceOperationalStatusChanged (L2-G10)
 - Events Published: SlotScheduled (Timetable)
-- Read Models Accessed: Room Availability Map (RM-B03)
+- Read Models Accessed: G10-owned room availability context
 - APIs Used: RoomRegistry GET /api/v1/rooms
-- Dependency Type: Reference-only (D03 -> B03)
-- Validation: Room status changes automatically trigger D03 slot conflicts if room is unusable.
+- Dependency Type: Reference-only (D03 -> L2-G10)
+- Validation: Infrastructure Space status changes automatically trigger D03 slot conflicts if the scheduled room is unusable.
 
 ========================================================================================
 2. Student Lifecycle Integration (Section C)

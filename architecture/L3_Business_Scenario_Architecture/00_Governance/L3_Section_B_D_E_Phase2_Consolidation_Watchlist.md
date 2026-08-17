@@ -69,12 +69,12 @@ entry in `L3_Section_A_Phase2_Consolidation_Watchlist.md` section 9.
 
 ### Preserved Section D findings
 
-Carried forward from the inventory, where they were recorded inline. All remain unresolved; none was silently reconciled.
+Carried forward from the inventory, where they were recorded inline. Current status is recorded per finding; unresolved same-tier conflicts remain unreconciled.
 
 | # | Finding | Status |
 | --- | --- | --- |
-| `FIND-D-01` | D03 infrastructure ownership conflict. Resource-context wording in `CAN-L3-D-020` and `CAN-L3-D-021` stays ownership-safe; listing `G` as a participant does **not** assert D03 ownership of infrastructure. | `OPEN` |
-| `FIND-D-02` | D03 aggregate ownership lists differ between sources. No silent reconciliation was made. | `OPEN` |
+| `FIND-D-01` | **Resolved 2026-08-17.** Locked L1 §17/§24 assigns Timetable to Academics and physical infrastructure to Infrastructure; `DEPENDENCY_MAP.md` §6 says Section D consumes campus and infrastructure context; `L2-G10` §9A.248 says G10 provides physical resource facts while Timetable determines allocation and scheduling. Stale B03 physical-infrastructure references in D00/D03 were corrected to G10. | `CLOSED` |
+| `FIND-D-02` | **LEAD ARCHITECT DECISION REQUIRED, confirmed 2026-08-17.** Locked `L2-D00` Part 5 freezes `TimetableStructure`, `TimetableSlotAssignment` and `SchedulingConflictRegister`; locked `L2-D03` §6.4/§17 instead names `Timetable`, `Timetable Version` and a different set of owned objects. No higher-tier source selects one aggregate model. No silent reconciliation was made. | `BLOCKED` |
 | `FIND-D-03` | D00 versus detailed D03/D04 terminology remains a mapping issue. | `OPEN` |
 | `FIND-D-04` | D00 command matrix coverage stops at D06; D07 commands were not invented into D00. | `OPEN` |
 | `FIND-D-05` | D07 Actors and Locked Decisions gaps remain; actor-specific roles were not invented. | `OPEN` |
@@ -89,7 +89,7 @@ Carried forward from the inventory, where they were recorded inline. All remain 
 
 | # | Question | Candidates | Position | Status |
 | --- | --- | --- | --- | --- |
-| `BDE-B-01` | Do decommission and archive form one outcome or two? `L2-B02` WF08 defines them as one workflow; `L2-B03` §111 and §112 define them as two. | `CAN-L3-B-012`, `CAN-L3-B-021` | The registration/activation separation convention adopted for `B-1002`/`B-1003` and `B-1013`/`B-1014` was deliberately **not** extended here, pending source reconciliation. | `OPEN` |
+| `BDE-B-01` | Do decommission and archive form one outcome or two? | `CAN-L3-B-012`, `CAN-L3-B-021` | **Resolved per aggregate 2026-08-17.** B02 WF08 is one workflow from Decommission Request through Archived, so `CAN-L3-B-012` is `KEEP`. B03 §111 ends with `CampusDecommissioned`; §112 begins later from an `Archive Request` and ends with `CampusArchived`, so `CAN-L3-B-021` is `SPLIT-REQUIRED`. No symmetry was imposed and both frozen Phase 1 rows remain unchanged. | `CLOSED` |
 | `BDE-D-01` | Is `CAN-L3-D-024`'s boundary settled at Attendance Finalization? | `CAN-L3-D-024` | **Settled.** Extended on 2026-08-14 to match `L2-D04` §23 and the canonical example in `L3_Scenario_Type_and_Priority_Rules.md` §9. A stale inventory note claiming this was still open was corrected on 2026-08-14. | `CLOSED` |
 | `BDE-E-01` | Sections D and E carry no examination-facing counterpart candidates. Section I lists `E` as a participant in ~15 candidates (invigilator, examiner, evaluator assignment) and `D` in ~30, but the B/D/E inventory returns **zero** matches for "examination", "invigilat" or "examiner". | none | **Not a B/D/E coverage defect.** `L2-E03` defines no invigilator or examiner duty capability, so there is no positive E-side source evidence for a missing outcome. `L2-I03` line 458 names Faculty Administration as coordinating invigilator resource planning — an actor dependency. Section I already owns `I-022`, `I-023`, `I-024`. Mirrors `I-XI-05` in the Section I watchlist. | `OPEN` |
 

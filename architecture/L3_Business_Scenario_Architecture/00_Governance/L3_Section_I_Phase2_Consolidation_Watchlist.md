@@ -239,7 +239,7 @@ These are **upstream defects in locked L2 documents**, not authoring errors. Non
 | `I-RC-04` | `L2-I13` title contradicts §14.3 | **RESOLVED 2026-08-12 by clarification.** A note added at `L2-I13` §14 records that "CGPA" in the document title denotes CGPA **consumption** for completion verification and degree classification, not calculation, which `L2-I09` owns. The title is retained because `ARCHITECTURE_INDEX.md` and cross-references in `L2-I09`, `L2-I11` and `L2-I12` depend on it | `CLOSED` |
 | ~~`I-RC-05`~~ | ~~`L2-I00` cites a non-existent document~~ | **RETRACTED 2026-08-12 — audit error, no defect exists.** `architecture/L2_Domain_Workflow_Architecture/L2_DOMAIN_WORKFLOW_MATRIX.md` is present (11,763 bytes). The original finding came from a search run with a drifted working directory. `L2-I00`'s dependency reference resolves correctly and no change is required | `CLOSED` |
 | `I-RC-06` | `L2-I16` self-contradiction on reopening | **RESOLVED 2026-08-12 by clarification.** §13 read "Closed archive lifecycles shall not be reopened unless permitted by institutional policy", contradicting §21.5 (reopening is an invalid transition) and §9.3 (immutable finalized sessions). §13 amended: reopening is prohibited outright, and policy-permitted post-closure access is served by authorised retrieval and restoration under §21.4, which does not reopen the lifecycle. `CAN-L3-I-302` had already been removed as unsupported | `CLOSED` |
-| `I-RC-07` | **Question paper governance has no owner in Section I** | **NEW, found 2026-08-12 during this round.** `L2-I07` §2 explicitly excludes Question Paper Creation, Moderation and Printing, and §9.5 states "Question paper governance remains outside this document" — `L2-I07` owns only Question Paper *Distribution*. `L2-I14` §9.2 and `L2-I15` §9.2 both disclaim question papers. **No Section I document owns question paper creation, moderation, security or integrity.** `CAN-L3-I-111`, `-112` and `-113` describe real institutional outcomes resting on a capability the repository does not assign. Cannot be resolved by ruling between existing documents — it needs a new owner or a new L2 document. Candidates retained; ownership pending | `BLOCKED` |
+| `I-RC-07` | Question-paper scope consistency in `L2-I07` | **RESOLVED 2026-08-17 as a deterministic correction to stale L2 text.** The approved 2026-08-15 scope decision already assigns Question Paper Intake, system Custody, Timed Release and Distribution to `L2-I07`, including direct Examination Controller authoring or document upload. External paper setting, moderation boards, printing and physical custody chains remain outside SutraERP. Stale disclaimers in §9.5, §23 and Appendix A were aligned to that decision without extending I07. Current candidates `CAN-L3-I-063`, `-064` and `-065` are unblocked. | `CLOSED` |
 
 ---
 
@@ -381,7 +381,7 @@ Both rulings follow the same discriminator the `OW-01` correction used: where on
 
 ### 16.3 New conflict found
 
-`I-RC-07` — **question paper governance has no owner anywhere in Section I.** `L2-I07` §2 excludes Question Paper Creation, Moderation and Printing and §9.5 states governance "remains outside this document"; `L2-I14` §9.2 and `L2-I15` §9.2 both disclaim question papers. `CAN-L3-I-111`, `-112` and `-113` describe real outcomes resting on an unassigned capability. This cannot be settled by ruling between existing documents — it needs a new owner or a new L2 document. Candidates retained. **This is the one substantive item this round could not close.**
+At the time of this 2026-08-12 round, `I-RC-07` was recorded as an unowned question-paper capability affecting then-current candidates `CAN-L3-I-111`, `-112` and `-113`. **Superseded 2026-08-17:** the approved 2026-08-15 scope decision assigns system intake, custody, timed release and distribution to `L2-I07`; the remaining contradiction was stale text and is now corrected. Current candidates `CAN-L3-I-063`, `-064` and `-065` are unblocked.
 
 ### 16.4 Consolidation executed
 
@@ -401,12 +401,12 @@ Final: **245 candidates · 245 unique IDs · 0 placeholders · 0 unsupported can
 
 | Item | Status | Why |
 | --- | --- | --- |
-| `I-RC-07` question paper ownership | `BLOCKED` | Needs a new owner or L2 document. Cannot be ruled between existing documents |
+| `I-RC-07` question-paper scope consistency | `CLOSED 2026-08-17` | Approved 2026-08-15 scope applied consistently to `L2-I07`; no new owner or capability introduced |
 | `Priority` re-derivation | `OPEN` | 41 `P0`, 203 `P1`, 1 `P2`. A readiness judgment, not a rule application; `L3_Scenario_Type_and_Priority_Rules.md` §15 reserves it for Lead Architect review |
 | `I-XI-02`, `I-XI-03`, `I-XI-05` | `OPEN` | Cross-inventory boundaries with Sections C, G and D/E. Need the counterpart discovery owners, not a Section I decision |
 | Candidate renumbering | `OPEN` | IDs sparse (`I-001` … `I-314` with gaps). Deferred to Phase 2 close per `L3_Phase1_Discovery_Rules.md` §6 |
 
-**Every duplication, fragmentation, boundary-quality and ownership item raised by the audit is now closed**, other than `I-RC-07`, which is a repository gap rather than a Section I defect.
+**Every duplication, fragmentation, boundary-quality and ownership item raised by the audit is now closed.** `I-RC-07`, the last item that remained open after the 2026-08-12 round, was closed on 2026-08-17 by aligning stale `L2-I07` text to the approved 2026-08-15 scope decision.
 
 ---
 

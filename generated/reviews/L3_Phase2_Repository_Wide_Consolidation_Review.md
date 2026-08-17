@@ -46,14 +46,14 @@ working ID, `P2W-C-1124`.
 
 | Disposition | Current count |
 | --- | ---: |
-| KEEP | 1,050 |
+| KEEP | 1,056 |
 | MERGE | 20 |
 | VARIANT | 6 |
 | FAILURE-RECOVERY | 0 |
 | DUPLICATE | 2 |
-| SPLIT-REQUIRED | 0 |
+| SPLIT-REQUIRED | 1 |
 | REVIEW-REQUIRED | 1 |
-| BLOCKED | 45 |
+| BLOCKED | 38 |
 | **Total** | **1,124** |
 
 The 20 MERGE, 6 VARIANT, and 2 DUPLICATE rows are the 28 historical absorbed Section G rows; they are not
@@ -61,50 +61,58 @@ active Phase 1 candidates. The current `REVIEW-REQUIRED` row is `CAN-L3-G-164` (
 
 ### 0.3 Current Section Summary
 
-| Section | Active Phase 1 | Register rows | KEEP | MERGE | VARIANT | DUPLICATE | REVIEW-REQUIRED | BLOCKED |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| A | 62 | 62 | 62 | 0 | 0 | 0 | 0 | 0 |
-| B | 32 | 32 | 30 | 0 | 0 | 0 | 0 | 2 |
-| C | 75 | 75 | 70 | 0 | 0 | 0 | 0 | 5 |
-| D | 57 | 57 | 41 | 0 | 0 | 0 | 0 | 16 |
-| E | 75 | 75 | 75 | 0 | 0 | 0 | 0 | 0 |
-| F | 85 | 85 | 85 | 0 | 0 | 0 | 0 | 0 |
-| G | 322 | 350 | 320 | 20 | 6 | 2 | 1 | 1 |
-| H | 81 | 81 | 81 | 0 | 0 | 0 | 0 | 0 |
-| I | 197 | 197 | 183 | 0 | 0 | 0 | 0 | 14 |
-| J | 110 | 110 | 103 | 0 | 0 | 0 | 0 | 7 |
-| **Total** | **1,096** | **1,124** | **1,050** | **20** | **6** | **2** | **1** | **45** |
+| Section | Active Phase 1 | Register rows | KEEP | MERGE | VARIANT | DUPLICATE | SPLIT-REQUIRED | REVIEW-REQUIRED | BLOCKED |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| A | 62 | 62 | 62 | 0 | 0 | 0 | 0 | 0 | 0 |
+| B | 32 | 32 | 31 | 0 | 0 | 0 | 1 | 0 | 0 |
+| C | 75 | 75 | 72 | 0 | 0 | 0 | 0 | 0 | 3 |
+| D | 57 | 57 | 41 | 0 | 0 | 0 | 0 | 0 | 16 |
+| E | 75 | 75 | 75 | 0 | 0 | 0 | 0 | 0 | 0 |
+| F | 85 | 85 | 85 | 0 | 0 | 0 | 0 | 0 | 0 |
+| G | 322 | 350 | 320 | 20 | 6 | 2 | 0 | 1 | 1 |
+| H | 81 | 81 | 81 | 0 | 0 | 0 | 0 | 0 | 0 |
+| I | 197 | 197 | 186 | 0 | 0 | 0 | 0 | 0 | 11 |
+| J | 110 | 110 | 103 | 0 | 0 | 0 | 0 | 0 | 7 |
+| **Total** | **1,096** | **1,124** | **1,056** | **20** | **6** | **2** | **1** | **1** | **38** |
 
-`FAILURE-RECOVERY` and `SPLIT-REQUIRED` are both zero in the current register.
+`FAILURE-RECOVERY` remains zero. `SPLIT-REQUIRED` is one for `CAN-L3-B-021`; its frozen Phase 1 row is unchanged.
 
 ### 0.4 Current Blocked Decision Register
 
 | Issue | Rows | Current active candidate IDs |
 | --- | ---: | --- |
-| BDE-B-01 | 2 | `CAN-L3-B-012`, `CAN-L3-B-021` |
 | C-C01 | 2 | `CAN-L3-C-009`, `CAN-L3-C-012` |
-| C-C02 | 1 | `CAN-L3-C-033` |
-| CF-06 | 1 | `CAN-L3-C-004` |
-| FIND-D-01/FIND-D-02 | 2 | `CAN-L3-D-020`, `CAN-L3-D-021` |
+| FIND-D-02 | 2 | `CAN-L3-D-020`, `CAN-L3-D-021` |
 | FIND-D-06 | 5 | `CAN-L3-D-027`, `CAN-L3-D-028`, `CAN-L3-D-032`, `CAN-L3-D-033`, `CAN-L3-D-034` |
 | FIND-D-07 | 8 | `CAN-L3-D-035` … `CAN-L3-D-042` |
 | FIND-D-08 | 1 | `CAN-L3-D-043` |
-| I-RC-07 | 3 | `CAN-L3-I-063`, `CAN-L3-I-064`, `CAN-L3-I-065` |
 | I-TV-04-residual | 5 | `CAN-L3-I-076`, `CAN-L3-I-081`, `CAN-L3-I-082`, `CAN-L3-I-083`, `CAN-L3-I-087` |
 | I-XI-02 | 3 | `CAN-L3-C-050`, `CAN-L3-I-162`, `CAN-L3-I-163` |
 | I-XI-03 | 5 | `CAN-L3-G-002`, `CAN-L3-I-009`, `CAN-L3-I-048`, `CAN-L3-I-055`, `CAN-L3-I-056` |
 | J-TV-01 | 7 | `CAN-L3-J-097`, `CAN-L3-J-099` … `CAN-L3-J-104` |
-| **Total** | **45** | |
+| **Total** | **38** | |
 
 `CF-08` is **RESOLVED**, not blocked. B01 owns the institutional policy definition; C04 owns the
 progression behavior that establishes versioned applicability and publishes `AcademicPolicyUpdated`.
 `CAN-L3-C-075` is the distinct Academic Progression outcome. Alumni policy validation remains inside
 `CAN-L3-C-072`; no separate Alumni Policy candidate exists.
 
-`I-RC-07` remains blocked. Current L2-I07 contains the approved 2026-08-15 scope assignment for Question
-Paper Intake, Custody, and Timed Release, but §9.5, §23, and Appendix A still disclaim question-paper
-governance. This is an **UPSTREAM L2 INTERNAL CONSISTENCY ISSUE**; no L2 text or Phase 2 disposition is
-changed by this task.
+Wave 1 upstream blocker resolution on 2026-08-17 closed `I-RC-07`, `BDE-B-01`, and the physical-
+infrastructure portion `FIND-D-01`. `L2-I07` now consistently expresses the approved 2026-08-15 boundary:
+system intake, custody, timed release and distribution are I07-owned; external setting, moderation, printing
+and physical custody chains remain outside SutraERP. `CAN-L3-I-063` through `-065` are `KEEP`.
+
+`BDE-B-01` was resolved per aggregate rather than by a universal convention: B02 WF08 remains one combined
+scenario (`CAN-L3-B-012` is `KEEP`), while B03 §111 and §112 are independently triggered completed workflows
+(`CAN-L3-B-021` is `SPLIT-REQUIRED`). `FIND-D-01` is closed because locked L1 assigns Timetable to Academics
+and physical infrastructure to Infrastructure/G10. The Lead Architect resolved `CF-06` on 2026-08-17: C01
+retains Admission revocation ownership, while C02 consumes post-creation `AdmissionRevoked` and archives the
+C02-owned Student Context through existing `WF-C02-10` / `ArchiveStudent()` according to institutional policy.
+`CAN-L3-C-004` is `KEEP`. The Lead Architect also approved C-C02 Option B on 2026-08-17: L2-C04 APW-08
+owns all Programme-changing mobility and publishes `ProgrammeMigrationApproved`; L2-C02 WF-C02-08 excludes
+Programme change, while C02 consumes the approved result solely to update its owned Student Context Programme
+association. `CAN-L3-C-033` is `KEEP`; `CAN-L3-C-012` remains blocked only under C-C01. `FIND-D-02` remains
+blocked pending Lead Architect decision; no same-tier aggregate conflict was silently reconciled.
 
 ---
 

@@ -288,7 +288,8 @@ D03 depends upon authoritative information from:
 |----------|------------|
 | B01 | Institution |
 | B02 | Organisation |
-| B03 | Campus & Infrastructure |
+| B03 | Institutional Campus Context |
+| G10 | Physical Infrastructure Resources |
 | B04 | Curriculum Framework |
 | B05 | Flexible Academic Calendar |
 | D01 | Course & Course Offering |
@@ -515,7 +516,7 @@ The domain exchanges information with upstream and downstream enterprise domains
 |----------|----------------------|
 | B01 | Institution Configuration |
 | B02 | Organisation Structure |
-| B03 | Infrastructure Resources |
+| G10 | Physical Infrastructure Resources |
 | B04 | Curriculum Structure |
 | B05 | Academic Calendar |
 | D01 | Course Offerings |
@@ -649,7 +650,7 @@ The following capabilities are outside the responsibility of D03.
 |------------|-------|
 | Institution Management | B01 |
 | Organisation Management | B02 |
-| Infrastructure Master | B03 |
+| Infrastructure Master | G10 |
 | Curriculum Management | B04 |
 | Academic Calendar | B05 |
 | Course Management | D01 |
@@ -1310,7 +1311,8 @@ The domain consumes canonical information from upstream domains.
 |----------|-------------|
 | B01 | Institution Configuration |
 | B02 | Organisation Structure |
-| B03 | Campuses, Buildings, Rooms, Laboratories |
+| B03 | Institutional Campus Context |
+| G10 | Physical Campuses, Buildings, Rooms, Laboratories |
 | B04 | Curriculum Structure |
 | B05 | Academic Calendar |
 | D01 | Course Offerings |
@@ -1411,7 +1413,7 @@ D03 collaborates with multiple enterprise domains.
 |----------|---------------|
 | B01 | Institutional policies |
 | B02 | Organisation hierarchy |
-| B03 | Infrastructure resources |
+| G10 | Physical infrastructure resources |
 | B04 | Curriculum definition |
 | B05 | Academic calendar |
 | D01 | Courses |
@@ -2001,7 +2003,8 @@ D03 depends upon authoritative information supplied by upstream domains.
 |----------|----------------------|
 | B01 | Institution Configuration |
 | B02 | Organisation Hierarchy |
-| B03 | Campus, Buildings, Rooms, Laboratories |
+| B03 | Institutional Campus Context |
+| G10 | Physical Campuses, Buildings, Rooms, Laboratories |
 | B04 | Curriculum Framework |
 | B05 | Academic Calendar |
 | D01 | Course Offerings |
@@ -2039,9 +2042,9 @@ The following entities are referenced but not owned by D03.
 | Institution | B01 |
 | Organisation | B02 |
 | Campus | B03 |
-| Building | B03 |
-| Classroom | B03 |
-| Laboratory | B03 |
+| Building | G10 |
+| Classroom | G10 |
+| Laboratory | G10 |
 | Academic Calendar | B05 |
 | Programme | B04 |
 | Curriculum | B04 |
@@ -2324,7 +2327,7 @@ Within the SutraERP ecosystem, D03 occupies the operational scheduling layer bet
        B02 Organisation Management
                            │
                            ▼
-     B03 Campus & Infrastructure
+ B03 Institutional Campus / G10 Physical Infrastructure
                            │
                            ▼
      B04 Curriculum Framework
@@ -2361,7 +2364,7 @@ The following domains provide authoritative information to D03.
 |----------|----------------------|-----------|
 | B01 | Institution Policies | B01 |
 | B02 | Organisation Structure | B02 |
-| B03 | Infrastructure Resources | B03 |
+| G10 | Physical Infrastructure Resources | G10 |
 | B04 | Curriculum Structure | B04 |
 | B05 | Academic Calendar | B05 |
 | D01 | Course Offerings | D01 |
@@ -2444,9 +2447,9 @@ Master data consumed by D03 originates from enterprise master data services.
 |-------------|---------------|
 | Institution | B01 |
 | Campus | B03 |
-| Building | B03 |
-| Room | B03 |
-| Laboratory | B03 |
+| Building | G10 |
+| Room | G10 |
+| Laboratory | G10 |
 | Department | B02 |
 | Programme | B04 |
 | Course | D01 |
@@ -4950,7 +4953,7 @@ Business decisions consume information from authoritative enterprise domains.
 |--------|---------------|
 | Institution Policies | B01 |
 | Organisation Structure | B02 |
-| Infrastructure Resources | B03 |
+| Physical Infrastructure Resources | G10 |
 | Curriculum | B04 |
 | Academic Calendar | B05 |
 | Course Offerings | D01 |
@@ -6616,7 +6619,7 @@ References:
 - Seminar Hall
 - Shared Facility
 
-Master ownership remains with B03.
+Physical infrastructure master ownership remains with G10.
 
 Reservation ownership belongs to D03.
 
@@ -7225,7 +7228,7 @@ The Timetable domain consumes authoritative data from upstream domains.
 |---------------|---------------|------------------|
 | B01 — Institution | Institutional policies | API |
 | B02 — Organisation | Academic hierarchy | API |
-| B03 — Campus & Infrastructure | Buildings, rooms, laboratories | API |
+| G10 — Infrastructure Management | Buildings, rooms, laboratories and operational availability | API |
 | B04 — Curriculum Framework | Programmes, curriculum structure | API |
 | B05 — Academic Calendar | Calendar and academic periods | API |
 | D01 — Course & Course Offering | Course offerings | API |
@@ -7414,7 +7417,7 @@ The following ownership boundaries shall be maintained.
 |-----------------|------------------|
 | Institution | B01 |
 | Organisation | B02 |
-| Infrastructure | B03 |
+| Infrastructure | G10 |
 | Curriculum | B04 |
 | Academic Calendar | B05 |
 | Course Offering | D01 |
@@ -9188,7 +9191,8 @@ The Timetable domain depends upon the following enterprise domains.
 |---------|------------|
 | B01 — Institution | Institutional governance and policies |
 | B02 — Organisation | Academic organizational hierarchy |
-| B03 — Campus & Infrastructure | Buildings, classrooms, laboratories and facilities |
+| B03 — Institutional Campus | Institutional campus context |
+| G10 — Infrastructure Management | Physical campuses, buildings, classrooms, laboratories and facilities |
 | B04 — Curriculum Framework | Academic programmes and curriculum structure |
 | B05 — Flexible Academic Calendar | Academic sessions and calendar definitions |
 | D01 — Course & Course Offering | Approved course offerings |

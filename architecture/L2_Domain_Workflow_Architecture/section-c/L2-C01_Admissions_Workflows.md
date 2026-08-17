@@ -339,6 +339,8 @@ AdmissionConfirmed
 
 AdmissionStudentCreated
 
+AdmissionRevoked (after Student Context creation)
+
 (StudentActivated is published exclusively by L2-C02 — Student Lifecycle.)
 
 Academic Registration
@@ -4641,6 +4643,7 @@ Revoked
 | Platform | Authorization |
 | Audit | Investigation History |
 | Compliance | Evidence Validation |
+| Student Lifecycle | Consume post-creation `AdmissionRevoked`; apply its own policy-controlled Student Context archival workflow |
 
 No downstream domain data shall be modified directly.
 
@@ -4725,6 +4728,8 @@ Admission Revocation is the strongest administrative action within the Admission
 Unlike Cancellation or Withdrawal, Revocation declares that the admission is no longer institutionally valid due to regulatory, legal, or compliance reasons. It permanently terminates the admission lifecycle while preserving all historical information required for governance, legal defense, compliance audits, and institutional accountability.
 
 Revocation does not perform downstream operational reversals; it publishes canonical domain events that allow dependent domains to execute their own policy-driven corrective actions.
+
+> **Post-creation revocation consequence, approved 2026-08-17 (CF-06).** When `AdmissionRevoked` is published after Student Context creation, L2-C02 consumes the event and routes its Student Context through the existing `WF-C02-10` / `ArchiveStudent()` path according to institutional policy. C01 retains ownership of the revocation decision and does not modify Student Context; C02 retains Student Context ownership and preserves the archived history.
 
 # WF-C01-09 — Readmission Workflow
 
@@ -5690,7 +5695,7 @@ Every Admission Domain Event shall contain the following canonical attributes.
 
 | Domain | Consumed Events |
 |----------|----------------------------------------------------|
-| Student Lifecycle | AdmissionConfirmed, AdmissionStudentCreated |
+| Student Lifecycle | AdmissionConfirmed, AdmissionStudentCreated, AdmissionRevoked (after Student Context creation) |
 | Finance | AdmissionApproved, AdmissionCancelled |
 | Academic Delivery | AdmissionStudentCreated |
 | Notification | All major lifecycle events |
@@ -6459,7 +6464,7 @@ All external integrations shall use canonical integration contracts.
 |----------|-------------------------------|------------------------------|
 | Platform | Authentication, Identity | None |
 | Institution | Institution Structure | None |
-| Student Lifecycle | Student Creation Outcome | AdmissionStudentCreated Event |
+| Student Lifecycle | Student Creation Outcome | AdmissionStudentCreated Event, AdmissionRevoked Event |
 | Academic | Programme Information | None |
 | Finance | Financial Clearance | AdmissionApproved |
 | Documents | Verification Results | DocumentsUploaded |
@@ -7743,6 +7748,7 @@ DOC --> ADMISSION
 %% ==========================================================
 
 ADMISSION -->|AdmissionStudentCreated| STU
+ADMISSION -->|AdmissionRevoked after Student Context creation| STU
 
 ADMISSION -->|AdmissionConfirmed| REG
 
@@ -8304,6 +8310,7 @@ end
 subgraph ST["Student Lifecycle"]
 
 S1[Initialize Student]
+S2[Apply Policy-Controlled Student Archive]
 
 end
 
@@ -8367,6 +8374,7 @@ E7 --> NT
 E7 --> RP
 
 E8 --> FN
+E8 --> S2
 E8 --> NT
 E8 --> RP
 ```
@@ -8496,6 +8504,7 @@ CFG --> ADM1
 %% ==========================================================
 
 ADM1 -. AdmissionStudentCreated .-> STU
+ADM1 -. AdmissionRevoked after Student Context creation .-> STU
 
 ADM1 -. AdmissionConfirmed .-> REG
 
@@ -9441,7 +9450,7 @@ The following domains consume Admission outputs.
 
 | Consumer Domain | Consumed Information |
 |-----------------|--------------------------------|
-| L2-C02 — Student Lifecycle | AdmissionStudentCreated |
+| L2-C02 — Student Lifecycle | AdmissionStudentCreated; post-creation AdmissionRevoked |
 | Finance | AdmissionApproved |
 | Academic Delivery | AdmissionStudentCreated |
 | Notification Services | Admission Events |

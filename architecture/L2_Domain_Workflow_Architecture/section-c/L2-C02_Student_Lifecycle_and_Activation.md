@@ -123,6 +123,10 @@ Student Lifecycle (THIS DOMAIN)
 
 The Student Domain becomes the authoritative source of Student information for the entire ERP.
 
+> **Post-creation admission revocation, approved 2026-08-17 (CF-06).** C01 Admissions owns the revocation decision and publishes `AdmissionRevoked`. When a Student Context already exists, this domain consumes the event and routes the C02-owned Student Context through the existing `WF-C02-10` / `ArchiveStudent()` path according to institutional policy. The Student Context and its complete history are archived, not physically deleted, and ownership does not transfer back to Admissions.
+
+> **Programme migration boundary, approved 2026-08-17 (C-C02, Option B).** L2-C04 APW-08 exclusively owns Programme-changing mobility, including its eligibility, curriculum mapping, credit mapping, approval, and canonical `ProgrammeMigrationApproved` outcome. WF-C02-08 excludes Programme change and remains limited to non-Programme organisational or placement transfer. C02 retains Student Context ownership and consumes `ProgrammeMigrationApproved` only to apply the approved Programme association to that context; it does not make or republish the migration decision.
+
 ---
 
 ## 1.5 Domain Responsibilities
@@ -701,7 +705,7 @@ All workflows shall:
 | WF-C02-05 | Student Status Change | Change lifecycle status |
 | WF-C02-06 | Student Suspension | Temporarily suspend student |
 | WF-C02-07 | Student Restoration | Restore suspended student |
-| WF-C02-08 | Student Transfer | Transfer student within institution |
+| WF-C02-08 | Student Transfer | Transfer student between non-Programme organisational or placement dimensions |
 | WF-C02-09 | Qualification Completion Handoff | Transfer ownership towards Alumni |
 | WF-C02-10 | Student Exit / Archive | Complete institutional relationship |
 
@@ -1146,12 +1150,14 @@ Assignments include:
 - Student Activation
 - Administrative Assignment
 - Academic Reassignment
+- `ProgrammeMigrationApproved` from L2-C04, for application of an already-approved Programme association
 
 ### Preconditions
 
 - Student Active
 - Programme exists
 - Batch exists
+- If an existing Programme association will change, the matching `ProgrammeMigrationApproved` result from L2-C04 has been consumed.
 
 ### Postconditions
 
@@ -1190,6 +1196,10 @@ G --> H[Complete]
 
 - AcademicAssignmentCompleted
 
+### Consumed Events
+
+- ProgrammeMigrationApproved (Programme-association update only; the migration decision remains C04-owned)
+
 ### Service Contracts
 
 - AssignProgramme()
@@ -1203,6 +1213,7 @@ G --> H[Complete]
 - Assignment must reference valid academic entities.
 - Changes shall preserve historical assignment records.
 - Every reassignment shall generate an audit record.
+- A Programme-association update shall apply the authoritative C04 migration result without re-evaluating or republishing the migration decision.
 
 ---
 
@@ -1474,15 +1485,16 @@ F --> G[Complete]
 
 ### Purpose
 
-Transfer a Student within the institution according to approved institutional policies.
+Transfer a Student between non-Programme organisational or placement dimensions within the institution according to approved institutional policies.
 
 Transfers may include:
 
 - Campus
-- Programme
 - Department
 - Section
 - Batch
+
+Programme-changing mobility is excluded and is owned by L2-C04 APW-08 — Programme Migration.
 
 The Student identity remains unchanged.
 
@@ -1514,7 +1526,7 @@ A[Transfer Request]
 
 A --> B[Validate Transfer]
 
-B --> C[Update Academic Assignment]
+B --> C[Update Non-Programme Placement]
 
 C --> D[Store Previous Assignment]
 
@@ -1543,6 +1555,7 @@ F --> G[Complete]
 
 - Student ID unchanged
 - Historical assignments retained
+- Programme-changing mobility excluded; L2-C04 APW-08 owns that decision and outcome
 
 ---
 
@@ -1630,11 +1643,13 @@ The Student Aggregate shall be archived rather than deleted.
 - Student Exit
 - Administrative Closure
 - Permanent Separation
+- Post-creation `AdmissionRevoked`, when institutional policy directs Student Context archival
 
 ### Preconditions
 
-- Exit approved
-- Outstanding obligations resolved (institution policy)
+- Exit or closure is approved, or a post-creation `AdmissionRevoked` event has been consumed.
+- Institutional archive policy authorizes the Student Context archival.
+- Outstanding obligations and required approvals are resolved according to institutional policy.
 
 ### Postconditions
 
@@ -1650,8 +1665,11 @@ The Student Aggregate shall be archived rather than deleted.
 flowchart TD
 
 A[Exit Request]
+A2[Post-Creation AdmissionRevoked]
 
 A --> B[Validate Exit]
+A2 --> B2[Resolve Institutional Archive Policy]
+B2 --> C
 
 B --> C[Archive Student]
 
@@ -1669,6 +1687,10 @@ E --> F[Complete]
 ### Domain Events
 
 - StudentArchived
+
+### Consumed Events
+
+- AdmissionRevoked (after Student Context creation)
 
 ### Service Contracts
 
@@ -3646,7 +3668,7 @@ All implementations shall enforce these rules before committing business transac
 | BR-C02-027 | Previous academic assignments shall be retained. |
 | BR-C02-028 | Transfer destination shall exist before approval. |
 | BR-C02-029 | Transfer shall comply with institutional policy. |
-| BR-C02-030 | Transfer shall generate complete audit history. |
+| BR-C02-030 | Transfer shall generate complete audit history and shall not decide or publish a Programme change; Programme-changing mobility is owned by L2-C04 APW-08. |
 
 ---
 
@@ -3670,7 +3692,7 @@ All implementations shall enforce these rules before committing business transac
 | BR-C02-037 | Physical deletion of Student records is prohibited. |
 | BR-C02-038 | Archived records shall remain available for compliance and reporting. |
 | BR-C02-039 | Archive operations shall be fully auditable. |
-| BR-C02-040 | Archive shall preserve all historical relationships. |
+| BR-C02-040 | Archive shall preserve all historical relationships. A post-creation `AdmissionRevoked` shall route the Student Context through WF-C02-10 only as institutional policy authorizes, without transferring ownership to Admissions. |
 
 ---
 
@@ -4045,6 +4067,8 @@ Published immediately after successful assignment or modification of the Student
 
 The event communicates that the Student has been assigned or reassigned to an approved academic context, including Programme, Department, Batch, Section, Semester, or Academic Session as governed by institutional policy.
 
+For a Programme change, this event records application of the C04-approved association to Student Context; `ProgrammeMigrationApproved` remains the sole canonical Programme Migration decision event.
+
 Academic entities remain owned by the Academic Delivery Domain; this event communicates only the Student's reference to those entities.
 
 ### Trigger
@@ -4292,9 +4316,9 @@ Consumer domains shall determine the exact restoration behaviour according to th
 
 ## Description
 
-Published immediately after successful completion of a governed Student transfer.
+Published immediately after successful completion of a governed non-Programme Student transfer.
 
-Transfers may occur between campuses, departments, programmes, academic structures, or institutional units according to approved institutional policies.
+Transfers may occur between campuses, departments, sections, batches, or other non-Programme organisational and placement dimensions according to approved institutional policies. Programme-changing mobility is owned by L2-C04 APW-08 and publishes `ProgrammeMigrationApproved`, not `StudentTransferred`.
 
 The Student Aggregate remains the same throughout the transfer process.
 
@@ -4315,7 +4339,7 @@ Student Lifecycle Domain
 | Event ID | Globally unique event identifier |
 | Student ID | Canonical Student identifier |
 | Institution ID | Institution owner |
-| Transfer Type | Campus, Programme, Department, Section, etc. |
+| Transfer Type | Campus, Department, Section, Batch, or another non-Programme placement dimension |
 | Previous Assignment | Previous academic assignment |
 | New Assignment | New academic assignment |
 | Effective Date | Transfer effective date |
@@ -4339,7 +4363,7 @@ Student Lifecycle Domain
 
 ### Business Purpose
 
-The StudentTransferred event enables all dependent domains to synchronize their records following a governed academic or institutional transfer.
+The StudentTransferred event enables all dependent domains to synchronize their records following a governed non-Programme organisational or placement transfer.
 
 Typical business actions include:
 
@@ -5240,15 +5264,16 @@ Student returns to Active state.
 
 ## Transferred
 
-Student academic assignment changes within the institution.
+Student organisational or placement assignment changes within the institution without changing Programme.
 
 Examples:
 
 - Campus Transfer
-- Programme Change
 - Department Change
 - Batch Change
 - Section Change
+
+Programme change is governed separately by L2-C04 APW-08 — Programme Migration.
 
 Student identity remains unchanged.
 
@@ -5742,6 +5767,8 @@ Assigns or updates the Student's academic structure within the institution, incl
 
 The service establishes the academic context required for downstream academic operations while preserving historical assignment integrity.
 
+For a Programme change, this service applies only the already-approved `ProgrammeMigrationApproved` result from L2-C04 to the C02-owned Student Context. It does not evaluate, approve, or publish a competing Programme Migration decision.
+
 ### Workflow
 
 - WF-C02-04 — Academic Assignment
@@ -5776,6 +5803,7 @@ Updated Academic Assignment
 - Academic Session exists.
 - Batch exists.
 - All academic references belong to the same Institution.
+- If the current Programme association will change, a matching `ProgrammeMigrationApproved` result from L2-C04 exists.
 
 ### Postconditions
 
@@ -5795,6 +5823,7 @@ Refer Section 16.
 ### Failure Conditions
 
 - Invalid Programme
+- Missing ProgrammeMigrationApproved for an existing Programme-association change
 - Invalid Batch
 - Invalid Section
 - Invalid Academic Session
@@ -5977,7 +6006,7 @@ Duplicate restoration requests shall safely return the restored state.
 
 ### Purpose
 
-Transfers a Student between approved academic structures within the Institution while preserving complete assignment history.
+Transfers a Student between approved non-Programme organisational or placement structures within the Institution while preserving complete assignment history.
 
 Transfers shall never result in loss of historical academic assignments.
 
@@ -5993,7 +6022,7 @@ Academic Administrator
 ### Input
 
 - Student ID
-- Target Programme
+- Target Campus (where applicable)
 - Target Department
 - Target Batch
 - Target Section
@@ -6006,7 +6035,7 @@ Updated Academic Assignment
 ### Preconditions
 
 - Student is Active.
-- Target academic structure exists.
+- Target non-Programme placement structure exists.
 - Transfer policy satisfied.
 
 ### Postconditions
@@ -6026,7 +6055,7 @@ Refer Section 16.
 
 ### Failure Conditions
 
-- Invalid Academic Structure
+- Invalid Non-Programme Placement Structure
 - Transfer Not Allowed
 - Authorization Failure
 
@@ -6099,7 +6128,7 @@ Duplicate qualification completion requests shall safely return the existing Qua
 
 ### Purpose
 
-Archives the Student Aggregate after completion of the operational lifecycle according to institutional retention policies.
+Archives the Student Aggregate after completion of the operational lifecycle, or after a post-creation Admission Revocation when institutional policy so directs, according to institutional retention policies.
 
 Archival preserves the complete historical record while preventing further operational modifications.
 
@@ -6124,7 +6153,7 @@ Student Lifecycle = Archived
 
 ### Preconditions
 
-- Student is in an eligible terminal lifecycle state.
+- Student is eligible for archival under institutional policy, including a post-creation `AdmissionRevoked` where that policy directs archival.
 - Retention policy satisfied.
 - Required approvals completed.
 
@@ -7135,7 +7164,8 @@ The Student Lifecycle Domain depends upon the following canonical platform and b
 | L2-A06 — Event Infrastructure | Platform | Event publication infrastructure | Mandatory |
 | L2-A07 — Audit Infrastructure | Platform | Immutable audit logging | Mandatory |
 | L2-B01 — Institution & Structure | Service | Institution, Campus, Department validation | Mandatory |
-| L2-C01 — Admissions | Event + Service | Admission confirmation and Applicant information | Mandatory |
+| L2-C01 — Admissions | Event + Service | Admission confirmation, Applicant information, and post-creation AdmissionRevoked | Mandatory |
+| L2-C04 — Academic Progression | Event | ProgrammeMigrationApproved for C02-owned Student Context Programme-association update | Conditional |
 | L2-D01 — Academic Delivery | Service | Programme, Batch, Academic Session validation | Mandatory |
 
 Failure of mandatory upstream dependencies shall prevent execution of dependent business operations.
@@ -10390,7 +10420,7 @@ B[Receive TransferStudent Command]
 %% Validation
 C[Validate Student Status]
 D[Validate Current Assignment]
-E[Validate Target Academic Structure]
+E[Validate Target Non-Programme Placement]
 F[Validate Transfer Policy]
 G[Validate Authorisation]
 
@@ -10401,7 +10431,7 @@ I[Reject Transfer]
 
 %% Processing
 J[Archive Previous Assignment]
-K[Assign New Academic Structure]
+K[Assign New Non-Programme Placement]
 L[Persist Transaction]
 
 %% Audit & Event
@@ -10841,6 +10871,13 @@ Active --> Active : TransferStudent
 Active --> Qualification Completed : CompleteQualification
 
 Qualification Completed --> Archived : ArchiveStudent
+
+note left of Archived
+A post-creation AdmissionRevoked is an
+exceptional policy-controlled trigger for
+WF-C02-10 / ArchiveStudent from the current
+Student Context state. No new state is created.
+end note
 
 Archived --> [*]
 
@@ -12966,7 +13003,7 @@ This matrix serves as a verification artifact during architecture reviews and im
 | Status Management | WF-C02-05 | BR-C02-027–033 | ChangeStudentStatus() | StudentStatusChanged | Multiple |
 | Suspension | WF-C02-06 | BR-C02-034–038 | SuspendStudent() | StudentSuspended | Suspended |
 | Restoration | WF-C02-07 | BR-C02-039–043 | RestoreStudent() | StudentRestored | Active |
-| Transfer | WF-C02-08 | BR-C02-044–048 | TransferStudent() | StudentTransferred | Active |
+| Non-Programme Transfer | WF-C02-08 | BR-C02-044–048 | TransferStudent() | StudentTransferred | Active |
 | Qualification Completion | WF-C02-09 | BR-C02-049–052 | CompleteQualification() | None (consumes QualificationAwarded from L2-C05) | Qualification Completed |
 | Archive | WF-C02-10 | BR-C02-053–055 | ArchiveStudent() | StudentArchived | Archived |
 
@@ -13272,7 +13309,8 @@ This appendix complements Section 14 (Cross-Domain Integrations) by presenting a
 |----------|----------------|------------------------------------------|----------|
 | Platform Foundation | Service | Authentication, Authorization, Tenant Context | Mandatory |
 | Institution & Structure | Service | Institution, Campus, Department Validation | Mandatory |
-| Admissions | Event + Service | Admission Confirmation | Mandatory |
+| Admissions | Event + Service | Admission Confirmation and post-creation AdmissionRevoked | Mandatory |
+| Academic Progression | Event | ProgrammeMigrationApproved for Student Context Programme-association update | Conditional |
 | Academic Delivery | Service | Programme, Batch, Section Validation | Mandatory |
 | Workflow Engine | Service | Workflow orchestration and long-running business processes | Optional |
 | Audit Infrastructure | Service | Immutable audit persistence and compliance logging | Mandatory |

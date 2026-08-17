@@ -839,13 +839,17 @@ Attendance records shall not represent academic performance.
 
 ---
 
-## 9.5 Question Paper Distribution Rules
+## 9.5 Question Paper Intake, Custody, Timed Release and Distribution Rules
+
+The Examination Controller shall enter the authorised question paper by direct system authoring or document upload.
+
+The system shall retain custody of the entered question paper and release it only at the scheduled examination start.
 
 Question papers shall be distributed only after authorised examination commencement.
 
 Distribution shall follow institutional examination procedures.
 
-Question paper governance remains outside this document.
+External paper setting, moderation boards, printing and physical custody chains remain outside SutraERP.
 
 ---
 
@@ -1514,7 +1518,7 @@ The relationship between Examination workflow documents is as follows:
 
 L2-I07 consumes authorised examination participation established by L2-I05 and produces authoritative theory examination conduct records consumed by L2-I08.
 
-The domain governs written examination conduct only and does not own question paper creation, evaluation, marks processing, or academic outcome determination.
+The domain governs written examination conduct, including system intake by direct Examination Controller authoring or upload, system custody, timed release and distribution of the authorised question paper. It does not model external paper setting, moderation boards, printing or physical custody chains, and it does not own evaluation, marks processing or academic outcome determination.
 
 ---
 
@@ -1707,6 +1711,9 @@ The Theory Examination Conduct domain owns:
 - Examination Entry Verification
 - Invigilator Management
 - Attendance Management
+- Question Paper Intake
+- Question Paper System Custody and Timed Release
+- Question Paper Distribution
 - Theory Examination Execution
 - Answer Book Collection
 - Answer Book Verification
@@ -1721,9 +1728,10 @@ The domain does **not** own:
 - Examination Scheduling
 - Examination Registration
 - Hall Ticket Lifecycle
-- Question Paper Authoring
-- Question Paper Moderation
+- External Question Paper Setting
+- External Question Paper Moderation Boards
 - Question Paper Printing
+- Physical Question Paper Custody Chains
 - Marks Collection
 - Answer Evaluation
 - Result Processing

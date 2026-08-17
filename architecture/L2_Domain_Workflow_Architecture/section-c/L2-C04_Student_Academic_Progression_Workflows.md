@@ -64,6 +64,8 @@ Academic Progression governs how an enrolled student advances through an academi
 
 This architecture establishes the authoritative workflow for progressing a student from one academic stage to the next while preserving academic integrity, regulatory compliance, auditability, and institutional flexibility.
 
+> **Programme migration boundary, approved 2026-08-17 (C-C02, Option B).** APW-08 exclusively owns all Programme-changing mobility, including eligibility, curriculum mapping, credit mapping, approval, and the canonical `ProgrammeMigrationApproved` outcome. L2-C02 WF-C02-08 excludes Programme change. L2-C02 retains ownership of Student Context and consumes the approved migration result only to update its Programme association; C04 does not directly modify the C02-owned Student Context.
+
 The document is intentionally workflow-centric and defines business responsibilities, ownership boundaries, state transitions, domain events, synchronous contracts, and governance rules required for academic progression.
 
 ---
@@ -467,7 +469,7 @@ Academic Progression publishes authoritative institutional outcomes.
 | Academic Probation | Student Lifecycle |
 | Academic Detention | Registration |
 | Credit Ledger Updated | ABC Integration |
-| Programme Migration Approved | Academic Registration |
+| Programme Migration Approved | Student Lifecycle, Academic Registration |
 | Academic Break Approved | Student Lifecycle |
 | Student Rejoined | Academic Registration |
 | Progression Completed | Qualification Completion & Student Exit |
@@ -1446,7 +1448,7 @@ External integration completion does not replace or duplicate the L2-C04 academi
 
 ## Purpose
 
-Support approved academic programme changes.
+Govern all approved Programme-changing mobility as the canonical Programme Migration workflow.
 
 ---
 
@@ -1467,7 +1469,11 @@ Support approved academic programme changes.
 - Curriculum Mapping
 - Credit Mapping
 - Migration Approval
-- Student Update
+- Publish ProgrammeMigrationApproved
+
+### Ownership Boundary
+
+APW-08 owns the Programme Migration decision and academic outcome. Student Lifecycle consumes `ProgrammeMigrationApproved` and applies the approved Programme association to the C02-owned Student Context without making a second migration decision. C02 WF-C02-08 does not own or publish Programme change.
 
 ---
 
@@ -1850,7 +1856,7 @@ ABC-imported credits shall remain subject to institutional recognition policies.
 
 ### BR-MIG-001
 
-Programme Migration shall only occur following approved institutional processes.
+All Programme-changing mobility shall be governed by APW-08 and shall only occur following approved institutional processes.
 
 ---
 
@@ -1868,7 +1874,7 @@ Migration shall preserve recognised academic credits unless institutional policy
 
 ### BR-MIG-004
 
-Curriculum mapping shall complete before migration approval.
+Curriculum mapping shall complete before migration approval. After approval, `ProgrammeMigrationApproved` shall provide the authoritative result for L2-C02 to update the C02-owned Student Context Programme association.
 
 ---
 
@@ -2108,7 +2114,7 @@ The Academic Progression domain publishes the following authoritative events.
 | CreditLedgerUpdated | Credits recalculated |
 | CreditTransferRecognised | Approved transfer recorded |
 | CreditTransferRejected | Academic credit-recognition request rejected |
-| ProgrammeMigrationApproved | Migration completed |
+| ProgrammeMigrationApproved | Programme migration approved with eligibility, curriculum mapping, and credit mapping completed |
 | AcademicBreakApproved | Academic interruption started |
 | StudentRejoined | Rejoining completed |
 | QualificationEligible | Student ready for qualification processing |
@@ -2273,7 +2279,7 @@ Academic equivalency or institutional credit-recognition evaluation rejects the 
 
 ### Trigger
 
-Migration completed.
+Programme migration approved after eligibility, curriculum mapping, credit mapping, and required authority checks complete.
 
 ### Consumers
 
