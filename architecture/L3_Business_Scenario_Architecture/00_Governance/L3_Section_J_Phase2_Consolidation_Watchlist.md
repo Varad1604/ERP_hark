@@ -1,7 +1,7 @@
 # L3 Section J — Phase 2 Consolidation Watchlist
 
 **Architecture Level:** L3 — Business Scenario Architecture
-**Applies To:** Section J — Enterprise Resource Management, 110 candidates in range `CAN-L3-J-001` … `CAN-L3-J-128` (sparse after consolidation)
+**Applies To:** Section J — Enterprise Resource Management, 110 candidates in range `CAN-L3-J-682` … `CAN-L3-J-791` (sparse after consolidation)
 **Status:** Active — Phase 2 input
 **Created:** 2026-08-14
 **Source:** all-scope adversarial Phase 1 audit, 2026-08-14 — `generated/reviews/l3-phase1-audit-all-2026-08-14.md`
@@ -48,8 +48,8 @@ The breach was not cosmetic. `L3_Scenario_Type_and_Priority_Rules.md` §5 define
 | --- | ---: | --- |
 | `Domains` normalised to section letters | 110 | `J01…J10` → `J`; `F`, `G` retained where genuinely present; `VAR:Requesting Domain` preserved |
 | `Primary Owner` prefix stripped | 110 | `J01 — Procurement Planning & Sourcing` → `Procurement Planning & Sourcing`, matching the business-capability convention already used in Section A |
-| `Type` re-derived under §7 | 11 | `J-004`, `J-005`, `J-007`, `J-008`, `J-009`, `J-011`, `J-013`, `J-014`, `J-036` → `Critical` (sourcing outcomes and canonical supplier-identity mapping carry competition, approval and audit-evidence obligations). `J-012`, `J-044` → `Simple` (validation against an already-approved contract; recording a supplier acknowledgement without changing commitment or identity) |
-| `Type` re-derived in J10 | 2 | `J-113` (rejection/return) and `J-114` (pre-execution cancellation) → `Simple`. Neither executes anything irreversible. |
+| `Type` re-derived under §7 | 11 | `J-685`, `J-686`, `J-688`, `J-689`, `J-690`, `J-692`, `J-694`, `J-695`, `J-717` → `Critical` (sourcing outcomes and canonical supplier-identity mapping carry competition, approval and audit-evidence obligations). `J-693`, `J-725` → `Simple` (validation against an already-approved contract; recording a supplier acknowledgement without changing commitment or identity) |
+| `Type` re-derived in J10 | 2 | `J-776` (rejection/return) and `J-777` (pre-execution cancellation) → `Simple`. Neither executes anything irreversible. |
 
 **J10 was otherwise confirmed, not reduced.** The audit flagged J10's 17-of-17 `Critical` as possible inflation. Row-by-row re-derivation under §7 upheld 15 of them: physical disposal, destruction, scrap, sale, donation, transfer-out, recycling and write-off all cause irreversible loss of institutional custody with financial consequence, which §6 lists explicitly. Only the two non-executing outcomes changed.
 
@@ -59,9 +59,9 @@ The breach was not cosmetic. `L3_Scenario_Type_and_Priority_Rules.md` §5 define
 
 Recorded so they are not re-derived. Confirmed by the 2026-08-14 cross-inventory scan over all 1,175 repository candidates.
 
-* **Finance ownership.** `J-027` states payment remains Finance-owned; `J-070` links physical facts to Finance-owned valuation "without J06 creating accounting truth"; `J-112`…`J-128` reconcile financial references without J10 performing settlement. No duplicate monetary ownership.
-* **Campus Operations boundary.** `J-090` associates specialist repair results with an Asset "without duplicating specialist execution"; `G-053` records maintenance consumption "without transferring inventory ownership to G01". Reciprocal and consistent.
-* **Supplier evidence direction.** `G-038` and `G-039` supply operational incident and performance evidence to J02 without changing the canonical supplier record; `J-028` receives it. Dependency direction is correct.
+* **Finance ownership.** `J-708` states payment remains Finance-owned; `J-743` links physical facts to Finance-owned valuation "without J06 creating accounting truth"; `J-775`…`J-791` reconcile financial references without J10 performing settlement. No duplicate monetary ownership.
+* **Campus Operations boundary.** `J-762` associates specialist repair results with an Asset "without duplicating specialist execution"; `G-053` records maintenance consumption "without transferring inventory ownership to G01". Reciprocal and consistent.
+* **Supplier evidence direction.** `G-038` and `G-039` supply operational incident and performance evidence to J02 without changing the canonical supplier record; `J-709` receives it. Dependency direction is correct.
 * **Intra-section hand-offs.** J06↔J07, J06↔J09, J08↔J09, J09↔J10 and J08↔J10 each state which side retains ownership. No competing canonical owner was found.
 
 ---
@@ -70,8 +70,8 @@ Recorded so they are not re-derived. Confirmed by the 2026-08-14 cross-inventory
 
 | # | Item | Candidates | Position | Status |
 | --- | --- | --- | --- | --- |
-| `J-TV-01` | Disposal-method rows may be an enumeration of one execution outcome | `J-115`, `J-117`, `J-118`, `J-119`, `J-120`, `J-121`, `J-122` | All seven share the trigger form *"Inventory is authorised for \<method\>"* and the outcome form *"approved quantity leaves custody with evidence; inventory and financial consequences reconcile; the case closes"*. `J-115` is defined as the residual method "not separately classified as destruction, scrap, sale, auction, donation, external transfer-out, recycling or external return" — so the set is a method enumeration by construction. **Against merging:** destruction requires witnesses and a certificate, sale/auction produces proceeds and a buyer, donation produces an acknowledgement — genuinely different evidence and financial consequences. Do not merge without checking `L2-J10` for distinct approval authorities. | `OPEN` |
-| `J-TV-02` | Candidate renumbering | all | IDs sparse across `J-001`…`J-128`. Deferred to Phase 2 close per `L3_Phase1_Discovery_Rules.md` §6. | `OPEN` |
+| `J-TV-01` | Disposal-method rows may be an enumeration of one execution outcome | `J-778`, `J-780`, `J-781`, `J-782`, `J-783`, `J-784`, `J-785` | All seven share the trigger form *"Inventory is authorised for \<method\>"* and the outcome form *"approved quantity leaves custody with evidence; inventory and financial consequences reconcile; the case closes"*. `J-778` is defined as the residual method "not separately classified as destruction, scrap, sale, auction, donation, external transfer-out, recycling or external return" — so the set is a method enumeration by construction. **Against merging:** destruction requires witnesses and a certificate, sale/auction produces proceeds and a buyer, donation produces an acknowledgement — genuinely different evidence and financial consequences. Do not merge without checking `L2-J10` for distinct approval authorities. | `OPEN` |
+| `J-TV-02` | Candidate renumbering | all | IDs sparse across `J-682`…`J-791`. Deferred to Phase 2 close per `L3_Phase1_Discovery_Rules.md` §6. | `OPEN` |
 
 ---
 
