@@ -1,13 +1,13 @@
 # L3 Phase 1 Candidate Inventory — Section I (Examination)
 
 **Architecture Level:** L3 — Business Scenario Architecture
-**Phase:** Phase 1 — Scenario Discovery
+**Phase:** Phase 1 — Final / Frozen
 **Discovery Owner:** Devang
 **Discovery Scope:** Section I — Examination (`L2-I01` … `L2-I16`)
 **Assignment Authority:** `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Workload_Distribution_Decision.md` section 2
 **Format Authority:** `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Discovery_Rules.md` sections 4-6
 **Phase 2 Watchlist:** `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Section_I_Phase2_Consolidation_Watchlist.md`
-**Status:** Phase 1 discovery output — candidate rows only. Ownership, numbering and boundaries remain provisional until Phase 2.
+**Status:** Final / Frozen Phase 1 candidate inventory; Primary Owner, Type, Priority, and unresolved boundaries remain subject to Phase 2 governance where permitted.
 
 ---
 
@@ -15,7 +15,7 @@
 
 **Source:** `L2-I01_Examination_Policy_and_Configuration_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 **Status:** Validated for Phase 1 Candidate Inventory
 
 ### I01 Phase 1 Candidate Scenarios
@@ -30,7 +30,7 @@
 
 **Source:** `L2-I02_Examination_Session_Management_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 **Status:** Validated for Phase 1 Candidate Inventory
 
 ### I02 Phase 1 Candidate Scenarios
@@ -49,7 +49,7 @@
 
 **Source:** `L2-I03_Examination_Planning_and_Scheduling_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 **Status:** Validated for Phase 1 Candidate Inventory
 
 ### I03 Phase 1 Candidate Scenarios
@@ -71,7 +71,7 @@
 
 **Source:** `L2-I04_Examination_Registration_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 
 
 ### I04 Phase 1 Candidate Scenarios
@@ -104,7 +104,7 @@
 
 **Source:** `L2-I05_Hall_Ticket_Management_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 
 
 ### I05 Phase 1 Candidate Scenarios
@@ -125,7 +125,7 @@
 
 **Source:** `L2-I06_Practical_and_Viva_Examination_Conduct_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 
 | Candidate ID | Scenario Title                                                                               | Trigger                                                                                                                 | Final Outcome                                                                                                                                                  | Primary Owner | Domains | Type         | Priority |
 | ------------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------- | ------------ | -------- |
@@ -146,7 +146,7 @@
 
 **Source:** `L2-I07_Theory_Examination_Conduct_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 
 | Candidate ID | Scenario Title                                                                         | Trigger                                                                                                                    | Final Outcome                                                                                                                                   | Primary Owner | Domains | Type         | Priority |
 | ------------ | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------- | ------------ | -------- |
@@ -171,7 +171,7 @@
 
 **Source:** `L2-I08_Marks_Collection_and_Evaluation_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 
 | Candidate ID | Scenario Title                                                         | Trigger                                                                                              | Final Outcome                                                                                                                           | Primary Owner | Domains | Type     | Priority |
 | ------------ | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------- | -------- | -------- |
@@ -197,7 +197,7 @@
 
 **Source:** `L2-I09_Result_Processing_and_Computation_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 
 | Candidate ID | Scenario Title                                                                | Trigger                                                                                                                     | Final Outcome                                                                                                                 | Primary Owner | Domains | Type     | Priority |
 | ------------ | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------- | ------- | -------- | -------- |
@@ -224,7 +224,7 @@
 
 **Source:** `L2-I10_Result_Publication_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 
 | Candidate ID | Scenario Title                                                                 | Trigger                                                                                                            | Final Outcome                                                                                                                   | Primary Owner | Domains | Type         | Priority |
 | ------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------- | ------------ | -------- |
@@ -250,7 +250,7 @@
 
 **Source:** `L2-I11_Revaluation_and_Rechecking_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 
 | Candidate ID | Scenario Title                                                            | Trigger                                                                                                                 | Final Outcome                                                                                                      | Primary Owner | Domains | Type     | Priority |
 | ------------ | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------- | ------- | -------- | -------- |
@@ -274,7 +274,7 @@
 
 **Source:** `L2-I12_Supplementary_Backlog_and_Improvement_Examination_Execution_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 
 | Candidate ID | Scenario Title                                                                                | Trigger                                                                                                                         | Final Outcome                                                                                                                              | Primary Owner | Domains | Type         | Priority |
 | ------------ | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ------- | ------------ | -------- |
@@ -295,7 +295,7 @@
 
 **Source:** `L2-I13_Academic_Completion_CGPA_and_Completion_Evidence_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 
 | Candidate ID | Scenario Title                                                                      | Trigger                                                                                                            | Final Outcome                                                                                                                              | Primary Owner | Domains    | Type         | Priority |
 | ------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ---------- | ------------ | -------- |
@@ -321,7 +321,7 @@
 
 **Source:** `L2-I14_Malpractice_and_Examination_Committee_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 
 | Candidate ID | Scenario Title                                                            | Trigger                                                                                                        | Final Outcome                                                                                                                                          | Primary Owner | Domains | Type         | Priority |
 | ------------ | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ------- | ------------ | -------- |
@@ -340,7 +340,7 @@
 
 **Source:** `L2-I15_Examination_Exception_and_Contingency_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 
 | Candidate ID | Scenario Title                                                              | Trigger                                                                                                                       | Final Outcome                                                                                                                          | Primary Owner | Domains             | Type         | Priority |
 | ------------ | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------- | ------------ | -------- |
@@ -365,7 +365,7 @@
 
 **Source:** `L2-I16_Examination_Session_Closure_and_Archival_Workflows.md`
 **Discovery Area:** Section I — Examination
-**Phase:** L3 Phase 1 — Scenario Discovery
+**Phase:** L3 Phase 1 — Final / Frozen
 
 | Candidate ID | Scenario Title                                                                        | Trigger                                                                                                                            | Final Outcome                                                                                                             | Primary Owner | Domains | Type     | Priority |
 | ------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------- | ------- | -------- | -------- |

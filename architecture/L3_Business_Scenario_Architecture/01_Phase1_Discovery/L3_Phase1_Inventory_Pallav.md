@@ -4,15 +4,15 @@
 
 **Architecture Level:** L3 — Business Scenario Architecture
 
-**Phase:** Phase 1 — Scenario Discovery
+**Phase:** Phase 1 — Final / Frozen
 
 **Assigned Discovery Areas:** Section B — Institution & Structure; Section D — Academic Delivery; Section E — People & Workforce
 
 **Inventory Scope in This File:** Sections B, D and E
 
-**Status:** Sections B and E — approved corrections applied. Section D — locked-format register established 2026-08-14; open decision items remain.
+**Status:** Final / Frozen Phase 1 candidate inventory; unresolved Section D and other consolidation decisions remain active in Phase 2.
 
-**Last Revised:** 2026-08-14
+**Last Revised:** 2026-08-17 — Phase 1 final/frozen metadata and continuous numbering confirmed; prior architecture corrections remain recorded in the referenced reports.
 
 **Change Basis:** `generated/reviews/L3_Phase1_Audit_Pallav_Section_B_and_E.md` (human approval 2026-08-13); `generated/reviews/L3_Phase1_Audit_Pallav_ALL_ASSIGNED.md` (2026-08-14) finding AUD-PAL2-001
 
@@ -213,7 +213,7 @@ The 57 candidates below are the canonical Phase 1 Section D register. Trigger, F
 - Removed rows were not treated as lost business rules. Their validations, decisions, rejection paths, event publication, recovery behavior, and historical controls belong inside the surviving parent candidate.
 - `CAN-L3-E-012`–`CAN-L3-E-014` were re-owned as `CAN-L3-B-013`–`CAN-L3-B-015` because B02 owns Position Definitions; E02 owns only Position Assignments and related operational authority.
 - New approved outcomes are `CAN-L3-E-024`–`CAN-L3-E-075`; E097 is the approved split from former E048, and E098 preserves the distinct E07 `Archived → Restored → Active` path rather than combining it with `Suspended → Active`.
-- Candidate numbering remains temporary and intentionally sparse until Phase 2 close.
+- Candidate IDs remain temporary precursors to final L3 IDs, but the Phase 1 ranges are now continuous and frozen. Phase 2 dispositions do not remove or renumber Phase 1 rows.
 
 ### 2026-08-14 changes
 

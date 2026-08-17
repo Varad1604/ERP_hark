@@ -1,16 +1,118 @@
 # L3 Phase 2 — Repository-Wide Scenario Consolidation Review
 
 
-> **Numbering note (2026-08-17).** Candidate IDs in this historical report reflect the numbering in force when it was written. Repository-wide candidate numbering was normalized on 2026-08-17; for current IDs see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
+> **Current-state rule (2026-08-17).** Section 0 below is the authoritative current companion view. The later historical record preserves the facts and candidate IDs in force when each earlier pass was written; it is not a statement of the current baseline. Repository-wide candidate numbering was normalized on 2026-08-17; for historical mapping see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 **Architecture Level:** L3 — Business Scenario Architecture
 **Phase:** Phase 2 — Repository-Wide Scenario Consolidation
-**Report Date:** 2026-08-16
+**Report Date:** 2026-08-16; current-state update 2026-08-17
 **Working Artifact:** `architecture/L3_Business_Scenario_Architecture/02_Phase2_Consolidation/L3_Phase2_Proposed_Canonical_Scenario_Register.md`
-**Source Inventories (unmodified except one provable metadata correction, see §0):** `architecture/L3_Business_Scenario_Architecture/01_Phase1_Discovery/L3_Phase1_Inventory_*.md`
+**Source Inventories:** `architecture/L3_Business_Scenario_Architecture/01_Phase1_Discovery/L3_Phase1_Inventory_*.md`
 
 ---
 
-## 0. Pre-Phase-2 Mechanical Validation
+## 0. Current State — 2026-08-17
+
+**Phase 1 — Final / Frozen. Phase 2 — Consolidation Active.** Phase 1 is the final discovery baseline;
+its candidate IDs and row presence do not change as a consequence of future Phase 2 dispositions. Primary
+Owner, Type, and Priority remain confirmable in Phase 2 where governance permits. No final `L3-*` IDs have
+been assigned.
+
+### 0.1 Current Active Phase 1 Baseline
+
+| Section | Active candidates | Frozen range |
+| --- | ---: | --- |
+| A | 62 | `CAN-L3-A-001` … `CAN-L3-A-062` |
+| B | 32 | `CAN-L3-B-001` … `CAN-L3-B-032` |
+| C | 75 | `CAN-L3-C-001` … `CAN-L3-C-075` |
+| D | 57 | `CAN-L3-D-001` … `CAN-L3-D-057` |
+| E | 75 | `CAN-L3-E-001` … `CAN-L3-E-075` |
+| F | 85 | `CAN-L3-F-001` … `CAN-L3-F-085` |
+| G | 322 | `CAN-L3-G-001` … `CAN-L3-G-322` |
+| H | 81 | `CAN-L3-H-001` … `CAN-L3-H-081` |
+| I | 197 | `CAN-L3-I-001` … `CAN-L3-I-197` |
+| J | 110 | `CAN-L3-J-001` … `CAN-L3-J-110` |
+| **Total** | **1,096** | Every section starts at 001; duplicates 0; gaps 0 |
+
+The historical active baseline was 1,123 before the Section G targeted consolidation and 1,095 after that
+consolidation. The current total is 1,096 because finalization adds exactly one new candidate,
+`CAN-L3-C-075`; it does not renumber C-001 … C-074.
+
+### 0.2 Current Phase 2 Register
+
+The register contains **1,124 rows**: all 1,096 active frozen Phase 1 candidates plus 28 historical absorbed
+Section G rows retained for consolidation traceability. Register row count therefore does not equal active
+Phase 1 count. All P2W IDs are unique and unchanged; the new Section C row uses the next unused Section C
+working ID, `P2W-C-1124`.
+
+| Disposition | Current count |
+| --- | ---: |
+| KEEP | 1,050 |
+| MERGE | 20 |
+| VARIANT | 6 |
+| FAILURE-RECOVERY | 0 |
+| DUPLICATE | 2 |
+| SPLIT-REQUIRED | 0 |
+| REVIEW-REQUIRED | 1 |
+| BLOCKED | 45 |
+| **Total** | **1,124** |
+
+The 20 MERGE, 6 VARIANT, and 2 DUPLICATE rows are the 28 historical absorbed Section G rows; they are not
+active Phase 1 candidates. The current `REVIEW-REQUIRED` row is `CAN-L3-G-164` (`P2W-G-0341`).
+
+### 0.3 Current Section Summary
+
+| Section | Active Phase 1 | Register rows | KEEP | MERGE | VARIANT | DUPLICATE | REVIEW-REQUIRED | BLOCKED |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| A | 62 | 62 | 62 | 0 | 0 | 0 | 0 | 0 |
+| B | 32 | 32 | 30 | 0 | 0 | 0 | 0 | 2 |
+| C | 75 | 75 | 70 | 0 | 0 | 0 | 0 | 5 |
+| D | 57 | 57 | 41 | 0 | 0 | 0 | 0 | 16 |
+| E | 75 | 75 | 75 | 0 | 0 | 0 | 0 | 0 |
+| F | 85 | 85 | 85 | 0 | 0 | 0 | 0 | 0 |
+| G | 322 | 350 | 320 | 20 | 6 | 2 | 1 | 1 |
+| H | 81 | 81 | 81 | 0 | 0 | 0 | 0 | 0 |
+| I | 197 | 197 | 183 | 0 | 0 | 0 | 0 | 14 |
+| J | 110 | 110 | 103 | 0 | 0 | 0 | 0 | 7 |
+| **Total** | **1,096** | **1,124** | **1,050** | **20** | **6** | **2** | **1** | **45** |
+
+`FAILURE-RECOVERY` and `SPLIT-REQUIRED` are both zero in the current register.
+
+### 0.4 Current Blocked Decision Register
+
+| Issue | Rows | Current active candidate IDs |
+| --- | ---: | --- |
+| BDE-B-01 | 2 | `CAN-L3-B-012`, `CAN-L3-B-021` |
+| C-C01 | 2 | `CAN-L3-C-009`, `CAN-L3-C-012` |
+| C-C02 | 1 | `CAN-L3-C-033` |
+| CF-06 | 1 | `CAN-L3-C-004` |
+| FIND-D-01/FIND-D-02 | 2 | `CAN-L3-D-020`, `CAN-L3-D-021` |
+| FIND-D-06 | 5 | `CAN-L3-D-027`, `CAN-L3-D-028`, `CAN-L3-D-032`, `CAN-L3-D-033`, `CAN-L3-D-034` |
+| FIND-D-07 | 8 | `CAN-L3-D-035` … `CAN-L3-D-042` |
+| FIND-D-08 | 1 | `CAN-L3-D-043` |
+| I-RC-07 | 3 | `CAN-L3-I-063`, `CAN-L3-I-064`, `CAN-L3-I-065` |
+| I-TV-04-residual | 5 | `CAN-L3-I-076`, `CAN-L3-I-081`, `CAN-L3-I-082`, `CAN-L3-I-083`, `CAN-L3-I-087` |
+| I-XI-02 | 3 | `CAN-L3-C-050`, `CAN-L3-I-162`, `CAN-L3-I-163` |
+| I-XI-03 | 5 | `CAN-L3-G-002`, `CAN-L3-I-009`, `CAN-L3-I-048`, `CAN-L3-I-055`, `CAN-L3-I-056` |
+| J-TV-01 | 7 | `CAN-L3-J-097`, `CAN-L3-J-099` … `CAN-L3-J-104` |
+| **Total** | **45** | |
+
+`CF-08` is **RESOLVED**, not blocked. B01 owns the institutional policy definition; C04 owns the
+progression behavior that establishes versioned applicability and publishes `AcademicPolicyUpdated`.
+`CAN-L3-C-075` is the distinct Academic Progression outcome. Alumni policy validation remains inside
+`CAN-L3-C-072`; no separate Alumni Policy candidate exists.
+
+`I-RC-07` remains blocked. Current L2-I07 contains the approved 2026-08-15 scope assignment for Question
+Paper Intake, Custody, and Timed Release, but §9.5, §23, and Appendix A still disclaim question-paper
+governance. This is an **UPSTREAM L2 INTERNAL CONSISTENCY ISSUE**; no L2 text or Phase 2 disposition is
+changed by this task.
+
+---
+
+## Historical Record — Pre-Phase-2 Mechanical Validation and Earlier Consolidation Passes
+
+Everything from this heading through the end of the document is retained as point-in-time evidence. Counts,
+IDs, and status statements below are historical unless an individual paragraph explicitly states otherwise;
+the current repository state is only the section above.
 
 Performed before any consolidation judgment, per the mandated validation sequence.
 
@@ -32,7 +134,7 @@ Performed before any consolidation judgment, per the mandated validation sequenc
 
 Per-file totals: Dhruv 172, Pallav 164, Chetan 74, Devang 197, Varad 516. Sum: **1,123**.
 
-### 0.1B Post-Remediation Candidate Counts (direct row count, verified 2026-08-17)
+### Historical 0.1B Post-Remediation Candidate Counts (direct row count, verified 2026-08-17)
 
 Section G's active Phase 1 row count changed on 2026-08-17 following the targeted remediation recorded in
 `L3_Section_G_Phase2_Consolidation_Watchlist.md` §12 and
@@ -98,15 +200,15 @@ All ten discovery areas (A–J) are represented with populated candidate rows. N
 
 ---
 
-## 1. Exact Phase 1 Starting Count
+## Historical 1. Exact Phase 1 Starting Count
 
 **1,123 candidates.**
 
-## 2. Exact Candidates Reviewed
+## Historical 2. Exact Candidates Reviewed
 
 **1,123** — every candidate in the repository was placed on the working register and assigned a disposition.
 
-## 3–9. Disposition Counts
+## Historical 3–9. Disposition Counts
 
 **Updated 2026-08-17** following the independent Section G boundary re-audit and its targeted Phase 2
 remediation (`generated/reviews/L3_Section_G_350_Candidate_Independent_Boundary_Audit.md` and
@@ -130,7 +232,7 @@ under clusters SG-02…SG-12 (SG-01 absorbed only 4 of its 5 targeted candidates
 below). The 1 new REVIEW-REQUIRED row is `CAN-L3-G-705`. No row was deleted from the register; absorbed
 rows remain present with their disposition and evidence updated, per the traceability model.
 
-### Why MERGE/VARIANT/FAILURE-RECOVERY/DUPLICATE/SPLIT-REQUIRED are all zero
+### Historical methodology note — why the initial 2026-08-16 pass used only KEEP and BLOCKED
 
 This is a methodology finding, not an oversight, and is reported transparently rather than papered over:
 
@@ -138,7 +240,7 @@ Sections **A, F, G and H** already underwent rigorous, evidence-based Phase 1 fr
 
 Re-deriving these same merge/split/duplicate judgments from the raw L2 sources a second time, without new evidence, would not improve the repository — it would risk **overriding a properly authorized Phase 1 decision with an un-authorized Phase 2 guess**, which Rule 3 (never silently resolve a repository conflict) and the anti-hallucination rules forbid. This Phase 2 pass therefore verified the existing dispositions against the current inventory state (catching two stale-ID references in the process — see §8) rather than re-opening settled judgments. The genuinely new work product of this pass is the **whole-repository master register** (§Pass 1), the **systematic cross-section collision matrix across all 12 specified pairs** (§7), and the **consolidated blocked-decision register spanning all ten sections** (§8) — none of which existed as a single artifact before this review.
 
-## 10. Proposed Final Scenario Count
+## Historical 10. Proposed Final Scenario Count
 
 **1,123** candidate rows remain carried forward into the proposed canonical register (no row deleted). Of
 these, **1,095** are independently proposed canonical scenarios (KEEP + BLOCKED + REVIEW-REQUIRED — each
@@ -156,13 +258,13 @@ repository total exactly, not merely a Phase 2 register projection.
 
 ---
 
-## Pass 1 — Master Candidate Register
+## Historical Pass 1 — Master Candidate Register
 
 Built mechanically by extracting all 1,123 rows from the five locked inventories with zero manual transcription (script-based extraction, verified against the direct grep counts in §0.1). The original five inventory files were not altered by this pass (the one metadata correction in §0.2 was applied separately and directly, not through register construction). Working artifact: `02_Phase2_Consolidation/L3_Phase2_Proposed_Canonical_Scenario_Register.md`.
 
 ---
 
-## Pass 2 — Intra-Section Consolidation Review
+## Historical Pass 2 — Intra-Section Consolidation Review
 
 ### Section A — Platform Foundation (62 candidates)
 **Status:** Fully resolved in Phase 1. 18 relationship clusters reviewed 2026-08-08, all `CLOSED` or `APPLIED` by 2026-08-13 (`L3_Section_A_Phase2_Consolidation_Watchlist.md`). Disposition: 62 KEEP, 0 BLOCKED.
@@ -228,7 +330,7 @@ Disposition: 320 KEEP, 20 MERGE, 6 VARIANT, 2 DUPLICATE, 1 REVIEW-REQUIRED, 1 BL
 
 ---
 
-## Pass 3 / Section 7 — Cross-Section Collision Review
+## Historical Pass 3 / Section 7 — Cross-Section Collision Review
 
 All twelve specified pairs were reviewed. Ten of twelve already had explicit, evidence-backed boundary determinations recorded across the eight watchlists; this pass consolidates them into one matrix and independently re-verified each cited candidate ID still exists in the current inventory (catching the stale-ID issue in `I-XI-03`, corrected below).
 
@@ -260,7 +362,7 @@ not something a Section G-scoped pass can settle on its own. See
 
 ---
 
-## Pass 4 — Scenario Granularity Review
+## Historical Pass 4 — Scenario Granularity Review
 
 Granularity was the primary subject of the Phase 1 audits for Sections F, G, H and I (fragmentation ratios up to 57:1 in Section F's period-closing sub-domain, consolidated under explicit evidence). This pass did not find additional step-level, validation-only, or notification-only candidates masquerading as institutional outcomes in the *current* inventories — the categories the remediation instructions specifically warn against (single validations, single events, single approval steps, notifications, audit actions, retries) were the explicit target of the F-FR-X1–X6 cross-cutting clusters, the G-FR-01–13 clusters, and the H former-to-current crosswalk, all already applied.
 
@@ -268,7 +370,7 @@ One granularity question remains genuinely open and is carried forward as `BLOCK
 
 ---
 
-## Pass 5 — Ownership Validation
+## Historical Pass 5 — Ownership Validation
 
 Ownership was validated by cross-referencing every "Items/Boundary Checks Confirmed Sound" register already published in the eight watchlists (Section A §"Items Confirmed Sound" absent — 18/18 resolved directly; B/D/E §6; C §5; G §9; H §2 decision table; I §"Boundary Checks That Passed"; J §5) rather than re-deriving ownership from L1/L2 a second time.
 
@@ -285,7 +387,7 @@ Ownership was validated by cross-referencing every "Items/Boundary Checks Confir
 
 ---
 
-## Pass 6 — Type and Priority Normalization
+## Historical Pass 6 — Type and Priority Normalization
 
 ### Distribution by Section (Type / Priority)
 
@@ -315,7 +417,7 @@ No other section shows a comparably total skew. Sections B (0 Cross-domain) and 
 
 ---
 
-## Pass 7 / Section 8 — Consolidated Blocked Decision Register
+## Historical Pass 7 / Section 8 — Consolidated Blocked Decision Register
 
 **45 candidates, 12 named issues, spanning 5 sections.** No blocked item was resolved by this review; two had a stale candidate-ID reference corrected against the current inventory (noted inline).
 
@@ -342,17 +444,17 @@ No other section shows a comparably total skew. Sections B (0 Cross-domain) and 
 
 ---
 
-## Pass 8 — Proposed Canonical Scenario Register
+## Historical Pass 8 — Proposed Canonical Scenario Register
 
 Produced as `architecture/L3_Business_Scenario_Architecture/02_Phase2_Consolidation/L3_Phase2_Proposed_Canonical_Scenario_Register.md` — a new folder created under the explicit repository authorization in `L3_Business_Scenario_Architecture/README.md` §5 ("Additional folders may be created later when the corresponding phase begins"), following the existing `00_Governance` / `01_Phase1_Discovery` numbering convention.
 
-The register contains all 1,123 candidates, organized by section, with columns: Phase 2 Working ID (`P2W-<SECTION>-<NNNN>`, explicitly not a final L3 ID), Phase 1 Candidate ID (preserved, never renumbered), Scenario Title, Trigger, Final Outcome, Proposed Owner, Domains, Type, Priority, Disposition, Absorbed IDs, Blocked Issue, and Evidence.
+At construction, the register contained all 1,123 then-current candidates, organized by section, with columns including Phase 2 Working ID (`P2W-<SECTION>-<NNNN>`, explicitly not a final L3 ID) and the Phase 1 Candidate ID in force at that time. The later authorized 2026-08-17 migration changed Phase 1 candidate IDs while preserving the P2W IDs.
 
-**File size:** 1,123 data rows, ~582 KB. **No candidate ID was renumbered. No Phase 1 inventory content was altered by this pass** (the single metadata correction in §0.2 was applied directly to the source file, separately from register construction, and is fully disclosed there).
+**Historical file size:** 1,123 data rows, ~582 KB. **No candidate ID was renumbered by this 2026-08-16 pass. No Phase 1 inventory content was altered by that pass** (the single metadata correction in its §0.2 was applied directly to the source file, separately from register construction, and is fully disclosed there).
 
 ---
 
-## Phase 3 Pilot Readiness Assessment
+## Historical Phase 3 Pilot Readiness Assessment
 
 **Assessment: CONDITIONALLY READY.**
 
@@ -364,7 +466,7 @@ The 45 `BLOCKED` candidates (4.0%) cluster into 12 named, independently trackabl
 
 ---
 
-## Anti-Hallucination Compliance Statement
+## Historical Anti-Hallucination Compliance Statement
 
 - No candidate was merged, split, renumbered, or reworded by this review.
 - No new business scenario, owner, aggregate, event, or lifecycle state was invented.

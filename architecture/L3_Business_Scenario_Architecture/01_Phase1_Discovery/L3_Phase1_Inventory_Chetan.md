@@ -2,9 +2,9 @@
 
 **Prepared By:** Chetan  
 **Architecture Level:** L3 — Business Scenario Architecture  
-**Phase:** Phase 1 — Scenario Discovery  
+**Phase:** Phase 1 — Final / Frozen
 **Assigned Discovery Area:** Section C — Student Lifecycle  
-**Status:** Submitted for Review  
+**Status:** Final / Frozen Phase 1 candidate inventory; Phase 2 consolidation remains active
 
 ## Section C — Student Lifecycle
 
@@ -119,8 +119,16 @@
 
 | Candidate ID | Scenario Title | Trigger | Final Outcome | Primary Owner | Domains | Type | Priority |
 |---|---|---|---|---|---|---|---|
-| CAN-L3-C-072 | Completed or Eligible Exit Student to Alumni Transition | Authoritative qualification completion or another permitted student exit reaches the condition required for alumni transition | Alumni Transition is completed for the eligible former student and the resulting alumni engagement context is made available to the authoritative Alumni lifecycle without transferring ownership of the historical Student Context | Alumni Transition | C, H | Cross-domain | P1 |
+| CAN-L3-C-072 | Completed or Eligible Exit Student to Alumni Transition | Authoritative qualification completion or another permitted student exit reaches the condition required for alumni transition under the applicable institution-owned transition policy | Alumni Transition validates the applicable institution-owned policy version and completes the transition for the eligible former student, making the resulting alumni engagement context available to the authoritative Alumni lifecycle without transferring ownership of the policy definition or historical Student Context | Alumni Transition | C, H | Cross-domain | P1 |
 | CAN-L3-C-073 | Alumni Transition Correction | An authorized discrepancy or error is identified in an in-progress or completed Alumni Transition | A corrected authoritative Alumni Transition supersedes the incorrect transition information while the previous transition history remains preserved and traceable | Alumni Transition | C | Critical | P1 |
 | CAN-L3-C-074 | Alumni Transition Archival | Alumni Transition reaches the lifecycle condition permitting permanent archival under institutional retention policy | Alumni Transition reaches its archived lifecycle condition and remains preserved as an authoritative historical transition record | Alumni Transition | C | Simple | P2 |
+
+---
+
+### C04 — Academic Progression Policy Governance Finalization Addition
+
+| Candidate ID | Scenario Title | Trigger | Final Outcome | Primary Owner | Domains | Type | Priority |
+|---|---|---|---|---|---|---|---|
+| CAN-L3-C-075 | Institutional Progression Policy Lifecycle to Effective Progression Governance | An L2-B01-owned institutional policy definition governing academic progression is approved, versioned, superseded, or retired and its applicability to Academic Progression must be governed | L2-C04 establishes the resulting institution-owned policy-version applicability for the governed academic scope, publishes AcademicPolicyUpdated, and ensures subsequent progression decisions reference the applicable version while prior applicability remains historically traceable | Academic Progression | B, C | Critical | P0 |
 
 ---

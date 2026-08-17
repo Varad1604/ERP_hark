@@ -3,8 +3,8 @@
 **Document:** L3 Phase 1 Discovery Rules
 **Architecture Level:** L3 — Business Scenario Architecture
 **Version:** 1.0
-**Status:** Approved for Phase 1 Use
-**Applies To:** Phase 1 candidate scenario discovery and team inventory submissions
+**Status:** Approved — Phase 1 Final / Frozen Baseline
+**Applies To:** The final frozen Phase 1 candidate inventory and its historical discovery rules
 
 ---
 
@@ -403,3 +403,14 @@ Candidate IDs use CAN-L3-<AREA>-<NNN>.
 No full L3 scenario documents are created in Phase 1.
 Final ownership, final numbering, final creators, and final reviewers remain unlocked until Phase 2.
 ```
+
+### 18.1 Final Freeze Rule — 2026-08-17
+
+Phase 1 is now the final frozen discovery baseline. Its section ranges are continuous as frozen, including
+`CAN-L3-C-075`, and Phase 2 remains active.
+
+Phase 2 may confirm or correct Primary Owner, Type, and Priority where the governance standards permit,
+but a Phase 2 disposition never removes or renumbers a Phase 1 candidate row. Merge, variant, duplicate,
+split, deferral, rejection, and blocked relationships are recorded in the Phase 2 register while the Phase 1
+candidate IDs and row presence remain unchanged. Final `L3-*` IDs are still assigned only after Phase 2
+consolidation.

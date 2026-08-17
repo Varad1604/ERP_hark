@@ -2,11 +2,11 @@
 
 **Prepared By:** Varad
 **Architecture Level:** L3 — Business Scenario Architecture
-**Phase:** Phase 1 — Scenario Discovery
+**Phase:** Phase 1 — Final / Frozen
 **Assigned Discovery Areas:** Section G — Campus Operations; Section F — Finance; Section H — Institutional Services & Intelligence
-**Status:** Submitted for Review — Sections F, G, and H present; audit consolidation and Section G classification review applied
+**Status:** Final / Frozen Phase 1 candidate inventory; Phase 2 consolidation remains active
 **Purpose:** Identify candidate Level 3 business scenarios from the assigned discovery areas without creating final L3 scenario documents or changing canonical L1/L2 ownership.
-**Last Revised:** 2026-08-13 — audit corrections and authorized architecture decisions applied following `generated/reviews/L3_Phase1_Audit_Varad_ALL_ASSIGNED.md`. Section G decision traceability is recorded in `../00_Governance/L3_Section_G_Phase2_Consolidation_Watchlist.md`; Section H traceability is recorded in the Section H watchlist; Finance consolidation is recorded in the Section F watchlist.
+**Last Revised:** 2026-08-17 — Phase 1 final/frozen metadata and continuous numbering confirmed. Earlier audit corrections and authorized decisions remain traceable through the Section F, G, and H watchlists and `generated/reviews/L3_Phase1_Audit_Varad_ALL_ASSIGNED.md`.
 
 ---
 
@@ -16,9 +16,9 @@
 | --- | --- | ---: | --- |
 | Section G — Campus Operations | Discovered — consolidation and classification review applied; independent boundary re-audit applied 2026-08-17; renumbered continuous 2026-08-17 | 322 | `CAN-L3-G-001` … `CAN-L3-G-322` (continuous, no gaps) |
 | Section F — Finance | Discovered — audit consolidation applied | 85 | `CAN-L3-F-001` … `CAN-L3-F-085` |
-| Section H — Institutional Services & Intelligence | Discovered — audit corrections applied | 81 | `CAN-L3-H-001` … `CAN-L3-H-081` (sparse) |
+| Section H — Institutional Services & Intelligence | Discovered — audit corrections applied | 81 | `CAN-L3-H-001` … `CAN-L3-H-081` (continuous, no gaps) |
 
-Candidate IDs, ownership, type and priority remain provisional until Phase 2 approval, per `L3_Phase1_Discovery_Rules.md` §18.
+Candidate IDs and row presence are frozen as the final Phase 1 baseline. Primary Owner, Type and Priority remain subject to Phase 2 confirmation where governance permits, per `L3_Phase1_Discovery_Rules.md` §18.
 
 **Metadata correction, 2026-08-16.** This table previously read G=391, F=87 (range through `F-087`), H=85. Direct row-count verification during Phase 2 preparation found: Section G's 391 figure predated the 2026-08-14 second-pass audit (`G-FR-10`…`G-FR-13`), which is separately documented in `L3_Section_G_Phase2_Consolidation_Watchlist.md` §4A as reducing the section to 350 — that watchlist was updated at the time but this table was not. Section F's stated range end (`F-087`) and count (87) never corresponded to actual rows; the highest existing row is `F-085` and no `F-086` or `F-087` row was ever populated. Section H's stated count of 85 counted the ID range span rather than actual rows; four IDs within the range (`H-017`, `H-019`, `H-053`, `H-058`) were never populated as rows, leaving 81 actual candidates. No candidate row was added, removed, or renumbered by this correction — only the summary counts were brought into agreement with the rows that already exist.
 

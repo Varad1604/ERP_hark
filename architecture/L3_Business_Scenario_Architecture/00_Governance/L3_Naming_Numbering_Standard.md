@@ -3,7 +3,7 @@
 **Document:** L3 Naming and Numbering Standard
 **Architecture Level:** L3 — Business Scenario Architecture
 **Version:** 1.0
-**Status:** Approved for Phase 1 Use
+**Status:** Approved — Phase 1 Final / Frozen Baseline
 **Applies To:** L3 candidate inventory, final L3 scenario IDs, and L3 scenario file names
 
 ---
@@ -137,8 +137,8 @@ CAN-L3-X-001 — Cross-domain Scenario Requiring Ownership Review
 
 Each team member assigns candidate IDs only within the discovery areas they are working on.
 
-Candidate numbering starts at `001` for each area and is continuous within that area's active
-inventory — no gaps between `001` and the last active number.
+Candidate numbering starts at `001` for each area and is continuous within the final frozen Phase 1
+inventory — no gaps between `001` and the last number at the point of freeze.
 
 Examples:
 
@@ -158,7 +158,7 @@ CAN-L3-F-003
 
 Candidate numbers do not need to match final L3 scenario numbers.
 
-If a candidate is later merged, split, deferred, or rejected, its original candidate ID remains as a historical discovery reference and is never reused. Its removal from the active inventory therefore does not create a gap under the continuity rule above — continuity is measured against the active inventory only.
+If Phase 2 later merges, splits, defers, rejects, or marks a candidate duplicate, the Phase 1 row and its original candidate ID remain unchanged in the frozen inventory. The Phase 2 register records the disposition and relationship; it does not remove the Phase 1 row, reuse its ID, or change any other Phase 1 ID.
 
 ### 7.1 One-Time Continuous Numbering Migration (2026-08-17)
 
@@ -168,19 +168,17 @@ accumulated non-`001` starting points through ordinary Phase 1 discovery and con
 The complete old-ID → new-ID mapping, section by section, is the authoritative record in
 `L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 
-**This migration does not repeat.** After 2026-08-17, active candidate IDs are frozen again:
+**This migration does not repeat.** After the Section C finalization addition `CAN-L3-C-075`, the complete Phase 1 baseline is final and its candidate IDs are frozen:
 
-* Future merges, splits, duplicate resolutions, or rejections retire the affected candidate ID(s)
-  permanently. They do **not** trigger a renumbering of the remaining active candidates, and they do
-  **not** need to be back-filled to keep the sequence gap-free.
-* `check_l3_inventory.py` enforces continuity as a submission quality gate against the numbering as it
-  stands today, immediately after the 2026-08-17 migration. Whether a future retirement's resulting gap
-  is closed by an explicit, separately authorized micro-renumbering of just the affected area, or left
-  as a recorded gap, is a Phase 2 / Lead Architect governance decision at that time — it is not an
-  automatic consequence of the retirement itself, and it is not this document's decision to make in
-  advance.
-* A new full-repository renumbering may only happen again under the same kind of explicit, one-time,
-  documented authorization this one had — never as a routine consequence of Phase 2 consolidation.
+* Future Phase 2 merges, variants, duplicate resolutions, splits, deferrals, rejections, or other
+  dispositions never delete or renumber a Phase 1 row. For example, if `CAN-L3-C-008` merges into
+  `CAN-L3-C-011`, both IDs remain exactly as recorded in Phase 1 and the relationship is recorded only
+  in Phase 2.
+* The continuity requirement describes the final frozen baseline established by this task. It is not a
+  command to compact Phase 1 after later Phase 2 decisions, and there is no micro-renumbering or
+  repository-wide normalization step at Phase 2 close.
+* `check_l3_inventory.py` validates the frozen baseline directly. Its candidate-ID expression remains
+  `^CAN-L3-([A-JX])-(\d{3,})$`, with no upper digit limit.
 
 ---
 
@@ -435,6 +433,7 @@ CAN-L3 is temporary and must not be used for final L3 documents.
 L3 numbering is independent of L2 numbering.
 Final scenario ownership is confirmed during Phase 2 consolidation.
 Candidate IDs were normalized once, repository-wide, on 2026-08-17
-  (see L3_Phase1_Candidate_ID_Migration_2026-08-17.md). This does not repeat as a
-  routine event -- see section 7.1.
+  (see L3_Phase1_Candidate_ID_Migration_2026-08-17.md), then Section C received the
+  final appended candidate C-075 before freeze. Phase 2 never renumbers this baseline --
+  see section 7.1.
 ```

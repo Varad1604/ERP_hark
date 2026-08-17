@@ -1,11 +1,11 @@
 # SutraERP L3 Phase 1 Scenario Inventory — Dhruv
 
 **Architecture Level:** L3 — Business Scenario Architecture
-**Phase:** Phase 1 — Scenario Discovery
-**Status:** Revised Submission — Verified Complete for Phase 1
+**Phase:** Phase 1 — Final / Frozen
+**Status:** Final / Frozen Phase 1 candidate inventory; Phase 2 consolidation remains active
 **Prepared By:** Dhruv
 **Purpose:** Identify candidate Level 3 business scenarios from the assigned discovery areas without creating final L3 scenario documents or changing canonical L1/L2 ownership.
-**Last Revised:** 2026-08-13 — Applied approved decisions DEC-DHR-01 through DEC-DHR-07, then completed post-remediation A00–A10/J00–J10 coverage, targeted peer-collision, and procurement-to-inventory pilot verification. Temporary IDs were preserved; gaps record absorbed candidates.
+**Last Revised:** 2026-08-17 — Phase 1 inventory finalized on the normalized continuous baseline; earlier remediation and verification evidence remains in the referenced historical reports.
 **Revision Basis:** User-approved audit remediation and independent post-remediation verification. Dhruv remains the original preparer; the historical authoring rating is preserved separately from the revised-artifact score.
 **Verification Record:** `generated/reviews/L3_Phase1_Dhruv_Revised_Submission_Verification_2026-08-13.md`
 
@@ -71,7 +71,7 @@ A00 is used as the Section A governance and architectural review baseline.
 
 Added 2026-08-08 after independent verification of the Section A candidates. It applies to every row in section 3.2.
 
-**Candidate IDs remain temporary**, per `L3_Naming_Numbering_Standard.md` section 4. No final L3 scenario ID has been assigned and none may be assigned before Phase 2. No existing candidate ID was renumbered.
+**Candidate IDs remain temporary final-L3 precursors**, per `L3_Naming_Numbering_Standard.md` section 4. No final L3 scenario ID has been assigned. At the time of this 2026-08-08 note, no existing candidate ID had been renumbered; the later controlled 2026-08-17 normalization is recorded in `L3_Phase1_Candidate_ID_Migration_2026-08-17.md`, and the resulting Phase 1 IDs are now frozen.
 
 The 2026-08-08 note originally prohibited the inventory from deciding two locked-source conflicts. The required architecture authority approved the decisions on 2026-08-13, and the underlying L1/L2 sources were amended before the candidate markers were removed.
 
@@ -159,7 +159,7 @@ The former `INT-301` and `INT-302` provisional owner markers were removed after 
 
 # 4. Section J — Enterprise Resource Management
 
-Section J candidates are consolidated from locked `L2-J00` and `L2-J01` through `L2-J10`. Temporary candidate identifiers remain stable; gaps in the `CAN-L3-J-001` through `CAN-L3-J-110` range record candidates absorbed by evidence-backed consolidation. The original consolidation audit and the 2026-08-13 correction-application report preserve the mappings. Final `L3-*` numbering remains deferred to Phase 2.
+Section J candidates are consolidated from locked `L2-J00` and `L2-J01` through `L2-J10`. The frozen Phase 1 identifiers form the continuous range `CAN-L3-J-001` through `CAN-L3-J-110`. Historical consolidation mappings remain in the original audit and the 2026-08-13 correction-application report. Final `L3-*` numbering remains deferred to Phase 2.
 
 ## J01 — Procurement Planning & Sourcing
 

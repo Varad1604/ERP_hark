@@ -1,7 +1,7 @@
 # L3 Section C — Phase 2 Consolidation Watchlist
 
 **Architecture Level:** L3 — Business Scenario Architecture
-**Applies To:** Section C — Student Lifecycle, candidates `CAN-L3-C-001` … `CAN-L3-C-013`
+**Applies To:** Section C — Student Lifecycle, final frozen candidates `CAN-L3-C-001` … `CAN-L3-C-075`
 **Status:** Active — Phase 2 input
 **Created:** 2026-08-09
 **Source:** `generated/reviews/l3-phase1-section-c-verification-2026-08-09.md`
@@ -31,7 +31,7 @@ It follows the structure established by `L3_Section_A_Phase2_Consolidation_Watch
 | `OPEN` | Repository evidence supports both readings. A judgement is genuinely required. | Decide. |
 | `BLOCKED` | The item cannot be assessed until an ownership or integrity question is ruled on. | Wait for the Enterprise Architecture Board. |
 
-Resolution counts — candidate relationships: 2 `CLOSED`, 2 `OPEN`. Repository conflicts: 2 `DETERMINED`, 5 `OPEN`, 1 `BLOCKED`, 1 conflict-dependent wording constraint. Total 13.
+Current resolution counts — candidate relationships: 2 `CLOSED`, 2 `OPEN`. Repository conflicts: 2 `DETERMINED`, 5 `OPEN`, 1 `RESOLVED` (`CF-08`), and 1 conflict-dependent wording constraint. Total 13.
 
 ---
 
@@ -42,14 +42,14 @@ Resolution counts — candidate relationships: 2 `CLOSED`, 2 `OPEN`. Repository 
 | Cluster | Candidates | Resolution | Evidence |
 | ------- | ---------- | ---------- | -------- |
 | C-C03 Student exit and persona archival | 019, 040 | Retain separately. | Distinct terminal outcomes. `CAN-L3-C-040` closes the academic relationship (`Student Exit Completed`, `L2-C05` §9.2); `CAN-L3-C-019` archives the persona once every Student Context is terminal (`L2-C02` §11.10.3 exit-state reconciliation). |
-| C-C04 Guardian relationship and emergency contact | 048, 049, 053 | Retain separately. | `L2-C06` §7.2 defines GW-08 Emergency Contact Management as its own catalogue workflow, and §6.2 defines `Emergency Contact` as an aggregate-managed entity distinct from Guardian Assignment. |
+| C-C04 Guardian relationship and emergency contact | 051, 052, 056 | Retain separately. | `L2-C06` §7.2 defines GW-08 Emergency Contact Management as its own catalogue workflow, and §6.2 defines `Emergency Contact` as an aggregate-managed entity distinct from Guardian Assignment. |
 
 ### 3.2 Open — Phase 2 decision required
 
 | Cluster | Candidates | Decision needed | Position |
 | ------- | ---------- | --------------- | -------- |
-| C-C01 Student placement change | 008, 011 | Is an academic assignment change distinguishable from an intra-Institute reassignment, or are they one outcome reached by two routes? | `L2-C02` defines WF-C02-04 Academic Assignment and WF-C02-08 Student Transfer as separate catalogue workflows and both mutate programme, batch and section. Provisional boundary: 008 is initial and corrective assignment within an existing placement; 011 is authorized relocation to a different organisational placement. Leaning retain both. Do not delete either — the sources define them separately. |
-| C-C02 Programme change ownership | 011, 030 | Does an approved change of programme belong to Student Lifecycle transfer or to Academic Progression migration? | **This is an L2-level overlap, not a discovery defect.** `L2-C02` WF-C02-08 §1 lists **Programme** among transferable dimensions; `L2-C04` APW-08 owns Programme Migration with credit-preservation and curriculum-mapping semantics absent from WF-C02-08. Both candidates are repository-supported. Escalate the boundary question to the owning documents; do not resolve it inside the inventory. |
+| C-C01 Student placement change | 009, 012 | Is an academic assignment change distinguishable from an intra-Institute reassignment, or are they one outcome reached by two routes? | `L2-C02` defines WF-C02-04 Academic Assignment and WF-C02-08 Student Transfer as separate catalogue workflows and both mutate programme, batch and section. Provisional boundary: 009 is initial and corrective assignment within an existing placement; 012 is authorized relocation to a different organisational placement. Leaning retain both. Do not delete either — the sources define them separately. |
+| C-C02 Programme change ownership | 012, 033 | Does an approved change of programme belong to Student Lifecycle transfer or to Academic Progression migration? | **This is an L2-level overlap, not a discovery defect.** `L2-C02` WF-C02-08 §1 lists **Programme** among transferable dimensions; `L2-C04` APW-08 owns Programme Migration with credit-preservation and curriculum-mapping semantics absent from WF-C02-08. Both candidates are repository-supported. Escalate the boundary question to the owning documents; do not resolve it inside the inventory. |
 
 ---
 
@@ -81,7 +81,21 @@ These are architecture questions surfaced by discovery. None was resolved during
 | - | -------- | ------- | ------ |
 | CF-08 | **Policy Management has no owner.** `L2-C08` (10 references) and `L2-C04` (3 references) depend on institutional policy definitions and their change events — `AlumniTransitionPolicyUpdated`, `AcademicPolicyUpdated`, and a `Get Academic Policy` query contract. Neither event has a publisher anywhere in the repository. `L2-C04` §2.6 records the gap in-document as "Policy Management — unresolved, no owner". | `DEPENDENCY_MAP` §7 (status **Open**); `L2-C04` §2.6; `L2-C08` §5 policy references | **Two candidates cannot be discovered:** an academic-progression policy lifecycle scenario and an alumni-transition policy lifecycle scenario — the structural analogues of `CAN-L3-C-063`, which exists only because `DEPENDENCY_MAP` line 429 confirms Eligibility Policy Management is a workflow within `L2-C07`. Their absence from the inventory is **correct**, not an omission. `DEPENDENCY_MAP` §7 states that assigning an owner "is an architecture decision… and requires Lead Architect sign-off". Do not create these candidates before that ruling. |
 
-**Update, 2026-08-17 (numbering migration pass).** `DEPENDENCY_MAP.md` line 409/434 now records **Resolved 2026-08-15 (RC-03): institutional policy is owned by `L2-B01`**, with `AcademicPolicyUpdated` published by `L2-C04` and `AlumniTransitionPolicyUpdated` published by `L2-C08`. `CF-08` is therefore no longer blocking as an ownership question. The row above is left exactly as originally written — it accurately describes the state on 2026-08-09 when it was raised. This numbering migration does not add the two candidates the row describes; that is a separate Phase 1 discovery action for the Section C owner to take up now that ownership is resolved.
+**Historical update, 2026-08-17 (numbering migration pass).** `DEPENDENCY_MAP.md` line 409/434 recorded **Resolved 2026-08-15 (RC-03): institutional policy is owned by `L2-B01`**, with `AcademicPolicyUpdated` published by `L2-C04` and `AlumniTransitionPolicyUpdated` published by `L2-C08`. The CF-08 row above is retained as point-in-time evidence of the 2026-08-09 state.
+
+### 4.4 CF-08 — RESOLVED (current state)
+
+**Institutional Policy Owner:** `L2-B01` Institution.
+
+**Academic Progression outcome:** one distinct L3 candidate, `CAN-L3-C-075`, is added from C04-supported progression-policy behavior. B01 retains ownership of the institutional policy definition; C04 owns the progression behavior that establishes versioned policy applicability to progression decisions and publishes `AcademicPolicyUpdated` under RC-03.
+
+**Alumni Transition outcome:** no independent Alumni Policy candidate is required. Policy validation and the versioned policy snapshot remain represented within the existing Alumni Transition scenario, `CAN-L3-C-072`, under C08's Alumni Transition lifecycle ownership. The institutional policy definition remains external and B01-owned.
+
+CF-08 no longer blocks either outcome. It resolves as:
+
+- Academic Progression Policy Lifecycle → distinct candidate.
+- Alumni Transition Policy → absorbed into / represented within the existing Alumni Transition scenario.
+- Separate Alumni Policy candidate → not required.
 
 ---
 
@@ -90,10 +104,10 @@ These are architecture questions surfaced by discovery. None was resolved during
 Recorded so they are not re-derived.
 
 * **Person / Identity → Section A.** `CAN-L3-C-016`, `CAN-L3-C-017` and `CAN-L3-C-051` all state identity ownership remains with A. Correct against `L2-C06` §5 Rule 1 and `L2-A02`.
-* **Institution / Structure → Section B.** `CAN-L3-C-012`, `018`, `030`, `059`, `074` list B as participant only; none claims institutional hierarchy.
-* **Course Offering / Delivery → Section D.** `CAN-L3-C-020`, `019`, `020`, `022` list D as participant; no candidate claims offering ownership. Correct against `L2-C03` §4.5.
+* **Institution / Structure → Section B.** `CAN-L3-C-012`, `CAN-L3-C-013`, `CAN-L3-C-020`, `CAN-L3-C-033`, and `CAN-L3-C-062` list B as participant only; none claims institutional hierarchy.
+* **Course Offering / Delivery → Section D.** `CAN-L3-C-020`, `CAN-L3-C-021`, `CAN-L3-C-022`, `CAN-L3-C-024`, and `CAN-L3-C-025` list D as participant; no candidate claims offering ownership. Correct against `L2-C03` §4.5.
 * **Financial transactions → Section F.** `CAN-L3-C-071` hands off "without transferring scholarship-eligibility ownership"; `CAN-L3-C-057` declines financial-transaction ownership. Correct against `L2-C07` §2.2 and `L2-C06` §5 Rule 4.
-* **Official Examination results → Section I.** `CAN-L3-C-024`, `024`, `025`, `026`, `027`, `028`, `035` consume results with C as owner and I as participant. Correct against `L2-C04` §1.5 and `DEPENDENCY_MAP` lines 129–130, 339.
+* **Official Examination results → Section I.** `CAN-L3-C-024`, `CAN-L3-C-027` … `CAN-L3-C-031`, and `CAN-L3-C-038` consume results with C as owner and I as participant. Correct against `L2-C04` §1.5 and `DEPENDENCY_MAP` lines 129–130, 339.
 * **Institutional services → Section H.** `CAN-L3-C-018` retains only the request context and hands fulfilment to Document Services (`L2-C02` WF-C02-11.3). `CAN-L3-C-072` hands the alumni engagement context to the Alumni lifecycle without transferring the historical Student Context (`L2-C08` §2.2, §5.3).
 * **Campus Operations → Section G.** `CAN-L3-C-058` makes pickup authorization available to the enforcing capability rather than claiming enforcement.
 
@@ -106,14 +120,15 @@ No candidate introduced duplicate canonical ownership.
 | | Count |
 | - | ----: |
 | Candidates at verification | 71 |
-| Added (`072`, `073`, `074`) | +3 |
+| Added during verification (`072`, `073`, `074`) | +3 |
+| Added at finalization (`075`) | +1 |
 | Merged | 0 |
 | Removed | 0 |
-| **Candidates after application** | **74** |
+| **Final frozen candidates** | **75** |
 
-Neither open cluster in section 3.2 proposes a merge. If Phase 2 decides C-C01 and C-C02 in favour of consolidation, Section C would resolve to 72 candidates. That figure is indicative and is not a Phase 1 commitment.
+Neither open cluster in section 3.2 changes the final frozen Phase 1 count. If Phase 2 decides C-C01 or C-C02 in favour of consolidation, the relationship is recorded in the Phase 2 register; all 75 Phase 1 rows and IDs remain unchanged.
 
-### 6.1 Application execution record — 2026-08-14
+### 6.1 Historical application execution record — 2026-08-14
 
 **This table described an application that had not in fact been made.** The all-scope Phase 1 audit of 2026-08-14 found `L3_Phase1_Inventory_Chetan.md` holding 71 rows with maximum ID `CAN-L3-C-074`, no `C-072`/`C-073`/`C-074`, and `C-011` still carrying its pre-split title. `CF-01` below therefore referenced a mitigation that did not exist in the repository, and section 5 cited a boundary check against an absent candidate.
 

@@ -2,9 +2,9 @@
 
 **Architecture Level:** L3 — Business Scenario Architecture
 **Repository Area:** `architecture/L3_Business_Scenario_Architecture`
-**Status:** Phase 1 — Discovery Complete / Frozen; Phase 2 — Consolidation Active
+**Status:** Phase 1 — Final / Frozen; Phase 2 — Consolidation Active
 **Current Phase:** Phase 2 — Repository-Wide Scenario Consolidation
-**Lock Status:** Phase 1 candidate inventory format locked; Phase 1 candidate numbering normalized and frozen (2026-08-17); final scenario ownership not locked
+**Lock Status:** Phase 1 candidate inventory is the final frozen discovery baseline; Phase 1 candidate numbering normalized and frozen (2026-08-17); final scenario ownership not locked
 
 ---
 
@@ -86,8 +86,8 @@ These weak examples are workflow steps, not complete L3 business scenarios.
 
 ## 4. Current Repository Scope
 
-Phase 1 (scenario discovery and candidate inventory creation) is complete and frozen: all five team
-inventories are locked, and candidate numbering was normalized repository-wide on 2026-08-17 (see
+Phase 1 (scenario discovery and candidate inventory creation) is final and frozen: all five team
+inventories form the final discovery baseline, and candidate numbering was normalized repository-wide on 2026-08-17 (see
 `00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`).
 
 Phase 2 (repository-wide scenario consolidation) is active. Its working artifact is
@@ -184,9 +184,9 @@ The consolidation and traceability register for Sections B (Institution & Struct
 
 ### `L3_Section_C_Phase2_Consolidation_Watchlist.md`
 
-The equivalent record for Section C — Student Lifecycle, produced by the independent verification of 2026-08-09 (`generated/reviews/l3-phase1-section-c-verification-2026-08-09.md`). It holds four candidate relationship clusters (2 `CLOSED`, 2 `OPEN`) and nine repository conflicts surfaced during discovery (2 `DETERMINED`, 5 `OPEN`, 1 `BLOCKED`, plus one conflict-dependent wording constraint). Nothing in it has been consolidated.
+The equivalent record for Section C — Student Lifecycle, produced by the independent verification of 2026-08-09 (`generated/reviews/l3-phase1-section-c-verification-2026-08-09.md`). It holds four candidate relationship clusters (2 `CLOSED`, 2 `OPEN`) and nine repository conflicts surfaced during discovery (2 `DETERMINED`, 5 `OPEN`, 1 `RESOLVED`, plus one conflict-dependent wording constraint). The original CF-08 row is preserved as historical evidence and followed by its current resolution.
 
-**Policy Management ownership — resolved.** `CF-08` recorded this as blocking (`DEPENDENCY_MAP` §7, then status Open). `DEPENDENCY_MAP.md` line 409/434 now records **Resolved 2026-08-15 (RC-03): institutional policy is owned by `L2-B01`**, with `AcademicPolicyUpdated` published by `L2-C04` and `AlumniTransitionPolicyUpdated` published by `L2-C08`. The watchlist's `CF-08` row is left as originally written (it accurately describes the state at the time it was raised); see the row's own update note for the resolution. The two policy-lifecycle candidates it described as undiscoverable were not added by this migration — this is an identifier/traceability migration only, and adding candidates is a separate Phase 1 discovery action for the Section C owner to take up now that the blocker is resolved.
+**Policy Management ownership — resolved.** `CF-08` recorded this as blocking (`DEPENDENCY_MAP` §7, then status Open). `DEPENDENCY_MAP.md` line 409/434 records **Resolved 2026-08-15 (RC-03): institutional policy is owned by `L2-B01`**, with `AcademicPolicyUpdated` published by `L2-C04` and `AlumniTransitionPolicyUpdated` published by `L2-C08`. Phase 1 finalization added `CAN-L3-C-075` for the distinct Academic Progression policy-applicability outcome. No separate Alumni Policy candidate was added; policy validation remains within `CAN-L3-C-072` under C08's Alumni Transition lifecycle ownership. The watchlist preserves the original CF-08 entry as historical evidence and records the current resolution immediately after it.
 
 ### `L3_Section_J_Phase2_Consolidation_Watchlist.md`
 
@@ -198,7 +198,7 @@ The authoritative old-ID → new-ID crosswalk for the 2026-08-17 repository-wide
 
 ### `L3_Section_F_Phase2_Consolidation_Watchlist.md`
 
-The traceability register for the Section F audit and its authorized consolidation from 1,858 step-level rows to 87 institutional-outcome candidates. It preserves former ranges and lower-level rules for L4 authoring.
+The traceability register for the Section F audit and its authorized consolidation from 1,858 step-level rows to 85 institutional-outcome candidates. It preserves former ranges and lower-level rules for L4 authoring.
 
 ### `L3_Section_G_Phase2_Consolidation_Watchlist.md`
 
@@ -206,7 +206,7 @@ The Section G boundary and overlap register. It records which clusters remain op
 
 ### `L3_Section_H_Phase2_Consolidation_Watchlist.md`
 
-The audit-correction register for Section H, including the former-to-current crosswalk from 893 malformed or fragmented rows to 85 outcome candidates and the accepted dashboard, credit-transfer, H09-completeness, and accreditation-readiness decisions.
+The audit-correction register for Section H, including the former-to-current crosswalk from 893 malformed or fragmented rows to 81 outcome candidates and the accepted dashboard, credit-transfer, H09-completeness, and accreditation-readiness decisions.
 
 ### `L3_Section_I_Phase2_Consolidation_Watchlist.md`
 
@@ -252,7 +252,7 @@ CAN-L3-X-001
 Candidate IDs are temporary and must not be used as final L3 document IDs.
 
 Numbering starts at `001` in each area and is continuous, with no maximum digit width. Candidate IDs
-were normalized repository-wide on 2026-08-17 and are now frozen again — see
+were normalized repository-wide on 2026-08-17 and the resulting final Phase 1 baseline is frozen — see
 `00_Governance/L3_Naming_Numbering_Standard.md` §7.1 and
 `00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 
@@ -324,8 +324,8 @@ Do not introduce APIs, database design, UI design, implementation technology, or
 
 ```text
 Phase 1 candidate inventory format: Locked
-Phase 1 team discovery files: Created, submitted, corrected
-Phase 1 candidate numbering: Normalized repository-wide 2026-08-17, frozen
+Phase 1 candidate inventory: Final / Frozen (1,096 candidates)
+Phase 1 candidate numbering: Continuous by section and frozen; no Phase 2 disposition may renumber it
 Phase 2 consolidation: Active (see 02_Phase2_Consolidation/)
 Final L3 scenario list: Not locked
 Final L3 scenario ownership: Not locked
