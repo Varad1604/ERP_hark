@@ -251,7 +251,7 @@ Targeted collision check only, per audit scope. **No cross-inventory architectur
 | --- | --- | --- | --- |
 | `I-XI-01` | Chetan `C-036 Qualification Completion and Degree Conferment` vs I-250, I-258 | **Not an error.** `L2-I13` §2.2 assigns Final Qualification Completion Decision and Degree Award Authorization to `L2-C05`, and retains Completion Eligibility, Degree Award *Recommendation* and Completion Evidence for I13. Both sides respect the boundary. Valid Phase 1 discovery overlap requiring Phase 2 sequencing confirmation | `CLOSED` |
 | `I-XI-02` | Chetan `C-047 Conferred Qualification Correction or Revocation` vs I-262, I-263; Chetan `C-046` vs I-266 … I-269 | Adjacent outcomes with no defined ordering. Phase 2 must establish which triggers which | `OPEN` |
-| `I-XI-03` | Varad `G-002 Examination Readiness Assessment` vs I-021, I-085, I-094, I-095, I-099 | Genuine two-sided discovery. `L2-I03` §13.5 confirms Campus & Infrastructure supplies examination centres, halls, laboratories and seating capacity as a dependency. Boundary confirmation required | `OPEN` |
+| `I-XI-03` | Varad `G-543 Examination Readiness Assessment` vs I-021, I-085, I-094, I-095, I-099 | Genuine two-sided discovery. `L2-I03` §13.5 confirms Campus & Infrastructure supplies examination centres, halls, laboratories and seating capacity as a dependency. Boundary confirmation required | `OPEN` |
 | `I-XI-04` | Varad Finance `F-0030`, `F-0145`, `F-0302`, `F-0132`, `F-0254`, `F-0303`, `F-0341`, `F-0436` vs I-009, I-041, I-042, I-196, I-197, I-220 … I-222 | **Not an error — boundary held correctly on both sides.** Section I candidates consistently condition on "authoritative Finance-owned clearance" without claiming the monetary transaction, matching `L2-I01` §14 ("does not own Fee Collection, Accounting, Payments") and `L2-I11` §14. This discipline should be preserved through consolidation | `CLOSED` |
 | `I-XI-05` | Sections D and E have no examination-facing counterpart candidates | Section I lists `E` as a participating domain in ~15 candidates (invigilator, examiner and evaluator assignment) and `D` in ~30. `L3_Phase1_Inventory_Pallav.md` returns **zero** matches for "examination", "invigilat" or "examiner". The workforce-side outcome is unclaimed anywhere in Phase 1. **Not a Section I defect** — raise with the Section D/E discovery owner | `OPEN` |
 
@@ -442,3 +442,29 @@ own recorded Final Outcome; no outcome, state, trigger or business rule was chan
 **Still open for Phase 2.** `I-139`, `I-148`, `I-149`, `I-150` and `I-156` sit in the `I-TV-04`
 range but were outside the approved merge scope and remain undecided. Type and Priority for
 Section I were deliberately left unchanged — see the application report.
+
+---
+
+## ID Renumbering — 2026-08-17
+
+**Authorization:** explicit user request to apply consistent, continuous numbering to all Phase 1
+discovery sections, with explicit override of the "Phase 1 Candidate IDs must never be renumbered" rule.
+Same treatment already applied to Section G — see `L3_Section_G_Phase2_Consolidation_Watchlist.md` §14 for
+the full rationale (collision avoidance, why historical narrative stays frozen).
+
+**What changed.** The 197 active Section I candidates (previously sparse across `CAN-L3-I-001`…`CAN-L3-I-313`)
+were renumbered to a single continuous block **`CAN-L3-I-315`…`CAN-L3-I-511`**, in the same order they
+already held in `L3_Phase1_Inventory_Devang.md`. Applied to the Phase 1 inventory, the Phase 2 register,
+and the repository-wide review.
+
+**All content above this section is left exactly as originally written**, using the pre-2026-08-17 numbering
+— it documents decisions made under the ID scheme that existed at the time, and many of those passages
+describe a range of IDs (e.g. `I-217…I-222`) where only some members are still active; mechanically
+renumbering a shared endpoint would corrupt the range. Resolve any old ID encountered above through the
+crosswalk below.
+
+**Why the range starts at 315, not 1.** Section I's historical maximum ever allocated is `CAN-L3-I-314`
+(prior to the 2026-08-15 `I-TV-01`…`I-TV-04` consolidation). Starting the new continuous range at 315 makes
+it provably disjoint from every ID ever allocated in Section I, so no historical reference anywhere can
+become ambiguous. Full per-candidate old→new pairs are recorded in the Phase 2 register's Section I rows
+(Phase 1 ID column).
