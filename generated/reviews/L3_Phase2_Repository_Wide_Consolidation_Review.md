@@ -46,50 +46,45 @@ working ID, `P2W-C-1124`.
 
 | Disposition | Current count |
 | --- | ---: |
-| KEEP | 1,065 |
-| MERGE | 20 |
-| VARIANT | 7 |
+| KEEP | 1,080 |
+| MERGE | 26 |
+| VARIANT | 13 |
 | FAILURE-RECOVERY | 0 |
 | DUPLICATE | 2 |
-| SPLIT-REQUIRED | 1 |
+| SPLIT-REQUIRED | 2 |
 | REVIEW-REQUIRED | 1 |
-| BLOCKED | 28 |
+| BLOCKED | 0 |
 | **Total** | **1,124** |
 
-The 20 MERGE, 6 of the 7 VARIANT, and 2 DUPLICATE rows are the 28 historical absorbed Section G rows; they
-are not active Phase 1 candidates. The seventh VARIANT is frozen active Phase 1 row `CAN-L3-G-002`,
-dispositioned in Wave 2 without changing Phase 1. The current `REVIEW-REQUIRED` row is `CAN-L3-G-164`
-(`P2W-G-0341`).
+The 20 Section G MERGE rows, 6 of the 13 VARIANT rows, and 2 DUPLICATE rows are the 28 historical absorbed
+Section G rows; they are not active Phase 1 candidates. The active Phase 1 VARIANT rows are
+`CAN-L3-G-002` and the six J10 method rows `CAN-L3-J-099` through `CAN-L3-J-104`. The current
+`REVIEW-REQUIRED` row is `CAN-L3-G-164` (`P2W-G-0341`).
 
 ### 0.3 Current Section Summary
 
-| Section | Active Phase 1 | Register rows | KEEP | MERGE | VARIANT | DUPLICATE | SPLIT-REQUIRED | REVIEW-REQUIRED | BLOCKED |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| A | 62 | 62 | 62 | 0 | 0 | 0 | 0 | 0 | 0 |
-| B | 32 | 32 | 31 | 0 | 0 | 0 | 1 | 0 | 0 |
-| C | 75 | 75 | 75 | 0 | 0 | 0 | 0 | 0 | 0 |
-| D | 57 | 57 | 41 | 0 | 0 | 0 | 0 | 0 | 16 |
-| E | 75 | 75 | 75 | 0 | 0 | 0 | 0 | 0 | 0 |
-| F | 85 | 85 | 85 | 0 | 0 | 0 | 0 | 0 | 0 |
-| G | 322 | 350 | 320 | 20 | 7 | 2 | 0 | 1 | 0 |
-| H | 81 | 81 | 81 | 0 | 0 | 0 | 0 | 0 | 0 |
-| I | 197 | 197 | 192 | 0 | 0 | 0 | 0 | 0 | 5 |
-| J | 110 | 110 | 103 | 0 | 0 | 0 | 0 | 0 | 7 |
-| **Total** | **1,096** | **1,124** | **1,065** | **20** | **7** | **2** | **1** | **1** | **28** |
+| Section | Active Phase 1 | Register rows | KEEP | MERGE | VARIANT | FAILURE-RECOVERY | DUPLICATE | SPLIT-REQUIRED | REVIEW-REQUIRED | BLOCKED |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| A | 62 | 62 | 62 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| B | 32 | 32 | 31 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
+| C | 75 | 75 | 75 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| D | 57 | 57 | 55 | 1 | 0 | 0 | 0 | 1 | 0 | 0 |
+| E | 75 | 75 | 75 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| F | 85 | 85 | 85 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| G | 322 | 350 | 320 | 20 | 7 | 0 | 2 | 0 | 1 | 0 |
+| H | 81 | 81 | 81 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| I | 197 | 197 | 192 | 5 | 0 | 0 | 0 | 0 | 0 | 0 |
+| J | 110 | 110 | 104 | 0 | 6 | 0 | 0 | 0 | 0 | 0 |
+| **Total** | **1,096** | **1,124** | **1,080** | **26** | **13** | **0** | **2** | **2** | **1** | **0** |
 
-`FAILURE-RECOVERY` remains zero. `SPLIT-REQUIRED` is one for `CAN-L3-B-021`; its frozen Phase 1 row is unchanged.
+`FAILURE-RECOVERY` remains zero. `SPLIT-REQUIRED` now covers `CAN-L3-B-021` and `CAN-L3-D-042`; both frozen Phase 1 rows are unchanged.
 
 ### 0.4 Current Blocked Decision Register
 
 | Issue | Rows | Current active candidate IDs |
 | --- | ---: | --- |
-| FIND-D-02 | 2 | `CAN-L3-D-020`, `CAN-L3-D-021` |
-| FIND-D-06 | 5 | `CAN-L3-D-027`, `CAN-L3-D-028`, `CAN-L3-D-032`, `CAN-L3-D-033`, `CAN-L3-D-034` |
-| FIND-D-07 | 8 | `CAN-L3-D-035` … `CAN-L3-D-042` |
-| FIND-D-08 | 1 | `CAN-L3-D-043` |
-| I-TV-04-residual | 5 | `CAN-L3-I-076`, `CAN-L3-I-081`, `CAN-L3-I-082`, `CAN-L3-I-083`, `CAN-L3-I-087` |
-| J-TV-01 | 7 | `CAN-L3-J-097`, `CAN-L3-J-099` … `CAN-L3-J-104` |
-| **Total** | **28** | |
+| None | 0 | — |
+| **Total** | **0** | |
 
 `CF-08` is **RESOLVED**, not blocked. B01 owns the institutional policy definition; C04 owns the
 progression behavior that establishes versioned applicability and publishes `AcademicPolicyUpdated`.
@@ -111,7 +106,7 @@ C02-owned Student Context through existing `WF-C02-10` / `ArchiveStudent()` acco
 owns all Programme-changing mobility and publishes `ProgrammeMigrationApproved`; L2-C02 WF-C02-08 excludes
 Programme change, while C02 consumes the approved result solely to update its owned Student Context Programme
 association. `CAN-L3-C-033` is `KEEP`; at the close of Wave 1, `CAN-L3-C-012` remained blocked only under
-C-C01. `FIND-D-02` remains blocked pending Lead Architect decision; no same-tier aggregate conflict was
+C-C01. At the close of Wave 1, `FIND-D-02` remained blocked pending Lead Architect decision; no same-tier aggregate conflict was
 silently reconciled.
 
 Wave 2 cross-domain resolution on 2026-08-17 closed `C-C01`, `I-XI-02`, and `I-XI-03`. For `C-C01`, `L2-C02`
@@ -131,6 +126,10 @@ corrections do not alter I13 evidence; an approved revocation requiring evidence
 `QualificationAwardRevoked` event, after which I13 dispositions only its own evidence. `L2-C05` and `L2-I13`
 record the decision. `CAN-L3-C-050`, `CAN-L3-I-162`, and `CAN-L3-I-163` are `KEEP`. No new event or owner was
 introduced.
+
+Wave 3 outcome consolidation on 2026-08-17 resolved all 26 targeted rows. `FIND-D-06` retains the independently consumed published monitoring, governance-decision, certified-closure and reopening outcomes while merging activation into `CAN-L3-D-028`. `FIND-D-07` retains the separate D06 aggregate outcomes and marks `CAN-L3-D-042` `SPLIT-REQUIRED` because suspension and archival have different triggers and terminal consequences. `FIND-D-08` retains the independent certificate-verification lifecycle. The five `I-TV-04-residual` rows merge into `CAN-L3-I-072` or `CAN-L3-I-074`. `J-TV-01` retains `CAN-L3-J-097` and records the six method rows as governed `VARIANT`s. Phase 1 and all P2W identities remain unchanged. At Wave 3 close, only `FIND-D-02` remained blocked.
+
+The Lead Architect subsequently approved `FIND-D-02` Option B on 2026-08-17. `L2-D03` section 17 now controls the timetable hierarchy: `Timetable` is the sole Aggregate Root and `Timetable Version` and related scheduling records are governed beneath it. `L2-D00` and `L2-D03` were reconciled without adding a capability, state, event, owner, or external contract. `CAN-L3-D-020` and `CAN-L3-D-021` are distinct `KEEP` outcomes, and the current Phase 2 register has zero `BLOCKED` rows.
 
 ---
 

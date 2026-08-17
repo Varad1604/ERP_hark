@@ -78,3 +78,23 @@ Recorded so they are not re-derived. Confirmed by the 2026-08-14 cross-inventory
 ## 7. Effect on Candidate Count
 
 Section J holds **110 candidates**. The 2026-08-14 corrections changed field values only; **no candidate was added, removed, merged or split.** Retained IDs were not renumbered.
+
+---
+
+## 8. Wave 3 J-TV-01 Resolution — 2026-08-17
+
+`J-TV-01` is `RESOLVED`. `L2-J10` section 6.8 defines destruction, scrap, sale, auction, donation, external transfer, recycling, external return and other approved mechanisms as configurable values of one `Disposal Method`. Sections 12, 19, 28 and 31 place them inside the same Disposal & Write-off Case lifecycle from valid authorization through execution, reconciliation, closure and archival.
+
+Approval authority may vary by method under section 18, but method is one configurable policy input alongside materiality, category and quantity; L2-J10 does not establish a separate canonical approval aggregate for each method. Sections 20-23 prescribe method-specific execution evidence. Section 27 keeps proceeds and accounting outcomes Finance-owned. Those differences are useful governed variants, not different J10 terminal outcomes.
+
+| Candidate | Disposition | Parent | Variant evidence |
+| --- | --- | --- | --- |
+| `CAN-L3-J-097` | `KEEP` | — | Surviving current Phase 1 candidate for the authorized physical-disposal-to-reconciled-closure outcome; later canonical construction may generalize its residual-method title without changing frozen Phase 1. |
+| `CAN-L3-J-099` | `VARIANT` | `CAN-L3-J-097` | Destruction witness and certificate evidence. |
+| `CAN-L3-J-100` | `VARIANT` | `CAN-L3-J-097` | Scrap weight, recipient, receipt and value-reference evidence. |
+| `CAN-L3-J-101` | `VARIANT` | `CAN-L3-J-097` | Buyer, handover and Finance-owned proceeds references. |
+| `CAN-L3-J-102` | `VARIANT` | `CAN-L3-J-097` | Donation recipient acknowledgement evidence. |
+| `CAN-L3-J-103` | `VARIANT` | `CAN-L3-J-097` | External transfer-out acknowledgement; internal J07 movement remains excluded. |
+| `CAN-L3-J-104` | `VARIANT` | `CAN-L3-J-097` | Recycling or authorized external-return handover evidence. |
+
+`CAN-L3-J-098` remains `KEEP`: partial execution has a distinct outstanding-balance lifecycle consequence and was not part of `J-TV-01`.

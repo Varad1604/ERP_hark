@@ -45,6 +45,16 @@
 
 ---
 
+## Aggregate Hierarchy Resolution — FIND-D-02
+
+> Recorded 2026-08-17 under explicit Lead Architect approval of Option B.
+>
+> **Ruling: `L2-D03` section 17 is controlling. `Timetable` is the sole D03 Aggregate Root. `Timetable Version`, Schedule Entry, Schedule Slot, Scheduling Pattern, Resource Reservation, Validation Result, Conflict Record, Publication Record, Revision Record, and Audit Record are governed beneath that root.**
+>
+> This approved decision supersedes only the former three-root D03 summary in this review. It introduces no new capability, state, event, owner, or external contract.
+
+---
+
 # Purpose
 
 The purpose of this document is to establish a unified architecture review, boundary verification, dependency validation, and governance lock for the entire **Academic Delivery Section (Section D)** of the SutraERP platform.
@@ -116,10 +126,9 @@ Below is the verified registry of the six bounded contexts constituting the Acad
 
 ## L2-D03 — Timetable Workflows
 - **Purpose**: Manages scheduling of course offerings, timeslot definitions, and physical room/slot allocations while preventing resource conflicts.
-- **Core Aggregates**:
-  - `TimetableStructure`: Defines timeslots, days, and period patterns.
-  - `TimetableSlotAssignment`: Owns Room, Slot, Faculty, and Course Offering bindings.
-  - `SchedulingConflictRegister`: Tracks conflicts and exceptions.
+- **Core Aggregate Hierarchy**:
+  - `Timetable`: Sole Aggregate Root; owns scheduling scope, lifecycle, versions, and publication history.
+  - `Timetable Version`: Root-owned draft or published version containing schedule entries, slots, validation, conflict, reservation, publication, revision, and audit records; published versions are immutable.
 - **Publishes Events**: `TimetablePlanningStarted`, `TimetablePlanningCompleted`, `TimetableDraftCreated`, `TimetableValidated`, `TimetableValidationFailed`, `TimetableOptimized`, `TimetableConflictDetected`, `ConflictResolved`, `TimetableApproved`, `TimetableRejected`, `TimetablePublished`, `TimetableActivated`, `TimetableRevisionCreated`.
 - **Consumes Events**: `CourseOfferingPublished` (L2-D01), `FacultyAssignmentApproved` (L2-D02).
 - **Depends On**: L2-D01, L2-D02, Institutional Campus context (L2-B03), Physical Infrastructure resources (L2-G10).
@@ -308,61 +317,25 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - Aggregate Leakage: PASS.
 
 ========================================================================================
-6. TimetableStructure
+6. Timetable
 ========================================================================================
 - Source Document: L2-D03 — Timetable
 - Owner Domain: L2-D03 (Scheduling Context)
-- Aggregate Root: TimetableStructure
-- Purpose: Defines timeslots, days, and period patterns for scheduling blocks.
-- Lifecycle: Draft -> Published -> Archived
-- Business Invariants: Slots must be continuous and non-overlapping.
-- External References: Academic Calendar ID
-- Canonical IDs Used: TimetableStructureId
-- Commands Targeting: CreateTimetable, UpdateTimetableStructure
-- Events Published: TimetablePlanningStarted, TimetablePlanningCompleted
-- Events Consumed: None
-- Read Models: Active Calendar Slots Grid (RM-D03-02)
-- Boundary Validation: Immutable definition of operational calendar boundaries.
+- Aggregate Root: Timetable
+- Purpose: Governs the complete institutional timetable, its scheduling scope, version history, publication history, and operational lifecycle.
+- Lifecycle: Planning -> Draft -> Validated -> Approved -> Published -> Active; Active -> Frozen -> Revised -> Published; Active -> Retired -> Archived
+- Business Invariants: Every version belongs to one Timetable; entries, reservations, validation results, and conflict records are governed within the applicable version; published versions are immutable.
+- External References: Academic Calendar ID, Course Offering ID, Faculty Assignment ID, G10 Infrastructure Resource ID
+- Canonical IDs Used: TimetableId, VersionId
+- Commands Targeting: CreateTimetable, GenerateTimetable, ValidateTimetable, ApproveTimetable, PublishTimetable, ActivateTimetable, ReviseTimetable, ArchiveTimetable
+- Events Published: TimetablePlanningStarted, TimetableDraftCreated, TimetableValidated, TimetableConflictDetected, ConflictResolved, TimetableApproved, TimetablePublished, TimetableActivated, TimetableRevisionCreated, TimetableRepublished, TimetableRetired, TimetableArchived
+- Events Consumed: CourseOfferingPublished, FacultyAssignmentApproved
+- Read Models: Student Class Calendar (RM-D03-01), Active Calendar Slots Grid (RM-D03-02), Conflict Dashboard (RM-D03-03)
+- Boundary Validation: `Timetable Version` and its schedule, validation, conflict, reservation, publication, revision, and audit records are root-owned; physical infrastructure truth remains G10-owned.
 - Aggregate Leakage: PASS.
 
 ========================================================================================
-7. TimetableSlotAssignment
-========================================================================================
-- Source Document: L2-D03 — Timetable
-- Owner Domain: L2-D03 (Scheduling Context)
-- Aggregate Root: TimetableSlotAssignment
-- Purpose: Space-time bindings (Room ID, Slot ID, Offering ID, Faculty ID).
-- Lifecycle: Draft -> Scheduled -> Modified -> Archived
-- Business Invariants: Room, Slot, Faculty, and Course Offering must be clash-free.
-- External References: Infrastructure Space ID (L2-G10; room/classroom classification), Slot ID, Faculty ID
-- Canonical IDs Used: TimetableSlotAssignmentId
-- Commands Targeting: AllocateSlot, RescheduleSlot
-- Events Published: SlotScheduled, ScheduleModified
-- Events Consumed: FacultyAssignmentApproved
-- Read Models: Student Class Calendar (RM-D03-01)
-- Boundary Validation: Infrastructure Space constraints mapped from L2-G10.
-- Aggregate Leakage: PASS.
-
-========================================================================================
-8. SchedulingConflictRegister
-========================================================================================
-- Source Document: L2-D03 — Timetable
-- Owner Domain: L2-D03 (Scheduling Context)
-- Aggregate Root: SchedulingConflictRegister
-- Purpose: Log and resolve timetable clash events.
-- Lifecycle: Detected -> Investigating -> Resolved
-- Business Invariants: Double-bookings must generate resolution records.
-- External References: Room ID, Faculty ID
-- Canonical IDs Used: ConflictRegisterId
-- Commands Targeting: LogConflict, ResolveConflict
-- Events Published: TimetableConflictDetected, ConflictResolved
-- Events Consumed: SlotScheduled
-- Read Models: Conflict Dashboard (RM-D03-03)
-- Boundary Validation: Encapsulated as a tracking entity.
-- Aggregate Leakage: PASS.
-
-========================================================================================
-9. TeachingSession
+7. TeachingSession
 ========================================================================================
 - Source Document: L2-D04 — Teaching Session & Attendance
 - Owner Domain: L2-D04 (Execution Context)
@@ -380,7 +353,7 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - Aggregate Leakage: PASS.
 
 ========================================================================================
-10. AttendanceRecord
+8. AttendanceRecord
 ========================================================================================
 - Source Document: L2-D04 — Teaching Session & Attendance
 - Owner Domain: L2-D04 (Execution Context)
@@ -398,7 +371,7 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - Aggregate Leakage: PASS.
 
 ========================================================================================
-11. MonitoringCase
+9. MonitoringCase
 ========================================================================================
 - Source Document: L2-D05 — Academic Monitoring
 - Owner Domain: L2-D05 (Monitoring Context)
@@ -416,7 +389,7 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - Aggregate Leakage: PASS.
 
 ========================================================================================
-12. MonitoringPlan
+10. MonitoringPlan
 ========================================================================================
 - Source Document: L2-D05 — Academic Monitoring
 - Owner Domain: L2-D05 (Monitoring Context)
@@ -434,7 +407,7 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - Aggregate Leakage: PASS.
 
 ========================================================================================
-13. MonitoringEvaluation
+11. MonitoringEvaluation
 ========================================================================================
 - Source Document: L2-D05 — Academic Monitoring
 - Owner Domain: L2-D05 (Monitoring Context)
@@ -452,7 +425,7 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - Aggregate Leakage: PASS.
 
 ========================================================================================
-14. MonitoringIntervention
+12. MonitoringIntervention
 ========================================================================================
 - Source Document: L2-D05 — Academic Monitoring
 - Owner Domain: L2-D05 (Monitoring Context)
@@ -470,7 +443,7 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - Aggregate Leakage: PASS.
 
 ========================================================================================
-15. FlexibleLearningEnrollment (FLE)
+13. FlexibleLearningEnrollment (FLE)
 ========================================================================================
 - Source Document: L2-D06 — Open Electives & MOOCs
 - Owner Domain: L2-D06 (MOOCs & Open Electives Context)
@@ -488,7 +461,7 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - Aggregate Leakage: PASS.
 
 ========================================================================================
-16. SeatAllocation
+14. SeatAllocation
 ========================================================================================
 - Source Document: L2-D06 — Open Electives & MOOCs
 - Owner Domain: L2-D06 (MOOCs & Open Electives Context)
@@ -506,7 +479,7 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - Aggregate Leakage: PASS.
 
 ========================================================================================
-17. WaitlistEntry
+15. WaitlistEntry
 ========================================================================================
 - Source Document: L2-D06 — Open Electives & MOOCs
 - Owner Domain: L2-D06 (MOOCs & Open Electives Context)
@@ -524,7 +497,7 @@ Below is the verified registry of every Aggregate Root defined within Section D.
 - Aggregate Leakage: PASS.
 
 ========================================================================================
-18. CreditRecognition
+16. CreditRecognition
 ========================================================================================
 - Source Document: L2-D06 — Open Electives & MOOCs
 - Owner Domain: L2-D06 (MOOCs & Open Electives Context)
@@ -554,8 +527,8 @@ This matrix documents **every command** defined across contexts L2-D01 to L2-D06
 | **D01-C02 PublishOffering** | L2-D01 | `CourseOffering` | Offering validations pass | Offering status: Published | CourseOfferingPublished | Dept Head |
 | **D02-C01 AssignFaculty** | L2-D02 | `FacultyAssignment` | Faculty qualified; load slot open | Assignment status: Draft | FacultyAssignmentCreated | Admin |
 | **D02-C02 ApproveWorkload** | L2-D02 | `AssignmentApprovalCase`| Workload exception case active | Exception status: Approved | ApprovalGranted | Dean |
-| **D03-C01 CreateTimetable** | L2-D03 | `TimetableStructure` | Calendar terms published | Planning session: Active | TimetablePlanningStarted | Timetable Admin|
-| **D03-C02 AllocateSlot** | L2-D03 | `TimetableSlotAssignment` | room/faculty slot conflict-free | Slot state: Scheduled | SlotScheduled | Scheduler |
+| **D03-C01 CreateTimetable** | L2-D03 | `Timetable` | Calendar terms published | Planning session: Active | TimetablePlanningStarted | Timetable Admin|
+| **D03-C02 ReviseTimetable** | L2-D03 | `Timetable` | Active version and authorized change exist | New governed version created | TimetableRevisionCreated | Timetable Admin|
 | **D04-C01 StartTeachingSession**| L2-D04 | `TeachingSession` | slot Scheduled; time active | Session state: Active | TeachingSessionStarted | Faculty |
 | **D04-C02 RecordAttendance** | L2-D04 | `AttendanceRecord` | Session state: Active | Presence segments logged | AttendanceRecorded | Faculty |
 | **D04-C03 CorrectAttendance** | L2-D04 | `AttendanceRecord` | Session finalized; corrections valid| Presence status: Corrected | AttendanceCorrected | Dean |
@@ -578,8 +551,8 @@ This catalogue records **every domain event** published by Section D aggregates.
 |---|---|---|---|---|---|
 | **CourseOfferingPublished** | `CourseOffering` | L2-D01 | 1.0 | W18 completes | L2-D02, L2-D03, L2-D06 |
 | **FacultyAssignmentApproved** | `FacultyAssignment` | L2-D02 | 1.0 | Workload verified | L2-D03, L2-D04 |
-| **TimetablePublished** | `TimetableStructure` | L2-D03 | 1.0 | Timetable approved | L2-D04, Notifications |
-| **ScheduleModified** | `TimetableSlotAssignment` | L2-D03 | 1.0 | Slot assignment revised | L2-D04, L2-D05 |
+| **TimetablePublished** | `Timetable` | L2-D03 | 1.0 | Timetable approved | L2-D04, Notifications |
+| **TimetableRepublished** | `Timetable` | L2-D03 | 1.0 | Revised timetable published | L2-D04, L2-D05 |
 | **TeachingSessionStarted** | `TeachingSession` | L2-D04 | 1.0 | Class conducts start | L2-D05, Notifications |
 | **AttendanceFinalized** | `AttendanceRecord` | L2-D04 | 1.0 | Attendance locked | L2-D05, Examinations |
 | **TeachingProgressRecorded** | `TeachingSession` | L2-D04 | 1.0 | Progress sync | L2-D05, Curriculum |
@@ -640,7 +613,7 @@ Section D maintains loose coupling with other SutraERP domain sections.
 |---|---|---|---|---|---|
 | **Course Catalog (RM-D01-01)** | L2-D01 | `CourseMasterCreated`, `CourseMasterUpdated` | Projection on event | Eventual | Redis; 24-hr TTL |
 | **Faculty Workload Board (RM-D02-01)** | L2-D02 | `FacultyAssignmentApproved`, `AssignmentCancelled` | Event-driven projection | Eventual | Invalidated on change |
-| **Student Class Calendar (RM-D03-01)** | L2-D03 | `TimetablePublished`, `ScheduleModified` | Real-time project | Eventual | CDN cached |
+| **Student Class Calendar (RM-D03-01)** | L2-D03 | `TimetablePublished`, `TimetableRepublished` | Real-time project | Eventual | CDN cached |
 | **Daily Attendance Grid (RM-D04-01)** | L2-D04 | `AttendanceRegisterOpened`, `AttendanceRecorded` | Real-time Query | Eventual | No cache |
 | **Academic Risk Dashboard (RM-D05-01)**| L2-D05 | `AcademicMonitoringStarted`, `InterventionTriggered` | Event-driven projection | Eventual | CDN cached |
 | **Electives Registry Board (RM-D06-01)**| L2-D06 | `SeatReserved`, `SeatAllocated`, `SeatReleased` | Projection on event | Eventual | Invalidated on seat release |
@@ -651,7 +624,7 @@ Section D maintains loose coupling with other SutraERP domain sections.
 
 The Technical Architecture Board certifies the Academic Delivery Section (Section D):
 
-- **Aggregate Completeness**: Verified. All 18 aggregates are mapped with zero transaction leaks.
+- **Aggregate Completeness**: Verified. All 16 aggregate roots are mapped with zero transaction leaks.
 - **Boundary Validation**: PASS.
 - **Dependency Validation**: PASS.
 
@@ -678,25 +651,23 @@ All aggregates, commands, events, read models, and cross-domain dependencies are
 3. `FacultyAssignment` (Source: L2-D02)
 4. `AssignmentApprovalCase` (Source: L2-D02)
 5. `OperationalChange` (Source: L2-D02)
-6. `TimetableStructure` (Source: L2-D03)
-7. `TimetableSlotAssignment` (Source: L2-D03)
-8. `SchedulingConflictRegister` (Source: L2-D03)
-9. `TeachingSession` (Source: L2-D04)
-10. `AttendanceRecord` (Source: L2-D04)
-11. `MonitoringCase` (Source: L2-D05)
-12. `MonitoringPlan` (Source: L2-D05)
-13. `MonitoringEvaluation` (Source: L2-D05)
-14. `MonitoringIntervention` (Source: L2-D05)
-15. `FlexibleLearningEnrollment` (Source: L2-D06)
-16. `SeatAllocation` (Source: L2-D06)
-17. `WaitlistEntry` (Source: L2-D06)
-18. `CreditRecognition` (Source: L2-D06)
+6. `Timetable` (Source: L2-D03; `Timetable Version` and related scheduling records are root-owned)
+7. `TeachingSession` (Source: L2-D04)
+8. `AttendanceRecord` (Source: L2-D04)
+9. `MonitoringCase` (Source: L2-D05)
+10. `MonitoringPlan` (Source: L2-D05)
+11. `MonitoringEvaluation` (Source: L2-D05)
+12. `MonitoringIntervention` (Source: L2-D05)
+13. `FlexibleLearningEnrollment` (Source: L2-D06)
+14. `SeatAllocation` (Source: L2-D06)
+15. `WaitlistEntry` (Source: L2-D06)
+16. `CreditRecognition` (Source: L2-D06)
 
 ### Appendix B — Frozen Commands
-- `CreateCourse` (D01), `PublishOffering` (D01), `AssignFaculty` (D02), `ApproveWorkload` (D02), `CreateTimetable` (D03), `AllocateSlot` (D03), `StartTeachingSession` (D04), `RecordAttendance` (D04), `CorrectAttendance` (D04), `CreateMonitoringPlan` (D05), `TriggerIntervention` (D05), `ValidateEligibility` (D06), `SubmitEnrollment` (D06), `ApproveEnrollment` (D06), `RecordLearningComplete` (D06), `InitiateTranscriptPost` (D06), `RetryTranscriptPosting` (D06).
+- `CreateCourse` (D01), `PublishOffering` (D01), `AssignFaculty` (D02), `ApproveWorkload` (D02), `CreateTimetable` (D03), `ReviseTimetable` (D03), `StartTeachingSession` (D04), `RecordAttendance` (D04), `CorrectAttendance` (D04), `CreateMonitoringPlan` (D05), `TriggerIntervention` (D05), `ValidateEligibility` (D06), `SubmitEnrollment` (D06), `ApproveEnrollment` (D06), `RecordLearningComplete` (D06), `InitiateTranscriptPost` (D06), `RetryTranscriptPosting` (D06).
 
 ### Appendix C — Frozen Domain Events
-- `CourseOfferingPublished` (D01), `FacultyAssignmentApproved` (D02), `TimetablePublished` (D03), `ScheduleModified` (D03), `TeachingSessionStarted` (D04), `AttendanceFinalized` (D04), `TeachingProgressRecorded` (D04), `AcademicMonitoringStarted` (D05), `EnrollmentRequested` (D06), `EnrollmentApproved` (D06), `LearningCompletionRecorded` (D06), `TranscriptPostingRequested` (D06), `TranscriptPostingCompleted` (D06), `TranscriptPostingFailed` (D06).
+- `CourseOfferingPublished` (D01), `FacultyAssignmentApproved` (D02), `TimetablePublished` (D03), `TimetableRepublished` (D03), `TeachingSessionStarted` (D04), `AttendanceFinalized` (D04), `TeachingProgressRecorded` (D04), `AcademicMonitoringStarted` (D05), `EnrollmentRequested` (D06), `EnrollmentApproved` (D06), `LearningCompletionRecorded` (D06), `TranscriptPostingRequested` (D06), `TranscriptPostingCompleted` (D06), `TranscriptPostingFailed` (D06).
 
 ### Appendix D — Frozen Read Models
 - `Course Catalog (RM-D01-01)`, `Faculty Workload Board (RM-D02-01)`, `Student Class Calendar (RM-D03-01)`, `Daily Attendance Grid (RM-D04-01)`, `Academic Risk Dashboard (RM-D05-01)`, `Electives Registry Board (RM-D06-01)`.

@@ -74,7 +74,7 @@ Carried forward from the inventory, where they were recorded inline. Current sta
 | # | Finding | Status |
 | --- | --- | --- |
 | `FIND-D-01` | **Resolved 2026-08-17.** Locked L1 §17/§24 assigns Timetable to Academics and physical infrastructure to Infrastructure; `DEPENDENCY_MAP.md` §6 says Section D consumes campus and infrastructure context; `L2-G10` §9A.248 says G10 provides physical resource facts while Timetable determines allocation and scheduling. Stale B03 physical-infrastructure references in D00/D03 were corrected to G10. | `CLOSED` |
-| `FIND-D-02` | **LEAD ARCHITECT DECISION REQUIRED, confirmed 2026-08-17.** Locked `L2-D00` Part 5 freezes `TimetableStructure`, `TimetableSlotAssignment` and `SchedulingConflictRegister`; locked `L2-D03` §6.4/§17 instead names `Timetable`, `Timetable Version` and a different set of owned objects. No higher-tier source selects one aggregate model. No silent reconciliation was made. | `BLOCKED` |
+| `FIND-D-02` | **Resolved by explicit Lead Architect approval of Option B on 2026-08-17.** `L2-D03` §17 controls: `Timetable` is the sole Aggregate Root and `Timetable Version` and related scheduling records are governed beneath it. The former `L2-D00` three-root registry and inconsistent D03 ownership summaries were reconciled; see §9. | `CLOSED` |
 | `FIND-D-03` | D00 versus detailed D03/D04 terminology remains a mapping issue. | `OPEN` |
 | `FIND-D-04` | D00 command matrix coverage stops at D06; D07 commands were not invented into D00. | `OPEN` |
 | `FIND-D-05` | D07 Actors and Locked Decisions gaps remain; actor-specific roles were not invented. | `OPEN` |
@@ -118,3 +118,55 @@ No candidate in Sections B, D or E introduced duplicate canonical ownership, and
 | E | 75 | Retired IDs `E-029`, `E-030` must not be reused. |
 
 Retained IDs were not renumbered.
+
+---
+
+## 8. Wave 3 Outcome Consolidation Resolution — 2026-08-17
+
+This section is the current resolution of `FIND-D-06`, `FIND-D-07`, and `FIND-D-08`. It preserves the earlier point-in-time findings above and supersedes only their `OPEN` disposition.
+
+### 8.1 FIND-D-06 — RESOLVED
+
+`L2-D05` defines one Monitoring Case lifecycle, but it also establishes independently consumable business facts at outcome publication, formal governance decision, certified closure, and controlled post-terminal reopening.
+
+| Candidate | Disposition | Target | Outcome test and authoritative evidence |
+| --- | --- | --- | --- |
+| `CAN-L3-D-027` | `MERGE` | `CAN-L3-D-028` | Sections 8.3, 10.3-10.8 and 11.2 place activation before evaluation and publication in the same case; `Active` is an intermediate state. |
+| `CAN-L3-D-028` | `KEEP` | — | Sections 11.2 and 11.9 end the execution span in a published monitoring fact, notify consumers, and publish `AcademicMonitoringOutcomePublished`. |
+| `CAN-L3-D-032` | `KEEP` | — | Sections 8.11 and 13 give the review independent authority, a Governance Decision Record, conflict resolution, emergency override control, and published decision facts. |
+| `CAN-L3-D-033` | `KEEP` | — | Sections 14.2-14.7 require certification and closure authority and establish the immutable `AcademicMonitoringClosed` terminal state. |
+| `CAN-L3-D-034` | `KEEP` | — | Sections 14.8-14.11 begin after closure, preserve the original lifecycle, and create a new lifecycle context and identifier. |
+
+### 8.2 FIND-D-07 — RESOLVED
+
+`L2-D06` section 7, its aggregate catalogue, lifecycle models and ADRs distinguish Flexible Learning Enrollment from C03 Academic Registration and decompose the long-running D06 participation journey into separate consistency boundaries. D01 remains owner of Course Offering; C remains owner of Student Academic Registration and canonical academic records.
+
+| Candidate | Disposition | Outcome test and authoritative evidence |
+| --- | --- | --- |
+| `CAN-L3-D-035` | `KEEP` | Flexible Learning Enrollment has its own D06 lifecycle and approval/withdrawal outcomes; ADR-003 explicitly decouples it from institutional registration. |
+| `CAN-L3-D-036` | `KEEP` | Aggregate 2 owns the authoritative allocation/reservation/release fact. |
+| `CAN-L3-D-037` | `KEEP` | Aggregate 3 and ADR-011 establish an independent waitlist lifecycle and terminal dispositions. |
+| `CAN-L3-D-038` | `KEEP` | Aggregate 4 owns provider registration and synchronization status independently of the local enrollment decision. |
+| `CAN-L3-D-039` | `KEEP` | Aggregate 5 owns verified learning completion before any later recognition decision. |
+| `CAN-L3-D-040` | `KEEP` | Aggregate 7 and ADR-007 establish a separate institutional recognition decision; D06 only requests downstream posting. |
+| `CAN-L3-D-041` | `KEEP` | D06-W01-W05 reach active, discoverable availability while referencing the D01-owned Course Offering. |
+| `CAN-L3-D-042` | `SPLIT-REQUIRED` | D06-W06 suspension has an administrative trigger and temporary availability consequence; D06-W07 archival has post-session eligibility and an immutable historical consequence. Proposed later canonical boundaries: Active Opportunity to Governed Suspension; Archival-Eligible Opportunity to Archived Historical Opportunity. |
+
+### 8.3 FIND-D-08 — RESOLVED
+
+`CAN-L3-D-043` is `KEEP`. `L2-D06` Aggregate 6 and D06-W45-W51 define an independently governed Certificate Verification lifecycle with immutable evidence and accepted, rejected, and fraud-suspected terminal outcomes. Rejection or fraud can end verification and block recognition, so verification does not depend on a completed credit-recognition decision. No certificate master-data ownership is introduced.
+
+At Wave 3 close, `FIND-D-02` remained `BLOCKED` and unchanged for `CAN-L3-D-020` and `CAN-L3-D-021`.
+
+---
+
+## 9. FIND-D-02 Lead Architect Resolution — 2026-08-17
+
+The Lead Architect explicitly approved Option B. `L2-D03` section 17 is controlling: `Timetable` is the sole D03 Aggregate Root. `Timetable Version`, Schedule Entry, Schedule Slot, Scheduling Pattern, Resource Reservation, Validation Result, Conflict Record, Publication Record, Revision Record, and Audit Record are governed beneath that root. The inconsistent ownership summaries in `L2-D03` and the former three-root registry and mappings in `L2-D00` were reconciled to this hierarchy. No new capability, lifecycle state, event, owner, or external contract was introduced.
+
+| Candidate | Disposition | Outcome test and authoritative evidence |
+| --- | --- | --- |
+| `CAN-L3-D-020` | `KEEP` | The initial timetable journey completes planning, generation, validation, conflict resolution, approval, publication, and activation under the sole `Timetable` root, producing the independently consumed `TimetablePublished` and `TimetableActivated` outcomes. |
+| `CAN-L3-D-021` | `KEEP` | An authorized change after activation creates and governs a new immutable Timetable Version, completes approval and republication, and preserves the prior version. `TimetableRevisionCreated` and `TimetableRepublished` distinguish this outcome from initial publication. |
+
+`FIND-D-02` is **CLOSED**. The B/D/E watchlist has no remaining `BLOCKED` Phase 2 row.

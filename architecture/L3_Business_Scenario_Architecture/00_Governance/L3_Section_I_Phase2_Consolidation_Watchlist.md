@@ -510,3 +510,21 @@ The approved ordering is:
 `L2-C05` and `L2-I13` now record this decision. The hand-off reuses `ExaminationResultPublished`, `RevaluationCompleted`, `ExaminationCompletionEvidencePrepared`, and `QualificationAwardRevoked`; no new event or owner was introduced.
 
 The three candidates produce distinct institutional outcomes owned by different domains and are all `KEEP`. Qualification ownership remains exclusively with C05, and completion-evidence ownership remains exclusively with I13. Phase 1 remains frozen and unchanged.
+
+---
+
+## 18. Wave 3 I-TV-04 Residual Resolution — 2026-08-17
+
+The five residual rows are resolved without reopening the approved 2026-08-15 `I-TV-04` rulings or changing `CAN-L3-I-084` through `CAN-L3-I-086`.
+
+`L2-I08` sections 4.7, 8, 17 and 20 establish one authoritative domain result: Final Approved Marks. Its sections 10.1-10.7 treat missing/compromised evidence, discrepancy, validation failure, evaluator unavailability and continuity as exception or correction handling inside that lifecycle; they define no separate terminal business fact for the five causes.
+
+| Candidate | Disposition | Target | Evidence-based reason |
+| --- | --- | --- | --- |
+| `CAN-L3-I-076` | `MERGE` | `CAN-L3-I-072` | A validation discrepancy returns for traceable pre-approval correction; the parent already spans correction through Final Approved Marks. |
+| `CAN-L3-I-081` | `MERGE` | `CAN-L3-I-074` | An unavailable script is a missing-evidence cause that pauses evaluation and converges on authoritative resolution or routing. |
+| `CAN-L3-I-082` | `MERGE` | `CAN-L3-I-074` | Compromised evidence suspends evaluation for institutional determination; damage does not create a different downstream fact. |
+| `CAN-L3-I-083` | `MERGE` | `CAN-L3-I-074` | Script association is an integrity/validation correction before an authoritative exception outcome, not a separate lifecycle. |
+| `CAN-L3-I-087` | `MERGE` | `CAN-L3-I-072` | Resumption or authorized reassignment preserves the continuing evaluation; the parent already includes governed reassignment and reaches Final Approved Marks. |
+
+The retained policy-required second and adjudicating evaluation outcomes remain unchanged because they exercise independent policy authority rather than merely describing exception causes.

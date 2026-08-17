@@ -85,6 +85,12 @@ Required repository changes if approved:
 - `architecture/L3_Business_Scenario_Architecture/02_Phase2_Consolidation/L3_Phase2_Proposed_Canonical_Scenario_Register.md`
 - `generated/reviews/L3_Phase2_Repository_Wide_Consolidation_Review.md`
 
+## FIND-D-02 Post-Decision Application — 2026-08-17
+
+The Lead Architect subsequently approved Option B. `L2-D03` section 17 is controlling: `Timetable` is the sole Aggregate Root, and `Timetable Version` and all schedule, validation, conflict, publication, revision, reservation, and audit records are governed beneath it. `L2-D03` ownership summaries and the former `L2-D00` three-root registry, command mappings, event mappings, and certification were reconciled to that hierarchy without introducing a new capability, state, event, owner, or external contract.
+
+`CAN-L3-D-020` and `CAN-L3-D-021` are both `KEEP`. The former governs initial planning through activation; the latter governs an authorized post-activation revision that creates a new immutable version, republishes it, and preserves the prior version. `FIND-D-02` is closed.
+
 # Files Modified
 
 - `DEPENDENCY_MAP.md`
@@ -115,7 +121,7 @@ Required repository changes if approved:
 | `P2W-D-0740` | `CAN-L3-D-020` | BLOCKED (`FIND-D-01/FIND-D-02`) | BLOCKED (`FIND-D-02`) | Physical ownership settled; aggregate conflict remains |
 | `P2W-D-0741` | `CAN-L3-D-021` | BLOCKED (`FIND-D-01/FIND-D-02`) | BLOCKED (`FIND-D-02`) | Physical ownership settled; aggregate conflict remains |
 
-# Remaining Blocked Rows
+# Remaining Blocked Rows at Wave 1 Close
 
 Current Phase 2 BLOCKED count = 38.
 
@@ -144,8 +150,12 @@ Current Phase 2 BLOCKED count = 38.
 - Every L2 correction traces to the approved 2026-08-15 I07 scope decision, locked L1/G10 physical-infrastructure ownership, or the approved 2026-08-17 CF-06 and C-C02 Lead Architect decisions recorded in `DEPENDENCY_MAP.md`.
 - The unresolved locked D00/D03 aggregate conflict remains unresolved.
 
-# Repository Consistency Verdict
+# Repository Consistency Verdict at Wave 1 Close
 
 NEEDS DECISION
 
-The deterministic and approved-decision scope is internally propagated and validation passes. Repository consistency still depends on a Lead Architect decision for `FIND-D-02`; its affected rows remain blocked.
+The deterministic and approved-decision scope was internally propagated and validation passed. At Wave 1 close, repository consistency still depended on a Lead Architect decision for `FIND-D-02`; its affected rows remained blocked.
+
+# Current Status After FIND-D-02 Decision
+
+The subsequently approved Option B ruling described above closes `FIND-D-02`. `CAN-L3-D-020` and `CAN-L3-D-021` are `KEEP`; the current Phase 2 register has zero `BLOCKED` rows, and the current repository consistency verdict is **PASS**.

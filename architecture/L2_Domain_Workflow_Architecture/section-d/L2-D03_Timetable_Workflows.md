@@ -12,6 +12,16 @@
 
 ---
 
+## Aggregate Hierarchy Resolution — FIND-D-02
+
+> Recorded 2026-08-17 under explicit Lead Architect approval of Option B.
+>
+> **Ruling: D03 section 17 is the controlling timetable aggregate model. `Timetable` is the sole Aggregate Root. `Timetable Version` and the scheduling, validation, conflict, publication, revision, reservation, and audit records beneath it are root-owned parts of that hierarchy, not independent Aggregate Roots.**
+>
+> This ruling resolves the conflict with the former three-root summary in `L2-D00`. It changes no D03 business capability, event, lifecycle state, owner, or external contract. Section 6.4 and the section 17 ownership tables are normalized below to express the approved hierarchy consistently.
+
+---
+
 ## Canonical Section Crosswalk
 
 > Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
@@ -1973,25 +1983,25 @@ No external domain shall modify these capabilities.
 
 ---
 
-# 6.4 Aggregate Ownership
+# 6.4 Canonical Entity and Record Ownership
 
-The following aggregates are canonical entities owned by D03.
+The following business entities and records are canonically owned by D03. In accordance with the approved `FIND-D-02` ruling and sections 17.3-17.5, only `Timetable` is an Aggregate Root; every other item is governed beneath that root.
 
-| Aggregate | Ownership |
-|-----------|-----------|
-| Timetable | D03 |
-| Timetable Version | D03 |
-| Schedule Entry | D03 |
-| Schedule Slot | D03 |
-| Scheduling Pattern | D03 |
-| Resource Reservation | D03 |
-| Validation Result | D03 |
-| Conflict Record | D03 |
-| Publication Record | D03 |
-| Revision Record | D03 |
-| Scheduling Audit Record | D03 |
+| Business concept | Type | Ownership |
+|-----------|-----------|-----------|
+| Timetable | Aggregate Root | D03 |
+| Timetable Version | Root-owned Entity | D03 |
+| Schedule Entry | Child Entity | D03 |
+| Schedule Slot | Value Entity | D03 |
+| Scheduling Pattern | Root-owned Value Object | D03 |
+| Resource Reservation | Root-owned Record | D03 |
+| Validation Result | Child Entity | D03 |
+| Conflict Record | Child Entity | D03 |
+| Publication Record | Child Entity | D03 |
+| Revision Record | Child Entity | D03 |
+| Audit Record | Child Entity | D03 |
 
-Lifecycle management of these aggregates belongs exclusively to D03.
+Lifecycle management of the complete hierarchy belongs exclusively to D03 and is enforced through the `Timetable` Aggregate Root.
 
 ---
 
@@ -6455,11 +6465,14 @@ Timetable
 │
 ├── Timetable Version
 │     │
+│     ├── Scheduling Pattern
+│     │
 │     ├── Schedule Entry
 │     │      │
 │     │      ├── Schedule Slot
 │     │      ├── Faculty Allocation
 │     │      ├── Resource Allocation
+│     │      ├── Resource Reservation
 │     │      └── Session Details
 │     │
 │     ├── Validation Result
@@ -6473,22 +6486,23 @@ The **Timetable** aggregate is the root aggregate of the domain.
 
 ---
 
-# 17.4 Aggregate Ownership
+# 17.4 Canonical Hierarchy Ownership
 
-| Aggregate | Owner |
-|------------|-------|
-| Timetable | D03 |
-| Timetable Version | D03 |
-| Schedule Entry | D03 |
-| Schedule Slot | D03 |
-| Validation Result | D03 |
-| Conflict Record | D03 |
-| Publication Record | D03 |
-| Revision Record | D03 |
-| Audit Record | D03 |
-| Resource Reservation | D03 |
+| Business concept | Hierarchy type | Owner |
+|------------|-------|-------|
+| Timetable | Aggregate Root | D03 |
+| Timetable Version | Root-owned Entity | D03 |
+| Schedule Entry | Child Entity | D03 |
+| Schedule Slot | Value Entity | D03 |
+| Scheduling Pattern | Root-owned Value Object | D03 |
+| Validation Result | Child Entity | D03 |
+| Conflict Record | Child Entity | D03 |
+| Publication Record | Child Entity | D03 |
+| Revision Record | Child Entity | D03 |
+| Audit Record | Child Entity | D03 |
+| Resource Reservation | Root-owned Record | D03 |
 
-Lifecycle ownership belongs exclusively to D03.
+Lifecycle ownership belongs exclusively to D03. All invariant-changing operations enter through the `Timetable` Aggregate Root.
 
 ---
 
@@ -6497,11 +6511,13 @@ Lifecycle ownership belongs exclusively to D03.
 | Entity | Type |
 |---------|------|
 | Timetable | Aggregate Root |
-| Timetable Version | Aggregate |
+| Timetable Version | Root-owned Entity |
 | Schedule Entry | Child Entity |
 | Schedule Slot | Value Entity |
+| Scheduling Pattern | Root-owned Value Object |
 | Faculty Allocation | Reference Entity |
 | Resource Allocation | Reference Entity |
+| Resource Reservation | Root-owned Record |
 | Validation Result | Child Entity |
 | Conflict Record | Child Entity |
 | Publication Record | Child Entity |
@@ -6622,6 +6638,8 @@ References:
 Physical infrastructure master ownership remains with G10.
 
 Reservation ownership belongs to D03.
+
+A `Resource Reservation` is a D03-owned record attached to the applicable Schedule Entry within a Timetable Version. It is governed through the `Timetable` Aggregate Root and is not an independent Aggregate Root. `Resource Allocation` remains the reference to the G10-owned physical resource.
 
 ---
 
@@ -6755,7 +6773,7 @@ Only identifiers and approved reference attributes shall be stored.
 
 The data model shall satisfy the following rules.
 
-- Every Timetable has one aggregate root.
+- Every timetable lifecycle is governed by exactly one `Timetable` Aggregate Root.
 - Every Version belongs to one Timetable.
 - Every Schedule Entry belongs to one Version.
 - Every Schedule Slot belongs to one Entry.
@@ -8874,6 +8892,12 @@ Architecture decisions shall satisfy the following principles.
 | Q07 | Independent domain ownership |
 
 These decisions establish the business ownership model for D03.
+
+## 24.4.1 FIND-D-02 — Timetable Aggregate Hierarchy
+
+**Decision:** Lead Architect approval on 2026-08-17 selects Option B. Q02 and section 17 control: `Timetable` is the sole Aggregate Root, while `Timetable Version` and all schedule, validation, conflict, publication, revision, reservation, and audit records are governed beneath it.
+
+**Consequence:** Earlier plural use of “aggregate” in section 6.4 is normalized to entity/record ownership. `L2-D00` must mirror this hierarchy. No capability ownership, event, command intent, lifecycle state, or integration contract changes.
 
 ---
 
