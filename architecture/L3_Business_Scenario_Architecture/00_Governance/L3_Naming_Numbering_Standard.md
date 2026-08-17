@@ -83,7 +83,7 @@ Meaning:
 | `CAN`    | Candidate                                             |
 | `L3`     | Level 3 Business Scenario Architecture                |
 | `<AREA>` | Discovery area                                        |
-| `<NNN>`  | Three-digit running number within that discovery area |
+| `<NNN>`  | Running number within that discovery area, minimum three digits, unbounded upward (`001` … `999` … `1000` … `1001` …) |
 
 Candidate IDs are temporary.
 
@@ -137,7 +137,8 @@ CAN-L3-X-001 — Cross-domain Scenario Requiring Ownership Review
 
 Each team member assigns candidate IDs only within the discovery areas they are working on.
 
-Candidate numbering should start at `001` for each area.
+Candidate numbering starts at `001` for each area and is continuous within that area's active
+inventory — no gaps between `001` and the last active number.
 
 Examples:
 
@@ -157,7 +158,29 @@ CAN-L3-F-003
 
 Candidate numbers do not need to match final L3 scenario numbers.
 
-If a candidate is later merged, split, deferred, or rejected, its original candidate ID remains as a historical discovery reference.
+If a candidate is later merged, split, deferred, or rejected, its original candidate ID remains as a historical discovery reference and is never reused. Its removal from the active inventory therefore does not create a gap under the continuity rule above — continuity is measured against the active inventory only.
+
+### 7.1 One-Time Continuous Numbering Migration (2026-08-17)
+
+On 2026-08-17 every active section's candidate numbering was normalized to start at `001` and run
+continuously, in a controlled, one-time, repository-wide migration. Before that date, sections had
+accumulated non-`001` starting points through ordinary Phase 1 discovery and consolidation activity.
+The complete old-ID → new-ID mapping, section by section, is the authoritative record in
+`L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
+
+**This migration does not repeat.** After 2026-08-17, active candidate IDs are frozen again:
+
+* Future merges, splits, duplicate resolutions, or rejections retire the affected candidate ID(s)
+  permanently. They do **not** trigger a renumbering of the remaining active candidates, and they do
+  **not** need to be back-filled to keep the sequence gap-free.
+* `check_l3_inventory.py` enforces continuity as a submission quality gate against the numbering as it
+  stands today, immediately after the 2026-08-17 migration. Whether a future retirement's resulting gap
+  is closed by an explicit, separately authorized micro-renumbering of just the affected area, or left
+  as a recorded gap, is a Phase 2 / Lead Architect governance decision at that time — it is not an
+  automatic consequence of the retirement itself, and it is not this document's decision to make in
+  advance.
+* A new full-repository renumbering may only happen again under the same kind of explicit, one-time,
+  documented authorization this one had — never as a routine consequence of Phase 2 consolidation.
 
 ---
 
@@ -405,9 +428,13 @@ The following rules are locked for Phase 1:
 
 ```text
 Phase 1 candidate IDs use CAN-L3-<AREA>-<NNN>.
+Candidate numbering starts at 001 in every area and is continuous, with no maximum width.
 Final L3 scenario IDs use L3-<PRIMARY_OWNER_SECTION>-<NNN>.
 Final L3 file names use L3-<PRIMARY_OWNER_SECTION>-<NNN>_<Scenario_Slug>.md.
 CAN-L3 is temporary and must not be used for final L3 documents.
 L3 numbering is independent of L2 numbering.
 Final scenario ownership is confirmed during Phase 2 consolidation.
+Candidate IDs were normalized once, repository-wide, on 2026-08-17
+  (see L3_Phase1_Candidate_ID_Migration_2026-08-17.md). This does not repeat as a
+  routine event -- see section 7.1.
 ```

@@ -1,7 +1,7 @@
 # L3 Section F — Phase 2 Consolidation Watchlist
 
 **Architecture Level:** L3 — Business Scenario Architecture
-**Applies To:** Section F — Finance, current candidates `CAN-L3-F-001` … `CAN-L3-F-087`; former candidates `CAN-L3-F-0001` … `CAN-L3-F-1858`
+**Applies To:** Section F — Finance, current candidates `CAN-L3-F-001` … `CAN-L3-F-085` (`F-086`/`F-087` retired 2026-08-14, see §12; header corrected 2026-08-17, see `L3_Phase1_Candidate_ID_Migration_2026-08-17.md`); former candidates `CAN-L3-F-0001` … `CAN-L3-F-1858` (historical, pre-2026-08-12 raw discovery numbering — not renumbered by this migration)
 **Status:** Audit consolidation applied — retained as traceability and L4-input register
 **Created:** 2026-08-12
 **Source:** independent adversarial audit of Section F, 2026-08-12 — `generated/reviews/L3_Phase1_Audit_Varad_Section_F.md`
@@ -225,7 +225,7 @@ The all-scope Phase 1 audit of 2026-08-14 found that two Section F rows carried 
 | Retired | Title | Owner it carried | Subsumed by | Basis |
 | --- | --- | --- | --- | --- |
 | `CAN-L3-F-086` | Financial Outcome to Governed Notification | `H02` | `CAN-L3-H-010` Authoritative Business Outcome to Governed Communication Outcome | `H-010` already covers any source domain and disclaims ownership of the originating transaction. `G-FR-08` precedent. |
-| `CAN-L3-F-087` | Financial Reports and Projections to Governed Dashboard Composition | `H07` | `CAN-L3-H-050` Dashboard Requirement to Governed Published Dashboard | `H-DEC-01` assigns dashboard composition to H07 and source facts/reports/KPI definitions to F13. `G-FR-09` precedent. |
+| `CAN-L3-F-087` | Financial Reports and Projections to Governed Dashboard Composition | `H07` | `CAN-L3-H-048` Dashboard Requirement to Governed Published Dashboard | `H-DEC-01` assigns dashboard composition to H07 and source facts/reports/KPI definitions to F13. `G-FR-09` precedent. |
 
 **No Finance-owned outcome was lost.** The publisher-side Finance outcome is held by `CAN-L3-F-077` (Financial Facts to Published KPI and Dashboard Projection), which remains in the inventory and retains F13 ownership of reports, KPI definitions and projections. The F13 row of the table in section 11 above should now read `F-073`…`F-079` only.
 

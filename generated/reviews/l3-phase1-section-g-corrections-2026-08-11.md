@@ -1,5 +1,7 @@
 # L3 Phase 1 — Section G Correction Manifest
 
+
+> **Numbering note (2026-08-17).** Candidate IDs in this historical report reflect the numbering in force when it was written. Repository-wide candidate numbering was normalized on 2026-08-17; for current IDs see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 **Date:** 2026-08-11  
 **Target:** `architecture/L3_Business_Scenario_Architecture/01_Phase1_Discovery/L3_Phase1_Inventory_Varad.md`  
 **Scope:** Section G only. Sections F and H untouched.  

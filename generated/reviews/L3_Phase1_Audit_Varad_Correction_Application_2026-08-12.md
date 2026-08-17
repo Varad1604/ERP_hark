@@ -1,5 +1,7 @@
 # SutraERP L3 Phase 1 Audit — Varad Correction Application
 
+
+> **Numbering note (2026-08-17).** Candidate IDs in this historical report reflect the numbering in force when it was written. Repository-wide candidate numbering was normalized on 2026-08-17; for current IDs see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 **Date:** 2026-08-12  
 **Source audit:** `generated/reviews/L3_Phase1_Audit_Varad_ALL_ASSIGNED.md`  
 **Authorization:** User accepted the four cross-section architecture decisions, then accepted all remaining Section G recommendations and authorized repository changes.  

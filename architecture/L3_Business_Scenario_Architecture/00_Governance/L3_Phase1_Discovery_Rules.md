@@ -110,6 +110,10 @@ Candidate IDs are temporary.
 
 They must not be used as final L3 scenario document IDs.
 
+Numbering starts at `001` in each discovery area and is continuous, with no maximum digit width — see
+`L3_Naming_Numbering_Standard.md` §4 and §7.1, and `L3_Phase1_Candidate_ID_Migration_2026-08-17.md` for
+the one-time repository-wide renumbering applied on 2026-08-17.
+
 ---
 
 ## 7. What Counts as a Valid L3 Candidate

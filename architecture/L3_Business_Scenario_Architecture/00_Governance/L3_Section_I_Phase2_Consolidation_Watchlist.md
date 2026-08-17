@@ -1,7 +1,7 @@
 # L3 Section I — Phase 2 Consolidation Watchlist
 
 **Architecture Level:** L3 — Business Scenario Architecture
-**Applies To:** Section I — Examination, candidates `CAN-L3-I-001` … `CAN-L3-I-313` (245 live rows; IDs are sparse after consolidation and are renumbered at Phase 2 close)
+**Applies To:** Section I — Examination, currently 197 active candidates in continuous range `CAN-L3-I-001` … `CAN-L3-I-197` (renumbered 2026-08-17; see "ID Renumbering — 2026-08-17" near the end of this document and `L3_Phase1_Candidate_ID_Migration_2026-08-17.md`). This header described 245 sparse candidates across `CAN-L3-I-001`…`CAN-L3-I-313` before the 2026-08-15 `I-TV` consolidation and is corrected here as a live governance fact; §1–§16 below remain unmodified historical narrative, using the numbering that existed when each was written.
 **Status:** Active — Phase 2 input
 **Created:** 2026-08-12
 **Source:** independent adversarial audit of Section I, 2026-08-12 — `generated/reviews/L3_Phase1_Audit_Devang_ALL_ASSIGNED.md`
@@ -445,7 +445,7 @@ Section I were deliberately left unchanged — see the application report.
 
 ---
 
-## ID Renumbering — 2026-08-17
+## ID Renumbering — 2026-08-17 (disjoint-start; superseded later the same day, see below)
 
 **Authorization:** explicit user request to apply consistent, continuous numbering to all Phase 1
 discovery sections, with explicit override of the "Phase 1 Candidate IDs must never be renumbered" rule.
@@ -461,10 +461,21 @@ and the repository-wide review.
 — it documents decisions made under the ID scheme that existed at the time, and many of those passages
 describe a range of IDs (e.g. `I-217…I-222`) where only some members are still active; mechanically
 renumbering a shared endpoint would corrupt the range. Resolve any old ID encountered above through the
-crosswalk below.
+`L3_Phase1_Candidate_ID_Migration_2026-08-17.md` crosswalk (for `315`–`511` IDs) or through this section
+(for pre-`315` IDs).
 
-**Why the range starts at 315, not 1.** Section I's historical maximum ever allocated is `CAN-L3-I-314`
-(prior to the 2026-08-15 `I-TV-01`…`I-TV-04` consolidation). Starting the new continuous range at 315 makes
-it provably disjoint from every ID ever allocated in Section I, so no historical reference anywhere can
-become ambiguous. Full per-candidate old→new pairs are recorded in the Phase 2 register's Section I rows
-(Phase 1 ID column).
+**Why the range started at 315, not 1.** Section I's historical maximum ever allocated is `CAN-L3-I-314`
+(prior to the 2026-08-15 `I-TV-01`…`I-TV-04` consolidation). Starting the new continuous range at 315 made
+it provably disjoint from every ID ever allocated in Section I, so no historical reference anywhere could
+become ambiguous.
+
+### Superseded — Repository-Wide `001`-Start Renumbering — 2026-08-17
+
+Later the same day, the repository-wide `001`-start migration (`L3_Phase1_Candidate_ID_Migration_2026-08-17.md`)
+renumbered every section, including this one, a second time: the 197 active Section I candidates (disjoint
+range `CAN-L3-I-315`…`CAN-L3-I-511` above) became the continuous block **`CAN-L3-I-001`…`CAN-L3-I-197`**,
+in the same order, which is the range currently active in `L3_Phase1_Inventory_Devang.md`. This resolves the
+same collision concern described above through an explicit crosswalk document instead of a disjoint numeric
+offset. Full per-candidate old→new pairs (both the `315`-start disjoint IDs and their final `001`-start IDs)
+are recorded in `L3_Phase1_Candidate_ID_Migration_2026-08-17.md` and, per-row, in the Phase 2 register's
+Section I "Phase 1 ID" column.

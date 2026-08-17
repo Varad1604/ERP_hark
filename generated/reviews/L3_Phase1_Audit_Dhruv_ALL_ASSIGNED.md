@@ -1,5 +1,7 @@
 # SutraERP L3 Phase 1 Audit — Dhruv
 
+
+> **Numbering note (2026-08-17).** Candidate IDs in this historical report reflect the numbering in force when it was written. Repository-wide candidate numbering was normalized on 2026-08-17; for current IDs see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 > **Post-audit notice — 2026-08-13:** All recommended decisions, including the subsequently unblocked DEC-DHR-07, were approved and applied. The current inventory has 172 active rows (A: 62; J: 110), the two missing A06 outcomes are present, all recommended merges are closed, A052 has been split into three certificate-lifecycle outcomes, `INT-301`/`INT-302` are resolved, and the targeted J source-structure gaps are closed. A later post-remediation pass completed the full source matrix, available-peer collision review and procurement-to-inventory pilot, rating the current revised artifact 98/100; see `generated/reviews/L3_Phase1_Dhruv_Revised_Submission_Verification_2026-08-13.md`. The findings below remain the pre-correction evidence record and Dhruv's 88/100 authoring-rating basis.
 
 ## 1. Executive Verdict

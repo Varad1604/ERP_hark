@@ -33,8 +33,10 @@ DEFAULT_DIR = (
     / "01_Phase1_Discovery"
 )
 
-# Discovery Rules section 6 - Phase 1 candidate ID format.
-CANDIDATE_ID = re.compile(r"^CAN-L3-([A-JX])-(\d{3,4})$")
+# Discovery Rules section 6 / Naming and Numbering Standard section 4 and 7 - Phase 1
+# candidate ID format. Numbering starts at 001 in each area, minimum three digits, and
+# is unbounded upward (001 ... 999 ... 1000 ... 1001 ...) -- no maximum digit width.
+CANDIDATE_ID = re.compile(r"^CAN-L3-([A-JX])-(\d{3,})$")
 
 # A table row that presents itself as a candidate. Anything matching this is
 # held to the full locked format, which is what stops non-conforming rows
@@ -375,6 +377,58 @@ def check_statistics(source: str, rows: list[Row], report: Report) -> None:
         )
 
 
+def check_sequence(rows_by_source: dict[str, list[Row]], report: Report) -> None:
+    """Naming and Numbering Standard section 7 / section 7.1 - after the 2026-08-17
+    one-time normalization, active candidate numbering must start at 001 in each area
+    and run continuously with no gaps and no duplicate sequence numbers, regardless of
+    which inventory file each row lives in."""
+    by_letter: dict[str, dict[int, list[str]]] = defaultdict(lambda: defaultdict(list))
+    for source, rows in rows_by_source.items():
+        for row in rows:
+            m = CANDIDATE_ID.match(row.get("Candidate ID"))
+            if not m:
+                continue  # already reported as a format error
+            letter, digits = m.groups()
+            by_letter[letter][int(digits)].append(row.ref)
+
+    for letter in sorted(by_letter):
+        nums = by_letter[letter]
+        for num, refs in sorted(nums.items()):
+            if len(refs) > 1:
+                report.add(
+                    ERROR,
+                    "cross-inventory",
+                    f"Section {letter}: duplicate active sequence number {num:03d} "
+                    f"[Naming and Numbering Standard section 7]",
+                    ", ".join(refs),
+                )
+
+        present = sorted(nums)
+        if not present:
+            continue
+
+        if present[0] != 1:
+            report.add(
+                ERROR,
+                "cross-inventory",
+                f"Section {letter}: active numbering does not start at 001 "
+                f"[Naming and Numbering Standard section 7]",
+                f"first active number is {present[0]:03d}",
+            )
+
+        gaps = [n for n in range(present[0], present[-1] + 1) if n not in nums]
+        if gaps:
+            sample = ", ".join(f"CAN-L3-{letter}-{g:03d}" for g in gaps[:SAMPLE_SIZE])
+            more = f" ... and {len(gaps) - SAMPLE_SIZE} more" if len(gaps) > SAMPLE_SIZE else ""
+            report.add(
+                ERROR,
+                "cross-inventory",
+                f"Section {letter}: {len(gaps)} gap(s) in the active numbering sequence "
+                f"[Naming and Numbering Standard section 7]",
+                f"missing {sample}{more}",
+            )
+
+
 def emit(report: Report, level: str, full: bool) -> None:
     groups = report.groups(level)
     if not groups:
@@ -428,11 +482,13 @@ def main() -> int:
 
     report = Report()
     all_ids: dict[str, set[str]] = defaultdict(set)
+    rows_by_source: dict[str, list[Row]] = {}
     total = 0
 
     for path in files:
         rows = check_file(path, report)
         total += len(rows)
+        rows_by_source[path.name] = rows
         for row in rows:
             all_ids[row.get("Candidate ID")].add(path.name)
 
@@ -445,6 +501,8 @@ def main() -> int:
                 "candidate ID is used in more than one inventory",
                 f"{cid} in {', '.join(sorted(sources))}",
             )
+
+    check_sequence(rows_by_source, report)
 
     if not args.quiet and report.notes:
         print("Summary")
