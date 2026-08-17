@@ -2,6 +2,28 @@
 
 This document tracks changes to the SutraERP Architecture Repository layout, guidelines, baseline, and locks.
 
+## [1.11.0] - 2026-08-17
+
+**Controlled, one-time, repository-wide L3 Phase 1 candidate ID numbering migration.** Every active
+section (A–J) is renumbered to a continuous range starting at `CAN-L3-<AREA>-001`. This is an
+identifier/governance/traceability remediation only — no business scenario was added, removed, merged,
+split, or reclassified, and no L0/L1/L2 business architecture changed. Sections G and I had each
+already undergone an earlier, narrower "disjoint-start" renumbering earlier the same day (`G-542`…`G-863`,
+`I-315`…`I-511`); this migration supersedes that approach for every section, including those two.
+
+Complete old→new crosswalk:
+`architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
+Validation record:
+`generated/reviews/L3_Phase1_Continuous_Numbering_Migration_2026-08-17.md`.
+
+Also corrected five pre-existing dangling cross-references where a citation had never been updated after
+its target was renumbered by an earlier, separate consolidation (`CAN-L3-E-103`→`E-119`,
+`CAN-L3-H-010`→`H-095`, `CAN-L3-H-050`→`H-133`, `CAN-L3-J-028`→`J-709`, `CAN-L3-J-029`→`J-710`, each
+verified by exact Scenario Title match before correction), and resynchronized several governance documents
+(`README.md`, `L3_Naming_Numbering_Standard.md`, `check_l3_inventory.py`) that had drifted from the live
+repository state independent of this renumbering (Phase status, Policy Management ownership resolution,
+`check_l3_inventory.py`'s digit-width cap).
+
 ## [1.10.0] - 2026-08-14
 
 Pallav's assigned Sections B, D and E were corrected following the independent all-assigned Phase 1 audit and the user's architecture rulings. **Minor class — this release carries one locked L1 ownership statement down into L2 and consolidates candidate boundaries.** Section D moves from 38 field-incomplete parents plus 954 generated variant rows to **48 institutional-outcome candidates**; Sections B and E move from 101 to **107** combined. The total inventory moves from 101 conformant candidates to **155**.

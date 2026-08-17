@@ -2,7 +2,7 @@
 
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Applies To:** Section H — Institutional Services & Intelligence  
-**Current candidates:** `CAN-L3-H-086` … `CAN-L3-H-166`  
+**Current candidates:** `CAN-L3-H-001` … `CAN-L3-H-081` (renumbered 2026-08-17, see `L3_Phase1_Candidate_ID_Migration_2026-08-17.md`)  
 **Status:** Active — corrected Phase 1 input  
 **Created:** 2026-08-12  
 **Authority:** user-approved resolution of `generated/reviews/L3_Phase1_Audit_Varad_ALL_ASSIGNED.md`
@@ -22,9 +22,9 @@ The corrected inventory uses institutional business outcomes. Detailed rules, va
 | Decision | Accepted boundary | Repository application |
 | --- | --- | --- |
 | `H-DEC-01` — Dashboard ownership | H07 owns dashboard composition, templates, widgets, layouts, workspaces and presentation governance. Finance and Campus Operations retain ownership of source facts, reports, KPI definitions and projections. | Applied to L2-F13, the Dependency Map, and affected F/G/H candidates. |
-| `H-DEC-02` — External credit recognition | L2-C04 owns academic equivalency, approval/rejection, recognized credit and the Academic Credit Ledger. H10 owns provider verification, external exchange, mapping, synchronization, recovery and reconciliation. | Applied to L2-C04, L2-H10, the Dependency Map, `CAN-L3-C-029`, and `CAN-L3-H-163`. |
+| `H-DEC-02` — External credit recognition | L2-C04 owns academic equivalency, approval/rejection, recognized credit and the Academic Credit Ledger. H10 owns provider verification, external exchange, mapping, synchronization, recovery and reconciliation. | Applied to L2-C04, L2-H10, the Dependency Map, `CAN-L3-C-032`, and `CAN-L3-H-078`. |
 | `H-DEC-03` — Complete H09 before L3 | H09 must define its integration contracts, dependency model and locked decisions before accreditation/compliance L3 candidates can be approved. | L2-H09 sections 23–25 added before H09 candidates were corrected. |
-| `H-DEC-04` — Separate readiness outcomes | A10 owns operational go-live/certification eligibility. G00 owns Campus Operations evidence readiness. H09 owns institutional accreditation readiness. | Applied to L2-G00, L2-H09, the Dependency Map, `CAN-L3-G-544`, and `CAN-L3-H-154`. |
+| `H-DEC-04` — Separate readiness outcomes | A10 owns operational go-live/certification eligibility. G00 owns Campus Operations evidence readiness. H09 owns institutional accreditation readiness. | Applied to L2-G00, L2-H09, the Dependency Map, `CAN-L3-G-003`, and `CAN-L3-H-069`. |
 
 These are user-authorized architecture corrections dated 2026-08-12. They do not transfer source-business ownership to a cross-cutting service.
 
@@ -34,16 +34,16 @@ These are user-authorized architecture corrections dated 2026-08-12. They do not
 
 | Former inventory block | Former rows | Current candidates | Disposition |
 | --- | ---: | --- | --- |
-| `CAN-L3-H01-001` … `CAN-L3-H01-011` | 11 | `CAN-L3-H-086` … `H-094` | Consolidated around linking, consent, publication, correction/revocation, reconciliation, recovery and connector outcomes. |
-| `CAN-L3-H02-001` … `CAN-L3-H02-086` | 86 | `CAN-L3-H-095` … `H-101` | Delivery steps, channel attempts, schedules, receipts, retries and template transitions absorbed into seven end-to-end communication outcomes. |
+| `CAN-L3-H01-001` … `CAN-L3-H01-011` | 11 | `CAN-L3-H-001` … `H-094` | Consolidated around linking, consent, publication, correction/revocation, reconciliation, recovery and connector outcomes. |
+| `CAN-L3-H02-001` … `CAN-L3-H02-086` | 86 | `CAN-L3-H-010` … `H-101` | Delivery steps, channel attempts, schedules, receipts, retries and template transitions absorbed into seven end-to-end communication outcomes. |
 | `CAN-L3-H03-087` … `CAN-L3-H03-212` | 126 | `CAN-L3-H-017` … `H-106` | Query, filtering, ranking, indexing, projection and recovery steps consolidated into enterprise discovery outcomes. |
-| `CAN-L3-H04-214` … `CAN-L3-H04-263` | 50 | `CAN-L3-H-107` … `H-113` | Placement steps consolidated into employer, opportunity, application/selection, offer/joining, internship, exception and reporting journeys. Former suffix `213` was absent; current numbering removes the gap. |
-| `CAN-L3-H05-264` … `CAN-L3-H05-313` | 50 | `CAN-L3-H-114` … `H-123` | Proposal, project, grant, ethics, publication, IP, collaboration, consultancy and portfolio steps consolidated. Proposal withdrawal is now explicit in `H-115`. |
-| `CAN-L3-H06-314` … `CAN-L3-H06-363` | 50 | `CAN-L3-H-124` … `H-132` | Alumni transition, membership, profile, chapter, networking, mentoring, contribution, recognition and donation outcomes retained. |
-| `CAN-L3-H07-364` … `CAN-L3-H07-398` | 35 | `CAN-L3-H-133` … `H-058` | Former five-column rows were replaced with governed dashboard-composition outcomes carrying all eight required fields. |
-| `CAN-L3-H08-399` … `CAN-L3-H08-453` | 55 | `CAN-L3-H-140` … `H-145` | Regulatory framework, cycle, collection, approval, submission, correction and closure steps consolidated. |
-| `CAN-L3-H09-454` … `CAN-L3-H09-691` | 238 | `CAN-L3-H-146` … `H-156` | The former block was a pasted fixed-width A–J summary. Only former `H09-656` directly represented H09 evidence collection. The corrected set represents all material H09 outcomes from the completed L2 source. |
-| `CAN-L3-H10-692` … `CAN-L3-H10-883` | 192 | `CAN-L3-H-157` … `H-166` | Provider, connector, trust, synchronization, enrollment, learning, credit, verification, reconciliation and exchange steps consolidated. |
+| `CAN-L3-H04-214` … `CAN-L3-H04-263` | 50 | `CAN-L3-H-022` … `H-113` | Placement steps consolidated into employer, opportunity, application/selection, offer/joining, internship, exception and reporting journeys. Former suffix `213` was absent; current numbering removes the gap. |
+| `CAN-L3-H05-264` … `CAN-L3-H05-313` | 50 | `CAN-L3-H-029` … `H-123` | Proposal, project, grant, ethics, publication, IP, collaboration, consultancy and portfolio steps consolidated. Proposal withdrawal is now explicit in `H-115`. |
+| `CAN-L3-H06-314` … `CAN-L3-H06-363` | 50 | `CAN-L3-H-039` … `H-132` | Alumni transition, membership, profile, chapter, networking, mentoring, contribution, recognition and donation outcomes retained. |
+| `CAN-L3-H07-364` … `CAN-L3-H07-398` | 35 | `CAN-L3-H-048` … `H-058` | Former five-column rows were replaced with governed dashboard-composition outcomes carrying all eight required fields. |
+| `CAN-L3-H08-399` … `CAN-L3-H08-453` | 55 | `CAN-L3-H-055` … `H-145` | Regulatory framework, cycle, collection, approval, submission, correction and closure steps consolidated. |
+| `CAN-L3-H09-454` … `CAN-L3-H09-691` | 238 | `CAN-L3-H-061` … `H-156` | The former block was a pasted fixed-width A–J summary. Only former `H09-656` directly represented H09 evidence collection. The corrected set represents all material H09 outcomes from the completed L2 source. |
+| `CAN-L3-H10-692` … `CAN-L3-H10-883` | 192 | `CAN-L3-H-072` … `H-166` | Provider, connector, trust, synchronization, enrollment, learning, credit, verification, reconciliation and exchange steps consolidated. |
 
 Former Section H total: **893 rows**. Current Section H total: **85 candidates**.
 
@@ -53,9 +53,9 @@ Former Section H total: **893 rows**. Current Section H total: **85 candidates**
 
 ### Added material outcomes
 
-- `CAN-L3-H-115` — submitted research proposal withdrawal.
-- `CAN-L3-H-146` … `CAN-L3-H-156` — framework, cycle planning, compliance requirement, evidence, internal audit, external assessment, CAPA, quality improvement, accreditation readiness, compliance review and Self-Study Report handoff.
-- `CAN-L3-H-163` — verified external credit request through synchronization of the authoritative L2-C04 academic decision.
+- `CAN-L3-H-030` — submitted research proposal withdrawal.
+- `CAN-L3-H-061` … `CAN-L3-H-071` — framework, cycle planning, compliance requirement, evidence, internal audit, external assessment, CAPA, quality improvement, accreditation readiness, compliance review and Self-Study Report handoff.
+- `CAN-L3-H-078` — verified external credit request through synchronization of the authoritative L2-C04 academic decision.
 
 ### Removed unsupported concept
 
@@ -72,10 +72,10 @@ Former Section H total: **893 rows**. Current Section H total: **85 candidates**
 
 | ID | Candidates | Relationship | Status |
 | --- | --- | --- | --- |
-| `H-XI-01` | `CAN-L3-H-133` … `H-058` with F dashboard rows and `CAN-L3-G-305`, `G-368` | Valid Phase 1 overlap. H07 is the final dashboard-composition owner; F/G supply authoritative reports, KPIs and projections. | `DETERMINED` — consolidate on H07 boundaries in Phase 2. |
-| `H-XI-02` | `CAN-L3-C-029` and `CAN-L3-H-163` | Two consecutive but separately owned outcomes: C04 makes and records the academic decision; H10 synchronizes an external request. | `CLOSED` — retain both and bind by decision reference. |
-| `H-XI-03` | `CAN-L3-G-544` and `CAN-L3-H-154` | G00 produces Campus Operations evidence readiness; H09 makes the institutional accreditation-readiness decision. | `CLOSED` — retain both as an evidence handoff. |
-| `H-XI-04` | `CAN-L3-A-111` and `CAN-L3-H-154` | Operational certification eligibility and accreditation readiness are distinct outcomes. INT-302 was resolved on 2026-08-13: A10 owns persisted governance/certification while L1-06 owns dynamic capability readiness. That boundary does not transfer accreditation ownership from H09. | `CLOSED` for ownership; INT-302 is resolved. |
+| `H-XI-01` | `CAN-L3-H-048` … `H-058` with F dashboard rows and `CAN-L3-G-305`, `G-368` | Valid Phase 1 overlap. H07 is the final dashboard-composition owner; F/G supply authoritative reports, KPIs and projections. | `DETERMINED` — consolidate on H07 boundaries in Phase 2. |
+| `H-XI-02` | `CAN-L3-C-032` and `CAN-L3-H-078` | Two consecutive but separately owned outcomes: C04 makes and records the academic decision; H10 synchronizes an external request. | `CLOSED` — retain both and bind by decision reference. |
+| `H-XI-03` | `CAN-L3-G-003` and `CAN-L3-H-069` | G00 produces Campus Operations evidence readiness; H09 makes the institutional accreditation-readiness decision. | `CLOSED` — retain both as an evidence handoff. |
+| `H-XI-04` | `CAN-L3-A-042` and `CAN-L3-H-069` | Operational certification eligibility and accreditation readiness are distinct outcomes. INT-302 was resolved on 2026-08-13: A10 owns persisted governance/certification while L1-06 owns dynamic capability readiness. That boundary does not transfer accreditation ownership from H09. | `CLOSED` for ownership; INT-302 is resolved. |
 
 ---
 

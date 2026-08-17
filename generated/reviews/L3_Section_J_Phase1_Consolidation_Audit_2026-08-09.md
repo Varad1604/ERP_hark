@@ -1,5 +1,7 @@
 # L3 Section J Phase 1 Consolidation Audit
 
+
+> **Numbering note (2026-08-17).** Candidate IDs in this historical report reflect the numbering in force when it was written. Repository-wide candidate numbering was normalized on 2026-08-17; for current IDs see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 > **Follow-up — 2026-08-13:** The evidence-backed candidate consolidations identified in the later independent audit were applied, reducing active Section J rows from 128 to 110. The targeted J02–J08/J10 source-structure gaps were also closed under explicit authorization using only semantics already present in those sources. This report remains the pre-application consolidation evidence record.
 
 - **Audit date:** 2026-08-09

@@ -1,5 +1,7 @@
 # SutraERP L3 Phase 1 Audit — Pallav
 
+
+> **Numbering note (2026-08-17).** Candidate IDs in this historical report reflect the numbering in force when it was written. Repository-wide candidate numbering was normalized on 2026-08-17; for current IDs see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 **Audit Status:** Historical pre-correction audit. Approved remediation was applied on 2026-08-13 and is documented in `L3_Phase1_Audit_Pallav_Correction_Application_2026-08-13.md`. The verdict below describes the 1,080-row submission audited at that time.
 
 ## 1. Executive Verdict

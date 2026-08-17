@@ -1,5 +1,7 @@
 # SutraERP L3 Phase 1 — Dhruv Revised Submission Verification
 
+
+> **Numbering note (2026-08-17).** Candidate IDs in this historical report reflect the numbering in force when it was written. Repository-wide candidate numbering was normalized on 2026-08-17; for current IDs see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 **Date:** 2026-08-13  
 **Subject:** Revised `L3_Phase1_Inventory_Dhruv.md` after DEC-DHR-01 through DEC-DHR-07  
 **Selected Sections:** A — Platform Foundation; J — Enterprise Resource Management  

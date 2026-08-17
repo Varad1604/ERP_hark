@@ -1,7 +1,7 @@
 # L3 Sections B, D and E — Phase 2 Consolidation Watchlist
 
 **Architecture Level:** L3 — Business Scenario Architecture
-**Applies To:** Section B — Institution & Structure (32 candidates); Section D — Academic Delivery (57 candidates); Section E — People & Workforce (75 candidates)
+**Applies To:** Section B — Institution & Structure (32 candidates, `CAN-L3-B-001`…`B-032`); Section D — Academic Delivery (57 candidates, `CAN-L3-D-001`…`D-057`); Section E — People & Workforce (75 candidates, `CAN-L3-E-001`…`E-075`) — all three renumbered 2026-08-17, see `L3_Phase1_Candidate_ID_Migration_2026-08-17.md`
 **Status:** Active — Phase 2 input
 **Created:** 2026-08-14
 **Source:** all-scope adversarial Phase 1 audit, 2026-08-14 — `generated/reviews/l3-phase1-audit-all-2026-08-14.md`
@@ -49,7 +49,7 @@ The pre-consolidation 1,080-row submission is preserved at `generated/reviews/L3
 | | |
 | --- | --- |
 | **Status** | `RESOLVED 2026-08-15` |
-| **Affected candidates** | `CAN-L3-E-119` (Delegated Authority and Additional Charge Assignment, owner E02); `CAN-L3-A-080` (Responsibility Delegation to Automatic Authority Reversion, owner Authorization & Policy); `CAN-L3-G-793` (Housekeeping Delegation to Temporary Operational Authority) |
+| **Affected candidates** | `CAN-L3-E-015` (Delegated Authority and Additional Charge Assignment, owner E02); `CAN-L3-A-011` (Responsibility Delegation to Automatic Authority Reversion, owner Authorization & Policy); `CAN-L3-G-252` (Housekeeping Delegation to Temporary Operational Authority) |
 | **Position A — `L2-A04`** | Line 114: "Canonical boundary approved 2026-08-13 under INT-301. L2-A04 **exclusively owns** Role, Role Assignment, **Delegation** and authorization-policy lifecycles." §10.5 defines Delegation as "temporary transfer of business responsibility from one authorized user to another." |
 | **Position B — `L2-E02`** | Line 359: `Assignment Delegation \| Canonical`. Line 975: `Delegation \| L2-E02 \| Operational delegation`. Line 2644: command `DelegateAuthority`. Line 2662: event `PositionAssignmentDelegated`. |
 | **Authority analysis** | Unresolved by hierarchy — both are locked L2 documents at the same tier. A reading exists in which A04 owns authorization-layer delegation and E02 owns organisational-assignment delegation, but **no repository source states that split** and A04's exclusivity wording forecloses it. |
@@ -73,7 +73,7 @@ Carried forward from the inventory, where they were recorded inline. All remain 
 
 | # | Finding | Status |
 | --- | --- | --- |
-| `FIND-D-01` | D03 infrastructure ownership conflict. Resource-context wording in `CAN-L3-D-077` and `CAN-L3-D-078` stays ownership-safe; listing `G` as a participant does **not** assert D03 ownership of infrastructure. | `OPEN` |
+| `FIND-D-01` | D03 infrastructure ownership conflict. Resource-context wording in `CAN-L3-D-020` and `CAN-L3-D-021` stays ownership-safe; listing `G` as a participant does **not** assert D03 ownership of infrastructure. | `OPEN` |
 | `FIND-D-02` | D03 aggregate ownership lists differ between sources. No silent reconciliation was made. | `OPEN` |
 | `FIND-D-03` | D00 versus detailed D03/D04 terminology remains a mapping issue. | `OPEN` |
 | `FIND-D-04` | D00 command matrix coverage stops at D06; D07 commands were not invented into D00. | `OPEN` |
@@ -89,8 +89,8 @@ Carried forward from the inventory, where they were recorded inline. All remain 
 
 | # | Question | Candidates | Position | Status |
 | --- | --- | --- | --- | --- |
-| `BDE-B-01` | Do decommission and archive form one outcome or two? `L2-B02` WF08 defines them as one workflow; `L2-B03` §111 and §112 define them as two. | `CAN-L3-B-1008`, `CAN-L3-B-1017` | The registration/activation separation convention adopted for `B-1002`/`B-1003` and `B-1013`/`B-1014` was deliberately **not** extended here, pending source reconciliation. | `OPEN` |
-| `BDE-D-01` | Is `CAN-L3-D-081`'s boundary settled at Attendance Finalization? | `CAN-L3-D-081` | **Settled.** Extended on 2026-08-14 to match `L2-D04` §23 and the canonical example in `L3_Scenario_Type_and_Priority_Rules.md` §9. A stale inventory note claiming this was still open was corrected on 2026-08-14. | `CLOSED` |
+| `BDE-B-01` | Do decommission and archive form one outcome or two? `L2-B02` WF08 defines them as one workflow; `L2-B03` §111 and §112 define them as two. | `CAN-L3-B-012`, `CAN-L3-B-021` | The registration/activation separation convention adopted for `B-1002`/`B-1003` and `B-1013`/`B-1014` was deliberately **not** extended here, pending source reconciliation. | `OPEN` |
+| `BDE-D-01` | Is `CAN-L3-D-024`'s boundary settled at Attendance Finalization? | `CAN-L3-D-024` | **Settled.** Extended on 2026-08-14 to match `L2-D04` §23 and the canonical example in `L3_Scenario_Type_and_Priority_Rules.md` §9. A stale inventory note claiming this was still open was corrected on 2026-08-14. | `CLOSED` |
 | `BDE-E-01` | Sections D and E carry no examination-facing counterpart candidates. Section I lists `E` as a participant in ~15 candidates (invigilator, examiner, evaluator assignment) and `D` in ~30, but the B/D/E inventory returns **zero** matches for "examination", "invigilat" or "examiner". | none | **Not a B/D/E coverage defect.** `L2-E03` defines no invigilator or examiner duty capability, so there is no positive E-side source evidence for a missing outcome. `L2-I03` line 458 names Faculty Administration as coordinating invigilator resource planning — an actor dependency. Section I already owns `I-022`, `I-023`, `I-024`. Mirrors `I-XI-05` in the Section I watchlist. | `OPEN` |
 
 ---
@@ -99,11 +99,11 @@ Carried forward from the inventory, where they were recorded inline. All remain 
 
 Recorded so they are not re-derived.
 
-* **Position Definition → B02, Position Assignment → E02.** Former `CAN-L3-E-012`…`E-014` were re-owned as `CAN-L3-B-1009`…`B-1011`. Verified correct against `L2-B02` §"Approved Position Definition Ownership and Lifecycle Clarification", which states E02 "consumes a Position Definition as an external structural reference and shall never create" one, and `L2-E02` line 76 listing Position Definition as owned by the Organisation Domain. **Repository-correct, not a silent resolution.**
-* **InstitutionalCampus → B03, Physical Campus → G10.** `CAN-L3-B-1013`…`B-1016` state that physical attributes remain owned by G10 and that any consumed G10 readiness fact stays G10-owned; `CAN-L3-G-821`, `G-822` (renumbered 2026-08-17 from `G-450`, `G-452`; sibling candidates `G-451`, `G-453` were retired in an earlier consolidation wave) state the reciprocal. No duplicate canonical ownership.
-* **Financial transactions → Section F.** `CAN-L3-E-155` records leave-encashment eligibility "without performing payroll calculation or financial settlement"; `CAN-L3-E-160` produces a settlement result *for* Finance.
-* **Examination results → Section I.** `CAN-L3-D-112` and `CAN-L3-D-114` publish finalized internal assessment *for* Section I consumption without claiming result ownership.
-* **Employee-profile evidence → E07, faculty academic use → E03.** `CAN-L3-E-132` establishes the association while E07 remains owner of profile evidence.
+* **Position Definition → B02, Position Assignment → E02.** Former `CAN-L3-E-012`…`E-014` were re-owned as `CAN-L3-B-013`…`B-1011`. Verified correct against `L2-B02` §"Approved Position Definition Ownership and Lifecycle Clarification", which states E02 "consumes a Position Definition as an external structural reference and shall never create" one, and `L2-E02` line 76 listing Position Definition as owned by the Organisation Domain. **Repository-correct, not a silent resolution.**
+* **InstitutionalCampus → B03, Physical Campus → G10.** `CAN-L3-B-017`…`B-020` state that physical attributes remain owned by G10 and that any consumed G10 readiness fact stays G10-owned; `CAN-L3-G-280`, `G-281` (twice-renumbered 2026-08-17 — via disjoint IDs `G-821`, `G-822` — from pre-2026-08-17 `G-450`, `G-452`; sibling candidates `G-451`, `G-453` were retired in an earlier consolidation wave) state the reciprocal. No duplicate canonical ownership.
+* **Financial transactions → Section F.** `CAN-L3-E-051` records leave-encashment eligibility "without performing payroll calculation or financial settlement"; `CAN-L3-E-056` produces a settlement result *for* Finance.
+* **Examination results → Section I.** `CAN-L3-D-055` and `CAN-L3-D-057` publish finalized internal assessment *for* Section I consumption without claiming result ownership.
+* **Employee-profile evidence → E07, faculty academic use → E03.** `CAN-L3-E-028` establishes the association while E07 remains owner of profile evidence.
 
 No candidate in Sections B, D or E introduced duplicate canonical ownership, and the 2026-08-14 cross-inventory scan found no duplicate outcome shared with any other section.
 

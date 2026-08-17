@@ -1,5 +1,7 @@
 # SUTRAERP INTEGRITY FINDINGS — SECTION A L3 PHASE 1 CONFLICT REGISTER
 
+
+> **Numbering note (2026-08-17).** Candidate IDs in this historical report reflect the numbering in force when it was written. Repository-wide candidate numbering was normalized on 2026-08-17; for current IDs see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 **Date:** 2026-08-08
 **Scope:** Repository conflicts surfaced by the independent Section A Phase 1 L3 verification
 **Source review:** `generated/reviews/l3-phase1-section-a-verification-2026-08-08.md`

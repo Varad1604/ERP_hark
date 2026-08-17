@@ -1,5 +1,7 @@
 # Section A Phase 1 Independent Verification Report
 
+
+> **Numbering note (2026-08-17).** Candidate IDs in this historical report reflect the numbering in force when it was written. Repository-wide candidate numbering was normalized on 2026-08-17; for current IDs see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 **Audit type:** Independent, evidence-based, repository-first verification
 **Subject artifact:** `architecture/L3_Business_Scenario_Architecture/01_Phase1_Discovery/L3_Phase1_Inventory_Dhruv.md` § "Section A Candidate Inventory"
 **Candidates reviewed:** CAN-L3-A-001 … CAN-L3-A-055 (55 rows, sequential, no duplicates, no gaps — verified by extraction)

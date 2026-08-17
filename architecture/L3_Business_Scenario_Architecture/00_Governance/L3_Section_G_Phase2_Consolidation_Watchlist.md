@@ -1,7 +1,7 @@
 # L3 Section G — Phase 2 Consolidation Watchlist
 
 **Architecture Level:** L3 — Business Scenario Architecture
-**Applies To:** Section G — Campus Operations, 350 current sparse candidates in range `CAN-L3-G-001` … `CAN-L3-G-541`; 541 former candidates
+**Applies To:** Section G — Campus Operations, 322 current candidates in continuous range `CAN-L3-G-001` … `CAN-L3-G-322` (renumbered 2026-08-17; see the repository-wide migration note near the end of this document and `L3_Phase1_Candidate_ID_Migration_2026-08-17.md`). This header described 350 sparse candidates across `CAN-L3-G-001`…`CAN-L3-G-541` before the 2026-08-17 independent boundary audit (§12) and is corrected here as a live governance fact; §1–§13 below remain unmodified historical narrative.
 **Status:** Determined consolidation applied — open Phase 2 judgments retained
 **Created:** 2026-08-11
 **Source:** independent adversarial audit of `L3_Phase1_Inventory_Varad.md`, 2026-08-11
@@ -54,7 +54,7 @@ Sections F and H are now present. This watchlist covers Section G only; its form
 | G-FR-06 | G09 audited correction | 4 — `G-415, G-416, G-417, G-418` | Governed correction of a mentorship record | `G-415` retained | `APPLIED` — four variants consolidated to one. |
 | G-FR-07 | G08 re-clean | 4 — `G-316, G-326, G-332, G-337` | Verified re-clean after quality or hygiene failure | `G-316` rewritten; distinct request/inspection origins retained | `APPLIED` — exact duplicate `G-337` retired. |
 | G-FR-08 | Notification and awareness | 39 — incl. `G-115, G-151, G-152, G-184…G-187, G-205, G-221…G-223, G-280, G-289…G-294, G-353…G-356, G-425…G-429` | Publisher-side business facts feed H02; H02 owns delivery | Preserved by source parents and `CAN-L3-H-010`/`H-014` | `APPLIED` — notification-only fragments retired; genuine source information outcomes retained. |
-| G-FR-09 | Reporting and dashboards | 43 former rows — incl. `G-193, G-228, G-303…G-306, G-351, G-352, G-366…G-369, G-432…G-437, G-448, G-530…G-537` | G owns source reports, KPIs and projections; H07 owns dashboard composition; A07 owns institutional audit reconstruction | Preserved by domain reports plus `CAN-L3-H-050`…`H-058` and A07 | `APPLIED` — consolidated security, housekeeping, mentoring and infrastructure report families; retired duplicate H07 dashboard and A07 reconstruction rows |
+| G-FR-09 | Reporting and dashboards | 43 former rows — incl. `G-193, G-228, G-303…G-306, G-351, G-352, G-366…G-369, G-432…G-437, G-448, G-530…G-537` | G owns source reports, KPIs and projections; H07 owns dashboard composition; A07 owns institutional audit reconstruction | Preserved by domain reports plus `CAN-L3-H-048`…`H-058` and A07 | `APPLIED` — consolidated security, housekeeping, mentoring and infrastructure report families; retired duplicate H07 dashboard and A07 reconstruction rows |
 
 ---
 
@@ -217,24 +217,24 @@ records a separate, later pass that found further evidence-backed fragmentation 
 
 | ID | Candidates | Surviving parent | Disposition | Authoritative evidence | Application status | Date |
 | --- | --- | --- | --- | --- | --- | --- |
-| SG-01 | `G-003, G-004, G-005, G-540` absorbed; `G-543` **excluded** | `CAN-L3-G-542` (rewritten) | VARIANT | L2-G00 "Campus Readiness Workflow" defines readiness type as configurable data within one workflow. | `APPLIED` for G-003/004/005/540. `G-543` — **REVALIDATION REQUIRED, NOT APPLIED**: carries a pre-existing `BLOCKED` status under `I-XI-03` (cross-inventory boundary conflict with Section I, higher authority rank than this Section G audit) that this remediation did not have standing to resolve. See §13 open item below. | 2026-08-17 |
-| SG-02 | `G-047` absorbed | `CAN-L3-G-562` | MERGE | L2-G01 Inspection Workflow "Corrective Action Required? -> Yes -> Work Order Generated" feeds the same Work Order aggregate `G-562` already owns; extends `G-FR-13`. | `APPLIED` | 2026-08-17 |
-| SG-03 | `G-270, G-271, G-272` MERGE; `G-273, G-274` VARIANT absorbed; `G-744` **excluded** | `CAN-L3-G-743` (rewritten) | MERGE / VARIANT | L2-G07 single "Incident Workflow" diagram and Security Incident state-transition table (Reported -> Classification -> Severity Assessment -> Investigation -> Resolution -> Closure). `G-744` (Emergency Response coordination) is a separately-diagrammed, materially different outcome. | `APPLIED` | 2026-08-17 |
-| SG-04 | `G-311` absorbed | `CAN-L3-G-762` (rewritten) | MERGE | L2-G08 aggregate lifecycle table: Cleaning Schedule = `Draft -> Approved -> Active -> Completed`, one aggregate. | `APPLIED` | 2026-08-17 |
-| SG-05 | `G-313, G-315` absorbed | `CAN-L3-G-763` (rewritten) | MERGE | Same table: Cleaning Task = `Generated -> Assigned -> Executing -> Completed`, one aggregate. | `APPLIED` | 2026-08-17 |
-| SG-06 | `G-323, G-324, G-326` absorbed | `CAN-L3-G-770` (rewritten) | MERGE | L2-G08 "Complaint Workflow" diagram: `Registered -> Validation -> Priority Assignment -> Operational Assignment -> Cleaning Completed -> Inspection -> Closure`, one workflow. | `APPLIED` | 2026-08-17 |
-| SG-07 | `G-331, G-332, G-333` absorbed | `CAN-L3-G-774` (rewritten) | MERGE | Aggregate lifecycle table: Hygiene Inspection = `Scheduled -> Inspection -> Evaluated -> Closed`, one aggregate with branch outcomes. | `APPLIED` | 2026-08-17 |
-| SG-08 | `G-334` absorbed | `CAN-L3-G-774` | DUPLICATE | `G-774`'s own Trigger already enumerates "washroom" as a covered variant. | `APPLIED` | 2026-08-17 |
-| SG-09 | `G-400, G-401, G-402` absorbed | `CAN-L3-G-808` (rewritten) | MERGE | L2-G09 §15 "Referral Workflow" is one diagrammed workflow (`Mentoring Discussion -> ... -> Referral Closed`); `G-808` already covered steps 1-4. | `APPLIED` | 2026-08-17 |
-| SG-10 | `G-514, G-515` absorbed; `G-859` **excluded** | `CAN-L3-G-858` (rewritten) | MERGE | L2-G10 `WF-INF-013 — Decommission Infrastructure`, one workflow. `G-859` Archive is the separate `WF-INF-014`. | `APPLIED` | 2026-08-17 |
-| SG-11 | `G-496, G-497` absorbed | `CAN-L3-G-846` (rewritten) | MERGE | L2-G10 §32 "Inspection Workflow", one diagrammed workflow (`Scheduled -> ... -> Closed`). | `APPLIED` | 2026-08-17 |
-| SG-12 | `G-520` absorbed | `CAN-L3-G-860` | DUPLICATE | Same generic Section-A-owned effective-dating mechanism already retired elsewhere under `G-FR-02`/`G-FR-12`. | `APPLIED` | 2026-08-17 |
+| SG-01 | `G-003, G-004, G-005, G-540` absorbed; `G-543` **excluded** | `CAN-L3-G-001` (rewritten) | VARIANT | L2-G00 "Campus Readiness Workflow" defines readiness type as configurable data within one workflow. | `APPLIED` for G-003/004/005/540. `G-543` — **REVALIDATION REQUIRED, NOT APPLIED**: carries a pre-existing `BLOCKED` status under `I-XI-03` (cross-inventory boundary conflict with Section I, higher authority rank than this Section G audit) that this remediation did not have standing to resolve. See §13 open item below. | 2026-08-17 |
+| SG-02 | `G-047` absorbed | `CAN-L3-G-021` | MERGE | L2-G01 Inspection Workflow "Corrective Action Required? -> Yes -> Work Order Generated" feeds the same Work Order aggregate `G-562` already owns; extends `G-FR-13`. | `APPLIED` | 2026-08-17 |
+| SG-03 | `G-270, G-271, G-272` MERGE; `G-273, G-274` VARIANT absorbed; `G-744` **excluded** | `CAN-L3-G-202` (rewritten) | MERGE / VARIANT | L2-G07 single "Incident Workflow" diagram and Security Incident state-transition table (Reported -> Classification -> Severity Assessment -> Investigation -> Resolution -> Closure). `G-744` (Emergency Response coordination) is a separately-diagrammed, materially different outcome. | `APPLIED` | 2026-08-17 |
+| SG-04 | `G-311` absorbed | `CAN-L3-G-221` (rewritten) | MERGE | L2-G08 aggregate lifecycle table: Cleaning Schedule = `Draft -> Approved -> Active -> Completed`, one aggregate. | `APPLIED` | 2026-08-17 |
+| SG-05 | `G-313, G-315` absorbed | `CAN-L3-G-222` (rewritten) | MERGE | Same table: Cleaning Task = `Generated -> Assigned -> Executing -> Completed`, one aggregate. | `APPLIED` | 2026-08-17 |
+| SG-06 | `G-323, G-324, G-326` absorbed | `CAN-L3-G-229` (rewritten) | MERGE | L2-G08 "Complaint Workflow" diagram: `Registered -> Validation -> Priority Assignment -> Operational Assignment -> Cleaning Completed -> Inspection -> Closure`, one workflow. | `APPLIED` | 2026-08-17 |
+| SG-07 | `G-331, G-332, G-333` absorbed | `CAN-L3-G-233` (rewritten) | MERGE | Aggregate lifecycle table: Hygiene Inspection = `Scheduled -> Inspection -> Evaluated -> Closed`, one aggregate with branch outcomes. | `APPLIED` | 2026-08-17 |
+| SG-08 | `G-334` absorbed | `CAN-L3-G-233` | DUPLICATE | `G-774`'s own Trigger already enumerates "washroom" as a covered variant. | `APPLIED` | 2026-08-17 |
+| SG-09 | `G-400, G-401, G-402` absorbed | `CAN-L3-G-267` (rewritten) | MERGE | L2-G09 §15 "Referral Workflow" is one diagrammed workflow (`Mentoring Discussion -> ... -> Referral Closed`); `G-808` already covered steps 1-4. | `APPLIED` | 2026-08-17 |
+| SG-10 | `G-514, G-515` absorbed; `G-859` **excluded** | `CAN-L3-G-317` (rewritten) | MERGE | L2-G10 `WF-INF-013 — Decommission Infrastructure`, one workflow. `G-859` Archive is the separate `WF-INF-014`. | `APPLIED` | 2026-08-17 |
+| SG-11 | `G-496, G-497` absorbed | `CAN-L3-G-305` (rewritten) | MERGE | L2-G10 §32 "Inspection Workflow", one diagrammed workflow (`Scheduled -> ... -> Closed`). | `APPLIED` | 2026-08-17 |
+| SG-12 | `G-520` absorbed | `CAN-L3-G-319` | DUPLICATE | Same generic Section-A-owned effective-dating mechanism already retired elsewhere under `G-FR-02`/`G-FR-12`. | `APPLIED` | 2026-08-17 |
 
 **Explicitly preserved as independent (not merged despite surface similarity to the clusters above):**
-`CAN-L3-G-544`, `CAN-L3-G-702`, `CAN-L3-G-704`, `CAN-L3-G-744`, `CAN-L3-G-843`, `CAN-L3-G-844`,
-`CAN-L3-G-845`, `CAN-L3-G-859`. Each has distinct L2 evidence recorded in the source audit §5.
+`CAN-L3-G-003`, `CAN-L3-G-161`, `CAN-L3-G-163`, `CAN-L3-G-203`, `CAN-L3-G-302`, `CAN-L3-G-303`,
+`CAN-L3-G-304`, `CAN-L3-G-318`. Each has distinct L2 evidence recorded in the source audit §5.
 
-**`CAN-L3-G-705` (First Aid) — left `REVIEW-REQUIRED`, not merged.** L2-G06 documents "Emergency & First
+**`CAN-L3-G-164` (First Aid) — left `REVIEW-REQUIRED`, not merged.** L2-G06 documents "Emergency & First
 Aid Management" as a single §19 heading with one diagrammed Emergency Workflow, while First Aid is
 described only as a list of operational activities without its own workflow diagram — insufficient
 evidence to decide independence either way. `INSUFFICIENT EVIDENCE — DO NOT CONSOLIDATE`.
@@ -247,8 +247,8 @@ materially create the scheduling conflict even though G/E own its resolution. Th
 close) the residual participation review opened at §4A; H's status for `G-580/045/055/076` remains
 unresolved.
 
-**Open item carried forward: SG-01 partial application.** `CAN-L3-G-543` could not be absorbed into
-`CAN-L3-G-542` under SG-01 because of the pre-existing `I-XI-03` block, which the source Section G audit
+**Open item carried forward: SG-01 partial application.** `CAN-L3-G-002` could not be absorbed into
+`CAN-L3-G-001` under SG-01 because of the pre-existing `I-XI-03` block, which the source Section G audit
 did not have visibility into (it audits Section G only). This is recorded as `REVALIDATION REQUIRED`, not
 `APPLIED` — resolving it requires the same Section H/I boundary confirmation `I-XI-03` already calls for,
 not a new Section G decision. As a direct consequence, the evidence-supported Section G scenario count
@@ -280,50 +280,50 @@ contradict §12 — it is the Phase 1-side execution of the same 12 clusters, re
 repository state immediately before application (candidates confirmed to still exist, wording confirmed
 unchanged, L2 evidence re-checked, no newer decision found superseding it, owners confirmed unchanged).
 
-**Revalidation result:** all 11 clusters not touching `CAN-L3-G-543` revalidated clean and were applied.
+**Revalidation result:** all 11 clusters not touching `CAN-L3-G-002` revalidated clean and were applied.
 SG-01 revalidated **partially**: `I-XI-03` (Section I Phase 2 Consolidation Watchlist §10/§11, `OPEN`) is
-still unresolved, so `CAN-L3-G-543` was **not** removed from the active Phase 1 inventory and remains a
+still unresolved, so `CAN-L3-G-002` was **not** removed from the active Phase 1 inventory and remains a
 standing candidate. This is why the active Section G count is **322**, not 321.
 
 ## Absorbed Candidate Crosswalk
 
 | Cluster | Former Candidate ID | Disposition | Surviving Candidate ID | Reason | L2 Evidence | Application Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| SG-01 | `CAN-L3-G-003` | VARIANT | `CAN-L3-G-542` | Configurable readiness type, not a separate workflow | `L2-G00` "Campus Readiness Workflow" | `APPLIED` |
-| SG-01 | `CAN-L3-G-004` | VARIANT | `CAN-L3-G-542` | same | same | `APPLIED` |
-| SG-01 | `CAN-L3-G-005` | VARIANT | `CAN-L3-G-542` | same | same | `APPLIED` |
-| SG-01 | `CAN-L3-G-540` | VARIANT | `CAN-L3-G-542` | same | same | `APPLIED` |
-| SG-01 | `CAN-L3-G-543` | VARIANT (targeted) | `CAN-L3-G-542` | Same readiness-type reasoning applies, **but** the candidate carries a pre-existing higher-authority block | `I-XI-03` (Section I Watchlist), unresolved | `REVALIDATION REQUIRED` — **NOT APPLIED**, remains active in Phase 1, unchanged |
-| SG-02 | `CAN-L3-G-047` | MERGE | `CAN-L3-G-562` | Inspection-sourced work order restates `G-562`'s existing scope; extends `G-FR-13` | `L2-G01` Inspection Workflow -> Work Order Generated branch | `APPLIED` |
-| SG-03 | `CAN-L3-G-270` | MERGE | `CAN-L3-G-743` | Consecutive span of one Incident Workflow | `L2-G07` "Incident Workflow" | `APPLIED` |
-| SG-03 | `CAN-L3-G-271` | MERGE | `CAN-L3-G-743` | same | same | `APPLIED` |
-| SG-03 | `CAN-L3-G-272` | MERGE | `CAN-L3-G-743` | same | same | `APPLIED` |
-| SG-03 | `CAN-L3-G-273` | VARIANT | `CAN-L3-G-743` | Severity is configurable within the same workflow | same | `APPLIED` |
-| SG-03 | `CAN-L3-G-274` | VARIANT | `CAN-L3-G-743` | Critical-severity branch of the same workflow; `G-744` stays separate | same | `APPLIED` |
-| SG-04 | `CAN-L3-G-311` | MERGE | `CAN-L3-G-762` | Consecutive stage of one Cleaning Schedule aggregate | `L2-G08` aggregate lifecycle table | `APPLIED` |
-| SG-05 | `CAN-L3-G-313` | MERGE | `CAN-L3-G-763` | Consecutive stage of one Cleaning Task aggregate | same | `APPLIED` |
-| SG-05 | `CAN-L3-G-315` | MERGE | `CAN-L3-G-763` | same | same | `APPLIED` |
-| SG-06 | `CAN-L3-G-323` | MERGE | `CAN-L3-G-770` | Consecutive stage of one Complaint Workflow | `L2-G08` "Complaint Workflow" | `APPLIED` |
-| SG-06 | `CAN-L3-G-324` | MERGE | `CAN-L3-G-770` | same | same | `APPLIED` |
-| SG-06 | `CAN-L3-G-326` | MERGE | `CAN-L3-G-770` | same | same | `APPLIED` |
-| SG-07 | `CAN-L3-G-331` | MERGE | `CAN-L3-G-774` | Branch outcome of one Hygiene Inspection aggregate | `L2-G08` aggregate lifecycle table | `APPLIED` |
-| SG-07 | `CAN-L3-G-332` | MERGE | `CAN-L3-G-774` | same | same | `APPLIED` |
-| SG-07 | `CAN-L3-G-333` | MERGE | `CAN-L3-G-774` | same | same | `APPLIED` |
-| SG-08 | `CAN-L3-G-334` | DUPLICATE | `CAN-L3-G-774` | Washroom already an explicit trigger variant of `G-774` | `G-774` Trigger field | `APPLIED` |
-| SG-09 | `CAN-L3-G-400` | MERGE | `CAN-L3-G-808` | Consecutive step of one Referral Workflow | `L2-G09` §15 "Referral Workflow" | `APPLIED` |
-| SG-09 | `CAN-L3-G-401` | MERGE | `CAN-L3-G-808` | same | same | `APPLIED` |
-| SG-09 | `CAN-L3-G-402` | MERGE | `CAN-L3-G-808` | same | same | `APPLIED` |
-| SG-10 | `CAN-L3-G-514` | MERGE | `CAN-L3-G-858` | Consecutive stage of one `WF-INF-013` workflow | `L2-G10` `WF-INF-013` | `APPLIED` |
-| SG-10 | `CAN-L3-G-515` | MERGE | `CAN-L3-G-858` | same | same | `APPLIED` |
-| SG-11 | `CAN-L3-G-496` | MERGE | `CAN-L3-G-846` | Consecutive stage of one Inspection Workflow | `L2-G10` §32 "Inspection Workflow" | `APPLIED` |
-| SG-11 | `CAN-L3-G-497` | MERGE | `CAN-L3-G-846` | same | same | `APPLIED` |
-| SG-12 | `CAN-L3-G-520` | DUPLICATE | `CAN-L3-G-860` | Same Section-A effective-dating mechanism as `G-860` | Watchlist §4A root cause; `G-FR-02`/`G-FR-12` precedent | `APPLIED` |
+| SG-01 | `CAN-L3-G-003` | VARIANT | `CAN-L3-G-001` | Configurable readiness type, not a separate workflow | `L2-G00` "Campus Readiness Workflow" | `APPLIED` |
+| SG-01 | `CAN-L3-G-004` | VARIANT | `CAN-L3-G-001` | same | same | `APPLIED` |
+| SG-01 | `CAN-L3-G-005` | VARIANT | `CAN-L3-G-001` | same | same | `APPLIED` |
+| SG-01 | `CAN-L3-G-540` | VARIANT | `CAN-L3-G-001` | same | same | `APPLIED` |
+| SG-01 | `CAN-L3-G-002` | VARIANT (targeted) | `CAN-L3-G-001` | Same readiness-type reasoning applies, **but** the candidate carries a pre-existing higher-authority block | `I-XI-03` (Section I Watchlist), unresolved | `REVALIDATION REQUIRED` — **NOT APPLIED**, remains active in Phase 1, unchanged |
+| SG-02 | `CAN-L3-G-047` | MERGE | `CAN-L3-G-021` | Inspection-sourced work order restates `G-562`'s existing scope; extends `G-FR-13` | `L2-G01` Inspection Workflow -> Work Order Generated branch | `APPLIED` |
+| SG-03 | `CAN-L3-G-270` | MERGE | `CAN-L3-G-202` | Consecutive span of one Incident Workflow | `L2-G07` "Incident Workflow" | `APPLIED` |
+| SG-03 | `CAN-L3-G-271` | MERGE | `CAN-L3-G-202` | same | same | `APPLIED` |
+| SG-03 | `CAN-L3-G-272` | MERGE | `CAN-L3-G-202` | same | same | `APPLIED` |
+| SG-03 | `CAN-L3-G-273` | VARIANT | `CAN-L3-G-202` | Severity is configurable within the same workflow | same | `APPLIED` |
+| SG-03 | `CAN-L3-G-274` | VARIANT | `CAN-L3-G-202` | Critical-severity branch of the same workflow; `G-744` stays separate | same | `APPLIED` |
+| SG-04 | `CAN-L3-G-311` | MERGE | `CAN-L3-G-221` | Consecutive stage of one Cleaning Schedule aggregate | `L2-G08` aggregate lifecycle table | `APPLIED` |
+| SG-05 | `CAN-L3-G-313` | MERGE | `CAN-L3-G-222` | Consecutive stage of one Cleaning Task aggregate | same | `APPLIED` |
+| SG-05 | `CAN-L3-G-315` | MERGE | `CAN-L3-G-222` | same | same | `APPLIED` |
+| SG-06 | `CAN-L3-G-323` | MERGE | `CAN-L3-G-229` | Consecutive stage of one Complaint Workflow | `L2-G08` "Complaint Workflow" | `APPLIED` |
+| SG-06 | `CAN-L3-G-324` | MERGE | `CAN-L3-G-229` | same | same | `APPLIED` |
+| SG-06 | `CAN-L3-G-326` | MERGE | `CAN-L3-G-229` | same | same | `APPLIED` |
+| SG-07 | `CAN-L3-G-331` | MERGE | `CAN-L3-G-233` | Branch outcome of one Hygiene Inspection aggregate | `L2-G08` aggregate lifecycle table | `APPLIED` |
+| SG-07 | `CAN-L3-G-332` | MERGE | `CAN-L3-G-233` | same | same | `APPLIED` |
+| SG-07 | `CAN-L3-G-333` | MERGE | `CAN-L3-G-233` | same | same | `APPLIED` |
+| SG-08 | `CAN-L3-G-334` | DUPLICATE | `CAN-L3-G-233` | Washroom already an explicit trigger variant of `G-774` | `G-774` Trigger field | `APPLIED` |
+| SG-09 | `CAN-L3-G-400` | MERGE | `CAN-L3-G-267` | Consecutive step of one Referral Workflow | `L2-G09` §15 "Referral Workflow" | `APPLIED` |
+| SG-09 | `CAN-L3-G-401` | MERGE | `CAN-L3-G-267` | same | same | `APPLIED` |
+| SG-09 | `CAN-L3-G-402` | MERGE | `CAN-L3-G-267` | same | same | `APPLIED` |
+| SG-10 | `CAN-L3-G-514` | MERGE | `CAN-L3-G-317` | Consecutive stage of one `WF-INF-013` workflow | `L2-G10` `WF-INF-013` | `APPLIED` |
+| SG-10 | `CAN-L3-G-515` | MERGE | `CAN-L3-G-317` | same | same | `APPLIED` |
+| SG-11 | `CAN-L3-G-496` | MERGE | `CAN-L3-G-305` | Consecutive stage of one Inspection Workflow | `L2-G10` §32 "Inspection Workflow" | `APPLIED` |
+| SG-11 | `CAN-L3-G-497` | MERGE | `CAN-L3-G-305` | same | same | `APPLIED` |
+| SG-12 | `CAN-L3-G-520` | DUPLICATE | `CAN-L3-G-319` | Same Section-A effective-dating mechanism as `G-860` | Watchlist §4A root cause; `G-FR-02`/`G-FR-12` precedent | `APPLIED` |
 
-**Totals: 28 `APPLIED` (20 MERGE + 6 VARIANT + 2 DUPLICATE), 1 `REVALIDATION REQUIRED` (`CAN-L3-G-543`).**
+**Totals: 28 `APPLIED` (20 MERGE + 6 VARIANT + 2 DUPLICATE), 1 `REVALIDATION REQUIRED` (`CAN-L3-G-002`).**
 
-## G-705 Status
+## G-164 Status (formerly G-705 under the §14 disjoint scheme)
 
-`CAN-L3-G-705` (First Aid Incident to Stabilised Patient Outcome) remains **active** in the Phase 1
+`CAN-L3-G-164` (First Aid Incident to Stabilised Patient Outcome) remains **active** in the Phase 1
 inventory, unmodified. Disposition: `REVIEW-REQUIRED`. `INSUFFICIENT EVIDENCE — DO NOT CONSOLIDATE`. L2-G06
 documents "Emergency & First Aid Management" as a single §19 heading with one diagrammed Emergency
 Workflow; First Aid itself has no independent workflow diagram, so neither independence nor absorption can
@@ -333,10 +333,10 @@ be confirmed from current L2 evidence.
 
 Continuing the §4A residual participation review, now applied directly to the active Phase 1 rows:
 
-- `CAN-L3-G-559`, `CAN-L3-G-568` — closed. D/I removed as impact-only.
-- `CAN-L3-G-580`, `CAN-L3-G-581`, `CAN-L3-G-587`, `CAN-L3-G-607` — D/I removed as impact-only; **H
+- `CAN-L3-G-018`, `CAN-L3-G-027` — closed. D/I removed as impact-only.
+- `CAN-L3-G-039`, `CAN-L3-G-040`, `CAN-L3-G-046`, `CAN-L3-G-066` — D/I removed as impact-only; **H
   participation remains `REVIEW-REQUIRED`** on all four (not removed without further evidence).
-- `CAN-L3-G-590` — **unchanged**, Domains left as `G, E, D, I`. Marked `DOMAINS REVIEW REQUIRED`: current
+- `CAN-L3-G-049` — **unchanged**, Domains left as `G, E, D, I`. Marked `DOMAINS REVIEW REQUIRED`: current
   evidence does not conclusively establish whether D/I materially participate in creating the scheduling
   conflict or are only affected by it.
 - The broader §4A review (further G01/G02 rows beyond the seven already named) remains open and was not
@@ -348,20 +348,20 @@ Per `L3_Scenario_Type_and_Priority_Rules.md`, Type was **not** mechanically chan
 corrections (`G-559, G-568, G-580, G-581, G-587, G-607`) — removing an impact-only participant does not by
 itself change whether genuine multi-domain collaboration exists, and none of these rows' remaining
 collaboration pattern changed. For the four rewritten MERGE parents that absorbed a Cross-domain row's
-scope (`CAN-L3-G-763`, `CAN-L3-G-770`), Type was raised from `Simple` to `Cross-domain` because the merged
+scope (`CAN-L3-G-222`, `CAN-L3-G-229`), Type was raised from `Simple` to `Cross-domain` because the merged
 outcome now itself includes the absorbed row's genuine E-domain (Housekeeping workforce) participation step
 — this is a direct consequence of the merge, not a mechanical recount. All other surviving parents retained
 their pre-existing Type.
 
 ## Section G Count After §13
 
-**Phase 1 active Section G candidates: 322** (350 − 28 absorbed; `CAN-L3-G-543` retained pending `I-XI-03`).
-Active ID range is now `CAN-L3-G-542` … `CAN-L3-G-863`, continuous and gap-free — see §14 for the
+**Phase 1 active Section G candidates: 322** (350 − 28 absorbed; `CAN-L3-G-002` retained pending `I-XI-03`).
+Active ID range is now `CAN-L3-G-001` … `CAN-L3-G-322`, continuous and gap-free — see §14 for the
 complete renumbering crosswalk and rationale.
 
 ---
 
-## 14. ID Renumbering — 2026-08-17
+## 14. ID Renumbering — 2026-08-17 (disjoint-start; superseded later the same day, see §15)
 
 **Authorization:** explicit user request to apply consistent, continuous numbering to the active Section G
 candidate set, with explicit acknowledgment and override of the "Phase 1 Candidate IDs must never be
@@ -374,21 +374,27 @@ this watchlist (§13 and this section only — see below), the repository-wide r
 live cross-references in the Section A, B/D/E and H watchlists that named a still-active Section G
 candidate.
 
-**Why the range starts at 542, not 001.** A plain 1–322 renumbering would have reused 94 numbers already
+**Why the range started at 542, not 001.** A plain 1–322 renumbering would have reused 94 numbers already
 permanently assigned to now-retired candidates (e.g. former `CAN-L3-G-047`, absorbed under `SG-02`, would
 collide with whatever candidate a 1–322 scheme placed at position 47). Retired IDs are never reused — that
 rule is the entire reason this watchlist's crosswalk tables above remain resolvable. Starting at 542 (one
-past the historical maximum `CAN-L3-G-541`) makes the new range provably disjoint from every ID ever
-allocated in Section G, so no historical reference — anywhere, in any document — can ever become ambiguous.
+past the historical maximum `CAN-L3-G-541`) makes the range provably disjoint from every ID ever allocated
+in Section G, so no historical reference — anywhere, in any document — can ever become ambiguous.
 
-**Why §1–§11's historical text still uses the old numbers.** Sections §1–§11 document decisions made between
-2026-08-11 and 2026-08-15, under the ID scheme that existed at the time. Retroactively rewriting them to use
-today's new numbers was attempted mechanically and produced corrupted output — several clusters describe a
-group of IDs as a range (e.g. `G-234…G-267`) where only some members are still active; renumbering only the
-active endpoint breaks the range. That attempt was reverted. §1–§11 are therefore intentionally left exactly
-as originally written, using the **pre-2026-08-17 numbering**; this section is the single authoritative
-crosswalk between old and new numbers for anyone reading them. §12 and §13 above use the **new** numbering
-throughout, since they describe the current, post-renumbering state.
+**§15 below supersedes this approach.** Later the same day, the repository-wide `001`-start migration
+(`L3_Phase1_Candidate_ID_Migration_2026-08-17.md`) renumbered every section, including this one, to start
+at `001`, resolving the collision concern above through an explicit crosswalk document instead of through a
+disjoint numeric offset. The `542`–`863` range described in this section was itself live for only part of
+2026-08-17 and is preserved here exactly as originally written, because it is what genuinely happened at
+that point in the day.
+
+**Why §1–§11's historical text still uses the old (pre-542) numbers.** Sections §1–§11 document decisions
+made between 2026-08-11 and 2026-08-15, under the ID scheme that existed at the time. Retroactively
+rewriting them was attempted mechanically and produced corrupted output — several clusters describe a group
+of IDs as a range (e.g. `G-234…G-267`) where only some members are still active; renumbering only the active
+endpoint breaks the range. That attempt was reverted. §1–§11 are therefore intentionally left exactly as
+originally written, using the **pre-2026-08-17 numbering**. §12 and §13 above use the `542`–`863` numbering,
+since they describe the state at the point in 2026-08-17 when they were written — before the §15 migration.
 
 **Not touched, for the same historical-integrity reason:** `CHANGELOG.md`, and the dated pre-session audit
 reports (`generated/reviews/l3-phase1-section-g-corrections-2026-08-11.md`,
@@ -398,17 +404,21 @@ reports (`generated/reviews/l3-phase1-section-g-corrections-2026-08-11.md`,
 point-in-time reports (`L3_Section_G_350_Candidate_Independent_Boundary_Audit.md`,
 `L3_Section_G_Phase2_Targeted_Consolidation_Application.md`,
 `L3_Section_G_Phase1_and_Phase2_Targeted_Remediation_Application.md`). Any old ID encountered in those files
-resolves through the crosswalk below.
+resolves through the crosswalk in `L3_Phase1_Candidate_ID_Migration_2026-08-17.md` (for `542`–`863` IDs) or
+through this section (for pre-`542` IDs).
 
-**`CAN-L3-G-543`** (formerly `CAN-L3-G-002`) was renumbered along with every other active candidate — its
-`BLOCKED`/`I-XI-03` status is unaffected by the renumbering and remains open (see §13).
+**`CAN-L3-G-543`** (formerly `CAN-L3-G-002`) was renumbered along with every other active candidate under
+this disjoint-start pass — its `BLOCKED`/`I-XI-03` status was unaffected and remained open. Under the §15
+`001`-start migration it became **`CAN-L3-G-002`** again (coincidentally the same number as its original
+pre-542 ID, in a different generation) — its `BLOCKED`/`I-XI-03` status remains open (see §13).
 
-### Full Crosswalk (old → new), by subdomain
+### Full Crosswalk (old sparse → 542-start disjoint), by subdomain — as applied 2026-08-17, superseded by §15
 
-Computed directly from the renumbered inventory (each new block is itself fully contiguous, confirming the
-renumbering preserved subdomain grouping exactly):
+Computed directly from the disjoint-renumbered inventory as it stood after this section was applied (each
+block was itself fully contiguous, confirming the renumbering preserved subdomain grouping exactly). The
+"542-start disjoint" column below is itself now historical — see §15 for the current `001`-start numbering.
 
-| Subdomain | New range (continuous) | Count |
+| Subdomain | Disjoint range (as applied 2026-08-17, historical) | Count |
 | --- | --- | --- |
 | G00 — Campus Operations Governance | `CAN-L3-G-542`…`CAN-L3-G-557` | 16 |
 | G01 — Facilities Management | `CAN-L3-G-558`…`CAN-L3-G-591` | 34 |
@@ -426,12 +436,37 @@ renumbering preserved subdomain grouping exactly):
 Old (pre-2026-08-17) IDs were sparse throughout `CAN-L3-G-001`…`CAN-L3-G-541` and are not repeated here —
 §1–§11 above remain the authoritative record of which old ID belonged to which subdomain.
 
-Exact per-candidate old→new pairs are recorded, table by table, in the Phase 2 register's Section G
-"Phase 1 ID" column (unchanged Phase 2 Working IDs, `P2W-G-0173`…`P2W-G-0522`, now paired with the new
-`CAN-L3-G-542`…`863` Phase 1 IDs) — that register is the authoritative full crosswalk; this section
-summarizes it by subdomain rather than repeating all 322 rows.
+## 15. Repository-Wide `001`-Start Renumbering — 2026-08-17 (supersedes §14)
 
-**Phase 2 Working IDs (`P2W-G-####`) were deliberately NOT renumbered.** They follow a mechanical
-extraction order spanning all ten sections (A–J) of the repository-wide register, not a per-section
-sequence; renumbering them would require rebuilding that entire cross-repository register, which is outside
-Section G's scope. If that is wanted, it needs a separate, repository-wide authorization.
+**Authorization:** explicit user request to apply consistent, continuous, `001`-start numbering to every
+active Phase 1 discovery section (A–J), repository-wide — see `L3_Phase1_Candidate_ID_Migration_2026-08-17.md`
+for the full crosswalk and authorization record covering all ten sections.
+
+**What changed for Section G.** The 322 candidates active after §14 (disjoint range `CAN-L3-G-542`…`CAN-L3-G-863`)
+were renumbered a second time, the same day, to the continuous `001`-start block **`CAN-L3-G-001`…`CAN-L3-G-322`**,
+in the same subdomain order and relative sequence they already held. This is the range currently active in
+`L3_Phase1_Inventory_Varad.md`.
+
+| Subdomain | Current range (`001`-start, active) | Count |
+| --- | --- | --- |
+| G00 — Campus Operations Governance | `CAN-L3-G-001`…`CAN-L3-G-016` | 16 |
+| G01 — Facilities Management | `CAN-L3-G-017`…`CAN-L3-G-050` | 34 |
+| G02 — Laboratory Management | `CAN-L3-G-051`…`CAN-L3-G-078` | 28 |
+| G03 — Hostel Management | `CAN-L3-G-079`…`CAN-L3-G-093` | 15 |
+| G04 — Transport Management | `CAN-L3-G-094`…`CAN-L3-G-124` | 31 |
+| G05 — Library Management | `CAN-L3-G-125`…`CAN-L3-G-155` | 31 |
+| G06 — Institutional Health Services & Medical | `CAN-L3-G-156`…`CAN-L3-G-187` | 32 |
+| G07 — Security Operations | `CAN-L3-G-188`…`CAN-L3-G-217` | 30 |
+| G08 — Housekeeping Operations & Service Governance | `CAN-L3-G-218`…`CAN-L3-G-253` | 36 |
+| G09 — Teacher Guardian Scheme | `CAN-L3-G-254`…`CAN-L3-G-279` | 26 |
+| G10 — Infrastructure Management | `CAN-L3-G-280`…`CAN-L3-G-322` | 43 |
+| **Total** | `CAN-L3-G-001`…`CAN-L3-G-322` | **322** |
+
+Exact per-candidate old→new pairs (both the §14 disjoint IDs and their final `001`-start IDs) are recorded
+in `L3_Phase1_Candidate_ID_Migration_2026-08-17.md` and, per-row, in the Phase 2 register's Section G
+"Phase 1 ID" column.
+
+**Phase 2 Working IDs (`P2W-G-####`) were deliberately NOT renumbered**, by either §14 or §15. They follow a
+mechanical extraction order spanning all ten sections (A–J) of the repository-wide register, not a
+per-section sequence; renumbering them would require rebuilding that entire cross-repository register, which
+is outside Section G's scope. If that is wanted, it needs a separate, repository-wide authorization.

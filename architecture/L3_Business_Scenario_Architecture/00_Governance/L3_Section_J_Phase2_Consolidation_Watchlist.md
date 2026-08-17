@@ -1,7 +1,7 @@
 # L3 Section J — Phase 2 Consolidation Watchlist
 
 **Architecture Level:** L3 — Business Scenario Architecture
-**Applies To:** Section J — Enterprise Resource Management, 110 candidates in range `CAN-L3-J-682` … `CAN-L3-J-791` (sparse after consolidation)
+**Applies To:** Section J — Enterprise Resource Management, 110 candidates in continuous range `CAN-L3-J-001` … `CAN-L3-J-110` (renumbered 2026-08-17, see `L3_Phase1_Candidate_ID_Migration_2026-08-17.md`)
 **Status:** Active — Phase 2 input
 **Created:** 2026-08-14
 **Source:** all-scope adversarial Phase 1 audit, 2026-08-14 — `generated/reviews/l3-phase1-audit-all-2026-08-14.md`

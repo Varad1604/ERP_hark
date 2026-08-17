@@ -1,5 +1,7 @@
 # L3 Phase 1 Discovery Audit — All Sections
 
+
+> **Numbering note (2026-08-17).** Candidate IDs in this historical report reflect the numbering in force when it was written. Repository-wide candidate numbering was normalized on 2026-08-17; for current IDs see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 **Audit type:** Independent adversarial audit of the L3 Phase 1 candidate scenario inventories
 **Audit scope:** `ALL` — Sections A through J, all five Phase 1 inventories, cross-domain/`X` and governance candidates
 **Audit date:** 2026-08-14

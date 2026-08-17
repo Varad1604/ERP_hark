@@ -1,5 +1,7 @@
 # L3 Phase 1 — Audit Correction Application Report
 
+
+> **Numbering note (2026-08-17).** Candidate IDs in this historical report reflect the numbering in force when it was written. Repository-wide candidate numbering was normalized on 2026-08-17; for current IDs see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 **Date:** 2026-08-15
 **Applied by:** Claude (Opus 5), under Lead Architect approval
 **Source audit:** `generated/reviews/l3-phase1-audit-all-2026-08-14-2.md` (score 8.8/10.0, verdict BLOCKED)
