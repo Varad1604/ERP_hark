@@ -46,18 +46,20 @@ working ID, `P2W-C-1124`.
 
 | Disposition | Current count |
 | --- | ---: |
-| KEEP | 1,056 |
+| KEEP | 1,065 |
 | MERGE | 20 |
-| VARIANT | 6 |
+| VARIANT | 7 |
 | FAILURE-RECOVERY | 0 |
 | DUPLICATE | 2 |
 | SPLIT-REQUIRED | 1 |
 | REVIEW-REQUIRED | 1 |
-| BLOCKED | 38 |
+| BLOCKED | 28 |
 | **Total** | **1,124** |
 
-The 20 MERGE, 6 VARIANT, and 2 DUPLICATE rows are the 28 historical absorbed Section G rows; they are not
-active Phase 1 candidates. The current `REVIEW-REQUIRED` row is `CAN-L3-G-164` (`P2W-G-0341`).
+The 20 MERGE, 6 of the 7 VARIANT, and 2 DUPLICATE rows are the 28 historical absorbed Section G rows; they
+are not active Phase 1 candidates. The seventh VARIANT is frozen active Phase 1 row `CAN-L3-G-002`,
+dispositioned in Wave 2 without changing Phase 1. The current `REVIEW-REQUIRED` row is `CAN-L3-G-164`
+(`P2W-G-0341`).
 
 ### 0.3 Current Section Summary
 
@@ -65,15 +67,15 @@ active Phase 1 candidates. The current `REVIEW-REQUIRED` row is `CAN-L3-G-164` (
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | A | 62 | 62 | 62 | 0 | 0 | 0 | 0 | 0 | 0 |
 | B | 32 | 32 | 31 | 0 | 0 | 0 | 1 | 0 | 0 |
-| C | 75 | 75 | 72 | 0 | 0 | 0 | 0 | 0 | 3 |
+| C | 75 | 75 | 75 | 0 | 0 | 0 | 0 | 0 | 0 |
 | D | 57 | 57 | 41 | 0 | 0 | 0 | 0 | 0 | 16 |
 | E | 75 | 75 | 75 | 0 | 0 | 0 | 0 | 0 | 0 |
 | F | 85 | 85 | 85 | 0 | 0 | 0 | 0 | 0 | 0 |
-| G | 322 | 350 | 320 | 20 | 6 | 2 | 0 | 1 | 1 |
+| G | 322 | 350 | 320 | 20 | 7 | 2 | 0 | 1 | 0 |
 | H | 81 | 81 | 81 | 0 | 0 | 0 | 0 | 0 | 0 |
-| I | 197 | 197 | 186 | 0 | 0 | 0 | 0 | 0 | 11 |
+| I | 197 | 197 | 192 | 0 | 0 | 0 | 0 | 0 | 5 |
 | J | 110 | 110 | 103 | 0 | 0 | 0 | 0 | 0 | 7 |
-| **Total** | **1,096** | **1,124** | **1,056** | **20** | **6** | **2** | **1** | **1** | **38** |
+| **Total** | **1,096** | **1,124** | **1,065** | **20** | **7** | **2** | **1** | **1** | **28** |
 
 `FAILURE-RECOVERY` remains zero. `SPLIT-REQUIRED` is one for `CAN-L3-B-021`; its frozen Phase 1 row is unchanged.
 
@@ -81,16 +83,13 @@ active Phase 1 candidates. The current `REVIEW-REQUIRED` row is `CAN-L3-G-164` (
 
 | Issue | Rows | Current active candidate IDs |
 | --- | ---: | --- |
-| C-C01 | 2 | `CAN-L3-C-009`, `CAN-L3-C-012` |
 | FIND-D-02 | 2 | `CAN-L3-D-020`, `CAN-L3-D-021` |
 | FIND-D-06 | 5 | `CAN-L3-D-027`, `CAN-L3-D-028`, `CAN-L3-D-032`, `CAN-L3-D-033`, `CAN-L3-D-034` |
 | FIND-D-07 | 8 | `CAN-L3-D-035` … `CAN-L3-D-042` |
 | FIND-D-08 | 1 | `CAN-L3-D-043` |
 | I-TV-04-residual | 5 | `CAN-L3-I-076`, `CAN-L3-I-081`, `CAN-L3-I-082`, `CAN-L3-I-083`, `CAN-L3-I-087` |
-| I-XI-02 | 3 | `CAN-L3-C-050`, `CAN-L3-I-162`, `CAN-L3-I-163` |
-| I-XI-03 | 5 | `CAN-L3-G-002`, `CAN-L3-I-009`, `CAN-L3-I-048`, `CAN-L3-I-055`, `CAN-L3-I-056` |
 | J-TV-01 | 7 | `CAN-L3-J-097`, `CAN-L3-J-099` … `CAN-L3-J-104` |
-| **Total** | **38** | |
+| **Total** | **28** | |
 
 `CF-08` is **RESOLVED**, not blocked. B01 owns the institutional policy definition; C04 owns the
 progression behavior that establishes versioned applicability and publishes `AcademicPolicyUpdated`.
@@ -111,8 +110,27 @@ C02-owned Student Context through existing `WF-C02-10` / `ArchiveStudent()` acco
 `CAN-L3-C-004` is `KEEP`. The Lead Architect also approved C-C02 Option B on 2026-08-17: L2-C04 APW-08
 owns all Programme-changing mobility and publishes `ProgrammeMigrationApproved`; L2-C02 WF-C02-08 excludes
 Programme change, while C02 consumes the approved result solely to update its owned Student Context Programme
-association. `CAN-L3-C-033` is `KEEP`; `CAN-L3-C-012` remains blocked only under C-C01. `FIND-D-02` remains
-blocked pending Lead Architect decision; no same-tier aggregate conflict was silently reconciled.
+association. `CAN-L3-C-033` is `KEEP`; at the close of Wave 1, `CAN-L3-C-012` remained blocked only under
+C-C01. `FIND-D-02` remains blocked pending Lead Architect decision; no same-tier aggregate conflict was
+silently reconciled.
+
+Wave 2 cross-domain resolution on 2026-08-17 closed `C-C01`, `I-XI-02`, and `I-XI-03`. For `C-C01`, `L2-C02`
+distinguishes WF-C02-04 assignment completion (`AcademicAssignmentCompleted`, no `Transferred` lifecycle)
+from WF-C02-08 governed non-Programme relocation (`Transferred` -> `Active`, `StudentTransferred`), so
+`CAN-L3-C-009` and `CAN-L3-C-012` are `KEEP`. For `I-XI-03`, `L2-G10` keeps physical facilities, capacity,
+accessibility and operational availability in G, while `L2-I03`, `L2-I06`, and `L2-I07` own Examination
+allocation, examination-specific preparation, exception arrangements, and conduct. The four I candidates
+are `KEEP`; `CAN-L3-G-002` is `VARIANT` into `CAN-L3-G-001`, completing SG-01 because `L2-G00` defines
+Examination Readiness as a configurable readiness type within one Campus Readiness Workflow.
+
+For `I-XI-02`, the Lead Architect approved the recommended origin-sensitive ordering. An Examination-
+originating change is dispositioned first inside I13 and handed to C05 through the existing
+`ExaminationCompletionEvidencePrepared` event; C05 then alone decides qualification correction, revocation,
+or no change. A non-Examination qualification-governance change is decided first by C05. Qualification-only
+corrections do not alter I13 evidence; an approved revocation requiring evidence review uses the existing
+`QualificationAwardRevoked` event, after which I13 dispositions only its own evidence. `L2-C05` and `L2-I13`
+record the decision. `CAN-L3-C-050`, `CAN-L3-I-162`, and `CAN-L3-I-163` are `KEEP`. No new event or owner was
+introduced.
 
 ---
 

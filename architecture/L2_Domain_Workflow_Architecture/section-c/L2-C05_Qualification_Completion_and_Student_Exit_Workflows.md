@@ -140,6 +140,25 @@ The Qualification Completion Domain remains the sole business authority responsi
 - Academic Record Finalisation
 - Publication of Canonical Qualification Events.
 
+### Approved Post-Conferment Ordering — 2026-08-17
+
+**Lead Architect decision:** post-conferment collaboration is origin-sensitive. Canonical ownership does not change.
+
+When an authoritative Examination outcome changes:
+
+1. L2-I13 consumes the existing revised Examination fact, including `ExaminationResultPublished` or `RevaluationCompleted` as applicable.
+2. L2-I13 first re-evaluates and dispositions its own completion evidence. Invalid evidence is withdrawn from active use; evidence may be restored or re-established only after the Examination-owned condition is authoritatively resolved. History is preserved.
+3. L2-I13 publishes the superseding current evidence position to this domain using the existing `ExaminationCompletionEvidencePrepared` event; no new cross-domain event is introduced.
+4. This domain consumes that evidence and alone determines whether the conferred qualification requires correction, revocation, or no change.
+
+When a non-Examination qualification-governance authority originates a correction or revocation:
+
+1. This domain first makes and records the authoritative qualification decision.
+2. A qualification-only correction does not alter I13-owned completion evidence unless an authoritative Examination outcome also changes.
+3. Where an approved qualification revocation requires I13 to review the continued active use of its evidence, this domain publishes the existing `QualificationAwardRevoked` event. I13 may disposition only its own evidence; it does not reinterpret, replace, or publish the qualification decision.
+
+Neither direction transfers Qualification ownership to Examination or completion-evidence ownership to Student Lifecycle. Direct cross-domain modification remains prohibited.
+
 ---
 
 ## Institutional Clearance
@@ -2257,6 +2276,8 @@ The domain may publish exception events including:
 - QualificationCompletionApprovalRejected
 
 Publication of exception events depends upon institutional policy.
+
+`QualificationAwardRevoked` is the existing C-owned hand-off fact for an approved non-Examination-originating revocation that requires L2-I13 evidence review. Consumption of this event does not require automatic evidence withdrawal; L2-I13 determines the correct disposition of its own evidence under its governed rules.
 
 ---
 

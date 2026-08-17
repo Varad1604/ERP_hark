@@ -18,9 +18,19 @@
 | Contracts | — not present — |
 | Events | §11 Events Published; §12 Events Consumed; §13.9 Event Infrastructure (L2-A06) |
 | Dependencies | §19 Dependency Matrix; §3.1 Upstream Dependencies; Appendix A.4 — Upstream Dependencies |
-| Locked Decisions | — not present — |
+| Locked Decisions | Ownership Resolution — Post-Conferment Evidence and Qualification Ordering |
 
-> **Gap:** 2 required section(s) have no counterpart in this document: Contracts, Locked Decisions. Recorded, not authored.
+> **Gap:** 1 required section has no counterpart in this document: Contracts. Recorded, not authored.
+
+## Ownership Resolution — Post-Conferment Evidence and Qualification Ordering
+
+> **Lead Architect decision approved 2026-08-17 under `I-XI-02`.** Post-conferment collaboration is origin-sensitive. This decision clarifies existing ownership and reuses existing events; it creates no new event or canonical owner.
+
+When an authoritative Examination outcome changes, this domain consumes the applicable existing fact, including `ExaminationResultPublished` or `RevaluationCompleted`, and first re-evaluates its own completion evidence. Evidence that is no longer valid is withdrawn from active use with history preserved. Evidence may be restored or re-established only after the Examination-owned condition is authoritatively resolved. This domain then publishes the superseding current evidence position to L2-C05 through the existing `ExaminationCompletionEvidencePrepared` event. L2-C05 alone determines whether the conferred qualification requires correction, revocation, or no change.
+
+When a non-Examination qualification-governance authority originates a correction or revocation, L2-C05 first makes the qualification decision. A qualification-only correction does not change I13-owned evidence unless an authoritative Examination outcome also changes. Where an approved revocation requires evidence review, this domain consumes the existing C05-owned `QualificationAwardRevoked` event and determines only the disposition of its own evidence. Receipt does not automatically withdraw evidence and does not authorize I13 to reinterpret or republish the qualification decision.
+
+Qualification ownership remains exclusively with L2-C05. Completion-evidence ownership remains exclusively with L2-I13. Direct cross-domain modification is prohibited.
 
 ---
 
@@ -36,7 +46,7 @@
 | **Domain Category** | Examination Domain |
 | **Status** | Locked |
 | **Repository** | SutraERP Enterprise Architecture |
-| **Depends On** | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity, L2-A04 Authorization & Policy, L2-A06 Event Infrastructure, L2-A07 Audit Infrastructure, L2-B04 Curriculum Framework, L2-B05 Academic Calendar, L2-I01 through L2-I12 |
+| **Depends On** | L2-A01 Platform & Tenant Foundation, L2-A02 Person & Identity, L2-A04 Authorization & Policy, L2-A06 Event Infrastructure, L2-A07 Audit Infrastructure, L2-B04 Curriculum Framework, L2-B05 Academic Calendar, L2-C05 Qualification Completion & Student Exit, L2-I01 through L2-I12 |
 | **Consumed By** | Degree Certificate, Convocation, Student Lifecycle, Analytics, Regulatory Reporting, Future Academic Domains |
 | **Architecture Style** | Domain-Driven Design (DDD), Event-Driven Architecture, CQRS Compatible, Modular Monolith Ready, Microservice Compatible |
 
@@ -233,6 +243,7 @@ The Academic Completion domain depends upon:
 - L2-A07 — Audit Infrastructure
 - L2-B04 — Curriculum Framework
 - L2-B05 — Academic Calendar
+- L2-C05 — Qualification Completion & Student Exit
 - L2-I01 — Examination Policy & Configuration
 - L2-I09 — Result Processing & Computation
 - L2-I10 — Result Publication
@@ -1277,11 +1288,11 @@ The official academic classification has been determined.
 
 ### Published When
 
-The institution formally prepares completion evidence.
+The institution formally prepares completion evidence or establishes a superseding current evidence position after an authoritative Examination outcome changes.
 
 ### Business Meaning
 
-The Examination domain has prepared examination-owned completion evidence for Student Lifecycle (L2-C05).
+The Examination domain has prepared the current examination-owned completion evidence position for Student Lifecycle (L2-C05). A superseding occurrence may communicate that previously prepared evidence has been withdrawn from active use, restored, or re-established after the underlying Examination-owned condition is resolved, with prior history preserved.
 
 This event does not represent:
 
@@ -1293,6 +1304,10 @@ This event does not represent:
 ### Possible Consumers
 
 - Student Lifecycle
+
+### Post-Conferment Rule
+
+This existing event is the I-to-C hand-off after an Examination-originating change. L2-C05 consumes the current evidence position and alone decides whether a qualification correction, revocation, or no change is required. The event never represents that qualification decision.
 
 ---
 
@@ -1440,6 +1455,18 @@ Updates academic completion policy evaluation rules where applicable.
 
 ---
 
+## 12.8 QualificationAwardRevoked
+
+### Published By
+
+L2-C05 — Qualification Completion & Student Exit
+
+### Purpose
+
+Triggers review of the continued active use of I13-owned completion evidence when a non-Examination qualification-governance decision revokes an award. Receipt does not automatically withdraw evidence, change an Examination outcome, or transfer qualification ownership to this domain.
+
+---
+
 # 13. Cross-Domain Interactions
 
 ## 13.1 Overview
@@ -1565,6 +1592,22 @@ Audit persistence remains outside this domain.
 
 ---
 
+## 13.11 Qualification Completion & Student Exit (L2-C05)
+
+Publishes To L2-C05:
+
+- Current examination-owned completion evidence position via `ExaminationCompletionEvidencePrepared`
+
+Consumes From L2-C05:
+
+- Approved qualification revocation via `QualificationAwardRevoked` when I13 evidence review is required
+
+Does Not Own:
+
+- Qualification correction, revocation, or no-change decision
+
+---
+
 # 14. Ownership Boundaries
 
 > **Clarification recorded 2026-08-12 under `I-RC-04`.** This document is titled "Academic Completion,
@@ -1586,6 +1629,7 @@ The Academic Completion domain exclusively owns:
 - Degree Award Recommendation
 - Completion Evidence Approval
 - Completion Evidence Register
+- Completion Evidence Withdrawal, Restoration and Supersession History
 - Academic Completion Status
 - Completion Evidence Events
 
@@ -1930,6 +1974,7 @@ Failure shall generate:
 | L2-A07 | Audit Infrastructure | Audit persistence |
 | L2-B04 | Curriculum Framework | Programme and curriculum definitions |
 | L2-B05 | Academic Calendar | Academic period reference |
+| L2-C05 | Qualification Completion & Student Exit | Qualification revocation requiring completion-evidence review |
 | L2-I01 | Examination Policy | Examination policy configuration |
 | L2-I09 | Result Processing & Computation | Published academic outcomes |
 | L2-I10 | Result Publication | Official published results |
@@ -2287,6 +2332,7 @@ Academic Completion Closed
 - CompletionEligibilityApproved
 - DegreeClassificationAssigned
 - DegreeAwardRecommended
+- ExaminationCompletionEvidencePrepared
 - CompletionEvidenceApproved
 - CompletionEvidenceRecordCreated
 - AcademicCompletionClosed
@@ -2299,6 +2345,7 @@ Academic Completion Closed
 - AcademicCalendarClosed
 - CurriculumVersionPublished
 - PolicyUpdated
+- QualificationAwardRevoked
 
 ---
 
@@ -2327,6 +2374,7 @@ Academic Completion Closed
 - L2-A07 — Audit Infrastructure
 - L2-B04 — Curriculum Framework
 - L2-B05 — Academic Calendar
+- L2-C05 — Qualification Completion & Student Exit
 - L2-I01 — Examination Policy & Configuration
 - L2-I09 — Result Processing & Computation
 - L2-I10 — Result Publication

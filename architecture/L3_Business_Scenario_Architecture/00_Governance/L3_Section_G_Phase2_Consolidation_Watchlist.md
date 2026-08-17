@@ -470,3 +470,33 @@ in `L3_Phase1_Candidate_ID_Migration_2026-08-17.md` and, per-row, in the Phase 2
 mechanical extraction order spanning all ten sections (A–J) of the repository-wide register, not a
 per-section sequence; renumbering them would require rebuilding that entire cross-repository register, which
 is outside Section G's scope. If that is wanted, it needs a separate, repository-wide authorization.
+
+## 16. Wave 2 Cross-Domain Boundary Resolution — 2026-08-17
+
+### I-XI-03 — RESOLVED
+
+**Classification:** `STALE_L3_BLOCKER`
+
+**Affected current candidates:** `CAN-L3-G-002`, `CAN-L3-I-009`, `CAN-L3-I-048`, `CAN-L3-I-055`, `CAN-L3-I-056`.
+
+The upstream architecture already establishes the boundary:
+
+- `L2-G10` section 9A.249 states that Examination consumes halls, capacity, accessibility, operational availability, and campus information; G10 owns only the examination facilities, while Examination owns seating plans, invigilation, scheduling, and candidate allocation.
+- `L2-G10` sections 44A.177-199 define Infrastructure as the owner and publisher of physical facts. Its public read contracts include Space Summary, Capacity Profile, Lifecycle Status, and Operational Availability. Consumers make business decisions and allocations.
+- `L2-G00` sections 16 and 21 define Examination Readiness as a configurable type of the campus-operational readiness assessment. G00 aggregates G-owned readiness indicators and may publish `CampusReadinessCalculated`, `CampusReady`, or `CampusNotReady`; it does not execute Examination operations.
+- `L2-I03` sections 5.3, 7.4, 13.5, and 14 consume Campus & Infrastructure facts and own Examination venue planning and allocation.
+- `L2-I06` sections 8.2, 10.4, and 10.5 own examination-specific preparation and the governed arrangement following laboratory, equipment, or venue unavailability.
+- `L2-I07` sections 12, 13.7, and 14 consume `Examination Centre Available`, retain physical-facility ownership in G, and own examination-centre operations, hall preparation, seating, and theory-examination conduct.
+
+The canonical distinction is therefore:
+
+| Business fact or outcome | Owner | Consumer | Boundary |
+| --- | --- | --- | --- |
+| Physical venue, capacity, accessibility, lifecycle, operational availability | G10 / Campus & Infrastructure | I03, I06, I07 | G publishes physical facts; it does not schedule or conduct examinations. |
+| Campus-operational readiness assessment for the configured Examination Readiness type | G00 | Examination and campus governance consumers | A campus-operations governance result, not the decision that an examination is ready to proceed. |
+| Examination venue allocation and schedule feasibility | I03 | I04-I10 | I decides how G-owned physical context satisfies examination requirements. |
+| Practical/theory preparation, exception arrangement, and conduct outcome | I06 / I07 | Downstream Examination workflows | I owns examination-specific readiness and conduct without owning physical infrastructure. |
+
+**Phase 2 application:** the four Section I rows become `KEEP`. `CAN-L3-G-002` becomes `VARIANT` absorbed into `CAN-L3-G-001`, completing the previously withheld SG-01 application: `L2-G00` defines Examination Readiness as configurable readiness-type data within the same Campus Readiness Workflow. The Phase 2 parent now includes the Examination readiness type and I participation inherited from the absorbed row. This VARIANT disposition consolidates two G00 readiness-assessment rows; it does not merge physical-infrastructure readiness into Examination planning or conduct. Phase 1 remains frozen and unchanged.
+
+This section supersedes the unresolved `I-XI-03` status recorded in sections 11-14 while preserving those sections as point-in-time history.

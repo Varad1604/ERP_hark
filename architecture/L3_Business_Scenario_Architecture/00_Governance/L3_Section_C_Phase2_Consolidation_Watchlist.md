@@ -31,7 +31,7 @@ It follows the structure established by `L3_Section_A_Phase2_Consolidation_Watch
 | `OPEN` | Repository evidence supports both readings. A judgement is genuinely required. | Decide. |
 | `BLOCKED` | The item cannot be assessed until an ownership or integrity question is ruled on. | Wait for the Enterprise Architecture Board. |
 
-Current resolution counts — candidate relationships: 2 `CLOSED`, 2 `OPEN`. Repository conflicts: 2 `DETERMINED`, 5 `OPEN`, 1 `RESOLVED` (`CF-08`), and 1 conflict-dependent wording constraint. Total 13.
+Current resolution counts — candidate relationships: 4 settled, 0 `OPEN`. Repository conflicts: 2 `DETERMINED`, 4 `OPEN`, 2 `RESOLVED` (`CF-06`, `CF-08`), and 1 conflict-dependent wording constraint. Total 13.
 
 ---
 
@@ -44,17 +44,25 @@ Current resolution counts — candidate relationships: 2 `CLOSED`, 2 `OPEN`. Rep
 | C-C03 Student exit and persona archival | 019, 040 | Retain separately. | Distinct terminal outcomes. `CAN-L3-C-040` closes the academic relationship (`Student Exit Completed`, `L2-C05` §9.2); `CAN-L3-C-019` archives the persona once every Student Context is terminal (`L2-C02` §11.10.3 exit-state reconciliation). |
 | C-C04 Guardian relationship and emergency contact | 051, 052, 056 | Retain separately. | `L2-C06` §7.2 defines GW-08 Emergency Contact Management as its own catalogue workflow, and §6.2 defines `Emergency Contact` as an aggregate-managed entity distinct from Guardian Assignment. |
 
-### 3.2 Open — Phase 2 decision required
+### 3.2 C-C01 Student placement change — RESOLVED 2026-08-17 (Wave 2)
 
-| Cluster | Candidates | Decision needed | Position |
-| ------- | ---------- | --------------- | -------- |
-| C-C01 Student placement change | 009, 012 | Is an academic assignment change distinguishable from an intra-Institute reassignment, or are they one outcome reached by two routes? | `L2-C02` defines WF-C02-04 Academic Assignment and WF-C02-08 Student Transfer as separate catalogue workflows; after the approved C-C02 boundary, their remaining overlap concerns non-Programme placement dimensions such as batch and section. Provisional boundary: 009 is initial and corrective assignment within an existing placement; 012 is authorized relocation to a different organisational placement. Leaning retain both. Do not delete either — the sources define them separately. |
+| Cluster | Current candidates | Classification | Resolution | Authoritative boundary |
+| ------- | ------------------ | -------------- | ---------- | ---------------------- |
+| C-C01 Student placement change | `CAN-L3-C-009`, `CAN-L3-C-012` | `DETERMINISTIC_FIX` | **KEEP both.** | `L2-C02` WF-C02-04 is the Academic Assignment workflow: it establishes or updates the Student Lifecycle-owned Academic Assignment and publishes `AcademicAssignmentCompleted` without entering the `Transferred` lifecycle. WF-C02-08 is a governed non-Programme organisational or placement relocation, triggered by a Student Transfer Request or Administrative Approval; it enters `Transferred`, returns to `Active`, and publishes `StudentTransferred`. A transfer necessarily updates placement data, but its transfer decision, lifecycle transition, and canonical event are not ordinary assignment maintenance. |
+
+The boundary is determined by the invoked business workflow and its institutional outcome, not by which assignment fields change. Programme-changing mobility remains outside both decisions except that WF-C02-04 applies the already-approved `ProgrammeMigrationApproved` association under the C-C02 ruling. The frozen Phase 1 wording and IDs remain unchanged; only the two Phase 2 dispositions change from `BLOCKED` to `KEEP`.
 
 ### 3.3 C-C02 Programme change ownership — RESOLVED 2026-08-17
 
 **Lead Architect decision: Option B approved.** L2-C04 APW-08 exclusively owns all Programme-changing mobility, including eligibility, curriculum mapping, credit mapping, approval, and `ProgrammeMigrationApproved`. L2-C02 WF-C02-08 now excludes Programme and remains limited to non-Programme organisational or placement transfers. C02 retains Student Context ownership and consumes `ProgrammeMigrationApproved` only to apply the approved Programme association without making or publishing a competing migration decision.
 
-`CAN-L3-C-033` is unblocked and is `KEEP`. `CAN-L3-C-012` remains `BLOCKED` only under C-C01; its existing campus, department, batch, and section wording already conforms to the approved boundary. Neither frozen Phase 1 row nor ID changed.
+`CAN-L3-C-033` is unblocked and is `KEEP`. `CAN-L3-C-012`'s campus, department, batch, and section wording conforms to the approved boundary; its later C-C01 disposition is recorded in section 3.2. Neither frozen Phase 1 row nor ID changed.
+
+### 3.4 I-XI-02 post-conferment qualification/evidence ordering — RESOLVED 2026-08-17
+
+**Lead Architect decision:** the recommended origin-sensitive hand-off is approved. For an Examination-originating change, I13 first dispositions its owned completion evidence and publishes the superseding current evidence position through the existing `ExaminationCompletionEvidencePrepared` event; C05 then alone decides whether the qualification requires correction, revocation, or no change. For a non-Examination qualification-governance change, C05 decides first; a qualification-only correction leaves I13 evidence unchanged unless an Examination outcome also changes, while an approved revocation requiring evidence review uses the existing `QualificationAwardRevoked` event.
+
+`CAN-L3-C-050`, `CAN-L3-I-162`, and `CAN-L3-I-163` are distinct `KEEP` outcomes. Qualification ownership remains with C05 and completion-evidence ownership remains with I13. `L2-C05` and `L2-I13` record the approved ordering; no new event or owner was introduced.
 
 ---
 
@@ -131,7 +139,7 @@ No candidate introduced duplicate canonical ownership.
 | Removed | 0 |
 | **Final frozen candidates** | **75** |
 
-The remaining open cluster in section 3.2 does not change the final frozen Phase 1 count. C-C02 is resolved in section 3.3 and the relationship is recorded in the Phase 2 register; all 75 Phase 1 rows and IDs remain unchanged.
+C-C01, C-C02, and I-XI-02 are resolved in sections 3.2 through 3.4 and their relationships are recorded in the Phase 2 register. Section C has no remaining `BLOCKED` Phase 2 row. All 75 frozen Phase 1 rows and IDs remain unchanged.
 
 ### 6.1 Historical application execution record — 2026-08-14
 

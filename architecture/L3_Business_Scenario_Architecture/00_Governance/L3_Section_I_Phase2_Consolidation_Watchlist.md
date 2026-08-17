@@ -479,3 +479,34 @@ same collision concern described above through an explicit crosswalk document in
 offset. Full per-candidate old→new pairs (both the `315`-start disjoint IDs and their final `001`-start IDs)
 are recorded in `L3_Phase1_Candidate_ID_Migration_2026-08-17.md` and, per-row, in the Phase 2 register's
 Section I "Phase 1 ID" column.
+
+## 17. Wave 2 Cross-Domain Boundary Resolution — 2026-08-17
+
+This is the current-state disposition of the two Wave 2 Section I cross-inventory findings. It supersedes the `OPEN` status in section 11 without rewriting that point-in-time audit narrative.
+
+### 17.1 I-XI-03 — RESOLVED
+
+**Classification:** `STALE_L3_BLOCKER`
+
+**Affected current candidates:** `CAN-L3-G-002`, `CAN-L3-I-009`, `CAN-L3-I-048`, `CAN-L3-I-055`, `CAN-L3-I-056`.
+
+Locked upstream architecture separates the outcomes. `L2-G10` section 9A.249 and sections 44A.177-199 make G the authoritative owner and publisher of physical examination facilities, capacity, accessibility, lifecycle, and operational availability. `L2-I03` owns Examination venue planning and allocation using those facts. `L2-I06` owns examination-specific practical preparation and alternative arrangements after a laboratory, equipment, or venue problem. `L2-I07` consumes the existing `Examination Centre Available` fact, explicitly keeps infrastructure ownership external, and owns examination-centre operations, hall preparation, seating, and theory-examination conduct.
+
+Accordingly, `CAN-L3-I-009`, `CAN-L3-I-048`, `CAN-L3-I-055`, and `CAN-L3-I-056` are `KEEP`. Their outcomes are Examination decisions or conduct outcomes, not physical-infrastructure lifecycle outcomes. The G-side `CAN-L3-G-002` is `VARIANT` into `CAN-L3-G-001` under the already-evidenced SG-01 consolidation because `L2-G00` defines Examination Readiness as a configurable type inside the single Campus Readiness Workflow. This G00 consolidation does not transfer any Examination decision to G.
+
+### 17.2 I-XI-02 — RESOLVED BY LEAD ARCHITECT DECISION
+
+**Approval:** the recommended origin-sensitive hand-off was approved on 2026-08-17.
+
+**Classification:** `DETERMINISTIC_FIX`
+
+**Affected current candidates:** `CAN-L3-C-050`, `CAN-L3-I-162`, `CAN-L3-I-163`.
+
+The approved ordering is:
+
+1. **Examination-originating change:** I13 consumes the authoritative revised Examination fact, first withdraws, restores, or re-establishes its own completion evidence as required, and publishes the superseding current evidence position through the existing `ExaminationCompletionEvidencePrepared` event. C05 then alone decides whether the qualification requires correction, revocation, or no change.
+2. **Non-Examination qualification-governance change:** C05 first makes the qualification decision. A qualification-only correction does not alter I13 evidence unless an Examination outcome also changes. Where an approved revocation requires evidence review, C05 publishes the existing `QualificationAwardRevoked` event; I13 reviews and dispositions only its own evidence, without reinterpreting the qualification decision.
+
+`L2-C05` and `L2-I13` now record this decision. The hand-off reuses `ExaminationResultPublished`, `RevaluationCompleted`, `ExaminationCompletionEvidencePrepared`, and `QualificationAwardRevoked`; no new event or owner was introduced.
+
+The three candidates produce distinct institutional outcomes owned by different domains and are all `KEEP`. Qualification ownership remains exclusively with C05, and completion-evidence ownership remains exclusively with I13. Phase 1 remains frozen and unchanged.
