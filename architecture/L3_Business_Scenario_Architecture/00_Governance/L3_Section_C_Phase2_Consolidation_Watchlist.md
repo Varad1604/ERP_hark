@@ -2,7 +2,7 @@
 
 **Architecture Level:** L3 — Business Scenario Architecture
 **Applies To:** Section C — Student Lifecycle, final frozen candidates `CAN-L3-C-001` … `CAN-L3-C-075`
-**Status:** Active — Phase 2 input
+**Status:** Phase 2 Final / Closed — all Section C judgments resolved/applied
 **Created:** 2026-08-09
 **Source:** `generated/reviews/l3-phase1-section-c-verification-2026-08-09.md`
 

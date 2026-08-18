@@ -2,7 +2,7 @@
 
 **Architecture Level:** L3 — Business Scenario Architecture
 **Applies To:** Section G — Campus Operations, 322 current candidates in continuous range `CAN-L3-G-001` … `CAN-L3-G-322` (renumbered 2026-08-17; see the repository-wide migration note near the end of this document and `L3_Phase1_Candidate_ID_Migration_2026-08-17.md`). This header described 350 sparse candidates across `CAN-L3-G-001`…`CAN-L3-G-541` before the 2026-08-17 independent boundary audit (§12) and is corrected here as a live governance fact; §1–§13 below remain unmodified historical narrative.
-**Status:** Determined consolidation applied — open Phase 2 judgments retained
+**Status:** Phase 2 Final / Closed — all Section G judgments resolved/applied
 **Created:** 2026-08-11
 **Source:** independent adversarial audit of `L3_Phase1_Inventory_Varad.md`, 2026-08-11
 **Corrections applied:** `generated/reviews/l3-phase1-section-g-corrections-2026-08-11.md`

@@ -2,8 +2,8 @@
 
 **Architecture Level:** L3 — Business Scenario Architecture
 **Repository Area:** `architecture/L3_Business_Scenario_Architecture`
-**Status:** Phase 1 — Final / Frozen; Phase 2 — Consolidation Active
-**Current Phase:** Phase 2 — Repository-Wide Scenario Consolidation
+**Status:** Phase 1 — Final / Frozen; Phase 2 — Final / Closed
+**Current / Next Stage:** Canonical L3 Scenario Set Construction
 **Lock Status:** Phase 1 candidate inventory is the final frozen discovery baseline; Phase 1 candidate numbering normalized and frozen (2026-08-17); final scenario ownership not locked
 
 ---
@@ -90,8 +90,9 @@ Phase 1 (scenario discovery and candidate inventory creation) is final and froze
 inventories form the final discovery baseline, and candidate numbering was normalized repository-wide on 2026-08-17 (see
 `00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`).
 
-Phase 2 (repository-wide scenario consolidation) is active. Its working artifact is
-`02_Phase2_Consolidation/L3_Phase2_Proposed_Canonical_Scenario_Register.md`.
+Phase 2 (repository-wide scenario consolidation) is Final / Closed. Its completed working register is
+`02_Phase2_Consolidation/L3_Phase2_Proposed_Canonical_Scenario_Register.md`. The next authorized stage is
+Canonical L3 Scenario Set Construction; final L3 scenario IDs and scenario documents do not yet exist.
 
 Phase 1/2 do not produce final L3 scenario documents.
 

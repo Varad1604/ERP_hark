@@ -2,7 +2,7 @@
 
 **Architecture Level:** L3 — Business Scenario Architecture
 **Applies To:** Section B — Institution & Structure (32 candidates, `CAN-L3-B-001`…`B-032`); Section D — Academic Delivery (57 candidates, `CAN-L3-D-001`…`D-057`); Section E — People & Workforce (75 candidates, `CAN-L3-E-001`…`E-075`) — all three renumbered 2026-08-17, see `L3_Phase1_Candidate_ID_Migration_2026-08-17.md`
-**Status:** Active — Phase 2 input
+**Status:** Phase 2 Final / Closed — all B/D/E judgments resolved
 **Created:** 2026-08-14
 **Source:** all-scope adversarial Phase 1 audit, 2026-08-14 — `generated/reviews/l3-phase1-audit-all-2026-08-14.md`
 **Inventory:** `../01_Phase1_Discovery/L3_Phase1_Inventory_Pallav.md`
