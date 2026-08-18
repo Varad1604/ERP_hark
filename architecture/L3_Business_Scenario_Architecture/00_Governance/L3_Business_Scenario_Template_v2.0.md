@@ -9,7 +9,8 @@
 **Depends On:** Repository Constitution; locked L1 Business Domain Architecture; locked L2 Domain Workflow Architecture; `L3_Naming_Numbering_Standard.md`; Phase 2 final consolidation register  
 **Referenced By:** Canonical L3 business scenario documents and future L4 System Behavior Specifications  
 **Design Decision:** `L3_Phase3_Canonical_Template_Design_Decision_2026-08-18.md`  
-**Supersedes:** `L3_Business_Scenario_Template_v1.0.md` for all new canonical L3 scenario authoring
+**Supersedes:** `L3_Business_Scenario_Template_v1.0.md` for all new canonical L3 scenario authoring  
+**Authorized In-Place Refinement:** 2026-08-18 — Lead Architect approved strengthening authoring controls inside v2.0 without changing the canonical 17-section structure or creating v2.1.
 
 ---
 
@@ -51,6 +52,43 @@ L3 must not define:
 - programming languages, frameworks, or technology choices.
 
 L3 supplies business requirements for later access-control design; it does not design technical RBAC.
+
+### 2.1 Compact Authoring Principle
+
+Completeness does not require repetition.
+
+Every canonical L3 document shall use the minimum content necessary to express the scenario completely and unambiguously.
+
+Authors shall:
+
+- prefer one precise statement over repeated explanation;
+- reference authoritative upstream architecture instead of reproducing it;
+- include only rules, states, events, contracts, actors, evidence obligations, and exclusions materially relevant to the scenario;
+- avoid repeating repository-wide governance principles unless they materially affect the scenario;
+- state the absence of scenario-specific content concisely instead of adding filler;
+- keep business-flow steps at the minimum granularity needed to describe the complete institutional outcome.
+
+Document length and step count are not quality targets. Scenario complexity shall determine necessary detail.
+
+Compact authoring must never remove information required to establish scenario boundary, ownership, authority, lifecycle impact, business rules, events, cross-domain collaboration, recovery, audit obligations, or completion.
+
+### 2.2 Upstream Ambiguity Rule
+
+Where authoritative upstream architecture contains an internal ambiguity, contradiction, unresolved sequencing issue, or missing material definition, L3 shall not:
+
+- choose one interpretation silently;
+- invent a compromise;
+- reconcile conflicting upstream statements as if a decision had already been made;
+- manufacture a missing actor, rule, state, event, contract, or authority.
+
+L3 shall:
+
+1. preserve all upstream architecture that is unambiguous;
+2. avoid depending on the disputed interpretation where possible;
+3. record the ambiguity or gap in Section 17 — Open Issues;
+4. identify its impact on scenario correctness, approval, or locking.
+
+A material unresolved issue affecting ownership, lifecycle, event publisher, business rule, scenario boundary, authority, or final outcome prevents the scenario from becoming Locked.
 
 ---
 
@@ -131,6 +169,8 @@ Describe the institutional reason this scenario exists.
 
 The purpose must be business-oriented, outcome-oriented, and supported by authoritative architecture. It must not describe implementation mechanics or repeat the entire L2 workflow.
 
+Keep the purpose concise; normally one or two precise paragraphs are sufficient unless the scenario boundary genuinely requires more explanation.
+
 ---
 
 # 3. Business Outcome
@@ -143,6 +183,8 @@ The outcome must be:
 - business-verifiable;
 - consistent with the Primary Owner's canonical responsibility;
 - distinguishable from a workflow step, notification, validation, or technical result.
+
+Do not restate the Main Business Flow in the outcome.
 
 ---
 
@@ -158,15 +200,17 @@ State the business boundary at which the scenario ends. It must align with the B
 
 ## 4.3 In Scope
 
-List the material business behaviour covered by the scenario.
+List only the material business behaviour covered by the scenario.
 
 ## 4.4 Out of Scope
 
-List materially adjacent business behaviour intentionally excluded because it belongs to another scenario, another owner, or a later architecture level.
+List only materially adjacent business behaviour that could reasonably be confused with this scenario and is intentionally excluded because it belongs to another scenario, another owner, or a later architecture level.
+
+Do not create exhaustive generic exclusion lists.
 
 ## 4.5 Related Scenarios — Optional
 
-Use only when canonical related scenario IDs exist.
+Use only when canonical related scenario IDs exist and the relationship materially clarifies the boundary.
 
 ```markdown
 | Relationship | Related Scenario | Reason |
@@ -193,12 +237,13 @@ Rules:
 - A domain consuming another domain's fact, event, read model, or contract does not become its owner.
 - Runtime dependency does not reverse foundational dependency or ownership.
 - Do not list a platform/supporting domain merely because a technical capability may be used.
+- Do not repeat generic ownership principles after the table unless a scenario-specific ownership boundary requires clarification.
 
 ---
 
 # 6. Business Actors, Roles and Responsibilities
 
-Identify business actors and institutional roles that participate in the scenario.
+Identify business actors and institutional roles that materially participate in the scenario.
 
 ```markdown
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
@@ -208,9 +253,12 @@ Identify business actors and institutional roles that participate in the scenari
 
 Rules:
 
-- Use only roles supported by authoritative business architecture.
-- If a required actor or role is absent upstream, record the gap in Section 17 rather than inventing one.
+- Use only actors and roles supported by authoritative business architecture.
+- Do not create descriptive placeholder roles such as `Approving Authority`, `Business Reviewer`, `Scenario Owner`, `Requesting Authority`, or similar labels unless the role is explicitly supported upstream.
+- Where a business responsibility is known but the canonical actor or role is not defined upstream, record the gap in Section 17 rather than converting the responsibility into a new role.
+- A domain name is not automatically a business actor.
 - This section is a business input for future RBAC; it must not define technical permissions or access-control structures.
+- If no scenario-specific actor can be established authoritatively, state that concisely and record any material gap in Section 17.
 
 ---
 
@@ -222,7 +270,12 @@ List business facts or conditions that must already be true before the scenario 
 - <Business precondition or entry criterion>
 ```
 
-Do not use technical availability checks. Do not repeat the trigger or final outcome as a precondition.
+Rules:
+
+- Do not use technical availability checks.
+- Do not repeat the trigger or final outcome as a precondition.
+- Do not move an activity into Preconditions merely because upstream architecture describes it inconsistently.
+- If the same matter is defined upstream both as a precondition and as an activity within the workflow, record the sequencing ambiguity in Section 17 rather than silently choosing one interpretation.
 
 ---
 
@@ -235,6 +288,8 @@ Describe the business event, request, decision, condition, or lifecycle occurren
 ```
 
 Do not express the trigger as an API call, button click, database write, cron job, message-broker mechanism, or other implementation detail.
+
+Keep the trigger to the minimum business statement necessary to establish scenario entry.
 
 ---
 
@@ -252,15 +307,24 @@ Rules:
 
 - Keep steps at institutional business level.
 - Do not decompose L2 workflows into unnecessary micro-steps.
+- Include only steps materially required to reach the scenario's Business Outcome.
 - Do not redefine upstream rules, states, events, contracts, or ownership.
 - Do not describe screens, APIs, jobs, tables, services, classes, or technical orchestration.
 - Cite an authoritative source only where materially needed to establish or verify a non-obvious behaviour, ownership boundary, rule, state, event, contract, or disputed interpretation.
+
+### Scenario End Discipline
+
+The Main Business Flow shall stop when the defined Business Outcome and End Boundary are achieved.
+
+Consequences that occur only after successful scenario completion belong in Postconditions, Cross-Domain Collaboration, or a separate downstream L3 scenario as appropriate.
+
+Do not extend the Main Business Flow merely to describe every possible downstream reaction to the completed outcome.
 
 ---
 
 # 10. Alternate Business Flows
 
-Describe valid governed paths that differ from the Main Business Flow but remain legitimate paths inside the same scenario boundary.
+Describe valid governed paths that differ from the Main Business Flow but remain legitimate paths inside the same scenario boundary and can still progress toward the same defined business outcome.
 
 ```markdown
 | Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
@@ -268,7 +332,18 @@ Describe valid governed paths that differ from the Main Business Flow but remain
 | <Case> | <Business condition> | <Alternative path> | <Business result> | <Domain> |
 ```
 
-An alternate business flow is not automatically a failure or recovery flow.
+Classification rule:
+
+- If the condition permits a valid governed alternative path toward the same scenario outcome, it may belong here.
+- If the condition prevents normal progression and requires waiting, correction, rejection, suspension, resubmission, recovery, or termination, it belongs in Section 11.
+
+Do not populate this section merely to demonstrate that alternate flows were considered.
+
+If no scenario-specific alternate business flow is defined upstream, state:
+
+```text
+No scenario-specific alternate business flow is defined by the authoritative L2 architecture.
+```
 
 ---
 
@@ -285,6 +360,7 @@ Describe business-level situations in which normal scenario progression cannot c
 Rules:
 
 - Model only business-level failure/recovery supported by authoritative architecture.
+- A missing approval, unsatisfied dependency, invalid business condition, or other blocker belongs here when it prevents normal scenario progression.
 - Do not invent a recovery path to fill the section.
 - Technical retries, queues, server failures, rollback, exception handlers, timeout handling, and infrastructure recovery are prohibited.
 
@@ -308,10 +384,14 @@ If the missing recovery path prevents a correct scenario, record it as an Open I
 
 Rules:
 
+- Include only upstream rules and constraints that materially determine, constrain, or validate this scenario.
 - L3 applies and references rules; it does not become a new rule owner.
 - Use existing authoritative rule identifiers where available.
 - Do not manufacture local `BR-01`, `BR-02`, or similar identifiers.
 - Do not change rule wording, ownership, precedence, or applicability without an explicit upstream decision.
+- Do not list every rule belonging to an aggregate merely because it exists upstream.
+
+If no scenario-specific business rule materially applies beyond already referenced upstream workflow semantics, state that concisely rather than adding filler.
 
 ---
 
@@ -326,6 +406,8 @@ Rules:
 Rules:
 
 - Use only authoritative lifecycle states and transitions.
+- Include only lifecycle impacts materially involved in the scenario.
+- Do not reproduce an entire lifecycle diagram when a specific transition or lifecycle position is sufficient.
 - Do not invent, rename, merge, split, or re-own states.
 - Every lifecycle remains owned by its canonical aggregate/domain.
 - A scenario may coordinate multiple lifecycle impacts without combining ownership.
@@ -348,8 +430,11 @@ Events and synchronous contracts are distinct architectural mechanisms and must 
 
 Rules:
 
+- Include only exact canonical business events that materially participate in the scenario.
 - Every business event has exactly one canonical publisher.
 - Do not invent or silently rename events.
+- Do not use vague placeholders such as `other applicable events`, `relevant downstream events`, or `other domain notifications`.
+- If an exact event required by the scenario is not established upstream, record the gap rather than generalising it.
 - Event consumption does not transfer ownership of the event or underlying business fact.
 - Do not define topics, queues, schemas, protocols, or delivery technology.
 
@@ -365,15 +450,19 @@ If no business event materially participates, state that explicitly.
 
 Rules:
 
+- Include only contracts and hand-offs materially required by the scenario.
 - Cross-domain interaction must use architecture-approved collaboration mechanisms.
 - Do not describe APIs, payload schemas, endpoints, middleware, or transport.
 - A contract or hand-off must not duplicate or transfer canonical ownership.
+- Do not reproduce general-purpose contracts merely because the owning domain exposes them.
+
+If no synchronous contract or governed hand-off materially participates, state that concisely.
 
 ---
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-This section defines business authority and evidence requirements. It is an input to later RBAC/access-control design, not technical RBAC itself.
+This section defines scenario-specific business authority and evidence requirements. It is an input to later RBAC/access-control design, not technical RBAC itself.
 
 Section A remains the canonical owner of platform Authorization and Audit infrastructure. The owning business domain remains the owner of its business decision, rule, approval requirement, evidence, and outcome.
 
@@ -385,6 +474,8 @@ Section A remains the canonical owner of platform Authorization and Audit infras
 | <Action or decision> | <Role> | <Authority, approval requirement, or eligibility> | <Domain owning the business decision> |
 ```
 
+Use only authority and roles supported by authoritative architecture. If authority is required but the canonical actor or role is undefined, record the gap in Section 17 rather than inventing a role.
+
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
 ```markdown
@@ -394,6 +485,8 @@ Section A remains the canonical owner of platform Authorization and Audit infras
 ```
 
 If no scenario-specific requirement exists, state that explicitly.
+
+Do not invent separation-of-duty, override, escalation, or exception rules merely because they would be desirable operational controls.
 
 ## 15.3 Business Audit and Evidence Obligations
 
@@ -405,9 +498,11 @@ If no scenario-specific requirement exists, state that explicitly.
 
 Rules:
 
+- Include only scenario-specific business evidence obligations supported by authoritative architecture or necessarily implied by an upstream-defined business decision or approval requirement.
+- Do not invent evidence fields, supporting documents, comments, reasons, timestamps, or approval artefacts merely because they would be useful operationally.
 - Do not define permission codes, technical roles, IAM groups, claims, ACLs, authentication mechanisms, or enforcement technology.
 - Do not re-own Section A Authorization or Audit infrastructure.
-- Do not repeat generic platform audit mechanics in every scenario; record scenario-specific business evidence obligations only.
+- Do not repeat generic platform audit mechanics in every scenario.
 
 ---
 
@@ -415,7 +510,7 @@ Rules:
 
 ## 16.1 Completion Criteria
 
-List the business-verifiable conditions proving successful completion.
+List only the business-verifiable conditions necessary to prove successful completion.
 
 ```markdown
 - <Business completion criterion>
@@ -423,13 +518,17 @@ List the business-verifiable conditions proving successful completion.
 
 Completion Criteria must align with the Business Outcome and End Boundary.
 
+Do not repeat every Main Business Flow step as a completion criterion.
+
 ## 16.2 Postconditions
 
-List business facts that are true after successful completion and may govern subsequent institutional behaviour.
+List only material business facts that are true after successful completion and may govern subsequent institutional behaviour.
 
 ```markdown
 - <Business postcondition>
 ```
+
+Do not restate the entire outcome, rules, event table, or Main Business Flow.
 
 Do not describe technical persistence, cache state, database records, message-delivery internals, or infrastructure status.
 
@@ -455,6 +554,8 @@ No open issues.
 
 A scenario must not be Locked while an open issue materially affects ownership, lifecycle, event publisher, rule, scenario boundary, authority, or final outcome correctness.
 
+Any material upstream ambiguity identified under Section 2.2 shall be recorded here rather than silently resolved in L3.
+
 ## 17.2 Assumptions
 
 ```markdown
@@ -479,7 +580,15 @@ No assumptions.
 | <Question> | L4 / L5 / L6 | <Why outside L3> |
 ```
 
-Implementation choices should normally be deferred rather than answered in L3.
+Record only scenario-specific deferred architecture questions.
+
+Do not populate this section merely to list generic implementation topics such as UI, API, database, messaging, deployment, or technical RBAC questions that are already excluded from L3 by governance.
+
+If none:
+
+```text
+No scenario-specific deferred questions.
+```
 
 ---
 
@@ -493,17 +602,24 @@ Before a canonical scenario becomes Locked, verify:
 - [ ] Business Outcome, Preconditions, Trigger, Completion Criteria, and Postconditions are distinct and consistent.
 - [ ] Primary Owner matches locked L1/L2 ownership of the final outcome.
 - [ ] Participating domains retain their canonical responsibilities.
-- [ ] Actors and business roles are supported upstream or explicitly recorded as issues.
-- [ ] Main and alternate flows remain at business level.
+- [ ] Actors and business roles are supported upstream; no placeholder or invented role has been introduced.
+- [ ] Any material upstream ambiguity or missing definition is recorded rather than silently resolved.
+- [ ] Main Flow stops at the defined Business Outcome and End Boundary.
+- [ ] Main and alternate flows remain at business level and are not decomposed into unnecessary micro-steps.
+- [ ] Alternate flows represent valid paths toward the same outcome; blockers and interrupted progression are classified under Failure/Recovery.
 - [ ] Failure/recovery is business-level and does not contain technical error handling.
-- [ ] No business rule is invented, re-owned, or silently changed.
-- [ ] No lifecycle state is invented, renamed, merged, split, or re-owned.
-- [ ] Every business event preserves its canonical name and publisher.
+- [ ] Only materially relevant upstream business rules are included; no rule is invented, re-owned, or silently changed.
+- [ ] Only materially relevant lifecycle impacts are included; no lifecycle state is invented, renamed, merged, split, or re-owned.
+- [ ] Every listed business event is exact, material, and preserves its canonical name and publisher.
 - [ ] Events remain distinct from synchronous contracts and hand-offs.
-- [ ] Authorization/approval/audit content is business-level and does not redefine Section A platform ownership.
+- [ ] Only materially participating contracts and hand-offs are included.
+- [ ] Authorization/approval/audit content is business-level, source-grounded, scenario-specific, and does not redefine Section A platform ownership.
+- [ ] No unsupported evidence requirement, authority, separation-of-duty rule, or audit artefact has been invented.
 - [ ] No technical RBAC, API, database, UI, deployment, infrastructure, or technology design appears in L3.
 - [ ] Higher-level dependency/source metadata is present.
 - [ ] Detailed Phase 1/Phase 2 lineage is not unnecessarily duplicated from the Phase 2 register.
+- [ ] Repository-wide governance is referenced rather than unnecessarily repeated.
+- [ ] Empty or non-applicable sections are expressed concisely without filler.
 - [ ] Open issues and assumptions do not override repository decisions.
 - [ ] The scenario is suitable to inform L4 without prescribing implementation.
 ```
@@ -515,5 +631,7 @@ Before a canonical scenario becomes Locked, verify:
 `L3_Business_Scenario_Template_v2.0.md` is the locked canonical template for all new SutraERP Level 3 Business Scenario Architecture documents.
 
 It supersedes `L3_Business_Scenario_Template_v1.0.md` for new canonical authoring. The v1.0 file remains historical pilot evidence and must not be used as the governing template for new scenarios.
+
+The 2026-08-18 Lead Architect-authorized in-place refinement strengthens authoring discipline, ambiguity handling, actor integrity, flow classification, scenario-end discipline, source-grounded evidence, and compact authoring without changing the canonical 17-section structure.
 
 Any later structural change requires explicit architecture review, versioning, repository synchronization, and Lead Architect approval.
