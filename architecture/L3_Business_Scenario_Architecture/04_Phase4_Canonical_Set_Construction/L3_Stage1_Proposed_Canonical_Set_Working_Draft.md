@@ -145,11 +145,11 @@ Disposition: `VARIANT` of `CAN-L3-G-163` — **Emergency Incident to Immediate I
 
 Canonical action: no separate canonical scenario.
 
-Stage 1 canonical-title recommendation for the surviving parent:
+Stage 2-refined canonical-title recommendation for the surviving parent:
 
-**Medical or First-Aid Incident to Immediate Institutional Response**
+**Emergency or First-Aid Incident to Immediate Institutional Medical Response**
 
-Reason: the parent must visibly encompass the approved First Aid variant without creating a separate First Aid aggregate, lifecycle, or event.
+Reason: the parent must visibly encompass the approved First Aid variant without creating a separate First Aid aggregate, lifecycle, or event, while remaining distinct from the routine `Walk-in Consultation to Completed Medical Encounter` scenario.
 
 This is a title/boundary wording recommendation only; G06 remains the canonical owner.
 
@@ -164,7 +164,7 @@ The following active rows are absorbed:
 - `P2W-I-0928 / CAN-L3-I-076` — **Evaluation Discrepancy Before Approval to Valid Evaluated Marks**
 - `P2W-I-0939 / CAN-L3-I-087` — **Evaluation Process Interruption to Resumed Custody-Preserving Evaluation**
 
-Canonical action: both become alternate/failure-recovery paths within the canonical evaluation-to-Final-Approved-Marks scenario. They do not create separate canonical scenarios.
+Canonical action: both become governed paths within the canonical evaluation-to-Final-Approved-Marks scenario. During full scenario authoring, the discrepancy/correction path belongs under the appropriate alternate/correction flow, while process interruption belongs under `Failure, Interruption and Business Recovery`.
 
 #### Into `CAN-L3-I-074` — Marks Submission Exception to Authoritative Marks Outcome
 
@@ -174,7 +174,7 @@ The following active rows are absorbed:
 - `P2W-I-0934 / CAN-L3-I-082` — **Damaged Evaluation Evidence to Authoritative Evaluation Resolution**
 - `P2W-I-0935 / CAN-L3-I-083` — **Candidate-to-Script Mapping Error to Correct Evaluation Record**
 
-Canonical action: these are governed causes/exception paths inside the broader authoritative-marks-exception outcome and create no separate canonical scenarios.
+Canonical action: these are governed exception, correction, or recovery paths inside the broader authoritative-marks-exception outcome and create no separate canonical scenarios. Their exact placement must preserve the locked v2.0 distinction between alternate business flow and business failure/recovery.
 
 ---
 
@@ -193,11 +193,11 @@ The following active rows are governed method variants and create no separate ca
 - `CAN-L3-J-103` — External Transfer-Out
 - `CAN-L3-J-104` — Recycling or External Return
 
-Stage 1 canonical-title recommendation for the surviving parent:
+Stage 2-refined canonical-title recommendation for the surviving parent:
 
-**Authorised Inventory Disposal to Reconciled Disposal Closure**
+**Authorised Disposal Method Execution to Reconciled Physical Disposal Closure**
 
-Reason: `Standard Disposal` is too narrow once the six approved disposal-method variants are absorbed. The broader title preserves one J10 disposal execution-to-reconciled-closure lifecycle while method-specific evidence remains variant behaviour.
+Reason: the title must encompass the approved configurable disposal-method variants while remaining execution-focused and distinct from separate canonical scenarios for partial disposal, audit-origin treatment, asset-linked treatment, emergency disposal, write-off, and disposal exceptions.
 
 ---
 
@@ -231,8 +231,8 @@ The proposed set consists of:
 Three surviving parent titles are recommended for boundary clarity before the canonical register is frozen:
 
 1. D-028 → **Academic Monitoring Requirement to Published Monitoring Outcome**
-2. G-163 → **Medical or First-Aid Incident to Immediate Institutional Response**
-3. J-097 → **Authorised Inventory Disposal to Reconciled Disposal Closure**
+2. G-163 → **Emergency or First-Aid Incident to Immediate Institutional Medical Response**
+3. J-097 → **Authorised Disposal Method Execution to Reconciled Physical Disposal Closure**
 
 These recommendations do not change canonical ownership, state, lifecycle, business rule, event, or dependency decisions.
 
