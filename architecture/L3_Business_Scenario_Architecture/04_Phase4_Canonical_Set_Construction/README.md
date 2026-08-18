@@ -2,7 +2,7 @@
 
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Phase:** Phase 4 — Canonical Scenario Set Construction  
-**Status:** Complete through Stage 4; controlled pilot authoring authorized  
+**Status:** Complete through Stage 4; Phase 5 controlled authoring authorized  
 **Owner:** Lead Architect  
 **Last Updated:** 2026-08-18
 
@@ -124,10 +124,33 @@ Phase 1 candidate IDs and Phase 2 working IDs remain historical traceability ide
 
 ---
 
-## 5. Current Gate
+## 5. Phase 5 Handoff
 
 Phase 4 canonical-set construction and final-ID assignment are complete.
 
-The next authorized activity is the **controlled pilot L3 scenario authoring batch** under the locked v2.0 template.
+The next development phase is **Phase 5 — Parallel Authoring and Continuous Verification**.
 
-Broad authoring across all 1,084 scenarios should begin only after the pilot validates authoring conventions for ownership, traceability, business recovery, authorization, lifecycle impact and cross-domain/event collaboration.
+Phase 5 operating artifacts are maintained under:
+
+`../05_Phase5_Parallel_Authoring_and_Verification/`
+
+Current Phase 5 planning report:
+
+`../05_Phase5_Parallel_Authoring_and_Verification/L3_Phase5_Authoring_Workload_and_Execution_Report_2026-08-18.md`
+
+The approved Phase 5 human-authoring quotas are:
+
+```text
+Dhruv   250
+Pallav  337
+Varad   337
+Chetan   80
+Devang   80
+Total  1084
+```
+
+These are workload assignments only and do not alter canonical domain ownership.
+
+Broad authoring across all 1,084 scenarios shall begin only after the controlled pilot validates authoring conventions for ownership, traceability, business recovery, authorization, lifecycle impact and cross-domain/event collaboration.
+
+The exact 1,084-row workload register remains to be locked after final capability-boundary normalization.
