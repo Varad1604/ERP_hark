@@ -2,35 +2,38 @@
 
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Phase:** Phase 3 — Canonical Scenario Template Design  
-**Status:** In Progress — Template Drafted, Architecture Review Pending  
+**Status:** Locked  
+**Owner:** Lead Architect  
 **Date:** 2026-08-18
 
 ---
 
 ## 1. Purpose
 
-Phase 3 establishes the final canonical document structure that will govern full L3 business scenario authoring.
+Phase 3 establishes and locks the canonical document structure governing full L3 business scenario authoring.
 
 Phase 3 does not itself generate the canonical scenario set or assign final L3 scenario IDs.
 
 ---
 
-## 2. Current Phase 3 Outputs
+## 2. Phase 3 Outputs
 
-The following governance artifacts now define the proposed Phase 3 design:
+The locked Phase 3 governance baseline consists of:
 
-- `../00_Governance/L3_Business_Scenario_Template_v2.0.md` — proposed final canonical scenario template;
-- `../00_Governance/L3_Phase3_Canonical_Template_Design_Decision_2026-08-18.md` — approved template design decisions and rationale;
-- `../00_Governance/L3_Phase3_Traceability_Governance_Alignment_2026-08-18.md` — explicit resolution of the candidate-ID metadata duplication rule for v2.0.
+- `../00_Governance/L3_Business_Scenario_Template_v2.0.md` — locked canonical L3 scenario template;
+- `../00_Governance/L3_Phase3_Canonical_Template_Design_Decision_2026-08-18.md` — locked template-design decisions;
+- `../00_Governance/L3_Phase3_Traceability_Governance_Alignment_2026-08-18.md` — locked consolidation-lineage placement rule;
+- `../00_Governance/L3_Naming_Numbering_Standard.md` v1.1 — locked naming, final-ID, and traceability-placement standard;
+- `../../../governance/policies/Architecture_Level_Validation_Standards.md` v1.1 — L3 validation expectations;
+- `../../../generated/reviews/L3_Phase3_Canonical_Template_Architecture_Review_2026-08-18.md` — Phase 3 architecture review and closure evidence.
 
-The existing `../00_Governance/L3_Business_Scenario_Template_v1.0.md` remains preserved as the historical pilot template.
+`../00_Governance/L3_Business_Scenario_Template_v1.0.md` remains historical pilot evidence and is superseded for all new canonical L3 scenario authoring.
 
 ---
 
-## 3. Approved Design Direction
+## 3. Locked Canonical Structure
 
-The proposed v2.0 template now includes:
-
+```text
 1. Scenario Metadata
 2. Scenario Purpose
 3. Business Outcome
@@ -48,54 +51,59 @@ The proposed v2.0 template now includes:
 15. Business Authorization, Approval and Audit Obligations
 16. Completion Criteria and Postconditions
 17. Open Issues, Assumptions and Deferred Questions
+```
 
 ---
 
 ## 4. Architecture Boundary
 
-Phase 3 preserves the L3 business-architecture boundary.
+L3 remains business architecture.
 
-L3 may provide business inputs for later implementation architecture, including business roles, authority, approvals, separation-of-duty, and audit obligations.
+It may provide business inputs for later implementation architecture, including business roles, authority, approvals, separation of duties, and audit/evidence obligations.
 
-L3 must not define technical RBAC, permissions, IAM configuration, APIs, database design, UI design, infrastructure, deployment, or technology choices.
+It must not define technical RBAC, permissions, IAM configuration, APIs, databases, UI, infrastructure, deployment, or technology choices.
 
 ---
 
 ## 5. Traceability Rule
 
-Detailed Phase 1 and Phase 2 lineage remains canonical in the Phase 2 consolidation register.
+Detailed Phase 1/Phase 2 consolidation lineage remains canonical in the Phase 2 register.
 
-Final scenario documents authored under template v2.0 do not duplicate mandatory Phase 1 candidate IDs, Phase 2 working IDs, dispositions, or consolidation-history tables.
+Canonical scenario documents do not duplicate candidate IDs, P2W IDs, dispositions, or consolidation-history tables as mandatory metadata.
 
-This changes only the placement of traceability; it does not remove repository traceability.
+Repository-level traceability remains mandatory through scenario `Depends On` metadata and selective authoritative L1/L2 source references.
 
 ---
 
-## 6. Current Phase 3 Status
+## 6. Phase 3 Closure Status
 
 ```text
 Repository baseline review: Complete
-v1.0 template review: Complete
+v1.0 pilot template review: Complete
 Template gaps identified: Complete
-Template design decisions: Approved
-v2.0 proposed final template: Drafted
-Traceability governance alignment: Recorded
-Architecture consistency review: Pending
-Template lock: Pending
+Template design decisions: Locked
+v2.0 canonical template: Locked
+Naming/traceability governance alignment: Locked
+L3 validation standard update: Complete
+Architecture consistency review: Passed after remediation
+Unresolved Phase 3 blockers: 0
 Canonical scenario generation: Not started
 Final L3 IDs: Not assigned
 ```
 
 ---
 
-## 7. Exit Criteria for Phase 3
+## 7. Phase 3 Exit Criteria
 
-Phase 3 may be considered complete only when:
+All Phase 3 exit criteria are satisfied:
 
-1. `L3_Business_Scenario_Template_v2.0.md` has completed architecture review;
-2. any review findings are resolved explicitly;
-3. no unresolved template conflict remains with locked L0/L1/L2/L3 governance;
-4. the template status is changed from `Proposed Final` to `Locked`;
-5. repository guidance identifies v2.0 as the governing template for canonical L3 scenario construction.
+1. canonical v2.0 template completed architecture review;
+2. identified governance findings were explicitly remediated;
+3. no unresolved template conflict remains with the Repository Constitution, locked L1/L2 architecture, dependency governance, or Phase 2 closure;
+4. template v2.0 is `Locked`;
+5. naming/numbering and L3 validation governance are synchronized;
+6. the repository identifies v2.0 as the governing template for new canonical L3 scenario construction.
 
-Only after those conditions are satisfied should large-scale canonical L3 scenario authoring proceed under the locked template.
+**Phase 3 is complete.**
+
+The next authorized activity is canonical L3 scenario-set construction under the locked v2.0 template. Final L3 IDs must be assigned only through that controlled construction process.
