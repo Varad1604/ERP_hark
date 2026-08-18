@@ -1,10 +1,11 @@
 # SutraERP Level 3 — Business Scenario Architecture
 
-**Architecture Level:** L3 — Business Scenario Architecture
-**Repository Area:** `architecture/L3_Business_Scenario_Architecture`
-**Status:** Phase 1 — Final / Frozen; Phase 2 — Final / Closed
-**Current / Next Stage:** Canonical L3 Scenario Set Construction
-**Lock Status:** Phase 1 candidate inventory is the final frozen discovery baseline; Phase 1 candidate numbering normalized and frozen (2026-08-17); final scenario ownership not locked
+**Architecture Level:** L3 — Business Scenario Architecture  
+**Repository Area:** `architecture/L3_Business_Scenario_Architecture`  
+**Status:** Phase 1 Final / Frozen; Phase 2 Final / Closed; Phase 3 Locked / Complete  
+**Current Stage:** Canonical L3 Scenario Set Construction  
+**Canonical Template:** `00_Governance/L3_Business_Scenario_Template_v2.0.md`  
+**Canonical Naming Standard:** `00_Governance/L3_Naming_Numbering_Standard.md` v1.1
 
 ---
 
@@ -12,28 +13,41 @@
 
 This directory contains the Level 3 Business Scenario Architecture for SutraERP.
 
-Level 3 describes complete institutional business scenarios. Each L3 scenario represents one end-to-end business outcome that may involve one or more Level 2 domain workflow documents.
+L3 describes complete institutional business scenarios. Each scenario represents one end-to-end institutional business outcome that may involve one or more L2 workflow documents while preserving the canonical ownership of every participating domain.
 
-L3 does not define implementation design.
+L3 depends on L2 and must not redefine L1/L2 ownership, states, events, business rules, lifecycles, aggregates, contracts, or dependencies.
 
-This level does not include:
+---
 
-* API endpoints
-* database schemas
-* software classes
-* screen designs
-* UI journeys
-* deployment architecture
-* infrastructure configuration
-* programming details
+## 2. Architecture Boundary
+
+L3 is business architecture.
+
+L3 may describe:
+
+- business actors and roles;
+- business responsibilities and authority;
+- scenario boundaries, preconditions, triggers, outcomes, and postconditions;
+- business flows, alternatives, and business recovery;
+- upstream-owned rules, lifecycle impacts, events, and contracts;
+- business approval, separation-of-duty, audit, and evidence obligations.
+
+L3 must not define:
+
+- APIs;
+- database schemas;
+- software classes or components;
+- technical RBAC permissions or IAM design;
+- UI screens or navigation;
+- deployment or infrastructure configuration;
+- technical error-handling mechanics;
+- programming or technology choices.
 
 Those belong to later architecture levels.
 
 ---
 
-## 2. Position in the Architecture Hierarchy
-
-SutraERP follows this architecture hierarchy:
+## 3. Architecture Hierarchy
 
 ```text
 L0 — Business Vision
@@ -51,58 +65,143 @@ L5 — Solution Architecture
 L6 — UI / UX Architecture
 ```
 
-L3 depends on L2. It must not redefine L1 or L2 ownership, states, events, business rules, aggregates, or dependencies.
+L3 numbering is independent of L2 numbering.
 
 ---
 
-## 3. What L3 Represents
+## 4. Completed Phase Baseline
 
-An L3 scenario describes one complete business outcome.
+### Phase 1 — Final / Frozen
 
-Good L3 scenario examples:
+- 1,096 active scenario candidates;
+- candidate IDs normalized once on 2026-08-17 and then frozen;
+- no later consolidation decision may renumber or delete the frozen baseline.
+
+Phase 1 candidate format:
 
 ```text
-Approved Candidate to Active Student
-Student Fee Payment and Receipt
-Regular Examination to Result Publication
-Purchase Requisition to Goods Receipt and Inventory
-Attendance Capture to Attendance Finalization
-Employee Leave Approval to Availability Update
+CAN-L3-<AREA>-<NNN>
 ```
 
-Weak L3 scenario examples:
+### Phase 2 — Final / Closed
+
+Authoritative register:
+
+`02_Phase2_Consolidation/L3_Phase2_Proposed_Canonical_Scenario_Register.md`
+
+Final closure state:
 
 ```text
-Validate Payment
-Generate Receipt
-Send Notification
-Check Eligibility
-Update Status
+Phase 2 register rows: 1,124
+BLOCKED: 0
+REVIEW-REQUIRED: 0
+Resolved SPLIT-REQUIRED: 2
 ```
 
-These weak examples are workflow steps, not complete L3 business scenarios.
+Phase 2 Working IDs (`P2W-...`) are traceability identifiers only and are never final L3 IDs.
+
+The two resolved split decisions are instantiated only during canonical scenario-set construction.
+
+### Phase 3 — Locked / Complete
+
+Phase 3 established and reviewed the canonical L3 scenario template.
+
+Governing artifacts:
+
+- `00_Governance/L3_Business_Scenario_Template_v2.0.md` — **Locked canonical template**;
+- `00_Governance/L3_Naming_Numbering_Standard.md` v1.1 — **Locked naming/numbering standard**;
+- `00_Governance/L3_Phase3_Canonical_Template_Design_Decision_2026-08-18.md` — locked design decisions;
+- `00_Governance/L3_Phase3_Traceability_Governance_Alignment_2026-08-18.md` — locked traceability placement rule;
+- `03_Phase3_Canonical_Template/README.md` — Phase 3 closure status;
+- `../../governance/policies/Architecture_Level_Validation_Standards.md` — L3 validation gate;
+- `../../generated/reviews/L3_Phase3_Canonical_Template_Architecture_Review_2026-08-18.md` — review evidence.
+
+`00_Governance/L3_Business_Scenario_Template_v1.0.md` is retained only as historical pilot evidence and must not govern new canonical L3 authoring.
 
 ---
 
-## 4. Current Repository Scope
+## 5. Locked Canonical Scenario Structure
 
-Phase 1 (scenario discovery and candidate inventory creation) is final and frozen: all five team
-inventories form the final discovery baseline, and candidate numbering was normalized repository-wide on 2026-08-17 (see
-`00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`).
+Every canonical L3 scenario uses:
 
-Phase 2 (repository-wide scenario consolidation) is Final / Closed. Its completed working register is
-`02_Phase2_Consolidation/L3_Phase2_Proposed_Canonical_Scenario_Register.md`. The next authorized stage is
-Canonical L3 Scenario Set Construction; final L3 scenario IDs and scenario documents do not yet exist.
-
-Phase 1/2 do not produce final L3 scenario documents.
-
-Phase 1/2 do not lock final scenario ownership.
-
-Phase 1/2 do not assign final L3 document numbers.
+```text
+1. Scenario Metadata
+2. Scenario Purpose
+3. Business Outcome
+4. Scenario Boundary and Scope
+5. Ownership and Participating Domains
+6. Business Actors, Roles and Responsibilities
+7. Preconditions and Entry Criteria
+8. Trigger
+9. Main Business Flow
+10. Alternate Business Flows
+11. Failure, Interruption and Business Recovery
+12. Business Rules and Decision Constraints
+13. State and Lifecycle Impact
+14. Business Events and Cross-Domain Collaboration
+15. Business Authorization, Approval and Audit Obligations
+16. Completion Criteria and Postconditions
+17. Open Issues, Assumptions and Deferred Questions
+```
 
 ---
 
-## 5. Current Folder Structure
+## 6. Actors and RBAC Boundary
+
+L3 identifies the business actors and roles that initiate, review, decide, approve, reject, perform, or receive business outcomes where those roles are supported by authoritative architecture.
+
+These are business requirements for later access-control design.
+
+L3 does not define technical RBAC roles, permission codes, IAM groups, claims, ACLs, or enforcement mechanisms.
+
+Section A retains canonical ownership of Authorization and Audit infrastructure. Business domains retain ownership of their own business decisions, approval rules, evidence obligations, and outcomes.
+
+---
+
+## 7. Failure and Recovery Rule
+
+Every canonical scenario includes a business-level Failure, Interruption and Business Recovery section.
+
+It may describe governed business rejection, correction, reversal, suspension, resubmission, interruption, or terminal outcome only where supported upstream.
+
+Technical retry, server, database, queue, transaction, exception, or infrastructure recovery belongs to later levels and is prohibited from L3.
+
+---
+
+## 8. Traceability Rule
+
+Detailed Phase 1/Phase 2 consolidation lineage remains authoritative in the Phase 2 register.
+
+Final canonical scenario documents do not need mandatory candidate-ID, P2W-ID, disposition, or watchlist-history columns.
+
+Every canonical scenario still preserves architectural traceability through:
+
+- `Depends On` metadata identifying authoritative higher-level architecture;
+- selective L1/L2 source references where ownership, rule, state, event, contract, or disputed behaviour requires evidence.
+
+---
+
+## 9. Final L3 Numbering
+
+Final scenario IDs use:
+
+```text
+L3-<PRIMARY_OWNER_SECTION>-<NNN>
+```
+
+Final file names use:
+
+```text
+L3-<PRIMARY_OWNER_SECTION>-<NNN>_<Scenario_Slug>.md
+```
+
+The Primary Owner is the canonical owner of the final business outcome.
+
+Final IDs must be assigned against the constructed canonical scenario set. They must not be created mechanically by copying Phase 1 candidate numbers or Phase 2 working IDs, and the 1,124 Phase 2 rows must not be treated as a guaranteed one-row-to-one-final-scenario list.
+
+---
+
+## 10. Current Repository Structure
 
 ```text
 L3_Business_Scenario_Architecture/
@@ -110,226 +209,54 @@ L3_Business_Scenario_Architecture/
 │
 ├── 00_Governance/
 │   ├── L3_Business_Scenario_Template_v1.0.md
+│   ├── L3_Business_Scenario_Template_v2.0.md
 │   ├── L3_Naming_Numbering_Standard.md
-│   ├── L3_Phase1_Candidate_ID_Migration_2026-08-17.md
-│   ├── L3_Phase1_Discovery_Rules.md
-│   ├── L3_Phase1_Team_Instructions.md
-│   ├── L3_Phase1_Workload_Distribution_Decision.md
-│   ├── L3_Scenario_Type_and_Priority_Rules.md
-│   ├── L3_Section_A_Phase1_Audit_Application_Report_2026-08-08.md
-│   ├── L3_Section_A_Phase2_Consolidation_Watchlist.md
-│   ├── L3_Section_B_D_E_Phase2_Consolidation_Watchlist.md
-│   ├── L3_Section_C_Phase2_Consolidation_Watchlist.md
-│   ├── L3_Section_F_Phase2_Consolidation_Watchlist.md
-│   ├── L3_Section_G_Phase2_Consolidation_Watchlist.md
-│   ├── L3_Section_H_Phase2_Consolidation_Watchlist.md
-│   ├── L3_Section_I_Phase2_Consolidation_Watchlist.md
-│   └── L3_Section_J_Phase2_Consolidation_Watchlist.md
+│   ├── L3_Phase3_Canonical_Template_Design_Decision_2026-08-18.md
+│   ├── L3_Phase3_Traceability_Governance_Alignment_2026-08-18.md
+│   ├── L3_Phase1_...
+│   └── L3_Section_..._Phase2_Consolidation_Watchlist.md
 │
 ├── 01_Phase1_Discovery/
-│   ├── L3_Phase1_Inventory_Chetan.md
-│   ├── L3_Phase1_Inventory_Devang.md
-│   ├── L3_Phase1_Inventory_Dhruv.md
-│   ├── L3_Phase1_Inventory_Pallav.md
-│   └── L3_Phase1_Inventory_Varad.md
+│   └── five frozen team inventory files
 │
-└── 02_Phase2_Consolidation/
-    └── L3_Phase2_Proposed_Canonical_Scenario_Register.md
+├── 02_Phase2_Consolidation/
+│   └── L3_Phase2_Proposed_Canonical_Scenario_Register.md
+│
+└── 03_Phase3_Canonical_Template/
+    └── README.md
 ```
 
-Additional folders may be created later when the corresponding phase begins.
+New scenario folders should be created only when canonical scenario-set construction establishes their repository structure.
 
 ---
 
-## 6. Governance Documents
-
-### `L3_Naming_Numbering_Standard.md`
-
-Defines candidate numbering, final scenario numbering, file naming, and versioning rules.
-
-### `L3_Phase1_Discovery_Rules.md`
-
-Defines what Phase 1 is, what it produces, and what it must not include.
-
-### `L3_Scenario_Type_and_Priority_Rules.md`
-
-Defines the allowed scenario type and priority values.
-
-### `L3_Phase1_Team_Instructions.md`
-
-Defines how each team member should prepare and submit their Phase 1 inventory.
-
-### `L3_Phase1_Workload_Distribution_Decision.md`
-
-Records the locked Phase 1 discovery workload distribution, its rationale, and its non-impact on canonical L1/L2 ownership.
-
-### `L3_Business_Scenario_Template_v1.0.md`
-
-Defines the approved L3 scenario document template for pilot use.
-
-### `L3_Section_A_Phase1_Audit_Application_Report_2026-08-08.md`
-
-Records the application of the independent Section A Phase 1 verification to the repository: the conflicts recorded, the corrections applied, every candidate change with its evidence, the candidates deliberately not added and why, the remaining blockers, and the final Section A coverage audit. It is a change record, not a governance standard — it does not add or amend any Phase 1 rule. Its section 7 Phase 2 watchlist is superseded; see below.
-
-The two formerly blocking repository conflicts recorded by that application—**INT-301** and **INT-302**—were approved and resolved on 2026-08-13. The locked L1/L2 sources now define the identity/authentication/authorization ownership split and the dynamic Capability Readiness versus persisted Operational Readiness Governance & Certification boundary. Affected Section A provisional markers were removed; see `generated/reviews/L3_Phase1_Audit_Dhruv_Approved_Decisions_Application_2026-08-13.md`.
-
-### `L3_Section_A_Phase2_Consolidation_Watchlist.md`
-
-The authoritative record of the eighteen Section A candidate relationship clusters and their resolution status. All eighteen now have `CLOSED` or `APPLIED` outcomes. The register preserves retained/absorbed/split mappings, including A039/A046, A047/A054, and the A052/A067/A068 certificate-lifecycle split.
-
-Relationship analysis is held here rather than in an inventory file because `L3_Phase1_Discovery_Rules.md` section 3 requires each inventory to contain candidate scenario rows only.
-
-### `L3_Section_B_D_E_Phase2_Consolidation_Watchlist.md`
-
-The consolidation and traceability register for Sections B (Institution & Structure), D (Academic Delivery) and E (People & Workforce), covering the 2026-08-14 correction cycle applied to `L3_Phase1_Inventory_Pallav.md`.
-
-### `L3_Section_C_Phase2_Consolidation_Watchlist.md`
-
-The equivalent record for Section C — Student Lifecycle, produced by the independent verification of 2026-08-09 (`generated/reviews/l3-phase1-section-c-verification-2026-08-09.md`). It holds four candidate relationship clusters (2 `CLOSED`, 2 `OPEN`) and nine repository conflicts surfaced during discovery (2 `DETERMINED`, 5 `OPEN`, 1 `RESOLVED`, plus one conflict-dependent wording constraint). The original CF-08 row is preserved as historical evidence and followed by its current resolution.
-
-**Policy Management ownership — resolved.** `CF-08` recorded this as blocking (`DEPENDENCY_MAP` §7, then status Open). `DEPENDENCY_MAP.md` line 409/434 records **Resolved 2026-08-15 (RC-03): institutional policy is owned by `L2-B01`**, with `AcademicPolicyUpdated` published by `L2-C04` and `AlumniTransitionPolicyUpdated` published by `L2-C08`. Phase 1 finalization added `CAN-L3-C-075` for the distinct Academic Progression policy-applicability outcome. No separate Alumni Policy candidate was added; policy validation remains within `CAN-L3-C-072` under C08's Alumni Transition lifecycle ownership. The watchlist preserves the original CF-08 entry as historical evidence and records the current resolution immediately after it.
-
-### `L3_Section_J_Phase2_Consolidation_Watchlist.md`
-
-The consolidation and traceability register for Section J — Enterprise Resource Management, covering `L3_Phase1_Inventory_Dhruv.md`'s J-section discovery and correction history.
-
-### `L3_Phase1_Candidate_ID_Migration_2026-08-17.md`
-
-The authoritative old-ID → new-ID crosswalk for the 2026-08-17 repository-wide candidate numbering normalization (see section 8 below). Every active candidate's pre-migration and post-migration ID is recorded here, grouped by section, in original row order.
-
-### `L3_Section_F_Phase2_Consolidation_Watchlist.md`
-
-The traceability register for the Section F audit and its authorized consolidation from 1,858 step-level rows to 85 institutional-outcome candidates. It preserves former ranges and lower-level rules for L4 authoring.
-
-### `L3_Section_G_Phase2_Consolidation_Watchlist.md`
-
-The Section G boundary and overlap register. It records which clusters remain open and the resolved H02/H07/H09 cross-cutting ownership decisions.
-
-### `L3_Section_H_Phase2_Consolidation_Watchlist.md`
-
-The audit-correction register for Section H, including the former-to-current crosswalk from 893 malformed or fragmented rows to 81 outcome candidates and the accepted dashboard, credit-transfer, H09-completeness, and accreditation-readiness decisions.
-
-### `L3_Section_I_Phase2_Consolidation_Watchlist.md`
-
-The Section I consolidation and conflict register created by its independent Phase 1 audit and correction cycle.
-
----
-
-## 7. Phase 1 Candidate Inventory Format
-
-Each Phase 1 candidate inventory must use the following locked table format:
-
-```markdown
-| Candidate ID | Scenario Title | Trigger | Final Outcome | Primary Owner | Domains | Type | Priority |
-|---|---|---|---|---|---|---|---|
-```
-
-Only these fields are mandatory during Phase 1.
-
-Detailed fields such as source references, events, hand-offs, blockers, reviewers, and completion criteria will be handled during Phase 2 consolidation or full L3 scenario drafting.
-
----
-
-## 8. Candidate Numbering
-
-Phase 1 candidates use temporary IDs:
+## 11. Current Status
 
 ```text
-CAN-L3-<AREA>-<NNN>
-```
-
-Examples:
-
-```text
-CAN-L3-C-001
-CAN-L3-F-001
-CAN-L3-I-001
-CAN-L3-J-001
-CAN-L3-X-001
-```
-
-`CAN` means candidate.
-
-Candidate IDs are temporary and must not be used as final L3 document IDs.
-
-Numbering starts at `001` in each area and is continuous, with no maximum digit width. Candidate IDs
-were normalized repository-wide on 2026-08-17 and the resulting final Phase 1 baseline is frozen — see
-`00_Governance/L3_Naming_Numbering_Standard.md` §7.1 and
-`00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
-
----
-
-## 9. Final L3 Numbering
-
-Final scenario IDs will be assigned only after Phase 2 consolidation.
-
-Final format:
-
-```text
-L3-<PRIMARY_OWNER_SECTION>-<NNN>
-```
-
-Final file format:
-
-```text
-L3-<PRIMARY_OWNER_SECTION>-<NNN>_<Scenario_Slug>.md
-```
-
-Example:
-
-```text
-L3-C-001_Approved_Candidate_to_Active_Student.md
+Phase 1 candidate inventory: Final / Frozen — 1,096 active candidates
+Phase 2 consolidation: Final / Closed — 1,124 traceability rows
+Phase 2 unresolved blockers: 0
+Phase 3 canonical template: Locked / Complete
+Canonical template: v2.0
+Naming/numbering standard: v1.1 Locked
+Canonical L3 scenario set: Not yet constructed
+Final L3 scenario documents: 0
+Final L3 IDs assigned: 0
 ```
 
 ---
 
-## 10. Ownership Rule
+## 12. Next Authorized Activity
 
-The Phase 1 discoverer is not automatically the final scenario owner.
+The next activity is **Canonical L3 Scenario Set Construction**.
 
-Final ownership is based on the domain that owns the final business outcome.
+That work must:
 
-L3 must preserve canonical ownership from L1 and L2.
+1. start from the Phase 2 final register and resolved watchlists;
+2. construct the actual final canonical scenario set, including resolved split children and consolidation outcomes;
+3. verify final ownership against locked L1/L2 architecture;
+4. use the locked v2.0 canonical template;
+5. assign final L3 IDs only after the canonical scenario set has been determined;
+6. preserve implementation independence.
 
----
-
-## 11. Current Phase 1 Team Inventory Files
-
-Each team member must submit one Markdown inventory file:
-
-```text
-L3_Phase1_Inventory_Dhruv.md
-L3_Phase1_Inventory_Varad.md
-L3_Phase1_Inventory_Pallav.md
-L3_Phase1_Inventory_Devang.md
-L3_Phase1_Inventory_Chetan.md
-```
-
-Each file must contain only candidate L3 scenarios using the locked Phase 1 inventory format.
-
----
-
-## 12. Repository Rule
-
-Do not create final L3 scenario documents in Phase 1.
-
-Do not create final scenario IDs in Phase 1.
-
-Do not change canonical L1 or L2 ownership in Phase 1.
-
-Do not introduce APIs, database design, UI design, implementation technology, or deployment details in L3.
-
----
-
-## 13. Current Status
-
-```text
-Phase 1 candidate inventory format: Locked
-Phase 1 candidate inventory: Final / Frozen (1,096 candidates)
-Phase 1 candidate numbering: Continuous by section and frozen; no Phase 2 disposition may renumber it
-Phase 2 consolidation: Final / Closed (1,124 register rows; 0 BLOCKED; 0 REVIEW-REQUIRED; 2 resolved SPLIT-REQUIRED decisions)
-Final L3 scenario list: Not locked
-Final L3 scenario ownership: Not locked
-Final L3 numbering: Not locked
-L3 Template v1.0: Approved for pilot use
-```
+Do not generate one final scenario document per Phase 2 register row by default.
