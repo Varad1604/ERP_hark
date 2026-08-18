@@ -14,6 +14,23 @@ Phase 3 establishes and locks the canonical document structure governing full L3
 
 Phase 3 does not itself generate the canonical scenario set or assign final L3 scenario IDs.
 
+### Why this folder contains only this README
+
+This directory is the **Phase 3 closure/index location**, not the long-term storage location of the controls produced during Phase 3.
+
+The durable outputs of Phase 3 became repository-wide L3 governance and therefore live under `../00_Governance/`, where later L3 phases and all future canonical scenario authors can reference them without treating them as historical Phase-3-only artifacts.
+
+This README remains here intentionally so the L3 development sequence stays explicit:
+
+```text
+01_Phase1_Discovery
+02_Phase2_Consolidation
+03_Phase3_Canonical_Template
+04_Phase4_Canonical_Set_Construction
+```
+
+The `03` in this top-level folder means **L3 development Phase 3**. It is different from `04_Phase4_Canonical_Set_Construction/03_Canonical_Register/`, where `03` means **Stage 3 inside Phase 4**.
+
 ---
 
 ## 2. Phase 3 Outputs
@@ -87,23 +104,25 @@ Naming/traceability governance alignment: Locked
 L3 validation standard update: Complete
 Architecture consistency review: Passed after remediation
 Unresolved Phase 3 blockers: 0
-Canonical scenario generation: Not started
-Final L3 IDs: Not assigned
+Canonical scenario generation: Not started at Phase 3 closure
+Final L3 IDs: Not assigned at Phase 3 closure
 ```
+
+The final two statements above describe the state **at Phase 3 closure**. Phase 4 subsequently constructed the 1,084-scenario canonical set and assigned all 1,084 final L3 IDs.
 
 ---
 
 ## 7. Phase 3 Exit Criteria
 
-All Phase 3 exit criteria are satisfied:
+All Phase 3 exit criteria were satisfied:
 
 1. canonical v2.0 template completed architecture review;
 2. identified governance findings were explicitly remediated;
-3. no unresolved template conflict remains with the Repository Constitution, locked L1/L2 architecture, dependency governance, or Phase 2 closure;
-4. template v2.0 is `Locked`;
-5. naming/numbering and L3 validation governance are synchronized;
-6. the repository identifies v2.0 as the governing template for new canonical L3 scenario construction.
+3. no unresolved template conflict remained with the Repository Constitution, locked L1/L2 architecture, dependency governance, or Phase 2 closure;
+4. template v2.0 became `Locked`;
+5. naming/numbering and L3 validation governance were synchronized;
+6. the repository identified v2.0 as the governing template for new canonical L3 scenario construction.
 
 **Phase 3 is complete.**
 
-The next authorized activity is canonical L3 scenario-set construction under the locked v2.0 template. Final L3 IDs must be assigned only through that controlled construction process.
+Subsequent canonical scenario-set construction and final-ID assignment are governed under `../04_Phase4_Canonical_Set_Construction/`.
