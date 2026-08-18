@@ -326,7 +326,7 @@ Do not introduce APIs, database design, UI design, implementation technology, or
 Phase 1 candidate inventory format: Locked
 Phase 1 candidate inventory: Final / Frozen (1,096 candidates)
 Phase 1 candidate numbering: Continuous by section and frozen; no Phase 2 disposition may renumber it
-Phase 2 consolidation: Active (see 02_Phase2_Consolidation/)
+Phase 2 consolidation: Final / Closed (1,124 register rows; 0 BLOCKED; 0 REVIEW-REQUIRED; 2 resolved SPLIT-REQUIRED decisions)
 Final L3 scenario list: Not locked
 Final L3 scenario ownership: Not locked
 Final L3 numbering: Not locked

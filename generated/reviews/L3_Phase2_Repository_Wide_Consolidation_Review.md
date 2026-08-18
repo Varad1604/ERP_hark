@@ -1,18 +1,18 @@
 # L3 Phase 2 — Repository-Wide Scenario Consolidation Review
 
 
-> **Current-state rule (2026-08-17).** Section 0 below is the authoritative current companion view. The later historical record preserves the facts and candidate IDs in force when each earlier pass was written; it is not a statement of the current baseline. Repository-wide candidate numbering was normalized on 2026-08-17; for historical mapping see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
+> **Current-state rule (2026-08-18).** Section 0 below is the authoritative current companion view. The later historical record preserves the facts and candidate IDs in force when each earlier pass was written; it is not a statement of the current baseline. Repository-wide candidate numbering was normalized on 2026-08-17; for historical mapping see `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Phase1_Candidate_ID_Migration_2026-08-17.md`.
 **Architecture Level:** L3 — Business Scenario Architecture
 **Phase:** Phase 2 — Repository-Wide Scenario Consolidation
-**Report Date:** 2026-08-16; current-state update 2026-08-17
+**Report Date:** 2026-08-16; final closure update 2026-08-18
 **Working Artifact:** `architecture/L3_Business_Scenario_Architecture/02_Phase2_Consolidation/L3_Phase2_Proposed_Canonical_Scenario_Register.md`
 **Source Inventories:** `architecture/L3_Business_Scenario_Architecture/01_Phase1_Discovery/L3_Phase1_Inventory_*.md`
 
 ---
 
-## 0. Current State — 2026-08-17
+## 0. Current State — 2026-08-18
 
-**Phase 1 — Final / Frozen. Phase 2 — Consolidation Active.** Phase 1 is the final discovery baseline;
+**Phase 1 — Final / Frozen. Phase 2 — Final / Closed.** Phase 1 is the final discovery baseline;
 its candidate IDs and row presence do not change as a consequence of future Phase 2 dispositions. Primary
 Owner, Type, and Priority remain confirmable in Phase 2 where governance permits. No final `L3-*` IDs have
 been assigned.
@@ -48,18 +48,18 @@ working ID, `P2W-C-1124`.
 | --- | ---: |
 | KEEP | 1,080 |
 | MERGE | 26 |
-| VARIANT | 13 |
+| VARIANT | 14 |
 | FAILURE-RECOVERY | 0 |
 | DUPLICATE | 2 |
 | SPLIT-REQUIRED | 2 |
-| REVIEW-REQUIRED | 1 |
+| REVIEW-REQUIRED | 0 |
 | BLOCKED | 0 |
 | **Total** | **1,124** |
 
-The 20 Section G MERGE rows, 6 of the 13 VARIANT rows, and 2 DUPLICATE rows are the 28 historical absorbed
+The 20 Section G MERGE rows, 6 of the 14 VARIANT rows, and 2 DUPLICATE rows are the 28 historical absorbed
 Section G rows; they are not active Phase 1 candidates. The active Phase 1 VARIANT rows are
-`CAN-L3-G-002` and the six J10 method rows `CAN-L3-J-099` through `CAN-L3-J-104`. The current
-`REVIEW-REQUIRED` row is `CAN-L3-G-164` (`P2W-G-0341`).
+`CAN-L3-G-002`, `CAN-L3-G-164`, and the six J10 method rows `CAN-L3-J-099` through `CAN-L3-J-104`.
+`CAN-L3-G-164` is a governed First Aid variant of `CAN-L3-G-163`; no `REVIEW-REQUIRED` row remains.
 
 ### 0.3 Current Section Summary
 
@@ -71,20 +71,24 @@ Section G rows; they are not active Phase 1 candidates. The active Phase 1 VARIA
 | D | 57 | 57 | 55 | 1 | 0 | 0 | 0 | 1 | 0 | 0 |
 | E | 75 | 75 | 75 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | F | 85 | 85 | 85 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| G | 322 | 350 | 320 | 20 | 7 | 0 | 2 | 0 | 1 | 0 |
+| G | 322 | 350 | 320 | 20 | 8 | 0 | 2 | 0 | 0 | 0 |
 | H | 81 | 81 | 81 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | I | 197 | 197 | 192 | 5 | 0 | 0 | 0 | 0 | 0 | 0 |
 | J | 110 | 110 | 104 | 0 | 6 | 0 | 0 | 0 | 0 | 0 |
-| **Total** | **1,096** | **1,124** | **1,080** | **26** | **13** | **0** | **2** | **2** | **1** | **0** |
+| **Total** | **1,096** | **1,124** | **1,080** | **26** | **14** | **0** | **2** | **2** | **0** | **0** |
 
-`FAILURE-RECOVERY` remains zero. `SPLIT-REQUIRED` now covers `CAN-L3-B-021` and `CAN-L3-D-042`; both frozen Phase 1 rows are unchanged.
+`FAILURE-RECOVERY` remains zero. `SPLIT-REQUIRED` covers `CAN-L3-B-021` and `CAN-L3-D-042`; both frozen
+Phase 1 rows are unchanged, and both split decisions are resolved and fully specified for later canonical
+scenario construction.
 
-### 0.4 Current Blocked Decision Register
+### 0.4 Current Outstanding-Decision Register
 
-| Issue | Rows | Current active candidate IDs |
+| Decision class | Rows | Current state |
 | --- | ---: | --- |
-| None | 0 | — |
-| **Total** | **0** | |
+| BLOCKED | 0 | None |
+| REVIEW-REQUIRED | 0 | None |
+| SPLIT-REQUIRED | 2 | Resolved and fully specified: `CAN-L3-B-021`, `CAN-L3-D-042` |
+| **Unresolved Lead Architect decisions** | **0** | **None** |
 
 `CF-08` is **RESOLVED**, not blocked. B01 owns the institutional policy definition; C04 owns the
 progression behavior that establishes versioned applicability and publishes `AcademicPolicyUpdated`.
@@ -130,6 +134,15 @@ introduced.
 Wave 3 outcome consolidation on 2026-08-17 resolved all 26 targeted rows. `FIND-D-06` retains the independently consumed published monitoring, governance-decision, certified-closure and reopening outcomes while merging activation into `CAN-L3-D-028`. `FIND-D-07` retains the separate D06 aggregate outcomes and marks `CAN-L3-D-042` `SPLIT-REQUIRED` because suspension and archival have different triggers and terminal consequences. `FIND-D-08` retains the independent certificate-verification lifecycle. The five `I-TV-04-residual` rows merge into `CAN-L3-I-072` or `CAN-L3-I-074`. `J-TV-01` retains `CAN-L3-J-097` and records the six method rows as governed `VARIANT`s. Phase 1 and all P2W identities remain unchanged. At Wave 3 close, only `FIND-D-02` remained blocked.
 
 The Lead Architect subsequently approved `FIND-D-02` Option B on 2026-08-17. `L2-D03` section 17 now controls the timetable hierarchy: `Timetable` is the sole Aggregate Root and `Timetable Version` and related scheduling records are governed beneath it. `L2-D00` and `L2-D03` were reconciled without adding a capability, state, event, owner, or external contract. `CAN-L3-D-020` and `CAN-L3-D-021` are distinct `KEEP` outcomes, and the current Phase 2 register has zero `BLOCKED` rows.
+
+On 2026-08-18, the Lead Architect closed the final Phase 2 judgment. `CAN-L3-G-164` is `VARIANT` of
+`CAN-L3-G-163`: First Aid remains explicitly traceable within G06 but has no separate aggregate root,
+lifecycle, or event. The two previously established `SPLIT-REQUIRED` dispositions are also final and fully
+specified. `CAN-L3-B-021` separates B03 Campus Decommission from later Campus Archive while leaving G10
+physical infrastructure ownership untouched. `CAN-L3-D-042` separates D06 Learning Opportunity Suspension
+from later Opportunity Archive and remains distinct from `CAN-L3-D-047` Academic Session archival. Phase 2
+therefore closes with zero `BLOCKED`, zero `REVIEW-REQUIRED`, two resolved `SPLIT-REQUIRED` decisions, and
+no final L3 IDs assigned.
 
 ---
 

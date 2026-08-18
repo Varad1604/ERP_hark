@@ -500,3 +500,24 @@ The canonical distinction is therefore:
 **Phase 2 application:** the four Section I rows become `KEEP`. `CAN-L3-G-002` becomes `VARIANT` absorbed into `CAN-L3-G-001`, completing the previously withheld SG-01 application: `L2-G00` defines Examination Readiness as configurable readiness-type data within the same Campus Readiness Workflow. The Phase 2 parent now includes the Examination readiness type and I participation inherited from the absorbed row. This VARIANT disposition consolidates two G00 readiness-assessment rows; it does not merge physical-infrastructure readiness into Examination planning or conduct. Phase 1 remains frozen and unchanged.
 
 This section supersedes the unresolved `I-XI-03` status recorded in sections 11-14 while preserving those sections as point-in-time history.
+
+---
+
+## 17. G-164 Final Lead Architect Resolution — 2026-08-18
+
+This is the authoritative current resolution for `CAN-L3-G-164`. It supersedes the earlier point-in-time
+status recorded in sections 12 and 13 without rewriting that historical audit evidence.
+
+| Review question | Final disposition | Parent | Application status | Date |
+| --- | --- | --- | --- | --- |
+| Does First Aid justify an independent canonical L3 lifecycle? | `VARIANT` | `CAN-L3-G-163` — Emergency Incident to Immediate Institutional Medical Response | `RESOLVED / APPLIED` | 2026-08-18 |
+
+L2-G06 explicitly recognizes First Aid as an Institutional Health Services capability and an operational
+and reporting category. It does not define a separate First Aid aggregate root, lifecycle, or domain event.
+Section 19 groups Emergency and First Aid under one **Emergency & First Aid Management** capability, the
+diagrammed lifecycle is the Emergency Case workflow, First Aid is described as immediate treatment
+activities, and **Record First Aid** exists under Emergency Services.
+
+Accordingly, First Aid remains explicitly traceable as a governed variant of the immediate institutional
+medical response scenario. Emergency Case ownership remains G06. No new aggregate, lifecycle, event,
+canonical owner, final L3 ID, or child scenario is introduced.

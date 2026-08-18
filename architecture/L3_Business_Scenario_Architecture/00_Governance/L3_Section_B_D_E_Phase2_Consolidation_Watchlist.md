@@ -170,3 +170,42 @@ The Lead Architect explicitly approved Option B. `L2-D03` section 17 is controll
 | `CAN-L3-D-021` | `KEEP` | An authorized change after activation creates and governs a new immutable Timetable Version, completes approval and republication, and preserves the prior version. `TimetableRevisionCreated` and `TimetableRepublished` distinguish this outcome from initial publication. |
 
 `FIND-D-02` is **CLOSED**. The B/D/E watchlist has no remaining `BLOCKED` Phase 2 row.
+
+---
+
+## 10. Final Split Specifications — 2026-08-18
+
+This section is the authoritative current resolution for the two `SPLIT-REQUIRED` rows. It preserves the
+earlier Wave 1 and Wave 3 findings as point-in-time history. Both architectural decisions are complete;
+`SPLIT-REQUIRED` records that one frozen Phase 1 candidate will map to multiple future canonical L3
+scenarios. No child candidate row or final L3 ID is created in Phase 2.
+
+### 10.1 CAN-L3-B-021 — SPLIT-REQUIRED — APPROVED / FINAL
+
+`CAN-L3-B-021` remains unchanged in the frozen Phase 1 inventory. The approved future canonical outcome
+boundaries are:
+
+| Boundary | Working descriptive name | Trigger | Final outcome | Authoritative basis |
+| --- | --- | --- | --- | --- |
+| Child A | **Institutional Campus Decommissioning to Decommissioned Campus** | An InstitutionalCampus permanently ceases authorized institutional operation and its decommissioning is authorized. | The InstitutionalCampus reaches the B03-defined Decommissioned condition, is no longer available for institutional operation, and the authoritative `CampusDecommissioned` fact is established while institutional identity and lifecycle history remain preserved. The G10 physical infrastructure lifecycle remains independently owned by G10. | L2-B03 §111, Campus Decommission Workflow, `CampusDecommissioned` |
+| Child B | **Decommissioned Institutional Campus to Archived Historical Campus** | A Decommissioned InstitutionalCampus satisfies B03 archival conditions and a distinct archival action is initiated. | The InstitutionalCampus reaches Archived, the authoritative `CampusArchived` fact is established, and the campus remains available as preserved historical institutional evidence while excluded from future operational use. | L2-B03 §112, Campus Archive Workflow, `CampusArchived` |
+
+Decommission and Archive have different workflow boundaries, triggers, completion points, and authoritative
+B03 events. Decommission completes independently; Archive may occur later. Application status:
+`APPROVED / FINAL`.
+
+### 10.2 CAN-L3-D-042 — SPLIT-REQUIRED — APPROVED / FINAL
+
+`CAN-L3-D-042` remains unchanged in the frozen Phase 1 inventory. The approved future canonical outcome
+boundaries are:
+
+| Boundary | Working descriptive name | Trigger | Final outcome | Authoritative basis |
+| --- | --- | --- | --- | --- |
+| Child A | **Active Learning Opportunity to Governed Suspension** | A governance condition requires an Active flexible-learning opportunity to cease availability temporarily or under controlled restriction. | The Learning Opportunity reaches its governed Suspended condition, becomes unavailable for new participation according to D06 governance, existing valid participation remains preserved, and suspension history remains authoritative. | L2-D06, D06-W06 — Suspend Learning Opportunity |
+| Child B | **Archival-Eligible Learning Opportunity to Archived Historical Opportunity** | A Learning Opportunity has completed its applicable operational period and satisfies D06 archival conditions after the relevant enrollment and recognition obligations are resolved. | The Learning Opportunity reaches Archived, is removed from future operational availability, and remains preserved as immutable historical flexible-learning context. | L2-D06, D06-W07 — Archive Learning Opportunity |
+
+Suspension and Archive have different triggers and outcomes: suspension may be temporary and preserves
+participation continuity, while archival follows archival eligibility and creates a historical terminal
+availability state. `CAN-L3-D-042` remains distinct from `CAN-L3-D-047`, which concerns the Flexible
+Learning Academic Session and its associated enrollment, participation, and recognition history.
+Application status: `APPROVED / FINAL`.
