@@ -37,22 +37,18 @@ No author may reinterpret a workload assignment as transfer of canonical domain 
 
 The Phase 5 workload distribution is approved as follows:
 
-| Team Member | Assigned Authoring Quota | Relative Workload |
-|---|---:|---|
-| Dhruv | **250** | Medium — dedicated ERP plus Lead Architect responsibilities |
-| Pallav | **337** | High — dedicated ERP |
-| Varad | **337** | High — dedicated ERP |
-| Chetan | **80** | Reduced — concurrent responsibility for other projects |
-| Devang | **80** | Reduced — concurrent responsibility for other projects |
-| **Total** | **1,084** | **100%** |
+| Team Member | Assigned Authoring Quota |
+|---|---:
+| Dhruv | **250** | 
+| Pallav | **337** | 
+| Varad | **337** | 
+| Chetan | **80** | 
+| Devang | **80** | 
+| **Total** | **1,084** |
 
-The workload hierarchy is therefore:
 
-```text
-Pallav = Varad > Dhruv >> Chetan = Devang
-```
 
-Dhruv carries fewer authoring scenarios than Pallav and Varad because Phase 5 also requires repository-wide architectural governance, cross-domain conflict resolution, final review, and consistency control by the Lead Architect.
+
 
 ---
 
