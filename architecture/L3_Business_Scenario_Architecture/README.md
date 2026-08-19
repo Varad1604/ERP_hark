@@ -4,7 +4,7 @@
 **Repository Area:** `architecture/L3_Business_Scenario_Architecture`  
 **Status:** Phase 1 Final / Frozen; Phase 2 Final / Closed; Phase 3 Locked / Complete; Phase 4 Complete  
 **Current Phase:** Phase 5 — Parallel Authoring and Continuous Verification  
-**Current Gate:** Controlled pilot authoring before broad parallel execution  
+**Current Gate:** Broad parallel authoring authorized  
 **Canonical Scenario Count:** 1,084  
 **Final L3 IDs Assigned:** 1,084  
 **Phase 5 Exact Human Allocation:** Locked  
@@ -175,8 +175,6 @@ L3 does not define technical RBAC roles, permission codes, IAM groups, claims, A
 
 Final human author assignment does not change canonical architecture ownership.
 
-The following are distinct:
-
 ```text
 Canonical Owner ≠ Assigned Author ≠ Domain Reviewer ≠ Final Architecture Approver
 ```
@@ -193,21 +191,11 @@ Phase 5 operating artifacts are located under:
 
 `05_Phase5_Parallel_Authoring_and_Verification/`
 
-Canonical Phase 5 operating guide:
+Primary Phase 5 controls:
 
-`05_Phase5_Parallel_Authoring_and_Verification/L3_Phase5_Authoring_Workload_and_Execution_Report_2026-08-18.md`
-
-That operating guide now contains:
-
-- the exact human author for all 1,084 final scenarios;
-- the exact final filename for all 1,084 scenarios;
-- source and authority rules;
-- the controlled pilot gate;
-- per-scenario authoring procedure;
-- review and status rules;
-- conflict/escalation rules;
-- mechanical validation requirements;
-- Phase 5 completion criteria.
+- `05_Phase5_Parallel_Authoring_and_Verification/L3_Phase5_Parallel_Authoring_Authorization_2026-08-19.md` — locked Lead Architect decision authorizing broad parallel authoring and approving permanent scenario-document placement;
+- `05_Phase5_Parallel_Authoring_and_Verification/L3_Phase5_Authoring_Workload_and_Execution_Report_2026-08-18.md` — exact author allocation, exact filenames, source rules, authoring procedure, review/status rules and completion criteria;
+- `05_Phase5_Parallel_Authoring_and_Verification/L3_Phase5_Scenario_File_Structure_Instructions.md` — permanent section-oriented placement standard.
 
 Approved authoring quotas:
 
@@ -222,26 +210,33 @@ Approved authoring quotas:
 
 These quotas and the exact author allocation are workload assignments only.
 
-The prior capability-boundary issue is resolved. In particular, the complete Housekeeping Operations block `L3-G-216` through `L3-G-251` is assigned to one author for Phase 5 authoring.
+The complete Housekeeping Operations block `L3-G-216` through `L3-G-251` remains assigned to one author for Phase 5 authoring.
 
 ---
 
-## 9. Controlled Pilot Gate
+## 9. Broad Parallel Authoring Authorization
 
-Broad authoring across all 1,084 scenarios shall begin only after the controlled pilot validates:
+On 2026-08-19, the Lead Architect explicitly authorized broad parallel Phase 5 authoring.
 
-- ownership and participating-domain conventions;
-- business actor and responsibility expression;
-- scenario boundary completeness;
-- recovery treatment;
-- lifecycle impact;
-- business events and cross-domain collaboration;
-- authorization, approval and audit obligations;
-- implementation independence;
-- compact authoring quality;
-- the permanent scenario-document placement convention.
+The prior controlled-pilot prerequisite is superseded by:
 
-The pilot should include representative split-derived, merge-survivor, variant-survivor, cross-domain, lifecycle-correction, infrastructure-support, Examination/Student/Finance, and resource-finance scenarios.
+`05_Phase5_Parallel_Authoring_and_Verification/L3_Phase5_Parallel_Authoring_Authorization_2026-08-19.md`
+
+This authorization does not assert that the pilot passed; it explicitly waives and supersedes the pilot prerequisite.
+
+The authorization does not reopen or change:
+
+- the 1,084-scenario canonical population;
+- final IDs;
+- titles;
+- canonical ownership;
+- participating domains;
+- Type or Priority;
+- rules, states, lifecycles, events, contracts or dependencies;
+- exact filenames;
+- human author allocation.
+
+Scenario Type and Priority are copied unchanged from the frozen Phase 4 Stage 3 canonical semantics; Phase 5 authors do not reclassify them.
 
 ---
 
@@ -260,10 +255,23 @@ L3_Business_Scenario_Architecture/
 │   └── 04_Final_ID_Assignment/
 └── 05_Phase5_Parallel_Authoring_and_Verification/
     ├── README.md
-    └── L3_Phase5_Authoring_Workload_and_Execution_Report_2026-08-18.md
+    ├── L3_Phase5_Authoring_Workload_and_Execution_Report_2026-08-18.md
+    ├── L3_Phase5_Parallel_Authoring_Authorization_2026-08-19.md
+    ├── L3_Phase5_Scenario_File_Structure_Instructions.md
+    └── 01_Scenario_Documents/
+        ├── section-a/
+        ├── section-b/
+        ├── section-c/
+        ├── section-d/
+        ├── section-e/
+        ├── section-f/
+        ├── section-g/
+        ├── section-h/
+        ├── section-i/
+        └── section-j/
 ```
 
-Authored scenario folders shall be added only after the pilot validates and the Lead Architect approves the permanent placement convention.
+Scenario files are stored under the section encoded in their final L3 ID. Human author, participating domains, Type, Priority and review status do not alter placement.
 
 ---
 
@@ -278,21 +286,26 @@ Canonical L3 scenario set: 1,084
 Final L3 IDs assigned: 1,084
 Phase 5 workload quotas: Approved
 Detailed Phase 5 human allocation: Locked — 1,084 scenarios
-Exact Phase 5 filenames: Defined in operating guide
-Controlled pilot authoring: Next gate
-Broad parallel authoring: Not yet authorized until pilot passes
+Exact Phase 5 filenames: Locked in operating guide Section 8
+Permanent section-oriented placement: Approved
+Broad parallel authoring: Authorized
+Continuous architecture review: Required
+Final L3 repository lock: Pending completion and validation
 ```
 
 ---
 
-## 12. Next Authorized Activity
+## 12. Current Authorized Activity
 
-The next authorized activity is **controlled pilot L3 scenario authoring** under the locked v2.0 template and Phase 5 operating guide.
+The current authorized activity is **broad parallel L3 scenario authoring and continuous verification** under the locked v2.0 template, frozen Phase 4 canonical semantics, Phase 5 exact allocation and filename table, and permanent section-oriented placement standard.
 
-After the pilot passes:
+Authors shall:
 
-1. approve the permanent section-oriented scenario-document placement convention;
-2. begin parallel authoring using the already locked 1,084-scenario author allocation and exact filenames;
-3. perform continuous batch review and correction during authoring;
-4. complete all 1,084 L3 scenario documents;
-5. perform repository-wide L3 validation before L3 Lock.
+1. author only their assigned final IDs;
+2. use exact filenames from Phase 5 operating guide Section 8;
+3. read the applicable authoritative L2 documents for every scenario;
+4. preserve frozen Type and Priority unchanged;
+5. create the scenario as `Draft`;
+6. perform self-review and continuous architecture review;
+7. escalate upstream ambiguity instead of silently resolving it;
+8. complete repository-wide L3 validation before final L3 locking.
