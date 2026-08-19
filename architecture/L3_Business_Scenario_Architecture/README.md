@@ -7,6 +7,7 @@
 **Current Gate:** Controlled pilot authoring before broad parallel execution  
 **Canonical Scenario Count:** 1,084  
 **Final L3 IDs Assigned:** 1,084  
+**Phase 5 Exact Human Allocation:** Locked  
 **Canonical Template:** `00_Governance/L3_Business_Scenario_Template_v2.0.md`  
 **Canonical Naming Standard:** `00_Governance/L3_Naming_Numbering_Standard.md` v1.1
 
@@ -192,9 +193,21 @@ Phase 5 operating artifacts are located under:
 
 `05_Phase5_Parallel_Authoring_and_Verification/`
 
-Current Phase 5 report:
+Canonical Phase 5 operating guide:
 
 `05_Phase5_Parallel_Authoring_and_Verification/L3_Phase5_Authoring_Workload_and_Execution_Report_2026-08-18.md`
+
+That operating guide now contains:
+
+- the exact human author for all 1,084 final scenarios;
+- the exact final filename for all 1,084 scenarios;
+- source and authority rules;
+- the controlled pilot gate;
+- per-scenario authoring procedure;
+- review and status rules;
+- conflict/escalation rules;
+- mechanical validation requirements;
+- Phase 5 completion criteria.
 
 Approved authoring quotas:
 
@@ -207,9 +220,9 @@ Approved authoring quotas:
 | Devang | 80 |
 | **Total** | **1,084** |
 
-These quotas are workload assignments only.
+These quotas and the exact author allocation are workload assignments only.
 
-The detailed 1,084-row author allocation remains provisional until final capability-boundary normalization is complete. In particular, the working split of Housekeeping Operations across multiple authors must be normalized before the exact allocation register is locked.
+The prior capability-boundary issue is resolved. In particular, the complete Housekeeping Operations block `L3-G-216` through `L3-G-251` is assigned to one author for Phase 5 authoring.
 
 ---
 
@@ -225,7 +238,8 @@ Broad authoring across all 1,084 scenarios shall begin only after the controlled
 - business events and cross-domain collaboration;
 - authorization, approval and audit obligations;
 - implementation independence;
-- compact authoring quality.
+- compact authoring quality;
+- the permanent scenario-document placement convention.
 
 The pilot should include representative split-derived, merge-survivor, variant-survivor, cross-domain, lifecycle-correction, infrastructure-support, Examination/Student/Finance, and resource-finance scenarios.
 
@@ -249,6 +263,8 @@ L3_Business_Scenario_Architecture/
     └── L3_Phase5_Authoring_Workload_and_Execution_Report_2026-08-18.md
 ```
 
+Authored scenario folders shall be added only after the pilot validates and the Lead Architect approves the permanent placement convention.
+
 ---
 
 ## 11. Current Status
@@ -261,7 +277,8 @@ Phase 4 canonical-set construction: Complete
 Canonical L3 scenario set: 1,084
 Final L3 IDs assigned: 1,084
 Phase 5 workload quotas: Approved
-Detailed Phase 5 allocation: Pending final capability-boundary normalization
+Detailed Phase 5 human allocation: Locked — 1,084 scenarios
+Exact Phase 5 filenames: Defined in operating guide
 Controlled pilot authoring: Next gate
 Broad parallel authoring: Not yet authorized until pilot passes
 ```
@@ -270,12 +287,12 @@ Broad parallel authoring: Not yet authorized until pilot passes
 
 ## 12. Next Authorized Activity
 
-The next authorized activity is **controlled pilot L3 scenario authoring** under the locked v2.0 template.
+The next authorized activity is **controlled pilot L3 scenario authoring** under the locked v2.0 template and Phase 5 operating guide.
 
 After the pilot passes:
 
-1. normalize the detailed author allocation;
-2. create and validate the exact 1,084-row Phase 5 workload register;
-3. begin parallel authoring and continuous verification;
+1. approve the permanent section-oriented scenario-document placement convention;
+2. begin parallel authoring using the already locked 1,084-scenario author allocation and exact filenames;
+3. perform continuous batch review and correction during authoring;
 4. complete all 1,084 L3 scenario documents;
 5. perform repository-wide L3 validation before L3 Lock.
