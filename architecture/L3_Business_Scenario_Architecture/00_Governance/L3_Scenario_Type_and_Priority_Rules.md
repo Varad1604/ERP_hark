@@ -2,9 +2,10 @@
 
 **Document:** L3 Scenario Type and Priority Rules
 **Architecture Level:** L3 — Business Scenario Architecture
-**Version:** 1.0
-**Status:** Approved for Phase 1 Use
-**Applies To:** Phase 1 candidate scenario inventory and Phase 2 consolidation
+**Version:** 1.1
+**Status:** Approved for Phase 1/2 Classification; Phase 5 Validation Only
+**Applies To:** Phase 1 candidate scenario inventory; Phase 2 consolidation; Phase 5 validation of already frozen Type and Priority values
+**Last Updated:** 2026-08-19
 
 ---
 
@@ -12,7 +13,7 @@
 
 This document defines the allowed scenario type and priority values for SutraERP Level 3 Business Scenario Architecture.
 
-The purpose is to ensure that all Phase 1 candidate scenarios are classified consistently before review and consolidation.
+Its classification rules governed Phase 1 candidate classification and Phase 2 consolidation. For Phase 5, the values are already frozen in the Phase 4 Stage 3 canonical scenario semantics and shall not be reclassified by authors.
 
 ---
 
@@ -22,10 +23,11 @@ This document defines:
 
 * allowed scenario type values;
 * allowed priority values;
-* when to use each type;
-* when to use each priority;
+* when each type was selected during discovery/consolidation;
+* when each priority was selected during discovery/consolidation;
 * examples of correct classification;
-* examples of incorrect classification.
+* examples of incorrect classification;
+* Phase 5 validation rules for frozen Type and Priority values.
 
 This document does not define final scenario ownership or final L3 numbering.
 
@@ -35,7 +37,7 @@ This document does not define final scenario ownership or final L3 numbering.
 
 Only the following values are allowed in the `Type` field:
 
-```text id="b4c68g"
+```text
 Simple
 Cross-domain
 Critical
@@ -43,7 +45,7 @@ Critical
 
 Do not use alternate labels such as:
 
-```text id="xjy9m8"
+```text
 Basic
 Normal
 Complex
@@ -63,7 +65,7 @@ A Simple scenario should still represent a complete business outcome.
 
 Correct examples:
 
-```text id="qjxj3v"
+```text
 Guardian Relationship Update
 Library Membership Activation
 Transport Route Assignment
@@ -74,7 +76,7 @@ These are valid only if each title represents a complete business outcome with a
 
 Do not use `Simple` for action fragments such as:
 
-```text id="v2joda"
+```text
 Update Guardian
 Cancel Leave
 Assign Route
@@ -90,7 +92,7 @@ Use `Cross-domain` when the scenario requires collaboration between multiple dom
 
 Correct examples:
 
-```text id="l53et9"
+```text
 Approved Candidate to Active Student
 Academic Registration to Course Enrollment Confirmation
 Employee Leave Approval to Availability Update
@@ -125,7 +127,7 @@ Use `Critical` when the scenario is high-risk because it affects one or more of 
 
 Correct examples:
 
-```text id="s1hhbx"
+```text
 Regular Examination to Result Publication
 Student Fee Payment and Receipt
 Qualification Completion and Student Exit
@@ -144,9 +146,9 @@ The `Critical` type is based on institutional risk, not the number of participat
 
 ## 7. Type Selection Rule
 
-Choose the type using this order:
+During Phase 1/2 classification, choose the type using this order:
 
-```text id="7evdck"
+```text
 1. If the scenario is high-risk, mark it Critical.
 2. Else if multiple business domains are required for the final outcome, mark it Cross-domain.
 3. Else mark it Simple.
@@ -154,14 +156,14 @@ Choose the type using this order:
 
 Examples:
 
-| Candidate                                      | Correct Type | Reason                                                                           |
-| ---------------------------------------------- | ------------ | -------------------------------------------------------------------------------- |
-| Student Fee Payment and Receipt                | Critical     | Financial settlement and receipt are audit-sensitive                             |
-| Approved Candidate to Active Student           | Cross-domain | Requires admission, identity, finance clearance, and student lifecycle           |
-| Regular Examination to Result Publication      | Critical     | Official academic result has high academic and lifecycle impact                  |
-| Guardian Relationship Update                   | Simple       | Mainly student/guardian relationship maintenance                                 |
+| Candidate | Correct Type | Reason |
+|---|---|---|
+| Student Fee Payment and Receipt | Critical | Financial settlement and receipt are audit-sensitive |
+| Approved Candidate to Active Student | Cross-domain | Requires admission, identity, finance clearance, and student lifecycle |
+| Regular Examination to Result Publication | Critical | Official academic result has high academic and lifecycle impact |
+| Guardian Relationship Update | Simple | Mainly student/guardian relationship maintenance |
 | Employee Leave Approval to Availability Update | Cross-domain | Leave approval affects workforce availability and academic scheduling/operations |
-| Financial Period Closing                       | Critical     | Financial closure is historically and audit-sensitive                            |
+| Financial Period Closing | Critical | Financial closure is historically and audit-sensitive |
 
 ---
 
@@ -169,7 +171,7 @@ Examples:
 
 Only the following values are allowed in the `Priority` field:
 
-```text id="dvv36h"
+```text
 P0
 P1
 P2
@@ -177,7 +179,7 @@ P2
 
 Do not use alternate values such as:
 
-```text id="iu6m6j"
+```text
 High
 Medium
 Low
@@ -198,7 +200,7 @@ A P0 scenario is required before implementation can safely proceed for the core 
 
 Correct P0 examples:
 
-```text id="ezq5ws"
+```text
 Approved Candidate to Active Student
 Student Fee Payment and Receipt
 Timetable Publication
@@ -230,7 +232,7 @@ Use `P1` for important operational scenarios that are required for a useful and 
 
 Correct P1 examples:
 
-```text id="o835lh"
+```text
 Guardian Relationship Update
 Attendance Correction
 Employee Transfer
@@ -251,7 +253,7 @@ Use `P2` for rare, future, optional, institution-specific, or low-frequency scen
 
 Correct P2 examples:
 
-```text id="nmgjz7"
+```text
 Historical Archive Restoration
 Rare Finalized Record Correction
 Optional External Integration Exception
@@ -267,9 +269,9 @@ It means the scenario may be inventoried now but authored later.
 
 ## 12. Priority Selection Rule
 
-Choose priority using this order:
+During Phase 1/2 classification, choose priority using this order:
 
-```text id="ldslra"
+```text
 1. If the first L3 release cannot safely proceed without the scenario, mark it P0.
 2. Else if the scenario is important for operational baseline completeness, mark it P1.
 3. Else mark it P2.
@@ -281,17 +283,15 @@ Choose priority using this order:
 
 Type and priority must not be confused.
 
-A scenario can be:
-
-| Type         | Priority | Example                                   |
-| ------------ | -------- | ----------------------------------------- |
-| Critical     | P0       | Regular Examination to Result Publication |
-| Critical     | P1       | Refund Processing                         |
-| Critical     | P2       | Rare Historical Financial Correction      |
-| Cross-domain | P0       | Approved Candidate to Active Student      |
-| Cross-domain | P1       | Hostel Allocation with Fee Charge         |
-| Simple       | P1       | Guardian Relationship Update              |
-| Simple       | P2       | Archive Restoration Request               |
+| Type | Priority | Example |
+|---|---|---|
+| Critical | P0 | Regular Examination to Result Publication |
+| Critical | P1 | Refund Processing |
+| Critical | P2 | Rare Historical Financial Correction |
+| Cross-domain | P0 | Approved Candidate to Active Student |
+| Cross-domain | P1 | Hostel Allocation with Fee Charge |
+| Simple | P1 | Guardian Relationship Update |
+| Simple | P2 | Archive Restoration Request |
 
 `Critical` describes risk.
 
@@ -305,13 +305,13 @@ A scenario can be:
 
 Incorrect:
 
-```text id="oi5va1"
+```text
 Every Cross-domain scenario = Critical
 ```
 
 Correct:
 
-```text id="rplnu8"
+```text
 A scenario is Critical only if the business outcome carries high institutional risk.
 ```
 
@@ -319,14 +319,14 @@ A scenario is Critical only if the business outcome carries high institutional r
 
 Incorrect:
 
-```text id="sosc7m"
+```text
 All Finance scenarios = Critical
 All Examination scenarios = Critical
 ```
 
 Correct:
 
-```text id="q2j52s"
+```text
 Some Finance and Examination scenarios are Critical, but classification depends on the specific business outcome.
 ```
 
@@ -334,13 +334,13 @@ Some Finance and Examination scenarios are Critical, but classification depends 
 
 Incorrect:
 
-```text id="ccce03"
+```text
 P0 = Critical
 ```
 
 Correct:
 
-```text id="e8y1mp"
+```text
 P0 means mandatory for the first L3 release.
 Critical means high institutional risk.
 ```
@@ -349,7 +349,7 @@ Critical means high institutional risk.
 
 Incorrect:
 
-```text id="y5sl3b"
+```text
 High
 Medium
 Low
@@ -357,7 +357,7 @@ Low
 
 Correct:
 
-```text id="2uzfk5"
+```text
 P0
 P1
 P2
@@ -367,24 +367,24 @@ P2
 
 ## 15. Phase 1 Classification Guidance
 
-During Phase 1, classification is provisional.
+During Phase 1, classification was provisional.
 
-Team members should make the best reasonable classification based on:
+Team members made the best reasonable classification based on:
 
 * final outcome;
 * participating domains;
 * institutional risk;
 * first-release necessity.
 
-The Lead Architect / Plus review may correct Type and Priority during Phase 2 consolidation.
+The Lead Architect / review process could correct Type and Priority during Phase 2 consolidation.
 
 ---
 
-## 16. Lock Statement
+## 16. Phase 1/2 Classification Lock Statement
 
-The following values are locked for Phase 1:
+The following values were the only allowed classification values:
 
-```text id="edmt01"
+```text
 Allowed Type values:
 Simple
 Cross-domain
@@ -394,6 +394,33 @@ Allowed Priority values:
 P0
 P1
 P2
+```
 
-Type and Priority are provisional during Phase 1 and are confirmed during Phase 2 consolidation.
+Type and Priority were provisional during Phase 1 and confirmed through consolidation/canonical-set construction.
+
+---
+
+## 17. Phase 5 Frozen-Value Rule
+
+Phase 5 is an authoring and verification phase, not a classification phase.
+
+For every final L3 scenario:
+
+- `Scenario Type` must be copied unchanged from the frozen Phase 4 Stage 3 canonical scenario semantics;
+- `Priority` must be copied unchanged from the frozen Phase 4 Stage 3 canonical scenario semantics;
+- authors must not rerun the Type Selection Rule or Priority Selection Rule;
+- authors must not change Type or Priority based on personal judgment, document length, perceived complexity, author workload, or implementation preference;
+- any suspected classification defect must be escalated through architecture change control rather than silently corrected inside an L3 scenario document.
+
+The locked Phase 5 authorization decision `../05_Phase5_Parallel_Authoring_and_Verification/L3_Phase5_Parallel_Authoring_Authorization_2026-08-19.md` governs this use.
+
+---
+
+## 18. Phase 5 Lock Statement
+
+```text
+Phase 5 Type and Priority are frozen inputs.
+Authors copy them from the frozen Stage 3 canonical semantics.
+Phase 5 authors do not reclassify scenarios.
+Any change requires explicit architecture change control.
 ```
