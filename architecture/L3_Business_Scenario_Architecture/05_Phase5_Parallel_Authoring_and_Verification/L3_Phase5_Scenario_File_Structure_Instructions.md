@@ -2,19 +2,21 @@
 
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Phase:** Phase 5 — Parallel Authoring and Continuous Verification  
-**Status:** Approved for Controlled Pilot Validation — Permanent Placement Not Yet Locked  
+**Status:** Approved Permanent Phase 5 Placement Standard  
 **Owner:** Lead Architect  
 **Date:** 2026-08-19  
 **Canonical Scenario Population:** 1,084  
-**Depends On:** Phase 4 frozen canonical scenario set; Phase 4 final ID register; locked L3 Naming and Numbering Standard; Phase 5 operating guide
+**Depends On:** Phase 4 frozen canonical scenario set; Phase 4 final ID register; locked L3 Naming and Numbering Standard; Phase 5 operating guide; `L3_Phase5_Parallel_Authoring_Authorization_2026-08-19.md`
 
 ---
 
 ## 1. Purpose
 
-This document defines the **single proposed repository placement convention** to be used by the controlled Phase 5 pilot and, if the pilot passes, by broad L3 scenario authoring.
+This document defines the **single permanent repository placement convention** for broad Phase 5 L3 scenario authoring.
 
-It does not redefine:
+The Lead Architect authorized broad parallel authoring on 2026-08-19 through `L3_Phase5_Parallel_Authoring_Authorization_2026-08-19.md`. That decision supersedes the earlier controlled-pilot placement gate.
+
+This document does not redefine:
 
 - canonical scenario semantics;
 - final L3 IDs;
@@ -31,8 +33,6 @@ The existing Phase 5 operating guide remains the authority for exact human assig
 
 ## 2. Authority Separation
 
-The following authorities must remain separate:
-
 | Concern | Authority |
 |---|---|
 | Canonical scenario meaning | Phase 4 Stage 3 frozen canonical register |
@@ -41,33 +41,33 @@ The following authorities must remain separate:
 | Human author assignment | Phase 5 operating guide |
 | File naming rule | `../00_Governance/L3_Naming_Numbering_Standard.md` |
 | Scenario document structure | `../00_Governance/L3_Business_Scenario_Template_v2.0.md` |
-| Proposed scenario-document placement | **This document** |
+| Parallel-authoring authorization | `L3_Phase5_Parallel_Authoring_Authorization_2026-08-19.md` |
+| Permanent scenario-document placement | **This document** |
 
 This document must never become a second scenario register or a second filename register.
 
 ---
 
-## 3. Pilot Gate
+## 3. Permanent Placement Approval
 
-The Phase 5 operating baseline currently requires the controlled pilot to validate permanent scenario-document placement before broad authoring begins.
+Broad parallel Phase 5 authoring is authorized.
 
-Therefore this structure is approved **for pilot validation first**.
+The section-oriented structure below is approved as the permanent scenario-document placement convention for all 1,084 canonical L3 scenarios.
 
-The pilot shall create its selected scenario documents directly in the proposed target structure below. This avoids a temporary pilot-only layout and minimizes later file movement.
+Authors may create assigned scenario files directly in the approved target folders without waiting for a controlled pilot.
 
-If the pilot confirms the structure, the Lead Architect may promote this placement convention to the permanent Phase 5 authoring structure without moving the pilot scenario files.
-
-If the pilot finds a placement defect, correct this placement standard before broad authoring. Do not change final IDs, canonical titles or exact filenames merely to solve a folder-layout problem.
+A placement defect, if discovered later, shall be corrected through repository governance and must not be used to change final IDs, canonical titles or exact filenames.
 
 ---
 
-## 4. Proposed Phase 5 Repository Structure
+## 4. Permanent Phase 5 Repository Structure
 
 ```text
 architecture/L3_Business_Scenario_Architecture/
 └── 05_Phase5_Parallel_Authoring_and_Verification/
     ├── README.md
     ├── L3_Phase5_Authoring_Workload_and_Execution_Report_2026-08-18.md
+    ├── L3_Phase5_Parallel_Authoring_Authorization_2026-08-19.md
     ├── L3_Phase5_Scenario_File_Structure_Instructions.md
     └── 01_Scenario_Documents/
         ├── section-a/
@@ -82,7 +82,7 @@ architecture/L3_Business_Scenario_Architecture/
         └── section-j/
 ```
 
-`01_Scenario_Documents/` and its section folders do not need to exist empty. They shall be materialized as pilot or approved authoring files are added.
+Temporary `.gitkeep` files may remain only as repository placeholders until real scenario files exist in the corresponding folders. They carry no architectural meaning.
 
 ---
 
@@ -102,13 +102,11 @@ architecture/L3_Business_Scenario_Architecture/
 | J — Enterprise Resource Management | `01_Scenario_Documents/section-j/` | `L3-J-001` … `L3-J-104` | 104 |
 | **Total** |  |  | **1,084** |
 
-The folder is determined by the canonical section encoded in the final L3 ID, not by the assigned human author or by the most visible participating domain.
+The folder is determined by the canonical section encoded in the final L3 ID, not by the assigned human author or the most visible participating domain.
 
 ---
 
 ## 6. Exact Scenario File Path Rule
-
-The exact file path is:
 
 ```text
 architecture/L3_Business_Scenario_Architecture/
@@ -128,17 +126,13 @@ section-c/
 L3-C-001_Approved_Candidate_to_Active_Student.md
 ```
 
-For every scenario, authors must copy the filename **exactly** from Section 8 of:
-
-`L3_Phase5_Authoring_Workload_and_Execution_Report_2026-08-18.md`
+For every scenario, authors must copy the filename **exactly** from Section 8 of `L3_Phase5_Authoring_Workload_and_Execution_Report_2026-08-18.md`.
 
 Authors must not regenerate, shorten, improve, normalize differently or manually rename an already-defined Phase 5 filename.
 
 ---
 
 ## 7. Placement Rules
-
-The following rules are mandatory during the pilot and, if approved, broad Phase 5 authoring:
 
 1. **One final L3 ID = one scenario file.**
 2. The scenario file belongs under the folder matching the section in its final L3 ID.
@@ -152,6 +146,7 @@ The following rules are mandatory during the pilot and, if approved, broad Phase
 10. Phase 1 candidate IDs and Phase 2 working IDs must not appear in scenario filenames or folder names.
 11. A scenario must not be copied into multiple section folders for convenience.
 12. A reviewer or second author edits/reviews the same canonical file; they do not create a reviewer-specific copy inside `01_Scenario_Documents/`.
+13. `.gitkeep` is permitted only as a temporary empty-folder placeholder and is not a scenario document.
 
 ---
 
@@ -171,16 +166,7 @@ Architecture Approved
 Locked
 ```
 
-Do not create folders such as:
-
-```text
-Draft/
-Review/
-Approved/
-Locked/
-```
-
-and do not move scenario files when their status changes.
+Do not create `Draft/`, `Review/`, `Approved/`, or `Locked/` folders, and do not move scenario files when status changes.
 
 A stable file path is required for repository traceability.
 
@@ -207,21 +193,15 @@ L3-C-001_Approved_Candidate_to_Active_Student.md
 
 It must not be duplicated under Sections A, B or F.
 
-This preserves the repository rule that participation does not transfer canonical ownership.
-
 ---
 
 ## 10. Split, Merge and Variant Outcomes
 
-Phase 4 has already resolved split, merge and variant transformations.
-
-Phase 5 placement uses only the final L3 identity.
-
-Therefore:
+Phase 4 already resolved split, merge and variant transformations.
 
 - each approved split child is stored as its own final L3 file under its final owner section;
 - absorbed merge/variant candidates do not receive standalone files;
-- historical Phase 1/Phase 2 lineage remains in the consolidation/freeze artifacts and does not create extra Phase 5 files.
+- historical Phase 1/Phase 2 lineage remains in consolidation/freeze artifacts and does not create extra Phase 5 files.
 
 No author may create extra files to preserve historical candidate rows.
 
@@ -229,21 +209,9 @@ No author may create extra files to preserve historical candidate rows.
 
 ## 11. What Belongs in `01_Scenario_Documents/`
 
-Only canonical L3 scenario documents using the locked v2.0 template belong in this folder tree.
+Only canonical L3 scenario documents using the locked v2.0 template belong in this folder tree, except temporary `.gitkeep` placeholders used solely to keep empty section folders tracked by Git.
 
-Do not place the following beside canonical scenario files:
-
-- review reports;
-- AI prompts;
-- scratch notes;
-- temporary exports;
-- duplicate drafts;
-- source extracts;
-- personal checklists;
-- generated comparison files;
-- meeting notes.
-
-Any future review-evidence folder must be separately governed and must not alter the canonical scenario path.
+Do not place review reports, AI prompts, scratch notes, temporary exports, duplicate drafts, source extracts, personal checklists, generated comparison files, or meeting notes beside canonical scenario files.
 
 ---
 
@@ -256,20 +224,19 @@ Before creating a scenario file:
 3. locate the exact author and exact filename in Phase 5 operating guide Section 8;
 4. confirm the target section folder from the final L3 ID;
 5. read the applicable authoritative L2 source documents;
-6. create exactly one file at the required path;
-7. use the locked v2.0 template;
-8. set initial scenario status to `Draft`;
-9. perform the Phase 5 self-check before moving the document to `Review`.
+6. copy Scenario Type and Priority unchanged from the frozen Stage 3 canonical scenario semantics;
+7. create exactly one file at the required path;
+8. use the locked v2.0 template;
+9. set initial scenario status to `Draft`;
+10. perform the Phase 5 self-check before moving the document to `Review`.
 
 Do not create the file if the final ID, canonical title, exact filename and section folder do not reconcile.
 
 ---
 
-## 13. Pilot Validation Checklist
+## 13. Parallel Authoring Validation Checklist
 
-The pilot must verify the placement convention mechanically and architecturally.
-
-For every pilot file confirm:
+For every authored file confirm:
 
 - final ID exists in the Stage 4 register;
 - exact filename matches Phase 5 Section 8;
@@ -279,28 +246,20 @@ For every pilot file confirm:
 - assigned author has not affected canonical placement;
 - cross-domain participation has not created duplicate copies;
 - the file uses the locked v2.0 template;
+- Type and Priority match frozen Stage 3 values;
 - source references remain resolvable after placement;
+- applicable authoritative L2 sources were used;
 - review can occur without moving or duplicating the scenario file.
-
-The placement convention passes only if the pilot demonstrates stable, section-oriented storage without weakening canonical ownership or traceability.
 
 ---
 
-## 14. Broad-Authoring Gate
+## 14. Broad Parallel Authoring Authorization
 
-This document does **not** independently authorize broad authoring.
+Broad parallel authoring is **AUTHORIZED** by `L3_Phase5_Parallel_Authoring_Authorization_2026-08-19.md`.
 
-Broad authoring remains gated by the controlled pilot defined in the Phase 5 operating guide.
+This placement standard is permanent for Phase 5 unless changed through explicit architecture governance.
 
-After the pilot passes, the Lead Architect should record the placement approval and update this document status from:
-
-```text
-Approved for Controlled Pilot Validation — Permanent Placement Not Yet Locked
-```
-
-to the approved permanent status.
-
-Only then should the 1,084-file section tree be treated as the permanent Phase 5 scenario-document placement convention.
+The authorization does not reopen canonical scenario semantics, final IDs, ownership, Type, Priority, exact filenames, business rules, lifecycle states, events, contracts or dependencies.
 
 ---
 
