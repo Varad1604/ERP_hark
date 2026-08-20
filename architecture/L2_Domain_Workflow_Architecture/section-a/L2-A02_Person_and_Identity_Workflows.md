@@ -3520,19 +3520,30 @@ Created
 
 ---
 
-# Verification Workflow
+# Canonical Person–Identity Establishment and Activation Workflow
 
-```
-
-Created
-
-↓
-
-Validate Contact
+```text
+Created Person
 
 ↓
 
-Validate Identity Documents
+Create Associated Identity
+
+↓
+
+Publish IdentityCreated
+
+↓
+
+Identity Pending
+
+↓
+
+Determine Tenant Verification Policy
+
+↓
+
+Validate Required Evidence
 
 ↓
 
@@ -3540,39 +3551,23 @@ Approval (if required)
 
 ↓
 
+Person: Created → Verified
+
+↓
+
 Publish PersonVerified
 
 ↓
 
-Verified
-
-```
-
-Verification policies remain configurable per Tenant.
-
----
-
-# Activation Workflow
-
-```
-
-Verified
+Identity: Pending → Verified
 
 ↓
 
-Create Identity
+Publish IdentityVerified
 
 ↓
 
-Create User Account
-
-↓
-
-Assign Initial Context
-
-↓
-
-Enable Authentication
+Person: Verified → Active
 
 ↓
 
@@ -3580,11 +3575,24 @@ Publish PersonActivated
 
 ↓
 
-Active
+Identity: Verified → Active
 
+↓
+
+Publish IdentityActivated
+
+↓
+
+Active Person and Active Identity
 ```
 
-A Person becomes operational only after successful activation.
+Verification policies remain configurable per Tenant.
+
+The Person and its associated Identity must each reach `Verified` before activation. The establishment outcome completes only when both aggregates reach `Active` and their respective canonical activation events have been published.
+
+User Account creation, where required, occurs only after successful Person and Identity activation. It is not part of the Person and Identity establishment outcome and does not enable authentication by itself.
+
+Authentication capability, credentials, factors, providers, and sessions remain governed by L2-A03. Roles, role assignments, delegations, authorization policies, and authorization-context assignment remain governed by L2-A04.
 
 ---
 
