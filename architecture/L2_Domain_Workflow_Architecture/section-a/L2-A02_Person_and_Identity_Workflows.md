@@ -37,6 +37,31 @@ Any later A02 diagram, table, workflow, service, or prose that describes a Crede
 
 ---
 
+## Canonical Person–Identity Establishment and Activation Sequencing Decision — 2026-08-20
+
+> **Approved by the Lead Architect on 2026-08-20.** This decision resolves the conflict between the legacy Activation Workflow and the User Account Service Contracts. It is authoritative over later legacy wording that places User Account creation, initial-context assignment, or authentication enablement before successful Person and Identity activation.
+
+The canonical establishment and activation order is:
+
+1. create the canonical Person and publish `PersonCreated`;
+2. create the associated Identity in `Pending` and publish `IdentityCreated`;
+3. apply the applicable Tenant verification policy and validate the required evidence;
+4. transition the Person from `Created` to `Verified` and publish `PersonVerified`;
+5. transition the Identity from `Pending` to `Verified` and publish `IdentityVerified`;
+6. transition the Person from `Verified` to `Active` and publish `PersonActivated`;
+7. transition the Identity from `Verified` to `Active` and publish `IdentityActivated`; and
+8. only after successful Person and Identity activation, create a User Account where login capability is required.
+
+Person and Identity activation form one governed institutional outcome. The outcome is incomplete unless both aggregates reach their authoritative `Active` state.
+
+User Account creation is a post-activation A02 lifecycle action. It is not a prerequisite for Person or Identity activation, and a Person may remain active without a User Account.
+
+Credential creation, authentication-factor or MFA enrollment, Authentication Provider lifecycle, Authentication Session lifecycle, and authentication enablement remain owned by L2-A03. Role, Role Assignment, Delegation, authorization-policy lifecycle, and initial authorization-context assignment remain owned by L2-A04.
+
+This decision does not rename or re-own any lifecycle state, event, aggregate, or contract.
+
+---
+
 # Document Information
 
 | Attribute | Value |
@@ -54,7 +79,7 @@ Any later A02 diagram, table, workflow, service, or prose that describes a Crede
 | Followed By | All Business Domains |
 | Canonical Aggregate | Person |
 | Secondary Aggregate | Identity |
-| Last Updated | 2026-08-13 — INT-301 ownership amendment |
+| Last Updated | 2026-08-20 — Person–Identity establishment and activation sequencing decision |
 
 ---
 
@@ -4457,7 +4482,7 @@ Supported operations include:
 - Change Password
 - Reset Password
 
-User Account creation shall occur only after successful Person activation.
+User Account creation shall occur only after successful Person and associated Identity activation. It is a post-activation A02 lifecycle action, is not a prerequisite for Person or Identity activation, and does not transfer credential, authentication-factor, Authentication Provider, Authentication Session, role, delegation, or authorization-policy ownership into A02.
 
 ---
 
