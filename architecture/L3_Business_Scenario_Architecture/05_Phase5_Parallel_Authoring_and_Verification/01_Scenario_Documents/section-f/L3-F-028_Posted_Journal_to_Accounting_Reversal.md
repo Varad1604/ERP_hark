@@ -12,7 +12,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`  
+**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`  
 **Referenced By:** None yet  
 
 ---
@@ -63,6 +63,8 @@ Accounting & General Ledger owns both the original Journal and compensating Jour
 | Accountant | Prepares the compensating Journal. | Maker role. |
 | Senior Accountant | Reviews and approves/rejects the compensating Journal. | Checker role. |
 | Authorized posting actor | Posts the approved compensating Journal. | Existing posting authority. |
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §2.
 
 ---
 
@@ -119,6 +121,8 @@ If authorization, validation, approval or posting cannot complete, no partial re
 - The compensating Journal follows the ordinary maker-checker and posting lifecycle.
 - Partial reversal does not move the original to a new partial-reversal state.
 
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§2, 3 and 5; period eligibility remains governed by F09 through F05 amendment §8.
+
 ---
 
 # 13. State and Lifecycle Impact
@@ -129,11 +133,15 @@ Original Journal:
 - full reversal: `Posted → Reversed` after compensating posting;
 - partial reversal: remains `Posted`.
 
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§3 and 5.
+
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
 `JournalPosted` records the compensating Journal posting. `JournalReversed` may record the full-reversal outcome for the original when its entire effect has been neutralized. Accounting retains ownership of both facts.
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§3 and 5 and unaffected canonical L2-F05 event definitions.
 
 ---
 
