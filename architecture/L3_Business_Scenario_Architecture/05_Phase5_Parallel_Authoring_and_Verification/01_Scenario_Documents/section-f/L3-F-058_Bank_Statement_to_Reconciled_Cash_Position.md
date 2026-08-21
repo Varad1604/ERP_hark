@@ -11,7 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`
 
 ---
 # 2. Scenario Purpose
@@ -39,6 +39,8 @@ Treasury owns its Bank Transaction representation, Cash Position and reconciliat
 ---
 # 6. Business Actors, Roles and Responsibilities
 Treasury actors perform governed reconciliation coordination under F10; Accounting actors independently govern accounting correction/reconciliation where required. No external bank actor is treated as a SutraERP aggregate owner.
+
+**Authoritative source:** canonical `L2-F10_Treasury_and_Banking.md`; Accounting reconciliation authority/ownership: `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§1–2 and 6.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -74,13 +76,19 @@ Business interruption preserves matched/unmatched evidence and current authorita
 - Cash Position changes only from completed Treasury settlement facts.
 - Accounting owns financial reconciliation outcomes.
 
+**Authoritative source:** canonical `L2-F10_Treasury_and_Banking.md`; Treasury ownership boundary: 2026-08-21 amendment §§1 and 7; Accounting reconciliation ownership: F05 amendment §§1 and 6.
+
 ---
 # 13. State and Lifecycle Impact
 Treasury reconciliation progresses through F10-defined reconciliation business milestones; no software-processing state is added.
 
+**Authoritative source:** canonical reconciliation semantics in `L2-F10_Treasury_and_Banking.md`; downstream L3 purity reinforced by the 2026-08-21 amendment §7.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 Established Treasury events include `BankTransactionRegistered`, `ReconciliationStarted`, `ReconciliationCompleted`, `ReconciliationExceptionDetected` and `CashPositionUpdated` where their completed business facts occur.
+
+**Authoritative source:** canonical event definitions in `L2-F10_Treasury_and_Banking.md`; Accounting reconciliation remains separately owned under the F05 amendment §6.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
