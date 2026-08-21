@@ -12,7 +12,8 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`  
+**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`  
+**Governance References:** `L3_Business_Scenario_Template_v2.0.md`  
 **Referenced By:** None yet  
 
 ---
@@ -62,6 +63,8 @@ Accounting & General Ledger owns the Journal and its disposition. F09 owns the g
 | Accountant | Prepares the manual Journal and supporting justification. | Maker role. |
 | Senior Accountant | Independently reviews and approves or rejects. | Checker/decision role. |
 | Authorized Accountant or Senior Accountant | Posts an approved Journal. | Existing posting authority only. |
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §2.
 
 ---
 
@@ -116,6 +119,8 @@ Validation failure prevents the Journal from entering approval. A business inter
 - Posted Journals are immutable.
 - Posting eligibility depends on the F09-owned Financial Period being `Open`.
 
+**Authoritative sources:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§2–3 and 9; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§1, 3 and 5.
+
 ---
 
 # 13. State and Lifecycle Impact
@@ -125,6 +130,8 @@ Validation failure prevents the Journal from entering approval. A business inter
 `Validated → Rejected`
 
 The `Rejected` state and `JournalRejected` event are canonical under the 2026-08-21 F05 amendment.
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §3.
 
 ---
 
@@ -136,6 +143,8 @@ The `Rejected` state and `JournalRejected` event are canonical under the 2026-08
 | `JournalApproved` | Accounting & General Ledger | Journal approved for posting. |
 | `JournalRejected` | Accounting & General Ledger | Journal conclusively rejected with no ledger effect. |
 | `JournalPosted` | Accounting & General Ledger | Approved Journal posted. |
+
+**Authoritative sources:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §3.
 
 ---
 
