@@ -11,7 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F04_Financial_Adjustment_Management.md`; `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F04_Financial_Adjustment_Management.md`; `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`
 
 ---
 # 2. Scenario Purpose
@@ -39,6 +39,8 @@ F08 owns the Payable representation. F04 owns Financial Adjustments. F14 owns pr
 ---
 # 6. Business Actors, Roles and Responsibilities
 AP reviews and incorporates authoritative completed Finance facts. Adjustment/reversal approval remains with the owning Finance capability and its approved authority; no AP role substitutes for that decision.
+
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §4; adjustment authority remains governed by `L2-F04_Financial_Adjustment_Management.md` and its locked amendment.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -74,13 +76,19 @@ An uncertain or incomplete source fact does not alter the Payable. Recovery requ
 - Section J facts remain Section J-owned.
 - AP changes only its Payable representation from authoritative completed facts.
 
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §§1–4; Finance adjustment ownership remains with F04 and procurement-finance liability recognition remains with F14.
+
 ---
 # 13. State and Lifecycle Impact
 AP recalculates the Payable liability/readiness position using F08 semantics; no source-domain lifecycle state is redefined.
 
+**Authoritative source:** canonical `L2-F08_Accounts_Payable_Management.md`, constrained by the 2026-08-21 amendment §4.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 Source events remain with their canonical publishers. AP publishes only established Payable lifecycle/update facts and does not treat F14 events as aliases for AP events.
+
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §§2–3; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md` preserves the upstream Finance publisher sequence.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
