@@ -11,7 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`
 
 ---
 # 2. Scenario Purpose
@@ -39,6 +39,8 @@ F08 owns Payables. F05 owns Accounting reconciliation/ledger evidence. F09 owns 
 ---
 # 6. Business Actors, Roles and Responsibilities
 AP review responsibilities govern the payable-population comparison. F05 accounting actors own ledger-reconciliation evidence; F09 close authorities consume readiness evidence. No cross-domain actor receives ownership of another domain's records.
+
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §4; Accounting authorities: `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §2; period authorities: `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §4.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -74,13 +76,19 @@ Reconciliation does not force balances to agree by editing history. Business rec
 - Section J owns procurement facts.
 - Reconciliation preserves historical evidence.
 
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §4; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§6 and 8; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§1, 3 and 5.
+
 ---
 # 13. State and Lifecycle Impact
 This scenario produces AP reconciliation readiness; it does not transition the canonical Financial Period. F09 remains responsible for period lifecycle facts.
 
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§1, 3 and 5; Accounting participation boundary: `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §8.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 Established AP and Accounting reconciliation facts may be exchanged through canonical contracts. No duplicate period-close event or procurement event is published by AP.
+
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §§2–4; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §6; F09 remains publisher of period lifecycle facts under its amendment §5.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
