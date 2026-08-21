@@ -11,7 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L3-F-045`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L3-F-045`
 
 ---
 # 2. Scenario Purpose
@@ -39,6 +39,8 @@ Treasury owns payment execution, settlement and cash. AP/payroll/other source ca
 ---
 # 6. Business Actors, Roles and Responsibilities
 Treasury executes only approved settlement under F10 governance. Upstream authorities own obligation/payment approval; Treasury does not reinterpret that approval as liability ownership.
+
+**Authoritative source:** `L2-F10_Treasury_and_Banking.md`; Treasury Account authority/operational constraints are reinforced by `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md` §§2–3; AP liability ownership remains fixed by the F08 amendment §4.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -74,13 +76,19 @@ Failed or uncertain bank outcomes remain governed Treasury business conditions. 
 - Treasury Accounts used for execution must be operationally permitted.
 - Failed payment/settlement facts remain distinct from successful settlement.
 
+**Authoritative source:** canonical `L2-F10_Treasury_and_Banking.md`; Treasury Account operational rules: 2026-08-21 amendment §§1–2; no-implementation-recovery boundary: amendment §7; AP liability ownership: F08 amendment §4.
+
 ---
 # 13. State and Lifecycle Impact
 Payment Execution and Settlement Execution progress only through F10-defined business states. This scenario does not invent software-processing states.
 
+**Authoritative source:** canonical payment and settlement lifecycles in `L2-F10_Treasury_and_Banking.md`; the 2026-08-21 amendment §7 prohibits downstream implementation-recovery mechanics.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 Established F10 events include `PaymentExecutionStarted`, `PaymentExecuted`, `PaymentExecutionFailed`, `SettlementStarted`, `SettlementCompleted`, `SettlementFailed`, and `CashPositionUpdated`, all Treasury-owned.
+
+**Authoritative source:** canonical event definitions in `L2-F10_Treasury_and_Banking.md`; Treasury ownership remains authoritative under the 2026-08-21 amendment §§1 and 7.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
