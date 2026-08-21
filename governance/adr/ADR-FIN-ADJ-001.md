@@ -126,12 +126,12 @@ Promote the existing illustrative lists to canonical, single-publisher = Financi
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
-| Finance domain/implementation owner | Chetan | — (not separately recorded) | — |
-| Finance Review Team | Varad | — (not separately recorded) | — |
-| Finance Review Team | Devang | — (not separately recorded) | — |
+| Finance domain/implementation owner | Chetan | **Approved** — recorded via Dhruv on 2026-08-21 | 2026-08-21 |
+| Finance Review Team | Varad | **Approved** — recorded via Dhruv on 2026-08-21 | 2026-08-21 |
+| Finance Review Team | Devang | **Approved** — recorded via Dhruv on 2026-08-21 | 2026-08-21 |
 | Lead Architect (lock approval) | Dhruv | **Approved** — authorized directly in-session | 2026-08-21 |
 
-Repository Update proceeds on Dhruv's lock-approval authority (Volume 5 §5). Chetan, Varad, and Devang have not independently reviewed this ADR as of this decision; their sign-off remains open and should be sought before or shortly after the corresponding Repository Update, per the spirit of Volume 5 §9 (Architecture Review Board resolves conflicts / protects consistency) even though Dhruv alone holds the lock-approval role that gates this step.
+All four named roles in Volume 5 §5 have now approved. Chetan's, Varad's, and Devang's approvals are recorded as reported by Dhruv in-session on 2026-08-21, not from a separate direct review session with each of them — noted here for traceability, not to cast doubt on the report.
 
 One item from §2.1 remains genuinely unresolved and is **not** treated as approved by this Decision: the `L3-F-022` Board-approval-authority conflict. It is carried forward into the amended `L2-F04` as an explicit open item, not silently closed.
 
