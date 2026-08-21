@@ -11,7 +11,8 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`; relevant Section J L2 sources; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`; `L2-J02_Vendor_and_Supplier_Management_Workflows.md`; `L2-J04_Purchase_Order_Management.md`; `L2-J05_Goods_Receipt_Inspection_and_Acceptance.md`  
+**Governance References:** `L3_Business_Scenario_Template_v2.0.md`
 
 ---
 # 2. Scenario Purpose
@@ -78,13 +79,19 @@ An incomplete or contradictory procurement/invoice fact prevents progression. No
 - No listed event is an alias for another.
 - Vendor/supplier and procurement ownership remain in Section J.
 
+**Authoritative sources:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`; applicable procurement facts from `L2-J02`, `L2-J04`, and `L2-J05`.
+
 ---
 # 13. State and Lifecycle Impact
 F14 establishes the Finance liability fact; F08 then establishes and validates the Payable. This scenario does not redefine Section J lifecycles.
 
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 `Section J facts → VendorInvoiceMatched → VendorInvoiceApproved → VendorLiabilityRecognized → PayableRegistered → PayableValidated` is the canonical sequence.
+
+**Authoritative source:** `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md` together with `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
