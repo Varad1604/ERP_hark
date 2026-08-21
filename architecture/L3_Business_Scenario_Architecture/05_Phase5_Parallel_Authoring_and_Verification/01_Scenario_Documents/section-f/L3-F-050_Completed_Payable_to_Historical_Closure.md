@@ -11,7 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`
 
 ---
 # 2. Scenario Purpose
@@ -39,6 +39,8 @@ F08 retains ownership of the historical Payable. Section J retains supplier/proc
 ---
 # 6. Business Actors, Roles and Responsibilities
 AP governance confirms completion and historical preservation under existing F08 authority. Audit participants consume read-only evidence and do not reopen/change the Payable by inspection.
+
+**Authoritative source:** canonical `L2-F08_Accounts_Payable_Management.md`, constrained by the ownership rules in `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §4.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -69,13 +71,19 @@ A preservation interruption does not change liability truth or erase history. No
 # 12. Business Rules and Decision Constraints
 Historical closure is preservation, not deletion. It cannot alter supplier/procurement, Treasury or Accounting records. A closed historical Payable remains traceable to all source facts.
 
+**Authoritative source:** canonical `L2-F08_Accounts_Payable_Management.md`; cross-domain ownership boundaries are locked by the 2026-08-21 amendment §4.
+
 ---
 # 13. State and Lifecycle Impact
 Only the F08-supported completed/closed historical position is used; this scenario does not invent a Financial Period or supplier lifecycle transition.
 
+**Authoritative source:** canonical `L2-F08_Accounts_Payable_Management.md`, constrained by the 2026-08-21 amendment §4.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 Existing Payable closure/lifecycle facts are used only where defined by F08. No Section J, Treasury, Accounting or F09 event is republished by AP.
+
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §§2–5 and canonical L2-F08 Payable lifecycle/event definitions.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
