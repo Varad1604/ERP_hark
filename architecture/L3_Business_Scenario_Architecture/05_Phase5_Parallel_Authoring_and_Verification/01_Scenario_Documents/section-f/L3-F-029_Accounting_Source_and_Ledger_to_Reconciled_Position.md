@@ -12,7 +12,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`  
+**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`  
 **Referenced By:** None yet  
 
 ---
@@ -62,6 +62,8 @@ Accounting & General Ledger owns the Ledger Reconciliation Record. Source facts 
 | Accountant | Performs reconciliation and records identified differences. | Comparison responsibility. |
 | Senior Accountant | Reviews evidence and closes the reconciliation. | Reconciliation closure authority. |
 | Internal Auditor | Examines reconciliation evidence. | Read-only. |
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §2.
 
 ---
 
@@ -113,6 +115,8 @@ An unresolved difference is a business reconciliation exception, not a technical
 - Institution-governed tolerance/materiality policies may influence review but are not invented by L3.
 - Closure requires review by the Senior Accountant.
 
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§2 and 6.
+
 ---
 
 # 13. State and Lifecycle Impact
@@ -120,6 +124,8 @@ An unresolved difference is a business reconciliation exception, not a technical
 `Comparing → Reconciled`
 
 `Comparing → Exception → Comparing`
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §6.
 
 ---
 
@@ -129,6 +135,8 @@ An unresolved difference is a business reconciliation exception, not a technical
 |---|---|---|
 | `ReconciliationExceptionRaised` | Accounting & General Ledger | An unresolved reconciliation difference has been formally recorded. |
 | `LedgerReconciled` | Accounting & General Ledger | Reconciliation has been reviewed and closed successfully. |
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §6.
 
 ---
 
