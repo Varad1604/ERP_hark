@@ -9,9 +9,9 @@
 **Scenario Type:** Simple  
 **Priority:** P0  
 **Status:** Draft  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Chetan  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-21  
 **Depends On:** `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `L2-J00_Enterprise_Resource_Management_Architecture_and_Governance.md`; `L2-J02_Vendor_and_Supplier_Management_Workflows.md`; `Section_J_Canonical_Register.md`; `L3_Final_Canonical_Scenario_ID_Register.md`; `L3_Business_Scenario_Template_v2.0.md`  
 **Referenced By:** supplier approval, qualification, sourcing, commitment, receipt, payable, tax, compliance, performance, restriction, and audit scenarios  
 
@@ -26,9 +26,9 @@ Registration is an identity and record-governance outcome only. It does not appr
 
 # 3. Business Outcome
 
-A prospective supplier reaches Canonical Registered Supplier, Returned for Correction, Rejected Registration, or Matched to Existing Supplier. The registered outcome provides a unique institutional supplier identifier, verified identity attributes, provenance, evidence validity, duplicate and relationship links, declared ownership and conflicts, controlled contacts, classifications, and lifecycle status.
+A prospective supplier becomes one canonical Registered Supplier with a unique institutional supplier identifier, verified identity attributes, provenance, evidence validity, duplicate and relationship links, declared ownership and conflicts, controlled contacts, classifications, and the canonical `Registered` lifecycle position.
 
-Outcome labels in this section are business dispositions or supporting-record results, not additional canonical lifecycle states. Section 13 states the only canonical lifecycle impact.
+Return for correction, rejection, or matching to an existing supplier are governed alternate or non-success dispositions. They do not satisfy this scenario's successful Business Outcome.
 
 ---
 
@@ -40,7 +40,7 @@ The scenario begins when a prospective supplier submits registration information
 
 ## 4.2 End Boundary
 
-The scenario ends when the candidate is registered under one canonical identity, linked to an existing supplier, returned, or rejected; sensitive evidence is controlled; and the resulting fact is available to the separate approval process.
+The scenario ends successfully only when the prospective supplier has been established as one canonical Supplier in the canonical `Registered` lifecycle position and the completed `SupplierRegistered` fact is available to the separate approval process. A return for correction, rejection, or match to an existing supplier preserves a governed disposition but does not complete this scenario successfully.
 
 ## 4.3 In Scope
 
@@ -90,6 +90,7 @@ Finance and tax roles retain financial and statutory interpretation. Legal and c
 | Institutional Verifier | Performs supplier identity and evidence verification independently. | Verifies and records evidence decisions. |
 | Supplier Approver | Approves, rejects or returns onboarding and activation within established authority. | Decides. |
 | Supplier Governance Authority | Governs duplicate, merge or other supplier-governance treatment where material. | Decides governed supplier treatment. |
+
 ---
 
 # 7. Preconditions and Entry Criteria
@@ -126,7 +127,7 @@ A prospective supplier submits a registration request, or an authorised procurem
 13. The Institutional Verifier prepares a recommendation to register, link to an existing record, return for correction, or reject, with reasons and unresolved issues.
 14. The Supplier Approver confirms completeness, identity confidence, duplicate disposition, required declarations, and data-governance conditions.
 15. On approval, one canonical supplier identifier is created and the Supplier enters the canonical `Registered` state and has not yet reached `Approved` or `Active`.
-16. Existing matches are linked or updated through controlled change governance; records are not silently merged or deleted.
+16. The completed registration fact is published for governed downstream use.
 17. The supplier and authorised internal roles receive the registration outcome, while all submissions, verifications, decisions, actors, timestamps, and versions remain auditable.
 
 ---
@@ -135,7 +136,7 @@ A prospective supplier submits a registration request, or an authorised procurem
 
 ## 10.1 Existing Canonical Supplier Found
 
-The request is linked to the existing identity. New evidence is assessed as a governed update, and no duplicate supplier identifier is issued.
+The request is linked to the existing identity. New evidence is assessed as a governed update, and no duplicate supplier identifier is issued. This disposition prevents duplicate creation but does not satisfy the successful end boundary of this new-registration scenario.
 
 ## 10.2 Branch, Site, or Operating Unit
 
@@ -167,11 +168,11 @@ Where an internal role captures information on behalf of the supplier, the sourc
 
 ## 11.1 Missing or Invalid Evidence
 
-The request is returned with specific deficiencies and remains non-registered until corrected or formally rejected.
+The request is returned with specific deficiencies and remains non-registered until corrected or formally rejected. Return is a recovery path, not successful completion.
 
 ## 11.2 Duplicate Cannot Be Resolved
 
-Canonical creation is held. A temporary case reference may support investigation but cannot be used as an approved supplier identity.
+Canonical creation is held. An investigation reference may support business investigation but cannot be used as an approved supplier identity.
 
 ## 11.3 Identity or Ownership Inconsistency
 
@@ -185,9 +186,9 @@ Registration may be held or rejected and the matter referred to the appropriate 
 
 No supplier attestation is accepted. The supplier must provide an authorised representative or acceptable alternative evidence.
 
-## 11.6 Service Interruption
+## 11.6 Business Process Interruption
 
-The case resumes from the last verified checkpoint. Repeated submission does not create a second identity, and time-sensitive evidence is refreshed.
+An interrupted registration does not imply registration or create a second supplier identity. The governed case resumes from the last established business position, and time-sensitive evidence is revalidated where required before progression.
 
 ## 11.7 Post-Registration Error
 
@@ -219,6 +220,7 @@ Correction follows attributable master-data change governance. Historical values
 |---|---|---|---|---|---|
 | Supplier | `Prospective / Registered` | Establishes the canonical supplier identity without inventing a registration-review lifecycle. | `Registered` within the canonical `Prospective / Registered` entry position | Vendor & Supplier Management (J02) | `L2-J02` Section 6 |
 | SupplierMergeRecord | No canonical lifecycle defined | Records an existing match or duplicate treatment where required. | Governed record without a locally invented state | Vendor & Supplier Management (J02) | `L2-J02` Section 5 |
+
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
@@ -228,6 +230,7 @@ Correction follows attributable master-data change governance. Historical values
 | Business Event | Canonical Publisher | Material Consumer(s) | Scenario Purpose | Authoritative Source |
 |---|---|---|---|---|
 | `SupplierRegistered` | Vendor & Supplier Management (J02) | J01, J03, J04, J05, Finance and Reporting where material | Records the exact completed business fact material to this scenario. | `L2-J02 Section 13` |
+
 ## 14.2 Cross-Domain Collaboration
 
 | Participant | Collaboration | Boundary |
@@ -256,7 +259,7 @@ The canonical J02 roles are separated as policy requires: Supplier Representativ
 
 ## 15.3 Audit Obligations
 
-The institution must reconstruct who supplied each fact, which source verified it, how duplicates and relationships were assessed, why a new or existing identity was chosen, who approved registration, and every later correction or legal identity change.
+The institution must reconstruct who supplied each fact, which source verified it, how duplicates and relationships were assessed, why a new identity was accepted, who approved registration, and every later correction or legal identity change.
 
 ---
 
@@ -266,14 +269,17 @@ The institution must reconstruct who supplied each fact, which source verified i
 
 The scenario is complete only when all of the following criteria are satisfied:
 
-- one canonical institutional supplier identifier has been issued for the prospective supplier or the candidate has been matched to an existing supplier, returned, or rejected with documented reasons;
+- one canonical institutional supplier identifier has been issued for the prospective supplier;
+- the Supplier is in the canonical `Registered` lifecycle position and has not yet reached `Approved` or `Active`;
 - legal name, constitution, registration identifiers, tax identifiers, and registered address have been verified against acceptable sources;
 - ownership, beneficial ownership, and related-party relationships have been captured where required;
-- duplicate and relationship checks have been performed, resolved, and documented by an authorised Institutional Verifier;
+- duplicate and relationship checks have been performed and no unresolved identity conflict prevents creation of the canonical Supplier;
 - required declarations, consents, and conflict disclosures are captured and attributed;
 - all evidence sources, issue dates, verification outcomes, and limitations are recorded;
-- the registration decision, authority, actors, reasons, and audit trail are preserved and immutable.
+- the registration decision, authority, actors, reasons, and audit trail are preserved;
+- `SupplierRegistered` represents the completed registration fact.
 
+A returned, rejected, or existing-supplier-match disposition does not satisfy these successful completion criteria.
 
 ## 16.2 Postconditions
 
@@ -281,11 +287,10 @@ Upon successful scenario completion, the following institutional postconditions 
 
 - a canonical Supplier exists with a unique institutional identifier, verified identity attributes, and the canonical `Registered` state; it has not yet reached `Approved` or `Active`;
 - the registration is distinguished from supplier approval, qualification, and sourcing entitlement;
-- duplicate supplier identity creation has been prevented and any matches or relationships are explicitly linked;
+- duplicate supplier identity creation has been prevented;
 - original submitted values and evidence provenance are preserved after any normalisation;
 - the complete registration history, evidence, and governance trail is permanently auditable;
 - no Purchase Order, commitment, award, sourcing authority, or payment obligation has been created by registration.
-
 
 ---
 
@@ -296,6 +301,8 @@ Upon successful scenario completion, the following institutional postconditions 
 1. Mandatory fields, documents, authoritative sources, verification strength, and retention periods by supplier type and jurisdiction require confirmation.
 2. Exact legal-entity, branch, site, consortium, individual, and foreign-supplier identity semantics require an upstream J02 entity-model decision before detailed design.
 3. Duplicate confidence, merge, split, relationship, and survivorship authorities require data-governance rules.
+
+These open issues do not broaden the frozen successful scenario outcome beyond Canonical Registered Supplier.
 
 ## 17.2 Assumptions
 
