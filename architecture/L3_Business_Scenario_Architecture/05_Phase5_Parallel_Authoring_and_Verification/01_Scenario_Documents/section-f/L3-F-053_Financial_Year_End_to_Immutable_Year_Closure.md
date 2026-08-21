@@ -11,7 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`
 
 ---
 # 2. Scenario Purpose
@@ -43,6 +43,8 @@ F09 owns the Financial Year and all year lifecycle transitions. F05 supplies acc
 | Financial Year Closing Authority | Confirms all year-level prerequisites and closes the Financial Year. |
 | Financial Period authorities | Ensure governed periods satisfy applicable closure requirements. |
 | Accounting actors / F05 | Supply accounting readiness facts and year-end evidence. |
+
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §4; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§2 and 8.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -77,13 +79,19 @@ An interrupted or blocked year close does not imply closure. F09 preserves the c
 - F05 owns accounting evidence, not year lifecycle.
 - Closed Financial Year history is immutable.
 
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§1–2, 4–5; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §8.
+
 ---
 # 13. State and Lifecycle Impact
 `Open → Closing → Closed` for the Financial Year. `Closed → Archived` belongs to subsequent historical preservation, not this scenario.
 
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §2.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 `FinancialYearClosed` is canonically published by F09 after `Closing → Closed` completes.
+
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§2 and 5.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
