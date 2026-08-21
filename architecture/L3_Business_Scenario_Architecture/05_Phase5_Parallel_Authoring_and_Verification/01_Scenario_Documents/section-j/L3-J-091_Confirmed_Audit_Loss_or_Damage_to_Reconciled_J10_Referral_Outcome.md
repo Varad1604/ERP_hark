@@ -11,8 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-J09_Physical_Verification_Audit_and_Reconciliation.md`; `L2-J10_Disposal_Scrap_and_Write_Off.md`  
-**Governance References:** `Section_J_Canonical_Register.md`; `L3_Final_Canonical_Scenario_ID_Register.md`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-J09_Physical_Verification_Audit_and_Reconciliation.md`; `L2-J10_Disposal_Scrap_and_Write_Off.md`
 
 ---
 # 2. Scenario Purpose
