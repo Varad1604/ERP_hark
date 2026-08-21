@@ -12,7 +12,8 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F00_Finance_Domain_Model_and_Foundation.md`; `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`  
+**Depends On:** `L2-F00_Finance_Domain_Model_and_Foundation.md`; `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`  
+**Governance References:** `L3_Business_Scenario_Template_v2.0.md`  
 **Referenced By:** None yet  
 
 ---
@@ -72,6 +73,8 @@ The Journal Entry is `Posted`, affected ledger balances reflect the posting, and
 | Senior Accountant | Reviews and approves/rejects the Journal. | Independent accounting approval. |
 | Authorized Accountant or Senior Accountant | Posts an approved Journal. | Must hold the existing posting authority and cannot bypass prior gates. |
 
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §2.
+
 ---
 
 # 7. Preconditions and Entry Criteria
@@ -119,18 +122,23 @@ No scenario-specific alternate success path is required. A Journal that is not a
 
 # 12. Business Rules and Decision Constraints
 
-- Total debit must equal total credit.
-- Only approved Journals may be posted.
-- Posted Journals are immutable.
-- Posting is permitted only in an F09-governed `Open` Financial Period.
-- Accounting owns the accounting consequence, not the originating transaction.
-- Ledger balances change only through successful Journal posting.
+| Business Rule / Constraint | Authoritative Source |
+|---|---|
+| Total debit must equal total credit. | `L2-F05_Accounting_and_General_Ledger_Management.md` — Journal validation and double-entry rules. |
+| Only approved Journals may be posted. | `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§2–3. |
+| Posted Journals are immutable. | `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§5 and 9. |
+| Posting is permitted only in an F09-governed `Open` Financial Period. | `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §8; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§1, 3 and 5. |
+| Accounting owns the accounting consequence, not the originating transaction. | `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §1. |
+| Ledger balances change only through successful Journal posting. | `L2-F05_Accounting_and_General_Ledger_Management.md` — posting workflow and ledger ownership. |
 
 ---
 
 # 13. State and Lifecycle Impact
 
-`Draft → Validated → Approved → Posted` for the Journal Entry.
+| Business Concept | Lifecycle | Canonical Owner | Authoritative Source |
+|---|---|---|---|
+| Journal Entry | `Draft → Validated → Approved → Posted` | Accounting & General Ledger | `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §3 |
+| Financial Period | Consumed as `Open` for posting eligibility; not transitioned by this scenario | Financial Period & Closing | `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§1 and 3 |
 
 Financial Year and Financial Period states are consumed from F09 and are not redefined by this scenario.
 
@@ -138,13 +146,15 @@ Financial Year and Financial Period states are consumed from F09 and are not red
 
 # 14. Business Events and Cross-Domain Collaboration
 
-| Event | Publisher | Meaning |
-|---|---|---|
-| `JournalCreated` | Accounting & General Ledger | Journal has been established. |
-| `JournalValidated` | Accounting & General Ledger | Accounting validation completed. |
-| `JournalApproved` | Accounting & General Ledger | Journal approved for posting. |
-| `JournalPosted` | Accounting & General Ledger | Journal successfully posted. |
-| `LedgerUpdated` | Accounting & General Ledger | Ledger balances reflect the posting. |
+| Event | Publisher | Meaning | Authoritative Source |
+|---|---|---|---|
+| `JournalCreated` | Accounting & General Ledger | Journal has been established. | `L2-F05_Accounting_and_General_Ledger_Management.md` |
+| `JournalValidated` | Accounting & General Ledger | Accounting validation completed. | `L2-F05_Accounting_and_General_Ledger_Management.md` |
+| `JournalApproved` | Accounting & General Ledger | Journal approved for posting. | `L2-F05_Accounting_and_General_Ledger_Management.md` |
+| `JournalPosted` | Accounting & General Ledger | Journal successfully posted. | `L2-F05_Accounting_and_General_Ledger_Management.md` |
+| `LedgerUpdated` | Accounting & General Ledger | Ledger balances reflect the posting. | `L2-F05_Accounting_and_General_Ledger_Management.md` |
+
+F09 supplies authoritative Financial Period state for posting eligibility; this scenario does not republish F09 lifecycle events.
 
 ---
 
