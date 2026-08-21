@@ -12,7 +12,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F07_Accounts_Receivable_Management.md`; `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md`; applicable source-obligation L2 architecture; `L3_Business_Scenario_Template_v2.0.md`  
+**Depends On:** `L2-F07_Accounts_Receivable_Management.md`; `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md`; applicable source-obligation L2 architecture  
 **Referenced By:** L3-F-040; L3-F-041  
 
 ---
@@ -68,6 +68,8 @@ For Student Charges, Student Charge Management remains the source owner.
 | Receivable Validation Authority | Validates obligation reference, amount, classification, institution and AR integrity. | Cannot alter the source obligation. |
 | Receivable Review Authority | Reviews recognition exceptions. | Corrective source action remains with the source owner. |
 
+**Authoritative source:** `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md` §1.
+
 ---
 
 # 7. Preconditions and Entry Criteria
@@ -122,11 +124,15 @@ Invalid, incomplete, duplicate or untraceable source evidence prevents Receivabl
 - Registration and validation are independently governable responsibilities.
 - Only source-authoritative event names may be used as recognition triggers.
 
+**Authoritative source:** `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md` §§2–4.
+
 ---
 
 # 13. State and Lifecycle Impact
 
 The Receivable lifecycle begins after valid source obligation establishment. This scenario establishes the initial AR representation; it does not redefine source-domain lifecycle states.
+
+**Authoritative source:** `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md` §§2–3 and unaffected canonical L2-F07 lifecycle definitions.
 
 ---
 
@@ -138,6 +144,8 @@ The Receivable lifecycle begins after valid source obligation establishment. Thi
 | `ReceivableCreated` | Accounts Receivable | AR Receivable representation has been established. |
 
 Other source-event names remain source-owned and must be cited only when canonically defined upstream.
+
+**Authoritative source:** `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md` §§2–3 and canonical L2-F07 Receivable event definitions.
 
 ---
 
