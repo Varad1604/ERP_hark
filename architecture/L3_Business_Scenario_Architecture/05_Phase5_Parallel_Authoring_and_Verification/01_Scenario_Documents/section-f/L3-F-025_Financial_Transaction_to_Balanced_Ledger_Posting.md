@@ -13,7 +13,6 @@
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
 **Depends On:** `L2-F00_Finance_Domain_Model_and_Foundation.md`; `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`  
-**Governance References:** `L3_Business_Scenario_Template_v2.0.md`  
 **Referenced By:** None yet  
 
 ---
