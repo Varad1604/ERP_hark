@@ -9,9 +9,9 @@
 **Scenario Type:** Simple  
 **Priority:** P1  
 **Status:** Draft  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Chetan  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-21  
 **Depends On:** `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `L2-J00_Enterprise_Resource_Management_Architecture_and_Governance.md`; `L2-J01_Procurement_Planning_and_Sourcing_Workflows.md`; `Section_J_Canonical_Register.md`; `L3_Final_Canonical_Scenario_ID_Register.md`; `L3_Business_Scenario_Template_v2.0.md`  
 **Referenced By:** L3-J-002 Approved Procurement Plan Change to Governed Successor Plan; L3-J-003 Active Procurement Plan to Governed Closure; downstream purchase-requisition and sourcing scenarios where a planned-requirement reference is used  
 
@@ -38,7 +38,7 @@ The scenario begins when an authorised institutional planning requirement exists
 
 ## 4.2 End Boundary
 
-The scenario ends when the reviewed plan version is approved and activated, or when the submission reaches a governed returned outcome pending revision. Rejection is not defined as a canonical Procurement Plan lifecycle state in L2-J01 and is therefore not invented here.
+The scenario ends successfully only when the reviewed plan version has received valid institutional approval and is Active for the defined scope and planning period. A return for revision is an alternate business path that keeps the scenario incomplete until the corrected plan is resubmitted, approved, and activated. Rejection is not defined as a canonical Procurement Plan lifecycle state in L2-J01 and is therefore not invented here.
 
 ## 4.3 In Scope
 
@@ -145,6 +145,7 @@ Where institutional configuration does not require a distinct formal approval se
 3. The returned version and return decision remain preserved.
 4. The Procurement Planner prepares a corrected controlled version or revision according to the applicable pre-approval rules.
 5. The corrected plan is resubmitted through the required review and approval path.
+6. This path does not complete the scenario until the corrected plan satisfies the successful End Boundary in §4.2.
 
 ## 10.3 Multi-Unit Consolidated Plan
 
@@ -326,8 +327,8 @@ Upon successful scenario completion, the following institutional postconditions 
 
 ## 17.1 Open Issues
 
-1. L2-J01 states that institutions not requiring approval may configure a simplified lifecycle but does not define its exact canonical state sequence or the minimum authority required for activation. This must be resolved before a simplified path can be locked at L3.
-2. L2-J01 shows `Returned for Revision` as a lifecycle outcome but does not state whether it is a durable lifecycle state or a review disposition attached to a submitted version. L4 state design must not choose an interpretation until architecture governance confirms it.
+1. L2-J01 states that institutions not requiring approval may configure a simplified lifecycle but does not define its exact canonical state sequence or the minimum authority required for activation. This remains a non-main-path issue and does not change the successful scenario outcome defined in §3 and §4.2.
+2. L2-J01 shows `Returned for Revision` as a lifecycle outcome but does not state whether it is a durable lifecycle state or a review disposition attached to a submitted version. This ambiguity affects the internal representation of the alternate path but does not constitute successful scenario completion.
 3. The authoritative relationship between a planning period and an externally owned academic year, financial year, semester, quarter, or institution-defined period requires stable upstream contracts; exact contract identities are deferred.
 4. The conditions under which policy may permit sourcing directly from an approved consolidated procurement authority are intentionally excluded from this scenario and require explicit configuration and traceability in the applicable downstream sourcing scenario.
 
