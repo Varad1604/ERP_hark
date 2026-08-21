@@ -12,7 +12,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`  
+**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`  
 **Referenced By:** None yet  
 
 ---
@@ -62,6 +62,8 @@ Accounting & General Ledger owns the Posting Batch and ledger consequence. F09 o
 | Senior Accountant | Authorizes the Posting Batch and any governed retry. | Cannot bypass Journal approval or period eligibility. |
 | Authorized Accountant or Senior Accountant | Executes the posting action for the approved batch. | Existing posting authority. |
 | Internal Auditor | Examines batch outcome evidence. | Read-only. |
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §2.
 
 ---
 
@@ -118,6 +120,8 @@ A failed batch may be retried after the underlying business condition has been r
 - Retry requires Senior Accountant authorization.
 - Posting eligibility depends on the F09-owned Financial Period being `Open`.
 
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§4 and 8; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§3 and 5.
+
 ---
 
 # 13. State and Lifecycle Impact
@@ -127,6 +131,8 @@ A failed batch may be retried after the underlying business condition has been r
 `Processing → Failed → Retried → Validated → Processing`
 
 Repeat failure returns to `Failed`.
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §4.
 
 ---
 
@@ -139,6 +145,8 @@ Repeat failure returns to `Failed`.
 | `PostingBatchCompleted` | Accounting & General Ledger | Batch completed consistently. |
 | `PostingBatchFailed` | Accounting & General Ledger | Batch concluded in a governed failure with no partial ledger consequence. |
 | `PostingBatchRetried` | Accounting & General Ledger | An authorized retry has been initiated. |
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §4 and unaffected canonical L2-F05 event definitions.
 
 ---
 
