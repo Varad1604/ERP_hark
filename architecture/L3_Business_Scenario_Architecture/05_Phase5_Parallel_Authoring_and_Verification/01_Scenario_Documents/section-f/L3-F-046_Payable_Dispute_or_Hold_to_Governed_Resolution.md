@@ -11,7 +11,8 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`; relevant Section J sources; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`; `L2-J02_Vendor_and_Supplier_Management_Workflows.md`; `L2-J04_Purchase_Order_Management.md`; `L2-J05_Goods_Receipt_Inspection_and_Acceptance.md`  
+**Governance References:** `L3_Business_Scenario_Template_v2.0.md`
 
 ---
 # 2. Scenario Purpose
@@ -71,13 +72,19 @@ Unresolved or contradictory evidence keeps the Payable in its prior safe governe
 # 12. Business Rules and Decision Constraints
 AP controls payment readiness and AP hold/suspension state only. Procurement facts remain Section J-owned; F14 liability-recognition facts remain F14-owned; Treasury must not settle a Payable that AP has not made eligible.
 
+**Authoritative sources:** `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`; applicable supplier, purchase-order and receipt evidence from `L2-J02`, `L2-J04`, and `L2-J05`.
+
 ---
 # 13. State and Lifecycle Impact
 Only F08-supported Payable readiness/suspension/hold semantics are used. No new state is invented.
 
+**Authoritative source:** `L2-F08_Accounts_Payable_Management.md` as amended on 2026-08-21.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 AP may publish its existing Payable update/lifecycle facts where defined by F08. This scenario does not rename or republish Section J/F14 events.
+
+**Authoritative sources:** `L2-F08_Accounts_Payable_Management.md` as amended on 2026-08-21; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
