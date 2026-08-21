@@ -11,7 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F04_Financial_Adjustment_Management.md`; `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F04_Financial_Adjustment_Management.md`; `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`
 
 ---
 # 2. Scenario Purpose
@@ -39,6 +39,8 @@ F08 owns Payable lifecycle/readiness. F04 owns any Write-Off Adjustment. Section
 ---
 # 6. Business Actors, Roles and Responsibilities
 AP authorities govern suspension/reopening under F08 policy. Any write-off approval remains with F04/enterprise approval governance; AP initiation or referral alone does not authorize it.
+
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §4; write-off authority remains governed by `L2-F04_Financial_Adjustment_Management.md` and its locked amendment.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -73,13 +75,19 @@ Uncertain evidence preserves the current safe AP position. Business recovery dep
 - F04 owns the adjustment and approval/application path.
 - Historical Payable evidence remains immutable.
 
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §§1 and 4; write-off ownership and approval remain with F04.
+
 ---
 # 13. State and Lifecycle Impact
 Only states/readiness conditions already supported by F08 are used. No new write-off state is introduced by referral alone.
 
+**Authoritative source:** canonical `L2-F08_Accounts_Payable_Management.md`, constrained by the 2026-08-21 amendment §4.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 AP uses only established F08 Payable events where defined. Actual write-off facts remain F04-published; this scenario does not republish them under AP ownership.
+
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §§2–4; F04 remains canonical publisher for its own adjustment/write-off facts.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
