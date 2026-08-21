@@ -5,7 +5,7 @@
 **Scenario ID:** L3-G-001  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Campus Operations Governance  
-**Participating Domains:** G, A, B, C, D, H, I  
+**Participating Domains:** A, B, C, D, G, H, I  
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Draft  

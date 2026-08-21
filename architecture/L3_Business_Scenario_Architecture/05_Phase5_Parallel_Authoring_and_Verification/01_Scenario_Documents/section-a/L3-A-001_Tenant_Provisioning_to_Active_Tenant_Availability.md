@@ -1,6 +1,6 @@
 # Tenant Provisioning to Active Tenant Availability
 
-## 1. Scenario Metadata
+# 1. Scenario Metadata
 
 **Scenario ID:** L3-A-001  
 **Architecture Level:** L3 — Business Scenario Architecture  
@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-19  
+**Last Updated:** 2026-08-21  
 **Depends On:** `SutraERP_L1_Business_Domain_Architecture_Locked.md` L1-01; `L2-A01_Platform_Tenant_Foundation_Architecture.md` Sections 2.8 and 5.4–5.13; `L2-A06_Event_Infrastructure_Workflows.md`; `DEPENDENCY_MAP.md`  
 **Referenced By:** None yet  
 
 ---
 
-## 2. Scenario Purpose
+# 2. Scenario Purpose
 
 Establish a secure, isolated and governed Tenant environment for a customer organization before institutional or business-domain operations begin.
 
@@ -25,23 +25,23 @@ The scenario ensures that the Platform-owned Tenant boundary progresses through 
 
 ---
 
-## 3. Business Outcome
+# 3. Business Outcome
 
-The Tenant reaches the canonical `Active` state and is fully operational within its isolated Tenant context, allowing downstream domains to begin permitted operations.
+The Tenant is provisioned, initialized, activated and available for institution creation and downstream setup.
 
 ---
 
-## 4. Scenario Boundary and Scope
+# 4. Scenario Boundary and Scope
 
-### 4.1 Start Boundary
+## 4.1 Start Boundary
 
 The scenario begins when an approved Tenant exists in the `Requested` state and the Platform commences the permitted transition to `Provisioning`.
 
-### 4.2 End Boundary
+## 4.2 End Boundary
 
 The scenario ends when provisioning is successfully completed, the Tenant reaches `Active`, and the Tenant becomes available for downstream business execution.
 
-### 4.3 In Scope
+## 4.3 In Scope
 
 - Validation of the requested Tenant lifecycle progression.
 - Transition from `Requested` to `Provisioning`.
@@ -51,7 +51,7 @@ The scenario ends when provisioning is successfully completed, the Tenant reache
 - Transition from `Provisioning` to `Active`.
 - Governed handling of unsuccessful provisioning.
 
-### 4.4 Out of Scope
+## 4.4 Out of Scope
 
 - Institution creation, which begins only after the Tenant becomes `Active`.
 - Organisation, academic or other business-domain setup.
@@ -59,7 +59,7 @@ The scenario ends when provisioning is successfully completed, the Tenant reache
 - Tenant archival.
 - Technical provisioning mechanisms or infrastructure design.
 
-### 4.5 Related Scenarios — Optional
+## 4.5 Related Scenarios — Optional
 
 | Relationship | Related Scenario | Reason |
 |---|---|---|
@@ -68,7 +68,7 @@ The scenario ends when provisioning is successfully completed, the Tenant reache
 
 ---
 
-## 5. Ownership and Participating Domains
+# 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
@@ -78,7 +78,7 @@ All participating responsibilities remain within Section A. No downstream busine
 
 ---
 
-## 6. Business Actors, Roles and Responsibilities
+# 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
@@ -88,7 +88,7 @@ L2-A01 does not define a canonical business actor for approving Tenant creation 
 
 ---
 
-## 7. Preconditions and Entry Criteria
+# 7. Preconditions and Entry Criteria
 
 - The Tenant registration has been accepted and approved for creation.
 - The Tenant is in the canonical `Requested` state.
@@ -98,13 +98,13 @@ L2-A01 does not define a canonical business actor for approving Tenant creation 
 
 ---
 
-## 8. Trigger
+# 8. Trigger
 
-The Platform commences the permitted `Requested` to `Provisioning` lifecycle transition for the Tenant.
+An approved Tenant request is accepted for provisioning.
 
 ---
 
-## 9. Main Business Flow
+# 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---:|---|---|---|
@@ -118,13 +118,13 @@ The Main Business Flow ends when the Tenant reaches `Active`.
 
 ---
 
-## 10. Alternate Business Flows
+# 10. Alternate Business Flows
 
 No scenario-specific alternate business flow is defined by the authoritative L2 architecture.
 
 ---
 
-## 11. Failure, Interruption and Business Recovery
+# 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
@@ -136,7 +136,7 @@ Recovery remains business-level. No technical retry, rollback or infrastructure-
 
 ---
 
-## 12. Business Rules and Decision Constraints
+# 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
@@ -151,7 +151,7 @@ Recovery remains business-level. No technical retry, rollback or infrastructure-
 
 ---
 
-## 13. State and Lifecycle Impact
+# 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
@@ -163,9 +163,9 @@ The Tenant lifecycle remains exclusively Platform-owned. Business domains may co
 
 ---
 
-## 14. Business Events and Cross-Domain Collaboration
+# 14. Business Events and Cross-Domain Collaboration
 
-### 14.1 Published / Consumed Business Events
+## 14.1 Published / Consumed Business Events
 
 | Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
 |---|---|---|---|---|
@@ -174,7 +174,7 @@ The Tenant lifecycle remains exclusively Platform-owned. Business domains may co
 
 The event names and publisher are preserved from locked L1. No consumer or event-contract detail is invented.
 
-### 14.2 Business Contracts and Cross-Domain Hand-offs
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
 No synchronous cross-domain contract or governed hand-off is defined within this scenario.
 
@@ -182,9 +182,9 @@ The resulting `Active` Tenant lifecycle fact becomes an upstream dependency for 
 
 ---
 
-## 15. Business Authorization, Approval and Audit Obligations
+# 15. Business Authorization, Approval and Audit Obligations
 
-### 15.1 Initiation and Decision Authority
+## 15.1 Initiation and Decision Authority
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
@@ -192,11 +192,11 @@ The resulting `Active` Tenant lifecycle fact becomes an upstream dependency for 
 
 The scenario begins after the Tenant has been approved for creation. The authoritative sources do not define the actor or role responsible for that approval.
 
-### 15.2 Separation of Duties, Overrides and Exceptions
+## 15.2 Separation of Duties, Overrides and Exceptions
 
 No scenario-specific separation-of-duty, override or exception requirement is defined by the authoritative L1/L2 architecture.
 
-### 15.3 Business Audit and Evidence Obligations
+## 15.3 Business Audit and Evidence Obligations
 
 | Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
 |---|---|---|
@@ -207,9 +207,9 @@ No evidence fields or technical audit mechanism are defined at L3.
 
 ---
 
-## 16. Completion Criteria and Postconditions
+# 16. Completion Criteria and Postconditions
 
-### 16.1 Completion Criteria
+## 16.1 Completion Criteria
 
 - The Tenant has successfully transitioned from `Requested` through `Provisioning` to `Active`.
 - Tenant identity, Platform configuration, module registry, context framework, shared Platform Services and governance registration have been initialized.
@@ -217,7 +217,7 @@ No evidence fields or technical audit mechanism are defined at L3.
 - The Tenant is available for permitted downstream business execution.
 - Institution creation is permitted to begin as a separate downstream outcome.
 
-### 16.2 Postconditions
+## 16.2 Postconditions
 
 - The Tenant remains the isolated Platform, security, configuration and execution boundary.
 - Downstream domains may execute only within the resolved Active Tenant context.
@@ -226,9 +226,9 @@ No evidence fields or technical audit mechanism are defined at L3.
 
 ---
 
-## 17. Open Issues, Assumptions and Deferred Questions
+# 17. Open Issues, Assumptions and Deferred Questions
 
-### 17.1 Open Issues
+## 17.1 Open Issues
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
@@ -237,10 +237,10 @@ No evidence fields or technical audit mechanism are defined at L3.
 
 These issues are non-blocking for this Draft but must be resolved before the scenario can become `Locked`.
 
-### 17.2 Assumptions
+## 17.2 Assumptions
 
 No assumptions.
 
-### 17.3 Deferred Questions
+## 17.3 Deferred Questions
 
 No scenario-specific deferred questions.

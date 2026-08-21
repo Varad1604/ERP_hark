@@ -1,6 +1,6 @@
 # Active Tenant Governance Concern to Controlled Restriction and Restored Availability
 
-## 1. Scenario Metadata
+# 1. Scenario Metadata
 
 **Scenario ID:** L3-A-002  
 **Architecture Level:** L3 — Business Scenario Architecture  
@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-19  
+**Last Updated:** 2026-08-21  
 **Depends On:** `SutraERP_L1_Business_Domain_Architecture_Locked.md` L1-01; `L2-A01_Platform_Tenant_Foundation_Architecture.md` Sections 5.2 and 5.4–5.14; `DEPENDENCY_MAP.md`  
 **Referenced By:** None yet  
 
 ---
 
-## 2. Scenario Purpose
+# 2. Scenario Purpose
 
 Temporarily restrict business execution within an Active Tenant when a Platform lifecycle governance concern requires suspension, while preserving the Tenant and its governed information.
 
@@ -25,23 +25,23 @@ The scenario also governs restoration of Tenant availability after the suspensio
 
 ---
 
-## 3. Business Outcome
+# 3. Business Outcome
 
 Business execution is suspended while Tenant data, configuration, security information, audit history and Platform metadata remain preserved, and the Tenant returns to `Active` when the governed suspension condition is resolved.
 
 ---
 
-## 4. Scenario Boundary and Scope
+# 4. Scenario Boundary and Scope
 
-### 4.1 Start Boundary
+## 4.1 Start Boundary
 
 The scenario begins when a Platform lifecycle decision requires business execution within an `Active` Tenant to be temporarily disabled.
 
-### 4.2 End Boundary
+## 4.2 End Boundary
 
 The scenario ends when the governed suspension condition has been resolved, the Tenant has validly returned to `Active`, and permitted business execution is restored.
 
-### 4.3 In Scope
+## 4.3 In Scope
 
 - Validation of the `Active` to `Suspended` lifecycle transition.
 - Controlled transition of the Tenant to `Suspended`.
@@ -52,7 +52,7 @@ The scenario ends when the governed suspension condition has been resolved, the 
 - Validation of the `Suspended` to `Active` transition.
 - Restoration of the Tenant to `Active`.
 
-### 4.4 Out of Scope
+## 4.4 Out of Scope
 
 - Tenant provisioning and initial activation.
 - Controlled maintenance.
@@ -61,7 +61,7 @@ The scenario ends when the governed suspension condition has been resolved, the 
 - Resolution of business-domain lifecycles affected by temporary Tenant unavailability.
 - Technical access-control, infrastructure or recovery mechanisms.
 
-### 4.5 Related Scenarios — Optional
+## 4.5 Related Scenarios — Optional
 
 | Relationship | Related Scenario | Reason |
 |---|---|---|
@@ -70,7 +70,7 @@ The scenario ends when the governed suspension condition has been resolved, the 
 
 ---
 
-## 5. Ownership and Participating Domains
+# 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
@@ -82,7 +82,7 @@ Downstream business domains depend on the Tenant lifecycle state but do not part
 
 ---
 
-## 6. Business Actors, Roles and Responsibilities
+# 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
@@ -92,7 +92,7 @@ The owning domain remains responsible for the scenario behaviour. No approval or
 
 ---
 
-## 7. Preconditions and Entry Criteria
+# 7. Preconditions and Entry Criteria
 
 - The Tenant exists and is in the canonical `Active` state.
 - The Tenant identity remains valid and uniquely identifiable.
@@ -103,13 +103,13 @@ The owning domain remains responsible for the scenario behaviour. No approval or
 
 ---
 
-## 8. Trigger
+# 8. Trigger
 
 A Platform lifecycle decision requires business execution within an `Active` Tenant to be temporarily disabled.
 
 ---
 
-## 9. Main Business Flow
+# 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---:|---|---|---|
@@ -125,7 +125,7 @@ The Main Business Flow ends when the Tenant returns to `Active` and availability
 
 ---
 
-## 10. Alternate Business Flows
+# 10. Alternate Business Flows
 
 No scenario-specific alternate business flow is defined by the authoritative L2 architecture.
 
@@ -133,7 +133,7 @@ The `Maintenance` and `Upgrade` lifecycle paths are not alternate flows for this
 
 ---
 
-## 11. Failure, Interruption and Business Recovery
+# 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
@@ -146,7 +146,7 @@ No technical retry, rollback, server-failure or infrastructure-recovery behaviou
 
 ---
 
-## 12. Business Rules and Decision Constraints
+# 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
@@ -164,7 +164,7 @@ No technical retry, rollback, server-failure or infrastructure-recovery behaviou
 
 ---
 
-## 13. State and Lifecycle Impact
+# 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
@@ -176,15 +176,15 @@ No other Tenant lifecycle state or transition is introduced by this scenario.
 
 ---
 
-## 14. Business Events and Cross-Domain Collaboration
+# 14. Business Events and Cross-Domain Collaboration
 
-### 14.1 Published / Consumed Business Events
+## 14.1 Published / Consumed Business Events
 
 No exact canonical business event for Tenant suspension or restored availability is defined by the authoritative L1/L2 sources reviewed.
 
 This scenario does not invent events such as `TenantSuspended`, `TenantRestored` or `TenantReactivated`.
 
-### 14.2 Business Contracts and Cross-Domain Hand-offs
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
 No scenario-specific synchronous business contract or governed hand-off is defined by the authoritative L2 architecture.
 
@@ -197,9 +197,9 @@ This dependency does not make downstream domains participating owners and does n
 
 ---
 
-## 15. Business Authorization, Approval and Audit Obligations
+# 15. Business Authorization, Approval and Audit Obligations
 
-### 15.1 Initiation and Decision Authority
+## 15.1 Initiation and Decision Authority
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
@@ -208,11 +208,11 @@ This dependency does not make downstream domains participating owners and does n
 | Determine that the governed suspension condition has been resolved | Canonical business role not defined upstream | Restoration cannot begin until the suspension condition is resolved. | Platform & Tenant |
 | Perform the `Suspended` to `Active` transition | Canonical business role not defined in L2-A01 | Only the Platform may perform a permitted Tenant lifecycle transition. | Platform & Tenant |
 
-### 15.2 Separation of Duties, Overrides and Exceptions
+## 15.2 Separation of Duties, Overrides and Exceptions
 
 No scenario-specific separation-of-duty, override or exception requirement is defined by the authoritative L1/L2 architecture.
 
-### 15.3 Business Audit and Evidence Obligations
+## 15.3 Business Audit and Evidence Obligations
 
 | Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
 |---|---|---|
@@ -223,9 +223,9 @@ No evidence fields, technical audit mechanism or additional audit artefact is de
 
 ---
 
-## 16. Completion Criteria and Postconditions
+# 16. Completion Criteria and Postconditions
 
-### 16.1 Completion Criteria
+## 16.1 Completion Criteria
 
 - The governed suspension condition has been resolved.
 - Tenant data, configuration, security information, audit history and Platform metadata remain preserved.
@@ -234,7 +234,7 @@ No evidence fields, technical audit mechanism or additional audit artefact is de
 - Permitted business execution within the Tenant has been restored.
 - The suspension and restoration lifecycle transitions remain auditable.
 
-### 16.2 Postconditions
+## 16.2 Postconditions
 
 - The Tenant is fully operational in the canonical `Active` state.
 - The Tenant retains its identity, isolation boundary, configuration and preserved history.
@@ -244,9 +244,9 @@ No evidence fields, technical audit mechanism or additional audit artefact is de
 
 ---
 
-## 17. Open Issues, Assumptions and Deferred Questions
+# 17. Open Issues, Assumptions and Deferred Questions
 
-### 17.1 Open Issues
+## 17.1 Open Issues
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
@@ -254,10 +254,10 @@ No evidence fields, technical audit mechanism or additional audit artefact is de
 
 This issue is non-blocking for this Draft but must be resolved before the scenario can become `Locked`.
 
-### 17.2 Assumptions
+## 17.2 Assumptions
 
 No assumptions.
 
-### 17.3 Deferred Questions
+## 17.3 Deferred Questions
 
 No scenario-specific deferred questions.

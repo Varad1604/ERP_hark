@@ -1,4 +1,4 @@
-# Published Financial Report to Correction Supersession or Archival
+# Published Financial Report to Correction, Supersession, or Archival
 
 # 1. Scenario Metadata
 
@@ -11,7 +11,7 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-21  
 **Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-F13 — Financial Reporting & Analytics Workflows; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
 **Referenced By:** Financial reporting governance, audit, historical reconstruction and downstream financial-report consumers
 
