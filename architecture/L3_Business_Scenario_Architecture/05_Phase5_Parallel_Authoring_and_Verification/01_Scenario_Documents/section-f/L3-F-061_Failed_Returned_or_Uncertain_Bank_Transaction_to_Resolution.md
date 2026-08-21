@@ -11,7 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`; `L3-F-057`; `L3-F-058`; `L3-F-060`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`; `L3-F-057`; `L3-F-058`; `L3-F-060`
 
 ---
 # 2. Scenario Purpose
@@ -39,6 +39,8 @@ Treasury owns its payment/settlement/Bank Transaction representation and Cash Po
 ---
 # 6. Business Actors, Roles and Responsibilities
 Treasury governance reviews the exception and establishes the Treasury business outcome from authoritative evidence. Source-domain actors consume the result but do not determine Treasury cash truth.
+
+**Authoritative source:** canonical `L2-F10_Treasury_and_Banking.md`; Treasury ownership and authority boundaries remain locked by `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md` §§1, 3 and 7.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -75,13 +77,19 @@ Recovery is business-evidence driven. Treasury preserves the last authoritative 
 - Historical Treasury facts remain immutable.
 - Source obligations/receivables are not directly modified by Treasury resolution.
 
+**Authoritative source:** canonical `L2-F10_Treasury_and_Banking.md`; Treasury ownership and downstream technical-recovery boundary: 2026-08-21 amendment §§1 and 7.
+
 ---
 # 13. State and Lifecycle Impact
 Payment/Settlement Execution uses only F10-defined business states/outcomes. No software-recovery state is introduced.
 
+**Authoritative source:** canonical payment, settlement and reconciliation semantics in `L2-F10_Treasury_and_Banking.md`; amendment §7 prohibits implementation-recovery mechanics in L3-F-056 through L3-F-061.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 Applicable established F10 facts include `PaymentExecutionFailed`, `SettlementFailed`, `SettlementCompleted`, `BankTransactionRegistered`, `ReconciliationCompleted` and `CashPositionUpdated` when their business conditions are actually satisfied.
+
+**Authoritative source:** canonical event definitions in `L2-F10_Treasury_and_Banking.md`; Treasury remains the owning domain under the 2026-08-21 amendment §§1 and 7.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
