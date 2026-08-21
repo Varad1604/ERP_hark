@@ -12,7 +12,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F07_Accounts_Receivable_Management.md`; `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md`; applicable authoritative Finance source architecture; `L3_Business_Scenario_Template_v2.0.md`  
+**Depends On:** `L2-F07_Accounts_Receivable_Management.md`; `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md`; applicable authoritative Finance source architecture  
 **Referenced By:** None yet  
 
 ---
@@ -62,6 +62,8 @@ Accounts Receivable owns reopening of the Receivable representation. Payment, Re
 | Reopening Review Authority | Confirms the authoritative Finance fact justifies reopening and that the resulting AR position is valid. | Cannot create or alter the source fact. |
 | Receivable Validation Authority | Validates current balance, references and AR integrity. | AR validation only. |
 
+**Authoritative source:** `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md` §1.
+
 ---
 
 # 7. Preconditions and Entry Criteria
@@ -110,11 +112,15 @@ Uncertain, incomplete or contradictory source evidence prevents reopening. AR re
 - AR does not directly modify source Finance aggregates.
 - The same Receivable identity and source-obligation lineage remain traceable.
 
+**Authoritative source:** `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md` §§1, 3 and 4.
+
 ---
 
 # 13. State and Lifecycle Impact
 
 The previously resolved Receivable returns to an active receivable position according to the existing F07 reopening semantics. L3 does not invent an intermediate state.
+
+**Authoritative source:** canonical `L2-F07_Accounts_Receivable_Management.md`, constrained by the reopening authority and ownership rules in the 2026-08-21 amendment §§1, 3 and 4.
 
 ---
 
@@ -125,6 +131,8 @@ The previously resolved Receivable returns to an active receivable position acco
 | `ReceivableReopened` | Accounts Receivable | Authoritative new Finance evidence has caused the Receivable to be validly reopened. |
 
 The triggering source fact remains owned and published by its canonical Finance source.
+
+**Authoritative source:** canonical `L2-F07_Accounts_Receivable_Management.md`; source ownership and event-contract rules are reinforced by the 2026-08-21 amendment §§2–5.
 
 ---
 
