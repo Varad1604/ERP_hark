@@ -11,7 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`; `L3-F-056`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`; `L3-F-056`
 
 ---
 # 2. Scenario Purpose
@@ -39,6 +39,8 @@ Treasury owns the transfer execution, settlement and Cash Position. Accounting o
 ---
 # 6. Business Actors, Roles and Responsibilities
 Treasury governance authorizes and executes the transfer under F10 rules. The initiating actor cannot bypass enterprise authorization or Treasury restrictions.
+
+**Authoritative source:** canonical `L2-F10_Treasury_and_Banking.md`; Treasury Account authority and separation boundaries: `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md` §§2–3 and 6.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -74,13 +76,19 @@ A failed or uncertain settlement preserves the last authoritative cash position 
 - Treasury does not create Accounting Journals.
 - Historical settlement evidence is immutable.
 
+**Authoritative source:** canonical `L2-F10_Treasury_and_Banking.md`; Treasury Account Active-state and authorization constraints: 2026-08-21 amendment §§2–3 and 6; L3 technical-recovery exclusions: amendment §7.
+
 ---
 # 13. State and Lifecycle Impact
 Settlement follows F10-owned Settlement Execution semantics. Treasury Account lifecycle remains unchanged unless separately governed.
 
+**Authoritative source:** canonical settlement semantics in `L2-F10_Treasury_and_Banking.md`; Treasury Account lifecycle: 2026-08-21 amendment §2.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 Established F10 events such as `SettlementStarted`, `SettlementCompleted`, `SettlementFailed` and `CashPositionUpdated` remain Treasury-owned. Accounting consumes completed facts without modifying Treasury state.
+
+**Authoritative source:** canonical event definitions in `L2-F10_Treasury_and_Banking.md`; Treasury ownership remains locked under the 2026-08-21 amendment §§1 and 7.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
