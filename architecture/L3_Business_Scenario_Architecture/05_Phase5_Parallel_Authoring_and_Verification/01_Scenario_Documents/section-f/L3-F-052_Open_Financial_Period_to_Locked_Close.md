@@ -11,7 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L3-F-031`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L3-F-031`
 
 ---
 # 2. Scenario Purpose
@@ -43,6 +43,8 @@ F09 exclusively owns the Financial Period lifecycle. F05 supplies accounting rea
 | Period Closing Authority | Confirms close prerequisites and performs `Closing → Closed`. |
 | Period Lock Authority | Confirms the Closed period is ready for protected `Locked` status. |
 | F05 Finance Manager/accounting actors | Supply/approve accounting close-readiness evidence only. |
+
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §4; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§2 and 8.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -78,13 +80,19 @@ Business interruption preserves the current F09 state and close evidence. Recove
 - Lock follows Closed and is stronger historical protection.
 - Closed/Locked periods do not accept ordinary postings.
 
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§1, 3–5; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §8.
+
 ---
 # 13. State and Lifecycle Impact
 `Open → Closing → Closed → Locked`.
 
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §3.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 F05 supplies accounting facts; F09 remains the canonical publisher/owner of Financial Period lifecycle facts. No F05 period event is substituted for F09 ownership.
+
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §5; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §8.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
