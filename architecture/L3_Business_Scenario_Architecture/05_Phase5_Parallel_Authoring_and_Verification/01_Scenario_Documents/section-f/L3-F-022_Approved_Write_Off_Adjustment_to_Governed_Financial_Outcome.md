@@ -13,7 +13,6 @@
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
 **Depends On:** `L2-F00_Finance_Domain_Model_and_Foundation.md`; `L2-F04_Financial_Adjustment_Management.md` v1.1.1  
-**Governance References:** `ADR-FIN-ADJ-001`; `ADR-FIN-ADJ-002`; `L3_Business_Scenario_Template_v2.0.md`  
 **Referenced By:** L3-F-023; L3-F-024  
 
 ---
