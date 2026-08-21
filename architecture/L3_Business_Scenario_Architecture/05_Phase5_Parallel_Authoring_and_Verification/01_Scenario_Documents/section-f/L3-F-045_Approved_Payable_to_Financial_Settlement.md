@@ -11,7 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F10_Treasury_and_Banking.md`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F10_Treasury_and_Banking.md`
 
 ---
 # 2. Scenario Purpose
@@ -39,6 +39,8 @@ F08 owns Payable liability truth and payment readiness. F10 Treasury owns paymen
 ---
 # 6. Business Actors, Roles and Responsibilities
 AP performs payment-readiness governance under F08. Treasury executes only approved settlement under its authoritative actors/controls. No role is invented beyond authoritative AP/Treasury architecture.
+
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §4; `L2-F10_Treasury_and_Banking.md` authoritative Treasury actor/settlement governance.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -77,13 +79,19 @@ If Treasury does not establish a completed settlement fact, AP retains the prior
 - AP changes outstanding liability only from authoritative settlement facts.
 - Supplier/procurement ownership remains in Section J.
 
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §4; Treasury settlement ownership remains governed by `L2-F10_Treasury_and_Banking.md`.
+
 ---
 # 13. State and Lifecycle Impact
 The Payable's outstanding/settlement position changes only after Treasury's completed settlement fact. No Treasury lifecycle is redefined in AP.
 
+**Authoritative source:** canonical `L2-F08_Accounts_Payable_Management.md`, constrained by the ownership rules in the 2026-08-21 amendment §4.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 Treasury-published settlement/payment facts are consumed by AP; AP publishes only its own Payable lifecycle facts where defined by F08. This scenario does not duplicate Treasury event ownership.
+
+**Authoritative source:** `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md` §§2–4; Treasury event ownership remains governed by `L2-F10_Treasury_and_Banking.md`.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
