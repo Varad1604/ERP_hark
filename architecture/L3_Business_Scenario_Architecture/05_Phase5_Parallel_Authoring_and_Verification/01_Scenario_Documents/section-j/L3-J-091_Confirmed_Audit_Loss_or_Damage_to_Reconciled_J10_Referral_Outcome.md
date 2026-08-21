@@ -11,7 +11,8 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-J09_Physical_Verification_Audit_and_Reconciliation.md`; `L2-J10_Disposal_Scrap_and_Write_Off.md`; `Section_J_Canonical_Register.md`; `L3_Final_Canonical_Scenario_ID_Register.md`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-J09_Physical_Verification_Audit_and_Reconciliation.md`; `L2-J10_Disposal_Scrap_and_Write_Off.md`  
+**Governance References:** `Section_J_Canonical_Register.md`; `L3_Final_Canonical_Scenario_ID_Register.md`; `L3_Business_Scenario_Template_v2.0.md`
 
 ---
 # 2. Scenario Purpose
@@ -79,13 +80,19 @@ Urgent safety/security referral, unresolved cause, potentially repairable damage
 # 12. Business Rules and Decision Constraints
 A J10 referral requires a confirmed finding, evidence, authority, recipient and acknowledgement tracking. Loss/damage, cause, responsibility, accounting loss, recovery, write-off, disposal and disciplinary consequence remain distinct. Custody alone does not establish liability. Referral cannot post stock/accounting adjustments or change asset status.
 
+**Authoritative sources:** `L2-J09_Physical_Verification_Audit_and_Reconciliation.md` for finding/referral/reconciliation governance; `L2-J10_Disposal_Scrap_and_Write_Off.md` for downstream disposal/write-off/recovery decision ownership.
+
 ---
 # 13. State and Lifecycle Impact
 Inventory Audit moves from J09 `Reconciliation` to `Awaiting External Action` while the downstream outcome is pending, then to `Reconciled` when J09 completion conditions are satisfied. J10 state remains J10-owned.
 
+**Authoritative source:** `L2-J09_Physical_Verification_Audit_and_Reconciliation.md`.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 Canonical J09 events include `DisposalReferralRequested`, `WriteOffReferralRequested`, `DisposalWriteOffOutcomeRecorded` and `InventoryVarianceReconciled` where their authoritative conditions occur. J09 publishes referral/reconciliation facts; J10 retains the consequence outcome.
+
+**Authoritative sources:** `L2-J09_Physical_Verification_Audit_and_Reconciliation.md`; downstream consequence ownership remains with `L2-J10_Disposal_Scrap_and_Write_Off.md`.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
