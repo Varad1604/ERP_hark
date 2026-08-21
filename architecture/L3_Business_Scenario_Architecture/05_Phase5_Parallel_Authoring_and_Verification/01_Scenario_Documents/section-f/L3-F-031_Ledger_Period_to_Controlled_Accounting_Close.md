@@ -12,7 +12,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`  
+**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`  
 **Referenced By:** L3-F-032; L3-F-052  
 
 ---
@@ -67,6 +67,8 @@ Owning or redefining Financial Period close, lock, reopen or archival states; Fi
 | Finance Manager | Approves Accounting participation in close/lock readiness. | Does not own the F09 lifecycle transition. |
 | Period Closing / Lock Authority | Executes the canonical F09 close/lock decision. | F09-owned authority. |
 
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §2; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §4.
+
 ---
 
 # 7. Preconditions and Entry Criteria
@@ -116,6 +118,8 @@ Close readiness is not asserted while blocking accounting evidence remains unres
 - Accounting close readiness requires pending-journal resolution, reconciliation status and verified Trial Balance evidence where applicable.
 - A period not confirmed `Open` by F09 cannot accept ordinary posting.
 
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§1 and 8; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§1, 3 and 5.
+
 ---
 
 # 13. State and Lifecycle Impact
@@ -126,11 +130,15 @@ Accounting evidence has no independent Financial Period state machine. F09 consu
 
 This scenario must not publish an F05-owned period state transition.
 
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §3; F05 participation boundary: `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §8.
+
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
 F05 may publish/retain its own accounting facts such as `LedgerReconciled` and `TrialBalancePublished`. F09 remains the sole publisher of canonical Financial Period lifecycle facts used to close/lock the period.
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§6–8; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §5.
 
 ---
 
