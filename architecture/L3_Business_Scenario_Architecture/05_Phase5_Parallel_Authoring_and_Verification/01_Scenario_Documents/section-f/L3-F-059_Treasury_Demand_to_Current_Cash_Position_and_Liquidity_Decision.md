@@ -11,7 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`; `L3-F-058`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`; `L3-F-058`
 
 ---
 # 2. Scenario Purpose
@@ -39,6 +39,8 @@ Treasury exclusively owns Cash Position and Liquidity Position. Upstream domains
 ---
 # 6. Business Actors, Roles and Responsibilities
 Treasury governance evaluates liquidity/cash under F10 policies. Source-domain approval authorities remain responsible for the business obligation; Treasury does not replace them.
+
+**Authoritative source:** canonical `L2-F10_Treasury_and_Banking.md`; Treasury ownership and authority boundaries remain reinforced by `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md` §§1, 3 and 7.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -74,13 +76,19 @@ If current cash/liquidity evidence is not sufficiently authoritative, Treasury w
 - Cash movement occurs only through governed settlement execution.
 - Treasury restrictions and reserve policies remain applicable.
 
+**Authoritative source:** canonical `L2-F10_Treasury_and_Banking.md`; Treasury Account restrictions/operational governance: 2026-08-21 amendment §§1–2; downstream L3 purity: amendment §7.
+
 ---
 # 13. State and Lifecycle Impact
 Cash/Liquidity Position may be updated only from authoritative Treasury business facts; this assessment itself does not create a settlement lifecycle transition.
 
+**Authoritative source:** canonical Cash Position, Liquidity Position and settlement semantics in `L2-F10_Treasury_and_Banking.md`.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 `CashPositionUpdated`, `LiquidityPositionUpdated` and `LiquidityForecastUpdated` remain Treasury-owned facts when their underlying business changes occur. The liquidity decision is not represented by an invented event if F10 has not named one.
+
+**Authoritative source:** canonical event definitions in `L2-F10_Treasury_and_Banking.md`; no new downstream event is introduced under the 2026-08-21 amendment §7.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
