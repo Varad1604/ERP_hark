@@ -11,7 +11,8 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-J06_Inventory_and_Warehouse_Management.md`; `L2-J09_Physical_Verification_Audit_and_Reconciliation.md`; `Section_J_Canonical_Register.md`; `L3_Final_Canonical_Scenario_ID_Register.md`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-J06_Inventory_and_Warehouse_Management.md`; `L2-J09_Physical_Verification_Audit_and_Reconciliation.md`  
+**Governance References:** `Section_J_Canonical_Register.md`; `L3_Final_Canonical_Scenario_ID_Register.md`; `L3_Business_Scenario_Template_v2.0.md`
 
 ---
 # 2. Scenario Purpose
@@ -79,13 +80,19 @@ Surprise, cycle-count, inaccessible/third-party-stock, emergency-movement, no-va
 # 12. Business Rules and Decision Constraints
 Verification requires explicit authority, defined scope/cut-off, independence and evidence. Original counts and recounts remain distinct. Audit closure does not itself post adjustments, recognize loss, alter assets or decide misconduct. Open referrals require explicit owners and monitoring.
 
+**Authoritative sources:** `L2-J09_Physical_Verification_Audit_and_Reconciliation.md` for verification, evidence, finding, reconciliation and referral governance; `L2-J06_Inventory_and_Warehouse_Management.md` for authoritative inventory-state ownership.
+
 ---
 # 13. State and Lifecycle Impact
 Inventory Audit follows the authoritative J09 lifecycle from `Approved` through verification/reconciliation to `Reconciled`, `Completed` and `Closed`. No alternate lifecycle state is introduced.
 
+**Authoritative source:** `L2-J09_Physical_Verification_Audit_and_Reconciliation.md`.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 Canonical J09 events include `InventoryAuditApproved`, `AuditScopeFrozen`, `VerificationSessionStarted`, `PhysicalVerificationCompleted`, `ReconciliationApproved`, `InventoryAuditCompleted` and `InventoryAuditClosed`. J09 publishes these facts; downstream domains retain their own outcomes.
+
+**Authoritative source:** `L2-J09_Physical_Verification_Audit_and_Reconciliation.md`.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
