@@ -11,8 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`; `L2-J02_Vendor_and_Supplier_Management_Workflows.md`; `L2-J04_Purchase_Order_Management.md`; `L2-J05_Goods_Receipt_Inspection_and_Acceptance.md`  
-**Governance References:** `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`; `L2-J02_Vendor_and_Supplier_Management_Workflows.md`; `L2-J04_Purchase_Order_Management.md`; `L2-J05_Goods_Receipt_Inspection_and_Acceptance.md`
 
 ---
 # 2. Scenario Purpose
