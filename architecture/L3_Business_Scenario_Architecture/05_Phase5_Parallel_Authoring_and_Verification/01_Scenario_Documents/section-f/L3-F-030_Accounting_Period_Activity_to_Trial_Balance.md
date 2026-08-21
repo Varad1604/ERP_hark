@@ -12,7 +12,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`  
+**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`  
 **Referenced By:** L3-F-031; L3-F-032  
 
 ---
@@ -65,6 +65,8 @@ Accounting & General Ledger owns the Trial Balance Snapshot. F09 owns the Financ
 
 Publication follows successful verification; it is not a separate human approval role.
 
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §2.
+
 ---
 
 # 7. Preconditions and Entry Criteria
@@ -114,6 +116,8 @@ An `Invalid` snapshot is not recalculated into a valid one. Recovery occurs thro
 - `Invalid` is terminal for that snapshot instance.
 - `TrialBalancePublished`, not Generated/Verified, establishes reporting eligibility.
 
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§7 and 9.
+
 ---
 
 # 13. State and Lifecycle Impact
@@ -124,6 +128,8 @@ An `Invalid` snapshot is not recalculated into a valid one. Recovery occurs thro
 
 This scenario ends at `Published` or `Invalid`; archival is governed separately.
 
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§7 and 9.
+
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
@@ -133,6 +139,8 @@ This scenario ends at `Published` or `Invalid`; archival is governed separately.
 | `TrialBalanceGenerated` | Accounting & General Ledger | Snapshot generation result exists for accounting review. |
 | `TrialBalanceVerified` | Accounting & General Ledger | Debit-credit and lineage verification succeeded. |
 | `TrialBalancePublished` | Accounting & General Ledger | Snapshot is authoritative for reporting consumption. |
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §7 and unaffected canonical L2-F05 event definitions.
 
 ---
 
