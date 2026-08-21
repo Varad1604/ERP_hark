@@ -11,8 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F09_Financial_Period_and_Closing.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; authoritative institution/organisation references  
-**Governance References:** `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F09_Financial_Period_and_Closing.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; authoritative institution/organisation references
 
 ---
 # 2. Scenario Purpose
