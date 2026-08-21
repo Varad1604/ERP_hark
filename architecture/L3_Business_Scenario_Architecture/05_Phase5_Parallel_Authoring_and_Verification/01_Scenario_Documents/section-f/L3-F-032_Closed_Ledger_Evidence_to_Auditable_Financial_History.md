@@ -12,7 +12,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`  
+**Depends On:** `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`  
 **Referenced By:** None yet  
 
 ---
@@ -61,6 +61,8 @@ Accounting & General Ledger owns its accounting evidence. F09 owns Financial Yea
 |---|---|---|
 | Finance Manager | Confirms completed ledger evidence is ready for governed historical preservation. | Accounting evidence responsibility only. |
 | Internal Auditor | Examines preserved financial history. | Read-only. |
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §2.
 
 ---
 
@@ -112,6 +114,8 @@ A preservation interruption does not change accounting state or financial effect
 - Reconciliation archival follows closure as `Reconciled`.
 - F05 does not archive or reopen the canonical Financial Period; F09 owns that lifecycle.
 
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§8–9; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§1, 3 and 5.
+
 ---
 
 # 13. State and Lifecycle Impact
@@ -122,11 +126,15 @@ A preservation interruption does not change accounting state or financial effect
 - Ledger Reconciliation Record: preserved after `Reconciled` closure.
 - Financial Period: no F05-owned transition; F09 controls `Locked → Archived`.
 
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§3, 4, 6, 7 and 9; Financial Period lifecycle: `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §3.
+
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
 Existing accounting lifecycle events remain historical evidence. Preservation does not invent a new event where the authoritative L2 source has not defined one. F09 remains the publisher of Financial Period lifecycle facts.
+
+**Authoritative source:** `L2-F05_Accounting_and_General_Ledger_Management_Amendment_2026-08-21.md` §§6–9; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §5.
 
 ---
 
