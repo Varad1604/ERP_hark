@@ -12,7 +12,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F04_Financial_Adjustment_Management.md`; `L2-F07_Accounts_Receivable_Management.md`; `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md`; `L3-F-022`; `L3_Business_Scenario_Template_v2.0.md`  
+**Depends On:** `L2-F04_Financial_Adjustment_Management.md`; `L2-F07_Accounts_Receivable_Management.md`; `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md`; `L3-F-022`  
 **Referenced By:** None yet  
 
 ---
@@ -63,6 +63,8 @@ Accounts Receivable owns the Receivable and referral evidence. Financial Adjustm
 | Receivable Review Authority | Reviews exceptions in AR outstanding/collection evidence. | Does not alter source-owned facts. |
 | Applicable write-off approval authority | Decides the Financial Adjustment outside this scenario. | Owned by the applicable approval governance; Student-Charge write-off requires Board approval. |
 
+**Authoritative source:** `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md` §§1 and 4; write-off approval remains governed by `L2-F04_Financial_Adjustment_Management.md` and its locked amendment.
+
 ---
 
 # 7. Preconditions and Entry Criteria
@@ -111,17 +113,23 @@ Incomplete or contradictory evidence prevents referral approval by AR. The Recei
 - Student-Charge write-off requires Board approval under the approved Finance rule.
 - Historical Receivable and source-obligation evidence remains traceable.
 
+**Authoritative source:** `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md` §§1, 3 and 4; `L2-F04_Financial_Adjustment_Management.md` plus the locked 2026-08-21 F04 amendment govern the actual adjustment/write-off authority.
+
 ---
 
 # 13. State and Lifecycle Impact
 
 This scenario does not itself move the Receivable to `Written Off`. That AR outcome can be recorded only after an authoritative approved/applied Finance write-off fact is received.
 
+**Authoritative source:** canonical `L2-F07_Accounts_Receivable_Management.md`, constrained by the 2026-08-21 amendment §§3–4.
+
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
 No new write-off-referral event is invented. After an authoritative write-off is applied and AR incorporates that fact, the existing `ReceivableWrittenOff` event may represent the completed AR-owned receivable outcome.
+
+**Authoritative source:** canonical `L2-F07_Accounts_Receivable_Management.md`; event-contract restraint and source ownership are reinforced by the 2026-08-21 amendment §§2–5.
 
 ---
 
