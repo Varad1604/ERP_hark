@@ -11,7 +11,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L3-F-052`; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; `L3-F-052`
 
 ---
 # 2. Scenario Purpose
@@ -39,6 +39,8 @@ F09 owns the Financial Period and its archival lifecycle. Accounting, reporting 
 ---
 # 6. Business Actors, Roles and Responsibilities
 The applicable F09 governance authority confirms archival eligibility under institutional retention policy. Audit/reporting actors may consume preserved evidence without changing period state.
+
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§3–4 and unaffected canonical L2-F09 governance definitions.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -72,13 +74,19 @@ An archival interruption does not change the authoritative period state or delet
 - Historical financial evidence remains immutable and traceable.
 - Archival does not transfer ownership of Accounting/reporting/audit records.
 
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§1, 3 and 5 and unaffected canonical L2-F09 retention governance.
+
 ---
 # 13. State and Lifecycle Impact
 `Locked → Archived` is the normal protected archival path under the F09 lifecycle. Where policy permits archival from a completed Closed boundary, F09 remains the authority; L3 does not invent a parallel lifecycle.
 
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §3.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 Financial Period lifecycle facts remain F09-owned. No archival event name is invented where the authoritative L2 source has not canonically defined one.
+
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §5 and canonical L2-F09 event definitions.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
