@@ -4,7 +4,7 @@
 
 ## Canonical Section Crosswalk
 
-> Added 2026-08-04 under integrity finding INT-018; **updated 2026-08-21 under ADR-FIN-ADJ-001**. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved except the two rows resolved by this amendment.
+> Added 2026-08-04 under integrity finding INT-018; **updated 2026-08-21 under ADR-FIN-ADJ-001 and ADR-FIN-ADJ-002**. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved except the rows resolved by these amendments.
 
 | Required section (Volume 3 §18) | Location in this document |
 |---|---|
@@ -12,15 +12,15 @@
 | Scope | §1.3 Scope; §21.3 Audit Scope; §22.3 Configuration Scope |
 | Actors | §28 Financial Adjustment Actors and Authority Architecture |
 | Entities | §4 Canonical Aggregate; §4.2 Aggregate Ownership; §7.3 Primary Aggregate |
-| Business Rules | Rules / Invariants |
+| Business Rules | Rules / Invariants; §30 Write-Off Approval Authority Amendment |
 | Workflow | Workflows |
 | State Machine | §15 Financial Adjustment State Architecture; §15.3 Canonical Operational States; §15.4 State Transition Architecture |
 | Contracts | §25 Multi-Domain Contracts |
 | Events | §17 Financial Adjustment Event Architecture; §17.3 Event Architecture; §17.4 Canonical Lifecycle Events |
 | Dependencies | §18.4 Upstream Domains |
-| Locked Decisions | §29 Financial Adjustment Locked Decisions |
+| Locked Decisions | §29 Financial Adjustment Locked Decisions; §30 Write-Off Approval Authority Amendment |
 
-> **Gap closed 2026-08-21 under ADR-FIN-ADJ-001:** Actors and Locked Decisions now have counterparts in this document (§28, §29). One item raised during that amendment remains explicitly open rather than resolved — see §28.4.
+> **Gaps closed:** Actors and Locked Decisions now have canonical counterparts. The Student-Charge write-off authority item formerly recorded as open in §28.4 was resolved on 2026-08-21 under ADR-FIN-ADJ-002; §30 is authoritative where earlier text conflicts.
 
 ---
 
@@ -33,11 +33,11 @@
 | Architecture Level | Level 2 – Domain Architecture |
 | Domain | Finance |
 | Status | Locked |
-| Version | 1.1.0 |
+| Version | 1.1.1 |
 | Document Owner | Finance — Financial Adjustments |
 | Depends On | L2-F00 Finance Foundation, L2-F01 Student Charge & Fee Management, L2-F02 Payment Management, L2-F03 Refund Management |
 | Consumed By | L2-F05 Accounting, L2-F13 Financial Reporting and Analytics, L2-F12 Analytics |
-| Amended By | ADR-FIN-ADJ-001 (2026-08-21) — see `governance/adr/ADR-FIN-ADJ-001.md`; approved by Dhruv (Lead Architect, lock approval) |
+| Amended By | ADR-FIN-ADJ-001; ADR-FIN-ADJ-002 (2026-08-21) |
 
 ---
 
@@ -2426,9 +2426,9 @@ Financial Adjustment actors act on the Financial Adjustment aggregate. They do n
 
 The actor that requests or recommends an adjustment is never, by that action alone, the actor whose approval outcome the adjustment consumes.
 
-## 28.4 Remaining Open Item
+## 28.4 Student-Charge Write-Off Authority
 
-`L2-F00` §16 requires Board approval for a Student-Charge `Written Off` outcome. This section deliberately does **not** state whether that makes "Board" a stricter, mandatory instance of Enterprise Approval Authority for all write-off adjustments, or a configuration-level constraint scoped to Student Charges only. ADR-FIN-ADJ-001 §2.1 raised this and left it unresolved; it is carried forward here as an explicit open item rather than silently settled by this amendment. Downstream scenarios (e.g. `L3-F-022`) may record it as open until a follow-up decision resolves it.
+Resolved under ADR-FIN-ADJ-002 on 2026-08-21. For a Financial Adjustment whose business outcome writes off a canonical Student Charge, the specific Board-approval requirement established by L2-F00 governs as the mandatory instance of the otherwise generic Enterprise Approval Authority. The generic authority model in this document shall not supersede a more specific approved authority rule in a higher-precedence Finance source. Other write-off categories continue to consume the applicable enterprise approval outcome without inheriting the Student-Charge-specific Board requirement unless their owning source explicitly requires it.
 
 ---
 
@@ -2499,6 +2499,24 @@ Upstream context (§18.4) is captured at Adjustment initiation and is not re-fet
 3. No Financial Adjustment operational state beyond those listed in §15.3 shall be introduced to represent reversal or correction.
 4. `Reversal Adjustment` and `Correction Adjustment` are canonical categories under §9.4's Extensibility Principle; they are not illustrative.
 5. `Reversed Adjustment Reference` and `Corrected Adjustment Reference` are canonical reference types under §13.4; they are not illustrative.
+
+---
+
+# 30. Write-Off Approval Authority Amendment — ADR-FIN-ADJ-002
+
+**Status:** Approved and incorporated 2026-08-21. This section supersedes the former open-item treatment of Student-Charge write-off authority and any interpretation of §11 or §28 that would allow the generic Enterprise Approval Authority to override a more specific approved Finance authority rule.
+
+## 30.1 Canonical Rule
+
+1. Approval execution remains externally governed; Financial Adjustment Management consumes the approval outcome.
+2. Where a higher-precedence or more specific approved Finance rule names a mandatory authority for a particular adjustment class, that rule governs the authority instance consumed by Financial Adjustment Management.
+3. For **Student-Charge write-off**, L2-F00's specific **Board approval** requirement is mandatory.
+4. The Board requirement is scoped to Student-Charge write-off and does not automatically extend to unrelated write-off categories.
+5. No ownership transfer occurs: Student Charge remains owned by its canonical Finance source; Financial Adjustment Management owns the adjustment; Enterprise Governance owns approval execution.
+
+## 30.2 Downstream Effect
+
+L3-F-022 may now state Board approval as the required approval authority for the Student-Charge write-off path without inventing architecture. Other write-off scenarios shall cite the authority rule of their own canonical source when one exists.
 
 ---
 
