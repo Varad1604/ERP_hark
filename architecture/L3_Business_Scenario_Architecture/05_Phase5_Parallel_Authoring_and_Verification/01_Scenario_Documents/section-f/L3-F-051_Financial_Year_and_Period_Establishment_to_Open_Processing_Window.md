@@ -11,7 +11,8 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F09_Financial_Period_and_Closing.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; authoritative institution/organisation references; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F09_Financial_Period_and_Closing.md`; `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md`; authoritative institution/organisation references  
+**Governance References:** `L3_Business_Scenario_Template_v2.0.md`
 
 ---
 # 2. Scenario Purpose
@@ -44,6 +45,8 @@ F09 owns both distinct aggregate lifecycles. The Financial Year is not an entity
 | Period Opening Authority | Confirms readiness and opens the Financial Period. |
 
 F09 owns year-level opening governance; local role mapping may vary without changing these responsibilities.
+
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §4.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -79,14 +82,20 @@ Invalid boundaries, ownership references or opening prerequisites prevent the af
 - F05 consumes period/year state; it does not own these lifecycles.
 - Opening requires the applicable F09 authority.
 
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§1, 4 and 5.
+
 ---
 # 13. State and Lifecycle Impact
 Financial Year: `Planned → Open`.  
 Financial Period: `Planned/Registered → Open`.
 
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§2–3.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 `FinancialYearOpened` is the canonical F09 annual opening fact. Period lifecycle facts remain F09-owned. Section B provides reference context only.
+
+**Authoritative source:** `L2-F09_Financial_Period_and_Closing_Amendment_2026-08-21.md` §§2 and 5.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
