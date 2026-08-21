@@ -12,7 +12,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F02_Payment_Management_Architecture.md`; `L2-F04_Financial_Adjustment_Management.md`; `L2-F07_Accounts_Receivable_Management.md`; `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`  
+**Depends On:** `L2-F02_Payment_Management_Architecture.md`; `L2-F04_Financial_Adjustment_Management.md`; `L2-F07_Accounts_Receivable_Management.md`; `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md`  
 **Referenced By:** None yet  
 
 ---
@@ -65,6 +65,8 @@ Payment execution, Financial Adjustment approval/application, source-obligation 
 |---|---|---|
 | Settlement Reconciliation Authority | Confirms authoritative settlement facts are correctly incorporated into AR. | Does not execute payment or Treasury settlement. |
 | Receivable Review Authority | Reviews settlement/adjustment interpretation exceptions. | Cannot alter source-owned facts. |
+
+**Authoritative source:** `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md` §1.
 
 ---
 
@@ -119,11 +121,15 @@ A source-reference, amount or allocation inconsistency prevents AR from applying
 - Settlement references remain traceable and immutable as historical evidence.
 - AR must not independently infer a settlement that the source owner has not established.
 
+**Authoritative source:** `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md` §§3–4; source facts remain governed by their owning `L2-F02` / `L2-F04` architecture.
+
 ---
 
 # 13. State and Lifecycle Impact
 
 The Receivable balance/settlement representation is updated. A fully satisfied Receivable may reach the existing fully-settled outcome; no new AR state is invented.
+
+**Authoritative source:** canonical `L2-F07_Accounts_Receivable_Management.md`, constrained by the 2026-08-21 amendment §§3–4.
 
 ---
 
@@ -135,6 +141,8 @@ The Receivable balance/settlement representation is updated. A fully satisfied R
 | `ReceivableFullySettled` | Accounts Receivable | The Receivable has been completely satisfied. |
 
 Source Finance events remain published by their canonical owners.
+
+**Authoritative source:** canonical `L2-F07_Accounts_Receivable_Management.md`; ownership separation is reinforced by the 2026-08-21 amendment §§3–4.
 
 ---
 
