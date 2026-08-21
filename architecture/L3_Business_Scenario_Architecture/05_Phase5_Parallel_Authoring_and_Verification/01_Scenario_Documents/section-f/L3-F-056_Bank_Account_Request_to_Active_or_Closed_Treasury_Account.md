@@ -11,7 +11,8 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`; authoritative institution/organisation architecture; `L3_Business_Scenario_Template_v2.0.md`
+**Depends On:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`; authoritative institution/organisation architecture  
+**Governance References:** `L3_Business_Scenario_Template_v2.0.md`
 
 ---
 # 2. Scenario Purpose
@@ -47,6 +48,8 @@ F10 is the sole owner of the Treasury Account lifecycle. Section B provides inst
 | Treasury Account Closure Authority | Authorizes `Active → Closed` after closure checks. |
 
 Initiation alone never constitutes approval.
+
+**Authoritative source:** `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md` — Treasury Account business authorities and lifecycle clarification.
 
 ---
 # 7. Preconditions and Entry Criteria
@@ -84,13 +87,19 @@ Missing verification, approval or closure evidence prevents the relevant busines
 - External bank records are never altered by this lifecycle.
 - Closure preserves all Treasury references and history.
 
+**Authoritative sources:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`.
+
 ---
 # 13. State and Lifecycle Impact
 `Registered → Active → Closed`.
 
+**Authoritative source:** `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`.
+
 ---
 # 14. Business Events and Cross-Domain Collaboration
 `TreasuryAccountRegistered`, `TreasuryAccountActivated`, `TreasuryAccountClosed` are all published solely by Treasury & Banking.
+
+**Authoritative sources:** `L2-F10_Treasury_and_Banking.md`; `L2-F10_Treasury_and_Banking_Amendment_2026-08-21.md`.
 
 ---
 # 15. Business Authorization, Approval and Audit Obligations
