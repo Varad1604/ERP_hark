@@ -12,7 +12,7 @@
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  
-**Depends On:** `L2-F07_Accounts_Receivable_Management.md`; `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md`; `L3_Business_Scenario_Template_v2.0.md`  
+**Depends On:** `L2-F07_Accounts_Receivable_Management.md`; `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md`  
 **Referenced By:** None yet  
 
 ---
@@ -66,6 +66,8 @@ Creating penalties or charges, executing payment collection, changing the source
 | Collection Review Authority | Reviews ageing and governs AR collection classification/escalation. | Does not execute penalties or source-domain changes. |
 | Receivable Review Authority | Reviews collection exceptions affecting AR interpretation. | Corrective financial action remains with its owner. |
 
+**Authoritative source:** `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md` §1.
+
 ---
 
 # 7. Preconditions and Entry Criteria
@@ -112,17 +114,23 @@ Missing or contradictory due/ageing evidence prevents an authoritative collectio
 - Communication activity does not change AR state by itself.
 - Institution-specific ageing buckets, priorities and escalation thresholds remain configuration-governed.
 
+**Authoritative source:** `L2-F07_Accounts_Receivable_Management_Amendment_2026-08-21.md` §§1, 3 and 4; unaffected canonical L2-F07 ageing/collection policy definitions remain authoritative.
+
 ---
 
 # 13. State and Lifecycle Impact
 
 This scenario updates the AR-owned Collection Profile/Status using only states/classifications supported by F07 policy. It does not invent a new Receivable lifecycle state.
 
+**Authoritative source:** canonical `L2-F07_Accounts_Receivable_Management.md`, constrained by the ownership and authority rules in the 2026-08-21 amendment §§1, 3 and 4.
+
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
 Where a material AR change is published, the existing `ReceivableUpdated` fact may communicate the completed Receivable change. No dunning-specific canonical event is invented where L2-F07 has not defined one.
+
+**Authoritative source:** canonical `L2-F07_Accounts_Receivable_Management.md`; the amendment preserves source ownership and prohibits invented event contracts in §§2–5.
 
 ---
 
