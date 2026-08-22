@@ -11,21 +11,23 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows where institutional ownership is referenced; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized infrastructure consumers across academic, examination, facilities, safety, workforce, analytics and institutional operations
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows  
+**Referenced By:** Infrastructure-consuming institutional workflows; L3-G-286 — Space Classification to Controlled Physical Classification; L3-G-287 — Space Capability Definition to Operational Capability Availability
 
 ---
 
 # 2. Scenario Purpose
 
-Register the smallest canonical G10 physical unit under exactly one valid Floor with governed identity, classification, capacity and area validation.
+Establish the canonical G10-owned Space under the correct Floor, preserving physical hierarchy, unique identity, mandatory Space information and Infrastructure Management ownership.
 
 ---
 
 # 3. Business Outcome
 
-A canonical Space is created under the correct physical hierarchy
+A canonical Space is created under the correct physical hierarchy.
+
+The locked L2 source conflicts on the canonical Space-registration event name and on the applicable initial lifecycle model. This Draft is therefore **BLOCKED**.
 
 ---
 
@@ -37,35 +39,31 @@ The scenario begins when a valid usable physical space must be represented.
 
 ## 4.2 End Boundary
 
-The scenario ends when the exact frozen outcome is established under G10 ownership, the current authoritative physical fact is available through governed contracts, required events have been published only after successful persistence, and immutable audit history is preserved.
+The scenario ends when a canonical Space has been established under the correct Floor with required Space information, a consistent source-defined lifecycle position, auditable registration evidence, and an unambiguous canonical registration event.
 
 ## 4.3 In Scope
 
-- Resolution of Tenant, institution, resource and physical hierarchy context.
-- Scoped authorization before business validation.
-- Validation of G10 identity, hierarchy, lifecycle, capacity, availability, configuration and relationship rules as applicable.
-- The `Space` business responsibility.
-- Preservation of immutable identifiers and prior historical values.
-- Publication of only source-defined completed business facts.
-- Governed read contracts for authorized consumers.
-- Complete audit evidence.
+- Space registration under an existing Floor.
+- Parent Floor and hierarchy validation.
+- Space identity, Space Code, Space Type, capacity and area validation required for registration.
+- Creation of the canonical Space aggregate under G10.
+- Required registration evidence and business-event publication.
 
 ## 4.4 Out of Scope
 
-- Institutional identity or InstitutionalCampus ownership retained by B03.
-- Academic scheduling, examination conduct, facilities-maintenance execution or consumer-specific decisions.
-- Authentication, technical RBAC, database, API, UI, queue or implementation design.
-- Physical deletion of infrastructure or historical records.
-- Inventing lifecycle states, commands, events, publishers, approval actors or cross-domain contracts absent from L2.
+- Floor or Building creation.
+- Subsequent Space reclassification or capability change.
+- Capacity, availability or lifecycle changes after registration.
+- Consumer-domain scheduling, allocation or operational decisions.
+- Any implementation mechanism.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
-| Relationship | Related Scenario | Boundary Reason |
+| Relationship | Related Scenario | Reason |
 |---|---|---|
-| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes the canonical Physical Campus root. |
-| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | Governs the Campus–Building–Floor–Space hierarchy. |
-| Related | L3-G-289 — Infrastructure Availability Definition to Availability Profile Activation | Establishes authoritative resource availability. |
-| Related | L3-G-291 — Infrastructure Reservation Request to Controlled Reservation | Consumes availability and capacity without owning either fact. |
+| Preceded by | L3-G-283 — Floor Registration to Building Hierarchy Extension | The Space requires a valid parent Floor. |
+| Related | L3-G-286 — Space Classification to Controlled Physical Classification | Governs a separate classification outcome after the Space exists where applicable. |
+| Related | L3-G-287 — Space Capability Definition to Operational Capability Availability | Governs operational capability attributes of an existing Space. |
 
 ---
 
@@ -73,44 +71,32 @@ The scenario ends when the exact frozen outcome is established under G10 ownersh
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Primary owner of physical identity, hierarchy, lifecycle, capacity, availability, classification, relationships and infrastructure master facts. |
-| Institution & Structure / Section B, where frozen | Owns Institution and InstitutionalCampus identity; supplies references without owning physical aggregates. |
-| Platform Foundation / Section A, where frozen | Supplies Tenant isolation, configuration, authorization, event and audit capabilities without owning infrastructure facts. |
-| Academic Delivery / Section D, where frozen | Consumes authoritative capacity, availability or reservation outcomes and retains its academic decisions. |
-
-The frozen participating-domain value remains exactly `G`.
+| Infrastructure Management / G10 | Sole owner of the Space aggregate, its physical hierarchy relationship, identity, classification facts, capacity facts, lifecycle and registration outcome. |
 
 ---
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Authority Boundary |
+| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Initiates and administers permitted infrastructure operations. | Must hold fine-grained permission in the relevant Tenant, institution, Campus, Building or Zone scope. |
-| Campus or Building Administrator | Manages infrastructure within assigned physical scope. | Cannot act outside assigned hierarchy scope. |
-| Facilities Manager / Operational Manager | Supplies operational context and consumes current physical facts. | Does not change canonical identity or bypass G10 rules. |
-| Auditor | Reviews immutable history and evidence. | Read-only; cannot mutate infrastructure. |
-| Consumer-domain actor | Requests or consumes an authorized infrastructure service. | Retains the consumer decision and cannot modify G10 aggregates directly. |
-
-Roles are configurable access patterns in L2-G10. No universal named approver is inferred.
+| Infrastructure Administrator | Performs the source-defined Space registration. | Initiates and performs registration within authorized infrastructure scope. |
 
 ---
 
 # 7. Preconditions and Entry Criteria
 
-- The parent Floor exists and its parent hierarchy is valid.
-- The Space Code is unique within the Building.
-- Capacity, area and classification values satisfy configured rules.
-- The requester holds scoped Infrastructure Registration permission.
-- Tenant and institution isolation are enforceable.
-- Authentication context is supplied externally and authorization succeeds before mutation.
-- Required audit and event infrastructure is available under enterprise policy.
+- The parent Floor exists.
+- The parent Floor is Operational under the detailed Space Registration Workflow.
+- The Space Code is unique within the parent Building.
+- Space Name, Space Code, Space Type, Capacity, Area and parent Floor information are available as required by L2-G10.
+- Capacity and Area satisfy applicable G10 rules.
+- The Infrastructure Administrator is authorized to register the Space.
 
 ---
 
 # 8. Trigger
 
-A valid usable physical space must be represented
+A valid usable physical space must be represented.
 
 ---
 
@@ -118,23 +104,18 @@ A valid usable physical space must be represented
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Resolve the parent Floor, Building, Campus and requested Space context. | Infrastructure Management | Resolve the parent Floor, Building, Campus and requested Space context. |
-| 2 | Authorize registration within the physical scope. | Infrastructure Management | Authorize registration within the physical scope. |
-| 3 | Validate the Floor lifecycle, hierarchy and Space Code uniqueness. | Infrastructure Management | Validate the Floor lifecycle, hierarchy and Space Code uniqueness. |
-| 4 | Validate required classification, capacity, area and configured metadata. | Infrastructure Management | Validate required classification, capacity, area and configured metadata. |
-| 5 | Create the Space aggregate under exactly one Floor. | Infrastructure Management | Create the Space aggregate under exactly one Floor. |
-| 6 | Assign immutable Space identity and the configured initial lifecycle. | Infrastructure Management | Assign immutable Space identity and the configured initial lifecycle. |
-| 7 | Publish `SpaceCreated` after successful persistence. | Infrastructure Management | Publish `SpaceCreated` after successful persistence. |
-| 8 | Expose the Space Summary contract and preserve immutable registration evidence. | Infrastructure Management | Expose the Space Summary contract and preserve immutable registration evidence. |
+| 1 | Identify the parent Floor and the physical Space to be represented. | Infrastructure Administrator / Infrastructure Management | The intended parent relationship is resolved. |
+| 2 | Validate the parent Floor and its required operational condition. | Infrastructure Management | The parent is eligible for Space registration. |
+| 3 | Validate Space identity information, Space Type, capacity and area against G10 rules. | Infrastructure Management | Invalid or incomplete Space registration is prevented. |
+| 4 | Establish the Space under exactly one Floor with its canonical identity. | Infrastructure Management | The canonical Space exists in the correct physical hierarchy. |
+| 5 | Record the completed Space registration under G10 audit obligations. | Infrastructure Management | The registration is auditable. |
+| 6 | Publish the canonical Space-registration event. | Infrastructure Management | **Blocked:** locked L2 defines contradictory canonical event names. |
 
 ---
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| 1 | Capacity or area is invalid | reject registration without a partial Space. | Existing ownership and history remain intact. |
-| 2 | A custom Space Type is requested | accept it only when institutional configuration authorizes the classification. | Existing ownership and history remain intact. |
+No scenario-specific alternate business flow is defined by the authoritative L2 architecture.
 
 ---
 
@@ -142,14 +123,11 @@ A valid usable physical space must be represented
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, institution or resource scope cannot be resolved | reject the request without creating a cross-scope fact. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Authorization fails | terminate before business mutation. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Hierarchy, lifecycle, configuration or policy validation fails | retain the prior authoritative state. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| A uniqueness, capacity, availability or relationship invariant fails | reject the requested result. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Audit evidence cannot be recorded | do not complete the business transition. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| The success-event condition is not satisfied | do not publish the success event. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-
-No technical retry, rollback, database transaction or messaging implementation is specified at L3.
+| Parent Floor is absent or not in the required operational condition. | Space registration cannot proceed. | Correct the parent condition before a later registration attempt. | Infrastructure Management |
+| Space Code is not unique within the Building. | Canonical identity rules would be violated. | Supply a valid unique Space Code before resubmission. | Infrastructure Management |
+| Mandatory Space information, capacity or area is invalid. | A valid Space cannot be established. | Correct the business information before resubmission. | Infrastructure Management |
+| Authorization fails. | No Space is established. | Obtain source-supported authorization before resubmission. | Infrastructure Management |
+| Canonical registration event remains contradictory. | The mandatory completion fact cannot be published canonically. | Resolve the locked event-name conflict through architecture change control. | Infrastructure Management |
 
 ---
 
@@ -157,108 +135,93 @@ No technical retry, rollback, database transaction or messaging implementation i
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Infrastructure Management is the canonical owner of physical infrastructure facts. | Infrastructure Management | Consumers reference G10 facts and never duplicate or directly modify aggregates. | L2-G10 §§2, 5, 9, 44A |
-| Every Building belongs to one Campus; every Floor to one Building; every Space to one Floor. | Infrastructure Management | Invalid or circular physical relationships are rejected. | L2-G10 §§8, 18, 47 |
-| Aggregate identity is immutable and infrastructure is never physically deleted. | Infrastructure Management | Changes preserve identifiers and historical references. | L2-G10 §§13, 47, 48A |
-| Authorization precedes business validation. | Authorization & Policy; Infrastructure Management | Unauthorized requests terminate before mutation. | L2-G10 §48A.207 |
-| Business validation precedes persistence, and events describe completed facts. | Infrastructure Management; Event Infrastructure | Failed work cannot publish a success event. | L2-G10 §§22A.99, 44A.179 |
-| Every successful state or significant attribute change is auditable. | Infrastructure Management; Audit Infrastructure | Actor, prior value, new value, reason and correlation are preserved. | L2-G10 §§48A.208–210, 49 |
-| Archived infrastructure is immutable. | Infrastructure Management | No scenario may update an Archived aggregate. | L2-G10 §§11A, 47 |
-| Capacity cannot be negative and reservation conflicts are prevented unless an authorized override is permitted. | Infrastructure Management | Invalid capacity or conflicting reservations are rejected. | L2-G10 §§24, 26, 47 |
+| Every Space belongs to exactly one Floor. | Infrastructure Management | Space registration must establish one valid parent Floor. | L2-G10 §8.4; BR-ST-04; FSM-02 |
+| Space Code is unique within the parent Building. | Infrastructure Management | Duplicate Space Codes are rejected. | L2-G10 Space Registration Workflow; FSM-03 |
+| Capacity cannot be negative and Area must be positive for the detailed registration workflow. | Infrastructure Management | Invalid physical values prevent registration. | L2-G10 WF-INF-005; BR-CP-01; BR-AR-01 |
+| Every successful infrastructure workflow publishes a canonical business event. | Infrastructure Management | The contradictory Space-registration event name blocks canonical completion. | L2-G10 WDP-02; §44 |
 
 ---
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Position | Canonical Owner |
-|---|---|---|---|---|
-| `Space` | Valid trigger and authorized context | Executes only the scenario-specific creation, association or governed attribute change. | No Space → configured initial lifecycle; summary registration states Draft | Infrastructure Management, except the B03 reference retained by Institution & Structure |
-| Parent physical hierarchy | Existing and valid where applicable | Referenced and validated; not silently re-parented. | Unchanged unless the frozen outcome explicitly creates the child relationship. | Infrastructure Management |
-| Tenant and Institution | Existing | Supply isolation and institutional reference. | Unchanged. | Platform Foundation; Institution & Structure |
-| Consumer-domain records | Existing or absent | Consume the completed authoritative fact. | Unchanged by G10. | Applicable consumer domain |
-| Audit history | Existing | Appends immutable evidence. | Historical trace grows; prior records remain unchanged. | Audit Infrastructure |
+L2-G10 conflicts on the Space lifecycle. The generic registration workflow states `Draft`; §46 states `Draft → Approved → Operational → Reserved → Available → Closed → Archived`; the canonical §11A lifecycle begins `Proposed`; and the dedicated Space lifecycle omits `Under Construction` while otherwise following the canonical model.
 
-L2-G10 requires lifecycle and operational availability to remain distinct. “Activation” in a frozen outcome is not treated as a new lifecycle state unless L2-G10 defines it.
+No initial Space lifecycle state is selected locally.
+
+| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
+|---|---|---|---|---|---|
+| Space | No canonical Space exists for the requested physical location | Establishes the Space under the parent Floor | Exact initial lifecycle position unresolved upstream | Infrastructure Management | L2-G10 §§11A, 16, 46; Space Registration Workflow |
 
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Event Treatment
+## 14.1 Published / Consumed Business Events
 
-| Event / Required Fact | Publication Condition | Publisher and Consumer Treatment |
-|---|---|---|
-| `SpaceCreated` | Only after the corresponding aggregate creation or governed update has persisted successfully. | The affected G10 aggregate publishes the source-defined completed fact; consumers react without changing G10 ownership. |
+A canonical registration event is mandatory but contradictory:
 
-Where Section 44 and the detailed WF-INF catalogue use different names, this Draft records the inconsistency in Section 17 and does not publish both names for one transition.
+- `SpaceRegistered` in L2-G10 §44.
+- `SpaceCreated` in WF-INF-005, the detailed Space Registration Workflow, §44A structural events and the Floor & Space Events Summary.
 
-## 14.2 Synchronous Business Contracts and Hand-offs
+Infrastructure Management remains the sole publisher.
 
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
-|---|---|---|---|
-| Physical Campus Summary | Infrastructure Management | Institution & Structure and authorized consumers | Canonical physical Campus identity, lifecycle and operational status. |
-| Building, Floor and Space Summary | Infrastructure Management | Operational domains | Canonical hierarchy, classification, capacity, lifecycle and current status. |
-| Capacity Profile | Infrastructure Management | Academic, Examination and operational consumers | Canonical capacity facts; consumers own utilization decisions. |
-| Retrieve Availability | Infrastructure Management | Authorized consumers | Current operational availability independently from lifecycle. |
-| Reservation service | Infrastructure Management | Authorized requestor | Governed reservation establishment, modification or retrieval. |
-| Audit input | Infrastructure Management | Audit Infrastructure | Actor, scope, transition, prior/new values, reason and correlation evidence. |
+## 14.2 Business Contracts and Cross-Domain Hand-offs
+
+No cross-domain hand-off is required to complete this G-only registration scenario. The G10 Space Summary contract is available for later authorized consumers after canonical establishment.
 
 ---
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-- Authentication is external to G10.
-- Fine-grained permission is evaluated by Tenant, institution and physical-resource scope before validation.
-- Consumer access does not grant direct aggregate mutation.
-- Authorization success does not waive hierarchy, lifecycle, capacity, availability or policy rules.
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| Register Space | Infrastructure Administrator | Must satisfy Infrastructure Registration authorization and Space business rules. | Infrastructure Management |
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-- L2-G10 allows configurable approval for some creation, lifecycle, override and administrative operations.
-- The scenario uses approval only where active policy requires it.
-- No unnamed approver or technical workflow routing is invented.
-- Governance approval supplements business validation and never replaces it.
+No scenario-specific separation-of-duty or override requirement is defined by the authoritative L2 architecture.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The audit record must preserve Tenant, institution, aggregate type and identifier, actor, authorization scope, previous values, new values, effective dates where applicable, business reason, approval reference where required, event facts and correlation identifier. Audit history is immutable and independently retained.
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Space registration is auditable. | Source-defined evidence that the Space was established under the validated Floor through an authorized registration. | Infrastructure Management |
 
 ---
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete only when:
+## 16.1 Completion Criteria
 
-- resolve the parent Floor, Building, Campus and requested Space context.
-- authorize registration within the physical scope.
-- validate the Floor lifecycle, hierarchy and Space Code uniqueness.
-- validate required classification, capacity, area and configured metadata.
-- create the Space aggregate under exactly one Floor.
-- assign immutable Space identity and the configured initial lifecycle.
-- publish `SpaceCreated` after successful persistence.
-- expose the Space Summary contract and preserve immutable registration evidence.
-- no institutional, academic or consumer-domain ownership has transferred to G10;
-- no unauthorized or partial result is treated as successful; and
-- all required audit evidence is immutable and queryable.
+- A canonical Space exists under exactly one correct Floor.
+- Required Space identity, Space Type, capacity and area rules have been satisfied.
+- The resulting lifecycle position is defined consistently by locked L2.
+- The exact canonical Space-registration event is published by Infrastructure Management.
 
-Postconditions:
+## 16.2 Postconditions
 
-- Canonical G10 identity and historical integrity are preserved.
-- The current authoritative fact is available through governed contracts.
-- Consumers may react under their own rules but cannot rewrite the source fact.
-- Failed or incomplete transitions publish no success event.
+- The Space remains the G10-owned canonical physical unit for later authorized consumers.
+- Subsequent classification, capability, capacity, availability and reservation scenarios do not transfer Space ownership.
 
 ---
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-**Architecture assessment:** `PASS WITH ISSUES`
+## 17.1 Open Issues
 
-| ID | Severity | Issue / Deferred Question | Required Resolution |
-|---|---|---|---|
-| G-284-ISSUE-01 | Non-blocking | L2-G10 Section 44 names `SpaceRegistered`, while WF-INF-005 and the detailed event catalogue name `SpaceCreated`. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
-| G-284-ISSUE-02 | Non-blocking | The summary registration workflow states initial `Draft`; the detailed workflow does not establish one canonical initial state. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-G10 names the same registration fact `SpaceRegistered` in §44 and `SpaceCreated` in the detailed registration/event sections. | A mandatory business event cannot retain one exact canonical name. | Architecture governance must resolve the canonical event name while retaining G10 as publisher. |
+| L2-G10 defines incompatible Space lifecycle models and initial positions across §§11A, 16, 46 and the Space lifecycle section. | L3 cannot state the new Space's canonical lifecycle position without choosing between locked definitions. | Align the authoritative Space lifecycle and registration state. |
 
-No unsupported aggregate, lifecycle state, transition, event, publisher, actor, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
+**Source Assessment:** **BLOCKED**
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No additional deferred questions.
