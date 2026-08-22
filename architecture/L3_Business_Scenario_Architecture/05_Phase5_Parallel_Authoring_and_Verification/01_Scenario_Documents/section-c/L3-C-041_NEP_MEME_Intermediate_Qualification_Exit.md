@@ -9,43 +9,49 @@
 **Priority:** P1  
 **Derivation:** KEEP  
 **Status:** Draft  
-**Version:** 1.0  
+**Version:** 1.1  
 **Author:** Varad  
 **Last Updated:** 2026-08-22  
+**Applicable L2:** `L2-C05_Qualification_Completion_and_Student_Exit_Workflows.md` as amended by `L2-C05_Qualification_Completion_and_Student_Exit_Workflows_Amendment_2026-08-22.md` under `ADR-STU-MEME-EXIT-001`
 
 ## 1. Scenario Metadata
 
-The frozen canonical identity is preserved for **L3-C-041 — NEP/MEME Intermediate Qualification Exit**. No ownership, participating-domain, type, priority, title, or scenario-boundary reclassification is introduced.
+The frozen canonical identity is preserved for **L3-C-041 — NEP/MEME Intermediate Qualification Exit**. No title, owner, participating-domain, type, priority, or derivation change is introduced.
 
 ## 2. Scenario Purpose
 
-Govern an institutionally approved intermediate qualification exit for a Student who qualifies for an intermediate credential under the applicable NEP/MEME academic structure, while preserving the distinction between qualification completion and any later continuation or exit processing.
+Govern an institutionally approved NEP/MEME intermediate qualification exit using the qualification outcomes and policy boundaries established by locked L1 and the approved L2-C05 amendment, without inventing local credit/year thresholds or a parallel qualification lifecycle.
 
 ## 3. Business Outcome
 
-The institution records the approved intermediate qualification/exit outcome and preserves the Student's academic record. This scenario does not invent a specific NEP/MEME credential, eligibility threshold, approval chain, lifecycle state, or dedicated event that locked upstream architecture does not define.
+An eligible Student receives the policy-determined qualification outcome and completes the current Student Context exit through the existing Qualification Completion & Student Exit lifecycle. Earned academic credits remain preserved in the authoritative Academic Credit Ledger subject to approved credit-validity policy.
+
+The qualification outcome must be one of the higher-authority L1 outcomes: **Certificate, Diploma, Advanced Diploma, Degree, or Degree with Research**.
 
 ## 4. Scenario Boundary and Scope
 
 ### 4.1 Start Boundary
-The Student reaches an institutionally recognized point at which an intermediate qualification/exit is eligible for evaluation under the applicable programme and policy.
+The Student reaches a policy-recognized MEME exit point and becomes eligible for qualification-completion evaluation using authoritative academic evidence.
 
 ### 4.2 End Boundary
-The scenario ends when the intermediate qualification/exit decision is established and the applicable existing C05 outcome is recorded. Certificate, transcript, alumni, or later continuation processing remains downstream.
+The scenario ends when the applicable qualification is awarded, the academic record is finalized, and the Student exit is completed through the existing C05 lifecycle.
 
 ### 4.3 In Scope
-- Identify the applicable intermediate-qualification/exit policy.
-- Evaluate authoritative academic evidence.
-- Establish the intermediate qualification/exit decision within the C05 ownership boundary.
-- Preserve the resulting academic history.
-- Use an existing canonical C05 outcome event only where the policy-defined path maps unambiguously to that event.
+- Determine whether MEME exit is permitted by approved institutional/regulatory policy.
+- Evaluate authoritative Academic Credit Ledger and other required evidence.
+- Determine the applicable L1-permitted qualification outcome.
+- Complete institutional clearance and qualification approval.
+- Award the qualification.
+- Finalize the academic record and current Student Context exit.
+- Preserve earned credits for governed future use/re-entry.
 
 ### 4.4 Out of Scope
-- Defining NEP/MEME policy.
-- Inventing credential names or thresholds.
-- Inventing a dedicated intermediate-exit lifecycle state or event.
+- Defining numeric credit/year/semester thresholds.
+- Defining regulatory policy.
+- Creating a new MEME-specific qualification lifecycle or event.
 - Certificate or transcript generation.
-- Alumni engagement.
+- Alumni engagement processing.
+- Executing future re-entry.
 - Technical implementation.
 
 ### 4.5 Related Scenarios
@@ -57,114 +63,146 @@ The scenario ends when the intermediate qualification/exit decision is establish
 
 ## 5. Ownership and Participating Domains
 
-| Domain | Responsibility |
+| Capability / Domain | Responsibility |
 |---|---|
-| Qualification Completion & Student Exit (C05) | Canonical owner of the institutional qualification/exit decision and its preserved record. |
-| Academic Progression (C04) | Supplies authoritative progression/credit evidence where required; it does not own the C05 qualification/exit decision. |
+| Qualification Completion & Student Exit (C05) | Canonical owner of qualification eligibility within its boundary, institutional clearance coordination, approval, award, record finalization and exit completion. |
+| Academic Progression (C04) | Owns the Academic Credit Ledger and progression facts consumed as evidence. |
+| Examination | Owns Examination evidence where applicable; does not award the qualification. |
 
-The frozen participating-domain set for L3-C-041 is Section C only. C04 and C05 are both Section C capabilities, so their collaboration does not introduce another frozen participating section.
+The frozen participating-domain set remains Section C only. Cross-capability evidence consumption does not transfer ownership.
 
 ## 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility | Authority |
 |---|---|---|
-| Qualification Completion & Student Exit | Evaluates and records the institutional intermediate qualification/exit outcome. | Canonical owner of the C05 decision. |
-| Academic Progression | Supplies authoritative progression evidence where required. | Owner of progression facts only. |
-| Applicable institutional qualification authority | Approves the outcome where the governing policy requires approval. | Exact role/chain remains policy-defined and is not invented here. |
+| Academic Administrator | Performs Qualification Completion evaluation. | Existing L2-C05 responsibility. |
+| Authorized Organizational Units | Complete applicable institutional clearance. | Existing clearance responsibility. |
+| Academic Authorities | Approve Qualification Completion. | Existing L2-C05 approval authority. |
+| Registrar / Authorized Academic Authority | Confers/awards the applicable qualification. | Existing L2-C05 conferment authority. |
+| Authorized Institutional Authority | Approves Student Exit where required. | Existing L2-C05 exit authority. |
+| Academic Progression | Supplies authoritative Academic Credit Ledger/progression evidence. | Evidence owner only. |
+
+No MEME-specific actor or approval hierarchy is invented.
 
 ## 7. Preconditions and Entry Criteria
 
-- Applicable NEP/MEME intermediate-qualification policy exists upstream.
-- Relevant academic record and progression evidence are authoritative.
-- The intermediate qualification/exit pathway is institutionally permitted.
-- Required approvals, where applicable, are defined by the governing policy.
+- Applicable institution/regulation-approved MEME policy permits an exit pathway.
+- Authoritative Academic Credit Ledger and other required academic evidence are available.
+- The evidence satisfies the policy-defined requirements for an L1-permitted qualification outcome.
+- Existing C05 clearance and approval prerequisites can be satisfied.
+
+No numeric threshold is fixed at L3.
 
 ## 8. Trigger
 
-An eligible Student reaches the governed intermediate qualification/exit evaluation point under the applicable academic policy.
+A Student reaches a governed MEME exit point and requests, elects, or otherwise enters the institutionally permitted qualification-exit evaluation under approved policy.
 
 ## 9. Main Business Flow
 
-| Step | Business Behaviour | Owner |
-|---|---|---|
-| 1 | Identify the applicable intermediate-qualification/exit policy. | Qualification Completion & Student Exit |
-| 2 | Validate authoritative academic evidence from its canonical owners. | Qualification Completion & Student Exit |
-| 3 | Determine whether the Student satisfies the policy-defined intermediate qualification/exit conditions. | Qualification Completion & Student Exit |
-| 4 | Complete any policy-required institutional approval without inventing an approval chain. | Qualification Completion & Student Exit / applicable authority |
-| 5 | Establish and preserve the institutional intermediate qualification/exit outcome. | Qualification Completion & Student Exit |
-| 6 | Publish an existing canonical C05 event only if the approved path maps unambiguously to that event. | Qualification Completion Aggregate |
+| Step | Business Behaviour | Owner / Responsibility | Result |
+|---|---|---|---|
+| 1 | Identify the applicable MEME policy and exit eligibility basis. | Qualification Completion & Student Exit | Governing policy established. |
+| 2 | Obtain authoritative Academic Credit Ledger and other required evidence. | Academic Progression supplies; C05 consumes | Evidence established. |
+| 3 | Evaluate qualification eligibility against policy-defined requirements. | Academic Administrator / C05 | Applicable qualification outcome established or rejected. |
+| 4 | Complete required Degree/Qualification Audit and institutional clearance. | C05 / Authorized Organizational Units | Completion prerequisites established. |
+| 5 | Obtain Qualification Completion approval. | Academic Authorities | Qualification completion approved. |
+| 6 | Award/confer the policy-determined L1-permitted qualification. | Registrar / Authorized Academic Authority | Qualification awarded. |
+| 7 | Finalize the academic record. | Qualification Completion & Student Exit | Record finalized. |
+| 8 | Complete the current Student Context exit under existing C05 governance. | Authorized Institutional Authority / C05 | Student exit completed. |
+| 9 | Preserve earned credits in the authoritative Academic Credit Ledger subject to policy. | Academic Progression retains ownership | Credit history preserved. |
 
 ## 10. Alternate Business Flows
 
 | Condition | Business Path | Result |
 |---|---|---|
-| Policy conditions are not satisfied | Do not grant the intermediate qualification/exit. | Student remains governed by the applicable academic lifecycle. |
-| Required academic evidence is incomplete | Defer the decision until authoritative evidence is available. | No intermediate qualification decision. |
-| Approved intermediate exit is established | Preserve the institutional outcome and history. | Intermediate qualification/exit completed. |
+| Policy requirements not satisfied | Do not approve the MEME qualification exit. | Student remains governed by the applicable academic lifecycle. |
+| Evidence incomplete | Defer qualification decision until authoritative evidence exists. | No award/exit occurs. |
+| Clearance incomplete | Follow existing C05 clearance resolution. | Approval remains pending/unresolved. |
+| Student later seeks re-entry | Consume preserved credit/evidence through the appropriate Student Lifecycle re-entry workflow. | Re-entry remains separately governed. |
 
 ## 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Resolution |
 |---|---|
-| Required academic evidence is missing | Obtain authoritative evidence from its canonical owner before making the C05 decision. |
-| Applicable policy is ambiguous | Do not invent a threshold, credential, state, event, or approval chain; escalate to the authoritative policy architecture. |
-| No existing C05 event maps unambiguously to the intermediate outcome | Preserve the business decision without inventing a new event at L3; resolve upstream before Architecture Approval. |
+| Policy does not support an exit at the Student's position | Do not grant an intermediate qualification locally. |
+| Academic evidence is disputed/incomplete | Resolve through its canonical owning workflow before qualification completion. |
+| Clearance or approval fails | Follow existing C05 rejection/resolution semantics; do not bypass authority. |
+| Qualification mapping is ambiguous | Resolve through institution/regulation policy; L3 does not invent a mapping. |
 
-No technical recovery mechanics are introduced.
+No technical retry, rollback, API or infrastructure behavior is introduced.
 
 ## 12. Business Rules and Decision Constraints
 
-- C05 owns institutional qualification completion and exit decisions.
-- Academic evidence remains owned by its source capability/domain.
-- A non-degree intermediate exit must not be silently represented as ordinary degree conferment.
-- Final academic history must be preserved under C05 finalization rules.
-- L3 must not create the missing NEP/MEME credential, threshold, approval, state, or event semantics.
-
-These constraints apply upstream architecture rather than creating new local business rules.
+- MEME qualification exit is policy governed.
+- Allowed qualification outcomes are limited to Certificate, Diploma, Advanced Diploma, Degree, and Degree with Research as established by locked L1.
+- Exact credit, year, semester, duration, re-entry, credit-validity and credit-expiry thresholds remain institution/regulation-configured policy.
+- Qualification Completion & Student Exit owns the qualification/exit decision.
+- Academic Progression retains Academic Credit Ledger ownership.
+- Examination evidence does not itself award the qualification.
+- Earned credits are preserved after MEME exit subject to approved validity policy.
+- Existing C05 approval and audit obligations apply.
 
 ## 13. State and Lifecycle Impact
 
-Locked C05 defines the normal qualification-completion and Student Exit lifecycles, but the currently available C05 source does not define a dedicated canonical NEP/MEME intermediate-qualification state transition.
+The MEME pathway uses the existing L2-C05 qualification-completion lifecycle rather than creating a parallel state model:
 
-Accordingly, this scenario records the approved business outcome without inventing a new state. Any exact lifecycle mapping must be taken verbatim from an approved upstream policy/workflow clarification before this scenario is approved/locked.
+`Eligibility Evaluation → Degree/Qualification Audit → Institutional Clearance → Approval Pending → Qualification Completion Approved → Qualification Awarded → Academic Record Finalized → Student Exit Completed`
+
+The policy-selected qualification outcome is recorded within this existing lifecycle. No `IntermediateQualification` state is invented.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-Locked C05 defines canonical events including `QualificationAwarded`, `AcademicRecordFinalized`, and `StudentExitCompleted`, but the reviewed C05 source does not define a dedicated NEP/MEME intermediate-qualification event.
+The existing C05 canonical event vocabulary is reused:
 
-This scenario therefore does **not** invent one. An existing C05 event may be used only where the policy-defined pathway establishes that it is the correct canonical outcome. The Qualification Completion Aggregate remains the publisher of C05-owned qualification/exit events.
+| Business Outcome | Canonical Event | Canonical Publisher |
+|---|---|---|
+| Eligibility evaluated | `QualificationEligibilityEvaluated` | Qualification Completion Aggregate |
+| Qualification audit completed | `DegreeAuditCompleted` | Qualification Completion Aggregate |
+| Clearance completed | `InstitutionalClearanceCompleted` | Qualification Completion Aggregate |
+| Completion approved | `QualificationCompletionApproved` | Qualification Completion Aggregate |
+| Qualification awarded | `QualificationAwarded` | Qualification Completion Aggregate |
+| Academic record finalized | `AcademicRecordFinalized` | Qualification Completion Aggregate |
+| Student exit completed | `StudentExitCompleted` | Qualification Completion Aggregate |
+
+No `IntermediateQualificationAwarded` or MEME-specific duplicate event is introduced.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-The intermediate qualification/exit decision must be institutionally authorized and auditable. The exact approval chain is policy-governed and is not invented here. Academic Progression evidence remains upstream evidence and does not become a C05 decision until evaluated by C05.
+Existing L2-C05 authorities govern the pathway: Academic Administrator for evaluation, Authorized Organizational Units for clearance, Academic Authorities for completion approval, Registrar / Authorized Academic Authority for qualification conferment, and Authorized Institutional Authority for Student Exit. All decisions and evidence must remain auditable.
 
 No technical IAM/RBAC design is introduced.
 
 ## 16. Completion Criteria and Postconditions
 
-- Applicable intermediate qualification/exit policy identified.
-- Authoritative academic evidence evaluated.
-- Policy-required approval completed where defined.
-- Institutional intermediate qualification/exit decision established.
-- Academic history preserved.
-- No invented credential, threshold, lifecycle state, event, or continuation path introduced.
+C041 completes when:
+
+- MEME exit eligibility is established under approved policy;
+- an allowed qualification outcome is selected from authoritative policy/evidence;
+- required audit/clearance/approval is complete;
+- `QualificationAwarded` is published by the Qualification Completion Aggregate;
+- academic record finalization and Student Exit complete through existing C05 lifecycle/events; and
+- earned credits remain preserved by Academic Progression subject to validity policy.
+
+Certificate/transcript generation and future re-entry remain separately owned downstream processes.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
-**OI-C041-01 — MATERIAL:** Locked L2-C05 confirms that NEP/MEME intermediate qualification exit belongs within the broader Qualification Completion & Student Exit scope, but the reviewed source does not define a dedicated NEP/MEME workflow, canonical credential name, threshold, state transition, approval chain, or dedicated event for this scenario.
+**Resolved:** The former material gap in L2-C05 is resolved by `ADR-STU-MEME-EXIT-001` and `L2-C05_Qualification_Completion_and_Student_Exit_Workflows_Amendment_2026-08-22.md`.
 
-**OI-C041-02 — MATERIAL:** Because the frozen scenario title explicitly names NEP/MEME, the authoritative policy/workflow source defining the exact intermediate qualification semantics is required before Architecture Approval/Locking.
+**Open issues:** None requiring a new L3-owned credential, threshold, lifecycle state, event, or approval authority.
 
-**Disposition:** Do not resolve these gaps locally in L3. They require upstream policy/workflow clarification or formal architecture change control.
+**Assumptions:** Institution/regulation policy supplies the exact MEME threshold and qualification mapping; Academic Progression remains owner of the Academic Credit Ledger.
+
+**Deferred:** Numeric thresholds, policy configuration, credit-validity duration, re-entry execution, and implementation behavior remain outside this scenario or at later architecture levels.
 
 ## Production Verification Record
 
-- Frozen canonical identity expressed in required `L3-C-041` format.
-- Frozen owner, participating domains, type, priority, and title preserved.
-- Duplicate Section 5 table header removed.
-- Locked C05 ownership boundary preserved.
-- No dedicated NEP/MEME state/event/credential invented.
-- Material upstream gap retained explicitly in Section 17.
-- No implementation mechanics introduced.
+- Frozen canonical identity preserved.
+- Locked L1 MEME outcomes and policy boundary respected.
+- Approved L2-C05 MEME amendment consumed.
+- Existing C05 lifecycle, authority and events reused.
+- Academic Credit Ledger ownership preserved with Academic Progression.
+- No MEME-specific duplicate event/state invented.
+- No numeric policy threshold invented.
 - All 17 mandatory sections present.
-- Status remains **Draft** pending upstream clarification and architecture review.
+- Status remains Draft pending normal architecture review.
