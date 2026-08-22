@@ -7,279 +7,172 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Draft  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Varad  
-**Last Updated:** 2026-08-20  
-**Depends On:** `L2-C04_Student_Academic_Progression_Workflows.md`; `L2-C03_Student_Academic_Registration_Workflows.md` for registration implications; applicable Student Lifecycle context; official Examination outcomes  
+**Last Updated:** 2026-08-22  
+**Depends On:** `L2-C04_Student_Academic_Progression_Workflows.md` as amended by `L2-C04_Student_Academic_Progression_Workflows_Amendment_2026-08-22.md`; `L2-C03_Student_Academic_Registration_Workflows.md`; official Examination outcomes  
 **Referenced By:** L3-C-027, L3-C-029, L3-C-030, L3-C-024
 
 ## 1. Scenario Metadata
 
 Frozen identity: C031 — Academic Detention and Repeat Determination; Primary Owner Academic Progression; Participating Domains C and I; Critical; P1; KEEP.
 
----
-
 ## 2. Scenario Purpose
 
-This scenario governs the institutional determination that a Student must not progress because applicable academic requirements remain unsatisfied, together with the governed determination of the academic repeat consequence where policy provides one.
-
-L2-C04 defines Academic Detention as the state representing prevention from academic progression and identifies repeat semester/repeat academic year as possible outcomes.
-
----
+Govern the institutional determination that a Student must not progress because applicable academic requirements remain unsatisfied, together with any policy-governed repeat-semester or repeat-academic-year consequence.
 
 ## 3. Business Outcome
 
-The institution has authoritatively determined that the Student is **Detained** and, where the applicable policy requires a repeat determination, has established the governed repeat outcome.
-
-Academic Progression remains the canonical owner of the detention decision. Academic Registration subsequently applies the resulting registration consequence through its own registration lifecycle; it does not make the detention decision.
-
----
+The Student is authoritatively **Detained** and the applicable repeat consequence, where required by policy, is established. Academic Progression owns detention; Academic Registration owns subsequent registration consequences.
 
 ## 4. Scenario Boundary and Scope
 
 ### 4.1 Start Boundary
-
-The scenario begins when Academic Progression has sufficient authoritative evidence to determine that progression requirements are not satisfied and the canonical Detention path is applicable.
-
-This may follow progression evaluation or a failed Academic Probation review.
+The scenario begins when authoritative evidence supports the Detention path, including direct progression evaluation or failed Academic Probation review.
 
 ### 4.2 End Boundary
-
-The scenario ends when the Detained state is established and the applicable repeat determination, where required by policy, is recorded.
-
-The scenario does not continue into the subsequent academic registration transaction.
+The scenario ends when Detained is established and any required repeat determination is recorded. Subsequent registration is outside this scenario.
 
 ### 4.3 In Scope
-
-- Determination of academic detention.
-- Evaluation of the academic basis for detention.
-- Determination of repeat semester/repeat academic year where policy requires it.
-- Recording detention and repeat outcome.
-- Publication of the canonical detention outcome.
-- Audit/evidence.
+- Determine academic detention.
+- Establish Detained.
+- Determine repeat semester/year where policy requires it.
+- Preserve audit evidence.
+- Publish the canonical detention outcome.
 
 ### 4.4 Out of Scope
-
-- Original progression evaluation.
+- Examination result creation/correction.
 - Academic Probation management.
-- Examination evaluation/result creation.
-- Academic Registration execution after detention.
-- Appeal processing beyond the C04-defined re-entry to Evaluation Running.
-- Technical retry, queue, rollback or infrastructure behaviour.
+- Downstream Academic Registration execution.
+- Technical workflow or infrastructure design.
 
 ### 4.5 Related Scenarios
-
-| Relationship | Related Scenario | Reason |
-|---|---|---|
-| Preceded by | L3-C-027 Student Academic Progression Decision | May establish detention directly. |
-| Preceded by | L3-C-030 Academic Probation Management and Resolution | Failed probation review may transition to Detained. |
-| Related | L3-C-024 Backlog and Repeat Course Registration | Registration consequences may require repeat registration after the detention decision. |
-
----
+| Relationship | Scenario |
+|---|---|
+| Preceded by | L3-C-027 Student Academic Progression Decision |
+| Preceded by | L3-C-030 Academic Probation Management and Resolution |
+| Related | L3-C-024 Backlog and Repeat Course Registration |
 
 ## 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
+| Domain / Capability | Responsibility |
 |---|---|
-| Academic Progression | Owns the Detention decision, Detained lifecycle and policy-governed repeat determination. |
-| Student Lifecycle (C) | Consumes Student lifecycle consequences where applicable; does not own academic detention. |
-| Examination (I) | Provides official examination outcomes used as academic evidence. |
-| Academic Registration (C03) | Participates only after the detention outcome where registration must reflect the repeat consequence; it retains registration ownership. |
+| Academic Progression | Owns detention decision, Detained lifecycle position, repeat determination and canonical detention event. |
+| Examination (I) | Supplies official examination evidence. |
+| Academic Registration (C03) | Owns downstream registration consequences only. |
+| Student Lifecycle (C) | Consumes relevant lifecycle consequences without taking detention ownership. |
 
-Although C03 may be involved in the downstream repeat-registration consequence, the frozen C031 participating-domain list is C and I. The C03 dependency is therefore treated as an upstream architectural dependency, not as an added participating domain.
-
----
+The frozen participating-domain set remains C, I.
 
 ## 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
+| Role | Responsibility | Authority |
 |---|---|---|
-| Academic Progression | Determines detention and the applicable repeat outcome. | Canonical decision owner. |
-| Examination | Supplies official academic outcomes. | Academic evidence source. |
-| Academic Registration | Applies the downstream registration consequence when repeat registration is required. | Owns registration, not detention. |
-| Student Lifecycle | Consumes relevant Student lifecycle consequence. | Does not determine detention. |
+| Academic Progression | Determines detention and applicable repeat outcome. | Canonical decision owner. |
+| Examination | Supplies authoritative examination evidence. | Evidence owner only. |
+| Academic Registration | Applies subsequent registration consequence. | Registration owner only. |
 
-No new detention-specific actor or approver is invented.
-
----
+No universal detention-specific human approver is invented.
 
 ## 7. Preconditions and Entry Criteria
 
-- Student is subject to an Academic Progression evaluation or failed probation review.
-- Official examination outcomes relevant to the decision are available.
-- Applicable academic progression policy is active.
-- Required academic evidence is complete enough to establish the detention decision.
-- Where repeat determination depends on registration/curriculum conditions, those authoritative conditions are available.
-
----
+- Applicable progression policy is active.
+- Sufficient authoritative academic evidence exists.
+- Detention path is permitted by policy.
+- Any repeat determination uses authoritative academic/curriculum facts.
 
 ## 8. Trigger
 
-**Academic Progression determines that the Student has failed the applicable progression requirements and the Detention path is permitted by policy.**
-
-A failed Academic Probation review is an explicit C04 transition into Detained.
-
----
+Academic Progression determines that progression requirements are not satisfied and the Detention path applies.
 
 ## 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
+| Step | Business Behaviour | Owner | Result |
 |---|---|---|---|
-| 1 | Evaluate the authoritative academic basis for non-progression. | Academic Progression | Detention basis is established. |
-| 2 | Apply the approved institutional progression policy. | Academic Progression | Detention is confirmed where policy requires it. |
-| 3 | Establish the Student's **Detained** lifecycle state. | Academic Progression | Student is prevented from progressing. |
-| 4 | Determine the governed repeat consequence where applicable, such as repeat semester or repeat academic year. | Academic Progression | Repeat outcome is established where policy requires one. |
-| 5 | Record the detention and repeat outcome and preserve audit evidence. | Academic Progression | Institutional detention decision is complete. |
-| 6 | Publish the canonical detention outcome for downstream business consumption. | Academic Progression | Registration/other consumers can act within their own ownership boundaries. |
-
-The Main Business Flow stops once detention and the applicable repeat determination are established.
-
----
+| 1 | Evaluate authoritative basis for non-progression. | Academic Progression | Detention basis established. |
+| 2 | Apply approved progression policy. | Academic Progression | Detention confirmed where required. |
+| 3 | Establish Detained. | Academic Progression | Student cannot normally progress. |
+| 4 | Determine repeat semester/year where policy requires it. | Academic Progression | Repeat consequence established. |
+| 5 | Preserve the decision and evidence. | Academic Progression | Audit history complete. |
+| 6 | Publish `AcademicDetentionApplied`. | Academic Progression | Downstream consumers may act within their own ownership. |
 
 ## 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| A1 | Detention is established after failed probation review | Use the C04 Academic Probation → Detained transition. | Student becomes Detained. | Academic Progression |
-| A2 | Detention basis is satisfied after an authoritative requirements-completion outcome | Use the canonical Detained → Progressed path defined by C04. | Student returns to Progressed. | Academic Progression |
-
-A2 is a subsequent governed resolution of an existing detention state; it is included only because C04 explicitly defines **Detained → Requirements Completed → Progressed**.
-
----
+| Condition | Business Path | Result |
+|---|---|---|
+| Failed probation review | Apply Academic Probation → Detained. | Detained. |
+| Requirements later completed | Apply the applicable C04 resolution path. | Progressed where policy and lifecycle permit. |
+| Approved appeal changes the basis | Return through the governed fresh-evaluation path. | Historical detention remains preserved. |
 
 ## 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Required official examination evidence is incomplete | Detention cannot be authoritatively finalized solely on incomplete evidence. | Resolve the authoritative academic evidence first. | Academic Progression / Examination |
-| Student remains Detained because requirements are incomplete | Normal progression remains blocked. | When institutional requirements are completed, apply the canonical C04 transition to Evaluation Running or Progressed as defined by the governing workflow. | Academic Progression |
-| Approved appeal changes the detention basis | Existing detention outcome may require fresh evaluation. | C04 permits **Detained → Appeal Approved → Evaluation Running**. Re-evaluate without silently rewriting history. | Academic Progression |
-| Repeat consequence cannot be determined from authoritative academic/curriculum information | Detention may be established but repeat determination remains unresolved if policy permits separation. | Resolve the governing academic condition before establishing the repeat outcome. | Academic Progression |
+| Situation | Resolution |
+|---|---|
+| Academic evidence incomplete | Do not finalize detention solely on incomplete evidence. |
+| Repeat consequence cannot yet be determined | Preserve detention where valid and resolve the repeat consequence under policy before downstream registration. |
+| Authoritative appeal/review changes evidence | Conduct fresh evaluation; do not rewrite historical evidence. |
 
-Technical recovery is excluded.
-
----
+No technical recovery design is introduced.
 
 ## 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| Academic Detention prevents academic progression. | Academic Progression | Student cannot advance while Detained. | L2-C04 APW-06 |
-| Detention may result from failed progression policy, minimum credit deficiency, academic regulations or institutional decisions. | Academic Progression | Establishes valid business bases for detention. | L2-C04 APW-06 |
-| Only officially published examination outcomes may participate in progression evaluation. | Academic Progression / Examination | Examination evidence must be authoritative. | L2-C04 BR-PROG-001 |
-| Historical progression decisions remain immutable. | Academic Progression | New appeal/re-evaluation outcomes do not erase history. | L2-C04 progression rules |
-| Manual overrides require authorized institutional approval and complete audit history. | Academic Progression | Exceptional detention decisions remain governed and auditable. | L2-C04 business constraints |
-
-No local detention rule is created.
-
----
+- Academic Detention prevents normal academic progression.
+- Only authoritative academic evidence participates in the decision.
+- Historical progression decisions remain immutable.
+- Repeat-semester/year selection remains policy governed.
+- Manual exceptions require upstream-authorized institutional approval.
 
 ## 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Academic Progression | Evaluation Running | Detention approved. | Detained. | Academic Progression | L2-C04 §4.4 |
-| Academic Probation / Academic Progression | Academic Probation | Review fails. | Detained. | Academic Progression | L2-C04 §4.4 |
-| Academic Progression | Detained | Approved appeal. | Evaluation Running. | Academic Progression | L2-C04 §4.4 |
-| Academic Progression | Detained | Requirements completed. | Progressed. | Academic Progression | L2-C04 §4.4 |
+| Concept | Entry | Result | Owner |
+|---|---|---|---|
+| Academic Progression | Evaluation Running | Detained | Academic Progression |
+| Academic Probation | Academic Probation | Detained after failed review | Academic Progression |
+| Academic Progression | Detained | Evaluation Running after approved appeal, where applicable | Academic Progression |
+| Academic Progression | Detained | Progressed after requirements completion, where applicable | Academic Progression |
 
-The repeat-semester/repeat-year consequence does not create a new progression state.
-
----
+No repeat-semester/year progression state is invented.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-### 14.1 Published / Consumed Business Events
+| Event | Canonical Publisher | Purpose |
+|---|---|---|
+| Applicable official examination-result event | Examination | Supplies authoritative evidence. |
+| `AcademicDetentionApplied` | Academic Progression | Canonical publication that detention is established. |
+| `StudentProgressed` | Academic Progression | Used for later governed resolution to Progressed where applicable. |
 
-| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
-|---|---|---|---|---|
-| Applicable official examination result event | Examination | Academic Progression | Provides authoritative academic evidence. | L2-C04 APW-01 trigger semantics |
-| `StudentDetained` | Academic Progression | Registration / relevant downstream consumers | Communicates the authoritative detention outcome. | L2-C04 APW-01 |
+Under `ADR-STU-PROG-EVT-001`, `StudentDetained` is a superseded alias of `AcademicDetentionApplied` and is not a separate canonical event.
 
-C04 also defines `StudentProgressed` for the later requirements-completed resolution, but it is not the primary completion event of the detention establishment path.
-
-No new `RepeatSemesterRequired` or `RepeatAcademicYearRequired` event is invented.
-
-### 14.2 Cross-Domain Business Hand-off
-
-Academic Registration may consume the detention outcome to determine subsequent registration consequences under its own C03 ownership. Academic Registration does not make or alter the Academic Detention decision.
-
-This preserves the canonical dependency direction:
-
-**Academic Progression decision → downstream Academic Registration consequence.**
-
----
+Academic Registration may consume the authoritative detention fact but cannot publish or alter it.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-Detention is an institutional academic decision and must remain governed by approved progression policy.
-
-The detention decision, its business basis, repeat determination where applicable, and any approved exception/appeal outcome must be auditable.
-
-Manual overrides require authorized institutional approval under the upstream architecture.
-
-No technical IAM/RBAC structure is defined.
-
----
+The detention basis, repeat determination, exceptions, and any appeal-driven fresh evaluation must remain auditable. Authorization follows the approved progression policy; L3 introduces no technical IAM/RBAC model.
 
 ## 16. Completion Criteria and Postconditions
 
-### Completion
-
-- detention basis is established under approved policy;
-- Student is in **Detained** state;
-- repeat consequence is established where required and supported by authoritative policy;
-- `StudentDetained` is published by Academic Progression;
-- audit evidence is complete.
-
-### Postconditions
-
-- Student cannot progress normally while Detained.
-- Downstream Academic Registration may apply its own registration rules using the authoritative detention outcome.
-- Historical detention evidence remains preserved.
-- A later approved appeal or completed requirement may re-enter the canonical C04 resolution path.
-
----
+- Detention basis established under approved policy.
+- Student is Detained.
+- Repeat consequence established where required.
+- `AcademicDetentionApplied` published by Academic Progression.
+- Historical evidence preserved.
+- Downstream registration remains separately owned.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
-### Open Issues
+**Open issues:** Exact repeat-semester/year selection criteria, downstream registration hand-off detail, and institution-specific appeal/approval roles remain governed by upstream policy where not universally fixed.
 
-**OI-C031-01 — Exact repeat-determination rules are not fully enumerated in the available C04 excerpt.**  
-C04 identifies Repeat Semester and Repeat Academic Year as detention outcomes, but L3 does not invent the policy thresholds selecting between them.
+**Resolved upstream issue:** Canonical detention event naming is resolved by `ADR-STU-PROG-EVT-001` and the locked L2-C04 amendment.
 
-**OI-C031-02 — Exact repeat-registration hand-off contract is not defined here.**  
-C031 identifies the business dependency on Academic Registration but leaves detailed contract semantics to the applicable L2/L4 architecture.
-
-**OI-C031-03 — Detention-specific approval authority is not defined as a universal named business role.**  
-No role is invented.
-
-### Assumptions
-
-1. Academic Progression owns detention and repeat determination.
-2. Academic Registration owns any subsequent registration action.
-3. Examination owns official examination outcomes.
-4. An appeal does not directly erase detention; C04 governs the transition back to Evaluation Running.
-
-### Deferred Questions
-
-- Exact repeat semester/year policy criteria.
-- Exact downstream registration hand-off.
-- Institution-specific appeal authority and evidence requirements.
-
+**Assumptions:** Academic Progression owns detention; Examination owns official examination evidence; Academic Registration owns subsequent registration execution.
 
 ## Production Authoring / Verification Checklist
 
-- [x] Final L3 ID and canonical title preserved from Stage 3 / Stage 4.
-- [x] Primary Owner, Participating Domains, Scenario Type and Priority preserved.
-- [x] Exact Phase 5 filename follows the locked naming rule.
-- [x] Applicable locked L2-C04 source governs workflow, ownership, rules, states and events.
-- [x] Academic Progression remains canonical owner of the progression outcome and related lifecycle.
-- [x] Student Lifecycle and Examination remain participating domains without ownership transfer.
-- [x] No new actor, authority, rule, state, event publisher or dependency is invented.
-- [x] Business failure/recovery is expressed only at business level.
-- [x] No APIs, database design, services, classes, Business Data Structures, UI, infrastructure or technical access control/IAM are introduced.
-- [x] Cross-domain events remain distinct from synchronous business hand-offs.
-- [x] Material upstream ambiguity is explicitly recorded in Section 17.
-- [x] All 17 locked template sections are present.
-- [x] Status is `Draft` because Phase 5 authoring cannot self-approve or self-lock a scenario.
+- [x] Frozen identity preserved.
+- [x] Canonical `AcademicDetentionApplied` used.
+- [x] Superseded `StudentDetained` not treated as a parallel canonical event.
+- [x] Academic Progression publisher ownership preserved.
+- [x] Cross-capability registration boundary preserved.
+- [x] No implementation-level mechanics introduced.
+- [x] All 17 mandatory sections present.
+- [x] Status remains Draft.
