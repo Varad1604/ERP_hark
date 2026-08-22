@@ -11,21 +11,23 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows where institutional ownership is referenced; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized infrastructure consumers across academic, examination, facilities, safety, workforce, analytics and institutional operations
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-A01 — Platform & Tenant Foundation; L2-D03 — Timetable Workflows where Academic Delivery consumes physical infrastructure facts  
+**Referenced By:** Authorized consumers of current Physical Campus, Building, Floor and Space facts
 
 ---
 
 # 2. Scenario Purpose
 
-Apply one authorized, effective-dated change to a G10-owned physical attribute while retaining immutable identity, prior values and consumer access to the current authoritative fact.
+Govern an authorized change to a G10-owned physical infrastructure attribute while preserving immutable aggregate identity, source ownership, historical traceability and downstream consumption boundaries.
 
 ---
 
 # 3. Business Outcome
 
-The new attribute value becomes effective according to policy, consuming domains resolve the current authoritative infrastructure fact, and prior values remain historically traceable
+The new attribute value becomes effective according to policy, consuming domains resolve the current authoritative infrastructure fact, and prior values remain historically traceable.
+
+The locked G10 source does not define one universal effective-dated attribute-change lifecycle or contract across all attribute classes covered by the frozen trigger, and its event catalogue varies by attribute and aggregate. Because the frozen outcome requires these semantics across the full scenario scope, this Draft is **BLOCKED**.
 
 ---
 
@@ -37,35 +39,32 @@ The scenario begins when an authorised attribute of a physical infrastructure ag
 
 ## 4.2 End Boundary
 
-The scenario ends when the exact frozen outcome is established under G10 ownership, the current authoritative physical fact is available through governed contracts, required events have been published only after successful persistence, and immutable audit history is preserved.
+The scenario ends only when the changed G10 fact is effective according to an upstream-defined policy for that attribute class, the prior value remains historically traceable, the current authoritative fact is available to consumers, and the exact required completed business event is unambiguous.
 
 ## 4.3 In Scope
 
-- Resolution of Tenant, institution, resource and physical hierarchy context.
-- Scoped authorization before business validation.
-- Validation of G10 identity, hierarchy, lifecycle, capacity, availability, configuration and relationship rules as applicable.
-- The `Affected Physical Campus, Building, Floor or Space` business responsibility.
-- Preservation of immutable identifiers and prior historical values.
-- Publication of only source-defined completed business facts.
-- Governed read contracts for authorized consumers.
-- Complete audit evidence.
+- Identification of the affected Physical Campus, Building, Floor or Space aggregate.
+- Authorization of the attribute change within G10 scope.
+- Validation under the applicable G10 business rule and lifecycle constraints.
+- Preservation of aggregate identity and prior historical evidence.
+- Effective dating where the authoritative source explicitly defines it.
+- Publication of the exact applicable G10 attribute-change event where unambiguous.
+- Availability of the resulting authoritative physical fact to authorized consumers.
 
 ## 4.4 Out of Scope
 
-- Institutional identity or InstitutionalCampus ownership retained by B03.
-- Academic scheduling, examination conduct, facilities-maintenance execution or consumer-specific decisions.
-- Authentication, technical RBAC, database, API, UI, queue or implementation design.
-- Physical deletion of infrastructure or historical records.
-- Inventing lifecycle states, commands, events, publishers, approval actors or cross-domain contracts absent from L2.
+- Academic scheduling changes or other consumer-domain reactions.
+- Treating Platform configuration lifecycle as ownership of G10 physical attributes.
+- Inventing a universal effective-dated attribute version model for all G10 attributes.
+- Inventing or selecting an event where locked G10 sources do not establish one unambiguously.
+- Any implementation mechanism.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
-| Relationship | Related Scenario | Boundary Reason |
+| Relationship | Related Scenario | Reason |
 |---|---|---|
-| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes the canonical Physical Campus root. |
-| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | Governs the Campus–Building–Floor–Space hierarchy. |
-| Related | L3-G-289 — Infrastructure Availability Definition to Availability Profile Activation | Establishes authoritative resource availability. |
-| Related | L3-G-291 — Infrastructure Reservation Request to Controlled Reservation | Consumes availability and capacity without owning either fact. |
+| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes a Physical Campus whose physical attributes may later change. |
+| Related | L3-G-282 — Building Registration to Physical Building Establishment | Establishes a Building whose attributes may later change. |
 
 ---
 
@@ -73,10 +72,9 @@ The scenario ends when the exact frozen outcome is established under G10 ownersh
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Primary owner of physical identity, hierarchy, lifecycle, capacity, availability, classification, relationships and infrastructure master facts. |
-| Institution & Structure / Section B, where frozen | Owns Institution and InstitutionalCampus identity; supplies references without owning physical aggregates. |
-| Platform Foundation / Section A, where frozen | Supplies Tenant isolation, configuration, authorization, event and audit capabilities without owning infrastructure facts. |
-| Academic Delivery / Section D, where frozen | Consumes authoritative capacity, availability or reservation outcomes and retains its academic decisions. |
+| Infrastructure Management / G10 | Primary owner of physical infrastructure identity and the physical attributes covered by the scenario. |
+| Platform Foundation / A | Owns the common configuration framework and resolution lifecycle; does not own G10 physical attribute semantics. |
+| Academic Delivery / D | Consumes authoritative G10 physical facts for its own scheduling decisions; does not modify G10 aggregates. |
 
 The frozen participating-domain value remains exactly `G, A, D`.
 
@@ -86,31 +84,27 @@ The frozen participating-domain value remains exactly `G, A, D`.
 
 | Business Actor / Role | Responsibility | Authority Boundary |
 |---|---|---|
-| Infrastructure Administrator | Initiates and administers permitted infrastructure operations. | Must hold fine-grained permission in the relevant Tenant, institution, Campus, Building or Zone scope. |
-| Campus or Building Administrator | Manages infrastructure within assigned physical scope. | Cannot act outside assigned hierarchy scope. |
-| Facilities Manager / Operational Manager | Supplies operational context and consumes current physical facts. | Does not change canonical identity or bypass G10 rules. |
-| Auditor | Reviews immutable history and evidence. | Read-only; cannot mutate infrastructure. |
-| Consumer-domain actor | Requests or consumes an authorized infrastructure service. | Retains the consumer decision and cannot modify G10 aggregates directly. |
+| Infrastructure Administrator | Initiates permitted physical-attribute changes. | May act only within authorized infrastructure scope and G10 business rules. |
+| Campus Administrator / Building Administrator | Manages permitted attributes within assigned physical scope. | Cannot alter facts outside assigned scope or bypass G10 validation. |
+| Auditor | Reviews immutable change history. | Read-only. |
 
-Roles are configurable access patterns in L2-G10. No universal named approver is inferred.
+No universal attribute-change approver is inferred.
 
 ---
 
 # 7. Preconditions and Entry Criteria
 
-- The affected infrastructure aggregate exists and is not Archived.
-- The requested attribute is owned by G10 and is editable in the current lifecycle.
-- The proposed value, effective date, reason and applicable policy are available.
-- The requester holds scoped update permission.
-- Tenant and institution isolation are enforceable.
-- Authentication context is supplied externally and authorization succeeds before mutation.
-- Required audit and event infrastructure is available under enterprise policy.
+- The affected G10 aggregate exists and is not Archived.
+- The requested attribute is owned by G10 and is editable under the current business condition.
+- The proposed value and business reason are available.
+- Applicable policy, configuration and validation rules can be resolved.
+- The requester is authorized for the affected infrastructure scope.
 
 ---
 
 # 8. Trigger
 
-An authorised attribute of a physical infrastructure aggregate changes, including campus, building, floor or space metadata, capacity, capability, sustainability characteristics or security classification
+An authorised attribute of a physical infrastructure aggregate changes, including campus, building, floor or space metadata, capacity, capability, sustainability characteristics or security classification.
 
 ---
 
@@ -118,14 +112,14 @@ An authorised attribute of a physical infrastructure aggregate changes, includin
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Resolve the affected aggregate, attribute, Tenant, institution and current value. | Infrastructure Management | Resolve the affected aggregate, attribute, Tenant, institution and current value. |
-| 2 | Authorize the update and verify G10 owns the physical fact. | Infrastructure Management | Authorize the update and verify G10 owns the physical fact. |
-| 3 | Validate the proposed value against configuration, lifecycle, hierarchy and domain rules. | Infrastructure Management | Validate the proposed value against configuration, lifecycle, hierarchy and domain rules. |
-| 4 | Determine the permitted effective date and preserve the predecessor value. | Infrastructure Management | Determine the permitted effective date and preserve the predecessor value. |
-| 5 | Apply the new value without changing immutable identity. | Infrastructure Management | Apply the new value without changing immutable identity. |
-| 6 | Make the current authoritative value available through the applicable public read contract. | Infrastructure Management | Make the current authoritative value available through the applicable public read contract. |
-| 7 | Publish the applicable completed attribute-change event after persistence. | Infrastructure Management | Publish the applicable completed attribute-change event after persistence. |
-| 8 | Preserve previous value, new value, effective date, reason, actor and correlation evidence. | Infrastructure Management | Preserve previous value, new value, effective date, reason, actor and correlation evidence. |
+| 1 | Resolve the affected G10 aggregate, attribute and current authoritative value. | Infrastructure Management | The change boundary is explicit. |
+| 2 | Confirm that G10 owns the requested physical attribute and authorize the change. | Infrastructure Management | No consumer domain acquires mutation authority. |
+| 3 | Validate the proposed value against the attribute-specific G10 rules and current lifecycle constraints. | Infrastructure Management | Invalid changes are rejected. |
+| 4 | Resolve the applicable effective-date rule for the changed attribute. | Infrastructure Management; Platform configuration framework where applicable | **Blocked for generic scope:** locked G10 does not define universal effective-dating semantics for every attribute named by the frozen trigger. |
+| 5 | Preserve the predecessor value and apply the successor value only under the authoritative attribute-specific rule. | Infrastructure Management | Historical traceability is retained only where supported upstream. |
+| 6 | Make the current authoritative G10 fact available through the applicable read contract. | Infrastructure Management | Consumers can resolve the current physical fact. |
+| 7 | Publish the exact applicable completed business event. | Infrastructure Management | **Blocked for generic scope:** event selection depends on attribute/aggregate and is not uniformly defined. |
+| 8 | Preserve immutable change evidence including previous value, new value, applicable effective date, actor and reason. | Infrastructure Management | The governed change remains auditable. |
 
 ---
 
@@ -133,8 +127,9 @@ An authorised attribute of a physical infrastructure aggregate changes, includin
 
 | Case | Condition | Alternate Business Path | Result / Outcome |
 |---|---|---|---|
-| 1 | A future-effective value is approved | retain the current value until the effective date. | Existing ownership and history remain intact. |
-| 2 | The change is capacity, classification, sustainability, security or operational status | use the corresponding specialized G10 rules and event where one is defined. | Existing ownership and history remain intact. |
+| Capacity change | The changed attribute is capacity. | Apply the G10 Capacity Management rules, including its explicit effective-dating support. | Capacity history remains governed by G10. |
+| Physical Campus attribute change | The change concerns a source-defined Physical Campus attribute workflow. | Use the exact corresponding G10 workflow and event such as boundary, capacity, accessibility, sustainability, criticality or operational status. | Only that source-defined attribute path is used. |
+| Consumer reaction | Academic Delivery observes a changed infrastructure fact. | D03 evaluates the change under its own timetable and scheduling rules. | G10 does not perform the academic decision. |
 
 ---
 
@@ -142,14 +137,10 @@ An authorised attribute of a physical infrastructure aggregate changes, includin
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, institution or resource scope cannot be resolved | reject the request without creating a cross-scope fact. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Authorization fails | terminate before business mutation. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Hierarchy, lifecycle, configuration or policy validation fails | retain the prior authoritative state. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| A uniqueness, capacity, availability or relationship invariant fails | reject the requested result. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Audit evidence cannot be recorded | do not complete the business transition. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| The success-event condition is not satisfied | do not publish the success event. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-
-No technical retry, rollback, database transaction or messaging implementation is specified at L3.
+| Attribute is not G10-owned. | G10 cannot make the change. | Route the change to the canonical owner and leave G10 unchanged. | Applicable canonical owner |
+| Proposed value violates G10 rules. | Authoritative physical integrity would be compromised. | Reject the change and retain the current value. | Infrastructure Management |
+| Effective-dating rule is undefined for the attribute. | The frozen governed-update outcome cannot be applied canonically. | Do not invent a version or effective-date lifecycle; require upstream clarification. | Infrastructure Management / architecture governance |
+| Exact completed event is ambiguous or absent. | Event integrity cannot be preserved. | Do not invent or rename an event; resolve upstream. | Infrastructure Management / architecture governance |
 
 ---
 
@@ -157,51 +148,37 @@ No technical retry, rollback, database transaction or messaging implementation i
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Infrastructure Management is the canonical owner of physical infrastructure facts. | Infrastructure Management | Consumers reference G10 facts and never duplicate or directly modify aggregates. | L2-G10 §§2, 5, 9, 44A |
-| Every Building belongs to one Campus; every Floor to one Building; every Space to one Floor. | Infrastructure Management | Invalid or circular physical relationships are rejected. | L2-G10 §§8, 18, 47 |
-| Aggregate identity is immutable and infrastructure is never physically deleted. | Infrastructure Management | Changes preserve identifiers and historical references. | L2-G10 §§13, 47, 48A |
-| Authorization precedes business validation. | Authorization & Policy; Infrastructure Management | Unauthorized requests terminate before mutation. | L2-G10 §48A.207 |
-| Business validation precedes persistence, and events describe completed facts. | Infrastructure Management; Event Infrastructure | Failed work cannot publish a success event. | L2-G10 §§22A.99, 44A.179 |
-| Every successful state or significant attribute change is auditable. | Infrastructure Management; Audit Infrastructure | Actor, prior value, new value, reason and correlation are preserved. | L2-G10 §§48A.208–210, 49 |
-| Archived infrastructure is immutable. | Infrastructure Management | No scenario may update an Archived aggregate. | L2-G10 §§11A, 47 |
-| Capacity cannot be negative and reservation conflicts are prevented unless an authorized override is permitted. | Infrastructure Management | Invalid capacity or conflicting reservations are rejected. | L2-G10 §§24, 26, 47 |
+| Infrastructure is the canonical source of physical facts. | Infrastructure Management | D and other consumers react to published facts but cannot modify them. | L2-G10 §§2, 9A, 44A |
+| Aggregate identity is immutable. | Infrastructure Management | Attribute changes never replace the canonical identity. | L2-G10 §§8, 13A.64 |
+| Effective dating is explicitly required for operational allocations, responsibility assignments and configurable policies, and Capacity Management supports effective-dated changes. | Infrastructure Management | These source-defined cases may use effective dating; L3 may not generalize the rule to every attribute. | L2-G10 §6, §§24, 27-28, 43 |
+| Business-domain configuration values remain owned by their business domain; Platform owns the configuration framework. | G10 / Platform Foundation | A01 cannot be used to redefine G10 physical attribute semantics. | L2-A01 §§6.1-6.16 |
+| D03 consumes G10 Physical Infrastructure Resources and owns scheduling. | Academic Delivery | A changed G10 fact does not itself modify a timetable. | L2-D03 §§1-2 |
+| Every successful significant G10 change is auditable and publishes a canonical business event. | Infrastructure Management | Completion requires an exact source-defined event. | L2-G10 §§13A.76, 22A.99, 44A |
 
 ---
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Position | Canonical Owner |
-|---|---|---|---|---|
-| `Affected Physical Campus, Building, Floor or Space` | Valid trigger and authorized context | Executes only the scenario-specific creation, association or governed attribute change. | Lifecycle remains unchanged unless a separately authorized lifecycle or availability transition is requested | Infrastructure Management, except the B03 reference retained by Institution & Structure |
-| Parent physical hierarchy | Existing and valid where applicable | Referenced and validated; not silently re-parented. | Unchanged unless the frozen outcome explicitly creates the child relationship. | Infrastructure Management |
-| Tenant and Institution | Existing | Supply isolation and institutional reference. | Unchanged. | Platform Foundation; Institution & Structure |
-| Consumer-domain records | Existing or absent | Consume the completed authoritative fact. | Unchanged by G10. | Applicable consumer domain |
-| Audit history | Existing | Appends immutable evidence. | Historical trace grows; prior records remain unchanged. | Audit Infrastructure |
+The frozen scenario is an attribute update, not a lifecycle transition. The affected Physical Campus, Building, Floor or Space therefore remains in its existing canonical lifecycle unless a separately authorized lifecycle transition is triggered.
 
-L2-G10 requires lifecycle and operational availability to remain distinct. “Activation” in a frozen outcome is not treated as a new lifecycle state unless L2-G10 defines it.
+Prior and current attribute values must remain traceable where G10 defines history/effective dating. No universal attribute-version lifecycle is introduced.
 
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Event Treatment
+## 14.1 Published / Consumed Business Events
 
-| Event / Required Fact | Publication Condition | Publisher and Consumer Treatment |
-|---|---|---|
-| `InfrastructureUpdated or the applicable attribute-specific event` | Only after the corresponding aggregate creation or governed update has persisted successfully. | The affected G10 aggregate publishes the source-defined completed fact; consumers react without changing G10 ownership. |
+G10 defines generic and attribute-specific completed facts including `InfrastructureUpdated`, `InfrastructureClassificationChanged`, `RoomCapacityChanged`, `SpaceAccessibilityUpdated`, `SustainabilityProfileUpdated`, and Physical Campus-specific attribute events such as `CampusCapacityUpdated` and `CampusSustainabilityUpdated`.
 
-Where Section 44 and the detailed WF-INF catalogue use different names, this Draft records the inconsistency in Section 17 and does not publish both names for one transition.
+The frozen scenario spans multiple aggregates and attribute classes. The exact required event must therefore be selected by an upstream source-defined workflow, not by L3 inference. Where no exact source-defined event exists for the requested attribute/aggregate combination, the scenario remains blocked.
 
-## 14.2 Synchronous Business Contracts and Hand-offs
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
+| Provider | Consumer | Business Contract / Hand-off | Purpose |
 |---|---|---|---|
-| Physical Campus Summary | Infrastructure Management | Institution & Structure and authorized consumers | Canonical physical Campus identity, lifecycle and operational status. |
-| Building, Floor and Space Summary | Infrastructure Management | Operational domains | Canonical hierarchy, classification, capacity, lifecycle and current status. |
-| Capacity Profile | Infrastructure Management | Academic, Examination and operational consumers | Canonical capacity facts; consumers own utilization decisions. |
-| Retrieve Availability | Infrastructure Management | Authorized consumers | Current operational availability independently from lifecycle. |
-| Reservation service | Infrastructure Management | Authorized requestor | Governed reservation establishment, modification or retrieval. |
-| Audit input | Infrastructure Management | Audit Infrastructure | Actor, scope, transition, prior/new values, reason and correlation evidence. |
+| G10 | Authorized consumers including D03 | Applicable Physical Campus, Building, Floor, Space or profile read contract | Provides the current authoritative physical fact. |
+| A01 | G10 | Resolved configuration context | Supplies validated configuration framework context without owning G10 business semantics. |
 
 ---
 
@@ -209,21 +186,15 @@ Where Section 44 and the detailed WF-INF catalogue use different names, this Dra
 
 ## 15.1 Authorization
 
-- Authentication is external to G10.
-- Fine-grained permission is evaluated by Tenant, institution and physical-resource scope before validation.
-- Consumer access does not grant direct aggregate mutation.
-- Authorization success does not waive hierarchy, lifecycle, capacity, availability or policy rules.
+Only a source-supported, properly scoped infrastructure role may initiate the change.
 
 ## 15.2 Approval and Separation of Duty
 
-- L2-G10 allows configurable approval for some creation, lifecycle, override and administrative operations.
-- The scenario uses approval only where active policy requires it.
-- No unnamed approver or technical workflow routing is invented.
-- Governance approval supplements business validation and never replaces it.
+Where G10 or applicable configuration requires approval, that source-defined approval must complete. No universal approver or separation-of-duty rule is invented.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The audit record must preserve Tenant, institution, aggregate type and identifier, actor, authorization scope, previous values, new values, effective dates where applicable, business reason, approval reference where required, event facts and correlation identifier. Audit history is immutable and independently retained.
+The audit history must preserve the affected aggregate identity, attribute, predecessor value, successor value, effective date where defined, actor, business reason, approval reference where applicable, and published completed fact.
 
 ---
 
@@ -231,34 +202,30 @@ The audit record must preserve Tenant, institution, aggregate type and identifie
 
 The scenario is complete only when:
 
-- resolve the affected aggregate, attribute, Tenant, institution and current value.
-- authorize the update and verify G10 owns the physical fact.
-- validate the proposed value against configuration, lifecycle, hierarchy and domain rules.
-- determine the permitted effective date and preserve the predecessor value.
-- apply the new value without changing immutable identity.
-- make the current authoritative value available through the applicable public read contract.
-- publish the applicable completed attribute-change event after persistence.
-- preserve previous value, new value, effective date, reason, actor and correlation evidence.
-- no institutional, academic or consumer-domain ownership has transferred to G10;
-- no unauthorized or partial result is treated as successful; and
-- all required audit evidence is immutable and queryable.
+- the changed attribute is confirmed as G10-owned;
+- its source-defined validation and effective-date policy are available;
+- the new value becomes current according to that policy;
+- prior values remain traceable under authoritative history rules;
+- consuming domains can resolve the current G10 fact without ownership transfer; and
+- the exact canonical event for the completed attribute change is defined and published by G10.
 
-Postconditions:
-
-- Canonical G10 identity and historical integrity are preserved.
-- The current authoritative fact is available through governed contracts.
-- Consumers may react under their own rules but cannot rewrite the source fact.
-- Failed or incomplete transitions publish no success event.
+The current locked sources do not support these completion conditions uniformly across the full frozen trigger scope.
 
 ---
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-**Architecture assessment:** `PASS WITH ISSUES`
-
 | ID | Severity | Issue / Deferred Question | Required Resolution |
 |---|---|---|---|
-| G-280-ISSUE-01 | Non-blocking | L2-G10 describes effective dating as a principle but does not define a general attribute-version aggregate or universal activation transition. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
-| G-280-ISSUE-02 | Non-blocking | The source contains both generic `InfrastructureUpdated` and multiple attribute-specific event names; the exact event depends on the changed attribute and aggregate. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
+| G-280-BLOCKER-01 | Blocking | The frozen trigger spans generic metadata, capacity, capability, sustainability and security classification across Physical Campus, Building, Floor and Space, but L2-G10 does not define one universal effective-dated attribute-version workflow or lifecycle for all of those classes. | L2-G10 must define the applicable effective-dating semantics per attribute class or narrow the scenario contract. |
+| G-280-BLOCKER-02 | Blocking | G10 exposes generic and attribute-specific events, but the exact canonical event is not uniformly defined for every aggregate/attribute combination covered by the frozen scenario. | L2-G10 must map each supported governed update to its canonical completed event and publisher. |
 
-No unsupported aggregate, lifecycle state, transition, event, publisher, actor, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
+**Source Assessment:** **BLOCKED**
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No additional deferred questions.

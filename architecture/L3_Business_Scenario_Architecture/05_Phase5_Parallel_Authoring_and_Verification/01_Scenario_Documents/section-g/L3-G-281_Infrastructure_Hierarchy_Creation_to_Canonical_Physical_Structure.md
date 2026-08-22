@@ -11,21 +11,23 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows where institutional ownership is referenced; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized infrastructure consumers across academic, examination, facilities, safety, workforce, analytics and institutional operations
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows  
+**Referenced By:** Infrastructure registration and physical-context consumption scenarios
 
 ---
 
 # 2. Scenario Purpose
 
-Establish an acyclic canonical physical hierarchy by sequencing the independently governed G10 registration workflows for Campus, Building, Floor and Space.
+Establish the canonical G10 physical hierarchy from Physical Campus through Building and Floor to Space while preserving each aggregate's independent ownership, validation and registration workflow.
 
 ---
 
 # 3. Business Outcome
 
-Physical Campus, Building, Floor, and Space relationships are established under G10 ownership
+Physical Campus, Building, Floor, and Space relationships are established under G10 ownership.
+
+The structural rules are clear, but the locked G10 source gives contradictory mandatory event names for the registration of the hierarchy members. Because every successful registration workflow must publish its canonical event, the complete hierarchy outcome cannot be specified without choosing between locked alternatives. This Draft is **BLOCKED**.
 
 ---
 
@@ -37,48 +39,39 @@ The scenario begins when a valid physical infrastructure hierarchy must be estab
 
 ## 4.2 End Boundary
 
-The scenario ends when the exact frozen outcome is established under G10 ownership, the current authoritative physical fact is available through governed contracts, required events have been published only after successful persistence, and immutable audit history is preserved.
+The scenario ends when all required Physical Campus, Building, Floor and Space identities and parent-child relationships exist under G10, all structural invariants hold, each aggregate registration has completed under its own workflow, and every required canonical registration event is unambiguous and published.
 
 ## 4.3 In Scope
 
-- Resolution of Tenant, institution, resource and physical hierarchy context.
-- Scoped authorization before business validation.
-- Validation of G10 identity, hierarchy, lifecycle, capacity, availability, configuration and relationship rules as applicable.
-- The `Physical Campus, Building, Floor and Space` business responsibility.
-- Preservation of immutable identifiers and prior historical values.
-- Publication of only source-defined completed business facts.
-- Governed read contracts for authorized consumers.
-- Complete audit evidence.
+- Validation of the intended Campus → Building → Floor → Space structure.
+- Registration or reuse of the required G10 aggregates.
+- Parent existence and parent-lifecycle validation.
+- Unique codes and non-circular physical relationships.
+- Preservation of independent aggregate boundaries.
+- Registration audit history and aggregate-specific completed events.
 
 ## 4.4 Out of Scope
 
-- Institutional identity or InstitutionalCampus ownership retained by B03.
-- Academic scheduling, examination conduct, facilities-maintenance execution or consumer-specific decisions.
-- Authentication, technical RBAC, database, API, UI, queue or implementation design.
-- Physical deletion of infrastructure or historical records.
-- Inventing lifecycle states, commands, events, publishers, approval actors or cross-domain contracts absent from L2.
+- InstitutionalCampus governance owned by B03.
+- Treating hierarchy creation as one atomic aggregate operation.
+- Inventing a `HierarchyCreated` event or a cross-aggregate lifecycle.
+- Operational scheduling, reservations, maintenance or consumer-domain activity.
+- Choosing locally between conflicting locked registration event names or lifecycle defaults.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
-| Relationship | Related Scenario | Boundary Reason |
+| Relationship | Related Scenario | Reason |
 |---|---|---|
-| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes the canonical Physical Campus root. |
-| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | Governs the Campus–Building–Floor–Space hierarchy. |
-| Related | L3-G-289 — Infrastructure Availability Definition to Availability Profile Activation | Establishes authoritative resource availability. |
-| Related | L3-G-291 — Infrastructure Reservation Request to Controlled Reservation | Consumes availability and capacity without owning either fact. |
+| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes the Physical Campus root. |
+| Related | L3-G-282 — Building Registration to Physical Building Establishment | Establishes Building under Physical Campus. |
+| Related | L3-G-283 — Floor Registration to Building Hierarchy Extension | Establishes Floor under Building. |
+| Related | L3-G-284 — Space Registration to Physical Space Establishment | Establishes Space under Floor. |
 
 ---
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
-|---|---|
-| Infrastructure Management / Section G | Primary owner of physical identity, hierarchy, lifecycle, capacity, availability, classification, relationships and infrastructure master facts. |
-| Institution & Structure / Section B, where frozen | Owns Institution and InstitutionalCampus identity; supplies references without owning physical aggregates. |
-| Platform Foundation / Section A, where frozen | Supplies Tenant isolation, configuration, authorization, event and audit capabilities without owning infrastructure facts. |
-| Academic Delivery / Section D, where frozen | Consumes authoritative capacity, availability or reservation outcomes and retains its academic decisions. |
-
-The frozen participating-domain value remains exactly `G`.
+Infrastructure Management is the sole frozen participating domain and owns every physical aggregate and parent-child relationship in this scenario. No participation outside `G` is introduced.
 
 ---
 
@@ -86,31 +79,25 @@ The frozen participating-domain value remains exactly `G`.
 
 | Business Actor / Role | Responsibility | Authority Boundary |
 |---|---|---|
-| Infrastructure Administrator | Initiates and administers permitted infrastructure operations. | Must hold fine-grained permission in the relevant Tenant, institution, Campus, Building or Zone scope. |
-| Campus or Building Administrator | Manages infrastructure within assigned physical scope. | Cannot act outside assigned hierarchy scope. |
-| Facilities Manager / Operational Manager | Supplies operational context and consumes current physical facts. | Does not change canonical identity or bypass G10 rules. |
-| Auditor | Reviews immutable history and evidence. | Read-only; cannot mutate infrastructure. |
-| Consumer-domain actor | Requests or consumes an authorized infrastructure service. | Retains the consumer decision and cannot modify G10 aggregates directly. |
-
-Roles are configurable access patterns in L2-G10. No universal named approver is inferred.
+| Infrastructure Administrator | Initiates permitted infrastructure registration and hierarchy establishment. | Must remain within authorized infrastructure scope and source-defined rules. |
+| Campus Administrator / Building Administrator | Administers permitted infrastructure within assigned physical scope. | Cannot bypass parent-child, uniqueness or lifecycle rules. |
+| Auditor | Reviews immutable registration and hierarchy evidence. | Read-only. |
 
 ---
 
 # 7. Preconditions and Entry Criteria
 
-- The institution and required parent references exist.
-- Hierarchy, naming and business-code policies are active.
-- Each requested child has a valid parent and no duplicate identity or relationship.
-- The requester is authorized for every aggregate creation in scope.
-- Tenant and institution isolation are enforceable.
-- Authentication context is supplied externally and authorization succeeds before mutation.
-- Required audit and event infrastructure is available under enterprise policy.
+- The owning institutional context is valid.
+- Every existing parent aggregate referenced in the intended hierarchy is canonical and valid.
+- Proposed Building, Floor and Space codes satisfy their source-defined uniqueness constraints.
+- The intended hierarchy is acyclic.
+- The requester is authorized for each aggregate registration that must occur.
 
 ---
 
 # 8. Trigger
 
-A valid physical infrastructure hierarchy must be established
+A valid physical infrastructure hierarchy must be established.
 
 ---
 
@@ -118,14 +105,14 @@ A valid physical infrastructure hierarchy must be established
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Define the intended hierarchy scope and resolve the owning institution. | Infrastructure Management | Define the intended hierarchy scope and resolve the owning institution. |
-| 2 | Validate that the proposed hierarchy is acyclic and conforms to configured parent-child rules. | Infrastructure Management | Validate that the proposed hierarchy is acyclic and conforms to configured parent-child rules. |
-| 3 | Register or resolve the Physical Campus through its own aggregate workflow. | Infrastructure Management | Register or resolve the Physical Campus through its own aggregate workflow. |
-| 4 | Register each Building under exactly one valid Campus. | Infrastructure Management | Register each Building under exactly one valid Campus. |
-| 5 | Register each Floor under exactly one valid Building. | Infrastructure Management | Register each Floor under exactly one valid Building. |
-| 6 | Register each Space under exactly one valid Floor. | Infrastructure Management | Register each Space under exactly one valid Floor. |
-| 7 | Validate the completed relationships and reject circular or duplicate hierarchy links. | Infrastructure Management | Validate the completed relationships and reject circular or duplicate hierarchy links. |
-| 8 | Publish each aggregate-specific creation event and preserve the complete hierarchy audit trail. | Infrastructure Management | Publish each aggregate-specific creation event and preserve the complete hierarchy audit trail. |
+| 1 | Define the intended Physical Campus → Building → Floor → Space structure. | Infrastructure Management | The requested hierarchy scope is explicit. |
+| 2 | Validate parent existence, parent lifecycle, unique codes and absence of circular relationships. | Infrastructure Management | The hierarchy is structurally admissible or rejected. |
+| 3 | Register or resolve the Physical Campus through its own G10 aggregate workflow. | Infrastructure Management | The Physical Campus identity is canonical. |
+| 4 | Register each required Building under exactly one Physical Campus through the Building workflow. | Infrastructure Management | Building parentage is canonical. |
+| 5 | Register each required Floor under exactly one Building through the Floor workflow. | Infrastructure Management | Floor parentage is canonical. |
+| 6 | Register each required Space under exactly one Floor through the Space workflow. | Infrastructure Management | Space parentage is canonical. |
+| 7 | Validate the resulting complete hierarchy against G10 structural invariants. | Infrastructure Management | Physical relationships are established without duplication or cycles. |
+| 8 | Publish each required aggregate-specific registration event and preserve audit evidence. | Infrastructure Management | **Blocked:** locked G10 defines conflicting canonical registration event names for the hierarchy members. |
 
 ---
 
@@ -133,8 +120,8 @@ A valid physical infrastructure hierarchy must be established
 
 | Case | Condition | Alternate Business Path | Result / Outcome |
 |---|---|---|---|
-| 1 | Some parents already exist | reference them and create only the missing children. | Existing ownership and history remain intact. |
-| 2 | An optional Zone, Wing or Block is used | preserve the canonical Campus–Building–Floor–Space relationships and apply the separately defined optional grouping rules. | Existing ownership and history remain intact. |
+| Existing parent | One or more required parent aggregates already exist. | Reuse the canonical parent and register only missing children. | No duplicate aggregate is created. |
+| Optional Wing | A Building uses a Wing. | Preserve Wing as the optional Building child permitted by G10 without creating a new hierarchy level outside the canonical model. | Campus → Building → optional Wing → Floor → Space remains valid. |
 
 ---
 
@@ -142,14 +129,10 @@ A valid physical infrastructure hierarchy must be established
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, institution or resource scope cannot be resolved | reject the request without creating a cross-scope fact. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Authorization fails | terminate before business mutation. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Hierarchy, lifecycle, configuration or policy validation fails | retain the prior authoritative state. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| A uniqueness, capacity, availability or relationship invariant fails | reject the requested result. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Audit evidence cannot be recorded | do not complete the business transition. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| The success-event condition is not satisfied | do not publish the success event. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-
-No technical retry, rollback, database transaction or messaging implementation is specified at L3.
+| Parent does not exist or does not satisfy lifecycle requirements. | The child cannot be established canonically. | Correct or establish the parent under its own G10 workflow before proceeding. | Infrastructure Management |
+| Duplicate code or circular relationship is detected. | Structural integrity would be violated. | Reject the affected registration and preserve existing canonical structure. | Infrastructure Management |
+| One member registration remains incomplete. | The intended full hierarchy outcome is incomplete. | Preserve successfully existing independent aggregates; do not claim the full hierarchy outcome until all required relationships are valid. | Infrastructure Management |
+| Registration event name is contradictory upstream. | Mandatory event integrity cannot be maintained. | Do not choose or invent an event; resolve through architecture change control. | Infrastructure Management |
 
 ---
 
@@ -157,51 +140,33 @@ No technical retry, rollback, database transaction or messaging implementation i
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Infrastructure Management is the canonical owner of physical infrastructure facts. | Infrastructure Management | Consumers reference G10 facts and never duplicate or directly modify aggregates. | L2-G10 §§2, 5, 9, 44A |
-| Every Building belongs to one Campus; every Floor to one Building; every Space to one Floor. | Infrastructure Management | Invalid or circular physical relationships are rejected. | L2-G10 §§8, 18, 47 |
-| Aggregate identity is immutable and infrastructure is never physically deleted. | Infrastructure Management | Changes preserve identifiers and historical references. | L2-G10 §§13, 47, 48A |
-| Authorization precedes business validation. | Authorization & Policy; Infrastructure Management | Unauthorized requests terminate before mutation. | L2-G10 §48A.207 |
-| Business validation precedes persistence, and events describe completed facts. | Infrastructure Management; Event Infrastructure | Failed work cannot publish a success event. | L2-G10 §§22A.99, 44A.179 |
-| Every successful state or significant attribute change is auditable. | Infrastructure Management; Audit Infrastructure | Actor, prior value, new value, reason and correlation are preserved. | L2-G10 §§48A.208–210, 49 |
-| Archived infrastructure is immutable. | Infrastructure Management | No scenario may update an Archived aggregate. | L2-G10 §§11A, 47 |
-| Capacity cannot be negative and reservation conflicts are prevented unless an authorized override is permitted. | Infrastructure Management | Invalid capacity or conflicting reservations are rejected. | L2-G10 §§24, 26, 47 |
+| Canonical hierarchy is Physical Campus → Building → optional Wing → Floor → Space. | Infrastructure Management | Arbitrary hierarchy levels or circular containment are prohibited. | L2-G10 §§8.10, 18 |
+| Every Building belongs to exactly one Campus, every Floor to one Building, every Space to one Floor. | Infrastructure Management | Parent-child relationships are exclusive and validated. | L2-G10 §§8, 13, 13A.65 |
+| Every workflow modifies exactly one Aggregate Root. | Infrastructure Management | This L3 outcome composes independent registration workflows; it does not create one cross-aggregate transaction or aggregate. | L2-G10 §22A.99 WDP-01 |
+| Every successful workflow publishes at least one canonical domain event. | Infrastructure Management | Each created hierarchy member requires an exact canonical event. | L2-G10 §22A.99 WDP-02 |
+| Aggregate identity is immutable. | Infrastructure Management | Existing parents are reused by identity and never recreated to satisfy hierarchy establishment. | L2-G10 §§8, 13A.64 |
 
 ---
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Position | Canonical Owner |
-|---|---|---|---|---|
-| `Physical Campus, Building, Floor and Space` | Valid trigger and authorized context | Executes only the scenario-specific creation, association or governed attribute change. | Each aggregate follows its own configured registration lifecycle; no single hierarchy lifecycle exists | Infrastructure Management, except the B03 reference retained by Institution & Structure |
-| Parent physical hierarchy | Existing and valid where applicable | Referenced and validated; not silently re-parented. | Unchanged unless the frozen outcome explicitly creates the child relationship. | Infrastructure Management |
-| Tenant and Institution | Existing | Supply isolation and institutional reference. | Unchanged. | Platform Foundation; Institution & Structure |
-| Consumer-domain records | Existing or absent | Consume the completed authoritative fact. | Unchanged by G10. | Applicable consumer domain |
-| Audit history | Existing | Appends immutable evidence. | Historical trace grows; prior records remain unchanged. | Audit Infrastructure |
+Each Physical Campus, Building, Floor and Space owns an independent G10 lifecycle. Hierarchy establishment does not create a separate hierarchy lifecycle.
 
-L2-G10 requires lifecycle and operational availability to remain distinct. “Activation” in a frozen outcome is not treated as a new lifecycle state unless L2-G10 defines it.
+For newly registered members, G10 has an unresolved initial-state inconsistency (`Draft` in the registration summary versus configured defaults / `Proposed` or `Planned` in detailed workflow material). This Draft does not choose an initial state.
 
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Event Treatment
+## 14.1 Published / Consumed Business Events
 
-| Event / Required Fact | Publication Condition | Publisher and Consumer Treatment |
-|---|---|---|
-| `CampusCreated, BuildingCreated, FloorCreated and SpaceCreated as applicable` | Only after the corresponding aggregate creation or governed update has persisted successfully. | The affected G10 aggregate publishes the source-defined completed fact; consumers react without changing G10 ownership. |
+For the same registration completions, L2-G10 §44 lists `CampusRegistered`, `BuildingRegistered`, `FloorRegistered`, and `SpaceRegistered`, while detailed WF-INF workflows and event summaries use `CampusCreated`, `BuildingCreated`, `FloorCreated`, and `SpaceCreated`. Since successful registration must publish canonical events, L3 cannot select either set locally.
 
-Where Section 44 and the detailed WF-INF catalogue use different names, this Draft records the inconsistency in Section 17 and does not publish both names for one transition.
+No single `HierarchyCreated` event is defined or invented.
 
-## 14.2 Synchronous Business Contracts and Hand-offs
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
-|---|---|---|---|
-| Physical Campus Summary | Infrastructure Management | Institution & Structure and authorized consumers | Canonical physical Campus identity, lifecycle and operational status. |
-| Building, Floor and Space Summary | Infrastructure Management | Operational domains | Canonical hierarchy, classification, capacity, lifecycle and current status. |
-| Capacity Profile | Infrastructure Management | Academic, Examination and operational consumers | Canonical capacity facts; consumers own utilization decisions. |
-| Retrieve Availability | Infrastructure Management | Authorized consumers | Current operational availability independently from lifecycle. |
-| Reservation service | Infrastructure Management | Authorized requestor | Governed reservation establishment, modification or retrieval. |
-| Audit input | Infrastructure Management | Audit Infrastructure | Actor, scope, transition, prior/new values, reason and correlation evidence. |
+G10 exposes Physical Campus, Building, Floor and Space Summary contracts for the resulting physical facts. Consumers remain outside this scenario and cannot modify the hierarchy.
 
 ---
 
@@ -209,57 +174,46 @@ Where Section 44 and the detailed WF-INF catalogue use different names, this Dra
 
 ## 15.1 Authorization
 
-- Authentication is external to G10.
-- Fine-grained permission is evaluated by Tenant, institution and physical-resource scope before validation.
-- Consumer access does not grant direct aggregate mutation.
-- Authorization success does not waive hierarchy, lifecycle, capacity, availability or policy rules.
+Every aggregate registration requires applicable Infrastructure Registration authorization.
 
 ## 15.2 Approval and Separation of Duty
 
-- L2-G10 allows configurable approval for some creation, lifecycle, override and administrative operations.
-- The scenario uses approval only where active policy requires it.
-- No unnamed approver or technical workflow routing is invented.
-- Governance approval supplements business validation and never replaces it.
+Any configured approval is applied only where authoritative G10 policy requires it. No universal hierarchy approver is inferred.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The audit record must preserve Tenant, institution, aggregate type and identifier, actor, authorization scope, previous values, new values, effective dates where applicable, business reason, approval reference where required, event facts and correlation identifier. Audit history is immutable and independently retained.
+The hierarchy evidence must preserve each aggregate identity, parent reference, validation result, actor, business reason where applicable, and the source-defined registration outcome. Each individual registration remains auditable.
 
 ---
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete only when:
+The frozen outcome is complete only when:
 
-- define the intended hierarchy scope and resolve the owning institution.
-- validate that the proposed hierarchy is acyclic and conforms to configured parent-child rules.
-- register or resolve the Physical Campus through its own aggregate workflow.
-- register each Building under exactly one valid Campus.
-- register each Floor under exactly one valid Building.
-- register each Space under exactly one valid Floor.
-- validate the completed relationships and reject circular or duplicate hierarchy links.
-- publish each aggregate-specific creation event and preserve the complete hierarchy audit trail.
-- no institutional, academic or consumer-domain ownership has transferred to G10;
-- no unauthorized or partial result is treated as successful; and
-- all required audit evidence is immutable and queryable.
+- the Physical Campus, Building, Floor and Space relationships satisfy the canonical G10 hierarchy;
+- no duplicate or circular relationship exists;
+- every newly required aggregate has completed its own registration workflow;
+- every required registration fact has an unambiguous canonical event and publisher; and
+- all individual aggregate histories remain auditable.
 
-Postconditions:
-
-- Canonical G10 identity and historical integrity are preserved.
-- The current authoritative fact is available through governed contracts.
-- Consumers may react under their own rules but cannot rewrite the source fact.
-- Failed or incomplete transitions publish no success event.
+The current locked source fails the event-name condition, so the scenario remains blocked.
 
 ---
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-**Architecture assessment:** `PASS WITH ISSUES`
-
 | ID | Severity | Issue / Deferred Question | Required Resolution |
 |---|---|---|---|
-| G-281-ISSUE-01 | Non-blocking | L2-G10 requires every workflow to modify one aggregate root, so hierarchy creation is a business scenario composed of several workflows rather than one atomic hierarchy command. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
-| G-281-ISSUE-02 | Non-blocking | No single hierarchy-created event, rollback rule or multi-aggregate orchestration contract is defined. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
-| G-281-ISSUE-03 | Non-blocking | The initial lifecycle inconsistency between summary `Draft` and detailed configured defaults applies to newly created members. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
+| G-281-BLOCKER-01 | Blocking | L2-G10 gives conflicting mandatory registration event names for Physical Campus, Building, Floor and Space (`*Registered` in §44 versus `*Created` in detailed WF-INF workflows/event summaries). | Architecture governance must resolve the canonical event names while preserving G10 as publisher. |
+| G-281-ISSUE-02 | Non-blocking | No single hierarchy-completion event or cross-aggregate scenario contract is defined. | Downstream specifications must continue treating this as a composition of independently owned G10 workflows unless upstream defines a business-level completion contract. |
+| G-281-ISSUE-03 | Non-blocking | Initial lifecycle position for newly registered infrastructure is inconsistent within G10. | Align registration and canonical lifecycle wording upstream. |
 
-No unsupported aggregate, lifecycle state, transition, event, publisher, actor, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
+**Source Assessment:** **BLOCKED**
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No additional deferred questions.
