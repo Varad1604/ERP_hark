@@ -9,137 +9,177 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Varad  
-**Last Updated:** 2026-08-21  
-**Depends On:** Locked L1 Business Domain Architecture; DEPENDENCY_MAP.md; applicable Academic Completion & Completion Evidence L2 workflow; L2-I09 Result Processing & Computation; L2-I10 Result Publication; authoritative Academic Delivery completion inputs  
-**Referenced By:** Downstream student academic-record and completion-evidence consumers, as applicable
+**Last Updated:** 2026-08-22  
+**Depends On:** Locked L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-I13 Academic Completion, CGPA & Completion Evidence Workflows; L2-I09 Result Processing & Computation; L2-I10 Result Publication; authoritative Academic Delivery completion inputs  
+**Referenced By:** Student Lifecycle qualification-completion review and downstream completion-evidence scenarios, as applicable
 
 ## 1. Scenario Metadata
 
-The frozen Stage 3 semantics are preserved unchanged: the canonical owner is Academic Completion & Completion Evidence; participating domains, Type and Priority remain as assigned. The Final L3 identity is derived from the approved Stage 4 mapping.
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | `L3-I-145` |
+| Canonical Title | Completion Evaluation to Authoritative Completion Eligibility |
+| Primary Owner | Academic Completion & Completion Evidence |
+| Participating Domains | C, D, I |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+| Authoritative L2 | `L2-I13` — Academic Completion, CGPA & Completion Evidence Workflows |
+
+The scenario preserves the locked I13/C05 ownership resolution: I13 owns examination-derived completion evidence and its eligibility finding; L2-C05 alone owns the institutional Qualification Completion decision, qualification award, and Student Exit.
 
 ## 2. Scenario Purpose
 
-Determine whether a student satisfies the institutionally governed academic completion requirements by evaluating authoritative academic completion inputs across Student Lifecycle, Academic Delivery and Examination, and establish one authoritative completion-eligibility position.
+Evaluate authoritative academic inputs and establish the Examination-owned completion-evidence eligibility position required for Student Lifecycle's later Qualification Completion decision, without recomputing upstream results or conferring a qualification.
 
 ## 3. Business Outcome
 
-An authoritative completion-eligibility position is established for the student: the student is eligible for completion when all applicable completion requirements are satisfied, or remains not eligible/blocked when an authoritative requirement is unmet or unresolved.
+An authoritative examination-derived completion-eligibility position is established: the evidence satisfies the applicable completion requirements, or remains not eligible/blocked because an authoritative requirement is unmet or unresolved. This outcome is evidence for L2-C05 and is not itself the institutional Qualification Completion decision.
 
 ## 4. Scenario Boundary and Scope
 
-**Start Boundary:** Authoritative academic inputs required for completion evaluation are available for a student and completion evaluation is due.
+### 4.1 Start Boundary
+Authoritative academic inputs required for examination-owned completion evaluation are available or their unresolved position is known.
 
-**In Scope:** identify the student and applicable programme context; assemble authoritative academic completion inputs; evaluate required academic conditions; reconcile examination and academic-delivery outcomes; determine completion eligibility; and make the authoritative eligibility position available to downstream completion-evidence processing.
+### 4.2 End Boundary
+One authoritative I13 completion-evidence eligibility position exists and is available for the governed downstream qualification-completion process.
 
-**Out of Scope:** changing examination marks/results, changing course or academic-delivery ownership, changing Student Lifecycle status directly, issuing completion evidence, or inventing local completion rules.
+### 4.3 In Scope
+- Authoritative student/programme context consumption.
+- Academic-delivery and examination outcome consumption.
+- Completion-evidence requirement evaluation.
+- Evidence eligibility determination.
+- Preservation of the evidence basis.
+- Publication of the canonical I13 completion-eligibility event.
 
-**End Boundary:** One authoritative completion-eligibility position exists for the student.
+### 4.4 Out of Scope
+- Recomputing examination marks, grades, SGPA, CGPA, or credits.
+- Modifying Academic Delivery outcomes.
+- Changing Student Lifecycle state directly.
+- Final Qualification Completion decision.
+- Qualification award or Student Exit.
+- Technical implementation.
+
+### 4.5 Related Scenarios — Optional
+Downstream qualification-completion and evidence-preparation scenarios consume this outcome under their own canonical ownership boundaries.
 
 ## 5. Ownership and Participating Domains
 
-Academic Completion & Completion Evidence owns the completion-eligibility business outcome.
+- **Academic Completion & Completion Evidence (I13):** owns examination-derived completion evidence and the corresponding eligibility finding.
+- **Student Lifecycle (C):** owns final Qualification Completion, qualification award, Student Exit, and its own student context.
+- **Academic Delivery (D):** owns its academic-delivery outcomes.
+- **Examination:** owns examination results and other examination facts consumed by I13.
 
-Student Lifecycle supplies and consumes authoritative student context.
-
-Academic Delivery supplies authoritative academic-delivery outcomes.
-
-Examination supplies authoritative examination results and academic outcomes.
-
-Participation does not transfer ownership of student, academic-delivery or examination lifecycles.
+Participation and consumption do not transfer ownership.
 
 ## 6. Business Actors, Roles and Responsibilities
 
-- Completion authority/administrator: evaluates completion requirements.
-- Student Lifecycle: supplies authoritative student context.
-- Academic Delivery: supplies authoritative academic-delivery outcomes.
-- Examination: supplies authoritative examination results.
-- Appropriate academic approval authority: approves completion where required by upstream policy.
+- Completion evidence authority/administrator — evaluates examination-owned completion evidence.
+- Student Lifecycle — supplies/consumes authoritative student and qualification-completion context.
+- Academic Delivery — supplies authoritative delivery outcomes.
+- Examination result owners — supply authoritative published examination outcomes.
+- Applicable academic approval authority — participates only as defined by the authoritative completion-evidence workflow.
 
-No new authority is introduced.
+No new qualification authority is created in I13.
 
 ## 7. Preconditions and Entry Criteria
 
-- Student and programme context is authoritative.
-- Required academic-delivery inputs are available or their unresolved position is known.
-- Required examination results are authoritative or explicitly identified as unresolved.
-- Applicable completion requirements are available from the owning completion architecture.
-- The completion evaluation has not already reached an immutable final position for the same scope.
+- Student/programme context is authoritative.
+- Required Academic Delivery inputs are available or explicitly unresolved.
+- Required Examination outcomes are authoritative or explicitly unresolved.
+- Applicable completion-evidence requirements are available from the owning architecture.
+- No local calculation or substitution is required to manufacture a missing upstream fact.
 
 ## 8. Trigger
 
-Completion evaluation is initiated for a student whose academic inputs are due for determination of completion eligibility.
+Examination-owned completion evidence becomes due for eligibility evaluation.
 
 ## 9. Main Business Flow
 
-1. Establish the authoritative student and programme context.
-2. Identify the academic-delivery requirements applicable to completion.
-3. Identify authoritative examination requirements and results.
-4. Assemble the required completion inputs without changing their source-owned values.
-5. Apply the authoritative completion requirements.
-6. Determine whether every required condition is satisfied.
-7. Where all conditions are satisfied, establish the authoritative completion-eligible position.
-8. Where a required condition is unmet or unresolved, establish the corresponding non-eligible or blocked position according to the owning completion lifecycle.
-9. Preserve the evaluated evidence basis and contributing source facts.
-10. Publish the applicable completion-evaluation/eligibility business facts through the canonical owner.
-11. End when one authoritative completion-eligibility position exists.
+1. Establish authoritative student and programme context.
+2. Identify applicable Academic Delivery completion inputs.
+3. Identify authoritative published Examination outcomes.
+4. Assemble the required evidence without modifying source-owned facts.
+5. Apply the authoritative I13 completion-evidence requirements.
+6. Determine whether every required evidence condition is satisfied.
+7. Establish the current completion-evidence eligibility position.
+8. Preserve the evaluated evidence basis and contributing source facts.
+9. Publish `CompletionEligibilityApproved` when eligibility is confirmed under L2-I13.
+10. Make the evidence position available to the downstream L2-C05 qualification-completion process.
 
 ## 10. Alternate Business Flows
 
-**All requirements satisfied:** establish completion eligibility and make the outcome available for completion-evidence processing.
-
-**Requirement unresolved:** retain the completion position as blocked/pending according to the authoritative completion lifecycle rather than assuming satisfaction.
-
-**Examination result changes before final completion:** re-evaluate using the newly authoritative result through the completion workflow.
-
-**Academic Delivery input changes:** consume the revised authoritative academic-delivery outcome and re-evaluate; do not alter Academic Delivery state locally.
+- **Requirement unresolved:** retain the evidence position as unresolved/blocked under the authoritative lifecycle; do not assume satisfaction.
+- **Examination result changes:** consume the newly authoritative result and re-evaluate through I13.
+- **Academic Delivery outcome changes:** consume the revised D-owned outcome and re-evaluate without locally modifying D.
+- **Evidence is insufficient:** do not publish an approved eligibility fact.
 
 ## 11. Failure, Interruption and Business Recovery
 
-**Required input unavailable:** completion cannot be conclusively evaluated; the unresolved dependency is recorded against the authoritative source.
-
-**Conflicting inputs:** do not choose a local winner; route the conflict to the owning source workflow and re-evaluate once authoritative.
-
-**Student context mismatch:** Student Lifecycle remains authoritative for student identity/academic context.
-
-**Completion approval unavailable:** the eligibility outcome remains subject to the required upstream approval and is not represented as final completion evidence.
+- Missing required input → resolve through the canonical source owner and re-evaluate.
+- Conflicting source inputs → do not choose a local winner; return the conflict to the owning workflow.
+- Student-context mismatch → Student Lifecycle remains authoritative for its own information.
+- Qualification decision unavailable → I13 may complete its evidence responsibility but must not represent a qualification as awarded.
 
 ## 12. Business Rules and Decision Constraints
 
-- Completion eligibility is determined from authoritative upstream academic facts and completion requirements.
-- Examination results remain owned by Examination.
-- Academic Delivery outcomes remain owned by Academic Delivery.
-- Student academic context remains owned by Student Lifecycle.
-- Completion evaluation must not mutate upstream facts.
-- A blocked or unresolved completion position must not be treated as eligible.
-- No local completion rule, threshold or academic requirement is invented.
+- I13 consumes approved academic outcomes; it does not recalculate marks, grades, SGPA, CGPA, credits, or Academic Standing.
+- Academic Delivery outcomes remain D-owned.
+- Student context remains C-owned.
+- I13's eligibility outcome is evidentiary, not a qualification award.
+- L2-C05 alone determines institutional Qualification Completion and qualification award.
+- A blocked/unresolved evidence position must not be treated as approved eligibility.
+- No local threshold, policy, or academic requirement is invented.
 
 ## 13. State and Lifecycle Impact
 
-The scenario affects the existing completion lifecycle only through its authoritative eligibility outcome. It does not create new Student Lifecycle, Academic Delivery or Examination states.
-
-The precise completion lifecycle states and transitions must remain those defined by the applicable Academic Completion & Completion Evidence L2 architecture.
+The scenario affects only the existing I13 completion-evidence lifecycle. It creates no Student Lifecycle, Academic Delivery, Result Processing, or qualification state. Any final Qualification Completion transition occurs in L2-C05, not here.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-Examination publishes its canonical result facts; Academic Delivery publishes its own authoritative academic outcomes; Student Lifecycle publishes/consumes its canonical student facts.
+Locked L2-I13 defines canonical completion events including:
 
-The completion-owning workflow is the canonical publisher of completion eligibility. No new `CompletionEligibilityDetermined` event is invented unless defined by the applicable locked L2 completion workflow.
+| Business Event | Canonical Publisher | Scenario Purpose |
+|---|---|---|
+| `AcademicCompletionVerificationCompleted` | I13 Academic Completion & Completion Evidence | Records completion-evidence verification. |
+| `ProgrammeCompletionVerified` | I13 Academic Completion & Completion Evidence | Records programme-completion evidence verification. |
+| `CreditRequirementVerified` | I13 Academic Completion & Completion Evidence | Records credit-requirement evidence verification. |
+| `CompletionEligibilityApproved` | I13 Academic Completion & Completion Evidence | Records confirmed examination-derived completion eligibility. |
+| `ExaminationCompletionEvidencePrepared` | I13 Academic Completion & Completion Evidence | Provides examination-owned completion evidence to L2-C05. |
+
+This scenario's core completion fact is `CompletionEligibilityApproved` when the eligibility conditions are met. L2-C05 subsequently makes the independent Qualification Completion decision.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-- Completion evaluation and approval follow the authority defined by the completion architecture.
-- The evaluated input basis and resulting eligibility position must be auditable.
-- Any academic approval or separation-of-duty requirement remains upstream-owned.
-- No technical authorization mechanism is specified.
+- Completion-evidence evaluation follows I13 authority and governance.
+- The evaluated input basis, eligibility finding, approval evidence, and publication must remain auditable.
+- Qualification authority remains with L2-C05.
+- Any institution-specific approval or separation-of-duty requirement remains governed by the authoritative workflow and policy.
+- No technical access-control mechanism is specified.
 
 ## 16. Completion Criteria and Postconditions
 
-**Complete when:** student/programme context is established; all applicable authoritative inputs are identified; completion requirements are applied; one current eligibility position is established; the evidence basis is traceable; and applicable completion facts are published.
+### 16.1 Completion Criteria
+- Authoritative student/programme context established.
+- Required academic and examination inputs identified.
+- I13 evidence requirements evaluated.
+- One current evidence eligibility position established.
+- Evidence basis preserved.
+- `CompletionEligibilityApproved` published when eligibility is confirmed.
 
-**Postconditions:** completion eligibility is authoritative for the evaluated scope; eligible students may proceed to completion-evidence processing; blocked/non-eligible students do not proceed as if eligible.
+### 16.2 Postconditions
+- I13's examination-derived completion evidence is authoritative for its scope.
+- Approved evidence may proceed toward `ExaminationCompletionEvidencePrepared` and L2-C05 review.
+- No qualification has been awarded by I13.
+- C05 ownership of Qualification Completion remains unchanged.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
-1. The frozen Stage 3 semantics identify the business outcome but do not expose the detailed completion-policy thresholds in the accessible sources. Those rules must remain owned by the applicable completion architecture.
-2. L2-I09 explicitly owns examination computation and excludes Academic Completion & Completion Evidence; therefore examination results are consumed, not recomputed, here.
-3. The exact completion event catalogue was not accessible in the current L2 source retrieval; no event name is invented.
+### 17.1 Open Issues
+No event-catalogue accessibility issue remains: locked L2-I13 exposes the canonical completion-event vocabulary. Institution-specific completion-policy thresholds remain upstream policy/configuration and are intentionally not reproduced here.
+
+### 17.2 Assumptions
+No assumption overrides the locked I13/C05 ownership resolution.
+
+### 17.3 Deferred Questions
+Technical implementation and institution-specific policy values remain outside L3.
