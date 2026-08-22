@@ -11,266 +11,180 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; applicable L2-G01 through L2-G10 operational domains; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows; L2-H07 — Enterprise Dashboard Workflows  
-**Referenced By:** Campus governance, executive oversight, audit, reporting and authorized downstream consumers
-
----
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; applicable G01–G10 operational risk sources  
+**Referenced By:** Authorized campus-governance and institutional intelligence consumers
 
 # 2. Scenario Purpose
 
-Govern a multi-domain campus operational risk from identification through assessment, mitigation, monitoring and evidence-based closure while source domains retain their incidents and operational work.
-
----
+Govern a multi-domain campus operational risk from identification through assessment, mitigation, monitoring, and closure while operational incidents and corrective execution remain owned by their source domains.
 
 # 3. Business Outcome
 
 Risk is assessed, mitigation is coordinated, monitoring is completed, and the governance risk is closed
 
----
-
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
 
-The scenario begins when a multi-domain operational risk is identified.
+A multi-domain operational risk is identified.
 
 ## 4.2 End Boundary
 
-The scenario ends when the frozen business outcome has been recorded under the source-defined governance boundary, all required source references and decisions are preserved, applicable follow-up is linked, and the full activity is auditable.
+The scenario ends when the Operational Risk has progressed through mitigation and monitoring to `Closed`, with responsible-domain references, mitigation evidence, and immutable governance history preserved.
 
 ## 4.3 In Scope
 
-- Tenant, institution, campus, purpose and correlation resolution.
-- Authorization of the governance activity and evidence access.
-- Risk evidence, responsible operational domain, configured category and severity matrix, affected scope and mitigation dependencies.
-- Use of the `Operational Risk` business responsibility.
-- Source-domain information consumed by reference without ownership transfer.
-- Classified risk, mitigation plan, monitoring evidence, escalation where required and closed risk history.
-- Applicable lifecycle transitions, services and domain-event publication explicitly defined by L2-G00.
-- Immutable audit evidence and historical reconstruction.
+- Registration of one G00 Operational Risk.
+- Risk classification and severity assessment.
+- Responsible operational-domain reference.
+- Mitigation planning and governance coordination.
+- Monitoring, escalation where applicable, and closure.
+- Source-defined risk lifecycle and events.
 
 ## 4.4 Out of Scope
 
-- Executing operational work owned by G01–G10.
-- Modifying operational transactions, source-domain master data or published readiness facts.
-- Replacing H07 dashboard composition, Section H notification delivery or H09 accreditation governance.
-- Replacing the Platform Workflow, Authorization, Event or Audit infrastructure.
-- Inventing lifecycle states, commands, events, publishers, approval authorities or technical mechanisms absent upstream.
+- Ownership or execution of source-domain incidents and operational remediation.
+- Enterprise risks outside the G00 campus-operations governance boundary.
+- Dashboard or notification delivery.
+- Inventing risk states, severity values, or closure rules beyond configured G00 governance.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
 | Relationship | Related Scenario | Boundary Reason |
 |---|---|---|
-| Related | L3-G-001 — Campus Readiness Assessment to Governance Readiness Decision | Provides or consumes readiness governance where applicable. |
-| Related | L3-G-003 — Campus Operational Review to Governance Closure | Owns the canonical Operational Review journey. |
-| Related | L3-G-005 — Operational Risk Identification to Risk Closure | Owns enterprise operational-risk governance. |
-| Related | L3-G-006 — Multi-Domain Action Plan to Verified Closure | Owns corrective-action coordination and verification. |
-
----
+| Related | L3-G-006 — Multi-Domain Action Plan to Verified Closure | A mitigation plan may coordinate corrective actions through a separate action-plan lifecycle. |
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Campus Operations Governance / Section G | Primary owner. Owns the governance aggregate, conclusions, findings, recommendations, risks, action coordination and immutable governance history applicable to this scenario. |
-| Operational domains / Section G and other named domains | Own their operational facts, indicators, incidents, actions and corrections; provide published references without transferring ownership. |
-| Platform Foundation / Section A | Supplies Tenant, configuration, authorization, workflow, event and audit capabilities without owning the G00 business outcome. |
-| Institutional Services & Intelligence / Section H, where frozen | Consumes governance outputs for dashboards, notification, executive intelligence or accreditation under its own ownership boundaries. |
-
-The frozen participating-domain value remains exactly `G, H`.
-
----
+| Campus Operations Governance / G | Owns the Operational Risk aggregate, its classification, mitigation governance, monitoring, closure, and history. |
+| Institutional Services & Intelligence / H | Consumes governed risk information within its own intelligence/notification responsibilities; it does not own the risk. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Participation / Authority |
+| Business Actor / Role | Responsibility | Source-Supported Authority |
 |---|---|---|
-| Governance Coordinator | Coordinates the assessment, review, finding, action or evidence request within authorized scope. | May initiate and coordinate; cannot assume executive or approval authority. |
-| Campus Operations Manager | Reviews campus operational evidence and governance consequences. | Acts only within configured campus and governance authorization. |
-| Executive Reviewer | Provides executive review, recommendation or decision where required. | Authority is policy-derived and not implied for every scenario step. |
-| Risk Coordinator / Quality Assurance Officer | Governs risk treatment or verifies corrective-action evidence where applicable. | Does not execute source-domain operational work. |
-| Read Only Auditor / Compliance Consumer | Receives authorized historical evidence. | Cannot change source or governance records. |
-
-L2-G00 calls these typical roles and allows institutions to configure additional roles. It does not establish a universal named approver for every scenario.
-
----
+| Risk Coordinator | Registers and coordinates the Operational Risk. | L2-G00 authorization matrix explicitly assigns `Register Operational Risk` to this role. |
+| Campus Operations Manager | Reviews operational governance information relevant to risk treatment. | L2-G00-defined role. |
+| Executive Reviewer | Participates when configured escalation or executive review is required. | L2-G00-defined typical role. |
 
 # 7. Preconditions and Entry Criteria
 
-- The Tenant, institution and campus are valid and resolvable.
-- The trigger and authorized governance purpose are established.
-- The affected G00 aggregate or required governance context can be identified.
-- Required information is available from its canonical owner or its absence is explicitly handled as an exception.
-- Applicable configuration, thresholds, templates, categories and policies can be resolved.
-- Source information is reference-only and remains owned by its publishing domain.
-- Authorization, actor and correlation context are available.
-- Existing governance history is immutable and accessible under policy.
-
----
+- The identified condition affects campus operations and qualifies for G00 governance treatment.
+- At least one responsible operational domain can be referenced as required by the G00 invariant.
+- Evidence sufficient for initial risk assessment is available or its absence can be treated as a governance exception.
+- Risk categories, severity rules, and mitigation governance can be resolved from configured G00 policy.
 
 # 8. Trigger
 
 A multi-domain operational risk is identified
 
----
-
 # 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Register the identified multi-domain risk with Tenant, campus, source and correlation references. | Campus Operations Governance; applicable participant | Register the identified multi-domain risk with Tenant, campus, source and correlation references. |
-| 2 | Confirm that G00 owns the governance risk while source domains retain incidents and operations. | Campus Operations Governance; applicable participant | Confirm that G00 owns the governance risk while source domains retain incidents and operations. |
-| 3 | Classify the risk category and responsible operational domain. | Campus Operations Governance; applicable participant | Classify the risk category and responsible operational domain. |
-| 4 | Assess severity using the configured matrix and evidence. | Campus Operations Governance; applicable participant | Assess severity using the configured matrix and evidence. |
-| 5 | Define the mitigation plan, responsible owner, target date and verification expectations. | Campus Operations Governance; applicable participant | Define the mitigation plan, responsible owner, target date and verification expectations. |
-| 6 | Publish the mitigation initiation fact and coordinate required domain actions. | Campus Operations Governance; applicable participant | Publish the mitigation initiation fact and coordinate required domain actions. |
-| 7 | Monitor progress, dependencies, blockers and residual exposure. | Campus Operations Governance; applicable participant | Monitor progress, dependencies, blockers and residual exposure. |
-| 8 | Escalate the risk when configured thresholds or overdue conditions are met. | Campus Operations Governance; applicable participant | Escalate the risk when configured thresholds or overdue conditions are met. |
-| 9 | Verify mitigation evidence and close the risk only when the governed closure criteria are satisfied. | Campus Operations Governance; applicable participant | Verify mitigation evidence and close the risk only when the governed closure criteria are satisfied. |
-| 10 | Publish risk events and preserve immutable risk history. | Campus Operations Governance; applicable participant | Publish risk events and preserve immutable risk history. |
-
----
+| 1 | Register the identified governance risk and reference the responsible operational domain. | Risk Coordinator / G00 | The risk enters `Identified`. |
+| 2 | Classify and assess the risk using the configured category and severity rules. | Risk Coordinator / G00 | The risk reaches `Assessed`. |
+| 3 | Establish the mitigation plan, responsible owner/domain, target, and applicable verification expectations. | G00 | The risk progresses to `Mitigation`. |
+| 4 | Coordinate the mitigation while source domains execute their own operational work. | G00 / source domains | Governance tracks mitigation without owning execution. |
+| 5 | Monitor progress, dependencies, blockers, and residual exposure. | G00 | The risk progresses to `Monitoring`. |
+| 6 | Escalate the risk where configured thresholds require executive attention. | Risk Coordinator / G00 | The escalation is governed without changing risk ownership. |
+| 7 | Close the risk when the configured governance closure conditions are satisfied. | G00 | The Operational Risk reaches `Closed`. |
+| 8 | Preserve the complete risk, mitigation, monitoring, escalation, and closure history. | G00 | The frozen business outcome is auditable. |
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| 1 | The risk remains above the permitted residual threshold | retain Monitoring or escalate rather than closing. | The existing lifecycle and source ownership remain preserved. |
-| 2 | The identified condition belongs to one domain only | reference or return it to the source domain unless enterprise governance treatment is still required. | The existing lifecycle and source ownership remain preserved. |
-
----
+| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
+|---|---|---|---|---|
+| Continued exposure | Residual risk remains above the configured acceptable condition | Retain the risk in monitoring or escalate it rather than closing. | The risk remains governed and open. | G00 |
+| Reassessment | New evidence materially changes the assessed condition | Reassess under the configured G00 risk rules before continuing mitigation/monitoring. | Risk governance remains source-supported. | G00 |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, campus or authorization cannot be resolved. | The governance activity cannot proceed lawfully. | Reject or pause without changing any source or governance state. | Platform & Tenant; Campus Operations Governance |
-| Required source information is missing, stale or inconsistent. | A trustworthy result cannot be produced. | Use the G00 exception workflow; correct, defer or escalate without inventing an outcome. | Source domain; Campus Operations Governance |
-| A business invariant fails. | The requested transition would violate ownership or lifecycle integrity. | Reject the transition and preserve failure evidence. | Campus Operations Governance |
-| Required review, verification or approval is incomplete. | The outcome cannot be treated as complete. | Retain the current source-defined lifecycle position and route follow-up. | Campus Operations Governance |
-| Event publication condition is not satisfied. | Consumers must not receive a false completed fact. | Publish only a source-defined event after its corresponding transition. | Campus Operations Governance; Event Infrastructure |
-| Processing is interrupted. | The governance activity remains incomplete. | Preserve history and resume only from a valid existing lifecycle position. | Campus Operations Governance |
-
-No technical retry, rollback, database, UI, queue or infrastructure recovery design is introduced.
-
----
+| Responsible operational domain cannot be identified | The G00 invariant is not satisfied | Correct or escalate the ownership exception before valid risk progression. | G00 |
+| Risk classification is invalid | Assessment cannot be relied upon | Reassess using the configured risk classification and severity rules. | G00 |
+| Mitigation evidence is incomplete | Closure would be unsupported | Continue mitigation/monitoring and do not close the risk. | G00 / responsible source domain |
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| G00 governs oversight and never executes operational work. | Campus Operations Governance | Corrective execution remains with the source domain. | L2-G00 §§3–6, §14 |
-| G00 never modifies operational data owned by G01–G10. | Campus Operations Governance; source domains | Inputs remain reference-only. | L2-G00 §§9, 13–14 |
-| Governance history remains immutable and every lifecycle transition is audited. | Campus Operations Governance; Audit Infrastructure | Prior evidence and decisions cannot be rewritten. | L2-G00 §§13, 27 |
-| `Operational Risk` is the scenario’s governing business responsibility. | Campus Operations Governance | The scenario cannot transfer its outcome to a source or infrastructure domain. | L2-G00 §§8, 11–12, 16–19 |
-| Applicable lifecycle is `Identified → Assessed → Mitigation → Monitoring → Closed`. | Campus Operations Governance | Only source-supported states and order may be used. | L2-G00 §§11, 23 |
-| Applicable services are Register Risk; Assess Risk; Record Mitigation; Close Risk. | Campus Operations Governance | Interactions use published business contracts. | L2-G00 §22 |
-| Configuration, thresholds and extensions remain governed and effective-dated where specified. | Campus Operations Governance; Platform | Behaviour cannot be hardcoded or changed retrospectively. | L2-G00 §§6, 26 |
-| Significant completed transitions publish immutable domain events. | Campus Operations Governance | Failed or incomplete outcomes cannot publish success facts. | L2-G00 §§20–21 |
-
----
+| Every Operational Risk shall reference one responsible operational domain. | G00 | Risk registration requires an attributable operational responsibility. | L2-G00 §13 |
+| G00 governs enterprise operational risks while operational incidents remain source-domain owned. | G00 / source domains | Risk governance cannot take ownership of the underlying incident. | L2-G00 §18 |
+| The Operational Risk lifecycle is `Identified → Assessed → Mitigation → Monitoring → Closed`. | G00 | No local state may be invented. | L2-G00 §23 |
+| Risk categories, severity, escalation, and mitigation are configurable. | G00 | Scenario uses the active governed configuration. | L2-G00 §18, §26 |
+| Governance history is immutable and lifecycle transitions are audited. | G00 | Risk history remains reconstructable. | L2-G00 §13, §27 |
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry State or Condition | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner |
+| Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner |
 |---|---|---|---|---|
-| Operational Risk | Trigger and authorized context available | Progresses only through the applicable source-defined governance journey. | Identified → Assessed → Mitigation → Monitoring → Closed | Campus Operations Governance |
-| Source-domain operational record | Existing canonical state | Referenced as evidence or receives a governed request; no direct mutation. | Unchanged by G00. | Publishing operational domain |
-| Governance history | Existing immutable history | Receives new actor, transition, decision and correlation evidence. | Preserved and extended immutably. | Campus Operations Governance; Audit Infrastructure |
-| Downstream reporting/evidence view | Absent or requires refresh | Receives the completed governed outcome where authorized. | Available without becoming the source of operational truth. | Applicable reporting or evidence owner |
-
-Where L2-G00 does not define a scenario-specific aggregate or lifecycle, this Draft records that limitation and does not create state names by inference.
-
----
+| Operational Risk | Identified | Assessed, mitigated, monitored, and closed | `Identified → Assessed → Mitigation → Monitoring → Closed` | G00 |
+| Source-domain incident/operation | Existing canonical state | Referenced and acted upon by its own owner | Unchanged by G00 directly | Respective operational domain |
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Events
+## 14.1 Published / Consumed Business Events
 
-L2-G00 states that Campus Operations Governance publishes immutable events and provides the following applicable catalogue entries. It does not provide an Aggregate-to-Event Matrix or a sole-publisher table.
-
-| Event / Required Fact | Publication Condition | Business Effect / Consumer |
+| Business Event | Canonical Publisher | Scenario Purpose |
 |---|---|---|
-| `OperationalRiskRegistered` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `OperationalRiskEscalated` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `MitigationPlanCreated` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `OperationalRiskClosed` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
+| `OperationalRiskRegistered` | Campus Operations Review (G00) | Represents risk registration. |
+| `MitigationPlanCreated` | Campus Operations Review (G00) | Represents initiation of mitigation governance. |
+| `OperationalRiskEscalated` | Campus Operations Review (G00) | Represents governed escalation where applicable. |
+| `OperationalRiskClosed` | Campus Operations Review (G00) | Represents risk closure. |
 
-Event Infrastructure distributes events but does not own the G00 business fact.
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-## 14.2 Synchronous Business Contracts and Hand-offs
-
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
+| Provider | Consumer | Business Hand-off | Purpose |
 |---|---|---|---|
-| Source operational information | Publishing operational domain | Campus Operations Governance | Immutable identifiers, status, period, scope, metric/evidence and provenance. |
-| Authorization Decision | Authorization & Policy | Campus Operations Governance | Allowed actor, action, Tenant, campus and governance scope. |
-| G00 governance service | Campus Operations Governance | Authorized participant | Register Risk; Assess Risk; Record Mitigation; Close Risk. |
-| Governed outcome | Campus Operations Governance | Executive, H-domain or other authorized consumer | classified risk, mitigation plan, monitoring evidence, escalation where required and closed risk history. |
-| Audit input | Campus Operations Governance | Audit Infrastructure | Actor, prior/new state, references, reason, time, correlation and outcome. |
-
----
+| Source operational domain | G00 | Incident/readiness/operational evidence and remediation progress | Supports risk governance without ownership transfer. |
+| G00 | H | Governed risk status and closure information | Supports authorized downstream intelligence/notification use. |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-- Every activity requires authorization for its Tenant, campus, governance scope and information classification.
-- Authentication and Platform roles do not transfer business ownership to the Platform.
-- Delegated or temporary authority must be effective-dated and auditable.
-- Read access to governance history does not permit mutation.
+L2-G00 explicitly assigns `Register Operational Risk` to the `Risk Coordinator`. Subsequent mitigation and closure are governed by the G00 risk lifecycle and configured policy; no additional universal named closure approver is defined or invented.
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-- Review, executive decision, verification and configuration approval occur only where required by the applicable source lifecycle and policy.
-- L2-G00 provides a configurable authorization matrix and typical roles rather than a universal approval actor.
-- Verification responsibility must remain distinguishable from source-domain execution where policy requires separation.
-- No unsupported approver, override or SoD exception is introduced.
+G00 coordinates mitigation but does not execute source-domain operational remediation. No additional scenario-specific separation-of-duty rule is defined upstream.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The following must be auditable:
-
-- Tenant, institution, campus, purpose and scope.
-- Initiating actor and applicable authorization decision.
-- Source identifiers, versions, periods and owning domains.
-- Configuration, template, threshold or rule version used.
-- Every lifecycle transition, finding, recommendation, decision and reason.
-- Assigned owners, dates, dependencies and verification where applicable.
-- Published canonical events and downstream hand-offs.
-- Exceptions, recovery, correlation and final outcome.
-
----
+Risk registration, classification, severity, responsible domain, mitigation, monitoring, escalation, closure, lifecycle transitions, and canonical events must remain auditable.
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete when:
+## 16.1 Completion Criteria
 
-- register the identified multi-domain risk with Tenant, campus, source and correlation references.
-- confirm that G00 owns the governance risk while source domains retain incidents and operations.
-- classify the risk category and responsible operational domain.
-- assess severity using the configured matrix and evidence.
-- define the mitigation plan, responsible owner, target date and verification expectations.
-- publish the mitigation initiation fact and coordinate required domain actions.
-- monitor progress, dependencies, blockers and residual exposure.
-- escalate the risk when configured thresholds or overdue conditions are met.
-- verify mitigation evidence and close the risk only when the governed closure criteria are satisfied.
-- publish risk events and preserve immutable risk history.
+- The Operational Risk references a responsible operational domain.
+- Assessment and mitigation governance are complete.
+- Monitoring confirms the configured closure conditions are satisfied.
+- The risk reaches `Closed` through the canonical lifecycle.
+- Governance history and applicable risk events are preserved.
 
+## 16.2 Postconditions
 
-Postconditions:
-
-- Source-domain operational records and ownership remain unchanged by G00.
-- The completed governance outcome and its lineage are available to authorized consumers.
-- Governance history remains immutable and reproducible.
-- No undefined state, command, event, publisher, actor or technical mechanism has been assumed.
-
----
+- A closed and auditable G00 Operational Risk exists.
+- Source-domain operational facts and incidents remain owned by their canonical domains.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-No open issue prevents this scenario from proceeding to Architecture Approval. L2-G00 supplies the owning aggregate, lifecycle, services and canonical event catalogue required for the frozen outcome.
+## 17.1 Open Issues
 
-**Source Assessment:** PASS
+No open issues.
 
-No unsupported operational ownership transfer, actor, approval authority, lifecycle state, event, publisher or implementation mechanism is assumed by this Draft.
+**Architecture assessment:** `PASS`
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No scenario-specific deferred questions.
