@@ -1,6 +1,6 @@
 # Active Tenant to Governed Archival
 
-## 1. Scenario Metadata
+# 1. Scenario Metadata
 
 **Scenario ID:** L3-A-003  
 **Architecture Level:** L3 — Business Scenario Architecture  
@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-19  
+**Last Updated:** 2026-08-21  
 **Depends On:** `SutraERP_L1_Business_Domain_Architecture_Locked.md` L1-01; `L2-A01_Platform_Tenant_Foundation_Architecture.md` Sections 5.2 and 5.4–5.14; `DEPENDENCY_MAP.md`  
 **Referenced By:** None yet  
 
 ---
 
-## 2. Scenario Purpose
+# 2. Scenario Purpose
 
 Govern the permanent operational retirement of an Active Tenant while preserving its required historical information and preventing further normal business execution.
 
@@ -25,23 +25,23 @@ The scenario ensures that Tenant retirement occurs only through the canonical Pl
 
 ---
 
-## 3. Business Outcome
+# 3. Business Outcome
 
 The Tenant is archived, becomes read-only and unavailable for normal business execution, and its required historical information is preserved.
 
 ---
 
-## 4. Scenario Boundary and Scope
+# 4. Scenario Boundary and Scope
 
-### 4.1 Start Boundary
+## 4.1 Start Boundary
 
 The scenario begins when an `Active` Tenant has been approved for permanent operational retirement.
 
-### 4.2 End Boundary
+## 4.2 End Boundary
 
 The scenario ends when the Tenant reaches the terminal `Archived` state, becomes read-only and unavailable for normal business execution, and its required historical information has been preserved.
 
-### 4.3 In Scope
+## 4.3 In Scope
 
 - Validation of the approved permanent operational-retirement decision.
 - Validation of the `Active` to `Archived` lifecycle transition.
@@ -51,7 +51,7 @@ The scenario ends when the Tenant reaches the terminal `Archived` state, becomes
 - Preservation of required historical information and audit history.
 - Enforcement of the terminal and immutable nature of the archived Tenant.
 
-### 4.4 Out of Scope
+## 4.4 Out of Scope
 
 - Temporary Tenant suspension and restoration.
 - Controlled maintenance or Platform upgrade.
@@ -61,7 +61,7 @@ The scenario ends when the Tenant reaches the terminal `Archived` state, becomes
 - Definition of retention periods or institutional retention policies.
 - Technical archival storage or restoration mechanisms.
 
-### 4.5 Related Scenarios — Optional
+## 4.5 Related Scenarios — Optional
 
 | Relationship | Related Scenario | Reason |
 |---|---|---|
@@ -70,7 +70,7 @@ The scenario ends when the Tenant reaches the terminal `Archived` state, becomes
 
 ---
 
-## 5. Ownership and Participating Domains
+# 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
@@ -82,7 +82,7 @@ Institutional and business domains may depend on the Tenant lifecycle state but 
 
 ---
 
-## 6. Business Actors, Roles and Responsibilities
+# 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
@@ -92,7 +92,7 @@ The scenario does not infer an approval authority that is absent from the author
 
 ---
 
-## 7. Preconditions and Entry Criteria
+# 7. Preconditions and Entry Criteria
 
 - The Tenant exists and is in the canonical `Active` state.
 - The Tenant identity remains valid and uniquely identifiable.
@@ -102,13 +102,13 @@ The scenario does not infer an approval authority that is absent from the author
 
 ---
 
-## 8. Trigger
+# 8. Trigger
 
 An `Active` Tenant is approved for permanent operational retirement.
 
 ---
 
-## 9. Main Business Flow
+# 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---:|---|---|---|
@@ -123,7 +123,7 @@ The Main Business Flow ends when the terminal archival outcome and required hist
 
 ---
 
-## 10. Alternate Business Flows
+# 10. Alternate Business Flows
 
 No scenario-specific alternate business flow is defined by the authoritative L2 architecture.
 
@@ -131,7 +131,7 @@ Temporary restriction through `Suspended` is governed by L3-A-002 and is not an 
 
 ---
 
-## 11. Failure, Interruption and Business Recovery
+# 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
@@ -144,7 +144,7 @@ No recovery transition from `Archived` is defined. `Archived` is the terminal Te
 
 ---
 
-## 12. Business Rules and Decision Constraints
+# 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
@@ -163,7 +163,7 @@ No recovery transition from `Archived` is defined. `Archived` is the terminal Te
 
 ---
 
-## 13. State and Lifecycle Impact
+# 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
@@ -174,15 +174,15 @@ No transition from `Archived` to another Tenant lifecycle state is defined.
 
 ---
 
-## 14. Business Events and Cross-Domain Collaboration
+# 14. Business Events and Cross-Domain Collaboration
 
-### 14.1 Published / Consumed Business Events
+## 14.1 Published / Consumed Business Events
 
 No exact canonical business event for Tenant archival is defined by the authoritative L1/L2 sources reviewed.
 
 This scenario does not invent events such as `TenantArchived`, `TenantRetired` or `TenantDeactivated`.
 
-### 14.2 Business Contracts and Cross-Domain Hand-offs
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
 No scenario-specific synchronous business contract or governed hand-off is defined by the authoritative L2 architecture.
 
@@ -192,20 +192,20 @@ This dependency does not transfer Tenant lifecycle ownership.
 
 ---
 
-## 15. Business Authorization, Approval and Audit Obligations
+# 15. Business Authorization, Approval and Audit Obligations
 
-### 15.1 Initiation and Decision Authority
+## 15.1 Initiation and Decision Authority
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
 | Approve permanent operational retirement of an Active Tenant | Canonical business role not defined upstream | An approved permanent-retirement decision is required before the scenario begins. | Platform & Tenant |
 | Perform the `Active` to `Archived` transition | Canonical business role not defined in L2-A01 | Only the Platform may perform a permitted Tenant lifecycle transition. | Platform & Tenant |
 
-### 15.2 Separation of Duties, Overrides and Exceptions
+## 15.2 Separation of Duties, Overrides and Exceptions
 
 No scenario-specific separation-of-duty, override or exception requirement is defined by the authoritative L1/L2 architecture.
 
-### 15.3 Business Audit and Evidence Obligations
+## 15.3 Business Audit and Evidence Obligations
 
 | Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
 |---|---|---|
@@ -218,9 +218,9 @@ No evidence fields or technical archival mechanism are defined at L3.
 
 ---
 
-## 16. Completion Criteria and Postconditions
+# 16. Completion Criteria and Postconditions
 
-### 16.1 Completion Criteria
+## 16.1 Completion Criteria
 
 - A valid approved permanent operational-retirement decision exists.
 - The permitted `Active` to `Archived` transition has been validated and completed.
@@ -231,7 +231,7 @@ No evidence fields or technical archival mechanism are defined at L3.
 - Historical availability remains governed by applicable retention policies.
 - The archival lifecycle transition remains auditable.
 
-### 16.2 Postconditions
+## 16.2 Postconditions
 
 - The Tenant remains permanently in the terminal `Archived` state.
 - Normal business execution cannot resume within the archived Tenant.
@@ -243,9 +243,9 @@ No evidence fields or technical archival mechanism are defined at L3.
 
 ---
 
-## 17. Open Issues, Assumptions and Deferred Questions
+# 17. Open Issues, Assumptions and Deferred Questions
 
-### 17.1 Open Issues
+## 17.1 Open Issues
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
@@ -253,10 +253,10 @@ No evidence fields or technical archival mechanism are defined at L3.
 
 This issue is non-blocking for this Draft but must be resolved before the scenario can become `Locked`.
 
-### 17.2 Assumptions
+## 17.2 Assumptions
 
 No assumptions.
 
-### 17.3 Deferred Questions
+## 17.3 Deferred Questions
 
 No scenario-specific deferred questions.

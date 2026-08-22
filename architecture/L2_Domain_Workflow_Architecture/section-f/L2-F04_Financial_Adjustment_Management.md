@@ -4,23 +4,23 @@
 
 ## Canonical Section Crosswalk
 
-> Added 2026-08-04 under integrity finding INT-018. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved.
+> Added 2026-08-04 under integrity finding INT-018; **updated 2026-08-21 under ADR-FIN-ADJ-001 and ADR-FIN-ADJ-002**. `governance/constitution/Volume_3_Architecture_Framework.md` section 18 requires every L2 document to define eleven sections. This document uses its own numbered-section convention; the table below maps the required sections to where they actually live. No content was moved except the rows resolved by these amendments.
 
 | Required section (Volume 3 §18) | Location in this document |
 |---|---|
 | Purpose | §1.1 Purpose |
 | Scope | §1.3 Scope; §21.3 Audit Scope; §22.3 Configuration Scope |
-| Actors | — not present — |
+| Actors | §28 Financial Adjustment Actors and Authority Architecture |
 | Entities | §4 Canonical Aggregate; §4.2 Aggregate Ownership; §7.3 Primary Aggregate |
-| Business Rules | Rules / Invariants |
+| Business Rules | Rules / Invariants; §30 Write-Off Approval Authority Amendment |
 | Workflow | Workflows |
 | State Machine | §15 Financial Adjustment State Architecture; §15.3 Canonical Operational States; §15.4 State Transition Architecture |
 | Contracts | §25 Multi-Domain Contracts |
 | Events | §17 Financial Adjustment Event Architecture; §17.3 Event Architecture; §17.4 Canonical Lifecycle Events |
 | Dependencies | §18.4 Upstream Domains |
-| Locked Decisions | — not present — |
+| Locked Decisions | §29 Financial Adjustment Locked Decisions; §30 Write-Off Approval Authority Amendment |
 
-> **Gap:** 2 required section(s) have no counterpart in this document: Actors, Locked Decisions. Recorded, not authored.
+> **Gaps closed:** Actors and Locked Decisions now have canonical counterparts. The Student-Charge write-off authority item formerly recorded as open in §28.4 was resolved on 2026-08-21 under ADR-FIN-ADJ-002; §30 is authoritative where earlier text conflicts.
 
 ---
 
@@ -33,10 +33,11 @@
 | Architecture Level | Level 2 – Domain Architecture |
 | Domain | Finance |
 | Status | Locked |
-| Version | 1.0.0 |
+| Version | 1.1.1 |
 | Document Owner | Finance — Financial Adjustments |
 | Depends On | L2-F00 Finance Foundation, L2-F01 Student Charge & Fee Management, L2-F02 Payment Management, L2-F03 Refund Management |
-| Consumed By | L2-F05 Accounting, L2-F09 Reporting, L2-F12 Analytics |
+| Consumed By | L2-F05 Accounting, L2-F13 Financial Reporting and Analytics, L2-F12 Analytics |
+| Amended By | ADR-FIN-ADJ-001; ADR-FIN-ADJ-002 (2026-08-21) |
 
 ---
 
@@ -590,6 +591,8 @@ Illustrative categories include:
 
 Future categories extend this architecture.
 
+`Reversal Adjustment` and `Correction Adjustment` are canonical categories confirmed under §29.1 (ADR-FIN-ADJ-001) and are not illustrative.
+
 ---
 
 ## 9.5 Classification Architecture
@@ -1075,6 +1078,8 @@ Illustrative references include:
 - Accounting Correlation Reference
 
 Future enterprise identifiers extend this architecture.
+
+`Reversed Adjustment Reference` and `Corrected Adjustment Reference` are canonical reference types confirmed under §29.1 (ADR-FIN-ADJ-001) and are not illustrative.
 
 ---
 
@@ -1586,7 +1591,7 @@ Events communicate completed business facts.
 
 ## 17.4 Canonical Lifecycle Events
 
-Illustrative lifecycle events include:
+**Canonical as of ADR-FIN-ADJ-001 (2026-08-21).** Financial Adjustment Management is the single publisher of every event below; material consumers are listed in §29.2.
 
 - AdjustmentInitiated
 - AdjustmentValidated
@@ -1597,12 +1602,14 @@ Illustrative lifecycle events include:
 - AdjustmentSuspended
 - AdjustmentCancelled
 - AdjustmentArchived
+- AdjustmentReversalPublished — added by ADR-FIN-ADJ-001; see §29.1
+- AdjustmentCorrectionPublished — added by ADR-FIN-ADJ-001; see §29.1
 
 ---
 
 ## 17.5 Integration Events
 
-Illustrative enterprise events include:
+**Canonical as of ADR-FIN-ADJ-001 (2026-08-21).** Financial Adjustment Management is the single publisher of every event below; material consumers are listed in §29.2.
 
 - AdjustmentFinancialPositionUpdated
 - AdjustmentAccountingReadinessConfirmed
@@ -2387,6 +2394,129 @@ Taken together with the Lifecycle stages in Section 14.3 and the Validation laye
 ## Rules / Invariants
 
 Rules are not consolidated under a single "Rules" heading but are expressed as "Architectural Principles" and "Architectural Constraints" distributed per section: Section 6 (Architectural Principles), the per-component principles/constraints in Sections 8–23, and Section 24 (Domain Constraints), which enumerates the mandatory constraints governing adjustment sourcing, categorization, approval participation, validation, lifecycle, and state behaviour.
+
+---
+
+# 28. Financial Adjustment Actors and Authority Architecture
+
+> Added 2026-08-21 under ADR-FIN-ADJ-001. Closes the Actors gap recorded by the Canonical Section Crosswalk since 2026-08-04 (finding INT-018).
+
+## 28.1 Purpose
+
+This section names the business actors who act within the Financial Adjustment Management bounded context. It does not transfer or redefine the ownership boundaries already Locked elsewhere in this document: approval execution remains external to Financial Adjustment Management (§11.1–11.4), and security/audit infrastructure remain externally governed (§20, §21).
+
+## 28.2 Canonical Actors
+
+| Actor | Responsibility | Authority Boundary |
+|---|---|---|
+| Adjustment Requestor | Initiates a Financial Adjustment; supplies source, category, reason, and affected financial-position reference. | Cannot self-approve or self-publish. |
+| Adjustment Reviewer | Recommends an adjustment for enterprise approval after confirming source/category/reason completeness, distinct from the automated Validation layers in §12. | Recommendation only; approval execution remains owned by the enterprise approval capability (Section A / Governance), per §11.4. |
+| Enterprise Approval Authority | Produces the positive/negative approval outcome consumed at the `Pending Approval → Approved` transition. | Owned entirely outside Financial Adjustment Management (§11.1–11.4); named here only so downstream L3 scenarios have a non-invented label to cite. |
+| Adjustment Publisher | Confirms publication readiness and executes the `Approved → Published → Pending Application → Applied` progression (§14.4, §16.5). | Cannot bypass validation (§12.6) or approval (§16.5 Readiness Principle). |
+| Reversal Authority | Confirms the business basis and authorizes a Reversal Adjustment (§29.1) against a Published/Applied original. | Same approval-participation boundary as Adjustment Reviewer/Enterprise Approval Authority — reversal is itself a Financial Adjustment and follows the same approval path, not a separate authority track. |
+| Correction Authority | Confirms an error finding on a Published/Applied adjustment and directs correction via a successor record (§29.1). | Cannot edit or withdraw the erroneous original (§7.7 constraint 4: historical adjustments remain immutable). |
+
+## 28.3 Architectural Principles
+
+### Actor Boundary Principle
+
+Financial Adjustment actors act on the Financial Adjustment aggregate. They do not perform, own, or override enterprise approval execution, security, or audit infrastructure.
+
+### No Self-Certification Principle
+
+The actor that requests or recommends an adjustment is never, by that action alone, the actor whose approval outcome the adjustment consumes.
+
+## 28.4 Student-Charge Write-Off Authority
+
+Resolved under ADR-FIN-ADJ-002 on 2026-08-21. For a Financial Adjustment whose business outcome writes off a canonical Student Charge, the specific Board-approval requirement established by L2-F00 governs as the mandatory instance of the otherwise generic Enterprise Approval Authority. The generic authority model in this document shall not supersede a more specific approved authority rule in a higher-precedence Finance source. Other write-off categories continue to consume the applicable enterprise approval outcome without inheriting the Student-Charge-specific Board requirement unless their owning source explicitly requires it.
+
+---
+
+# 29. Financial Adjustment Locked Decisions
+
+> Added 2026-08-21 under ADR-FIN-ADJ-001. Closes the Locked Decisions gap recorded by the Canonical Section Crosswalk since 2026-08-04 (finding INT-018). Every decision below extends an architectural principle already Locked elsewhere in this document; none introduces a new aggregate or backward lifecycle movement, per §4, §7.7, and §14.5–14.6.
+
+## 29.1 Reversal and Correction Mechanism
+
+Reversal and correction are each represented as an ordinary new Financial Adjustment instance, progressing through the existing canonical lifecycle (§14.3) and existing operational states (§15.3) unchanged. Neither introduces a new state, a new aggregate, or backward movement through the lifecycle. Two extensions carry the distinction, both exercising extensibility this document already grants:
+
+- **New canonical categories** (extending §9.4 per §9.6 Extensibility Principle): `Reversal Adjustment`, `Correction Adjustment`.
+- **New reference types** (extending §13.4 per its own extensibility statement): `Reversed Adjustment Reference`, `Corrected Adjustment Reference` — each an immutable pointer from the new instance back to the original, published Financial Adjustment.
+
+**Reversal:** a new Financial Adjustment, Category = `Reversal Adjustment`, carrying a `Reversed Adjustment Reference` to the original. It progresses through the same `Draft → … → Applied` path as any adjustment. The original's operational state and lifecycle stage are never mutated. This reconciles `L2-F00`'s universal `Reversed` state with this document's forward-only model: `Reversed` is not a state the original transitions into — it is a fact evidenced by the existence of a published Reversal Adjustment referencing it.
+
+**Correction:** a new Financial Adjustment, Category = `Correction Adjustment`, carrying a `Corrected Adjustment Reference` to the erroneous original. No `Superseded` state is added to the original; supersession is evidenced by the successor's reference, consistent with §7.7 constraint 4 and §14.5. The scenario end boundary for a correction is `Published`, matching the boundary pattern used by comparable adjustment scenarios; the successor's own progression to `Applied` follows the standard `Pending Application → Applied` path as a normal continuation, not a separate unresolved boundary.
+
+The following distinctions use only states already declared at §15.3 — no new operational state is introduced:
+
+| Concept | Mechanism | Resulting state of the *original* adjustment | Resulting state of the *new* record (if any) |
+|---|---|---|---|
+| Rejection | Negative approval outcome at `Pending Approval` | Moves to existing `Cancelled` state with evidence reason "Approval Rejected" | None; resubmission is a new Financial Adjustment instance if pursued |
+| Cancellation | Withdrawal by Financial Adjustment Management before `Published` | Moves to existing `Cancelled` state with evidence reason "Withdrawn" | None |
+| Terminal failure | Unrecoverable validation or financial-consistency exception before publication (§23) | Moves to existing `Cancelled` state with evidence reason citing the exception category (§23.3) | None |
+| Correction | New `Correction Adjustment` referencing the original | Unchanged — remains at whatever state/lifecycle it had already reached | New instance follows normal lifecycle to `Published`/`Applied` |
+| Reversal | New `Reversal Adjustment` referencing the original | Unchanged — remains at whatever state/lifecycle it had already reached | New instance follows normal lifecycle to `Published`/`Applied` |
+
+## 29.2 Event Publisher and Consumer Map
+
+Single publisher throughout: Financial Adjustment Management (per §17.6 Ownership Principle).
+
+| Event | Material Consumers (per §18.5) |
+|---|---|
+| AdjustmentInitiated | Reporting, Analytics |
+| AdjustmentValidated | Reporting, Analytics |
+| AdjustmentApproved | Reporting, Analytics, Notification |
+| AdjustmentPublicationCompleted | Accounting, Reporting, Analytics, Notification, Bank Reconciliation |
+| AdjustmentApplicationCompleted | Accounting, Reporting, Analytics |
+| AdjustmentCompleted | Reporting, Analytics |
+| AdjustmentSuspended | Reporting, Notification |
+| AdjustmentCancelled | Reporting, Notification |
+| AdjustmentArchived | Reporting |
+| AdjustmentFinancialPositionUpdated | Accounting, Bank Reconciliation |
+| AdjustmentAccountingReadinessConfirmed | Accounting |
+| AdjustmentLifecycleStateChanged | Reporting, Analytics |
+| AdjustmentStateTransitioned | Reporting, Analytics |
+| AdjustmentReversalPublished | Accounting, Reporting, Analytics, Notification, Bank Reconciliation |
+| AdjustmentCorrectionPublished | Accounting, Reporting, Analytics, Notification |
+
+## 29.3 Business Recovery Rules
+
+| Situation | Rule | Grounding |
+|---|---|---|
+| Duplicate adjustment | Before publication, Financial Adjustment Management verifies no other adjustment shares the same Source + Category + Reason + affected Financial Position Reference within a governed detection window; a match is contained pre-publication and routed to the Requestor for confirmation or withdrawal (`Cancelled`) — never silently rejected. | Extends §6 Deterministic Processing Principle and §12 Validation layers |
+| Rejected approval | `Cancelled` with evidence reason "Approval Rejected"; resubmission only as a new instance, never resurrection of the rejected one. | §7.7 constraint 4 (immutability); §15.5 Deterministic Transition Principle |
+| Uncertain approval/application outcome | The adjustment is held at its current state (`Pending Approval` / `Pending Application`) with no automatic transition until the same authority that owns that stage resolves the uncertainty. | §6 Deterministic Processing Principle — never guess an outcome |
+| Partial application | Not permitted. Application is atomic: an adjustment applies fully to the financial position or remains contained in `Pending Application`. | §6 Deterministic Processing Principle; §16.6 constraint 5 |
+
+## 29.4 Cross-Domain Hand-off Contract
+
+Upstream context (§18.4) is captured at Adjustment initiation and is not re-fetched or re-validated at publication or application time. If an upstream fact changes after a Financial Adjustment is created, it does not retroactively alter the created adjustment, preserving §7.7 immutability. Any required consequence is handled as a new Correction or Reversal Adjustment (§29.1), referencing the original. The hand-off is asynchronous and one-directional by construction; no synchronous cross-domain contract is introduced, consistent with §18.6 Loose Coupling Principle.
+
+## 29.5 Architectural Constraints
+
+1. Reversal and Correction shall never mutate the operational state or lifecycle stage of the original Financial Adjustment.
+2. Reversal and Correction shall always carry an immutable reference to the original Financial Adjustment.
+3. No Financial Adjustment operational state beyond those listed in §15.3 shall be introduced to represent reversal or correction.
+4. `Reversal Adjustment` and `Correction Adjustment` are canonical categories under §9.4's Extensibility Principle; they are not illustrative.
+5. `Reversed Adjustment Reference` and `Corrected Adjustment Reference` are canonical reference types under §13.4; they are not illustrative.
+
+---
+
+# 30. Write-Off Approval Authority Amendment — ADR-FIN-ADJ-002
+
+**Status:** Approved and incorporated 2026-08-21. This section supersedes the former open-item treatment of Student-Charge write-off authority and any interpretation of §11 or §28 that would allow the generic Enterprise Approval Authority to override a more specific approved Finance authority rule.
+
+## 30.1 Canonical Rule
+
+1. Approval execution remains externally governed; Financial Adjustment Management consumes the approval outcome.
+2. Where a higher-precedence or more specific approved Finance rule names a mandatory authority for a particular adjustment class, that rule governs the authority instance consumed by Financial Adjustment Management.
+3. For **Student-Charge write-off**, L2-F00's specific **Board approval** requirement is mandatory.
+4. The Board requirement is scoped to Student-Charge write-off and does not automatically extend to unrelated write-off categories.
+5. No ownership transfer occurs: Student Charge remains owned by its canonical Finance source; Financial Adjustment Management owns the adjustment; Enterprise Governance owns approval execution.
+
+## 30.2 Downstream Effect
+
+L3-F-022 may now state Board approval as the required approval authority for the Student-Charge write-off path without inventing architecture. Other write-off scenarios shall cite the authority rule of their own canonical source when one exists.
 
 ---
 
