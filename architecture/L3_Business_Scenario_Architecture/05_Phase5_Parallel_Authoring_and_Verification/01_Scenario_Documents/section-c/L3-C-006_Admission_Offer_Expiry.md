@@ -9,9 +9,9 @@
 **Priority:** P1  
 **Status:** Draft  
 **Author:** Varad  
-**Version:** 1.0  
+**Version:** 1.1  
 **Last Updated:** 2026-08-22  
-**Applicable L2 Source:** Locked L2-C01 — Admissions Workflows  
+**Applicable L2 Source:** Locked L2-C01 — Admissions Workflows, as amended by `L2-C01_Admissions_Workflows_Amendment_2026-08-22.md` under `ADR-STU-ADM-EXP-001`  
 
 ## 1. Scenario Metadata
 
@@ -30,28 +30,28 @@ Frozen identity fields are preserved without reclassification.
 
 ## 2. Scenario Purpose
 
-Govern the institutional expiry of an Admission Offer when required actions are not completed within the configured validity period, while preserving Admission ownership, immutable history, and the distinction between Expiry and other terminal Admission outcomes.
+Govern the institutional expiry of an Admission Offer when required actions are not completed within the configured validity period, while preserving Admissions ownership, immutable history, and the distinction between Expiry and other terminal Admission outcomes.
 
 ## 3. Business Outcome
 
-The Admission Record reaches the locked L2-C01 terminal state `Expired` under configurable institutional policy, its history remains preserved, and the canonical expiry fact is represented by `AdmissionExpired` where the upstream event contract applies.
+The Admission Record follows the approved canonical transition `Admission Initiated → Expired`, reaches the terminal state `Expired` under configurable institutional policy, its history remains preserved, and Admissions publishes the canonical event `AdmissionExpired` after the expiry outcome is conclusively established.
 
-C006 does not determine a local validity period or invent a missing canonical lifecycle transition.
+C006 does not determine a local validity period or redefine the upstream lifecycle.
 
 ## 4. Scenario Boundary and Scope
 
 ### 4.1 Start Boundary
-An Admission Offer exists and the configured validity condition applicable to that offer reaches its expiry point without the required action being completed.
+An Admission Offer exists in the `Admission Initiated` lifecycle position and the configured validity condition applicable to that offer reaches its expiry point without the required action being completed.
 
 ### 4.2 End Boundary
-The scenario ends when the Admission is authoritatively recorded as `Expired`, the historical outcome is preserved, and the applicable canonical expiry event is published according to the locked Admissions event architecture.
+The scenario ends when the Admission is authoritatively recorded as `Expired`, the historical outcome is preserved, and `AdmissionExpired` is published by Admissions.
 
 ### 4.3 In Scope
 - Evaluate the configured offer-validity condition.
 - Establish Admission Offer Expiry.
+- Apply `Admission Initiated → Expired`.
 - Preserve Admission history.
-- Maintain the terminal `Expired` outcome.
-- Apply the canonical `AdmissionExpired` business fact where the event contract is applicable.
+- Publish `AdmissionExpired`.
 
 ### 4.4 Out of Scope
 - Admission cancellation, withdrawal, or revocation.
@@ -67,7 +67,7 @@ Expiry must remain distinct from `Cancelled`, `Withdrawn`, and `Revoked`; those 
 
 | Domain | Responsibility |
 |---|---|
-| C — Admissions | Canonical owner of Admission Record, Admission lifecycle/status, expiry business determination, and Admission-domain events. |
+| C — Admissions | Canonical owner of Admission Record, Admission lifecycle/status, expiry business determination, and `AdmissionExpired`. |
 
 No additional participating domain is introduced. Any downstream consumer of `AdmissionExpired` retains ownership of its own consequences.
 
@@ -76,12 +76,12 @@ No additional participating domain is introduced. Any downstream consumer of `Ad
 | Business Actor / Role | Responsibility | Authority |
 |---|---|---|
 | Admissions | Evaluates the configured expiry condition and establishes the canonical Admission outcome. | Canonical owner. |
-| Applicant | Is the subject/counterparty of the Admission Offer. | No expiry decision authority is invented. |
-| Applicable institutional admission authority | Governs institutional policy where required. | Exact human-role title is not invented where L2-C01 leaves authority configuration-driven. |
+| Applicant | Is the subject/counterparty of the Admission Offer. | No expiry decision authority. |
+| Applicable institutional admission authority | Governs institutional expiry policy where required. | Exact human-role title remains institution-configured where upstream architecture does not fix one. |
 
 ## 7. Preconditions and Entry Criteria
 
-- Admission Record exists.
+- Admission Record exists in `Admission Initiated`.
 - Admission Offer is governed by an applicable configured validity period/policy.
 - Required actions have not been completed within that validity condition.
 - Admission has not already reached a contradictory terminal outcome.
@@ -101,9 +101,9 @@ The trigger is a business condition; technical timing implementation remains out
 | 1 | Identify the Admission Offer subject to expiry evaluation. | Admissions | Relevant Admission established. |
 | 2 | Evaluate the configured validity condition. | Admissions | Expiry eligibility established or rejected. |
 | 3 | Confirm no conflicting terminal outcome already governs the Admission. | Admissions | Lifecycle integrity preserved. |
-| 4 | Establish the `Expired` Admission outcome under the authoritative lifecycle. | Admissions | Admission becomes terminally expired, subject to the upstream transition clarification in Section 17. |
+| 4 | Apply the canonical transition `Admission Initiated → Expired`. | Admissions | Admission reaches terminal `Expired`. |
 | 5 | Preserve the Admission history and material evidence. | Admissions | Institutional history remains immutable. |
-| 6 | Publish `AdmissionExpired` where the locked event contract applies. | Admissions | Downstream authorized consumers may respond. |
+| 6 | Publish `AdmissionExpired`. | Admissions | Downstream authorized consumers may respond. |
 
 ## 10. Alternate Business Flows
 
@@ -120,15 +120,15 @@ The trigger is a business condition; technical timing implementation remains out
 |---|---|
 | Applicable validity policy cannot be established | Do not determine expiry until the authoritative policy is available. |
 | Conflicting terminal outcome exists | Preserve the existing terminal state. |
-| Upstream transition definition is ambiguous | Do not invent a transition; retain the matter in Section 17 pending upstream clarification. |
-| Downstream consequence is required | Owning downstream domain determines its own response after the completed Admission fact. |
+| Downstream consequence is required | Owning downstream domain determines its own response after `AdmissionExpired`. |
 
 No technical retry/rollback/timer/infrastructure recovery is introduced.
 
 ## 12. Business Rules and Decision Constraints
 
-- Admissions is the sole owner of the Admission lifecycle.
-- `Expired` is a terminal Admission state in locked L2-C01.
+- Admissions is the sole owner of the Admission lifecycle and publisher of `AdmissionExpired`.
+- `Admission Initiated → Expired` is the approved canonical expiry transition under `ADR-STU-ADM-EXP-001`.
+- `Expired` is a terminal Admission state.
 - Expiry occurs because required actions were not completed within a configured validity period.
 - Expiry is configuration-driven; L3 must not hard-code institutional policy.
 - Admission history is immutable and preserved.
@@ -137,26 +137,26 @@ No technical retry/rollback/timer/infrastructure recovery is introduced.
 
 ## 13. State and Lifecycle Impact
 
-| Concept | Upstream State Semantics | Owner |
+| Concept | Canonical State Semantics | Owner |
 |---|---|---|
-| Admission Record | `Expired` is an alternate terminal state. | Admissions |
+| Admission Record | `Admission Initiated → Expired`; `Expired` is terminal. | Admissions |
 | Historical Admission | Remains immutable/closed after expiry. | Admissions |
 
-Locked L2-C01 §6.9 identifies `Admission Initiated → Expired` as an allowed transition, while §6.9.1—the later matrix labelled canonical—does not list an expiry transition. L3 does not silently choose between those conflicting upstream statements.
+The prior L2-C01 matrix inconsistency is resolved by the locked 2026-08-22 amendment; this scenario consumes that amendment and does not independently reinterpret the lifecycle.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-| Business Event | Canonical Domain / Publisher | Purpose |
+| Business Event | Canonical Publisher | Purpose |
 |---|---|---|
-| `AdmissionExpired` | Admissions | Represents the completed Admission expiry fact and is listed by locked L2-C01 among Admission lifecycle/domain events and downstream Notification-consumed facts. |
+| `AdmissionExpired` | Admissions | Represents the conclusively established Admission expiry fact. |
 
-The exact event contract detail promised later in L2-C01 is not relied upon here beyond the upstream-established event name/domain ownership. No payload, transport, API, or technical contract is introduced.
+No payload, transport, API, or technical contract is introduced.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-- Expiry follows configuration-driven Admission policy.
+- Expiry follows configuration-driven Admissions policy.
 - No fixed human authority or universal approval step is invented.
-- Historical Admission evidence must remain preserved and auditable under L2-C01 lifecycle principles.
+- Historical Admission evidence must remain preserved and auditable.
 - L3 does not define technical IAM/RBAC controls.
 
 ## 16. Completion Criteria and Postconditions
@@ -165,28 +165,27 @@ C006 is complete when:
 
 - the authoritative configured expiry condition is satisfied;
 - no contradictory terminal outcome governs the Admission;
-- the Admission is recorded as `Expired` under the clarified canonical lifecycle;
+- `Admission Initiated → Expired` is applied;
 - historical evidence is preserved; and
-- `AdmissionExpired` is published where the upstream event contract applies.
+- Admissions publishes `AdmissionExpired`.
 
 The existing Admission Record remains terminal and immutable; any later readmission is a separate governed outcome/new record.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
-**OI-C006-01 — UPSTREAM LOCKED-DOCUMENT CONFLICT:** L2-C01 §6.9 permits `Admission Initiated → Expired`, while §6.9.1 is explicitly labelled the canonical lifecycle transition matrix and omits any transition to `Expired`, despite `Expired` being defined as a terminal state elsewhere in the same locked document. The authoritative transition must be clarified upstream before C006 is Architecture Approved/Locked.
+**Open Issues:** None for the previously identified Admission expiry lifecycle conflict. It is resolved by `ADR-STU-ADM-EXP-001` and the locked L2-C01 amendment effective 2026-08-22.
 
-**OI-C006-02 — EVENT DETAIL:** L2-C01 lists `AdmissionExpired` among Admission domain/lifecycle events and as a downstream-consumed fact, but the retrieved locked document does not expose a dedicated detailed `AdmissionExpired` event-definition subsection matching the promise that these events are formally defined later. L3 therefore preserves the established event name/domain but does not invent missing event-detail semantics.
+**Assumption:** Expiry validity remains configuration-driven exactly as established by upstream architecture; C006 does not establish the institution-specific period.
 
-**Assumption:** Expiry validity remains configuration-driven exactly as stated in locked L2-C01; C006 does not establish the institution-specific period.
+**Deferred:** Implementation scheduling, notification delivery, and technical enforcement belong to later architecture levels.
 
 ## Production Verification Record
 
 - Frozen L3 identity preserved.
-- Complete locked L2-C01 source re-read; stale “source not retrieved” caveat removed.
-- `Expired` terminal state and configuration-driven expiry rule preserved.
-- `AdmissionExpired` upstream event name preserved.
-- Internal L2-C01 transition inconsistency explicitly escalated rather than silently resolved.
-- No deadline, actor, event detail, or transition invented locally.
-- Transient session citations removed; stable L2-C01 section references used.
+- Locked L2-C01 amendment consumed.
+- `Admission Initiated → Expired`, terminal `Expired`, and `AdmissionExpired` aligned to the approved upstream decision.
+- Admissions ownership preserved.
+- No deadline, actor, technical mechanism, or duplicate event invented locally.
+- Stable repository traceability used.
 - All 17 mandatory sections present.
-- Status remains **Draft** pending upstream clarification and architecture review.
+- Status remains **Draft** pending normal L3 architecture review.
