@@ -6,207 +6,250 @@
 **Participating Domains:** C, I  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Derivation:** KEEP  
 **Status:** Draft  
-**Author:** Varad  
-**Version:** 1.2  
+**Version:** 1.3  
+**Owner:** Varad  
 **Last Updated:** 2026-08-23  
-**Exact Filename:** `L3-C-027_Student_Academic_Progression_Decision.md`  
-**Applicable L2:** `L2-C04_Student_Academic_Progression_Workflows.md` as amended by `L2-C04_Student_Academic_Progression_Workflows_Amendment_2026-08-22.md` under `ADR-STU-PROG-EVT-001`
+**Depends On:** `L2-C04_Student_Academic_Progression_Workflows.md`; `L2-C04_Student_Academic_Progression_Workflows_Amendment_2026-08-22.md` under `ADR-STU-PROG-EVT-001`  
+**Referenced By:** None yet
 
 ## 1. Scenario Metadata
 
-| Attribute | Value |
-|---|---|
-| Final L3 ID | `L3-C-027` |
-| Canonical Title | Student Academic Progression Decision |
-| Primary Owner | Academic Progression |
-| Participating Domains | C, I |
-| Scenario Type | Critical |
-| Priority | P0 |
-| Derivation | KEEP |
-| Assigned Author | Varad |
-| Status | Draft |
+Frozen Stage 3/4 identity is preserved: `L3-C-027`, **Student Academic Progression Decision**, Primary Owner **Academic Progression**, Participating Domains **C, I**, Scenario Type **Critical**, Priority **P0**.
 
-Frozen Stage 3/4 identity is preserved. The 2026-08-22 L2-C04 amendment changes only canonical event vocabulary; it does not reclassify this scenario.
+The locked 2026-08-22 amendment changes canonical event vocabulary only; it does not reclassify this scenario.
 
 ## 2. Scenario Purpose
 
-Govern the institution's authoritative decision on whether a Student progresses academically after an evaluation cycle. Academic Progression owns the progression decision and Academic Standing. Examination provides officially published academic outcomes without acquiring progression ownership.
+Govern the institution's authoritative academic progression decision after an evaluation cycle using officially published academic evidence and an approved progression policy.
+
+Academic Progression owns the progression decision and Academic Standing. Examination owns and publishes examination outcomes used as authoritative inputs.
 
 ## 3. Business Outcome
 
-One authoritative, policy-governed progression decision exists for the Student and evaluation cycle. Applicable outcomes are:
+One authoritative, policy-governed progression decision is established for the Student and evaluation cycle. Applicable outcomes are:
 
-- Progressed;
-- Conditional Progression;
-- Academic Probation;
-- Detained; or
-- Qualification Eligible where programme-completion requirements are satisfied.
+- `Progressed`;
+- `Conditional Progression`;
+- `Academic Probation`;
+- `Detained`; or
+- `Qualification Eligible` where programme-completion requirements are satisfied.
 
-The outcome is reproducible from approved policy and authoritative evidence and remains auditable.
+The decision remains reproducible and auditable from the governing policy and authoritative academic evidence.
 
 ## 4. Scenario Boundary and Scope
 
 ### 4.1 Start Boundary
-The scenario starts when an authoritative progression-evaluation trigger occurs, including officially published examination results, an evaluation window, permitted manual institutional evaluation, approved re-evaluation, governed appeal outcome, or supplementary result publication.
+
+The scenario starts when an authoritative progression-evaluation trigger occurs, including `ExaminationResultPublished`, a permitted evaluation window, governed manual evaluation, approved re-evaluation, appeal outcome, or supplementary result publication.
 
 ### 4.2 End Boundary
-The scenario ends when the authoritative progression decision/state is established and applicable canonical Academic Progression event(s) are published. Qualification Eligible hands control to Qualification Completion & Student Exit.
+
+The scenario ends when the authoritative progression decision and applicable owned lifecycle state are established, required approval has been satisfied where applicable, and the canonical progression event(s) are published.
+
+Qualification eligibility hands control to Qualification Completion & Student Exit.
 
 ### 4.3 In Scope
-- Validate authoritative academic inputs.
-- Evaluate earned credits and progression eligibility.
+
+- Validate authoritative Student, registration, curriculum and examination context.
 - Apply one approved progression policy.
+- Evaluate earned credits and progression eligibility.
 - Determine Academic Standing and progression outcome.
-- Establish conditional promotion, probation or detention where applicable.
-- Apply any institutionally required approval only to the extent established by upstream architecture.
-- Publish canonical progression outcomes.
-- Preserve audit evidence.
+- Perform upstream-supported review/approval where required.
+- Publish exact canonical progression events.
+- Preserve decision and evidence traceability.
 
 ### 4.4 Out of Scope
-- Examination evaluation/result creation.
+
+- Examination evaluation or result creation.
 - Academic Registration creation/modification.
 - Curriculum ownership.
 - Finance clearance ownership.
 - Qualification conferment.
-- Institution-specific approval-role naming or routing not established upstream.
-- Technical policy engines, APIs, databases, queues, UI or infrastructure.
+- Institution-specific technical routing or technical RBAC/IAM design.
+- APIs, databases, queues, UI, services, deployment or infrastructure.
 
 ## 5. Ownership and Participating Domains
 
-| Domain | Responsibility | Ownership Boundary |
-|---|---|---|
-| Academic Progression | Evaluates academic evidence and establishes progression and Academic Standing. | Canonical owner. |
-| Student Lifecycle (C) | Provides/consumes Student context and consequences where required. | Does not independently promote, place on probation, or detain. |
-| Examination (I) | Supplies officially published examination outcomes. | Retains examination/result ownership. |
+| Domain / Section | Responsibility in Scenario |
+|---|---|
+| Academic Progression / Section C | Owns progression evaluation, progression decision, Academic Standing outcome and canonical progression publications. |
+| Examination / Section I | Owns and publishes official examination outcomes consumed as progression evidence. |
+| Student Lifecycle / Section C | Provides authoritative Student lifecycle context and consumes applicable progression consequences without owning the progression decision. |
+
+Participation does not transfer ownership of examination results or progression decisions.
 
 ## 6. Business Actors, Roles and Responsibilities
 
-| Actor / Role | Responsibility | Authority Boundary |
+| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Academic Progression | Performs progression evaluation, applies the approved progression policy, establishes the progression decision, and records the authoritative outcome. | Sole progression-decision owner; does not invent institution-specific approval roles. |
-| Examination | Publishes authoritative examination outcomes. | Does not make progression decisions. |
-| Student Lifecycle | Consumes progression consequences. | No progression-decision authority. |
+| Programme Coordinator | Reviews progression cases and may execute/approve progression actions allowed by the L2-C04 permission model. | Review / permitted progression decision participation. |
+| Department Administrator | Initiates authorized progression workflows and may execute/approve progression actions permitted upstream. | Initiates / performs / approves within configured policy. |
+| Controller of Examination | Publishes authoritative examination outcomes used as progression inputs. | Supplies official examination evidence; no progression-decision ownership. |
+| Dean | Approves exceptional progression decisions where the governing institutional process requires it. | Exception approval only where applicable. |
+| Registrar | Authorizes institutional progression decisions and may perform progression capabilities permitted by L2-C04. | Institutional progression authority. |
+| Academic Council | Approves policy exceptions and participates in authorized manual-override governance where applicable. | Policy-exception / override authority. |
 
-Where institutional approval is required by upstream policy, this scenario recognizes the approval obligation but does not name a role that the authoritative L2 architecture has not canonically established. The unresolved institution-specific approval role/routing remains recorded in Section 17.
+Actual permissions and routing remain configurable institutional policy as stated by L2-C04. This scenario uses only roles already established upstream.
 
 ## 7. Preconditions and Entry Criteria
 
-- Student is Active where required by the governing workflow.
-- Academic Registration is complete.
-- Applicable examination outcomes are officially published.
-- Curriculum and academic requirements are available.
-- One approved progression policy is active.
-- Academic calendar permits evaluation.
+- The Student has the lifecycle status required by the governing progression workflow.
+- Academic Registration for the relevant period is complete where required.
+- Official examination outcomes required for the decision are published.
+- Applicable curriculum requirements and academic context are available.
+- One approved progression policy is active for the evaluation.
+- Any required academic-calendar condition is satisfied.
 
 ## 8. Trigger
 
-An authoritative progression-evaluation business trigger occurs. Only authoritative business facts may initiate the evaluation; implementation mechanisms are outside L3.
+An authoritative progression-evaluation condition occurs, most commonly `ExaminationResultPublished`; governed re-evaluation and supplementary-result paths use the exact upstream examination events applicable to those cases.
 
 ## 9. Main Business Flow
 
-| Step | Business Behaviour | Owner | Result |
+| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Confirm the Student and completed registration context. | Academic Progression consuming authoritative context | Evaluation context established. |
-| 2 | Collect officially published academic outcomes. | Examination supplies; Academic Progression consumes | Authoritative evidence established. |
-| 3 | Identify curriculum requirements and the active approved progression policy. | Academic Progression using authoritative sources | Governing criteria established. |
-| 4 | Evaluate earned credits and progression eligibility. | Academic Progression | Eligibility established. |
-| 5 | Determine Academic Standing and progression outcome under the approved policy. | Academic Progression | Authoritative decision established. |
-| 6 | Where upstream policy requires an institutional approval, satisfy that approval obligation without assigning a non-canonical role at L3. | Academic Progression / upstream-governed approval context | Required approval condition is satisfied or the scenario remains incomplete. |
-| 7 | Record the decision with policy/evidence traceability. | Academic Progression | Auditable decision preserved. |
-| 8 | Publish the applicable canonical progression event(s). | Academic Progression | Downstream consumers can respond. |
+| 1 | Confirm the Student and completed registration context required for evaluation. | Academic Progression | Evaluation context is established. |
+| 2 | Consume officially published examination evidence. | Controller of Examination / Examination supplies; Academic Progression consumes | Authoritative academic evidence is established. |
+| 3 | Identify applicable curriculum requirements and the approved progression policy. | Academic Progression | Governing criteria are established. |
+| 4 | Evaluate earned credits and progression eligibility. | Programme Coordinator / Department Administrator / Academic Progression as permitted upstream | Evaluation result is established. |
+| 5 | Determine Academic Standing and the progression outcome under the approved policy. | Academic Progression | Authoritative progression outcome is established. |
+| 6 | Obtain the applicable upstream-supported review or authorization where required by policy. | Programme Coordinator / Department Administrator / Dean / Registrar / Academic Council as applicable | Required institutional authority is satisfied. |
+| 7 | Preserve the decision with policy and evidence traceability. | Academic Progression | Auditable progression history is established. |
+| 8 | Publish the exact canonical progression event(s) for the actual outcome. | Academic Progression | Downstream consumers can respond to the completed business fact. |
 
 ## 10. Alternate Business Flows
 
-| Outcome | Business Path |
-|---|---|
-| Progressed | Establish Progressed and publish `StudentProgressed`. |
-| Conditional Progression | Establish Conditional Progression and publish `ConditionalPromotionGranted`. |
-| Academic Probation | Establish Academic Probation and publish `AcademicProbationAssigned`. |
-| Detained | Establish Detained and publish `AcademicDetentionApplied`. |
-| Qualification Eligible | Establish qualification eligibility and publish the applicable qualification-eligibility outcome before handing control to L2-C05. |
-| Re-evaluation / supplementary outcome | Perform a fresh evaluation where policy permits; preserve historical decisions. |
+| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
+|---|---|---|---|---|
+| Conditional progression | Policy permits progression subject to conditions. | Establish `Conditional Progression` and complete the required upstream approval. | Publish `ConditionalPromotionGranted`. | Academic Progression |
+| Academic probation | Governing policy requires probation. | Establish the Academic Probation lifecycle outcome under its canonical aggregate. | Publish `AcademicProbationAssigned`. | Academic Progression |
+| Academic detention | Governing policy requires detention. | Establish the Detained lifecycle outcome under its canonical aggregate after required approval. | Publish `AcademicDetentionApplied`. | Academic Progression |
+| Qualification eligibility | Programme-completion requirements are satisfied. | Establish `Qualification Eligible`. | Publish `QualificationEligibilityUpdated` and hand control to L2-C05. | Academic Progression |
+| Re-evaluation / supplementary result | Authoritative evidence changes under a governed re-evaluation or supplementary path. | Perform a fresh progression evaluation; preserve historical decisions. | A new authoritative progression decision is established. | Academic Progression |
 
 ## 11. Failure, Interruption and Business Recovery
 
-| Condition | Resolution |
-|---|---|
-| Official examination outcome unavailable | Progression remains unresolved until Examination publishes authoritative evidence. |
-| Mandatory academic data incomplete | Resolve the missing authoritative information before completion. |
-| No active approved progression policy | Do not establish an authoritative decision. |
-| Required upstream approval is not satisfied | Do not finalize the progression outcome until the applicable upstream-governed approval obligation is satisfied. |
-| Student/registration precondition not satisfied | Resolve through the canonical owning Student Lifecycle/Registration workflow. |
-| Re-evaluation changes authoritative evidence | Create a fresh progression evaluation where policy permits; do not mutate history. |
-
-No technical retry or infrastructure recovery is defined.
+| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
+|---|---|---|---|
+| Official examination outcome unavailable | Authoritative progression cannot complete. | Wait for the applicable Examination-owned published outcome. | Examination / Academic Progression boundary |
+| Mandatory academic data incomplete | Evaluation cannot complete. | Resolve the missing authoritative information through its owning domain. | Relevant owner / Academic Progression |
+| No approved progression policy is active | No authoritative decision may be established. | Resolve the policy-governance dependency before completion. | Policy governance / Academic Progression |
+| Required institutional approval is not satisfied | Progression outcome cannot be finalized where approval is mandatory. | Obtain approval through an upstream-supported authorized role. | Academic Progression |
+| Student/registration precondition is not satisfied | Evaluation cannot proceed normally. | Resolve through the canonical Student Lifecycle / Academic Registration workflow. | Owning Section C domain |
+| Re-evaluation changes authoritative evidence | Prior history must not be overwritten. | Create a fresh governed progression evaluation. | Academic Progression |
 
 ## 12. Business Rules and Decision Constraints
 
-- Only officially published examination results participate in authoritative progression evaluation.
-- Exactly one approved institutional progression policy applies to an evaluation.
-- Mandatory academic evidence must be complete.
-- Historical progression decisions are immutable.
-- Only successfully earned and institutionally approved credits contribute as defined by upstream rules.
-- Every active Student has the applicable authoritative Academic Standing.
-- Manual overrides require authorized institutional approval and audit evidence where the upstream architecture requires such approval.
-
-These rules remain upstream-owned; L3 applies but does not re-own them.
+| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
+|---|---|---|---|
+| Only officially published examination outcomes may drive authoritative progression. | Academic Progression consuming Examination facts | Draft/provisional/unpublished results cannot produce the final decision. | L2-C04 AP-02; §2.8 |
+| Every progression decision references an approved institutional progression policy. | Academic Progression / unresolved Policy Management dependency | Decision cannot complete without a governing policy. | L2-C04 AP-01; §2.8 |
+| Historical progression decisions are preserved and not overwritten. | Academic Progression | Re-evaluation produces new governed history rather than mutation. | L2-C04 §2.8 |
+| Academic standing changes are auditable. | Academic Progression | Decision/evidence history must be preserved. | L2-C04 AP-06; §2.8 |
+| Manual overrides require authorized institutional approval and complete audit history. | Academic Progression | Override cases require Registrar / Academic Council authority as defined upstream. | L2-C04 §9.12; §11.5 |
+| Downstream domains do not independently promote, place on probation, or detain a Student. | Academic Progression | Progression ownership remains singular. | L2-C04 AP-03 |
 
 ## 13. State and Lifecycle Impact
 
-The governing C04 lifecycle remains:
+| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
+|---|---|---|---|---|---|
+| Academic Progression | `Created`, `Awaiting Evaluation` | Govern the Student into active evaluation and, where applicable, the final progressed/qualification-eligible position. | `Awaiting Evaluation`, `Progressed`, or later `Qualification Eligible` as governed | Academic Progression | L2-C04 §4.4, §4.6 |
+| Progression Evaluation | `Awaiting Evaluation` | Execute the policy-driven progression evaluation. | `Evaluation Running` | Progression Evaluation | L2-C04 §4.4, §4.6 |
+| Academic Progression | `Evaluation Running` | Establish conditional progression where policy permits. | `Conditional Progression` | Academic Progression | L2-C04 §4.4, §4.6 |
+| Academic Probation | `Evaluation Running` | Establish probation outcome where policy requires it. | `Academic Probation` | Academic Probation | L2-C04 §4.4, §4.6 |
+| Academic Detention | `Evaluation Running` | Establish detention outcome where policy requires it. | `Detained` | Academic Detention | L2-C04 §4.4, §4.6 |
 
-`Created → Awaiting Evaluation → Evaluation Running → {Progressed | Conditional Progression | Academic Probation | Detained}`
-
-Further governed transitions include Conditional Progression to Progressed or Academic Probation, Academic Probation to Progressed or Detained, Detained to Evaluation Running after approved appeal where applicable, Detained to Progressed after governed requirements completion, and Progressed to Qualification Eligible when programme-completion requirements are satisfied.
-
-No new lifecycle state is introduced.
+No lifecycle ownership is transferred or collapsed by this L3 scenario.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-| Business Outcome / Input | Canonical Event | Canonical Publisher |
-|---|---|---|
-| Evaluation completed | `ProgressionEvaluated` | Academic Progression |
-| Student progressed | `StudentProgressed` | Academic Progression |
-| Conditional promotion approved | `ConditionalPromotionGranted` | Academic Progression |
-| Academic probation assigned | `AcademicProbationAssigned` | Academic Progression |
-| Academic detention finalized | `AcademicDetentionApplied` | Academic Progression |
-| Qualification eligibility updated | `QualificationEligibilityUpdated` | Academic Progression |
-| Official examination result | Applicable Examination-owned published result event | Examination |
+### 14.1 Published / Consumed Business Events
 
-`ADR-STU-PROG-EVT-001` supersedes `StudentConditionallyProgressed`, `StudentPlacedOnProbation`, `StudentOnProbation`, and `StudentDetained` as canonical publication names. They are not parallel business events.
+| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
+|---|---|---|---|---|
+| `ExaminationResultPublished` | Examination | Academic Progression | Primary authoritative trigger/input for progression evaluation. | L2-C04 §7.3 / §23.3 |
+| `RevaluationResultPublished` | Examination | Academic Progression | Recalculate progression after governed revaluation where this L2 event form applies. | L2-C04 §7.3 |
+| `SupplementaryResultPublished` | Examination | Academic Progression | Recalculate progression after supplementary result publication. | L2-C04 §7.3 |
+| `ProgressionEvaluated` | Academic Progression | Interested downstream domains | Evaluation completed. | L2-C04 event architecture |
+| `StudentProgressed` | Academic Progression | Downstream consumers | Student progressed. | L2-C04 event architecture |
+| `ConditionalPromotionGranted` | Academic Progression | Downstream consumers | Conditional promotion approved. | Locked L2-C04 amendment `ADR-STU-PROG-EVT-001` |
+| `AcademicProbationAssigned` | Academic Progression | Downstream consumers | Academic probation assigned. | Locked L2-C04 amendment `ADR-STU-PROG-EVT-001` |
+| `AcademicDetentionApplied` | Academic Progression | Downstream consumers | Academic detention finalized. | Locked L2-C04 amendment `ADR-STU-PROG-EVT-001` |
+| `QualificationEligibilityUpdated` | Academic Progression | Qualification Completion & Student Exit | Qualification eligibility updated. | L2-C04 existing event semantics |
+
+L2-C04 also contains `AssessmentRevaluationCompleted` in a separate consumed-event catalogue for re-evaluation. Because the source uses both `RevaluationResultPublished` and `AssessmentRevaluationCompleted`, this scenario does not declare them synonyms; see `OI-C027-03`.
+
+### 14.2 Business Contracts and Cross-Domain Hand-offs
+
+| Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
+|---|---|---|---|---|
+| Examination | Academic Progression | Official published examination outcome | Supply authoritative academic evidence without transferring Examination ownership. | L2-C04 domain inputs / event architecture |
+| Academic Progression | Qualification Completion & Student Exit | Qualification-eligibility outcome | Hand off a completed eligibility decision for downstream completion processing. | L2-C04 / L2-C05 boundary |
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-Progression decisions must remain policy-driven, reproducible and auditable. Where upstream policy requires institutional approval or authorizes manual intervention, the obligation must be satisfied and auditable; L3 does not invent the approving role or routing where upstream architecture has not canonically defined it. Historical decisions and the policy/evidence basis remain preserved. No technical IAM/RBAC design is introduced.
+### 15.1 Initiation and Decision Authority
+
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| Review progression cases | Programme Coordinator | Permitted progression-review participation. | Academic Progression |
+| Initiate / execute authorized progression workflow | Department Administrator | Permitted by L2-C04 role/permission architecture and institutional policy. | Academic Progression |
+| Authorize institutional progression decision | Registrar | Canonical institutional progression authorization role in L2-C04. | Academic Progression |
+| Approve exceptional progression decision | Dean | Applies to governed exceptional decisions. | Academic Progression |
+| Approve policy exception / authorized manual override | Academic Council | Applies where policy exception or override governance requires it. | Academic Progression |
+| Publish examination inputs | Controller of Examination | Publishes examination-owned authoritative outcomes; cannot decide progression. | Examination |
+
+### 15.2 Separation of Duties, Overrides and Exceptions
+
+| Obligation | Business Roles / Authorities Involved | Constraint / Required Handling |
+|---|---|---|
+| Manual override | Registrar / Academic Council | Only authorized institutional processes may override; the decision remains auditable and policy-governed. |
+| Exceptional progression decision | Dean / Registrar as applicable | Exception handling must remain within roles and authority established by L2-C04 and institutional policy. |
+
+### 15.3 Business Audit and Evidence Obligations
+
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Every progression decision must be reproducible and auditable. | Preserved progression decision with governing policy version and authoritative academic evidence. | Academic Progression |
+| Manual override / exception must be auditable. | Preserved authorized decision and progression history required by L2-C04. | Academic Progression |
+| Historical decisions must not be overwritten. | Immutable progression history showing prior and subsequent governed evaluations. | Academic Progression |
 
 ## 16. Completion Criteria and Postconditions
 
-The scenario is complete when mandatory authoritative data is available, one approved progression policy has been applied, any upstream-required approval obligation has been satisfied, Academic Standing and the progression decision are established, the applicable canonical event(s) are published by Academic Progression, and audit evidence exists.
+### 16.1 Completion Criteria
 
-Downstream domains consume the decision without redefining it.
+- Mandatory authoritative Student, registration, curriculum and examination information is available.
+- One approved progression policy has been applied.
+- Any required upstream-supported approval has been satisfied.
+- Academic Standing and the authoritative progression outcome are established under their canonical lifecycle owners.
+- The applicable exact canonical progression event(s) are published by Academic Progression.
+- Required audit/evidence history exists.
+
+### 16.2 Postconditions
+
+- Downstream domains consume the progression outcome without redefining it.
+- Qualification-eligible cases are handed to Qualification Completion & Student Exit.
+- Historical progression decisions remain preserved.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
-**OI-C027-01 — Policy Management ownership:** Locked L2-C04 identifies Policy Management ownership/publisher as unresolved. C027 consumes an already-approved policy and does not assign a new owner.
+### 17.1 Open Issues
 
-**OI-C027-02 — Institution-specific approval authority/routing:** The authoritative upstream architecture does not establish one universal named approval role for every institutional progression decision. This L3 scenario therefore records the obligation without inventing an actor. Exact role and routing remain deferred until resolved by authoritative upstream architecture or institution-specific policy governance.
+**OI-C027-01 — Policy Management ownership/publisher:** Locked L2-C04 identifies Policy Management as unresolved/no owner for progression-policy publication. C-027 consumes an already-approved policy and does not assign a new owner. **Impact:** this dependency must be resolved upstream before any architecture requiring a canonical policy publisher can be locked.
 
-**Resolved upstream issue:** Competing conditional-promotion, probation and detention event names are resolved by `ADR-STU-PROG-EVT-001` and the locked L2-C04 amendment.
+**OI-C027-02 — Institution-specific routing:** L2-C04 establishes canonical participating roles and a permission matrix but explicitly allows actual permissions/routing to be configured by institutional policy. C-027 therefore names only upstream-defined roles and does not prescribe institution-specific technical routing.
 
-**Assumptions:** Examination owns official examination results; Academic Progression owns all progression decisions and canonical progression-outcome publications; historical decisions remain immutable.
+**OI-C027-03 — Re-evaluation event vocabulary inconsistency:** L2-C04 §7.3 identifies `RevaluationResultPublished` as an Examination event for progression recalculation, while §23.3 identifies `AssessmentRevaluationCompleted` for re-evaluation. C-027 does not silently merge or choose between these names. **Impact:** primary progression via `ExaminationResultPublished` and supplementary progression via `SupplementaryResultPublished` are unambiguous; exact re-evaluation event selection remains an upstream L2 issue where material.
 
-**Deferred:** Policy owner/contract, institution-specific thresholds, detailed policy-version lifecycle, and exact approval authority/routing.
+### 17.2 Assumptions
 
-## Final Authoring / Architecture-Safety Validation
+- Examination owns official examination results.
+- Academic Progression owns the final progression decision and canonical progression-outcome publications defined by the locked amendment.
+- Historical progression decisions remain immutable.
 
-- [x] Frozen L3 identity preserved.
-- [x] All 17 mandatory sections present.
-- [x] L2-C04 amendment consumed.
-- [x] One canonical event name used per progression outcome.
-- [x] Academic Progression publisher ownership preserved.
-- [x] No non-canonical approval actor invented.
-- [x] Unresolved approval authority/routing retained in Section 17.
-- [x] No implementation-level design introduced.
-- [x] Status remains Draft pending independent architecture approval.
+### 17.3 Deferred Questions
+
+- Resolve Policy Management ownership/publisher upstream.
+- Resolve the exact canonical re-evaluation event vocabulary where a re-evaluation-specific L3 scenario depends on it.
+- Institution-specific thresholds and routing remain governed configuration rather than new L3 architecture.
