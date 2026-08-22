@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-161 |
+| Canonical Title | Follow-up Recommendation to Follow-up Healthcare Activity |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the institutional healthcare outcome in which a follow-up recommendation is established from a healthcare encounter, the appropriate follow-up activity is identified and coordinated, and the resulting healthcare activity is recorded within the patient's ongoing medical context.
 
-The locked L2 states that follow-up recommendations may include Return Visit, Referral, Observation, Medical Certificate and Health Program Participation, and that follow-up policies remain configurable. It defines `FollowUpRecommended` as the canonical event for a follow-up recommendation. fileciteturn257file0turn250file0
+The locked L2 states that follow-up recommendations may include Return Visit, Referral, Observation, Medical Certificate and Health Program Participation, and that follow-up policies remain configurable. It defines `FollowUpRecommended` as the canonical event for a follow-up recommendation.
 
 Because the canonical scenario is broader than a single return visit, this L3 treats the recommendation as the entry condition and routes the recommendation into the appropriate authoritative follow-up activity without inventing a universal follow-up lifecycle.
 
@@ -128,7 +142,7 @@ A healthcare encounter produces a follow-up recommendation.
 4. Apply the configured follow-up policy.
 5. Publish `FollowUpRecommended`.
 
-The L2 explicitly defines this event as “Follow-up advised.” fileciteturn250file0
+The L2 explicitly defines this event as “Follow-up advised.”
 
 ### Phase B — Determine Follow-up Path
 
@@ -166,7 +180,7 @@ The patient returns for additional healthcare activity. The new activity follows
 
 The recommendation enters the Referral lifecycle:
 
-`Recommended → Accepted → Completed`. fileciteturn246file0
+`Recommended → Accepted → Completed`.
 
 Referral completion remains a separate business outcome.
 
@@ -174,13 +188,13 @@ Referral completion remains a separate business outcome.
 
 The recommendation enters Observation Care:
 
-`Admitted → Observed → Released`. fileciteturn246file0
+`Admitted → Observed → Released`.
 
 ### 10.4 Medical Certificate
 
 The recommendation enters the Medical Certificate workflow:
 
-`Medical Assessment → Eligibility Verified → Certificate Generated → Authorised Approval → Certificate Issued`. fileciteturn249file0
+`Medical Assessment → Eligibility Verified → Certificate Generated → Authorised Approval → Certificate Issued`.
 
 ### 10.5 Health Program Participation
 
@@ -229,7 +243,7 @@ The L2 explicitly states:
 - Follow-up recommendations may include Return Visit, Referral, Observation, Medical Certificate and Health Program Participation.
 - Follow-up policies remain configurable.
 - Medical professionals retain operational authority.
-- Every significant healthcare activity publishes immutable business events. fileciteturn257file0turn244file0
+- Every significant healthcare activity publishes immutable business events.
 
 The scenario must not invent a single universal completion rule for all follow-up types.
 
@@ -239,7 +253,7 @@ The G06 invariants remain applicable:
 - Referral references one Medical Encounter.
 - Medical certificates reference one authorised Medical Encounter.
 - Medical history is never deleted.
-- Every lifecycle transition is audited. fileciteturn253file0
+- Every lifecycle transition is audited.
 
 ## 13. State and Lifecycle Impact
 
@@ -254,7 +268,7 @@ The applicable downstream lifecycle remains authoritative:
 - Referral: `Recommended → Accepted → Completed`.
 - Observation: `Admitted → Observed → Released`.
 - Medical Certificate: `Draft → Approved → Issued → Archived`.
-- Other paths retain their own upstream lifecycle. fileciteturn246file0turn251file0
+- Other paths retain their own upstream lifecycle.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -262,7 +276,7 @@ The canonical event is:
 
 **`FollowUpRecommended` — Follow-up advised.**
 
-G06 is the canonical publisher. fileciteturn250file0
+G06 is the canonical publisher.
 
 The L2 does not define a generic `FollowUpCompleted` event.
 
@@ -276,7 +290,7 @@ C/E provide identity/personnel context and do not acquire ownership of the Medic
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-The follow-up recommendation is established by an appropriately authorised healthcare professional under configurable healthcare authorization policy. The L2 identifies Doctor as a typical consultation authority and requires medical confidentiality. fileciteturn251file0
+The follow-up recommendation is established by an appropriately authorised healthcare professional under configurable healthcare authorization policy. The L2 identifies Doctor as a typical consultation authority and requires medical confidentiality.
 
 Audit evidence should preserve:
 
@@ -288,7 +302,7 @@ Audit evidence should preserve:
 - Downstream follow-up outcome.
 - Relevant lifecycle transitions.
 
-Every lifecycle transition is audited. fileciteturn253file0
+Every lifecycle transition is audited.
 
 No technical authorization model is specified.
 

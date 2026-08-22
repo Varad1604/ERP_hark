@@ -29,15 +29,29 @@
 | Canonical Successful Event | `AcademicAssignmentCompleted` |
 | Canonical Publisher | Student Lifecycle |
 
-The frozen Section C canonical register identifies C-009 as **Student Academic Assignment Change**, owned by **Student Lifecycle**, with participating domains **C, D**, Type **Cross-domain**, Priority **P1**, and derivation **KEEP**. fileciteturn102file0L2-L2
+The frozen Section C canonical register identifies C-009 as **Student Academic Assignment Change**, owned by **Student Lifecycle**, with participating domains **C, D**, Type **Cross-domain**, Priority **P1**, and derivation **KEEP**.
 
-The Phase 5 workload allocation assigns the complete C `001–075` block to Varad, so C-009 is within the current author's locked workload allocation. fileciteturn111file0L2-L2
+The Phase 5 workload allocation assigns the complete C `001–075` block to Varad, so C-009 is within the current author's locked workload allocation.
 
-The Phase 5 permanent placement standard requires Section C scenarios to reside under `01_Scenario_Documents/section-c/`, with the exact Phase 5 filename determined by the operating guide and naming standard. fileciteturn108file0L2-L2
+The Phase 5 permanent placement standard requires Section C scenarios to reside under `01_Scenario_Documents/section-c/`, with the exact Phase 5 filename determined by the operating guide and naming standard.
 
 **Exact Phase 5 filename:** `L3-C-009_Student_Academic_Assignment_Change.md`
 
 ---
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-C-009 |
+| Canonical Title | Student Academic Assignment Change |
+| Primary Owner | Student Lifecycle |
+| Participating Domains | C — Student Lifecycle; D — Academic Delivery |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 
@@ -47,7 +61,7 @@ The scenario establishes the institutional outcome in which the Student's applic
 
 The scenario covers academic assignment rather than academic curriculum ownership, course registration, Programme Migration decision-making, or general institutional transfer.
 
-The locked L2-C02 architecture identifies Academic Assignment as the workflow responsible for assigning Programme, Batch and Section, and explicitly states that Student Lifecycle owns assignment while Academic Delivery owns curriculum. fileciteturn115file0L2-L2
+The locked L2-C02 architecture identifies Academic Assignment as the workflow responsible for assigning Programme, Batch and Section, and explicitly states that Student Lifecycle owns assignment while Academic Delivery owns curriculum.
 
 ---
 
@@ -72,7 +86,7 @@ The scenario begins when an academic assignment change is raised through one of 
 - Student Activation;
 - Administrative Assignment;
 - Academic Reassignment; or
-- `ProgrammeMigrationApproved` from L2-C04, where the workflow is applying an already-approved Programme association change. fileciteturn99file0L2-L2
+- `ProgrammeMigrationApproved` from L2-C04, where the workflow is applying an already-approved Programme association change.
 
 ## 4.2 End Boundary
 
@@ -115,7 +129,7 @@ The following are materially adjacent but distinct:
 - Examination processing.
 - Technical APIs, databases, services, queues, infrastructure, UI, technical authorization or implementation mechanics.
 
-The locked L2-C02 architecture explicitly separates Academic Assignment from Enrollment Update and Student Transfer, and separately assigns Programme-changing mobility to L2-C04. fileciteturn98file0turn99file0
+The locked L2-C02 architecture explicitly separates Academic Assignment from Enrollment Update and Student Transfer, and separately assigns Programme-changing mobility to L2-C04.
 
 ## 4.5 Related Scenarios
 
@@ -134,9 +148,9 @@ No other final L3 ID is asserted here where the canonical final-ID mapping was n
 | **C — Student Lifecycle** | Canonical owner of Student, StudentContext, academic assignment, assignment change, historical assignment, and final `AcademicAssignmentCompleted` outcome. |
 | **D — Academic Delivery** | Participates through the academic structure and context required for valid assignment; does not acquire ownership of Student or StudentContext lifecycle information. |
 
-The locked L2-C02 ownership model explicitly identifies Programme Association, Batch Assignment and Section Assignment as Student Lifecycle-owned capabilities and states that Student Lifecycle is the exclusive owner of the Student Aggregate and associated StudentContext. fileciteturn115file0L2-L2
+The locked L2-C02 ownership model explicitly identifies Programme Association, Batch Assignment and Section Assignment as Student Lifecycle-owned capabilities and states that Student Lifecycle is the exclusive owner of the Student Aggregate and associated StudentContext.
 
-The same architecture states that Academic Delivery owns curriculum while Student Lifecycle owns academic assignment. fileciteturn115file0L2-L2
+The same architecture states that Academic Delivery owns curriculum while Student Lifecycle owns academic assignment.
 
 Participation by Academic Delivery therefore does not transfer ownership.
 
@@ -165,7 +179,7 @@ The authoritative `WF-C02-04 — Academic Assignment` defines the following prec
 - **Student Active**
 - **Programme exists**
 - **Batch exists**
-- Where an existing Programme association will change, the matching `ProgrammeMigrationApproved` result from L2-C04 has been consumed. fileciteturn99file0L2-L2
+- Where an existing Programme association will change, the matching `ProgrammeMigrationApproved` result from L2-C04 has been consumed.
 
 Therefore C-009 begins only when:
 
@@ -188,7 +202,7 @@ The authoritative triggers for Academic Assignment are:
 - **Student Activation**
 - **Administrative Assignment**
 - **Academic Reassignment**
-- **`ProgrammeMigrationApproved` from L2-C04**, specifically for application of an already-approved Programme association. fileciteturn99file0L2-L2
+- **`ProgrammeMigrationApproved` from L2-C04**, specifically for application of an already-approved Programme association.
 
 The trigger is expressed at business level.
 
@@ -232,7 +246,7 @@ Audit
 Complete
 ```
 
-The L2 contract names the canonical event as `AcademicAssignmentCompleted`. fileciteturn99file0L2-L2
+The L2 contract names the canonical event as `AcademicAssignmentCompleted`.
 
 ### Scenario End Discipline
 
@@ -251,9 +265,9 @@ It does not extend into course registration, teaching allocation, attendance, ex
 | AF-03 | Academic Reassignment | Validate the requested reassignment and apply the valid academic assignment. | Updated assignment completed with history preserved. | Student Lifecycle |
 | AF-04 | Approved Programme Migration | Consume/apply `ProgrammeMigrationApproved` without re-evaluating or republishing the migration decision. | Approved Programme association is applied as part of academic assignment. | Student Lifecycle; L2-C04 owns migration decision |
 
-The four trigger conditions are grounded in the authoritative `WF-C02-04` definition. fileciteturn99file0L2-L2
+The four trigger conditions are grounded in the authoritative `WF-C02-04` definition.
 
-The Programme Migration boundary is especially explicit: L2-C04 APW-08 owns Programme-changing mobility, while C02 applies the approved Programme association and does not make or republish the migration decision. fileciteturn96file0L2-L2
+The Programme Migration boundary is especially explicit: L2-C04 APW-08 owns Programme-changing mobility, while C02 applies the approved Programme association and does not make or republish the migration decision.
 
 ---
 
@@ -267,7 +281,7 @@ The Programme Migration boundary is especially explicit: L2-C04 APW-08 owns Prog
 | Requested change is actually Programme Migration decision-making | C-009 must not make the migration decision. | Route the Programme-changing mobility decision to L2-C04 APW-08. | Academic Progression |
 | Requested change is actually non-Programme organisational/placement transfer | C-009 must not absorb a distinct transfer scenario where the canonical boundary places it elsewhere. | Apply the appropriate Student Transfer workflow. | Student Lifecycle |
 
-The L2 source explicitly requires Programme to exist and requires `ProgrammeMigrationApproved` when an existing Programme association changes. fileciteturn99file0L2-L2
+The L2 source explicitly requires Programme to exist and requires `ProgrammeMigrationApproved` when an existing Programme association changes.
 
 ### Technical Failure Boundary
 
@@ -290,7 +304,7 @@ No such mechanics are introduced here.
 | Every reassignment generates an audit record. | Student Lifecycle | Assignment changes remain auditable. | `WF-C02-04` Governance |
 | The Programme migration decision remains C04-owned. | Academic Progression | C-009 applies, but does not re-evaluate or republish, the migration decision. | Locked C02 programme-migration boundary |
 
-The authoritative L2 governance explicitly requires valid academic references, historical assignment preservation, and audit for reassignment. fileciteturn99file0L2-L2
+The authoritative L2 governance explicitly requires valid academic references, historical assignment preservation, and audit for reassignment.
 
 No local business-rule identifiers are created.
 
@@ -308,9 +322,9 @@ No local business-rule identifiers are created.
 
 C-009 does **not** invent a new Student lifecycle state.
 
-The locked L2-C02 architecture distinguishes the Student persona from the StudentContext, with StudentContext owning the institutional academic lifecycle while Student Lifecycle remains the canonical owner. fileciteturn115file0L2-L2
+The locked L2-C02 architecture distinguishes the Student persona from the StudentContext, with StudentContext owning the institutional academic lifecycle while Student Lifecycle remains the canonical owner.
 
-The Programme migration boundary remains separate: C04 owns the Programme-changing decision and canonical `ProgrammeMigrationApproved` outcome; C02 applies the approved Programme association. fileciteturn96file0L2-L2
+The Programme migration boundary remains separate: C04 owns the Programme-changing decision and canonical `ProgrammeMigrationApproved` outcome; C02 applies the approved Programme association.
 
 ---
 
@@ -323,9 +337,9 @@ The Programme migration boundary remains separate: C04 owns the Programme-changi
 | `AcademicAssignmentCompleted` | **Student Lifecycle** | Downstream interested academic/administrative domains as governed by their architecture | Records completed academic assignment. | `WF-C02-04` |
 | `ProgrammeMigrationApproved` | **L2-C04 Academic Progression** | Student Lifecycle | Provides the authoritative Programme migration decision for C02 to apply. | Locked C02 programme-migration boundary |
 
-The L2-C02 workflow explicitly publishes `AcademicAssignmentCompleted`. fileciteturn99file0L2-L2
+The L2-C02 workflow explicitly publishes `AcademicAssignmentCompleted`.
 
-The same locked architecture explicitly identifies `ProgrammeMigrationApproved` as an event consumed by C02 for Programme-association application only; the migration decision remains C04-owned. fileciteturn96file0L2-L2
+The same locked architecture explicitly identifies `ProgrammeMigrationApproved` as an event consumed by C02 for Programme-association application only; the migration decision remains C04-owned.
 
 ## 14.2 Synchronous Business Contracts / Hand-offs
 
@@ -368,7 +382,7 @@ Where Programme association is changing, the authoritative `ProgrammeMigrationAp
 
 This is not a C-009 approval decision.
 
-C-009 applies the authoritative C04 result and does not re-evaluate or republish the migration decision. fileciteturn99file0L2-L2
+C-009 applies the authoritative C04 result and does not re-evaluate or republish the migration decision.
 
 No additional approval chain is invented.
 
@@ -376,7 +390,7 @@ No additional approval chain is invented.
 
 The locked L2 governance requires every reassignment to generate an audit record.
 
-C-009 therefore requires auditable evidence of the completed academic assignment change. fileciteturn99file0L2-L2
+C-009 therefore requires auditable evidence of the completed academic assignment change.
 
 ## 15.4 Separation of Duty
 
@@ -539,11 +553,11 @@ They must not be silently resolved in this L3 document.
 - **Section Folder:** `section-c`
 - **Exact Filename:** `L3-C-009_Student_Academic_Assignment_Change.md`
 
-The frozen Stage 3 register confirms the C-009 semantic identity and allocation characteristics. fileciteturn102file0L2-L2
+The frozen Stage 3 register confirms the C-009 semantic identity and allocation characteristics.
 
 ## Applicable L2 Check
 
-`WF-C02-04 — Academic Assignment` defines the purpose as assigning Programme, Batch and Section; its triggers include Student Activation, Administrative Assignment, Academic Reassignment, and `ProgrammeMigrationApproved`; its preconditions include Student Active, Programme exists, Batch exists, and the required migration approval for Programme changes. fileciteturn99file0L2-L2
+`WF-C02-04 — Academic Assignment` defines the purpose as assigning Programme, Batch and Section; its triggers include Student Activation, Administrative Assignment, Academic Reassignment, and `ProgrammeMigrationApproved`; its preconditions include Student Active, Programme exists, Batch exists, and the required migration approval for Programme changes.
 
 ## Workflow Check
 
@@ -567,19 +581,17 @@ Audit
 Complete
 ```
 
-fileciteturn99file0L2-L2
-
 ## Ownership Check
 
 Student Lifecycle owns academic assignment.
 
-Academic Delivery participates but does not acquire Student or StudentContext ownership. fileciteturn115file0L2-L2
+Academic Delivery participates but does not acquire Student or StudentContext ownership.
 
 ## Programme Migration Check
 
 C-009 does not make the Programme Migration decision.
 
-L2-C04 owns Programme-changing mobility and its `ProgrammeMigrationApproved` outcome; C02 applies the approved Programme association without re-evaluating or republishing the migration decision. fileciteturn96file0L2-L2
+L2-C04 owns Programme-changing mobility and its `ProgrammeMigrationApproved` outcome; C02 applies the approved Programme association without re-evaluating or republishing the migration decision.
 
 ## Event Check
 
@@ -589,7 +601,7 @@ Canonical completion event:
 
 Canonical publisher:
 
-**Student Lifecycle**. fileciteturn99file0L2-L2
+**Student Lifecycle**.
 
 ## Rule Check
 
@@ -598,7 +610,7 @@ The scenario preserves the authoritative C02 constraints:
 - valid academic entities;
 - historical assignment preservation;
 - audit for reassignment;
-- approved Programme migration result where applicable. fileciteturn99file0L2-L2
+- approved Programme migration result where applicable.
 
 ## Boundary Check
 
@@ -637,7 +649,7 @@ All 17 mandatory v2.0 sections are present:
 16. Completion Criteria and Postconditions
 17. Open Issues, Assumptions and Deferred Questions
 
-The locked v2.0 template defines this exact 17-section structure and requires Draft as an allowed initial status. fileciteturn113file0L2-L2
+The locked v2.0 template defines this exact 17-section structure and requires Draft as an allowed initial status.
 
 ---
 

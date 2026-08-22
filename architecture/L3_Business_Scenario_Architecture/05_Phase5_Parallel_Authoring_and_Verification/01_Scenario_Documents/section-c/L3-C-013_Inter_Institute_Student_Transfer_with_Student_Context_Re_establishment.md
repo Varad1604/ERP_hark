@@ -24,7 +24,7 @@ The frozen Section C Stage 3 canonical register defines `L3-C-013` as **Inter-In
 - **Derivation:** KEEP
 - **Construction Status:** Not Authored
 
-These values are frozen and are not reclassified by this scenario. fileciteturn62file0L2-L2
+These values are frozen and are not reclassified by this scenario.
 
 The exact Phase 5 filename is:
 
@@ -33,6 +33,20 @@ The exact Phase 5 filename is:
 This scenario remains `Draft`. It does not constitute Architecture Approval or Locking.
 
 ---
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-C-013 |
+| Canonical Title | Inter-Institute Student Transfer with Student Context Re-establishment |
+| Primary Owner | Student Lifecycle |
+| Participating Domains | B, C |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 
@@ -60,7 +74,7 @@ The scenario does not create a new person identity and does not transfer ownersh
 
 The scenario begins when an authorised inter-Institute Student Transfer is initiated under the applicable institutional transfer process.
 
-The authoritative Stage 3 semantics define the scenario as **Inter-Institute Student Transfer with Student Context Re-establishment**. fileciteturn62file0L2-L2
+The authoritative Stage 3 semantics define the scenario as **Inter-Institute Student Transfer with Student Context Re-establishment**.
 
 ## 4.2 End Boundary
 
@@ -118,9 +132,9 @@ The distinction is therefore the **institutional boundary and resulting Student 
 | **C — Student Lifecycle** | Canonical owner of Student, Student Aggregate, StudentContext, Student institutional lifecycle, and the completed inter-Institute Student Transfer outcome. |
 | **B — Institution & Structure** | Owns authoritative institutional and organisational structure information required to identify and validate source/destination Institute context. |
 
-The L2-C02 architecture explicitly establishes Student Lifecycle as the exclusive owner of the Student Aggregate and associated StudentContext. fileciteturn64file0L2-L2
+The L2-C02 architecture explicitly establishes Student Lifecycle as the exclusive owner of the Student Aggregate and associated StudentContext.
 
-The Section B organisation architecture establishes Institution & Structure as the authoritative source for organisational information and explicitly excludes Student Management from its ownership. fileciteturn71file0L2-L2
+The Section B organisation architecture establishes Institution & Structure as the authoritative source for organisational information and explicitly excludes Student Management from its ownership.
 
 Participation by B therefore does not transfer Student or StudentContext ownership from C.
 
@@ -157,7 +171,7 @@ The following business conditions are required:
 7. The destination institutional context is valid for establishing a Student Context.
 8. The transfer does not require creation of a second canonical Student identity.
 
-The L2-C02 model explicitly states that a Student may have multiple historical StudentContexts across institutional history and that at most one StudentContext may be Active within a given Institute at any point in time. fileciteturn63file0L2-L2
+The L2-C02 model explicitly states that a Student may have multiple historical StudentContexts across institutional history and that at most one StudentContext may be Active within a given Institute at any point in time.
 
 ---
 
@@ -167,7 +181,7 @@ The business trigger is:
 
 > **An authorised inter-Institute Student Transfer is initiated under the applicable institutional transfer process.**
 
-The available locked C02 workflow explicitly identifies **Administrative Approval** and **Student Transfer Request** as triggers for the Student Transfer workflow. fileciteturn67file0L2-L2
+The available locked C02 workflow explicitly identifies **Administrative Approval** and **Student Transfer Request** as triggers for the Student Transfer workflow.
 
 For C-013, the transfer crosses the Institute boundary and therefore requires destination-context re-establishment rather than the same-Institute transfer outcome of C-012.
 
@@ -206,13 +220,13 @@ If the Student has historical institutional association with the destination Ins
 
 The Student remains the same canonical Student, while the applicable destination Student Context is re-established according to authoritative lifecycle rules.
 
-This is consistent with the locked C02 model permitting multiple historical StudentContexts across institutional history. fileciteturn63file0L2-L2
+This is consistent with the locked C02 model permitting multiple historical StudentContexts across institutional history.
 
 ## AF-03 — Programme Association Requires a Separate Authoritative Decision
 
 If the inter-Institute movement also involves a Programme change, C-013 does not invent or assume the Programme decision.
 
-Where Programme Migration is applicable, the C02 architecture states that L2-C04 exclusively owns Programme-changing mobility and publishes `ProgrammeMigrationApproved`; C02 may apply that already-approved Programme association but does not make or republish the migration decision. fileciteturn63file0L2-L2
+Where Programme Migration is applicable, the C02 architecture states that L2-C04 exclusively owns Programme-changing mobility and publishes `ProgrammeMigrationApproved`; C02 may apply that already-approved Programme association but does not make or republish the migration decision.
 
 ---
 
@@ -245,7 +259,7 @@ No technical retry, queue, database rollback, server failure, exception-handler,
 | Programme-changing mobility is owned by L2-C04 APW-08. | Academic Progression | C-013 cannot make a Programme Migration decision. | L2-C02 |
 | Institution & Structure remains authoritative for organisational information. | Institution & Structure | Destination Institute must be established from authoritative institutional structure. | L2-B02 |
 
-The L2-C02 Student Aggregate invariants explicitly require immutable Student identity, canonical Student ownership, lifecycle-constrained transitions, historical preservation, and approved cross-domain updates. fileciteturn64file0L2-L2
+The L2-C02 Student Aggregate invariants explicitly require immutable Student identity, canonical Student ownership, lifecycle-constrained transitions, historical preservation, and approved cross-domain updates.
 
 ---
 
@@ -258,7 +272,7 @@ The L2-C02 Student Aggregate invariants explicitly require immutable Student ide
 | Destination StudentContext | No active destination relationship | A new/re-established destination institutional context is established for the same Student. | Applicable active destination institutional position | Student Lifecycle | L2-C02 |
 | Student lifecycle | Active institutional lifecycle | Transfer changes institutional association without replacing canonical Student identity. | Active in destination context when transfer completion permits | Student Lifecycle | L2-C02 |
 
-The locked C02 model states that each StudentContext represents the Student's relationship with a specific Institute and that a Student may have multiple historical StudentContexts while at most one StudentContext may be Active for a given Institute. fileciteturn63file0L2-L2
+The locked C02 model states that each StudentContext represents the Student's relationship with a specific Institute and that a Student may have multiple historical StudentContexts while at most one StudentContext may be Active for a given Institute.
 
 No new lifecycle state is introduced by C-013.
 
@@ -268,7 +282,7 @@ No new lifecycle state is introduced by C-013.
 
 ## 14.1 Published / Consumed Business Events
 
-The authoritative material retrieved for L2-C02 explicitly defines `StudentTransferred` as the canonical event for WF-C02-08 Student Transfer. fileciteturn67file0L2-L2
+The authoritative material retrieved for L2-C02 explicitly defines `StudentTransferred` as the canonical event for WF-C02-08 Student Transfer.
 
 For C-013, the exact canonical event sequence specific to **inter-Institute transfer with Student Context re-establishment** is not sufficiently exposed in the retrieved L2 material to safely assert a new event name.
 
@@ -282,13 +296,13 @@ If the locked upstream architecture defines `StudentTransferred` as the event co
 
 Institution & Structure provides authoritative institutional and organisational context.
 
-The Organisation Domain is the authoritative source for organisational information and does not own Student Management. fileciteturn71file0L2-L2
+The Organisation Domain is the authoritative source for organisational information and does not own Student Management.
 
 The collaboration therefore supports destination Institute validation without transferring StudentContext ownership.
 
 ## 14.3 Programme Migration Collaboration
 
-Where Programme Migration is separately required, C02 consumes the already-approved `ProgrammeMigrationApproved` outcome to apply the Programme association; it does not make or republish the Programme Migration decision. fileciteturn63file0L2-L2
+Where Programme Migration is separately required, C02 consumes the already-approved `ProgrammeMigrationApproved` outcome to apply the Programme association; it does not make or republish the Programme Migration decision.
 
 ## 14.4 Synchronous Business Hand-offs
 
@@ -306,7 +320,7 @@ Any future L4 specification must derive the exact hand-off from the locked upstr
 
 C-013 requires an authorised inter-Institute Student Transfer.
 
-The L2-C02 Student Transfer workflow identifies Administrative Approval and Student Transfer Request as business triggers and requires the transfer to be permitted by applicable policy. fileciteturn67file0L2-L2
+The L2-C02 Student Transfer workflow identifies Administrative Approval and Student Transfer Request as business triggers and requires the transfer to be permitted by applicable policy.
 
 The exact canonical approving actor/role for the inter-Institute case is not established by the retrieved sources and is therefore not invented.
 
@@ -320,7 +334,7 @@ No local approval authority is created.
 
 ## 15.3 Audit
 
-The L2-C02 architecture requires lifecycle operations to be auditable and preserves historical lifecycle information. fileciteturn64file0L2-L2
+The L2-C02 architecture requires lifecycle operations to be auditable and preserves historical lifecycle information.
 
 C-013 therefore requires the transfer outcome and Student Context lifecycle changes to remain historically traceable.
 
@@ -396,10 +410,10 @@ These issues are material enough that this document remains **Draft** and is not
 
 | Assumption | Basis | Risk if Incorrect |
 |---|---|---|
-| C-013 represents a genuine inter-Institute transfer rather than an intra-Institute reassignment. | Frozen Stage 3 title and semantics. fileciteturn62file0L2-L2 | Would require architecture change control. |
-| The same canonical Student identity is preserved across institutional history. | L2-C02 Student Aggregate ownership and immutable Student identity. fileciteturn64file0L2-L2 | Would contradict canonical Student ownership if false. |
-| Destination institutional context remains owned by Student Lifecycle. | L2-C02 explicitly assigns StudentContext ownership to Student Lifecycle. fileciteturn64file0L2-L2 | Would require upstream ownership change if contradicted. |
-| Institution & Structure supplies authoritative institutional context without owning Student lifecycle. | L2-B02 ownership boundary. fileciteturn71file0L2-L2 | Would require boundary correction if contradicted. |
+| C-013 represents a genuine inter-Institute transfer rather than an intra-Institute reassignment. | Frozen Stage 3 title and semantics. | Would require architecture change control. |
+| The same canonical Student identity is preserved across institutional history. | L2-C02 Student Aggregate ownership and immutable Student identity. | Would contradict canonical Student ownership if false. |
+| Destination institutional context remains owned by Student Lifecycle. | L2-C02 explicitly assigns StudentContext ownership to Student Lifecycle. | Would require upstream ownership change if contradicted. |
+| Institution & Structure supplies authoritative institutional context without owning Student lifecycle. | L2-B02 ownership boundary. | Would require boundary correction if contradicted. |
 
 Assumptions do not override locked architecture.
 
@@ -429,13 +443,13 @@ These questions must be resolved from authoritative repository architecture befo
 - **Derivation:** KEEP
 - **Status:** Draft
 
-The Stage 3 canonical register confirms the exact C-013 identity and classification. fileciteturn62file0L2-L2
+The Stage 3 canonical register confirms the exact C-013 identity and classification.
 
 ## Ownership Validation
 
-Student Lifecycle is the canonical owner of Student and StudentContext. fileciteturn64file0L2-L2
+Student Lifecycle is the canonical owner of Student and StudentContext.
 
-Institution & Structure owns institutional/organisational information and explicitly excludes Student Management from its ownership. fileciteturn71file0L2-L2
+Institution & Structure owns institutional/organisational information and explicitly excludes Student Management from its ownership.
 
 ## Lifecycle Validation
 
@@ -445,19 +459,19 @@ The C02 architecture establishes:
 - multiple historical StudentContexts across institutional history;
 - at most one Active StudentContext for a given Institute;
 - immutable Student identity;
-- StudentContext ownership by Student Lifecycle. fileciteturn63file0L2-L2
+- StudentContext ownership by Student Lifecycle.
 
 C-013 applies these principles without inventing a new lifecycle state.
 
 ## Transfer Boundary Validation
 
-The locked C02 Student Transfer workflow is explicitly limited to **non-Programme organisational or placement dimensions**, with Programme-changing mobility excluded and owned by L2-C04 APW-08. fileciteturn66file0L2-L2
+The locked C02 Student Transfer workflow is explicitly limited to **non-Programme organisational or placement dimensions**, with Programme-changing mobility excluded and owned by L2-C04 APW-08.
 
 C-013 is not collapsed into C-012 because its frozen outcome explicitly crosses the Institute boundary and requires Student Context re-establishment.
 
 ## Event Validation
 
-The locked C02 source defines `StudentTransferred` for WF-C02-08. fileciteturn67file0L2-L2
+The locked C02 source defines `StudentTransferred` for WF-C02-08.
 
 Because the retrieved source does not explicitly establish whether that event is the canonical completion event for the inter-Institute variant, no new C-013 event is invented. This is recorded as an open issue.
 
@@ -487,7 +501,7 @@ All 17 mandatory v2.0 sections are present:
 16. Completion Criteria and Postconditions
 17. Open Issues, Assumptions and Deferred Questions
 
-The locked v2.0 template requires these 17 sections and explicitly requires upstream ambiguity to be recorded rather than silently resolved. fileciteturn68file0L2-L2
+The locked v2.0 template requires these 17 sections and explicitly requires upstream ambiguity to be recorded rather than silently resolved.
 
 ---
 

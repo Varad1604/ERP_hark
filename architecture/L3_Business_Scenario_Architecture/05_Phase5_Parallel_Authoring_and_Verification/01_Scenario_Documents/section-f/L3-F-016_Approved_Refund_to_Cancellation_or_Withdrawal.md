@@ -15,6 +15,20 @@
 
 > **Source-control note:** The Phase 5 workload guide confirms the exact final ID, title, author and filename for F16. The currently indexed Stage 3 semantic extract does not expose a separate row for F16's frozen Type/Priority values; the classification above follows the locked Finance/Refund classification context and must be mechanically checked against the Stage 3 row before approval.
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-016 |
+| Canonical Title | Approved Refund to Cancellation or Withdrawal |
+| Primary Owner | Refund Management |
+| Participating Domains | C, F |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern the business outcome in which an already approved Refund is cancelled or withdrawn before it completes its outbound financial responsibility, while preserving the Refund aggregate, approval history, financial lineage and canonical Refund lifecycle/state ownership.

@@ -15,13 +15,27 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-128 |
+| Canonical Title | Catalogue Update to Effective Resource Information |
+| Primary Owner | Library Management |
+| Participating Domains | G |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete business outcome in which an existing Library Catalogue record is identified as requiring correction or update, the revised resource information is prepared and reviewed, and the updated information becomes effective within Library Management.
 
 The scenario is deliberately limited to catalogue information. A Catalogue represents an intellectual work; physical Library Copies remain a separate aggregate and are not changed merely because catalogue information changes.
 
-The L2 architecture defines Catalogue Management as governing bibliographic information and explicitly separates catalogue records from physical copies. The catalogue information may include title, author, publisher, edition, ISBN, subject, language, keywords, classification and resource type, with additional metadata remaining institution-configurable. fileciteturn166file0turn163file0
+The L2 architecture defines Catalogue Management as governing bibliographic information and explicitly separates catalogue records from physical copies. The catalogue information may include title, author, publisher, edition, ISBN, subject, language, keywords, classification and resource type, with additional metadata remaining institution-configurable.
 
 ## 3. Business Outcome
 
@@ -68,7 +82,7 @@ Library Management is the canonical owner of the Catalogue aggregate and its bib
 
 No participating external domain is defined for this scenario. Personnel who perform the work remain governed by E's personnel ownership, but E does not participate in the frozen scenario identity.
 
-The separation between Catalogue and Library Copy ownership is mandatory: every Library Copy references one Catalogue record, but copy operations are separate. fileciteturn164file0
+The separation between Catalogue and Library Copy ownership is mandatory: every Library Copy references one Catalogue record, but copy operations are separate.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -137,7 +151,7 @@ The Catalogue record is updated in place and its identity remains unchanged.
 
 ### 10.2 Classification Requires Reassessment
 
-Where classification changes, the revised classification is reviewed before the update becomes effective. The classification system remains institution-configurable. fileciteturn163file0
+Where classification changes, the revised classification is reviewed before the update becomes effective. The classification system remains institution-configurable.
 
 ### 10.3 Resource Type Requires Reassessment
 
@@ -145,7 +159,7 @@ The revised resource type is validated against the institution's configured reso
 
 ### 10.4 Multilingual Information Is Updated
 
-Catalogue information may support multiple languages, and language configuration remains institution configurable. The update changes the catalogue information without creating a new aggregate. fileciteturn163file0
+Catalogue information may support multiple languages, and language configuration remains institution configurable. The update changes the catalogue information without creating a new aggregate.
 
 ### 10.5 Update Is Rejected
 
@@ -167,11 +181,11 @@ The existing effective catalogue information remains authoritative.
 
 ### 11.3 Proposed Update Violates a Business Invariant
 
-The update is rejected. G05 states that violation of business invariants rejects the transaction. fileciteturn164file0
+The update is rejected. G05 states that violation of business invariants rejects the transaction.
 
 ### 11.4 Historical Information Is Required
 
-The previous catalogue information is retained because historical catalogue information shall never be deleted. fileciteturn164file0
+The previous catalogue information is retained because historical catalogue information shall never be deleted.
 
 No technical retry, queue, rollback or infrastructure behaviour is defined.
 
@@ -211,7 +225,7 @@ The exact canonical event is:
 
 **`CatalogueUpdated` — Catalogue modified.**
 
-The event is published by Library Management. fileciteturn167file0
+The event is published by Library Management.
 
 No `ResourceInformationChanged` or `CatalogueModified` event is invented.
 

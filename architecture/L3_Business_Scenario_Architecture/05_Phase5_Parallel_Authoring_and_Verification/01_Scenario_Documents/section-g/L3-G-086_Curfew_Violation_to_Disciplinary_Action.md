@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-086 |
+| Canonical Title | Curfew Violation to Disciplinary Action |
+| Primary Owner | Hostel Management |
+| Participating Domains | G, C, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern an unauthorised curfew violation from identification through the applicable hostel disciplinary action while preserving the distinction between an authorised curfew exception and a violation.

@@ -29,11 +29,25 @@
 | Exact Phase 5 Filename | `L3-C-019_Student_Context_Archival_and_Permanent_Record_Closure.md` |
 | Status | **Draft** |
 
-The frozen Section C canonical register identifies C019 as **Student Context Archival and Permanent Record Closure**, owned by Student Lifecycle, with participating domain C, Simple type, P1 priority and KEEP derivation. fileciteturn130file0L2-L2
+The frozen Section C canonical register identifies C019 as **Student Context Archival and Permanent Record Closure**, owned by Student Lifecycle, with participating domain C, Simple type, P1 priority and KEEP derivation.
 
-Phase 5 allocates the complete C final-ID block `L3-C-001`–`L3-C-075` to Varad. The Phase 5 naming standard requires the filename to be mechanically derived from the frozen canonical title; therefore the exact filename above preserves the canonical business wording. fileciteturn141file0L2-L2 fileciteturn142file0L2-L2
+Phase 5 allocates the complete C final-ID block `L3-C-001`–`L3-C-075` to Varad. The Phase 5 naming standard requires the filename to be mechanically derived from the frozen canonical title; therefore the exact filename above preserves the canonical business wording.
 
 ---
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-C-019 |
+| Canonical Title | Student Context Archival and Permanent Record Closure |
+| Primary Owner | Student Lifecycle |
+| Participating Domains | C |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 
@@ -66,7 +80,7 @@ The scenario begins when one of the authoritative exit/closure triggers occurs:
 - Permanent Separation.
 - A post-creation `AdmissionRevoked` event is consumed and institutional policy directs Student Context archival.
 
-The authoritative L2 workflow defines these as the triggers for WF-C02-10. fileciteturn143file0L2-L2
+The authoritative L2 workflow defines these as the triggers for WF-C02-10.
 
 ## 4.2 End Boundary
 
@@ -113,7 +127,7 @@ The main business flow stops at permanent institutional closure. It does not ext
 - Technical IAM/RBAC.
 - Deployment or infrastructure architecture.
 
-The locked L2 architecture explicitly states that Student Lifecycle does not perform admission processing, fee calculation/accounting, examination processing or other downstream-domain operations; those remain owned by their respective domains. fileciteturn132file0L2-L2
+The locked L2 architecture explicitly states that Student Lifecycle does not perform admission processing, fee calculation/accounting, examination processing or other downstream-domain operations; those remain owned by their respective domains.
 
 ---
 
@@ -124,9 +138,9 @@ The locked L2 architecture explicitly states that Student Lifecycle does not per
 | **C — Student Lifecycle** | Owns Student Aggregate lifecycle, Student Context archival, permanent closure and historical Student retention. | **Canonical owner** |
 | Other domains | May provide prerequisite facts or participate upstream where their own obligations or approvals are applicable. | Participation does not transfer Student lifecycle ownership. |
 
-The locked L2 architecture states that Student Lifecycle owns all workflows that modify the Student Aggregate and that downstream domains may invoke these workflows through approved contracts but may not execute lifecycle transitions directly. fileciteturn134file0L2-L2
+The locked L2 architecture states that Student Lifecycle owns all workflows that modify the Student Aggregate and that downstream domains may invoke these workflows through approved contracts but may not execute lifecycle transitions directly.
 
-The Student Aggregate remains owned by Student Lifecycle. The architecture also states that Student identifiers are immutable, historical lifecycle information remains immutable, physical removal is prohibited, and Student ownership remains within the domain. fileciteturn133file0L2-L2
+The Student Aggregate remains owned by Student Lifecycle. The architecture also states that Student identifiers are immutable, historical lifecycle information remains immutable, physical removal is prohibited, and Student ownership remains within the domain.
 
 ---
 
@@ -140,7 +154,7 @@ Only actors and responsibilities supported by the authoritative L2 workflow are 
 | **Authorised administrative/business participant** | May initiate or participate in an institutional exit/closure process where institutional policy assigns that responsibility. | No independent authority to execute Student lifecycle transition outside the Student Lifecycle workflow. |
 | **Applicable approving authority** | Provides required approval where institutional policy requires approval before archival. | Approval authority is policy-governed; no new role is invented here. |
 
-The locked WF-C02-10 specifies the triggers as Student Exit, Administrative Closure, Permanent Separation and post-creation `AdmissionRevoked` under applicable institutional policy, but it does not define a dedicated named approval role for this archival workflow. fileciteturn143file0L2-L2
+The locked WF-C02-10 specifies the triggers as Student Exit, Administrative Closure, Permanent Separation and post-creation `AdmissionRevoked` under applicable institutional policy, but it does not define a dedicated named approval role for this archival workflow.
 
 No additional actor, title or authority is introduced.
 
@@ -159,7 +173,7 @@ Before Student Context archival may proceed:
 
 For the post-creation `AdmissionRevoked` path, the authoritative event must have been consumed and institutional policy must direct Student Context archival.
 
-These conditions are taken directly from WF-C02-10. fileciteturn143file0L2-L2
+These conditions are taken directly from WF-C02-10.
 
 ---
 
@@ -191,7 +205,7 @@ The canonical business trigger is one of:
 | 9 | The archival action is audited. | Student Lifecycle / audit responsibility | Required historical evidence exists. |
 | 10 | The scenario completes. | Student Lifecycle | Permanent Student Context closure is complete. |
 
-The authoritative WF-C02-10 behaviour is: validate exit, resolve archive policy for the `AdmissionRevoked` path, archive the Student, publish `StudentArchived`, audit and complete. fileciteturn143file0L2-L2
+The authoritative WF-C02-10 behaviour is: validate exit, resolve archive policy for the `AdmissionRevoked` path, archive the Student, publish `StudentArchived`, audit and complete.
 
 ---
 
@@ -203,7 +217,7 @@ The authoritative WF-C02-10 behaviour is: validate exit, resolve archive policy 
 |---|---|---|
 | `AdmissionRevoked` is received after Student Context creation and institutional policy directs archival | Student Lifecycle resolves the applicable institutional archive policy, then proceeds through the archival lifecycle. | Student Context is archived if policy authorizes it. |
 
-This is not treated as a new ownership model. The locked L2 workflow explicitly identifies post-creation `AdmissionRevoked` as a trigger for Student Context archival when institutional policy directs it. fileciteturn143file0L2-L2
+This is not treated as a new ownership model. The locked L2 workflow explicitly identifies post-creation `AdmissionRevoked` as a trigger for Student Context archival when institutional policy directs it.
 
 ## 10.2 Approved Student Exit
 
@@ -258,7 +272,7 @@ The locked architecture does not define a technical retry or recovery mechanism.
 | `AdmissionRevoked` may be consumed after Student Context creation when policy directs archival. | Admission revocation can trigger the archival path without transferring Student ownership back to Admissions. | WF-C02-10. |
 | Cross-domain participation does not transfer Student ownership. | Other domains may participate in prerequisite resolution but cannot execute the Student lifecycle transition directly. | L2-C02 workflow ownership. |
 
-The underlying L2 architecture also states that deleted Students shall never be physically removed, duplicate active Student identities are prohibited, every aggregate modification requires an audit record, and cross-domain updates occur only through approved contracts. fileciteturn133file0L2-L2
+The underlying L2 architecture also states that deleted Students shall never be physically removed, duplicate active Student identities are prohibited, every aggregate modification requires an audit record, and cross-domain updates occur only through approved contracts.
 
 ---
 
@@ -276,13 +290,13 @@ Archival does not transfer ownership to another domain.
 |---|---|---|---|
 | Student Context | Active/non-archived institutional lifecycle position, subject to the applicable exit/closure condition | Governed archival transition | **Archived** |
 
-The authoritative WF-C02-10 postcondition is explicitly **Status = Archived**. fileciteturn143file0L2-L2
+The authoritative WF-C02-10 postcondition is explicitly **Status = Archived**.
 
 ## 13.3 Historical Record
 
 The Student is retained for historical reference.
 
-The archival outcome is permanent, historical data is immutable, and physical deletion is prohibited. fileciteturn144file0L2-L2
+The archival outcome is permanent, historical data is immutable, and physical deletion is prohibited.
 
 ## 13.4 No Invented Lifecycle
 
@@ -298,7 +312,7 @@ This scenario does not create intermediate states such as `Closing`, `PendingArc
 |---|---|---|---|
 | `StudentArchived` | **Student Lifecycle** | Downstream interested domains as governed by architecture | Communicates that the Student has reached the Archived lifecycle outcome. |
 
-The locked WF-C02-10 explicitly defines `StudentArchived` as the domain event and `Student Lifecycle` as its publishing owner. fileciteturn144file0L2-L2
+The locked WF-C02-10 explicitly defines `StudentArchived` as the domain event and `Student Lifecycle` as its publishing owner.
 
 ## 14.2 Consumed Business Event
 
@@ -306,7 +320,7 @@ The locked WF-C02-10 explicitly defines `StudentArchived` as the domain event an
 |---|---|---|---|
 | `AdmissionRevoked` | **Admissions Domain** | Student Lifecycle | May trigger Student Context archival after Student Context creation when institutional policy directs archival. |
 
-WF-C02-10 explicitly identifies `AdmissionRevoked` as a consumed event for this workflow. fileciteturn144file0L2-L2
+WF-C02-10 explicitly identifies `AdmissionRevoked` as a consumed event for this workflow.
 
 This consumption does **not** transfer ownership of the Student Aggregate back to Admissions. Student Lifecycle remains the canonical owner.
 
@@ -344,7 +358,7 @@ Any detailed role-separation or technical authorization model belongs downstream
 
 The archival action must produce an audit record.
 
-The locked WF-C02-10 explicitly requires audit and states that audit is mandatory. The broader Student Aggregate architecture also requires every aggregate modification to produce an audit record. fileciteturn144file0L2-L2 fileciteturn133file0L2-L2
+The locked WF-C02-10 explicitly requires audit and states that audit is mandatory. The broader Student Aggregate architecture also requires every aggregate modification to produce an audit record.
 
 Required business evidence includes:
 
@@ -389,7 +403,7 @@ After successful completion:
 - `StudentArchived` has been published.
 - Required audit evidence exists.
 
-These are the authoritative WF-C02-10 postconditions and governance outcomes. fileciteturn143file0L2-L2 fileciteturn144file0L2-L2
+These are the authoritative WF-C02-10 postconditions and governance outcomes.
 
 ---
 

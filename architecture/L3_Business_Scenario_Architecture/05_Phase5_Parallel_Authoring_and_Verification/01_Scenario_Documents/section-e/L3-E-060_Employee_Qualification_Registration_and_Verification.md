@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-060 |
+| Canonical Title | Employee Qualification Registration and Verification |
+| Primary Owner | Employee Profile |
+| Participating Domains | E — People & Workforce; H — Institutional Services & Intelligence |
+| Scenario Type | Cross-domain |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Register an employee's academic qualification in the canonical Employee Profile and, where verification of an externally issued credential is required, coordinate the governed external verification process so that the qualification's verification outcome is available without transferring ownership of the employee profile or the external integration capability.

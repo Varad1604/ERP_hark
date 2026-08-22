@@ -13,6 +13,20 @@
 **Depends On:** L2-I01 Examination Policy & Configuration; L2-I02 Examination Session Management; L2-I03 Examination Planning & Scheduling; L2-I04 Examination Registration; Student; Finance  
 **Referenced By:** L2-I05 Hall Ticket Management; downstream examination workflows
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-019 |
+| Canonical Title | Late Examination Registration |
+| Primary Owner | Examination Registration |
+| Participating Domains | C, F, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern an examination registration submitted after the standard registration window while preserving institutional policy, approval authority, financial eligibility and the canonical Examination Registration lifecycle.
@@ -62,7 +76,7 @@ The scenario ends when the late registration is Confirmed under an authorised ex
 | Finance | Provides financial eligibility/payment status where required. | Finance facts remain F-owned. |
 | Examination Policy | Defines institutional late-registration policy. | Policy remains I01-owned. |
 
-L2-I04 explicitly identifies late registration as a capability and states that registrations outside approved windows require authorised institutional exceptions. fileciteturn246file0turn247file0
+L2-I04 explicitly identifies late registration as a capability and states that registrations outside approved windows require authorised institutional exceptions.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -97,7 +111,7 @@ A candidate or authorised institution submits an examination registration after 
 | 7 | Confirm the Examination Registration. | Examination Registration | Candidate has an authoritative late registration. |
 | 8 | Publish the canonical registration events and preserve the complete audit history. | Examination Registration / Audit | Downstream workflows receive an authoritative business fact. |
 
-L2-I04 states that registrations outside approved windows require authorised institutional exceptions and includes Late Registration as a core capability. fileciteturn247file0
+L2-I04 states that registrations outside approved windows require authorised institutional exceptions and includes Late Registration as a core capability.
 
 ## 10. Alternate Business Flows
 
@@ -133,7 +147,7 @@ If an existing valid registration is found, the late request does not create a d
 | Duplicate registration detected | Existing valid registration remains authoritative. |
 | Registration becomes invalid before confirmation | Revalidate the affected condition before confirmation. |
 
-L2-I04 explicitly requires closed-window registrations to be rejected unless late/special policy permits them and prevents duplicate registration. fileciteturn247file0
+L2-I04 explicitly requires closed-window registrations to be rejected unless late/special policy permits them and prevents duplicate registration.
 
 ## 12. Business Rules and Decision Constraints
 
@@ -145,8 +159,6 @@ L2-I04 explicitly requires closed-window registrations to be rejected unless lat
 - Financial eligibility remains owned by Finance.
 - Registration audit history must be preserved.
 - Late registration does not create a separate Registration aggregate.
-
-fileciteturn245file0turn247file0
 
 ## 13. State and Lifecycle Impact
 
@@ -172,7 +184,7 @@ Relevant I04 events include:
 - `Registration Confirmed`
 - `Registration Archived`
 
-There is no separate `LateRegistrationApproved` event in the authoritative I04 event catalogue; none is invented. fileciteturn247file0
+There is no separate `LateRegistrationApproved` event in the authoritative I04 event catalogue; none is invented.
 
 ### 14.2 Business Hand-offs
 
@@ -208,7 +220,7 @@ Late-registration evidence must preserve:
 - confirmation/rejection;
 - relevant registration events.
 
-L2-I04 requires significant registration activities to be auditable. fileciteturn246file0turn247file0
+L2-I04 requires significant registration activities to be auditable.
 
 ## 16. Completion Criteria and Postconditions
 

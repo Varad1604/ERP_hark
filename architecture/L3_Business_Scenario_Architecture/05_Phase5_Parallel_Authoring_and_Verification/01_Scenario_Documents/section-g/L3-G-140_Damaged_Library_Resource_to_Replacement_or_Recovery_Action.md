@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-140 |
+| Canonical Title | Damaged Library Resource to Replacement or Recovery Action |
+| Primary Owner | Library Management |
+| Participating Domains | G, F, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome in which a library resource is determined to be damaged, the damage is recorded and assessed under Library Management policy, and the resulting recovery or replacement obligation is established.
 
-The locked L2 supports recording **Physical Condition** and **Damage Observations** during return processing. Fine Management also supports a **Damaged Resource** fine category and **Replacement Charge**. Fine calculation may consider Resource Category, Membership Category, Grace Period, Number of Days and Institutional Policies, with rules remaining configurable. fileciteturn189file0turn187file0
+The locked L2 supports recording **Physical Condition** and **Damage Observations** during return processing. Fine Management also supports a **Damaged Resource** fine category and **Replacement Charge**. Fine calculation may consider Resource Category, Membership Category, Grace Period, Number of Days and Institutional Policies, with rules remaining configurable.
 
 Library Management owns the operational damage and library-fine outcome. Finance owns accounting/payment. Communication owns notification delivery.
 
@@ -202,9 +216,9 @@ Return processing may record:
 - Lost Resource Information.
 - Outstanding Fine.
 
-Historical circulation records remain immutable. fileciteturn189file0
+Historical circulation records remain immutable.
 
-Fine categories include **Damaged Resource** and **Replacement Charge** among configurable categories. fileciteturn187file0
+Fine categories include **Damaged Resource** and **Replacement Charge** among configurable categories.
 
 Fine calculation may consider:
 
@@ -214,7 +228,7 @@ Fine calculation may consider:
 - Number of Days.
 - Institutional Policies.
 
-No monetary amount, damage threshold, depreciation rule, repair threshold, or replacement deadline is invented. fileciteturn187file0
+No monetary amount, damage threshold, depreciation rule, repair threshold, or replacement deadline is invented.
 
 ## 13. State and Lifecycle Impact
 
@@ -228,7 +242,7 @@ The Fine lifecycle is:
 
 `Calculated → Pending → Paid / Waived → Closed`
 
-where a financial recovery obligation is applicable. fileciteturn192file0
+where a financial recovery obligation is applicable.
 
 ## 14. Business Events and Cross-Domain Collaboration
 

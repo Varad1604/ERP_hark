@@ -36,6 +36,20 @@ The frozen Section C register identifies C026 exactly as **Registration Hold Pla
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-C-026 |
+| Canonical Title | Registration Hold Placement and Release |
+| Primary Owner | Academic Registration |
+| Participating Domains | C, F |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the institutional placement and release of a Registration Hold that affects whether an Academic Registration may proceed.

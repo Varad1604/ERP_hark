@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-154 |
+| Canonical Title | Library Operational Reporting to Institutional Governance Outcome |
+| Primary Owner | Library Management |
+| Participating Domains | G |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional business outcome in which Library Management consolidates authoritative operational library information into an institutional report, the report is reviewed through the applicable governance boundary, and the resulting governance outcome is established.

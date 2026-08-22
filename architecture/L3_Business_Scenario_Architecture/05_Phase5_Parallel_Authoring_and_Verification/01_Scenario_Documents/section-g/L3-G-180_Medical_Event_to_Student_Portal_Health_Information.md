@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-180 |
+| Canonical Title | Medical Event to Student Portal Health Information |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Students may need access to permitted healthcare information resulting from institutional medical activity. The institution therefore needs a governed business pathway from a G06-owned medical event to appropriate student-facing health information.

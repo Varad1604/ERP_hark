@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-059 |
+| Canonical Title | Employee Core Profile Maintenance |
+| Primary Owner | Employee Profile |
+| Participating Domains | A — Platform Foundation; E — People & Workforce |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Maintain the core employee profile after employee creation and activation so that employee personal, communication, address, and emergency-contact information remains governed by the canonical Employee Profile context.

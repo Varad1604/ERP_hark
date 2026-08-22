@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-080 |
+| Canonical Title | Hostel Capacity Constraint to Waiting List Placement |
+| Primary Owner | Hostel Management |
+| Participating Domains | G, C, H |
+| Scenario Type | Cross-domain |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Place an approved hostel applicant onto the authoritative hostel waiting list when institutional hostel residential capacity is exhausted, establishing a prioritized queue for room allocation without canceling the student's approved admission position.

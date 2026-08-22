@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-175 |
+| Canonical Title | Health Programme Planning to Programme Completion |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Institutional health programmes provide organised preventive and community-oriented healthcare activities rather than individual episodic treatment. The institution needs a governed business process through which a healthcare programme is planned, made active, conducted with its intended participants, its relevant findings/outcomes are recorded, and the programme is brought to completion.

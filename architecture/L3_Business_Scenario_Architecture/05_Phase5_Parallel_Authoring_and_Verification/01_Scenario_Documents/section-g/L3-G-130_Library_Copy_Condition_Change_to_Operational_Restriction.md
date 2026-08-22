@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-130 |
+| Canonical Title | Library Copy Condition Change to Operational Restriction |
+| Primary Owner | Library Management |
+| Participating Domains | G |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete business outcome in which a physical Library Copy's condition changes in a manner that makes ordinary circulation inappropriate or requires an operational restriction.
 
-The scenario preserves the distinction between physical condition and operational status. The L2 identifies both as Library Copy information and provides configurable operational statuses including Available, Issued, Reserved, Reference Only, Under Verification, Lost, Damaged and Withdrawn. fileciteturn163file0
+The scenario preserves the distinction between physical condition and operational status. The L2 identifies both as Library Copy information and provides configurable operational statuses including Available, Issued, Reserved, Reference Only, Under Verification, Lost, Damaged and Withdrawn.
 
 The scenario does not invent a new lifecycle state called `Restricted`. “Operational Restriction” is the business outcome; the actual copy status remains one of the authoritative/configured status values.
 

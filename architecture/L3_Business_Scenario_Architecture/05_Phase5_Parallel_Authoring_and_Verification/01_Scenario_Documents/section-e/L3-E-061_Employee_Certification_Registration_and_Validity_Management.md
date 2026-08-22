@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-061 |
+| Canonical Title | Employee Certification Registration and Validity Management |
+| Primary Owner | Employee Profile |
+| Participating Domains | E — People & Workforce; H — Institutional Services & Intelligence |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Maintain a canonical employee professional certification from registration through its applicable verification and validity lifecycle so that the employee profile accurately represents current and historical certifications.

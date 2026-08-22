@@ -11,8 +11,21 @@
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
 **Depends On:** L2-E01 — Workforce & Engagement Workflows; L2-E02 — Position & Assignment Workflows where assignment consequences are involved  
-**Referenced By:** Future L4 System Behavior Specifications and materially participating downstream workforce consumers  
+**Referenced By:** Future L4 System Behavior Specifications and materially participating downstream workforce consumers
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-009 |
+| Canonical Title | Duplicate Workforce Profiles to Canonical Workforce Resolution |
+| Primary Owner | Workforce & Engagement |
+| Participating Domains | E |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 Resolve duplicate Workforce Profiles through the canonical Workforce governance workflow while preserving the complete workforce history associated with the canonical profile and avoiding deletion of workforce history.
@@ -107,7 +120,7 @@ Historical Workforce Engagements and associated assignment/responsibility histor
 |---|---|---|
 | `WorkforceProfilesMerged` | Workforce & Engagement | Duplicate Workforce Profiles have been resolved through the canonical merge workflow |
 
-L2-E01 explicitly defines `WorkforceProfilesMerged` for WF-016. fileciteturn228file0L2-L2
+L2-E01 explicitly defines `WorkforceProfilesMerged` for WF-016.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 Profile merging is a controlled governance workflow. The resolution decision and resulting canonical representation must remain auditable, including preservation of the histories explicitly required by L2-E01. The scenario does not invent a specific approver, separation-of-duty rule, or evidence artefact.

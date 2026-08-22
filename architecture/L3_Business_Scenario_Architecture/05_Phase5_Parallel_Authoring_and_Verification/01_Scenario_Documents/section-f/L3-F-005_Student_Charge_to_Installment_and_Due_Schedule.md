@@ -11,7 +11,21 @@
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
 **Depends On:** L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-F00 Finance Domain Model & Foundation; L2-F01 Student Charge & Fee Management; authoritative Student Lifecycle context where required for the charge schedule  
-**Referenced By:** Payment Management, Accounts Receivable, Reporting and other downstream Finance consumers that consume payable milestones  
+**Referenced By:** Payment Management, Accounts Receivable, Reporting and other downstream Finance consumers that consume payable milestones
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-005 |
+| Canonical Title | Student Charge to Installment and Due Schedule |
+| Primary Owner | Student Charge & Fee Management |
+| Participating Domains | C — Student Lifecycle; F — Finance |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 
@@ -63,7 +77,7 @@ The scenario ends when the canonical installment structure and due schedule have
 | Payment Management | Consumes payable milestones for settlement. | Payment remains F02-owned. |
 | Accounts Receivable | Consumes due information for receivable monitoring/aging. | Receivable remains F07-owned. |
 
-L2-F01 explicitly states that Installments do not own financial obligations and that every Installment belongs to a Student Charge. fileciteturn138file3turn138file7
+L2-F01 explicitly states that Installments do not own financial obligations and that every Installment belongs to a Student Charge.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -97,7 +111,7 @@ A valid Student Charge reaches the point at which its payable amount must be org
 | 7 | Preserve historical traceability of the Student Charge, installments and due schedule. | F | The schedule can be reconstructed later. |
 | 8 | Make the scheduled Student Charge ready for publication and downstream settlement/receivable consumption. | F | Downstream domains can use the payable milestones without owning them. |
 
-L2-F01 positions Installment Architecture after Charge Calculation and before Charge Publication. fileciteturn138file3turn138file5
+L2-F01 positions Installment Architecture after Charge Calculation and before Charge Publication.
 
 ## 10. Alternate Business Flows
 
@@ -148,8 +162,6 @@ Authoritative L2-F01 constraints include:
 - Every Installment possesses one Due Schedule.
 - Outstanding Balance remains derived rather than independently owned.
 
-fileciteturn125file0turn138file3turn138file7
-
 No installment or due-date rule is redefined locally.
 
 ## 13. State and Lifecycle Impact
@@ -158,7 +170,7 @@ The Student Charge remains under the L2-F01 canonical lifecycle:
 
 `Business Obligation → Charge Identification → Charge Generation → Charge Validation → Published → Financially Active → Fully Settled → Archived`
 
-The installment and due schedule organize the financial timeline of the Student Charge; they do not replace or create a separate Student Charge lifecycle. fileciteturn125file0
+The installment and due schedule organize the financial timeline of the Student Charge; they do not replace or create a separate Student Charge lifecycle.
 
 The scenario does not introduce new Student Charge states or lifecycle transitions.
 
@@ -174,7 +186,7 @@ L2-F01 identifies canonical Student Charge financial events including:
 - `OutstandingBalanceUpdated`
 - `ChargePublicationCompleted`
 
-The Student Charge Domain remains the publisher of these Student Charge events. fileciteturn126file0
+The Student Charge Domain remains the publisher of these Student Charge events.
 
 ### 14.2 Synchronous Business Contracts / Hand-offs
 
@@ -200,7 +212,7 @@ No scenario-specific separation-of-duty rule is defined in the accessible L2-F01
 
 The installment structure and due schedule must remain historically traceable to the Student Charge.
 
-L2-F01 explicitly requires installment auditability and historical traceability of due schedules. fileciteturn138file3turn125file0
+L2-F01 explicitly requires installment auditability and historical traceability of due schedules.
 
 ## 16. Completion Criteria and Postconditions
 

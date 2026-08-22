@@ -15,6 +15,20 @@ This scenario governs the business outcome in which a completed HR case produces
 
 HR Workflows owns the HR case, including its intake, routing, approvals, evidence and closure. Employee Profile remains the canonical owner of employee profile information and applies only the profile-side consequence of the approved HR case outcome.
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-067 |
+| Canonical Title | HR Case Outcome to Employee Profile Update |
+| Primary Owner | Employee Profile |
+| Participating Domains | E — People & Workforce |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Ensure that an approved HR case outcome is reflected accurately in the canonical EmployeeProfile without transferring ownership of either the HR case or the employee profile.

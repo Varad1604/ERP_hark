@@ -13,6 +13,20 @@
 **Depends On:** L2-F11 Scholarship & Financial Aid; L2-C07 Scholarship Eligibility Workflows; applicable Student Lifecycle and Academic sources  
 **Referenced By:** Student Charge & Fee Management; Financial Reporting; Audit; Executive Dashboards
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-064 |
+| Canonical Title | Continuing Aid Eligibility to Renewal Decision |
+| Primary Owner | Scholarship & Financial Aid |
+| Participating Domains | C, F |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern the institutional renewal decision for continuing financial assistance when a new or continuing eligibility outcome is available.
@@ -62,7 +76,7 @@ The scenario ends when the renewal decision has been recorded as either an appro
 | F — Scholarship & Financial Aid | Owns Renewal Record, renewal decision and Financial Aid lifecycle. | Canonical renewal ownership. |
 | F — Student Charge & Fee Management | Consumes renewed assistance facts and determines its own charge consequences. | Charges remain F01-owned. |
 
-L2-F11 states that renewals create new business facts and that historical renewal records remain immutable. fileciteturn220file0turn222file0
+L2-F11 states that renewals create new business facts and that historical renewal records remain immutable.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -78,7 +92,7 @@ Responsibility is capability-based: eligibility context supplies the authoritati
 - The existing assistance history is available.
 - Renewal can be recorded without overwriting previous records.
 
-L2-F11 explicitly requires Renewal to have an active assistance record and creates a new Renewal Record. fileciteturn222file0
+L2-F11 explicitly requires Renewal to have an active assistance record and creates a new Renewal Record.
 
 ## 8. Trigger
 
@@ -97,7 +111,7 @@ The active assistance reaches the business point at which its continuation requi
 | 7 | If rejected, record the rejection outcome and publish `RenewalRejected`. | Scholarship & Financial Aid | Renewal rejection becomes a historical business fact. |
 | 8 | Downstream consumers independently determine any resulting financial consequences. | Downstream Finance domains | Ownership remains with the consuming domain. |
 
-L2-F11 defines renewal evaluation, renewal approval, renewal lifecycle and renewal history as Scholarship & Financial Aid responsibilities. fileciteturn220file0
+L2-F11 defines renewal evaluation, renewal approval, renewal lifecycle and renewal history as Scholarship & Financial Aid responsibilities.
 
 ## 10. Alternate Business Flows
 
@@ -131,7 +145,7 @@ A subsequent renewal creates a new Renewal Record. It does not amend or replace 
 | Renewal is rejected | Record the rejection as a business fact; preserve previous history. |
 | Downstream consumer has not reacted | Preserve the authoritative renewal fact; downstream recovery remains its own responsibility. |
 
-L2-F11 requires Aggregate invariants to be preserved and historical records never to be overwritten. fileciteturn222file0
+L2-F11 requires Aggregate invariants to be preserved and historical records never to be overwritten.
 
 ## 12. Business Rules and Decision Constraints
 
@@ -144,7 +158,7 @@ L2-F11 requires Aggregate invariants to be preserved and historical records neve
 - A renewal is a new business fact, not an alteration of prior history.
 - Financial consequences of renewed assistance remain owned by downstream financial domains.
 
-These rules are directly established by L2-F11. fileciteturn222file0turn223file0
+These rules are directly established by L2-F11.
 
 ## 13. State and Lifecycle Impact
 
@@ -156,7 +170,7 @@ L2-F11 permits:
 
 `Active → Renewed`
 
-and then the renewed assistance continues through the defined lifecycle. Renewal is a canonical state transition and creates a new Renewal Record. fileciteturn222file0
+and then the renewed assistance continues through the defined lifecycle. Renewal is a canonical state transition and creates a new Renewal Record.
 
 No local `Renewal Pending`, `Eligibility Review`, or `Renewal Approved` state is invented.
 
@@ -167,7 +181,7 @@ No local `Renewal Pending`, `Eligibility Review`, or `Renewal Approved` state is
 - `FinancialAidRenewed`
 - `RenewalRejected`
 
-The Financial Aid Aggregate is the canonical publisher. Events represent completed business facts and preserve immutable history. fileciteturn222file0turn223file0
+The Financial Aid Aggregate is the canonical publisher. Events represent completed business facts and preserve immutable history.
 
 ### 14.2 Cross-Domain Hand-offs
 
@@ -201,7 +215,7 @@ Renewal history must preserve:
 - prior immutable renewal facts;
 - resulting published event.
 
-L2-F11 explicitly requires renewal history and immutable historical business records. fileciteturn222file0turn223file0
+L2-F11 explicitly requires renewal history and immutable historical business records.
 
 ## 16. Completion Criteria and Postconditions
 

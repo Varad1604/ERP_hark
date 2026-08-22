@@ -13,6 +13,20 @@
 **Depends On:** Locked L1 Business Domain Architecture; L2-I04 Examination Registration Workflows; applicable Student Lifecycle architecture  
 **Referenced By:** Downstream examination workflows consuming Examination Registration; None yet
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-024 |
+| Canonical Title | Withdrawn Registration Reinstatement to Authoritative Valid Registration |
+| Primary Owner | Examination Registration |
+| Participating Domains | C, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern restoration of previously withdrawn examination participation where institutional policy permits reinstatement, without erasing the historical withdrawal.

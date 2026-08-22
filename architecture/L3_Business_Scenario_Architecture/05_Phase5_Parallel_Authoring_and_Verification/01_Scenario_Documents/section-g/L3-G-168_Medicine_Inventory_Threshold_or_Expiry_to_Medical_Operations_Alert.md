@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-168 |
+| Canonical Title | Medicine Inventory Threshold or Expiry to Medical Operations Alert |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the operational healthcare outcome in which an institutional medicine inventory condition reaches an applicable threshold or expiry-related condition, the condition is recognised as relevant to medical operations, and an operational alert is established so responsible healthcare operations can take appropriate business action.
 
-The locked L2 explicitly states that lightweight medicine inventory remains within Institutional Health Services while enterprise pharmacy management remains outside scope. It also states that healthcare operations are configuration driven and that significant healthcare activity is auditable. fileciteturn273file0
+The locked L2 explicitly states that lightweight medicine inventory remains within Institutional Health Services while enterprise pharmacy management remains outside scope. It also states that healthcare operations are configuration driven and that significant healthcare activity is auditable.
 
 This scenario therefore addresses **medical operational awareness and action**, not procurement or enterprise inventory management.
 
@@ -67,7 +81,7 @@ The condition has been identified, recorded and communicated as an operational h
 
 Owns the lightweight medicine inventory context used for institutional healthcare operations and the resulting medical operations alert.
 
-The L2 explicitly keeps lightweight medicine inventory within G06 and excludes enterprise pharmacy management. fileciteturn273file0
+The L2 explicitly keeps lightweight medicine inventory within G06 and excludes enterprise pharmacy management.
 
 ### Section E — People & Workforce
 

@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-137 |
+| Canonical Title | Overdue Borrowing to Fine Calculation |
+| Primary Owner | Library Management |
+| Participating Domains | G, F, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional business outcome in which an active library borrowing passes its applicable due date, the borrowing is recognised as overdue, the applicable library fine is calculated under the authoritative fine policy, and the financial/communication consequences are made available to the appropriate participating domains.
@@ -23,7 +37,7 @@ The L2 defines the fine workflow as:
 
 `Due Date Exceeded → Fine Calculated → Member Notified → Finance Reference → Payment Status Updated → Fine Closed`.
 
-Fine Management governs operational calculation of library penalties, while accounting and payment processing remain within Finance. fileciteturn187file0
+Fine Management governs operational calculation of library penalties, while accounting and payment processing remain within Finance.
 
 ## 3. Business Outcome
 
@@ -201,7 +215,7 @@ Fine calculation may consider:
 - Number of Days.
 - Institutional Policies.
 
-Calculation rules remain configurable. fileciteturn187file0
+Calculation rules remain configurable.
 
 Fine categories include examples such as:
 
@@ -211,9 +225,9 @@ Fine categories include examples such as:
 - Replacement Charge.
 - Administrative Penalty.
 
-Categories remain configurable. fileciteturn187file0
+Categories remain configurable.
 
-Accounting and payment remain within Finance. fileciteturn187file0
+Accounting and payment remain within Finance.
 
 No fixed monetary amount, grace period, day-rate, cap or penalty threshold is invented.
 
@@ -221,7 +235,7 @@ No fixed monetary amount, grace period, day-rate, cap or penalty threshold is in
 
 The Fine lifecycle in the L2 state transition matrix is:
 
-`Calculated → Pending → Paid / Waived → Closed`. fileciteturn192file0
+`Calculated → Pending → Paid / Waived → Closed`.
 
 This scenario establishes the **Calculated** condition and makes the fine available to subsequent Pending/payment/waiver processing.
 
@@ -256,7 +270,7 @@ Fine calculation must follow the configured library operational authorization.
 
 The fine calculation, applicable policy inputs, resulting fine category/amount, overdue basis, member/resource relationship and financial reference must remain auditable.
 
-Fine waiver is a separate process and may require administrative review, approval, reason recording and audit history. fileciteturn187file0
+Fine waiver is a separate process and may require administrative review, approval, reason recording and audit history.
 
 No technical access control/IAM implementation is defined.
 

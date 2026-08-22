@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-121 |
+| Canonical Title | Transport Complaint to Maintenance Recommendation |
+| Primary Owner | Transport Management |
+| Participating Domains | G |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Transport Management may encounter vehicle or transport conditions through a complaint that cannot be resolved solely through normal transport operations and instead require maintenance attention.

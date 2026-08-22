@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-170 |
+| Canonical Title | Observation Capacity Exception to Alternative Care Decision |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the institutional outcome when observation care is clinically indicated but the institutional observation capability cannot accommodate the patient, requiring an authorised alternative-care decision.

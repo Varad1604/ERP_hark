@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-111 |
+| Canonical Title | Pre-Trip Operational Checklist to Trip Readiness |
+| Primary Owner | Transport Management |
+| Participating Domains | G, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs the optional/configurable pre-trip operational checklist and its contribution to Trip readiness. G04 explicitly permits configurable pre-trip guidance covering operational vehicle conditions and confirms that Trip readiness is part of Trip planning/execution.
 

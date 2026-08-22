@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-147 |
+| Canonical Title | Missing Library Resource to Investigation Outcome |
+| Primary Owner | Library Management |
+| Participating Domains | G, F, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario defines the institutional business outcome in which a library resource identified as missing during stock verification is investigated, an administrative review is completed, and the resource reaches the appropriate investigation outcome.
@@ -23,9 +37,9 @@ The locked L2 defines the missing-resource workflow:
 
 `Resource Missing → Investigation → Administrative Review → Recovered? → Yes: Inventory Updated / No: Write-Off Review`.
 
-It also states that write-off recommendations may arise from irrecoverable loss, severe damage, administrative decision or obsolete material, with final approval following institutional policy. fileciteturn205file0
+It also states that write-off recommendations may arise from irrecoverable loss, severe damage, administrative decision or obsolete material, with final approval following institutional policy.
 
-The canonical event `MissingResourceIdentified` is defined by the L2 for the detection of a missing resource. fileciteturn208file0
+The canonical event `MissingResourceIdentified` is defined by the L2 for the detection of a missing resource.
 
 ## 3. Business Outcome
 
@@ -71,13 +85,13 @@ Administrative review establishes the recovered/not-recovered outcome and the ap
 Owns missing-resource operational handling and administrative review.
 
 ### Finance — F
-Participates where replacement cost, outstanding dues or financial consequences are relevant. Finance owns accounting/payment processing. fileciteturn203file0
+Participates where replacement cost, outstanding dues or financial consequences are relevant. Finance owns accounting/payment processing.
 
 ### People & Workforce — E
 Provides personnel context where required. Personnel ownership remains external.
 
 ### Communication — H
-Handles governed notification delivery. Library Management publishes business events rather than implementing notification delivery. fileciteturn207file0
+Handles governed notification delivery. Library Management publishes business events rather than implementing notification delivery.
 
 Cross-domain participation does not transfer missing-resource ownership from G.
 
@@ -102,7 +116,7 @@ No unsupported investigator, security officer, or disciplinary authority is inve
 
 ## 8. Trigger
 
-The canonical business event `MissingResourceIdentified` establishes that a library resource has been detected as missing. fileciteturn208file0
+The canonical business event `MissingResourceIdentified` establishes that a library resource has been detected as missing.
 
 ## 9. Main Business Flow
 
@@ -212,17 +226,17 @@ The L2 defines:
 with:
 
 - **Yes:** Inventory Updated.
-- **No:** Write-Off Review. fileciteturn205file0
+- **No:** Write-Off Review.
 
-Write-off recommendations may arise from irrecoverable loss, severe damage, administrative decision or obsolete material. Final approval follows institutional policy. fileciteturn205file0
+Write-off recommendations may arise from irrecoverable loss, severe damage, administrative decision or obsolete material. Final approval follows institutional policy.
 
-Finance owns accounting/payment processing; Library Management may consume financial information such as replacement cost references and outstanding dues. fileciteturn203file0
+Finance owns accounting/payment processing; Library Management may consume financial information such as replacement cost references and outstanding dues.
 
 ## 13. State and Lifecycle Impact
 
 The authoritative missing-resource workflow is:
 
-`Resource Missing → Investigation → Administrative Review → Recovered? → Inventory Updated / Write-Off Review`. fileciteturn205file0
+`Resource Missing → Investigation → Administrative Review → Recovered? → Inventory Updated / Write-Off Review`.
 
 No new states such as `Under Investigation`, `Recovery Pending`, or `Lost Confirmed` are introduced as formal lifecycle states.
 
@@ -230,7 +244,7 @@ The scenario ends after the recovered/non-recovered administrative outcome and d
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-The L2 explicitly defines `MissingResourceIdentified` as the event for a missing resource detected during verification. Library Management is the canonical publisher because it owns the verification and missing-resource workflow and publishes immutable operational events. fileciteturn208file0turn207file0
+The L2 explicitly defines `MissingResourceIdentified` as the event for a missing resource detected during verification. Library Management is the canonical publisher because it owns the verification and missing-resource workflow and publishes immutable operational events.
 
 ### G — Library Management
 Owns investigation, administrative review and outcome.
@@ -262,7 +276,7 @@ Audit evidence should include:
 - Write-off-review progression where not recovered.
 - Relevant financial/personnel context where applicable.
 
-Final write-off approval is governed by institutional policy and must not be invented locally. fileciteturn205file0
+Final write-off approval is governed by institutional policy and must not be invented locally.
 
 ## 16. Completion Criteria and Postconditions
 

@@ -13,7 +13,7 @@
 **Depends On:** L2-A02 — Person & Identity Workflows; L2-C02 — Student Lifecycle & Activation Workflows  
 **Referenced By:** None yet
 
-> **Phase 5 authoring note:** This is a complete L3 Draft. It is not Architecture Approved or Locked. The frozen C017 register identity and classification are preserved exactly. fileciteturn95file0L2-L2
+> **Phase 5 authoring note:** This is a complete L3 Draft. It is not Architecture Approved or Locked. The frozen C017 register identity and classification are preserved exactly.
 
 ---
 
@@ -30,23 +30,37 @@
 | Derivation | **KEEP** |
 | Construction Status in Stage 3 | Not Authored |
 
-The Stage 3 Section C register identifies C017 as `Duplicate Student Lifecycle Resolution`, owned by Student Lifecycle, participating domains A and C, with Type Critical, Priority P1, and Derivation KEEP. fileciteturn95file0L2-L2
+The Stage 3 Section C register identifies C017 as `Duplicate Student Lifecycle Resolution`, owned by Student Lifecycle, participating domains A and C, with Type Critical, Priority P1, and Derivation KEEP.
 
 ## 1.2 Applicable Locked L2 Sources
 
 ### L2-C02 — Student Lifecycle & Activation
 
-The authoritative C02 workflow defines `WF-C02-16 — Student Merge & Duplicate Resolution Workflow`, including duplicate validation, canonical survivor selection, mergeable business data, approval, reference migration, duplicate archival, `StudentMerged`, audit requirements, postconditions and terminal outcomes. fileciteturn102file0L2-L2 fileciteturn103file0L2-L2 fileciteturn104file0L2-L2
+The authoritative C02 workflow defines `WF-C02-16 — Student Merge & Duplicate Resolution Workflow`, including duplicate validation, canonical survivor selection, mergeable business data, approval, reference migration, duplicate archival, `StudentMerged`, audit requirements, postconditions and terminal outcomes.
 
-C02 also establishes Student Lifecycle as the canonical owner of the Student Aggregate and prohibits duplicate active Student identities. fileciteturn97file0L2-L2
+C02 also establishes Student Lifecycle as the canonical owner of the Student Aggregate and prohibits duplicate active Student identities.
 
 ### L2-A02 — Person & Identity
 
-The authoritative A02 architecture establishes Person as the canonical identity aggregate, with exactly one canonical Person per human within a Tenant. Business domains consume Person references and may not create independent Person entities or directly modify the Person aggregate. fileciteturn105file0L2-L2 fileciteturn106file0L2-L2
+The authoritative A02 architecture establishes Person as the canonical identity aggregate, with exactly one canonical Person per human within a Tenant. Business domains consume Person references and may not create independent Person entities or directly modify the Person aggregate.
 
-A02 also defines Person duplicate detection and Person merge as canonical identity capabilities, with `PersonMerged` as an A02-owned event. fileciteturn108file0L2-L2 fileciteturn109file0L2-L2
+A02 also defines Person duplicate detection and Person merge as canonical identity capabilities, with `PersonMerged` as an A02-owned event.
 
 ---
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | `L3-C-017` |
+| Canonical Title | Duplicate Student Lifecycle Resolution |
+| Primary Owner | Student Lifecycle |
+| Participating Domains | A, C |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 
@@ -74,7 +88,7 @@ No new Student identity is created merely to resolve the duplicate.
 
 The scenario begins when duplicate Student records have been identified as candidates for institutional duplicate resolution and the governed Student Merge & Duplicate Resolution process is initiated.
 
-The locked C02 workflow requires that both Student records exist, belong to the same Tenant, duplicate suspicion has been established, merge is permitted by institutional policy, required approvals are configured, and the caller is authorised. fileciteturn103file0L2-L2
+The locked C02 workflow requires that both Student records exist, belong to the same Tenant, duplicate suspicion has been established, merge is permitted by institutional policy, required approvals are configured, and the caller is authorised.
 
 ## 4.2 End Boundary
 
@@ -105,7 +119,7 @@ The Main Business Flow stops at this completed Student Lifecycle outcome.
 - Publication of the canonical `StudentMerged` event.
 - Cross-domain coordination with the canonical Person & Identity domain where Person identity is implicated.
 
-The locked C02 workflow explicitly includes duplicate identification, investigation, approval, survivor selection, attribute reconciliation, reference migration, duplicate archival, audit history and cross-domain synchronization. fileciteturn102file0L2-L2
+The locked C02 workflow explicitly includes duplicate identification, investigation, approval, survivor selection, attribute reconciliation, reference migration, duplicate archival, audit history and cross-domain synchronization.
 
 ## 4.4 Out of Scope
 
@@ -124,7 +138,7 @@ The locked C02 workflow explicitly includes duplicate identification, investigat
 - technical access control/IAM.
 - Infrastructure or deployment behaviour.
 
-The C02 source explicitly excludes applicant merge, admission correction, examination result reconciliation, financial ledger reconciliation, document regeneration and external identity registry updates from WF-C02-16. fileciteturn102file0L2-L2
+The C02 source explicitly excludes applicant merge, admission correction, examination result reconciliation, financial ledger reconciliation, document regeneration and external identity registry updates from WF-C02-16.
 
 ## 4.5 Related Scenarios
 
@@ -137,7 +151,7 @@ No additional relationship is asserted where a final canonical scenario ID was n
 
 ## 4.6 Boundary with Person & Identity
 
-L2-A02 owns the canonical Person and Identity aggregates and states that business domains do not create independent Person entities or directly modify the Person aggregate. fileciteturn106file0L2-L2
+L2-A02 owns the canonical Person and Identity aggregates and states that business domains do not create independent Person entities or directly modify the Person aggregate.
 
 Therefore:
 
@@ -159,13 +173,13 @@ This preserves the A/C ownership boundary.
 
 ## 5.1 Student Lifecycle Ownership
 
-L2-C02 identifies Student Lifecycle as the canonical owner of the Student Aggregate and states that Student ownership remains within the domain. fileciteturn97file0L2-L2
+L2-C02 identifies Student Lifecycle as the canonical owner of the Student Aggregate and states that Student ownership remains within the domain.
 
-The C02 merge workflow explicitly states that Student Lifecycle remains the authoritative owner of duplicate resolution and merge operations. fileciteturn102file0L2-L2
+The C02 merge workflow explicitly states that Student Lifecycle remains the authoritative owner of duplicate resolution and merge operations.
 
 ## 5.2 Person & Identity Ownership
 
-L2-A02 states that Person, Identity and User Account are owned by A02 and that business domains may only reference Person identifiers through published contracts and events. fileciteturn105file0L2-L2 fileciteturn106file0L2-L2
+L2-A02 states that Person, Identity and User Account are owned by A02 and that business domains may only reference Person identifiers through published contracts and events.
 
 A02 therefore remains authoritative for any Person-side identity resolution.
 
@@ -181,7 +195,7 @@ No cross-domain ownership is introduced by this scenario.
 
 ## 6. Business Actors, Roles and Responsibilities
 
-The locked C02 merge workflow explicitly identifies the **Registrar** as the business actor responsible for reviewing and approving merge requests. fileciteturn102file0L2-L2
+The locked C02 merge workflow explicitly identifies the **Registrar** as the business actor responsible for reviewing and approving merge requests.
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
@@ -206,9 +220,9 @@ The following business conditions must be true before C017 begins:
 7. The initiating participant is authorised.
 8. Neither Student is participating in conflicting business operations that prevent resolution.
 
-These are explicit preconditions of `WF-C02-16`. fileciteturn103file0L2-L2
+These are explicit preconditions of `WF-C02-16`.
 
-The canonical Student model also prohibits duplicate active Student identities and requires Student ownership to remain within Student Lifecycle. fileciteturn97file0L2-L2
+The canonical Student model also prohibits duplicate active Student identities and requires Student ownership to remain within Student Lifecycle.
 
 ---
 
@@ -216,7 +230,7 @@ The canonical Student model also prohibits duplicate active Student identities a
 
 **Duplicate Student records are identified and a governed Student Merge & Duplicate Resolution request is initiated.**
 
-The locked C02 workflow identifies the Registrar Portal, Administrative Portal, approved duplicate-detection process, data-migration process and Workflow Engine as initiation contexts. At L3 these are treated only as business initiation contexts; their implementation mechanics are outside this scenario. fileciteturn103file0L2-L2
+The locked C02 workflow identifies the Registrar Portal, Administrative Portal, approved duplicate-detection process, data-migration process and Workflow Engine as initiation contexts. At L3 these are treated only as business initiation contexts; their implementation mechanics are outside this scenario.
 
 ---
 
@@ -236,7 +250,7 @@ The locked C02 workflow identifies the Registrar Portal, Administrative Portal, 
 | 10 | Reconcile downstream Student references through approved business collaboration mechanisms. | Participating dependent domains | Enterprise Student references align with the canonical survivor. |
 | 11 | Complete the scenario with one canonical Student remaining authoritative. | Student Lifecycle | Duplicate Student Lifecycle Resolution is complete. |
 
-This flow follows the locked C02 sequence: validate candidates → validate policy → select canonical Student → validate conflicts → approval → reconcile attributes → migrate references → archive duplicate → audit → publish `StudentMerged` → synchronize downstream domains. fileciteturn103file0L2-L2
+This flow follows the locked C02 sequence: validate candidates → validate policy → select canonical Student → validate conflicts → approval → reconcile attributes → migrate references → archive duplicate → audit → publish `StudentMerged` → synchronize downstream domains.
 
 ---
 
@@ -248,7 +262,7 @@ This flow follows the locked C02 sequence: validate candidates → validate poli
 |---|---|---|---|---|
 | Multiple duplicates | More than one duplicate Student record is identified for the same canonical Student lifecycle identity. | Select one canonical survivor and resolve one or more merged Student records under the same governed merge process. | One canonical Student remains; all duplicate Student records are archived after successful merge. | Student Lifecycle |
 
-The C02 merge strategy explicitly supports one canonical survivor and one or more merged Student records. fileciteturn103file0L2-L2
+The C02 merge strategy explicitly supports one canonical survivor and one or more merged Student records.
 
 ## 10.2 Person Identity Requires Separate Resolution
 
@@ -256,7 +270,7 @@ The C02 merge strategy explicitly supports one canonical survivor and one or mor
 |---|---|---|---|---|
 | Person-side identity implication | Duplicate Student records involve Person identities whose canonical relationship requires separate identity resolution. | Preserve Student Lifecycle ownership of the Student merge while applying the authoritative A02 Person/Identity process for any Person-side merge or identity resolution. | Student and Person ownership boundaries remain intact. | Student Lifecycle + Person & Identity |
 
-A02 explicitly owns duplicate detection and Person merge and publishes `PersonMerged`. fileciteturn108file0L2-L2 fileciteturn109file0L2-L2
+A02 explicitly owns duplicate detection and Person merge and publishes `PersonMerged`.
 
 The exact sequencing between Student merge and Person merge is not asserted because the retrieved authoritative sources do not define that cross-domain sequence explicitly. The gap is recorded in Section 17.
 
@@ -275,7 +289,7 @@ The exact sequencing between Student merge and Person merge is not asserted beca
 | Referential integrity cannot be preserved | Merge cannot complete safely. | Terminate the merge without changing business state. | Student Lifecycle |
 | Person/Identity ownership conflict is identified | Student merge cannot independently resolve the Person identity. | Preserve A02 ownership and defer the Person-side resolution to the authoritative A02 process. | Student Lifecycle + Person & Identity |
 
-The C02 workflow explicitly states that these failure conditions terminate the workflow and that failures shall not modify business state. fileciteturn103file0L2-L2
+The C02 workflow explicitly states that these failure conditions terminate the workflow and that failures shall not modify business state.
 
 No technical retry, rollback, queue, timeout, server failure or infrastructure recovery is defined.
 
@@ -285,22 +299,22 @@ No technical retry, rollback, queue, timeout, server failure or infrastructure r
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Student ownership remains within Student Lifecycle. | C | The canonical Student merge decision and outcome remain C-owned. | L2-C02 §6.6 / WF-C02-16. fileciteturn97file0L2-L2 |
-| Duplicate active Student identities are prohibited. | C | Duplicate operational Student identities cannot remain active. | L2-C02 §6.6. fileciteturn97file0L2-L2 |
-| Both Student records must exist. | C | A merge cannot be performed against a missing Student record. | WF-C02-16.5. fileciteturn103file0L2-L2 |
-| Both Students must belong to the same Tenant. | C / Platform policy | Cross-Tenant Student merge is prohibited. | WF-C02-16.5. fileciteturn103file0L2-L2 |
-| Duplicate suspicion must be established. | C | Unsubstantiated Student records cannot be merged. | WF-C02-16.5. fileciteturn103file0L2-L2 |
-| Merge must be permitted by institutional policy. | C | Policy determines whether the merge may proceed. | WF-C02-16.5. fileciteturn103file0L2-L2 |
-| One canonical survivor must be selected. | C | The merge does not create a new Student identity. | WF-C02-16.7. fileciteturn103file0L2-L2 |
-| Canonical Student retains Student ID and Student Number. | C | Primary Student identity is preserved. | WF-C02-16.7. fileciteturn103file0L2-L2 |
-| Permitted business data may be reconciled according to institutional policy. | C | Reconciliation is governed rather than arbitrary. | WF-C02-16.8. fileciteturn103file0L2-L2 |
-| Enrollment, lifecycle and audit history are preserved. | C | Historical institutional lineage is not discarded. | WF-C02-16.8. fileciteturn103file0L2-L2 |
-| Primary identifiers are never merged into a new identity. | C | The outcome remains a canonical survivor, not a newly generated Student. | WF-C02-16.8. fileciteturn103file0L2-L2 |
-| Downstream domains update references through approved Service Contracts or Domain Events only. | C / participating domains | Downstream participation does not transfer Student ownership. | WF-C02-16.12. fileciteturn103file0L2-L2 |
-| Person has exactly one canonical identity per Tenant. | A | Student resolution must not create competing Person identities. | L2-A02 Person invariants. fileciteturn107file0L2-L2 |
-| Business domains do not directly modify Person. | A | Student merge cannot directly mutate the Person aggregate. | L2-A02 Canonical Ownership. fileciteturn106file0L2-L2 |
-| Person merge is owned by A02. | A | Any Person-side duplicate resolution remains an A02 business responsibility. | L2-A02 Person Merge. fileciteturn108file0L2-L2 |
-| Person merge preserves historical information. | A | Person-side identity history cannot be destroyed by Student resolution. | L2-A02 Person Merge. fileciteturn108file0L2-L2 |
+| Student ownership remains within Student Lifecycle. | C | The canonical Student merge decision and outcome remain C-owned. | L2-C02 §6.6 / WF-C02-16. |
+| Duplicate active Student identities are prohibited. | C | Duplicate operational Student identities cannot remain active. | L2-C02 §6.6. |
+| Both Student records must exist. | C | A merge cannot be performed against a missing Student record. | WF-C02-16.5. |
+| Both Students must belong to the same Tenant. | C / Platform policy | Cross-Tenant Student merge is prohibited. | WF-C02-16.5. |
+| Duplicate suspicion must be established. | C | Unsubstantiated Student records cannot be merged. | WF-C02-16.5. |
+| Merge must be permitted by institutional policy. | C | Policy determines whether the merge may proceed. | WF-C02-16.5. |
+| One canonical survivor must be selected. | C | The merge does not create a new Student identity. | WF-C02-16.7. |
+| Canonical Student retains Student ID and Student Number. | C | Primary Student identity is preserved. | WF-C02-16.7. |
+| Permitted business data may be reconciled according to institutional policy. | C | Reconciliation is governed rather than arbitrary. | WF-C02-16.8. |
+| Enrollment, lifecycle and audit history are preserved. | C | Historical institutional lineage is not discarded. | WF-C02-16.8. |
+| Primary identifiers are never merged into a new identity. | C | The outcome remains a canonical survivor, not a newly generated Student. | WF-C02-16.8. |
+| Downstream domains update references through approved Service Contracts or Domain Events only. | C / participating domains | Downstream participation does not transfer Student ownership. | WF-C02-16.12. |
+| Person has exactly one canonical identity per Tenant. | A | Student resolution must not create competing Person identities. | L2-A02 Person invariants. |
+| Business domains do not directly modify Person. | A | Student merge cannot directly mutate the Person aggregate. | L2-A02 Canonical Ownership. |
+| Person merge is owned by A02. | A | Any Person-side duplicate resolution remains an A02 business responsibility. | L2-A02 Person Merge. |
+| Person merge preserves historical information. | A | Person-side identity history cannot be destroyed by Student resolution. | L2-A02 Person Merge. |
 
 L3 applies these rules; it does not create new merge rules.
 
@@ -310,10 +324,10 @@ L3 applies these rules; it does not create new merge rules.
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Canonical Student Aggregate | Existing operational Student record(s) | One Student is selected as the canonical survivor. | Canonical Student remains operational. | Student Lifecycle | L2-C02 WF-C02-16.7 / 16.13. fileciteturn103file0L2-L2 fileciteturn104file0L2-L2 |
-| Merged Student Record | Existing duplicate Student record(s) | Duplicate record is removed from operational use through archival. | Archived duplicate Student record. | Student Lifecycle | L2-C02 WF-C02-16.7 / 16.13. fileciteturn103file0L2-L2 fileciteturn104file0L2-L2 |
-| Student lifecycle history | Existing historical records | Histories are preserved through the merge. | Historical lineage retained. | Student Lifecycle | L2-C02 WF-C02-16.8 / 16.13. fileciteturn103file0L2-L2 |
-| Person | Existing canonical Person | Student merge does not re-own or independently change Person lifecycle. | Existing Person lifecycle remains A02-owned. | Person & Identity | L2-A02 canonical ownership and lifecycle. fileciteturn106file0L2-L2 fileciteturn108file0L2-L2 |
+| Canonical Student Aggregate | Existing operational Student record(s) | One Student is selected as the canonical survivor. | Canonical Student remains operational. | Student Lifecycle | L2-C02 WF-C02-16.7 / 16.13. |
+| Merged Student Record | Existing duplicate Student record(s) | Duplicate record is removed from operational use through archival. | Archived duplicate Student record. | Student Lifecycle | L2-C02 WF-C02-16.7 / 16.13. |
+| Student lifecycle history | Existing historical records | Histories are preserved through the merge. | Historical lineage retained. | Student Lifecycle | L2-C02 WF-C02-16.8 / 16.13. |
+| Person | Existing canonical Person | Student merge does not re-own or independently change Person lifecycle. | Existing Person lifecycle remains A02-owned. | Person & Identity | L2-A02 canonical ownership and lifecycle. |
 
 ## 13.1 Student Lifecycle State Rule
 
@@ -329,7 +343,7 @@ A02 defines the Person lifecycle independently as:
 
 `Draft → Created → Verified → Active → Inactive → Archived → Anonymized → Deleted`.
 
-C017 does not change that lifecycle or create a Student-owned Person state. fileciteturn108file0L2-L2
+C017 does not change that lifecycle or create a Student-owned Person state.
 
 ---
 
@@ -339,8 +353,8 @@ C017 does not change that lifecycle or create a Student-owned Person state. f
 
 | Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
 |---|---|---|---|---|
-| `StudentMerged` | **Student Lifecycle** | Downstream domains requiring canonical Student-reference reconciliation | Communicates completion of the canonical Student merge outcome. | L2-C02 WF-C02-16.9 / 16.13. fileciteturn103file0L2-L2 fileciteturn104file0L2-L2 |
-| `PersonMerged` | **Person & Identity** | Business domains consuming canonical Person identity | Communicates an A02-owned Person merge when the separate Person merge process applies. | L2-A02 Published Events. fileciteturn109file0L2-L2 |
+| `StudentMerged` | **Student Lifecycle** | Downstream domains requiring canonical Student-reference reconciliation | Communicates completion of the canonical Student merge outcome. | L2-C02 WF-C02-16.9 / 16.13. |
+| `PersonMerged` | **Person & Identity** | Business domains consuming canonical Person identity | Communicates an A02-owned Person merge when the separate Person merge process applies. | L2-A02 Published Events. |
 
 ### Event Ownership Constraint
 
@@ -350,14 +364,14 @@ C017 does not change that lifecycle or create a Student-owned Person state. f
 
 Each event remains owned by its canonical publisher.
 
-A02 explicitly states that downstream business domains do not directly modify the Person aggregate. fileciteturn106file0L2-L2
+A02 explicitly states that downstream business domains do not directly modify the Person aggregate.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
 | Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
 |---|---|---|---|---|
-| Student Lifecycle | Participating downstream domains | Canonical Student merge outcome through approved Service Contracts or `StudentMerged` | Reconcile Student references to the canonical survivor. | L2-C02 WF-C02-16.12 / 16.13. fileciteturn103file0L2-L2 fileciteturn104file0L2-L2 |
-| Person & Identity | Business domains consuming identity | Canonical Person identity merge outcome through A02-owned contracts/events | Reconcile canonical Person identity where a Person merge is independently required. | L2-A02 Canonical Ownership / Published Events. fileciteturn106file0L2-L2 fileciteturn109file0L2-L2 |
+| Student Lifecycle | Participating downstream domains | Canonical Student merge outcome through approved Service Contracts or `StudentMerged` | Reconcile Student references to the canonical survivor. | L2-C02 WF-C02-16.12 / 16.13. |
+| Person & Identity | Business domains consuming identity | Canonical Person identity merge outcome through A02-owned contracts/events | Reconcile canonical Person identity where a Person merge is independently required. | L2-A02 Canonical Ownership / Published Events. |
 
 The exact technical mechanism, payload, endpoint, message transport or persistence model is intentionally not defined at L3.
 
@@ -383,7 +397,7 @@ A Person merge must not be treated as implicit authority to change Student lifec
 | Execute approved Student merge | Student Lifecycle | Must follow the approved merge decision and C02 merge rules. | Student Lifecycle |
 | Person-side merge, if separately required | Not defined in the retrieved A02 source for this scenario | Must remain under A02 Person merge ownership. | Person & Identity |
 
-The Registrar's merge-review and approval responsibility is explicitly defined by WF-C02-16.4. fileciteturn102file0L2-L2
+The Registrar's merge-review and approval responsibility is explicitly defined by WF-C02-16.4.
 
 No additional approval authority is invented.
 
@@ -410,9 +424,9 @@ No escalation or override authority is invented.
 | Duplicate archival | Traceable archival outcome | Student Lifecycle |
 | Event publication | Traceable `StudentMerged` business event outcome | Student Lifecycle |
 
-The listed audit obligations are directly defined by WF-C02-16.14. fileciteturn104file0L2-L2
+The listed audit obligations are directly defined by WF-C02-16.14.
 
-A02 separately requires full identity auditability and audit preservation for Person merge operations. fileciteturn109file0L2-L2
+A02 separately requires full identity auditability and audit preservation for Person merge operations.
 
 No additional evidence fields, technical audit structures or permission mechanisms are invented.
 
@@ -437,7 +451,7 @@ C017 is successfully complete when:
 - Required downstream Student-reference reconciliation has been initiated through approved architecture boundaries.
 - The Student Aggregate remains internally consistent.
 
-These criteria derive directly from the locked C02 merge workflow's postconditions and completion definition. fileciteturn104file0L2-L2
+These criteria derive directly from the locked C02 merge workflow's postconditions and completion definition.
 
 ## 16.2 Postconditions
 
@@ -451,7 +465,7 @@ These criteria derive directly from the locked C02 merge workflow's postconditio
 - Person/Identity ownership remains with A02.
 - Any separately required Person merge remains governed by A02.
 
-The C02 source explicitly states that one canonical Student remains active, duplicate Student records are archived, historical lineage is preserved, audit history is complete, `StudentMerged` is published and downstream references are synchronized. fileciteturn104file0L2-L2
+The C02 source explicitly states that one canonical Student remains active, duplicate Student records are archived, historical lineage is preserved, audit history is complete, `StudentMerged` is published and downstream references are synchronized.
 
 ---
 
@@ -472,11 +486,11 @@ These issues do **not** justify inventing architecture. The scenario preserves t
 
 | Assumption | Basis | Risk if Incorrect |
 |---|---|---|
-| C017's primary institutional outcome is resolution of duplicate Student lifecycle records. | Frozen Stage 3 title, owner, type and priority; locked WF-C02-16. fileciteturn95file0L2-L2 fileciteturn102file0L2-L2 | Scenario boundary would require upstream change control. |
-| One canonical Student survivor is retained rather than creating a replacement Student. | WF-C02-16.7. fileciteturn103file0L2-L2 | Would contradict locked C02 semantics. |
-| The canonical survivor retains Student ID and Student Number. | WF-C02-16.7. fileciteturn103file0L2-L2 | Would contradict Student identity invariants. |
-| Person/Identity remains A02-owned even when Student duplicates involve the same human. | A02 canonical ownership. fileciteturn106file0L2-L2 | Would create an ownership conflict requiring architecture change control. |
-| `StudentMerged` remains the canonical Student-side merge event. | WF-C02-16.9 / 16.13. fileciteturn103file0L2-L2 fileciteturn104file0L2-L2 | Event ownership would require upstream correction. |
+| C017's primary institutional outcome is resolution of duplicate Student lifecycle records. | Frozen Stage 3 title, owner, type and priority; locked WF-C02-16. | Scenario boundary would require upstream change control. |
+| One canonical Student survivor is retained rather than creating a replacement Student. | WF-C02-16.7. | Would contradict locked C02 semantics. |
+| The canonical survivor retains Student ID and Student Number. | WF-C02-16.7. | Would contradict Student identity invariants. |
+| Person/Identity remains A02-owned even when Student duplicates involve the same human. | A02 canonical ownership. | Would create an ownership conflict requiring architecture change control. |
+| `StudentMerged` remains the canonical Student-side merge event. | WF-C02-16.9 / 16.13. | Event ownership would require upstream correction. |
 
 Assumptions do not override locked architecture.
 
@@ -505,7 +519,7 @@ Assumptions do not override locked architecture.
 | Derivation preserved | **PASS** |
 | Status = Draft | **PASS** |
 
-The frozen Section C register confirms all of these C017 values. fileciteturn95file0L2-L2
+The frozen Section C register confirms all of these C017 values.
 
 ## L2-C02 Validation
 
@@ -523,7 +537,7 @@ The workflow establishes:
 - `StudentMerged`;
 - downstream synchronization;
 - audit requirements;
-- terminal outcomes. fileciteturn103file0L2-L2 fileciteturn104file0L2-L2
+- terminal outcomes.
 
 ## L2-A02 Validation
 
@@ -535,7 +549,7 @@ A02 establishes:
 - prohibition on downstream direct Person modification;
 - Person duplicate detection;
 - Person merge ownership;
-- `PersonMerged`. fileciteturn107file0L2-L2 fileciteturn108file0L2-L2 fileciteturn109file0L2-L2
+- `PersonMerged`.
 
 C017 does not override those rules.
 
@@ -557,7 +571,7 @@ Canonical publisher:
 
 **Person & Identity**.
 
-The events remain distinct and retain their canonical publishers. fileciteturn104file0L2-L2 fileciteturn109file0L2-L2
+The events remain distinct and retain their canonical publishers.
 
 ## Lifecycle Validation
 
@@ -619,7 +633,7 @@ All mandatory v2.0 sections are present:
 16. Completion Criteria and Postconditions
 17. Open Issues, Assumptions and Deferred Questions
 
-The locked v2.0 template defines these 17 sections and explicitly requires unresolved upstream ambiguity to be recorded rather than silently resolved. fileciteturn110file0L2-L2 fileciteturn112file0L2-L2
+The locked v2.0 template defines these 17 sections and explicitly requires unresolved upstream ambiguity to be recorded rather than silently resolved.
 
 # Final Classification
 

@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-159 |
+| Canonical Title | Medical History Review to Consultation Readiness |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario establishes the healthcare business outcome in which the medical history relevant to an identified and registered patient is reviewed, the patient context required for care is established, and the healthcare visit is ready for consultation.
 
-The locked L2 identifies Medical History as an Institutional Health Services responsibility. Patient Registration retrieves medical history before a visit reaches Consultation Ready. The L2 states that history may include previous visits, allergies, chronic conditions, vaccinations, previous prescriptions and previous referrals, and that historical information remains immutable. fileciteturn247file0turn254file0
+The locked L2 identifies Medical History as an Institutional Health Services responsibility. Patient Registration retrieves medical history before a visit reaches Consultation Ready. The L2 states that history may include previous visits, allergies, chronic conditions, vaccinations, previous prescriptions and previous referrals, and that historical information remains immutable.
 
 The scenario therefore performs **review and readiness**, not clinical diagnosis or treatment.
 
@@ -70,7 +84,7 @@ Medical history review is complete for the current healthcare context and the vi
 
 G06 owns medical history and the Medical Encounter/healthcare operational context.
 
-The L2 explicitly assigns Medical History and Patient Registration to Institutional Health Services. fileciteturn243file0turn244file0
+The L2 explicitly assigns Medical History and Patient Registration to Institutional Health Services.
 
 ### Section C — Student Lifecycle
 
@@ -132,7 +146,7 @@ A registered healthcare visit reaches the point where relevant medical history m
 9. Review previous referrals.
 10. Establish which historical information is relevant to the current consultation context.
 
-The L2 expressly identifies these categories of medical history and requires historical information to remain immutable. fileciteturn247file0
+The L2 expressly identifies these categories of medical history and requires historical information to remain immutable.
 
 ### Phase C — Clinical Context Review
 
@@ -214,7 +228,7 @@ The L2 states:
 - Medical history includes previous visits, allergies, chronic conditions, vaccinations, previous prescriptions and previous referrals.
 - Historical information shall remain immutable.
 - Medical history is owned by Institutional Health Services.
-- Every lifecycle transition shall be audited. fileciteturn247file0turn253file0
+- Every lifecycle transition shall be audited.
 
 Medical history review must not be used to overwrite the underlying historical record.
 
@@ -224,11 +238,11 @@ The scenario does not invent a universal definition of "clinically relevant hist
 
 The Patient Registration workflow ends in:
 
-`Visit Registered → Consultation Ready`. fileciteturn254file0
+`Visit Registered → Consultation Ready`.
 
 The Consultation workflow then proceeds:
 
-`Patient Registered → Clinical Assessment → Diagnosis → Treatment → Prescription (If Required) → Consultation Closed`. fileciteturn257file0
+`Patient Registered → Clinical Assessment → Diagnosis → Treatment → Prescription (If Required) → Consultation Closed`.
 
 This scenario establishes readiness and does not execute the consultation lifecycle.
 
@@ -241,7 +255,7 @@ The retrieved L2 defines:
 - `PatientRegistered` — Patient visit registered.
 - `ConsultationStarted` — Consultation initiated.
 - `ConsultationCompleted` — Consultation completed.
-- `FollowUpRecommended` — Follow-up advised. fileciteturn250file0
+- `FollowUpRecommended` — Follow-up advised.
 
 The L2 does **not** define a dedicated `MedicalHistoryReviewed` event.
 
@@ -253,13 +267,13 @@ C/E remain authoritative sources for identity/personnel context and do not acqui
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-The L2 states that healthcare authorization is configurable and that medical confidentiality is governed through need-to-know, role-based access and institutional privacy policies. fileciteturn251file0
+The L2 states that healthcare authorization is configurable and that medical confidentiality is governed through need-to-know, role-based access and institutional privacy policies.
 
 Medical history review must be performed by an appropriately authorised healthcare actor.
 
 Audit evidence should preserve the business action and lifecycle transition without exposing unnecessary medical information.
 
-Every lifecycle transition is required to be audited. fileciteturn253file0
+Every lifecycle transition is required to be audited.
 
 No technical access control/IAM mechanism is specified.
 

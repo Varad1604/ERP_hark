@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-134 |
+| Canonical Title | Library Resource Reservation to Waiting List Position |
+| Primary Owner | Library Management |
+| Participating Domains | G, C, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome in which a member requests a library resource that is not presently available for immediate issue, the request is validated under the applicable reservation policy, and the reservation is established in the waiting list with an authoritative queue position.
@@ -23,7 +37,7 @@ Reservation Management exists to provide equitable access to limited library res
 
 `Reservation Requested → Waiting List → Copy Available → Member Notified → Collection → Reservation Closed`.
 
-Reservation validation may consider Active Membership, Existing Borrowings, Reservation Limits, Resource Availability and Duplicate Reservations. Waiting lists support Queue Position, Reservation Date, Priority, Notification Status and Reservation Expiry, with policies remaining configurable. fileciteturn179file0turn180file0
+Reservation validation may consider Active Membership, Existing Borrowings, Reservation Limits, Resource Availability and Duplicate Reservations. Waiting lists support Queue Position, Reservation Date, Priority, Notification Status and Reservation Expiry, with policies remaining configurable.
 
 ## 3. Business Outcome
 
@@ -211,13 +225,13 @@ Waiting lists support:
 - Notification Status.
 - Reservation Expiry.
 
-Validation and queue-processing policies remain configurable. fileciteturn179file0turn180file0
+Validation and queue-processing policies remain configurable.
 
 The reservation lifecycle is:
 
 `Requested → Waiting → Available → Collected → Closed`.
 
-No local reservation state is invented. fileciteturn183file0
+No local reservation state is invented.
 
 ## 13. State and Lifecycle Impact
 
@@ -235,7 +249,7 @@ No `Queued`, `Pending`, `Priority Assigned`, or `Notification Pending` lifecycle
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-The L2 service model explicitly provides Reservation Services for Reserve Resource, Cancel Reservation, Allocate Reserved Resource and Query Reservation. fileciteturn183file0
+The L2 service model explicitly provides Reservation Services for Reserve Resource, Cancel Reservation, Allocate Reserved Resource and Query Reservation.
 
 The retrieved L2 event catalogue does not expose a dedicated reservation-request event name in the available source material. Therefore this draft does **not** invent an event such as `ReservationRequested`.
 
@@ -247,7 +261,7 @@ Business collaboration remains:
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-Reservation processing follows the configured library authorization model. The G05 authorization model identifies Librarian and Circulation Desk among the operational roles and permits configurable authorization/delegation. fileciteturn173file0
+Reservation processing follows the configured library authorization model. The G05 authorization model identifies Librarian and Circulation Desk among the operational roles and permits configurable authorization/delegation.
 
 The reservation request, eligibility decision, queue position, priority, expiry and resulting lifecycle outcome must be traceable.
 

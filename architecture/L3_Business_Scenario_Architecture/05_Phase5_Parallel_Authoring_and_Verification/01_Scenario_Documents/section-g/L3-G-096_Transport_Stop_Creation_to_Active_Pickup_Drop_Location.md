@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-096 |
+| Canonical Title | Transport Stop Creation to Active Pickup/Drop Location |
+| Primary Owner | Transport Management |
+| Participating Domains | G |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario establishes a new Transport Stop through the authoritative G04 Stop Management workflow until it is active for operational pickup/drop use. G04 defines a Transport Stop as a designated pickup or drop location and states that stops are reusable across multiple routes.

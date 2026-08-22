@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-177 |
+| Canonical Title | Annual Health Checkup to Recorded Assessment Outcome |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Annual Health Checkups provide a structured institutional health assessment rather than an isolated walk-in consultation. The institution needs an end-to-end process that establishes the checkup, identifies participants, conducts the assessment, records findings and recommendations within G06, and completes the checkup while preserving the resulting healthcare history.

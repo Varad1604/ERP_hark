@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-091 |
+| Canonical Title | Mess Allocation Change to Effective Reallocation |
+| Primary Owner | Hostel Management |
+| Participating Domains | G, H |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern an authorised change to an existing resident mess allocation so that the revised dining assignment becomes effective while preserving the prior allocation history.

@@ -15,15 +15,29 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-151 |
+| Canonical Title | Library Resource Availability Conflict to Alternative Resolution |
+| Primary Owner | Library Management |
+| Participating Domains | G, C, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the institutional outcome when a requested library resource cannot be supplied in the expected availability condition and Library Management establishes an authorised alternative resolution.
 
-The locked L2 defines reservation management for unavailable resources and a reservation workflow of `Reservation Requested → Waiting List → Copy Available → Member Notified → Collection → Reservation Closed`. It also states that resource availability is a configurable validation consideration and that reservation policies remain configurable. fileciteturn221file0turn222file0
+The locked L2 defines reservation management for unavailable resources and a reservation workflow of `Reservation Requested → Waiting List → Copy Available → Member Notified → Collection → Reservation Closed`. It also states that resource availability is a configurable validation consideration and that reservation policies remain configurable.
 
 Because the frozen scenario title is broader than a single reservation state, this L3 treats the conflict as the business condition in which the expected resource availability cannot satisfy the request and the institution must establish the applicable alternative outcome, without inventing a new lifecycle state.
 
-The scenario applies the locked L2-G05 ownership and workflow boundaries. Library Management remains the canonical operational owner of library services, while external domains retain ownership of their own information and downstream outcomes. fileciteturn215file0turn220file0
+The scenario applies the locked L2-G05 ownership and workflow boundaries. Library Management remains the canonical operational owner of library services, while external domains retain ownership of their own information and downstream outcomes.
 
 ## 3. Business Outcome
 
@@ -104,7 +118,7 @@ The requested resource is unavailable or otherwise cannot satisfy the expected a
 ### Phase C — Establish Resolution
 10. If an authorised alternative resource/resolution exists, establish it.
 11. Otherwise place the request into the existing reservation/waiting-list path where eligible.
-12. Preserve queue position, reservation date, priority and notification status where the authoritative reservation workflow requires them. fileciteturn222file0
+12. Preserve queue position, reservation date, priority and notification status where the authoritative reservation workflow requires them.
 
 ### Phase D — Communication
 13. Where the outcome requires notification, provide the business outcome to H.
@@ -117,7 +131,7 @@ The requested resource is unavailable or otherwise cannot satisfy the expected a
 ## 10. Alternate Business Flows
 
 ### 10.1 Resource Becomes Available
-The request follows the existing reservation workflow toward `Copy Available`, notification, collection and closure where applicable. fileciteturn221file0
+The request follows the existing reservation workflow toward `Copy Available`, notification, collection and closure where applicable.
 
 ### 10.2 Waiting-List Placement
 Where the resource remains unavailable and the request is eligible, the request progresses to the authoritative waiting-list path.
@@ -126,7 +140,7 @@ Where the resource remains unavailable and the request is eligible, the request 
 If institutional policy supports an alternative resource, G establishes that alternative. No automatic equivalence rule is invented.
 
 ### 10.4 Duplicate Reservation
-The L2 identifies duplicate reservations as a validation consideration. The request follows the configured policy rather than an invented local outcome. fileciteturn222file0
+The L2 identifies duplicate reservations as a validation consideration. The request follows the configured policy rather than an invented local outcome.
 
 ### 10.5 Notification
 H handles delivery of the governed member notification.
@@ -155,9 +169,9 @@ No technical retry, queue, server failure, rollback, database recovery, API or i
 
 ## 12. Business Rules and Decision Constraints
 
-The L2 states that reservation validation may consider Active Membership, Existing Borrowings, Reservation Limits, Resource Availability and Duplicate Reservations, with configurable policies. fileciteturn222file0
+The L2 states that reservation validation may consider Active Membership, Existing Borrowings, Reservation Limits, Resource Availability and Duplicate Reservations, with configurable policies.
 
-The L2 reservation workflow is `Reservation Requested → Waiting List → Copy Available → Member Notified → Collection → Reservation Closed`. fileciteturn221file0
+The L2 reservation workflow is `Reservation Requested → Waiting List → Copy Available → Member Notified → Collection → Reservation Closed`.
 
 The scenario must not invent a universal substitute-resource policy or force every availability conflict into a reservation.
 
@@ -165,7 +179,7 @@ Rules remain upstream-owned and configurable where L2 states that configuration 
 
 ## 13. State and Lifecycle Impact
 
-The authoritative reservation statuses are Requested, Waiting, Ready for Collection, Collected, Expired and Cancelled; values remain configurable. fileciteturn222file0
+The authoritative reservation statuses are Requested, Waiting, Ready for Collection, Collected, Expired and Cancelled; values remain configurable.
 
 This scenario does not create a new `Availability Conflict` lifecycle state. The conflict is a business condition resolved through an existing authoritative path.
 
@@ -173,7 +187,7 @@ No new lifecycle states or transitions are created.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-The L2 defines reservation events including `LibraryReservationCreated`, `ReservationAvailable`, `ReservationCollected` and `LibraryReservationExpired`. fileciteturn223file0
+The L2 defines reservation events including `LibraryReservationCreated`, `ReservationAvailable`, `ReservationCollected` and `LibraryReservationExpired`.
 
 Where the alternative resolution enters the reservation lifecycle, only these canonical events are used. No `AlternativeResourceAssigned` or `AvailabilityConflictResolved` event is invented.
 

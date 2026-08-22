@@ -31,6 +31,20 @@ The frozen Section C canonical register identifies this scenario with the exact 
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-C-022 |
+| Canonical Title | Academic Registration Modification and Add/Drop |
+| Primary Owner | Academic Registration |
+| Participating Domains | C, D |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario describes the complete institutional business outcome represented by **Academic Registration Modification and Add/Drop**.

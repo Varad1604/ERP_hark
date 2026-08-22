@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-149 |
+| Canonical Title | Library Clearance Request to Clearance Approval |
+| Primary Owner | Library Management |
+| Participating Domains | G, C, E, F, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario defines the complete institutional business outcome by which a Library Clearance request is received, the requesting person's library obligations are verified, outstanding borrowing/fine/replacement and other applicable obligations are reviewed, an administrative decision is established, and the Library Clearance reaches its authoritative approval or rejection outcome.
@@ -23,7 +37,7 @@ The locked L2 defines Library Clearance as verification of library obligations b
 
 `Clearance Requested → Borrowing Verification → Outstanding Fine Verification → Replacement Verification → Administrative Review → Library Clearance Approved`.
 
-The L2 also states that Library Management remains the canonical owner of clearance status. fileciteturn213file0
+The L2 also states that Library Management remains the canonical owner of clearance status.
 
 ## 3. Business Outcome
 
@@ -95,7 +109,7 @@ G is the Primary Owner and canonical owner of:
 - Administrative clearance decision.
 - Clearance history.
 
-The L2 explicitly states that Library Management remains the canonical owner of clearance status. fileciteturn213file0
+The L2 explicitly states that Library Management remains the canonical owner of clearance status.
 
 ### 5.2 Student Lifecycle — C
 
@@ -162,7 +176,7 @@ No unsupported approval authority, financial approver, exit officer, or technica
 
 A Library Clearance request is initiated.
 
-The locked L2 defines `Clearance Requested` as the first business stage and explicitly lists `ClearanceRequested` as a domain event. fileciteturn206file0turn208file0
+The locked L2 defines `Clearance Requested` as the first business stage and explicitly lists `ClearanceRequested` as a domain event.
 
 ## 9. Main Business Flow
 
@@ -204,7 +218,7 @@ The locked L2 defines `Clearance Requested` as the first business stage and expl
 22. Apply configurable clearance validation rules.
 23. Consolidate all outstanding obligations.
 
-The L2 identifies outstanding borrowings, active reservations, outstanding fines, replacement obligations and pending administrative actions as possible clearance-validation considerations. fileciteturn213file0
+The L2 identifies outstanding borrowings, active reservations, outstanding fines, replacement obligations and pending administrative actions as possible clearance-validation considerations.
 
 ### Phase F — Administrative Review
 
@@ -309,7 +323,7 @@ The L2 states that clearance validation may consider:
 - Replacement Obligations.
 - Pending Administrative Actions.
 
-Validation rules remain configurable. fileciteturn213file0
+Validation rules remain configurable.
 
 Supported clearance statuses include:
 
@@ -320,19 +334,19 @@ Supported clearance statuses include:
 - Rejected.
 - Completed.
 
-Status values remain configurable. fileciteturn213file0
+Status values remain configurable.
 
 The scenario therefore must not invent a mandatory clearance rule such as “zero balance always required” unless that rule exists upstream.
 
-Finance owns accounting/payment processing. fileciteturn215file0
+Finance owns accounting/payment processing.
 
 ## 13. State and Lifecycle Impact
 
 The authoritative Library Clearance workflow is:
 
-`Clearance Requested → Borrowing Verification → Outstanding Fine Verification → Replacement Verification → Administrative Review → Library Clearance Approved`. fileciteturn213file0
+`Clearance Requested → Borrowing Verification → Outstanding Fine Verification → Replacement Verification → Administrative Review → Library Clearance Approved`.
 
-Supported statuses additionally include Requested, Under Review, Pending, Approved, Rejected and Completed. fileciteturn213file0
+Supported statuses additionally include Requested, Under Review, Pending, Approved, Rejected and Completed.
 
 This scenario does not create additional states such as:
 
@@ -351,11 +365,11 @@ The L2 explicitly defines:
 - `ClearanceApproved` — clearance approved.
 - `ClearanceCompleted` — clearance completed.
 
-Library Management publishes these events because it is the canonical owner of clearance status. fileciteturn208file0turn206file0
+Library Management publishes these events because it is the canonical owner of clearance status.
 
 This scenario uses `ClearanceRequested` and `ClearanceApproved` at their applicable business boundaries.
 
-G publishes the business event; H handles notification delivery. fileciteturn214file0
+G publishes the business event; H handles notification delivery.
 
 C, E and F provide authoritative context according to their ownership boundaries.
 

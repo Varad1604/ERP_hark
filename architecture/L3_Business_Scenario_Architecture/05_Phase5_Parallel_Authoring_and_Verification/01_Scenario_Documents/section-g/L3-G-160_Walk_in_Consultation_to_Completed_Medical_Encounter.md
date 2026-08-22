@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-160 |
+| Canonical Title | Walk-in Consultation to Completed Medical Encounter |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional walk-in consultation outcome from a consultation-ready patient through clinical assessment, diagnosis, treatment, optional prescription/follow-up, and consultation completion.
@@ -23,7 +37,7 @@ The locked L2 states that walk-in consultations are the default operational mode
 
 `Patient Registered → Clinical Assessment → Diagnosis → Treatment → Prescription (If Required) → Consultation Closed`.
 
-Consultation information may include Consultation Number, Healthcare Professional, Consultation Type, Symptoms, Diagnosis, Treatment Notes and Follow-up Recommendation. Consultation types and follow-up policies remain configurable. fileciteturn257file0
+Consultation information may include Consultation Number, Healthcare Professional, Consultation Type, Symptoms, Diagnosis, Treatment Notes and Follow-up Recommendation. Consultation types and follow-up policies remain configurable.
 
 ## 3. Business Outcome
 
@@ -106,7 +120,7 @@ Provides authoritative healthcare professional/personnel context.
 
 Delivers notifications when a canonical healthcare event requires notification.
 
-The L2 explicitly states that medical professionals retain operational authority and the ERP supports recording, governance and coordination without replacing clinical judgement. fileciteturn244file0
+The L2 explicitly states that medical professionals retain operational authority and the ERP supports recording, governance and coordination without replacing clinical judgement.
 
 ## 7. Preconditions and Entry Criteria
 
@@ -165,7 +179,7 @@ A registered patient presents for the walk-in consultation.
 23. Preserve the auditable Medical Encounter history.
 24. End the scenario.
 
-The L2 defines `ConsultationStarted` and `ConsultationCompleted` events and requires every significant healthcare activity to publish immutable domain events. fileciteturn250file0
+The L2 defines `ConsultationStarted` and `ConsultationCompleted` events and requires every significant healthcare activity to publish immutable domain events.
 
 ## 10. Alternate Business Flows
 
@@ -238,7 +252,7 @@ The L2 establishes:
 - Consultation types remain configurable.
 - Follow-up policies remain configurable.
 - Medical professionals retain operational authority.
-- The ERP supports recording and coordination without replacing clinical judgement. fileciteturn257file0turn244file0
+- The ERP supports recording and coordination without replacing clinical judgement.
 
 G06 invariants include:
 
@@ -246,7 +260,7 @@ G06 invariants include:
 - Every Prescription belongs to one Medical Encounter.
 - Referral references one Medical Encounter.
 - Medical certificates reference one authorised Medical Encounter.
-- Every lifecycle transition is audited. fileciteturn253file0
+- Every lifecycle transition is audited.
 
 No local diagnosis, treatment, prescription or follow-up rule is invented.
 
@@ -254,11 +268,11 @@ No local diagnosis, treatment, prescription or follow-up rule is invented.
 
 The Medical Encounter lifecycle is:
 
-`Registered → Consultation → Treatment → Completed → Closed`. fileciteturn251file0
+`Registered → Consultation → Treatment → Completed → Closed`.
 
 The consultation workflow is:
 
-`Patient Registered → Clinical Assessment → Diagnosis → Treatment → Prescription (If Required) → Consultation Closed`. fileciteturn257file0
+`Patient Registered → Clinical Assessment → Diagnosis → Treatment → Prescription (If Required) → Consultation Closed`.
 
 This scenario owns the consultation completion boundary but does not absorb prescription, medicine-dispensing, observation or referral lifecycles.
 
@@ -268,7 +282,7 @@ G06 defines:
 
 - `ConsultationStarted` — Consultation initiated.
 - `ConsultationCompleted` — Consultation completed.
-- `FollowUpRecommended` — Follow-up advised. fileciteturn250file0
+- `FollowUpRecommended` — Follow-up advised.
 
 G06 is the canonical publisher.
 
@@ -276,7 +290,7 @@ H may consume business events for configured notification delivery, but notifica
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-The L2 states that healthcare authorization is configurable and identifies Doctor as the typical authorization for conducting consultation, while medical confidentiality is governed by need-to-know, role-based access and institutional privacy policies. fileciteturn251file0
+The L2 states that healthcare authorization is configurable and identifies Doctor as the typical authorization for conducting consultation, while medical confidentiality is governed by need-to-know, role-based access and institutional privacy policies.
 
 Clinical judgement remains with the medical professional.
 
@@ -293,7 +307,7 @@ Audit evidence should preserve:
 - Consultation completion.
 - Relevant downstream outcomes.
 
-Every lifecycle transition must be audited. fileciteturn253file0
+Every lifecycle transition must be audited.
 
 No technical access control/IAM implementation is specified.
 

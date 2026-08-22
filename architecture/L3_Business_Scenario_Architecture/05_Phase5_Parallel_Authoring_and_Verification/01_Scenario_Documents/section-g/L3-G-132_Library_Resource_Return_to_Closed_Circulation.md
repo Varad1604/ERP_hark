@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-132 |
+| Canonical Title | Library Resource Return to Closed Circulation |
+| Primary Owner | Library Management |
+| Participating Domains | G, F, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete business outcome in which an actively borrowed Library Copy is returned, its physical condition and any overdue/loss/damage implications are assessed, the borrowing is closed, and the copy receives the appropriate subsequent operational treatment.
 
-The L2 defines Return Processing as capable of recording Return Date, Return Time, Physical Condition, Damage Observations, Lost Resource Information and Outstanding Fine. Historical circulation records remain immutable. fileciteturn170file0
+The L2 defines Return Processing as capable of recording Return Date, Return Time, Physical Condition, Damage Observations, Lost Resource Information and Outstanding Fine. Historical circulation records remain immutable.
 
 Library Management owns the circulation closure. Finance owns accounting/payment processing if a fine or replacement charge results. H owns notification delivery.
 
@@ -95,7 +109,7 @@ Handles accounting/payment when the library fine outcome requires financial proc
 
 Consumes the return/fine business outcome for notification.
 
-The G05 authorization matrix identifies Librarian / Circulation Desk as typical authorization for return processing. fileciteturn173file0
+The G05 authorization matrix identifies Librarian / Circulation Desk as typical authorization for return processing.
 
 ## 7. Preconditions and Entry Criteria
 
@@ -151,7 +165,7 @@ A borrowed Library Copy is returned.
 
 ### 10.1 Overdue Return
 
-If the due date has been exceeded, the configured fine policy is evaluated. G05 defines `ResourceOverdue` as the canonical event for a due date being exceeded and supports overdue fine calculation. fileciteturn167file0turn170file0
+If the due date has been exceeded, the configured fine policy is evaluated. G05 defines `ResourceOverdue` as the canonical event for a due date being exceeded and supports overdue fine calculation.
 
 ### 10.2 Damaged Resource
 
@@ -189,7 +203,7 @@ The circulation closure remains governed by the library return decision; the fin
 
 ### 11.4 Historical Record Is Required
 
-Historical circulation records remain immutable and are not deleted. fileciteturn170file0
+Historical circulation records remain immutable and are not deleted.
 
 No technical retry, queue, rollback or infrastructure behaviour is described.
 
@@ -204,9 +218,9 @@ Return processing may record:
 - Lost Resource Information.
 - Outstanding Fine.
 
-Historical circulation records remain immutable. fileciteturn170file0
+Historical circulation records remain immutable.
 
-Fine categories may include Overdue Fine, Lost Resource, Damaged Resource, Replacement Charge and Administrative Penalty, with categories configurable. Finance remains owner of accounting/payment. fileciteturn170file0
+Fine categories may include Overdue Fine, Lost Resource, Damaged Resource, Replacement Charge and Administrative Penalty, with categories configurable. Finance remains owner of accounting/payment.
 
 The scenario does not invent fine amounts, grace periods, damage thresholds or replacement values.
 
@@ -238,7 +252,7 @@ The applicable canonical events are:
 - **`ResourceOverdue`** — Due date exceeded, where applicable.
 - **`FineCalculated`** — Fine generated, where applicable.
 
-These are canonical G05 events. fileciteturn167file0
+These are canonical G05 events.
 
 Library Management is the canonical publisher.
 
@@ -250,7 +264,7 @@ Library Management is the canonical publisher.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-The G05 authorization matrix identifies Librarian / Circulation Desk as typical authorization for returning resources. fileciteturn173file0
+The G05 authorization matrix identifies Librarian / Circulation Desk as typical authorization for returning resources.
 
 The return date/time, physical condition, damage/loss observations, fine outcome and circulation closure must remain auditable.
 

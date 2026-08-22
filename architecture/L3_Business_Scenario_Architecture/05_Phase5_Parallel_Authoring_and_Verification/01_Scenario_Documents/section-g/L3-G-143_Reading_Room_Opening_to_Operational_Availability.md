@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-143 |
+| Canonical Title | Reading Room Opening to Operational Availability |
+| Primary Owner | Library Management |
+| Participating Domains | G, E |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario defines the complete institutional business outcome by which a configured institutional Reading Room reaches its authorised operating start condition, its applicable operational context is established, and the Reading Room becomes operationally available for permitted on-premises study and reference use.
@@ -23,7 +37,7 @@ The locked L2 defines Reading Room Management as operational management of insti
 
 `Reading Room Available → Operational Monitoring → Usage Supervision → Reading Session → Operational Closure`.
 
-Detailed seat reservation is explicitly outside the current architectural scope. fileciteturn199file0
+Detailed seat reservation is explicitly outside the current architectural scope.
 
 This L3 therefore establishes the **Reading Room Available** business outcome and stops there. It does not expand into reading-session processing, seat reservation, physical security, authentication, or technical access control.
 
@@ -98,7 +112,7 @@ G is the Primary Owner and owns:
 - Monitoring and supervision.
 - Reading Room operational history.
 
-The L2 places Reading Room Operations within Library Management. fileciteturn196file0
+The L2 places Reading Room Operations within Library Management.
 
 ### 5.2 People & Workforce — E
 
@@ -236,9 +250,9 @@ The L2 states that Reading Room rules may include:
 - Device Usage.
 - Entry Restrictions.
 
-Rules remain configuration driven. fileciteturn199file0
+Rules remain configuration driven.
 
-Reading Room categories include General, Silent, Reference, Research and Digital Reading Rooms, with additional categories configurable. fileciteturn199file0
+Reading Room categories include General, Silent, Reference, Research and Digital Reading Rooms, with additional categories configurable.
 
 Mandatory constraints:
 
@@ -254,7 +268,7 @@ Mandatory constraints:
 
 The authoritative Reading Room workflow is:
 
-`Reading Room Available → Operational Monitoring → Usage Supervision → Reading Session → Operational Closure`. fileciteturn199file0
+`Reading Room Available → Operational Monitoring → Usage Supervision → Reading Session → Operational Closure`.
 
 This scenario establishes **Reading Room Available**.
 
@@ -286,7 +300,7 @@ The following evidence must remain auditable:
 - Relevant personnel context where applicable.
 - Operational history.
 
-The L2 requires immutable audit history and states that lifecycle transitions shall be audited. fileciteturn196file0turn197file0
+The L2 requires immutable audit history and states that lifecycle transitions shall be audited.
 
 No technical access control/IAM or authentication implementation is defined.
 

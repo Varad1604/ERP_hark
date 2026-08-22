@@ -15,6 +15,20 @@
 
 > **Source-control note:** Exact F18 identity, author and filename are confirmed by the Phase 5 workload guide. The current indexed source does not expose the separate Stage 3 row containing the frozen Type/Priority values; those values must be mechanically reconciled before formal Review.
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-018 |
+| Canonical Title | Completed Refund to Reversal or Recovery |
+| Primary Owner | Refund Management |
+| Participating Domains | C, F |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern the business outcome when a Refund that has already completed subsequently requires reversal or recovery, while preserving the completed Refund as historical fact and keeping any successor financial outcome under its canonical owning domain.

@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-165 |
+| Canonical Title | Consultation to Prescription Creation |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, E |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete healthcare outcome in which a consultation establishes that prescription treatment is required, the authorised medical professional creates the prescription associated with the Medical Encounter, and the prescription becomes available for the subsequent medicine-dispensing workflow.
 
-The locked L2 defines Prescription as a G06 aggregate and identifies Prescription Management as an owned healthcare capability. Prescription details include prescribed medicines, dosage, duration and instructions. The Medical Encounter owns consultation, diagnosis, treatment and follow-up recommendation. fileciteturn266file0
+The locked L2 defines Prescription as a G06 aggregate and identifies Prescription Management as an owned healthcare capability. Prescription details include prescribed medicines, dosage, duration and instructions. The Medical Encounter owns consultation, diagnosis, treatment and follow-up recommendation.
 
 ## 3. Business Outcome
 
@@ -66,7 +80,7 @@ A valid Prescription has been created and is available for the subsequent dispen
 
 G06 owns Medical Encounter and Prescription.
 
-The L2 states that every Prescription belongs to one Medical Encounter. fileciteturn266file0
+The L2 states that every Prescription belongs to one Medical Encounter.
 
 ### Section E — People & Workforce
 
@@ -111,7 +125,7 @@ Clinical consultation determines that a prescription is required.
 4. Determine that prescription treatment is required.
 5. Establish the medicines and treatment instructions under professional clinical judgement.
 
-The L2 makes clear that medical professionals retain operational authority and the ERP records/governs rather than replacing clinical judgement. fileciteturn266file0
+The L2 makes clear that medical professionals retain operational authority and the ERP records/governs rather than replacing clinical judgement.
 
 ### Phase B — Prescription Definition
 
@@ -135,7 +149,7 @@ The L2 makes clear that medical professionals retain operational authority and t
 17. Do not dispense medicine within this scenario.
 18. End the scenario.
 
-The L2 separates Prescription Management from Medicine Dispensing, and Medicine Dispense must reference a valid Prescription. fileciteturn266file0
+The L2 separates Prescription Management from Medicine Dispensing, and Medicine Dispense must reference a valid Prescription.
 
 ## 10. Alternate Business Flows
 
@@ -200,7 +214,7 @@ The locked L2 establishes:
 - Prescription includes prescribed medicines, dosage, duration and instructions.
 - Medicine Dispense must reference one valid Prescription.
 - Medical professionals retain clinical authority.
-- Finance owns billing/accounting; G06 does not perform financial accounting. fileciteturn266file0
+- Finance owns billing/accounting; G06 does not perform financial accounting.
 
 The scenario does not invent dosage rules, drug-selection rules, clinical contraindication rules or prescription validity periods.
 
@@ -208,7 +222,7 @@ The scenario does not invent dosage rules, drug-selection rules, clinical contra
 
 The L2 defines the Prescription lifecycle:
 
-`Created → Issued → Dispensed → Completed`. fileciteturn266file0
+`Created → Issued → Dispensed → Completed`.
 
 This scenario establishes the prescription at its creation/issuance boundary as supported by the business workflow.
 
@@ -216,13 +230,13 @@ The subsequent `Dispensed` and `Completed` outcomes belong to the medicine-dispe
 
 The Medical Encounter itself follows:
 
-`Registered → Consultation → Treatment → Completed → Closed`. fileciteturn266file0
+`Registered → Consultation → Treatment → Completed → Closed`.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
 G06 is the canonical owner/publisher for Prescription business facts because it owns the Prescription aggregate.
 
-The retrieved authoritative content establishes that significant healthcare activities publish immutable domain events. fileciteturn266file0
+The retrieved authoritative content establishes that significant healthcare activities publish immutable domain events.
 
 The exact canonical prescription-creation event name is not exposed in the retrieved authoritative excerpt, so no new event name is fabricated.
 
@@ -247,7 +261,7 @@ Audit evidence should preserve:
 - Prescription creation outcome.
 - Relevant lifecycle transition.
 
-Every healthcare lifecycle transition is required to be audited. fileciteturn266file0
+Every healthcare lifecycle transition is required to be audited.
 
 No technical access control/IAM mechanism is specified.
 

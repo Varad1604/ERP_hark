@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-114 |
+| Canonical Title | Transport Pass Renewal to Continued Transport Authorisation |
+| Primary Owner | Transport Management |
+| Participating Domains | G, C, E, F, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs renewal of an existing Transport Pass so that an eligible transport user can continue authorised use of institutional transport services without an unintended break in operational authorisation.
 

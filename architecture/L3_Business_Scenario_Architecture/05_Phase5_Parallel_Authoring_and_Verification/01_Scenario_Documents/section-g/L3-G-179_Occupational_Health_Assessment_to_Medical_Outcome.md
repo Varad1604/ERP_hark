@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-179 |
+| Canonical Title | Occupational Health Assessment to Medical Outcome |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Occupational health activities allow the institution to assess workforce-related health conditions within its institutional healthcare capability. The scenario establishes a clear boundary: E remains authoritative for the employee/workforce relationship, while G06 owns the healthcare assessment and its medical outcome.

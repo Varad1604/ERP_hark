@@ -13,6 +13,20 @@
 **Depends On:** L2-F00 Finance Domain Foundation; L2-F03 Refund Management; applicable Accounting, Reporting, Analytics and Bank Reconciliation architecture  
 **Referenced By:** Accounting & General Ledger; Financial Reporting; Analytics; Bank Reconciliation; future L4 System Behavior Specification
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-019 |
+| Canonical Title | Refund Closure to Historical Reconstruction |
+| Primary Owner | Refund Management |
+| Participating Domains | F |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Establish the institutional historical-closure outcome for a Refund after its active business lifecycle has completed, while preserving the complete Refund record, immutable financial lineage, lifecycle history, references, events, and evidence required to reconstruct the historical financial position.

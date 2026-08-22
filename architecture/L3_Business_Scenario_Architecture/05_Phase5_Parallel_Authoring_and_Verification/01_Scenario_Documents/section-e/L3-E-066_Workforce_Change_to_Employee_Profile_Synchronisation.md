@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-066 |
+| Canonical Title | Workforce Change to Employee Profile Synchronisation |
+| Primary Owner | Employee Profile |
+| Participating Domains | E — People & Workforce |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Keep the canonical EmployeeProfile aligned with material workforce lifecycle changes that affect employee-profile information, without allowing Employee Profile to become the owner of Workforce & Engagement state.

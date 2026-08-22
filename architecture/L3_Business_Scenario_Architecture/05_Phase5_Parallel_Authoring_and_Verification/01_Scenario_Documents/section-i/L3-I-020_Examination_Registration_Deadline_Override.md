@@ -13,6 +13,20 @@
 **Depends On:** Locked L1 Business Domain Architecture; L2-I04 Examination Registration Workflows; L2-I01 Examination Policy & Configuration; L2-I02 Examination Session Management; L2-I03 Examination Planning & Scheduling; authoritative Platform Authorization and Audit architecture  
 **Referenced By:** Downstream examination registration consumers; None yet for this L3 scenario
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-020 |
+| Canonical Title | Examination Registration Deadline Override |
+| Primary Owner | Examination Registration |
+| Participating Domains | A, C, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs an authorised institutional exception to an examination registration deadline when an examination registration is otherwise subject to a closed or expired approved registration window.

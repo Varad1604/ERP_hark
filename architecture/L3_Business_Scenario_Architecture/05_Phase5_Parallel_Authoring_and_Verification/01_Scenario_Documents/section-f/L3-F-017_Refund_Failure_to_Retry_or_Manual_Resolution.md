@@ -15,6 +15,20 @@
 
 > **Source-control note:** Exact F17 identity, author and filename are confirmed by the Phase 5 workload guide. Frozen Stage 3 Type/Priority values should be mechanically reconciled before formal Review because the indexed Stage 3 row is not available in the current source extract.
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-017 |
+| Canonical Title | Refund Failure to Retry or Manual Resolution |
+| Primary Owner | Refund Management |
+| Participating Domains | C, F |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern an outbound Refund that cannot complete normally and requires a governed retry or manual business resolution, while keeping failure handling at business level and preserving the canonical Refund aggregate, lifecycle and event ownership.

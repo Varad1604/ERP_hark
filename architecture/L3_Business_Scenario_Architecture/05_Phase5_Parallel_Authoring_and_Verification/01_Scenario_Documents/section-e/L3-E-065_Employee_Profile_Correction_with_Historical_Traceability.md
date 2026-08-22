@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-065 |
+| Canonical Title | Employee Profile Correction with Historical Traceability |
+| Primary Owner | Employee Profile |
+| Participating Domains | A — Platform Foundation; E — People & Workforce |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Correct inaccurate employee profile information while preserving the authoritative EmployeeProfile and the historical traceability of the correction.

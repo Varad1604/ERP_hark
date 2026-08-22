@@ -48,7 +48,7 @@ The deputation is completed and the normal organisational assignment is restored
 E003 Workforce Transfer Between Organisational Contexts; E004 Workforce Engagement Suspension and Operational Restoration; E006 Workforce Long-Leave Lifecycle and Operational Availability.
 
 ## 5. Ownership and Participating Domains
-Workforce & Engagement owns the deputation business lifecycle and preserves Workforce Engagement continuity. L2-E01 states that WF-009 creates a Deputation Assignment while temporarily suspending the existing Position Assignment, and WF-010 closes the Deputation Assignment and restores the previous Position Assignment. E02 performs the Position Assignment lifecycle. fileciteturn227file0L2-L2
+Workforce & Engagement owns the deputation business lifecycle and preserves Workforce Engagement continuity. L2-E01 states that WF-009 creates a Deputation Assignment while temporarily suspending the existing Position Assignment, and WF-010 closes the Deputation Assignment and restores the previous Position Assignment. E02 performs the Position Assignment lifecycle.
 
 ## 6. Business Actors, Roles and Responsibilities
 - Workforce & Engagement owns the deputation workflow.
@@ -110,7 +110,7 @@ The assignment lifecycle itself is E02-owned.
 | `WorkforceDeputationStarted` | Workforce & Engagement | Deputation has begun |
 | `WorkforceDeputationEnded` | Workforce & Engagement | Deputation has completed |
 
-These exact events are defined by L2-E01 WF-009 and WF-010. fileciteturn228file0L2-L2
+These exact events are defined by L2-E01 WF-009 and WF-010.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 Deputation follows Policy/Workflow governance. Initiation and completion must be auditable with the applicable business authorization and effective dates. E02 maintains the assignment lifecycle evidence for assignment-state changes.

@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-148 |
+| Canonical Title | Damaged Library Resource During Stock Verification to Administrative Review |
+| Primary Owner | Library Management |
+| Participating Domains | G, F, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the institutional outcome in which a damaged library resource is identified during stock verification, its condition is assessed through the applicable business review, and an administrative outcome is established for subsequent handling.
 
-The locked L2 explicitly states that verification may identify damaged resources and that operational handling remains within Library Management. It also identifies severe damage as one possible basis for a write-off recommendation, with final approval following institutional policy. fileciteturn205file0
+The locked L2 explicitly states that verification may identify damaged resources and that operational handling remains within Library Management. It also identifies severe damage as one possible basis for a write-off recommendation, with final approval following institutional policy.
 
 This scenario therefore does not invent a local damage lifecycle or automatically convert damage into write-off, replacement, fine, or disciplinary action.
 
@@ -106,9 +120,9 @@ No unsupported damage assessor, disciplinary officer, or finance approver is inv
 
 Identification of a damaged resource during physical verification.
 
-The L2 explicitly lists damaged resources as a possible verification result. fileciteturn205file0
+The L2 explicitly lists damaged resources as a possible verification result.
 
-No new damage event is invented because the retrieved L2 event table defines verification events but does not define a dedicated `DamagedResourceIdentified` event. fileciteturn208file0
+No new damage event is invented because the retrieved L2 event table defines verification events but does not define a dedicated `DamagedResourceIdentified` event.
 
 ## 9. Main Business Flow
 
@@ -156,7 +170,7 @@ The administrative review establishes the appropriate downstream handling under 
 
 ### 10.3 Severe Damage
 
-The L2 identifies severe damage as a possible basis for a write-off recommendation. The scenario may therefore establish progression toward write-off review, but it does not invent or grant final write-off approval. fileciteturn205file0
+The L2 identifies severe damage as a possible basis for a write-off recommendation. The scenario may therefore establish progression toward write-off review, but it does not invent or grant final write-off approval.
 
 ### 10.4 Financial Context Required
 
@@ -204,11 +218,11 @@ No technical retries, queues, rollback, API, database, infrastructure or deploym
 
 ## 12. Business Rules and Decision Constraints
 
-The L2 states that verification may identify damaged resources and that operational handling remains within Library Management. fileciteturn205file0
+The L2 states that verification may identify damaged resources and that operational handling remains within Library Management.
 
-The L2's Fine Management identifies **Damaged Resource** and **Replacement Charge** as configurable fine categories, but it does not establish that every stock-verification damage finding automatically creates a fine. Fine calculation remains configuration driven and Finance owns accounting/payment. fileciteturn204file0turn203file0
+The L2's Fine Management identifies **Damaged Resource** and **Replacement Charge** as configurable fine categories, but it does not establish that every stock-verification damage finding automatically creates a fine. Fine calculation remains configuration driven and Finance owns accounting/payment.
 
-The L2 also states that severe damage may support a write-off recommendation, with final approval governed by institutional policy. fileciteturn205file0
+The L2 also states that severe damage may support a write-off recommendation, with final approval governed by institutional policy.
 
 Therefore:
 
@@ -225,7 +239,7 @@ The authoritative stock-verification workflow is:
 
 `Verification Scheduled → Physical Verification → Difference Analysis → Missing Resources → Verification Report → Administrative Closure`.
 
-Damage is explicitly a verification result rather than a separate lifecycle state in the L2. fileciteturn205file0
+Damage is explicitly a verification result rather than a separate lifecycle state in the L2.
 
 This scenario therefore does not invent:
 
@@ -244,7 +258,7 @@ The L2 defines:
 - `LibraryVerificationCompleted`
 - `MissingResourceIdentified`
 
-but does **not** define a dedicated damage-identification event. fileciteturn208file0
+but does **not** define a dedicated damage-identification event.
 
 Therefore no `DamagedResourceIdentified` event is invented.
 

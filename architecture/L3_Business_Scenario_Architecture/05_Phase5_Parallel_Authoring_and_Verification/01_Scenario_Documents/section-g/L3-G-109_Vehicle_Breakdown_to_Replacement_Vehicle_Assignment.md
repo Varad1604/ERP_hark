@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-109 |
+| Canonical Title | Vehicle Breakdown to Replacement Vehicle Assignment |
+| Primary Owner | Transport Management |
+| Participating Domains | G, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs the operational response when a vehicle supporting a transport operation breaks down and a suitable replacement vehicle is assigned. G04 explicitly identifies breakdown as a reason for vehicle replacement while keeping maintenance execution outside Transport Management.
 

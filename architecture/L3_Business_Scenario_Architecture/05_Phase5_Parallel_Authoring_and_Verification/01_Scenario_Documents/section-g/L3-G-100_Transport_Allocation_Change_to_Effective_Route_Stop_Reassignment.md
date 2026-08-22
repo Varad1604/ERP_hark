@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-100 |
+| Canonical Title | Transport Allocation Change to Effective Route/Stop Reassignment |
+| Primary Owner | Transport Management |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs an authorised change to an existing Transport Allocation so its effective route and/or stop assignment is replaced with a new operational relationship. G04 explicitly identifies Route Change and Stop Change as allocation changes.
 

@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-183 |
+| Canonical Title | Medical Configuration Change to Effective Healthcare Policy |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, A |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Institutional healthcare must operate according to approved institutional policies and configuration, while different institutions and campuses may require different healthcare operating arrangements. Configuration allows the same G06 capability to support institutions with no medical facility, a basic medical room, or a full health centre.

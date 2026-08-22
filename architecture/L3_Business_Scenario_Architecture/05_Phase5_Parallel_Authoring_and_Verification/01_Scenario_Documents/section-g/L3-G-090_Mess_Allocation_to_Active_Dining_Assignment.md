@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-090 |
+| Canonical Title | Mess Allocation to Active Dining Assignment |
+| Primary Owner | Hostel Management |
+| Participating Domains | G, H |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern assignment of an eligible hostel resident to a hostel mess or dining facility so that the resident has an effective, active dining assignment under Hostel Management policy.

@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-181 |
+| Canonical Title | Medical Event to Employee Portal Health Information |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Institutional healthcare may generate medical information that an employee is permitted to receive through the institution's employee-facing services. The institution therefore needs a governed business path from an authoritative G06 medical outcome to permitted employee-facing health information.

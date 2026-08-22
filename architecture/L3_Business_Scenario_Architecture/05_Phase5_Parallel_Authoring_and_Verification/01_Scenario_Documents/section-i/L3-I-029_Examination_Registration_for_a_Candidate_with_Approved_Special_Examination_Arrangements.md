@@ -13,6 +13,20 @@
 **Depends On:** L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-I01 Examination Policy & Configuration Workflows; L2-I02 Examination Session Management Workflows; L2-I03 Examination Planning & Scheduling Workflows; L2-I04 Examination Registration Workflows; L2-I05 Hall Ticket Management Workflows; applicable Student, Academic Delivery, Finance, Platform Authorization and Audit architecture  
 **Referenced By:** L2-I05 Hall Ticket Management and downstream examination operations
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-029 |
+| Canonical Title | Examination Registration for a Candidate with Approved Special Examination Arrangements |
+| Primary Owner | Examination |
+| Participating Domains | A, C, D, F, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern examination registration for a candidate who has an institutionally approved special examination arrangement, while preserving Examination Registration as the canonical owner of examination participation and keeping the underlying student, academic, financial, policy, authorization, and audit responsibilities with their respective owners.

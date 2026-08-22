@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-101 |
+| Canonical Title | Transport Allocation Withdrawal to Service Closure |
+| Primary Owner | Transport Management |
+| Participating Domains | G, C, E, F, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs withdrawal of an existing Transport Allocation and closure of its transport service relationship. G04 defines Allocation Withdrawal and the terminal Withdrawn allocation state.
 

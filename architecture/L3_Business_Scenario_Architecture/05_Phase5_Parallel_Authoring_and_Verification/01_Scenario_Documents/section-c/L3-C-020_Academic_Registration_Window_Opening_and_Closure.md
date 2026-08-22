@@ -28,13 +28,27 @@
 | Exact Phase 5 Filename | `L3-C-020_Academic_Registration_Window_Opening_and_Closure.md` |
 | Status | **Draft** |
 
-The frozen Section C canonical register identifies C020 as **Academic Registration Window Opening and Closure**, with Academic Registration as Primary Owner, participating domains B, C and D, Cross-domain type, P0 priority and KEEP derivation. fileciteturn130file0L2-L2
+The frozen Section C canonical register identifies C020 as **Academic Registration Window Opening and Closure**, with Academic Registration as Primary Owner, participating domains B, C and D, Cross-domain type, P0 priority and KEEP derivation.
 
-The Final L3 register establishes direct positional alignment for Section C, so C020 is `L3-C-020`. fileciteturn145file0L2-L2
+The Final L3 register establishes direct positional alignment for Section C, so C020 is `L3-C-020`.
 
-Phase 5 allocates the entire Section C range `L3-C-001`–`L3-C-075` to Varad. The exact filename is mechanically derived from the frozen title and must not be renamed. fileciteturn146file0L2-L2
+Phase 5 allocates the entire Section C range `L3-C-001`–`L3-C-075` to Varad. The exact filename is mechanically derived from the frozen title and must not be renamed.
 
 ---
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-C-020 |
+| Canonical Title | Academic Registration Window Opening and Closure |
+| Primary Owner | Academic Registration |
+| Participating Domains | B, C, D |
+| Scenario Type | Cross-domain |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 
@@ -124,7 +138,7 @@ The closure portion completes when the configured registration period is no long
 - Deployment/infrastructure.
 - Technical timers, schedulers, queues or retry mechanics.
 
-The L2-C03 architecture explicitly separates Registration Window Initialization from Student Eligibility Validation, Registration Creation, Offering Selection, Registration Validation, Approval, Modification, Cancellation, Freeze and Publication. fileciteturn151file0L2-L2
+The L2-C03 architecture explicitly separates Registration Window Initialization from Student Eligibility Validation, Registration Creation, Offering Selection, Registration Validation, Approval, Modification, Cancellation, Freeze and Publication.
 
 ---
 
@@ -137,9 +151,9 @@ The L2-C03 architecture explicitly separates Registration Window Initialization 
 | **C — Student Lifecycle** | Provides Student lifecycle information required by downstream eligibility validation and consumes/participates in registration-related business outcomes as defined by its own ownership. | Does not own the Registration Window. |
 | **D — Academic Delivery** | Participates downstream once registrations are approved/frozen/published and consumes finalized registration information as defined by the registration architecture. | Does not own the Registration Window. |
 
-The L2-C03 architecture states that Academic Registration is the sole canonical owner of academic registration transactions and that it references, rather than owns, Student, Programme, Curriculum, Course, Academic Session and other upstream business objects. fileciteturn149file0L2-L2
+The L2-C03 architecture states that Academic Registration is the sole canonical owner of academic registration transactions and that it references, rather than owns, Student, Programme, Curriculum, Course, Academic Session and other upstream business objects.
 
-The L2 architecture also defines Registration Window Initialization as depending on the Academic Calendar, while later registration publication feeds Academic Delivery and other downstream consumers. fileciteturn151file0L2-L2
+The L2 architecture also defines Registration Window Initialization as depending on the Academic Calendar, while later registration publication feeds Academic Delivery and other downstream consumers.
 
 Participation does not transfer ownership.
 
@@ -156,7 +170,7 @@ The authoritative L2 workflow identifies the following business contexts for reg
 | **Academic Calendar authority / owning domain** | Provides the authoritative academic calendar condition on which registration opening depends. | Owns the calendar, not the Registration Window. |
 | **Eligible Student** | Becomes able to perform academic registration while the window is open and all individual eligibility rules are satisfied. | Does not control institutional window opening/closure. |
 
-The detailed C03 workflow defines the opening triggers as scheduled registration opening and administrative initiation. It also defines the broader registration domain as operating under configured academic calendars and policies. fileciteturn151file0L2-L2
+The detailed C03 workflow defines the opening triggers as scheduled registration opening and administrative initiation. It also defines the broader registration domain as operating under configured academic calendars and policies.
 
 No additional named role is invented.
 
@@ -180,9 +194,9 @@ The authoritative WS-C03-01 explicitly defines:
 - Course offerings published.
 - Academic calendar released.
 
-as preconditions. fileciteturn151file0L2-L2
+as preconditions.
 
-For ordinary Student registration after opening, the separate Student Eligibility Validation workflow additionally requires an existing Student and an open registration window. fileciteturn151file0L2-L2
+For ordinary Student registration after opening, the separate Student Eligibility Validation workflow additionally requires an existing Student and an open registration window.
 
 ---
 
@@ -215,9 +229,9 @@ The closure condition is the configured end of the approved registration period.
 | 10 | New ordinary registration requests are rejected because the registration window is closed. | Academic Registration | Registration availability boundary is closed. |
 | 11 | The scenario reaches its closure outcome. | Academic Registration | The institutional registration period is closed for ordinary registration. |
 
-The authoritative workflow defines opening as validating the calendar, loading/validating registration policies/configuration, enabling eligible Student access, and publishing registration availability. fileciteturn151file0L2-L2
+The authoritative workflow defines opening as validating the calendar, loading/validating registration policies/configuration, enabling eligible Student access, and publishing registration availability.
 
-The authoritative business rules explicitly state that registration may occur only during approved registration windows and that closed registration windows reject new registration requests. fileciteturn152file0L2-L2
+The authoritative business rules explicitly state that registration may occur only during approved registration windows and that closed registration windows reject new registration requests.
 
 ---
 
@@ -229,7 +243,7 @@ The authoritative business rules explicitly state that registration may occur on
 |---|---|---|
 | Authorized administration initiates registration before/independent of the scheduled opening condition where institutional policy permits | Validate academic calendar and approved configuration, then activate the registration window. | Registration becomes available under the governed administrative opening. |
 
-The L2 architecture explicitly permits administrative opening as a trigger. fileciteturn151file0L2-L2
+The L2 architecture explicitly permits administrative opening as a trigger.
 
 ## 10.2 Scheduled Opening
 
@@ -243,7 +257,7 @@ The L2 architecture explicitly permits administrative opening as a trigger. f
 |---|---|---|
 | Ordinary registration window has closed but institutional policy separately permits late registration | Apply the separately configured late-registration policy and its required authorization. | A permitted exception path may allow registration under the applicable policy. |
 
-The L2 architecture explicitly identifies late registration as an exceptional workflow path and states that late registration follows separately configured institutional policies. fileciteturn151file0L2-L2 fileciteturn152file0L2-L2
+The L2 architecture explicitly identifies late registration as an exceptional workflow path and states that late registration follows separately configured institutional policies.
 
 C020 does not invent the detailed late-registration workflow.
 
@@ -253,7 +267,7 @@ C020 does not invent the detailed late-registration workflow.
 |---|---|---|
 | Registration is outside the approved window and an authorized administrative override is permitted | Apply the configured override authorization and audit requirements. | Registration may proceed only through the authorized exception path. |
 
-The L2 rule states that registration outside approved windows requires authorized administrative override. fileciteturn152file0L2-L2
+The L2 rule states that registration outside approved windows requires authorized administrative override.
 
 ---
 
@@ -294,7 +308,7 @@ Technical retry, queue, timeout, infrastructure failure and rollback behaviour a
 | Events represent completed business facts. | `RegistrationWindowOpened` is published only after successful opening. | Event architecture. |
 | Domain events are immutable. | Published opening fact is historically stable. | Event principles. |
 
-The authoritative C03 architecture explicitly identifies these registration-window rules and the Registration Window Initialization workflow. fileciteturn150file0L2-L2 fileciteturn152file0L2-L2
+The authoritative C03 architecture explicitly identifies these registration-window rules and the Registration Window Initialization workflow.
 
 ---
 
@@ -323,13 +337,13 @@ Registration Window Closed / Unavailable
           Window Closed
 ```
 
-The L2 workflow explicitly defines **Window Open** as the registration availability condition and the business rules define the closed condition as rejecting new registration requests. fileciteturn152file0L2-L2
+The L2 workflow explicitly defines **Window Open** as the registration availability condition and the business rules define the closed condition as rejecting new registration requests.
 
 ## 13.2 Canonical Event
 
 `RegistrationWindowOpened` is the only explicit registration-window event defined in the locked L2 event catalogue.
 
-The event producer mapping explicitly associates **Open Registration Window → `RegistrationWindowOpened`**. fileciteturn153file0L2-L2
+The event producer mapping explicitly associates **Open Registration Window → `RegistrationWindowOpened`**.
 
 ## 13.3 Closure State
 
@@ -352,7 +366,7 @@ C020 therefore does not invent any of these.
 |---|---|---|
 | `RegistrationWindowOpened` | **Academic Registration** | The academic registration window has become available. |
 
-The locked event catalogue identifies `RegistrationWindowOpened` as `EVT-C03-001`, describes it as the registration window becoming available, and identifies **Open Registration Window** as its producer. fileciteturn153file0L2-L2
+The locked event catalogue identifies `RegistrationWindowOpened` as `EVT-C03-001`, describes it as the registration window becoming available, and identifies **Open Registration Window** as its producer.
 
 ## 14.2 Closure Event
 
@@ -360,7 +374,7 @@ The locked event catalogue identifies `RegistrationWindowOpened` as `EVT-C03-001
 
 C020 therefore does not create or rename one.
 
-The closure business fact is expressed through the authoritative business rule that a closed registration window rejects new registration requests. fileciteturn152file0L2-L2
+The closure business fact is expressed through the authoritative business rule that a closed registration window rejects new registration requests.
 
 ## 14.3 Cross-Domain Collaboration
 
@@ -370,7 +384,7 @@ The closure business fact is expressed through the authoritative business rule t
 | **Student Lifecycle (C)** | Provides Student lifecycle information consumed by the separate eligibility-validation workflow. | Student Lifecycle retains Student ownership. |
 | **Academic Delivery (D)** | Participates in downstream academic processing after registration is approved/frozen/published. | Academic Delivery retains its own academic execution ownership. |
 
-The registration architecture states that Registration Window Initialization depends on Academic Calendar, Eligibility Validation depends on Student Lifecycle, and later Registration Publication feeds Academic Delivery and other downstream domains. fileciteturn151file0L2-L2
+The registration architecture states that Registration Window Initialization depends on Academic Calendar, Eligibility Validation depends on Student Lifecycle, and later Registration Publication feeds Academic Delivery and other downstream domains.
 
 Events remain business facts; cross-domain business dependencies are not redefined as technical APIs.
 
@@ -397,7 +411,7 @@ C020 therefore does not invent one.
 
 ## 15.3 Exception Authorization
 
-The L2 rules explicitly require authorized administrative override for registration outside approved windows. Late registration also follows separately configured institutional policy. fileciteturn152file0L2-L2
+The L2 rules explicitly require authorized administrative override for registration outside approved windows. Late registration also follows separately configured institutional policy.
 
 ## 15.4 Audit Obligations
 
@@ -414,7 +428,7 @@ For C020, the business evidence includes:
 - exception/override justification where applicable; and
 - closure-related business evidence where required by institutional policy.
 
-The L2 architecture states that every workflow transition shall generate an audit record and that audit records are immutable. fileciteturn152file0L2-L2
+The L2 architecture states that every workflow transition shall generate an audit record and that audit records are immutable.
 
 No technical audit schema is defined here.
 
@@ -435,7 +449,7 @@ The opening portion is complete when:
 - `RegistrationWindowOpened` is published; and
 - eligible Students can enter the separate academic-registration workflow.
 
-These conditions are grounded in WS-C03-01. fileciteturn151file0L2-L2
+These conditions are grounded in WS-C03-01.
 
 ## 16.2 Closure Completion
 
@@ -444,7 +458,7 @@ The closure portion is complete when:
 - the approved registration period has reached its governing end condition; and
 - new ordinary registration requests are no longer accepted because the registration window is closed.
 
-The available L2 source defines this closure business effect through BR-C03-011 but does not define a dedicated closure event. fileciteturn152file0L2-L2
+The available L2 source defines this closure business effect through BR-C03-011 but does not define a dedicated closure event.
 
 ## 16.3 Postconditions
 

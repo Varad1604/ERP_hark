@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-171 |
+| Canonical Title | Medical Referral Recommendation to Referral Completion |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional referral outcome in which an authorised healthcare professional determines that a patient requires referral, establishes the Referral with the appropriate external healthcare provider and reason, obtains the applicable acceptance outcome, and completes the institutional referral lifecycle.

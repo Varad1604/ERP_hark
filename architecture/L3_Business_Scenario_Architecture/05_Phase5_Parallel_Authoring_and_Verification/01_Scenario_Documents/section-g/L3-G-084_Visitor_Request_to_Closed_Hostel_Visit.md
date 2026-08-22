@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-084 |
+| Canonical Title | Visitor Request to Closed Hostel Visit |
+| Primary Owner | Hostel Management |
+| Participating Domains | G |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern a hostel visitor from request and registration through authorised entry, visit completion, and closure while preserving Hostel Management ownership of visitor records and resident relationships.

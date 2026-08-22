@@ -13,6 +13,20 @@
 
 This scenario governs the profile-side business consequence of a completed employee separation. Workforce & Engagement remains the authority for the employment lifecycle and separation outcome. Employee Profile applies the corresponding governed archival consequence to the employee profile.
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-068 |
+| Canonical Title | Employee Separation to Governed Profile Archive |
+| Primary Owner | Employee Profile |
+| Participating Domains | E — People & Workforce |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Ensure that a completed employee separation results in the appropriate governed EmployeeProfile archival treatment while preserving the employee's historical profile information.

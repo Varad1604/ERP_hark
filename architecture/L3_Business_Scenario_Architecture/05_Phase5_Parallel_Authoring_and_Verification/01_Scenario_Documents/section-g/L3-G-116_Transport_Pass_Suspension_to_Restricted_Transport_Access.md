@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-116 |
+| Canonical Title | Transport Pass Suspension to Restricted Transport Access |
+| Primary Owner | Transport Management |
+| Participating Domains | G, C, F, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs suspension of a Transport Pass when an authoritative business condition requires transport access to be restricted, through establishment of the pass's Suspended state and the resulting restricted operational access.
 

@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-125 |
+| Canonical Title | Library Membership Suspension to Restricted Library Access |
+| Primary Owner | Library Management |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the institutional outcome in which an already-active Library Membership is suspended and the member's library access is consequently restricted.

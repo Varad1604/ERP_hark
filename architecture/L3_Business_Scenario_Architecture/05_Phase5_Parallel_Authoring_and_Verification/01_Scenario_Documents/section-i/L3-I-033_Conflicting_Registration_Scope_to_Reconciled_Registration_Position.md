@@ -13,6 +13,20 @@
 **Depends On:** L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-I01 Examination Policy & Configuration Workflows; L2-I02 Examination Session Management Workflows; L2-I03 Examination Planning & Scheduling Workflows; L2-I04 Examination Registration Workflows; applicable Student Lifecycle, Academic Delivery, Finance and Platform Foundation architecture  
 **Referenced By:** L2-I05 through L2-I16 where the reconciled Examination Registration is consumed
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-033 |
+| Canonical Title | Conflicting Registration Scope to Reconciled Registration Position |
+| Primary Owner | Examination |
+| Participating Domains | Examination, Student Lifecycle, Academic Delivery, Finance |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Resolve conflicting examination-registration scope so that the candidate's Examination Registration represents one authoritative, policy-valid participation position without allowing inconsistent academic, subject, category or registration information to create competing downstream examination participation.

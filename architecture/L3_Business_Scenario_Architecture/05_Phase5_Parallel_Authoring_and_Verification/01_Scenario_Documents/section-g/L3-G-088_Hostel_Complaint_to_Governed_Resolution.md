@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-088 |
+| Canonical Title | Hostel Complaint to Governed Resolution |
+| Primary Owner | Hostel Management |
+| Participating Domains | C, G |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern a hostel complaint from registration through review and an authorised operational resolution while preserving Hostel Management ownership of hostel complaints and keeping Student Lifecycle and Facilities responsibilities separate.

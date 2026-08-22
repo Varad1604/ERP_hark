@@ -14,6 +14,21 @@
 **Referenced By:** None yet
 
 ---
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-C-071 |
+| Canonical Title | Scholarship Eligibility to Financial Aid Processing |
+| Primary Owner | Scholarship Eligibility |
+| Participating Domains | Student Lifecycle, Finance |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 Finance receives a canonical scholarship eligibility outcome and can initiate its own financial-assistance decision process while Scholarship Eligibility remains the sole owner of eligibility determination and the Student Scholarship Eligibility Record.
 

@@ -13,6 +13,20 @@
 **Depends On:** L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-F00 Finance Domain Model & Foundation; L2-F01 Student Charge & Fee Management; L2-F02 Payment Management Architecture; L2-F07 Accounts Receivable Management  
 **Referenced By:** Student Charge Management, Accounts Receivable, Accounting & General Ledger, Financial Reporting
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-008 |
+| Canonical Title | Partial or Multi-Obligation Payment to Governed Allocation |
+| Primary Owner | Payment Management |
+| Participating Domains | C, F |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern the allocation of a valid Payment where one payment partially satisfies an obligation, one payment satisfies multiple obligations, multiple payments satisfy one obligation, or multiple payments satisfy multiple obligations.
@@ -66,7 +80,7 @@ The scenario ends when the governed Payment Allocation has been established and 
 | F — Student Charge & Fee Management | Owns Student Charge and its financial obligation. | Student Charge remains F01-owned. |
 | F — Accounts Receivable | Consumes settlement information and maintains the receivable representation. | Receivable remains F07-owned. |
 
-L2-F02 explicitly defines Payment Allocation as the relationship between Payment and one or more Student Charges and states that allocation never merges the aggregates. fileciteturn146file0
+L2-F02 explicitly defines Payment Allocation as the relationship between Payment and one or more Student Charges and states that allocation never merges the aggregates.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -100,7 +114,7 @@ A validated/published Payment becomes ready for allocation to one or more Studen
 | 7 | Publish the canonical allocation and settlement facts. | F — Payment Management | Downstream consumers can recognize the completed allocation. |
 | 8 | Where applicable, Accounts Receivable incorporates the settlement reference into the Receivable representation. | F — Accounts Receivable | Receivable visibility reflects the authoritative settlement fact. |
 
-L2-F02 explicitly supports one-to-one, one-to-many, many-to-one, many-to-many and zero-allocation advance models. fileciteturn146file0
+L2-F02 explicitly supports one-to-one, one-to-many, many-to-one, many-to-many and zero-allocation advance models.
 
 ## 10. Alternate Business Flows
 
@@ -126,7 +140,7 @@ Only part of the obligation is satisfied. The outstanding balance continues to e
 
 ### A6 — Unallocated Advance
 
-No applicable Student Charge can yet receive the Payment, or the Payment exceeds the currently applicable obligation. The Payment remains an explicit unallocated advance and is classified as a Liability until consumed by a future Charge Allocation. fileciteturn146file0
+No applicable Student Charge can yet receive the Payment, or the Payment exceeds the currently applicable obligation. The Payment remains an explicit unallocated advance and is classified as a Liability until consumed by a future Charge Allocation.
 
 ## 11. Failure, Interruption and Business Recovery
 
@@ -157,17 +171,17 @@ Authoritative L2-F02 constraints include:
 - Payment state has one active operational state.
 - Completed lifecycle stages are immutable.
 
-L2-F01 separately retains ownership of Student Charge and its Outstanding Balance. L2-F07 consumes settlement information without taking ownership of Payment. fileciteturn146file0turn155file0
+L2-F01 separately retains ownership of Student Charge and its Outstanding Balance. L2-F07 consumes settlement information without taking ownership of Payment.
 
 ## 13. State and Lifecycle Impact
 
 ### Payment Lifecycle
 
-The Payment progresses through the canonical lifecycle toward `Allocated` and, where applicable, `Settled`. The scenario does not introduce a new lifecycle. fileciteturn147file0
+The Payment progresses through the canonical lifecycle toward `Allocated` and, where applicable, `Settled`. The scenario does not introduce a new lifecycle.
 
 ### Payment State
 
-The applicable canonical states include `Published`, `Allocated`, `Partially Settled`, and `Fully Settled`. The scenario uses only transitions defined by L2-F02. fileciteturn148file0
+The applicable canonical states include `Published`, `Allocated`, `Partially Settled`, and `Fully Settled`. The scenario uses only transitions defined by L2-F02.
 
 ### Student Charge
 
@@ -175,7 +189,7 @@ The Student Charge remains under its own canonical lifecycle and state architect
 
 ### Receivable
 
-Accounts Receivable maintains its own Receivable balance and settlement references. It consumes authoritative settlement information rather than executing Payment allocation. fileciteturn155file0turn156file0
+Accounts Receivable maintains its own Receivable balance and settlement references. It consumes authoritative settlement information rather than executing Payment allocation.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -186,9 +200,9 @@ Payment Management publishes:
 - `PaymentAllocationCompleted`
 - `PaymentSettlementCompleted`
 
-These are exact canonical Payment events defined by L2-F02. fileciteturn148file0
+These are exact canonical Payment events defined by L2-F02.
 
-Accounts Receivable publishes its own settlement facts, including `ReceivableSettlementRecorded` and `ReceivableFullySettled`, where its aggregate reaches those conditions. fileciteturn156file0
+Accounts Receivable publishes its own settlement facts, including `ReceivableSettlementRecorded` and `ReceivableFullySettled`, where its aggregate reaches those conditions.
 
 ### 14.2 Synchronous Business Contracts / Hand-offs
 
@@ -222,7 +236,7 @@ Every allocation must remain reconstructable from:
 - resulting settlement;
 - outstanding balance consequence.
 
-L2-F02 requires allocation traceability and permanent financial reconstruction. fileciteturn146file0turn164file0
+L2-F02 requires allocation traceability and permanent financial reconstruction.
 
 ## 16. Completion Criteria and Postconditions
 

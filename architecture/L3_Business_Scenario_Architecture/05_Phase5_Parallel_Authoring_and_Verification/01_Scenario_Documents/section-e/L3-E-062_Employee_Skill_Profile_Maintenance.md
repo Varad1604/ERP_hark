@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-062 |
+| Canonical Title | Employee Skill Profile Maintenance |
+| Primary Owner | Employee Profile |
+| Participating Domains | E — People & Workforce |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Maintain the employee's canonical skill profile so that workforce-relevant competencies are recorded accurately within EmployeeProfile and remain available for authorized employee-profile and workforce consumers.

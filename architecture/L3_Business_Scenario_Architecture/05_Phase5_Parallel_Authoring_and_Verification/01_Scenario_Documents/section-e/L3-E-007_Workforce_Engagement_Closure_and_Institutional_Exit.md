@@ -11,8 +11,21 @@
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
 **Depends On:** L2-E01 — Workforce & Engagement Workflows; L2-E02 — Position & Assignment Workflows where assignment consequences are involved  
-**Referenced By:** Future L4 System Behavior Specifications and materially participating downstream workforce consumers  
+**Referenced By:** Future L4 System Behavior Specifications and materially participating downstream workforce consumers
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-007 |
+| Canonical Title | Workforce Engagement Closure and Institutional Exit |
+| Primary Owner | Workforce & Engagement |
+| Participating Domains | E |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 Authoritatively conclude a Workforce Engagement when an approved institutional exit condition has taken effect, while preserving the Workforce Profile and complete historical workforce continuity.
@@ -105,7 +118,7 @@ The Workforce Profile remains available for historical continuity. Any Position 
 |---|---|---|
 | `WorkforceEngagementClosed` | Workforce & Engagement | The Workforce Engagement has been authoritatively concluded |
 
-L2-E01 defines `WorkforceEngagementClosed` as the event for WF-013. Downstream domains consume the completed workforce fact according to their own responsibilities. fileciteturn228file0L2-L2
+L2-E01 defines `WorkforceEngagementClosed` as the event for WF-013. Downstream domains consume the completed workforce fact according to their own responsibilities.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 Separation follows policy-driven workflow authorization. The closure must remain fully auditable, with the applicable business decision and effective timing preserved. The scenario does not invent a specific approver, separation-of-duty rule, or evidence artefact not defined upstream.

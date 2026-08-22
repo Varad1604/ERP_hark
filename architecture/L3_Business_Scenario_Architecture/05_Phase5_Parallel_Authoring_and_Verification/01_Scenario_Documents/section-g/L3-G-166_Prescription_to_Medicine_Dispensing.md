@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-166 |
+| Canonical Title | Prescription to Medicine Dispensing |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome in which an authorised prescription is presented for fulfilment, the prescribed medicines are assessed for institutional availability and dispensing eligibility, the medicines that can be issued are dispensed, and the resulting dispensing outcome is recorded against the healthcare history.
 
-The locked L2 places Prescription Management and Medicine Dispensing within Institutional Health Services. It defines `Prescription` and `Medicine Dispense` as G06-owned aggregates and states that every Medicine Dispense references one valid Prescription. Prescription information includes prescribed medicines, dosage, duration and instructions; Medicine Dispense includes dispensed medicines, quantity, dispensing date, dispensing professional and medicine issue history. fileciteturn273file0
+The locked L2 places Prescription Management and Medicine Dispensing within Institutional Health Services. It defines `Prescription` and `Medicine Dispense` as G06-owned aggregates and states that every Medicine Dispense references one valid Prescription. Prescription information includes prescribed medicines, dosage, duration and instructions; Medicine Dispense includes dispensed medicines, quantity, dispensing date, dispensing professional and medicine issue history.
 
 The scenario does not turn G06 into an enterprise pharmacy system and does not transfer ownership to Finance, E, H, or an external provider.
 
@@ -77,7 +91,7 @@ G06 owns:
 - Healthcare operational history.
 - Medicine dispensing workflow.
 
-The L2 states that Medicine Dispense is a G06 aggregate and that lightweight medicine inventory remains within the domain, while enterprise pharmacy management remains outside scope. fileciteturn273file0
+The L2 states that Medicine Dispense is a G06 aggregate and that lightweight medicine inventory remains within the domain, while enterprise pharmacy management remains outside scope.
 
 ### Section E — People & Workforce
 
@@ -149,7 +163,7 @@ A valid Prescription becomes ready for institutional medicine dispensing.
 16. Preserve the medicine issue history.
 17. Associate the Medicine Dispense with the valid Prescription.
 
-The L2 explicitly requires every Medicine Dispense to reference one valid Prescription. fileciteturn273file0
+The L2 explicitly requires every Medicine Dispense to reference one valid Prescription.
 
 ### Phase D — Prescription Lifecycle Progression
 
@@ -210,7 +224,7 @@ The L2 defines the Prescription lifecycle as:
 
 `Created → Issued → Dispensed → Completed`.
 
-This scenario does not invent an additional Prescription state. fileciteturn273file0
+This scenario does not invent an additional Prescription state.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -243,7 +257,7 @@ Audit evidence must preserve, as applicable:
 
 Medical confidentiality and need-to-know obligations apply.
 
-Every healthcare lifecycle transition must be audited. fileciteturn273file0
+Every healthcare lifecycle transition must be audited.
 
 No technical access control/IAM mechanism is specified.
 

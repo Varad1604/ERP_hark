@@ -15,13 +15,27 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-152 |
+| Canonical Title | Library Borrowing Restriction to Administrative Resolution |
+| Primary Owner | Library Management |
+| Participating Domains | G, C, F, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
-This scenario governs the institutional resolution of a restriction affecting a library borrowing relationship. The locked L2 states that borrowing validation may consider Active Membership, Borrowing Limit, Outstanding Dues, Resource Availability, Reservation Priority and Administrative Restrictions, and that validation rules remain configurable. fileciteturn221file0
+This scenario governs the institutional resolution of a restriction affecting a library borrowing relationship. The locked L2 states that borrowing validation may consider Active Membership, Borrowing Limit, Outstanding Dues, Resource Availability, Reservation Priority and Administrative Restrictions, and that validation rules remain configurable.
 
-The L2 also states that Finance owns accounting/payment while Library Management owns operational fines and outstanding operational dues. fileciteturn220file0turn215file0
+The L2 also states that Finance owns accounting/payment while Library Management owns operational fines and outstanding operational dues.
 
-The scenario applies the locked L2-G05 ownership and workflow boundaries. Library Management remains the canonical operational owner of library services, while external domains retain ownership of their own information and downstream outcomes. fileciteturn215file0turn220file0
+The scenario applies the locked L2-G05 ownership and workflow boundaries. Library Management remains the canonical operational owner of library services, while external domains retain ownership of their own information and downstream outcomes.
 
 ## 3. Business Outcome
 
@@ -96,7 +110,7 @@ A borrowing validation condition prevents normal borrowing progression.
 7. Check resource availability.
 8. Check reservation priority.
 9. Check administrative restrictions.
-10. Apply configurable validation rules. fileciteturn221file0
+10. Apply configurable validation rules.
 
 ### Phase C — Cross-Domain Review
 11. Consume student context from C where applicable.
@@ -157,11 +171,11 @@ No technical retry, queue, server failure, rollback, database recovery, API or i
 
 ## 12. Business Rules and Decision Constraints
 
-Borrowing validation may consider Active Membership, Borrowing Limit, Outstanding Dues, Resource Availability, Reservation Priority and Administrative Restrictions; validation rules are configurable. fileciteturn221file0
+Borrowing validation may consider Active Membership, Borrowing Limit, Outstanding Dues, Resource Availability, Reservation Priority and Administrative Restrictions; validation rules are configurable.
 
-Borrowing policies may define Maximum Borrowings, Borrowing Duration, Renewal Eligibility, Reservation Priority and Restricted Resources. fileciteturn221file0
+Borrowing policies may define Maximum Borrowings, Borrowing Duration, Renewal Eligibility, Reservation Priority and Restricted Resources.
 
-Finance owns accounting/payment; Library Management owns operational fine calculation and outstanding operational dues. fileciteturn220file0turn215file0
+Finance owns accounting/payment; Library Management owns operational fine calculation and outstanding operational dues.
 
 Rules remain upstream-owned and configurable where L2 states that configuration is permitted. No local rule is invented.
 
@@ -177,7 +191,7 @@ No new lifecycle states or transitions are created.
 
 The retrieved L2 does not define a dedicated borrowing-restriction event.
 
-Therefore no new restriction event is invented. Existing circulation events such as `ResourceIssued`, `ResourceReturned`, `ResourceRenewed` and `ResourceOverdue` are used only when their actual business transitions occur. fileciteturn223file0
+Therefore no new restriction event is invented. Existing circulation events such as `ResourceIssued`, `ResourceReturned`, `ResourceRenewed` and `ResourceOverdue` are used only when their actual business transitions occur.
 
 C, F and H participate according to ownership boundaries.
 

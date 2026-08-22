@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-092 |
+| Canonical Title | Hostel Configuration Change to Effective Residency Policy |
+| Primary Owner | Hostel Management |
+| Participating Domains | G, A |
+| Scenario Type | Simple |
+| Priority | P2 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern a Hostel Management operational configuration change from proposal and review through effective application within the authorised hostel operational boundary.

@@ -13,6 +13,20 @@
 **Depends On:** Locked L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-I02 Examination Session Management Workflows; L2-I03 Examination Planning & Scheduling Workflows; L2-I04 Examination Registration Workflows  
 **Referenced By:** L2-I05 Hall Ticket Management; L2-I06 Practical & Viva Examination Conduct; L2-I07 Theory Examination Conduct; L2-I08 Marks Collection & Evaluation; L2-I09 Result Processing; L2-I10 Result Publication and other downstream Examination workflows
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-036 |
+| Canonical Title | Finalize Examination Registration Population for Downstream Examination Processing |
+| Primary Owner | Examination |
+| Participating Domains | C — Student Lifecycle, I — Examination |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Establish the authoritative Examination Registration population that downstream examination processing may consume after registration governance for the applicable examination cycle has reached its final permitted business position.

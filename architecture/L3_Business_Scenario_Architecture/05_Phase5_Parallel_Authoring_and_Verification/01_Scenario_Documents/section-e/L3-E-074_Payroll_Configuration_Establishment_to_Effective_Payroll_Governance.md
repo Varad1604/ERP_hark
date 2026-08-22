@@ -11,7 +11,21 @@
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
 **Depends On:** L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-E06 — Payroll Workflows; L2-E01 — Workforce & Engagement; applicable Compensation and Compliance configuration architecture; L3 Phase 5 Template v2.0  
-**Referenced By:** None yet  
+**Referenced By:** None yet
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-074 |
+| Canonical Title | Payroll Configuration Establishment to Effective Payroll Governance |
+| Primary Owner | Payroll — People & Workforce |
+| Participating Domains | E — People & Workforce |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 

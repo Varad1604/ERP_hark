@@ -40,7 +40,7 @@
 | Verification Event | `DocumentsVerified` |
 | Approval Event | `AdmissionApproved` |
 
-The frozen Section C canonical register identifies C-007 as **Admission Document Verification and Approval Decision**, Primary Owner **Admissions**, Participating Domains **A, B, C**, Type **Critical**, Priority **P0**, with derivation **KEEP**. fileciteturn80file0L2-L2
+The frozen Section C canonical register identifies C-007 as **Admission Document Verification and Approval Decision**, Primary Owner **Admissions**, Participating Domains **A, B, C**, Type **Critical**, Priority **P0**, with derivation **KEEP**.
 
 ---
 
@@ -59,7 +59,7 @@ The scenario therefore represents:
 
 The scenario does **not** perform Financial Clearance, Admission Confirmation, or Student Creation.
 
-The L2 architecture explicitly states that Document Verification must complete before Admission Approval, and Admission Approval must precede Financial Clearance. fileciteturn89file0
+The L2 architecture explicitly states that Document Verification must complete before Admission Approval, and Admission Approval must precede Financial Clearance.
 
 ---
 
@@ -175,7 +175,7 @@ Therefore C-007 must not claim that an approved Admission is already financially
 - approval history; and
 - associated canonical Admission events.
 
-The L2 architecture explicitly states that Admissions owns the Admission Record, Admission Lifecycle, Admission Verification Workflow, and Admission Approval Workflow. fileciteturn87file0
+The L2 architecture explicitly states that Admissions owns the Admission Record, Admission Lifecycle, Admission Verification Workflow, and Admission Approval Workflow.
 
 ### 5.2 Participating Domains
 
@@ -187,7 +187,7 @@ The frozen scenario metadata identifies **A, B, C**.
 | **B — Institution & Structure** | Supplies institutional context such as Institution, College, Department, Campus, Academic Calendar, Academic Year, and Programme Catalog references | Does not own Admission. |
 | **C — Admissions / Student Lifecycle Section** | Owns Admission verification and approval | Canonical owner. |
 
-The L2 document additionally identifies Academic Delivery and Document Platform participation in verification/approval, but those interactions do not transfer ownership. fileciteturn89file0
+The L2 document additionally identifies Academic Delivery and Document Platform participation in verification/approval, but those interactions do not transfer ownership.
 
 ### 5.3 Document Platform Boundary
 
@@ -300,7 +300,7 @@ Approval requires:
 - institutional policy is loaded; and
 - applicable approval authority is available.
 
-These conditions are directly supported by the L2 verification and approval workflows. fileciteturn89file0
+These conditions are directly supported by the L2 verification and approval workflows.
 
 ### 7.3 Lifecycle Entry Constraint
 
@@ -558,7 +558,7 @@ Technical retry, rollback, queue, server failure, persistence recovery, or infra
 | `BR-C01-015` | Verification must complete before Admission Approval. | Admissions |
 | `BR-C01-016` | Verification policies shall support programme-specific rules. | Admissions |
 
-These rules are explicitly defined in the L2 verification workflow. fileciteturn89file0
+These rules are explicitly defined in the L2 verification workflow.
 
 ### 12.2 Admission Approval Rules
 
@@ -572,7 +572,7 @@ These rules are explicitly defined in the L2 verification workflow. filecite�
 | `BR-C01-022` | Every approval generates audit history. | Admissions |
 | `BR-C01-023` | Approval shall precede Financial Clearance. | Admissions |
 
-These rules are defined in the L2 Approval workflow. fileciteturn89file0
+These rules are defined in the L2 Approval workflow.
 
 ### 12.3 Ownership Constraints
 
@@ -601,7 +601,7 @@ Documents Submitted
 Verification Completed
 ```
 
-No other lifecycle transition is introduced by this scenario. fileciteturn89file0
+No other lifecycle transition is introduced by this scenario.
 
 ### 13.3 Approval Transition
 
@@ -613,7 +613,7 @@ Verification Completed
 Admission Approved
 ```
 
-No other successful lifecycle transition is introduced by this scenario. fileciteturn89file0
+No other successful lifecycle transition is introduced by this scenario.
 
 ### 13.4 Overall C-007 Lifecycle
 
@@ -660,7 +660,7 @@ C-007 ends before that stage.
 | `DocumentsPending` | Admissions | Verification awaits required action. |
 | `VerificationWaived` | Admissions | Policy-authorized verification waiver granted. |
 
-The L2 verification workflow defines these published events. fileciteturn89file0
+The L2 verification workflow defines these published events.
 
 ### 14.2 Approval Events
 
@@ -671,7 +671,7 @@ The L2 verification workflow defines these published events. fileciteturn8
 | `ApprovalPending` | Admissions | Approval remains pending. |
 | `ApprovalEscalated` | Admissions | Approval escalation initiated. |
 
-The L2 Approval workflow defines these published events. fileciteturn89file0
+The L2 Approval workflow defines these published events.
 
 ### 14.3 Consumed Verification Inputs
 
@@ -752,7 +752,7 @@ The L2 verification workflow identifies additional audit attributes including:
 - Document Version;
 - Waiver Reference;
 - Fraud Flag; and
-- Verification Timestamp. fileciteturn89file0
+- Verification Timestamp.
 
 ### 15.4 Approval Audit Evidence
 
@@ -922,7 +922,7 @@ Examples are given in the source, but the architecture does not establish one un
 - Scenario Type: Critical
 - Priority: P0
 
-These frozen values are confirmed by the Section C canonical register. fileciteturn80file0L2-L2
+These frozen values are confirmed by the Section C canonical register.
 
 ## L2 Verification
 
@@ -938,7 +938,7 @@ The applicable L2 source defines:
 - approval state transition;
 - approval events;
 - approval business rules; and
-- audit obligations. fileciteturn89file0
+- audit obligations.
 
 ## Lifecycle Verification
 
@@ -969,11 +969,11 @@ Canonical successful events:
 - `DocumentsVerified`
 - `AdmissionApproved`
 
-Both are Admissions-owned business facts. fileciteturn89file0
+Both are Admissions-owned business facts.
 
 ## Business Rule Verification
 
-The document carries forward the authoritative verification rules `BR-C01-009` through `BR-C01-016` and approval rules `BR-C01-017` through `BR-C01-023`. fileciteturn89file0
+The document carries forward the authoritative verification rules `BR-C01-009` through `BR-C01-016` and approval rules `BR-C01-017` through `BR-C01-023`.
 
 ## Implementation Leakage Check
 

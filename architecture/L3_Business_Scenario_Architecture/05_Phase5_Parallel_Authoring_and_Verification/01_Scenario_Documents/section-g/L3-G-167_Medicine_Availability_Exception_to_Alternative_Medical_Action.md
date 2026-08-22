@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-167 |
+| Canonical Title | Medicine Availability Exception to Alternative Medical Action |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome when a prescribed medicine cannot be dispensed as ordinarily intended because the medicine is unavailable or otherwise cannot be issued through institutional medicine operations, and an authorised healthcare professional establishes an alternative medical action.
 
-The locked L2 owns Prescription and Medicine Dispensing within G06, while also defining lightweight medicine inventory inside the healthcare domain. It does not turn the availability exception into an enterprise procurement or pharmacy-management process. fileciteturn273file0
+The locked L2 owns Prescription and Medicine Dispensing within G06, while also defining lightweight medicine inventory inside the healthcare domain. It does not turn the availability exception into an enterprise procurement or pharmacy-management process.
 
 The scenario therefore protects the patient from a false dispensing outcome while keeping the clinical alternative under authorised medical judgement.
 
@@ -194,7 +208,7 @@ The scenario does not create a new `Unavailable` Prescription state.
 
 The Prescription lifecycle remains:
 
-`Created → Issued → Dispensed → Completed`. fileciteturn273file0
+`Created → Issued → Dispensed → Completed`.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -225,7 +239,7 @@ The exception history should preserve:
 
 Medical confidentiality and need-to-know obligations apply.
 
-Every healthcare lifecycle transition must be audited. fileciteturn273file0
+Every healthcare lifecycle transition must be audited.
 
 No technical access-control implementation is specified.
 

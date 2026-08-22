@@ -15,13 +15,27 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-153 |
+| Canonical Title | Library Configuration Change to Effective Operational Policy |
+| Primary Owner | Library Management |
+| Participating Domains | G, A |
+| Scenario Type | Simple |
+| Priority | P2 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete business outcome in which an authorised Library Management configuration change is reviewed, accepted and becomes the effective operational policy for the library domain.
 
-The frozen register classifies G154 as a Simple P2 Library Management scenario with participating domains G and A. fileciteturn211file0 The locked L2 states that Library Management has a configuration framework dependency and that multiple library policies are configurable, including borrowing, reservation, fine, clearance and other operational policies. fileciteturn218file0turn221file0
+The frozen register classifies G154 as a Simple P2 Library Management scenario with participating domains G and A. The locked L2 states that Library Management has a configuration framework dependency and that multiple library policies are configurable, including borrowing, reservation, fine, clearance and other operational policies.
 
-The scenario applies the locked L2-G05 ownership and workflow boundaries. Library Management remains the canonical operational owner of library services, while external domains retain ownership of their own information and downstream outcomes. fileciteturn215file0turn220file0
+The scenario applies the locked L2-G05 ownership and workflow boundaries. Library Management remains the canonical operational owner of library services, while external domains retain ownership of their own information and downstream outcomes.
 
 ## 3. Business Outcome
 
@@ -140,7 +154,7 @@ No technical retry, queue, server failure, rollback, database recovery, API or i
 
 ## 12. Business Rules and Decision Constraints
 
-The L2 states that policy definitions and validation rules remain configurable across library capabilities. Examples include borrowing policies and reservation policies. fileciteturn221file0turn222file0
+The L2 states that policy definitions and validation rules remain configurable across library capabilities. Examples include borrowing policies and reservation policies.
 
 This scenario does not invent a universal approval hierarchy, effective-date rule, configuration versioning rule, or change-event name.
 

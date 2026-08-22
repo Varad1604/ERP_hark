@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-097 |
+| Canonical Title | Transport Stop Suspension to Route Operational Adjustment |
+| Primary Owner | Transport Management |
+| Participating Domains | G |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs suspension of an operational Transport Stop and the resulting route-level operational adjustment required when that stop can no longer be used. The stop suspension remains a Stop lifecycle outcome; the route consequence remains within G04 Route Management.

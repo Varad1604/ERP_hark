@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-182 |
+| Canonical Title | Medical Professional Unavailability to Alternative Operational Assignment |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, E |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Institutional healthcare depends on qualified medical personnel being available for consultations, emergency care, observation, programmes, and other healthcare activities. A medical professional may become unavailable for a business reason, creating an operational assignment concern.

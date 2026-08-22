@@ -13,6 +13,20 @@
 **Depends On:** L2-F00 Finance Domain Model & Foundation; L2-F02 Payment Management Architecture; L2-F03 Refund Management; L2-F04 Financial Adjustment Management; L2-F05 Accounting & General Ledger Management  
 **Referenced By:** Accounts Receivable, Student Charge & Fee Management, Accounting & General Ledger, Refund Management, Financial Adjustment Management
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-011 |
+| Canonical Title | Completed Payment to Reversal or Chargeback Outcome |
+| Primary Owner | Payment Management |
+| Participating Domains | F |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern the institutional financial consequence when a previously completed Payment must be reversed or is subject to a chargeback outcome, while preserving the original Payment history and ensuring that any resulting financial correction remains under the canonical owning Finance domain.
@@ -106,7 +120,7 @@ Where the correction is an adjustment rather than a Refund, Financial Adjustment
 
 ### A3 — Reversal Requires a Refund
 
-Where the canonical financial outcome is an outbound monetary return, Refund Management owns the Refund aggregate. Refund Management explicitly states that Refunds do not create or modify Payments. fileciteturn175file0
+Where the canonical financial outcome is an outbound monetary return, Refund Management owns the Refund aggregate. Refund Management explicitly states that Refunds do not create or modify Payments.
 
 ### A4 — Accounting Correction Required
 
@@ -137,7 +151,7 @@ The following are source-supported:
 - Accounting corrections use reversal Journals; historical accounting transactions are not edited.
 - Aggregate ownership boundaries must not be bypassed.
 
-L2-F03 explicitly states that Refunds never create or modify Payments. L2-F05 requires corrections through reversal Journals and preservation of original accounting history. fileciteturn175file0turn165file0
+L2-F03 explicitly states that Refunds never create or modify Payments. L2-F05 requires corrections through reversal Journals and preservation of original accounting history.
 
 ## 13. State and Lifecycle Impact
 
@@ -147,13 +161,13 @@ L2-F02 defines:
 
 `Payment Received → Validated → Published → Allocated → Settled → Archived`
 
-It does not define a reversal/chargeback lifecycle branch. No new lifecycle stage is introduced in this L3. fileciteturn173file0
+It does not define a reversal/chargeback lifecycle branch. No new lifecycle stage is introduced in this L3.
 
 ### Payment State
 
 L2-F02 defines `Draft`, `Pending Validation`, `Validated`, `Published`, `Gateway Settlement Pending`, `Allocated`, `Partially Settled`, `Fully Settled`, `Suspended`, `Cancelled`, `Cheque Dishonoured`, and `Archived`.
 
-It does not define `Reversed`, `Chargeback`, or `Payment Reversal` as canonical Payment states. This scenario therefore cannot assert such a state without upstream change control. fileciteturn173file0turn174file0
+It does not define `Reversed`, `Chargeback`, or `Payment Reversal` as canonical Payment states. This scenario therefore cannot assert such a state without upstream change control.
 
 ### Accounting
 
@@ -174,7 +188,7 @@ L2-F02 defines:
 - `PaymentSettlementCompleted`
 - `PaymentArchivalCompleted`
 
-No `PaymentReversed`, `PaymentChargebackRecorded`, or `PaymentReversalCompleted` event is defined by L2-F02. None is invented here. fileciteturn174file0
+No `PaymentReversed`, `PaymentChargebackRecorded`, or `PaymentReversalCompleted` event is defined by L2-F02. None is invented here.
 
 Refund Management has its own canonical Refund event architecture; those events do not transfer ownership of the Payment.
 
@@ -197,7 +211,7 @@ No Payment-specific reversal/chargeback authority is defined in L2-F02. No appro
 
 ### 15.2 Separation of Duties
 
-Accounting's existing authorization and maker/checker rules remain F05-owned where accounting reversal is required. They are not transferred to Payment Management. fileciteturn165file0
+Accounting's existing authorization and maker/checker rules remain F05-owned where accounting reversal is required. They are not transferred to Payment Management.
 
 ### 15.3 Audit and Evidence
 
@@ -234,7 +248,7 @@ The outcome must preserve:
 
 The frozen scenario explicitly requires a “Reversal or Chargeback Outcome”, but L2-F02 does not define a Payment reversal/chargeback state, lifecycle transition, business rule, recovery path, or dedicated Payment reversal/chargeback event.
 
-L2-F03 defines Refund as a separate outbound monetary aggregate and explicitly prohibits Refunds from modifying Payments. L2-F05 defines accounting reversal, but that is an Accounting concern and does not establish a Payment reversal state. fileciteturn175file0turn165file0
+L2-F03 defines Refund as a separate outbound monetary aggregate and explicitly prohibits Refunds from modifying Payments. L2-F05 defines accounting reversal, but that is an Accounting concern and does not establish a Payment reversal state.
 
 **Impact:** A definitive Payment-level reversal/chargeback E2E path cannot be authored without either an existing authoritative source not yet identified or an upstream architecture decision.
 

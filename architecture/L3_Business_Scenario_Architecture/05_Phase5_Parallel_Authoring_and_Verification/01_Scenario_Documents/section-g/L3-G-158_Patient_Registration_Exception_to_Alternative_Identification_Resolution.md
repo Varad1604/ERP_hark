@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-158 |
+| Canonical Title | Patient Registration Exception to Alternative Identification Resolution |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E, A |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome when normal Patient Registration cannot be completed because the individual's identification/registration condition is exceptional, and an authorised alternative identification/resolution path establishes sufficient patient identity/context for healthcare registration.
@@ -23,7 +37,7 @@ The locked L2 defines Patient Registration as:
 
 `Patient Identified → Identity Validation → Medical History Retrieved → Visit Registered → Consultation Ready`
 
-and identifies configurable validation considerations including Institutional Identity, Campus, Active Status, Emergency Classification and Healthcare Eligibility. It also explicitly states that Institutional Health Services references existing institutional identities and never owns person identities. fileciteturn243file0turn254file0
+and identifies configurable validation considerations including Institutional Identity, Campus, Active Status, Emergency Classification and Healthcare Eligibility. It also explicitly states that Institutional Health Services references existing institutional identities and never owns person identities.
 
 This scenario therefore resolves the **registration exception**, not the underlying identity ownership.
 
@@ -84,7 +98,7 @@ E remains owner of employee/personnel information. G06 may consume E's authorita
 
 ### Section A — Platform Foundation
 
-A provides enterprise foundation services including authentication, authorization, workflow, configuration, audit and document management. These are supporting capabilities; A does not acquire ownership of the patient or person identity. fileciteturn245file0
+A provides enterprise foundation services including authentication, authorization, workflow, configuration, audit and document management. These are supporting capabilities; A does not acquire ownership of the patient or person identity.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -174,7 +188,7 @@ Where configured patient categories permit guests/visitors, the alternative iden
 
 Where emergency classification applies, the registration exception must not prevent the applicable emergency-care business response. G06's emergency workflow separately governs immediate response. The L2 defines:
 
-`Incident Reported → Emergency Assessment → Immediate Treatment → Referral Decision → Patient Stabilised → Case Closed`. fileciteturn232file0
+`Incident Reported → Emergency Assessment → Immediate Treatment → Referral Decision → Patient Stabilised → Case Closed`.
 
 ### 10.5 Existing Medical History Found After Resolution
 
@@ -225,7 +239,7 @@ The L2 establishes:
 - Employee identity is owned by E.
 - Patient categories are configurable.
 - Patient registration validation may consider Institutional Identity, Campus, Active Status, Emergency Classification and Healthcare Eligibility.
-- Validation rules are configurable. fileciteturn245file0turn248file0
+- Validation rules are configurable.
 
 The scenario must not create an invented canonical person identity as a workaround.
 
@@ -233,13 +247,13 @@ The G06 invariants remain applicable:
 
 - Every Medical Encounter references exactly one Patient.
 - Medical history is never deleted.
-- Every lifecycle transition is audited. fileciteturn253file0
+- Every lifecycle transition is audited.
 
 ## 13. State and Lifecycle Impact
 
 The normal Patient Registration workflow remains:
 
-`Patient Identified → Identity Validation → Medical History Retrieved → Visit Registered → Consultation Ready`. fileciteturn254file0
+`Patient Identified → Identity Validation → Medical History Retrieved → Visit Registered → Consultation Ready`.
 
 The exception itself is not introduced as a new Patient or Medical Encounter lifecycle state.
 
@@ -247,7 +261,7 @@ Once resolved, the visit enters the normal registration boundary.
 
 The Medical Encounter lifecycle remains:
 
-`Registered → Consultation → Treatment → Completed → Closed`. fileciteturn246file0
+`Registered → Consultation → Treatment → Completed → Closed`.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -255,7 +269,7 @@ The L2 defines:
 
 **`PatientRegistered` — Patient visit registered.**
 
-G06 is the canonical publisher because it owns Patient Registration. fileciteturn250file0
+G06 is the canonical publisher because it owns Patient Registration.
 
 The retrieved L2 does not define a dedicated patient-registration-exception or alternative-identification event.
 
@@ -271,7 +285,7 @@ A participates only through its upstream platform-foundation boundary where requ
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-The L2 states that healthcare authorization is configurable and identifies typical operational roles such as Medical Staff for patient registration. Platform authorization remains an enterprise foundation responsibility. fileciteturn251file0
+The L2 states that healthcare authorization is configurable and identifies typical operational roles such as Medical Staff for patient registration. Platform authorization remains an enterprise foundation responsibility.
 
 Alternative identification must be performed under the applicable healthcare business authority.
 

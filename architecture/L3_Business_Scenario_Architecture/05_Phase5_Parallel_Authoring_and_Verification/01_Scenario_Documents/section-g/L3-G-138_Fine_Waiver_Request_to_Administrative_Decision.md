@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-138 |
+| Canonical Title | Fine Waiver Request to Administrative Decision |
+| Primary Owner | Library Management |
+| Participating Domains | G, F, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome in which a member or authorised party requests waiver of a library fine, the request is reviewed under the applicable administrative policy, an authorised decision is made, the reason is recorded, and the resulting fine status is established.
@@ -26,7 +40,7 @@ The L2 states that fine waivers may require:
 - Reason Recording.
 - Audit History.
 
-It also states that financial approval remains within institutional policy. fileciteturn187file0
+It also states that financial approval remains within institutional policy.
 
 Library Management owns the operational fine and waiver workflow. Finance remains authoritative for accounting/payment implications.
 
@@ -204,11 +218,11 @@ Fine waiver may require:
 - Reason Recording.
 - Audit History.
 
-Financial approval remains within institutional policy. fileciteturn187file0
+Financial approval remains within institutional policy.
 
 The Fine lifecycle is:
 
-`Calculated → Pending → Paid / Waived → Closed`. fileciteturn192file0
+`Calculated → Pending → Paid / Waived → Closed`.
 
 This scenario does not invent waiver eligibility criteria, monetary thresholds, approval levels or refund rules.
 
@@ -231,7 +245,7 @@ The available L2 material identifies Fine Services including:
 - Calculate Fine.
 - Recommend Waiver.
 - Update Payment Status.
-- Query Outstanding Fine. fileciteturn192file0
+- Query Outstanding Fine.
 
 The retrieved source material does not expose a dedicated canonical fine-waiver-request or waiver-decision event name. Therefore this draft does **not** invent one.
 
@@ -243,7 +257,7 @@ The retrieved source material does not expose a dedicated canonical fine-waiver-
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-The waiver process explicitly requires administrative review/approval where applicable, reason recording and audit history. fileciteturn187file0
+The waiver process explicitly requires administrative review/approval where applicable, reason recording and audit history.
 
 The approval authority must be source-supported and policy-defined.
 

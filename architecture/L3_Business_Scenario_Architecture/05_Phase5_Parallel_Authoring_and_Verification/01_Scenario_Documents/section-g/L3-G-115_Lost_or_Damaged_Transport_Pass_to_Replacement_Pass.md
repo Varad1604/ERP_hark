@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-115 |
+| Canonical Title | Lost or Damaged Transport Pass to Replacement Pass |
+| Primary Owner | Transport Management |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs replacement of a Transport Pass that has been lost or damaged, establishing a new operational pass while preserving the historical relationship to the affected pass.
 

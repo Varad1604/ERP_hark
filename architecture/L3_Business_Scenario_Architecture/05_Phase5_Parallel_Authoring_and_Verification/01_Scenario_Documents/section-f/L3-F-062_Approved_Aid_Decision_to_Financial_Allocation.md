@@ -13,6 +13,20 @@
 **Depends On:** L2-F00 — Finance Domain Model & Foundation; L2-F11 — Scholarship & Financial Aid; L2-C07 — Scholarship Eligibility Workflows; L2-F01 — Student Charge & Fee Management; L2-F07 — Accounts Receivable  
 **Referenced By:** Student Charge & Fee Management; Accounts Receivable; Financial Reporting; Audit; Executive Dashboards; Notification as applicable
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-062 |
+| Canonical Title | Approved Aid Decision to Financial Allocation |
+| Primary Owner | Scholarship & Financial Aid |
+| Participating Domains | C — Student Lifecycle; F — Finance |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern the business outcome from an approved scholarship award to the point at which the award's financial assistance is allocated and the authoritative downstream financial consequence is available for the owning Finance processes.
@@ -67,7 +81,7 @@ The scenario ends when the Financial Aid Aggregate has recorded the approved sch
 | F — Student Charge & Fee Management | Consumes approved assistance facts and independently determines how they affect charges. | Student Charge and Fee Structure remain F01-owned. |
 | F — Accounts Receivable | Independently determines receivable consequences after charge processing. | Receivable remains F07-owned. |
 
-L2-F11 explicitly states that eligibility is owned by L2-C07 and that the Scholarship & Financial Aid context owns the institutional financial assistance decision, while Student Charge, Accounts Receivable, Treasury, General Ledger and Budget remain external. fileciteturn217file0
+L2-F11 explicitly states that eligibility is owned by L2-C07 and that the Scholarship & Financial Aid context owns the institutional financial assistance decision, while Student Charge, Accounts Receivable, Treasury, General Ledger and Budget remain external.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -79,7 +93,7 @@ Business responsibilities remain capability-owned:
 - Scholarship & Financial Aid records the financial assistance decision and allocation.
 - Downstream Finance contexts apply their own business consequences.
 
-Authorization logic remains externally governed by the applicable Authorization & Policy architecture. fileciteturn217file0
+Authorization logic remains externally governed by the applicable Authorization & Policy architecture.
 
 ## 7. Preconditions and Entry Criteria
 
@@ -92,7 +106,7 @@ Authorization logic remains externally governed by the applicable Authorization 
 - The requested Benefit Allocation complies with the Allocation invariants.
 - The downstream Student Charge context can consume the approved business fact.
 
-L2-F11 requires eligibility to exist before approval and approval before Benefit Allocation. fileciteturn222file0
+L2-F11 requires eligibility to exist before approval and approval before Benefit Allocation.
 
 ## 8. Trigger
 
@@ -113,7 +127,7 @@ An authoritative scholarship-eligibility outcome indicates that the student is e
 | 9 | Student Charge & Fee Management consumes the published scholarship/benefit allocation fact and independently determines the applicable charge consequence. | Student Charge & Fee Management | The financial obligation owner can apply its own business rules. |
 | 10 | Any later receivable consequence is determined by Accounts Receivable after its own charge/receivable responsibilities are satisfied. | Accounts Receivable | Receivable ownership remains separate from financial assistance ownership. |
 
-L2-F11 defines the Financial Aid Aggregate lifecycle as `Registered → Eligibility Recorded → Approval Recorded → Benefit Allocated → Active`, with approval required before allocation and allocation required before activation. fileciteturn221file0turn222file0
+L2-F11 defines the Financial Aid Aggregate lifecycle as `Registered → Eligibility Recorded → Approval Recorded → Benefit Allocated → Active`, with approval required before allocation and allocation required before activation.
 
 ## 10. Alternate Business Flows
 
@@ -123,7 +137,7 @@ If L2-C07 publishes a conditionally eligible outcome, Scholarship & Financial Ai
 
 ### A2 — Approval Rejected
 
-If the financial assistance approval decision is rejected, the rejected assistance does not progress to `Benefit Allocated` or `Active`. L2-F11 explicitly requires that rejected assistance cannot become Active. fileciteturn222file0
+If the financial assistance approval decision is rejected, the rejected assistance does not progress to `Benefit Allocated` or `Active`. L2-F11 explicitly requires that rejected assistance cannot become Active.
 
 ### A3 — Funding Source Not Available
 
@@ -131,7 +145,7 @@ If no valid Funding Source can be associated for the approved allocation, the as
 
 ### A4 — Benefit Allocation Requires Later Charge Context
 
-The Benefit Allocation may be recorded as business intent while Student Charge & Fee Management independently determines how that allocation affects charges. The allocation does not itself generate a financial obligation. fileciteturn220file0
+The Benefit Allocation may be recorded as business intent while Student Charge & Fee Management independently determines how that allocation affects charges. The allocation does not itself generate a financial obligation.
 
 ### A5 — Existing Assistance Already Exists
 
@@ -149,7 +163,7 @@ A new scholarship/assistance business fact is created only through the applicabl
 | Student Charge consequence cannot yet be determined | Preserve the approved financial assistance facts and allow Student Charge Management to resolve its own business consequence later. |
 | Downstream domain fails to react | Completed Financial Aid facts remain valid; downstream recovery occurs through subsequent business processing, not by mutating the Financial Aid Aggregate. |
 
-L2-F11 states that neighbouring failures shall not compromise Aggregate consistency, and recovery occurs through subsequent business events. fileciteturn224file0
+L2-F11 states that neighbouring failures shall not compromise Aggregate consistency, and recovery occurs through subsequent business events.
 
 ## 12. Business Rules and Decision Constraints
 
@@ -168,7 +182,7 @@ The scenario applies these authoritative L2-F11 rules:
 - Historical business facts are never deleted, overwritten, reassigned, or repurposed.
 - Eligibility outcomes are externally evaluated.
 - Authorization outcomes are externally determined.
-- The Financial Aid Aggregate is the sole authoritative consistency boundary for institutional financial assistance. fileciteturn222file0turn217file0
+- The Financial Aid Aggregate is the sole authoritative consistency boundary for institutional financial assistance.
 
 The scenario does not invent a local eligibility rule, scholarship approval policy, fee rule, receivable rule, or accounting rule.
 
@@ -187,9 +201,9 @@ Relevant state transitions are:
 | Approval Recorded | Benefit Allocated |
 | Benefit Allocated | Active |
 
-Transitions outside this lifecycle are rejected. fileciteturn222file0
+Transitions outside this lifecycle are rejected.
 
-The scenario does not introduce a new disbursement state. In L2-F11, the business responsibility ends with the financial assistance decision and allocation; downstream contexts independently determine the financial consequences. fileciteturn217file0turn224file0
+The scenario does not introduce a new disbursement state. In L2-F11, the business responsibility ends with the financial assistance decision and allocation; downstream contexts independently determine the financial consequences.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -204,7 +218,7 @@ The Financial Aid Aggregate publishes the following relevant completed business 
 - `FundingSourceAssigned`
 - `FinancialAidActivated`
 
-L2-F11 explicitly defines these event categories and requires events to represent immutable completed business facts. fileciteturn222file0turn223file0
+L2-F11 explicitly defines these event categories and requires events to represent immutable completed business facts.
 
 ### 14.2 Downstream Business Hand-offs
 
@@ -215,7 +229,7 @@ L2-F11 explicitly defines these event categories and requires events to represen
 | Scholarship & Financial Aid | Accounts Receivable | `BenefitAllocated`, `FinancialAidRevoked`, `FinancialAidExpired` as applicable | Provides receivable context after F01 has applied its charging rules. |
 | Scholarship & Financial Aid | Financial Reporting / Audit | Approved, allocation, funding and utilization facts | Supports reporting and historical reconstruction. |
 
-L2-F11 explicitly maps `FinancialAidApproved` and `BenefitAllocated` to Student Charge & Fee Management and states that Fee Management determines the financial obligation independently. fileciteturn223file0turn224file0
+L2-F11 explicitly maps `FinancialAidApproved` and `BenefitAllocated` to Student Charge & Fee Management and states that Fee Management determines the financial obligation independently.
 
 Events remain distinct from business contracts and synchronous hand-offs.
 
@@ -223,7 +237,7 @@ Events remain distinct from business contracts and synchronous hand-offs.
 
 ### 15.1 Business Authority
 
-L2-F11 records approval outcomes inside the Financial Aid Aggregate but states that authorization remains externally governed. The scenario therefore does not invent an approving role or approval hierarchy. fileciteturn220file0turn222file0
+L2-F11 records approval outcomes inside the Financial Aid Aggregate but states that authorization remains externally governed. The scenario therefore does not invent an approving role or approval hierarchy.
 
 ### 15.2 Separation of Duties
 
@@ -243,7 +257,7 @@ The scholarship award must remain historically traceable through:
 - activation;
 - published event history.
 
-L2-F11 requires immutable approval history, allocation history, funding-source history and permanently reconstructable Domain Events. fileciteturn222file0turn223file0
+L2-F11 requires immutable approval history, allocation history, funding-source history and permanently reconstructable Domain Events.
 
 ## 16. Completion Criteria and Postconditions
 
@@ -272,9 +286,9 @@ L2-F11 requires immutable approval history, allocation history, funding-source h
 
 ### 17.1 Open Issues
 
-L2-F11 explicitly records an **Actors gap** in its canonical crosswalk. Therefore no human actor or specific approval authority is named in this L3. fileciteturn217file0
+L2-F11 explicitly records an **Actors gap** in its canonical crosswalk. Therefore no human actor or specific approval authority is named in this L3.
 
-The term **“disbursement”** in the frozen scenario title is not a named lifecycle state in L2-F11. The L2 architecture defines approval, Benefit Allocation and activation, then states that downstream domains consume the financial assistance decision and independently determine their own financial behaviour. Accordingly, this L3 interprets the scenario's governed disbursement outcome as the completed assistance/allocation fact that enables downstream financial processing; it does not invent a new disbursement state, event, payment process, or treasury responsibility. fileciteturn217file0turn220file0turn224file0
+The term **“disbursement”** in the frozen scenario title is not a named lifecycle state in L2-F11. The L2 architecture defines approval, Benefit Allocation and activation, then states that downstream domains consume the financial assistance decision and independently determine their own financial behaviour. Accordingly, this L3 interprets the scenario's governed disbursement outcome as the completed assistance/allocation fact that enables downstream financial processing; it does not invent a new disbursement state, event, payment process, or treasury responsibility.
 
 ### 17.2 Assumptions
 

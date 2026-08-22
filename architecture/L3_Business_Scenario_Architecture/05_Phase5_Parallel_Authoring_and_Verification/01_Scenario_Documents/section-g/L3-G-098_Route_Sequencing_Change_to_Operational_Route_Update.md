@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-098 |
+| Canonical Title | Route Sequencing Change to Operational Route Update |
+| Primary Owner | Transport Management |
+| Participating Domains | G |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs a change to the configured order in which Transport Stops are serviced on an existing Transport Route. G04 explicitly makes Route Sequencing a Transport Route responsibility and requires every route to maintain an operational stop sequence.

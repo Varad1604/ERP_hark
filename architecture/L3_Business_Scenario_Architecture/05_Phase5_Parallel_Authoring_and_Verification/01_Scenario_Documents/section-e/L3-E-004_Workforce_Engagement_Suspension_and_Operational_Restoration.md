@@ -48,7 +48,7 @@ The suspension is resolved and operational availability is restored to Available
 E005 Workforce Deputation Lifecycle; E006 Workforce Long-Leave Lifecycle and Operational Availability; E007 Workforce Engagement Closure and Institutional Exit.
 
 ## 5. Ownership and Participating Domains
-Workforce & Engagement owns Workforce Engagement and operational availability. L2-E01 explicitly states that suspension changes operational availability while preserving employment continuity. Position Assignment and Responsibility Assignment lifecycle changes remain L2-E02-owned. fileciteturn228file0L2-L2
+Workforce & Engagement owns Workforce Engagement and operational availability. L2-E01 explicitly states that suspension changes operational availability while preserving employment continuity. Position Assignment and Responsibility Assignment lifecycle changes remain L2-E02-owned.
 
 ## 6. Business Actors, Roles and Responsibilities
 - Workforce & Engagement owns the suspension/restoration lifecycle.
@@ -106,7 +106,7 @@ The Workforce Engagement itself remains active; suspension does not close the en
 | `WorkforceSuspended` | Workforce & Engagement | Operational availability became Suspended |
 | `WorkforceResumed` | Workforce & Engagement | Operational availability was restored |
 
-L2-E01 explicitly defines both events and their resulting availability positions. fileciteturn228file0L2-L2
+L2-E01 explicitly defines both events and their resulting availability positions.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 Suspension/restoration follows institutional policy and Workflow Engine governance. The workflow must remain fully auditable; business-critical operations retain the applicable justification and approval evidence. Technical authorization implementation is outside L3.

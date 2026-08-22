@@ -13,6 +13,20 @@
 **Depends On:** L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-I01 Examination Policy & Configuration Workflows; L2-I02 Examination Session Management Workflows; L2-I03 Examination Planning & Scheduling Workflows; L2-I04 Examination Registration Workflows; L2-I05 Hall Ticket Management Workflows; L2-I15 Examination Exception & Contingency Workflows; applicable Student and Academic Delivery architecture  
 **Referenced By:** L2-I05 Hall Ticket Management and downstream examination operations
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-031 |
+| Canonical Title | Examination Registration Withdrawal Due to Examination Opportunity Change |
+| Primary Owner | Examination |
+| Participating Domains | A, C, D, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern the controlled withdrawal or invalidation of examination participation when an authorised change to the underlying examination opportunity makes an existing registration no longer valid or no longer applicable.

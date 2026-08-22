@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-144 |
+| Canonical Title | Reading Room Closure to Restricted Library Usage |
+| Primary Owner | Library Management |
+| Participating Domains | G |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario defines the complete institutional outcome by which an operating Reading Room reaches its authorised closure condition, ordinary Reading Room usage is no longer available for the operating period, and the closure outcome is recorded.
@@ -23,7 +37,7 @@ The locked L2 defines the Reading Room workflow as:
 
 `Reading Room Available → Operational Monitoring → Usage Supervision → Reading Session → Operational Closure`.
 
-The authoritative endpoint for this scenario is therefore **Operational Closure**. The scenario does not invent a separate `Closed` or `Restricted` lifecycle state. fileciteturn199file0
+The authoritative endpoint for this scenario is therefore **Operational Closure**. The scenario does not invent a separate `Closed` or `Restricted` lifecycle state.
 
 ## 3. Business Outcome
 
@@ -214,11 +228,11 @@ The L2 identifies Reading Room rules including:
 - Device Usage.
 - Entry Restrictions.
 
-Rules remain configuration driven. fileciteturn199file0
+Rules remain configuration driven.
 
 The authoritative workflow is:
 
-`Reading Room Available → Operational Monitoring → Usage Supervision → Reading Session → Operational Closure`. fileciteturn199file0
+`Reading Room Available → Operational Monitoring → Usage Supervision → Reading Session → Operational Closure`.
 
 Constraints:
 
@@ -272,7 +286,7 @@ The following evidence must remain auditable:
 - Operational Closure outcome.
 - Relevant monitoring/supervision history.
 
-The L2 requires immutable audit history and states that lifecycle transitions shall be audited. fileciteturn196file0turn197file0
+The L2 requires immutable audit history and states that lifecycle transitions shall be audited.
 
 No technical authorization model is defined.
 

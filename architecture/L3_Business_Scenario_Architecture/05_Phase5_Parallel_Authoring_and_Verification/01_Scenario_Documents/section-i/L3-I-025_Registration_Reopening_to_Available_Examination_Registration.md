@@ -13,6 +13,20 @@
 **Depends On:** Locked L1 Business Domain Architecture; L2-I01 Examination Policy and Configuration Workflows; L2-I02 Examination Session Management Workflows; L2-I04 Examination Registration Workflows; Section A Authorization and Audit architecture  
 **Referenced By:** Examination Registration and downstream examination workflows; None yet
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-025 |
+| Canonical Title | Registration Reopening to Available Examination Registration |
+| Primary Owner | Examination Registration |
+| Participating Domains | A, B, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern institutional reopening of an examination registration opportunity after it has closed or become unavailable, where governing authority permits reopening.

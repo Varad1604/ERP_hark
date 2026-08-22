@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-146 |
+| Canonical Title | Stock Verification Initiation to Verification Completion |
+| Primary Owner | Library Management |
+| Participating Domains | G, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario defines the complete institutional outcome in which a Library Management stock verification is initiated, the applicable institutional collection is physically verified, differences between physical resources and authoritative catalogue records are analysed, verification results are established, and the verification is completed with its outcome preserved.
@@ -23,9 +37,9 @@ The locked L2 defines Stock Verification as operational verification of institut
 
 `Verification Scheduled → Physical Verification → Difference Analysis → Missing Resources → Verification Report → Administrative Closure`.
 
-Supported verification types are Complete, Section, Branch, Surprise and Annual, with verification policies configurable. Verification may identify available, missing, damaged, misplaced and duplicate records. fileciteturn205file0
+Supported verification types are Complete, Section, Branch, Surprise and Annual, with verification policies configurable. Verification may identify available, missing, damaged, misplaced and duplicate records.
 
-The L2 also defines `LibraryVerificationStarted` and `LibraryVerificationCompleted` as canonical verification events. fileciteturn208file0
+The L2 also defines `LibraryVerificationStarted` and `LibraryVerificationCompleted` as canonical verification events.
 
 ## 3. Business Outcome
 
@@ -212,7 +226,7 @@ The L2 defines:
 - Surprise Verification.
 - Annual Verification.
 
-Verification policies remain configurable. fileciteturn205file0
+Verification policies remain configurable.
 
 Verification may identify:
 
@@ -222,9 +236,9 @@ Verification may identify:
 - Misplaced Resources.
 - Duplicate Records.
 
-Operational handling remains within Library Management. fileciteturn205file0
+Operational handling remains within Library Management.
 
-Write-off recommendations may arise from irrecoverable loss, severe damage, administrative decision or obsolete material, but final approval follows institutional policy. Those downstream decisions are not silently absorbed into this scenario. fileciteturn205file0
+Write-off recommendations may arise from irrecoverable loss, severe damage, administrative decision or obsolete material, but final approval follows institutional policy. Those downstream decisions are not silently absorbed into this scenario.
 
 ## 13. State and Lifecycle Impact
 
@@ -232,7 +246,7 @@ The authoritative workflow is:
 
 `Verification Scheduled → Physical Verification → Difference Analysis → Missing Resources → Verification Report → Administrative Closure`.
 
-The scenario progresses the verification through these business stages and ends at **Administrative Closure**. fileciteturn205file0
+The scenario progresses the verification through these business stages and ends at **Administrative Closure**.
 
 No new verification lifecycle states are invented.
 
@@ -243,11 +257,11 @@ The locked L2 explicitly defines:
 - `LibraryVerificationStarted` — stock verification initiated.
 - `LibraryVerificationCompleted` — verification completed.
 
-Library Management is the canonical publisher because the L2 states that Library Management publishes immutable operational events and that significant business transitions publish domain events. fileciteturn207file0turn208file0
+Library Management is the canonical publisher because the L2 states that Library Management publishes immutable operational events and that significant business transitions publish domain events.
 
 E provides personnel context where applicable.
 
-H handles notification delivery where required; Library Management publishes business events and does not implement notification delivery. fileciteturn207file0
+H handles notification delivery where required; Library Management publishes business events and does not implement notification delivery.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 

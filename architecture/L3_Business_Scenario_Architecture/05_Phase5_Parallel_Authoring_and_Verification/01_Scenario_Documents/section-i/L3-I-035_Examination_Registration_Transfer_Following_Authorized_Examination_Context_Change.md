@@ -13,6 +13,20 @@
 **Depends On:** Locked L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-I02 Examination Session Management Workflows; L2-I04 Examination Registration Workflows; applicable Student Lifecycle architecture  
 **Referenced By:** L2-I05 Hall Ticket Management and subsequent Examination workflows where the transferred registration is consumed
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-035 |
+| Canonical Title | Examination Registration Transfer Following Authorized Examination Context Change |
+| Primary Owner | Examination |
+| Participating Domains | C — Student Lifecycle, I — Examination |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern an authorised change to the examination context of an existing candidate Examination Registration so that the candidate's valid examination participation follows the authorised context change without creating competing or stale registration authority.

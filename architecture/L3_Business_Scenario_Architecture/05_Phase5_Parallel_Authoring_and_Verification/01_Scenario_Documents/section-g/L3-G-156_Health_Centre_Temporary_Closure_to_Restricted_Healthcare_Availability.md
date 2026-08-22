@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-156 |
+| Canonical Title | Health Centre Temporary Closure to Restricted Healthcare Availability |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome in which an operational Health Centre is temporarily closed or otherwise restricted under an authoritative business condition, the new operational status is established, and healthcare-service availability is correspondingly restricted.
 
-The locked G06 model defines the Health Centre Operational Status values as Draft, Active, Temporarily Closed, Under Maintenance, Emergency Only and Retired, with status values configurable. It also defines the Health Centre workflow from creation and configuration through validation, activation and healthcare-service availability. fileciteturn234file0
+The locked G06 model defines the Health Centre Operational Status values as Draft, Active, Temporarily Closed, Under Maintenance, Emergency Only and Retired, with status values configurable. It also defines the Health Centre workflow from creation and configuration through validation, activation and healthcare-service availability.
 
 The scenario deliberately treats **Temporarily Closed** as the canonical Health Centre status and does not invent a separate `Restricted` lifecycle state. Restricted healthcare availability is the business consequence of the temporary-closure condition.
 
@@ -74,7 +88,7 @@ G06 owns:
 - Health Centre configuration.
 - Temporary closure decision.
 
-The L2's canonical ownership matrix identifies Health Centre as owned by G06. fileciteturn240file0
+The L2's canonical ownership matrix identifies Health Centre as owned by G06.
 
 No other domain participates in ownership of this scenario.
 
@@ -141,7 +155,7 @@ A configured/authorised planned closure establishes Temporarily Closed for the a
 
 ### 10.2 Maintenance-Related Restriction
 
-Where a Health Centre becomes unavailable due to maintenance, the scenario establishes the G06 operational restriction. G01 remains owner of facilities/biomedical equipment maintenance execution where applicable. The L2 explicitly states that biomedical equipment and facility maintenance are G01-owned and Health Services may recommend maintenance. fileciteturn231file0
+Where a Health Centre becomes unavailable due to maintenance, the scenario establishes the G06 operational restriction. G01 remains owner of facilities/biomedical equipment maintenance execution where applicable. The L2 explicitly states that biomedical equipment and facility maintenance are G01-owned and Health Services may recommend maintenance.
 
 ### 10.3 Emergency-Only Operation
 
@@ -179,7 +193,7 @@ Existing healthcare records remain governed by their own lifecycles. The tempora
 
 ### 11.5 Facilities/Maintenance Dependency
 
-Where maintenance is the reason for restriction, G06 can coordinate/recommend maintenance while G01 retains maintenance ownership. fileciteturn231file0
+Where maintenance is the reason for restriction, G06 can coordinate/recommend maintenance while G01 retains maintenance ownership.
 
 ### 11.6 Recovery Boundary
 
@@ -198,7 +212,7 @@ The Health Centre operational statuses include:
 - Emergency Only.
 - Retired.
 
-Status values are configurable. fileciteturn234file0
+Status values are configurable.
 
 The scenario must therefore:
 
@@ -209,13 +223,13 @@ The scenario must therefore:
 5. Not modify patient identity or medical-encounter lifecycles.
 6. Preserve the configuration/audit principles defined by G06.
 
-G06 states that configuration supports effective dating and complete audit history, and every significant healthcare activity is auditable. fileciteturn240file0
+G06 states that configuration supports effective dating and complete audit history, and every significant healthcare activity is auditable.
 
 ## 13. State and Lifecycle Impact
 
 The Health Centre workflow is:
 
-`Health Centre Created → Configuration → Operational Validation → Activation → Healthcare Services Available`. fileciteturn234file0
+`Health Centre Created → Configuration → Operational Validation → Activation → Healthcare Services Available`.
 
 The Health Centre status model additionally supports **Temporarily Closed**.
 
@@ -262,7 +276,7 @@ The audit record should preserve:
 - Responsible authority/personnel context.
 - Relevant notification outcome.
 
-G06 requires immutable healthcare audit history and identifies configuration changes as audited activity. Audit coverage includes user, timestamp, business action, previous state, new state, business reason and source-system context. fileciteturn240file0
+G06 requires immutable healthcare audit history and identifies configuration changes as audited activity. Audit coverage includes user, timestamp, business action, previous state, new state, business reason and source-system context.
 
 No technical access control/IAM is described.
 

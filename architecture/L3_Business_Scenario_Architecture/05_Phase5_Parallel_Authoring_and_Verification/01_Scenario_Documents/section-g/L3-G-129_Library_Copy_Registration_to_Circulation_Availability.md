@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-129 |
+| Canonical Title | Library Copy Registration to Circulation Availability |
+| Primary Owner | Library Management |
+| Participating Domains | G, E |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete business outcome through which a physical library resource is registered as a Library Copy and becomes available for circulation.
@@ -23,7 +37,7 @@ The scenario begins from an available Catalogue record and establishes the opera
 
 The L2 explicitly separates intellectual Catalogue records from physical Library Copies. Each physical copy references exactly one Catalogue record, and the copy workflow is:
 
-`Catalogue Available → Copy Added → Accession Number Assigned → Barcode Assigned → Available For Circulation`. fileciteturn163file0turn164file0
+`Catalogue Available → Copy Added → Accession Number Assigned → Barcode Assigned → Available For Circulation`.
 
 ## 3. Business Outcome
 
@@ -68,7 +82,7 @@ The Library Copy reaches the operational condition in which it is Available for 
 
 Library Management owns Library Copy Management.
 
-Each Library Copy references exactly one Catalogue record. Catalogue ownership remains within G05 but is a separate aggregate from the physical copy. fileciteturn164file0
+Each Library Copy references exactly one Catalogue record. Catalogue ownership remains within G05 but is a separate aggregate from the physical copy.
 
 Section E provides the authoritative personnel context for librarians, library assistants and administrative staff. E does not own the Library Copy.
 
@@ -120,7 +134,7 @@ A physical library resource is ready to be registered as a Library Copy against 
 10. Record the Physical Condition.
 11. Establish the applicable Operational Status.
 
-The L2-supported copy statuses include Available, Issued, Reserved, Reference Only, Under Verification, Lost, Damaged and Withdrawn, with status values remaining configurable. fileciteturn163file0
+The L2-supported copy statuses include Available, Issued, Reserved, Reference Only, Under Verification, Lost, Damaged and Withdrawn, with status values remaining configurable.
 
 ### Phase D — Establish Availability
 

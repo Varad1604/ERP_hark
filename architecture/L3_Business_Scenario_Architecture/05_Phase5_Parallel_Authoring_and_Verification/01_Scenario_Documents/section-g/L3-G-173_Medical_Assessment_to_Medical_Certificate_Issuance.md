@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-173 |
+| Canonical Title | Medical Assessment to Medical Certificate Issuance |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Medical certificates are formal institutional healthcare documents derived from an authorised medical assessment. Their issuance must remain connected to the underlying healthcare encounter and professional authority while respecting the institution's configurable certificate policies.

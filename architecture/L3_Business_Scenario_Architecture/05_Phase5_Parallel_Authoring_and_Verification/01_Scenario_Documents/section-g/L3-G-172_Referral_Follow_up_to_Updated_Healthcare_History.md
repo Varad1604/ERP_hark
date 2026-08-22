@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-172 |
+| Canonical Title | Referral Follow-up to Updated Healthcare History |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 A referral does not necessarily end the institution's healthcare responsibility. Where a referral generates a subsequent institutional follow-up need, the institution must be able to establish the follow-up healthcare activity and preserve the resulting information in the patient's authoritative institutional medical history.

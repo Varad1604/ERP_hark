@@ -13,6 +13,20 @@
 **Depends On:** Locked L1 Business Domain Architecture; L2-I04 Examination Registration Workflows; authoritative Student and Curriculum/Academic Delivery architecture; applicable Examination Policy, Session, and Schedule architecture  
 **Referenced By:** Downstream examination workflows consuming authoritative Examination Registration
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-027 |
+| Canonical Title | Examination Registration Scope Change Following Academic Registration Change |
+| Primary Owner | Examination Registration |
+| Participating Domains | C, D, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the correction of an Examination Registration scope when an authoritative academic registration change affects the subjects or examination participation that the candidate is eligible to register for.

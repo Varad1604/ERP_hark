@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-064 |
+| Canonical Title | Employee Profile Document Registration and Verification |
+| Primary Owner | Employee Profile |
+| Participating Domains | E — People & Workforce; H — Institutional Services & Intelligence |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Register an employee profile document in the canonical EmployeeProfile and complete the applicable verification process so that the employee profile contains a governed, traceable document reference and its verification position is accurately represented.

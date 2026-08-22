@@ -37,6 +37,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-C-002 |
+| Canonical Title | L3-C-002 — Admission Cancellation |
+| Primary Owner | Admissions |
+| Participating Domains | C |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 The purpose of this scenario is to permanently terminate an Admission Record before successful Student creation when cancellation is permitted by institutional policy, applicant request, administrative decision, or regulatory requirement.

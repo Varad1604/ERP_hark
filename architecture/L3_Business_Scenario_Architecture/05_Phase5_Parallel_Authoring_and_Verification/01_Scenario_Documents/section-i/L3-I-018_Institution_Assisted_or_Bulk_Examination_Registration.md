@@ -13,6 +13,20 @@
 **Depends On:** L2-I01 Examination Policy & Configuration; L2-I02 Examination Session Management; L2-I03 Examination Planning & Scheduling; L2-I04 Examination Registration; Student; Curriculum Framework; Academic Calendar  
 **Referenced By:** L2-I05 Hall Ticket Management; downstream examination workflows; Audit
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-018 |
+| Canonical Title | Institution-Assisted or Bulk Examination Registration |
+| Primary Owner | Examination Registration |
+| Participating Domains | C, D, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern institution-assisted or bulk creation of Examination Registrations for a defined candidate population while preserving the canonical registration ownership and applying the same eligibility, subject, policy, approval, confirmation and audit requirements that govern individual candidate registration.
@@ -63,7 +77,7 @@ The scenario ends when eligible candidates in the population have authoritative 
 | Curriculum Framework | Provides subject applicability. | Curriculum remains D-owned. |
 | Examination Administration | Operates institution-assisted registration within I04 responsibilities. | Registration business operations remain I04-owned. |
 
-L2-I04 defines the Examination Registration domain as the authoritative source for candidate examination participation and includes Examination Administration as a participating business actor. fileciteturn246file0
+L2-I04 defines the Examination Registration domain as the authoritative source for candidate examination participation and includes Examination Administration as a participating business actor.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -106,7 +120,7 @@ An authorized institution-assisted registration activity begins for a defined ca
 | 9 | Publish registration events for each completed registration transition. | Examination Registration | Downstream workflows receive authoritative facts. |
 | 10 | Preserve population-level operational evidence and individual registration audit history. | Examination Registration / Audit Infrastructure | Bulk activity is reconstructable without creating a competing aggregate. |
 
-L2-I04 establishes candidate-level registration governance and treats the Examination Registration as the authoritative business record. fileciteturn245file0turn246file0
+L2-I04 establishes candidate-level registration governance and treats the Examination Registration as the authoritative business record.
 
 ## 10. Alternate Business Flows
 
@@ -141,7 +155,7 @@ Candidates not yet validly registered cannot be treated as Confirmed outside the
 | A bulk activity contains inconsistent candidate inputs | Resolve candidates individually using authoritative Student/Curriculum context; do not create a population-level workaround. |
 | A candidate requires late/special registration | Apply the authorised institutional exception for that candidate. |
 
-L2-I04 requires duplicates to be prevented, eligibility failures to stop progression and exceptional conditions to remain institutionally governed. fileciteturn247file0
+L2-I04 requires duplicates to be prevented, eligibility failures to stop progression and exceptional conditions to remain institutionally governed.
 
 ## 12. Business Rules and Decision Constraints
 
@@ -154,8 +168,6 @@ L2-I04 requires duplicates to be prevented, eligibility failures to stop progres
 - Registration history is auditable.
 - Ownership remains with the originating domains.
 - Bulk/assisted activity does not create a new canonical bulk Registration aggregate.
-
-fileciteturn245file0turn247file0
 
 ## 13. State and Lifecycle Impact
 
@@ -182,7 +194,7 @@ The Examination Registration domain publishes the same canonical Registration ev
 - `Registration Locked`
 - `Registration Archived`
 
-No `BulkRegistrationCompleted` event is invented because L2-I04 does not define a population-level event. fileciteturn247file0
+No `BulkRegistrationCompleted` event is invented because L2-I04 does not define a population-level event.
 
 ### 14.2 Business Hand-offs
 
@@ -217,7 +229,7 @@ The bulk activity must remain traceable through:
 - failures/exceptions;
 - event history.
 
-L2-I04 requires complete auditability for significant registration activities. fileciteturn246file0turn247file0
+L2-I04 requires complete auditability for significant registration activities.
 
 ## 16. Completion Criteria and Postconditions
 

@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-082 |
+| Canonical Title | Resident Leave Request to Verified Return |
+| Primary Owner | Hostel Management |
+| Participating Domains | G, C, H |
+| Scenario Type | Cross-domain |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern a resident's temporary absence from the hostel from leave request through approved departure and verified return, while preserving Hostel Management ownership of leave and residency operations and Student Lifecycle ownership of student identity.

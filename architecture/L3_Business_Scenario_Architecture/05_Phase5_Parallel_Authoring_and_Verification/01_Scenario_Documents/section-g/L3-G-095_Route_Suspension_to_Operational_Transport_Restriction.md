@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-095 |
+| Canonical Title | Route Suspension to Operational Transport Restriction |
+| Primary Owner | Transport Management |
+| Participating Domains | G |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern the temporary or emergency suspension of an operational transport route due to road closures, vehicle unavailability, extreme weather, or administrative restructuring, restricting operational transport while notifying all assigned passengers and downstream operations.

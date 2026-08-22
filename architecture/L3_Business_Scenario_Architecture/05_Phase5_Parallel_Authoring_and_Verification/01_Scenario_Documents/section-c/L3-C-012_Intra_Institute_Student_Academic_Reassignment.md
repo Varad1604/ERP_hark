@@ -15,21 +15,35 @@
 
 ---
 
-The frozen Section C Stage 3 register defines C-012 as **Intra-Institute Student Academic Reassignment**, with **Student Lifecycle** as Primary Owner, **B, C** as participating domains, **Cross-domain** as Type, **P1** as Priority, and `KEEP` derivation. fileciteturn53file0L2-L2
+The frozen Section C Stage 3 register defines C-012 as **Intra-Institute Student Academic Reassignment**, with **Student Lifecycle** as Primary Owner, **B, C** as participating domains, **Cross-domain** as Type, **P1** as Priority, and `KEEP` derivation.
 
 The Phase 5 operating guide assigns C-012 to **Varad** and fixes the exact filename as:
 
 `L3-C-012_Intra_Institute_Student_Academic_Reassignment.md`
 
-The repository operating guide requires authors to use the exact assigned ID/filename, frozen Type/Priority, applicable L2 sources, and the locked v2.0 17-section structure. fileciteturn129file1L1-L2 fileciteturn133file3L2-L2
+The repository operating guide requires authors to use the exact assigned ID/filename, frozen Type/Priority, applicable L2 sources, and the locked v2.0 17-section structure.
 
 ---
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-C-012 |
+| Canonical Title | Intra-Institute Student Academic Reassignment |
+| Primary Owner | Student Lifecycle |
+| Participating Domains | B — Institution & Structure; C — Student Lifecycle |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 
 This scenario governs an authorised **same-Institute, non-Programme** reassignment of a Student's academic organisational or placement context.
 
-It exists to distinguish an actual Student Transfer workflow from ordinary Academic Assignment maintenance. The locked cross-domain resolution explicitly states that C-009 and C-012 may affect overlapping references such as Department, Batch, or Section, but their business outcomes are different: C-009 remains assignment maintenance, while C-012 is the authorised same-Institute non-Programme relocation processed through the Student Transfer workflow. fileciteturn61file0L2-L2
+It exists to distinguish an actual Student Transfer workflow from ordinary Academic Assignment maintenance. The locked cross-domain resolution explicitly states that C-009 and C-012 may affect overlapping references such as Department, Batch, or Section, but their business outcomes are different: C-009 remains assignment maintenance, while C-012 is the authorised same-Institute non-Programme relocation processed through the Student Transfer workflow.
 
 ---
 
@@ -41,7 +55,7 @@ The singular institutional outcome is:
 
 The scenario does **not** change the Student's Programme.
 
-Programme-changing mobility is explicitly outside C-012 and remains owned by L2-C04 Academic Progression through APW-08 and its `ProgrammeMigrationApproved` outcome. fileciteturn61file0L2-L2
+Programme-changing mobility is explicitly outside C-012 and remains owned by L2-C04 Academic Progression through APW-08 and its `ProgrammeMigrationApproved` outcome.
 
 ---
 
@@ -49,7 +63,7 @@ Programme-changing mobility is explicitly outside C-012 and remains owned by L2-
 
 ## 4.1 Start Boundary
 
-The scenario begins when a governed **Student Transfer Request** or **Administrative Approval** initiates a same-Institute Student Transfer. fileciteturn61file0L2-L2
+The scenario begins when a governed **Student Transfer Request** or **Administrative Approval** initiates a same-Institute Student Transfer.
 
 The requested reassignment must be a **non-Programme organisational or placement relocation**.
 
@@ -97,7 +111,7 @@ The authoritative Phase 2 boundary resolution is explicit:
 - **C-012:** an authorised same-Institute non-Programme relocation processed through the Transfer workflow.
 - **Programme-changing mobility:** remains separately governed by C04 APW-08.
 
-The distinction is therefore the **business decision and lifecycle outcome**, not merely which assignment fields change. fileciteturn61file0L2-L2
+The distinction is therefore the **business decision and lifecycle outcome**, not merely which assignment fields change.
 
 ---
 
@@ -108,9 +122,9 @@ The distinction is therefore the **business decision and lifecycle outcome**, no
 | **B — Institution & Structure** | Provides the authoritative institutional/organisational context within which the Student is reassigned. Ownership of Organisation and Academic Structure remains with Section B. |
 | **C — Student Lifecycle** | Canonical owner of Student, StudentContext, Student Academic Assignment, Student lifecycle state, the Student Transfer workflow, and the completed `StudentTransferred` business outcome. |
 
-The locked L1 architecture assigns **Student Context**, **Academic Registration**, **Academic Progression**, and related Student lifecycle responsibilities to Student Lifecycle, while Organisation and Academic Structure remain owned by Section B. fileciteturn129file4L1-L2
+The locked L1 architecture assigns **Student Context**, **Academic Registration**, **Academic Progression**, and related Student lifecycle responsibilities to Student Lifecycle, while Organisation and Academic Structure remain owned by Section B.
 
-The L2-C02 architecture states that Student Lifecycle is the exclusive owner of the Student Aggregate and associated StudentContext and that no downstream domain may directly modify Student master or StudentContext lifecycle information outside approved architecture contracts. fileciteturn57file0L2-L2
+The L2-C02 architecture states that Student Lifecycle is the exclusive owner of the Student Aggregate and associated StudentContext and that no downstream domain may directly modify Student master or StudentContext lifecycle information outside approved architecture contracts.
 
 Participation by B therefore does **not** transfer Student or StudentContext ownership.
 
@@ -121,7 +135,7 @@ Participation by B therefore does **not** transfer Student or StudentContext own
 The authoritative evidence available for C-012 establishes the initiating business conditions as:
 
 - **Student Transfer Request**
-- **Administrative Approval**. fileciteturn61file0L2-L2
+- **Administrative Approval**.
 
 The retrieved authoritative material does not expose a sufficiently precise actor-to-step mapping for these two initiation mechanisms. Therefore no additional actor or role is invented in this L3 document.
 
@@ -147,7 +161,7 @@ C-012 requires all of the following business conditions:
 5. The requested destination organisational or placement context is valid within the authoritative institutional structure.
 6. The transfer is eligible to be processed through **WF-C02-08 Student Transfer** rather than ordinary Academic Assignment or Programme Migration.
 
-The locked boundary resolution identifies WF-C02-08 as the workflow for an authorised same-Institute non-Programme relocation. fileciteturn61file0L2-L2
+The locked boundary resolution identifies WF-C02-08 as the workflow for an authorised same-Institute non-Programme relocation.
 
 ---
 
@@ -156,7 +170,7 @@ The locked boundary resolution identifies WF-C02-08 as the workflow for an autho
 The canonical business triggers are:
 
 - **Student Transfer Request**
-- **Administrative Approval**. fileciteturn61file0L2-L2
+- **Administrative Approval**.
 
 These are business triggers.
 
@@ -179,7 +193,7 @@ They are not represented as APIs, messages, queues, database operations, or othe
 | 9 | Publish `StudentTransferred`. | Student Lifecycle | Canonical transfer fact is established. |
 | 10 | End the scenario. | Student Lifecycle | Intra-Institute Student Academic Reassignment is complete. |
 
-The locked cross-domain resolution explicitly defines WF-C02-08 as a Student Transfer workflow that performs a governed non-Programme organisational or placement relocation, enters `Transferred`, returns to `Active`, preserves the prior assignment, and publishes `StudentTransferred`. fileciteturn61file0L2-L2
+The locked cross-domain resolution explicitly defines WF-C02-08 as a Student Transfer workflow that performs a governed non-Programme organisational or placement relocation, enters `Transferred`, returns to `Active`, preserves the prior assignment, and publishes `StudentTransferred`.
 
 ---
 
@@ -205,7 +219,7 @@ Where the transfer is initiated by an authoritative Administrative Approval rath
 
 If the requested change changes the Student's Programme, it is not an alternate C-012 path.
 
-It is governed by L2-C04 APW-08 and the Programme Migration outcome. C02 may consume the approved `ProgrammeMigrationApproved` outcome to apply the approved Programme association, but C02 does not make or republish the Programme Migration decision. fileciteturn61file0L2-L2
+It is governed by L2-C04 APW-08 and the Programme Migration outcome. C02 may consume the approved `ProgrammeMigrationApproved` outcome to apply the approved Programme association, but C02 does not make or republish the Programme Migration decision.
 
 ---
 
@@ -237,7 +251,7 @@ No technical retry, queue, rollback, server failure, database recovery, or imple
 | Programme Migration remains exclusively owned by L2-C04 APW-08. | Academic Progression | C02 cannot decide or republish Programme Migration. |
 | Runtime participation does not transfer ownership. | Repository architecture | B remains owner of its institutional/organisational concepts; C remains owner of Student lifecycle. |
 
-The C-012 / C-009 distinction and the Programme Migration boundary are explicitly resolved in the locked Phase 2 Wave 2 decision. fileciteturn61file0L2-L2
+The C-012 / C-009 distinction and the Programme Migration boundary are explicitly resolved in the locked Phase 2 Wave 2 decision.
 
 ---
 
@@ -251,7 +265,7 @@ The Student Transfer workflow has the following authoritative lifecycle effect:
 
 The transfer is therefore not a terminal StudentContext outcome.
 
-The authoritative boundary resolution explicitly states that WF-C02-08 enters `Transferred`, returns to `Active`, and preserves the prior assignment. fileciteturn61file0L2-L2
+The authoritative boundary resolution explicitly states that WF-C02-08 enters `Transferred`, returns to `Active`, and preserves the prior assignment.
 
 ## 13.2 Academic Assignment
 
@@ -279,7 +293,7 @@ No new StudentContext is created merely because of an intra-Institute reassignme
 
 **`StudentTransferred`**
 
-**Canonical Publisher:** Student Lifecycle. fileciteturn61file0L2-L2
+**Canonical Publisher:** Student Lifecycle.
 
 The event communicates the completed business fact that the Student Transfer workflow has completed.
 
@@ -299,7 +313,7 @@ Any resulting academic-delivery consequences remain governed by the applicable S
 
 The `ProgrammeMigrationApproved` event is **not** a C-012 completion event.
 
-It belongs to the C04 Programme Migration boundary and is consumed by C02 only to apply an already-approved Programme association. fileciteturn61file0L2-L2
+It belongs to the C04 Programme Migration boundary and is consumed by C02 only to apply an already-approved Programme association.
 
 ---
 
@@ -309,7 +323,7 @@ It belongs to the C04 Programme Migration boundary and is consumed by C02 only t
 
 C-012 requires the transfer to be authorised through the governed Student Transfer process.
 
-The authoritative trigger set explicitly includes Administrative Approval. fileciteturn61file0L2-L2
+The authoritative trigger set explicitly includes Administrative Approval.
 
 The exact actor/approval-role mapping is not asserted because the retrieved authoritative C02 evidence does not expose enough detail to name a specific role without invention.
 
@@ -323,7 +337,7 @@ No additional approval hierarchy is invented.
 
 ## 15.3 Audit
 
-The locked C02 architecture requires lifecycle transitions to generate immutable audit records and states that Student lifecycle transitions publish canonical domain events. fileciteturn57file0L2-L2
+The locked C02 architecture requires lifecycle transitions to generate immutable audit records and states that Student lifecycle transitions publish canonical domain events.
 
 C-012 therefore requires the completed reassignment and lifecycle transition to remain auditable.
 
@@ -331,7 +345,7 @@ C-012 therefore requires the completed reassignment and lifecycle transition to 
 
 The prior assignment must be preserved as history.
 
-The authoritative C-C01 resolution explicitly states that WF-C02-08 preserves the prior assignment. fileciteturn61file0L2-L2
+The authoritative C-C01 resolution explicitly states that WF-C02-08 preserves the prior assignment.
 
 ## 15.5 Separation of Duty
 
@@ -429,9 +443,9 @@ Assumptions do not override locked architecture.
 - **Placement:** `section-c`
 - **Status:** Draft
 
-The frozen Stage 3 row confirms all identity/classification values. fileciteturn53file0L2-L2
+The frozen Stage 3 row confirms all identity/classification values.
 
-The Phase 5 workload guide confirms Varad as the assigned author and fixes the exact filename. fileciteturn129file1L1-L2
+The Phase 5 workload guide confirms Varad as the assigned author and fixes the exact filename.
 
 ## L2 Boundary Validation
 
@@ -441,11 +455,11 @@ The authoritative Wave 2 decision establishes that:
 - C-012 is the authorised same-Institute non-Programme relocation;
 - WF-C02-08 is the Student Transfer workflow;
 - the workflow enters `Transferred`, returns to `Active`, preserves prior assignment, and publishes `StudentTransferred`;
-- Programme-changing mobility remains with C04 APW-08. fileciteturn61file0L2-L2
+- Programme-changing mobility remains with C04 APW-08.
 
 ## Ownership Validation
 
-Student Lifecycle owns Student, StudentContext, Student Academic Assignment and Student lifecycle state. Institution & Structure retains ownership of its organisational and academic-structure concepts. fileciteturn57file0L2-L2 fileciteturn129file4L1-L2
+Student Lifecycle owns Student, StudentContext, Student Academic Assignment and Student lifecycle state. Institution & Structure retains ownership of its organisational and academic-structure concepts.
 
 ## Lifecycle Validation
 
@@ -463,7 +477,7 @@ Canonical event:
 
 Canonical publisher:
 
-**Student Lifecycle**. fileciteturn61file0L2-L2
+**Student Lifecycle**.
 
 ## Boundary Validation
 
@@ -502,7 +516,7 @@ All 17 mandatory v2.0 sections are present:
 16. Completion Criteria and Postconditions
 17. Open Issues, Assumptions and Deferred Questions
 
-The locked v2.0 template requires this exact 17-section structure and requires unresolved material upstream ambiguity to be recorded rather than silently resolved. fileciteturn128file5L1-L2 fileciteturn128file15L1-L2
+The locked v2.0 template requires this exact 17-section structure and requires unresolved material upstream ambiguity to be recorded rather than silently resolved.
 
 ---
 

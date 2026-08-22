@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-112 |
+| Canonical Title | Post-Trip Inspection to Operational Follow-Up |
+| Primary Owner | Transport Management |
+| Participating Domains | G |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs post-trip inspection and operational follow-up after a transport Trip has completed. G04 defines post-trip operational guidance including vehicle inspection, damage observation, fuel recording, lost-and-found review, cleaning requirement and operational remarks.
 

@@ -35,7 +35,7 @@
 | Canonical Event | `AdmissionReadmitted` |
 | Canonical Owner | Admissions |
 
-The frozen Section C canonical register identifies C-005 as **Student Readmission**, owned by **Admissions**, participating domain **C**, Type **Cross-domain**, Priority **P1**. fileciteturn75file0L2-L2
+The frozen Section C canonical register identifies C-005 as **Student Readmission**, owned by **Admissions**, participating domain **C**, Type **Cross-domain**, Priority **P1**.
 
 ---
 
@@ -45,7 +45,7 @@ The purpose of this scenario is to provide the institutionally governed business
 
 Readmission evaluates the historical Admission, validates the applicant's eligibility and applicable institutional policy, determines the appropriate readmission strategy, and completes the resulting admission outcome while preserving all historical relationships.
 
-The L2 architecture explicitly separates **historical admissions** from **active admissions**. Institutions may configure whether an eligible readmission restores an existing admission or creates a new admission lifecycle. fileciteturn76file0turn77file0
+The L2 architecture explicitly separates **historical admissions** from **active admissions**. Institutions may configure whether an eligible readmission restores an existing admission or creates a new admission lifecycle.
 
 ---
 
@@ -120,7 +120,7 @@ The scenario ends when the configured readmission strategy has been successfully
 
 ### 4.5 Cross-Domain Boundary
 
-The L2 workflow identifies Academic Delivery as participating for **Session Validation**. Platform participates in authentication, and Audit participates in readmission history. These interactions do not transfer ownership of the Admission lifecycle away from Admissions. fileciteturn78file0turn79file0
+The L2 workflow identifies Academic Delivery as participating for **Session Validation**. Platform participates in authentication, and Audit participates in readmission history. These interactions do not transfer ownership of the Admission lifecycle away from Admissions.
 
 ---
 
@@ -166,7 +166,7 @@ Admissions remains the canonical owner throughout the readmission business outco
 | **Academic Delivery responsibility** | Provides academic session and programme information relevant to eligibility. | Supplies academic business information; does not own Readmission. |
 | **Audit responsibility** | Preserves readmission history/evidence. | Evidence/governance responsibility; does not own Admission. |
 
-The L2 source explicitly supports Applicant Readmission Request, Administrative Readmission, and Institutional Restoration. fileciteturn76file0turn77file0
+The L2 source explicitly supports Applicant Readmission Request, Administrative Readmission, and Institutional Restoration.
 
 No unsupported human role title is invented.
 
@@ -190,7 +190,7 @@ The L2 preconditions explicitly identify:
 - Admission eligible for readmission;
 - Applicant authenticated;
 - Institution authorized; and
-- Readmission policy resolved. fileciteturn77file0
+- Readmission policy resolved.
 
 ### 7.1 Historical Record Requirement
 
@@ -239,7 +239,7 @@ The trigger starts readmission consideration but does not itself establish the f
 
 The L2 workflow's canonical sequence is:
 
-`Readmission Requested → Validate Request → Resolve Readmission Policy → Validate Eligibility → Determine Readmission Strategy → Restore / Create New Admission / Reject → Persist Readmission → Generate Audit → Publish AdmissionReadmitted`. fileciteturn77file0
+`Readmission Requested → Validate Request → Resolve Readmission Policy → Validate Eligibility → Determine Readmission Strategy → Restore / Create New Admission / Reject → Persist Readmission → Generate Audit → Publish AdmissionReadmitted`.
 
 ---
 
@@ -259,7 +259,7 @@ Where policy and eligibility permit restoration:
 
 The L2 decision matrix explicitly identifies:
 
-`Eligible = Yes + Policy = Restore + Previous Status = Withdrawn → Restore Admission`. fileciteturn78file0
+`Eligible = Yes + Policy = Restore + Previous Status = Withdrawn → Restore Admission`.
 
 ### 10.2 AF-02 — Create New Admission
 
@@ -272,7 +272,7 @@ Where institutional policy requires a fresh admission lifecycle:
 5. Generate audit evidence.
 6. Publish `AdmissionReadmitted`.
 
-The L2 workflow explicitly states that every readmission shall preserve historical records and allows the configured strategy to restore or create a new Admission. fileciteturn76file0turn77file0
+The L2 workflow explicitly states that every readmission shall preserve historical records and allows the configured strategy to restore or create a new Admission.
 
 ### 10.3 AF-03 — Administrative Readmission
 
@@ -321,7 +321,7 @@ The L2 workflow explicitly identifies:
 - `EX-01 — Ineligible Applicant`;
 - `EX-02 — Policy Restriction`;
 - `EX-03 — Maximum Attempts Exceeded`; and
-- `EX-04 — Invalid Historical Admission`. fileciteturn77file0turn78file0
+- `EX-04 — Invalid Historical Admission`.
 
 ### 11.1 Historical Preservation
 
@@ -344,7 +344,7 @@ L3 does not define technical retries, queues, rollback, database recovery, or in
 | BR-C01-055 | Readmission may restore or recreate admissions according to policy. | Admissions | Strategy is policy-governed. |
 | BR-C01-056 | Workflow execution shall be idempotent. | Admissions | Repeated business execution does not create contradictory duplicate outcomes. |
 
-These rules are explicitly defined by the L2 Readmission workflow. fileciteturn78file0
+These rules are explicitly defined by the L2 Readmission workflow.
 
 ### 12.1 Eligibility Dimensions
 
@@ -354,7 +354,7 @@ The L2 workflow identifies configurable readmission policy dimensions including:
 - academic year policy;
 - programme eligibility;
 - maximum readmission attempts; and
-- time limits. fileciteturn77file0
+- time limits.
 
 ### 12.2 Eligibility Examples
 
@@ -395,7 +395,7 @@ Withdrawn / Cancelled
 Readmitted
 ```
 
-The scenario therefore uses `Readmitted` as the canonical readmission outcome. fileciteturn78file0
+The scenario therefore uses `Readmitted` as the canonical readmission outcome.
 
 ### 13.3 Strategy-Dependent Lifecycle Behaviour
 
@@ -455,7 +455,7 @@ The historical Admission remains immutable and is never overwritten.
 |---|---|---|
 | `AdmissionReadmitted` | **Admissions** | Represents the completed readmission business outcome. |
 
-The L2 workflow also defines `ReadmissionRejected` for rejected requests. fileciteturn78file0
+The L2 workflow also defines `ReadmissionRejected` for rejected requests.
 
 ### 14.2 Consumed Business Fact
 
@@ -539,7 +539,7 @@ The L2 workflow requires the following readmission information to be recorded:
 - Decision;
 - Strategy Applied;
 - Timestamp; and
-- Initiating User. fileciteturn78file0
+- Initiating User.
 
 At L3, these are treated as business evidence obligations.
 
@@ -675,7 +675,7 @@ The L2 workflow allows configurable approval hierarchy.
 - Scenario Type: Cross-domain
 - Priority: P1
 
-The frozen Section C register confirms all of these values. fileciteturn75file0L2-L2
+The frozen Section C register confirms all of these values.
 
 ## L2 Verification
 
@@ -699,7 +699,7 @@ The L2 source defines:
 - decision matrix;
 - business rules;
 - audit requirements; and
-- architectural constraints. fileciteturn76file0turn77file0turn78file0turn79file0
+- architectural constraints.
 
 ## Lifecycle Verification
 
@@ -707,7 +707,7 @@ The L2 state transition is:
 
 `Withdrawn / Cancelled → Readmitted`
 
-with strategy-dependent restoration or new Admission processing. fileciteturn78file0
+with strategy-dependent restoration or new Admission processing.
 
 ## Ownership Verification
 
@@ -738,7 +738,7 @@ The authoritative L2 rules establish:
 - prohibition of duplicate active Admissions;
 - audit generation;
 - restore/recreate strategy; and
-- idempotent workflow execution. fileciteturn78file0
+- idempotent workflow execution.
 
 ## Implementation Leakage Check
 

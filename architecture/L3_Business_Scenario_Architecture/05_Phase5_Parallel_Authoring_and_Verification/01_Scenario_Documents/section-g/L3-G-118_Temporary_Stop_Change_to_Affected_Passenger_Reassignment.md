@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-118 |
+| Canonical Title | Temporary Stop Change to Affected Passenger Reassignment |
+| Primary Owner | Transport Management |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs a temporary change to a transport stop that affects passengers using the existing transport arrangement.

@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-164 |
+| Canonical Title | Emergency Case to Ambulance Coordination |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the institutional healthcare outcome in which an Emergency Case requires ambulance coordination, the ambulance request and relevant provider/destination information are established, departure is coordinated within institutional scope, and the ambulance coordination outcome is recorded.
 
-The locked L2 explicitly states that Institutional Health Services may record Ambulance Request, Provider, Departure Time, Destination and Arrival Confirmation, while ambulance fleet management remains outside the domain. fileciteturn258file0
+The locked L2 explicitly states that Institutional Health Services may record Ambulance Request, Provider, Departure Time, Destination and Arrival Confirmation, while ambulance fleet management remains outside the domain.
 
 ## 3. Business Outcome
 
@@ -69,7 +83,7 @@ Owns Emergency Case and records ambulance coordination as part of institutional 
 
 May deliver configured emergency notifications. H does not own ambulance coordination.
 
-The L2 expressly states that ambulance fleet management remains outside G06 and notification delivery remains within H. fileciteturn258file0
+The L2 expressly states that ambulance fleet management remains outside G06 and notification delivery remains within H.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -120,7 +134,7 @@ Emergency assessment determines that ambulance transportation is required.
 8. Record the destination.
 9. Preserve the request context.
 
-The L2 explicitly identifies Ambulance Request and Provider as ambulance-coordination information. fileciteturn258file0
+The L2 explicitly identifies Ambulance Request and Provider as ambulance-coordination information.
 
 ### Phase C — Coordination
 
@@ -202,9 +216,9 @@ The locked L2 establishes that G06 may record:
 - Destination.
 - Arrival Confirmation.
 
-It explicitly excludes ambulance fleet management from G06. fileciteturn258file0
+It explicitly excludes ambulance fleet management from G06.
 
-Emergency categories remain configurable and medical professionals retain operational authority. fileciteturn258file0
+Emergency categories remain configurable and medical professionals retain operational authority.
 
 No fleet, vehicle, crew or dispatch lifecycle is created in this scenario.
 
@@ -212,7 +226,7 @@ No fleet, vehicle, crew or dispatch lifecycle is created in this scenario.
 
 The Emergency Case lifecycle is:
 
-`Reported → Assessment → Treatment → Referral (Optional) → Closed`. fileciteturn266file0
+`Reported → Assessment → Treatment → Referral (Optional) → Closed`.
 
 Ambulance coordination is a supporting emergency outcome; it is not introduced as a new Emergency Case state.
 
@@ -241,7 +255,7 @@ Audit evidence should preserve:
 - Responsible healthcare actor.
 - Resulting emergency outcome.
 
-The L2 requires immutable audit history for healthcare activities and lifecycle transitions. fileciteturn266file0
+The L2 requires immutable audit history for healthcare activities and lifecycle transitions.
 
 ## 16. Completion Criteria and Postconditions
 

@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-081 |
+| Canonical Title | Hostel Residency End to Cleared and Closed Occupancy |
+| Primary Owner | Hostel Management |
+| Participating Domains | G, C, F, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Complete the institutional end of a student's hostel residency by performing the governed exit-clearance and check-out process, closing the active occupancy while preserving the student's canonical identity, the historical residency record, and Finance's ownership of financial obligations.

@@ -36,6 +36,20 @@ The frozen Section C register identifies C028 exactly as **Academic Credit Ledge
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-C-028 |
+| Canonical Title | Academic Credit Ledger Update |
+| Primary Owner | Academic Progression |
+| Participating Domains | C, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs maintenance of the Student's authoritative institutional Academic Credit Ledger following verified academic outcomes.

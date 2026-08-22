@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-162 |
+| Canonical Title | Emergency or First-Aid Incident to Immediate Institutional Medical Response |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Execute immediate institutional first-aid and medical emergency response for a student, employee, or visitor suffering an acute medical event on campus, stabilizing the individual and determining the need for on-site care or external emergency escalation.

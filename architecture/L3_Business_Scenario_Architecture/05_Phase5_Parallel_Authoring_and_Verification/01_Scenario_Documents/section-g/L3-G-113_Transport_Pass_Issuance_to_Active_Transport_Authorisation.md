@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-113 |
+| Canonical Title | Transport Pass Issuance to Active Transport Authorisation |
+| Primary Owner | Transport Management |
+| Participating Domains | G, C, E, F, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs issuance of a transport pass after transport entitlement/allocation has reached the point where an operational pass can be issued, through establishment of the pass as active transport authorisation.
 

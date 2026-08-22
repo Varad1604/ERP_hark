@@ -13,6 +13,20 @@
 **Depends On:** L2-F00 Finance Domain Model & Foundation; L2-F02 Payment Management Architecture; applicable Treasury & Banking architecture where a banking-origin settlement fact is involved  
 **Referenced By:** Accounting & General Ledger, Accounts Receivable, Financial Reporting, Treasury & Banking
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-010 |
+| Canonical Title | Payment Failure or Timeout to Safe Recovery |
+| Primary Owner | Payment Management |
+| Participating Domains | F |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Provide a controlled business outcome for a Payment whose normal progression cannot be completed because the financial result is unsuccessful or remains uncertain, while protecting the canonical Payment, preserving financial integrity, and ensuring that no unsupported successful settlement is claimed.
@@ -133,7 +147,7 @@ The scenario applies the following source-grounded constraints:
 - Authorization remains externally governed.
 - Published events represent completed business facts and must remain immutable.
 
-L2-F02 defines these constraints but does not define a dedicated “Payment Timeout”, “Payment Failed”, or “Payment Recovery” state/rule. fileciteturn174file0
+L2-F02 defines these constraints but does not define a dedicated “Payment Timeout”, “Payment Failed”, or “Payment Recovery” state/rule.
 
 ## 13. State and Lifecycle Impact
 
@@ -151,7 +165,7 @@ Authoritative Payment states include:
 
 `Draft`, `Pending Validation`, `Validated`, `Published`, `Gateway Settlement Pending`, `Allocated`, `Partially Settled`, `Fully Settled`, `Suspended`, `Cancelled`, `Cheque Dishonoured`, and `Archived`.
 
-The scenario may use only these existing states. It must not create a new “Failed” or “Timeout” state. fileciteturn173file0turn174file0
+The scenario may use only these existing states. It must not create a new “Failed” or “Timeout” state.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -168,7 +182,7 @@ L2-F02 defines the following canonical Payment events:
 - `PaymentSettlementCompleted`
 - `PaymentArchivalCompleted`
 
-No dedicated `PaymentFailed`, `PaymentTimedOut`, `PaymentRecovered`, or `PaymentCancelled` event is defined in L2-F02. None is invented here. fileciteturn174file0
+No dedicated `PaymentFailed`, `PaymentTimedOut`, `PaymentRecovered`, or `PaymentCancelled` event is defined in L2-F02. None is invented here.
 
 ### 14.2 Synchronous Business Contracts / Hand-offs
 
@@ -199,7 +213,7 @@ The scenario preserves:
 - complete exception history;
 - downstream financial references where applicable.
 
-L2-F02 requires permanent auditability, immutable history and reconstructable Payment lineage. fileciteturn174file0
+L2-F02 requires permanent auditability, immutable history and reconstructable Payment lineage.
 
 ## 16. Completion Criteria and Postconditions
 

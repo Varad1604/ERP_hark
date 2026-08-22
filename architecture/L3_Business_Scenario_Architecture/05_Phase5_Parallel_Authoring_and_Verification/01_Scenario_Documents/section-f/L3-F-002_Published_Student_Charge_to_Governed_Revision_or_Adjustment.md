@@ -11,7 +11,21 @@
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
 **Depends On:** L2-F00 — Finance Domain Model & Foundation; L2-F01 — Student Charge & Fee Management; applicable downstream Financial Adjustment architecture  
-**Referenced By:** Finance settlement and accounting consumers as applicable  
+**Referenced By:** Finance settlement and accounting consumers as applicable
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-002 |
+| Canonical Title | Published Student Charge to Governed Revision or Adjustment |
+| Primary Owner | Student Charge & Fee Management |
+| Participating Domains | F — Finance |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 
@@ -58,7 +72,7 @@ Student Charge & Fee Management remains the canonical owner of Student Charge.
 
 Where a financial adjustment is required, the canonical Financial Adjustment capability remains the owner of the adjustment process. The original Student Charge does not transfer ownership to an adjustment record.
 
-L2-F01 explicitly establishes that published charges remain historically immutable and that financial corrections are represented through downstream financial adjustments rather than modifying historical obligations. fileciteturn114file0
+L2-F01 explicitly establishes that published charges remain historically immutable and that financial corrections are represented through downstream financial adjustments rather than modifying historical obligations.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -133,8 +147,6 @@ Authoritative L2-F01 constraints include:
 - Historical financial information remains immutable.
 - Downstream financial correction does not redefine the original obligation.
 
-fileciteturn114file0turn127file0
-
 No new local correction rule is introduced.
 
 ## 13. State and Lifecycle Impact
@@ -168,7 +180,7 @@ The applicable Finance adjustment authority and approval requirements remain own
 
 The original Student Charge, correction reason, adjustment decision and financial lineage must remain historically traceable.
 
-L2-F01 states that Student Charge audit participation covers Charge Generation, Validation, Publication, Lifecycle Progression and State Changes; the adjustment domain retains its own adjustment evidence. fileciteturn126file0turn127file0
+L2-F01 states that Student Charge audit participation covers Charge Generation, Validation, Publication, Lifecycle Progression and State Changes; the adjustment domain retains its own adjustment evidence.
 
 No Finance-specific actor or approval role is invented here because L2-F01 does not provide one.
 

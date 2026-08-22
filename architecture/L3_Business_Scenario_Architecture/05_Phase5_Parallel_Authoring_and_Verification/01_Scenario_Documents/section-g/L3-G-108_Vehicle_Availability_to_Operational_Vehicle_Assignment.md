@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-108 |
+| Canonical Title | Vehicle Availability to Operational Vehicle Assignment |
+| Primary Owner | Transport Management |
+| Participating Domains | G, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs selection and operational assignment of an available vehicle to a transport Trip. G04 explicitly distinguishes operational vehicle assignment from vehicle asset ownership and defines the Vehicle Assignment aggregate as owning operational assignment, duration, availability and replacement history.
 

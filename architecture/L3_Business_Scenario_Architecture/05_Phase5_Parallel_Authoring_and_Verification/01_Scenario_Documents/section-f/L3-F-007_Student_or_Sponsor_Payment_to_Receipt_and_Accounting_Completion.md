@@ -13,6 +13,20 @@
 **Depends On:** L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-F00 Finance Domain Model & Foundation; L2-F01 Student Charge & Fee Management; L2-F02 Payment Management Architecture; L2-F05 Accounting & General Ledger Management  
 **Referenced By:** Student Charge Management, Accounts Receivable, Financial Reporting and downstream Finance consumers
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-007 |
+| Canonical Title | Student or Sponsor Payment to Receipt and Accounting Completion |
+| Primary Owner | Payment Management |
+| Participating Domains | C, F |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Complete the institutional processing of a valid monetary payment from a student or sponsor from receipt by Finance through establishment of the canonical Payment, creation of its institutional receipt reference, settlement/allocability information, and completion of the corresponding accounting outcome.
@@ -101,7 +115,7 @@ A student or sponsor monetary payment is received by the institution.
 | 9 | Accounting & General Ledger consumes the authoritative financial transaction and completes the governed accounting posting. | F — Accounting & General Ledger | The accounting outcome is recorded in the official ledger. |
 | 10 | The completed Payment, receipt reference, settlement and accounting lineage remain reconstructable. | F | The institutional payment has a complete financial history. |
 
-L2-F02 defines Payment Reception before Payment publication, Payment References including Receipt Reference, Allocation, Settlement, and the downstream Accounting relationship. fileciteturn145file0turn163file0turn164file0
+L2-F02 defines Payment Reception before Payment publication, Payment References including Receipt Reference, Allocation, Settlement, and the downstream Accounting relationship.
 
 ## 10. Alternate Business Flows
 
@@ -155,7 +169,7 @@ The scenario applies these source-supported constraints:
 - Posted accounting records are immutable and corrections use reversal rather than editing history.
 - Aggregate ownership boundaries cannot be bypassed.
 
-These constraints are inherited from L2-F02 and L2-F05 and are not redefined locally. fileciteturn144file0turn163file0turn165file0
+These constraints are inherited from L2-F02 and L2-F05 and are not redefined locally.
 
 ## 13. State and Lifecycle Impact
 
@@ -165,7 +179,7 @@ The canonical Payment lifecycle is:
 
 `Payment Received → Validated → Published → Allocated → Settled → Archived`
 
-This scenario covers the active progression through the applicable settlement outcome. It does not invent a new Payment lifecycle. fileciteturn147file0
+This scenario covers the active progression through the applicable settlement outcome. It does not invent a new Payment lifecycle.
 
 ### Payment State
 
@@ -184,11 +198,11 @@ The Payment state architecture includes:
 - Cheque Dishonoured
 - Archived
 
-Only the state transitions defined by L2-F02 may be applied. fileciteturn148file0
+Only the state transitions defined by L2-F02 may be applied.
 
 ### Accounting Lifecycle
 
-Accounting Journal Entries progress through `Draft → Validated → Approved → Posted → Reversed/Archived` as applicable. Posted financial records remain immutable. fileciteturn152file0
+Accounting Journal Entries progress through `Draft → Validated → Approved → Posted → Reversed/Archived` as applicable. Posted financial records remain immutable.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -204,9 +218,9 @@ Payment Management is the canonical publisher of:
 - `PaymentSettlementCompleted`
 - `PaymentArchivalCompleted`
 
-The exact event names and publisher remain those defined by L2-F02. fileciteturn148file0
+The exact event names and publisher remain those defined by L2-F02.
 
-Accounting & General Ledger publishes its own accounting facts after the accounting outcome is completed. Accounts Receivable explicitly consumes `AccountingPosted` from Accounting & General Ledger, establishing Accounting as its publisher. fileciteturn156file0
+Accounting & General Ledger publishes its own accounting facts after the accounting outcome is completed. Accounts Receivable explicitly consumes `AccountingPosted` from Accounting & General Ledger, establishing Accounting as its publisher.
 
 ### 14.2 Synchronous Business Contracts / Hand-offs
 
@@ -228,7 +242,7 @@ L2-F02 states that Payment authorization is externally governed. L2-F05 defines 
 
 ### 15.2 Separation of Duties
 
-Accounting & General Ledger requires maker/checker separation where applicable and records approval decisions. These rules remain F05-owned and are not transferred to Payment Management. fileciteturn165file0
+Accounting & General Ledger requires maker/checker separation where applicable and records approval decisions. These rules remain F05-owned and are not transferred to Payment Management.
 
 ### 15.3 Business Audit and Evidence
 
@@ -242,7 +256,7 @@ The completed outcome must preserve:
 - accounting posting reference/outcome;
 - immutable historical financial records.
 
-L2-F02 requires permanent reconstruction of financial history, while L2-F05 requires traceability and immutable accounting history. fileciteturn164file0turn165file0
+L2-F02 requires permanent reconstruction of financial history, while L2-F05 requires traceability and immutable accounting history.
 
 ## 16. Completion Criteria and Postconditions
 

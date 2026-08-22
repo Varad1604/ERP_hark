@@ -13,6 +13,20 @@
 **Depends On:** L2-F11 — Scholarship & Financial Aid; L2-C07 — Scholarship Eligibility Workflows; applicable Student Charge & Fee Management and Accounts Receivable architecture  
 **Referenced By:** Student Charge & Fee Management; Accounts Receivable; Financial Reporting; Audit; Executive Dashboards
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-065 |
+| Canonical Title | Aid Breach or Reversal to Revocation and Recovery |
+| Primary Owner | Scholarship & Financial Aid |
+| Participating Domains | C, F |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern the institutional response when an active financial-aid outcome is subject to a breach or authoritative reversal condition requiring revocation and recovery.
@@ -62,7 +76,7 @@ The scenario ends when the Financial Aid Aggregate has recorded the canonical re
 | Student Charge & Fee Management | Determines charge consequences of revoked assistance. | Student Charge remains F01-owned. |
 | Accounts Receivable | Determines receivable consequences arising from charge processing. | Receivable remains F07-owned. |
 
-L2-F11 explicitly states that Scholarship & Financial Aid owns institutional financial assistance while Student Charges, Accounts Receivable, Treasury and General Ledger remain external. fileciteturn232file0
+L2-F11 explicitly states that Scholarship & Financial Aid owns institutional financial assistance while Student Charges, Accounts Receivable, Treasury and General Ledger remain external.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -78,7 +92,7 @@ Business responsibility is capability-based: the authoritative breach/reversal c
 - The revocation is permitted by the applicable Financial Aid lifecycle and policy.
 - Historical approval and allocation facts are available for preservation.
 
-L2-F11 defines `RevokeFinancialAid`, requires historical allocations to remain preserved after revocation, and treats revocation as a new business fact. fileciteturn239file0
+L2-F11 defines `RevokeFinancialAid`, requires historical allocations to remain preserved after revocation, and treats revocation as a new business fact.
 
 ## 8. Trigger
 
@@ -98,7 +112,7 @@ An authoritative breach or reversal condition establishes that existing financia
 | 8 | Accounts Receivable independently determines any resulting receivable consequence. | Accounts Receivable | Receivable ownership remains with F07. |
 | 9 | Financial Reporting and Audit consumers use the revocation fact for historical and financial reconstruction. | Reporting / Audit | Institutional history remains traceable. |
 
-L2-F11 defines `FinancialAidRevoked` as the canonical revocation event and maps it to Student Charge & Fee Management and Reporting as typical consumers. fileciteturn238file0
+L2-F11 defines `FinancialAidRevoked` as the canonical revocation event and maps it to Student Charge & Fee Management and Reporting as typical consumers.
 
 ## 10. Alternate Business Flows
 
@@ -132,7 +146,7 @@ If a later authoritative condition permits assistance again, recovery occurs thr
 | Downstream charge consequence remains unresolved | Preserve `FinancialAidRevoked`; F01 governs its own charge resolution. |
 | A later condition restores eligibility/assistance | Establish the appropriate new business fact without deleting the prior revocation. |
 
-L2-F11 requires business-rule violations to reject the command, preserves historical records, and states that corrections occur through new business facts. fileciteturn239file0
+L2-F11 requires business-rule violations to reject the command, preserves historical records, and states that corrections occur through new business facts.
 
 ## 12. Business Rules and Decision Constraints
 
@@ -148,7 +162,7 @@ L2-F11 requires business-rule violations to reject the command, preserves histor
 - Revocation does not itself create or modify a financial obligation.
 - Downstream domains independently determine their own consequences.
 
-These rules are directly defined by L2-F11's Suspension & Revocation, Governance and Historical invariants. fileciteturn239file0
+These rules are directly defined by L2-F11's Suspension & Revocation, Governance and Historical invariants.
 
 ## 13. State and Lifecycle Impact
 
@@ -168,7 +182,7 @@ The prior `Approved`, `Benefit Allocated`, `Funding Source Assigned`, and utiliz
 
 **`FinancialAidRevoked`**
 
-The Financial Aid Aggregate is the canonical publisher. The event represents the completed revocation business fact and becomes part of permanent enterprise history. fileciteturn238file0
+The Financial Aid Aggregate is the canonical publisher. The event represents the completed revocation business fact and becomes part of permanent enterprise history.
 
 ### 14.2 Cross-Domain Hand-offs
 
@@ -205,7 +219,7 @@ The revocation record must remain traceable to:
 - `FinancialAidRevoked` event;
 - downstream references where applicable.
 
-L2-F11 requires permanent, immutable and reconstructable business history. fileciteturn238file0turn239file0
+L2-F11 requires permanent, immutable and reconstructable business history.
 
 ## 16. Completion Criteria and Postconditions
 

@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-123 |
+| Canonical Title | Transport Configuration Change to Effective Operational Policy |
+| Primary Owner | Transport Management |
+| Participating Domains | G, A |
+| Scenario Type | Simple |
+| Priority | P2 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs an authorised change to an institutional transport operational policy or configuration through the G04 configuration boundary. It applies the locked principle that transport routes, stop policies, allocation policies, transport categories, approval workflows, pass formats, notification rules, operational schedules and transport policies remain configuration driven.
 

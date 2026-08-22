@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-157 |
+| Canonical Title | Patient Identification to Healthcare Visit Registration |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome in which an individual seeking healthcare is identified, the relevant institutional identity is validated, applicable healthcare context is established, medical history is retrieved where available, and the healthcare visit is registered and becomes ready for consultation.
@@ -23,7 +37,7 @@ The locked L2 defines Patient Registration as an Institutional Health Services r
 
 `Patient Identified → Identity Validation → Medical History Retrieved → Visit Registered → Consultation Ready`.
 
-Validation may consider Institutional Identity, Campus, Active Status, Emergency Classification and Healthcare Eligibility, with validation rules configurable. fileciteturn243file0turn254file0
+Validation may consider Institutional Identity, Campus, Active Status, Emergency Classification and Healthcare Eligibility, with validation rules configurable.
 
 ## 3. Business Outcome
 
@@ -79,7 +93,7 @@ G06 owns:
 - Consultation readiness.
 - Medical history as healthcare operational history.
 
-The L2 states that Institutional Health Services owns Patient Registration and Medical History while referencing external institutional identities. fileciteturn243file0turn244file0
+The L2 states that Institutional Health Services owns Patient Registration and Medical History while referencing external institutional identities.
 
 ### Section C — Student Lifecycle
 
@@ -87,7 +101,7 @@ C remains authoritative for Student Identity, Student Status, Programme and rela
 
 ### Section E — People & Workforce
 
-E remains authoritative for employee/personnel information, including Doctors, Nurses, Medical Officers, Healthcare Staff and Employee Information. G06 performs operational healthcare assignment/consumption only. fileciteturn245file0
+E remains authoritative for employee/personnel information, including Doctors, Nurses, Medical Officers, Healthcare Staff and Employee Information. G06 performs operational healthcare assignment/consumption only.
 
 Cross-domain participation never transfers identity ownership to G06.
 
@@ -130,7 +144,7 @@ A person seeking institutional healthcare is identified for a new healthcare vis
 
 1. Identify the individual seeking healthcare.
 2. Determine whether the individual is represented by an institutional identity.
-3. Determine the relevant patient category where configured, such as Student, Faculty, Employee, Guest or Visitor. fileciteturn248file0
+3. Determine the relevant patient category where configured, such as Student, Faculty, Employee, Guest or Visitor.
 4. Preserve the distinction between patient registration and person-identity ownership.
 
 ### Phase B — Identity and Eligibility Validation
@@ -150,7 +164,7 @@ A person seeking institutional healthcare is identified for a new healthcare vis
 14. Preserve historical information as immutable.
 15. Do not overwrite or reinterpret historical clinical information during registration.
 
-The L2 states that medical history may include previous visits, allergies, chronic conditions, vaccinations, previous prescriptions and previous referrals, and that historical information shall remain immutable. fileciteturn247file0
+The L2 states that medical history may include previous visits, allergies, chronic conditions, vaccinations, previous prescriptions and previous referrals, and that historical information shall remain immutable.
 
 ### Phase D — Visit Registration
 
@@ -235,13 +249,13 @@ The L2 states:
 - It never owns person identities.
 - Patient categories are configurable.
 - Registration validation may consider Institutional Identity, Campus, Active Status, Emergency Classification and Healthcare Eligibility.
-- Validation rules remain configurable. fileciteturn248file0
+- Validation rules remain configurable.
 
 The following G06 invariants apply:
 
 - Every Medical Encounter references exactly one Patient.
 - Medical history is never deleted.
-- Every lifecycle transition is audited. fileciteturn253file0
+- Every lifecycle transition is audited.
 
 This scenario does not invent an eligibility matrix or identity-resolution rule.
 
@@ -249,11 +263,11 @@ This scenario does not invent an eligibility matrix or identity-resolution rule.
 
 The L2 registration workflow is:
 
-`Patient Identified → Identity Validation → Medical History Retrieved → Visit Registered → Consultation Ready`. fileciteturn254file0
+`Patient Identified → Identity Validation → Medical History Retrieved → Visit Registered → Consultation Ready`.
 
 The broader Medical Encounter lifecycle is:
 
-`Registered → Consultation → Treatment → Completed → Closed`. fileciteturn246file0
+`Registered → Consultation → Treatment → Completed → Closed`.
 
 This scenario ends at registration/consultation readiness and does not execute the later consultation, treatment or closure lifecycle.
 
@@ -263,7 +277,7 @@ G06 defines the canonical business event:
 
 **`PatientRegistered` — Patient visit registered.**
 
-Institutional Health Services is the canonical publisher because it owns Patient Registration and Medical Encounter. fileciteturn250file0
+Institutional Health Services is the canonical publisher because it owns Patient Registration and Medical Encounter.
 
 C and E provide authoritative identity/context information but do not publish the G06 PatientRegistered event.
 
@@ -271,7 +285,7 @@ The event may support downstream notification/reporting/analytics consumers acco
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-Healthcare registration follows the applicable G06 business authorization policy. The L2 identifies configurable authorization, including typical operational roles such as Medical Staff for patient registration, while technical authentication/authorization infrastructure remains a Platform responsibility. fileciteturn251file0
+Healthcare registration follows the applicable G06 business authorization policy. The L2 identifies configurable authorization, including typical operational roles such as Medical Staff for patient registration, while technical authentication/authorization infrastructure remains a Platform responsibility.
 
 The registration must preserve auditable business history, including the lifecycle transition and relevant business context.
 

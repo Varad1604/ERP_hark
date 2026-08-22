@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-089 |
+| Canonical Title | Hostel Room Inspection to Damage Resolution |
+| Primary Owner | Hostel Management |
+| Participating Domains | G, F, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern a hostel room inspection from inspection through an authoritative damage-related resolution while preserving G10 ownership of the physical room, G03 ownership of hostel occupancy/inspection-related hostel operations, and Facilities ownership of maintenance execution where required.

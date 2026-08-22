@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-150 |
+| Canonical Title | Library Clearance Approval to Institutional Exit Consumption |
+| Primary Owner | Library Management |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario defines the complete institutional collaboration outcome in which an approved Library Clearance is made available to the applicable institutional exit, transfer or qualification-completion process, while Library Management retains canonical ownership of the clearance status.
@@ -33,7 +47,7 @@ It also states that Library Clearance may publish completion status to:
 - Qualification Completion.
 - Transfer Workflow.
 
-Library Management remains the canonical owner of clearance status. fileciteturn213file0
+Library Management remains the canonical owner of clearance status.
 
 This scenario therefore ends at **institutional consumption of the approved library-clearance outcome**. It does not execute or own the downstream institutional process.
 
@@ -98,7 +112,7 @@ G owns:
 - Clearance history.
 - Publication of the clearance business outcome.
 
-The L2 explicitly states that Library Management remains the canonical owner of clearance status. fileciteturn213file0
+The L2 explicitly states that Library Management remains the canonical owner of clearance status.
 
 ### 5.2 Student Lifecycle — C
 
@@ -151,7 +165,7 @@ No downstream actor is given authority to modify Library Clearance status merely
 
 The Library Clearance reaches its approved/completion business outcome.
 
-The L2 defines `ClearanceApproved` and `ClearanceCompleted` as canonical Library Management events. fileciteturn208file0
+The L2 defines `ClearanceApproved` and `ClearanceCompleted` as canonical Library Management events.
 
 The exact one used for a particular downstream consumer must follow the authoritative business boundary; this L3 does not rename or invent an event.
 
@@ -280,9 +294,9 @@ The L2 states that Library Clearance may publish completion status to:
 - Qualification Completion.
 - Transfer Workflow.
 
-Library Management remains canonical owner of clearance status. fileciteturn213file0
+Library Management remains canonical owner of clearance status.
 
-Operational notifications are delivered by Section H; Library Management publishes business events rather than implementing notification delivery. fileciteturn214file0
+Operational notifications are delivered by Section H; Library Management publishes business events rather than implementing notification delivery.
 
 Mandatory constraints:
 
@@ -299,7 +313,7 @@ Library Clearance has supported statuses:
 
 `Requested → Under Review → Pending → Approved / Rejected → Completed`
 
-with status values configurable. fileciteturn213file0
+with status values configurable.
 
 This scenario starts from the authoritative approved/completed clearance outcome.
 
@@ -321,7 +335,7 @@ The L2 defines:
 - `ClearanceApproved` — clearance approved.
 - `ClearanceCompleted` — clearance completed.
 
-Library Management is the canonical publisher. fileciteturn208file0
+Library Management is the canonical publisher.
 
 The appropriate event boundary must be selected according to the actual authoritative lifecycle transition; no new event name is introduced.
 

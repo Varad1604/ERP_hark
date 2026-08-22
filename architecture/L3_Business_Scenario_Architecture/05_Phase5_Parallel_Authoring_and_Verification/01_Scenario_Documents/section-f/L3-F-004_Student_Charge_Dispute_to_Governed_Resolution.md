@@ -11,7 +11,21 @@
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
 **Depends On:** L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-F00 Finance Domain Model & Foundation; L2-F01 Student Charge & Fee Management; authoritative Student Lifecycle source architecture where the dispute originates  
-**Referenced By:** Payment, Refund, Financial Adjustment, Accounts Receivable and Accounting capabilities where a governed dispute outcome creates a downstream financial consequence  
+**Referenced By:** Payment, Refund, Financial Adjustment, Accounts Receivable and Accounting capabilities where a governed dispute outcome creates a downstream financial consequence
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-004 |
+| Canonical Title | Student Charge Dispute to Governed Resolution |
+| Primary Owner | Student Charge & Fee Management |
+| Participating Domains | C — Student Lifecycle; F — Finance |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 
@@ -67,11 +81,11 @@ The scenario ends when the dispute has reached its governed financial resolution
 | F — Refund Management | Owns a refund consequence where the governed resolution requires return of monetary value. | Refund remains F03-owned. |
 | F — Accounts Receivable | May consume the resulting receivable consequence where the dispute changes the receivable position. | Receivable remains F07-owned. |
 
-Participation does not transfer ownership. L1 establishes that Finance owns monetary operations and that domains communicate through contracts and events rather than direct cross-domain writes. fileciteturn139file4turn139file8
+Participation does not transfer ownership. L1 establishes that Finance owns monetary operations and that domains communicate through contracts and events rather than direct cross-domain writes.
 
 ## 6. Business Actors, Roles and Responsibilities
 
-L2-F01 does not define an authoritative actor catalogue; its canonical-section crosswalk explicitly records Actors as absent. Therefore no Finance dispute role, approver, investigator, or adjudicator is invented here. fileciteturn138file0
+L2-F01 does not define an authoritative actor catalogue; its canonical-section crosswalk explicitly records Actors as absent. Therefore no Finance dispute role, approver, investigator, or adjudicator is invented here.
 
 The originating business domain remains responsible for any source-domain actor or business authority that establishes the dispute context. Any Finance review or decision authority must come from the applicable governed Finance/enterprise approval architecture.
 
@@ -114,7 +128,7 @@ The review establishes that the Student Charge remains correct. No change to the
 
 The dispute establishes a valid need to modify the existing financial position. The Financial Adjustment capability becomes responsible for the correction.
 
-L2-F04 defines Financial Adjustment as the canonical aggregate for an approved modification to an existing financial position and explicitly separates adjustments from Student Charges, Payments and Refunds. fileciteturn139file0
+L2-F04 defines Financial Adjustment as the canonical aggregate for an approved modification to an existing financial position and explicitly separates adjustments from Student Charges, Payments and Refunds.
 
 ### A3 — Refund Consequence
 
@@ -152,7 +166,7 @@ The scenario applies the following authoritative constraints:
 - External domains do not directly modify Student Charges.
 - Complete financial lineage must remain reconstructable.
 
-L2-F01 establishes the canonical Student Charge ownership, immutable published-charge principle, and separation of obligation from settlement. L2-F04 establishes Financial Adjustment as the canonical modification of an existing financial position. fileciteturn138file0turn139file0
+L2-F01 establishes the canonical Student Charge ownership, immutable published-charge principle, and separation of obligation from settlement. L2-F04 establishes Financial Adjustment as the canonical modification of an existing financial position.
 
 No dispute-specific business rule, authority, state, or event name is invented.
 
@@ -180,7 +194,7 @@ The accessible locked L2-F01 event architecture defines canonical Student Charge
 - `ChargeClosureCompleted`
 - `ChargeArchivalCompleted`
 
-It does **not** define a dedicated Student Charge dispute event in the accessible canonical event list. The scenario therefore does not invent a dispute event name or publisher. fileciteturn126file0
+It does **not** define a dedicated Student Charge dispute event in the accessible canonical event list. The scenario therefore does not invent a dispute event name or publisher.
 
 Financial Adjustment Management and Accounts Receivable have their own canonical event vocabularies. Those events remain published by their owning domains.
 
@@ -214,7 +228,7 @@ The dispute resolution must remain traceable to:
 - the governed resolution;
 - any resulting Financial Adjustment, Refund, or Receivable consequence.
 
-L2-F01 requires complete financial lineage and auditability across charge generation, validation, publication, lifecycle and state changes. fileciteturn126file0turn127file0
+L2-F01 requires complete financial lineage and auditability across charge generation, validation, publication, lifecycle and state changes.
 
 ## 16. Completion Criteria and Postconditions
 

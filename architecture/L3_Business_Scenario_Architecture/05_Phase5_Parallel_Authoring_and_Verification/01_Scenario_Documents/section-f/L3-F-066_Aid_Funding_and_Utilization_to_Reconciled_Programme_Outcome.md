@@ -13,6 +13,20 @@
 **Depends On:** L2-F11 — Scholarship & Financial Aid; L2-F00 — Finance Domain Model & Foundation; applicable Financial Reporting and Audit architecture  
 **Referenced By:** Financial Reporting; Audit; Executive Dashboards; Student Charge & Fee Management where assistance utilization affects downstream financial processing
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-066 |
+| Canonical Title | Aid Funding and Utilization to Reconciled Programme Outcome |
+| Primary Owner | Scholarship & Financial Aid |
+| Participating Domains | F |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern the institutional reconciliation of financial-aid funding and utilization so that the approved funding source, allocated assistance, and recorded utilization remain traceable to a coherent programme-level financial assistance outcome.
@@ -61,7 +75,7 @@ The scenario ends when the programme-level funding and utilization position is r
 | Budget Management | Remains owner of budget allocation where applicable. | Budget ownership is external. |
 | General Ledger | Remains owner of accounting entries. | Accounting ownership is external. |
 
-L2-F11 explicitly keeps Budget Allocation and General Ledger outside Scholarship & Financial Aid ownership. fileciteturn237file0
+L2-F11 explicitly keeps Budget Allocation and General Ledger outside Scholarship & Financial Aid ownership.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -78,7 +92,7 @@ The capability owns the reconciliation business outcome; external reporting and 
 - The programme context can be identified.
 - Historical records remain intact for reconciliation.
 
-L2-F11 requires every allocated benefit to reference one valid Funding Source and every utilization record to reference active assistance. fileciteturn239file0
+L2-F11 requires every allocated benefit to reference one valid Funding Source and every utilization record to reference active assistance.
 
 ## 8. Trigger
 
@@ -97,7 +111,7 @@ A financial-assistance programme reaches the business point at which assigned fu
 | 7 | Publish applicable canonical funding/utilization events. | Scholarship & Financial Aid | Reporting and audit consumers receive authoritative facts. |
 | 8 | Financial Reporting and Audit consume the authoritative facts for their own downstream responsibilities. | Reporting / Audit | Reporting and evidence remain separately owned. |
 
-L2-F11 defines `BenefitUtilizationRecorded`, `BenefitUtilizationUpdated`, `FundingSourceAssigned` and `FundingSourceChanged` as immutable business facts with reconstructable history. fileciteturn238file0
+L2-F11 defines `BenefitUtilizationRecorded`, `BenefitUtilizationUpdated`, `FundingSourceAssigned` and `FundingSourceChanged` as immutable business facts with reconstructable history.
 
 ## 10. Alternate Business Flows
 
@@ -131,7 +145,7 @@ Any accounting consequence is passed to the canonical General Ledger context. Sc
 | A variance is identified | Record a new corrective/reconciliation business fact; do not overwrite history. |
 | Reporting consumer has a separate issue | Preserve the authoritative F11 facts; reporting/audit resolve their own downstream concern. |
 
-L2-F11 requires business-rule violations to reject the command, preserves historical records, and requires corrections through new business facts. fileciteturn239file0
+L2-F11 requires business-rule violations to reject the command, preserves historical records, and requires corrections through new business facts.
 
 ## 12. Business Rules and Decision Constraints
 
@@ -144,7 +158,7 @@ L2-F11 requires business-rule violations to reject the command, preserves histor
 - Corrections occur through new business facts.
 - Funding Source ownership remains governed within the Financial Aid context for assignment/history, while external funding owners remain external.
 - Scholarship & Financial Aid does not own Budget Allocation or General Ledger accounting.
-- Domain Events represent completed business facts and remain immutable. fileciteturn239file0turn238file0
+- Domain Events represent completed business facts and remain immutable.
 
 ## 13. State and Lifecycle Impact
 
@@ -169,7 +183,7 @@ Relevant F11 events include:
 - `BenefitUtilizationRecorded`
 - `BenefitUtilizationUpdated`
 
-The Financial Aid Aggregate is the canonical publisher. These events are immutable, reconstructable business facts. fileciteturn238file0
+The Financial Aid Aggregate is the canonical publisher. These events are immutable, reconstructable business facts.
 
 ### 14.2 Cross-Domain Hand-offs
 
@@ -205,7 +219,7 @@ The reconciled programme outcome must remain traceable to:
 - published funding and utilization events;
 - downstream reporting/audit references.
 
-L2-F11 requires permanent traceability and immutable historical business events. fileciteturn238file0
+L2-F11 requires permanent traceability and immutable historical business events.
 
 ## 16. Completion Criteria and Postconditions
 

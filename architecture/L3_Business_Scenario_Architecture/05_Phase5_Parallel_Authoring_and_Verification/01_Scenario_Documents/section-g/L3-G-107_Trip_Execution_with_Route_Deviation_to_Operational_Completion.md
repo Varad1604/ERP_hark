@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-107 |
+| Canonical Title | Trip Execution with Route Deviation to Operational Completion |
+| Primary Owner | Transport Management |
+| Participating Domains | G |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs a transport Trip that is already executing but cannot continue exactly along its planned route and therefore requires a business-level route deviation before operational completion. G04 identifies Route Diversion/Route Change as an operational capability and keeps Trip Execution within the Trip aggregate.

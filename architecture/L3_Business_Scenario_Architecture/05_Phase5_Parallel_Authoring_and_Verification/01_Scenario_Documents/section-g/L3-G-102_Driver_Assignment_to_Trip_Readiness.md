@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-102 |
+| Canonical Title | Driver Assignment to Trip Readiness |
+| Primary Owner | Transport Management |
+| Participating Domains | G, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs assignment of an eligible driver to an operational transport trip until the trip has the required driver assignment for readiness. G04 identifies Driver Assignment as a transport aggregate while driver ownership remains within Section E.
 

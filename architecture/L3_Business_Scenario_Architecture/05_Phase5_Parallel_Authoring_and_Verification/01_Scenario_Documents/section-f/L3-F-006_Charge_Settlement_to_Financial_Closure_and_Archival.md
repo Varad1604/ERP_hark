@@ -11,7 +11,21 @@
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
 **Depends On:** L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-F00 Finance Domain Model & Foundation; L2-F01 Student Charge & Fee Management; L2-F02 Payment Management; L2-F07 Accounts Receivable Management; authoritative Student Lifecycle context where relevant  
-**Referenced By:** Accounting, Financial Reporting, Audit and downstream financial history consumers  
+**Referenced By:** Accounting, Financial Reporting, Audit and downstream financial history consumers
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-006 |
+| Canonical Title | Charge Settlement to Financial Closure and Archival |
+| Primary Owner | Student Charge & Fee Management |
+| Participating Domains | C — Student Lifecycle; F — Finance |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 
@@ -68,7 +82,7 @@ The scenario ends when the Student Charge has completed its governed lifecycle t
 | F — Accounts Receivable | Owns receivable representation and settlement references where applicable. | Receivable remains F07-owned. |
 | F — Accounting | Consumes the financial outcome for accounting responsibilities. | Accounting remains F05-owned. |
 
-L2-F01 explicitly states that settlement processing remains outside the Student Charge architecture and that the Student Charge lifecycle includes Fully Settled and Archived. fileciteturn125file0
+L2-F01 explicitly states that settlement processing remains outside the Student Charge architecture and that the Student Charge lifecycle includes Fully Settled and Archived.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -89,7 +103,7 @@ Payment Management remains responsible for the business settlement outcome; Stud
 
 A canonical downstream Finance settlement outcome establishes that the Student Charge's financial obligation is fully settled.
 
-L2-F02 defines Payment as the canonical settlement aggregate and identifies `PaymentSettlementCompleted` as a canonical Payment lifecycle event. fileciteturn140file1
+L2-F02 defines Payment as the canonical settlement aggregate and identifies `PaymentSettlementCompleted` as a canonical Payment lifecycle event.
 
 ## 9. Main Business Flow
 
@@ -154,11 +168,11 @@ Authoritative constraints include:
 - Accounts Receivable owns the Receivable representation.
 - Accounting remains downstream of the Student Charge and Payment domains.
 
-L2-F01 explicitly states that settlement processing is outside the Student Charge architecture, defines Fully Settled and Archived lifecycle stages, and requires archived charges to remain accessible. fileciteturn125file0turn127file0
+L2-F01 explicitly states that settlement processing is outside the Student Charge architecture, defines Fully Settled and Archived lifecycle stages, and requires archived charges to remain accessible.
 
-L2-F02 defines Payment as the canonical settlement aggregate and includes `PaymentSettlementCompleted` in its canonical event set. fileciteturn140file0turn140file1
+L2-F02 defines Payment as the canonical settlement aggregate and includes `PaymentSettlementCompleted` in its canonical event set.
 
-L2-F07 defines Receivable as the canonical Accounts Receivable aggregate and includes `ReceivableSettled` and `ReceivableClosed` among its domain events. fileciteturn141file0
+L2-F07 defines Receivable as the canonical Accounts Receivable aggregate and includes `ReceivableSettled` and `ReceivableClosed` among its domain events.
 
 ## 13. State and Lifecycle Impact
 
@@ -168,7 +182,7 @@ The authoritative L2-F01 lifecycle is:
 
 `Business Obligation → Charge Identification → Charge Generation → Charge Validation → Published → Financially Active → Fully Settled → Archived`
 
-This scenario covers the final two lifecycle stages. fileciteturn125file0
+This scenario covers the final two lifecycle stages.
 
 ### Student Charge State
 
@@ -176,11 +190,11 @@ The canonical F01 state architecture includes `Closed` and `Archived` among its 
 
 ### Payment State
 
-L2-F02 includes `Fully Settled` and `Archived` among canonical Payment states. Payment remains Payment Management-owned. fileciteturn140file0
+L2-F02 includes `Fully Settled` and `Archived` among canonical Payment states. Payment remains Payment Management-owned.
 
 ### Receivable State / Outcome
 
-Accounts Receivable maintains its own Receivable lifecycle and settlement references. It does not own the Student Charge lifecycle. fileciteturn141file0
+Accounts Receivable maintains its own Receivable lifecycle and settlement references. It does not own the Student Charge lifecycle.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -188,7 +202,7 @@ Accounts Receivable maintains its own Receivable lifecycle and settlement refere
 
 **Payment Management publisher**
 
-- `PaymentSettlementCompleted` — canonical Payment event published by Payment Management. fileciteturn140file1
+- `PaymentSettlementCompleted` — canonical Payment event published by Payment Management.
 
 **Student Charge publisher**
 
@@ -197,7 +211,7 @@ L2-F01 identifies:
 - `ChargeClosureCompleted`
 - `ChargeArchivalCompleted`
 
-as canonical Student Charge lifecycle events. fileciteturn126file0
+as canonical Student Charge lifecycle events.
 
 **Accounts Receivable publisher**
 
@@ -206,7 +220,7 @@ L2-F07 identifies:
 - `ReceivableSettled`
 - `ReceivableClosed`
 
-as canonical Accounts Receivable events. fileciteturn141file0
+as canonical Accounts Receivable events.
 
 Each event remains published by its canonical owning domain.
 
@@ -241,7 +255,7 @@ The completed lifecycle must remain traceable through:
 - the Fully Settled outcome;
 - closure and archival lifecycle events.
 
-L2-F01 explicitly requires complete financial lineage, immutable historical states and reconstructable lifecycle history. fileciteturn126file0turn127file0
+L2-F01 explicitly requires complete financial lineage, immutable historical states and reconstructable lifecycle history.
 
 ## 16. Completion Criteria and Postconditions
 

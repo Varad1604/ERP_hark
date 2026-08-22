@@ -13,6 +13,20 @@
 **Depends On:** Locked L1 Business Domain Architecture; DEPENDENCY_MAP.md; applicable locked L2 Examination workflows  
 **Referenced By:** Applicable downstream Examination workflows
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-134 |
+| Canonical Title | Subsequent Examination Opportunity to Authoritative Examination Schedule |
+| Primary Owner | Supplementary, Backlog & Improvement Examination |
+| Participating Domains | D — Academic Delivery; I — Examination |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 Convert an authorized subsequent-examination opportunity into an authoritative Examination Schedule that downstream examination workflows can consume. Scheduling is coordinated with L2-I03 without transferring schedule ownership away from Examination Planning & Scheduling.
 

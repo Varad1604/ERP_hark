@@ -13,6 +13,20 @@
 **Depends On:** Locked L1 Business Domain Architecture; L2-F00 Finance Domain Model & Foundation; L2-F02 Payment Management Architecture; applicable Student Lifecycle architecture for the population context  
 **Referenced By:** Student Charge & Fee Management; Accounting & General Ledger; Accounts Receivable; Financial Reporting
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-013 |
+| Canonical Title | Payment Population to Governed Bulk Collection Outcome |
+| Primary Owner | Payment Management |
+| Participating Domains | C, F |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Establish a governed institutional outcome for collecting a defined population of Payments as a coordinated business activity while preserving the canonical Payment aggregate, its financial lineage, and the ownership of each individual settlement.

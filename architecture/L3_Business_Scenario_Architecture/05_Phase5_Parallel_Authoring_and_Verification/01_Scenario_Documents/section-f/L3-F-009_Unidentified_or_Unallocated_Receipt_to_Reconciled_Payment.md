@@ -13,6 +13,20 @@
 **Depends On:** L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-F00 Finance Domain Model & Foundation; L2-F02 Payment Management Architecture; L2-F07 Accounts Receivable Management; applicable L2 Treasury/Banking source where the receipt originates from bank settlement  
 **Referenced By:** Accounts Receivable, Accounting & General Ledger, Financial Reporting and downstream Finance consumers
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-009 |
+| Canonical Title | Unidentified or Unallocated Receipt to Reconciled Payment |
+| Primary Owner | Payment Management |
+| Participating Domains | F |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Resolve a received monetary receipt whose payer, institutional reference, Student Charge relationship, or allocation context is initially insufficient for normal settlement, and bring that receipt to a reconciled Payment outcome without inventing financial identity or incorrectly allocating funds.
@@ -98,7 +112,7 @@ A received monetary receipt is identified as unidentified or unallocated and req
 | 9 | Where applicable, Accounts Receivable incorporates the settlement reference into the Receivable representation. | F — Accounts Receivable | Receivable visibility reflects the reconciled settlement. |
 | 10 | Preserve the complete reconciliation history. | F | The institutional financial lineage is reconstructable. |
 
-L2-F02 explicitly defines Unallocated Advance as a Payment received without an associated Student Charge, or where the Payment exceeds the outstanding obligation, and requires it to be classified as a Liability until consumed by a future Charge Allocation. fileciteturn146file0
+L2-F02 explicitly defines Unallocated Advance as a Payment received without an associated Student Charge, or where the Payment exceeds the outstanding obligation, and requires it to be classified as a Liability until consumed by a future Charge Allocation.
 
 ## 10. Alternate Business Flows
 
@@ -133,7 +147,7 @@ Once Payment identity and obligation context are authoritative, the receipt proc
 | Reconciliation evidence conflicts | Preserve the unambiguous facts and escalate to the canonical Finance owner of the disputed information. |
 | Receipt is determined to require another Finance outcome | Hand the resulting business fact to the canonical owning domain; do not create a parallel local aggregate. |
 
-Payment exceptions must preserve financial integrity, aggregate consistency and traceability. fileciteturn166file0
+Payment exceptions must preserve financial integrity, aggregate consistency and traceability.
 
 No technical retry, queue, rollback, database, or infrastructure recovery is defined.
 
@@ -153,7 +167,7 @@ The scenario applies the following authoritative constraints:
 - Accounts Receivable does not accept payments or execute payment reconciliation; it consumes authoritative settlement information.
 - Receivable traceability includes originating financial obligation, settlement references, adjustment references, refund references and accounting references.
 
-These constraints are directly supported by L2-F02 and L2-F07. fileciteturn146file0turn155file0turn156file0
+These constraints are directly supported by L2-F02 and L2-F07.
 
 ## 13. State and Lifecycle Impact
 
@@ -163,15 +177,15 @@ The canonical Payment lifecycle remains:
 
 `Payment Received → Validated → Published → Allocated → Settled → Archived`
 
-An unidentified/unallocated receipt must not be described as fully settled until the applicable allocation/settlement condition is actually established. fileciteturn147file0
+An unidentified/unallocated receipt must not be described as fully settled until the applicable allocation/settlement condition is actually established.
 
 ### Payment State
 
-L2-F02 defines `Suspended`, `Cancelled`, and other exceptional states in addition to the normal validation/publication/allocation/settlement states. The scenario does not invent a dedicated “Unreconciled” state; any exceptional state used must be one already authorized by F02's state architecture. fileciteturn148file0
+L2-F02 defines `Suspended`, `Cancelled`, and other exceptional states in addition to the normal validation/publication/allocation/settlement states. The scenario does not invent a dedicated “Unreconciled” state; any exceptional state used must be one already authorized by F02's state architecture.
 
 ### Receivable
 
-Accounts Receivable records settlement references but does not own Payment execution or reconciliation. Its Receivable lifecycle changes only from authoritative Finance facts. fileciteturn155file0turn156file0
+Accounts Receivable records settlement references but does not own Payment execution or reconciliation. Its Receivable lifecycle changes only from authoritative Finance facts.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -186,9 +200,9 @@ Payment Management owns and publishes the canonical Payment event vocabulary, in
 - `PaymentSettlementCompleted`
 - `PaymentArchivalCompleted`
 
-No dedicated “ReceiptReconciled” event is invented because the accessed L2-F02 event architecture does not define one. fileciteturn148file0
+No dedicated “ReceiptReconciled” event is invented because the accessed L2-F02 event architecture does not define one.
 
-Accounts Receivable publishes `ReceivableSettlementRecorded` and `ReceivableFullySettled` when its own aggregate reaches those conditions. fileciteturn156file0
+Accounts Receivable publishes `ReceivableSettlementRecorded` and `ReceivableFullySettled` when its own aggregate reaches those conditions.
 
 ### 14.2 Synchronous Business Contracts / Hand-offs
 
@@ -224,7 +238,7 @@ The reconciliation must preserve:
 - downstream receivable/accounting references;
 - complete exception and resolution history.
 
-L2-F02 requires permanent availability of exception history and complete financial traceability. L2-F07 requires complete financial lineage including settlement and accounting references. fileciteturn166file0turn156file0
+L2-F02 requires permanent availability of exception history and complete financial traceability. L2-F07 requires complete financial lineage including settlement and accounting references.
 
 ## 16. Completion Criteria and Postconditions
 

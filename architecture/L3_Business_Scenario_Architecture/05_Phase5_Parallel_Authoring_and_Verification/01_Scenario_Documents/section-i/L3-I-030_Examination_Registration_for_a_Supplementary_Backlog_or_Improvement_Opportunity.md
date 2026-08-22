@@ -13,6 +13,20 @@
 **Depends On:** L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-I01 Examination Policy & Configuration Workflows; L2-I02 Examination Session Management Workflows; L2-I03 Examination Planning & Scheduling Workflows; L2-I04 Examination Registration Workflows; L2-I12 Supplementary / Backlog / Improvement Examination Execution Workflows; applicable Student, Academic Delivery and Finance architecture  
 **Referenced By:** L2-I05 Hall Ticket Management; L2-I12 Supplementary / Backlog / Improvement Examination Execution; downstream examination processing
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-030 |
+| Canonical Title | Examination Registration for a Supplementary, Backlog or Improvement Opportunity |
+| Primary Owner | Examination |
+| Participating Domains | C, D, F, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern examination registration for an eligible candidate who is participating in a supplementary, backlog, or improvement examination opportunity, establishing the authoritative examination participation scope without transferring ownership of academic history, policy, or financial information.

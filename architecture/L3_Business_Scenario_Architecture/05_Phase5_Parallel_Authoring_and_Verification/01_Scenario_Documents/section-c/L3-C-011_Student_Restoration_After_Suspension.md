@@ -27,15 +27,29 @@
 | Canonical Completion Event | `StudentRestored` |
 | Canonical Publisher | Student Lifecycle |
 
-The frozen Section C Stage 3 register identifies C-011 as **Student Restoration After Suspension**, owned by **Student Lifecycle**, with participating domains **C, F**, Type **Critical**, Priority **P1**, and `KEEP` derivation. fileciteturn120file0L2-L2
+The frozen Section C Stage 3 register identifies C-011 as **Student Restoration After Suspension**, owned by **Student Lifecycle**, with participating domains **C, F**, Type **Critical**, Priority **P1**, and `KEEP` derivation.
 
-The Stage 4 final-ID register establishes Section C as a direct positional mapping, making C-011 the final identity `L3-C-011`. fileciteturn121file0L2-L2
+The Stage 4 final-ID register establishes Section C as a direct positional mapping, making C-011 the final identity `L3-C-011`.
 
-The locked L2-C02 workflow catalogue identifies `WF-C02-07 — Student Restoration` as the workflow whose purpose is to restore a suspended Student. fileciteturn126file0L2-L2
+The locked L2-C02 workflow catalogue identifies `WF-C02-07 — Student Restoration` as the workflow whose purpose is to restore a suspended Student.
 
 **Exact filename:** `L3-C-011_Student_Restoration_After_Suspension.md`
 
 ---
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-C-011 |
+| Canonical Title | Student Restoration After Suspension |
+| Primary Owner | Student Lifecycle |
+| Participating Domains | C — Student Lifecycle; F — Finance |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 
@@ -45,7 +59,7 @@ The scenario returns the Student to the authoritative active institutional lifec
 
 Student Lifecycle remains the canonical owner of the Student Aggregate and StudentContext throughout the restoration. Finance may participate where financial clearance is part of the authoritative restoration process, but Finance ownership of financial concepts remains unchanged.
 
-The locked L2-C02 architecture explicitly separates Student Restoration from Student Suspension, Student Transfer, and Student Exit / Archive. `WF-C02-07` is the canonical restoration workflow. fileciteturn126file0L2-L2
+The locked L2-C02 architecture explicitly separates Student Restoration from Student Suspension, Student Transfer, and Student Exit / Archive. `WF-C02-07` is the canonical restoration workflow.
 
 ---
 
@@ -71,7 +85,7 @@ The request may arise from the business conditions identified by the locked L2 w
 
 - Administrative Approval;
 - Financial Clearance; or
-- Disciplinary Resolution. fileciteturn126file0L2-L2
+- Disciplinary Resolution.
 
 ## 4.2 End Boundary
 
@@ -125,9 +139,9 @@ It does not continue into unrelated downstream service reactivation, academic re
 | **C — Student Lifecycle** | Canonical owner of Student, StudentContext, Student Status, suspension/restoration lifecycle and the completed restoration outcome. |
 | **F — Finance** | Participates where financial clearance is an authoritative restoration condition; retains ownership of all Finance-owned concepts and decisions. |
 
-The locked L2-C02 architecture states that Student Lifecycle is the exclusive owner of the Student Aggregate and associated StudentContext and identifies Student Restoration as a Student Lifecycle responsibility. fileciteturn126file0L2-L2
+The locked L2-C02 architecture states that Student Lifecycle is the exclusive owner of the Student Aggregate and associated StudentContext and identifies Student Restoration as a Student Lifecycle responsibility.
 
-The Stage 3 frozen semantics explicitly retain Finance as a participating domain for C-011. fileciteturn120file0L2-L2
+The Stage 3 frozen semantics explicitly retain Finance as a participating domain for C-011.
 
 Finance participation therefore does not transfer ownership of Student, StudentContext, or lifecycle state.
 
@@ -155,13 +169,13 @@ No technical IAM/RBAC role is introduced.
 The locked `WF-C02-07 — Student Restoration` defines the following preconditions:
 
 - **Student Suspended**
-- **Restoration authorized**. fileciteturn126file0L2-L2
+- **Restoration authorized**.
 
 The authoritative workflow also identifies restoration triggers of:
 
 - Administrative Approval;
 - Financial Clearance; and
-- Disciplinary Resolution. fileciteturn126file0L2-L2
+- Disciplinary Resolution.
 
 Accordingly, C-011 begins only when:
 
@@ -181,7 +195,7 @@ The authoritative business triggers are:
 
 - **Administrative Approval**
 - **Financial Clearance**
-- **Disciplinary Resolution**. fileciteturn126file0L2-L2
+- **Disciplinary Resolution**.
 
 The trigger is expressed as a business condition/decision.
 
@@ -222,8 +236,6 @@ Audit
 Complete
 ```
 
-fileciteturn126file0L2-L2
-
 C-011 stops at the completed restoration outcome.
 
 ---
@@ -237,7 +249,7 @@ C-011 stops at the completed restoration outcome.
 | AF-03 | Restoration follows Disciplinary Resolution | Apply the authoritative resolution as the basis for restoration. | Student restored once the restoration authority is satisfied. |
 | AF-04 | Student is not Suspended | C-011 cannot complete because the authoritative precondition is not satisfied. | No restoration transition. |
 
-The three authoritative restoration triggers are explicitly defined by `WF-C02-07`. fileciteturn126file0L2-L2
+The three authoritative restoration triggers are explicitly defined by `WF-C02-07`.
 
 ---
 
@@ -286,7 +298,7 @@ No new local rule identifier is created.
 | Suspension history | Existing suspension history | Preserve | Historical suspension retained | Student Lifecycle |
 | Restoration history | None for current restoration | Record restoration | Restoration becomes historical lifecycle evidence | Student Lifecycle |
 
-The locked Student Lifecycle state model identifies **Suspended → Restored → Active** as the canonical restoration path. fileciteturn126file0L2-L2
+The locked Student Lifecycle state model identifies **Suspended → Restored → Active** as the canonical restoration path.
 
 ## 13.2 StudentContext
 
@@ -300,7 +312,7 @@ The restoration does not create a new StudentContext, transfer the context, or t
 
 C-011 does not invent a new lifecycle state.
 
-`Restored` is the canonical intermediate outcome represented by the locked Student lifecycle model, followed by the Student returning to **Active**. fileciteturn126file0L2-L2
+`Restored` is the canonical intermediate outcome represented by the locked Student lifecycle model, followed by the Student returning to **Active**.
 
 ---
 
@@ -312,7 +324,7 @@ The locked L2-C02 event catalogue explicitly defines:
 
 **`StudentRestored`**
 
-as the canonical event for successful completion of `WF-C02-07 — Student Restoration`. fileciteturn126file0L2-L2
+as the canonical event for successful completion of `WF-C02-07 — Student Restoration`.
 
 | Business Event | Canonical Publisher | Purpose |
 |---|---|---|
@@ -353,7 +365,7 @@ The authoritative L2 service-contract material identifies:
 - **Registrar**
 - **Authorized Administrative Authority**
 
-for `RestoreStudent()`. The workflow also requires restoration to be authorized. fileciteturn126file0L2-L2
+for `RestoreStudent()`. The workflow also requires restoration to be authorized.
 
 C-011 therefore treats restoration authorization as a source-supported business obligation.
 
@@ -377,9 +389,9 @@ Where restoration follows Disciplinary Resolution, C-011 consumes the authoritat
 
 ## 15.5 Audit
 
-The locked C02 architecture requires lifecycle transitions to generate immutable audit records. fileciteturn126file0L2-L2
+The locked C02 architecture requires lifecycle transitions to generate immutable audit records.
 
-The authoritative `WF-C02-07` sequence explicitly includes **Audit** after `StudentRestored` publication. fileciteturn126file0L2-L2
+The authoritative `WF-C02-07` sequence explicitly includes **Audit** after `StudentRestored` publication.
 
 C-011 therefore requires restoration to be fully auditable.
 
@@ -528,15 +540,15 @@ They should be resolved before final Architecture Approval/Locking if detailed c
 - **Section Folder:** `section-c`
 - **Exact Filename:** `L3-C-011_Student_Restoration_After_Suspension.md`
 
-The frozen Stage 3 register confirms the C-011 semantics. fileciteturn120file0L2-L2
+The frozen Stage 3 register confirms the C-011 semantics.
 
-The Stage 4 register establishes Section C's direct positional final-ID mapping. fileciteturn121file0L2-L2
+The Stage 4 register establishes Section C's direct positional final-ID mapping.
 
 ## L2 Workflow Check
 
 The locked C02 workflow catalogue explicitly defines:
 
-`WF-C02-07 — Student Restoration — Restore suspended student`. fileciteturn126file0L2-L2
+`WF-C02-07 — Student Restoration — Restore suspended student`.
 
 Its authoritative definition states:
 
@@ -545,7 +557,7 @@ Its authoritative definition states:
 - Preconditions: Student Suspended, Restoration authorized;
 - Postcondition: Status = Active;
 - Event: `StudentRestored`;
-- Publisher: Student Lifecycle. fileciteturn126file0L2-L2
+- Publisher: Student Lifecycle.
 
 ## Ownership Check
 
@@ -569,7 +581,7 @@ Canonical event:
 
 Canonical publisher:
 
-**Student Lifecycle**. fileciteturn126file0L2-L2
+**Student Lifecycle**.
 
 ## Boundary Check
 
@@ -585,7 +597,7 @@ C-011 does not absorb:
 
 ## Cross-Domain Check
 
-Finance remains a participating domain exactly as frozen by Stage 3. fileciteturn120file0L2-L2
+Finance remains a participating domain exactly as frozen by Stage 3.
 
 The Finance clearance boundary is preserved without inventing Finance-owned rules or contracts.
 
@@ -593,7 +605,7 @@ The Finance clearance boundary is preserved without inventing Finance-owned rule
 
 The authoritative workflow explicitly ends with:
 
-**Publish `StudentRestored` → Audit → Complete.** fileciteturn126file0L2-L2
+**Publish `StudentRestored` → Audit → Complete.**
 
 ## Implementation Leakage Check
 

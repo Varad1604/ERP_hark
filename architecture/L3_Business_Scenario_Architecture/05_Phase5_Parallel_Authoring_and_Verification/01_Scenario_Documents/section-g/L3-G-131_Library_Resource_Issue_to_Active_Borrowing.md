@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-131 |
+| Canonical Title | Library Resource Issue to Active Borrowing |
+| Primary Owner | Library Management |
+| Participating Domains | G, C, E, F, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome in which an eligible library member requests a library resource, the member and resource are validated against the applicable borrowing policy, the issue is approved, and an active borrowing is established.
@@ -25,7 +39,7 @@ The L2 defines the circulation workflow as:
 
 `Member Verified → Copy Available → Issue Approved → Borrowing Active → Renewal / Return → Circulation Closed`.
 
-It also defines borrowing validation using Active Membership, Borrowing Limit, Outstanding Dues, Resource Availability, Reservation Priority and Administrative Restrictions. fileciteturn165file0turn171file0
+It also defines borrowing validation using Active Membership, Borrowing Limit, Outstanding Dues, Resource Availability, Reservation Priority and Administrative Restrictions.
 
 ## 3. Business Outcome
 
@@ -117,7 +131,7 @@ Provides accounting/payment status where relevant to borrowing validation; does 
 
 Consumes the issue outcome for applicable notification.
 
-The G05 authorization matrix identifies Librarian / Circulation Desk as typical authorization for issuing resources. fileciteturn173file0
+The G05 authorization matrix identifies Librarian / Circulation Desk as typical authorization for issuing resources.
 
 ## 7. Preconditions and Entry Criteria
 
@@ -213,7 +227,7 @@ The issue is not approved until the copy's authoritative operational condition i
 
 ### 11.3 Business Invariant Is Violated
 
-The transaction is rejected because G05 states that violation of business invariants rejects the transaction. Every active borrowing must reference one valid Library Member, and every Circulation transaction must reference one active Library Copy. fileciteturn164file0
+The transaction is rejected because G05 states that violation of business invariants rejects the transaction. Every active borrowing must reference one valid Library Member, and every Circulation transaction must reference one active Library Copy.
 
 ### 11.4 Notification Is Required
 
@@ -240,7 +254,7 @@ Borrowing policies may define:
 - Reservation Priority.
 - Restricted Resources.
 
-Policy definitions remain configurable. fileciteturn171file0
+Policy definitions remain configurable.
 
 The following invariants also apply:
 
@@ -248,7 +262,7 @@ The following invariants also apply:
 - Every Circulation transaction references one active Library Copy.
 - Borrowing history is never deleted.
 - Every lifecycle transition is audited.
-- Finance owns accounting/payment processing. fileciteturn164file0
+- Finance owns accounting/payment processing.
 
 No local borrowing limit, duration, fine threshold, or restriction is invented.
 
@@ -276,7 +290,7 @@ The canonical event is:
 
 **`ResourceIssued` — Library resource issued.**
 
-The event is published by Library Management. fileciteturn167file0
+The event is published by Library Management.
 
 No `BorrowingActivated` event is invented.
 
@@ -290,7 +304,7 @@ No `BorrowingActivated` event is invented.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-The G05 authorization matrix identifies **Librarian / Circulation Desk** as typical authorization for issuing resources, while authorization policies remain configurable. fileciteturn173file0
+The G05 authorization matrix identifies **Librarian / Circulation Desk** as typical authorization for issuing resources, while authorization policies remain configurable.
 
 The issue decision, eligibility outcome, borrowing details, due date and circulation history must remain auditable.
 

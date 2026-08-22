@@ -13,6 +13,20 @@
 **Depends On:** Locked L1 Business Domain Architecture; L2-F00 Finance Domain Model & Foundation; L2-F01 Student Charge & Fee Management; L2-F02 Payment Management Architecture; L2-F03 Refund Management; applicable Accounting architecture  
 **Referenced By:** Accounting & General Ledger; Financial Reporting; Notification; Bank Reconciliation; Payment execution capability
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-015 |
+| Canonical Title | Approved Refund to Financial Completion |
+| Primary Owner | Refund Management |
+| Participating Domains | C, F |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Complete the institutional business lifecycle of an already approved Refund from approved status through financial execution and completion, while preserving Refund ownership, financial integrity, approval evidence, and the separation between Refund Management and the capability that performs outbound payment execution.

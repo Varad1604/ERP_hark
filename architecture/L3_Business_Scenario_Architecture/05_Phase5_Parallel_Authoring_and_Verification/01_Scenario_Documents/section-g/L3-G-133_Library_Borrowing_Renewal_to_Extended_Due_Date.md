@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-133 |
+| Canonical Title | Library Borrowing Renewal to Extended Due Date |
+| Primary Owner | Library Management |
+| Participating Domains | G, C, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete outcome in which an Active borrowing is reviewed for renewal, the member and resource satisfy the configured renewal conditions, the renewal is approved, and the borrowing receives an extended due date.
@@ -26,7 +40,7 @@ The L2 explicitly defines renewal eligibility using:
 - Membership Active.
 - Resource Eligible.
 
-Renewal rules remain configurable. fileciteturn170file0turn171file0
+Renewal rules remain configurable.
 
 The scenario does not create a new borrowing or reset the borrowing history. It extends the existing borrowing according to policy.
 
@@ -210,7 +224,7 @@ Renewals may be permitted when:
 - Membership Active.
 - Resource Eligible.
 
-Renewal rules remain configurable. Borrowing policies may define maximum borrowings, borrowing duration, renewal eligibility, reservation priority and restricted resources. fileciteturn171file0
+Renewal rules remain configurable. Borrowing policies may define maximum borrowings, borrowing duration, renewal eligibility, reservation priority and restricted resources.
 
 The scenario does not invent:
 
@@ -242,7 +256,7 @@ The canonical event is:
 
 **`ResourceRenewed` — Borrowing renewed.**
 
-Library Management is the publisher. fileciteturn167file0
+Library Management is the publisher.
 
 No `DueDateExtended` event is invented.
 

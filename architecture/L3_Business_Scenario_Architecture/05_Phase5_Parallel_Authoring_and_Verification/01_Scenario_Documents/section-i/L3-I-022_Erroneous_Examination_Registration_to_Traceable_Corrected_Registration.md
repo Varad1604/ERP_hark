@@ -13,6 +13,20 @@
 **Depends On:** Locked L1 Business Domain Architecture; L2-I04 Examination Registration Workflows; applicable Student Domain architecture  
 **Referenced By:** Downstream examination registration consumers; None yet for this L3 scenario
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-022 |
+| Canonical Title | Erroneous Examination Registration to Traceable Corrected Registration |
+| Primary Owner | Examination Registration |
+| Participating Domains | C, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs correction of an erroneous Examination Registration while preserving the authoritative business history of the registration and the correction.

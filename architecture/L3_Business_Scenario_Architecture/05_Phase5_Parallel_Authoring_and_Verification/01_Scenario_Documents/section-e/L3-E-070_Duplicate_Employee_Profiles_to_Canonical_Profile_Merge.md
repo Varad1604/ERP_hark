@@ -7,7 +7,21 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Architecture Level:** L3 — Business Scenario Architecture  
-**Author:** Varad  
+**Author:** Varad
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-070 |
+| Canonical Title | Duplicate Employee Profiles to Canonical Profile Merge |
+| Primary Owner | Employee Profile |
+| Participating Domains | A — Platform Foundation; E — People & Workforce |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 

@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-120 |
+| Canonical Title | Transport Complaint to Operational Resolution |
+| Primary Owner | Transport Management |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Transport Management must provide a complete institutional path for complaints concerning transport services. A complaint is not complete merely because it has been received or classified: it must be reviewed, its operational significance determined, an appropriate business resolution established, and the outcome retained as part of the institution's transport history.

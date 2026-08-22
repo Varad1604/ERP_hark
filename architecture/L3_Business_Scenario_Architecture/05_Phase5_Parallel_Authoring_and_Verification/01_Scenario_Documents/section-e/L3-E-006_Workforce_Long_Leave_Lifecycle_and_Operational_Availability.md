@@ -45,7 +45,7 @@ The long leave is completed and operational availability returns to normal.
 - Position Assignment ownership.
 - Responsibility Assignment ownership.
 
-L2-E01 explicitly keeps leave calculations, balances, approvals, encashment and leave accounting outside the Workforce & Engagement domain. fileciteturn224file0L2-L2
+L2-E01 explicitly keeps leave calculations, balances, approvals, encashment and leave accounting outside the Workforce & Engagement domain.
 
 ### 4.5 Related Scenarios
 E004 Workforce Engagement Suspension and Operational Restoration; E005 Workforce Deputation Lifecycle; E007 Workforce Engagement Closure and Institutional Exit.
@@ -111,7 +111,7 @@ If the operational-availability transition cannot validly complete, the existing
 | `LongLeaveStarted` | Workforce & Engagement | Long-duration workforce unavailability began |
 | `LongLeaveEnded` | Workforce & Engagement | Long-duration workforce unavailability ended |
 
-Both events are explicitly defined by L2-E01 WF-011 and WF-012. fileciteturn228file0L2-L2
+Both events are explicitly defined by L2-E01 WF-011 and WF-012.
 
 Leave Management remains responsible for leave administration; downstream consumers use the Workforce event as an authoritative workforce-availability fact.
 

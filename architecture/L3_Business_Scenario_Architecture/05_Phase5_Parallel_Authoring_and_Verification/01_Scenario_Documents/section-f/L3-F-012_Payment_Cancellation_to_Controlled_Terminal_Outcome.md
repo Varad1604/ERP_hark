@@ -13,6 +13,20 @@
 **Depends On:** L1 Business Domain Architecture; L2-F00 Finance Domain Model & Foundation; L2-F01 Student Charge & Fee Management; L2-F02 Payment Management Architecture  
 **Referenced By:** Student Charge & Fee Management, Accounts Receivable, Accounting & General Ledger
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-012 |
+| Canonical Title | Payment Cancellation to Controlled Terminal Outcome |
+| Primary Owner | Payment Management |
+| Participating Domains | C, F |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern the cancellation of a Payment so that the Payment reaches a controlled terminal business position without falsely representing an incomplete or cancelled settlement as successfully completed.
@@ -131,7 +145,7 @@ The scenario applies:
 - Any Student Charge consequence remains Student Charge-owned.
 - Published events represent completed business facts.
 
-L2-F02 explicitly includes Cancelled among canonical Payment states and allows exceptional states such as Suspended and Cancelled where permitted by enterprise policies. fileciteturn173file0turn174file0
+L2-F02 explicitly includes Cancelled among canonical Payment states and allows exceptional states such as Suspended and Cancelled where permitted by enterprise policies.
 
 ## 13. State and Lifecycle Impact
 
@@ -141,7 +155,7 @@ The canonical lifecycle remains:
 
 `Payment Received → Validated → Published → Allocated → Settled → Archived`
 
-L2-F02 does not define cancellation as a new lifecycle stage. Cancellation is an operational state consequence and must not be represented as a newly invented lifecycle stage. fileciteturn173file0
+L2-F02 does not define cancellation as a new lifecycle stage. Cancellation is an operational state consequence and must not be represented as a newly invented lifecycle stage.
 
 ### Payment State
 
@@ -149,7 +163,7 @@ L2-F02 does not define cancellation as a new lifecycle stage. Cancellation is an
 
 The authoritative state architecture does not provide a complete explicit transition matrix for every cancellation condition. It states that exceptional states such as Cancelled may occur where permitted by enterprise policies.
 
-Accordingly, this L3 uses the existing Cancelled state but does not invent unsupported predecessor transitions. fileciteturn173file0
+Accordingly, this L3 uses the existing Cancelled state but does not invent unsupported predecessor transitions.
 
 ### Student Charge
 
@@ -172,7 +186,7 @@ L2-F02's canonical Payment events are:
 
 There is **no canonical `PaymentCancelled` event defined by L2-F02**. The scenario therefore does not invent one.
 
-The cancellation outcome must be communicated using an authoritative event only if and when the upstream Payment event architecture defines one. fileciteturn174file0
+The cancellation outcome must be communicated using an authoritative event only if and when the upstream Payment event architecture defines one.
 
 ### 14.2 Synchronous Business Contracts / Hand-offs
 
@@ -206,7 +220,7 @@ Cancellation must preserve:
 - resulting Student Charge consequence where applicable;
 - complete historical lineage.
 
-L2-F02 requires immutable Payment history, auditable state transitions and complete reconstruction of financial history. fileciteturn174file0
+L2-F02 requires immutable Payment history, auditable state transitions and complete reconstruction of financial history.
 
 ## 16. Completion Criteria and Postconditions
 

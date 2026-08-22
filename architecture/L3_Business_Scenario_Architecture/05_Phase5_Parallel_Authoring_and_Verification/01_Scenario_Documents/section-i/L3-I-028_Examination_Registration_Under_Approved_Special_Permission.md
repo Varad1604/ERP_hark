@@ -13,6 +13,20 @@
 **Depends On:** Locked L1 Business Domain Architecture; L2-I01 Examination Policy & Configuration; L2-I04 Examination Registration Workflows; applicable institutional authorization, audit, Student and Examination Session/Schedule architecture  
 **Referenced By:** Downstream examination workflows consuming approved/confirmed Examination Registrations
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-028 |
+| Canonical Title | Examination Registration Under Approved Special Permission |
+| Primary Owner | Examination Registration |
+| Participating Domains | A, C, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs examination registration performed under an approved special permission when the candidate's registration circumstance requires an institutionally authorised exception to the normal registration path.

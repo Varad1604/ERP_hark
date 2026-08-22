@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-105 |
+| Canonical Title | Scheduled Trip Cancellation to Operational Closure |
+| Primary Owner | Transport Management |
+| Participating Domains | G, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the business cancellation of a scheduled transport trip before execution and the resulting operational closure. G04 identifies Trip as the aggregate owning the Trip Schedule, operational assignments, Trip Execution and Trip Completion, while its workflow catalogue separately includes scheduled-trip cancellation.

@@ -38,9 +38,9 @@
 | Successful Outcome | Enrollment Updated |
 | Canonical Event | `EnrollmentUpdated` |
 
-The frozen Section C canonical register identifies C-008 as **Student Enrollment Update**, Primary Owner **Student Lifecycle**, Participating Domains **C, D**, Type **Cross-domain**, Priority **P1**, with derivation **KEEP**. fileciteturn91file0L2-L2
+The frozen Section C canonical register identifies C-008 as **Student Enrollment Update**, Primary Owner **Student Lifecycle**, Participating Domains **C, D**, Type **Cross-domain**, Priority **P1**, with derivation **KEEP**.
 
-The locked L2-C02 workflow catalogue identifies `WF-C02-03 — Student Enrollment Update` as the workflow responsible for maintaining enrollment-related information throughout the student's lifecycle. fileciteturn98file0
+The locked L2-C02 workflow catalogue identifies `WF-C02-03 — Student Enrollment Update` as the workflow responsible for maintaining enrollment-related information throughout the student's lifecycle.
 
 ---
 
@@ -61,7 +61,7 @@ It does not silently become:
 - Academic Registration; or
 - any other Student Lifecycle scenario.
 
-The locked L2-C02 architecture defines `WF-C02-03 — Student Enrollment Update` specifically for this capability. fileciteturn98file0
+The locked L2-C02 architecture defines `WF-C02-03 — Student Enrollment Update` specifically for this capability.
 
 ---
 
@@ -95,7 +95,7 @@ The L2 workflow identifies these triggers:
 
 - Enrollment Change;
 - Academic Session Update; and
-- Administrative Request. fileciteturn99file0
+- Administrative Request.
 
 ### 4.2 End Boundary
 
@@ -151,7 +151,7 @@ Enrollment Update modifies enrollment information within the Student Lifecycle d
 
 It does not transfer ownership of the Student Aggregate or StudentContext to Academic Delivery.
 
-The locked L2-C02 architecture states that Student Lifecycle is the exclusive owner of the Student Aggregate and associated StudentContext, while academic domains consume Student information without owning it. fileciteturn97file0
+The locked L2-C02 architecture states that Student Lifecycle is the exclusive owner of the Student Aggregate and associated StudentContext, while academic domains consume Student information without owning it.
 
 ---
 
@@ -171,7 +171,7 @@ Student Lifecycle owns:
 - enrollment update decision; and
 - `EnrollmentUpdated`.
 
-The L2 domain ownership model explicitly lists **Enrollment** as a Student Lifecycle-owned business capability. fileciteturn97file0
+The L2 domain ownership model explicitly lists **Enrollment** as a Student Lifecycle-owned business capability.
 
 ### 5.2 Participating Domains
 
@@ -180,9 +180,9 @@ The frozen C-008 scenario metadata identifies:
 - **C — Student Lifecycle**
 - **D — Academic Delivery**
 
-as participating domains. fileciteturn91file0L2-L2
+as participating domains.
 
-The L2-C02 workflow catalogue identifies **Academic Delivery** as the external participant for Enrollment Update. fileciteturn98file0
+The L2-C02 workflow catalogue identifies **Academic Delivery** as the external participant for Enrollment Update.
 
 ### 5.3 Academic Delivery Boundary
 
@@ -250,7 +250,7 @@ The authoritative L2 workflow establishes:
 - **Student Active**
 - **Authorized Request**
 
-as preconditions. fileciteturn99file0
+as preconditions.
 
 Accordingly, C-008 requires:
 
@@ -287,7 +287,7 @@ The canonical business triggers are:
 2. **Academic Session Update**
 3. **Administrative Request**
 
-These are explicitly identified by `WF-C02-03 — Student Enrollment Update`. fileciteturn99file0
+These are explicitly identified by `WF-C02-03 — Student Enrollment Update`.
 
 The trigger starts enrollment-update processing.
 
@@ -327,7 +327,7 @@ Audit
 Complete
 ```
 
-This sequence is defined by `WF-C02-03`. fileciteturn99file0
+This sequence is defined by `WF-C02-03`.
 
 ### 9.1 Main Flow Boundary
 
@@ -350,7 +350,7 @@ Where an academic session update triggers the scenario:
 5. record audit evidence;
 6. publish `EnrollmentUpdated`.
 
-The trigger is explicitly supported by L2-C02. fileciteturn99file0
+The trigger is explicitly supported by L2-C02.
 
 ### 10.2 AF-02 — Administrative Enrollment Update
 
@@ -379,13 +379,13 @@ The Student Lifecycle domain remains responsible for the enrollment outcome.
 
 If the requested change is actually a Programme, Batch, or Section assignment change, it belongs to `WF-C02-04 — Academic Assignment` rather than being silently absorbed into C-008.
 
-The L2-C02 catalogue separately defines Academic Assignment for Programme, Batch, and Section assignment. fileciteturn98file0
+The L2-C02 catalogue separately defines Academic Assignment for Programme, Batch, and Section assignment.
 
 ### 10.6 Boundary with Programme Migration
 
 If the request changes the student's Programme, C-008 must not make that migration decision.
 
-The locked L2-C02 architecture explicitly states that Programme-changing mobility is owned by L2-C04 APW-08, and C02 only applies the authoritative `ProgrammeMigrationApproved` result to the Student context. fileciteturn99file0
+The locked L2-C02 architecture explicitly states that Programme-changing mobility is owned by L2-C04 APW-08, and C02 only applies the authoritative `ProgrammeMigrationApproved` result to the Student context.
 
 ---
 
@@ -445,7 +445,7 @@ The locked L2-C02 architecture explicitly states that Programme-changing mobilit
 
 **Business result:** C-008 does not make the Programme Migration decision.
 
-**Resolution:** L2-C04 APW-08 owns the Programme Migration decision; C02 may subsequently apply the authoritative `ProgrammeMigrationApproved` result. fileciteturn99file0
+**Resolution:** L2-C04 APW-08 owns the Programme Migration decision; C02 may subsequently apply the authoritative `ProgrammeMigrationApproved` result.
 
 ### 11.8 Technical Failure Boundary
 
@@ -473,7 +473,7 @@ The directly applicable `WF-C02-03` governance rules are:
 | Current enrollment unique | Only one current enrollment outcome may exist for the applicable Student context. |
 | Audit mandatory | Enrollment update must be auditable. |
 
-These rules are explicitly defined in the L2 workflow governance. fileciteturn99file0
+These rules are explicitly defined in the L2 workflow governance.
 
 ### 12.2 Student Lifecycle Architectural Rules
 
@@ -484,7 +484,7 @@ The locked L2-C02 architecture additionally establishes:
 - Student lifecycle transitions are deterministic.
 - Historical lifecycle information is immutable.
 - Student ownership remains within Student Lifecycle.
-- Cross-domain updates occur only through approved architecture contracts. fileciteturn97file0
+- Cross-domain updates occur only through approved architecture contracts.
 
 ### 12.3 Cross-Domain Ownership Constraint
 
@@ -494,7 +494,7 @@ Academic Delivery may participate but cannot become the owner of enrollment.
 
 Programme-changing mobility is not an enrollment update decision.
 
-L2-C04 owns Programme Migration and its canonical outcome. C02 only applies the approved Programme association after consuming `ProgrammeMigrationApproved`. fileciteturn99file0
+L2-C04 owns Programme Migration and its canonical outcome. C02 only applies the approved Programme association after consuming `ProgrammeMigrationApproved`.
 
 ### 12.5 No Local Rule Invention
 
@@ -558,13 +558,13 @@ C-008 does not itself change Student status.
 
 C-008 does not perform the Academic Assignment lifecycle.
 
-Programme, Batch, and Section assignment remains governed by `WF-C02-04`. fileciteturn98file0
+Programme, Batch, and Section assignment remains governed by `WF-C02-04`.
 
 ### 13.7 Programme Migration Boundary
 
 C-008 does not make Programme Migration decisions.
 
-The authoritative C04 migration outcome is applied by the C02 Academic Assignment workflow when applicable. fileciteturn99file0
+The authoritative C04 migration outcome is applied by the C02 Academic Assignment workflow when applicable.
 
 ---
 
@@ -576,7 +576,7 @@ The authoritative C04 migration outcome is applied by the C02 Academic Assignmen
 |---|---|---|
 | `EnrollmentUpdated` | **Student Lifecycle** | Enrollment information has been successfully updated. |
 
-The L2 workflow explicitly identifies `EnrollmentUpdated` as its domain event. fileciteturn99file0
+The L2 workflow explicitly identifies `EnrollmentUpdated` as its domain event.
 
 ### 14.2 Consumed Events
 
@@ -752,7 +752,7 @@ The frozen scenario identifies Academic Delivery as a participating domain, and 
 - Scenario Type: Cross-domain
 - Priority: P1
 
-These frozen values are confirmed by the Section C canonical register. fileciteturn91file0L2-L2
+These frozen values are confirmed by the Section C canonical register.
 
 ## L2 Verification
 
@@ -760,7 +760,7 @@ The locked L2-C02 workflow catalogue identifies:
 
 `WF-C02-03 — Student Enrollment Update`
 
-with the purpose of maintaining enrollment-related information throughout the student's lifecycle. Its defined triggers are Enrollment Change, Academic Session Update, and Administrative Request; its preconditions are Student Active and Authorized Request; and its postconditions include updated enrollment, preserved history, completed audit, and event publication. fileciteturn99file0
+with the purpose of maintaining enrollment-related information throughout the student's lifecycle. Its defined triggers are Enrollment Change, Academic Session Update, and Administrative Request; its preconditions are Student Active and Authorized Request; and its postconditions include updated enrollment, preserved history, completed audit, and event publication.
 
 ## Workflow Verification
 
@@ -782,13 +782,11 @@ Audit
 Complete
 ```
 
-fileciteturn99file0
-
 ## Ownership Verification
 
 Student Lifecycle owns Enrollment and the Student Aggregate/StudentContext.
 
-Academic Delivery participates without acquiring ownership. fileciteturn97file0turn98file0
+Academic Delivery participates without acquiring ownership.
 
 ## Event Verification
 
@@ -798,7 +796,7 @@ Canonical successful event:
 
 Publisher:
 
-**Student Lifecycle**. fileciteturn99file0
+**Student Lifecycle**.
 
 ## Rule Verification
 
@@ -806,7 +804,7 @@ The directly applicable governance rules are:
 
 - Historical enrollment immutable.
 - Current enrollment unique.
-- Audit mandatory. fileciteturn99file0
+- Audit mandatory.
 
 ## Boundary Verification
 
@@ -818,7 +816,7 @@ C-008 does not absorb:
 - Registration;
 - Student Transfer.
 
-Programme-changing mobility remains explicitly owned by L2-C04 APW-08. fileciteturn99file0
+Programme-changing mobility remains explicitly owned by L2-C04 APW-08.
 
 ## Implementation Leakage Check
 

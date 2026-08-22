@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-122 |
+| Canonical Title | Transport Complaint to Driver or Service Corrective Action |
+| Primary Owner | Transport Management |
+| Participating Domains | G, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Transport complaints can identify conduct or service problems that require corrective action rather than maintenance or simple complaint closure.

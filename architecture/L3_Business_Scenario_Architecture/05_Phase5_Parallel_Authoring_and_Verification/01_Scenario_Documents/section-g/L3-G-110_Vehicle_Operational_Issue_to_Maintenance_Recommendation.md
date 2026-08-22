@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-110 |
+| Canonical Title | Vehicle Operational Issue to Maintenance Recommendation |
+| Primary Owner | Transport Management |
+| Participating Domains | G |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs identification and assessment of a vehicle operational issue until Transport Management establishes a maintenance recommendation for the issue. G04 explicitly states that Transport Management recommends maintenance while G01 executes maintenance.
 

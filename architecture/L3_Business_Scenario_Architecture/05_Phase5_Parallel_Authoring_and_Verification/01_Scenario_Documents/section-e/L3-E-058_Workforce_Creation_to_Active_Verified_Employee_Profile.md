@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-058 |
+| Canonical Title | Workforce Creation to Active Verified Employee Profile |
+| Primary Owner | Employee Profile |
+| Participating Domains | A — Platform Foundation; E — People & Workforce |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Establish the employee's canonical workforce relationship and complete the dependent Employee Profile lifecycle so that the institution has an active, verified employee profile available for governed workforce use.

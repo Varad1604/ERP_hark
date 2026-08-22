@@ -13,6 +13,20 @@
 **Depends On:** L2-F11 Scholarship & Financial Aid; L2-C07 Scholarship Eligibility Workflows; L2-F01 Student Charge & Fee Management; L2-F07 Accounts Receivable  
 **Referenced By:** Student Charge & Fee Management; Accounts Receivable; Financial Reporting; Audit; Executive Dashboards
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-063 |
+| Canonical Title | Financial Aid Allocation to Disbursement or Charge Adjustment |
+| Primary Owner | Scholarship & Financial Aid |
+| Participating Domains | C, F |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern the business consequence of an approved financial-aid allocation by publishing the authoritative allocation fact and enabling the canonical downstream financial domain to determine whether the assistance results in a charge adjustment or another governed financial consequence.
@@ -65,7 +79,7 @@ The scenario ends when the allocation has become an authoritative business fact 
 | Student Charge & Fee Management | Determines how approved assistance affects student charges. | Charge ownership remains external. |
 | Accounts Receivable | Determines receivable consequences after charge processing. | Receivable ownership remains external. |
 
-L2-F11 explicitly separates financial assistance governance from charges, receivables, cash collection and accounting. fileciteturn217file0
+L2-F11 explicitly separates financial assistance governance from charges, receivables, cash collection and accounting.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -82,7 +96,7 @@ Capability responsibilities remain authoritative: Scholarship & Financial Aid go
 - The Financial Aid Aggregate is in `Approval Recorded`.
 - The downstream charge context can consume the published assistance fact.
 
-L2-F11 requires Approval Decision before Benefit Allocation and a valid Funding Source for every allocated benefit. fileciteturn222file0
+L2-F11 requires Approval Decision before Benefit Allocation and a valid Funding Source for every allocated benefit.
 
 ## 8. Trigger
 
@@ -101,7 +115,7 @@ An approved financial-aid decision becomes ready for Benefit Allocation.
 | 7 | Where applicable, F01 applies the assistance according to its charge rules and produces its own charge adjustment/business outcome. | Student Charge & Fee Management | Charge ownership remains with F01. |
 | 8 | Where a receivable consequence follows from charge processing, Accounts Receivable independently applies its own rules. | Accounts Receivable | Receivable ownership remains with F07. |
 
-L2-F11 explicitly maps `BenefitAllocated` to Student Charge & Fee Management and states that Fee Management determines how approved assistance influences student charges. fileciteturn224file0
+L2-F11 explicitly maps `BenefitAllocated` to Student Charge & Fee Management and states that Fee Management determines how approved assistance influences student charges.
 
 ## 10. Alternate Business Flows
 
@@ -135,7 +149,7 @@ The Financial Aid Aggregate remains authoritative for the approved allocation. D
 | Downstream consumer has a business failure | Do not mutate the Financial Aid Aggregate to compensate; subsequent business facts govern recovery. |
 | A later reversal/revocation becomes necessary | Use the applicable Financial Aid revocation/recovery lifecycle while preserving historical allocation facts. |
 
-L2-F11 requires neighbouring failures not to compromise Aggregate consistency and states that recovery occurs through subsequent business events. fileciteturn224file0
+L2-F11 requires neighbouring failures not to compromise Aggregate consistency and states that recovery occurs through subsequent business events.
 
 ## 12. Business Rules and Decision Constraints
 
@@ -148,7 +162,7 @@ L2-F11 requires neighbouring failures not to compromise Aggregate consistency an
 - Eligibility outcomes remain externally evaluated.
 - Student Charges remain owned by Student Charge & Fee Management.
 - Accounts Receivable remains independently owned.
-- Scholarship & Financial Aid does not create charges, receivables, payments, treasury transactions or journal entries. fileciteturn222file0turn217file0
+- Scholarship & Financial Aid does not create charges, receivables, payments, treasury transactions or journal entries.
 
 ## 13. State and Lifecycle Impact
 
@@ -162,7 +176,7 @@ The scenario covers:
 
 No `Disbursed` or `Charge Adjusted` state is invented inside the Financial Aid Aggregate. The title's alternative downstream outcomes remain owned by the applicable financial domain.
 
-L2-F11 defines `Benefit Allocated` and `Active` as canonical lifecycle states and rejects transitions outside the defined lifecycle. fileciteturn222file0
+L2-F11 defines `Benefit Allocated` and `Active` as canonical lifecycle states and rejects transitions outside the defined lifecycle.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -173,7 +187,7 @@ L2-F11 defines `Benefit Allocated` and `Active` as canonical lifecycle states an
 - `FinancialAidActivated`
 - `FinancialAidApproved` where the approval transition is part of the scenario's initiating state
 
-The Financial Aid Aggregate is the canonical publisher. Events represent completed immutable business facts. fileciteturn222file0turn223file0
+The Financial Aid Aggregate is the canonical publisher. Events represent completed immutable business facts.
 
 ### 14.2 Cross-Domain Hand-offs
 
@@ -209,7 +223,7 @@ The historical record must preserve:
 - published event history;
 - downstream references where applicable.
 
-L2-F11 requires immutable approval/allocation/funding history and permanent event traceability. fileciteturn222file0turn223file0
+L2-F11 requires immutable approval/allocation/funding history and permanent event traceability.
 
 ## 16. Completion Criteria and Postconditions
 
@@ -234,7 +248,7 @@ L2-F11 requires immutable approval/allocation/funding history and permanent even
 
 ### 17.1 Open Issues
 
-The canonical title uses “Disbursement or Charge Adjustment,” but L2-F11 does not define a `Disbursed` state or a cash-disbursement event. F11 instead defines Benefit Allocation and downstream consumption by Student Charge & Fee Management. Therefore no separate cash disbursement workflow is invented here. fileciteturn217file0turn224file0
+The canonical title uses “Disbursement or Charge Adjustment,” but L2-F11 does not define a `Disbursed` state or a cash-disbursement event. F11 instead defines Benefit Allocation and downstream consumption by Student Charge & Fee Management. Therefore no separate cash disbursement workflow is invented here.
 
 ### 17.2 Assumptions
 

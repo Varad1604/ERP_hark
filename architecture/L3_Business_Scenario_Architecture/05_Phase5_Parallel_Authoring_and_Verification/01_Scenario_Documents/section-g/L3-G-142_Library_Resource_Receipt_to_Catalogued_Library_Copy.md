@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-142 |
+| Canonical Title | Library Resource Receipt to Catalogued Library Copy |
+| Primary Owner | Library Management |
+| Participating Domains | G, E, F |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome in which an approved library acquisition is received, the received resource is catalogued, and the physical Library Copy is created so that it can proceed through the Library Copy lifecycle toward operational availability.
@@ -23,7 +37,7 @@ The locked L2 defines the acquisition workflow:
 
 `Acquisition Requested → Vendor Reference → Approval → Resource Received → Cataloguing → Library Copy Created`.
 
-It also states that Acquisition and Cataloguing govern introduction of new resources into the institutional library and that Procurement remains outside Library Management. fileciteturn191file0
+It also states that Acquisition and Cataloguing govern introduction of new resources into the institutional library and that Procurement remains outside Library Management.
 
 ## 3. Business Outcome
 
@@ -199,16 +213,16 @@ No technical retry, queue, rollback, API, database or infrastructure behaviour i
 
 The L2 acquisition workflow is:
 
-`Acquisition Requested → Vendor Reference → Approval → Resource Received → Cataloguing → Library Copy Created`. fileciteturn191file0
+`Acquisition Requested → Vendor Reference → Approval → Resource Received → Cataloguing → Library Copy Created`.
 
 Acquisition sources include Purchase, Donation, Exchange, Institutional Publication and Government Distribution, and remain configurable.
 
-Vendor references may include Publisher, Book Supplier, Distributor and Donor. fileciteturn191file0
+Vendor references may include Publisher, Book Supplier, Distributor and Donor.
 
 The L2 state transition matrix defines:
 
 - Catalogue: `Draft → Verified → Published → Archived`
-- Library Copy: `Added → Available → Issued → Returned → Withdrawn`. fileciteturn192file0
+- Library Copy: `Added → Available → Issued → Returned → Withdrawn`.
 
 The scenario does not invent catalogue fields, copy identifiers, accession rules, barcode rules, or publication criteria.
 
@@ -226,7 +240,7 @@ The Catalogue follows its authoritative lifecycle:
 
 The Library Copy follows:
 
-`Added → Available → Issued → Returned → Withdrawn`. fileciteturn192file0
+`Added → Available → Issued → Returned → Withdrawn`.
 
 The scenario's endpoint is **Library Copy Created**. It does not silently advance the copy to Available unless the subsequent authoritative workflow explicitly performs that transition.
 

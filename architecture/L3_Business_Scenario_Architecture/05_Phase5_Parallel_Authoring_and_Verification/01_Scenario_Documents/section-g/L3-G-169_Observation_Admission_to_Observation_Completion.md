@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-169 |
+| Canonical Title | Observation Admission to Observation Completion |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional healthcare outcome in which a patient is determined to require observation care, is admitted into the institutional observation workflow, receives the required observation and monitoring within institutional scope, reaches an authorised observation outcome, and is released from observation.

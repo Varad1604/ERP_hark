@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-117 |
+| Canonical Title | Route Diversion Request to Emergency Operational Route |
+| Primary Owner | Transport Management |
+| Participating Domains | G, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the institutional response when an active transport route cannot safely or practically continue on its normal path and an emergency operational diversion is required.

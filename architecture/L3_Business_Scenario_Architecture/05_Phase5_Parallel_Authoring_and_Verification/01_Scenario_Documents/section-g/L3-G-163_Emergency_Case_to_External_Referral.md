@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-163 |
+| Canonical Title | Emergency Case to External Referral |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome in which an emergency case is assessed, immediate institutional medical response is provided, the need for external healthcare is determined, and an external referral is established and handed over as the authoritative next-care pathway.
@@ -23,7 +37,7 @@ The locked L2 defines Emergency & First Aid Management as the institutional resp
 
 `Incident Reported → Emergency Assessment → Immediate Treatment → Referral Decision → Patient Stabilised → Case Closed`.
 
-It also states that Institutional Health Services may refer patients to external hospitals, while hospital management remains outside G06. fileciteturn258file0turn263file0
+It also states that Institutional Health Services may refer patients to external hospitals, while hospital management remains outside G06.
 
 ## 3. Business Outcome
 
@@ -70,7 +84,7 @@ The external referral is established and the institutional emergency case has re
 
 Owns Emergency Case, emergency treatment, referral decision and institutional Referral.
 
-The L2 identifies Emergency Case and Referral as G06 aggregates and states that hospital ownership remains external. fileciteturn266file0
+The L2 identifies Emergency Case and Referral as G06 aggregates and states that hospital ownership remains external.
 
 ### Section C — Student Lifecycle
 
@@ -134,7 +148,7 @@ Emergency assessment determines that external healthcare referral is required.
 9. Record the referral against the Emergency Case/Medical Encounter.
 10. Establish the Referral as `Recommended`.
 
-The G06 Referral lifecycle is `Recommended → Accepted → Completed`. fileciteturn266file0
+The G06 Referral lifecycle is `Recommended → Accepted → Completed`.
 
 ### Phase C — Referral Coordination
 
@@ -216,9 +230,9 @@ The locked L2 establishes:
 - External hospital referral is supported.
 - Emergency categories remain configurable.
 - Medical professionals retain operational authority.
-- Every healthcare activity is auditable. fileciteturn266file0turn258file0
+- Every healthcare activity is auditable.
 
-The Referral aggregate owns referral reason, external provider, referral status and referral history. fileciteturn266file0
+The Referral aggregate owns referral reason, external provider, referral status and referral history.
 
 No institution-specific provider-selection matrix is invented.
 
@@ -226,17 +240,17 @@ No institution-specific provider-selection matrix is invented.
 
 Emergency Case follows the L2 lifecycle:
 
-`Reported → Assessment → Treatment → Referral (Optional) → Closed`. fileciteturn266file0
+`Reported → Assessment → Treatment → Referral (Optional) → Closed`.
 
 Referral follows:
 
-`Recommended → Accepted → Completed`. fileciteturn266file0
+`Recommended → Accepted → Completed`.
 
 This scenario may cross the emergency/referral boundary but does not own the external hospital's lifecycle.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-The retrieved locked L2 establishes that significant healthcare activities publish immutable domain events and identifies the Domain Events section as the authoritative event source. fileciteturn266file0
+The retrieved locked L2 establishes that significant healthcare activities publish immutable domain events and identifies the Domain Events section as the authoritative event source.
 
 For this draft, no new event name is invented for external referral.
 
@@ -267,7 +281,7 @@ Audit evidence should preserve:
 - Case closure.
 - Responsible medical professional.
 
-Every lifecycle transition must be audited. fileciteturn266file0
+Every lifecycle transition must be audited.
 
 ## 16. Completion Criteria and Postconditions
 

@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-139 |
+| Canonical Title | Lost Library Resource to Replacement Obligation |
+| Primary Owner | Library Management |
+| Participating Domains | G, F, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome in which a borrowed library resource is determined to be lost, the loss is recorded against the relevant circulation/resource context, the applicable replacement obligation is established under library policy, and the resulting financial/communication consequences are handed to the appropriate participating domains.
 
-The L2 return process explicitly supports Lost Resource Information, and Fine Management supports a Lost Resource fine category and Replacement Charge. fileciteturn189file0turn187file0
+The L2 return process explicitly supports Lost Resource Information, and Fine Management supports a Lost Resource fine category and Replacement Charge.
 
 Library Management owns operational loss handling and library fine/replacement obligation calculation. Finance owns accounting/payment execution.
 
@@ -194,7 +208,7 @@ Fine categories may include:
 - Damaged Resource.
 - Administrative Penalty.
 
-Categories remain configurable. fileciteturn187file0
+Categories remain configurable.
 
 Fine calculation may consider:
 
@@ -204,9 +218,9 @@ Fine calculation may consider:
 - Number of Days.
 - Institutional Policies.
 
-Calculation rules remain configurable. fileciteturn187file0
+Calculation rules remain configurable.
 
-Return processing may record Lost Resource Information, and historical circulation records remain immutable. fileciteturn189file0
+Return processing may record Lost Resource Information, and historical circulation records remain immutable.
 
 No replacement amount, depreciation rule, ownership-liability rule, or payment deadline is invented.
 
@@ -214,7 +228,7 @@ No replacement amount, depreciation rule, ownership-liability rule, or payment d
 
 The Fine lifecycle is:
 
-`Calculated → Pending → Paid / Waived → Closed`. fileciteturn192file0
+`Calculated → Pending → Paid / Waived → Closed`.
 
 The scenario establishes the calculated/pending financial obligation where a charge applies.
 
@@ -228,7 +242,7 @@ The Library Copy lifecycle remains authoritative and may subsequently require an
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-The available L2 service model explicitly supports Fine Services including Calculate Fine and Query Outstanding Fine, and Acquisition Services for introducing replacement resources, but procurement remains outside Library Management. fileciteturn192file0turn191file0
+The available L2 service model explicitly supports Fine Services including Calculate Fine and Query Outstanding Fine, and Acquisition Services for introducing replacement resources, but procurement remains outside Library Management.
 
 The available event material does not expose a dedicated canonical lost-resource event in the retrieved source. Therefore this draft does not invent `ResourceLost` or `ReplacementObligationCreated`.
 

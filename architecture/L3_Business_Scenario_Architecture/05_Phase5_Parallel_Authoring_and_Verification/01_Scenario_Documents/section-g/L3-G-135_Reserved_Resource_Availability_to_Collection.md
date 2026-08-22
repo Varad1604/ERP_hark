@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-135 |
+| Canonical Title | Reserved Resource Availability to Collection |
+| Primary Owner | Library Management |
+| Participating Domains | G, C, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome in which a reserved resource becomes available, the applicable reservation is identified according to configured waiting-list policy, the member is notified, and the reserved resource is collected.
@@ -23,7 +37,7 @@ The L2 reservation workflow is:
 
 `Reservation Requested → Waiting List → Copy Available → Member Notified → Collection → Reservation Closed`.
 
-Waiting-list information includes Queue Position, Reservation Date, Priority, Notification Status and Reservation Expiry. Reservation status values include Requested, Waiting, Ready for Collection, Collected, Expired and Cancelled, with status values remaining configurable. fileciteturn179file0turn180file0
+Waiting-list information includes Queue Position, Reservation Date, Priority, Notification Status and Reservation Expiry. Reservation status values include Requested, Waiting, Ready for Collection, Collected, Expired and Cancelled, with status values remaining configurable.
 
 ## 3. Business Outcome
 
@@ -197,15 +211,15 @@ The reservation allocation is resolved according to configured reservation/circu
 
 Reservation validation may consider Active Membership, Existing Borrowings, Reservation Limits, Resource Availability and Duplicate Reservations.
 
-Waiting lists support Queue Position, Reservation Date, Priority, Notification Status and Reservation Expiry. Queue-processing policies remain configurable. fileciteturn179file0turn180file0
+Waiting lists support Queue Position, Reservation Date, Priority, Notification Status and Reservation Expiry. Queue-processing policies remain configurable.
 
-Reservation statuses include Requested, Waiting, Ready for Collection, Collected, Expired and Cancelled. fileciteturn180file0
+Reservation statuses include Requested, Waiting, Ready for Collection, Collected, Expired and Cancelled.
 
 The canonical reservation lifecycle is:
 
 `Requested → Waiting → Available → Collected → Closed`.
 
-No local state or expiry rule is invented. fileciteturn183file0
+No local state or expiry rule is invented.
 
 ## 13. State and Lifecycle Impact
 
@@ -221,7 +235,7 @@ The scenario does not close the reservation after collection unless the authorit
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-The available L2 service model explicitly supports allocation of a reserved resource through Reservation Services. fileciteturn183file0
+The available L2 service model explicitly supports allocation of a reserved resource through Reservation Services.
 
 The retrieved event catalogue does not expose a dedicated reservation-availability/collection event name. Therefore this draft does not invent `ReservationAvailable`, `ReservationCollected`, or similar event names.
 
@@ -236,7 +250,7 @@ Business collaboration:
 
 Reservation allocation and collection follow configured library authorization.
 
-The G05 authorization model identifies Librarian and Circulation Desk as operational roles and supports delegated authority. fileciteturn173file0
+The G05 authorization model identifies Librarian and Circulation Desk as operational roles and supports delegated authority.
 
 The selected reservation, queue/priority basis, notification status, collection outcome and reservation history must be auditable.
 

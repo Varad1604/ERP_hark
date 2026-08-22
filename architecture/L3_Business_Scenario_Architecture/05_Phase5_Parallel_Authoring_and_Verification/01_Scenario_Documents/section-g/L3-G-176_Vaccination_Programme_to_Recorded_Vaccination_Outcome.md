@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-176 |
+| Canonical Title | Vaccination Programme to Recorded Vaccination Outcome |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Institutional vaccination programmes coordinate organised immunisation activity while preserving the institution's ownership of its own vaccination records and healthcare history. The scenario ensures that planned vaccination activity becomes an operational campaign, participants receive the applicable healthcare activity, and completed vaccination outcomes are recorded under G06.

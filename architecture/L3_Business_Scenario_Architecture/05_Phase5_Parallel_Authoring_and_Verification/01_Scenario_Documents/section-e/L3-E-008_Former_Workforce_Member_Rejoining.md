@@ -11,8 +11,21 @@
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
 **Depends On:** L2-E01 — Workforce & Engagement Workflows; L2-E02 — Position & Assignment Workflows where assignment consequences are involved  
-**Referenced By:** Future L4 System Behavior Specifications and materially participating downstream workforce consumers  
+**Referenced By:** Future L4 System Behavior Specifications and materially participating downstream workforce consumers
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-008 |
+| Canonical Title | Former Workforce Member Rejoining |
+| Primary Owner | Workforce & Engagement |
+| Participating Domains | E |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 Establish a new Workforce Engagement for a former workforce member while retaining the existing canonical Workforce Profile and all historical Workforce Engagements.
@@ -103,7 +116,7 @@ The historical Workforce Engagement(s) remain in their existing terminal/histori
 |---|---|---|
 | `WorkforceRejoined` | Workforce & Engagement | A former workforce member has rejoined through a new Workforce Engagement |
 
-L2-E01 defines `WorkforceRejoined` for WF-014. fileciteturn228file0L2-L2
+L2-E01 defines `WorkforceRejoined` for WF-014.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 Rejoining follows the applicable policy-driven appointment/workflow governance. The scenario preserves the distinction between a new engagement and the historical engagement. Business authorization and the rejoining decision must remain auditable; no unsupported approver or evidence requirement is invented.

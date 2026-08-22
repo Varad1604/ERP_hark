@@ -13,6 +13,20 @@
 **Depends On:** Locked L1 Business Domain Architecture; L2-F00 Finance Domain Model & Foundation; L2-F01 Student Charge & Fee Management; L2-F02 Payment Management Architecture; L2-F03 Refund Management  
 **Referenced By:** Payment Management; Student Charge & Fee Management; Accounting & General Ledger; Financial Reporting
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-014 |
+| Canonical Title | Refund Request to Approval or Rejection Decision |
+| Primary Owner | Refund Management |
+| Participating Domains | C, F |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern a refund request from its establishment through a governed approval or rejection decision while preserving Refund ownership, financial lineage, validation integrity, and the separation between Refund Management and enterprise approval ownership.

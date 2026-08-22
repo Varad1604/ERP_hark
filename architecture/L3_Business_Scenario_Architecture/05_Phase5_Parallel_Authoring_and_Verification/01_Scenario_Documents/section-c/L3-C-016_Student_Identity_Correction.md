@@ -33,15 +33,15 @@ The frozen Section C Stage 3 register defines:
 | Derivation | **KEEP** |
 | Construction Status | Not Authored |
 
-These values are preserved exactly and are not reclassified in this L3 document. fileciteturn83file0L2-L2
+These values are preserved exactly and are not reclassified in this L3 document.
 
 ## 1.2 Applicable Authoritative L2 Sources
 
 The principal authoritative sources for this scenario are:
 
-- **L2-C02 — Student Lifecycle & Activation Workflows**, which defines the Student Identity Correction Workflow as `WF-C02-15`. fileciteturn89file0L2-L2
-- **L2-A02 — Person & Identity Workflows**, which establishes Person and Identity as canonical platform identity concepts owned by A02 and states that business domains reference the canonical Person rather than creating independent person records. fileciteturn92file0L2-L2
-- The locked L2-C02 Student Aggregate ownership model, which makes Student Lifecycle the exclusive owner of the Student Aggregate and StudentContext. fileciteturn84file0L2-L2
+- **L2-C02 — Student Lifecycle & Activation Workflows**, which defines the Student Identity Correction Workflow as `WF-C02-15`.
+- **L2-A02 — Person & Identity Workflows**, which establishes Person and Identity as canonical platform identity concepts owned by A02 and states that business domains reference the canonical Person rather than creating independent person records.
+- The locked L2-C02 Student Aggregate ownership model, which makes Student Lifecycle the exclusive owner of the Student Aggregate and StudentContext.
 
 ## 1.3 Repository Filename
 
@@ -53,13 +53,27 @@ It is derived directly from the frozen canonical title under the Phase 5 filenam
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | `L3-C-016` |
+| Canonical Title | Student Identity Correction |
+| Primary Owner | Student Lifecycle |
+| Participating Domains | A, C |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Non-blocking for L3 Draft. |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the controlled correction of legally significant Student identity information after Student creation.
 
 The purpose is to correct a verified identity error without creating a new Student identity, changing immutable primary Student identifiers, bypassing the institutional approval process, or losing the historical values that existed before correction.
 
-The scenario is deliberately cross-domain because Student Lifecycle owns the Student-side identity information and correction outcome, while the platform's canonical Person & Identity domain owns Person and Identity lifecycles and provides the authoritative identity foundation consumed by business domains. L2-A02 states that Person is the canonical aggregate root for a real human within a Tenant and that business domains reference the canonical Person rather than creating independent person records. fileciteturn92file0L2-L2
+The scenario is deliberately cross-domain because Student Lifecycle owns the Student-side identity information and correction outcome, while the platform's canonical Person & Identity domain owns Person and Identity lifecycles and provides the authoritative identity foundation consumed by business domains. L2-A02 states that Person is the canonical aggregate root for a real human within a Tenant and that business domains reference the canonical Person rather than creating independent person records.
 
 ---
 
@@ -81,7 +95,7 @@ The outcome is **correction of an existing identity record**, not creation of a 
 
 The scenario begins when a Student or authorised institutional participant submits a governed request to correct legally significant Student identity information, with supporting evidence where required.
 
-The locked C02 workflow identifies the correction request as an administrative process and defines supporting-document verification and approval as part of the workflow. fileciteturn89file0L2-L2
+The locked C02 workflow identifies the correction request as an administrative process and defines supporting-document verification and approval as part of the workflow.
 
 ## 4.2 End Boundary
 
@@ -109,7 +123,7 @@ The locked C02 workflow explicitly includes:
 - Identity document replacement
 - Supporting-document verification
 - Approval workflow
-- Audit generation. fileciteturn89file0L2-L2
+- Audit generation.
 
 At L3, these are treated as business categories, not as database fields or technical payloads.
 
@@ -135,7 +149,7 @@ This scenario does not govern:
 - Technical API/service operational execution.
 - technical access control/IAM implementation.
 
-The locked C02 workflow explicitly excludes Student Number and Student ID modification and keeps admission, enrollment, academic assignment and lifecycle management outside the identity-correction workflow. fileciteturn89file0L2-L2
+The locked C02 workflow explicitly excludes Student Number and Student ID modification and keeps admission, enrollment, academic assignment and lifecycle management outside the identity-correction workflow.
 
 ## 4.5 Boundary with C-014 — Student Profile Update
 
@@ -155,7 +169,7 @@ C-016 must not be used to merge, replace, or create Student identities.
 
 ## 4.7 Boundary with L2-A02 — Person & Identity
 
-L2-A02 owns the canonical Person and Identity concepts. It states that Person is the root identity aggregate, that every human is represented by one canonical Person within a Tenant, and that business domains reference Person rather than creating independent person records. fileciteturn92file0turn93file0
+L2-A02 owns the canonical Person and Identity concepts. It states that Person is the root identity aggregate, that every human is represented by one canonical Person within a Tenant, and that business domains reference Person rather than creating independent person records.
 
 Therefore, C-016 does not redefine or duplicate the Person/Identity lifecycle.
 
@@ -172,7 +186,7 @@ Where a Student identity correction concerns a Person-owned canonical identity a
 
 ## 5.1 Student Lifecycle Ownership
 
-L2-C02 explicitly states that Student Lifecycle is the exclusive owner of the Student Aggregate and associated StudentContext. fileciteturn84file0L2-L2
+L2-C02 explicitly states that Student Lifecycle is the exclusive owner of the Student Aggregate and associated StudentContext.
 
 ## 5.2 Person & Identity Ownership
 
@@ -182,7 +196,7 @@ L2-A02 states:
 - Person is the canonical aggregate root;
 - PersonID is immutable;
 - business domains reference PersonID;
-- multi-domain writes into Person aggregates are prohibited. fileciteturn92file0turn93file0
+- multi-domain writes into Person aggregates are prohibited.
 
 ## 5.3 Ownership Rule for C-016
 
@@ -204,7 +218,7 @@ The locked C02 workflow defines the following business actors:
 | **Registrar** | Verify documentation and approve corrections. |
 | **Student Lifecycle Domain** | Validate and execute approved Student identity corrections. |
 
-The C02 workflow also identifies Document Services, Workflow Engine, Audit Platform and Notification Platform as participating capabilities. At L3, those are not treated as business actors with ownership; their technical responsibilities remain outside this scenario. fileciteturn89file0L2-L2
+The C02 workflow also identifies Document Services, Workflow Engine, Audit Platform and Notification Platform as participating capabilities. At L3, those are not treated as business actors with ownership; their technical responsibilities remain outside this scenario.
 
 The exact A02 business actor responsible for any Person/Identity-side canonical correction is not asserted here because the retrieved A02 source establishes ownership and lifecycle boundaries but does not expose a C-016-specific actor mapping.
 
@@ -226,9 +240,9 @@ All of the following business conditions must be satisfied:
 8. The correction does not attempt to modify an immutable primary Student identifier.
 9. Where the correction affects a canonical Person/Identity attribute, the correction respects the L2-A02 ownership boundary.
 
-The locked C02 workflow explicitly requires the Student to exist, the correction to be institutionally permitted, supporting documentation where required, active configuration, and a Student lifecycle state that permits identity correction. fileciteturn89file0L2-L2
+The locked C02 workflow explicitly requires the Student to exist, the correction to be institutionally permitted, supporting documentation where required, active configuration, and a Student lifecycle state that permits identity correction.
 
-L2-A02 additionally establishes immutable Person identity principles and prohibits downstream multi-domain writes into the Person aggregate. fileciteturn93file0
+L2-A02 additionally establishes immutable Person identity principles and prohibits downstream multi-domain writes into the Person aggregate.
 
 ---
 
@@ -245,7 +259,7 @@ The locked C02 workflow identifies the initiating business channels as:
 - Student Self-Service Portal, request-only
 - Workflow Engine
 
-At L3, these are interpreted as business initiation contexts rather than technical UI/API mechanisms. fileciteturn89file0L2-L2
+At L3, these are interpreted as business initiation contexts rather than technical UI/API mechanisms.
 
 The workflow receives a unique **Identity Correction Request Identifier** at the business-process level. The identifier's technical representation is outside L3.
 
@@ -269,7 +283,7 @@ The workflow receives a unique **Identity Correction Request Identifier** at the
 | 12 | Synchronize the approved correction to authorised dependent domains through the canonical architecture boundary. | Participating domains | Dependent references remain consistent. |
 | 13 | Complete the scenario. | Student Lifecycle | Student Identity Correction is complete. |
 
-The core sequence follows the locked C02 workflow: validate Student → validate requested correction → validate supporting documents → validate policy → execute approval → update approved identity attributes → preserve history → audit → publish `StudentIdentityCorrected` → synchronize dependent domains. fileciteturn89file0L2-L2
+The core sequence follows the locked C02 workflow: validate Student → validate requested correction → validate supporting documents → validate policy → execute approval → update approved identity attributes → preserve history → audit → publish `StudentIdentityCorrected` → synchronize dependent domains.
 
 ---
 
@@ -289,7 +303,7 @@ A restricted attribute such as Date of Birth, Gender, Reservation Category, or G
 
 The request proceeds only after the required evidence, policy validation and approval are satisfied.
 
-The locked C02 workflow classifies these attributes as correctable subject to institutional policy, with some marked restricted. fileciteturn89file0L2-L2
+The locked C02 workflow classifies these attributes as correctable subject to institutional policy, with some marked restricted.
 
 ## AF-03 — Identity Document Replacement
 
@@ -305,7 +319,7 @@ Where a correction affects an attribute that is canonical to Person/Identity rat
 
 The Student Lifecycle domain must not independently create a competing Person identity record or perform an unauthorised multi-domain write.
 
-L2-A02 explicitly states that Person is the canonical identity aggregate and that downstream business domains reference it rather than creating independent person records. fileciteturn92file0turn93file0
+L2-A02 explicitly states that Person is the canonical identity aggregate and that downstream business domains reference it rather than creating independent person records.
 
 ## AF-05 — Correction Rejected
 
@@ -331,7 +345,7 @@ The rejected request remains auditable.
 | Canonical Person/Identity ownership would be violated | Student-only update cannot safely complete. | Apply the authoritative A02 ownership/workflow boundary. |
 | Downstream dependent domain cannot yet reconcile the corrected identity | The Student correction remains the canonical business outcome; downstream reconciliation is handled through approved architecture contracts. | Resolve the dependent-domain business reconciliation without changing ownership. |
 
-The locked C02 workflow explicitly requires termination when the Student does not exist, evidence is invalid, institutional policy is violated, approval is rejected, authorization fails, configuration validation fails, or cross-tenant access is detected. It also states that failures shall not modify business state. fileciteturn89file0L2-L2
+The locked C02 workflow explicitly requires termination when the Student does not exist, evidence is invalid, institutional policy is violated, approval is rejected, authorization fails, configuration validation fails, or cross-tenant access is detected. It also states that failures shall not modify business state.
 
 No technical retry, queue, rollback, server failure, database recovery, or infrastructure exception is defined.
 
@@ -356,9 +370,9 @@ No technical retry, queue, rollback, server failure, database recovery, or infra
 | Identity integrity takes precedence over business convenience. | A02 | Conflicts are resolved in favour of canonical identity ownership. |
 | Corrected identity must be synchronised through approved business architecture boundaries. | C + A | Downstream domains consume canonical outcomes rather than becoming identity owners. |
 
-The C02 workflow explicitly states that Student Number and Student ID are not correctable through the identity-correction workflow. fileciteturn89file0L2-L2
+The C02 workflow explicitly states that Student Number and Student ID are not correctable through the identity-correction workflow.
 
-L2-A02 establishes immutable PersonID, one canonical Person per Tenant, business-domain reference to PersonID, and prohibition of multi-domain Person writes. fileciteturn93file0
+L2-A02 establishes immutable PersonID, one canonical Person per Tenant, business-domain reference to PersonID, and prohibition of multi-domain Person writes.
 
 ---
 
@@ -387,7 +401,7 @@ The identity correction changes authoritative identity information without chang
 
 Where the corrected attribute belongs to the canonical Person/Identity model, the correction must follow A02 ownership.
 
-L2-A02 defines Person as the canonical aggregate root and Identity as the identity associated with that Person. fileciteturn92file0turn94file0
+L2-A02 defines Person as the canonical aggregate root and Identity as the identity associated with that Person.
 
 C-016 does not introduce a competing Person state machine.
 
@@ -407,7 +421,7 @@ The locked C02 workflow defines:
 
 **`StudentIdentityCorrected`**
 
-as the domain event produced after successful identity correction. fileciteturn89file0L2-L2
+as the domain event produced after successful identity correction.
 
 The event is published by the Student Lifecycle workflow because Student Lifecycle owns the Student-side correction outcome.
 
@@ -424,7 +438,7 @@ L2-A02 defines Person and Identity as canonical identity concepts and publishes 
 - `PersonAnonymized`
 - `PersonDeleted`
 - `PersonMerged`
-- `PersonSplit`. fileciteturn94file0
+- `PersonSplit`.
 
 C-016 does **not** invent a new Person event.
 
@@ -440,7 +454,7 @@ Neither domain republishes the other's canonical event merely because it consume
 
 ## 14.4 Dependent Domain Synchronization
 
-The locked C02 workflow requires dependent domains to receive synchronised identity updates through approved Service Contracts or Domain Events. fileciteturn89file0L2-L2
+The locked C02 workflow requires dependent domains to receive synchronised identity updates through approved Service Contracts or Domain Events.
 
 At L3, the downstream implementation is not specified.
 
@@ -454,13 +468,13 @@ The identity correction must be performed within the institutionally authorised 
 
 The exact technical authorization mechanism is outside L3.
 
-The L2 C02 workflow requires the caller to be authenticated and authorised as a precondition. fileciteturn89file0L2-L2
+The L2 C02 workflow requires the caller to be authenticated and authorised as a precondition.
 
 ## 15.2 Approval
 
-The locked C02 workflow requires the identity correction approval workflow to execute before the approved identity attributes are changed. fileciteturn89file0L2-L2
+The locked C02 workflow requires the identity correction approval workflow to execute before the approved identity attributes are changed.
 
-The Registrar is identified as the actor responsible for verifying documentation and approving corrections. fileciteturn89file0L2-L2
+The Registrar is identified as the actor responsible for verifying documentation and approving corrections.
 
 No additional approval hierarchy is invented.
 
@@ -479,7 +493,7 @@ The C02 workflow requires audit records for:
 - Approval decision
 - Identity modification
 - Administrative override
-- Event publication. fileciteturn89file0L2-L2
+- Event publication.
 
 The audit evidence must preserve both the previous and corrected values.
 
@@ -593,11 +607,11 @@ The C02 workflow states that dependent domains are synchronised through approved
 
 | Assumption | Basis | Risk if Incorrect |
 |---|---|---|
-| C-016 corrects existing Student identity information rather than creating a new Student. | Frozen scenario title and locked C02 workflow. fileciteturn83file0L2-L2 fileciteturn89file0L2-L2 | Would require scenario-boundary change control. |
-| Student ID and Student Number remain immutable. | Locked C02 identity-correction workflow. fileciteturn89file0L2-L2 | Would contradict the authoritative L2 boundary. |
-| Person remains canonical to A02 and Student remains canonical to C02. | Locked A02/C02 ownership models. fileciteturn92file0L2-L2 fileciteturn84file0L2-L2 | Would require upstream ownership change control. |
-| `StudentIdentityCorrected` is the canonical Student-side correction event. | Locked C02 workflow. fileciteturn89file0L2-L2 | Event correction would require upstream architecture review. |
-| Previous identity values must remain historically traceable. | Locked C02 audit requirements and A02 identity-history principles. fileciteturn89file0L2-L2 fileciteturn94file0 | Would require explicit architecture exception. |
+| C-016 corrects existing Student identity information rather than creating a new Student. | Frozen scenario title and locked C02 workflow. | Would require scenario-boundary change control. |
+| Student ID and Student Number remain immutable. | Locked C02 identity-correction workflow. | Would contradict the authoritative L2 boundary. |
+| Person remains canonical to A02 and Student remains canonical to C02. | Locked A02/C02 ownership models. | Would require upstream ownership change control. |
+| `StudentIdentityCorrected` is the canonical Student-side correction event. | Locked C02 workflow. | Event correction would require upstream architecture review. |
+| Previous identity values must remain historically traceable. | Locked C02 audit requirements and A02 identity-history principles. | Would require explicit architecture exception. |
 
 Assumptions do not override locked architecture.
 
@@ -628,7 +642,7 @@ These questions should be resolved before L4 implementation specification where 
 | Derivation preserved | **PASS** |
 | Status = Draft | **PASS** |
 
-The frozen Stage 3 register confirms the complete C-016 identity and classification. fileciteturn83file0L2-L2
+The frozen Stage 3 register confirms the complete C-016 identity and classification.
 
 ## L2-C02 Workflow Validation
 
@@ -649,7 +663,7 @@ The locked workflow provides:
 - Cross-domain dependencies
 - Postconditions
 - Audit requirements
-- Completion outcomes. fileciteturn89file0L2-L2
+- Completion outcomes.
 
 ## L2-A02 Ownership Validation
 
@@ -661,7 +675,7 @@ A02 establishes:
 - one canonical Person per Tenant;
 - business-domain references to Person;
 - prohibition on multi-domain writes into Person;
-- identity integrity as higher priority than business convenience. fileciteturn92file0turn93file0
+- identity integrity as higher priority than business convenience.
 
 C-016 respects this boundary.
 
@@ -675,11 +689,11 @@ Publisher:
 
 **Student Lifecycle**.
 
-The event is explicitly defined by WF-C02-15. fileciteturn89file0L2-L2
+The event is explicitly defined by WF-C02-15.
 
 No new Person event is invented.
 
-A02's existing Person events remain A02-owned. fileciteturn94file0
+A02's existing Person events remain A02-owned.
 
 ## Lifecycle Validation
 

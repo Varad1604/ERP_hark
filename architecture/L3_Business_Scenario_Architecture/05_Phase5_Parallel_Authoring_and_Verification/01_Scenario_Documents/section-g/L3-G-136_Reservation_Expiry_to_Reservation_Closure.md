@@ -15,11 +15,25 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-136 |
+| Canonical Title | Reservation Expiry to Reservation Closure |
+| Primary Owner | Library Management |
+| Participating Domains | G, C, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete business outcome in which a library reservation reaches its configured expiry condition without producing the required collection outcome, the reservation is closed according to policy, and the resulting reservation status/history is preserved.
 
-The L2 explicitly supports Reservation Expiry as part of waiting-list information and provides Expired and Cancelled as supported reservation statuses. Reservation status values and queue-processing policies remain configurable. fileciteturn180file0
+The L2 explicitly supports Reservation Expiry as part of waiting-list information and provides Expired and Cancelled as supported reservation statuses. Reservation status values and queue-processing policies remain configurable.
 
 The scenario does not invent an expiry duration or automatic successor-reservation rule.
 
@@ -195,13 +209,13 @@ Reservation statuses include:
 - Expired.
 - Cancelled.
 
-Status values remain configurable. fileciteturn180file0
+Status values remain configurable.
 
 The canonical Reservation lifecycle is:
 
 `Requested → Waiting → Available → Collected → Closed`.
 
-This scenario uses the supported Expired operational status while preserving the canonical closure outcome. fileciteturn183file0
+This scenario uses the supported Expired operational status while preserving the canonical closure outcome.
 
 No fixed expiry duration, automatic cancellation rule, or automatic reassignment priority is invented.
 
@@ -219,7 +233,7 @@ No `Pending Expiry`, `Closure Pending`, or `Expired Pending Notification` state 
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-The retrieved L2 service model provides Reservation Services for Reserve Resource, Cancel Reservation, Allocate Reserved Resource and Query Reservation. fileciteturn183file0
+The retrieved L2 service model provides Reservation Services for Reserve Resource, Cancel Reservation, Allocate Reserved Resource and Query Reservation.
 
 The available event material does not expose a dedicated reservation-expiry or reservation-closure event name. Therefore no `ReservationExpired` or `ReservationClosed` event is invented.
 
@@ -234,7 +248,7 @@ Business collaboration:
 
 Reservation closure follows the configured library authorization model.
 
-The G05 authorization model identifies Librarian and Circulation Desk among the typical operational roles and supports delegated responsibility. fileciteturn173file0
+The G05 authorization model identifies Librarian and Circulation Desk among the typical operational roles and supports delegated responsibility.
 
 The reservation expiry condition, status change, closure outcome and relevant history must be auditable.
 

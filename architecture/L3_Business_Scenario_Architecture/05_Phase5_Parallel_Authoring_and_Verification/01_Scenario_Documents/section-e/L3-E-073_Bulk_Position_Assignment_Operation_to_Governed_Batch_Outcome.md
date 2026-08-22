@@ -11,7 +11,21 @@
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
 **Depends On:** L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-E02 — Position & Assignment Workflows; L2-B02 — Organisation Workflows; L2-E01 — Workforce & Engagement; L3 Phase 5 Template v2.0  
-**Referenced By:** None yet  
+**Referenced By:** None yet
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-E-073 |
+| Canonical Title | Bulk Position Assignment Operation to Governed Batch Outcome |
+| Primary Owner | Position & Assignment — People & Workforce |
+| Participating Domains | B — Institution & Structure; E — People & Workforce |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 

@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-083 |
+| Canonical Title | Curfew Exception to Authorised Late Entry |
+| Primary Owner | Hostel Management |
+| Participating Domains | G |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern an exception to an institution-defined hostel curfew so that a resident who cannot meet the normal return condition can receive an authorised late-entry outcome where hostel policy permits it.

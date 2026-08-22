@@ -13,6 +13,20 @@
 **Depends On:** L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-I01 Examination Policy & Configuration Workflows; L2-I02 Examination Session Management Workflows; L2-I03 Examination Planning & Scheduling Workflows; L2-I04 Examination Registration Workflows; applicable Student Lifecycle, Academic Delivery, Finance and Platform Foundation architecture  
 **Referenced By:** L2-I05 through L2-I16 where confirmed Examination Registration is consumed
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-032 |
+| Canonical Title | Duplicate Examination Registration to Single Valid Registration |
+| Primary Owner | Examination |
+| Participating Domains | Examination, Student Lifecycle, Academic Delivery, Finance |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Govern the resolution of duplicate Examination Registrations for the same candidate and examination participation scope so that exactly one valid registration remains authoritative while the duplicate registration does not become an independent downstream examination participation record.

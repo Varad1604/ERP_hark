@@ -33,7 +33,7 @@
 | Canonical Business Event | `AdmissionRevoked` |
 | Canonical Section | C — Student Lifecycle |
 
-The frozen Stage 3 Section C register identifies C-004 as **Admission Revocation**, Primary Owner **Admissions**, Participating Domain **C**, Scenario Type **Critical**, and Priority **P1**. fileciteturn72file0L2-L2
+The frozen Stage 3 Section C register identifies C-004 as **Admission Revocation**, Primary Owner **Admissions**, Participating Domain **C**, Scenario Type **Critical**, and Priority **P1**.
 
 ---
 
@@ -653,7 +653,7 @@ The L2 architecture requires institutional revocation authority and allows insti
 - Scenario Type: Critical
 - Priority: P1
 
-The frozen Section C register confirms these values. fileciteturn72file0L2-L2
+The frozen Section C register confirms these values.
 
 ## L2 Verification
 
@@ -673,15 +673,15 @@ The L2 source defines:
 - `Revoked` outcome;
 - `AdmissionRevoked` event;
 - audit obligations; and
-- cross-domain boundaries. fileciteturn73file0turn73file1 fileciteturn73file0turn73file2
+- cross-domain boundaries.
 
 ## Lifecycle Verification
 
-The canonical lifecycle identifies `Revoked` as a terminal state and permits policy-controlled revocation after Student creation. fileciteturn73file2turn73file4
+The canonical lifecycle identifies `Revoked` as a terminal state and permits policy-controlled revocation after Student creation.
 
 ## Post-Creation Ownership Verification
 
-The L2 architecture explicitly states that after `AdmissionRevoked` where Student Context exists, Student Lifecycle consumes the event and routes Student Context through its existing archival path; Admissions retains revocation ownership and does not modify Student Context. fileciteturn73file0
+The L2 architecture explicitly states that after `AdmissionRevoked` where Student Context exists, Student Lifecycle consumes the event and routes Student Context through its existing archival path; Admissions retains revocation ownership and does not modify Student Context.
 
 ## Event Verification
 
@@ -693,7 +693,7 @@ Canonical publisher:
 
 **Admissions**
 
-The Revocation workflow separately identifies incoming/trigger facts such as `RevocationRequested`, `FraudDetected`, `CourtOrderReceived`, and `GovernmentDirectiveReceived`. fileciteturn73file0
+The Revocation workflow separately identifies incoming/trigger facts such as `RevocationRequested`, `FraudDetected`, `CourtOrderReceived`, and `GovernmentDirectiveReceived`.
 
 ## Business Rule Verification
 
@@ -705,7 +705,7 @@ The L2 rules establish:
 - no deletion;
 - audit generation;
 - termination of remaining Admission workflows; and
-- idempotent revocation. fileciteturn73file0
+- idempotent revocation.
 
 ## Implementation Leakage Check
 

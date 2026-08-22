@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-141 |
+| Canonical Title | Acquisition Request to Approved Library Resource Procurement Reference |
+| Primary Owner | Library Management |
+| Participating Domains | G, E, F |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional outcome in which Library Management identifies and submits a need to acquire a library resource, records the acquisition request and vendor reference, obtains the required approval, and establishes the approved procurement reference for subsequent resource receipt.
@@ -23,7 +37,7 @@ The locked L2 states that Acquisition and Cataloguing govern introduction of new
 
 `Acquisition Requested → Vendor Reference → Approval → Resource Received → Cataloguing → Library Copy Created`.
 
-Acquisition sources may include Purchase, Donation, Exchange, Institutional Publication and Government Distribution, and remain configurable. fileciteturn191file0
+Acquisition sources may include Purchase, Donation, Exchange, Institutional Publication and Government Distribution, and remain configurable.
 
 ## 3. Business Outcome
 
@@ -78,7 +92,7 @@ Participates where personnel/employee context is required by the frozen scenario
 
 Participates in financial/procurement governance as applicable. Finance ownership remains limited to its authoritative financial responsibilities.
 
-The L2 explicitly states Procurement remains outside Library Management. fileciteturn191file0
+The L2 explicitly states Procurement remains outside Library Management.
 
 ## 6. Business Actors, Roles and Responsibilities
 
@@ -130,7 +144,7 @@ Library Management initiates an acquisition request for a new library resource.
 8. Validate the acquisition information against applicable library policy.
 9. Establish the acquisition record for approval.
 
-The L2 permits operational references for Publisher, Book Supplier, Distributor and Donor. fileciteturn191file0
+The L2 permits operational references for Publisher, Book Supplier, Distributor and Donor.
 
 ### Phase C — Approval
 
@@ -204,7 +218,7 @@ The locked L2 establishes:
 - Procurement remains outside Library Management.
 - Acquisition sources are configurable.
 - Vendor references may cover Publisher, Book Supplier, Distributor and Donor.
-- Approval is a defined stage of the acquisition workflow. fileciteturn191file0
+- Approval is a defined stage of the acquisition workflow.
 
 The acquisition workflow is:
 
@@ -237,7 +251,7 @@ The retrieved L2 material does not expose a dedicated canonical acquisition-requ
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-Approval is explicitly part of the L2 acquisition workflow. fileciteturn191file0
+Approval is explicitly part of the L2 acquisition workflow.
 
 The request, acquisition source, vendor/reference information, approval decision, approving authority and resulting procurement reference must be auditable.
 

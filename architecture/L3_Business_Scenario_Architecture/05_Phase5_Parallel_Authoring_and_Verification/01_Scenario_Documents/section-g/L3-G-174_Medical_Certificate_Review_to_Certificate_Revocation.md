@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-174 |
+| Canonical Title | Medical Certificate Review to Certificate Revocation |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 An issued medical certificate may subsequently require revocation under the institution's authorised healthcare policy. Because medical certificates are healthcare records, revocation must preserve historical traceability while clearly establishing that the certificate is no longer valid for future institutional use.

@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-104 |
+| Canonical Title | Trip Planning to Ready Transport Trip |
+| Primary Owner | Transport Management |
+| Participating Domains | G, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 This scenario governs planning of a transport trip until it reaches the canonical Ready trip state. G04 defines Trip as an aggregate owning Trip Schedule, Vehicle Assignment, Driver Assignment, Trip Execution and Trip Completion.
 

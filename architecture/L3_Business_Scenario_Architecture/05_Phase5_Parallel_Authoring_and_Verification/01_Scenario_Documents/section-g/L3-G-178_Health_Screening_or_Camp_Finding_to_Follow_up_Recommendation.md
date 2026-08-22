@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-178 |
+| Canonical Title | Health Screening or Camp Finding to Follow-up Recommendation |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G, C, E, H |
+| Scenario Type | Cross-domain |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Health screening and health camp activities can identify a participant condition that cannot be treated as merely a completed programme observation. The institution needs a governed way to recognise a material finding, assess its significance within institutional healthcare operations, and establish an appropriate follow-up recommendation when further care is required.

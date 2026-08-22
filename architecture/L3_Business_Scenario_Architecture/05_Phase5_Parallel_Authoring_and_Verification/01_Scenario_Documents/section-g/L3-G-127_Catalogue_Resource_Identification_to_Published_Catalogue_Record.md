@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-127 |
+| Canonical Title | Catalogue Resource Identification to Published Catalogue Record |
+| Primary Owner | Library Management |
+| Participating Domains | G, E, H |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the complete institutional process through which a library resource is identified, its bibliographic information is prepared and classified, the catalogue record is reviewed/approved, and the resource becomes a Published Catalogue Record.

@@ -11,7 +11,21 @@
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
 **Depends On:** L2-F00 — Finance Domain Model & Foundation; L2-F01 — Student Charge & Fee Management; authoritative source-domain business events for cancellation/suspension/resumption; applicable downstream Financial Adjustment / Refund architecture where consequences arise  
-**Referenced By:** Payment, Receivable, Refund, Accounting and Reporting consumers as applicable  
+**Referenced By:** Payment, Receivable, Refund, Accounting and Reporting consumers as applicable
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-F-003 |
+| Canonical Title | Student Charge to Cancelled, Suspended, or Resumed Obligation |
+| Primary Owner | Student Charge & Fee Management |
+| Participating Domains | C — Student Lifecycle; F — Finance; G — Institutional Services; I — Engagement, Communication & Experience |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 
 ## 2. Scenario Purpose
 
@@ -149,15 +163,13 @@ Authoritative L2-F01 rules applied by this scenario include:
 - Student Charge remains the canonical financial obligation.
 - Payment and accounting remain separate responsibilities from Student Charge lifecycle.
 
-fileciteturn125file0turn126file0turn127file0
-
 No new state or transition is invented.
 
 ## 13. State and Lifecycle Impact
 
 L2-F01 provides the following canonical state vocabulary, including:
 
-`Draft`, `Pending Validation`, `Validated`, `Published`, `Active`, `Suspended`, `Cancelled`, `Waived`, `Written Off`, `Disputed`, `Closed`, `Archived`. fileciteturn125file0
+`Draft`, `Pending Validation`, `Validated`, `Published`, `Active`, `Suspended`, `Cancelled`, `Waived`, `Written Off`, `Disputed`, `Closed`, `Archived`.
 
 This scenario uses the relevant states:
 
@@ -185,7 +197,7 @@ Student Charge & Fee Management publishes canonical Student Charge lifecycle eve
 - `ChargeClosureCompleted`
 - `ChargeArchivalCompleted`
 
-The accessible L2-F01 source does not define a dedicated cancellation/suspension/resumption event name in its canonical event list. Therefore this scenario does not invent one. fileciteturn126file0
+The accessible L2-F01 source does not define a dedicated cancellation/suspension/resumption event name in its canonical event list. Therefore this scenario does not invent one.
 
 ### 14.2 Business Contracts and Cross-Domain Hand-offs
 
@@ -205,7 +217,7 @@ Finance applies the resulting state transition under Student Charge governance.
 
 The state change, source business cause, resulting financial state and downstream financial consequence must remain traceable.
 
-L2-F01 explicitly includes lifecycle/state changes in its audit participation and requires historical financial information to remain immutable and reconstructable. fileciteturn126file0turn127file0
+L2-F01 explicitly includes lifecycle/state changes in its audit participation and requires historical financial information to remain immutable and reconstructable.
 
 No Finance-specific actor/approval role is invented because L2-F01 does not establish one.
 

@@ -13,6 +13,20 @@
 **Depends On:** Locked L1 Business Domain Architecture; L2-I01 Examination Policy & Configuration; L2-I04 Examination Registration Workflows; applicable Student, Curriculum/Academic Delivery, Finance, Examination Session and Examination Schedule architecture  
 **Referenced By:** Downstream examination workflows consuming approved/confirmed registrations
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-I-026 |
+| Canonical Title | Examination Registration Rejection or Ineligibility Outcome |
+| Primary Owner | Examination Registration |
+| Participating Domains | C, D, F, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 This scenario governs the business outcome when an Examination Registration cannot proceed because the candidate or requested registration scope is not eligible, or because a required institutional registration condition is not satisfied.

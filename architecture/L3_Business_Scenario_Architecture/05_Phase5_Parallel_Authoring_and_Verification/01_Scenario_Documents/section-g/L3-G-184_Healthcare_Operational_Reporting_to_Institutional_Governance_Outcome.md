@@ -15,6 +15,20 @@
 
 ---
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | L3-G-184 |
+| Canonical Title | Healthcare Operational Reporting to Institutional Governance Outcome |
+| Primary Owner | Institutional Health Services |
+| Participating Domains | G |
+| Scenario Type | Simple |
+| Priority | P1 |
+| Status | Draft |
+
+This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+
 ## 2. Scenario Purpose
 
 Institutional Health Services produces operational information covering healthcare activity such as consultations, emergency care, referrals, health programmes, vaccination activity, annual health checkups and other institutional medical operations.
