@@ -3,7 +3,7 @@
 | Attribute | Value |
 |---|---|
 | Target | L2-C04 — Student Academic Progression Workflows |
-| Amendment Version | 1.1.0 |
+| Amendment Version | 1.1.1 |
 | Status | Locked |
 | Effective Date | 2026-08-22 |
 | Approved Through | ADR-STU-PROG-EVT-001 |
@@ -29,6 +29,7 @@ The following names appearing in earlier sections of the original L2-C04 text ar
 |---|---|
 | `StudentConditionallyProgressed` | `ConditionalPromotionGranted` |
 | `StudentPlacedOnProbation` | `AcademicProbationAssigned` |
+| `StudentOnProbation` | `AcademicProbationAssigned` |
 | `StudentDetained` | `AcademicDetentionApplied` |
 
 The superseded names do not represent additional business events and must not be published independently by downstream architecture.
@@ -45,4 +46,4 @@ L3 scenarios concerning conditional promotion, probation, detention, progression
 
 ## 5. Unaffected Architecture
 
-No other L2-C04 event, workflow, aggregate, lifecycle state, rule, domain ownership, or dependency is changed by this amendment.
+No other L2-C04 event, workflow, aggregate, lifecycle state, rule, domain ownership, or dependency is changed by this amendment. Existing events such as `ProgressionEvaluated`, `StudentProgressed`, and `QualificationEligibilityUpdated` retain their existing semantics where used by the original workflow.
