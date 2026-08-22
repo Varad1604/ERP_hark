@@ -7,254 +7,162 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Draft  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Varad  
-**Last Updated:** 2026-08-20  
-**Depends On:** `L2-C04_Student_Academic_Progression_Workflows.md`; applicable Student Lifecycle context; official Examination outcomes where probation review requires them  
+**Last Updated:** 2026-08-22  
+**Depends On:** `L2-C04_Student_Academic_Progression_Workflows.md` as amended by `L2-C04_Student_Academic_Progression_Workflows_Amendment_2026-08-22.md`; applicable Student Lifecycle context; official Examination outcomes where probation review requires them  
 **Referenced By:** L3-C-027, L3-C-028
 
 ## 1. Scenario Metadata
 
 Frozen identity: C030 — Academic Probation Management and Resolution; Primary Owner Academic Progression; Participating Domains C and I; Critical; P1; KEEP.
 
----
-
 ## 2. Scenario Purpose
 
-This scenario governs the institutional lifecycle of a Student placed on **Academic Probation**, including establishment of probation conditions, review of academic progress, and authoritative resolution of the probation outcome.
+Govern the institutional lifecycle of a Student placed on **Academic Probation**, including establishment of probation conditions, review of academic progress, and authoritative resolution of the probation outcome.
 
-L2-C04 defines Academic Probation as a policy-governed monitoring lifecycle and permits resolution through return to Progressed or escalation to Detained.
-
----
+The canonical probation-assignment event vocabulary is governed by `ADR-STU-PROG-EVT-001`.
 
 ## 3. Business Outcome
 
-The Student's Academic Probation has been authoritatively reviewed and resolved as one of the governed outcomes:
-
-- **Progressed** after a successful review; or
-- **Detained** after an unsuccessful review.
-
-The probation record and its resolution remain part of the Student's auditable academic progression history.
-
----
+The Student's Academic Probation is authoritatively reviewed and resolved as either **Progressed** after successful review or **Detained** after unsuccessful review. Probation history remains auditable.
 
 ## 4. Scenario Boundary and Scope
 
 ### 4.1 Start Boundary
-
-The scenario begins when Academic Progression authoritatively assigns the Student to **Academic Probation**.
+The scenario begins when Academic Progression authoritatively assigns Academic Probation.
 
 ### 4.2 End Boundary
-
-The scenario ends when the probation review establishes either successful progression or detention.
+The scenario ends when the probation review establishes Progressed or Detained.
 
 ### 4.3 In Scope
-
-- Establishing probation conditions.
-- Academic monitoring at the business level.
-- Periodic review.
-- Evaluation of probation conditions.
-- Return to Progressed.
-- Escalation to Detained.
-- Probation history and evidence.
+- Establish probation conditions.
+- Conduct business-level monitoring and review.
+- Evaluate authoritative academic evidence.
+- Resolve to Progressed or Detained.
+- Preserve probation history and evidence.
 
 ### 4.4 Out of Scope
-
-- The progression evaluation that initially assigned probation.
-- Creation/correction of examination results.
+- Original progression evaluation.
+- Examination result creation/correction.
 - Definition of probation policy.
 - Detention workflow after escalation.
-- Technical monitoring, scheduling, notifications or retry mechanisms.
+- Technical monitoring, scheduling, notifications, retries, APIs or infrastructure.
 
 ### 4.5 Related Scenarios
-
-| Relationship | Related Scenario | Reason |
-|---|---|---|
-| Preceded by | L3-C-027 Student Academic Progression Decision | May establish Academic Probation. |
-| May be preceded by | L3-C-029 Conditional Promotion Condition Fulfilment | Failed Conditional Progression conditions may lead to Probation. |
-| Followed by | L3-C-031 Academic Detention and Repeat Determination | Receives the unsuccessful-review outcome. |
-
----
+| Relationship | Related Scenario |
+|---|---|
+| Preceded by | L3-C-027 Student Academic Progression Decision |
+| May be preceded by | L3-C-029 Conditional Promotion Condition Fulfilment |
+| Followed by | L3-C-031 Academic Detention and Repeat Determination |
 
 ## 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
+| Domain / Section | Responsibility |
 |---|---|
-| Academic Progression | Owns Academic Probation, its conditions, review and resolution. |
-| Student Lifecycle (C) | Provides/consumes Student lifecycle context as required; does not own probation. |
-| Examination (I) | Provides official academic outcomes where they are relevant to probation review. |
-
-Academic Progression remains the canonical owner.
-
----
+| Academic Progression | Owns probation conditions, review, resolution, and canonical progression outcomes. |
+| Student Lifecycle (C) | Provides/consumes Student context where required; does not own probation. |
+| Examination (I) | Provides official academic outcomes where relevant. |
 
 ## 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
+| Actor / Role | Responsibility | Authority |
 |---|---|---|
-| Academic Progression | Establishes probation conditions, conducts the governed review, and records resolution. | Canonical owner. |
-| Examination | Provides official academic outcomes where applicable. | Source of academic outcome. |
-| Student Lifecycle | Consumes resulting Student lifecycle consequence where applicable. | Participant; not progression decision owner. |
+| Academic Progression | Establishes probation, reviews conditions and determines resolution. | Canonical decision owner. |
+| Examination | Supplies official academic evidence. | Evidence owner only. |
+| Student Lifecycle | Consumes relevant lifecycle consequences. | Participant only. |
 
-The authoritative source does not establish a universal probation-specific role name, so none is invented.
-
----
+No universal probation-specific human role is invented.
 
 ## 7. Preconditions and Entry Criteria
 
-- Student is in **Academic Probation**.
-- Probation conditions have been established.
-- The applicable progression policy governs the review.
-- Relevant official academic evidence is available where required.
-- The Student's academic history remains available for review.
-
----
+- Student is in Academic Probation.
+- Applicable conditions and progression policy are established.
+- Required authoritative academic evidence is available or its absence can be determined.
 
 ## 8. Trigger
 
-**Probation review becomes due under the applicable institutional policy.**
-
----
+Probation review becomes due under the applicable institutional policy.
 
 ## 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
+| Step | Business Behaviour | Owner | Result |
 |---|---|---|---|
-| 1 | Identify the active probation conditions and review basis. | Academic Progression | Review scope is established. |
-| 2 | Evaluate current authoritative academic evidence against the probation conditions. | Academic Progression / Examination | Evidence is assessed. |
-| 3 | Determine whether the Student has satisfied the probation requirements. | Academic Progression | Review decision is established. |
-| 4 | Where the review passes, transition the Student to **Progressed**. | Academic Progression | Probation is successfully resolved. |
-| 5 | Record the review outcome and preserve probation history. | Academic Progression | Institutional evidence is complete. |
-
----
+| 1 | Identify active probation conditions and review basis. | Academic Progression | Review scope established. |
+| 2 | Evaluate authoritative academic evidence. | Academic Progression / Examination | Evidence assessed. |
+| 3 | Determine whether probation requirements are satisfied. | Academic Progression | Review decision established. |
+| 4 | If passed, establish Progressed. | Academic Progression | Probation successfully resolved. |
+| 5 | Preserve review outcome and history. | Academic Progression | Audit evidence complete. |
 
 ## 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| A1 | Review fails | Transition the Student to **Detained** under the C04 state transition. | Detention established. | Academic Progression |
-| A2 | Required academic evidence is not yet authoritative | Defer the review outcome until valid evidence exists. | Probation remains unresolved. | Academic Progression |
-
----
+| Condition | Business Path | Result |
+|---|---|---|
+| Review fails | Establish Detained under the canonical C04 lifecycle. | Detention established. |
+| Required evidence is not authoritative | Defer final outcome where policy permits. | Probation remains unresolved. |
 
 ## 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Required official examination evidence is unavailable | Review cannot establish a final academic outcome. | Continue the governed probation lifecycle until authoritative evidence is available, where policy permits. | Academic Progression / Examination |
-| Probation requirements are not satisfied | Student cannot return to Progressed. | Transition to Detained under the canonical C04 lifecycle. | Academic Progression |
-| Authoritative academic evidence changes through an approved process | Previous review basis may no longer be sufficient. | Conduct the governed fresh evaluation where policy permits; preserve historical records. | Academic Progression |
+| Situation | Resolution |
+|---|---|
+| Required evidence unavailable | Continue governed probation lifecycle until authoritative evidence is available where policy permits. |
+| Requirements not satisfied | Transition to Detained through the canonical C04 path. |
+| Authoritative evidence changes | Conduct a governed fresh evaluation where policy permits; preserve history. |
 
-No technical recovery behaviour is specified.
-
----
+No technical recovery mechanics are defined.
 
 ## 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| Probation is policy governed. | Academic Progression | Conditions and review must follow the applicable institutional policy. | L2-C04 APW-05 |
-| Probation may include academic counselling, credit targets and performance monitoring. | Academic Progression | Review evaluates the policy-defined probation conditions. | L2-C04 APW-05 |
-| A failed probation review transitions to Detained. | Academic Progression | Unsuccessful resolution leaves the probation lifecycle through the canonical Detained path. | L2-C04 §4.4 |
-| Historical progression decisions remain immutable. | Academic Progression | Review does not erase historical decisions. | L2-C04 progression rules |
-
-No new probation rule is introduced.
-
----
+- Probation is policy governed by Academic Progression.
+- Failed probation review may transition to Detained.
+- Historical progression decisions remain immutable.
+- Only authoritative academic evidence may determine the outcome.
+- L3 does not create a new probation rule or approver.
 
 ## 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Academic Probation | Academic Probation | Review passes. | Progressed. | Academic Progression | L2-C04 §4.4 |
-| Academic Probation / Academic Detention | Academic Probation | Review fails. | Detained. | Academic Progression | L2-C04 §4.4 |
+| Concept | Entry | Result | Owner |
+|---|---|---|---|
+| Academic Probation | Academic Probation | Progressed when review passes. | Academic Progression |
+| Academic Probation | Academic Probation | Detained when review fails. | Academic Progression |
 
----
+No new lifecycle state is introduced.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-### 14.1 Published / Consumed Business Events
+| Event | Canonical Publisher | Purpose |
+|---|---|---|
+| Applicable official examination-result event | Examination | Supplies authoritative academic evidence. |
+| `AcademicProbationAssigned` | Academic Progression | Canonical publication that Academic Probation has been assigned. |
+| `StudentProgressed` | Academic Progression | Communicates successful resolution to Progressed. |
+| `AcademicDetentionApplied` | Academic Progression | Canonical publication of an unsuccessful probation outcome that results in detention. |
 
-| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
-|---|---|---|---|---|
-| Applicable official examination result event | Examination | Academic Progression | Supplies official academic evidence where required. | L2-C04 APW-01 trigger semantics |
-| `StudentProgressed` | Academic Progression | Downstream consumers | Communicates successful resolution to Progressed. | L2-C04 APW-01 |
-| `StudentDetained` | Academic Progression | Registration / relevant downstream consumers | Communicates unsuccessful probation resolution. | L2-C04 APW-01 |
-
-No dedicated `ProbationResolved` event is invented.
-
-### 14.2 Synchronous / Business Hand-off
-
-Student Lifecycle and Examination contribute authoritative business information; they do not modify Academic Probation ownership.
-
----
+Under `ADR-STU-PROG-EVT-001`, `StudentPlacedOnProbation` and `StudentOnProbation` are superseded aliases of `AcademicProbationAssigned`; `StudentDetained` is a superseded alias of `AcademicDetentionApplied`. They are not parallel canonical events.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-Probation decisions remain governed by institutional progression policy.
-
-The review outcome must be auditable, including the business basis for the decision and the resulting lifecycle transition.
-
-Any manual intervention must use the upstream authorized institutional approval model. This scenario does not invent a role or technical access-control structure.
-
----
+Probation decisions remain governed by approved institutional progression policy. The review basis, decision and lifecycle outcome must remain auditable. No technical IAM/RBAC model is introduced.
 
 ## 16. Completion Criteria and Postconditions
 
-### Successful Resolution
-
-- probation conditions have been reviewed;
-- review passes under the applicable policy;
-- Student transitions to Progressed;
-- probation history is preserved and auditable.
-
-### Unsuccessful Resolution
-
-- review failure is established;
-- Student transitions to Detained;
-- detention processing becomes the responsibility of C031.
-
-The scenario stops at the resulting lifecycle state.
-
----
+C030 completes when the probation review is authoritatively resolved as Progressed or Detained, the applicable canonical Academic Progression outcome is recorded/published, and history remains preserved.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
-### Open Issues
+**Open issues:** Exact probation review cadence and universal named human approval role remain policy/institution specific where upstream architecture does not fix them.
 
-**OI-C030-01 — Exact probation review cadence is not fully specified in the available C04 source.**
+**Resolved upstream issue:** Canonical probation/detention event vocabulary is resolved by `ADR-STU-PROG-EVT-001` and the locked L2-C04 amendment effective 2026-08-22.
 
-**OI-C030-02 — Exact probation authority/actor is not defined as a universal named role.** No role is invented at L3.
+**Assumptions:** Academic Progression owns probation and its outcomes; Examination owns official examination evidence.
 
-**OI-C030-03 — No dedicated probation-resolution event is established in the available C04 event catalogue.** Existing progression outcome events are used without renaming or inventing events.
-
-### Assumptions
-
-1. Academic Progression owns the probation lifecycle.
-2. A Student already in Academic Probation is the entry condition.
-3. Examination remains authoritative for official academic outcomes.
-4. Detention escalation is handled by C031.
-
-### Deferred Questions
-
-- Institution-specific probation review schedule.
-- Exact condition catalogue.
-- Exact approval authority.
-- Whether a dedicated probation-resolution event should be introduced through architecture change control.
-
+**Deferred:** Institution-specific cadence and detailed approval routing.
 
 ## Production Authoring / Verification Checklist
 
-- [x] Final L3 ID and canonical title preserved from Stage 3 / Stage 4.
-- [x] Primary Owner, Participating Domains, Scenario Type and Priority preserved.
-- [x] Exact Phase 5 filename follows the locked naming rule.
-- [x] Applicable locked L2-C04 source governs workflow, ownership, rules, states and events.
-- [x] Academic Progression remains canonical owner of the progression outcome and related lifecycle.
-- [x] Student Lifecycle and Examination remain participating domains without ownership transfer.
-- [x] No new actor, authority, rule, state, event publisher or dependency is invented.
-- [x] Business failure/recovery is expressed only at business level.
-- [x] No APIs, database design, services, classes, Business Data Structures, UI, infrastructure or technical access control/IAM are introduced.
-- [x] Cross-domain events remain distinct from synchronous business hand-offs.
-- [x] Material upstream ambiguity is explicitly recorded in Section 17.
-- [x] All 17 locked template sections are present.
-- [x] Status is `Draft` because Phase 5 authoring cannot self-approve or self-lock a scenario.
+- [x] Frozen ID, title, owner, domains, type and priority preserved.
+- [x] Locked L2-C04 amendment and ADR consumed.
+- [x] Canonical `AcademicProbationAssigned` and `AcademicDetentionApplied` vocabulary used.
+- [x] Academic Progression remains canonical publisher.
+- [x] No duplicate event publisher or technical implementation detail introduced.
+- [x] All 17 mandatory sections present.
+- [x] Status remains Draft pending normal architecture review.
