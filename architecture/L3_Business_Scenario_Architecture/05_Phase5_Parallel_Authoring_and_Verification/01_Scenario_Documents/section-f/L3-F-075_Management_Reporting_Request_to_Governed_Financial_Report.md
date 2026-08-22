@@ -11,25 +11,17 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-F13 — Financial Reporting & Analytics; L2-H07 — Enterprise Dashboard; L2-A04 — Authorization & Policy; L2-A07 — Audit Infrastructure  
-**Referenced By:** Authorized institutional leadership and governed dashboard consumers
-
----
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-F13 — Financial Reporting & Analytics Workflows; L2-H07 — Enterprise Dashboard Workflows  
+**Referenced By:** Authorized institutional management reporting and dashboard consumption
 
 # 2. Scenario Purpose
 
-Produce an authorized, reproducible management financial report from canonical Finance facts for leadership consumption without allowing reporting or dashboards to become a transactional source of truth.
-
----
+Produce a governed and reproducible management financial report from authoritative Finance information for an authorized leadership need, while preserving source-domain ownership and keeping any dashboard composition within H07.
 
 # 3. Business Outcome
 
 A reproducible governed financial report is produced from authoritative Finance data
-
-Source assessment: `PASS`.
-
----
 
 # 4. Scenario Boundary and Scope
 
@@ -39,175 +31,151 @@ Authorized leadership requires budget, receivable, payable, cash, aid, asset, or
 
 ## 4.2 End Boundary
 
-A validated and, where policy requires, Published management report is available to the authorized requester with definition, period, parameter, input and version traceability.
+The scenario ends when a governed Financial Report has been produced from canonical Finance information with its reporting period, definition/configuration context and source traceability preserved. Where the output is officially released, it follows the canonical validation and publication path.
 
 ## 4.3 In Scope
 
-- Request authorization and scope.
-- Report definition, parameters and period resolution.
-- Read-only canonical Finance input collection.
-- Generation, validation and authorized release.
-- Reproducibility and audit evidence.
+- Resolution of the management reporting requirement.
+- Selection of the governed Report Definition and reporting period.
+- Read-only consumption of authoritative Finance facts.
+- Report generation and, where applicable, validation/publication.
+- Preservation of reproducibility and report lineage.
+- H07 consumption where dashboard presentation is required.
 
 ## 4.4 Out of Scope
 
-- Financial transaction creation or correction.
-- Dashboard composition, widgets, layout or presentation.
-- Statutory submission.
-- BI tool, query engine, API or storage design.
-
-## 4.5 Related Scenarios
-
-| Relationship | Scenario | Boundary |
-|---|---|---|
-| Related | L3-F-077 — KPI and Dashboard Projection | Publishes reusable metrics/projections rather than one governed report request. |
-| Related | H07 Enterprise Dashboard | Composes authorized presentation; it does not own financial report meaning. |
-
----
+- Changing any operational Finance fact.
+- Defining dashboard composition, layout, widgets, audience or publication.
+- Inventing a canonical leadership requester, reviewer or publisher role where F13/H07 do not define one.
+- Statutory submission and regulatory acknowledgement.
 
 # 5. Ownership and Participating Domains
 
-| Domain | Responsibility |
+| Domain / Section | Responsibility in Scenario |
 |---|---|
-| Financial Reporting & Analytics / F | Owns report definition, generation, validation, publication and reproducibility. |
-| Operational Finance domains / F | Own canonical budget, AR, AP, treasury, aid, asset and Ledger facts. |
-| Enterprise Dashboard / H | Presents authorized information without owning financial meaning. |
-| Authorization & Policy / A | Supplies access decisions. |
-| Audit Infrastructure / A | Preserves immutable evidence. |
-
----
+| Financial Reporting & Analytics / F | Owns Financial Report generation, validation, publication, reporting definitions and report reproducibility. |
+| Applicable Finance capabilities / F | Retain ownership of budget, receivable, payable, treasury, aid, asset and other canonical financial facts. |
+| Enterprise Dashboard / H07 | May consume governed Finance projections/reports for dashboard presentation; retains dashboard composition ownership. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Actor / Role | Responsibility | Boundary |
-|---|---|---|
-| Authorized Leadership Requester | Specifies required information and scope. | Cannot bypass authorization or alter source data. |
-| Finance Reviewer | Validates report correctness where required. | Reviews report only. |
-| Reporting Service | Generates and versions the report. | Does not own financial transactions. |
-
----
+The frozen trigger identifies **Authorized leadership** as the initiating business category. L2-F13 and L2-H07 both record their canonical Actors sections as absent, so no more specific requester, reviewer, publisher, or dashboard actor is established here. This source gap is recorded in Section 17.
 
 # 7. Preconditions and Entry Criteria
 
-- Tenant, institution, requester and authorization scope are resolved.
-- The requested information maps to an active Report Definition.
-- Reporting period, parameters and applicable configuration are known.
-- Canonical Finance read models are available.
-- Sensitive financial distribution rules can be enforced.
-
----
+- The management reporting requirement identifies the financial subject and reporting period needed.
+- The requested information is available from canonical Finance owners.
+- An applicable governed Report Definition exists.
+- H07 involvement, if any, is limited to downstream presentation of governed Finance information.
 
 # 8. Trigger
 
 Authorized leadership requires budget, receivable, payable, cash, aid, asset, or performance information
 
----
-
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Domain | Business Result |
+| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Receive the management-report request and intended use. | Authorized Requester; F13 | Governed request begins. |
-| 2 | Validate requester authorization, Tenant, institution and financial scope. | A04; F13 | Least-privilege boundary is established. |
-| 3 | Resolve the Report Definition, template, period, parameters and configuration versions. | F13 | Reproducible report context is fixed. |
-| 4 | Schedule or accept the on-demand execution. | Financial Report Aggregate | `ReportScheduled` is published where applicable. |
-| 5 | Read authoritative Finance facts without changing them. | Operational Finance → F13 | Canonical input set is assembled. |
-| 6 | Calculate and generate the management report. | F13 | `FinancialReportGenerated` is published. |
-| 7 | Validate completeness, calculations, authorization scope and traceability. | Finance Reviewer; F13 | `FinancialReportValidated` is published on success. |
-| 8 | Publish or deliver the validated report according to distribution policy. | F13 | `FinancialReportPublished` is published when official release applies. |
-| 9 | Preserve definition, input, parameter, output, validation and access evidence. | F13; A07 | The report is reproducible and auditable. |
-
----
+| 1 | Establish the management reporting requirement, scope and reporting period. | Financial Reporting & Analytics / F | The required financial information product is identified. |
+| 2 | Resolve the applicable Report Definition and reporting configuration. | Financial Reporting & Analytics / F | A reproducible report context is established. |
+| 3 | Consume the required authoritative Finance facts from their owning capabilities without modifying them. | Financial Reporting & Analytics / F | Canonical reporting inputs are available. |
+| 4 | Generate the governed Financial Report. | Financial Reporting & Analytics / F | The report reaches `Generated`; `FinancialReportGenerated` records successful generation. |
+| 5 | Where the report is to become an official published information product, complete business validation. | Financial Reporting & Analytics / F | The report reaches `Validated`; `FinancialReportValidated` records approval for publication. |
+| 6 | Where official publication is required, publish the validated report. | Financial Reporting & Analytics / F | The report reaches `Published`; `FinancialReportPublished` records official release. |
+| 7 | Preserve the report's period, definition/configuration and canonical-source lineage so the result is reproducible. | Financial Reporting & Analytics / F | The frozen business outcome is achieved. |
+| 8 | If dashboard presentation is needed, make the governed Finance output available to H07 without transferring financial ownership. | F → H07 | H07 may compose the presentation under its own lifecycle. |
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Path | Outcome |
-|---|---|---|---|
-| On-demand internal report | Policy does not require official publication. | Generate, validate and return through authorized query/distribution. | Governed report is available without changing facts. |
-| Scheduled report | Recurring schedule applies. | Use Reporting Schedule lifecycle. | Same definition and policy produce periodic versions. |
-| Narrower authorization | Requester lacks part of the requested scope. | Deny or constrain the request according to policy. | Unauthorized financial information is excluded. |
-| Validation failure | Calculations or inputs are incomplete. | Stop release and correct through owning domains/definition. | No authoritative report is delivered. |
-
----
+| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
+|---|---|---|---|---|
+| Governed report required without official publication | The management need is satisfied by a generated governed report and publication is not required by policy | Stop after the governed report is produced and traceability is preserved | Reproducible management report available | F |
+| Dashboard presentation required | Leadership needs the governed result in a dashboard context | H07 consumes the Finance-owned information under its dashboard workflows | Dashboard presentation without ownership transfer | H07 |
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Consequence | Resolution | Owner |
+| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Authorization fails. | Requester cannot receive report. | Deny and audit. | A04; F13 |
-| Definition or parameters are invalid. | Reproducibility is not possible. | Return request for correction. | F13 |
-| Source data is unavailable. | Report is incomplete. | Stop generation; do not publish. | Source Finance domain; F13 |
-| Generation fails. | No report outcome exists. | Preserve failure evidence and retry through governed execution. | F13 |
-
----
+| Required canonical Finance information is incomplete or unavailable | A reproducible report cannot be produced | Do not publish an authoritative report until source information is complete | Applicable Finance owner; F13 |
+| Report generation fails | No governed report outcome exists | Preserve the unsuccessful reporting outcome; no terminal success event is published | F13 |
+| Validation fails where publication is required | The report cannot become official | Keep the report outside `Published`; F13 does not define a dedicated correction-return state | F13 |
 
 # 12. Business Rules and Decision Constraints
 
-| Rule | Effect | Source |
-|---|---|---|
-| Reports consume canonical Finance facts read-only. | Management reporting cannot alter financial truth. | L2-F13 FRP-01/02 |
-| Report definition and period are mandatory. | Output is reproducible. | L2-F13 FRI-02/03 |
-| Validation precedes publication. | Unvalidated reports are not official. | L2-F13 FRI-05 |
-| Financial values remain traceable. | Audit can reconstruct the report. | L2-F13 FRP-05 |
-| H07 owns dashboard presentation only. | Financial semantics remain with F13. | L2-F13 explicit non-ownership |
-
----
+| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
+|---|---|---|---|
+| Financial Reporting consumes canonical Finance information read-only | F13 / Finance source owners | Reporting does not change operational financial truth | L2-F13 FRP-01, FRP-02 |
+| Every report is associated with one reporting period and one Report Definition | F13 | The management report remains reproducible | L2-F13 FRI-02, FRI-03 |
+| Only validated reports may be published | F13 | Official publication cannot bypass validation | L2-F13 FRI-05 |
+| Historical reports preserve the configuration context under which they were generated | F13 | Reproduction remains possible after configuration changes | L2-F13 CP-04 |
+| H07 owns dashboard composition while Finance retains financial report/KPI meaning | F13/H07 | Dashboard consumption does not transfer financial ownership | L2-F13 ADR boundary; L2-H07 |
 
 # 13. State and Lifecycle Impact
 
-| Concept | Entry | Impact | Result |
-|---|---|---|---|
-| Financial Report | Defined | `Scheduled → Generating → Generated → Validated`; optionally `Published`. | Governed report version. |
-| Operational financial facts | Existing | Read only. | Unchanged. |
-| Dashboard | Existing or absent | May later consume projection/report reference. | No composition change in this scenario. |
-| Authorization Decision | Request received | Evaluate requested scope. | Allow, constrained outcome or Deny. |
-
----
+| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
+|---|---|---|---|---|---|
+| Financial Report | Defined / Scheduled | Generate governed management report | Generated; optionally Validated → Published when official release is required | F13 | L2-F13 §§21–22 |
+| Canonical Finance facts | Existing source-owned state | Consumed read-only | Unchanged | Applicable Finance owners | L2-F13 ownership principles |
+| Dashboard | H07-owned context, if used | Consumes governed Finance output | H07 controls its own lifecycle | H07 | L2-H07 |
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Events
+## 14.1 Published / Consumed Business Events
 
-`ReportScheduled`, `FinancialReportGenerated`, `FinancialReportValidated`, and—where official release occurs—`FinancialReportPublished` are published by the Financial Report Aggregate only after successful workflow completion.
+| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
+|---|---|---|---|---|
+| FinancialReportGenerated | Financial Report / F13 | Authorized reporting consumers | Records successful report generation | L2-F13 §29 |
+| FinancialReportValidated | Financial Report / F13 | Publication/compliance consumers | Records successful business validation and approval for publication | L2-F13 §29 |
+| FinancialReportPublished | Financial Report / F13 | Authorized report/dashboard consumers | Records official publication when used | L2-F13 §29 |
 
-## 14.2 Contracts and Hand-offs
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-| Contract | Provider | Consumer | Outcome |
-|---|---|---|---|
-| Authorization decision | A04 | F13 | Permitted requester and scope. |
-| Canonical financial reads | Finance domains | F13 | Authoritative report inputs. |
-| Governed report | F13 | Leadership / H07 | Reproducible authorized information product. |
-| Audit input | F13 | A07 | Request-to-output evidence. |
-
----
+| Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
+|---|---|---|---|---|
+| Applicable Finance owners | F13 | Canonical financial information | Produces the report without ownership transfer | L2-F13 §§13, 38 |
+| F13 | H07 | Governed financial report/projection/read model | Enables dashboard presentation while Finance retains report meaning | DEPENDENCY_MAP; L2-F13/H07 ownership boundary |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-Every request and distribution is evaluated for Tenant, institution, role, data classification and financial scope.
+The frozen trigger requires an authorized leadership need. The canonical leadership role and detailed authorization authority are not defined by F13/H07 and are therefore not invented.
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-Validation/approval follows configurable Approval Policy. No named approval actor or additional SoD rule is introduced.
+No scenario-specific separation-of-duty, override, or exception rule is defined by the authoritative L2 architecture.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-Retain requester, scope, definition/template versions, parameters, period, input references, calculations, validation, delivery, actor, timestamp and correlation.
-
----
+F13 requires every reporting lifecycle transition to generate immutable audit evidence and historical reports to retain their evaluated configuration context.
 
 # 16. Completion Criteria and Postconditions
 
-- Requester and scope were authorized.
-- Definition, period, parameters and configuration were fixed.
-- Only canonical Finance facts were consumed.
-- Report was generated, validated and delivered/published according to policy.
-- Complete traceability makes the output reproducible.
-- Operational financial facts and H07 ownership remain unchanged.
+## 16.1 Completion Criteria
 
----
+- A governed Financial Report has been generated from authoritative Finance information.
+- The report is associated with its reporting period and Report Definition/configuration context.
+- Source financial ownership remains unchanged.
+- Where publication is required, the report has completed validation before publication.
+
+## 16.2 Postconditions
+
+The resulting management report is reproducible. H07 may present governed Finance information but does not own the report, financial facts or reporting calculations.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-No open issue prevents this scenario from proceeding to Architecture Approval. Actor titles remain logical business responsibilities because L2-F13 does not define a canonical actor catalogue.
+## 17.1 Open Issues
+
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| F13 and H07 have no canonical Actors sections, while the frozen trigger refers to Authorized leadership | The specific initiating leadership role and any report-review authority cannot be stated canonically | Clarify the applicable business actors/roles upstream if required before locking |
+
+**Architecture assessment:** `PASS WITH ISSUES`
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No scenario-specific deferred questions.

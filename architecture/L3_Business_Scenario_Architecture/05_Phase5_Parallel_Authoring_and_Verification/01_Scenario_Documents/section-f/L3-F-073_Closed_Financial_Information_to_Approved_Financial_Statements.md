@@ -11,25 +11,17 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-F05 — Accounting & General Ledger; L2-F09 — Financial Period & Closing; L2-F13 — Financial Reporting & Analytics; L2-A06 — Event Infrastructure; L2-A07 — Audit Infrastructure  
-**Referenced By:** Institutional leadership, Finance, audit and statutory-reporting consumers
-
----
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-F09 — Financial Period & Closing; L2-F13 — Financial Reporting & Analytics Workflows  
+**Referenced By:** Statutory, management, correction and historical financial-reporting scenarios
 
 # 2. Scenario Purpose
 
-Generate authoritative institutional financial statements from closed, canonical Finance information and govern them through validation, approval-equivalent validation and publication without modifying operational financial facts.
-
----
+Produce authoritative institutional financial statements from governed closed-period Finance information while preserving operational Finance ownership, the canonical Financial Report lifecycle, report immutability, and reporting traceability.
 
 # 3. Business Outcome
 
 Finance calculates, validates, approves and publishes authoritative statements or returns them for correction
-
-Source assessment: `PASS WITH ISSUES`.
-
----
 
 # 4. Scenario Boundary and Scope
 
@@ -39,184 +31,153 @@ A governed reporting period is ready for institutional financial statements.
 
 ## 4.2 End Boundary
 
-Validated statements are officially Published as immutable financial information products, or validation failure returns the generated statement for governed correction without publication.
+The intended end boundary is reached when the statement has completed the frozen calculation, validation, approval and publication outcome, or has been returned for correction. Locked F13 supports generation, validation-as-approval-for-publication and publication, but it does not define the required return-for-correction branch; therefore exact completion is blocked.
 
 ## 4.3 In Scope
 
-- Closed-period and reporting-definition validation.
-- Trial Balance, Balance Sheet, Income & Expenditure and Cash Flow statement generation.
-- Traceability to canonical Finance facts.
-- Business validation, publication and distribution eligibility.
-- Version, event and audit preservation.
+- Consumption of the authoritative closed-period fact and canonical Finance information.
+- Financial statement generation under a governed Report Definition.
+- Business validation and publication under the Financial Report lifecycle.
+- Preservation of report version, source traceability and audit evidence.
+- Identification of the unresolved correction-return path.
 
 ## 4.4 Out of Scope
 
-- Posting or correcting accounting entries.
-- Closing or reopening the Financial Period.
-- Statutory submission and external acknowledgement.
-- Presentation technology, BI tooling, APIs or storage.
+- Reopening or changing Financial Period state.
+- Modifying ledger balances or any operational Finance fact.
+- Inventing a `Returned`, `Correction Required`, or equivalent Financial Report state/event.
+- Statutory external submission and acknowledgement.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
-| Relationship | Scenario | Boundary |
+| Relationship | Related Scenario | Reason |
 |---|---|---|
-| Upstream | Financial Period Closing | Supplies `FinancialPeriodClosed`; Reporting owns no period state. |
-| Followed by | L3-F-074 — Statutory Financial Report | May use approved statements in an H08 submission. |
-| Related | L3-F-078 — Report Correction/Supersession/Archival | Governs later published-report lifecycle changes. |
-
----
+| Followed by | L3-F-074 — Statutory Reporting Obligation to Accepted Financial Report | May consume an authoritative Finance report for regulatory submission. |
+| Related | L3-F-078 — Published Financial Report to Correction, Supersession, or Archival | Governs later published-report disposition. |
 
 # 5. Ownership and Participating Domains
 
-| Domain | Responsibility |
+| Domain / Section | Responsibility in Scenario |
 |---|---|
-| Financial Reporting & Analytics / F | Owns Financial Report, statement generation, validation, publication and archival. |
-| Financial Period & Closing / F | Owns period closure and publishes the closed-period fact. |
-| General Ledger and other Finance domains / F | Supply canonical read-only financial facts. |
-| Event Infrastructure / A | Distributes canonical reporting events. |
-| Audit Infrastructure / A | Preserves immutable evidence. |
-
----
+| Financial Reporting & Analytics / F | Owns Financial Report generation, validation, publication, versioning and archival. |
+| Financial Period & Closing / F | Owns Financial Period state and supplies the authoritative closed-period fact. |
+| Other Finance capabilities / F | Retain ownership of canonical financial facts consumed read-only by reporting. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Actor / Role | Responsibility | Boundary |
-|---|---|---|
-| Authorized Finance Reviewer | Validates statement correctness under institutional policy. | Does not modify source financial facts. |
-| Authorized Finance Publisher | Releases a validated statement. | Exact role names and approval matrix are not defined in L2-F13. |
-| Reporting Service | Generates and versions the Financial Report. | Owns reporting artifacts only. |
-
----
+L2-F13 explicitly has no canonical Actors section. No scenario-specific human reviewer, approver, publisher, or correction authority is invented. The Financial Reporting & Analytics domain owns the supported reporting transitions; the unresolved correction-return authority is recorded in Section 17.
 
 # 7. Preconditions and Entry Criteria
 
-- Tenant, institution and reporting period are resolved.
-- The Financial Period is governed as `Closed` or otherwise approved for statement reporting.
-- Canonical Ledger and Finance facts are available through read contracts.
-- An active Report Definition and template exist.
-- Validation, approval and distribution policies can be resolved.
-
----
+- The applicable Financial Period has reached the source-defined `Closed` state.
+- The required canonical Finance information is available from its owning Finance capabilities.
+- A governed Report Definition and reporting-period context exist.
+- The Financial Report has not bypassed any canonical lifecycle state.
 
 # 8. Trigger
 
 A governed reporting period is ready for institutional financial statements
 
----
-
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Role / Domain | Business Result |
+| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Receive the statement-generation requirement for the governed period. | Financial Reporting | A report execution is scheduled. |
-| 2 | Validate `FinancialPeriodClosed`, definition, template, scope and authorization. | F09; F13 | Generation prerequisites are established. |
-| 3 | Resolve canonical Ledger, cash, receivable, payable and other required Finance facts read-only. | Finance domains; F13 | Authoritative inputs are fixed. |
-| 4 | Generate the configured financial statements and preserve input/version references. | Financial Report Aggregate | Report reaches `Generated`; `FinancialReportGenerated` is published. |
-| 5 | Reconcile calculations and validate completeness, consistency, period and traceability. | Authorized Finance Reviewer | Valid statement reaches `Validated`; `FinancialReportValidated` is published. |
-| 6 | If validation fails, return the non-Published version for correction and regeneration. | Finance Reviewer; Financial Reporting | No official statement is released. |
-| 7 | Publish the validated statement for authorized institutional consumers. | Authorized Finance Publisher; Financial Report | Report reaches `Published`; `FinancialReportPublished` is published. |
-| 8 | Preserve report version, definition, source facts, validation, publication and correlation evidence. | F13; Audit Infrastructure | Statement is authoritative and auditable. |
+| 1 | Consume the authoritative closed-period fact and establish the reporting period. | Financial Reporting & Analytics / F | Statement preparation is eligible to begin. |
+| 2 | Resolve the applicable Report Definition and canonical Finance inputs without changing source facts. | Financial Reporting & Analytics / F | Governed statement context is established. |
+| 3 | Generate the financial statement under the Financial Report lifecycle. | Financial Reporting & Analytics / F | The report reaches `Generated`; `FinancialReportGenerated` may be published by Financial Report. |
+| 4 | Perform the source-defined business validation. | Financial Reporting & Analytics / F | Successful validation reaches `Validated`; `FinancialReportValidated` records that the report is approved for publication. |
+| 5 | Publish the validated statement. | Financial Reporting & Analytics / F | The report reaches `Published`; `FinancialReportPublished` records official release. |
+| 6 | Preserve the immutable published version and its source/configuration lineage. | Financial Reporting & Analytics / F | The published statement remains authoritative and traceable. |
 
----
+The alternative frozen path that returns a statement for correction cannot be completed canonically because F13 defines no such lifecycle transition, event, or business recovery outcome.
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Path | Outcome |
-|---|---|---|---|
-| Validation failure | Statement is incomplete or inconsistent. | Retain outside Published and regenerate after source-governed correction. | No terminal publication event. |
-| Period reopened | F09 reopens the period before publication. | Stop publication and regenerate after renewed governance. | Stale statement does not become authoritative. |
-| Multiple statement types | The reporting package requires several statements. | Generate each under the same period and policy context. | Every published statement remains independently traceable. |
-
----
+No scenario-specific alternate business flow toward the same successful published outcome is defined by the authoritative L2 architecture.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Consequence | Resolution | Owner |
+| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Period is not eligible. | Statement cannot be authoritative. | Reject or wait for period governance. | F09; F13 |
-| Canonical input is incomplete. | Calculation is unreliable. | Stop generation and evidence the deficiency. | Owning Finance domain; F13 |
-| Generation fails. | No report is available for validation. | Do not publish terminal events; restart through governed execution. | F13 |
-| Publication fails. | Statement is not officially released. | Preserve Validated state and recover without regenerating financial facts. | F13 |
-
----
+| Generation does not complete successfully | No statement is available for validation or publication | Do not publish a terminal success event | Financial Reporting & Analytics / F |
+| Validation does not succeed | The report cannot be published | F13 requires the report to remain outside `Published`, but does not define the frozen return-for-correction path | Financial Reporting & Analytics / F |
+| Source Finance information requires correction | Reporting cannot alter the source fact | Correction remains with the canonical Finance owner before a new report version is generated | Applicable Finance owner |
 
 # 12. Business Rules and Decision Constraints
 
-| Rule | Effect | Source |
-|---|---|---|
-| Reports consume canonical Finance facts read-only. | Reporting cannot change accounting state. | L2-F13 FRP-01/02 |
-| Every report references one definition and period. | Statement meaning and scope are fixed. | L2-F13 FRI-02/03 |
-| Validation precedes publication. | Unvalidated statements cannot become official. | L2-F13 FRI-05 |
-| Published reports are immutable. | Corrections require a successor version. | L2-F13 FRI-06 |
-| Every value is traceable to canonical records. | Audit reconstruction remains possible. | L2-F13 FRP-05 |
-
----
+| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
+|---|---|---|---|
+| Reports consume canonical Finance facts without modifying operational state | Financial Reporting & Analytics / F | Statement generation is read-only with respect to source financial facts | L2-F13 FRP-01, FRP-02 |
+| Every report belongs to one reporting period and one Report Definition | Financial Reporting & Analytics / F | Statement identity and meaning remain reproducible | L2-F13 FRI-02, FRI-03 |
+| Only validated reports may be published | Financial Reporting & Analytics / F | Validation is mandatory before official release | L2-F13 FRI-05 |
+| `FinancialReportValidated` means the report is approved for publication | Financial Reporting & Analytics / F | The source defines approval-for-publication as the successful validation business fact | L2-F13 Domain Event Catalog |
+| Published reports are immutable; changes require a new report version | Financial Reporting & Analytics / F | Published statements cannot be edited in place | L2-F13 FRI-06; ADR-03 |
 
 # 13. State and Lifecycle Impact
 
-| Concept | Entry | Impact | Result |
-|---|---|---|---|
-| Financial Period | Closed | Referenced only. | Unchanged. |
-| Financial Report | Defined/Scheduled | `Scheduled → Generating → Generated → Validated → Published`. | Immutable official statement. |
-| Operational Finance facts | Closed canonical facts | Read only. | Unchanged. |
-| Failed statement version | Generated | Retain outside Published pending regeneration. | Non-authoritative evidence. |
+| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
+|---|---|---|---|---|---|
+| Financial Period | Closed | Referenced as reporting eligibility; not modified | Closed | Financial Period & Closing / F | L2-F09 |
+| Financial Report | Defined / Scheduled | Progresses through supported generation and validation | Generated → Validated → Published | Financial Reporting & Analytics / F | L2-F13 §§21–22 |
 
----
+No `Returned for Correction` Financial Report state or transition is defined upstream.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Events
+## 14.1 Published / Consumed Business Events
 
-| Event | Publisher | Condition |
-|---|---|---|
-| `FinancialPeriodClosed` | Financial Period Aggregate | Upstream period closure succeeds. |
-| `FinancialReportGenerated` | Financial Report Aggregate | Generation succeeds. |
-| `FinancialReportValidated` | Financial Report Aggregate | Business validation succeeds. |
-| `FinancialReportPublished` | Financial Report Aggregate | Official publication succeeds. |
+| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
+|---|---|---|---|---|
+| FinancialPeriodClosed | Financial Period | Financial Reporting & Analytics | Establishes authoritative closed-period availability | L2-F09 |
+| FinancialReportGenerated | Financial Report | Finance review/audit consumers | Records successful report generation | L2-F13 §29 |
+| FinancialReportValidated | Financial Report | Publication/compliance consumers | Records successful validation and approval for publication | L2-F13 §29 |
+| FinancialReportPublished | Financial Report | Authorized reporting consumers | Records official publication | L2-F13 §29 |
 
-## 14.2 Contracts and Hand-offs
+No canonical correction-return event is defined.
 
-| Contract | Provider | Consumer | Information / Outcome |
-|---|---|---|---|
-| Closed-period fact | F09 | F13 | Reporting eligibility. |
-| Canonical financial read models | Finance domains | F13 | Ledger and subsidiary facts. |
-| Published statement | F13 | Authorized consumers | Immutable authoritative report. |
-| Audit input | F13 | A07 | Generation-to-publication evidence. |
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
----
+Within Section F, Financial Reporting consumes stable business information from the owning Finance capabilities and the closed-period governance fact from F09. No ownership is transferred.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-Generation, validation and publication require Tenant- and institution-scoped authorization.
+F13 defines the approval-for-publication business fact through successful validation, but its canonical crosswalk records Actors as absent. The specific business actor or institutional authority performing that approval is therefore unresolved and is not invented here.
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-L2-F13 equates successful validation with “approved for publication” but does not name approvers or require separate reviewer/publisher roles; none are made canonical here.
+No scenario-specific separation-of-duty, override, or exception rule is defined by the authoritative L2 architecture.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-Record period, definition/template versions, input references, calculations, validation, publication, actors, timestamps and correlation.
-
----
+F13 requires every reporting lifecycle transition and reporting configuration change to generate immutable audit evidence. Published statements retain their reporting period, definition/configuration context and source traceability.
 
 # 16. Completion Criteria and Postconditions
 
-- Reporting period and canonical inputs were valid.
-- Statements were generated and fully traceable.
-- Successful validation made them eligible for publication.
-- Published statements are immutable and events were emitted after successful transitions.
-- Failed validation produced no publication.
-- Audit evidence is complete.
+## 16.1 Completion Criteria
 
----
+The frozen scenario cannot be fully certified complete until the return-for-correction business path and its authority are defined upstream. The supported successful path requires a closed period, generated statement, successful validation/approval-for-publication, and publication.
+
+## 16.2 Postconditions
+
+A successfully published statement is immutable and traceable to canonical Finance information. A failed validation remains outside `Published`; its exact frozen correction-return outcome is unresolved.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-| ID | Severity | Issue | Treatment / Required Resolution |
-|---|---|---|---|
-| F073-ISSUE-01 | Non-blocking | L2-F13 has `Validated` and states its meaning is “approved for publication,” but defines no separate approval state, command, event or named authority. | Treat validation as the source-defined approval-equivalent; define any distinct approval contract before locking if required. |
-| F073-ISSUE-02 | Non-blocking | Return-for-correction is part of the frozen outcome but is not a canonical Report lifecycle state/event in F13. | Retain failed output outside Published and regenerate; do not invent a Returned state/event. |
+## 17.1 Open Issues
 
-No accounting mutation, approval actor, correction state or technical mechanism is invented.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| F13 defines no canonical return-for-correction lifecycle state, transition, event, or business recovery for a financial statement that does not pass validation | The frozen alternative outcome cannot be represented exactly | Define the authoritative correction-return semantics in L2-F13 |
+| F13 has no canonical Actors section for the approval-for-publication decision | The institutional actor/authority for a P0 financial-statement approval cannot be established | Define the source-supported approval authority in L2-F13 |
+
+**Architecture assessment:** `BLOCKED`
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No scenario-specific deferred questions.
