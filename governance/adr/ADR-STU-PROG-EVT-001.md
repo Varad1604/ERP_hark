@@ -13,10 +13,11 @@
 
 Locked `L2-C04_Student_Academic_Progression_Workflows.md` contains competing event names for the same progression outcomes.
 
-An earlier event definition/ownership set uses:
+Earlier event/workflow sections use:
 
 - `StudentConditionallyProgressed`
 - `StudentPlacedOnProbation`
+- `StudentOnProbation`
 - `StudentDetained`
 
 Later workflow/event-publication tables, including the explicit Event ID / Canonical Publisher table, use:
@@ -41,6 +42,7 @@ The earlier names are superseded as canonical publication names:
 
 - `StudentConditionallyProgressed` → `ConditionalPromotionGranted`
 - `StudentPlacedOnProbation` → `AcademicProbationAssigned`
+- `StudentOnProbation` → `AcademicProbationAssigned`
 - `StudentDetained` → `AcademicDetentionApplied`
 
 They may remain visible in the historical original L2 text, but downstream architecture shall not treat them as separate canonical events.
@@ -55,7 +57,9 @@ The Academic Probation and Academic Detention aggregates may own their respectiv
 
 This decision does not rename or alter other L2-C04 events, including:
 
+- `ProgressionEvaluated`
 - `StudentProgressed`
+- `QualificationEligibilityUpdated`
 - `AcademicStandingUpdated`
 - `CreditLedgerUpdated`
 - `CreditTransferRecognised`
