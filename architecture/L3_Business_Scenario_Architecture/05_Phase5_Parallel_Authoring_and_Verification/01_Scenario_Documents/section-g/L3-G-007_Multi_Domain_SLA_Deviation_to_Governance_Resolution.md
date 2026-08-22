@@ -11,270 +11,190 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; applicable L2-G01 through L2-G10 operational domains; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Campus governance, executive oversight, audit, reporting and authorized downstream consumers
-
----
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance  
+**Referenced By:** Authorized campus-governance consumers and participating domains defined by the frozen scenario
 
 # 2. Scenario Purpose
 
-Govern a significant cross-campus SLA deviation by validating the evidence, assigning responsibility, establishing corrective action and recording a completed governance resolution.
-
----
+Govern a significant campus-operations SLA deviation without inventing a dedicated SLA lifecycle or transferring the underlying service-performance fact from its operational owner.
 
 # 3. Business Outcome
 
 SLA deviation is reviewed, responsibility and corrective action are established, and governance resolution is completed
 
----
+**Architecture status:** `BLOCKED` — the frozen outcome cannot be fully specified without resolving the material upstream gaps recorded in Section 17.
 
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
 
-The scenario begins when a significant SLA deviation is identified across campus operations.
+A significant SLA deviation is identified across campus operations.
 
 ## 4.2 End Boundary
 
-The scenario ends when the frozen business outcome has been recorded under the source-defined governance boundary, all required source references and decisions are preserved, applicable follow-up is linked, and the full activity is auditable.
+The intended end boundary is the frozen business outcome above. A canonical end-state interpretation is not asserted where Section 17 identifies a material upstream lifecycle, authority, event, or contract gap.
 
 ## 4.3 In Scope
 
-- Tenant, institution, campus, purpose and correlation resolution.
-- Authorization of the governance activity and evidence access.
-- Source-domain sla facts, configured thresholds, affected services, responsible domains, impact and prior deviations.
-- Use of the `Operational Review with linked Multi-Domain Action Plan or Operational Risk` business responsibility.
-- Source-domain information consumed by reference without ownership transfer.
-- Validated deviation, governance finding, responsibility, corrective action and resolution evidence.
-- Applicable lifecycle transitions, services and domain-event publication explicitly defined by L2-G00.
-- Immutable audit evidence and historical reconstruction.
+- The source-owned SLA deviation and its scope, period, service context, and evidence.
+- G00 review of SLA performance under its Multi-Domain SLA Governance responsibility.
+- Recording responsibility and a governance finding where supported.
+- Creation and verification of a Multi-Domain Action Plan where corrective action is required.
+- Preservation of SLA governance history and source ownership.
 
 ## 4.4 Out of Scope
 
-- Executing operational work owned by G01–G10.
-- Modifying operational transactions, source-domain master data or published readiness facts.
-- Replacing H07 dashboard composition, Section H notification delivery or H09 accreditation governance.
-- Replacing the Platform Workflow, Authorization, Event or Audit infrastructure.
-- Inventing lifecycle states, commands, events, publishers, approval authorities or technical mechanisms absent upstream.
+- Execution or correction of operational work owned by G01–G10.
+- Transfer of ownership from source operational domains to G00.
+- Dashboard composition, notification delivery, or other Section H responsibilities merely because H participates in or consumes the outcome.
+- Any locally invented lifecycle, approval authority, event, publisher, or recovery mechanism.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
-| Relationship | Related Scenario | Boundary Reason |
-|---|---|---|
-| Related | L3-G-001 — Campus Readiness Assessment to Governance Readiness Decision | Provides or consumes readiness governance where applicable. |
-| Related | L3-G-003 — Campus Operational Review to Governance Closure | Owns the canonical Operational Review journey. |
-| Related | L3-G-005 — Operational Risk Identification to Risk Closure | Owns enterprise operational-risk governance. |
-| Related | L3-G-006 — Multi-Domain Action Plan to Verified Closure | Owns corrective-action coordination and verification. |
-
----
+- Related governance scenarios may consume or produce findings, risks, action plans, readiness decisions, or executive recommendations only through their own canonical boundaries.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Campus Operations Governance / Section G | Primary owner. Owns the governance aggregate, conclusions, findings, recommendations, risks, action coordination and immutable governance history applicable to this scenario. |
-| Operational domains / Section G and other named domains | Own their operational facts, indicators, incidents, actions and corrections; provide published references without transferring ownership. |
-| Platform Foundation / Section A | Supplies Tenant, configuration, authorization, workflow, event and audit capabilities without owning the G00 business outcome. |
-| Institutional Services & Intelligence / Section H, where frozen | Consumes governance outputs for dashboards, notification, executive intelligence or accreditation under its own ownership boundaries. |
+| Campus Operations Governance / G | Primary owner of the frozen governance outcome and any G00-owned governance information used in this scenario. |
 
-The frozen participating-domain value remains exactly `G`.
-
----
+The frozen participating-domain value is preserved exactly as `G`.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Participation / Authority |
+| Business Actor / Role | Responsibility | Source-Supported Authority |
 |---|---|---|
-| Governance Coordinator | Coordinates the assessment, review, finding, action or evidence request within authorized scope. | May initiate and coordinate; cannot assume executive or approval authority. |
-| Campus Operations Manager | Reviews campus operational evidence and governance consequences. | Acts only within configured campus and governance authorization. |
-| Executive Reviewer | Provides executive review, recommendation or decision where required. | Authority is policy-derived and not implied for every scenario step. |
-| Risk Coordinator / Quality Assurance Officer | Governs risk treatment or verifies corrective-action evidence where applicable. | Does not execute source-domain operational work. |
-| Read Only Auditor / Compliance Consumer | Receives authorized historical evidence. | Cannot change source or governance records. |
+| Campus Operations Manager | Conducts the G00 operational review of the deviation. | L2-G00 assigns Conduct Operational Review. |
+| Governance Coordinator | Creates a corrective Action Plan when the review determines action is required. | L2-G00 assigns Create Action Plan. |
+| Quality Assurance Officer | Verifies action completion when a corrective Action Plan is used. | L2-G00 assigns Verify Action Completion. |
 
-L2-G00 calls these typical roles and allows institutions to configure additional roles. It does not establish a universal named approver for every scenario.
-
----
+No additional actor or decision authority is inferred beyond the L2-G00 role catalogue and authorization matrix.
 
 # 7. Preconditions and Entry Criteria
 
-- The Tenant, institution and campus are valid and resolvable.
-- The trigger and authorized governance purpose are established.
-- The affected G00 aggregate or required governance context can be identified.
-- Required information is available from its canonical owner or its absence is explicitly handled as an exception.
-- Applicable configuration, thresholds, templates, categories and policies can be resolved.
-- Source information is reference-only and remains owned by its publishing domain.
-- Authorization, actor and correlation context are available.
-- Existing governance history is immutable and accessible under policy.
-
----
+- The frozen trigger has occurred within a valid governance scope.
+- Required source information can be attributed to its canonical owner, or its absence is explicitly treated as a governance exception.
+- Applicable configuration and governance expectations can be resolved where L2-G00 defines them.
+- The participating governance activity is authorized under applicable institutional policy.
+- Existing governance history remains available without modification.
 
 # 8. Trigger
 
 A significant SLA deviation is identified across campus operations
 
----
-
 # 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Receive the significant SLA deviation and establish Tenant, campus, service, period and correlation context. | Campus Operations Governance; applicable participant | Receive the significant SLA deviation and establish Tenant, campus, service, period and correlation context. |
-| 2 | Validate that the SLA fact is owned by the publishing operational domain. | Campus Operations Governance; applicable participant | Validate that the SLA fact is owned by the publishing operational domain. |
-| 3 | Compare performance with the configured governance threshold and determine materiality. | Campus Operations Governance; applicable participant | Compare performance with the configured governance threshold and determine materiality. |
-| 4 | Open or use an Operational Review to examine cause, impact and cross-domain responsibility. | Campus Operations Governance; applicable participant | Open or use an Operational Review to examine cause, impact and cross-domain responsibility. |
-| 5 | Record the governance finding and assigned responsible domain or owner. | Campus Operations Governance; applicable participant | Record the governance finding and assigned responsible domain or owner. |
-| 6 | Create and assign a corrective Action Plan where action is required. | Campus Operations Governance; applicable participant | Create and assign a corrective Action Plan where action is required. |
-| 7 | Monitor corrective progress, blockers and repeat deviation evidence. | Campus Operations Governance; applicable participant | Monitor corrective progress, blockers and repeat deviation evidence. |
-| 8 | Verify completion or record an authorized alternative governance resolution. | Campus Operations Governance; applicable participant | Verify completion or record an authorized alternative governance resolution. |
-| 9 | Complete and close the review and linked action only when the resolution evidence is sufficient. | Campus Operations Governance; applicable participant | Complete and close the review and linked action only when the resolution evidence is sufficient. |
-| 10 | Publish applicable review/action events and preserve immutable SLA governance history. | Campus Operations Governance; applicable participant | Publish applicable review/action events and preserve immutable SLA governance history. |
-
----
+| 1 | Validate the source-owned SLA deviation and its governance scope. | Campus Operations Manager / G00 | A valid SLA-governance matter is established. |
+| 2 | Review SLA performance, impact, and available evidence without changing the source fact. | Campus Operations Manager / G00 | The deviation is reviewed under G00 governance. |
+| 3 | Record the governance finding and responsible domain or owner where supported. | G00 | Responsibility is recorded. |
+| 4 | If corrective action is required, create and assign a Multi-Domain Action Plan linked to the finding. | Governance Coordinator / G00 | Corrective action is established under the Action Plan lifecycle. |
+| 5 | Monitor source-domain completion evidence without executing the operational correction. | G00 | Governance progress remains traceable. |
+| 6 | Verify corrective-action evidence where the Action Plan path applies. | Quality Assurance Officer / G00 | Action completion is verified under the source-defined responsibility. |
+| 7 | Do not assert a distinct SLA governance-resolution state beyond the source-defined review/action lifecycles. | G00 | The Draft stops at the authoritative boundary pending the blocking gap. |
 
 # 10. Alternate Business Flows
 
 | Case | Condition | Alternate Business Path | Result / Outcome |
 |---|---|---|---|
-| 1 | The deviation is below governance materiality | acknowledge it and leave operational handling to the source domain. | The existing lifecycle and source ownership remain preserved. |
-| 2 | The deviation exposes ongoing enterprise risk | register an Operational Risk and maintain linkage to the SLA finding. | The existing lifecycle and source ownership remain preserved. |
-
----
+| Below governance materiality | The deviation does not require G00 treatment | Leave operational handling with its canonical owner and preserve the evidence. | No G00 resolution is invented. |
+| Enterprise risk emerges | The reviewed deviation represents an operational risk | Use the canonical Operational Risk journey separately. | Risk ownership remains G00; the SLA fact remains source-owned. |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, campus or authorization cannot be resolved. | The governance activity cannot proceed lawfully. | Reject or pause without changing any source or governance state. | Platform & Tenant; Campus Operations Governance |
-| Required source information is missing, stale or inconsistent. | A trustworthy result cannot be produced. | Use the G00 exception workflow; correct, defer or escalate without inventing an outcome. | Source domain; Campus Operations Governance |
-| A business invariant fails. | The requested transition would violate ownership or lifecycle integrity. | Reject the transition and preserve failure evidence. | Campus Operations Governance |
-| Required review, verification or approval is incomplete. | The outcome cannot be treated as complete. | Retain the current source-defined lifecycle position and route follow-up. | Campus Operations Governance |
-| Event publication condition is not satisfied. | Consumers must not receive a false completed fact. | Publish only a source-defined event after its corresponding transition. | Campus Operations Governance; Event Infrastructure |
-| Processing is interrupted. | The governance activity remains incomplete. | Preserve history and resume only from a valid existing lifecycle position. | Campus Operations Governance |
+| Required source information is missing or inconsistent | A trustworthy governance outcome cannot be established | Correct, defer, or escalate the evidence gap without inventing the missing fact | G00 and the owning source domain |
+| Required governance authority is unresolved | A decision cannot be treated as institutionally authoritative | Preserve the current governance position and route the authority gap for upstream resolution | Campus Operations Governance |
+| The applicable lifecycle does not support the proposed conclusion | Completion would create an unauthorized state or transition | Do not assert completion; retain the last authoritative lifecycle position | Campus Operations Governance |
 
-No technical retry, rollback, database, UI, queue or infrastructure recovery design is introduced.
-
----
+Recovery is business-level only. No technical retry, queue, rollback, database, infrastructure, or deployment mechanism is specified.
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| G00 governs oversight and never executes operational work. | Campus Operations Governance | Corrective execution remains with the source domain. | L2-G00 §§3–6, §14 |
-| G00 never modifies operational data owned by G01–G10. | Campus Operations Governance; source domains | Inputs remain reference-only. | L2-G00 §§9, 13–14 |
-| Governance history remains immutable and every lifecycle transition is audited. | Campus Operations Governance; Audit Infrastructure | Prior evidence and decisions cannot be rewritten. | L2-G00 §§13, 27 |
-| `Operational Review with linked Multi-Domain Action Plan or Operational Risk` is the scenario’s governing business responsibility. | Campus Operations Governance | The scenario cannot transfer its outcome to a source or infrastructure domain. | L2-G00 §§8, 11–12, 16–19 |
-| Applicable lifecycle is `Operational Review: Planned → Active → Findings Recorded → Completed → Closed; linked Action Plan where required`. | Campus Operations Governance | Only source-supported states and order may be used. | L2-G00 §§11, 23 |
-| Applicable services are Conduct Review; Record Findings; Create Action Plan; Assign Action; Verify Completion. | Campus Operations Governance | Interactions use published business contracts. | L2-G00 §22 |
-| Configuration, thresholds and extensions remain governed and effective-dated where specified. | Campus Operations Governance; Platform | Behaviour cannot be hardcoded or changed retrospectively. | L2-G00 §§6, 26 |
-| Significant completed transitions publish immutable domain events. | Campus Operations Governance | Failed or incomplete outcomes cannot publish success facts. | L2-G00 §§20–21 |
-
----
+| G00 governs oversight and never executes operational work. | G00 | Applies to this scenario | L2-G00 |
+| G00 never modifies operational data owned by G01–G10. | G00 | Applies to this scenario | L2-G00 |
+| Operational reviews may consider SLA Performance as reference-only input. | G00 | Applies to this scenario | L2-G00 |
+| Multi-Domain SLA Review is an Executive Governance workflow family. | G00 | Applies to this scenario | L2-G00 |
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry State or Condition | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner |
+| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting Lifecycle Position | Canonical Owner |
 |---|---|---|---|---|
-| Operational Review with linked Multi-Domain Action Plan or Operational Risk | Trigger and authorized context available | Progresses only through the applicable source-defined governance journey. | Operational Review: Planned → Active → Findings Recorded → Completed → Closed; linked Action Plan where required | Campus Operations Governance |
-| Source-domain operational record | Existing canonical state | Referenced as evidence or receives a governed request; no direct mutation. | Unchanged by G00. | Publishing operational domain |
-| Governance history | Existing immutable history | Receives new actor, transition, decision and correlation evidence. | Preserved and extended immutably. | Campus Operations Governance; Audit Infrastructure |
-| Downstream reporting/evidence view | Absent or requires refresh | Receives the completed governed outcome where authorized. | Available without becoming the source of operational truth. | Applicable reporting or evidence owner |
-
-Where L2-G00 does not define a scenario-specific aggregate or lifecycle, this Draft records that limitation and does not create state names by inference.
-
----
+| SLA deviation | Source fact exists | Referenced and governed; no G00 lifecycle is defined for the deviation itself | No dedicated SLA resolution state is defined | Publishing operational domain |
+| Operational Review | Review is initiated where required | May progress through its canonical lifecycle | Planned → Active → Findings Recorded → Completed → Closed | G00 |
+| Multi-Domain Action Plan | Corrective action is required | May progress through its canonical lifecycle | Created → Assigned → In Progress → Verified → Closed | G00 |
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Canonical Business Events
 
-L2-G00 states that Campus Operations Governance publishes immutable events and provides the following applicable catalogue entries. It does not provide an Aggregate-to-Event Matrix or a sole-publisher table.
-
-| Event / Required Fact | Publication Condition | Business Effect / Consumer |
+| Event | Canonical Publisher | Business Meaning in this Scenario |
 |---|---|---|
-| `OperationalFindingRecorded` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `ActionPlanCreated` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `ActionAssigned` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `ActionVerified` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `MultiDomainReviewCompleted` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
+| `OperationalFindingRecorded` | Campus Operations Review (G00) | A governance finding has been recorded. |
+| `ActionPlanCreated` | Campus Operations Review (G00) | A corrective Action Plan has been created. |
+| `ActionAssigned` | Campus Operations Review (G00) | A corrective action has been assigned. |
+| `ActionVerified` | Campus Operations Review (G00) | Action completion has been verified. |
 
-Event Infrastructure distributes events but does not own the G00 business fact.
+L2-G00 states that Campus Operations Review publishes its immutable governance domain events; therefore G00 is the publisher only for event names explicitly catalogued there.
 
-## 14.2 Synchronous Business Contracts and Hand-offs
+## 14.2 Business Contracts and Hand-offs
 
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
+| Provider | Consumer | Business Hand-off | Ownership Effect |
 |---|---|---|---|
-| Source operational information | Publishing operational domain | Campus Operations Governance | Immutable identifiers, status, period, scope, metric/evidence and provenance. |
-| Authorization Decision | Authorization & Policy | Campus Operations Governance | Allowed actor, action, Tenant, campus and governance scope. |
-| G00 governance service | Campus Operations Governance | Authorized participant | Conduct Review; Record Findings; Create Action Plan; Assign Action; Verify Completion. |
-| Governed outcome | Campus Operations Governance | Executive, H-domain or other authorized consumer | validated deviation, governance finding, responsibility, corrective action and resolution evidence. |
-| Audit input | Campus Operations Governance | Audit Infrastructure | Actor, prior/new state, references, reason, time, correlation and outcome. |
-
----
+| Publishing operational domain | G00 | SLA status/deviation evidence | Source domain retains ownership. |
+| G00 | Responsible operational owner | Governance finding and corrective-action requirement | Operational execution remains with the source owner. |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Authorization and Decision Authority
 
-- Every activity requires authorization for its Tenant, campus, governance scope and information classification.
-- Authentication and Platform roles do not transfer business ownership to the Platform.
-- Delegated or temporary authority must be effective-dated and auditable.
-- Read access to governance history does not permit mutation.
+L2-G00 identifies authorization for conducting Operational Reviews, creating Action Plans, and verifying Action completion, but it does not define a canonical authority that declares an SLA deviation “governance resolved.”
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties
 
-- Review, executive decision, verification and configuration approval occur only where required by the applicable source lifecycle and policy.
-- L2-G00 provides a configurable authorization matrix and typical roles rather than a universal approval actor.
-- Verification responsibility must remain distinguishable from source-domain execution where policy requires separation.
-- No unsupported approver, override or SoD exception is introduced.
+No additional separation-of-duty rule is created locally. Where G00 explicitly separates creation, review, risk registration, or action verification roles, those upstream responsibilities remain intact.
 
 ## 15.3 Audit Obligations
 
-The following must be auditable:
-
-- Tenant, institution, campus, purpose and scope.
-- Initiating actor and applicable authorization decision.
-- Source identifiers, versions, periods and owning domains.
-- Configuration, template, threshold or rule version used.
-- Every lifecycle transition, finding, recommendation, decision and reason.
-- Assigned owners, dates, dependencies and verification where applicable.
-- Published canonical events and downstream hand-offs.
-- Exceptions, recovery, correlation and final outcome.
-
----
+- Preserve the triggering governance context and source references.
+- Preserve the applicable configuration or expectation used in the decision.
+- Preserve every source-supported governance transition, finding, recommendation, decision, and reason.
+- Preserve applicable canonical event publication and downstream hand-offs.
+- Preserve unresolved gaps rather than replacing them with assumptions.
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete when:
+## 16.1 Completion Criteria
 
-- receive the significant SLA deviation and establish Tenant, campus, service, period and correlation context.
-- validate that the SLA fact is owned by the publishing operational domain.
-- compare performance with the configured governance threshold and determine materiality.
-- open or use an Operational Review to examine cause, impact and cross-domain responsibility.
-- record the governance finding and assigned responsible domain or owner.
-- create and assign a corrective Action Plan where action is required.
-- monitor corrective progress, blockers and repeat deviation evidence.
-- verify completion or record an authorized alternative governance resolution.
-- complete and close the review and linked action only when the resolution evidence is sufficient.
-- publish applicable review/action events and preserve immutable SLA governance history.
+The frozen completion criteria are understood, but canonical completion cannot be asserted until the blocking issues in Section 17 are resolved. The Draft therefore preserves only the source-supported portion of the journey.
 
+## 16.2 Postconditions
 
-Postconditions:
-
-- Source-domain operational records and ownership remain unchanged by G00.
-- The completed governance outcome and its lineage are available to authorized consumers.
-- Governance history remains immutable and reproducible.
-- No undefined state, command, event, publisher, actor or technical mechanism has been assumed.
-
----
+- No operational source record acquires G00 ownership.
+- No unsupported lifecycle state, event, publisher, actor, or decision authority has been introduced.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
+## 17.1 Open Issues
+
 | ID | Severity | Issue / Deferred Question | Required Resolution |
 |---|---|---|---|
-| G-007-ISSUE-01 | Non-blocking | L2-G00 lists Multi-Domain SLA Review but defines no SLA Deviation aggregate, lifecycle, dedicated service set or SLA-resolution event. | Resolve in L2-G00 or the named owning domain before downstream specification relies on the missing contract. |
-| G-007-ISSUE-02 | Non-blocking | This Draft composes the defined Operational Review and Action Plan lifecycles; the exact composition contract is not stated upstream. | Resolve in L2-G00 or the named owning domain before downstream specification relies on the missing contract. |
+| G-007-BLOCKER-01 | Blocking | L2-G00 defines Multi-Domain SLA Governance/Review but no SLA Deviation aggregate, lifecycle, or resolution state. | Define the canonical SLA-governance resolution semantics. |
+| G-007-BLOCKER-02 | Blocking | No dedicated SLA-resolution event or business contract identifies when the frozen “governance resolution is completed” boundary has been reached. | Define the completion fact/contract and canonical publisher if event publication is required. |
+| G-007-BLOCKER-03 | Blocking | The older Draft inferred a composition of Operational Review and Action Plan as the SLA resolution lifecycle; that composition is not established upstream. | Resolve upstream rather than composing lifecycles locally. |
 
-**Source Assessment:** PASS WITH ISSUES
+**Architecture assessment:** `BLOCKED`
 
-No unsupported operational ownership transfer, actor, approval authority, lifecycle state, event, publisher or implementation mechanism is assumed by this Draft.
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No additional deferred questions.

@@ -11,268 +11,186 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; applicable L2-G01 through L2-G10 operational domains; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows; L2-H07 — Enterprise Dashboard Workflows  
-**Referenced By:** Campus governance, executive oversight, audit, reporting and authorized downstream consumers
-
----
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance  
+**Referenced By:** Authorized campus-governance consumers and participating domains defined by the frozen scenario
 
 # 2. Scenario Purpose
 
-Route a qualified governance issue to authorized executive review, record the executive decision or resolution and preserve its effect on the originating governance item.
-
----
+Preserve the frozen executive-escalation outcome while refusing to invent the executive decision authority or the resulting lifecycle consequence for heterogeneous originating governance items.
 
 # 3. Business Outcome
 
 The escalated governance issue receives an executive decision or resolution and the resulting governance state is recorded
 
----
+**Architecture status:** `BLOCKED` — the frozen outcome cannot be fully specified without resolving the material upstream gaps recorded in Section 17.
 
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
 
-The scenario begins when a risk, SLA deviation, overdue action, readiness issue, or governance exception requires escalation.
+A risk, SLA deviation, overdue action, readiness issue, or governance exception requires escalation.
 
 ## 4.2 End Boundary
 
-The scenario ends when the frozen business outcome has been recorded under the source-defined governance boundary, all required source references and decisions are preserved, applicable follow-up is linked, and the full activity is auditable.
+The intended end boundary is the frozen business outcome above. A canonical end-state interpretation is not asserted where Section 17 identifies a material upstream lifecycle, authority, event, or contract gap.
 
 ## 4.3 In Scope
 
-- Tenant, institution, campus, purpose and correlation resolution.
-- Authorization of the governance activity and evidence access.
-- Originating risk, sla finding, overdue action, readiness issue or exception; escalation reason; impact; prior actions and evidence.
-- Use of the `Originating governance aggregate plus Operational Review` business responsibility.
-- Source-domain information consumed by reference without ownership transfer.
-- Authorized executive decision or resolution, instructions, follow-up references and linkage to the originating item.
-- Applicable lifecycle transitions, services and domain-event publication explicitly defined by L2-G00.
-- Immutable audit evidence and historical reconstruction.
+- An eligible originating risk, SLA deviation, overdue action, readiness issue, or governance exception.
+- The canonical `GovernanceEscalationRaised` fact.
+- Executive review of source-owned governance evidence.
+- Recording only source-supported recommendations and follow-up until the authority/consequence gaps are resolved.
 
 ## 4.4 Out of Scope
 
-- Executing operational work owned by G01–G10.
-- Modifying operational transactions, source-domain master data or published readiness facts.
-- Replacing H07 dashboard composition, Section H notification delivery or H09 accreditation governance.
-- Replacing the Platform Workflow, Authorization, Event or Audit infrastructure.
-- Inventing lifecycle states, commands, events, publishers, approval authorities or technical mechanisms absent upstream.
+- Execution or correction of operational work owned by G01–G10.
+- Transfer of ownership from source operational domains to G00.
+- Dashboard composition, notification delivery, or other Section H responsibilities merely because H participates in or consumes the outcome.
+- Any locally invented lifecycle, approval authority, event, publisher, or recovery mechanism.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
-| Relationship | Related Scenario | Boundary Reason |
-|---|---|---|
-| Related | L3-G-001 — Campus Readiness Assessment to Governance Readiness Decision | Provides or consumes readiness governance where applicable. |
-| Related | L3-G-003 — Campus Operational Review to Governance Closure | Owns the canonical Operational Review journey. |
-| Related | L3-G-005 — Operational Risk Identification to Risk Closure | Owns enterprise operational-risk governance. |
-| Related | L3-G-006 — Multi-Domain Action Plan to Verified Closure | Owns corrective-action coordination and verification. |
-
----
+- Related governance scenarios may consume or produce findings, risks, action plans, readiness decisions, or executive recommendations only through their own canonical boundaries.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Campus Operations Governance / Section G | Primary owner. Owns the governance aggregate, conclusions, findings, recommendations, risks, action coordination and immutable governance history applicable to this scenario. |
-| Operational domains / Section G and other named domains | Own their operational facts, indicators, incidents, actions and corrections; provide published references without transferring ownership. |
-| Platform Foundation / Section A | Supplies Tenant, configuration, authorization, workflow, event and audit capabilities without owning the G00 business outcome. |
-| Institutional Services & Intelligence / Section H, where frozen | Consumes governance outputs for dashboards, notification, executive intelligence or accreditation under its own ownership boundaries. |
+| Campus Operations Governance / G | Primary owner of the frozen governance outcome and any G00-owned governance information used in this scenario. |
+| Institutional Services & Intelligence / H | Participates or consumes the governed outcome within its own locked responsibilities; no G00 ownership transfers to H. |
 
-The frozen participating-domain value remains exactly `G, H`.
-
----
+The frozen participating-domain value is preserved exactly as `G, H`.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Participation / Authority |
+| Business Actor / Role | Responsibility | Source-Supported Authority |
 |---|---|---|
-| Governance Coordinator | Coordinates the assessment, review, finding, action or evidence request within authorized scope. | May initiate and coordinate; cannot assume executive or approval authority. |
-| Campus Operations Manager | Reviews campus operational evidence and governance consequences. | Acts only within configured campus and governance authorization. |
-| Executive Reviewer | Provides executive review, recommendation or decision where required. | Authority is policy-derived and not implied for every scenario step. |
-| Risk Coordinator / Quality Assurance Officer | Governs risk treatment or verifies corrective-action evidence where applicable. | Does not execute source-domain operational work. |
-| Read Only Auditor / Compliance Consumer | Receives authorized historical evidence. | Cannot change source or governance records. |
+| Executive Reviewer | Participates in executive governance review. | L2-G00 lists Executive Reviewer as a typical role, but does not assign universal executive decision authority. |
+| Campus Operations Manager | May conduct an Operational Review used to assemble and review governance evidence. | L2-G00 assigns Conduct Operational Review. |
 
-L2-G00 calls these typical roles and allows institutions to configure additional roles. It does not establish a universal named approver for every scenario.
-
----
+No additional actor or decision authority is inferred beyond the L2-G00 role catalogue and authorization matrix.
 
 # 7. Preconditions and Entry Criteria
 
-- The Tenant, institution and campus are valid and resolvable.
-- The trigger and authorized governance purpose are established.
-- The affected G00 aggregate or required governance context can be identified.
-- Required information is available from its canonical owner or its absence is explicitly handled as an exception.
-- Applicable configuration, thresholds, templates, categories and policies can be resolved.
-- Source information is reference-only and remains owned by its publishing domain.
-- Authorization, actor and correlation context are available.
-- Existing governance history is immutable and accessible under policy.
-
----
+- The frozen trigger has occurred within a valid governance scope.
+- Required source information can be attributed to its canonical owner, or its absence is explicitly treated as a governance exception.
+- Applicable configuration and governance expectations can be resolved where L2-G00 defines them.
+- The participating governance activity is authorized under applicable institutional policy.
+- Existing governance history remains available without modification.
 
 # 8. Trigger
 
 A risk, SLA deviation, overdue action, readiness issue, or governance exception requires escalation
 
----
-
 # 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Receive the escalation from an eligible originating governance item. | Campus Operations Governance; applicable participant | Receive the escalation from an eligible originating governance item. |
-| 2 | Validate the trigger, severity, overdue condition, prior treatment and evidence. | Campus Operations Governance; applicable participant | Validate the trigger, severity, overdue condition, prior treatment and evidence. |
-| 3 | Authorize executive review and identify the permitted executive scope. | Campus Operations Governance; applicable participant | Authorize executive review and identify the permitted executive scope. |
-| 4 | Record and publish GovernanceEscalationRaised without changing the originating item improperly. | Campus Operations Governance; applicable participant | Record and publish GovernanceEscalationRaised without changing the originating item improperly. |
-| 5 | Assemble the relevant readiness, review, risk, SLA, action and exception evidence. | Campus Operations Governance; applicable participant | Assemble the relevant readiness, review, risk, SLA, action and exception evidence. |
-| 6 | Conduct the executive governance review. | Campus Operations Governance; applicable participant | Conduct the executive governance review. |
-| 7 | Record the executive decision, recommendation or resolution and its business reason. | Campus Operations Governance; applicable participant | Record the executive decision, recommendation or resolution and its business reason. |
-| 8 | Apply only the permitted resulting governance consequence to the originating lifecycle. | Campus Operations Governance; applicable participant | Apply only the permitted resulting governance consequence to the originating lifecycle. |
-| 9 | Create or revise follow-up actions, mitigation or review references where required. | Campus Operations Governance; applicable participant | Create or revise follow-up actions, mitigation or review references where required. |
-| 10 | Close the executive review and preserve decision and linkage history. | Campus Operations Governance; applicable participant | Close the executive review and preserve decision and linkage history. |
-
----
+| 1 | Receive the qualifying governance escalation and preserve its originating item and evidence. | G00 | The escalation context is established. |
+| 2 | Validate that the escalation is supported by the originating governance information. | G00 | An eligible escalation matter is confirmed. |
+| 3 | Publish `GovernanceEscalationRaised`. | G00 | The canonical escalation fact is recorded. |
+| 4 | Assemble the relevant readiness, review, risk, SLA, action, or exception evidence without changing its ownership. | G00 | Executive review evidence is available. |
+| 5 | Conduct executive governance review within the roles and authority actually defined upstream. | Executive Reviewer / G00 | The matter is reviewed. |
+| 6 | Stop before asserting a binding executive resolution or resulting governance state when authority and permitted lifecycle consequences are undefined. | G00 | No unauthorized decision or state transition is invented. |
 
 # 10. Alternate Business Flows
 
 | Case | Condition | Alternate Business Path | Result / Outcome |
 |---|---|---|---|
-| 1 | The escalation is not valid | return it with reason and retain the originating lifecycle. | The existing lifecycle and source ownership remain preserved. |
-| 2 | The executive decision requires operational correction | assign it to the owning domain and track evidence through an Action Plan. | The existing lifecycle and source ownership remain preserved. |
-
----
+| Escalation invalid | Evidence does not support escalation | Retain the originating lifecycle and record the review result. | No executive resolution is fabricated. |
+| Operational correction needed | Review identifies corrective work | Use a source-supported Action Plan or Operational Risk journey where applicable. | Corrective execution remains with the owning operational domain. |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, campus or authorization cannot be resolved. | The governance activity cannot proceed lawfully. | Reject or pause without changing any source or governance state. | Platform & Tenant; Campus Operations Governance |
-| Required source information is missing, stale or inconsistent. | A trustworthy result cannot be produced. | Use the G00 exception workflow; correct, defer or escalate without inventing an outcome. | Source domain; Campus Operations Governance |
-| A business invariant fails. | The requested transition would violate ownership or lifecycle integrity. | Reject the transition and preserve failure evidence. | Campus Operations Governance |
-| Required review, verification or approval is incomplete. | The outcome cannot be treated as complete. | Retain the current source-defined lifecycle position and route follow-up. | Campus Operations Governance |
-| Event publication condition is not satisfied. | Consumers must not receive a false completed fact. | Publish only a source-defined event after its corresponding transition. | Campus Operations Governance; Event Infrastructure |
-| Processing is interrupted. | The governance activity remains incomplete. | Preserve history and resume only from a valid existing lifecycle position. | Campus Operations Governance |
+| Required source information is missing or inconsistent | A trustworthy governance outcome cannot be established | Correct, defer, or escalate the evidence gap without inventing the missing fact | G00 and the owning source domain |
+| Required governance authority is unresolved | A decision cannot be treated as institutionally authoritative | Preserve the current governance position and route the authority gap for upstream resolution | Campus Operations Governance |
+| The applicable lifecycle does not support the proposed conclusion | Completion would create an unauthorized state or transition | Do not assert completion; retain the last authoritative lifecycle position | Campus Operations Governance |
 
-No technical retry, rollback, database, UI, queue or infrastructure recovery design is introduced.
-
----
+Recovery is business-level only. No technical retry, queue, rollback, database, infrastructure, or deployment mechanism is specified.
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| G00 governs oversight and never executes operational work. | Campus Operations Governance | Corrective execution remains with the source domain. | L2-G00 §§3–6, §14 |
-| G00 never modifies operational data owned by G01–G10. | Campus Operations Governance; source domains | Inputs remain reference-only. | L2-G00 §§9, 13–14 |
-| Governance history remains immutable and every lifecycle transition is audited. | Campus Operations Governance; Audit Infrastructure | Prior evidence and decisions cannot be rewritten. | L2-G00 §§13, 27 |
-| `Originating governance aggregate plus Operational Review` is the scenario’s governing business responsibility. | Campus Operations Governance | The scenario cannot transfer its outcome to a source or infrastructure domain. | L2-G00 §§8, 11–12, 16–19 |
-| Applicable lifecycle is `Originating lifecycle remains authoritative; executive resolution uses an Operational Review where applicable`. | Campus Operations Governance | Only source-supported states and order may be used. | L2-G00 §§11, 23 |
-| Applicable services are Generate Executive Review; Publish Recommendations; Query Governance History. | Campus Operations Governance | Interactions use published business contracts. | L2-G00 §22 |
-| Configuration, thresholds and extensions remain governed and effective-dated where specified. | Campus Operations Governance; Platform | Behaviour cannot be hardcoded or changed retrospectively. | L2-G00 §§6, 26 |
-| Significant completed transitions publish immutable domain events. | Campus Operations Governance | Failed or incomplete outcomes cannot publish success facts. | L2-G00 §§20–21 |
-
----
+| G00 owns Executive Review and Governance Recommendations. | G00 | Applies to this scenario | L2-G00 |
+| GovernanceEscalationRaised is a canonical G00 event. | G00 | Applies to this scenario | L2-G00 |
+| G00 never modifies operational source data. | G00 | Applies to this scenario | L2-G00 |
+| Governance history remains immutable. | G00 | Applies to this scenario | L2-G00 |
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry State or Condition | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner |
+| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting Lifecycle Position | Canonical Owner |
 |---|---|---|---|---|
-| Originating governance aggregate plus Operational Review | Trigger and authorized context available | Progresses only through the applicable source-defined governance journey. | Originating lifecycle remains authoritative; executive resolution uses an Operational Review where applicable | Campus Operations Governance |
-| Source-domain operational record | Existing canonical state | Referenced as evidence or receives a governed request; no direct mutation. | Unchanged by G00. | Publishing operational domain |
-| Governance history | Existing immutable history | Receives new actor, transition, decision and correlation evidence. | Preserved and extended immutably. | Campus Operations Governance; Audit Infrastructure |
-| Downstream reporting/evidence view | Absent or requires refresh | Receives the completed governed outcome where authorized. | Available without becoming the source of operational truth. | Applicable reporting or evidence owner |
-
-Where L2-G00 does not define a scenario-specific aggregate or lifecycle, this Draft records that limitation and does not create state names by inference.
-
----
+| Originating governance item | Escalation condition exists | Referenced and reviewed under its own canonical lifecycle | No generic post-escalation state is defined | Its canonical G00 aggregate or source owner |
+| Operational Review | Executive governance review is instantiated where applicable | May progress under its own lifecycle | Planned → Active → Findings Recorded → Completed → Closed | G00 |
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Canonical Business Events
 
-L2-G00 states that Campus Operations Governance publishes immutable events and provides the following applicable catalogue entries. It does not provide an Aggregate-to-Event Matrix or a sole-publisher table.
-
-| Event / Required Fact | Publication Condition | Business Effect / Consumer |
+| Event | Canonical Publisher | Business Meaning in this Scenario |
 |---|---|---|
-| `GovernanceEscalationRaised` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `GovernanceRecommendationPublished` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `GovernanceReviewClosed` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
+| `GovernanceEscalationRaised` | Campus Operations Review (G00) | A governance escalation has been raised. |
+| `GovernanceRecommendationPublished` | Campus Operations Review (G00) | A governance recommendation has been issued where applicable. |
+| `GovernanceReviewClosed` | Campus Operations Review (G00) | A governance review has closed where applicable. |
 
-Event Infrastructure distributes events but does not own the G00 business fact.
+L2-G00 states that Campus Operations Review publishes its immutable governance domain events; therefore G00 is the publisher only for event names explicitly catalogued there.
 
-## 14.2 Synchronous Business Contracts and Hand-offs
+## 14.2 Business Contracts and Hand-offs
 
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
+| Provider | Consumer | Business Hand-off | Ownership Effect |
 |---|---|---|---|
-| Source operational information | Publishing operational domain | Campus Operations Governance | Immutable identifiers, status, period, scope, metric/evidence and provenance. |
-| Authorization Decision | Authorization & Policy | Campus Operations Governance | Allowed actor, action, Tenant, campus and governance scope. |
-| G00 governance service | Campus Operations Governance | Authorized participant | Generate Executive Review; Publish Recommendations; Query Governance History. |
-| Governed outcome | Campus Operations Governance | Executive, H-domain or other authorized consumer | authorized executive decision or resolution, instructions, follow-up references and linkage to the originating item. |
-| Audit input | Campus Operations Governance | Audit Infrastructure | Actor, prior/new state, references, reason, time, correlation and outcome. |
-
----
+| Originating governance aggregate/source | G00 | Escalated item and supporting evidence | Originating lifecycle and ownership remain authoritative. |
+| G00 | Section H / authorized executive consumer | Governance review information and recommendation where supported | H participation does not transfer G00 ownership. |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Authorization and Decision Authority
 
-- Every activity requires authorization for its Tenant, campus, governance scope and information classification.
-- Authentication and Platform roles do not transfer business ownership to the Platform.
-- Delegated or temporary authority must be effective-dated and auditable.
-- Read access to governance history does not permit mutation.
+L2-G00 lists `Executive Reviewer` as a typical role but does not define the canonical executive authority empowered to bind every originating governance aggregate, nor the permitted state transition for each escalation type.
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties
 
-- Review, executive decision, verification and configuration approval occur only where required by the applicable source lifecycle and policy.
-- L2-G00 provides a configurable authorization matrix and typical roles rather than a universal approval actor.
-- Verification responsibility must remain distinguishable from source-domain execution where policy requires separation.
-- No unsupported approver, override or SoD exception is introduced.
+No additional separation-of-duty rule is created locally. Where G00 explicitly separates creation, review, risk registration, or action verification roles, those upstream responsibilities remain intact.
 
 ## 15.3 Audit Obligations
 
-The following must be auditable:
-
-- Tenant, institution, campus, purpose and scope.
-- Initiating actor and applicable authorization decision.
-- Source identifiers, versions, periods and owning domains.
-- Configuration, template, threshold or rule version used.
-- Every lifecycle transition, finding, recommendation, decision and reason.
-- Assigned owners, dates, dependencies and verification where applicable.
-- Published canonical events and downstream hand-offs.
-- Exceptions, recovery, correlation and final outcome.
-
----
+- Preserve the triggering governance context and source references.
+- Preserve the applicable configuration or expectation used in the decision.
+- Preserve every source-supported governance transition, finding, recommendation, decision, and reason.
+- Preserve applicable canonical event publication and downstream hand-offs.
+- Preserve unresolved gaps rather than replacing them with assumptions.
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete when:
+## 16.1 Completion Criteria
 
-- receive the escalation from an eligible originating governance item.
-- validate the trigger, severity, overdue condition, prior treatment and evidence.
-- authorize executive review and identify the permitted executive scope.
-- record and publish GovernanceEscalationRaised without changing the originating item improperly.
-- assemble the relevant readiness, review, risk, SLA, action and exception evidence.
-- conduct the executive governance review.
-- record the executive decision, recommendation or resolution and its business reason.
-- apply only the permitted resulting governance consequence to the originating lifecycle.
-- create or revise follow-up actions, mitigation or review references where required.
-- close the executive review and preserve decision and linkage history.
+The frozen completion criteria are understood, but canonical completion cannot be asserted until the blocking issues in Section 17 are resolved. The Draft therefore preserves only the source-supported portion of the journey.
 
+## 16.2 Postconditions
 
-Postconditions:
-
-- Source-domain operational records and ownership remain unchanged by G00.
-- The completed governance outcome and its lineage are available to authorized consumers.
-- Governance history remains immutable and reproducible.
-- No undefined state, command, event, publisher, actor or technical mechanism has been assumed.
-
----
+- No operational source record acquires G00 ownership.
+- No unsupported lifecycle state, event, publisher, actor, or decision authority has been introduced.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
+## 17.1 Open Issues
+
 | ID | Severity | Issue / Deferred Question | Required Resolution |
 |---|---|---|---|
-| G-012-ISSUE-01 | Non-blocking | L2-G00 defines GovernanceEscalationRaised but no Governance Escalation aggregate, state model, resolution command or executive-resolution event. | Resolve in L2-G00 or the named owning domain before downstream specification relies on the missing contract. |
-| G-012-ISSUE-02 | Non-blocking | The exact executive decision authority and permitted consequences are configurable but not specified canonically. | Resolve in L2-G00 or the named owning domain before downstream specification relies on the missing contract. |
+| G-012-BLOCKER-01 | Blocking | The frozen outcome requires an executive decision or resolution, but L2-G00 does not assign universal executive decision authority. | Define the authoritative executive decision role/policy for this scenario. |
+| G-012-BLOCKER-02 | Blocking | The frozen outcome requires the resulting governance state to be recorded, but the trigger can originate from multiple different lifecycles and no allowed consequence mapping is defined. | Define permitted post-resolution transitions for each originating governance aggregate/type. |
+| G-012-BLOCKER-03 | Blocking | `GovernanceEscalationRaised` exists, but no canonical executive-resolution event or equivalent completion contract is defined. | Define the completion fact and publisher/contract if required by cross-domain consumers. |
 
-**Source Assessment:** PASS WITH ISSUES
+**Architecture assessment:** `BLOCKED`
 
-No unsupported operational ownership transfer, actor, approval authority, lifecycle state, event, publisher or implementation mechanism is assumed by this Draft.
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No additional deferred questions.
