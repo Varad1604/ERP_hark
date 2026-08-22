@@ -9,11 +9,26 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Varad  
-**Last Updated:** 2026-08-21  
-**Depends On:** Locked L1 Business Domain Architecture; L2 Domain Workflow Architecture  
+**Last Updated:** 2026-08-22  
+**Depends On:** Locked L1 Business Domain Architecture; L2-G04 Transport Management Workflows  
 **Referenced By:** None yet  
 
 ---
+
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | `L3-G-093` |
+| Canonical Title | Transport Route Creation to Operational Activation |
+| Primary Owner | Transport Management |
+| Participating Domains | G |
+| Scenario Type | Critical |
+| Priority | P0 |
+| Status | Draft |
+| Authoritative L2 | `L2-G04` — Transport Management Workflows |
+
+Frozen Phase 5 identity is preserved. Transport Management remains the sole owner of the Transport Route aggregate and its operational lifecycle.
 
 ## 2. Scenario Purpose
 
@@ -115,7 +130,7 @@ These boundaries remain unchanged when the route becomes active.
 | Transport Supervisor | Provides operational review/decision authority where the configured transport workflow requires supervisory review. |
 | Downstream transport consumers | Consume the authoritative route outcome where applicable; they do not modify route state. |
 
-No technical technical identity profiles is defined at L3.
+No technical identity profile is defined at L3.
 
 The authoritative G04 source states that transport operations support manual operational decisions and configured operational workflows. Accordingly, this scenario describes business authority rather than technical access-control mechanics.
 
@@ -310,17 +325,13 @@ Suspension, retirement and subsequent route changes belong to separate lifecycle
 
 ### 14.1 Published / Consumed Business Events
 
-L2-G04 requires significant transport activity to publish immutable domain events and identifies **Route Events** within its event architecture.
+Locked L2-G04 defines the canonical Route events `RouteCreated` and `RouteActivated`. This scenario concludes with activation, so the completion event is:
 
-The exact canonical event name for route activation is not safely exposed in the authoritative material retrieved for this authoring pass.
-
-Therefore:
-
-| Business Fact | Canonical Publisher | Consumer |
+| Business Event | Canonical Publisher | Consumer |
 |---|---|---|
-| Transport Route activation | G04 Transport Management | Authorised downstream transport consumers |
+| `RouteActivated` | G04 Transport Management | Authorised downstream transport consumers |
 
-**No event name is invented.**
+`RouteCreated` represents the earlier route-creation fact. It is not renamed or republished by another domain.
 
 ### 14.2 Synchronous Business Contracts / Hand-offs
 
@@ -346,7 +357,7 @@ Where configured transport governance requires supervisory review, the Transport
 
 ### 15.2 Separation of Duties
 
-The retrieved G04 source establishes operational review/approval as part of route management but does not expose a dedicated route-creation separation-of-duty rule.
+The locked G04 source establishes operational review/approval as part of route management but does not define a dedicated route-creation separation-of-duty rule.
 
 No additional SoD rule is invented.
 
@@ -376,6 +387,7 @@ The scenario is complete only when:
 - configured operational review is complete;
 - activation is authorised;
 - the route is Active and available for transport operations;
+- `RouteActivated` is published by G04;
 - the activation and route history are auditable.
 
 ### 16.2 Postconditions
@@ -391,9 +403,7 @@ The scenario is complete only when:
 
 ### 17.1 Open Issues
 
-| Issue | Impact | Resolution |
-|---|---|---|
-| The retrieved G04 source identifies Route Events but does not expose the exact canonical activation-event name in the material available for this authoring pass. | Exact event naming cannot safely be asserted. | Confirm the canonical G04 event catalogue before Architecture Approval/Lock. |
+No unresolved event-name, lifecycle-state, owner, or publisher issue remains for this scenario after direct reconciliation with locked L2-G04.
 
 ### 17.2 Assumptions
 
@@ -403,7 +413,4 @@ The scenario is complete only when:
 
 ### 17.3 Deferred Questions
 
-- Exact canonical route activation event name.
-- Any additional route-specific approval matrix not exposed by the retrieved authoritative source.
-
-These are source-resolution items, not locally invented architecture.
+Any additional institution-specific route approval matrix remains configuration governed and is outside the canonical L3 scenario.
