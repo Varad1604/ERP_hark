@@ -11,23 +11,19 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows where institutional ownership is referenced; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized infrastructure consumers across academic, examination, facilities, safety, workforce, analytics and institutional operations
-
----
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-D03 — Timetable Workflows  
+**Referenced By:** None yet
 
 # 2. Scenario Purpose
 
-Suspend, restrict or restore the operational availability of a physical resource under G10 policy while keeping consuming domains synchronized with the current authoritative usability state.
-
----
+Govern a change in physical-resource availability so Infrastructure Management remains authoritative for current usability while Academic Delivery consumes that fact for its own scheduling decisions.
 
 # 3. Business Outcome
 
-Availability is suspended or restored under policy and consuming domains receive the authoritative current usability state
+Availability is suspended or restored under policy and consuming domains receive the authoritative current usability state.
 
----
+G10 requires a canonical event for the availability workflow but does not define one exact event for suspension/restoration. The Draft is **BLOCKED** pending upstream event definition.
 
 # 4. Scenario Boundary and Scope
 
@@ -37,228 +33,149 @@ The scenario begins when a physical resource becomes unavailable, restricted, or
 
 ## 4.2 End Boundary
 
-The scenario ends when the exact frozen outcome is established under G10 ownership, the current authoritative physical fact is available through governed contracts, required events have been published only after successful persistence, and immutable audit history is preserved.
+The scenario ends when G10 has established the source-defined current availability condition, Academic Delivery can consume the authoritative usability fact, and the required canonical availability event can be published unambiguously.
 
 ## 4.3 In Scope
 
-- Resolution of Tenant, institution, resource and physical hierarchy context.
-- Scoped authorization before business validation.
-- Validation of G10 identity, hierarchy, lifecycle, capacity, availability, configuration and relationship rules as applicable.
-- The `Applicable Physical Campus, Building, Floor or Space` business responsibility.
-- Preservation of immutable identifiers and prior historical values.
-- Publication of only source-defined completed business facts.
-- Governed read contracts for authorized consumers.
-- Complete audit evidence.
+- Availability suspension/restriction or restoration under G10 policy.
+- Lifecycle and business validation.
+- Scoped or scheduled availability changes.
+- Provision of the authoritative current usability fact to Academic Delivery.
+- Required G10 event publication.
 
 ## 4.4 Out of Scope
 
-- Institutional identity or InstitutionalCampus ownership retained by B03.
-- Academic scheduling, examination conduct, facilities-maintenance execution or consumer-specific decisions.
-- Authentication, technical RBAC, database, API, UI, queue or implementation design.
-- Physical deletion of infrastructure or historical records.
-- Inventing lifecycle states, commands, events, publishers, approval actors or cross-domain contracts absent from L2.
-
-## 4.5 Related Scenarios
-
-| Relationship | Related Scenario | Boundary Reason |
-|---|---|---|
-| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes the canonical Physical Campus root. |
-| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | Governs the Campus–Building–Floor–Space hierarchy. |
-| Related | L3-G-289 — Infrastructure Availability Definition to Availability Profile Activation | Establishes authoritative resource availability. |
-| Related | L3-G-291 — Infrastructure Reservation Request to Controlled Reservation | Consumes availability and capacity without owning either fact. |
-
----
+- Timetable revision, publication or other Academic Delivery decisions.
+- Maintenance execution.
+- Treating “suspended” or “restored” as new formal availability states where G10 has not named them.
+- Any implementation design.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Primary owner of physical identity, hierarchy, lifecycle, capacity, availability, classification, relationships and infrastructure master facts. |
-| Institution & Structure / Section B, where frozen | Owns Institution and InstitutionalCampus identity; supplies references without owning physical aggregates. |
-| Platform Foundation / Section A, where frozen | Supplies Tenant isolation, configuration, authorization, event and audit capabilities without owning infrastructure facts. |
-| Academic Delivery / Section D, where frozen | Consumes authoritative capacity, availability or reservation outcomes and retains its academic decisions. |
-
-The frozen participating-domain value remains exactly `D, G`.
-
----
+| Infrastructure Management / G | Owns the current infrastructure availability fact and its governing rules. |
+| Academic Delivery / D | Consumes physical-resource availability for scheduling and retains ownership of timetable decisions. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Authority Boundary |
+| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Initiates and administers permitted infrastructure operations. | Must hold fine-grained permission in the relevant Tenant, institution, Campus, Building or Zone scope. |
-| Campus or Building Administrator | Manages infrastructure within assigned physical scope. | Cannot act outside assigned hierarchy scope. |
-| Facilities Manager / Operational Manager | Supplies operational context and consumes current physical facts. | Does not change canonical identity or bypass G10 rules. |
-| Auditor | Reviews immutable history and evidence. | Read-only; cannot mutate infrastructure. |
-| Consumer-domain actor | Requests or consumes an authorized infrastructure service. | Retains the consumer decision and cannot modify G10 aggregates directly. |
-
-Roles are configurable access patterns in L2-G10. No universal named approver is inferred.
-
----
+| Infrastructure Administrator | Administers the governed availability change. | Performs the G10 action only where authorized. |
+| Infrastructure Coordinator | Uses authoritative infrastructure availability in D03 scheduling responsibilities. | May verify room availability and validate infrastructure allocation; cannot change G10 ownership. |
 
 # 7. Preconditions and Entry Criteria
 
-- The physical resource and current lifecycle and availability are resolvable.
-- The source condition, requested outcome, reason and effective period are available.
-- The requested availability change is compatible with lifecycle and policy.
-- The requester holds scoped Change Availability permission.
-- Tenant and institution isolation are enforceable.
-- Authentication context is supplied externally and authorization succeeds before mutation.
-- Required audit and event infrastructure is available under enterprise policy.
-
----
+- The affected physical resource exists.
+- Its current lifecycle and availability are known.
+- The source condition for restriction, unavailability or restoration is established.
+- The requested availability change is permitted by policy and authorization.
 
 # 8. Trigger
 
-A physical resource becomes unavailable, restricted, or eligible to return to service
-
----
+A physical resource becomes unavailable, restricted, or eligible to return to service.
 
 # 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Receive the availability condition and resolve the affected physical resource. | Infrastructure Management | Receive the availability condition and resolve the affected physical resource. |
-| 2 | Authorize the change within the applicable scope. | Infrastructure Management | Authorize the change within the applicable scope. |
-| 3 | Validate lifecycle, current availability, source condition and requested outcome. | Infrastructure Management | Validate lifecycle, current availability, source condition and requested outcome. |
-| 4 | Determine whether the outcome is suspension, restriction or restoration and define its effective period. | Infrastructure Management | Determine whether the outcome is suspension, restriction or restoration and define its effective period. |
-| 5 | Persist the new availability without changing unrelated hierarchy members. | Infrastructure Management | Persist the new availability without changing unrelated hierarchy members. |
-| 6 | Expose the authoritative current usability state to D and other authorized consumers. | Infrastructure Management | Expose the authoritative current usability state to D and other authorized consumers. |
-| 7 | Publish the applicable source-defined operational-status event after persistence. | Infrastructure Management | Publish the applicable source-defined operational-status event after persistence. |
-| 8 | Preserve previous state, new state, reason, authority, actor and correlation evidence. | Infrastructure Management | Preserve previous state, new state, reason, authority, actor and correlation evidence. |
-
----
+| 1 | Identify the affected physical resource and the business condition changing its usability. | Infrastructure Administrator / Infrastructure Management | The availability change is bounded to canonical infrastructure. |
+| 2 | Validate authorization, lifecycle compatibility and the governing availability condition. | Infrastructure Management | The requested change is eligible to proceed. |
+| 3 | Apply the source-defined availability condition to the correct hierarchy scope and effective period. | Infrastructure Management | Current usability is suspended/restricted or restored under policy without changing unrelated infrastructure. |
+| 4 | Make the authoritative current usability fact available to Academic Delivery. | Infrastructure Management → Academic Delivery | D03 can make its own scheduling decisions from the G10 fact. |
+| 5 | Publish the canonical availability-change business event required by G10. | Infrastructure Management | **Blocked:** no exact canonical event name is established for the suspension/restoration outcome. |
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| 1 | Only part of a hierarchy is unavailable | constrain the change to that level and its governed dependants. | Existing ownership and history remain intact. |
-| 2 | A scheduled closure is future-effective | retain current availability until the configured start time. | Existing ownership and history remain intact. |
-
----
+| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
+|---|---|---|---|---|
+| Partial restriction | Only one hierarchy level or selected spaces are affected. | Apply the condition only to that governed scope. | Unrelated infrastructure remains governed by its own availability. | Infrastructure Management |
+| Scheduled restriction | The unavailability begins or ends at a defined future period. | Apply the source-defined schedule and reason. | Availability changes when the governed period becomes effective. | Infrastructure Management |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, institution or resource scope cannot be resolved | reject the request without creating a cross-scope fact. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Authorization fails | terminate before business mutation. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Hierarchy, lifecycle, configuration or policy validation fails | retain the prior authoritative state. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| A uniqueness, capacity, availability or relationship invariant fails | reject the requested result. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Audit evidence cannot be recorded | do not complete the business transition. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| The success-event condition is not satisfied | do not publish the success event. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-
-No technical retry, rollback, database transaction or messaging implementation is specified at L3.
-
----
+| Availability change conflicts with lifecycle or policy. | The prior authoritative usability fact remains. | Correct the business condition before a later authorized change. | Infrastructure Management |
+| Authorization is not granted. | No G10 availability change occurs. | Proceed only after a valid later authorization decision. | Infrastructure Management |
+| Required event name is undefined. | Canonical publication cannot be completed. | Define the exact G10 availability event upstream. | Infrastructure Management |
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Infrastructure Management is the canonical owner of physical infrastructure facts. | Infrastructure Management | Consumers reference G10 facts and never duplicate or directly modify aggregates. | L2-G10 §§2, 5, 9, 44A |
-| Every Building belongs to one Campus; every Floor to one Building; every Space to one Floor. | Infrastructure Management | Invalid or circular physical relationships are rejected. | L2-G10 §§8, 18, 47 |
-| Aggregate identity is immutable and infrastructure is never physically deleted. | Infrastructure Management | Changes preserve identifiers and historical references. | L2-G10 §§13, 47, 48A |
-| Authorization precedes business validation. | Authorization & Policy; Infrastructure Management | Unauthorized requests terminate before mutation. | L2-G10 §48A.207 |
-| Business validation precedes persistence, and events describe completed facts. | Infrastructure Management; Event Infrastructure | Failed work cannot publish a success event. | L2-G10 §§22A.99, 44A.179 |
-| Every successful state or significant attribute change is auditable. | Infrastructure Management; Audit Infrastructure | Actor, prior value, new value, reason and correlation are preserved. | L2-G10 §§48A.208–210, 49 |
-| Archived infrastructure is immutable. | Infrastructure Management | No scenario may update an Archived aggregate. | L2-G10 §§11A, 47 |
-| Capacity cannot be negative and reservation conflicts are prevented unless an authorized override is permitted. | Infrastructure Management | Invalid capacity or conflicting reservations are rejected. | L2-G10 §§24, 26, 47 |
-
----
+| Availability is distinct from lifecycle. | Infrastructure Management | Availability change does not create a lifecycle transition. | L2-G10 §25 |
+| Availability may be changed by maintenance, failure, closure, emergency, reservation, compliance restriction, disaster recovery or authorized administrative action. | Infrastructure Management | Only source-supported business conditions may govern the change. | L2-G10 §25 |
+| Partial closure does not necessarily affect unrelated infrastructure. | Infrastructure Management | Scope must not be expanded beyond the affected resource hierarchy. | L2-G10 §25 |
+| D03 consumes G10 physical infrastructure resources and owns timetable/scheduling decisions. | Academic Delivery / Infrastructure Management | Receiving availability does not transfer G10 ownership or timetable ownership. | L2-D03 §§1.10–1.11, 2.8 |
+| Every successful G10 workflow publishes a canonical business event. | Infrastructure Management | Missing exact event name blocks source-complete completion. | L2-G10 WDP-02 |
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Position | Canonical Owner |
-|---|---|---|---|---|
-| `Applicable Physical Campus, Building, Floor or Space` | Valid trigger and authorized context | Executes only the scenario-specific creation, association or governed attribute change. | Availability changes independently among configured states such as Available, Temporarily Closed, Emergency Closed or Operationally Restricted | Infrastructure Management, except the B03 reference retained by Institution & Structure |
-| Parent physical hierarchy | Existing and valid where applicable | Referenced and validated; not silently re-parented. | Unchanged unless the frozen outcome explicitly creates the child relationship. | Infrastructure Management |
-| Tenant and Institution | Existing | Supply isolation and institutional reference. | Unchanged. | Platform Foundation; Institution & Structure |
-| Consumer-domain records | Existing or absent | Consume the completed authoritative fact. | Unchanged by G10. | Applicable consumer domain |
-| Audit history | Existing | Appends immutable evidence. | Historical trace grows; prior records remain unchanged. | Audit Infrastructure |
+The frozen words “suspended” and “restored” describe the business outcome. G10's named availability states include `Available`, `Reserved`, `Under Maintenance`, `Under Renovation`, `Temporarily Closed`, `Emergency Closed`, and `Operationally Restricted`; L3 does not invent `Suspended` or `Restored` as new states.
 
-L2-G10 requires lifecycle and operational availability to remain distinct. “Activation” in a frozen outcome is not treated as a new lifecycle state unless L2-G10 defines it.
-
----
+| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
+|---|---|---|---|---|---|
+| Infrastructure Availability | Existing source-defined availability condition | Applies a governed restriction/unavailability or returns to a source-defined usable condition | Source-defined current availability state appropriate to the business condition | Infrastructure Management | L2-G10 §25 |
+| Timetable / D03 scheduling | Existing D03 position | Consumes current G10 usability | No D03 transition is mandated by this G10 scenario | Academic Delivery | L2-D03 |
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Event Treatment
+## 14.1 Published / Consumed Business Events
 
-| Event / Required Fact | Publication Condition | Publisher and Consumer Treatment |
-|---|---|---|
-| `InfrastructureActivated or InfrastructureDeactivated; campus-specific status may use CampusOperationalStatusChanged` | Only after the corresponding aggregate creation or governed update has persisted successfully. | The affected G10 aggregate publishes the source-defined completed fact; consumers react without changing G10 ownership. |
+G10's availability workflow requires publication but no exact canonical event for availability suspension/restoration is defined. Generic lifecycle/operational-status events such as `InfrastructureActivated` or `InfrastructureDeactivated` do not resolve this because G10 expressly keeps availability separate from lifecycle. L3 does not substitute them.
 
-Where Section 44 and the detailed WF-INF catalogue use different names, this Draft records the inconsistency in Section 17 and does not publish both names for one transition.
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-## 14.2 Synchronous Business Contracts and Hand-offs
-
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
-|---|---|---|---|
-| Physical Campus Summary | Infrastructure Management | Institution & Structure and authorized consumers | Canonical physical Campus identity, lifecycle and operational status. |
-| Building, Floor and Space Summary | Infrastructure Management | Operational domains | Canonical hierarchy, classification, capacity, lifecycle and current status. |
-| Capacity Profile | Infrastructure Management | Academic, Examination and operational consumers | Canonical capacity facts; consumers own utilization decisions. |
-| Retrieve Availability | Infrastructure Management | Authorized consumers | Current operational availability independently from lifecycle. |
-| Reservation service | Infrastructure Management | Authorized requestor | Governed reservation establishment, modification or retrieval. |
-| Audit input | Infrastructure Management | Audit Infrastructure | Actor, scope, transition, prior/new values, reason and correlation evidence. |
-
----
+| Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
+|---|---|---|---|---|
+| Infrastructure Management | Academic Delivery | Authoritative current infrastructure usability fact | Allows D03 to evaluate its own scheduling/resource decisions without owning availability. | L2-G10 §25; L2-D03 dependency on G10 |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-- Authentication is external to G10.
-- Fine-grained permission is evaluated by Tenant, institution and physical-resource scope before validation.
-- Consumer access does not grant direct aggregate mutation.
-- Authorization success does not waive hierarchy, lifecycle, capacity, availability or policy rules.
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| Change infrastructure availability | Infrastructure Administrator | Must satisfy G10 authorization and availability rules. | Infrastructure Management |
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-- L2-G10 allows configurable approval for some creation, lifecycle, override and administrative operations.
-- The scenario uses approval only where active policy requires it.
-- No unnamed approver or technical workflow routing is invented.
-- Governance approval supplements business validation and never replaces it.
+No scenario-specific separation-of-duty rule is defined. Manual override remains subject to authorization.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The audit record must preserve Tenant, institution, aggregate type and identifier, actor, authorization scope, previous values, new values, effective dates where applicable, business reason, approval reference where required, event facts and correlation identifier. Audit history is immutable and independently retained.
-
----
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Preserve the governed availability change | Prior/current availability condition plus applicable effective period, reason and responsible authority defined by G10. | Infrastructure Management |
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete only when:
+## 16.1 Completion Criteria
 
-- receive the availability condition and resolve the affected physical resource.
-- authorize the change within the applicable scope.
-- validate lifecycle, current availability, source condition and requested outcome.
-- determine whether the outcome is suspension, restriction or restoration and define its effective period.
-- persist the new availability without changing unrelated hierarchy members.
-- expose the authoritative current usability state to D and other authorized consumers.
-- publish the applicable source-defined operational-status event after persistence.
-- preserve previous state, new state, reason, authority, actor and correlation evidence.
-- no institutional, academic or consumer-domain ownership has transferred to G10;
-- no unauthorized or partial result is treated as successful; and
-- all required audit evidence is immutable and queryable.
+- The resource's current authoritative usability reflects the frozen suspension/restoration outcome under policy.
+- Academic Delivery can consume the authoritative G10 fact without owning it.
+- The exact canonical availability-change event is defined and published by Infrastructure Management.
 
-Postconditions:
+## 16.2 Postconditions
 
-- Canonical G10 identity and historical integrity are preserved.
-- The current authoritative fact is available through governed contracts.
-- Consumers may react under their own rules but cannot rewrite the source fact.
-- Failed or incomplete transitions publish no success event.
-
----
+- G10 remains owner of infrastructure availability.
+- D03 remains owner of any scheduling response.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-**Architecture assessment:** `PASS WITH ISSUES`
+## 17.1 Open Issues
 
-| ID | Severity | Issue / Deferred Question | Required Resolution |
-|---|---|---|---|
-| G-290-ISSUE-01 | Non-blocking | L2-G10 distinguishes lifecycle from availability but its detailed workflow publishes activation/deactivation events rather than a canonical availability-suspended/restored event. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
-| G-290-ISSUE-02 | Non-blocking | Campus-specific and generic operational-status event vocabularies coexist, so event selection depends on aggregate type. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| G10 requires event publication for availability changes but defines no exact canonical event for the frozen suspension/restoration outcome. | L3 cannot name the mandatory event without inventing or substituting a lifecycle event. | Upstream G10/event governance must define the canonical availability-change event. |
 
-No unsupported aggregate, lifecycle state, transition, event, publisher, actor, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
+**Source Assessment:** **BLOCKED**
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No scenario-specific deferred questions.

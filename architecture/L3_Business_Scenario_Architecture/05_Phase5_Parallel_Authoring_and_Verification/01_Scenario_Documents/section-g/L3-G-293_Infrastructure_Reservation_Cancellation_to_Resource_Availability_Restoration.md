@@ -11,17 +11,19 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
+**Last Updated:** 2026-08-23  
 **Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized consumers of Infrastructure reservation and availability facts
+**Referenced By:** None yet
 
 # 2. Scenario Purpose
 
-Govern the cancellation of an existing Infrastructure Reservation so that the reserved physical resource is released in accordance with Infrastructure Management policy, its resulting availability is determined by the authoritative Availability Profile, and reservation history remains preserved.
+Govern cancellation of a G10 Infrastructure Reservation so its physical resource is released according to availability policy while reservation history remains preserved.
 
 # 3. Business Outcome
 
-The reservation is closed and the applicable resource becomes available according to its availability policy
+The reservation is closed and the applicable resource becomes available according to its availability policy.
+
+The frozen outcome requires the Reservation to be “closed,” but locked G10 defines no `Closed` or `Cancelled` Reservation lifecycle state. The Draft is therefore **BLOCKED** on lifecycle resolution.
 
 # 4. Scenario Boundary and Scope
 
@@ -31,99 +33,92 @@ The scenario begins when an authorised reservation is cancelled.
 
 ## 4.2 End Boundary
 
-The scenario ends when the reservation cancellation has released the applicable infrastructure commitment and the resource's current availability has been restored or otherwise determined according to its authoritative availability policy, without deleting reservation history.
+The scenario ends when the Reservation has reached the source-authorized cancellation/closure lifecycle position, the resource has been released and its availability determined under policy, reservation history is preserved, and `ReservationCancelled` has been published.
 
 ## 4.3 In Scope
 
-- Cancellation of an existing Infrastructure Reservation under G10 reservation governance.
-- Release of the physical resource from the cancelled reservation commitment.
-- Re-evaluation of resource availability according to the authoritative Availability Profile and applicable policy.
+- Reservation cancellation under G10 governance.
+- Release of the reserved physical resource.
+- Determination of current availability according to the authoritative availability policy.
 - Preservation of reservation history.
-- Publication of the canonical completed cancellation fact.
-- Business audit evidence generated from the completed business fact.
+- `ReservationCancelled` publication and auditability.
 
 ## 4.4 Out of Scope
 
-- Creation or modification of a Reservation before cancellation.
-- Redefinition of infrastructure capacity, lifecycle, classification, or availability policy.
-- Any consuming domain's downstream scheduling or operational decision after the resource availability fact changes.
-
-## 4.5 Related Scenarios — Optional
-
-| Relationship | Related Scenario | Reason |
-|---|---|---|
-| Preceded by | L3-G-291 — Infrastructure Reservation Request to Controlled Reservation | Establishes a Reservation for the applicable resource and period. |
-| Related | L3-G-292 — Infrastructure Reservation Change to Controlled Rescheduling | Governs permitted changes to an existing Reservation without cancelling it. |
-| Related | L3-G-289 — Infrastructure Availability Definition to Availability Profile Activation | Establishes the authoritative availability policy used when release is evaluated. |
+- Reservation creation or modification.
+- Redefinition of availability policy.
+- Treating cancellation as deletion.
+- Downstream consumer decisions after resource release.
+- Any implementation design.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Owns the Reservation, reservation cancellation, physical-resource release and resulting Infrastructure Availability fact. |
-| Platform Foundation / Section A | Owns authorization decisions, event-governance capability and immutable audit evidence used by the scenario; it does not own the Reservation or availability outcome. |
+| Infrastructure Management / G | Owns the Reservation, its cancellation, resource release and resulting availability fact. |
+| Platform Foundation / A | Supplies authorization, event governance and audit capabilities without owning the G10 outcome. |
 
 # 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Administers Infrastructure reservation governance within authorized infrastructure scope. | May perform governed Infrastructure management actions where authorization permits. |
-| Campus Administrator | Administers Infrastructure within the governed campus scope. | May participate where the Reservation concerns infrastructure within that campus scope. |
-| Auditor | Reviews preserved business evidence. | Read-only review of historical evidence; does not alter Reservation or availability facts. |
+| Infrastructure Administrator | Administers the Reservation cancellation under G10 governance. | Performs cancellation only where authorized. |
 
-L2-G10 defines these logical roles but does not designate one unique canonical role as the initiator of every reservation cancellation. No additional actor is invented by this scenario.
+No universal named requester or approver is defined for all reservation cancellations.
 
 # 7. Preconditions and Entry Criteria
 
-- The Reservation exists under Infrastructure Management ownership.
-- The Reservation identifies an Infrastructure resource governed by G10.
-- The cancellation action is authorized before the business change proceeds.
-- An authoritative availability policy or Availability Profile exists for determining the resource's usable state after release.
+- The Reservation exists under G10 ownership.
+- The referenced physical resource exists.
+- Cancellation is authorized.
+- An authoritative availability policy can determine the resource's usability after release.
 
 # 8. Trigger
 
-An authorised reservation is cancelled
+An authorised reservation is cancelled.
 
 # 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Identify the existing Reservation and the Infrastructure resource committed by it. | Infrastructure Management | The exact reservation commitment to be cancelled is established. |
-| 2 | Confirm that the cancellation is authorized and governed by the applicable reservation policy. | Infrastructure Management, using the canonical authorization decision owned by Section A | The cancellation is eligible to proceed. |
-| 3 | Cancel the reservation commitment without deleting its historical record. | Infrastructure Management | The resource is released from that Reservation while reservation history remains preserved. |
-| 4 | Determine the resource's current availability under its authoritative Availability Profile and applicable policy. | Infrastructure Management | The resource becomes available where policy permits, or retains another source-defined availability condition where a separate restriction still applies. |
-
-The Main Business Flow ends when the frozen Business Outcome has been established. Event publication and audit evidence are addressed separately in Sections 14 and 15.
+| 1 | Identify the Reservation and its reserved physical resource. | Infrastructure Administrator / Infrastructure Management | The exact reservation commitment to cancel is known. |
+| 2 | Validate authorization and applicable reservation-cancellation policy. | Infrastructure Management | The cancellation is eligible to proceed. |
+| 3 | Cancel the reservation commitment without deleting its history. | Infrastructure Management | The physical resource is released from that Reservation. |
+| 4 | Determine the resource's current availability under its authoritative availability policy. | Infrastructure Management | The resource becomes `Available` only where no other source-defined restriction applies. |
+| 5 | Move the Reservation to the lifecycle position required by the frozen “closed” outcome. | Infrastructure Management | **Blocked:** locked G10 does not define that cancellation/closure lifecycle position. |
+| 6 | Publish `ReservationCancelled`. | Infrastructure Management | The completed cancellation fact is canonical once the lifecycle conflict is resolved. |
 
 # 10. Alternate Business Flows
 
 | Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
 |---|---|---|---|---|
-| Availability remains constrained | The cancelled Reservation is removed as a cause of reservation, but another authoritative availability condition still restricts the resource. | Release the Reservation and determine the resource's current availability from the remaining applicable Availability Profile and policy conditions. | The Reservation is cancelled without falsely declaring the resource usable contrary to its authoritative availability policy. | Infrastructure Management |
+| Other availability restriction remains | Cancellation removes the reservation constraint but another source-defined condition still restricts use. | Release the Reservation and retain the applicable non-available G10 condition. | Cancellation does not falsely declare the resource usable. | Infrastructure Management |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Authorization does not permit cancellation | The Reservation remains unchanged. | The cancellation does not proceed unless a later authorized business action satisfies the governing policy. | Platform Foundation / Authorization; Infrastructure Management retains the Reservation. |
-| The Reservation or referenced Infrastructure resource cannot be validly established | The intended business cancellation cannot be applied to an authoritative Reservation/resource pair. | Resolve the authoritative business reference before a new cancellation attempt; no cancellation outcome is asserted meanwhile. | Infrastructure Management |
+| Cancellation is not authorized. | Reservation remains unchanged. | Proceed only after a later valid authorization decision. | Infrastructure Management / Platform Foundation |
+| Reservation/resource reference is invalid. | No authoritative cancellation can be applied. | Resolve the G10 business reference before a later attempt. | Infrastructure Management |
+| Cancellation lifecycle position remains undefined. | L3 cannot prove the frozen “reservation is closed” outcome using canonical states. | Resolve the locked G10 Reservation lifecycle through architecture change control. | Infrastructure Management |
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Infrastructure Management owns reservation governance; operational domains consume reservation capabilities without taking ownership. | Infrastructure Management | Cancellation and resource release remain G10-owned business facts. | L2-G10 §26 Infrastructure Reservation Workflows |
-| Reservation cancellation shall release Infrastructure, restore availability, publish a domain event, preserve audit history, and shall never delete the Reservation. | Infrastructure Management | The scenario cannot treat cancellation as destructive deletion and must preserve historical traceability. | L2-G10 §26 Reservation Cancellation |
-| Infrastructure availability is a governed operational state distinct from the Infrastructure lifecycle. | Infrastructure Management | Releasing a Reservation does not bypass other availability restrictions or create a new lifecycle state. | L2-G10 Availability governance; §11A lifecycle definitions |
-| Every business operation must be authorized before execution. | Platform Foundation — Authorization | An unauthorized cancellation cannot change the Reservation. | L2-A04 AP-01 and business-domain boundary |
-| Events represent completed business facts and the originating business domain retains ownership of the fact. | Platform Foundation — Event Infrastructure; Infrastructure Management | `ReservationCancelled` describes the completed G10 cancellation; Event Infrastructure does not become its business owner. | L2-A06 EIP-01, EIP-02; L2-G10 §44 |
+| Cancellation releases Infrastructure, restores availability, publishes an event and preserves audit history; Reservation deletion never occurs. | Infrastructure Management | Cancellation is non-destructive and preserves history. | L2-G10 §26 Reservation Cancellation |
+| Availability remains independent from lifecycle and follows its own policy. | Infrastructure Management | Resource release does not bypass other availability restrictions. | L2-G10 §25 |
+| `ReservationCancelled` is the canonical cancellation event. | Infrastructure Management | L3 preserves the exact source event name. | L2-G10 Reservation Events |
+| Authorization is mandatory. | Platform Foundation — Authorization | Unauthorized cancellation cannot proceed. | L2-A04 AP-01 |
 
 # 13. State and Lifecycle Impact
 
+Locked G10 defines the Reservation lifecycle as `Requested → Confirmed → Active → Completed → Archived`. It defines no `Closed` or `Cancelled` state, yet the frozen outcome says the Reservation is closed.
+
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Reservation | Requested → Confirmed → Active → Completed → Archived are the canonical states defined by L2-G10; the exact cancellable entry position is not separately specified. | The frozen scenario requires business cancellation/closure and preservation of history. | **Unresolved:** L2-G10 does not define a `Cancelled` or `Closed` Reservation lifecycle state, so this Draft does not invent one. | Infrastructure Management | L2-G10 §11A canonical lifecycle; §26 Reservation Cancellation |
-| Infrastructure Availability | Source-defined availability states include Available, Reserved, Under Maintenance, Under Renovation, Temporarily Closed, Emergency Closed and Operationally Restricted. | The Reservation is released as a reservation constraint and availability is determined under the applicable policy. | Existing source-defined availability state appropriate to the remaining business conditions; `Available` only where policy permits. | Infrastructure Management | L2-G10 Availability States; §26 Reservation Cancellation |
+| Reservation | Existing cancellable Reservation position is not further specified | Cancellation/closure is required | **Unresolved:** no canonical cancellation/closure state is defined | Infrastructure Management | L2-G10 Reservation lifecycle; §26 |
+| Infrastructure Availability | Existing source-defined condition | Reservation constraint is released | `Available` where policy permits, otherwise another source-defined availability state | Infrastructure Management | L2-G10 §§25–26 |
 
 # 14. Business Events and Cross-Domain Collaboration
 
@@ -131,11 +126,11 @@ The Main Business Flow ends when the frozen Business Outcome has been establishe
 
 | Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
 |---|---|---|---|---|
-| `ReservationCancelled` | Infrastructure Management | No specific consumer is named by L2-G10 for this event. | Publishes the completed fact that the Infrastructure Reservation has been cancelled. | L2-G10 §44 Reservation Events; L2-A06 EIP-02 |
+| `ReservationCancelled` | Infrastructure Management | Authorized reservation consumers | States that the G10 Reservation was cancelled. | L2-G10 Reservation Events |
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-No synchronous cross-domain business hand-off is required to transfer ownership of the cancellation outcome. Section A participates through its canonical authorization, event-governance and audit capabilities; those capabilities do not transfer ownership of the Reservation or Infrastructure Availability facts.
+No ownership-changing cross-domain hand-off is required. Authorized consumers may subsequently obtain the current G10 reservation/availability facts.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
@@ -143,32 +138,32 @@ No synchronous cross-domain business hand-off is required to transfer ownership 
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
-| Cancel an Infrastructure Reservation | Infrastructure Administrator or Campus Administrator within the applicable governed scope | The action proceeds only when the canonical authorization decision permits it and G10 reservation policy is satisfied. | Infrastructure Management |
+| Cancel Infrastructure Reservation | Infrastructure Administrator | Must satisfy authorization and G10 cancellation rules. | Infrastructure Management |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-No scenario-specific separation-of-duty, approval, override, or exception requirement for ordinary Reservation cancellation is defined by the authoritative L2 architecture.
+No scenario-specific separation-of-duty or mandatory approval rule is defined for ordinary reservation cancellation.
 
 ## 15.3 Business Audit and Evidence Obligations
 
 | Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
 |---|---|---|
-| Preserve cancellation history | Evidence that the Reservation was cancelled rather than deleted and that the affected resource was released under G10 governance. | Infrastructure Management for the business fact; Platform Audit Infrastructure for immutable audit evidence. |
-| Preserve availability determination | Evidence of the resulting authoritative availability fact following release. | Infrastructure Management for the availability fact; Platform Audit Infrastructure for immutable audit evidence. |
+| Preserve cancellation history | Reservation cancellation and resource release remain historically traceable; the Reservation is not deleted. | Infrastructure Management |
+| Preserve immutable audit evidence | Audit evidence derived from `ReservationCancelled`. | Platform Foundation — Audit |
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- The Reservation is no longer an active reservation commitment against the applicable resource.
-- The resource's current availability has been determined according to its authoritative availability policy.
-- Reservation history has not been deleted.
+- The Reservation is in the canonical lifecycle position corresponding to the frozen “closed” outcome.
+- The physical resource is released and current availability is determined under policy.
+- Reservation history is preserved.
+- `ReservationCancelled` is published by Infrastructure Management.
 
 ## 16.2 Postconditions
 
-- Authorized consumers may rely on the current Infrastructure Availability fact under G10 ownership.
-- `ReservationCancelled` represents the completed cancellation fact under Infrastructure Management ownership.
-- Immutable audit evidence may be generated from the canonical completed business fact under Section A ownership.
+- The resource may be consumed only if its current G10 availability permits it.
+- The cancelled Reservation remains historically traceable.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
@@ -176,11 +171,9 @@ No scenario-specific separation-of-duty, approval, override, or exception requir
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
-| The frozen outcome states that the Reservation is “closed,” and L2-G10 defines Reservation Cancellation, but the canonical Reservation lifecycle lists only Requested → Confirmed → Active → Completed → Archived and defines no `Closed` or `Cancelled` state. | A canonical resulting Reservation lifecycle position cannot be asserted without inventing or renaming a state. This materially affects lifecycle correctness. | Upstream L2-G10 architecture authority must clarify the canonical lifecycle treatment of cancellation/closure. |
+| The frozen outcome requires the Reservation to be “closed,” but G10's canonical Reservation lifecycle contains only `Requested`, `Confirmed`, `Active`, `Completed`, and `Archived`. | L3 cannot state the required resulting lifecycle position without inventing or renaming a state. | Upstream G10 must define how cancellation maps to the canonical Reservation lifecycle. |
 
-**Architecture assessment:** `BLOCKED`
-
-The Draft preserves all unambiguous frozen semantics and source-defined behaviour, but it cannot be promoted as source-complete until the Reservation cancellation lifecycle position is resolved upstream.
+**Source Assessment:** **BLOCKED**
 
 ## 17.2 Assumptions
 

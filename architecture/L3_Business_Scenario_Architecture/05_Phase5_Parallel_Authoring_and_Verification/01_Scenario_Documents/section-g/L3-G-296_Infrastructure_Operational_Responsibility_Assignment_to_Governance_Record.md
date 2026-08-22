@@ -11,17 +11,19 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
+**Last Updated:** 2026-08-23  
 **Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B02 — Organisation Workflows; L2-E02 — Position & Assignment Workflows; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized Infrastructure consumers requiring current operational-responsibility context
+**Referenced By:** None yet
 
 # 2. Scenario Purpose
 
-Establish the governed Infrastructure-specific record of which organizational or operational party holds a supported responsibility for a physical Infrastructure resource, while preserving Section B ownership of organizational structure, Section E ownership of workforce Position/Responsibility Assignment, Section A ownership of authorization and audit capabilities, and Section G ownership of the physical resource and its Infrastructure-specific responsibility association.
+Record a source-supported responsible organizational or operational party against a physical infrastructure resource while preserving B02 organizational ownership, E02 workforce assignment/responsibility ownership, A04 authorization ownership, and G10 physical-infrastructure ownership.
 
 # 3. Business Outcome
 
-The responsible organisational or operational party is recorded against the infrastructure resource
+The responsible organisational or operational party is recorded against the infrastructure resource.
+
+G10 requires significant successful infrastructure workflows to publish canonical business events but defines no exact event name for this responsibility-assignment outcome. The Draft is **BLOCKED**.
 
 # 4. Scenario Boundary and Scope
 
@@ -31,117 +33,113 @@ The scenario begins when responsibility for an infrastructure resource must be f
 
 ## 4.2 End Boundary
 
-The scenario ends when the source-supported responsible organizational or operational party has been recorded against the applicable physical Infrastructure resource under G10 governance, with upstream organizational/workforce ownership preserved.
+The scenario ends when a source-supported G10 responsible-party association is effective against the physical resource, upstream B/E ownership is preserved, and the required canonical assignment event can be published.
 
 ## 4.3 In Scope
 
-- Identification of the physical Infrastructure resource whose operational responsibility requires assignment.
-- Reference to authoritative organizational context from Section B where organizational placement is material.
-- Reference to authoritative workforce/assignment context from Section E where a workforce participant is assigned.
-- Selection of a G10-supported Infrastructure responsibility type.
-- Effective-dated recording of the Infrastructure-specific responsible party against the physical resource.
-- Preservation of canonical ownership boundaries and business auditability.
+- Selection of a G10-supported infrastructure responsibility.
+- Reference to authoritative organization/Position Definition facts from B02.
+- Reference to authoritative workforce Position/Responsibility Assignment context from E02 where applicable.
+- Effective-dated G10 responsible-party association.
+- Auditability and required event publication.
 
 ## 4.4 Out of Scope
 
-- Creation or modification of Organization, Organization Unit, Position Definition, Workforce Engagement, Position Assignment, or E02 Responsibility Assignment.
-- Creation of authorization roles or assignment of authorization-layer authority.
-- Transfer of physical Infrastructure ownership away from G10.
-
-## 4.5 Related Scenarios — Optional
-
-| Relationship | Related Scenario | Reason |
-|---|---|---|
-| Followed by | L3-G-297 — Infrastructure Responsibility Change to Effective Responsibility Transfer | Governs a later change to the responsible party while preserving history. |
+- Creation or change of Organization, Organization Unit or Position Definition.
+- Creation or change of E02 Position Assignment or Responsibility Assignment.
+- Authorization Role/Role Assignment lifecycle changes.
+- Transfer of physical-infrastructure ownership.
+- Any implementation design.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Owns the physical resource and the Infrastructure-specific record of supported operational responsibility against that resource. |
-| Institution & Structure / Section B | Owns organization structure and Position Definition facts referenced by the assignment; those facts are not recreated by G10. |
-| People & Workforce / Section E | Owns workforce Position Assignment, Responsibility Assignment, occupancy and organizational authority used as authoritative workforce context; those lifecycles remain in E02. |
-| Platform Foundation / Section A | Owns authorization decisions, event-governance capability and immutable audit evidence; it does not own the Infrastructure responsibility outcome. |
+| Infrastructure Management / G | Owns the physical resource and its infrastructure-specific responsible-party association. |
+| Institution & Structure / B | Owns Organization/Organization Unit and Position Definition facts referenced by G10. |
+| People & Workforce / E | Owns Position Assignment, Responsibility Assignment and organizational authority facts used as workforce context. |
+| Platform Foundation / A | Owns authorization decisions, event governance and audit evidence without owning the infrastructure responsibility outcome. |
 
-The phrase “Infrastructure operational responsibility assignment” in this scenario means the G10 record of a responsible party against a physical resource. It does not re-own the canonical E02 `Responsibility Assignment` aggregate.
+The G10 responsible-party association is not the E02 `Responsibility Assignment` aggregate.
 
 # 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Administers the Infrastructure-specific responsibility record. | Performs governed Infrastructure management within authorized scope. |
-| Institution Administrator | Provides institution-wide Infrastructure oversight where the assignment falls within that governance scope. | Participates in Infrastructure oversight without taking ownership of the physical resource. |
-| Infrastructure Custodian | A source-supported G10 responsibility that may be recorded against Infrastructure. | Holds administrative oversight responsibility where that responsibility type is selected. |
-| Operational Manager | A source-supported G10 responsibility that may be recorded against Infrastructure. | Holds day-to-day operational management responsibility where that responsibility type is selected. |
-| Auditor | Reviews preserved business evidence. | Read-only historical review. |
+| Infrastructure Administrator | Administers the infrastructure-specific responsibility association. | Performs the G10 action only where authorized and upstream references are valid. |
 
-L2-G10 also supports Administrative Owner, Maintenance Coordinator, Compliance Officer and Safety Officer responsibilities. This scenario does not require one fixed responsibility type; it records whichever source-supported responsibility is applicable to the business case.
+G10 supports responsibility types including Infrastructure Custodian, Operational Manager, Administrative Owner, Maintenance Coordinator, Compliance Officer and Safety Officer. No universal named approver is defined.
 
 # 7. Preconditions and Entry Criteria
 
-- The physical Infrastructure resource exists under G10 ownership.
-- The requested Infrastructure responsibility type is one supported by L2-G10.
-- Where an organizational party is referenced, its organizational identity/context is authoritative under Section B.
-- Where a workforce participant is referenced, the relevant workforce and assignment context is authoritative under Section E.
-- The action is authorized before the Infrastructure-specific responsibility record is established.
+- The physical resource exists under G10 ownership.
+- The requested responsibility type is source-supported by G10.
+- Any referenced organization/Position Definition fact is authoritative under B02.
+- Any referenced workforce assignment/responsibility context is authoritative under E02.
+- The G10 assignment action is authorized.
 
 # 8. Trigger
 
-Responsibility for an infrastructure resource must be formally assigned
+Responsibility for an infrastructure resource must be formally assigned.
 
 # 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Identify the physical Infrastructure resource and the G10-supported responsibility that requires formal assignment. | Infrastructure Management | The responsibility requirement is bounded to a canonical physical resource and supported responsibility type. |
-| 2 | Obtain the authoritative organizational context from Section B and, where applicable, workforce assignment context from Section E without recreating either source fact. | Institution & Structure; People & Workforce; Infrastructure Management | The proposed responsible party is anchored to authoritative upstream organizational/workforce context. |
-| 3 | Confirm that the proposed Infrastructure responsibility assignment is authorized and determine the applicable effective dating required for historical traceability. | Infrastructure Management, using the canonical authorization decision owned by Section A | The assignment is eligible to become effective under G10 governance. |
-| 4 | Record the responsible organizational or operational party against the Infrastructure resource. | Infrastructure Management | The frozen Business Outcome is achieved while B02/E02 ownership remains unchanged. |
+| 1 | Identify the physical resource and the G10-supported responsibility to assign. | Infrastructure Administrator / Infrastructure Management | The requirement is bounded to canonical infrastructure and a source-supported responsibility type. |
+| 2 | Resolve authoritative organizational and workforce references from B02/E02 where applicable. | Institution & Structure / People & Workforce → Infrastructure Management | G10 references rather than recreates upstream business facts. |
+| 3 | Validate authorization and any effective dating required for historical traceability. | Infrastructure Management using Platform Authorization | The G10 responsibility association is eligible to become effective. |
+| 4 | Record the responsible organizational or operational party against the physical resource. | Infrastructure Management | The frozen business outcome is achieved. |
+| 5 | Publish the canonical responsibility-assignment business event required by G10. | Infrastructure Management | **Blocked:** no exact canonical event name is defined upstream. |
 
 # 10. Alternate Business Flows
 
 | Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
 |---|---|---|---|---|
-| Temporary delegation of an Infrastructure responsibility | A source-supported G10 responsibility is delegated for a limited period. | Apply the L2-G10 delegation requirements for effective dates, delegation reason, automatic restoration and complete history without redefining E02 Assignment Delegation or A04 Authorization Delegation. | The Infrastructure responsibility remains governed and historically traceable for the delegated period. | Infrastructure Management |
+| Temporary G10 responsibility delegation | A supported infrastructure responsibility is delegated for a limited period. | Apply G10 effective dates, delegation reason, automatic restoration and complete history without redefining E02 Assignment Delegation or A04 Authorization Delegation. | The infrastructure responsibility remains governed and traceable. | Infrastructure Management |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Authoritative organization or workforce reference is not valid | G10 cannot establish a reliable responsibility association to the proposed party. | Correct the upstream B02/E02 business fact before a later Infrastructure responsibility assignment; G10 does not create a substitute organizational/workforce fact. | Institution & Structure or People & Workforce; Infrastructure Management retains the physical resource. |
-| Authorization does not permit the assignment | The Infrastructure responsibility record is not established. | The action may proceed only through a later authorized business decision; no G10 responsibility outcome is asserted meanwhile. | Platform Foundation — Authorization; Infrastructure Management |
+| Organization or workforce reference is not authoritative. | G10 cannot establish a reliable responsible-party association. | Correct the upstream B02/E02 fact before a later G10 assignment. | Institution & Structure / People & Workforce |
+| Authorization fails. | No G10 responsibility association is established. | Proceed only after a later valid authorization decision. | Platform Foundation / Infrastructure Management |
+| Canonical assignment event remains undefined. | Required event publication cannot be completed. | Define the event through upstream architecture governance. | Infrastructure Management |
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| G10 may record supported operational responsibilities including Infrastructure Custodian, Operational Manager, Administrative Owner, Maintenance Coordinator, Compliance Officer and Safety Officer. | Infrastructure Management | The scenario may use only source-supported Infrastructure responsibility types. | L2-G10 §28 Operational Responsibility Management |
-| Responsibility assignments support effective dating where historical traceability is required. | Infrastructure Management | The current responsible party can be established without erasing prior responsibility history. | L2-G10 Effective Dating principle; §28 |
-| Section B is authoritative for organizational structure and Position Definition. | Institution & Structure | G10 references organizational facts but does not create or change them. | L2-B02 Purpose, Ownership and approved Position Definition ownership clarification |
-| E02 canonically owns Position Assignment and Responsibility Assignment. | People & Workforce | G10 must not reinterpret the Infrastructure-specific responsible-party record as ownership of the E02 Responsibility Assignment aggregate. | L2-E02 §§1.3–1.4, 2.5 |
-| Authorization decisions are owned by A04 and business domains determine when authorization is required. | Platform Foundation — Authorization; Infrastructure Management | G10 applies the authorization outcome without redefining A04 authorization concepts. | L2-A04 §§3, 5 and AP-01 |
+| G10 supports Infrastructure Custodian, Operational Manager, Administrative Owner, Maintenance Coordinator, Compliance Officer and Safety Officer responsibilities. | Infrastructure Management | Only source-supported infrastructure responsibilities may be recorded. | L2-G10 §28 |
+| G10 responsibility assignments may be effective-dated where historical traceability is required. | Infrastructure Management | Current responsibility can be established without erasing history. | L2-G10 Effective Dating principle; §28 |
+| B02 owns organization structure and Position Definition. | Institution & Structure | G10 references these facts and cannot recreate or change them. | L2-B02 Purpose/Scope and Position Definition ruling |
+| E02 owns Position Assignment and Responsibility Assignment. | People & Workforce | G10's responsible-party association cannot re-own the E02 aggregates. | L2-E02 §§1.3–1.4, 2.5 |
+| Authorization decisions remain owned by A04. | Platform Foundation — Authorization | G10 determines when authorization is needed but does not own A04 concepts. | L2-A04 §§3–6 |
+| Significant G10 workflows require canonical business-event publication. | Infrastructure Management | Missing event name prevents canonical completion. | L2-G10 design principles / administrative-operation rule |
 
 # 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Physical Infrastructure / Space | Existing source-defined lifecycle position. | Gains or updates the G10-owned Infrastructure-specific responsible-party association. | Physical Infrastructure lifecycle itself remains unchanged by this assignment. | Infrastructure Management | L2-G10 §28; Space aggregate responsibilities |
-| E02 Position Assignment / Responsibility Assignment | Existing authoritative E02 position/responsibility context where applicable. | Referenced for workforce/authority context only. | No E02 lifecycle transition is performed by this G10 scenario. | People & Workforce | L2-E02 ownership and scope |
-| B02 organization / Position Definition | Existing authoritative organization/structural context. | Referenced to identify the organizational party/structure. | No B02 lifecycle transition is performed by this G10 scenario. | Institution & Structure | L2-B02 canonical ownership |
+| Physical infrastructure | Existing source-defined lifecycle position | Gains the G10 responsible-party association | Infrastructure lifecycle unchanged | Infrastructure Management | L2-G10 §28 |
+| B02 organization / Position Definition | Existing authoritative facts | Referenced only | No B02 transition | Institution & Structure | L2-B02 |
+| E02 Position Assignment / Responsibility Assignment | Existing authoritative facts where applicable | Referenced only | No E02 transition | People & Workforce | L2-E02 |
+
+G10 does not define a separate named lifecycle for its infrastructure-specific responsible-party association.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-L2-G10 requires every significant Infrastructure business transition to generate a domain event, but no exact canonical event name for Infrastructure operational-responsibility assignment is defined in its event catalogue. This Draft therefore does not invent or rename an event. The gap is recorded in Section 17.
+G10 requires significant infrastructure workflows/administrative changes to publish a canonical business event, but no exact event name for operational-responsibility assignment is defined. Infrastructure Management is the business publisher; L3 does not invent the missing event.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
 | Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
 |---|---|---|---|---|
-| Institution & Structure | Infrastructure Management | Authoritative organization / Position Definition reference | Supplies organizational structure without transferring B02 ownership. | L2-B02; L2-G10 §9 Dependencies |
-| People & Workforce | Infrastructure Management | Authoritative workforce / Position Assignment / Responsibility Assignment context | Supplies workforce organizational-authority context used to identify the responsible party without transferring E02 lifecycle ownership. | L2-E02; L2-G10 §9 Dependencies |
-| Platform Foundation — Authorization | Infrastructure Management | Authorization decision | Determines whether the Infrastructure responsibility action may proceed without transferring the business decision to A04. | L2-A04 |
+| Institution & Structure | Infrastructure Management | Authoritative organization / Position Definition reference | Supplies structural context without transferring B02 ownership. | L2-B02; L2-G10 dependencies |
+| People & Workforce | Infrastructure Management | Authoritative workforce Position/Responsibility Assignment context | Supplies workforce authority context without transferring E02 ownership. | L2-E02; L2-G10 dependencies |
+| Platform Foundation — Authorization | Infrastructure Management | Authorization decision | Determines whether the G10 action may proceed. | L2-A04 |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
@@ -149,33 +147,32 @@ L2-G10 requires every significant Infrastructure business transition to generate
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
-| Establish an Infrastructure-specific responsibility record | Infrastructure Administrator | Must act within the applicable Infrastructure scope and against valid B02/E02 references. | Infrastructure Management |
-
-L2-G10 does not designate one universal named approver for all operational-responsibility assignments. No such approver is invented here.
+| Establish infrastructure-specific responsible-party association | Infrastructure Administrator | Must act within G10 scope using valid B02/E02 references and a valid authorization decision. | Infrastructure Management |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-No scenario-specific separation-of-duty or mandatory approval requirement for ordinary Infrastructure responsibility assignment is defined by the authoritative L2 architecture. Temporary G10 delegation follows only the source-defined effective-date, reason, automatic-restoration and historical-traceability requirements.
+No universal separation-of-duty or mandatory approval rule is defined for ordinary G10 responsibility assignment. Temporary G10 delegation follows only the source-defined effective-date, reason, restoration and history requirements.
 
 ## 15.3 Business Audit and Evidence Obligations
 
 | Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
 |---|---|---|
-| Preserve the effective Infrastructure responsibility record | The physical resource, supported responsibility, responsible party reference and applicable effective history remain traceable as the G10 business fact. | Infrastructure Management |
-| Preserve immutable business evidence | Canonical completed business facts are converted into immutable audit evidence without A07 taking ownership of the underlying Infrastructure fact. | Platform Foundation — Audit |
+| Preserve infrastructure responsibility history | Resource, source-supported responsibility, responsible-party reference and effective history remain traceable. | Infrastructure Management |
+| Preserve immutable audit evidence | Audit evidence derived from the completed canonical business fact. | Platform Foundation — Audit |
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- A source-supported responsible organizational or operational party is recorded against the applicable physical Infrastructure resource.
-- The organizational/workforce references remain owned by B02/E02 rather than duplicated by G10.
-- The Infrastructure-specific responsibility record has the applicable effective dating required for historical traceability.
+- A source-supported responsible organizational or operational party is recorded against the physical resource.
+- B02/E02/A04 ownership remains unchanged.
+- Applicable effective history is preserved.
+- The exact canonical G10 assignment event is defined and published.
 
 ## 16.2 Postconditions
 
-- Authorized Infrastructure consumers may rely on the current G10 responsibility association for the physical resource.
-- B02 organizational facts and E02 workforce assignment facts remain unchanged in ownership.
+- Authorized infrastructure consumers may rely on the current G10 responsible-party association.
+- Upstream organization/workforce facts remain under B02/E02 ownership.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
@@ -183,11 +180,9 @@ No scenario-specific separation-of-duty or mandatory approval requirement for or
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
-| L2-G10 requires a domain event for significant Infrastructure transitions but does not define an exact canonical event name for operational-responsibility assignment. | L3 cannot populate a canonical event contract without inventing an event name. The business outcome and publisher ownership are otherwise clear. | Upstream L2-G10 / enterprise event governance must define the exact canonical event name if publication is required for this transition. |
+| G10 requires business-event publication for significant infrastructure changes but defines no exact canonical event for operational-responsibility assignment. | L3 cannot populate the mandatory event contract without invention. | Upstream G10/event governance must define the exact event and retain Infrastructure Management as publisher. |
 
-**Architecture assessment:** `PASS WITH ISSUES`
-
-The Draft preserves the frozen owner and outcome and keeps B02/E02/A04 ownership intact. The missing exact G10 event name is recorded rather than synthesized.
+**Source Assessment:** **BLOCKED**
 
 ## 17.2 Assumptions
 
