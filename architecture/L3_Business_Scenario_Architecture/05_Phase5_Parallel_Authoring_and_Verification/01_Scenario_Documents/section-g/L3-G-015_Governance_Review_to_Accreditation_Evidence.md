@@ -11,21 +11,23 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; applicable L2-G01 through L2-G10 operational domains; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows; L2-H07 — Enterprise Dashboard Workflows; L2-H09 — Accreditation & Compliance Workflows  
-**Referenced By:** Campus governance, executive oversight, audit, reporting and authorized downstream consumers
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; L2-H09 — Accreditation & Compliance Workflows  
+**Referenced By:** H09 accreditation and compliance evidence governance
 
 ---
 
 # 2. Scenario Purpose
 
-Assemble authorized historical campus-governance evidence for accreditation or compliance use while retaining G00 ownership of governance history, source-domain ownership of operational facts and H09 ownership of evidence governance.
+Assemble authoritative Campus Operations governance history for accreditation or compliance use without changing the underlying G00 governance records or the operational source facts they reference.
+
+The scenario ends at the governed evidence hand-off to H09. H09 remains the owner of accreditation evidence records, assessment, readiness, and institutional accreditation decisions.
 
 ---
 
 # 3. Business Outcome
 
-Governance history, readiness records, review records, risk history, and corrective-action evidence are assembled for accreditation use without modifying source-domain records
+Governance history, readiness records, review records, risk history, and corrective-action evidence are assembled for accreditation use without modifying source-domain records.
 
 ---
 
@@ -37,35 +39,35 @@ The scenario begins when accreditation or compliance activity requires historica
 
 ## 4.2 End Boundary
 
-The scenario ends when the frozen business outcome has been recorded under the source-defined governance boundary, all required source references and decisions are preserved, applicable follow-up is linked, and the full activity is auditable.
+The scenario ends when the required G00 governance evidence references and permitted evidence snapshots have been assembled and handed to H09 for accreditation/compliance use, with source ownership and history unchanged.
 
 ## 4.3 In Scope
 
-- Tenant, institution, campus, purpose and correlation resolution.
-- Authorization of the governance activity and evidence access.
-- Accreditation or compliance purpose, requested period and scope, governance history, readiness, reviews, risks, actions and source references.
-- Use of the `Read-only governance evidence view over Campus Readiness Assessment, Operational Review, Operational Risk and Multi-Domain Action Plan` business responsibility.
-- Source-domain information consumed by reference without ownership transfer.
-- Authorized evidence references, governance-history package, lineage, integrity limitations and h09 hand-off.
-- Applicable lifecycle transitions, services and domain-event publication explicitly defined by L2-G00.
-- Immutable audit evidence and historical reconstruction.
+- Historical Campus Readiness Assessment records.
+- Operational Review history.
+- Operational Risk history.
+- Multi-Domain Action Plan and corrective-action evidence.
+- Governance history and traceable source-domain references.
+- G00 accreditation evidence reports explicitly listed in L2-G00.
+- H09 Source Evidence Reference Contract.
+- Identification of missing or restricted evidence without fabricating an accreditation conclusion.
 
 ## 4.4 Out of Scope
 
-- Executing operational work owned by G01–G10.
-- Modifying operational transactions, source-domain master data or published readiness facts.
-- Replacing H07 dashboard composition, Section H notification delivery or H09 accreditation governance.
-- Replacing the Platform Workflow, Authorization, Event or Audit infrastructure.
-- Inventing lifecycle states, commands, events, publishers, approval authorities or technical mechanisms absent upstream.
+- H09 Evidence Item validation, approval, publication, locking, or archival after the hand-off.
+- Institutional accreditation-readiness assessment or accreditation decision.
+- Self-Study Report preparation or external submission.
+- Modification of G00 governance history or G01-G10 operational source records.
+- Creation of a new G00 evidence-package lifecycle or publication event that is not defined upstream.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
-| Relationship | Related Scenario | Boundary Reason |
+| Relationship | Related Scenario | Reason |
 |---|---|---|
-| Related | L3-G-001 — Campus Readiness Assessment to Governance Readiness Decision | Provides or consumes readiness governance where applicable. |
-| Related | L3-G-003 — Campus Operational Review to Governance Closure | Owns the canonical Operational Review journey. |
-| Related | L3-G-005 — Operational Risk Identification to Risk Closure | Owns enterprise operational-risk governance. |
-| Related | L3-G-006 — Multi-Domain Action Plan to Verified Closure | Owns corrective-action coordination and verification. |
+| Related | L3-G-002 — Campus Operations Evidence to Accreditation Evidence Readiness | Provides current campus-operations evidence readiness for an H09 accreditation cycle. |
+| Related | L3-G-003 — Campus Operational Review to Governance Closure | Operational Review history is part of the evidence assembled here. |
+| Related | L3-G-005 — Operational Risk Identification to Risk Closure | Operational Risk history is part of the evidence assembled here. |
+| Related | L3-G-006 — Multi-Domain Action Plan to Verified Closure | Corrective-action evidence is part of the accreditation evidence set. |
 
 ---
 
@@ -73,45 +75,37 @@ The scenario ends when the frozen business outcome has been recorded under the s
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Campus Operations Governance / Section G | Primary owner. Owns the governance aggregate, conclusions, findings, recommendations, risks, action coordination and immutable governance history applicable to this scenario. |
-| Operational domains / Section G and other named domains | Own their operational facts, indicators, incidents, actions and corrections; provide published references without transferring ownership. |
-| Platform Foundation / Section A | Supplies Tenant, configuration, authorization, workflow, event and audit capabilities without owning the G00 business outcome. |
-| Institutional Services & Intelligence / Section H, where frozen | Consumes governance outputs for dashboards, notification, executive intelligence or accreditation under its own ownership boundaries. |
+| Campus Operations Governance / Section G | Owns governance history, readiness assessments, operational reviews, operational risks, action plans, and G00 accreditation evidence reporting. It assembles authoritative references without modifying source records. |
+| Accreditation & Compliance / Section H — H09 | Owns the accreditation Evidence record and institutional accreditation/compliance governance. It consumes source evidence through governed reference contracts and does not take ownership of the originating operational or G00 governance records. |
 
-The frozen participating-domain value remains exactly `G, H`.
+This collaboration does not transfer source-fact or G00 governance ownership to H09.
 
 ---
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Participation / Authority |
+| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Governance Coordinator | Coordinates the assessment, review, finding, action or evidence request within authorized scope. | May initiate and coordinate; cannot assume executive or approval authority. |
-| Campus Operations Manager | Reviews campus operational evidence and governance consequences. | Acts only within configured campus and governance authorization. |
-| Executive Reviewer | Provides executive review, recommendation or decision where required. | Authority is policy-derived and not implied for every scenario step. |
-| Risk Coordinator / Quality Assurance Officer | Governs risk treatment or verifies corrective-action evidence where applicable. | Does not execute source-domain operational work. |
-| Read Only Auditor / Compliance Consumer | Receives authorized historical evidence. | Cannot change source or governance records. |
+| Accreditation Coordinator | Coordinates accreditation planning and evidence coordination within H09. | May establish the accreditation evidence need and coordinate the H09 side of the hand-off. |
+| Evidence Reviewer | Validates and approves H09 evidence under the H09 evidence lifecycle after evidence is received. | H09 authority applies to the H09 Evidence record, not to G00 source governance records. |
 
-L2-G00 calls these typical roles and allows institutions to configure additional roles. It does not establish a universal named approver for every scenario.
+L2-G00 does not name a scenario-specific actor responsible for approving or releasing the assembled G00 evidence set. That is a non-blocking upstream gap because the frozen outcome can be achieved through the explicit G00 reporting responsibility and H09 Source Evidence Reference Contract without inventing a new G00 approval.
 
 ---
 
 # 7. Preconditions and Entry Criteria
 
-- The Tenant, institution and campus are valid and resolvable.
-- The trigger and authorized governance purpose are established.
-- The affected G00 aggregate or required governance context can be identified.
-- Required information is available from its canonical owner or its absence is explicitly handled as an exception.
-- Applicable configuration, thresholds, templates, categories and policies can be resolved.
-- Source information is reference-only and remains owned by its publishing domain.
-- Authorization, actor and correlation context are available.
-- Existing governance history is immutable and accessible under policy.
+- An accreditation or compliance activity has a defined evidence need, scope, and reporting period.
+- The requested evidence falls within G00 governance history or source references that G00 is permitted to expose.
+- The relevant G00 governance history exists or any gap can be identified explicitly.
+- Source operational facts remain owned by their originating domains.
+- H09 remains the owner of the accreditation Evidence record and subsequent accreditation/compliance decision.
 
 ---
 
 # 8. Trigger
 
-Accreditation or compliance activity requires historical campus governance evidence
+Accreditation or compliance activity requires historical campus governance evidence.
 
 ---
 
@@ -119,25 +113,22 @@ Accreditation or compliance activity requires historical campus governance evide
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Receive the authorized accreditation or compliance evidence request with purpose, period and scope. | Campus Operations Governance; applicable participant | Receive the authorized accreditation or compliance evidence request with purpose, period and scope. |
-| 2 | Resolve the H09 framework, cycle, criterion or compliance requirement where supplied. | Campus Operations Governance; applicable participant | Resolve the H09 framework, cycle, criterion or compliance requirement where supplied. |
-| 3 | Authorize access to the requested governance history and evidence classifications. | Campus Operations Governance; applicable participant | Authorize access to the requested governance history and evidence classifications. |
-| 4 | Query immutable Campus Readiness, Operational Review, Operational Risk and Action Plan history. | Campus Operations Governance; applicable participant | Query immutable Campus Readiness, Operational Review, Operational Risk and Action Plan history. |
-| 5 | Resolve underlying source-domain references without duplicating or modifying operational records. | Campus Operations Governance; applicable participant | Resolve underlying source-domain references without duplicating or modifying operational records. |
-| 6 | Validate version, period, provenance, integrity and completeness of the assembled evidence. | Campus Operations Governance; applicable participant | Validate version, period, provenance, integrity and completeness of the assembled evidence. |
-| 7 | Identify unresolved gaps, restrictions or missing evidence explicitly. | Campus Operations Governance; applicable participant | Identify unresolved gaps, restrictions or missing evidence explicitly. |
-| 8 | Assemble the governed evidence references and permitted snapshots for H09. | Campus Operations Governance; applicable participant | Assemble the governed evidence references and permitted snapshots for H09. |
-| 9 | Deliver the package through the Source Evidence Reference Contract. | Campus Operations Governance; applicable participant | Deliver the package through the Source Evidence Reference Contract. |
-| 10 | Preserve access, assembly, validation and delivery evidence without changing any source lifecycle. | Campus Operations Governance; applicable participant | Preserve access, assembly, validation and delivery evidence without changing any source lifecycle. |
+| 1 | Establish the accreditation/compliance evidence need, applicable scope, and reporting period. | Accreditation Coordinator / H09 | The evidence request is bounded to an H09 governance purpose. |
+| 2 | Identify the G00 governance history required for the request: readiness, operational review, risk, action/corrective evidence, and related source references. | Campus Operations Governance | The required G00 evidence set is defined without creating new source facts. |
+| 3 | Retrieve the applicable immutable governance history using G00 governance-history and summary responsibilities. | Campus Operations Governance | Authoritative G00 history is available for assembly. |
+| 4 | Confirm that referenced operational facts remain linked to their canonical source owners and are not rewritten into G00 or H09 ownership. | Campus Operations Governance | Source ownership and traceability are preserved. |
+| 5 | Identify missing, restricted, or incomplete evidence explicitly. | Campus Operations Governance | Evidence limitations are visible rather than silently resolved. |
+| 6 | Assemble the source evidence references and permitted evidence snapshots required for accreditation/compliance use. | Campus Operations Governance | A governed evidence set is ready for H09 consumption. |
+| 7 | Hand the assembled evidence to H09 through the `Source Evidence Reference Contract`. | Campus Operations Governance → H09 | H09 receives governed evidence references while G00 and source-domain ownership remain unchanged. |
+| 8 | Stop the scenario at the hand-off. H09 may then govern its own Evidence Item lifecycle and accreditation/compliance decisions under L2-H09. | H09 | The frozen G015 outcome is complete without extending into H09-owned downstream decisions. |
 
 ---
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| 1 | Archived evidence is required | obtain authorized restored access through Audit Infrastructure while leaving the evidence unchanged. | The existing lifecycle and source ownership remain preserved. |
-| 2 | A gap is discovered | report it to H09 and the source owner; correction occurs in the owning domain and a successor evidence reference is assembled. | The existing lifecycle and source ownership remain preserved. |
+No scenario-specific alternate business flow is required by the frozen outcome.
+
+A request that reveals missing or inconsistent evidence does not become an alternate successful path; it is handled as an interruption under Section 11.
 
 ---
 
@@ -145,14 +136,10 @@ Accreditation or compliance activity requires historical campus governance evide
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, campus or authorization cannot be resolved. | The governance activity cannot proceed lawfully. | Reject or pause without changing any source or governance state. | Platform & Tenant; Campus Operations Governance |
-| Required source information is missing, stale or inconsistent. | A trustworthy result cannot be produced. | Use the G00 exception workflow; correct, defer or escalate without inventing an outcome. | Source domain; Campus Operations Governance |
-| A business invariant fails. | The requested transition would violate ownership or lifecycle integrity. | Reject the transition and preserve failure evidence. | Campus Operations Governance |
-| Required review, verification or approval is incomplete. | The outcome cannot be treated as complete. | Retain the current source-defined lifecycle position and route follow-up. | Campus Operations Governance |
-| Event publication condition is not satisfied. | Consumers must not receive a false completed fact. | Publish only a source-defined event after its corresponding transition. | Campus Operations Governance; Event Infrastructure |
-| Processing is interrupted. | The governance activity remains incomplete. | Preserve history and resume only from a valid existing lifecycle position. | Campus Operations Governance |
-
-No technical retry, rollback, database, UI, queue or infrastructure recovery design is introduced.
+| Required G00 governance evidence is missing or inconsistent. | The evidence set is incomplete or cannot be relied on for the requested purpose. | Identify the gap explicitly and route the source condition through the applicable G00 exception path; do not fabricate replacement evidence. | Campus Operations Governance |
+| A source-domain operational reference is incorrect. | H09 would receive non-authoritative evidence. | Correction remains with the canonical source owner; G00 assembles the corrected reference only after the source fact is authoritative. | Canonical source domain; Campus Operations Governance |
+| H09 requests a conclusion that belongs to institutional accreditation readiness. | G00 ownership would be exceeded. | Provide only the G00 governance evidence contribution; H09 makes the accreditation-readiness or compliance decision. | Campus Operations Governance; H09 |
+| Requested evidence is outside authorized governance scope. | The evidence cannot be included in the hand-off. | Exclude the unauthorized material and retain the governed request/decision under applicable audit obligations. | Campus Operations Governance; H09 |
 
 ---
 
@@ -160,117 +147,102 @@ No technical retry, rollback, database, UI, queue or infrastructure recovery des
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| G00 governs oversight and never executes operational work. | Campus Operations Governance | Corrective execution remains with the source domain. | L2-G00 §§3–6, §14 |
-| G00 never modifies operational data owned by G01–G10. | Campus Operations Governance; source domains | Inputs remain reference-only. | L2-G00 §§9, 13–14 |
-| Governance history remains immutable and every lifecycle transition is audited. | Campus Operations Governance; Audit Infrastructure | Prior evidence and decisions cannot be rewritten. | L2-G00 §§13, 27 |
-| `Read-only governance evidence view over Campus Readiness Assessment, Operational Review, Operational Risk and Multi-Domain Action Plan` is the scenario’s governing business responsibility. | Campus Operations Governance | The scenario cannot transfer its outcome to a source or infrastructure domain. | L2-G00 §§8, 11–12, 16–19 |
-| Applicable lifecycle is `Source aggregates remain unchanged; no evidence-package lifecycle is defined in G00`. | Campus Operations Governance | Only source-supported states and order may be used. | L2-G00 §§11, 23 |
-| Applicable services are Query Governance History; Generate Readiness Summary; Generate Governance Summary. | Campus Operations Governance | Interactions use published business contracts. | L2-G00 §22 |
-| Configuration, thresholds and extensions remain governed and effective-dated where specified. | Campus Operations Governance; Platform | Behaviour cannot be hardcoded or changed retrospectively. | L2-G00 §§6, 26 |
-| Significant completed transitions publish immutable domain events. | Campus Operations Governance | Failed or incomplete outcomes cannot publish success facts. | L2-G00 §§20–21 |
+| G00 never modifies operational data owned by G01-G10. | Campus Operations Governance / source domains | Evidence assembly is reference-based and cannot rewrite operational source facts. | L2-G00 §§9, 13-14 |
+| Governance history remains immutable. | Campus Operations Governance | Historical governance evidence is assembled without rewriting prior governance records. | L2-G00 §§13, 27 |
+| Accreditation evidence reporting references governance history without modifying source-domain records. | Campus Operations Governance | G015 is an evidence-assembly scenario, not a source-correction scenario. | L2-G00 §25 |
+| Operational domains remain Systems of Record and H09 evidence shall reference operational records instead of duplicating business data. | H09 / source domains | H09 consumes references and approved snapshots while source ownership remains upstream. | L2-H09 §§21-23 |
+| H09 owns Evidence and Assessment lifecycles; source domains own underlying operational facts. | H09 / source domains | G00 cannot publish the institutional accreditation-readiness decision. | L2-H09 §§1.4, 21, 23.2 |
 
 ---
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry State or Condition | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner |
-|---|---|---|---|---|
-| Read-only governance evidence view over Campus Readiness Assessment, Operational Review, Operational Risk and Multi-Domain Action Plan | Trigger and authorized context available | Progresses only through the applicable source-defined governance journey. | Source aggregates remain unchanged; no evidence-package lifecycle is defined in G00 | Campus Operations Governance |
-| Source-domain operational record | Existing canonical state | Referenced as evidence or receives a governed request; no direct mutation. | Unchanged by G00. | Publishing operational domain |
-| Governance history | Existing immutable history | Receives new actor, transition, decision and correlation evidence. | Preserved and extended immutably. | Campus Operations Governance; Audit Infrastructure |
-| Downstream reporting/evidence view | Absent or requires refresh | Receives the completed governed outcome where authorized. | Available without becoming the source of operational truth. | Applicable reporting or evidence owner |
+No G00 lifecycle transition is required merely to assemble historical governance evidence.
 
-Where L2-G00 does not define a scenario-specific aggregate or lifecycle, this Draft records that limitation and does not create state names by inference.
+| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
+|---|---|---|---|---|---|
+| Campus Readiness Assessment / Operational Review / Operational Risk / Multi-Domain Action Plan history | Existing historical lifecycle positions | Read-only evidence is assembled by reference. | Unchanged. | Campus Operations Governance | L2-G00 §§23, 25, 27 |
+| Underlying G01-G10 operational records | Existing source-owned states | Referenced as evidence where applicable. | Unchanged. | Applicable source domain | L2-G00 §§9, 13-14 |
+| H09 Evidence Item | Not required to exist before G00 completes its assembly | The hand-off supplies source evidence references for subsequent H09 governance. | Any subsequent Evidence Item lifecycle remains owned by H09 and is outside the G015 end boundary. | H09 | L2-H09 §§1.4, 7, 23.1 |
 
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Events
+## 14.1 Published / Consumed Business Events
 
-L2-G00 states that Campus Operations Governance publishes immutable events and provides the following applicable catalogue entries. It does not provide an Aggregate-to-Event Matrix or a sole-publisher table.
+No exact business event is required by the frozen G015 outcome. L2-G00 defines no dedicated accreditation-evidence-package event, so this scenario uses the explicit synchronous evidence-reference contract instead of inventing an event.
 
-| Event / Required Fact | Publication Condition | Business Effect / Consumer |
-|---|---|---|
-| Required evidence or lifecycle fact | No canonical G00 event or publisher is defined for this scenario-specific outcome. | No event is invented; audit and synchronous contracts preserve the result. |
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-Event Infrastructure distributes events but does not own the G00 business fact.
-
-## 14.2 Synchronous Business Contracts and Hand-offs
-
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
-|---|---|---|---|
-| Source operational information | Publishing operational domain | Campus Operations Governance | Immutable identifiers, status, period, scope, metric/evidence and provenance. |
-| Authorization Decision | Authorization & Policy | Campus Operations Governance | Allowed actor, action, Tenant, campus and governance scope. |
-| G00 governance service | Campus Operations Governance | Authorized participant | Query Governance History; Generate Readiness Summary; Generate Governance Summary. |
-| Governed outcome | Campus Operations Governance | Executive, H-domain or other authorized consumer | authorized evidence references, governance-history package, lineage, integrity limitations and H09 hand-off. |
-| Audit input | Campus Operations Governance | Audit Infrastructure | Actor, prior/new state, references, reason, time, correlation and outcome. |
+| Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
+|---|---|---|---|---|
+| Campus Operations Governance | H09 Accreditation & Compliance | `Source Evidence Reference Contract` | Supplies governed source references, version/provenance context, permitted evidence snapshots, validation context, and restrictions while preserving source ownership. | L2-H09 §23.1 |
+| Campus Operations Governance | H09 Accreditation & Compliance | Accreditation evidence reports / historical governance evidence | Supplies Campus Governance Evidence, Operational Review History, Readiness Assessment History, Operational Risk History, and Corrective Action Evidence. | L2-G00 §25 |
+| Campus Operations Governance and other source domains | H09 Accreditation & Compliance | `Accreditation Readiness Evidence Contract`, where the request concerns readiness evidence | Distinguishes operational readiness evidence from H09's institutional accreditation-readiness decision. | L2-H09 §23.2 |
 
 ---
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-- Every activity requires authorization for its Tenant, campus, governance scope and information classification.
-- Authentication and Platform roles do not transfer business ownership to the Platform.
-- Delegated or temporary authority must be effective-dated and auditable.
-- Read access to governance history does not permit mutation.
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| Coordinate accreditation evidence need | Accreditation Coordinator | H09 role for accreditation planning and evidence coordination. | H09 |
+| Validate/approve the H09 Evidence record after hand-off | Evidence Reviewer | H09 evidence-management authority; it does not approve or modify the underlying G00/source record. | H09 |
+| Approve/release the G00 assembled evidence set | Not explicitly assigned upstream | L2-G00 defines the reporting responsibility but no dedicated package approval actor. | Campus Operations Governance |
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-- Review, executive decision, verification and configuration approval occur only where required by the applicable source lifecycle and policy.
-- L2-G00 provides a configurable authorization matrix and typical roles rather than a universal approval actor.
-- Verification responsibility must remain distinguishable from source-domain execution where policy requires separation.
-- No unsupported approver, override or SoD exception is introduced.
+No G015-specific separation-of-duty or override rule is defined upstream. H09 evidence approval remains inside the H09 evidence lifecycle and must not be interpreted as approval of, or ownership over, the underlying G00 governance facts.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The following must be auditable:
-
-- Tenant, institution, campus, purpose and scope.
-- Initiating actor and applicable authorization decision.
-- Source identifiers, versions, periods and owning domains.
-- Configuration, template, threshold or rule version used.
-- Every lifecycle transition, finding, recommendation, decision and reason.
-- Assigned owners, dates, dependencies and verification where applicable.
-- Published canonical events and downstream hand-offs.
-- Exceptions, recovery, correlation and final outcome.
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Preserve G00 historical traceability. | Governance history used for accreditation evidence remains immutable and reproducible. | Campus Operations Governance |
+| Preserve source provenance. | Each H09 evidence reference retains its source-domain identity, source record reference, version/provenance, and applicable restrictions as defined by the contract. | H09 for the Evidence record; source domain for the source fact |
+| Preserve H09 evidence governance. | H09 validation, approval, publication and later lifecycle evidence remain in H09 and do not alter G00 history. | H09 |
 
 ---
 
 # 16. Completion Criteria and Postconditions
 
+## 16.1 Completion Criteria
+
 The scenario is complete when:
 
-- receive the authorized accreditation or compliance evidence request with purpose, period and scope.
-- resolve the H09 framework, cycle, criterion or compliance requirement where supplied.
-- authorize access to the requested governance history and evidence classifications.
-- query immutable Campus Readiness, Operational Review, Operational Risk and Action Plan history.
-- resolve underlying source-domain references without duplicating or modifying operational records.
-- validate version, period, provenance, integrity and completeness of the assembled evidence.
-- identify unresolved gaps, restrictions or missing evidence explicitly.
-- assemble the governed evidence references and permitted snapshots for H09.
-- deliver the package through the Source Evidence Reference Contract.
-- preserve access, assembly, validation and delivery evidence without changing any source lifecycle.
+- the required readiness, governance-review, operational-risk, and corrective-action history has been identified for the H09 purpose;
+- authoritative source ownership and provenance have been preserved;
+- missing or restricted evidence is explicit rather than fabricated;
+- the permitted evidence references and snapshots have been assembled; and
+- the evidence set has been handed to H09 through the approved `Source Evidence Reference Contract`.
 
+## 16.2 Postconditions
 
-Postconditions:
-
-- Source-domain operational records and ownership remain unchanged by G00.
-- The completed governance outcome and its lineage are available to authorized consumers.
-- Governance history remains immutable and reproducible.
-- No undefined state, command, event, publisher, actor or technical mechanism has been assumed.
+- G00 governance history remains unchanged.
+- Underlying G01-G10 source records remain owned and governed by their canonical domains.
+- H09 has the governed evidence references needed for its own evidence and accreditation/compliance lifecycle.
+- No institutional accreditation-readiness or compliance decision has been made by G00.
 
 ---
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-| ID | Severity | Issue / Deferred Question | Required Resolution |
-|---|---|---|---|
-| G-015-ISSUE-01 | Non-blocking | G00 explicitly supports accreditation evidence reports and immutable history but defines no evidence-package aggregate, workflow, lifecycle, command or publication event. | Resolve in L2-G00 or the named owning domain before downstream specification relies on the missing contract. |
-| G-015-ISSUE-02 | Non-blocking | H09 defines evidence governance and source-reference contracts, but the exact G00 package approval actor is not named. | Resolve in L2-G00 or the named owning domain before downstream specification relies on the missing contract. |
+## 17.1 Open Issues
 
-**Source Assessment:** PASS WITH ISSUES
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-G00 defines accreditation evidence reports and history query/summary responsibilities but no dedicated G00 accreditation-evidence package aggregate, lifecycle, or publication event. | L4 must not invent a G00 package lifecycle or event. This does not block the frozen G015 outcome because H09 provides an explicit synchronous Source Evidence Reference Contract and the outcome is evidence assembly, not package lifecycle completion. | Upstream architecture may define a dedicated package construct/event if later behavior requires one. |
+| L2-G00 does not name a business actor who approves or releases the assembled evidence contribution. | Actor-level approval behavior cannot be specified at L3/L4 beyond the domain responsibility. The frozen outcome does not require a separate G00 approval. | L2-G00 should define the actor if a formal release approval is intended. |
 
-No unsupported operational ownership transfer, actor, approval authority, lifecycle state, event, publisher or implementation mechanism is assumed by this Draft.
+**Source Assessment:** **PASS WITH ISSUES**
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No scenario-specific deferred questions.
