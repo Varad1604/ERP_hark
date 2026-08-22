@@ -1,7 +1,7 @@
 # Qualification Eligibility Determination
 
 **Architecture Level:** L3 — Business Scenario Architecture  
-**Final L3 ID:** C036  
+**Final L3 ID:** L3-C-036  
 **Canonical Title:** Qualification Eligibility Determination  
 **Primary Owner:** Academic Progression  
 **Participating Domains:** C  
@@ -11,11 +11,11 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Author:** Varad  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-22  
 
 ## 1. Scenario Metadata
 
-This document preserves the frozen Stage 3 identity and semantics for **C036 — Qualification Eligibility Determination**. No ownership, participating-domain, type or priority reclassification is introduced.
+This document preserves the frozen Stage 3 identity and semantics for **L3-C-036 — Qualification Eligibility Determination**. No ownership, participating-domain, type or priority reclassification is introduced.
 
 ## 2. Scenario Purpose
 
@@ -75,7 +75,7 @@ No actor, role or authority not supported by the upstream architecture is invent
 
 ## 7. Preconditions and Entry Criteria
 
- - Student has an authoritative Academic Progression record.
+- Student has an authoritative Academic Progression record.
 - Applicable curriculum requirements are available.
 - Relevant academic credits and progression outcomes are authoritative.
 - Mandatory academic requirements can be evaluated.
@@ -173,7 +173,7 @@ All unresolved upstream matters remain explicit rather than being silently resol
 
 ## Production Verification Record
 
-- Frozen Stage 3 identity preserved.
+- Frozen canonical identity expressed in the required `L3-C-036` format.
 - Primary Owner, Participating Domains, Scenario Type and Priority preserved.
 - L2-C04 ownership and dependency boundaries applied.
 - Canonical business events and publishers preserved.
