@@ -9,153 +9,159 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Varad  
-**Last Updated:** 2026-08-21  
-**Depends On:** Locked L1 Business Domain Architecture; DEPENDENCY_MAP.md; applicable locked L2 Examination workflows  
+**Last Updated:** 2026-08-22  
+**Depends On:** Locked L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-I12 Supplementary / Backlog / Improvement Examination Execution; L2-I04 Examination Registration; applicable result and Finance workflows  
 **Referenced By:** Applicable downstream Examination workflows
 
+## 1. Scenario Metadata
+
+| Attribute | Canonical Value |
+|---|---|
+| Final L3 ID | `L3-I-133` |
+| Canonical Title | Subsequent Examination Application, Eligibility and Attempt Authorization |
+| Primary Owner | Supplementary, Backlog & Improvement Examination |
+| Participating Domains | C, F, I |
+| Scenario Type | Critical |
+| Priority | P1 |
+| Status | Draft |
+| Authoritative L2 | `L2-I12` — Supplementary / Backlog / Improvement Examination Execution Workflows |
+
+The locked I-RC-03 ownership resolution is controlling: L2-I04 owns the Examination Registration aggregate and lifecycle for every category; L2-I12 owns subsequent-examination administration and attempt lifecycle management and initiates registration through I04.
+
 ## 2. Scenario Purpose
-Determine whether a candidate is eligible to apply for a subsequent examination opportunity and, where the application satisfies the applicable academic, financial and examination conditions, authorize the candidate's examination attempt for institutional processing. The scenario governs subsequent-examination administration without redefining academic eligibility rules, financial truth, or Examination Registration ownership.
+
+Determine whether a candidate is eligible for a supplementary, backlog, or improvement examination opportunity and, where all applicable conditions are satisfied, authorise the subsequent-examination attempt for governed institutional processing without redefining academic eligibility, Finance truth, or Examination Registration ownership.
 
 ## 3. Business Outcome
-An eligible subsequent-examination application becomes an authorized examination attempt, with the applicable Examination Registration initiated through L2-I04 and the attempt remaining fully traceable. If the candidate is not eligible or a mandatory condition is not satisfied, the application does not become an authorized attempt.
+
+An eligible subsequent-examination application becomes an authorised examination attempt under I12, with the required Examination Registration initiated through I04. If an authoritative condition is not satisfied, no attempt is authorised.
 
 ## 4. Scenario Boundary and Scope
-**Start Boundary:** A supplementary, backlog or improvement examination opportunity is available and a candidate seeks to apply.
 
-**In Scope:** published-result eligibility; candidate academic context; attempt-limit verification; applicable financial verification; application review; examination-scope selection; registration initiation; attempt authorization; audit evidence.
+### 4.1 Start Boundary
+A subsequent examination opportunity is available and a candidate applies.
 
-**Out of Scope:** examination-policy definition; Student Lifecycle state changes; financial truth; Examination Registration ownership; Examination Session creation; schedule creation; Hall Ticket issuance; conduct; evaluation; official result publication.
+### 4.2 End Boundary
+The application is authorised as a governed attempt with required registration initiation, or is rejected/withheld with the decision preserved.
 
-**End Boundary:** The application is authorized as a subsequent-examination attempt with registration initiated, or is conclusively rejected/withheld.
+### 4.3 In Scope
+- Published-result eligibility.
+- Candidate academic context.
+- Attempt-limit verification.
+- Applicable financial verification.
+- Application review and approval.
+- Registration initiation through I04.
+- Attempt lifecycle establishment and audit evidence.
+
+### 4.4 Out of Scope
+- Examination-policy definition.
+- Student Lifecycle state changes.
+- Finance transaction processing or financial ownership.
+- Examination Registration lifecycle ownership.
+- Session/schedule creation, Hall Ticket issuance, conduct, evaluation, or official result publication.
+
+### 4.5 Related Scenarios — Optional
+Downstream scheduling, Hall Ticket, conduct, evaluation, and result workflows proceed only through their canonical owners.
 
 ## 5. Ownership and Participating Domains
-**Supplementary, Backlog & Improvement Examination:** owns subsequent-examination administration, eligibility verification, application handling, fee verification, session allocation and attempt lifecycle management.
 
-**Student Lifecycle:** provides authoritative candidate and academic context.
-
-**Finance:** provides authoritative financial eligibility/status where applicable.
-
-**Examination Registration (L2-I04):** owns the Examination Registration aggregate and lifecycle for all registration categories, including Supplementary, Backlog and Improvement. L2-I12 initiates registration but does not own it.
+- **L2-I12:** owns supplementary/backlog/improvement administration, eligibility verification, application handling, fee verification coordination, session allocation, and attempt lifecycle management.
+- **L2-I04:** owns Examination Registration and its lifecycle for all registration categories.
+- **Student Lifecycle:** provides authoritative candidate/academic context.
+- **Finance:** provides authoritative financial eligibility/status where applicable.
 
 ## 6. Business Actors, Roles and Responsibilities
-- **Candidate:** submits the subsequent-examination application within permitted scope.
-- **Examination Administrator:** manages application review and subsequent-examination administration.
-- **Supplementary Examination Officer:** verifies eligibility, prior attempts and application conditions.
-- **Controller of Examination:** provides governance/approval where required.
-- **Student Lifecycle:** supplies authoritative academic context.
-- **Finance:** supplies financial eligibility/status where applicable.
-- **Examination Registration:** establishes the canonical registration through L2-I04.
+
+- Candidate — submits the application.
+- Examination Administrator / Supplementary Examination Officer — administer and review the request.
+- Controller of Examination / applicable examination authority — provides governed approval where required.
+- Student Lifecycle — supplies authoritative academic context.
+- Finance — supplies authoritative financial status.
+- Examination Registration (I04) — establishes the canonical registration when initiated.
 
 ## 7. Preconditions and Entry Criteria
+
 - A subsequent examination opportunity is institutionally available.
-- Candidate Student Lifecycle context is authoritative.
-- Relevant official examination result information is published.
-- Applicable Supplementary/Backlog/Improvement policy is active.
+- Candidate context is authoritative.
+- Relevant official examination result is published.
+- Applicable supplementary/backlog/improvement policy is active.
 - Prior attempts can be established.
-- Applicable financial conditions can be determined.
-- The application is within the permitted opportunity or an approved exception applies.
+- Applicable financial condition can be determined.
 
 ## 8. Trigger
+
 A candidate submits an application for a subsequent examination opportunity.
 
 ## 9. Main Business Flow
-1. Identify the candidate and requested subsequent-examination opportunity.
-2. Establish authoritative academic context and published result information relevant to eligibility.
+
+1. Identify candidate and requested opportunity.
+2. Consume authoritative academic context and published result information.
 3. Determine eligibility under the applicable examination policy.
-4. Establish prior attempts and verify that another attempt is permitted.
-5. Determine applicable financial eligibility/status through Finance.
-6. Validate the application and requested subject/examination scope.
-7. Obtain required institutional examination approval.
-8. Authorize the application for registration.
-9. Initiate Examination Registration through L2-I04 for the applicable registration category.
-10. Establish the attempt within the L2-I12 lifecycle.
-11. Preserve the eligibility decision, approval evidence and attempt history.
-12. Publish applicable canonical subsequent-examination lifecycle events.
-13. Hand the authorized outcome to downstream scheduling and examination workflows.
+4. Verify prior attempts and permitted attempt limits.
+5. Consume applicable Finance eligibility/status.
+6. Validate application and requested examination scope.
+7. Obtain required examination approval.
+8. Authorise the application for governed registration initiation.
+9. Initiate Examination Registration through L2-I04.
+10. Establish the attempt within the I12 lifecycle.
+11. Preserve decision, approval, and attempt history.
+12. Publish applicable I12 lifecycle events and hand off to downstream canonical workflows.
 
 ## 10. Alternate Business Flows
-### 10.1 Supplementary Eligibility
-An eligible uncleared subject proceeds as a supplementary attempt.
 
-### 10.2 Backlog Eligibility
-An eligible backlog subject proceeds within the permitted attempt framework.
-
-### 10.3 Improvement Eligibility
-An eligible improvement request proceeds without treating the prior result as erroneous.
-
-### 10.4 Financial Condition Requires Resolution
-The application remains pending the authoritative Finance outcome and does not bypass the condition.
-
-### 10.5 Candidate Is Not Eligible
-The application is rejected or withheld under the applicable policy; no attempt or registration is authorized.
+- Supplementary, Backlog, and Improvement eligibility follow their configured policy variants within the unified I12 framework.
+- Unsatisfied Finance condition remains Finance-owned and prevents bypass.
+- Ineligible candidate receives a governed rejected/withheld outcome.
+- An authorised policy exception may alter eligibility only through the owning policy authority.
 
 ## 11. Failure, Interruption and Business Recovery
-### 11.1 Published Result Missing
-Eligibility is not inferred; the application remains unresolved until the authoritative result exists.
 
-### 11.2 Student Context Conflict
-Student Lifecycle remains authoritative for its own context; examination administration does not create a replacement academic status.
-
-### 11.3 Attempt Limit Exhausted
-No further attempt is authorized unless a separately governed policy exception permits one.
-
-### 11.4 Financial Eligibility Cannot Be Established
-The application does not become authorized on assumption; Finance remains authoritative.
-
-### 11.5 Eligibility Changes Before Registration
-The application is re-evaluated against the current authoritative position.
-
-### 11.6 Registration Not Established
-The application approval alone does not authorize downstream examination participation when the required L2-I04 registration lifecycle has not been established.
+Missing published results, conflicting Student context, exhausted attempt limits, unresolved Finance eligibility, or failure to establish the required I04 registration prevents downstream participation. Each deficiency is resolved through its canonical owner; I12 does not invent substitute facts.
 
 ## 12. Business Rules and Decision Constraints
-- Subsequent-examination eligibility is determined under institutional examination policy.
-- Supplementary, Backlog and Improvement are categories within the unified L2-I12 administration framework.
-- Eligibility relies on authoritative published results and applicable academic regulations.
-- Attempt limits must be respected.
-- Applicable financial conditions remain Finance-owned.
-- Examination Registration remains owned by L2-I04.
-- Administrative application approval does not itself create an Examination Registration.
-- Downstream participation requires the required registration lifecycle position.
-- Attempt history remains complete and traceable.
-- No new eligibility, attempt or registration state is created.
+
+- Subsequent-examination eligibility follows institutional examination policy.
+- Supplementary, Backlog, and Improvement operate within the I12 administration framework.
+- I04 owns Examination Registration for all categories.
+- Application approval alone does not create or own a registration.
+- Finance retains financial truth.
+- Attempt history must remain complete and traceable.
+- No new eligibility, attempt, or registration state is introduced.
 
 ## 13. State and Lifecycle Impact
-L2-I12's subsequent-examination governance begins with **Eligible** and progresses through **Applied** and **Registered**, followed by the execution stages defined by L2-I12. Attempt authorization is expressed within that existing lifecycle; no new `Authorized` state is invented.
 
-The Examination Registration lifecycle remains the L2-I04 lifecycle.
+I12's subsequent-examination governance begins with `Eligible` and progresses through `Applied` and `Registered`, followed by the governed execution stages. Attempt authorisation is expressed within that lifecycle; no separate `Authorized` state is invented. The Examination Registration lifecycle remains exclusively I04-owned.
 
 ## 14. Business Events and Cross-Domain Collaboration
-L2-I12 identifies:
-- **Supplementary Eligibility Confirmed**
-- **Supplementary Registration Completed**
-- **Examination Scheduled**
-- **Hall Ticket Initiated**
-- **Examination Conduct Started**
-- **Supplementary Evaluation Initiated**
-- **Supplementary Result Processing Initiated**
-- **Attempt Closed**
 
-L2-I04 remains the publisher of Examination Registration lifecycle events. No separate `AttemptAuthorized` event is invented.
+L2-I12 identifies lifecycle facts including Supplementary Eligibility Confirmed, Supplementary Registration Completed, Examination Scheduled, Hall Ticket Initiated, Examination Conduct Started, Supplementary Evaluation Initiated, Supplementary Result Processing Initiated, and Attempt Closed.
 
-Student Lifecycle and Finance provide authoritative facts without receiving ownership of the attempt.
+L2-I04 remains the canonical publisher of Examination Registration lifecycle events. No separate `AttemptAuthorized` event is invented. Student Lifecycle and Finance supply authoritative facts without acquiring attempt ownership.
 
 ## 15. Business Authorization, Approval and Audit Obligations
-- Eligibility follows approved examination policy.
-- Required institutional approval is obtained.
-- Financial eligibility remains a Finance-owned decision.
-- Application, eligibility basis, attempt history, approval and registration initiation are auditable.
-- Any exception to attempt limits requires an authoritative institutional decision.
-- Academic eligibility, financial eligibility and examination administration remain separated.
+
+Eligibility and approval follow authoritative examination policy. Application, eligibility basis, Finance condition where applicable, attempt history, approval, and registration initiation must remain auditable. Any exception to attempt limits requires an authoritative institutional decision.
 
 ## 16. Completion Criteria and Postconditions
-**Completion Criteria:** eligibility established; applicable financial condition satisfied; required approval complete; application authorized; L2-I04 registration initiated; attempt history preserved; applicable lifecycle events published.
 
-**Authorized Outcome:** the candidate has an authorized subsequent-examination attempt within L2-I12 and downstream scheduling may proceed.
+### 16.1 Completion Criteria
+- Eligibility established.
+- Applicable financial condition satisfied.
+- Required approval complete.
+- Application authorised for the subsequent attempt.
+- I04 registration initiated as required.
+- Attempt history and applicable lifecycle facts preserved.
 
-**Rejected/Withheld Outcome:** no subsequent attempt is authorized and the decision remains traceable.
+### 16.2 Postconditions
+An authorised subsequent-examination attempt exists under I12 and downstream processing may proceed through canonical owners. A rejected/withheld application creates no authorised attempt.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
-1. L2-I12 explicitly owns subsequent-examination administration while L2-I04 owns the registration aggregate and lifecycle; this scenario preserves that split.
-2. The available L2-I12 material does not define a dedicated `Attempt Authorized` event; none is invented.
-3. Institution-specific eligibility, attempt and fee values remain policy/configuration governed and are not defined locally.
+
+### 17.1 Open Issues
+No registration-ownership conflict remains: the locked I-RC-03 resolution explicitly assigns Examination Registration to I04 and subsequent-examination administration to I12.
+
+### 17.2 Assumptions
+Institution-specific eligibility, attempt-limit, fee, and approval values remain policy/configuration governed.
+
+### 17.3 Deferred Questions
+Technical orchestration and implementation mechanics remain outside L3.
