@@ -19,7 +19,7 @@ This approval is limited to the three conflicts/gaps documented below. It does n
 | ADR | Decision | Incorporated L2 Effect |
 |---|---|---|
 | ADR-STU-ADM-EXP-001 | Canonicalize Admission expiry as `Admission Initiated → Expired`; retain terminal `Expired` and canonical Admissions event `AdmissionExpired`. | Locked L2-C01 amendment v1.1.0. |
-| ADR-STU-PROG-EVT-001 | Canonicalize progression outcome events as `ConditionalPromotionGranted`, `AcademicProbationAssigned`, and `AcademicDetentionApplied`; supersede earlier synonyms as canonical publications. | Locked L2-C04 amendment v1.1.0. |
+| ADR-STU-PROG-EVT-001 | Canonicalize progression outcome events as `ConditionalPromotionGranted`, `AcademicProbationAssigned`, and `AcademicDetentionApplied`; supersede earlier synonyms as canonical publications. | Locked L2-C04 amendment v1.1.1. |
 | ADR-STU-MEME-EXIT-001 | Explicitly support NEP/MEME intermediate qualification exit using L1-permitted qualification outcomes, policy-governed thresholds, existing L2-C05 lifecycle/events, and preserved Academic Credit Ledger ownership. | Locked L2-C05 amendment v1.1.0. |
 
 ## 3. Canonical Amendment Files
@@ -53,7 +53,7 @@ The following files are authoritative parts of their target L2 documents. Where 
 - `AcademicRecordFinalized` — Qualification Completion Aggregate.
 - `StudentExitCompleted` — Qualification Completion Aggregate.
 
-The superseded C04 names `StudentConditionallyProgressed`, `StudentPlacedOnProbation`, and `StudentDetained` are not separate canonical events.
+The superseded C04 names `StudentConditionallyProgressed`, `StudentPlacedOnProbation`, `StudentOnProbation`, and `StudentDetained` are historical aliases only and are not separate canonical events.
 
 ## 6. MEME Policy Boundary
 
@@ -61,10 +61,19 @@ This approval deliberately does not fix numeric credit thresholds, semester/year
 
 Allowed qualification outcomes remain those already established by locked L1: Certificate, Diploma, Advanced Diploma, Degree, and Degree with Research.
 
-## 7. Downstream Rule
+## 7. Downstream Synchronization Record
 
-Level 3 scenarios may now consume these approved L2 decisions but may not redefine ownership, lifecycle semantics, event publishers, qualification outcomes, or policy boundaries. A controlled L3 synchronization pass is required for affected scenarios.
+The approved decisions have been synchronized into the directly affected Phase 5 L3 scenarios on `review`:
+
+- `L3-C-006` — Admission Offer Expiry.
+- `L3-C-027` — Student Academic Progression Decision.
+- `L3-C-030` — Academic Probation Management and Resolution.
+- `L3-C-031` — Academic Detention and Repeat Determination.
+- `L3-C-038` — Progression Decision Revision After Re-evaluation or Appeal.
+- `L3-C-041` — NEP/MEME Intermediate Qualification Exit.
+
+`L3-C-029` was reviewed against the amendment and does not publish a superseded canonical event, so no semantic event-name change was required.
 
 ## 8. Repository Update Boundary
 
-This decision record covers only the three Student Lifecycle upstream L2 remediations described above. It does not approve, lock, or certify the full Level 3 Phase 5 scenario set.
+This decision record covers only the three Student Lifecycle upstream L2 remediations described above and their necessary downstream synchronization. It does not approve, lock, or certify the full Level 3 Phase 5 scenario set.
