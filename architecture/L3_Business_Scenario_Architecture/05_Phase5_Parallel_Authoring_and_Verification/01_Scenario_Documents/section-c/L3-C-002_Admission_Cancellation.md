@@ -1,39 +1,17 @@
 # L3-C-002 — Admission Cancellation
 
 **Scenario ID:** L3-C-002  
-**Title:** Admission Cancellation  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Admissions  
 **Participating Domains:** C  
 **Scenario Type:** Simple  
 **Priority:** P1  
 **Status:** Draft  
-**Version:** 1.0  
+**Version:** 1.1  
 **Author:** Varad  
-**Last Updated:** 2026-08-20  
-**Canonical Filename:** `L3-C-002_Admission_Cancellation.md`
-
----
-
-## 1. Scenario Identity and Metadata
-
-| Attribute | Canonical Value |
-|---|---|
-| Final L3 ID | `L3-C-002` |
-| Scenario Title | Admission Cancellation |
-| Primary Owner | Admissions |
-| Participating Domains | C |
-| Scenario Type | Simple |
-| Priority | P1 |
-| Status | Draft |
-| Author | Varad |
-| L2 Source | `L2-C01_Admissions_Workflows.md` |
-| L2 Workflow | `WF-C01-06 — Admission Cancellation` |
-| Canonical Aggregate / Business Record | Admission Record |
-| Canonical Lifecycle Outcome | Cancelled |
-| Canonical Business Event | `AdmissionCancelled` |
-
-**Source-grounding note:** The frozen Stage 3 semantics for C-002 are preserved: `L3-C-002`, **Admission Cancellation**, Primary Owner **Admissions**, Participating Domain **C**, Scenario Type **Simple**, Priority **P1**. The applicable L2 workflow is `WF-C01-06 — Admission Cancellation`.
+**Last Updated:** 2026-08-22  
+**Canonical Filename:** `L3-C-002_Admission_Cancellation.md`  
+**Depends On:** `L2-C01_Admissions_Workflows.md`, especially `WF-C01-06 — Admission Cancellation`
 
 ---
 
@@ -41,50 +19,33 @@
 
 | Attribute | Canonical Value |
 |---|---|
-| Final L3 ID | L3-C-002 |
-| Canonical Title | L3-C-002 — Admission Cancellation |
+| Final L3 ID | `L3-C-002` |
+| Canonical Title | Admission Cancellation |
 | Primary Owner | Admissions |
 | Participating Domains | C |
 | Scenario Type | Simple |
 | Priority | P1 |
 | Status | Draft |
+| Applicable L2 | `L2-C01_Admissions_Workflows.md` |
+| Applicable Workflow | `WF-C01-06 — Admission Cancellation` |
 
-This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
+The frozen Phase 5 identity and classification are unchanged.
+
+---
 
 ## 2. Scenario Purpose
 
-The purpose of this scenario is to permanently terminate an Admission Record before successful Student creation when cancellation is permitted by institutional policy, applicant request, administrative decision, or regulatory requirement.
+Govern the permanent termination of an eligible Admission Record before successful Student creation when cancellation is permitted by the authoritative Admissions lifecycle and applicable institutional policy.
 
-The scenario preserves the Admission Record as institutional history while preventing the cancelled Admission from progressing to Student creation.
-
-Admission Cancellation is distinct from Admission Withdrawal and Admission Revocation:
-
-- **Cancellation** terminates an admission before successful Student creation.
-- **Withdrawal** represents voluntary termination of an initially valid and accepted admission.
-- **Revocation** terminates/reverses an admission through institutional authority for the circumstances governed by the Revocation workflow.
-
-This scenario therefore addresses one complete institutional outcome: **an eligible Admission Record becomes Cancelled and its lifecycle terminates.**
+The scenario preserves the Admission Record as institutional history and prevents the cancelled admission from progressing to Student creation.
 
 ---
 
 ## 3. Business Outcome
 
-The Admission Record is transitioned to the canonical **Cancelled** state.
+The Admission Record reaches the canonical `Cancelled` state and the current admission attempt is terminated without creating a Student.
 
-At completion:
-
-1. The current Admission lifecycle is terminated.
-2. The Admission Record remains preserved as institutional history.
-3. The cancelled Admission does not create a Student.
-4. Admissions remains the canonical owner of the Admission Record and its lifecycle outcome.
-5. Any downstream financial consequences remain owned and processed by Finance.
-6. The canonical `AdmissionCancelled` business event represents the completed cancellation for applicable downstream consumers.
-
-The outcome is therefore:
-
-> **Eligible Admission → Cancelled Admission Record**
-
-No Student creation occurs as part of this scenario.
+Admissions remains the canonical owner of the Admission Record and cancellation outcome. Historical admission information remains preserved. The completed cancellation is represented by the canonical `AdmissionCancelled` business event.
 
 ---
 
@@ -92,211 +53,95 @@ No Student creation occurs as part of this scenario.
 
 ### 4.1 Start Boundary
 
-The scenario begins when an existing Admission Record is identified as eligible for cancellation before successful Student creation and a valid cancellation basis exists.
+The scenario starts when an existing Admission Record is eligible for cancellation before Student creation and a valid cancellation basis is raised.
 
-The cancellation basis may arise from:
-
-- an applicant request;
-- an institutional decision;
-- an applicable institutional policy; or
-- a regulatory requirement.
+The basis may arise from an applicant request, institutional decision, applicable institutional policy, or regulatory requirement as supported by L2-C01.
 
 ### 4.2 End Boundary
 
-The scenario ends when the Admission Record has reached the canonical **Cancelled** state and the completed cancellation remains part of the Admission's institutional history.
-
-The scenario does not continue into financial settlement, refund execution, readmission, Student Lifecycle processing, or any other downstream business outcome.
+The scenario ends when the Admission Record has reached `Cancelled`, the cancellation is preserved in institutional history, and the canonical cancellation business fact has been published.
 
 ### 4.3 In Scope
 
-- Identification of an Admission Record eligible for cancellation.
-- Applicant-initiated cancellation where institutional policy permits it.
-- Institution-initiated cancellation where institutional policy permits it.
-- Evaluation of cancellation eligibility and applicable authority.
-- Execution of the Admission Cancellation decision.
-- Transition of the Admission Record to `Cancelled`.
-- Preservation of the Admission Record and its lifecycle history.
-- Publication of the canonical `AdmissionCancelled` business event.
-- Downstream recognition of the completed cancellation by applicable domains.
-- Preservation of domain ownership boundaries.
+- Identify the Admission Record to be cancelled.
+- Validate cancellation eligibility under the authoritative Admission lifecycle.
+- Apply the applicable institutional cancellation policy and authority.
+- Record the cancellation basis/reason required by the upstream workflow.
+- Transition the Admission Record to `Cancelled` where permitted.
+- Preserve the historical Admission Record.
+- Publish `AdmissionCancelled` after the cancellation outcome is established.
 
 ### 4.4 Out of Scope
 
-The following are explicitly outside this scenario:
-
-- Application processing.
-- Merit preparation.
-- Reservation or seat allocation.
-- Admission approval itself.
-- Admission confirmation.
-- Student creation.
-- Student activation.
-- Admission Withdrawal.
-- Admission Revocation.
-- Readmission processing.
-- Finance-owned payments.
-- Finance-owned refunds.
-- Finance-owned ledger/accounting adjustments.
-- Technical authentication and authorization mechanisms.
-- APIs, databases, Business Data Structures, services, queues, infrastructure, retry mechanics, rollback mechanics, UI design, or implementation details.
-
-### 4.5 Boundary Rule
-
-If Student creation has already successfully occurred, this scenario **must not** be used to cancel the admission.
-
-The L2 Admissions architecture explicitly states that admissions which have already resulted in Student creation shall not be cancelled. Post-creation institutional action belongs to the applicable Revocation or downstream Student Lifecycle process.
+- Application processing, merit preparation, reservation, or seat allocation.
+- Admission approval or confirmation as separate business outcomes.
+- Student creation or Student Lifecycle processing.
+- Admission Withdrawal, Revocation, Expiry, or Readmission as separate scenarios.
+- Finance-owned refunds, payments, ledger, or accounting adjustments.
+- Technical authentication/authorization design.
+- APIs, databases, DTOs, services, queues, screens, infrastructure, retry mechanics, rollback mechanics, or other implementation design.
 
 ---
 
 ## 5. Ownership and Participating Domains
 
-### 5.1 Canonical Ownership
+Admissions is the canonical owner of the Admission Record, Admission Lifecycle, Admission Status, and Admission Cancellation outcome.
 
-**Admissions** is the canonical owner of:
+The frozen participating-domain value for this scenario is Section C.
 
-- Admission Record.
-- Admission Status.
-- Admission Lifecycle.
-- Admission Verification Workflow.
-- Admission Approval Workflow.
-- Admission Confirmation.
-- Admission Cancellation.
-- Admission Withdrawal.
-- Admission Revocation.
-- Student Creation Trigger.
-- Admission Audit Trail.
-
-For this scenario, the authoritative business aggregate/record is the **Admission Record** and the authoritative lifecycle outcome is **Cancelled**.
-
-### 5.2 Participating Domain
-
-The frozen scenario metadata identifies **C** as the sole participating domain.
-
-This is consistent with the scenario being a **Simple** scenario owned within Section C.
-
-### 5.3 Downstream Consequences
-
-Finance may consume `AdmissionCancelled` for its own financial policy execution where applicable.
-
-That participation does **not** transfer ownership of:
-
-- the Admission Record;
-- the Admission lifecycle;
-- the cancellation decision; or
-- the Cancelled state
-
-to Finance.
+Finance may consume the completed cancellation fact for its own domain-owned financial consequences where applicable. Such consumption does not transfer ownership of the Admission Record, cancellation decision, or `Cancelled` lifecycle state.
 
 Admissions does not directly modify Finance-owned records.
-
-### 5.4 Ownership Boundary
-
-The cancellation scenario ends within Admissions.
-
-Cross-domain consequences are represented through the canonical business fact and domain-owned downstream processing rather than ownership transfer.
 
 ---
 
 ## 6. Business Actors, Roles and Responsibilities
 
-### 6.1 Applicant
+| Actor / Business Responsibility | Responsibility | Authority Boundary |
+|---|---|---|
+| Applicant | May initiate cancellation where institutional policy permits applicant-initiated cancellation. | Does not own the Admission lifecycle or cancellation decision. |
+| Admissions | Evaluates cancellation eligibility, applies the governing Admissions policy/authority, establishes the cancellation outcome, preserves history, and publishes the completed business fact. | Canonical owner of the Admission Record and cancellation outcome. |
 
-The Applicant may initiate an Admission Cancellation where the applicable institutional policy permits applicant-initiated cancellation.
-
-The Applicant does not become the owner of the Admission lifecycle.
-
-### 6.2 Institutional Admissions Responsibility
-
-The institutional Admissions business responsibility evaluates and executes cancellation according to the applicable admission policy and authority.
-
-The L2 architecture states that cancellation may be initiated by the institution or applicant.
-
-### 6.3 Cancellation Authority
-
-The L2 architecture establishes configurable admission authority and policies rather than one universal human role for every institution.
-
-Therefore this L3 scenario does **not** invent a specific role title such as "Admissions Manager" or "Registrar" for the cancellation decision.
-
-The exact configured authority remains an upstream institutional-policy concern.
-
-### 6.4 Downstream Finance Responsibility
-
-Finance is responsible for any financial consequences resulting from the cancellation where applicable.
-
-Finance does not decide whether an Admission Record is Cancelled.
+L2-C01 makes admission authority and approval chains configurable and does not establish one universal human role for every institution. This L3 scenario therefore does not invent a role title for the cancellation authority.
 
 ---
 
 ## 7. Preconditions and Entry Criteria
 
-All of the following conditions must hold before the cancellation outcome can be reached:
+- A valid Admission Record exists.
+- Successful Student creation has not occurred for the Admission Record.
+- The Admission Record is in a state from which the authoritative L2 cancellation workflow permits cancellation.
+- A valid cancellation basis exists.
+- Applicable institutional cancellation policy conditions are satisfied.
+- Any required business authority is satisfied according to upstream governance.
 
-1. A valid Admission Record exists.
-2. The Admission Record has not already resulted in successful Student creation.
-3. The current Admission state permits transition to `Cancelled`.
-4. A valid cancellation basis exists.
-5. Any applicable institutional cancellation policy is satisfied.
-6. Any required business authority/decision is satisfied.
-7. The cancellation is attributable to the specific Admission Record being terminated.
-
-### 7.1 Canonical States Permitting Cancellation
-
-The L2 Admission lifecycle permits cancellation from:
-
-- `Admission Initiated`
-- `Documents Submitted`
-- `Verification Completed`
-- `Admission Approved`
-- `Financial Clearance`
-
-The canonical lifecycle does not permit the Cancellation workflow to operate after successful Student creation.
-
-### 7.2 Historical Integrity
-
-Cancellation does not delete the Admission Record.
-
-The historical Admission lifecycle remains preserved.
+Cancellation must preserve the Admission Record and its institutional history.
 
 ---
 
 ## 8. Trigger
 
-The business trigger is:
+A valid applicant cancellation request or institutional cancellation decision is raised for an Admission Record that is eligible for cancellation before Student creation.
 
-> **A valid cancellation request or institutional cancellation decision is raised for an Admission Record that is eligible for cancellation before Student creation.**
-
-The L2 source identifies the following possible business bases:
-
-- institutional policies;
-- applicant requests;
-- administrative decisions; and
-- regulatory requirements.
-
-The trigger does not itself change the Admission state. The state changes only when the applicable cancellation decision and lifecycle transition are completed.
+The trigger itself does not change the Admission state; the state changes only when the governed cancellation decision completes.
 
 ---
 
 ## 9. Main Business Flow
 
-### 9.1 Primary Flow
-
-| Step | Business Behaviour | Responsible Domain / Business Responsibility | Business Result |
+| Step | Business Behaviour | Responsible Business Responsibility | Business Result |
 |---|---|---|---|
-| 1 | An existing Admission Record is identified as a candidate for cancellation. | Admissions | A specific Admission Record is selected for cancellation consideration. |
-| 2 | The cancellation basis is established, such as an applicant request, institutional decision, applicable policy, or regulatory requirement. | Admissions / Applicant | A business reason for cancellation exists. |
-| 3 | Admissions determines whether the Admission Record is eligible for cancellation under the canonical Admission lifecycle. | Admissions | Cancellation eligibility is established. |
-| 4 | Applicable institutional cancellation authority/policy is applied. | Admissions | The cancellation decision is authorized according to upstream policy. |
-| 5 | The Admission Record transitions from its current eligible state to `Cancelled`. | Admissions | The Admission lifecycle reaches its Cancelled state. |
-| 6 | The completed cancellation remains preserved in the Admission's institutional history. | Admissions | Historical integrity is maintained. |
-| 7 | Admissions publishes the canonical `AdmissionCancelled` business event representing the completed business fact. | Admissions | Applicable downstream domains can react using the completed fact. |
-| 8 | Finance and other applicable consumers perform only their own domain-owned consequences. | Respective consuming domains | Cross-domain consequences occur without transferring Admission ownership. |
-| 9 | The scenario ends. | Admissions | The current Admission Record remains terminated in `Cancelled`. |
+| 1 | Identify the Admission Record and cancellation basis. | Admissions / Applicant where applicant-initiated | A specific Admission Record and cancellation basis are established. |
+| 2 | Confirm that Student creation has not occurred. | Admissions | The scenario remains within the pre-Student-creation cancellation boundary. |
+| 3 | Validate the current Admission state against the authoritative cancellation workflow. | Admissions | Cancellation eligibility is established. |
+| 4 | Apply the applicable institutional cancellation policy and required authority. | Admissions | The cancellation decision is governed by upstream policy. |
+| 5 | Record the required cancellation reason/basis and establish the cancellation decision. | Admissions | The business decision is attributable and auditable. |
+| 6 | Transition the Admission Record to `Cancelled`. | Admissions | The current Admission lifecycle reaches its cancellation outcome. |
+| 7 | Preserve the completed cancellation in Admission history. | Admissions | Historical integrity is maintained. |
+| 8 | Publish the canonical `AdmissionCancelled` event representing the completed cancellation. | Admissions | Approved downstream consumers can react to the completed business fact. |
+| 9 | End the scenario. | Admissions | The Admission Record remains terminated in `Cancelled`. |
 
-### 9.2 Primary Flow Boundary
-
-The Main Business Flow stops after the Admission Cancellation outcome and its canonical business fact have been established.
-
-Financial settlement, refund, accounting, notification, or other downstream processing does not extend the L3 scenario boundary because those responsibilities remain owned by their respective domains.
+The scenario does not extend into downstream refund, accounting, notification-delivery, or Student Lifecycle outcomes.
 
 ---
 
@@ -304,379 +149,100 @@ Financial settlement, refund, accounting, notification, or other downstream proc
 
 ### 10.1 Applicant-Initiated Cancellation
 
-1. Applicant requests cancellation.
-2. Admissions identifies the relevant Admission Record.
-3. Admissions evaluates eligibility and applicable policy.
-4. If permitted, Admissions transitions the Admission Record to `Cancelled`.
-5. `AdmissionCancelled` represents the completed business fact.
-
-Applicant initiation does not transfer lifecycle ownership to the Applicant.
+The Applicant raises a cancellation request. Admissions validates lifecycle eligibility and applicable policy. If cancellation is permitted, the Admission Record reaches `Cancelled` and `AdmissionCancelled` is published.
 
 ### 10.2 Institution-Initiated Cancellation
 
-1. The institution identifies a valid cancellation basis.
-2. Admissions identifies the relevant Admission Record.
-3. Admissions evaluates the applicable institutional policy and authority.
-4. If permitted, Admissions transitions the Admission Record to `Cancelled`.
-5. `AdmissionCancelled` represents the completed business fact.
+The institution establishes a valid cancellation basis. Admissions applies the authoritative cancellation workflow and policy. If permitted, the Admission Record reaches `Cancelled` and `AdmissionCancelled` is published.
 
-### 10.3 Cancellation Before Verification Completion
+### 10.3 Eligible-State Variants
 
-Where the Admission Record is in a cancellation-eligible pre-verification state, cancellation may terminate the Admission without completing later Admission workflow stages.
-
-The canonical lifecycle permits:
-
-`Admission Initiated → Cancelled`
-
-and:
-
-`Documents Submitted → Cancelled`.
-
-### 10.4 Cancellation After Verification
-
-Where the Admission Record has reached `Verification Completed` but has not progressed to Student creation, the Admission may be cancelled where the governing policy permits it.
-
-The canonical transition is:
-
-`Verification Completed → Cancelled`.
-
-### 10.5 Cancellation After Admission Approval
-
-Where the Admission Record has reached `Admission Approved` but Student creation has not occurred, the Admission may transition to `Cancelled` where permitted.
-
-The canonical transition is:
-
-`Admission Approved → Cancelled`.
-
-### 10.6 Cancellation After Financial Clearance
-
-Where the Admission Record has reached `Financial Clearance` but Student creation has not occurred, cancellation may occur where permitted.
-
-The canonical transition is:
-
-`Financial Clearance → Cancelled`.
-
-Any resulting financial consequence remains a Finance-owned concern.
-
-### 10.7 Cancellation Not Permitted
-
-If the current state, policy, authority, or business circumstances do not permit cancellation, the Admission Record does not transition to `Cancelled`.
-
-The current Admission state remains governed by the canonical lifecycle.
-
-The applicable alternative scenario must be followed where the business circumstances correspond to Withdrawal, Revocation, Expiry, or another canonical lifecycle path.
-
-### 10.8 Student Already Created
-
-If Student creation has already occurred, Admission Cancellation is not permitted.
-
-The Admission Cancellation workflow must not be used to reverse or terminate a post-creation Student relationship.
+The authoritative L2 cancellation workflow supports cancellation from the eligible pre-Student-creation Admission states defined by L2-C01. The scenario behaviour remains the same regardless of which eligible state is the starting state: eligibility is validated, the governed decision is completed, and the Admission Record reaches `Cancelled`.
 
 ---
 
 ## 11. Failure, Interruption and Business Recovery
 
-This section describes business-level failure and recovery only.
+| Condition | Business Result | Business Handling |
+|---|---|---|
+| Current Admission state is not eligible for cancellation | Cancellation does not complete. | Continue through the applicable authoritative Admission lifecycle path. |
+| Student creation has already occurred | Admission Cancellation is prohibited for this scenario. | Use the applicable post-creation Revocation or Student Lifecycle process defined upstream. |
+| Cancellation policy condition is not satisfied | Admission remains in its current valid state. | Resolve through the applicable governed policy/path; do not force cancellation. |
+| Required business authority is not satisfied | Cancellation cannot complete. | Obtain the required upstream-governed decision/authority before progressing. |
+| Cancellation basis is invalid | Admission remains unchanged. | Follow the applicable canonical alternative lifecycle path. |
 
-### 11.1 Ineligible Admission State
-
-**Condition:** The Admission Record is not in a lifecycle state from which cancellation is permitted.
-
-**Business result:** The Admission does not become Cancelled.
-
-**Business handling:** Continue under the applicable canonical Admission lifecycle path.
-
-### 11.2 Student Already Created
-
-**Condition:** The Admission Record has already resulted in successful Student creation.
-
-**Business result:** Admission Cancellation is prohibited.
-
-**Business handling:** The appropriate post-creation process, such as Revocation or Student Lifecycle processing, must be used according to the governing architecture.
-
-### 11.3 Policy Condition Not Satisfied
-
-**Condition:** The cancellation does not satisfy the applicable institutional policy.
-
-**Business result:** Cancellation is not established.
-
-**Business handling:** The Admission remains in its current valid lifecycle position until a permitted business path is available.
-
-### 11.4 Authority Not Satisfied
-
-**Condition:** Required cancellation authority has not been established.
-
-**Business result:** The Admission cannot transition to `Cancelled`.
-
-**Business handling:** The required business decision/authority must be established before cancellation can complete.
-
-### 11.5 Invalid Cancellation Basis
-
-**Condition:** The stated basis does not support cancellation under applicable institutional policy.
-
-**Business result:** The Admission remains unchanged.
-
-**Business handling:** The applicable canonical alternative lifecycle path is followed.
-
-### 11.6 Business History Preservation
-
-Cancellation does not erase or overwrite the Admission Record.
-
-Historical admission information remains preserved even after the lifecycle reaches `Cancelled`.
-
-### 11.7 Explicitly Excluded Technical Recovery
-
-The following are intentionally not defined at L3:
-
-- technical retries;
-- queues;
-- server failures;
-- transaction rollback;
-- database recovery;
-- business exception workflows;
-- API retries;
-- infrastructure failover.
+No technical retry, transaction rollback, exception-handler, queue, infrastructure-failover, or database-recovery behaviour is defined at L3.
 
 ---
 
 ## 12. Business Rules and Decision Constraints
 
-| Rule ID | Business Rule / Constraint | Owner | Scenario Effect |
-|---|---|---|---|
-| C01-CAN-01 | Admission Cancellation permanently terminates the Admission before successful Student creation. | Admissions | C-002 ends with `Cancelled`. |
-| C01-CAN-02 | An Admission that has already resulted in Student creation shall not be cancelled. | Admissions / Student Lifecycle boundary | Post-creation cases leave C-002. |
-| C01-CAN-03 | Cancellation may be initiated by the institution or applicant, subject to applicable policy. | Admissions | Both initiation sources are supported. |
-| C01-CAN-04 | Cancelled Admissions remain preserved as institutional history. | Admissions | Cancellation does not delete the Admission Record. |
-| C01-CAN-05 | Admissions owns the Admission lifecycle and cancellation outcome. | Admissions | No ownership transfer occurs. |
-| C01-CAN-06 | Finance owns payments, refunds, ledger, and accounting. | Finance | Admissions does not perform financial settlement itself. |
-| C01-CAN-07 | Cross-domain collaboration does not transfer business ownership. | Architecture-wide | Finance consumes the cancellation fact without owning the Admission. |
-| C01-CAN-08 | Business events represent completed business facts. | Admissions / Architecture-wide | `AdmissionCancelled` is published only for the completed cancellation outcome. |
-| C01-CAN-09 | Readmission creates a new Admission Record rather than reopening the cancelled record. | Admissions | Cancellation remains historical and terminal for the current record. |
+The scenario applies the following upstream-owned constraints without assigning new L3 rule identifiers:
 
-### 12.1 Canonical State Constraints
+- Admission Cancellation terminates an admission before successful Student creation.
+- An admission that has already resulted in Student creation shall not be cancelled through this scenario.
+- Cancellation may be initiated by the institution or applicant subject to applicable institutional policy.
+- Cancelled admissions remain preserved as institutional history.
+- Admissions retains ownership of the Admission Record and cancellation outcome.
+- Finance retains ownership of payments, refunds, ledger, and accounting consequences.
+- Cross-domain consumption of `AdmissionCancelled` does not transfer Admission ownership.
+- `AdmissionCancelled` represents the completed cancellation business fact and is published only after the cancellation outcome is established.
+- Readmission, where permitted, creates a new Admission Record rather than reopening the cancelled Admission Record.
 
-The authoritative Admission lifecycle permits cancellation from:
-
-- Admission Initiated;
-- Documents Submitted;
-- Verification Completed;
-- Admission Approved;
-- Financial Clearance.
-
-The lifecycle does not permit cancellation after Student creation.
-
-### 12.2 Distinction From Other Terminal Outcomes
-
-Cancellation must not be silently substituted for:
-
-- Withdrawal;
-- Revocation;
-- Expiry; or
-- Admission Completion.
-
-Each represents a distinct canonical lifecycle outcome.
+These constraints are derived from `L2-C01_Admissions_Workflows.md`, including its Admission lifecycle, cancellation workflow, ownership boundaries, and event model. L3 does not create a parallel rule namespace.
 
 ---
 
 ## 13. State and Lifecycle Impact
 
-### 13.1 Owned Aggregate
+The canonical lifecycle owner remains Admissions.
 
-**Canonical business record:** Admission Record  
-**Canonical lifecycle owner:** Admissions
+The applicable cancellation outcome is:
 
-### 13.2 State Transition
+`Eligible pre-Student-creation Admission state → Cancelled`
 
-| Current State | Scenario Action | Resulting State |
-|---|---|---|
-| Admission Initiated | Cancel eligible Admission | **Cancelled** |
-| Documents Submitted | Cancel eligible Admission | **Cancelled** |
-| Verification Completed | Cancel eligible Admission | **Cancelled** |
-| Admission Approved | Cancel eligible Admission | **Cancelled** |
-| Financial Clearance | Cancel eligible Admission | **Cancelled** |
+L2-C01 `WF-C01-06 — Admission Cancellation` and the canonical transition architecture govern which current states are eligible for that transition.
 
-### 13.3 Canonical Transition Set
+`Cancelled` remains historical for the current Admission Record. Where institutional policy permits Readmission, the upstream architecture creates a new Admission Record linked to the same Person rather than reopening the cancelled record.
 
-The scenario relies on the following authoritative transitions:
-
-```text
-Admission Initiated
-        │
-        └──────────► Cancelled
-
-Documents Submitted
-        │
-        └──────────► Cancelled
-
-Verification Completed
-        │
-        └──────────► Cancelled
-
-Admission Approved
-        │
-        └──────────► Cancelled
-
-Financial Clearance
-        │
-        └──────────► Cancelled
-```
-
-### 13.4 Resulting Lifecycle Position
-
-`Cancelled` is a terminal state for the current Admission Record.
-
-A later Readmission, where permitted, creates a **new Admission Record** linked to the same Person rather than reopening the cancelled Admission Record.
-
-### 13.5 Ownership Preservation
-
-The lifecycle transition does not transfer ownership of the Admission Record.
-
-Admissions remains the canonical owner before and after cancellation.
+No new lifecycle state or transition is introduced by this L3 scenario.
 
 ---
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-### 14.1 Business Event
+| Business Fact | Canonical Event | Canonical Publisher | Scenario Relevance |
+|---|---|---|---|
+| Admission cancellation completed | `AdmissionCancelled` | Admissions | Represents the completed `Cancelled` Admission outcome. |
 
-| Event | Canonical Publisher | Purpose |
-|---|---|---|
-| `AdmissionCancelled` | **Admissions** | Represents the completed business fact that the Admission Record has been cancelled. |
+L2-C01 identifies downstream consumers such as Finance for domain-owned consequences. Consumers do not acquire ownership of the Admission Record or cancellation lifecycle.
 
-The canonical event is distinct from the synchronous business decision/hand-off that may precede downstream processing.
-
-### 14.2 Event Consumers
-
-The L2 Admissions architecture identifies Finance as a consumer of:
-
-- `AdmissionCancelled`;
-- `AdmissionRevoked`; and
-- `AdmissionWithdrawn`
-
-for its own refund-policy execution.
-
-Other applicable consumers may use the cancellation fact for their own downstream business responsibilities.
-
-### 14.3 Publisher Ownership Rule
-
-The `AdmissionCancelled` event is published by **Admissions**.
-
-No participating or consuming domain may be described as the canonical publisher of this event.
-
-### 14.4 Cross-Domain Financial Collaboration
-
-Following `AdmissionCancelled`, Finance may determine and execute applicable financial consequences under Finance ownership.
-
-Examples of Finance-owned responsibility include:
-
-- payment handling;
-- refund processing;
-- ledger/accounting adjustments.
-
-Admissions does not directly create or modify Finance-owned financial records.
-
-### 14.5 Business Fact vs Business Contract
-
-`AdmissionCancelled` is a completed business event.
-
-Any synchronous business validation, policy decision, or downstream hand-off is a separate business interaction and must not be described as the event itself.
-
-### 14.6 No Implementation Mechanics
-
-This L3 scenario intentionally does not define:
-
-- event payloads;
-- API endpoints;
-- queues;
-- transport;
-- message schemas;
-- databases;
-- services;
-- retry strategies.
+The scenario does not define transport protocols, topics, queues, payloads, APIs, or direct cross-domain writes.
 
 ---
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-### 15.1 Cancellation Initiation
+The cancellation must be attributable to a valid applicant request or institutional cancellation basis and must satisfy the applicable upstream cancellation policy and business authority.
 
-Cancellation may be initiated by:
+The cancellation reason/basis, decision, lifecycle transition, and resulting business fact must remain traceable within the Admission history.
 
-- the Applicant, where policy permits; or
-- the Institution, where policy permits.
-
-### 15.2 Decision Authority
-
-The applicable institutional cancellation authority is governed by the upstream Admissions policy/configuration.
-
-Because the authoritative L2 source does not establish one universal role title for every institution, this document does not invent a specific role.
-
-The L3 scenario therefore identifies the authority boundary without manufacturing a role name.
-
-### 15.3 Approval / Decision Obligation
-
-Before the Admission transitions to `Cancelled`, the applicable cancellation policy and authority must be satisfied.
-
-### 15.4 Separation of Duties
-
-No additional scenario-specific separation-of-duty requirement is introduced here.
-
-Any configured institutional separation-of-duty or approval chain remains an upstream Admissions policy concern.
-
-### 15.5 Override
-
-No local override rule is created.
-
-Any administrative override must be governed by the authoritative Admissions architecture and institutional policy rather than invented within L3.
-
-### 15.6 Audit and Evidence
-
-The Admission Cancellation must remain represented in the Admission's historical record.
-
-The business history must preserve that:
-
-- the Admission existed;
-- the Admission was cancelled;
-- the Admission reached the `Cancelled` state; and
-- the cancellation remains part of the institutional Admission history.
-
-Technical audit infrastructure is outside this scenario's L3 boundary.
+L2-C01 treats institutional authority and approval chains as configurable. This L3 scenario therefore does not invent a universal human role or define technical RBAC/IAM behaviour.
 
 ---
 
 ## 16. Completion Criteria and Postconditions
 
-### 16.1 Completion Criteria
+The scenario is complete when:
 
-C-002 is complete when all of the following are true:
+- cancellation eligibility has been validated;
+- applicable policy and required business authority have been satisfied;
+- the Admission Record has reached `Cancelled`;
+- successful Student creation has not occurred for the cancelled Admission Record;
+- historical Admission information remains preserved; and
+- `AdmissionCancelled` has been published by Admissions as the completed business fact.
 
-- A valid Admission Record was identified.
-- The Admission was eligible for cancellation.
-- The applicable cancellation basis was established.
-- Required institutional cancellation policy/authority was satisfied.
-- The Admission Record transitioned to `Cancelled`.
-- The cancellation remained preserved in institutional history.
-- Admissions published the canonical `AdmissionCancelled` business fact.
-- Any downstream domain consequences remain within the ownership of the relevant downstream domain.
-
-### 16.2 Postconditions
-
-| Postcondition | Result |
-|---|---|
-| Admission lifecycle | **Cancelled** |
-| Admission ownership | Remains with Admissions |
-| Admission history | Preserved |
-| Student creation | Does not occur as a result of C-002 |
-| Finance ownership | Unchanged |
-| Downstream collaboration | Driven by completed `AdmissionCancelled` fact |
-| Current Admission Record | Terminal for its current lifecycle |
-| Future Readmission | New Admission Record if institutionally permitted |
-
-### 16.3 End Boundary
-
-The scenario ends once the Admission Cancellation outcome has been established and represented by the canonical business fact.
-
-Any subsequent refund, accounting, notification, readmission, or other downstream process is outside C-002.
+Postcondition: the current Admission Record is terminated in `Cancelled`; any later financial or other downstream consequences remain owned by their respective domains.
 
 ---
 
@@ -684,125 +250,14 @@ Any subsequent refund, accounting, notification, readmission, or other downstrea
 
 ### 17.1 Open Issues
 
-**Issue 1 — Configured Human Cancellation Authority**
-
-The L2 architecture establishes configurable admission authority but does not provide one universal human role applicable to every institution for Admission Cancellation.
-
-**Impact:** The L3 scenario cannot legitimately invent a role name.
-
-**Disposition:** Preserve the authority requirement at the business level and defer the exact configured role/authority to the authoritative institutional policy/configuration.
-
----
+**OI-C002-01 — Institution-specific cancellation authority:** L2-C01 establishes configurable admission authority/approval chains rather than one universal named institutional role. The exact configured cancellation authority must remain an upstream policy/configuration concern unless a more specific authoritative role is established.
 
 ### 17.2 Assumptions
 
-The following assumptions are explicitly bounded and do not override locked architecture:
-
-1. The frozen Stage 3 C-002 semantics remain authoritative.
-2. `WF-C01-06 — Admission Cancellation` is the applicable L2 workflow.
-3. Cancellation remains distinct from Withdrawal and Revocation.
-4. Cancellation occurs only before successful Student creation.
-5. `Cancelled` remains the canonical resulting Admission lifecycle state.
-6. `AdmissionCancelled` remains the canonical completed business event published by Admissions.
-7. Finance-owned consequences remain Finance-owned.
-8. A future Readmission creates a new Admission Record rather than reopening the cancelled record.
-
----
+- `WF-C01-06 — Admission Cancellation` remains the authoritative L2 workflow for this scenario.
+- Admissions remains the canonical publisher of `AdmissionCancelled`.
+- Downstream domains consume the completed cancellation fact without modifying the Admission-owned lifecycle.
 
 ### 17.3 Deferred Questions
 
-| Question | Target Authority / Level | Reason |
-|---|---|---|
-| Which configured institutional role executes the final cancellation authority? | Admissions policy / configuration | L2 establishes configurable authority rather than one universal role. |
-| What exact refund/financial consequence applies to a cancelled Admission? | Finance | Finance owns payments, refunds, ledger, and accounting. |
-| What technical mechanism realizes cancellation? | L4+ | L3 is implementation-independent. |
-| What UI presents the cancellation process? | L6 | UI/UX is outside L3. |
-
----
-
-# Validation and Authoring Classification
-
-**Classification: PASS WITH ISSUES — Draft**
-
-## Source Verification
-
-### Frozen Scenario Identity
-
-- `L3-C-002`
-- `Admission Cancellation`
-- Primary Owner: Admissions
-- Participating Domain: C
-- Scenario Type: Simple
-- Priority: P1
-
-### L2 Verification
-
-The applicable locked L2 document is:
-
-`architecture/L2_Domain_Workflow_Architecture/section-c/L2-C01_Admissions_Workflows.md`
-
-The applicable workflow is:
-
-`WF-C01-06 — Admission Cancellation`
-
-The L2 workflow defines cancellation as permanently terminating an admission before successful Student creation.
-
-### Lifecycle Verification
-
-The canonical Admission lifecycle permits cancellation from:
-
-- Admission Initiated;
-- Documents Submitted;
-- Verification Completed;
-- Admission Approved; and
-- Financial Clearance.
-
-The resulting state is:
-
-`Cancelled`
-
-The cancelled Admission Record remains historical, and Readmission creates a new Admission Record subject to policy.
-
-### Event Verification
-
-Canonical business event:
-
-`AdmissionCancelled`
-
-Canonical publisher:
-
-**Admissions**
-
-Finance consumes the cancellation event for applicable financial policy execution but does not acquire Admission ownership.
-
-### Ownership Verification
-
-Admissions owns:
-
-- Admission Record;
-- Admission Status;
-- Admission Lifecycle; and
-- Admission Cancellation.
-
-Finance retains ownership of financial records and consequences.
-
-### Boundary Verification
-
-The scenario:
-
-- starts with an eligible pre-Student Admission Record;
-- ends with the Admission Record in `Cancelled`;
-- does not create a Student;
-- does not perform financial settlement;
-- does not perform Student Lifecycle processing;
-- does not redefine Withdrawal or Revocation.
-
-### Implementation Leakage Check
-
-No APIs, databases, Business Data Structures, services, queues, technical access control/IAM, infrastructure, UI design, technical retries, or rollback mechanics are specified.
-
-### Final Authoring Status
-
-**Draft — source-grounded and end-to-end complete at L3, with the configured human cancellation authority intentionally left to upstream institutional policy/configuration.**
-
-> **Important:** “Complete file” here means the L3 scenario document is complete across all 17 mandatory sections. It does **not** mean Architecture Approved or Locked. Under Phase 5 governance, AI-authored content remains `Draft` until human architecture review and approval.
+Institution-specific approval routing and policy configuration remain outside this L3 scenario unless established by higher-authority business architecture.

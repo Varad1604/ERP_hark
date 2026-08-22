@@ -7,9 +7,9 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Draft  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Varad  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-23  
 **Depends On:** L2-E05 — Leave Management Workflows; applicable employee context and leave-policy governance  
 **Referenced By:** None yet
 
@@ -69,7 +69,7 @@ Employee initiates a leave request.
 | 4 | Check available leave balance. | Leave Management | Balance-availability result is established. |
 | 5 | Route the validated request through the applicable approval workflow. | Leave Management | Approval decision is ready. |
 | 6 | Review the request and record the final decision. | Approver | Approved or rejected decision is established. |
-| 7 | Publish the applicable leave decision event. | Leave Management | Final decision is available as an authoritative leave outcome. |
+| 7 | Publish the canonical event for the actual decision outcome: `EmployeeLeaveApproved` or `EmployeeLeaveRejected`. | Leave Request Aggregate / Leave Management | Final decision is available as an authoritative leave outcome. |
 
 ## 10. Alternate Business Flows
 - If the employee is not eligible, the request is rejected or directed to the applicable exception workflow.
@@ -103,8 +103,12 @@ No new local lifecycle state or transition is introduced.
 ## 14. Business Events and Cross-Domain Collaboration
 ### 14.1 Canonical Business Events
 - **EmployeeLeaveRequested** — published when the leave request is created.
-- **EmployeeLeaveApproved** — authoritative approval outcome when the request is approved.
+- **EmployeeLeaveApproved** — published by the Leave Request Aggregate when approval is completed.
+- **EmployeeLeaveRejected** — published by the Leave Request Aggregate when approval is denied.
 - Other leave events exist for later processing stages; this scenario stops at the final decision.
+
+The decision event published at scenario completion must correspond to the actual final outcome. Approval and rejection are alternate terminal decision outcomes; they are not interchangeable event names.
+
 ### 14.2 Synchronous Business Contracts / Hand-offs
 The final leave decision is a business outcome consumed by relevant downstream business participants. Subsequent reservation/consumption/ledger activities remain within L2-E05.
 
@@ -116,7 +120,7 @@ The approval decision must be recorded with the responsible approver and traceab
 - Eligibility and balance availability have been evaluated.
 - The applicable approval route has completed its decision.
 - The final approved or rejected outcome is recorded.
-- The applicable leave decision event is published.
+- `EmployeeLeaveApproved` is published for an approved outcome, or `EmployeeLeaveRejected` is published for a rejected outcome.
 - The scenario ends before post-approval reservation/consumption processing.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
