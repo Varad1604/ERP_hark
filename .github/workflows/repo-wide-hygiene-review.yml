@@ -1,0 +1,219 @@
+name: Repo-wide hygiene on review
+
+on:
+  push:
+    branches: [review]
+    paths:
+      - '.github/workflows/repo-wide-hygiene-review.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout review
+        uses: actions/checkout@v4
+        with:
+          ref: review
+          fetch-depth: 0
+
+      - name: Run deterministic repository hygiene
+        shell: bash
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import re
+          from pathlib import Path
+          from datetime import date
+
+          ROOT = Path('.')
+          REPORT = ROOT / 'generated/reviews/Repo_Wide_Hygiene_Audit_2026-08-22.md'
+          PHASE5 = 'architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/'
+
+          FILECITE_RE = re.compile(r'\s*filecite[^]+')
+          SECTION1_RE = re.compile(r'^##\s+1\.\s+Scenario Metadata\s*$', re.MULTILINE)
+          H1_RE = re.compile(r'^#\s+(.+?)\s*$', re.MULTILINE)
+          META_RE = re.compile(r'^\*\*(Scenario ID|Primary Owner|Participating Domains|Scenario Type|Priority|Status):\*\*\s*(.*?)\s*$', re.MULTILINE)
+          STALE_PATTERNS = {
+              'source-access wording': re.compile(r'(not (?:safely )?exposed in the (?:retrieved|available) source|not accessible in the current .*source|source excerpt|authoring pass)', re.I),
+              'stage-mapping wording': re.compile(r'\b(Stage 3|Stage 4|Phase 4 mapping|final-ID-to-filename mapping)\b', re.I),
+              'transient UI marker': re.compile(r'(?:cite|url|filenavlist|navlist|entity|product|products|video|image_group|genui)'),
+          }
+
+          def is_phase5_scenario(path: Path) -> bool:
+              p = path.as_posix()
+              return p.startswith(PHASE5) and path.name.startswith('L3-') and path.suffix == '.md'
+
+          def metadata_values(text: str):
+              vals = {k: v.strip() for k, v in META_RE.findall(text)}
+              title_m = H1_RE.search(text)
+              title = title_m.group(1).strip() if title_m else ''
+              return title, vals
+
+          def frozen_tuple(text: str):
+              title, vals = metadata_values(text)
+              return (
+                  vals.get('Scenario ID', ''), title,
+                  vals.get('Primary Owner', ''), vals.get('Participating Domains', ''),
+                  vals.get('Scenario Type', ''), vals.get('Priority', ''), vals.get('Status', '')
+              )
+
+          def build_section1(text: str) -> str | None:
+              title, vals = metadata_values(text)
+              required = ['Scenario ID', 'Primary Owner', 'Participating Domains', 'Scenario Type', 'Priority', 'Status']
+              if not title or any(not vals.get(k) for k in required):
+                  return None
+              rows = [
+                  ('Final L3 ID', vals['Scenario ID']),
+                  ('Canonical Title', title),
+                  ('Primary Owner', vals['Primary Owner']),
+                  ('Participating Domains', vals['Participating Domains']),
+                  ('Scenario Type', vals['Scenario Type']),
+                  ('Priority', vals['Priority']),
+                  ('Status', vals['Status']),
+              ]
+              out = ['## 1. Scenario Metadata', '', '| Attribute | Canonical Value |', '|---|---|']
+              for k, v in rows:
+                  out.append(f'| {k} | {v} |')
+              out += ['', 'This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.', '']
+              return '\n'.join(out)
+
+          md_files = sorted(p for p in ROOT.rglob('*.md') if '.git' not in p.parts)
+          touched = []
+          marker_files = []
+          markers_removed = 0
+          metadata_inserted = []
+          metadata_skipped = []
+          stale_hits = {k: [] for k in STALE_PATTERNS}
+          locked_or_governed_touched = []
+
+          for path in md_files:
+              original = path.read_text(encoding='utf-8')
+              text = original
+              before_frozen = frozen_tuple(original) if is_phase5_scenario(path) else None
+
+              n = len(FILECITE_RE.findall(text))
+              if n:
+                  marker_files.append((path.as_posix(), n))
+                  markers_removed += n
+                  text = FILECITE_RE.sub('', text)
+
+              if is_phase5_scenario(path) and not SECTION1_RE.search(text):
+                  section = build_section1(text)
+                  if section is None:
+                      metadata_skipped.append(path.as_posix())
+                  else:
+                      # Insert immediately before the first ## 2 heading. This preserves all existing header text.
+                      m = re.search(r'^##\s+2\.', text, re.MULTILINE)
+                      if m:
+                          text = text[:m.start()].rstrip() + '\n\n' + section + '\n' + text[m.start():]
+                          metadata_inserted.append(path.as_posix())
+                      else:
+                          metadata_skipped.append(path.as_posix())
+
+              if is_phase5_scenario(path):
+                  after_frozen = frozen_tuple(text)
+                  if before_frozen != after_frozen:
+                      raise SystemExit(f'Frozen metadata changed unexpectedly: {path}')
+
+              for label, pattern in STALE_PATTERNS.items():
+                  if pattern.search(text):
+                      stale_hits[label].append(path.as_posix())
+
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  touched.append(path.as_posix())
+                  p = path.as_posix()
+                  if '/L1_' in p or '/L2_' in p or p.startswith('governance/'):
+                      locked_or_governed_touched.append(p)
+
+          # Validation after writes.
+          remaining_filecite = []
+          missing_section1 = []
+          for path in md_files:
+              text = path.read_text(encoding='utf-8')
+              if FILECITE_RE.search(text):
+                  remaining_filecite.append(path.as_posix())
+              if is_phase5_scenario(path) and not SECTION1_RE.search(text):
+                  missing_section1.append(path.as_posix())
+
+          REPORT.parent.mkdir(parents=True, exist_ok=True)
+          lines = [
+              '# SutraERP Repository-Wide Hygiene Audit — 2026-08-22',
+              '',
+              '**Branch:** `review`  ',
+              '**Mode:** Deterministic non-semantic hygiene  ',
+              '**Architecture policy:** Frozen IDs, titles, owners, participating domains, scenario type, priority and status were guarded against change. No L1/L2 business rule, lifecycle, publisher or ownership decision was intentionally altered.',
+              '',
+              '## 1. Scope',
+              '',
+              f'- Markdown files scanned: **{len(md_files)}**',
+              '- Transient ChatGPT `filecite` markers: removed wherever found.',
+              '- Phase 5 L3 scenario files: mandatory `## 1. Scenario Metadata` inserted only when all values could be copied from the existing scenario header.',
+              '- Stale authoring/source-access language: detected and reported only; not automatically rewritten because resolution can require architectural source verification.',
+              '',
+              '## 2. Applied Changes',
+              '',
+              f'- Files modified: **{len(touched)}**',
+              f'- Transient `filecite` markers removed: **{markers_removed}** across **{len(marker_files)}** files.',
+              f'- L3 Scenario Metadata sections inserted: **{len(metadata_inserted)}**.',
+              f'- L3 files skipped for metadata insertion because safe header derivation was not possible: **{len(metadata_skipped)}**.',
+              f'- Locked/governance-path files touched by mechanical marker removal: **{len(locked_or_governed_touched)}**.',
+              '',
+              '## 3. Validation',
+              '',
+              f'- Remaining transient `filecite` markers: **{len(remaining_filecite)}**.',
+              f'- Phase 5 L3 scenario files still missing mandatory Scenario Metadata: **{len(missing_section1)}**.',
+              '- Frozen Phase 5 metadata guard: **PASS** (the runner aborts before commit if any guarded value changes).',
+              '',
+              '## 4. Files Modified',
+              '',
+          ]
+          lines += [f'- `{p}`' for p in touched] or ['- None']
+          lines += ['', '## 5. Transient Citation Cleanup', '']
+          lines += [f'- `{p}` — {n} marker(s)' for p, n in marker_files] or ['- None found']
+          lines += ['', '## 6. Scenario Metadata Insertions', '']
+          lines += [f'- `{p}`' for p in metadata_inserted] or ['- None']
+          lines += ['', '## 7. Remaining Structural Exceptions', '']
+          lines += [f'- `{p}`' for p in missing_section1] or ['- None']
+          lines += ['', '## 8. Stale Authoring / Source-Access Wording Requiring Review', '']
+          for label, paths in stale_hits.items():
+              lines += [f'### {label}', '', f'Occurrences by file: **{len(paths)}**', '']
+              lines += [f'- `{p}`' for p in paths] or ['- None']
+              lines += ['']
+          lines += [
+              '## 9. Certification Boundary',
+              '',
+              'This hygiene pass is not Phase 5 Architecture Approval or Lock. It normalizes mechanically safe repository artifacts and identifies residual wording that requires source-aware architectural review.',
+              '',
+          ]
+          REPORT.write_text('\n'.join(lines), encoding='utf-8')
+
+          if remaining_filecite:
+              raise SystemExit(f'Hygiene failed: {len(remaining_filecite)} filecite markers remain')
+          if missing_section1:
+              # Missing section 1 may reflect malformed source headers; record rather than invent.
+              print(f'WARNING: {len(missing_section1)} Phase5 scenarios still lack safely derivable Section 1 metadata')
+
+          print(f'Scanned {len(md_files)} markdown files')
+          print(f'Modified {len(touched)} files')
+          print(f'Removed {markers_removed} filecite markers from {len(marker_files)} files')
+          print(f'Inserted {len(metadata_inserted)} Scenario Metadata sections')
+          print(f'Remaining safely-unresolved metadata exceptions: {len(missing_section1)}')
+          PY
+
+      - name: Commit hygiene results
+        shell: bash
+        run: |
+          git config user.name "SutraERP Hygiene Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No hygiene changes required."
+          else
+            git commit -m "chore(hygiene): repo-wide markdown normalization [skip ci]"
+            git push origin HEAD:review
+          fi
