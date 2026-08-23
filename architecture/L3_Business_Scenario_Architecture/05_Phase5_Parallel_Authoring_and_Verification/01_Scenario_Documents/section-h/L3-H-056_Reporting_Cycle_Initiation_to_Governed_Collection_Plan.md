@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H08 — NEP, NAAC & AISHE Reporting Workflows  
-**Referenced By:** Regulatory data collection, validation, snapshot, approval, submission, correction, and closure scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H08 — NEP, NAAC & AISHE Reporting Workflows  
+**Referenced By:** None yet
 
 # 2. Scenario Purpose
 
-Establish a governed H08 Reporting Cycle and collection plan for a statutory or accreditation reporting period, including schedule, responsibilities, source-reporting context, validation/evidence obligations, and downstream approval expectations while source domains retain ownership of all business evidence.
+Establish the governed plan for a statutory or accreditation reporting period while preserving the authority of each evidence-owning domain over the facts that the cycle will later consume.
 
 # 3. Business Outcome
 
@@ -27,51 +27,45 @@ Scope, responsibilities, deadlines, source contracts, validations, and approvals
 
 ## 4.1 Start Boundary
 
-A statutory or accreditation reporting period opens.
+The scenario begins when a statutory or accreditation reporting period opens.
 
 ## 4.2 End Boundary
 
-The scenario ends when H08 has established the Reporting Cycle in its source-defined `Planned` position with its reporting schedule, template, responsible-officer assignments, and governed reporting requirements established for subsequent Data Collection. The frozen word `active` is not asserted as a canonical lifecycle state because H08 defines no `Active` Reporting Cycle state.
+The frozen end boundary requires an **active reporting cycle** with scope, responsibilities, deadlines, source contracts, validations, and approvals established. H08 defines a `Planned` Reporting Cycle and later `DataCollection`, but no canonical `Active` Reporting Cycle state.
 
 ## 4.3 In Scope
 
-- Creation of the H08 Reporting Cycle for one published Reporting Framework.
-- Assignment of a published Report Template.
-- Establishment of timeline and deadlines through the Reporting Schedule owned by the Reporting Cycle.
-- Assignment of source-defined reporting responsibilities.
-- Identification of the approved reporting information/evidence expected from evidence-owning domains.
-- Establishment of validation, evidence, approval, and submission-governance expectations already defined by the governing framework/template.
+- Create the H08 Reporting Cycle for one published Reporting Framework.
+- Associate the applicable published Report Template.
+- Establish the reporting timeline and deadline context.
+- Identify responsible reporting participation and the applicable authoritative evidence-owning domains.
+- Preserve the approved reporting contracts and validation/approval requirements inherited from governed H08 framework/template configuration.
+- Publish the governed reporting schedule.
 
 ## 4.4 Out of Scope
 
-- Starting or completing source-domain operational work.
-- Copying canonical source records into H08 ownership.
-- Inventing an `Active` Reporting Cycle state.
-- Inventing source-domain evidence actors or new cross-domain reporting contracts.
-- Performing data collection, validation, snapshot generation, approval, or submission within this scenario.
+- Collecting source facts or creating the Reporting Snapshot.
+- Changing facts in `VAR:Evidence-Owning Domain`.
+- Inventing an `Active` lifecycle state or local activation transition.
+- Selecting one concrete evidence-owning domain where the frozen canonical scenario intentionally preserves a variable participant.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
+| Domain | Responsibility |
 |---|---|
-| NEP, NAAC & AISHE Reporting / H | Owns Reporting Cycle, Reporting Schedule, reporting timeline, cycle status, reporting requirements, and H08 reporting governance. |
-| VAR:Evidence-Owning Domain | Owns the authoritative institutional facts/evidence later referenced or consumed by H08; participation never transfers source ownership. |
+| NEP, NAAC & AISHE Reporting / H08 | Owns Reporting Cycle, Reporting Schedule, reporting lifecycle, reporting metadata, validation governance, and reporting approval state. |
+| VAR:Evidence-Owning Domain | Retains ownership of the authoritative facts/evidence later requested by the cycle and participates only through approved reporting contracts. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Reporting Coordinator | Manages the H08 Reporting Cycle and its planning context where authorized. | Initiates / coordinates |
-| Responsible Officer | H08-W02 records responsible-officer assignment within the Reporting Cycle plan. | Performs the assigned reporting responsibility as governed by the plan |
-
-L2-H08 records a formal Actors-section gap. `Reporting Coordinator` is listed as a typical reporting role and H08-W02 explicitly assigns Responsible Officers, but H08 does not provide a complete canonical actor taxonomy for every evidence-owning domain.
+H08-W02 requires assignment of responsible officers but locked H08 does not provide a canonical business-actor section defining those responsibilities or the business authority that assigns them. The variable evidence-owning participant remains source-owner-specific at execution time.
 
 # 7. Preconditions and Entry Criteria
 
-- A source-supported published Reporting Framework exists for the reporting period.
-- A published Report Template exists and is applicable to the Reporting Cycle.
-- The reporting period, deadline, and reporting scope can be determined from the governing H08 configuration.
-- Evidence-owning domains retain authoritative ownership of the facts expected during later collection.
+- The applicable Reporting Framework is published.
+- A reporting schedule and reporting period are defined.
+- The applicable Report Template is published as required by BR-002.
+- Relevant reporting contracts and validation/approval requirements are governed upstream in H08 configuration.
 
 # 8. Trigger
 
@@ -79,104 +73,87 @@ A statutory or accreditation reporting period opens
 
 # 9. Main Business Flow
 
-1. H08 identifies the published Reporting Framework governing the newly opened reporting period.
-2. H08 creates the Reporting Cycle for the applicable institutional scope and period.
-3. H08 assigns the applicable published Report Template to the cycle.
-4. H08 establishes the Reporting Schedule, timeline, deadlines, and milestones for the cycle.
-5. H08 assigns the Responsible Officers required by the source-defined planning workflow.
-6. H08 records the governed source-reporting requirements and evidence categories that later collection must obtain from their authoritative owners.
-7. H08 carries forward the framework/template validation, evidence, approval, and submission requirements that govern downstream processing.
-8. H08 publishes the reporting schedule and leaves the Reporting Cycle in the source-defined `Planned` lifecycle position, ready for a later transition into Data Collection.
+1. H08 creates a Reporting Cycle for the applicable published Reporting Framework.
+2. H08 associates the governed Report Template and reporting-period scope.
+3. H08 establishes the reporting timeline and deadlines through the Reporting Schedule owned by the Reporting Cycle.
+4. H08 identifies the required source participation and preserves each `VAR:Evidence-Owning Domain` as the owner of its own authoritative facts.
+5. H08 associates the applicable governed reporting contracts, validation requirements, evidence requirements, and approval obligations for the cycle.
+6. H08 assigns the reporting responsibilities described by H08-W02 and publishes the Reporting Schedule.
+
+The locked lifecycle only establishes `Planned` at this point; L3 cannot assert a canonical `Active` state for the frozen end outcome.
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| Administrative initiation | The reporting period is opened by an authorized institutional initiation rather than schedule | Create and govern the Reporting Cycle through the same H08 planning requirements | Planned cycle established | NEP, NAAC & AISHE Reporting |
-| Regulatory deadline initiates planning | A regulatory deadline establishes the need for the cycle | Establish timeline and reporting schedule against the governing published framework/template | Planned cycle established | NEP, NAAC & AISHE Reporting |
+- A cycle cannot proceed to collection if the required published framework or template is unavailable.
+- Different cycles may involve different evidence-owning domains while preserving the same frozen `VAR:Evidence-Owning Domain` architecture boundary.
+- Reporting schedule changes remain H08-owned and do not alter source-domain ownership.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Applicable Reporting Framework is not published | Cycle cannot validly depend on the framework | Govern the framework upstream before later cycle creation | NEP, NAAC & AISHE Reporting |
-| Applicable Report Template is not published | Reporting Cycle cannot meet BR-002 | Govern the template upstream before later cycle creation | NEP, NAAC & AISHE Reporting |
-| Required planning information is incomplete | Collection plan is not ready | Complete the H08-owned schedule/responsibility planning before later Data Collection | NEP, NAAC & AISHE Reporting |
+If cycle scope, schedule, required reporting contracts, or required governance conditions are incomplete, the cycle remains at its last valid H08 lifecycle position. Missing source participation is resolved by the authoritative source owner; H08 does not create substitute source facts.
 
 # 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| Every Reporting Cycle references one published Reporting Framework | NEP, NAAC & AISHE Reporting | The cycle cannot be planned against an unpublished framework | L2-H08 BR-001 |
-| Every Reporting Cycle references one published Report Template | NEP, NAAC & AISHE Reporting | The applicable template must be governed before the cycle is established | L2-H08 BR-002 |
-| Reporting data originates from canonical operational domains | Evidence-owning domains | The collection plan references source information without transferring ownership | L2-H08 BR-003; O-002 |
-| H08 never modifies operational business data | Evidence-owning domains / H08 boundary | Planning cannot change source facts | L2-H08 BR-004 |
-| Reporting Schedule is owned by Reporting Cycle as a value within that aggregate | NEP, NAAC & AISHE Reporting | Schedule governance remains within the cycle rather than creating another owner | L2-H08 §§6.3, 6.6 |
+- BR-001 requires one published Reporting Framework per Reporting Cycle.
+- BR-002 requires one published Report Template per Reporting Cycle.
+- BR-003 requires reporting data to originate from canonical operational domains.
+- H08 may orchestrate source participation but must not modify operational business data.
+- Reporting Cycle owns its Reporting Schedule.
 
 # 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Reporting Cycle | New cycle | Create, assign template, configure timeline, assign responsibility, publish schedule | Planned | H08 | L2-H08 §6.6; H08-W02; §18.1 |
-| Reporting Schedule | Owned within Reporting Cycle | Establish reporting timeline/deadlines | Governed schedule for the Planned cycle | H08 | L2-H08 §§6.3, 6.6 |
-
-H08's canonical Reporting Cycle lifecycle contains `Planned` and `DataCollection`, not `Active`.
+The H08 Reporting Cycle lifecycle is `Planned → DataCollection → Validation → SnapshotCreated → ApprovalPending → Approved/Rejected → SubmissionReady → Submitted → Accepted/RejectedByAuthority → Closed → Archived`, with correction paths returning to `DataCollection`. No canonical `Active` state exists despite H08 workflow preconditions sometimes describing a cycle as active.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
-|---|---|---|---|---|
-| ReportingCycleCreated | H08 | Reporting governance participants | Records cycle creation | L2-H08 §10.3 |
-| ReportingCycleScheduled | H08 | Reporting governance participants | Records publication of the Reporting Schedule | L2-H08 §10.3 |
-| ReportingCycleStarted | H08 | Reporting participants | H08 defines this event for reporting start; this Draft does not use it to invent an `Active` state | L2-H08 §10.3 |
+H08 defines `ReportingCycleCreated`, `ReportingCycleScheduled`, and `ReportingCycleStarted` for cycle initiation/planning. The authoritative evidence-owning domains retain ownership of their own events and facts; no variable-domain event is invented here.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-The cycle plan identifies approved reporting information required from evidence-owning domains. H08 may consume source information through approved Reporting Contracts defined upstream, but the cycle-planning workflow does not itself create or rename those source contracts. Evidence-owning domains remain authoritative for the underlying facts.
+H08 defines approved reporting contracts for consuming authoritative source-domain information. Because the frozen participant is `VAR:Evidence-Owning Domain`, the specific upstream contract owner is resolved only when the applicable reporting definition/cycle identifies the actual source domain; L3 does not replace the variable with an invented domain.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-The Reporting Coordinator is source-supported for Reporting Cycle management. H08-W02 also records assignment of Responsible Officers. The complete actor/authority model for each variable evidence-owning domain is not defined in H08 and is not invented here.
+H08 owns cycle creation and planning. Locked H08 does not canonically define the business actor that assigns responsible officers or the authority that declares the cycle `Active`, because no such lifecycle state is defined.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-The later institutional approval hierarchy is configurable under H08. This planning scenario records the requirement for downstream approval but does not perform or invent an approval decision.
+Planning responsibilities do not transfer ownership of evidence or source facts to H08. No reporting participant may override a source-domain business rule through cycle configuration.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve Reporting Cycle creation, selected framework/template version, reporting scope, reporting period, schedule/deadlines, responsible-officer assignments, and the governing validation/evidence/approval requirements.
+Preserve cycle creation, framework/template version references, scope, reporting schedule, responsibility assignments, applicable source-contract references, validation/approval requirements, and planning changes.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- A Reporting Cycle exists against one published framework and one published template.
-- Its Reporting Schedule, timeline, responsibilities, and downstream reporting-governance requirements are established.
-- Required evidence/source information remains assigned to its canonical owner.
-- The source-defined lifecycle position is `Planned` and ready for later Data Collection.
+The governed planning information required for collection is established and the H08 Reporting Cycle reaches the authoritative planning position. The frozen requirement that the cycle be in an `Active` state cannot be verified from the locked lifecycle.
 
 ## 16.2 Postconditions
 
-The governed collection plan is available for subsequent reporting execution without altering source-domain ownership.
+The Reporting Cycle, schedule, and planning metadata remain H08-owned; source facts remain owned by their applicable evidence-owning domains. No local `Active` state is created.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-- Frozen outcome uses the phrase **active reporting cycle**, while H08's canonical Reporting Cycle lifecycle has no `Active` state; H08-W02's explicit postcondition is `Planned`. This Draft preserves `Planned` and treats the frozen wording as describing an established current cycle rather than inventing a state.
-- H08 defines approved Reporting Contracts as a consumption mechanism, but H08-W02 does not define a dedicated cycle-level workflow for selecting or version-binding each source contract named in the frozen outcome.
-- H08's canonical crosswalk records that the required Actors section is absent. The source still identifies Reporting Coordinator and W02 Responsible Officers, so planning can be drafted, but actor completeness remains an upstream documentation issue.
+**Material lifecycle gap:** frozen H056 requires the plan to be established in an **active reporting cycle**. Locked H08 defines `Planned` followed by `DataCollection` and never defines an `Active` Reporting Cycle state, although later workflow preconditions use the adjective “active.”
 
-**Architecture assessment:** `PASS WITH ISSUES`
+**Material actor/authority gap:** H08-W02 requires assignment of responsible officers, while the H08 canonical crosswalk states that a business Actors section is not present. The business authority for assigning those responsibilities is therefore not canonically defined.
+
+**Architecture impact:** L3 cannot determine the authoritative lifecycle position that satisfies the frozen final outcome or invent the missing assignment authority.
+
+**Architecture assessment:** `BLOCKED`
 
 ## 17.2 Assumptions
 
-No assumptions.
+No assumptions. `VAR:Evidence-Owning Domain` is preserved exactly as frozen.
 
 ## 17.3 Deferred Questions
 
-No scenario-specific deferred questions beyond the upstream actor and source-contract-detail gaps recorded above.
+Architecture change control must define the canonical meaning of an “active” Reporting Cycle and the business authority for assigning reporting-cycle responsibilities.
