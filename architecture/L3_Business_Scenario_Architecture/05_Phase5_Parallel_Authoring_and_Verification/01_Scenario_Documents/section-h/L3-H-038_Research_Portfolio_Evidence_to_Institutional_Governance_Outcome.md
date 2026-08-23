@@ -11,13 +11,12 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows; L2-F00 — Finance Domain Model & Foundation  
-**Referenced By:** Institutional research governance, reporting, ranking, audit, and compliance review
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows; locked Finance architecture
 
 # 2. Scenario Purpose
 
-Provide institutional governance with research evidence derived from authoritative Research sources while preserving People & Workforce and Finance ownership boundaries and without changing source records.
+Provide institutional governance with a Research-owned portfolio/reporting outcome derived from authoritative source evidence without turning the Research Portfolio into a source of record or changing E/F/H transactional facts.
 
 # 3. Business Outcome
 
@@ -27,43 +26,31 @@ Verified project, funding, ethics, output, IP, and collaboration evidence suppor
 
 ## 4.1 Start Boundary
 
-A reporting, ranking, audit, or compliance cycle requires authoritative research evidence.
+A reporting, ranking, audit, or compliance cycle requires authoritative research evidence
 
 ## 4.2 End Boundary
 
-The frozen outcome is reached only when all required evidence categories in Section 3 have an authoritative Research portfolio path. L2-H05 currently supports only a subset; the material omissions are recorded in Section 17.
+H05 supports portfolio updates, KPI snapshots, and Research reports from a defined set of Research events. The frozen outcome requires project, funding, ethics, output, IP, and collaboration evidence; H05 lacks complete portfolio paths for all those categories.
 
 ## 4.3 In Scope
 
-- Research portfolio evidence derived from source-owned Research facts defined by L2-H05.
-- Research KPI and report generation from the Research portfolio where supported upstream.
-- Preservation of People & Workforce and Finance ownership while their authoritative facts participate by reference or governed hand-off.
+Derived Research Portfolio evidence; supported Project, Grant/funding metadata, Publication/output, Patent/IP, and Consultancy facts; KPI generation; Research report generation; preservation of source ownership.
 
 ## 4.4 Out of Scope
 
-- Creation of missing ethics, collaboration, or Finance evidence contracts.
-- Modification of Faculty Workforce, Finance, or Research transactional source records for reporting purposes.
+Inventing Ethics or Collaboration portfolio ingestion; inventing Finance-owned evidence contracts; changing source aggregates to satisfy reporting.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
-|---|---|
-| People & Workforce / Section E | Retains authoritative faculty capability, participation, and workforce facts referenced by Research. |
-| Finance / Section F | Retains authoritative monetary, accounting, and financial consequences associated with research funding. |
-| Research / Section H | Owns Research portfolio, KPI, and report outcomes defined by L2-H05 and the institutional research evidence assembly. |
+E03 retains authoritative workforce facts. Finance retains authoritative monetary/accounting facts. Research owns the derived Research Portfolio, Research KPI snapshots, and Research report outcomes defined by H05.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Research Office | Requests or produces supported Research reports from governed Research evidence. | Performs / receives outcome |
-| Management | Uses supported Research reports for institutional governance and decision making. | Receives outcome |
+Research Office generates/requests supported Research reports. Management receives supported reports for institutional governance. No additional evidence approver is invented.
 
 # 7. Preconditions and Entry Criteria
 
-- Applicable source Research facts have reached the authoritative lifecycle positions required by L2-H05.
-- Research portfolio information required for the supported evidence categories is available.
-- Source-domain ownership remains unchanged.
+Applicable source facts exist in governed lifecycle positions; required portfolio/read-model information is available; report/KPI definitions are configured; source ownership is unchanged.
 
 # 8. Trigger
 
@@ -71,74 +58,67 @@ A reporting, ranking, audit, or compliance cycle requires authoritative research
 
 # 9. Main Business Flow
 
-1. Identify the institutional research evidence requirement.
-2. Use the L2-H05 Research Portfolio derived from supported Research source events.
-3. Include supported project, grant/funding metadata, publication/output, IP, and consultancy evidence without modifying their source records.
-4. Generate Research KPIs where required from the portfolio.
-5. Generate the governed Research report for institutional review.
-6. Stop before claiming the frozen outcome because ethics, collaboration, and the required Finance-owned funding evidence hand-off are not completely defined for the portfolio path.
+1. Establish the reporting/ranking/audit/compliance evidence requirement.
+2. Assemble the H05 Research Portfolio from its canonical supported Research event sources.
+3. Include source-supported project, grant/funding metadata, output, Patent/IP, and Consultancy evidence by reference.
+4. Generate Research KPIs where required.
+5. Generate the authorized Research report for institutional review.
+6. Preserve provenance to source Research facts and E/F ownership.
+7. Stop before claiming complete frozen ethics, collaboration, and Finance-authoritative funding evidence because those portfolio hand-offs are not fully defined.
 
 # 10. Alternate Business Flows
 
-Department-level KPI calculation and institution-configured Research report variants may be used where defined by L2-H05. They do not resolve the missing evidence categories in Section 17.
+Department-level KPI/report variants may be generated where configured. Missing evidence categories remain omissions and are not replaced by inferred metrics.
 
 # 11. Failure, Interruption and Business Recovery
 
-If required authoritative evidence is unavailable or is not represented by an approved portfolio source path, the institutional review remains incomplete for that evidence category and requires upstream architecture resolution rather than local substitution.
+Unavailable authoritative evidence or an undefined portfolio source path prevents the affected evidence category from being claimed as verified. Existing source records remain unchanged.
 
 # 12. Business Rules and Decision Constraints
 
-- The Research Portfolio is derived and shall never become the source of record.
-- KPI calculation operates on Research portfolio information rather than changing source aggregates.
-- Research reporting is read-only with respect to transactional Research sources.
-- Finance remains the authoritative owner of accounting and monetary consequences.
-- Faculty Workforce remains authoritative for faculty capability, capacity, availability, and participation facts.
+Research Portfolio is derived and never the system of record. KPI snapshots are immutable after generation. Reporting is read-only to transactional Research aggregates. Finance and E03 retain their source ownership.
 
 # 13. State and Lifecycle Impact
 
-This scenario does not change source lifecycle states. L2-H05 may update the derived Research Portfolio and create immutable KPI snapshots and Research report outcomes from supported source facts.
+No source aggregate lifecycle changes. H05 may update the derived Research Portfolio and create immutable KPI/report outcomes from supported source events.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-For the portfolio path, L2-H05 defines `ResearchPortfolioUpdated`, `ResearchKPIsGenerated`, and `ResearchReportGenerated`. The portfolio consumes supported Research events including `ResearchOutputPublished`, `PatentFiled`, `PatentStatusUpdated`, `GrantAwarded`, `FundingUtilizationRecorded`, `ConsultancyProjectCompleted`, `ResearchProjectCompleted`, and `ResearchProjectClosed`.
+H05 publishes `ResearchPortfolioUpdated`, `ResearchKPIsGenerated`, and `ResearchReportGenerated`. Portfolio inputs include supported events such as `ResearchOutputPublished`, `PatentFiled`, `PatentStatusUpdated`, `GrantAwarded`, `FundingUtilizationRecorded`, `ConsultancyProjectCompleted`, `ResearchProjectCompleted`, and `ResearchProjectClosed`.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-People & Workforce and Finance retain ownership of their source facts. L2-H05 does not define the complete ethics, collaboration, and Finance-owned funding-evidence hand-offs required by the frozen outcome.
+H05 does not define Ethics Aggregate events or Collaboration Aggregate events as complete portfolio inputs, and it does not define a Finance-owned financial-evidence hand-off that establishes the frozen funding evidence as Finance-authoritative within the portfolio.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-Research Office and Management participation is limited to the report-generation and governance-use authority defined by L2-H05.
+Research Office and Management participation is limited to H05 report generation and governance use. No source-domain authority is transferred.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-No Research report or portfolio projection may replace a missing source-domain decision or redefine source ownership.
+A Research report cannot replace a missing source-domain decision or evidence contract.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve the report request, applicable parameters, source references, portfolio provenance, KPI history where used, generated Research report outcome, and source-domain ownership boundaries.
+Preserve report request, scope/parameters, source references, portfolio provenance, KPI snapshots where used, generated report, and any omitted evidence category caused by an upstream gap.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-The supported L2-H05 report path may complete for evidence categories represented in the Research Portfolio. The full frozen outcome cannot be claimed while any material Section 17 gap remains unresolved.
-
-## 16.2 Postconditions
-
-Supported Research evidence is available for institutional review without changing source records; People & Workforce and Finance ownership remains unchanged; unsupported evidence categories are not approximated.
+H05-supported evidence can be reported without changing source records. The full frozen outcome cannot be claimed until all required evidence categories have canonical portfolio/source hand-offs.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-- L2-H05 Repository & Portfolio Management does not consume Ethics Aggregate events, so the frozen **ethics evidence** component has no defined portfolio evidence path.
-- L2-H05 Repository & Portfolio Management does not consume Collaboration Aggregate events, so the frozen **collaboration evidence** component has no defined portfolio evidence path.
-- Although Finance is a frozen participating domain and owns monetary/accounting facts, L2-H05 does not define a Finance-owned financial-evidence hand-off into the Research Portfolio sufficient to establish the frozen **funding evidence** component as Finance-authoritative evidence.
+- H05 Portfolio Management does not consume Ethics Aggregate events, so the frozen ethics-evidence component lacks a canonical portfolio path.
+- Collaboration appears in reporting/read models, but the defined portfolio event-consumption path does not consume Collaboration Aggregate events.
+- Finance owns monetary/accounting facts, but H05 defines no Finance-owned financial-evidence hand-off sufficient to establish the frozen funding-evidence component as Finance-authoritative within the portfolio.
+
+These missing evidence contracts materially prevent the frozen governance outcome from being fully established.
 
 **Architecture assessment:** `BLOCKED`
 
@@ -148,4 +128,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional deferred questions beyond the open issues above.
+No additional deferred questions.

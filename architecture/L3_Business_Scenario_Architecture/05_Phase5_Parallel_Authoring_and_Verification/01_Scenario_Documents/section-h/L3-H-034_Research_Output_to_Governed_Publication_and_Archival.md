@@ -11,13 +11,12 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows  
-**Referenced By:** Related Research governance, audit, reporting, and downstream institutional use
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows
 
 # 2. Scenario Purpose
 
-H05 supports publication registration, verification, publication, and archival while external scholarly sources remain authoritative for citation metadata.
+Govern institutional Research Publication metadata from verified output registration through H05-defined verification, publication, and archival while preserving workforce ownership and external scholarly authority for external metadata.
 
 # 3. Business Outcome
 
@@ -27,39 +26,31 @@ The output is reviewed, published or rejected, corrected where permitted, and re
 
 ## 4.1 Start Boundary
 
-A verified research output is submitted for institutional publication.
+A verified research output is submitted for institutional publication
 
 ## 4.2 End Boundary
 
-The frozen end outcome is reached only when all required branches in Section 3 are canonically supported. Locked H05 supports only the partial path stated in Section 2; material gaps are recorded in Section 17.
+H05 supports `Draft → Verified → Published → Archived`. The frozen outcome also requires reviewed/rejected and correction paths, which are not canonically defined.
 
 ## 4.3 In Scope
 
-- The H05-supported lifecycle path materially needed for this scenario.
-- Source-domain references from E and, where applicable, Finance without ownership transfer.
-- Exact H05 events, rules, authority, and evidence obligations that are defined upstream.
+Register publication metadata, verify authenticity/affiliation/ownership, publish verified output, archive according to policy, and preserve history.
 
 ## 4.4 Out of Scope
 
-- Any missing lifecycle, decision, actor authority, event, or Finance contract identified in Section 17.
-- Changes to Faculty Workforce or Finance-owned records by Research.
+Invented Publication rejection, correction, amendment, successor-version, or rejection-authority semantics; ownership of publication documents or E03 workforce facts.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
-|---|---|
-| People & Workforce / Section E | Retains canonical Faculty Workforce identity, capability, availability, capacity, and eligibility used by Research. |
-| Research / Section H | Owns the Research aggregate/lifecycle and exact H05 business events for the supported path. |
+E03 owns workforce identity and capability facts. Research owns Publication metadata, its H05 lifecycle, verification history, publication state, and archival state. Publication documents remain outside Research as defined by H05.
 
 # 6. Business Actors, Roles and Responsibilities
 
-Source-supported actors: Faculty Member / Principal Investigator / Research Administrator; Research Office.
+Faculty Member / Principal Investigator / Research Administrator may register. Research Office verifies, publishes, and archives according to H05.
 
 # 7. Preconditions and Entry Criteria
 
-- The applicable Research aggregate and authoritative source references exist as required by H05.
-- Required institutional policy/configuration and evidence are available.
-- Source-domain ownership remains unchanged.
+A verified research output is available; institutional author references are valid; publication type is configured; duplicate/DOI checks can be completed; required metadata exists.
 
 # 8. Trigger
 
@@ -67,65 +58,67 @@ A verified research output is submitted for institutional publication
 
 # 9. Main Business Flow
 
-Register publication metadata; verify authenticity/affiliation/ownership and duplicate/DOI rules; publish the verified output; archive when policy permits; preserve history and stop before unsupported reject/correct branches.
+1. Register publication metadata and enter `Draft`.
+2. Validate authors, DOI where applicable, publication type, duplicate rules, and referenced project.
+3. Verify authenticity and institutional ownership; enter `Verified`.
+4. Publish the verified output; enter `Published`.
+5. Preserve publication authority/date and historical metadata.
+6. Archive an eligible published record under repository/publication policy; enter `Archived`.
+7. Stop before unsupported rejection or correction branches.
 
 # 10. Alternate Business Flows
 
-Manual verification is permitted when external verification is unavailable; duplicate registration is refused; eligible published records may be archived.
+Manual verification may be used when external verification is unavailable. Duplicate registration is rejected before lifecycle creation/progression. Eligible published records may be archived.
 
 # 11. Failure, Interruption and Business Recovery
 
-Failed verification prevents publication; missing metadata blocks progression; frozen rejection/correction requires upstream resolution.
+Failed verification prevents publication. Missing required metadata blocks progression. Frozen rejection/correction branches require upstream architecture resolution rather than local states.
 
 # 12. Business Rules and Decision Constraints
 
-At least one institutional author; DOI uniqueness where applicable; duplicates prohibited; documents remain outside Research; verification/publication history remains traceable; Faculty identity remains E-owned.
+At least one institutional author is required; DOI is unique where applicable; duplicates are prohibited; published date/history is traceable; documents remain outside Research; archived publications are read-only and available for reporting.
 
 # 13. State and Lifecycle Impact
 
-`Draft` → `Verified` → `Published` → `Archived`.
+Publication: `Draft → Verified → Published → Archived`. H05 defines no `Rejected` Publication state and no correction/version-successor lifecycle.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-H05 defines: `PublicationRegistered`, `PublicationVerified`, `ResearchOutputPublished`, `PublicationArchived`.
+Research publishes `PublicationRegistered`, `PublicationVerified`, `ResearchOutputPublished`, and `PublicationArchived`.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-Research consumes authoritative workforce facts from L2-E03. No non-frozen participating domain is introduced by this L3 scenario.
+E03 workforce identity remains source-owned. External scholarly sources may remain authoritative for externally owned citation/verification metadata as H05 specifies.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-Only the source-supported actors named in Section 6 may perform the H05-defined decisions/actions. Missing frozen authority is an upstream gap.
+Only the H05 roles above are assigned. No rejection/correction authority is created.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-No L3 override may create a missing state, decision, event, actor authority, or Finance outcome.
+No L3 override may bypass verification before publication or invent unsupported lifecycle branches.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve the applicable Research identity, prior/current lifecycle position, decision/action authority, reasons/conditions where required, evidence references, source-domain references, and exact H05 events.
+Preserve registration metadata, author references, verification evidence, publishing authority/date, archival reason/history, and Publication events.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-The supported H05 path may complete only to its defined lifecycle position. The full frozen institutional outcome cannot be claimed while any material Section 17 gap remains unresolved.
-
-## 16.2 Postconditions
-
-Research history remains traceable; E ownership remains unchanged; unsupported frozen semantics are not approximated.
+The H05-supported path completes through `Published` and, when policy requires, `Archived`. The full frozen outcome cannot complete because rejection and correction are missing.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-- Frozen **published or rejected** branch has no H05 `Rejected` Publication state/authority/event.
-- Frozen **corrected where permitted** has no correction/amendment/version-successor lifecycle.
-- Frozen “reviewed” is broader than H05 `VerifyPublication`; L3 cannot silently equate the two.
+- No canonical `Rejected` Publication state, transition, decision authority, or event.
+- No correction/amendment/version-successor lifecycle for a published Research output.
+- Frozen “reviewed” is broader than H05 `VerifyPublication`; L3 cannot silently equate them.
+
+These gaps materially affect the frozen outcome.
 
 **Architecture assessment:** `BLOCKED`
 
@@ -135,4 +128,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional deferred questions beyond the open issues above.
+No additional deferred questions.
