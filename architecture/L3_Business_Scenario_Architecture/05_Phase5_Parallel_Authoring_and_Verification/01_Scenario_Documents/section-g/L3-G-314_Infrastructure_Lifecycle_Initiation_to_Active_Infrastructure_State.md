@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
+**Last Updated:** 2026-08-23  
 **Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-A04 — Authorization & Policy Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Infrastructure decommissioning and operational-consumption scenarios
+**Referenced By:** Infrastructure operational-consumption and retirement scenarios
 
 # 2. Scenario Purpose
 
-Govern the transition of a newly registered and validated physical Infrastructure aggregate into the authorized active/operational lifecycle position without redefining G10 lifecycle states or bypassing upstream lifecycle governance.
+Govern progression of a newly registered and validated physical Infrastructure aggregate into its authorised active lifecycle position without resolving contradictory locked G10 lifecycle models locally.
 
 # 3. Business Outcome
 
@@ -26,50 +26,39 @@ The infrastructure aggregate enters its authorised active lifecycle state
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
-
-The scenario begins when a valid physical infrastructure aggregate completes registration and validation.
+The scenario starts when a valid physical infrastructure aggregate completes registration and validation.
 
 ## 4.2 End Boundary
-
-The scenario ends when the Infrastructure aggregate has entered the authoritative active lifecycle state permitted by G10.
+The scenario requires the aggregate to enter the authoritative active lifecycle state permitted by G10.
 
 ## 4.3 In Scope
-
-- Registered physical Infrastructure owned by G10.
-- Lifecycle-entry validation.
-- Parent-hierarchy and operational prerequisite validation where applicable.
-- Authorization and audit obligations for lifecycle transition.
-- Publication of only the exact lifecycle event established by the resolved upstream transition.
+Registered G10 Infrastructure; activation/lifecycle validation; parent/lifecycle prerequisites; authorization/audit; canonical transition event once upstream semantics are resolved.
 
 ## 4.4 Out of Scope
-
-- Re-registration or identity creation after the trigger.
-- Inventing `Draft`, `Commissioned` or any other lifecycle state as canonical merely because one G10 section uses it.
-- Skipping canonical lifecycle states to reach `Operational`.
-- Treating operational-status activation and lifecycle transition as the same concept where G10 distinguishes them.
+Re-registration; invented `Draft`, `Commissioned` or other states; skipped transitions; silently treating operational-status activation and lifecycle transition as identical.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Owns physical Infrastructure, lifecycle rules, parent-child consistency, validation and the final active/operational Infrastructure outcome. |
-| Platform Foundation / Section A | Owns authorization and audit infrastructure used by the governed lifecycle transition. |
+| G10 | Owns physical Infrastructure, lifecycle, activation constraints and final physical lifecycle outcome. |
+| Section A | Owns authorization and audit capability. |
 
 # 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Initiates an authorized Infrastructure lifecycle progression after registration/validation. | May perform only source-permitted lifecycle actions within authorized scope. |
+| Infrastructure Administrator | Initiates source-permitted lifecycle progression after registration/validation. | Authorized G10 scope only. |
 | Auditor | Reviews lifecycle evidence. | Read-only evidence role. |
 
-No additional activation approver is invented where G10 does not assign one canonically.
+No additional activation approver is invented.
 
 # 7. Preconditions and Entry Criteria
 
 - A valid physical Infrastructure aggregate has completed registration and validation.
-- Required parent Infrastructure exists and satisfies applicable parent lifecycle requirements.
-- Mandatory operational validations defined by G10 are satisfied before `Operational` may be entered.
-- The requested lifecycle action is authorized.
+- Required parent Infrastructure exists and satisfies applicable source rules.
+- Mandatory operational validations must pass before Operational may be entered.
+- The lifecycle action is authorized.
 
 # 8. Trigger
 
@@ -79,58 +68,49 @@ A valid physical infrastructure aggregate completes registration and validation
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Resolve the registered G10-owned Infrastructure aggregate and its current lifecycle state. | Infrastructure Management | Lifecycle progression starts from an authoritative state. |
-| 2 | Validate parent hierarchy, required metadata, capacity, area, operational status and other mandatory activation conditions applicable to the aggregate. | Infrastructure Management | Activation prerequisites are established. |
-| 3 | Validate that the next requested lifecycle transition is permitted and authorized. | Infrastructure Management using Section A authorization capability | Invalid/skipped transitions are prevented. |
-| 4 | Apply only the next lifecycle transition established by the authoritative G10 lifecycle model. | Infrastructure Management | Canonical lifecycle integrity is preserved. |
-| 5 | Continue authorized lifecycle progression until the authoritative active/operational state is reached. | Infrastructure Management | The frozen final outcome would be reached only if the upstream starting state and permitted sequence are unambiguous. |
+| 1 | Resolve registered G10 aggregate and current lifecycle state. | G10 | Progression starts from authoritative state if one can be determined. |
+| 2 | Validate parent hierarchy, required metadata and operational prerequisites. | G10 | Activation prerequisites are assessed. |
+| 3 | Validate requested lifecycle action and authorization. | G10 / A | Invalid/skipped transitions are prevented. |
+| 4 | Apply only the next transition in the authoritative canonical lifecycle. | G10 | Lifecycle integrity would be preserved. |
+| 5 | Reach the source-defined active lifecycle state and publish the corresponding canonical fact. | G10 | Frozen outcome requires upstream lifecycle/event semantics to be unambiguous. |
 
-The reviewed locked G10 source does not provide one unambiguous starting state and progression sequence after registration; therefore L3 cannot safely complete this flow.
+Locked G10 sources disagree on both the registration post-state and progression semantics, so this flow cannot be completed safely at L3.
 
 # 10. Alternate Business Flows
 
-No complete scenario-specific alternate flow is authored because the conflicting upstream lifecycle definitions must be resolved first.
+No complete alternate flow is authored while the controlling lifecycle model remains contradictory.
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Mandatory activation validation fails | Infrastructure cannot enter Operational. | Preserve the current lifecycle state until the failed business condition is corrected. | Infrastructure Management |
-| Requested transition skips an authoritative lifecycle state | Lifecycle integrity would be violated. | Reject the transition and follow only the resolved canonical sequence. | Infrastructure Management |
-| Authorization fails | Lifecycle progression cannot proceed. | Preserve the existing state. | Platform Foundation / Infrastructure Management |
-| Source sections disagree on the current/next lifecycle state | L3 cannot choose a transition without redesigning G10. | Escalate the lifecycle contradiction for upstream resolution. | Architecture governance |
+| Mandatory validation fails | Infrastructure cannot enter active/Operational position. | Preserve current valid state until business condition is corrected. | G10 |
+| Requested transition skips a canonical state | Lifecycle integrity would be violated. | Reject the transition. | G10 |
+| Source sections disagree on current/next state | L3 cannot choose a path. | Resolve contradiction upstream. | Architecture governance |
+| Authorization fails | Progression cannot proceed. | Preserve existing state. | A / G10 |
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Canonical lifecycle states are `Proposed`, `Planned`, `Approved`, `Under Construction`, `Operational`, `Under Maintenance`, `Under Renovation`, `Temporarily Closed`, `Decommissioned`, `Archived`. | Infrastructure Management | L3 may use only these states unless upstream formally resolves otherwise. | L2-G10 §11A.52 |
-| `Proposed → Planned → Approved → Under Construction → Operational` is the canonical forward path to Operational. | Infrastructure Management | Skipping intermediate states is prohibited. | L2-G10 §11A.53; BR-LC-02 |
-| Only Operational Infrastructure may participate in institutional operations. | Infrastructure Management | The final active outcome corresponds to source-defined operational availability only after valid lifecycle entry. | L2-G10 BR-OP-01 |
-| Mandatory activation validations must pass before an Infrastructure entity becomes Operational. | Infrastructure Management | Failed validation blocks activation. | L2-G10 §13A.78 |
-| Every business operation must be authorized before execution. | Platform Foundation — Authorization | Unauthorized lifecycle transition is prohibited. | L2-A04 AP-01 |
+| §11A canonical lifecycle includes `Proposed → Planned → Approved → Under Construction → Operational`. | G10 | L3 cannot skip those transitions when §11A controls. | L2-G10 §11A |
+| Registration text states newly registered Infrastructure is `Draft`. | G10 | Frozen trigger may begin from a state absent from §11A canonical set. | L2-G10 registration sections |
+| Other G10 activation/entity matrices use `Draft`, `Approved`, `Commissioned`, `Closed`, `Reserved` and `Available` in variant lifecycle models. | G10 | Locked internal lifecycle definitions conflict. | L2-G10 activation/§46 sections |
+| Only Operational Infrastructure may participate in institutional operations. | G10 | Final active meaning must not be inferred prematurely. | L2-G10 operational rules |
 
 # 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Physical Infrastructure | **Conflicted upstream:** §11A starts `Proposed`; §16 registration establishes `Draft`; WF-INF-001 says `Proposed or Planned`; §40/§46 use additional `Draft`/`Commissioned` style models. | Progression to active/operational Infrastructure must follow one authoritative lifecycle. | `Operational` is the canonical operational lifecycle state in §11A, but the valid starting point/path after registration is unresolved. | Infrastructure Management | L2-G10 §§11A, 16, 22A/WF-INF-001, 40, 46 |
-
-No local lifecycle reconciliation is made.
+| Physical Infrastructure | **Conflicted:** `Draft` after registration versus `Proposed`/`Planned` and entity-specific variants | Must progress only through one authoritative lifecycle. | `Operational` is present in G10, but valid entry/path after registration is unresolved. | G10 | L2-G10 §§11A, registration, activation, 46 |
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
-
-G10 associates the canonical lifecycle transition to `Operational` with `InfrastructureOperational`, while separate operational-status/activation workflows also use `InfrastructureActivated`. Because the scenario's upstream lifecycle/activation semantics are internally inconsistent, this Draft does not silently choose one event as the scenario-completion event.
+G10 maps `Activate Infrastructure` to `InfrastructureActivated`, generic lifecycle transition to `InfrastructureLifecycleChanged`, and also defines lifecycle facts such as `InfrastructureOperational`. Because the frozen lifecycle-initiation semantics are internally inconsistent, no one event is silently selected as completion event.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-| Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
-|---|---|---|---|---|
-| Platform Foundation | Infrastructure Management | Authorization decision and audit capability | Govern lifecycle transition and preserve evidence. | L2-A04; L2-A07 |
-
-No other material cross-domain hand-off is required by the frozen participating-domain set.
+Section A supplies authorization/audit capability. No other material frozen-domain hand-off is required.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
@@ -138,33 +118,21 @@ No other material cross-domain hand-off is required by the frozen participating-
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
-| Initiate Infrastructure lifecycle progression | Infrastructure Administrator | Must operate within authorized Infrastructure scope and G10 lifecycle rules. | Infrastructure Management |
+| Initiate lifecycle progression | Infrastructure Administrator | Must follow resolved G10 lifecycle and authorization. | G10 |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
-
-G10 states that unlisted lifecycle transitions require explicit administrative override and audit approval, but this scenario does not rely on an override. No additional separation-of-duty rule is introduced.
+No override is used to reconcile the lifecycle conflict. No additional SoD rule is invented.
 
 ## 15.3 Business Audit and Evidence Obligations
-
-Each permitted lifecycle transition must be auditable. G10 requires lifecycle-transition evidence including previous/new state and the business authority/reason context; Platform Audit owns the immutable audit evidence.
+Each valid lifecycle change must remain auditable with prior/new state and authority/reason context.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
-
-- The registered Infrastructure aggregate is resolved canonically.
-- All mandatory validations pass.
-- Every lifecycle transition used is authoritative and authorized.
-- The aggregate reaches the source-defined active/operational lifecycle position.
-- Required lifecycle audit evidence and canonical event publication are preserved.
-
-The authoritative starting state and transition sequence after registration are currently contradictory, so these criteria cannot all be proven safely.
+Registered Infrastructure resolved; mandatory validations pass; every transition is authoritative; source-defined active state is reached; correct canonical event is published. These cannot all be proven while entry-state/path/event semantics conflict.
 
 ## 16.2 Postconditions
-
-- No skipped or invented lifecycle transition has been authored.
-- Infrastructure remains under G10 ownership.
-- Full successful completion remains blocked pending lifecycle reconciliation.
+No skipped/invented transition is authored; G10 ownership is preserved; full completion remains blocked.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
@@ -172,17 +140,13 @@ The authoritative starting state and transition sequence after registration are 
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
-| G10 §11A defines the canonical lifecycle beginning `Proposed → Planned → Approved → Under Construction → Operational`, while §16 registration sets newly registered Infrastructure to `Draft`, §17 describes `Draft → Operational`, WF-INF-001 says initial lifecycle `Proposed or Planned`, and §§40/46 use additional `Draft`/`Commissioned` lifecycle variants. | Material lifecycle conflict: the scenario trigger occurs immediately after registration/validation, but L3 cannot determine the valid entry state or sequence to the final active state without choosing among contradictory locked definitions. | Upstream G10 must reconcile registration post-state and activation/lifecycle progression to one canonical model. |
-| G10 distinguishes lifecycle from operational status/availability, yet lifecycle completion uses `InfrastructureOperational` while activation/status workflows use `InfrastructureActivated`. | Material event/semantic ambiguity at scenario completion. | Upstream G10 must define which event corresponds to this frozen lifecycle-initiation outcome. |
+| G10 §11A canonical lifecycle conflicts with registration `Draft`, WF-INF-001 Proposed/Planned, activation `Draft`, and §46 entity-specific variants. | Material lifecycle conflict affects start state, valid sequence and final-outcome correctness. | Reconcile G10 to one controlling lifecycle model. |
+| Lifecycle/activation semantics use `InfrastructureOperational`, `InfrastructureActivated` and `InfrastructureLifecycleChanged` for related but distinct facts. | Completion-event semantics are ambiguous. | Define which canonical fact corresponds to this frozen scenario. |
 
 **Architecture assessment:** `BLOCKED`
 
-The conflict directly affects lifecycle states, permitted transitions, event semantics and the final outcome.
-
 ## 17.2 Assumptions
-
 No assumptions.
 
 ## 17.3 Deferred Questions
-
-No scenario-specific deferred questions beyond the upstream blocking issues.
+No additional deferred questions beyond blocking issues.
