@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H04 — Placement Workflows; applicable locked Student Lifecycle and People & Workforce architecture  
-**Referenced By:** Placement exception handling, offer withdrawal, candidate reconsideration, drive governance, internship exceptions, and audit activities
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H04 — Placement Workflows; L2-C02 — Student Lifecycle & Activation Workflows; L2-E01 — Workforce & Engagement Workflows  
+**Referenced By:** Placement exception handling and audit
 
 # 2. Scenario Purpose
 
-Govern Placement disruptions that prevent a drive, application, selection, or offer from continuing normally, using only the cancellation, withdrawal, reconsideration, and reopening paths explicitly defined by H04 while preserving all prior Placement history.
+Govern a Placement disruption using only exception paths that H04 explicitly defines, while preserving all prior lifecycle history and refusing to generalize one aggregate's exception mechanics into another.
 
 # 3. Business Outcome
 
@@ -27,52 +27,31 @@ The affected lifecycle reaches a permitted exception state and any reopening pre
 
 ## 4.1 Start Boundary
 
-The scenario begins when a Placement Drive, CandidateApplication, selection, PlacementOffer, or related placement activity cannot continue normally.
+The scenario begins when a drive, application, selection, or offer cannot continue normally.
 
 ## 4.2 End Boundary
 
-The frozen end boundary requires the affected lifecycle to reach a permitted cancellation, withdrawal, or reopening state with full prior history preserved. H04 fully defines offer withdrawal and candidate reconsideration/reopening, but does not define cancellation/withdrawal/reopening semantics for every frozen affected lifecycle; therefore the complete cross-aggregate outcome is materially unresolved.
+H04 explicitly supports offer withdrawal and candidate reconsideration/reinstatement. It does not define PlacementDrive cancellation/reopening, CandidateApplication withdrawal/cancellation, or Internship cancellation/withdrawal lifecycle semantics. Because the frozen trigger spans multiple aggregates, the complete frozen outcome is materially unresolved.
 
 ## 4.3 In Scope
 
-- Offer withdrawal before joining confirmation.
-- Candidate eligibility reopening after governed offer withdrawal where policy permits.
-- Authorized reconsideration and reinstatement of an eliminated candidate.
-- Resuming RecruitmentWorkflow from the appropriate stage with history preserved.
-- Preserving immutable prior elimination and withdrawal records.
-- Identifying unsupported drive/application/internship cancellation branches without inventing states/events.
+Offer withdrawal; candidate eligibility reopening after withdrawal; authorized candidate reconsideration/reinstatement; RecruitmentWorkflow resumption; preservation of prior history; identification of unsupported branches.
 
 ## 4.4 Out of Scope
 
-- Creating generic cancellation, withdrawal, or reopening states not present in H04.
-- Reversing a verified placement completion.
-- Changing Student or workforce source records.
-- Non-business recovery mechanics.
+Invented generic cancellation/reopening states, reversal of completed Placement, Student/workforce changes, and implementation-level recovery mechanics.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
-|---|---|
-| Student Lifecycle / Section C | Retains Student identity/lifecycle information referenced by Placement exceptions. |
-| People & Workforce / Section E | Retains workforce identity/assignment information for Placement staff exercising source-supported responsibilities. |
-| Placement / Section H | Owns placement disruption consequences for its Placement aggregates where H04 defines the relevant state, transition, event, and authority. |
+C owns Student facts; E owns workforce facts; H owns exception consequences only for H04 Placement aggregates where a canonical state/transition/event exists.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Placement Officer | Reviews employer withdrawal input, applies offer withdrawal, and participates in candidate reconsideration/reopening where H04 assigns responsibility. | Performs supported exception decisions/actions. |
-| Placement Coordinator | Supports CandidateApplication/RecruitmentWorkflow exception handling where H04 assigns the role. | Performs supported placement coordination. |
-
-H04 references an employer request for withdrawal/reconsideration as external input; no employer system actor is assumed.
+Placement Officer reviews/approves supported offer withdrawal and candidate reconsideration. Placement Coordinator supports candidate/recruitment activity where H04 permits. Employer requests remain external inputs recorded by Placement staff.
 
 # 7. Preconditions and Entry Criteria
 
-- The affected Placement aggregate exists with preserved prior history.
-- The disruption occurs before a branch's terminal condition where H04 requires it.
-- Any reconsideration has explicit authorization.
-- Any offer withdrawal occurs before joining confirmation.
-- Reopening does not erase prior elimination or withdrawal evidence.
+Affected Placement aggregate exists; prior history is preserved; reconsideration is explicitly authorized; offer withdrawal occurs before joining confirmation; reopening never deletes earlier elimination/withdrawal evidence.
 
 # 8. Trigger
 
@@ -80,92 +59,51 @@ A drive, application, selection, or offer cannot continue normally
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
+| Step | Business Behaviour | Responsible Domain | Business Result |
 |---|---|---|---|
-| 1 | Identify the affected Placement aggregate and its current lifecycle position without altering prior history. | Placement | Exception scope is established. |
-| 2 | Determine whether H04 defines a permitted exception path for that aggregate/state. | Placement | Only canonical exception behaviour proceeds. |
-| 3 | For a valid PlacementOffer withdrawal, review the external employer request and apply `PlacementOfferWithdrawn`. | Placement Officer / Placement | Offer reaches the supported `Withdrawn` state. |
-| 4 | Where policy permits after withdrawal, apply `CandidateEligibilityReopened`. | Placement | Candidate eligibility reopens with prior offer history preserved. |
-| 5 | For an eliminated candidate with authorized reconsideration, record the reconsideration request, reinstate the candidate, and resume recruitment from the appropriate stage. | Placement Officer / Placement Coordinator / Placement | Candidate/recruitment lifecycle reopens with elimination history preserved. |
-| 6 | For a disrupted drive/application/internship branch lacking an H04 cancellation/reopening definition, stop short of inventing a lifecycle outcome and record the unresolved architecture gap. | Placement | Unsupported branches remain governed gaps rather than false states. |
-| 7 | Preserve all prior and resulting exception evidence. | Placement | Supported exception outcomes remain auditable. |
+| 1 | Identify the affected Placement aggregate/current state and determine whether H04 defines an exception path. | H | Only canonical exceptions proceed. |
+| 2 | For a valid offer withdrawal, apply the governed withdrawal path. | H | Offer becomes `Withdrawn`. |
+| 3 | Where policy permits, reopen candidate eligibility after withdrawal. | H | Candidate eligibility is reopened with prior history. |
+| 4 | For an eliminated candidate, verify reconsideration authority, reinstate the candidate, and resume recruitment from the appropriate stage. | H | Recruitment reopens with elimination history preserved. |
+| 5 | For drive/application/internship disruption lacking a canonical H04 path, preserve current state and escalate the gap. | H | **BLOCKED:** no invented exception state is created. |
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| Offer withdrawal | Employer withdrawal is valid and joining is not confirmed. | Apply `OfferWithdrawalRequested` / `PlacementOfferWithdrawn`; reopen eligibility if allowed. | Supported withdrawal/reopening outcome. | Placement |
-| Candidate reconsideration | Candidate is `Eliminated` and reconsideration is authorized. | Apply `CandidateReconsiderationRequested`, `CandidateReinstated`, and `RecruitmentWorkflowResumed`. | Supported candidate reopening with history. | Placement |
-| Placement Drive cancellation | Drive cannot continue before closure. | H04 defines no PlacementDrive `Cancelled` state/transition/event. | **Blocked branch.** | Placement |
-| Candidate application withdrawal/cancellation | Application cannot continue. | H04 scope mentions application withdrawal but no CandidateApplication withdrawal/cancel state, transition, or event exists. | **Blocked branch.** | Placement |
-| Internship cancellation/withdrawal | Internship cannot continue. | H04 lists cancellation/withdrawal as failure scenarios but has no corresponding lifecycle semantics. | **Blocked branch.** | Placement |
+- Offer withdrawal: supported before joining confirmation.
+- Candidate reconsideration: supported with explicit authorization.
+- PlacementDrive cancellation/reopening: undefined.
+- CandidateApplication withdrawal/cancellation: mentioned in scope but no lifecycle state/transition/event.
+- Internship cancellation/withdrawal: listed as failures but no lifecycle semantics.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Reconsideration is unauthorized | Eliminated candidate cannot progress. | Keep prior elimination in force. | Placement |
-| Offer withdrawal occurs after joining confirmation | Withdrawal precondition fails. | Do not apply the H04 withdrawal path. | Placement |
-| Disrupted lifecycle has no H04 exception state | Frozen cross-aggregate outcome cannot be completed safely. | Preserve current state/history and escalate upstream rather than inventing cancellation/reopening semantics. | Placement |
+Unauthorized reconsideration leaves elimination in force. Withdrawal after joining confirmation is rejected. Unsupported disruption paths preserve current state/history until upstream architecture defines a valid exception outcome.
 
 # 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| Eliminated candidates cannot progress without authorized reconsideration. | Placement | Reopening is permitted only through H04 reconsideration. | L2-H04 §§17.4, 19.11 |
-| Reinstatement preserves complete historical records and prior elimination remains immutable. | Placement | Reopening never rewrites history. | L2-H04 §19.11 |
-| Offer withdrawal is permitted only before joining confirmation and withdrawn offers remain auditable. | Placement | Supported withdrawal is bounded by the offer lifecycle. | L2-H04 §§17.6, 19.14 |
-| Candidate eligibility reopening after withdrawal follows institutional placement policy. | Placement | Reopening is policy-governed. | L2-H04 §19.14 |
-| Closed drives cannot be modified. | Placement | Drive closure cannot be locally “reopened” without an upstream lifecycle definition. | L2-H04 §§17.2, 19.16 |
+| Rule / Constraint | Owner | Scenario Effect |
+|---|---|---|
+| Eliminated candidates cannot progress without authorized reconsideration. | H | Reopening is explicit and governed. |
+| Reinstatement preserves complete prior history. | H | Elimination is not erased. |
+| Offer withdrawal is permitted only before joining confirmation; withdrawn offers remain auditable. | H | Withdrawal is bounded and historical. |
+| Candidate eligibility reopening after withdrawal follows institutional Placement policy. | H | Reopening is policy-governed. |
+| Closed drives are immutable. | H | L3 cannot invent drive reopening. |
 
 # 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| PlacementOffer | `Published` before joining confirmation | Governed withdrawal may occur. | `Withdrawn` | Placement | L2-H04 §17.6 |
-| CandidateApplication | `Eliminated` | Authorized reconsideration may reinstate the candidate. | Reinstated/reopened recruitment position as defined by H04 events/workflow | Placement | L2-H04 §§17.4, 19.11 |
-| RecruitmentWorkflow | `Completed` after an elimination/review point | Authorized candidate reinstatement may resume workflow. | `In Progress` | Placement | L2-H04 §17.5 |
-| PlacementDrive | Active pre-closure state | Frozen scenario may require cancellation, but no cancellation state exists. | **Undefined for cancellation** | Placement | L2-H04 §17.2 |
-| Internship | Active state | H04 names cancellation/withdrawal failures but no corresponding state/transition exists. | **Undefined for cancellation/withdrawal** | Placement | L2-H04 §17.7 / §19.17 |
+PlacementOffer may become `Withdrawn`; CandidateApplication may be reinstated through the H04 reconsideration workflow; RecruitmentWorkflow may resume from `Completed` to `In Progress`. PlacementDrive cancellation/reopening and Internship cancellation/withdrawal are undefined. C/E lifecycles are unchanged.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
-
-Supported exact exception events include `OfferWithdrawalRequested`, `PlacementOfferWithdrawn`, `CandidateEligibilityReopened`, `CandidateReconsiderationRequested`, `CandidateReinstated`, and `RecruitmentWorkflowResumed`.
-
-H04 defines no PlacementDrive cancellation event, CandidateApplication withdrawal/cancellation event, or Internship cancellation/withdrawal event.
-
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-Employer-originated withdrawal/reconsideration input is recorded by Placement staff as H04 defines. Student/workforce source ownership remains unchanged. Unsupported disruption paths are not assigned invented cross-domain contracts.
+Supported exact events include `OfferWithdrawalRequested`, `PlacementOfferWithdrawn`, `CandidateEligibilityReopened`, `CandidateReconsiderationRequested`, `CandidateReinstated`, and `RecruitmentWorkflowResumed`. No canonical PlacementDrive-cancel, CandidateApplication-withdraw/cancel, or Internship-cancel/withdraw event exists.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-H04 requires authorized personnel for candidate reconsideration and Placement review/approval for offer withdrawal. The missing generic drive/application/internship cancellation/reopening paths have no canonical authority to assign.
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-Prior elimination and withdrawal history remains immutable. Reconsideration and withdrawal cannot silently erase earlier outcomes.
-
-## 15.3 Business Audit and Evidence Obligations
-
-Evidence must preserve affected aggregate identity, prior state, disruption reason/input, withdrawal/reconsideration request, decision authority where defined, resulting supported state, reopened eligibility/workflow position, and immutable prior history.
+Candidate reconsideration requires authorized personnel; offer withdrawal requires H04 Placement review. Missing exception branches have no authority to assign. Evidence preserves prior state, disruption reason/input, approval where defined, resulting supported state, reopened workflow/eligibility, and immutable prior history.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-Supported branches complete when a PlacementOffer is withdrawn and/or candidate eligibility is reopened under policy, or when an eliminated candidate is authorized, reinstated, and recruitment resumes with full history. The frozen scenario cannot be completed for disrupted drives, application withdrawal/cancellation, or Internship cancellation/withdrawal because H04 lacks canonical lifecycle semantics for those branches.
-
-## 16.2 Postconditions
-
-- Supported exception history remains preserved.
-- No unsupported lifecycle is locally invented.
-- Placement retains ownership of Placement exception consequences.
-- Student/workforce source ownership remains unchanged.
+Supported offer-withdrawal and candidate-reconsideration branches can complete. The frozen cross-aggregate scenario cannot fully complete until drive/application/internship exception lifecycles are defined upstream.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
@@ -173,14 +111,11 @@ Supported branches complete when a PlacementOffer is withdrawn and/or candidate 
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
-| H04 defines no PlacementDrive `Cancelled` state, cancellation transition, event, or reopening path. | The frozen trigger explicitly includes a drive that cannot continue, and the final outcome requires a permitted exception state/reopening. | Define governed PlacementDrive cancellation/reopening semantics upstream if required. |
-| H04's stated scope includes application withdrawal, but CandidateApplication has no withdrawal/cancellation state, transition, or event. | The application-disruption branch cannot reach a canonical exception outcome. | Define CandidateApplication withdrawal/cancellation semantics upstream. |
-| H04 lists Internship cancellation and candidate withdrawal as failure scenarios but defines no corresponding Internship state, transition, or event. | Internship disruption cannot reach a canonical exception outcome. | Define Internship cancellation/withdrawal semantics upstream. |
-| H04 fully supports offer withdrawal and candidate reconsideration, but those mechanisms do not cover every aggregate named by the frozen trigger. | L3 cannot generalize one aggregate's exception mechanics into another aggregate's lifecycle. | Resolve the missing per-aggregate exception architecture rather than applying a generic L3 rule. |
+| No PlacementDrive cancellation/reopening state, transition, event or authority. | Frozen drive-disruption branch cannot complete. | Define upstream. |
+| CandidateApplication scope mentions withdrawal but its lifecycle has no withdrawal/cancel semantics. | Frozen application-disruption branch cannot complete. | Define upstream. |
+| Internship failure scenarios mention cancellation/withdrawal but no lifecycle semantics exist. | Internship disruption cannot complete canonically. | Define upstream. |
 
 **Architecture assessment:** `BLOCKED`
-
-Only the offer-withdrawal and candidate-reconsideration/reopening branches are source-grounded. The frozen cross-aggregate cancellation/withdrawal/reopening outcome is materially incomplete upstream.
 
 ## 17.2 Assumptions
 
@@ -188,4 +123,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional scenario-specific deferred questions.
+No additional deferred questions.
