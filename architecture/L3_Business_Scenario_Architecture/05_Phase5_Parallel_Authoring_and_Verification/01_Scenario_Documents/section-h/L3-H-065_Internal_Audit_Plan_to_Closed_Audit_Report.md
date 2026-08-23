@@ -1,6 +1,6 @@
 # Internal Audit Plan to Closed Audit Report
 
-# 1. Scenario Metadata
+## 1. Scenario Metadata
 
 **Scenario ID:** L3-H-065  
 **Architecture Level:** L3 — Business Scenario Architecture  
@@ -11,182 +11,169 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H09 — Accreditation & Compliance Workflows  
-**Referenced By:** Observation, finding, CAPA, compliance, readiness, and institutional quality scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP_L1_Business_Domain_Architecture_Locked.md; DEPENDENCY_MAP.md; L2-H09_Accreditation_and_Compliance_Workflows.md  
+**Referenced By:** None yet
 
-# 2. Scenario Purpose
+## 2. Scenario Purpose
 
-Govern an H09 internal audit from an authorized risk-based plan through evidence review, testing, observations, findings, management response, reporting, and formal closure while the audited business domain retains ownership of its operational facts.
+Execute a governed internal audit from an authorized risk-based plan through evidence review, observations/findings, management acknowledgement and formal audit closure.
 
-# 3. Business Outcome
+## 3. Business Outcome
 
 Scope, evidence, testing, observations, findings, response, and approval produce a formally closed audit report
 
-# 4. Scenario Boundary and Scope
+## 4. Scenario Boundary and Scope
 
-## 4.1 Start Boundary
+### 4.1 Start Boundary
 
 A risk-based internal audit is authorized.
 
-## 4.2 End Boundary
+### 4.2 End Boundary
 
-The frozen outcome requires formal audit closure after management response/approval. H09 defines the audit workflow, lifecycle, separation-of-duty rule, management acknowledgement prerequisite, and `Audit Closed` event, but it does not identify the canonical business role that provides the mandatory management acknowledgement for a variable audited domain. The final authority step is therefore unresolved.
+Scope, evidence, testing, observations, findings, response, and approval produce a formally closed audit report.
 
-## 4.3 In Scope
+### 4.3 In Scope
 
-- Approved audit plan, scope, schedule, and audit-team assignment.
-- Evidence review and audit testing at business level.
-- Observation, finding, and non-conformity recording.
-- Audit report preparation and closing meeting.
-- Mandatory management acknowledgement/acceptance before closure.
-- CAPA initiation where required by findings.
-- Audit closure only when H09 rules permit.
+- H09-owned governance behaviour materially required to reach the frozen business outcome.
+- Applicable source-domain references, evidence and governed hand-offs without ownership transfer.
+- Only upstream-defined rules, lifecycle positions, events, approvals and evidence obligations relevant to this scenario.
 
-## 4.4 Out of Scope
+### 4.4 Out of Scope
 
-- Inventing a generic audited-domain approving role.
-- Correcting audited-domain operational records inside H09.
-- Closing Critical findings without required resolution.
-- CAPA execution beyond the audit's creation of required CAPA items.
+- Operational business-state ownership belonging to participating source domains.
+- Adjacent downstream institutional outcomes after this scenario's End Boundary.
+- Later architecture-level implementation concerns.
 
-# 5. Ownership and Participating Domains
+## 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Accreditation & Compliance / H | Owns Audit, Observation/Finding governance, audit report, audit lifecycle, and audit closure decision constraints. |
-| VAR:Audited Domain | Owns the operational facts/processes under review and provides the business response/evidence required by the audit under its own authority. |
+| Accreditation & Compliance (H) | Owns the H09 governance outcome and applicable H09 lifecycles. |
+| VAR:Audited Domain | Retains ownership of audited operational facts and supplies governed audit evidence. |
 
-# 6. Business Actors, Roles and Responsibilities
+Participation and evidence contribution do not transfer canonical ownership.
+
+## 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Internal Auditor | Executes the source-defined internal audit and prepares audit conclusions. | Performs |
-| IQAC | Participates in accreditation/readiness audit governance. | Reviews |
-| Compliance Cell | Participates in compliance audit governance and follow-up. | Reviews / coordinates |
-| Department Coordinator | Participates for departmental audits where applicable. | Provides evidence / response |
-| Registrar | Participates in the H09 internal-audit workflow. | Reviews / coordinates |
+| Internal Auditor | Conducts the audit and records audit evidence, observations and findings. | Performs |
+| IQAC | Participates in audit governance and review. | Reviews |
+| Compliance Cell | Participates in compliance-focused audit governance. | Reviews |
+| Department Coordinator | Coordinates audited-unit participation and evidence. | Participates |
+| Registrar | Participates in institutional audit governance. | Participates |
+| Management | Provides the acknowledgement required before audit closure. | Acknowledges |
 
-H09 requires management acceptance/acknowledgement before closure but does not define a canonical generic management actor for `VAR:Audited Domain`.
+## 7. Preconditions and Entry Criteria
 
-# 7. Preconditions and Entry Criteria
-
-- The audit plan is approved.
-- Audit scope is defined.
-- Audit team is assigned.
+- The Audit Plan is approved.
+- Audit scope and audit team are defined.
 - Required evidence is available.
-- Auditor independence satisfies BR-H09-016.
 
-# 8. Trigger
+## 8. Trigger
 
 A risk-based internal audit is authorized
 
-# 9. Main Business Flow
+## 9. Main Business Flow
 
-1. H09 creates the Internal Audit under the approved audit plan.
-2. The Internal Auditor defines the audit scope and participating organizational units consistent with the authorized plan.
-3. H09 assigns the audit team and publishes the approved schedule.
-4. The audit team reviews available evidence from H09 and the audited domain without taking ownership of source records.
-5. The Internal Auditor conducts the audit and records observations, findings, and non-conformities supported by the review.
-6. H09 prepares the Audit Report and conducts the source-defined closing meeting.
-7. H09 requires management acceptance/acknowledgement before closure under BR-H09-017.
-8. Where Critical findings exist, H09 prevents closure until those findings are resolved under BR-H09-018; mandatory CAPA is created where BR-H09-023 applies.
-9. Stop before asserting the final management acknowledgement and `Closed` transition because the canonical role/authority that provides that mandatory acceptance for a variable audited domain is not defined upstream.
+| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
+|---|---|---|---|
+| 1 | Create and schedule the internal Audit from the authorized plan. | Accreditation & Compliance | The Audit progresses from Planned to Scheduled. |
+| 2 | Review available evidence and conduct the defined audit scope without the auditor auditing a unit for which they have operational ownership. | Internal Auditor / VAR:Audited Domain | Audit testing is performed under the governed scope. |
+| 3 | Record observations, findings and non-conformities and prepare the Audit Report. | Internal Auditor | The Audit enters Reporting with governed issue records. |
+| 4 | Conduct the closing review and obtain the required management acknowledgement. | Accreditation & Compliance / Management | Management acknowledgement exists for closure. |
+| 5 | Create required CAPA items and verify no unresolved Critical finding prevents closure. | Accreditation & Compliance | Closure prerequisites are satisfied. |
+| 6 | Close the Audit. | Accreditation & Compliance | The formally closed audit report and governed audit history are established. |
 
-# 10. Alternate Business Flows
+## 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| Critical finding remains unresolved | Audit reaches proposed closure with an unresolved Critical finding | Keep the audit open; route the finding through the governed remediation path | Closure blocked | Accreditation & Compliance |
-| Finding requires CAPA | Critical finding is formally established | Create the required CAPA relationship and preserve audit/finding traceability | Remediation obligation established | Accreditation & Compliance / remediation owner in later scenario |
-| Departmental audit | Audited scope is a department | Department Coordinator participates in evidence and response activities | Departmental response preserved | Audited domain / Accreditation & Compliance |
+No scenario-specific alternate business flow is defined by the authoritative L2 architecture.
 
-# 11. Failure, Interruption and Business Recovery
+## 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Auditor has operational ownership of audited unit | Separation-of-duty rule is violated | Reassign the audit so the auditor does not audit an organizational unit they own operationally | Accreditation & Compliance |
-| Management acknowledgement is absent | Audit closure is prohibited | Obtain the required acknowledgement from the proper upstream-defined authority | Accreditation & Compliance / audited domain |
-| Critical finding remains open | Audit closure is prohibited | Resolve the Critical finding under governed remediation before later closure | Accreditation & Compliance / remediation owner |
+| Unresolved Critical finding exists | Audit closure is prohibited. | Maintain the audit in its governed pre-closure position while required finding/CAPA action proceeds. | Accreditation & Compliance |
 
-# 12. Business Rules and Decision Constraints
+## 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Audit schedules require approval before publication | H09 | Schedule cannot be published without approval | L2-H09 BR-H09-015 |
-| Auditors cannot audit organizational units for which they have operational ownership | H09 | Enforces business separation of duty | L2-H09 BR-H09-016 |
-| Audit reports require management acknowledgement before closure | H09 | Final closure requires a management decision | L2-H09 BR-H09-017 |
-| Audit closure is prohibited while unresolved Critical findings exist | H09 | Critical findings must be resolved before closure | L2-H09 BR-H09-018 |
-| Critical Findings require CAPA creation | H09 | Remediation obligation is created when applicable | L2-H09 BR-H09-023 |
+| BR-H09-015 — audit schedules require approval before publication. | Accreditation & Compliance | Controls audit scheduling. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
+| BR-H09-016 — auditors must not audit units for which they have operational ownership. | Accreditation & Compliance | Enforces audit independence. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
+| BR-H09-017 — audit reports require management acknowledgement before closure. | Accreditation & Compliance | Makes acknowledgement a closure prerequisite. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
+| BR-H09-018 — audit closure is prohibited while unresolved Critical findings exist. | Accreditation & Compliance | Blocks premature closure. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
 
-# 13. State and Lifecycle Impact
+## 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Audit | Planned | Approve/schedule the audit | Scheduled | H09 | L2-H09 H09-A05; §7 |
-| Audit | Scheduled | Conduct the audit | In Progress | H09 | L2-H09 H09-A05; §7 |
-| Audit | In Progress | Prepare findings and report | Reporting | H09 | L2-H09 H09-A05; §7 |
-| Audit | Reporting | Conduct management review/acknowledgement | `Management Review` in H09-A05 / `Review` in §7 | H09 | L2-H09 H09-A05; §7 |
-| Audit | Review position | Frozen outcome requires formal closure | Closed, but authority step is unresolved | H09 | L2-H09 H09-A05; H09-06 |
+| Audit | Planned | Scheduling, execution, reporting and management review. | Closed | Accreditation & Compliance | L2-H09_Accreditation_and_Compliance_Workflows.md §6 H09-A05 / §7 |
 
-# 14. Business Events and Cross-Domain Collaboration
+## 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
+### 14.1 Published / Consumed Business Events
 
 | Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
 |---|---|---|---|---|
-| Audit Planned | Audit aggregate / H09 | Audit governance participants | Records audit planning | L2-H09 §11 |
-| Audit Scheduled | Audit aggregate / H09 | Audited participants and governance consumers | Records approved schedule | L2-H09 §11 |
-| Audit Started | Audit aggregate / H09 | Audit governance consumers | Records audit execution start | L2-H09 §11 |
-| Audit Completed | Audit aggregate / H09 | Audit reporting consumers | Records completion of audit work | L2-H09 §11 |
-| Audit Report Generated | Audit aggregate / H09 | Governance and audited participants | Records report availability | L2-H09 §11 |
-| Audit Closed | Audit aggregate / H09 | Governance consumers | Records formal closure when valid | L2-H09 §11 |
+| Audit Planned | Audit aggregate | Observation; Finding; CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Audit Scheduled | Audit aggregate | Observation; Finding; CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Audit Started | Audit aggregate | Observation; Finding; CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Audit Completed | Audit aggregate | Observation; Finding; CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Audit Report Generated | Audit aggregate | Observation; Finding; CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Audit Closed | Audit aggregate | Observation; Finding; CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
 
-## 14.2 Business Contracts and Cross-Domain Hand-offs
+### 14.2 Business Contracts and Cross-Domain Hand-offs
 
-The audited domain supplies source-owned evidence and its business response. H09 records audit observations/findings and the Audit Report but does not acquire ownership of the audited operational records.
+| Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
+|---|---|---|---|---|
+| VAR:Audited Domain | Accreditation & Compliance | Source Evidence Reference Contract | Provide authoritative audited-domain evidence/reference without transferring source ownership. | L2-H09_Accreditation_and_Compliance_Workflows.md §23.1 |
 
-# 15. Business Authorization, Approval and Audit Obligations
+## 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
+### 15.1 Initiation and Decision Authority
 
-The audit plan and schedule are governed by H09. BR-H09-017 requires management acknowledgement before closure, but H09 does not define the canonical actor/role that provides that acknowledgement across `VAR:Audited Domain` scopes. L3 therefore cannot assign the final closure authority locally.
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| Audit schedule approval | Accreditation & Compliance governance | Approval is required before schedule publication. | Accreditation & Compliance |
+| Audit report acknowledgement | Management | Acknowledgement is mandatory before closure. | Accreditation & Compliance |
 
-## 15.2 Separation of Duties, Overrides and Exceptions
+### 15.2 Separation of Duties, Overrides and Exceptions
 
-BR-H09-016 prohibits an auditor from auditing an organizational unit for which the auditor has operational ownership. No exception is invented. Critical findings cannot be bypassed for closure.
+The auditor must not audit an organisational unit for which the auditor has operational ownership (BR-H09-016).
 
-## 15.3 Business Audit and Evidence Obligations
+### 15.3 Business Audit and Evidence Obligations
 
-Preserve authorized plan, audit scope, team assignment, schedule approval, evidence references, testing conclusions, observations, findings, non-conformities, management response/acknowledgement, Audit Report, CAPA links, and closure evidence.
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Internal audit engagement | Audit scope, evidence, observations, findings and Audit Report | Accreditation & Compliance |
+| Closure authority evidence | Management acknowledgement and Critical-finding closure condition | Accreditation & Compliance |
 
-# 16. Completion Criteria and Postconditions
+## 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
+### 16.1 Completion Criteria
 
-The audit can be authored through report generation and closing review. The frozen formally closed outcome cannot be claimed until the canonical management acknowledgement authority is defined and the valid closure decision occurs.
+- The audit scope has been executed and documented.
+- The Audit Report has management acknowledgement.
+- No unresolved Critical finding prevents closure.
+- The Audit lifecycle is Closed.
 
-## 16.2 Postconditions
+### 16.2 Postconditions
 
-Audit findings and report history remain traceable; no unsupported `Closed` transition or management authority is asserted.
+- The closed Audit Report and its observations/findings remain part of H09 governance history.
+- Any CAPA created from findings continues under the H09 CAPA lifecycle.
 
-# 17. Open Issues, Assumptions and Deferred Questions
+## 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+### 17.1 Open Issues
 
-- H09-W06 requires `Obtain Management Acceptance` before `Close Audit`.
-- BR-H09-017 independently requires management acknowledgement before closure.
-- H09-06's actor list contains Internal Auditor, IQAC, Compliance Cell, Department Coordinator, and Registrar, but it does not identify which role is the required management acknowledgement authority for a variable audited domain.
-- H09-A05 calls the pre-closure state `Management Review`; §7 calls it `Review`.
+No open issues.
 
-The missing closure authority materially affects the frozen final outcome.
-
-**Architecture assessment:** `BLOCKED`
-
-## 17.2 Assumptions
+### 17.2 Assumptions
 
 No assumptions.
 
-## 17.3 Deferred Questions
+### 17.3 Deferred Questions
 
-Upstream H09 must identify the canonical management acknowledgement authority or authority rule for internal-audit closure and normalize the pre-closure state name.
+No scenario-specific deferred questions.
