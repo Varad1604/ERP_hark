@@ -11,13 +11,12 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-C02 — Student Lifecycle & Activation Workflows; L2-H06 — Alumni Workflows  
-**Referenced By:** Alumni mentoring and student engagement scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H06 — Alumni Workflows; applicable locked Student Lifecycle architecture
 
 # 2. Scenario Purpose
 
-Govern a mentorship request through matching and an H06-owned mentoring engagement while preserving Section C ownership of Student information.
+Govern an Alumni mentoring request from matching through active mentoring and completion while keeping the Student participant under Section C ownership and the Mentorship Relationship under H06 ownership.
 
 # 3. Business Outcome
 
@@ -27,43 +26,39 @@ Suitable participants are matched, the engagement is governed, and completion or
 
 ## 4.1 Start Boundary
 
-A student or alumnus requests a mentoring relationship.
+The scenario begins when a student or alumnus requests a mentoring relationship.
 
 ## 4.2 End Boundary
 
-The frozen outcome requires both student/alumnus request origins and completion or early closure. H06 defines mentor–student matching and completed mentorship, but not an alumnus-as-mentee matching path or a distinct early-closure lifecycle outcome.
+The scenario ends when H06 records completion of the Mentorship Relationship or an authoritative early-closure outcome.
 
 ## 4.3 In Scope
 
-Approved mentor eligibility, mentor capacity, student reference validation, matching, mentorship sessions, On Hold/resume, outcome recording, and completion.
+- Mentor registration/approval where required before matching.
+- Mentor–mentee matching.
+- Mentorship activation, session scheduling, outcome recording, on-hold/resume handling, and closure.
+- Preservation of Student identity/lifecycle ownership in C.
 
 ## 4.4 Out of Scope
 
-Modification of Student records, invented alumnus-as-mentee eligibility, and invented early-closure state/event semantics.
+- Student lifecycle or academic-record changes.
+- Faculty/employee assignment.
+- Inventing an early-closure state/event that H06 does not define.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
-|---|---|
-| Student Lifecycle / C | Owns canonical Student and StudentContext information referenced for student mentees. |
-| Alumni / H | Owns Mentor Profile, Mentorship Relationship, matching, session history, feedback, and mentorship lifecycle. |
+Student Lifecycle / C owns Student records and Student lifecycle. Alumni / H06 owns Mentor Profile and Mentorship Relationship, including the mentoring lifecycle.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Student | May initiate the H06-defined student mentoring request and participate as mentee. | Initiates / participates |
-| Alumni | May register as a mentor and, in frozen semantics, may also initiate a mentoring request. | Initiates / participates |
-| Mentor | Participates in an approved mentoring relationship and records supported mentoring activity. | Performs |
-| Alumni Administrator | May approve mentors, match participants, and perform supported mentorship administration. | Reviews / performs |
-| Institutional Administrator | May approve mentors or perform H06-supported matching governance. | Reviews / performs |
+H06 supports Alumni/Mentor participants and Alumni administrative roles. The Student participates as mentee without transferring Student ownership to H06.
 
 # 7. Preconditions and Entry Criteria
 
-- Mentor Profile is approved.
-- Mentor capacity is available.
-- For the defined student path, the student is eligible for mentoring and remains canonically owned by Section C.
-- H06-owned membership/mentor prerequisites are satisfied.
+- A suitable eligible Mentor can be identified under H06 rules.
+- The mentee is an eligible Student or Alumni participant.
+- Required H06 mentorship information is available.
+- The actor is authorized for matching and lifecycle actions.
 
 # 8. Trigger
 
@@ -72,82 +67,84 @@ A student or alumnus requests a mentoring relationship
 # 9. Main Business Flow
 
 1. Receive the mentoring request.
-2. For the H06-defined student path, identify suitable approved mentors using the supported matching criteria.
-3. Validate mentor approval and capacity and preserve Section C Student ownership.
-4. Establish the H06 Mentorship Relationship through the defined matching action.
-5. Schedule mentoring activity and move the relationship through the defined Requested, Approved, and Active lifecycle.
-6. Record supported sessions, goals, outcomes, and feedback.
-7. Complete the mentorship through the H06-defined completion path.
-8. Stop before claiming an alumnus-as-mentee path or early-closure outcome because those semantics are not defined upstream.
+2. Validate mentor eligibility/availability and mentee reference.
+3. Match the Mentor with the mentee, establishing the H06 Mentorship Relationship and moving `Requested → Approved`.
+4. Schedule mentoring activity and move `Approved → Active`.
+5. Record mentoring sessions/outcomes under H06.
+6. Where necessary, move `Active → On Hold → Active`.
+7. Close the active mentorship using `CloseMentorship`, which moves the H06 transition matrix to `Completed`.
+8. Publish `MentorshipCompleted` and preserve mentoring history.
 
 # 10. Alternate Business Flows
 
-An Active mentorship may move On Hold and later resume Active. Mentor acceptance may be required where institution policy so defines.
+- The relationship may be placed `On Hold` and later resumed.
+- A requested mentorship may remain unmatched until a suitable Mentor is identified.
+- H06's lifecycle list includes `Closed`, but its authoritative transition matrix does not define a transition into `Closed`.
 
 # 11. Failure, Interruption and Business Recovery
 
-Ineligible students, unapproved mentors, or unavailable mentor capacity prevent matching. Unsupported alumnus-as-mentee or early-closure handling requires upstream architecture resolution.
+If suitable participants cannot be matched, no Mentorship Relationship progresses to Active. If an active engagement is interrupted, H06 may use the defined `On Hold`/resume path. L3 does not invent an undefined early-closure transition.
 
 # 12. Business Rules and Decision Constraints
 
-- Only approved mentors may participate.
-- Mentor capacity must be validated before assignment.
-- Mentorship assignments must remain auditable.
-- Completed mentorship relationships become read-only except through governed administrative actions.
-- Student data remains owned by Section C.
+- H06 owns Mentorship Relationship.
+- Student records remain C-owned.
+- `MatchMentorWithStudent` establishes the specific mentoring relationship.
+- `CloseMentorship` is terminal and results in `Completed` in the H06 transition matrix.
+- H06 defines `Requested`, `Approved`, `Active`, `On Hold`, `Completed`, and also lists `Closed`, but does not define how `Closed` is reached.
 
 # 13. State and Lifecycle Impact
 
-H06 defines `Requested → Approved → Active → Completed` and `Active → On Hold → Active`. No distinct early-closure state is defined.
+Defined transitions are `Requested → Approved → Active → Completed`, with `Active ↔ On Hold`. The separately listed `Closed` state has no canonical transition in H06.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-H06 defines `MentorshipCreated`, `MentorshipSessionScheduled`, and `MentorshipCompleted`. No canonical early-closure event is defined.
+H06 defines `MentorshipCreated`, `MentorshipSessionScheduled`, and `MentorshipCompleted`. The Student participant remains referenced from Section C.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-Section C provides canonical Student references for student mentees. H06 owns the Mentorship Relationship and does not modify the Student aggregate.
+H06 references the Student mentee without modifying Student lifecycle or academic records.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-H06 supports student mentoring requests, mentor participation, and Alumni/Institutional Administrator matching or mentor approval. The frozen alumnus-as-mentee authority is not fully defined.
+Participants initiate mentoring; H06-authorized roles perform mentor approval/matching and governed lifecycle actions as defined upstream.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-L3 shall not infer that `Completed` includes an early-closure outcome, or extend `MatchMentorWithStudent` to alumnus mentees.
+No local rule maps an undefined `Closed` state to another H06 state.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve request, mentor approval/capacity evidence, matching, sessions, feedback, state history, completion evidence, and Student references.
+Preserve mentor/mentee references, matching decision, sessions, outcomes, on-hold/resume history, closure action, and completion evidence.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-The H06-defined student-to-alumni-mentor path may complete through `MentorshipCompleted`. The complete frozen scenario cannot be claimed until alumnus-as-mentee and early-closure semantics are defined.
+A matched mentorship reaches the H06 `Completed` outcome through `CloseMentorship`, with history preserved.
 
 ## 16.2 Postconditions
 
-Supported mentorship history is preserved; Section C ownership remains unchanged; unsupported branches are not fabricated.
+Completed mentoring is source-grounded. The frozen phrase “early closure” is not separately represented by a defined H06 state/event, although H06 lists an otherwise unreachable `Closed` state.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-- Frozen trigger permits a **student or alumnus** to request mentoring, but H06's matching workflow and command are explicitly mentor–student.
-- H06 defines Student assignment within the Mentorship Aggregate but no canonical alumnus-as-mentee matching rule, state, or contract.
-- Frozen outcome requires **completion or early closure**; H06 defines `Completed` and `On Hold` but no distinct early-closure state/event/authority.
+H06 lists `Closed` in the Mentorship lifecycle vocabulary but provides no transition into it; `CloseMentorship` instead moves `Active → Completed` and publishes `MentorshipCompleted`. Therefore ordinary completion is fully grounded, while a separately distinguishable early-closure outcome is ambiguous.
 
-**Architecture assessment:** `BLOCKED`
+**Architecture impact:** this does not prevent a usable completed-mentorship Draft, but upstream lifecycle clarification is required if early closure must remain distinct from completion.
+
+**Architecture assessment:** `PASS WITH ISSUES`
 
 ## 17.2 Assumptions
 
-No assumptions.
+No assumption is made that `Completed` and `Closed` are interchangeable.
 
 ## 17.3 Deferred Questions
 
-Upstream architecture must define alumnus-as-mentee matching and the governed early-closure outcome, or formally amend frozen semantics.
+Clarify whether early closure is represented by the existing `CloseMentorship → Completed` path or requires the currently unreachable `Closed` state.

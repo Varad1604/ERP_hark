@@ -11,13 +11,12 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-B02 — Organisation Workflows; L2-H06 — Alumni Workflows  
-**Referenced By:** Alumni chapter membership, networking, events, reporting, and engagement scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H06 — Alumni Workflows; applicable locked Section B institutional-structure architecture
 
 # 2. Scenario Purpose
 
-Govern an H06-owned Alumni Chapter while preserving Section B ownership of organizational references. H06 supports chapter/member actions but not the complete frozen Chapter lifecycle.
+Govern an Alumni Chapter proposal or change while preserving H06 ownership of the Chapter and Chapter Membership aggregates and Section B ownership of institutional structure facts.
 
 # 3. Business Outcome
 
@@ -27,38 +26,42 @@ The chapter is approved, activated, governed, suspended, merged, or retired with
 
 ## 4.1 Start Boundary
 
-An authorized community proposes or changes an alumni chapter.
+The scenario begins when an authorized community proposes or changes an alumni chapter.
 
 ## 4.2 End Boundary
 
-The frozen outcome requires proposal, approval, activation, governance, suspension, merge, and retirement semantics; H06 lacks the complete Chapter aggregate lifecycle, authority, and events.
+The frozen end boundary requires the Chapter to reach an approved, active, suspended, merged, or retired governed outcome with membership continuity preserved.
 
 ## 4.3 In Scope
 
-H06 Alumni Chapter/Chapter Membership ownership, supported chapter create/update/close intent, member join/leave/transfer history, and Section B references without ownership transfer.
+- H06 Chapter creation and modification where defined.
+- H06 Chapter retirement through its defined close command.
+- Chapter Membership join, leave, and transfer where defined.
+- Preservation of institutional-structure references.
 
 ## 4.4 Out of Scope
 
-Missing proposal/approval, suspension, merge, retirement lifecycle definitions and any H06 modification of Section B organization records.
+- Section B organization ownership changes.
+- Inventing Chapter approval, activation, suspension, or merge lifecycles.
+- Renaming Chapter Membership transitions into Chapter lifecycle transitions.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
+| Domain / Section | Responsibility |
 |---|---|
-| Institution & Structure / B | Retains authoritative organization/structure references. |
-| Alumni / H | Owns Alumni Chapter, Chapter Membership, participation, and H06 chapter rules. |
+| Institution & Structure / B | Retains ownership of institutional/organizational structure referenced by a Chapter. |
+| Alumni / H06 | Owns Alumni Chapter and Alumni Chapter Membership. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Actor | Responsibility | Authority |
-|---|---|---|
-| Chapter Administrator | Manages H06-supported chapter membership/local activities/reporting. | Performs |
-| Alumni Administrator | Performs H06-supported Alumni administration. | Performs |
-| Institutional Administrator | Provides H06 policy configuration/governance context. | Governs supported context |
+H06 authorizes Alumni Administrator, Chapter Administrator, and Institutional Administrator actions according to its command authorization model. No additional chapter approver is invented at L3.
 
 # 7. Preconditions and Entry Criteria
 
-Required B references and H06 Alumni engagement records exist; the requested action must be supported by an H06-owned rule/action.
+- The proposed Chapter context is institutionally valid.
+- Required organization references remain source-owned.
+- The actor is authorized for the H06 Chapter action.
+- Existing Chapter membership history is available when the request changes an existing Chapter.
 
 # 8. Trigger
 
@@ -66,66 +69,79 @@ An authorized community proposes or changes an alumni chapter
 
 # 9. Main Business Flow
 
-Receive the proposal/change and resolve B references without changing them; apply H06 chapter-type/ownership rules; use `CreateChapter` or `UpdateChapter` only where source intent is unambiguous; manage member join/leave/transfer through the defined Chapter Membership lifecycle; retain historical membership if a chapter is closed; stop before claiming unsupported approval, activation, suspension, merge, or retirement outcomes.
+1. Receive the Chapter proposal or change under H06 governance.
+2. Validate the Chapter identity and required source references.
+3. H06 may create a Chapter using `CreateChapter`.
+4. H06 may modify the Chapter using `UpdateChapter`.
+5. H06 may retire a Chapter using `CloseChapter`, which H06 describes as retiring the Chapter.
+6. Chapter members may join, leave, or transfer through the separate Chapter Membership lifecycle where those actions are required.
+7. Preserve Chapter and membership history.
+
+The frozen approval, activation, suspension, and merge outcomes cannot be completed from the current locked H06 lifecycle because no corresponding Chapter transitions/events are defined.
 
 # 10. Alternate Business Flows
 
-Alumni may join, leave, or transfer chapters under H06 with historical participation preserved. These do not define the missing Chapter aggregate governance lifecycle.
+- Existing Chapter definition may be updated.
+- Chapter Membership may be transferred without transferring Chapter ownership.
+- A Chapter may be retired through `CloseChapter`.
 
 # 11. Failure, Interruption and Business Recovery
 
-Membership may be rejected where H06 capacity/governance rules prevent enrollment, with history preserved. Missing Chapter lifecycle authority/state requires architecture change control.
+If the requested Chapter outcome has no authoritative H06 transition, the Chapter remains in its last defined condition. L3 does not infer a state from membership changes or from generic administration.
 
 # 12. Business Rules and Decision Constraints
 
-Multiple chapter memberships may be permitted; only one may be Primary; closed chapters retain history; transfers preserve affiliations; B owns organizational structure/references; H06 owns Alumni Chapter/Chapter Membership.
+- H06 canonically owns Chapter and Chapter Membership.
+- Chapter identity must be unique.
+- Chapter closure/retirement is terminal under the H06 `CloseChapter` command semantics.
+- Membership continuity is managed through H06 Chapter Membership history.
+- Institutional structure remains owned upstream.
 
 # 13. State and Lifecycle Impact
 
-H06 defines Chapter Membership `Requested → Active`, with `Active → Left` or `Transferred`, but no canonical Chapter aggregate state machine. No Chapter state is invented here.
+H06 defines Chapter creation/update/retirement commands and a separate Chapter Membership lifecycle, but does not define canonical Chapter states/transitions for `Approved`, `Active`, `Suspended`, or `Merged`.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-H06 defines `AlumniJoinedChapter`, `AlumniLeftChapter`, and `ChapterMembershipTransferred`. Its command catalogue has `CreateChapter`, `UpdateChapter`, and `CloseChapter`, but no corresponding canonical Chapter aggregate events.
+H06 defines membership events such as `AlumniJoinedChapter`, `AlumniLeftChapter`, and `ChapterMembershipTransferred`. It does not provide a complete canonical Chapter event set for the frozen approval/activation/suspension/merge/retirement lifecycle.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-Section B provides authoritative organizational references; H06 retains Chapter ownership and does not modify B02 organization records.
+Section B-owned structure facts remain references. H06 owns the Chapter and its membership relationship.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-H06 defines Chapter/Institutional Administrator responsibilities but not canonical proposer, chapter approver, suspension, merge, or retirement decision authority.
+Only H06-authorized administrative roles may execute defined Chapter commands. No missing approval authority is invented.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-L3 may not infer approval from creation, equate closure with retirement, or invent suspension/merge authority or events.
+No L3 exception may substitute a membership transition for a missing Chapter governance transition.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve chapter identity where established, B references, membership history, join/leave/transfer evidence, supported chapter changes, and source-defined governance evidence.
+Preserve Chapter definition history, actor/authority, retirement reason where applicable, and membership continuity/history.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-Only H06-defined chapter/member actions may complete. The full frozen outcome remains unavailable until Section 17 gaps are resolved upstream.
+The scenario requires an authoritative transition to one of the frozen Chapter outcomes with preserved membership continuity.
 
 ## 16.2 Postconditions
 
-Supported membership continuity is preserved; B ownership remains unchanged; unsupported Chapter lifecycle outcomes are not approximated.
+H06 supports creation, update, retirement, and membership administration, but cannot represent the complete frozen Chapter governance lifecycle.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-- H06 owns Alumni Chapter and defines `CreateChapter`, `UpdateChapter`, `CloseChapter`, but no canonical Chapter aggregate lifecycle state machine.
-- H06 does not define frozen proposal/approval/activation, suspension, merge, or retirement states, transitions, decision authority, or canonical events.
-- `CloseChapter` and closed-history retention do not establish a frozen `Retired` state/event.
-- H06 publishes Chapter Membership events but no canonical Chapter aggregate creation/update/closure events.
+Locked H06 lacks canonical Chapter approval, activation, suspension, and merge states/transitions/events required by the frozen H042 outcome. `CloseChapter` supports retirement, but the remaining required lifecycle cannot be invented.
+
+**Architecture impact:** final outcome and Chapter lifecycle are materially incomplete.
 
 **Architecture assessment:** `BLOCKED`
 
@@ -135,4 +151,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional deferred questions beyond the open issues above.
+Upstream architecture must define or formally remove the missing Chapter governance outcomes.

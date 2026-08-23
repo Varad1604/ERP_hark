@@ -11,13 +11,12 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-C02 — Student Lifecycle & Activation Workflows; L2-D04 — Teaching Session & Attendance Workflows; L2-E03 — Faculty Workforce Workflows; L2-H06 — Alumni Workflows  
-**Referenced By:** Alumni volunteering, guest lecture, industry collaboration, and institutional participation scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H06 — Alumni Workflows; applicable locked Student Lifecycle, Academic Delivery, and People & Workforce architecture
 
 # 2. Scenario Purpose
 
-Govern alumni participation offered to institutional activities while keeping Student, Academic Delivery, and People & Workforce facts under their canonical owners and H06 ownership limited to alumni engagement/participation records.
+Govern an Alumni offer to contribute through volunteering, speaking, industry, or advisory participation while preserving the ownership of any Student, Academic Delivery, or Workforce facts involved in the institutional activity.
 
 # 3. Business Outcome
 
@@ -27,44 +26,45 @@ The contribution is approved, scheduled, delivered, evaluated, or closed under i
 
 ## 4.1 Start Boundary
 
-An alumnus offers volunteering, speaking, industry, or advisory participation.
+The scenario begins when an alumnus offers volunteering, speaking, industry, or advisory participation.
 
 ## 4.2 End Boundary
 
-The frozen outcome requires a governed contribution lifecycle across approval, scheduling, delivery, evaluation, or closure. H06 provides several separate participation workflows but no canonical umbrella Contribution lifecycle or complete evaluation/closure semantics across all frozen contribution types.
+The frozen end boundary is a completed institutional engagement represented by an approved, scheduled, delivered, evaluated, or closed contribution outcome.
 
 ## 4.3 In Scope
 
-H06-supported volunteer assignment, guest lecture participation, industry collaboration participation, and institutional advisory/volunteer participation where explicitly supported.
+- H06 Volunteer Assignment.
+- H06 Guest Lecture participation.
+- H06 Industry Collaboration participation, including supported advisory-board/curriculum-review collaboration contexts.
+- Preservation of source-owned Student, Academic Delivery, and Workforce facts.
 
 ## 4.4 Out of Scope
 
-Modification of Student, Teaching Session, Faculty Workforce, or other source-domain aggregates; invented contribution approval/evaluation lifecycle; unapproved C/D/E business hand-offs.
+- Academic curriculum or delivery decisions by H06.
+- Student lifecycle changes.
+- Workforce assignment or employment decisions.
+- Inventing a generic Alumni Contribution aggregate, evaluation lifecycle, or C/D/E cross-domain acceptance contract.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
+| Domain / Section | Responsibility |
 |---|---|
-| Student Lifecycle / C | Retains authoritative Student/StudentContext facts where alumni contribution serves student-facing activity. |
-| Academic Delivery / D | Retains authoritative teaching execution where an institutional contribution becomes part of academic delivery. |
-| People & Workforce / E | Retains authoritative faculty capability/capacity/availability and workforce participation facts. |
-| Alumni / H | Owns alumni participation records for volunteering, guest lectures, and supported industry collaboration engagement. |
+| Student Lifecycle / C | Retains Student facts where a contribution serves students. |
+| Academic Delivery / D | Retains academic-delivery facts and decisions where an Alumni contribution supports delivery. |
+| People & Workforce / E | Retains workforce/personnel facts and decisions. |
+| Alumni / H06 | Owns Alumni engagement records such as Volunteer Assignment and Alumni Event/Industry participation. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Alumni | Offers and performs supported institutional participation. | Initiates / performs |
-| Alumni Administrator | Coordinates H06-supported alumni participation actions. | Performs supported administration |
-| Chapter Administrator | May coordinate H06-supported volunteer/community participation. | Performs supported administration |
-| Institutional Administrator | Provides H06 governance context for supported alumni engagement. | Governs supported context |
+The Alumni offers participation. H06 Alumni administrative roles govern H06 participation records. No C/D/E decision role or acceptance authority is invented because H06 does not define one for this frozen cross-domain scenario.
 
 # 7. Preconditions and Entry Criteria
 
-- Active Alumni Membership exists where required by H06.
-- The relevant volunteer, speaking, industry, or advisory participation opportunity exists under authoritative institutional ownership.
-- Required alumni expertise/eligibility is available where the selected H06 workflow requires it.
-- C, D, and E source facts remain reference-only to H06.
+- An active Alumni engagement relationship exists.
+- The offered contribution falls within an H06-supported institutional participation category.
+- Required source references are available.
+- H06 authorization for the engagement action is satisfied.
 
 # 8. Trigger
 
@@ -72,82 +72,85 @@ An alumnus offers volunteering, speaking, industry, or advisory participation
 
 # 9. Main Business Flow
 
-1. Receive the alumni contribution offer and identify the supported participation type.
-2. Validate Alumni membership and the H06-defined eligibility relevant to that participation type.
-3. For volunteering, use the H06 volunteer-assignment path and preserve participation history.
-4. For guest speaking, use the H06 guest-lecture invitation, acceptance, scheduling, and completion path where applicable.
-5. For supported industry participation, use the H06 assignment and completion path.
-6. Preserve C, D, and E source ownership if their business facts participate in the institutional activity.
-7. Stop before claiming a complete frozen contribution outcome because H06 lacks a canonical cross-type approval/evaluation/closure lifecycle and explicit hand-offs for all participating domains.
+1. Classify the offer into an H06-supported engagement path.
+2. For volunteering, H06 may establish an accepted Volunteer Assignment, later withdrawn or completed.
+3. For guest speaking, H06 may schedule the Guest Lecture and later record `GuestLectureCompleted`.
+4. For industry/advisory participation, H06 may assign the Alumni to supported collaboration participation and later record `IndustryCollaborationCompleted`.
+5. Preserve the H06 engagement history and source-domain references.
+6. Do not change C-, D-, or E-owned business records through the H06 engagement record.
+
+A complete cross-domain flow cannot be authored for the frozen scenario because H06 does not define the required C/D/E participation/acceptance contracts and defines no contribution-evaluation lifecycle.
 
 # 10. Alternate Business Flows
 
-Supported branches include volunteer withdrawal, volunteer completion, guest lecture completion, and industry collaboration completion. These remain separate H06 workflows rather than a unified Contribution lifecycle.
+- Volunteer participation may be withdrawn or completed.
+- Guest lecture participation may proceed through scheduled to completed.
+- Industry/advisory participation may proceed through assigned to completed.
 
 # 11. Failure, Interruption and Business Recovery
 
-If Alumni eligibility or opportunity prerequisites are not satisfied, the supported participation path cannot proceed. Missing cross-domain hand-offs or contribution evaluation/closure semantics require upstream resolution.
+Unsupported or unaccepted contributions remain outside a defined cross-domain completion path. H06 preserves any valid engagement state already reached and does not infer an academic/workforce acceptance decision.
 
 # 12. Business Rules and Decision Constraints
 
-- Volunteer assignments require active Alumni membership and must remain auditable.
-- Alumni event/participation eligibility must be satisfied where applicable.
-- H06 owns alumni participation records only; research, placement, academic delivery, student, and workforce aggregates remain under their canonical owners.
-- Section D owns actual teaching execution; Section E owns faculty workforce capability/capacity/availability; Section C owns Student information.
+- H06 owns only its Alumni engagement aggregates.
+- Student, Academic Delivery, and Workforce ownership remains external.
+- Volunteer, guest lecture, and industry collaboration are distinct H06 workflows/aggregates.
+- H06 defines no generic Alumni Contribution aggregate.
+- H06 defines no contribution evaluation state, decision, or event.
 
 # 13. State and Lifecycle Impact
 
-H06 defines lifecycle fragments for Volunteer Assignment (`Requested → Accepted → Withdrawn/Completed`) and separate guest-lecture/industry participation outcomes, but no canonical Alumni Contribution aggregate or single lifecycle covering the frozen outcome.
+H06 Volunteer Assignment supports `Requested → Accepted → Withdrawn/Completed`. Guest lecture and industry collaboration have their own H06 participation facts and completion events. No canonical shared contribution lifecycle spans the frozen C/D/E/H outcome.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-H06 defines `VolunteerAssignmentAccepted`, `VolunteerAssignmentWithdrawn`, `VolunteerAssignmentCompleted`, `GuestLectureScheduled`, `GuestLectureCompleted`, `IndustryCollaborationAssigned`, and `IndustryCollaborationCompleted`.
+Relevant H06 events include `VolunteerAssignmentAccepted`, `VolunteerAssignmentWithdrawn`, `VolunteerAssignmentCompleted`, `GuestLectureScheduled`, `GuestLectureCompleted`, `IndustryCollaborationAssigned`, and `IndustryCollaborationCompleted`.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-H06 states that alumni participation records remain H06-owned while underlying institutional activities remain with their owning domains. It does not define the complete scenario-specific C/D/E hand-offs required to govern every frozen contribution branch.
+Locked H06 does not define the mandatory C/D/E business contracts by which the offered contribution becomes an accepted academic, Student-facing, or workforce-governed institutional activity. Those contracts cannot be invented at L3.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-Alumni initiate contribution participation; H06 defines supported administrators for engagement administration. A canonical cross-type contribution approver/evaluator is not defined.
+The Alumni initiates the offer. H06 authorization applies to H06 engagement actions. C/D/E decision authority for accepting the contribution is not defined in H06.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-L3 shall not infer a universal approval, evaluation, or closure authority from the separate volunteer, guest-lecture, and industry-participation workflows.
+No L3 override can make H06 the owner of academic, Student, or Workforce acceptance decisions.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve contribution offer, eligibility evidence, supported assignment/scheduling/completion history, and references to authoritative C/D/E facts without transferring ownership.
+Preserve Alumni offer/assignment history and applicable H06 completion events. Any C/D/E acceptance/evaluation evidence requires an authoritative upstream contract before it can be specified.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-A specific supported H06 participation branch may complete under its own workflow. The frozen cross-type outcome cannot be claimed until the missing contribution governance/evaluation/hand-off semantics are resolved.
+The frozen scenario requires a governed institutional engagement across the listed participating domains and a completed contribution outcome.
 
 ## 16.2 Postconditions
 
-Supported alumni participation history is preserved and source-domain ownership remains unchanged; no generic Contribution lifecycle is invented.
+Individual H06 engagement variants can complete, but the required cross-domain acceptance/evaluation/closure collaboration is not fully defined.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-- H06 models volunteering, guest lectures, and industry collaboration as separate workflows/aggregates and does not define a canonical Alumni Contribution aggregate or lifecycle.
-- Frozen outcome includes `approved`, `scheduled`, `delivered`, `evaluated`, or `closed`; H06 does not define a complete cross-type evaluation/closure model or canonical events for every branch.
-- Frozen participating domains are C, D, E, H, but H06 does not define complete scenario-specific cross-domain contracts/hand-offs for C/D/E contribution participation.
-- Advisory participation is listed as supported activity context, but no distinct governed advisory lifecycle is defined.
+H06 supports volunteering, guest lecture, and industry/advisory participation, but it does not define a generic contribution lifecycle, an evaluation outcome, or authoritative C/D/E hand-offs for accepting and governing the institutional activity represented by the frozen participant set.
+
+**Architecture impact:** mandatory cross-domain contracts and part of the final outcome are undefined.
 
 **Architecture assessment:** `BLOCKED`
 
 ## 17.2 Assumptions
 
-No assumptions.
+No assumption is made that an H06 participation record itself constitutes a C-, D-, or E-owned institutional acceptance decision.
 
 ## 17.3 Deferred Questions
 
-Upstream architecture must define the canonical contribution governance boundary and the required C/D/E hand-offs, or formally narrow the frozen semantics.
+Upstream architecture must define the cross-domain contribution acceptance/evaluation contracts or narrow the frozen scenario to H06-owned engagement outcomes.
