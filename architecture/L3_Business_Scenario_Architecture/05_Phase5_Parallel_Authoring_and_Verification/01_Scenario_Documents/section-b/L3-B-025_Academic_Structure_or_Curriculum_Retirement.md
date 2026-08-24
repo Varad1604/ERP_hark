@@ -1,4 +1,6 @@
-# Academic Structure or Curriculum Retirement
+# L3-B-025 — Academic Structure or Curriculum Retirement
+
+# 1. Scenario Metadata
 
 **Scenario ID:** L3-B-025  
 **Architecture Level:** L3 — Business Scenario Architecture  
@@ -6,13 +8,13 @@
 **Participating Domains:** B, D  
 **Scenario Type:** Critical  
 **Priority:** P2  
-**Status:** Approved
+**Status:** Locked  
 **Architecture Lock:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Institution & Structure — Curriculum Framework  
 **Assigned Author:** Pallav  
-**Last Updated:** 2026-08-20  
-**Depends On:** `architecture/L1_Business_Domain_Architecture/SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`; `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Business_Scenario_Template_v2.0.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Framework_Workflows.md`  
+**Last Updated:** 2026-08-24  
+**Depends On:** `architecture/L1_Business_Domain_Architecture/SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`; `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Business_Scenario_Template_v2.0.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Framework_Workflows.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Retirement_Event_Amendment_2026-08-24.md`; `governance/adr/ADR-B-CURR-RET-001.md`  
 **Referenced By:** Known downstream consumers identified in `DEPENDENCY_MAP.md`; exact scenario references only where canonically registered  
 
 ---
@@ -33,7 +35,7 @@ The scenario starts when an authorized decision that the academic definition has
 
 ## 4.2 End Boundary
 
-The scenario ends when the Curriculum Framework-owned decision is effective, Academic definition has reached **Retired**, required business evidence is retained, and any exact canonical event or governed hand-off has been produced. It does not wait for every consumer to finish its own downstream processing.
+The scenario ends when the Curriculum Framework-owned decision is effective, Academic definition has reached **Retired**, required business evidence is retained, and the exact canonical event or governed hand-off applicable to the retired definition has been produced. It does not wait for every consumer to finish its own downstream processing.
 
 ## 4.3 In Scope
 
@@ -66,7 +68,7 @@ The scenario ends when the Curriculum Framework-owned decision is effective, Aca
 
 # 6. Business Actors, Roles and Responsibilities
 
-No scenario-specific canonical actor name can be established for every required responsibility with sufficient authority. Responsibilities are expressed by owning domain in the flow; any material actor gap is recorded in Section 17.
+No scenario-specific canonical actor name can be established for every required responsibility with sufficient authority. Responsibilities are expressed by owning domain in the flow; any material actor gap must be governed upstream rather than invented locally.
 
 # 7. Preconditions and Entry Criteria
 
@@ -75,7 +77,7 @@ No scenario-specific canonical actor name can be established for every required 
 - The subject is in a permitted entry lifecycle position: **Published**.
 - Required authoritative rules, versions, relationships, and effective-date context are resolvable.
 - Material dependency evidence is available from its owning domain; missing evidence is not assumed.
-- Required business authority is established or its absence is explicitly recorded as an Open Issue.
+- Required business authority is established.
 
 # 8. Trigger
 
@@ -85,16 +87,16 @@ An authorized decision that the academic definition has no future permitted use.
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Establish the Curriculum Retirement Request, subject identity, scope, proposed effective context, and accountable business intent. | Curriculum | A reviewable governed proposal exists. |
+| 1 | Establish the Curriculum Retirement Request, subject identity, scope, proposed effective context, and accountable business intent. | Curriculum Framework | A reviewable governed proposal exists. |
 | 2 | Verify entry state, authoritative relationships, required upstream facts, and absence of conflicting effective decisions. | Curriculum Framework | Entry eligibility is confirmed or progression is blocked. |
 | 3 | Evaluate material Academic definition rules, lifecycle constraints, dependency evidence, historical impact, and downstream consequences. | B, D | A traceable validation and impact result exists. |
 | 4 | Obtain the authoritative review, decision, or approval required by the governing architecture. | Curriculum Framework | An attributable business decision is recorded. |
-| 5 | Apply the approved business outcome at its permitted effective point without rewriting predecessor history. | Curriculum Framework | Academic definition reaches Retired. |
-| 6 | Record required evidence and publish or hand off only canonical business facts to material consumers. | Curriculum Framework | The outcome is auditable and available for governed downstream use. |
+| 5 | Apply the approved business outcome at its permitted effective point without rewriting predecessor history. | Curriculum Framework | Academic definition reaches **Retired**. |
+| 6 | Record required evidence and publish or hand off only the canonical business fact applicable to the retired definition. | Curriculum Framework | The outcome is auditable and available for governed downstream use. |
 
 # 10. Alternate Business Flows
 
-No scenario-specific alternate business flow is defined by the authoritative L2 architecture.
+No scenario-specific alternate business flow is defined beyond paths already established by authoritative L2 architecture.
 
 # 11. Failure, Interruption and Business Recovery
 
@@ -112,6 +114,7 @@ No scenario-specific alternate business flow is defined by the authoritative L2 
 | Authoritative identity and scope | Curriculum Framework | The proposal must reference the canonical Academic definition identity and applicable institutional scope. | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Framework_Workflows.md` |
 | Lifecycle integrity | Curriculum Framework | Only the authoritative entry and resulting lifecycle positions may be used; unsupported transitions are prohibited. | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Framework_Workflows.md` |
 | Version and historical integrity | Curriculum Framework | Published/effective predecessors remain historically traceable and are not destructively rewritten. | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Framework_Workflows.md` |
+| Curriculum retirement event integrity | Curriculum Framework | Where the retired subject is Curriculum, the exact canonical completed-retirement event is `CurriculumRetired`, published by B04 only after the authoritative transition to `Retired` succeeds. | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Retirement_Event_Amendment_2026-08-24.md`; `governance/adr/ADR-B-CURR-RET-001.md` |
 
 ## 12.1 Scenario-Specific Applied Decisions
 
@@ -119,6 +122,8 @@ No scenario-specific alternate business flow is defined by the authoritative L2 
 - Retirement prevents new governed use while preserving existing and historical references.
 - Related definitions retire only through an authoritative cascade.
 - No unsupported reactivation is introduced.
+- `CurriculumVersionRetired` is not treated as a separate canonical event.
+- No generic `AcademicStructureRetired` event is invented for a non-Curriculum definition when upstream architecture does not define one.
 
 # 13. State and Lifecycle Impact
 
@@ -126,20 +131,25 @@ No scenario-specific alternate business flow is defined by the authoritative L2 
 |---|---|---|---|---|---|
 | Academic definition | Published | The authorized scenario decision applies only after validation and at the permitted effective point. | Retired | Curriculum Framework | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Framework_Workflows.md` |
 
-The resulting terminal or retirement position prevents unsupported future operational use. Historical identity and references remain available under authorized resolution.
+The resulting retirement position prevents unsupported future operational use. Historical identity and references remain available under authorized resolution.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-No exact scenario-specific public event is established with sufficient confidence. The required event-contract decision is recorded in Section 17.
+| Business Event | Canonical Publisher | Consumers | Purpose | Authoritative Source |
+|---|---|---|---|---|
+| `CurriculumRetired` | B04 — Curriculum Framework | D01 — Academic Planning / Course & Course Offering context where retirement awareness is already required | Communicates that the authoritative Curriculum retirement transition to `Retired` has completed while historical interpretation remains preserved. | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Retirement_Event_Amendment_2026-08-24.md` |
+
+`CurriculumRetired` applies to the Curriculum-retirement path only. For another B04-owned academic definition where no exact public retirement event is established upstream, this scenario uses the authoritative lifecycle fact or governed business hand-off and does not invent an event locally.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
 | Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
 |---|---|---|---|---|
-| Curriculum Framework | Material downstream domains | Canonical Academic definition identity, lifecycle/version status, effective context, and completed business outcome | Permit governed consumption without transferring ownership | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Framework_Workflows.md` |
-| Participating domains (B, D) | Curriculum Framework | Authoritative validation, readiness, physical, academic, workforce, or other scenario-specific evidence | Support the Curriculum Framework-owned final decision while retaining source-domain ownership | `DEPENDENCY_MAP.md`; applicable L2 sources |
+| Curriculum Framework | D01 where Curriculum retirement awareness is required | `CurriculumRetired` and the governed Curriculum retirement outcome | Permit D01 to react to the completed B04 retirement fact without transferring ownership. | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Retirement_Event_Amendment_2026-08-24.md` |
+| Curriculum Framework | Other material downstream consumers already established by authoritative architecture | Canonical Academic definition identity, lifecycle/version status, effective context, and completed business outcome | Permit governed consumption without transferring ownership or inventing a new public event. | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Framework_Workflows.md`; `DEPENDENCY_MAP.md` |
+| Participating domains (B, D) | Curriculum Framework | Authoritative scenario-specific evidence owned by the contributing domain | Support the Curriculum Framework-owned final decision while retaining source-domain ownership. | `DEPENDENCY_MAP.md`; applicable L2 sources |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
@@ -147,8 +157,8 @@ No exact scenario-specific public event is established with sufficient confidenc
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
-| Initiate academic structure or curriculum retirement | Canonical actor is used only where explicitly supported upstream; otherwise UNCERTAIN | Must be authorized for the exact subject and institutional scope. | Curriculum Framework |
-| Make or approve the final decision | Canonical decision role is used only where explicitly supported upstream; otherwise UNCERTAIN | Decision must evaluate the authoritative proposal, baseline, evidence, and effective context. | Curriculum Framework |
+| Initiate academic structure or curriculum retirement | Canonical actor only where explicitly supported upstream | Must be authorized for the exact subject and institutional scope. | Curriculum Framework |
+| Make or approve the final decision | Canonical decision role only where explicitly supported upstream | Decision must evaluate the authoritative proposal, baseline, evidence, and effective context. | Curriculum Framework |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
@@ -161,6 +171,7 @@ No scenario-specific separation-of-duty, override, or escalation rule is asserte
 | Trace the governed request and subject | Canonical subject/version, scope, baseline, requested outcome, and effective context | Curriculum Framework |
 | Trace validation and decision | Material rule/dependency results, authoritative decision, and required reason where supported | Curriculum Framework and contributing evidence owner |
 | Preserve lifecycle and historical interpretation | Prior and resulting lifecycle/version positions and predecessor/successor lineage where applicable | Curriculum Framework |
+| Trace published retirement fact | Exact published event name where applicable, publisher, authoritative transition, and downstream hand-off evidence | Curriculum Framework |
 
 Section A/A07 retains ownership of authorization and audit infrastructure; Curriculum Framework retains ownership of the business decision and evidence semantics.
 
@@ -172,7 +183,9 @@ Section A/A07 retains ownership of authorization and audit infrastructure; Curri
 - Every mandatory business rule, dependency condition, and required approval has a satisfactory authoritative result.
 - The Curriculum Framework-owned decision is attributable and effective.
 - The subject has reached **Retired** without rewriting predecessor history.
-- Required evidence and exact canonical events or hand-offs are available.
+- For Curriculum retirement, `CurriculumRetired` is published after the authoritative retirement transition succeeds.
+- For another academic definition with no exact upstream public retirement event, the authoritative lifecycle fact or governed hand-off is available without local event invention.
+- Required evidence is retained.
 
 ## 16.2 Postconditions
 
@@ -185,14 +198,12 @@ Section A/A07 retains ownership of authorization and audit infrastructure; Curri
 
 ## 17.1 Open Issues
 
-| Issue | Architecture Impact | Required Resolution |
-|---|---|---|
-| Exact public event contract for Academic Structure or Curriculum Retirement | Consumers cannot implement a canonical asynchronous reaction without an approved name and publisher contract. | Confirm against the enterprise event registry and architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Framework_Workflows.md; do not invent an event. |
+No blocking scenario-specific architecture issue remains. The former Curriculum retirement event-name ambiguity was resolved upstream by `ADR-B-CURR-RET-001` and `L2-B04_Curriculum_Retirement_Event_Amendment_2026-08-24.md`.
 
 ## 17.2 Assumptions
 
-No assumptions. The Draft uses only the accepted 500-decision baseline and authoritative repository sources; uncertainty is recorded as an Open Issue rather than silently resolved.
+No assumptions.
 
 ## 17.3 Deferred Questions
 
-No scenario-specific deferred questions. API, UI, persistence, messaging, deployment, technical RBAC, and implementation recovery belong to later architecture levels by governance and are not repeated here.
+API, UI, persistence, messaging, deployment, technical RBAC, and implementation recovery belong to later architecture levels and are not defined here.
