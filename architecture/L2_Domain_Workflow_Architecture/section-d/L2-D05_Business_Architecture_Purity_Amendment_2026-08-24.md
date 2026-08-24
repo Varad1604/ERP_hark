@@ -6,6 +6,7 @@
 | Amendment Version | 1.2.1 |
 | Status | Locked |
 | Effective Date | 2026-08-24 |
+| Approved Through | ADR-D-MON-PURITY-001 |
 | Authority | Explicit repository-change authorization recorded 2026-08-24 |
 | Change Category | Patch — architecture-level clarification |
 
@@ -84,6 +85,7 @@ L3 scenarios derived from L2-D05 shall:
 
 Authoritative sources:
 
+- `governance/adr/ADR-D-MON-PURITY-001.md`
 - `architecture/L2_Domain_Workflow_Architecture/section-d/L2-D05_Academic_Monitoring_Workflows.md`
 - `governance/constitution/Volume_5_Change_Management.md`
 - `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/section-d/L3-D-027_Academic_Monitoring_Requirement_to_Published_Monitoring_Outcome.md`
