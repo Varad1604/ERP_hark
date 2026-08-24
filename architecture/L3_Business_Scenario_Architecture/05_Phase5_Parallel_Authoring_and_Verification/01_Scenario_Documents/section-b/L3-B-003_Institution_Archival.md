@@ -6,12 +6,12 @@
 **Participating Domains:** B  
 **Scenario Type:** Critical  
 **Priority:** P2  
-**Status:** Approved
-**Architecture Lock:** Locked  
+**Status:** Review
+**Architecture Lock:** Not Locked — material upstream issues remain open  
 **Version:** 1.0  
 **Owner:** Institution & Structure — Institution  
 **Assigned Author:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-24  
 **Depends On:** `architecture/L1_Business_Domain_Architecture/SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`; `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Business_Scenario_Template_v2.0.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Workflow.md`  
 **Referenced By:** Known downstream consumers identified in `DEPENDENCY_MAP.md`; exact scenario references only where canonically registered  
 
@@ -192,7 +192,7 @@ Section A/A07 retains ownership of authorization and audit infrastructure; Insti
 
 ## 17.2 Assumptions
 
-No assumptions. The Draft uses only the accepted 500-decision baseline and authoritative repository sources; uncertainty is recorded as an Open Issue rather than silently resolved.
+No assumptions. The Review uses only the accepted 500-decision baseline and authoritative repository sources; uncertainty is recorded as an Open Issue rather than silently resolved.
 
 ## 17.3 Deferred Questions
 
