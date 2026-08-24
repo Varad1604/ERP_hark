@@ -8,16 +8,16 @@
 **Participating Domains:** G, C, E, H  
 **Scenario Type:** Cross-domain  
 **Priority:** P0  
-**Status:** Architecture Approved  
+**Status:** Review  
 **Version:** 1.3  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-21  
+**Last Updated:** 2026-08-24  
 **Depends On:** SutraERP_L1_Business_Domain_Architecture_Locked.md; DEPENDENCY_MAP.md; L2-G01_Facilities_Management_Workflows.md; L3_Business_Scenario_Template_v2.0.md  
 **Referenced By:** None yet  
-**Architecture Approval:** ACR-G-2026-08-21-002  
-**Approved By:** Arjun Mehta, Chief Enterprise Architect  
-**Approval Date:** 21 August 2026  
-**Approval Decision:** Approved — No Conditions  
+**Historical Approval Reference (Unverified):** ACR-G-2026-08-21-002  
+**Historical Approved By Claim (Unverified):** Arjun Mehta, Chief Enterprise Architect  
+**Historical Approval Date Claim (Unverified):** 21 August 2026  
+**Historical Approval Decision Claim (Unverified):** Approved — No Conditions  
 
 ## 2. Scenario Purpose
 
@@ -170,7 +170,9 @@ No scenario-specific separation-of-duty obligation is defined by the authoritati
 
 ### 17.1 Open Issues
 
-No open issues.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| Canonical repository provenance for historical approval reference `ACR-G-2026-08-21-002` could not be validated during current-branch remediation. | The historical approval claim cannot operate as authoritative evidence for `Architecture Approved` status until its provenance is established. This does not by itself invalidate L1/L2-supported business semantics in this scenario. | Locate the canonical approval artifact and confirm its authority, or perform a governed current architecture approval after review. Historical approval evidence must not be fabricated. |
 
 ### 17.2 Assumptions
 
