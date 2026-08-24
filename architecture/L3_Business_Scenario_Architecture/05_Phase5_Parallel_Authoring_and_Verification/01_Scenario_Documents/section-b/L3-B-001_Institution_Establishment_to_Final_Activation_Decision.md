@@ -13,7 +13,7 @@
 **Owner:** Institution & Structure — Institution  
 **Assigned Author:** Pallav  
 **Last Updated:** 2026-08-24  
-**Depends On:** `architecture/L1_Business_Domain_Architecture/SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`; `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Business_Scenario_Template_v2.0.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Workflow.md`  
+**Depends On:** `architecture/L1_Business_Domain_Architecture/SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`; `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Business_Scenario_Template_v2.0.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Workflow.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Activation_Authority_Amendment_2026-08-24.md`; `governance/adr/ADR-B-INST-ACT-001.md`  
 **Referenced By:** Known downstream consumers identified in `DEPENDENCY_MAP.md`; exact scenario references only where canonically registered  
 
 ---
@@ -67,7 +67,14 @@ The scenario ends when the Institution-owned decision is effective, Institution 
 
 # 6. Business Actors, Roles and Responsibilities
 
-No scenario-specific canonical actor name can be established for every required responsibility with sufficient authority. Responsibilities are therefore expressed by owning domain in the flow. The material actor/authority gap is explicitly recorded in Section 17 and is not resolved locally in L3.
+| Business Actor / Role | Responsibility in This Scenario | Authoritative Source |
+|---|---|---|
+| Institution Administrator | Establishes and configures Institution information and submits the Institution activation request for governed decision. | L2-B01 amendment §1; ADR-B-INST-ACT-001 |
+| Institution Activation Authority | Makes the final governed Institution activation decision after the applicable L2-B01 validation and approval prerequisites are evaluated; may approve, reject, or return for correction through existing lifecycle paths. | L2-B01 amendment §1, §4–§6; ADR-B-INST-ACT-001 |
+| Institution Domain | Owns the Institution aggregate, lifecycle, business decision semantics, and canonical Institution lifecycle events. | L2-B01; L2-B01 amendment |
+| Platform / Authorization capabilities | Provide authorization and audit capabilities without acquiring ownership of the Institution activation business decision. | L2-A04 / Section A boundary preserved by ADR-B-INST-ACT-001 |
+
+`Institution Activation Authority` is an abstract business authority and not a universal Principal, Registrar, Board, Trustee, Tenant Administrator, or other fixed institutional title. Institution-specific mapping is governed upstream; technical role enforcement remains outside L3.
 
 # 7. Preconditions and Entry Criteria
 
@@ -76,7 +83,7 @@ No scenario-specific canonical actor name can be established for every required 
 - The subject is in a permitted entry lifecycle position: **Configured / Pending Approval**.
 - Required authoritative rules, versions, relationships, and effective-date context are resolvable.
 - Material dependency evidence is available from its owning domain; missing evidence is not assumed.
-- Required business authority is established or its absence remains explicitly governed by the Open Issue in Section 17.
+- The Institution Administrator and Institution Activation Authority responsibilities are governed by the approved L2-B01 authority amendment.
 
 # 8. Trigger
 
@@ -86,16 +93,20 @@ An authorized Institution establishment and activation request.
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Establish the Institution Establishment Request, subject identity, scope, proposed effective context, and accountable business intent. | Institution | A reviewable governed proposal exists. |
+| 1 | Establish the Institution Establishment Request, subject identity, scope, proposed effective context, and accountable business intent. | Institution Administrator | A reviewable governed proposal exists. |
 | 2 | Verify entry state, authoritative relationships, required upstream facts, and absence of conflicting effective decisions. | Institution | Entry eligibility is confirmed or progression is blocked. |
 | 3 | Evaluate material Institution rules, lifecycle constraints, dependency evidence, historical impact, and downstream consequences. | A, B | A traceable validation and impact result exists. |
-| 4 | Obtain the authoritative review, decision, or approval required by the governing architecture. | Institution | An attributable business decision is recorded. |
-| 5 | Apply the approved business outcome at its permitted effective point without rewriting predecessor history. | Institution | Institution reaches Active. |
-| 6 | Record required evidence and publish or hand off only canonical business facts to material consumers. | Institution | The outcome is auditable and available for governed downstream use. |
+| 4 | Submit the validated activation request for final governed decision. | Institution Administrator | A decision-ready activation request exists. |
+| 5 | Approve, reject, or return the request through the existing governed lifecycle according to the authoritative evidence and constraints. | Institution Activation Authority | An attributable business decision is recorded. |
+| 6 | Apply an approved business outcome at its permitted effective point without rewriting predecessor history. | Institution | Institution reaches Active. |
+| 7 | Record required evidence and publish or hand off only canonical business facts to material consumers. | Institution | The outcome is auditable and available for governed downstream use. |
 
 # 10. Alternate Business Flows
 
-No scenario-specific alternate business flow is defined by the authoritative L2 architecture.
+- A correctable activation request may be returned through the existing L2-B01 `Returned` path for correction and governed resubmission.
+- A request that fails the final activation decision may reach the existing `Rejected` outcome and cannot transition directly to `Active`.
+
+No additional alternate lifecycle state or authority is introduced by this scenario.
 
 # 11. Failure, Interruption and Business Recovery
 
@@ -109,10 +120,13 @@ No scenario-specific alternate business flow is defined by the authoritative L2 
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Canonical ownership | Institution | Institution owns the final outcome; participation and consumption do not transfer ownership. | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Workflow.md`; locked L1 architecture |
-| Authoritative identity and scope | Institution | The proposal must reference the canonical Institution identity and applicable institutional scope. | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Workflow.md` |
-| Lifecycle integrity | Institution | Only the authoritative entry and resulting lifecycle positions may be used; unsupported transitions are prohibited. | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Workflow.md` |
-| Historical integrity | Institution | The outcome must preserve prior authoritative identity, decisions, and historical references. | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Workflow.md` |
+| Canonical ownership | Institution | Institution owns the final outcome; participation and consumption do not transfer ownership. | L2-B01; locked L1 architecture |
+| Authoritative identity and scope | Institution | The proposal must reference the canonical Institution identity and applicable institutional scope. | L2-B01 |
+| Lifecycle integrity | Institution | Only the authoritative entry and resulting lifecycle positions may be used; unsupported transitions are prohibited. | L2-B01 |
+| Activation request authority | Institution | Institution Administrator submits the governed activation request after required configuration. | L2-B01 authority amendment; ADR-B-INST-ACT-001 |
+| Final activation authority | Institution | Institution Activation Authority makes the final governed activation decision; local job-title mapping is not defined at L3. | L2-B01 authority amendment; ADR-B-INST-ACT-001 |
+| Authorization ownership boundary | A / Institution | Authorization enforcement remains with L2-A04 while Institution retains the activation business decision. | ADR-B-INST-ACT-001 |
+| Historical integrity | Institution | The outcome must preserve prior authoritative identity, decisions, and historical references. | L2-B01 |
 
 ## 12.1 Scenario-Specific Applied Decisions
 
@@ -120,12 +134,14 @@ No scenario-specific alternate business flow is defined by the authoritative L2 
 - Correctable incompleteness may be returned; a failed mandatory activation decision is rejected.
 - Rejected cannot transition directly to Active; governed reset/resubmission is required.
 - Activation does not equal global readiness or Organisation configuration.
+- No universal Principal, Registrar, Board, Trustee, or other local title is made canonical by this scenario.
+- No universal separation-of-duties rule is invented beyond the approved upstream amendment.
 
 # 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Institution | Configured / Pending Approval | The authorized scenario decision applies only after validation and at the permitted effective point. | Active | Institution | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Workflow.md` |
+| Institution | Configured / Pending Approval | The authorized scenario decision applies only after validation and at the permitted effective point. | Active | Institution | L2-B01; L2-B01 authority amendment |
 
 No state synonym, hidden intermediate state, or unsupported transition is introduced by this scenario.
 
@@ -135,14 +151,17 @@ No state synonym, hidden intermediate state, or unsupported transition is introd
 
 | Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
 |---|---|---|---|---|
-| `InstitutionActivated` | Institution | Material downstream consumers | Communicate the completed institution establishment to final activation decision fact | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Workflow.md` |
+| `InstitutionActivated` | Institution | Material downstream consumers | Communicate the completed institution establishment to final activation decision fact | L2-B01; L2-B01 authority amendment |
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
 | Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
 |---|---|---|---|---|
-| Institution | Material downstream domains | Canonical Institution identity, lifecycle/version status, effective context, and completed business outcome | Permit governed consumption without transferring ownership | `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Workflow.md` |
-| Participating domains (A, B) | Institution | Authoritative validation, readiness, physical, academic, workforce, or other scenario-specific evidence | Support the Institution-owned final decision while retaining source-domain ownership | `DEPENDENCY_MAP.md`; applicable L2 sources |
+| L2-A01 Platform / Tenant Foundation | Institution | Active canonical Tenant context and Tenant association | Provide the upstream context in which the Institution is established. | L2-B01 amendment §3 |
+| Institution Administrator | Institution Activation Authority | Configured Institution activation request with required validation evidence | Enable the final Institution-owned activation decision without transferring aggregate ownership. | L2-B01 amendment §3–§4 |
+| Institution | Material downstream domains | Canonical Institution identity, authoritative lifecycle facts, and completed business outcome | Permit governed consumption without transferring ownership. | L2-B01; L2-B01 amendment §3 |
+
+No API, transport, payload, schema, or implementation contract is introduced.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
@@ -150,19 +169,19 @@ No state synonym, hidden intermediate state, or unsupported transition is introd
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
-| Initiate institution establishment to final activation decision | **UNCERTAIN — upstream canonical actor/role is not sufficiently defined** | Must be authorized for the exact subject and institutional scope. No role is inferred in L3. | Institution |
-| Make or approve the final decision | **UNCERTAIN — upstream canonical decision role is not sufficiently defined** | Decision must evaluate the authoritative proposal, baseline, evidence, and effective context. No role is inferred in L3. | Institution |
+| Establish/configure the Institution and submit activation request | Institution Administrator | Operates within the applicable Institution governance and may submit the configured Institution for governed activation decision. | Institution |
+| Make the final activation decision | Institution Activation Authority | Evaluates the authoritative proposal and required validation evidence; may approve, reject, or return through existing L2-B01 paths. | Institution |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-No scenario-specific separation-of-duty, override, or escalation rule is asserted unless explicitly established by the authoritative source. Terminal states and canonical rules cannot be bypassed by an assumed administrator override.
+The approved L2-B01 authority amendment introduces no universal separation-of-duties rule between Institution Administrator and Institution Activation Authority. Institution-specific governance may impose stronger separation through authoritative institutional policy and authorization architecture. Terminal states and canonical rules cannot be bypassed by an assumed administrator override.
 
 ## 15.3 Business Audit and Evidence Obligations
 
 | Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
 |---|---|---|
 | Trace the governed request and subject | Canonical subject/version, scope, baseline, requested outcome, and effective context | Institution |
-| Trace validation and decision | Material rule/dependency results, authoritative decision, and required reason where supported | Institution and contributing evidence owner |
+| Trace submission and final decision | Institution Administrator submission, material rule/dependency results, Institution Activation Authority decision, and required reason where supported | Institution and contributing evidence owner |
 | Preserve lifecycle and historical interpretation | Prior and resulting lifecycle/version positions and predecessor/successor lineage where applicable | Institution |
 
 Section A/A07 retains ownership of authorization and audit infrastructure; Institution retains ownership of the business decision and evidence semantics.
@@ -173,7 +192,8 @@ Section A/A07 retains ownership of authorization and audit infrastructure; Insti
 
 - The canonical Institution and governed scope are unambiguous.
 - Every mandatory business rule, dependency condition, and required approval has a satisfactory authoritative result.
-- The Institution-owned decision is attributable and effective.
+- The Institution Administrator submission and Institution Activation Authority decision are attributable.
+- The Institution-owned decision is effective.
 - The subject has reached **Active** without rewriting predecessor history.
 - Required evidence and exact canonical events or hand-offs are available.
 
@@ -188,15 +208,15 @@ Section A/A07 retains ownership of authorization and audit infrastructure; Insti
 
 ## 17.1 Open Issues
 
-**OPEN — Canonical institution activation actor / decision authority.** The authoritative upstream architecture available to this scenario does not identify a sufficiently specific canonical business actor or role for both initiation and final activation decision authority across the governed Institution contexts. L3 therefore retains the responsibility with the Institution domain and records the actor/authority as **UNCERTAIN** rather than inventing a role.
+No material upstream actor/authority issue remains for this scenario. The former activation-authority ambiguity was resolved by `ADR-B-INST-ACT-001` and the locked `L2-B01_Institution_Activation_Authority_Amendment_2026-08-24.md`.
 
-**Governance effect:** this scenario remains in **Review** and does not assert an architecture lock while the material authority ambiguity remains unresolved. Resolution requires an authoritative upstream architecture or governance decision; it must not be fixed locally by naming an assumed administrator, registrar, principal, or other role.
+**Governance status:** the scenario remains in **Review**. Resolution of the upstream gap makes the scenario reviewable without local actor invention; it does not itself constitute L3 Architecture Approved or Locked status.
 
 ## 17.2 Assumptions
 
-No assumptions. No business actor, approval role, delegation, separation-of-duty rule, or authority hierarchy is inferred beyond the authoritative sources.
+No assumptions. No local job-title mapping, delegation model, universal separation-of-duty rule, authority hierarchy, state, event, or ownership change is inferred beyond the authoritative sources.
 
 ## 17.3 Deferred Questions
 
-- Must institution activation authority be represented by one fixed canonical business role, or is it intentionally resolved through institution-specific governed policy? This requires an upstream architecture/governance decision.
+- Institution-specific mapping of the abstract `Institution Activation Authority` to local organizational roles remains governed by institutional policy and later authorization/implementation architecture.
 - API, UI, persistence, messaging, deployment, technical RBAC, and implementation recovery remain deferred to later architecture levels.
