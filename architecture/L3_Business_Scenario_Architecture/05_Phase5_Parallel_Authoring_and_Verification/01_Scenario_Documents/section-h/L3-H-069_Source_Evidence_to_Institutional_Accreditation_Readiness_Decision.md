@@ -1,6 +1,6 @@
 # Source Evidence to Institutional Accreditation Readiness Decision
 
-# 1. Scenario Metadata
+## 1. Scenario Metadata
 
 **Scenario ID:** L3-H-069  
 **Architecture Level:** L3 — Business Scenario Architecture  
@@ -11,178 +11,163 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H09 — Accreditation & Compliance Workflows; L2-G00 — Campus Operations Review  
-**Referenced By:** External assessment, SSR, CAPA, compliance, and accreditation-governance scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP_L1_Business_Domain_Architecture_Locked.md; DEPENDENCY_MAP.md; L2-H09_Accreditation_and_Compliance_Workflows.md; L2-G00_Campus_Operations_Review_and_Governance.md  
+**Referenced By:** None yet
 
-# 2. Scenario Purpose
+## 2. Scenario Purpose
 
-Produce H09's authoritative institutional accreditation-readiness decision from the approved framework and cycle, approved evidence, open governance issues, CAPA status, audit results, and G00 campus-operational governance evidence without transferring ownership of source readiness facts or evidence into H09.
+Produce the authoritative institutional accreditation-readiness decision from the approved framework/cycle, governed evidence, audit/finding/CAPA status and verified campus/source-domain readiness evidence.
 
-# 3. Business Outcome
+## 3. Business Outcome
 
 H09 evaluates framework coverage, approved evidence, open findings, CAPA status, audit results, and G00 campus evidence to issue the institutional accreditation-readiness decision
 
-# 4. Scenario Boundary and Scope
+## 4. Scenario Boundary and Scope
 
-## 4.1 Start Boundary
+### 4.1 Start Boundary
 
 An active accreditation cycle reaches a readiness-review milestone.
 
-## 4.2 End Boundary
+### 4.2 End Boundary
 
-The scenario ends when the H09 Readiness Assessment has been reviewed and validly approved, and the institutional accreditation-readiness decision is published under H09 ownership.
+H09 evaluates framework coverage, approved evidence, open findings, CAPA status, audit results, and G00 campus evidence to issue the institutional accreditation-readiness decision.
 
-## 4.3 In Scope
+### 4.3 In Scope
 
-- One approved Accreditation Framework and active Accreditation Cycle.
-- Approved evidence and criterion/metric coverage.
-- Evidence sufficiency and missing-evidence gaps.
-- Open observations, findings, CAPA status, and relevant audit outcomes.
-- G00 campus-operational governance evidence, readiness reports, and review history.
-- IQAC readiness review and source-defined escalation for material thresholds.
-- H09 readiness approval and publication.
+- H09-owned governance behaviour materially required to reach the frozen business outcome.
+- Applicable source-domain references, evidence and governed hand-offs without ownership transfer.
+- Only upstream-defined rules, lifecycle positions, events, approvals and evidence obligations relevant to this scenario.
 
-## 4.4 Out of Scope
+### 4.4 Out of Scope
 
-- Changing G00 operational-readiness conclusions.
-- Changing source-domain evidence.
-- Treating A10 operational certification eligibility or G00 campus readiness as the institutional accreditation-readiness decision.
-- Executing remediation identified by the readiness assessment.
+- Operational business-state ownership belonging to participating source domains.
+- Adjacent downstream institutional outcomes after this scenario's End Boundary.
+- Later architecture-level implementation concerns.
 
-# 5. Ownership and Participating Domains
+## 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Accreditation & Compliance / H | Canonical owner of the institutional Readiness Assessment, readiness approval, publication, and accreditation-readiness decision. |
-| Campus Operations / G00 | Owns Campus Readiness Assessment, operational governance evidence, campus-operational readiness reports, and review history supplied to H09. |
-| VAR:Evidence-Owning Domain | Owns the underlying institutional facts and evidence referenced by the H09 readiness assessment. |
+| Accreditation & Compliance (H) | Owns the H09 governance outcome and applicable H09 lifecycles. |
+| Campus Operations (G) | Provides campus governance/readiness evidence; does not own the H09 accreditation-readiness decision. |
+| VAR:Evidence-Owning Domain | Retains ownership of authoritative source evidence/business facts while supplying governed references or readiness evidence. |
 
-# 6. Business Actors, Roles and Responsibilities
+Participation and evidence contribution do not transfer canonical ownership.
+
+## 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| IQAC | Reviews accreditation readiness, evidence sufficiency, framework alignment, and readiness assessment outcomes. | Reviews / approves readiness under H09 governance |
-| Institutional Leadership | Reviews material strategic readiness and receives escalated readiness decisions when source-defined thresholds are crossed. | Escalated approval/review |
-| Department Quality Committee | Reviews local evidence completeness and local readiness issues before institution-wide escalation. | Reviews local inputs |
+| IQAC | Reviews evidence sufficiency and readiness assessment outcomes. | Reviews / approves |
+| Accreditation Cell | Coordinates readiness evidence and assessment preparation. | Performs |
+| Institutional Leadership | Reviews material readiness gaps and escalated readiness positions. | Reviews |
+| Department Coordinators | Provide departmental evidence and gap updates. | Participates |
 
-No variable source-domain actor is invented for `VAR:Evidence-Owning Domain`; participation is through authoritative source evidence.
+## 7. Preconditions and Entry Criteria
 
-# 7. Preconditions and Entry Criteria
+- One approved Accreditation Framework and one active Accreditation Cycle govern the readiness assessment.
+- Approved evidence and current audit/finding/CAPA information are available for the milestone.
 
-- The Readiness Assessment references one approved Accreditation Framework and one active Accreditation Cycle.
-- Required evidence inputs are available through governed H09 evidence records and approved source references.
-- G00 campus-operational governance evidence is available when applicable.
-
-# 8. Trigger
+## 8. Trigger
 
 An active accreditation cycle reaches a readiness-review milestone
 
-# 9. Main Business Flow
+## 9. Main Business Flow
 
-1. H09 creates the Readiness Assessment for the active Accreditation Cycle.
-2. H09 confirms the approved Accreditation Framework and applicable criteria/metrics.
-3. H09 evaluates approved evidence coverage and evidence sufficiency while preserving source-domain ownership.
-4. H09 reviews open observations, findings, CAPA status, relevant audit outcomes, and other governed readiness gaps.
-5. H09 consumes G00 campus-operational governance evidence, readiness reports, and review history through the approved readiness-evidence contract; G00's operational conclusion remains G00-owned.
-6. H09 determines the readiness score/conclusion from the governed assessment inputs.
-7. IQAC reviews the readiness outcome and supporting evidence.
-8. Material readiness thresholds are escalated to Institutional Leadership as required by the H09 governance structure.
-9. The readiness decision is approved within H09 governance.
-10. H09 publishes the institutional accreditation-readiness decision.
-11. Where gaps require action, H09 routes them to CAPA or other governed remediation tracking without changing the source-domain facts.
+| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
+|---|---|---|---|
+| 1 | Initiate the Readiness Assessment at the cycle readiness-review milestone. | Accreditation & Compliance | A Readiness Assessment is Draft. |
+| 2 | Consume verified source-domain evidence and unresolved gaps, including G00 campus governance evidence/readiness reports and review history. | Accreditation & Compliance / G / VAR:Evidence-Owning Domain | Readiness evidence is assembled without transferring source ownership. |
+| 3 | Evaluate framework and criterion coverage, approved evidence, open observations/findings, CAPA status and audit results. | IQAC / Accreditation & Compliance | Readiness gaps, coverage and assessment results are established. |
+| 4 | Review and approve the Readiness Assessment. | IQAC | The authoritative readiness decision is approved. |
+| 5 | Issue the institutional accreditation-readiness decision owned by H09. | Accreditation & Compliance | The frozen institutional readiness outcome is reached. |
 
-# 10. Alternate Business Flows
+## 10. Alternate Business Flows
 
 | Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
 |---|---|---|---|---|
-| Readiness gaps require remediation | Evidence, findings, CAPA or audit inputs show material gaps | Route the gap to governed remediation and withhold/qualify readiness according to H09 governance | Gap remains governed | Accreditation & Compliance |
-| G00 evidence indicates campus-operational concern | Campus readiness evidence is not fully ready | Preserve G00's operational conclusion and consider it as evidence in H09's distinct accreditation decision | Ownership remains separated | G00 / H09 |
-| Evidence is incomplete | Required accreditation evidence is missing | Resolve evidence under H09 evidence governance before publishing an unsupported readiness conclusion | Decision held for evidence resolution | H09 / evidence owner |
+| Readiness gaps require remediation | The assessment identifies actionable gaps | Route the gaps to CAPA or other governed remediation tracking while preserving the H09 readiness decision. | The assessment records the governed readiness position and remediation need. | Accreditation & Compliance |
 
-# 11. Failure, Interruption and Business Recovery
+## 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Framework or cycle does not satisfy BR-H09-031 | Readiness Assessment lacks valid governance context | Resolve framework/cycle governance before assessment approval | Accreditation & Compliance |
-| Readiness score lacks approval | Publication is prohibited | Complete the H09 approval path | Accreditation & Compliance |
-| Source evidence ownership is unclear | Readiness evidence cannot be trusted as authoritative | Resolve the source owner before relying on the evidence | Accreditation & Compliance / evidence owner |
+| Required evidence is not verified or approved | Readiness approval cannot be supported. | Maintain the assessment in Draft/In Review and obtain governed evidence/remediation before approval. | Accreditation & Compliance |
 
-# 12. Business Rules and Decision Constraints
+## 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Every Readiness Assessment references one approved Accreditation Framework and one active Accreditation Cycle | H09 | Establishes assessment governance context | L2-H09 BR-H09-031 |
-| Readiness scores are approved before publication | H09 | Decision cannot be published before approval | L2-H09 BR-H09-032 |
-| Readiness gaps route to CAPA or other governed remediation where action is required | H09 | Assessment identifies but does not execute remediation | L2-H09 BR-H09-033 |
-| Evidence remains traceable to source records/documents | H09 / source owners | Readiness evidence must preserve lineage | L2-H09 BR-H09-009; Principle 3 |
-| G00 never transfers ownership of campus-operational readiness facts to H09 | G00 | H09 consumes governance evidence only | L2-G00 ownership/readiness rules; `DEPENDENCY_MAP.md` runtime contract |
+| BR-H09-031 — every Readiness Assessment references one approved framework and one active cycle. | Accreditation & Compliance | Establishes assessment lineage. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
+| BR-H09-032 — readiness scores are approved before publication. | Accreditation & Compliance | Requires governance approval. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
+| BR-H09-033 — readiness gaps route to CAPA or other governed remediation where action is required. | Accreditation & Compliance | Preserves governed remediation. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
 
-# 13. State and Lifecycle Impact
+## 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Readiness Assessment | Draft | Evaluate evidence and readiness inputs | In Review | H09 | L2-H09 H09-A10 |
-| Readiness Assessment | In Review | Complete governance decision | Approved | H09 | L2-H09 H09-A10; BR-H09-032 |
-| Readiness Assessment | Approved | Issue the institutional decision | Published | H09 | L2-H09 H09-A10 |
-| Campus Readiness Assessment | Source-owned completed/readiness result | Provide campus-operational governance evidence | No H09-owned state change | G00 | L2-G00 Campus Readiness lifecycle |
+| Readiness Assessment | Draft | Evidence evaluation, review and governance approval. | Approved | Accreditation & Compliance | L2-H09_Accreditation_and_Compliance_Workflows.md §6 H09-A10 / §7 |
 
-H09-ADR-001 explicitly reserves the institutional accreditation-readiness assessment and its approval/publication lifecycle to H09.
+## 14. Business Events and Cross-Domain Collaboration
 
-# 14. Business Events and Cross-Domain Collaboration
-
-## 14.1 Published / Consumed Business Events
+### 14.1 Published / Consumed Business Events
 
 | Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
 |---|---|---|---|---|
-| Readiness Assessment Created | Readiness Assessment aggregate / H09 | H09 governance consumers | Records assessment creation | L2-H09 §11 |
-| Readiness Assessment Reviewed | Readiness Assessment aggregate / H09 | H09 governance consumers | Records completed readiness review | L2-H09 §11 |
-| Readiness Assessment Approved | Readiness Assessment aggregate / H09 | Governance/leadership consumers | Records authoritative approval | L2-H09 §11 |
-| Readiness Assessment Published | Readiness Assessment aggregate / H09 | Governance/leadership consumers | Records issued readiness decision | L2-H09 §11 |
+| Readiness Assessment Created | Readiness Assessment aggregate | Institutional Leadership; IQAC; Compliance Review | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Readiness Assessment Reviewed | Readiness Assessment aggregate | Institutional Leadership; IQAC; Compliance Review | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Readiness Assessment Approved | Readiness Assessment aggregate | Institutional Leadership; IQAC; Compliance Review | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
 
-## 14.2 Business Contracts and Cross-Domain Hand-offs
+### 14.2 Business Contracts and Cross-Domain Hand-offs
 
-`DEPENDENCY_MAP.md` records H09 consuming G00 Campus Operations Review through a runtime business contract for campus operational governance evidence, readiness reports, and review history. L2-H09 §23.2 requires the readiness-evidence contract to distinguish source-domain operational readiness from H09's institutional accreditation-readiness decision.
+| Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
+|---|---|---|---|---|
+| G00 Campus Operations Review | Accreditation & Compliance | Accreditation Readiness Evidence Contract | Provide governance evidence, campus operational evidence-readiness reports and unresolved gaps for institutional readiness evaluation. | L2-H09_Accreditation_and_Compliance_Workflows.md §23.2; L2-G00_Campus_Operations_Review_and_Governance.md §9 |
+| VAR:Evidence-Owning Domain | Accreditation & Compliance | Accreditation Readiness Evidence Contract | Provide verified readiness evidence and unresolved gaps without transferring source ownership. | L2-H09_Accreditation_and_Compliance_Workflows.md §23.2 |
 
-# 15. Business Authorization, Approval and Audit Obligations
+## 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
+### 15.1 Initiation and Decision Authority
 
-Readiness approvals sit with IQAC under the H09 governance structure and escalate to Institutional Leadership when material thresholds are crossed. H09 remains the canonical owner of the decision.
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| Readiness assessment approval | IQAC | H09 places readiness approval with IQAC, with escalation to Institutional Leadership for material thresholds. | Accreditation & Compliance |
 
-## 15.2 Separation of Duties, Overrides and Exceptions
+### 15.2 Separation of Duties, Overrides and Exceptions
 
-G00 and evidence-owning domains provide source evidence but do not approve or own H09's institutional accreditation-readiness decision merely by participating.
+Source domains provide evidence but do not publish the institutional accreditation-readiness decision; H09 alone owns that decision.
 
-## 15.3 Business Audit and Evidence Obligations
+### 15.3 Business Audit and Evidence Obligations
 
-Preserve framework/cycle identity, evidence-reference lineage, G00 governance evidence, criterion/metric coverage, findings/CAPA/audit inputs, readiness score, review evidence, approval evidence, escalation evidence where applicable, and publication history.
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Readiness decision | Approved framework/cycle lineage, approved evidence references, gaps, findings, CAPA/audit status and approval decision | Accreditation & Compliance |
+| Campus readiness contribution | G00 governance evidence/readiness reports and review history | Campus Operations Governance |
 
-# 16. Completion Criteria and Postconditions
+## 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
+### 16.1 Completion Criteria
 
-- The assessment references an approved framework and active cycle.
-- Required evidence and governance inputs are evaluated.
-- The readiness outcome is reviewed and validly approved.
-- The H09 institutional accreditation-readiness decision is published.
+- A readiness assessment references one approved framework and active cycle.
+- G00 and other source-domain evidence has been consumed as governed references.
+- The H09-owned institutional accreditation-readiness decision is approved and issued.
 
-## 16.2 Postconditions
+### 16.2 Postconditions
 
-The published H09 readiness decision is available for external-assessment, SSR, and governance scenarios; source-domain readiness/evidence ownership is unchanged.
+- H09 owns the institutional readiness decision.
+- G00 and `VAR:Evidence-Owning Domain` retain ownership of the evidence and operational facts they contributed.
 
-# 17. Open Issues, Assumptions and Deferred Questions
+## 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+### 17.1 Open Issues
 
-H09 defines the Readiness Assessment capability, aggregate, lifecycle, rules, events, approval governance, evidence contract, and locked ownership decision, but does not provide a separate stepwise core workflow section dedicated to H09-10 Accreditation Readiness Assessment. The semantic evidence is sufficient for this Draft, but the L2 workflow presentation is incomplete.
+No open issues.
 
-**Architecture assessment:** `PASS WITH ISSUES`
-
-## 17.2 Assumptions
+### 17.2 Assumptions
 
 No assumptions.
 
-## 17.3 Deferred Questions
+### 17.3 Deferred Questions
 
-Upstream H09 may add an explicit Readiness Assessment workflow sequence without changing the locked ownership/rule/event semantics used here.
+No scenario-specific deferred questions.

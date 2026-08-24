@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A04 — Authorization & Policy Workflows; L2-H07 — Enterprise Dashboard Workflows  
-**Referenced By:** Dashboard publication, dashboard restoration, audit, and retirement scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A04 — Authorization & Policy Workflows; L2-H07 — Enterprise Dashboard Workflows  
+**Referenced By:** None yet
 
 # 2. Scenario Purpose
 
-Govern changes to an H07 Dashboard through immutable versioning and provide a controlled restoration path for a prior published composition without changing source-domain facts or weakening Section A authorization.
+Govern approved dashboard composition changes through immutable H07 version publication and, when required by the frozen semantics, restore a prior governed version without rewriting history.
 
 # 3. Business Outcome
 
@@ -27,49 +27,44 @@ A new immutable version is published or a prior version is restored with full li
 
 ## 4.1 Start Boundary
 
-An approved dashboard composition changes or a published version must be restored.
+The scenario begins when an approved dashboard composition changes or a published version must be restored.
 
 ## 4.2 End Boundary
 
-For a normal governed change, the scenario can end when a new immutable version is validated, approved, and published. The rollback/restoration branch is materially ambiguous because H07 defines both creation of a new rollback version and direct switching of the active publication pointer to a prior immutable version.
+The scenario ends when H07 has either published the approved new immutable version or completed the governed rollback to a selected prior immutable version with lineage preserved.
 
 ## 4.3 In Scope
 
-- H07 Dashboard metadata change and version governance.
-- Validation, approval, and publication of a new immutable version.
-- H07 rollback/restoration semantics only where unambiguous.
-- Preservation of version lineage and Section A authorization constraints.
+- Govern H07 Dashboard Version evolution.
+- Validate and approve a candidate version before publication.
+- Preserve immutability of published/locked versions.
+- Perform H07-governed rollback by selecting a prior valid version rather than editing history.
+- Preserve authorization and version lineage evidence.
 
 ## 4.4 Out of Scope
 
-- Choosing between contradictory H07 rollback models.
-- Editing a published version in place.
-- Modifying source-domain business facts.
-- Technical deployment, caching, UI, or persistence mechanics.
+- Rewriting an already published dashboard version.
+- Changing source-domain business facts because dashboard composition changed.
+- Implementation mechanics for rollback.
+- Choosing between conflicting H07 publication-event names.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
+| Domain | Responsibility |
 |---|---|
-| Platform Foundation / A | Owns authorization policies and decisions governing update, publication, and rollback authority. |
-| Enterprise Dashboard / H | Owns Dashboard metadata, Dashboard Version, publication metadata, version history, and rollback governance. |
+| Enterprise Dashboard / H07 | Owns Dashboard Version lifecycle, publication, rollback governance, and version lineage. |
+| Platform Foundation / A04 | Owns authorization decisions governing version approval, publication, and rollback actions. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Dashboard Owner | Initiates governed dashboard changes and publication where authorized. | Initiates |
-| Administrator | Performs H07 dashboard update/publication and rollback administration where authorized. | Performs |
-| Governance Reviewer | Reviews changed dashboard metadata where H07 requires governance review. | Reviews |
-| Approver | Provides H07-required publication approval. | Approves |
-| Release Manager | Initiates the H07-defined rollback workflow where authorized. | Initiates rollback |
+H07 identifies governance/release authority for publication and rollback activities. A04 remains the canonical owner of authorization decisions. Source-domain owners remain responsible for the business facts represented by the dashboard.
 
 # 7. Preconditions and Entry Criteria
 
-- The Dashboard exists under H07 ownership.
-- A normal change is applied only to an editable H07 position and never mutates a published immutable version.
-- For rollback, a prior published version exists and is rollback-eligible.
-- Applicable Section A authorization and H07 governance authority are satisfied.
+- A governed dashboard exists.
+- A composition change is approved for version governance, or a prior published version is eligible for governed restoration.
+- The acting participant is authorized for the requested publication or rollback decision.
+- Referenced source information remains owned upstream.
 
 # 8. Trigger
 
@@ -77,107 +72,76 @@ An approved dashboard composition changes or a published version must be restore
 
 # 9. Main Business Flow
 
-1. Receive the approved dashboard-composition change.
-2. Preserve the current published version as immutable historical evidence.
-3. Apply the change to H07-owned dashboard metadata through the editable/versioned path.
-4. Validate structure, widget compatibility, policy, authorization, and dependency compatibility.
-5. Complete H07 review and approval for the successor publication.
-6. Publish the new immutable Dashboard Version and preserve lineage to prior versions.
-7. Stop at the successful new-version publication outcome for the normal change branch.
-8. For a rollback request, verify the selected historical version is rollback-eligible and stop before selecting the final restoration mechanism because H07 contains contradictory authoritative instructions.
+1. H07 creates a candidate Dashboard Version from the approved composition change.
+2. The candidate version is validated against H07 governance constraints and authoritative source references.
+3. The authorized H07 governance authority approves the valid version.
+4. H07 publishes the approved version as an immutable governed version.
+5. The published version becomes the current governed publication without altering prior versions.
+6. H07 preserves the complete version lineage and governing evidence.
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| Rollback/restoration | A prior published version must be restored | H07 requires compatibility and authorization validation, but the final version action is disputed upstream | BLOCKED pending authoritative rollback-model reconciliation | Enterprise Dashboard |
-| Publication rejection | Changed version fails validation or approval | Do not publish; preserve existing published history | Existing published version remains unchanged | Enterprise Dashboard |
+- **Governed rollback:** an authorized rollback decision selects an eligible prior immutable version; H07 validates that version under current governance and records a new rollback action while preserving both the current and historical versions.
+- A future change after rollback proceeds through another governed version publication rather than mutation of any historical version.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Changed composition is invalid or unapproved | Successor version cannot be published | Correct and resubmit the editable version through H07 governance | Enterprise Dashboard |
-| Rollback target is incompatible or unauthorized | Prior version cannot be restored | Reject the rollback request | Enterprise Dashboard / Platform Foundation |
-| Conflicting rollback semantics apply | Frozen restoration branch cannot be completed unambiguously | Upstream H07 architecture must select the canonical rollback/version behaviour | Enterprise Dashboard |
+If a candidate version or historical rollback target does not satisfy current governance, authorization, or compatibility conditions, it is not made current. The last valid governed publication remains authoritative until a supported new publication or rollback outcome is approved.
 
 # 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| Published dashboard versions are immutable | Enterprise Dashboard | Historical published versions are never edited in place | L2-H07 BR-VER-001 |
-| Every configuration modification is traceable | Enterprise Dashboard | New-version lineage must be preserved | L2-H07 BR-VER-003 |
-| Version history is never physically deleted | Enterprise Dashboard | Historical lineage remains available | L2-H07 BR-VER-004 |
-| Rollback creates a new version and historical versions remain unchanged | Enterprise Dashboard | One authoritative H07 rule points to a successor rollback version | L2-H07 BR-VER-002; §12.6 |
-| Rollback switches the active pointer to a prior immutable version | Enterprise Dashboard | Another authoritative H07 workflow/state rule points to direct restoration of the historical version | L2-H07 §51.24; §52.7 |
-| Authorization remains governed by Section A | Platform Foundation | Update/publication/rollback cannot expand authorization | L2-A04; L2-H07 §17 |
+- Published dashboard versions are immutable.
+- Rollback does not edit an existing published version; it changes the governed current selection while preserving history.
+- Source-domain facts and KPI definitions remain owned by their canonical domains.
+- A04 authorization decisions govern publication and rollback authority.
 
 # 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Dashboard Version | Candidate/Created and other pre-publication positions as defined upstream | Validate, approve and publish normal successor version | New immutable Published/Locked version with lineage | Enterprise Dashboard | L2-H07 §§12.6, 52.7 |
-| Dashboard Version | Prior published historical version | Rollback/restoration requested | Ambiguous: new rollback version versus active-pointer switch to prior version | Enterprise Dashboard | L2-H07 BR-VER-002; §§12.6, 51.24, 52.7 |
-
-H07 also differs internally on the version lifecycle itself: §12.6 begins with `Created` and omits `Locked`, while §52.7 begins with `Candidate` and includes `Locked`.
+H07 defines the Dashboard Version lifecycle `Candidate → Validated → Approved → Published → Locked → Superseded → Archived`. Governed rollback uses a prior immutable version without moving an Archived version directly back to Published or rewriting a Locked version.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
-|---|---|---|---|---|
-| DashboardUpdated | Enterprise Dashboard | H07 governance participants | Records supported metadata update | L2-H07 §23.2 |
-| DashboardPublished | Enterprise Dashboard | Authorized dashboard consumers | Records dashboard publication | L2-H07 §23.2; §51.7 |
-| DashboardVersionRolledBack | Enterprise Dashboard | H07 version governance participants | Records rollback action | L2-H07 §23.8; §51.24 |
-
-H07 additionally conflicts on `DashboardVersionLocked` versus `DashboardVersionPublished`; L3 does not rename or reconcile those events.
+H07 consistently defines `DashboardVersionCreated` and `DashboardVersionRolledBack`. Publication naming is internally inconsistent: the Dashboard Version event catalogue lists `DashboardVersionPublished`, while the Publish Dashboard workflow/event mapping uses `DashboardPublished` and `DashboardVersionLocked`. H07 is the publisher in all cases; L3 does not choose or rename the publication event.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-Section A supplies authorization decisions and constraints. H07 owns only dashboard/version metadata. Source-domain business facts remain read-only to H07 and are not versioned or rolled back by this scenario.
+A04 supplies authorization decisions. H07 keeps version governance and lineage; source-owning domains continue to supply the authoritative facts represented by the dashboard without ownership transfer.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
-|---|---|---|---|
-| Update dashboard | Dashboard Owner / Administrator under H07 governance | Must operate on an editable governed version and satisfy Section A authorization | Enterprise Dashboard |
-| Approve/publish successor | Approver / Dashboard Owner / Administrator as defined by H07 | Requires validation and publication authority | Enterprise Dashboard |
-| Rollback | Administrator / Release Manager | Requires rollback eligibility, compatibility, policy clearance, and release authority | Enterprise Dashboard |
+Publication and rollback require the H07 governance/release authority identified upstream and remain subject to A04 authorization.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-No additional scenario-specific separation-of-duty rule is defined beyond H07 approval/release authority and Section A authorization. Rollback must not be used to bypass current policy.
+No rollback decision may rewrite a historical published version or bypass current authorization/governance conditions. Dashboard version control may not change source-domain business facts.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve before/after change history, approval evidence, version lineage, publication history, rollback reason, target-version reference, and the resulting governed action. The exact rollback-version consequence remains unresolved upstream.
+Preserve candidate-version evidence, validation and approval history, publication evidence, rollback reason and authority, selected historical version, and complete version lineage.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- The normal change branch completes when a new immutable H07 version is validated, approved, published, and linked to its lineage.
-- The full frozen scenario cannot be completed while the rollback branch has contradictory upstream version semantics.
+A new approved immutable version is current, or a governed rollback to an eligible prior immutable version is completed with lineage intact.
 
 ## 16.2 Postconditions
 
-Normal successor publication leaves historical versions immutable and source-domain business facts unchanged. No rollback outcome is fabricated.
+All historical H07 versions remain immutable and traceable; source-domain ownership remains unchanged.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-- H07 BR-VER-002 and §12.6 state that rollback creates a **new version** based on the selected historical version.
-- H07 §51.24 and §52.7 instead state that rollback **switches/repoints the active publication to the prior immutable version**, with the original versions unchanged.
-- H07's Dashboard Version lifecycle also conflicts: §12.6 is `Created → Validated → Approved → Published → Superseded → Archived`, while §52.7 is `Candidate → Validated → Approved → Published → Locked → Superseded → Archived`.
-- H07 uses `DashboardVersionLocked` in publication workflow/state mapping while its version-event catalogue defines `DashboardVersionPublished`.
+**Non-blocking H07 event-name inconsistency:** the Dashboard Version event catalogue names `DashboardVersionPublished`, while the Publish Dashboard workflow/event mapping names `DashboardPublished` and `DashboardVersionLocked`. The owning domain/publisher and version lifecycle are clear, and `DashboardVersionRolledBack` is consistently defined.
 
-These conflicts materially affect the frozen rollback outcome, lifecycle position, and event semantics.
+**Architecture impact:** publication-event normalization is required upstream before L4 event behavior is specified; the L3 versioned-publication/rollback business outcome remains source-grounded.
 
-**Architecture assessment:** `BLOCKED`
+**Architecture assessment:** `PASS WITH ISSUES`
 
 ## 17.2 Assumptions
 
@@ -185,4 +149,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-Upstream H07 architecture must select one canonical rollback model and reconcile the Dashboard Version lifecycle/event vocabulary before the rollback branch can be completed.
+Normalize the canonical H07 event set for Dashboard Version publication.

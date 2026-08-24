@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H08 — NEP, NAAC & AISHE Reporting Workflows  
-**Referenced By:** Historical reporting, audit, compliance evidence, and future reporting-cycle scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H08 — NEP, NAAC & AISHE Reporting Workflows  
+**Referenced By:** None yet
 
 # 2. Scenario Purpose
 
-Govern either correction/resubmission of an H08 regulatory reporting outcome or formal closure and archival of a completed Reporting Cycle while preserving immutable snapshot/submission lineage and canonical ownership of source-domain corrections.
+Govern correction/resubmission when a submitted regulatory package requires change, or formally close and archive the H08 Reporting Cycle when all reporting obligations are complete, while preserving immutable reporting lineage and source-domain ownership.
 
 # 3. Business Outcome
 
@@ -27,55 +27,48 @@ A corrected package is resubmitted where required and the cycle is formally clos
 
 ## 4.1 Start Boundary
 
-A submitted package requires correction, or all cycle obligations are complete.
+The scenario begins when a submitted package requires correction, or all cycle obligations are complete.
 
 ## 4.2 End Boundary
 
-The completion branch can end when the accepted/completed Reporting Cycle is closed and archived with immutable history. The correction branch cannot be authored to a conclusive corrected resubmission because H08-W11 orders corrected snapshot generation before repeated validation, while H08 BR-005 and W04/W05 require successful validation before Reporting Snapshot generation.
+The scenario ends when any required correction has produced a new governed snapshot/package/submission record and the applicable Reporting Cycle has been formally closed and archived after its obligations are complete.
 
 ## 4.3 In Scope
 
-- H08 correction initiation after validation, institutional, or regulatory rejection.
-- Collection/reference of corrected source information from its canonical evidence-owning domain.
-- New snapshot/version and resubmission governance only to the extent source ordering is unambiguous.
-- Formal Reporting Cycle closure and archival after obligations are complete.
-- Preservation of reporting, snapshot, submission, acknowledgement, and compliance history.
+- Initiate H08 correction when a submitted package requires correction.
+- Obtain corrected authoritative facts from the applicable `VAR:Evidence-Owning Domain` without changing source ownership.
+- Generate a new Reporting Snapshot version and repeat required validation/approval preparation.
+- Prepare and record a governed resubmission while preserving prior submission history.
+- Verify completion of reporting obligations.
+- Close and archive the H08 Reporting Cycle and its reporting history.
 
 ## 4.4 Out of Scope
 
-- Direct correction of operational source facts by H08.
-- Overwriting a locked Reporting Snapshot or historical Submission Record.
-- Choosing between contradictory H08 correction/validation/snapshot rules.
-- Technical retry, rollback, transport, or storage mechanics.
+- Editing a locked Reporting Snapshot in place.
+- Replacing a prior Submission Record during resubmission.
+- Performing source-domain correction inside H08.
+- Inventing a concrete evidence-owning domain where the frozen scenario preserves a variable participant.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
+| Domain | Responsibility |
 |---|---|
-| NEP, NAAC & AISHE Reporting / H | Owns Reporting Cycle correction/closure governance, Reporting Snapshot versions, Submission Package/Record history, reporting archival, and H08 lineage. |
-| VAR:Evidence-Owning Domain | Owns any authoritative source fact that must be corrected or re-issued before H08 can consume the corrected value/reference. |
+| NEP, NAAC & AISHE Reporting / H08 | Owns correction/resubmission orchestration, Reporting Snapshot versions, Submission Package/Record history, Reporting Cycle closure, and reporting archival. |
+| VAR:Evidence-Owning Domain | Retains ownership of any authoritative source fact that must be corrected before H08 recollects it for a new reporting version. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Reporting Coordinator | Coordinates H08 correction or Reporting Cycle completion where authorized. | Coordinates |
-| Regulatory Submission Officer | Performs a later corrected submission where the package becomes validly ready and authorized. | Submits |
-| Auditor | Reviews preserved reporting and submission history. | Read-only review |
-
-No source-domain correction actor is invented for `VAR:Evidence-Owning Domain`.
+Locked H08 does not provide canonical business actors for correction initiation or cycle closure. H08 owns the reporting correction/closure outcome; the applicable evidence-owning domain owns correction of its own source facts.
 
 # 7. Preconditions and Entry Criteria
 
 For correction:
-- An existing Reporting Cycle and prior reporting/submission history exist.
-- A validation failure, approval rejection, regulatory rejection, resubmission requirement, or authorized institutional correction identifies the issue.
-- Source-domain facts requiring correction remain owned by their canonical domains.
+- An existing Reporting Cycle and prior submission history exist.
+- A submitted package requires governed correction.
 
 For closure:
 - Reporting obligations are complete.
-- Submission history is finalized as required by H08.
-- The Reporting Cycle is eligible for source-defined closure/archival.
+- Submission history is finalized for the cycle.
 
 # 8. Trigger
 
@@ -83,104 +76,93 @@ A submitted package requires correction, or all cycle obligations are complete
 
 # 9. Main Business Flow
 
-1. H08 determines whether the trigger concerns correction/resubmission or completed-cycle closure.
-2. For correction, H08 records `CorrectionInitiated` and identifies the reporting issue without altering prior immutable snapshots or Submission Records.
-3. Where the issue originates in a source-domain fact, the evidence-owning domain corrects or re-establishes its authoritative fact under its own governance; H08 later consumes the corrected reference/value.
-4. H08 assembles the corrected reporting information required for a successor reporting version.
-5. Stop the correction branch before deciding whether the corrected Reporting Snapshot is generated before or after repeated validation because locked H08 sources contradict one another on that sequence.
-6. For the completion branch, H08 verifies that reporting obligations and submission history are complete.
-7. H08 closes the Reporting Cycle in the source-defined `Closed` state and preserves it as immutable.
-8. H08 archives the Reporting Snapshot and submission/compliance history as defined upstream.
-9. H08 moves the Reporting Cycle from `Closed` to `Archived` and publishes the source-defined closure/archival outcomes.
+1. H08 determines whether the trigger requires correction/resubmission or permits cycle completion.
+2. If correction is required, H08 records correction initiation and identifies the affected reporting information.
+3. Any underlying source fact requiring change is corrected by its applicable `VAR:Evidence-Owning Domain`; H08 subsequently recollects the authoritative corrected fact.
+4. H08 creates a new Reporting Snapshot version rather than changing an existing locked snapshot.
+5. H08 repeats the governed validation and package-preparation path required for the corrected reporting version.
+6. H08 creates a new resubmission record and preserves all prior submission history.
+7. When reporting obligations are complete and submission history is finalized, H08 verifies completion and moves the Reporting Cycle to `Closed`.
+8. H08 archives the Reporting Cycle, Reporting Snapshot history, and Submission Record history while retaining full lineage.
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| Regulatory rejection | Authority rejects prior submission | Enter H08 correction governance while preserving the prior Submission Record | Correction path initiated | NEP, NAAC & AISHE Reporting |
-| Institutional correction request | Institution identifies an authorized reporting correction | Enter correction governance; source facts remain corrected by their canonical owners | Correction path initiated | NEP, NAAC & AISHE Reporting / evidence-owning domain |
-| Obligations complete without correction | Reporting lifecycle has reached its accepted/completed position | Close and archive according to H08-W12 | Governed closure and archival completed | NEP, NAAC & AISHE Reporting |
+- If no correction is required and obligations are already complete, the scenario proceeds directly to governed closure and archival.
+- A regulatory rejection may return the Reporting Cycle to `DataCollection` before a corrected version is produced.
+- Multiple governed corrections produce additional immutable snapshot and submission versions; none overwrite previous history.
+- Closure cannot proceed while required reporting obligations remain incomplete.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Corrected source information is not authoritative or complete | Corrected reporting cannot progress | Obtain a valid correction from the canonical evidence-owning domain | Evidence-owning domain / H08 |
-| Corrected snapshot/validation ordering remains unresolved | Resubmission cannot be completed authoritatively | Escalate H08 rule conflict; preserve existing history | NEP, NAAC & AISHE Reporting |
-| Reporting obligations remain incomplete | Cycle cannot close | Keep the cycle in its source-supported current position until obligations complete | NEP, NAAC & AISHE Reporting |
+If corrected authoritative information is unavailable, H08 preserves the prior reporting history and keeps the cycle outside final closure until the business condition is resolved. If completion conditions are not met, closure does not proceed. Existing snapshots and submission records remain immutable throughout recovery.
 
 # 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| H08 does not modify operational business data | Evidence-owning domains / H08 boundary | Source corrections occur under source ownership | L2-H08 BR-004; O-002 |
-| Corrections create new Reporting Snapshot versions | H08 | Prior locked snapshots are never overwritten | L2-H08 BR-009; O-003 |
-| Validation success is required before Reporting Snapshot generation | H08 | BR-005 conflicts with the W11 corrected-snapshot sequence | L2-H08 BR-005; H08-W04/W05 |
-| Every resubmission creates a new Submission Record | H08 | Prior submission history remains immutable | L2-H08 O-007; §6.12 |
-| Closed Reporting Cycles are immutable | H08 | Closure prevents rewriting completed cycle history | L2-H08 BR-020 |
-| Historical submissions are never deleted and history remains reconstructable | H08 | Full lineage must survive correction and closure | L2-H08 BR-021, BR-022 |
+- BR-008 prohibits modification of locked Reporting Snapshots.
+- BR-009 requires corrections to generate new Reporting Snapshot versions.
+- BR-013 routes rejected submissions to correction.
+- BR-018 requires complete submission history.
+- BR-020 makes closed Reporting Cycles immutable.
+- BR-021 prohibits deletion of historical submissions.
+- BR-022 requires reporting history to remain reconstructable.
+- Resubmissions create new Submission Records.
 
 # 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Reporting Cycle | Rejected / RejectedByAuthority | Correction routing | DataCollection under H08 lifecycle | H08 | L2-H08 §§6.6, 18.1 |
-| Reporting Snapshot | Locked historical version | Correction requires successor version | Historical snapshot unchanged; successor ordering unresolved | H08 | L2-H08 §6.8; BR-008/009 |
-| Submission Record | Prior submitted/acknowledged record | Correction/resubmission must preserve prior history | Prior record unchanged; new record required for valid resubmission | H08 | L2-H08 §6.12; O-007 |
-| Reporting Cycle | Accepted | Formal completion | Closed → Archived | H08 | L2-H08 §§6.6, 18.1; H08-W12 |
+A regulatory rejection may move the Reporting Cycle from `Submitted` to `RejectedByAuthority` and back to `DataCollection` for correction. Successful completion proceeds through `Accepted → Closed → Archived`. Corrected snapshots create new versions; prior locked snapshots remain unchanged. Submission Records preserve each transmission separately.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-For correction, H08 defines `CorrectionInitiated`, `SnapshotVersionCreated`, `ResubmissionPrepared`, and `ReportResubmitted`. For closure/archival, H08 defines `ReportingCycleClosed`, `ReportingArchived`, `ComplianceHistoryArchived`, and `ReportingLifecycleCompleted`. L3 preserves these names but does not assert the disputed corrected-snapshot ordering.
+Relevant H08 correction events are `CorrectionInitiated`, `SnapshotVersionCreated`, `ResubmissionPrepared`, and `ReportResubmitted`. Closure/archival events are `ReportingCycleClosed`, `ReportingArchived`, `ComplianceHistoryArchived`, and `ReportingLifecycleCompleted`.
+
+No event is invented for the variable evidence-owning domain; its source correction remains governed by the actual canonical owner when resolved.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-Where correction requires a changed source fact, H08 communicates the reporting deficiency through the approved source-domain reporting relationship and later consumes the authoritative corrected fact/reference. H08 never takes ownership of the source correction. Closure is H08-owned and does not transfer reporting-history ownership to consumers.
+Where source facts require correction, the applicable evidence-owning domain provides the corrected authoritative fact through the governed reporting contract. H08 then creates a new reporting version and retains all prior lineage. Closure is H08-owned and does not transfer source ownership.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-Reporting Coordinator is source-listed for Reporting Cycle management; Regulatory Submission Officer is source-listed for submission. The evidence-owning domain retains its own authority for correcting source facts. No additional cross-domain actor is invented.
+H08 owns correction/resubmission and cycle-closure governance, but locked H08 does not canonically define the business actor who initiates an institutional correction request or authorizes final closure. External regulatory requirements may also trigger correction without transferring H08 ownership.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-Correction cannot bypass validation, approval, evidence, or immutable-history requirements. Closure cannot occur while reporting obligations remain incomplete.
+H08 cannot correct an upstream source fact on behalf of its owner, overwrite a locked snapshot, or replace prior submission history. Closure cannot be used to bypass unresolved reporting obligations.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve correction reason, affected snapshot/package/submission references, source correction references, validation history, successor version lineage, resubmission history where validly completed, cycle closure evidence, archival evidence, acknowledgement history, and the complete immutable chain of prior reporting outcomes.
+Preserve correction reason, source reference, corrected-fact lineage, new snapshot version, validation history, package/resubmission lineage, regulatory outcome history, completion evidence, closure decision evidence where available, and archival history.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- The closure branch completes when obligations are complete and the Reporting Cycle is closed and archived with reporting/submission history retained.
-- The correction/resubmission branch cannot be declared complete until H08 resolves the corrected-snapshot versus validation ordering conflict.
+Any required correction has been represented through a new governed reporting version and resubmission history, and all cycle obligations are complete so the Reporting Cycle reaches `Closed` and then `Archived` with full lineage.
 
 ## 16.2 Postconditions
 
-Completed reporting history is immutable and reconstructable. Source-domain corrections remain owned upstream. No corrected resubmission is fabricated from contradictory H08 sequencing.
+Historical snapshots, submission records, and acknowledgements remain immutable and reconstructable. H08 owns reporting closure/archival; corrected operational facts remain owned by the applicable evidence-owning domain.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-- H08-W11 defines correction as `Collect Corrected Data → Generate New Snapshot → Repeat Validation → Generate New Submission Package → Resubmit`.
-- H08 BR-005 and W04/W05 instead require validation to complete successfully **before Reporting Snapshot generation**.
-- H08 §6.9 also requires Validation Result to reference a Reporting Snapshot, creating the broader validation/snapshot conflict already exposed by H057.
-- Because the frozen outcome requires a corrected package to be resubmitted **where required**, this contradiction affects a material branch of this scenario rather than a peripheral detail.
+**Non-blocking business-actor/authority gap:** the H08 canonical crosswalk has no Actors section, and H08-W11/W12 do not canonically identify the business actor who initiates an institutional correction request or authorizes final cycle closure.
 
-The closure/archival branch is source-supported, but the full frozen scenario remains materially incomplete.
+**Non-blocking rejection-event ambiguity:** `SubmissionRejected` is used by H08 for both institutional approval rejection and external regulatory rejection. This scenario relies on the defined `RejectedByAuthority` lifecycle path and correction events rather than inventing a new rejection event.
 
-**Architecture assessment:** `BLOCKED`
+**Architecture impact:** correction, versioning, resubmission, closure, and archival are source-grounded, but business actor authority and rejection-event semantics require upstream normalization before locking.
+
+**Architecture assessment:** `PASS WITH ISSUES`
 
 ## 17.2 Assumptions
 
-No assumptions.
+No assumptions. `VAR:Evidence-Owning Domain` is preserved exactly as frozen.
 
 ## 17.3 Deferred Questions
 
-Upstream H08 architecture must reconcile correction, snapshot-generation, validation, package-generation, and resubmission sequencing before the correction branch can be completed.
+Upstream H08 should define canonical business initiation/closure authority and normalize institutional versus regulatory rejection event semantics.

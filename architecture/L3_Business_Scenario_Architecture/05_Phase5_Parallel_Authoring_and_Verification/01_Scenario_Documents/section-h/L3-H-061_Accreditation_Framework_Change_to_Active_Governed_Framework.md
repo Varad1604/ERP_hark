@@ -1,6 +1,6 @@
 # Accreditation Framework Change to Active Governed Framework
 
-# 1. Scenario Metadata
+## 1. Scenario Metadata
 
 **Scenario ID:** L3-H-061  
 **Architecture Level:** L3 — Business Scenario Architecture  
@@ -11,171 +11,164 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H09 — Accreditation & Compliance Workflows  
-**Referenced By:** Accreditation-cycle planning, readiness, evidence, audit, assessment, compliance, and SSR scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP_L1_Business_Domain_Architecture_Locked.md; DEPENDENCY_MAP.md; L2-H09_Accreditation_and_Compliance_Workflows.md  
+**Referenced By:** None yet
 
-# 2. Scenario Purpose
+## 2. Scenario Purpose
 
-Govern the creation or revision of an H09 Accreditation Framework so that criteria, metrics, evidence expectations, scoring methodology, applicability, and version lineage are institutionally reviewed, approved, published, and activated without altering source-domain business facts.
+Govern a new or revised accreditation framework from definition through institutional approval, publication, and activation while preserving historical framework versions.
 
-# 3. Business Outcome
+## 3. Business Outcome
 
 A versioned framework is approved and activated with criteria, evidence requirements, scoring, and applicability preserved
 
-# 4. Scenario Boundary and Scope
+## 4. Scenario Boundary and Scope
 
-## 4.1 Start Boundary
+### 4.1 Start Boundary
 
 A regulator or institution introduces or revises an accreditation framework.
 
-## 4.2 End Boundary
+### 4.2 End Boundary
 
-The scenario ends when the governed framework version reaches the source-defined `Active` lifecycle position after institutional review, approval, and publication, with its accreditation structure and version lineage preserved.
+A versioned framework is approved and activated with criteria, evidence requirements, scoring, and applicability preserved.
 
-## 4.3 In Scope
+### 4.3 In Scope
 
-- Accreditation Framework version creation or governed revision.
-- Definition of criteria, metrics, evidence requirements, scoring methodology, review calendar, and applicability.
-- IQAC and steering review under the H09 governance chain.
-- Institutional framework approval, publication, and activation.
-- Preservation of prior active/historical framework versions when a successor version is introduced.
+- H09-owned governance behaviour materially required to reach the frozen business outcome.
+- Applicable source-domain references, evidence and governed hand-offs without ownership transfer.
+- Only upstream-defined rules, lifecycle positions, events, approvals and evidence obligations relevant to this scenario.
 
-## 4.4 Out of Scope
+### 4.4 Out of Scope
 
-- Accreditation-cycle execution.
-- Collection or approval of individual evidence items.
-- External assessment execution or statutory submission.
-- Modification of source-domain operational records.
+- Operational business-state ownership belonging to participating source domains.
+- Adjacent downstream institutional outcomes after this scenario's End Boundary.
+- Later architecture-level implementation concerns.
 
-# 5. Ownership and Participating Domains
+## 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Accreditation & Compliance / H | Owns Accreditation Framework definition, version, criteria, metrics, evidence expectations, scoring rules, review calendar, approval/publication/activation lifecycle, and framework history. |
+| Accreditation & Compliance (H) | Owns the H09 governance outcome and applicable H09 lifecycles. |
 
-# 6. Business Actors, Roles and Responsibilities
+Participation and evidence contribution do not transfer canonical ownership.
+
+## 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| IQAC | Reviews framework alignment, evidence expectations, and institutional accreditation readiness implications. | Reviews |
-| Accreditation Cell | Coordinates framework definition and accreditation structure. | Performs / coordinates |
-| Compliance Administrator | Maintains governed framework configuration within H09. | Performs |
-| Steering Committee | Reviews the framework as part of institutional accreditation governance. | Reviews |
-| Institutional Leadership | Provides final institutional approval for strategic accreditation positions under the H09 governance structure. | Approves |
+| IQAC | Reviews framework alignment, evidence expectations, and readiness implications. | Reviews |
+| Accreditation Cell | Prepares and maintains framework content and accreditation structure. | Performs |
+| Compliance Administrator | Coordinates governed framework definition and lifecycle progression. | Performs |
+| Institutional Leadership | Provides institutional approval for the governed framework position. | Approves |
 
-# 7. Preconditions and Entry Criteria
+## 7. Preconditions and Entry Criteria
 
-- The applicable Accreditation Authority is defined as an external reference.
-- The institution has a governed basis to introduce or revise the accreditation model.
-- For a revision of an already active framework, a new version can be established without modifying the historical active version.
+- The accreditation authority is defined as a reference.
+- Institutional governance approval arrangements exist.
 
-# 8. Trigger
+## 8. Trigger
 
 A regulator or institution introduces or revises an accreditation framework
 
-# 9. Main Business Flow
+## 9. Main Business Flow
 
-1. H09 identifies the applicable Accreditation Authority and the new or revised accreditation requirement.
-2. H09 creates a new Accreditation Framework or a successor framework version where the existing active version must remain immutable.
-3. The Accreditation Cell and Compliance Administrator define or revise the criteria, metrics, evidence expectations, scoring methodology, weightages, review calendar, and applicability supported by the framework.
-4. IQAC reviews the framework for accreditation alignment and evidence/readiness implications.
-5. The Steering Committee reviews the framework within the H09 governance chain.
-6. Institutional Leadership provides the source-supported institutional approval for the framework position.
-7. H09 publishes the approved framework version.
-8. H09 activates the published framework version and preserves its effective version lineage.
-9. The scenario ends when the framework is the governed active version for its applicable accreditation context.
+| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
+|---|---|---|---|
+| 1 | Identify the new or revised accreditation framework requirement. | Accreditation Cell | Framework change is established for governance. |
+| 2 | Define the versioned framework, criteria, metrics, evidence expectations, scoring methodology, applicability and review calendar. | Accreditation & Compliance | A complete draft framework version exists. |
+| 3 | Submit the framework for governance review. | Accreditation & Compliance | The framework enters the governed review position. |
+| 4 | Review and approve the framework through the H09 governance chain. | IQAC / Institutional Leadership | The framework is approved. |
+| 5 | Publish and activate the approved framework. | Accreditation & Compliance | The approved version becomes the active governed framework. |
 
-# 10. Alternate Business Flows
+## 10. Alternate Business Flows
 
 | Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
 |---|---|---|---|---|
-| Active framework requires change | A currently active framework must be revised | Create a new version; do not modify the activated historical version | Successor version follows review and approval | Accreditation & Compliance |
-| Framework no longer applies | H09 governance determines that the framework should leave active use | Preserve history and move the framework through the source-defined archival path | Historical framework retained | Accreditation & Compliance |
+| Framework requires revision during review | Review identifies required corrections | Revise the draft/current version and resubmit through the governed review path. | Review continues without activating an unapproved version. | Accreditation & Compliance |
 
-# 11. Failure, Interruption and Business Recovery
+## 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Framework definition is incomplete | Approval/activation cannot proceed | Complete the missing criteria, metric, evidence, scoring, or applicability definition and repeat governance review | Accreditation & Compliance |
-| Governance review does not support approval | Framework cannot become active | Retain the version outside the active position until revised and approved | Accreditation & Compliance |
-| Proposed change would rewrite an active historical version | H09 immutability rule would be violated | Create a successor version instead | Accreditation & Compliance |
+| An active framework requires modification | In-place modification would violate the locked framework rule. | Create a new framework version and govern it through review and approval. | Accreditation & Compliance |
 
-# 12. Business Rules and Decision Constraints
+## 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Only one active framework version may exist for a given accreditation authority and assessment cycle | H09 | Activation must not create competing active versions | L2-H09 BR-H09-001 |
-| Every Accreditation Cycle uses exactly one approved framework | H09 | Framework approval establishes the governed basis for later cycles | L2-H09 BR-H09-002 |
-| Activated framework modifications require a new version | H09 | Historical active versions are not edited | L2-H09 BR-H09-003 |
-| Historical frameworks remain immutable | H09 | Prior versions are preserved | L2-H09 BR-H09-004 |
+| BR-H09-001 — only one active framework version may exist for a given authority and assessment cycle. | Accreditation & Compliance | Prevents simultaneous active versions. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
+| BR-H09-003 — framework modifications after activation require a new version. | Accreditation & Compliance | Forces successor-version governance. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
+| BR-H09-004 — historical frameworks remain immutable. | Accreditation & Compliance | Preserves historical framework evidence. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
 
-# 13. State and Lifecycle Impact
+## 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Accreditation Framework | Draft | Govern definition and institutional review | Review position → Approved | H09 | L2-H09 H09-A01; §7 |
-| Accreditation Framework | Approved | Publish the approved framework | Published | H09 | L2-H09 H09-A01; H09-01 |
-| Accreditation Framework | Published | Activate the governed version | Active | H09 | L2-H09 H09-A01; H09-01 |
+| Accreditation Framework | Draft | Governed review, approval, publication and activation. | Active | Accreditation & Compliance | L2-H09_Accreditation_and_Compliance_Workflows.md §6 H09-A01 / §7 |
 
-H09 names the intermediate review state `Under Review` in H09-A01 and `Review` in §7. This Draft does not normalize that naming difference.
+## 14. Business Events and Cross-Domain Collaboration
 
-# 14. Business Events and Cross-Domain Collaboration
-
-## 14.1 Published / Consumed Business Events
+### 14.1 Published / Consumed Business Events
 
 | Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
 |---|---|---|---|---|
-| Accreditation Framework Created | Accreditation Framework aggregate / H09 | Accreditation governance consumers | Records framework creation | L2-H09 §11 |
-| Accreditation Framework Updated | Accreditation Framework aggregate / H09 | Accreditation governance consumers | Records governed framework revision | L2-H09 §11 |
-| Accreditation Framework Submitted for Review | Accreditation Framework aggregate / H09 | H09 governance participants | Records review entry | L2-H09 §11 |
-| Accreditation Framework Approved | Accreditation Framework aggregate / H09 | Accreditation Cycle, readiness and governance consumers | Records institutional approval | L2-H09 §11 |
-| Accreditation Framework Published | Accreditation Framework aggregate / H09 | Accreditation governance consumers | Records publication | L2-H09 §11 |
-| Accreditation Framework Activated | Accreditation Framework aggregate / H09 | Accreditation Cycle, readiness and governance consumers | Records active governed availability | L2-H09 §11 |
+| Accreditation Framework Created | Accreditation Framework aggregate | Accreditation Cycle; Readiness Assessment; Compliance Review | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Accreditation Framework Updated | Accreditation Framework aggregate | Accreditation Cycle; Readiness Assessment; Compliance Review | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Accreditation Framework Submitted for Review | Accreditation Framework aggregate | Accreditation Cycle; Readiness Assessment; Compliance Review | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Accreditation Framework Approved | Accreditation Framework aggregate | Accreditation Cycle; Readiness Assessment; Compliance Review | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Accreditation Framework Published | Accreditation Framework aggregate | Accreditation Cycle; Readiness Assessment; Compliance Review | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Accreditation Framework Activated | Accreditation Framework aggregate | Accreditation Cycle; Readiness Assessment; Compliance Review | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
 
-## 14.2 Business Contracts and Cross-Domain Hand-offs
+### 14.2 Business Contracts and Cross-Domain Hand-offs
 
-No cross-domain ownership transfer occurs. The framework defines accreditation expectations that later scenarios use when referencing source-domain evidence, while source-domain business records remain externally owned.
+No synchronous contract or governed cross-domain hand-off materially participates beyond H09-owned workflow governance.
 
-# 15. Business Authorization, Approval and Audit Obligations
+## 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
+### 15.1 Initiation and Decision Authority
 
-Framework approval sits with institutional governance after IQAC and steering review. Institutional Leadership provides the source-supported final approval for strategic accreditation positions; H09 then publishes and activates the approved framework.
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| Framework review | IQAC | Reviews framework alignment and evidence sufficiency before approval. | Accreditation & Compliance |
+| Framework approval | Institutional Leadership | H09 governance places final institutional approval with institutional governance after IQAC and steering review. | Accreditation & Compliance |
 
-## 15.2 Separation of Duties, Overrides and Exceptions
+### 15.2 Separation of Duties, Overrides and Exceptions
 
-No activated framework may be changed in place. A changed framework follows versioned governance and approval rather than bypassing review.
+No scenario-specific separation-of-duty rule is defined beyond the governed review and approval chain in H09.
 
-## 15.3 Business Audit and Evidence Obligations
+### 15.3 Business Audit and Evidence Obligations
 
-Preserve framework source/reference, version, criteria, metric and evidence definitions, scoring methodology, review history, approval evidence, publication/activation evidence, and prior-version lineage.
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Framework approval and activation | Approved framework version and governance decision | Accreditation & Compliance |
+| Historical framework preservation | Immutable prior framework version | Accreditation & Compliance |
 
-# 16. Completion Criteria and Postconditions
+## 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
+### 16.1 Completion Criteria
 
-- The framework version is institutionally approved.
-- Criteria, evidence requirements, scoring, applicability, and review context are preserved in the governed version.
-- The approved version is published and activated.
-- Historical versions remain immutable.
+- The successor framework version is approved.
+- The approved framework is published and Active.
+- Criteria, evidence requirements, scoring and applicability remain associated with the activated version.
 
-## 16.2 Postconditions
+### 16.2 Postconditions
 
-The active H09 Accreditation Framework is available as the authoritative governance basis for later Accreditation Cycles and assessments.
+- Exactly one applicable framework version is Active for the authority/assessment-cycle scope.
+- Historical framework versions remain immutable.
 
-# 17. Open Issues, Assumptions and Deferred Questions
+## 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+### 17.1 Open Issues
 
-H09-A01 names the review state `Under Review`, while §7 names the equivalent lifecycle position `Review`. The discrepancy does not alter the frozen approved/published/active outcome, but upstream lifecycle terminology should be normalized before locking.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| H09-A01 names the review state `Under Review`, while H09 §7 names the same lifecycle position `Review`. | The intermediate framework lifecycle label is internally inconsistent, although both paths converge on Approved → Published → Active. | Upstream H09 lifecycle vocabulary should be reconciled before locking the L3 scenario. |
 
-**Architecture assessment:** `PASS WITH ISSUES`
-
-## 17.2 Assumptions
+### 17.2 Assumptions
 
 No assumptions.
 
-## 17.3 Deferred Questions
+### 17.3 Deferred Questions
 
-Normalize the H09 Accreditation Framework review-state name upstream.
+No scenario-specific deferred questions.

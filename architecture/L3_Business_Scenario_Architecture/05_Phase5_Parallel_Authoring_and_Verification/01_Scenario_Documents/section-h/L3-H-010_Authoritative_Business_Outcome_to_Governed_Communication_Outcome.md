@@ -11,13 +11,12 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H02 — Notification Workflows; applicable canonical source-domain event or governed request; Section A Event, Authorization and Audit architecture  
-**Referenced By:** Enterprise notification delivery, notification evidence, operational reporting, and downstream communication governance
+**Last Updated:** 2026-08-23  
+**Depends On:** L2-H02 — Notification Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows; applicable source-domain event/request architecture
 
 # 2. Scenario Purpose
 
-Translate an authoritative business outcome or governed communication request into an H02-owned Notification outcome for eligible recipients without transferring ownership of the originating business transaction, decision, rule, or event to the Notification domain.
+Translate an authoritative business fact or governed communication request into an H02-owned Notification outcome without H02 acquiring ownership of the originating transaction, decision, rule or business event.
 
 # 3. Business Outcome
 
@@ -25,51 +24,24 @@ Eligible recipients receive the governed notification through approved channels,
 
 # 4. Scenario Boundary and Scope
 
-## 4.1 Start Boundary
-
-The scenario begins when a canonical business event or authorized request requires stakeholder communication.
-
-## 4.2 End Boundary
-
-The scenario ends when the H02 Notification reaches a source-defined terminal communication outcome such as `Delivered`, `Failed`, `Cancelled`, or `Expired`, with its notification evidence preserved and the originating business outcome unchanged.
-
-## 4.3 In Scope
-
-- Accepting a governed notification request or canonical business event without re-owning the source business fact.
-- Creating and governing the H02 Notification identity/lifecycle.
-- Resolving eligible recipients and approved template/channel context.
-- Applying notification policy, preferences, and scheduling where applicable.
-- Recording the H02 communication outcome and canonical notification lifecycle events.
-- Preserving notification evidence for Platform Audit.
-
-## 4.4 Out of Scope
-
-- Creating, approving, reversing, or modifying the originating business transaction or decision.
-- Publishing the originating domain's business event on its behalf.
-- Provider-specific implementation mechanics.
-- Separate schedule, template-governance, preference, emergency, or delivery-recovery outcomes governed by their own scenarios.
+The scenario starts when the frozen trigger occurs and ends when the frozen business outcome is reached or, for a source-defined unsuccessful branch, when the controlled H01/H02 outcome is recorded. In scope are only the source-owned facts, H-owned integration/communication lifecycle, canonical events, business contracts and evidence materially required for this outcome. Source-domain credential, Student, Institution, identity and originating transaction ownership remain outside H.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
-|---|---|
-| Platform Foundation / Section A | Retains canonical Event Infrastructure, Authorization, Identity, and Audit ownership supporting governed notification initiation, recipient context, and evidence. |
-| Notification / Section H | Owns Notification identity, lifecycle, recipient resolution, template/channel orchestration, delivery coordination, notification outcome, and notification lifecycle events. |
-
-The originating business domain retains ownership of its business outcome and event even though the frozen participant list for this generic cross-enterprise notification scenario is limited to A and H.
+- **A:** owns Event Infrastructure, authorization/identity capability and audit evidence capability supporting governed notification initiation and evidence.
+- **H — Notification:** owns Notification identity/lifecycle, recipient resolution, template/channel governance and Notification outcome.
+The originating domain retains its business fact/event even though the frozen participant set for this generic scenario is A,H.
 
 # 6. Business Actors, Roles and Responsibilities
 
-Locked H02 contains no canonical Actors section. This scenario may be initiated by a canonical business event or a governed request, but no universal human Notification actor can be established across all source domains. No descriptive placeholder role is introduced.
+Locked H02 has no canonical Actors section. This generic scenario may be initiated by a source event or governed request; no universal human Notification initiator/operator is invented.
 
 # 7. Preconditions and Entry Criteria
 
-- A canonical business event or governed communication request exists.
-- The originating business outcome remains authoritative in its source domain.
-- Notification processing is authorized under applicable enterprise policy.
-- An approved notification template is available.
-- One or more eligible recipients can be resolved.
-- One or more approved delivery channels are available under H02 policy.
+- Canonical source business event or authorized communication request exists.
+- Originating business outcome remains authoritative outside H02.
+- Notification request is authorized.
+- Approved template, eligible recipient(s) and permitted channel context can be resolved.
 
 # 8. Trigger
 
@@ -77,111 +49,57 @@ A canonical business event or authorized request requires stakeholder communicat
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
-|---|---|---|---|
-| 1 | Receive the canonical business event or governed communication request and retain its causation/correlation reference without changing the source fact. | Notification | H02 receives communication intent, not ownership of the originating transaction. |
-| 2 | Establish the H02 Notification identity and validate the notification request. | Notification | A governed Notification exists under H02 ownership. |
-| 3 | Resolve eligible recipients using canonical identity/context and H02 recipient rules. | Notification / Platform Foundation context | Recipient set is resolved without changing source identity ownership. |
-| 4 | Resolve an approved immutable template version and permitted runtime values. | Notification | Communication content is governed without embedding source-domain business logic. |
-| 5 | Evaluate applicable notification policy, preferences, priority, and approved channel selection. | Notification | Delivery is governed by H02 policy. |
-| 6 | Progress the Notification through its source-defined delivery lifecycle. | Notification | Notification reaches a controlled terminal communication outcome. |
-| 7 | Publish the applicable canonical H02 notification lifecycle event and preserve evidence. | Notification / Platform Audit | Consumers receive the communication outcome while the source transaction remains unchanged. |
+1. H02 accepts the canonical source event or governed request while preserving source causation.
+2. Establish and validate the H02 Notification.
+3. Resolve eligible recipients.
+4. Resolve the approved template and permitted communication context.
+5. Apply H02 policy/preferences/channel selection.
+6. Progress through the locked Notification lifecycle.
+7. Record the source-defined terminal communication outcome and publish the applicable H02 event.
+8. Preserve Notification evidence without changing the source transaction.
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| Multiple approved channels | Policy permits multi-channel communication. | Coordinate delivery through the permitted channels while preserving one Notification identity. | Aggregate notification outcome reflects channel results. | Notification |
-| Notification cannot proceed before delivery | Request, recipient, template, or policy validation prevents communication. | Record the applicable source-defined controlled terminal failure outcome and preserve evidence. | Business transaction remains unchanged. | Notification |
-| Notification expires or is cancelled before completion | Source-defined cancellation/expiry condition is reached. | Transition the Notification to `Cancelled` or `Expired`. | H02 records the terminal communication outcome. | Notification |
+- Multiple permitted channels remain one governed Notification outcome.
+- Validation/policy/recipient failure produces a controlled H02 terminal outcome where source-defined.
+- Cancellation or expiry reaches `Cancelled` or `Expired` without changing the originating business fact.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Recipient cannot be resolved | Notification cannot be delivered to an authoritative recipient set. | Apply H02 failure classification and preserve the controlled notification outcome. | Notification |
-| Template or policy prevents communication | Notification cannot proceed lawfully/governedly. | Do not alter the source transaction; record the H02 terminal outcome. | Notification |
-| Delivery fails | Communication outcome is unsuccessful while the originating business outcome remains valid. | Preserve H02 failure evidence; later delivery recovery belongs to the separate notification-recovery scenario. | Notification |
+Notification failure never rolls back or invalidates the completed source-domain business outcome. Separate H02 recovery behavior is not expanded beyond what is required for this scenario.
 
 # 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| Notification Platform communicates business outcomes but never owns business transactions, decisions, rules, state, lifecycles, or business events. | Source domain / Notification | H02 cannot modify or re-own the originating business outcome. | L2-H02 §§3–6 |
-| Every Notification belongs to one tenant and has a unique immutable identifier. | Notification | Notification identity and tenant ownership remain stable. | L2-H02 §11.4 |
-| Every Notification references an approved template, resolved recipient(s), and approved channel(s). | Notification | These are required before governed delivery. | L2-H02 §11.4 |
-| Terminal Notification states are immutable. | Notification | Completed communication outcomes are preserved. | L2-H02 §12.3 |
-| Delivery failures shall never roll back completed business operations. | Notification | Communication failure cannot reverse the source-domain outcome. | L2-H02 §6 |
+- H02 communicates business outcomes; it does not own originating transactions/decisions/rules/events.
+- Notification identity is immutable within its tenant context.
+- Governed delivery requires approved template, recipients and channels.
+- Terminal Notification states are preserved.
+- Communication failure does not reverse source business operations.
 
 # 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Originating business transaction/outcome | Authoritative completed or actionable source-domain state | Referenced only as causation/business context. | Unchanged by H02. | Applicable source domain | L2-H02 §§3–6 |
-| Notification | `Draft` and subsequent source-defined states | H02 validates, resolves recipient/template context, coordinates delivery, and records outcome. | `Delivered`, `Failed`, `Cancelled`, or `Expired` as applicable. | Notification | L2-H02 §§11–12 |
+Originating transaction: unchanged under source owner. H02 Notification progresses through locked states to `Delivered`, `Failed`, `Cancelled`, or `Expired` as applicable.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
-
-The incoming business event retains its canonical source-domain publisher. H02 does not publish that business fact on the source domain's behalf.
-
-Applicable exact H02 lifecycle events include `NotificationCreated`, `NotificationValidated`, `RecipientResolved`, `TemplateResolved`, `NotificationScheduled` where relevant, `DeliveryStarted`, `DeliveryCompleted`, `DeliveryFailed`, `NotificationCancelled`, `NotificationExpired`, and `NotificationDelivered` according to the actual H02 path.
-
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-H02 accepts approved notification requests through canonical events or governed enterprise service contracts. The hand-off contains communication intent/context; it does not transfer business ownership. H02 supplies notification outcome/evidence back to authorized consumers without changing the originating transaction.
+The incoming business event retains its source-domain publisher. H02 publishes its own Notification lifecycle events, including `NotificationCreated`, `NotificationValidated`, `RecipientResolved`, `TemplateResolved`, `NotificationScheduled` where applicable, `DeliveryFailed`, `NotificationCancelled`, `NotificationExpired`, and `NotificationDelivered` according to the actual locked path.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-The originating canonical event or governed request must already be authorized under its owning architecture. Locked H02 defines no universal human actor for generic notification initiation, so L3 does not add one.
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-No universal Notification-specific approval or separation-of-duty chain is defined for this generic scenario. Authorization remains owned by Section A and the applicable originating business domain.
-
-## 15.3 Business Audit and Evidence Obligations
-
-Notification evidence must preserve Notification identity, tenant/institution context where applicable, originating causation/correlation reference, template version, recipient reference, approved channel context, lifecycle transitions, delivery outcome, timestamps, and terminal evidence. Platform Audit retains canonical audit persistence and integrity ownership.
+No universal H02 human actor or extra approval chain is defined. Evidence preserves Notification identity, source causation/correlation, template version, recipient/channel context, lifecycle outcome and timestamps under canonical audit ownership.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-- A canonical business event or governed request initiates communication.
-- H02 creates one governed Notification identity.
-- Eligible recipients, approved template, and approved channels are resolved.
-- H02 reaches a source-defined terminal notification outcome.
-- Applicable H02 lifecycle events and notification evidence are preserved.
-- The originating business transaction remains unchanged and source-owned.
-
-## 16.2 Postconditions
-
-- H02 owns the authoritative notification outcome, not the originating business outcome.
-- Eligible recipients have a governed communication outcome or a controlled terminal failure/cancellation/expiry is recorded.
-- Source business ownership remains unchanged.
-- Notification evidence remains available for audit and authorized consumers.
+Completion requires an authoritative event/request, one governed H02 Notification, resolved eligible communication context, a source-defined terminal H02 outcome, applicable H02 event/evidence, and no ownership change to the originating transaction.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
-
-| Issue | Architecture Impact | Required Resolution |
-|---|---|---|
-| Locked H02's canonical crosswalk records no Actors section. | A universal human Notification initiator or operator cannot be established for this generic scenario. | Define H02 business actors upstream if later architecture requires explicit human authority. |
-| H02 can be initiated by canonical events from many business domains, but frozen Stage 3 lists only A and H as participating domains for this generic scenario. | L3 cannot add a variable source-owning participant even though the originating business fact remains source-owned. | Preserve the frozen participant list; clarify upstream if source-domain participation should be represented explicitly. |
-| H02 defines approved enterprise service contracts generically rather than a single universal business request contract for every originating domain. | L3 cannot assign one universal request shape or source actor. | Source-domain scenarios should define their own exact governed notification hand-off where material. |
+- H02 canonical crosswalk has no Actors section.
+- Frozen participants are only A,H even though a generic originating business event may come from another source domain.
+- No single universal governed request contract covers every source domain.
 
 **Architecture assessment:** `PASS WITH ISSUES`
 
-The Notification lifecycle, ownership boundary, recipient/template/channel governance, terminal outcomes, canonical H02 events, and audit obligations are explicit. The missing Actors section and generic source-domain hand-off do not prevent a source-grounded Draft because the scenario can complete without inventing a human H02 decision role.
+**Assumptions:** None.
 
-## 17.2 Assumptions
-
-No assumptions.
-
-## 17.3 Deferred Questions
-
-No additional scenario-specific deferred questions.
+**Deferred questions:** No additional scenario-specific questions beyond the issues recorded above.

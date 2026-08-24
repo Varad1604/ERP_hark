@@ -11,13 +11,12 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-B01 — Institution Workflows; L2-C05 — Qualification Completion & Student Exit Workflows; L2-C08 — Alumni Transition Workflows; L2-H06 — Alumni Workflows  
-**Referenced By:** Alumni membership, profile, networking, mentorship, chapter, recognition, and contribution scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-C05 — Qualification Completion & Student Exit Workflows; L2-C08 — Alumni Transition Workflows; L2-H06 — Alumni Workflows
 
 # 2. Scenario Purpose
 
-Establish the Alumni engagement relationship only after Student Lifecycle has completed the governed Student-to-Alumni transition, while preserving Student Lifecycle ownership of qualification, exit, transition, and Alumni Persona facts.
+Describe the frozen institutional journey from an eligible Student completion/exit condition to an Alumni relationship while preserving the locked separation between Qualification Completion, the Student-owned Alumni Transition, and H06 Alumni engagement.
 
 # 3. Business Outcome
 
@@ -27,43 +26,44 @@ A governed alumni relationship is established without H06 changing the student o
 
 ## 4.1 Start Boundary
 
-L2-C05 confirms completion or exit eligibility for alumni transition.
+The scenario begins when L2-C05 confirms completion or exit eligibility for alumni transition.
 
 ## 4.2 End Boundary
 
-For the qualification-completion branch, L2-C08 completes the Student-to-Alumni transition and H06 establishes the Alumni engagement relationship from `AlumniTransitionCompleted`. The frozen exit-eligibility branch is not supported by the locked C08 eligibility model and is recorded in Section 17.
+The frozen end boundary is a governed Alumni relationship. Locked C08, however, owns the transition that establishes the authoritative institutional Alumni relationship; H06 may create its Alumni Profile only after consuming `AlumniTransitionCompleted`.
 
 ## 4.3 In Scope
 
-- C05 authoritative qualification-completion outcome and applicable student-exit facts.
-- C08 transition eligibility, institutional policy evaluation, approval, execution, and completion where its mandatory completion preconditions are satisfied.
-- H06 creation of the Alumni engagement aggregate after `AlumniTransitionCompleted`.
+- Consume the authoritative qualification/exit facts owned by Student Lifecycle.
+- Preserve C08 ownership of transition eligibility, approval, execution, history, and transition events.
+- Preserve H06 ownership of the post-transition Alumni Profile and engagement aggregates.
+- Preserve Student and qualification records without H06 modification.
 
 ## 4.4 Out of Scope
 
-- Reinterpretation or modification of Student, qualification, exit, or Alumni Transition facts by H06.
-- An exit-only Alumni transition path not defined by C08.
+- Re-evaluating qualification completion or Student exit.
+- H06 creation or mutation of the Alumni Persona.
+- H06 ownership of the Student-to-Alumni transition.
+- Identity, academic-record, or qualification-record modification by Alumni.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
+| Domain / Section | Responsibility |
 |---|---|
-| Student Lifecycle / Section C | Owns qualification completion and exit decisions, the Alumni Transition lifecycle, and the Alumni Persona/transition facts. |
-| Alumni / Section H | Owns the post-transition Alumni engagement relationship, Alumni Profile, and engagement membership created from the completed transition fact. |
+| Student Lifecycle / C05 | Owns qualification completion and Student exit decisions and publishes authoritative completion/exit facts. |
+| Student Lifecycle / C08 | Owns the Alumni Transition Record, transition lifecycle, transition execution, and authoritative Student-to-Alumni relationship activation. |
+| Alumni / H06 | Owns the Alumni Profile and post-transition engagement relationship only after `AlumniTransitionCompleted`. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Institutional Authorities | Provide required transition approval where C08 policy requires it. | Approves / rejects transition |
-| Alumni Administrator | Performs H06 alumni lifecycle administration where administrator verification or activation is required. | Reviews / performs |
+C08 defines the participants and authorities for the Student-to-Alumni transition. H06 defines Alumni and Alumni Administrator responsibilities for post-transition engagement. L3 does not assign H06 authority over the C08 transition.
 
 # 7. Preconditions and Entry Criteria
 
-- The canonical Person and Student references exist.
-- C05 has produced the applicable authoritative completion or exit position.
-- C08 transition policy context is resolved from the institution-owned policy baseline.
-- No duplicate completed Alumni Transition exists for the applicable completion context.
+- C05 has produced an authoritative completion or exit condition relevant to alumni transition.
+- Student and Person references remain owned upstream.
+- Any C08 transition eligibility and institutional transition policy requirements remain governed by C08.
+- H06 has not created an Alumni Profile before `AlumniTransitionCompleted`.
 
 # 8. Trigger
 
@@ -71,74 +71,77 @@ L2-C05 confirms completion or exit eligibility for alumni transition
 
 # 9. Main Business Flow
 
-1. Consume the C05 authoritative qualification-completion outcome for the supported completion branch.
-2. C08 initiates the Alumni Transition and evaluates its mandatory qualification-completion, clearance, policy, and approval requirements.
-3. C08 executes and completes the approved transition while preserving Student Lifecycle ownership.
-4. C08 publishes `AlumniTransitionCompleted`.
-5. H06 consumes `AlumniTransitionCompleted`, validates the canonical Person, Student, and completion references, and creates the Alumni engagement aggregate, membership, profile, communication preferences, and directory defaults.
-6. H06 publishes `AlumniProfileCreated` and preserves the Student and qualification records unchanged.
+1. C05 preserves and publishes its authoritative qualification completion or Student exit facts.
+2. C08 consumes the applicable upstream facts and governs transition eligibility, approval, and execution under its own lifecycle.
+3. C08 publishes its transition facts, including `AlumniTransitionCompleted`, only after the transition has completed.
+4. H06 consumes `AlumniTransitionCompleted`.
+5. H06 creates the Alumni Profile and engagement record while retaining references to the canonical Person, Student, qualification-completion, and Alumni Persona facts.
+6. H06 does not change the Student record, qualification record, Alumni Persona, or C08 transition history.
+
+The frozen scenario cannot safely assign the authoritative relationship-establishment outcome to H06 because locked C08 explicitly owns that outcome.
 
 # 10. Alternate Business Flows
 
-Where H06 policy requires administrator verification before engagement activation, the Alumni relationship may remain pending activation after profile creation. This does not change the C08 completed transition.
+- If C08 determines that the transition cannot proceed, H06 does not create an Alumni Profile.
+- If a completed C08 transition is corrected, H06 follows only the current authoritative transition fact and does not alter C08 history.
 
 # 11. Failure, Interruption and Business Recovery
 
-Missing completion evidence, failed mandatory clearance or policy validation, rejected transition approval, duplicate transition, or invalid source references prevent the supported transition from completing. The frozen exit-only branch requires architecture resolution rather than being converted into qualification completion locally.
+If required Student Lifecycle facts are unavailable or the transition is not completed, the Alumni Profile is not established. Recovery remains with the owning Student Lifecycle workflow; H06 waits for the authoritative completed transition fact.
 
 # 12. Business Rules and Decision Constraints
 
-- C05 is authoritative for qualification completion and Student Exit.
-- C08 owns transition eligibility, approval coordination, execution, completion, and immutable transition history.
-- C08 requires qualification completion for the canonical transition path.
-- H06 may create its Alumni engagement relationship only after `AlumniTransitionCompleted`.
-- H06 shall not modify Person, Student, qualification, or Alumni Transition records.
-- Institution Policy remains owned by the Institution domain; consuming it does not transfer policy ownership to C08 or H06.
+- H06 owns only Alumni engagement aggregates.
+- The Alumni Persona is owned by Student Lifecycle / C08.
+- BR-H06-001 makes Alumni Profile creation conditional on `AlumniTransitionCompleted`.
+- Manual H06 Alumni creation is not permitted under normal operations.
+- C08 owns transition eligibility, execution, approval coordination, history, and transition events.
 
 # 13. State and Lifecycle Impact
 
-C08 follows its canonical forward lifecycle through completion. On the supported branch, H06 creates the Alumni engagement record in its defined initial position (`Eligible` or `Pending Activation` where policy requires verification) without changing C05/C08 source lifecycle states.
+C05 qualification/exit lifecycle remains C-owned. C08 owns the Alumni Transition lifecycle. H06 begins only after the C08 terminal transition fact and then establishes the H06 Alumni Profile/engagement state. L3 does not merge these lifecycles.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-C05 provides the authoritative qualification-completion fact used by C08, including `QualificationAwarded`. C08 publishes `AlumniTransitionInitiated`, `TransitionEligibilityValidated`, `AlumniTransitionApproved`, `AlumniRelationshipActivated`, and `AlumniTransitionCompleted` as applicable. H06 consumes `AlumniTransitionCompleted` and publishes `AlumniProfileCreated`.
+C08 publishes `AlumniTransitionCompleted`; H06 consumes it and may publish `AlumniProfileCreated`. C05 and C08 retain their own canonical qualification and transition events.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-The canonical hand-off to H06 is the completed C08 transition fact. H06 receives references and establishes engagement without re-owning Student Lifecycle facts.
+The required hand-off into H06 is the completed C08 transition fact. The frozen trigger starts earlier at C05, but no authority allows H06 to bypass C08.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-C08 retains transition decision authority and requires authorized institutional approvals where applicable. H06 retains only its source-defined Alumni engagement administration authority.
+Transition approval and execution authority remains C08-owned. H06 authority begins with Alumni engagement after transition completion.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-H06 cannot bypass C08, convert an unsupported exit into a completion outcome, or manually create a normal Alumni relationship without the completed transition fact.
+No L3 override may allow H06 to create or approve the Student-to-Alumni transition.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve completion references, transition eligibility and policy evidence, approval outcome, immutable transition history, `AlumniTransitionCompleted`, H06 profile-creation evidence, and canonical Person/Student references.
+Preserve C05 completion/exit evidence, C08 transition decision/history, `AlumniTransitionCompleted`, H06 profile creation evidence, and cross-domain references without rewriting upstream facts.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-For the supported qualification-completion branch, C08 is Completed and H06 has created the Alumni engagement relationship from `AlumniTransitionCompleted`. The full frozen scenario remains unresolved because its trigger also includes exit eligibility not supported by C08.
+The frozen outcome would require a governed Alumni relationship to be established without H06 changing Student or qualification records. Locked C08 assigns that authoritative relationship-establishment outcome to C08, creating a material ownership conflict with the frozen H06 Primary Owner.
 
 ## 16.2 Postconditions
 
-The supported Alumni relationship exists under H06; Student, qualification, exit, and transition records remain owned by Section C and unchanged by H06.
+No safe H06-owned terminal outcome can be asserted until the ownership conflict is resolved upstream. H06 may only create the post-transition Alumni Profile after C08 completion.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-- The frozen trigger includes **“completion or exit eligibility for alumni transition.”** Locked C08 requires qualification completion and a qualification-completion event as mandatory prerequisites for Alumni Transition. It does not define a transition path for a non-qualification Student Exit outcome.
-- Therefore the completion branch is source-grounded, but the frozen exit-eligibility branch cannot be authored to the frozen end outcome without an upstream decision defining whether any non-qualification exit is Alumni-transition eligible and, if so, its canonical C08 rules, states, authority, and events.
+**Material ownership conflict:** frozen Stage 3 assigns Primary Owner `Alumni` and starts at C05 completion/exit eligibility, while locked C08 explicitly owns the Student-to-Alumni transition and the authoritative institutional Alumni relationship. H06 explicitly owns only the post-transition Alumni Profile/engagement relationship and cannot create the Alumni Persona or bypass C08.
+
+**Architecture impact:** ownership, scenario boundary, and final outcome cannot be reconciled locally without changing frozen semantics or locked L2 ownership.
 
 **Architecture assessment:** `BLOCKED`
 
@@ -148,4 +151,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional deferred questions beyond the open issues above.
+Architecture change control must determine whether the frozen scenario outcome is intended to be the C08 transition outcome or the later H06 Alumni Profile/engagement establishment outcome.

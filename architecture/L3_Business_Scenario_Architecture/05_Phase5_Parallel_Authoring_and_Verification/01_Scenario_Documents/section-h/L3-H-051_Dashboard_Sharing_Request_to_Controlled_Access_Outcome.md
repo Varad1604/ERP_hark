@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A04 — Authorization & Policy Workflows; L2-H07 — Enterprise Dashboard Workflows  
-**Referenced By:** Dashboard collaboration, workspace access, dashboard sharing expiry, and audit scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A04 — Authorization & Policy Workflows; L2-H07 — Enterprise Dashboard Workflows  
+**Referenced By:** None yet
 
 # 2. Scenario Purpose
 
-Govern sharing of H07 dashboard metadata and access descriptors while Section A remains authoritative for authorization and while no operational business data or source-domain ownership is transferred.
+Govern dashboard sharing so that access is granted, changed, denied, expired, or revoked under authoritative authorization and H07 sharing rules without transferring dashboard or source-data ownership.
 
 # 3. Business Outcome
 
@@ -27,50 +27,44 @@ Access is granted, denied, changed, expired, or revoked under authorization and 
 
 ## 4.1 Start Boundary
 
-An authorized owner requests dashboard sharing.
+The scenario begins when an authorized owner requests dashboard sharing.
 
 ## 4.2 End Boundary
 
-The scenario ends when the sharing request or existing share reaches a governed access outcome of granted, denied, changed, expired, or revoked under the source-defined H07 sharing controls and Section A authorization constraints.
+The scenario ends when the sharing request or existing share has reached the applicable controlled-access outcome under A04 authorization and H07 sharing governance.
 
 ## 4.3 In Scope
 
-- H07 Dashboard Sharing Metadata.
-- Share offer, acceptance, permission change, expiry, and revocation.
-- Rejection of invalid or unauthorized sharing requests as the frozen denied outcome.
-- Section A authorization constraints.
-- Metadata-only sharing.
+- Validate the source dashboard and intended recipient/context.
+- Apply A04 authorization decisions and H07 visibility/sharing rules.
+- Create and govern H07 sharing metadata.
+- Accept, change, expire, or revoke a share where applicable.
+- Preserve dashboard and source-domain ownership.
 
 ## 4.4 Out of Scope
 
-- Transfer or duplication of operational business data.
-- Transfer of Dashboard or source-domain ownership.
-- Inventing a `Denied` lifecycle state or event.
-- Technical invitation delivery, token design, UI, or implementation mechanics.
+- Transferring ownership of the shared dashboard.
+- Sharing copies of source-domain business data as new H07-owned facts.
+- Creating local authorization rules.
+- Inventing a dedicated share-denied state or permission-change event not defined upstream.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
+| Domain | Responsibility |
 |---|---|
-| Platform Foundation / A | Owns authorization policy, roles, decisions, and permission boundaries constraining access. |
-| Enterprise Dashboard / H | Owns Dashboard Sharing Metadata, share permission metadata, share lifecycle, and dashboard presentation availability. |
+| Enterprise Dashboard / H07 | Owns dashboard sharing metadata and the Dashboard Share lifecycle. |
+| Platform Foundation / A04 | Owns authorization policies and deterministic authorization decisions, including explicit deny. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Dashboard Owner | Initiates a share for a shareable dashboard where authorized. | Initiates |
-| Administrator | Performs H07 sharing administration where authorized. | Performs |
-| Recipient User | Accepts an offered share where the recipient identity and authorization satisfy policy. | Decides / receives access |
-| Recipient Administrator | May accept a share for the recipient context where H07 defines that participation. | Decides / performs |
+The source owner or sharing authority initiates the H07 sharing request. H07 identifies Recipient User and Recipient Administrator for acceptance. A04 remains authoritative for access authorization.
 
 # 7. Preconditions and Entry Criteria
 
-- The source dashboard exists and is shareable.
-- The target principal exists.
-- The Dashboard Owner or Administrator is authorized to initiate sharing.
-- The recipient can receive only access permitted by Section A authorization and H07 visibility policy.
-- Sharing is limited to metadata and access descriptors.
+- The source dashboard exists and is eligible for sharing.
+- The requester has source-ownership/sharing authority under the applicable authorization decision.
+- The target principal or governed workspace context is valid.
+- Sharing does not transfer source-dashboard ownership or source-domain information ownership.
 
 # 8. Trigger
 
@@ -78,104 +72,76 @@ An authorized owner requests dashboard sharing
 
 # 9. Main Business Flow
 
-1. The authorized owner requests sharing of an H07 dashboard with a valid target principal or workspace.
-2. H07 validates shareability, target identity, expiry policy, classification, scope compatibility, and applicable Section A authorization.
-3. H07 creates the governed share metadata and offers access under the defined terms.
-4. The recipient accepts the valid share where recipient authorization permits access.
-5. H07 makes the shared dashboard available only within the permitted metadata scope.
-6. Any later governed permission change modifies only H07 sharing permissions and does not transfer ownership.
-7. When the time or policy boundary is reached, H07 expires the share and removes access; where revocation is required, H07 revokes the share through its defined sharing action and lifecycle.
-8. H07 preserves sharing history and the source dashboard remains independently owned.
+1. H07 receives the governed sharing request and identifies the source dashboard, target, requested access scope, and expiry context.
+2. A04 authorization is evaluated for the requested sharing action and target access.
+3. If permitted, H07 records governed sharing metadata and publishes `DashboardShared`.
+4. The recipient may accept the valid share, after which H07 publishes `DashboardShareAccepted` and the share becomes Active under the defined scope.
+5. If sharing permissions are changed, H07 updates only its sharing metadata under the new authorized scope.
+6. The share remains governed until it expires or is revoked.
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| Denied | Dashboard is restricted/unpublished, target is invalid, or authorization/scope policy fails | H07 rejects the sharing request without creating valid access | Access denied without inventing a `Denied` state | Enterprise Dashboard / Platform Foundation |
-| Time-limited share | A governed expiry is defined | Share is accepted and remains active only until the boundary is reached | Access later expires | Enterprise Dashboard |
-| Permission change | Existing sharing permission scope is changed through the H07-defined sharing-permission action | H07 updates sharing metadata within authorization limits | Access scope changed | Enterprise Dashboard |
-| Revocation | An active share must be withdrawn | H07 revokes the share under governed authority | Access revoked | Enterprise Dashboard |
+- **Denied:** if A04 produces a denying authorization outcome, or H07 sharing validation rejects the request, no active share is established.
+- **Changed:** H07 may modify governed sharing permissions while preserving dashboard ownership.
+- **Expired:** the Share lifecycle reaches `Expired`, and H07 publishes `DashboardShareExpired`.
+- **Revoked:** the Share lifecycle reaches `Revoked`, and H07 publishes `DashboardShareRevoked`.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Invalid target, restricted dashboard, or incompatible scope | Share cannot be granted | Reject the request; no access is created | Enterprise Dashboard |
-| Recipient lacks sufficient permission | Shared dashboard cannot become accessible | Deny/withhold access under Section A authorization | Platform Foundation / A |
-| Share becomes expired or revoked | Recipient no longer has access through that share | A new governed share is required for future access | Enterprise Dashboard |
+If the target, authorization evidence, visibility scope, or expiry conditions are invalid, the share does not become active. An expired or revoked share is not silently reopened; a new governed sharing action is required where future access is appropriate.
 
 # 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| Sharing transfers configuration metadata only | Enterprise Dashboard | No business data is duplicated | L2-H07 BR-SHR-001, BR-SHR-002 |
-| Recipients require sufficient permissions before access | Platform Foundation / Enterprise Dashboard boundary | Sharing cannot expand authorization | L2-H07 BR-SHR-003; L2-A04 |
-| Accepted shared dashboards remain independent unless synchronization is explicitly enabled | Enterprise Dashboard | Owner changes do not silently transfer into the recipient copy/access context | L2-H07 BR-SHR-004 |
-| Workspace/dashboard visibility never grants additional business permissions | Platform Foundation | Section A authorization remains authoritative | L2-A04 AP-07, AP-09 |
+- A04 explicit deny overrides allow for authorization decisions.
+- Recipients must possess sufficient authorization before a shared dashboard becomes accessible.
+- Sharing transfers metadata/access descriptors only and does not transfer ownership of the dashboard or source information.
+- Expired or revoked access remains governed by the H07 Share lifecycle.
 
 # 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Dashboard Share | Draft / Offered | Governed share offer and recipient acceptance | Accepted / Active | Enterprise Dashboard | L2-H07 §52.8 |
-| Dashboard Share | Active | Governed expiry or revocation | Expired or Revoked, followed by archival where applicable | Enterprise Dashboard | L2-H07 §§51.23, 52.8 |
-| Dashboard Sharing permissions | Existing share metadata | Governed permission modification | Changed metadata within the same H07 ownership boundary | Enterprise Dashboard | L2-H07 §21.8 |
-
-A denied request is represented by the explicit H07 rejection/failure path, not by an invented lifecycle state.
+The H07 Dashboard Share lifecycle is `Draft → Offered → Accepted → Active → Expired → Archived`, with `Revoked` as the governed revocation path. Denial occurs before active sharing through A04 authorization or H07 validation; L3 does not invent a separate Denied share state.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
-|---|---|---|---|---|
-| DashboardShared | Enterprise Dashboard | Target sharing context | Records governed share creation | L2-H07 §23.7; §51.21 |
-| DashboardShareAccepted | Enterprise Dashboard | H07 sharing context | Records recipient acceptance | L2-H07 §23.7; §51.22 |
-| DashboardShareExpired | Enterprise Dashboard | H07 sharing context | Records governed expiry | L2-H07 §23.7; §51.23 |
-| DashboardShareRevoked | Enterprise Dashboard | H07 sharing context | Records governed revocation | L2-H07 §23.7; §52.8 |
-
-H07 defines a governed sharing-permission modification action but no distinct canonical event for a sharing-permission change.
+H07 publishes `DashboardShared`, `DashboardShareAccepted`, `DashboardShareExpired`, and `DashboardShareRevoked`. H07 does not define a separate canonical business event for a sharing-permission change or denied request, so L3 does not invent one.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-Section A supplies authorization decisions and policy constraints. H07 owns the share metadata and changes only dashboard presentation access. No operational business fact is transferred.
+A04 supplies the authoritative authorization decision. H07 owns the sharing metadata and lifecycle. The shared dashboard continues to reference source-domain information without copying or re-owning it.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
-|---|---|---|---|
-| Initiate share | Dashboard Owner / Administrator | Must have source ownership/share authority and satisfy Section A authorization | Enterprise Dashboard |
-| Accept share | Recipient User / Recipient Administrator | Recipient identity and authorization must match the governed target | Enterprise Dashboard with Section A authorization |
-| Change/revoke/expire access | H07 sharing governance authority as defined by the applicable action | Cannot exceed Section A policy or tenant/scope constraints | Enterprise Dashboard |
+The request requires source-ownership/sharing authority and an A04 authorization decision. Recipient acceptance remains subject to target identity and authorization validation.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-No additional scenario-specific separation-of-duty rule is defined. Sharing never overrides tenant, role, classification, or Section A authorization restrictions.
+H07 cannot use dashboard sharing to override A04 denial or upstream source-domain restrictions. A recipient cannot gain broader business authority merely by receiving a dashboard share.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve source and target principal references, permission scope, expiry where defined, acceptance, permission-change history, revocation/expiry history, and the authorization outcome required by H07.
+Preserve the source dashboard reference, requester/target context, authorization result, sharing scope, acceptance evidence, permission changes, expiry/revocation history, and H07 sharing events.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- The sharing request or existing share has reached a source-supported granted, denied, changed, expired, or revoked access outcome.
-- No operational business data or source-domain ownership has been transferred.
-- Section A authorization remains authoritative.
+The requested or existing share has reached one of the frozen controlled-access outcomes using A04 authorization and the authoritative H07 sharing lifecycle.
 
 ## 16.2 Postconditions
 
-The effective dashboard-sharing availability reflects the governed outcome, and the H07 sharing history remains auditable.
+The effective sharing state and scope are current and auditable; dashboard and source-data ownership remain unchanged.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-- H07 supports governed sharing-permission modification, but no distinct canonical business event is defined for the frozen `changed` access branch. The branch remains source-supported through the H07 sharing workflow material and audited permission-change obligation, so this is non-blocking for the Draft.
-- H07 §52.8 presents the textual allowed-transition chain in a way that could be read as `Expired → Revoked`, while its accompanying state diagram and explicit workflows treat expiry and revocation as alternative closures from active sharing. This Draft relies only on the explicit expiry/revocation workflows and does not assert the disputed sequence.
+H07 defines no separate canonical event for a sharing-permission change or denied sharing request. The underlying outcomes are still source-grounded through the H07 sharing metadata/lifecycle and A04 authorization decision, so no synthetic event is introduced.
+
+**Architecture impact:** event-level downstream behavior for those two non-lifecycle outcomes must remain deferred to upstream clarification/L4 rather than being invented at L3.
 
 **Architecture assessment:** `PASS WITH ISSUES`
 
@@ -185,4 +151,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No scenario-specific deferred questions.
+Determine upstream whether permission-change and denied-share outcomes require dedicated H07 business events.

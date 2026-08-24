@@ -1,6 +1,6 @@
 # Compliance Finding to Verified CAPA Closure
 
-# 1. Scenario Metadata
+## 1. Scenario Metadata
 
 **Scenario ID:** L3-H-067  
 **Architecture Level:** L3 — Business Scenario Architecture  
@@ -11,185 +11,172 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H09 — Accreditation & Compliance Workflows  
-**Referenced By:** Compliance review, audit, readiness, and quality-governance scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP_L1_Business_Domain_Architecture_Locked.md; DEPENDENCY_MAP.md; L2-H09_Accreditation_and_Compliance_Workflows.md  
+**Referenced By:** None yet
 
-# 2. Scenario Purpose
+## 2. Scenario Purpose
 
-Govern a compliance or quality finding through root-cause analysis, corrective and preventive action planning, accountable execution, evidence submission, effectiveness verification, closure approval, and final CAPA closure while preserving ownership of remediation work in the responsible business domain.
+Govern a compliance finding and its CAPA from approved finding through root-cause analysis, source-domain remediation evidence, verification, effectiveness review and final closure.
 
-# 3. Business Outcome
+## 3. Business Outcome
 
 Root cause, corrective and preventive actions, evidence, effectiveness review, reopening where needed, and final closure are governed end to end
 
-# 4. Scenario Boundary and Scope
+## 4. Scenario Boundary and Scope
 
-## 4.1 Start Boundary
+### 4.1 Start Boundary
 
 An audit, assessment, review, or monitoring activity records a nonconformity or observation.
 
-## 4.2 End Boundary
+### 4.2 End Boundary
 
-H09 supports CAPA creation through verified closure. The frozen outcome additionally requires reopening where needed, but H09 defines no CAPA reopen state, transition, rule, action, authority, or event. The full frozen end boundary therefore cannot be represented authoritatively.
+Root cause, corrective and preventive actions, evidence, effectiveness review, reopening where needed, and final closure are governed end to end.
 
-## 4.3 In Scope
+### 4.3 In Scope
 
-- Finding/observation linkage to a CAPA.
-- Root-cause analysis.
-- Corrective and preventive action definition.
-- Action-owner assignment and milestones.
-- CAPA plan approval.
-- Remediation execution by the accountable domain.
-- Supporting evidence, implementation verification, effectiveness review, closure approval, and closure.
+- H09-owned governance behaviour materially required to reach the frozen business outcome.
+- Applicable source-domain references, evidence and governed hand-offs without ownership transfer.
+- Only upstream-defined rules, lifecycle positions, events, approvals and evidence obligations relevant to this scenario.
 
-## 4.4 Out of Scope
+### 4.4 Out of Scope
 
-- Inventing a CAPA reopen lifecycle.
-- Transferring ownership of operational remediation into H09.
-- Modifying the source finding, observation, risk, or operational record outside its canonical owner.
+- Operational business-state ownership belonging to participating source domains.
+- Adjacent downstream institutional outcomes after this scenario's End Boundary.
+- Later architecture-level implementation concerns.
 
-# 5. Ownership and Participating Domains
+## 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Accreditation & Compliance / H | Owns the CAPA aggregate, CAPA governance lifecycle, verification, effectiveness review, closure approval, and CAPA history. |
-| VAR:Remediation-Owning Domain | Owns the underlying business changes or corrective execution required to remediate the issue. |
+| Accreditation & Compliance (H) | Owns the H09 governance outcome and applicable H09 lifecycles. |
+| VAR:Remediation-Owning Domain | Owns correction of its operational business state and returns execution evidence to H09. |
 
-# 6. Business Actors, Roles and Responsibilities
+Participation and evidence contribution do not transfer canonical ownership.
+
+## 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| IQAC | Participates in CAPA governance and quality oversight. | Reviews |
-| Compliance Cell | Coordinates compliance remediation and follow-up. | Reviews / coordinates |
-| Department Head | Participates where remediation belongs to a departmental scope. | Reviews / accountable participation |
-| Action Owner | Executes the approved remediation actions and maintains progress/evidence. | Performs |
-| Internal Auditor | Participates in verification where the CAPA originates from audit activity. | Reviews / verifies |
-| Accountable governance reviewer | Agrees with the responsible action owner on CAPA effectiveness before closure. | Closure approval participant |
+| IQAC | Participates in finding/CAPA governance and effectiveness review. | Reviews |
+| Compliance Cell | Coordinates finding and CAPA governance. | Performs / reviews |
+| Department Head | Participates in finding/CAPA responsibility. | Participates |
+| Action Owner | Executes assigned CAPA actions and provides evidence. | Performs |
+| Internal Auditor | Participates in verification where applicable. | Verifies |
 
-# 7. Preconditions and Entry Criteria
+## 7. Preconditions and Entry Criteria
 
-- A source-supported Finding, Observation, Compliance Gap, Management Review, Quality Review, Institutional Risk, Policy Violation, Strategic Review, Institutional Review, or equivalent approved governance trigger exists.
-- A responsible remediation owner can be assigned.
+- A governed observation/nonconformity exists and can support a Finding.
 
-# 8. Trigger
+## 8. Trigger
 
 An audit, assessment, review, or monitoring activity records a nonconformity or observation
 
-# 9. Main Business Flow
+## 9. Main Business Flow
 
-1. H09 creates a CAPA linked to the source governance trigger.
-2. The responsible participants perform root-cause analysis.
-3. Corrective and preventive actions are defined.
-4. H09 assigns the Action Owner and governed milestones.
-5. The CAPA plan is approved through the H09 governance process.
-6. The remediation-owning domain executes the approved business remediation without transferring its operational ownership to H09.
-7. Supporting evidence is submitted to the CAPA record.
-8. H09 verifies implementation.
-9. H09 assesses effectiveness against the governed CAPA objective.
-10. The accountable governance reviewer and responsible action owner agree on effectiveness as required for closure approval.
-11. H09 closes the CAPA and preserves its complete implementation history.
-12. If later evidence requires reopening, stop: no authoritative H09 reopen transition exists.
+| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
+|---|---|---|---|
+| 1 | Register, classify, validate and approve the Finding. | Accreditation & Compliance | An approved Finding exists. |
+| 2 | Create the CAPA, link its source, perform root-cause analysis and define corrective/preventive actions. | Accreditation & Compliance | A governed CAPA plan exists. |
+| 3 | Assign the Action Owner and approve the CAPA plan. | Accreditation & Compliance | The CAPA enters assigned/implementation activity. |
+| 4 | Execute operational corrections in `VAR:Remediation-Owning Domain` and return authoritative execution evidence. | VAR:Remediation-Owning Domain | Operational correction remains source-domain owned; evidence is returned to H09. |
+| 5 | Verify implementation and assess effectiveness. | Accreditation & Compliance | Effectiveness is reviewed. |
+| 6 | Approve and close the CAPA when effectiveness is verified. | Accreditation & Compliance | CAPA is Closed under the supported normal lifecycle. |
 
-# 10. Alternate Business Flows
+> The authoritative flow cannot be extended to the frozen End Boundary without resolving the material issue in Section 17.1.
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| CAPA effectiveness is not established | Verification or effectiveness review is unsuccessful | Keep the CAPA outside `Closed` and continue governed remediation/verification | Closure withheld | Accreditation & Compliance / remediation owner |
-| CAPA becomes overdue | Approved milestones are not met | Record the source-defined overdue condition and continue escalation/follow-up | CAPA remains open | Accreditation & Compliance |
-| Reopening is required | A previously closed CAPA is later shown to be ineffective | Upstream architecture must define the reopen path | Frozen alternate branch blocked | Accreditation & Compliance |
+## 10. Alternate Business Flows
 
-# 11. Failure, Interruption and Business Recovery
+No scenario-specific alternate business flow is defined by the authoritative L2 architecture.
+
+## 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Remediation owner is not assigned | CAPA cannot progress validly | Establish the responsible action owner | Accreditation & Compliance / remediation owner |
-| Supporting evidence is insufficient | Effectiveness cannot be verified | Continue remediation and provide sufficient evidence | Remediation-owning domain |
-| Closure approval lacks effectiveness agreement | Closure condition is not met | Continue review until the accountable reviewer and responsible action owner agree on effectiveness | Accreditation & Compliance / action owner |
-| Reopen condition occurs after closure | Frozen outcome requires a lifecycle branch not defined upstream | Escalate the architecture gap; do not invent a local state | Accreditation & Compliance |
+| Effectiveness review indicates remediation is insufficient and reopening is needed | Frozen Stage 3 requires governed reopening, but H09 CAPA defines no reopened state or transition/event. | Do not invent a reopening path; upstream resolution is required. | Accreditation & Compliance |
 
-# 12. Business Rules and Decision Constraints
+## 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Every CAPA originates from an approved governance trigger | H09 | CAPA must preserve source-trigger lineage | L2-H09 BR-H09-025 |
-| CAPA closure requires effectiveness verification | H09 | Closure cannot precede verified effectiveness | L2-H09 BR-H09-026 |
-| CAPA ownership remains assigned throughout its lifecycle | H09 | Responsible ownership is mandatory | L2-H09 BR-H09-027 |
-| Completed CAPAs retain complete implementation history | H09 | Closure history remains traceable | L2-H09 BR-H09-028 |
-| CAPA closure approval requires the accountable governance reviewer and responsible action owner to agree on effectiveness | H09 | Final closure requires source-defined joint effectiveness agreement | L2-H09 §2.5 Approval Responsibilities |
+| BR-H09-023 — Critical Findings require CAPA creation. | Accreditation & Compliance | Requires CAPA for Critical findings. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
+| BR-H09-026 — CAPA closure requires effectiveness verification. | Accreditation & Compliance | Prevents closure before effectiveness review. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
+| BR-H09-027 — CAPA ownership remains assigned throughout its lifecycle. | Accreditation & Compliance | Preserves CAPA accountability. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
+| BR-H09-028 — completed CAPAs retain complete implementation history. | Accreditation & Compliance | Preserves remediation evidence/history. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
 
-# 13. State and Lifecycle Impact
+## 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| CAPA | Created | Approve and assign governed remediation | Approved → Assigned | H09 | L2-H09 H09-A08 |
-| CAPA | Assigned | Execute remediation | Implementation | H09 | L2-H09 H09-A08 |
-| CAPA | Implementation | Preserve supporting proof | Evidence Submitted | H09 | L2-H09 H09-A08 |
-| CAPA | Evidence Submitted | Verify implementation and effectiveness | Verification → Effectiveness Review | H09 | L2-H09 H09-A08 |
-| CAPA | Effectiveness Review | Obtain valid closure approval | Closed | H09 | L2-H09 H09-A08; H09-10 |
+| Finding | Identified / Validated / Approved | Finding initiates CAPA and is governed through implementation/verification. | Closed | Accreditation & Compliance | L2-H09_Accreditation_and_Compliance_Workflows.md §6 H09-A07 |
+| CAPA | Created | Assignment, implementation, evidence, verification and effectiveness review. | Closed | Accreditation & Compliance | L2-H09_Accreditation_and_Compliance_Workflows.md §6 H09-A08 / §7 |
 
-H09 §7 omits the `Approved` and `Evidence Submitted` positions that are present in H09-A08. No reopen state is defined in either lifecycle representation.
+## 14. Business Events and Cross-Domain Collaboration
 
-# 14. Business Events and Cross-Domain Collaboration
-
-## 14.1 Published / Consumed Business Events
+### 14.1 Published / Consumed Business Events
 
 | Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
 |---|---|---|---|---|
-| CAPA Created | CAPA aggregate / H09 | Governance and remediation participants | Records CAPA creation | L2-H09 §11 |
-| CAPA Assigned | CAPA aggregate / H09 | Action Owner and governance participants | Records accountable assignment | L2-H09 §11 |
-| CAPA Approved | CAPA aggregate / H09 | Remediation participants | Records approved plan | L2-H09 §11 |
-| CAPA Milestone Completed | CAPA aggregate / H09 | Governance participants | Records governed progress | L2-H09 §11 |
-| CAPA Overdue | CAPA aggregate / H09 | Governance participants | Records overdue remediation | L2-H09 §11 |
-| CAPA Verified | CAPA aggregate / H09 | Governance participants | Records successful verification | L2-H09 §11 |
-| CAPA Closed | CAPA aggregate / H09 | Governance participants | Records valid closure | L2-H09 §11 |
+| Finding Created | Finding aggregate | CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Finding Approved | Finding aggregate | CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| CAPA Created | CAPA aggregate | Governance reviewers | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| CAPA Assigned | CAPA aggregate | Governance reviewers | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| CAPA Approved | CAPA aggregate | Governance reviewers | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| CAPA Milestone Completed | CAPA aggregate | Governance reviewers | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| CAPA Verified | CAPA aggregate | Governance reviewers | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| CAPA Closed | CAPA aggregate | Governance reviewers | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
+| Finding Closed | Finding aggregate | CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
 
-No canonical CAPA reopened event is defined.
+### 14.2 Business Contracts and Cross-Domain Hand-offs
 
-## 14.2 Business Contracts and Cross-Domain Hand-offs
+| Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
+|---|---|---|---|---|
+| Accreditation & Compliance | VAR:Remediation-Owning Domain | CAPA Execution Contract | Source domain corrects its operational state under the governed CAPA responsibility. | L2-H09_Accreditation_and_Compliance_Workflows.md §23.3 |
+| VAR:Remediation-Owning Domain | Accreditation & Compliance | CAPA execution evidence and authoritative business reference | Return evidence for H09 effectiveness verification and closure. | L2-H09_Accreditation_and_Compliance_Workflows.md §23.3 |
 
-The remediation-owning domain executes its business correction under its own ownership and supplies completion/effectiveness evidence to H09. H09 governs the CAPA record and closure decision without taking ownership of the corrected source-domain lifecycle.
+## 15. Business Authorization, Approval and Audit Obligations
 
-# 15. Business Authorization, Approval and Audit Obligations
+### 15.1 Initiation and Decision Authority
 
-## 15.1 Initiation and Decision Authority
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| CAPA closure | Accountable governance reviewer / Action Owner | H09 requires effectiveness agreement before closure. | Accreditation & Compliance |
 
-CAPA plan approval and closure occur within H09 governance. Closure requires agreement on effectiveness between the accountable governance reviewer and the responsible action owner.
+### 15.2 Separation of Duties, Overrides and Exceptions
 
-## 15.2 Separation of Duties, Overrides and Exceptions
+H09 requires the accountable governance reviewer and responsible action owner to agree on CAPA effectiveness for closure.
 
-No CAPA may be closed without effectiveness verification. Operational remediation remains owned by the responsible business domain.
+### 15.3 Business Audit and Evidence Obligations
 
-## 15.3 Business Audit and Evidence Obligations
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| CAPA implementation | Root-cause analysis, action plan and source-domain execution evidence | Accreditation & Compliance |
+| CAPA closure | Effectiveness assessment and closure decision | Accreditation & Compliance |
 
-Preserve source-trigger lineage, root-cause analysis, approved actions, ownership, milestones, implementation evidence, verification record, effectiveness assessment, closure approval, and complete implementation history.
+## 16. Completion Criteria and Postconditions
 
-# 16. Completion Criteria and Postconditions
+### 16.1 Completion Criteria
 
-## 16.1 Completion Criteria
+- The frozen outcome requires verified effectiveness, governed reopening where needed, and final closure.
+- Normal verified closure is supported, but the required reopening path is undefined upstream.
 
-The source-supported happy path completes when effectiveness is verified, closure approval is valid, and the CAPA reaches `Closed`. The full frozen scenario is not complete because a required reopening branch remains undefined upstream.
+### 16.2 Postconditions
 
-## 16.2 Postconditions
+- Operational corrections remain owned by `VAR:Remediation-Owning Domain`.
+- H09 retains the Finding/CAPA governance history and closure decision.
 
-Closed CAPA history remains traceable; no unsupported reopen state is asserted.
+## 17. Open Issues, Assumptions and Deferred Questions
 
-# 17. Open Issues, Assumptions and Deferred Questions
+### 17.1 Open Issues
 
-## 17.1 Open Issues
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| Frozen Stage 3 requires `reopening where needed`; H09 CAPA has no Reopened state, transition, or canonical reopen event. | A required failure/recovery branch of the frozen outcome cannot be authored without inventing lifecycle semantics. | Define CAPA reopening semantics upstream in H09. |
 
-- Frozen semantics require `reopening where needed`.
-- H09 defines no CAPA reopen state, transition, rule, action, authority, or event.
-- H09-A08 includes `Approved` and `Evidence Submitted`, while §7 omits them.
-
-The missing reopen branch materially affects the frozen lifecycle outcome.
-
-**Architecture assessment:** `BLOCKED`
-
-## 17.2 Assumptions
+### 17.2 Assumptions
 
 No assumptions.
 
-## 17.3 Deferred Questions
+### 17.3 Deferred Questions
 
-Upstream H09 must define whether a closed CAPA can reopen and, if so, the canonical transition, authority, state, and event semantics.
+No scenario-specific deferred questions.

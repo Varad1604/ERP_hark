@@ -1,6 +1,6 @@
 # External Education Provider to Governed Active or Retired Relationship
 
-# 1. Scenario Metadata
+## 1. Scenario Metadata
 
 **Scenario ID:** L3-H-072  
 **Architecture Level:** L3 — Business Scenario Architecture  
@@ -11,182 +11,184 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H10 — External Education Integration Workflows  
-**Referenced By:** External connector, trust, synchronization, enrollment, learning, credit-transfer, verification, reconciliation, and exchange scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP_L1_Business_Domain_Architecture_Locked.md; DEPENDENCY_MAP.md; L2-A03_Authentication_Workflows.md; L2-B01_Institution_Workflow.md; L2-H10_External_Education_Integration_Workflows.md  
+**Referenced By:** None yet
 
-# 2. Scenario Purpose
+## 2. Scenario Purpose
 
-Govern an external education provider relationship from proposed onboarding through verification, certification, approval and activation, with controlled restriction or suspension where required and terminal retirement when the institutional relationship ends, while preserving upstream platform and institutional ownership.
+Govern an institutional relationship with an external education provider from proposal or change through due diligence, approval or rejection, activation, suspension, and permanent retirement while preserving institutional, identity, and authentication ownership outside H10.
 
-# 3. Business Outcome
+## 3. Business Outcome
 
 Due diligence and approval establish, reject, suspend, or retire the provider relationship; retired providers require a new governed onboarding to return
 
-# 4. Scenario Boundary and Scope
+## 4. Scenario Boundary and Scope
 
-## 4.1 Start Boundary
+### 4.1 Start Boundary
 
 An institution proposes or changes an external education provider relationship.
 
-## 4.2 End Boundary
+### 4.2 End Boundary
 
-The scenario ends when H10 records a governed provider outcome of activation, onboarding rejection, suspension/restriction, or terminal retirement. A retired provider does not transition back into service through the retired lifecycle; any future relationship requires a new governed onboarding.
+The provider relationship is governed to an approved Active position, rejected onboarding outcome, temporary Suspended position, or terminal Retired position; a retired relationship is not reactivated in place.
 
-## 4.3 In Scope
+### 4.3 In Scope
 
-- Provider registration and due-diligence verification.
-- Technical/security certification and institutional approval.
-- Provider activation.
-- Restriction or suspension under governed risk or incident conditions.
-- Terminal provider retirement.
-- Preservation of provider relationship and approval history.
+- External provider registration, verification, certification, approval, activation, suspension and retirement governed by H10.
+- Institutional reference and collaboration context supplied by Section B without ownership transfer.
+- Authentication and credential facts supplied by Section A under their canonical ownership.
+- Preservation of provider relationship and governance history.
 
-## 4.4 Out of Scope
+### 4.4 Out of Scope
 
-- Connector configuration and lifecycle beyond what is required to establish provider readiness.
-- Ownership of institution, identity, student, academic, examination, finance, or workforce records.
-- Re-activating a `Retired` provider through an unsupported state transition.
+- Institution lifecycle changes owned by Section B.
+- Person, Identity, Credential, Authentication Session or Authentication Provider lifecycle ownership in Section A.
+- Connector configuration and lifecycle outcomes belonging to L3-H-073.
+- Any external enrollment, learning, credit-transfer or credential-verification exchange after provider relationship establishment.
 
-# 5. Ownership and Participating Domains
+## 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| External Education Integration / H | Owns External Provider lifecycle, provider onboarding orchestration, certification coordination, activation, restriction/suspension, retirement, and integration relationship history. |
-| Platform Foundation / A | Retains ownership of canonical platform identity, security and authorization capabilities consumed by the governed integration boundary. |
-| Institution & Structure / B | Retains ownership of canonical institutional context referenced by the external provider relationship. |
+| External Education Integration (H) | Owns the External Provider and provider-relationship governance lifecycle and final H10 relationship outcome. |
+| Platform Foundation (A) | Retains canonical ownership of identity and authentication artifacts referenced during trust and authentication checks. |
+| Institution & Structure (B) | Retains authoritative institutional and organisation context referenced by the provider relationship. |
 
-Participation by A or B does not transfer their canonical entities into H10.
+Cross-domain validation and reference consumption do not transfer ownership to H10.
 
-# 6. Business Actors, Roles and Responsibilities
+## 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Integration Administrator | Registers and governs the external provider relationship and has source-defined provider activation capability. | Performs / governs |
-| Security Administrator | Participates in provider verification, security/trust review and has source-defined provider activation capability. | Reviews / governs |
-| Registrar | Provides institutional collaboration oversight where applicable. | Reviews |
-| Compliance Officer | Provides regulatory and audit oversight where applicable. | Reviews |
+| Integration Administrator | Coordinates provider registration, governance progression and provider lifecycle administration. | Initiates / performs |
+| Security Administrator | Reviews authentication, credential and trust conditions required before operational use. | Reviews |
+| Registrar | Provides institutional collaboration oversight where the provider relationship affects institutional partnership. | Reviews |
+| Compliance Officer | Reviews applicable regulatory and audit obligations in provider governance. | Reviews |
 
-H10 states that governance owns certification, approval, deprecation and retirement decisions, but does not bind every such decision to one singular named enterprise role.
+## 7. Preconditions and Entry Criteria
 
-# 7. Preconditions and Entry Criteria
+- The institution and relevant organisational context are authoritative and available from Section B.
+- Any identity or authentication references required for the provider relationship remain available from their canonical Section A owners.
+- The provider proposal contains the metadata required by H10 provider validation rules.
 
-- The proposed provider can be identified as an external education organization.
-- Institutional context and applicable integration governance are available.
-- No `Retired` H10 provider record is being directly returned to an active state.
-
-# 8. Trigger
+## 8. Trigger
 
 An institution proposes or changes an external education provider relationship
 
-# 9. Main Business Flow
+## 9. Main Business Flow
 
-1. H10 registers the proposed External Provider.
-2. H10 performs the source-defined legal, identity and basic technical verification required before provider trust may advance.
-3. Security, protocol and governance checks are completed for provider certification.
-4. Required connector, configuration and trust evidence is considered without transferring ownership from the respective canonical domains.
-5. The provider relationship proceeds through institutional certification and approval.
-6. When operational activation is approved, H10 records the provider as `Active` and publishes the canonical provider activation outcome.
-7. If governance cannot approve onboarding, H10 records the source-defined provider-onboarding rejection outcome and does not activate the provider.
-8. If risk or incident conditions arise after activation, H10 may move the provider to `Restricted` or `Suspended` according to the locked provider trust lifecycle.
-9. If the relationship ends permanently, H10 moves the provider to `Retired` and records the canonical retirement event.
-10. Because `Retired` is terminal upstream, any future relationship must begin through a new governed onboarding rather than a direct reactivation.
+| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
+|---|---|---|---|
+| 1 | Register or identify the proposed external education provider relationship. | Integration Administrator / H10 | A governed provider onboarding record exists. |
+| 2 | Validate provider identity, institutional legitimacy, provider category, required metadata and relevant institutional references. | H10 with A/B references | Provider due-diligence inputs are established without transferring source ownership. |
+| 3 | Complete required connector certification, security assessment, compliance review and trust verification. | H10 / Security Administrator / Compliance Officer | Provider is eligible for the governed approval decision or rejection path. |
+| 4 | Record the institutional provider approval decision. | H10 governance | Approved providers may proceed to activation; rejected onboarding does not proceed to operational use. |
+| 5 | Where approved, activate the provider relationship for the permitted scope. | External Education Integration | Provider relationship reaches Active. |
 
-# 10. Alternate Business Flows
+## 10. Alternate Business Flows
 
 | Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
 |---|---|---|---|---|
-| Onboarding rejected | Verification, security, certification or governance review does not support activation | Record `ProviderOnboardingRejected`; do not activate | Rejected onboarding outcome | H10 |
-| Provider restricted | Provider may operate only within constrained scope | Move provider to `Restricted` | Restricted governed relationship | H10 |
-| Provider suspended | Risk, incident or governance condition temporarily halts communication | Move provider to `Suspended` | New governed operation halted | H10 |
-| Provider retired | Relationship is permanently ended | Move provider to terminal `Retired` | Retirement recorded | H10 |
+| Onboarding rejected | Validation, security, certification or approval does not satisfy governance requirements | Stop activation and preserve the rejected onboarding decision and evidence. | Provider relationship is not established for operational use. | External Education Integration |
+| Provider restricted or suspended | Risk, policy, incident or governance conditions require limitation or halt | Apply the H10 provider trust lifecycle restriction or suspension controls. | Relationship is Restricted or Suspended without creating a new provider owner. | External Education Integration |
+| Provider retired | Governance permanently ends the relationship | Transition the provider to Retired and preserve historical relationship evidence. | Retired is terminal for the existing provider relationship. | External Education Integration |
 
-# 11. Failure, Interruption and Business Recovery
+## 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Verification or certification fails | Provider cannot become operational | Retain outside `Active` and complete governed remediation/review or reject onboarding | H10 |
-| Active provider becomes unsafe or non-compliant | Continued normal exchange is not permitted | Apply the source-defined restriction or suspension path | H10 |
-| Retired provider seeks return | Direct return is prohibited by terminal lifecycle | Begin a new governed onboarding relationship | H10 |
+| Provider onboarding cannot satisfy required verification or certification | Operational activation is prohibited. | Preserve the failed/rejected onboarding outcome and permit remediation only through governed onboarding review. | External Education Integration |
+| Suspended provider is remediated | Existing communication remains halted until governance conditions are restored. | Re-validation and governed approval may restore Active status where H10 permits. | External Education Integration |
+| A retired provider seeks a future relationship | The retired relationship cannot return to an active state. | Begin a new governed onboarding rather than reactivating the retired relationship in place. | External Education Integration |
 
-# 12. Business Rules and Decision Constraints
+## 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| H10 owns external-provider lifecycle management and integration orchestration only | H10 | Provider governance does not transfer ownership of institutional or academic facts | L2-H10 §§1–3 |
-| Provider cannot reach production operation without verification, certification and approval | H10 | Activation is gated | L2-H10 Provider Onboarding Saga; Provider Trust Lifecycle |
-| `Retired` is terminal | H10 | A retired provider cannot transition directly back to active service | L2-H10 §4.9 Provider Trust Lifecycle |
-| Every external interaction remains governed and auditable | H10 | Relationship decisions and history remain traceable | L2-H10 core principles |
+| PV-001 — Provider Code must be unique. | External Education Integration | Prevents duplicate provider registration. | L2-H10 §12.3 |
+| PV-004 — Active providers require at least one operational endpoint. | External Education Integration | Prevents activation without a usable governed provider endpoint. | L2-H10 §12.3 |
+| PV-005 — Authentication configuration is mandatory before activation. | External Education Integration | Requires authentication readiness before provider activation. | L2-H10 §12.3 |
+| PV-006 — Provider certification must be completed before production use. | External Education Integration | Prevents operational use before governed certification. | L2-H10 §12.3 |
+| PV-007 — Suspended providers cannot initiate new synchronization jobs. | External Education Integration | Enforces suspension as a business prohibition on new exchanges. | L2-H10 §12.3 |
+| PV-008 — Retired providers cannot receive new requests. | External Education Integration | Makes retirement terminal for the existing provider relationship. | L2-H10 §12.3 |
+| Credential and Authentication Provider lifecycles are owned exclusively by L2-A03. | Platform Foundation — Authentication | H10 may reference authentication outcomes but must not take over credential/authentication-provider ownership. | L2-A03 Canonical Ownership |
 
-# 13. State and Lifecycle Impact
+## 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| External Provider | Pending Verification | Complete provider verification | Verified | H10 | L2-H10 §4.9 |
-| External Provider | Verified | Complete certification review | Certified | H10 | L2-H10 §4.9 |
-| External Provider | Certified | Record approved operational relationship | Active | H10 | L2-H10 §4.9 |
-| External Provider | Active / Restricted | Apply governed temporary halt | Suspended | H10 | L2-H10 §4.9 |
-| External Provider | Non-terminal state | Permanently end relationship | Retired | H10 | L2-H10 §4.9 |
+| External Provider / Provider Trust | Pending Verification / Verified / Certified / Active | Verification, certification, activation, restriction, suspension or permanent retirement. | Active / Restricted / Suspended / Retired | External Education Integration | L2-H10 §4.9 |
+| Credential / Authentication Provider | Existing authoritative A03 lifecycle position | Referenced for provider authentication/trust prerequisites only; H10 does not own state change. | Unchanged by H10 | Platform Foundation — Authentication | L2-A03 Canonical Ownership |
+| Institution / organisation context | Existing authoritative institutional position | Referenced to establish the institutional relationship context. | Unchanged by H10 | Institution & Structure | Locked L1 / L2-B01 |
 
-H10 represents onboarding rejection through `ProviderOnboardingRejected` rather than a persistent `Rejected` provider state.
+## 14. Business Events and Cross-Domain Collaboration
 
-# 14. Business Events and Cross-Domain Collaboration
+### 14.1 Published / Consumed Business Events
 
-## 14.1 Published / Consumed Business Events
+| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
+|---|---|---|---|---|
+| ProviderRegistered | External Provider aggregate | H10 connector, configuration, monitoring and security capabilities | Records governed provider registration. | L2-H10 §6.3 / §10.3 |
+| ProviderActivated | External Provider aggregate | H10 synchronization and external-exchange capabilities | Records operational provider activation. | L2-H10 §6.3 / §10.3 |
+| ProviderSuspended | External Provider aggregate | H10 external-exchange capabilities | Records temporary halt of provider communication. | L2-H10 §6.3 / §10.3 |
+| ProviderRetired | External Provider aggregate | H10 consumers of provider relationship state | Records permanent provider retirement. | L2-H10 §6.3 / §10.3 |
 
-| Business Event | Canonical Publisher | Scenario Purpose | Authoritative Source |
+### 14.2 Business Contracts and Cross-Domain Hand-offs
+
+- H10 consumes authoritative institutional and organisation references without changing Section B ownership.
+- H10 consumes Section A identity/authentication outcomes where required; Credential and Authentication Provider lifecycles remain owned by L2-A03.
+- No additional named synchronous business contract is defined upstream for this scenario.
+
+## 15. Business Authorization, Approval and Audit Obligations
+
+### 15.1 Initiation and Decision Authority
+
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
-| ProviderRegistered | External Provider / H10 | Records provider registration | L2-H10 Provider Events |
-| ProviderVerified | External Provider / H10 | Records completed verification | L2-H10 §4.9 |
-| ProviderCertified | External Provider / H10 | Records certification | L2-H10 §4.9 |
-| ProviderActivated | External Provider / H10 | Records active governed availability | L2-H10 §4.9 / Provider Events |
-| ProviderSuspended | External Provider / H10 | Records temporary suspension | L2-H10 §4.9 / Provider Events |
-| ProviderRetired | External Provider / H10 | Records terminal retirement | L2-H10 §4.9 / Provider Events |
-| ProviderOnboardingRejected | Provider Onboarding / H10 | Records unsuccessful onboarding decision | L2-H10 Provider Onboarding Saga |
+| Register provider | Integration Administrator | H10 enterprise role and provider command authority. | External Education Integration |
+| Review authentication/trust readiness | Security Administrator | H10 enterprise role for authentication and credential governance; A03 retains credential lifecycle ownership. | External Education Integration / Platform Foundation — Authentication |
+| Activate provider | Integration Administrator / Security Administrator | Provider must satisfy verification, certification, authentication and governance prerequisites. | External Education Integration |
+| Retire provider | Integration Administrator under governance decision | Retired is terminal for the existing provider relationship. | External Education Integration |
 
-## 14.2 Business Contracts and Cross-Domain Hand-offs
+### 15.2 Separation of Duties, Overrides and Exceptions
 
-A and B provide their canonical platform/institutional context through approved enterprise boundaries. H10 owns only the external-provider relationship and orchestration record.
+Provider governance separates operational activation from the preceding validation, security and certification evidence. No scenario-specific override authority beyond the upstream H10 governance model is invented here.
 
-# 15. Business Authorization, Approval and Audit Obligations
+### 15.3 Business Audit and Evidence Obligations
 
-## 15.1 Initiation and Decision Authority
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Provider due diligence and certification | Provider validation, certification, security and approval evidence | External Education Integration |
+| Provider lifecycle decision | Registration, activation, suspension/restriction or retirement history | External Education Integration |
+| Authentication evidence | Canonical authentication/credential evidence retained by its owning Section A domain | Platform Foundation — Authentication |
 
-The source-defined permission matrix allows Integration Administrator and Security Administrator participation in provider registration/activation. H10 separately assigns certification, approval and retirement decisions to governance without naming one singular role for every decision.
+## 16. Completion Criteria and Postconditions
 
-## 15.2 Separation of Duties, Overrides and Exceptions
+### 16.1 Completion Criteria
 
-No external provider becomes active solely because an external party requests access. Verification, certification and institutional approval remain mandatory. No direct transition out of `Retired` is permitted.
+- The provider proposal has reached an authoritative approved/activated, rejected, suspended/restricted, or retired business outcome supported by the H10 governance path.
+- Section A and Section B ownership remains unchanged.
+- Provider governance history and decision evidence are retained.
 
-## 15.3 Business Audit and Evidence Obligations
+### 16.2 Postconditions
 
-Preserve provider identity, institutional relationship context, verification evidence, certification evidence, approval decision, activation history, restriction/suspension decisions, retirement evidence and complete provider history.
+- An approved relationship may be used only within its governed provider scope.
+- Suspended providers cannot initiate new H10 exchanges.
+- Retired is terminal for the existing provider relationship; return requires new governed onboarding under the frozen scenario semantics.
 
-# 16. Completion Criteria and Postconditions
+## 17. Open Issues, Assumptions and Deferred Questions
 
-## 16.1 Completion Criteria
+### 17.1 Open Issues
 
-- A provider relationship reaches a source-supported governed outcome.
-- Activation occurs only after verification/certification/approval.
-- Rejection, suspension/restriction and retirement remain traceable.
-- Retirement remains terminal.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| `ProviderOnboardingRejected` is defined in the H10 Provider Onboarding Saga publication list, but it is absent from the canonical H10 Provider Event catalogue and no aggregate publisher is identified there. | Rejection behaviour is supported, but the canonical event catalogue/publisher for the rejection fact is internally incomplete. The scenario therefore does not invent a rejection event publisher. | Reconcile the H10 provider-event catalogue and publisher assignment before locking this scenario. |
+| H10 describes both an External Provider aggregate lifecycle and a Provider Trust lifecycle using different intermediate state vocabulary. | The end positions Active, Suspended and Retired remain aligned, but intermediate vocabulary is inconsistent. | Reconcile H10 lifecycle terminology before lock. |
 
-## 16.2 Postconditions
-
-An active provider may participate in later H10 integration scenarios, while a rejected or retired provider cannot be treated as active without a new valid governance path.
-
-# 17. Open Issues, Assumptions and Deferred Questions
-
-## 17.1 Open Issues
-
-H10 defines onboarding rejection as an event but not as a persistent External Provider lifecycle state. It also states that governance owns provider approval/retirement decisions while the enterprise-role table does not identify one singular decision-maker for all provider lifecycle decisions. These gaps do not prevent the frozen relationship outcomes from being represented because the provider lifecycle, activation/suspension/retirement events and onboarding rejection event are explicit.
-
-**Architecture assessment:** `PASS WITH ISSUES`
-
-## 17.2 Assumptions
+### 17.2 Assumptions
 
 No assumptions.
 
-## 17.3 Deferred Questions
+### 17.3 Deferred Questions
 
-Upstream H10 may clarify whether rejected onboarding has a persistent aggregate state and may bind each provider governance decision to a named enterprise role or explicit authority rule.
+No scenario-specific deferred questions.

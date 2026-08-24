@@ -11,13 +11,12 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A02 — Person & Identity Workflows; L2-H06 — Alumni Workflows  
-**Referenced By:** Alumni networking, directory, and engagement scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H06 — Alumni Workflows; applicable locked Section A identity/authorization architecture
 
 # 2. Scenario Purpose
 
-Govern an alumni-initiated professional or community networking relationship while preserving Section A ownership of Person and Identity and H06 ownership of the Alumni Network Connection.
+Govern an Alumni networking request using H06 consent, directory, and Network Connection rules while preserving Section A ownership of identity.
 
 # 3. Business Outcome
 
@@ -27,41 +26,39 @@ Eligibility and consent produce an accepted, declined, blocked, or closed relati
 
 ## 4.1 Start Boundary
 
-An alumnus initiates a governed professional or community connection.
+The scenario begins when an alumnus initiates a governed professional or community connection.
 
 ## 4.2 End Boundary
 
-The frozen outcome requires accepted, declined, blocked, or closed networking outcomes. H06 defines accepted/connected, rejected, and removed paths but does not define canonical blocked or closed relationship states.
+The frozen end boundary requires accepted, declined, blocked, or closed networking outcomes.
 
 ## 4.3 In Scope
 
-Active Alumni membership, directory participation, networking permission, privacy validation, connection initiation, acceptance/rejection, removal, and identity references owned by Section A.
+- Validate active membership, directory participation, visibility consent, and networking enablement.
+- Create, accept, reject, or remove an H06 Network Connection where defined.
+- Preserve relationship history.
 
 ## 4.4 Out of Scope
 
-Creation or modification of Person/Identity records and any locally invented blocked/closed networking lifecycle.
+- Person identity changes.
+- Technical access controls.
+- Inventing a `Blocked` Network Connection state or event.
+- Renaming H06 lifecycle states.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
-|---|---|
-| Platform Foundation / A | Owns Person, Identity, User Account, and canonical identity references. |
-| Alumni / H | Owns the Alumni Network Connection, networking rules, privacy checks, and H06 networking lifecycle. |
+Section A retains canonical identity ownership. H06 owns the Alumni Network Connection, directory visibility, and networking relationship lifecycle.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Alumni | Initiates or receives an alumni networking request and may accept, reject, or remove a supported connection. | Initiates / decides supported response |
-| Alumni Administrator | May perform H06-supported networking actions where authorized upstream. | Performs supported administration |
+Alumni initiate and respond to networking invitations. H06 administrative roles may administer governed Alumni engagement where defined upstream.
 
 # 7. Preconditions and Entry Criteria
 
-- Active Alumni Membership exists.
-- Directory participation is enabled.
-- Networking is enabled.
-- Applicable privacy permissions are satisfied.
-- Canonical Person/Identity references remain owned by Section A.
+- Active Alumni Membership.
+- Directory participation and networking are enabled.
+- Visibility consent is granted.
+- Canonical Person identity is available by reference.
 
 # 8. Trigger
 
@@ -69,74 +66,77 @@ An alumnus initiates a governed professional or community connection
 
 # 9. Main Business Flow
 
-1. Receive the connection request from an eligible alumnus.
-2. Validate active membership, privacy permissions, networking eligibility, and absence of an existing incompatible relationship.
-3. Create the H06 networking request using the defined Network Connection lifecycle.
-4. The receiving alumnus accepts or rejects the request.
-5. If accepted, establish the supported connected relationship and publish the canonical H06 networking event.
-6. If rejected, retain the rejected relationship history.
-7. Stop before claiming frozen blocked or closed outcomes because H06 defines neither lifecycle state.
+1. Validate Alumni membership, directory participation, networking preference, and consent.
+2. Create the connection request under H06, moving `Requested → Pending`.
+3. The receiving Alumni may accept the request, moving `Pending → Connected`.
+4. The receiving Alumni may reject the request, moving `Pending → Rejected`.
+5. A connected relationship may be removed, moving `Connected → Removed`.
+6. Preserve the networking relationship history and applicable H06 events.
+7. Do not create a blocked outcome because H06 defines no such state or transition.
 
 # 10. Alternate Business Flows
 
-A connected relationship may be removed through the H06-defined removal action. A rejected or removed relationship may later receive a new request under the defined state matrix.
+- Rejected relationships may later create a new request under the H06 transition matrix.
+- Removed relationships may later create a new request.
+- Rejection and removal remain distinct H06 lifecycle outcomes.
 
 # 11. Failure, Interruption and Business Recovery
 
-If membership, privacy, or networking eligibility is not satisfied, the relationship must not progress. Unsupported blocked/closed outcomes require upstream architecture resolution rather than local substitution.
+A request that fails H06 membership, directory, or consent preconditions does not proceed. A required `Blocked` outcome cannot be represented and remains an upstream gap.
 
 # 12. Business Rules and Decision Constraints
 
-- Networking requires active Alumni membership, enabled directory participation, and networking permission.
-- Privacy preferences govern visibility and networking participation.
-- Section A identity remains reference-only to H06.
-- Networking relationships remain institutional and do not replace external professional-networking relationships.
+- H06 owns Network Connection.
+- Directory participation and visibility consent are prerequisites.
+- H06 defines `Pending`, `Connected`, `Rejected`, and `Removed` networking states.
+- Identity remains Section A-owned.
+- L3 may not map `Connected`/`Rejected`/`Removed` to different canonical state names as if those names were authoritative.
 
 # 13. State and Lifecycle Impact
 
-H06 defines `Requested → Pending → Connected`, `Pending → Rejected`, and `Connected → Removed`, with new requests permitted from Rejected or Removed. No canonical `Blocked` or `Closed` networking state exists.
+Authoritative H06 transitions are `Requested → Pending`, `Pending → Connected`, `Pending → Rejected`, and `Connected → Removed`, with new requests permitted from `Rejected` or `Removed`. No `Blocked` state exists.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-H06 defines `NetworkConnectionCreated`, `NetworkConnectionAccepted`, and `NetworkConnectionRemoved`. No canonical blocked or closed networking event is defined.
+H06 defines networking events including the creation/connection lifecycle under the Network Connection aggregate. Section A identity facts are referenced; H06 remains event publisher for its networking facts.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-Section A supplies canonical Person/Identity references. H06 owns the networking relationship and does not modify Section A identity state.
+Section A provides identity context only. Networking consent and relationship state remain H06-owned.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-The initiating and receiving alumni perform the supported networking decisions. H06 also permits Alumni Administrator participation.
+Alumni initiate and accept/reject their networking relationship requests under H06 governance.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-L3 shall not equate `Removed` with frozen `Closed`, or invent a blocking authority, state, or event.
+No local override is defined for a missing `Blocked` outcome.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve request, privacy/eligibility evaluation, response, relationship history, supported removal history, and canonical identity references.
+Preserve request, consent/visibility context, acceptance/rejection/removal decision, participants, and networking relationship history.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-Supported accepted/rejected/removed H06 paths may complete. The full frozen outcome cannot complete while blocked and closed outcomes remain undefined.
+A frozen networking outcome must be represented by an authoritative H06 lifecycle transition.
 
 ## 16.2 Postconditions
 
-H06 networking history is preserved and Section A ownership remains unchanged; unsupported outcomes are not approximated.
+Connected, Rejected, and Removed outcomes can be represented by H06; the required `Blocked` outcome cannot.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-- Frozen semantics require `accepted`, `declined`, `blocked`, or `closed` outcomes.
-- H06 defines `Connected`, `Rejected`, and `Removed`, but no canonical `Blocked` or `Closed` networking state, transition, command, authority, or event.
-- `Rejected` may support the declined branch, but `Removed` cannot be silently renamed to `Closed`.
+The frozen H043 outcome requires a `blocked` networking relationship. H06 defines no `Blocked` Network Connection state, transition, command, or event. H06 uses `Connected`, `Rejected`, and `Removed` rather than the frozen accepted/declined/closed wording; those terms may be described semantically but not renamed as canonical states.
+
+**Architecture impact:** the frozen lifecycle is incomplete for a material terminal outcome.
 
 **Architecture assessment:** `BLOCKED`
 
@@ -146,4 +146,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-Upstream architecture must define the blocked and closed networking outcomes or formally change the frozen scenario semantics.
+Upstream architecture must define the governed blocked-relationship lifecycle or revise the frozen outcome.

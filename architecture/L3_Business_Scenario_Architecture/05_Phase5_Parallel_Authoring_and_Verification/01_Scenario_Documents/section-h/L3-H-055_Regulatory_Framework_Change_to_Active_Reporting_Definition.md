@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H08 — NEP, NAAC & AISHE Reporting Workflows  
-**Referenced By:** Reporting-cycle planning, regulatory validation, snapshot, submission, correction, and archival scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H08 — NEP, NAAC & AISHE Reporting Workflows  
+**Referenced By:** None yet
 
 # 2. Scenario Purpose
 
-Govern the creation or revision of an H08 Reporting Framework so that regulatory reporting metadata, validation requirements, evidence requirements, reporting periods, templates, and submission rules remain versioned and governed without moving ownership of canonical source-domain facts into H08.
+Govern introduction or revision of an H08 Reporting Framework so future regulatory reporting uses a versioned, effective reporting definition without changing canonical source-domain facts.
 
 # 3. Business Outcome
 
@@ -27,49 +27,44 @@ A versioned reporting definition is approved and made effective without changing
 
 ## 4.1 Start Boundary
 
-A NEP, NAAC, AISHE, or institutional reporting framework is introduced or revised.
+The scenario begins when a NEP, NAAC, AISHE, or institutional reporting framework is introduced or revised.
 
 ## 4.2 End Boundary
 
-The frozen outcome requires the versioned reporting definition to be approved and made effective. H08 supports framework creation, configuration, validation-state progression, publication, retirement, and a lifecycle containing `Active`, but does not define the business approval or activation action that moves a published framework to `Active`. The full frozen end boundary therefore cannot be completed authoritatively.
+The frozen end boundary requires a versioned reporting definition to be both approved and made effective. Locked H08 defines publication and activation of a Reporting Framework but does not define a framework approval state, approval transition, or approval event.
 
 ## 4.3 In Scope
 
-- H08 Reporting Framework registration and revision.
-- Versioned reporting metadata, reporting-period, template, validation, evidence, and submission-rule definition.
-- Preservation of framework version history.
-- Publication of a governed framework version where H08 requirements are satisfied.
-- Preservation of source-domain ownership for every business fact referenced by reporting definitions.
+- Establish or revise H08-owned Reporting Framework metadata.
+- Validate the framework under H08 governance.
+- Version and publish the governed framework definition.
+- Make a published framework version active where the H08 lifecycle permits.
+- Preserve historical framework-version lineage.
 
 ## 4.4 Out of Scope
 
-- Creation or modification of Student, Academic Delivery, Workforce, Finance, Examination, Research, Campus Operations, or institutional source facts.
-- Inventing a framework approval authority, approval event, activation action, or activation event.
-- Treating `Published` as identical to `Active` without upstream authority.
-- Implementation mechanics or user-interface design.
+- Changing operational facts owned by source domains.
+- Creating a local framework approval state or approval authority absent from H08.
+- Treating publication as approval without an upstream decision.
+- Redefining regulator-owned requirements outside the governed H08 reporting definition.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
+| Domain | Responsibility |
 |---|---|
-| NEP, NAAC & AISHE Reporting / H | Owns Reporting Framework metadata, framework version history, reporting configuration, validation/evidence requirements, and the H08 framework lifecycle. |
-
-Operational domains remain canonical owners of the facts later consumed by reporting. A framework definition describes reporting requirements but does not transfer ownership of those facts to H08.
+| NEP, NAAC & AISHE Reporting / H08 | Owns Reporting Framework definition, metadata, versioning, lifecycle, reporting configuration, validation policy, evidence requirements, and submission policy used for regulatory reporting. |
+| Source-owning domains | Retain ownership of operational business facts subsequently consumed by reporting cycles; H08 does not alter those facts through framework governance. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Reporting Administrator | Configures and governs Reporting Framework metadata where authorized. | Initiates / performs source-defined framework management |
-
-L2-H08 explicitly records that its required Actors section is absent. It lists Reporting Administrator as a typical enterprise role, but does not define a canonical approver or activation authority for the frozen approved-and-effective outcome.
+Locked H08 does not provide a canonical business-actor section. H08-W01 defines framework-management activity and requires governed authority, but it does not define the business approval authority required by the frozen outcome.
 
 # 7. Preconditions and Entry Criteria
 
-- The new or revised regulatory requirement is available for configuration.
-- Required reporting-template context is available as required by H08 framework management.
-- The proposed framework version can define reporting periods, validation rules, evidence requirements, and submission rules without owning source-domain facts.
-- The framework action is governed under H08 reporting authority.
+- A new or revised reporting framework requirement exists.
+- Applicable framework metadata and reporting requirements are available for governance.
+- Historical framework versions remain preserved.
+- No source-domain fact is transferred into H08 ownership.
 
 # 8. Trigger
 
@@ -77,97 +72,77 @@ A NEP, NAAC, AISHE, or institutional reporting framework is introduced or revise
 
 # 9. Main Business Flow
 
-1. H08 receives the new or revised regulatory framework requirement.
-2. The Reporting Administrator establishes or revises the H08 Reporting Framework metadata while preserving the prior framework version history.
-3. H08 configures the reporting periods, applicable report templates, validation requirements, evidence requirements, and governed submission rules supported by the regulatory definition.
-4. H08 verifies that the reporting definition references canonical source-domain information without taking ownership of that information.
-5. The framework progresses through the source-defined `Draft`, `Configured`, and `Validated` lifecycle positions as its H08 metadata becomes complete and valid.
-6. H08 publishes the governed framework version and records the source-defined publication event.
-7. Stop before asserting institutional approval or the `Published → Active` transition because H08 does not define the required business decision, authority, action, or event for that part of the frozen outcome.
+1. H08 establishes or revises the Reporting Framework definition in `Draft`.
+2. H08 configures the framework metadata, applicable reporting periods, validation policies, evidence requirements, templates, and submission policy.
+3. The framework progresses through `Configured` and `Validated` under the H08 lifecycle.
+4. H08 publishes the validated framework version as an immutable published version.
+5. The published version may progress to `Active` under the H08 lifecycle and become available to future Reporting Cycles.
+
+The flow cannot establish the frozen approval outcome because H08 defines no Reporting Framework approval state or approval decision path.
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| Existing framework revised | Regulatory requirements change while historical cycles exist | Create and govern a successor framework version while historical Reporting Cycles remain bound to the version originally used | Historical reporting remains reproducible | NEP, NAAC & AISHE Reporting |
-| Framework retirement | A published/active framework is no longer to govern new cycles | Use the H08-defined retirement action while preserving historical cycle references | Reporting Framework reaches the source-defined retired outcome | NEP, NAAC & AISHE Reporting |
+- An active framework may later progress to `Deprecated` and then `Retired` under H08 governance.
+- A revised framework is represented by version evolution; historical Reporting Cycles remain bound to their original framework version.
+- If validation does not succeed, publication does not proceed.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Framework metadata or required reporting configuration is incomplete | Framework cannot progress to governed publication | Correct the H08-owned framework definition before a later publication attempt | NEP, NAAC & AISHE Reporting |
-| Proposed definition would duplicate or change canonical source facts | Ownership boundary would be violated | Remove the duplicated business fact and retain only the H08 reporting definition/reference | NEP, NAAC & AISHE Reporting |
-| Approved/effective outcome is required | Source architecture does not define the approval/activation path | Escalate the lifecycle/authority gap for upstream resolution | NEP, NAAC & AISHE Reporting |
+If required framework information or validation conditions are incomplete, the reporting definition remains at its last valid H08 lifecycle position until the governing business condition is resolved. L3 does not substitute publication for the missing approval decision.
 
 # 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| Reporting metadata belongs exclusively to H08 | NEP, NAAC & AISHE Reporting | The framework may define reporting requirements but may not re-own operational facts | L2-H08 §§5.2, 5.7 |
-| Framework versions are immutable after publication | NEP, NAAC & AISHE Reporting | Revisions require versioned successor governance rather than rewriting historical versions | L2-H08 §6.5 |
-| Framework retirement must not invalidate historical Reporting Cycles | NEP, NAAC & AISHE Reporting | Historical cycle/version references remain valid | L2-H08 §6.5; §23.1 |
-| Every Reporting Cycle references one published Reporting Framework | NEP, NAAC & AISHE Reporting | A framework must reach the supported published position before new cycles depend on it | L2-H08 BR-001 |
-| Operational ownership does not migrate into H08 | Source-owning domains | Framework metadata cannot alter the source system of record | L2-H08 O-002; ADR-003; `DEPENDENCY_MAP.md` |
+- BR-001 requires every Reporting Cycle to reference one published Reporting Framework.
+- Framework versions are immutable after publication.
+- Framework retirement does not invalidate historical Reporting Cycles.
+- Operational business data remains owned by its canonical source domain.
+- Historical reporting must remain reproducible against the framework version originally used.
 
 # 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Reporting Framework | Draft / Configured / Validated | Configure and publish a governed framework version | Published | H08 | L2-H08 §§6.5, 7 H08-W01 |
-| Reporting Framework | Published | Frozen outcome requires it to become effective | `Active` exists in the lifecycle, but the governing transition/authority is not defined | H08 | L2-H08 §6.5 |
-| Reporting Framework | Active / Deprecated | Supported retirement may occur when appropriate | Retired | H08 | L2-H08 §6.5; H08-W01 |
+The H08 Reporting Framework lifecycle is `Draft → Configured → Validated → Published → Active → Deprecated → Retired`. No `Approved` state or approval transition is defined for Reporting Framework.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
-|---|---|---|---|---|
-| ReportingFrameworkCreated | H08 | Authorized reporting consumers | Records framework creation | L2-H08 §10.2 |
-| ReportingFrameworkPublished | H08 | Reporting-cycle governance | Records governed framework publication | L2-H08 §10.2 |
-| ReportingFrameworkRetired | H08 | Reporting governance consumers | Records framework retirement | L2-H08 §10.2 |
-
-No canonical Reporting Framework approval or activation event is defined by H08.
+H08 defines `ReportingFrameworkCreated`, `ReportingFrameworkPublished`, and `ReportingFrameworkRetired`. No canonical Reporting Framework approval event is defined.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-The Reporting Framework may identify approved reporting contracts and source categories required by future Reporting Cycles. Those contracts remain references to source-owned facts; no business ownership is transferred to H08 by the framework definition.
+The active framework governs how later H08 reporting cycles consume authoritative source-owned information through approved reporting contracts. This scenario does not transfer source-data ownership to H08.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-The Reporting Administrator is source-supported for Reporting Framework configuration. H08 does not establish the canonical business approver or activation authority needed to satisfy the frozen approved-and-effective outcome.
+H08 governs Reporting Framework management. The specific business approval authority required to satisfy the frozen outcome is not defined in the locked H08 business-actor or workflow architecture.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-No scenario-specific approval hierarchy or separation-of-duty model for Reporting Framework activation is defined. L3 does not invent one.
+No L3 participant may treat framework publication as equivalent to business approval or bypass the H08 lifecycle. Framework governance cannot override source-domain ownership.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve framework creation/revision history, configuration changes, version lineage, publication evidence, retirement evidence where applicable, and references to the regulatory requirement that caused the change.
+Preserve framework creation/change history, validation evidence, version lineage, publication history, activation/deprecation/retirement history, and the governing requirements used for the definition.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-The supported branch can complete through governed publication of a versioned H08 Reporting Framework. The full frozen scenario cannot be completed until the approval and `Active`-state transition are defined upstream.
+The supported H08 lifecycle can produce a versioned, published, and active Reporting Framework. The frozen requirement for an approved reporting definition cannot be verified from the locked source.
 
 ## 16.2 Postconditions
 
-A source-supported published framework version may be referenced by future Reporting Cycles; historical versions remain preserved; canonical source-domain facts remain unchanged; no unsupported active-state claim is made.
+No invented approval state, event, or authority is introduced. Source-domain facts remain outside H08 ownership.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-- Frozen semantics require the reporting definition to be **approved and made effective**.
-- H08 defines the Reporting Framework lifecycle as `Draft → Configured → Validated → Published → Active → Deprecated → Retired`.
-- H08-W01 defines create/configure/publish/retire actions and events but no framework approval action, approval authority, approval event, activation action, or activation event.
-- Therefore L3 cannot determine how `Published → Active` occurs or who authoritatively approves that transition.
+**Material lifecycle and authority gap:** frozen H055 requires a versioned reporting definition to be **approved and made effective**. Locked H08 defines `Draft → Configured → Validated → Published → Active → Deprecated → Retired` and H08-W01 defines create/configure/publish/retire actions, but no Reporting Framework approval state, approval transition, approval event, or business approval authority.
 
-This materially affects the frozen final outcome, lifecycle, and decision authority.
+**Architecture impact:** L3 cannot equate `Published` with `Approved` or invent a framework approval decision, so the frozen final outcome cannot be completed safely.
 
 **Architecture assessment:** `BLOCKED`
 
@@ -177,4 +152,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-Upstream H08 architecture must define the Reporting Framework approval and activation semantics, including authority and canonical event treatment, before this scenario can become source-complete.
+Architecture change control must define whether Reporting Framework approval is a distinct H08 business decision and, if so, its authority, lifecycle position, and canonical event.

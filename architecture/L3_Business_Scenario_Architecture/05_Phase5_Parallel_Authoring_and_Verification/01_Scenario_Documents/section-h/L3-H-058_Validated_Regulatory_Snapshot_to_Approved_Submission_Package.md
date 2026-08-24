@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H08 — NEP, NAAC & AISHE Reporting Workflows  
-**Referenced By:** Regulatory submission, acknowledgement, correction, resubmission, and reporting-closure scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H08 — NEP, NAAC & AISHE Reporting Workflows  
+**Referenced By:** None yet
 
 # 2. Scenario Purpose
 
-Govern institutional review and decision-making for a validated H08 regulatory reporting outcome so that the official Submission Package reaches an approved, rejected, or returned-for-correction result with immutable decision history.
+Govern institutional review of a validated H08 reporting snapshot and produce the authoritative package decision required before external regulatory submission.
 
 # 3. Business Outcome
 
@@ -27,50 +27,43 @@ The reporting package is approved, rejected, or returned for correction with imm
 
 ## 4.1 Start Boundary
 
-A complete validated snapshot is ready for institutional approval.
+The scenario begins when a complete validated snapshot is ready for institutional approval.
 
 ## 4.2 End Boundary
 
-The frozen outcome requires a Submission Package to exist for institutional approval. H08-W07 names Submission Package as the approval aggregate and its state machine begins at `Draft`, but H08-W08 states that the Submission Package is generated only after institutional approval completes. H08 therefore does not provide one authoritative entry path from the validated snapshot to the package that is being approved.
+The frozen end boundary requires an approved, rejected, or correction-returned reporting package. Locked H08 is internally inconsistent about whether the Submission Package exists before institutional approval or is created only after approval completes.
 
 ## 4.3 In Scope
 
-- H08 institutional approval governance for reporting submissions.
-- Review of the locked Reporting Snapshot, validation outcome, and mandatory evidence.
-- Approved, rejected, or returned-for-correction decision outcomes where a valid Submission Package exists.
-- Preservation of immutable approval decision history.
+- Preserve the validated and locked Reporting Snapshot as the immutable reporting basis.
+- Confirm required validation and mandatory evidence conditions before approval.
+- Conduct the H08 institutional approval decision using the configured approval hierarchy.
+- Record approval, rejection, or return-for-correction outcomes where defined.
+- Preserve immutable decision evidence and package/snapshot lineage.
 
 ## 4.4 Out of Scope
 
-- Inventing creation of a Draft Submission Package before H08 says package generation occurs.
-- Approving a non-existent business aggregate.
-- Reordering W07 and W08 locally.
-- Changing the validated Reporting Snapshot or source-domain business facts during approval.
 - External regulatory submission or acknowledgement.
+- Rewriting the locked Reporting Snapshot after approval review.
+- Inventing an order between H08-W07 Institutional Approval and H08-W08 Submission Package Generation.
+- Inventing a distinct `ReturnedForCorrection` Submission Package state absent from the H08 state machine.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
+| Domain | Responsibility |
 |---|---|
-| NEP, NAAC & AISHE Reporting / H | Owns Reporting Snapshot references, Validation Result, Compliance Evidence Mapping, Submission Package, reporting approval state, approval history, and correction routing. |
+| NEP, NAAC & AISHE Reporting / H08 | Owns Reporting Snapshot, Validation Result, Compliance Evidence Mapping, Submission Package, reporting approval state, and approval history. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Institutional Approver | Provides the institutional submission decision where authorized. | Approves / rejects / returns for correction |
-| Reporting Coordinator | Participates in the H08 approval workflow and reporting-package review where configured. | Coordinates / reviews |
-| Institutional Compliance Officer | May participate as an approver where the configured H08 approval hierarchy requires it. | Reviews / approves where configured |
-
-H08-W07 also lists Department Head, Dean, Registrar, Controller of Examinations, Finance Officer, Principal, and Vice Chancellor as possible approvers. The approval hierarchy is explicitly configurable; this Draft does not invent a universal mandatory sequence.
+H08-W07 lists possible institutional approvers including Reporting Coordinator, Department Head, Dean, Registrar, Controller of Examinations, Finance Officer, Principal, Vice Chancellor, and Institutional Compliance Officer. The actual approval hierarchy remains configurable; L3 does not select one approver locally.
 
 # 7. Preconditions and Entry Criteria
 
-- The Reporting Snapshot is finalized and locked according to H08 requirements.
-- Required reporting validation has succeeded.
-- Mandatory evidence is available and the required evidence mapping is approved.
-- The institutional approval decision must be made through H08's configured approval governance.
-- A valid Submission Package entry state is required, but H08's creation/approval sequence is unresolved.
+- The Reporting Snapshot is locked.
+- Validation has succeeded.
+- Mandatory evidence is available and evidence mapping has been approved where required.
+- The applicable H08 approval hierarchy is established.
 
 # 8. Trigger
 
@@ -78,96 +71,84 @@ A complete validated snapshot is ready for institutional approval
 
 # 9. Main Business Flow
 
-1. H08 identifies the validated/locked Reporting Snapshot and its completed validation and mandatory evidence context.
-2. H08 determines that the reporting outcome is ready to enter institutional approval governance.
-3. The source-defined approval workflow requires review of the reporting package, validation findings, and evidence before an approval decision.
-4. The H08 Submission Package state machine requires the package to exist in `Draft` before entering `ApprovalPending`.
-5. Stop before creating or approving the Submission Package because H08-W08 defines package generation as occurring only after institutional approval has completed.
-6. No approved, rejected, or returned-for-correction package outcome is asserted until the upstream entry sequence is reconciled.
+The source-grounded approval activities are:
+
+1. H08 initiates institutional approval against the reporting material governed by the validated snapshot.
+2. The applicable configured institutional authority reviews the reporting package context and validation findings.
+3. The authority records an approval, rejection, or return-for-correction decision.
+4. H08 preserves the approval history and corresponding decision evidence.
+
+A complete canonical sequence cannot be authored because H08-W07 makes `Submission Package` the primary aggregate for approval, while H08-W08 states that `Create Submission Package` occurs only after institutional approval has completed.
 
 # 10. Alternate Business Flows
 
-If a valid Submission Package is established by an upstream-corrected architecture, H08 supports three institutional decision outcomes: `Approved`, `Rejected`, and `Returned For Correction`. Rejected or returned outcomes route back into correction governance. This Draft does not fabricate the missing package-creation entry path.
+- Approved outcome: the Submission Package is eligible to progress toward `ReadyForSubmission` under H08 governance.
+- Rejected outcome: the package follows the H08 rejection/correction path and cannot be submitted.
+- Returned-for-correction outcome: H08 defines the decision and event, but its Submission Package state machine contains no distinct `ReturnedForCorrection` state.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Validation is not successful | Institutional approval cannot proceed | Return to the source-defined validation/correction path | NEP, NAAC & AISHE Reporting |
-| Mandatory evidence is missing | Submission must not proceed | Complete the required evidence governance before later approval | NEP, NAAC & AISHE Reporting |
-| Submission Package entry state cannot be established | Approval outcome cannot be recorded authoritatively | Escalate W07/W08 ordering conflict for upstream resolution | NEP, NAAC & AISHE Reporting |
+Missing validation success or mandatory evidence blocks approval under H08 rules. Rejection or return for correction preserves the existing reporting history and routes the business matter to correction rather than altering the locked snapshot in place.
 
 # 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| Validation failure prevents institutional approval | H08 | Only successfully validated reporting can reach approval | L2-H08 BR-007 |
-| Missing mandatory evidence blocks submission | H08 | Approval readiness requires mandatory evidence | L2-H08 BR-016; H08-W07 preconditions |
-| Submission requires institutional approval | H08 | No external submission may precede the governed institutional decision | L2-H08 BR-011 |
-| Approval workflows are configurable | H08 | No single universal approval chain is invented | L2-H08 BR-012; H08-W07 |
-| Rejected submissions return to correction | H08 | Rejection does not erase history | L2-H08 BR-013 |
-| Approved Submission Packages become immutable completion records | H08 | Approval decision evidence must be preserved | L2-H08 §15.6; §6.11 |
+- BR-007 requires validation failures to prevent institutional approval.
+- BR-011 requires institutional approval before submission.
+- BR-012 requires approval workflows to remain configurable.
+- BR-013 routes rejected submissions to correction.
+- BR-016 requires missing mandatory evidence to block submission.
+- BR-017 permits submission only for approved Submission Packages.
+- Every submission must reference exactly one immutable Reporting Snapshot.
 
 # 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Submission Package | Draft | Institutional approval should move package into ApprovalPending | Approved or Rejected; returned-for-correction behavior routes back under H08 governance | H08 | L2-H08 §§6.11, 18.3; H08-W07 |
-| Reporting Cycle | SnapshotCreated | Institutional approval phase | ApprovalPending → Approved or Rejected | H08 | L2-H08 §§6.6, 18.1 |
-
-The lifecycle itself is defined, but the authoritative creation of the Draft Submission Package before approval is not.
+The H08 Submission Package state machine is `Draft → ApprovalPending → Approved/Rejected`, with `Rejected → Draft`; `Approved → ReadyForSubmission → Submitted → Accepted/RejectedByAuthority → Archived`. H08 also defines a `SubmissionReturnedForCorrection` event but no distinct `ReturnedForCorrection` package state. The source additionally places package creation after institutional approval in H08-W08, conflicting with H08-W07 approval of the package.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
-|---|---|---|---|---|
-| ComplianceReportApprovalInitiated | H08 | H08 approval participants | Records start of institutional approval | L2-H08 §10.8 |
-| SubmissionApproved | H08 | Downstream submission governance | Records institutional approval | L2-H08 §10.8 |
-| SubmissionRejected | H08 | H08 correction governance | Records institutional rejection | L2-H08 §10.8 |
-| SubmissionReturnedForCorrection | H08 | H08 correction governance | Records return for correction | L2-H08 §10.8 |
-
-These events are source-defined, but L3 does not publish them against an invented package-entry sequence.
+H08 defines `ComplianceReportApprovalInitiated`, `SubmissionApproved`, `SubmissionRejected`, and `SubmissionReturnedForCorrection` for institutional approval. The same event name `SubmissionRejected` is also used by H08-W10 for regulatory rejection, so L3 does not redefine its semantics.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-No ownership hand-off is required. H08 reviews its own immutable reporting outcome and evidence references; the source facts referenced by that evidence remain with their canonical owners.
+This scenario is H08-owned. The reporting snapshot and evidence references originate from prior governed H08/source-domain collaboration; no new source ownership is transferred during institutional approval.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-H08 defines a configurable institutional approval hierarchy and lists possible approvers. `Institutional Approver` is a source-listed role. No universal approver order is imposed by this scenario.
+The configured H08 approval hierarchy determines which of the upstream-listed institutional authorities may decide the package outcome. L3 does not promote any one possible approver into a universal authority.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-The configured H08 approval hierarchy governs the required approvals. No local bypass is permitted for failed validation or missing mandatory evidence.
+Approval cannot bypass successful validation or mandatory evidence requirements. A correction decision does not authorize in-place modification of a locked Reporting Snapshot.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve the Reporting Snapshot reference, validation result, evidence completeness, approval initiation, each approval/rejection/return decision, decision authority, and immutable approval history once the package-entry conflict is resolved upstream.
+Preserve the snapshot reference, validation result, evidence status, approval initiation, reviewer/decision authority as resolved by the configured hierarchy, decision outcome, correction return where applicable, and complete approval history.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-The complete frozen outcome cannot be claimed until H08 defines how a Submission Package exists in `Draft`/`ApprovalPending` before the institutional approval workflow that H08-W08 currently says precedes package generation.
+The frozen completion criterion requires an authoritative package decision with immutable evidence. Locked H08 defines the decision outcomes but does not define a coherent package-creation/approval sequence that L3 can safely apply.
 
 ## 16.2 Postconditions
 
-The validated snapshot and evidence remain unchanged and traceable. No approval outcome is fabricated against an undefined Submission Package entry path.
+No local package-creation ordering or correction state is invented. The validated snapshot remains immutable and H08 retains ownership of the approval outcome.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-- H08-W07 makes **Submission Package** the primary aggregate of institutional approval and reviews that package before approving/rejecting it.
-- The Submission Package state machine begins `Draft → ApprovalPending → Approved/Rejected`.
-- H08-W08 says **Institutional approval completed** is the trigger for creating the Submission Package and marks package generation as occurring after approval.
-- Therefore the authoritative source simultaneously requires the Submission Package before approval and creates it after approval.
+**Material workflow/boundary conflict:** H08-W07 Institutional Approval names `Submission Package` as its primary aggregate and approves/rejects that package. H08-W08 then states that institutional approval completion triggers **creation** of the Submission Package. The locked source therefore does not define a coherent order for creating and approving the package.
 
-This materially affects aggregate entry, approval authority application, and the frozen approved/rejected/returned final outcome.
+**Lifecycle gap:** H08 defines `SubmissionReturnedForCorrection`, but the Submission Package state machine has no distinct `ReturnedForCorrection` state or explicit transition for that outcome.
+
+**Event semantic ambiguity:** `SubmissionRejected` is used for both institutional approval rejection and external regulatory rejection in different H08 workflows.
+
+**Architecture impact:** package boundary, lifecycle sequencing, and one rejection-event meaning cannot be resolved at L3 without redesigning H08.
 
 **Architecture assessment:** `BLOCKED`
 
@@ -177,4 +158,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-Upstream H08 architecture must reconcile W07 and W08 and define the canonical point at which a Submission Package is created relative to institutional approval.
+Architecture change control must establish when the Submission Package is created relative to institutional approval, map return-for-correction to the canonical package lifecycle, and disambiguate institutional versus regulatory rejection events.
