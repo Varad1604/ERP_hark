@@ -1,17 +1,18 @@
 # Institution Establishment to Final Activation Decision
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-B-001  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Institution  
 **Participating Domains:** A, B  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Approved
-**Architecture Lock:** Locked  
+**Status:** Review  
 **Version:** 1.0  
 **Owner:** Institution & Structure — Institution  
 **Assigned Author:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-24  
 **Depends On:** `architecture/L1_Business_Domain_Architecture/SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`; `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Business_Scenario_Template_v2.0.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Workflow.md`  
 **Referenced By:** Known downstream consumers identified in `DEPENDENCY_MAP.md`; exact scenario references only where canonically registered  
 
@@ -66,7 +67,7 @@ The scenario ends when the Institution-owned decision is effective, Institution 
 
 # 6. Business Actors, Roles and Responsibilities
 
-No scenario-specific canonical actor name can be established for every required responsibility with sufficient authority. Responsibilities are expressed by owning domain in the flow; any material actor gap is recorded in Section 17.
+No scenario-specific canonical actor name can be established for every required responsibility with sufficient authority. Responsibilities are therefore expressed by owning domain in the flow. The material actor/authority gap is explicitly recorded in Section 17 and is not resolved locally in L3.
 
 # 7. Preconditions and Entry Criteria
 
@@ -75,7 +76,7 @@ No scenario-specific canonical actor name can be established for every required 
 - The subject is in a permitted entry lifecycle position: **Configured / Pending Approval**.
 - Required authoritative rules, versions, relationships, and effective-date context are resolvable.
 - Material dependency evidence is available from its owning domain; missing evidence is not assumed.
-- Required business authority is established or its absence is explicitly recorded as an Open Issue.
+- Required business authority is established or its absence remains explicitly governed by the Open Issue in Section 17.
 
 # 8. Trigger
 
@@ -149,8 +150,8 @@ No state synonym, hidden intermediate state, or unsupported transition is introd
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
-| Initiate institution establishment to final activation decision | Canonical actor is used only where explicitly supported upstream; otherwise UNCERTAIN | Must be authorized for the exact subject and institutional scope. | Institution |
-| Make or approve the final decision | Canonical decision role is used only where explicitly supported upstream; otherwise UNCERTAIN | Decision must evaluate the authoritative proposal, baseline, evidence, and effective context. | Institution |
+| Initiate institution establishment to final activation decision | **UNCERTAIN — upstream canonical actor/role is not sufficiently defined** | Must be authorized for the exact subject and institutional scope. No role is inferred in L3. | Institution |
+| Make or approve the final decision | **UNCERTAIN — upstream canonical decision role is not sufficiently defined** | Decision must evaluate the authoritative proposal, baseline, evidence, and effective context. No role is inferred in L3. | Institution |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
@@ -187,12 +188,15 @@ Section A/A07 retains ownership of authorization and audit infrastructure; Insti
 
 ## 17.1 Open Issues
 
-No open issues.
+**OPEN — Canonical institution activation actor / decision authority.** The authoritative upstream architecture available to this scenario does not identify a sufficiently specific canonical business actor or role for both initiation and final activation decision authority across the governed Institution contexts. L3 therefore retains the responsibility with the Institution domain and records the actor/authority as **UNCERTAIN** rather than inventing a role.
+
+**Governance effect:** this scenario remains in **Review** and does not assert an architecture lock while the material authority ambiguity remains unresolved. Resolution requires an authoritative upstream architecture or governance decision; it must not be fixed locally by naming an assumed administrator, registrar, principal, or other role.
 
 ## 17.2 Assumptions
 
-No assumptions. The Draft uses only the accepted 500-decision baseline and authoritative repository sources; uncertainty is recorded as an Open Issue rather than silently resolved.
+No assumptions. No business actor, approval role, delegation, separation-of-duty rule, or authority hierarchy is inferred beyond the authoritative sources.
 
 ## 17.3 Deferred Questions
 
-No scenario-specific deferred questions. API, UI, persistence, messaging, deployment, technical RBAC, and implementation recovery belong to later architecture levels by governance and are not repeated here.
+- Must institution activation authority be represented by one fixed canonical business role, or is it intentionally resolved through institution-specific governed policy? This requires an upstream architecture/governance decision.
+- API, UI, persistence, messaging, deployment, technical RBAC, and implementation recovery remain deferred to later architecture levels.
