@@ -1,5 +1,7 @@
 # Course Offering Establishment to Activation
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-001  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Course & Course Offering  
@@ -9,10 +11,9 @@
 **Status:** Architecture Approved  
 **Version:** 1.0  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-24  
 **Depends On:** `L2-D01_Course_and_Course_Offering_Workflows.md`  
 **Referenced By:** None yet  
-**Frozen Stage 3 Source:** P2W-D-0721 / CAN-L3-D-001
 
 ---
 
@@ -188,8 +189,3 @@ No assumptions.
 ## 17.3 Deferred Questions
 
 No scenario-specific deferred questions.
-
----
-
-**Draft Validation Verdict:** PASS  
-**Validation Basis:** `Section_D_Canonical_Register.md` and `L2-D01_Course_and_Course_Offering_Workflows.md`; Template v2.0; Architecture Level Validation Standards; accepted Section D decisions 001–500; accepted Batch 1 resolution decisions 1–7 (2026-08-20).
