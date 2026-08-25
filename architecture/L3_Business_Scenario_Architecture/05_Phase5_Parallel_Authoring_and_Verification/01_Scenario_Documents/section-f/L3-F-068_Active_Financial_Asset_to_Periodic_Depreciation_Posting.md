@@ -8,36 +8,36 @@
 **Participating Domains:** F, J  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-21  
+**Last Updated:** 2026-08-25  
 **Depends On:** L2-F00; L2-F12; L2-J08; L2-J10 (where disposal/write-off applies); SutraERP L1 Business Domain Architecture (Locked); DEPENDENCY_MAP.md; L3 Business Scenario Template v2.0; Stage 3 Canonical Scenario Register — Section F  
 **Referenced By:** None yet
 
 ## 2. Scenario Purpose
 
-This scenario governs the Finance-owned periodic depreciation posting outcome for a Section J-owned operational Asset without transferring operational Asset ownership.
+This scenario governs Finance-owned periodic depreciation for a Section J-owned operational Asset without transferring operational Asset ownership.
 
 ## 3. Business Outcome
 
-Applicable periodic depreciation is posted and the Finance-owned carrying value is updated
+Applicable periodic depreciation is posted and the Finance-owned carrying value is updated.
 
 ## 4. Scenario Boundary and Scope
 
 ### 4.1 Start Boundary
 
-An active capitalized financial Asset reaches a governed periodic depreciation requirement
+An active capitalized financial Asset reaches a governed periodic depreciation requirement.
 
 ### 4.2 End Boundary
 
-Applicable periodic depreciation is posted and the Finance-owned carrying value is updated
+Applicable periodic depreciation is posted and the Finance-owned carrying value is updated.
 
 ### 4.3 In Scope
 
-- validation of authoritative Asset and depreciation period, governed method, amount, prior and resulting carrying value references
-- Periodic depreciation posting
-- financial history, period, authority and posting traceability
+- validation of authoritative Asset, depreciation period and governed Finance policy
+- periodic depreciation posting
+- financial history and evidence traceability
 
 ### 4.4 Out of Scope
 
@@ -51,23 +51,16 @@ No additional relationship is required to define this scenario boundary.
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Asset Financial Accounting | Owns the Finance decision or accounting outcome and its evidence |
-| Section J — Enterprise Resource Management | Provides authoritative operational facts and retains its aggregate lifecycles |
+| Asset Financial Accounting | Owns the Finance depreciation outcome and its evidence |
+| Section J — Enterprise Resource Management | Provides authoritative operational Asset facts and retains the operational lifecycle |
 
 ## 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Scenario Responsibility |
-|---|---|
-| Asset Accounting Officer | Prepares the governed Asset financial-accounting outcome and supporting evidence. |
-| Financial Controller | Independently authorizes the applicable capitalization, revaluation, impairment, disposal-accounting or write-off-accounting outcome; authorizes depreciation at the governed batch/outcome level. |
-| Finance Committee | Owns approval of institutional Asset Accounting and Materiality Policies. |
-| Section J operational actor | Supplies the authoritative operational Asset, disposal or write-off fact without transferring operational ownership. |
-
-Roles and authority are established by approved `ACR-F-2026-08-21-001`.
+L2-F12 defines no canonical Actors section. Asset Financial Accounting owns the Finance responsibilities and Section J supplies authoritative operational facts; the institutional actor/decision-authority mapping is unresolved upstream.
 
 ## 7. Preconditions and Entry Criteria
 
-- A valid Finance financial Asset accounting record exists where required.
+- A valid Finance financial Asset accounting record exists.
 - The canonical Section J operational Asset reference is available.
 - The applicable accounting period permits the Finance outcome.
 
@@ -80,9 +73,9 @@ An active capitalized financial Asset reaches a governed periodic depreciation r
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
 | 1 | Validate authoritative operational Asset and Finance references | Asset Financial Accounting / Section J | Evidence is eligible for Finance treatment |
-| 2 | Apply governed Finance policy for periodic depreciation posting | Asset Financial Accounting | Financial outcome is determined |
-| 3 | Obtain required Finance decision or posting authority | Asset Financial Accounting | Outcome is authorized |
-| 4 | Complete periodic depreciation posting and preserve prior financial history | Asset Financial Accounting | Finance record reflects the outcome |
+| 2 | Apply governed Finance policy for periodic depreciation | Asset Financial Accounting | Depreciation outcome is determined |
+| 3 | Obtain the governed Finance decision required for posting | Asset Financial Accounting | Outcome is authorized at business level |
+| 4 | Complete periodic depreciation and preserve prior financial history | Asset Financial Accounting | Carrying value reflects the outcome |
 | 5 | Publish `DepreciationPosted` | Asset Financial Accounting | Finance outcome is communicated |
 
 ## 10. Alternate Business Flows
@@ -93,23 +86,20 @@ No scenario-specific alternate business flow is defined by the authoritative L2 
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Required Asset, evidence, policy or period condition is invalid | Finance outcome cannot complete | Correct the authoritative business dependency before reconsideration | F / J |
-| Finance treatment is not authorized | No financial posting occurs | Preserve the governed decision and await valid authorization | Asset Financial Accounting |
+| Required Asset, policy or period condition is invalid | Depreciation cannot complete | Correct the authoritative business dependency before reconsideration | F / J |
+| Required Finance authorization is not established | Posting cannot complete | Preserve the last valid Finance position and obtain governed authorization | Asset Financial Accounting |
 
 ## 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
 | Finance owns only monetary and accounting treatment | Asset Financial Accounting | Operational Asset state is not modified | L2-F12 §§3–5 |
-| Section J owns operational Asset lifecycle | Section J | Finance retains canonical Asset reference | L2-F12 §§3, 5; L2-J08/J10 |
-| Detailed financial treatment must come from governed Finance policy | Finance | No local calculation rule is created | L2-F12 §§2, 4 |
+| Section J owns operational Asset lifecycle | Section J | Finance retains the canonical Asset reference | L2-F12 §§3, 5; L2-J08/J10 |
+| Detailed treatment comes from governed Finance policy | Finance | L3 creates no local calculation rule | L2-F12 §§2, 4 |
 
 ## 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Financial Asset Accounting Record | Existing Finance lifecycle position | Records the governed accounting outcome; the approved Finance lifecycle applies | Periodic depreciation posting | Asset Financial Accounting | L2-F12 Lifecycle / States note |
-| Operational Asset | Authoritative Section J state | Consumed as evidence only; no Finance-owned transition | Unchanged by Finance | Section J | L2-F12 §§3, 5 |
+The Finance accounting record reflects the governed periodic depreciation outcome; no Section J operational Asset lifecycle transition is performed by Finance.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -117,7 +107,7 @@ No scenario-specific alternate business flow is defined by the authoritative L2 
 
 | Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
 |---|---|---|---|---|
-| DepreciationPosted | Asset Financial Accounting | Accounting, reporting and interested Section J domains | Communicates Finance-owned outcome | L2-F12 §5 |
+| DepreciationPosted | Asset Financial Accounting | Accounting, reporting and interested Section J domains | Communicates Finance-owned depreciation outcome | L2-F12 §5 |
 
 ### 14.2 Business Contracts and Cross-Domain Hand-offs
 
@@ -129,23 +119,19 @@ No scenario-specific alternate business flow is defined by the authoritative L2 
 
 ### 15.1 Initiation and Decision Authority
 
-| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
-|---|---|---|---|
-| Determine and post Finance outcome | Asset Accounting Officer prepares; Financial Controller authorizes under approved policy | Approved authority and separation of duty apply | Asset Financial Accounting |
+L2-F12 does not define the institutional actor or role that prepares or authorizes depreciation. No named L3 authority is assigned.
 
 ### 15.2 Separation of Duties, Overrides and Exceptions
 
-Finance authority does not confer operational custody, assignment, transfer, disposal or write-off authority.
+Finance authority does not confer operational Asset authority. No additional named separation-of-duty or override role is introduced at L3.
 
 ### 15.3 Business Audit and Evidence Obligations
 
 | Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
 |---|---|---|
-| Preserve scenario decision traceability | Depreciation period, governed method, amount, prior and resulting carrying value | Asset Financial Accounting |
-| Preserve scenario decision traceability | Canonical Section J Asset and source-event references | Asset Financial Accounting |
-| Preserve scenario decision traceability | Finance policy, accounting period, decision authority and posting reference | Asset Financial Accounting |
-
-Section A retains ownership of Authorization and Audit infrastructure; Asset Financial Accounting owns the underlying business decision and evidence.
+| Preserve depreciation traceability | Depreciation period, governed method, amount, prior and resulting carrying value | Asset Financial Accounting |
+| Preserve source ownership traceability | Canonical Section J Asset reference | Asset Financial Accounting |
+| Preserve governed Finance context | Applicable Finance policy and accounting period | Asset Financial Accounting |
 
 ## 16. Completion Criteria and Postconditions
 
@@ -157,13 +143,15 @@ Section A retains ownership of Authorization and Audit infrastructure; Asset Fin
 
 ### 16.2 Postconditions
 
-- Finance carrying value and accounting history reflect the governed outcome.
+- Finance carrying value and history reflect the governed outcome.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
 ### 17.1 Open Issues
 
-No unresolved material architecture issue remains for this scenario. The former upstream gaps were resolved by approved `ACR-F-2026-08-21-001` and its exact amendment specification.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-F12 has no canonical Actors section; prior named roles and authority depended on `ACR-F-2026-08-21-001`, whose canonical artifact was not located in the established Pallav remediation. | The business outcome and event remain source-supported, but named institutional authority cannot be asserted. The scenario remains Review. | Establish actor/decision-authority mapping in authoritative L2/governance or provide independent approval provenance. |
 
 ### 17.2 Assumptions
 
@@ -175,5 +163,5 @@ No scenario-specific deferred questions.
 
 ---
 
-**Authoring Validation Classification:** PASS  
-**Validation Note:** Source-grounded Draft revalidated against approved ACR-F-2026-08-21-001; no unresolved material L3 issue remains.
+**Authoring Validation Classification:** REVIEW REQUIRED  
+**Validation Note:** Unsupported ACR-based actors and authority were removed; source-supported depreciation semantics, event and ownership remain unchanged.
