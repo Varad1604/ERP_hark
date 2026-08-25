@@ -8,57 +8,53 @@
 **Participating Domains:** G, D, E, H  
 **Scenario Type:** Cross-domain  
 **Priority:** P0  
-**Status:** Architecture Approved  
-**Version:** 1.3  
+**Status:** Review  
+**Version:** 1.4  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-21  
+**Last Updated:** 2026-08-25  
 **Depends On:** SutraERP_L1_Business_Domain_Architecture_Locked.md; DEPENDENCY_MAP.md; L2-G02_Laboratory_Management_Workflows.md; L3_Business_Scenario_Template_v2.0.md  
-**Referenced By:** None yet  
-**Architecture Approval:** ACR-G-2026-08-21-002  
-**Approved By:** Arjun Mehta, Chief Enterprise Architect  
-**Approval Date:** 21 August 2026  
-**Approval Decision:** Approved — No Conditions  
+**Referenced By:** None yet
 
 ## 2. Scenario Purpose
 
-Govern the complete business path from **Laboratory Readiness Assessment** to **Operational Readiness** using the ownership, lifecycle, authority, evidence and collaboration boundaries defined by L2-G02.
+Establish whether a Laboratory is operationally ready for governed academic use by evaluating the safety, equipment and utility conditions defined by Laboratory Management architecture.
 
 ## 3. Business Outcome
 
-Operational Readiness is achieved and evidenced under Laboratory Management ownership, while every participating domain retains authority over its own canonical information.
+The Laboratory readiness assessment is completed and its governed readiness position is available for subsequent Laboratory operations without transferring ownership of infrastructure, workforce or academic context.
 
 ## 4. Scenario Boundary and Scope
 
 ### 4.1 Start Boundary
 
-The source-supported initiating condition **Laboratory Readiness Assessment** is identified and submitted for governed action.
+A Laboratory requires an operational-readiness assessment before or during governed use.
 
 ### 4.2 End Boundary
 
-The authoritative business outcome **Operational Readiness** is confirmed, recorded and available for subsequent authorised use.
+The readiness assessment is completed, the resulting readiness evidence is recorded, and any source-supported operational-status consequence is established.
 
 ### 4.3 In Scope
 
-- validation of the initiating condition and authoritative references
-- application of configured operational rules and decision authority
-- recording of the source-supported outcome, evidence and audit history
-- cross-domain hand-offs explicitly required by the frozen scenario metadata
+- validation that the Laboratory and its authoritative physical-space reference are eligible for assessment;
+- evaluation of safety, equipment and utility readiness;
+- classification of warnings and critical safety exceptions;
+- readiness evidence and applicable Laboratory Management business events.
 
 ### 4.4 Out of Scope
 
-- ownership changes to infrastructure, workforce, academic, finance, inventory or notification information
-- implementation design or delivery mechanics
-- downstream execution beyond the stated end boundary
-- invented states, events, roles or approval authorities
+- ownership changes to infrastructure, workforce or academic information;
+- practical-session execution;
+- equipment procurement or financial processing;
+- implementation design or technical monitoring mechanics.
 
 ## 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Laboratory Management (G02) | Owns the operational decision, lifecycle, evidence and audit history described by the scenario. |
-| Academic Delivery (D) | Provides or consumes only its source-supported authoritative business context; canonical ownership remains unchanged. |
-| People & Workforce (E) | Provides or consumes only its source-supported authoritative business context; canonical ownership remains unchanged. |
-| Institutional Services (H) | Provides or consumes only its source-supported authoritative business context; canonical ownership remains unchanged. |
+| Laboratory Management (G02) | Owns Laboratory readiness assessment, operational-status consequences and Laboratory evidence. |
+| Academic Delivery (D) | Provides authoritative academic/practical-session context where materially required. |
+| People & Workforce (E) | Provides authoritative workforce/assignment context where materially required. |
+| Institutional Services (H) | Consumes or supports only source-authorized institutional-service outcomes; it does not own Laboratory readiness. |
 
 Participation does not transfer canonical ownership.
 
@@ -66,59 +62,64 @@ Participation does not transfer canonical ownership.
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Laboratory Coordinator | Initiates or performs the source-supported operational activity. | Operational participation only. |
-| Laboratory Assistant | Performs, reviews or authorises the activity within configured authority. | Operational participation only. |
-| Laboratory In-Charge | Performs, reviews or authorises the activity within configured authority. | Operational participation only. |
+| Laboratory In-Charge | Prepares and validates Laboratory readiness evidence within the Laboratory Management responsibility defined by L2-G02. | Performs/reviews Laboratory readiness activity within source-supported authority. |
+| Programme / Department Coordinator | Provides academic context where the readiness decision depends on the planned academic use. | Participates through authoritative academic context; does not own Laboratory readiness. |
+| Senior Institutional Authority | Participates only where L2-G02 requires a decision on a critical safety exception. | Decides the critical-safety exception within the authority defined upstream. |
+
+No `Laboratory Coordinator` or `Laboratory Assistant` authority is introduced because those roles are not required by the authoritative L2 readiness workflow.
 
 ## 7. Preconditions and Entry Criteria
 
-- The initiating condition Laboratory Readiness Assessment is valid and within Laboratory Management scope.
-- Referenced infrastructure, schedule, assignment or operational context is authoritative and active.
-- Applicable configuration, authorization and evidence policies are effective.
-- Participating-domain information is consumed without changing its canonical owner.
+- The Laboratory is identified by Laboratory Management and references an authoritative Infrastructure Space where applicable.
+- The Laboratory is not in the terminal `DECOMMISSIONED` operational state.
+- Safety, equipment and utility evidence required by the readiness assessment is available.
+- Any academic or workforce context used by the assessment is obtained from its canonical owner.
 
 ## 8. Trigger
 
-The institution identifies or receives **Laboratory Readiness Assessment**, requiring the governed operational response defined by this scenario.
+A Laboratory reaches a governed point at which operational readiness must be assessed or reassessed.
 
 ## 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Receive and validate the initiating condition: Laboratory Readiness Assessment. | Laboratory Coordinator | Laboratory Readiness Assessment is accepted for governed processing. |
-| 2 | Validate authoritative references, eligibility, applicable policy and operational constraints. | Laboratory Management | The valid processing path is established. |
-| 3 | Perform the source-supported operational assessment, assignment or decision. | Laboratory In-Charge | The scenario progresses toward Operational Readiness. |
-| 4 | Record required business evidence and publish only exact source-defined events. | Laboratory Management | The decision and history are auditable. |
-| 5 | Confirm completion at the scenario boundary: Operational Readiness. | Laboratory Management | Operational Readiness is established without transferring canonical ownership. |
+| 1 | Confirm that the Laboratory is eligible for readiness assessment and that its authoritative physical-space reference is valid. | Laboratory Management | The Laboratory may enter the readiness assessment. |
+| 2 | Evaluate the safety, equipment and utility conditions defined by L2-G02. | Laboratory In-Charge / Laboratory Management | Readiness evidence and any warning or exception are established. |
+| 3 | Establish the readiness profile in the source-supported monitoring position and classify identified conditions. | Laboratory Management | The Laboratory readiness position is governed. |
+| 4 | Where a critical safety exception exists, obtain the source-required senior institutional decision before treating the Laboratory as ready for the affected use. | Senior Institutional Authority / Laboratory Management | Critical safety exception is resolved by authorized business decision. |
+| 5 | Complete the readiness assessment and publish `LaboratoryReadinessReviewed`; where the Laboratory operational status changes, publish `LaboratoryOperationalStatusChanged`. | Laboratory Management | The governed readiness outcome is available to authorized consumers. |
 
 ## 10. Alternate Business Flows
 
 | Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
 |---|---|---|---|---|
-| Configured alternative | The primary path cannot proceed but a source-supported alternative is permitted. | Apply the configured alternative with authorised reason and immutable history. | The obligation remains governed toward Operational Readiness. | Laboratory Management |
+| Non-critical readiness warning | L2-G02 identifies a warning that is non-blocking under the governing policy. | Record the warning and continue the governed readiness path with monitoring obligations. | Readiness assessment completes with the warning preserved. | Laboratory Management |
+| Critical safety exception | A critical safety condition requires the source-defined senior institutional decision. | Escalate the exception to the Senior Institutional Authority and apply the authorized decision. | The readiness path proceeds only if the critical exception is authoritatively resolved. | Laboratory Management |
 
 ## 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Invalid authoritative reference | The scenario cannot progress safely. | Correct or reject the reference under policy and preserve the validation evidence. | Laboratory Management |
-| Authorization or policy failure | The requested decision cannot be performed. | Route for authorised review or terminate under configured policy without deleting history. | Laboratory Management |
-| Required cross-domain context unavailable | The dependent decision is incomplete. | Pause the affected boundary, retain state and resume only when authoritative context is available. | Laboratory Management |
+| Laboratory is `DECOMMISSIONED` | Readiness assessment cannot establish operational use. | Preserve the terminal Laboratory position; no readiness outcome authorizing use is created. | Laboratory Management |
+| Required safety, equipment or utility evidence is unavailable or invalid | Readiness cannot be authoritatively established. | Preserve the last valid Laboratory position and correct the missing business evidence before reassessment. | Laboratory Management |
+| Critical safety exception is unresolved | The affected Laboratory use cannot be treated as ready. | Preserve the restrictive business position until the source-required senior institutional decision is obtained. | Laboratory Management |
 
 ## 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Laboratory Management owns the operational lifecycle and permanent history. | Laboratory Management | Prevents cross-domain ownership transfer. | L2-G02 §§5, 13 |
-| Every significant transition and business action is auditable. | Laboratory Management | Requires actor, time, reason, prior position and resulting position. | L2-G02 Audit Responsibilities |
-| Configuration determines institution-specific rules and permitted exceptions. | Laboratory Management | Prevents scenario-specific invention of local policy. | L2-G02 Configuration Management |
-| External canonical information is referenced, not re-owned. | Laboratory Management | Preserves authoritative-domain boundaries. | L2-G02 §§4, 9 |
+| Laboratory Management owns the Laboratory operational lifecycle and readiness evidence. | Laboratory Management | Participating domains cannot modify the Laboratory lifecycle. | L2-G02 |
+| Safety, equipment and utility readiness are assessed as part of Laboratory readiness. | Laboratory Management | Readiness cannot be asserted without the governing assessment. | L2-G02 readiness workflow |
+| Non-critical warnings do not block readiness by default where L2-G02 permits continued monitoring. | Laboratory Management | Warning may lead to a governed monitored readiness outcome. | L2-G02 readiness workflow |
+| A critical safety exception requires the source-defined senior institutional decision. | Laboratory Management | L3 cannot bypass or reassign the critical-safety authority. | L2-G02 readiness workflow |
+| External canonical information is referenced rather than re-owned. | Respective canonical owners | Preserves domain boundaries. | L2-G02; DEPENDENCY_MAP.md |
 
 ## 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Laboratory Readiness | Source-supported current position | Applies the governed transition required for Laboratory Readiness Assessment to Operational Readiness. | Draft → Preparation → Verified → Ready → Operational | Laboratory Management | L2-G02 State Transition Matrix |
+| Laboratory | `ACTIVE`, `RESTRICTED`, or `SUSPENDED` as applicable; `DECOMMISSIONED` is terminal | Readiness assessment may confirm the current operational position or support a source-defined status consequence; it does not invent a new Laboratory state. | Existing source-supported Laboratory operational position | Laboratory Management | L2-G02 Laboratory Operational Status lifecycle |
+| Laboratory Readiness Profile | Source-supported readiness position | Readiness evidence is assessed and maintained for operational monitoring. | `MONITORING` where defined by the L2 readiness workflow | Laboratory Management | L2-G02 readiness workflow |
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -126,16 +127,18 @@ The institution identifies or receives **Laboratory Readiness Assessment**, requ
 
 | Business Event | Canonical Publisher | Consumers | Scenario Purpose | Source |
 |---|---|---|---|---|
-| LaboratoryPrepared | Laboratory Management | Configured interested domains | Records the exact source-defined transition relevant to Laboratory Readiness Assessment to Operational Readiness. | L2-G02 §27 |
-| LaboratoryReady | Laboratory Management | Configured interested domains | Records the exact source-defined transition relevant to Laboratory Readiness Assessment to Operational Readiness. | L2-G02 §27 |
+| LaboratoryReadinessReviewed | Laboratory Management | Authorized interested domains | Communicates completion of the Laboratory readiness assessment. | L2-G02 |
+| LaboratoryOperationalStatusChanged | Laboratory Management | Authorized interested domains | Communicates an operational-status change where the readiness outcome causes one. | L2-G02 |
+
+No `LaboratoryPrepared` or `LaboratoryReady` event is retained because those event names are not the canonical readiness events established by the current L2-G02 source.
 
 ### 14.2 Business Contracts and Cross-Domain Hand-offs
 
 | Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
 |---|---|---|---|---|
-| Academic Delivery | Laboratory Management | Authoritative business context reference | Supports validation or decision without ownership transfer. | DEPENDENCY_MAP.md |
-| People & Workforce | Laboratory Management | Authoritative business context reference | Supports validation or decision without ownership transfer. | DEPENDENCY_MAP.md |
-| Institutional Services | Laboratory Management | Authoritative business context reference | Supports validation or decision without ownership transfer. | DEPENDENCY_MAP.md |
+| Infrastructure Management / Section G physical-space owner | Laboratory Management | Authoritative Infrastructure Space reference | Establish the physical Laboratory context without duplicate ownership. | DEPENDENCY_MAP.md; L2-G02 |
+| Academic Delivery | Laboratory Management | Authoritative academic/practical-use context where required | Relate readiness to planned academic use without transferring academic ownership. | L2-G02 |
+| People & Workforce | Laboratory Management | Authoritative workforce/assignment context where required | Establish responsible workforce context without re-owning workforce data. | L2-G02 |
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
@@ -143,40 +146,44 @@ The institution identifies or receives **Laboratory Readiness Assessment**, requ
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
-| Initiate Laboratory Readiness Assessment | Laboratory Coordinator | Must act within configured operational scope. | Laboratory Management |
-| Confirm Operational Readiness | Laboratory In-Charge | Requires source-supported completion evidence and authority. | Laboratory Management |
+| Prepare and validate Laboratory readiness evidence | Laboratory In-Charge | Authority is limited to the Laboratory Management responsibility established by L2-G02. | Laboratory Management |
+| Decide a critical safety exception | Senior Institutional Authority | Applies only where the critical-safety exception defined by L2-G02 is present. | Laboratory Management |
 
 ### 15.2 Separation of Duties, Overrides and Exceptions
 
-No additional separation-of-duty rule is invented. Any permitted override requires an authorised actor, configured basis, business reason and immutable audit history.
+No additional separation-of-duty or override rule is introduced at L3. The only exception authority retained here is the critical-safety authority explicitly defined by L2-G02.
 
 ### 15.3 Business Audit and Evidence Obligations
 
 | Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
 |---|---|---|
-| Laboratory Readiness Assessment | Initiating reference, actor, time, affected scope and validation result. | Laboratory Management |
-| Operational Readiness | Decision, evidence, resulting lifecycle position, event references and closure actor. | Laboratory Management |
+| Readiness assessment | Safety, equipment and utility readiness evidence and resulting readiness position. | Laboratory Management |
+| Critical safety exception, where applicable | Exception evidence and the source-required senior institutional decision. | Laboratory Management |
+| Operational-status consequence, where applicable | Prior and resulting source-supported Laboratory operational position. | Laboratory Management |
+
+Section A retains ownership of platform Authorization and Audit infrastructure; Laboratory Management owns the underlying readiness decision and evidence.
 
 ## 16. Completion Criteria and Postconditions
 
 ### 16.1 Completion Criteria
 
-- The initiating condition Laboratory Readiness Assessment was validated.
-- All mandatory business decisions and source-supported transitions were recorded.
-- The outcome Operational Readiness was confirmed with required evidence.
-- Audit continuity and canonical ownership boundaries were preserved.
+- Safety, equipment and utility readiness have been assessed under L2-G02.
+- Any warning or critical safety exception has been handled using the source-defined business path.
+- `LaboratoryReadinessReviewed` is published by Laboratory Management.
+- Any operational-status change uses only the source-supported Laboratory lifecycle and event.
 
 ### 16.2 Postconditions
 
-- Laboratory Management retains authoritative operational history.
+- The governed Laboratory readiness position is available for subsequent authorized Laboratory operations.
 - Participating domains retain ownership of their canonical information.
-- The outcome is available to authorised downstream consumers.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
 ### 17.1 Open Issues
 
-No open issues.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| The scenario previously claimed Architecture Approval under `ACR-G-2026-08-21-002`, but no independently traceable governance/ADR/approval artifact establishing that scenario approval has been located in the repository. | Source-supported L2-G02 actors, readiness rules, lifecycle and events remain usable, but the scenario cannot rely on the unsupported Architecture Approved claim. | Provide independently traceable approval provenance before promotion beyond Review. |
 
 ### 17.2 Assumptions
 
@@ -184,4 +191,9 @@ No assumptions.
 
 ### 17.3 Deferred Questions
 
-No predetermined questions. Any further question must be triggered by new source evidence or a validation failure.
+No scenario-specific deferred questions.
+
+---
+
+**Authoring Validation Classification:** REVIEW REQUIRED  
+**Validation Note:** Generic readiness boilerplate, non-canonical readiness events and unsupported approval provenance were corrected against locked L2-G02; frozen ID, title, owner, participating domains, type and priority were preserved.
