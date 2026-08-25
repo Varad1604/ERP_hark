@@ -1,15 +1,17 @@
 # Teaching Progress to Published Syllabus Coverage Record
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-026  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Teaching Session & Attendance  
 **Participating Domains:** D  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Architecture Approved  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-25  
 **Depends On:** `L2-D04_Teaching_Session_and_Attendance_Workflows.md`  
 **Referenced By:** None yet  
 **Frozen Stage 3 Source:** P2W-D-0746 / CAN-L3-D-026
@@ -18,37 +20,38 @@
 
 # 2. Scenario Purpose
 
-Record, validate and publish actual instructional progress and topic coverage for a Teaching Session as immutable execution facts.
+Record, validate and publish actual instructional progress and topic coverage for a Teaching Session as governed D04 execution facts.
 
 # 3. Business Outcome
 
-A validated Teaching Progress record is Published with canonical topic-coverage states and retained references to the Teaching Session, curriculum topic and learning outcomes.
+A validated Teaching Progress record reaches Published with canonical topic-coverage states and retained references to the Teaching Session, curriculum topic and Learning Outcomes.
 
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
 
-An eligible Teaching Session is active or otherwise permits progress recording under policy.
+An eligible Teaching Session is active or otherwise permits progress recording under D04 policy.
 
 ## 4.2 End Boundary
 
-Teaching Progress reaches Published and becomes immutable; later corrections add new business history.
+Teaching Progress reaches Published and becomes immutable as historical truth; any later correction creates new governed history.
 
 ## 4.3 In Scope
 
-- Record atomic progress and actual topic coverage.
-- Validate session state, topic and learning-outcome references.
-- Publish immutable progress facts.
+- Record instructional progress and actual topic coverage.
+- Validate Teaching Session state and authoritative curriculum/Learning Outcome references.
+- Publish the governed progress fact.
 
 ## 4.4 Out of Scope
 
-- Curriculum or syllabus planning ownership.
-- Editing a published progress fact.
+- Curriculum or syllabus-planning ownership.
+- Editing a Published progress fact in place.
 - Analytics-derived conclusions.
+- Technical permissions, persistence, retries or atomic processing.
 
 ## 4.5 Related Scenarios — Optional
 
-Related scenarios are referenced only where their completed business facts cross this boundary; they do not transfer ownership.
+Related scenarios may consume the Published D04 progress fact without changing ownership.
 
 # 5. Ownership and Participating Domains
 
@@ -59,10 +62,11 @@ Related scenarios are referenced only where their completed business facts cross
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Actor / Role | Responsibility | Authority |
+| Business Actor / Role | Responsibility | Business Authority |
 |---|---|---|
-| Authorized conducting faculty | Records actual teaching progress and topic coverage. | Record Teaching Progress permission. |
-| Authorized progress publisher | Validates and publishes progress under institutional policy. | Policy-bound publication authority. |
+| Authorized conducting faculty | Records actual teaching progress and topic coverage. | May act only for the applicable Teaching Session under D04/faculty-assignment policy. |
+
+The reviewed D04 source does not clearly establish one canonical institutional role name for publication authority; that gap is recorded in Section 17 rather than represented as a technical permission or generic publisher role.
 
 # 7. Preconditions and Entry Criteria
 
@@ -71,37 +75,36 @@ Related scenarios are referenced only where their completed business facts cross
 
 # 8. Trigger
 
-Instructional delivery creates a progress or coverage fact requiring official publication.
+Instructional delivery creates a progress or coverage fact requiring official D04 publication.
 
 # 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Record atomic instructional progress against the Teaching Session. | Authorized conducting faculty | Progress Recorded. |
-| 2 | Record actual coverage as Planned, Started, Partially Covered, Fully Covered, Deferred or Cancelled. | Authorized conducting faculty | Canonical execution state captured. |
-| 3 | Validate session state, topic reference, learning outcomes and consistency. | D04 | Progress is Validated or returned for correction. |
-| 4 | Publish the validated progress record. | Authorized publisher / D04 | Validated → Published. |
-| 5 | Preserve publication as immutable; any correction creates new history. | D04 | Published syllabus-coverage truth remains auditable. |
+| 1 | Record instructional progress against the Teaching Session. | Authorized conducting faculty / D04 | Progress Recorded. |
+| 2 | Record actual coverage using the canonical supported coverage states. | Authorized conducting faculty / D04 | Topic coverage fact is established. |
+| 3 | Validate session state, topic/Learning Outcome references and consistency. | D04 | Progress is valid or returned for correction. |
+| 4 | Publish the validated progress under the applicable D04 business authority. | D04 | Progress becomes Published. |
+| 5 | Preserve Published history; any later correction creates new governed history. | D04 | Historical syllabus-coverage truth remains traceable. |
 
 # 10. Alternate Business Flows
 
-A failed validation, rejection, configured optional approval path, escalation or compensation follows only the alternatives explicitly supported above; it never creates the successful final outcome or rewrites prior facts.
+No distinct alternate business path is asserted. Validation or authority failure blocks publication and is handled under Section 11.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Recovery | Owner |
+| Situation | Business Consequence | Business Resolution / Recovery | Owner |
 |---|---|---|---|
-| Validation or reference failure | Scenario cannot proceed. | Reject or return for correction without changing the prior authoritative state. | Teaching Session & Attendance |
-| Authorization or approval failure | Requested outcome is not permitted. | Retain the prior state and record the decision reason. | Teaching Session & Attendance |
-| Interrupted processing | Completion is uncertain. | Resume from the last authoritative state with audit continuity and idempotency. | Teaching Session & Attendance |
+| Teaching Session or curriculum reference cannot be validated | Progress cannot be published. | Resolve the authoritative reference before publication continues. | D04 with source owner as applicable |
+| Required publication authority cannot be validated | Published outcome cannot occur. | Retain the current authoritative progress state until valid business authority exists. | D04 |
+| Progress publication is interrupted | Published outcome has not occurred. | Preserve the last valid business position and continue when the blocking condition is resolved. | D04 |
 
 # 12. Business Rules and Decision Constraints
 
-| Rule | Owner | Scenario Effect | Source |
-|---|---|---|---|
-| Only the canonical owner may change its owned business state. | Teaching Session & Attendance | Prevents cross-domain ownership leakage. | `L2-D04_Teaching_Session_and_Attendance_Workflows.md` |
-| Each transition requires valid lifecycle position, authority, policy and evidence. | Teaching Session & Attendance | Prevents governance bypass. | `L2-D04_Teaching_Session_and_Attendance_Workflows.md` |
-| Published or historical business facts remain immutable. | Teaching Session & Attendance | Preserves auditability and lineage. | `L2-D04_Teaching_Session_and_Attendance_Workflows.md` |
+- D04 owns Teaching Progress and actual coverage. Source: L2-D04 §§27–28.
+- Planned curriculum/topic/Learning Outcome definitions remain owned by D01.
+- Published/historical D04 facts remain immutable; correction creates new history.
+- No L2 command or implementation mechanism is treated as L3 authorization.
 
 # 13. State and Lifecycle Impact
 
@@ -113,66 +116,58 @@ A failed validation, rejection, configured optional approval path, escalation or
 
 ## 14.1 Published / Consumed Business Events
 
-| Business Event | Canonical Publisher | Consumers | Purpose | Source |
+| Event | Canonical Publisher | Consumers | Purpose | Source |
 |---|---|---|---|---|
-| TeachingProgressRecorded / TopicCoverageRecorded | D04 | D05 and authorized academic consumers | Records actual teaching progress and topic coverage facts. | L2-D04 §46.3 |
+| `TeachingProgressRecorded` / `TopicCoverageRecorded` | D04 | D05 and authorized academic consumers | Records actual teaching progress and topic coverage. | L2-D04 §46.3 |
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-| From | To | Business Hand-off | Purpose | Source |
-|---|---|---|---|---|
-| D01 | Teaching Session & Attendance | Owns planned curriculum, topic and Learning Outcome references consumed by D04. | Preserve ownership while enabling the scenario. | `L2-D04_Teaching_Session_and_Attendance_Workflows.md` |
+D01 supplies authoritative curriculum/topic/Learning Outcome references; D04 retains Teaching Progress ownership.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-| Action / Decision | Authorized Role | Constraint | Owner |
-|---|---|---|---|
-| Records actual teaching progress and topic coverage. | Authorized conducting faculty | Record Teaching Progress permission. | Teaching Session & Attendance |
-| Validates and publishes progress under institutional policy. | Authorized progress publisher | Policy-bound publication authority. | Teaching Session & Attendance |
+Conducting faculty records progress only under valid session/faculty authority. Exact canonical institutional role naming for publication is unresolved upstream and is not invented here.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-Initiation, validation, review, approval and execution remain distinct wherever source or configured policy requires separation. Automated services execute rules but never make governance decisions. Any override requires authority, justification, evidence and audit history.
+Any required separation between progress recording, validation and publication must be established by authoritative D04/institutional policy.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-| Obligation | Evidence | Owner |
-|---|---|---|
-| Scenario lifecycle and decision | Actor, authority, reason, prior state, validation evidence, decision and resulting state. | Teaching Session & Attendance |
-| Source and cross-domain traceability | Source identifiers, versions, evidence references, consumed events and published facts. | Teaching Session & Attendance |
-| Failure and recovery | Rejected validations, interruptions, retries, escalation or compensation outcome. | Teaching Session & Attendance |
+Retain Teaching Session reference, faculty authority, curriculum references, recorded coverage, validation evidence, publication authority once established, and Published history.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- A validated Teaching Progress record is Published with canonical topic-coverage states and retained references to the Teaching Session, curriculum topic and learning outcomes.
-- All required authority, validation and audit evidence is retained.
-- Applicable completed business facts are published exactly once in business effect.
+- Teaching Progress is valid and Published.
+- Canonical coverage states and authoritative references are retained.
+- Historical publication remains immutable and auditable.
 
 ## 16.2 Postconditions
 
-- Canonical ownership remains unchanged.
-- Historical decisions and prior states remain immutable.
-- Downstream domains consume facts without modifying the owning aggregate.
+- D04 retains Teaching Progress ownership.
+- D01 retains curriculum/topic/Learning Outcome ownership.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-No open issues.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| Reviewed D04 source does not clearly establish one canonical institutional business-role name for Teaching Progress publication authority. | L3 cannot safely retain the generic `Authorized progress publisher` role or a technical permission. | Confirm the canonical business authority upstream before Architecture Approval. |
 
 ## 17.2 Assumptions
 
-No assumptions.
+No assumption overrides locked architecture.
 
 ## 17.3 Deferred Questions
 
-No deferred questions.
+Technical RBAC, persistence, atomicity, retries and implementation recovery are deferred to later architecture levels.
 
 ---
 
-**Draft Validation Verdict:** PASS  
-**Validation Basis:** Section D canonical register; `L2-D04_Teaching_Session_and_Attendance_Workflows.md`; Template v2.0; Architecture Level Validation Standards; accepted Section D decisions 001–500.
+**Draft Validation Verdict:** REVIEW REQUIRED  
+**Validation Basis:** `L2-D04_Teaching_Session_and_Attendance_Workflows.md`; Template v2.0; Architecture Level Validation Standards.

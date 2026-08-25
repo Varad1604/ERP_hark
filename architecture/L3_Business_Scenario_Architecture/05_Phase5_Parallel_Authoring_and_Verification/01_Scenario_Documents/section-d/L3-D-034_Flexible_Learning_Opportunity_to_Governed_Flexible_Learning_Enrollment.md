@@ -1,15 +1,17 @@
 # Flexible Learning Opportunity to Governed Flexible Learning Enrollment
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-034  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Open Electives & MOOCs  
 **Participating Domains:** C, D  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Architecture Approved  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-25  
 **Depends On:** `L2-D06_Open_Electives_and_MOOCs_Workflows.md`  
 **Referenced By:** None yet  
 **Frozen Stage 3 Source:** P2W-D-0755 / CAN-L3-D-035 (final L3-D-034)
@@ -18,17 +20,17 @@
 
 # 2. Scenario Purpose
 
-Govern an eligible student request for an active flexible learning opportunity through validation and configured approval to an approved institutional enrollment.
+Govern an eligible student request for an Active flexible-learning opportunity through D06 validation and applicable institutional approval to an approved Flexible Learning Enrollment.
 
 # 3. Business Outcome
 
-A unique Flexible Learning Enrollment is approved as an institutional academic commitment and is ready for seat allocation or external-provider registration.
+A unique Flexible Learning Enrollment reaches Approved and becomes ready for the applicable D06 seat-allocation or external-provider registration path.
 
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
 
-An authenticated eligible student selects an active discoverable learning opportunity during its open enrollment window.
+An eligible student selects an Active discoverable learning opportunity during its governed enrollment window.
 
 ## 4.2 End Boundary
 
@@ -36,149 +38,91 @@ The enrollment reaches Approved and `EnrollmentApproved` is published, or a gove
 
 ## 4.3 In Scope
 
-- Submit immutable enrollment request.
-- Validate eligibility, window, policy, capacity, finance and duplicates.
-- Apply auto-approval or configured human approval.
-- Approve or reject with audit history.
+- Submit the enrollment request.
+- Validate eligibility, enrollment window, applicable academic policy, capacity/finance references and duplicates as defined by D06.
+- Apply the configured approval path.
+- Record Approved or Rejected outcome with evidence.
 
 ## 4.4 Out of Scope
 
-- Section C Student master or core registration ownership.
-- Seat allocation outcome.
+- Section C Student/core-registration ownership.
+- Seat-allocation outcome.
 - Provider registration or learning completion.
+- Validation-service, approval-service, API, retry or persistence design.
 
 ## 4.5 Related Scenarios — Optional
 
-Related scenarios are referenced only where their completed business facts cross this boundary; they do not transfer ownership.
+L3-D-035 governs seat allocation after Approved enrollment where applicable; L3-D-037 governs external-provider registration where applicable.
 
 # 5. Ownership and Participating Domains
 
-| Domain | Responsibility |
-|---|---|
-| D06 | Owns Flexible Learning Enrollment, eligibility/approval evidence and enrollment lifecycle. |
-| Section C | Owns canonical student, program, academic-standing and core registration facts consumed by D06. |
+D06 owns Flexible Learning Enrollment, eligibility/approval evidence and enrollment lifecycle. Section C retains canonical student/program/academic-standing/core-registration ownership.
 
 # 6. Business Actors, Roles and Responsibilities
 
 | Actor / Role | Responsibility | Authority |
 |---|---|---|
-| Student | Selects opportunity and submits enrollment request. | Initiates own enrollment. |
-| Enrollment Validation Service | Evaluates authoritative rules and evidence. | Automated validation only. |
-| Academic Advisor / HoD / Dean / Academic Affairs | Reviews requests when manual approval policy applies. | Configured approval authority. |
-| Approval Service | Finalizes satisfied approval outcome. | Executes recorded policy decision. |
+| Student | Selects the opportunity and submits the student's own enrollment request. | Initiates own enrollment. |
+| Academic Advisor / HoD / Dean / Academic Affairs, where assigned by D06 policy | Reviews enrollment when the configured institutional approval path requires human decision. | Approval authority only where established by policy. |
+
+Validation and recording the approved/rejected D06 outcome are domain responsibilities, not `Enrollment Validation Service` or `Approval Service` business actors.
 
 # 7. Preconditions and Entry Criteria
 
-- Opportunity is Active and discoverable; window is open.
-- Student has a valid eligibility decision and no duplicate active enrollment.
+- Opportunity is Active/discoverable and the enrollment window is Open.
+- Student and required eligibility references are authoritative.
+- No duplicate Active enrollment exists for the governed scope.
 
 # 8. Trigger
 
-Student or authorized assisted channel submits enrollment for the opportunity.
+The student submits enrollment for the flexible-learning opportunity.
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Role / Domain | Business Result |
-|---|---|---|---|
-| 1 | Submit request and create immutable enrollment reference. | Student / D06 | EnrollmentRequestSubmitted. |
-| 2 | Validate eligibility, window, academic policy, capacity, finance and duplicates. | Enrollment Validation Service | Validated or failed with evidence. |
-| 3 | Evaluate configured approval policy. | D06 | Auto-approval or manual-review path selected. |
-| 4 | For manual path, assign approver and record decision with remarks. | Configured academic approver | AcademicApprovalCompleted. |
-| 5 | Approve satisfied enrollment and trigger next allocation/registration step. | Approval Service | EnrollmentApproved. |
-| 6 | If rejected, record institutional reason and close unsuccessful request. | Approval Authority | ElectiveEnrollmentRejected. |
+1. Student/D06 establishes the enrollment request — `EnrollmentRequestSubmitted`.
+2. D06 validates authoritative eligibility, window, policy, capacity/finance references and duplicates — `EnrollmentRequestValidated` or `EnrollmentValidationFailed`.
+3. D06 evaluates the applicable approval policy.
+4. Where policy permits approval without human review, D06 records `EnrollmentAutomaticallyApproved` and proceeds to Approved.
+5. Where human review is required, the configured academic approver decides — `AcademicApprovalRequested` / `AcademicApprovalCompleted`.
+6. D06 records `EnrollmentApproved` for a satisfied approval outcome; a governed rejection records `ElectiveEnrollmentRejected`.
 
 # 10. Alternate Business Flows
 
-A failed validation, rejection, configured optional approval path, escalation or compensation follows only the alternatives explicitly supported above; it never creates the successful final outcome or rewrites prior facts.
+## 10.1 Approval Without Human Review
+
+Where authoritative D06 policy permits automatic approval after successful validation, the enrollment reaches the same Approved business outcome without human-review steps.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Recovery | Owner |
-|---|---|---|---|
-| Validation or reference failure | Scenario cannot proceed. | Reject or return for correction without changing the prior authoritative state. | Open Electives & MOOCs |
-| Authorization or approval failure | Requested outcome is not permitted. | Retain the prior state and record the decision reason. | Open Electives & MOOCs |
-| Interrupted processing | Completion is uncertain. | Resume from the last authoritative state with audit continuity and idempotency. | Open Electives & MOOCs |
+Validation/reference failure blocks approval until authoritative business conditions are corrected. A rejected human approval retains the governed rejection outcome and reason. An interruption preserves the last authoritative D06 enrollment position and evidence until the blocking condition is resolved.
 
 # 12. Business Rules and Decision Constraints
 
-| Rule | Owner | Scenario Effect | Source |
-|---|---|---|---|
-| Only the canonical owner may change its owned business state. | Open Electives & MOOCs | Prevents cross-domain ownership leakage. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
-| Each transition requires valid lifecycle position, authority, policy and evidence. | Open Electives & MOOCs | Prevents governance bypass. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
-| Published or historical business facts remain immutable. | Open Electives & MOOCs | Preserves auditability and lineage. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
+D06 alone owns enrollment state; Section C facts remain externally owned; approval follows authoritative D06 policy; repeated same business fact must not create duplicate institutional enrollment outcomes. Technical idempotency/retries are deferred.
 
 # 13. State and Lifecycle Impact
 
-| Concept | Entry State | Scenario Impact | Result | Owner | Source |
-|---|---|---|---|---|---|
-| Flexible Learning Enrollment | Created | Validate and govern approval. | Created → Eligibility Validation → Pending Approval → Approved; alternate Rejected | D06 | L2-D06 Aggregate 1; W17–W22 |
+Flexible Learning Enrollment: Created → Eligibility Validation → Pending Approval → Approved; governed alternate Rejected. Owner D06. Source: L2-D06 Aggregate 1; W17–W22.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
+D06 publishes `EnrollmentRequestSubmitted`, `EnrollmentRequestValidated`, `EnrollmentValidationFailed`, `EnrollmentAutomaticallyApproved`, `AcademicApprovalRequested`, `AcademicApprovalCompleted`, `EnrollmentApproved`, and `ElectiveEnrollmentRejected` as defined by L2-D06 W17–W22/Event Catalogue.
 
-| Business Event | Canonical Publisher | Consumers | Purpose | Source |
-|---|---|---|---|---|
-| EnrollmentRequestSubmitted / EnrollmentRequestValidated / EnrollmentValidationFailed / EnrollmentAutomaticallyApproved / AcademicApprovalRequested / AcademicApprovalCompleted / EnrollmentApproved / ElectiveEnrollmentRejected | D06 | Section C, seat allocation, provider integration and authorized consumers | Records enrollment request, validation and governed decision. | L2-D06 W17–W22; Event Catalogue |
-
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-| From | To | Business Hand-off | Purpose | Source |
-|---|---|---|---|---|
-| Section C | Open Electives & MOOCs | Owns canonical student, program, academic-standing and core registration facts consumed by D06. | Preserve ownership while enabling the scenario. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
+Section C supplies authoritative student/program/standing/registration facts without ownership transfer.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-| Action / Decision | Authorized Role | Constraint | Owner |
-|---|---|---|---|
-| Selects opportunity and submits enrollment request. | Student | Initiates own enrollment. | Open Electives & MOOCs |
-| Evaluates authoritative rules and evidence. | Enrollment Validation Service | Automated validation only. | Open Electives & MOOCs |
-| Reviews requests when manual approval policy applies. | Academic Advisor / HoD / Dean / Academic Affairs | Configured approval authority. | Open Electives & MOOCs |
-| Finalizes satisfied approval outcome. | Approval Service | Executes recorded policy decision. | Open Electives & MOOCs |
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-Initiation, validation, review, approval and execution remain distinct wherever source or configured policy requires separation. Automated services execute rules but never make governance decisions. Any override requires authority, justification, evidence and audit history.
-
-## 15.3 Business Audit and Evidence Obligations
-
-| Obligation | Evidence | Owner |
-|---|---|---|
-| Scenario lifecycle and decision | Actor, authority, reason, prior state, validation evidence, decision and resulting state. | Open Electives & MOOCs |
-| Source and cross-domain traceability | Source identifiers, versions, evidence references, consumed events and published facts. | Open Electives & MOOCs |
-| Failure and recovery | Rejected validations, interruptions, retries, escalation or compensation outcome. | Open Electives & MOOCs |
+Student initiates own request. Where D06 policy requires human approval, only the assigned academic business authority may decide. Audit retains eligibility/policy references, approval path, actor/authority, decision/reason and resulting enrollment state.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-- A unique Flexible Learning Enrollment is approved as an institutional academic commitment and is ready for seat allocation or external-provider registration.
-- All required authority, validation and audit evidence is retained.
-- Applicable completed business facts are published exactly once in business effect.
-
-## 16.2 Postconditions
-
-- Canonical ownership remains unchanged.
-- Historical decisions and prior states remain immutable.
-- Downstream domains consume facts without modifying the owning aggregate.
+Approved enrollment is unique and ready for its next D06 allocation/provider-registration path; rejection remains traceable; D06 ownership and Section C ownership remain unchanged.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
-
-No open issues.
-
-## 17.2 Assumptions
-
-No assumptions.
-
-## 17.3 Deferred Questions
-
-No deferred questions.
+No new open issue or assumption is introduced by this purity correction. Validation/approval services, APIs, technical RBAC, retries and persistence are deferred to later architecture levels.
 
 ---
 
-**Draft Validation Verdict:** PASS  
-**Validation Basis:** Section D canonical register; `L2-D06_Open_Electives_and_MOOCs_Workflows.md`; Template v2.0; Architecture Level Validation Standards; accepted Section D decisions 001–500.
+**Draft Validation Verdict:** REVIEW REQUIRED  
+**Validation Basis:** L2-D06; Template v2.0; Architecture Level Validation Standards.

@@ -1,15 +1,17 @@
 # Completed Internal Assessment Outcomes to Governed Finalized Internal Assessment
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-055  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Internal Assessment  
 **Participating Domains:** D, I  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Architecture Approved  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-25  
 **Depends On:** `L2-D07_Internal_Assessment_Workflows.md`  
 **Referenced By:** None yet  
 **Frozen Stage 3 Source:** P2W-D-0775 / CAN-L3-D-055
@@ -18,11 +20,11 @@
 
 # 2. Scenario Purpose
 
-Finalize completed and, where required, moderated internal-assessment outcomes as immutable D07 facts for downstream Examination consumption.
+Finalize completed and, where required, moderated internal-assessment outcomes as immutable D07 business facts for downstream Examination consumption.
 
 # 3. Business Outcome
 
-The Internal Assessment reaches Finalized, its marks and evidence become immutable except through controlled correction, and Section I receives only the finalized business fact.
+The Internal Assessment reaches Finalized, its marks and evidence become immutable except through the governed correction workflow, and Section I receives only the finalized D07 fact.
 
 # 4. Scenario Boundary and Scope
 
@@ -32,23 +34,25 @@ All required assessment components are completed and applicable moderation decis
 
 ## 4.2 End Boundary
 
-The internal assessment reaches Finalized and `InternalAssessmentFinalized` is published to Section I and authorized consumers.
+The internal assessment reaches Finalized and `InternalAssessmentFinalized` is published by D07 for downstream consumption.
 
 ## 4.3 In Scope
 
 - Validate component completeness, marks, moderation and window closure.
-- Authorize and apply finalization.
-- Publish finalized internal-assessment fact to Section I.
+- Obtain the required institutional finalization decision.
+- Apply the D07 Finalized lifecycle state.
+- Publish the finalized internal-assessment fact.
 
 ## 4.4 Out of Scope
 
-- Official examination grade/result computation.
+- Official examination-grade/result computation.
 - Direct mutation of Section I records.
 - Normal edits after finalization.
+- Command/API/permission design.
 
 ## 4.5 Related Scenarios — Optional
 
-Related scenarios are referenced only where their completed business facts cross this boundary; they do not transfer ownership.
+L3-D-054 provides moderated outcomes where required; Section I scenarios consume the finalized D07 business fact.
 
 # 5. Ownership and Participating Domains
 
@@ -59,17 +63,14 @@ Related scenarios are referenced only where their completed business facts cross
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Actor / Role | Responsibility | Authority |
-|---|---|---|
-| Policy-configured D07 finalization administrator | Prepares and validates finalization set. | FinalizeInternalAssessment execution. |
-| Policy-configured D07 finalization authority | Approves finalization after completeness and moderation checks. | Final decision authority. |
-| Section I Examination | Consumes completed finalization event. | No D07 mutation authority. |
+Locked L2-D07 does not define canonical actors. This scenario therefore does not invent finalization-administrator or finalization-authority roles. The required institutional actor mapping is recorded in Section 17.
 
 # 7. Preconditions and Entry Criteria
 
 - All mandatory component outcomes exist.
 - Required moderation is completed.
-- Assessment Window is Closed and no blocking correction/review remains.
+- Assessment Window is Closed.
+- No blocking correction/review remains.
 
 # 8. Trigger
 
@@ -79,32 +80,31 @@ The assessment cycle satisfies all D07 completion and governance requirements.
 
 | Step | Business Behaviour | Responsible Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Collect completed component and moderated outcomes. | D07 | Finalization set assembled. |
-| 2 | Validate blueprint completeness, marks, moderation, window and policy. | D07 finalization administrator | Ready or blocked with explicit deficiencies. |
-| 3 | Approve finalization. | D07 finalization authority | Authority decision recorded. |
-| 4 | Transition internal assessment to Finalized and lock marks/evidence. | D07 | Finalized; normal modification prohibited. |
-| 5 | Publish finalized fact for downstream consumption. | D07 | InternalAssessmentFinalized. |
-| 6 | Consume finalized facts for examination processing. | Section I | Examination ownership remains unchanged. |
+| 1 | Assemble completed component and moderated outcomes. | D07 | Finalization set is established. |
+| 2 | Validate blueprint completeness, marks, moderation, window and policy. | D07 | Assessment is ready for finalization or remains blocked. |
+| 3 | Obtain the required institutional finalization decision. | Applicable business authority — role unresolved upstream | Finalization is approved or rejected. |
+| 4 | For approval, transition Internal Assessment to Finalized and make marks/evidence immutable except through controlled correction. | D07 | Internal Assessment is Finalized. |
+| 5 | Publish the finalized business fact. | D07 | `InternalAssessmentFinalized`. |
+| 6 | Section I consumes the finalized fact for its own examination processing. | Section I | Examination ownership remains unchanged. |
 
 # 10. Alternate Business Flows
 
-A failed validation, rejection, configured optional approval path, escalation or compensation follows only the alternatives explicitly supported above; it never creates the successful final outcome or rewrites prior facts.
+No distinct alternate path reaches the Finalized outcome. Failed completeness/moderation checks or rejected finalization decisions block completion and are handled under Section 11.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Recovery | Owner |
+| Situation | Business Consequence | Business Resolution / Recovery | Owner |
 |---|---|---|---|
-| Validation or reference failure | Scenario cannot proceed. | Reject or return for correction without changing the prior authoritative state. | Internal Assessment |
-| Authorization or approval failure | Requested outcome is not permitted. | Retain the prior state and record the decision reason. | Internal Assessment |
-| Interrupted processing | Completion is uncertain. | Resume from the last authoritative state with audit continuity and idempotency. | Internal Assessment |
+| Required component/moderation/window evidence is incomplete | Finalization cannot proceed. | Resolve the missing D07 business condition before finalization is reconsidered. | D07 |
+| Required finalization authority cannot be validated or rejects finalization | Internal Assessment remains non-Finalized. | Retain the current authoritative state and follow the governed review/resubmission path. | D07 |
+| Finalization activity is interrupted | `InternalAssessmentFinalized` has not occurred. | Preserve the last valid business position and continue when the blocking condition is resolved. | D07 |
 
 # 12. Business Rules and Decision Constraints
 
-| Rule | Owner | Scenario Effect | Source |
-|---|---|---|---|
-| Only the canonical owner may change its owned business state. | Internal Assessment | Prevents cross-domain ownership leakage. | `L2-D07_Internal_Assessment_Workflows.md` |
-| Each transition requires valid lifecycle position, authority, policy and evidence. | Internal Assessment | Prevents governance bypass. | `L2-D07_Internal_Assessment_Workflows.md` |
-| Published or historical business facts remain immutable. | Internal Assessment | Preserves auditability and lineage. | `L2-D07_Internal_Assessment_Workflows.md` |
+- Finalized records are immutable except through controlled correction. Source: L2-D07 §5.
+- D07 owns Internal Assessment marks/evidence/finalization. Source: L2-D07 §§1,3,6.
+- Section I consumes only finalized internal-assessment facts and does not own D07 lifecycle. Source: L2-D07 §§9,12.
+- No L2 command name is treated as an L3 permission or actor authority.
 
 # 13. State and Lifecycle Impact
 
@@ -116,67 +116,58 @@ A failed validation, rejection, configured optional approval path, escalation or
 
 ## 14.1 Published / Consumed Business Events
 
-| Business Event | Canonical Publisher | Consumers | Purpose | Source |
+| Event | Canonical Publisher | Consumers | Purpose | Source |
 |---|---|---|---|---|
-| InternalAssessmentFinalized | D07 | Section I Examination, Academic Monitoring and Notification | Records immutable finalized internal-assessment outcome. | L2-D07 §7 |
+| `InternalAssessmentFinalized` | D07 | Section I Examination, Academic Monitoring and Notification | Records finalized internal-assessment outcome. | L2-D07 §7 |
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-| From | To | Business Hand-off | Purpose | Source |
-|---|---|---|---|---|
-| Section I Examination | Internal Assessment | Consumes finalized D07 facts and owns examination/result computation. | Preserve ownership while enabling the scenario. | `L2-D07_Internal_Assessment_Workflows.md` |
+D07 publishes the finalized business fact to Section I; Section I consumes it without modifying D07-owned assessment state.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-| Action / Decision | Authorized Role | Constraint | Owner |
-|---|---|---|---|
-| Prepares and validates finalization set. | Policy-configured D07 finalization administrator | FinalizeInternalAssessment execution. | Internal Assessment |
-| Approves finalization after completeness and moderation checks. | Policy-configured D07 finalization authority | Final decision authority. | Internal Assessment |
-| Consumes completed finalization event. | Section I Examination | No D07 mutation authority. | Internal Assessment |
+The institutional role that validates/prepares finalization and the role that authorizes finalization are not named in locked L2-D07. This scenario therefore records the required business decision without inventing role names or technical permissions.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-Initiation, validation, review, approval and execution remain distinct wherever source or configured policy requires separation. Automated services execute rules but never make governance decisions. Any override requires authority, justification, evidence and audit history.
+Where institutional policy requires separation between preparation, moderation and finalization approval, those authorities remain distinct and must be established upstream.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-| Obligation | Evidence | Owner |
-|---|---|---|
-| Scenario lifecycle and decision | Actor, authority, reason, prior state, validation evidence, decision and resulting state. | Internal Assessment |
-| Source and cross-domain traceability | Source identifiers, versions, evidence references, consumed events and published facts. | Internal Assessment |
-| Failure and recovery | Rejected validations, interruptions, retries, escalation or compensation outcome. | Internal Assessment |
+Retain component completeness evidence, moderation decisions, window status, finalization authority/decision once established, resulting Finalized state and `InternalAssessmentFinalized` publication evidence.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- The Internal Assessment reaches Finalized, its marks and evidence become immutable except through controlled correction, and Section I receives only the finalized business fact.
-- All required authority, validation and audit evidence is retained.
-- Applicable completed business facts are published exactly once in business effect.
+- All D07 completion prerequisites are satisfied.
+- Required institutional finalization decision is valid.
+- Internal Assessment reaches Finalized and `InternalAssessmentFinalized` is published by D07.
 
 ## 16.2 Postconditions
 
-- Canonical ownership remains unchanged.
-- Historical decisions and prior states remain immutable.
-- Downstream domains consume facts without modifying the owning aggregate.
+- D07 marks/evidence are immutable except through controlled correction.
+- Section I may consume the finalized fact but retains no D07 mutation authority.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-No open issues.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| Locked L2-D07 has no Actors section. | Canonical institutional finalization roles are not established upstream. | Define/approve D07 actor-authority mapping before Architecture Approval. |
 
 ## 17.2 Assumptions
 
-No assumptions.
+No assumption overrides locked architecture.
 
 ## 17.3 Deferred Questions
 
-No deferred questions.
+Commands, APIs, technical RBAC, persistence and event-delivery mechanisms are deferred to later architecture levels.
 
 ---
 
-**Draft Validation Verdict:** PASS  
-**Validation Basis:** Section D canonical register; `L2-D07_Internal_Assessment_Workflows.md`; Template v2.0; Architecture Level Validation Standards; accepted Section D decisions 001–500.
+**Draft Validation Verdict:** REVIEW REQUIRED  
+**Validation Basis:** `L2-D07_Internal_Assessment_Workflows.md`; Template v2.0; Architecture Level Validation Standards.

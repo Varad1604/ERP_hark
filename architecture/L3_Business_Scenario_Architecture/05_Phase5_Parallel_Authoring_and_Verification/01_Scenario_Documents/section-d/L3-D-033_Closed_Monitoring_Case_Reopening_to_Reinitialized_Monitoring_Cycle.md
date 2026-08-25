@@ -1,16 +1,19 @@
 # Closed Monitoring Case Reopening to Reinitialized Monitoring Cycle
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-033  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Academic Monitoring  
 **Participating Domains:** D  
 **Scenario Type:** Critical  
 **Priority:** P2  
-**Status:** Architecture Approved  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-25  
 **Depends On:** `L2-D05_Academic_Monitoring_Workflows.md`  
+**Governance Basis:** `L2-D05_Business_Architecture_Purity_Amendment_2026-08-24.md`  
 **Referenced By:** None yet  
 **Frozen Stage 3 Source:** P2W-D-0754 / CAN-L3-D-034 (final L3-D-033)
 
@@ -18,58 +21,29 @@
 
 # 2. Scenario Purpose
 
-Reopen a Closed Academic Monitoring Case through governance approval by creating a new lifecycle and evaluation context rather than rolling back or altering the original closure.
+Reopen a Closed Academic Monitoring Case through governance approval by creating a new lifecycle/evaluation context rather than rolling back or altering the original closure.
 
 # 3. Business Outcome
 
-An approved reopening creates a separately identified monitoring lifecycle with current policy, a new plan and evaluation context, while the original Closed lifecycle remains immutable.
+An approved reopening creates a separately identified monitoring lifecycle with current policy, new plan and evaluation context while the original Closed lifecycle remains immutable.
 
 # 4. Scenario Boundary and Scope
 
-## 4.1 Start Boundary
+Starts when new evidence, policy/compliance change, governance decision or corrected interpretation justifies reopening; ends when a new monitoring cycle is initialized/activated and `NewMonitoringCycleStarted` is published with traceability to original closure.
 
-New evidence, policy change, compliance requirement, governance decision or corrected interpretation justifies reopening a Closed monitoring case.
-
-## 4.2 End Boundary
-
-A new monitoring cycle is initialized and activated, and `NewMonitoringCycleStarted` is published with traceability to the original closure.
-
-## 4.3 In Scope
-
-- Request reopening with reason and original-closure reference.
-- Assess impact and approve or reject reopening.
-- Create new identifiers, context, current policy version and monitoring plan.
-- Activate the new cycle.
-
-## 4.4 Out of Scope
-
-- Rollback of the Closed case.
-- Modification of historical decisions, snapshots or evidence.
-- Reuse of the old evaluation context as current truth.
-
-## 4.5 Related Scenarios — Optional
-
-Related scenarios are referenced only where their completed business facts cross this boundary; they do not transfer ownership.
+In scope: reopening request, reason/impact review, approve/reject, create new lifecycle identity/context/plan and activate cycle. Out of scope: rollback of Closed case, modification of historical decisions/snapshot/evidence, technical rollback/retry mechanisms.
 
 # 5. Ownership and Participating Domains
 
-| Domain | Responsibility |
-|---|---|
-| D05 | Owns reopening request, approval, new lifecycle identity, context, plan and activation. |
+D05 owns reopening request, approval, new lifecycle identity, context, plan and activation.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Actor / Role | Responsibility | Authority |
-|---|---|---|
-| Monitoring Authority | Requests reopening and supplies new evidence or reason. | Initiates. |
-| Governance Reviewer | Assesses reason, evidence and impact. | Reviews. |
-| Governance Authority | Approves or rejects reopening. | Final reopening authority. |
+Monitoring Authority requests reopening and supplies reason/evidence; Governance Reviewer assesses reason/evidence/impact; Governance Authority Approves or Rejects reopening.
 
 # 7. Preconditions and Entry Criteria
 
-- Original case is Closed and its closure record is available.
-- Reopening reason and impact evidence are identifiable.
-- Current applicable policy can be assigned.
+Original case is Closed; closure record, reopening reason/evidence and current applicable policy are available.
 
 # 8. Trigger
 
@@ -77,105 +51,48 @@ A governed reopening condition is identified for a Closed monitoring case.
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Role / Domain | Business Result |
-|---|---|---|---|
-| 1 | Create reopening request referencing original closure. | Monitoring Authority / D05 | MonitoringReopeningRequested. |
-| 2 | Evaluate reason, evidence, compliance and impact. | Governance Reviewer | Review evidence retained. |
-| 3 | Approve or reject reopening. | Governance Authority | MonitoringReopeningApproved or prior Closed state retained. |
-| 4 | For approval, create a new lifecycle identity and governance context. | D05 | MonitoringLifecycleReopened; original remains immutable. |
-| 5 | Assign current policy, create new plan and evaluation context. | D05 | ReopenedMonitoringInitialized. |
-| 6 | Activate the new monitoring cycle. | D05 / Monitoring Authority | NewMonitoringCycleStarted. |
+1. Monitoring Authority/D05 establishes reopening request referencing original closure — `MonitoringReopeningRequested`.
+2. Governance Reviewer evaluates reason, evidence, compliance and impact.
+3. Governance Authority Approves or Rejects — `MonitoringReopeningApproved` where approved; rejection retains original Closed state.
+4. For approval, D05 creates a new lifecycle identity/context while preserving original closure — `MonitoringLifecycleReopened`.
+5. D05 assigns current policy and creates new plan/evaluation context — `ReopenedMonitoringInitialized`.
+6. D05/Monitoring Authority activates the new cycle — `NewMonitoringCycleStarted`.
 
 # 10. Alternate Business Flows
 
-A failed validation, rejection, configured optional approval path, escalation or compensation follows only the alternatives explicitly supported above; it never creates the successful final outcome or rewrites prior facts.
+## 10.1 Reopening Rejected
+
+A valid review may end in rejection. The original case remains Closed and immutable; reason/evidence remain traceable.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Recovery | Owner |
-|---|---|---|---|
-| Validation or reference failure | Scenario cannot proceed. | Reject or return for correction without changing the prior authoritative state. | Academic Monitoring |
-| Authorization or approval failure | Requested outcome is not permitted. | Retain the prior state and record the decision reason. | Academic Monitoring |
-| Interrupted processing | Completion is uncertain. | Resume from the last authoritative state with audit continuity and idempotency. | Academic Monitoring |
+Invalid/missing reopening evidence blocks review until resolved; invalid authority blocks decision; interruption preserves the last authoritative business position/evidence/context. The original Closed lifecycle is never rolled back.
 
 # 12. Business Rules and Decision Constraints
 
-| Rule | Owner | Scenario Effect | Source |
-|---|---|---|---|
-| Only the canonical owner may change its owned business state. | Academic Monitoring | Prevents cross-domain ownership leakage. | `L2-D05_Academic_Monitoring_Workflows.md` |
-| Each transition requires valid lifecycle position, authority, policy and evidence. | Academic Monitoring | Prevents governance bypass. | `L2-D05_Academic_Monitoring_Workflows.md` |
-| Published or historical business facts remain immutable. | Academic Monitoring | Preserves auditability and lineage. | `L2-D05_Academic_Monitoring_Workflows.md` |
+Original Closed case remains immutable; reopening establishes a distinct new lifecycle; D05 owns both reopening and new cycle; repeated same business fact must not create duplicate institutional reopening outcomes. Technical rollback/idempotency/retry design is deferred per locked D05 Purity Amendment.
 
 # 13. State and Lifecycle Impact
 
-| Concept | Entry State | Scenario Impact | Result | Owner | Source |
-|---|---|---|---|---|---|
-| Original Academic Monitoring Case | Closed | Reference only; never roll back or modify. | Remains Closed and immutable | D05 | L2-D05 §§14.8–14.11 |
-| Reopened Monitoring Lifecycle | No new lifecycle | Create separate identity, context, plan and active cycle. | Created → Initialized → Active | D05 | L2-D05 §§14.8–14.10 |
+Original Academic Monitoring Case remains Closed/immutable. Reopened Monitoring Lifecycle: Created → Initialized → Active. Source: L2-D05 §§14.8–14.11.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
-
-| Business Event | Canonical Publisher | Consumers | Purpose | Source |
-|---|---|---|---|---|
-| MonitoringReopeningRequested / MonitoringReopeningApproved / MonitoringLifecycleReopened / ReopenedMonitoringInitialized / NewMonitoringCycleStarted | D05 | Authorized monitoring and governance consumers | Records governed reopening and distinct new monitoring cycle. | L2-D05 §§14.8–14.10 |
-
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-No synchronous cross-domain hand-off materially participates; completed events may still be consumed under canonical contracts.
+D05 publishes `MonitoringReopeningRequested`, `MonitoringReopeningApproved`, `MonitoringLifecycleReopened`, `ReopenedMonitoringInitialized`, and `NewMonitoringCycleStarted` as defined in L2-D05 §§14.8–14.10.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-| Action / Decision | Authorized Role | Constraint | Owner |
-|---|---|---|---|
-| Requests reopening and supplies new evidence or reason. | Monitoring Authority | Initiates. | Academic Monitoring |
-| Assesses reason, evidence and impact. | Governance Reviewer | Reviews. | Academic Monitoring |
-| Approves or rejects reopening. | Governance Authority | Final reopening authority. | Academic Monitoring |
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-Initiation, validation, review, approval and execution remain distinct wherever source or configured policy requires separation. Automated services execute rules but never make governance decisions. Any override requires authority, justification, evidence and audit history.
-
-## 15.3 Business Audit and Evidence Obligations
-
-| Obligation | Evidence | Owner |
-|---|---|---|
-| Scenario lifecycle and decision | Actor, authority, reason, prior state, validation evidence, decision and resulting state. | Academic Monitoring |
-| Source and cross-domain traceability | Source identifiers, versions, evidence references, consumed events and published facts. | Academic Monitoring |
-| Failure and recovery | Rejected validations, interruptions, retries, escalation or compensation outcome. | Academic Monitoring |
+Monitoring Authority initiates; Governance Reviewer reviews; Governance Authority decides. Audit retains original closure reference, reason/evidence, review, authority/decision, new lifecycle identity, policy/plan/evaluation context and activation fact.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-- An approved reopening creates a separately identified monitoring lifecycle with current policy, a new plan and evaluation context, while the original Closed lifecycle remains immutable.
-- All required authority, validation and audit evidence is retained.
-- Applicable completed business facts are published exactly once in business effect.
-
-## 16.2 Postconditions
-
-- Canonical ownership remains unchanged.
-- Historical decisions and prior states remain immutable.
-- Downstream domains consume facts without modifying the owning aggregate.
+Approved reopening establishes a distinct active monitoring cycle; original closure remains immutable; D05 ownership remains unchanged.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
-
-No open issues.
-
-## 17.2 Assumptions
-
-No assumptions.
-
-## 17.3 Deferred Questions
-
-No deferred questions.
+No new open issue or assumption is introduced. Technical rollback, retries, persistence, transaction handling and deduplication are deferred to later levels.
 
 ---
 
-**Draft Validation Verdict:** PASS  
-**Validation Basis:** Section D canonical register; `L2-D05_Academic_Monitoring_Workflows.md`; Template v2.0; Architecture Level Validation Standards; accepted Section D decisions 001–500.
+**Draft Validation Verdict:** REVIEW REQUIRED  
+**Validation Basis:** L2-D05; locked D05 Business Architecture Purity Amendment; Template v2.0; Architecture Level Validation Standards.

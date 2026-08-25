@@ -1,184 +1,124 @@
 # Approved Participation to Governed External Learning Registration
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-037  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Open Electives & MOOCs  
 **Participating Domains:** D  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Architecture Approved  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-25  
 **Depends On:** `L2-D06_Open_Electives_and_MOOCs_Workflows.md`  
-**Referenced By:** None yet  
 **Frozen Stage 3 Source:** P2W-D-0758 / CAN-L3-D-038 (final L3-D-037)
 
 ---
 
 # 2. Scenario Purpose
 
-Register an institution-approved learner with an approved external learning provider using an idempotent, traceable and recoverable integration workflow.
+Govern registration of an institution-approved learner with an approved external learning provider while preserving D06 institutional ownership and avoiding duplicate institutional registration outcomes.
 
 # 3. Business Outcome
 
-The External Learning Registration is accepted with one immutable provider enrollment identifier linked to the institutional enrollment, or remains in a governed recoverable failure state.
+The External Learning Registration is accepted with a provider-side enrollment reference linked to the D06 institutional enrollment, or remains in a governed Rejected/Failed/Recovery-required business position.
 
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
 
-A D06 Flexible Learning Enrollment is Approved for an external opportunity and provider prerequisites are healthy.
+A D06 Flexible Learning Enrollment is Approved for an external learning opportunity and the provider is approved for institutional use.
 
 ## 4.2 End Boundary
 
-The learner is registered, `LearnerRegisteredWithProvider` is published and provider enrollment status synchronization is established.
+Provider-side registration acknowledgement establishes the governed D06 registration outcome and `LearnerRegisteredWithProvider` is published where accepted.
 
 ## 4.3 In Scope
 
-- Validate enrollment, provider, identity and integration health.
-- Submit idempotent provider registration.
-- Persist immutable provider enrollment identifier.
-- Record failure and support governed retry/recovery.
+- Establish learner/enrollment/provider business context.
+- Request provider-side registration through the agreed business hand-off.
+- Record provider acknowledgement and provider enrollment reference.
+- Govern rejection/failure/recovery without duplicate institutional registration outcome.
+- Preserve D06 ownership of institutional enrollment/registration facts.
 
 ## 4.4 Out of Scope
 
-- Allowing provider ownership of institutional enrollment.
-- Duplicate provider registration.
-- Credit recognition or transcript posting.
+- Authentication, credentials, API payloads, transport, retries or integration-service design.
+- Provider ownership of institutional enrollment.
+- Credit recognition/transcript posting.
 
 ## 4.5 Related Scenarios — Optional
 
-Related scenarios are referenced only where their completed business facts cross this boundary; they do not transfer ownership.
+L3-D-034 supplies Approved enrollment; later D06 scenarios govern progress/completion.
 
 # 5. Ownership and Participating Domains
 
-| Domain | Responsibility |
-|---|---|
-| D06 | Owns institutional External Learning Registration, provider reference and synchronization history. |
-| External Learning Provider | Returns provider-side registration acknowledgement; never becomes institutional system of record. |
+D06 owns institutional External Learning Registration, provider reference and synchronization history. External Learning Provider owns provider-side registration acknowledgement only.
 
 # 6. Business Actors, Roles and Responsibilities
 
 | Actor / Role | Responsibility | Authority |
 |---|---|---|
-| D06 Integration Service | Builds, submits and records provider registration. | Authorized integration execution. |
-| External Learning Provider | Accepts or rejects provider-side learner registration. | External acknowledgement only. |
-| Integration Administrator | Resolves governed integration failures where automation cannot recover. | Authorized recovery action. |
+| External Learning Provider | Accepts or rejects provider-side learner registration and supplies its provider enrollment reference/status facts. | External-provider authority over provider-side registration only. |
+| Academic Affairs, where institutional exception decision is required | Governs any business exception under D06 policy. | Policy-bound institutional authority. |
+
+No `Integration Service`, `Synchronization Engine` or `Integration Administrator` is treated as an L3 business actor.
 
 # 7. Preconditions and Entry Criteria
 
-- D06 enrollment is Approved.
-- Provider is active, approved and healthy.
-- Student identity synchronization and credentials are valid.
+D06 enrollment is Approved; provider is approved/Active; learner/provider correlation context is available.
 
 # 8. Trigger
 
-Approved external-learning participation requests provider registration.
+Approved external-learning participation requires provider-side registration.
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Role / Domain | Business Result |
-|---|---|---|---|
-| 1 | Validate enrollment, provider status, identity and integration health. | D06 Integration Service | Registration may proceed or is blocked. |
-| 2 | Build a correlated idempotent registration request. | D06 | Duplicate provider enrollment prevented. |
-| 3 | Authenticate and submit request to provider. | Integration Service | Provider processes request. |
-| 4 | Validate acknowledgement and provider enrollment identifier. | D06 | Accepted registration evidence established. |
-| 5 | Persist immutable provider reference and publish success. | D06 | LearnerRegisteredWithProvider. |
-| 6 | On failure, retain recoverable state and retry/resolve without duplicating enrollment. | Integration Administrator / D06 | Retry Pending or governed failure resolution. |
-| 7 | Synchronize subsequent provider enrollment status while D06 remains canonical owner. | D06 Synchronization Engine | EnrollmentStatusSynchronized. |
+1. D06 validates Approved enrollment, provider status and learner/provider business context.
+2. D06 issues the governed registration hand-off to the provider.
+3. External Learning Provider accepts or rejects the provider-side registration and returns acknowledgement/reference.
+4. D06 validates the acknowledgement as business evidence.
+5. For acceptance, D06 records the provider reference and publishes `LearnerRegisteredWithProvider`.
+6. For a governed failure/rejection, D06 records the business position and follows the applicable recovery/exception path without creating duplicate institutional registration outcome.
+7. Subsequent provider enrollment status facts may be reconciled/synchronized under D06 ownership using the canonical D06 events.
 
 # 10. Alternate Business Flows
 
-A failed validation, rejection, configured optional approval path, escalation or compensation follows only the alternatives explicitly supported above; it never creates the successful final outcome or rewrites prior facts.
+No separate alternate path reaches the Accepted registration outcome. Provider rejection/failure is a blocking/terminal business condition governed under Section 11.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Recovery | Owner |
-|---|---|---|---|
-| Validation or reference failure | Scenario cannot proceed. | Reject or return for correction without changing the prior authoritative state. | Open Electives & MOOCs |
-| Authorization or approval failure | Requested outcome is not permitted. | Retain the prior state and record the decision reason. | Open Electives & MOOCs |
-| Interrupted processing | Completion is uncertain. | Resume from the last authoritative state with audit continuity and idempotency. | Open Electives & MOOCs |
+Invalid provider/enrollment context blocks the hand-off until corrected. Provider rejection/failure retains the D06 governed unsuccessful/recovery-required position. Interrupted acknowledgement leaves completion uncertain; D06 preserves the last authoritative business position and reconciles provider evidence before deciding whether registration has occurred.
 
 # 12. Business Rules and Decision Constraints
 
-| Rule | Owner | Scenario Effect | Source |
-|---|---|---|---|
-| Only the canonical owner may change its owned business state. | Open Electives & MOOCs | Prevents cross-domain ownership leakage. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
-| Each transition requires valid lifecycle position, authority, policy and evidence. | Open Electives & MOOCs | Prevents governance bypass. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
-| Published or historical business facts remain immutable. | Open Electives & MOOCs | Preserves auditability and lineage. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
+D06 remains canonical institutional owner; provider owns only provider-side acknowledgement; repeated same business fact must not create duplicate institutional registration outcome; technical idempotency/retry/authentication is deferred.
 
 # 13. State and Lifecycle Impact
 
-| Concept | Entry State | Scenario Impact | Result | Owner | Source |
-|---|---|---|---|---|---|
-| External Learning Registration | Requested | Submit to provider, accept and activate or retain recoverable failure. | Requested → Submitted → Accepted → Active; alternate Rejected / Retry Pending / Failed | D06 | L2-D06 Aggregate 4; W33–W34 |
+External Learning Registration: Requested → Submitted/handed off → Accepted → Active; governed alternate Rejected / Recovery Required / Failed as defined by L2-D06 Aggregate 4; W33–W34.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
+D06 remains publisher of `LearnerRegisteredWithProvider`, `ProviderRegistrationFailed`, `EnrollmentStatusSynchronized`, `SynchronizationRecovered`, and `SynchronizationFailureResolved` under L2-D06 W33–W39/Event Catalogue.
 
-| Business Event | Canonical Publisher | Consumers | Purpose | Source |
-|---|---|---|---|---|
-| LearnerRegisteredWithProvider / ProviderRegistrationFailed / EnrollmentStatusSynchronized / SynchronizationRecovered / SynchronizationFailureResolved | D06 | Provider integration, progress and authorized operational consumers | Records registration, synchronization and recovery facts. | L2-D06 W33–W39; Event Catalogue |
-
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-| From | To | Business Hand-off | Purpose | Source |
-|---|---|---|---|---|
-| External Learning Provider | Open Electives & MOOCs | Returns provider-side registration acknowledgement; never becomes institutional system of record. | Preserve ownership while enabling the scenario. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
+Provider acknowledgement is a business hand-off; no ownership transfer occurs.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-| Action / Decision | Authorized Role | Constraint | Owner |
-|---|---|---|---|
-| Builds, submits and records provider registration. | D06 Integration Service | Authorized integration execution. | Open Electives & MOOCs |
-| Accepts or rejects provider-side learner registration. | External Learning Provider | External acknowledgement only. | Open Electives & MOOCs |
-| Resolves governed integration failures where automation cannot recover. | Integration Administrator | Authorized recovery action. | Open Electives & MOOCs |
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-Initiation, validation, review, approval and execution remain distinct wherever source or configured policy requires separation. Automated services execute rules but never make governance decisions. Any override requires authority, justification, evidence and audit history.
-
-## 15.3 Business Audit and Evidence Obligations
-
-| Obligation | Evidence | Owner |
-|---|---|---|
-| Scenario lifecycle and decision | Actor, authority, reason, prior state, validation evidence, decision and resulting state. | Open Electives & MOOCs |
-| Source and cross-domain traceability | Source identifiers, versions, evidence references, consumed events and published facts. | Open Electives & MOOCs |
-| Failure and recovery | Rejected validations, interruptions, retries, escalation or compensation outcome. | Open Electives & MOOCs |
+Provider decides provider-side acceptance/rejection; D06 records the institutional outcome; any institutional exception requires D06-policy business authority. Audit retains Approved enrollment, provider identity/status, hand-off, acknowledgement/reference, failure/recovery evidence and final institutional registration position.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-- The External Learning Registration is accepted with one immutable provider enrollment identifier linked to the institutional enrollment, or remains in a governed recoverable failure state.
-- All required authority, validation and audit evidence is retained.
-- Applicable completed business facts are published exactly once in business effect.
-
-## 16.2 Postconditions
-
-- Canonical ownership remains unchanged.
-- Historical decisions and prior states remain immutable.
-- Downstream domains consume facts without modifying the owning aggregate.
+Accepted provider registration is linked to the D06 enrollment and remains traceable; unsuccessful/recovery-required positions are explicit; no provider ownership of institutional enrollment is created.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
-
-No open issues.
-
-## 17.2 Assumptions
-
-No assumptions.
-
-## 17.3 Deferred Questions
-
-No deferred questions.
+No new open issue or assumption is introduced. APIs, authentication, credentials, transport, retry policy, synchronization implementation and technical idempotency are deferred to L4/L5.
 
 ---
 
-**Draft Validation Verdict:** PASS  
-**Validation Basis:** Section D canonical register; `L2-D06_Open_Electives_and_MOOCs_Workflows.md`; Template v2.0; Architecture Level Validation Standards; accepted Section D decisions 001–500.
+**Draft Validation Verdict:** REVIEW REQUIRED  
+**Validation Basis:** L2-D06; Template v2.0; Architecture Level Validation Standards.

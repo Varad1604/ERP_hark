@@ -1,15 +1,17 @@
 # Operational Timetable to Governed Revised Timetable
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-021  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Timetable  
 **Participating Domains:** D, E, G  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Architecture Approved  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-25  
 **Depends On:** `L2-D03_Timetable_Workflows.md`  
 **Referenced By:** None yet  
 **Frozen Stage 3 Source:** P2W-D-0741 / CAN-L3-D-021
@@ -43,7 +45,8 @@ The revised timetable reaches Published and `TimetableRepublished` is published;
 ## 4.4 Out of Scope
 
 - Editing a published timetable version in place.
-- Changing faculty, Course Offering or resource master ownership.
+- Changing faculty, Course Offering or resource-master ownership.
+- Technical scheduling, persistence, transaction, retry or recovery design.
 
 ## 4.5 Related Scenarios — Optional
 
@@ -61,15 +64,14 @@ Related scenarios are referenced only where their completed business facts cross
 
 | Actor / Role | Responsibility | Authority |
 |---|---|---|
-| Academic Scheduler | Performs impact analysis, prepares revised draft and validates constraints. | Responsible. |
+| Academic Scheduler | Performs impact analysis, prepares the revised draft and validates timetable constraints. | Responsible for governed timetable revision preparation. |
 | Academic Administrator | Approves or rejects the revised timetable. | Decides revision approval. |
 | Registrar | Publishes the approved revised version. | Decides republication. |
-| System Scheduler | Supports constraint evaluation and optimization. | No governance decision. |
 
 # 7. Preconditions and Entry Criteria
 
-- Operational timetable and immutable published version exist.
-- Revision reason, affected scope and authoritative dependencies are available.
+- An operational timetable and immutable published version exist.
+- The revision reason, affected scope and authoritative dependencies are available.
 
 # 8. Trigger
 
@@ -80,23 +82,23 @@ A governed operational, academic, faculty or resource change requires timetable 
 | Step | Business Behaviour | Responsible Role / Domain | Business Result |
 |---|---|---|---|
 | 1 | Register the revision request and affected scope. | Academic Scheduler | Governed revision case exists. |
-| 2 | Analyze academic, faculty, resource and downstream impact. | Academic Scheduler with authoritative contributors | Impact evidence is complete. |
-| 3 | Create a new revised timetable version; retain the prior version unchanged. | D03 | Frozen → Revised on the new governed version path. |
+| 2 | Analyze academic, faculty, resource and downstream impact using authoritative facts. | Academic Scheduler with authoritative contributors | Impact evidence is complete. |
+| 3 | Create a distinct revised timetable version while retaining the prior published version unchanged. | D03 | A governed revised version exists. |
 | 4 | Validate constraints, conflicts and reservations. | Academic Scheduler | Revised version is valid or returned for correction. |
-| 5 | Approve or reject the revised version. | Academic Administrator | Approval decision recorded. |
-| 6 | Publish the approved revised version. | Registrar | Revised → Published; `TimetableRevisionCreated` and `TimetableRepublished` available. |
+| 5 | Approve or reject the revised version. | Academic Administrator | Approval decision is recorded. |
+| 6 | Publish the approved revised version. | Registrar / D03 | Revised → Published; `TimetableRevisionCreated` and `TimetableRepublished` are established as applicable. |
 
 # 10. Alternate Business Flows
 
-A failed validation, rejection, configured optional approval path, escalation or compensation follows only the alternatives explicitly supported above; it never creates the successful final outcome or rewrites prior facts.
+No separate alternate path is asserted beyond the governed revision path above. A validation failure, rejection or interruption blocks successful republication and is handled under Section 11.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Recovery | Owner |
+| Situation | Business Consequence | Business Resolution / Recovery | Owner |
 |---|---|---|---|
-| Validation or reference failure | Scenario cannot proceed. | Reject or return for correction without changing the prior authoritative state. | Timetable |
-| Authorization or approval failure | Requested outcome is not permitted. | Retain the prior state and record the decision reason. | Timetable |
-| Interrupted processing | Completion is uncertain. | Resume from the last authoritative state with audit continuity and idempotency. | Timetable |
+| Validation or authoritative reference failure | The revised timetable cannot proceed to approval or publication. | Correct the invalid revision or authoritative reference while retaining the prior published timetable unchanged. | Timetable |
+| Revision approval is rejected or authority is invalid | The revised timetable does not become operational. | Retain the prior authoritative timetable and record the rejection/authority decision. | Timetable |
+| Revision activity is interrupted before publication | No new published timetable outcome has occurred. | Preserve the last valid business position and continue only when the blocking business condition is resolved. | Timetable |
 
 # 12. Business Rules and Decision Constraints
 
@@ -104,7 +106,7 @@ A failed validation, rejection, configured optional approval path, escalation or
 |---|---|---|---|
 | Only the canonical owner may change its owned business state. | Timetable | Prevents cross-domain ownership leakage. | `L2-D03_Timetable_Workflows.md` |
 | Each transition requires valid lifecycle position, authority, policy and evidence. | Timetable | Prevents governance bypass. | `L2-D03_Timetable_Workflows.md` |
-| Published or historical business facts remain immutable. | Timetable | Preserves auditability and lineage. | `L2-D03_Timetable_Workflows.md` |
+| Published or historical business facts remain immutable. | Timetable | Preserves auditability and version lineage. | `L2-D03_Timetable_Workflows.md` |
 
 # 13. State and Lifecycle Impact
 
@@ -118,14 +120,14 @@ A failed validation, rejection, configured optional approval path, escalation or
 
 | Business Event | Canonical Publisher | Consumers | Purpose | Source |
 |---|---|---|---|---|
-| TimetableRevisionCreated / TimetableRepublished | D03 | D02, D04, Section E, Section G and operational consumers | Records version creation and governed republication. | L2-D03 WF-10 |
+| `TimetableRevisionCreated` / `TimetableRepublished` | D03 | D02, D04, Section E, Section G and authorized operational consumers | Records version creation and governed republication. | L2-D03 WF-10 |
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
 | From | To | Business Hand-off | Purpose | Source |
 |---|---|---|---|---|
-| D02 / Section E | Timetable | Provide authoritative Faculty Assignment and faculty-reference facts. | Preserve ownership while enabling the scenario. | `L2-D03_Timetable_Workflows.md` |
-| Section G | Timetable | Provides authoritative physical-resource availability facts. | Preserve ownership while enabling the scenario. | `L2-D03_Timetable_Workflows.md` |
+| D02 / Section E | Timetable | Authoritative Faculty Assignment and faculty-reference facts. | Preserve ownership while enabling revision impact analysis. | `L2-D03_Timetable_Workflows.md` |
+| Section G | Timetable | Authoritative physical-resource availability facts. | Preserve ownership while enabling revision impact analysis. | `L2-D03_Timetable_Workflows.md` |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
@@ -133,52 +135,52 @@ A failed validation, rejection, configured optional approval path, escalation or
 
 | Action / Decision | Authorized Role | Constraint | Owner |
 |---|---|---|---|
-| Performs impact analysis, prepares revised draft and validates constraints. | Academic Scheduler | Responsible. | Timetable |
-| Approves or rejects the revised timetable. | Academic Administrator | Decides revision approval. | Timetable |
-| Publishes the approved revised version. | Registrar | Decides republication. | Timetable |
-| Supports constraint evaluation and optimization. | System Scheduler | No governance decision. | Timetable |
+| Prepare and validate the revision. | Academic Scheduler | Acts within governed timetable-revision responsibility. | Timetable |
+| Approve or reject the revised timetable. | Academic Administrator | Decides revision approval. | Timetable |
+| Publish the approved revised version. | Registrar | Republishes only an approved revision. | Timetable |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-Initiation, validation, review, approval and execution remain distinct wherever source or configured policy requires separation. Automated services execute rules but never make governance decisions. Any override requires authority, justification, evidence and audit history.
+Initiation, validation, approval and publication remain distinct wherever the authoritative source or institutional policy requires separation. Any governed override requires authority, justification, evidence and preserved decision history.
 
 ## 15.3 Business Audit and Evidence Obligations
 
 | Obligation | Evidence | Owner |
 |---|---|---|
-| Scenario lifecycle and decision | Actor, authority, reason, prior state, validation evidence, decision and resulting state. | Timetable |
-| Source and cross-domain traceability | Source identifiers, versions, evidence references, consumed events and published facts. | Timetable |
-| Failure and recovery | Rejected validations, interruptions, retries, escalation or compensation outcome. | Timetable |
+| Revision lifecycle and decision | Actor, authority, reason, prior version, validation evidence, approval decision and resulting version. | Timetable |
+| Source and cross-domain traceability | Authoritative source references, versions and business facts used in impact analysis. | Timetable |
+| Failure and recovery | Validation rejection, correction/resubmission, interruption and final business outcome. | Timetable |
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- A new approved timetable version is published and becomes the governed operational timetable, while every preceding version remains immutable and traceable.
-- All required authority, validation and audit evidence is retained.
-- Applicable completed business facts are published exactly once in business effect.
+- A new approved timetable version is Published and becomes the governed operational timetable.
+- Every preceding published timetable version remains immutable and traceable.
+- `TimetableRepublished` is published by D03 for the completed republication outcome.
+- Required authority, validation and audit evidence is retained.
 
 ## 16.2 Postconditions
 
 - Canonical ownership remains unchanged.
-- Historical decisions and prior states remain immutable.
-- Downstream domains consume facts without modifying the owning aggregate.
+- Historical timetable versions remain immutable.
+- Downstream domains consume published facts without modifying the D03-owned Timetable aggregate.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-No open issues.
+No open issues identified by this purity correction.
 
 ## 17.2 Assumptions
 
-No assumptions.
+No assumption overrides locked architecture.
 
 ## 17.3 Deferred Questions
 
-No deferred questions.
+Technical scheduling, persistence, transaction, retry, orchestration and infrastructure recovery design are deferred to later architecture levels.
 
 ---
 
-**Draft Validation Verdict:** PASS  
-**Validation Basis:** Section D canonical register; `L2-D03_Timetable_Workflows.md`; Template v2.0; Architecture Level Validation Standards; accepted Section D decisions 001–500.
+**Draft Validation Verdict:** REVIEW REQUIRED  
+**Validation Basis:** Section D canonical register; `L2-D03_Timetable_Workflows.md`; `L3_Business_Scenario_Template_v2.0.md`; `Architecture_Level_Validation_Standards.md`.

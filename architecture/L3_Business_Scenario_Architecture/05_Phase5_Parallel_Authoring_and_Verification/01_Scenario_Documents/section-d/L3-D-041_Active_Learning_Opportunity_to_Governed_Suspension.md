@@ -1,176 +1,91 @@
 # Active Learning Opportunity to Governed Suspension
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-041  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Open Electives & MOOCs  
 **Participating Domains:** D  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Architecture Approved  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-25  
 **Depends On:** `L2-D06_Open_Electives_and_MOOCs_Workflows.md`  
-**Referenced By:** None yet  
 **Frozen Stage 3 Source:** P2W-D-0762 / CAN-L3-D-042 — split child A
 
 ---
 
 # 2. Scenario Purpose
 
-Temporarily suspend new enrollment into an Active Learning Opportunity through an authorized, reasoned and auditable decision while preserving the opportunity and existing approved enrollments.
+Temporarily suspend new enrollment into an Active Learning Opportunity through an authorized, reasoned and auditable D06 decision while preserving the opportunity and existing approved enrollments.
 
 # 3. Business Outcome
 
-The Learning Opportunity becomes Suspended for the governed effective period, new enrollments are prohibited, and existing approved enrollments remain valid unless separately revoked.
+Learning Opportunity becomes Suspended for the governed effective period; new enrollments are prohibited and existing Approved enrollments remain valid unless separately revoked.
 
 # 4. Scenario Boundary and Scope
 
-## 4.1 Start Boundary
-
-An administrative, provider-outage or policy condition requires suspension of an Active Learning Opportunity.
-
-## 4.2 End Boundary
-
-The opportunity reaches Suspended and `LearningOpportunitySuspended` is published with reason, authority and effective period.
-
-## 4.3 In Scope
-
-- Validate Active state, suspension reason and authority.
-- Apply temporary suspension and stop new enrollment.
-- Notify affected students and preserve existing approved enrollments.
-- Retain eligibility for separately governed reactivation.
-
-## 4.4 Out of Scope
-
-- Archival or deletion.
-- Automatic revocation of existing approved enrollments.
-- Modification of source Course Offering or provider master.
-
-## 4.5 Related Scenarios — Optional
-
-Related scenarios are referenced only where their completed business facts cross this boundary; they do not transfer ownership.
+Starts when a governed administrative/provider/policy condition requires suspension; ends when D06 reaches Suspended and `LearningOpportunitySuspended` is published. In scope: reason/authority/effective period, suspension, new-enrollment prohibition, existing-enrollment preservation, participant notification obligation. Out of scope: archival/deletion, automatic revocation, technical service execution.
 
 # 5. Ownership and Participating Domains
 
-| Domain | Responsibility |
-|---|---|
-| D06 | Owns Learning Opportunity availability, suspension state and suspension audit history. |
+D06 owns Learning Opportunity availability, suspension state and suspension history.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Actor / Role | Responsibility | Authority |
-|---|---|---|
-| Academic Affairs | Requests and authorizes governed suspension. | Suspension authority. |
-| D06 Learning Opportunity Service | Validates and applies suspension. | Execution only. |
+Academic Affairs requests/authorizes governed suspension where established by policy. Applying the D06 state change is a domain responsibility, not a `D06 Learning Opportunity Service` actor.
 
 # 7. Preconditions and Entry Criteria
 
-- Learning Opportunity is Active.
-- Suspension reason, authority and effective period are available.
+Learning Opportunity is Active; suspension reason, authority and effective period are available.
 
 # 8. Trigger
 
-An authorized administrative decision, provider outage or policy condition requires temporary suspension.
+An authorized administrative decision, provider condition or policy condition requires temporary suspension.
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Role / Domain | Business Result |
-|---|---|---|---|
-| 1 | Register suspension request, reason, scope and effective period. | Academic Affairs | Governed request exists. |
-| 2 | Validate Active state, authority, policy and affected enrollments. | D06 | Suspension is permitted or rejected. |
-| 3 | Transition opportunity to Suspended and block new enrollment. | D06 | Active → Suspended. |
-| 4 | Preserve existing approved enrollments unless separately governed. | D06 | No implicit revocation occurs. |
-| 5 | Notify affected participants and publish completed fact. | D06 | LearningOpportunitySuspended. |
+1. Academic Affairs/D06 establishes suspension request/reason/scope/effective period.
+2. D06 validates Active state, authority, policy and affected enrollments.
+3. D06 transitions Active → Suspended and prohibits new enrollment.
+4. Existing Approved enrollments remain valid unless separately governed.
+5. D06 records/publishes `LearningOpportunitySuspended`; required participant communication follows business policy.
 
 # 10. Alternate Business Flows
 
-A failed validation, rejection, configured optional approval path, escalation or compensation follows only the alternatives explicitly supported above; it never creates the successful final outcome or rewrites prior facts.
+No alternate route reaches Suspended without the same governed decision. Invalid/rejected suspension is handled in Section 11.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Recovery | Owner |
-|---|---|---|---|
-| Validation or reference failure | Scenario cannot proceed. | Reject or return for correction without changing the prior authoritative state. | Open Electives & MOOCs |
-| Authorization or approval failure | Requested outcome is not permitted. | Retain the prior state and record the decision reason. | Open Electives & MOOCs |
-| Interrupted processing | Completion is uncertain. | Resume from the last authoritative state with audit continuity and idempotency. | Open Electives & MOOCs |
+Invalid state/reason/authority blocks suspension; rejected authority retains Active state; interrupted progression preserves last authoritative opportunity state until resolved.
 
 # 12. Business Rules and Decision Constraints
 
-| Rule | Owner | Scenario Effect | Source |
-|---|---|---|---|
-| Only the canonical owner may change its owned business state. | Open Electives & MOOCs | Prevents cross-domain ownership leakage. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
-| Each transition requires valid lifecycle position, authority, policy and evidence. | Open Electives & MOOCs | Prevents governance bypass. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
-| Published or historical business facts remain immutable. | Open Electives & MOOCs | Preserves auditability and lineage. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
+Only D06 changes Learning Opportunity state; suspension does not implicitly revoke existing Approved enrollments; historical facts remain traceable; technical execution/retry is deferred.
 
 # 13. State and Lifecycle Impact
 
-| Concept | Entry State | Scenario Impact | Result | Owner | Source |
-|---|---|---|---|---|---|
-| Learning Opportunity | Active | Apply temporary governed enrollment suspension. | Active → Suspended | D06 | L2-D06 W06; Category A transition |
+Learning Opportunity: Active → Suspended. Owner D06. Source L2-D06 W06/Category A transition.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
-
-| Business Event | Canonical Publisher | Consumers | Purpose | Source |
-|---|---|---|---|---|
-| LearningOpportunitySuspended | D06 | Enrollment, discovery and authorized operational consumers | Records temporary governed suspension. | L2-D06 W06; D06-E04 |
-
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-No synchronous cross-domain hand-off materially participates; completed events may still be consumed under canonical contracts.
+D06 publishes `LearningOpportunitySuspended` under L2-D06 W06/D06-E04. No cross-domain ownership transfer occurs.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-| Action / Decision | Authorized Role | Constraint | Owner |
-|---|---|---|---|
-| Requests and authorizes governed suspension. | Academic Affairs | Suspension authority. | Open Electives & MOOCs |
-| Validates and applies suspension. | D06 Learning Opportunity Service | Execution only. | Open Electives & MOOCs |
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-Initiation, validation, review, approval and execution remain distinct wherever source or configured policy requires separation. Automated services execute rules but never make governance decisions. Any override requires authority, justification, evidence and audit history.
-
-## 15.3 Business Audit and Evidence Obligations
-
-| Obligation | Evidence | Owner |
-|---|---|---|
-| Scenario lifecycle and decision | Actor, authority, reason, prior state, validation evidence, decision and resulting state. | Open Electives & MOOCs |
-| Source and cross-domain traceability | Source identifiers, versions, evidence references, consumed events and published facts. | Open Electives & MOOCs |
-| Failure and recovery | Rejected validations, interruptions, retries, escalation or compensation outcome. | Open Electives & MOOCs |
+Academic Affairs may authorize only under governing policy. Audit retains reason, authority, effective period, prior state, affected-enrollment assessment and suspension fact.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-- The Learning Opportunity becomes Suspended for the governed effective period, new enrollments are prohibited, and existing approved enrollments remain valid unless separately revoked.
-- All required authority, validation and audit evidence is retained.
-- Applicable completed business facts are published exactly once in business effect.
-
-## 16.2 Postconditions
-
-- Canonical ownership remains unchanged.
-- Historical decisions and prior states remain immutable.
-- Downstream domains consume facts without modifying the owning aggregate.
+Opportunity is Suspended; new enrollment is prohibited; existing Approved enrollments are preserved unless separately governed; D06 ownership remains unchanged.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
-
-No open issues.
-
-## 17.2 Assumptions
-
-No assumptions.
-
-## 17.3 Deferred Questions
-
-No deferred questions.
+No new open issue or assumption is introduced. Service implementation, notification transport and technical recovery are deferred.
 
 ---
 
-**Draft Validation Verdict:** PASS  
-**Validation Basis:** Section D canonical register; `L2-D06_Open_Electives_and_MOOCs_Workflows.md`; Template v2.0; Architecture Level Validation Standards; accepted Section D decisions 001–500.
+**Draft Validation Verdict:** REVIEW REQUIRED  
+**Validation Basis:** L2-D06; Template v2.0; Architecture Level Validation Standards.
