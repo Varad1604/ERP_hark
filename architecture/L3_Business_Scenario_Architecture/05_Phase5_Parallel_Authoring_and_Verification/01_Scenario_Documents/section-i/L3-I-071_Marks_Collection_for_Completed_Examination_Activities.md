@@ -10,11 +10,11 @@
 **Priority:** P0  
 **Status:** Review  
 **Author:** Pallav  
-**Version:** 1.1  
-**Last Updated:** 2026-08-24  
+**Version:** 1.2  
+**Last Updated:** 2026-08-25  
 **Canonical Source Candidate:** CAN-L3-I-071  
 **Primary L2 Source:** `architecture/L2_Domain_Workflow_Architecture/section-i/L2-I08_Marks_Collection_and_Evaluation_Workflows.md`  
-**Governance Note:** Previous `Locked` status referenced `ACR-I-2026-08-21-002`. Repository search confirms the identifier is repeated in scenario documents, but no independently traceable governance/ADR artifact for that ACR was located. The scenario is therefore returned to **Review** pending traceable approval evidence; this correction does not invalidate the canonical scenario ID or frozen scenario allocation.
+**Governance Note:** Previous `Locked` status referenced `ACR-I-2026-08-21-002`. Repository search confirms the identifier is repeated in scenario documents, but no independently traceable governance/ADR artifact for that ACR was located. The scenario therefore remains **Review** pending traceable approval evidence; this correction does not invalidate the canonical scenario ID or frozen scenario allocation.
 
 # 2. Scenario Purpose
 
@@ -118,30 +118,20 @@ An authoritative completed examination or assessment activity becomes available 
 
 # 10. Alternate Business Flows
 
-## 10.1 Missing Assessment Evidence
-
-If required assessment evidence is unavailable, evaluation and marks collection do not proceed. The evidence-owning domain must supply or resolve the authoritative evidence before continuation.
-
-## 10.2 Evaluator Unavailable
-
-Where an assigned evaluator becomes unavailable, a replacement may be assigned only through the applicable L2-I08/institutional policy path. Existing evidence and assignment history remain traceable.
-
-## 10.3 Incomplete Marks Collection
-
-If required marks are missing for the applicable collection scope, submission does not occur. Collection remains incomplete until the authoritative missing marks are supplied or a governed exception path resolves the situation.
-
-## 10.4 Evaluation Discrepancy
-
-Where the institutional evaluation model requires multiple evaluations and a material discrepancy exists, the applicable discrepancy-resolution process is followed before marks are submitted as ready for validation.
+No distinct alternate business path is asserted in this scenario. Variations that block normal progression—missing evidence, evaluator unavailability, incomplete marks, or unresolved evaluation discrepancy—are governed as business recovery conditions in Section 11 rather than being misclassified as alternate paths to the same outcome.
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
 | Completed examination fact cannot be verified | Marks collection cannot validly begin. | Resolve the source fact with the canonical Examination Conduct owner. | L2-I06/L2-I07 and L2-I08 |
-| Evidence is missing or compromised | Evaluation cannot validly continue. | Obtain authoritative evidence or follow the applicable governed investigation/exception path. | Evidence owner and L2-I08 |
-| Evaluator authority is invalid | Awarded marks cannot be accepted into the governed collection. | Correct evaluator assignment through the applicable authority path. | L2-I08 |
-| Marks collection is interrupted before submission | The authoritative submitted-marks outcome has not occurred. | Preserve the last valid business position and continue only when the missing condition is resolved. | L2-I08 |
+| Required assessment evidence is missing | Evaluation and marks collection cannot validly proceed. | Obtain the authoritative evidence from its owning domain before continuation. | Evidence owner and L2-I08 |
+| Assessment evidence is compromised or disputed | Evaluation cannot validly continue on unresolved evidence. | Follow the applicable governed investigation or exception path before continuation. | Evidence owner and L2-I08 |
+| Assigned evaluator becomes unavailable | Evaluation cannot continue under the existing assignment. | Assign a replacement only through the applicable L2-I08/institutional policy path while retaining prior assignment and evidence history. | L2-I08 |
+| Evaluator authority is invalid | Awarded marks cannot be accepted into governed marks collection. | Correct the evaluator assignment through the applicable authority path before continuation. | L2-I08 |
+| Required marks are incomplete for the applicable collection scope | `Marks Submitted` cannot validly occur. | Obtain the missing authoritative marks or complete the applicable governed exception path before submission. | L2-I08 |
+| A material evaluation discrepancy requiring resolution remains open | Marks are not ready for governed submission. | Complete the applicable discrepancy-resolution process required by the institutional evaluation model before submission. | L2-I08 |
+| Marks collection is interrupted before submission | The authoritative submitted-marks outcome has not occurred. | Preserve the last valid business position and continue only when the blocking business condition is resolved. | L2-I08 |
 | Validation later fails | Outside this scenario boundary. | Handled by the downstream Marks Validation workflow; L3-I-071 does not absorb that outcome. | L2-I08 downstream workflow |
 
 # 12. Business Rules and Decision Constraints
