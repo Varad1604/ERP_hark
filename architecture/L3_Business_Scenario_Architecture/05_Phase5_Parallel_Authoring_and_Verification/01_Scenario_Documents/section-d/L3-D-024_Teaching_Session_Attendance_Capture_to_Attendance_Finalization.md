@@ -1,5 +1,7 @@
 # Teaching Session Attendance Capture to Attendance Finalization
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-024  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Teaching Session & Attendance  
