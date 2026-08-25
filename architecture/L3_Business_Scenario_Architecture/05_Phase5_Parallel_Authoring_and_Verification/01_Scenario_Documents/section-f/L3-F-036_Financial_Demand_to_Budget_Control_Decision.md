@@ -8,10 +8,10 @@
 **Participating Domains:** F, J  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-21  
+**Last Updated:** 2026-08-25  
 **Depends On:** L2-F00; L2-F06; L2-F14; L2-J03; SutraERP L1 Business Domain Architecture (Locked); DEPENDENCY_MAP.md; L3 Business Scenario Template v2.0; Stage 3 Canonical Scenario Register — Section F  
 **Referenced By:** None yet
 
@@ -53,20 +53,12 @@ No additional relationship is required to define this scenario boundary.
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Budget & Cost Center Management | Owns the Finance decision or accounting outcome and its evidence |
+| Budget & Cost Center Management | Owns the Finance Budget-control decision and its evidence |
 | Section J — Enterprise Resource Management | Provides authoritative operational facts and retains its aggregate lifecycles |
 
 ## 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Scenario Responsibility |
-|---|---|
-| Budget Planning Officer | Prepares the governed Budget proposal, allocation, revision, virement or closure request applicable to this scenario. |
-| Budget Control Officer | Performs Budget-control and eligibility assessment under approved Finance policy. |
-| Finance Committee | Authorizes governed Budget approval, allocation, structural change or closure where applicable. |
-| Cost Center Administrator | Prepares Finance-owned Cost Center lifecycle actions where applicable. |
-| Financial Controller | Independently authorizes Cost Center activation, deactivation, reactivation or closure where applicable. |
-
-Roles and authority are established by approved `ACR-F-2026-08-21-001` and do not define technical access control.
+Locked L2-F06 and L2-F14 do not define canonical institutional actors for the Budget-control decision. Finance owns the decision responsibility; the actor/decision-authority mapping remains an upstream architecture gap and is not invented at L3.
 
 ## 7. Preconditions and Entry Criteria
 
@@ -106,7 +98,7 @@ The valid outcomes are Budget-valid and Budget-not-valid; Section J owns any pro
 
 ## 13. State and Lifecycle Impact
 
-The approved owner-domain monetary outcome and F14 collaboration lifecycle apply without altering Section J operational state.
+L2-F14 defines no standalone lifecycle state machine for this Finance consumption scenario. The Budget-control decision creates a Finance-owned monetary outcome without altering the Section J operational lifecycle.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -114,7 +106,7 @@ The approved owner-domain monetary outcome and F14 collaboration lifecycle apply
 
 | Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
 |---|---|---|---|---|
-| BudgetValidationCompleted | Budget & Cost Center Management | Procurement Finance Consumption and Section J | Communicates the authoritative F06 Budget-control outcome | Approved ACR-F-2026-08-21-001 |
+| BudgetValidationCompleted | Finance | Procurement Finance Consumption and Section J | Communicates the authoritative Finance Budget-control outcome | L2-F14 §7 |
 
 ### 14.2 Business Contracts and Cross-Domain Hand-offs
 
@@ -127,13 +119,11 @@ The approved owner-domain monetary outcome and F14 collaboration lifecycle apply
 
 ### 15.1 Initiation and Decision Authority
 
-| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
-|---|---|---|---|
-| Make Budget-control decision | Budget Control Officer | Final routine authority under approved Budget Control Policy | Budget & Cost Center Management |
+Finance owns the Budget-control decision under L2-F14, but locked L2-F06/L2-F14 do not name the institutional actor or role that exercises that authority. No named L3 decision actor is assigned until the upstream mapping is governed.
 
 ### 15.2 Separation of Duties, Overrides and Exceptions
 
-The Budget Control Officer issues the routine Budget-control decision under approved policy and remains separate from procurement authority.
+L2-F14 requires segregation between procurement actors and financial approval/payment actors. This scenario preserves that cross-domain separation without inventing a named Finance role or additional override authority.
 
 ### 15.3 Business Audit and Evidence Obligations
 
@@ -141,7 +131,7 @@ The Budget Control Officer issues the routine Budget-control decision under appr
 |---|---|---|
 | Preserve scenario decision traceability | Source demand reference | Budget & Cost Center Management |
 | Preserve scenario decision traceability | Budget, allocation, Cost Center, fund and period references | Budget & Cost Center Management |
-| Preserve scenario decision traceability | Decision, reason and authority | Budget & Cost Center Management |
+| Preserve scenario decision traceability | Budget-control decision and reason | Budget & Cost Center Management |
 
 Section A retains ownership of Authorization and Audit infrastructure; Budget & Cost Center Management owns the underlying business decision and evidence.
 
@@ -151,7 +141,7 @@ Section A retains ownership of Authorization and Audit infrastructure; Budget & 
 
 - A governed Budget-control decision exists.
 - The source demand remains Section J-owned.
-- `BudgetValidationCompleted` is published.
+- `BudgetValidationCompleted` is published by Finance.
 
 ### 16.2 Postconditions
 
@@ -161,7 +151,9 @@ Section A retains ownership of Authorization and Audit infrastructure; Budget & 
 
 ### 17.1 Open Issues
 
-No unresolved material architecture issue remains for this scenario. The former upstream gaps were resolved by approved `ACR-F-2026-08-21-001` and its exact amendment specification.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-F06 and L2-F14 do not define canonical Actors for the Budget-control decision. Scenario references to `ACR-F-2026-08-21-001` do not establish independently traceable approval provenance for a `Budget Control Officer`. | The Finance ownership, decision semantics, Section J boundary and `BudgetValidationCompleted` event are source-supported, but the named institutional decision authority is not. The scenario remains Review. | Establish the Budget-control actor/decision-authority mapping in authoritative L2/governance and provide traceable approval provenance before promotion beyond Review. |
 
 ### 17.2 Assumptions
 
@@ -173,5 +165,5 @@ No scenario-specific deferred questions.
 
 ---
 
-**Authoring Validation Classification:** PASS  
-**Validation Note:** Source-grounded Draft revalidated against approved ACR-F-2026-08-21-001; no unresolved material L3 issue remains.
+**Authoring Validation Classification:** REVIEW REQUIRED  
+**Validation Note:** Canonical Finance event and ownership are preserved from L2-F14. Unsupported ACR-based actor/authority claims and event provenance were corrected without changing the frozen scenario identity or boundary.
