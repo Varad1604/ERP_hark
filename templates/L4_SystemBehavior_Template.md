@@ -1,45 +1,32 @@
-# L4 System Behavior Specification: [Behavior Name]
+# Deprecated L4 System Behavior Template
 
-## Template Governance
-Architectural Level: L4 - System Behavior Specification
+**Version:** 1.0.0  
+**Status:** Deprecated  
+**Owner:** Lead Architect  
+**Architectural Level:** Repository Template Metadata  
+**Domain:** Cross-domain  
+**Last Updated:** 2026-08-26  
+**Depends On:** `architecture/L4_System_Behavior_Specification/00_Governance/L4_System_Behavior_Specification_Template_v1.0.md`  
+**Referenced By:** Historical references only  
 
-Depends On: L3 - Business Scenario Architecture
+---
 
-Expected Output: system behavior specification for approved business scenarios without implementation design.
+This template is retained only for historical traceability.
 
-Downstream Reference: L5 Solution Architecture.
+It was superseded on 2026-08-26 by the canonical locked template:
 
-## 1. Purpose
-Defines exactly how the ERP must behave for a specific approved business scenario or business step.
-> [!WARNING]
-> This level must NOT contain Database Tables, APIs, Services, UI, Technical Classes, or Technology Decisions.
+```text
+architecture/L4_System_Behavior_Specification/00_Governance/L4_System_Behavior_Specification_Template_v1.0.md
+```
 
-## 2. Inputs
-Data required by the system.
+Do not use this file for new L4 authoring.
 
-## 3. Outputs
-Data produced by the system.
+The supersession was approved after the controlled L4 pilot demonstrated that the older `Inputs / Outputs / Validations / Processing Rules / State Transitions / Notifications / Reports Updated / External Integrations / Audit Requirements / Error Behaviour` structure invited L5 implementation leakage, duplicated upstream L3 content, and did not provide strong BH-level traceability.
 
-## 4. Validations
-Rules to validate the inputs and state.
+Canonical L4 authoring now follows:
 
-## 5. Processing Rules
-How the system processes the request.
+- `L4_Governance_and_Architecture_Standard.md`
+- `L4_System_Behavior_Specification_Template_v1.0.md`
+- `L4_Validation_Standard.md`
 
-## 6. State Transitions
-How the entity state changes.
-
-## 7. Notifications
-Notifications sent out.
-
-## 8. Reports Updated
-Impact on read models.
-
-## 9. External Integrations
-Interactions with external systems.
-
-## 10. Audit Requirements
-What must be audited.
-
-## 11. Error Behaviour
-How the system handles errors.
+No architecture is defined by this deprecated file.
