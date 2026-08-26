@@ -9,7 +9,7 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Draft  
-**Version:** 1.1  
+**Version:** 1.2  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-26  
 **Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; L2-G00 Locked Amendment 2026-08-26; ADR-G-READINESS-001; applicable G01–G10 readiness sources; L2-I03 where the configured readiness type is Examination  
@@ -49,7 +49,7 @@ The Executive Reviewer has no authority through this scenario to change an Exami
 # 7. Preconditions and Entry Criteria
 
 - The readiness type and assessment rules are configured.
-- Applicable source readiness information is available or can be treated as a governed exception.
+- Applicable source readiness information is available or can be treated through a governed exception path supported by G00.
 - Assessment scope can be resolved.
 - Governing authorization conditions are satisfied.
 
@@ -72,15 +72,18 @@ A configured campus readiness assessment is scheduled for a supported readiness 
 
 # 10. Alternate Business Flows
 
-- Missing source readiness information is treated as a governance exception; no readiness fact is manufactured.
-- Examination Readiness remains a G00 campus-operational assessment; Section I retains Examination planning, approval, scheduling and conduct.
-- `Ready with Observations` and `Partially Ready` are preserved as exact classifications without introducing new event names.
+| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
+|---|---|---|---|---|
+| Examination readiness context | The configured readiness type is Examination | G00 performs the same governed readiness assessment using relevant Examination-owned readiness context; Section I retains Examination planning, approval, scheduling and conduct ownership. | The same G00 readiness decision and `Closed` outcome are reached. | G00 with Section I participation |
+| Non-Ready classification variants | Valid source information supports `Ready with Observations`, `Partially Ready`, or `Not Ready` rather than `Ready` | G00 records the exact canonical classification, performs the same governed review and final decision, and closes the assessment. | The same completed G00 governance-readiness outcome is reached without inventing new event names. | G00 |
 
 # 11. Failure, Interruption and Business Recovery
 
-- Missing/invalid readiness inputs prevent reliable calculation until corrected, deferred or escalated.
-- Out-of-scope source information is excluded.
-- If executive review/decision cannot complete, the assessment remains at its current valid lifecycle position and is not closed.
+| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
+|---|---|---|---|
+| Required readiness information is missing or invalid and reliable calculation cannot be completed. | Normal progression is interrupted; G00 must not manufacture a readiness fact. | The missing/invalid source condition is corrected by its canonical owner, or the matter is deferred/escalated through the governed exception path where upstream architecture permits. The assessment resumes only when a valid progression condition exists. | G00 coordinating with the canonical source owner |
+| Out-of-scope source information is supplied. | The information cannot validly influence the assessment. | G00 excludes the out-of-scope information and continues with applicable authoritative sources. | G00 |
+| Executive review or final decision cannot complete. | The assessment cannot validly reach `Closed`. | The assessment remains at its current valid lifecycle position until the authorized review/decision can complete. | G00 / Executive Reviewer |
 
 # 12. Business Rules and Decision Constraints
 
@@ -92,6 +95,7 @@ A configured campus readiness assessment is scheduled for a supported readiness 
 - `CampusReady` is additionally published only for exact `Ready`.
 - `CampusNotReady` is additionally published only for exact `Not Ready`.
 - G00 readiness cannot become an approval decision for an externally owned lifecycle.
+- Missing or invalid required evidence that prevents reliable calculation is an interruption/recovery matter, not an alternate successful path.
 
 # 13. State and Lifecycle Impact
 
@@ -118,15 +122,22 @@ Governance Coordinator creates/co-ordinates the assessment; Campus Operations Ma
 
 # 16. Completion Criteria and Postconditions
 
+## 16.1 Completion Criteria
+
 - Complete valid assessment lifecycle reaches `Closed`.
 - Source ownership is preserved.
 - One of the four canonical classifications is recorded.
 - Executive Reviewer records the final G00 governance readiness decision.
 - Applicable events and immutable governance history are preserved.
 
+## 16.2 Postconditions
+
+- The completed G00 readiness decision is available to authorized institutional consumers.
+- No participating domain's source fact or lifecycle ownership is transferred to G00.
+- Any interruption caused by missing/invalid evidence is resolved before successful completion and is preserved as governance history where required.
+
 # 17. Open Issues, Assumptions and Deferred Questions
 
 **Open Issues:** None.  
 **Assumptions:** None.  
-**Deferred Questions:** None.  
-**Architecture assessment:** `PASS`
+**Deferred Questions:** None.
