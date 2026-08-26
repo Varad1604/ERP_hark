@@ -8,20 +8,20 @@
 **Participating Domains:** B, F  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-21  
+**Last Updated:** 2026-08-25  
 **Depends On:** L2-F00; L2-F06; L2-B02; SutraERP L1 Business Domain Architecture (Locked); DEPENDENCY_MAP.md; L3 Business Scenario Template v2.0; Stage 3 Canonical Scenario Register — Section F  
 **Referenced By:** None yet
 
 ## 2. Scenario Purpose
 
-This scenario governs Finance Cost Center establishment and termination while referencing, but not duplicating, Section B organisational structure.
+This scenario governs Finance Cost Center establishment and terminal processing while referencing, but not duplicating, Section B organisational structure.
 
 ## 3. Business Outcome
 
-A Cost Center request reaches its governed active or terminal outcome with authoritative organisational references preserved.
+A Cost Center request reaches the source-supported governed outcome while authoritative organisational references and Finance ownership are preserved.
 
 ## 4. Scenario Boundary and Scope
 
@@ -31,13 +31,13 @@ A governed request to establish or terminate a Cost Center is submitted.
 
 ### 4.2 End Boundary
 
-The Cost Center is active or has reached the locked title’s terminal “Closed” outcome.
+For establishment, the Cost Center is Active. The frozen scenario title also names a terminal “Closed” outcome, but the exact terminal lifecycle term is not established by the authoritative L2 source and remains unresolved in Section 17.
 
 ### 4.3 In Scope
 
 - Cost Center creation, classification and organisational reference validation
 - activation
-- governed terminal processing
+- governed terminal processing to the extent explicitly supported upstream
 
 ### 4.4 Out of Scope
 
@@ -53,20 +53,12 @@ No additional relationship is required to define this scenario boundary.
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Budget & Cost Center Management | Owns the Finance decision or accounting outcome and its evidence |
+| Budget & Cost Center Management | Owns the Finance Cost Center aggregate and its governed lifecycle actions |
 | Section B — Institution & Structure | Provides authoritative organisational references without transferring ownership |
 
 ## 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Scenario Responsibility |
-|---|---|
-| Budget Planning Officer | Prepares the governed Budget proposal, allocation, revision, virement or closure request applicable to this scenario. |
-| Budget Control Officer | Performs Budget-control and eligibility assessment under approved Finance policy. |
-| Finance Committee | Authorizes governed Budget approval, allocation, structural change or closure where applicable. |
-| Cost Center Administrator | Prepares Finance-owned Cost Center lifecycle actions where applicable. |
-| Financial Controller | Independently authorizes Cost Center activation, deactivation, reactivation or closure where applicable. |
-
-Roles and authority are established by approved `ACR-F-2026-08-21-001` and do not define technical access control.
+L2-F06 does not define canonical institutional actors for Cost Center lifecycle actions. Finance owns the business responsibilities; named administrator/controller roles are not introduced at L3 and the actor/decision-authority mapping remains an upstream gap.
 
 ## 7. Preconditions and Entry Criteria
 
@@ -81,10 +73,10 @@ A valid Cost Center establishment or terminal-status request is presented.
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Validate request and authoritative organisational reference | Finance Administration / Section B | Request is eligible |
-| 2 | Create or identify the Cost Center under Finance ownership | Finance Administration | Cost Center identity is governed |
-| 3 | Activate the Cost Center when establishment criteria are satisfied | Finance Administration | Cost Center becomes active |
-| 4 | For terminal processing, apply only an upstream-authorized lifecycle term | Budget & Cost Center Management | Terminal outcome awaits terminology resolution |
+| 1 | Validate the request and authoritative organisational reference | Budget & Cost Center Management / Section B | Request is eligible |
+| 2 | Create or identify the Cost Center under Finance ownership | Budget & Cost Center Management | Cost Center identity is governed |
+| 3 | Activate the Cost Center when establishment criteria are satisfied | Budget & Cost Center Management | Cost Center becomes Active |
+| 4 | For terminal processing, apply only a lifecycle action explicitly governed by authoritative upstream architecture | Budget & Cost Center Management | Unsupported terminal terminology is not manufactured at L3 |
 
 ## 10. Alternate Business Flows
 
@@ -94,8 +86,8 @@ No additional scenario-specific alternate flow is defined upstream.
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Organisational reference is invalid | Cost Center cannot be established | Correct Section B reference before resubmission | B / F |
-| Terminal closure requested | Cost Center must first be Deactivated and pass closure eligibility | Cost Center Administrator prepares; Financial Controller authorizes Deactivated to Closed | Budget & Cost Center Management |
+| Organisational reference is invalid | Cost Center cannot be established | Correct the authoritative Section B reference before resubmission | B / F |
+| Requested terminal outcome depends on a lifecycle state not defined upstream | Terminal processing cannot be authoritatively completed at L3 | Preserve the last valid Cost Center lifecycle position and obtain the upstream lifecycle decision | Budget & Cost Center Management |
 
 ## 12. Business Rules and Decision Constraints
 
@@ -108,7 +100,9 @@ No additional scenario-specific alternate flow is defined upstream.
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Cost Center | Created / Active / Deactivated | Apply the approved governed lifecycle action | Active, Deactivated, or terminal Closed | Budget & Cost Center Management | Approved ACR-F-2026-08-21-001 |
+| Cost Center | Source-supported pre-activation position | Establish and activate the Cost Center | Active | Budget & Cost Center Management | L2-F06 Cost Center lifecycle semantics |
+
+The frozen title’s terminal `Closed` term is not treated as a canonical L2 state unless and until authoritative upstream architecture establishes that lifecycle position.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -117,6 +111,8 @@ No additional scenario-specific alternate flow is defined upstream.
 | Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
 |---|---|---|---|---|
 | CostCenterActivated | Budget & Cost Center Management | Budget and interested organisational domains | Communicates activation | L2-F06 §§10.7, 14 |
+
+No terminal event is invented for the unresolved terminal path.
 
 ### 14.2 Business Contracts and Cross-Domain Hand-offs
 
@@ -128,21 +124,18 @@ No additional scenario-specific alternate flow is defined upstream.
 
 ### 15.1 Initiation and Decision Authority
 
-| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
-|---|---|---|---|
-| Create and maintain Cost Center | Finance Administration | Supported Finance capability | Budget & Cost Center Management |
-| Authorize activation, deactivation, reactivation or terminal closure | Financial Controller | Cost Center Administrator prepares; closure requires Deactivated state and eligibility | Budget & Cost Center Management |
+L2-F06 does not define the canonical institutional actors that initiate or authorize Cost Center activation or terminal processing. L3 therefore keeps those responsibilities with the owning Finance domain pending upstream role mapping.
 
 ### 15.2 Separation of Duties, Overrides and Exceptions
 
-No scenario-specific separation-of-duty rule is authoritatively defined.
+No scenario-specific separation-of-duty, override or exception authority is authoritatively defined for this Cost Center lifecycle scenario.
 
 ### 15.3 Business Audit and Evidence Obligations
 
 | Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
 |---|---|---|
 | Preserve scenario decision traceability | Cost Center request and organisational reference | Budget & Cost Center Management |
-| Preserve scenario decision traceability | Activation evidence or terminal decision evidence | Budget & Cost Center Management |
+| Preserve scenario decision traceability | Source-supported activation or terminal-processing decision | Budget & Cost Center Management |
 
 Section A retains ownership of Authorization and Audit infrastructure; Budget & Cost Center Management owns the underlying business decision and evidence.
 
@@ -150,8 +143,8 @@ Section A retains ownership of Authorization and Audit infrastructure; Budget & 
 
 ### 16.1 Completion Criteria
 
-- Activation path: Cost Center is active and `CostCenterActivated` is published.
-- Terminal path cannot be completed until upstream terminology is resolved.
+- Establishment path: Cost Center is Active and `CostCenterActivated` is published.
+- Terminal path remains incomplete until the upstream terminal lifecycle term and authority are established.
 
 ### 16.2 Postconditions
 
@@ -161,7 +154,11 @@ Section A retains ownership of Authorization and Audit infrastructure; Budget & 
 
 ### 17.1 Open Issues
 
-No unresolved material architecture issue remains for this scenario. The former upstream gaps were resolved by approved `ACR-F-2026-08-21-001` and its exact amendment specification.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-F06 records no canonical Actors section, so named `Cost Center Administrator` / `Financial Controller` authority cannot be established from authoritative L2. | L3 cannot assign named initiation/approval authority for Cost Center lifecycle actions. | Establish Cost Center actor/decision-authority mapping in authoritative L2/governance. |
+| The frozen L3 title names an `Active or Closed Cost Center` outcome, while the current L2-F06 source does not independently establish the terminal `Closed` lifecycle state relied on by the prior ACR-based wording. | L3 must preserve the frozen title but cannot manufacture the terminal lifecycle transition or completion evidence. The scenario remains Review. | Resolve the Cost Center terminal lifecycle terminology/state upstream and trace the decision before Architecture Approval. |
+| Scenario references to `ACR-F-2026-08-21-001` do not provide independently traceable governance provenance for either the actor mapping or terminal-state addition. | Prior ACR-based claims cannot be treated as authoritative repository facts. | Provide an independent governance/ADR/approval artifact or remove the unsupported approval reference repository-wide. |
 
 ### 17.2 Assumptions
 
@@ -173,5 +170,5 @@ No scenario-specific deferred questions.
 
 ---
 
-**Authoring Validation Classification:** PASS  
-**Validation Note:** Source-grounded Draft revalidated against approved ACR-F-2026-08-21-001; no unresolved material L3 issue remains.
+**Authoring Validation Classification:** REVIEW REQUIRED  
+**Validation Note:** Source-supported Cost Center ownership and activation semantics are preserved. Unsupported ACR-based roles and terminal lifecycle claims were removed without changing the frozen scenario ID, filename or title.

@@ -28,3 +28,26 @@ One ADR per decision package. File name: `ADR-<PACKAGE>-<NNN>.md`, e.g. `ADR-FIN
 - ADR history is immutable (Volume 5 §8). Once an ADR is merged, it is not edited to reverse a decision — a superseding ADR is written instead and the two are cross-referenced.
 - An ADR does not itself amend the Locked document it targets. The Repository Update step is a separate, subsequent change once Decision is recorded as approved.
 - Drafting an ADR is not architecture authorship by the drafter. The proposal section is a candidate for review, not a fait accompli; it must be clearly distinguishable from confirmed canonical content in the target document.
+
+## Current ADR Index
+
+This index satisfies the continuous ADR-indexing obligation in Repository Constitution Volume 5 §13. The ADR file itself remains the authority for status and decision detail; this table is navigational and must not be used to infer approval where the ADR does not record it.
+
+| ADR / Record | Package / Subject |
+|---|---|
+| `ADR-FIN-ADJ-001.md` | Finance — Financial Adjustment Governance |
+| `ADR-FIN-ADJ-002.md` | Finance — Financial Adjustment follow-on decision |
+| `ADR-FIN-AP-001.md` | Finance — Accounts Payable |
+| `ADR-FIN-AR-001.md` | Finance — Accounts Receivable |
+| `ADR-FIN-GL-001.md` | Finance — General Ledger |
+| `ADR-FIN-PERIOD-001.md` | Finance — Financial Period |
+| `ADR-FIN-TREAS-001.md` | Finance — Treasury |
+| `ADR-PLAT-AUTH-001.md` | Platform Authorization — Role Assignment Governance and Person Scope Alignment |
+| `ADR-STU-ADM-EXP-001.md` | Student Lifecycle — Admission Expiry Lifecycle |
+| `ADR-STU-PROG-EVT-001.md` | Student Lifecycle — Academic Progression Event Canonicalization |
+| `ADR-STU-MEME-EXIT-001.md` | Student Lifecycle — NEP/MEME Intermediate Qualification Exit |
+| `FIN_UPSTREAM_L2_APPROVAL_RECORD_2026-08-21.md` | Finance upstream L2 approval/incorporation record |
+| `PLATFORM_AUTHORIZATION_UPSTREAM_APPROVAL_RECORD_2026-08-26.md` | Platform Authorization upstream L1/L2 approval/incorporation record |
+| `STUDENT_LIFECYCLE_UPSTREAM_L2_APPROVAL_RECORD_2026-08-22.md` | Student Lifecycle upstream L2 approval/incorporation record |
+
+When new ADR files or approval records are added, this index must be updated as part of repository maintenance.

@@ -1,16 +1,19 @@
 # Monitoring Evidence or Outcome to Governed Academic Risk Assessment
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-028  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Academic Monitoring  
 **Participating Domains:** C, D  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Architecture Approved  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-25  
 **Depends On:** `L2-D05_Academic_Monitoring_Workflows.md`  
+**Governance Basis:** `L2-D05_Business_Architecture_Purity_Amendment_2026-08-24.md`  
 **Referenced By:** None yet  
 **Frozen Stage 3 Source:** P2W-D-0749 / CAN-L3-D-029 (final L3-D-028)
 
@@ -18,37 +21,38 @@
 
 # 2. Scenario Purpose
 
-Transform monitoring evidence, evaluation results or a published monitoring outcome into a governed Academic Risk Assessment with evidence, category, severity and priority.
+Transform monitoring evidence, evaluation results or a Published monitoring outcome into a governed Academic Risk Assessment with evidence, category, severity and priority.
 
 # 3. Business Outcome
 
-The academic risk is detected and assessed under approved rules with a traceable severity and priority suitable for monitoring, governance exception or intervention decisions.
+The academic risk is detected and assessed under approved D05 rules with a traceable severity and priority suitable for monitoring, governance-exception or intervention decisions.
 
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
 
-A valid monitoring evaluation, health assessment, indicator threshold breach or published outcome indicates a potential academic risk.
+A valid monitoring evaluation, health assessment, indicator threshold breach or Published outcome indicates a potential academic risk.
 
 ## 4.2 End Boundary
 
-The Risk Assessment is Assessed with severity and priority recorded and applicable risk events published.
+The Risk Assessment reaches Assessed with severity and priority recorded and applicable D05 risk events published.
 
 ## 4.3 In Scope
 
-- Load approved risk rules and immutable evaluation context.
+- Apply approved risk rules to authoritative monitoring evidence.
 - Detect and classify risk conditions.
 - Assess severity, impact and priority with evidence traceability.
 
 ## 4.4 Out of Scope
 
-- Changing attendance, timetable, registration or teaching records.
+- Changing source-domain records.
 - Automatically resolving the risk.
-- Bypassing governance exception/review requirements.
+- Bypassing governance-exception/review requirements.
+- Engine, service, retry, queue or transaction design.
 
 ## 4.5 Related Scenarios — Optional
 
-Related scenarios are referenced only where their completed business facts cross this boundary; they do not transfer ownership.
+Governance-review, exception and intervention scenarios may consume the Assessed D05 risk without changing its ownership.
 
 # 5. Ownership and Participating Domains
 
@@ -59,52 +63,52 @@ Related scenarios are referenced only where their completed business facts cross
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Actor / Role | Responsibility | Authority |
+| Business Actor / Role | Responsibility | Authority |
 |---|---|---|
-| D05 Monitoring Engine | Evaluates active risk rules and creates the assessment. | Automated assessment; no governance approval. |
-| Monitoring Authority | Reviews identified risks and evidence. | Monitoring review authority. |
-| Governance Authority | Handles critical risks and subsequent governed actions. | Governance decision authority. |
+| Monitoring Authority | Reviews identified risks and monitoring evidence where human review is required. | Monitoring review authority. |
+| Governance Authority | Handles critical risks and subsequent governed actions where required. | Governance decision authority. |
+
+Risk-rule evaluation itself is a D05 business capability, not a technical `Monitoring Engine` actor at L3.
 
 # 7. Preconditions and Entry Criteria
 
-- Monitoring evaluation and immutable context exist.
+- Monitoring evaluation/context exists.
 - Risk rules and policy versions are approved and active.
 - Required evidence references are available.
 
 # 8. Trigger
 
-Evaluation completes, health assessment is generated, or an academic indicator crosses an approved threshold.
+Evaluation completes, a health assessment is produced, or an academic indicator crosses an approved threshold.
 
 # 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Load evaluation context, health result, evidence references and active risk rules. | D05 Monitoring Engine | Authoritative assessment basis established. |
-| 2 | Evaluate indicators and identify risk conditions. | D05 Monitoring Engine | Risk detected or no-risk result retained. |
-| 3 | Create Risk Assessment with category, rule, evidence and timestamp. | D05 | Detected risk is traceable. |
-| 4 | Analyze academic, scope, compliance, certification and urgency impact. | Monitoring Authority / D05 | Severity basis established. |
-| 5 | Assign Critical, High, Medium or Low severity and priority. | D05 under approved rules | Risk reaches Assessed. |
-| 6 | Publish completed risk facts and route required governance action. | D05 | Risk events available; source evidence unchanged. |
+| 1 | Establish the authoritative evaluation/health/evidence context and applicable risk rules. | D05 | Assessment basis is established. |
+| 2 | Evaluate indicators and identify risk conditions. | D05 | Risk detected or no-risk result retained. |
+| 3 | Establish the Risk Assessment with category, governing rule and evidence references. | D05 | Detected risk is traceable. |
+| 4 | Assess academic, scope, compliance, certification and urgency impact. | Monitoring Authority / D05 | Severity basis is established. |
+| 5 | Assign the governed severity and priority under approved D05 rules. | D05 | Risk reaches Assessed. |
+| 6 | Publish the completed risk facts and make the assessment available for any required governance action. | D05 | Risk events are available; source evidence remains unchanged. |
 
 # 10. Alternate Business Flows
 
-A failed validation, rejection, configured optional approval path, escalation or compensation follows only the alternatives explicitly supported above; it never creates the successful final outcome or rewrites prior facts.
+No distinct alternate path reaches Assessed. A missing rule/evidence condition blocks assessment and is handled under Section 11.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Recovery | Owner |
+| Situation | Business Consequence | Business Resolution / Recovery | Owner |
 |---|---|---|---|
-| Validation or reference failure | Scenario cannot proceed. | Reject or return for correction without changing the prior authoritative state. | Academic Monitoring |
-| Authorization or approval failure | Requested outcome is not permitted. | Retain the prior state and record the decision reason. | Academic Monitoring |
-| Interrupted processing | Completion is uncertain. | Resume from the last authoritative state with audit continuity and idempotency. | Academic Monitoring |
+| Required evidence/rule reference is missing or invalid | Risk assessment cannot validly complete. | Resolve the authoritative business evidence/rule condition before continuation. | D05 with source owner as applicable |
+| Required human monitoring/governance authority cannot be validated | Governed review/action cannot proceed. | Retain the last authoritative D05 position until valid authority exists. | D05 |
+| Assessment progression is interrupted | Assessed outcome has not occurred. | Preserve the last authoritative business position/evidence/context and continue when the blocking condition is resolved. | D05 |
 
 # 12. Business Rules and Decision Constraints
 
-| Rule | Owner | Scenario Effect | Source |
-|---|---|---|---|
-| Only the canonical owner may change its owned business state. | Academic Monitoring | Prevents cross-domain ownership leakage. | `L2-D05_Academic_Monitoring_Workflows.md` |
-| Each transition requires valid lifecycle position, authority, policy and evidence. | Academic Monitoring | Prevents governance bypass. | `L2-D05_Academic_Monitoring_Workflows.md` |
-| Published or historical business facts remain immutable. | Academic Monitoring | Preserves auditability and lineage. | `L2-D05_Academic_Monitoring_Workflows.md` |
+- D05 owns Academic Risk Assessment. Source: L2-D05 §§8.8,12.3–12.4.
+- Repeated consideration of the same business fact must not create duplicate institutional outcomes; implementation deduplication is deferred. Source: locked D05 Purity Amendment.
+- Source-domain evidence ownership remains unchanged.
+- No technical engine, queue, retry or persistence behaviour is defined at L3.
 
 # 13. State and Lifecycle Impact
 
@@ -116,67 +120,56 @@ A failed validation, rejection, configured optional approval path, escalation or
 
 ## 14.1 Published / Consumed Business Events
 
-| Business Event | Canonical Publisher | Consumers | Purpose | Source |
+| Event | Canonical Publisher | Consumers | Purpose | Source |
 |---|---|---|---|---|
-| AcademicRiskDetected / RiskAssessmentCreated / AcademicRiskSeverityAssigned | D05 | Governance review, exception and intervention workflows | Records detection, assessment creation and assigned severity. | L2-D05 §§12.3–12.4 |
+| `AcademicRiskDetected` / `RiskAssessmentCreated` / `AcademicRiskSeverityAssigned` | D05 | Governance review, exception and intervention workflows | Records detection, assessment creation and assigned severity. | L2-D05 §§12.3–12.4 |
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-| From | To | Business Hand-off | Purpose | Source |
-|---|---|---|---|---|
-| D01–D04 and Section C | Academic Monitoring | Retain ownership of evidence referenced by the assessment. | Preserve ownership while enabling the scenario. | `L2-D05_Academic_Monitoring_Workflows.md` |
+D01–D04/Section C provide referenced evidence under their own ownership; D05 owns only the Academic Risk Assessment.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-| Action / Decision | Authorized Role | Constraint | Owner |
-|---|---|---|---|
-| Evaluates active risk rules and creates the assessment. | D05 Monitoring Engine | Automated assessment; no governance approval. | Academic Monitoring |
-| Reviews identified risks and evidence. | Monitoring Authority | Monitoring review authority. | Academic Monitoring |
-| Handles critical risks and subsequent governed actions. | Governance Authority | Governance decision authority. | Academic Monitoring |
+Monitoring and Governance Authorities exercise only the business authority established by D05 policy; risk-rule evaluation carries no governance authority of its own.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-Initiation, validation, review, approval and execution remain distinct wherever source or configured policy requires separation. Automated services execute rules but never make governance decisions. Any override requires authority, justification, evidence and audit history.
+Any separation between monitoring review and governance decision remains governed by D05. Automated execution may apply approved rules but cannot acquire business decision authority.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-| Obligation | Evidence | Owner |
-|---|---|---|
-| Scenario lifecycle and decision | Actor, authority, reason, prior state, validation evidence, decision and resulting state. | Academic Monitoring |
-| Source and cross-domain traceability | Source identifiers, versions, evidence references, consumed events and published facts. | Academic Monitoring |
-| Failure and recovery | Rejected validations, interruptions, retries, escalation or compensation outcome. | Academic Monitoring |
+Retain source evidence references, rule/policy version, assessment basis, severity/priority reasoning, applicable actor authority and published risk events.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- The academic risk is detected and assessed under approved rules with a traceable severity and priority suitable for monitoring, governance exception or intervention decisions.
-- All required authority, validation and audit evidence is retained.
-- Applicable completed business facts are published exactly once in business effect.
+- Risk reaches Assessed with governed severity/priority.
+- Source evidence remains under its canonical owner.
+- Required D05 risk events are published without duplicate institutional outcome.
 
 ## 16.2 Postconditions
 
-- Canonical ownership remains unchanged.
-- Historical decisions and prior states remain immutable.
-- Downstream domains consume facts without modifying the owning aggregate.
+- D05 retains Risk Assessment ownership.
+- Required governance/exception/intervention processes may continue using the Assessed risk.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-No open issues.
+No new open issue identified by the L3-purity correction.
 
 ## 17.2 Assumptions
 
-No assumptions.
+No assumption overrides locked architecture.
 
 ## 17.3 Deferred Questions
 
-No deferred questions.
+Technical rule engines, queues, retries, transaction handling, persistence and deduplication are deferred to L4/L5.
 
 ---
 
-**Draft Validation Verdict:** PASS  
-**Validation Basis:** Section D canonical register; `L2-D05_Academic_Monitoring_Workflows.md`; Template v2.0; Architecture Level Validation Standards; accepted Section D decisions 001–500.
+**Draft Validation Verdict:** REVIEW REQUIRED  
+**Validation Basis:** L2-D05; locked D05 Business Architecture Purity Amendment; Template v2.0; Architecture Level Validation Standards.

@@ -11,21 +11,23 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows where institutional ownership is referenced; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized infrastructure consumers across academic, examination, facilities, safety, workforce, analytics and institutional operations
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows  
+**Referenced By:** Floor, Space and downstream physical-context scenarios
 
 ---
 
 # 2. Scenario Purpose
 
-Register one canonical Building under exactly one valid Physical Campus, with immutable identity and governed physical metadata, without activating or allocating it automatically.
+Register one canonical G10 Building beneath exactly one valid Physical Campus while preserving immutable identity, parent-child integrity, audit history and the separation between establishment and later operational lifecycle transitions.
 
 ---
 
 # 3. Business Outcome
 
-A canonical Building is established under the applicable Physical Campus
+A canonical Building is established under the applicable Physical Campus.
+
+The Building registration workflow is authoritative, but locked L2-G10 defines two different canonical event names for the same required completed registration fact. Because successful registration must publish its canonical event, this Draft is **BLOCKED** until the event conflict is resolved upstream.
 
 ---
 
@@ -37,48 +39,37 @@ The scenario begins when a valid building must be represented within a Physical 
 
 ## 4.2 End Boundary
 
-The scenario ends when the exact frozen outcome is established under G10 ownership, the current authoritative physical fact is available through governed contracts, required events have been published only after successful persistence, and immutable audit history is preserved.
+The scenario ends when the Building exists canonically under one valid Physical Campus, satisfies all Building registration invariants, preserves its immutable identity and registration evidence, and the exact canonical Building registration event has been published unambiguously.
 
 ## 4.3 In Scope
 
-- Resolution of Tenant, institution, resource and physical hierarchy context.
-- Scoped authorization before business validation.
-- Validation of G10 identity, hierarchy, lifecycle, capacity, availability, configuration and relationship rules as applicable.
-- The `Building` business responsibility.
-- Preservation of immutable identifiers and prior historical values.
-- Publication of only source-defined completed business facts.
-- Governed read contracts for authorized consumers.
-- Complete audit evidence.
+- Resolution and validation of the parent Physical Campus.
+- Validation of Building code, physical characteristics and required metadata.
+- Creation of the G10 Building aggregate and immutable identity.
+- Establishment of exactly one parent Physical Campus relationship.
+- Registration audit evidence.
+- Publication of the required canonical Building registration fact.
 
 ## 4.4 Out of Scope
 
-- Institutional identity or InstitutionalCampus ownership retained by B03.
-- Academic scheduling, examination conduct, facilities-maintenance execution or consumer-specific decisions.
-- Authentication, technical RBAC, database, API, UI, queue or implementation design.
-- Physical deletion of infrastructure or historical records.
-- Inventing lifecycle states, commands, events, publishers, approval actors or cross-domain contracts absent from L2.
+- Building activation, later lifecycle transitions, floor registration or space registration.
+- Academic, facilities, security or other consumer-domain operations inside the Building.
+- Re-parenting an existing Building.
+- Choosing between conflicting locked event names or initial lifecycle descriptions.
+- Any implementation mechanism.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
-| Relationship | Related Scenario | Boundary Reason |
+| Relationship | Related Scenario | Reason |
 |---|---|---|
-| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes the canonical Physical Campus root. |
-| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | Governs the Campus–Building–Floor–Space hierarchy. |
-| Related | L3-G-289 — Infrastructure Availability Definition to Availability Profile Activation | Establishes authoritative resource availability. |
-| Related | L3-G-291 — Infrastructure Reservation Request to Controlled Reservation | Consumes availability and capacity without owning either fact. |
+| Prerequisite | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Provides the parent Physical Campus. |
+| Related | L3-G-283 — Floor Registration to Building Hierarchy Extension | Extends the Building hierarchy with Floors. |
 
 ---
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
-|---|---|
-| Infrastructure Management / Section G | Primary owner of physical identity, hierarchy, lifecycle, capacity, availability, classification, relationships and infrastructure master facts. |
-| Institution & Structure / Section B, where frozen | Owns Institution and InstitutionalCampus identity; supplies references without owning physical aggregates. |
-| Platform Foundation / Section A, where frozen | Supplies Tenant isolation, configuration, authorization, event and audit capabilities without owning infrastructure facts. |
-| Academic Delivery / Section D, where frozen | Consumes authoritative capacity, availability or reservation outcomes and retains its academic decisions. |
-
-The frozen participating-domain value remains exactly `G`.
+Infrastructure Management is the sole frozen participating domain and owns the Building identity, Building physical characteristics, Building lifecycle and parent Physical Campus relationship. No other participating domain is introduced.
 
 ---
 
@@ -86,31 +77,29 @@ The frozen participating-domain value remains exactly `G`.
 
 | Business Actor / Role | Responsibility | Authority Boundary |
 |---|---|---|
-| Infrastructure Administrator | Initiates and administers permitted infrastructure operations. | Must hold fine-grained permission in the relevant Tenant, institution, Campus, Building or Zone scope. |
-| Campus or Building Administrator | Manages infrastructure within assigned physical scope. | Cannot act outside assigned hierarchy scope. |
-| Facilities Manager / Operational Manager | Supplies operational context and consumes current physical facts. | Does not change canonical identity or bypass G10 rules. |
-| Auditor | Reviews immutable history and evidence. | Read-only; cannot mutate infrastructure. |
-| Consumer-domain actor | Requests or consumes an authorized infrastructure service. | Retains the consumer decision and cannot modify G10 aggregates directly. |
+| Infrastructure Administrator | Initiates Building registration and supplies the permitted Building information. | Must have Infrastructure Administration permission and comply with G10 registration rules. |
+| Campus Administrator | Administers the parent-campus scope where applicable. | Does not bypass Building or parent-lifecycle validation. |
+| Auditor | Reviews immutable Building registration history. | Read-only. |
 
-Roles are configurable access patterns in L2-G10. No universal named approver is inferred.
+These actors are explicitly present in the locked Building Registration workflow.
 
 ---
 
 # 7. Preconditions and Entry Criteria
 
-- The parent Physical Campus exists and is Operational for WF-INF-003.
-- The Building Code is unique within that Campus.
-- Required building metadata and policy configuration are available.
-- The requester holds scoped Infrastructure Registration permission.
-- Tenant and institution isolation are enforceable.
-- Authentication context is supplied externally and authorization succeeds before mutation.
-- Required audit and event infrastructure is available under enterprise policy.
+- The parent Physical Campus exists.
+- The parent Physical Campus is Operational for the detailed G10 Building Registration workflow.
+- The Building code is unique within the Physical Campus.
+- The required Building information is available.
+- Gross Area is greater than zero where supplied as required physical information.
+- Construction Year is not in the future where applicable.
+- The requester is authorized to register infrastructure within the parent-campus scope.
 
 ---
 
 # 8. Trigger
 
-A valid building must be represented within a Physical Campus
+A valid building must be represented within a Physical Campus.
 
 ---
 
@@ -118,14 +107,14 @@ A valid building must be represented within a Physical Campus
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Resolve the parent Physical Campus and requested Building context. | Infrastructure Management | Resolve the parent Physical Campus and requested Building context. |
-| 2 | Authorize the registration within the Campus scope. | Infrastructure Management | Authorize the registration within the Campus scope. |
-| 3 | Validate the parent lifecycle, Building Code, name, area and configured metadata. | Infrastructure Management | Validate the parent lifecycle, Building Code, name, area and configured metadata. |
-| 4 | Confirm the Building cannot exist independently and belongs to exactly one Campus. | Infrastructure Management | Confirm the Building cannot exist independently and belongs to exactly one Campus. |
-| 5 | Create the Building aggregate and assign immutable identity. | Infrastructure Management | Create the Building aggregate and assign immutable identity. |
-| 6 | Apply the configured initial lifecycle without allocating, reserving or activating downstream use. | Infrastructure Management | Apply the configured initial lifecycle without allocating, reserving or activating downstream use. |
-| 7 | Publish `BuildingCreated` after successful persistence. | Infrastructure Management | Publish `BuildingCreated` after successful persistence. |
-| 8 | Expose the Building Summary contract and preserve immutable registration evidence. | Infrastructure Management | Expose the Building Summary contract and preserve immutable registration evidence. |
+| 1 | Resolve the parent Physical Campus and verify its authoritative G10 identity. | Infrastructure Management | The Building has a canonical prospective parent. |
+| 2 | Validate that the parent Campus satisfies the Building Registration preconditions. | Infrastructure Management | Registration proceeds only under a valid parent. |
+| 3 | Validate Building code uniqueness and required Building information. | Infrastructure Management | Duplicate or invalid Building proposals are rejected. |
+| 4 | Enforce Building invariants, including exactly one parent Campus and applicable area/year constraints. | Infrastructure Management | Building integrity is preserved. |
+| 5 | Establish the Building aggregate and assign its immutable identity. | Infrastructure Management | A canonical Building exists beneath the Physical Campus. |
+| 6 | Apply only the source-defined initial non-operational lifecycle position. | Infrastructure Management | **Lifecycle wording remains ambiguous upstream; no local state is selected.** |
+| 7 | Preserve the Building registration evidence. | Infrastructure Management | The establishment is auditable. |
+| 8 | Publish the canonical Building registration event. | Infrastructure Management | **Blocked:** L2-G10 conflicts between `BuildingRegistered` and `BuildingCreated`. |
 
 ---
 
@@ -133,8 +122,8 @@ A valid building must be represented within a Physical Campus
 
 | Case | Condition | Alternate Business Path | Result / Outcome |
 |---|---|---|---|
-| 1 | The parent Campus is not Operational | reject the workflow-specific registration request. | Existing ownership and history remain intact. |
-| 2 | Optional building metadata is absent | apply only configuration-permitted defaults without inventing values. | Existing ownership and history remain intact. |
+| Parent Campus not Operational | The detailed Building workflow precondition is not met. | Reject or defer Building registration until the parent satisfies the authoritative precondition. | No invalid Building is established. |
+| Duplicate Building code | The proposed code already exists within the Campus. | Reject the registration and require a valid unique code. | Existing canonical Building records remain unchanged. |
 
 ---
 
@@ -142,14 +131,10 @@ A valid building must be represented within a Physical Campus
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, institution or resource scope cannot be resolved | reject the request without creating a cross-scope fact. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Authorization fails | terminate before business mutation. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Hierarchy, lifecycle, configuration or policy validation fails | retain the prior authoritative state. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| A uniqueness, capacity, availability or relationship invariant fails | reject the requested result. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Audit evidence cannot be recorded | do not complete the business transition. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| The success-event condition is not satisfied | do not publish the success event. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-
-No technical retry, rollback, database transaction or messaging implementation is specified at L3.
+| Parent Physical Campus is missing or invalid. | The Building cannot exist canonically. | Establish or correct the parent under G10 before a later registration attempt. | Infrastructure Management |
+| Building invariant fails. | The proposed Building is invalid. | Reject the registration and preserve existing infrastructure unchanged. | Infrastructure Management |
+| Required registration event is ambiguous. | Mandatory event integrity cannot be preserved. | Do not choose or invent an event; require upstream architecture resolution. | Infrastructure Management / architecture governance |
+| Initial lifecycle wording is contradictory. | Exact initial state cannot be asserted safely. | Record the Building as established but do not assign a locally inferred lifecycle state in L3. | Infrastructure Management / architecture governance |
 
 ---
 
@@ -157,51 +142,31 @@ No technical retry, rollback, database transaction or messaging implementation i
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Infrastructure Management is the canonical owner of physical infrastructure facts. | Infrastructure Management | Consumers reference G10 facts and never duplicate or directly modify aggregates. | L2-G10 §§2, 5, 9, 44A |
-| Every Building belongs to one Campus; every Floor to one Building; every Space to one Floor. | Infrastructure Management | Invalid or circular physical relationships are rejected. | L2-G10 §§8, 18, 47 |
-| Aggregate identity is immutable and infrastructure is never physically deleted. | Infrastructure Management | Changes preserve identifiers and historical references. | L2-G10 §§13, 47, 48A |
-| Authorization precedes business validation. | Authorization & Policy; Infrastructure Management | Unauthorized requests terminate before mutation. | L2-G10 §48A.207 |
-| Business validation precedes persistence, and events describe completed facts. | Infrastructure Management; Event Infrastructure | Failed work cannot publish a success event. | L2-G10 §§22A.99, 44A.179 |
-| Every successful state or significant attribute change is auditable. | Infrastructure Management; Audit Infrastructure | Actor, prior value, new value, reason and correlation are preserved. | L2-G10 §§48A.208–210, 49 |
-| Archived infrastructure is immutable. | Infrastructure Management | No scenario may update an Archived aggregate. | L2-G10 §§11A, 47 |
-| Capacity cannot be negative and reservation conflicts are prevented unless an authorized override is permitted. | Infrastructure Management | Invalid capacity or conflicting reservations are rejected. | L2-G10 §§24, 26, 47 |
+| A Building belongs to exactly one Physical Campus and cannot exist independently. | Infrastructure Management | Parent relationship is mandatory and exclusive. | L2-G10 §§8.2, 13A.65; WF-INF-003 |
+| Building Code is unique within Campus. | Infrastructure Management | Duplicate Building registration is rejected. | L2-G10 §8.2; Building Registration workflow |
+| Gross Area must be greater than zero and Construction Year cannot be in the future. | Infrastructure Management | Invalid physical metadata prevents establishment. | L2-G10 §8.2 |
+| Aggregate identity is immutable. | Infrastructure Management | The Building retains one canonical identity after creation. | L2-G10 §§8, 13A.64 |
+| Every successful workflow publishes at least one canonical event. | Infrastructure Management | Building establishment cannot be canonically complete while the event name conflicts. | L2-G10 §22A.99 |
 
 ---
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Position | Canonical Owner |
-|---|---|---|---|---|
-| `Building` | Valid trigger and authorized context | Executes only the scenario-specific creation, association or governed attribute change. | No Building → configured initial lifecycle; summary registration states Draft | Infrastructure Management, except the B03 reference retained by Institution & Structure |
-| Parent physical hierarchy | Existing and valid where applicable | Referenced and validated; not silently re-parented. | Unchanged unless the frozen outcome explicitly creates the child relationship. | Infrastructure Management |
-| Tenant and Institution | Existing | Supply isolation and institutional reference. | Unchanged. | Platform Foundation; Institution & Structure |
-| Consumer-domain records | Existing or absent | Consume the completed authoritative fact. | Unchanged by G10. | Applicable consumer domain |
-| Audit history | Existing | Appends immutable evidence. | Historical trace grows; prior records remain unchanged. | Audit Infrastructure |
+Building owns its lifecycle under G10. Registration establishes a Building but does not make it Operational automatically.
 
-L2-G10 requires lifecycle and operational availability to remain distinct. “Activation” in a frozen outcome is not treated as a new lifecycle state unless L2-G10 defines it.
+L2-G10 conflicts on the exact initial position: its registration summary says newly registered infrastructure starts in `Draft`, while the detailed Building workflow says initial lifecycle follows configured defaults and the canonical lifecycle begins with `Proposed`. This Draft does not choose among those locked alternatives.
 
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Event Treatment
+## 14.1 Published / Consumed Business Events
 
-| Event / Required Fact | Publication Condition | Publisher and Consumer Treatment |
-|---|---|---|
-| `BuildingCreated` | Only after the corresponding aggregate creation or governed update has persisted successfully. | The affected G10 aggregate publishes the source-defined completed fact; consumers react without changing G10 ownership. |
+L2-G10 §44 names the registration event `BuildingRegistered`. WF-INF-003, the workflow-event summary, §44A structural-event catalogue and detailed Building workflow use `BuildingCreated`. Since both describe the completed Building registration fact and successful workflows must publish an exact canonical event, L3 cannot select one locally.
 
-Where Section 44 and the detailed WF-INF catalogue use different names, this Draft records the inconsistency in Section 17 and does not publish both names for one transition.
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-## 14.2 Synchronous Business Contracts and Hand-offs
-
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
-|---|---|---|---|
-| Physical Campus Summary | Infrastructure Management | Institution & Structure and authorized consumers | Canonical physical Campus identity, lifecycle and operational status. |
-| Building, Floor and Space Summary | Infrastructure Management | Operational domains | Canonical hierarchy, classification, capacity, lifecycle and current status. |
-| Capacity Profile | Infrastructure Management | Academic, Examination and operational consumers | Canonical capacity facts; consumers own utilization decisions. |
-| Retrieve Availability | Infrastructure Management | Authorized consumers | Current operational availability independently from lifecycle. |
-| Reservation service | Infrastructure Management | Authorized requestor | Governed reservation establishment, modification or retrieval. |
-| Audit input | Infrastructure Management | Audit Infrastructure | Actor, scope, transition, prior/new values, reason and correlation evidence. |
+After canonical establishment, G10's Building Summary contract exposes Building identity, code, name, parent Campus, Building type, lifecycle and operational status to authorized consumers. Consumption does not transfer ownership.
 
 ---
 
@@ -209,56 +174,45 @@ Where Section 44 and the detailed WF-INF catalogue use different names, this Dra
 
 ## 15.1 Authorization
 
-- Authentication is external to G10.
-- Fine-grained permission is evaluated by Tenant, institution and physical-resource scope before validation.
-- Consumer access does not grant direct aggregate mutation.
-- Authorization success does not waive hierarchy, lifecycle, capacity, availability or policy rules.
+The requester must possess the source-defined Infrastructure Administration permission within the relevant scope.
 
 ## 15.2 Approval and Separation of Duty
 
-- L2-G10 allows configurable approval for some creation, lifecycle, override and administrative operations.
-- The scenario uses approval only where active policy requires it.
-- No unnamed approver or technical workflow routing is invented.
-- Governance approval supplements business validation and never replaces it.
+No universal Building-registration approver or separation-of-duty requirement is defined. Configured approval is applied only where authoritative policy requires it.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The audit record must preserve Tenant, institution, aggregate type and identifier, actor, authorization scope, previous values, new values, effective dates where applicable, business reason, approval reference where required, event facts and correlation identifier. Audit history is immutable and independently retained.
+Registration evidence must preserve the parent Physical Campus reference, Building identity, Building code, validated metadata, actor, authorization result, approval reference where applicable, and completed registration fact.
 
 ---
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete only when:
+The frozen outcome is complete only when:
 
-- resolve the parent Physical Campus and requested Building context.
-- authorize the registration within the Campus scope.
-- validate the parent lifecycle, Building Code, name, area and configured metadata.
-- confirm the Building cannot exist independently and belongs to exactly one Campus.
-- create the Building aggregate and assign immutable identity.
-- apply the configured initial lifecycle without allocating, reserving or activating downstream use.
-- publish `BuildingCreated` after successful persistence.
-- expose the Building Summary contract and preserve immutable registration evidence.
-- no institutional, academic or consumer-domain ownership has transferred to G10;
-- no unauthorized or partial result is treated as successful; and
-- all required audit evidence is immutable and queryable.
+- the parent Physical Campus is valid under the registration preconditions;
+- the Building satisfies all registration invariants;
+- one canonical Building identity is established beneath exactly one Physical Campus;
+- registration evidence is preserved; and
+- the exact canonical Building registration event is resolved upstream and published by G10.
 
-Postconditions:
-
-- Canonical G10 identity and historical integrity are preserved.
-- The current authoritative fact is available through governed contracts.
-- Consumers may react under their own rules but cannot rewrite the source fact.
-- Failed or incomplete transitions publish no success event.
+The current locked source fails the final condition.
 
 ---
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-**Architecture assessment:** `PASS WITH ISSUES`
-
 | ID | Severity | Issue / Deferred Question | Required Resolution |
 |---|---|---|---|
-| G-282-ISSUE-01 | Non-blocking | L2-G10 Section 44 names `BuildingRegistered`, while WF-INF-003 and the detailed event catalogue name `BuildingCreated`. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
-| G-282-ISSUE-02 | Non-blocking | The summary registration workflow states initial `Draft`, while WF-INF-003 says the initial lifecycle follows configured defaults. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
+| G-282-BLOCKER-01 | Blocking | L2-G10 defines the mandatory Building registration event as `BuildingRegistered` in §44 but as `BuildingCreated` in WF-INF-003, workflow event summaries, §44A and the detailed Building workflow. | Architecture governance must define one canonical event name while retaining G10 as publisher. |
+| G-282-ISSUE-02 | Non-blocking | L2-G10 conflicts on the initial registration lifecycle position (`Draft`, configured default, or the canonical lifecycle beginning at `Proposed`). | Align registration and lifecycle wording upstream before downstream specification depends on the exact initial state. |
 
-No unsupported aggregate, lifecycle state, transition, event, publisher, actor, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
+**Source Assessment:** **BLOCKED**
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No additional deferred questions.

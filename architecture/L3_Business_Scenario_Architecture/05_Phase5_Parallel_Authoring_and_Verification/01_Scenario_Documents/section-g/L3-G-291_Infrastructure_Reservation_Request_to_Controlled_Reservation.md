@@ -11,23 +11,17 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows where institutional ownership is referenced; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized infrastructure consumers across academic, examination, facilities, safety, workforce, analytics and institutional operations
-
----
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-D03 — Timetable Workflows; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Referenced By:** None yet
 
 # 2. Scenario Purpose
 
-Establish one governed Reservation for an operational, available and sufficiently capable resource after authorization, conflict, capacity, period and policy validation.
-
----
+Establish a governed G10 Infrastructure Reservation for an authorized operational requirement while preserving Academic Delivery ownership of its scheduling process and Platform Foundation ownership of authorization, event governance and audit evidence.
 
 # 3. Business Outcome
 
-A valid Reservation is established for the applicable resource and period
-
----
+A valid Reservation is established for the applicable resource and period.
 
 # 4. Scenario Boundary and Scope
 
@@ -37,225 +31,158 @@ The scenario begins when an authorised consumer requests reservation of availabl
 
 ## 4.2 End Boundary
 
-The scenario ends when the exact frozen outcome is established under G10 ownership, the current authoritative physical fact is available through governed contracts, required events have been published only after successful persistence, and immutable audit history is preserved.
+The scenario ends when G10 has established a valid Reservation for the applicable resource and period and published `InfrastructureReservationCreated`.
 
 ## 4.3 In Scope
 
-- Resolution of Tenant, institution, resource and physical hierarchy context.
-- Scoped authorization before business validation.
-- Validation of G10 identity, hierarchy, lifecycle, capacity, availability, configuration and relationship rules as applicable.
-- The `Reservation` business responsibility.
-- Preservation of immutable identifiers and prior historical values.
-- Publication of only source-defined completed business facts.
-- Governed read contracts for authorized consumers.
-- Complete audit evidence.
+- Authorized reservation request.
+- Resource availability, capacity, period, conflict and reservation-policy validation.
+- Creation of the canonical G10 Reservation.
+- Recurring-reservation validation where applicable.
+- Canonical reservation event publication and auditability.
 
 ## 4.4 Out of Scope
 
-- Institutional identity or InstitutionalCampus ownership retained by B03.
-- Academic scheduling, examination conduct, facilities-maintenance execution or consumer-specific decisions.
-- Authentication, technical RBAC, database, API, UI, queue or implementation design.
-- Physical deletion of infrastructure or historical records.
-- Inventing lifecycle states, commands, events, publishers, approval actors or cross-domain contracts absent from L2.
-
-## 4.5 Related Scenarios
-
-| Relationship | Related Scenario | Boundary Reason |
-|---|---|---|
-| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes the canonical Physical Campus root. |
-| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | Governs the Campus–Building–Floor–Space hierarchy. |
-| Related | L3-G-289 — Infrastructure Availability Definition to Availability Profile Activation | Establishes authoritative resource availability. |
-| Related | L3-G-291 — Infrastructure Reservation Request to Controlled Reservation | Consumes availability and capacity without owning either fact. |
-
----
+- Timetable creation, publication or revision.
+- D03's timetable-root `Resource Reservation` record as a substitute for the G10 Reservation.
+- Reservation modification or cancellation.
+- Transfer of physical-infrastructure ownership.
+- Any implementation design.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Primary owner of physical identity, hierarchy, lifecycle, capacity, availability, classification, relationships and infrastructure master facts. |
-| Institution & Structure / Section B, where frozen | Owns Institution and InstitutionalCampus identity; supplies references without owning physical aggregates. |
-| Platform Foundation / Section A, where frozen | Supplies Tenant isolation, configuration, authorization, event and audit capabilities without owning infrastructure facts. |
-| Academic Delivery / Section D, where frozen | Consumes authoritative capacity, availability or reservation outcomes and retains its academic decisions. |
+| Infrastructure Management / G | Owns the canonical temporary Infrastructure Reservation and its reservation rules. |
+| Platform Foundation / A | Supplies authorization, event governance and audit capabilities without owning the Reservation. |
+| Academic Delivery / D | May originate/consume an academic infrastructure requirement and retains ownership of timetable decisions. |
 
-The frozen participating-domain value remains exactly `G, A, D`.
-
----
+D03's root-owned `Resource Reservation` record belongs to the Timetable aggregate; it does not replace or re-own the G10 `Reservation` aggregate governing temporary use of physical infrastructure.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Authority Boundary |
+| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Initiates and administers permitted infrastructure operations. | Must hold fine-grained permission in the relevant Tenant, institution, Campus, Building or Zone scope. |
-| Campus or Building Administrator | Manages infrastructure within assigned physical scope. | Cannot act outside assigned hierarchy scope. |
-| Facilities Manager / Operational Manager | Supplies operational context and consumes current physical facts. | Does not change canonical identity or bypass G10 rules. |
-| Auditor | Reviews immutable history and evidence. | Read-only; cannot mutate infrastructure. |
-| Consumer-domain actor | Requests or consumes an authorized infrastructure service. | Retains the consumer decision and cannot modify G10 aggregates directly. |
+| Infrastructure Administrator | Administers G10 reservation governance. | Establishes the Reservation only after source-defined validations and authorization. |
+| Infrastructure Coordinator | Represents D03's infrastructure scheduling concern. | Verifies room availability and validates infrastructure allocation within D03; does not own the G10 Reservation. |
 
-Roles are configurable access patterns in L2-G10. No universal named approver is inferred.
-
----
+L2-G10 does not define one universal named requester role for every reservation source.
 
 # 7. Preconditions and Entry Criteria
 
-- The resource exists, is operational and is available for the requested period.
-- Capacity is sufficient and the reservation period is valid.
-- The consumer is authorized and the reservation source and purpose are permitted.
-- No conflicting reservation exists unless an authorized override is explicitly permitted.
-- Tenant and institution isolation are enforceable.
-- Authentication context is supplied externally and authorization succeeds before mutation.
-- Required audit and event infrastructure is available under enterprise policy.
-
----
+- The physical resource is operational and available for the requested period.
+- Capacity is sufficient.
+- The requested period and reservation purpose are valid.
+- No conflicting reservation exists unless a source-supported authorized override applies.
+- The reservation action is authorized.
 
 # 8. Trigger
 
-An authorised consumer requests reservation of available infrastructure
-
----
+An authorised consumer requests reservation of available infrastructure.
 
 # 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Receive the request with resource, period, purpose, participant and source context. | Infrastructure Management | Receive the request with resource, period, purpose, participant and source context. |
-| 2 | Authorize the request within Tenant, institution and resource scope. | Infrastructure Management | Authorize the request within Tenant, institution and resource scope. |
-| 3 | Validate resource lifecycle, availability, capacity and operational capability. | Infrastructure Management | Validate resource lifecycle, availability, capacity and operational capability. |
-| 4 | Detect overlapping or recurring conflicts for the requested period. | Infrastructure Management | Detect overlapping or recurring conflicts for the requested period. |
-| 5 | Evaluate reservation policy and any explicitly authorized override. | Infrastructure Management | Evaluate reservation policy and any explicitly authorized override. |
-| 6 | Create the Reservation with immutable identity and governed period. | Infrastructure Management | Create the Reservation with immutable identity and governed period. |
-| 7 | Confirm the valid reservation and update authoritative reservation availability. | Infrastructure Management | Confirm the valid reservation and update authoritative reservation availability. |
-| 8 | Publish `InfrastructureReservationCreated` and preserve complete audit evidence. | Infrastructure Management | Publish `InfrastructureReservationCreated` and preserve complete audit evidence. |
-
----
+| 1 | Provide the authorized operational requirement for a physical resource and period. | Authorized consumer; Academic Delivery where applicable | A reservation request enters G10 without transferring the consumer's process ownership. |
+| 2 | Validate resource availability, capacity, period, conflicts and reservation policy. | Infrastructure Management | The requested reservation is eligible or rejected under G10 rules. |
+| 3 | Apply any source-supported recurring pattern or authorized conflict override. | Infrastructure Management | The governed reservation conditions are complete. |
+| 4 | Establish the G10 Reservation for the applicable resource and period. | Infrastructure Management | The frozen business outcome is achieved. |
+| 5 | Publish `InfrastructureReservationCreated`. | Infrastructure Management | The completed reservation fact is available for authorized consumers and audit evidence. |
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| 1 | A recurring reservation is requested | validate frequency, effective dates and exception dates for every occurrence. | Existing ownership and history remain intact. |
-| 2 | A conflict exists | reject the request unless an authorized administrative override is permitted and recorded. | Existing ownership and history remain intact. |
-
----
+| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
+|---|---|---|---|---|
+| Recurring reservation | A recurring pattern is requested. | Validate frequency, effective dates and exception dates under reservation policy. | A governed recurring Reservation may be established. | Infrastructure Management |
+| Authorized conflict override | A conflict exists and G10 policy permits an authorized override. | Apply only the source-supported override path. | Reservation may proceed without transferring ownership. | Infrastructure Management |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, institution or resource scope cannot be resolved | reject the request without creating a cross-scope fact. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Authorization fails | terminate before business mutation. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Hierarchy, lifecycle, configuration or policy validation fails | retain the prior authoritative state. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| A uniqueness, capacity, availability or relationship invariant fails | reject the requested result. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Audit evidence cannot be recorded | do not complete the business transition. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| The success-event condition is not satisfied | do not publish the success event. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-
-No technical retry, rollback, database transaction or messaging implementation is specified at L3.
-
----
+| Space is unavailable, not operational, insufficient in capacity, or conflicts with another reservation. | No valid Reservation is established. | Correct the business condition or choose another permitted resource/period before a later request. | Infrastructure Management |
+| Reservation policy or authorization fails. | The request is rejected. | A later request may proceed only when the governing condition is satisfied. | Infrastructure Management / Platform Foundation |
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Infrastructure Management is the canonical owner of physical infrastructure facts. | Infrastructure Management | Consumers reference G10 facts and never duplicate or directly modify aggregates. | L2-G10 §§2, 5, 9, 44A |
-| Every Building belongs to one Campus; every Floor to one Building; every Space to one Floor. | Infrastructure Management | Invalid or circular physical relationships are rejected. | L2-G10 §§8, 18, 47 |
-| Aggregate identity is immutable and infrastructure is never physically deleted. | Infrastructure Management | Changes preserve identifiers and historical references. | L2-G10 §§13, 47, 48A |
-| Authorization precedes business validation. | Authorization & Policy; Infrastructure Management | Unauthorized requests terminate before mutation. | L2-G10 §48A.207 |
-| Business validation precedes persistence, and events describe completed facts. | Infrastructure Management; Event Infrastructure | Failed work cannot publish a success event. | L2-G10 §§22A.99, 44A.179 |
-| Every successful state or significant attribute change is auditable. | Infrastructure Management; Audit Infrastructure | Actor, prior value, new value, reason and correlation are preserved. | L2-G10 §§48A.208–210, 49 |
-| Archived infrastructure is immutable. | Infrastructure Management | No scenario may update an Archived aggregate. | L2-G10 §§11A, 47 |
-| Capacity cannot be negative and reservation conflicts are prevented unless an authorized override is permitted. | Infrastructure Management | Invalid capacity or conflicting reservations are rejected. | L2-G10 §§24, 26, 47 |
-
----
+| Infrastructure Management owns temporary reservation governance. | Infrastructure Management | Consumer domains request/consume reservations but do not own the G10 Reservation. | L2-G10 §26 |
+| A reservation requires operational and available space, sufficient capacity, valid period, no conflict and satisfied policy. | Infrastructure Management | Failure of any required validation prevents establishment. | L2-G10 §26 Reservation Validation |
+| Conflicting reservations are rejected unless an authorized administrator override is permitted. | Infrastructure Management | Conflict cannot be silently ignored. | L2-G10 §26 |
+| D03 owns timetable scheduling and its root-owned Resource Reservation record while consuming G10 physical resources. | Academic Delivery | D03's internal scheduling record does not transfer G10 Reservation ownership. | L2-D03 §§2.7, 17; G10 §26 |
+| `InfrastructureReservationCreated` is the canonical successful-reservation event. | Infrastructure Management | L3 uses the exact source event name. | L2-G10 Reservation Events |
+| Authorization is mandatory before the business operation proceeds. | Platform Foundation — Authorization | Unauthorized requests cannot establish a Reservation. | L2-A04 AP-01 |
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Position | Canonical Owner |
-|---|---|---|---|---|
-| `Reservation` | Valid trigger and authorized context | Executes only the scenario-specific creation, association or governed attribute change. | Requested → Confirmed; later Active → Completed → Archived states remain outside initial establishment | Infrastructure Management, except the B03 reference retained by Institution & Structure |
-| Parent physical hierarchy | Existing and valid where applicable | Referenced and validated; not silently re-parented. | Unchanged unless the frozen outcome explicitly creates the child relationship. | Infrastructure Management |
-| Tenant and Institution | Existing | Supply isolation and institutional reference. | Unchanged. | Platform Foundation; Institution & Structure |
-| Consumer-domain records | Existing or absent | Consume the completed authoritative fact. | Unchanged by G10. | Applicable consumer domain |
-| Audit history | Existing | Appends immutable evidence. | Historical trace grows; prior records remain unchanged. | Audit Infrastructure |
+The G10 Reservation lifecycle is `Requested → Confirmed → Active → Completed → Archived`. The frozen outcome requires establishment of a valid Reservation but does not require L3 to invent a transition beyond the source-supported establishment semantics.
 
-L2-G10 requires lifecycle and operational availability to remain distinct. “Activation” in a frozen outcome is not treated as a new lifecycle state unless L2-G10 defines it.
-
----
+| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
+|---|---|---|---|---|---|
+| Reservation | Reservation request | Establishes a valid G10 Reservation | Source-defined confirmed/established reservation position; later lifecycle remains outside this scenario | Infrastructure Management | L2-G10 Reservation lifecycle; §26 |
+| Timetable | Existing or absent D03 scheduling context | Supplies/consumes infrastructure requirement only | No D03 transition is caused by G10 establishment alone | Academic Delivery | L2-D03 |
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Event Treatment
+## 14.1 Published / Consumed Business Events
 
-| Event / Required Fact | Publication Condition | Publisher and Consumer Treatment |
-|---|---|---|
-| `InfrastructureReservationCreated` | Only after the corresponding aggregate creation or governed update has persisted successfully. | The affected G10 aggregate publishes the source-defined completed fact; consumers react without changing G10 ownership. |
+| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
+|---|---|---|---|---|
+| `InfrastructureReservationCreated` | Infrastructure Management | Authorized consumers, including Academic Delivery where relevant | States that the canonical Infrastructure Reservation was successfully established. | L2-G10 Reservation Events |
 
-Where Section 44 and the detailed WF-INF catalogue use different names, this Draft records the inconsistency in Section 17 and does not publish both names for one transition.
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-## 14.2 Synchronous Business Contracts and Hand-offs
-
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
-|---|---|---|---|
-| Physical Campus Summary | Infrastructure Management | Institution & Structure and authorized consumers | Canonical physical Campus identity, lifecycle and operational status. |
-| Building, Floor and Space Summary | Infrastructure Management | Operational domains | Canonical hierarchy, classification, capacity, lifecycle and current status. |
-| Capacity Profile | Infrastructure Management | Academic, Examination and operational consumers | Canonical capacity facts; consumers own utilization decisions. |
-| Retrieve Availability | Infrastructure Management | Authorized consumers | Current operational availability independently from lifecycle. |
-| Reservation service | Infrastructure Management | Authorized requestor | Governed reservation establishment, modification or retrieval. |
-| Audit input | Infrastructure Management | Audit Infrastructure | Actor, scope, transition, prior/new values, reason and correlation evidence. |
-
----
+| Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
+|---|---|---|---|---|
+| Academic Delivery / authorized consumer | Infrastructure Management | Authorized operational resource-and-period requirement | Requests temporary use without transferring process ownership. | Frozen semantics; L2-D03 |
+| Infrastructure Management | Academic Delivery / authorized consumer | Confirmed Infrastructure Reservation fact | Provides the authoritative temporary reservation result. | L2-G10 §26 |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-- Authentication is external to G10.
-- Fine-grained permission is evaluated by Tenant, institution and physical-resource scope before validation.
-- Consumer access does not grant direct aggregate mutation.
-- Authorization success does not waive hierarchy, lifecycle, capacity, availability or policy rules.
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| Establish Infrastructure Reservation | Infrastructure Administrator | G10 reservation rules and the authorization decision must permit establishment. | Infrastructure Management |
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-- L2-G10 allows configurable approval for some creation, lifecycle, override and administrative operations.
-- The scenario uses approval only where active policy requires it.
-- No unnamed approver or technical workflow routing is invented.
-- Governance approval supplements business validation and never replaces it.
+No universal separation-of-duty rule is defined for ordinary reservation establishment. A conflict override is permitted only where G10 explicitly allows an authorized administrative override.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The audit record must preserve Tenant, institution, aggregate type and identifier, actor, authorization scope, previous values, new values, effective dates where applicable, business reason, approval reference where required, event facts and correlation identifier. Audit history is immutable and independently retained.
-
----
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Preserve reservation establishment | The canonical Reservation, resource, period and source-supported reservation conditions remain traceable. | Infrastructure Management |
+| Preserve immutable audit evidence | Audit evidence derived from `InfrastructureReservationCreated`. | Platform Foundation — Audit |
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete only when:
+## 16.1 Completion Criteria
 
-- receive the request with resource, period, purpose, participant and source context.
-- authorize the request within Tenant, institution and resource scope.
-- validate resource lifecycle, availability, capacity and operational capability.
-- detect overlapping or recurring conflicts for the requested period.
-- evaluate reservation policy and any explicitly authorized override.
-- create the Reservation with immutable identity and governed period.
-- confirm the valid reservation and update authoritative reservation availability.
-- publish `InfrastructureReservationCreated` and preserve complete audit evidence.
-- no institutional, academic or consumer-domain ownership has transferred to G10;
-- no unauthorized or partial result is treated as successful; and
-- all required audit evidence is immutable and queryable.
+- A valid G10 Reservation exists for the applicable resource and period.
+- Required availability, capacity, conflict and policy validations were satisfied.
+- `InfrastructureReservationCreated` is published by Infrastructure Management.
 
-Postconditions:
+## 16.2 Postconditions
 
-- Canonical G10 identity and historical integrity are preserved.
-- The current authoritative fact is available through governed contracts.
-- Consumers may react under their own rules but cannot rewrite the source fact.
-- Failed or incomplete transitions publish no success event.
-
----
+- Authorized consumers may rely on the Reservation under G10 ownership.
+- D03 retains ownership of its own timetable and scheduling records.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-**Architecture assessment:** `PASS`
+## 17.1 Open Issues
 
-No source gap prevents this scenario from proceeding to Architecture Approval. The owning aggregate, governing workflow, lifecycle meaning, service and event required for the frozen outcome are sufficiently defined.
+No open issues.
 
-No unsupported aggregate, lifecycle state, transition, event, publisher, actor, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
+**Source Assessment:** **PASS**
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No scenario-specific deferred questions.

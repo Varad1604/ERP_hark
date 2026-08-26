@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-G07 — Security Operations Workflows; L2-A04 — Authorization & Policy Workflows  
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-G07 — Security Operations Workflows; L2-A04 — Authorization & Policy Workflows; L2-A07 — Audit Infrastructure Workflows  
 **Referenced By:** Authorized consumers requiring canonical physical-area security classification
 
 # 2. Scenario Purpose
 
-Establish an authorized security classification for physical Infrastructure under G10 ownership while keeping operational security workflows and access-control behaviour outside the classification outcome.
+Establish an authorized physical-Infrastructure security classification under G10 ownership without transferring operational security ownership from G07.
 
 # 3. Business Outcome
 
@@ -26,61 +26,42 @@ The authorised security classification is established without transferring opera
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
-
-The scenario begins when a physical infrastructure resource requires a security classification.
+The scenario starts when a physical infrastructure resource requires a security classification.
 
 ## 4.2 End Boundary
-
-The scenario ends when the requested physical-area security classification has passed authorization and policy validation and the authorized classification is established in G10 without creating or changing G07 operational security workflows.
+The scenario ends when authorization/policy validation succeeds and the permitted physical security classification is established in G10.
 
 ## 4.3 In Scope
-
-- Identification of the physical Infrastructure requiring classification.
-- Authorization and policy validation for the classification action.
-- Selection of a source-supported/configured physical security classification.
-- Establishment of the classification against the canonical Infrastructure fact.
-- Preservation of the boundary between physical classification and operational security/access control.
+Physical target resolution; classification validation; authorized classification establishment; G07 boundary preservation.
 
 ## 4.4 Out of Scope
-
-- Gate operations, visitor management, patrols, incident response or emergency security coordination.
-- Operational access-control execution.
-- Security personnel management.
-- Creation of a new security-classification lifecycle or event not defined upstream.
-- Transfer of physical Infrastructure ownership to G07.
-
-## 4.5 Related Scenarios — Optional
-
-| Relationship | Related Scenario | Reason |
-|---|---|---|
-| Related | L3-G-286 — Space Classification to Controlled Physical Classification | Covers general physical classification separate from the security-specific outcome. |
-| Related | L3-G-299 — Administrative Infrastructure Change to Governed Update | Generic authorized Infrastructure changes remain separately governed. |
+Gate, visitor, patrol, incident or emergency security operations; operational access-control execution; invented classification lifecycle/event.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Owns physical Infrastructure and the physical security classification recorded against it. |
-| Platform Foundation / Section A | Owns authorization and policy-evaluation capability required before the classification change. |
+| G10 | Owns physical Infrastructure and its physical security classification. |
+| Section A | Owns authorization/policy and audit capability. |
 
-G07 Security Operations is a source boundary reference, not a frozen participating domain in this scenario. It retains operational campus-security workflows and does not own this G10 physical classification outcome.
+G07 remains the source-owned operational security domain but is not a frozen participating domain in this scenario.
 
 # 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Initiates or applies an authorized physical security classification. | Must act within authorized Infrastructure scope. |
-| Infrastructure Manager | Reviews the proposed classification against G10 physical context and policy. | Does not own G07 operational security. |
-| Auditor | Reviews classification history and evidence. | Read-only participation. |
+| Infrastructure Administrator | Initiates/applies an authorized physical security classification. | G10 administrative responsibility. |
+| Infrastructure Manager | Reviews classification against physical context/policy. | G10 responsibility. |
+| Auditor | Reviews evidence/history. | Read-only evidence role. |
 
-No dedicated “Security Classifier” role is defined by the reviewed G10 source; none is invented.
+No Security Classifier role is invented.
 
 # 7. Preconditions and Entry Criteria
 
 - The physical Infrastructure exists under G10 ownership.
-- A security classification requirement has been identified.
-- The requested classification is permitted by institutional configuration/policy.
-- The classification action is authorized.
+- A classification requirement exists.
+- The requested classification is permitted by applicable configuration/policy.
+- The operation is authorized.
 
 # 8. Trigger
 
@@ -90,54 +71,47 @@ A physical infrastructure resource requires a security classification
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Identify the authoritative physical Infrastructure requiring security classification. | Infrastructure Management | The classification target is established. |
-| 2 | Validate authorization for the classification action. | Infrastructure Management using Section A authorization | Unauthorized classification does not proceed. |
-| 3 | Validate the requested classification against applicable Infrastructure policy/configuration. | Infrastructure Management / Section A policy capability | Unsupported classification is not applied. |
-| 4 | Establish the authorized security classification against the physical Infrastructure. | Infrastructure Management | The canonical physical classification is updated. |
-| 5 | Preserve the explicit boundary that this classification does not replace G07 operational access control or security workflows. | Infrastructure Management | Operational security ownership remains unchanged. |
+| 1 | Resolve canonical physical Infrastructure. | G10 | Classification target is fixed. |
+| 2 | Validate authorization and policy. | G10 / Section A | Unauthorized/unsupported classification is prevented. |
+| 3 | Establish the permitted physical security classification. | G10 | Canonical classification is updated. |
+| 4 | Preserve G07 operational-security boundary. | G10 | No operational security workflow is re-owned. |
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| Requested classification is not configured | The requested classification is not permitted by institutional configuration. | Do not create a local classification; resolve configuration/policy through its canonical governance path. | No unsupported classification is stored. | Infrastructure Management / Platform Foundation |
-| Operational security action is also required | Classification implies a separate gate/access/patrol/incident response need. | Complete this physical classification outcome and use the separately owned G07 operational workflow for the operational action. | Physical and operational security ownership remain distinct. | Infrastructure Management / G07 Security Operations |
+| Case | Condition | Alternate Business Path | Result / Outcome |
+|---|---|---|---|
+| Classification not configured | Requested value is not permitted. | Do not create a local value; use canonical configuration governance. | Existing fact remains. |
+| Operational security action also required | Classification implies a separate operational need. | Use G07-owned workflow separately. | Ownership remains separated. |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Authorization fails | Classification cannot be established. | Preserve the existing classification and obtain a later valid authorization if appropriate. | Platform Foundation / Infrastructure Management |
-| Policy/configuration validation fails | Requested classification cannot be accepted. | Correct the request or use a separately governed configuration change; do not invent a classification. | Infrastructure Management |
-| Requested action attempts to change operational security behaviour directly | Scenario boundary would be violated. | Keep the G10 classification outcome separate and use G07's canonical operational workflow. | Infrastructure Management / G07 Security Operations |
+| Authorization/policy fails | Classification cannot proceed. | Preserve existing classification. | Section A / G10 |
+| Request attempts to modify operational security directly | Scenario boundary would be violated. | Use G07 canonical workflow for that action. | G07 |
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| G10 may classify physical areas according to security requirements. | Infrastructure Management | Physical security classification is a G10 fact. | L2-G10 §38 |
-| Security classification workflow requires Authorization Validation and Policy Validation before update. | Infrastructure Management / Platform Foundation | Classification cannot bypass those checks. | L2-G10 §38 |
-| Security classification shall not replace operational access control owned by Security. | Infrastructure Management / G07 Security Operations | Classification does not transfer operational security ownership. | L2-G10 §38; L2-G07 §§1–5 |
-| G07 owns gate, visitor, patrol, incident and emergency security operations. | G07 Security Operations | Operational reactions remain outside this scenario. | L2-G07 §§1–5, 12 |
-| Every business operation shall be authorized before execution. | Platform Foundation — Authorization | Unauthorized classification does not proceed. | L2-A04 AP-01 |
+| G10 may classify physical areas according to security requirements. | G10 | Classification is a G10 physical fact. | L2-G10 §38 |
+| Security classification requires Authorization Validation and Policy Validation. | G10 / A | Checks cannot be bypassed. | L2-G10 §38; L2-A04 |
+| Classification does not replace G07 operational access/security workflows. | G10 / G07 | Operational ownership remains G07. | L2-G10 §38; L2-G07 |
 
 # 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Physical Infrastructure security classification | Existing classification or no established classification as allowed by configuration | Authorized classification is established/updated. | Current G10 security classification reflects the authorized value. | Infrastructure Management | L2-G10 §38 |
-| Physical Infrastructure lifecycle | Existing source-defined state | No lifecycle transition is implied merely by classification. | Unchanged unless a separate G10 lifecycle/availability action is required. | Infrastructure Management | L2-G10 lifecycle |
-| G07 operational security aggregates | Existing source-defined states | No mutation by this scenario. | Unchanged. | G07 Security Operations | L2-G07 |
+| Physical Infrastructure security classification | Existing/no established classification as permitted | Authorized classification is established/updated. | Current permitted classification. | G10 | L2-G10 §38 |
+| Physical Infrastructure lifecycle | Existing G10 state | No lifecycle transition is implied. | Unchanged. | G10 | L2-G10 lifecycle |
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
-
-L2-G10 §38 defines the security-classification workflow result as “Security Classification Updated” but does not provide an exact canonical event name in the reviewed event catalogue. Generic classification events elsewhere in G10 are not assumed to be the security-classification event. This Draft therefore does not invent or rename an event.
+G10 §38 defines the result “Security Classification Updated” but the reviewed canonical event catalogue does not provide an exact security-classification event name. No event is invented or renamed.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-Section A supplies the authorization/policy decision capability. G07 remains the owner of separately executed operational security workflows. No ownership transfer or mandatory G10→G07 command is created by the classification itself.
+Section A provides authorization/policy decisions. Any operational security action remains a separately owned G07 workflow.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
@@ -145,30 +119,21 @@ Section A supplies the authorization/policy decision capability. G07 remains the
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
-| Establish/update physical security classification | Infrastructure Administrator or Infrastructure Manager within authorized scope | Must satisfy Section A authorization and G10 policy validation. | Infrastructure Management |
+| Establish/update physical security classification | Infrastructure Administrator / Infrastructure Manager within authorized scope | Must satisfy authorization and G10 policy validation. | G10 |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
-
-No universal security-classification approver or separation-of-duty rule is defined in the reviewed sources. None is invented.
+No universal classification-specific approver/SoD rule is defined.
 
 ## 15.3 Business Audit and Evidence Obligations
-
-The classification change must remain traceable with the physical Infrastructure reference, prior/current classification where applicable, business reason, authorization context and applicable policy evidence under G10/platform audit rules.
+Preserve affected Infrastructure, prior/current classification, reason and authorization/policy evidence under canonical audit governance.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
-
-- The authoritative physical Infrastructure is identified.
-- Authorization and policy validation succeed.
-- A permitted security classification is established.
-- No G07 operational security workflow is silently executed or re-owned.
+Canonical physical target identified; authorization/policy succeeds; permitted classification established; G07 ownership unchanged.
 
 ## 16.2 Postconditions
-
-- G10 holds the authoritative physical security classification.
-- G07 continues to own operational security/access-control workflows.
-- Physical Infrastructure ownership remains unchanged.
+G10 holds the authoritative physical security classification; G07 retains operational security workflows.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
@@ -176,16 +141,12 @@ The classification change must remain traceable with the physical Infrastructure
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
-| L2-G10 §38 defines the completed result but no exact canonical security-classification event name. | A business event cannot be asserted without invention. | Define/register the exact canonical event upstream if event publication is required for this change. |
+| No exact canonical event name is defined for the completed security-classification change. | Event publication cannot be asserted without invention. | Define/register upstream if required. |
 
 **Architecture assessment:** `PASS WITH ISSUES`
 
-The frozen outcome and ownership boundary are fully source-grounded; the event-name gap is non-blocking for the Draft.
-
 ## 17.2 Assumptions
-
 No assumptions.
 
 ## 17.3 Deferred Questions
-
-No additional scenario-specific deferred questions.
+No additional deferred questions.

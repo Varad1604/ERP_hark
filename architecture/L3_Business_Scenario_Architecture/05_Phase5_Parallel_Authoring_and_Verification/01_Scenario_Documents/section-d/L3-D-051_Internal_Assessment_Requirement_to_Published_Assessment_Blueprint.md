@@ -1,15 +1,17 @@
 # Internal Assessment Requirement to Published Assessment Blueprint
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-051  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Internal Assessment  
 **Participating Domains:** D  
 **Scenario Type:** Simple  
 **Priority:** P0  
-**Status:** Architecture Approved  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-25  
 **Depends On:** `L2-D07_Internal_Assessment_Workflows.md`  
 **Referenced By:** None yet  
 **Frozen Stage 3 Source:** P2W-D-0771 / CAN-L3-D-051
@@ -32,23 +34,25 @@ An approved Course Offering or academic-term context requires an internal or con
 
 ## 4.2 End Boundary
 
-The blueprint reaches Published and `InternalAssessmentBlueprintPublished` is published.
+The blueprint reaches Published and `InternalAssessmentBlueprintPublished` is published by D07.
 
 ## 4.3 In Scope
 
 - Reference authoritative Course Offering, curriculum and calendar context.
 - Define assessment components, weightage and policy binding.
-- Validate completeness and publish the blueprint.
+- Validate completeness and authorize publication under institutional policy.
+- Publish the governed blueprint.
 
 ## 4.4 Out of Scope
 
-- Course/Course Offering creation.
-- Assessment window execution.
+- Course or Course Offering creation.
+- Assessment-window execution.
 - Examination result or grade computation.
+- Command/API/permission design.
 
 ## 4.5 Related Scenarios — Optional
 
-Related scenarios are referenced only where their completed business facts cross this boundary; they do not transfer ownership.
+Related scenarios are referenced only where completed business facts cross this boundary.
 
 # 5. Ownership and Participating Domains
 
@@ -59,10 +63,7 @@ Related scenarios are referenced only where their completed business facts cross
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Actor / Role | Responsibility | Authority |
-|---|---|---|
-| Policy-configured D07 blueprint administrator | Creates and validates the assessment blueprint. | CreateInternalAssessmentBlueprint authority. |
-| Policy-configured D07 publication authority | Approves publication after validation. | PublishInternalAssessmentBlueprint authority. |
+The locked L2-D07 source explicitly records that its required Actors section is absent. This L3 scenario therefore does not invent a blueprint administrator or publication authority. Exact institutional business-role mapping is recorded as an open issue in Section 17.
 
 # 7. Preconditions and Entry Criteria
 
@@ -77,31 +78,30 @@ An authorized academic requirement calls for an internal-assessment structure.
 
 | Step | Business Behaviour | Responsible Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Create Draft blueprint for the governed assessment cycle. | D07 blueprint administrator | Draft blueprint exists. |
-| 2 | Define components, weightage and policy binding. | D07 blueprint administrator | Blueprint structure complete. |
-| 3 | Validate source references, component completeness, weightage and policy. | D07 | Blueprint valid or returned for correction. |
-| 4 | Authorize publication. | D07 publication authority | Publication decision recorded. |
-| 5 | Publish immutable business fact. | D07 | Published and InternalAssessmentBlueprintPublished. |
+| 1 | Establish a Draft blueprint for the governed assessment cycle. | D07 | Draft blueprint exists. |
+| 2 | Define components, weightage and policy binding. | D07 under applicable institutional authority | Blueprint structure is complete. |
+| 3 | Validate source references, component completeness, weightage and policy. | D07 | Blueprint is valid or returned for correction. |
+| 4 | Obtain the required institutional publication decision. | Applicable business authority — role unresolved upstream | Publication is approved or rejected. |
+| 5 | Publish the approved blueprint. | D07 | Blueprint becomes Published and `InternalAssessmentBlueprintPublished` is published. |
 
 # 10. Alternate Business Flows
 
-A failed validation, rejection, configured optional approval path, escalation or compensation follows only the alternatives explicitly supported above; it never creates the successful final outcome or rewrites prior facts.
+No distinct alternate path is asserted. Validation or publication rejection blocks the Published outcome and is handled under Section 11.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Recovery | Owner |
+| Situation | Business Consequence | Business Resolution / Recovery | Owner |
 |---|---|---|---|
-| Validation or reference failure | Scenario cannot proceed. | Reject or return for correction without changing the prior authoritative state. | Internal Assessment |
-| Authorization or approval failure | Requested outcome is not permitted. | Retain the prior state and record the decision reason. | Internal Assessment |
-| Interrupted processing | Completion is uncertain. | Resume from the last authoritative state with audit continuity and idempotency. | Internal Assessment |
+| Source reference, component or weightage validation fails | Blueprint cannot be published. | Correct the business definition/evidence and resubmit for validation. | D07 |
+| Required publication authority is unavailable or rejects publication | Blueprint remains unpublished. | Retain the current governed state and follow the institutional review/resubmission path. | D07 |
+| Blueprint preparation is interrupted | Published outcome has not occurred. | Preserve the last valid business position and continue when the blocking condition is resolved. | D07 |
 
 # 12. Business Rules and Decision Constraints
 
-| Rule | Owner | Scenario Effect | Source |
-|---|---|---|---|
-| Only the canonical owner may change its owned business state. | Internal Assessment | Prevents cross-domain ownership leakage. | `L2-D07_Internal_Assessment_Workflows.md` |
-| Each transition requires valid lifecycle position, authority, policy and evidence. | Internal Assessment | Prevents governance bypass. | `L2-D07_Internal_Assessment_Workflows.md` |
-| Published or historical business facts remain immutable. | Internal Assessment | Preserves auditability and lineage. | `L2-D07_Internal_Assessment_Workflows.md` |
+- D07 owns the InternalAssessmentBlueprint lifecycle. Source: L2-D07 §§1–6.
+- A blueprint must be Published before an Assessment Window can open. Source: L2-D07 §5.
+- D07 does not own Course Offering, curriculum/calendar or examination result facts. Source: L2-D07 §§2,9.
+- Published/historical assessment facts remain governed and auditable; no local rule is invented.
 
 # 13. State and Lifecycle Impact
 
@@ -113,66 +113,59 @@ A failed validation, rejection, configured optional approval path, escalation or
 
 ## 14.1 Published / Consumed Business Events
 
-| Business Event | Canonical Publisher | Consumers | Purpose | Source |
+| Event | Canonical Publisher | Consumers | Purpose | Source |
 |---|---|---|---|---|
-| InternalAssessmentBlueprintPublished | D07 | Assessment Window, Academic Monitoring and authorized consumers | Records governed blueprint publication. | L2-D07 §7 |
+| `InternalAssessmentBlueprintPublished` | D07 | Assessment Window, Academic Monitoring and authorized consumers | Records governed blueprint publication. | L2-D07 §7 |
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-| From | To | Business Hand-off | Purpose | Source |
-|---|---|---|---|---|
-| D01 / Section B | Internal Assessment | Own authoritative Course Offering, curriculum and calendar references consumed by D07. | Preserve ownership while enabling the scenario. | `L2-D07_Internal_Assessment_Workflows.md` |
+D01/Section B provides authoritative Course Offering, curriculum and calendar context to D07 without transferring ownership.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-| Action / Decision | Authorized Role | Constraint | Owner |
-|---|---|---|---|
-| Creates and validates the assessment blueprint. | Policy-configured D07 blueprint administrator | CreateInternalAssessmentBlueprint authority. | Internal Assessment |
-| Approves publication after validation. | Policy-configured D07 publication authority | PublishInternalAssessmentBlueprint authority. | Internal Assessment |
+The exact institutional business roles that prepare and authorize publication are not defined in locked L2-D07. D07 owns the business actions; role mapping must be established upstream before this scenario can be Architecture Approved.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-Initiation, validation, review, approval and execution remain distinct wherever source or configured policy requires separation. Automated services execute rules but never make governance decisions. Any override requires authority, justification, evidence and audit history.
+Where institutional policy separates blueprint preparation, validation and publication approval, those authorities must remain distinct. L3 does not define technical RBAC or command permissions.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-| Obligation | Evidence | Owner |
-|---|---|---|
-| Scenario lifecycle and decision | Actor, authority, reason, prior state, validation evidence, decision and resulting state. | Internal Assessment |
-| Source and cross-domain traceability | Source identifiers, versions, evidence references, consumed events and published facts. | Internal Assessment |
-| Failure and recovery | Rejected validations, interruptions, retries, escalation or compensation outcome. | Internal Assessment |
+Retain blueprint version, source references, component/weightage definition, policy binding, validation evidence, publication decision and `InternalAssessmentBlueprintPublished` fact.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- A validated Internal Assessment Blueprint reaches Published and becomes the authoritative D07 structure required before any Assessment Window may open.
-- All required authority, validation and audit evidence is retained.
-- Applicable completed business facts are published exactly once in business effect.
+- The blueprint is valid and Published under applicable institutional authority.
+- `InternalAssessmentBlueprintPublished` is published by D07.
+- Required business evidence and decision history are retained.
 
 ## 16.2 Postconditions
 
-- Canonical ownership remains unchanged.
-- Historical decisions and prior states remain immutable.
-- Downstream domains consume facts without modifying the owning aggregate.
+- D07 retains blueprint ownership.
+- Upstream source domains retain ownership of referenced academic facts.
+- A governed Assessment Window may be established only after publication.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-No open issues.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| Locked L2-D07 explicitly records that its Actors section is absent. | L3 cannot safely name a canonical blueprint administrator/publication authority or use L2 command names as permissions. | Define or approve the D07 institutional actor/authority mapping in upstream architecture/governance before Architecture Approval. |
 
 ## 17.2 Assumptions
 
-No assumptions.
+No assumption overrides locked architecture.
 
 ## 17.3 Deferred Questions
 
-No deferred questions.
+Commands, APIs, technical RBAC, persistence and implementation recovery are deferred to later architecture levels.
 
 ---
 
-**Draft Validation Verdict:** PASS  
-**Validation Basis:** Section D canonical register; `L2-D07_Internal_Assessment_Workflows.md`; Template v2.0; Architecture Level Validation Standards; accepted Section D decisions 001–500.
+**Draft Validation Verdict:** REVIEW REQUIRED  
+**Validation Basis:** `L2-D07_Internal_Assessment_Workflows.md`; Template v2.0; Architecture Level Validation Standards.

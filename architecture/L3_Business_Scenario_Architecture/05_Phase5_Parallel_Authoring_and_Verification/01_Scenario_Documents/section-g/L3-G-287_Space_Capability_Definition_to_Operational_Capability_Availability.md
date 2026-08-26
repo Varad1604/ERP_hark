@@ -11,21 +11,23 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows where institutional ownership is referenced; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized infrastructure consumers across academic, examination, facilities, safety, workforce, analytics and institutional operations
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-A01 — Platform Tenant Foundation Architecture  
+**Referenced By:** Authorized consumer domains requiring Space operational eligibility facts
 
 ---
 
 # 2. Scenario Purpose
 
-Define the permitted operational capabilities of one Space as authoritative G10 attributes for downstream eligibility decisions without transferring scheduling or operational ownership.
+Define the G10-owned operational capabilities that a canonical Space is permitted to support, using configured capability values without transferring scheduling or operational decision ownership to Infrastructure Management.
 
 ---
 
 # 3. Business Outcome
 
-Applicable operational capabilities become available as authoritative infrastructure attributes
+Applicable operational capabilities become available as authoritative infrastructure attributes.
+
+L2-G10 owns Operational Capabilities and requires capability assignment to be configuration-driven and auditable, but it does not define the complete workflow, exact canonical event, or explicit public capability contract required to prove the frozen outcome. This Draft is **BLOCKED**.
 
 ---
 
@@ -37,35 +39,31 @@ The scenario begins when a physical space requires defined capabilities.
 
 ## 4.2 End Boundary
 
-The scenario ends when the exact frozen outcome is established under G10 ownership, the current authoritative physical fact is available through governed contracts, required events have been published only after successful persistence, and immutable audit history is preserved.
+The scenario ends when the applicable operational capabilities are authoritatively associated with the canonical Space under G10 ownership and are available to authorized consumers through a source-defined business fact/contract, with the required canonical change event published.
 
 ## 4.3 In Scope
 
-- Resolution of Tenant, institution, resource and physical hierarchy context.
-- Scoped authorization before business validation.
-- Validation of G10 identity, hierarchy, lifecycle, capacity, availability, configuration and relationship rules as applicable.
-- The `Space` business responsibility.
-- Preservation of immutable identifiers and prior historical values.
-- Publication of only source-defined completed business facts.
-- Governed read contracts for authorized consumers.
-- Complete audit evidence.
+- Identification of the canonical Space.
+- Resolution of configured Operational Capability values.
+- Validation and assignment of one or more permitted operational capabilities.
+- Preservation of Space identity, classification, hierarchy and lifecycle.
+- Auditability of the capability assignment.
+- Publication and exposure of the completed authoritative capability fact, once defined upstream.
 
 ## 4.4 Out of Scope
 
-- Institutional identity or InstitutionalCampus ownership retained by B03.
-- Academic scheduling, examination conduct, facilities-maintenance execution or consumer-specific decisions.
-- Authentication, technical RBAC, database, API, UI, queue or implementation design.
-- Physical deletion of infrastructure or historical records.
-- Inventing lifecycle states, commands, events, publishers, approval actors or cross-domain contracts absent from L2.
+- Space registration or Space Type classification.
+- Timetable scheduling, examination allocation or other consumer eligibility decisions.
+- Consumer-specific interpretation of a capability.
+- Creation of a local capability lifecycle, event or read contract.
+- Any implementation mechanism.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
-| Relationship | Related Scenario | Boundary Reason |
+| Relationship | Related Scenario | Reason |
 |---|---|---|
-| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes the canonical Physical Campus root. |
-| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | Governs the Campus–Building–Floor–Space hierarchy. |
-| Related | L3-G-289 — Infrastructure Availability Definition to Availability Profile Activation | Establishes authoritative resource availability. |
-| Related | L3-G-291 — Infrastructure Reservation Request to Controlled Reservation | Consumes availability and capacity without owning either fact. |
+| Preceded by | L3-G-284 — Space Registration to Physical Space Establishment | Operational capabilities belong to an existing canonical Space. |
+| Related | L3-G-286 — Space Classification to Controlled Physical Classification | Space Type and Operational Capabilities are separate G10-owned concepts. |
 
 ---
 
@@ -73,44 +71,34 @@ The scenario ends when the exact frozen outcome is established under G10 ownersh
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Primary owner of physical identity, hierarchy, lifecycle, capacity, availability, classification, relationships and infrastructure master facts. |
-| Institution & Structure / Section B, where frozen | Owns Institution and InstitutionalCampus identity; supplies references without owning physical aggregates. |
-| Platform Foundation / Section A, where frozen | Supplies Tenant isolation, configuration, authorization, event and audit capabilities without owning infrastructure facts. |
-| Academic Delivery / Section D, where frozen | Consumes authoritative capacity, availability or reservation outcomes and retains its academic decisions. |
-
-The frozen participating-domain value remains exactly `G, A`.
+| Infrastructure Management / G10 | Owns Operational Capability semantics as Space attributes and owns the resulting authoritative physical fact. |
+| Platform Foundation / A | Owns common configuration resolution, validation and lifecycle; it does not own G10 Operational Capability values or business meaning. |
 
 ---
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Authority Boundary |
+| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Initiates and administers permitted infrastructure operations. | Must hold fine-grained permission in the relevant Tenant, institution, Campus, Building or Zone scope. |
-| Campus or Building Administrator | Manages infrastructure within assigned physical scope. | Cannot act outside assigned hierarchy scope. |
-| Facilities Manager / Operational Manager | Supplies operational context and consumes current physical facts. | Does not change canonical identity or bypass G10 rules. |
-| Auditor | Reviews immutable history and evidence. | Read-only; cannot mutate infrastructure. |
-| Consumer-domain actor | Requests or consumes an authorized infrastructure service. | Retains the consumer decision and cannot modify G10 aggregates directly. |
+| Infrastructure Administrator | Applies permitted operational capability attributes to the Space. | Acts within source-defined infrastructure update/administration authority. |
 
-Roles are configurable access patterns in L2-G10. No universal named approver is inferred.
+No consumer-domain actor is included because the frozen scenario stops when the capability fact becomes authoritative; downstream use is a later consumer decision.
 
 ---
 
 # 7. Preconditions and Entry Criteria
 
-- The Space exists and is eligible for metadata modification.
-- The requested capability is supported by active institutional configuration.
-- Required physical facts supporting the capability are available.
-- The requester holds scoped update permission.
-- Tenant and institution isolation are enforceable.
-- Authentication context is supplied externally and authorization succeeds before mutation.
-- Required audit and event infrastructure is available under enterprise policy.
+- A canonical Space exists under G10.
+- Operational Capability values are configured under G10.
+- A valid active configuration context is available from the Platform Configuration Framework.
+- The Space is eligible for permitted metadata/capability modification under G10 rules.
+- The Infrastructure Administrator is authorized for the applicable update.
 
 ---
 
 # 8. Trigger
 
-A physical space requires defined capabilities
+A physical space requires defined capabilities.
 
 ---
 
@@ -118,23 +106,19 @@ A physical space requires defined capabilities
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Resolve the Space, current capabilities and applicable configuration. | Infrastructure Management | Resolve the Space, current capabilities and applicable configuration. |
-| 2 | Authorize capability maintenance within the Space scope. | Infrastructure Management | Authorize capability maintenance within the Space scope. |
-| 3 | Validate each proposed capability against configuration and physical facts. | Infrastructure Management | Validate each proposed capability against configuration and physical facts. |
-| 4 | Reject unsupported or duplicate capability assignments. | Infrastructure Management | Reject unsupported or duplicate capability assignments. |
-| 5 | Apply the permitted capability set without changing Space identity or lifecycle. | Infrastructure Management | Apply the permitted capability set without changing Space identity or lifecycle. |
-| 6 | Expose the authoritative capabilities to downstream read contracts. | Infrastructure Management | Expose the authoritative capabilities to downstream read contracts. |
-| 7 | Publish only the applicable completed infrastructure-update event. | Infrastructure Management | Publish only the applicable completed infrastructure-update event. |
-| 8 | Preserve prior and new capabilities, reason, actor and correlation history. | Infrastructure Management | Preserve prior and new capabilities, reason, actor and correlation history. |
+| 1 | Resolve the canonical Space and the active configuration context. | Infrastructure Management; Platform Foundation | The capability decision is grounded in authoritative Space and configuration facts. |
+| 2 | Identify the applicable configured Operational Capabilities. | Infrastructure Administrator / Infrastructure Management | Candidate capability values are drawn from G10-owned configuration. |
+| 3 | Validate that the capability assignment is permitted for the Space. | Infrastructure Management | Unsupported capability values are rejected. |
+| 4 | Associate the permitted Operational Capabilities with the canonical Space without changing Space identity or ownership. | Infrastructure Management | The Space carries the intended G10-owned capability facts. |
+| 5 | Record the capability assignment as an auditable infrastructure change. | Infrastructure Management | The business change is traceable. |
+| 6 | Publish the exact canonical capability-change event. | Infrastructure Management | **Blocked:** no capability-specific canonical event is defined and generic update event definitions are not mapped to this outcome. |
+| 7 | Make the capabilities available through the authoritative consumer contract/fact. | Infrastructure Management | **Blocked:** the published Space Summary contract does not include Operational Capabilities and no dedicated capability contract is defined. |
 
 ---
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| 1 | Several capabilities are permitted | retain each as a distinct configured attribute. | Existing ownership and history remain intact. |
-| 2 | A downstream domain needs a new operational behavior | it consumes the capability but retains its own eligibility and scheduling decision. | Existing ownership and history remain intact. |
+No scenario-specific alternate business flow is defined by the authoritative L2 architecture.
 
 ---
 
@@ -142,14 +126,10 @@ A physical space requires defined capabilities
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, institution or resource scope cannot be resolved | reject the request without creating a cross-scope fact. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Authorization fails | terminate before business mutation. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Hierarchy, lifecycle, configuration or policy validation fails | retain the prior authoritative state. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| A uniqueness, capacity, availability or relationship invariant fails | reject the requested result. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Audit evidence cannot be recorded | do not complete the business transition. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| The success-event condition is not satisfied | do not publish the success event. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-
-No technical retry, rollback, database transaction or messaging implementation is specified at L3.
+| Requested capability is not configured or configuration is inactive. | Capability assignment cannot proceed. | Correct the authoritative domain configuration and complete its source-defined configuration lifecycle before a later attempt. | Infrastructure Management; Platform Foundation |
+| Capability assignment fails G10 validation or authorization. | Existing Space capability facts remain authoritative. | Correct the business condition before a later authorized attempt. | Infrastructure Management |
+| Canonical event is undefined for capability assignment. | The successful capability change cannot publish one exact required business event. | Define the canonical capability-change event and publisher upstream. | Infrastructure Management |
+| Canonical consumer contract/fact is undefined for Operational Capabilities. | The frozen outcome cannot be proven as available to consumers without inventing a contract. | Define or explicitly extend an authoritative G10 contract upstream. | Infrastructure Management |
 
 ---
 
@@ -157,108 +137,95 @@ No technical retry, rollback, database transaction or messaging implementation i
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Infrastructure Management is the canonical owner of physical infrastructure facts. | Infrastructure Management | Consumers reference G10 facts and never duplicate or directly modify aggregates. | L2-G10 §§2, 5, 9, 44A |
-| Every Building belongs to one Campus; every Floor to one Building; every Space to one Floor. | Infrastructure Management | Invalid or circular physical relationships are rejected. | L2-G10 §§8, 18, 47 |
-| Aggregate identity is immutable and infrastructure is never physically deleted. | Infrastructure Management | Changes preserve identifiers and historical references. | L2-G10 §§13, 47, 48A |
-| Authorization precedes business validation. | Authorization & Policy; Infrastructure Management | Unauthorized requests terminate before mutation. | L2-G10 §48A.207 |
-| Business validation precedes persistence, and events describe completed facts. | Infrastructure Management; Event Infrastructure | Failed work cannot publish a success event. | L2-G10 §§22A.99, 44A.179 |
-| Every successful state or significant attribute change is auditable. | Infrastructure Management; Audit Infrastructure | Actor, prior value, new value, reason and correlation are preserved. | L2-G10 §§48A.208–210, 49 |
-| Archived infrastructure is immutable. | Infrastructure Management | No scenario may update an Archived aggregate. | L2-G10 §§11A, 47 |
-| Capacity cannot be negative and reservation conflicts are prevented unless an authorized override is permitted. | Infrastructure Management | Invalid capacity or conflicting reservations are rejected. | L2-G10 §§24, 26, 47 |
+| A Space may support one or more Operational Capabilities. | Infrastructure Management | Multiple applicable capability facts may be associated with one Space. | L2-G10 §§7, 10, 23 |
+| Operational Capabilities determine operational eligibility for downstream domains. | Infrastructure Management | G10 publishes physical eligibility facts; consumers retain their own decisions. | L2-G10 §23; FSWP-03 |
+| Capability assignment is configuration-driven and fully auditable. | Infrastructure Management | Only configured values may be assigned and the change must be traceable. | L2-G10 §23; §43 |
+| Only Active resolved configuration participates in business execution. | Platform Foundation | G10 consumes validated active configuration context. | L2-A01 §§6.10-6.14 |
+| Platform does not interpret domain-specific configuration. | Platform Foundation | G10 retains Operational Capability semantics. | L2-A01 Domain Configuration |
 
 ---
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Position | Canonical Owner |
-|---|---|---|---|---|
-| `Space` | Valid trigger and authorized context | Executes only the scenario-specific creation, association or governed attribute change. | Space lifecycle and identity remain unchanged; capability attributes become current | Infrastructure Management, except the B03 reference retained by Institution & Structure |
-| Parent physical hierarchy | Existing and valid where applicable | Referenced and validated; not silently re-parented. | Unchanged unless the frozen outcome explicitly creates the child relationship. | Infrastructure Management |
-| Tenant and Institution | Existing | Supply isolation and institutional reference. | Unchanged. | Platform Foundation; Institution & Structure |
-| Consumer-domain records | Existing or absent | Consume the completed authoritative fact. | Unchanged by G10. | Applicable consumer domain |
-| Audit history | Existing | Appends immutable evidence. | Historical trace grows; prior records remain unchanged. | Audit Infrastructure |
+No Space lifecycle transition is defined for Operational Capability assignment.
 
-L2-G10 requires lifecycle and operational availability to remain distinct. “Activation” in a frozen outcome is not treated as a new lifecycle state unless L2-G10 defines it.
+| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
+|---|---|---|---|---|---|
+| Space | Existing canonical Space | Adds/changes Operational Capability attributes | Space lifecycle remains unchanged | Infrastructure Management | L2-G10 §§10, 21, 23 |
+| Configuration | Active resolved configuration | Supplies permitted capability values | Configuration lifecycle unchanged | Platform Foundation / G10 values | L2-A01 §§6.10-6.14; L2-G10 §43 |
 
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Event Treatment
+## 14.1 Published / Consumed Business Events
 
-| Event / Required Fact | Publication Condition | Publisher and Consumer Treatment |
-|---|---|---|
-| `InfrastructureUpdated; no capability-specific canonical event is defined` | Only after the corresponding aggregate creation or governed update has persisted successfully. | The affected G10 aggregate publishes the source-defined completed fact; consumers react without changing G10 ownership. |
+L2-G10 requires every successful workflow/significant change to publish a canonical business event, but no event is explicitly defined for Operational Capability assignment.
 
-Where Section 44 and the detailed WF-INF catalogue use different names, this Draft records the inconsistency in Section 17 and does not publish both names for one transition.
+The source contains generic `InfrastructureUpdated` / `SpaceUpdated` events for broader update behaviour, but it does not state that either is the canonical event for this frozen capability outcome. L3 does not infer that mapping.
 
-## 14.2 Synchronous Business Contracts and Hand-offs
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
-|---|---|---|---|
-| Physical Campus Summary | Infrastructure Management | Institution & Structure and authorized consumers | Canonical physical Campus identity, lifecycle and operational status. |
-| Building, Floor and Space Summary | Infrastructure Management | Operational domains | Canonical hierarchy, classification, capacity, lifecycle and current status. |
-| Capacity Profile | Infrastructure Management | Academic, Examination and operational consumers | Canonical capacity facts; consumers own utilization decisions. |
-| Retrieve Availability | Infrastructure Management | Authorized consumers | Current operational availability independently from lifecycle. |
-| Reservation service | Infrastructure Management | Authorized requestor | Governed reservation establishment, modification or retrieval. |
-| Audit input | Infrastructure Management | Audit Infrastructure | Actor, scope, transition, prior/new values, reason and correlation evidence. |
+| Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
+|---|---|---|---|---|
+| Platform Foundation | Infrastructure Management | Resolved active configuration context | Supplies validated configuration without taking ownership of capability semantics. | L2-A01 §§6.11-6.14 |
+
+G10's published `Space Summary` lists Space Type, parent, capacity, area, operational status and lifecycle but does **not** list Operational Capabilities. No dedicated Operational Capability contract is defined. The required consumer hand-off is therefore unresolved.
 
 ---
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-- Authentication is external to G10.
-- Fine-grained permission is evaluated by Tenant, institution and physical-resource scope before validation.
-- Consumer access does not grant direct aggregate mutation.
-- Authorization success does not waive hierarchy, lifecycle, capacity, availability or policy rules.
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| Define Space Operational Capabilities | Infrastructure Administrator | Must act within source-defined infrastructure update/administration authority and use permitted G10 configuration. | Infrastructure Management |
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-- L2-G10 allows configurable approval for some creation, lifecycle, override and administrative operations.
-- The scenario uses approval only where active policy requires it.
-- No unnamed approver or technical workflow routing is invented.
-- Governance approval supplements business validation and never replaces it.
+No scenario-specific separation-of-duty, approval or override requirement is defined by the authoritative L2 architecture.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The audit record must preserve Tenant, institution, aggregate type and identifier, actor, authorization scope, previous values, new values, effective dates where applicable, business reason, approval reference where required, event facts and correlation identifier. Audit history is immutable and independently retained.
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Capability assignment is auditable. | Source-defined evidence that permitted Operational Capabilities were associated with the canonical Space through an authorized business change. | Infrastructure Management |
 
 ---
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete only when:
+## 16.1 Completion Criteria
 
-- resolve the Space, current capabilities and applicable configuration.
-- authorize capability maintenance within the Space scope.
-- validate each proposed capability against configuration and physical facts.
-- reject unsupported or duplicate capability assignments.
-- apply the permitted capability set without changing Space identity or lifecycle.
-- expose the authoritative capabilities to downstream read contracts.
-- publish only the applicable completed infrastructure-update event.
-- preserve prior and new capabilities, reason, actor and correlation history.
-- no institutional, academic or consumer-domain ownership has transferred to G10;
-- no unauthorized or partial result is treated as successful; and
-- all required audit evidence is immutable and queryable.
+- Applicable Operational Capabilities are associated with the canonical Space under G10 ownership.
+- Only permitted configured capability values are used.
+- Space identity, hierarchy, classification ownership and lifecycle remain unchanged.
+- The exact canonical capability-change event is defined and published by Infrastructure Management.
+- An authoritative G10 contract/fact exposes Operational Capabilities to authorized consumers.
 
-Postconditions:
+## 16.2 Postconditions
 
-- Canonical G10 identity and historical integrity are preserved.
-- The current authoritative fact is available through governed contracts.
-- Consumers may react under their own rules but cannot rewrite the source fact.
-- Failed or incomplete transitions publish no success event.
+- Downstream domains may use the authoritative capability fact for their own eligibility and operational decisions.
+- Capability consumption never transfers Space or capability ownership away from G10.
 
 ---
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-**Architecture assessment:** `PASS WITH ISSUES`
+## 17.1 Open Issues
 
-| ID | Severity | Issue / Deferred Question | Required Resolution |
-|---|---|---|---|
-| G-287-ISSUE-01 | Non-blocking | L2-G10 Section 23 defines capability ownership and auditability but provides no dedicated capability workflow, service contract or event. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
-| G-287-ISSUE-02 | Non-blocking | The generic `InfrastructureUpdated` event may represent the change, but L2-G10 does not explicitly bind it to Space capability assignment. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-G10 owns Operational Capabilities and requires capability assignment to be auditable, but defines no complete capability-assignment workflow or exact canonical event. | L3 cannot preserve the mandatory event/publisher contract for the frozen outcome without inference. | G10 must define the canonical capability-assignment workflow/event or explicitly map the outcome to an existing canonical update event. |
+| The G10 Space Summary contract does not include Operational Capabilities and no dedicated capability read contract is defined. | The frozen outcome requires capabilities to become available as authoritative infrastructure attributes, but the approved consumer hand-off is undefined. | G10 must define or explicitly extend the authoritative consumer contract for Operational Capabilities. |
 
-No unsupported aggregate, lifecycle state, transition, event, publisher, actor, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
+**Source Assessment:** **BLOCKED**
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No additional deferred questions.

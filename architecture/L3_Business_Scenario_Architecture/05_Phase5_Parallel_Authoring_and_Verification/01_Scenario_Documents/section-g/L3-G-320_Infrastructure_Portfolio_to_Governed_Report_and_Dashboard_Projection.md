@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
+**Last Updated:** 2026-08-23  
 **Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows; L2-D03 — Timetable Workflows; L2-H07 — Enterprise Dashboard Workflows  
-**Referenced By:** Infrastructure management, institutional governance, operational consumers, and Enterprise Dashboard composition
+**Referenced By:** Authorised Infrastructure management, institutional governance, scheduling and dashboard consumers
 
 # 2. Scenario Purpose
 
-Produce governed Infrastructure reports, KPIs, and dashboard-ready projections from G10-owned portfolio, capacity, availability, compliance, condition, reservation, allocation, and lifecycle facts while preserving source ownership and allowing H07 to compose those projections without becoming the system of record.
+Produce authoritative Infrastructure reports, KPIs and dashboard-ready projections from G10-owned portfolio and operational facts while preserving B03 institutional-campus governance, D03 scheduling ownership and H07 dashboard-composition ownership.
 
 # 3. Business Outcome
 
@@ -31,49 +31,52 @@ The scenario begins when management or an authorised institutional consumer requ
 
 ## 4.2 End Boundary
 
-The scenario ends when G10 has produced the authoritative governed infrastructure report/KPI/projection and the result is available to authorised consumers, including H07 composition where applicable, without transferring ownership of underlying facts.
+The scenario ends when G10 has produced the governed Infrastructure report, KPI or dashboard-ready projection from authoritative source facts and made it available to authorised consumers, with H07 composition where applicable and without transferring source ownership.
 
 ## 4.3 In Scope
 
-- Selection of source-owned G10 portfolio and Infrastructure facts relevant to the requested insight.
-- G10-owned report/KPI/projection production under the controlling dependency-map ownership rule.
-- Preservation of B03 InstitutionalCampus context where institutional campus identity is needed.
-- Use of G10 Infrastructure information by D-owned operational consumers without transfer of scheduling/operational ownership.
-- H07 composition of G10-owned projections without KPI or source-fact ownership transfer.
+- Establishment of the authorised Infrastructure reporting scope.
+- Resolution of G10-owned portfolio, capacity, availability, compliance, condition, reservation, allocation and lifecycle facts required by the requested insight.
+- Preservation of B03 InstitutionalCampus context where institutional campus identity is required.
+- Preservation of D03 ownership of timetable/scheduling decisions that consume Infrastructure context.
+- G10 ownership of Infrastructure-derived reports, KPIs and governed projections under the controlling dependency-map ruling.
+- H07 composition of source-owned projections without ownership of Infrastructure facts, KPI definitions or report logic.
 
 ## 4.4 Out of Scope
 
-- H07 recomputing Infrastructure KPIs or becoming the Infrastructure system of record.
-- Modifying Infrastructure facts through a dashboard.
-- Reassigning B03 InstitutionalCampus governance to G10 or H07.
-- Reassigning D-owned academic scheduling or timetable lifecycle to G10.
-- Inventing KPI formulas, thresholds, dashboard layouts, widgets, or presentation design.
+- H07 becoming an alternative source of Infrastructure truth or recomputing G10-owned KPIs as independent business facts.
+- Changing Infrastructure state through a dashboard or report.
+- Reassigning B03 institutional-campus governance or D03 timetable ownership.
+- Inventing KPI formulas, thresholds, report lifecycles, dashboard layouts, widgets or presentation design.
+- APIs, query technologies, storage, caches or implementation mechanics.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Owns Infrastructure source facts and, under `DEPENDENCY_MAP.md`, the computation, report, KPI, and governed projection derived from those G-owned facts. |
-| Institution & Structure / Section B | Owns InstitutionalCampus identity/governance context referenced by Infrastructure reporting where applicable. |
-| Academic Delivery / Section D | Consumes authoritative physical-resource information for its own scheduling/operational decisions; it does not own Infrastructure facts. |
-| Institutional Services & Intelligence / Section H | H07 composes approved G10 reports/KPIs/projections into dashboards without owning source facts, report logic, or KPI definitions. |
+| Infrastructure Management / Section G | Owns canonical Infrastructure facts and, under `DEPENDENCY_MAP.md`, the computation, report, KPI and governed projection derived from G-owned facts. |
+| Institution & Structure / Section B | Owns InstitutionalCampus identity/governance context referenced where applicable. |
+| Academic Delivery / Section D | Consumes authoritative Infrastructure context for D-owned timetable/scheduling decisions; it does not own physical Infrastructure facts. |
+| Institutional Services & Intelligence / Section H | H07 owns dashboard composition and presentation metadata while consuming source-owned G10 reports/KPIs/projections. |
+
+Participation never transfers the underlying business fact or lifecycle away from its canonical owner.
 
 # 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Maintains the authoritative Infrastructure facts from which governed reporting is produced. | Does not transfer source ownership to consuming domains. |
-| Infrastructure Manager | Requests or reviews Infrastructure operational/portfolio insight within authorised scope. | Uses G10 authoritative information for Infrastructure governance. |
-| Read-Only Auditor | Reviews report lineage and Infrastructure history where authorised. | Read-only evidence participation. |
+| Infrastructure Manager | Requests or reviews governed Infrastructure insight within authorised scope. | Uses G10-owned information for Infrastructure governance. |
+| Infrastructure Administrator | Maintains authoritative Infrastructure facts from which reports/projections are produced. | Does not transfer source ownership to consumers. |
+| Read-Only Auditor | Reviews source lineage and historical evidence where authorised. | Read-only evidence participation. |
 
-H07's locked L2 document does not define a canonical business-actor section; no dashboard-specific actor is invented here.
+H07's locked L2 crosswalk records no canonical Actors section, so no dashboard-specific human actor is invented.
 
 # 7. Preconditions and Entry Criteria
 
-- The relevant G10 Infrastructure facts exist and are current under their canonical lifecycles.
-- Any referenced Physical Campus is associated with the correct B03 InstitutionalCampus context.
-- The requesting management or institutional consumer is authorised for the requested information.
-- Report/KPI/projection semantics use only source-supported G10 facts and governed definitions; no unsupported formula is introduced.
+- The relevant G10 Infrastructure source facts exist and are current according to their authoritative lifecycles.
+- Any referenced Physical Campus is associated with the correct B03 InstitutionalCampus context where required.
+- The requesting consumer is authorised for the requested information scope.
+- Any report/KPI/projection semantics used are already governed by source architecture; unsupported formulas or thresholds are not introduced locally.
 
 # 8. Trigger
 
@@ -83,61 +86,66 @@ Management or an authorised institutional consumer requires current infrastructu
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Establish the authorised reporting scope and relevant Infrastructure portfolio or physical-resource population. | Infrastructure Management | The requested insight is bounded to G10-owned facts. |
-| 2 | Resolve the authoritative G10 portfolio, capacity, availability, compliance, condition, reservation, allocation and lifecycle information required by the request. | Infrastructure Management | Source facts remain canonical and current. |
-| 3 | Preserve B03 InstitutionalCampus context and any D-owned operational references without importing their lifecycles or rules into G10. | Infrastructure Management / B / D | Cross-domain references remain ownership-safe. |
-| 4 | Produce the governed report, KPI, and dashboard-ready projection from source-owned Infrastructure facts according to the controlling repository ownership rule. | Infrastructure Management | G10 owns the Infrastructure-derived report/KPI/projection. |
-| 5 | Make the governed result available through approved G10 read/reporting contracts to authorised institutional consumers. | Infrastructure Management | Consumers receive a stable Infrastructure-owned information product. |
-| 6 | Where dashboard composition is required, H07 composes the G10-owned projection without recalculating or owning the Infrastructure facts/KPI definition. | Enterprise Dashboard | Dashboard composition preserves source-domain ownership. |
+| 1 | Establish the authorised reporting scope and relevant G10 Infrastructure portfolio or resource population. | Infrastructure Management | The information request is bounded to authoritative source facts. |
+| 2 | Resolve the required G10-owned portfolio, capacity, availability, compliance, condition, reservation, allocation and lifecycle information. | Infrastructure Management | Authoritative source facts are assembled without ownership transfer. |
+| 3 | Preserve B03 InstitutionalCampus identity context and any D03 scheduling references as source-owned contextual inputs. | Infrastructure Management / Institution & Structure / Academic Delivery | Cross-domain references remain canonically owned. |
+| 4 | Produce the governed Infrastructure report, KPI or dashboard-ready projection from G10-owned facts under the controlling repository ownership rule. | Infrastructure Management | G10 owns the resulting Infrastructure-derived information product. |
+| 5 | Make the governed G10 information product available to authorised institutional consumers. | Infrastructure Management | Consumers receive current authoritative Infrastructure insight. |
+| 6 | Where dashboard composition is required, H07 composes the G10-owned projection without recalculating or owning the underlying Infrastructure facts or KPI definition. | Enterprise Dashboard | Dashboard composition preserves source-domain ownership. |
 
 # 10. Alternate Business Flows
 
 | Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
 |---|---|---|---|---|
-| Requested insight requires a fact owned outside G10 | A report request includes a B-, D-, or other domain fact. | Keep the external fact source-owned and consume it only through an approved reference/contract; do not convert it into a G10 fact. | Ownership remains canonical. | Infrastructure Management / source domain |
-| H07 composition is not required | The authorised consumer needs only the G10 report/projection. | Deliver the governed G10 information product without dashboard composition. | Frozen G10-owned reporting outcome still exists. | Infrastructure Management |
-| Requested KPI definition is not authoritative | No governed source defines the requested KPI semantics. | Do not invent the formula; return the available source facts/report and record the definition gap for governance. | Unsupported KPI is not produced. | Infrastructure Management |
+| Requested insight includes facts owned outside G10 | B-, D-, H- or another-domain facts are required. | Consume those facts through their authoritative source context and do not relabel them as G10 facts. | Mixed-domain insight preserves canonical ownership. | Infrastructure Management / source-owning domain |
+| Dashboard composition is not required | The consumer needs only the G10 report/KPI/projection. | Deliver the governed G10 information product directly. | Frozen G10 reporting outcome remains satisfied. | Infrastructure Management |
+| Requested KPI definition is not governed upstream | No authoritative definition exists. | Do not invent the KPI; provide supported source facts/reporting and record the gap. | Unsupported business meaning is avoided. | Infrastructure Management |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Source Infrastructure facts are incomplete or inconsistent | Report/KPI would be unreliable. | Correct or reconcile the G10 source facts before treating the result as authoritative. | Infrastructure Management |
-| Consumer attempts to modify G10 facts through the projection | Canonical ownership would be violated. | Reject the ownership transfer; changes must occur through G10-owned workflows. | Infrastructure Management / H07 |
-| H07 composition is unavailable | Dashboard presentation is interrupted but G10 source ownership and report/KPI remain intact. | Preserve the G10 information product for later authorised composition. | Enterprise Dashboard |
+| Source Infrastructure facts are incomplete or inconsistent | The resulting insight would not be authoritative. | Reconcile or correct the source-owned G10 facts before treating the report/projection as governed. | Infrastructure Management |
+| A consumer attempts to change G10 facts through the information product | Canonical ownership would be violated. | Reject the attempted state change; changes must occur through the applicable G10-owned business workflow. | Infrastructure Management / consuming domain |
+| H07 composition is unavailable | Dashboard presentation is unavailable while the G10 information product remains valid. | Preserve the source-owned report/projection for later authorised composition. | Enterprise Dashboard |
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| G10 owns canonical physical Infrastructure and its authoritative facts. | Infrastructure Management | All Infrastructure report content must originate from G10-owned facts. | L2-G10 §§1–8 |
-| G10 provides operational information for reporting, including capacity, utilisation, reservation, compliance, inspection, sustainability and lifecycle reports. | Infrastructure Management | Reporting is a source-supported G10 responsibility. | L2-G10 §50 |
-| `DEPENDENCY_MAP.md` states H07 consumes financial and campus-operational reports, KPIs and governed projections from Sections F and G; source domains retain fact, computation, report and KPI ownership. | Repository governance | Resolves reporting/KPI ownership in favour of G for G-owned Infrastructure facts. | `DEPENDENCY_MAP.md` Runtime Contract and Event Consumption Register |
-| H07 owns dashboard composition and does not own business computation, reporting logic, or KPI calculation. | Enterprise Dashboard | H07 cannot become an alternative Infrastructure reporting owner. | L2-H07 §§1.1–1.8 |
-| Portfolio membership supports governance/reporting and never changes physical hierarchy, lifecycle, or ownership. | Infrastructure Management | Portfolio reporting cannot redefine Infrastructure ownership. | L2-G10 §§157–176 |
+| G10 is the canonical owner of physical Infrastructure and its authoritative business facts. | Infrastructure Management | Report content and Infrastructure-derived meaning remain source-owned by G10. | L2-G10 §§1–8 |
+| G10 provides operational information for reporting. | Infrastructure Management | Infrastructure reporting is a source-supported domain responsibility. | L2-G10 §50 |
+| H07 consumes financial and campus-operational reports, KPIs and governed projections from Sections F and G; source domains retain fact, computation, report and KPI ownership. | Repository governance | The controlling repository dependency ruling assigns G10 ownership of G-derived reports/KPIs/projections. | `DEPENDENCY_MAP.md` Runtime Contract and Event Consumption Register |
+| H07 owns dashboard composition and does not own business computation, reporting logic or KPI calculation. | Enterprise Dashboard | H07 cannot become a second Infrastructure reporting owner. | L2-H07 §§1.1–1.8 |
+| D03 is the exclusive authoritative owner of timetable creation and scheduling operations. | Academic Delivery — Timetable | G10 Infrastructure insight may inform D03, but cannot take over timetable decisions. | L2-D03 §1 |
+| B03 owns InstitutionalCampus identity/governance while G10 owns the physical Campus. | Institution & Structure / Infrastructure Management | Campus context in reporting must preserve the institutional/physical ownership split. | L2-B03 §§1–4; L2-G10 §§1–2 |
 
 # 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Physical Infrastructure aggregates | Existing source-defined states | Read for authoritative reporting; no state change is required. | Unchanged. | Infrastructure Management | L2-G10 |
-| Infrastructure Portfolio / membership | Existing G10 portfolio state/membership | Used as a strategic reporting view; no physical hierarchy or lifecycle change. | Unchanged. | Infrastructure Management | L2-G10 §§168–176 |
+| Physical Infrastructure aggregates | Existing source-defined states | Read for authoritative reporting/projection. | No state change is required by the reporting outcome. | Infrastructure Management | L2-G10 |
+| Infrastructure Portfolio / membership | Existing G10 portfolio context | Used as a governed reporting grouping without altering physical hierarchy or ownership. | Unchanged. | Infrastructure Management | L2-G10 portfolio sections |
+| InstitutionalCampus | Existing B03 state | Referenced for institutional context where needed. | Unchanged. | Institution & Structure | L2-B03 |
+| Timetable | Existing D03 state | May consume Infrastructure insight for D-owned scheduling decisions. | D03 lifecycle remains independently governed. | Academic Delivery — Timetable | L2-D03 |
 | Dashboard | Existing H07 lifecycle where composition is requested | Composes source-owned projection only. | H07 lifecycle remains independently governed. | Enterprise Dashboard | L2-H07 |
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-This scenario is primarily a governed read/reporting outcome and does not require inventing a new reporting event. Under G10, source changes continue to publish their existing canonical events (for example portfolio membership, capacity, availability, compliance, reservation, allocation, or lifecycle events). H07 may refresh its composition from approved source projections without changing source ownership.
+This frozen scenario is a governed reporting/projection outcome and does not require a new report-publication event. Underlying G10 source changes continue to use their existing canonical events. H07 may use approved G10 projections for composition without acquiring source ownership.
+
+No `InfrastructureReportGenerated`, `InfrastructureKPIUpdated` or similar event is invented because the reviewed sources do not define one as mandatory.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-- G10 provides authoritative read/reporting information and governed projections.
-- B03 provides InstitutionalCampus identity/governance context when needed.
-- D consumes physical Infrastructure information for D-owned operational scheduling decisions.
+- G10 provides the authoritative Infrastructure report/KPI/projection.
+- B03 provides InstitutionalCampus identity/governance context where required.
+- D03 consumes relevant physical-resource context for D-owned timetable/scheduling decisions.
 - H07 consumes G-owned reports/KPIs/projections and owns only dashboard composition.
 
-No direct business-state modification is transferred through these read hand-offs.
+These hand-offs do not transfer state ownership or lifecycle authority.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
@@ -145,32 +153,32 @@ No direct business-state modification is transferred through these read hand-off
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
-| Request/review Infrastructure insight | Infrastructure Manager or other authorised institutional consumer | Access is limited to the authorised Infrastructure scope and governed information product. | Infrastructure Management |
-| Compose G10 projection into dashboard | H07-owned dashboard workflow | Composition cannot change source facts or KPI ownership. | Enterprise Dashboard |
+| Request/review Infrastructure insight | Infrastructure Manager or other authorised institutional consumer | Access remains limited to permitted information scope. | Infrastructure Management |
+| Maintain underlying Infrastructure facts | Infrastructure Administrator | Must act within G10 business rules and authority. | Infrastructure Management |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-No scenario-specific report approval or separation-of-duty requirement is defined by the reviewed sources. None is invented.
+No scenario-specific universal report approval, KPI approval or separation-of-duty rule is defined in the reviewed locked sources. None is invented.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Underlying G10 source changes remain fully auditable. Where the governed report/KPI/projection definition or publication is itself governed, its lineage must identify the authoritative G10 source facts and applicable definition/version without rewriting historical source records.
+Underlying G10 source changes remain auditable. Where report/KPI/projection governance is itself source-defined, lineage must preserve the authoritative G10 source population and governed definition/version without altering historical business facts.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- Reporting scope is authorised.
-- Source facts are resolved from their canonical G10 records.
-- B/D contextual references remain externally owned.
-- G10 produces the required authoritative report, KPI, and dashboard-ready projection using governed source-domain semantics.
-- H07, if used, composes the projection without source-fact or KPI ownership transfer.
+- The reporting scope and consumer authorization are established.
+- Required Infrastructure facts are resolved from canonical G10 sources.
+- B03 and D03 contextual facts remain externally owned.
+- G10 produces the authoritative Infrastructure report, KPI or dashboard-ready projection using governed source semantics.
+- H07, where used, composes the source-owned projection without taking ownership of Infrastructure facts, computation or KPI definitions.
 
 ## 16.2 Postconditions
 
-- G10 remains authoritative for Infrastructure facts and Infrastructure-derived report/KPI/projection ownership under the controlling dependency map.
+- G10 remains authoritative for Infrastructure facts and G-derived reports/KPIs/projections under the controlling dependency-map ruling.
 - H07 retains dashboard-composition ownership only.
-- B03 and D retain their respective institutional and academic-delivery ownership.
+- B03 retains InstitutionalCampus governance and D03 retains timetable/scheduling ownership.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
@@ -178,13 +186,13 @@ Underlying G10 source changes remain fully auditable. Where the governed report/
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
-| L2-G10 §44A.198 says consumers are responsible for Analytics and Reporting and §44A.186 excludes calculated KPIs/consumer projections from event payloads, while higher-authority `DEPENDENCY_MAP.md` explicitly states H07 consumes Section G reports, KPIs and governed projections and that source domains retain computation/report/KPI ownership. | There is a wording conflict inside the lower-authority G10 integration section. Repository precedence resolves ownership to Section G for G-owned reports/KPIs, but the L2 wording remains inconsistent. | Reconcile G10 §44A.186/198 with the controlling dependency-map ruling without changing the frozen L3 outcome. |
-| G10 defines reporting responsibilities but does not define one canonical end-to-end report/KPI workflow or publication event for this frozen scenario. | L3 can describe the business outcome and read hand-off but cannot invent formulas, report lifecycle states, or a reporting event. | Future upstream refinement may define report/KPI governance contracts where greater specificity is required. |
-| H07's locked canonical-section crosswalk records no Actors section. | A dashboard-specific business actor cannot be added solely for this scenario. | Define H07 actors upstream if later L3/L4 work requires explicit human authority. |
+| Lower-level G10 integration wording includes statements that consumers are responsible for Analytics and Reporting, while the higher-authority `DEPENDENCY_MAP.md` explicitly states that H07 consumes Section G reports, KPIs and governed projections and that source domains retain computation/report/KPI ownership. | Repository precedence resolves the frozen scenario in favour of G10 ownership for G-derived reports/KPIs, but lower-level wording remains internally inconsistent. | Reconcile the lower-authority G10 wording with the controlling dependency-map ruling through architecture change control. |
+| G10 defines reporting responsibility but no single canonical end-to-end report/KPI lifecycle or mandatory publication event for this scenario. | L3 can state the business outcome and ownership-safe hand-offs but cannot invent report states, formulas or events. | Future upstream refinement may define report/KPI governance where additional lifecycle precision is required. |
+| H07's locked canonical crosswalk has no Actors section. | No canonical H07 human actor can be assigned in this L3 scenario. | Define H07 actors upstream if later architecture requires explicit human authority. |
 
 **Architecture assessment:** `PASS WITH ISSUES`
 
-The higher-authority dependency map resolves report/KPI ownership and the frozen outcome is usable. Remaining L2 wording and actor/workflow gaps are non-blocking for this Draft.
+The higher-authority dependency map resolves report/KPI/projection ownership and supports the frozen outcome. Remaining lower-level wording and actor/report-lifecycle gaps are non-blocking.
 
 ## 17.2 Assumptions
 

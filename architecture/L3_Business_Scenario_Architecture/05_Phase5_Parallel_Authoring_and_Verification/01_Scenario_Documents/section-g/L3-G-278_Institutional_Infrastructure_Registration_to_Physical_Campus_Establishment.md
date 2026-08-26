@@ -9,256 +9,120 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Draft  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows where institutional ownership is referenced; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized infrastructure consumers across academic, examination, facilities, safety, workforce, analytics and institutional operations
-
----
+**Last Updated:** 2026-08-26  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-G10 Locked Amendment 2026-08-26; ADR-G-INF-REG-001; L2-B03 — Campus Workflows; L2-A01 — Platform & Tenant Foundation  
+**Referenced By:** Infrastructure hierarchy and downstream physical-context scenarios
 
 # 2. Scenario Purpose
 
-Register the canonical physical representation of an institution under G10 while preserving B03 ownership of institutional identity and the separation between registration and operational activation.
-
----
+Establish one canonical G10-owned Physical Campus for an authorised institution while preserving B03 ownership of InstitutionalCampus identity and institution-to-campus governance.
 
 # 3. Business Outcome
 
-A canonical Physical Campus is registered with its identity, required foundational information and authorised physical attribute profile, while institutional ownership remains with B03
-
----
+A canonical Physical Campus is registered under G10 with immutable identity, required physical registration information, initial lifecycle state `Proposed`, and the canonical `CampusRegistered` business event, while institutional governance remains with B03.
 
 # 4. Scenario Boundary and Scope
 
-## 4.1 Start Boundary
+**Start:** An authorised institution requires a new physical infrastructure representation.  
+**End:** The G10 Physical Campus exists in `Proposed`, references the authoritative B03 context, preserves registration evidence, and `CampusRegistered` has been published by G10.
 
-The scenario begins when an authorised institution requires a new physical infrastructure representation.
-
-## 4.2 End Boundary
-
-The scenario ends when the exact frozen outcome is established under G10 ownership, the current authoritative physical fact is available through governed contracts, required events have been published only after successful persistence, and immutable audit history is preserved.
-
-## 4.3 In Scope
-
-- Resolution of Tenant, institution, resource and physical hierarchy context.
-- Scoped authorization before business validation.
-- Validation of G10 identity, hierarchy, lifecycle, capacity, availability, configuration and relationship rules as applicable.
-- The `Physical Campus` business responsibility.
-- Preservation of immutable identifiers and prior historical values.
-- Publication of only source-defined completed business facts.
-- Governed read contracts for authorized consumers.
-- Complete audit evidence.
-
-## 4.4 Out of Scope
-
-- Institutional identity or InstitutionalCampus ownership retained by B03.
-- Academic scheduling, examination conduct, facilities-maintenance execution or consumer-specific decisions.
-- Authentication, technical RBAC, database, API, UI, queue or implementation design.
-- Physical deletion of infrastructure or historical records.
-- Inventing lifecycle states, commands, events, publishers, approval actors or cross-domain contracts absent from L2.
-
-## 4.5 Related Scenarios
-
-| Relationship | Related Scenario | Boundary Reason |
-|---|---|---|
-| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes the canonical Physical Campus root. |
-| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | Governs the Campus–Building–Floor–Space hierarchy. |
-| Related | L3-G-289 — Infrastructure Availability Definition to Availability Profile Activation | Establishes authoritative resource availability. |
-| Related | L3-G-291 — Infrastructure Reservation Request to Controlled Reservation | Consumes availability and capacity without owning either fact. |
-
----
+In scope: institutional reference validation, physical-campus registration, uniqueness, immutable identity, initial lifecycle position, registration audit and event publication. Out of scope: B03 InstitutionalCampus creation, operational activation, lower physical hierarchy, maintenance, allocation, scheduling, UI/API/database or other implementation design.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
+| Domain | Responsibility |
 |---|---|
-| Infrastructure Management / Section G | Primary owner of physical identity, hierarchy, lifecycle, capacity, availability, classification, relationships and infrastructure master facts. |
-| Institution & Structure / Section B, where frozen | Owns Institution and InstitutionalCampus identity; supplies references without owning physical aggregates. |
-| Platform Foundation / Section A, where frozen | Supplies Tenant isolation, configuration, authorization, event and audit capabilities without owning infrastructure facts. |
-| Academic Delivery / Section D, where frozen | Consumes authoritative capacity, availability or reservation outcomes and retains its academic decisions. |
-
-The frozen participating-domain value remains exactly `G, B, A`.
-
----
+| G10 Infrastructure Management | Owns Physical Campus identity, physical attributes, lifecycle and `CampusRegistered`. |
+| B03 Institution & Structure | Owns InstitutionalCampus identity and Institution-to-Campus governance. |
+| A Platform Foundation | Supplies governed authorization/configuration/audit capability without owning Physical Campus semantics. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Authority Boundary |
-|---|---|---|
-| Infrastructure Administrator | Initiates and administers permitted infrastructure operations. | Must hold fine-grained permission in the relevant Tenant, institution, Campus, Building or Zone scope. |
-| Campus or Building Administrator | Manages infrastructure within assigned physical scope. | Cannot act outside assigned hierarchy scope. |
-| Facilities Manager / Operational Manager | Supplies operational context and consumes current physical facts. | Does not change canonical identity or bypass G10 rules. |
-| Auditor | Reviews immutable history and evidence. | Read-only; cannot mutate infrastructure. |
-| Consumer-domain actor | Requests or consumes an authorized infrastructure service. | Retains the consumer decision and cannot modify G10 aggregates directly. |
-
-Roles are configurable access patterns in L2-G10. No universal named approver is inferred.
-
----
+- **Infrastructure Administrator:** initiates/administers permitted Physical Campus registration.
+- **Institution Administrator:** supplies/validates institution-side governance context where required.
+- **Auditor:** reviews immutable registration history in a read-only capacity.
 
 # 7. Preconditions and Entry Criteria
 
-- The Tenant and institution exist and are active under their canonical owners.
-- The institution does not already have a conflicting Physical Campus identity or code.
-- Infrastructure registration, naming, hierarchy and attribute policies are resolvable.
-- The requester holds scoped Infrastructure Registration permission.
-- Tenant and institution isolation are enforceable.
-- Authentication context is supplied externally and authorization succeeds before mutation.
-- Required audit and event infrastructure is available under enterprise policy.
-
----
+- Authoritative Institution and InstitutionalCampus context exists.
+- Physical Campus code satisfies G10 uniqueness rules.
+- Required physical registration information is available.
+- The requester is authorized for Infrastructure registration.
+- No duplicate canonical Physical Campus represents the same intended site.
 
 # 8. Trigger
 
-An authorised institution requires a new physical infrastructure representation
-
----
+An authorised institution requires a new physical infrastructure representation.
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
+| Step | Behaviour | Responsible Domain / Role | Result |
 |---|---|---|---|
-| 1 | Receive the authorized request and resolve Tenant, institution and correlation context. | Infrastructure Management | Receive the authorized request and resolve Tenant, institution and correlation context. |
-| 2 | Validate the B03 institution reference without copying institutional ownership into G10. | Infrastructure Management | Validate the B03 institution reference without copying institutional ownership into G10. |
-| 3 | Validate the proposed Campus Code, name, foundational physical metadata and configured physical attribute profile. | Infrastructure Management | Validate the proposed Campus Code, name, foundational physical metadata and configured physical attribute profile. |
-| 4 | Confirm the code is unique and the physical campus will belong to exactly one institution. | Infrastructure Management | Confirm the code is unique and the physical campus will belong to exactly one institution. |
-| 5 | Create the Physical Campus aggregate and assign its immutable identity. | Infrastructure Management | Create the Physical Campus aggregate and assign its immutable identity. |
-| 6 | Apply the source-defined initial lifecycle condition without making the campus operational. | Infrastructure Management | Apply the source-defined initial lifecycle condition without making the campus operational. |
-| 7 | Record the actor, authorization, inputs, initial state and institution reference in immutable audit evidence. | Infrastructure Management | Record the actor, authorization, inputs, initial state and institution reference in immutable audit evidence. |
-| 8 | Publish `CampusCreated` only after successful persistence and expose the Physical Campus Summary contract. | Infrastructure Management | Publish `CampusCreated` only after successful persistence and expose the Physical Campus Summary contract. |
-
----
+| 1 | Resolve the authoritative Institution and InstitutionalCampus context. | B03; Infrastructure Administrator | Institutional context is confirmed without ownership transfer. |
+| 2 | Validate requested Physical Campus code, name and required physical information. | G10 | Registration inputs satisfy G10 rules. |
+| 3 | Establish the G10 Physical Campus aggregate with immutable identity. | G10 | Canonical Physical Campus exists. |
+| 4 | Associate the G10 Physical Campus to the B03-owned institutional context by reference. | G10/B03 boundary | Institutional and physical ownership remain separate. |
+| 5 | Set the canonical initial lifecycle state to `Proposed`. | G10 | Physical Campus is registered but non-operational. |
+| 6 | Preserve registration evidence. | G10 | Registration is auditable. |
+| 7 | Publish `CampusRegistered`. | G10 | The registration completion fact is available to authorized consumers. |
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| 1 | Configured approval is required before creation | retain the request outside an operational state until approval succeeds. | Existing ownership and history remain intact. |
-| 2 | Optional attributes are incomplete | register only if mandatory configuration permits; otherwise reject without a partial campus. | Existing ownership and history remain intact. |
-
----
+- If the intended physical representation already has a canonical G10 identity, reuse/reference it rather than creating a duplicate.
+- Where institutional policy requires additional approval before registration, complete only that source-supported approval path before the G10 registration fact is established.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Tenant, institution or resource scope cannot be resolved | reject the request without creating a cross-scope fact. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Authorization fails | terminate before business mutation. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Hierarchy, lifecycle, configuration or policy validation fails | retain the prior authoritative state. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| A uniqueness, capacity, availability or relationship invariant fails | reject the requested result. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Audit evidence cannot be recorded | do not complete the business transition. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| The success-event condition is not satisfied | do not publish the success event. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-
-No technical retry, rollback, database transaction or messaging implementation is specified at L3.
-
----
+- Invalid B03 context prevents registration.
+- Failed G10 uniqueness/validation leaves no new canonical Physical Campus.
+- Incomplete required approval leaves registration incomplete.
+- A failed attempt does not publish `CampusRegistered`.
 
 # 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| Infrastructure Management is the canonical owner of physical infrastructure facts. | Infrastructure Management | Consumers reference G10 facts and never duplicate or directly modify aggregates. | L2-G10 §§2, 5, 9, 44A |
-| Every Building belongs to one Campus; every Floor to one Building; every Space to one Floor. | Infrastructure Management | Invalid or circular physical relationships are rejected. | L2-G10 §§8, 18, 47 |
-| Aggregate identity is immutable and infrastructure is never physically deleted. | Infrastructure Management | Changes preserve identifiers and historical references. | L2-G10 §§13, 47, 48A |
-| Authorization precedes business validation. | Authorization & Policy; Infrastructure Management | Unauthorized requests terminate before mutation. | L2-G10 §48A.207 |
-| Business validation precedes persistence, and events describe completed facts. | Infrastructure Management; Event Infrastructure | Failed work cannot publish a success event. | L2-G10 §§22A.99, 44A.179 |
-| Every successful state or significant attribute change is auditable. | Infrastructure Management; Audit Infrastructure | Actor, prior value, new value, reason and correlation are preserved. | L2-G10 §§48A.208–210, 49 |
-| Archived infrastructure is immutable. | Infrastructure Management | No scenario may update an Archived aggregate. | L2-G10 §§11A, 47 |
-| Capacity cannot be negative and reservation conflicts are prevented unless an authorized override is permitted. | Infrastructure Management | Invalid capacity or conflicting reservations are rejected. | L2-G10 §§24, 26, 47 |
-
----
+- Physical Campus ownership belongs exclusively to G10.
+- InstitutionalCampus identity and institutional governance remain in B03.
+- Physical Campus code must be unique; aggregate identity is immutable.
+- A newly registered Physical Campus starts in `Proposed`.
+- Registration does not imply operational availability.
+- Only `Operational` infrastructure may be consumed as operationally available under G10 rules.
+- `CampusRegistered` is the sole canonical event for successful Physical Campus registration; `CampusCreated` is not a duplicate alias for this fact.
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Position | Canonical Owner |
-|---|---|---|---|---|
-| `Physical Campus` | Valid trigger and authorized context | Executes only the scenario-specific creation, association or governed attribute change. | No Physical Campus → Proposed or Planned under WF-INF-001; the summary registration workflow instead states Draft | Infrastructure Management, except the B03 reference retained by Institution & Structure |
-| Parent physical hierarchy | Existing and valid where applicable | Referenced and validated; not silently re-parented. | Unchanged unless the frozen outcome explicitly creates the child relationship. | Infrastructure Management |
-| Tenant and Institution | Existing | Supply isolation and institutional reference. | Unchanged. | Platform Foundation; Institution & Structure |
-| Consumer-domain records | Existing or absent | Consume the completed authoritative fact. | Unchanged by G10. | Applicable consumer domain |
-| Audit history | Existing | Appends immutable evidence. | Historical trace grows; prior records remain unchanged. | Audit Infrastructure |
+| Concept | Scenario Impact | Result | Owner |
+|---|---|---|---|
+| Physical Campus | Created/registered canonically | `Proposed` | G10 |
+| InstitutionalCampus | Referenced only | Unchanged | B03 |
 
-L2-G10 requires lifecycle and operational availability to remain distinct. “Activation” in a frozen outcome is not treated as a new lifecycle state unless L2-G10 defines it.
-
----
+The downstream canonical Physical Campus progression begins `Proposed → Planned → Approved → Under Construction → Operational`.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Event Treatment
-
-| Event / Required Fact | Publication Condition | Publisher and Consumer Treatment |
+| Event / Hand-off | Publisher / Provider | Consumer / Purpose |
 |---|---|---|
-| `CampusCreated` | Only after the corresponding aggregate creation or governed update has persisted successfully. | The affected G10 aggregate publishes the source-defined completed fact; consumers react without changing G10 ownership. |
-
-Where Section 44 and the detailed WF-INF catalogue use different names, this Draft records the inconsistency in Section 17 and does not publish both names for one transition.
-
-## 14.2 Synchronous Business Contracts and Hand-offs
-
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
-|---|---|---|---|
-| Physical Campus Summary | Infrastructure Management | Institution & Structure and authorized consumers | Canonical physical Campus identity, lifecycle and operational status. |
-| Building, Floor and Space Summary | Infrastructure Management | Operational domains | Canonical hierarchy, classification, capacity, lifecycle and current status. |
-| Capacity Profile | Infrastructure Management | Academic, Examination and operational consumers | Canonical capacity facts; consumers own utilization decisions. |
-| Retrieve Availability | Infrastructure Management | Authorized consumers | Current operational availability independently from lifecycle. |
-| Reservation service | Infrastructure Management | Authorized requestor | Governed reservation establishment, modification or retrieval. |
-| Audit input | Infrastructure Management | Audit Infrastructure | Actor, scope, transition, prior/new values, reason and correlation evidence. |
-
----
+| `CampusRegistered` | G10 | Signals successful Physical Campus registration. |
+| InstitutionalCampus reference | B03 | Grounds G10 physical registration in authoritative institutional context. |
+| Physical Campus summary/reference | G10 | Supplies physical identity/context without ownership transfer. |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
-
-- Authentication is external to G10.
-- Fine-grained permission is evaluated by Tenant, institution and physical-resource scope before validation.
-- Consumer access does not grant direct aggregate mutation.
-- Authorization success does not waive hierarchy, lifecycle, capacity, availability or policy rules.
-
-## 15.2 Approval and Separation of Duty
-
-- L2-G10 allows configurable approval for some creation, lifecycle, override and administrative operations.
-- The scenario uses approval only where active policy requires it.
-- No unnamed approver or technical workflow routing is invented.
-- Governance approval supplements business validation and never replaces it.
-
-## 15.3 Audit Obligations
-
-The audit record must preserve Tenant, institution, aggregate type and identifier, actor, authorization scope, previous values, new values, effective dates where applicable, business reason, approval reference where required, event facts and correlation identifier. Audit history is immutable and independently retained.
-
----
+Infrastructure registration requires authorization for the applicable institutional and infrastructure scope. Audit evidence preserves initiating actor, B03 reference, Physical Campus identity, validated physical facts, approval reference where applicable, resulting `Proposed` state and `CampusRegistered` publication.
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete only when:
-
-- receive the authorized request and resolve Tenant, institution and correlation context.
-- validate the B03 institution reference without copying institutional ownership into G10.
-- validate the proposed Campus Code, name, foundational physical metadata and configured physical attribute profile.
-- confirm the code is unique and the physical campus will belong to exactly one institution.
-- create the Physical Campus aggregate and assign its immutable identity.
-- apply the source-defined initial lifecycle condition without making the campus operational.
-- record the actor, authorization, inputs, initial state and institution reference in immutable audit evidence.
-- publish `CampusCreated` only after successful persistence and expose the Physical Campus Summary contract.
-- no institutional, academic or consumer-domain ownership has transferred to G10;
-- no unauthorized or partial result is treated as successful; and
-- all required audit evidence is immutable and queryable.
-
-Postconditions:
-
-- Canonical G10 identity and historical integrity are preserved.
-- The current authoritative fact is available through governed contracts.
-- Consumers may react under their own rules but cannot rewrite the source fact.
-- Failed or incomplete transitions publish no success event.
-
----
+- B03 institutional context is valid.
+- G10 Physical Campus is uniquely registered with immutable identity.
+- Initial state is `Proposed` and therefore non-operational.
+- Ownership remains separated between B03 institutional governance and G10 physical representation.
+- Registration evidence is preserved.
+- `CampusRegistered` is published by G10.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-**Architecture assessment:** `PASS WITH ISSUES`
-
-| ID | Severity | Issue / Deferred Question | Required Resolution |
-|---|---|---|---|
-| G-278-ISSUE-01 | Non-blocking | L2-G10 summary registration says every new entity starts in `Draft`, while WF-INF-001 says a Campus starts in `Proposed` or `Planned`; the canonical initial state is inconsistent. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
-| G-278-ISSUE-02 | Non-blocking | L2-G10 Section 44 names `CampusRegistered`, while WF-INF-001 and the detailed event catalogue name `CampusCreated`; this Draft uses the workflow-specific `CampusCreated`. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
-
-No unsupported aggregate, lifecycle state, transition, event, publisher, actor, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
+**Open Issues:** None.  
+**Assumptions:** None.  
+**Deferred Questions:** None.  
+**Architecture assessment:** `PASS`

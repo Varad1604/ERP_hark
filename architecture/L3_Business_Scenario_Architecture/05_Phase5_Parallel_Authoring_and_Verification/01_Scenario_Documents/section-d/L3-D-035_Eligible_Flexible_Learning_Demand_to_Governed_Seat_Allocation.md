@@ -1,181 +1,116 @@
 # Eligible Flexible Learning Demand to Governed Seat Allocation
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-035  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Open Electives & MOOCs  
 **Participating Domains:** C, D  
-**Scenario Type:** Cross-domain  
+**Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Architecture Approved  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-25  
 **Depends On:** `L2-D06_Open_Electives_and_MOOCs_Workflows.md`  
-**Referenced By:** None yet  
 **Frozen Stage 3 Source:** P2W-D-0756 / CAN-L3-D-036 (final L3-D-035)
 
 ---
 
 # 2. Scenario Purpose
 
-Allocate one available seat to one approved flexible-learning enrollment under capacity, quota, priority and concurrency rules.
+Allocate available flexible-learning capacity to eligible Approved demand under governed D06 priority/capacity rules without exceeding capacity or creating duplicate allocation.
 
 # 3. Business Outcome
 
-The approved enrollment receives exactly one governed seat, capacity statistics are updated atomically and `SeatAllocated` is published.
+Eligible Approved demand receives one governed Seat Allocation where capacity permits; otherwise the demand remains unallocated and may proceed to the D06 waitlist outcome.
 
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
 
-A Flexible Learning Enrollment is Approved and the target Active opportunity has governed available capacity.
+A D06 Flexible Learning Enrollment is Approved and requires seat allocation.
 
 ## 4.2 End Boundary
 
-The Seat Allocation reaches Allocated and the enrollment reflects its allocated-seat outcome.
+The demand has an Allocated or governed Unallocated/no-seat outcome and the applicable D06 allocation fact is published.
 
 ## 4.3 In Scope
 
-- Validate approval, active opportunity and available capacity.
-- Apply quota/priority rules and atomic inventory control.
-- Allocate one seat and update capacity.
-- Route capacity exhaustion to the separate D06 waitlist outcome.
+- Establish authoritative capacity and eligibility/priority context.
+- Apply D06 capacity, reservation and priority policy.
+- Confirm one valid allocation where capacity permits.
+- Route eligible unallocated demand to the governed no-seat/waitlist path.
 
 ## 4.4 Out of Scope
 
-- Approval of the enrollment request.
-- Core Section C registration mutation.
-- Over-allocation or non-deterministic allocation.
+- Locks, transactions, atomic updates or concurrency control.
+- Exceeding capacity.
+- Changing Section C-owned facts.
 
 ## 4.5 Related Scenarios — Optional
 
-Related scenarios are referenced only where their completed business facts cross this boundary; they do not transfer ownership.
+L3-D-036 handles the governed waitlist outcome. L3-D-048 handles a detected allocation conflict.
 
 # 5. Ownership and Participating Domains
 
-| Domain | Responsibility |
-|---|---|
-| D06 | Owns Seat Allocation, flexible-learning capacity usage and allocation event. |
-| Section C | Owns canonical student and core registration facts referenced during allocation. |
+D06 owns capacity, Seat Allocation and allocation decision. Section C supplies canonical student/core-registration references only.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Actor / Role | Responsibility | Authority |
-|---|---|---|
-| Seat Allocation Engine | Performs deterministic, concurrency-safe seat allocation. | Authorized automated service only. |
-| Academic Affairs | Authorizes governed manual or reserved-quota allocation where policy permits. | Policy-bound exception authority. |
+Where policy requires a human exceptional allocation decision, Academic Affairs may act within its assigned authority. Normal allocation evaluation is a D06 business responsibility and is not represented by a `Seat Allocation Engine` actor.
 
 # 7. Preconditions and Entry Criteria
 
-- Enrollment is Approved.
-- Opportunity is Active and a seat is available.
-- Capacity and allocation policy versions are valid.
+Approved enrollment exists; capacity policy is active; relevant eligibility/priority references are authoritative.
 
 # 8. Trigger
 
-Enrollment approval requests seat allocation.
+Approved eligible demand becomes ready for D06 allocation.
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Role / Domain | Business Result |
-|---|---|---|---|
-| 1 | Receive approved enrollment and validate continued eligibility/context. | D06 Seat Allocation Engine | Demand confirmed eligible. |
-| 2 | Retrieve capacity and applicable reserved-category/priority rules. | D06 | Allocation basis established. |
-| 3 | Lock seat inventory and revalidate availability. | Seat Allocation Engine | Concurrent over-allocation prevented. |
-| 4 | Allocate exactly one seat and update capacity statistics atomically. | Seat Allocation Engine | Seat Allocation becomes Allocated. |
-| 5 | Publish allocation and notify student. | D06 | SeatAllocated. |
-| 6 | If capacity is exhausted, do not allocate; invoke governed waitlist evaluation. | D06 | No negative capacity or duplicate seat. |
+1. D06 establishes current governed capacity and Approved enrollment demand.
+2. D06 validates eligibility, priority, reservations and applicable capacity policy.
+3. D06 determines the next valid allocation position under policy.
+4. Where capacity permits, D06 records one Seat Allocation and the applicable allocation event.
+5. Where no capacity remains, D06 records the unallocated business outcome and routes eligible demand to L3-D-036 where waitlisting is enabled.
 
 # 10. Alternate Business Flows
 
-A failed validation, rejection, configured optional approval path, escalation or compensation follows only the alternatives explicitly supported above; it never creates the successful final outcome or rewrites prior facts.
+## 10.1 Capacity Exhausted
+
+Where all valid capacity is consumed, eligible Approved demand reaches the governed Unallocated/no-seat outcome and may proceed to the D06 waitlist path; no over-allocation occurs.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Recovery | Owner |
-|---|---|---|---|
-| Validation or reference failure | Scenario cannot proceed. | Reject or return for correction without changing the prior authoritative state. | Open Electives & MOOCs |
-| Authorization or approval failure | Requested outcome is not permitted. | Retain the prior state and record the decision reason. | Open Electives & MOOCs |
-| Interrupted processing | Completion is uncertain. | Resume from the last authoritative state with audit continuity and idempotency. | Open Electives & MOOCs |
+Missing/invalid capacity, eligibility or priority facts block allocation until authoritative business evidence is resolved. An interrupted allocation preserves the last authoritative D06 capacity/allocation position. Any detected conflict follows L3-D-048 rather than technical rollback/retry behaviour here.
 
 # 12. Business Rules and Decision Constraints
 
-| Rule | Owner | Scenario Effect | Source |
-|---|---|---|---|
-| Only the canonical owner may change its owned business state. | Open Electives & MOOCs | Prevents cross-domain ownership leakage. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
-| Each transition requires valid lifecycle position, authority, policy and evidence. | Open Electives & MOOCs | Prevents governance bypass. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
-| Published or historical business facts remain immutable. | Open Electives & MOOCs | Preserves auditability and lineage. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
+D06 owns capacity and allocation; capacity must not be exceeded; duplicate allocation must not be created; Section C facts remain externally owned; repeated same business fact must not create duplicate institutional allocation outcomes. Technical locks/atomicity/idempotency are deferred.
 
 # 13. State and Lifecycle Impact
 
-| Concept | Entry State | Scenario Impact | Result | Owner | Source |
-|---|---|---|---|---|---|
-| Seat Allocation | Available | Reserve if applicable, then atomically allocate to one approved enrollment. | Available → optional Reserved → Allocated | D06 | L2-D06 Aggregate 2; W26–W27 |
+Seat Allocation: eligible Approved demand → Allocated or governed Unallocated/no-seat outcome under D06. Source: L2-D06 seat-allocation workflows and Aggregate 2.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
-
-| Business Event | Canonical Publisher | Consumers | Purpose | Source |
-|---|---|---|---|---|
-| SeatAllocated / SeatReserved | D06 | Flexible Learning Enrollment, Section C and authorized consumers | Records governed reservation/allocation outcome. | L2-D06 W26–W27; Event Catalogue |
-
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-| From | To | Business Hand-off | Purpose | Source |
-|---|---|---|---|---|
-| Section C | Open Electives & MOOCs | Owns canonical student and core registration facts referenced during allocation. | Preserve ownership while enabling the scenario. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
+Existing D06 allocation/waitlist events and publishers remain unchanged as defined in L2-D06. Section C supplies authoritative eligibility references without ownership transfer.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-| Action / Decision | Authorized Role | Constraint | Owner |
-|---|---|---|---|
-| Performs deterministic, concurrency-safe seat allocation. | Seat Allocation Engine | Authorized automated service only. | Open Electives & MOOCs |
-| Authorizes governed manual or reserved-quota allocation where policy permits. | Academic Affairs | Policy-bound exception authority. | Open Electives & MOOCs |
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-Initiation, validation, review, approval and execution remain distinct wherever source or configured policy requires separation. Automated services execute rules but never make governance decisions. Any override requires authority, justification, evidence and audit history.
-
-## 15.3 Business Audit and Evidence Obligations
-
-| Obligation | Evidence | Owner |
-|---|---|---|
-| Scenario lifecycle and decision | Actor, authority, reason, prior state, validation evidence, decision and resulting state. | Open Electives & MOOCs |
-| Source and cross-domain traceability | Source identifiers, versions, evidence references, consumed events and published facts. | Open Electives & MOOCs |
-| Failure and recovery | Rejected validations, interruptions, retries, escalation or compensation outcome. | Open Electives & MOOCs |
+D06 applies normal allocation policy. Any exceptional human allocation decision requires the business authority explicitly established by D06 policy. Audit retains demand, eligibility/priority, capacity position, applicable policy and final allocation/no-seat outcome.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-- The approved enrollment receives exactly one governed seat, capacity statistics are updated atomically and `SeatAllocated` is published.
-- All required authority, validation and audit evidence is retained.
-- Applicable completed business facts are published exactly once in business effect.
-
-## 16.2 Postconditions
-
-- Canonical ownership remains unchanged.
-- Historical decisions and prior states remain immutable.
-- Downstream domains consume facts without modifying the owning aggregate.
+Capacity remains consistent; no duplicate/over-capacity allocation exists; demand has a governed outcome; D06 ownership is unchanged.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
-
-No open issues.
-
-## 17.2 Assumptions
-
-No assumptions.
-
-## 17.3 Deferred Questions
-
-No deferred questions.
+No new open issue or assumption is introduced. Locking, transactions, concurrency control, atomic updates, retry and technical deduplication are deferred to L4/L5.
 
 ---
 
-**Draft Validation Verdict:** PASS  
-**Validation Basis:** Section D canonical register; `L2-D06_Open_Electives_and_MOOCs_Workflows.md`; Template v2.0; Architecture Level Validation Standards; accepted Section D decisions 001–500.
+**Draft Validation Verdict:** REVIEW REQUIRED  
+**Validation Basis:** L2-D06; Template v2.0; Architecture Level Validation Standards.

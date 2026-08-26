@@ -1,15 +1,17 @@
 # Seat Allocation Conflict Resolution
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-048  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Open Electives & MOOCs  
 **Participating Domains:** C, D  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Architecture Approved  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-25  
 **Depends On:** `L2-D06_Open_Electives_and_MOOCs_Workflows.md`  
 **Referenced By:** None yet  
 **Frozen Stage 3 Source:** P2W-D-0768 / CAN-L3-D-048
@@ -18,99 +20,114 @@
 
 # 2. Scenario Purpose
 
-Resolve a concurrent D06 seat-allocation conflict without exceeding capacity, duplicating allocation or leaving inventory inconsistent.
+Resolve a D06 seat-allocation conflict so that flexible-learning capacity remains consistent, no approved enrollment receives a duplicate seat, and no capacity is exceeded.
 
 # 3. Business Outcome
 
-The conflicting allocation is rolled back, capacity is deterministically recalculated and the eligible allocation is retried or routed to a governed no-seat outcome, with `SeatConflictResolved` published.
+The allocation conflict is resolved against the latest authoritative D06 capacity position. One eligible allocation may be confirmed where capacity permits; otherwise the demand follows the governed no-seat/waitlist outcome. `SeatConflictResolved` is published by D06.
 
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
 
-A seat-allocation transaction detects concurrency conflict or fails consistency validation.
+D06 detects that competing or inconsistent seat-allocation facts prevent a trustworthy allocation outcome.
 
 ## 4.2 End Boundary
 
-Seat inventory and enrollment allocation are consistent and the conflict resolution is recorded; unresolved exhaustion routes to waitlist/no-allocation.
+D06 capacity and enrollment-allocation facts are consistent and the conflict has a governed Allocated or Unallocated/waitlist outcome.
 
 ## 4.3 In Scope
 
-- Detect and isolate concurrency conflict.
-- Roll back uncommitted conflicting effect.
-- Recalculate capacity and revalidate demand.
-- Retry atomically or route to governed alternate outcome.
+- Identify the conflicting allocation demand and affected capacity position.
+- Preserve the last authoritative D06 allocation and capacity facts.
+- Reassess current capacity, eligibility and priority under the applicable allocation policy.
+- Confirm one valid allocation where capacity permits or route eligible unallocated demand to the governed no-seat/waitlist outcome.
+- Record the resolved business outcome and evidence.
 
 ## 4.4 Out of Scope
 
-- Exceeding capacity to satisfy both requests.
-- Changing Section C-owned registration facts.
-- Erasing failed-attempt evidence.
+- Transaction, lock, rollback, retry or concurrency-control mechanisms.
+- Exceeding capacity to satisfy competing requests.
+- Changing Section C-owned student or core-registration facts.
+- Erasing prior conflict evidence or historical allocation facts.
 
 ## 4.5 Related Scenarios — Optional
 
-Related scenarios are referenced only where their completed business facts cross this boundary; they do not transfer ownership.
+| Relationship | Related Scenario | Reason |
+|---|---|---|
+| Related allocation path | L3-D-035 — Eligible Flexible Learning Demand to Governed Seat Allocation | Governs the normal D06 seat-allocation outcome. |
+| Related no-seat path | L3-D-036 — Unallocated Eligible Demand to Governed D06 Waitlist Outcome | Governs eligible demand that cannot receive a seat. |
 
 # 5. Ownership and Participating Domains
 
 | Domain | Responsibility |
 |---|---|
-| D06 | Owns flexible-learning seat inventory, conflict resolution, retry and allocation consistency. |
-| Section C | Owns canonical student/core-registration facts referenced during revalidation. |
+| D06 | Owns flexible-learning capacity, Seat Allocation facts, conflict resolution and the final allocation/no-seat outcome. |
+| Section C | Owns canonical student and core-registration facts referenced during revalidation. |
 
 # 6. Business Actors, Roles and Responsibilities
 
 | Actor / Role | Responsibility | Authority |
 |---|---|---|
-| Seat Allocation Engine | Detects, rolls back, recalculates and retries atomically. | Automated execution. |
-| Academic Affairs | Reviews persistent conflict or applies authorized manual allocation policy. | Policy-bound exception authority. |
+| Academic Affairs | Reviews a conflict only where institutional policy requires a governed manual or exceptional allocation decision. | Policy-bound business decision authority where explicitly applicable. |
+
+Normal conflict detection, capacity reassessment and consistency restoration are D06 business responsibilities and are not represented as a technical `Seat Allocation Engine` actor at L3.
 
 # 7. Preconditions and Entry Criteria
 
-- A D06 allocation attempt failed because of concurrent demand or inventory inconsistency.
-- Last committed allocation and capacity state are recoverable.
+- An allocation conflict or inconsistent allocation/capacity fact has been identified within D06.
+- The latest authoritative D06 capacity and allocation facts are available.
+- Relevant Section C eligibility references remain available where revalidation is required.
 
 # 8. Trigger
 
-Concurrent allocation conflict is detected.
+D06 identifies competing or inconsistent allocation facts that prevent a trustworthy seat-allocation outcome.
 
 # 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Capture conflict and identify affected requests/inventory version. | Seat Allocation Engine | Conflict case and audit correlation exist. |
-| 2 | Roll back the uncommitted conflicting allocation effect. | D06 | Last committed state restored. |
-| 3 | Recalculate available, occupied and reserved capacity deterministically. | D06 | Canonical inventory established. |
-| 4 | Revalidate enrollment eligibility and priority. | Seat Allocation Engine using references | Retry candidate confirmed. |
-| 5 | Retry one atomic allocation under current capacity. | Seat Allocation Engine | Seat allocated or no-seat result. |
-| 6 | If capacity exhausted/persistent conflict, route to waitlist or authorized manual review. | D06 / Academic Affairs | No over-allocation occurs. |
-| 7 | Publish resolution with final inventory outcome. | D06 | SeatConflictResolved. |
+| 1 | Establish the conflict case and identify the affected enrollment demand and D06 capacity facts. | D06 | Conflict scope is traceable. |
+| 2 | Preserve the last authoritative allocation and capacity position while the conflict is assessed. | D06 | Prior valid business truth remains intact. |
+| 3 | Reassess available, occupied and reserved capacity under the governing D06 allocation policy. | D06 | Current authoritative capacity position is established. |
+| 4 | Revalidate enrollment eligibility and priority using authoritative references where required. | D06 using Section C facts | Eligible demand is confirmed or rejected. |
+| 5 | Where capacity permits, confirm one governed allocation for the eligible demand. | D06 | Seat is Allocated without duplicate allocation or capacity breach. |
+| 6 | Where capacity does not permit allocation, route eligible demand to the supported D06 no-seat/waitlist outcome. | D06 | Governed unallocated outcome is established. |
+| 7 | Record and publish the conflict-resolution outcome. | D06 | `SeatConflictResolved`. |
 
 # 10. Alternate Business Flows
 
-A failed validation, rejection, configured optional approval path, escalation or compensation follows only the alternatives explicitly supported above; it never creates the successful final outcome or rewrites prior facts.
+## 10.1 No Seat Available After Reassessment
+
+Where the conflict is resolved but no governed capacity remains, the affected eligible demand does not receive a seat and proceeds to the D06 waitlist/no-allocation path. Capacity remains consistent and `SeatConflictResolved` records the conflict outcome.
+
+## 10.2 Policy-Governed Exceptional Review
+
+Where the authoritative D06 policy explicitly requires a human decision for a reserved or exceptional allocation, Academic Affairs performs that business review before the final allocation/no-seat outcome is recorded.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Recovery | Owner |
+| Situation | Business Consequence | Business Resolution / Recovery | Owner |
 |---|---|---|---|
-| Validation or reference failure | Scenario cannot proceed. | Reject or return for correction without changing the prior authoritative state. | Open Electives & MOOCs |
-| Authorization or approval failure | Requested outcome is not permitted. | Retain the prior state and record the decision reason. | Open Electives & MOOCs |
-| Interrupted processing | Completion is uncertain. | Resume from the last authoritative state with audit continuity and idempotency. | Open Electives & MOOCs |
+| Current capacity or allocation facts cannot be established | The conflict cannot be resolved reliably. | Preserve the last authoritative D06 position and resolve the missing/inconsistent business evidence before continuing. | D06 |
+| Eligibility or priority reference cannot be validated | The affected demand cannot proceed to allocation. | Resolve the authoritative reference with its canonical owner before reassessment continues. | D06 with Section C participation where applicable |
+| Required exceptional decision is unavailable or rejected | The requested exceptional allocation cannot proceed. | Retain the prior authoritative position and follow the governed unallocated/waitlist or later review path supported by policy. | D06 |
+| Conflict resolution is interrupted before a final business outcome | No resolved allocation/no-seat outcome has occurred. | Preserve the last valid business position and continue only when the blocking business condition is resolved. | D06 |
 
 # 12. Business Rules and Decision Constraints
 
 | Rule | Owner | Scenario Effect | Source |
 |---|---|---|---|
-| Only the canonical owner may change its owned business state. | Open Electives & MOOCs | Prevents cross-domain ownership leakage. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
-| Each transition requires valid lifecycle position, authority, policy and evidence. | Open Electives & MOOCs | Prevents governance bypass. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
-| Published or historical business facts remain immutable. | Open Electives & MOOCs | Preserves auditability and lineage. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
+| Only D06 may change D06-owned allocation and capacity facts. | D06 | Prevents cross-domain ownership leakage. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
+| Capacity may not be exceeded and duplicate allocation may not be created. | D06 | Defines the business integrity requirement of conflict resolution. | L2-D06 W69 and seat-allocation governance |
+| Eligibility and priority use authoritative references and governed policy. | D06 | Prevents unsupported allocation decisions. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
+| Prior authoritative business facts and conflict evidence remain historically traceable. | D06 | Prevents destructive reconciliation. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
 
 # 13. State and Lifecycle Impact
 
 | Concept | Entry State | Scenario Impact | Result | Owner | Source |
 |---|---|---|---|---|---|
-| Seat Allocation Conflict | Detected | Rollback, recalculate and retry from last committed truth. | Resolved with Allocated or governed Unallocated outcome | D06 | L2-D06 W69 |
+| Seat Allocation Conflict | Detected | Reassess authoritative capacity/eligibility and determine the governed outcome. | Resolved with Allocated or governed Unallocated outcome | D06 | L2-D06 W69 |
 
 # 14. Business Events and Cross-Domain Collaboration
 
@@ -118,64 +135,65 @@ A failed validation, rejection, configured optional approval path, escalation or
 
 | Business Event | Canonical Publisher | Consumers | Purpose | Source |
 |---|---|---|---|---|
-| SeatConflictResolved | D06 | Seat allocation, waitlist, Section C and audit consumers | Records restored inventory consistency and conflict outcome. | L2-D06 W69; D06-E60 |
+| `SeatConflictResolved` | D06 | Seat allocation, waitlist, Section C and authorized audit consumers | Records the restored D06 allocation/capacity consistency and conflict outcome. | L2-D06 W69; D06-E60 |
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
 | From | To | Business Hand-off | Purpose | Source |
 |---|---|---|---|---|
-| Section C | Open Electives & MOOCs | Owns canonical student/core-registration facts referenced during revalidation. | Preserve ownership while enabling the scenario. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
+| Section C | D06 | Authoritative student/core-registration facts referenced during eligibility revalidation. | Enable D06 decision-making without transferring Section C ownership. | `L2-D06_Open_Electives_and_MOOCs_Workflows.md` |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-| Action / Decision | Authorized Role | Constraint | Owner |
+| Action / Decision | Authorized Role / Domain | Constraint | Owner |
 |---|---|---|---|
-| Detects, rolls back, recalculates and retries atomically. | Seat Allocation Engine | Automated execution. | Open Electives & MOOCs |
-| Reviews persistent conflict or applies authorized manual allocation policy. | Academic Affairs | Policy-bound exception authority. | Open Electives & MOOCs |
+| Reassess and resolve normal allocation conflict | D06 | Must apply the authoritative D06 capacity, eligibility and priority rules. | D06 |
+| Decide an exceptional/manual allocation where policy requires | Academic Affairs | Authority exists only where established by the governing D06 policy. | D06 |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-Initiation, validation, review, approval and execution remain distinct wherever source or configured policy requires separation. Automated services execute rules but never make governance decisions. Any override requires authority, justification, evidence and audit history.
+A business exception may override the normal allocation path only where authoritative policy grants such authority. The exception must preserve justification, affected capacity, prior allocation facts and final outcome.
 
 ## 15.3 Business Audit and Evidence Obligations
 
 | Obligation | Evidence | Owner |
 |---|---|---|
-| Scenario lifecycle and decision | Actor, authority, reason, prior state, validation evidence, decision and resulting state. | Open Electives & MOOCs |
-| Source and cross-domain traceability | Source identifiers, versions, evidence references, consumed events and published facts. | Open Electives & MOOCs |
-| Failure and recovery | Rejected validations, interruptions, retries, escalation or compensation outcome. | Open Electives & MOOCs |
+| Conflict and resolution | Conflicting demand, prior authoritative capacity/allocation facts, reassessment evidence, policy and final outcome. | D06 |
+| Cross-domain traceability | Section C references used for eligibility/priority revalidation. | D06 with Section C ownership retained |
+| Failure and recovery | Blocking business condition, governed resolution and final allocation/no-seat outcome. | D06 |
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- The conflicting allocation is rolled back, capacity is deterministically recalculated and the eligible allocation is retried or routed to a governed no-seat outcome, with `SeatConflictResolved` published.
-- All required authority, validation and audit evidence is retained.
-- Applicable completed business facts are published exactly once in business effect.
+- D06 capacity and allocation facts are consistent.
+- No capacity breach or duplicate seat allocation exists as a result of this conflict.
+- The affected demand has a governed Allocated or Unallocated/waitlist outcome.
+- `SeatConflictResolved` is published by D06.
 
 ## 16.2 Postconditions
 
-- Canonical ownership remains unchanged.
-- Historical decisions and prior states remain immutable.
-- Downstream domains consume facts without modifying the owning aggregate.
+- D06 retains ownership of seat-allocation and capacity facts.
+- Section C retains ownership of student/core-registration facts.
+- Prior conflict and decision evidence remain traceable.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-No open issues.
+No open issue identified by this L3-purity correction.
 
 ## 17.2 Assumptions
 
-No assumptions.
+No assumption overrides locked architecture.
 
 ## 17.3 Deferred Questions
 
-No deferred questions.
+Transaction isolation, locking, rollback, retries, atomic updates, concurrency control and technical deduplication are deferred to L4/L5.
 
 ---
 
-**Draft Validation Verdict:** PASS  
-**Validation Basis:** Section D canonical register; `L2-D06_Open_Electives_and_MOOCs_Workflows.md`; Template v2.0; Architecture Level Validation Standards; accepted Section D decisions 001–500.
+**Draft Validation Verdict:** REVIEW REQUIRED  
+**Validation Basis:** Section D canonical register; `L2-D06_Open_Electives_and_MOOCs_Workflows.md`; `L3_Business_Scenario_Template_v2.0.md`; `Architecture_Level_Validation_Standards.md`.

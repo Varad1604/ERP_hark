@@ -11,13 +11,12 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A02 — Person & Identity Workflows; L2-C05 — Qualification Completion & Student Exit Workflows; L2-C08 — Alumni Transition Workflows; L2-H06 — Alumni Workflows  
-**Referenced By:** Alumni directory, communications, networking, mentorship, reporting, and engagement scenarios
+**Last Updated:** 2026-08-23  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-C08 — Alumni Transition Workflows; L2-H06 — Alumni Workflows; applicable locked Section A identity architecture
 
 # 2. Scenario Purpose
 
-Keep permitted H06-owned Alumni profile and engagement preferences current while Section A identity and Section C academic/transition facts remain authoritative references.
+Apply a permitted Alumni-owned profile, consent, directory, or communication-preference change while keeping canonical identity, Student, Alumni Persona, and academic evidence under their upstream owners.
 
 # 3. Business Outcome
 
@@ -27,38 +26,45 @@ The permitted alumni engagement record becomes current while source identity and
 
 ## 4.1 Start Boundary
 
-An alumnus updates allowed profile, consent, directory, or communication preferences.
+The scenario begins when an alumnus updates allowed profile, consent, directory, or communication preferences.
 
 ## 4.2 End Boundary
 
-The permitted H06-owned change is current and audited; Section A and C source facts are unchanged.
+The scenario ends when the applicable H06-owned current value set or preference state reflects the permitted change and upstream source facts remain unchanged.
 
 ## 4.3 In Scope
 
-H06-owned Alumni/profile, professional-profile, communication-preference, and directory-visibility changes.
+- Professional Profile updates.
+- Communication preference and consent changes.
+- Directory visibility changes.
+- Newsletter subscription preference where applicable.
+- Preservation of upstream identity and academic references.
 
 ## 4.4 Out of Scope
 
-Changes to Person/Identity, Student, qualification, exit, Alumni Transition, or Alumni Persona facts; detailed historical employment ownership outside H06's current professional profile.
+- Person identity mutation by H06.
+- Student, Alumni Persona, qualification, degree, or academic-evidence mutation.
+- Employment-record ownership outside H06's self-declared professional engagement information.
+- Student-to-Alumni transition changes.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
+| Domain / Section | Responsibility |
 |---|---|
-| Platform Foundation / A | Retains canonical Person and Identity facts. |
-| Student Lifecycle / C | Retains Student, qualification, exit, transition, and Alumni Persona facts. |
-| Alumni / H | Owns permitted Alumni engagement/profile and preference information. |
+| Section A | Owns canonical Person identity and related identity facts referenced by H06. |
+| Student Lifecycle / C | Owns Student, Alumni Persona, qualification-completion and academic-source facts. |
+| Alumni / H06 | Owns the Alumni Profile engagement projection, Professional Profile, Communication Preference State, and directory preferences. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Actor | Responsibility | Authority |
-|---|---|---|
-| Alumni | Maintains permitted self-service profile/preferences. | Initiates / performs |
-| Alumni Administrator | Performs H06-supported governed administration where required. | Performs |
+The Alumni initiates permitted self-service changes. Alumni Administrator or Institutional Administrator may perform governed administrative changes where H06 authorizes them.
 
 # 7. Preconditions and Entry Criteria
 
-The Alumni Profile exists; the requested change concerns H06-owned information; canonical A/C references remain available and externally owned.
+- The Alumni Profile exists following `AlumniTransitionCompleted`.
+- The target information is H06-owned or an H06-owned engagement preference.
+- The requested change is permitted for the actor.
+- Upstream source records remain references only.
 
 # 8. Trigger
 
@@ -66,65 +72,78 @@ An alumnus updates allowed profile, consent, directory, or communication prefere
 
 # 9. Main Business Flow
 
-Resolve the Alumni record and A/C references; confirm H06 ownership of the requested change; apply the valid profile/preference change without changing source facts; publish `ProfessionalProfileUpdated`, `CommunicationPreferencesUpdated`, or `DirectoryVisibilityUpdated` for their defined branches; audit other permitted `UpdateAlumniProfile` changes; make the H06 record current.
+1. Identify whether the requested change belongs to Professional Profile, Communication Preference State, directory visibility, or a supported subscription preference.
+2. Confirm that the requested field is H06-owned and not an upstream Person, Student, Alumni Persona, qualification, or academic record.
+3. Apply the H06 Professional Profile update and publish `ProfessionalProfileUpdated`, where applicable.
+4. Apply communication/consent preferences and publish `CommunicationPreferencesUpdated`, where applicable.
+5. Apply directory visibility and publish `DirectoryVisibilityUpdated`, where applicable.
+6. Apply supported newsletter subscription preference under H06 communication governance where applicable.
+7. Make the current H06-owned engagement value set available while preserving upstream references unchanged.
 
 # 10. Alternate Business Flows
 
-An opt-out becomes effective immediately where H06 requires it. Employer references may remain unnormalized without creating or changing an enterprise organization record.
+- A request may change only professional profile information.
+- A request may change only consent/communication preferences.
+- A request may change only directory visibility.
+- Multiple permitted H06-owned changes may be made while each owning aggregate retains its own lifecycle and event.
 
 # 11. Failure, Interruption and Business Recovery
 
-A change outside H06 ownership remains with its canonical owner. Invalid or non-permitted H06 changes are rejected without changing the current governed record.
+If the requested change belongs to an upstream owner, H06 does not alter it. If a requested H06 change is not authorized or violates H06 privacy/visibility rules, the current governed H06 record remains unchanged.
 
 # 12. Business Rules and Decision Constraints
 
-Every Alumni references one canonical Person and Student; professional-profile updates do not overwrite enterprise organization records; H06 keeps only the current professional profile; communication honors explicit consent and immediate opt-out; directory visibility follows Alumni privacy preferences; H06 never modifies another bounded context's aggregate.
+- H06 owns only Alumni engagement aggregates.
+- Professional information entered by alumni is H06-owned and does not overwrite external employment records.
+- Directory visibility must respect consent and privacy.
+- Preference updates converge on the latest permitted submitted value.
+- Source identity and academic information remain owned upstream.
 
 # 13. State and Lifecycle Impact
 
-Only H06-owned current profile/preference information changes. A/C lifecycle states remain unchanged.
+This scenario updates current H06-owned engagement values; it does not create a new Student, Alumni Persona, qualification, or Person lifecycle transition. Communication and directory preference states converge on the current permitted setting.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-H06 defines `ProfessionalProfileUpdated`, `CommunicationPreferencesUpdated`, and `DirectoryVisibilityUpdated`. It defines `UpdateAlumniProfile` but no canonical generic Alumni Profile update event.
+Applicable H06 events include `ProfessionalProfileUpdated`, `CommunicationPreferencesUpdated`, and `DirectoryVisibilityUpdated`. H06 also consumes current authoritative identity/academic facts where required but does not republish them as owned facts.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-Section A identity and Section C academic/transition facts remain authoritative references; H06 does not become their source of record.
+A and C provide authoritative reference facts. H06 retains only its own engagement/professional/preference information and source references.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-Alumni self-service and Alumni Administrator activity remain limited to responsibilities defined by H06.
+The Alumni may initiate supported self-service changes. H06 administrative roles may perform permitted governed changes.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-No H06 change alters A/C ownership or expands the fields an alumnus may change.
+No local override permits H06 to modify A- or C-owned canonical facts.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-Preserve Alumni reference, changed H06-owned information, actor/time, applicable consent/privacy evidence, and unchanged source references.
+Preserve the actor, affected H06-owned information, prior/current governed values as required by H06 audit rules, applicable consent/visibility evidence, and event history.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-The change is H06-owned, valid, applied to the appropriate Alumni record, and required audit evidence is preserved.
+A permitted H06-owned profile or preference change has been applied to the correct H06 aggregate and the appropriate H06 business event is recorded.
 
 ## 16.2 Postconditions
 
-The Alumni engagement record is current; source identity/academic evidence remains externally owned; defined branch events are published.
+The Alumni engagement record reflects the current permitted value; identity, Student, Alumni Persona, qualification, and academic-source records remain unchanged and referenced.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-H06 requires generic Alumni Profile updates to be audited and defines `UpdateAlumniProfile`, but has no canonical generic `AlumniProfileUpdated` event. This does not prevent the frozen current-record outcome but must be resolved before downstream architecture depends on such an event.
+None material to this scenario outcome.
 
-**Architecture assessment:** `PASS WITH ISSUES`
+**Architecture assessment:** `PASS`
 
 ## 17.2 Assumptions
 
@@ -132,4 +151,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional deferred questions beyond the open issue above.
+None.

@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H04 — Placement Workflows; Section A identity, authorization, and audit architecture  
-**Referenced By:** Employer onboarding, placement-drive eligibility, employer governance, placement reporting, notifications, search, and audit activities
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H04 — Placement Workflows; L2-A04 — Authorization & Policy Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Referenced By:** Placement drive eligibility and employer participation governance
 
 # 2. Scenario Purpose
 
-Govern employer onboarding into institutional placement participation from an external employer request through placement-owned registration, verification, and permitted employer status outcomes while preserving Section A identity/authorization boundaries.
+Govern the institutional placement relationship with an employer from participation request through H04 registration and verification while preserving Section A authorization/audit ownership.
 
 # 3. Business Outcome
 
@@ -31,52 +31,45 @@ The scenario begins when an employer requests institutional placement participat
 
 ## 4.2 End Boundary
 
-The frozen end boundary requires the employer to become verified and activated, rejected, suspended, or retired. Locked H04 defines registration, verification, rejection, suspension, active, and inactive concepts, but does not define a `Retired` state and does not define a `Verified → Active` transition. The complete frozen end boundary is therefore unresolved.
+H04 supports registration, verification, rejection, suspension, restoration from suspension, and inactivity. It does **not** define `Verified → Active` in the Employer transition table and defines no `Retired` state, transition, command, or event. The frozen end boundary cannot therefore be fully reached.
 
 ## 4.3 In Scope
 
-- Recording employer-originated placement participation intent through authorized placement staff.
-- Registering a unique Placement-owned Employer aggregate.
-- Capturing mandatory employer organization/contact information.
-- Submitting the employer for verification.
-- Verifying or rejecting employer participation under H04 rules.
-- Applying source-defined employer status changes where transitions exist.
-- Preserving immutable verification and status history.
+- Record employer-originated participation intent through authorized Placement staff.
+- Register one Placement-owned Employer aggregate.
+- Submit and decide employer verification.
+- Apply only H04-defined employer status transitions.
+- Preserve immutable verification/status history.
 
 ## 4.4 Out of Scope
 
-- Creating employer authentication accounts; H04 explicitly assumes none.
-- Inventing a `Retired` employer state or retirement transition.
-- Inventing the missing `Verified → Active` transition.
-- Creating placement drives before employer governance permits participation.
-- Owning Section A identity, authentication, authorization, or audit infrastructure.
+- Employer authentication accounts; H04 explicitly assumes none.
+- Invented activation or retirement lifecycle semantics.
+- Placement-drive execution after employer onboarding.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Platform Foundation / Section A | Retains authentication, authorization, identity support, and canonical audit infrastructure ownership. |
-| Placement / Section H | Owns the Employer aggregate, employer registration, verification status, placement participation lifecycle, verification history, and placement-owned employer events. |
+| Platform Foundation / A | Owns authorization and canonical audit evidence. |
+| Placement / H | Owns the institutional Placement Employer aggregate, verification status, participation lifecycle, and Employer events. |
 
-The employer is an external business participant; H04 owns the institutional placement relationship record, not the employer's external corporate lifecycle.
+The Employer aggregate represents the institutional placement relationship, not the external company's corporate lifecycle.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Source Support |
+| Actor / Role | Responsibility | Authority |
 |---|---|---|
-| Employer | Requests institutional placement participation outside the system boundary. | Frozen trigger and L2-H04 §5 employer-originated actions. |
-| Placement Officer | Records employer registration, initiates verification, reviews employer details, and performs H04 verification decisions where authorized. | L2-H04 §§12.1, 19.1, 19.2. |
-| Placement Coordinator | May record employer-originated placement actions where H04 permits placement-coordinator participation; no independent employer authentication is assumed. | L2-H04 §5 and aggregate ownership context. |
-
-H04's canonical crosswalk records its formal Actors section as absent, but the workflows explicitly name Placement Officer and Placement Coordinator responsibilities used here.
+| Employer | Originates the placement-participation request outside SutraERP. | Requests participation. |
+| Placement Officer | Registers and verifies employers. | H04 assigns employer verification to this role. |
+| Placement Coordinator | May register employer-originated actions. | H04 authorization matrix permits employer registration. |
 
 # 7. Preconditions and Entry Criteria
 
-- Employer participation intent has been received.
-- Authorized placement staff can record the employer-originated request.
-- Employer does not already exist as a duplicate Placement Employer record.
-- Mandatory organization and primary contact information are available.
-- Placement verification governance is available.
+- Employer participation intent is available.
+- Authorized Placement staff can record it.
+- Duplicate Employer creation is prevented.
+- Mandatory organization/contact information is available.
 
 # 8. Trigger
 
@@ -84,94 +77,52 @@ An employer requests institutional placement participation
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
+| Step | Business Behaviour | Responsible Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Receive the employer's participation request and record it through authorized placement staff. | Employer / Placement Officer or Placement Coordinator | Placement onboarding intent is established without assuming employer authentication. |
-| 2 | Validate uniqueness and mandatory employer organization/contact information. | Placement | Duplicate or incomplete employer registrations do not proceed. |
-| 3 | Create the Placement-owned Employer record and preserve its placement identity/history. | Placement Officer / Placement | Employer reaches the source-defined `Registered` position. |
-| 4 | Submit the employer for verification. | Placement Officer / Placement | Employer reaches `Verification Pending`; `EmployerVerificationRequested` is source-supported. |
-| 5 | Review employer authenticity and supporting evidence under placement governance. | Placement Officer / Placement | Verification decision can be made. |
-| 6 | Approve or reject verification using the locked H04 transition. | Placement Officer / Placement | Approved employer becomes `Verified`; rejected employer becomes `Inactive`. |
-| 7 | **Activation/retirement completion unresolved:** progress a verified employer to active participation or retire it when applicable. | **BLOCKED — required transitions/states not fully defined upstream** | Frozen final outcomes cannot all be reached authoritatively. |
+| 1 | Record the employer request and validate mandatory information and uniqueness. | Placement Officer/Coordinator / H | Registration can proceed safely. |
+| 2 | Create the Placement Employer record. | H | Employer is `Registered`; applicable registration events are published. |
+| 3 | Submit the Employer for verification. | Placement Officer / H | Employer becomes `Verification Pending`; `EmployerVerificationRequested` is published. |
+| 4 | Review supporting evidence and decide verification. | Placement Officer / H | Approval yields `Verified`; rejection yields `Inactive`. |
+| 5 | Apply H04-defined later status changes when applicable. | H | `Verified → Suspended`, `Suspended → Active`, and `Active → Inactive` are defined. |
+| 6 | Complete direct activation from `Verified` and retirement when required by the frozen outcome. | H | **BLOCKED:** required lifecycle semantics are absent upstream. |
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| Duplicate employer detected | Employer already exists. | Reject duplicate registration and retain the existing Employer identity/history. | No duplicate Employer aggregate is created. | Placement |
-| Verification rejected | Employer evidence does not satisfy H04 verification. | Apply `RejectEmployer` from `Verification Pending`. | Employer becomes `Inactive`; verification rejection evidence is preserved. | Placement |
-| Employer suspended | A source-supported status change applies after verification. | Apply the defined `Verified → Suspended` transition. | Employer becomes `Suspended`. | Placement |
-| Suspended employer restored | H04 permits status restoration. | Apply the defined `Suspended → Active` transition. | Employer becomes `Active`. | Placement |
-| Employer retirement required | Frozen semantics require retirement. | **No H04 `Retired` state/transition exists.** | Upstream resolution required. | Placement |
+- Duplicate/incomplete registration: do not create or advance a new Employer.
+- Verification rejected: `Verification Pending → Inactive` with immutable decision evidence.
+- Verified employer suspended: `Verified → Suspended`.
+- Suspended employer restored: `Suspended → Active`.
+- Retirement required: no H04 `Retired` state exists; no local substitute is permitted.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Mandatory employer information missing | Employer cannot be reliably registered. | Do not create/advance the Employer until required information is available. | Placement |
-| Verification evidence incomplete or invalid | Employer cannot become verified. | Preserve `Verification Pending` or apply rejection according to H04 governance. | Placement |
-| Activation is required immediately after verification | Frozen outcome expects activated participation. | H04 has no defined `Verified → Active` transition; do not invent one. | Placement |
-| Retirement is required | Frozen outcome expects a retired terminal position. | H04 has no `Retired` state or transition; require upstream architecture change control. | Placement |
+Incomplete verification evidence prevents approval. Rejected employers cannot create drives. Missing direct activation and retirement semantics require upstream resolution rather than inferred state transitions.
 
 # 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| Employer code must be unique. | Placement | Duplicate employer records are prohibited. | L2-H04 §17.1 / §19.1 |
-| Every employer must have at least one primary contact. | Placement | Registration requires mandatory contact information. | L2-H04 §17.1 |
-| Verification is mandatory before recruitment activities. | Placement | Unverified employer cannot participate in placement drives. | L2-H04 §19.1 |
-| Only authorized officers may verify employers. | Placement / Section A | Verification decision requires governed authority. | L2-H04 §19.2 |
-| Verification decisions and history are immutable. | Placement | Verification evidence is preserved. | L2-H04 §§17.1, 19.2 |
-| Closed employers cannot create new placement drives. | Placement | Employer lifecycle controls future drive eligibility. | L2-H04 §17.1 |
+| Rule / Constraint | Owner | Scenario Effect |
+|---|---|---|
+| Employer code must be unique and a primary contact is required. | H | Registration integrity is preserved. |
+| Verification is mandatory before recruitment participation. | H | Unverified employers cannot create governed drives. |
+| Only authorized officers may verify employers. | H / A | Verification authority is governed. |
+| Verification decisions/history are immutable. | H | Historical evidence cannot be rewritten. |
+| Closed/inactive employer participation cannot create new drives where H04 disallows it. | H | Employer status constrains participation. |
 
 # 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Employer | No Placement Employer record | Registration creates `Registered`; submission moves to `Verification Pending`. | `Verification Pending` | Placement | L2-H04 §§17.1, 19.1 |
-| Employer | `Verification Pending` | Verification approval or rejection. | `Verified` or `Inactive` | Placement | L2-H04 §§17.1, 19.2 |
-| Employer | `Verified` | H04 defines `Verified → Suspended`; it depicts `Active` in lifecycle but does not define `Verified → Active`. | `Suspended` is defined; direct activation is **undefined**. | Placement | L2-H04 §17.1 |
-| Employer | `Suspended` | H04 defines restoration through status update. | `Active` | Placement | L2-H04 §17.1 |
-| Employer | Any state | Frozen outcome requires retirement. | **`Retired` not defined.** | Placement | Gap against L2-H04 |
+H04 explicitly defines `Registered → Verification Pending → Verified` or `Inactive`, plus `Verified → Suspended → Active → Inactive`. It does not define `Verified → Active` and has no `Retired` state. Those missing positions materially affect the frozen outcome.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
-
-The Employer aggregate/workflows define the exact Placement events `EmployerRegistrationInitiated`, `EmployerRegistered`, `EmployerVerificationRequested`, `EmployerVerified`, `EmployerVerificationRejected`, and `EmployerStatusUpdated`, published by the Placement-owned Employer aggregate.
-
-No exact event is defined for employer retirement, and no event is defined specifically for a missing `Verified → Active` transition. L3 does not invent either.
-
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-Employer-originated participation intent is recorded by authorized placement staff. Section A supplies identity/authorization/audit context. Placement retains all employer-placement relationship state and publishes its own employer lifecycle events for authorized downstream consumers such as Notification, Search, and Dashboard capabilities.
+Exact H04 Employer events include `EmployerRegistrationInitiated`, `EmployerRegistered`, `EmployerVerificationRequested`, `EmployerVerified`, `EmployerVerificationRejected`, and `EmployerStatusUpdated`, published by Placement. No retirement event exists.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-Employer participation intent originates externally. H04 assigns employer registration and verification activity to Placement Officer, and its verification workflow states that only authorized officers may verify employers.
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-No additional separation-of-duty rule is defined for employer verification. L3 does not create authority for activation or retirement transitions missing from the locked lifecycle.
-
-## 15.3 Business Audit and Evidence Obligations
-
-Evidence must preserve registration initiator, registration timestamp, employer information, verification request, reviewing officer, verification outcome, decision timestamp, supporting evidence, status changes, and the applicable Employer events. Verification history remains immutable; Platform Audit retains canonical audit-evidence ownership.
+Placement Officer is the source-supported verification role; Placement Coordinator may register but does not verify in H04's authorization matrix. Evidence must preserve registration, verification request, reviewing officer, decision, supporting evidence, status changes, and resulting Employer events. Section A retains authorization/audit ownership.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-Registration and verification can complete through the source-defined `Registered → Verification Pending → Verified/Inactive` path. The frozen scenario as a whole cannot complete authoritatively until H04 defines the missing activation path from `Verified` and the required `Retired` outcome.
-
-## 16.2 Postconditions
-
-- Placement owns one governed Employer record for the institutional placement relationship.
-- Employer verification history remains immutable.
-- Rejected employers cannot create placement drives.
-- No direct `Verified → Active` transition or `Retired` outcome is invented.
+Registration/verification can complete through the defined H04 transitions. Full frozen completion is blocked until direct activation from `Verified` and the `Retired` outcome are defined upstream. No missing state is inferred.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
@@ -179,13 +130,10 @@ Registration and verification can complete through the source-defined `Registere
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
-| Frozen final outcome requires the employer to be **activated**, but H04's Employer lifecycle/transition table has no `Verified → Active` transition. `Active` is reachable only from `Suspended` in the explicit table. | A mandatory successful participation outcome lacks a valid lifecycle transition. | Define the canonical activation transition/guard from verified employer to active placement participation. |
-| Frozen final outcome includes **retired**, but H04 defines no `Retired` Employer state, transition, command, or event. | A mandatory terminal outcome is absent from the locked lifecycle. | Add/clarify canonical Employer retirement semantics through upstream architecture change control. |
-| H04's canonical crosswalk records the formal Actors section as absent, although workflows name Placement Officer/Coordinator. | Actor model is only partially formalized. | Complete the canonical H04 Actors section upstream. |
+| H04 transition table omits `Verified → Active` although the lifecycle diagram depicts Active participation. | Frozen successful activation lacks a defined transition. | Define the canonical activation transition/guard. |
+| Frozen outcome includes `Retired`, but H04 defines no Retired state/transition/event. | Mandatory terminal branch is absent. | Define Employer retirement semantics upstream. |
 
 **Architecture assessment:** `BLOCKED`
-
-Registration, verification, rejection, suspension, and suspended-to-active restoration are source-supported. However, the frozen successful activation path and retired outcome are materially missing from the locked Employer lifecycle, so L3 cannot complete the scenario without upstream resolution.
 
 ## 17.2 Assumptions
 
@@ -193,4 +141,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional scenario-specific deferred questions.
+No additional deferred questions.

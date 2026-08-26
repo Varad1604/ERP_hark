@@ -11,13 +11,13 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows; L2-A04 — Authorization & Policy Workflows  
-**Referenced By:** Authorized institutional consumers requiring canonical physical-infrastructure sustainability capabilities and records
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows; L2-A04 — Authorization & Policy Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Referenced By:** Authorized consumers of canonical physical-Infrastructure sustainability facts
 
 # 2. Scenario Purpose
 
-Establish source-supported sustainability information against canonical physical Infrastructure so that sustainability attributes and applicable Infrastructure records are authoritative in G10 while InstitutionalCampus governance and Platform authorization remain with their canonical owners.
+Establish source-supported sustainability information against canonical physical Infrastructure while preserving B03 InstitutionalCampus ownership and Section A authorization/audit boundaries.
 
 # 3. Business Outcome
 
@@ -26,59 +26,40 @@ Sustainability attributes and applicable infrastructure records are established
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
-
-The scenario begins when a sustainability policy or infrastructure initiative requires physical sustainability information.
+The scenario starts when a sustainability policy or infrastructure initiative requires physical sustainability information.
 
 ## 4.2 End Boundary
-
-The scenario ends when the applicable G10-owned sustainability attributes or records have been validated and established against the authoritative physical Infrastructure, with the relevant InstitutionalCampus context preserved and no analytics or institutional-governance ownership transferred.
+The scenario ends when source-supported G10 sustainability attributes or records are established against the authoritative physical Infrastructure.
 
 ## 4.3 In Scope
-
-- Identification of the physical Infrastructure to which sustainability information applies.
-- Recording source-supported sustainability capabilities or sustainability information under G10 ownership.
-- Validation of the physical Infrastructure and applicable policy/authorization context.
-- Reference to the B03 InstitutionalCampus identity where institutional campus context is required.
-- Publication of the applicable G10 sustainability profile event when a supported profile fact changes.
+Physical Infrastructure identification; sustainability capability/profile or applicable record establishment; authorization/policy validation; B03 context; applicable canonical sustainability event.
 
 ## 4.4 Out of Scope
-
-- Sustainability KPI calculation, trend analysis or advanced analytics.
-- Regulatory interpretation not defined by the reviewed G10 source.
-- Modification of InstitutionalCampus identity or lifecycle.
-- Creation of a new sustainability aggregate/lifecycle not defined upstream.
-- Financial, procurement or operational-execution workflows not present in the frozen participant set.
-
-## 4.5 Related Scenarios — Optional
-
-| Relationship | Related Scenario | Reason |
-|---|---|---|
-| Related | L3-G-299 — Administrative Infrastructure Change to Governed Update | Generic administrative updates remain separately governed. |
-| Related | L3-G-309 — Capital Renovation Completion to Updated Physical Infrastructure | Completed renovation may change sustainability capabilities as part of physical reconciliation. |
+Derived sustainability analytics; external regulatory interpretation not defined by G10; InstitutionalCampus lifecycle change; invented sustainability aggregate/lifecycle.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Owns physical Infrastructure and its sustainability capabilities/records. |
-| Institution & Structure / Section B | Owns InstitutionalCampus identity/governance context; B03 explicitly delegates physical sustainability capabilities to G10. |
-| Platform Foundation / Section A | Owns authorization/policy decision capability used before the business action. |
+| G10 | Owns physical Infrastructure and its sustainability capabilities/records. |
+| B03 | Owns InstitutionalCampus identity/governance context. |
+| Section A | Owns authorization/policy and audit infrastructure. |
 
 # 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Establishes or updates authorized sustainability information against physical Infrastructure. | Must act within authorized scope. |
-| Infrastructure Manager | Reviews applicability of the physical sustainability information. | Does not own B03 institutional governance or analytics interpretation. |
-| Auditor | Reviews preserved history/evidence. | Read-only participation. |
+| Infrastructure Administrator | Establishes or updates authorized sustainability facts. | Acts within authorized G10 scope. |
+| Infrastructure Manager | Reviews applicability to physical Infrastructure. | G10 responsibility. |
+| Auditor | Reviews preserved evidence. | Read-only evidence role. |
 
-No dedicated “Sustainability Officer” role is defined by the reviewed G10 source, so none is introduced.
+No dedicated Sustainability Officer role is introduced because none is defined by the reviewed G10 source.
 
 # 7. Preconditions and Entry Criteria
 
 - The physical Infrastructure exists under G10 ownership.
-- The sustainability policy or infrastructure initiative identifies the relevant physical scope and required information.
-- The applicable InstitutionalCampus reference is available where campus context is needed.
+- The sustainability requirement identifies relevant physical scope/information.
+- Applicable InstitutionalCampus context is resolvable where needed.
 - The business action is authorized.
 
 # 8. Trigger
@@ -89,58 +70,52 @@ A sustainability policy or infrastructure initiative requires physical sustainab
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Identify the authoritative physical Infrastructure and applicable sustainability requirement. | Infrastructure Management | The physical target and required sustainability context are established. |
-| 2 | Confirm authorization and applicable policy constraints. | Infrastructure Management using Section A authorization/policy capability | Unauthorized change is prevented. |
-| 3 | Validate that the sustainability information describes a G10-owned physical capability or Infrastructure record rather than an external KPI/interpretation. | Infrastructure Management | Ownership boundary is preserved. |
-| 4 | Record the applicable sustainability information against the physical Infrastructure. | Infrastructure Management | Sustainability attributes/records become authoritative in G10. |
-| 5 | Preserve the B03 InstitutionalCampus reference where campus context is required without changing institutional governance. | Institution & Structure / Infrastructure Management | Institutional and physical facts remain distinct. |
-| 6 | Publish the applicable canonical G10 sustainability profile fact where the source-defined event applies. | Infrastructure Management | Authorized consumers can observe the completed sustainability-profile change. |
+| 1 | Identify authoritative physical Infrastructure and sustainability requirement. | G10 | Target/context is established. |
+| 2 | Validate authorization and applicable policy. | G10 / Section A | Unauthorized change is prevented. |
+| 3 | Determine whether requested information is a G10-owned physical sustainability fact. | G10 | Ownership boundary is preserved. |
+| 4 | Establish the applicable sustainability capability/profile or source-supported record. | G10 | Current sustainability fact becomes authoritative. |
+| 5 | Preserve B03 InstitutionalCampus reference where needed. | B03 / G10 | Institutional and physical facts remain distinct. |
+| 6 | Publish the canonical G10 event applicable to the fact actually changed. | G10 | Completed fact is observable without event invention. |
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| Requirement is analytical rather than a physical fact | The request seeks KPI, trend, forecast or interpretation. | Do not store the interpretation as canonical G10 sustainability fact; route the need to the appropriate analytics capability outside this scenario. | G10 remains facts-only. | Infrastructure Management |
-| Requirement affects campus-level physical sustainability capability | Physical Campus sustainability information is required. | Record the physical capability in G10 while retaining B03 InstitutionalCampus identity as context. | No ownership transfer to B03. | Infrastructure Management / Institution & Structure |
+| Case | Condition | Alternate Business Path | Result / Outcome |
+|---|---|---|---|
+| Request is analytical | It seeks KPI/trend/forecast rather than physical fact. | Do not store derived interpretation as canonical G10 sustainability fact. | G10 remains facts-only. |
+| Campus-level physical sustainability | Physical Campus capability is affected. | Record in G10 while retaining B03 InstitutionalCampus identity as context. | Ownership split is preserved. |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Sustainability information cannot be tied to canonical physical Infrastructure | The record cannot be established reliably. | Resolve the physical reference before recording the sustainability fact. | Infrastructure Management |
-| Authorization/policy validation fails | The sustainability change cannot proceed. | Preserve existing authoritative facts and obtain a later valid authorization if appropriate. | Platform Foundation / Infrastructure Management |
-| Requested information is an unsupported interpretation | G10 cannot own it as a physical fact. | Preserve only source-supported capability information and leave interpretation to the canonical downstream owner. | Infrastructure Management |
+| Physical reference cannot be resolved | Sustainability fact cannot be established reliably. | Resolve canonical G10 reference first. | G10 |
+| Authorization/policy fails | Change cannot proceed. | Preserve existing fact until a later valid decision. | Section A / G10 |
+| Requested interpretation is unsupported as a G10 fact | Ownership would be distorted. | Record only source-supported physical information. | G10 |
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| G10 owns sustainability capabilities of physical Infrastructure. | Infrastructure Management | Physical sustainability facts are recorded only in G10. | L2-G10 §§8, 13A.72, 37 |
-| Infrastructure stores sustainability capabilities; advanced analytics remain outside the domain. | Infrastructure Management | The scenario records facts, not derived performance interpretation. | L2-G10 §37; 13A.72 |
-| B03 delegates physical sustainability capabilities to G10. | Institution & Structure / Infrastructure Management | B participates through InstitutionalCampus context only. | L2-B03 §§1–4 |
-| Every business operation must be authorized before execution. | Platform Foundation — Authorization | Unauthorized sustainability change does not proceed. | L2-A04 AP-01 |
+| G10 owns physical sustainability capabilities. | G10 | Physical sustainability facts are established only under G10 ownership. | L2-G10 §§8, 37 |
+| Advanced analytics are outside G10 sustainability fact ownership. | G10 | Scenario records facts, not interpretation. | L2-G10 §37 |
+| B03 delegates physical sustainability to G10. | B03/G10 | B supplies institutional context only. | L2-B03 §§1–4 |
+| Every business operation must be authorized. | Section A | Unauthorized change does not proceed. | L2-A04 AP-01 |
 
 # 13. State and Lifecycle Impact
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Physical Infrastructure sustainability profile/capability | Existing source-defined Infrastructure state | Sustainability facts are established or updated without changing canonical identity. | Current sustainability attributes/records reflect the authorized fact. | Infrastructure Management | L2-G10 sustainability workflows |
-| Physical Infrastructure lifecycle | Existing source-defined state | No lifecycle transition is required merely to record sustainability capability unless a separate workflow requires it. | Unchanged by this scenario. | Infrastructure Management | L2-G10 lifecycle |
-| InstitutionalCampus | Existing B03 state | Referenced only. | Unchanged. | Institution & Structure | L2-B03 |
+| Physical sustainability capability/profile/record | Existing source-defined physical context | Sustainability fact is established/updated. | Current authorized sustainability fact. | G10 | L2-G10 §37 |
+| Physical Infrastructure lifecycle | Existing G10 state | No lifecycle transition is implied merely by recording sustainability information. | Unchanged. | G10 | L2-G10 lifecycle |
+| InstitutionalCampus | Existing B03 state | Context only. | Unchanged. | B03 | L2-B03 |
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
-
-| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
-|---|---|---|---|---|
-| `SustainabilityProfileUpdated` | Infrastructure Management | Authorized consumers | Communicates a completed change to canonical physical sustainability capability/profile information where that source-defined workflow applies. | L2-G10 sustainability profile workflows / classification event catalogue |
-
-G10 §37 also describes a generic “Sustainability Event” and separately lists `SustainabilityMetricUpdated`; this Draft does not substitute those for a profile-capability change unless their source semantics actually apply.
+`SustainabilityProfileUpdated` is the exact G10 event for profile/capability changes. G10 also defines `SustainabilityMetricUpdated` for sustainability data. Event choice depends on the exact source-supported fact changed; neither is treated as universal for every record.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-B03 provides the InstitutionalCampus identity/governance reference and Section A provides authorization/policy decisions. No ownership of the physical sustainability fact transfers through those collaborations.
+B03 supplies InstitutionalCampus context and Section A supplies authorization/audit capability. Neither collaboration transfers ownership of the physical sustainability fact.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
@@ -148,31 +123,25 @@ B03 provides the InstitutionalCampus identity/governance reference and Section A
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
-| Establish/update physical Infrastructure sustainability information | Infrastructure Administrator or Infrastructure Manager within authorized scope | Must satisfy Section A authorization and applicable G10 business rules. | Infrastructure Management |
+| Establish/update sustainability information | Infrastructure Administrator / Infrastructure Manager within authorized scope | Must satisfy applicable G10 rules and authorization. | G10 |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
-
-No universal sustainability-specific approval or separation-of-duty rule is defined in the reviewed sources. None is invented.
+No universal sustainability-specific approval or SoD rule is defined; none is invented.
 
 ## 15.3 Business Audit and Evidence Obligations
-
-The completed change must remain historically traceable under G10 auditability principles and the platform audit architecture, including the affected Infrastructure, prior/current fact where applicable, business reason and actor/authority context.
+Affected Infrastructure, prior/current fact where applicable, business reason and actor/authority context remain traceable under G10/platform audit rules.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
-
-- The authoritative physical Infrastructure has been identified.
-- The sustainability information is source-supported and belongs to G10.
-- Authorization/policy validation has succeeded.
-- The applicable sustainability attributes or records are established.
-- InstitutionalCampus context remains referenced without ownership transfer.
+- Canonical physical Infrastructure is identified.
+- Requested information is source-supported and G10-owned.
+- Authorization succeeds.
+- Applicable sustainability fact is established.
+- B03 context remains non-owning.
 
 ## 16.2 Postconditions
-
-- G10 holds the authoritative current sustainability facts for the affected physical Infrastructure.
-- B03 remains the owner of InstitutionalCampus identity/governance.
-- Derived analytics remain outside the G10 business fact.
+G10 holds authoritative current physical sustainability facts; B03 retains InstitutionalCampus governance; derived analytics remain outside G10 fact ownership.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
@@ -180,16 +149,12 @@ The completed change must remain historically traceable under G10 auditability p
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
-| G10 contains both `SustainabilityProfileUpdated` for profile/capability changes and `SustainabilityMetricUpdated` for sustainability data, while the frozen scenario broadly says “attributes and applicable infrastructure records.” | Event selection depends on the exact sustainability fact established; one event cannot represent every possible sustainability record. | Upstream event taxonomy may further distinguish capability/profile versus metric-record scenarios if needed. |
+| G10 distinguishes `SustainabilityProfileUpdated` from `SustainabilityMetricUpdated`, while the frozen outcome covers attributes and applicable records broadly. | One event cannot represent every sustainability fact. | Preserve event selection by exact changed fact; refine taxonomy upstream if needed. |
 
 **Architecture assessment:** `PASS WITH ISSUES`
 
-The ownership and outcome are source-grounded; event granularity is the only non-blocking issue.
-
 ## 17.2 Assumptions
-
 No assumptions.
 
 ## 17.3 Deferred Questions
-
-No additional scenario-specific deferred questions.
+No additional deferred questions.

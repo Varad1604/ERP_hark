@@ -1,16 +1,19 @@
 # Monitoring Completion Certification to Governed Case Closure
 
+# 1. Scenario Metadata
+
 **Scenario ID:** L3-D-032  
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Academic Monitoring  
 **Participating Domains:** D  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Architecture Approved  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-25  
 **Depends On:** `L2-D05_Academic_Monitoring_Workflows.md`  
+**Governance Basis:** `L2-D05_Business_Architecture_Purity_Amendment_2026-08-24.md`  
 **Referenced By:** None yet  
 **Frozen Stage 3 Source:** P2W-D-0753 / CAN-L3-D-033 (final L3-D-032)
 
@@ -18,7 +21,7 @@
 
 # 2. Scenario Purpose
 
-Validate and certify monitoring completion, satisfy all governance obligations and close the Academic Monitoring Case with a final immutable snapshot.
+Validate and certify monitoring completion, satisfy governance obligations and close the Academic Monitoring Case with a final immutable snapshot.
 
 # 3. Business Outcome
 
@@ -26,49 +29,19 @@ The monitoring case is formally certified and Closed only after evidence, policy
 
 # 4. Scenario Boundary and Scope
 
-## 4.1 Start Boundary
-
-Monitoring execution and required evaluations are complete and completion validation may begin.
-
-## 4.2 End Boundary
-
-The case reaches Closed, a final immutable snapshot exists, and `AcademicMonitoringClosed` is published.
-
-## 4.3 In Scope
-
-- Validate outcome, evidence, policy, exceptions and audit completeness.
-- Obtain independent completion certification.
-- Validate closure prerequisites, approve closure and create final snapshot.
-
-## 4.4 Out of Scope
-
-- Technical completion without governance certification.
-- Closure with blocking exceptions or incomplete interventions.
-- Deletion or archival-away of monitoring truth.
-
-## 4.5 Related Scenarios — Optional
-
-Related scenarios are referenced only where their completed business facts cross this boundary; they do not transfer ownership.
+Starts when monitoring execution/evaluations are complete and ends when the case reaches Closed, final snapshot exists and `AcademicMonitoringClosed` is published. In scope: completion validation, independent certification, closure prerequisite check, closure approval and final snapshot. Out of scope: technical completion, persistence, retries or infrastructure recovery.
 
 # 5. Ownership and Participating Domains
 
-| Domain | Responsibility |
-|---|---|
-| D05 | Owns completion validation, certification record, closure decision, Closed state and final snapshot. |
+D05 owns completion validation, certification, closure decision, Closed state and final snapshot.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Actor / Role | Responsibility | Authority |
-|---|---|---|
-| Monitoring Owner | Provides completion context and requests certification. | Initiates certification. |
-| Reviewer | Independently validates completion and evidence. | Reviews completion. |
-| Governance Authority | Certifies completion and approves closure. | Final certification and closure authority. |
+Monitoring Owner provides completion context; Reviewer independently validates completion/evidence; Governance Authority certifies completion and approves closure.
 
 # 7. Preconditions and Entry Criteria
 
-- Monitoring evaluation is complete and snapshot exists.
-- Required reviews and evidence are complete.
-- No unresolved blocking obligations prevent certification.
+Monitoring evaluation/snapshot and required reviews/evidence are complete; no unresolved blocking obligation prevents certification.
 
 # 8. Trigger
 
@@ -76,106 +49,47 @@ Monitoring execution reaches completion and pending governance activities are re
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Role / Domain | Business Result |
-|---|---|---|---|
-| 1 | Load monitoring context and validate outcome, evidence, policy, exceptions and audit. | D05 | Completion validation result created. |
-| 2 | Return failures for evidence completion or corrective action. | D05 / Monitoring Owner | Closure remains blocked where requirements fail. |
-| 3 | Create certification request and conduct independent completion review. | Monitoring Owner / Reviewer | Certification basis complete. |
-| 4 | Approve or reject completion certification. | Governance Authority | MonitoringCompletionCertified or rejected. |
-| 5 | Validate no blocking exceptions, incomplete interventions or audit gaps remain. | D05 | MonitoringClosureValidated. |
-| 6 | Approve closure and transition case to Closed. | Governance Authority / D05 | AcademicMonitoringClosed. |
-| 7 | Create final immutable snapshot. | D05 | FinalMonitoringSnapshotCreated. |
+1. D05 validates outcome, evidence, policy, exceptions and audit.
+2. Failures are returned for evidence completion/corrective action; closure remains blocked.
+3. Monitoring Owner requests certification; Reviewer conducts independent completion review.
+4. Governance Authority certifies or rejects completion — `MonitoringCompletionCertified` where approved.
+5. D05 validates no blocking exceptions/interventions/audit gaps — `MonitoringClosureValidated`.
+6. Governance Authority/D05 closes the case — `AcademicMonitoringClosed`.
+7. D05 creates final immutable snapshot — `FinalMonitoringSnapshotCreated`.
 
 # 10. Alternate Business Flows
 
-A failed validation, rejection, configured optional approval path, escalation or compensation follows only the alternatives explicitly supported above; it never creates the successful final outcome or rewrites prior facts.
+No alternate path reaches Closed without the same completion/certification obligations. Rejection or failed validation blocks closure and belongs to Section 11.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Recovery | Owner |
-|---|---|---|---|
-| Validation or reference failure | Scenario cannot proceed. | Reject or return for correction without changing the prior authoritative state. | Academic Monitoring |
-| Authorization or approval failure | Requested outcome is not permitted. | Retain the prior state and record the decision reason. | Academic Monitoring |
-| Interrupted processing | Completion is uncertain. | Resume from the last authoritative state with audit continuity and idempotency. | Academic Monitoring |
+Validation/evidence failure blocks certification until corrected; certification/closure rejection retains the prior D05 state and decision reason; interruption preserves the last authoritative business position/evidence/context until the blocking condition is resolved.
 
 # 12. Business Rules and Decision Constraints
 
-| Rule | Owner | Scenario Effect | Source |
-|---|---|---|---|
-| Only the canonical owner may change its owned business state. | Academic Monitoring | Prevents cross-domain ownership leakage. | `L2-D05_Academic_Monitoring_Workflows.md` |
-| Each transition requires valid lifecycle position, authority, policy and evidence. | Academic Monitoring | Prevents governance bypass. | `L2-D05_Academic_Monitoring_Workflows.md` |
-| Published or historical business facts remain immutable. | Academic Monitoring | Preserves auditability and lineage. | `L2-D05_Academic_Monitoring_Workflows.md` |
+D05 alone changes case/closure state; closure requires valid lifecycle position, authority, policy and evidence; historical facts remain immutable; repeated same business fact must not create duplicate institutional closure outcomes. Technical idempotency/retry handling is deferred under the locked D05 Purity Amendment.
 
 # 13. State and Lifecycle Impact
 
-| Concept | Entry State | Scenario Impact | Result | Owner | Source |
-|---|---|---|---|---|---|
-| Academic Monitoring Case | Execution Completed | Validate, certify and close after all obligations. | Completion Validated → Certified → Closed | D05 | L2-D05 §§14.3–14.7 |
-| Final Monitoring Snapshot | No final snapshot | Capture closure state and complete evidence/decision history. | Immutable final snapshot | D05 | L2-D05 §14.6 |
+Academic Monitoring Case: Execution Completed → Completion Validated → Certified → Closed. Final Monitoring Snapshot: established as immutable closure evidence. Source: L2-D05 §§14.3–14.7.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
-
-| Business Event | Canonical Publisher | Consumers | Purpose | Source |
-|---|---|---|---|---|
-| MonitoringCompletionValidationStarted / MonitoringCompletionValidationCompleted / MonitoringCompletionValidationFailed / MonitoringCompletionCertificationRequested / MonitoringCompletionCertified / MonitoringCompletionRejected / MonitoringClosureValidated / AcademicMonitoringClosed / FinalMonitoringSnapshotCreated | D05 | Authorized monitoring, audit and reporting consumers | Records validation, certification and governed closure. | L2-D05 §§14.3–14.6 |
-
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-No synchronous cross-domain hand-off materially participates; completed events may still be consumed under canonical contracts.
+D05 publishes the completion/closure events already defined in L2-D05 §§14.3–14.6, including `MonitoringCompletionValidationStarted`, `MonitoringCompletionValidationCompleted`, `MonitoringCompletionValidationFailed`, `MonitoringCompletionCertificationRequested`, `MonitoringCompletionCertified`, `MonitoringCompletionRejected`, `MonitoringClosureValidated`, `AcademicMonitoringClosed`, and `FinalMonitoringSnapshotCreated`.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-| Action / Decision | Authorized Role | Constraint | Owner |
-|---|---|---|---|
-| Provides completion context and requests certification. | Monitoring Owner | Initiates certification. | Academic Monitoring |
-| Independently validates completion and evidence. | Reviewer | Reviews completion. | Academic Monitoring |
-| Certifies completion and approves closure. | Governance Authority | Final certification and closure authority. | Academic Monitoring |
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-Initiation, validation, review, approval and execution remain distinct wherever source or configured policy requires separation. Automated services execute rules but never make governance decisions. Any override requires authority, justification, evidence and audit history.
-
-## 15.3 Business Audit and Evidence Obligations
-
-| Obligation | Evidence | Owner |
-|---|---|---|
-| Scenario lifecycle and decision | Actor, authority, reason, prior state, validation evidence, decision and resulting state. | Academic Monitoring |
-| Source and cross-domain traceability | Source identifiers, versions, evidence references, consumed events and published facts. | Academic Monitoring |
-| Failure and recovery | Rejected validations, interruptions, retries, escalation or compensation outcome. | Academic Monitoring |
+Monitoring Owner initiates certification, Reviewer independently validates, Governance Authority certifies and approves closure. Audit retains actor/authority, prior state, validation evidence, decision/reason, exception/intervention status and final snapshot.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-- The monitoring case is formally certified and Closed only after evidence, policy, exceptions, interventions, audit and authority obligations are satisfied.
-- All required authority, validation and audit evidence is retained.
-- Applicable completed business facts are published exactly once in business effect.
-
-## 16.2 Postconditions
-
-- Canonical ownership remains unchanged.
-- Historical decisions and prior states remain immutable.
-- Downstream domains consume facts without modifying the owning aggregate.
+Case is certified and Closed only after all obligations are satisfied; final snapshot and decision history are immutable; D05 ownership remains unchanged.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
-
-No open issues.
-
-## 17.2 Assumptions
-
-No assumptions.
-
-## 17.3 Deferred Questions
-
-No deferred questions.
+No new open issue or assumption is introduced. Technical retry, transaction, persistence, snapshot storage and infrastructure recovery are deferred to later levels.
 
 ---
 
-**Draft Validation Verdict:** PASS  
-**Validation Basis:** Section D canonical register; `L2-D05_Academic_Monitoring_Workflows.md`; Template v2.0; Architecture Level Validation Standards; accepted Section D decisions 001–500.
+**Draft Validation Verdict:** REVIEW REQUIRED  
+**Validation Basis:** L2-D05; locked D05 Business Architecture Purity Amendment; Template v2.0; Architecture Level Validation Standards.

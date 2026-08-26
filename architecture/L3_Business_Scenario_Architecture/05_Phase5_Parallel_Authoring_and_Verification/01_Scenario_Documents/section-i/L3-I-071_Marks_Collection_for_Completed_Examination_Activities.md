@@ -1,217 +1,258 @@
+# L3-I-071 — Marks Collection for Completed Examination Activities
+
 # 1. Scenario Metadata
 
-# Marks Collection for Completed Examination Activities
-
 **Scenario ID:** L3-I-071  
+**Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Marks Collection & Evaluation  
 **Participating Domains:** Academic Delivery, Examination  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Locked  
+**Status:** Review  
 **Author:** Pallav  
-**Architecture Approval:** ACR-I-2026-08-21-002 — Approved by Vikram Desai, Enterprise Architecture Governance Lead, 21 August 2026; Conditions: None  
-**Post-Approval Lock:** Authorized 21 August 2026 under ACR-I-2026-08-21-002  
+**Version:** 1.2  
+**Last Updated:** 2026-08-25  
 **Canonical Source Candidate:** CAN-L3-I-071  
-**Primary L2 Source:** L2-I08
+**Primary L2 Source:** `architecture/L2_Domain_Workflow_Architecture/section-i/L2-I08_Marks_Collection_and_Evaluation_Workflows.md`  
+**Governance Note:** Previous `Locked` status referenced `ACR-I-2026-08-21-002`. Repository search confirms the identifier is repeated in scenario documents, but no independently traceable governance/ADR artifact for that ACR was located. The scenario therefore remains **Review** pending traceable approval evidence; this correction does not invalidate the canonical scenario ID or frozen scenario allocation.
 
 # 2. Scenario Purpose
 
-This scenario governs **marks collection for completed examination activities** as one complete institutional business outcome. It applies frozen semantics and locked L2-I08 without redefining upstream architecture.
+This scenario governs collection of marks arising from completed examination activities. It begins from authoritative completed examination or assessment evidence and concludes when awarded marks have been collected and submitted within Marks Collection & Evaluation for subsequent validation, approval and finalisation.
 
 # 3. Business Outcome
 
-The scenario concludes when **marks Collection for Completed Examination Activities** is established as the authoritative governed outcome with required business evidence and hand-offs.
+Marks arising from completed examination activities are collected from authorized evaluators, associated with the authoritative assessment context, and submitted as the governed marks-collection outcome without absorbing downstream validation, approval, finalisation or result-processing outcomes.
 
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
 
-The scenario starts when **governed need for marks collection for completed examination activities** is established in a valid examination context and source-defined entry conditions are available.
+The scenario starts when an authoritative completed examination or assessment fact and its required assessment evidence are available to Marks Collection & Evaluation.
+
+Applicable upstream facts include the exact L2-I08 consumed events where relevant to the activity:
+
+- `Practical Examination Completed` — published by L2-I06.
+- `Theory Examination Completed` — published by L2-I07.
+- `Practical Assessment Completed` — published by L2-I06.
+- `Answer Books Collected` — published by L2-I07 where theory-script collection is applicable.
 
 ## 4.2 End Boundary
 
-The scenario ends when **marks Collection for Completed Examination Activities** is authoritatively determined and recorded for downstream business use.
+The scenario ends when marks awarded through the completed examination activity have been collected from authorized evaluators and the authoritative `Marks Submitted` business event has been published by Marks Collection & Evaluation.
+
+The scenario does **not** include Marks Validation, Marks Approval, Marks Finalisation, Final Approved Marks availability, Result Processing, grade calculation or result publication.
 
 ## 4.3 In Scope
 
-- Verification of source-defined context and entry conditions.
-- Application of L2-I08 rules and authority.
-- Frozen cross-domain collaboration.
-- Establishment and preservation of the final outcome.
-- Source-supported events, hand-offs, evidence, and audit obligations.
+- Verification that the examination or assessment activity is authoritatively completed.
+- Receipt and traceable association of completed assessment evidence.
+- Collection of marks from authorized evaluators.
+- Verification that required marks for the applicable collection scope are present for submission.
+- Submission of the collected marks for subsequent validation.
+- Preservation of evaluation and marks-collection evidence.
 
 ## 4.4 Out of Scope
 
-- Redefinition of upstream policy, eligibility, academic, workforce, facility, finance, or identity rules.
-- Ownership of upstream facts or downstream lifecycles.
-- Outcomes beyond this scenario end boundary.
-- Technical solution, data, interface, access-control, infrastructure, or recovery design.
+- Examination conduct ownership.
+- Examination scheduling or registration ownership.
+- Marks validation.
+- Marks approval.
+- Marks finalisation or establishment of Final Approved Marks.
+- Result Processing & Computation.
+- Revaluation or rechecking.
+- API, UI, database, messaging, access-control, infrastructure or technical recovery design.
 
 ## 4.5 Related Scenarios — Optional
 
-Related scenarios provide prerequisites or consume this outcome under locked dependency direction without ownership transfer.
+| Relationship | Related Scenario | Reason |
+|---|---|---|
+| Followed by | L3-I-072 — Examination Evaluation to Final Approved Marks | L3-I-072 governs downstream evaluation completion, validation, approval and establishment of Final Approved Marks. L3-I-071 stops at collected/submitted marks. |
 
 # 5. Ownership and Participating Domains
 
 | Domain | Responsibility |
 |---|---|
-| Marks Collection & Evaluation | Owns the governed final outcome and applicable aggregate lifecycle. |
-| Academic Delivery | Provides only canonically owned facts, decisions, resources, assignments, or confirmations. |
+| Marks Collection & Evaluation (L2-I08) | Owns assessment-evidence receipt within evaluation, marks collection, marks submission, validation, approval and finalisation lifecycles; this scenario exercises only the evidence/collection/submission portion. |
+| Examination Conduct (L2-I06 / L2-I07) | Owns authoritative practical/theory examination completion and conduct evidence supplied to L2-I08. |
+| Academic Delivery | Supplies only canonically owned assessment facts or evidence where applicable; ownership does not transfer to Examination. |
 
-The Primary Owner retains the outcome; participating domains retain their canonical responsibilities.
+The Primary Owner retains the marks-collection outcome. Participating domains retain ownership of their source facts.
 
 # 6. Business Actors, Roles and Responsibilities
 
 | Business Actor / Role | Responsibility |
 |---|---|
-| Candidate | Receives evaluated marks |
-| Evaluator | Performs academic evaluation |
-| Chief Evaluator | Supervises evaluation quality |
-| External Evaluator | Performs independent evaluation |
-| Internal Evaluator | Performs institutional evaluation |
+| Evaluator | Performs authorized academic evaluation and supplies awarded marks. |
+| Chief Evaluator | Supervises evaluation quality where the institutional evaluation model requires it. |
+| External Evaluator | Performs independent evaluation where assigned by policy. |
+| Internal Evaluator | Performs institutional evaluation where assigned by policy. |
+| Evaluation Coordinator / Examination Administrator | Coordinates marks-collection activity where assigned by the institutional operating model. |
 
-Only responsibilities supported by L2-I08 apply. No actor or authority is invented.
+Only authorities established by L2-I08 and institutional policy apply. This scenario does not invent a new approval authority.
 
 # 7. Preconditions and Entry Criteria
 
-- The governing examination context exists in the state required by L2-I08.
-- Approved policy and source-owned facts are authoritative.
-- Required upstream decisions, assignments, eligibility facts, or conduct outcomes are complete where applicable.
-- Initiation and decision responsibilities are valid.
-- No unresolved ownership, identity, scope, or lifecycle conflict prevents progression.
+- The applicable examination or assessment activity has been authoritatively completed.
+- Required assessment evidence is available and traceable to its canonical source.
+- The evaluator is authorized for the applicable assessment scope.
+- Applicable marking scheme, evaluation policy and assessment context are authoritative.
+- Marks Collection & Evaluation can identify the exact candidate, assessment/examination activity and evaluation scope.
+- No unresolved ownership or identity conflict prevents marks collection.
 
 # 8. Trigger
 
-**Governed need for marks collection for completed examination activities.**
-
-This is a business occurrence or authoritative condition, not an implementation action.
+An authoritative completed examination or assessment activity becomes available for marks collection together with the required assessment evidence.
 
 # 9. Main Business Flow
 
-1. The responsible participant recognizes the authoritative trigger.
-2. The Primary Owner verifies source-defined preconditions and upstream facts.
-3. Participating domains provide only their canonically owned contributions.
-4. Examination participants assess the matter under approved policy and L2-I08.
-5. Source-defined conflicts, exceptions, approvals, or continuity obligations are resolved by authorized responsibilities.
-6. The Primary Owner establishes **marks Collection for Completed Examination Activities**.
-7. Required evidence and source-supported events or hand-offs are preserved.
-8. The scenario stops at its end boundary.
+| Step | Business Behaviour | Responsible Role / Domain | Business Result |
+|---|---|---|---|
+| 1 | Receive the authoritative completed examination/assessment fact and required evidence from its owning domain. | Marks Collection & Evaluation / source domain | The marks-collection context is established without transferring source ownership. |
+| 2 | Verify the candidate, assessment/examination activity, evaluator assignment and applicable evaluation policy. | Marks Collection & Evaluation | The collection scope is valid and attributable. |
+| 3 | Make the authorized assessment evidence available to the assigned evaluator under the applicable evaluation model. | Evaluation Coordinator / Marks Collection & Evaluation | The evaluator has the governed evidence required to award marks. |
+| 4 | Perform academic evaluation and determine awarded marks according to the approved marking scheme and policy. | Evaluator | Awarded marks exist as the evaluator's governed academic evaluation outcome. |
+| 5 | Collect the awarded marks and associate them with the authoritative candidate, assessment and evaluation context. | Marks Collection & Evaluation | Collected marks are traceable and ready for submission. |
+| 6 | Verify that the required marks for the applicable collection scope are present and attributable. | Marks Collection & Evaluation | Marks are ready to enter the downstream validation stage. |
+| 7 | Submit the collected marks. | Authorized evaluator / Marks Collection & Evaluation | `Marks Submitted` is published and the scenario completes. |
 
 # 10. Alternate Business Flows
 
-## 10.1 Source-Defined Exception Resolved
-
-An authorized participant applies the resolution defined by L2-I08, preserves its basis, and returns to the main flow.
-
-## 10.2 Authoritative Input Requires Clarification
-
-The owning domain resolves an incomplete or inconsistent input; Examination does not redefine it.
-
-## 10.3 Governed Terminal Outcome
-
-Only a terminal outcome defined by locked policy may conclude the alternate path.
+No distinct alternate business path is asserted in this scenario. Variations that block normal progression—missing evidence, evaluator unavailability, incomplete marks, or unresolved evaluation discrepancy—are governed as business recovery conditions in Section 11 rather than being misclassified as alternate paths to the same outcome.
 
 # 11. Failure, Interruption and Business Recovery
 
-- Progression is suspended if required authority, evidence, or authoritative input is unavailable.
-- Disputed facts return to their canonical owner.
-- The last valid business position and evidence are preserved.
-- Recovery occurs only after the missing condition is satisfied or an authorized terminal decision is reached.
-- Technical exception and recovery mechanisms are outside L3.
+| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
+|---|---|---|---|
+| Completed examination fact cannot be verified | Marks collection cannot validly begin. | Resolve the source fact with the canonical Examination Conduct owner. | L2-I06/L2-I07 and L2-I08 |
+| Required assessment evidence is missing | Evaluation and marks collection cannot validly proceed. | Obtain the authoritative evidence from its owning domain before continuation. | Evidence owner and L2-I08 |
+| Assessment evidence is compromised or disputed | Evaluation cannot validly continue on unresolved evidence. | Follow the applicable governed investigation or exception path before continuation. | Evidence owner and L2-I08 |
+| Assigned evaluator becomes unavailable | Evaluation cannot continue under the existing assignment. | Assign a replacement only through the applicable L2-I08/institutional policy path while retaining prior assignment and evidence history. | L2-I08 |
+| Evaluator authority is invalid | Awarded marks cannot be accepted into governed marks collection. | Correct the evaluator assignment through the applicable authority path before continuation. | L2-I08 |
+| Required marks are incomplete for the applicable collection scope | `Marks Submitted` cannot validly occur. | Obtain the missing authoritative marks or complete the applicable governed exception path before submission. | L2-I08 |
+| A material evaluation discrepancy requiring resolution remains open | Marks are not ready for governed submission. | Complete the applicable discrepancy-resolution process required by the institutional evaluation model before submission. | L2-I08 |
+| Marks collection is interrupted before submission | The authoritative submitted-marks outcome has not occurred. | Preserve the last valid business position and continue only when the blocking business condition is resolved. | L2-I08 |
+| Validation later fails | Outside this scenario boundary. | Handled by the downstream Marks Validation workflow; L3-I-071 does not absorb that outcome. | L2-I08 downstream workflow |
 
 # 12. Business Rules and Decision Constraints
 
-| Constraint | Application | Owner / Source |
+| Business Rule / Constraint | Scenario Effect | Owner / Source |
 |---|---|---|
-| Applicable L2-I08 constraint | Marks Collection — Completed Academic Evaluation | L2-I08 |
-| Applicable L2-I08 constraint | Marks Validated — Validation completed successfully — Approval | L2-I08 |
-| Applicable L2-I08 constraint | Marks Approved — Institutional approval completed — Result Processing | L2-I08 |
-| Applicable L2-I08 constraint | Practical Examination Completed — L2-I06 | L2-I08 |
+| Evaluation begins only after authorized examination conduct has completed. | Prevents marks collection from starting on incomplete or unauthorized examination activity. | L2-I08 §4.1, §9.1 |
+| Only authorized evaluators perform academic evaluation. | Prevents unauthorized marks from entering the collection outcome. | L2-I08 §4.5, §9.2 |
+| Assessment evidence remains traceable and protected throughout evaluation. | Preserves academic integrity and auditability. | L2-I08 §9.3 |
+| Evaluation follows approved marking schemes and evaluation policy. | Awarded marks must be academically defensible and policy-compliant. | L2-I08 §9.4 |
+| Collected marks remain provisional until downstream institutional approval. | Prevents L3-I-071 from treating collected/submitted marks as Final Approved Marks. | L2-I08 §5.7, §7.5 |
+| `Marks Submitted` represents evaluator submission of collected marks for validation. | Defines the exact scenario completion fact. | L2-I08 §11 |
+| Marks Validation, Marks Approval and Final Approved Marks belong to downstream L2-I08 stages and L3-I-072. | Prevents scenario overlap and duplicate outcome ownership. | L2-I08 §§8.9–8.12; L3-I-072 |
 
-No local threshold, deadline, formula, authority, state, or rule is created.
+No local threshold, deadline, formula, lifecycle state, approval rule or event name is invented.
 
 # 13. State and Lifecycle Impact
 
-| Lifecycle State / Impact | Meaning |
-|---|---|
-| No new lifecycle state | Only lifecycle impacts explicitly defined by L2-I08 apply. |
+This scenario does not introduce a new lifecycle model. It applies the existing L2-I08 evaluation lifecycle through the marks-collection/submission boundary:
 
-Activities are not lifecycle states. Transitions require source-defined authority and conditions.
+```text
+Completed assessment evidence available
+        ↓
+Authorized evaluation
+        ↓
+Awarded marks collected
+        ↓
+Marks Submitted
+```
+
+Marks Validation, Marks Approval, Marks Finalisation and Ready for Result Processing occur after this scenario ends.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
+## 14.1 Consumed Business Events
 
-### Published Events
-
-| Event | Canonical Publisher | Published When | Consumers |
+| Event | Canonical Publisher | Business Purpose | Source |
 |---|---|---|---|
-| Marks Collection | L2-I08 / Examination | Completed Academic Evaluation | Authoritative consumers |
-| Marks Validated | L2-I08 / Examination | Validation completed successfully | Approval |
-| Marks Approved | L2-I08 / Examination | Institutional approval completed | Result Processing |
-| Practical Examination Completed | L2-I08 / Examination | L2-I06 | Authoritative consumers |
+| `Practical Examination Completed` | L2-I06 — Practical & Viva Examination Conduct | Establishes authoritative completion of a practical/viva examination activity for downstream evaluation. | L2-I08 §12 |
+| `Theory Examination Completed` | L2-I07 — Theory Examination Conduct | Establishes authoritative completion of a theory examination activity for downstream evaluation. | L2-I08 §12 |
+| `Practical Assessment Completed` | L2-I06 — Practical & Viva Examination Conduct | Provides authoritative completed practical-assessment context. | L2-I08 §12 |
+| `Answer Books Collected` | L2-I07 — Theory Examination Conduct | Provides authoritative theory answer-book collection context where applicable. | L2-I08 §12 |
 
-### Consumed Events
+Only events applicable to the actual examination/assessment path are consumed.
 
-| Event | Canonical Publisher | Business Purpose |
-|---|---|---|
-| Marks Collection | Completed Academic Evaluation | Authoritative prerequisite |
-| Practical Examination Completed | L2-I06 | Authoritative prerequisite |
-| Theory Examination Completed | L2-I07 | Authoritative prerequisite |
-| Assessment Evidence Collection | Receive completed assessment evidence | Authoritative prerequisite |
+## 14.2 Published Business Events
 
-No event is invented where no exact matching canonical event is supported.
+| Event | Canonical Publisher | Published When | Primary Consumer / Purpose | Source |
+|---|---|---|---|---|
+| `Assessment Evidence Received` | L2-I08 — Marks Collection & Evaluation | Required assessment evidence has been successfully collected into the evaluation context. | Evaluation operations within L2-I08. | L2-I08 §11 |
+| `Evaluation Completed` | L2-I08 — Marks Collection & Evaluation | The evaluator has completed academic evaluation. | Marks collection / moderation as applicable. | L2-I08 §11 |
+| `Marks Submitted` | L2-I08 — Marks Collection & Evaluation | The evaluator has submitted collected marks. | Marks Validation. This is the scenario completion event. | L2-I08 §11 |
 
-## 14.2 Business Contracts and Cross-Domain Hand-offs
+`Marks Validated`, `Marks Approved`, `Final Approved Marks Available`, `Evaluation Closed` and `Evaluation Archived` are valid L2-I08 events but are downstream of this scenario's end boundary and are therefore not published outcomes of L3-I-071.
 
-| Provider | Consumer | Business Hand-off |
-|---|---|---|
-| Academic Delivery | Marks Collection & Evaluation | Provides only canonically owned facts, decisions, resources, assignments, or confirmations. |
+## 14.3 Business Contracts and Cross-Domain Hand-offs
 
-These are business hand-offs only, with no technical contract design.
+| Provider | Consumer | Business Hand-off | Purpose |
+|---|---|---|---|
+| L2-I06 / L2-I07 | L2-I08 | Completed examination/assessment facts and authoritative conduct evidence | Establish legitimate readiness for academic evaluation and marks collection. |
+| Academic Delivery, where applicable | L2-I08 | Canonically owned assessment facts/evidence | Supports evaluation without transferring Academic Delivery ownership. |
+| L2-I08 marks collection | L2-I08 Marks Validation / downstream L3-I-072 | Submitted marks with applicable evaluation and evidence context | Hands the authoritative collected-marks outcome to downstream validation without declaring the marks final. |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
 ## 15.1 Initiation and Decision Authority
 
-Initiation, review, recommendation, approval, and final decision remain distinct where L2-I08 distinguishes them. Only source-supported actors exercise them.
+- Only authorized evaluators may perform academic evaluation and supply awarded marks.
+- Evaluation coordination may be performed by the applicable L2-I08 business roles.
+- This scenario does not grant institutional Marks Approval authority; approval occurs downstream.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-No control, override, or exceptional authority is created locally.
+Any evaluator independence, moderation, multiple-evaluation or approval separation required by institutional policy remains governed by L2-I08. No new override is introduced locally.
 
 ## 15.3 Business Audit and Evidence Obligations
 
-The institution must demonstrate the trigger, context, contributing facts, responsible participants, decision basis, applied policy, exceptions, prior position where changed, and final outcome.
+The institution must be able to trace:
+
+- the completed examination/assessment source fact;
+- candidate and assessment identity;
+- assessment evidence received;
+- evaluator assignment and authority;
+- applicable evaluation policy/marking scheme;
+- awarded marks;
+- collection completeness;
+- submission actor and time;
+- `Marks Submitted` as the completed business fact for this scenario.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- Trigger and preconditions were valid.
-- Authoritative facts and contributions were considered.
-- Required authority and constraints were applied.
-- **Marks Collection for Completed Examination Activities** was established without transferring ownership.
-- Required evidence, events, and hand-offs were preserved where supported.
-- No downstream outcome was absorbed.
+- The examination/assessment completion fact is authoritative.
+- Required assessment evidence is available and traceable.
+- Evaluation was performed by an authorized evaluator.
+- Awarded marks were collected for the applicable scenario scope.
+- Required collection completeness checks were satisfied.
+- `Marks Submitted` was published by L2-I08.
+- No downstream Marks Validation, Marks Approval or Final Approved Marks outcome was absorbed.
 
 ## 16.2 Postconditions
 
-- The final outcome is authoritative for its scope.
-- Prior evidence remains traceable where an earlier position is revised, consolidated, reopened, or corrected.
-- Downstream capabilities may consume the outcome through source-supported collaboration.
-- All domains retain canonical ownership.
+- Submitted marks are available to the downstream Marks Validation workflow.
+- Collected/submitted marks remain provisional until the authoritative downstream approval/finalisation stages complete.
+- Examination Conduct retains ownership of its completion facts.
+- Marks Collection & Evaluation retains ownership of the submitted marks/evaluation facts.
+- L3-I-072 may continue the governed path toward Final Approved Marks where its own preconditions are satisfied.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-No scenario-specific material conflict is introduced by this draft. Later-discovered conflicts require upstream change control.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| `ACR-I-2026-08-21-002` is referenced as approval authority by this and multiple Section I scenarios, but no independently traceable ACR/ADR governance artifact was located in the repository search. | Formal Architecture Approved/Locked status cannot be independently verified from repository evidence. | Locate and register the original approval record, or re-run the applicable governance approval/lock step under the repository's current change-management process. Until then this scenario remains **Review**. |
 
 ## 17.2 Assumptions
 
-No assumption overrides locked architecture. Referenced locked sources are assumed unchanged.
+No assumption overrides locked architecture. Event names, publishers and boundaries in this revision are taken directly from current locked L2-I08 and adjacent L3 scenario responsibility.
 
 ## 17.3 Deferred Questions
 
-System behaviour, solution, integration, security, data, and user-experience design are deferred to L4–L6.
+System behaviour, solution, integration, security, data, UI/UX and technical recovery design are deferred to later architecture levels.

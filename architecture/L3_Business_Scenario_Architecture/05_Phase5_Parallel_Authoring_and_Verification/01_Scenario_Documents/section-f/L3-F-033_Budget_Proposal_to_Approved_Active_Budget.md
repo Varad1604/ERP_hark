@@ -8,10 +8,10 @@
 **Participating Domains:** B, F  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-21  
+**Last Updated:** 2026-08-25  
 **Depends On:** L2-F00; L2-F06; L2-B02; SutraERP L1 Business Domain Architecture (Locked); DEPENDENCY_MAP.md; L3 Business Scenario Template v2.0; Stage 3 Canonical Scenario Register — Section F  
 **Referenced By:** None yet
 
@@ -21,7 +21,7 @@ This scenario establishes the governed institutional path by which a prepared bu
 
 ## 3. Business Outcome
 
-A complete Budget Proposal is approved by the Finance Committee, transitions to Active, preserves approval history, and publishes `BudgetApproved`.
+A complete Budget Proposal is approved under the governed Budget process, transitions to Active, preserves approval history, and publishes `BudgetApproved`.
 
 ## 4. Scenario Boundary and Scope
 
@@ -37,7 +37,7 @@ The approved Budget is Active and its approval outcome is published.
 
 - proposal consolidation and completeness review
 - validation of Budget Period and organisational scope
-- Finance Committee decision and Budget activation
+- governed approval decision and Budget activation
 
 ### 4.4 Out of Scope
 
@@ -53,15 +53,12 @@ No additional relationship is required to define this scenario boundary.
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Budget & Cost Center Management | Owns the Finance decision or accounting outcome and its evidence |
+| Budget & Cost Center Management | Owns the Budget proposal, approval lifecycle, activation outcome and evidence |
 | Section B — Institution & Structure | Provides authoritative organisational references without transferring ownership |
 
 ## 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Finance Department | Prepares and consolidates the Budget Proposal. | Initiates and presents |
-| Finance Committee | Reviews and decides the submitted proposal. | Approves or rejects |
+L2-F06 does not define canonical business actors for Budget preparation or approval. Budget & Cost Center Management owns the business responsibilities in this scenario, but the institutional actor/decision-authority mapping remains an upstream architecture gap; see Section 17.
 
 ## 7. Preconditions and Entry Criteria
 
@@ -77,9 +74,9 @@ A prepared Budget Proposal is submitted for governed approval.
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Validate proposal scope, Budget Period and organisational references | Finance Department | Proposal is eligible for review |
-| 2 | Review the proposal against governed Budget policy and planning requirements | Finance Committee | Approval decision is reached |
-| 3 | Approve the proposal and activate the Budget | Finance Committee / Budget & Cost Center Management | Budget becomes Active |
+| 1 | Validate proposal scope, Budget Period and organisational references | Budget & Cost Center Management | Proposal is eligible for review |
+| 2 | Review the proposal against governed Budget policy and planning requirements | Budget & Cost Center Management | Approval decision is reached |
+| 3 | Apply the governed approval decision and activate the approved Budget | Budget & Cost Center Management | Budget becomes Active when approved |
 | 4 | Preserve approval history and publish `BudgetApproved` | Budget & Cost Center Management | Approved active Budget is available |
 
 ## 10. Alternate Business Flows
@@ -125,22 +122,19 @@ No scenario-specific alternate business flow is defined beyond governed proposal
 
 ### 15.1 Initiation and Decision Authority
 
-| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
-|---|---|---|---|
-| Prepare and submit proposal | Finance Department | Must act within governed institutional Budget process | Budget & Cost Center Management |
-| Approve or reject proposal | Finance Committee | Approval is required for `PendingApproval → Active` | Budget & Cost Center Management |
+L2-F06 requires governed approval for the `PendingApproval → Active` transition but does not define the canonical institutional actor or role that prepares, reviews, approves or rejects the Budget Proposal. No L3 role is assigned until that upstream mapping is governed.
 
 ### 15.2 Separation of Duties, Overrides and Exceptions
 
-No additional scenario-specific separation-of-duty rule is defined for initial approval beyond the Finance Committee approval transition.
+No scenario-specific separation-of-duty, override or exception authority is introduced at L3 because L2-F06 does not define the participating institutional roles.
 
 ### 15.3 Business Audit and Evidence Obligations
 
 | Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
 |---|---|---|
 | Preserve scenario decision traceability | Budget Proposal, Budget Period and organisational scope | Budget & Cost Center Management |
-| Preserve scenario decision traceability | Finance Committee approval or rejection and preserved Budget version | Budget & Cost Center Management |
-| Preserve scenario decision traceability | Resulting Budget state and `BudgetApproved` reference | Budget & Cost Center Management |
+| Preserve scenario decision traceability | Governed approval or rejection decision and preserved Budget version | Budget & Cost Center Management |
+| Preserve scenario decision traceability | Resulting Budget state and `BudgetApproved` business fact | Budget & Cost Center Management |
 
 Section A retains ownership of Authorization and Audit infrastructure; Budget & Cost Center Management owns the underlying business decision and evidence.
 
@@ -161,7 +155,9 @@ Section A retains ownership of Authorization and Audit infrastructure; Budget & 
 
 ### 17.1 Open Issues
 
-No open issues.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-F06 explicitly records that its Actors section is absent and therefore does not establish the institutional actor/decision-authority mapping for Budget proposal preparation, review, approval or rejection. | The Budget lifecycle and approval requirement are source-supported, but L3 cannot authoritatively name a Finance Committee or other approving role. The scenario remains Review. | Define or approve the Budget actor/decision-authority mapping in authoritative L2/governance before promotion beyond Review. |
 
 ### 17.2 Assumptions
 
@@ -173,5 +169,5 @@ No scenario-specific deferred questions.
 
 ---
 
-**Authoring Validation Classification:** PASS  
-**Validation Note:** Source-grounded Draft; independent review and architecture approval remain required.
+**Authoring Validation Classification:** REVIEW REQUIRED  
+**Validation Note:** Business semantics remain grounded in L2-F06. Unsupported named approval actors were removed; the unresolved upstream actor/authority mapping is recorded rather than invented at L3.

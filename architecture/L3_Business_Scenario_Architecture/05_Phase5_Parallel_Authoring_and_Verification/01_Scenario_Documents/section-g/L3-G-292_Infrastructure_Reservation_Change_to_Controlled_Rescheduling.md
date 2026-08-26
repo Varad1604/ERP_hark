@@ -11,23 +11,17 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows where institutional ownership is referenced; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized infrastructure consumers across academic, examination, facilities, safety, workforce, analytics and institutional operations
-
----
+**Last Updated:** 2026-08-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Referenced By:** None yet
 
 # 2. Scenario Purpose
 
-Modify the permitted date, time, purpose, duration or participants of an existing Reservation after revalidating authorization, availability, capacity, conflicts and policy.
-
----
+Govern an authorized change to an existing Infrastructure Reservation so the revised reservation remains valid under G10 policy and prior reservation history remains traceable.
 
 # 3. Business Outcome
 
-The reservation is updated according to policy while prior reservation history remains traceable
-
----
+The reservation is updated according to policy while prior reservation history remains traceable.
 
 # 4. Scenario Boundary and Scope
 
@@ -37,225 +31,145 @@ The scenario begins when an authorised reservation requires modification.
 
 ## 4.2 End Boundary
 
-The scenario ends when the exact frozen outcome is established under G10 ownership, the current authoritative physical fact is available through governed contracts, required events have been published only after successful persistence, and immutable audit history is preserved.
+The scenario ends when the permitted reservation change is authoritative, prior reservation history is preserved, and `ReservationModified` has been published.
 
 ## 4.3 In Scope
 
-- Resolution of Tenant, institution, resource and physical hierarchy context.
-- Scoped authorization before business validation.
-- Validation of G10 identity, hierarchy, lifecycle, capacity, availability, configuration and relationship rules as applicable.
-- The `Reservation` business responsibility.
-- Preservation of immutable identifiers and prior historical values.
-- Publication of only source-defined completed business facts.
-- Governed read contracts for authorized consumers.
-- Complete audit evidence.
+- Change to date, time, purpose, duration or participants as permitted by G10.
+- Revalidation of availability, capacity, period, conflicts and reservation policy where materially affected.
+- Reservation-history preservation.
+- Canonical modification event publication.
 
 ## 4.4 Out of Scope
 
-- Institutional identity or InstitutionalCampus ownership retained by B03.
-- Academic scheduling, examination conduct, facilities-maintenance execution or consumer-specific decisions.
-- Authentication, technical RBAC, database, API, UI, queue or implementation design.
-- Physical deletion of infrastructure or historical records.
-- Inventing lifecycle states, commands, events, publishers, approval actors or cross-domain contracts absent from L2.
-
-## 4.5 Related Scenarios
-
-| Relationship | Related Scenario | Boundary Reason |
-|---|---|---|
-| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes the canonical Physical Campus root. |
-| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | Governs the Campus–Building–Floor–Space hierarchy. |
-| Related | L3-G-289 — Infrastructure Availability Definition to Availability Profile Activation | Establishes authoritative resource availability. |
-| Related | L3-G-291 — Infrastructure Reservation Request to Controlled Reservation | Consumes availability and capacity without owning either fact. |
-
----
+- Creation of a new Reservation.
+- Reservation cancellation.
+- Academic or other consumer-domain rescheduling decisions.
+- Any implementation design.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Primary owner of physical identity, hierarchy, lifecycle, capacity, availability, classification, relationships and infrastructure master facts. |
-| Institution & Structure / Section B, where frozen | Owns Institution and InstitutionalCampus identity; supplies references without owning physical aggregates. |
-| Platform Foundation / Section A, where frozen | Supplies Tenant isolation, configuration, authorization, event and audit capabilities without owning infrastructure facts. |
-| Academic Delivery / Section D, where frozen | Consumes authoritative capacity, availability or reservation outcomes and retains its academic decisions. |
-
-The frozen participating-domain value remains exactly `G, A`.
-
----
+| Infrastructure Management / G | Owns the Reservation, its modification and preserved history. |
+| Platform Foundation / A | Supplies authorization, event governance and audit capabilities without owning the Reservation. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Authority Boundary |
+| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Initiates and administers permitted infrastructure operations. | Must hold fine-grained permission in the relevant Tenant, institution, Campus, Building or Zone scope. |
-| Campus or Building Administrator | Manages infrastructure within assigned physical scope. | Cannot act outside assigned hierarchy scope. |
-| Facilities Manager / Operational Manager | Supplies operational context and consumes current physical facts. | Does not change canonical identity or bypass G10 rules. |
-| Auditor | Reviews immutable history and evidence. | Read-only; cannot mutate infrastructure. |
-| Consumer-domain actor | Requests or consumes an authorized infrastructure service. | Retains the consumer decision and cannot modify G10 aggregates directly. |
+| Infrastructure Administrator | Administers the Reservation modification under G10 policy. | Performs the change only where authorized. |
 
-Roles are configurable access patterns in L2-G10. No universal named approver is inferred.
-
----
+G10 permits authorized users to modify reservations but does not define one universal requester role for every reservation source.
 
 # 7. Preconditions and Entry Criteria
 
-- The Reservation exists and is not Completed or Archived.
-- The requester is authorized to modify it.
-- The proposed changes and business reason are available.
-- The resource remains eligible for the proposed revised period.
-- Tenant and institution isolation are enforceable.
-- Authentication context is supplied externally and authorization succeeds before mutation.
-- Required audit and event infrastructure is available under enterprise policy.
-
----
+- The Reservation exists under G10 ownership.
+- The requested modification is one permitted by G10.
+- The resource and revised reservation conditions can be revalidated where applicable.
+- The modification is authorized.
 
 # 8. Trigger
 
-An authorised reservation requires modification
-
----
+An authorised reservation requires modification.
 
 # 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Resolve the Reservation, resource, current period and requested changes. | Infrastructure Management | Resolve the Reservation, resource, current period and requested changes. |
-| 2 | Authorize modification within the reservation and resource scope. | Infrastructure Management | Authorize modification within the reservation and resource scope. |
-| 3 | Validate that the current Reservation state permits modification. | Infrastructure Management | Validate that the current Reservation state permits modification. |
-| 4 | Revalidate availability, capacity, capability, revised period and reservation policy. | Infrastructure Management | Revalidate availability, capacity, capability, revised period and reservation policy. |
-| 5 | Detect conflicts created by the proposed rescheduling. | Infrastructure Management | Detect conflicts created by the proposed rescheduling. |
-| 6 | Apply the permitted modification without deleting or replacing historical identity. | Infrastructure Management | Apply the permitted modification without deleting or replacing historical identity. |
-| 7 | Publish `ReservationModified` after successful persistence. | Infrastructure Management | Publish `ReservationModified` after successful persistence. |
-| 8 | Preserve prior values, new values, reason, actor and correlation evidence. | Infrastructure Management | Preserve prior values, new values, reason, actor and correlation evidence. |
-
----
+| 1 | Identify the existing Reservation and the requested change. | Infrastructure Administrator / Infrastructure Management | The change is bounded to one canonical Reservation. |
+| 2 | Validate authorization and the applicable reservation policy. | Infrastructure Management | The requested modification is permitted to proceed. |
+| 3 | Revalidate affected resource availability, capacity, period and conflicts. | Infrastructure Management | The revised Reservation remains valid under G10 rules. |
+| 4 | Make the permitted reservation change while preserving prior history. | Infrastructure Management | The frozen business outcome is achieved. |
+| 5 | Publish `ReservationModified`. | Infrastructure Management | The completed modification fact is available for authorized consumers and audit evidence. |
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| 1 | Only purpose or participants change | apply the same authorization and policy validation without altering the period. | Existing ownership and history remain intact. |
-| 2 | The revised period conflicts | reject the change and retain the original Reservation unchanged. | Existing ownership and history remain intact. |
-
----
+| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
+|---|---|---|---|---|
+| Non-time modification | Only purpose or participants change. | Apply authorization and policy validation and revalidate only business conditions materially affected by the change. | Reservation is updated without unnecessary change to its period. | Infrastructure Management |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, institution or resource scope cannot be resolved | reject the request without creating a cross-scope fact. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Authorization fails | terminate before business mutation. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Hierarchy, lifecycle, configuration or policy validation fails | retain the prior authoritative state. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| A uniqueness, capacity, availability or relationship invariant fails | reject the requested result. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Audit evidence cannot be recorded | do not complete the business transition. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| The success-event condition is not satisfied | do not publish the success event. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-
-No technical retry, rollback, database transaction or messaging implementation is specified at L3.
-
----
+| Revised period creates a conflict or violates availability/capacity/policy. | The requested modification cannot become authoritative. | Retain the existing Reservation until a later compliant change is authorized. | Infrastructure Management |
+| Authorization fails. | Reservation remains unchanged. | Proceed only after a later valid authorization decision. | Infrastructure Management / Platform Foundation |
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Infrastructure Management is the canonical owner of physical infrastructure facts. | Infrastructure Management | Consumers reference G10 facts and never duplicate or directly modify aggregates. | L2-G10 §§2, 5, 9, 44A |
-| Every Building belongs to one Campus; every Floor to one Building; every Space to one Floor. | Infrastructure Management | Invalid or circular physical relationships are rejected. | L2-G10 §§8, 18, 47 |
-| Aggregate identity is immutable and infrastructure is never physically deleted. | Infrastructure Management | Changes preserve identifiers and historical references. | L2-G10 §§13, 47, 48A |
-| Authorization precedes business validation. | Authorization & Policy; Infrastructure Management | Unauthorized requests terminate before mutation. | L2-G10 §48A.207 |
-| Business validation precedes persistence, and events describe completed facts. | Infrastructure Management; Event Infrastructure | Failed work cannot publish a success event. | L2-G10 §§22A.99, 44A.179 |
-| Every successful state or significant attribute change is auditable. | Infrastructure Management; Audit Infrastructure | Actor, prior value, new value, reason and correlation are preserved. | L2-G10 §§48A.208–210, 49 |
-| Archived infrastructure is immutable. | Infrastructure Management | No scenario may update an Archived aggregate. | L2-G10 §§11A, 47 |
-| Capacity cannot be negative and reservation conflicts are prevented unless an authorized override is permitted. | Infrastructure Management | Invalid capacity or conflicting reservations are rejected. | L2-G10 §§24, 26, 47 |
-
----
+| Authorized users may change reservation date, time, purpose, duration or participants. | Infrastructure Management | L3 limits modification to source-supported categories. | L2-G10 §26 Reservation Modification |
+| Every modification remains auditable. | Infrastructure Management | Prior reservation history cannot be silently overwritten. | L2-G10 §26 |
+| Reservation validity includes operational status, availability, capacity, period, conflict and policy rules. | Infrastructure Management | Materially affected conditions are revalidated before the change becomes authoritative. | L2-G10 §26 Reservation Validation |
+| `ReservationModified` is the canonical reservation-update event. | Infrastructure Management | L3 uses the exact source event name. | L2-G10 Reservation Events |
+| Authorization is mandatory. | Platform Foundation — Authorization | Unauthorized modification cannot proceed. | L2-A04 AP-01 |
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Position | Canonical Owner |
-|---|---|---|---|---|
-| `Reservation` | Valid trigger and authorized context | Executes only the scenario-specific creation, association or governed attribute change. | Existing non-terminal Reservation → updated reservation within its current permitted lifecycle position | Infrastructure Management, except the B03 reference retained by Institution & Structure |
-| Parent physical hierarchy | Existing and valid where applicable | Referenced and validated; not silently re-parented. | Unchanged unless the frozen outcome explicitly creates the child relationship. | Infrastructure Management |
-| Tenant and Institution | Existing | Supply isolation and institutional reference. | Unchanged. | Platform Foundation; Institution & Structure |
-| Consumer-domain records | Existing or absent | Consume the completed authoritative fact. | Unchanged by G10. | Applicable consumer domain |
-| Audit history | Existing | Appends immutable evidence. | Historical trace grows; prior records remain unchanged. | Audit Infrastructure |
+| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
+|---|---|---|---|---|---|
+| Reservation | Existing Reservation in a business position where modification is permitted | Changes allowed reservation attributes and preserves history | Reservation remains in its source-defined lifecycle position unless another upstream rule changes it | Infrastructure Management | L2-G10 Reservation lifecycle; §26 |
 
-L2-G10 requires lifecycle and operational availability to remain distinct. “Activation” in a frozen outcome is not treated as a new lifecycle state unless L2-G10 defines it.
-
----
+G10 does not define a special `Rescheduled` lifecycle state, so none is introduced.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Event Treatment
+## 14.1 Published / Consumed Business Events
 
-| Event / Required Fact | Publication Condition | Publisher and Consumer Treatment |
-|---|---|---|
-| `ReservationModified` | Only after the corresponding aggregate creation or governed update has persisted successfully. | The affected G10 aggregate publishes the source-defined completed fact; consumers react without changing G10 ownership. |
+| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
+|---|---|---|---|---|
+| `ReservationModified` | Infrastructure Management | Authorized reservation consumers | States that the G10 Reservation was successfully updated. | L2-G10 Reservation Events |
 
-Where Section 44 and the detailed WF-INF catalogue use different names, this Draft records the inconsistency in Section 17 and does not publish both names for one transition.
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-## 14.2 Synchronous Business Contracts and Hand-offs
-
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
-|---|---|---|---|
-| Physical Campus Summary | Infrastructure Management | Institution & Structure and authorized consumers | Canonical physical Campus identity, lifecycle and operational status. |
-| Building, Floor and Space Summary | Infrastructure Management | Operational domains | Canonical hierarchy, classification, capacity, lifecycle and current status. |
-| Capacity Profile | Infrastructure Management | Academic, Examination and operational consumers | Canonical capacity facts; consumers own utilization decisions. |
-| Retrieve Availability | Infrastructure Management | Authorized consumers | Current operational availability independently from lifecycle. |
-| Reservation service | Infrastructure Management | Authorized requestor | Governed reservation establishment, modification or retrieval. |
-| Audit input | Infrastructure Management | Audit Infrastructure | Actor, scope, transition, prior/new values, reason and correlation evidence. |
-
----
+No additional cross-domain hand-off is required to complete this frozen G,A scenario. Authorized consumers may subsequently retrieve the authoritative Reservation without acquiring ownership.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-- Authentication is external to G10.
-- Fine-grained permission is evaluated by Tenant, institution and physical-resource scope before validation.
-- Consumer access does not grant direct aggregate mutation.
-- Authorization success does not waive hierarchy, lifecycle, capacity, availability or policy rules.
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| Modify Infrastructure Reservation | Infrastructure Administrator | The change must be authorized and satisfy G10 reservation policy. | Infrastructure Management |
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-- L2-G10 allows configurable approval for some creation, lifecycle, override and administrative operations.
-- The scenario uses approval only where active policy requires it.
-- No unnamed approver or technical workflow routing is invented.
-- Governance approval supplements business validation and never replaces it.
+No scenario-specific separation-of-duty or mandatory approval rule is defined for ordinary reservation modification.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The audit record must preserve Tenant, institution, aggregate type and identifier, actor, authorization scope, previous values, new values, effective dates where applicable, business reason, approval reference where required, event facts and correlation identifier. Audit history is immutable and independently retained.
-
----
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Preserve reservation change history | Prior and revised reservation facts remain traceable. | Infrastructure Management |
+| Preserve immutable audit evidence | Audit evidence derived from the completed `ReservationModified` fact. | Platform Foundation — Audit |
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete only when:
+## 16.1 Completion Criteria
 
-- resolve the Reservation, resource, current period and requested changes.
-- authorize modification within the reservation and resource scope.
-- validate that the current Reservation state permits modification.
-- revalidate availability, capacity, capability, revised period and reservation policy.
-- detect conflicts created by the proposed rescheduling.
-- apply the permitted modification without deleting or replacing historical identity.
-- publish `ReservationModified` after successful persistence.
-- preserve prior values, new values, reason, actor and correlation evidence.
-- no institutional, academic or consumer-domain ownership has transferred to G10;
-- no unauthorized or partial result is treated as successful; and
-- all required audit evidence is immutable and queryable.
+- The Reservation reflects the authorized policy-compliant change.
+- Prior reservation history remains traceable.
+- `ReservationModified` is published by Infrastructure Management.
 
-Postconditions:
+## 16.2 Postconditions
 
-- Canonical G10 identity and historical integrity are preserved.
-- The current authoritative fact is available through governed contracts.
-- Consumers may react under their own rules but cannot rewrite the source fact.
-- Failed or incomplete transitions publish no success event.
-
----
+- The revised Reservation remains a G10-owned fact.
+- Authorized consumers may rely on the current reservation details.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-**Architecture assessment:** `PASS`
+## 17.1 Open Issues
 
-No source gap prevents this scenario from proceeding to Architecture Approval. The owning aggregate, governing workflow, lifecycle meaning, service and event required for the frozen outcome are sufficiently defined.
+No open issues.
 
-No unsupported aggregate, lifecycle state, transition, event, publisher, actor, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
+**Source Assessment:** **PASS**
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No scenario-specific deferred questions.

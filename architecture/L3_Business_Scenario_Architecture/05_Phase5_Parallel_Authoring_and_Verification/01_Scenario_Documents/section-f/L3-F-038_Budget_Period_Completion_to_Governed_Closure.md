@@ -8,10 +8,10 @@
 **Participating Domains:** F  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-21  
+**Last Updated:** 2026-08-25  
 **Depends On:** L2-F00; L2-F06; SutraERP L1 Business Domain Architecture (Locked); DEPENDENCY_MAP.md; L3 Business Scenario Template v2.0; Stage 3 Canonical Scenario Register — Section F  
 **Referenced By:** None yet
 
@@ -53,19 +53,11 @@ No additional relationship is required to define this scenario boundary.
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Budget & Cost Center Management | Owns the Finance decision or accounting outcome and its evidence |
+| Budget & Cost Center Management | Owns the Budget closure decision, lifecycle transition and evidence |
 
 ## 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Scenario Responsibility |
-|---|---|
-| Budget Planning Officer | Prepares the governed Budget proposal, allocation, revision, virement or closure request applicable to this scenario. |
-| Budget Control Officer | Performs Budget-control and eligibility assessment under approved Finance policy. |
-| Finance Committee | Authorizes governed Budget approval, allocation, structural change or closure where applicable. |
-| Cost Center Administrator | Prepares Finance-owned Cost Center lifecycle actions where applicable. |
-| Financial Controller | Independently authorizes Cost Center activation, deactivation, reactivation or closure where applicable. |
-
-Roles and authority are established by approved `ACR-F-2026-08-21-001` and do not define technical access control.
+L2-F06 does not define canonical institutional actors for Budget closure. Budget & Cost Center Management owns the closure responsibility, while the actor/decision-authority mapping remains an upstream architecture gap; no named closure role is introduced at L3.
 
 ## 7. Preconditions and Entry Criteria
 
@@ -83,7 +75,7 @@ The applicable Budget Period reaches governed completion.
 |---|---|---|---|
 | 1 | Confirm Budget identity, period completion and closure eligibility | Budget & Cost Center Management | Budget is eligible for closure |
 | 2 | Resolve any condition that prevents governed closure | Budget & Cost Center Management | Closure may proceed |
-| 3 | Authorize and apply `Active → Closed` | Budget & Cost Center Management | Budget is Closed |
+| 3 | Obtain the governed closure decision and apply `Active → Closed` | Budget & Cost Center Management | Budget is Closed |
 | 4 | Preserve immutable history and publish `BudgetClosed` | Budget & Cost Center Management | Closure is communicated |
 
 ## 10. Alternate Business Flows
@@ -107,7 +99,7 @@ No scenario-specific alternate business flow is defined upstream.
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Budget | Active | `Active → Closed` when fiscal period ends | Closed | Budget & Cost Center Management | L2-F06 §13 |
+| Budget | Active | `Active → Closed` when the Budget Period completes and closure eligibility is satisfied | Closed | Budget & Cost Center Management | L2-F06 §13 |
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -125,21 +117,19 @@ No additional synchronous business contract is required beyond the authoritative
 
 ### 15.1 Initiation and Decision Authority
 
-| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
-|---|---|---|---|
-| Perform governed Budget closure | Finance Department | Closure authority is not further defined | Budget & Cost Center Management |
+L2-F06 requires governed Budget closure but does not name the institutional actor or role that authorizes the closure. L3 therefore preserves the Finance-owned closure decision without inventing a named authority.
 
 ### 15.2 Separation of Duties, Overrides and Exceptions
 
-No scenario-specific separation-of-duty rule is defined upstream.
+No scenario-specific separation-of-duty, override or exception authority is defined upstream for Budget closure.
 
 ### 15.3 Business Audit and Evidence Obligations
 
 | Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
 |---|---|---|
 | Preserve scenario decision traceability | Budget and Budget Period references | Budget & Cost Center Management |
-| Preserve scenario decision traceability | Closure eligibility and decision | Budget & Cost Center Management |
-| Preserve scenario decision traceability | Closed state and `BudgetClosed` reference | Budget & Cost Center Management |
+| Preserve scenario decision traceability | Closure eligibility and governed closure decision | Budget & Cost Center Management |
+| Preserve scenario decision traceability | Closed state and `BudgetClosed` business fact | Budget & Cost Center Management |
 
 Section A retains ownership of Authorization and Audit infrastructure; Budget & Cost Center Management owns the underlying business decision and evidence.
 
@@ -159,7 +149,9 @@ Section A retains ownership of Authorization and Audit infrastructure; Budget & 
 
 ### 17.1 Open Issues
 
-No unresolved material architecture issue remains for this scenario. The former upstream gaps were resolved by approved `ACR-F-2026-08-21-001` and its exact amendment specification.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-F06 explicitly records that its Actors section is absent and does not define the institutional actor/decision-authority mapping for Budget closure. Scenario references to `ACR-F-2026-08-21-001` do not independently establish that mapping. | The `Active → Closed` lifecycle and `BudgetClosed` event are source-supported, but L3 cannot authoritatively name the closure authority. The scenario remains Review. | Establish the Budget-closure actor/decision-authority mapping in authoritative L2/governance and provide traceable approval provenance before promotion beyond Review. |
 
 ### 17.2 Assumptions
 
@@ -171,5 +163,5 @@ No scenario-specific deferred questions.
 
 ---
 
-**Authoring Validation Classification:** PASS  
-**Validation Note:** Source-grounded Draft revalidated against approved ACR-F-2026-08-21-001; no unresolved material L3 issue remains.
+**Authoring Validation Classification:** REVIEW REQUIRED  
+**Validation Note:** Source-supported Budget closure lifecycle and canonical event are preserved. Unsupported ACR-based actor/authority claims were removed and the upstream role gap remains explicit.

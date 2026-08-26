@@ -9,190 +9,139 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Draft  
-**Version:** 1.0  
+**Version:** 1.2  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H01 — APAAR & DigiLocker Workflows; L2-A04 — Authorization & Policy Workflows; L2-A07 — Audit Infrastructure Workflows; applicable Institution and Student Lifecycle contracts  
-**Referenced By:** Government learner-account integration, credential-publication eligibility, and institutional audit activities
+**Last Updated:** 2026-08-26  
+**Depends On:** SutraERP L1 Business Domain Architecture and Locked Amendment 2026-08-26; `DEPENDENCY_MAP.md`; L2-H01 — APAAR & DigiLocker Workflows; L2-H01 Locked Amendment 2026-08-26; ADR-H-GOVLINK-001; L2-A02 — Person & Identity; authoritative Institution & Structure and Student Lifecycle workflows; applicable Platform Foundation authorization/event/audit architecture  
+**Referenced By:** Government learner-link and credential-publication scenarios
 
 # 2. Scenario Purpose
 
-Establish or reject a governed link between a verified SutraERP student and the applicable government learner account while preserving Student, Institution, identity, consent, and external-reference ownership boundaries.
+Establish a governed association between a verified canonical Student and an APAAR or DigiLocker learner account while preserving Student, Institution and Person/Identity ownership outside H01 and preserving H01 consent and link history.
 
 # 3. Business Outcome
 
-A governed learner-account link is established or rejected with the external reference, consent basis, and audit history preserved
+A governed platform-specific learner-account link reaches `Linked`, with authoritative source references, consent basis where required, government acknowledgement/reference where available, the applicable canonical H01 link event and audit history preserved.
 
 # 4. Scenario Boundary and Scope
 
-## 4.1 Start Boundary
+**Start:** A Student or authorized Institution Administrator requests APAAR/DigiLocker linking.  
+**End:** The platform-specific H01 link request reaches `Linked`.
 
-The scenario begins when a verified student or authorized institutional process requests an APAAR or DigiLocker link.
-
-## 4.2 End Boundary
-
-The scenario ends when H01 records either the successful learner-account link with its government reference or a controlled rejected/failed link outcome, with consent basis and audit evidence preserved.
-
-## 4.3 In Scope
-
-- Resolution of the canonical Student and Institution references required by H01.
-- Verification that the student identity is already verified by the owning source capability.
-- Validation of publication/linking consent where policy requires it.
-- Use of an active APAAR or DigiLocker connector under H01 ownership.
-- Recording of the government reference and link outcome under H01.
-- Publication of the target-specific canonical H01 link outcome event.
-- Preservation of audit evidence.
-
-## 4.4 Out of Scope
-
-- Creating or modifying the canonical Student, Institution, or identity record.
-- Inventing a separate learner-account-link aggregate or lifecycle not defined by H01.
-- Technical connector, queue, transport, retry, authentication-protocol, or payload design.
-- Credential publication, which is a separate H01 business outcome.
+In scope: authoritative Student/Institution/Person references, consent, H01 connector eligibility, request processing, successful government acknowledgement and canonical link events. Out of scope: credential publication, changes to source-domain lifecycles, technical APIs/queues/retries/persistence or creation of a separate learner-link aggregate.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
-|---|---|
-| Platform Foundation / Section A | Supplies canonical identity/authorization and audit capabilities used by the governed linking operation. |
-| Institution & Structure / Section B | Supplies the authoritative Institution context referenced by the link. |
-| Student Lifecycle / Section C | Retains canonical Student ownership; H01 consumes the verified Student reference without modifying it. |
-| APAAR & DigiLocker / Section H | Owns the government-linking workflow, H01 link status/external reference, applicable consent record, connector, acknowledgement and H01 outcome events. |
+- **A — Platform Foundation:** owns Person/Identity and governed authorization/event/audit capabilities used by the scenario.
+- **B — Institution & Structure:** owns Institution and institutional context.
+- **C — Student Lifecycle:** owns Student and learner lifecycle.
+- **H — APAAR & DigiLocker:** owns the government-integration link outcome, applicable H01 Consent/Connector context and H01 link events.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Student | Initiates an APAAR or DigiLocker linking request where the learner initiates the process; grants or updates consent where applicable. | H01 explicitly supports Student initiation for APAAR/DigiLocker linking and consent actions. |
+| Actor | Responsibility |
+|---|---|
+| Student | May initiate linking for their own learner context and performs H01 consent actions assigned to Student. |
+| Institution Administrator | May initiate institution-authorized linking where governing policy permits it. |
+| Integration Administrator | Governs connector configuration only; does not own learner-link decisions. |
+| Platform Administrator | Governs connector operational availability only; does not own learner-link decisions. |
 
-H01 also permits institution-initiated linking, but its locked architecture does not define the canonical human business role that performs that institutional initiation. No placeholder role is introduced.
+Institution initiation does not bypass consent where consent is required.
 
 # 7. Preconditions and Entry Criteria
 
-- The canonical Student exists.
-- The Student identity has already been verified by the authoritative identity/student capabilities.
-- The applicable Institution context is valid.
-- The target APAAR or DigiLocker connector is active.
-- Applicable institutional policy checks pass.
-- Consent is valid where policy requires consent for linking/publication.
+- Canonical Student, Institution and Person/Identity references exist and are valid.
+- Required identity verification is established by its canonical owner.
+- Applicable H01 Connector is eligible for use.
+- Authorization conditions are satisfied.
+- Valid consent exists where governing policy requires it.
 
 # 8. Trigger
 
-A verified student or authorized institutional process requests an APAAR or DigiLocker link
+A verified Student or authorized Institution Administrator requests an APAAR or DigiLocker learner-account link.
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
+| Step | Behaviour | Responsible Actor / Domain | Result |
 |---|---|---|---|
-| 1 | Receive the authorised learner-account linking request and identify whether the target is APAAR or DigiLocker. | APAAR & DigiLocker / Student where learner-initiated | The H01 linking journey is established. |
-| 2 | Resolve the canonical Student and Institution references without modifying either source-owned record. | H01 consuming Sections B/C | The link is bound to authoritative institutional context. |
-| 3 | Confirm the source-owned student identity verification and applicable authorization/policy conditions. | H01 consuming Section A/C facts | Unverified or unauthorised linking is prevented. |
-| 4 | Validate the applicable H01 consent basis where policy requires consent. | APAAR & DigiLocker / Student | Publication/linking authority is established or refused. |
-| 5 | Use the active target connector to submit the governed link request to the external government platform. | APAAR & DigiLocker | The external linking decision is requested without changing source Student ownership. |
-| 6 | Record the external government response and government reference where supplied. | APAAR & DigiLocker | H01 retains the authoritative integration outcome. |
-| 7 | Complete the scenario as a successful link or a controlled rejected/failed outcome and publish the target-specific H01 event. | APAAR & DigiLocker | Link outcome, consent basis and audit history are preserved. |
+| 1 | Initiate the platform-specific link request. | Student or Institution Administrator / H01 boundary | Link lifecycle enters `Requested`; corresponding `...LinkRequested` event is published by H01. |
+| 2 | Resolve authoritative Student, Institution and Person/Identity references without modifying them. | H01 with A/B/C references | Source ownership is preserved. |
+| 3 | Validate authorization, connector eligibility and consent where required. | H01 | Request may proceed only if governed prerequisites are satisfied. |
+| 4 | Submit the governed linking request to the target government platform through H01's integration boundary. | H01 | Government outcome is awaited/received at business level. |
+| 5 | Record successful government acknowledgement/reference. | H01 | Link reaches `Linked`; `APAARLinked` or `DigiLockerLinked` is published. |
+| 6 | Preserve audit evidence. | H01 / Platform audit capability | Successful link outcome remains traceable. |
 
 # 10. Alternate Business Flows
 
 | Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
 |---|---|---|---|---|
-| DigiLocker rather than APAAR is requested | The verified learner selects/uses DigiLocker. | Execute the H01 DigiLocker linking workflow under the same source-ownership constraints. | `DigiLockerLinked` or `DigiLockerLinkFailed` outcome is recorded. | APAAR & DigiLocker |
-| Government platform rejects link | Government validation does not accept the request. | Record the failed/rejected outcome and preserve the government response/reference where available. | Controlled rejection; Student ownership is unchanged. | APAAR & DigiLocker |
-| Consent is missing or invalid where required | Required consent is absent, expired or withdrawn. | Do not establish the link; preserve the controlled refusal/failure evidence. | No unauthorised link is created. | APAAR & DigiLocker |
+| Institution-initiated linking | Governing policy permits an Institution Administrator to initiate the link | The Institution Administrator initiates the same governed linking path; required Student consent remains mandatory where applicable. | The same `Linked` business outcome is reached if all governing conditions are satisfied. | H01 |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Student or identity reference does not validate | Link would not be trustworthy. | Reject/stop the linking outcome until authoritative source data is valid. | Student Lifecycle / Platform Foundation / H01 |
-| Target connector is not active | H01 cannot validly conduct the government link. | Preserve the non-linked state and resume only through an authorised H01 connector lifecycle outcome. | APAAR & DigiLocker |
-| Government response is a business rejection | Link cannot be established. | Record the target-specific failed link outcome with audit history. | APAAR & DigiLocker |
+| Government platform conclusively rejects or fails the link request. | The current request cannot reach the successful `Linked` outcome and enters `Failed`. | H01 records `Failed` and publishes `APAARLinkFailed` or `DigiLockerLinkFailed`. A later authorized attempt is a new governed request. | H01 |
+| Required consent is absent, withdrawn, expired or otherwise invalid. | Linking cannot validly proceed. | No link is established. Progression requires a separately governed valid consent condition before a new or continuing permitted request may proceed. | H01 |
+| Student, Institution or Person/Identity reference is invalid or non-authoritative. | The request cannot validly proceed. | The canonical owner must establish or correct the authoritative source fact before linking can proceed; H01 does not alter the source fact. | A/B/C canonical owner with H01 consuming the corrected fact |
+| Applicable Connector is ineligible for use. | The link cannot be established through that Connector. | Linking remains blocked until the Connector is governed back to an eligible state under H01 connector governance. | H01 |
 
 # 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| H01 owns integration, not Student, Institution, academic, or identity business data. | APAAR & DigiLocker | Linking cannot modify source-owned business records. | L2-H01 §§2–7 |
-| APAAR linking requires Student existence, verified identity, policy checks, and an active APAAR connector. | APAAR & DigiLocker / source owners | These conditions gate the H01 linking outcome. | L2-H01 §27 |
-| DigiLocker linking requires a verified Student, active DigiLocker connector and satisfied consent. | APAAR & DigiLocker / source owners | These conditions gate DigiLocker linking. | L2-H01 §28 |
-| Where policy requires consent, consent validation must precede publication/linking. | APAAR & DigiLocker | Missing/withdrawn consent prevents the governed link. | L2-H01 Principles and Consent Aggregate |
-| Every business operation must be authorized before execution. | Platform Foundation — Authorization | Unauthorized linking is prohibited. | L2-A04 AP-01 |
+- H01 owns integration/link outcome, not Student, Institution or Person/Identity truth.
+- Student or Institution Administrator may initiate where policy permits.
+- Required consent remains mandatory regardless of initiating actor.
+- Link lifecycle is `Requested → Linked` or `Requested → Failed`.
+- `Failed` is terminal for that request and is not successful completion of this scenario.
+- Consent lifecycle remains separately `Pending`, `Granted`, `Withdrawn`, `Expired`.
+- H01 retains canonical publication of all six existing link events.
 
 # 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Student | Existing verified source-owned state | Referenced for linking only. | Unchanged by H01. | Student Lifecycle | `DEPENDENCY_MAP.md`; L2-H01 non-ownership rules |
-| Institution | Existing source-owned state | Referenced as institutional context. | Unchanged by H01. | Institution & Structure | `DEPENDENCY_MAP.md`; L2-H01 |
-| H01 linking status within Publication integration model | Link requested / governed H01 processing | Government reference and link result are recorded. | Successful link or controlled failed/rejected outcome; H01 does not define a separate Link aggregate lifecycle. | APAAR & DigiLocker | L2-H01 §§27–28, 35, 37 |
-| Consent | Pending/Granted/Expired/Withdrawn as applicable | Consent is validated; a Student action may grant/update/withdraw it in the separate H01 consent lifecycle. | Existing source-defined consent state governs linking. | APAAR & DigiLocker | L2-H01 §§11.2, 62 |
+| Concept | Impact | Result | Owner |
+|---|---|---|---|
+| Student | Referenced only | Unchanged | C |
+| Institution | Referenced only | Unchanged | B |
+| Person/Identity | Referenced only | Unchanged | A |
+| Platform-specific learner link request | Governed H01 path | Successful path: `Requested → Linked`; failure path: `Requested → Failed` | H01 integration/Publication boundary |
+| Consent | Referenced/validated under existing lifecycle | Unchanged unless separate consent action occurs | H01 |
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
+Canonical H01 events remain exactly:
 
-For APAAR, H01 defines `APAARLinkRequested`, `APAARLinked`, and `APAARLinkFailed`. For DigiLocker, H01 defines `DigiLockerLinkRequested`, `DigiLockerLinked`, and `DigiLockerLinkFailed`. These events are produced by the H01 Publication integration model. Consent events such as `ConsentGranted`, `ConsentUpdated`, `ConsentWithdrawn`, and `ConsentExpired` remain H01-owned.
+- `APAARLinkRequested`
+- `APAARLinked`
+- `APAARLinkFailed`
+- `DigiLockerLinkRequested`
+- `DigiLockerLinked`
+- `DigiLockerLinkFailed`
 
-No generic `GovernmentLearnerAccountLinked` event is introduced.
-
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-H01 consumes authoritative Student, Institution and identity references and uses its documented Linking Contract with the external government platform. The linking response provides link status and government reference. Source Student/Institution records remain externally owned.
+H01 is the publisher. A/B/C supply authoritative references and platform capabilities without acquiring H01 event ownership.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
-|---|---|---|---|
-| Initiate learner link | Student where learner-initiated | H01 explicitly permits Student initiation for APAAR/DigiLocker link requests. | APAAR & DigiLocker |
-| Initiate institution-driven link | Canonical human role not defined in H01 | H01 permits institution initiation but L3 cannot invent the institutional role. | APAAR & DigiLocker / upstream governance |
-| Grant/update/withdraw H01 consent | Student | Applies to the source-defined H01 consent scope and lifecycle. | APAAR & DigiLocker |
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-No universal additional approval or separation-of-duty rule is defined for normal learner-account linking. None is invented.
-
-## 15.3 Business Audit and Evidence Obligations
-
-The link attempt/outcome must preserve the Student and Institution references, consent basis where applicable, government reference/acknowledgement where supplied, H01 outcome, actor/source of initiation, and immutable audit history. Platform Audit retains canonical audit-evidence ownership.
+Student and Institution Administrator are the authorized business initiating roles subject to governing policy. Institution initiation cannot bypass required Student consent. Audit evidence preserves initiating actor/context, source references, consent basis, target platform, government acknowledgement/reference where available, and final H01 request outcome.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- Canonical Student and Institution references are resolved.
-- Student identity verification is confirmed from the authoritative source.
-- Applicable H01 policy/consent conditions are satisfied or the link is controlledly rejected.
-- The target government platform returns a business outcome.
-- H01 records the government reference where available.
-- H01 records and publishes the target-specific successful or failed link outcome.
-- Audit evidence is preserved.
+- Authoritative source references are validated.
+- Applicable consent, authorization and connector conditions are satisfied.
+- The platform-specific learner link reaches `Linked`.
+- `APAARLinked` or `DigiLockerLinked` is published by H01 as applicable.
+- Audit history for the successful link outcome is preserved.
 
 ## 16.2 Postconditions
 
-- A successful APAAR/DigiLocker learner-account link or controlled rejection/failure is recorded under H01.
-- Student, Institution, and identity ownership remain unchanged.
-- Consent and audit history remain traceable.
+- The governed learner-account association is established.
+- A/B/C retain canonical ownership of Person/Identity, Institution and Student.
+- H01 retains ownership of the learner-link outcome and its canonical events.
+- A request that reaches `Failed` is preserved as failure history and does not satisfy successful scenario completion.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
-
-| Issue | Architecture Impact | Required Resolution |
-|---|---|---|
-| H01's canonical-section crosswalk records no Actors section, although its command authorization matrix names `Student` and permits institution-initiated linking without defining the corresponding institutional human role. | Student initiation is source-supported, but institution-driven initiation cannot be assigned to a new descriptive role. | Define the canonical institutional linking actor upstream if explicit human authority is required. |
-| H01 §65 contains stale section-letter labels (`B — Student Lifecycle`, `C — Academic Management`) that conflict with higher-authority current `DEPENDENCY_MAP.md`, where Section B is Institution & Structure and Section C is Student Lifecycle. | Participant ownership could be misread if the stale labels were followed literally. | `DEPENDENCY_MAP.md` controls; H01 dependency labels should be corrected upstream. |
-| H01 implements APAAR/DigiLocker linking through its Publication integration model but does not define a distinct learner-account-link aggregate or state machine. | L3 can record link status and canonical link events but must not invent an additional lifecycle. | Upstream H01 may define a dedicated link aggregate/lifecycle if later architecture requires one. |
-
-**Architecture assessment:** `PASS WITH ISSUES`
-
-The complete link/rejection outcome is source-supported. Actor, stale-label, and dedicated-link-model gaps do not prevent a grounded Draft.
-
-## 17.2 Assumptions
-
-No assumptions.
-
-## 17.3 Deferred Questions
-
-No additional scenario-specific deferred questions.
+**Open Issues:** None.  
+**Assumptions:** None.  
+**Deferred Questions:** None.

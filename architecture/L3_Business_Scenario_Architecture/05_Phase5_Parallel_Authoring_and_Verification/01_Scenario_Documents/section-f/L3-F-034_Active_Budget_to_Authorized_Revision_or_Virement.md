@@ -8,10 +8,10 @@
 **Participating Domains:** B, F  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-21  
+**Last Updated:** 2026-08-25  
 **Depends On:** L2-F00; L2-F06; L2-B02; SutraERP L1 Business Domain Architecture (Locked); DEPENDENCY_MAP.md; L3 Business Scenario Template v2.0; Stage 3 Canonical Scenario Register — Section F  
 **Referenced By:** None yet
 
@@ -53,20 +53,12 @@ No additional relationship is required to define this scenario boundary.
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Budget & Cost Center Management | Owns the Finance decision or accounting outcome and its evidence |
+| Budget & Cost Center Management | Owns the Budget structural-change decision, lifecycle impact and evidence |
 | Section B — Institution & Structure | Provides authoritative organisational references without transferring ownership |
 
 ## 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Scenario Responsibility |
-|---|---|
-| Budget Planning Officer | Prepares the governed Budget proposal, allocation, revision, virement or closure request applicable to this scenario. |
-| Budget Control Officer | Performs Budget-control and eligibility assessment under approved Finance policy. |
-| Finance Committee | Authorizes governed Budget approval, allocation, structural change or closure where applicable. |
-| Cost Center Administrator | Prepares Finance-owned Cost Center lifecycle actions where applicable. |
-| Financial Controller | Independently authorizes Cost Center activation, deactivation, reactivation or closure where applicable. |
-
-Roles and authority are established by approved `ACR-F-2026-08-21-001` and do not define technical access control.
+L2-F06 requires maker-checker governance for Active-Budget structural changes but does not define the canonical institutional actors that perform the maker and checker responsibilities. Those responsibilities remain expressed at owning-domain level until upstream actor mapping is governed; see Section 17.
 
 ## 7. Preconditions and Entry Criteria
 
@@ -84,7 +76,7 @@ A governed revision or virement request is raised against an Active Budget.
 |---|---|---|---|
 | 1 | Validate Budget state, request scope and authoritative organisational references | Budget & Cost Center Management | Request is eligible for decision |
 | 2 | Apply Budget bounds, grant ring-fencing and virement constraints | Budget & Cost Center Management | Permissible change is established |
-| 3 | Obtain maker-checker authorization | Budget & Cost Center Management | Change is authorized |
+| 3 | Obtain the required independent maker-checker authorization | Budget & Cost Center Management | Change is authorized |
 | 4 | Apply the change as a preserved successor version | Budget & Cost Center Management | Active Budget reflects authorized change |
 | 5 | Publish `BudgetRevised` or `BudgetVirementApproved` | Budget & Cost Center Management | Outcome is communicated |
 
@@ -132,14 +124,11 @@ A revision may increase, reduce, reallocate or supplement the Budget; a virement
 
 ### 15.1 Initiation and Decision Authority
 
-| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
-|---|---|---|---|
-| Initiate structural change | Defined by approved ACR-F-2026-08-21-001 | Maker role is required but not canonically named | Budget & Cost Center Management |
-| Approve structural change | Defined by approved ACR-F-2026-08-21-001 | Checker must be different from initiator | Budget & Cost Center Management |
+L2-F06 establishes maker-checker as a business control for Active-Budget structural changes, but it does not name the institutional maker or checker roles. L3 therefore preserves the control while leaving the actor mapping unresolved.
 
 ### 15.2 Separation of Duties, Overrides and Exceptions
 
-Maker-checker is mandatory; the initiating and approving actors must be different. The Budget Planning Officer initiates and the Finance Committee independently authorizes the governed Budget outcome.
+Maker-checker is mandatory under L2-F06 §16.1: the initiating and approving responsibilities must be exercised independently. No named institutional roles, override authorities or exception roles are introduced at L3.
 
 ### 15.3 Business Audit and Evidence Obligations
 
@@ -147,7 +136,7 @@ Maker-checker is mandatory; the initiating and approving actors must be differen
 |---|---|---|
 | Preserve scenario decision traceability | Change request and business justification | Budget & Cost Center Management |
 | Preserve scenario decision traceability | Prior and successor Budget versions | Budget & Cost Center Management |
-| Preserve scenario decision traceability | Maker-checker decision and applicable canonical event | Budget & Cost Center Management |
+| Preserve scenario decision traceability | Independent maker-checker decision and applicable canonical business event | Budget & Cost Center Management |
 
 Section A retains ownership of Authorization and Audit infrastructure; Budget & Cost Center Management owns the underlying business decision and evidence.
 
@@ -167,7 +156,9 @@ Section A retains ownership of Authorization and Audit infrastructure; Budget & 
 
 ### 17.1 Open Issues
 
-No unresolved material architecture issue remains for this scenario. The former upstream gaps were resolved by approved `ACR-F-2026-08-21-001` and its exact amendment specification.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-F06 records no canonical Actors section. Scenario references to `ACR-F-2026-08-21-001` do not constitute independently traceable approval provenance, and no separate repository governance/ADR/approval artifact establishing the named maker/checker roles was found. | The maker-checker control is authoritative, but the institutional actor mapping cannot be asserted at L3. The scenario remains Review. | Establish the maker/checker actor mapping in authoritative L2/governance and provide independently traceable approval provenance before promotion beyond Review. |
 
 ### 17.2 Assumptions
 
@@ -179,5 +170,5 @@ No scenario-specific deferred questions.
 
 ---
 
-**Authoring Validation Classification:** PASS  
-**Validation Note:** Source-grounded Draft revalidated against approved ACR-F-2026-08-21-001; no unresolved material L3 issue remains.
+**Authoring Validation Classification:** REVIEW REQUIRED  
+**Validation Note:** L2-F06 maker-checker governance is preserved. Unsupported ACR-based named roles were removed and the upstream actor/provenance gap remains explicit.

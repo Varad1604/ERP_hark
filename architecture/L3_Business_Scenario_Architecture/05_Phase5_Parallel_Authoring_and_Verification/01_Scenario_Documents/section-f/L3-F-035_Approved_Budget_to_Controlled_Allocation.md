@@ -8,10 +8,10 @@
 **Participating Domains:** B, F  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-21  
+**Last Updated:** 2026-08-25  
 **Depends On:** L2-F00; L2-F06; L2-B02; SutraERP L1 Business Domain Architecture (Locked); DEPENDENCY_MAP.md; L3 Business Scenario Template v2.0; Stage 3 Canonical Scenario Register — Section F  
 **Referenced By:** None yet
 
@@ -58,15 +58,7 @@ No additional relationship is required to define this scenario boundary.
 
 ## 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Scenario Responsibility |
-|---|---|
-| Budget Planning Officer | Prepares the governed Budget proposal, allocation, revision, virement or closure request applicable to this scenario. |
-| Budget Control Officer | Performs Budget-control and eligibility assessment under approved Finance policy. |
-| Finance Committee | Authorizes governed Budget approval, allocation, structural change or closure where applicable. |
-| Cost Center Administrator | Prepares Finance-owned Cost Center lifecycle actions where applicable. |
-| Financial Controller | Independently authorizes Cost Center activation, deactivation, reactivation or closure where applicable. |
-
-Roles and authority are established by approved `ACR-F-2026-08-21-001` and do not define technical access control.
+L2-F06 does not define canonical business actors for Budget allocation. Budget & Cost Center Management owns the business responsibilities in this scenario, but the actor/decision-authority mapping required to assign those responsibilities to institutional roles remains an upstream architecture gap; see Section 17.
 
 ## 7. Preconditions and Entry Criteria
 
@@ -132,14 +124,11 @@ The allocation structure may cover departments, campuses, administrative units, 
 
 ### 15.1 Initiation and Decision Authority
 
-| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
-|---|---|---|---|
-| Prepare allocation | Finance Department | Within the approved Budget total | Budget & Cost Center Management |
-| Authorize allocation | Defined by approved ACR-F-2026-08-21-001 | Required governed authority is unnamed | Budget & Cost Center Management |
+L2-F06 requires governed authorization for Budget allocation but does not define the canonical institutional actor or role that exercises that authority. No L3 actor is assigned until that upstream mapping is governed.
 
 ### 15.2 Separation of Duties, Overrides and Exceptions
 
-L2-F06 requires governed authorization for structural changes but does not define the allocation approver or separation roles.
+L2-F06 requires governed authorization for structural changes but does not define the allocation approver or separation roles. No additional separation-of-duty, override or exception authority is introduced at L3.
 
 ### 15.3 Business Audit and Evidence Obligations
 
@@ -147,7 +136,7 @@ L2-F06 requires governed authorization for structural changes but does not defin
 |---|---|---|
 | Preserve scenario decision traceability | Approved Budget and Cost Center references | Budget & Cost Center Management |
 | Preserve scenario decision traceability | Balanced allocation schedule and Central Reserve treatment | Budget & Cost Center Management |
-| Preserve scenario decision traceability | Authorization decision and canonical event references | Budget & Cost Center Management |
+| Preserve scenario decision traceability | Governed allocation decision | Budget & Cost Center Management |
 
 Section A retains ownership of Authorization and Audit infrastructure; Budget & Cost Center Management owns the underlying business decision and evidence.
 
@@ -167,7 +156,9 @@ Section A retains ownership of Authorization and Audit infrastructure; Budget & 
 
 ### 17.1 Open Issues
 
-No unresolved material architecture issue remains for this scenario. The former upstream gaps were resolved by approved `ACR-F-2026-08-21-001` and its exact amendment specification.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-F06 records no canonical Actors section and does not define the institutional actor/decision-authority mapping for Budget allocation. The repository contains scenario references to `ACR-F-2026-08-21-001`, but no independently traceable governance/ADR/approval artifact establishing that ACR was found. | The business allocation behaviour is source-supported, but L3 cannot authoritatively assign named institutional actors or claim that the authority gap is resolved. The scenario therefore remains Review. | Resolve the actor/decision-authority mapping in authoritative L2/governance and provide independently traceable approval provenance before promotion beyond Review. |
 
 ### 17.2 Assumptions
 
@@ -179,5 +170,5 @@ No scenario-specific deferred questions.
 
 ---
 
-**Authoring Validation Classification:** PASS  
-**Validation Note:** Source-grounded Draft revalidated against approved ACR-F-2026-08-21-001; no unresolved material L3 issue remains.
+**Authoring Validation Classification:** REVIEW REQUIRED  
+**Validation Note:** Business semantics remain grounded in L2-F06. Unsupported ACR-based actor/authority claims were removed; the unresolved upstream actor/approval-provenance gap is recorded rather than invented at L3.

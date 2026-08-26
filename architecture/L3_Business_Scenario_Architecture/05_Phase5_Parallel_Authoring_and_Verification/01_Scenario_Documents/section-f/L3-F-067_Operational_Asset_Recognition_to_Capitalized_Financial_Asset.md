@@ -8,10 +8,10 @@
 **Participating Domains:** F, J  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-21  
+**Last Updated:** 2026-08-25  
 **Depends On:** L2-F00; L2-F12; L2-J08; L2-J10 (where disposal/write-off applies); SutraERP L1 Business Domain Architecture (Locked); DEPENDENCY_MAP.md; L3 Business Scenario Template v2.0; Stage 3 Canonical Scenario Register — Section F  
 **Referenced By:** None yet
 
@@ -21,23 +21,23 @@ This scenario governs the Finance-owned capitalization accounting outcome for a 
 
 ## 3. Business Outcome
 
-A capitalized Finance-owned financial Asset record exists with opening carrying value and traceable Section J reference
+A capitalized Finance-owned financial Asset record exists with opening carrying value and traceable Section J reference.
 
 ## 4. Scenario Boundary and Scope
 
 ### 4.1 Start Boundary
 
-Finance receives authoritative operational Asset recognition or capitalization evidence
+Finance receives authoritative operational Asset recognition or capitalization evidence.
 
 ### 4.2 End Boundary
 
-A capitalized Finance-owned financial Asset record exists with opening carrying value and traceable Section J reference
+A capitalized Finance-owned financial Asset record exists with opening carrying value and traceable Section J reference.
 
 ### 4.3 In Scope
 
-- validation of authoritative Asset and operational asset evidence, capitalization decision and opening carrying value references
-- Capitalization accounting
-- financial history, period, authority and posting traceability
+- validation of authoritative Asset and operational evidence
+- capitalization decision and opening carrying value
+- Finance history, period and decision traceability
 
 ### 4.4 Out of Scope
 
@@ -51,23 +51,16 @@ No additional relationship is required to define this scenario boundary.
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Asset Financial Accounting | Owns the Finance decision or accounting outcome and its evidence |
-| Section J — Enterprise Resource Management | Provides authoritative operational facts and retains its aggregate lifecycles |
+| Asset Financial Accounting | Owns the Finance capitalization outcome and its evidence |
+| Section J — Enterprise Resource Management | Provides authoritative operational Asset facts and retains the operational Asset lifecycle |
 
 ## 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Scenario Responsibility |
-|---|---|
-| Asset Accounting Officer | Prepares the governed Asset financial-accounting outcome and supporting evidence. |
-| Financial Controller | Independently authorizes the applicable capitalization, revaluation, impairment, disposal-accounting or write-off-accounting outcome; authorizes depreciation at the governed batch/outcome level. |
-| Finance Committee | Owns approval of institutional Asset Accounting and Materiality Policies. |
-| Section J operational actor | Supplies the authoritative operational Asset, disposal or write-off fact without transferring operational ownership. |
-
-Roles and authority are established by approved `ACR-F-2026-08-21-001`.
+L2-F12 does not define canonical institutional actors for Asset financial-accounting decisions. Asset Financial Accounting owns the Finance responsibilities in this scenario; Section J provides the authoritative operational Asset fact. The institutional preparation/decision-authority mapping remains an upstream architecture gap and is not invented at L3.
 
 ## 7. Preconditions and Entry Criteria
 
-- A valid Finance financial Asset accounting record exists where required.
+- A valid Finance financial Asset accounting context exists where required.
 - The canonical Section J operational Asset reference is available.
 - The applicable accounting period permits the Finance outcome.
 
@@ -81,7 +74,7 @@ Finance receives authoritative operational Asset recognition or capitalization e
 |---|---|---|---|
 | 1 | Validate authoritative operational Asset and Finance references | Asset Financial Accounting / Section J | Evidence is eligible for Finance treatment |
 | 2 | Apply governed Finance policy for capitalization accounting | Asset Financial Accounting | Financial outcome is determined |
-| 3 | Obtain required Finance decision or posting authority | Asset Financial Accounting | Outcome is authorized |
+| 3 | Obtain the governed Finance decision required for capitalization | Asset Financial Accounting | Capitalization is authorized at business level |
 | 4 | Complete capitalization accounting and preserve prior financial history | Asset Financial Accounting | Finance record reflects the outcome |
 | 5 | Publish `AssetCapitalizationCompleted` | Asset Financial Accounting | Finance outcome is communicated |
 
@@ -94,22 +87,19 @@ No scenario-specific alternate business flow is defined by the authoritative L2 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
 | Required Asset, evidence, policy or period condition is invalid | Finance outcome cannot complete | Correct the authoritative business dependency before reconsideration | F / J |
-| Finance treatment is not authorized | No financial posting occurs | Preserve the governed decision and await valid authorization | Asset Financial Accounting |
+| Required Finance authorization is not established | Capitalization cannot complete | Preserve the last valid Finance position and obtain governed authorization | Asset Financial Accounting |
 
 ## 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
 | Finance owns only monetary and accounting treatment | Asset Financial Accounting | Operational Asset state is not modified | L2-F12 §§3–5 |
-| Section J owns operational Asset lifecycle | Section J | Finance retains canonical Asset reference | L2-F12 §§3, 5; L2-J08/J10 |
-| Detailed financial treatment must come from governed Finance policy | Finance | No local calculation rule is created | L2-F12 §§2, 4 |
+| Section J owns operational Asset lifecycle | Section J | Finance retains the canonical Asset reference | L2-F12 §§3, 5; L2-J08/J10 |
+| Detailed financial treatment comes from governed Finance policy | Finance | L3 creates no local calculation rule | L2-F12 §§2, 4 |
 
 ## 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Financial Asset Accounting Record | Existing Finance lifecycle position | Records the governed accounting outcome; the approved Finance lifecycle applies | Capitalization accounting | Asset Financial Accounting | L2-F12 Lifecycle / States note |
-| Operational Asset | Authoritative Section J state | Consumed as evidence only; no Finance-owned transition | Unchanged by Finance | Section J | L2-F12 §§3, 5 |
+L2-F12 does not establish a canonical state machine for a separate financial-asset lifecycle in this scenario. The governed capitalization outcome is recorded by Finance; the Section J operational Asset lifecycle remains unchanged by Finance.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
@@ -131,21 +121,19 @@ No scenario-specific alternate business flow is defined by the authoritative L2 
 
 ### 15.1 Initiation and Decision Authority
 
-| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
-|---|---|---|---|
-| Determine and post Finance outcome | Asset Accounting Officer prepares; Financial Controller authorizes under approved policy | Approved authority and separation of duty apply | Asset Financial Accounting |
+L2-F12 establishes Finance ownership of the accounting outcome but does not define the canonical institutional actor or role that prepares or authorizes capitalization. No named L3 authority is assigned until the upstream mapping is governed.
 
 ### 15.2 Separation of Duties, Overrides and Exceptions
 
-Finance authority does not confer operational custody, assignment, transfer, disposal or write-off authority.
+Finance authority does not confer operational custody, assignment, transfer, disposal or write-off authority. No additional named separation-of-duty or override role is introduced at L3.
 
 ### 15.3 Business Audit and Evidence Obligations
 
 | Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
 |---|---|---|
-| Preserve scenario decision traceability | Operational Asset evidence, capitalization decision and opening carrying value | Asset Financial Accounting |
-| Preserve scenario decision traceability | Canonical Section J Asset and source-event references | Asset Financial Accounting |
-| Preserve scenario decision traceability | Finance policy, accounting period, decision authority and posting reference | Asset Financial Accounting |
+| Preserve decision traceability | Operational Asset evidence, capitalization decision and opening carrying value | Asset Financial Accounting |
+| Preserve source ownership traceability | Canonical Section J Asset and source-event references | Asset Financial Accounting |
+| Preserve governed Finance context | Applicable Finance policy and accounting period | Asset Financial Accounting |
 
 Section A retains ownership of Authorization and Audit infrastructure; Asset Financial Accounting owns the underlying business decision and evidence.
 
@@ -165,7 +153,9 @@ Section A retains ownership of Authorization and Audit infrastructure; Asset Fin
 
 ### 17.1 Open Issues
 
-No unresolved material architecture issue remains for this scenario. The former upstream gaps were resolved by approved `ACR-F-2026-08-21-001` and its exact amendment specification.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-F12 records no canonical Actors section. The prior named roles and authority were attributed to `ACR-F-2026-08-21-001`, for which no canonical repository artifact was located in the established Pallav remediation. | Finance ownership and canonical events remain source-supported, but L3 cannot authoritatively assign `Asset Accounting Officer`, `Financial Controller`, `Finance Committee`, or equivalent decision authority. The scenario remains Review. | Establish the actor/decision-authority mapping in authoritative L2/governance or provide independently traceable approval provenance before promotion beyond Review. |
 
 ### 17.2 Assumptions
 
@@ -177,5 +167,5 @@ No scenario-specific deferred questions.
 
 ---
 
-**Authoring Validation Classification:** PASS  
-**Validation Note:** Source-grounded Draft revalidated against approved ACR-F-2026-08-21-001; no unresolved material L3 issue remains.
+**Authoring Validation Classification:** REVIEW REQUIRED  
+**Validation Note:** Source-supported Asset Accounting ownership, events and Section J boundary are preserved. Unsupported ACR-based roles and authority were removed rather than recreated at L3.

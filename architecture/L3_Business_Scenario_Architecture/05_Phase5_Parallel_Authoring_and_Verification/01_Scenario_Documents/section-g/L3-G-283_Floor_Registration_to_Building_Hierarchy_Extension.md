@@ -11,21 +11,23 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows where institutional ownership is referenced; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized infrastructure consumers across academic, examination, facilities, safety, workforce, analytics and institutional operations
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows  
+**Referenced By:** L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure; L3-G-284 — Space Registration to Physical Space Establishment
 
 ---
 
 # 2. Scenario Purpose
 
-Register a canonical Floor under exactly one valid Building while enforcing parent lifecycle, uniqueness and hierarchy integrity.
+Establish a canonical Floor under exactly one valid Building while applying G10-owned hierarchy, uniqueness, lifecycle, authorization, event and audit requirements.
 
 ---
 
 # 3. Business Outcome
 
-A canonical Floor is created under the correct Building
+A canonical Floor is created under the correct Building.
+
+The locked L2 source conflicts on the canonical registration event name and on the applicable initial lifecycle model. Because both event identity and lifecycle integrity are mandatory L3 concerns, this Draft is **BLOCKED** pending upstream resolution.
 
 ---
 
@@ -37,35 +39,30 @@ The scenario begins when a valid floor must be established within a Building.
 
 ## 4.2 End Boundary
 
-The scenario ends when the exact frozen outcome is established under G10 ownership, the current authoritative physical fact is available through governed contracts, required events have been published only after successful persistence, and immutable audit history is preserved.
+The scenario ends when one canonical Floor has been established under the correct Building, its registration has satisfied G10 rules, its resulting lifecycle position is unambiguous, and the exact canonical Floor-registration event has been published by Infrastructure Management.
 
 ## 4.3 In Scope
 
-- Resolution of Tenant, institution, resource and physical hierarchy context.
-- Scoped authorization before business validation.
-- Validation of G10 identity, hierarchy, lifecycle, capacity, availability, configuration and relationship rules as applicable.
-- The `Floor` business responsibility.
-- Preservation of immutable identifiers and prior historical values.
-- Publication of only source-defined completed business facts.
-- Governed read contracts for authorized consumers.
-- Complete audit evidence.
+- Floor registration within an existing Building.
+- Parent Building and parent-lifecycle validation.
+- Floor-number uniqueness and physical hierarchy integrity.
+- Establishment of the Floor aggregate and its immutable identity.
+- G10-owned registration evidence and required business-event publication.
 
 ## 4.4 Out of Scope
 
-- Institutional identity or InstitutionalCampus ownership retained by B03.
-- Academic scheduling, examination conduct, facilities-maintenance execution or consumer-specific decisions.
-- Authentication, technical RBAC, database, API, UI, queue or implementation design.
-- Physical deletion of infrastructure or historical records.
-- Inventing lifecycle states, commands, events, publishers, approval actors or cross-domain contracts absent from L2.
+- Building creation or modification.
+- Space creation beneath the Floor.
+- Floor activation, closure, decommissioning or archival.
+- Academic, examination, hostel, facilities or other consumer-domain use of the Floor.
+- Any implementation mechanism.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
-| Relationship | Related Scenario | Boundary Reason |
+| Relationship | Related Scenario | Reason |
 |---|---|---|
-| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes the canonical Physical Campus root. |
-| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | Governs the Campus–Building–Floor–Space hierarchy. |
-| Related | L3-G-289 — Infrastructure Availability Definition to Availability Profile Activation | Establishes authoritative resource availability. |
-| Related | L3-G-291 — Infrastructure Reservation Request to Controlled Reservation | Consumes availability and capacity without owning either fact. |
+| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | Places Floor registration inside the canonical Physical Campus → Building → Floor → Space structure. |
+| Followed by | L3-G-284 — Space Registration to Physical Space Establishment | A valid Floor is the parent required for Space registration. |
 
 ---
 
@@ -73,44 +70,31 @@ The scenario ends when the exact frozen outcome is established under G10 ownersh
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Primary owner of physical identity, hierarchy, lifecycle, capacity, availability, classification, relationships and infrastructure master facts. |
-| Institution & Structure / Section B, where frozen | Owns Institution and InstitutionalCampus identity; supplies references without owning physical aggregates. |
-| Platform Foundation / Section A, where frozen | Supplies Tenant isolation, configuration, authorization, event and audit capabilities without owning infrastructure facts. |
-| Academic Delivery / Section D, where frozen | Consumes authoritative capacity, availability or reservation outcomes and retains its academic decisions. |
-
-The frozen participating-domain value remains exactly `G`.
+| Infrastructure Management / G10 | Sole owner of the Floor aggregate, its parent relationship, lifecycle, business rules, registration outcome and registration event. |
 
 ---
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Authority Boundary |
+| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Initiates and administers permitted infrastructure operations. | Must hold fine-grained permission in the relevant Tenant, institution, Campus, Building or Zone scope. |
-| Campus or Building Administrator | Manages infrastructure within assigned physical scope. | Cannot act outside assigned hierarchy scope. |
-| Facilities Manager / Operational Manager | Supplies operational context and consumes current physical facts. | Does not change canonical identity or bypass G10 rules. |
-| Auditor | Reviews immutable history and evidence. | Read-only; cannot mutate infrastructure. |
-| Consumer-domain actor | Requests or consumes an authorized infrastructure service. | Retains the consumer decision and cannot modify G10 aggregates directly. |
-
-Roles are configurable access patterns in L2-G10. No universal named approver is inferred.
+| Infrastructure Administrator | Performs the source-defined Floor registration activity. | Initiates and performs Floor registration within authorized infrastructure scope. |
 
 ---
 
 # 7. Preconditions and Entry Criteria
 
-- The parent Building exists and its lifecycle permits a Floor.
+- The parent Building exists.
+- The parent Building is Operational under the detailed Floor Registration Workflow.
 - The Floor Number is unique within the Building.
-- Required floor metadata and hierarchy configuration are available.
-- The requester holds scoped Infrastructure Registration permission.
-- Tenant and institution isolation are enforceable.
-- Authentication context is supplied externally and authorization succeeds before mutation.
-- Required audit and event infrastructure is available under enterprise policy.
+- The applicable infrastructure registration and hierarchy rules are satisfied.
+- The Infrastructure Administrator is authorized to perform the registration.
 
 ---
 
 # 8. Trigger
 
-A valid floor must be established within a Building
+A valid floor must be established within a Building.
 
 ---
 
@@ -118,23 +102,18 @@ A valid floor must be established within a Building
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Resolve the parent Building and requested Floor context. | Infrastructure Management | Resolve the parent Building and requested Floor context. |
-| 2 | Authorize the operation within the Building scope. | Infrastructure Management | Authorize the operation within the Building scope. |
-| 3 | Validate the Building lifecycle and hierarchy eligibility. | Infrastructure Management | Validate the Building lifecycle and hierarchy eligibility. |
-| 4 | Validate Floor Number uniqueness, business code and required metadata. | Infrastructure Management | Validate Floor Number uniqueness, business code and required metadata. |
-| 5 | Create the Floor aggregate under exactly one Building. | Infrastructure Management | Create the Floor aggregate under exactly one Building. |
-| 6 | Assign immutable Floor identity and the configured initial lifecycle. | Infrastructure Management | Assign immutable Floor identity and the configured initial lifecycle. |
-| 7 | Publish `FloorCreated` after successful persistence. | Infrastructure Management | Publish `FloorCreated` after successful persistence. |
-| 8 | Expose the Floor Summary contract and preserve immutable registration evidence. | Infrastructure Management | Expose the Floor Summary contract and preserve immutable registration evidence. |
+| 1 | Identify the existing Building under which the Floor is to be established. | Infrastructure Administrator / Infrastructure Management | The intended parent Building is resolved. |
+| 2 | Validate the parent Building and its lifecycle against the Floor-registration rules. | Infrastructure Management | The parent is eligible to contain the new Floor. |
+| 3 | Validate the proposed Floor Number and Floor information against G10 rules. | Infrastructure Management | Duplicate or invalid Floor registration is prevented. |
+| 4 | Establish the Floor under exactly one Building and preserve its G10-owned identity. | Infrastructure Management | The canonical Floor exists in the correct physical hierarchy. |
+| 5 | Record the completed registration as required by G10 audit obligations. | Infrastructure Management | The Floor registration is auditable. |
+| 6 | Publish the canonical Floor-registration event. | Infrastructure Management | **Blocked:** the locked L2 source defines contradictory event names for this same registration outcome. |
 
 ---
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| 1 | The parent Building is not eligible | reject registration without creating a detached Floor. | Existing ownership and history remain intact. |
-| 2 | The configured institution uses additional hierarchy labels | retain the canonical Building parent and store only permitted metadata. | Existing ownership and history remain intact. |
+No scenario-specific alternate business flow is defined by the authoritative L2 architecture.
 
 ---
 
@@ -142,14 +121,10 @@ A valid floor must be established within a Building
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, institution or resource scope cannot be resolved | reject the request without creating a cross-scope fact. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Authorization fails | terminate before business mutation. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Hierarchy, lifecycle, configuration or policy validation fails | retain the prior authoritative state. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| A uniqueness, capacity, availability or relationship invariant fails | reject the requested result. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Audit evidence cannot be recorded | do not complete the business transition. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| The success-event condition is not satisfied | do not publish the success event. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-
-No technical retry, rollback, database transaction or messaging implementation is specified at L3.
+| Parent Building does not exist or fails the required parent-lifecycle condition. | Floor registration cannot proceed. | Correct the parent condition before a later authorized registration attempt. | Infrastructure Management |
+| Floor Number is not unique within the Building. | The proposed Floor would violate the canonical hierarchy rules. | Provide a valid unique Floor Number before a later registration attempt. | Infrastructure Management |
+| Authorization fails. | No Floor may be established through this scenario. | Obtain valid source-supported authorization before resubmission. | Infrastructure Management |
+| The canonical event-name conflict remains unresolved. | The required completed business fact cannot be published canonically. | Resolve the conflicting locked event definition through architecture change control. | Infrastructure Management |
 
 ---
 
@@ -157,108 +132,93 @@ No technical retry, rollback, database transaction or messaging implementation i
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Infrastructure Management is the canonical owner of physical infrastructure facts. | Infrastructure Management | Consumers reference G10 facts and never duplicate or directly modify aggregates. | L2-G10 §§2, 5, 9, 44A |
-| Every Building belongs to one Campus; every Floor to one Building; every Space to one Floor. | Infrastructure Management | Invalid or circular physical relationships are rejected. | L2-G10 §§8, 18, 47 |
-| Aggregate identity is immutable and infrastructure is never physically deleted. | Infrastructure Management | Changes preserve identifiers and historical references. | L2-G10 §§13, 47, 48A |
-| Authorization precedes business validation. | Authorization & Policy; Infrastructure Management | Unauthorized requests terminate before mutation. | L2-G10 §48A.207 |
-| Business validation precedes persistence, and events describe completed facts. | Infrastructure Management; Event Infrastructure | Failed work cannot publish a success event. | L2-G10 §§22A.99, 44A.179 |
-| Every successful state or significant attribute change is auditable. | Infrastructure Management; Audit Infrastructure | Actor, prior value, new value, reason and correlation are preserved. | L2-G10 §§48A.208–210, 49 |
-| Archived infrastructure is immutable. | Infrastructure Management | No scenario may update an Archived aggregate. | L2-G10 §§11A, 47 |
-| Capacity cannot be negative and reservation conflicts are prevented unless an authorized override is permitted. | Infrastructure Management | Invalid capacity or conflicting reservations are rejected. | L2-G10 §§24, 26, 47 |
+| Every Floor belongs to exactly one Building. | Infrastructure Management | The Floor cannot exist outside, or under multiple Buildings in, the canonical hierarchy. | L2-G10 §8.3; BR-ST-03; FSM-01 |
+| Floor Number must be unique within the Building. | Infrastructure Management | Duplicate Floor Numbers are rejected. | L2-G10 WF-INF-004; Floor Registration Workflow |
+| Floor lifecycle cannot exceed the parent Building lifecycle. | Infrastructure Management | Parent lifecycle is validated before the Floor can progress. | L2-G10 §8.3; LR-03 |
+| Every successful infrastructure workflow publishes a canonical business event. | Infrastructure Management | A contradictory registration event name prevents canonical completion. | L2-G10 WDP-02; §44 |
 
 ---
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Position | Canonical Owner |
-|---|---|---|---|---|
-| `Floor` | Valid trigger and authorized context | Executes only the scenario-specific creation, association or governed attribute change. | No Floor → configured initial lifecycle; summary registration states Draft | Infrastructure Management, except the B03 reference retained by Institution & Structure |
-| Parent physical hierarchy | Existing and valid where applicable | Referenced and validated; not silently re-parented. | Unchanged unless the frozen outcome explicitly creates the child relationship. | Infrastructure Management |
-| Tenant and Institution | Existing | Supply isolation and institutional reference. | Unchanged. | Platform Foundation; Institution & Structure |
-| Consumer-domain records | Existing or absent | Consume the completed authoritative fact. | Unchanged by G10. | Applicable consumer domain |
-| Audit history | Existing | Appends immutable evidence. | Historical trace grows; prior records remain unchanged. | Audit Infrastructure |
+The locked L2 source is internally inconsistent. The general registration workflow states that newly registered infrastructure begins in `Draft`; the canonical lifecycle in §11A defines `Proposed → Planned → Approved → Under Construction → Operational...`; and §46 gives a different Floor lifecycle beginning `Draft → Approved → Operational...`.
 
-L2-G10 requires lifecycle and operational availability to remain distinct. “Activation” in a frozen outcome is not treated as a new lifecycle state unless L2-G10 defines it.
+No initial Floor state is selected locally.
+
+| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
+|---|---|---|---|---|---|
+| Floor | No canonical Floor exists for the requested Floor Number under the Building | Establishes the new Floor under its parent | Exact initial lifecycle position unresolved upstream | Infrastructure Management | L2-G10 §§11A, 16, 46; Floor Registration Workflow |
 
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Event Treatment
+## 14.1 Published / Consumed Business Events
 
-| Event / Required Fact | Publication Condition | Publisher and Consumer Treatment |
-|---|---|---|
-| `FloorCreated` | Only after the corresponding aggregate creation or governed update has persisted successfully. | The affected G10 aggregate publishes the source-defined completed fact; consumers react without changing G10 ownership. |
+A canonical event is mandatory but its exact name is contradictory:
 
-Where Section 44 and the detailed WF-INF catalogue use different names, this Draft records the inconsistency in Section 17 and does not publish both names for one transition.
+- `FloorRegistered` in L2-G10 §44.
+- `FloorCreated` in WF-INF-004, the Floor Registration Workflow, §44A structural events and the Floor & Space Events Summary.
 
-## 14.2 Synchronous Business Contracts and Hand-offs
+Infrastructure Management is the publisher in either case. L3 does not choose or rename the event.
 
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
-|---|---|---|---|
-| Physical Campus Summary | Infrastructure Management | Institution & Structure and authorized consumers | Canonical physical Campus identity, lifecycle and operational status. |
-| Building, Floor and Space Summary | Infrastructure Management | Operational domains | Canonical hierarchy, classification, capacity, lifecycle and current status. |
-| Capacity Profile | Infrastructure Management | Academic, Examination and operational consumers | Canonical capacity facts; consumers own utilization decisions. |
-| Retrieve Availability | Infrastructure Management | Authorized consumers | Current operational availability independently from lifecycle. |
-| Reservation service | Infrastructure Management | Authorized requestor | Governed reservation establishment, modification or retrieval. |
-| Audit input | Infrastructure Management | Audit Infrastructure | Actor, scope, transition, prior/new values, reason and correlation evidence. |
+## 14.2 Business Contracts and Cross-Domain Hand-offs
+
+No cross-domain hand-off is required to complete this G-only scenario. G10 exposes a Floor Summary contract for later authorized consumers, but consumer activity occurs after this scenario outcome.
 
 ---
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-- Authentication is external to G10.
-- Fine-grained permission is evaluated by Tenant, institution and physical-resource scope before validation.
-- Consumer access does not grant direct aggregate mutation.
-- Authorization success does not waive hierarchy, lifecycle, capacity, availability or policy rules.
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| Register Floor | Infrastructure Administrator | Must satisfy the source-defined Infrastructure Registration authorization and Floor rules. | Infrastructure Management |
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-- L2-G10 allows configurable approval for some creation, lifecycle, override and administrative operations.
-- The scenario uses approval only where active policy requires it.
-- No unnamed approver or technical workflow routing is invented.
-- Governance approval supplements business validation and never replaces it.
+No scenario-specific separation-of-duty or override requirement is defined by the authoritative L2 architecture.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The audit record must preserve Tenant, institution, aggregate type and identifier, actor, authorization scope, previous values, new values, effective dates where applicable, business reason, approval reference where required, event facts and correlation identifier. Audit history is immutable and independently retained.
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Floor registration is auditable. | Source-defined evidence that the Floor was created under the validated Building through an authorized registration. | Infrastructure Management |
 
 ---
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete only when:
+## 16.1 Completion Criteria
 
-- resolve the parent Building and requested Floor context.
-- authorize the operation within the Building scope.
-- validate the Building lifecycle and hierarchy eligibility.
-- validate Floor Number uniqueness, business code and required metadata.
-- create the Floor aggregate under exactly one Building.
-- assign immutable Floor identity and the configured initial lifecycle.
-- publish `FloorCreated` after successful persistence.
-- expose the Floor Summary contract and preserve immutable registration evidence.
-- no institutional, academic or consumer-domain ownership has transferred to G10;
-- no unauthorized or partial result is treated as successful; and
-- all required audit evidence is immutable and queryable.
+- A unique canonical Floor exists under exactly one correct Building.
+- The applicable parent and hierarchy rules have been satisfied.
+- The resulting Floor lifecycle position is defined consistently by locked L2.
+- The exact canonical Floor-registration event is published by Infrastructure Management.
 
-Postconditions:
+## 16.2 Postconditions
 
-- Canonical G10 identity and historical integrity are preserved.
-- The current authoritative fact is available through governed contracts.
-- Consumers may react under their own rules but cannot rewrite the source fact.
-- Failed or incomplete transitions publish no success event.
+- The Floor remains owned by Infrastructure Management.
+- Subsequent Space registration may reference the canonical Floor only according to G10 rules.
 
 ---
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-**Architecture assessment:** `PASS WITH ISSUES`
+## 17.1 Open Issues
 
-| ID | Severity | Issue / Deferred Question | Required Resolution |
-|---|---|---|---|
-| G-283-ISSUE-01 | Non-blocking | L2-G10 Section 44 names `FloorRegistered`, while WF-INF-004 and the detailed event catalogue name `FloorCreated`. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
-| G-283-ISSUE-02 | Non-blocking | The summary registration workflow states initial `Draft`; detailed floor registration does not select one canonical initial state. | Align L2-G10 and the named participating owner before downstream design depends on the missing or inconsistent contract. |
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-G10 defines the same Floor registration fact as `FloorRegistered` in §44 and `FloorCreated` in the detailed registration/event sections. | A mandatory event cannot retain one exact canonical name at L3. | Architecture governance must select the canonical event name while retaining Infrastructure Management as publisher. |
+| L2-G10 conflicts on the Floor's initial lifecycle model (`Draft` in registration/§46 versus the §11A canonical lifecycle beginning `Proposed`). | L3 cannot state the resulting lifecycle position without silently changing locked architecture. | Align the locked registration and canonical lifecycle definitions. |
 
-No unsupported aggregate, lifecycle state, transition, event, publisher, actor, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
+**Source Assessment:** **BLOCKED**
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No additional deferred questions.

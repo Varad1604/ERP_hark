@@ -11,21 +11,23 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows where institutional ownership is referenced; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized infrastructure consumers across academic, examination, facilities, safety, workforce, analytics and institutional operations
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows  
+**Referenced By:** Infrastructure consumers using G10 Zone relationships
 
 ---
 
 # 2. Scenario Purpose
 
-Create one canonical logical Zone and establish authorized memberships without changing the physical Campus–Building–Floor–Space hierarchy.
+Establish the G10-owned Zone used to group applicable physical infrastructure for operational administration while preserving the canonical physical Campus → Building → Floor → Space hierarchy.
 
 ---
 
 # 3. Business Outcome
 
-A canonical Zone is established and linked to its applicable physical infrastructure
+A canonical Zone is established and linked to its applicable physical infrastructure.
+
+The locked G10 source conflicts on the Zone-registration event and on the lifecycle position of a newly registered Zone. This Draft is therefore **BLOCKED**.
 
 ---
 
@@ -37,35 +39,30 @@ The scenario begins when an institution requires physical areas to be grouped in
 
 ## 4.2 End Boundary
 
-The scenario ends when the exact frozen outcome is established under G10 ownership, the current authoritative physical fact is available through governed contracts, required events have been published only after successful persistence, and immutable audit history is preserved.
+The scenario ends when the Zone exists canonically under G10, the applicable infrastructure memberships are established without changing physical hierarchy, the Zone lifecycle position is unambiguous, and all required canonical Zone events have been published.
 
 ## 4.3 In Scope
 
-- Resolution of Tenant, institution, resource and physical hierarchy context.
-- Scoped authorization before business validation.
-- Validation of G10 identity, hierarchy, lifecycle, capacity, availability, configuration and relationship rules as applicable.
-- The `Zone` business responsibility.
-- Preservation of immutable identifiers and prior historical values.
-- Publication of only source-defined completed business facts.
-- Governed read contracts for authorized consumers.
-- Complete audit evidence.
+- Zone registration under Infrastructure Management.
+- Zone Type and Zone Name validation.
+- Assignment of applicable infrastructure to the Zone.
+- Preservation of physical hierarchy and infrastructure ownership.
+- Required Zone registration and membership events.
+- Auditability of Zone establishment and membership.
 
 ## 4.4 Out of Scope
 
-- Institutional identity or InstitutionalCampus ownership retained by B03.
-- Academic scheduling, examination conduct, facilities-maintenance execution or consumer-specific decisions.
-- Authentication, technical RBAC, database, API, UI, queue or implementation design.
-- Physical deletion of infrastructure or historical records.
-- Inventing lifecycle states, commands, events, publishers, approval actors or cross-domain contracts absent from L2.
+- Re-parenting Buildings, Floors or Spaces.
+- Creation of physical hierarchy.
+- Collection or Portfolio management.
+- Security access-control operations or consumer-domain operational decisions.
+- Any implementation mechanism.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
-| Relationship | Related Scenario | Boundary Reason |
+| Relationship | Related Scenario | Reason |
 |---|---|---|
-| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes the canonical Physical Campus root. |
-| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | Governs the Campus–Building–Floor–Space hierarchy. |
-| Related | L3-G-289 — Infrastructure Availability Definition to Availability Profile Activation | Establishes authoritative resource availability. |
-| Related | L3-G-291 — Infrastructure Reservation Request to Controlled Reservation | Consumes availability and capacity without owning either fact. |
+| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | The Zone groups infrastructure without becoming a level in the canonical physical hierarchy. |
 
 ---
 
@@ -73,44 +70,32 @@ The scenario ends when the exact frozen outcome is established under G10 ownersh
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Primary owner of physical identity, hierarchy, lifecycle, capacity, availability, classification, relationships and infrastructure master facts. |
-| Institution & Structure / Section B, where frozen | Owns Institution and InstitutionalCampus identity; supplies references without owning physical aggregates. |
-| Platform Foundation / Section A, where frozen | Supplies Tenant isolation, configuration, authorization, event and audit capabilities without owning infrastructure facts. |
-| Academic Delivery / Section D, where frozen | Consumes authoritative capacity, availability or reservation outcomes and retains its academic decisions. |
+| Infrastructure Management / G10 | Sole owner of the Zone aggregate, Zone Membership, Zone lifecycle and grouping rules. |
 
-The frozen participating-domain value remains exactly `G`.
+The frozen title uses “Physical Zone”; the locked G10 definition treats `Zone` as an **operational logical grouping of physical infrastructure**, not as a new physical hierarchy level. This Draft preserves that owner-defined meaning.
 
 ---
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Authority Boundary |
+| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Initiates and administers permitted infrastructure operations. | Must hold fine-grained permission in the relevant Tenant, institution, Campus, Building or Zone scope. |
-| Campus or Building Administrator | Manages infrastructure within assigned physical scope. | Cannot act outside assigned hierarchy scope. |
-| Facilities Manager / Operational Manager | Supplies operational context and consumes current physical facts. | Does not change canonical identity or bypass G10 rules. |
-| Auditor | Reviews immutable history and evidence. | Read-only; cannot mutate infrastructure. |
-| Consumer-domain actor | Requests or consumes an authorized infrastructure service. | Retains the consumer decision and cannot modify G10 aggregates directly. |
-
-Roles are configurable access patterns in L2-G10. No universal named approver is inferred.
+| Infrastructure Administrator | Creates the Zone and manages Zone membership. | Performs the source-defined Zone registration and relationship activities within authorized scope. |
 
 ---
 
 # 7. Preconditions and Entry Criteria
 
-- The Tenant, institution and Zone configuration are valid.
-- Every proposed infrastructure member exists and is eligible.
-- Zone Name and Zone Type satisfy configured rules.
-- The requester is authorized to create the Zone and manage relationships.
-- Tenant and institution isolation are enforceable.
-- Authentication context is supplied externally and authorization succeeds before mutation.
-- Required audit and event infrastructure is available under enterprise policy.
+- The required Zone Type is configured.
+- The proposed Zone Name satisfies the source-defined uniqueness requirement.
+- The infrastructure to be linked exists canonically in G10.
+- The Infrastructure Administrator is authorized for Zone registration and relationship management.
 
 ---
 
 # 8. Trigger
 
-An institution requires physical areas to be grouped into an operational zone
+An institution requires physical areas to be grouped into an operational zone.
 
 ---
 
@@ -118,23 +103,21 @@ An institution requires physical areas to be grouped into an operational zone
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Receive the Zone requirement and resolve its institution and scope. | Infrastructure Management | Receive the Zone requirement and resolve its institution and scope. |
-| 2 | Authorize Zone registration and relationship management. | Infrastructure Management | Authorize Zone registration and relationship management. |
-| 3 | Validate Zone Name, Zone Type and configured uniqueness rules. | Infrastructure Management | Validate Zone Name, Zone Type and configured uniqueness rules. |
-| 4 | Create the Zone aggregate and immutable identity. | Infrastructure Management | Create the Zone aggregate and immutable identity. |
-| 5 | Validate every proposed member against Tenant, institution and relationship rules. | Infrastructure Management | Validate every proposed member against Tenant, institution and relationship rules. |
-| 6 | Add permitted Zone Membership records without moving physical parents. | Infrastructure Management | Add permitted Zone Membership records without moving physical parents. |
-| 7 | Publish `ZoneRegistered` and `AssignedToZone` after their completed changes. | Infrastructure Management | Publish `ZoneRegistered` and `AssignedToZone` after their completed changes. |
-| 8 | Expose the governed grouping and preserve Zone and membership audit history. | Infrastructure Management | Expose the governed grouping and preserve Zone and membership audit history. |
+| 1 | Define the intended Zone and resolve its configured Zone Type. | Infrastructure Administrator / Infrastructure Management | The proposed Zone is grounded in G10 configuration. |
+| 2 | Validate Zone metadata and the Zone Name uniqueness rule. | Infrastructure Management | Invalid Zone establishment is prevented. |
+| 3 | Establish the canonical Zone under G10 ownership. | Infrastructure Management | The Zone aggregate exists. |
+| 4 | Identify the applicable physical infrastructure to be grouped. | Infrastructure Administrator / Infrastructure Management | Membership candidates are resolved without re-parenting them. |
+| 5 | Validate and establish Zone Membership for the applicable infrastructure. | Infrastructure Management | The infrastructure is linked to the Zone while retaining its physical hierarchy. |
+| 6 | Record the Zone and membership changes as auditable business actions. | Infrastructure Management | Establishment and grouping are traceable. |
+| 7 | Publish the canonical Zone-registration and `AssignedToZone` membership events. | Infrastructure Management | Membership event is defined; **Zone-registration event remains blocked by conflicting names**. |
 
 ---
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| 1 | Membership is added later | keep the Zone valid and use the membership workflow. | Existing ownership and history remain intact. |
-| 2 | One proposed member is invalid | reject that membership without changing the physical hierarchy. | Existing ownership and history remain intact. |
+| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
+|---|---|---|---|---|
+| Multiple Zone membership | Infrastructure already belongs to another Zone. | Permit an additional valid Zone membership because G10 explicitly allows multiple Zone memberships. | The new Zone link is added without replacing existing memberships or hierarchy. | Infrastructure Management |
 
 ---
 
@@ -142,14 +125,10 @@ An institution requires physical areas to be grouped into an operational zone
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, institution or resource scope cannot be resolved | reject the request without creating a cross-scope fact. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Authorization fails | terminate before business mutation. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Hierarchy, lifecycle, configuration or policy validation fails | retain the prior authoritative state. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| A uniqueness, capacity, availability or relationship invariant fails | reject the requested result. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Audit evidence cannot be recorded | do not complete the business transition. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| The success-event condition is not satisfied | do not publish the success event. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-
-No technical retry, rollback, database transaction or messaging implementation is specified at L3.
+| Zone Type is not configured or Zone Name is invalid. | Zone establishment cannot proceed. | Correct the source-owned Zone definition before a later authorized attempt. | Infrastructure Management |
+| Proposed membership would be treated as a physical hierarchy change. | The scenario would violate Zone relationship rules. | Establish only a logical Zone Membership; do not alter physical hierarchy. | Infrastructure Management |
+| Authorization fails. | Zone creation or membership change cannot proceed. | Obtain source-supported authorization before resubmission. | Infrastructure Management |
+| Registration event conflict remains unresolved. | Canonical Zone registration cannot be completed with one exact event identity. | Resolve the conflicting locked event definition through architecture change control. | Infrastructure Management |
 
 ---
 
@@ -157,105 +136,99 @@ No technical retry, rollback, database transaction or messaging implementation i
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Infrastructure Management is the canonical owner of physical infrastructure facts. | Infrastructure Management | Consumers reference G10 facts and never duplicate or directly modify aggregates. | L2-G10 §§2, 5, 9, 44A |
-| Every Building belongs to one Campus; every Floor to one Building; every Space to one Floor. | Infrastructure Management | Invalid or circular physical relationships are rejected. | L2-G10 §§8, 18, 47 |
-| Aggregate identity is immutable and infrastructure is never physically deleted. | Infrastructure Management | Changes preserve identifiers and historical references. | L2-G10 §§13, 47, 48A |
-| Authorization precedes business validation. | Authorization & Policy; Infrastructure Management | Unauthorized requests terminate before mutation. | L2-G10 §48A.207 |
-| Business validation precedes persistence, and events describe completed facts. | Infrastructure Management; Event Infrastructure | Failed work cannot publish a success event. | L2-G10 §§22A.99, 44A.179 |
-| Every successful state or significant attribute change is auditable. | Infrastructure Management; Audit Infrastructure | Actor, prior value, new value, reason and correlation are preserved. | L2-G10 §§48A.208–210, 49 |
-| Archived infrastructure is immutable. | Infrastructure Management | No scenario may update an Archived aggregate. | L2-G10 §§11A, 47 |
-| Capacity cannot be negative and reservation conflicts are prevented unless an authorized override is permitted. | Infrastructure Management | Invalid capacity or conflicting reservations are rejected. | L2-G10 §§24, 26, 47 |
+| Zone is an operational grouping and Zone Membership never changes physical hierarchy. | Infrastructure Management | Grouping cannot re-parent physical infrastructure. | L2-G10 §§7, 8.5; BR-RL-01 |
+| Infrastructure may belong to multiple Zones. | Infrastructure Management | Existing Zone membership does not prevent another valid membership. | L2-G10 §8.5; ZCP-02 |
+| Zone Type must be configured and Zone Name must satisfy the registration rule. | Infrastructure Management | Zone creation is validated before establishment. | L2-G10 Zone Registration Workflow |
+| Every membership change publishes a canonical event. | Infrastructure Management | `AssignedToZone` is required for successful linkage. | L2-G10 Zone Membership Workflow; ZCPWP-06 |
 
 ---
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Position | Canonical Owner |
-|---|---|---|---|---|
-| `Zone` | Valid trigger and authorized context | Executes only the scenario-specific creation, association or governed attribute change. | No Zone → Zone registered with governed membership | Infrastructure Management, except the B03 reference retained by Institution & Structure |
-| Parent physical hierarchy | Existing and valid where applicable | Referenced and validated; not silently re-parented. | Unchanged unless the frozen outcome explicitly creates the child relationship. | Infrastructure Management |
-| Tenant and Institution | Existing | Supply isolation and institutional reference. | Unchanged. | Platform Foundation; Institution & Structure |
-| Consumer-domain records | Existing or absent | Consume the completed authoritative fact. | Unchanged by G10. | Applicable consumer domain |
-| Audit history | Existing | Appends immutable evidence. | Historical trace grows; prior records remain unchanged. | Audit Infrastructure |
+The Zone lifecycle is inconsistent across locked G10 sections. The Zone-specific lifecycle states `Proposed → Operational → Archived`, while the generic registration workflow states that newly registered infrastructure begins in `Draft`, and the general canonical lifecycle contains a larger state set.
 
-L2-G10 requires lifecycle and operational availability to remain distinct. “Activation” in a frozen outcome is not treated as a new lifecycle state unless L2-G10 defines it.
+No initial Zone lifecycle state is selected locally.
+
+| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
+|---|---|---|---|---|---|
+| Zone | No canonical Zone exists | Establishes the Zone and its memberships | Exact initial Zone lifecycle position unresolved upstream | Infrastructure Management | L2-G10 §§8.5, 16; Zone Lifecycle and Registration Workflow |
+| Zone Membership | Zone and referenced infrastructure exist | Adds valid logical membership | Membership established; physical hierarchy unchanged | Infrastructure Management | L2-G10 Zone Membership Workflow |
 
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Event Treatment
+## 14.1 Published / Consumed Business Events
 
-| Event / Required Fact | Publication Condition | Publisher and Consumer Treatment |
-|---|---|---|
-| `ZoneRegistered and AssignedToZone` | Only after the corresponding aggregate creation or governed update has persisted successfully. | The affected G10 aggregate publishes the source-defined completed fact; consumers react without changing G10 ownership. |
+| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
+|---|---|---|---|---|
+| `AssignedToZone` | Infrastructure Management | Authorized G10 consumers | Confirms successful Zone Membership. | L2-G10 Zone Membership Workflow; §175 |
 
-Where Section 44 and the detailed WF-INF catalogue use different names, this Draft records the inconsistency in Section 17 and does not publish both names for one transition.
+The exact Zone-registration event is unresolved:
 
-## 14.2 Synchronous Business Contracts and Hand-offs
+- `ZoneRegistered` in §44.
+- `ZoneCreated` in the Zone Registration Workflow and §175.
 
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
-|---|---|---|---|
-| Physical Campus Summary | Infrastructure Management | Institution & Structure and authorized consumers | Canonical physical Campus identity, lifecycle and operational status. |
-| Building, Floor and Space Summary | Infrastructure Management | Operational domains | Canonical hierarchy, classification, capacity, lifecycle and current status. |
-| Capacity Profile | Infrastructure Management | Academic, Examination and operational consumers | Canonical capacity facts; consumers own utilization decisions. |
-| Retrieve Availability | Infrastructure Management | Authorized consumers | Current operational availability independently from lifecycle. |
-| Reservation service | Infrastructure Management | Authorized requestor | Governed reservation establishment, modification or retrieval. |
-| Audit input | Infrastructure Management | Audit Infrastructure | Actor, scope, transition, prior/new values, reason and correlation evidence. |
+L3 does not select between them.
+
+## 14.2 Business Contracts and Cross-Domain Hand-offs
+
+No cross-domain hand-off is required for this G-only scenario. Later consumers may query infrastructure by Zone under G10's published read capabilities.
 
 ---
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-- Authentication is external to G10.
-- Fine-grained permission is evaluated by Tenant, institution and physical-resource scope before validation.
-- Consumer access does not grant direct aggregate mutation.
-- Authorization success does not waive hierarchy, lifecycle, capacity, availability or policy rules.
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| Establish Zone and manage membership | Infrastructure Administrator | Must act within source-defined relationship-management authority. | Infrastructure Management |
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-- L2-G10 allows configurable approval for some creation, lifecycle, override and administrative operations.
-- The scenario uses approval only where active policy requires it.
-- No unnamed approver or technical workflow routing is invented.
-- Governance approval supplements business validation and never replaces it.
+No scenario-specific separation-of-duty or override requirement is defined by the authoritative L2 architecture.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The audit record must preserve Tenant, institution, aggregate type and identifier, actor, authorization scope, previous values, new values, effective dates where applicable, business reason, approval reference where required, event facts and correlation identifier. Audit history is immutable and independently retained.
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Zone creation and membership changes are auditable. | Source-defined evidence of the Zone establishment and infrastructure memberships. | Infrastructure Management |
 
 ---
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete only when:
+## 16.1 Completion Criteria
 
-- receive the Zone requirement and resolve its institution and scope.
-- authorize Zone registration and relationship management.
-- validate Zone Name, Zone Type and configured uniqueness rules.
-- create the Zone aggregate and immutable identity.
-- validate every proposed member against Tenant, institution and relationship rules.
-- add permitted Zone Membership records without moving physical parents.
-- publish `ZoneRegistered` and `AssignedToZone` after their completed changes.
-- expose the governed grouping and preserve Zone and membership audit history.
-- no institutional, academic or consumer-domain ownership has transferred to G10;
-- no unauthorized or partial result is treated as successful; and
-- all required audit evidence is immutable and queryable.
+- The canonical Zone exists under G10 ownership.
+- Applicable infrastructure is linked through Zone Membership without altering physical hierarchy.
+- The initial Zone lifecycle position is consistently defined upstream.
+- `AssignedToZone` is published for membership establishment.
+- The exact canonical Zone-registration event is resolved and published by Infrastructure Management.
 
-Postconditions:
+## 16.2 Postconditions
 
-- Canonical G10 identity and historical integrity are preserved.
-- The current authoritative fact is available through governed contracts.
-- Consumers may react under their own rules but cannot rewrite the source fact.
-- Failed or incomplete transitions publish no success event.
+- Infrastructure may retain other Zone memberships.
+- Physical ownership and physical hierarchy remain unchanged.
 
 ---
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-**Architecture assessment:** `PASS`
+## 17.1 Open Issues
 
-No source gap prevents this scenario from proceeding to Architecture Approval. The owning aggregate, governing workflow, lifecycle meaning, service and event required for the frozen outcome are sufficiently defined.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-G10 names Zone registration `ZoneRegistered` in §44 but `ZoneCreated` in the Zone workflow and event summary. | A mandatory registration event has no single exact canonical name. | Architecture governance must resolve the event name while retaining G10 as publisher. |
+| L2-G10 gives incompatible initial Zone lifecycle positions (`Draft` under generic registration versus Zone-specific `Proposed → Operational → Archived`). | L3 cannot state the newly established Zone's lifecycle position consistently. | Align the locked Zone registration and lifecycle definitions. |
 
-No unsupported aggregate, lifecycle state, transition, event, publisher, actor, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
+**Source Assessment:** **BLOCKED**
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No additional deferred questions.

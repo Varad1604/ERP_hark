@@ -11,268 +11,176 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; applicable L2-G01 through L2-G10 operational domains; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows; L2-H07 — Enterprise Dashboard Workflows  
-**Referenced By:** Campus governance, executive oversight, audit, reporting and authorized downstream consumers
-
----
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance  
+**Referenced By:** Authorized executive-governance and institutional intelligence consumers
 
 # 2. Scenario Purpose
 
-Provide executive management with a governed consolidated review of campus operational health, risks, KPIs, SLAs and improvement needs, culminating in a traceable recommendation.
-
----
+Provide executive management with a governed consolidated evaluation of campus operational health, risks, KPIs, SLA performance, and improvement needs, culminating in a traceable executive recommendation without taking ownership of source operations.
 
 # 3. Business Outcome
 
 Operational health, risks, KPIs, SLA performance, and improvement needs are reviewed and an executive recommendation is produced
 
----
-
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
 
-The scenario begins when executive management requires consolidated campus operational evaluation.
+Executive management requires consolidated campus operational evaluation.
 
 ## 4.2 End Boundary
 
-The scenario ends when the frozen business outcome has been recorded under the source-defined governance boundary, all required source references and decisions are preserved, applicable follow-up is linked, and the full activity is auditable.
+The scenario ends when the consolidated governance evidence has been reviewed and an executive recommendation has been produced and preserved. The frozen outcome does not require operational execution or completion of a separate corrective-action lifecycle.
 
 ## 4.3 In Scope
 
-- Tenant, institution, campus, purpose and correlation resolution.
-- Authorization of the governance activity and evidence access.
-- Campus operational health, readiness, risks, governance kpis, sla performance, overdue actions and improvement evidence.
-- Use of the `Operational Review` business responsibility.
-- Source-domain information consumed by reference without ownership transfer.
-- Executive observations, recommendation, decision references and follow-up governance actions.
-- Applicable lifecycle transitions, services and domain-event publication explicitly defined by L2-G00.
-- Immutable audit evidence and historical reconstruction.
+- Consolidated G00 operational health, readiness, risk, SLA, KPI, and action-plan information.
+- Executive governance review.
+- Findings and improvement needs relevant to the recommendation.
+- Production and preservation of the executive recommendation.
+- Applicable G00 review and governance events.
 
 ## 4.4 Out of Scope
 
-- Executing operational work owned by G01–G10.
-- Modifying operational transactions, source-domain master data or published readiness facts.
-- Replacing H07 dashboard composition, Section H notification delivery or H09 accreditation governance.
-- Replacing the Platform Workflow, Authorization, Event or Audit infrastructure.
-- Inventing lifecycle states, commands, events, publishers, approval authorities or technical mechanisms absent upstream.
+- Source-domain operational execution.
+- Separate Operational Risk or Action Plan lifecycle completion.
+- Dashboard composition owned by H07.
+- Inventing a distinct Executive Review aggregate or lifecycle absent from L2-G00.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
 | Relationship | Related Scenario | Boundary Reason |
 |---|---|---|
-| Related | L3-G-001 — Campus Readiness Assessment to Governance Readiness Decision | Provides or consumes readiness governance where applicable. |
-| Related | L3-G-003 — Campus Operational Review to Governance Closure | Owns the canonical Operational Review journey. |
-| Related | L3-G-005 — Operational Risk Identification to Risk Closure | Owns enterprise operational-risk governance. |
-| Related | L3-G-006 — Multi-Domain Action Plan to Verified Closure | Owns corrective-action coordination and verification. |
-
----
+| Related | L3-G-003 — Campus Operational Review to Governance Closure | Supplies the canonical review lifecycle used by G00 governance reviews. |
+| Follow-up | L3-G-005 — Operational Risk Identification to Risk Closure | Material risk may require a separate risk lifecycle. |
+| Follow-up | L3-G-006 — Multi-Domain Action Plan to Verified Closure | Recommended improvement may require a separate action plan. |
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Campus Operations Governance / Section G | Primary owner. Owns the governance aggregate, conclusions, findings, recommendations, risks, action coordination and immutable governance history applicable to this scenario. |
-| Operational domains / Section G and other named domains | Own their operational facts, indicators, incidents, actions and corrections; provide published references without transferring ownership. |
-| Platform Foundation / Section A | Supplies Tenant, configuration, authorization, workflow, event and audit capabilities without owning the G00 business outcome. |
-| Institutional Services & Intelligence / Section H, where frozen | Consumes governance outputs for dashboards, notification, executive intelligence or accreditation under its own ownership boundaries. |
-
-The frozen participating-domain value remains exactly `G, H`.
-
----
+| Campus Operations Governance / G | Owns executive campus-operations governance, the underlying G00 review information, and the recommendation. |
+| Institutional Services & Intelligence / H | Consumes governed executive information within its own intelligence and presentation responsibilities; it does not own the recommendation. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Participation / Authority |
+| Business Actor / Role | Responsibility | Source-Supported Authority |
 |---|---|---|
-| Governance Coordinator | Coordinates the assessment, review, finding, action or evidence request within authorized scope. | May initiate and coordinate; cannot assume executive or approval authority. |
-| Campus Operations Manager | Reviews campus operational evidence and governance consequences. | Acts only within configured campus and governance authorization. |
-| Executive Reviewer | Provides executive review, recommendation or decision where required. | Authority is policy-derived and not implied for every scenario step. |
-| Risk Coordinator / Quality Assurance Officer | Governs risk treatment or verifies corrective-action evidence where applicable. | Does not execute source-domain operational work. |
-| Read Only Auditor / Compliance Consumer | Receives authorized historical evidence. | Cannot change source or governance records. |
-
-L2-G00 calls these typical roles and allows institutions to configure additional roles. It does not establish a universal named approver for every scenario.
-
----
+| Executive Reviewer | Reviews consolidated campus-operational governance information and contributes the executive recommendation. | L2-G00-defined typical governance role. |
+| Campus Operations Manager | Conducts the underlying operational review activity where used. | L2-G00 authorization matrix. |
+| Governance Coordinator | Coordinates resulting governance follow-up. | L2-G00-defined governance role. |
 
 # 7. Preconditions and Entry Criteria
 
-- The Tenant, institution and campus are valid and resolvable.
-- The trigger and authorized governance purpose are established.
-- The affected G00 aggregate or required governance context can be identified.
-- Required information is available from its canonical owner or its absence is explicitly handled as an exception.
-- Applicable configuration, thresholds, templates, categories and policies can be resolved.
-- Source information is reference-only and remains owned by its publishing domain.
-- Authorization, actor and correlation context are available.
-- Existing governance history is immutable and accessible under policy.
-
----
+- Executive management has a valid governance need for consolidated campus-operational evaluation.
+- Applicable G00 operational health, readiness, risk, SLA, KPI, and action-plan information is available or gaps can be explicitly recorded.
+- The review scope is authorized.
+- Source-domain information remains owned by its canonical source.
 
 # 8. Trigger
 
 Executive management requires consolidated campus operational evaluation
 
----
-
 # 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Receive the authorized executive review requirement and establish purpose, scope and period. | Campus Operations Governance; applicable participant | Receive the authorized executive review requirement and establish purpose, scope and period. |
-| 2 | Resolve the configured executive review template, participants and information requirements. | Campus Operations Governance; applicable participant | Resolve the configured executive review template, participants and information requirements. |
-| 3 | Collect current governed health, readiness, risk, KPI, SLA and action-plan views. | Campus Operations Governance; applicable participant | Collect current governed health, readiness, risk, KPI, SLA and action-plan views. |
-| 4 | Validate source lineage, currency, scope and confidentiality. | Campus Operations Governance; applicable participant | Validate source lineage, currency, scope and confidentiality. |
-| 5 | Conduct the consolidated executive evaluation through the Operational Review aggregate. | Campus Operations Governance; applicable participant | Conduct the consolidated executive evaluation through the Operational Review aggregate. |
-| 6 | Record findings, material risks, SLA concerns and improvement needs. | Campus Operations Governance; applicable participant | Record findings, material risks, SLA concerns and improvement needs. |
-| 7 | Form the executive recommendation within the authorized governance scope. | Campus Operations Governance; applicable participant | Form the executive recommendation within the authorized governance scope. |
-| 8 | Publish the recommendation and create or link required actions, risks or escalations. | Campus Operations Governance; applicable participant | Publish the recommendation and create or link required actions, risks or escalations. |
-| 9 | Complete and close the review after its recommendation and evidence are preserved. | Campus Operations Governance; applicable participant | Complete and close the review after its recommendation and evidence are preserved. |
-| 10 | Publish applicable governance events and immutable audit evidence. | Campus Operations Governance; applicable participant | Publish applicable governance events and immutable audit evidence. |
-
----
+| 1 | Establish the executive review scope and applicable governance period. | Executive Reviewer / G00 | The review boundary is established. |
+| 2 | Assemble current G00 operational health, readiness, risk, KPI, SLA, and action-plan views from authoritative governance references. | G00 | Consolidated governance information is available. |
+| 3 | Validate source lineage, scope, and currency without changing source-domain facts. | G00 | The review uses governed information only. |
+| 4 | Conduct the executive governance evaluation using the applicable G00 review semantics. | Executive Reviewer / G00 | Material findings and improvement needs are understood. |
+| 5 | Form the executive recommendation within the reviewed evidence and governance scope. | Executive Reviewer / G00 | The frozen executive recommendation is produced. |
+| 6 | Publish/preserve the recommendation and link any separate risk, action, or escalation follow-up. | G00 | The recommendation is traceable without extending this scenario into downstream execution. |
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| 1 | The review produces no new recommendation | record the explicit conclusion and preserve the reviewed evidence. | The existing lifecycle and source ownership remain preserved. |
-| 2 | Material risk requires separate treatment | register or escalate an Operational Risk without changing source-domain incidents. | The existing lifecycle and source ownership remain preserved. |
-
----
+| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
+|---|---|---|---|---|
+| No new recommendation | Review evidence supports continuation of the current governance position | Record that conclusion rather than inventing a change. | The executive review still has a governed outcome. | G00 |
+| Material risk identified | Review identifies enterprise operational risk | Register or escalate the risk under its separate G00 lifecycle. | The recommendation remains complete; risk treatment proceeds separately. | G00 |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, campus or authorization cannot be resolved. | The governance activity cannot proceed lawfully. | Reject or pause without changing any source or governance state. | Platform & Tenant; Campus Operations Governance |
-| Required source information is missing, stale or inconsistent. | A trustworthy result cannot be produced. | Use the G00 exception workflow; correct, defer or escalate without inventing an outcome. | Source domain; Campus Operations Governance |
-| A business invariant fails. | The requested transition would violate ownership or lifecycle integrity. | Reject the transition and preserve failure evidence. | Campus Operations Governance |
-| Required review, verification or approval is incomplete. | The outcome cannot be treated as complete. | Retain the current source-defined lifecycle position and route follow-up. | Campus Operations Governance |
-| Event publication condition is not satisfied. | Consumers must not receive a false completed fact. | Publish only a source-defined event after its corresponding transition. | Campus Operations Governance; Event Infrastructure |
-| Processing is interrupted. | The governance activity remains incomplete. | Preserve history and resume only from a valid existing lifecycle position. | Campus Operations Governance |
-
-No technical retry, rollback, database, UI, queue or infrastructure recovery design is introduced.
-
----
+| Required governance information is incomplete | Executive recommendation may be unsupported | Correct, defer, or explicitly qualify the review before producing an unsupported recommendation. | G00 |
+| Review cannot be completed | The frozen outcome is not achieved | Retain the underlying review in its source-defined lifecycle position until sufficient review can occur. | G00 |
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| G00 governs oversight and never executes operational work. | Campus Operations Governance | Corrective execution remains with the source domain. | L2-G00 §§3–6, §14 |
-| G00 never modifies operational data owned by G01–G10. | Campus Operations Governance; source domains | Inputs remain reference-only. | L2-G00 §§9, 13–14 |
-| Governance history remains immutable and every lifecycle transition is audited. | Campus Operations Governance; Audit Infrastructure | Prior evidence and decisions cannot be rewritten. | L2-G00 §§13, 27 |
-| `Operational Review` is the scenario’s governing business responsibility. | Campus Operations Governance | The scenario cannot transfer its outcome to a source or infrastructure domain. | L2-G00 §§8, 11–12, 16–19 |
-| Applicable lifecycle is `Planned → Active → Findings Recorded → Completed → Closed`. | Campus Operations Governance | Only source-supported states and order may be used. | L2-G00 §§11, 23 |
-| Applicable services are Generate Executive Review; Generate Campus Operational Health; Generate Readiness Summary; Publish Recommendations. | Campus Operations Governance | Interactions use published business contracts. | L2-G00 §22 |
-| Configuration, thresholds and extensions remain governed and effective-dated where specified. | Campus Operations Governance; Platform | Behaviour cannot be hardcoded or changed retrospectively. | L2-G00 §§6, 26 |
-| Significant completed transitions publish immutable domain events. | Campus Operations Governance | Failed or incomplete outcomes cannot publish success facts. | L2-G00 §§20–21 |
-
----
+| G00 owns executive governance reviews and recommendations but not operational execution. | G00 | Recommendation cannot directly change operational data. | L2-G00 §§3–6, Appendix B |
+| Governance KPIs reference source-domain metrics. | G00 / source domains | KPI review cannot create independent operational facts. | L2-G00 §13 |
+| Governance history remains immutable. | G00 | Recommendation lineage must remain reconstructable. | L2-G00 §13, §27 |
+| `Generate Executive Review` and `Generate Campus Operational Health` are G00 business contracts. | G00 | The executive evaluation remains within the G00 governance boundary. | L2-G00 §22 |
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry State or Condition | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner |
-|---|---|---|---|---|
-| Operational Review | Trigger and authorized context available | Progresses only through the applicable source-defined governance journey. | Planned → Active → Findings Recorded → Completed → Closed | Campus Operations Governance |
-| Source-domain operational record | Existing canonical state | Referenced as evidence or receives a governed request; no direct mutation. | Unchanged by G00. | Publishing operational domain |
-| Governance history | Existing immutable history | Receives new actor, transition, decision and correlation evidence. | Preserved and extended immutably. | Campus Operations Governance; Audit Infrastructure |
-| Downstream reporting/evidence view | Absent or requires refresh | Receives the completed governed outcome where authorized. | Available without becoming the source of operational truth. | Applicable reporting or evidence owner |
-
-Where L2-G00 does not define a scenario-specific aggregate or lifecycle, this Draft records that limitation and does not create state names by inference.
-
----
+L2-G00 does not define a separate Executive Review aggregate or lifecycle. Where an Operational Review is used to conduct the executive governance review, only the source-defined Operational Review lifecycle applies: `Planned → Active → Findings Recorded → Completed → Closed`. This scenario does not invent an Executive Review state machine.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Events
+## 14.1 Published / Consumed Business Events
 
-L2-G00 states that Campus Operations Governance publishes immutable events and provides the following applicable catalogue entries. It does not provide an Aggregate-to-Event Matrix or a sole-publisher table.
-
-| Event / Required Fact | Publication Condition | Business Effect / Consumer |
+| Business Event | Canonical Publisher | Scenario Purpose |
 |---|---|---|
-| `GovernanceRecommendationPublished` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `MultiDomainReviewCompleted` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `GovernanceReviewClosed` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
+| `GovernanceRecommendationPublished` | Campus Operations Review (G00) | Represents publication of the governance recommendation. |
+| `MultiDomainReviewCompleted` | Campus Operations Review (G00) | Represents completion of the multi-domain governance evaluation where applicable. |
+| `GovernanceReviewClosed` | Campus Operations Review (G00) | Represents formal closure where the underlying review is closed. |
 
-Event Infrastructure distributes events but does not own the G00 business fact.
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-## 14.2 Synchronous Business Contracts and Hand-offs
-
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
+| Provider | Consumer | Business Hand-off | Purpose |
 |---|---|---|---|
-| Source operational information | Publishing operational domain | Campus Operations Governance | Immutable identifiers, status, period, scope, metric/evidence and provenance. |
-| Authorization Decision | Authorization & Policy | Campus Operations Governance | Allowed actor, action, Tenant, campus and governance scope. |
-| G00 governance service | Campus Operations Governance | Authorized participant | Generate Executive Review; Generate Campus Operational Health; Generate Readiness Summary; Publish Recommendations. |
-| Governed outcome | Campus Operations Governance | Executive, H-domain or other authorized consumer | executive observations, recommendation, decision references and follow-up governance actions. |
-| Audit input | Campus Operations Governance | Audit Infrastructure | Actor, prior/new state, references, reason, time, correlation and outcome. |
-
----
+| G00 | Executive management | Consolidated operational governance information and executive recommendation | Supports executive campus-operations governance. |
+| G00 | H | Governed executive information | Supports authorized downstream intelligence without ownership transfer. |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-- Every activity requires authorization for its Tenant, campus, governance scope and information classification.
-- Authentication and Platform roles do not transfer business ownership to the Platform.
-- Delegated or temporary authority must be effective-dated and auditable.
-- Read access to governance history does not permit mutation.
+L2-G00 defines `Executive Reviewer` as a typical operational role and Executive Management as a consumer of governance information, but does not explicitly define a universal business authority that approves an executive recommendation. The frozen outcome requires production of a recommendation, not a separate approval decision.
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-- Review, executive decision, verification and configuration approval occur only where required by the applicable source lifecycle and policy.
-- L2-G00 provides a configurable authorization matrix and typical roles rather than a universal approval actor.
-- Verification responsibility must remain distinguishable from source-domain execution where policy requires separation.
-- No unsupported approver, override or SoD exception is introduced.
+No scenario-specific separation-of-duty requirement for recommendation production is defined upstream. G00 remains separated from operational execution.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The following must be auditable:
-
-- Tenant, institution, campus, purpose and scope.
-- Initiating actor and applicable authorization decision.
-- Source identifiers, versions, periods and owning domains.
-- Configuration, template, threshold or rule version used.
-- Every lifecycle transition, finding, recommendation, decision and reason.
-- Assigned owners, dates, dependencies and verification where applicable.
-- Published canonical events and downstream hand-offs.
-- Exceptions, recovery, correlation and final outcome.
-
----
+Review scope, source governance information, findings, recommendation, follow-up references, and applicable G00 events must remain in immutable governance history.
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete when:
+## 16.1 Completion Criteria
 
-- receive the authorized executive review requirement and establish purpose, scope and period.
-- resolve the configured executive review template, participants and information requirements.
-- collect current governed health, readiness, risk, KPI, SLA and action-plan views.
-- validate source lineage, currency, scope and confidentiality.
-- conduct the consolidated executive evaluation through the Operational Review aggregate.
-- record findings, material risks, SLA concerns and improvement needs.
-- form the executive recommendation within the authorized governance scope.
-- publish the recommendation and create or link required actions, risks or escalations.
-- complete and close the review after its recommendation and evidence are preserved.
-- publish applicable governance events and immutable audit evidence.
+- Operational health, risk, KPI, SLA, and improvement information relevant to the review has been considered.
+- Source ownership remains preserved.
+- An executive recommendation has been produced from the governed review evidence.
+- Recommendation lineage is auditable.
 
+## 16.2 Postconditions
 
-Postconditions:
-
-- Source-domain operational records and ownership remain unchanged by G00.
-- The completed governance outcome and its lineage are available to authorized consumers.
-- Governance history remains immutable and reproducible.
-- No undefined state, command, event, publisher, actor or technical mechanism has been assumed.
-
----
+- The executive recommendation is available to authorized consumers.
+- Any resulting risk, action, or escalation proceeds under its own governance lifecycle.
+- No operational source fact is changed by the recommendation itself.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-| ID | Severity | Issue / Deferred Question | Required Resolution |
-|---|---|---|---|
-| G-004-ISSUE-01 | Non-blocking | L2-G00 exposes Generate Executive Review and recommendation events but defines no separate Executive Review aggregate or lifecycle; this Draft uses the Operational Review lifecycle. | Resolve in L2-G00 or the named owning domain before downstream specification relies on the missing contract. |
-| G-004-ISSUE-02 | Non-blocking | L2-G00 names Executive Reviewer only as an example role and does not define recommendation approval authority. | Resolve in L2-G00 or the named owning domain before downstream specification relies on the missing contract. |
+## 17.1 Open Issues
 
-**Source Assessment:** PASS WITH ISSUES
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-G00 identifies Executive Governance Reviews as a responsibility but defines no separate Executive Review aggregate/lifecycle | The scenario can use G00 review semantics without inventing a new lifecycle, but downstream specifications must not create one locally | Define a dedicated aggregate/lifecycle upstream only if required |
+| `Executive Reviewer` is a typical role, but recommendation approval authority is not explicitly assigned | The frozen outcome is still producible because it requires a recommendation, not a separate approval | Define approval authority if future downstream behavior requires recommendation approval |
 
-No unsupported operational ownership transfer, actor, approval authority, lifecycle state, event, publisher or implementation mechanism is assumed by this Draft.
+**Architecture assessment:** `PASS WITH ISSUES`
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No scenario-specific deferred questions.

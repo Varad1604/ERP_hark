@@ -11,21 +11,23 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-B03 — Campus Workflows where institutional ownership is referenced; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Authorized infrastructure consumers across academic, examination, facilities, safety, workforce, analytics and institutional operations
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G10 — Infrastructure Management Workflows; L2-A01 — Platform Tenant Foundation Architecture  
+**Referenced By:** Authorized consumers of G10 Space classification facts
 
 ---
 
 # 2. Scenario Purpose
 
-Assign or change the authorized primary Space classification under institutional configuration while retaining immutable Space identity and auditable history.
+Apply an authorized G10-owned Space classification using institutionally configured Space Types while preserving Space identity, G10 ownership and the Platform/Foundation boundary for configuration governance.
 
 ---
 
 # 3. Business Outcome
 
-The Space receives its authorised classification and remains available to consuming domains
+The Space receives its authorised classification and remains available to consuming domains.
+
+The locked source is ambiguous about whether this scenario represents initial classification or later reclassification, and it defines conflicting canonical event names for the classification change. This Draft is **BLOCKED**.
 
 ---
 
@@ -37,35 +39,30 @@ The scenario begins when a valid space requires classification according to inst
 
 ## 4.2 End Boundary
 
-The scenario ends when the exact frozen outcome is established under G10 ownership, the current authoritative physical fact is available through governed contracts, required events have been published only after successful persistence, and immutable audit history is preserved.
+The scenario ends when the Space has one authorized primary Space Type under G10 ownership, the authoritative classification is available through the G10 Space fact, Space identity and lifecycle are preserved, and the exact canonical classification event has been published.
 
 ## 4.3 In Scope
 
-- Resolution of Tenant, institution, resource and physical hierarchy context.
-- Scoped authorization before business validation.
-- Validation of G10 identity, hierarchy, lifecycle, capacity, availability, configuration and relationship rules as applicable.
-- The `Space` business responsibility.
-- Preservation of immutable identifiers and prior historical values.
-- Publication of only source-defined completed business facts.
-- Governed read contracts for authorized consumers.
-- Complete audit evidence.
+- Resolution of the applicable configured Space Type.
+- Validation and assignment/change of the Space's primary classification.
+- Preservation of Space identity and physical hierarchy.
+- G10 auditability and classification-event publication.
+- Platform configuration governance without transfer of domain configuration semantics.
 
 ## 4.4 Out of Scope
 
-- Institutional identity or InstitutionalCampus ownership retained by B03.
-- Academic scheduling, examination conduct, facilities-maintenance execution or consumer-specific decisions.
-- Authentication, technical RBAC, database, API, UI, queue or implementation design.
-- Physical deletion of infrastructure or historical records.
-- Inventing lifecycle states, commands, events, publishers, approval actors or cross-domain contracts absent from L2.
+- Creation of the Space itself.
+- Operational capability assignment.
+- Scheduling, examination allocation, hostel use or other consumer interpretation.
+- Changes to Space lifecycle or operational status solely because classification changes.
+- Any implementation mechanism.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
-| Relationship | Related Scenario | Boundary Reason |
+| Relationship | Related Scenario | Reason |
 |---|---|---|
-| Related | L3-G-278 — Institutional Infrastructure Registration to Physical Campus Establishment | Establishes the canonical Physical Campus root. |
-| Related | L3-G-281 — Infrastructure Hierarchy Creation to Canonical Physical Structure | Governs the Campus–Building–Floor–Space hierarchy. |
-| Related | L3-G-289 — Infrastructure Availability Definition to Availability Profile Activation | Establishes authoritative resource availability. |
-| Related | L3-G-291 — Infrastructure Reservation Request to Controlled Reservation | Consumes availability and capacity without owning either fact. |
+| Related | L3-G-284 — Space Registration to Physical Space Establishment | Space registration already lists Space Type as mandatory information, creating the sequencing issue recorded in Section 17. |
+| Related | L3-G-287 — Space Capability Definition to Operational Capability Availability | Operational capability is a separate G10-owned attribute from primary Space classification. |
 
 ---
 
@@ -73,44 +70,34 @@ The scenario ends when the exact frozen outcome is established under G10 ownersh
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Infrastructure Management / Section G | Primary owner of physical identity, hierarchy, lifecycle, capacity, availability, classification, relationships and infrastructure master facts. |
-| Institution & Structure / Section B, where frozen | Owns Institution and InstitutionalCampus identity; supplies references without owning physical aggregates. |
-| Platform Foundation / Section A, where frozen | Supplies Tenant isolation, configuration, authorization, event and audit capabilities without owning infrastructure facts. |
-| Academic Delivery / Section D, where frozen | Consumes authoritative capacity, availability or reservation outcomes and retains its academic decisions. |
-
-The frozen participating-domain value remains exactly `G, A`.
+| Infrastructure Management / G10 | Owns Space Type semantics, Space classification and the resulting authoritative Space fact. |
+| Platform Foundation / A | Owns the common configuration framework, resolution, validation and lifecycle; it does not interpret or own G10 Space Type semantics. |
 
 ---
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Authority Boundary |
+| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
 |---|---|---|
-| Infrastructure Administrator | Initiates and administers permitted infrastructure operations. | Must hold fine-grained permission in the relevant Tenant, institution, Campus, Building or Zone scope. |
-| Campus or Building Administrator | Manages infrastructure within assigned physical scope. | Cannot act outside assigned hierarchy scope. |
-| Facilities Manager / Operational Manager | Supplies operational context and consumes current physical facts. | Does not change canonical identity or bypass G10 rules. |
-| Auditor | Reviews immutable history and evidence. | Read-only; cannot mutate infrastructure. |
-| Consumer-domain actor | Requests or consumes an authorized infrastructure service. | Retains the consumer decision and cannot modify G10 aggregates directly. |
-
-Roles are configurable access patterns in L2-G10. No universal named approver is inferred.
+| Infrastructure Administrator | Applies the permitted classification to the Space. | Performs the G10 classification action within authorized scope. |
 
 ---
 
 # 7. Preconditions and Entry Criteria
 
-- The Space exists and its lifecycle permits modification.
-- The requested Space Type or classification is active in institutional configuration.
-- The requester holds scoped Classification permission.
-- The proposed change does not violate hierarchy or operational rules.
-- Tenant and institution isolation are enforceable.
-- Authentication context is supplied externally and authorization succeeds before mutation.
-- Required audit and event infrastructure is available under enterprise policy.
+- A canonical Space exists under G10.
+- The applicable Space Type is defined through authoritative G10 configuration.
+- Platform configuration resolution has supplied a valid, active configuration context.
+- The requested classification is permitted for the Space.
+- The Infrastructure Administrator is authorized to perform classification changes.
+
+The source is ambiguous about an **unclassified existing Space**, because Space Type is mandatory during Space registration. This ambiguity is not silently resolved here.
 
 ---
 
 # 8. Trigger
 
-A valid space requires classification according to institutional configuration
+A valid space requires classification according to institutional configuration.
 
 ---
 
@@ -118,23 +105,19 @@ A valid space requires classification according to institutional configuration
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Resolve the Space, current classification and Tenant configuration. | Infrastructure Management | Resolve the Space, current classification and Tenant configuration. |
-| 2 | Authorize the classification operation within the Space scope. | Infrastructure Management | Authorize the classification operation within the Space scope. |
-| 3 | Validate the requested classification and any configured compatibility rules. | Infrastructure Management | Validate the requested classification and any configured compatibility rules. |
-| 4 | Confirm the Space retains exactly one primary Space Type. | Infrastructure Management | Confirm the Space retains exactly one primary Space Type. |
-| 5 | Apply the classification without changing aggregate identity or physical parent. | Infrastructure Management | Apply the classification without changing aggregate identity or physical parent. |
-| 6 | Make the current classification available through the Space Summary contract. | Infrastructure Management | Make the current classification available through the Space Summary contract. |
-| 7 | Publish `InfrastructureClassificationChanged` after persistence. | Infrastructure Management | Publish `InfrastructureClassificationChanged` after persistence. |
-| 8 | Preserve predecessor, successor, reason, actor and correlation evidence. | Infrastructure Management | Preserve predecessor, successor, reason, actor and correlation evidence. |
+| 1 | Resolve the canonical Space and the applicable active configuration context. | Infrastructure Management; Platform Foundation | The classification decision is grounded in authoritative Space and configuration facts. |
+| 2 | Identify the permitted G10 Space Type required for the Space. | Infrastructure Administrator / Infrastructure Management | A candidate primary classification is selected from G10-owned configuration values. |
+| 3 | Validate the requested classification against G10 rules and configuration. | Infrastructure Management | Unsupported classification is prevented. |
+| 4 | Apply the authorized primary Space classification without changing Space identity, hierarchy or lifecycle. | Infrastructure Management | The Space carries the controlled G10 classification. |
+| 5 | Make the classification available as part of the authoritative Space fact. | Infrastructure Management | Authorized consumers can resolve the Space Type without owning it. |
+| 6 | Record the classification change under G10 audit obligations. | Infrastructure Management | The classification decision is auditable. |
+| 7 | Publish the exact canonical classification event. | Infrastructure Management | **Blocked:** locked G10 sections define conflicting event names. |
 
 ---
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| 1 | A custom classification is requested | accept it only when active configuration permits. | Existing ownership and history remain intact. |
-| 2 | The classification conflicts with required capability or policy | reject it without changing the current value. | Existing ownership and history remain intact. |
+No scenario-specific alternate business flow is defined by the authoritative L2 architecture.
 
 ---
 
@@ -142,14 +125,10 @@ A valid space requires classification according to institutional configuration
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, institution or resource scope cannot be resolved | reject the request without creating a cross-scope fact. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Authorization fails | terminate before business mutation. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Hierarchy, lifecycle, configuration or policy validation fails | retain the prior authoritative state. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| A uniqueness, capacity, availability or relationship invariant fails | reject the requested result. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| Audit evidence cannot be recorded | do not complete the business transition. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-| The success-event condition is not satisfied | do not publish the success event. | Correct the source condition and submit a later authorized request; no partial success is recognized. | Infrastructure Management; applicable participant |
-
-No technical retry, rollback, database transaction or messaging implementation is specified at L3.
+| Requested Space Type is absent from authoritative G10 configuration. | Classification cannot proceed. | Correct or approve the domain configuration through the authoritative configuration lifecycle before a later attempt. | Infrastructure Management; Platform Foundation |
+| Configuration context is invalid or inactive. | The classification value cannot participate in business execution. | Resolve a valid active configuration context before a later attempt. | Platform Foundation |
+| Classification fails G10 validation or authorization. | Existing Space classification remains authoritative. | Correct the business condition before a later authorized attempt. | Infrastructure Management |
+| Event-name conflict remains unresolved. | The successful classification fact cannot be published under one canonical event identity. | Resolve the event conflict through architecture change control. | Infrastructure Management |
 
 ---
 
@@ -157,105 +136,97 @@ No technical retry, rollback, database transaction or messaging implementation i
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Infrastructure Management is the canonical owner of physical infrastructure facts. | Infrastructure Management | Consumers reference G10 facts and never duplicate or directly modify aggregates. | L2-G10 §§2, 5, 9, 44A |
-| Every Building belongs to one Campus; every Floor to one Building; every Space to one Floor. | Infrastructure Management | Invalid or circular physical relationships are rejected. | L2-G10 §§8, 18, 47 |
-| Aggregate identity is immutable and infrastructure is never physically deleted. | Infrastructure Management | Changes preserve identifiers and historical references. | L2-G10 §§13, 47, 48A |
-| Authorization precedes business validation. | Authorization & Policy; Infrastructure Management | Unauthorized requests terminate before mutation. | L2-G10 §48A.207 |
-| Business validation precedes persistence, and events describe completed facts. | Infrastructure Management; Event Infrastructure | Failed work cannot publish a success event. | L2-G10 §§22A.99, 44A.179 |
-| Every successful state or significant attribute change is auditable. | Infrastructure Management; Audit Infrastructure | Actor, prior value, new value, reason and correlation are preserved. | L2-G10 §§48A.208–210, 49 |
-| Archived infrastructure is immutable. | Infrastructure Management | No scenario may update an Archived aggregate. | L2-G10 §§11A, 47 |
-| Capacity cannot be negative and reservation conflicts are prevented unless an authorized override is permitted. | Infrastructure Management | Invalid capacity or conflicting reservations are rejected. | L2-G10 §§24, 26, 47 |
+| Every Space possesses exactly one primary Space Type. | Infrastructure Management | The scenario establishes or changes one controlled primary classification. | L2-G10 §22 |
+| Infrastructure classifications are configurable. | Infrastructure Management | Only configured Space Types may be applied. | L2-G10 Space Classification Workflow; §43 |
+| Aggregate identity remains unchanged when classification changes. | Infrastructure Management | Reclassification cannot create a new Space identity. | L2-G10 §22; identity rules |
+| Only Active configuration may participate in business execution. | Platform Foundation | G10 consumes a validated active configuration context. | L2-A01 §§6.10-6.14 |
+| Platform does not interpret domain-specific configuration. | Platform Foundation | G10 retains classification semantics and ownership. | L2-A01 Domain Configuration; §6.12 |
 
 ---
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Position | Canonical Owner |
-|---|---|---|---|---|
-| `Space` | Valid trigger and authorized context | Executes only the scenario-specific creation, association or governed attribute change. | Space lifecycle and identity remain unchanged; classification becomes current | Infrastructure Management, except the B03 reference retained by Institution & Structure |
-| Parent physical hierarchy | Existing and valid where applicable | Referenced and validated; not silently re-parented. | Unchanged unless the frozen outcome explicitly creates the child relationship. | Infrastructure Management |
-| Tenant and Institution | Existing | Supply isolation and institutional reference. | Unchanged. | Platform Foundation; Institution & Structure |
-| Consumer-domain records | Existing or absent | Consume the completed authoritative fact. | Unchanged by G10. | Applicable consumer domain |
-| Audit history | Existing | Appends immutable evidence. | Historical trace grows; prior records remain unchanged. | Audit Infrastructure |
+No Space lifecycle transition is defined as part of a classification change. Space identity and lifecycle remain unchanged.
 
-L2-G10 requires lifecycle and operational availability to remain distinct. “Activation” in a frozen outcome is not treated as a new lifecycle state unless L2-G10 defines it.
+| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
+|---|---|---|---|---|---|
+| Space | Existing valid Space | Assigns/changes primary Space Type | Existing Space lifecycle remains unchanged; classification is updated | Infrastructure Management | L2-G10 §§22, 141 |
+| Configuration | Active resolved configuration | Supplies permitted Space Type values | Configuration lifecycle is unchanged by this scenario | Platform Foundation / G10 values | L2-A01 §§6.10-6.14; L2-G10 §43 |
 
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Event Treatment
+## 14.1 Published / Consumed Business Events
 
-| Event / Required Fact | Publication Condition | Publisher and Consumer Treatment |
-|---|---|---|
-| `InfrastructureClassificationChanged` | Only after the corresponding aggregate creation or governed update has persisted successfully. | The affected G10 aggregate publishes the source-defined completed fact; consumers react without changing G10 ownership. |
+The exact classification event is contradictory:
 
-Where Section 44 and the detailed WF-INF catalogue use different names, this Draft records the inconsistency in Section 17 and does not publish both names for one transition.
+- `InfrastructureClassificationChanged` in WF-INF-007 and §44A classification events.
+- `SpaceClassificationChanged` in the dedicated Space Classification Workflow and Floor & Space Events Summary.
 
-## 14.2 Synchronous Business Contracts and Hand-offs
+Infrastructure Management is the publisher. L3 does not rename or select between them.
 
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
-|---|---|---|---|
-| Physical Campus Summary | Infrastructure Management | Institution & Structure and authorized consumers | Canonical physical Campus identity, lifecycle and operational status. |
-| Building, Floor and Space Summary | Infrastructure Management | Operational domains | Canonical hierarchy, classification, capacity, lifecycle and current status. |
-| Capacity Profile | Infrastructure Management | Academic, Examination and operational consumers | Canonical capacity facts; consumers own utilization decisions. |
-| Retrieve Availability | Infrastructure Management | Authorized consumers | Current operational availability independently from lifecycle. |
-| Reservation service | Infrastructure Management | Authorized requestor | Governed reservation establishment, modification or retrieval. |
-| Audit input | Infrastructure Management | Audit Infrastructure | Actor, scope, transition, prior/new values, reason and correlation evidence. |
+## 14.2 Business Contracts and Cross-Domain Hand-offs
+
+| Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
+|---|---|---|---|---|
+| Platform Foundation | Infrastructure Management | Resolved active configuration context | Supplies validated configuration without taking ownership of Space Type semantics. | L2-A01 §§6.11-6.14 |
+| Infrastructure Management | Authorized consumers | Space Summary | Exposes the authoritative `Space Type` together with the canonical Space identity. | L2-G10 §44A.193 |
 
 ---
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-- Authentication is external to G10.
-- Fine-grained permission is evaluated by Tenant, institution and physical-resource scope before validation.
-- Consumer access does not grant direct aggregate mutation.
-- Authorization success does not waive hierarchy, lifecycle, capacity, availability or policy rules.
+| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
+|---|---|---|---|
+| Classify Space | Infrastructure Administrator | Must have source-defined classification/update authority and apply only permitted G10 configuration. | Infrastructure Management |
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-- L2-G10 allows configurable approval for some creation, lifecycle, override and administrative operations.
-- The scenario uses approval only where active policy requires it.
-- No unnamed approver or technical workflow routing is invented.
-- Governance approval supplements business validation and never replaces it.
+No scenario-specific separation-of-duty, approval or override requirement is defined by the authoritative L2 architecture.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The audit record must preserve Tenant, institution, aggregate type and identifier, actor, authorization scope, previous values, new values, effective dates where applicable, business reason, approval reference where required, event facts and correlation identifier. Audit history is immutable and independently retained.
+| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
+|---|---|---|
+| Classification changes are auditable. | Source-defined evidence of the prior and resulting classification and the authorized business action. | Infrastructure Management |
 
 ---
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete only when:
+## 16.1 Completion Criteria
 
-- resolve the Space, current classification and Tenant configuration.
-- authorize the classification operation within the Space scope.
-- validate the requested classification and any configured compatibility rules.
-- confirm the Space retains exactly one primary Space Type.
-- apply the classification without changing aggregate identity or physical parent.
-- make the current classification available through the Space Summary contract.
-- publish `InfrastructureClassificationChanged` after persistence.
-- preserve predecessor, successor, reason, actor and correlation evidence.
-- no institutional, academic or consumer-domain ownership has transferred to G10;
-- no unauthorized or partial result is treated as successful; and
-- all required audit evidence is immutable and queryable.
+- One authorized primary Space Type is established for the canonical Space.
+- The classification uses valid G10-owned configuration semantics.
+- Space identity, hierarchy and lifecycle remain unchanged.
+- The classification is available through the authoritative Space fact.
+- The exact canonical classification event is resolved and published by Infrastructure Management.
 
-Postconditions:
+## 16.2 Postconditions
 
-- Canonical G10 identity and historical integrity are preserved.
-- The current authoritative fact is available through governed contracts.
-- Consumers may react under their own rules but cannot rewrite the source fact.
-- Failed or incomplete transitions publish no success event.
+- Consuming domains may use the authoritative Space Type under their own rules but do not own or redefine it.
+- Platform Foundation retains configuration-framework ownership; Infrastructure Management retains Space classification ownership.
 
 ---
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-**Architecture assessment:** `PASS`
+## 17.1 Open Issues
 
-No source gap prevents this scenario from proceeding to Architecture Approval. The owning aggregate, governing workflow, lifecycle meaning, service and event required for the frozen outcome are sufficiently defined.
+| Issue | Architecture Impact | Required Resolution |
+|---|---|---|
+| L2-G10 requires `Space Type` during Space registration, yet the frozen scenario separately begins when an existing valid Space “requires classification.” | The scenario boundary is ambiguous between initial classification and reclassification. | Upstream architecture must clarify whether this scenario is limited to reclassification or how a valid unclassified Space can exist. |
+| L2-G10 defines classification events as both `InfrastructureClassificationChanged` and `SpaceClassificationChanged`. | L3 cannot preserve one exact canonical event name. | Architecture governance must resolve the event identity while retaining G10 as publisher. |
 
-No unsupported aggregate, lifecycle state, transition, event, publisher, actor, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
+**Source Assessment:** **BLOCKED**
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No additional deferred questions.

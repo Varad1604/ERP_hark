@@ -11,267 +11,185 @@
 **Status:** Draft  
 **Version:** 1.0  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; applicable L2-G01 through L2-G10 operational domains; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** Campus governance, executive oversight, audit, reporting and authorized downstream consumers
-
----
+**Last Updated:** 2026-08-22  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; applicable G01–G10 operational action owners  
+**Referenced By:** Campus governance reviews, risk governance, and corrective-action follow-up
 
 # 2. Scenario Purpose
 
-Coordinate a governance action plan across responsible domains from a recorded finding through assignment, execution evidence, independent verification and closure without taking ownership of domain execution.
-
----
+Coordinate a G00 governance action plan from a recorded governance finding through assignment, source-domain execution, progress governance, verification, and formal closure without G00 taking ownership of operational execution.
 
 # 3. Business Outcome
 
 Responsible domains execute assigned governance actions, completion is verified, and the action plan is closed
 
----
-
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
 
-The scenario begins when a governance finding requires corrective action.
+A governance finding requires corrective action.
 
 ## 4.2 End Boundary
 
-The scenario ends when the frozen business outcome has been recorded under the source-defined governance boundary, all required source references and decisions are preserved, applicable follow-up is linked, and the full activity is auditable.
+The scenario ends when the Multi-Domain Action Plan reaches `Closed` after the assigned governance actions have been executed by their responsible owners and completion has been verified.
 
 ## 4.3 In Scope
 
-- Tenant, institution, campus, purpose and correlation resolution.
-- Authorization of the governance activity and evidence access.
-- One governance finding, configured action category, responsible domains and owners, due dates, dependencies and verification rules.
-- Use of the `Multi-Domain Action Plan` business responsibility.
-- Source-domain information consumed by reference without ownership transfer.
-- Assigned actions, progress and dependency history, verification result and closed plan.
-- Applicable lifecycle transitions, services and domain-event publication explicitly defined by L2-G00.
-- Immutable audit evidence and historical reconstruction.
+- One Multi-Domain Action Plan linked to one governance finding.
+- Action assignment, responsible-domain/owner references, due dates, dependencies, and progress governance.
+- Source-domain execution evidence.
+- Verification and closure.
+- Source-defined Action Plan lifecycle and events.
 
 ## 4.4 Out of Scope
 
-- Executing operational work owned by G01–G10.
-- Modifying operational transactions, source-domain master data or published readiness facts.
-- Replacing H07 dashboard composition, Section H notification delivery or H09 accreditation governance.
-- Replacing the Platform Workflow, Authorization, Event or Audit infrastructure.
-- Inventing lifecycle states, commands, events, publishers, approval authorities or technical mechanisms absent upstream.
+- Operational execution inside G01–G10.
+- Project-management execution.
+- Changing the source governance finding after action-plan creation.
+- Inventing action states, verification roles, or events beyond G00.
 
-## 4.5 Related Scenarios
+## 4.5 Related Scenarios — Optional
 
 | Relationship | Related Scenario | Boundary Reason |
 |---|---|---|
-| Related | L3-G-001 — Campus Readiness Assessment to Governance Readiness Decision | Provides or consumes readiness governance where applicable. |
-| Related | L3-G-003 — Campus Operational Review to Governance Closure | Owns the canonical Operational Review journey. |
-| Related | L3-G-005 — Operational Risk Identification to Risk Closure | Owns enterprise operational-risk governance. |
-| Related | L3-G-006 — Multi-Domain Action Plan to Verified Closure | Owns corrective-action coordination and verification. |
-
----
+| Preceded by | L3-G-003 — Campus Operational Review to Governance Closure | A review may create the governance finding that requires an action plan. |
+| Related | L3-G-005 — Operational Risk Identification to Risk Closure | Risk mitigation may be coordinated through action-plan governance. |
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Campus Operations Governance / Section G | Primary owner. Owns the governance aggregate, conclusions, findings, recommendations, risks, action coordination and immutable governance history applicable to this scenario. |
-| Operational domains / Section G and other named domains | Own their operational facts, indicators, incidents, actions and corrections; provide published references without transferring ownership. |
-| Platform Foundation / Section A | Supplies Tenant, configuration, authorization, workflow, event and audit capabilities without owning the G00 business outcome. |
-| Institutional Services & Intelligence / Section H, where frozen | Consumes governance outputs for dashboards, notification, executive intelligence or accreditation under its own ownership boundaries. |
+| Campus Operations Governance / G | Owns the Multi-Domain Action Plan, assignment/progress/verification/closure governance, and action-plan history. |
+| Responsible Campus Operations domains within Section G | Execute their own assigned operational actions and supply progress/completion evidence; participation does not transfer their operational ownership to G00. |
 
 The frozen participating-domain value remains exactly `G`.
 
----
-
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Participation / Authority |
+| Business Actor / Role | Responsibility | Source-Supported Authority |
 |---|---|---|
-| Governance Coordinator | Coordinates the assessment, review, finding, action or evidence request within authorized scope. | May initiate and coordinate; cannot assume executive or approval authority. |
-| Campus Operations Manager | Reviews campus operational evidence and governance consequences. | Acts only within configured campus and governance authorization. |
-| Executive Reviewer | Provides executive review, recommendation or decision where required. | Authority is policy-derived and not implied for every scenario step. |
-| Risk Coordinator / Quality Assurance Officer | Governs risk treatment or verifies corrective-action evidence where applicable. | Does not execute source-domain operational work. |
-| Read Only Auditor / Compliance Consumer | Receives authorized historical evidence. | Cannot change source or governance records. |
-
-L2-G00 calls these typical roles and allows institutions to configure additional roles. It does not establish a universal named approver for every scenario.
-
----
+| Governance Coordinator | Creates and coordinates the Action Plan. | L2-G00 authorization matrix explicitly assigns `Create Action Plan` to this role. |
+| Quality Assurance Officer | Verifies action completion. | L2-G00 authorization matrix explicitly assigns `Verify Action Completion` to this role. |
+| Responsible Owner | Performs the assigned governance action within the responsible operational domain. | L2-G00 Action Plan information explicitly includes `Responsible Owner`; no broader authority is inferred. |
 
 # 7. Preconditions and Entry Criteria
 
-- The Tenant, institution and campus are valid and resolvable.
-- The trigger and authorized governance purpose are established.
-- The affected G00 aggregate or required governance context can be identified.
-- Required information is available from its canonical owner or its absence is explicitly handled as an exception.
-- Applicable configuration, thresholds, templates, categories and policies can be resolved.
-- Source information is reference-only and remains owned by its publishing domain.
-- Authorization, actor and correlation context are available.
-- Existing governance history is immutable and accessible under policy.
-
----
+- One governance finding exists and requires corrective action.
+- The Action Plan can reference that finding as required by the G00 invariant.
+- Responsible domain(s), responsible owner(s), due-date policy, dependencies, and verification rules can be established.
+- Operational execution remains within each responsible source domain.
 
 # 8. Trigger
 
 A governance finding requires corrective action
 
----
-
 # 9. Main Business Flow
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Resolve the source governance finding and confirm that corrective action is required. | Campus Operations Governance; applicable participant | Resolve the source governance finding and confirm that corrective action is required. |
-| 2 | Create one Multi-Domain Action Plan referencing that finding. | Campus Operations Governance; applicable participant | Create one Multi-Domain Action Plan referencing that finding. |
-| 3 | Define action category, responsible domains, owners, due dates, dependencies and verification criteria. | Campus Operations Governance; applicable participant | Define action category, responsible domains, owners, due dates, dependencies and verification criteria. |
-| 4 | Authorize and assign the actions to the responsible owners. | Campus Operations Governance; applicable participant | Authorize and assign the actions to the responsible owners. |
-| 5 | Move the plan to In Progress while source domains execute their own operational work. | Campus Operations Governance; applicable participant | Move the plan to In Progress while source domains execute their own operational work. |
-| 6 | Collect progress, delay, blocker and completion evidence without modifying domain records. | Campus Operations Governance; applicable participant | Collect progress, delay, blocker and completion evidence without modifying domain records. |
-| 7 | Publish overdue facts and escalate according to configured rules when necessary. | Campus Operations Governance; applicable participant | Publish overdue facts and escalate according to configured rules when necessary. |
-| 8 | Verify completion evidence under the configured verification rules. | Campus Operations Governance; applicable participant | Verify completion evidence under the configured verification rules. |
-| 9 | Move the plan to Verified and then Closed only after required actions and dependencies are satisfied. | Campus Operations Governance; applicable participant | Move the plan to Verified and then Closed only after required actions and dependencies are satisfied. |
-| 10 | Publish action-plan events and preserve immutable plan history. | Campus Operations Governance; applicable participant | Publish action-plan events and preserve immutable plan history. |
-
----
+| 1 | Create one Multi-Domain Action Plan referencing the governance finding. | Governance Coordinator / G00 | The plan enters `Created`. |
+| 2 | Establish the assigned actions, responsible domains/owners, due dates, dependencies, and verification expectations. | Governance Coordinator / G00 | The action boundary is established. |
+| 3 | Assign the actions to their responsible owners. | Governance Coordinator / G00 | The plan reaches `Assigned`. |
+| 4 | Responsible operational domains perform their assigned work under their own workflows while G00 records governance progress. | Responsible G domains; G00 | The plan progresses to `In Progress` without ownership transfer. |
+| 5 | Record progress, delays, blockers, dependencies, and completion evidence as governance references. | G00 | Current action status is governed and traceable. |
+| 6 | Where an action becomes overdue, record/publish the source-defined overdue governance fact and apply configured follow-up. | G00 | Overdue governance is visible without inventing a new lifecycle state. |
+| 7 | Verify completion evidence against the configured verification rules. | Quality Assurance Officer / G00 | The plan reaches `Verified` when the required actions are satisfactorily completed. |
+| 8 | Close the verified Action Plan and preserve its full governance history. | G00 | The plan reaches `Closed` and the frozen business outcome is achieved. |
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| 1 | A responsible owner or dependency changes | govern reassignment and preserve prior ownership history. | The existing lifecycle and source ownership remain preserved. |
-| 2 | Verification fails | return the plan to continued action/progress treatment without publishing ActionVerified or closing it. | The existing lifecycle and source ownership remain preserved. |
-
----
+| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
+|---|---|---|---|---|
+| Reassignment required | The responsible owner changes under governed conditions | Reassign the action while preserving prior ownership history. | The plan continues within its existing lifecycle. | G00 |
+| Verification not satisfied | Completion evidence does not meet the configured verification rule | Do not enter `Verified`; continue action/progress governance. | The plan remains open. | G00 / responsible source domain |
 
 # 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, campus or authorization cannot be resolved. | The governance activity cannot proceed lawfully. | Reject or pause without changing any source or governance state. | Platform & Tenant; Campus Operations Governance |
-| Required source information is missing, stale or inconsistent. | A trustworthy result cannot be produced. | Use the G00 exception workflow; correct, defer or escalate without inventing an outcome. | Source domain; Campus Operations Governance |
-| A business invariant fails. | The requested transition would violate ownership or lifecycle integrity. | Reject the transition and preserve failure evidence. | Campus Operations Governance |
-| Required review, verification or approval is incomplete. | The outcome cannot be treated as complete. | Retain the current source-defined lifecycle position and route follow-up. | Campus Operations Governance |
-| Event publication condition is not satisfied. | Consumers must not receive a false completed fact. | Publish only a source-defined event after its corresponding transition. | Campus Operations Governance; Event Infrastructure |
-| Processing is interrupted. | The governance activity remains incomplete. | Preserve history and resume only from a valid existing lifecycle position. | Campus Operations Governance |
-
-No technical retry, rollback, database, UI, queue or infrastructure recovery design is introduced.
-
----
+| Governance finding reference is absent | G00 invariant is violated | Do not create a standalone Action Plan; correct the governance reference first. | G00 |
+| Responsible owner is missing | Action assignment cannot be governed | Resolve/reassign ownership before valid assignment or continuation. | G00 |
+| Action execution is incomplete | Verification and closure are not permitted | Continue source-domain execution and G00 progress governance. | Responsible source domain / G00 |
+| Verification fails | Closure evidence is insufficient | Keep the plan outside `Verified`/`Closed` until corrective work is completed and reverified. | G00 / responsible source domain |
 
 # 12. Business Rules and Decision Constraints
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| G00 governs oversight and never executes operational work. | Campus Operations Governance | Corrective execution remains with the source domain. | L2-G00 §§3–6, §14 |
-| G00 never modifies operational data owned by G01–G10. | Campus Operations Governance; source domains | Inputs remain reference-only. | L2-G00 §§9, 13–14 |
-| Governance history remains immutable and every lifecycle transition is audited. | Campus Operations Governance; Audit Infrastructure | Prior evidence and decisions cannot be rewritten. | L2-G00 §§13, 27 |
-| `Multi-Domain Action Plan` is the scenario’s governing business responsibility. | Campus Operations Governance | The scenario cannot transfer its outcome to a source or infrastructure domain. | L2-G00 §§8, 11–12, 16–19 |
-| Applicable lifecycle is `Created → Assigned → In Progress → Verified → Closed`. | Campus Operations Governance | Only source-supported states and order may be used. | L2-G00 §§11, 23 |
-| Applicable services are Create Action Plan; Assign Action; Update Progress; Verify Completion; Close Action Plan. | Campus Operations Governance | Interactions use published business contracts. | L2-G00 §22 |
-| Configuration, thresholds and extensions remain governed and effective-dated where specified. | Campus Operations Governance; Platform | Behaviour cannot be hardcoded or changed retrospectively. | L2-G00 §§6, 26 |
-| Significant completed transitions publish immutable domain events. | Campus Operations Governance | Failed or incomplete outcomes cannot publish success facts. | L2-G00 §§20–21 |
-
----
+| Every Action Plan shall reference one governance finding. | G00 | A plan cannot exist without its source finding. | L2-G00 §13 |
+| G00 action tracking is governance only; project/operational execution is outside G00. | G00 / source domains | Responsible domains execute the assigned work. | L2-G00 §4, §19 |
+| The Action Plan lifecycle is `Created → Assigned → In Progress → Verified → Closed`. | G00 | Only source-defined states may be used. | L2-G00 §23 |
+| Verification rules, assignment policies, due-date policies, and escalation rules are configurable. | G00 | Active governance configuration determines handling. | L2-G00 §26 |
+| Governance history is immutable and all transitions are audited. | G00 | Assignment, progress, verification, and closure remain reconstructable. | L2-G00 §13, §27 |
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry State or Condition | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner |
+| Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner |
 |---|---|---|---|---|
-| Multi-Domain Action Plan | Trigger and authorized context available | Progresses only through the applicable source-defined governance journey. | Created → Assigned → In Progress → Verified → Closed | Campus Operations Governance |
-| Source-domain operational record | Existing canonical state | Referenced as evidence or receives a governed request; no direct mutation. | Unchanged by G00. | Publishing operational domain |
-| Governance history | Existing immutable history | Receives new actor, transition, decision and correlation evidence. | Preserved and extended immutably. | Campus Operations Governance; Audit Infrastructure |
-| Downstream reporting/evidence view | Absent or requires refresh | Receives the completed governed outcome where authorized. | Available without becoming the source of operational truth. | Applicable reporting or evidence owner |
-
-Where L2-G00 does not define a scenario-specific aggregate or lifecycle, this Draft records that limitation and does not create state names by inference.
-
----
+| Multi-Domain Action Plan | Created | Assigned, progressed, verified, and closed | `Created → Assigned → In Progress → Verified → Closed` | G00 |
+| Source-domain operational work | Domain-owned state | Executed under the source domain’s own lifecycle | No G00-owned state change | Respective G operational domain |
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Events
+## 14.1 Published / Consumed Business Events
 
-L2-G00 states that Campus Operations Governance publishes immutable events and provides the following applicable catalogue entries. It does not provide an Aggregate-to-Event Matrix or a sole-publisher table.
-
-| Event / Required Fact | Publication Condition | Business Effect / Consumer |
+| Business Event | Canonical Publisher | Scenario Purpose |
 |---|---|---|
-| `ActionPlanCreated` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `ActionAssigned` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `ActionOverdue` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `ActionVerified` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
-| `ActionPlanClosed` | After the corresponding completed G00 transition or calculation. | Authorized governance, audit, notification and reporting consumers receive the completed fact. |
+| `ActionPlanCreated` | Campus Operations Review (G00) | Represents creation of the governance Action Plan. |
+| `ActionAssigned` | Campus Operations Review (G00) | Represents governed assignment. |
+| `ActionOverdue` | Campus Operations Review (G00) | Represents an overdue action where applicable. |
+| `ActionVerified` | Campus Operations Review (G00) | Represents successful completion verification. |
+| `ActionPlanClosed` | Campus Operations Review (G00) | Represents formal plan closure. |
 
-Event Infrastructure distributes events but does not own the G00 business fact.
+## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-## 14.2 Synchronous Business Contracts and Hand-offs
-
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
+| Provider | Consumer | Business Hand-off | Purpose |
 |---|---|---|---|
-| Source operational information | Publishing operational domain | Campus Operations Governance | Immutable identifiers, status, period, scope, metric/evidence and provenance. |
-| Authorization Decision | Authorization & Policy | Campus Operations Governance | Allowed actor, action, Tenant, campus and governance scope. |
-| G00 governance service | Campus Operations Governance | Authorized participant | Create Action Plan; Assign Action; Update Progress; Verify Completion; Close Action Plan. |
-| Governed outcome | Campus Operations Governance | Executive, H-domain or other authorized consumer | assigned actions, progress and dependency history, verification result and closed plan. |
-| Audit input | Campus Operations Governance | Audit Infrastructure | Actor, prior/new state, references, reason, time, correlation and outcome. |
-
----
+| G00 | Responsible G operational domain/owner | Assigned governance action, due date, dependencies, and verification expectations | Coordinates corrective action without taking execution ownership. |
+| Responsible G domain | G00 | Progress and completion evidence | Supports governance monitoring and verification. |
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
+## 15.1 Initiation and Decision Authority
 
-- Every activity requires authorization for its Tenant, campus, governance scope and information classification.
-- Authentication and Platform roles do not transfer business ownership to the Platform.
-- Delegated or temporary authority must be effective-dated and auditable.
-- Read access to governance history does not permit mutation.
+`Governance Coordinator` is source-authorized to create the Action Plan. `Quality Assurance Officer` is source-authorized to verify completion. L2-G00 does not name a separate universal actor for the final `Close Action Plan` service, so no additional closer role is invented.
 
-## 15.2 Approval and Separation of Duty
+## 15.2 Separation of Duties, Overrides and Exceptions
 
-- Review, executive decision, verification and configuration approval occur only where required by the applicable source lifecycle and policy.
-- L2-G00 provides a configurable authorization matrix and typical roles rather than a universal approval actor.
-- Verification responsibility must remain distinguishable from source-domain execution where policy requires separation.
-- No unsupported approver, override or SoD exception is introduced.
+The source explicitly distinguishes operational execution from G00 governance and separately identifies Quality Assurance verification. No additional separation-of-duty rule is invented.
 
-## 15.3 Audit Obligations
+## 15.3 Business Audit and Evidence Obligations
 
-The following must be auditable:
-
-- Tenant, institution, campus, purpose and scope.
-- Initiating actor and applicable authorization decision.
-- Source identifiers, versions, periods and owning domains.
-- Configuration, template, threshold or rule version used.
-- Every lifecycle transition, finding, recommendation, decision and reason.
-- Assigned owners, dates, dependencies and verification where applicable.
-- Published canonical events and downstream hand-offs.
-- Exceptions, recovery, correlation and final outcome.
-
----
+The source finding, assignments, responsible domains/owners, due dates, progress, overdue conditions, dependencies, completion evidence, verification result, lifecycle transitions, and closure must remain in immutable governance history.
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete when:
+## 16.1 Completion Criteria
 
-- resolve the source governance finding and confirm that corrective action is required.
-- create one Multi-Domain Action Plan referencing that finding.
-- define action category, responsible domains, owners, due dates, dependencies and verification criteria.
-- authorize and assign the actions to the responsible owners.
-- move the plan to In Progress while source domains execute their own operational work.
-- collect progress, delay, blocker and completion evidence without modifying domain records.
-- publish overdue facts and escalate according to configured rules when necessary.
-- verify completion evidence under the configured verification rules.
-- move the plan to Verified and then Closed only after required actions and dependencies are satisfied.
-- publish action-plan events and preserve immutable plan history.
+- The Action Plan references one governance finding.
+- Assigned actions have been executed by their responsible domains.
+- Required completion evidence has been verified by the source-supported verification authority.
+- The Action Plan reaches `Closed` through `Verified`.
+- Action-plan history and canonical events are preserved.
 
+## 16.2 Postconditions
 
-Postconditions:
-
-- Source-domain operational records and ownership remain unchanged by G00.
-- The completed governance outcome and its lineage are available to authorized consumers.
-- Governance history remains immutable and reproducible.
-- No undefined state, command, event, publisher, actor or technical mechanism has been assumed.
-
----
+- A verified and closed Multi-Domain Action Plan exists.
+- Source-domain operational ownership remains unchanged.
+- The governance finding and action history remain traceable.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-No open issue prevents this scenario from proceeding to Architecture Approval. L2-G00 supplies the owning aggregate, lifecycle, services and canonical event catalogue required for the frozen outcome.
+## 17.1 Open Issues
 
-**Source Assessment:** PASS
+No open issues.
 
-No unsupported operational ownership transfer, actor, approval authority, lifecycle state, event, publisher or implementation mechanism is assumed by this Draft.
+**Architecture assessment:** `PASS`
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No scenario-specific deferred questions.
