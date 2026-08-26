@@ -9,23 +9,23 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Draft  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-I09 — Result Processing & Computation Workflows; applicable Platform Foundation authorization, workflow, event and audit contracts; authoritative participating-domain L2 workflows  
-**Referenced By:** Authorized upstream and downstream domains requiring this governed outcome
+**Last Updated:** 2026-08-26  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-I08 — Marks Collection & Evaluation Workflows; L2-I09 — Result Processing & Computation Workflows; applicable Student Lifecycle and Academic Delivery workflows; applicable Platform Foundation authorization, event and audit architecture  
+**Referenced By:** L2-I10 — Result Publication Workflows; Student Lifecycle and Academic Delivery progression consumers
 
 ---
 
 # 2. Scenario Purpose
 
-Govern **Final Approved Marks to Institutionally Approved Result** from its exact frozen trigger to its exact frozen outcome under Result Processing & Computation ownership, preserving all canonical source boundaries and avoiding unsupported actors, states, events or implementation mechanisms.
+Transform complete Final Approved Marks from I08 into one institutionally approved academic result under I09 ownership, applying configured academic regulations while preserving marks, student and academic-delivery ownership outside Result Processing & Computation.
 
 ---
 
 # 3. Business Outcome
 
-Subject results, credit points, grades, SGPA and CGPA, programme result, classification and academic standing are computed, validated and institutionally approved, and Institutionally Approved Results become available to I10 and to Student Lifecycle and Academic Delivery progression
+Subject results, credit points, grades, SGPA and CGPA, programme result, classification and academic standing are computed, validated and institutionally approved. The resulting Institutionally Approved Result is authoritative for I10 publication and for authorized Student Lifecycle and Academic Delivery progression use.
 
 ---
 
@@ -33,36 +33,38 @@ Subject results, credit points, grades, SGPA and CGPA, programme result, classif
 
 ## 4.1 Start Boundary
 
-The scenario begins when final Approved Marks are available from I08 for all required examination components of the applicable candidate population.
+The scenario begins when Final Approved Marks are available from I08 for every required examination component of the applicable candidate population.
 
 ## 4.2 End Boundary
 
-The scenario ends only when the frozen outcome is established by the canonical owner, required references remain traceable, authorized consumers can resolve the result, applicable completed events have been published, and immutable evidence is retained.
+The scenario ends when I09 has completed computation, validation, institutional approval and finalisation of the applicable results and those results are ready for publication and authorized downstream consumption.
 
 ## 4.3 In Scope
 
-- Tenant, institution, actor, purpose, scope and correlation resolution.
-- `Result Processing aggregate` identification or establishment as required by the frozen outcome.
-- Source-defined authorization, validation, approval and lifecycle behavior.
-- Canonical cross-domain references without ownership transfer.
-- Business failure, interruption and governed recovery treatment.
-- Exact source-defined event publication where applicable.
-- Immutable audit evidence and historical reconstruction.
+- Final Approved Marks intake and readiness verification.
+- Marks aggregation and component weightage application.
+- Academic regulation, pass/fail, grace/benefit and credit rule processing where applicable.
+- Subject, grade, grade-point, SGPA, CGPA and programme-result computation.
+- Academic standing and classification determination.
+- Result validation, institutional approval and finalisation.
+- Publication of source-defined I09 business events.
+- Preservation of result-processing evidence and source-mark traceability.
 
 ## 4.4 Out of Scope
 
-- Authentication implementation, UI, API, schema, database, queue or deployment design.
-- Direct mutation of another domain's canonical aggregate.
-- Consumer-specific decisions or analytics outside the frozen outcome.
-- Technical retry or rollback mechanisms.
-- Inventing states, commands, events, publishers, roles or approvals absent from L2.
+- Creation, correction or approval of marks owned by I08.
+- Publication of official results owned by I10.
+- Student progression decisions owned by Student Lifecycle.
+- Academic-delivery decisions owned by Academic Delivery.
+- API, database, UI, technical workflow, queue, retry, deployment or infrastructure design.
 
 ## 4.5 Related Scenarios
 
-| Relationship | Related Scenario Set | Boundary Reason |
+| Relationship | Related Scenario | Boundary Reason |
 |---|---|---|
-| Related | Adjacent scenarios owned by Result Processing & Computation | They may provide entry facts or consume this outcome without replacing its canonical owner. |
-| Platform dependency | Section A authorization, workflow, event and audit scenarios | They supply governed capabilities without owning this business result. |
+| Upstream | I08 marks evaluation scenarios | Supply Final Approved Marks; I09 does not alter approved marks. |
+| Downstream | L3-I-101 — Publish Official Examination Results | Publishes the institutionally approved result without recomputation. |
+| Downstream consumer | Student Lifecycle progression scenarios | Consume the approved academic outcome without taking I09 ownership. |
 
 ---
 
@@ -70,12 +72,13 @@ The scenario ends only when the frozen outcome is established by the canonical o
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Result Processing & Computation | Primary owner of approved-marks consumption, computation, validation, approval and finalisation. |
-| Participating domains `C, D, I` | Supply or consume only canonical references governed by their own L2 boundaries. |
-| Platform Foundation | Supplies Tenant isolation, authorization, workflow, event distribution and audit capabilities. |
-| Audit Infrastructure | Retains immutable evidence independently from the business aggregate. |
+| Result Processing & Computation / I09 | Canonical owner of academic result computation, validation, approval, finalisation and resulting academic-result facts. |
+| Marks Collection & Evaluation / I08 | Supplies immutable Final Approved Marks and retains evaluation ownership. |
+| Student Lifecycle / C | Supplies/consumes Student and progression context without owning I09 computation. |
+| Academic Delivery / D | Supplies/consumes academic structure or delivery context without owning I09 computation. |
+| Platform Foundation / A | Supplies governed authorization, event transport and audit capability without owning result semantics. |
 
-The frozen participating-domain value remains exactly `C, D, I`. Assignment to Dhruv does not change domain ownership.
+The frozen participating-domain value remains exactly `C, D, I`.
 
 ---
 
@@ -83,30 +86,33 @@ The frozen participating-domain value remains exactly `C, D, I`. Assignment to D
 
 | Business Actor / Role | Responsibility | Authority Boundary |
 |---|---|---|
-| Authorized Initiator | Presents the trigger and required source references. | May initiate only in assigned Tenant, institution and business scope. |
-| Result Processing & Computation Business Owner | Applies authoritative rules and owns the resulting business fact. | Cannot take ownership of participating-domain source data. |
-| Reviewer or Approver, where required | Reviews only a source-defined decision requiring that authority. | No approval role is inferred when L2 does not require one. |
-| Participating-Domain Provider | Supplies an authoritative reference or completed input. | Retains canonical ownership. |
-| Auditor | Reviews immutable evidence. | Read-only and cannot change the outcome. |
+| Result Processing Officer | Coordinates result-processing execution, verifies readiness and performs authorized computation/validation activities. | Cannot modify Final Approved Marks or bypass academic regulations. |
+| Examination Administrator | Supports examination-result processing and source completeness within authorized examination scope. | Does not replace institutional approval authority. |
+| Department Head | Participates in result review/approval where institutional policy assigns departmental approval. | Authority applies only where the configured institutional approval path requires it. |
+| Faculty Dean | Participates in result review/approval where institutional policy assigns faculty-level approval. | Authority applies only where configured. |
+| Academic Registrar | Participates in institutional result governance where the applicable policy assigns that responsibility. | Does not alter I08 marks. |
+| Controller of Examination | Exercises result approval/finalisation authority where assigned by institutional policy. | Cannot bypass required validation or earlier approvals. |
+| Academic Committee | Participates where institutional academic regulations require committee review or approval. | Applies only to the configured governance path. |
+| Candidate | Subject of the computed result and authorized consumer of the final published outcome; does not approve their own result. | No result-processing mutation authority is implied. |
+
+L2-I09 defines these as canonical business actors. The exact approval sequence is institution-configurable; this scenario does not invent a universal sequence beyond the source-defined requirement for institutional approval.
 
 ---
 
 # 7. Preconditions and Entry Criteria
 
-- Tenant, institution, actor and business scope are valid.
-- The exact frozen trigger is supported by authoritative source facts.
-- The `Result Processing aggregate` and required references exist or are eligible for establishment under L2-I09 — Result Processing & Computation Workflows.
-- Applicable policy, configuration, lifecycle and effective-date information is available.
-- Required authorization succeeds before mutation.
-- Required approval is identifiable where L2 explicitly requires it.
-- No unresolved invariant, duplicate outcome or cross-Tenant conflict prevents progression.
-- Audit and correlation context is available.
+- Final Approved Marks exist from I08 for all required examination components in scope.
+- Candidate and examination-scope references are valid and canonical.
+- Applicable grading schemes, credit rules, pass criteria, grace/benefit rules, classification policy and academic regulations are active for the result scope.
+- The result population is eligible for computation.
+- Any required institutional approval path can be resolved under governing policy.
+- No unresolved marks-completeness or candidate-association issue prevents valid computation.
 
 ---
 
 # 8. Trigger
 
-Final Approved Marks are available from I08 for all required examination components of the applicable candidate population
+Final Approved Marks are available from I08 for all required examination components of the applicable candidate population.
 
 ---
 
@@ -114,7 +120,17 @@ Final Approved Marks are available from I08 for all required examination compone
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Receive the frozen trigger: Final Approved Marks are available from I08 for all required examination components of the applicable candidate population. | Result Processing & Computation; applicable participant | Receive the frozen trigger: Final Approved Marks are available from I08 for all required examination components of the applicable candidate population. |\n| 2 | Resolve Tenant, institution, actor, business scope, correlation and every canonical source reference. | Result Processing & Computation; applicable participant | Resolve Tenant, institution, actor, business scope, correlation and every canonical source reference. |\n| 3 | Resolve the `Result Processing aggregate` and its source-defined lifecycle position without copying participating-domain facts. | Result Processing & Computation; applicable participant | Resolve the `Result Processing aggregate` and its source-defined lifecycle position without copying participating-domain facts. |\n| 4 | Authorize the requested Result Processing & Computation action before business mutation. | Result Processing & Computation; applicable participant | Authorize the requested Result Processing & Computation action before business mutation. |\n| 5 | Validate eligibility, uniqueness, policy, effective dates, dependency conditions and separation-of-duty constraints. | Result Processing & Computation; applicable participant | Validate eligibility, uniqueness, policy, effective dates, dependency conditions and separation-of-duty constraints. |\n| 6 | Apply the authoritative L2-I09 — Result Processing & Computation Workflows workflow and rules to the frozen business journey. | Result Processing & Computation; applicable participant | Apply the authoritative L2-I09 — Result Processing & Computation Workflows workflow and rules to the frozen business journey. |\n| 7 | Record the exact frozen result: Subject results, credit points, grades, SGPA and CGPA, programme result, classification and academic standing are computed, validated and institutionally approved, and Institutionally Approved Results become available to I10 and to Student Lifecycle and Academic Delivery progression. | Result Processing & Computation; applicable participant | Record the exact frozen result: Subject results, credit points, grades, SGPA and CGPA, programme result, classification and academic standing are computed, validated and institutionally approved, and Institutionally Approved Results become available to I10 and to Student Lifecycle and Academic Delivery progression. |\n| 8 | Expose only the governed result and permitted canonical references through the owning business contract. | Result Processing & Computation; applicable participant | Expose only the governed result and permitted canonical references through the owning business contract. |\n| 9 | Publish the applicable source-defined completed event after persistence. | Result Processing & Computation; applicable participant | Publish the applicable source-defined completed event after persistence. |\n| 10 | Preserve actor, inputs, decisions, prior and resulting position, event facts and correlation as immutable audit evidence. | Result Processing & Computation; applicable participant | Preserve actor, inputs, decisions, prior and resulting position, event facts and correlation as immutable audit evidence. |
+| 1 | Verify that complete Final Approved Marks are available for the applicable candidates and examination components. | Result Processing Officer / I09 | The population is ready for computation or moves to governed interruption handling. |
+| 2 | Resolve the applicable academic regulations, grading scheme, credit rules, pass criteria, benefit rules and classification policy. | Result Processing Officer; Examination Administrator / I09 | The authoritative computation basis is established. |
+| 3 | Aggregate approved marks according to the configured assessment-component and weightage rules. | Result Processing Officer / I09 | Governed aggregate marks are available without changing I08 source marks. |
+| 4 | Apply academic rules, including mandatory-component, pass/fail, credit and permitted grace/benefit rules. | Result Processing Officer / I09 | Each candidate has a policy-governed academic computation basis. |
+| 5 | Compute subject outcomes, grades, grade points and earned credits. | Result Processing Officer / I09 | Subject-level academic results are established. |
+| 6 | Compute SGPA, CGPA and applicable semester, academic-year or programme outcomes. | Result Processing Officer / I09 | Aggregate academic performance is established. |
+| 7 | Determine classification and academic standing under the applicable regulations. | Result Processing Officer / I09 | The complete computed academic outcome exists. |
+| 8 | Validate computational accuracy, credit consistency, grade consistency and regulation compliance. | Result Processing Officer; Examination Administrator / I09 | Only validated results proceed to institutional approval. |
+| 9 | Complete the applicable institutional approval path using only the canonical I09 actors assigned by institutional policy. | Controller of Examination; Academic Registrar; Department Head; Faculty Dean; Academic Committee, as applicable / I09 | The validated result becomes institutionally approved. |
+| 10 | Finalise the approved result and make it ready for I10 publication and authorized progression consumers. | Controller of Examination or other policy-assigned finalising authority / I09 | The institutionally approved result becomes the authoritative I09 outcome. |
+| 11 | Publish the applicable canonical I09 events and preserve immutable processing and approval evidence. | Result Processing & Computation / I09; Event and Audit Infrastructure | Downstream consumers can react without acquiring result ownership. |
 
 ---
 
@@ -122,10 +138,9 @@ Final Approved Marks are available from I08 for all required examination compone
 
 | Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
 |---|---|---|---|---|
-| Policy-qualified route | Policy permits more than one valid path. | Use only the configured source-defined route. | A valid qualified outcome is recorded. | Result Processing & Computation |
-| Future-effective result | A valid outcome is effective later. | Preserve the current position until the effective condition. | No premature availability occurs. | Result Processing & Computation |
-| Source correction | A required fact is corrected by its owner. | Re-resolve the successor fact and continue only after validation. | Ownership and lineage remain intact. | Source owner; Result Processing & Computation |
-| Mixed result | The outcome permits more than one named result. | Record only the result supported by evidence and policy. | No unsupported success or failure is inferred. | Result Processing & Computation |
+| Grace or academic benefit applies | Approved institutional regulations permit a benefit | Apply the configured benefit before completing the relevant result computation. | A valid policy-governed result reaches the same institutional approval outcome. | I09 |
+| Multiple institutional approval stages | Policy requires more than one approval level | Complete the configured Department, Faculty, Registrar, Controller or Academic Committee path as applicable. | The result becomes institutionally approved only after all required stages complete. | I09 |
+| No optional benefit applies | Candidate does not satisfy a configured grace/benefit condition | Continue computation using the ordinary academic regulations. | Normal computed result proceeds to validation and approval. | I09 |
 
 ---
 
@@ -133,15 +148,13 @@ Final Approved Marks are available from I08 for all required examination compone
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant, institution or scope is invalid. | The result cannot be established validly. | Reject without cross-scope mutation. | Platform Foundation; Result Processing & Computation |
-| Canonical reference is absent or inconsistent. | Validation cannot complete. | Obtain correction from its owner; create no shadow fact. | Source owner; Result Processing & Computation |
-| Authorization or approval fails. | The transition is prohibited. | Stop before mutation and retain denial evidence. | Authorization & Policy; Result Processing & Computation |
-| Invariant or policy fails. | The requested result is invalid. | Retain the prior authoritative position. | Result Processing & Computation |
-| Processing is interrupted. | No reliable completed outcome exists. | Resume only through a source-defined recovery path. | Result Processing & Computation |
-| Success-event condition is absent. | A completed fact cannot truthfully be published. | Publish no success event. | Result Processing & Computation; Event Infrastructure |
-| Audit evidence cannot be retained. | The result is not governable. | Do not complete the transition. | Result Processing & Computation; Audit Infrastructure |
+| Required Final Approved Marks are missing | Computation would be incomplete | Withhold computation for the affected scope until I08 supplies the authoritative marks. | I08; I09 |
+| Candidate or examination association is inconsistent | Result could be associated incorrectly | Resolve through the applicable candidate-association correction scenario before final approval. | I09 and source owner |
+| Academic-rule configuration is unavailable or contradictory | A reliable result cannot be computed | Stop the affected computation and resolve the authoritative policy/configuration issue. | I09 / applicable policy owner |
+| Validation fails | Result cannot proceed to approval | Correct the computation basis or source-owned input through the appropriate governed path, then recompute where authorized. | I09; source owner where applicable |
+| Required institutional approval is denied or cannot complete | Result is not institutionally approved | Retain the last valid non-approved position and follow the applicable governed resolution path. | I09 |
 
-No technical retry, transaction rollback or implementation recovery is defined at L3.
+No technical retry, rollback or implementation recovery mechanism is defined at L3.
 
 ---
 
@@ -149,101 +162,98 @@ No technical retry, transaction rollback or implementation recovery is defined a
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| Result Processing & Computation owns the resulting business fact. | Result Processing & Computation | No participant may directly rewrite the result. | L2-I09 — Result Processing & Computation Workflows |
-| Source facts are consumed by reference. | Participating domains | Collaboration never duplicates ownership. | L1; `DEPENDENCY_MAP.md`; L2-I09 — Result Processing & Computation Workflows |
-| Authorization precedes mutation. | Authorization & Policy | Unauthorized work produces no success. | Platform and L2-I09 — Result Processing & Computation Workflows rules |
-| Validation and required approval precede outcome. | Result Processing & Computation | Invalid or unapproved work cannot progress. | L2-I09 — Result Processing & Computation Workflows |
-| Prior authoritative history remains traceable. | Result Processing & Computation; Audit Infrastructure | Correction, replacement or closure never erases evidence. | L2-I09 — Result Processing & Computation Workflows; Audit architecture |
-| Events represent completed facts. | Result Processing & Computation; Event Infrastructure | Incomplete work publishes no success event. | L2-I09 — Result Processing & Computation Workflows; Event architecture |
-| Tenant and institution isolation are mandatory. | Platform Foundation; Result Processing & Computation | Cross-Tenant outcomes are prohibited. | L1; `DEPENDENCY_MAP.md` |
+| Result computation begins only from Final Approved Marks. | I09 / I08 boundary | Provisional or unapproved marks cannot enter authoritative result computation. | L2-I09 §4.1, §5.1 |
+| Final Approved Marks are immutable inputs to I09. | I08 | I09 cannot alter evaluation history or awarded marks. | L2-I09 §4.6 |
+| Academic computation follows approved institutional regulations. | I09 | Grading, credit, pass/fail, grace and classification logic must use active policy. | L2-I09 §§4.4–4.5, 5.3–5.11 |
+| Validation precedes institutional approval. | I09 | Unvalidated results cannot become authoritative approved results. | L2-I09 §§5.12–5.13 |
+| Institutional approval precedes finalisation/publication readiness. | I09 | Only approved results may become ready for I10. | L2-I09 §§4.2, 5.13–5.15 |
+| I10 publishes results but does not recalculate them. | I09/I10 boundary | Result ownership remains in I09 after publication. | L2-I09 §4.2, §4.7 |
 
 ---
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner |
-|---|---|---|---|---|
-| `Result Processing aggregate` | Trigger-supported current condition | Progresses only through the lifecycle defined by L2-I09 — Result Processing & Computation Workflows. | The source-defined position supporting the frozen outcome; no new state is invented. | Result Processing & Computation |
-| Participating source facts | Existing authoritative facts | Referenced and validated. | Unchanged unless their own scenario changes them. | Participating owner |
-| Tenant and institution | Existing | Supply isolation and scope. | Unchanged. | Platform / institutional owner |
-| Consumer projections | Existing or absent | May reflect the completed fact. | Changed only by their owner. | Applicable consumer |
-| Audit evidence | Existing history | Appends immutable evidence. | Prior evidence remains intact. | Audit Infrastructure |
+L2-I09 defines a business lifecycle rather than a compact named state enumeration. This scenario preserves the exact source progression without inventing additional states:
 
-Words such as active, approved, closed, published, restored or archived in the frozen title are not treated as new state names; L2-I09 — Result Processing & Computation Workflows remains authoritative.
+`Final Approved Marks Consumption → Marks Aggregation → Academic Rule Processing → Grace & Benefit Processing → Subject Result Computation → Credit Point Calculation → Grade Calculation → SGPA/CGPA Calculation → Programme Result Computation → Academic Standing Determination → Result Validation → Result Approval → Result Finalisation → Ready for Publication`.
+
+| Business Concept | Entry Condition | Scenario Impact | Resulting Lifecycle Position | Canonical Owner |
+|---|---|---|---|---|
+| Final Approved Marks | Approved and complete | Consumed as immutable inputs | Unchanged | I08 |
+| Result Processing outcome | Ready for computation | Progresses through the canonical I09 lifecycle | Finalised / Ready for Publication | I09 |
+| Student and academic-delivery facts | Existing authoritative context | Referenced only | Unchanged by I09 | C / D |
 
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Event Treatment
+## 14.1 Canonical Business Events
 
-| Event / Business Fact | Publication Condition | Publisher / Consumers |
-|---|---|---|
-| `Result Processing Started`; `Marks Aggregated`; `Result Validated`; `Result Approved`; `Result Finalised`; `Result Ready for Publication` | Only after the corresponding source-defined transition succeeds. | The source-defined aggregate publishes; consumers react without taking ownership. |
+L2-I09 identifies significant result-processing events including:
 
-No additional event or publisher is inferred.
+- `Result Processing Started`
+- `Subject Result Computed`
+- `Semester Result Computed`
+- `CGPA Calculated`
+- `Result Approved`
+- `Result Ready for Publication`
 
-## 14.2 Synchronous Business Contracts and Hand-offs
+The exact event is published only when its corresponding business fact has been established. I09 retains event-semantic ownership; Event Infrastructure owns transport.
 
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
+## 14.2 Business Hand-offs
+
+| Provider | Consumer | Hand-off | Ownership Effect |
 |---|---|---|---|
-| Tenant and institutional context | Platform / institutional owner | Result Processing & Computation | Valid isolation and configuration scope. |
-| Canonical source references | Participating domains | Result Processing & Computation | Current facts required by the trigger. |
-| Governed business service | Result Processing & Computation | Authorized initiator | Validation and business outcome. |
-| Completed authoritative result | Result Processing & Computation | Authorized consumers | The frozen outcome and permitted references. |
-| Audit input | Result Processing & Computation | Audit Infrastructure | Actor, decisions, states, event and correlation facts. |
+| I08 | I09 | Final Approved Marks | I08 retains marks/evaluation ownership. |
+| I09 | I10 | Institutionally Approved Result ready for publication | I09 retains result-computation ownership; I10 owns publication. |
+| I09 | Student Lifecycle / C | Approved academic-result outcome | C may make its own progression decision without rewriting the I09 result. |
+| I09 | Academic Delivery / D | Approved academic-result outcome | D consumes academic outcome without acquiring I09 ownership. |
 
 ---
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization
-
-- Authentication alone does not authorize the transition.
-- Authorization is scoped by Tenant, institution, role, permission and resource.
-- Participating-domain access does not grant direct primary-aggregate mutation.
-- Denial terminates processing before mutation.
-
-## 15.2 Approval and Separation of Duty
-
-- Approval is required only where L2-I09 — Result Processing & Computation Workflows or active policy explicitly requires it.
-- An approver cannot be inferred from assigned author or canonical owner.
-- Separation-of-duty checks remain policy-derived.
-- No override bypasses validation or audit.
-
-## 15.3 Audit Obligations
-
-Evidence must include Tenant, institution, scenario and aggregate identifiers, actor, authorization scope, source references, prior and resulting position, policy/configuration version, approvals where required, reason, timestamp, event facts, failures and correlation identifier. Evidence remains immutable.
+- Result-processing activities require authorization for the applicable institution and examination scope.
+- Institutional approval is mandatory before finalisation; the exact actor sequence follows the institution's configured policy using only L2-I09 canonical actors.
+- A candidate cannot approve their own result.
+- Any applied grace/benefit, validation outcome and institutional approval must remain auditable.
+- Evidence must preserve source marks references, regulations applied, computed outcomes, validation, approvals, finalisation and published event facts.
 
 ---
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete only when:
+## 16.1 Completion Criteria
 
-- the exact frozen trigger was validated;
-- Tenant, institution, actor, scope and canonical references were resolved;
-- authorization and every source-defined validation or approval succeeded;
-- the `Result Processing aggregate` remained under Result Processing & Computation ownership;
-- the exact frozen outcome was recorded: Subject results, credit points, grades, SGPA and CGPA, programme result, classification and academic standing are computed, validated and institutionally approved, and Institutionally Approved Results become available to I10 and to Student Lifecycle and Academic Delivery progression;
-- participating-domain ownership remained unchanged;
-- only applicable source-defined events were published;
-- the result became available through governed contracts; and
-- immutable audit evidence was preserved.
+- Complete Final Approved Marks were consumed from I08.
+- Applicable academic regulations were resolved and applied.
+- Subject, credit, grade, SGPA/CGPA, programme, classification and academic-standing outcomes were computed.
+- The result passed source-defined validation.
+- The required institutional approval path completed.
+- The result was finalised and made ready for I10 publication.
+- Applicable I09 events and immutable evidence were preserved.
 
-Postconditions:
+## 16.2 Postconditions
 
-- No source fact was duplicated or rewritten by a consumer.
-- No unsupported state, actor, approval, event or publisher was introduced.
-- Failed or incomplete work is not represented as success.
-- Historical and correlation evidence remains reconstructable.
+- The Institutionally Approved Result is authoritative under I09 ownership.
+- I08 Final Approved Marks remain unchanged.
+- I10 may publish the approved result without recomputation.
+- Student Lifecycle and Academic Delivery may consume the result within their own canonical boundaries.
 
 ---
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
+## 17.1 Open Issues
+
+No L3-local architecture issue prevents this scenario from expressing the frozen outcome. L2-I09 defines canonical actors and institutional approval but allows the exact institutional approval sequence to be configured; this scenario therefore does not hard-code one universal sequence.
+
+## 17.2 Assumptions
+
+None.
+
+## 17.3 Deferred Questions
+
+None.
+
 **Architecture assessment:** `PASS`
-
-No open issue prevents Architecture Approval. The Draft uses only the frozen semantics and applicable authoritative L2 event vocabulary.
-
-No unsupported actor, aggregate, state, transition, event, publisher, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
