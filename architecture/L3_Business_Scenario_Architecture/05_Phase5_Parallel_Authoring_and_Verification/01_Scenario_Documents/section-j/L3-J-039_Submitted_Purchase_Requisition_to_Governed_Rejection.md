@@ -9,241 +9,70 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Draft  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-21  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-J03 — Purchase Requisition & Approval Workflows; applicable Platform Foundation authorization, workflow, event and audit contracts; authoritative participating-domain L2 workflows  
-**Referenced By:** Authorized upstream and downstream domains requiring this governed outcome
+**Last Updated:** 2026-08-26  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-J03 — Purchase Requisition & Approval Workflows; Finance budget-validation reference where required; requesting-domain demand context; Platform Foundation authorization, workflow, event and audit architecture  
+**Referenced By:** requesting-domain demand governance and downstream procurement eligibility
 
 ---
 
 # 2. Scenario Purpose
-
-Govern **Submitted Purchase Requisition to Governed Rejection** from its exact frozen trigger to its exact frozen outcome under Purchase Requisition & Approval ownership, preserving all canonical source boundaries and avoiding unsupported actors, states, events or implementation mechanisms.
-
----
+Govern rejection of a submitted Purchase Requisition when demand, validation, policy or authority requirements are not satisfied.
 
 # 3. Business Outcome
-
-The requisition is formally rejected with authority, reason, and history preserved and no procurement release implied
-
----
+The submitted requisition reaches a governed rejection outcome, remains auditable, and is not released for procurement.
 
 # 4. Scenario Boundary and Scope
-
-## 4.1 Start Boundary
-
-The scenario begins when a submitted requisition fails demand, policy, budget-reference, or authority review.
-
-## 4.2 End Boundary
-
-The scenario ends only when the frozen outcome is established by the canonical owner, required references remain traceable, authorized consumers can resolve the result, applicable completed events have been published, and immutable evidence is retained.
-
-## 4.3 In Scope
-
-- Tenant, institution, actor, purpose, scope and correlation resolution.
-- `Purchase Requisition aggregate` identification or establishment as required by the frozen outcome.
-- Source-defined authorization, validation, approval and lifecycle behavior.
-- Canonical cross-domain references without ownership transfer.
-- Business failure, interruption and governed recovery treatment.
-- Exact source-defined event publication where applicable.
-- Immutable audit evidence and historical reconstruction.
-
-## 4.4 Out of Scope
-
-- Authentication implementation, UI, API, schema, database, queue or deployment design.
-- Direct mutation of another domain's canonical aggregate.
-- Consumer-specific decisions or analytics outside the frozen outcome.
-- Technical retry or rollback mechanisms.
-- Inventing states, commands, events, publishers, roles or approvals absent from L2.
-
-## 4.5 Related Scenarios
-
-| Relationship | Related Scenario Set | Boundary Reason |
-|---|---|---|
-| Related | Adjacent scenarios owned by Purchase Requisition & Approval | They may provide entry facts or consume this outcome without replacing its canonical owner. |
-| Platform dependency | Section A authorization, workflow, event and audit scenarios | They supply governed capabilities without owning this business result. |
-
----
+**Start:** A submitted Purchase Requisition enters J03 review. **End:** The Requisition Reviewer / Approver records a conclusive rejection and J03 publishes the rejection fact. Out of scope: correcting Finance truth, sourcing, PO creation or technical workflow mechanics.
 
 # 5. Ownership and Participating Domains
-
-| Domain / Section | Responsibility in Scenario |
-|---|---|
-| Purchase Requisition & Approval | Primary owner of purchase requisition demand, submission, approval, rejection and release. |
-| Participating domains `F, J, VAR:Requesting Domain` | Supply or consume only canonical references governed by their own L2 boundaries. |
-| Platform Foundation | Supplies Tenant isolation, authorization, workflow, event distribution and audit capabilities. |
-| Audit Infrastructure | Retains immutable evidence independently from the business aggregate. |
-
-The frozen participating-domain value remains exactly `F, J, VAR:Requesting Domain`. Assignment to Dhruv does not change domain ownership.
-
----
+J03 owns rejection and Purchase Requisition state. Finance owns any budget-validation truth; Requesting Domain owns originating demand context.
 
 # 6. Business Actors, Roles and Responsibilities
+- **Requesting Actor / Requesting Domain:** supplied the submitted demand and receives the governed rejection consequence.
+- **Budget Validator:** supplies Finance-owned budget-validation reference where policy requires it.
+- **Requisition Reviewer / Approver:** reviews the requisition and records rejection when requirements are not satisfied.
 
-| Business Actor / Role | Responsibility | Authority Boundary |
-|---|---|---|
-| Authorized Initiator | Presents the trigger and required source references. | May initiate only in assigned Tenant, institution and business scope. |
-| Purchase Requisition & Approval Business Owner | Applies authoritative rules and owns the resulting business fact. | Cannot take ownership of participating-domain source data. |
-| Reviewer or Approver, where required | Reviews only a source-defined decision requiring that authority. | No approval role is inferred when L2 does not require one. |
-| Participating-Domain Provider | Supplies an authoritative reference or completed input. | Retains canonical ownership. |
-| Auditor | Reviews immutable evidence. | Read-only and cannot change the outcome. |
-
----
+Requester cannot be Final Approver; budget validation does not transfer Finance ownership.
 
 # 7. Preconditions and Entry Criteria
-
-- Tenant, institution, actor and business scope are valid.
-- The exact frozen trigger is supported by authoritative source facts.
-- The `Purchase Requisition aggregate` and required references exist or are eligible for establishment under L2-J03 — Purchase Requisition & Approval Workflows.
-- Applicable policy, configuration, lifecycle and effective-date information is available.
-- Required authorization succeeds before mutation.
-- Required approval is identifiable where L2 explicitly requires it.
-- No unresolved invariant, duplicate outcome or cross-Tenant conflict prevents progression.
-- Audit and correlation context is available.
-
----
+A Purchase Requisition has been submitted and sufficient review/validation evidence exists to make a governed decision.
 
 # 8. Trigger
-
-A submitted requisition fails demand, policy, budget-reference, or authority review
-
----
+Review identifies grounds requiring rejection of the submitted Purchase Requisition.
 
 # 9. Main Business Flow
-
-| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
-|---|---|---|---|
-| 1 | Receive the frozen trigger: A submitted requisition fails demand, policy, budget-reference, or authority review. | Purchase Requisition & Approval; applicable participant | Receive the frozen trigger: A submitted requisition fails demand, policy, budget-reference, or authority review. |\n| 2 | Resolve Tenant, institution, actor, business scope, correlation and every canonical source reference. | Purchase Requisition & Approval; applicable participant | Resolve Tenant, institution, actor, business scope, correlation and every canonical source reference. |\n| 3 | Resolve the `Purchase Requisition aggregate` and its source-defined lifecycle position without copying participating-domain facts. | Purchase Requisition & Approval; applicable participant | Resolve the `Purchase Requisition aggregate` and its source-defined lifecycle position without copying participating-domain facts. |\n| 4 | Authorize the requested Purchase Requisition & Approval action before business mutation. | Purchase Requisition & Approval; applicable participant | Authorize the requested Purchase Requisition & Approval action before business mutation. |\n| 5 | Validate eligibility, uniqueness, policy, effective dates, dependency conditions and separation-of-duty constraints. | Purchase Requisition & Approval; applicable participant | Validate eligibility, uniqueness, policy, effective dates, dependency conditions and separation-of-duty constraints. |\n| 6 | Apply the authoritative L2-J03 — Purchase Requisition & Approval Workflows workflow and rules to the frozen business journey. | Purchase Requisition & Approval; applicable participant | Apply the authoritative L2-J03 — Purchase Requisition & Approval Workflows workflow and rules to the frozen business journey. |\n| 7 | Record the exact frozen result: The requisition is formally rejected with authority, reason, and history preserved and no procurement release implied. | Purchase Requisition & Approval; applicable participant | Record the exact frozen result: The requisition is formally rejected with authority, reason, and history preserved and no procurement release implied. |\n| 8 | Expose only the governed result and permitted canonical references through the owning business contract. | Purchase Requisition & Approval; applicable participant | Expose only the governed result and permitted canonical references through the owning business contract. |\n| 9 | Publish the applicable source-defined completed event after persistence. | Purchase Requisition & Approval; applicable participant | Publish the applicable source-defined completed event after persistence. |\n| 10 | Preserve actor, inputs, decisions, prior and resulting position, event facts and correlation as immutable audit evidence. | Purchase Requisition & Approval; applicable participant | Preserve actor, inputs, decisions, prior and resulting position, event facts and correlation as immutable audit evidence. |
-
----
+1. Requisition Reviewer / Approver reviews the submitted demand, policy, authority and applicable validation evidence.
+2. Where Finance validation is required, use the authoritative Budget Validator reference without modifying Finance truth.
+3. Determine that approval criteria are not satisfied and rejection is the governed outcome.
+4. J03 records the rejection decision and reason/evidence.
+5. J03 publishes `PurchaseRequisitionRejected`.
+6. Prevent the rejected requisition from being released to J01/J04 as approved demand.
+7. Preserve the Requesting Domain context and complete audit history.
 
 # 10. Alternate Business Flows
-
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| Policy-qualified route | Policy permits more than one valid path. | Use only the configured source-defined route. | A valid qualified outcome is recorded. | Purchase Requisition & Approval |
-| Future-effective result | A valid outcome is effective later. | Preserve the current position until the effective condition. | No premature availability occurs. | Purchase Requisition & Approval |
-| Source correction | A required fact is corrected by its owner. | Re-resolve the successor fact and continue only after validation. | Ownership and lineage remain intact. | Source owner; Purchase Requisition & Approval |
-| Mixed result | The outcome permits more than one named result. | Record only the result supported by evidence and policy. | No unsupported success or failure is inferred. | Purchase Requisition & Approval |
-
----
+If the review outcome is return for clarification/amendment rather than rejection, follow the applicable J03 return/amendment path and do not publish the rejection event.
 
 # 11. Failure, Interruption and Business Recovery
-
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Tenant, institution or scope is invalid. | The result cannot be established validly. | Reject without cross-scope mutation. | Platform Foundation; Purchase Requisition & Approval |
-| Canonical reference is absent or inconsistent. | Validation cannot complete. | Obtain correction from its owner; create no shadow fact. | Source owner; Purchase Requisition & Approval |
-| Authorization or approval fails. | The transition is prohibited. | Stop before mutation and retain denial evidence. | Authorization & Policy; Purchase Requisition & Approval |
-| Invariant or policy fails. | The requested result is invalid. | Retain the prior authoritative position. | Purchase Requisition & Approval |
-| Processing is interrupted. | No reliable completed outcome exists. | Resume only through a source-defined recovery path. | Purchase Requisition & Approval |
-| Success-event condition is absent. | A completed fact cannot truthfully be published. | Publish no success event. | Purchase Requisition & Approval; Event Infrastructure |
-| Audit evidence cannot be retained. | The result is not governable. | Do not complete the transition. | Purchase Requisition & Approval; Audit Infrastructure |
-
-No technical retry, transaction rollback or implementation recovery is defined at L3.
-
----
+If decision authority or validation evidence is incomplete, do not infer rejection or approval; keep the requisition under governed review until a valid business decision is available.
 
 # 12. Business Rules and Decision Constraints
-
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| Purchase Requisition & Approval owns the resulting business fact. | Purchase Requisition & Approval | No participant may directly rewrite the result. | L2-J03 — Purchase Requisition & Approval Workflows |
-| Source facts are consumed by reference. | Participating domains | Collaboration never duplicates ownership. | L1; `DEPENDENCY_MAP.md`; L2-J03 — Purchase Requisition & Approval Workflows |
-| Authorization precedes mutation. | Authorization & Policy | Unauthorized work produces no success. | Platform and L2-J03 — Purchase Requisition & Approval Workflows rules |
-| Validation and required approval precede outcome. | Purchase Requisition & Approval | Invalid or unapproved work cannot progress. | L2-J03 — Purchase Requisition & Approval Workflows |
-| Prior authoritative history remains traceable. | Purchase Requisition & Approval; Audit Infrastructure | Correction, replacement or closure never erases evidence. | L2-J03 — Purchase Requisition & Approval Workflows; Audit architecture |
-| Events represent completed facts. | Purchase Requisition & Approval; Event Infrastructure | Incomplete work publishes no success event. | L2-J03 — Purchase Requisition & Approval Workflows; Event architecture |
-| Tenant and institution isolation are mandatory. | Platform Foundation; Purchase Requisition & Approval | Cross-Tenant outcomes are prohibited. | L1; `DEPENDENCY_MAP.md` |
-
----
+Only J03 owns the requisition decision; requester cannot approve their own demand; Finance validation is a reference; rejected requisitions cannot be released for procurement.
 
 # 13. State and Lifecycle Impact
-
-| Business Concept / Aggregate | Entry Condition | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner |
-|---|---|---|---|---|
-| `Purchase Requisition aggregate` | Trigger-supported current condition | Progresses only through the lifecycle defined by L2-J03 — Purchase Requisition & Approval Workflows. | The source-defined position supporting the frozen outcome; no new state is invented. | Purchase Requisition & Approval |
-| Participating source facts | Existing authoritative facts | Referenced and validated. | Unchanged unless their own scenario changes them. | Participating owner |
-| Tenant and institution | Existing | Supply isolation and scope. | Unchanged. | Platform / institutional owner |
-| Consumer projections | Existing or absent | May reflect the completed fact. | Changed only by their owner. | Applicable consumer |
-| Audit evidence | Existing history | Appends immutable evidence. | Prior evidence remains intact. | Audit Infrastructure |
-
-Words such as active, approved, closed, published, restored or archived in the frozen title are not treated as new state names; L2-J03 — Purchase Requisition & Approval Workflows remains authoritative.
-
----
+The requisition reaches the source-referenced Rejected stage. No additional rejected sub-state is invented.
 
 # 14. Business Events and Cross-Domain Collaboration
-
-## 14.1 Canonical Business Event Treatment
-
-| Event / Business Fact | Publication Condition | Publisher / Consumers |
-|---|---|---|
-| `PurchaseRequisitionRejected` | Only after the corresponding source-defined transition succeeds. | The source-defined aggregate publishes; consumers react without taking ownership. |
-
-No additional event or publisher is inferred.
-
-## 14.2 Synchronous Business Contracts and Hand-offs
-
-| Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
-|---|---|---|---|
-| Tenant and institutional context | Platform / institutional owner | Purchase Requisition & Approval | Valid isolation and configuration scope. |
-| Canonical source references | Participating domains | Purchase Requisition & Approval | Current facts required by the trigger. |
-| Governed business service | Purchase Requisition & Approval | Authorized initiator | Validation and business outcome. |
-| Completed authoritative result | Purchase Requisition & Approval | Authorized consumers | The frozen outcome and permitted references. |
-| Audit input | Purchase Requisition & Approval | Audit Infrastructure | Actor, decisions, states, event and correlation facts. |
-
----
+J03 publishes `PurchaseRequisitionRejected`; it does not publish `PurchaseRequisitionApproved` or `PurchaseRequisitionReleasedForProcurement` for the rejected outcome.
 
 # 15. Business Authorization, Approval and Audit Obligations
-
-## 15.1 Authorization
-
-- Authentication alone does not authorize the transition.
-- Authorization is scoped by Tenant, institution, role, permission and resource.
-- Participating-domain access does not grant direct primary-aggregate mutation.
-- Denial terminates processing before mutation.
-
-## 15.2 Approval and Separation of Duty
-
-- Approval is required only where L2-J03 — Purchase Requisition & Approval Workflows or active policy explicitly requires it.
-- An approver cannot be inferred from assigned author or canonical owner.
-- Separation-of-duty checks remain policy-derived.
-- No override bypasses validation or audit.
-
-## 15.3 Audit Obligations
-
-Evidence must include Tenant, institution, scenario and aggregate identifiers, actor, authorization scope, source references, prior and resulting position, policy/configuration version, approvals where required, reason, timestamp, event facts, failures and correlation identifier. Evidence remains immutable.
-
----
+Review authority, validation references, rejection reason and decision evidence remain auditable.
 
 # 16. Completion Criteria and Postconditions
-
-The scenario is complete only when:
-
-- the exact frozen trigger was validated;
-- Tenant, institution, actor, scope and canonical references were resolved;
-- authorization and every source-defined validation or approval succeeded;
-- the `Purchase Requisition aggregate` remained under Purchase Requisition & Approval ownership;
-- the exact frozen outcome was recorded: The requisition is formally rejected with authority, reason, and history preserved and no procurement release implied;
-- participating-domain ownership remained unchanged;
-- only applicable source-defined events were published;
-- the result became available through governed contracts; and
-- immutable audit evidence was preserved.
-
-Postconditions:
-
-- No source fact was duplicated or rewritten by a consumer.
-- No unsupported state, actor, approval, event or publisher was introduced.
-- Failed or incomplete work is not represented as success.
-- Historical and correlation evidence remains reconstructable.
-
----
+The requisition is conclusively rejected, not released downstream, and fully traceable to its demand and validation context.
 
 # 17. Open Issues, Assumptions and Deferred Questions
+No L3-local issue remains.
 
 **Architecture assessment:** `PASS`
-
-No open issue prevents Architecture Approval. The Draft uses only the frozen semantics and applicable authoritative L2 event vocabulary.
-
-No unsupported actor, aggregate, state, transition, event, publisher, approval authority, cross-domain contract or implementation mechanism is assumed by this Draft.
