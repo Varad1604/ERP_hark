@@ -9,211 +9,124 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Draft  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; applicable G01–G10 readiness sources; L2-I03 — Examination Planning & Scheduling where the configured readiness type is Examination  
+**Last Updated:** 2026-08-26  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; L2-G00 Locked Amendment 2026-08-26; ADR-G-READINESS-001; applicable G01–G10 readiness sources; L2-I03 where the configured readiness type is Examination  
 **Referenced By:** Authorized campus-governance and institutional consumers of the completed readiness decision
 
 # 2. Scenario Purpose
 
-Govern one configured campus-operational readiness assessment using readiness information published by its canonical operational owners, while preserving the ownership of the associated admission, academic, examination, event, emergency, or other institutional activity.
+Govern one configured campus-operational readiness assessment using readiness information published by canonical operational owners while preserving ownership of the associated admission, academic, examination, event, emergency or other institutional activity.
 
 # 3. Business Outcome
 
-Current operational indicators for the applicable readiness type are consolidated, reviewed, and formally closed with a governance readiness decision, permitting, restricting, or deferring the associated activity
+Current operational indicators are consolidated, classified, reviewed and conclusively closed by the `Executive Reviewer` with a G00 governance readiness decision that informs—but does not take ownership of—the associated institutional activity.
 
 # 4. Scenario Boundary and Scope
 
-## 4.1 Start Boundary
+**Start:** A configured Campus Readiness Assessment is scheduled.  
+**End:** The assessment reaches `Closed` with source references, calculated classification, Executive Reviewer decision and governance history preserved.
 
-A configured campus readiness assessment is scheduled for a supported readiness type (daily, academic session, examination, admission, event, or emergency).
-
-## 4.2 End Boundary
-
-The scenario ends when the Campus Readiness Assessment has reached `Closed` with its source references, calculated readiness result, review evidence, and governance readiness decision preserved. The readiness decision governs campus-operational readiness only; it does not take ownership of the associated activity from its canonical domain.
-
-## 4.3 In Scope
-
-- One configured G00 Campus Readiness Assessment.
-- Published readiness information from applicable Campus Operations domains.
-- The configured readiness type, indicators, thresholds, and assessment rules.
-- Consolidation and calculation of the G00 readiness result.
-- Review and recording of the governance readiness decision.
-- Source-defined readiness lifecycle and governance events.
-- Immutable governance history.
-
-## 4.4 Out of Scope
-
-- Execution or correction of operational work owned by G01–G10.
-- Examination planning, scheduling, approval, conduct, or examination-domain readiness decisions owned by Section I.
-- Admission, academic-session, or other associated-activity lifecycle decisions owned outside G00.
-- Dashboard composition or notification delivery owned by Section H.
-- Inventing an approval authority, readiness state, or event not defined upstream.
-
-## 4.5 Related Scenarios — Optional
-
-| Relationship | Related Scenario | Boundary Reason |
-|---|---|---|
-| Follow-up | L3-G-003 — Campus Operational Review to Governance Closure | A readiness concern may require a separate governance review. |
-| Follow-up | L3-G-005 — Operational Risk Identification to Risk Closure | Material readiness concerns may be governed as operational risks. |
-| Follow-up | L3-G-006 — Multi-Domain Action Plan to Verified Closure | A governance finding may require corrective action coordination. |
+In scope: readiness information from G01–G10, configured readiness type/rules, calculation, classification, executive review, G00 decision and readiness events. Out of scope: modifying operational source facts, approving another domain's lifecycle, dashboard/notification ownership, and implementation mechanisms.
 
 # 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
-|---|---|
-| Campus Operations Governance / G | Canonical owner of the Campus Readiness Assessment, its lifecycle, readiness result, governance decision, and governance history. |
-| Platform Foundation / A | Participates according to the frozen readiness-variant lineage; no G00 business ownership is transferred to Section A. |
-| Institution & Structure / B | Retains ownership of the institutional context associated with applicable readiness types; G00 determines only campus-operational readiness. |
-| Student Lifecycle / C | Retains ownership of admission/student-lifecycle decisions when Admission Readiness is the configured type. |
-| Academic Delivery / D | Retains ownership of academic-session and academic-delivery decisions when the readiness assessment supports those activities. |
-| Institutional Services & Intelligence / H | Consumes governed readiness information within its own reporting, notification, dashboard, or governance boundaries; it does not own the G00 assessment. |
-| Examination / I | Retains Examination planning, scheduling, approval, and conduct ownership when Examination Readiness is the configured type. |
+G00 owns the Campus Readiness Assessment, classification, governance decision and history. G01–G10 retain ownership of source readiness facts. B/C/D/I retain ownership of associated institutional lifecycles. H may consume governed readiness information. A supplies platform authorization/workflow/event/audit capability without owning readiness facts or decisions.
 
-The frozen participating-domain value is preserved exactly as `G, A, B, C, D, H, I`.
+The frozen participating-domain value remains `G, A, B, C, D, H, I`.
 
 # 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility | Source-Supported Authority |
-|---|---|---|
-| Governance Coordinator | Creates and coordinates the Campus Readiness Assessment within authorized scope. | L2-G00 authorization matrix assigns `Create Readiness Assessment` to this role. |
-| Campus Operations Manager | Reviews campus-operational information where an operational review is required. | L2-G00 authorization matrix assigns conduct of operational review to this role. |
-| Executive Reviewer | Participates in the source-defined executive review step of readiness governance. | L2-G00 defines this as a typical governance role; no universal final approval authority is assigned. |
+| Actor | Responsibility |
+|---|---|
+| Governance Coordinator | Creates and coordinates the Campus Readiness Assessment. |
+| Campus Operations Manager | Conducts operational review where required by the configured governance path. |
+| Executive Reviewer | Makes the final G00 governance readiness decision and closes the assessment. |
 
-No additional actor is inferred for the associated admission, academic, event, emergency, or Examination activity.
+The Executive Reviewer has no authority through this scenario to change an Examination, admission, academic-delivery, event, emergency or other externally owned lifecycle.
 
 # 7. Preconditions and Entry Criteria
 
-- The readiness type is one supported by G00 and is configured for the relevant governance scope.
-- Applicable readiness indicators are available from their canonical operational owners, or their absence can be explicitly treated as a governance exception.
-- The assessment scope and applicable readiness rules can be resolved.
-- G00 has not assumed ownership of the underlying operational facts or associated institutional activity.
-- The governance activity is authorized under the applicable institutional policy.
+- The readiness type and assessment rules are configured.
+- Applicable source readiness information is available or can be treated as a governed exception.
+- Assessment scope can be resolved.
+- Governing authorization conditions are satisfied.
 
 # 8. Trigger
 
-A configured campus readiness assessment is scheduled for a supported readiness type (daily, academic session, examination, admission, event, or emergency)
+A configured campus readiness assessment is scheduled for a supported readiness type.
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
+| Step | Behaviour | Responsible Role / Domain | Result |
 |---|---|---|---|
-| 1 | Create the readiness assessment for the configured readiness type. | Governance Coordinator / G00 | The Campus Readiness Assessment enters `Scheduled`. |
-| 2 | Resolve the configured indicators and obtain the applicable published readiness information from its owning operational domains. | G00 | The assessment enters `Collecting` without changing source-domain facts. |
-| 3 | Validate that the readiness information belongs to the required assessment scope and remains attributable to its canonical owner. | G00 | Only applicable source information participates in the assessment. |
-| 4 | Consolidate the validated indicators and calculate the configured readiness result. | G00 | The assessment reaches `Calculated`. |
-| 5 | Record the resulting classification as one of the source-defined readiness results: `Ready`, `Ready with Observations`, `Partially Ready`, or `Not Ready`. | G00 | A governed readiness result exists. |
-| 6 | Review the calculated result and unresolved observations. | Executive Reviewer / G00 | The assessment reaches `Reviewed`. |
-| 7 | Record the governance readiness decision permitting, restricting, or deferring the associated activity, without changing that activity’s canonical lifecycle. | G00 | The frozen governance decision is recorded. |
-| 8 | Close the assessment and preserve its readiness result, decision, source references, and review history. | G00 | The assessment reaches `Closed` and the frozen business outcome is complete. |
+| 1 | Create/schedule the assessment. | Governance Coordinator / G00 | Assessment enters `Scheduled`; `CampusReadinessAssessmentScheduled` is published. |
+| 2 | Obtain applicable readiness information from canonical operational owners. | G00 / G01–G10 | Assessment enters `Collecting`; source ownership remains unchanged. |
+| 3 | Validate assessment scope and source attribution. | G00 | Only applicable source facts participate. |
+| 4 | Calculate the configured readiness result. | G00 | Assessment reaches `Calculated`; `CampusReadinessCalculated` is published with/for the resulting classification. |
+| 5 | Classify as `Ready`, `Ready with Observations`, `Partially Ready`, or `Not Ready`. | G00 | Canonical readiness classification exists. |
+| 6 | Review the classification, observations and material exceptions. | Campus Operations Manager / Executive Reviewer as applicable | Assessment reaches `Reviewed`. |
+| 7 | Make the final G00 governance readiness decision. | Executive Reviewer / G00 | Decision permits, restricts or defers the associated activity at the campus-operational governance level only. |
+| 8 | Close the assessment and preserve history. | Executive Reviewer / G00 | Assessment reaches `Closed`. |
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome |
-|---|---|---|---|
-| Missing readiness information | Required operational readiness information is unavailable or inconsistent | Treat the condition as a G00 governance exception; do not manufacture a readiness fact. | The assessment remains incomplete until corrected, deferred, or escalated under governed recovery. |
-| Examination readiness | The configured type is Examination Readiness | G00 assesses campus-operational readiness only; Section I continues to own Examination planning, scheduling, approval, and conduct. | No ownership collision occurs. |
-| Qualified readiness | The calculated result is `Ready with Observations` or `Partially Ready` | Preserve the exact G00 classification and any follow-up governance need. | The decision reflects the configured readiness result without inventing a new state or event. |
+- Missing source readiness information is treated as a governance exception; no readiness fact is manufactured.
+- Examination Readiness remains a G00 campus-operational assessment; Section I retains Examination planning, approval, scheduling and conduct.
+- `Ready with Observations` and `Partially Ready` are preserved as exact classifications without introducing new event names.
 
 # 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Required readiness information is missing | G00 cannot calculate a reliable result | Correct, defer, or escalate the governance exception while preserving source ownership. | G00 and the owning operational domain |
-| Source information is outside the assessment scope | The result could be misleading | Exclude the inapplicable information and retain the valid assessment scope. | G00 |
-| Review cannot be completed | The assessment cannot be formally closed | Retain the current source-defined lifecycle position until review can be completed. | G00 |
-
-Recovery remains business-level; no technical retry, queue, rollback, or infrastructure mechanism is specified.
+- Missing/invalid readiness inputs prevent reliable calculation until corrected, deferred or escalated.
+- Out-of-scope source information is excluded.
+- If executive review/decision cannot complete, the assessment remains at its current valid lifecycle position and is not closed.
 
 # 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| Campus readiness shall reference readiness information published by operational domains. | G00 | G00 cannot manufacture or take ownership of source readiness facts. | L2-G00 §13, §16 |
-| G00 shall never modify operational data owned by G01–G10. | G00 / source domains | Readiness inputs remain reference-only. | L2-G00 §13–§14 |
-| Readiness types and assessment rules remain configurable. | G00 | Daily, academic session, Examination, admission, event, and emergency readiness remain variants of one workflow. | L2-G00 §16, §26 |
-| The canonical lifecycle is `Scheduled → Collecting → Calculated → Reviewed → Closed`. | G00 | No local lifecycle state may be added or skipped. | L2-G00 §23 |
-| Governance history remains immutable and every lifecycle transition is audited. | G00 | The completed assessment remains reconstructable. | L2-G00 §13, §27 |
-| Examination planning and scheduling remain owned by the Examination Domain. | Examination / I | G00 readiness cannot become an Examination schedule or approval decision. | Phase 2 SG-01 resolution; L2-I03 |
+- G00 references readiness information published by operational domains and never rewrites their facts.
+- Lifecycle is `Scheduled → Collecting → Calculated → Reviewed → Closed`.
+- Governance history remains immutable and transitions auditable.
+- `Executive Reviewer` is the final G00 readiness-decision authority.
+- `CampusReadinessCalculated` represents any of the four calculated classifications.
+- `CampusReady` is additionally published only for exact `Ready`.
+- `CampusNotReady` is additionally published only for exact `Not Ready`.
+- G00 readiness cannot become an approval decision for an externally owned lifecycle.
 
 # 13. State and Lifecycle Impact
 
-| Business Concept / Aggregate | Entry State or Condition | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner |
-|---|---|---|---|---|
-| Campus Readiness Assessment | Configured assessment scheduled | Collects, calculates, reviews, and closes the assessment | `Scheduled → Collecting → Calculated → Reviewed → Closed` | Campus Operations Governance / G00 |
-| Operational source fact | Existing authoritative state | Referenced only | Unchanged | Respective operational domain |
-| Associated admission, academic, event, emergency, or Examination activity | Existing owner-controlled state | Receives or considers the G00 governance readiness decision where applicable | No G00-owned transition is introduced | Respective canonical domain |
+| Concept | Impact | Result | Owner |
+|---|---|---|---|
+| Campus Readiness Assessment | Full governed progression | `Scheduled → Collecting → Calculated → Reviewed → Closed` | G00 |
+| Source readiness facts | Referenced only | Unchanged | Respective G01–G10 owner |
+| Associated institutional activity | Informed by G00 decision | No G00-owned transition introduced | Respective owner |
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Canonical Business Events
-
-L2-G00 explicitly states that Campus Operations Review publishes immutable governance domain events. Therefore the canonical publisher for the following G00 events is **Campus Operations Review (G00)**.
-
-| Event | Publisher | Business Meaning in this Scenario |
+| Event | Publisher | Rule |
 |---|---|---|
-| `CampusReadinessAssessmentScheduled` | Campus Operations Review (G00) | The readiness assessment has been scheduled. |
-| `CampusReadinessCalculated` | Campus Operations Review (G00) | The configured readiness calculation has completed. |
-| `CampusReady` | Campus Operations Review (G00) | The source-defined ready outcome has been reached where applicable. |
-| `CampusNotReady` | Campus Operations Review (G00) | The source-defined not-ready outcome has been reached where applicable. |
+| `CampusReadinessAssessmentScheduled` | G00 | Assessment scheduled. |
+| `CampusReadinessCalculated` | G00 | Published for all four calculated classifications. |
+| `CampusReady` | G00 | Published additionally only for exact `Ready`. |
+| `CampusNotReady` | G00 | Published additionally only for exact `Not Ready`. |
 
-No new event is created for `Ready with Observations` or `Partially Ready` because L2-G00 does not define one.
-
-## 14.2 Business Contracts and Hand-offs
-
-| Provider | Consumer | Business Hand-off | Ownership Effect |
-|---|---|---|---|
-| Applicable G01–G10 operational domain | G00 | Published readiness indicator or operational readiness information | Source domain retains ownership. |
-| G00 | Relevant authorized institutional domain | Closed campus-operational readiness decision | Consumer may use the decision but does not acquire G00 ownership. |
-| G00 | Section H where applicable | Governed readiness information for authorized intelligence/notification/dashboard use | Section H retains only its own downstream responsibilities. |
+A supplies authorization/workflow/event-transport/audit capability where applicable; it does not publish G00 readiness facts.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Authorization and Decision Authority
-
-L2-G00 assigns creation of a Campus Readiness Assessment to the `Governance Coordinator` and defines `Executive Reviewer` as a typical governance role. It does not explicitly assign a universal institutional role as the final authority for every readiness decision. This Draft therefore does not invent a final approver.
-
-## 15.2 Separation of Duties and Exceptions
-
-No universal separation-of-duty rule for readiness decisions is defined in L2-G00. Source-domain owners remain separate from G00 governance ownership, and G00 cannot alter their operational facts.
-
-## 15.3 Audit Obligations
-
-The assessment schedule, source references, calculated result, review, decision, lifecycle transitions, and applicable published events must remain in immutable governance history.
+Governance Coordinator creates/co-ordinates the assessment; Campus Operations Manager performs operational review where required; Executive Reviewer owns the final G00 readiness decision and closure. Audit evidence preserves source references, calculation, classification, review, decision and events.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-- The configured assessment has progressed through the complete G00 lifecycle to `Closed`.
-- Applicable source readiness information remains attributable to its canonical owner.
-- A source-defined readiness result has been calculated and reviewed.
-- The governance readiness decision permitting, restricting, or deferring the associated activity has been recorded.
-- Governance history and applicable canonical events are preserved.
-
-## 16.2 Postconditions
-
-- The Campus Readiness Assessment is closed and auditable.
-- Operational source facts remain unchanged by G00.
-- The associated institutional activity remains governed by its canonical owner.
+- Complete valid assessment lifecycle reaches `Closed`.
+- Source ownership is preserved.
+- One of the four canonical classifications is recorded.
+- Executive Reviewer records the final G00 governance readiness decision.
+- Applicable events and immutable governance history are preserved.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
-
-| Issue | Architecture Impact | Required Resolution |
-|---|---|---|
-| L2-G00 does not explicitly assign a universal final business authority for the readiness decision | The Draft can model the complete G00 lifecycle and outcome, but downstream L4 must not invent a final approver | Define the applicable decision-authority mapping if a named institutional approver is required |
-| L2-G00 defines `Ready with Observations` and `Partially Ready` results but no corresponding canonical events | Those classifications can be preserved in the assessment result, but a distinct event cannot be emitted without upstream definition | Define additional events only if cross-domain consumers require distinct publication facts |
-| Frozen participant A is retained from the absorbed Emergency Readiness lineage, but G00 does not define a specific G001 business responsibility for Section A | Ownership remains safe, but detailed A participation cannot be expanded locally | Clarify the business hand-off if downstream specification requires one |
-
-**Architecture assessment:** `PASS WITH ISSUES`
-
-## 17.2 Assumptions
-
-No assumptions.
-
-## 17.3 Deferred Questions
-
-No additional deferred questions.
+**Open Issues:** None.  
+**Assumptions:** None.  
+**Deferred Questions:** None.  
+**Architecture assessment:** `PASS`
