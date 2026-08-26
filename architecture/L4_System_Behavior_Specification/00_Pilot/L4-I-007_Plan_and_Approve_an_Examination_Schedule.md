@@ -4,15 +4,20 @@
 
 **Provisional Specification ID:** L4-I-007  
 **Architecture Level:** L4 — System Behavior Specification  
+**Domain:** Examination — Planning & Scheduling  
 **Realizes Scenario:** L3-I-007  
 **Primary Business Owner:** Examination Planning & Scheduling  
+**Version:** 0.1.0  
 **Status:** Draft  
-**Pilot Classification:** Provisional — not canonical naming or granularity  
-**Primary Sources:** L3-I-007 v1.1 Architecture Approved; locked L2-I03  
+**Owner:** Lead Architect — Controlled L4 Pilot  
+**Last Updated:** 2026-08-26  
+**Depends On:** L3-I-007 v1.1 Architecture Approved; locked L2-I03  
+**Referenced By:** None yet  
+**Pilot Classification:** Provisional — not canonical naming, template, or physical granularity  
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP must support the preparation, validation, review and approval of an Examination Schedule within an Active Examination Session while preserving authoritative upstream facts, preventing approval while material conflicts remain unresolved, and stopping this scenario at the approved schedule outcome rather than absorbing publication.
+SutraERP must support the preparation, validation, review and approval of an Examination Schedule within an Active Examination Session while using authoritative upstream facts, preventing approval while material conflicts remain unresolved, and stopping this scenario at the approved schedule outcome rather than absorbing publication.
 
 The behavior begins when an Active Examination Session and governed scheduling need exist and ends when the schedule is institutionally approved or reaches an allowed non-approval outcome.
 
@@ -29,18 +34,18 @@ The behavior begins when an Active Examination Session and governed scheduling n
 |---|---|---|
 | L4-I-007-BH-001 | The system shall prevent examination-schedule planning from beginning unless the governing Examination Session is Active. | L3-I-007 §§4, 7, 11, 12; L2-I03 §§4.1, 8.2, 10.1 |
 | L4-I-007-BH-002 | The system shall support preparation of the Examination Schedule using the authoritative planning context and source-owned contributions required by L2-I03. | L3-I-007 §§4, 9; L2-I03 §§5, 7, 8 |
-| L4-I-007-BH-003 | The system shall use source-owned calendar, curriculum, venue, facility and resource information without transferring ownership of those facts to Examination Planning. | L3-I-007 §§5, 9, 14; L2-I03 §§4.5, 4.9, 13 |
+| L4-I-007-BH-003 | The system shall use authoritative calendar, curriculum, venue, facility and resource information during planning and shall not alter those source-owned facts as part of Examination Planning. | L3-I-007 §§5, 9, 14; L2-I03 §§4.5, 4.9, 13 |
 | L4-I-007-BH-004 | The system shall evaluate the schedule against the applicable authoritative conflict-validation conditions before approval. | L3-I-007 §§9, 11, 12; L2-I03 §§5.6, 10.2–10.5 |
 | L4-I-007-BH-005 | The system shall prevent schedule approval while any material scheduling conflict required by the governing architecture remains unresolved. | L3-I-007 §§10, 11, 12 |
 | L4-I-007-BH-006 | The system shall require the source-defined institutional approval conditions to be satisfied before establishing the Examination Schedule as Approved. | L3-I-007 §§6, 9, 12, 15; L2-I03 §§5.7, 9.5 |
-| L4-I-007-BH-007 | The system shall preserve the approved Examination Schedule as the authoritative Examination Planning outcome for this scenario. | L3-I-007 §§3, 13, 16 |
+| L4-I-007-BH-007 | The system shall expose the approved Examination Schedule as the authoritative planning outcome for downstream consumers without treating it as published. | L3-I-007 §§3, 13, 16 |
 | L4-I-007-BH-008 | The system shall not publish the Examination Schedule as part of this scenario; publication remains a separately governed downstream lifecycle action. | L3-I-007 §§9, 12, 13, 16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-I-007-BH-009 | The system shall recognize `Examination Session Activated` as the authoritative event establishing the planning-entry condition where event-driven initiation is used. | L3-I-007 §14; L2-I03 §12 |
+| L4-I-007-BH-009 | Where event-driven initiation is used, the system shall recognize `Examination Session Activated` as the authoritative event establishing the planning-entry condition. | L3-I-007 §14; L2-I03 §12 |
 | L4-I-007-BH-010 | The system shall publish `Examination Planning Initiated` when planning begins. | L3-I-007 §14; L2-I03 §11 |
 | L4-I-007-BH-011 | The system shall publish `Examination Schedule Created` when the initial schedule is prepared. | L3-I-007 §14; L2-I03 §11 |
 | L4-I-007-BH-012 | The system shall publish `Conflict Validation Completed` when governed conflict validation concludes. | L3-I-007 §14; L2-I03 §11 |
