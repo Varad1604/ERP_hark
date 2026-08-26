@@ -9,7 +9,7 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Draft  
-**Version:** 1.1  
+**Version:** 1.2  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-26  
 **Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-F09 — Financial Period & Closing; L2-F13 — Financial Reporting & Analytics Workflows; L2-F13 Locked Amendment 2026-08-26; ADR-FIN-REPORT-001  
@@ -17,11 +17,11 @@
 
 # 2. Scenario Purpose
 
-Produce authoritative institutional financial statements from governed closed-period Finance information, with either successful approval/publication or a governed pre-publication return-for-correction outcome, while preserving source Finance ownership and report traceability.
+Produce authoritative institutional financial statements from governed closed-period Finance information, including governed pre-publication correction and regeneration where necessary, while preserving source Finance ownership and report traceability.
 
 # 3. Business Outcome
 
-Finance calculates, validates, approves and publishes authoritative statements or returns them for correction.
+Finance produces, validates, approves and publishes an authoritative financial statement for the governed reporting period.
 
 # 4. Scenario Boundary and Scope
 
@@ -31,18 +31,14 @@ A governed reporting period is ready for institutional financial statements.
 
 ## 4.2 End Boundary
 
-The scenario ends when the Financial Report is either:
-
-- validated/approved and published as the authoritative statement; or
-- returned to `Correction Required` for governed pre-publication correction.
+The scenario ends when the Financial Report is validated/approved and published as the authoritative statement.
 
 ## 4.3 In Scope
 
 - Closed-period eligibility and canonical Finance source references.
 - Financial statement generation under the governed Report Definition.
 - Review, validation/approval and publication.
-- Pre-publication return for correction.
-- Regeneration after correction.
+- Governed pre-publication return for correction and regeneration where required.
 - Report version, source traceability, events and audit evidence.
 
 ## 4.4 Out of Scope
@@ -96,18 +92,18 @@ A governed reporting period is ready for institutional financial statements.
 
 # 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Outcome |
-|---|---|---|---|
-| Pre-publication correction required | Generated statement cannot be approved in its current form | Financial Report Approval Authority returns it for correction; report enters `Correction Required`; `FinancialReportReturnedForCorrection` is published. | The report is not published and awaits governed correction. |
-| F13-owned reporting defect | Error exists in report definition/configuration/assembly | Accounts Officer coordinates correction within F13 and the report re-enters `Generating`. | A corrected report is regenerated and re-reviewed. |
-| Source-financial-fact defect | Error exists in a source-owned Finance fact | The owning Finance capability corrects the authoritative source through its own workflow; F13 then regenerates. | Ownership remains with the source domain; no direct F13 write occurs. |
+No scenario-specific alternate business flow is defined by the authoritative L2 architecture that bypasses or replaces the same successful published-statement outcome.
 
 # 11. Failure, Interruption and Business Recovery
 
-- Failed generation produces no published success fact.
-- A report in `Correction Required` cannot be published.
-- A source-fact defect must be corrected by its canonical Finance owner before F13 consumes the corrected fact.
-- A published report is never rolled back into correction; post-publication correction requires a new version.
+| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
+|---|---|---|---|
+| Generated statement cannot be approved in its current form. | The report cannot progress to publication and enters `Correction Required`; `FinancialReportReturnedForCorrection` is published. | The report is corrected and re-enters `Generating`, then must reach `Generated` again before re-review and approval. | F13 / Financial Report Approval Authority |
+| A reporting-definition, configuration or assembly defect exists within F13. | The current report remains unpublishable. | Accounts Officer coordinates governed F13 correction; the report is regenerated and re-reviewed. | F13 |
+| A source-owned Finance fact is defective. | F13 cannot validly publish a statement based on the defective source fact. | The owning Finance capability corrects its authoritative fact through its own workflow; F13 then regenerates from the corrected source. | Canonical source Finance owner with F13 consuming the corrected fact |
+| Statement generation fails. | No publishable report is produced. | The report remains incomplete until the governed reporting condition is corrected and generation can validly resume. | F13 |
+
+A published report is never rolled back into correction. Post-publication correction requires a new report version under the upstream immutability rule.
 
 # 12. Business Rules and Decision Constraints
 
@@ -115,7 +111,7 @@ A governed reporting period is ready for institutional financial statements.
 - Every report belongs to one reporting period and one Report Definition.
 - Only validated reports may be published.
 - `FinancialReportValidated` means the report is approved for publication.
-- `Correction Required` is pre-publication only.
+- `Correction Required` is pre-publication only and is an interruption/recovery position, not successful scenario completion.
 - Published reports are immutable; later correction requires a new version.
 - Critical financial reporting decisions remain subject to the configured Finance approval hierarchy and applicable SoD controls.
 
@@ -124,7 +120,7 @@ A governed reporting period is ready for institutional financial statements.
 | Concept | Lifecycle Impact | Owner |
 |---|---|---|
 | Financial Period | Remains `Closed`; referenced only. | F09 |
-| Financial Report | `Defined → Scheduled → Generating → Generated → Validated → Published → Archived`, with alternate `Generated → Correction Required → Generating → Generated`. | F13 |
+| Financial Report | Successful path: `Defined → Scheduled → Generating → Generated → Validated → Published → Archived`; recovery path: `Generated → Correction Required → Generating → Generated`. | F13 |
 
 # 14. Business Events and Cross-Domain Collaboration
 
@@ -145,14 +141,22 @@ A governed reporting period is ready for institutional financial statements.
 
 # 16. Completion Criteria and Postconditions
 
-The scenario is complete when either:
+## 16.1 Completion Criteria
 
-1. the statement is generated, validated/approved, published and preserved as an immutable authoritative report; or
-2. the generated statement is conclusively returned to `Correction Required` with the correction reason and decision evidence preserved.
+- The applicable Financial Period remains `Closed`.
+- The Financial Report reaches `Generated`, is successfully validated/approved, and reaches `Published`.
+- `FinancialReportValidated` and `FinancialReportPublished` are published by F13 as applicable.
+- The published version and governing source/configuration lineage are preserved.
+
+## 16.2 Postconditions
+
+- The institution has an authoritative published financial statement for the governed reporting period.
+- The published report is immutable.
+- Source-owned Finance facts retain their canonical owners.
+- Any pre-publication `Correction Required` history remains preserved as recovery history and does not satisfy successful completion by itself.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 **Open Issues:** None.  
 **Assumptions:** None.  
-**Deferred Questions:** None.  
-**Architecture assessment:** `PASS`
+**Deferred Questions:** None.
