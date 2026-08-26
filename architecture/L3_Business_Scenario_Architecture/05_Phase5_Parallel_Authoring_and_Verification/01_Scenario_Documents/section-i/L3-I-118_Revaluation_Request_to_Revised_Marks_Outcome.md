@@ -7,11 +7,12 @@
 **Participating Domains:** Person & Identity, Finance, Examination  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Review  
+**Status:** Architecture Approved  
 **Version:** 1.1  
 **Author:** Pallav  
 **Previous Architecture Approval:** ACR-I-2026-08-21-002 — Approved by Vikram Desai, Enterprise Architecture Governance Lead, 21 August 2026; Conditions: None  
-**Previous Post-Approval Lock:** Authorized 21 August 2026 under ACR-I-2026-08-21-002; superseded for this corrected version pending architecture re-review  
+**Previous Post-Approval Lock:** Authorized 21 August 2026 under ACR-I-2026-08-21-002; superseded by corrected v1.1  
+**Architecture Re-review:** Architecture Approved on 2026-08-26 after correction of participating-domain, actor, rule and event mappings; repository lock remains a separate governance action  
 **Canonical Source Candidate:** CAN-L3-I-123  
 **Primary L2 Source:** L2-I11  
 **Last Updated:** 2026-08-26
@@ -256,7 +257,7 @@ The institution must retain the published-result reference, request identity, el
 
 ## 17.1 Open Issues
 
-No scenario-specific material conflict remains after the 2026-08-26 correction of participating-domain, actor, rule and event mappings. Architecture re-review is required because the previously locked version was materially corrected.
+No scenario-specific material conflict remains after the 2026-08-26 correction of participating-domain, actor, rule and event mappings.
 
 ## 17.2 Assumptions
 
