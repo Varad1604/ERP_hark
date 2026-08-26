@@ -7,11 +7,12 @@
 **Participating Domains:** Institution and Academic Structure, Academic Delivery, Examination  
 **Scenario Type:** Cross-domain  
 **Priority:** P0  
-**Status:** Review  
+**Status:** Architecture Approved  
 **Version:** 1.1  
 **Author:** Pallav  
 **Previous Architecture Approval:** ACR-I-2026-08-21-002 — Approved by Vikram Desai, Enterprise Architecture Governance Lead, 21 August 2026; Conditions: None  
-**Previous Post-Approval Lock:** Authorized 21 August 2026 under ACR-I-2026-08-21-002; superseded for this corrected version pending architecture re-review  
+**Previous Post-Approval Lock:** Authorized 21 August 2026 under ACR-I-2026-08-21-002; superseded by corrected v1.1  
+**Architecture Re-review:** Architecture Approved on 2026-08-26 after correction of actor, rule, lifecycle-entry and event mappings; repository lock remains a separate governance action  
 **Canonical Source Candidate:** CAN-L3-I-007  
 **Primary L2 Source:** L2-I03  
 **Last Updated:** 2026-08-26
@@ -224,7 +225,7 @@ The institution must demonstrate the governing Active Examination Session, plann
 
 ## 17.1 Open Issues
 
-No scenario-specific material conflict remains after the 2026-08-26 correction of actor, rule, lifecycle-entry and event mappings. Architecture re-review is required because the previously locked version was materially corrected.
+No scenario-specific material conflict remains after the 2026-08-26 correction of actor, rule, lifecycle-entry and event mappings.
 
 ## 17.2 Assumptions
 
