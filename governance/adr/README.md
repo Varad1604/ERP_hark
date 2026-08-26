@@ -42,10 +42,12 @@ This index satisfies the continuous ADR-indexing obligation in Repository Consti
 | `ADR-FIN-GL-001.md` | Finance — General Ledger |
 | `ADR-FIN-PERIOD-001.md` | Finance — Financial Period |
 | `ADR-FIN-TREAS-001.md` | Finance — Treasury |
+| `ADR-PLAT-AUTH-001.md` | Platform Authorization — Role Assignment Governance and Person Scope Alignment |
 | `ADR-STU-ADM-EXP-001.md` | Student Lifecycle — Admission Expiry Lifecycle |
 | `ADR-STU-PROG-EVT-001.md` | Student Lifecycle — Academic Progression Event Canonicalization |
 | `ADR-STU-MEME-EXIT-001.md` | Student Lifecycle — NEP/MEME Intermediate Qualification Exit |
 | `FIN_UPSTREAM_L2_APPROVAL_RECORD_2026-08-21.md` | Finance upstream L2 approval/incorporation record |
+| `PLATFORM_AUTHORIZATION_UPSTREAM_APPROVAL_RECORD_2026-08-26.md` | Platform Authorization upstream L1/L2 approval/incorporation record |
 | `STUDENT_LIFECYCLE_UPSTREAM_L2_APPROVAL_RECORD_2026-08-22.md` | Student Lifecycle upstream L2 approval/incorporation record |
 
 When new ADR files or approval records are added, this index must be updated as part of repository maintenance.
