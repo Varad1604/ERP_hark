@@ -9,7 +9,7 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Draft  
-**Version:** 1.1  
+**Version:** 1.2  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-26  
 **Depends On:** SutraERP L1 Business Domain Architecture and Locked Amendment 2026-08-26; `DEPENDENCY_MAP.md`; L2-H01 — APAAR & DigiLocker Workflows; L2-H01 Locked Amendment 2026-08-26; ADR-H-GOVLINK-001; L2-A02 — Person & Identity; authoritative Institution & Structure and Student Lifecycle workflows; applicable Platform Foundation authorization/event/audit architecture  
@@ -17,18 +17,18 @@
 
 # 2. Scenario Purpose
 
-Establish or reject a governed association between a verified canonical Student and an APAAR or DigiLocker learner account while preserving Student, Institution and Person/Identity ownership outside H01 and preserving H01 consent and link history.
+Establish a governed association between a verified canonical Student and an APAAR or DigiLocker learner account while preserving Student, Institution and Person/Identity ownership outside H01 and preserving H01 consent and link history.
 
 # 3. Business Outcome
 
-A governed platform-specific learner-account link reaches either `Linked` or `Failed`, with authoritative source references, consent basis where required, external acknowledgement/reference where available, canonical H01 event and audit history preserved.
+A governed platform-specific learner-account link reaches `Linked`, with authoritative source references, consent basis where required, government acknowledgement/reference where available, the applicable canonical H01 link event and audit history preserved.
 
 # 4. Scenario Boundary and Scope
 
 **Start:** A Student or authorized Institution Administrator requests APAAR/DigiLocker linking.  
-**End:** The platform-specific H01 link request reaches `Linked` or `Failed`.
+**End:** The platform-specific H01 link request reaches `Linked`.
 
-In scope: authoritative Student/Institution/Person references, consent, H01 connector eligibility, request outcome and canonical link events. Out of scope: credential publication, changes to source-domain lifecycles, technical APIs/queues/retries/persistence or creation of a separate learner-link aggregate.
+In scope: authoritative Student/Institution/Person references, consent, H01 connector eligibility, request processing, successful government acknowledgement and canonical link events. Out of scope: credential publication, changes to source-domain lifecycles, technical APIs/queues/retries/persistence or creation of a separate learner-link aggregate.
 
 # 5. Ownership and Participating Domains
 
@@ -69,20 +69,22 @@ A verified Student or authorized Institution Administrator requests an APAAR or 
 | 3 | Validate authorization, connector eligibility and consent where required. | H01 | Request may proceed only if governed prerequisites are satisfied. |
 | 4 | Submit the governed linking request to the target government platform through H01's integration boundary. | H01 | Government outcome is awaited/received at business level. |
 | 5 | Record successful government acknowledgement/reference. | H01 | Link reaches `Linked`; `APAARLinked` or `DigiLockerLinked` is published. |
-| 6 | Preserve audit evidence. | H01 / Platform audit capability | Link outcome remains traceable. |
+| 6 | Preserve audit evidence. | H01 / Platform audit capability | Successful link outcome remains traceable. |
 
 # 10. Alternate Business Flows
 
-- Institution-initiated linking follows the same H01 business rules as Student initiation and cannot bypass required consent.
-- If the government platform conclusively rejects/fails the link, H01 records `Failed` and publishes `APAARLinkFailed` or `DigiLockerLinkFailed`.
-- If required consent is not valid, no link is established.
+| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
+|---|---|---|---|---|
+| Institution-initiated linking | Governing policy permits an Institution Administrator to initiate the link | The Institution Administrator initiates the same governed linking path; required Student consent remains mandatory where applicable. | The same `Linked` business outcome is reached if all governing conditions are satisfied. | H01 |
 
 # 11. Failure, Interruption and Business Recovery
 
-- Invalid/non-authoritative Student, Institution or Person/Identity references prevent the request.
-- Ineligible connector prevents establishment of the link.
-- A `Failed` outcome is terminal for that link request; a later authorized attempt is a new governed request.
-- No source Student, Institution or Person/Identity fact is changed to force link success.
+| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
+|---|---|---|---|
+| Government platform conclusively rejects or fails the link request. | The current request cannot reach the successful `Linked` outcome and enters `Failed`. | H01 records `Failed` and publishes `APAARLinkFailed` or `DigiLockerLinkFailed`. A later authorized attempt is a new governed request. | H01 |
+| Required consent is absent, withdrawn, expired or otherwise invalid. | Linking cannot validly proceed. | No link is established. Progression requires a separately governed valid consent condition before a new or continuing permitted request may proceed. | H01 |
+| Student, Institution or Person/Identity reference is invalid or non-authoritative. | The request cannot validly proceed. | The canonical owner must establish or correct the authoritative source fact before linking can proceed; H01 does not alter the source fact. | A/B/C canonical owner with H01 consuming the corrected fact |
+| Applicable Connector is ineligible for use. | The link cannot be established through that Connector. | Linking remains blocked until the Connector is governed back to an eligible state under H01 connector governance. | H01 |
 
 # 12. Business Rules and Decision Constraints
 
@@ -90,6 +92,7 @@ A verified Student or authorized Institution Administrator requests an APAAR or 
 - Student or Institution Administrator may initiate where policy permits.
 - Required consent remains mandatory regardless of initiating actor.
 - Link lifecycle is `Requested → Linked` or `Requested → Failed`.
+- `Failed` is terminal for that request and is not successful completion of this scenario.
 - Consent lifecycle remains separately `Pending`, `Granted`, `Withdrawn`, `Expired`.
 - H01 retains canonical publication of all six existing link events.
 
@@ -100,7 +103,7 @@ A verified Student or authorized Institution Administrator requests an APAAR or 
 | Student | Referenced only | Unchanged | C |
 | Institution | Referenced only | Unchanged | B |
 | Person/Identity | Referenced only | Unchanged | A |
-| Platform-specific learner link request | Governed H01 path | `Requested → Linked` or `Requested → Failed` | H01 integration/Publication boundary |
+| Platform-specific learner link request | Governed H01 path | Successful path: `Requested → Linked`; failure path: `Requested → Failed` | H01 integration/Publication boundary |
 | Consent | Referenced/validated under existing lifecycle | Unchanged unless separate consent action occurs | H01 |
 
 # 14. Business Events and Cross-Domain Collaboration
@@ -118,20 +121,27 @@ H01 is the publisher. A/B/C supply authoritative references and platform capabil
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-Student and Institution Administrator are the authorized business initiating roles subject to governing policy. Institution initiation cannot bypass required Student consent. Audit evidence preserves initiating actor/context, source references, consent basis, target platform, government acknowledgement/reference where available, and final H01 outcome.
+Student and Institution Administrator are the authorized business initiating roles subject to governing policy. Institution initiation cannot bypass required Student consent. Audit evidence preserves initiating actor/context, source references, consent basis, target platform, government acknowledgement/reference where available, and final H01 request outcome.
 
 # 16. Completion Criteria and Postconditions
 
+## 16.1 Completion Criteria
+
 - Authoritative source references are validated.
-- Applicable consent/authorization/connector conditions are satisfied or a controlled `Failed` outcome is recorded.
-- Link request reaches `Linked` or `Failed`.
-- Exact applicable H01 outcome event is published.
-- Audit history is preserved.
+- Applicable consent, authorization and connector conditions are satisfied.
+- The platform-specific learner link reaches `Linked`.
+- `APAARLinked` or `DigiLockerLinked` is published by H01 as applicable.
+- Audit history for the successful link outcome is preserved.
+
+## 16.2 Postconditions
+
+- The governed learner-account association is established.
 - A/B/C retain canonical ownership of Person/Identity, Institution and Student.
+- H01 retains ownership of the learner-link outcome and its canonical events.
+- A request that reaches `Failed` is preserved as failure history and does not satisfy successful scenario completion.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 **Open Issues:** None.  
 **Assumptions:** None.  
-**Deferred Questions:** None.  
-**Architecture assessment:** `PASS`
+**Deferred Questions:** None.
