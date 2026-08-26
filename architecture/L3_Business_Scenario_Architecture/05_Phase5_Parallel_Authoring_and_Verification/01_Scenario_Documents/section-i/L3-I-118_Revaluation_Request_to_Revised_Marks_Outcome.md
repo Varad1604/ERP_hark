@@ -4,7 +4,7 @@
 
 **Scenario ID:** L3-I-118  
 **Primary Owner:** Revaluation & Rechecking  
-**Participating Domains:** Student Lifecycle, Finance, Examination  
+**Participating Domains:** Person & Identity, Finance, Examination  
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Review  
@@ -49,7 +49,7 @@ The scenario ends when the revaluation outcome has been verified and the applica
 - Rechecking as a distinct administrative-verification scenario except where needed to preserve shared L2-I11 boundaries.
 - Grade, grade-point, credit-point, SGPA, CGPA, standing or classification computation.
 - Official result publication or republication.
-- Ownership of Student Lifecycle or Finance facts.
+- Ownership of Person & Identity or Finance facts.
 - Technical solution, data, interface, access-control, infrastructure or recovery design.
 
 ## 4.5 Related Scenarios — Optional
@@ -61,7 +61,7 @@ Downstream Result Processing & Computation and Result Publication scenarios may 
 | Domain | Responsibility |
 |---|---|
 | Revaluation & Rechecking | Owns the Revaluation Request, review lifecycle, review outcome and approved revised marks as the authoritative post-publication review outcome. |
-| Student Lifecycle | Provides only canonically owned candidate/student facts where required. |
+| Person & Identity | Provides canonically owned candidate/evaluator/authority identity and role information where required. |
 | Finance | Provides authoritative fee/payment confirmation where institutional policy requires a review fee. |
 | Result Processing & Computation | Performs downstream academic recomputation where approved revised marks affect academic results; does not own the review decision. |
 | Result Publication | Owns official result publication/republication; does not own the revaluation decision. |
@@ -199,7 +199,7 @@ Material upstream events defined by locked L2-I11 may include:
 | Published Result Available | Result Publication | Establishes the officially published result eligible for review. |
 | Examination Policy Updated | Examination Policy & Configuration | Supplies authoritative review regulations. |
 | Academic Calendar Updated | Academic Calendar Domain | Supplies authoritative review-window/timeline context where applicable. |
-| Candidate Information Updated | Person / Student owning domain | Supplies authoritative candidate information. |
+| Candidate Information Updated | Person & Identity | Supplies authoritative candidate identity information. |
 | Fee Payment Confirmed | Finance | Supplies authoritative payment confirmation where required. |
 
 Only exact source-supported event names are used; business capabilities such as `Revaluation Request Management` or `Revaluation Eligibility` are not treated as events.
@@ -209,7 +209,7 @@ Only exact source-supported event names are used; business capabilities such as 
 | Provider | Consumer | Business Hand-off |
 |---|---|---|
 | Result Publication | Revaluation & Rechecking | Officially published result and authoritative publication context. |
-| Student Lifecycle / Person-owning domain | Revaluation & Rechecking | Canonically owned candidate/student facts required for review. |
+| Person & Identity | Revaluation & Rechecking | Canonically owned candidate/evaluator/authority identity and role information required for review. |
 | Finance | Revaluation & Rechecking | Authoritative fee/payment confirmation where policy requires it. |
 | Marks Collection & Evaluation | Revaluation & Rechecking | Authorized assessment evidence required for academic reassessment. |
 | Revaluation & Rechecking | Result Processing & Computation | Approved revised marks where downstream recomputation is required. |
@@ -248,6 +248,7 @@ The institution must retain the published-result reference, request identity, el
 - Revaluation & Rechecking owns the authoritative completed review outcome.
 - Approved revised marks, where produced, are authoritative input for downstream Result Processing & Computation.
 - Official result publication/republication remains owned by Result Publication.
+- Person & Identity retains identity/role information ownership.
 - Finance retains ownership of fee/payment truth.
 - Prior result and review evidence remain historically traceable.
 
@@ -255,7 +256,7 @@ The institution must retain the published-result reference, request identity, el
 
 ## 17.1 Open Issues
 
-No scenario-specific material conflict remains after the 2026-08-26 correction of actor, rule and event mappings. Architecture re-review is required because the previously locked version was materially corrected.
+No scenario-specific material conflict remains after the 2026-08-26 correction of participating-domain, actor, rule and event mappings. Architecture re-review is required because the previously locked version was materially corrected.
 
 ## 17.2 Assumptions
 
