@@ -9,9 +9,9 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Draft  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-08-26  
 **Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows; L2-A03 — Authentication Workflows; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
 **Referenced By:** Business domains requiring centralized authorization decisions
 
@@ -182,8 +182,8 @@ Steps 9–12 cannot be finalized as exact L3 behaviour because the authoritative
 | Multiple concurrent Roles | The Person already has another Role Assignment. | Evaluate all applicable assignments, scope rules, least privilege and SoD constraints. | Multiple active Roles may coexist where permitted. | Authorization & Policy |
 | Institution-scoped responsibility | The Role applies across the institution. | Validate the institution boundary and applicable policies. | The assignment becomes effective only within the approved institution scope. | Authorization & Policy |
 | Department- or campus-scoped responsibility | The Role applies to a narrower operational scope. | Validate the department or campus boundary and scope-specific policies. | Permissions participate only within the approved scope. | Authorization & Policy |
-| Configurable administrative approval | Tenant policy requires additional administrative approval. | Complete the policy-required approval before assignment effectiveness. | The outcome remains blocked until approval succeeds. The approving role is not defined upstream. | Authorization & Policy |
-| SoD conflict | The proposed Role conflicts with another responsibility. | Deny the assignment unless an approved policy explicitly permits continuation. | No effective Role Assignment is produced through the normal path while the conflict remains prohibited. | Authorization & Policy |
+
+Conditions that stop normal progression—such as a prohibited SoD conflict or required approval not being granted—are handled only in Section 11 and are not alternate business flows.
 
 Authorization Delegation, Temporary Access and Break-Glass are not alternate A010 paths; they remain separate scenarios.
 
