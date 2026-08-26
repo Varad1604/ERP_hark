@@ -9,25 +9,26 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Draft  
-**Version:** 1.1  
+**Version:** 1.2  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-26  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows; L2-A03 — Authentication Workflows; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Depends On:** SutraERP L1 Business Domain Architecture and its locked 2026-08-26 Person-scope amendment; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows; L2-A03 — Authentication Workflows; L2-A04 — Authorization & Policy Workflows and its locked 2026-08-26 Role Assignment amendment; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows; L2-E02 — Position & Assignment Workflows and its locked 2026-08-26 authorization hand-off amendment  
+**Architecture Decision Trace:** `ADR-PLAT-AUTH-001`; `PLATFORM_AUTHORIZATION_UPSTREAM_APPROVAL_RECORD_2026-08-26.md`  
 **Referenced By:** Business domains requiring centralized authorization decisions
 
 ---
 
 # 2. Scenario Purpose
 
-Establish an approved, scoped and effective-dated A04 Role Assignment for an eligible Person so the Role and its grouped Permissions participate in centralized policy-based authorization decisions without modifying the Role definition or assigning Permissions directly to the Person.
+Establish an approved, scoped and effective-dated A04 Role Assignment for an eligible Person so the Role and its grouped Permissions participate in centralized policy-based authorization decisions without modifying the Role definition, assigning Permissions directly to the Person, or creating organizational authority.
 
 ---
 
 # 3. Business Outcome
 
-The role and its grouped permissions become effective within the approved scope and participate in policy-based authorization decisions, without permanently altering the role definition.
+An approved A04 Role Assignment for the canonical A02 Person becomes `Active` within its governed scope and effective period. The assigned Role and its grouped Permissions then participate in later policy-based authorization decisions without permanently altering the Role definition or transferring ownership of identity or organizational-authority facts.
 
-Locked L2-A04 does not define the Role Assignment workflow, lifecycle states, commands, canonical events or publishers required to make this outcome exact. The scenario is therefore classified `BLOCKED`.
+The previously unresolved Role Assignment subject, lifecycle, business responsibilities, contracts, events, publisher and E02/A04 boundary are resolved by the locked upstream amendments approved through `ADR-PLAT-AUTH-001`.
 
 ---
 
@@ -35,43 +36,47 @@ Locked L2-A04 does not define the Role Assignment workflow, lifecycle states, co
 
 ## 4.1 Start Boundary
 
-The scenario begins when an eligible Person requires an approved organizational responsibility within a defined institutional scope.
+The scenario begins when a governed authorization-layer Role Assignment requirement for an eligible A02 Person reaches the A04 Authorization & Policy boundary with sufficient source business basis or evidence to begin evaluation.
+
+The upstream business process that establishes the organizational or business responsibility is outside this scenario boundary.
 
 ## 4.2 End Boundary
 
-The intended end boundary is reached when:
+The scenario ends when:
 
-- an existing Role has been assigned through an authorized administrative process;
-- the Role Assignment has received every required approval;
-- the assignment is effective within its approved Tenant, institution, campus, department or other authorized scope;
-- the Role’s grouped Permissions participate in policy-based authorization evaluation;
-- the Role and Permission definitions remain unchanged; and
-- the assignment and its approval and activation history are auditable.
-
-L2-A04 does not define the exact assignment states, transitions, event names or publishers needed to validate this end boundary.
+- the canonical A02 Person has a governed A04 Role Assignment;
+- all required validation, least-privilege, SoD and approval obligations have been satisfied;
+- the Role Assignment is `Active` within its approved Tenant and institutional scope and effective period;
+- the Role's grouped Permissions are available to later Role Resolution and Permission Resolution;
+- the Role and Permission definitions remain unchanged;
+- no organizational authority has been created by the A04 Role Assignment; and
+- the request, decision and activation history are auditable.
 
 ## 4.3 In Scope
 
 - Tenant and institutional-scope validation.
-- Resolution of the eligible A02 Person, Identity and applicable User Account references.
-- Selection of an existing Role representing the required responsibility.
+- Resolution of the canonical A02 Person and supporting Identity/User Account context where relevant.
+- Receipt and validation of the source business basis or eligibility evidence.
+- Selection of an existing A04 Role representing the required authorization-layer responsibility.
 - Validation that the Role has an approved grouping of Permissions.
-- Definition of assignment scope.
-- Definition of effective and expiry dates where applicable.
-- Least-privilege validation.
+- Definition of assignment scope and effective period.
+- Least-privilege evaluation.
 - Role Assignment constraint evaluation.
 - Separation of Duties evaluation.
-- Determination and completion of applicable administrative approval.
-- Creation and activation of the Role Assignment.
-- Availability of the assigned Role and its grouped Permissions for policy-based authorization decisions.
-- Immutable audit evidence for assignment, approval and activation.
+- Determination and completion of applicable Role Assignment approval.
+- Governed Role Assignment lifecycle progression from request through approval to activation.
+- Availability of the active Role Assignment for later authorization decisions.
+- Publication of canonical A04 Role Assignment events.
+- Immutable audit evidence for request, decision and activation.
 
 ## 4.4 Out of Scope
 
 - Creating, modifying, activating, suspending or archiving the Role definition.
 - Adding or removing Permissions from the Role.
 - Assigning Permissions directly to a Person or User Account.
-- Position Assignment, workforce occupancy or organizational-authority creation owned by L2-E02.
+- Creating or changing A02 Person, Identity or User Account identity truth.
+- Establishing E02 Position Assignment, Responsibility Assignment or organizational authority.
+- Deriving organizational authority from an A04 Role or Role Assignment.
 - Authorization Delegation.
 - Assignment Delegation owned by L2-E02.
 - Temporary Access Grants.
@@ -80,13 +85,12 @@ L2-A04 does not define the exact assignment states, transitions, event names or 
 - Authentication or Authentication Session creation.
 - Workspace definition, navigation or presentation behaviour.
 - Technical RBAC, IAM groups, claims, ACLs, APIs, database structures, UI design or infrastructure.
-- Inventing Role Assignment states, events, publishers, commands or approval authorities.
 
 ## 4.5 Related Scenarios
 
 | Relationship | Related Scenario | Boundary Reason |
 |---|---|---|
-| Upstream | L3-A-007 — Eligible Identity to Authenticated Session Availability | Authentication establishes identity but does not grant authorization. |
+| Upstream | L3-A-007 — Eligible Identity to Authenticated Session Availability | Authentication establishes authenticated context but does not create the Role Assignment or grant authorization. |
 | Related | L3-A-011 — Responsibility Delegation to Automatic Authority Reversion | Owns temporary Authorization Delegation and does not permanently change the Role Assignment. |
 | Related | L3-A-012 — Temporary Access Request to Governed Access Expiry | Owns exceptional time-bound access beyond normal Role Assignments. |
 | Related | L3-A-013 — Emergency Access Request to Audited Emergency Access Closure | Owns controlled Break-Glass access rather than normal responsibility assignment. |
@@ -98,16 +102,16 @@ L2-A04 does not define the exact assignment states, transitions, event names or 
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
-| Authorization & Policy / Section A | Primary owner. Owns Role, Role Assignment, Permission, Authorization Policy, SoD Policy, assignment approval, activation, suspension, expiry, revocation and later Authorization Decisions. |
-| Platform & Tenant / Section A | Supplies Tenant, institution, organization and campus context used to validate the assignment scope. |
-| Person & Identity / Section A | Supplies canonical Person, Identity and User Account references without owning the Role Assignment or Permissions. |
-| Authentication / Section A | Supplies authenticated context when the assigned Person later requests access; authentication does not create or activate the Role Assignment. |
-| Event Infrastructure / Section A | Owns governed event publication and delivery infrastructure without owning Role Assignment facts. |
-| Audit Infrastructure / Section A | Owns immutable audit evidence, integrity, retention and evidence lifecycle. |
+| Authorization & Policy / Section A | Primary owner. Owns Role, Role Assignment, Permission, Authorization Policy, SoD Policy, Role Assignment lifecycle, approval governance and canonical Role Assignment events. |
+| Platform & Tenant / Section A | Supplies Tenant, institution, organization and campus context used to validate assignment scope. |
+| Person & Identity / Section A | Supplies the canonical Tenant-scoped Person and supporting Identity/User Account references without owning Role Assignment or Permissions. |
+| Authentication / Section A | Supplies authenticated context when an initiating actor or the assigned Person later performs protected activity; authentication does not create or activate the Role Assignment. |
+| Event Infrastructure / Section A | Owns governed event distribution infrastructure without owning Role Assignment event semantics or facts. |
+| Audit Infrastructure / Section A | Owns immutable audit evidence, integrity and retention without owning the Role Assignment lifecycle. |
 
 The frozen Participating Domains value remains exactly `A`.
 
-L2-E02 was inspected only to validate the ownership boundary. Adding Section E as a participant would change the frozen Participating Domains value and is not performed by this Draft.
+L2-E02 may establish source organizational responsibility and may invoke the A04 `Request Role Assignment` business contract, but that upstream establishment is outside the A010 start boundary. This hand-off therefore does not add Section E as a participating domain to this scenario.
 
 ---
 
@@ -115,39 +119,36 @@ L2-E02 was inspected only to validate the ownership boundary. Adding Section E a
 
 | Business Actor / Role | Responsibility | Participation / Authority |
 |---|---|---|
-| Eligible Person | Receives the approved authorization-layer responsibility within the defined scope. | Business subject identified by the frozen trigger; no assignment or approval authority is implied. |
+| Assignment Subject | The canonical A02 Person receiving the authorization-layer Role Assignment. | No request, approval or activation authority is implied merely by being the subject. |
+| Assignment Requestor | Initiates the governed Role Assignment request and supplies the authoritative business basis or source evidence. | Cannot approve merely because it initiated the request. |
+| Assignment Authority | Governs assignment scope, authorization-policy compliance, least privilege and determination of the required approval path. | Does not originate source-domain eligibility facts. |
+| Assignment Approver | Grants or denies the Role Assignment where policy requires approval. | Must remain independently governable from the requestor where SoD requires separation. |
+| Assignment Administrator | Records/administers the approved assignment and makes it effective according to approved scope and effective period. | Cannot bypass approval, SoD or policy constraints. |
+| Source Eligibility Authority | Establishes the source business fact or evidence making the Person eligible for the responsibility. | Its eligibility decision remains owned by the originating business process; A04 consumes the evidence without redefining it. |
 
-L2-A04 states that Role Assignments occur through “authorized administrative processes” and that the Role Assignment owns “assignment authority,” but it does not name:
-
-- the actor who requests the assignment;
-- the actor who determines Person eligibility;
-- the assignment authority;
-- the approval role; or
-- the actor who activates the assignment.
-
-No administrator, manager, security officer, HR actor or approval authority is invented in this scenario.
+Institutions may map these canonical responsibilities to local organizational roles in accordance with policy. Such mapping does not change the canonical responsibility boundaries.
 
 ---
 
 # 7. Preconditions and Entry Criteria
 
-- The assignment request belongs to exactly one resolved Tenant.
-- The applicable institution, campus, department or other assignment scope can be resolved.
-- A canonical Person and associated Identity exist and are eligible for the proposed assignment.
-- Where authenticated access is required, an applicable User Account reference exists.
-- The selected Role already exists and is available for assignment.
-- The Role represents the required authorization-layer responsibility.
-- The Role’s Permission grouping has already been configured and validated.
-- The assignment does not require modification of the Role or Permission definitions.
-- The proposed effective period and expiry constraints, where applicable, are available.
-- Applicable Role Assignment, least-privilege, Authorization Policy and SoD rules can be evaluated.
-- The authorized administrative process and required approval are expected to exist, although their canonical actors and contracts are not defined by L2-A04.
+- The Role Assignment request belongs to exactly one resolved Tenant.
+- The applicable institution, campus, department or other authorization scope can be resolved.
+- The canonical A02 Person exists within the Tenant and is the intended assignment subject.
+- Supporting Identity or User Account context, where relevant, can be resolved without becoming the canonical assignment target.
+- Sufficient source business basis or eligibility evidence exists for the request.
+- The selected A04 Role already exists and is available for assignment.
+- The Role's Permission grouping has already been configured and validated.
+- The assignment does not require modification of Role or Permission definitions.
+- The proposed effective period is valid.
+- Applicable least-privilege, authorization-policy and SoD rules can be evaluated.
+- The Assignment Authority can determine whether separate approval is required.
 
 ---
 
 # 8. Trigger
 
-An eligible Person requires an approved organizational responsibility within a defined institutional scope.
+A governed authorization-layer Role Assignment request is presented to A04 for an eligible canonical A02 Person within a defined institutional scope.
 
 ---
 
@@ -155,22 +156,20 @@ An eligible Person requires an approved organizational responsibility within a d
 
 | Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
 |---|---|---|---|
-| 1 | Receive the requirement to assign an approved responsibility to an eligible Person within a defined scope. | Authorization & Policy | A Role Assignment requirement is identified. |
-| 2 | Resolve the Tenant, institution, organization, campus, department and other applicable scope references. | Platform & Tenant; Authorization & Policy | The proposed assignment boundary is established without crossing Tenant boundaries. |
-| 3 | Resolve the canonical Person, Identity and applicable User Account references through L2-A02 contracts. | Person & Identity; Authorization & Policy | The proposed assignment is associated with the correct A02 reference. |
-| 4 | Select the existing Role that represents the required authorization-layer responsibility. | Authorization & Policy — Role | The assignment refers to a governed Role without changing its definition. |
-| 5 | Confirm that the Role’s grouped Permissions are configured and available for later policy evaluation. | Authorization & Policy — Role and Permission | The Permission grouping remains attached to the Role rather than directly to the Person. |
-| 6 | Define the proposed institutional scope, effective date and expiry date where applicable. | Authorization & Policy — Role Assignment | The intended assignment boundaries and effective period are established. |
-| 7 | Evaluate Tenant isolation, institution, department, campus, effective-date, expiry-date and least-privilege constraints. | Authorization & Policy | The proposed assignment satisfies the applicable assignment constraints. |
-| 8 | Evaluate applicable Separation of Duties Policies, including other assigned, delegated or temporary responsibilities. | Authorization & Policy — Separation of Duties Policy | A conflicting responsibility is detected or the assignment remains eligible to proceed. |
-| 9 | Determine the applicable administrative approval requirement. | Authorization & Policy | The required approval path is identified, but L2-A04 does not name its actor or contract. |
-| 10 | Obtain the required approval through the authorized administrative process. | Authorization & Policy | The responsibility is approved; the exact approval transition and state are not defined upstream. |
-| 11 | Create the Role Assignment binding the Role to the appropriate A02 Person/Identity reference, approved scope, effective period, status and assignment authority. | Authorization & Policy — Role Assignment | The Role Assignment aggregate exists; the exact initial state and creation event are not defined upstream. |
-| 12 | Activate or otherwise make the Role Assignment effective on its approved effective date. | Authorization & Policy — Role Assignment | The assigned Role and grouped Permissions become effective within scope; the canonical activation state and event are not defined upstream. |
-| 13 | Include the effective Role Assignment during Role Resolution and Permission Resolution for later protected requests. | Authorization & Policy | The Role and its grouped Permissions can participate in policy-based authorization decisions. |
-| 14 | Preserve immutable evidence of validation, SoD evaluation, approval, assignment and activation. | Authorization & Policy; Audit Infrastructure | The assignment outcome is traceable without changing historical Role definitions. |
-
-Steps 9–12 cannot be finalized as exact L3 behaviour because the authoritative actors, workflow, states, transitions, commands and events are absent from locked L2-A04.
+| 1 | Receive the governed Role Assignment request with the canonical Person, requested Role, scope, effective period and source business basis/evidence. | Assignment Requestor; Authorization & Policy | The request is eligible to enter A04 evaluation. |
+| 2 | Resolve and validate the Tenant and applicable institutional scope. | Platform & Tenant; Authorization & Policy | The assignment boundary is established without crossing Tenant boundaries. |
+| 3 | Resolve the canonical A02 Person and supporting Identity/User Account context where relevant. | Person & Identity; Authorization & Policy | The assignment is associated with the correct canonical Person. |
+| 4 | Validate the source business basis or eligibility evidence without re-owning the source decision. | Assignment Authority | The authorization request has a valid business basis. |
+| 5 | Select the existing A04 Role representing the required authorization-layer responsibility. | Assignment Authority; Authorization & Policy — Role | The request refers to a governed Role without changing its definition. |
+| 6 | Confirm the Role's grouped Permissions and define the proposed assignment scope and effective period. | Assignment Authority; Authorization & Policy — Role Assignment | Assignment boundaries are established while Permission definitions remain unchanged. |
+| 7 | Record the governed Role Assignment request. | Assignment Administrator; Authorization & Policy — Role Assignment | The Role Assignment enters `Requested` and `RoleAssignmentRequested` is published by A04 Role Assignment. |
+| 8 | Evaluate Tenant isolation, scope, effective-period, least-privilege, Authorization Policy and Separation of Duties constraints. | Assignment Authority; Authorization & Policy | The request is either eligible to proceed or follows Section 11 rejection handling. |
+| 9 | Determine whether a distinct approval decision is required. | Assignment Authority | The approval path is canonically determined. |
+| 10 | Where separate approval is required, route the assignment to `Pending Approval` and obtain the Assignment Approver decision; where policy explicitly permits no separate approval stage, record the governed approval through the Assignment Authority. | Assignment Authority; Assignment Approver where required | The assignment reaches `Approved` and `RoleAssignmentApproved` is published, or follows Section 11 rejection handling. |
+| 11 | Preserve the approved assignment until its effective date while confirming activation prerequisites remain valid. | Assignment Administrator; Authorization & Policy — Role Assignment | The assignment remains `Approved` and is not yet effective if its effective date is in the future. |
+| 12 | On the approved effective date, activate the Role Assignment. | Assignment Administrator; Authorization & Policy — Role Assignment | The assignment reaches `Active` and `RoleAssignmentActivated` is published. |
+| 13 | Make the active Role Assignment available to later Role Resolution and Permission Resolution. | Authorization & Policy | The Role and its grouped Permissions may participate in later policy-based authorization decisions within the approved scope. |
+| 14 | Preserve immutable evidence of request, validation, SoD evaluation, approval and activation. | Authorization & Policy; Audit Infrastructure | The outcome is traceable without changing historical Role, identity or organizational-authority facts. |
 
 ---
 
@@ -178,14 +177,15 @@ Steps 9–12 cannot be finalized as exact L3 behaviour because the authoritative
 
 | Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
 |---|---|---|---|---|
-| Future-effective assignment | The approved effective date is later than the approval date. | Preserve the approved assignment until its effective date and make it effective only when the applicable date is reached. | The Role must not participate in authorization decisions before becoming effective. Exact pre-effective states are undefined. | Authorization & Policy |
-| Multiple concurrent Roles | The Person already has another Role Assignment. | Evaluate all applicable assignments, scope rules, least privilege and SoD constraints. | Multiple active Roles may coexist where permitted. | Authorization & Policy |
+| Future-effective assignment | The approved effective date is later than the approval date. | Keep the Role Assignment in `Approved` until its governed effective date, then continue activation if prerequisites remain valid. | The Role does not participate in authorization decisions before `Active`. | Authorization & Policy |
+| Multiple concurrent Roles | The Person already has another Role Assignment. | Evaluate all applicable assignments, scope rules, least privilege and SoD constraints. | Multiple `Active` Roles may coexist where policy permits. | Authorization & Policy |
 | Institution-scoped responsibility | The Role applies across the institution. | Validate the institution boundary and applicable policies. | The assignment becomes effective only within the approved institution scope. | Authorization & Policy |
 | Department- or campus-scoped responsibility | The Role applies to a narrower operational scope. | Validate the department or campus boundary and scope-specific policies. | Permissions participate only within the approved scope. | Authorization & Policy |
+| Policy-permitted approval without separate approver stage | Governing policy explicitly permits approval without a distinct Assignment Approver. | Assignment Authority records the governed approval after all validation, SoD and least-privilege conditions are satisfied. | The same approved outcome is reached without inventing a separate approval actor. | Authorization & Policy |
 
-Conditions that stop normal progression—such as a prohibited SoD conflict or required approval not being granted—are handled only in Section 11 and are not alternate business flows.
+Conditions that stop normal progression—such as prohibited SoD conflict, failed validation or denied approval—are handled only in Section 11 and are not alternate business flows.
 
-Authorization Delegation, Temporary Access and Break-Glass are not alternate A010 paths; they remain separate scenarios.
+Authorization Delegation, Temporary Access and Break-Glass remain separate scenarios.
 
 ---
 
@@ -193,16 +193,15 @@ Authorization Delegation, Temporary Access and Break-Glass are not alternate A01
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Tenant or institutional scope cannot be resolved. | The assignment cannot preserve Tenant isolation or scope validity. | Reject the assignment without modifying the Role or Permission definitions. | Platform & Tenant; Authorization & Policy |
-| Person or Identity cannot be resolved or is ineligible. | The Role Assignment cannot be associated with a valid canonical subject. | Reject the assignment; Person and Identity correction remains governed by L2-A02. | Person & Identity; Authorization & Policy |
-| Selected Role is unavailable or not valid for assignment. | The responsibility cannot be assigned through that Role. | Stop assignment without modifying the Role. Role lifecycle governance remains separate. | Authorization & Policy |
-| Required scope information is invalid. | Effective access cannot be constrained to an approved boundary. | Reject or correct the assignment request before approval. | Authorization & Policy |
-| Effective or expiry dates are invalid. | The assignment cannot be effective-dated consistently. | Stop progression until a valid period is supplied. | Authorization & Policy |
-| SoD conflict is prohibited. | Assignment would create conflicting responsibilities. | Deny the assignment unless an approved policy explicitly permits continuation. | Authorization & Policy |
-| Required approval is not granted. | The assignment cannot become effective. | Do not activate or expose the assignment during Role Resolution. | Authorization & Policy |
-| Assignment creation is interrupted. | No reliable assignment outcome exists. | Do not treat the responsibility as effective. L2-A04 does not define a Role Assignment recovery workflow. | Authorization & Policy |
-| Assignment activation cannot be completed. | The Role and Permissions must not participate in authorization evaluation. | Preserve the incomplete auditable outcome; exact recovery states and transitions are undefined. | Authorization & Policy |
-| Canonical assignment event cannot be identified. | Downstream consumers cannot receive a governed assignment fact. | Do not invent an event or publisher; obtain an upstream L2-A04 decision. | Authorization & Policy |
+| Tenant or institutional scope cannot be resolved. | The assignment cannot preserve Tenant isolation or scope validity. | Reject the request; if it already entered the lifecycle, move it to `Rejected` and publish `RoleAssignmentRejected`. | Platform & Tenant; Authorization & Policy |
+| Canonical Person cannot be resolved or is ineligible under the supplied source evidence. | The Role Assignment cannot be associated with a valid subject/business basis. | Reject the request; source identity or eligibility correction remains with its canonical owner. | Person & Identity; Authorization & Policy |
+| Selected Role is unavailable or invalid for assignment. | The requested responsibility cannot be represented by that governed Role. | Reject or correct the request without modifying the Role definition. | Authorization & Policy |
+| Required scope information is invalid. | Effective access cannot be constrained to an approved boundary. | Correct before approval where permitted; otherwise reject the request. | Authorization & Policy |
+| Effective period is invalid. | The assignment cannot be effective-dated consistently. | Correct before approval where permitted; otherwise reject the request. | Authorization & Policy |
+| SoD conflict is prohibited. | Assignment would create a prohibited responsibility combination. | Move the request to `Rejected` and publish `RoleAssignmentRejected` unless an already-established policy permits a governed continuation path. | Authorization & Policy |
+| Required approval is denied. | The assignment cannot become effective. | Move the assignment to `Rejected`, publish `RoleAssignmentRejected`, and do not expose it during Role Resolution. | Assignment Approver; Authorization & Policy |
+| Request is withdrawn before effectiveness. | The assignment should not proceed to active access. | Move the eligible pre-effective assignment to `Cancelled` and publish `RoleAssignmentCancelled`. | Authorization & Policy |
+| Activation prerequisites are not valid on the effective date. | Approved access must not become effective. | Keep the assignment non-active while the governed condition is resolved, or cancel/reject according to the applicable business decision; never treat it as `Active` prematurely. | Authorization & Policy |
 
 No technical retry, rollback or implementation recovery mechanism is defined.
 
@@ -212,21 +211,19 @@ No technical retry, rollback or implementation recovery mechanism is defined.
 
 | Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
 |---|---|---|---|
-| L2-A04 exclusively owns Role and Role Assignment lifecycles. | Authorization & Policy | No other domain may create or activate the authorization Role Assignment. | L2-A04 — Architectural Responsibility and INT-301 |
-| A Role represents an organizational responsibility and groups business Permissions. | Authorization & Policy | The selected Role provides the responsibility and Permission grouping without owning Identity. | L2-A04 — Role aggregate; AP-08 |
-| Role Assignment binds a Role to an A02 Person/Identity reference within a scope, effective period, status and assignment authority. | Authorization & Policy | The assignment remains separate from both Role and Identity lifecycles. | L2-A04 — Aggregate Ownership and Role responsibility |
-| Role Assignment owns approval, activation, suspension, expiry and revocation. | Authorization & Policy | Assignment effectiveness cannot be delegated to another aggregate. | L2-A04 — Role responsibility |
-| Roles are assigned through authorized administrative processes. | Authorization & Policy | Normal self-assignment is not established by the locked architecture. | L2-A04 — Role Assignment |
-| A user may hold multiple active Roles simultaneously. | Authorization & Policy | Existing Roles do not automatically prevent a new assignment. | L2-A04 — Role Assignment |
-| Role Assignment must preserve Tenant isolation. | Authorization & Policy | Cross-Tenant assignment is prohibited. | L2-A04 — Role Assignment Constraints; AP-12 |
-| Assignment validation may include institution, department, campus, effective dates, expiry dates, SoD and approval requirements. | Authorization & Policy | Scope and governance constraints must be evaluated before effectiveness. | L2-A04 — Role Assignment Constraints |
-| Permissions are assigned to Roles rather than permanently to individual users. | Authorization & Policy | A010 cannot create direct user-Permission grants. | L2-A04 — Permission Assignment and Permission Invariants |
-| Users receive only Permissions required for assigned responsibilities. | Authorization & Policy | Assignment must follow least privilege. | L2-A04 — AP-10 |
-| Roles do not grant authorization independently. | Authorization & Policy | The assigned Role and Permissions only participate in later policy evaluation. | L2-A04 — Role Invariants |
-| A granted Permission does not automatically authorize execution. | Authorization & Policy | Explicit Deny, scope, resource state, policy and SoD may still deny later access. | L2-A04 — Permission Constraints |
-| Explicit Deny overrides Allow. | Authorization & Policy | Later authorization decisions remain deny-precedent even after assignment. | L2-A04 — AP-06 |
-| Workspace selection does not change Role Assignment or authorization outcomes. | Authorization & Policy | Workspace configuration remains outside assignment effectiveness. | L2-A04 — AP-07, AP-09 and Role Assignment |
-| Every Role and Permission change and authorization decision must be auditable. | Authorization & Policy; Audit Infrastructure | Assignment approval and activation require immutable traceability, although assignment-specific audit events are missing. | L2-A04 — AP-11 and Authorization Audit |
+| Canonical Person identity is Tenant-scoped. | Person & Identity / Platform Foundation | The Role Assignment references one canonical Person within the Tenant rather than an Institute-local duplicate identity. | Locked L1 Person-scope amendment; L2-A02 |
+| Role Assignment canonical subject is the A02 Person reference. | Authorization & Policy | User Account is not the canonical assignment target. | L2-A04 locked 2026-08-26 amendment |
+| L2-A04 exclusively owns Role and Role Assignment lifecycles. | Authorization & Policy | No other domain may create or transition the authorization Role Assignment. | L2-A04; ADR-PLAT-AUTH-001 |
+| Role Assignment uses the canonical states and transitions defined by the locked A04 amendment. | Authorization & Policy | A010 may use `Requested`, `Pending Approval`, `Approved`, `Active`, `Rejected` and `Cancelled` only according to that lifecycle. | L2-A04 locked 2026-08-26 amendment |
+| A Role represents an authorization-layer responsibility and groups business Permissions. | Authorization & Policy | Role selection does not create organizational authority or alter Identity. | L2-A04 |
+| Permissions are assigned to Roles rather than permanently to individual users. | Authorization & Policy | A010 cannot create direct Person/User Account Permission grants. | L2-A04 |
+| Role Assignment must preserve Tenant isolation and approved scope. | Authorization & Policy | Cross-Tenant or out-of-scope effectiveness is prohibited. | L2-A04 |
+| Least privilege and applicable SoD constraints must be evaluated before effectiveness. | Authorization & Policy | Prohibited requests do not become `Active`. | L2-A04 locked 2026-08-26 amendment |
+| Required approval is determined by Assignment Authority; distinct approval is used where policy or SoD requires it. | Authorization & Policy | Approval governance is explicit without hard-coding institutional job titles. | L2-A04 locked 2026-08-26 amendment |
+| An E02 organizational Responsibility Assignment does not directly grant A04 Permissions. | Position & Assignment; Authorization & Policy | Upstream organizational responsibility may be source evidence only. | L2-E02 locked 2026-08-26 amendment |
+| An A04 Role Assignment does not create E02 organizational authority. | Authorization & Policy; Position & Assignment | Authorization responsibility and organizational authority remain separate facts. | L2-E02 locked 2026-08-26 amendment |
+| An active Role Assignment does not independently authorize a protected operation. | Authorization & Policy | Later protected requests still require A04 authorization decision evaluation. | L2-A04 |
+| Role Assignment lifecycle changes and decisions are auditable. | Authorization & Policy; Audit Infrastructure | Request, decision and activation evidence must be preserved. | L2-A04 locked 2026-08-26 amendment; L2-A07 |
 
 ---
 
@@ -234,55 +231,48 @@ No technical retry, rollback or implementation recovery mechanism is defined.
 
 | Business Concept / Aggregate | Entry State or Condition | Required Scenario Impact | Intended Result | Canonical Owner |
 |---|---|---|---|---|
-| Person | Eligible canonical Person | Referenced by the assignment; no Person transition. | Unchanged. | Person & Identity |
-| Identity | Existing canonical Identity | Referenced by the assignment; no Identity transition. | Unchanged. | Person & Identity |
-| User Account | Existing where authenticated access is required | Supplies the account reference used during later authentication and authorization. | Unchanged. | Person & Identity |
+| Person | Existing canonical Tenant-scoped Person | Referenced as assignment subject; no Person transition. | Unchanged. | Person & Identity |
+| Identity | Existing where applicable | May provide supporting authorization context; no Identity transition. | Unchanged. | Person & Identity |
+| User Account | Existing or absent according to separate authentication context | Not the canonical assignment subject; no User Account transition. | Unchanged. | Person & Identity |
 | Role | Existing and available for assignment | Referenced without modification. | Definition and lifecycle unchanged. | Authorization & Policy |
-| Permission | Existing and grouped through the Role | Becomes indirectly available through the effective Role Assignment. | Definition and Role grouping unchanged. | Authorization & Policy |
-| Role Assignment | Does not yet exist | Must be validated, approved, created and made effective within scope. | Intended result is an effective approved Role Assignment; canonical states are undefined. | Authorization & Policy |
+| Permission | Existing and grouped through the Role | Becomes indirectly available through the active Role Assignment. | Definition and Role grouping unchanged. | Authorization & Policy |
+| Role Assignment | Does not yet exist or has just been requested | Progresses through `Requested`, optionally `Pending Approval`, `Approved`, and `Active`; failure paths may end `Rejected` or `Cancelled`. | One approved, scope-bounded `Active` Role Assignment. | Authorization & Policy |
 | Authorization Policy | Applicable policy exists | Evaluated without policy-state change. | Unchanged. | Authorization & Policy |
 | Authorization Decision | None for a specific protected request | No access decision is created merely by assignment. | Produced only when a later protected operation is evaluated. | Authorization & Policy |
-| Workspace | Existing or absent | Role Assignment may influence workspace resolution through authorized mapping, but does not change Workspace state. | Unchanged. | Authorization & Policy |
+| E02 Responsibility Assignment | May exist as upstream source evidence | Referenced only as business basis where applicable; no E02 transition occurs inside A010. | Unchanged. | Position & Assignment |
 
-L2-A04 names approval, activation, suspension, expiry and revocation as Role Assignment lifecycle responsibilities but provides no canonical state names or transition matrix. This Draft therefore does not introduce `Requested`, `Approved`, `Active`, `Suspended`, `Expired` or `Revoked` as Role Assignment states.
+Later `Suspended`, `Expired` and `Revoked` Role Assignment lifecycle states remain governed by A04 but are outside A010's successful completion boundary.
 
 ---
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Role Assignment Event Determination
+## 14.1 Canonical Role Assignment Events
 
-Locked L2-A04 does not define a canonical Role Assignment event catalogue, Aggregate-to-Event Matrix or sole publisher.
+| Business Fact | Canonical Event | Sole Semantic Publisher | Scenario Use |
+|---|---|---|---|
+| Role Assignment entered lifecycle | `RoleAssignmentRequested` | A04 Role Assignment | Published when the governed request is recorded. |
+| Role Assignment approved | `RoleAssignmentApproved` | A04 Role Assignment | Published when the assignment reaches `Approved`. |
+| Role Assignment rejected | `RoleAssignmentRejected` | A04 Role Assignment | Published on governed rejection. |
+| Role Assignment activated | `RoleAssignmentActivated` | A04 Role Assignment | Published when the assignment reaches `Active`; this is the successful lifecycle fact for A010. |
+| Role Assignment cancelled | `RoleAssignmentCancelled` | A04 Role Assignment | Published when an eligible pre-effective assignment is cancelled. |
 
-| Required Business Fact | Source Resolution Result | Scenario Treatment |
-|---|---|---|
-| Role Assignment requested or created | No canonical event name or publisher defined. | No event is invented. |
-| Role Assignment approved | No canonical event name or publisher defined. | No event is invented. |
-| Role Assignment activated or made effective | No canonical event name or publisher defined. | No event is invented. |
-| Role Assignment suspended | Lifecycle ownership stated, but no event defined. | Outside A010 completion; no event is invented. |
-| Role Assignment expired | Lifecycle ownership stated, but no event defined. | Outside A010 completion; no event is invented. |
-| Role Assignment revoked | Lifecycle ownership stated, but no event defined. | Outside A010 completion; no event is invented. |
+`RoleAssignmentSuspended`, `RoleAssignmentResumed`, `RoleAssignmentExpired` and `RoleAssignmentRevoked` are canonical A04 events defined upstream but occur outside A010's successful completion boundary.
 
-L2-A04 lists human-readable auditable activities such as `Role Created`, `Permission Assigned`, `Authorization Granted` and `Authorization Denied`. These are not used as A010 Role Assignment events because:
-
-- Role creation is outside A010;
-- Permission assignment to the Role is outside A010;
-- authorization decisions occur only during later protected requests; and
-- the document does not define canonical event names or publishers for those labels.
+L2-A06 Event Infrastructure owns governed distribution infrastructure; it is not the semantic publisher of these Role Assignment facts.
 
 ## 14.2 Synchronous Business Contracts and Hand-offs
 
 | Contract / Hand-off | Provider | Consumer | Business Information / Outcome |
 |---|---|---|---|
-| Tenant and institutional context | Platform & Tenant | Authorization & Policy | Tenant, institution, organization and campus scope. |
-| Person, Identity and User Account references | Person & Identity | Authorization & Policy | Canonical assignment subject and authentication-reference context. |
-| Authentication Session | Authentication | Authorization & Policy | Authenticated context for later authorization requests; not a precondition for assigning the target Person unless policy requires it. |
-| Role definition and grouped Permissions | Role and Permission aggregates | Role Assignment | Existing responsibility and indirect Permission grouping. |
-| Effective Role Assignment | Role Assignment | Role Resolution and Permission Resolution | Assignment facts required for later policy-based authorization decisions. |
-| Authorization Decision | Authorization & Policy | Business domains | Later immutable outcome for a specific protected business request. |
-| Assignment audit input | Authorization & Policy | Audit Infrastructure | Scope, dates, approval, SoD, assignment authority and effectiveness evidence. |
+| Tenant and institutional context | Platform & Tenant | Authorization & Policy | Tenant and approved institutional scope. |
+| Canonical Person and supporting identity context | Person & Identity | Authorization & Policy | Canonical assignment subject and supporting authorization context. |
+| Request Role Assignment | Authorized originating business process / Assignment Requestor | Authorization & Policy | Person, requested Role, scope, business basis/source evidence, effective period and originating context. |
+| Role definition and grouped Permissions | Role and Permission aggregates | Role Assignment | Existing authorization responsibility and indirect Permission grouping. |
+| Active Role Assignment | Role Assignment | Role Resolution and Permission Resolution | Assignment facts required for later policy-based authorization decisions. |
+| Assignment audit input | Authorization & Policy | Audit Infrastructure | Request, source basis, scope, period, SoD, approval, actor/responsibility and lifecycle evidence. |
 
-The contract through which L2-E02 organizational authority should inform A04 Role Assignment is not defined. Adding an E-domain hand-off here would change the frozen participating-domain architecture and is therefore deferred to Section 17.
+Where the source basis is an E02 organizational Responsibility Assignment, E02 retains ownership of that organizational fact; A04 owns the resulting Role Assignment.
 
 ---
 
@@ -291,86 +281,77 @@ The contract through which L2-E02 organizational authority should inform A04 Rol
 ## 15.1 Authorization
 
 - Authentication success alone does not grant the assigned responsibility.
-- An effective Role Assignment does not independently authorize a business operation.
-- Every protected operation must still undergo centralized Role Resolution, Permission Resolution, Policy Evaluation, SoD Evaluation, Explicit Deny Evaluation and final Authorization Decision.
+- An `Active` Role Assignment does not independently authorize a protected business operation.
+- Every protected operation remains subject to centralized Role Resolution, Permission Resolution, Policy Evaluation, SoD Evaluation, Explicit Deny Evaluation and final Authorization Decision.
 - Workspace selection cannot grant or remove Permissions.
 - No technical RBAC, claim, IAM group or enforcement implementation is defined.
 
 ## 15.2 Approval and Separation of Duty
 
-- The frozen trigger requires an approved responsibility.
-- L2-A04 states that Role Assignment owns assignment approval and supports configurable administrative approval requirements.
-- L2-A04 does not name the requestor, assignment authority or approving role.
-- Applicable SoD Policies must be evaluated before the assignment becomes effective.
-- A prohibited SoD conflict must be denied unless an approved policy explicitly permits continuation.
-- No override actor or new approval authority is invented.
+- Assignment Authority determines the applicable approval requirement under governing authorization policy.
+- Where policy or SoD requires distinct approval, Assignment Approver grants or denies the assignment.
+- The requestor does not obtain approval authority merely by initiating the request.
+- Where policy explicitly permits approval without a separate approver stage, Assignment Authority may record the governed approval after all required validation and SoD evaluation.
+- A prohibited SoD conflict cannot become `Active` unless an already-established policy explicitly permits a governed continuation path.
 
 ## 15.3 Audit Obligations
 
 The following must be auditable:
 
-- Tenant and institutional scope.
-- Person, Identity and applicable User Account references.
-- Selected Role.
-- Grouped Permissions referenced by the Role.
-- Effective and expiry dates.
-- Least-privilege validation.
-- SoD evaluation.
-- Required approval and approval outcome.
-- Assignment authority.
-- Assignment creation.
-- Assignment effectiveness.
-- Historical Role and Permission versions relevant to later decisions.
-- Actor, timestamp, correlation and outcome information.
+- canonical assignment subject;
+- Tenant and institutional scope;
+- selected Role and referenced Permission grouping;
+- source business basis or eligibility evidence;
+- effective period;
+- least-privilege and SoD evaluation outcomes;
+- approval requirement and decision;
+- acting canonical business responsibility;
+- Role Assignment request, approval/rejection and activation/cancellation events;
+- temporal and correlation context sufficient for institutional traceability.
 
-Authorization & Policy owns the assignment facts. Event Infrastructure owns governed event distribution after canonical assignment events exist. Audit Infrastructure owns immutable evidence and its lifecycle.
+Authorization & Policy owns Role Assignment facts and business meaning. Event Infrastructure owns governed distribution. Audit Infrastructure owns immutable evidence, integrity and retention.
 
 ---
 
 # 16. Completion Criteria and Postconditions
 
-The intended completion criteria are:
+The scenario is complete when:
 
-- The request was processed within exactly one Tenant.
-- The eligible Person and canonical Identity were resolved.
-- An existing Role was selected without modifying its definition.
-- The Role’s grouped Permissions remained unchanged.
-- The assignment scope and effective period were defined.
-- Tenant, institution, department, campus, date and least-privilege constraints were satisfied.
-- Applicable SoD Policies were evaluated.
-- Every required approval was granted.
-- A Role Assignment was created under its canonical assignment authority.
-- The Role Assignment became effective within the approved scope.
-- The Role and its grouped Permissions became available to Role Resolution and Permission Resolution.
-- Assignment approval and effectiveness were auditable.
-- No Permission was assigned directly to the Person.
-- No authorization decision was created without a later protected business request.
+- the request was governed within exactly one Tenant;
+- the canonical A02 Person was resolved as the Role Assignment subject;
+- a valid source business basis or eligibility evidence was accepted without ownership transfer;
+- an existing Role was selected without modifying its definition;
+- the Role's grouped Permissions remained unchanged;
+- the assignment scope and effective period were validated;
+- least-privilege and applicable SoD policies were satisfied;
+- every required approval was granted;
+- the Role Assignment progressed through its canonical A04 lifecycle to `Active`;
+- `RoleAssignmentActivated` was published by A04 Role Assignment;
+- the Role and grouped Permissions became available to later Role Resolution and Permission Resolution within scope;
+- assignment request, decision and activation evidence became auditable;
+- no Permission was assigned directly to the Person;
+- no organizational authority was created by the A04 Role Assignment; and
+- no authorization decision was created without a later protected business request.
 
-These criteria cannot be validated as a complete canonical outcome because locked L2-A04 does not define:
-
-- the Role Assignment workflow;
-- canonical Role Assignment states;
-- transition rules;
-- commands or assignment contracts;
-- canonical Role Assignment events and publishers;
-- the assignment and approval actors; or
-- the relationship between L2-E02 organizational responsibility and A04 authorization Role Assignment.
-
-The scenario therefore remains `BLOCKED`.
+The previously blocking upstream architecture required to validate these completion conditions is now established by the locked amendments approved through `ADR-PLAT-AUTH-001`.
 
 ---
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-| ID | Severity | Issue / Deferred Question | Precise Scenario Impact | Required Resolution |
-|---|---|---|---|---|
-| A010-BLOCKER-01 | Blocking | L2-A04 declares Role Assignment as an aggregate owning approval, activation, suspension, expiry and revocation but provides no Role Assignment workflow or lifecycle-state model. | The Draft cannot define the exact creation, approval and effectiveness transitions required for the frozen outcome. | Add the canonical Role Assignment workflow, state definitions and transition matrix to L2-A04. |
-| A010-BLOCKER-02 | Blocking | L2-A04 defines no Role Assignment commands or assignment-specific synchronous contracts. | L4 cannot identify the canonical business operations that request, approve, create or activate the assignment. | Define the authoritative commands/contracts and owning aggregate responsibilities. |
-| A010-BLOCKER-03 | Blocking | L2-A04 defines no canonical Role Assignment events or sole publishers. | The Draft cannot publish assignment creation, approval or effectiveness as canonical business facts without invention. | Define exact Role Assignment event names, publication conditions and one canonical publisher per event. |
-| A010-BLOCKER-04 | Blocking | L2-A04 does not name the requestor, Person-eligibility decision-maker, assignment authority, approver or activation authority. | Business responsibilities and approval authority cannot be assigned in Sections 6, 9 and 15. | Define the canonical business actors and their authority boundaries. |
-| A010-BLOCKER-05 | Blocking | L2-A04 §27 says Roles are assigned to authenticated User Accounts, while the later INT-301 amendment defines Role Assignment as binding a Role to an A02 Person/Identity reference. | The canonical assignment subject and cross-domain reference contract are inconsistent. The Draft follows the later amendment but cannot resolve the User Account wording. | Align L2-A04 on whether Role Assignment targets Person, Identity, User Account or an explicitly defined reference combination. |
-| A010-BLOCKER-06 | Blocking | L2-E02 owns organizational Responsibility Assignment and Organizational Authority and states that authority must not be derived directly from a Security Role. Frozen A010 begins with an approved organizational responsibility but assigns an A04 Role, with Participating Domains frozen to `A`. | The source of organizational responsibility, the E02-to-A04 hand-off and the distinction between organizational authority and authorization-layer responsibility are undefined. | Reconcile L2-E02 and L2-A04 without changing A010’s frozen owner/domains unless Phase 4 governance formally reopens them. |
-| A010-ISSUE-01 | Non-blocking | L2-A04 lists Role and Permission audit activities but omits Role Assignment creation, approval and activation from its auditable-event list. | Assignment-specific audit meaning is incomplete even though AP-11 requires every permission grant and authorization activity to be audited. | Add Role Assignment audit activities and their correlation requirements. |
-| A010-ISSUE-02 | Non-blocking | Locked L1 §3.4 uses an Institute-scoped Person boundary while A02 and A04 use Tenant-scoped identity and authorization references. | The Draft follows L2 Tenant isolation, but the enterprise scope of the target Person remains inconsistent. | Lead Architect alignment is required before Architecture Approval or locking. |
+No unresolved architecture blocker remains from the A010 upstream remediation package approved on 2026-08-26.
 
-No unsupported actor, approval authority, Role Assignment state, transition, event, publisher, organizational hand-off or implementation mechanism is assumed by this Draft.
+For traceability, the previously recorded items are closed as follows:
+
+| ID | Status | Resolution | Authoritative Source |
+|---|---|---|---|
+| A010-BLOCKER-01 | Resolved | Canonical Role Assignment lifecycle and transition matrix established. | L2-A04 locked 2026-08-26 amendment |
+| A010-BLOCKER-02 | Resolved | Canonical implementation-independent Role Assignment business operations/contracts established. | L2-A04 locked 2026-08-26 amendment |
+| A010-BLOCKER-03 | Resolved | Exact canonical Role Assignment events and sole A04 publisher established. | L2-A04 locked 2026-08-26 amendment |
+| A010-BLOCKER-04 | Resolved | Canonical Assignment Subject, Requestor, Authority, Approver, Administrator and Source Eligibility Authority responsibilities established. | L2-A04 locked 2026-08-26 amendment |
+| A010-BLOCKER-05 | Resolved | Canonical Role Assignment subject is the A02 Person; legacy User Account target wording is superseded. | L2-A04 locked 2026-08-26 amendment |
+| A010-BLOCKER-06 | Resolved | E02 organizational responsibility and A04 authorization Role Assignment are separated; governed Request Role Assignment hand-off defined without changing A010's frozen domain participation. | L2-E02 locked 2026-08-26 amendment |
+| A010-ISSUE-01 | Resolved | Role Assignment lifecycle activities and evidence obligations are explicitly auditable. | L2-A04 locked 2026-08-26 amendment; L2-A07 |
+| A010-ISSUE-02 | Resolved | Canonical Person scope aligned to Tenant level while Institute-scoped business contexts remain domain-owned. | Locked L1 2026-08-26 Person-scope amendment; L2-A02 |
+
+No unsupported actor, approval authority, lifecycle state, transition, event, publisher, organizational hand-off or implementation mechanism is assumed by this Draft.
