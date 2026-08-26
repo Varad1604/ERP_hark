@@ -4,15 +4,20 @@
 
 **Provisional Specification ID:** L4-I-118  
 **Architecture Level:** L4 — System Behavior Specification  
+**Domain:** Examination — Revaluation & Rechecking  
 **Realizes Scenario:** L3-I-118  
 **Primary Business Owner:** Revaluation & Rechecking  
+**Version:** 0.1.0  
 **Status:** Draft  
-**Pilot Classification:** Provisional — not canonical naming or granularity  
-**Primary Sources:** L3-I-118 v1.1 Architecture Approved; locked L2-I11  
+**Owner:** Lead Architect — Controlled L4 Pilot  
+**Last Updated:** 2026-08-26  
+**Depends On:** L3-I-118 v1.1 Architecture Approved; locked L2-I11  
+**Referenced By:** None yet  
+**Pilot Classification:** Provisional — not canonical naming, template, or physical granularity  
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP must govern a Revaluation Request from an officially published result through eligibility, review, outcome verification and revised-marks approval where marks change, while preserving Finance, Person & Identity, Result Processing & Computation and Result Publication ownership boundaries.
+SutraERP must govern a Revaluation Request from an officially published result through eligibility, review, outcome verification and revised-marks approval where marks change, while consuming authoritative Finance, Person & Identity and assessment-evidence facts and without performing downstream result recomputation or republication.
 
 The behavior begins when a Candidate submits a Revaluation Request against an officially published result and ends when the review reaches a governed completed outcome, including approved revised marks where applicable, without performing downstream result recomputation or republication.
 
@@ -32,13 +37,13 @@ The behavior begins when a Candidate submits a Revaluation Request against an of
 | L4-I-118-BH-001 | The system shall prevent revaluation from proceeding against an unpublished, provisional or draft examination result. | L3-I-118 §§4, 7, 12; L2-I11 §9.1 |
 | L4-I-118-BH-002 | The system shall evaluate the Revaluation Request against the applicable institutional eligibility rules before accepting it for review. | L3-I-118 §§7, 9, 12; L2-I11 §9.2 |
 | L4-I-118-BH-003 | The system shall enforce the applicable institutional review window and permit an out-of-window request only where an authorized exception path exists. | L3-I-118 §§7, 10, 12; L2-I11 §9.3 |
-| L4-I-118-BH-004 | Where a review fee is required, the system shall use Finance-owned payment confirmation and shall not create or alter Finance payment truth. | L3-I-118 §§5, 7, 9, 14 |
+| L4-I-118-BH-004 | Where a review fee is required, the system shall use authoritative Finance payment confirmation and shall not create or alter that Finance-owned payment fact. | L3-I-118 §§5, 7, 9, 14 |
 | L4-I-118-BH-005 | The system shall prevent academic reassessment from beginning until the Revaluation Request is approved under the applicable institutional review policy. | L3-I-118 §§9, 12, 15; L2-I11 §§5.6, 8.6 |
 | L4-I-118-BH-006 | The system shall make authorized assessment evidence available for revaluation without modifying the source assessment record. | L3-I-118 §§4, 9, 14; L2-I11 §§5.7, 8.7 |
 | L4-I-118-BH-007 | The system shall permit revaluation only to a source-supported authorized evaluator under institutional regulations. | L3-I-118 §§6, 9, 12, 15; L2-I11 §9.5 |
 | L4-I-118-BH-008 | The system shall require institutional verification of the completed review outcome before revised marks can proceed to approval. | L3-I-118 §§9, 12; L2-I11 §§5.10, 8.9 |
 | L4-I-118-BH-009 | The system shall prevent revised marks from becoming authoritative until the required institutional approval has been completed. | L3-I-118 §§3, 9, 12, 16; L2-I11 §9.6 |
-| L4-I-118-BH-010 | The system shall preserve a verified no-change outcome without inventing revised marks where the reassessment confirms the existing marks. | L3-I-118 §§4, 10, 13 |
+| L4-I-118-BH-010 | The system shall preserve a verified no-change outcome without creating revised marks where the reassessment confirms the existing marks. | L3-I-118 §§4, 10, 13 |
 | L4-I-118-BH-011 | The system shall not compute grades, grade points, credit points, SGPA, CGPA, academic standing or classification as part of this scenario. | L3-I-118 §§4, 12, 16; L2-I11 §9.7 |
 | L4-I-118-BH-012 | The system shall not publish or republish the official examination result as part of this scenario. | L3-I-118 §§4, 12, 16; L2-I11 §9.8 |
 
@@ -46,10 +51,10 @@ The behavior begins when a Candidate submits a Revaluation Request against an of
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-I-118-BH-013 | The system shall recognize `Published Result Available` as the authoritative upstream event establishing an eligible published-result context where event-driven collaboration is used. | L3-I-118 §14; L2-I11 §12 |
+| L4-I-118-BH-013 | Where event-driven collaboration is used, the system shall recognize `Published Result Available` as the authoritative upstream event establishing an eligible published-result context. | L3-I-118 §14; L2-I11 §12 |
 | L4-I-118-BH-014 | The system shall publish `Revaluation Requested` when the governed request is registered. | L3-I-118 §14; L2-I11 §11 |
 | L4-I-118-BH-015 | The system shall publish `Review Eligibility Verified` when eligibility verification completes successfully. | L3-I-118 §14; L2-I11 §11 |
-| L4-I-118-BH-016 | Where a fee applies, the system shall publish `Review Fee Verified` after Finance-owned payment confirmation is successfully verified for the review. | L3-I-118 §14; L2-I11 §11 |
+| L4-I-118-BH-016 | Where a fee applies, the system shall publish `Review Fee Verified` after authoritative Finance payment confirmation is successfully verified for the review. | L3-I-118 §14; L2-I11 §11 |
 | L4-I-118-BH-017 | The system shall publish `Review Request Approved` when the request is institutionally approved to proceed. | L3-I-118 §14; L2-I11 §11 |
 | L4-I-118-BH-018 | The system shall publish `Revaluation Started` when authorized academic reassessment begins. | L3-I-118 §14; L2-I11 §11 |
 | L4-I-118-BH-019 | The system shall publish `Review Outcome Verified` when institutional verification of the review outcome completes. | L3-I-118 §14; L2-I11 §11 |
