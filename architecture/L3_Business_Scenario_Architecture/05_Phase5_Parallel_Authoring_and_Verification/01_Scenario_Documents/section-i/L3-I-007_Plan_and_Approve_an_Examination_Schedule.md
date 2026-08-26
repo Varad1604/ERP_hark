@@ -28,7 +28,7 @@ The scenario concludes when **plan and Approve an Examination Schedule** is esta
 
 ## 4.1 Start Boundary
 
-The scenario starts when **governed need for plan and approve an examination schedule** is established in a valid examination context and source-defined entry conditions are available.
+The scenario starts when an **Active Examination Session** establishes a valid planning context and a governed need for an examination schedule exists.
 
 ## 4.2 End Boundary
 
@@ -59,7 +59,7 @@ Related scenarios provide prerequisites or consume this outcome under locked dep
 |---|---|
 | Examination Planning & Scheduling | Owns the governed final outcome and applicable aggregate lifecycle. |
 | Institution and Academic Structure | Provides only canonically owned facts, decisions, resources, assignments, or confirmations. |
-| Academic Delivery | Provides only canonically owned facts, decisions, resources, assignments, or confirmations. |
+| Academic Delivery | Provides only canonically owned contributions required for planning. |
 
 The Primary Owner retains the outcome; participating domains retain their canonical responsibilities.
 
@@ -79,8 +79,7 @@ Only responsibilities supported by locked L2-I03 apply. Supporting domains retai
 
 # 7. Preconditions and Entry Criteria
 
-- An approved and eligible Examination Session exists.
-- The governing examination context exists in the state required by L2-I03.
+- The governing Examination Session is **Active**, as required by L2-I03.
 - Approved policy and source-owned facts are authoritative.
 - Required upstream academic-calendar, curriculum, campus, infrastructure and resource information is available where applicable.
 - Initiation and decision responsibilities are valid.
@@ -88,13 +87,13 @@ Only responsibilities supported by locked L2-I03 apply. Supporting domains retai
 
 # 8. Trigger
 
-**Governed need for plan and approve an examination schedule.**
+**Governed need for plan and approve an examination schedule within an Active Examination Session.**
 
 This is a business occurrence or authoritative condition, not an implementation action.
 
 # 9. Main Business Flow
 
-1. The responsible participant recognizes the authoritative trigger within an approved Examination Session.
+1. The responsible participant recognizes the authoritative trigger within an Active Examination Session.
 2. The Primary Owner verifies source-defined preconditions and upstream facts.
 3. Participating domains provide only their canonically owned contributions.
 4. Examination Planning prepares the schedule, including applicable timetable, venue and resource planning.
@@ -120,7 +119,7 @@ The owning domain resolves an incomplete or inconsistent input; Examination Plan
 
 # 11. Failure, Interruption and Business Recovery
 
-- Planning does not begin without an approved Examination Session.
+- Planning does not begin without an Active Examination Session.
 - Schedule approval remains blocked while material academic-calendar, venue, capacity, resource or timetable conflicts remain unresolved.
 - Progression is suspended if required authority, evidence or authoritative input is unavailable.
 - Disputed facts return to their canonical owner.
@@ -132,7 +131,7 @@ The owning domain resolves an incomplete or inconsistent input; Examination Plan
 
 | Business Rule / Constraint | Scenario Effect | Owner / Source |
 |---|---|---|
-| Planning requires an approved Examination Session. | The scenario cannot validly begin without an eligible approved session. | L2-I03 §§4.1, 10.1 |
+| Planning begins only within an Active Examination Session. | The scenario cannot validly begin before the governing session is Active. | L2-I03 §§4.1, 8.2, 10.1 |
 | Scheduling conflicts must be validated and resolved before approval. | Approval remains blocked while material conflicts remain unresolved. | L2-I03 §§5.6, 10.2–10.5 |
 | Schedule approval requires completed planning, successful validation, confirmed resource availability and institutional governance compliance. | Only a sufficiently governed schedule can reach Approved. | L2-I03 §§5.7, 9.5 |
 | Only approved schedules may proceed to publication. | This scenario stops at the approved outcome and does not absorb publication. | L2-I03 §§5.7–5.8, 9.5–9.6 |
@@ -144,7 +143,7 @@ No local threshold, scheduling algorithm, authority, state or rule is created.
 
 | Owned Business Concept / Aggregate | Relevant Entry State / Condition | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Examination Schedule | Planning initiated within an approved Examination Session | Prepare, validate, review and authorize the schedule. | Approved | Examination Planning & Scheduling | L2-I03 §§4.7, 8, 9.5 |
+| Examination Schedule | Planning initiated within an Active Examination Session | Prepare, validate, review and authorize the schedule. | Approved | Examination Planning & Scheduling | L2-I03 §§4.7, 8, 9.5 |
 
 This scenario does not publish the schedule or create downstream execution states. Activities are not lifecycle states, and no hidden transition is introduced.
 
@@ -168,7 +167,7 @@ This scenario does not publish the schedule or create downstream execution state
 
 | Event | Canonical Publisher | Business Purpose |
 |---|---|---|
-| Examination Session Activated | L2-I02 | Establishes the eligible examination session for planning. |
+| Examination Session Activated | L2-I02 | Establishes the Active Examination Session required for planning. |
 | Examination Policy Updated | L2-I01 | Supplies authoritative planning policy. |
 | Academic Calendar Updated | Academic Calendar Domain | Supplies authoritative examination-window context. |
 | Curriculum Updated | Curriculum Framework Domain | Supplies authoritative programme/course applicability. |
@@ -182,7 +181,7 @@ Event names and publisher direction are taken exactly from locked L2-I03; no wor
 
 | Provider | Consumer | Business Hand-off |
 |---|---|---|
-| Examination Session Management | Examination Planning & Scheduling | Approved/Active Examination Session and governing session context. |
+| Examination Session Management | Examination Planning & Scheduling | Active Examination Session and governing session context. |
 | Institution and Academic Structure | Examination Planning & Scheduling | Canonically owned academic-calendar, curriculum, organisational and institutional facts required for planning. |
 | Academic Delivery / collaborating resource domains | Examination Planning & Scheduling | Canonically owned academic-delivery, venue, facility and resource information where applicable. |
 
@@ -200,13 +199,13 @@ No additional separation-of-duty, override or exceptional authority is created l
 
 ## 15.3 Business Audit and Evidence Obligations
 
-The institution must demonstrate the governing Examination Session, planning context, schedule content, source-owned contributions, conflict-validation result, responsible participants, approval decision, prior planning position where changed and final approved outcome.
+The institution must demonstrate the governing Active Examination Session, planning context, schedule content, source-owned contributions, conflict-validation result, responsible participants, approval decision, prior planning position where changed and final approved outcome.
 
 # 16. Completion Criteria and Postconditions
 
 ## 16.1 Completion Criteria
 
-- An approved Examination Session governed the planning context.
+- An Active Examination Session governed the planning context.
 - Required schedule content and source-owned contributions were available.
 - Material conflicts were validated and resolved.
 - Required institutional review and approval were completed.
@@ -225,7 +224,7 @@ The institution must demonstrate the governing Examination Session, planning con
 
 ## 17.1 Open Issues
 
-No scenario-specific material conflict remains after the 2026-08-26 correction of actor, rule and event mappings. Architecture re-review is required because the previously locked version was materially corrected.
+No scenario-specific material conflict remains after the 2026-08-26 correction of actor, rule, lifecycle-entry and event mappings. Architecture re-review is required because the previously locked version was materially corrected.
 
 ## 17.2 Assumptions
 
