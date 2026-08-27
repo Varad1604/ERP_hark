@@ -8,15 +8,16 @@
 **Participating Domains:** E, H  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-23  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows
+**Last Updated:** 2026-08-27  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows; `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md`  
+**Referenced By:** L3 targeted revalidation and formal Architecture Approval review
 
 # 2. Scenario Purpose
 
-Govern Research ethics submission, review, decision, renewal, and expiry using only H05-defined Ethics Approval lifecycle semantics while preserving E03 researcher ownership.
+Govern Research ethics submission, review, revision, approval, rejection, suspension, reinstatement, revocation and closure while preserving E03 researcher ownership.
 
 # 3. Business Outcome
 
@@ -26,31 +27,34 @@ Approval, rejection, revision, renewal, suspension, or revocation is recorded an
 
 ## 4.1 Start Boundary
 
-Research requiring ethics oversight is proposed or materially changed
+Research requiring ethics oversight is proposed or materially changed.
 
 ## 4.2 End Boundary
 
-H05 supports submission, review, approval, rejection, conditional approval, renewal, and expiry. The frozen outcome additionally requires revision, suspension, revocation, and continuing-compliance governance that H05 does not define.
+The scenario ends when the Ethics Approval reaches an authoritative governed outcome and continuing-compliance obligations are reflected through the locked H05 lifecycle.
 
 ## 4.3 In Scope
 
-Ethics application submission, authorized review, approval/rejection, approval conditions, renewal, expiry, and evidence preservation.
+Ethics submission, review, revision-required branch, approval/rejection, suspension/reinstatement, revocation, closure, and preservation of immutable decision evidence.
 
 ## 4.4 Out of Scope
 
-Invented ethics revision, suspension, revocation, or continuing-compliance states/events; changes to E03 workforce facts.
+Changes to E03 workforce facts and any implementation mechanism.
 
 # 5. Ownership and Participating Domains
 
-E03 owns faculty identity, research capability, availability, capacity, and eligibility. Research owns the Ethics Approval aggregate and its defined lifecycle.
+E03 owns faculty identity, research capability, availability, capacity and eligibility. Research owns the Ethics Approval aggregate and its lifecycle/events.
 
 # 6. Business Actors, Roles and Responsibilities
 
-Principal Investigator submits/renews; Ethics Committee Member reviews; Ethics Committee Chair / Authorized Approver approves; Ethics Committee Chair records rejection where authorized.
+Principal Investigator submits/revises the ethics application. Existing Ethics Committee Member / Chair / Authorized Approver responsibilities remain as defined in H05. Research Director is the canonical business authority for strategic suspension, revocation and closure decisions where institutional approval is required.
 
 # 7. Preconditions and Entry Criteria
 
-An applicable Research Project exists; ethics oversight is required by configured research category; mandatory evidence is available; committee/reviewer configuration is valid.
+- The Research activity requires ethics oversight.
+- Mandatory evidence exists.
+- Applicable committee/reviewer configuration is valid.
+- Researcher/workforce references remain authoritative in E03.
 
 # 8. Trigger
 
@@ -58,71 +62,75 @@ Research requiring ethics oversight is proposed or materially changed
 
 # 9. Main Business Flow
 
-1. Determine that the Research activity requires ethics oversight.
-2. Submit the Ethics application; enter `Submitted`.
-3. Assign authorized review and enter `Under Review`.
-4. Record review evidence.
-5. Record an H05-supported approval or rejection decision.
-6. For an approved request, preserve conditions and validity period.
-7. Renew within the governed window or allow approval to expire.
-8. Stop before any frozen revision, suspension, revocation, or undefined continuing-compliance action.
+1. Submit the Ethics application and enter `Submitted`.
+2. Move to `Under Review` and record governed review evidence.
+3. If revision is required, move `Under Review → Revision Required`, publish `EthicsRevisionRequired`, and return a corrected submission to `Submitted`.
+4. If rejected, move `Under Review → Rejected` and preserve decision history.
+5. If approved, move `Under Review → Approved` and preserve approval conditions/evidence.
+6. If continuing-compliance risk requires temporary restriction, move `Approved → Suspended` and publish `EthicsApprovalSuspended`.
+7. If compliance is restored, move `Suspended → Approved` and publish `EthicsApprovalReinstated`.
+8. If the approval is formally revoked, move `Approved / Suspended → Revoked` and publish `EthicsApprovalRevoked`.
+9. When the governed research activity ends and no continuing ethics obligation remains, move `Approved → Closed` and publish `EthicsApprovalClosed`.
 
 # 10. Alternate Business Flows
 
-Conditional approval is supported. Rejection is supported. Renewal creates a new approval version with prior versions preserved. Expiry is source-defined.
+- Revision Required returns to a new governed submission while prior review history remains preserved.
+- Rejected is a terminal outcome for that review decision.
+- Revoked is terminal for that Ethics Approval record; future approval requires a new governed submission.
 
 # 11. Failure, Interruption and Business Recovery
 
-Incomplete application or unauthorized reviewer prevents progression. Unsupported revision/suspension/revocation cannot be represented through a substitute state.
+Incomplete evidence or unauthorized review prevents progression. Suspension preserves approval history and may be reinstated only through governed compliance restoration. Revocation does not erase prior approval evidence.
 
 # 12. Business Rules and Decision Constraints
 
-Ethics requirement, committee structure, validity, and renewal window are configurable. Historical review/approval versions remain immutable. E03 remains researcher eligibility owner.
+- Ethics lifecycle is owned by H05.
+- Revision, suspension, reinstatement, revocation and closure follow only the locked H05 transitions.
+- Revoked is terminal for that approval record.
+- Workforce facts remain E03-owned.
+- Historical review/approval evidence is immutable.
 
 # 13. State and Lifecycle Impact
 
-`Submitted → Under Review → Approved / Rejected`; `Approved → Approved` through renewal, or `Approved → Expired`. No H05 ethics states exist for revision, suspension, or revocation.
+Canonical Ethics Approval lifecycle:
+
+`Submitted → Under Review → Approved`
+
+Branches:
+
+- `Under Review → Revision Required → Submitted`
+- `Under Review → Rejected`
+- `Approved → Suspended → Approved`
+- `Approved / Suspended → Revoked`
+- `Approved → Closed`
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
+Canonical H05 events include:
 
-H05 defines `EthicsApplicationSubmitted`, `EthicsApplicationReviewed`, `EthicsApprovalGranted`, `EthicsApprovalRenewed`, and `EthicsApprovalExpired`. The detailed Ethics lifecycle uses `EthicsApplicationRejected`, while the consolidated catalogue uses `EthicsApprovalRejected`; L3 does not resolve that naming conflict locally.
+- `EthicsRevisionRequired`
+- `EthicsApprovalSuspended`
+- `EthicsApprovalReinstated`
+- `EthicsApprovalRevoked`
+- `EthicsApprovalClosed`
 
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-Research consumes E03 workforce facts only as authoritative references. No additional participant is introduced.
+Existing submission/review/approval/rejection facts remain Research-owned. E03 workforce facts are consumed by reference only.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-Only H05-defined PI, Ethics Committee Member, Ethics Committee Chair, and Authorized Approver responsibilities are used.
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-No L3 authority is invented for missing frozen lifecycle actions.
-
-## 15.3 Business Audit and Evidence Obligations
-
-Preserve application version, reviewer observations, conditions, decision authority, validity period, renewal history, expiry, and exact source-supported lifecycle evidence.
+Existing ethics review/approval authorities remain as defined by H05. Research Director owns the amendment-defined strategic suspension/revocation/closure decisions where institutional approval is required. Evidence preserves application version, reviewers, conditions, decision authority, suspension/reinstatement/revocation/closure rationale and complete history.
 
 # 16. Completion Criteria and Postconditions
 
-Supported H05 branches may complete to approval, rejection, renewal, or expiry. The full frozen outcome cannot complete because revision, suspension, revocation, and continuing-compliance lifecycle semantics are missing.
+Completion occurs when the Ethics Approval reaches the applicable approved, rejected, suspended, reinstated, revoked or closed outcome and required evidence is preserved. The resulting ethics state governs the Research activity without changing E03 workforce ownership.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+## 17.1 Resolved Historical Blocker
 
-- No canonical ethics revision state/transition/authority/event.
-- No ethics suspension or revocation state/transition/authority/event.
-- Continuing compliance is described as a capability but has no canonical workflow beyond renewal/expiry.
-- Rejection event name conflicts between detailed lifecycle and consolidated event catalogue.
+The former missing revision, suspension, revocation and continuing-compliance lifecycle semantics were resolved by locked `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md` and passed targeted revalidation on 2026-08-26.
 
-The missing frozen branches materially block the scenario.
-
-**Architecture assessment:** `BLOCKED`
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
 
 ## 17.2 Assumptions
 
@@ -130,4 +138,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional deferred questions.
+No additional scenario-specific questions.
