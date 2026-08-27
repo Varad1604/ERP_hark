@@ -8,40 +8,46 @@
 **Participating Domains:** A, C, D, F, H, I  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Architecture Approved  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-23  
-**Depends On:** L2-H01 — APAAR & DigiLocker Workflows; applicable locked source-domain credential architecture; Section A authorization/audit architecture
+**Last Updated:** 2026-08-27  
+**Depends On:** L2-H01 — APAAR & DigiLocker Workflows; applicable locked source-domain credential architecture; Section A authorization/audit architecture; `L2-H01_Publication_Recovery_and_Republishing_Amendment_2026-08-26.md`  
+**Referenced By:** L3 targeted revalidation and formal Architecture Approval review
 
 # 2. Scenario Purpose
 
-Govern recovery of an existing H01 Publication that fails, stalls or requires cancellation while preserving Publication identity, source credential ownership and complete recovery lineage.
+Govern recovery of an H01 publication attempt that fails, remains pending, or requires cancellation while preserving source credential ownership, immutable attempt history and complete recovery lineage.
 
 # 3. Business Outcome
 
 The publication is safely retried, cancelled, or escalated without duplicate external records and with complete recovery lineage
 
+The 2026-08-26 locked H01 amendment establishes the authoritative recovery semantics required for this frozen outcome.
+
 # 4. Scenario Boundary and Scope
 
-The scenario starts when the frozen trigger occurs and ends when the frozen business outcome is reached or, for a source-defined unsuccessful branch, when the controlled H01/H02 outcome is recorded. In scope are only the source-owned facts, H-owned integration/communication lifecycle, canonical events, business contracts and evidence materially required for this outcome. Source-domain credential, Student, Institution, identity and originating transaction ownership remain outside H.
+The scenario starts when the frozen trigger occurs and ends when the applicable governed recovery decision and resulting publication outcome have been recorded. Source-domain credential, Student, Institution, identity and originating transaction ownership remain outside H01. H01 owns only publication-attempt recovery and publication history.
 
 # 5. Ownership and Participating Domains
 
 - **A:** retains authorization/audit capability ownership.
-- **C/D/F/I:** retain source credential and related facts.
-- **H:** owns Publication recovery governance, retry/cancellation events and recovery history, but locked H01 is internally contradictory about Failed-state terminality and does not define the manual escalation authority.
+- **C/D/F/I:** retain source credential and related authoritative facts.
+- **H:** owns publication recovery governance, recovery decisions, recovery attempts and publication history.
+- A recovery action does not transfer source credential ownership to H01.
 
 # 6. Business Actors, Roles and Responsibilities
 
-**Institution Administrator** is source-supported to cancel an eligible pending Publication. No canonical business actor is defined for manual recovery/escalation. Retry execution is described technically in H01 and is not promoted into a human L3 actor.
+**Institution Administrator** is the canonical business authority for deciding whether an institution-controlled failed or pending publication shall be retried, manually recovered, or cancelled where a business decision is required.
+
+Integration Administrator remains limited to connector/integration administration. Platform Administrator remains limited to platform availability and may not override institutional publication decisions or consent.
 
 # 7. Preconditions and Entry Criteria
 
-- Existing H01 Publication identity/history exists.
-- Source credential remains authoritative outside H01.
-- Publication is failed, stalled/pending, or cancellation-eligible.
-- Existing external/recovery evidence is available.
+- An H01 publication attempt exists with preserved identity/history.
+- The source credential remains authoritative outside H01.
+- The publication attempt is failed, pending/stalled, or cancellation-eligible.
+- Applicable consent, eligibility, source-credential validity and connector-governance conditions remain satisfied for any recovery attempt.
 
 # 8. Trigger
 
@@ -49,57 +55,77 @@ A publication fails, stalls, or must be cancelled before terminal completion
 
 # 9. Main Business Flow
 
-1. Resolve the existing H01 Publication and preserve its identity/correlation/history.
-2. Classify the condition for source-defined retry, cancellation or manual recovery.
-3. If retry is permitted, continue the existing governed Publication without creating a duplicate identity.
-4. If cancellation is permitted before completion, record `PublicationCancelled`.
-5. If neither path resolves the condition, route to governed manual recovery/escalation.
-6. Preserve complete recovery evidence.
-
-The failed-publication retry and escalation branches are **blocked** by contradictory lifecycle terminality and missing business authority.
+1. Resolve the existing publication attempt and preserve its immutable identity, correlation and history.
+2. Classify the condition for governed retry/recovery, cancellation or manual recovery.
+3. Where a business decision is required, the Institution Administrator authorizes the permitted recovery path.
+4. If recovery is authorized after a failed or pending outcome, publish `CredentialPublicationRecoveryAuthorized`.
+5. Create a new auditable publication attempt linked to the prior attempt; do not reopen or mutate the prior failed attempt.
+6. If cancellation of a pending attempt is authorized, preserve its history and prevent it from later being treated as successful.
+7. Complete the resulting governed publication path according to H01 rules.
+8. Preserve complete decision, predecessor-attempt and outcome evidence.
 
 # 10. Alternate Business Flows
 
-- Cancellation is valid only where the existing Publication remains cancellation-eligible.
-- Retry may use `PublicationRetryScheduled`/`PublicationRetryStarted` only if upstream H01 lifecycle permits it.
-- Non-recoverable conditions remain unresolved rather than being given an invented terminal state.
+- A failed attempt remains terminal for that attempt even when a later recovery attempt is authorized.
+- A pending attempt may be cancelled where the governing business decision permits cancellation.
+- If recovery eligibility, consent, source-credential validity or connector-governance requirements fail, no new recovery attempt proceeds.
 
 # 11. Failure, Interruption and Business Recovery
 
-Do not create duplicate external records or change the source credential. Preserve the Publication and its evidence while the upstream lifecycle/authority gaps are unresolved.
+Recovery never rewrites a failed attempt. Each later retry/recovery is a new auditable attempt linked to the prior attempt. Cancellation preserves the cancelled/pending-attempt history. No recovery path may bypass consent, eligibility, source-credential validity or connector-governance requirements.
 
 # 12. Business Rules and Decision Constraints
 
-- H01 requires retry not to create duplicate government records.
-- Recovery retains the original Publication/correlation lineage.
-- `PublicationRetryScheduled` is defined after `PublicationFailed`, but H01 elsewhere calls `PublicationFailed` terminal.
-- Cancellation before completion is source-defined.
+- `Failed` is terminal for the individual unsuccessful publication attempt.
+- A later governed recovery attempt may be created for the same institutional credential when authorized.
+- Recovery creates a new attempt and preserves lineage; it never mutates the failed attempt.
+- Institution Administrator owns the applicable institution-controlled recovery/cancellation decision.
+- Recovery must not create duplicate current successful publication records for the same governed context.
 
 # 13. State and Lifecycle Impact
 
-Locked H01 inconsistently treats `Failed` as terminal while also allowing retry/manual recovery from Failed. L3 cannot choose a canonical Failed-state transition locally. Cancellation may reach `Cancelled` where clearly permitted.
+A failed attempt remains `Failed` and immutable. Recovery creates a successor attempt rather than transitioning the failed record out of `Failed`. A cancelled pending attempt remains preserved as cancelled historical evidence. Successful later attempts follow normal H01 completion semantics.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-Potential H01 events are `PublicationFailed`, `PublicationRetryScheduled`, `PublicationRetryStarted`, `PublicationCancelled`, and after a valid recovered completion `GovernmentAcknowledgementRecorded`/`PublicationCompleted`. Their use depends on unresolved Failed-state semantics.
+## 14.1 Published / Consumed Business Events
+
+- `CredentialPublicationRecoveryAuthorized` — H01 publication fact that the Institution Administrator authorized governed recovery.
+- Existing H01 publication-attempt and completion events remain applicable to the new recovery attempt according to its outcome.
+- Source-domain credential events remain owned by their source domains.
+
+## 14.2 Business Contracts and Cross-Domain Hand-offs
+
+H01 consumes authoritative source credential facts by reference and records only H01 publication/recovery facts. Recovery does not authorize writes to source-domain aggregates.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-Institution Administrator may cancel an eligible pending Publication. The canonical manual-recovery/escalation business actor/decision authority is missing. Audit evidence must preserve prior state, failure/cancellation/retry lineage and external references.
+The Institution Administrator is the canonical business authority for institution-controlled retry, manual recovery or cancellation decisions where such a decision is required. Audit evidence must preserve prior attempt identity/state, recovery authorization, cancellation decision where applicable, successor-attempt lineage, external references and final outcome.
 
 # 16. Completion Criteria and Postconditions
 
-Frozen completion requires a governed retry, cancellation or escalation outcome with no duplicate external records and complete lineage. Because failed-state lifecycle and escalation authority are materially unresolved, all branches cannot be completed authoritatively.
+Completion requires one governed outcome:
+
+- a new authorized recovery attempt has completed according to H01 rules; or
+- a pending attempt has been governedly cancelled with history preserved; or
+- a governed manual-recovery decision has been recorded and followed through its applicable publication outcome.
+
+No prior failed attempt is reopened or overwritten, source credential ownership is unchanged, and complete recovery lineage is preserved.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-- H01 calls `PublicationFailed` terminal yet also schedules retry after it and depicts retry/manual recovery from Failed.
-- Manual recovery/escalation business actor and authority are undefined.
-- Frozen Finance participation has no generic H01 recovery responsibility.
-- H01 dependency labels are stale.
+## 17.1 Resolved Historical Blocker
 
-**Architecture assessment:** `BLOCKED`
+The former conflict between Failed-state terminality and retry/recovery, together with the missing manual recovery/cancellation authority, was resolved by locked `L2-H01_Publication_Recovery_and_Republishing_Amendment_2026-08-26.md` and passed targeted revalidation on 2026-08-26.
 
-**Assumptions:** None.
+The frozen Finance participation remains participation only; no generic H01 recovery ownership is assigned to Finance.
 
-**Deferred questions:** No additional scenario-specific questions beyond the issues recorded above.
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
+
+## 17.2 Assumptions
+
+No assumptions.
+
+## 17.3 Deferred Questions
+
+No additional scenario-specific questions.

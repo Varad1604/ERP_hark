@@ -8,19 +8,22 @@
 **Participating Domains:** A, H  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Architecture Approved  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-23  
-**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H06 — Alumni Workflows; applicable locked Section A identity/authorization architecture
+**Last Updated:** 2026-08-27  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H06 — Alumni Workflows; applicable locked Section A identity/authorization architecture; `L2-H06_Alumni_Engagement_Lifecycle_Amendment_2026-08-26.md`  
+**Referenced By:** L3 targeted revalidation and formal Architecture Approval review
 
 # 2. Scenario Purpose
 
-Govern an Alumni membership request or renewal while retaining H06 ownership of membership state and Section A ownership of identity and authorization facts.
+Govern an Alumni membership request or renewal through H06-owned review, activation, rejection, suspension/reactivation and closure while retaining Section A ownership of identity and authorization facts.
 
 # 3. Business Outcome
 
 Membership is approved, rejected, renewed, suspended, expired, or closed with preserved history
+
+The frozen words `renewed` and `expired` describe business outcomes and do not introduce new H06 lifecycle state names. A renewed membership is represented through a new governed membership request/activation where policy permits; expiry of a current membership is represented by governed closure of that membership record rather than a new `Expired` state.
 
 # 4. Scenario Boundary and Scope
 
@@ -30,38 +33,39 @@ The scenario begins when an eligible alumnus requests or renews membership.
 
 ## 4.2 End Boundary
 
-The frozen end boundary requires one of the membership outcomes: approved, rejected, renewed, suspended, expired, or closed.
+The scenario ends when the membership reaches the applicable H06 outcome: Active, Rejected, Suspended, or Closed, with renewal/expiry meaning represented through the governed membership-record lifecycle and preserved history.
 
 ## 4.3 In Scope
 
-- Validate the existing Alumni Profile and relevant identity verification.
-- Govern H06 membership activation, suspension, reactivation, and archival where defined.
-- Preserve membership history.
+- Membership request and review.
+- Activation, rejection, suspension/reactivation and closure.
+- New governed membership request after a prior Closed record where policy permits.
+- Preservation of membership history.
 
 ## 4.4 Out of Scope
 
-- Person or User Account ownership.
-- Authentication or authorization lifecycle changes.
+- Person/User Account ownership.
+- Authentication/authorization lifecycle changes.
 - Student-to-Alumni transition.
-- Inventing membership rejection, renewal, expiry, or closure states not defined by H06.
+- Inventing `Renewed` or `Expired` lifecycle states.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility |
 |---|---|
 | Section A | Owns canonical identity/authentication/authorization facts consumed by H06. |
-| Alumni / H06 | Owns Alumni Membership and its defined lifecycle. |
+| Alumni / H06 | Owns Alumni Membership and its governed lifecycle. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-H06 supports the Alumni as requester and the Alumni Administrator / Institutional Administrator for governed membership administration. L3 introduces no new approval role.
+Alumni initiates a membership request. H06 Alumni / Alumni Administrator roles participate according to the governed membership process. H06 business governance owns membership decisions; Section A supplies identity/authorization capability only.
 
 # 7. Preconditions and Entry Criteria
 
-- An Alumni Profile exists.
-- Membership is in an H06-defined state that permits the requested action.
-- Identity verification is complete where H06 requires it.
-- The actor is authorized for the H06 action.
+- An H06 Alumni Profile exists.
+- The membership request is permitted for the current engagement context.
+- Required identity facts are available by reference.
+- The requester and decision participants are authorized for their H06 responsibilities.
 
 # 8. Trigger
 
@@ -69,81 +73,74 @@ An eligible alumnus requests or renews membership
 
 # 9. Main Business Flow
 
-1. H06 receives the membership intent against an existing Alumni Profile.
-2. H06 validates membership state and required identity facts.
-3. For activation, H06 follows `Eligible → Registered → Active` and publishes `AlumniMembershipActivated`.
-4. For suspension, H06 follows `Active → Suspended` and publishes `AlumniMembershipSuspended`.
-5. For reactivation, H06 follows `Suspended → Active` and publishes `AlumniMembershipReactivated`.
-6. For archival, H06 may move an Active Alumni relationship to `Archived` under its defined lifecycle and publish `AlumniArchived`.
-7. H06 preserves membership history.
-
-The flow cannot be extended to the frozen rejection, renewal, expiry, and closed outcomes because H06 does not define those membership transitions.
+1. Record the Membership request in `Requested`.
+2. Validate the Alumni Profile, identity references and applicable membership conditions.
+3. Move the request to `Under Review`.
+4. If rejected, move to `Rejected` and publish `AlumniMembershipRejected`.
+5. If approved for participation, move to `Active` and publish `AlumniMembershipActivated`.
+6. Where temporary restriction is required, move `Active → Suspended` and publish `AlumniMembershipSuspended`.
+7. Where governed restoration is permitted, move `Suspended → Active`.
+8. When the current membership relationship ends, move `Active / Suspended → Closed` and publish `AlumniMembershipClosed`.
+9. Where policy permits renewal after a Closed record, create a new governed membership request; preserve the prior Closed record historically.
 
 # 10. Alternate Business Flows
 
-- Suspended membership may be reactivated through the H06-defined reactivation path.
-- Inactive membership may be reactivated where the H06 transition matrix permits.
-- Archival follows the H06-defined terminal archival path; it is not renamed to `Closed`.
+- `Under Review → Rejected`.
+- `Active → Suspended → Active`.
+- `Active / Suspended → Closed`.
+- Renewal after closure creates a new governed membership request rather than rewriting the closed record.
 
 # 11. Failure, Interruption and Business Recovery
 
-A request that does not correspond to an H06-defined transition remains unresolved at the last valid H06 state. L3 does not map undefined renewal, expiry, rejection, or closure semantics onto existing states.
+Invalid identity/context or failed membership review prevents activation. Suspended membership remains historical and may be restored only through the governed branch. A Closed record is not rewritten by renewal.
 
 # 12. Business Rules and Decision Constraints
 
 - H06 owns Alumni Membership.
-- Identity remains owned by Section A.
-- Membership activation requires an existing Alumni Profile and H06 eligibility.
-- H06 defines membership states `Eligible`, `Invited`, `Registered`, `Active`, `Suspended`, and `Inactive`, and separately defines `Archived` in its transition matrix.
-- Only H06-defined transitions may be applied.
+- Canonical lifecycle: `Requested → Under Review → Active → Closed`.
+- Branches: `Under Review → Rejected`, `Active → Suspended → Active`, and `Active / Suspended → Closed`.
+- A Closed membership may be followed by a new governed membership request where policy permits; the prior record remains historical.
+- Section A identity/authorization ownership is unchanged.
+- `Renewed` and `Expired` are not introduced as additional lifecycle states.
 
 # 13. State and Lifecycle Impact
 
-Authoritative H06 transitions include `Eligible → Registered → Active`, `Active → Suspended`, `Suspended → Active`, `Active → Archived`, and `Inactive → Active`. No authoritative H06 transitions define `Rejected`, `Renewed`, `Expired`, or `Closed` membership outcomes.
+Canonical Alumni Membership lifecycle:
+
+`Requested → Under Review → Active → Closed`
+
+Branches:
+
+- `Under Review → Rejected`
+- `Active → Suspended → Active`
+- `Active / Suspended → Closed`
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
+H06 publishes the applicable membership facts, including:
 
-H06 defines `AlumniMembershipActivated`, `AlumniMembershipSuspended`, `AlumniMembershipReactivated`, and `AlumniArchived`. No canonical H06 membership rejection, renewal, expiry, or closed event is defined.
+- `AlumniMembershipActivated`
+- `AlumniMembershipRejected`
+- `AlumniMembershipSuspended`
+- `AlumniMembershipClosed`
 
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-H06 consumes identity facts from Section A. That participation does not transfer identity ownership.
+Section A identity facts are consumed by reference and are not republished by H06.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-The Alumni may initiate supported membership actions. H06 administrative roles govern membership administration as defined upstream.
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-No local override may manufacture a missing membership state or transition.
-
-## 15.3 Business Audit and Evidence Obligations
-
-Preserve requester/administrator attribution, prior and resulting H06 membership state, applicable reason, and membership history for supported transitions.
+H06 governs membership review and decision authority. Evidence preserves request, review, decision, suspension/reactivation/closure, prior membership history and any subsequent new membership request. Section A authorization evidence remains source-owned.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-The frozen scenario is complete only if the requested membership lifecycle can reach all permitted frozen outcomes under authoritative H06 rules.
-
-## 16.2 Postconditions
-
-Supported H06 activation/suspension/reactivation/archival outcomes remain valid, but the complete frozen outcome set cannot be represented.
+Completion requires the membership to reach the applicable authoritative H06 outcome with complete history preserved. Renewal does not overwrite a closed predecessor; expiry is represented through the governed ending/closure of the membership relationship rather than an invented state.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+## 17.1 Resolved Historical Blocker
 
-H06 does not define membership `Rejected`, `Renewed`, `Expired`, or `Closed` states/transitions/events even though all are frozen outcomes for H040. `Archived` cannot be silently renamed to `Closed`.
+The former missing rejection, suspension and closure lifecycle semantics were resolved by locked `L2-H06_Alumni_Engagement_Lifecycle_Amendment_2026-08-26.md` and passed targeted revalidation on 2026-08-26. Frozen renewal/expiry terminology is retained as business outcome language without creating non-canonical lifecycle states.
 
-**Architecture impact:** the frozen lifecycle and end boundary are materially incomplete upstream.
-
-**Architecture assessment:** `BLOCKED`
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
 
 ## 17.2 Assumptions
 
@@ -151,4 +148,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-Upstream architecture must define the missing membership outcomes or formally amend the frozen scenario semantics.
+No additional scenario-specific questions.

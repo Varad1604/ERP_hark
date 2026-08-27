@@ -8,58 +8,60 @@
 **Participating Domains:** A, H  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Architecture Approved  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-23  
-**Depends On:** L2-H03 — Enterprise Directory & Search Workflows; L2-A04 — Authorization & Policy Workflows; L2-A07 — Audit Infrastructure Workflows  
-**Referenced By:** None yet
+**Last Updated:** 2026-08-27  
+**Depends On:** L2-H03 — Enterprise Directory & Search Workflows; L2-A04 — Authorization & Policy Workflows; L2-A07 — Audit Infrastructure Workflows; `L2-H03_Search_Governance_Amendment_2026-08-26.md`  
+**Referenced By:** L3 targeted revalidation and formal Architecture Approval review
 
 # 2. Scenario Purpose
 
-Govern onboarding of a canonical source domain into enterprise search so an approved indexing/projection contract can produce secure H03 Searchable Projections without importing source-domain business rules or ownership.
+Govern onboarding of a canonical source domain into enterprise search so an approved projection definition can become securely available without importing source-domain business rules or ownership.
 
 # 3. Business Outcome
 
 Its projection contract is approved, indexed, secured, and made discoverable without importing domain rules into H03
 
+The 2026-08-26 locked H03 amendment establishes the approval authority, projection lifecycle and canonical approval/activation events required for this frozen outcome.
+
 # 4. Scenario Boundary and Scope
 
 ## 4.1 Start Boundary
 
-A canonical domain requests enterprise search participation
+A canonical domain requests enterprise search participation.
 
 ## 4.2 End Boundary
 
-The frozen outcome requires the projection contract to be approved, indexed, secured, and made discoverable. Locked H03 does not define the mandatory contract-approval lifecycle or authority, so the scenario cannot authoritatively reach this end boundary.
+The scenario ends when the Search Projection Definition has passed governed approval, reached Active, and the resulting secure projection is available for governed enterprise discovery without changing source-domain ownership.
 
 ## 4.3 In Scope
 
 - Search-participation request from a canonical source domain.
-- H03 indexing/projection-contract registration and validation.
-- Searchable Projection lifecycle and required security metadata.
+- H03 Search Projection Definition registration, review, approval and activation.
+- Validation of source ownership, permitted projection scope, discoverability restrictions and institutional search policy.
 - Preservation of source-domain ownership and rule boundaries.
 
 ## 4.4 Out of Scope
 
 - Importing source-domain business rules into H03.
-- Inventing the missing contract approver, approval lifecycle, or approval event.
-- Changing source-domain entities to satisfy search participation.
+- Modifying source-domain entities or lifecycle states.
+- Technical implementation of indexing or search infrastructure.
 
 # 5. Ownership and Participating Domains
 
-Section A retains authorization and Audit ownership for governed onboarding. H03 owns indexing-contract registration/validation, Searchable Projection lifecycle, search/security metadata, and discoverability. The requesting canonical source domain retains all business entities, rules, lifecycle decisions, and source meaning.
+Section A retains authorization and audit capability ownership. H03 exclusively owns Search Projection Definitions, search configuration and H03 projection lifecycles. The requesting canonical source domain retains all source entities, rules, lifecycles and business meaning.
 
 # 6. Business Actors, Roles and Responsibilities
 
-The requesting domain initiates at domain level. H03 has no canonical Actors section and defines no canonical business approver for a new indexing/projection contract. No approver is invented.
+The requesting source domain initiates participation at business-domain level. The **Search Governance Authority** is the canonical institutional business authority for approving or rejecting a new or materially changed Search Projection Definition before governed search availability. Technical administration does not substitute for this decision authority.
 
 # 7. Preconditions and Entry Criteria
 
-- The requesting domain is canonical owner of the entities proposed for discovery.
-- It can provide canonical identifiers and permitted searchable attributes without transferring ownership.
-- H03 governance and Section A authorization/audit context are available.
-- A canonical indexing contract can be registered and validated.
+- The requesting domain is the canonical owner of the entities proposed for discovery.
+- Canonical identifiers and permitted searchable attributes are available without ownership transfer.
+- Section A authorization/audit context is available.
+- A proposed Search Projection Definition can be evaluated against H03 governance.
 
 # 8. Trigger
 
@@ -67,81 +69,88 @@ A canonical domain requests enterprise search participation
 
 # 9. Main Business Flow
 
-1. Receive the canonical domain's search-participation request.
-2. Register the proposed indexing/projection contract under H03 governance.
-3. Validate canonical identifiers, source ownership, permitted searchable attributes, contract conformance, and required security metadata.
-4. **Blocking decision:** establish contract approval before indexing. Locked H03 requires approved indexing contracts but defines no approval lifecycle, approver, or approval event.
-5. After a future authoritative approval exists, H03 can create projections and progress them through `Detected → Validated → Projected → Indexed → Searchable`.
-6. Make only secured, valid projections discoverable and preserve source ownership/evidence.
+1. Receive the canonical source domain's search-participation request.
+2. Establish a Draft Search Projection Definition under H03 governance.
+3. Validate source-domain ownership, permitted projection scope, discoverability restrictions, security requirements and institutional search policy.
+4. Move the definition to `Under Review` for the Search Governance Authority.
+5. If approved, record `SearchProjectionApproved` and move the definition to `Approved`.
+6. Activate the approved definition and publish `SearchProjectionActivated`.
+7. Establish the governed searchable projection using only approved source attributes and references.
+8. Make the resulting projection discoverable subject to H03 and Section A authorization constraints.
+9. Preserve approval, activation, source ownership and projection evidence.
 
 # 10. Alternate Business Flows
 
-- **Contract validation fails:** return/reject without search availability.
-- **Security metadata incomplete:** do not make the projection searchable.
-- **Source rule leakage detected:** retain only search representation/metadata; source business rules stay source-owned.
+- `Under Review → Rejected`: publish `SearchProjectionRejected`; a later revision requires a successor Draft version and the rejected record remains historical.
+- `Active → Suspended → Active`: temporary governed suspension does not change source-domain facts.
+- `Suspended → Retired` or `Active → Retired`: publish `SearchProjectionRetired` and preserve history.
+- Validation or security failure prevents approval/activation.
 
 # 11. Failure, Interruption and Business Recovery
 
-Without canonical contract approval authority, onboarding stops before the mandatory approval decision. Validation failure or ownership ambiguity likewise prevents search availability; no local approval substitute or source-ownership compromise is permitted.
+A projection that fails governance or security review does not become Active. Rejected definitions remain historical and may only be revised through a successor Draft. Suspension or retirement affects H03 projection availability only; source-domain data remains unchanged.
 
 # 12. Business Rules and Decision Constraints
 
-- New searchable entity types integrate through canonical indexing contracts.
-- Search projections contain only approved searchable attributes.
-- Every projection references exactly one canonical entity and source domain.
-- Security metadata must exist before indexing/publication.
-- H03 may not modify source business data or import source business rules.
+- H03 owns Search Projection Definitions and their lifecycle.
+- Source domains retain ownership of source business facts.
+- Search Governance Authority approves or rejects new or materially changed projection definitions.
+- Projection scope must respect source-domain ownership, discoverability restrictions and institutional search policy.
+- Technical administration cannot substitute for business approval.
+- H03 does not import source-domain business rules.
 
 # 13. State and Lifecycle Impact
 
-After an approved contract, H03 can use the source-defined Projection lifecycle `Detected → Validated → Projected → Indexed → Searchable`. The canonical source entity remains unchanged. No canonical indexing-contract approval state machine exists in locked H03.
+Canonical Search Projection Definition lifecycle:
+
+`Draft → Under Review → Approved → Active → Retired`
+
+Branches:
+
+- `Under Review → Rejected`
+- `Active → Suspended → Active`
+- `Suspended → Retired`
+
+The source entity lifecycle remains unchanged.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-H03 defines `SearchProjectionRegistered` and `SearchIndexUpdated` for projection/index outcomes, but no canonical event for projection-contract approval. No approval event or publisher is invented.
+H03 is the sole semantic publisher of:
+
+- `SearchProjectionApproved`
+- `SearchProjectionActivated`
+- `SearchProjectionRejected`
+- `SearchProjectionRetired`
+
+These events describe H03 projection governance only and do not republish source-domain business facts.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
-The requesting domain supplies the proposed canonical indexing/projection contract and remains owner of all source business meaning. H03 can register and validate the contract, but the mandatory approval hand-off/authority is undefined upstream.
+The source domain supplies the authoritative entity references and permitted projection scope. H03 creates only search projections/definitions. Section A supplies authorization/audit capability without becoming owner of H03 decisions.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-The canonical source domain initiates search participation. H03 requires governed administrative authorization but defines no canonical business actor/approval authority for approving the indexing/projection contract.
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-Validation cannot be silently treated as approval, and no separation-of-duty or override rule may be invented.
-
-## 15.3 Business Audit and Evidence Obligations
-
-Preserve the onboarding request, source ownership, proposed contract, validation/security results, eventual approval evidence once defined upstream, and H03 projection availability evidence.
+Search Governance Authority owns the approval/rejection decision. Audit evidence preserves the participation request, source ownership, proposed definition, governance review, decision, activation/retirement outcome and applicable authorization context.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
+Completion requires:
 
-- A canonical approval lifecycle/authority exists for the projection contract.
-- The contract is validly approved.
-- H03 projections are indexed and secured.
-- The projections become discoverable without importing source-domain rules.
-
-## 16.2 Postconditions
-
-- No architecture-complete postcondition can be asserted until the mandatory contract-approval gap is resolved.
-- Source business ownership remains outside H03.
+- the projection definition is approved by the Search Governance Authority;
+- the approved definition reaches Active;
+- only approved searchable attributes are projected;
+- discoverability restrictions and authorization remain effective; and
+- source-domain ownership and rules remain unchanged.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+## 17.1 Resolved Historical Blocker
 
-- Frozen semantics require an **approved** projection contract, but locked H03 defines no approval state, workflow, business approver, or approval event.
-- H03 has no canonical Actors section for the mandatory contract-approval action.
+The former missing projection approval lifecycle, approval authority and approval event were resolved by locked `L2-H03_Search_Governance_Amendment_2026-08-26.md` and passed targeted revalidation on 2026-08-26.
 
-**Architecture assessment:** `BLOCKED`
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
 
 ## 17.2 Assumptions
 
@@ -149,4 +158,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-Upstream architecture must define the indexing/projection-contract approval lifecycle, authority, and any required event/evidence.
+No additional scenario-specific questions.

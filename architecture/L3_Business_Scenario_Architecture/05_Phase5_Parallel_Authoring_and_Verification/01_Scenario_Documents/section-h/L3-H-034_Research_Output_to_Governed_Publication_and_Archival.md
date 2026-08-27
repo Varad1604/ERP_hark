@@ -8,15 +8,16 @@
 **Participating Domains:** E, H  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Architecture Approved  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-23  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows
+**Last Updated:** 2026-08-27  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows; `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md`  
+**Referenced By:** L3 targeted revalidation and formal Architecture Approval review
 
 # 2. Scenario Purpose
 
-Govern institutional Research Publication metadata from verified output registration through H05-defined verification, publication, and archival while preserving workforce ownership and external scholarly authority for external metadata.
+Govern Research Publication metadata from submission through review, approval/rejection, publication, successor correction and archival while preserving workforce ownership and external scholarly authority for externally owned metadata.
 
 # 3. Business Outcome
 
@@ -26,31 +27,34 @@ The output is reviewed, published or rejected, corrected where permitted, and re
 
 ## 4.1 Start Boundary
 
-A verified research output is submitted for institutional publication
+A verified research output is submitted for institutional publication.
 
 ## 4.2 End Boundary
 
-H05 supports `Draft → Verified → Published → Archived`. The frozen outcome also requires reviewed/rejected and correction paths, which are not canonically defined.
+The scenario ends when the Research Publication reaches the applicable governed outcome: Published, Rejected, Archived, or a successor version supersedes a Published predecessor after material correction.
 
 ## 4.3 In Scope
 
-Register publication metadata, verify authenticity/affiliation/ownership, publish verified output, archive according to policy, and preserve history.
+Publication submission/review, revision-required branch, approval/rejection, publication, successor correction, supersession and archival.
 
 ## 4.4 Out of Scope
 
-Invented Publication rejection, correction, amendment, successor-version, or rejection-authority semantics; ownership of publication documents or E03 workforce facts.
+Ownership of publication documents, E03 workforce facts, or external legal/scholarly authority.
 
 # 5. Ownership and Participating Domains
 
-E03 owns workforce identity and capability facts. Research owns Publication metadata, its H05 lifecycle, verification history, publication state, and archival state. Publication documents remain outside Research as defined by H05.
+E03 owns workforce identity/capability facts. Research owns Publication metadata, its H05 lifecycle/events and institutional publication history. Authoritative content/document ownership remains with its applicable source/document owner.
 
 # 6. Business Actors, Roles and Responsibilities
 
-Faculty Member / Principal Investigator / Research Administrator may register. Research Office verifies, publishes, and archives according to H05.
+Faculty Member / Principal Investigator / Research Administrator may register or submit publication metadata according to H05. Existing H05 review actors retain their responsibilities. Research Director is the canonical business authority for strategic approval/rejection/archival decisions where institutional approval is required.
 
 # 7. Preconditions and Entry Criteria
 
-A verified research output is available; institutional author references are valid; publication type is configured; duplicate/DOI checks can be completed; required metadata exists.
+- A valid research output exists.
+- Institutional author references are valid.
+- Required metadata and project references are available.
+- Duplicate/DOI and source-verification checks can be completed.
 
 # 8. Trigger
 
@@ -58,69 +62,64 @@ A verified research output is submitted for institutional publication
 
 # 9. Main Business Flow
 
-1. Register publication metadata and enter `Draft`.
-2. Validate authors, DOI where applicable, publication type, duplicate rules, and referenced project.
-3. Verify authenticity and institutional ownership; enter `Verified`.
-4. Publish the verified output; enter `Published`.
-5. Preserve publication authority/date and historical metadata.
-6. Archive an eligible published record under repository/publication policy; enter `Archived`.
-7. Stop before unsupported rejection or correction branches.
+1. Register publication metadata in `Draft`.
+2. Submit it and move to `Submitted`.
+3. Move to `Under Review` and evaluate authenticity, ownership, institutional affiliation and publication requirements.
+4. If revision is required, move `Under Review → Revision Required → Submitted` and publish `ResearchPublicationRevisionRequired`.
+5. If rejected, move `Under Review → Rejected` and publish `ResearchPublicationRejected`.
+6. If approved, move `Under Review → Approved`.
+7. Publish the approved record, move to `Published`, and publish `ResearchPublicationPublished`.
+8. If a material correction is required after publication, create a successor Publication version; the Published predecessor remains immutable and may become `Superseded` for current-use purposes, publishing `ResearchPublicationSuperseded`.
+9. Archive an eligible Publication and publish `ResearchPublicationArchived` while preserving history.
 
 # 10. Alternate Business Flows
 
-Manual verification may be used when external verification is unavailable. Duplicate registration is rejected before lifecycle creation/progression. Eligible published records may be archived.
+- Rejected Publication may be revised only through a successor Draft/submission path where governance permits.
+- Material post-publication correction creates a successor version; the predecessor is not overwritten.
+- Archival preserves historical availability according to repository policy.
 
 # 11. Failure, Interruption and Business Recovery
 
-Failed verification prevents publication. Missing required metadata blocks progression. Frozen rejection/correction branches require upstream architecture resolution rather than local states.
+Failed review prevents approval/publication. Missing required metadata or duplicate conflicts stop progression. Correction never mutates a Published predecessor; a successor version preserves lineage.
 
 # 12. Business Rules and Decision Constraints
 
-At least one institutional author is required; DOI is unique where applicable; duplicates are prohibited; published date/history is traceable; documents remain outside Research; archived publications are read-only and available for reporting.
+- Canonical lifecycle: `Draft → Submitted → Under Review → Approved → Published → Archived`.
+- `Under Review → Revision Required → Submitted` and `Under Review → Rejected` are governed branches.
+- Published predecessors remain immutable after material correction.
+- Research Publication metadata does not transfer ownership of source documents or E03 workforce facts.
 
 # 13. State and Lifecycle Impact
 
-Publication: `Draft → Verified → Published → Archived`. H05 defines no `Rejected` Publication state and no correction/version-successor lifecycle.
+The current Publication version follows the canonical lifecycle. A material correction after publication establishes a successor version; the predecessor may become `Superseded` for current-use purposes while historical evidence remains immutable.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
+Research publishes:
 
-Research publishes `PublicationRegistered`, `PublicationVerified`, `ResearchOutputPublished`, and `PublicationArchived`.
+- `ResearchPublicationRevisionRequired`
+- `ResearchPublicationRejected`
+- `ResearchPublicationPublished`
+- `ResearchPublicationSuperseded`
+- `ResearchPublicationArchived`
 
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-E03 workforce identity remains source-owned. External scholarly sources may remain authoritative for externally owned citation/verification metadata as H05 specifies.
+E03 and external source facts are referenced only; their ownership is unchanged.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-Only the H05 roles above are assigned. No rejection/correction authority is created.
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-No L3 override may bypass verification before publication or invent unsupported lifecycle branches.
-
-## 15.3 Business Audit and Evidence Obligations
-
-Preserve registration metadata, author references, verification evidence, publishing authority/date, archival reason/history, and Publication events.
+Use only H05-defined review and approval responsibilities. Audit evidence preserves submission/review, revision/rejection/approval decisions, publication, successor lineage, supersession and archival history.
 
 # 16. Completion Criteria and Postconditions
 
-The H05-supported path completes through `Published` and, when policy requires, `Archived`. The full frozen outcome cannot complete because rejection and correction are missing.
+Completion occurs when the Publication reaches its governed final/current outcome and all review/publication/correction/archival evidence is preserved. Source documents and workforce facts remain externally owned.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+## 17.1 Resolved Historical Blocker
 
-- No canonical `Rejected` Publication state, transition, decision authority, or event.
-- No correction/amendment/version-successor lifecycle for a published Research output.
-- Frozen “reviewed” is broader than H05 `VerifyPublication`; L3 cannot silently equate them.
+The former missing rejection, revision/correction, successor-version and publication-governance semantics were resolved by locked `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md` and passed targeted revalidation on 2026-08-26.
 
-These gaps materially affect the frozen outcome.
-
-**Architecture assessment:** `BLOCKED`
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
 
 ## 17.2 Assumptions
 
@@ -128,4 +127,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional deferred questions.
+No additional scenario-specific questions.

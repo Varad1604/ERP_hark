@@ -8,61 +8,43 @@
 **Participating Domains:** A, H  
 **Scenario Type:** Cross-domain  
 **Priority:** P2  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Architecture Approved  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-23  
-**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A04 — Authorization & Policy Workflows; L2-H07 — Enterprise Dashboard Workflows  
-**Referenced By:** None yet
+**Last Updated:** 2026-08-27  
+**Depends On:** Locked L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A04 — Authorization & Policy Workflows; L2-H07 — Enterprise Dashboard Workflows; `L2-H07_Dashboard_Governance_Lifecycle_Amendment_2026-08-26.md`  
+**Referenced By:** L3 targeted revalidation and formal Architecture Approval review
 
 # 2. Scenario Purpose
 
-Govern removal of an H07 dashboard from active use, retention of its history, and restoration when policy permits, while preserving authorization and source-domain ownership.
+Govern removal of an H07 Dashboard from normal institutional use, preservation of its history, and governed restoration when policy permits, while preserving source-domain ownership.
 
 # 3. Business Outcome
 
 The dashboard is archived, restored, or permanently retired under retention and authorization rules
 
+The canonical H07 lifecycle uses `Retired` for removal from normal use and `Restored → Published` for governed restoration. Frozen archival language denotes historical preservation/retention of the retired Dashboard record and does not create a competing lifecycle state.
+
 # 4. Scenario Boundary and Scope
 
-## 4.1 Start Boundary
-
-The scenario begins when a dashboard is no longer needed or an archived dashboard is required again.
-
-## 4.2 End Boundary
-
-H07 supports archive and restoration outcomes. The frozen permanent-retirement outcome is not represented by a canonical H07 Dashboard `Retired` state or transition.
-
-## 4.3 In Scope
-
-- Govern H07 Dashboard archival.
-- Preserve historical dashboard versions and sharing evidence.
-- Restore an archived dashboard when H07 retention/governance permits.
-- Apply A04 authorization decisions to archival/restoration actions.
-- Preserve source-domain ownership.
-
-## 4.4 Out of Scope
-
-- Destructive deletion of source-domain business facts.
-- Treating H07 soft deletion as a canonical `Retired` lifecycle state.
-- Inventing a permanent-retirement transition or event.
+The scenario begins when a Published Dashboard is no longer needed or a Retired Dashboard is required again. It ends when the Dashboard is Retired with history preserved or has been governedly Restored and republished.
 
 # 5. Ownership and Participating Domains
 
-| Domain | Responsibility |
-|---|---|
-| Enterprise Dashboard / H07 | Owns Dashboard archival/restoration, version history, and dashboard-governance evidence. |
-| Platform Foundation / A04 | Owns authorization decisions for permitted archival/restoration actions. |
+- **H07:** owns Dashboard retirement/restoration and Dashboard history.
+- **A04:** owns authorization capability/decisions.
+- Source-domain facts remain externally owned and unchanged.
 
 # 6. Business Actors, Roles and Responsibilities
 
-H07 identifies Administrator, Dashboard Owner, and Governance Reviewer for archival and Administrator/Governance Reviewer for restoration. A04 remains authoritative for authorization decisions.
+The **Dashboard Governance Authority** is the canonical business authority for retirement and restoration decisions. H07 administration executes recorded decisions subject to A04 authorization.
 
 # 7. Preconditions and Entry Criteria
 
-- A governed H07 Dashboard exists for archival, or an H07 Dashboard is already Archived for restoration.
-- Required retention/governance conditions are satisfied.
-- The acting participant is authorized for the requested lifecycle action.
+- A governed Published or Retired Dashboard exists.
+- Retention/governance conditions can be evaluated.
+- The action is authorized.
+- For restoration, the retired Dashboard remains policy-valid and its source projections/contracts remain valid.
 
 # 8. Trigger
 
@@ -70,76 +52,59 @@ A dashboard is no longer needed or an archived dashboard is required again
 
 # 9. Main Business Flow
 
-1. The H07 lifecycle decision determines that an active dashboard should be removed from active use.
-2. Required retention and authorization conditions are evaluated.
-3. H07 moves the Dashboard to `Archived` and preserves historical versions and evidence.
-4. H07 publishes `DashboardArchived`.
-5. The archived dashboard remains unavailable for normal active use while its history is retained.
+1. Evaluate the retirement requirement, retention obligations and authorization.
+2. Dashboard Governance Authority decides retirement.
+3. Move the Published Dashboard to `Retired` and publish `DashboardRetired`.
+4. Preserve all historical versions, sharing and decision evidence.
+5. Keep the Retired Dashboard unavailable for normal institutional use.
 
 # 10. Alternate Business Flows
 
-- **Restoration:** when an archived dashboard is required again and policy permits, H07 restores the dashboard under a governed restoration decision and publishes `DashboardRestored`.
-- H07 may restore the dashboard into a managed lifecycle context without altering historical versions.
-- **Permanent retirement:** no canonical H07 Dashboard `Retired` state or transition exists, so this frozen branch cannot be authored.
+- If restoration is permitted and the Dashboard/source projections remain valid, move `Retired → Restored → Published` and publish `DashboardRestored`.
+- If restoration is not permitted, create a successor Dashboard version rather than mutating immutable historical evidence.
 
 # 11. Failure, Interruption and Business Recovery
 
-If retention, authorization, or restoration eligibility is not satisfied, the requested lifecycle change does not proceed. The Dashboard remains at its last valid H07 state.
+A retirement/restoration request that fails authorization, policy validity or source-contract validity does not change the current lifecycle state. Source-domain facts are never altered as part of Dashboard lifecycle recovery.
 
 # 12. Business Rules and Decision Constraints
 
-- Archival preserves historical versions and sharing evidence.
-- Restoration does not rewrite historical published versions.
-- A04 authorization decisions govern permitted lifecycle actions.
-- Source-domain facts remain outside H07 ownership.
+- `Published → Retired` removes the Dashboard from normal use while preserving history.
+- `Retired → Restored → Published` is allowed only where policy/source validity permits.
+- Otherwise a successor version is required.
+- Source-domain facts and KPIs remain externally owned.
 
 # 13. State and Lifecycle Impact
 
-The authoritative H07 Dashboard lifecycle ends in `Archived` and supports governed restoration. It does not define `Retired` as a Dashboard state. H07 also lists `DeleteDashboard` as a soft-delete action, which cannot be silently reclassified as the frozen permanent-retirement outcome.
+Applicable H07 lifecycle:
+
+`Published → Retired`
+
+Restoration branch:
+
+`Retired → Restored → Published`
+
+Historical archival/retention is evidence preservation, not a parallel lifecycle state.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
-
-H07 publishes `DashboardArchived` and `DashboardRestored`. No canonical Dashboard retirement event is defined.
-
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-A04 supplies authorization decisions for the lifecycle action. H07 manages only dashboard-owned lifecycle evidence and does not modify source-domain business facts when a dashboard is archived or restored.
+H07 publishes `DashboardRetired` and `DashboardRestored`. A04 supplies authorization capability only; source domains remain owners of facts/projections.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-Archival/restoration authority remains with the H07 actors and governance roles identified upstream, subject to A04 authorization.
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-No H07 lifecycle decision may destroy source-domain records or invent a permanent-retirement state. Restoration must respect the existing historical record.
-
-## 15.3 Business Audit and Evidence Obligations
-
-Preserve lifecycle decision, reason, retention classification, authorization evidence, archive event, restoration event where applicable, and complete version history.
+Dashboard Governance Authority owns retirement/restoration decisions. Evidence preserves reason, authorization, retention classification, lifecycle transition, source-contract validity where restored, and complete version history.
 
 # 16. Completion Criteria and Postconditions
 
-## 16.1 Completion Criteria
-
-Archive and restoration branches are source-grounded. The frozen scenario is not fully complete because its permanent-retirement branch has no authoritative H07 Dashboard lifecycle representation.
-
-## 16.2 Postconditions
-
-No invented `Retired` Dashboard state/event is created; historical dashboard evidence and source-domain ownership remain preserved.
+Completion occurs when the Dashboard is Retired with retained history or is governedly Restored and republished. No source-domain fact is changed.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+## 17.1 Resolved Historical Blocker
 
-**Material lifecycle/final-outcome gap:** frozen H053 requires archive, restoration, or **permanent retirement**. Locked H07 supports `Archived`, `DashboardArchived`, and `DashboardRestored`, and separately describes `DeleteDashboard` as soft delete, but defines no Dashboard `Retired` state, retirement transition, or retirement event.
+The former missing permanent-retirement and restoration semantics were resolved by locked `L2-H07_Dashboard_Governance_Lifecycle_Amendment_2026-08-26.md` and passed targeted revalidation on 2026-08-26. Frozen archive wording is treated as historical preservation of the retired record, not as a competing lifecycle state.
 
-**Architecture impact:** the permanent-retirement branch cannot be authored without inventing lifecycle semantics or treating soft deletion as retirement without authority.
-
-**Architecture assessment:** `BLOCKED`
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
 
 ## 17.2 Assumptions
 
@@ -147,4 +112,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-Architecture change control must define whether permanent Dashboard retirement is distinct from archival/soft deletion and, if so, its canonical state, transition, authority, and event.
+No additional scenario-specific questions.

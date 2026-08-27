@@ -3,7 +3,7 @@
 
 ---
 
-Version: 1.1
+Version: 1.2
 
 Status: LOCKED
 
@@ -12,6 +12,8 @@ Authority: Repository Constitution
 Owner: Lead Architect
 
 Depends On: Repository Constitution Volume 1
+
+Last Updated: 2026-08-26
 
 ---
 
@@ -166,15 +168,38 @@ Documents use stable level-oriented identifiers:
 L0-[name]
 L1-[domain-id]
 L2-[section][number]
-L3-[ScenarioName]
-L4-[BehaviorName]
+L3-<PrimaryOwnerSection>-<ScenarioNumber>_<ScenarioName>
+L4-<ParentScenarioSection>-<ParentScenarioNumber>_<BehaviorName>
 L5-[SolutionName]
 L6-[InteractionName]
 ```
 
+## 9.1 L4 System Behavior Specialization
+
+For canonical L4 System Behavior Specifications, the parent L4 identifier intentionally inherits the approved L3 scenario identity for direct traceability:
+
+```text
+Parent L3:     L3-D-007
+Parent L4 ID:  L4-D-007
+L4 filename:   L4-D-007_<Canonical_L3_Scenario_Slug>.md
+Atomic BH ID:  L4-D-007-BH-001
+```
+
+Rules:
+
+- The inherited section/number is a traceability identity and does not create or transfer business ownership.
+- The canonical L3 scenario slug is preserved in the L4 filename unless an approved governance decision requires otherwise.
+- `BH` means **System Behavioral Obligation**.
+- BH identifiers are unique within the parent L4 specification and are not separate files under the default model.
+- BH identifiers shall not be reused or silently renumbered once a specification enters formal review; gaps are permitted.
+- L4 shall not create parallel local IDs for upstream business rules, events, lifecycle states, authorities, or owned entities.
+- One approved L3 scenario maps to one parent L4 specification by default. A physical split is permitted only through controlled exception where a parent becomes materially unreviewable; all split artifacts must retain one parent traceability identity and may not create duplicate ownership.
+
+This specialization was approved on 2026-08-26 following the controlled L4 pilot and supersedes the prior generic `L4-[BehaviorName]` convention for canonical SutraERP L4 System Behavior Specifications.
+
 Entities use PascalCase, such as `StudentContext`, `ProgrammeVersion`, `AcademicCreditLedger`, and `CourseOffering`.
 
-Events use past tense, such as `AdmissionApproved`, `StudentActivated`, `AttendanceFinalized`, `ExaminationResultPublished`, and `QualificationAwarded`.
+Events use their exact canonical upstream names. Existing canonical event terminology is not renamed merely to satisfy a generic tense convention.
 
 Commands use imperative form, such as `CreateStudent`, `PublishResult`, `ActivateStudent`, and `GenerateHallTicket`.
 
@@ -339,6 +364,15 @@ The following standards are constitutional:
 - AI-generated content requires human review.
 - Images shall never replace editable architecture diagrams.
 - Repository hierarchy shall not be violated.
+
+---
+
+## Change Record
+
+| Version | Date | Change |
+|---|---|---|
+| 1.1 | Prior baseline | Locked repository standards baseline. |
+| 1.2 | 2026-08-26 | Controlled L4 naming specialization approved after L4 pilot; scenario-aligned L4 parent and BH identifiers made canonical without changing business ownership. |
 
 ---
 

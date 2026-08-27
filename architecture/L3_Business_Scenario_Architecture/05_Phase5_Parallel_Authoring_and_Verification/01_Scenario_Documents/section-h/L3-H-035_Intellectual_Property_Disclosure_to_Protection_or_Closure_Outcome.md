@@ -8,15 +8,16 @@
 **Participating Domains:** E, F, H  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Architecture Approved  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-23  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows; L2-F00 — Finance Domain Model & Foundation
+**Last Updated:** 2026-08-27  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows; locked Finance architecture; `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md`  
+**Referenced By:** L3 targeted revalidation and formal Architecture Approval review
 
 # 2. Scenario Purpose
 
-Apply H05 Patent/IP governance to a protectable Research result without inventing missing disclosure, ownership-decision, commercialization, or abandonment semantics and without transferring financial ownership from Finance.
+Govern Research IP disclosure and institutional protection-workflow metadata through review, protection, abandonment, commercialization or closure while preserving external legal authority and Finance ownership of monetary facts.
 
 # 3. Business Outcome
 
@@ -26,31 +27,34 @@ Ownership review, protection decision, filing, commercialization, abandonment, o
 
 ## 4.1 Start Boundary
 
-A potentially protectable research result is disclosed
+A potentially protectable research result is disclosed.
 
 ## 4.2 End Boundary
 
-H05 supports Patent registration, filing, verified statutory-status updates, and lifecycle closure. The frozen outcome starts earlier at disclosure and includes several decisions/actions not defined by H05.
+The scenario ends when the H05 Research IP record reaches a governed protection, abandonment, commercialization or closure outcome with immutable evidence preserved.
 
 ## 4.3 In Scope
 
-Patent/IP metadata registration after valid context exists; ownership-policy validation; filing; verified external statutory status; eligible lifecycle closure; evidence preservation.
+IP disclosure, institutional review, protection approval/progress, protected status evidence, abandonment, commercialization metadata and closure.
 
 ## 4.4 Out of Scope
 
-Invented IP Disclosure aggregate/event, ownership-review/protection decision, commercialization workflow, abandonment state/event, or financial-commercialization hand-off.
+Creation of external legal rights, external statutory authority, or Finance-owned monetary/accounting facts.
 
 # 5. Ownership and Participating Domains
 
-E03 retains inventor/faculty workforce facts. Finance owns monetary/accounting consequences. Research owns Patent/IP metadata and the H05 Patent lifecycle; external Patent Office remains statutory authority for external status.
+E03 retains inventor/faculty facts. Finance owns accounting/payment/revenue and other monetary consequences. Research owns Research IP disclosure and institutional protection-workflow metadata. External legal/statutory status remains evidenced by the applicable authority.
 
 # 6. Business Actors, Roles and Responsibilities
 
-Principal Investigator / Inventor and Research Office participate in H05 Patent registration. Research Office performs filing, status update, and closure actions.
+Principal Investigator / Inventor initiates disclosure. Research Director is the canonical business authority for strategic protection, rejection, abandonment, commercialization and closure decisions where institutional approval is required. Research Administrator records governed decisions and evidence without replacing decision authority.
 
 # 7. Preconditions and Entry Criteria
 
-A patentable output context exists; inventors are valid; project reference exists where applicable; configured ownership policy is satisfied; filing evidence is available before filing.
+- A potentially protectable Research result exists.
+- Inventors and project references are valid where applicable.
+- Required disclosure and ownership-policy evidence is available.
+- External statutory evidence is consumed only as authoritative evidence when applicable.
 
 # 8. Trigger
 
@@ -58,71 +62,75 @@ A potentially protectable research result is disclosed
 
 # 9. Main Business Flow
 
-1. Receive the disclosed result but stop short of inventing a disclosure lifecycle.
-2. Where the upstream-required ownership/protection decision is already valid, register H05 Patent metadata and enter `Draft`.
-3. Validate inventors, project, ownership policy, duplicate constraints, and filing readiness.
-4. Submit filing; enter `Filed` and publish `PatentFiled`.
-5. Record verified Patent Office status through the H05 status workflow.
-6. Close a source-supported eligible lifecycle and publish `PatentLifecycleClosed`.
-7. Do not claim commercialization or abandonment branches without upstream definitions.
+1. Record the IP disclosure and establish the H05 Research IP record in `Disclosed`.
+2. Move to `Under Review` and evaluate the applicable institutional ownership/protection policy.
+3. If protection is approved, move to `Protection Approved` and publish `ResearchIPProtectionApproved`.
+4. Progress through `Protection In Progress` while preserving filing/protection evidence.
+5. When authoritative protection evidence exists, move to `Protected` and publish `ResearchIPProtectionRecorded`.
+6. If the governed decision is not to proceed, move the eligible record to `Abandoned` and publish `ResearchIPAbandoned`.
+7. Where commercialization applies, move `Protected → Commercialization Active`, publish `ResearchIPCommercializationActivated`, and later move to `Commercialization Closed`.
+8. Where no commercialization lifecycle is applicable, move `Protected → Closed`.
+9. Publish `ResearchIPClosed` for the governed closure outcome and preserve immutable history.
 
 # 10. Alternate Business Flows
 
-External status may become `Under Examination`, `Granted`, or `Rejected` through the defined status update. H05 also depicts `Expired` for closure, but provides no explicit transition that creates `Expired`.
+- `Under Review → Rejected` where the protection request is not approved.
+- `Under Review / Protection Approved / Protection In Progress → Abandoned` where the governed process is discontinued.
+- `Protected → Closed` where commercialization is not applicable.
 
 # 11. Failure, Interruption and Business Recovery
 
-Invalid inventor/ownership context prevents registration. Incomplete filing prevents filing. Unsupported protection, commercialization, abandonment, or expiry semantics cannot be replaced by generic closure.
+Invalid inventor/ownership context blocks progression. External legal status is never invented by H05. Abandonment/closure preserves prior evidence and does not imply alteration of Finance facts or external statutory records.
 
 # 12. Business Rules and Decision Constraints
 
-Configured IP ownership policy applies; at least one inventor is required; external Patent Office status is authoritative; identifiers and filing/status history are immutable; Finance alone owns monetary consequences.
+- Research owns disclosure/protection-workflow metadata only.
+- H05 does not create external legal rights by itself.
+- `Protected` means authoritative evidence of the applicable protection outcome has been recorded.
+- Finance remains sole owner of monetary/accounting consequences.
+- Prior IP history remains immutable through abandonment, commercialization and closure.
 
 # 13. State and Lifecycle Impact
 
-H05: `Draft → Filed → Filed / Under Examination / Granted / Rejected`; `Granted / Rejected / Expired → Closed`. No disclosure/protection/commercialization/abandonment states exist, and no explicit transition into `Expired` is defined.
+Canonical Research IP lifecycle:
+
+`Disclosed → Under Review → Protection Approved → Protection In Progress → Protected`
+
+Alternative outcomes:
+
+- `Under Review → Rejected`
+- `Under Review / Protection Approved / Protection In Progress → Abandoned`
+- `Protected → Commercialization Active → Commercialization Closed`
+- `Protected → Closed`
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
+Research publishes:
 
-Research publishes `PatentRegistered`, `PatentFiled`, `PatentStatusUpdated`, and `PatentLifecycleClosed`.
+- `ResearchIPDisclosed`
+- `ResearchIPProtectionApproved`
+- `ResearchIPProtectionRecorded`
+- `ResearchIPAbandoned`
+- `ResearchIPCommercializationActivated`
+- `ResearchIPClosed`
 
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-E03 owns workforce facts. Finance owns any monetary/accounting consequences. H05 defines no commercialization-specific Research→Finance business contract.
+Finance and external legal/statutory facts remain externally owned.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-H05 roles are used only for Patent registration, filing, status, and closure. No disclosure reviewer, protection decision-maker, commercialization authority, or abandonment authority is invented.
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-No L3 override can create missing IP lifecycle decisions.
-
-## 15.3 Business Audit and Evidence Obligations
-
-Preserve inventor declarations, ownership-policy reference, Patent metadata, filing references, statutory-status history, closure reason, and Patent events.
+Research Director owns applicable strategic Research IP decisions. Evidence preserves disclosure, inventors, ownership-policy evaluation, protection decision, external protection evidence, abandonment/commercialization/closure decisions, decision authority and immutable history.
 
 # 16. Completion Criteria and Postconditions
 
-The source-supported Patent lifecycle can reach filing/status/closure outcomes. The full frozen scenario cannot complete because disclosure, ownership review, protection decision, commercialization, and abandonment are not fully defined.
+Completion occurs when the Research IP record reaches its governed protection, abandonment, commercialization or closure outcome with all required evidence preserved. No external legal or Finance-owned fact is re-owned by Research.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+## 17.1 Resolved Historical Blocker
 
-- Frozen start boundary is IP **disclosure**, but H05 defines no disclosure aggregate/state/event.
-- Ownership review and protection decision are not canonical H05 decisions/states/events.
-- Commercialization has no H05 workflow or Research→Finance business hand-off.
-- “Abandoned” appears only as a closure trigger; no `Abandoned` state/transition/event exists.
-- `Expired` appears in the lifecycle/closure table but no canonical transition establishes it.
+The former missing disclosure, protection-decision, abandonment, commercialization and closure semantics were resolved by locked `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md` and passed targeted revalidation on 2026-08-26.
 
-These gaps materially affect mandatory outcome branches.
-
-**Architecture assessment:** `BLOCKED`
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
 
 ## 17.2 Assumptions
 
@@ -130,4 +138,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional deferred questions.
+No additional scenario-specific questions.

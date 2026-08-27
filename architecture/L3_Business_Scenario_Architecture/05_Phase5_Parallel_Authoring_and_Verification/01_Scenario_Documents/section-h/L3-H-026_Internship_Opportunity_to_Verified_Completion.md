@@ -8,16 +8,16 @@
 **Participating Domains:** C, D, E, H  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Architecture Approved  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-23  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H04 — Placement Workflows; L2-C02 — Student Lifecycle & Activation Workflows; applicable locked Section D Academic Delivery sources including L2-D05 — Academic Monitoring Workflows; L2-E01 — Workforce & Engagement Workflows  
-**Referenced By:** Internship analytics and optional placement conversion
+**Last Updated:** 2026-08-27  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H04 — Placement Workflows; L2-C02 — Student Lifecycle & Activation Workflows; applicable locked Section D Academic Delivery sources; L2-E01 — Workforce & Engagement Workflows; `L2-H04_Placement_Lifecycle_Completion_Amendment_2026-08-26.md`  
+**Referenced By:** Internship analytics and optional placement conversion; L3 targeted revalidation and formal Architecture Approval review
 
 # 2. Scenario Purpose
 
-Govern an Internship opportunity through eligible Student participation, start, completion evidence and optional conversion while keeping Student, academic and workforce facts with their canonical owners.
+Govern an Internship opportunity through eligible Student participation, start, completion evidence, evaluation, verified completion and optional conversion while keeping Student, academic and workforce facts with their canonical owners.
 
 # 3. Business Outcome
 
@@ -31,28 +31,28 @@ The scenario begins when an approved internship opportunity is assigned to an el
 
 ## 4.2 End Boundary
 
-H04 defines Internship start/completion/conversion and contains `Evaluation Record` and `Completion Record`, but it defines no canonical Internship evaluation workflow, verification decision, evaluator/approver, verification state, or verification event. Because the frozen semantics require evaluation and verified completion evidence, the complete end boundary is unresolved.
+The scenario ends when the Internship reaches the applicable governed outcome, including `Verified` for successful completion, or a governed `Withdrawn`/`Cancelled` exception before verified completion where policy permits.
 
 ## 4.3 In Scope
 
-Internship publication/participation, configured recruitment, Internship start, H04-supported progress/evidence, completion, optional conversion.
+Internship publication/participation, configured recruitment, start, completion evidence, evaluation, verification, withdrawal/cancellation before verification, reopening where permitted and optional conversion.
 
 ## 4.4 Out of Scope
 
-Invented evaluation/verification authority or events; Student/academic/workforce lifecycle changes; unsupported cancellation/withdrawal semantics.
+Student/academic/workforce lifecycle changes, official result ownership transfer, and implementation mechanisms.
 
 # 5. Ownership and Participating Domains
 
 | Domain / Section | Responsibility in Scenario |
 |---|---|
 | Student Lifecycle / C | Owns Student identity/lifecycle. |
-| Academic Delivery / D | Supplies only D-owned academic-delivery/monitoring facts where applicable; not official results. |
+| Academic Delivery / D | Supplies D-owned academic facts where applicable; does not own official examination results. |
 | People & Workforce / E | Owns workforce context for Placement staff. |
-| Placement / H | Owns Internship aggregate, Placement-specific participation/start/completion/conversion history and H04 evidence records. |
+| Placement / H | Owns Internship aggregate, participation/start/completion/evaluation/verification history and H04 Internship events. |
 
 # 6. Business Actors, Roles and Responsibilities
 
-Placement Officer is source-supported for Internship lifecycle commands. Student participates in the governed Internship. H04 does not define the actor/authority who evaluates or verifies Internship completion evidence; no evaluator role is invented.
+Placement Officer is the primary business authority for Internship decisions under H04. Existing investigators/reviewers are not introduced here; the governed H04 process records the applicable evaluation evidence and verification decision without inventing a new cross-domain authority.
 
 # 7. Preconditions and Entry Criteria
 
@@ -67,61 +67,73 @@ An approved internship opportunity is assigned to an eligible student
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Domain | Business Result |
-|---|---|---|---|
-| 1 | Publish the Internship opportunity and register the eligible candidate. | H with C reference | Governed Internship participation is established. |
-| 2 | Complete configured recruitment and generate the Internship offer. | H | Candidate reaches selected Internship position. |
-| 3 | Start the Internship. | H | `InternshipStarted` records `In Progress`. |
-| 4 | Preserve H04-supported progress, Evaluation Record reference, and Completion Record information. | H | Internship evidence remains traceable. |
-| 5 | Complete the Internship and publish `InternshipCompleted`. | H | H04 completion state is reached. |
-| 6 | If permitted, convert the completed Internship to Placement. | H | Optional conversion history is preserved. |
-| 7 | Establish the required verified-evaluation decision over the completion evidence. | H | **BLOCKED:** evaluator/verification lifecycle is undefined upstream. |
+1. Publish the Internship opportunity and register the eligible candidate.
+2. Complete configured recruitment and generate the Internship offer.
+3. Start the Internship and publish `InternshipStarted`.
+4. Preserve operational completion evidence and publish `InternshipCompleted` when the activity has operationally completed.
+5. Evaluate the completion evidence and publish `InternshipEvaluated`.
+6. Verify the governed completion outcome and publish `InternshipCompletionVerified`.
+7. Move the Internship to the final successful `Verified` outcome.
+8. If permitted, perform optional conversion to Placement after the governed Internship outcome and preserve conversion history.
 
 # 10. Alternate Business Flows
 
-A completed Internship may remain unconverted or may convert to Placement after completion. H04 lists internship cancellation/candidate withdrawal as failure scenarios but defines no state/transition/event for those branches.
+- Internship may be `Withdrawn` or `Cancelled` before Verified completion where policy permits, publishing `InternshipWithdrawn` or `InternshipCancelled`.
+- A Withdrawn/Cancelled or interrupted Internship may be reopened only where the H04 recovery rule permits and prior completion has not been Verified, publishing `InternshipReopened`.
+- A Verified Internship is immutable historical evidence and is not reopened.
 
 # 11. Failure, Interruption and Business Recovery
 
-Incomplete completion evidence cannot be treated as verified. Disputed/absent evaluation remains unresolved under upstream governance. Cancellation/withdrawal branches are not invented.
+Incomplete or invalid evidence prevents verification. Withdrawal/cancellation preserves prior participation history. Reopening is governed and cannot erase prior interruption evidence. Verified completion cannot be reversed by local L3 inference.
 
 # 12. Business Rules and Decision Constraints
 
-| Rule / Constraint | Owner | Scenario Effect |
-|---|---|---|
-| Internship belongs to one employer and one Student assignment. | H | Internship identity/participation is singular. |
-| Completed Internships cannot be modified. | H | Completion history is immutable. |
-| Completion precedes conversion and conversion history is immutable. | H | Conversion cannot bypass completion. |
-| Internship recruitment follows configured Placement templates. | H | Participation/recruitment remains governed. |
-| D does not own official examination results. | I under dependency governance | H04's stale D result wording cannot transfer result ownership. |
+- Internship belongs to one employer and one Student assignment.
+- Operational `Completed` is distinct from `Evaluated` and final `Verified`.
+- `InternshipCompleted` does not by itself mean verified completion.
+- Verified completion is final for the successful H04 internship-completion outcome.
+- Withdrawal/cancellation may occur only before Verified where policy permits.
+- C/D/E source facts remain owned by their canonical domains.
 
 # 13. State and Lifecycle Impact
 
-Internship progresses `Created → Published → Applications Open → Selected → In Progress → Completed`, with optional conversion to `Closed`. H04 defines Evaluation Record/Completion Record children but no evaluation/verification state machine. C/D/E source lifecycles remain unchanged.
+Canonical Internship successful lifecycle:
+
+`Published → Candidate Registered → Offered → Accepted → Started → Completed → Evaluated → Verified`
+
+Governed exceptional outcomes before Verified include `Withdrawn` and `Cancelled`. Reopening is permitted only where the prior completion has not been Verified.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-Exact H04 Internship events are `InternshipPublished`, `InternshipCandidateRegistered`, `InternshipOfferGenerated`, `InternshipStarted`, `InternshipCompleted`, and `InternshipConvertedToPlacement`. No canonical Internship evaluation or completion-verification event exists.
+Canonical H04 events used in this scenario include:
+
+- `InternshipStarted`
+- `InternshipCompleted`
+- `InternshipEvaluated`
+- `InternshipCompletionVerified`
+- `InternshipWithdrawn`
+- `InternshipCancelled`
+- `InternshipReopened`
+
+Placement remains semantic publisher; C/D/E facts are consumed by reference only.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-Placement Officer is source-supported for H04 Internship lifecycle actions. No source defines the evaluation/verification decision authority required by the frozen outcome. Evidence must preserve Internship, employer, Student, participation, progress, Evaluation/Completion Record references where present, completion, conversion decision, and immutable history.
+Placement Officer is the primary H04 business authority for Internship decisions. Evidence must preserve Internship, employer, Student, participation, completion evidence, evaluation, verification, exception/reopening decisions and optional conversion history.
 
 # 16. Completion Criteria and Postconditions
 
-H04 can reach `InternshipCompleted` and optional conversion. Full frozen completion is blocked because evaluation and verification authority/semantics are undefined. Source-domain ownership remains unchanged.
+Successful completion requires operational completion evidence, governed evaluation and final `Verified` completion. Alternative governed outcomes may end in Withdrawn or Cancelled before verification. Source-domain ownership remains unchanged.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+## 17.1 Resolved Historical Blocker
 
-| Issue | Architecture Impact | Required Resolution |
-|---|---|---|
-| H04 contains Evaluation Record/Completion Record but no canonical evaluation workflow, verification decision/authority, state or event. | Frozen verified-completion outcome cannot be grounded. | Define Internship evaluation/verification semantics upstream. |
-| H04 lists Internship cancellation/withdrawal failures without corresponding states/transitions/events. | Exception branches cannot be canonically expressed. | Define them upstream if required. |
-| H04's D/result dependency wording conflicts with the locked ownership map. | Official result ownership must not transfer to D. | Correct stale H04 dependency wording. |
+The former missing Internship evaluation/verification lifecycle, events and withdrawal/cancellation/reopening semantics were resolved by locked `L2-H04_Placement_Lifecycle_Completion_Amendment_2026-08-26.md` and passed targeted revalidation on 2026-08-26.
 
-**Architecture assessment:** `BLOCKED`
+The earlier stale H04 dependency wording does not transfer official examination-result ownership from Section I.
+
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
 
 ## 17.2 Assumptions
 
@@ -129,4 +141,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional deferred questions.
+No additional scenario-specific questions.

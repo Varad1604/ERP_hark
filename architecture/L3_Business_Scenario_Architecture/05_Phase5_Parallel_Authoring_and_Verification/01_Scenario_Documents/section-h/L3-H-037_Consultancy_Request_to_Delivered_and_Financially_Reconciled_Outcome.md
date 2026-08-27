@@ -8,15 +8,16 @@
 **Participating Domains:** E, F, H  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Architecture Approved  
+**Version:** 1.2  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-23  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows; L2-F00 — Finance Domain Model & Foundation; L2-F07 — Accounts Receivable Management
+**Last Updated:** 2026-08-27  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows; locked Finance architecture; `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md`; `L2-H05_Consultancy_Cancellation_Governance_Amendment_2026-08-27.md`  
+**Referenced By:** L3 targeted revalidation and formal Architecture Approval review
 
 # 2. Scenario Purpose
 
-Govern the Research-owned Consultancy lifecycle through registration, execution, deliverable completion, and the supported Research completion outcome while preserving Finance ownership of receivables, accounting, settlement, and reconciliation.
+Govern the Research-owned Consultancy lifecycle through approval, execution, delivery acceptance, Finance-confirmed reconciliation and closure, or through governed pre-delivery-acceptance cancellation, while preserving Finance ownership of all financial truth.
 
 # 3. Business Outcome
 
@@ -26,31 +27,36 @@ The engagement is approved, delivered, accepted, financially reconciled, and clo
 
 ## 4.1 Start Boundary
 
-An authorized external consultancy engagement is proposed
+An authorized external consultancy engagement is proposed.
 
 ## 4.2 End Boundary
 
-H05 supports `Proposed → Active → Completed`. The frozen outcome additionally requires explicit approval, client acceptance, Finance reconciliation, closed state, and cancellation outcome, which are not all canonically defined.
+The scenario ends when the Research Consultancy reaches `Closed` after delivery acceptance and authoritative Finance reconciliation confirmation, or reaches `Cancelled` through the locked H05 cancellation branch before `Delivery Accepted`.
 
 ## 4.3 In Scope
 
-Consultancy registration; approval as a required execution precondition; execution/progress; deliverable validation; Research-side completion; Finance ownership preservation; audit evidence.
+Consultancy approval, activation, delivery, acceptance, reconciliation-pending boundary, Finance confirmation reference, Research closure, cancellation request/decision before accepted delivery, and immutable history.
 
 ## 4.4 Out of Scope
 
-Invented consultancy approval/cancellation/closed lifecycles; invented client-acceptance event; Finance accounting/payment/reconciliation mechanics; invented Research→Finance reconciliation fact.
+Finance accounting/payment/reconciliation mechanisms, creation of Finance facts, cancellation after `Delivery Accepted`, or implementation details.
 
 # 5. Ownership and Participating Domains
 
-E03 owns workforce capability/eligibility/capacity/availability. Finance owns accounting, receivables, payments, settlement, and financial reconciliation consequences. Research owns Consultancy Project metadata, execution progress, deliverables, and H05 Consultancy state.
+E03 owns workforce capability/eligibility/capacity/availability. Finance owns accounting, receivables, payments, settlement and reconciliation truth. Research owns Consultancy operational lifecycle, delivery evidence and cancellation lifecycle facts.
 
 # 6. Business Actors, Roles and Responsibilities
 
-Research Office and Principal Investigator register the consultancy. Principal Investigator and Consultancy Team execute. Research Office completes the Research-side engagement after H05 completion validation.
+Research Director is the canonical business authority for strategic Consultancy approval, cancellation and closure decisions where institutional approval is required. Research Administrator administers the process. Principal Investigator / Consultancy Team execute the work and may originate cancellation where policy permits. Finance provides authoritative reconciliation confirmation/reference and remains owner of monetary consequences.
 
 # 7. Preconditions and Entry Criteria
 
-Authorized external engagement exists; client organization and agreement are verified; consultancy approval required by H05 execution precondition is satisfied; team and workforce references are valid.
+- Authorized external engagement exists.
+- Client/agreement context is valid.
+- Consultancy approval is complete before execution.
+- Team/workforce references are valid.
+- Finance confirmation is available when closure depends on financial reconciliation.
+- Cancellation may be requested only before `Delivery Accepted`.
 
 # 8. Trigger
 
@@ -58,71 +64,74 @@ An authorized external consultancy engagement is proposed
 
 # 9. Main Business Flow
 
-1. Validate client, agreement, team, and authorization context.
-2. Register the Consultancy Project; enter `Proposed` and publish `ConsultancyProjectRegistered`.
-3. Confirm the H05 approval precondition before execution; H05 provides no separate approval state/event.
-4. Execute consultancy work and preserve progress through `ConsultancyProjectProgressUpdated`.
-5. Validate required deliverables and client acceptance where H05 says applicable.
-6. Complete the Research-side Consultancy and publish `ConsultancyProjectCompleted`.
-7. Preserve Finance ownership of all monetary consequences.
-8. Stop before claiming Finance reconciliation, closed, or cancellation outcomes because no canonical end-to-end contract/lifecycle exists.
+1. Validate client, agreement, team and authorization context.
+2. Complete the governed Research approval and establish the Consultancy in `Approved`.
+3. Move to `Active` and execute the engagement.
+4. When deliverables are ready, move to `Delivery Submitted` and publish `ResearchConsultancyDeliverySubmitted`.
+5. Record governed delivery acceptance, move to `Delivery Accepted`, and publish `ResearchConsultancyDeliveryAccepted`.
+6. Move to `Financial Reconciliation Pending` and publish `ResearchConsultancyFinancialReconciliationRequested`.
+7. Consume authoritative Finance confirmation/reference that the applicable reconciliation condition is satisfied.
+8. Move the Research Consultancy to `Closed` and publish `ResearchConsultancyClosed`.
+9. Preserve complete Research and Finance-reference evidence without creating or modifying Finance accounting facts.
 
 # 10. Alternate Business Flows
 
-Phase-wise execution and multi-client work are source-supported where configured. H05 provides no cancellation branch. Client acceptance is a validation input “where applicable,” not a standalone lifecycle fact.
+- `Approved / Active / Delivery Submitted → Cancellation Requested`: record the governed cancellation request and publish `ResearchConsultancyCancellationRequested`.
+- If cancellation is approved before `Delivery Accepted`, move `Cancellation Requested → Cancelled` and publish `ResearchConsultancyCancelled`.
+- If cancellation is not approved, the Consultancy remains on its applicable current path without erasing prior history.
+- Once `Delivery Accepted` has been reached, cancellation is not permitted; normal reconciliation/closure governance applies.
 
 # 11. Failure, Interruption and Business Recovery
 
-Missing approval evidence blocks execution; incomplete deliverables block completion; missing Finance reconciliation prevents the frozen terminal outcome; unsupported cancellation is not mapped to `Completed`.
+Research cannot self-certify Finance reconciliation. Closure is blocked until the authoritative Finance confirmation exists. Invalid cancellation authority or a cancellation request after `Delivery Accepted` does not alter the current state. No branch erases prior execution, delivery or decision evidence.
 
 # 12. Business Rules and Decision Constraints
 
-Client organization must be verified; deliverables align with agreement; Finance owns consultancy revenue accounting and receivables; completed Research history is immutable; Research cannot create financial settlement facts.
+- Canonical successful progression: `Approved → Active → Delivery Submitted → Delivery Accepted → Financial Reconciliation Pending → Closed`.
+- Canonical cancellation branch: `Approved / Active / Delivery Submitted → Cancellation Requested → Cancelled`.
+- Cancellation is permitted only before `Delivery Accepted`.
+- `Cancelled` is terminal for that Consultancy record.
+- Finance exclusively owns accounting/payment/reconciliation truth and any monetary cancellation consequences.
+- H05 may store only Finance-confirmed references/statuses.
+- Research does not publish Finance-owned payment/accounting facts.
 
 # 13. State and Lifecycle Impact
 
-Consultancy Project: `Proposed → Active → Completed`; progress stays `Active`. H05 defines no `Approved`, `Accepted`, `Closed`, or `Cancelled` state.
+The Consultancy follows the locked successful lifecycle or the locked pre-delivery cancellation branch. E03 and Finance source lifecycles remain unchanged.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
+Research publishes:
 
-Research publishes `ConsultancyProjectRegistered`, `ConsultancyProjectProgressUpdated`, and `ConsultancyProjectCompleted`.
+- `ResearchConsultancyDeliverySubmitted`
+- `ResearchConsultancyDeliveryAccepted`
+- `ResearchConsultancyFinancialReconciliationRequested`
+- `ResearchConsultancyClosed`
+- `ResearchConsultancyCancellationRequested`
+- `ResearchConsultancyCancelled`
 
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-Finance is the financial authority. F07 owns receivable representations but explicitly does not execute payment reconciliation; H05/F architecture does not define a consultancy-specific canonical reconciliation completion hand-off back to Research.
+Finance publishes/owns its own authoritative financial facts; Research consumes confirmation by reference.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-Use only H05-defined Research Office, PI, and Consultancy Team actions. The approval precondition has no explicit H05 approval actor/state/event to assign.
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-Research cannot self-create Finance reconciliation or cancellation authority.
-
-## 15.3 Business Audit and Evidence Obligations
-
-Preserve client/agreement references, registration authority, approval evidence where externally/governedly available, execution/progress, deliverable evidence, applicable client-acceptance reference, Research completion, and Finance references.
+Research Director owns applicable strategic Consultancy approval/cancellation/closure decisions. Audit evidence preserves approval, execution, delivery submission/acceptance, cancellation request/decision where applicable, Finance reconciliation reference, closure decision and immutable history. Finance evidence remains Finance-owned.
 
 # 16. Completion Criteria and Postconditions
 
-The H05-supported Research path can reach `Completed`. The full frozen scenario cannot complete until approval, client acceptance, Finance reconciliation, closed state, and cancellation semantics are canonical.
+Completion requires either:
+
+- accepted delivery, authoritative Finance reconciliation confirmation where required, and Research-side transition to `Closed`; or
+- governed pre-delivery-acceptance transition to `Cancelled` with complete cancellation rationale, authority and history preserved.
+
+Finance ownership remains unchanged and Research does not create financial settlement facts.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+## 17.1 Resolved Historical Blocker
 
-- H05 requires approval before execution but defines no Consultancy approval state/command/event/decision authority.
-- Client acceptance is only an optional completion validation input, not a canonical acceptance state/event.
-- No consultancy-specific Research→Finance reconciliation completion contract/event exists.
-- H05 ends at `Completed`; no `Closed` or `Cancelled` state/transition/event exists.
+The former missing Consultancy cancellation lifecycle, authority and event semantics were resolved by locked `L2-H05_Consultancy_Cancellation_Governance_Amendment_2026-08-27.md`. The earlier approval/delivery/reconciliation/closure remediation remains governed by the locked 2026-08-26 H05 amendment.
 
-These gaps materially affect the frozen end boundary.
-
-**Architecture assessment:** `BLOCKED`
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
 
 ## 17.2 Assumptions
 
@@ -130,4 +139,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional deferred questions.
+No additional scenario-specific questions.
