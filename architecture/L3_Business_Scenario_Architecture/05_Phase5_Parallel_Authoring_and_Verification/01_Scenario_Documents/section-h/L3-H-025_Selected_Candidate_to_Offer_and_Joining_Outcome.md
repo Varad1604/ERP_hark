@@ -8,16 +8,16 @@
 **Participating Domains:** C, E, H  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-23  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H04 — Placement Workflows; L2-C02 — Student Lifecycle & Activation Workflows; L2-E01 — Workforce & Engagement Workflows  
-**Referenced By:** Placement completion and reporting
+**Last Updated:** 2026-08-27  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H04 — Placement Workflows; L2-C02 — Student Lifecycle & Activation Workflows; L2-E01 — Workforce & Engagement Workflows; `L2-H04_Placement_Lifecycle_Completion_Amendment_2026-08-26.md`  
+**Referenced By:** Placement completion and reporting; L3 targeted revalidation and formal Architecture Approval review
 
 # 2. Scenario Purpose
 
-Govern a Placement-selected candidate through offer publication, candidate response, employer withdrawal where permitted, and verified joining while preserving immutable offer/joining history.
+Govern a Placement-selected candidate through offer publication, candidate response, employer withdrawal where permitted, expiry, and verified joining while preserving immutable offer/joining history.
 
 # 3. Business Outcome
 
@@ -31,15 +31,15 @@ The scenario begins when a placement selection is confirmed.
 
 ## 4.2 End Boundary
 
-Accepted, declined, withdrawn, and verified-joining paths are defined by H04. H04 names `Expired` in the PlacementOffer lifecycle and rules but provides no transition into `Expired`, no expiry command/event, and no expiry authority. The full frozen outcome is unresolved.
+The scenario ends when the PlacementOffer reaches an authoritative response outcome—Accepted, Rejected, Withdrawn or Expired—or an accepted offer proceeds through the separate JoiningConfirmation lifecycle to verified Placement completion.
 
 ## 4.3 In Scope
 
-Offer generation/publication; Student acceptance/rejection; employer-originated withdrawal recorded by Placement staff; candidate eligibility reopening where policy permits; joining confirmation and verification.
+Offer generation/publication; Student acceptance/rejection; governed expiry; employer-originated withdrawal recorded by Placement staff; candidate eligibility reopening where policy permits; joining confirmation and verification.
 
 ## 4.4 Out of Scope
 
-Application-to-selection (H024), invented offer-expiry mechanics, and notification delivery.
+Application-to-selection (H024), notification delivery, and Student/workforce lifecycle changes.
 
 # 5. Ownership and Participating Domains
 
@@ -47,20 +47,24 @@ Application-to-selection (H024), invented offer-expiry mechanics, and notificati
 |---|---|
 | Student Lifecycle / C | Owns Student identity/lifecycle facts. |
 | People & Workforce / E | Owns workforce context for Placement staff. |
-| Placement / H | Owns PlacementOffer, JoiningConfirmation, offer status, withdrawal consequences and `PlacementCompleted`. |
+| Placement / H | Owns PlacementOffer, JoiningConfirmation, response outcomes, withdrawal/expiry consequences and `PlacementCompleted`. |
 
 # 6. Business Actors, Roles and Responsibilities
 
 | Actor / Role | Responsibility |
 |---|---|
-| Student | Accepts/rejects a published offer and confirms joining where applicable. |
-| Placement Officer | Governs offer publication, records/reviews employer withdrawal input, and verifies joining evidence. |
+| Student | Accepts or rejects a published offer and confirms joining where applicable. |
+| Placement Officer | Primary business authority for PlacementOffer and JoiningConfirmation decisions and records employer-originated withdrawal facts. |
 
-Employer-originated selection, withdrawal and joining confirmation are external submissions recorded by authorized Placement staff.
+Employer-originated withdrawal and joining confirmations remain external inputs recorded through the governed H04 process.
 
 # 7. Preconditions and Entry Criteria
 
-Candidate is `Selected`; required recruitment is complete; hiring capacity remains available; offer details/validity are defined; joining may proceed only from an accepted offer.
+- Candidate is `Selected`.
+- Required recruitment is complete.
+- Hiring capacity remains available where applicable.
+- Offer details and validity period are defined.
+- Joining may proceed only from an Accepted offer.
 
 # 8. Trigger
 
@@ -68,57 +72,65 @@ A placement selection is confirmed
 
 # 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Role / Domain | Business Result |
-|---|---|---|---|
-| 1 | Generate, validate and publish the PlacementOffer. | Placement Officer / H | Governed offer becomes available. |
-| 2 | Record Student acceptance or rejection. | Student / H | Offer becomes `Accepted` or `Declined`. |
-| 3 | If employer withdrawal occurs before joining confirmation, govern the withdrawal and reopen candidate eligibility where policy permits. | Placement Officer / H | Offer becomes `Withdrawn`; history remains auditable. |
-| 4 | If an accepted offer proceeds to joining, record Student and employer confirmation, verify evidence, and complete Placement. | Student / Placement Officer / H | `PlacementCompleted` records verified joining completion. |
-| 5 | Apply offer expiry when validity lapses. | H | **BLOCKED:** H04 defines no canonical transition/event/authority into `Expired`. |
+1. Generate, validate and publish the PlacementOffer.
+2. Record the Student response as Accepted or Rejected.
+3. If the governed response period ends without valid acceptance, move the offer to `Expired` and publish `PlacementOfferExpired`.
+4. If employer withdrawal occurs before joining confirmation, govern the withdrawal and reopen candidate eligibility where policy permits.
+5. If an Accepted offer proceeds to joining, record Student and employer confirmation.
+6. Verify joining evidence under the JoiningConfirmation lifecycle.
+7. Publish `PlacementCompleted` only when the applicable joining evidence has been verified and the joining outcome is complete.
+8. Preserve immutable offer, response, expiry/withdrawal and joining history.
 
 # 10. Alternate Business Flows
 
-Student decline, valid employer withdrawal, and verified joining follow explicit H04 paths. Offer expiry is a frozen outcome branch but remains undefined upstream.
+- Student rejection: offer reaches the authoritative rejected/declined outcome.
+- Employer withdrawal before joining: offer reaches `Withdrawn`; candidate eligibility may reopen where policy permits.
+- No valid response within the governed period: offer reaches `Expired` and is no longer actionable.
+- Accepted offer without verified joining: Placement is not yet complete.
 
 # 11. Failure, Interruption and Business Recovery
 
-Invalid offer details prevent publication. Withdrawal after joining confirmation is not permitted. Missing joining evidence prevents completion. Validity lapse cannot be converted into an invented expiry transition.
+Invalid offer details prevent publication. Expired offers cannot be newly accepted. Withdrawal after joining confirmation is not treated as a valid offer-withdrawal path. Missing joining evidence prevents `PlacementCompleted`.
 
 # 12. Business Rules and Decision Constraints
 
-| Rule / Constraint | Owner | Scenario Effect |
-|---|---|---|
-| Only selected candidates may receive offers. | H | Offer generation starts after selection. |
-| Offer validity period is mandatory; expired offers cannot be accepted. | H | Validity constrains acceptance. |
-| Accepted offers are immutable and cannot return to pending. | H | Decision history is preserved. |
-| Withdrawn offers remain auditable and cannot generate joining confirmation. | H | Withdrawal is terminal for that offer. |
-| Joining requires accepted offer and employer confirmation. | H | Placement completion requires verified evidence. |
+- Only selected candidates may receive offers.
+- Offer validity period is mandatory; expired offers are no longer actionable.
+- Published offers may reach Accepted, Rejected, Withdrawn or Expired.
+- An Accepted offer does not itself prove joining.
+- Joining remains governed by the separate JoiningConfirmation aggregate.
+- Placement completion requires verified joining evidence.
 
 # 13. State and Lifecycle Impact
 
-PlacementOffer supports `Draft → Generated → Published → Accepted/Declined/Withdrawn` and accepted offer to joining confirmation. `Expired` appears in the diagram but has no transition table entry. JoiningConfirmation progresses `Pending → Student Confirmed → Employer Confirmed → Institution Verified → Completed`.
+PlacementOffer supports governed response outcomes:
+
+- Accepted
+- Rejected
+- Withdrawn
+- Expired
+
+JoiningConfirmation remains a separate lifecycle and governs the evidence required for verified joining. Expiry preserves the offer record and does not mean institutional rejection of the candidate.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-Supported exact events include `CandidateSelected`, `PlacementOfferGenerated`, `PlacementOfferPublished`, `CandidateOfferStatusUpdated`, `PlacementOfferAccepted`, `PlacementOfferRejected`, `OfferWithdrawalRequested`, `PlacementOfferWithdrawn`, `CandidateEligibilityReopened`, `StudentJoiningRecorded`, `EmployerJoiningConfirmed`, `JoiningVerified`, and `PlacementCompleted`. No `PlacementOfferExpired` event exists.
+Canonical H04 events include the existing offer/withdrawal/joining facts and the locked `PlacementOfferExpired` event. H04 remains the semantic publisher of PlacementOffer and JoiningConfirmation facts. C/E source facts remain externally owned.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-Student decides acceptance/rejection. Placement Officer performs supported offer/withdrawal/joining governance. H04 defines no expiry authority. Evidence preserves offer details/validity, publication, Student decision, withdrawal reason/approval, eligibility reopening, joining confirmations, verification evidence, completion, and history.
+Student owns the acceptance/rejection response. Placement Officer is the primary business authority for PlacementOffer and JoiningConfirmation decisions. Evidence preserves offer terms/validity, publication, Student response, expiry/withdrawal reason, reopened eligibility where applicable, joining confirmations, verification and completion.
 
 # 16. Completion Criteria and Postconditions
 
-Accepted, declined, withdrawn and verified-joining branches can complete. The full frozen scenario is blocked because the required `Expired` branch lacks lifecycle and event semantics. C/E ownership remains unchanged.
+The scenario completes when the offer reaches one authoritative response outcome or, for an Accepted offer, when verified joining reaches the governed Placement-completion outcome. All offer and joining history remains immutable and C/E ownership is unchanged.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+## 17.1 Resolved Historical Blocker
 
-| Issue | Architecture Impact | Required Resolution |
-|---|---|---|
-| `Expired` is named in the PlacementOffer lifecycle/rules, but H04 defines no transition, command, event, or authority that enters `Expired`. | Frozen outcome explicitly requires expiry. | Define the canonical expiry trigger/transition/event/publisher upstream. |
+The former missing offer-expiry transition/event semantics were resolved by locked `L2-H04_Placement_Lifecycle_Completion_Amendment_2026-08-26.md`, which defines `Expired` and `PlacementOfferExpired`; the scenario passed targeted revalidation on 2026-08-26.
 
-**Architecture assessment:** `BLOCKED`
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
 
 ## 17.2 Assumptions
 
@@ -126,4 +138,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional deferred questions.
+No additional scenario-specific questions.
