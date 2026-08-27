@@ -7,84 +7,89 @@
 **Participating Domains:** C, H, I  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** locked L1; `DEPENDENCY_MAP.md`; L2-H10
+**Last Updated:** 2026-08-27  
+**Depends On:** locked L1; `DEPENDENCY_MAP.md`; L2-H10; `L2-H10_Provider_Trust_and_Exchange_Governance_Amendment_2026-08-26.md`  
+**Referenced By:** L3 formal Architecture Approval re-review; correction to targeted remediation interpretation
 
 # 2. Scenario Purpose
-Coordinate authenticity verification for an externally issued credential without H10 becoming the credential owner.
+Coordinate a governed external credential-verification request and preserve immutable external verification evidence without H10 becoming owner of the source credential.
 
 # 3. Business Outcome
 Provider evidence produces a verified, rejected, expired, or inconclusive verification result with immutable lineage
+
+The locked H10 amendment now canonically supports only `Verified` and `Rejected` verification-result lifecycle outcomes. It does not define `Expired` or `Inconclusive` as H10 verification-result states/events. Those frozen branches therefore remain unresolved and are not invented here.
 
 # 4. Scenario Boundary and Scope
 ## 4.1 Start Boundary
 An authorized process requests verification of an externally issued credential.
 ## 4.2 End Boundary
-H10 explicitly supports confirmed/rejected authenticity and immutable verification history. It states expired credentials remain verifiable, but defines no canonical `Expired` verification-result outcome and no `Inconclusive` result/state/event. Full frozen outcome is blocked.
+For source-supported branches, the External Credential Verification reaches `Verified` or `Rejected` and immutable evidence is preserved. The frozen `Expired` and `Inconclusive` result branches remain an upstream architecture gap.
 ## 4.3 In Scope
-Verification request, provider evidence, authenticity decision and lineage.
+Verification request, provider evidence, Verified/Rejected result, immutable lineage and source-ownership preservation.
 ## 4.4 Out of Scope
-Credential ownership or invented inconclusive/expired verification states.
+Credential ownership, mutation of the source credential, or invented Expired/Inconclusive verification states/events.
 
 # 5. Ownership and Participating Domains
-H10 owns Certificate Verification orchestration/history; C/I retain ownership of their credential/result references where applicable.
+H10 owns the external verification request/result evidence only. C/I retain ownership of their credential/result references where applicable; authentication credentials remain owned by their canonical source domain.
 
 # 6. Business Actors, Roles and Responsibilities
-Academic Administrator and Integration personnel coordinate verification; issuing provider supplies evidence.
+Authorized H10 integration/verification participants operate under source-defined governance. H10 records the external verification outcome but does not acquire source-credential authority.
 
 # 7. Preconditions and Entry Criteria
-Credential identifier and trusted verification provider are available.
+- Credential reference/identifier is available.
+- Trusted external verification context/provider is available.
+- The verification request is authorized.
 
 # 8. Trigger
 An authorized process requests verification of an externally issued credential
 
 # 9. Main Business Flow
-1. H10 creates the verification request.
-2. H10 validates request/provider context.
-3. Provider evidence is obtained and evaluated.
-4. H10 records verified or rejected authenticity outcome.
-5. Immutable verification history is preserved.
-6. Stop before asserting `Expired` as a verification result or `Inconclusive` because H10 does not define those canonical outcomes.
+1. Create the verification request in `Requested`.
+2. Move to `Verification Pending` and obtain/evaluate governed provider evidence.
+3. If authenticity is established under the external verification evidence, move to `Verified` and publish `ExternalCredentialVerificationVerified`.
+4. If the governed verification decision is rejection, move to `Rejected` and publish `ExternalCredentialVerificationRejected`.
+5. Preserve immutable verification evidence and result lineage.
+6. A later verification creates a successor request/result rather than overwriting the prior result.
 
 # 10. Alternate Business Flows
-Provider failure or insufficient evidence follows governed exception handling, but no canonical `Inconclusive` outcome is defined.
+- Provider/evidence unavailability remains unresolved until governed evidence exists; the locked amendment does not define `Inconclusive` as a terminal result.
+- A source credential may itself be expired under its owning domain, but H10 does not have a canonical `Expired` verification-result state in the locked amendment.
 
 # 11. Failure, Interruption and Business Recovery
-Unavailable or suspect evidence remains unresolved/exceptional; H10 does not modify the source credential.
+Unavailable or insufficient evidence does not permit H10 to invent a result. The request remains governed without mutating the source credential. Later verification uses a successor request/result.
 
 # 12. Business Rules and Decision Constraints
-Credential identifier mandatory; trusted provider required; verification history immutable; successful verification cannot be overwritten.
+- Canonical verification lifecycle: `Requested → Verification Pending → Verified / Rejected`.
+- Verification results are immutable evidence for that request.
+- Later verification creates a successor request/result.
+- H10 verification does not change source-credential lifecycle.
+- No `Expired` or `Inconclusive` verification-result state/event is defined by the controlling amendment.
 
 # 13. State and Lifecycle Impact
-H10 Certificate Verification has explicit responsibilities/events but no complete result lifecycle containing Verified/Rejected/Expired/Inconclusive.
+Only the H10 verification-request/result lifecycle changes through `Verified` or `Rejected`. Source credential lifecycle is unchanged by H10.
 
 # 14. Business Events and Cross-Domain Collaboration
-## 14.1 Published / Consumed Business Events
-`CertificateVerificationSubmitted`, `CertificateVerificationValidated`, `CertificateVerificationFailed`, `CertificateVerificationCompensationRequested` are defined. No `VerificationInconclusive` event exists.
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-C/I references remain externally owned; H10 records verification only.
+H10 publishes `ExternalCredentialVerificationVerified` and `ExternalCredentialVerificationRejected`. Source credentials/results retain their canonical owners and publishers.
 
 # 15. Business Authorization, Approval and Audit Obligations
-## 15.1 Initiation and Decision Authority
-Authorized H10 verification actors operate under source-defined command authorization.
-## 15.2 Separation of Duties, Overrides and Exceptions
-H10 cannot rewrite source credentials.
-## 15.3 Business Audit and Evidence Obligations
-Preserve credential reference, provider evidence, verification result and immutable history.
+Preserve request authority, credential reference, external provider evidence, result, decision provenance and immutable successor lineage. H10 cannot rewrite source credentials.
 
 # 16. Completion Criteria and Postconditions
-## 16.1 Completion Criteria
-Verified/rejected paths are supported; frozen expired/inconclusive result branches are unresolved.
-## 16.2 Postconditions
-No unsupported result is asserted.
+The Verified/Rejected branches are complete and source-supported. The full frozen business outcome is not architecture-complete because `Expired` and `Inconclusive` verification-result branches remain undefined upstream.
 
 # 17. Open Issues, Assumptions and Deferred Questions
-## 17.1 Open Issues
-Frozen outcome requires `expired` and `inconclusive` verification results. H10 only says expired credentials remain verifiable and lacks an inconclusive result/state/event. **Architecture assessment:** `BLOCKED`
+## 17.1 Current Open Issue
+
+**Blocking:** frozen H079 requires `expired` and `inconclusive` verification-result outcomes. Locked `L2-H10_Provider_Trust_and_Exchange_Governance_Amendment_2026-08-26.md` defines only `Requested → Verification Pending → Verified / Rejected` and adds only `ExternalCredentialVerificationVerified` / `ExternalCredentialVerificationRejected`.
+
+The 2026-08-26 targeted revalidation's blanket H073/H076/H079/H081 PASS therefore overstates the resolution for H079 and requires governance correction. No local mapping from source-credential expiry or insufficient evidence to a new H10 verification-result state is authorized.
+
+**Current architecture assessment:** `BLOCKED BY UPSTREAM — PARTIAL REMEDIATION ONLY`
+
 ## 17.2 Assumptions
 No assumptions.
 ## 17.3 Deferred Questions
-Upstream H10 must define canonical verification-result lifecycle/outcomes for expired and inconclusive cases.
+Upstream H10 must define or formally reconcile the frozen `Expired` and `Inconclusive` verification-result semantics before H079 can be Architecture Approved.
