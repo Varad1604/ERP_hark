@@ -8,7 +8,7 @@
 **Participating Domains:** H, VAR:Remediation-Owning Domain  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Review  
+**Status:** Architecture Approved  
 **Version:** 1.1  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-27  

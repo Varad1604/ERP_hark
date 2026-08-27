@@ -8,7 +8,7 @@
 **Participating Domains:** G, A  
 **Scenario Type:** Simple  
 **Priority:** P1  
-**Status:** Review  
+**Status:** Architecture Approved  
 **Version:** 1.1  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-27  
