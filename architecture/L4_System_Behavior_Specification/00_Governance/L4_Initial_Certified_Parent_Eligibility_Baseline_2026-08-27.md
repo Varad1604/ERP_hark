@@ -1,13 +1,13 @@
 # SutraERP L4 Initial Certified Parent Eligibility Baseline
 
-**Version:** 1.1.0  
+**Version:** 1.1.1  
 **Status:** Architecture Baseline  
 **Owner:** Lead Architect  
 **Architectural Level:** L4 — System Behavior Specification Governance  
 **Domain:** Cross-domain  
 **Last Updated:** 2026-08-27  
-**Depends On:** L4 Governance Baseline Lock Decision 2026-08-26; `L4_Validation_Standard.md`; current `dhruv` L3 scenario files; `L3_Independent_Architecture_Approval_Result_45_Scenarios_2026-08-27.md`; `L4_Parent_Readiness_Validation_45_Newly_Approved_Scenarios_2026-08-27.md`  
-**Referenced By:** Future repository-wide L4 eligible-parent baseline; future L4 parallel-authoring authorization and execution plan  
+**Depends On:** L4 Governance Baseline Lock Decision 2026-08-26; `L4_Validation_Standard.md`; current `dhruv` L3 scenario files; `L3_Independent_Architecture_Approval_Result_45_Scenarios_2026-08-27.md`; `L4_Parent_Readiness_Validation_45_Newly_Approved_Scenarios_2026-08-27.md`; `L4_Production_Parent_Baseline_48_2026-08-27.md`; `L4_Parallel_Authoring_Authorization_2026-08-27.md`  
+**Referenced By:** Canonical L4 production authoring and future repository-wide eligible-parent expansion  
 
 ---
 
@@ -15,9 +15,9 @@
 
 This document records the current certified L3 parent set that may be used for canonical L4 System Behavior Specification authoring under the Locked L4 governance method.
 
-It remains an **initial certified baseline**, not yet the repository-wide production baseline required for unrestricted mass/parallel L4 authoring.
+The current certified set is the approved production baseline for the first authorized L4 production wave. It is not a claim that the entire 1,084-scenario L3 corpus is L4-ready.
 
-This baseline does not grant L3 Lock, does not imply that L4 specifications already exist, and does not authorize L4 mass authoring.
+This baseline does not grant L3 Lock, does not imply that L4 specifications already exist, and does not authorize L4 Lock.
 
 ---
 
@@ -52,7 +52,7 @@ The historical files under `00_Pilot/` remain methodology evidence and are not a
 
 ## 4. Newly Certified G/H Remediation Parents
 
-The 45-scenario remediation population has now completed both required gates:
+The 45-scenario remediation population completed both required gates:
 
 1. independent L3 Architecture Approval; and
 2. separate L4 parent-readiness validation.
@@ -89,49 +89,76 @@ All 45 are eligible parents for canonical L4 System Behavior Specification autho
 
 Current certified population: **48**.
 
-This means 48 approved L3 scenarios are now eligible sources for canonical L4 authoring.
+This means 48 approved L3 scenarios are eligible sources for canonical L4 authoring.
 
-It does not mean 48 L4 specifications have been authored, reviewed, approved or locked.
+It does not mean 48 L4 specifications have already been authored, reviewed, approved or locked.
 
 ---
 
-## 6. Other Known Ineligible / Uncertified Parents
+## 6. Current Production-Wave Disposition
 
-`L3-D-025`, `L3-D-029`, and `L3-D-043` remain excluded while their current canonical status remains `Review` unless later governance evidence changes that state.
+The first production wave is governed by:
 
-The broader canonical L3 corpus contains 1,084 scenarios. No scenario outside the currently certified 48 may be treated as L4-eligible merely by inference from historical reports or section-level completion claims.
+`L4_Production_Parent_Baseline_48_2026-08-27.md`.
 
-Repository-wide current-state eligibility certification remains incomplete.
+Current corpus disposition:
+
+| Condition | Count |
+|---|---:|
+| Certified / production-eligible parents | **48** |
+| Canonical L3 scenarios deferred from this wave | **1,036** |
+| Canonical L3 population | **1,084** |
+
+No scenario outside the 48-parent production baseline may be treated as L4-eligible merely by inference from historical reports or section-level completion claims.
+
+Known L3 scenarios currently in `Review`, including `L3-D-025`, `L3-D-029`, and `L3-D-043`, remain outside the current production baseline unless later governance evidence changes their status/readiness.
 
 ---
 
 ## 7. Broad-Authoring Gate Status
 
-The parent-readiness expansion from 3 to 48 satisfies the parent-certification gate for these 48 scenarios, but it does not by itself authorize unrestricted L4 mass/parallel authoring.
+All broad-authoring prerequisites for the 48-parent production wave are now closed:
 
-Remaining broad-authoring gates under Locked governance are:
+1. certified production parent baseline — **PASS**;
+2. Architecture Index/navigation synchronization — **PASS**;
+3. pilot/production separation — **PASS**;
+4. author/reviewer/batch/concurrency controls — **PASS**;
+5. explicit parallel-authoring authorization — **PASS / LOCKED**.
 
-1. formally confirm the intended production eligible-parent baseline / disposition for the broader L3 corpus;
-2. synchronize `ARCHITECTURE_INDEX.md` and L4 navigation with current L3/L4 governance state;
-3. establish canonical production L4 structure clearly separated from `00_Pilot`;
-4. approve author/reviewer assignments, batch size, review cadence and concurrency controls; and
-5. issue explicit L4 parallel-authoring authorization.
+Authoritative execution artifacts:
+
+- `L4_Parallel_Authoring_Execution_Plan_48_Parents_2026-08-27.md`;
+- `L4_Parallel_Authoring_Authorization_2026-08-27.md`.
 
 ---
 
 ## 8. Immediate Execution Consequence
 
-Canonical L4 authoring may now proceed in **controlled, non-mass production preparation** for any of the 48 certified parents, subject to the Locked L4 template and validation standards.
+Broad/parallel canonical L4 production authoring is now authorized for the **48 certified parents only**.
 
-Unrestricted/mass/parallel L4 authoring remains prohibited until the remaining broad-authoring gates are closed.
+Authoring must occur under `01_Production/`, use the Locked template/validation standards, follow the 10-batch execution plan, and preserve author/reviewer/final-approver separation.
+
+The remaining 1,036 L3 scenarios are not included in this authorization.
 
 ---
 
-## 9. Decision
+## 9. Lock Boundary
+
+This production authorization does not grant any L4 specification `Locked` status.
+
+The normal progression remains:
+
+`Draft → Review → Architecture Approved → Locked`
+
+Final L4 Lock remains a later explicit governance action after applicable corpus-level validation.
+
+---
+
+## 10. Decision
 
 **CURRENT CERTIFIED L4 PARENT SET:** **48**  
-**NEWLY CERTIFIED FROM 45-SCENARIO G/H BATCH:** **45**  
-**RETURNED TO L3 FROM READINESS GATE:** **0**  
-**BLOCKED BY UPSTREAM:** **0**  
-**REPOSITORY-WIDE ELIGIBILITY BASELINE:** NOT YET COMPLETE  
-**L4 MASS/PARALLEL AUTHORING:** **NOT YET AUTHORIZED**
+**AUTHORIZED CURRENT PRODUCTION PARENT SET:** **48**  
+**DEFERRED FROM CURRENT L4 PRODUCTION WAVE:** **1,036**  
+**BROAD/PARALLEL L4 AUTHORING FOR THE 48-PARENT WAVE:** **AUTHORIZED**  
+**L4 SPECIFICATION LOCK:** **NOT AUTHORIZED**  
+**FINAL L4 CORPUS LOCK:** **NOT AUTHORIZED**
