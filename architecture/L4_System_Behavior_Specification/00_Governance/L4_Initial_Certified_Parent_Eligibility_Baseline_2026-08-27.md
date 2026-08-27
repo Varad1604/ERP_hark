@@ -1,12 +1,12 @@
 # SutraERP L4 Initial Certified Parent Eligibility Baseline
 
-**Version:** 1.0.1  
+**Version:** 1.0.2  
 **Status:** Architecture Baseline  
 **Owner:** Lead Architect  
 **Architectural Level:** L4 — System Behavior Specification Governance  
 **Domain:** Cross-domain  
 **Last Updated:** 2026-08-27  
-**Depends On:** L4 Governance Baseline Lock Decision 2026-08-26; L4 Validation Standard; current `dhruv` L3 scenario files; L3 Targeted Revalidation Report — Upstream Remediation 2026-08-26; `L3_Targeted_Revalidation_Correction_Addendum_2026-08-27.md`; current L3 formal Architecture Approval gate record  
+**Depends On:** L4 Governance Baseline Lock Decision 2026-08-26; L4 Validation Standard; current `dhruv` L3 scenario files; `L3_Pre_Approval_Validation_44_Remediated_Scenarios_2026-08-27.md`; `L3_Targeted_Revalidation_Current_State_Correction_2026-08-27.md`  
 **Referenced By:** Future repository-wide L4 eligible-parent baseline; future L4 parallel-authoring authorization and execution plan  
 
 ---
@@ -44,88 +44,112 @@ Historical approval reports do not override the current parent-file state or ver
 | `L3-I-007` | Architecture Approved | 1.1 | Corrected and independently re-reviewed on 2026-08-26; repository lock remains separate | **ELIGIBLE** |
 | `L3-I-118` | Architecture Approved | 1.1 | Corrected and independently re-reviewed on 2026-08-26; repository lock remains separate | **ELIGIBLE** |
 
-These three scenarios form the initial certified parent population for controlled canonical L4 production preparation.
+Current certified population: **3**.
 
-Their eligibility does **not** imply that the corresponding historical files under `00_Pilot/` are automatically canonical production specifications. Pilot artifacts remain methodology evidence unless separately promoted through the canonical production process.
-
----
-
-## 4. Confirmed Current Exclusions
-
-### 4.1 Current `Review` parents
-
-The following known scenarios are not eligible while their current canonical status remains `Review`:
-
-- `L3-D-025`
-- `L3-D-029`
-- `L3-D-043`
-
-A historical section-level approval report cannot override these later current-file states.
-
-### 4.2 Upstream-remediated G/H scenarios
-
-The governed current remediation conclusion is **44 / 45 fully resolved**, not 45 / 45.
-
-- The 44 fully remediated G/H scenarios have been mechanically synchronized to their controlling locked amendments and moved to `Review`. They require independent Architecture Approval before L4 eligibility can be granted.
-- `L3-H-079` remains **BLOCKED BY UPSTREAM — PARTIAL REMEDIATION ONLY** because its frozen outcome requires `Expired` and `Inconclusive` verification-result branches that the locked H10 amendment does not define.
-
-The earlier blanket 45/45 PASS statement is superseded for current use by `L3_Targeted_Revalidation_Correction_Addendum_2026-08-27.md`.
-
-Therefore:
-
-- the 44 remediated `Review` scenarios remain outside the L4-eligible parent population until they receive independent Architecture Approval and pass the L4 parent-readiness gate; and
-- `L3-H-079` remains outside the L4-eligible population until its upstream architecture is formally resolved and the scenario subsequently passes Architecture Approval.
+The historical files under `00_Pilot/` remain methodology evidence and are not automatically canonical production L4 specifications.
 
 ---
 
-## 5. Repository-Wide Baseline Status
+## 4. Current Remediation Population and Exclusions
 
-The canonical L3 identity population is 1,084 scenarios, but this document does not certify the remaining corpus by inference from historical section reports.
+The current authoritative interpretation of the original 45-scenario G/H remediation population is defined by `L3_Targeted_Revalidation_Current_State_Correction_2026-08-27.md`:
 
-A repository-wide L4 eligible-parent baseline must be built from current scenario state/version and current approval evidence, with later material edits taking precedence over older approval summaries.
+| Condition | Count |
+|---|---:|
+| Upstream-resolved and current L3 file clean | **40** |
+| Upstream-resolved but current L3 correction required | **1** |
+| Upstream-blocked | **4** |
+| Total | **45** |
 
-Until that repository-wide certification is complete:
+### 4.1 Forty current-file-clean candidates
 
-- the **initial certified eligible population is 3**;
-- additional scenarios may be added only after current-state verification;
-- the 44 fully remediated G/H scenarios require independent Architecture Approval before inclusion;
-- `L3-H-079` remains upstream-blocked and excluded;
-- known `Review` scenarios remain excluded; and
+The 40 clean scenarios are in `Review`. They may proceed to independent L3 Architecture Approval review, but they are **not L4-eligible yet**.
+
+Only after a scenario receives independent `Architecture Approved` status and passes the L4 parent-readiness gate may it be added to the certified L4 parent population.
+
+### 4.2 L3-H-033 — current-file correction required
+
+`L3-H-033` remains excluded because its current synchronized file omits the locked base-H05 Ethics renewal path/event despite renewal being part of the frozen business outcome.
+
+This is a current L3 correction defect, not an upstream architecture blocker.
+
+### 4.3 Upstream-blocked scenarios
+
+The following remain excluded until upstream architecture is formally resolved and the scenarios subsequently pass L3 Architecture Approval:
+
+- `L3-H-037` — H05 Consultancy cancellation semantics undefined;
+- `L3-H-063` — H09 Compliance Requirement Expired vs Retired semantics unresolved;
+- `L3-H-076` — H10 External Enrollment Exchange cancellation semantics undefined;
+- `L3-H-079` — H10 External Credential Verification Expired/Inconclusive outcomes undefined.
+
+No L4 derivation is authorized from these scenarios.
+
+### 4.4 Other known Review parents
+
+`L3-D-025`, `L3-D-029`, and `L3-D-043` remain ineligible while their current canonical status remains `Review`.
+
+---
+
+## 5. Candidate Expansion Ceiling
+
+The current certified L4 parent set remains **3**.
+
+If all 40 current-file-clean remediation scenarios later:
+
+1. receive independent L3 Architecture Approval; and
+2. pass the L4 parent-readiness gate,
+
+the certified population could increase to a maximum of:
+
+`3 + 40 = 43`
+
+**43 is a potential ceiling, not a current certification count.**
+
+H033 could be considered only after correction, revalidation and independent Architecture Approval. H037, H063, H076 and H079 require upstream resolution first.
+
+---
+
+## 6. Repository-Wide Baseline Status
+
+The canonical L3 identity population is 1,084 scenarios, but this initial baseline does not certify the remaining corpus by inference from historical section reports.
+
+A repository-wide L4 eligible-parent baseline must be built from current scenario state/version and current approval evidence.
+
+Until repository-wide certification and broad-authoring controls are complete:
+
+- certified L4 parents remain **3**;
+- the 40 clean remediation candidates remain pending independent Architecture Approval;
+- H033 remains pending L3 correction;
+- H037, H063, H076 and H079 remain upstream-blocked;
+- known current `Review` scenarios remain excluded; and
 - broad or parallel L4 authoring remains **NOT AUTHORIZED**.
 
 ---
 
-## 6. Immediate Execution Consequence
+## 7. Immediate Execution Consequence
 
-The repository may safely use `L3-D-007`, `L3-I-007`, and `L3-I-118` for controlled canonical L4 production preparation under the locked naming, template and validation standards.
+The repository may safely use `L3-D-007`, `L3-I-007`, and `L3-I-118` for controlled canonical L4 production preparation under the locked governance/template/validation standards.
 
 The next governance work is:
 
-1. complete the independent focused Architecture Approval review for the 44 fully remediated G/H scenarios;
-2. resolve `L3-H-079` upstream through governed H10/L3 change control;
-3. expand the certified L4 eligible-parent baseline only for scenarios that pass current-state Architecture Approval and L4 readiness;
-4. complete repository-wide L3 current-state eligibility certification;
-5. synchronize `ARCHITECTURE_INDEX.md` and other current navigation with the live L3/L4 state;
-6. confirm canonical production L4 folder structure and pilot separation;
-7. define author/reviewer assignments and execution/batch controls; and
-8. issue a separate L4 parallel-authoring authorization only after all broad-authoring gates pass.
+1. submit the 40 clean remediation scenarios to an independent Architecture Approval review;
+2. mechanically correct and revalidate `L3-H-033` using locked base-H05 Ethics renewal semantics;
+3. resolve upstream architecture for `L3-H-037`, `L3-H-063`, `L3-H-076`, and `L3-H-079`;
+4. expand the certified L4 parent baseline only for scenarios that later pass both L3 approval and L4 readiness;
+5. complete repository-wide L3 current-state eligibility certification;
+6. synchronize `ARCHITECTURE_INDEX.md` and navigation;
+7. establish canonical production L4 folder structure separate from `00_Pilot`;
+8. approve author/reviewer assignments and batch controls; and
+9. issue separate L4 parallel-authoring authorization only after all broad-authoring gates pass.
 
 ---
 
-## 7. Decision
+## 8. Decision
 
-**INITIAL CERTIFIED L4 PARENT SET: 3 SCENARIOS**
-
-- `L3-D-007` — ELIGIBLE
-- `L3-I-007` — ELIGIBLE
-- `L3-I-118` — ELIGIBLE
-
-**44 FULLY REMEDIATED G/H SCENARIOS: PENDING INDEPENDENT ARCHITECTURE APPROVAL — NOT YET ELIGIBLE**
-
-**`L3-H-079`: UPSTREAM-BLOCKED — NOT ELIGIBLE**
-
-**KNOWN REVIEW PARENTS (`L3-D-025`, `L3-D-029`, `L3-D-043`): NOT ELIGIBLE**
-
-**REPOSITORY-WIDE ELIGIBILITY BASELINE: NOT YET COMPLETE**
-
-**L4 MASS/PARALLEL AUTHORING: NOT YET AUTHORIZED**
+**INITIAL CERTIFIED L4 PARENT SET:** **3**  
+**CURRENT-FILE-CLEAN REMEDIATION CANDIDATES:** **40 — PENDING INDEPENDENT L3 APPROVAL**  
+**`L3-H-033`:** CORRECTION REQUIRED — NOT ELIGIBLE  
+**`L3-H-037`, `L3-H-063`, `L3-H-076`, `L3-H-079`:** UPSTREAM-BLOCKED — NOT ELIGIBLE  
+**POTENTIAL CERTIFIED CEILING FROM CURRENT CLEAN SET:** **43**  
+**REPOSITORY-WIDE ELIGIBILITY BASELINE:** NOT YET COMPLETE  
+**L4 MASS/PARALLEL AUTHORING:** **NOT AUTHORIZED**
