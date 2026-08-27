@@ -8,15 +8,16 @@
 **Participating Domains:** E, F, H  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-23  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows; L2-F00 — Finance Domain Model & Foundation
+**Last Updated:** 2026-08-27  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows; locked Finance architecture; `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md`  
+**Referenced By:** L3 targeted revalidation and formal Architecture Approval review
 
 # 2. Scenario Purpose
 
-Govern an institutional Research Collaboration using the H05-defined registration, approval, activity, and completion lifecycle while preserving external agreement, workforce, and Finance ownership boundaries.
+Govern an institutional Research Collaboration through request, review, approval/rejection, activation, amendment, termination or closure while preserving external agreement, workforce and Finance ownership boundaries.
 
 # 3. Business Outcome
 
@@ -26,31 +27,34 @@ Due diligence and approval establish, reject, amend, terminate, or close a gover
 
 ## 4.1 Start Boundary
 
-An internal or external party proposes research collaboration
+An internal or external party proposes research collaboration.
 
 ## 4.2 End Boundary
 
-H05 supports `Proposed → Active → Completed`. The frozen outcome additionally requires rejection, amendment, termination, and a closed-agreement outcome that H05 does not define canonically.
+The scenario ends when the Collaboration reaches an authoritative governed outcome: Rejected, Active, Terminated or Closed, with amendment history preserved where applicable.
 
 ## 4.3 In Scope
 
-Partner/agreement validation, Collaboration registration, configured approval, active collaboration activities, completion, evidence preservation, and source ownership.
+Partner/agreement validation, request/review, approval/rejection, activation, amendment, termination, closure and Research-owned collaboration evidence.
 
 ## 4.4 Out of Scope
 
-Invented rejection, amendment/versioning, termination, or closed states/events; legal agreement ownership; invented Finance hand-offs.
+Ownership of external legal agreements, E03 workforce facts, or Finance monetary/accounting facts.
 
 # 5. Ownership and Participating Domains
 
-E03 owns workforce facts. Finance owns monetary/accounting consequences where collaboration has them. Research owns Collaboration metadata, H05 lifecycle, activities, and Research events. Legal agreement content remains outside Research.
+E03 owns workforce facts. Finance owns monetary/accounting consequences. Research owns the Research Collaboration relationship, its lifecycle, Research activities and Research events. External agreement/legal facts remain authoritative references.
 
 # 6. Business Actors, Roles and Responsibilities
 
-Research Office registers/completes. Research Director / Authorized Institutional Approver performs configured approval. Principal Investigator / Research Office records active collaboration activities.
+Research Office administers the Collaboration process. Principal Investigator participates in Research collaboration activity. Research Director is the canonical business authority for strategic approval, rejection, amendment, termination and closure decisions where institutional approval is required.
 
 # 7. Preconditions and Entry Criteria
 
-Partner organizations are identified and verified; agreement metadata/evidence is available; participants are valid; applicable approval workflow is configured.
+- Partner organizations and agreement context are identified.
+- Required due-diligence evidence is available.
+- Participants are valid.
+- Applicable institutional approval requirements are known.
 
 # 8. Trigger
 
@@ -58,71 +62,75 @@ An internal or external party proposes research collaboration
 
 # 9. Main Business Flow
 
-1. Validate participating organization and agreement context.
-2. Register the Collaboration; enter `Proposed` and publish `CollaborationCreated`.
-3. Complete configured institutional approval.
-4. Enter `Active` and publish `CollaborationApproved`.
-5. Record governed collaboration activities and `CollaborationActivityRecorded`.
-6. When required obligations are satisfied, complete the Collaboration and publish `CollaborationCompleted`.
-7. Stop before unsupported reject, amend, terminate, or close branches.
+1. Record the Collaboration request in `Requested`.
+2. Validate partner, agreement and participant context.
+3. Move to `Under Review` and complete institutional review.
+4. If rejected, move to `Rejected` and publish `ResearchCollaborationRejected`.
+5. If approved, move to `Approved` and then `Active`, publishing `ResearchCollaborationActivated` when the relationship becomes active.
+6. If an amendment is required, move `Active → Amendment Pending`; after governed approval, return to `Active` and publish `ResearchCollaborationAmendmentApproved`.
+7. If the collaboration is terminated, move `Active / Amendment Pending → Terminated` and publish `ResearchCollaborationTerminated`.
+8. When the collaboration completes normally, move `Active → Closed` and publish `ResearchCollaborationClosed`.
+9. Preserve immutable agreement references, decisions, activities and lifecycle history.
 
 # 10. Alternate Business Flows
 
-Multi-institution collaborations are permitted. H05 mentions administrative termination only in prose; no canonical termination state/transition/event exists.
+- `Under Review → Rejected`.
+- `Active → Amendment Pending → Active` after governed amendment approval.
+- `Active / Amendment Pending → Terminated`.
 
 # 11. Failure, Interruption and Business Recovery
 
-Unverified organizations, missing agreements, or incomplete approval prevent activation. Unsupported frozen branches remain architecture gaps.
+Unverified partner/agreement context prevents approval. Rejected, Closed and Terminated collaboration records remain historical and immutable. A later collaboration requires a new governed relationship rather than rewriting the old one.
 
 # 12. Business Rules and Decision Constraints
 
-At least one external organization is required; agreement and participant validation are mandatory; approval routing is configurable; legal agreements remain outside Research; completed history is immutable; Finance retains monetary ownership.
+- Canonical lifecycle: `Requested → Under Review → Approved → Active → Closed`.
+- Rejected, amendment and termination branches follow only the locked H05 transitions.
+- Research governs only the Research collaboration relationship.
+- Finance and E03 facts remain externally owned.
+- External legal agreement facts remain references to their authoritative evidence.
 
 # 13. State and Lifecycle Impact
 
-Collaboration: `Proposed → Active → Completed`; activities retain `Active`. No `Rejected`, `Amended`, `Terminated`, or `Closed` lifecycle positions are defined.
+Canonical Collaboration lifecycle:
+
+`Requested → Under Review → Approved → Active → Closed`
+
+Branches:
+
+- `Under Review → Rejected`
+- `Active → Amendment Pending → Active`
+- `Active / Amendment Pending → Terminated`
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
+Research publishes:
 
-Research publishes `CollaborationCreated`, `CollaborationApproved`, `CollaborationActivityRecorded`, and `CollaborationCompleted`.
+- `ResearchCollaborationRejected`
+- `ResearchCollaborationActivated`
+- `ResearchCollaborationAmendmentApproved`
+- `ResearchCollaborationTerminated`
+- `ResearchCollaborationClosed`
 
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-E03 source facts remain authoritative. Finance remains authoritative for financial consequences, but H05 defines no collaboration-specific Finance contract required to satisfy a separate financial outcome.
+E03 and Finance facts remain consumed by reference only.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-Only H05-defined Research Office, Research Director / Authorized Institutional Approver, and PI responsibilities are used.
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-No L3 role may invent reject/amend/terminate/close authority.
-
-## 15.3 Business Audit and Evidence Obligations
-
-Preserve partner/agreement references, approval authority/history, collaboration activities, completion evidence, state history, and Research Collaboration events.
+Research Director owns the applicable strategic collaboration decisions; Research Office records/administers them. Evidence preserves partner/agreement references, review, decision authority, amendment history, termination/closure rationale and complete lifecycle history.
 
 # 16. Completion Criteria and Postconditions
 
-The supported H05 path completes at `Completed`. The frozen scenario cannot claim all required outcomes while rejection, amendment, termination, and closed-agreement semantics remain undefined.
+Completion occurs when the collaboration reaches Rejected, Active, Terminated or Closed according to the governed branch and all evidence is preserved. External agreement, E03 and Finance ownership remain unchanged.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+## 17.1 Resolved Historical Blocker
 
-- No Collaboration rejection state/command/authority/event.
-- No Collaboration/agreement amendment lifecycle or version event.
-- No canonical termination state/transition/event; administrative termination is prose only.
-- H05 terminates at `Completed`, not the frozen “closed agreement” outcome.
-- Finance is frozen as participating, but H05 defines no collaboration-specific Finance hand-off.
+The former missing collaboration rejection, amendment, termination and closure semantics were resolved by locked `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md` and passed targeted revalidation on 2026-08-26.
 
-The missing frozen lifecycle branches are material.
+Finance participation does not imply a collaboration-specific Finance-owned outcome unless a Finance fact is actually required; Research does not invent such a fact.
 
-**Architecture assessment:** `BLOCKED`
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
 
 ## 17.2 Assumptions
 
@@ -130,4 +138,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional deferred questions.
+No additional scenario-specific questions.
