@@ -1,12 +1,12 @@
 # L4 System Behavior Specification
 
-**Version:** 1.1.0  
+**Version:** 1.1.1  
 **Status:** Architecture Baseline  
 **Owner:** Lead Architect  
 **Architectural Level:** L4 — System Behavior Specification  
 **Domain:** Cross-domain  
 **Last Updated:** 2026-08-27  
-**Depends On:** Approved L3 Business Scenario Architecture; Repository Constitution Volume 2 v1.2; L4 Governance and Architecture Standard; L4 Production Parent Baseline 48  
+**Depends On:** Approved L3 Business Scenario Architecture; Repository Constitution Volume 2 v1.2; L4 Governance and Architecture Standard; L4 Production Parent Baseline 48; L4 Parallel Authoring Authorization 2026-08-27  
 **Referenced By:** Future L5 Solution Architecture  
 
 ---
@@ -29,7 +29,8 @@ All new L4 authoring shall use:
 ├── L4_System_Behavior_Specification_Template_v1.0.md
 ├── L4_Validation_Standard.md
 ├── L4_Production_Parent_Baseline_48_2026-08-27.md
-└── L4_Parallel_Authoring_Execution_Plan_48_Parents_2026-08-27.md
+├── L4_Parallel_Authoring_Execution_Plan_48_Parents_2026-08-27.md
+└── L4_Parallel_Authoring_Authorization_2026-08-27.md
 ```
 
 The legacy repository-level template `templates/L4_SystemBehavior_Template.md` is **Deprecated** and must not be used for new L4 authoring.
@@ -79,7 +80,7 @@ If a material upstream conflict is found, L4 authoring stops and the issue is re
 
 ## Current Certified Production Baseline
 
-The current production wave contains **48 certified L3 parents**:
+The active production wave contains **48 certified L3 parents**:
 
 - Section D: 1
 - Section G: 8
@@ -122,7 +123,9 @@ For the three pilot-derived parents (`D-007`, `I-007`, `I-118`), canonical produ
 
 ## Parallel Execution Controls
 
-The current 48-parent wave uses:
+**Broad/parallel canonical L4 production authoring is active for the 48-parent wave.**
+
+Execution controls:
 
 - 10 controlled batches;
 - maximum batch size of 5 parents;
@@ -136,9 +139,10 @@ Execution authority is governed by:
 
 ```text
 00_Governance/L4_Parallel_Authoring_Execution_Plan_48_Parents_2026-08-27.md
+00_Governance/L4_Parallel_Authoring_Authorization_2026-08-27.md
 ```
 
-A separate parallel-authoring authorization decision controls when broad production authoring becomes active.
+No parent outside the certified 48 is included in this authorization.
 
 ---
 
@@ -172,9 +176,10 @@ Later explicit Lock authorization
 **Certified production parents:** 48  
 **Canonical production workspace:** Established  
 **Pilot workspace:** Historical / separate  
-**Production L4 specifications authored as part of this preparation:** 0  
-**Parallel authoring:** Controlled by separate authorization decision  
-**L4 final corpus lock:** Not authorized
+**Broad/parallel authoring:** **AUTHORIZED / ACTIVE FOR 48 PARENTS**  
+**Production L4 specifications authored as part of governance preparation:** 0  
+**L4 specification Lock:** Not authorized  
+**Final L4 corpus Lock:** Not authorized
 
 ---
 
