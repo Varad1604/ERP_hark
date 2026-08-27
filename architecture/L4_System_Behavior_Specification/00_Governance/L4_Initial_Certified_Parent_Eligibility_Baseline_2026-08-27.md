@@ -1,12 +1,12 @@
 # SutraERP L4 Initial Certified Parent Eligibility Baseline
 
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Architecture Baseline  
 **Owner:** Lead Architect  
 **Architectural Level:** L4 — System Behavior Specification Governance  
 **Domain:** Cross-domain  
 **Last Updated:** 2026-08-27  
-**Depends On:** L4 Governance Baseline Lock Decision 2026-08-26; L4 Validation Standard; current `dhruv` L3 scenario files; L3 Targeted Revalidation Report — Upstream Remediation 2026-08-26; L3 Architecture Approval Readiness Review — Upstream Remediation 2026-08-26  
+**Depends On:** L4 Governance Baseline Lock Decision 2026-08-26; L4 Validation Standard; current `dhruv` L3 scenario files; L3 Targeted Revalidation Report — Upstream Remediation 2026-08-26; `L3_Targeted_Revalidation_Correction_Addendum_2026-08-27.md`; current L3 formal Architecture Approval gate record  
 **Referenced By:** Future repository-wide L4 eligible-parent baseline; future L4 parallel-authoring authorization and execution plan  
 
 ---
@@ -62,13 +62,19 @@ The following known scenarios are not eligible while their current canonical sta
 
 A historical section-level approval report cannot override these later current-file states.
 
-### 4.2 Upstream-remediated G/H scenarios awaiting independent Architecture Approval
+### 4.2 Upstream-remediated G/H scenarios
 
-The 2026-08-26 targeted upstream remediation revalidation established that **45/45** affected G/H scenarios no longer carry the previously blocking upstream ambiguity. However, the authoritative remediation reports explicitly state that the review **did not grant Architecture Approval or Lock** and that those scenarios are ready for independent Architecture Approval review.
+The governed current remediation conclusion is **44 / 45 fully resolved**, not 45 / 45.
 
-Therefore all 45 remain outside the L4-eligible parent population until their current canonical files receive the required independent Architecture Approval and pass the L4 parent-readiness gate.
+- The 44 fully remediated G/H scenarios have been mechanically synchronized to their controlling locked amendments and moved to `Review`. They require independent Architecture Approval before L4 eligibility can be granted.
+- `L3-H-079` remains **BLOCKED BY UPSTREAM — PARTIAL REMEDIATION ONLY** because its frozen outcome requires `Expired` and `Inconclusive` verification-result branches that the locked H10 amendment does not define.
 
-This exclusion is procedural, not a finding that the remediation failed.
+The earlier blanket 45/45 PASS statement is superseded for current use by `L3_Targeted_Revalidation_Correction_Addendum_2026-08-27.md`.
+
+Therefore:
+
+- the 44 remediated `Review` scenarios remain outside the L4-eligible parent population until they receive independent Architecture Approval and pass the L4 parent-readiness gate; and
+- `L3-H-079` remains outside the L4-eligible population until its upstream architecture is formally resolved and the scenario subsequently passes Architecture Approval.
 
 ---
 
@@ -82,7 +88,8 @@ Until that repository-wide certification is complete:
 
 - the **initial certified eligible population is 3**;
 - additional scenarios may be added only after current-state verification;
-- the 45 remediated G/H scenarios require independent Architecture Approval before inclusion;
+- the 44 fully remediated G/H scenarios require independent Architecture Approval before inclusion;
+- `L3-H-079` remains upstream-blocked and excluded;
 - known `Review` scenarios remain excluded; and
 - broad or parallel L4 authoring remains **NOT AUTHORIZED**.
 
@@ -94,12 +101,14 @@ The repository may safely use `L3-D-007`, `L3-I-007`, and `L3-I-118` for control
 
 The next governance work is:
 
-1. complete repository-wide L3 current-state eligibility certification;
-2. perform independent Architecture Approval review for the 45 upstream-remediated G/H scenarios;
-3. synchronize `ARCHITECTURE_INDEX.md` and other current navigation with the live L3/L4 state;
-4. confirm canonical production L4 folder structure and pilot separation;
-5. define author/reviewer assignments and execution/batch controls; and
-6. issue a separate L4 parallel-authoring authorization only after all broad-authoring gates pass.
+1. complete the independent focused Architecture Approval review for the 44 fully remediated G/H scenarios;
+2. resolve `L3-H-079` upstream through governed H10/L3 change control;
+3. expand the certified L4 eligible-parent baseline only for scenarios that pass current-state Architecture Approval and L4 readiness;
+4. complete repository-wide L3 current-state eligibility certification;
+5. synchronize `ARCHITECTURE_INDEX.md` and other current navigation with the live L3/L4 state;
+6. confirm canonical production L4 folder structure and pilot separation;
+7. define author/reviewer assignments and execution/batch controls; and
+8. issue a separate L4 parallel-authoring authorization only after all broad-authoring gates pass.
 
 ---
 
@@ -111,7 +120,9 @@ The next governance work is:
 - `L3-I-007` — ELIGIBLE
 - `L3-I-118` — ELIGIBLE
 
-**45 UPSTREAM-REMEDIATED G/H SCENARIOS: PENDING INDEPENDENT ARCHITECTURE APPROVAL — NOT YET ELIGIBLE**
+**44 FULLY REMEDIATED G/H SCENARIOS: PENDING INDEPENDENT ARCHITECTURE APPROVAL — NOT YET ELIGIBLE**
+
+**`L3-H-079`: UPSTREAM-BLOCKED — NOT ELIGIBLE**
 
 **KNOWN REVIEW PARENTS (`L3-D-025`, `L3-D-029`, `L3-D-043`): NOT ELIGIBLE**
 
