@@ -7,14 +7,15 @@
 **Participating Domains:** C, D, H  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** locked L1; `DEPENDENCY_MAP.md`; L2-H10
+**Last Updated:** 2026-08-27  
+**Depends On:** locked L1; `DEPENDENCY_MAP.md`; L2-H10; `L2-H10_Provider_Trust_and_Exchange_Governance_Amendment_2026-08-26.md`  
+**Referenced By:** L3 targeted revalidation and formal Architecture Approval review
 
 # 2. Scenario Purpose
-Coordinate an approved external enrollment exchange while preserving student/academic enrollment authority outside H10.
+Coordinate a governed external enrollment exchange while preserving Student/Academic enrollment authority outside H10.
 
 # 3. Business Outcome
 The external enrollment is submitted and confirmed, rejected, cancelled, or expired while the owning academic domain retains enrollment authority
@@ -23,69 +24,63 @@ The external enrollment is submitted and confirmed, rejected, cancelled, or expi
 ## 4.1 Start Boundary
 An eligible learner requests enrollment through an approved external provider.
 ## 4.2 End Boundary
-H10 explicitly supports submitted, confirmed, rejected and pending-cancellation behavior, but no canonical `Expired` enrollment outcome/event/lifecycle is defined. Full frozen outcome is therefore blocked.
+The H10 Enrollment Exchange reaches Accepted, Rejected, Expired, or the existing governed cancellation outcome for a pending exchange; none of those exchange outcomes creates the canonical Student enrollment fact.
 ## 4.3 In Scope
-Submission, provider acknowledgement, confirmation/rejection, pending cancellation, audit evidence.
+External exchange request/validation, acceptance/rejection, bounded-validity expiry, existing pending-cancellation behavior, and audit evidence.
 ## 4.4 Out of Scope
-Academic enrollment decision ownership and inventing an expired H10 enrollment state.
+Student/Academic enrollment decision ownership or mutation of canonical Student enrollment by H10.
 
 # 5. Ownership and Participating Domains
-H10 owns External Enrollment orchestration; C/D retain student/academic enrollment authority.
+H10 owns only the external Enrollment Exchange. C/D retain canonical Student/Academic enrollment authority and decide their own enrollment outcome.
 
 # 6. Business Actors, Roles and Responsibilities
-Academic Administrator participates in enrollment commands; Integration Administrator/Operator coordinate H10 exchange. Owning C/D authority remains upstream.
+The **External Education Integration Governance Authority** governs H10 exchange exceptions. Existing Academic/Integration participants operate under their source-defined responsibilities; H10 does not approve academic enrollment.
 
 # 7. Preconditions and Entry Criteria
-Owning student/academic workflow has approved external enrollment participation; provider/connector are governed active.
+Owning Student/Academic governance permits the exchange; provider/trust/connector context is governed; bounded validity is known where expiry applies.
 
 # 8. Trigger
 An eligible learner requests enrollment through an approved external provider
 
 # 9. Main Business Flow
-1. H10 receives the approved enrollment request.
-2. H10 validates the external exchange context.
-3. H10 submits the external enrollment.
-4. Provider acknowledgement is recorded.
-5. H10 records confirmed or rejected external outcome.
-6. Pending enrollment may follow the source-defined cancellation action.
-7. Stop before asserting an `Expired` outcome because H10 defines none.
+1. Record the Enrollment Exchange in `Requested`.
+2. Move to `Validation Pending` and validate provider, learner-reference and exchange context.
+3. If valid for external exchange, move to `Accepted` and publish `ExternalEnrollmentExchangeAccepted`.
+4. The owning C/D domain independently determines whether to establish its canonical enrollment; H10 acceptance does not create it.
+5. Preserve complete exchange and source-domain decision references.
 
 # 10. Alternate Business Flows
-Confirmed, rejected and pending cancellation are supported; expired is not.
+- `Validation Pending → Rejected`, publishing `ExternalEnrollmentExchangeRejected`.
+- If an accepted exchange has a bounded validity period and the owning Student/Academic domain has not established the canonical enrollment before that period ends, move the H10 exchange to `Expired` and publish `ExternalEnrollmentExchangeExpired`.
+- Existing source-defined pending-cancellation behavior may cancel an exchange before terminal completion; cancellation remains an H10 exchange outcome and does not cancel a canonical Student enrollment unless its owner separately decides so.
 
 # 11. Failure, Interruption and Business Recovery
-Exchange failures remain H10 exceptions/reconciliation issues and never become academic enrollment decisions.
+Exchange failure/rejection/expiry/cancellation remains an H10 transaction outcome and never becomes an academic enrollment decision. Later exchange activity creates governed successor/current records rather than altering source-domain history.
 
 # 12. Business Rules and Decision Constraints
-Academic ownership remains outside H10; provider acknowledgement plus canonical owner confirmation is required for completion.
+- Canonical Enrollment Exchange lifecycle: `Requested → Validation Pending → Accepted / Rejected`.
+- Accepted bounded-validity exchange may become `Expired` under the locked amendment condition.
+- H10 exchange acceptance never creates/mutates canonical Student enrollment.
+- C/D retain enrollment ownership.
 
 # 13. State and Lifecycle Impact
-External Enrollment lifecycle details are incomplete in locked H10; confirmation/rejection events are explicit, cancellation command exists, expiry is undefined.
+Only the H10 exchange lifecycle changes. Student/Academic enrollment lifecycle remains unchanged unless its canonical owner acts through its own workflow.
 
 # 14. Business Events and Cross-Domain Collaboration
-## 14.1 Published / Consumed Business Events
-`ExternalEnrollmentSubmitted`, `ExternalEnrollmentConfirmed`, `ExternalEnrollmentRejected`, `ExternalEnrollmentCompensationRequested`; H10 also defines enrollment confirmation/rejection events. No `EnrollmentExpired` event exists.
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-C/D retain enrollment authority; H10 synchronizes external status only.
+H10 publishes `ExternalEnrollmentExchangeAccepted`, `ExternalEnrollmentExchangeRejected`, and `ExternalEnrollmentExchangeExpired`; existing cancellation facts remain governed by the base H10 workflow. C/D source facts retain their publishers.
 
 # 15. Business Authorization, Approval and Audit Obligations
-## 15.1 Initiation and Decision Authority
-Academic approval originates in the owning student/academic workflow; H10 does not approve academic enrollment.
-## 15.2 Separation of Duties, Overrides and Exceptions
-Provider confirmation cannot transfer academic authority to H10.
-## 15.3 Business Audit and Evidence Obligations
-Preserve originating approval, provider submission/acknowledgement, confirmation/rejection/cancellation evidence.
+H10 governance owns exchange exception decisions; academic enrollment authority remains C/D-owned. Preserve originating permission, provider/exchange context, H10 outcome, validity/expiry evidence, cancellation evidence where applicable, and any separate canonical enrollment reference.
 
 # 16. Completion Criteria and Postconditions
-## 16.1 Completion Criteria
-Supported branches are traceable; expired branch is unresolved.
-## 16.2 Postconditions
-No unsupported expiry outcome is asserted.
+Completion requires a governed H10 exchange outcome with complete evidence and no transfer of canonical enrollment ownership to H10.
 
 # 17. Open Issues, Assumptions and Deferred Questions
-## 17.1 Open Issues
-Frozen outcome requires `expired`; locked H10 defines no expiration state, rule or event for External Enrollment. **Architecture assessment:** `BLOCKED`
+## 17.1 Resolved Historical Blocker
+The former missing exchange-expiry state/event was resolved by locked `L2-H10_Provider_Trust_and_Exchange_Governance_Amendment_2026-08-26.md` and passed targeted revalidation on 2026-08-26.
+
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
 ## 17.2 Assumptions
 No assumptions.
 ## 17.3 Deferred Questions
-Upstream H10 must define External Enrollment expiration semantics.
+No additional scenario-specific questions.
