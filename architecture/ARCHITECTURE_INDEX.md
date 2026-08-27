@@ -285,14 +285,73 @@ L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
 
 ---
 
+# L3 — Business Scenario Architecture
+
+The canonical L3 scenario population is **1,084** across Sections A–J. L3 uses the governed scenario-document structure under:
+
+```text
+architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/
+```
+
+L3 status is scenario-specific; the corpus is not represented as globally Locked by this index.
+
+Current L4-relevant approved/certified parent evidence includes:
+
+- `L3-D-007` — Architecture Approved; certified L4 parent.
+- `L3-I-007` — Architecture Approved; certified L4 parent.
+- `L3-I-118` — Architecture Approved; certified L4 parent.
+- 45 independently Architecture Approved G/H remediation scenarios recorded in `L3_Independent_Architecture_Approval_Result_45_Scenarios_2026-08-27.md`.
+
+The 45-scenario approval population comprises Section G (8) and Section H (37). Their separate L4 parent-readiness gate passed 45/45 on 2026-08-27.
+
+**Canonical L3 Population:** 1,084 scenarios  
+**Current certified L4-parent subset:** 48 scenarios
+
+---
+
+# L4 — System Behavior Specification
+
+## Canonical Governance
+
+| Document | Owner | Status |
+|---|---|---|
+| L4 Governance Baseline Lock Decision | Lead Architect | Locked |
+| L4 Governance and Architecture Standard | Lead Architect | Locked |
+| L4 System Behavior Specification Template v1.0 | Lead Architect | Locked |
+| L4 Validation Standard | Lead Architect | Locked |
+| L4 Initial Certified Parent Eligibility Baseline | Lead Architect | Architecture Baseline |
+| L4 Parent-Readiness Validation — 45 Newly Approved Scenarios | Lead Architect | Architecture Approved |
+| L4 Production Parent Baseline — 48 Certified Parents | Lead Architect | Architecture Baseline |
+| L4 Parallel Authoring Execution Plan — 48 Parents | Lead Architect | Architecture Approved |
+
+The current first production wave is limited to **48 certified parents**. The remaining 1,036 L3 scenarios are outside this production wave until separately certified or governed.
+
+## Canonical Production Structure
+
+```text
+architecture/L4_System_Behavior_Specification/
+├── 00_Governance/
+├── 00_Pilot/          # historical methodology evidence
+└── 01_Production/     # canonical production specifications
+    ├── section-d/
+    ├── section-g/
+    ├── section-h/
+    └── section-i/
+```
+
+Only sections with certified parents are materialized in the current production wave.
+
+The separate `L4_Parallel_Authoring_Authorization_2026-08-27.md` controls whether broad/parallel production authoring is active. Indexing this production structure does not itself authorize authoring.
+
+**Certified L4 parent population:** 48  
+**Canonical production L4 specifications authored at time of this index synchronization:** 0  
+**Pilot specifications retained as historical evidence:** 3
+
+---
+
 # L5 — Solution Architecture
 
-> **Added 2026-08-06 under integrity finding INT-201.** Both documents below were created
-> by earlier integrity remediation to remove level violations from upstream documents,
-> and were never indexed — this Index previously stated that no L5 source documents
-> existed. Neither traces to an approved L4 System Behavior Specification, because no L4
-> document exists. They are indexed here as present and `Trust Certification Ready`.
-> **This is not an approved L5 baseline.**
+> **Added 2026-08-06 under integrity finding INT-201.** Both documents below were created by earlier integrity remediation to remove level violations from upstream documents. They predate the canonical L4 production corpus and remain `Trust Certification Ready`. **This is not an approved L5 baseline.** Any future use of these artifacts must be revalidated against the applicable approved L4 behavior and may not redefine upstream business architecture.
 
 | ID | Document | Owner | Status |
 |----|----------|-------|--------|
@@ -307,28 +366,22 @@ Provenance:
 - `L5-01_Infrastructure_Persistence_Baseline.md` — extracted from `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B03_Campus_Workflows.md` Part 14 under integrity finding INT-008.
 
 > The Owner values above are the individuals named in each document's header.
-> `architecture/L2_Domain_Workflow_Architecture/TEAM_ASSIGNMENTS.md` defines capability
-> owners for L2 only and carries no L5 ownership scheme. Assigning L5 capability owners
-> is open and requires a Lead Architect decision.
+> `architecture/L2_Domain_Workflow_Architecture/TEAM_ASSIGNMENTS.md` defines capability owners for L2 only and carries no L5 ownership scheme. Assigning L5 capability owners is open and requires a Lead Architect decision.
 
 ---
 
-# Future L3, L4 and L6 Architecture Placeholders
-
-> These are level placeholders only. Placeholder README files are present to preserve folder structure. No L3, L4, or L6 source architecture documents are present in this workspace yet.
+# Future L6 Architecture Placeholder
 
 | Level | Future Artifact Type | Indexing Rule |
 |-------|----------------------|---------------|
-| L3 | Business Scenario Architecture | Add only after an approved L3 source document exists. L3 numbering is independent of L2 numbering. |
-| L4 | System Behavior Specification | Add only after an approved L4 source document exists and traces to L3. |
 | L6 | UI / UX Architecture | Add only after an approved L6 source document exists and traces to L5. |
 
 ---
 
 # Architecture Summary
 
-| Section | Documents | Owner |
-|----------|----------:|-------|
+| Section | L2 Documents | Owner |
+|----------|-------------:|-------|
 | Section A — Platform Foundation | 11 | Dhruv |
 | Section B — Institution & Structure | 6 | Pallav |
 | Section C – Student Lifecycle | 9 | Varad |
@@ -344,17 +397,18 @@ Provenance:
 
 # Repository Statistics
 
-| Item | Count |
-|------|------:|
+| Item | Count / State |
+|------|---------------|
 | Core Architecture Documents | 6 |
 | L1 Business Domains | 10 |
 | L2 Workflow Documents | 107 |
-| L3 Scenario Documents Present  | 0 |
-| L4 System Behavior Documents Present | 0 |
+| L3 Canonical Scenario Population | 1,084 |
+| L3 Scenarios Currently Certified as L4 Parents | 48 |
+| L4 Certified Production Parents | 48 |
+| L4 Canonical Production Specifications Present | 0 |
+| L4 Pilot Specifications Present | 3 |
 | L5 Solution Architecture Documents Present | 2 |
 | L6 UI/UX Documents Present | 0 |
-| Section Review Documents | 10 |
-| Total Indexed Architecture Documents Present | 115 |
 | Active Architects | 5 |
 
 ---
@@ -381,46 +435,31 @@ Provenance:
 >
 > This legend mirrors the canonical status vocabulary defined in `governance/constitution/Volume_2_Repository_Standards.md` §7, which is the single canonical source and governs if the two ever diverge. All **13** values are reproduced above, verbatim, in Volume 2's order.
 >
-> *(Corrected 2026-08-06 under integrity finding INT-207. This legend previously listed only the 9 values the repository had used, while `Volume_2_Repository_Standards.md` line 147 requires it to mirror the canonical table **exactly**. The four values added — Proposed, Approved, Deprecated, Archived — carry Volume 2's own "Not yet in active use" wording, so the distinction between legal and in-use is preserved without amending a LOCKED constitutional document.)*
+> **As of 2026-08-07 L0, L1 and every L2 document are `Locked`.** L3 and L4 use their own governed scenario/specification lifecycle and are not globally implied Locked by the L0/L1/L2 decision.
 >
-> **As of 2026-08-07 L0, L1 and every L2 document are `Locked`.** The final lock decision was taken on 2026-08-07: all 107 L2 documents now carry `Locked`, which Volume 2 §7 defines as "approved and frozen". L0 (`SutraERP_Architecture_Workflow_Context_Baseline.md`) and L1 (`SutraERP_L1_Business_Domain_Architecture_Locked.md`) were already locked and were not changed. The index rows above, `architecture/L2_Domain_Workflow_Architecture/L2_DOMAIN_WORKFLOW_MATRIX.md`, `AI_CONTEXT/REPO_UNDERSTANDING.md` and `AI_CONTEXT/SECTION_J/README.md` were synced in the same change.
->
-> `L2-E04`, `L2-E05` and `L2-E06` were previously excluded because they carried no header status line in the canonical format. They now carry `Locked` in their Document Metadata tables and their index rows have been promoted from `Draft` accordingly.
->
-> The INT-020 invariant — exactly one canonical status per document, with no contradicting status-like footer — is preserved: header, metadata-table and footer statuses were promoted together in each document.
->
-> This lock supersedes the 2026-08-06 promotion to `Trust Certification Ready`, which itself superseded the 2026-08-04 normalisation to `Draft` under INT-020. The `REJECT` merge decision from `generated/reviews/integrity-2026-08-03-repository-wide-review.md` was lifted to `PASS WITH MINOR CHANGES` in `generated/reviews/review-repository-integrity-2026-08-06.md`, with both Critical findings resolved and verified.
->
-> Before INT-020 the corpus mixed Draft, Locked, Architecture Locked, Trust Certification Ready, Architecture Baseline, Approved Baseline, Architecture Approved and Certified & Locked, and 22 documents contradicted themselves between their header and a status-like footer.
->
-> L5 is **not** covered by this lock: `L5-00` and `L5-01` remain `Trust Certification Ready`, since no approved L4 exists for them to trace to.
+> L5 is **not** covered by the L0/L1/L2 lock: `L5-00` and `L5-01` remain `Trust Certification Ready` and require downstream revalidation against approved L4 behavior before becoming an approved L5 baseline.
 
 ---
 
 # Recent Changes
 
-**2026-08-07 — L0/L1/L2 lock:** Took the final lock decision for the business
-architecture levels. All 107 L2 documents moved to `Locked` (104 from
-`Trust Certification Ready`; `L2-E04`, `L2-E05` and `L2-E06` from `Draft`, and
-those three gained a canonical status value in their Document Metadata tables).
-L0 and L1 were verified as already `Locked` and left unchanged. Index rows,
-`L2_DOMAIN_WORKFLOW_MATRIX.md`, `AI_CONTEXT/REPO_UNDERSTANDING.md` and
-`AI_CONTEXT/SECTION_J/README.md` were synced in the same change. L3 and L5 are
-out of scope and retain their existing statuses.
+**2026-08-27 — L3/L4 synchronization and L4 production preparation:** Corrected stale placeholder language that previously stated no L3/L4 source architecture existed. Recorded the 1,084-scenario canonical L3 population, the 45 independently Architecture Approved G/H remediation scenarios, the 48 certified L4 parent baseline, Locked L4 governance/template/validation framework, separate `00_Pilot/` and canonical `01_Production/` workspaces, and the controlled 48-parent production-wave execution model. No L1/L2 business architecture was changed by this index synchronization.
 
 ---
 
-**2026-08-05 — Core context alignment:** Confirmed the L0 Business Vision as
-`Locked`, retained the Dependency Map as `Active`, and aligned its document
-responsibility metadata to Dhruv as Lead Architect.
+**2026-08-07 — L0/L1/L2 lock:** Took the final lock decision for the business architecture levels. All 107 L2 documents moved to `Locked`. L0 and L1 were verified as already `Locked`. L3 and L5 were outside that lock decision.
 
 ---
 
-**2026-07-31 — Status reconciliation (INT-011/012/013/023):** Resolved 47 file-vs-Index/Matrix document status conflicts (each document's own declared status was taken as authoritative and normalized to the canonical legend wording, then mirrored into this Index and the Domain Workflow Matrix), added or corrected the `Document Owner` metadata field on 92 L2 files to match the architect named in `TEAM_ASSIGNMENTS.md`, corrected 19 H1 headings to match their Index title, and amended `governance/constitution/Volume_2_Repository_Standards.md` (v1.0 → v1.1) to formally adopt a 13-value status vocabulary, of which the 9 listed in the legend above are those the repository has actually used. *(This sentence previously described the amendment as adopting a "9-value" vocabulary; corrected 2026-08-06 under integrity finding INT-207 after checking Volume 2 §7, which defines 13.)* See `generated/reviews/integrity-2026-07-31-complete.md` for the source findings.
+**2026-08-05 — Core context alignment:** Confirmed the L0 Business Vision as `Locked`, retained the Dependency Map as `Active`, and aligned its document responsibility metadata to Dhruv as Lead Architect.
 
 ---
 
-**Last Updated:** August 2026
+**2026-07-31 — Status reconciliation (INT-011/012/013/023):** Resolved repository status/index inconsistencies, aligned L2 ownership metadata, and synchronized the canonical status vocabulary with Repository Constitution Volume 2.
+
+---
+
+**Last Updated:** 2026-08-27
 
 **Repository:** SutraERP
 
