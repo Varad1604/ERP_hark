@@ -8,65 +8,41 @@
 **Participating Domains:** H, VAR:Obligation-Owning Domain  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-23  
-**Depends On:** SutraERP_L1_Business_Domain_Architecture_Locked.md; DEPENDENCY_MAP.md; L2-H09_Accreditation_and_Compliance_Workflows.md  
-**Referenced By:** None yet
+**Last Updated:** 2026-08-27  
+**Depends On:** SutraERP_L1_Business_Domain_Architecture_Locked.md; DEPENDENCY_MAP.md; L2-H09_Accreditation_and_Compliance_Workflows.md; `L2-H09_Accreditation_Compliance_Lifecycle_Amendment_2026-08-26.md`  
+**Referenced By:** L3 targeted revalidation and formal Architecture Approval review
 
 ## 2. Scenario Purpose
 
-Govern an institutional compliance obligation through classification, accountable ownership, monitoring, review and supported terminal/history-preserving positions while retaining the authority of the obligation-owning domain.
+Govern an institutional Compliance Requirement through identification, applicability, active monitoring, satisfaction, waiver, remediation and retirement while preserving source-obligation ownership and complete history.
 
 ## 3. Business Outcome
 
 The requirement is classified, assigned, monitored, revised, fulfilled, waived, expired, or retired with full history
 
+Frozen business wording is expressed through the canonical H09 lifecycle without introducing duplicate state names: fulfilled = `Satisfied`; waived = `Waived`; retired = `Retired`. Revision/supersession is governed through successor requirement/version treatment with the predecessor Retired when no longer current. Expiry is an end-of-current-obligation business condition and does not create an additional `Expired` state where H09 uses `Retired` for a no-longer-current requirement version.
+
 ## 4. Scenario Boundary and Scope
 
-### 4.1 Start Boundary
-
-A legal, regulatory, accreditation, or institutional obligation is identified or changed.
-
-### 4.2 End Boundary
-
-The requirement is classified, assigned, monitored, revised, fulfilled, waived, expired, or retired with full history.
-
-### 4.3 In Scope
-
-- H09-owned governance behaviour materially required to reach the frozen business outcome.
-- Applicable source-domain references, evidence and governed hand-offs without ownership transfer.
-- Only upstream-defined rules, lifecycle positions, events, approvals and evidence obligations relevant to this scenario.
-
-### 4.4 Out of Scope
-
-- Operational business-state ownership belonging to participating source domains.
-- Adjacent downstream institutional outcomes after this scenario's End Boundary.
-- Later architecture-level implementation concerns.
+The scenario begins when a legal, regulatory, accreditation or institutional obligation is identified/changed and ends when the H09 Compliance Requirement reaches its applicable governed position with complete history.
 
 ## 5. Ownership and Participating Domains
 
-| Domain / Section | Responsibility in Scenario |
-|---|---|
-| Accreditation & Compliance (H) | Owns the H09 governance outcome and applicable H09 lifecycles. |
-| VAR:Obligation-Owning Domain | Retains ownership of authoritative obligation/source facts where applicable while H09 governs the compliance requirement/review. |
-
-Participation and evidence contribution do not transfer canonical ownership.
+- **H09:** owns the Compliance Requirement governance record and lifecycle.
+- **VAR:Obligation-Owning Domain:** retains ownership of underlying source obligation/operational facts where applicable.
 
 ## 6. Business Actors, Roles and Responsibilities
 
-| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
-|---|---|---|
-| Compliance Cell | Maintains the compliance register, review cadence, deviations and action follow-up. | Performs / reviews |
-| IQAC | Participates in compliance governance and escalation. | Reviews |
-| Registrar | Participates in compliance governance. | Participates |
-| Department Compliance Officers | Coordinate obligation handling for applicable units. | Performs |
-| Business Owner | Carries the accountable ownership required for each Compliance Requirement. | Accountable |
+Compliance Cell/IQAC responsibilities remain as defined upstream. Each Requirement has one accountable Business Owner. The **Accreditation and Compliance Governance Authority** owns governed waiver/retirement decisions where H09 requires institutional authority.
 
 ## 7. Preconditions and Entry Criteria
 
-- The obligation is identified with an applicable institutional scope.
+- The obligation is identified for an applicable institutional scope.
+- Source obligation context/evidence is available.
+- An accountable Business Owner can be assigned.
 
 ## 8. Trigger
 
@@ -74,102 +50,64 @@ A legal, regulatory, accreditation, or institutional obligation is identified or
 
 ## 9. Main Business Flow
 
-| Step | Business Behaviour | Responsible Business Role / Domain | Business Result |
-|---|---|---|---|
-| 1 | Register and classify the Compliance Requirement. | Compliance Cell | The requirement is Created. |
-| 2 | Assign exactly one accountable Business Owner and define applicability, review frequency, evidence needs and due/renewal context. | Compliance Cell | The requirement becomes Assigned. |
-| 3 | Activate and monitor the requirement. | Accreditation & Compliance | The requirement is Active and monitored. |
-| 4 | Review compliance status using current evidence and obligation context. | Compliance Cell / VAR:Obligation-Owning Domain | The requirement enters Under Review and its status may be updated. |
-| 5 | Where the supported lifecycle applies, record Compliant, Expired and Archived positions with history. | Accreditation & Compliance | The supported H09 lifecycle positions are preserved. |
-
-> The authoritative flow cannot be extended to the frozen End Boundary without resolving the material issue in Section 17.1.
+1. Record the Compliance Requirement in `Identified` and classify its applicability.
+2. Move to `Applicable`, assign the accountable Business Owner, review cadence and evidence obligations.
+3. Move to `Active` for governed monitoring.
+4. Evaluate compliance using authoritative evidence.
+5. If fulfilled, move `Active → Satisfied` and publish `ComplianceRequirementSatisfied`.
+6. When the satisfied/current obligation is formally completed, move to `Closed` where applicable.
+7. If a waiver is requested, move `Applicable / Active → Waiver Requested`; after authorized decision move to `Waived` and publish `ComplianceRequirementWaived`.
+8. If noncompliance is identified, move `Active → Noncompliant`; after governed remediation restores compliance, return to `Active`.
+9. If the requirement version is withdrawn, superseded or otherwise no longer current, move the applicable current state to `Retired` and publish `ComplianceRequirementRetired`.
+10. Preserve full requirement/evidence/decision history.
 
 ## 10. Alternate Business Flows
 
-| Case | Condition | Alternate Business Path | Result / Outcome | Responsible Domain |
-|---|---|---|---|---|
-| Requirement renewal is required | The obligation continues beyond its current renewal point | Renew the requirement using the canonical `Compliance Requirement Renewed` event and continue governed monitoring. | The requirement remains governed with history. | Accreditation & Compliance |
+- Waiver denied: the requirement remains governed by its applicable non-waived lifecycle.
+- Material revision creates a successor governed requirement/version; predecessor history is retained and may be Retired when superseded.
+- Retirement does not erase evidence or imply source-domain facts were changed.
 
 ## 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| The frozen outcome requires waiver or retirement | No H09 lifecycle state, transition, or canonical event defines waiver or retirement for Compliance Requirement. | Do not substitute Archived/Expired for waived/retired; upstream resolution is required. | Accreditation & Compliance |
+Missing evidence prevents satisfaction/waiver decisions. Noncompliance returns to Active only after governed remediation. No source obligation fact is modified by H09 governance.
 
 ## 12. Business Rules and Decision Constraints
 
-| Business Rule / Constraint | Owning Domain | Scenario Effect | Authoritative Source |
-|---|---|---|---|
-| BR-H09-005 — every Compliance Requirement has exactly one accountable Business Owner. | Accreditation & Compliance | Requires singular accountable ownership. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
-| BR-H09-006 — Compliance Requirements define mandatory review frequencies. | Accreditation & Compliance | Requires governed review cadence. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
-| BR-H09-008 — compliance records maintain complete audit history. | Accreditation & Compliance | Preserves requirement history. | L2-H09_Accreditation_and_Compliance_Workflows.md §8 |
+- Canonical lifecycle begins `Identified → Applicable → Active → Satisfied → Closed`.
+- Waiver branch: `Applicable / Active → Waiver Requested → Waived`.
+- Remediation branch: `Active → Noncompliant → Active`.
+- Current Requirement versions may become `Retired` when formally withdrawn or superseded.
+- Waiver requires explicit authority and recorded rationale/evidence.
+- `Waived` does not mean an external obligation ceased to exist.
 
 ## 13. State and Lifecycle Impact
 
-| Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
-|---|---|---|---|---|---|
-| Compliance Requirement | Created | Assignment, activation, review and supported lifecycle progression. | Assigned → Active → Under Review → Compliant → Expired → Archived | Accreditation & Compliance | L2-H09_Accreditation_and_Compliance_Workflows.md §6 H09-A03 |
+Only the exact H09 states above are canonical. Frozen `revised`, `fulfilled`, `expired` and `retired` terminology remains business-outcome language and does not create parallel lifecycle states.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-### 14.1 Published / Consumed Business Events
-
-| Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
-|---|---|---|---|---|
-| Compliance Requirement Created | Compliance Requirement aggregate | Compliance Review; CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
-| Compliance Requirement Assigned | Compliance Requirement aggregate | Compliance Review; CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
-| Compliance Review Due | Compliance Requirement aggregate | Compliance Review; CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
-| Compliance Status Updated | Compliance Requirement aggregate | Compliance Review; CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
-| Compliance Requirement Renewed | Compliance Requirement aggregate | Compliance Review; CAPA | Records the governed business fact at the scenario boundary. | L2-H09_Accreditation_and_Compliance_Workflows.md §11 |
-
-### 14.2 Business Contracts and Cross-Domain Hand-offs
-
-| Provider / From Domain | Consumer / To Domain | Business Contract / Hand-off | Purpose | Authoritative Source |
-|---|---|---|---|---|
-| VAR:Obligation-Owning Domain | Accreditation & Compliance | Governed obligation context / source evidence reference | Supply authoritative obligation context and supporting evidence without transferring operational ownership. | L2-H09_Accreditation_and_Compliance_Workflows.md §23.1 |
+H09 publishes `ComplianceWaiverRequested`, `ComplianceRequirementWaived`, `ComplianceRequirementRetired`, and `ComplianceRequirementSatisfied` as applicable. Source obligation/evidence facts remain with their canonical owners.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-### 15.1 Initiation and Decision Authority
-
-| Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
-|---|---|---|---|
-| Requirement accountability | Business Owner | Exactly one accountable Business Owner is mandatory. | Accreditation & Compliance |
-
-### 15.2 Separation of Duties, Overrides and Exceptions
-
-No scenario-specific separation-of-duty requirement is defined for the Compliance Requirement lifecycle.
-
-### 15.3 Business Audit and Evidence Obligations
-
-| Business Obligation | Required Business Evidence / Record | Business-Domain Owner |
-|---|---|---|
-| Compliance requirement history | Requirement ownership, review, status and renewal history | Accreditation & Compliance |
+Accreditation and Compliance Governance Authority owns governed waiver/retirement decisions. The accountable Business Owner remains singular. Evidence preserves classification, applicability, source references, monitoring, waiver/remediation/satisfaction/retirement decisions and complete history.
 
 ## 16. Completion Criteria and Postconditions
 
-### 16.1 Completion Criteria
-
-- The frozen outcome requires support for classified, assigned, monitored, revised, fulfilled, waived, expired or retired requirement outcomes with full history.
-- The current locked lifecycle does not establish waiver or retirement, so completion cannot be fully proven.
-
-### 16.2 Postconditions
-
-- The supported Compliance Requirement lifecycle and history remain H09-owned.
-- `VAR:Obligation-Owning Domain` retains ownership of its underlying obligation facts where applicable.
+Completion requires the Compliance Requirement to reach its applicable governed H09 outcome with full history preserved and no ownership transfer to H09 of underlying source facts.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
-### 17.1 Open Issues
+### 17.1 Resolved Historical Blocker
 
-| Issue | Architecture Impact | Required Resolution |
-|---|---|---|
-| Frozen Stage 3 semantics require `waived` and `retired` outcomes, but H09 defines Compliance Requirement only as Created → Assigned → Active → Under Review → Compliant → Expired → Archived and has no waiver/retirement event. | Two frozen final-outcome branches lack authoritative lifecycle semantics. | Upstream H09 must define or formally reconcile waiver and retirement before this scenario can reach its frozen outcome. |
+The former missing waiver and retirement semantics were resolved by locked `L2-H09_Accreditation_Compliance_Lifecycle_Amendment_2026-08-26.md` and passed targeted revalidation on 2026-08-26. Frozen revision/expiry terminology is retained as business meaning without inventing additional lifecycle states.
+
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
 
 ### 17.2 Assumptions
 
-No assumptions.
+No assumptions. `VAR:Obligation-Owning Domain` remains preserved exactly as frozen.
 
 ### 17.3 Deferred Questions
 
-No scenario-specific deferred questions.
+No additional scenario-specific questions.
