@@ -8,15 +8,16 @@
 **Participating Domains:** E, F, H  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Draft  
-**Version:** 1.0  
+**Status:** Review  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-23  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows; locked Finance architecture
+**Last Updated:** 2026-08-27  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-H05 — Research Workflows; L2-E03 — Faculty Workforce Workflows; locked Finance architecture; `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md`  
+**Referenced By:** L3 targeted revalidation and formal Architecture Approval review
 
 # 2. Scenario Purpose
 
-Provide institutional governance with a Research-owned portfolio/reporting outcome derived from authoritative source evidence without turning the Research Portfolio into a source of record or changing E/F/H transactional facts.
+Provide institutional governance with a Research-owned portfolio outcome derived from authoritative Research and referenced upstream evidence without turning the Research Portfolio into a source of record.
 
 # 3. Business Outcome
 
@@ -26,31 +27,34 @@ Verified project, funding, ethics, output, IP, and collaboration evidence suppor
 
 ## 4.1 Start Boundary
 
-A reporting, ranking, audit, or compliance cycle requires authoritative research evidence
+A reporting, ranking, audit, or compliance cycle requires authoritative research evidence.
 
 ## 4.2 End Boundary
 
-H05 supports portfolio updates, KPI snapshots, and Research reports from a defined set of Research events. The frozen outcome requires project, funding, ethics, output, IP, and collaboration evidence; H05 lacks complete portfolio paths for all those categories.
+The scenario ends when a governed Research Portfolio has been compiled, reviewed, approved and published from authoritative Research records and referenced upstream facts, with provenance preserved and no source record altered.
 
 ## 4.3 In Scope
 
-Derived Research Portfolio evidence; supported Project, Grant/funding metadata, Publication/output, Patent/IP, and Consultancy facts; KPI generation; Research report generation; preservation of source ownership.
+Research Portfolio compilation; project, Grant/funding metadata, Ethics, Publication/output, IP, Collaboration and Consultancy evidence; governance review; publication and supersession.
 
 ## 4.4 Out of Scope
 
-Inventing Ethics or Collaboration portfolio ingestion; inventing Finance-owned evidence contracts; changing source aggregates to satisfy reporting.
+Re-owning E03 workforce facts, Finance accounting/payment/reconciliation facts, or any other source-domain fact.
 
 # 5. Ownership and Participating Domains
 
-E03 retains authoritative workforce facts. Finance retains authoritative monetary/accounting facts. Research owns the derived Research Portfolio, Research KPI snapshots, and Research report outcomes defined by H05.
+E03 retains authoritative workforce facts. Finance retains authoritative monetary/accounting facts. Research owns the derived Research Portfolio and its governance lifecycle. The Portfolio remains a projection/metadata aggregate, not an alternative owner of its inputs.
 
 # 6. Business Actors, Roles and Responsibilities
 
-Research Office generates/requests supported Research reports. Management receives supported reports for institutional governance. No additional evidence approver is invented.
+Research Office compiles and administers the Portfolio. Research Director is the canonical business authority for strategic portfolio approval/revision decisions where institutional approval is required. Management consumes the published Portfolio for institutional governance.
 
 # 7. Preconditions and Entry Criteria
 
-Applicable source facts exist in governed lifecycle positions; required portfolio/read-model information is available; report/KPI definitions are configured; source ownership is unchanged.
+- Applicable source facts exist in governed lifecycle positions.
+- Required Research and referenced upstream evidence is available.
+- Portfolio/reporting scope is defined.
+- Source ownership is unchanged.
 
 # 8. Trigger
 
@@ -58,69 +62,72 @@ A reporting, ranking, audit, or compliance cycle requires authoritative research
 
 # 9. Main Business Flow
 
-1. Establish the reporting/ranking/audit/compliance evidence requirement.
-2. Assemble the H05 Research Portfolio from its canonical supported Research event sources.
-3. Include source-supported project, grant/funding metadata, output, Patent/IP, and Consultancy evidence by reference.
-4. Generate Research KPIs where required.
-5. Generate the authorized Research report for institutional review.
-6. Preserve provenance to source Research facts and E/F ownership.
-7. Stop before claiming complete frozen ethics, collaboration, and Finance-authoritative funding evidence because those portfolio hand-offs are not fully defined.
+1. Establish the governance evidence scope.
+2. Compile the Research Portfolio from canonical Research records and referenced authoritative upstream facts.
+3. Include project, Grant/funding, Ethics, Publication/output, IP, Collaboration and Consultancy evidence by reference without duplicating ownership.
+4. Move the Portfolio to `Under Review` and validate provenance/completeness.
+5. If revision is required, move `Under Review → Revision Required → Compiled` and publish `ResearchPortfolioRevisionRequired`.
+6. If approved, move to `Approved` and publish `ResearchPortfolioApproved`.
+7. Publish the approved Portfolio, move to `Published`, and publish `ResearchPortfolioPublished`.
+8. When a successor approved Portfolio is published, mark the predecessor `Superseded` and publish `ResearchPortfolioSuperseded` while preserving immutable history.
 
 # 10. Alternate Business Flows
 
-Department-level KPI/report variants may be generated where configured. Missing evidence categories remain omissions and are not replaced by inferred metrics.
+- Missing authoritative evidence prevents the affected claim from being treated as verified.
+- Revision Required returns the Portfolio to Compiled without changing source records.
+- A successor Portfolio supersedes but does not overwrite the prior Published Portfolio.
 
 # 11. Failure, Interruption and Business Recovery
 
-Unavailable authoritative evidence or an undefined portfolio source path prevents the affected evidence category from being claimed as verified. Existing source records remain unchanged.
+Unavailable or unverifiable source evidence blocks approval of the affected Portfolio content. Correction occurs in the source-owning domain or through portfolio recompilation; Research does not rewrite source facts.
 
 # 12. Business Rules and Decision Constraints
 
-Research Portfolio is derived and never the system of record. KPI snapshots are immutable after generation. Reporting is read-only to transactional Research aggregates. Finance and E03 retain their source ownership.
+- Research Portfolio is a governed H05 projection/metadata aggregate.
+- It cannot become an alternative owner of source facts.
+- Canonical lifecycle: `Compiled → Under Review → Approved → Published`, with Revision Required and Superseded branches.
+- Finance remains sole authority for monetary/accounting facts; E03 remains workforce owner.
 
 # 13. State and Lifecycle Impact
 
-No source aggregate lifecycle changes. H05 may update the derived Research Portfolio and create immutable KPI/report outcomes from supported source events.
+Canonical portfolio lifecycle:
+
+`Compiled → Under Review → Approved → Published`
+
+Branches:
+
+- `Under Review → Revision Required → Compiled`
+- `Published → Superseded`
+
+No source aggregate lifecycle changes.
 
 # 14. Business Events and Cross-Domain Collaboration
 
-## 14.1 Published / Consumed Business Events
+Research publishes:
 
-H05 publishes `ResearchPortfolioUpdated`, `ResearchKPIsGenerated`, and `ResearchReportGenerated`. Portfolio inputs include supported events such as `ResearchOutputPublished`, `PatentFiled`, `PatentStatusUpdated`, `GrantAwarded`, `FundingUtilizationRecorded`, `ConsultancyProjectCompleted`, `ResearchProjectCompleted`, and `ResearchProjectClosed`.
+- `ResearchPortfolioReviewStarted`
+- `ResearchPortfolioApproved`
+- `ResearchPortfolioRevisionRequired`
+- `ResearchPortfolioPublished`
+- `ResearchPortfolioSuperseded`
 
-## 14.2 Business Contracts and Cross-Domain Hand-offs
-
-H05 does not define Ethics Aggregate events or Collaboration Aggregate events as complete portfolio inputs, and it does not define a Finance-owned financial-evidence hand-off that establishes the frozen funding evidence as Finance-authoritative within the portfolio.
+Source-domain facts are consumed by contract/reference only and retain their original semantic publishers.
 
 # 15. Business Authorization, Approval and Audit Obligations
 
-## 15.1 Initiation and Decision Authority
-
-Research Office and Management participation is limited to H05 report generation and governance use. No source-domain authority is transferred.
-
-## 15.2 Separation of Duties, Overrides and Exceptions
-
-A Research report cannot replace a missing source-domain decision or evidence contract.
-
-## 15.3 Business Audit and Evidence Obligations
-
-Preserve report request, scope/parameters, source references, portfolio provenance, KPI snapshots where used, generated report, and any omitted evidence category caused by an upstream gap.
+Research Director owns the applicable portfolio governance decision. Evidence preserves portfolio scope, source references, provenance, review findings, approval/revision decision, publication, supersession and immutable history.
 
 # 16. Completion Criteria and Postconditions
 
-H05-supported evidence can be reported without changing source records. The full frozen outcome cannot be claimed until all required evidence categories have canonical portfolio/source hand-offs.
+Completion requires an approved/published Research Portfolio whose required evidence is traceable to authoritative Research or external source facts, with no source ownership transfer and no source record modification.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+## 17.1 Resolved Historical Blocker
 
-- H05 Portfolio Management does not consume Ethics Aggregate events, so the frozen ethics-evidence component lacks a canonical portfolio path.
-- Collaboration appears in reporting/read models, but the defined portfolio event-consumption path does not consume Collaboration Aggregate events.
-- Finance owns monetary/accounting facts, but H05 defines no Finance-owned financial-evidence hand-off sufficient to establish the frozen funding-evidence component as Finance-authoritative within the portfolio.
+The former missing portfolio governance paths for ethics, collaboration and referenced funding evidence were resolved by locked `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md`, which defines the governed Research Portfolio as a projection over canonical Research records and referenced upstream facts; the scenario passed targeted revalidation on 2026-08-26.
 
-These missing evidence contracts materially prevent the frozen governance outcome from being fully established.
-
-**Architecture assessment:** `BLOCKED`
+**Current architecture assessment:** `READY FOR ARCHITECTURE APPROVAL REVIEW`
 
 ## 17.2 Assumptions
 
@@ -128,4 +135,4 @@ No assumptions.
 
 ## 17.3 Deferred Questions
 
-No additional deferred questions.
+No additional scenario-specific questions.
