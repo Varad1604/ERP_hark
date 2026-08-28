@@ -1,11 +1,11 @@
 # SutraERP L4 Canonical Production Workspace
 
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Status:** Architecture Baseline  
 **Owner:** Lead Architect  
 **Architectural Level:** L4 — System Behavior Specification  
-**Last Updated:** 2026-08-27  
-**Depends On:** `../00_Governance/L4_Production_Parent_Baseline_48_2026-08-27.md`; `../00_Governance/L4_Governance_and_Architecture_Standard.md`; `../00_Governance/L4_System_Behavior_Specification_Template_v1.0.md`; `../00_Governance/L4_Validation_Standard.md`  
+**Last Updated:** 2026-08-28  
+**Depends On:** `../00_Governance/L4_Production_Parent_Baseline_48_2026-08-27.md`; `../00_Governance/L4_All_Section_Production_Folder_PreMaterialization_Decision_2026-08-28.md`; `../00_Governance/L4_Full_Corpus_Parent_Readiness_Certification_Workplan_2026-08-28.md`; `../00_Governance/L4_Governance_and_Architecture_Standard.md`; `../00_Governance/L4_System_Behavior_Specification_Template_v1.0.md`; `../00_Governance/L4_Validation_Standard.md`  
 
 ---
 
@@ -19,17 +19,23 @@ This folder is the canonical production location for L4 System Behavior Specific
 
 ## Current Production Structure
 
-Only sections with currently certified L4 parents are materialized:
+All canonical sections are pre-materialized as repository structure under the approved all-section folder decision:
 
 ```text
 01_Production/
+├── section-a/
+├── section-b/
+├── section-c/
 ├── section-d/
+├── section-e/
+├── section-f/
 ├── section-g/
 ├── section-h/
-└── section-i/
+├── section-i/
+└── section-j/
 ```
 
-Additional section folders may be added only when at least one parent in that section enters the certified production baseline or when a separate governance decision explicitly authorizes pre-materialization.
+Folder existence carries no parent-certification or authoring semantics. A section folder may exist before any parent in that section is certified.
 
 ---
 
@@ -50,7 +56,7 @@ Human author, reviewer, participating domains, complexity, and status do not det
 
 ## Production Rules
 
-1. Author only from parents listed in `L4_Production_Parent_Baseline_48_2026-08-27.md`.
+1. Author only from parents in the currently authorized certified production baseline.
 2. Use the Locked `L4_System_Behavior_Specification_Template_v1.0.md`.
 3. Preserve the canonical L3 scenario slug in the filename.
 4. One certified L3 parent maps to one parent L4 file by default.
@@ -59,7 +65,7 @@ Human author, reviewer, participating domains, complexity, and status do not det
 7. Pilot content may be consulted as historical methodology evidence but is never copied/promoted without current-parent revalidation.
 8. L4 may not repair L3/L2 gaps silently.
 9. No APIs, persistence, services/classes, queues, technical IAM/RBAC, infrastructure, UI design, or other L5/L6 implementation content is permitted.
-10. No file outside the certified baseline may be created in this workspace by inference.
+10. Pre-materialized folders do not authorize creation of scenario files for uncertified parents.
 
 ---
 
@@ -76,6 +82,7 @@ Authoring authorization never grants Architecture Approval or Lock automatically
 ## Current Scope
 
 **Certified production parents:** 48  
-**Expected parent L4 files under default granularity:** 48  
-**Current production sections:** D, G, H, I  
+**Expected parent L4 files under current certified baseline:** 48  
+**Production section folders:** A, B, C, D, E, F, G, H, I, J  
+**Full-corpus parent-readiness certification:** In progress  
 **Pilot files promoted automatically:** 0
