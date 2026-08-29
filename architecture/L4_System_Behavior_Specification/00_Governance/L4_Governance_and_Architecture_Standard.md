@@ -1,11 +1,11 @@
 # SutraERP L4 Governance and Architecture Standard
 
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Locked  
 **Owner:** Lead Architect  
 **Architectural Level:** L4 — System Behavior Specification Governance  
 **Domain:** Cross-domain  
-**Last Updated:** 2026-08-26  
+**Last Updated:** 2026-08-29  
 **Depends On:** Repository Constitution Volume 2 v1.2; Repository Constitution Volume 3; Architecture Level Validation Standards; approved L3 Business Scenario Architecture; L4 Controlled Pilot Validation Report 2026-08-26  
 **Referenced By:** All canonical L4 System Behavior Specifications  
 
@@ -78,7 +78,30 @@ A BH must:
 3. remain implementation-independent;
 4. be objectively observable or verifiable;
 5. preserve business ownership rather than converting a human/domain responsibility into system ownership;
-6. contain defensible provenance.
+6. contain defensible provenance;
+7. use the minimum wording needed to remove behavioral ambiguity.
+
+BHs shall be **concise, system-specific, observable, testable, and implementation-independent**.
+
+Preferred semantic shape:
+
+```text
+Condition → Required system behavior → Governed result
+```
+
+Use only the elements materially needed. Do not add words merely to fill the pattern.
+
+Examples:
+
+```text
+When a seat is available, the system shall select the next eligible waitlisted demand using the active promotion policy.
+
+The system shall prevent promotion when the selected demand is no longer eligible.
+
+On successful promotion, the system shall mark the waitlist demand as Promoted / Seat Offered.
+```
+
+A BH shall not use vague verbs such as `handle`, `manage`, `support`, `process`, or `ensure` unless the statement also identifies the observable system action or result.
 
 A repository governance principle alone is not sufficient reason to create a BH.
 
@@ -88,10 +111,12 @@ Before adding a BH, the author must answer:
 
 - Is there a real system responsibility?
 - Is it required by the approved parent or inherited authoritative constraint?
+- Is the condition, required behavior, and result clear where material?
 - Am I accidentally converting a human/domain responsibility into system ownership?
 - Am I merely repeating repository governance?
 - Can it be stated without prescribing implementation?
 - Can its result be objectively verified?
+- Can it be said more briefly without losing required meaning?
 
 If the answer fails materially, no BH shall be created.
 
