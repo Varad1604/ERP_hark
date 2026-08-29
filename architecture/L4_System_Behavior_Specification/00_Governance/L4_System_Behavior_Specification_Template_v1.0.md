@@ -1,11 +1,11 @@
 # SutraERP L4 System Behavior Specification Template v1.0
 
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Locked  
 **Owner:** Lead Architect  
 **Architectural Level:** L4 — System Behavior Specification  
 **Domain:** Cross-domain  
-**Last Updated:** 2026-08-26  
+**Last Updated:** 2026-08-29  
 **Depends On:** Repository Constitution Volume 2 v1.2; L4 Governance and Architecture Standard; Architecture Level Validation Standards  
 **Referenced By:** Canonical L4 System Behavior Specifications  
 **Supersedes:** `templates/L4_SystemBehavior_Template.md` for new L4 authoring  
@@ -17,6 +17,8 @@
 Use the minimum content required to define complete, observable, implementation-independent system behavior for one approved L3 scenario.
 
 Do not reproduce L3 wholesale. Do not add sections solely to satisfy length expectations.
+
+For BHs, prefer **short precision over explanatory prose**. State exactly what the system must do without describing how software implements it.
 
 ---
 
@@ -78,33 +80,53 @@ Do not describe payloads, schemas, persistence, interfaces, or transport.
 
 ## 4. System Behavioral Obligations
 
-Each BH shall express one atomic, observable system responsibility.
+Each BH shall express one **concise, atomic, observable, testable, implementation-independent** system responsibility.
+
+Preferred semantic shape:
+
+```text
+Condition → Required system behavior → Governed result
+```
+
+Use only the elements needed to remove ambiguity.
 
 ```markdown
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-X-NNN-BH-001 | The system shall ... | L3-X-NNN §§...; L2-... where exact verification is material |
+| L4-X-NNN-BH-001 | When <condition>, the system shall <observable behavior/result>. | L3-X-NNN §§... |
 ```
+
+Good examples:
+
+```text
+When a seat is available, the system shall select the next eligible waitlisted demand using the active promotion policy.
+
+The system shall prevent promotion when the selected demand is no longer eligible.
+
+On successful promotion, the system shall mark the waitlist demand as Promoted / Seat Offered.
+```
+
+Avoid vague statements such as:
+
+```text
+The system shall handle waitlist promotion.
+The system shall manage eligibility.
+The system shall support seat resolution.
+```
+
+Avoid implementation design such as APIs, database operations, services/classes, message formats, brokers, technical access controls, or UI behavior.
 
 BH admission rules:
 
 - actual system responsibility exists;
 - behavior is required by the approved L3 parent or inherited authoritative constraint;
+- condition, action and result are clear where material;
 - no human/domain responsibility is converted into system ownership;
 - behavior is not merely repository-governance prose;
 - behavior is implementation-independent;
 - result is objectively observable/verifiable;
-- provenance is defensible.
-
-Typical BH themes may include:
-
-- required condition recognition;
-- rule enforcement;
-- lifecycle gate enforcement;
-- authoritative decision recognition;
-- prevention of invalid progression;
-- establishment of a governed business outcome;
-- preservation of cross-domain ownership boundaries through observable behavior.
+- provenance is defensible;
+- wording is no longer than needed for precision.
 
 ---
 
@@ -115,7 +137,7 @@ Use when material.
 ```markdown
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-X-NNN-BH-00N | The system shall publish/recognize/make available ... | L3-X-NNN §14; L2 exact event source |
+| L4-X-NNN-BH-00N | On <source-supported condition>, the system shall publish/recognize/make available <canonical event/fact/outcome>. | L3-X-NNN §14; L2 exact event source |
 ```
 
 Rules:
