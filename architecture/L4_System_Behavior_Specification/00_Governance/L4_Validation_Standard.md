@@ -1,11 +1,11 @@
 # SutraERP L4 Validation Standard
 
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Locked  
 **Owner:** Lead Architect  
 **Architectural Level:** L4 — System Behavior Specification Governance  
 **Domain:** Cross-domain  
-**Last Updated:** 2026-08-26  
+**Last Updated:** 2026-08-29  
 **Depends On:** Repository Constitution Volume 2 v1.2; L4 Governance and Architecture Standard; L4 System Behavior Specification Template v1.0; Architecture Level Validation Standards  
 **Referenced By:** All L4 architecture reviews and approval decisions  
 
@@ -67,8 +67,8 @@ L4 prescribes APIs, database schema, persistence design, services/classes, queue
 ### HF-09 — Parent Outcome Contradiction
 L4 behavior changes, expands or absorbs the approved L3 business outcome or adjacent owner/scenario outcome.
 
-### HF-10 — Non-Observable BH
-A BH is merely governance prose, descriptive commentary, or an ownership slogan and does not define objectively verifiable system responsibility.
+### HF-10 — Non-Observable or Vague BH
+A BH does not define an objectively verifiable system responsibility, or uses vague wording such as `handle`, `manage`, `support`, `process`, or `ensure` without identifying the observable system action or result.
 
 ### HF-11 — Invalid Canonical Metadata
 L4 lacks required metadata, uses non-canonical status, or violates locked naming/versioning rules.
@@ -88,9 +88,13 @@ A passing L4 specification shall satisfy all applicable checks.
 - no technical recovery design;
 - no UI design.
 
-### 4.2 Behavioral Completeness
+### 4.2 Behavioral Completeness and Precision
 - objective and boundary align to L3;
 - required system responsibilities are represented;
+- each BH is concise and system-specific;
+- condition, required behavior and governed result are clear where material;
+- wording uses the minimum detail needed to remove ambiguity;
+- vague verbs are not used as substitutes for observable behavior;
 - source-supported invalid/rejection/continuation behavior is covered where material;
 - completion is objectively observable.
 
@@ -144,11 +148,23 @@ Each BH shall independently pass:
 
 1. real system responsibility exists;
 2. responsibility is required by the parent/inherited authoritative constraint;
-3. no human/domain responsibility is converted into system ownership;
-4. statement is not merely a governance principle;
-5. statement is implementation-independent;
-6. result is objectively verifiable;
-7. provenance is defensible.
+3. condition is clear where materially required;
+4. required system action is explicit;
+5. governed result is clear where materially required;
+6. no human/domain responsibility is converted into system ownership;
+7. statement is not merely a governance principle;
+8. statement is implementation-independent;
+9. result is objectively verifiable;
+10. provenance is defensible;
+11. wording is no longer than needed for precision.
+
+Preferred semantic check:
+
+```text
+Condition → Required system behavior → Governed result
+```
+
+Not every BH requires all three clauses explicitly, but a reviewer must be able to identify the applicable condition, behavior and result from the statement and its immediate authoritative context.
 
 BHs failing admission shall be removed or rewritten; they shall not be retained as filler.
 
