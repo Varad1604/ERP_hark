@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/l3-final-corpus-lock.yml'
       - 'architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/L3_Final_Corpus_Lock_Decision_1084_2026-08-29.md'
+      - 'architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/**'
   workflow_dispatch:
 
 permissions:
@@ -79,7 +80,6 @@ jobs:
         run: |
           from pathlib import Path
           import re
-          from collections import Counter
 
           root = Path('architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents')
           scenario_files = sorted(p for p in root.glob('section-*/*.md') if re.match(r'L3-[A-J]-\d{3}_.*\.md$', p.name))
