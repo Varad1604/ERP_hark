@@ -1,7 +1,7 @@
 # Duplicate Employee Profiles to Canonical Profile Merge
 
 **Scenario ID:** L3-E-070  
-**Status:** Draft  
+**Status:** Locked  
 **Primary Owner:** Employee Profile  
 **Participating Domains:** A — Platform Foundation; E — People & Workforce  
 **Scenario Type:** Critical  
@@ -19,7 +19,7 @@
 | Participating Domains | A — Platform Foundation; E — People & Workforce |
 | Scenario Type | Critical |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

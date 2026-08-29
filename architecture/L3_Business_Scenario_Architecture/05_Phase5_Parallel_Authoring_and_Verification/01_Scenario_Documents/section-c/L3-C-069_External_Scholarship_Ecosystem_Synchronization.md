@@ -6,7 +6,7 @@
 **Participating Domains:** C062 — Scholarship Definition Publication and Availability; C064 — Student Scholarship Eligibility Determination and Recommendation.  
 **Scenario Type:** Cross-domain  
 **Priority:** P2  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  

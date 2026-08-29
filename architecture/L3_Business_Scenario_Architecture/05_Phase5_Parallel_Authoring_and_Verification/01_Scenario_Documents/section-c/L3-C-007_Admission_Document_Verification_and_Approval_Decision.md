@@ -7,7 +7,7 @@
 **Participating Domains:** A, B, C  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
+**Status:** Locked  
 **Author:** Varad  
 **Version:** 1.0  
 **Last Updated:** 2026-08-20  
@@ -32,7 +32,7 @@
 | Source Phase 2 Row | `P2W-C-1056` |
 | Source Phase 1 Candidate | `CAN-L3-C-007` |
 | Derivation | KEEP |
-| Status | Draft |
+| Status | Locked |
 | Applicable L2 Workflow 1 | `WF-C01-02 — Document Verification Workflow` |
 | Applicable L2 Workflow 2 | `WF-C01-03 — Admission Approval Workflow` |
 | Canonical Owner | Admissions |

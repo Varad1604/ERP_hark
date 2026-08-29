@@ -7,7 +7,7 @@
 **Scenario Type:** Simple  
 **Priority:** P1  
 **Derivation:** KEEP  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Author:** Varad  
 **Last Updated:** 2026-08-20  
@@ -45,7 +45,7 @@ Phase 5 allocates the complete C final-ID block `L3-C-001`–`L3-C-075` to Varad
 | Participating Domains | C |
 | Scenario Type | Simple |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

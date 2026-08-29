@@ -6,7 +6,7 @@
 **Participating Domains:** C  
 **Scenario Type:** Simple  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
@@ -25,7 +25,7 @@
 | Participating Domains | C |
 | Scenario Type | Simple |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 | Document Owner | Varad |
 | Applicable L2 Workflow | `WF-C01-07 — Admission Withdrawal` |
 | Canonical Business Record | Admission Record |

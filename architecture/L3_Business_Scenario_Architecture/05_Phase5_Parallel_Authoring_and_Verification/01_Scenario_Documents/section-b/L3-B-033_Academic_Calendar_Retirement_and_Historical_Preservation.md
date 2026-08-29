@@ -6,7 +6,7 @@
 **Participating Domains:** B  
 **Scenario Type:** Critical  
 **Priority:** P2  
-**Status:** Approved
+**Status:** Locked  
 **Architecture Lock:** Locked  
 **Version:** 1.0  
 **Owner:** Institution & Structure — Academic Calendar  

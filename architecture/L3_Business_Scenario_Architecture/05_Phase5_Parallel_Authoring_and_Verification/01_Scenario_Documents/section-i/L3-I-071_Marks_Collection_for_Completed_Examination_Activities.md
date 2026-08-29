@@ -8,7 +8,7 @@
 **Participating Domains:** Academic Delivery, Examination  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Review  
+**Status:** Locked  
 **Author:** Pallav  
 **Version:** 1.2  
 **Last Updated:** 2026-08-25  

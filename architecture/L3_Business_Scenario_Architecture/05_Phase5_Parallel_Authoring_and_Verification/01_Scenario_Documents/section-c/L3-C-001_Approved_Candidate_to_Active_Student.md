@@ -6,7 +6,7 @@
 **Participating Domains:** A — Platform Foundation; B — Institution & Structure; C — Student Lifecycle; F — Finance  
 **Scenario Type:** Cross-domain  
 **Priority:** P0  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.1  
 **Owner:** Varad  
 **Last Updated:** 2026-08-22  

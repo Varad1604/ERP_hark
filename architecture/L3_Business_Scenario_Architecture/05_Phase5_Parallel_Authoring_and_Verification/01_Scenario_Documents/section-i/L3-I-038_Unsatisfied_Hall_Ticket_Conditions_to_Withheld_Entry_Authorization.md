@@ -6,7 +6,7 @@
 **Participating Domains:** C — Student Lifecycle; D — Academic Delivery; F — Finance; I — Examination  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Author:** Varad  
 **Last Updated:** 2026-08-21  
@@ -21,7 +21,7 @@
 | Participating Domains | C, D, F, I |
 | Scenario Type | Critical |
 | Priority | P0 |
-| Status | Draft |
+| Status | Locked |
 | Governing L2 | L2-I05 — Hall Ticket Management Workflows |
 | Related L2 | L2-I04 — Examination Registration Workflows; L2-I02 — Examination Session Management; L2-I03 — Examination Planning & Scheduling |
 

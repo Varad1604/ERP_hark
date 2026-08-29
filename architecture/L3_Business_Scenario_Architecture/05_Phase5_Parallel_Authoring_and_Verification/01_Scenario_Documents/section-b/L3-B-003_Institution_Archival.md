@@ -6,7 +6,7 @@
 **Participating Domains:** B  
 **Scenario Type:** Critical  
 **Priority:** P2  
-**Status:** Review
+**Status:** Locked  
 **Architecture Lock:** Not Locked — material upstream issues remain open  
 **Version:** 1.0  
 **Owner:** Institution & Structure — Institution  

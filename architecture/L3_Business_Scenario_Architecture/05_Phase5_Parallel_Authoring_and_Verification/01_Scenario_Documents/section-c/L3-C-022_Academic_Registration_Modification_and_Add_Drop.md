@@ -7,7 +7,7 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Derivation:** KEEP  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Author:** Varad  
 **Last Updated:** 2026-08-20  
@@ -41,7 +41,7 @@ The frozen Section C canonical register identifies this scenario with the exact 
 | Participating Domains | C, D |
 | Scenario Type | Critical |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

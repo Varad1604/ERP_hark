@@ -1,7 +1,7 @@
 # Position Assignment Rollback to Restored Valid Organisational State
 
 **Scenario ID:** L3-E-072  
-**Status:** Draft  
+**Status:** Locked  
 **Primary Owner:** Position & Assignment  
 **Participating Domains:** E — People & Workforce  
 **Scenario Type:** Critical  
@@ -19,7 +19,7 @@
 | Participating Domains | E — People & Workforce |
 | Scenario Type | Critical |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

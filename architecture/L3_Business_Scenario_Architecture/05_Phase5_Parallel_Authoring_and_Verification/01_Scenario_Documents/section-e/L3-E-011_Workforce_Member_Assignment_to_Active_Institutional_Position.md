@@ -6,7 +6,7 @@
 **Scenario Type:** Critical
 **Priority:** P0
 **Architecture Level:** L3 — Business Scenario Architecture
-**Status:** Draft
+**Status:** Locked  
 **Version:** 1.0
 **Owner:** Varad
 **Last Updated:** 2026-08-20

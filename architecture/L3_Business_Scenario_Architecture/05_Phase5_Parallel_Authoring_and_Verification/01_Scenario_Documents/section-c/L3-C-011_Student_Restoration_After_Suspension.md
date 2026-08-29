@@ -6,7 +6,7 @@
 **Participating Domains:** C — Student Lifecycle; F — Finance  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
@@ -21,7 +21,7 @@
 | Participating Domains | C, F |
 | Scenario Type | Critical |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 | Applicable L2 Workflow | `WF-C02-07 — Student Restoration` |
 | Canonical Owner | Student Lifecycle |
 | Canonical Completion Event | `StudentRestored` |
@@ -47,7 +47,7 @@ The locked L2-C02 workflow catalogue identifies `WF-C02-07 — Student Restorati
 | Participating Domains | C — Student Lifecycle; F — Finance |
 | Scenario Type | Critical |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

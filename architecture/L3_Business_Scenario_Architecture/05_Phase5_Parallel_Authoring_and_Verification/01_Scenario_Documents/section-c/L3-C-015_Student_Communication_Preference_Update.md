@@ -6,7 +6,7 @@
 **Participating Domains:** C  
 **Scenario Type:** Simple  
 **Priority:** P2  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-22  
@@ -22,7 +22,7 @@
 | Participating Domains | C |
 | Scenario Type | Simple |
 | Priority | P2 |
-| Status | Draft |
+| Status | Locked |
 | Applicable L2 Workflow | `WF-C02-14 — Student Communication Preference Management Workflow` |
 
 Frozen identity fields are preserved without reclassification.

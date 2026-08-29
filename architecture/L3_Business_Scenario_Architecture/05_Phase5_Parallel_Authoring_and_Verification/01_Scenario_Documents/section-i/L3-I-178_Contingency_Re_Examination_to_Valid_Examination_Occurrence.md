@@ -8,7 +8,7 @@
 **Participating Domains:** I (Examination), G (Campus Operations), A (Platform)  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Review  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Devang  
 **Last Updated:** 2026-08-20  

@@ -8,7 +8,7 @@
 **Participating Domains:** C, E, H  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Architecture Approved  
+**Status:** Locked  
 **Version:** 1.1  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-27  

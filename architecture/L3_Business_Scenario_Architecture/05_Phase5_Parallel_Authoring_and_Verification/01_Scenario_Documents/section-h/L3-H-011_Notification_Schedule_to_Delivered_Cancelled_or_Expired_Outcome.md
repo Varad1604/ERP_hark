@@ -8,7 +8,7 @@
 **Participating Domains:** H  
 **Scenario Type:** Simple  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-23  

@@ -6,7 +6,7 @@
 **Participating Domains:** C064 — Student Scholarship Eligibility Determination and Recommendation; C066 — Scholarship Eligibility Reassessment; C067 — Scholarship Renewal Evaluation; C071 — Scholarship Eligibility to Financial Aid Processing.  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  

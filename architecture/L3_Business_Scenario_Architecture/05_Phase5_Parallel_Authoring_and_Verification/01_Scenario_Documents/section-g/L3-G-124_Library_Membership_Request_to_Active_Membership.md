@@ -6,7 +6,7 @@
 **Participating Domains:** G, C, E, H  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-22  
@@ -25,7 +25,7 @@
 | Participating Domains | G, C, E, H |
 | Scenario Type | Critical |
 | Priority | P0 |
-| Status | Draft |
+| Status | Locked |
 | Authoritative L2 | `L2-G05` — Library Management Workflows |
 
 The final Phase 5 identity is `L3-G-124`. Earlier candidate-number or sequential Stage-3 identifiers do not replace the approved final L3 identity.

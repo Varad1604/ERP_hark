@@ -6,7 +6,7 @@
 **Participating Domains:** C, D, F, I  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-21  
@@ -23,7 +23,7 @@
 | Participating Domains | C, D, F, I |
 | Scenario Type | Critical |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

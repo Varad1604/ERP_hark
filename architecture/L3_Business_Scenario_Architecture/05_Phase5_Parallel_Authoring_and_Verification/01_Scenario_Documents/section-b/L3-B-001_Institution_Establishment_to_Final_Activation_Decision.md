@@ -8,7 +8,7 @@
 **Participating Domains:** A, B  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Review  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Institution & Structure — Institution  
 **Assigned Author:** Pallav  

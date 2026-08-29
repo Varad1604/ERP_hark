@@ -8,7 +8,7 @@
 **Participating Domains:** G, A  
 **Scenario Type:** Simple  
 **Priority:** P2  
-**Status:** Architecture Approved  
+**Status:** Locked  
 **Version:** 1.3  
 **Owner:** Pallav  
 **Last Updated:** 2026-08-21  

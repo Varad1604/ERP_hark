@@ -6,7 +6,7 @@
 **Participating Domains:** B — Institution & Structure; C — Student Lifecycle  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
@@ -35,7 +35,7 @@ The repository operating guide requires authors to use the exact assigned ID/fil
 | Participating Domains | B — Institution & Structure; C — Student Lifecycle |
 | Scenario Type | Cross-domain |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

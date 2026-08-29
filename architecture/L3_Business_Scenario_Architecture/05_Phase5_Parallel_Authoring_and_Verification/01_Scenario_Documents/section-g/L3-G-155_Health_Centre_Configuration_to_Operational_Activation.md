@@ -6,7 +6,7 @@
 **Participating Domains:** G, A  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-22  
@@ -25,7 +25,7 @@
 | Participating Domains | G, A |
 | Scenario Type | Critical |
 | Priority | P0 |
-| Status | Draft |
+| Status | Locked |
 | Authoritative L2 | `L2-G06` — Institutional Health Services & Medical Workflows |
 
 Frozen Phase 5 identity and ownership are preserved.

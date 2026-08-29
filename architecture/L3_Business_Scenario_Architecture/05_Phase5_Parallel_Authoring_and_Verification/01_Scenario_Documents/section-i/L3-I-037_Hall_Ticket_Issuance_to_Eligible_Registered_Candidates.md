@@ -6,7 +6,7 @@
 **Participating Domains:** C — Student Lifecycle; I — Examination  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-22  
@@ -23,7 +23,7 @@
 | Participating Domains | C, I |
 | Scenario Type | Critical |
 | Priority | P0 |
-| Status | Draft |
+| Status | Locked |
 | Authoritative L2 | `L2-I05` — Hall Ticket Management Workflows |
 
 Frozen Phase 5 identity and classification are preserved.

@@ -6,7 +6,7 @@
 **Participating Domains:** C, H  
 **Scenario Type:** Cross-domain  
 **Priority:** P2  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
@@ -43,7 +43,7 @@ The frozen Section C register identifies C018 as **Student Document or Certifica
 | Participating Domains | C, H |
 | Scenario Type | Cross-domain |
 | Priority | P2 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

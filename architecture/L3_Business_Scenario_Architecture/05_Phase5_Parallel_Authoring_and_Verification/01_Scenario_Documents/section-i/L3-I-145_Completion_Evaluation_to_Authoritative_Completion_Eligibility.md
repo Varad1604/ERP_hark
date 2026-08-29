@@ -6,7 +6,7 @@
 **Participating Domains:** C — Student Lifecycle; D — Academic Delivery; I — Examination  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-22  
@@ -23,7 +23,7 @@
 | Participating Domains | C, D, I |
 | Scenario Type | Critical |
 | Priority | P0 |
-| Status | Draft |
+| Status | Locked |
 | Authoritative L2 | `L2-I13` — Academic Completion, CGPA & Completion Evidence Workflows |
 
 The scenario preserves the locked I13/C05 ownership resolution: I13 owns examination-derived completion evidence and its eligibility finding; L2-C05 alone owns the institutional Qualification Completion decision, qualification award, and Student Exit.

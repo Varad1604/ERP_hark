@@ -6,7 +6,7 @@
 **Participating Domains:** C — Student Lifecycle; D — Academic Delivery  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
@@ -23,7 +23,7 @@
 | Participating Domains | C, D |
 | Scenario Type | Cross-domain |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 | Applicable L2 Workflow | `WF-C02-04 — Academic Assignment` |
 | Canonical Student Lifecycle Owner | Student Lifecycle |
 | Canonical Successful Event | `AcademicAssignmentCompleted` |
@@ -49,7 +49,7 @@ The Phase 5 permanent placement standard requires Section C scenarios to reside 
 | Participating Domains | C — Student Lifecycle; D — Academic Delivery |
 | Scenario Type | Cross-domain |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

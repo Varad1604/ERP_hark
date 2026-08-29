@@ -7,7 +7,7 @@
 **Participating Domains:** C, D  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Author:** Varad  
 **Version:** 1.0  
 **Last Updated:** 2026-08-20  
@@ -32,7 +32,7 @@
 | Source Phase 2 Row | `P2W-C-1057` |
 | Source Phase 1 Candidate | `CAN-L3-C-008` |
 | Derivation | KEEP |
-| Status | Draft |
+| Status | Locked |
 | Applicable L2 Workflow | `WF-C02-03 — Student Enrollment Update` |
 | Canonical Owner | Student Lifecycle |
 | Successful Outcome | Enrollment Updated |

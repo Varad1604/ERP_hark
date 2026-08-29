@@ -7,7 +7,7 @@
 **Participating Domains:** C  
 **Scenario Type:** Simple  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Author:** Varad  
 **Version:** 1.1  
 **Last Updated:** 2026-08-22  
@@ -24,7 +24,7 @@
 | Scenario Type | Simple |
 | Priority | P1 |
 | Derivation | KEEP |
-| Status | Draft |
+| Status | Locked |
 
 Frozen identity fields are preserved without reclassification.
 

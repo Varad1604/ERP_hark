@@ -8,7 +8,7 @@
 **Participating Domains:** I (Examination), B (Governance), A (Platform)  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Review  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Devang  
 **Last Updated:** 2026-08-20  

@@ -7,7 +7,7 @@
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
 **Derivation:** KEEP  
-**Status:** Draft  
+**Status:** Locked  
 **Author:** Varad  
 **Version:** 1.0  
 **Last Updated:** 2026-08-20  
@@ -28,7 +28,7 @@
 | Priority | P1 |
 | Derivation | KEEP |
 | Assigned Author | Varad |
-| Status | Draft |
+| Status | Locked |
 
 The frozen Section C register identifies C026 exactly as **Registration Hold Placement and Release**, owned by Academic Registration, participating in C and F, Cross-domain, P1, KEEP. The Phase 5 workload assigns the complete C001–C075 block to Varad.
 
@@ -46,7 +46,7 @@ The frozen Section C register identifies C026 exactly as **Registration Hold Pla
 | Participating Domains | C, F |
 | Scenario Type | Cross-domain |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

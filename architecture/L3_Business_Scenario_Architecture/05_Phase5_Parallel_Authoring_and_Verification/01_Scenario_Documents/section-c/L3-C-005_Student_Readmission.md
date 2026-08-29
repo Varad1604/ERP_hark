@@ -6,7 +6,7 @@
 **Participating Domains:** C  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  
@@ -27,7 +27,7 @@
 | Participating Domains | C |
 | Scenario Type | Cross-domain |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 | Source Phase 2 Row | `P2W-C-1054` |
 | Source Phase 1 Candidate | `CAN-L3-C-005` |
 | Applicable L2 Workflow | `WF-C01-09 — Readmission Workflow` |

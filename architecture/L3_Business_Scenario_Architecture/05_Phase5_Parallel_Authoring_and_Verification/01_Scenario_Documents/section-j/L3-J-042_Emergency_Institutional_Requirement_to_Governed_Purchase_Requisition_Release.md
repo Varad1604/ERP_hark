@@ -8,7 +8,7 @@
 **Participating Domains:** F, J, VAR:Requesting Domain  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.1  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-26  

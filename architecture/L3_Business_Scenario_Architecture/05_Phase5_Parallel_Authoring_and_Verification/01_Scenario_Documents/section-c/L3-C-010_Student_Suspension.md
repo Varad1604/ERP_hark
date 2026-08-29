@@ -6,7 +6,7 @@
 **Participating Domains:** C, F  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-22  
@@ -22,7 +22,7 @@
 | Participating Domains | C, F |
 | Scenario Type | Critical |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 | Applicable L2 Workflow | `WF-C02-06 — Student Suspension` |
 
 Frozen identity fields and exact Phase 5 filename are preserved.

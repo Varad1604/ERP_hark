@@ -8,7 +8,7 @@
 **Participating Domains:** J  
 **Scenario Type:** Simple  
 **Priority:** P2  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-20  

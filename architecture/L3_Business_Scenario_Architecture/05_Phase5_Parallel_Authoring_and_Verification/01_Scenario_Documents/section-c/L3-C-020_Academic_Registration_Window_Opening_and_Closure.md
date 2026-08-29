@@ -7,7 +7,7 @@
 **Scenario Type:** Cross-domain  
 **Priority:** P0  
 **Derivation:** KEEP  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Author:** Varad  
 **Last Updated:** 2026-08-20  
@@ -46,7 +46,7 @@ Phase 5 allocates the entire Section C range `L3-C-001`–`L3-C-075` to Varad. T
 | Participating Domains | B, C, D |
 | Scenario Type | Cross-domain |
 | Priority | P0 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

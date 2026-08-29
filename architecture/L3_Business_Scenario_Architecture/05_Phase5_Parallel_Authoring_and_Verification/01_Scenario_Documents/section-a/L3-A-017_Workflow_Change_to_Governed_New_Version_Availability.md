@@ -8,7 +8,7 @@
 **Participating Domains:** A, VAR:Workflow-Owning Domain  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-20  

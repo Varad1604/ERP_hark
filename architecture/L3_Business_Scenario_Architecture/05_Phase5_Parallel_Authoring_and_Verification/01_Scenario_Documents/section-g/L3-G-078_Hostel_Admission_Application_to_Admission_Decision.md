@@ -6,7 +6,7 @@
 **Participating Domains:** G, C, E, H  
 **Scenario Type:** Cross-domain  
 **Priority:** P0  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-22  
@@ -25,7 +25,7 @@
 | Participating Domains | G, C, E, H |
 | Scenario Type | Cross-domain |
 | Priority | P0 |
-| Status | Draft |
+| Status | Locked |
 | Authoritative L2 | `L2-G03` — Hostel Management Workflows |
 
 The final Phase 5 identity is authoritative. Candidate identifiers in earlier canonical-construction stages do not replace the approved final L3 numbering.

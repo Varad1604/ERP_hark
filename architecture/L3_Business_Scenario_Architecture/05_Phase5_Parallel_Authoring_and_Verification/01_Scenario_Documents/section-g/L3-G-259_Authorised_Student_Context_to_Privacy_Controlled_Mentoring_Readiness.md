@@ -8,7 +8,7 @@
 **Participating Domains:** G, A, C, D, F  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Architecture Approved  
+**Status:** Locked  
 **Version:** 1.1  
 **Owner:** Pallav  
 **Last Updated:** 2026-08-21  

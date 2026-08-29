@@ -8,7 +8,7 @@
 **Participating Domains:** C, D, E, H  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Architecture Approved  
+**Status:** Locked  
 **Version:** 1.1  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-27  

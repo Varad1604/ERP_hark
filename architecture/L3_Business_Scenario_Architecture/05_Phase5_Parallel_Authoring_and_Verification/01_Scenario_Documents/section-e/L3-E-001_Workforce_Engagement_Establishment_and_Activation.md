@@ -6,7 +6,7 @@
 **Participating Domains:** A, B, E  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Author:** Varad  
 **Last Updated:** 2026-08-22  
@@ -22,7 +22,7 @@
 | Participating Domains | A, B, E |
 | Scenario Type | Critical |
 | Priority | P0 |
-| Status | Draft |
+| Status | Locked |
 
 Frozen identity is preserved. The approved E01/E02 ownership clarification remains controlling: E01 owns Workforce Engagement; E02 exclusively owns Position Assignment, Responsibility Assignment, Reporting Relationship, and Assignment History.
 

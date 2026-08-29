@@ -6,7 +6,7 @@
 **Participating Domains:** D, E  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
+**Status:** Locked  
 **Author:** Varad  
 **Version:** 1.0  
 **Date:** 2026-08-20  

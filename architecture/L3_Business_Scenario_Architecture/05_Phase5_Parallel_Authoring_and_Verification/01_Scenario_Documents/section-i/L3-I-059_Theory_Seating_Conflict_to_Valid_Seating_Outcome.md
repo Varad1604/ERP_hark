@@ -8,7 +8,7 @@
 **Participating Domains:** I (Examination), G (Campus Operations), C (Student Lifecycle), A (Platform Foundation)  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Review  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Devang  
 **Last Updated:** 2026-08-20  

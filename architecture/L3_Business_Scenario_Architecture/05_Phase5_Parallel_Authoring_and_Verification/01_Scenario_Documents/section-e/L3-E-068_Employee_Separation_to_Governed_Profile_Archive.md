@@ -1,7 +1,7 @@
 # Employee Separation to Governed Profile Archive
 
 **Scenario ID:** L3-E-068  
-**Status:** Draft  
+**Status:** Locked  
 **Primary Owner:** Employee Profile  
 **Participating Domains:** E — People & Workforce  
 **Scenario Type:** Cross-domain  
@@ -23,7 +23,7 @@ This scenario governs the profile-side business consequence of a completed emplo
 | Participating Domains | E — People & Workforce |
 | Scenario Type | Cross-domain |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

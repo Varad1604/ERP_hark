@@ -8,7 +8,7 @@
 **Participating Domains:** H, VAR:Obligation-Owning Domain  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Architecture Approved  
+**Status:** Locked  
 **Version:** 1.2  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-27  

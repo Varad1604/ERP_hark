@@ -6,7 +6,7 @@
 **Participating Domains:** C, G  
 **Scenario Type:** Cross-domain  
 **Priority:** P2  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  

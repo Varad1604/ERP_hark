@@ -6,7 +6,7 @@
 **Participating Domains:** C  
 **Scenario Type:** Simple  
 **Priority:** P2  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Author:** Varad  
 **Last Updated:** 2026-08-20  

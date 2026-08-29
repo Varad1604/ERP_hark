@@ -6,7 +6,7 @@
 **Participating Domains:** C — Student Lifecycle; D — Academic Delivery; F — Finance; G — Campus Operations; I — Examination  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.1  
 **Owner:** Varad  
 **Last Updated:** 2026-08-22  

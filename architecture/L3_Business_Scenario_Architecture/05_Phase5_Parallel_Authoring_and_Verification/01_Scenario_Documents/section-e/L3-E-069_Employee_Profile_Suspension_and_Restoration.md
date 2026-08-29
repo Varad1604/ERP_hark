@@ -1,7 +1,7 @@
 # Employee Profile Suspension and Restoration
 
 **Scenario ID:** L3-E-069  
-**Status:** Draft  
+**Status:** Locked  
 **Primary Owner:** Employee Profile  
 **Participating Domains:** E — People & Workforce  
 **Scenario Type:** Simple  
@@ -23,7 +23,7 @@ This scenario governs suspension and restoration of the EmployeeProfile within t
 | Participating Domains | E — People & Workforce |
 | Scenario Type | Simple |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

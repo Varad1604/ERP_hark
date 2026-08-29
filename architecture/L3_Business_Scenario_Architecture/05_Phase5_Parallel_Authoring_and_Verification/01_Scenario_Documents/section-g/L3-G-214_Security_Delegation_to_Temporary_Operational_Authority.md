@@ -8,7 +8,7 @@
 **Participating Domains:** G (Campus Operations), A (Platform Foundation), E (People & Workforce), H (Institutional Intelligence)  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Review  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Devang  
 **Last Updated:** 2026-08-20  

@@ -1,7 +1,7 @@
 # HR Case Outcome to Employee Profile Update
 
 **Scenario ID:** L3-E-067  
-**Status:** Draft  
+**Status:** Locked  
 **Primary Owner:** Employee Profile  
 **Participating Domains:** E — People & Workforce  
 **Scenario Type:** Cross-domain  
@@ -25,7 +25,7 @@ HR Workflows owns the HR case, including its intake, routing, approvals, evidenc
 | Participating Domains | E — People & Workforce |
 | Scenario Type | Cross-domain |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

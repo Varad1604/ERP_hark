@@ -8,7 +8,7 @@
 **Participating Domains:** C, D, F, H, I  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-23  

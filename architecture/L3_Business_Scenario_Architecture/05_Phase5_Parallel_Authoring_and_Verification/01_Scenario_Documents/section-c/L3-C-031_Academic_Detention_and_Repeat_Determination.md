@@ -6,7 +6,7 @@
 **Participating Domains:** C, I  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.1  
 **Owner:** Varad  
 **Last Updated:** 2026-08-22  

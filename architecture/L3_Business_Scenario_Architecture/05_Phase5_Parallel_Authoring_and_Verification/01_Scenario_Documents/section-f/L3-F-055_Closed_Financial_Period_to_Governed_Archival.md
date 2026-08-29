@@ -7,7 +7,7 @@
 **Participating Domains:** F  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.1  
 **Owner:** Chetan  
 **Last Updated:** 2026-08-21  

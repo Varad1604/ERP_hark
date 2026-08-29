@@ -8,7 +8,7 @@
 **Participating Domains:** I (Examination), H (Intelligence & Services), A (Platform)  
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
-**Status:** Review  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Devang  
 **Last Updated:** 2026-08-20  

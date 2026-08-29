@@ -6,7 +6,7 @@
 **Participating Domains:** B  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Review
+**Status:** Locked  
 **Architecture Lock:** Not Locked — material upstream authority issue remains open  
 **Version:** 1.0  
 **Owner:** Institution & Structure — Academic Calendar  

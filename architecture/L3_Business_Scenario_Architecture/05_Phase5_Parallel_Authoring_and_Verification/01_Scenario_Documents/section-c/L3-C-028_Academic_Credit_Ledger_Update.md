@@ -7,7 +7,7 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Derivation:** KEEP  
-**Status:** Draft  
+**Status:** Locked  
 **Author:** Varad  
 **Version:** 1.0  
 **Last Updated:** 2026-08-20  
@@ -28,7 +28,7 @@
 | Priority | P1 |
 | Derivation | KEEP |
 | Assigned Author | Varad |
-| Status | Draft |
+| Status | Locked |
 
 The frozen Section C register identifies C028 exactly as **Academic Credit Ledger Update**, owned by Academic Progression, participating in C and I, Critical, P1, KEEP.
 
@@ -46,7 +46,7 @@ The frozen Section C register identifies C028 exactly as **Academic Credit Ledge
 | Participating Domains | C, I |
 | Scenario Type | Critical |
 | Priority | P1 |
-| Status | Draft |
+| Status | Locked |
 
 This metadata is reproduced from the existing scenario header only; no frozen Phase 5 identity or classification value is changed.
 

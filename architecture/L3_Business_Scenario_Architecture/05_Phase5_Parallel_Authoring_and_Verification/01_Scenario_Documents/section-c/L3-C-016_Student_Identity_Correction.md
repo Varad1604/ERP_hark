@@ -8,7 +8,7 @@
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
 **Derivation:** KEEP  
-**Status:** Draft  
+**Status:** Locked  
 **Author:** Varad  
 **Version:** 1.0  
 **Last Updated:** 2026-08-20  

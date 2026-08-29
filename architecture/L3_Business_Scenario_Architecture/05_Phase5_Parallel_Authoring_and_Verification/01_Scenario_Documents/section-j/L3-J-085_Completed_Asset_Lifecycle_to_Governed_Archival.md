@@ -8,7 +8,7 @@
 **Participating Domains:** J  
 **Scenario Type:** Critical  
 **Priority:** P2  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Pallav  
 **Last Updated:** 2026-08-22  

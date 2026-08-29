@@ -7,7 +7,7 @@
 **Participating Domains:** Person & Identity, Finance, Examination  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Architecture Approved  
+**Status:** Locked  
 **Version:** 1.1  
 **Author:** Pallav  
 **Previous Architecture Approval:** ACR-I-2026-08-21-002 — Approved by Vikram Desai, Enterprise Architecture Governance Lead, 21 August 2026; Conditions: None  

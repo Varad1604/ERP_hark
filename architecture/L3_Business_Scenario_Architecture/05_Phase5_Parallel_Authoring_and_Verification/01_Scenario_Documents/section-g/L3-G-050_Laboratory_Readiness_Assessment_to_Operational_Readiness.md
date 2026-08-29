@@ -8,7 +8,7 @@
 **Participating Domains:** G, D, E, H  
 **Scenario Type:** Cross-domain  
 **Priority:** P0  
-**Status:** Review  
+**Status:** Locked  
 **Version:** 1.4  
 **Owner:** Pallav  
 **Last Updated:** 2026-08-25  

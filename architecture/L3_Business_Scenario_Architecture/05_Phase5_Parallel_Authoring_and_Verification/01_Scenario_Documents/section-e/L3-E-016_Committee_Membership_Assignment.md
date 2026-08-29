@@ -6,7 +6,7 @@
 **Participating Domains:** B, E  
 **Scenario Type:** Simple  
 **Priority:** P1  
-**Status:** Draft  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Varad  
 **Last Updated:** 2026-08-20  

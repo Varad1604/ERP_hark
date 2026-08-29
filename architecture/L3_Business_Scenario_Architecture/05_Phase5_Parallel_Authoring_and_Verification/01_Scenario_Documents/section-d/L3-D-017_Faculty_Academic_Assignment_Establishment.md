@@ -6,7 +6,7 @@
 **Participating Domains:** D, E  
 **Scenario Type:** Cross-domain  
 **Priority:** P0  
-**Status:** Architecture Approved  
+**Status:** Locked  
 **Version:** 1.0  
 **Owner:** Pallav  
 **Last Updated:** 2026-08-20  
