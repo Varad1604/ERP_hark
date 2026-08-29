@@ -35,18 +35,14 @@ jobs:
               by_id[m.group(1)].append(p)
 
           duplicates = {k:v for k,v in by_id.items() if len(v) > 1}
-          print(f'L3-shaped files: {len(files)}')
-          print(f'Unique L3 identities: {len(by_id)}')
-          if duplicates:
-              print('DUPLICATE IDENTITIES:')
-              for sid, paths in sorted(duplicates.items()):
-                  print(sid)
-                  for p in paths:
-                      print(f'  {p}')
-          if len(by_id) != 1084:
-              raise SystemExit(f'Expected 1084 unique canonical identities, found {len(by_id)}')
-          if duplicates:
-              raise SystemExit(f'Found {sum(len(v)-1 for v in duplicates.values())} duplicate/noncanonical L3 files; resolve before locking.')
+          if len(files) != 1084 or len(by_id) != 1084 or duplicates:
+              if duplicates:
+                  for sid, paths in sorted(duplicates.items()):
+                      print(sid)
+                      for p in paths:
+                          print(f'  {p}')
+              raise SystemExit(f'Canonical identity validation failed: files={len(files)}, unique_ids={len(by_id)}, duplicate_ids={len(duplicates)}')
+          print('CANONICAL L3 IDENTITIES VERIFIED: 1084 / 1084')
 
       - name: Synchronize all canonical L3 scenario statuses
         shell: python
@@ -58,7 +54,6 @@ jobs:
           scenario_files = sorted(p for p in root.glob('section-*/*.md') if re.match(r'L3-[A-J]-\d{3}_.*\.md$', p.name))
           changed = 0
           failures = []
-
           for path in scenario_files:
               text = path.read_text(encoding='utf-8')
               original = text
@@ -70,17 +65,101 @@ jobs:
               if text != original:
                   path.write_text(text, encoding='utf-8')
                   changed += 1
-
           if failures:
               raise SystemExit('Missing canonical **Status:** metadata in:\n' + '\n'.join(failures))
           print(f'Files changed to Locked: {changed}')
+
+      - name: Synchronize active L3 and L4 governance summaries
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          def edit(path, transform):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              new = transform(text)
+              if new != text:
+                  p.write_text(new, encoding='utf-8')
+                  print(f'Updated {path}')
+
+          # L3 root README
+          def l3_root(t):
+              t = re.sub(r'(?m)^\*\*Status:\*\*.*$', '**Status:** Final Canonical Corpus Locked  ', t, count=1)
+              t = re.sub(r'(?m)^\*\*Current Phase:\*\*.*$', '**Current Phase:** Phase 5 Complete — Final Corpus Locked  ', t, count=1)
+              t = re.sub(r'(?m)^\*\*Current Gate:\*\*.*$', '**Current Gate:** Final L3 Corpus Locked — L4 Mass Authoring Enabled  ', t, count=1)
+              t = t.replace('Final L3 repository lock: Pending completion and validation', 'Final L3 repository lock: LOCKED — 1,084 / 1,084')
+              t = t.replace('Continuous architecture review: Required', 'Final corpus validation: Completed')
+              marker = '## 12. Current Authorized Activity'
+              if marker in t:
+                  head, _ = t.split(marker, 1)
+                  tail = '''## 12. Current Authorized Activity\n\nThe canonical L3 corpus is final and Locked under `05_Phase5_Parallel_Authoring_and_Verification/L3_Final_Corpus_Lock_Decision_1084_2026-08-29.md`.\n\nAll **1,084 / 1,084** canonical L3 scenarios are approved and frozen for downstream architectural use. Ordinary L3 authoring is closed. Any future change to a Locked scenario requires controlled architecture change governance.\n\nThe active downstream activity is mass L4 authoring across all 1,084 Locked L3 parents under the current L4 full-corpus authorization.\n'''
+                  t = head + marker + '\n\n' + tail.split('\n\n',1)[1]
+              return t
+          edit('architecture/L3_Business_Scenario_Architecture/README.md', l3_root)
+
+          # Phase 5 README
+          def phase5(t):
+              t = re.sub(r'(?m)^\*\*Status:\*\*.*$', '**Status:** Complete — 1,084 / 1,084 Canonical Scenarios Locked  ', t, count=1)
+              t = re.sub(r'(?m)^\*\*Last Updated:\*\*.*$', '**Last Updated:** 2026-08-29', t, count=1)
+              t = t.replace('Final L3 lock: NOT YET COMPLETE', 'Final L3 lock: COMPLETE — 1,084 / 1,084 LOCKED')
+              t = t.replace('Every new scenario begins as `Draft` and progresses through the governed review process before any final locking decision.', 'Phase 5 authoring is closed. All 1,084 canonical scenario files are now `Locked` under the final corpus lock decision. Any future change requires controlled architecture change governance.')
+              if 'L3_Final_Corpus_Lock_Decision_1084_2026-08-29.md' not in t:
+                  t += '\n\n## Final Corpus Lock\n\nAll **1,084 / 1,084** canonical L3 scenarios are Locked by `L3_Final_Corpus_Lock_Decision_1084_2026-08-29.md`. The corpus is the authoritative parent baseline for full-corpus L4 mass authoring.\n'
+              return t
+          edit('architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/README.md', phase5)
+
+          # Earlier audit becomes historical after explicit Lead Architect lock.
+          def audit(t):
+              t = re.sub(r'(?m)^\*\*Status:\*\* Review\s*$', '**Status:** Deprecated  ', t, count=1)
+              notice = '> **SUPERSEDED CURRENT-STATE VERDICT — 2026-08-29:** The Lead Architect subsequently confirmed completion of review and explicitly authorized the final Lock of all 1,084 canonical L3 scenarios. Current status is governed by `L3_Final_Corpus_Lock_Decision_1084_2026-08-29.md`. This file remains historical audit evidence only.\n\n'
+              if 'SUPERSEDED CURRENT-STATE VERDICT' not in t:
+                  pos = t.find('\n---\n')
+                  if pos != -1:
+                      pos += len('\n---\n')
+                      t = t[:pos] + '\n' + notice + t[pos:]
+              return t
+          edit('architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/L3_Full_Corpus_Final_Lock_and_L4_Readiness_Audit_2026-08-29.md', audit)
+
+          # L4 governance active guide
+          def l4gov(t):
+              t = re.sub(r'## Current Scope Rule\n\n```text.*?```', '''## Current Scope Rule\n\n```text\n1,084 canonical L3 scenarios — LOCKED\n        ↓\n1,084 L4 parent identities — READY\n        ↓\nInherited full-corpus human allocation\n        ↓\nCanonical L4 Draft authoring\n```''', t, flags=re.S)
+              t = re.sub(r'## Important L3 Readiness Distinction.*$', '''## Locked L3 Parent Baseline\n\nAll **1,084 / 1,084** canonical L3 scenarios are Locked by the final corpus lock decision and form the active L4 parent baseline.\n\nCurrent readiness baseline:\n\n`L4_Full_Corpus_Parent_Readiness_Baseline_1084_2026-08-29.md`\n\nAuthors must not use the historical 48-parent list as a scope restriction. Normal no-drift verification remains mandatory, but no separate 48-parent certification step is required.\n''', t, flags=re.S)
+              return t
+          edit('architecture/L4_System_Behavior_Specification/00_Governance/README.md', l4gov)
+
+          # L4 production README
+          def prod(t):
+              t = t.replace('2. Before creating each L4 file, the assigned author must pass the Locked per-scenario parent-readiness gate.\n3. A parent that is not currently `Architecture Approved` or `Locked`, or that otherwise fails readiness, remains assigned but is recorded as `BLOCKED` or `NOT ELIGIBLE — L3 STATUS`; no canonical L4 file is created until resolved.', '2. All 1,084 canonical L3 parents are currently `Locked` and ready for L4 derivation under the final corpus lock decision.\n3. Before creating each L4 file, perform a normal no-drift check. If a later governed change has reopened a specific parent, pause only that affected parent until its successor approved/locked state is established.')
+              t = t.replace('**Per-scenario parent-readiness gate:** mandatory', '**Locked L3 parents ready:** 1,084 / 1,084')
+              return t
+          edit('architecture/L4_System_Behavior_Specification/01_Production/README.md', prod)
+
+          # Full-corpus L4 authorization
+          def auth(t):
+              t = re.sub(r'## 3\. Per-Scenario Readiness Remains Mandatory.*?---\n\n## 4\.', '''## 3. Locked Full-Corpus Parent Baseline\n\nAll **1,084 / 1,084** canonical L3 scenarios are now `Locked` under `L3_Final_Corpus_Lock_Decision_1084_2026-08-29.md` and are therefore the active L4 parent population.\n\nNo parent requires addition to the historical 48-parent baseline. Before authoring, the assigned author performs only the normal no-drift check required by Locked L4 governance. If a later governed change reopens a specific L3 parent, only that parent pauses until its successor approved/locked state is established.\n\n---\n\n## 4.''', t, flags=re.S)
+              t = t.replace('**PER-SCENARIO READINESS GATE:** **MANDATORY**', '**LOCKED L3 PARENTS READY:** **1,084 / 1,084**')
+              return t
+          edit('architecture/L4_System_Behavior_Specification/00_Governance/L4_Full_Corpus_Parallel_Authoring_Authorization_2026-08-29.md', auth)
+
+          # Architecture Index
+          def index(t):
+              t = t.replace('L3 status is scenario-specific; the corpus is not represented as globally Locked by this index.', 'The complete canonical L3 corpus is globally **Locked — 1,084 / 1,084 scenarios** under the final corpus lock decision dated 2026-08-29.')
+              t = re.sub(r'The earlier 48-parent certification wave remains historical readiness evidence.*?\n\nEach assigned parent must still pass.*?\n', 'The earlier 48-parent certification wave remains historical readiness evidence only. Effective 2026-08-29, all 1,084 canonical L3 scenarios are Locked and form the active parent population for full-corpus L4 mass authoring.\n', t, flags=re.S)
+              t = t.replace('**Current L4 workload population:** 1,084 assigned scenarios', '**Current L4 workload population:** 1,084 Locked and ready parent scenarios')
+              t = t.replace('| L3 Scenarios in Active L4 Workload | 1,084 |', '| L3 Scenarios Locked / Active L4 Parents | 1,084 / 1,084 |')
+              t = t.replace('| L4 Active Execution Scope | Full corpus assignment with per-scenario readiness |', '| L4 Active Execution Scope | Full corpus — 1,084 Locked L3 parents |')
+              if 'L3 Final Corpus Lock Decision — 1,084 Scenarios' not in t:
+                  row = '| L4 Full-Corpus Parent Readiness Certification Workplan | Lead Architect | Architecture Approved | Active per-scenario readiness framework |'
+                  t = t.replace(row, row + '\n| L3 Final Corpus Lock Decision — 1,084 Scenarios | Lead Architect | Locked | Active upstream parent baseline |\n| L4 Full-Corpus Parent Readiness Baseline — 1,084 Parents | Lead Architect | Locked | Active readiness baseline |')
+              return t
+          edit('architecture/ARCHITECTURE_INDEX.md', index)
 
       - name: Verify corpus lock
         shell: python
         run: |
           from pathlib import Path
           import re
-
           root = Path('architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents')
           scenario_files = sorted(p for p in root.glob('section-*/*.md') if re.match(r'L3-[A-J]-\d{3}_.*\.md$', p.name))
           ids = [re.match(r'(L3-[A-J]-\d{3})_', p.name).group(1) for p in scenario_files]
@@ -90,17 +169,17 @@ jobs:
               if not re.search(r'(?m)^\*\*Status:\*\* Locked\s*$', text):
                   unlocked.append(str(path))
           if len(scenario_files) != 1084 or len(set(ids)) != 1084 or unlocked:
-              raise SystemExit(f'Lock verification failed: files={len(scenario_files)}, unique_ids={len(set(ids))}, unlocked={len(unlocked)}\n' + '\n'.join(unlocked))
+              raise SystemExit(f'Lock verification failed: files={len(scenario_files)}, unique_ids={len(set(ids))}, unlocked={len(unlocked)}')
           print('L3 CORPUS LOCK VERIFIED: 1084 / 1084')
 
-      - name: Commit synchronized scenario metadata
+      - name: Commit synchronized corpus lock
         run: |
           if git diff --quiet; then
-            echo 'No scenario metadata changes required.'
+            echo 'No synchronization changes required.'
             exit 0
           fi
           git config user.name 'SutraERP Architecture Governance'
           git config user.email 'actions@users.noreply.github.com'
-          git add architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents
-          git commit -m 'governance: synchronize 1084 L3 scenarios to Locked'
+          git add architecture/L3_Business_Scenario_Architecture architecture/L4_System_Behavior_Specification architecture/ARCHITECTURE_INDEX.md
+          git commit -m 'governance: synchronize final L3 lock and L4 mass-authoring readiness'
           git push
