@@ -23,14 +23,13 @@ Use these documents for current work:
 ## Current Scope Rule
 
 ```text
-1,084 canonical L3 scenario identities
+1,084 canonical L3 scenarios — LOCKED
         ↓
-1,084 assigned L4 workload identities
+1,084 L4 parent identities — READY
         ↓
-Per-scenario L3 parent-readiness gate
+Inherited full-corpus human allocation
         ↓
-Eligible parent → create canonical L4 Draft
-Blocked/ineligible parent → record/escalate; do not invent upstream architecture
+Canonical L4 Draft authoring
 ```
 
 **The static 48-parent execution limit is superseded and must not be used to restrict current assigned L4 work.**
@@ -52,12 +51,12 @@ These files are not deleted because they preserve decision history. Their earlie
 
 ---
 
-## Important L3 Readiness Distinction
+## Locked L3 Parent Baseline
 
-Full-corpus workload authorization does not automatically convert every L3 parent to `Architecture Approved` or `Locked`.
+All **1,084 / 1,084** canonical L3 scenarios are Locked by the final corpus lock decision and form the active L4 parent baseline.
 
-Current L3 final-lock state is governed separately. See:
+Current readiness baseline:
 
-`../../L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/L3_Full_Corpus_Final_Lock_and_L4_Readiness_Audit_2026-08-29.md`
+`L4_Full_Corpus_Parent_Readiness_Baseline_1084_2026-08-29.md`
 
-Authors must not use the historical 48-parent list as a scope restriction, and must not bypass the current per-scenario L3 readiness gate.
+Authors must not use the historical 48-parent list as a scope restriction. Normal no-drift verification remains mandatory, but no separate 48-parent certification step is required.

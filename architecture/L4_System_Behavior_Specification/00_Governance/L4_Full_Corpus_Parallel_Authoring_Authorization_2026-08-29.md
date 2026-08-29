@@ -41,20 +41,11 @@ Human author assignment does not transfer canonical business ownership.
 
 ---
 
-## 3. Per-Scenario Readiness Remains Mandatory
+## 3. Locked Full-Corpus Parent Baseline
 
-Skipping the static 48-parent wave does **not** waive L4 parent readiness.
+All **1,084 / 1,084** canonical L3 scenarios are now `Locked` under `L3_Final_Corpus_Lock_Decision_1084_2026-08-29.md` and are therefore the active L4 parent population.
 
-Before creating each canonical L4 file, the assigned author must verify that the current L3 parent:
-
-- is `Architecture Approved` or `Locked`;
-- has not materially drifted after approval;
-- contains no material unresolved ownership, rule, lifecycle, event, authority or boundary conflict;
-- contains sufficient business meaning for observable implementation-independent system behavior.
-
-If the gate fails, the scenario remains assigned but is recorded as `BLOCKED` or `NOT ELIGIBLE — L3 STATUS`. The author must not invent or silently repair upstream architecture.
-
-A scenario that independently passes this per-scenario gate may proceed under this authorization without being added to the former 48-parent list.
+No parent requires addition to the historical 48-parent baseline. Before authoring, the assigned author performs only the normal no-drift check required by Locked L4 governance. If a later governed change reopens a specific L3 parent, only that parent pauses until its successor approved/locked state is established.
 
 ---
 
@@ -121,7 +112,7 @@ They shall not be deleted because they remain architecture-decision provenance.
 **WORKLOAD POPULATION:** **1,084 CANONICAL L3 SCENARIOS**  
 **STATIC 48-PARENT LIMIT:** **SUPERSEDED**  
 **EXACT HUMAN ALLOCATION:** **INHERITED FROM LOCKED L3 PHASE 5 ALLOCATION**  
-**PER-SCENARIO READINESS GATE:** **MANDATORY**  
+**LOCKED L3 PARENTS READY:** **1,084 / 1,084**  
 **L4 SPECIFICATION LOCK:** **NOT AUTHORIZED**  
 **FINAL L4 CORPUS LOCK:** **NOT AUTHORIZED**  
 **STATUS:** **LOCKED — ACTIVE**

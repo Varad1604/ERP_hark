@@ -2,9 +2,9 @@
 
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Repository Area:** `architecture/L3_Business_Scenario_Architecture`  
-**Status:** Phase 1 Final / Frozen; Phase 2 Final / Closed; Phase 3 Locked / Complete; Phase 4 Complete  
-**Current Phase:** Phase 5 — Parallel Authoring and Continuous Verification  
-**Current Gate:** Broad parallel authoring authorized  
+**Status:** Final Canonical Corpus Locked  
+**Current Phase:** Phase 5 Complete — Final Corpus Locked  
+**Current Gate:** Final L3 Corpus Locked — L4 Mass Authoring Enabled  
 **Canonical Scenario Count:** 1,084  
 **Final L3 IDs Assigned:** 1,084  
 **Phase 5 Exact Human Allocation:** Locked  
@@ -289,23 +289,16 @@ Detailed Phase 5 human allocation: Locked — 1,084 scenarios
 Exact Phase 5 filenames: Locked in operating guide Section 8
 Permanent section-oriented placement: Approved
 Broad parallel authoring: Authorized
-Continuous architecture review: Required
-Final L3 repository lock: Pending completion and validation
+Final corpus validation: Completed
+Final L3 repository lock: LOCKED — 1,084 / 1,084
 ```
 
 ---
 
 ## 12. Current Authorized Activity
 
-The current authorized activity is **broad parallel L3 scenario authoring and continuous verification** under the locked v2.0 template, frozen Phase 4 canonical semantics, Phase 5 exact allocation and filename table, and permanent section-oriented placement standard.
+The canonical L3 corpus is final and Locked under `05_Phase5_Parallel_Authoring_and_Verification/L3_Final_Corpus_Lock_Decision_1084_2026-08-29.md`.
 
-Authors shall:
+All **1,084 / 1,084** canonical L3 scenarios are approved and frozen for downstream architectural use. Ordinary L3 authoring is closed. Any future change to a Locked scenario requires controlled architecture change governance.
 
-1. author only their assigned final IDs;
-2. use exact filenames from Phase 5 operating guide Section 8;
-3. read the applicable authoritative L2 documents for every scenario;
-4. preserve frozen Type and Priority unchanged;
-5. create the scenario as `Draft`;
-6. perform self-review and continuous architecture review;
-7. escalate upstream ambiguity instead of silently resolving it;
-8. complete repository-wide L3 validation before final L3 locking.
+The active downstream activity is mass L4 authoring across all 1,084 Locked L3 parents under the current L4 full-corpus authorization.

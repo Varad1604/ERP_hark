@@ -1,7 +1,7 @@
 # SutraERP L3 Full-Corpus Final Lock and L4 Readiness Audit — 2026-08-29
 
 **Version:** 1.0.0  
-**Status:** Review  
+**Status:** Deprecated  
 **Owner:** Lead Architect  
 **Architectural Level:** L3 — Business Scenario Architecture Governance  
 **Scope:** Canonical L3 corpus and downstream L4 readiness  
@@ -9,6 +9,9 @@
 **Audit Date:** 2026-08-29  
 
 ---
+
+> **SUPERSEDED CURRENT-STATE VERDICT — 2026-08-29:** The Lead Architect subsequently confirmed completion of review and explicitly authorized the final Lock of all 1,084 canonical L3 scenarios. Current status is governed by `L3_Final_Corpus_Lock_Decision_1084_2026-08-29.md`. This file remains historical audit evidence only.
+
 
 ## 1. Purpose
 

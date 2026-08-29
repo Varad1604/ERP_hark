@@ -57,8 +57,8 @@ Human author, reviewer, participating domains, complexity and status do not dete
 ## Production Rules
 
 1. The active workload population is the complete **1,084-scenario canonical L3 corpus**, with human assignments inherited from the locked L3 Phase 5 allocation.
-2. Before creating each L4 file, the assigned author must pass the Locked per-scenario parent-readiness gate.
-3. A parent that is not currently `Architecture Approved` or `Locked`, or that otherwise fails readiness, remains assigned but is recorded as `BLOCKED` or `NOT ELIGIBLE — L3 STATUS`; no canonical L4 file is created until resolved.
+2. All 1,084 canonical L3 parents are currently `Locked` and ready for L4 derivation under the final corpus lock decision.
+3. Before creating each L4 file, perform a normal no-drift check. If a later governed change has reopened a specific parent, pause only that affected parent until its successor approved/locked state is established.
 4. Use the Locked `L4_System_Behavior_Specification_Template_v1.0.md`.
 5. Preserve the canonical L3 scenario slug in the filename.
 6. One eligible L3 parent maps to one parent L4 file by default.
@@ -85,7 +85,7 @@ Authoring authorization never grants Architecture Approval or Lock automatically
 **Canonical L3 workload population:** 1,084  
 **L4 human author allocation:** inherited exactly from locked L3 Phase 5 allocation  
 **Static 48-parent production limit:** superseded 2026-08-29  
-**Per-scenario parent-readiness gate:** mandatory  
+**Locked L3 parents ready:** 1,084 / 1,084  
 **Production section folders:** A, B, C, D, E, F, G, H, I, J  
 **Pilot files promoted automatically:** 0
 

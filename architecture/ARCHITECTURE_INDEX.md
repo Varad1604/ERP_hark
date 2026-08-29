@@ -293,14 +293,12 @@ The canonical L3 scenario population is **1,084** across Sections A–J. L3 uses
 architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/
 ```
 
-L3 status is scenario-specific; the corpus is not represented as globally Locked by this index.
+The complete canonical L3 corpus is globally **Locked — 1,084 / 1,084 scenarios** under the final corpus lock decision dated 2026-08-29.
 
-The earlier 48-parent certification wave remains historical readiness evidence. Effective 2026-08-29, L4 workload assignment covers the complete canonical 1,084-scenario L3 population using the exact locked L3 Phase 5 human allocation.
-
-Each assigned parent must still pass the Locked per-scenario L4 parent-readiness gate before a canonical L4 file is created. Parents that fail readiness remain assigned but are classified `BLOCKED` or `NOT ELIGIBLE — L3 STATUS`.
+The earlier 48-parent certification wave remains historical readiness evidence only. Effective 2026-08-29, all 1,084 canonical L3 scenarios are Locked and form the active parent population for full-corpus L4 mass authoring.
 
 **Canonical L3 Population:** 1,084 scenarios  
-**Current L4 workload population:** 1,084 assigned scenarios
+**Current L4 workload population:** 1,084 Locked and ready parent scenarios
 
 ---
 
@@ -320,6 +318,8 @@ Each assigned parent must still pass the Locked per-scenario L4 parent-readiness
 | L4 Parallel Authoring Execution Plan — 48 Parents | Lead Architect | Architecture Approved | Superseded for active execution |
 | L4 Parallel Authoring Authorization — 2026-08-27 | Lead Architect | Locked | Superseded for active execution |
 | L4 Full-Corpus Parent Readiness Certification Workplan | Lead Architect | Architecture Approved | Active per-scenario readiness framework |
+| L3 Final Corpus Lock Decision — 1,084 Scenarios | Lead Architect | Locked | Active upstream parent baseline |
+| L4 Full-Corpus Parent Readiness Baseline — 1,084 Parents | Lead Architect | Locked | Active readiness baseline |
 | L4 Full-Corpus Parallel Authoring Execution Plan — 1,084 Scenarios | Lead Architect | Architecture Approved | Active execution plan |
 | L4 Full-Corpus Parallel Authoring Authorization — 2026-08-29 | Lead Architect | Locked | Active authorization |
 
@@ -408,9 +408,9 @@ Provenance:
 | L1 Business Domains | 10 |
 | L2 Workflow Documents | 107 |
 | L3 Canonical Scenario Population | 1,084 |
-| L3 Scenarios in Active L4 Workload | 1,084 |
+| L3 Scenarios Locked / Active L4 Parents | 1,084 / 1,084 |
 | Historical First-Wave Certified Parents | 48 |
-| L4 Active Execution Scope | Full corpus assignment with per-scenario readiness |
+| L4 Active Execution Scope | Full corpus — 1,084 Locked L3 parents |
 | L4 Pilot Specifications Present | 3 |
 | L5 Solution Architecture Documents Present | 2 |
 | L6 UI/UX Documents Present | 0 |
