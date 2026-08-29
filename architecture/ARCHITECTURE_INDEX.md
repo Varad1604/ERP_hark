@@ -1,4 +1,4 @@
-﻿# SutraERP Architecture Index
+# SutraERP Architecture Index
 
 > **Purpose**
 >
@@ -24,7 +24,7 @@
 | SutraERP L0 Business Vision | Dhruv | Locked |
 | SutraERP L1 Business Domain Architecture | Dhruv | Locked |
 | DEPENDENCY_MAP | Dhruv | Active |
-| Architecture Level Validation Standards | Lead Architect | Active |
+| Architecture Level Validation Standards | Lead Architect | Locked |
 | L2 Domain Workflow Matrix | Dhruv | Active |
 | Architecture Index | Dhruv | Active |
 
@@ -40,7 +40,7 @@
 | L3 | Business Scenario Architecture | Defines independent end-to-end business scenarios that may derive information from one or many L2 workflow documents; L3 numbering is not dependent on L2 numbering. |
 | L4 | System Behavior Specification | Defines expected system behavior for approved business scenarios without implementation design. |
 | L5 | Solution Architecture | Defines engineering solution architecture needed to implement L4 behavior without changing business rules. |
-| L6 | UI / UX Architecture | Defines user interaction, navigation, screens, and user journeys derived from L5 solution architecture without owning business logic. |
+| L6 | UI / UX Architecture | Defines user interaction, navigation, screens and user journeys derived from L5 solution architecture without owning business logic. |
 
 ```text
 L0 -> L1 -> L2 -> L3 -> L4 -> L5 -> L6
@@ -295,17 +295,12 @@ architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_
 
 L3 status is scenario-specific; the corpus is not represented as globally Locked by this index.
 
-Current L4-relevant approved/certified parent evidence includes:
+The earlier 48-parent certification wave remains historical readiness evidence. Effective 2026-08-29, L4 workload assignment covers the complete canonical 1,084-scenario L3 population using the exact locked L3 Phase 5 human allocation.
 
-- `L3-D-007` — Architecture Approved; certified L4 parent.
-- `L3-I-007` — Architecture Approved; certified L4 parent.
-- `L3-I-118` — Architecture Approved; certified L4 parent.
-- 45 independently Architecture Approved G/H remediation scenarios recorded in `L3_Independent_Architecture_Approval_Result_45_Scenarios_2026-08-27.md`.
-
-The 45-scenario approval population comprises Section G (8) and Section H (37). Their separate L4 parent-readiness gate passed 45/45 on 2026-08-27.
+Each assigned parent must still pass the Locked per-scenario L4 parent-readiness gate before a canonical L4 file is created. Parents that fail readiness remain assigned but are classified `BLOCKED` or `NOT ELIGIBLE — L3 STATUS`.
 
 **Canonical L3 Population:** 1,084 scenarios  
-**Current certified L4-parent subset:** 48 scenarios
+**Current L4 workload population:** 1,084 assigned scenarios
 
 ---
 
@@ -313,18 +308,22 @@ The 45-scenario approval population comprises Section G (8) and Section H (37). 
 
 ## Canonical Governance
 
-| Document | Owner | Status |
-|---|---|---|
-| L4 Governance Baseline Lock Decision | Lead Architect | Locked |
-| L4 Governance and Architecture Standard | Lead Architect | Locked |
-| L4 System Behavior Specification Template v1.0 | Lead Architect | Locked |
-| L4 Validation Standard | Lead Architect | Locked |
-| L4 Initial Certified Parent Eligibility Baseline | Lead Architect | Architecture Baseline |
-| L4 Parent-Readiness Validation — 45 Newly Approved Scenarios | Lead Architect | Architecture Approved |
-| L4 Production Parent Baseline — 48 Certified Parents | Lead Architect | Architecture Baseline |
-| L4 Parallel Authoring Execution Plan — 48 Parents | Lead Architect | Architecture Approved |
+| Document | Owner | Status | Execution Relevance |
+|---|---|---|---|
+| L4 Governance Baseline Lock Decision | Lead Architect | Locked | Canonical governance |
+| L4 Governance and Architecture Standard | Lead Architect | Locked | Active |
+| L4 System Behavior Specification Template v1.0 | Lead Architect | Locked | Active |
+| L4 Validation Standard | Lead Architect | Locked | Active |
+| L4 Initial Certified Parent Eligibility Baseline | Lead Architect | Architecture Baseline | Historical readiness evidence |
+| L4 Parent-Readiness Validation — 45 Newly Approved Scenarios | Lead Architect | Architecture Approved | Historical readiness evidence |
+| L4 Production Parent Baseline — 48 Certified Parents | Lead Architect | Architecture Baseline | Historical first-wave evidence |
+| L4 Parallel Authoring Execution Plan — 48 Parents | Lead Architect | Architecture Approved | Superseded for active execution |
+| L4 Parallel Authoring Authorization — 2026-08-27 | Lead Architect | Locked | Superseded for active execution |
+| L4 Full-Corpus Parent Readiness Certification Workplan | Lead Architect | Architecture Approved | Active per-scenario readiness framework |
+| L4 Full-Corpus Parallel Authoring Execution Plan — 1,084 Scenarios | Lead Architect | Architecture Approved | Active execution plan |
+| L4 Full-Corpus Parallel Authoring Authorization — 2026-08-29 | Lead Architect | Locked | Active authorization |
 
-The current first production wave is limited to **48 certified parents**. The remaining 1,036 L3 scenarios are outside this production wave until separately certified or governed.
+Effective 2026-08-29, the active L4 workload covers the complete **1,084-scenario canonical L3 population** using the exact locked L3 Phase 5 human allocation. The former 48-parent wave remains historical decision evidence and no longer constrains active execution.
 
 ## Canonical Production Structure
 
@@ -333,18 +332,24 @@ architecture/L4_System_Behavior_Specification/
 ├── 00_Governance/
 ├── 00_Pilot/          # historical methodology evidence
 └── 01_Production/     # canonical production specifications
+    ├── section-a/
+    ├── section-b/
+    ├── section-c/
     ├── section-d/
+    ├── section-e/
+    ├── section-f/
     ├── section-g/
     ├── section-h/
-    └── section-i/
+    ├── section-i/
+    └── section-j/
 ```
 
-Only sections with certified parents are materialized in the current production wave.
+All A–J production folders are pre-materialized. Folder existence carries no readiness or authoring-completion semantics.
 
-The separate `L4_Parallel_Authoring_Authorization_2026-08-27.md` controls whether broad/parallel production authoring is active. Indexing this production structure does not itself authorize authoring.
+`L4_Full_Corpus_Parallel_Authoring_Authorization_2026-08-29.md` controls active full-corpus authoring. Each assigned parent still requires per-scenario readiness before file creation.
 
-**Certified L4 parent population:** 48  
-**Canonical production L4 specifications authored at time of this index synchronization:** 0  
+**L4 workload population:** 1,084 assigned scenarios  
+**Static 48-parent execution limit:** Superseded 2026-08-29  
 **Pilot specifications retained as historical evidence:** 3
 
 ---
@@ -403,9 +408,9 @@ Provenance:
 | L1 Business Domains | 10 |
 | L2 Workflow Documents | 107 |
 | L3 Canonical Scenario Population | 1,084 |
-| L3 Scenarios Currently Certified as L4 Parents | 48 |
-| L4 Certified Production Parents | 48 |
-| L4 Canonical Production Specifications Present | 0 |
+| L3 Scenarios in Active L4 Workload | 1,084 |
+| Historical First-Wave Certified Parents | 48 |
+| L4 Active Execution Scope | Full corpus assignment with per-scenario readiness |
 | L4 Pilot Specifications Present | 3 |
 | L5 Solution Architecture Documents Present | 2 |
 | L6 UI/UX Documents Present | 0 |
@@ -443,6 +448,10 @@ Provenance:
 
 # Recent Changes
 
+**2026-08-29 — L4 full-corpus execution authorization:** Superseded the 48-parent production-wave limit as the active execution model. L4 now inherits the complete 1,084-scenario locked L3 Phase 5 human allocation, while retaining the mandatory per-scenario parent-readiness gate. All A–J production folders are active repository structure; historical 48-parent records remain decision provenance only.
+
+---
+
 **2026-08-27 — L3/L4 synchronization and L4 production preparation:** Corrected stale placeholder language that previously stated no L3/L4 source architecture existed. Recorded the 1,084-scenario canonical L3 population, the 45 independently Architecture Approved G/H remediation scenarios, the 48 certified L4 parent baseline, Locked L4 governance/template/validation framework, separate `00_Pilot/` and canonical `01_Production/` workspaces, and the controlled 48-parent production-wave execution model. No L1/L2 business architecture was changed by this index synchronization.
 
 ---
@@ -459,7 +468,7 @@ Provenance:
 
 ---
 
-**Last Updated:** 2026-08-27
+**Last Updated:** 2026-08-29
 
 **Repository:** SutraERP
 
