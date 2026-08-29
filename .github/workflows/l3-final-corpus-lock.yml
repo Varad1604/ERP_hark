@@ -19,6 +19,34 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Validate canonical identity uniqueness
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          from collections import defaultdict
+
+          root = Path('architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents')
+          files = sorted(p for p in root.glob('section-*/*.md') if re.match(r'L3-[A-J]-\d{3}_.*\.md$', p.name))
+          by_id = defaultdict(list)
+          for p in files:
+              m = re.match(r'(L3-[A-J]-\d{3})_', p.name)
+              by_id[m.group(1)].append(p)
+
+          duplicates = {k:v for k,v in by_id.items() if len(v) > 1}
+          print(f'L3-shaped files: {len(files)}')
+          print(f'Unique L3 identities: {len(by_id)}')
+          if duplicates:
+              print('DUPLICATE IDENTITIES:')
+              for sid, paths in sorted(duplicates.items()):
+                  print(sid)
+                  for p in paths:
+                      print(f'  {p}')
+          if len(by_id) != 1084:
+              raise SystemExit(f'Expected 1084 unique canonical identities, found {len(by_id)}')
+          if duplicates:
+              raise SystemExit(f'Found {sum(len(v)-1 for v in duplicates.values())} duplicate/noncanonical L3 files; resolve before locking.')
+
       - name: Synchronize all canonical L3 scenario statuses
         shell: python
         run: |
@@ -26,37 +54,24 @@ jobs:
           import re
 
           root = Path('architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents')
-          files = sorted(root.glob('section-*/*.md'))
-          scenario_files = [p for p in files if re.match(r'L3-[A-J]-\d{3}_.*\.md$', p.name)]
-
-          if len(scenario_files) != 1084:
-              raise SystemExit(f'Expected 1084 canonical L3 scenario files, found {len(scenario_files)}')
-
+          scenario_files = sorted(p for p in root.glob('section-*/*.md') if re.match(r'L3-[A-J]-\d{3}_.*\.md$', p.name))
           changed = 0
           failures = []
 
           for path in scenario_files:
               text = path.read_text(encoding='utf-8')
               original = text
-
-              # Canonical metadata form used by the majority of L3 scenario files.
               text, n1 = re.subn(r'(?m)^\*\*Status:\*\*\s*[^\n]+$', '**Status:** Locked  ', text, count=1)
-
-              # Some files reproduce status in the Scenario Metadata table.
-              text, n2 = re.subn(r'(?m)^\| Status \| (?:Draft|Review|Architecture Approved|Architecture Locked|Locked) \|$', '| Status | Locked |', text)
-
+              text, _ = re.subn(r'(?m)^\| Status \| (?:Draft|Review|Architecture Approved|Architecture Locked|Locked) \|$', '| Status | Locked |', text)
               if n1 == 0:
                   failures.append(str(path))
                   continue
-
               if text != original:
                   path.write_text(text, encoding='utf-8')
                   changed += 1
 
           if failures:
               raise SystemExit('Missing canonical **Status:** metadata in:\n' + '\n'.join(failures))
-
-          print(f'Canonical scenario files validated: {len(scenario_files)}')
           print(f'Files changed to Locked: {changed}')
 
       - name: Verify corpus lock
@@ -64,16 +79,18 @@ jobs:
         run: |
           from pathlib import Path
           import re
+          from collections import Counter
 
           root = Path('architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents')
           scenario_files = sorted(p for p in root.glob('section-*/*.md') if re.match(r'L3-[A-J]-\d{3}_.*\.md$', p.name))
+          ids = [re.match(r'(L3-[A-J]-\d{3})_', p.name).group(1) for p in scenario_files]
           unlocked = []
           for path in scenario_files:
               text = path.read_text(encoding='utf-8')
               if not re.search(r'(?m)^\*\*Status:\*\* Locked\s*$', text):
                   unlocked.append(str(path))
-          if len(scenario_files) != 1084 or unlocked:
-              raise SystemExit(f'Lock verification failed: files={len(scenario_files)}, unlocked={len(unlocked)}\n' + '\n'.join(unlocked))
+          if len(scenario_files) != 1084 or len(set(ids)) != 1084 or unlocked:
+              raise SystemExit(f'Lock verification failed: files={len(scenario_files)}, unique_ids={len(set(ids))}, unlocked={len(unlocked)}\n' + '\n'.join(unlocked))
           print('L3 CORPUS LOCK VERIFIED: 1084 / 1084')
 
       - name: Commit synchronized scenario metadata
