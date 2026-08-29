@@ -1,39 +1,45 @@
 # SutraERP L4 Full-Corpus Parent Readiness Certification Workplan — 2026-08-28
 
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Status:** Architecture Approved  
 **Owner:** Lead Architect  
 **Architectural Level:** L4 — System Behavior Specification Governance  
 **Domain:** Cross-domain  
-**Last Updated:** 2026-08-28  
-**Depends On:** `L4_Governance_and_Architecture_Standard.md`; `L4_Validation_Standard.md`; `L4_Production_Parent_Baseline_48_2026-08-27.md`; current `main` L3 scenario corpus  
+**Last Updated:** 2026-08-29  
+**Depends On:** `L4_Governance_and_Architecture_Standard.md`; `L4_Validation_Standard.md`; `L4_Full_Corpus_Parallel_Authoring_Authorization_2026-08-29.md`; current `main` L3 scenario corpus  
 
 ---
 
 ## 1. Purpose
 
-This workplan governs expansion of L4 parent-readiness certification from the existing 48-parent production baseline toward the complete canonical L3 corpus across Sections A–J.
+This workplan governs per-scenario L4 parent-readiness assessment across the complete canonical L3 corpus of 1,084 scenarios in Sections A–J.
 
-It does not itself certify any additional parent and does not supersede the existing 48-parent production authorization.
+The 2026-08-29 full-corpus authorization supersedes the former 48-parent production-wave limit. This workplan therefore no longer requires a parent to be added to the historical 48-parent list before proceeding.
+
+Each assigned scenario is assessed independently at the point of L4 authoring or review.
 
 ## 2. Locked Eligibility Rule
 
-A canonical L3 parent may enter L4 certification only when the current repository file is `Architecture Approved` or `Locked`, the approved version has not materially drifted, no material open issue prevents derivation, upstream ownership/rules/lifecycles/events/authority remain consistent, and sufficient business meaning exists to derive observable implementation-independent system behavior.
+A canonical L3 parent may produce a canonical L4 specification only when the current repository file is `Architecture Approved` or `Locked`, the approved version has not materially drifted, no material open issue prevents derivation, upstream ownership/rules/lifecycles/events/authority remain consistent, and sufficient business meaning exists to derive observable implementation-independent system behavior.
 
-`Draft` and `Review` parents are not eligible for L4 certification.
+`Draft` and `Review` parents are not eligible for canonical L4 file creation.
 
-## 3. Current Main-Branch Mechanical Status Gate
+## 3. Full-Corpus Workload vs Readiness
 
-Current repository search evidence identifies:
+The full **1,084-scenario population is assigned for L4 workload purposes**.
 
-| Current L3 status | Count | L4 status-gate result |
-|---|---:|---|
-| Draft | 617 | Ineligible |
-| Review | 142 | Ineligible |
-| Architecture Approved | 192 | Candidate for readiness validation |
-| Locked | 49 | Candidate for readiness validation |
+Assignment and readiness are separate concepts:
 
-GitHub code search caps broad corpus results at 1,000 results, so the remaining canonical files must be resolved by direct section enumeration rather than inferred from search totals.
+```text
+Assigned L3 parent
+      ↓
+Per-scenario readiness gate
+      ├── PASS → canonical L4 authoring may proceed
+      ├── BLOCKED → retain assignment; escalate upstream conflict
+      └── NOT ELIGIBLE — L3 STATUS → retain assignment; no L4 file yet
+```
+
+A scenario does not leave an author's workload merely because it is temporarily blocked or ineligible.
 
 ## 4. Certification Procedure
 
@@ -41,14 +47,14 @@ For each canonical L3 parent:
 
 1. confirm the exact current canonical file exists in the section folder;
 2. read current status from that file;
-3. reject `Draft` and `Review` from L4 certification without overriding L3 governance;
+3. classify `Draft` and `Review` as `NOT ELIGIBLE — L3 STATUS` without overriding L3 governance;
 4. for `Architecture Approved` or `Locked`, verify no post-approval material drift;
 5. verify no material open issue prevents behavioral derivation;
-6. verify ownership, rules, lifecycle, events, authority, and scenario boundary against authoritative upstream architecture where material;
+6. verify ownership, rules, lifecycle, events, authority and scenario boundary against authoritative upstream architecture where material;
 7. verify sufficient business meaning exists for observable L4 behavioral obligations;
 8. classify the parent as `CERTIFIED`, `BLOCKED`, or `NOT ELIGIBLE — L3 STATUS`;
 9. record evidence and affected scenario identity;
-10. update the production-parent baseline only through a separate governed decision after the certification register is complete.
+10. if `CERTIFIED`, canonical L4 authoring may proceed immediately under `L4_Full_Corpus_Parallel_Authoring_Authorization_2026-08-29.md` without a separate amendment to the historical 48-parent baseline.
 
 ## 5. Repository Boundary
 
@@ -57,17 +63,34 @@ This workplan shall not:
 - mass-promote Draft or Review L3 scenarios;
 - manufacture Architecture Approval without independent review evidence;
 - silently repair upstream L3/L2 conflicts;
-- authorize L4 authoring outside a certified baseline;
-- create placeholder canonical L4 specifications for uncertified parents;
-- supersede the current 48-parent authorization merely by intent.
+- create canonical L4 specifications for parents that fail readiness;
+- convert workload assignment into canonical business ownership;
+- waive the Locked L4 hard-fail validation standard.
 
-## 6. Expansion Goal
+## 6. Historical 48-Parent Baseline
 
-The target is full A–J coverage of the 1,084 canonical L3 population, but certification count shall equal the number that actually satisfies the locked parent-readiness gate, not a predetermined quota.
+`L4_Production_Parent_Baseline_48_2026-08-27.md` remains historical decision provenance for the earlier first production-wave approach.
 
-## 7. Decision
+It is **not** the active limiter for full-corpus execution after the 2026-08-29 authorization.
 
-**FULL-CORPUS CERTIFICATION PROGRAM:** AUTHORIZED TO PROCEED  
-**EXISTING 48-PARENT PRODUCTION BASELINE:** REMAINS ACTIVE  
-**ADDITIONAL PARENTS:** NOT AUTHORIZED FOR L4 PRODUCTION UNTIL CERTIFIED AND ADDED BY GOVERNED BASELINE UPDATE  
-**MASS L3 STATUS PROMOTION:** NOT AUTHORIZED BY THIS RECORD
+No new ready parent needs to be inserted into that historical baseline before L4 authoring.
+
+## 7. Expansion / Completion Goal
+
+The target is governed disposition of the complete 1,084-scenario L3 corpus.
+
+Every assigned scenario must eventually resolve to one of:
+
+- `CERTIFIED` and represented by a canonical L4 specification;
+- `BLOCKED` pending upstream resolution; or
+- `NOT ELIGIBLE — L3 STATUS` pending L3 governance progression.
+
+Certification count shall reflect actual readiness, not a predetermined quota.
+
+## 8. Decision
+
+**FULL-CORPUS L4 WORKLOAD:** **1,084 ASSIGNED**  
+**PER-SCENARIO READINESS:** **MANDATORY**  
+**HISTORICAL 48-PARENT LIST AS ACTIVE LIMIT:** **SUPERSEDED**  
+**CERTIFIED PARENT MAY PROCEED DIRECTLY UNDER FULL-CORPUS AUTHORIZATION:** **YES**  
+**MASS L3 STATUS PROMOTION:** **NOT AUTHORIZED**
