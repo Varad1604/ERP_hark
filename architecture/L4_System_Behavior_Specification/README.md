@@ -1,12 +1,12 @@
 # L4 System Behavior Specification
 
-**Version:** 1.1.1  
+**Version:** 1.2.0  
 **Status:** Architecture Baseline  
 **Owner:** Lead Architect  
 **Architectural Level:** L4 — System Behavior Specification  
 **Domain:** Cross-domain  
-**Last Updated:** 2026-08-27  
-**Depends On:** Approved L3 Business Scenario Architecture; Repository Constitution Volume 2 v1.2; L4 Governance and Architecture Standard; L4 Production Parent Baseline 48; L4 Parallel Authoring Authorization 2026-08-27  
+**Last Updated:** 2026-08-29  
+**Depends On:** Approved L3 Business Scenario Architecture; Repository Constitution Volume 2 v1.2; L4 Governance and Architecture Standard; L4 Full-Corpus Parallel Authoring Authorization 2026-08-29  
 **Referenced By:** Future L5 Solution Architecture  
 
 ---
@@ -28,10 +28,12 @@ All new L4 authoring shall use:
 ├── L4_Governance_and_Architecture_Standard.md
 ├── L4_System_Behavior_Specification_Template_v1.0.md
 ├── L4_Validation_Standard.md
-├── L4_Production_Parent_Baseline_48_2026-08-27.md
-├── L4_Parallel_Authoring_Execution_Plan_48_Parents_2026-08-27.md
-└── L4_Parallel_Authoring_Authorization_2026-08-27.md
+├── L4_Full_Corpus_Parent_Readiness_Certification_Workplan_2026-08-28.md
+├── L4_Full_Corpus_Parallel_Authoring_Execution_Plan_1084_Scenarios_2026-08-29.md
+└── L4_Full_Corpus_Parallel_Authoring_Authorization_2026-08-29.md
 ```
+
+The prior 48-parent baseline, execution plan and authorization remain historical decision evidence and are superseded as active execution controls.
 
 The legacy repository-level template `templates/L4_SystemBehavior_Template.md` is **Deprecated** and must not be used for new L4 authoring.
 
@@ -70,29 +72,33 @@ A physical split is permitted only by controlled architecture-review exception. 
 
 ## Parent Readiness
 
-Canonical L4 authoring may begin only from an L3 parent whose current repository file is `Architecture Approved` or `Locked` and which passes the L4 parent-readiness gate.
+The active workload population is the complete **1,084-scenario canonical L3 corpus**, but canonical L4 authoring for each assigned scenario may begin only when that current L3 parent individually passes the Locked parent-readiness gate.
+
+The parent must be `Architecture Approved` or `Locked`, materially current, conflict-free for derivation, and sufficiently complete for observable system behavior.
 
 Historical approval records do not override later material edits or a current `Draft` / `Review` status.
 
-If a material upstream conflict is found, L4 authoring stops and the issue is returned upstream for governed resolution.
+If a parent fails readiness, the scenario remains assigned but is recorded as `BLOCKED` or `NOT ELIGIBLE — L3 STATUS`; L4 does not silently repair it.
 
 ---
 
-## Current Certified Production Baseline
+## Full-Corpus Human Allocation
 
-The active production wave contains **48 certified L3 parents**:
+L4 inherits the exact locked L3 Phase 5 author allocation:
 
-- Section D: 1
-- Section G: 8
-- Section H: 37
-- Section I: 2
+| Team Member | Assigned L4 Workload |
+|---|---:|
+| Dhruv | 250 |
+| Pallav | 337 |
+| Varad | 337 |
+| Chetan | 80 |
+| Devang | 80 |
+| **Total** | **1,084** |
 
-The remaining 1,036 canonical L3 scenarios are outside this production wave until separate parent-readiness certification or governed disposition adds them.
-
-Authoritative baseline:
+Exact ranges are governed by:
 
 ```text
-00_Governance/L4_Production_Parent_Baseline_48_2026-08-27.md
+00_Governance/L4_Full_Corpus_Parallel_Authoring_Execution_Plan_1084_Scenarios_2026-08-29.md
 ```
 
 ---
@@ -103,56 +109,56 @@ Canonical production files belong under:
 
 ```text
 01_Production/
+├── section-a/
+├── section-b/
+├── section-c/
 ├── section-d/
+├── section-e/
+├── section-f/
 ├── section-g/
 ├── section-h/
-└── section-i/
+├── section-i/
+└── section-j/
 ```
 
-The controlled pilot completed on 2026-08-26 and remains under:
-
-```text
-00_Pilot/
-```
-
-Pilot files are historical/provisional methodology evidence. They are not canonical production specifications and are not automatically promoted.
-
-For the three pilot-derived parents (`D-007`, `I-007`, `I-118`), canonical production files must be authored fresh from the current approved L3 parents using the Locked L4 template and validation standard.
+The controlled pilot remains under `00_Pilot/` as historical/provisional methodology evidence and is not automatically promoted.
 
 ---
 
 ## Parallel Execution Controls
 
-**Broad/parallel canonical L4 production authoring is active for the 48-parent wave.**
+**Broad/parallel canonical L4 production authoring is active for the full 1,084-scenario workload.**
 
 Execution controls:
 
-- 10 controlled batches;
-- maximum batch size of 5 parents;
-- maximum 4 simultaneously active authoring batches;
-- distinct assigned author and reviewer per batch;
-- Dhruv / Lead Architect reserved for final Architecture Approval;
-- continuous file-level review plus cross-batch consistency checks after every two completed batches;
-- no self-lock and no L4 Lock authorization during the authoring wave.
+- exact human assignment inherited from locked L3 Phase 5 allocation;
+- all five assigned authors may work in parallel;
+- per-scenario parent readiness is mandatory before file creation;
+- one parent ID has one active primary author;
+- independent review is required before Architecture Approval;
+- no self-approval or self-lock;
+- Dhruv / Lead Architect is the default final Architecture Approver for files authored by other team members;
+- Dhruv-authored files require independent final-approval delegation or separate governance decision;
+- final L4 Lock remains separately governed.
 
 Execution authority is governed by:
 
 ```text
-00_Governance/L4_Parallel_Authoring_Execution_Plan_48_Parents_2026-08-27.md
-00_Governance/L4_Parallel_Authoring_Authorization_2026-08-27.md
+00_Governance/L4_Full_Corpus_Parallel_Authoring_Execution_Plan_1084_Scenarios_2026-08-29.md
+00_Governance/L4_Full_Corpus_Parallel_Authoring_Authorization_2026-08-29.md
 ```
-
-No parent outside the certified 48 is included in this authorization.
 
 ---
 
 ## Authoring Flow
 
 ```text
-Certified L3 Parent
+Assigned L3 Parent
       ↓
-Parent Readiness Gate
+Per-Scenario Parent Readiness Gate
       ↓
+Eligible? ── No → BLOCKED / NOT ELIGIBLE — L3 STATUS
+      ↓ Yes
 L4 Draft using canonical template
       ↓
 BH-level author self-review
@@ -173,11 +179,11 @@ Later explicit Lock authorization
 ## Repository State
 
 **Canonical L4 governance:** Locked  
-**Certified production parents:** 48  
-**Canonical production workspace:** Established  
+**Canonical L3 workload population:** 1,084  
+**Static 48-parent production limit:** Superseded 2026-08-29  
+**Canonical production workspace:** A–J established  
 **Pilot workspace:** Historical / separate  
-**Broad/parallel authoring:** **AUTHORIZED / ACTIVE FOR 48 PARENTS**  
-**Production L4 specifications authored as part of governance preparation:** 0  
+**Broad/parallel authoring:** **AUTHORIZED / ACTIVE FOR FULL CORPUS ASSIGNMENT**  
 **L4 specification Lock:** Not authorized  
 **Final L4 corpus Lock:** Not authorized
 
