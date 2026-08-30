@@ -1,0 +1,67 @@
+name: Cleanup obsolete branches
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cleanup-obsolete-branches.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Delete obsolete remote branches
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          keep_re='^(main|dhruv|pallav)$'
+
+          git fetch --prune origin '+refs/heads/*:refs/remotes/origin/*'
+
+          mapfile -t branches < <(
+            git for-each-ref --format='%(refname:strip=3)' refs/remotes/origin \
+              | grep -v '^HEAD$' \
+              | sort -u
+          )
+
+          echo 'Remote branches before cleanup:'
+          printf ' - %s\n' "${branches[@]}"
+
+          for branch in "${branches[@]}"; do
+            if [[ "$branch" =~ $keep_re ]]; then
+              echo "KEEP: $branch"
+            else
+              echo "DELETE: $branch"
+              git push origin --delete "$branch"
+            fi
+          done
+
+          git fetch --prune origin
+
+          mapfile -t remaining < <(
+            git for-each-ref --format='%(refname:strip=3)' refs/remotes/origin \
+              | grep -v '^HEAD$' \
+              | sort -u
+          )
+
+          echo 'Remote branches after cleanup:'
+          printf ' - %s\n' "${remaining[@]}"
+
+          expected=$'dhruv\nmain\npallav'
+          actual=$(printf '%s\n' "${remaining[@]}" | sort)
+
+          if [[ "$actual" != "$expected" ]]; then
+            echo 'Unexpected branch set remains.' >&2
+            exit 1
+          fi
+
+          echo 'Branch cleanup verified: only main, dhruv, and pallav remain.'
