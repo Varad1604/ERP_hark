@@ -54,22 +54,22 @@ The L4 filename preserves the canonical L3 scenario slug.
 
 ---
 
-## 3. Parent Readiness — Per-Scenario Gate
+## 3. Parent Readiness — Locked Full-Corpus Baseline
 
 The prior static 48-parent certification list is no longer the active execution limiter.
 
-For each assigned scenario, the author shall apply the Locked L4 parent-readiness gate immediately before canonical L4 authoring.
+Under `L4_Full_Corpus_Parent_Readiness_Baseline_1084_2026-08-29.md`, **all 1,084 / 1,084 canonical L3 parents are currently `Locked` and ready for L4 derivation**.
 
-A parent may proceed to a canonical L4 file only when its current L3 file:
+Before creating each L4 file, the assigned author performs the normal no-drift check:
 
-- is `Architecture Approved` or `Locked`;
-- has not materially drifted after approval;
-- has no material unresolved ownership, rule, lifecycle, event, authority or boundary conflict;
-- contains enough business meaning to derive observable implementation-independent system behavior.
+- the current canonical L3 file still exists at its governed path;
+- the parent remains `Locked`;
+- no later governed change has reopened or superseded the parent;
+- no post-lock material change invalidates the approved parent version.
 
-If the gate fails, that assigned scenario remains part of the author's workload but is classified `BLOCKED` or `NOT ELIGIBLE — L3 STATUS`; no canonical L4 file is created until the upstream condition is resolved.
+Under the current baseline, every assigned parent may proceed to canonical L4 Draft authoring after that no-drift check. No separate 48-parent certification or baseline amendment is required.
 
-No separate amendment to a 48-parent list is required for a parent that independently passes this per-scenario readiness gate under the full-corpus authorization.
+If a future governed change reopens a specific Locked L3 parent, pause only that affected parent until its successor approved/locked state is established. Unaffected parents remain authorable.
 
 ---
 
@@ -136,20 +136,22 @@ No author or reviewer may self-lock a file.
 - Do not duplicate a cross-domain parent into multiple section folders.
 - Do not store prompts, scratch notes, extracts or review copies in `01_Production/`.
 - Do not modify L1/L2/L3 as part of ordinary L4 authoring without separate upstream authorization.
-- Do not create a canonical L4 file for a parent that fails the current per-scenario readiness gate.
+- Perform the normal no-drift check before authoring; if a later governed change reopens a parent, pause only that affected parent.
 - Pilot files remain historical methodology evidence only.
 
 ---
 
 ## 8. Completion Model
 
-The full-corpus L4 workload is complete only when every one of the 1,084 canonical L3 IDs has one governed disposition:
+The full-corpus L4 workload is complete when all **1,084 canonical L3 parent identities** have canonical L4 specifications authored and independently reviewed, except where a later explicit governed decision reopens or changes a specific parent before completion.
 
-- canonical L4 specification authored and reviewed; or
-- explicitly `BLOCKED`; or
-- explicitly `NOT ELIGIBLE — L3 STATUS` pending upstream governance.
+Current baseline disposition:
 
-Final corpus Lock remains a separate future governance decision.
+- Locked / ready L3 parents: **1,084 / 1,084**;
+- currently blocked by L3 status: **0**;
+- currently excluded by the historical 48-parent baseline: **0**.
+
+Final L4 corpus Lock remains a separate future governance decision.
 
 ---
 
@@ -169,7 +171,8 @@ Those records remain historical evidence and are not deleted.
 **FULL-CORPUS L4 WORKLOAD:** **1,084 / 1,084 ASSIGNED**  
 **HUMAN AUTHOR ALLOCATION:** **INHERITED FROM LOCKED L3 PHASE 5 ALLOCATION**  
 **STATIC 48-PARENT EXECUTION LIMIT:** **SUPERSEDED**  
-**PER-SCENARIO PARENT READINESS:** **MANDATORY**  
+**LOCKED L3 PARENTS READY:** **1,084 / 1,084**  
+**NO-DRIFT CHECK BEFORE AUTHORING:** **MANDATORY**  
 **PARALLEL AUTHORS:** **Dhruv, Pallav, Varad, Chetan, Devang**  
 **SELF-APPROVAL / SELF-LOCK:** **PROHIBITED**  
 **FINAL L4 CORPUS LOCK:** **NOT AUTHORIZED**

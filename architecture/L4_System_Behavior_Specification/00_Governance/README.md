@@ -17,7 +17,7 @@ Use these documents for current work:
 3. `L4_Governance_and_Architecture_Standard.md` — Locked L4 architecture boundary and BH rules.
 4. `L4_System_Behavior_Specification_Template_v1.0.md` — Locked canonical authoring template.
 5. `L4_Validation_Standard.md` — Locked parent-readiness and hard-fail validation standard.
-6. `L4_Full_Corpus_Parent_Readiness_Certification_Workplan_2026-08-28.md` — per-scenario readiness procedure.
+6. `L4_Full_Corpus_Parent_Readiness_Baseline_1084_2026-08-29.md` — **Locked active readiness baseline: 1,084 / 1,084 ready**.
 7. `../01_Production/README.md` — canonical production placement and workflow.
 
 ## Current Scope Rule
@@ -46,6 +46,7 @@ The following documents remain in the repository only as architecture-decision p
 - `L4_Initial_Certified_Parent_Eligibility_Baseline_2026-08-27.md`
 - `L4_Parent_Readiness_Validation_45_Newly_Approved_Scenarios_2026-08-27.md`
 - `L4_Broad_Authoring_Gate_Closure_2026-08-27.md`
+- `L4_Full_Corpus_Parent_Readiness_Certification_Workplan_2026-08-28.md` — completed readiness program; retained as method/history
 
 These files are not deleted because they preserve decision history. Their earlier scope statements are superseded for active execution by the Locked 2026-08-29 full-corpus authorization.
 

@@ -1,5 +1,16 @@
 # SutraERP L4 Production Parent Baseline — 48 Certified Parents — 2026-08-27
 
+
+> **HISTORICAL / SUPERSEDED FOR ACTIVE EXECUTION — 2026-08-29**
+>
+> This record preserves the earlier controlled 48-parent production-wave decision. It **must not be used as current authoring scope**.
+>
+> Current active authority: `L4_Full_Corpus_Parallel_Authoring_Authorization_2026-08-29.md` and `L4_Full_Corpus_Parallel_Authoring_Execution_Plan_1084_Scenarios_2026-08-29.md`.
+>
+> Current parent baseline: **1,084 / 1,084 canonical L3 scenarios are Locked and ready for L4 mass authoring** under `L4_Full_Corpus_Parent_Readiness_Baseline_1084_2026-08-29.md`.
+>
+> The original content below remains unchanged as architecture-decision provenance.
+
 **Version:** 1.0.0  
 **Status:** Architecture Baseline  
 **Owner:** Lead Architect  

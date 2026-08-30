@@ -317,7 +317,7 @@ The earlier 48-parent certification wave remains historical readiness evidence o
 | L4 Production Parent Baseline — 48 Certified Parents | Lead Architect | Architecture Baseline | Historical first-wave evidence |
 | L4 Parallel Authoring Execution Plan — 48 Parents | Lead Architect | Architecture Approved | Superseded for active execution |
 | L4 Parallel Authoring Authorization — 2026-08-27 | Lead Architect | Locked | Superseded for active execution |
-| L4 Full-Corpus Parent Readiness Certification Workplan | Lead Architect | Architecture Approved | Active per-scenario readiness framework |
+| L4 Full-Corpus Parent Readiness Certification Workplan | Lead Architect | Architecture Approved | Completed readiness program / historical method |
 | L3 Final Corpus Lock Decision — 1,084 Scenarios | Lead Architect | Locked | Active upstream parent baseline |
 | L4 Full-Corpus Parent Readiness Baseline — 1,084 Parents | Lead Architect | Locked | Active readiness baseline |
 | L4 Full-Corpus Parallel Authoring Execution Plan — 1,084 Scenarios | Lead Architect | Architecture Approved | Active execution plan |
@@ -346,7 +346,7 @@ architecture/L4_System_Behavior_Specification/
 
 All A–J production folders are pre-materialized. Folder existence carries no readiness or authoring-completion semantics.
 
-`L4_Full_Corpus_Parallel_Authoring_Authorization_2026-08-29.md` controls active full-corpus authoring. Each assigned parent still requires per-scenario readiness before file creation.
+`L4_Full_Corpus_Parallel_Authoring_Authorization_2026-08-29.md` controls active full-corpus authoring. All 1,084 parents are currently Locked and ready; authors perform the normal no-drift check before file creation.
 
 **L4 workload population:** 1,084 assigned scenarios  
 **Static 48-parent execution limit:** Superseded 2026-08-29  
@@ -448,7 +448,7 @@ Provenance:
 
 # Recent Changes
 
-**2026-08-29 — L4 full-corpus execution authorization:** Superseded the 48-parent production-wave limit as the active execution model. L4 now inherits the complete 1,084-scenario locked L3 Phase 5 human allocation, while retaining the mandatory per-scenario parent-readiness gate. All A–J production folders are active repository structure; historical 48-parent records remain decision provenance only.
+**2026-08-29 — L4 full-corpus execution authorization:** Superseded the 48-parent production-wave limit as the active execution model. L4 now inherits the complete 1,084-scenario locked L3 Phase 5 human allocation, with a Locked readiness baseline of 1,084 / 1,084 and a normal no-drift check before authoring. All A–J production folders are active repository structure; historical 48-parent records remain decision provenance only.
 
 ---
 

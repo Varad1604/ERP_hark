@@ -1,5 +1,12 @@
 # SutraERP L4 All-Section Production Folder Pre-Materialization Decision — 2026-08-28
 
+
+> **CURRENT EXECUTION NOTE — 2026-08-29**
+>
+> The A–J folder pre-materialization decision remains valid. Any statement below retaining a 48-parent authoring limit is **superseded for active execution** by the Locked full-corpus authorization and the 1,084-parent readiness baseline.
+>
+> Current state: **1,084 / 1,084 L3 parents are Locked and ready; the historical 48-parent wave is not an active restriction.**
+
 **Version:** 1.0.0  
 **Status:** Architecture Approved  
 **Owner:** Lead Architect  

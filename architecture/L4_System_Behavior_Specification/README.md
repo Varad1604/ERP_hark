@@ -72,13 +72,11 @@ A physical split is permitted only by controlled architecture-review exception. 
 
 ## Parent Readiness
 
-The active workload population is the complete **1,084-scenario canonical L3 corpus**, but canonical L4 authoring for each assigned scenario may begin only when that current L3 parent individually passes the Locked parent-readiness gate.
+The complete canonical L3 corpus is now the active parent baseline: **1,084 / 1,084 L3 scenarios are `Locked` and ready for L4 derivation** under `00_Governance/L4_Full_Corpus_Parent_Readiness_Baseline_1084_2026-08-29.md`.
 
-The parent must be `Architecture Approved` or `Locked`, materially current, conflict-free for derivation, and sufficiently complete for observable system behavior.
+Before authoring each assigned L4 file, perform only the normal no-drift check required by Locked governance: confirm the parent is still the current Locked canonical file and has not been reopened or materially superseded by a later governed change.
 
-Historical approval records do not override later material edits or a current `Draft` / `Review` status.
-
-If a parent fails readiness, the scenario remains assigned but is recorded as `BLOCKED` or `NOT ELIGIBLE — L3 STATUS`; L4 does not silently repair it.
+No parent requires addition to the historical 48-parent list. If a future change reopens one parent, pause only that affected parent; all unaffected assigned parents remain authorable.
 
 ---
 
@@ -153,12 +151,10 @@ Execution authority is governed by:
 ## Authoring Flow
 
 ```text
-Assigned L3 Parent
+Assigned Locked L3 Parent
       ↓
-Per-Scenario Parent Readiness Gate
+Normal no-drift check
       ↓
-Eligible? ── No → BLOCKED / NOT ELIGIBLE — L3 STATUS
-      ↓ Yes
 L4 Draft using canonical template
       ↓
 BH-level author self-review
@@ -180,6 +176,7 @@ Later explicit Lock authorization
 
 **Canonical L4 governance:** Locked  
 **Canonical L3 workload population:** 1,084  
+**Locked L3 parents ready:** 1,084 / 1,084  
 **Static 48-parent production limit:** Superseded 2026-08-29  
 **Canonical production workspace:** A–J established  
 **Pilot workspace:** Historical / separate  

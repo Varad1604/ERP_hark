@@ -7,7 +7,7 @@
 **Domain:** Cross-domain  
 **Decision Date:** 2026-08-29  
 **Approval Source:** Explicit Lead Architect / repository-authority instruction to skip the prior 48-parent production wave and move directly to the full assigned L3 scenario population  
-**Depends On:** `L4_Full_Corpus_Parallel_Authoring_Execution_Plan_1084_Scenarios_2026-08-29.md`; `L4_Governance_and_Architecture_Standard.md`; `L4_System_Behavior_Specification_Template_v1.0.md`; `L4_Validation_Standard.md`; `L4_Full_Corpus_Parent_Readiness_Certification_Workplan_2026-08-28.md`; `../01_Production/README.md`; `../../L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/L3_Phase5_Authoring_Workload_and_Execution_Report_2026-08-18.md`  
+**Depends On:** `L4_Full_Corpus_Parallel_Authoring_Execution_Plan_1084_Scenarios_2026-08-29.md`; `L4_Governance_and_Architecture_Standard.md`; `L4_System_Behavior_Specification_Template_v1.0.md`; `L4_Validation_Standard.md`; `L4_Full_Corpus_Parent_Readiness_Baseline_1084_2026-08-29.md`; `../01_Production/README.md`; `../../L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/L3_Phase5_Authoring_Workload_and_Execution_Report_2026-08-18.md`  
 **Supersedes For Active Execution:** `L4_Parallel_Authoring_Authorization_2026-08-27.md`; `L4_Parallel_Authoring_Execution_Plan_48_Parents_2026-08-27.md`; static 48-parent production-wave scope  
 
 ---
@@ -54,7 +54,7 @@ No parent requires addition to the historical 48-parent baseline. Before authori
 Assigned authors may:
 
 1. work through all L3 IDs assigned to them in the inherited full-corpus allocation;
-2. create one canonical L4 parent file for each assigned parent that passes readiness;
+2. create one canonical L4 parent file for each assigned Locked parent after the normal no-drift check;
 3. use the Locked L4 template and concise BH model;
 4. self-review and move a passing file `Draft → Review`;
 5. submit the file for independent review;

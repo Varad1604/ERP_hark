@@ -5,7 +5,7 @@
 **Owner:** Lead Architect  
 **Architectural Level:** L4 — System Behavior Specification  
 **Last Updated:** 2026-08-29  
-**Depends On:** `../00_Governance/L4_Full_Corpus_Parallel_Authoring_Authorization_2026-08-29.md`; `../00_Governance/L4_Full_Corpus_Parallel_Authoring_Execution_Plan_1084_Scenarios_2026-08-29.md`; `../00_Governance/L4_Full_Corpus_Parent_Readiness_Certification_Workplan_2026-08-28.md`; `../00_Governance/L4_All_Section_Production_Folder_PreMaterialization_Decision_2026-08-28.md`; `../00_Governance/L4_Governance_and_Architecture_Standard.md`; `../00_Governance/L4_System_Behavior_Specification_Template_v1.0.md`; `../00_Governance/L4_Validation_Standard.md`  
+**Depends On:** `../00_Governance/L4_Full_Corpus_Parallel_Authoring_Authorization_2026-08-29.md`; `../00_Governance/L4_Full_Corpus_Parallel_Authoring_Execution_Plan_1084_Scenarios_2026-08-29.md`; `../00_Governance/L4_Full_Corpus_Parent_Readiness_Baseline_1084_2026-08-29.md`; `../00_Governance/L4_All_Section_Production_Folder_PreMaterialization_Decision_2026-08-28.md`; `../00_Governance/L4_Governance_and_Architecture_Standard.md`; `../00_Governance/L4_System_Behavior_Specification_Template_v1.0.md`; `../00_Governance/L4_Validation_Standard.md`  
 
 ---
 
