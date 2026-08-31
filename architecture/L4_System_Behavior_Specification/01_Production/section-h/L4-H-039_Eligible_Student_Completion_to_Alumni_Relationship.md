@@ -10,45 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-039; L2-H06 — Alumni Workflows; applicable Locked Student Lifecycle architecture; H06 lifecycle amendment  
+**Depends On:** L3-H-039; L2-H06 — Alumni Workflows; `L2-C08_Alumni_Relationship_Boundary_Clarification_2026-08-26.md`; `L2-H06_Alumni_Engagement_Lifecycle_Amendment_2026-08-26.md`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall establish the H06 Alumni relationship only from the source-supported eligible Student completion outcome defined by L3-H-039, without H06 changing Student lifecycle truth.
+SutraERP shall establish the H06 Alumni Profile/engagement relationship only after the C08-owned Student-to-Alumni transition completes, preserving the sequential ownership boundary between C08 institutional Alumni identity and H06 engagement.
 
 ## 3. Required Business Context
-Use the parent-defined source Student completion/eligibility fact, Alumni relationship prerequisites, lifecycle, events/contracts and evidence.
+C05 completion/exit facts; C08 transition eligibility/decision/history; canonical Student/Person/qualification references; `AlumniTransitionCompleted` hand-off.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-039-BH-001 | The system shall admit Alumni relationship creation only when the authoritative Student completion/eligibility conditions required by the parent are satisfied. | L3-H-039 §§7–8 |
-| L4-H-039-BH-002 | The system shall enforce only parent-defined Alumni relationship rules and shall not infer or modify Student completion. | L3-H-039 §12 |
-| L4-H-039-BH-003 | The system shall apply only the H06 Alumni relationship lifecycle effects defined by the parent. | L3-H-039 §13 |
-| L4-H-039-BH-004 | The system shall expose the Alumni relationship only when L3-H-039 completion conditions are satisfied. | L3-H-039 §§3,16 |
+| L4-H-039-BH-001 | H06 shall not establish an Alumni Profile before C08 has completed the Student-to-Alumni transition and published `AlumniTransitionCompleted`. | L3-H-039 §§7–9,12 |
+| L4-H-039-BH-002 | C05/C08 shall retain ownership of completion/exit, transition eligibility/approval/execution/history, Alumni Persona and the authoritative institutional Student-to-Alumni fact; H06 shall not create or mutate those facts. | L3-H-039 §§5–6,12 |
+| L4-H-039-BH-003 | After consuming `AlumniTransitionCompleted`, H06 shall create the separate Alumni Profile and governed post-transition engagement relationship while referencing Person, Student, qualification and Alumni Persona facts unchanged. | L3-H-039 §§9,12–13 |
+| L4-H-039-BH-004 | H06 Profile suspension/closure shall affect only the engagement relationship and shall not alter the C08 Alumni Persona or transition history. | L3-H-039 §§10–13 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-039-BH-005 | The system shall consume Student completion/identity facts from their canonical owner and shall not duplicate Student lifecycle ownership in H06. | L3-H-039 §§5,14 |
-| L4-H-039-BH-006 | Any parent-required Alumni-transition event or hand-off shall retain its exact canonical identity and publisher/owner. | L3-H-039 §14 |
+| L4-H-039-BH-005 | C08 shall remain publisher of `AlumniTransitionCompleted` and applicable `AlumniRelationshipActivated`; H06 may publish only its own Profile/engagement events after the completed C08 hand-off. | L3-H-039 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-039-BH-007 | Missing or ineligible Student completion evidence shall prevent Alumni relationship establishment and preserve source history. | L3-H-039 §§10–11 |
+Without authoritative upstream transition completion, H06 establishment shall not proceed; upstream correction remains with C05/C08.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-039-BH-008 | The system shall preserve source Student reference/completion evidence, Alumni relationship basis and resulting outcome evidence required by the parent. | L3-H-039 §15 |
+| L4-H-039-BH-006 | The system shall preserve C05 completion/exit facts, C08 transition decision/history/hand-off and H06 Profile/engagement establishment as distinct traceable evidence. | L3-H-039 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-039 §16 is objectively satisfied and Student ownership remains unchanged.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-039-BH-007 | Completion shall require successful C08 transition, C08 publication of `AlumniTransitionCompleted`, subsequent H06 Profile/engagement establishment and no H06 mutation of upstream canonical records. | L3-H-039 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-039 — Eligible Student Completion to Alumni Relationship  
-**Primary verification source:** L2-H06 — Alumni Workflows with applicable Student Lifecycle source architecture.
+**Primary verification source:** Locked C08/H06 boundary and H06 lifecycle amendments.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. L5/L6 design remains deferred.
+The former duplicate-ownership concern is resolved upstream; L4 preserves the sequential boundary.
