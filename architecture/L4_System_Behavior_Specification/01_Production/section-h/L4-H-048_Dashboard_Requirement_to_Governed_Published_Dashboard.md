@@ -10,45 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-048; L2-H07 — Enterprise Dashboard Workflows; `DEPENDENCY_MAP.md`; applicable Locked source-domain architecture  
+**Depends On:** L3-H-048; L2-H07 — Enterprise Dashboard Workflows; `L2-H07_Dashboard_Governance_Lifecycle_Amendment_2026-08-26.md`; A04 authorization  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern a Dashboard requirement through the published dashboard outcome defined by L3-H-048 while keeping H07 a composition/read surface rather than the owner of source KPIs/facts.
+SutraERP shall govern a Dashboard composition requirement to an approved/published or rejected H07 outcome using authoritative source projections without re-owning or recomputing source business facts.
 
 ## 3. Required Business Context
-Use the parent-defined dashboard requirement, source-owned metrics/projections, composition/validation/publication governance, lifecycle, authority and evidence.
+Authorized institutional requirement; authoritative source projections/references; H07 composition metadata; Dashboard Governance Authority; A04 authorization.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-048-BH-001 | The system shall admit a dashboard requirement only when the parent-defined scope, source projections and governance prerequisites are valid. | L3-H-048 §§7–8 |
-| L4-H-048-BH-002 | The system shall compose only parent-approved source-owned facts/metrics and shall not redefine their calculation or ownership. | L3-H-048 §§9,12 |
-| L4-H-048-BH-003 | The system shall apply only the dashboard lifecycle/publication effects defined by the parent. | L3-H-048 §13 |
-| L4-H-048-BH-004 | The system shall expose the dashboard as published only when L3-H-048 completion conditions are satisfied. | L3-H-048 §§3,16 |
+| L4-H-048-BH-001 | On an authorized Dashboard requirement, H07 shall create the Dashboard in `Draft`, configure composition only from authoritative source projections/references and validate composition, source references and governance before approval. | L3-H-048 §§8–9,12 |
+| L4-H-048-BH-002 | Dashboard lifecycle shall follow `Draft → Under Review → Approved → Published`, with `Under Review → Rejected`; rejected records remain historical and revision requires a successor Draft version. | L3-H-048 §§9–13 |
+| L4-H-048-BH-003 | Dashboard Governance Authority shall own approval/rejection/publication; source KPI/business facts shall remain defined, computed and owned by their source domains. | L3-H-048 §§12,15 |
+| L4-H-048-BH-004 | Failed authorization, invalid source references or failed governance review shall prevent publication and shall not be repaired by changing source facts in H07. | L3-H-048 §11 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-048-BH-005 | The system shall consume source metrics/projections from their canonical owners and shall not make H07 a competing source of record. | L3-H-048 §§5,14 |
-| L4-H-048-BH-006 | Any parent-required dashboard event or hand-off shall retain its exact identity and publisher/owner. | L3-H-048 §14 |
+| L4-H-048-BH-005 | H07 shall publish `DashboardApproved`, `DashboardRejected` and `DashboardPublished` for the corresponding lifecycle facts; source-domain facts remain consumed through governed projections/read contracts. | L3-H-048 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-048-BH-007 | Missing or invalid source projections/governance conditions shall prevent unsupported dashboard publication and preserve the last valid dashboard position. | L3-H-048 §§10–11 |
+Rejected or unpublishable Dashboards preserve evidence; later retirement/restoration belongs to the separate H07 lifecycle path.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-048-BH-008 | The system shall preserve dashboard requirement, source references, composition/publication decision and resulting evidence required by the parent. | L3-H-048 §15 |
+| L4-H-048-BH-006 | The system shall preserve requirement, source references, authorization, review, decision, version and publication history. | L3-H-048 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-048 §16 is objectively satisfied and source ownership remains unchanged.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-048-BH-007 | Completion shall require `Published` or `Rejected` under H07 governance with complete evidence, unchanged source business facts/KPI definitions and preserved ownership. | L3-H-048 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-048 — Dashboard Requirement to Governed Published Dashboard  
-**Primary verification source:** L2-H07 — Enterprise Dashboard Workflows plus `DEPENDENCY_MAP.md`.
+**Primary verification source:** Locked H07 Dashboard Governance amendment.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. Dashboard UI/rendering and implementation details remain deferred.
+Former Dashboard rejection/authority/event gaps are resolved upstream.
