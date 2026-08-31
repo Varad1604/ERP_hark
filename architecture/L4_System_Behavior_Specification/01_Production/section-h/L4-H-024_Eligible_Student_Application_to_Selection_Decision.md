@@ -10,45 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-024; L2-H04 — Placement Workflows; applicable Locked Student Lifecycle/Academic/source-domain architecture  
+**Depends On:** L3-H-024; L2-H04 — Placement Workflows; applicable C/D/I source facts  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern an eligible Student application through the Placement selection decision defined by L3-H-024 while preserving Student facts under their canonical owner.
+SutraERP shall govern one Student's application to one published Placement Position through eligibility, screening and mandatory recruitment to an authoritative Placement `Selected` or `Eliminated` outcome.
 
 ## 3. Required Business Context
-Use the parent-defined Student eligibility/reference, opportunity/application context, selection constraints/authority, lifecycle, events/contracts and evidence.
+Published Position; open registration; active Student; published eligibility rules; recruitment workflow; authoritative academic facts from their canonical owners.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-024-BH-001 | The system shall admit an application only when the parent-defined Student and opportunity eligibility conditions are satisfied. | L3-H-024 §§7–8 |
-| L4-H-024-BH-002 | The system shall enforce the parent-defined application and selection constraints without re-owning Student eligibility facts. | L3-H-024 §12 |
-| L4-H-024-BH-003 | The system shall apply only the application/selection lifecycle effects defined by the parent. | L3-H-024 §13 |
-| L4-H-024-BH-004 | The system shall expose a selection decision only when L3-H-024 completion conditions are satisfied. | L3-H-024 §§3,16 |
+| L4-H-024-BH-001 | On a Student application to an active Placement opportunity, the system shall create one CandidateApplication for exactly one Student and one Position and validate mandatory eligibility using authoritative source facts. | L3-H-024 §§7–9,12 |
+| L4-H-024-BH-002 | Ineligible applications shall not progress; every eligible candidate shall undergo H04 screening, and mandatory recruitment stages shall execute sequentially without being skipped. | L3-H-024 §§9–12 |
+| L4-H-024-BH-003 | CandidateApplication shall progress from `Registered` through H04 eligibility/screening/shortlisting/recruitment positions to `Selected` or `Eliminated`; incomplete evaluation shall prevent advancement. | L3-H-024 §§9–13 |
+| L4-H-024-BH-004 | An `Eliminated` candidate shall return only through authorized H04 reconsideration/reinstatement with prior history preserved. | L3-H-024 §§10–13 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-024-BH-005 | The system shall consume Student/academic facts only from their canonical owners and shall not copy their lifecycle ownership into Placement. | L3-H-024 §§5,14 |
-| L4-H-024-BH-006 | Any parent-required application/selection event or hand-off shall retain its exact identity and publisher/owner. | L3-H-024 §14 |
+| L4-H-024-BH-005 | Placement shall publish the applicable H04 events from `CandidateRegistrationInitiated`/`CandidateApplicationCreated` through screening, shortlist, recruitment and final `CandidateSelected` or `CandidateEliminated`; official examination-result ownership remains with Section I, not D. | L3-H-024 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-024-BH-007 | Ineligible or invalid applications shall not progress to an unsupported selection outcome and shall follow only parent-supported rejection/continuation. | L3-H-024 §§10–11 |
+Unavailable authoritative academic facts prevent guessed eligibility; conflicting selection input remains under governed Placement review without rewriting completed stages.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-024-BH-008 | The system shall preserve Student/application references, eligibility basis, selection authority/decision and final outcome evidence required by the parent. | L3-H-024 §15 |
+| L4-H-024-BH-006 | The system shall preserve Student/Position references, source evidence used, eligibility/policy results, screening/ranking, shortlist approval/publication, recruitment evaluations, employer selection input and final candidate outcome. | L3-H-024 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-024 §16 is objectively satisfied.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-024-BH-007 | Completion shall require completed mandatory eligibility/recruitment activity, recorded `Selected` or `Eliminated`, auditable decision history and unchanged source-domain fact ownership. | L3-H-024 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-024 — Eligible Student Application to Selection Decision  
-**Primary verification source:** L2-H04 — Placement Workflows.
+**Primary verification source:** L2-H04 — Placement Workflows; `DEPENDENCY_MAP.md` for official result ownership.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. L5/L6 design remains deferred.
+The parent records stale H04 examination-result dependency wording and no canonical employer-feedback event; neither is repaired in L4.

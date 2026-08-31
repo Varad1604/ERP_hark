@@ -10,45 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-025; L2-H04 — Placement Workflows; applicable Locked Student/source-domain architecture  
+**Depends On:** L3-H-025; L2-H04 — Placement Workflows; `L2-H04_Placement_Lifecycle_Completion_Amendment_2026-08-26.md`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern a selected Placement candidate through the offer and joining outcome approved by L3-H-025 without changing Student lifecycle ownership.
+SutraERP shall govern a selected candidate through PlacementOffer response and, where accepted, verified JoiningConfirmation before declaring Placement completion.
 
 ## 3. Required Business Context
-Use the parent-defined selected-candidate reference, offer/joining context, decisions, Placement lifecycle, events/contracts and evidence.
+Candidate `Selected`; completed recruitment; hiring capacity where applicable; offer terms/validity; Student response; employer/joining evidence.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-025-BH-001 | The system shall admit offer/joining progression only for a parent-valid selected candidate and required governing context. | L3-H-025 §§7–8 |
-| L4-H-025-BH-002 | The system shall enforce only parent-defined offer and joining constraints. | L3-H-025 §12 |
-| L4-H-025-BH-003 | The system shall apply only the exact Placement offer/joining lifecycle effects defined by the parent. | L3-H-025 §13 |
-| L4-H-025-BH-004 | The system shall expose the final offer/joining outcome only under L3-H-025 completion conditions. | L3-H-025 §§3,16 |
+| L4-H-025-BH-001 | Only a `Selected` candidate with complete required recruitment may receive a PlacementOffer; offer details and validity shall validate before publication. | L3-H-025 §§7–9,12 |
+| L4-H-025-BH-002 | A published PlacementOffer shall reach one governed response outcome: `Accepted`, `Rejected`, `Withdrawn` or `Expired`; an expired offer shall no longer be actionable. | L3-H-025 §§9–13 |
+| L4-H-025-BH-003 | `Accepted` shall not itself prove joining; JoiningConfirmation shall remain a separate lifecycle and shall require Student/employer confirmation and verified joining evidence. | L3-H-025 §§9,12–13 |
+| L4-H-025-BH-004 | `PlacementCompleted` shall occur only after the applicable joining evidence is verified; employer withdrawal before joining may reopen candidate eligibility only where H04 policy permits. | L3-H-025 §§9–12,16 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-025-BH-005 | The system shall preserve canonical Student/source facts outside Placement while recording only H04-owned outcome facts. | L3-H-025 §§5,14 |
-| L4-H-025-BH-006 | Any parent-required offer/joining event or hand-off shall retain its exact canonical identity and publisher/owner. | L3-H-025 §14 |
+| L4-H-025-BH-005 | Placement shall publish its exact offer/withdrawal/joining events, including `PlacementOfferExpired` when validity lapses and `PlacementCompleted` only after verified joining. | L3-H-025 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-025-BH-007 | Declined, withdrawn, invalid or incomplete offer/joining conditions shall follow only the parent-supported outcome and shall not fabricate joining completion. | L3-H-025 §§10–11 |
+Invalid offer details prevent publication; expired offers cannot later be newly accepted; missing joining evidence prevents Placement completion.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-025-BH-008 | The system shall preserve selected-candidate, offer decision, joining confirmation and final outcome evidence required by the parent. | L3-H-025 §15 |
+| L4-H-025-BH-006 | The system shall preserve offer terms/validity, publication, Student response, expiry/withdrawal reason, reopened eligibility where permitted, joining confirmations, verification and completion evidence. | L3-H-025 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-025 §16 is objectively satisfied.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-025-BH-007 | Completion shall require one authoritative offer response outcome or, for `Accepted`, verified joining through the governed Placement-completion outcome, with immutable offer/joining history. | L3-H-025 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-025 — Selected Candidate to Offer and Joining Outcome  
-**Primary verification source:** L2-H04 — Placement Workflows.
+**Primary verification source:** Locked H04 lifecycle-completion amendment.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. L5/L6 design remains deferred.
+The prior offer-expiry gap is resolved upstream; no new authority or state is introduced.
