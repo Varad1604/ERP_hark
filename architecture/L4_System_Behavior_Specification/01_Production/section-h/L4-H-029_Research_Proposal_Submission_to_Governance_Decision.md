@@ -10,45 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-029; L2-H05 — Research Workflows; applicable Locked H05 governance/lifecycle amendments  
+**Depends On:** L3-H-029; L2-H05 — Research Workflows; E03 workforce facts; Finance-owned funding context  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern a Research proposal submission through the source-supported governance decision defined by L3-H-029 without making the system the business approver.
+SutraERP shall govern a complete Research Proposal from submission through review to `Approved`, `Rejected` or `Revision Requested` while consuming workforce/funding facts without re-owning them.
 
 ## 3. Required Business Context
-Use the parent-defined proposal identity/context, submission prerequisites, business authority/decision, lifecycle, events/contracts and evidence.
+Draft complete proposal; Principal Investigator; E03 eligibility; required evidence; configured Research approval workflow and valid submission authority.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-029-BH-001 | The system shall admit a proposal to governance only when the parent-defined submission and entry conditions are satisfied. | L3-H-029 §§7–8 |
-| L4-H-029-BH-002 | The system shall require and record the authoritative governance decision defined by the parent without becoming the decision authority. | L3-H-029 §§9,15 |
-| L4-H-029-BH-003 | The system shall apply only the proposal lifecycle transition associated with the authoritative parent-defined decision. | L3-H-029 §13 |
-| L4-H-029-BH-004 | The system shall expose the governed proposal outcome only when L3-H-029 completion criteria are satisfied. | L3-H-029 §§3,16 |
+| L4-H-029-BH-001 | A proposal shall be admitted from `Draft` only when complete, PI eligibility is authoritative from E03, mandatory evidence exists and the configured Research governance route is available. | L3-H-029 §§7–9 |
+| L4-H-029-BH-002 | Submission shall move `Draft → Submitted`, review shall move `Submitted → Under Review`, and completed required review evidence shall precede any final governance decision. | L3-H-029 §§9,12–13 |
+| L4-H-029-BH-003 | The governed decision shall move `Under Review` to `Approved`, `Rejected` or `Revision Requested`; rejection shall preserve a mandatory reason and revision shall preserve prior immutable submission/review history. | L3-H-029 §§9–13 |
+| L4-H-029-BH-004 | Submitted proposal content shall be read-only except through the governed revision path; Research shall not decide faculty eligibility or Finance-owned funding facts. | L3-H-029 §§5,12 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-029-BH-005 | The system shall preserve source-owned workforce/institutional facts used by the proposal. | L3-H-029 §§5,14 |
-| L4-H-029-BH-006 | Any parent-required proposal/decision event or hand-off shall retain its exact canonical identity and publisher/owner. | L3-H-029 §14 |
+| L4-H-029-BH-005 | Research shall publish `ResearchProposalSubmitted`, `ProposalReviewStarted`, `ResearchProposalReviewed`, `ResearchProposalApproved` and `ResearchProposalRejected` for their corresponding facts. The revision-request event shall retain the parent-documented unresolved naming inconsistency rather than invent a replacement canonical name. | L3-H-029 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-029-BH-007 | Missing prerequisites or a source-supported return/rejection outcome shall prevent unsupported proposal progression and preserve the parent-defined current position. | L3-H-029 §§10–11 |
+Incomplete proposals, unauthorized review evidence or missing required approval conditions shall prevent progression and leave the proposal in its last valid Research state.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-029-BH-008 | The system shall preserve proposal submission, decision authority/reference, rationale/outcome and lifecycle evidence required by the parent. | L3-H-029 §15 |
+| L4-H-029-BH-006 | The system shall preserve submitter/time, reviewer identity, scores/comments, configured decision route, decision authority/time, rejection rationale or revision comments and full state history. | L3-H-029 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-029 §16 is objectively satisfied.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-029-BH-007 | Completion shall require required review and a recorded `Approved`, `Rejected` or `Revision Requested` outcome with immutable evidence; E/F source ownership remains unchanged. | L3-H-029 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-029 — Research Proposal Submission to Governance Decision  
 **Primary verification source:** L2-H05 — Research Workflows.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. Technical workflow/access/UI design remains deferred.
+H05 contains two names for the proposal-revision-request fact. This L4 specification preserves the conflict for upstream reconciliation and does not choose a new canonical name.

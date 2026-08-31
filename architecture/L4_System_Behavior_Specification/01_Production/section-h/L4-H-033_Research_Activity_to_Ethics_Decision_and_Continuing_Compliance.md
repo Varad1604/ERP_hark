@@ -10,45 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-033; L2-H05 — Research Workflows; applicable Locked H05 governance/lifecycle amendments  
+**Depends On:** L3-H-033; L2-H05 — Research Workflows; `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern Research ethics review and continuing-compliance behavior exactly as approved by L3-H-033 without making the system the ethics decision authority.
+SutraERP shall govern Research Ethics submission, review, approval/rejection, revision, renewal, continuing-compliance restriction and closure using only the locked H05 lifecycle and authority model.
 
 ## 3. Required Business Context
-Use the parent-defined Research activity, ethics submission/review authority, decision/conditions, continuing-compliance lifecycle, events and evidence.
+Research activity requiring Ethics oversight; mandatory evidence; committee/reviewer configuration; E03 researcher references; existing approved Ethics record and renewal window where applicable.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-033-BH-001 | The system shall admit ethics review only when the parent-defined Research activity and submission prerequisites are satisfied. | L3-H-033 §§7–8 |
-| L4-H-033-BH-002 | The system shall require and record the authoritative parent-defined ethics decision/conditions without becoming the decision maker. | L3-H-033 §§9,15 |
-| L4-H-033-BH-003 | The system shall apply only the ethics/compliance lifecycle effects defined by the parent. | L3-H-033 §13 |
-| L4-H-033-BH-004 | The system shall expose the approved/rejected/continuing-compliance outcome only under L3-H-033 completion conditions. | L3-H-033 §§3,16 |
+| L4-H-033-BH-001 | Ethics review shall follow `Submitted → Under Review → Approved`, with `Under Review → Revision Required → Submitted` and `Under Review → Rejected` branches. | L3-H-033 §§9–13 |
+| L4-H-033-BH-002 | Governed renewal shall require a valid existing `Approved` decision and configured renewal-window eligibility, create a successor approval version extending validity, preserve predecessor history and shall not introduce a `Renewed` lifecycle state. | L3-H-033 §§7,9–13 |
+| L4-H-033-BH-003 | Continuing-compliance governance may move `Approved → Suspended → Approved`, `Approved / Suspended → Revoked`, or `Approved → Closed` only under the locked H05 conditions; `Revoked` is terminal for that approval record. | L3-H-033 §§9–13 |
+| L4-H-033-BH-004 | Invalid/out-of-window renewal shall not extend validity; suspension, revocation or closure shall preserve all prior review, approval and renewal evidence. | L3-H-033 §§10–12 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-033-BH-005 | The system shall preserve all source-owned participant/institutional facts used by the ethics process. | L3-H-033 §§5,14 |
-| L4-H-033-BH-006 | Any parent-required ethics/compliance event or hand-off shall retain its exact identity and publisher/owner. | L3-H-033 §14 |
+| L4-H-033-BH-005 | Research shall publish `EthicsApprovalRenewed`, `EthicsRevisionRequired`, `EthicsApprovalSuspended`, `EthicsApprovalReinstated`, `EthicsApprovalRevoked` and `EthicsApprovalClosed` for their corresponding facts; existing submission/review/approval/rejection events remain Research-owned. | L3-H-033 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-033-BH-007 | Missing approval, unresolved conditions or a parent-defined adverse outcome shall prevent unsupported Research progression and preserve the governed compliance position. | L3-H-033 §§10–11 |
+Incomplete evidence, unauthorized review or invalid renewal conditions prevent progression. A revoked approval is not locally reopened; future approval requires a new governed submission.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-033-BH-008 | The system shall preserve ethics submission, authority/decision, conditions, continuing-compliance evidence and final governed status required by the parent. | L3-H-033 §15 |
+| L4-H-033-BH-006 | The system shall preserve approval version/validity, renewal request/eligibility, reviewers, conditions, decisions, suspension/reinstatement/revocation/closure rationale and complete immutable history. | L3-H-033 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-033 §16 is objectively satisfied.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-033-BH-007 | Completion shall require the Ethics Approval to reach the applicable governed approved, rejected, renewed-validity, suspended, reinstated, revoked or closed outcome with required evidence preserved and E03 ownership unchanged. | L3-H-033 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-033 — Research Activity to Ethics Decision and Continuing Compliance  
-**Primary verification source:** L2-H05 — Research Workflows.
+**Primary verification source:** Locked H05 governance/lifecycle amendment and base H05 renewal workflow.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. Technical workflow/access/UI design remains deferred.
+Historical blockers were resolved upstream; no parallel renewal state or new authority is introduced.

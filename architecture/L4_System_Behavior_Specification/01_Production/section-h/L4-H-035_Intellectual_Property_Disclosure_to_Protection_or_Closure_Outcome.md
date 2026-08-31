@@ -10,45 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-035; L2-H05 — Research Workflows; applicable Locked H05 governance/lifecycle architecture  
+**Depends On:** L3-H-035; L2-H05 — Research Workflows; `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern an intellectual-property disclosure through only the protection or closure outcome approved by L3-H-035.
+SutraERP shall govern institutional Research IP disclosure and protection workflow to a protected, abandoned, commercialization or closed outcome without creating external legal rights or Finance facts.
 
 ## 3. Required Business Context
-Use the parent-defined disclosure, ownership/eligibility context, review/decision authority, lifecycle, events and evidence.
+Protectable Research result; inventor/project references; disclosure/ownership-policy evidence; Research Director authority; external statutory evidence where applicable.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-035-BH-001 | The system shall admit the disclosure to governance only when parent-defined mandatory information and authority conditions are satisfied. | L3-H-035 §§7–8 |
-| L4-H-035-BH-002 | The system shall require and record the source-supported protection/closure decision without becoming the business decision authority. | L3-H-035 §§9,15 |
-| L4-H-035-BH-003 | The system shall apply only the parent-defined IP disclosure lifecycle effects. | L3-H-035 §13 |
-| L4-H-035-BH-004 | The system shall expose protection or closure only when L3-H-035 completion conditions are satisfied. | L3-H-035 §§3,16 |
+| L4-H-035-BH-001 | Research IP shall follow `Disclosed → Under Review → Protection Approved → Protection In Progress → Protected`, with `Under Review → Rejected` and eligible pre-protection `→ Abandoned` branches. | L3-H-035 §§9–13 |
+| L4-H-035-BH-002 | `Protected` shall be recorded only when authoritative external protection evidence exists; H05 shall not manufacture legal status. | L3-H-035 §§9,11–12 |
+| L4-H-035-BH-003 | Where commercialization applies, `Protected → Commercialization Active → Commercialization Closed`; otherwise `Protected → Closed`; all prior IP history remains immutable. | L3-H-035 §§9–13 |
+| L4-H-035-BH-004 | Research shall govern disclosure/protection metadata only; E03 inventor/workforce and Finance monetary/accounting consequences remain externally owned. | L3-H-035 §§5,12 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-035-BH-005 | The system shall preserve source-owned person, institution and legal/business facts referenced by the disclosure. | L3-H-035 §§5,14 |
-| L4-H-035-BH-006 | Any parent-required IP event or hand-off shall retain its exact identity and publisher/owner. | L3-H-035 §14 |
+| L4-H-035-BH-005 | Research shall publish `ResearchIPDisclosed`, `ResearchIPProtectionApproved`, `ResearchIPProtectionRecorded`, `ResearchIPAbandoned`, `ResearchIPCommercializationActivated` and `ResearchIPClosed` for their corresponding governed facts. | L3-H-035 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-035-BH-007 | Missing evidence or an unsupported decision path shall prevent progression and preserve the last valid disclosure position. | L3-H-035 §§10–11 |
+Invalid inventor/ownership context prevents progression; abandonment/closure preserves prior evidence and does not alter external legal or Finance facts.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-035-BH-008 | The system shall preserve disclosure evidence, decision authority/reference, rationale and final governed outcome required by the parent. | L3-H-035 §15 |
+| L4-H-035-BH-006 | The system shall preserve disclosure, inventors, ownership-policy evaluation, protection decision/evidence, abandonment/commercialization/closure decisions, authority and immutable history. | L3-H-035 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-035 §16 is objectively satisfied.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-035-BH-007 | Completion shall require the Research IP record to reach its governed protection, abandonment, commercialization or closure outcome with all required evidence preserved and no external ownership transfer. | L3-H-035 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-035 — Intellectual Property Disclosure to Protection or Closure Outcome  
-**Primary verification source:** L2-H05 — Research Workflows.
+**Primary verification source:** Locked H05 governance/lifecycle amendment.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. L5/L6 design remains deferred.
+No material upstream issue prevents derivation.

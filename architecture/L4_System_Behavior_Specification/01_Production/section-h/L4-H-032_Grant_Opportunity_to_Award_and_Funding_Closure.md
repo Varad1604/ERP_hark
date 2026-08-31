@@ -10,45 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-032; L2-H05 — Research Workflows; applicable Locked Finance/source-domain architecture; H05 governance amendments  
+**Depends On:** L3-H-032; L2-H05 — Research Workflows; `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md`; Finance reconciliation confirmation where required  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern a Research grant opportunity through award and H05 funding closure while preserving Finance ownership of monetary truth.
+SutraERP shall govern the Research Grant from award through active execution, amendment and closure while Finance remains the sole owner of accounting, payment and reconciliation truth.
 
 ## 3. Required Business Context
-Use the parent-defined grant opportunity/application/award context, funding source facts, H05 lifecycle, Finance confirmations where required, authority, events and evidence.
+Eligible proposal/project and PI; funding scheme/award evidence; Research obligations; sponsor evidence; authoritative Finance confirmation where closure/amendment requires it.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-032-BH-001 | The system shall admit grant progression only when the parent-defined opportunity/application/award prerequisites are satisfied. | L3-H-032 §§7–8 |
-| L4-H-032-BH-002 | The system shall enforce only parent-defined grant/funding governance constraints and shall not create Finance-owned settlement facts. | L3-H-032 §12 |
-| L4-H-032-BH-003 | The system shall apply only the exact H05 grant/funding lifecycle effects defined by the parent. | L3-H-032 §13 |
-| L4-H-032-BH-004 | The system shall expose funding closure only when L3-H-032 completion conditions and required authoritative confirmations are satisfied. | L3-H-032 §§3,16 |
+| L4-H-032-BH-001 | Research shall establish a Grant only from valid award/governance context and move it `Awarded → Active` when Research-side activation conditions are satisfied. | L3-H-032 §§7–9,12–13 |
+| L4-H-032-BH-002 | An amendment shall follow `Active → Amendment Pending → Active` only after applicable Research approval and any required authoritative Finance confirmation. | L3-H-032 §§9–13 |
+| L4-H-032-BH-003 | Closure shall follow `Active → Closure Pending → Closed` only after Research obligations and sponsor evidence are complete and authoritative Finance reconciliation confirmation exists where required. | L3-H-032 §§9–13,16 |
+| L4-H-032-BH-004 | Research shall store only Finance-confirmed reference/status needed by Grant governance and shall not create accounting, budget, payment, posting or reconciliation truth. | L3-H-032 §§5,12 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-032-BH-005 | The system shall consume monetary facts only from Finance and shall keep H05 limited to Research-owned grant/funding context. | L3-H-032 §§5,14 |
-| L4-H-032-BH-006 | Any parent-required grant/funding event or hand-off shall retain its exact identity and publisher/owner. | L3-H-032 §14 |
+| L4-H-032-BH-005 | Research shall publish `ResearchGrantAmendmentRequested`, `ResearchGrantAmendmentApproved`, `ResearchGrantClosureInitiated` and `ResearchGrantClosed`; Finance retains semantic ownership of its own financial events. | L3-H-032 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-032-BH-007 | Missing award/Finance confirmation or other parent-defined invalid condition shall prevent unsupported closure and preserve the last valid H05 position. | L3-H-032 §§10–11 |
+Invalid award/utilization or missing required Research/Finance evidence shall prevent progression; closure remains pending until authoritative conditions are satisfied.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-032-BH-008 | The system shall preserve opportunity/application/award references, Finance-confirmed facts where required, authority and final funding outcome evidence required by the parent. | L3-H-032 §15 |
+| L4-H-032-BH-006 | The system shall preserve application/award, amendment request/decision, Research obligations, Finance confirmation reference, closure decision and immutable Grant history. | L3-H-032 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-032 §16 is objectively satisfied; Finance ownership remains unchanged.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-032-BH-007 | Completion shall require Grant `Closed`, completed Research obligations, applicable sponsor evidence and consumed authoritative Finance reconciliation confirmation where required. | L3-H-032 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-032 — Grant Opportunity to Award and Funding Closure  
-**Primary verification source:** L2-H05 — Research Workflows.
+**Primary verification source:** Locked H05 governance/lifecycle amendment.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. L5/L6 design remains deferred.
+Historical application-event vocabulary differences shall not create a second semantic publisher.

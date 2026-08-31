@@ -10,45 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-034; L2-H05 — Research Workflows; applicable Locked H05 governance/lifecycle architecture  
+**Depends On:** L3-H-034; L2-H05 — Research Workflows; `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern a Research output through the parent-defined publication and archival outcome without redefining source academic, identity or document ownership.
+SutraERP shall govern institutional Research Publication metadata from submission/review through publication, successor correction and archival without acquiring source document or E03 workforce ownership.
 
 ## 3. Required Business Context
-Use the parent-defined Research output, publication/archival eligibility and authority, lifecycle, events/contracts and evidence.
+Verified Research output; valid author/project references; required metadata; duplicate/DOI/source-verification evidence; H05 review authority.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-034-BH-001 | The system shall admit a Research output to governed publication only when all parent-defined prerequisites are satisfied. | L3-H-034 §§7–8 |
-| L4-H-034-BH-002 | The system shall enforce only parent-defined publication and archival constraints. | L3-H-034 §12 |
-| L4-H-034-BH-003 | The system shall apply only the exact output lifecycle effects defined by the parent. | L3-H-034 §13 |
-| L4-H-034-BH-004 | The system shall expose the governed published/archived outcome only when L3-H-034 completion criteria are satisfied. | L3-H-034 §§3,16 |
+| L4-H-034-BH-001 | Research Publication shall follow `Draft → Submitted → Under Review → Approved → Published → Archived`, with `Under Review → Revision Required → Submitted` and `Under Review → Rejected` branches. | L3-H-034 §§9–13 |
+| L4-H-034-BH-002 | Missing metadata, failed review or duplicate/source conflict shall prevent approval/publication; prior review history shall remain immutable. | L3-H-034 §§10–12 |
+| L4-H-034-BH-003 | A material correction after `Published` shall create a successor Publication version; the predecessor shall remain immutable and may become `Superseded` for current-use purposes. | L3-H-034 §§9–13 |
+| L4-H-034-BH-004 | Archival shall preserve historical availability/evidence and shall not transfer source document or workforce ownership into Research. | L3-H-034 §§5,9,12,16 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-034-BH-005 | The system shall preserve source-owned academic/person/document facts and change only H05-owned Research output context. | L3-H-034 §§5,14 |
-| L4-H-034-BH-006 | Any parent-required publication/archival event or hand-off shall retain its exact canonical identity and publisher/owner. | L3-H-034 §14 |
+| L4-H-034-BH-005 | Research shall publish `ResearchPublicationRevisionRequired`, `ResearchPublicationRejected`, `ResearchPublicationPublished`, `ResearchPublicationSuperseded` and `ResearchPublicationArchived` for the corresponding governed facts. | L3-H-034 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-034-BH-007 | Missing eligibility, authority or evidence shall prevent unsupported publication/archival progression and preserve the last valid output position. | L3-H-034 §§10–11 |
+Review failure or incomplete/duplicate metadata leaves the Publication in its last valid state; correction never overwrites a Published predecessor.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-034-BH-008 | The system shall preserve output reference, publication/archival decision basis, authority and final evidence required by the parent. | L3-H-034 §15 |
+| L4-H-034-BH-006 | The system shall preserve submission/review, revision/rejection/approval decisions, publication, successor lineage, supersession and archival history. | L3-H-034 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-034 §16 is objectively satisfied.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-034-BH-007 | Completion shall require the Publication to reach its governed final/current outcome with all review/publication/correction/archival evidence preserved and external source ownership unchanged. | L3-H-034 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-034 — Research Output to Governed Publication and Archival  
-**Primary verification source:** L2-H05 — Research Workflows.
+**Primary verification source:** Locked H05 governance/lifecycle amendment.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. Repository/storage/UI implementation remains deferred.
+No material upstream issue prevents derivation.

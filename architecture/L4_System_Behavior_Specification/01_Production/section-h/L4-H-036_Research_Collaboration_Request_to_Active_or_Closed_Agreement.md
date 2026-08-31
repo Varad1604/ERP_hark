@@ -10,45 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-036; L2-H05 — Research Workflows; applicable Locked H05 governance/lifecycle architecture  
+**Depends On:** L3-H-036; L2-H05 — Research Workflows; `L2-H05_Research_Governance_and_Lifecycle_Amendment_2026-08-26.md`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern a Research collaboration request through the active or closed agreement outcome defined by L3-H-036.
+SutraERP shall govern the institutional Research Collaboration relationship from request/review through approval/activation to rejection, amendment, termination or closure while external agreement, workforce and Finance facts remain externally owned.
 
 ## 3. Required Business Context
-Use the parent-defined collaboration parties/context, approval/activation/closure conditions, authority, lifecycle, events/contracts and evidence.
+Partner/agreement context; due-diligence evidence; participant references; institutional approval requirements; Research Director authority.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-036-BH-001 | The system shall admit collaboration progression only when the parent-defined request and governing prerequisites are satisfied. | L3-H-036 §§7–8 |
-| L4-H-036-BH-002 | The system shall require the authoritative parent-defined decisions/conditions before activation or closure. | L3-H-036 §§9,12,15 |
-| L4-H-036-BH-003 | The system shall apply only the exact agreement lifecycle effects defined by the parent. | L3-H-036 §13 |
-| L4-H-036-BH-004 | The system shall expose an active or closed agreement only under L3-H-036 completion conditions. | L3-H-036 §§3,16 |
+| L4-H-036-BH-001 | Collaboration shall follow `Requested → Under Review → Approved → Active → Closed`, with `Under Review → Rejected`, `Active → Amendment Pending → Active`, and `Active / Amendment Pending → Terminated` branches. | L3-H-036 §§9–13 |
+| L4-H-036-BH-002 | Unverified partner/agreement context shall prevent approval; Research Director shall own the applicable strategic approval/rejection/amendment/termination/closure decision. | L3-H-036 §§6–7,11–12,15 |
+| L4-H-036-BH-003 | Rejected, Closed and Terminated Collaboration records shall remain historical/immutable; a later relationship requires a new governed Collaboration rather than rewriting prior history. | L3-H-036 §§11–13 |
+| L4-H-036-BH-004 | Research shall govern only the Research Collaboration relationship and shall not re-own external legal agreement, E03 workforce or Finance monetary facts. | L3-H-036 §§5,12 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-036-BH-005 | The system shall preserve source-owned party/workforce/institution facts and keep H05 ownership limited to the Research collaboration agreement. | L3-H-036 §§5,14 |
-| L4-H-036-BH-006 | Any parent-required collaboration event or hand-off shall retain its exact canonical identity and publisher/owner. | L3-H-036 §14 |
+| L4-H-036-BH-005 | Research shall publish `ResearchCollaborationRejected`, `ResearchCollaborationActivated`, `ResearchCollaborationAmendmentApproved`, `ResearchCollaborationTerminated` and `ResearchCollaborationClosed` for their corresponding facts. | L3-H-036 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-036-BH-007 | Invalid, unapproved or incomplete collaboration conditions shall prevent unsupported activation/closure and preserve governed history. | L3-H-036 §§10–11 |
+Invalid partner/agreement or approval evidence prevents progression; no rejected/terminated/closed record is silently reopened.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-036-BH-008 | The system shall preserve collaboration request, agreement/authority evidence, lifecycle decisions and final outcome required by the parent. | L3-H-036 §15 |
+| L4-H-036-BH-006 | The system shall preserve partner/agreement references, review, decision authority, amendment history, termination/closure rationale and complete lifecycle history. | L3-H-036 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-036 §16 is objectively satisfied.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-036-BH-007 | Completion shall require the Collaboration to reach `Rejected`, `Active`, `Terminated` or `Closed` under the governed branch with all evidence preserved and external ownership unchanged. | L3-H-036 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-036 — Research Collaboration Request to Active or Closed Agreement  
-**Primary verification source:** L2-H05 — Research Workflows.
+**Primary verification source:** Locked H05 governance/lifecycle amendment.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. L5/L6 design remains deferred.
+No material upstream issue prevents derivation.
