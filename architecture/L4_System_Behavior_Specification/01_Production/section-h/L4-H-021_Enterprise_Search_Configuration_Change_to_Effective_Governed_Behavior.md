@@ -10,45 +10,45 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-021; L2-H03 — Enterprise Directory & Search Workflows; applicable Locked H03 search-governance amendment  
+**Depends On:** L3-H-021; L2-H03 — Enterprise Directory & Search Workflows; `L2-H03_Search_Governance_Amendment_2026-08-26.md`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall make an approved H03 search-governance configuration change effective exactly as defined by L3-H-021 without changing source-domain business facts.
+SutraERP shall govern H03 search-configuration version approval, effectiveness, supersession and rollback without modifying source-domain business facts or bypassing authorization.
 
 ## 3. Required Business Context
-Use the parent-defined configuration scope, authority, validation, effective behavior, lifecycle and audit evidence.
+Authorized H03-owned configuration change; Draft Search Configuration Version; validation context; Search Governance Authority; prior effective/approved versions where applicable.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-021-BH-001 | The system shall admit a search-configuration change only when the parent-defined authority, scope and validation prerequisites are satisfied. | L3-H-021 §§7–8 |
-| L4-H-021-BH-002 | The system shall apply only the parent-approved search behavior/configuration and shall not turn search policy into ownership of source facts. | L3-H-021 §§9,12 |
-| L4-H-021-BH-003 | The system shall apply only parent-defined configuration lifecycle/effective-state effects. | L3-H-021 §13 |
-| L4-H-021-BH-004 | The system shall expose the changed governed search behavior only when the parent completion conditions are satisfied. | L3-H-021 §§3,16 |
+| L4-H-021-BH-001 | For an authorized change to ranking, filters, synonyms, retention or visibility behavior, H03 shall establish a Draft Search Configuration Version and validate it against search, visibility, governance and authorization constraints. | L3-H-021 §§7–9 |
+| L4-H-021-BH-002 | Search Configuration Version shall follow `Draft → Under Review → Approved → Effective → Superseded`; previously effective versions shall remain immutable after supersession. | L3-H-021 §§9,12–13 |
+| L4-H-021-BH-003 | Search Governance Authority shall own approval and rollback authorization; an approved version becomes `Effective`, and its predecessor becomes `Superseded` when a successor takes effect. | L3-H-021 §§6,9,12,15 |
+| L4-H-021-BH-004 | Authorized rollback shall make only an eligible prior approved version effective again through a new governed effective decision, preserving superseded lineage rather than rewriting history. | L3-H-021 §§9–13,16 |
+| L4-H-021-BH-005 | Search configuration shall never override authorization or modify canonical source-domain business facts. | L3-H-021 §§9,12 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-021-BH-005 | The system shall preserve canonical source ownership for all searchable entities affected by the configuration. | L3-H-021 §§5,14 |
-| L4-H-021-BH-006 | Any parent-required configuration event or hand-off shall retain its exact parent-defined identity and publisher/owner. | L3-H-021 §14 |
+| L4-H-021-BH-006 | H03 shall be sole semantic publisher of `SearchConfigurationApproved`, `SearchConfigurationEffective`, `SearchConfigurationSuperseded`, `SearchConfigurationRollbackAuthorized` and `SearchConfigurationRolledBack` for the corresponding governed facts. | L3-H-021 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-021-BH-007 | Invalid or unauthorized configuration shall not become effective; the system shall retain the last valid governed behavior until a parent-supported correction succeeds. | L3-H-021 §§10–11 |
+Invalid or unauthorized proposed configuration shall not become Effective; unacceptable effective behavior may be recovered only through governed rollback to an eligible prior approved version.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-021-BH-008 | The system shall preserve prior/new configuration basis, authority, validation outcome and effective-governance evidence required by the parent. | L3-H-021 §15 |
+| L4-H-021-BH-007 | The system shall preserve requested change, validation, authorization context, version identity, approval, effective/superseded lineage, rollback rationale/decision and resulting effective version. | L3-H-021 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-021 §16 is objectively satisfied.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-021-BH-008 | Completion shall require either an approved version becoming `Effective` or an authorized rollback re-establishing an eligible prior approved version as effective through a new governed decision, with immutable lineage and source facts unchanged. | L3-H-021 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-021 — Enterprise Search Configuration Change to Effective Governed Behavior  
-**Primary verification source:** L2-H03 — Enterprise Directory & Search Workflows.
+**Primary verification source:** Locked H03 Search Governance Amendment.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. Search-engine/index/UI implementation remains deferred.
+Former lifecycle/rollback/authority/event gaps were resolved by the Locked amendment; technical configuration storage/application remains downstream.

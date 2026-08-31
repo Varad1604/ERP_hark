@@ -10,38 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-010; L2-H02 — Notification Workflows; applicable Locked source-domain architecture; `DEPENDENCY_MAP.md`  
+**Depends On:** L3-H-010; L2-H02 — Notification Workflows; L2-A06; L2-A07  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall convert an authoritative source-domain business outcome into the governed H02 communication outcome approved by L3-H-010 without making Notification the owner of the originating business fact.
+SutraERP shall translate an authoritative source business event or authorized communication request into an H02-owned Notification outcome without H02 acquiring ownership of the originating transaction, decision, rule or event.
 
 ## 3. Required Business Context
-Use only the parent-defined source outcome, recipient/context, policy/template/preference conditions, notification lifecycle, events and evidence.
+Canonical source event/request; authorization; approved template; eligible recipients; permitted channel context; source causation/correlation.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-010-BH-001 | The system shall create/admit governed communication only from an authoritative parent-supported business outcome and valid required communication context. | L3-H-010 §§7–8 |
-| L4-H-010-BH-002 | The system shall enforce the parent-defined communication policy, preference, template and eligibility constraints without changing the source outcome. | L3-H-010 §12 |
-| L4-H-010-BH-003 | The system shall apply only the notification lifecycle effects defined by the parent. | L3-H-010 §13 |
-| L4-H-010-BH-004 | The system shall expose only the governed communication outcome permitted by L3-H-010 §16. | L3-H-010 §§3,16 |
+| L4-H-010-BH-001 | On receipt of a canonical source event or authorized communication request, the system shall preserve source causation and admit an H02 Notification only when authorization, approved template, eligible recipients and permitted channel context can be resolved. | L3-H-010 §§7–9 |
+| L4-H-010-BH-002 | H02 shall resolve recipients, template and governed channel/policy context and shall progress the same Notification through its locked lifecycle without modifying the originating business outcome. | L3-H-010 §§9,12–13 |
+| L4-H-010-BH-003 | The Notification shall reach the applicable terminal `Delivered`, `Failed`, `Cancelled` or `Expired` outcome; multiple permitted channels remain delivery evidence for one governed Notification outcome. | L3-H-010 §§10–13 |
+| L4-H-010-BH-004 | Notification failure, cancellation or expiry shall not roll back or invalidate the completed source-domain business outcome. | L3-H-010 §§11–12,16 |
 
 ## 5. Cross-Domain & Event Behavior
-The system shall consume the source fact from its canonical publisher/owner and shall use only the exact H02 events or hand-offs required by L3-H-010 §14; originating ownership remains external to H02.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-010-BH-005 | The incoming business event shall retain its source-domain publisher; H02 shall publish only the applicable Notification lifecycle events, including `NotificationCreated`, `NotificationValidated`, `RecipientResolved`, `TemplateResolved`, `NotificationScheduled`, `DeliveryFailed`, `NotificationCancelled`, `NotificationExpired` and `NotificationDelivered` when their corresponding transitions occur. | L3-H-010 §14 |
 
 ## 6. Failure / Rejection / Continuation
-The system shall preserve the authoritative source outcome even when communication cannot proceed and shall apply only the parent-defined notification failure/continuation behavior. | Provenance: L3-H-010 §§10–11 |
+Validation, policy, recipient or delivery failure produces only the source-defined H02 communication outcome and never changes the originating transaction.
 
 ## 7. Audit & Evidence Behavior
-The system shall preserve source outcome reference, recipient/context, governing policy/template/preference basis and final communication outcome evidence required by L3-H-010 §15.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-010-BH-006 | The system shall preserve Notification identity, source causation/correlation, template version, recipient/channel context, lifecycle outcome and applicable timestamps. | L3-H-010 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-010 §16 is objectively satisfied; notification failure shall not reverse the already authoritative source business outcome.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-010-BH-007 | Completion shall require one governed H02 Notification, resolved eligible communication context, a source-defined terminal H02 outcome and applicable H02 event/evidence while source ownership remains unchanged. | L3-H-010 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-010 — Authoritative Business Outcome to Governed Communication Outcome  
 **Primary verification source:** L2-H02 — Notification Workflows.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. Provider/transport/retry and UI design remain deferred to L5/L6.
+H02 defines no universal human initiator/operator and no universal cross-domain request contract; neither is invented here.

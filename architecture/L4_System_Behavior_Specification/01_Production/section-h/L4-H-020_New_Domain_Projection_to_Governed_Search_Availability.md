@@ -10,45 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-020; L2-H03 — Enterprise Directory & Search Workflows; applicable Locked source-domain architecture; `DEPENDENCY_MAP.md`  
+**Depends On:** L3-H-020; L2-H03 — Enterprise Directory & Search Workflows; applicable Section A authorization/audit  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall make a new source-domain projection available for governed search only when L3-H-020 source and H03 governance conditions are satisfied.
+SutraERP shall admit a canonical domain to governed enterprise-search participation through an H03 Search Projection Definition while preserving source-domain facts, rules and ownership.
 
 ## 3. Required Business Context
-Use the parent-defined source owner/entity identity, projection definition, searchable attributes, visibility/security context, lifecycle and evidence.
+Canonical requesting source domain; canonical identifiers and permitted searchable attributes; Draft Search Projection Definition; Section A authorization/audit context; Search Governance Authority.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-020-BH-001 | The system shall admit a new projection only when the parent-defined source identity, projection definition and governance prerequisites are valid. | L3-H-020 §§7–8 |
-| L4-H-020-BH-002 | The system shall make only parent-approved source-derived attributes/search behavior available. | L3-H-020 §§9,12 |
-| L4-H-020-BH-003 | The system shall apply only the projection lifecycle effects defined by the parent. | L3-H-020 §13 |
-| L4-H-020-BH-004 | The system shall expose the projection to governed search only when L3-H-020 completion conditions are satisfied. | L3-H-020 §§3,16 |
+| L4-H-020-BH-001 | On a canonical domain search-participation request, H03 shall establish a Draft Search Projection Definition and validate source ownership, permitted projection scope, discoverability restrictions, security requirements and institutional search policy. | L3-H-020 §§7–9 |
+| L4-H-020-BH-002 | The definition shall follow `Draft → Under Review → Approved → Active → Retired`, with `Under Review → Rejected`, `Active → Suspended → Active` and `Suspended → Retired` branches as applicable. | L3-H-020 §§9–13 |
+| L4-H-020-BH-003 | Search Governance Authority shall own approval/rejection of new or materially changed definitions; technical administration shall not substitute for that business decision. | L3-H-020 §§6,9,12,15 |
+| L4-H-020-BH-004 | Only an `Approved` definition may become `Active`; activation shall project only approved attributes/references and shall preserve source-domain ownership and lifecycle. | L3-H-020 §§9,12,16 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-020-BH-005 | The system shall preserve the source domain as canonical owner of every represented business entity/fact. | L3-H-020 §§5,14 |
-| L4-H-020-BH-006 | Any parent-required onboarding event or contract shall retain the exact parent-defined identity and publisher/owner. | L3-H-020 §14 |
+| L4-H-020-BH-005 | H03 shall be the sole semantic publisher of `SearchProjectionApproved`, `SearchProjectionActivated`, `SearchProjectionRejected` and `SearchProjectionRetired` for the corresponding governance transitions. | L3-H-020 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-020-BH-007 | Invalid source ownership, projection definition or visibility context shall prevent governed search availability until the parent-supported correction path is satisfied. | L3-H-020 §§10–11 |
+Validation/security failure prevents approval/activation. Rejected definitions remain historical and may be revised only through a successor Draft; suspension/retirement affects H03 availability only.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-020-BH-008 | The system shall preserve source owner/reference, projection governance basis, searchable-scope decision and availability outcome evidence required by the parent. | L3-H-020 §15 |
+| L4-H-020-BH-006 | The system shall preserve participation request, source ownership, proposed definition, governance review/decision, activation/suspension/retirement outcome and applicable authorization context. | L3-H-020 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-020 §16 is objectively satisfied and source ownership remains unchanged.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-020-BH-007 | Successful completion shall require Search Governance Authority approval, an `Active` definition, only approved searchable attributes, effective discoverability/authorization constraints and unchanged source ownership/rules. | L3-H-020 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-020 — New Domain Projection to Governed Search Availability  
 **Primary verification source:** L2-H03 — Enterprise Directory & Search Workflows.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. Search/index implementation remains deferred.
+No material upstream issue prevents derivation. Search implementation mechanics remain downstream.

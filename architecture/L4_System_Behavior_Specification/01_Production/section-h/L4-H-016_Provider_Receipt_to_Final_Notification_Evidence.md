@@ -10,38 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-016; L2-H02 — Notification Workflows; applicable Locked L1/L2 architecture  
+**Depends On:** L3-H-016; L2-H02 — Notification Workflows  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall turn an authoritative provider receipt/outcome into the final governed notification evidence defined by L3-H-016 without defining provider protocol or transport implementation.
+SutraERP shall normalize provider delivery-status evidence into immutable H02 receipt history and the applicable Notification/Delivery outcome without treating communication evidence as source-business success.
 
 ## 3. Required Business Context
-Use only the parent-defined notification identity, provider receipt/outcome, lifecycle/evidence rules, event relationships and audit context.
+Canonical Notification; related Delivery Attempt; provider status; supported H02 receipt interpretation; existing receipt chronology.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-016-BH-001 | The system shall accept provider evidence only when it can be authoritatively associated with the governed notification context required by the parent. | L3-H-016 §§7–8 |
-| L4-H-016-BH-002 | The system shall interpret the receipt only according to parent-defined notification evidence/outcome rules. | L3-H-016 §12 |
-| L4-H-016-BH-003 | The system shall apply only the parent-defined notification/evidence lifecycle effects. | L3-H-016 §13 |
-| L4-H-016-BH-004 | The system shall expose final notification evidence only under L3-H-016 completion conditions. | L3-H-016 §§3,16 |
+| L4-H-016-BH-001 | When a provider reports accepted, sent, delivered, read, rejected or expired status, the system shall associate the receipt with exactly one existing Delivery Attempt and interpret it through the provider-independent H02 receipt model. | L3-H-016 §§7–9,12 |
+| L4-H-016-BH-002 | Every receipt shall be preserved as immutable chronological evidence; earlier receipts and Delivery Attempts shall not be rewritten. | L3-H-016 §§9,12 |
+| L4-H-016-BH-003 | Accepted/queued/sent shall remain intermediate evidence, delivered/read/failed/rejected/expired shall cause only their permitted H02 lifecycle consequence, and the associated Notification/Delivery may reach `Delivered`, `Failed` or `Expired` only when supported by the actual receipt. | L3-H-016 §§10–13 |
+| L4-H-016-BH-004 | A receipt that cannot be associated with exactly one Delivery Attempt or cannot be interpreted as a supported receipt type shall not be treated as authoritative canonical evidence until resolved. | L3-H-016 §11 |
 
 ## 5. Cross-Domain & Event Behavior
-The system shall use only exact parent-defined H02 event/fact relationships and shall not treat provider transport details as new business events. | Provenance: L3-H-016 §14 |
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-016-BH-005 | When a receipt causes the corresponding completed transition, H02 shall publish the applicable `DeliveryCompleted`, `DeliveryFailed`, `NotificationExpired` or `NotificationDelivered` event; provider evidence shall not change source-business ownership. | L3-H-016 §14 |
 
 ## 6. Failure / Rejection / Continuation
-Unmatched, invalid or non-authoritative provider evidence shall not finalize the notification; only the parent-supported correction/continuation path is permitted. | Provenance: L3-H-016 §§10–11 |
+Unsupported or ambiguous receipt evidence remains unresolved; a failure receipt may enter H015 recovery but shall not itself determine source-business transaction success.
 
 ## 7. Audit & Evidence Behavior
-The system shall preserve notification reference, provider receipt/outcome, attribution and final governed evidence required by L3-H-016 §15.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-016-BH-006 | The system shall preserve immutable receipt chronology, exact Delivery Attempt association, provider-independent interpretation and resulting H02 outcome. | L3-H-016 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-016 §16 is objectively satisfied.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-016-BH-007 | Completion shall require exactly one Delivery Attempt association, supported H02 receipt interpretation, immutable chronology and availability of the governed H02 outcome to the originating domain. | L3-H-016 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-016 — Provider Receipt to Final Notification Evidence  
 **Primary verification source:** L2-H02 — Notification Workflows.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. Provider protocol/transport/persistence details remain deferred to L5.
+No material upstream issue prevents derivation. Provider-specific callback/transport mechanics remain downstream.
