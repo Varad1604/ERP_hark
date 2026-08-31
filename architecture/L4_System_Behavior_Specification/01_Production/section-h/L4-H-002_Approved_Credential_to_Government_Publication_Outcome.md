@@ -14,41 +14,40 @@
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall realize L3-H-002 exactly within its approved boundary without creating, approving, reinterpreting or altering source credential meaning.
+SutraERP shall govern publication of an already approved canonical credential to a government platform while preserving the credential's source-domain ownership and meaning.
 
 ## 3. Required Business Context
-Use only the authoritative credential eligibility, consent, connector, ownership, lifecycle, event/contract and evidence context defined in L3-H-002 §§5–15.
+Authoritative approved credential reference; Student/Institution context; eligible H01 Connector; applicable publication policy and Consent; existing H01 Publication history.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-002-BH-001 | The system shall admit publication only for a source-authoritative credential that satisfies all parent-defined publication prerequisites. | L3-H-002 §§7–8 |
-| L4-H-002-BH-002 | The system shall enforce H01 publication, consent, duplicate and connector constraints without changing source credential meaning. | L3-H-002 §12 |
-| L4-H-002-BH-003 | The system shall apply only the parent-defined H01 Publication lifecycle effects. | L3-H-002 §13 |
-| L4-H-002-BH-004 | The system shall expose the acknowledged publication or controlled failure outcome only under the parent completion conditions. | L3-H-002 §§3,16 |
+| L4-H-002-BH-001 | When a canonical source domain declares an approved credential eligible for government publication, the system shall admit publication only if the credential remains authoritative and eligible, required context is resolvable, the Connector is eligible, applicable policy and Consent are satisfied, and no completed duplicate Publication exists. | L3-H-002 §§7–9 |
+| L4-H-002-BH-002 | H01 shall evaluate publication, Consent, Connector and duplicate constraints without creating, approving, reinterpreting or modifying the source credential. | L3-H-002 §§5,12 |
+| L4-H-002-BH-003 | The H01 Publication shall progress through the locked H01 lifecycle to `Published` after government acknowledgement or to `Failed` for the controlled unsuccessful outcome. | L3-H-002 §§9–13 |
+| L4-H-002-BH-004 | A successful `Published` outcome shall require government acknowledgement; a completed Publication shall not be recreated except through governed republish or revocation paths. | L3-H-002 §§10,12,16 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-002-BH-005 | The system shall consume credential facts from their canonical source owners and shall not make H01 the credential owner. | L3-H-002 §§5,14 |
-| L4-H-002-BH-006 | The system shall publish only the exact H01 publication events required by the parent under H01 ownership; no generic source publisher is invented. | L3-H-002 §14 |
+| L4-H-002-BH-005 | H01 shall publish `CredentialPublicationRequested`, `GovernmentAcknowledgementRecorded`, and then `PublicationCompleted` or `PublicationFailed` as applicable, while source credential facts remain owned by their canonical source domains. | L3-H-002 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-002-BH-007 | On absent consent, connector ineligibility, duplicate completion or government failure/rejection, the system shall preserve the source credential and permit only parent-supported continuation. | L3-H-002 §§10–11 |
+Missing or withdrawn Consent, Connector ineligibility, duplicate completed Publication or government rejection/failure shall not alter the source credential. Later recovery belongs to H008, revocation to H004, and corrected republication to H005.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-002-BH-008 | The system shall preserve the source credential reference, publication identity/status, consent basis, connector/government reference and acknowledgement/failure evidence required by the parent. | L3-H-002 §15 |
+| L4-H-002-BH-006 | The system shall preserve the source credential reference, H01 Publication identity/status, applicable Consent basis, Connector/government reference, acknowledgement or failure evidence, and audit trace. | L3-H-002 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-002 §16 is satisfied. A controlled failed outcome does not alter source credential truth.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-002-BH-007 | Completion shall require authoritative source eligibility, valid H01 prerequisites, a government acknowledgement or controlled `Failed` outcome, the exact applicable H01 outcome event, and preserved evidence. | L3-H-002 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-002 — Approved Credential to Government Publication Outcome  
 **Primary verification source:** L2-H01 — APAAR & DigiLocker Workflows.
 
 ## 10. Open Issues / Deferred Design
-The parent retains non-blocking source-event/publisher and stale-dependency-label issues; this specification does not resolve them. L5/L6 implementation design remains deferred.
+The parent retains non-blocking generic source-event/publisher, actor and dependency-label issues; no missing publisher or source-domain event is invented at L4.

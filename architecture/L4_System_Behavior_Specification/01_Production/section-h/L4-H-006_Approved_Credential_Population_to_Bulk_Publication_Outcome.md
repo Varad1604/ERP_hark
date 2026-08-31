@@ -10,38 +10,45 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-006; L2-H01 — APAAR & DigiLocker Workflows; applicable Locked L1/L2 architecture; `DEPENDENCY_MAP.md`  
+**Depends On:** L3-H-006; L2-H01 — APAAR & DigiLocker Workflows; applicable Locked source-domain credential architecture  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall realize the governed bulk-publication outcome defined by L3-H-006 without changing the source ownership or meaning of any credential in the population.
+SutraERP shall govern H01 bulk publication of a source-approved credential population while preserving independent per-credential Publication outcomes and a consolidated institutional result.
 
 ## 3. Required Business Context
-Use the parent-defined eligible credential population, consent/connector prerequisites, publication constraints, lifecycle, events and evidence.
+Governed source-approved credential population; independently identifiable source-owned credentials; per-item Consent, Connector, policy and duplicate constraints; H01 Publication histories.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-006-BH-001 | The system shall include a credential in governed bulk publication only when it satisfies the parent-defined eligibility and entry conditions. | L3-H-006 §§7–8 |
-| L4-H-006-BH-002 | The system shall enforce parent-defined bulk/duplicate/consent/connector constraints for each affected publication without inventing credential rules. | L3-H-006 §12 |
-| L4-H-006-BH-003 | The system shall apply only the publication lifecycle effects defined by the parent to each governed item/outcome. | L3-H-006 §13 |
-| L4-H-006-BH-004 | The system shall expose the bulk publication outcome only when the parent completion criteria are satisfied. | L3-H-006 §§3,16 |
+| L4-H-006-BH-001 | When a governed completion or administrative cycle identifies approved credentials for publication, the system shall preserve the population scope and independently identify every source-owned credential. | L3-H-006 §§7–9 |
+| L4-H-006-BH-002 | Each credential shall be evaluated independently against H01 Publication eligibility, Consent, Connector and duplicate constraints; bulk processing shall not bypass those rules. | L3-H-006 §§9,12 |
+| L4-H-006-BH-003 | Each eligible credential shall progress through its own locked H01 Publication lifecycle and retain its own traceable status/outcome; an invalid item shall not alter another item's independent outcome unless an upstream batch rule explicitly requires otherwise. | L3-H-006 §§9–13 |
+| L4-H-006-BH-004 | Already `Published` credentials shall not be duplicated, and items awaiting permitted recovery shall remain traceable for the H008 recovery path. | L3-H-006 §§10–12 |
+| L4-H-006-BH-005 | The consolidated H01 result shall be derived from the authoritative individual Publication records; H01 shall not invent a separate Batch aggregate or lifecycle. | L3-H-006 §§9,12–13,16 |
 
 ## 5. Cross-Domain & Event Behavior
-The system shall consume source credentials from canonical owners and shall use only the exact H01 publication events/handoffs required by L3-H-006 §14.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-006-BH-006 | Individual Publications shall use the applicable H01 events including `CredentialPublicationRequested`, `PublicationCompleted` and `PublicationFailed`; no bulk-completion event shall be published because none is defined upstream. | L3-H-006 §14 |
 
 ## 6. Failure / Rejection / Continuation
-Invalid or unsuccessful individual publication conditions shall be represented only through the parent-supported outcome/recovery path and shall not alter source credentials. | Provenance: L3-H-006 §§10–11 |
+Unapproved population data or a consolidated result inconsistent with authoritative individual Publication records shall prevent a reliable batch completion until business reconciliation occurs.
 
 ## 7. Audit & Evidence Behavior
-The system shall preserve population scope, source references, per-item governed outcomes and external acknowledgement/failure evidence required by L3-H-006 §15.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-006-BH-007 | The system shall preserve population reference, every individual Publication identity/status, external acknowledgement or failure evidence, and the consolidated result derived from them. | L3-H-006 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-006 §16 is objectively satisfied.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-006-BH-008 | Completion shall require every population member to have a traceable H01 status/outcome and a consolidated result derived from those individual records, with each source credential still owned by its canonical source domain. | L3-H-006 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-006 — Approved Credential Population to Bulk Publication Outcome  
 **Primary verification source:** L2-H01 — APAAR & DigiLocker Workflows.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. L5/L6 implementation design remains deferred.
+The parent defines no first-class Batch aggregate/lifecycle or bulk-completion event and notes ambiguity around pending recovery status. L4 preserves those limits rather than inventing them.

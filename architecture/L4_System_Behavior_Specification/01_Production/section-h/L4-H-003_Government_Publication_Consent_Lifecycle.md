@@ -10,45 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-003; L2-H01 — APAAR & DigiLocker Workflows; applicable Locked L1/L2 architecture; `DEPENDENCY_MAP.md`  
+**Depends On:** L3-H-003; L2-H01 — APAAR & DigiLocker Workflows; applicable Locked Section A/C architecture; `DEPENDENCY_MAP.md`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern the H01 publication-consent lifecycle exactly as approved in L3-H-003 while preserving Student ownership outside H01.
+SutraERP shall govern H01 government-publication Consent so its effective state controls future eligible publication while prior Consent evidence remains immutable.
 
 ## 3. Required Business Context
-Use the parent-defined Student reference, consent scope/effective period, authority, lifecycle, rules, events and evidence only.
+Canonical Student reference; Consent scope; effective period; current Consent state/history; Student authority; H01 publication policy.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-003-BH-001 | The system shall admit a consent action only when the canonical Student, consent scope, dates and authority satisfy the parent entry criteria. | L3-H-003 §§7–8 |
-| L4-H-003-BH-002 | The system shall enforce the one-active-consent and effective-consent rules exactly as defined upstream. | L3-H-003 §12 |
-| L4-H-003-BH-003 | The system shall apply only the parent-defined `Pending`, `Granted`, `Withdrawn` and `Expired` lifecycle effects. | L3-H-003 §13 |
-| L4-H-003-BH-004 | The system shall make the effective consent state govern future publication eligibility where the parent requires it. | L3-H-003 §§3,16 |
+| L4-H-003-BH-001 | On a Student grant, update or withdrawal action, or policy-governed expiry, the system shall proceed only when the canonical Student, Consent scope, dates and action authority are valid. | L3-H-003 §§6–9 |
+| L4-H-003-BH-002 | The system shall preserve at most one active Consent for the same scope and shall leave the current authoritative Consent unchanged when Student reference, scope, dates or active-Consent constraints are invalid. | L3-H-003 §§10–12 |
+| L4-H-003-BH-003 | Consent shall follow the locked states `Pending`, `Granted`, `Withdrawn` and `Expired`; granted Consent may subsequently be updated, withdrawn or expire only under the source-defined rules. | L3-H-003 §§10,12–13 |
+| L4-H-003-BH-004 | `Withdrawn` or `Expired` Consent shall prevent future government publication wherever Consent is required, without changing the Student lifecycle. | L3-H-003 §§12–13,16 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-003-BH-005 | The system shall reference Student identity/lifecycle facts without transferring their ownership to H01. | L3-H-003 §§5,14 |
-| L4-H-003-BH-006 | The system shall publish the exact H01 Consent event corresponding to the parent-defined consent action. | L3-H-003 §14 |
+| L4-H-003-BH-005 | H01 shall publish `ConsentGranted`, `ConsentUpdated`, `ConsentWithdrawn` or `ConsentExpired` for the corresponding governed action; H01 Publication shall consume the effective Consent fact where policy requires it. | L3-H-003 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-003-BH-007 | Invalid Student reference, scope, dates or conflicting active consent shall prevent completion while preserving prior consent history. | L3-H-003 §11 |
+Invalid Student reference, scope, dates or a conflicting active Consent shall prevent completion until corrected under source-defined governance; prior Consent history remains unchanged.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-003-BH-008 | The system shall preserve Student reference, scope, prior/new consent state, effective dates and acting Student evidence where applicable. | L3-H-003 §15 |
+| L4-H-003-BH-006 | The system shall preserve Student reference, Consent scope, prior and new state, effective dates and acting Student evidence where applicable, with immutable Consent history. | L3-H-003 §§12,15 |
 
 ## 8. Observable Completion Conditions
-Complete only when the valid consent action reaches its source-defined state/event and immutable history is preserved as required by L3-H-003 §16.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-003-BH-007 | Completion shall require a valid Consent action or expiry, the corresponding source-defined state and H01 event, immutable history, and application of the effective Consent to future publication eligibility. | L3-H-003 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-003 — Government Publication Consent Lifecycle  
 **Primary verification source:** L2-H01 — APAAR & DigiLocker Workflows.
 
 ## 10. Open Issues / Deferred Design
-The parent retains only a non-blocking stale dependency-label issue. L5/L6 implementation design remains deferred.
+The parent records only a non-blocking stale dependency-label issue. No new Consent state, authority or event is introduced.

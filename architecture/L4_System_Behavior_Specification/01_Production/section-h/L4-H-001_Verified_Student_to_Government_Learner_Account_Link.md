@@ -14,41 +14,41 @@
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall realize L3-H-001 exactly within its approved start/end boundary, without transferring Student, Institution, Person/Identity or source-fact ownership to H.
+SutraERP shall establish a governed APAAR or DigiLocker learner-account link for a verified canonical Student without transferring Student, Institution or Person/Identity ownership to H01.
 
 ## 3. Required Business Context
-Use the parent-defined trigger/preconditions, canonical owners and actors, source rules, lifecycle, events/contracts, authority and evidence in L3-H-001 §§5–15. Source facts remain authoritative at their owning domains.
+Canonical Student, Institution and Person/Identity references; identity-verification result; eligible H01 Connector; applicable authorization; valid Consent where required; target government platform.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-001-BH-001 | When the parent trigger occurs, the system shall admit linking only when all mandatory parent-defined entry conditions are satisfied. | L3-H-001 §§7–8 |
-| L4-H-001-BH-002 | The system shall enforce the parent-defined linking constraints without adding, weakening or re-owning a business rule. | L3-H-001 §12 |
-| L4-H-001-BH-003 | The system shall apply only the exact learner-link and consent lifecycle effects defined by the parent. | L3-H-001 §13 |
-| L4-H-001-BH-004 | The system shall expose the governed linked outcome only when the parent completion conditions are satisfied. | L3-H-001 §§3,16 |
+| L4-H-001-BH-001 | On a link request from a Student or authorized Institution Administrator, the system shall proceed only when canonical Student, Institution and Person/Identity references are valid, required identity verification exists, the applicable Connector is eligible, authorization is satisfied, and required Consent is valid. | L3-H-001 §§7–9 |
+| L4-H-001-BH-002 | Institution-initiated linking shall not bypass required Student Consent, and H01 shall not alter the referenced Student, Institution or Person/Identity facts. | L3-H-001 §§5–7,12 |
+| L4-H-001-BH-003 | An admitted platform-specific request shall enter `Requested`; successful government acknowledgement shall move it `Requested → Linked`; conclusive government rejection or failure shall move it `Requested → Failed`. | L3-H-001 §§9,11–13 |
+| L4-H-001-BH-004 | `Failed` shall remain terminal for that request; any later authorized attempt shall be represented as a new governed request rather than reopening the failed request. | L3-H-001 §§11–13,16 |
+| L4-H-001-BH-005 | Consent shall remain governed separately through `Pending`, `Granted`, `Withdrawn` or `Expired`; absent, withdrawn or expired Consent shall block linking whenever Consent is required. | L3-H-001 §§11–13 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-001-BH-005 | The system shall use A/B/C facts only from their canonical owners and shall not create a competing H source of record. | L3-H-001 §§5,14 |
-| L4-H-001-BH-006 | When the parent requires learner-link event publication, the system shall use the exact canonical event and H01 publisher defined by the parent. | L3-H-001 §14 |
+| L4-H-001-BH-006 | For APAAR linking the system shall publish `APAARLinkRequested` and then `APAARLinked` or `APAARLinkFailed` as applicable; for DigiLocker it shall publish `DigiLockerLinkRequested` and then `DigiLockerLinked` or `DigiLockerLinkFailed`; H01 is the publisher. | L3-H-001 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-001-BH-007 | On a parent-defined rejection, invalid prerequisite or failed link outcome, the system shall prevent unsupported progression, preserve the valid business position and permit only the parent-supported continuation. | L3-H-001 §§10–11 |
+Invalid source references, authorization, Consent or Connector eligibility shall prevent unsupported progression. A source fact requiring correction shall be corrected only by its canonical owner before linking proceeds.
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-001-BH-008 | The system shall preserve attributable evidence of source references, consent basis, target platform, government acknowledgement/failure evidence and final governed outcome as required by the parent. | L3-H-001 §15 |
+| L4-H-001-BH-007 | The system shall preserve initiating actor/context, authoritative source references, Consent basis, target platform, government acknowledgement/reference where available, and final H01 request outcome. | L3-H-001 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-001 §16 is objectively satisfied; failed requests remain failure history and do not satisfy successful completion.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-001-BH-008 | Successful completion shall require valid source references and governing prerequisites, link state `Linked`, the applicable `APAARLinked` or `DigiLockerLinked` event, and preserved audit history; `Failed` shall not satisfy successful completion. | L3-H-001 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-001 — Verified Student to Government Learner Account Link  
-**Primary verification source:** L2-H01 — APAAR & DigiLocker Workflows. Higher-level sources verify semantics only; L4 does not repair L3.
+**Primary verification source:** L2-H01 — APAAR & DigiLocker Workflows.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents L4 derivation. API/interface, persistence, component, transport, technical access-control, transaction/retry, infrastructure and UI/UX design remain deferred to L5/L6.
+The Locked parent records non-blocking actor/dependency-model issues; this L4 specification does not resolve them. Technical connector, API, persistence, retry and UI design remain downstream.

@@ -10,43 +10,44 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-004; L2-H01 — APAAR & DigiLocker Workflows; applicable Locked L1/L2 architecture; `DEPENDENCY_MAP.md`  
+**Depends On:** L3-H-004; L2-H01 — APAAR & DigiLocker Workflows; applicable Locked source-domain credential architecture  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall realize the governed revocation outcome defined by L3-H-004 without changing source credential ownership or meaning.
+SutraERP shall apply an authoritative source revocation requirement to a previously published H01 government Publication without revoking, erasing or rewriting the source credential.
 
 ## 3. Required Business Context
-Use only the parent-defined published credential reference, revocation basis/authority, publication lifecycle, events/contracts and evidence.
+Authoritative source revocation basis; corresponding `Published` H01 Publication; Institution Administrator authority for the H01 request; Connector revocation capability; original government reference.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-004-BH-001 | The system shall admit revocation only when the mandatory parent-defined revocation prerequisites and authoritative basis are present. | L3-H-004 §§7–8 |
-| L4-H-004-BH-002 | The system shall enforce the parent-defined revocation constraints without creating a new source-credential rule. | L3-H-004 §12 |
-| L4-H-004-BH-003 | The system shall apply only the publication/revocation lifecycle effects defined by the parent. | L3-H-004 §13 |
-| L4-H-004-BH-004 | The system shall expose the governed revocation outcome only when L3-H-004 completion conditions are satisfied. | L3-H-004 §§3,16 |
+| L4-H-004-BH-001 | When an authoritative source establishes that a government-published credential must be revoked, the system shall admit H01 revocation only if the corresponding Publication is `Published`, Institution Administrator authority is valid, Connector revocation capability exists, and the original government reference is available. | L3-H-004 §§6–9 |
+| L4-H-004-BH-002 | H01 shall consume the authoritative source revocation basis without changing the source credential or assuming the source-domain revocation decision. | L3-H-004 §§5,12 |
+| L4-H-004-BH-003 | On successful supported government revocation, the H01 Publication shall transition `Published → Revoked`; unsupported capability or government rejection shall not create a false `Revoked` state and shall preserve the existing Publication state. | L3-H-004 §§9–13 |
+| L4-H-004-BH-004 | Completed publication and revocation history shall remain preserved and traceable after revocation. | L3-H-004 §§12,16 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-004-BH-005 | The system shall consume source credential facts from their canonical owner and shall keep H01 limited to government-publication/revocation responsibility. | L3-H-004 §§5,14 |
-| L4-H-004-BH-006 | When the parent requires revocation event publication or government acknowledgement, the system shall use the exact canonical identity and publisher defined there. | L3-H-004 §14 |
+| L4-H-004-BH-005 | H01 shall publish `CredentialRevocationRequested` when the governed H01 request is recorded and `CredentialRevoked` only after successful supported government revocation. | L3-H-004 §14 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-004-BH-007 | On a parent-defined invalid or unsuccessful revocation condition, the system shall prevent unsupported progression and preserve the last valid publication position. | L3-H-004 §§10–11 |
+Unclear source authority, non-`Published` H01 position, missing government reference, unsupported Connector revocation or government rejection shall prevent a successful `Revoked` outcome and preserve history for governed follow-up.
 
 ## 7. Audit & Evidence Behavior
-The system shall preserve the revocation basis, authority, source reference, prior/current publication position and external acknowledgement/evidence required by L3-H-004 §15.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-004-BH-006 | The system shall preserve source revocation basis, original Publication/government reference, Institution Administrator request authority, lifecycle outcome and government revocation evidence. | L3-H-004 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-004 §16 is objectively satisfied.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-004-BH-007 | Successful completion shall require an authoritative source basis, eligible `Published` H01 Publication, supported and authorized government revocation, state `Revoked`, event `CredentialRevoked`, and preserved history. | L3-H-004 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-004 — Published Credential to Governed Revocation  
 **Primary verification source:** L2-H01 — APAAR & DigiLocker Workflows.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. L5/L6 implementation design remains deferred.
+The parent does not universally map the generic source revocation event/publisher across C/D/F/I; none is invented here.

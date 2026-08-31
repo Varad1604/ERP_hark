@@ -10,38 +10,45 @@
 **Status:** Draft  
 **Owner:** Dhruv  
 **Last Updated:** 2026-08-31  
-**Depends On:** L3-H-008; L2-H01 — APAAR & DigiLocker Workflows; applicable Locked H01 recovery/republication amendments; `DEPENDENCY_MAP.md`  
+**Depends On:** L3-H-008; L2-H01 — APAAR & DigiLocker Workflows; `L2-H01_Publication_Recovery_and_Republishing_Amendment_2026-08-26.md`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall realize the business-observable controlled recovery of failed or pending government publication exactly as approved in L3-H-008, without prescribing technical retry mechanics.
+SutraERP shall govern recovery of failed, pending/stalled or cancellation-eligible H01 Publication attempts while preserving immutable attempt history, recovery lineage and source credential ownership.
 
 ## 3. Required Business Context
-Use only the parent-defined failed/pending publication position, recovery eligibility/authority, source credential reference, lifecycle, events and evidence.
+Existing H01 Publication attempt identity/history; source credential reference; failed, pending/stalled or cancellation-eligible condition; Consent, eligibility, credential-validity and Connector-governance facts; Institution Administrator authority where a business decision is required.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-008-BH-001 | The system shall admit controlled recovery only when the publication position and recovery prerequisites satisfy the parent entry criteria. | L3-H-008 §§7–8 |
-| L4-H-008-BH-002 | The system shall enforce the parent-defined recovery constraints without converting technical retry policy into business architecture. | L3-H-008 §12 |
-| L4-H-008-BH-003 | The system shall apply only the publication/recovery lifecycle effects defined by the parent. | L3-H-008 §13 |
-| L4-H-008-BH-004 | The system shall expose only the recovered or governed terminal outcome permitted by L3-H-008 §16. | L3-H-008 §§3,16 |
+| L4-H-008-BH-001 | When a Publication fails, stalls or must be cancelled before terminal completion, the system shall resolve and preserve the existing attempt identity, state, correlation and history before any recovery decision. | L3-H-008 §§7–9 |
+| L4-H-008-BH-002 | The system shall classify the condition for permitted retry/recovery, cancellation or manual recovery and shall require Institution Administrator authority for an institution-controlled business decision. | L3-H-008 §§6,9,12,15 |
+| L4-H-008-BH-003 | A `Failed` attempt shall remain terminal and immutable; authorized retry or recovery shall create a new auditable successor attempt linked to the prior attempt rather than move the failed attempt out of `Failed`. | L3-H-008 §§9–13 |
+| L4-H-008-BH-004 | A pending attempt may be governedly cancelled where permitted; its history shall remain preserved and it shall not later be treated as successful. | L3-H-008 §§9–13 |
+| L4-H-008-BH-005 | No recovery attempt shall proceed if applicable Consent, eligibility, source-credential validity or Connector-governance requirements are not satisfied, and recovery shall not create duplicate current successful Publications for the same governed context. | L3-H-008 §§7,10–12 |
 
 ## 5. Cross-Domain & Event Behavior
-The system shall preserve source credential ownership and use only the exact H01 recovery/publication events or hand-offs required by L3-H-008 §14.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-008-BH-006 | When governed recovery is authorized after a failed or pending outcome, H01 shall publish `CredentialPublicationRecoveryAuthorized`; the successor attempt shall then use the existing H01 publication-attempt and completion events according to its own outcome. | L3-H-008 §14 |
 
 ## 6. Failure / Rejection / Continuation
-The system shall preserve the last valid business position and permit only the parent-defined controlled recovery or terminal outcome; technical retries/rollback are out of scope. | Provenance: L3-H-008 §§10–11 |
+Recovery shall never rewrite a prior failed attempt or bypass Consent, eligibility, credential-validity or Connector governance. Ineligible recovery leaves the authoritative prior attempt/history intact.
 
 ## 7. Audit & Evidence Behavior
-The system shall preserve failed/pending status, recovery basis/authority, source references, external response and final governed outcome evidence required by L3-H-008 §15.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-008-BH-007 | The system shall preserve prior attempt identity/state, recovery authorization, cancellation decision where applicable, successor-attempt lineage, external references and the final governed outcome. | L3-H-008 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-008 §16 is objectively satisfied.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-H-008-BH-008 | Completion shall require either a new authorized recovery attempt completed under H01 rules, a governed cancellation with history preserved, or a governed manual-recovery decision followed through its applicable Publication outcome; prior failed attempts remain immutable and source ownership is unchanged. | L3-H-008 §16 |
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-008 — Failed or Pending Government Publication to Controlled Recovery  
-**Primary verification source:** L2-H01 — APAAR & DigiLocker Workflows plus applicable locked H01 amendments.
+**Primary verification source:** Locked H01 recovery/republication amendment.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. Technical retry/transaction/transport design remains deferred to L5.
+No material upstream issue prevents derivation. Technical retry scheduling, transport, persistence and UI mechanics remain downstream.
