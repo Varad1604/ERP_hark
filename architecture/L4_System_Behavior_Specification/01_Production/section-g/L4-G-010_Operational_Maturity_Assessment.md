@@ -1,63 +1,47 @@
 # Operational Maturity Assessment
 
 ## 1. Specification Metadata
-
 **Specification ID:** L4-G-010  
 **Architecture Level:** L4 — System Behavior Specification  
 **Domain:** Campus Operations Governance  
 **Realizes Scenario:** L3-G-010  
 **Primary Business Owner:** Campus Operations Governance  
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Status:** Draft  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** `L3-G-010_Operational_Maturity_Assessment.md`; L2-G00 — Campus Operations Review & Governance; `L2-G00_Campus_Operations_Review_and_Governance_Amendment_2026-08-26.md`  
-**Referenced By:** None yet  
+**Last Updated:** 2026-09-01  
+**Depends On:** L3-G-010; L2-G00 Governance Resolution and Operational Maturity Amendment
 
 ## 2. Behavioral Objective & Boundary
-
-SutraERP shall preserve an initiated Operational Maturity Assessment request and its source evidence without manufacturing a maturity model, score, level, state or authority that is absent from Locked G00. The behavior is deliberately bounded at evidence readiness and upstream-semantic validation.
+Produce a reproducible G00 maturity result from a governed maturity-framework version and source-owned evidence.
 
 ## 3. Required Business Context
-
-- An operational maturity assessment cycle has been initiated.
-- Potential operational/governance evidence remains owned by its canonical source domains.
-- No authoritative maturity criteria, scoring model, lifecycle, evaluator or approval authority is currently defined.
-- Existing governance history remains immutable.
+An active maturity framework version exists; source facts remain source-owned; Governance Coordinator, Campus Operations Manager and Executive Reviewer perform their defined roles.
 
 ## 4. System Behavioral Obligations
-
-| Behavior ID | Required System Behavior | Provenance |
-|---|---|---|
-| L4-G-010-BH-001 | The system shall identify and preserve the requested maturity-assessment scope and purpose. | L3-G-010 §§4,8–9 |
-| L4-G-010-BH-002 | The system shall accept source-owned operational evidence only as referenced evidence and shall not alter its source state or ownership. | L3-G-010 §§4–5,9,12 |
-| L4-G-010-BH-003 | The system shall verify whether an authoritative maturity model, criteria, scoring rules, lifecycle and decision authority exist before evaluating maturity. | L3-G-010 §§9,12,17 |
-| L4-G-010-BH-004 | While those semantics remain undefined, the system shall not calculate, assign, approve or publish a maturity score, level or state. | L3-G-010 §§3,9,13–17 |
+| Behavior ID | Required System Behavior |
+|---|---|
+| L4-G-010-BH-001 | Create the assessment in `Planned` and record the framework version. |
+| L4-G-010-BH-002 | Progress to `Evidence Collection` and reference required evidence from canonical owners. |
+| L4-G-010-BH-003 | Evaluate only according to the active framework's criteria/rules and record the resulting classification/level. |
+| L4-G-010-BH-004 | Publish `OperationalMaturityEvaluated` when evaluation completes. |
+| L4-G-010-BH-005 | Require Executive Reviewer confirmation before `Reviewed → Closed`. |
+| L4-G-010-BH-006 | Publish `OperationalMaturityAssessmentClosed` on closure. |
 
 ## 5. Cross-Domain & Event Behavior
-
-No canonical Operational Maturity Assessment event is defined by Locked G00. No event is invented.
+G00 publishes maturity events; source domains provide evidence only.
 
 ## 6. Failure / Rejection / Continuation
-
-Missing evidence may be recorded as an evidence gap, but evidence availability alone does not authorize maturity evaluation. The scenario remains non-completable whenever maturity semantics or decision authority are absent.
+Incomplete required evidence blocks evaluation/closure; no classification outside the active framework may be invented.
 
 ## 7. Audit & Evidence Behavior
-
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-G-010-BH-005 | The system shall preserve the assessment request, scope, referenced source evidence and the explicit architecture condition preventing maturity evaluation. | L3-G-010 §§15–17 |
+Preserve framework version, evidence references, derived result, reviewer decision and lifecycle history.
 
 ## 8. Observable Completion Conditions
-
-No canonical maturity outcome is currently observable because the required business model is absent. Completion remains deferred until upstream defines the maturity aggregate/workflow, levels or criteria, evaluation rules, authority and any completion event or contract.
+Assessment is Closed with a reproducible maturity result.
 
 ## 9. Traceability & Provenance
-
-**Parent:** L3-G-010 — Operational Maturity Assessment  
-**Primary verification source:** L2-G00 — Campus Operations Review & Governance  
-**Selective current-source check:** Locked G00 Amendment 2026-08-26; it does not define Operational Maturity semantics.
+Parent: L3-G-010; governing L2-G00 amendment dated 2026-09-01.
 
 ## 10. Open Issues / Deferred Design
-
-Blocking gaps remain exactly as recorded by the parent: no maturity aggregate/lifecycle, no maturity levels/criteria/scoring model, and no evaluator/reviewer/approval authority or canonical completion event. No implementation design is introduced.
+Institution-specific maturity framework content remains configuration, not L4 design.
