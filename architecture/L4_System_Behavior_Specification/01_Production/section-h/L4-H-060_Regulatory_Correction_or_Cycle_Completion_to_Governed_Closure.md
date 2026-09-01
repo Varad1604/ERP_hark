@@ -3,52 +3,46 @@
 ## 1. Specification Metadata
 **Specification ID:** L4-H-060  
 **Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Statutory Reporting  
+**Domain:** NEP, NAAC & AISHE Reporting  
 **Realizes Scenario:** L3-H-060  
-**Primary Business Owner:** Statutory Reporting  
-**Version:** 1.0.0  
+**Primary Business Owner:** NEP, NAAC & AISHE Reporting  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** L3-H-060; L2-H08 — NEP, NAAC & AISHE Reporting Workflows; applicable Locked source-domain architecture  
+**Last Updated:** 2026-09-01  
+**Depends On:** L3-H-060; L2-H08 — NEP, NAAC & AISHE Reporting Workflows; `L2-H08_Submission_Execution_and_Closure_Governance_Amendment_2026-09-01.md`; applicable Locked source-domain architecture  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern statutory reporting correction or cycle completion through the closure outcome approved by L3-H-060 while preserving historical reporting evidence and source facts.
+SutraERP shall govern reporting correction/resubmission or final Reporting Cycle closure while preserving immutable reporting versions, submission history and source-domain ownership.
 
 ## 3. Required Business Context
-Use the parent-defined reporting cycle/submission state, correction basis/authority, completion/closure criteria, lifecycle, events and evidence.
+A governed Reporting Cycle and submission history exist; correction or completion conditions are established; source corrections remain with their canonical owners; H08 submission/closure authorities are available.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-060-BH-001 | The system shall admit correction or closure only when the parent-defined reporting position and authority/eligibility conditions are satisfied. | L3-H-060 §§7–8 |
-| L4-H-060-BH-002 | The system shall apply only parent-defined correction and closure constraints while preserving prior reporting evidence. | L3-H-060 §12 |
-| L4-H-060-BH-003 | The system shall apply only the exact reporting-cycle lifecycle effects defined by the parent. | L3-H-060 §13 |
-| L4-H-060-BH-004 | The system shall expose governed closure only when L3-H-060 completion criteria are satisfied. | L3-H-060 §§3,16 |
+| L4-H-060-BH-001 | When correction is required, the system shall permit the Regulatory Reporting Submission Authority to initiate the governed correction/resubmission path without acquiring ownership of source-domain facts. | L2-H08 submission amendment §2 |
+| L4-H-060-BH-002 | Corrected reporting shall create a new Reporting Snapshot version and new Submission Record as required; locked snapshots and prior submissions shall remain immutable. | L3-H-060 §§9–13 |
+| L4-H-060-BH-003 | External rejection shall be represented by `SubmissionRejectedByAuthority`, not by the institutional package-rejection event. | L2-H08 submission amendment §3 |
+| L4-H-060-BH-004 | Final Reporting Cycle closure shall be recognized only from the Regulatory Reporting Governance Authority after all reporting obligations and submission-history conditions are complete. | L2-H08 submission amendment §§2,4 |
+| L4-H-060-BH-005 | Where applicable, successful terminal progression shall remain `Accepted → Closed → Archived`; closure shall not bypass incomplete obligations. | L3-H-060 §13; L2-H08 submission amendment §4 |
 
 ## 5. Cross-Domain & Event Behavior
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-060-BH-005 | The system shall preserve all source-domain facts as source-owned even when corrected reporting evidence is produced. | L3-H-060 §§5,14 |
-| L4-H-060-BH-006 | Any parent-required correction/closure event or hand-off shall retain its exact identity and publisher/owner. | L3-H-060 §14 |
+H08 shall preserve the parent-supported correction/resubmission and closure events, including `CorrectionInitiated`, `SnapshotVersionCreated`, `ResubmissionPrepared`, `ReportResubmitted`, `ReportingCycleClosed`, `ReportingArchived`, `ComplianceHistoryArchived` and `ReportingLifecycleCompleted`. Source-owning domains retain their facts.
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-060-BH-007 | An invalid correction or incomplete mandatory cycle condition shall prevent closure and preserve the last valid governed reporting position. | L3-H-060 §§10–11 |
+Unavailable corrected source information or incomplete reporting obligations shall prevent final closure and preserve prior immutable reporting history. External rejection shall continue through governed correction/resubmission rather than overwrite prior submission evidence.
 
 ## 7. Audit & Evidence Behavior
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-060-BH-008 | The system shall preserve prior/corrected reporting evidence, authority, change rationale and closure outcome required by the parent. | L3-H-060 §15 |
+The system shall preserve correction reason, source reference, corrected-fact lineage, new snapshot/submission versions, submission authority, external outcome, closure authority, completion evidence and archival history.
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-060 §16 is objectively satisfied.
+Completion requires any correction to be represented through new governed reporting versions/submission history and the Reporting Cycle to reach `Closed` then `Archived` only after the Regulatory Reporting Governance Authority confirms all required obligations are complete.
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-060 — Regulatory Correction or Cycle Completion to Governed Closure  
-**Primary verification source:** L2-H08 — NEP, NAAC & AISHE Reporting Workflows.
+**Primary verification sources:** L2-H08 — NEP, NAAC & AISHE Reporting Workflows; L2-H08 Submission Execution and Closure Governance Amendment — 2026-09-01.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. L5/L6 design remains deferred.
+No material upstream issue prevents derivation. Technical resubmission, transport and archival mechanisms remain deferred.
