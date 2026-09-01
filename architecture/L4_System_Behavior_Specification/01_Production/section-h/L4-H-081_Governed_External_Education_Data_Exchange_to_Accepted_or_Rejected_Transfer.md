@@ -6,49 +6,54 @@
 **Domain:** External Education Integration  
 **Realizes Scenario:** L3-H-081  
 **Primary Business Owner:** External Education Integration  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** L3-H-081; L2-H10 — External Education Integration Workflows; applicable Locked source-domain architecture  
+**Last Updated:** 2026-09-01  
+**Depends On:** L3-H-081; L2-H10 — External Education Integration Workflows; `L2-H10_Provider_Trust_and_Exchange_Governance_Amendment_2026-08-26.md`; applicable Locked source-domain architecture  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern an external education data exchange through the accepted or rejected transfer outcome defined by L3-H-081 while preserving canonical ownership of the business data being exchanged.
+SutraERP shall govern an H10 Exchange Transfer from preparation through validation, send/receipt and accepted, rejected or quarantined/revalidated disposition while preserving canonical ownership of all exchanged business facts.
 
 ## 3. Required Business Context
-Use the parent-defined provider/relationship/connector/trust context, data-exchange scope, source ownership, acceptance/rejection rules/authority, lifecycle, events/contracts and evidence.
+Approved provider/trust/exchange-contract context and authorized source information exist; H10 owns Exchange Transfer orchestration/lifecycle; A owns applicable platform trust/security facts; `VAR:Exchanging Domain` owns the exchanged business facts.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-081-BH-001 | The system shall admit a data exchange only when the parent-defined provider relationship, connector/trust and source-scope prerequisites are satisfied. | L3-H-081 §§7–8 |
-| L4-H-081-BH-002 | The system shall validate the transfer only against parent-defined governance and authoritative source facts without changing source ownership. | L3-H-081 §§9,12 |
-| L4-H-081-BH-003 | The system shall apply only the H10 exchange/transfer lifecycle effects defined by the parent. | L3-H-081 §13 |
-| L4-H-081-BH-004 | The system shall expose accepted or rejected transfer status only when L3-H-081 completion criteria are satisfied. | L3-H-081 §§3,16 |
+| L4-H-081-BH-001 | The system shall create the Exchange Transfer in `Prepared` only for a governed provider/trust/exchange-contract context and authorized source information. | L3-H-081 §§7–9,12–13 |
+| L4-H-081-BH-002 | The system shall transition `Prepared → Validation Pending` and validate contract/source authorization without altering or re-owning the exchanged business facts. | L3-H-081 §§5,9,11–13 |
+| L4-H-081-BH-003 | When validation permits the governed exchange, the system shall progress the Exchange Transfer `Validation Pending → Sent → Receipt Pending` while preserving send/receipt evidence. | L3-H-081 §§9,12–13,15 |
+| L4-H-081-BH-004 | On governed external acceptance, the system shall transition `Receipt Pending → Accepted` and publish `ExternalEducationTransferAccepted`. | L3-H-081 §§9,12–14 |
+| L4-H-081-BH-005 | On governed rejection, the system shall transition an applicable `Validation Pending` or `Receipt Pending → Rejected` and publish `ExternalEducationTransferRejected`. | L3-H-081 §§10,12–14 |
+| L4-H-081-BH-006 | When the exchange cannot safely be accepted or rejected until a governed discrepancy is resolved, the system shall transition `Validation Pending` or `Receipt Pending → Quarantined` and publish `ExternalEducationTransferQuarantined`. | L3-H-081 §§10–14 |
+| L4-H-081-BH-007 | After governed correction/revalidation, the system shall transition `Quarantined → Validation Pending`; prior validation/quarantine evidence shall remain traceable and source facts shall remain unchanged. | L3-H-081 §§10–13,15 |
+| L4-H-081-BH-008 | `Quarantined` shall be treated as a business-governed exception state, not as a technical retry mechanism; accepted transfer shall not itself mutate canonical Student, Academic, Examination, Finance or other source records. | L3-H-081 §§3,11–13,16 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-081-BH-005 | The system shall preserve canonical ownership and provenance for all exchanged business data and keep H10 limited to exchange/transfer governance. | L3-H-081 §§5,14 |
-| L4-H-081-BH-006 | Any parent-required exchange event or hand-off shall retain its exact identity and publisher/owner. | L3-H-081 §14 |
+| L4-H-081-BH-009 | H10 shall publish `ExternalEducationTransferAccepted`, `ExternalEducationTransferRejected`, and `ExternalEducationTransferQuarantined` only for H10 Exchange Transfer facts. | L3-H-081 §14 |
+| L4-H-081-BH-010 | `VAR:Exchanging Domain` shall retain ownership and canonical publication of the exchanged business facts; A shall retain its applicable platform trust/security facts. | L3-H-081 §§5,14–16 |
 
 ## 6. Failure / Rejection / Continuation
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-081-BH-007 | Invalid, rejected or unverifiable transfer conditions shall not be represented as accepted and shall preserve the governed rejection/recovery evidence. | L3-H-081 §§10–11 |
+| L4-H-081-BH-011 | Invalid, rejected or unverifiable transfer conditions shall never be represented as `Accepted`; rejection/quarantine shall preserve the full governed evidence and shall not mutate source-domain facts. | L3-H-081 §§10–11 |
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-081-BH-008 | The system shall preserve provider/exchange scope, source provenance, validation/decision basis and final accepted/rejected transfer evidence required by the parent. | L3-H-081 §15 |
+| L4-H-081-BH-012 | The system shall preserve exchange contract/version, source owner, authorization, validation, send/receipt acknowledgement, exception decision, quarantine/revalidation history and final transfer outcome. | L3-H-081 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-081 §16 is objectively satisfied.
+The behavior is complete when the Exchange Transfer reaches `Accepted`, `Rejected`, or a governed `Quarantined`/revalidation disposition with complete evidence and no source-domain ownership transfer.
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-081 — Governed External Education Data Exchange to Accepted or Rejected Transfer  
-**Primary verification source:** L2-H10 — External Education Integration Workflows.
+**Primary verification source:** L2-H10 — External Education Integration Workflows  
+**Rejected/quarantine lifecycle verification:** `L2-H10_Provider_Trust_and_Exchange_Governance_Amendment_2026-08-26.md`
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. Payload/schema/protocol/API/transport/UI design remains deferred to L5/L6.
+No material upstream issue prevents derivation. Payload, schema, protocol, API, transport and UI design remain deferred to later architecture levels.

@@ -6,49 +6,54 @@
 **Domain:** External Education Integration  
 **Realizes Scenario:** L3-H-074  
 **Primary Business Owner:** External Education Integration  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** L3-H-074; L2-H10 — External Education Integration Workflows; applicable Locked Section A authentication/identity architecture  
+**Last Updated:** 2026-09-01  
+**Depends On:** L3-H-074; L2-H10 — External Education Integration Workflows; `L2-H10_Provider_Trust_and_Exchange_Governance_Amendment_2026-08-26.md`; applicable Locked A02/A03 identity/authentication architecture  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern the H10 business trust relationship through active or revoked status as approved by L3-H-074 while leaving technical authentication mechanisms to L5 and canonical authentication infrastructure to Section A.
+SutraERP shall govern the H10 External Education Provider Trust relationship through approval, activation, suspension/restoration, expiry or revocation while preserving exclusive A03 ownership of authentication credentials and Authentication Provider lifecycles.
 
 ## 3. Required Business Context
-Use the parent-defined provider/trust requirement, authoritative trust decision/conditions, H10 relationship lifecycle, Section A authentication boundary, events/contracts and evidence.
+An external provider requires governed institutional trust; institutional/legal/business trust context and A03 authentication facts are available by reference; the External Education Integration Governance Authority owns H10 Provider Trust approval/revocation decisions.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-074-BH-001 | The system shall admit trust-relationship activation/revocation only when the parent-defined provider, trust and authority prerequisites are satisfied. | L3-H-074 §§7–8 |
-| L4-H-074-BH-002 | The system shall require and record the parent-defined business trust decision without defining technical authentication policy. | L3-H-074 §§9,12,15 |
-| L4-H-074-BH-003 | The system shall apply only the H10 trust-relationship lifecycle effects defined by the parent. | L3-H-074 §13 |
-| L4-H-074-BH-004 | The system shall expose active or revoked trust status only when L3-H-074 completion criteria are satisfied. | L3-H-074 §§3,16 |
+| L4-H-074-BH-001 | The system shall establish Provider Trust in `Requested` and shall use A03-owned authentication facts only as authoritative references, not as H10-owned lifecycle data. | L3-H-074 §§5,7–9,12–13 |
+| L4-H-074-BH-002 | The system shall transition the Provider Trust `Requested → Under Review` and validate provider legitimacy and institutional/legal context without creating, rotating, suspending, expiring or revoking A03 credentials. | L3-H-074 §§9,11–13 |
+| L4-H-074-BH-003 | When the External Education Integration Governance Authority approves the trust, the system shall transition `Under Review → Approved` and publish `ExternalProviderTrustApproved`. | L3-H-074 §§6,9,12–15 |
+| L4-H-074-BH-004 | When an Approved trust is activated, the system shall transition `Approved → Active` and publish `ExternalProviderTrustActivated`. | L3-H-074 §§9,12–14 |
+| L4-H-074-BH-005 | Governed suspension shall transition `Active → Suspended` and publish `ExternalProviderTrustSuspended`; governed restoration shall return the trust to `Active`. | L3-H-074 §§10,12–14 |
+| L4-H-074-BH-006 | When the governed trust period ends without renewal, the system shall transition `Active` or `Suspended → Expired` and publish `ExternalProviderTrustExpired`; `Expired` shall remain distinct from A03 credential expiry. | L3-H-074 §§3,10,12–14 |
+| L4-H-074-BH-007 | When the External Education Integration Governance Authority revokes the trust, the system shall transition `Active → Revoked`, publish `ExternalProviderTrustRevoked`, and require a new governed trust decision for re-establishment. | L3-H-074 §§6,10–15 |
+| L4-H-074-BH-008 | A03-owned credential rotation, suspension, expiry or revocation shall remain an A03 lifecycle action; H10 may consume the authoritative resulting fact and reassess Provider Trust but shall not create an H10 rotation state. | L3-H-074 §§3,5,10–14,16 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-074-BH-005 | The system shall preserve Section A ownership of canonical authentication/identity infrastructure and H10 ownership only of the external education trust business relationship. | L3-H-074 §§5,14–15 |
-| L4-H-074-BH-006 | Any parent-required trust event or hand-off shall retain its exact identity and publisher/owner. | L3-H-074 §14 |
+| L4-H-074-BH-009 | H10 shall publish `ExternalProviderTrustApproved`, `ExternalProviderTrustActivated`, `ExternalProviderTrustSuspended`, `ExternalProviderTrustRevoked`, and `ExternalProviderTrustExpired` for H10 Provider Trust facts only. | L3-H-074 §14 |
+| L4-H-074-BH-010 | A03 shall remain sole owner/publisher of authentication Credential / Authentication Provider lifecycle facts; A02 retains canonical identity ownership. | L3-H-074 §§5,12–14,16 |
 
 ## 6. Failure / Rejection / Continuation
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-074-BH-007 | Invalid or unapproved trust conditions shall prevent activation; revoked relationships shall not be treated as active except through parent-supported governance. | L3-H-074 §§10–11 |
+| L4-H-074-BH-011 | Provider Trust shall not become `Active` without governed H10 approval; `Expired` or `Revoked` trust shall not be treated as Active except through a new parent-supported governance action. | L3-H-074 §§10–12 |
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-074-BH-008 | The system shall preserve provider/trust references, authority/decision, prior/current relationship status and final evidence required by the parent. | L3-H-074 §15 |
+| L4-H-074-BH-012 | The system shall preserve provider context, H10 review/approval decision, Provider Trust lifecycle history and all referenced A03 authentication facts without ownership transfer. | L3-H-074 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-074 §16 is objectively satisfied.
+The behavior is complete when the H10 Provider Trust reaches its applicable governed state—`Active`, `Suspended`/restored, `Expired`, or `Revoked`—and any authentication-credential lifecycle outcome remains authoritative in A03 with no duplicate owner/publisher.
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-074 — External Trust Requirement to Active or Revoked Authentication Relationship  
-**Primary verification source:** L2-H10 — External Education Integration Workflows with applicable Section A authentication architecture.
+**Primary verification source:** L2-H10 — External Education Integration Workflows with A02/A03 identity/authentication architecture  
+**Ownership/lifecycle verification:** `L2-H10_Provider_Trust_and_Exchange_Governance_Amendment_2026-08-26.md`
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. Technical IAM/authentication protocol/design remains deferred to L5.
+No material upstream issue prevents derivation. Technical IAM/authentication protocol/design remains deferred to later architecture levels.
