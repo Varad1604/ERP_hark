@@ -8,10 +8,10 @@
 **Domain:** Examination — Examination Session Closure & Archival (I16)  
 **Realizes Scenario:** ** `L3-I-189` — Examination Record Retention Governance to Applied Retention Classification  
 **Primary Business Owner:** Examination Session Closure & Archival (I16)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Devang  
-**Last Updated:** 2026-08-30  
+**Last Updated:** 2026-09-01  
 **Depends On:** ** `L3-I-189_Examination_Record_Retention_Governance_to_Applied_Retention_Classification.md`; `L2-I16_Examination_Session_Closure_and_Archival_Workflows.md` §8.1; `L3-I-187`; `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`  
 **Referenced By:** ** `L3-I-190`; `L3-I-191`; Future L5 Solution Architecture
 
@@ -58,7 +58,7 @@ This specification remains implementation-independent. It does not prescribe dat
 | `L4-I-189-BH-005` | The system shall compute and bind explicit disposal eligibility countdown horizons to each classified record category based on the session finalization date. | L3-I-189 §3, §4.2, §12 |
 | `L4-I-189-BH-006` | The system shall enforce separation of duties under `BR-I-AUTH`, requiring distinct University Archivist submission and Controller of Examinations (CoE) executive approval. | L3-I-189 §6, §12 (`BR-I-AUTH`), §15.2 |
 | `L4-I-189-BH-007` | Upon receiving valid dual-witness verification and Controller of Examinations approval, the system shall transition the retention profile to `RETENTION_CLASSIFIED_AND_LOCKED`. | L3-I-189 §9 (Step 5), §13, §16.1 |
-| `L4-I-189-BH-008` | If prerequisite verification fails or statutory non-compliance is detected, the system shall suspend progression, retain the profile in `RECORD_ARCHIVED`, and route the docket to the corrective queue. | L3-I-189 §11 (Fail-1) |
+| `L4-I-189-BH-008` | If prerequisite verification fails or statutory non-compliance is detected, the system shall suspend progression, retain the profile in `RECORD_ARCHIVED`, and preserve the case for governed corrective resolution. | L3-I-189 §11 (Fail-1) |
 | `L4-I-189-BH-009` | If an authorized emergency variance protocol is granted by executive decree, the system shall record the executive justification while maintaining statutory audit traceability. | L3-I-189 §10 (Alt-1) |
 | `L4-I-189-BH-010` | The system shall enforce `BR-I-AUDIT` by preserving an immutable audit record containing classification parameters, disposal dates, executive approvals, and integrity verification evidence. | L3-I-189 §12 (`BR-I-AUDIT`), §15.3 |
 
