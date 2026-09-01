@@ -9,9 +9,9 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Devang  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-09-01  
 **Depends On:** `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `L2-G07_Security_Operations_Workflows.md` §8, §11, §16; `DEPENDENCY_MAP.md`  
 **Referenced By:** `L3-G-215`; Future L4 System Behavior Specifications  
 
@@ -76,7 +76,7 @@ Disciplinary authority or statutory authority disposes of case; docket sealed.
 | Investigating Security Officer | Operational lead overseeing execution, verification, and supervisory sign-off | Directs / Decides |
 | Chief Security Officer | Primary operational actor executing physical checks, logging, and inspection | Performs / Operates |
 | Campus Proctor / Legal Advisor | Institutional collaborator or external liaison verifying compliance | Verifies / Coordinates |
-| Complainant / Witness | Executive oversight authority granting formal approvals or exception waivers | Approves / Audits |
+| Complainant / Witness | Provides incident facts, testimony, observations, and supporting evidence for investigation | Provides Evidence |
 
 ---
 
@@ -172,7 +172,6 @@ Operational requirement for security incident report to closed resolution is tri
 |---|---|---|---|
 | Operational Intake & Logging | Chief Security Officer | Executes intake registration and preliminary checks | Security Operations |
 | Supervisory Review & Clearance | Investigating Security Officer | Verifies compliance and grants operational clearance | Security Operations |
-| Executive Oversight & Escalation | Complainant / Witness | Grants exception waivers and policy-level sign-offs | Security Operations |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 

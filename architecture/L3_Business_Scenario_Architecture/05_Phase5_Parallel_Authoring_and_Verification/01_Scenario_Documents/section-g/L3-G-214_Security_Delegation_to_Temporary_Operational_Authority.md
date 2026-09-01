@@ -9,9 +9,9 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Devang  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-09-01  
 **Depends On:** `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `L2-G07_Security_Operations_Workflows.md` §8, §11, §16; `DEPENDENCY_MAP.md`  
 **Referenced By:** `L3-G-215`; Future L4 System Behavior Specifications  
 
@@ -76,7 +76,6 @@ Delegation expires and original authority automatically resumes.
 | Chief Security Officer (Grantor) | Operational lead overseeing execution, verification, and supervisory sign-off | Directs / Decides |
 | Acting Security Officer (Grantee) | Primary operational actor executing physical checks, logging, and inspection | Performs / Operates |
 | Registrar / Appointing Authority | Institutional collaborator or external liaison verifying compliance | Verifies / Coordinates |
-| Platform Access Administrator | Executive oversight authority granting formal approvals or exception waivers | Approves / Audits |
 
 ---
 
@@ -172,7 +171,6 @@ Operational requirement for security delegation to temporary operational authori
 |---|---|---|---|
 | Operational Intake & Logging | Acting Security Officer (Grantee) | Executes intake registration and preliminary checks | Security Operations |
 | Supervisory Review & Clearance | Chief Security Officer (Grantor) | Verifies compliance and grants operational clearance | Security Operations |
-| Executive Oversight & Escalation | Platform Access Administrator | Grants exception waivers and policy-level sign-offs | Security Operations |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
