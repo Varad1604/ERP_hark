@@ -6,49 +6,42 @@
 **Domain:** Accreditation & Compliance  
 **Realizes Scenario:** L3-H-061  
 **Primary Business Owner:** Accreditation & Compliance  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** L3-H-061; L2-H09 — Accreditation & Compliance Workflows; applicable Locked institutional/source-domain architecture  
+**Last Updated:** 2026-09-01  
+**Depends On:** L3-H-061; L2-H09 — Accreditation & Compliance Workflows; `L2-H09_Framework_and_Compliance_Review_Normalization_Amendment_2026-09-01.md`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern an accreditation-framework change through the active H09 framework outcome defined by L3-H-061 without changing operational source-domain facts.
+SutraERP shall govern a new or revised Accreditation Framework through the canonical H09 review, approval, publication and activation path while preserving historical framework immutability.
 
 ## 3. Required Business Context
-Use the parent-defined framework/version/source, criteria/effective scope, governance authority, lifecycle, events/contracts and evidence.
+A framework proposal or revision exists with criteria, evidence requirements, scoring, applicability and governance context sufficient for review.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-061-BH-001 | The system shall admit a framework change only when the parent-defined source, version/scope and governance prerequisites are valid. | L3-H-061 §§7–8 |
-| L4-H-061-BH-002 | The system shall apply only parent-supported accreditation criteria/governance constraints. | L3-H-061 §12 |
-| L4-H-061-BH-003 | The system shall apply only the framework lifecycle/effective-state effects defined by the parent. | L3-H-061 §13 |
-| L4-H-061-BH-004 | The system shall expose the framework as active only when L3-H-061 completion criteria are satisfied. | L3-H-061 §§3,16 |
+| L4-H-061-BH-001 | The system shall establish the candidate framework in `Draft` and progress it only through the canonical path `Draft → Under Review → Approved → Published → Active`. | L3-H-061 §§9,13; L2-H09 normalization amendment §1 |
+| L4-H-061-BH-002 | Historical wording `Review` shall be interpreted as the same `Under Review` position and shall not create a competing lifecycle state. | L2-H09 normalization amendment §1 |
+| L4-H-061-BH-003 | Invalid or unapproved changes shall not become Active; required revision shall return through the governed review path without modifying the current Active version in place. | L3-H-061 §§10–13 |
+| L4-H-061-BH-004 | Only one applicable framework version may be Active for the governed scope, and historical framework versions shall remain immutable. | L3-H-061 §§12,16; L2-H09 normalization amendment §1 |
 
 ## 5. Cross-Domain & Event Behavior
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-061-BH-005 | The system shall preserve operational source fact/KPI ownership in source domains and shall not make H09 their owner. | L3-H-061 §§5,14 |
-| L4-H-061-BH-006 | Any parent-required framework event or hand-off shall retain its exact identity and publisher/owner. | L3-H-061 §14 |
+The system shall preserve the exact parent-supported framework events, including `Accreditation Framework Created`, `Accreditation Framework Updated`, `Accreditation Framework Submitted for Review`, `Accreditation Framework Approved`, `Accreditation Framework Published` and `Accreditation Framework Activated`, from the H09-owned framework aggregate.
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-061-BH-007 | Invalid or unapproved framework changes shall not become active and shall preserve the last valid governed framework. | L3-H-061 §§10–11 |
+A framework that fails review or lacks required approval shall not progress to Published or Active. Successor changes to an Active framework require a new version.
 
 ## 7. Audit & Evidence Behavior
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-061-BH-008 | The system shall preserve framework source/version, criteria change, authority/decision and active-framework evidence required by the parent. | L3-H-061 §15 |
+The system shall preserve framework version, criteria/evidence/scoring definition, review history, approval evidence, publication/activation history and immutable predecessor lineage.
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-061 §16 is objectively satisfied.
+Completion requires the successor framework version to be approved, published and Active through the canonical `Under Review` path, with exactly one applicable Active version and immutable historical versions.
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-061 — Accreditation Framework Change to Active Governed Framework  
-**Primary verification source:** L2-H09 — Accreditation & Compliance Workflows.
+**Primary verification sources:** L2-H09 — Accreditation & Compliance Workflows; L2-H09 Framework and Compliance Review Normalization Amendment — 2026-09-01.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. Implementation/UI design remains deferred.
+No material upstream issue prevents derivation. Implementation and UI design remain deferred.
