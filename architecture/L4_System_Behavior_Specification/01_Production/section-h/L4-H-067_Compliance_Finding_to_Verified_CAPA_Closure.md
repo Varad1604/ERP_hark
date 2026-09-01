@@ -6,49 +6,53 @@
 **Domain:** Accreditation & Compliance  
 **Realizes Scenario:** L3-H-067  
 **Primary Business Owner:** Accreditation & Compliance  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** L3-H-067; L2-H09 — Accreditation & Compliance Workflows; applicable Locked source-domain architecture  
+**Last Updated:** 2026-09-01  
+**Depends On:** L3-H-067; L2-H09 — Accreditation & Compliance Workflows; `L2-H09_Accreditation_Compliance_Lifecycle_Amendment_2026-08-26.md`; applicable Locked source-domain architecture  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern a compliance finding through the verified corrective/preventive-action closure defined by L3-H-067 without re-owning source operational facts.
+SutraERP shall govern an H09 compliance Finding/CAPA through planning, source-domain remediation evidence, effectiveness verification, closure and governed reopening where effectiveness does not hold, without taking ownership of source operational remediation.
 
 ## 3. Required Business Context
-Use the parent-defined finding, corrective/preventive action plan, responsible authority, verification evidence, lifecycle, events/contracts and audit obligations.
+A governed observation/nonconformity supports a Finding; CAPA is required; remediation ownership/evidence obligations are assigned; H09 owns Finding/CAPA governance; the Accreditation and Compliance Governance Authority owns governed closure/reopening decisions where institutional authority is required.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-067-BH-001 | The system shall admit CAPA progression only when the parent-defined finding and action-plan prerequisites are valid. | L3-H-067 §§7–8 |
-| L4-H-067-BH-002 | The system shall require source-supported completion evidence and the parent-defined verification decision before closure. | L3-H-067 §§9,12,15 |
-| L4-H-067-BH-003 | The system shall apply only the CAPA lifecycle effects defined by the parent. | L3-H-067 §13 |
-| L4-H-067-BH-004 | The system shall expose CAPA as closed only when L3-H-067 completion conditions are satisfied. | L3-H-067 §§3,16 |
+| L4-H-067-BH-001 | The system shall establish CAPA in `Opened` from a governed Finding and progress it through `Opened → Action Planned → In Progress` while the accountable source domain performs operational remediation. | L3-H-067 §§7–9,12–13 |
+| L4-H-067-BH-002 | When authoritative remediation evidence is received, the system shall transition `In Progress → Verification Pending` without re-owning the source operational facts. | L3-H-067 §§5,9,12–13 |
+| L4-H-067-BH-003 | When effectiveness verification succeeds, the system shall transition `Verification Pending → Verified` and publish `CAPAVerified`. | L3-H-067 §§9,12–14 |
+| L4-H-067-BH-004 | After the applicable authoritative closure decision, the system shall transition `Verified → Closed` and publish `CAPAClosed`. | L3-H-067 §§6,9,12–15 |
+| L4-H-067-BH-005 | If authoritative post-closure evidence shows that the corrective outcome did not hold or the finding remains unresolved, a governed reopening decision may transition `Closed → Reopened` and shall publish `CAPAReopened`. | L3-H-067 §§6,10,12–15 |
+| L4-H-067-BH-006 | A reopened CAPA shall progress `Reopened → In Progress` and repeat the remediation, verification and closure path; prior closure evidence shall remain immutable. | L3-H-067 §§10–13,15–16 |
+| L4-H-067-BH-007 | CAPA shall not reach `Closed` before successful effectiveness verification. | L3-H-067 §§11–12,16 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-067-BH-005 | The system shall preserve canonical ownership of operational source facts/evidence used to verify the CAPA. | L3-H-067 §§5,14 |
-| L4-H-067-BH-006 | Any parent-required finding/CAPA event or hand-off shall retain its exact identity and publisher/owner. | L3-H-067 §14 |
+| L4-H-067-BH-008 | H09 shall publish `CAPAVerified`, `CAPAClosed`, and `CAPAReopened` for the corresponding H09-owned CAPA outcomes; source-domain remediation evidence shall return through the governed CAPA hand-off without transferring operational ownership. | L3-H-067 §§5,14 |
 
 ## 6. Failure / Rejection / Continuation
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-067-BH-007 | Missing or failed verification shall prevent closure and preserve the parent-defined open/unresolved position. | L3-H-067 §§10–11 |
+| L4-H-067-BH-009 | Missing or failed effectiveness verification shall prevent `Closed` and keep the CAPA in its applicable governed pre-closure/rework position. | L3-H-067 §§11–12 |
+| L4-H-067-BH-010 | Reopening shall preserve the original closure evidence and record the new reason/authority; no prior history shall be erased. | L3-H-067 §§10–11,15 |
 
 ## 7. Audit & Evidence Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-067-BH-008 | The system shall preserve finding, action plan, responsible authority, completion/verification evidence and final closure outcome required by the parent. | L3-H-067 §15 |
+| L4-H-067-BH-011 | The system shall preserve Finding/root cause, action plan, remediation owner, source execution evidence, verification basis, original closure, reopening reason/authority, later remediation and final closure history. | L3-H-067 §15 |
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-067 §16 is objectively satisfied.
+The behavior is complete when CAPA effectiveness is `Verified` and the CAPA reaches final `Closed`; if reopening was required, the reopened cycle must complete through renewed remediation and verification without erasing prior closure history. Source operational ownership remains unchanged.
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-067 — Compliance Finding to Verified CAPA Closure  
-**Primary verification source:** L2-H09 — Accreditation & Compliance Workflows.
+**Primary verification source:** L2-H09 — Accreditation & Compliance Workflows  
+**Reopening verification:** `L2-H09_Accreditation_Compliance_Lifecycle_Amendment_2026-08-26.md`
 
 ## 10. Open Issues / Deferred Design
 No material upstream issue prevents derivation. Task/workflow/UI implementation remains deferred.
