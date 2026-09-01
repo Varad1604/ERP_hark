@@ -8,10 +8,10 @@
 **Domain:** Campus Operations — Security Operations (G07)  
 **Realizes Scenario:** ** `L3-G-200` — Security Incident Report to Closed Resolution  
 **Primary Business Owner:** Security Operations (G07)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Devang  
-**Last Updated:** 2026-08-30  
+**Last Updated:** 2026-09-01  
 **Depends On:** ** `L3-G-200_Security_Incident_Report_to_Closed_Resolution.md`; `L2-G07_Security_Operations_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`  
 **Referenced By:** ** None yet
 
@@ -109,14 +109,12 @@ L4 behavior is complete when:
 **Primary verification source:** `L2-G07_Security_Operations_Workflows.md` §8.2.1 (Configuration and Activation), §11 (Failure and Exceptions), §13 (Lifecycle Invariants), §14 (Event Contracts)  
 **Higher-level verification:** `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`
 
-All BHs derive from the Locked L3 parent. This specification intentionally does not assign new business authority where the parent is ambiguous.
+All BHs derive from the corrected Locked L3 parent. Security Operations supervisory clearance remains distinct from disciplinary or statutory case disposition outside the scenario boundary.
 
 ---
 
 ## 10. Open Issues / Deferred Design
 
-**Upstream clarification required:** The Locked parent contains an internal role/authority ambiguity: §6 describes `Complainant / Witness` as an executive-oversight role and §15.1 states that role grants exception waivers/policy-level sign-offs, while the scenario boundary states that disciplinary or statutory authority disposes the case. L4 does not silently resolve or reassign this authority.
-
-Until clarified upstream, this specification requires an attributable authoritative disposition but does not name a new exception/closure authority beyond what is unambiguously supported.
+No unresolved upstream authority issue remains for this specification.
 
 Police-system integration, evidence repository design, persistence, event transport, technical access control, audit implementation, and UI/UX remain deferred.

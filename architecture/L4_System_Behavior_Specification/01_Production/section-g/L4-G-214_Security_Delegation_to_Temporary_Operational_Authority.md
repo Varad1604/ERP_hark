@@ -8,10 +8,10 @@
 **Domain:** Campus Operations — Security Operations (G07)  
 **Realizes Scenario:** ** `L3-G-214` — Security Delegation to Temporary Operational Authority  
 **Primary Business Owner:** Security Operations (G07)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Devang  
-**Last Updated:** 2026-08-30  
+**Last Updated:** 2026-09-01  
 **Depends On:** ** `L3-G-214_Security_Delegation_to_Temporary_Operational_Authority.md`; `L2-G07_Security_Operations_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`  
 **Referenced By:** ** None yet
 
@@ -112,12 +112,12 @@ The scenario lifecycle later ends when the approved period expires and original 
 **Primary verification source:** `L2-G07_Security_Operations_Workflows.md` §8.2.1 (Configuration and Activation), §11 (Failure and Exceptions), §13 (Lifecycle Invariants), §14 (Event Contracts)  
 **Higher-level verification:** `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`
 
-All BHs derive from the Locked L3 parent.
+All BHs derive from the corrected Locked L3 parent.
 
 ---
 
 ## 10. Open Issues / Deferred Design
 
-**Upstream clarification required:** The Locked parent assigns `Platform Access Administrator` an executive oversight / waiver role. That authority is not independently restated here because it risks confusing technical access administration with business delegation authority. The parent-supported Registrar / Appointing Authority participation, CSO grantor authority, bounded scope, and non-sub-delegation rule are preserved.
+No unresolved upstream authority issue remains. The Chief Security Officer (Grantor) owns the business delegation decision; Registrar / Appointing Authority participation remains verification and appointment evidence. Technical authorization administration does not acquire business delegation authority.
 
 IAM/RBAC implementation, credential provisioning, persistence, event transport, audit implementation, and UI/UX remain deferred.

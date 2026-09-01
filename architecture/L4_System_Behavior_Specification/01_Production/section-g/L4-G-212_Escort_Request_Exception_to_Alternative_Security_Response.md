@@ -8,10 +8,10 @@
 **Domain:** Campus Operations — Security Operations (G07)  
 **Realizes Scenario:** ** `L3-G-212` — Escort Request Exception to Alternative Security Response  
 **Primary Business Owner:** Security Operations (G07)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Devang  
-**Last Updated:** 2026-08-30  
+**Last Updated:** 2026-09-01  
 **Depends On:** ** `L3-G-212_Escort_Request_Exception_to_Alternative_Security_Response.md`; `L2-G07_Security_Operations_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`  
 **Referenced By:** ** None yet
 
@@ -108,12 +108,12 @@ L4 behavior is complete when:
 **Primary verification source:** `L2-G07_Security_Operations_Workflows.md` §8.2.1 (Configuration and Activation), §11 (Failure and Exceptions), §13 (Lifecycle Invariants), §14 (Event Contracts)  
 **Higher-level verification:** `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`
 
-All BHs derive from the Locked L3 parent.
+All BHs derive from the corrected Locked L3 parent.
 
 ---
 
 ## 10. Open Issues / Deferred Design
 
-**Upstream clarification required:** The Locked parent describes the `Escort Requestor` as executive oversight authority granting exception waivers/policy-level sign-offs. L4 does not silently adopt or reinterpret that authority. The operational outcome and Security Dispatch Supervisor approval remain modeled as supported; any additional waiver authority requires upstream clarification.
+No unresolved upstream authority issue remains. The Security Dispatch Supervisor authorizes the alternative protection arrangement; the Escort Requestor confirms acceptance of the verified arrangement.
 
 Dispatch technology, police interfaces, shuttle systems, persistence, event transport, audit implementation, and UI/UX remain deferred.
