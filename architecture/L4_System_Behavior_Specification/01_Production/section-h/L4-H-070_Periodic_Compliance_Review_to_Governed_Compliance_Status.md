@@ -6,49 +6,43 @@
 **Domain:** Accreditation & Compliance  
 **Realizes Scenario:** L3-H-070  
 **Primary Business Owner:** Accreditation & Compliance  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** L3-H-070; L2-H09 — Accreditation & Compliance Workflows; applicable Locked source-domain architecture  
+**Last Updated:** 2026-09-01  
+**Depends On:** L3-H-070; L2-H09 — Accreditation & Compliance Workflows; `L2-H09_Framework_and_Compliance_Review_Normalization_Amendment_2026-09-01.md`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern a periodic compliance review through the H09 compliance-status outcome defined by L3-H-070 while preserving source-domain fact ownership.
+SutraERP shall govern a periodic Compliance Review from scheduled evaluation through evidence review, action assignment and closure while recording only source-supported compliance-status outcomes.
 
 ## 3. Required Business Context
-Use the parent-defined compliance requirements, review scope/period, source evidence, evaluation/decision authority, lifecycle, events and audit obligations.
+Applicable Compliance Requirements, authoritative evidence, review scope/schedule and H09 governance context are available.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-070-BH-001 | The system shall admit a periodic review only when the parent-defined scope, applicable requirements and evidence context are valid. | L3-H-070 §§7–8 |
-| L4-H-070-BH-002 | The system shall determine compliance status only from parent-supported requirements, authoritative evidence and the defined governance decision. | L3-H-070 §§9,12,15 |
-| L4-H-070-BH-003 | The system shall apply only the review/compliance-status lifecycle effects defined by the parent. | L3-H-070 §13 |
-| L4-H-070-BH-004 | The system shall expose the governed compliance status only when L3-H-070 completion criteria are satisfied. | L3-H-070 §§3,16 |
+| L4-H-070-BH-001 | The system shall progress the Compliance Review only through `Scheduled → In Progress → Reviewed → Action Assigned → Closed`. | L3-H-070 §§9,13; L2-H09 normalization amendment §2 |
+| L4-H-070-BH-002 | `Compliance Review Completed` shall be recorded when evidence evaluation reaches the `Reviewed` milestone and shall not be treated as final closure. | L2-H09 normalization amendment §2 |
+| L4-H-070-BH-003 | Required governed actions shall be recorded before final closure where applicable; `Compliance Review Assigned` records action assignment and `Compliance Review Closed` records final closure. | L2-H09 normalization amendment §2 |
+| L4-H-070-BH-004 | The system shall record `Compliant` only as a governed compliance-status outcome for an applicable Active Compliance Requirement when updated evidence and review confirmation satisfy BR-H09-035. | L3-H-070 §12; L2-H09 normalization amendment §3 |
+| L4-H-070-BH-005 | `Compliant` shall not replace the canonical Compliance Requirement lifecycle, and unsupported or incomplete evidence shall prevent an unsupported compliant status. | L2-H09 normalization amendment §3 |
 
 ## 5. Cross-Domain & Event Behavior
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-070-BH-005 | The system shall preserve source-domain ownership of operational evidence/facts used by the review. | L3-H-070 §§5,14 |
-| L4-H-070-BH-006 | Any parent-required review/status event or hand-off shall retain its exact identity and publisher/owner. | L3-H-070 §14 |
+Source-domain evidence remains owned by its canonical owner. H09 shall publish `Compliance Status Updated` from the Compliance Requirement aggregate when the governed assessment changes, while Compliance Review events remain H09 review facts.
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-070-BH-007 | Missing or conflicting mandatory evidence shall prevent an unsupported compliance determination and preserve the governed unresolved condition. | L3-H-070 §§10–11 |
+Missing or conflicting evidence shall prevent unsupported status advancement or closure and keep the review in its appropriate governed position until action/evidence conditions are satisfied.
 
 ## 7. Audit & Evidence Behavior
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-070-BH-008 | The system shall preserve review scope/period, evidence provenance, requirement evaluation, decision authority and final compliance-status evidence required by the parent. | L3-H-070 §15 |
+The system shall preserve review scope/schedule, evidence provenance, requirement evaluation, deviations/actions, status decision and review milestone/closure history.
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-070 §16 is objectively satisfied.
+Completion requires the review to reach `Closed` after evidence evaluation and required action assignment, with any recorded compliance-status outcome supported by authoritative evidence and BR-H09-035.
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-070 — Periodic Compliance Review to Governed Compliance Status  
-**Primary verification source:** L2-H09 — Accreditation & Compliance Workflows.
+**Primary verification sources:** L2-H09 — Accreditation & Compliance Workflows; L2-H09 Framework and Compliance Review Normalization Amendment — 2026-09-01.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. L5/L6 design remains deferred.
+No material upstream issue prevents derivation. Technical workflow realization and UI remain deferred.
