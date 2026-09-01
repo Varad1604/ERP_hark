@@ -63,9 +63,9 @@ This specification remains implementation-independent. It does not prescribe API
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| `L4-I-190-BH-010` | When A parent-defined cross-domain fact or approval is required, the system shall consume it only from its canonical owner and shall not duplicate ownership inside I16. | L3-I-190 §§4, 9, 13 |
+| `L4-I-190-BH-010` | When `Operational_Directive_Issued` is received as the parent-defined scenario-entry fact, the system shall recognize the directive from University Leadership / CoE without transferring ownership of that decision to Examination Session Closure & Archival (I16). | L3-I-190 §14.1 |
 | `L4-I-190-BH-011` | When The canonical scenario result is reached, the system shall publish `Examination_Records_Disposed` on behalf of Examination Session Closure & Archival (I16). | L3-I-190 §§4, 9, 13 |
-| `L4-I-190-BH-012` | When The parent requires an examination audit checkpoint, the system shall preserve governed audit evidence without prescribing cryptographic, blockchain, vault, broker, or storage technology. | L3-I-190 §§4, 9, 13 |
+| `L4-I-190-BH-012` | When the parent-defined audit checkpoint is authoritatively sealed, the system shall publish `Examination_Audit_Checkpoint_Sealed` on behalf of Examination Session Closure & Archival (I16). | L3-I-190 §14.1 |
 
 ---
 
