@@ -6,49 +6,46 @@
 **Domain:** External Education Integration  
 **Realizes Scenario:** L3-H-072  
 **Primary Business Owner:** External Education Integration  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** L3-H-072; L2-H10 — External Education Integration Workflows; applicable Locked institutional/external-provider architecture  
+**Last Updated:** 2026-09-01  
+**Depends On:** L3-H-072; L2-H10 — External Education Integration Workflows; `L2-H10_Provider_Reconciliation_and_Synchronization_Normalization_Amendment_2026-09-01.md`; applicable Locked A/B architecture  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
-SutraERP shall govern an external education provider relationship through only the active or retired outcome approved by L3-H-072 without making H10 the owner of external-provider business facts beyond its governed integration relationship.
+SutraERP shall govern the H10 External Provider relationship through verification, certification, activation, restriction/suspension, rejection or terminal retirement while keeping External Provider and External Education Provider Trust as separate governed concepts.
 
 ## 3. Required Business Context
-Use the parent-defined provider identity/reference, relationship eligibility/authority, lifecycle, trust/connector dependencies where applicable, events and evidence.
+Institutional and organization references remain authoritative in Section B; identity/authentication facts remain owned by Section A; H10 provider due-diligence and certification evidence is available.
 
 ## 4. System Behavioral Obligations
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-H-072-BH-001 | The system shall admit provider-relationship progression only when the parent-defined provider and governance prerequisites are satisfied. | L3-H-072 §§7–8 |
-| L4-H-072-BH-002 | The system shall require and record any parent-defined activation/retirement decision without inventing authority. | L3-H-072 §§9,12,15 |
-| L4-H-072-BH-003 | The system shall apply only the exact provider-relationship lifecycle effects defined by the parent. | L3-H-072 §13 |
-| L4-H-072-BH-004 | The system shall expose active or retired relationship status only when L3-H-072 completion criteria are satisfied. | L3-H-072 §§3,16 |
+| L4-H-072-BH-001 | External Provider progression shall preserve the H10 lifecycle `Pending Verification → Verified → Certified → Active` with governed `Restricted`, `Suspended` and terminal `Retired` outcomes. | L3-H-072 §§9–13; L2-H10 normalization amendment §1 |
+| L4-H-072-BH-002 | The system shall not merge External Provider lifecycle positions with the separate Provider Trust lifecycle `Requested → Under Review → Approved → Active → Revoked` and its governed branches. | L2-H10 normalization amendment §1 |
+| L4-H-072-BH-003 | Provider activation shall occur only after parent-defined verification, certification, authentication and governance prerequisites are satisfied. | L3-H-072 §§7–12 |
+| L4-H-072-BH-004 | A retired External Provider relationship shall not reactivate in place; a future relationship requires new governed onboarding. | L3-H-072 §§10–13,16 |
 
 ## 5. Cross-Domain & Event Behavior
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-H-072-BH-005 | The system shall preserve canonical institutional/provider facts outside H10 while governing only the H10 relationship. | L3-H-072 §§5,14 |
-| L4-H-072-BH-006 | Any parent-required provider-relationship event or hand-off shall retain its exact identity and publisher/owner. | L3-H-072 §14 |
+| L4-H-072-BH-005 | H10 shall publish `ProviderRegistered`, `ProviderActivated`, `ProviderSuspended` and `ProviderRetired` for the corresponding External Provider facts. | L3-H-072 §14 |
+| L4-H-072-BH-006 | When provider onboarding is rejected, the External Provider aggregate shall publish `ProviderOnboardingRejected`; that fact shall not create or mutate a Provider Trust record. | L2-H10 normalization amendment §2 |
+| L4-H-072-BH-007 | Section A identity/authentication and Section B institutional facts shall remain under their canonical ownership throughout H10 provider governance. | L3-H-072 §§5,14–16 |
 
 ## 6. Failure / Rejection / Continuation
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-072-BH-007 | Invalid, unapproved or unsupported relationship progression shall leave the last valid H10 position unchanged and preserve governed history. | L3-H-072 §§10–11 |
+Failed verification/certification or governance rejection shall prevent operational activation. Suspended providers may return to Active only through the parent-supported governed restoration path; Retired remains terminal.
 
 ## 7. Audit & Evidence Behavior
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-H-072-BH-008 | The system shall preserve provider reference, relationship governance/authority, lifecycle changes and final active/retired outcome evidence required by the parent. | L3-H-072 §15 |
+The system shall preserve provider registration, validation, certification, security/governance evidence, rejection/activation/suspension/retirement decisions and referenced A/B authority evidence without ownership transfer.
 
 ## 8. Observable Completion Conditions
-Complete only when L3-H-072 §16 is objectively satisfied.
+Completion requires the provider relationship to reach its governed approved/Active, rejected, restricted/suspended or Retired outcome with External Provider and Provider Trust lifecycles remaining separate and auditable.
 
 ## 9. Traceability & Provenance
 **Parent:** L3-H-072 — External Education Provider to Governed Active or Retired Relationship  
-**Primary verification source:** L2-H10 — External Education Integration Workflows.
+**Primary verification sources:** L2-H10 — External Education Integration Workflows; L2-H10 Provider, Reconciliation and Synchronization Normalization Amendment — 2026-09-01.
 
 ## 10. Open Issues / Deferred Design
-No material upstream issue prevents derivation. External integration/technical design remains deferred.
+No material upstream issue prevents derivation. Connector, authentication and transport implementation remain deferred.
