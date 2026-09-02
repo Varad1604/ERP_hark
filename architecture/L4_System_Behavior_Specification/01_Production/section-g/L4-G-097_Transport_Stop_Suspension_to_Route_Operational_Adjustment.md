@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-097 — Transport Stop Suspension to Route Operational Adjustment  
 **Primary Business Owner:** Transport Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,42 +16,45 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern suspension of a Transport Stop and the resulting operational route adjustment while preserving Transport Management ownership of route and stop outcomes.
+SutraERP shall govern suspension of a Transport Stop and the resulting route-level operational adjustment required by the authoritative Transport Management outcome.
 
 ## 3. Required Business Context
 
 - The Transport Stop and affected route context are authoritative.
-- Suspension authority and applicable operational rules are available.
+- A supported suspension basis exists.
+- Applicable operational authority and route constraints are available.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-097-BH-001 | Identify the affected Transport Stop and suspension basis. | L3-G-097 |
-| L4-G-097-BH-002 | Evaluate the suspension against applicable operational constraints. | L3-G-097 |
-| L4-G-097-BH-003 | Record the authorised stop suspension. | L3-G-097 |
-| L4-G-097-BH-004 | Identify affected operational route use and apply the governed route adjustment. | L3-G-097 |
-| L4-G-097-BH-005 | Preserve prior stop and route history required for traceability. | L3-G-097 |
+| L4-G-097-BH-001 | Identify the affected Transport Stop, its current operational position, and the suspension basis. | L3-G-097 §§7–9 |
+| L4-G-097-BH-002 | Evaluate the stop suspension and its route impact against applicable operational constraints. | L3-G-097 §§9, 11–12 |
+| L4-G-097-BH-003 | When authorised, transition the Transport Stop from Active to Suspended. | L3-G-097 §§9, 13, 16 |
+| L4-G-097-BH-004 | When the affected route requires adjustment, apply the authoritative G04 route outcome without inventing a local route state. | L3-G-097 §§3, 9–13, 17 |
+| L4-G-097-BH-005 | If the route can continue without adjustment, do not create an unnecessary route modification. | L3-G-097 §10 |
+| L4-G-097-BH-006 | Preserve prior stop and route history required for traceability. | L3-G-097 §§12, 15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-097-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Transport Management ownership. | L3-G-097 §14 |
+| L4-G-097-BH-007 | On stop suspension, Transport Management shall publish `StopSuspended`. | L3-G-097 §14 |
+| L4-G-097-BH-008 | Where the route consequence constitutes a route modification, Transport Management shall publish `RouteModified`; otherwise no route-modification event shall be asserted. | L3-G-097 §14 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Unauthorised suspension shall not change the stop's operational position.
-- Affected route use shall not be adjusted until the suspension is authoritative.
-- Existing historical route/stop information shall remain traceable.
+- If the suspension basis or authorization is unresolved, the stop shall remain in its current authoritative position.
+- If route operation cannot continue with the stop unavailable, the required G04 route outcome must be completed before the scenario can close.
+- If the consequence is a distinct sequencing or diversion outcome, that canonical scenario remains authoritative.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve suspension basis, authority, affected route context, adjustment outcome and history.
+Preserve suspension basis, authority, stop transition, affected route assessment, any resulting route adjustment, event evidence, and historical context.
 
 ## 8. Observable Completion Conditions
 
-The stop suspension is authoritative, affected route operations reflect the governed adjustment, and evidence is preserved.
+The stop is Suspended, any required route adjustment has been completed through G04, applicable canonical event behavior has occurred, and stop/route history remains traceable.
 
 ## 9. Traceability & Provenance
 
@@ -60,7 +63,7 @@ The stop suspension is authoritative, affected route operations reflect the gove
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact route consequence must remain source-determined; this specification does not collapse sequencing, diversion, or other route outcomes into an invented local state. Technical implementation is deferred to later architecture levels.
 
 ## Canonical Validation Note
 
