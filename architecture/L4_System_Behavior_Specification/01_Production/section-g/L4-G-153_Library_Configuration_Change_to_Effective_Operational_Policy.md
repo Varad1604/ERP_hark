@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-153 — Library Configuration Change to Effective Operational Policy  
 **Primary Business Owner:** Library Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,44 +16,46 @@
 
 ## 2. Behavioral Objective & Boundary
 
-The system shall govern library configuration change to effective operational policy according to authoritative upstream policy and workflow governance. The behavior ends when the authoritative business outcome is recorded. APIs, persistence, UI, and infrastructure remain outside this specification.
+SutraERP shall govern an authorised Library Management configuration change through scope validation, applicable governance review and establishment of the effective operational policy. Section A may provide foundation/configuration capability but shall not become owner of Library Management business policy.
 
 ## 3. Required Business Context
 
-- Affected library policy/configuration is identifiable.
-- Intended business scope is established.
-- Applicable governance authority is available.
-- Existing policy context can be evaluated.
+- The affected Library Management policy/configuration is identifiable.
+- The proposed change and intended business scope are established.
+- Existing authoritative policy context is available.
+- Applicable business authority/governance is available.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-153-BH-001 | The system shall identify and validate the library configuration change to effective operational policy context and authoritative inputs. | L3-G-153 §§3, 9, 12 |
-| L4-G-153-BH-002 | The system shall validate required business eligibility and policy constraints under Library Management governance. | L3-G-153 §§3, 9, 12 |
-| L4-G-153-BH-003 | The system shall execute the canonical library configuration change to effective operational policy business evaluation. | L3-G-153 §§3, 9, 12 |
-| L4-G-153-BH-004 | The system shall record the resulting authoritative business position and preserve historical audit evidence. | L3-G-153 §§3, 9, 12 |
-| L4-G-153-BH-005 | The system shall prevent progression and maintain the last valid business position when governing conditions are not satisfied. | L3-G-153 §§3, 9, 12 |
+| L4-G-153-BH-001 | Identify the affected Library Management policy, proposed change and intended business scope. | L3-G-153 §§3,7,9 |
+| L4-G-153-BH-002 | Preserve the existing authoritative policy while the proposed change is under review. | L3-G-153 §§9–11 |
+| L4-G-153-BH-003 | Validate that the change is within the authorised library-configuration boundary and apply upstream approval/governance rules where defined. | L3-G-153 §§9,12,15 |
+| L4-G-153-BH-004 | If approved, establish the new configuration as the effective operational policy for its authorised scope and make it applicable to subsequent library decisions. | L3-G-153 §§3,9,16 |
+| L4-G-153-BH-005 | If rejected or unresolved, retain the existing authoritative policy and do not invent an effective change. | L3-G-153 §§10–11 |
+| L4-G-153-BH-006 | Preserve prior and effective configuration history, decision authority and effective scope/date where authoritatively defined. | L3-G-153 §§9,15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-153-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Library Management ownership. | L3-G-153 §14 |
+| L4-G-153-BH-007 | The retrieved upstream architecture does not define a dedicated Library Configuration Changed event. No event shall be invented. G remains owner of the library business policy; A remains a supporting platform/foundation dependency only. | L3-G-153 §§5,14,17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- If the affected policy cannot be identified, no configuration change is applied.
+- If scope is ambiguous, the existing policy remains authoritative.
+- If approval cannot be established, the proposed change does not become effective.
+- No technical deployment, propagation, rollback or configuration-distribution mechanism is specified.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve affected policy, proposed change, prior policy context, intended/effective scope, decision, authority, effective condition and configuration history.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Library Management ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when an approved configuration is established as the authoritative effective policy for its intended scope, or when a governed rejection leaves the prior policy authoritative, with history preserved.
 
 ## 9. Traceability & Provenance
 
@@ -62,7 +64,7 @@ Completion requires governing conditions validated, the authoritative business p
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No dedicated configuration lifecycle or event is defined upstream, and exact Section A configuration-governance mechanics remain unresolved. L4 does not invent them. Technical configuration storage, APIs, deployment, persistence and UI remain deferred to later architecture levels.
 
 ## Canonical Validation Note
 
