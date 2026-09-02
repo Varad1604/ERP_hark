@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-148 — Damaged Library Resource During Stock Verification to Administrative Review  
 **Primary Business Owner:** Library Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,43 +16,47 @@
 
 ## 2. Behavioral Objective & Boundary
 
-Govern discovery of a damaged library resource during stock verification through administrative review, while preserving Library Management ownership and historical evidence.
+SutraERP shall govern a damaged-resource finding arising during stock verification through Library Management administrative review to an authoritative next-action outcome, without automatically creating a fine, replacement obligation, write-off approval, procurement or payment result.
 
 ## 3. Required Business Context
 
-- A stock-verification activity or authoritative damage observation exists.
-- The affected library resource/copy is identifiable.
+- An authorised stock-verification context exists.
+- The affected Library Copy/resource and damage observation are identifiable.
 - Applicable administrative review authority is available.
+- F/E/H context is consumed only where required.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-148-BH-001 | The system shall identify and validate the damaged library resource during stock verification to administrative review context and authoritative inputs. | L3-G-148 §§3, 9, 12 |
-| L4-G-148-BH-002 | The system shall validate required business eligibility and policy constraints under Library Management governance. | L3-G-148 §§3, 9, 12 |
-| L4-G-148-BH-003 | The system shall execute the canonical damaged library resource during stock verification to administrative review business evaluation. | L3-G-148 §§3, 9, 12 |
-| L4-G-148-BH-004 | The system shall record the resulting authoritative business position and preserve historical audit evidence. | L3-G-148 §§3, 9, 12 |
-| L4-G-148-BH-005 | The system shall prevent progression and maintain the last valid business position when governing conditions are not satisfied. | L3-G-148 §§3, 9, 12 |
+| L4-G-148-BH-001 | Identify the verification cycle and affected resource and record the authoritative physical-condition/damage observation within that verification context. | L3-G-148 §§7–9 |
+| L4-G-148-BH-002 | Bring the damage finding into Library Management administrative review and evaluate authoritative resource condition and verification evidence. | L3-G-148 §§3,9,15 |
+| L4-G-148-BH-003 | Establish the administrative review outcome: continued applicable operational condition, further authoritative handling, or progression toward write-off review where severe damage supports that recommendation. | L3-G-148 §§3,9–10,12,16 |
+| L4-G-148-BH-004 | Do not automatically create a Damaged Resource fine, Replacement Charge or final write-off approval; those consequences occur only where authoritative policy requires them. | L3-G-148 §§10,12–13,16 |
+| L4-G-148-BH-005 | Treat damage as a verification result/observation, not as an invented `Damaged`, `Damage Under Review`, `Repair Required` or `Write-Off Approved` lifecycle state. | L3-G-148 §13 |
+| L4-G-148-BH-006 | Preserve verification identity, resource identity, damage evidence, administrative decision, downstream boundary and required cross-domain references. | L3-G-148 §§15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-148-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Library Management ownership. | L3-G-148 §14 |
+| L4-G-148-BH-007 | The parent exposes verification events and `MissingResourceIdentified` but no dedicated damage-identification event. This specification shall not invent `DamagedResourceIdentified`. G owns the finding/review; F owns accounting/payment, E personnel context and H notification delivery. | L3-G-148 §§5,8,14,17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- No damage outcome shall be attached to an unidentified resource.
+- Incomplete damage evidence shall keep administrative review unresolved.
+- G shall not invent replacement charges, fines or Finance-owned amounts.
+- Personnel information remains E-owned.
+- Final write-off approval remains governed by institutional policy and is not implied locally.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve verification identity, resource identity, physical-condition/damage observation, verification evidence, administrative review, relevant cross-domain context and the established downstream action.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Library Management ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when the stock-verification damage finding has an authoritative administrative review outcome and any next business boundary is established without silently executing finance, procurement, final write-off or disciplinary workflows.
 
 ## 9. Traceability & Provenance
 
@@ -61,7 +65,7 @@ Completion requires governing conditions validated, the authoritative business p
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No dedicated damage event, severity matrix, automatic fine rule or final write-off authority is exposed upstream. These gaps remain unresolved rather than being filled locally. Technical implementation is deferred to L5.
 
 ## Canonical Validation Note
 
