@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-175 — Health Programme Planning to Programme Completion  
 **Primary Business Owner:** Institutional Health Services  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,7 +16,7 @@
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern establishment, activation, conduct and completion of a G06 Health Programme while preserving programme outcomes and separating individual follow-up activities from the programme lifecycle.
+The system shall govern establishment, activation, conduct and completion of a G06 Health Programme while preserving programme outcomes and separating individual follow-up activities from the programme lifecycle.
 
 ## 3. Required Business Context
 
@@ -65,7 +65,7 @@ Completion occurs when the Health Programme has satisfied its authoritative comp
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Programme-specific events must be selected only where explicitly defined upstream; no generic `HealthProgramCompleted` event is introduced. Institution-specific completion evidence and technical implementation remain upstream/deferred as applicable.
 
 ## Canonical Validation Note
 
