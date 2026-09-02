@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-128 — Catalogue Update to Effective Resource Information  
 **Primary Business Owner:** Library Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,43 +16,44 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern an authorised catalogue update through validation and effective adoption while preserving the prior authoritative resource information.
+SutraERP shall govern an authorised update to an existing Catalogue record so revised resource information becomes effective while preserving Catalogue identity, historical information, and separation from physical Library Copy management.
 
 ## 3. Required Business Context
 
-- An authoritative catalogue record exists.
-- Applicable cataloguing governance is available.
-- Library Management owns catalogue information.
+- An authoritative Catalogue record exists.
+- The update continues to represent the same intellectual work.
+- Applicable cataloguing, classification and approval rules are available.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-128-BH-001 | Register the proposed catalogue update against the authoritative catalogue record. | L3-G-128 |
-| L4-G-128-BH-002 | Validate changed information against applicable cataloguing rules. | L3-G-128 |
-| L4-G-128-BH-003 | Apply the governed review and authorisation path. | L3-G-128 |
-| L4-G-128-BH-004 | On approval, establish the changed information as effective catalogue information. | L3-G-128 |
-| L4-G-128-BH-005 | Preserve prior information and update history for traceability. | L3-G-128 |
+| L4-G-128-BH-001 | Identify the Catalogue record and information requiring update. | L3-G-128 §§7–9 |
+| L4-G-128-BH-002 | Prepare and validate revised bibliographic/classification/resource-type information as applicable. | L3-G-128 §§9,12 |
+| L4-G-128-BH-003 | Confirm that the change remains an update to the existing intellectual work rather than creation of a new Catalogue identity. | L3-G-128 §§9–10 |
+| L4-G-128-BH-004 | Apply configured catalogue review and authorisation before revised information becomes effective. | L3-G-128 §§9,15 |
+| L4-G-128-BH-005 | Preserve prior catalogue information and update history. | L3-G-128 §§12,15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-128-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Library Management ownership. | L3-G-128 §14 |
+| L4-G-128-BH-006 | When the authorised catalogue update becomes effective, Library Management shall publish `CatalogueUpdated`. No alternative event name or physical-copy lifecycle consequence shall be introduced. | L3-G-128 §§14,16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Invalid updates shall not become effective.
-- Missing authorisation shall retain the update in its applicable governance position.
-- Effective changes shall preserve prior historical information.
+- Unverifiable or unauthorised changes shall not become effective.
+- If the change represents a different intellectual work, it shall exit to the catalogue-creation workflow.
+- Historical catalogue information shall not be deleted.
+- Existing Library Copies shall not have their lifecycle changed solely by this catalogue-information update.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve proposal, validation, authority, effective outcome, and historical versions required for traceability.
+Preserve update reason, revised information, validation, authority, effective outcome and historical catalogue information.
 
 ## 8. Observable Completion Conditions
 
-Completion occurs when the authorised catalogue update is effective and historical traceability is preserved, or a governed terminal rejection is recorded.
+Completion occurs when the revised information is authoritative for the existing Catalogue, `CatalogueUpdated` is published, and prior information remains traceable.
 
 ## 9. Traceability & Provenance
 
@@ -61,7 +62,7 @@ Completion occurs when the authorised catalogue update is effective and historic
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Exact metadata completeness and approval thresholds remain configuration governed. Technical search indexing, APIs, database persistence schemas, UI screens and infrastructure are deferred to L5 Solution Architecture.
 
 ## Canonical Validation Note
 
