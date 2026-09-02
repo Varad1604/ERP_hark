@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-131 — Library Resource Issue to Active Borrowing  
 **Primary Business Owner:** Library Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,44 +16,44 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern issue of an eligible library resource to an authorised borrower through establishment of active borrowing.
+SutraERP shall govern issue of an eligible Library Copy to an eligible member through establishment of Active borrowing and the corresponding copy issue condition.
 
 ## 3. Required Business Context
 
-- An Active Library Membership exists.
-- The requested copy is eligible for circulation.
-- Applicable borrowing policy is authoritative.
-- Library Management owns borrowing lifecycle.
+- The member and Active Library Membership are authoritative.
+- The requested Library Copy is Available and eligible for circulation.
+- Borrowing limits, dues/restrictions, reservation priority and borrowing policy can be evaluated.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-131-BH-001 | Validate borrower membership and borrowing eligibility. | L3-G-131 |
-| L4-G-131-BH-002 | Validate the requested copy's circulation availability. | L3-G-131 |
-| L4-G-131-BH-003 | Apply applicable borrowing limits and authorisation rules. | L3-G-131 |
-| L4-G-131-BH-004 | On successful issue, establish the borrowing as Active and associate the issued copy with the borrowing. | L3-G-131 |
-| L4-G-131-BH-005 | Preserve issue transaction and borrowing history. | L3-G-131 |
+| L4-G-131-BH-001 | Validate Active Membership and configured borrowing eligibility. | L3-G-131 §§7,9,12 |
+| L4-G-131-BH-002 | Validate the Library Copy's authoritative availability and resource eligibility. | L3-G-131 §§7,9,12 |
+| L4-G-131-BH-003 | Evaluate configured borrowing limits, outstanding-dues restrictions, reservation priority and administrative restrictions where applicable. | L3-G-131 §§9,12 |
+| L4-G-131-BH-004 | On approved issue, establish the borrowing in `Active`, determine the applicable due date, and move the Library Copy from `Available` into its issued operational condition. | L3-G-131 §§3,9,13,16 |
+| L4-G-131-BH-005 | Preserve issue decision, borrower/copy relationship, due date and circulation history. | L3-G-131 §§12,15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-131-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Library Management ownership. | L3-G-131 §14 |
+| L4-G-131-BH-006 | On successful issue, Library Management shall publish `ResourceIssued`. C/E retain authoritative identity/personnel ownership; Finance retains accounting/payment ownership; H may consume the issue outcome for governed communication. | L3-G-131 §§5,14,16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Ineligible membership shall prevent issue.
+- Inactive membership shall prevent issue.
 - Unavailable or restricted copy shall prevent issue.
-- Exceeded borrowing constraints shall prevent creation of Active Borrowing.
+- Configured borrowing-limit, dues, reservation-priority, or administrative restrictions shall be respected.
+- A rejected issue shall not create Active borrowing or move the copy into Issued.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve borrower eligibility, copy identity, issue authority, issue decision, and active borrowing evidence.
+Preserve membership validation, copy identity/status, borrowing-policy evaluation, approval, due date, issue event and circulation history.
 
 ## 8. Observable Completion Conditions
 
-Completion occurs when an eligible copy is issued to an eligible borrower and Active Borrowing is established, or a governed rejection is recorded.
+Completion occurs when an eligible issue establishes Active borrowing with an authoritative due date, the copy is no longer ordinarily Available for another issue, `ResourceIssued` is published, and history is traceable.
 
 ## 9. Traceability & Provenance
 
@@ -62,7 +62,7 @@ Completion occurs when an eligible copy is issued to an eligible borrower and Ac
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Exact borrowing limits, durations, reservation priority and restriction values remain configuration governed. Technical authentication, APIs, database persistence schemas, UI screens, notification delivery mechanics and queues are deferred to L5 Solution Architecture.
 
 ## Canonical Validation Note
 
