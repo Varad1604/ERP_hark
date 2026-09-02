@@ -7,66 +7,67 @@
 **Domain:** Finance  
 **Realizes Scenario:** L3-F-001 — Business Obligation to Published Student Charge  
 **Primary Business Owner:** Student Charge & Fee Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-F-001; applicable locked F architecture sources  
+**Depends On:** L3-F-001; L2-F00; L2-F01; authoritative source-domain obligation events  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Establish and publish a canonical Student Charge from an authoritative business obligation after source resolution, classification, policy evaluation, fee structure resolution, calculation, validation, and publication readiness. Payment, settlement, refund, accounting, notification, and technical transport remain outside this behavior.
+Transform an authoritative source-domain business obligation into a canonical Published Student Charge through source resolution, classification, policy evaluation, Fee Structure resolution, calculation, validation and publication. The source business fact remains owned by its originating domain.
 
 ## 3. Required Business Context
 
-- Authoritative originating business obligation.
-- Resolved Charge Source and Charge Classification.
+- Authoritative originating business event/context from C, D, G or I as applicable.
+- Resolvable Charge Source and Charge Classification.
 - Applicable Charge Policy and Fee Structure.
-- Authoritative context required for Charge Calculation.
-- Validated Student Charge context.
+- Charge Calculation and publication-readiness context.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-F-001-BH-001 | When an authoritative business obligation indicates a financial obligation may be required, the system shall establish the business context required for charge generation. | L3-F-001 §§2–4,8–9 |
-| L4-F-001-BH-002 | The system shall resolve the Charge Source and Charge Classification for the obligation. | L3-F-001 §§4.3,7,9 |
-| L4-F-001-BH-003 | The system shall evaluate the applicable Charge Policy and eligibility conditions. | L3-F-001 §§3,7,9,12 |
-| L4-F-001-BH-004 | When applicable, the system shall resolve the applicable Fee Structure and calculate the Student Charge value. | L3-F-001 §§3,7,9 |
-| L4-F-001-BH-005 | The system shall validate the Student Charge before publication. | L3-F-001 §§3,7,9,12 |
-| L4-F-001-BH-006 | When publication readiness is satisfied, the system shall establish the canonical Student Charge as the authoritative financial obligation. | L3-F-001 §§3,9,13 |
-| L4-F-001-BH-007 | The system shall publish the validated Student Charge for downstream Finance consumption. | L3-F-001 §§3,4.2,9 |
+| L4-F-001-BH-001 | The system shall accept only an authoritative source-domain business obligation as the basis for charge generation. | L3-F-001 §§3–5, 7–9 |
+| L4-F-001-BH-002 | The system shall resolve exactly one Charge Source and the applicable Charge Classification for the obligation. | L3-F-001 §§3, 7, 9, 12 |
+| L4-F-001-BH-003 | The system shall evaluate the applicable Charge Policy and eligibility outcome before Fee Structure resolution and calculation. | L3-F-001 §§9, 12 |
+| L4-F-001-BH-004 | When charging is applicable, the system shall resolve the applicable Fee Structure and calculate the monetary value of the Student Charge. | L3-F-001 §§3, 9, 12 |
+| L4-F-001-BH-005 | The system shall validate structural, contextual, policy, financial and publication-readiness conditions before publication. | L3-F-001 §§7, 9, 11–12 |
+| L4-F-001-BH-006 | The system shall prevent duplicate creation where the same obligation has already produced a canonical Student Charge. | L3-F-001 §§7, 11–12 |
+| L4-F-001-BH-007 | When publication readiness is satisfied, the canonical Student Charge shall progress to `Published` without initiating payment or accounting. | L3-F-001 §§3–4, 9, 13, 16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-F-001-BH-008 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Student Charge & Fee Management ownership. | L3-F-001 §14 |
+| L4-F-001-BH-008 | The originating operational domain shall remain the canonical publisher of its own business-obligation event; Finance shall not republish that source fact as a Finance event. | L3-F-001 §§5, 14.1 |
+| L4-F-001-BH-009 | Student Charge & Fee Management shall publish `ChargeIdentificationInitiated`, `ChargeGenerationCompleted`, `ChargeValidationCompleted`, and `ChargePublicationCompleted` at their corresponding canonical milestones. | L3-F-001 §14.1 |
+| L4-F-001-BH-010 | Where applicable, Student Charge & Fee Management shall publish `ChargeAmountCalculated`, `InstallmentStructureGenerated`, `DueScheduleEstablished`, and `OutstandingBalanceUpdated` only when those exact outcomes occur. | L3-F-001 §14.1 |
+| L4-F-001-BH-011 | The Published Student Charge shall be available to Payment Management, Accounting, reporting and analytics without transferring Student Charge ownership. | L3-F-001 §§14.2, 16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- When the originating context is insufficient, the system shall not establish or publish the Student Charge.
-- When Charge Source, policy, Fee Structure, calculation, or validation requirements are not satisfied, the system shall not publish the charge.
-- When the obligation is not applicable for charging, the system shall not establish a Student Charge.
-- When a duplicate obligation is identified, the system shall preserve the existing canonical Student Charge and shall not create another.
+- Insufficient source context, unresolved Charge Source, unavailable Fee Structure, invalid calculation or failed validation shall prevent publication.
+- A policy outcome of not-applicable shall result in no Student Charge.
+- Deferred or review-required obligations remain outside Published until their business condition is resolved.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable evidence of the authoritative source context, Charge Source, classification, applicable policy, calculation basis, validation outcome, publication outcome, and traceability to the originating obligation.
+The source obligation, Charge Source, classification, policy decision, Fee Structure, calculation basis, validation result, Student Charge identity and publication outcome shall remain traceable.
 
 ## 8. Observable Completion Conditions
 
-- Charge Source and classification are resolved. - Applicable policy and eligibility are evaluated. - Fee Structure and charge value are established where applicable. - Student Charge passes required validation. - Canonical Student Charge is established. - Student Charge reaches Published. - Downstream consumers can consume the published financial obligation.
+A canonical Student Charge exists, is traceable to exactly one Charge Source, has passed validation, has reached `Published`, and is consumable by downstream Finance domains while source-domain ownership remains unchanged.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-F-001 — Business Obligation to Published Student Charge  
-**Primary verification source:** Authoritative Finance L2 workflow architecture.
+**Primary verification source:** L3-F-001 §§3, 5, 9, 11–17 and authoritative L2-F01 architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+L2-F01 explicitly lacks an authoritative actor catalogue. This L4 therefore introduces no Finance-specific actor or approval role. Technical event transport, APIs, persistence and retries remain deferred to L5.
 
 ## Canonical Validation Note
 
