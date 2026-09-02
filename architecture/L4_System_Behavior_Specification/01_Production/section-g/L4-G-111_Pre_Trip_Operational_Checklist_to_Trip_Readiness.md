@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-111 — Pre Trip Operational Checklist to Trip Readiness  
 **Primary Business Owner:** Transport Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,53 +16,53 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern completion of the required pre-trip operational checklist and establish Trip readiness when all authoritative conditions are satisfied.
+SutraERP shall govern the applicable pre-trip operational checklist and establish Trip readiness from the checklist perspective according to configured institutional policy.
 
 ## 3. Required Business Context
 
 - Trip and route context are authoritative.
-- Applicable vehicle, driver and safety requirements are available.
-- Transport Management owns Trip readiness.
+- Applicable checklist policy determines whether checks are required or optional.
+- Vehicle, driver and safety context remains source-owned.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-111-BH-001 | Establish the required pre-trip checklist context for the Trip. | L3-G-111 |
-| L4-G-111-BH-002 | Evaluate each applicable checklist requirement against authoritative operational conditions. | L3-G-111 |
-| L4-G-111-BH-003 | Record completion or exception for each required checklist condition. | L3-G-111 |
-| L4-G-111-BH-004 | Prevent Trip readiness when a mandatory checklist condition remains unsatisfied. | L3-G-111 |
-| L4-G-111-BH-005 | Establish Trip readiness when all mandatory conditions are satisfied. | L3-G-111 |
-| L4-G-111-BH-006 | Preserve checklist and readiness evidence. | L3-G-111 |
+| L4-G-111-BH-001 | Determine the applicable pre-trip checklist requirements from authoritative configured policy. | L3-G-111 §§2, 7, 9, 12 |
+| L4-G-111-BH-002 | Evaluate each applicable checklist requirement against authoritative operational conditions. | L3-G-111 §§9, 12 |
+| L4-G-111-BH-003 | Record completion, material observation or policy-governed exception for applicable checks. | L3-G-111 §§9–11 |
+| L4-G-111-BH-004 | Prevent checklist-dependent readiness while a mandatory checklist condition remains unsatisfied. | L3-G-111 §§10–12 |
+| L4-G-111-BH-005 | Confirm Trip readiness from the checklist perspective when required checks are satisfied or an upstream-supported governed exception permits continuation. | L3-G-111 §§3, 9, 16 |
+| L4-G-111-BH-006 | Preserve checklist and readiness evidence. | L3-G-111 §§15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-111-BH-007 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Transport Management ownership. | L3-G-111 §14 |
+| L4-G-111-BH-007 | The exact canonical event identifier for pre-trip checklist completion/readiness is unresolved upstream; this L4 specification shall not invent one. The authoritative checklist/readiness outcome remains G04-owned and may be consumed by approved downstream participants. | L3-G-111 §§14, 17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Failed mandatory checks prevent readiness.
-- Missing authoritative operational information keeps the checklist unresolved.
-- Corrective action must occur before readiness is re-evaluated.
+- Failed mandatory checks prevent checklist-dependent readiness.
+- Missing authoritative operational information keeps the applicable check unresolved.
+- Material vehicle or driver issues shall be resolved through their authoritative transport workflows before readiness is re-evaluated where required.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve checklist requirements, evaluated conditions, exceptions, corrective outcomes, authority and final readiness decision.
+Preserve applicable checklist requirements, evaluated conditions, exceptions, corrective outcomes, authority and final readiness decision.
 
 ## 8. Observable Completion Conditions
 
-All mandatory checklist conditions are satisfied, the readiness decision is recorded, and Trip reaches its governed Ready position.
+The applicable checklist outcome is established, required conditions are satisfied or governed exceptions are recorded, and Trip readiness from the checklist perspective is objectively determinable.
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-G-111 — Pre Trip Operational Checklist to Trip Readiness  
-**Primary verification source:** Authoritative Campus Operations L2 workflow architecture.
+**Parent:** L3-G-111 — Pre-Trip Operational Checklist to Trip Readiness  
+**Primary verification source:** L3-G-111 §§3, 9–17; authoritative L2-G04 Transport Management workflow architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact canonical checklist/readiness event identifier remains unresolved upstream and shall not be invented at L4. Technical implementation remains deferred to L5/L6.
 
 ## Canonical Validation Note
 
