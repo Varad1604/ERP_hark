@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-167 — Medicine Availability Exception to Alternative Medical Action  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,46 +16,43 @@
 
 ## 2. Behavioral Objective & Boundary
 
-The system shall identify when a prescribed medicine cannot be dispensed as intended, prevent a false dispensing outcome, and preserve the authorised alternative medical action or explicit unresolved healthcare outcome. Clinical substitution decisions remain with authorised healthcare professionals.
+SutraERP shall preserve a prescribed-medicine availability exception, prevent false dispensing, and record only an authorised alternative medical action or explicit unresolved healthcare outcome under G06 governance.
 
 ## 3. Required Business Context
 
-- Prescription and Medicine Dispense are G06-owned.
-- The affected medicine and availability condition are authoritative business facts.
-- Alternative medical action requires authorised healthcare judgement.
-- Patient and Medical Encounter continuity must be preserved.
-- The Prescription lifecycle remains `Created → Issued → Dispensed → Completed`.
+- A valid Prescription and associated Medical Encounter exist.
+- A prescribed medicine cannot be dispensed as intended.
+- Patient context is authoritative.
+- An authorised medical professional can establish any alternative medical action.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-167-BH-001 | When a prescribed medicine cannot be dispensed as intended, the system shall record the availability exception against the relevant Prescription and Medical Encounter. | L3-G-167 §§3, 8, 9 |
-| L4-G-167-BH-002 | The system shall prevent the unavailable medicine from being represented as dispensed without a valid dispensing outcome. | L3-G-167 §§9, 12, 16 |
-| L4-G-167-BH-003 | When an authorised medical professional establishes an alternative medical action, the system shall record that action in the relevant healthcare context. | L3-G-167 §§9, 15, 16 |
-| L4-G-167-BH-004 | When no acceptable alternative is established, the system shall preserve the explicit unresolved or next-care outcome rather than inventing a substitute treatment. | L3-G-167 §§10, 11 |
-| L4-G-167-BH-005 | When the alternative requires a new or revised prescription, follow-up or referral, the system shall preserve the hand-off to the corresponding authoritative healthcare workflow. | L3-G-167 §§9, 10 |
+| L4-G-167-BH-001 | Identify the affected Prescription, medicine, Medical Encounter and patient and record the authoritative availability exception. | L3-G-167 §§3,7–9 |
+| L4-G-167-BH-002 | Prevent the unavailable medicine from being represented as dispensed and preserve the original Prescription as historically accurate. | L3-G-167 §§9,12–13,16 |
+| L4-G-167-BH-003 | Refer the exception to an authorised medical professional and record only the alternative action established through professional judgement. | L3-G-167 §§9,12,15 |
+| L4-G-167-BH-004 | If no acceptable alternative is established, preserve the explicit unresolved/next-care outcome rather than inventing a substitute medicine or treatment. | L3-G-167 §§10–11,16 |
+| L4-G-167-BH-005 | If the outcome requires a new/revised Prescription, follow-up or Referral, hand off to the corresponding authoritative G06 workflow without absorbing its lifecycle. | L3-G-167 §§9–10,13 |
+| L4-G-167-BH-006 | Preserve the exception and resulting healthcare action in the patient's auditable healthcare history. | L3-G-167 §§15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-167-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-167 §14 |
+| L4-G-167-BH-007 | The exact canonical medicine-availability-exception event name is not exposed in the Locked parent. No `MedicineUnavailable`, `MedicineAvailabilityException` or substitute event shall be invented. G06 remains owner; E supplies professional context and H owns notification delivery. | L3-G-167 §§5,14,17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If the availability exception cannot be established, the system shall not initiate an alternative action on an unsupported shortage.
-- If authorised medical authority is unavailable, the system shall preserve the exception until appropriate authority is available.
-- If no clinically acceptable alternative exists, the system shall preserve the unresolved healthcare outcome.
-- If patient or encounter context is unresolved, the system shall not attach the alternative action to an invented context.
+Do not initiate alternative action on an unverified shortage, without appropriate medical authority, or against unresolved patient/encounter context. Procurement, supplier management or enterprise pharmacy processes shall not be silently introduced.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve the original Prescription, affected medicine, availability condition, responsible medical professional, alternative action or unresolved outcome, patient/Medical Encounter relationship and relevant lifecycle evidence.
+Preserve original Prescription, affected medicine, availability condition, Medical Encounter/patient, responsible professional, alternative action or unresolved outcome and relevant lifecycle evidence.
 
 ## 8. Observable Completion Conditions
 
-Completion is observable when the availability exception is recorded and either an authorised alternative medical action or an explicit unresolved healthcare outcome is established. The unavailable medicine is not falsely recorded as dispensed.
+Completion occurs when the exception is authoritatively recorded and either an authorised alternative medical action or explicit unresolved healthcare outcome is established, with no false dispensing fact created.
 
 ## 9. Traceability & Provenance
 
@@ -64,7 +61,7 @@ Completion is observable when the availability exception is recorded and either 
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No universal substitution/therapeutic-equivalence policy, canonical availability-exception event or universal terminal unresolved state is defined upstream. L4 does not invent them. Technical inventory/procurement mechanisms are outside scope/deferred.
 
 ## Canonical Validation Note
 
