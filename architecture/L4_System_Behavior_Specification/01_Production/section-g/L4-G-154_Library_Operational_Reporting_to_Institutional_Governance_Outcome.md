@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-154 — Library Operational Reporting to Institutional Governance Outcome  
 **Primary Business Owner:** Library Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,43 +16,46 @@
 
 ## 2. Behavioral Objective & Boundary
 
-The system shall govern library operational reporting to institutional governance outcome according to authoritative upstream policy and workflow governance. The behavior ends when the authoritative business outcome is recorded. APIs, persistence, UI, and infrastructure remain outside this specification.
+SutraERP shall establish an authoritative Library Management operational report for a defined scope/period and preserve the applicable governance outcome without altering source library transactions.
 
 ## 3. Required Business Context
 
-- Authoritative Library Management context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- An authorised reporting requirement exists.
+- Reporting scope, period and business purpose are established.
+- Relevant authoritative Library Management source records exist.
+- Applicable review/governance authority is available where required.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-154-BH-001 | The system shall identify and validate the library operational reporting to institutional governance outcome context and authoritative inputs. | L3-G-154 §§3, 9, 12 |
-| L4-G-154-BH-002 | The system shall validate required business eligibility and policy constraints under Library Management governance. | L3-G-154 §§3, 9, 12 |
-| L4-G-154-BH-003 | The system shall execute the canonical library operational reporting to institutional governance outcome business evaluation. | L3-G-154 §§3, 9, 12 |
-| L4-G-154-BH-004 | The system shall record the resulting authoritative business position and preserve historical audit evidence. | L3-G-154 §§3, 9, 12 |
-| L4-G-154-BH-005 | The system shall prevent progression and maintain the last valid business position when governing conditions are not satisfied. | L3-G-154 §§3, 9, 12 |
+| L4-G-154-BH-001 | Establish the reporting requirement, relevant library business areas, scope, period and governance purpose. | L3-G-154 §§3,7,9 |
+| L4-G-154-BH-002 | Consolidate only authoritative library operational outcomes required by the report and preserve source-domain ownership. | L3-G-154 §§5,9,12 |
+| L4-G-154-BH-003 | Validate report scope, completeness and consistency against authoritative source records without changing those records to make the report balance. | L3-G-154 §§9,11–12 |
+| L4-G-154-BH-004 | Preserve any unresolved data-quality or business-context limitation rather than inventing unsupported values. | L3-G-154 §§9–11 |
+| L4-G-154-BH-005 | Apply configured business review where required and record the resulting governance decision or acknowledgement. | L3-G-154 §§9,15–16 |
+| L4-G-154-BH-006 | Make the authoritative report/outcome available to the authorised institutional consumer and preserve reporting/governance history. | L3-G-154 §§9,16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-154-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Library Management ownership. | L3-G-154 §14 |
+| L4-G-154-BH-007 | No dedicated Library Operational Reporting event or report-published event is defined in the retrieved upstream architecture; no event shall be invented. Underlying library events remain owned by their canonical publishers and reporting only consumes the established facts. | L3-G-154 §§14,17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- If reporting scope is ambiguous, do not finalise against an invented scope.
+- If source records conflict, preserve the conflict for resolution by the appropriate source owner.
+- If completeness cannot be established, keep the report non-final unless authorised governance explicitly accepts the limitation.
+- Do not invent report lifecycle states while governance review is pending.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve reporting requirement, scope, period, purpose, source information considered, validation result, limitations/exceptions, review decision, governance outcome and authorised consumer context.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Library Management ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when the report is authoritative for its stated scope/period, any required governance outcome is established, authorised consumption is enabled, history is preserved, and underlying library records remain unchanged.
 
 ## 9. Traceability & Provenance
 
@@ -61,7 +64,7 @@ Completion requires governing conditions validated, the authoritative business p
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No canonical Library Report lifecycle, universal approval matrix, fixed report catalogue or dedicated reporting event is defined upstream. L4 does not invent them. Technical reporting, storage, query, dashboard and document-generation mechanisms remain deferred.
 
 ## Canonical Validation Note
 
