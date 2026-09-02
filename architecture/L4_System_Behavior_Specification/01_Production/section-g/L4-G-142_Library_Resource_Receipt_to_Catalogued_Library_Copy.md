@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-142 — Library Resource Receipt to Catalogued Library Copy  
 **Primary Business Owner:** Library Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,44 +16,46 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern receipt of an approved library acquisition through verification, cataloguing and creation of the Library Copy without executing procurement or silently advancing downstream circulation.
+SutraERP shall govern an approved acquisition from physical receipt through verified cataloguing and Library Copy creation, while preserving the subsequent copy-registration/availability boundary and excluding procurement/payment execution.
 
 ## 3. Required Business Context
 
-- Approved acquisition and applicable procurement/vendor reference exist where relevant.
-- Received resource can be identified.
-- Required cataloguing information and copy-creation authority are available.
+- An approved acquisition exists.
+- Procurement/vendor reference exists where applicable.
+- The received resource can be matched to the acquisition.
+- Required catalogue information and Library Copy creation authority are available.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-142-BH-001 | Record receipt and verify the received resource against the approved acquisition. | L3-G-142 §§7,9 |
-| L4-G-142-BH-002 | Prevent completion when the received resource cannot be matched to the authoritative acquisition. | L3-G-142 §10 |
-| L4-G-142-BH-003 | Establish and validate the authoritative Catalogue representation for the received resource. | L3-G-142 §§9,12 |
-| L4-G-142-BH-004 | Create the Library Copy and associate it with the authoritative Catalogue record. | L3-G-142 §§3,9 |
-| L4-G-142-BH-005 | Preserve acquisition, receipt, catalogue and copy lineage/history. | L3-G-142 §§3,15,16 |
+| L4-G-142-BH-001 | Record receipt and verify the received resource against the approved acquisition and applicable reference. | L3-G-142 §§7,9 |
+| L4-G-142-BH-002 | Prevent unrelated catalogue/copy creation where acquisition/resource matching is unresolved. | L3-G-142 §§10–11 |
+| L4-G-142-BH-003 | Establish and validate the authoritative Catalogue representation and preserve the acquisition-to-catalogue relationship. | L3-G-142 §§9,12–13 |
+| L4-G-142-BH-004 | Create one or more physical Library Copy representations as required and associate each with its authoritative Catalogue record. | L3-G-142 §§3,9,16 |
+| L4-G-142-BH-005 | Establish the Library Copy only in its appropriate initial condition; do not silently advance it to Available. | L3-G-142 §§13,16 |
+| L4-G-142-BH-006 | Preserve acquisition, receipt, catalogue and copy lineage/history. | L3-G-142 §§15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-142-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Library Management ownership. | L3-G-142 §14 |
+| L4-G-142-BH-007 | The retrieved source does not expose dedicated canonical events for resource receipt, cataloguing completion or Library Copy creation. This specification shall not invent `ResourceReceived`, `Catalogued` or `LibraryCopyCreated`. G owns acquisition/catalogue/copy outcomes; E and F participate only within their authoritative context. | L3-G-142 §§5,14,17 |
 
 ## 6. Failure / Rejection / Continuation
 
 - Resource mismatch shall prevent unrelated catalogue/copy creation.
 - Incomplete authoritative catalogue information shall prevent completed copy creation.
 - Unauthorised copy creation shall not produce a completed Library Copy outcome.
-- The Library Copy shall not be silently advanced to Available by this scenario.
+- Financial receipt information remaining unresolved shall not transfer Finance ownership to G.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve acquisition reference, receipt outcome, verification, catalogue decision, Catalogue relationship, copy creation authority and lineage.
+Preserve acquisition reference, receipt outcome, resource verification, catalogue decision, Catalogue relationship, Library Copy creation authority and end-to-end lineage.
 
 ## 8. Observable Completion Conditions
 
-Completion occurs when receipt is verified, cataloguing is complete, a Library Copy exists against its Catalogue record, and lineage/history is preserved.
+Completion occurs when receipt is verified, cataloguing is complete, the Library Copy exists against its Catalogue record, lineage is preserved, and the copy is ready for the separate registration/availability workflow without being falsely marked Available.
 
 ## 9. Traceability & Provenance
 
@@ -62,7 +64,7 @@ Completion occurs when receipt is verified, cataloguing is complete, a Library C
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Dedicated receipt/cataloguing/copy-creation event names are not exposed upstream and are not invented. Exact catalogue completeness and downstream copy-registration rules remain upstream-owned. Technical implementation is deferred to L5.
 
 ## Canonical Validation Note
 
