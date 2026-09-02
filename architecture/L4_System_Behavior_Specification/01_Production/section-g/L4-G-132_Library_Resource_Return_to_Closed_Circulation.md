@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-132 — Library Resource Return to Closed Circulation  
 **Primary Business Owner:** Library Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,45 +16,45 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern return of an actively borrowed library resource through return processing and closure of the borrowing while recording the resulting copy condition and circulation position.
+SutraERP shall govern return of an actively borrowed Library Copy through circulation closure, condition assessment, resulting copy treatment, and applicable overdue/fine business outcomes without performing Finance settlement.
 
 ## 3. Required Business Context
 
-- An Active Borrowing exists.
-- The borrowed copy is identifiable.
-- Applicable return, condition, and circulation rules are available.
-- Library Management owns borrowing and copy operational lifecycle.
+- An Active borrowing exists and the borrowed Library Copy is identifiable.
+- Due-date, return, condition and fine policies are available.
+- Library Management owns circulation, copy operational status and Library Fine calculation; Finance owns accounting/payment and H owns communication delivery.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-132-BH-001 | Register the resource return against the authoritative Active Borrowing. | L3-G-132 |
-| L4-G-132-BH-002 | Validate the returned copy against the active borrowing and applicable return conditions. | L3-G-132 |
-| L4-G-132-BH-003 | Record applicable return and condition information. | L3-G-132 |
-| L4-G-132-BH-004 | Close the Active Borrowing when governed return conditions are satisfied. | L3-G-132 |
-| L4-G-132-BH-005 | Determine and record the copy's resulting operational circulation position. | L3-G-132 |
-| L4-G-132-BH-006 | Preserve borrowing, return, and condition history. | L3-G-132 |
+| L4-G-132-BH-001 | Match the returned Library Copy to its authoritative Active borrowing and member. | L3-G-132 §§7,9 |
+| L4-G-132-BH-002 | Record return date/time and applicable physical-condition, damage or loss observations. | L3-G-132 §§2,9,12 |
+| L4-G-132-BH-003 | Evaluate overdue and fine implications using configured library policy where applicable. | L3-G-132 §§9–10,12 |
+| L4-G-132-BH-004 | Progress the circulation through `Active → Returned → Closed` when the return is valid. | L3-G-132 §§3,13,16 |
+| L4-G-132-BH-005 | Establish the returned copy's authoritative operational status; do not automatically make every returned copy Available. | L3-G-132 §§3,9–10,13 |
+| L4-G-132-BH-006 | Preserve immutable borrowing, return, condition and fine history. | L3-G-132 §§12,15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-132-BH-007 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Library Management ownership. | L3-G-132 §14 |
+| L4-G-132-BH-007 | Library Management shall publish `ResourceReturned` for the return outcome and, where their authoritative conditions are met, `ResourceOverdue` and `FineCalculated`. Finance receives the applicable financial reference without acquiring Library Fine ownership; H may consume return/fine outcomes for communication. | L3-G-132 §§5,14,16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- A return that cannot be matched to an Active Borrowing shall not close an unrelated borrowing.
-- Unresolved return or condition information shall retain the process in its applicable business position.
-- A damaged or restricted copy shall not be made available for circulation contrary to policy.
+- A return that cannot be matched to an Active borrowing shall not close an unrelated circulation.
+- Unresolved copy condition shall not result in unsupported Available status.
+- Fine/accounting settlement shall not be claimed by Library Management.
+- Historical circulation records shall remain immutable.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve borrowing identity, return action, condition assessment, closure decision, resulting copy status, and historical evidence.
+Preserve borrowing identity, return time, condition observations, overdue/fine basis, closure decision, resulting copy status and cross-domain references.
 
 ## 8. Observable Completion Conditions
 
-Completion occurs when the borrowing is Closed, the returned copy has a governed operational position, and return history is traceable.
+Completion occurs when circulation is `Closed`, `ResourceReturned` is published, the copy has an authoritative resulting operational status, and any applicable fine/Finance/H outcomes are traceable.
 
 ## 9. Traceability & Provenance
 
@@ -63,7 +63,7 @@ Completion occurs when the borrowing is Closed, the returned copy has a governed
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Fine amounts, grace periods and copy-condition thresholds remain configuration governed. Technical payment execution, notification delivery, APIs, database persistence schemas, UI screens and infrastructure are deferred to L5 Solution Architecture.
 
 ## Canonical Validation Note
 
