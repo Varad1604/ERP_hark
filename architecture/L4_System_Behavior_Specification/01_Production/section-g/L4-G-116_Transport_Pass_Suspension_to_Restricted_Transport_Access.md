@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-116 — Transport Pass Suspension to Restricted Transport Access  
 **Primary Business Owner:** Transport Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,50 +16,52 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern suspension of a Transport Pass and the resulting restriction of transport access.
+SutraERP shall govern suspension of a Transport Pass and the resulting restriction of transport access without transferring student or financial ownership.
 
 ## 3. Required Business Context
 
-- Authoritative Transport Management context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- An Active Transport Pass exists.
+- Suspension basis, policy and authority are authoritative.
+- Transport Management owns pass status and validity.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-116-BH-001 | Identify the Transport Pass subject to suspension. | L3-G-116 |
-| L4-G-116-BH-002 | Evaluate the suspension condition and applicable authority. | L3-G-116 |
-| L4-G-116-BH-003 | Record the governed suspension decision and effective context. | L3-G-116 |
-| L4-G-116-BH-004 | Restrict transport access in accordance with the suspended pass outcome. | L3-G-116 |
-| L4-G-116-BH-005 | Preserve prior active-pass history and suspension history. | L3-G-116 |
+| L4-G-116-BH-001 | Identify the Active Transport Pass and holder subject to suspension. | L3-G-116 §§3, 7, 9 |
+| L4-G-116-BH-002 | Evaluate the suspension basis against configured policy and required authority. | L3-G-116 §§9, 12, 15 |
+| L4-G-116-BH-003 | Move the pass to the authoritative `Suspended` state only after the required business decision is established. | L3-G-116 §§9, 13, 16 |
+| L4-G-116-BH-004 | Restrict operational transport access in accordance with the Suspended pass outcome without creating a separate Restricted lifecycle state. | L3-G-116 §§3, 13, 16 |
+| L4-G-116-BH-005 | Preserve prior Active-pass history, suspension basis, effective period and decision evidence. | L3-G-116 §§12, 15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-116-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Transport Management ownership. | L3-G-116 §14 |
+| L4-G-116-BH-006 | On successful pass suspension, Transport Management shall publish `PassSuspended`. | L3-G-116 §§14, 16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Unauthorised suspension shall not be applied. If the condition or authority cannot be established, the pass remains in its prior governed position.
+- Unauthorised or rejected suspension shall not change the pass from its current authoritative state.
+- If the pass is already Expired, Cancelled or Replaced, suspension shall not be fabricated as an additional lifecycle outcome.
+- Restoration/reactivation remains outside this scenario.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve reason, authority, effective period, restricted-access outcome and lifecycle history.
+Preserve suspension basis, authority, effective period, restricted-access outcome and pass lifecycle history.
 
 ## 8. Observable Completion Conditions
 
-The pass is governed as suspended, restricted access is recorded, and the decision is traceable.
+The pass is `Suspended`, restricted transport access is effective, `PassSuspended` is published, and the suspension decision remains traceable.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-G-116 — Transport Pass Suspension to Restricted Transport Access  
-**Primary verification source:** Authoritative Campus Operations L2 workflow architecture.
+**Primary verification source:** L3-G-116 §§3, 9–17; authoritative L2-G04 Transport Management workflow architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No unresolved event or lifecycle identifier remains for the core suspension outcome. Technical implementation remains deferred to L5/L6.
 
 ## Canonical Validation Note
 
