@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-114 — Transport Pass Renewal to Continued Transport Authorisation  
 **Primary Business Owner:** Transport Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,33 +16,35 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern renewal of an existing Transport Pass so that eligible transport authorisation continues without creating an ownership change.
+SutraERP shall govern renewal of an existing Transport Pass so that eligible transport authorisation continues without changing canonical ownership.
 
 ## 3. Required Business Context
 
 - Existing Transport Pass is identifiable.
-- Renewal eligibility and validity policy are authoritative.
+- Continued eligibility and validity policy are authoritative.
 - Transport Management owns the pass lifecycle.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-114-BH-001 | Identify the existing Transport Pass and its renewal context. | L3-G-114 |
-| L4-G-114-BH-002 | Evaluate continued eligibility and applicable renewal conditions. | L3-G-114 |
-| L4-G-114-BH-003 | Record the governed renewal decision. | L3-G-114 |
-| L4-G-114-BH-004 | Extend or establish the governed validity period when renewal is authorised. | L3-G-114 |
-| L4-G-114-BH-005 | Preserve prior validity and renewal history. | L3-G-114 |
+| L4-G-114-BH-001 | Identify the existing Transport Pass and its renewal context. | L3-G-114 §§3, 7, 9 |
+| L4-G-114-BH-002 | Evaluate continued eligibility and applicable renewal conditions. | L3-G-114 §§9, 12 |
+| L4-G-114-BH-003 | Record the governed renewal decision after required approval. | L3-G-114 §§9, 15 |
+| L4-G-114-BH-004 | Establish the authorised renewed validity period and continued transport authorisation. | L3-G-114 §§3, 9, 16 |
+| L4-G-114-BH-005 | Preserve prior validity and renewal history. | L3-G-114 §§12, 15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-114-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Transport Management ownership. | L3-G-114 §14 |
+| L4-G-114-BH-006 | On successful renewal, Transport Management shall publish `PassRenewed`. | L3-G-114 §§14, 16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Failed eligibility or approval shall prevent continued authorisation and record the applicable non-renewal outcome. Missing authoritative context shall prevent final renewal.
+- Failed eligibility or approval shall prevent continued authorisation.
+- Missing authoritative context shall prevent final renewal.
+- A replacement rather than renewal requirement shall follow the replacement-pass scenario.
 
 ## 7. Audit & Evidence Behavior
 
@@ -50,16 +52,16 @@ Preserve renewal request, eligibility assessment, authority, validity change and
 
 ## 8. Observable Completion Conditions
 
-The renewal decision is recorded, authorised validity is established where approved, and historical validity remains traceable.
+The authorised renewal is effective, continued transport authorisation is established for the renewed period, `PassRenewed` is published, and historical validity remains traceable.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-G-114 — Transport Pass Renewal to Continued Transport Authorisation  
-**Primary verification source:** Authoritative Campus Operations L2 workflow architecture.
+**Primary verification source:** L3-G-114 §§3, 9–17; authoritative L2-G04 Transport Management workflow architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No unresolved event identifier remains for the core renewal outcome. Institution-specific policy and technical implementation remain upstream/downstream governed respectively.
 
 ## Canonical Validation Note
 
