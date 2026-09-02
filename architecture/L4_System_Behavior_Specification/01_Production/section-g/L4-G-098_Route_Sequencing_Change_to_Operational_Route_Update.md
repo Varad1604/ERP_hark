@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-098 — Route Sequencing Change to Operational Route Update  
 **Primary Business Owner:** Transport Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -21,38 +21,38 @@ SutraERP shall govern an authorised change to Transport Route stop sequencing an
 ## 3. Required Business Context
 
 - An authoritative Transport Route exists.
-- Its assigned stops are known.
+- Its current assigned stops and sequence are known.
 - Applicable route sequencing rules and authority are available.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-098-BH-001 | Identify the authoritative route and requested sequencing change. | L3-G-098 |
-| L4-G-098-BH-002 | Validate the proposed sequence against applicable route constraints. | L3-G-098 |
-| L4-G-098-BH-003 | Complete required operational review and authorization. | L3-G-098 |
-| L4-G-098-BH-004 | Make the authorised revised route sequence effective. | L3-G-098 |
-| L4-G-098-BH-005 | Preserve the prior sequencing history and revised outcome. | L3-G-098 |
+| L4-G-098-BH-001 | Identify the authoritative route, current sequence, and requested sequencing change. | L3-G-098 §§7–9 |
+| L4-G-098-BH-002 | Validate the proposed sequence against applicable route constraints and source-supported operational considerations. | L3-G-098 §§9, 12 |
+| L4-G-098-BH-003 | Complete required impact assessment, operational review, and authorization before the revised sequence becomes effective. | L3-G-098 §§9, 15–16 |
+| L4-G-098-BH-004 | Make the authorised revised route sequence effective without creating a new route lifecycle state. | L3-G-098 §§3, 13, 16 |
+| L4-G-098-BH-005 | Preserve the prior sequencing history and revised outcome. | L3-G-098 §§12, 15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-098-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Transport Management ownership. | L3-G-098 §14 |
+| L4-G-098-BH-006 | On the effective route-sequencing update, Transport Management shall publish `RouteModified`. | L3-G-098 §§9, 14, 16 |
 
 ## 6. Failure / Rejection / Continuation
 
 - Invalid sequencing shall not become effective.
-- Failed authorization shall preserve the current effective sequence.
-- Affected route history shall remain traceable.
+- Failed or incomplete review/authorization shall preserve the current effective sequence.
+- A temporary diversion or stop-lifecycle change shall remain with its separate canonical scenario.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve requested sequence, validation, review, authorization, effective sequence and history.
+Preserve requested sequence, validation, impact assessment, review, authorization, effective sequence, `RouteModified` publication evidence, and prior history.
 
 ## 8. Observable Completion Conditions
 
-The authorised sequence is effective, valid for the route, and the prior sequence remains historically traceable.
+The authorised revised sequence is effective, `RouteModified` is published, and the prior sequence remains historically traceable.
 
 ## 9. Traceability & Provenance
 
@@ -61,7 +61,7 @@ The authorised sequence is effective, valid for the route, and the prior sequenc
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No material upstream event or lifecycle gap remains for the core sequencing outcome. Technical routing algorithms, optimization, APIs, persistence, UI, and retry mechanics are deferred to later architecture levels.
 
 ## Canonical Validation Note
 
