@@ -7,61 +7,63 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-084 — Visitor Request to Closed Hostel Visit  
 **Primary Business Owner:** Hostel Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-G-084; applicable locked G architecture sources  
+**Depends On:** L3-G-084; L2-G03 — Hostel Management Workflows  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern a hostel visitor request through approval, entry, and visit closure within applicable hostel policy.
+Govern a hostel visitor request from registration through approval, authorised entry, exit and closure while preserving Hostel Management ownership of Visitor Entry.
 
 ## 3. Required Business Context
 
-- An active hostel residency is available for the resident concerned.
-- Applicable visitor policy is authoritative.
-- Hostel authority can review the request.
+- Sponsoring resident has active hostel residency.
+- Visitor and resident context are identifiable.
+- Applicable visitor policy and configured hostel approval authority are available.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-084-BH-001 | The system shall register a visitor request against the applicable resident and hostel context. | L3-G-084 §§2, 8, 9 |
-| L4-G-084-BH-002 | The system shall evaluate the visitor request against applicable hostel visitor criteria. | L3-G-084 §§3, 7, 12 |
-| L4-G-084-BH-003 | The system shall record the governed visitor approval or rejection outcome. | L3-G-084 §§3, 9, 13 |
-| L4-G-084-BH-004 | When visitor entry is authorised, the system shall record the visit as active within the governed visitor lifecycle. | L3-G-084 §§3, 9 |
-| L4-G-084-BH-005 | On completion of the visit, the system shall close the governed visitor lifecycle and preserve visit history. | L3-G-084 §§3, 16 |
+| L4-G-084-BH-001 | The system shall register the visitor against an active resident and establish `Registered`. | L3-G-084 §§7–9, 13 |
+| L4-G-084-BH-002 | The system shall evaluate the request against configured visitor policy and required approval conditions. | L3-G-084 §§9, 12, 15 |
+| L4-G-084-BH-003 | When authorised, the system shall establish `Approved`; an unauthorised request shall not enter the authorised visit lifecycle. | L3-G-084 §§9–13 |
+| L4-G-084-BH-004 | On authorised entry, the system shall establish `Checked-In`. | L3-G-084 §§9, 13 |
+| L4-G-084-BH-005 | On visitor exit, the system shall establish `Checked-Out`. | L3-G-084 §§9, 13 |
+| L4-G-084-BH-006 | After exit is validly recorded, the system shall establish `Closed` and preserve the complete visit history. | L3-G-084 §§3, 9, 13, 16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-084-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Hostel Management ownership. | L3-G-084 §14 |
+| L4-G-084-BH-007 | G03 Hostel Management remains the canonical publisher of visitor approval, entry, exit and closure facts; no exact event name shall be invented because the Locked parent records the event identifiers as unresolved. | L3-G-084 §§14, 17 |
+| L4-G-084-BH-008 | Security and Notifications may consume visitor information/outcomes without acquiring ownership of Visitor Entry. | L3-G-084 §§5, 14 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If visitor criteria are not satisfied, the system shall prevent visitor authorisation and record the governed rejection.
-- If required resident or visitor context is unavailable, the system shall not finalise the visitor decision until the business deficiency is resolved.
-- If the visit cannot validly continue, the system shall preserve the applicable non-active or closed outcome.
+- Incomplete or inconsistent visitor information shall prevent authoritative approval.
+- Missing approval shall prevent authorised entry.
+- A visit shall not be falsely closed if expected exit is not established.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable evidence of visitor request, applicable policy basis, authority decision, entry/visit outcome, and visit closure.
+Preserve visitor registration, resident relationship, policy review, authority decision, entry, exit and closure history.
 
 ## 8. Observable Completion Conditions
 
-Completion occurs when the visitor request has reached its governed terminal outcome and any authorised visit has been closed with its history preserved.
+Completion requires the request to reach a governed terminal outcome and any authorised visit to reach `Closed` with history retained.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-G-084 — Visitor Request to Closed Hostel Visit  
-**Primary verification source:** Authoritative Campus Operations L2 workflow architecture.
+**Primary verification source:** L3-G-084 §§3, 5, 9, 11–17 and authoritative L2-G03 architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Exact canonical Visitor Entry event names remain unresolved upstream. Technical identity verification and notification delivery are deferred to L5.
 
 ## Canonical Validation Note
 
