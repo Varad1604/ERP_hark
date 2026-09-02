@@ -7,62 +7,69 @@
 **Domain:** People & Workforce  
 **Realizes Scenario:** L3-E-061 — Employee Certification Registration and Validity Management  
 **Primary Business Owner:** Employee Profile  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-E-061; applicable locked E architecture sources  
+**Depends On:** L3-E-061; L2-E07; L2-H10  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Specify observable system behavior for registering, verifying, updating, and expiring employee certifications within the canonical EmployeeProfile boundary.
+Register and maintain professional certifications within the canonical EmployeeProfile, including supported verification and expiry behavior. Employee Profile owns the certification record and lifecycle; External Education Integration owns external verification orchestration when required.
 
 ## 3. Required Business Context
 
-- Authoritative Employee Profile context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- Existing canonical EmployeeProfile.
+- Certification name, issuing authority, issue date, and expiry date where applicable.
+- No duplicate certification record.
+- Required verification evidence/context where verification applies.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-E-061-BH-001 | The system shall validate required certification information and EmployeeProfile context. | L3-E-061 §§3, 9, 12 |
-| L4-E-061-BH-002 | The system shall register or update the employee certification without creating an unsupported duplicate. | L3-E-061 §§3, 9, 12 |
-| L4-E-061-BH-003 | The system shall recognize governed verification outcomes, including externally supplied verification facts where applicable. | L3-E-061 §§3, 9, 12 |
-| L4-E-061-BH-004 | The system shall apply the upstream-defined expiry consequence when validity ends. | L3-E-061 §§3, 9, 12 |
-| L4-E-061-BH-005 | The system shall preserve certification history and publish only canonical certification events. | L3-E-061 §§3, 9, 12 |
-| L4-E-061-BH-006 | The system shall business decisions owned by another bounded context. | L3-E-061 §§3, 9, 12 |
-| L4-E-061-BH-007 | The system shall any rule, state, event, role, or authority not established by the parent scenario. | L3-E-061 §§3, 9, 12 |
-| L4-E-061-BH-008 | The system shall aPIs, databases, services, queues, retries, rollback, infrastructure, technical access control, and UI design. | L3-E-061 §§3, 9, 12 |
+| L4-E-061-BH-001 | Employee Profile shall validate mandatory certification information and confirm that the certification belongs within the EmployeeProfile boundary before registration. | L3-E-061 §§7–9, 12 |
+| L4-E-061-BH-002 | Employee Profile shall prevent unnecessary duplicate certification records and shall use the existing governed record for supported updates. | L3-E-061 §§9–12 |
+| L4-E-061-BH-003 | When valid, Employee Profile shall register or update the certification with the applicable issuing, issue-date, expiry and verification information while preserving historical visibility. | L3-E-061 §§3, 9, 12–13 |
+| L4-E-061-BH-004 | Where verification is required, the certification shall enter the governed verification process; external authenticity verification shall be coordinated by H10 where applicable. | L3-E-061 §§5, 9, 14.2 |
+| L4-E-061-BH-005 | Employee Profile shall represent a certification as verified only when the governed verification outcome supports verification. | L3-E-061 §§9–12, 16 |
+| L4-E-061-BH-006 | When the governed validity period ends, Employee Profile shall apply the canonical expiry outcome while retaining the certification as historical profile information. | L3-E-061 §§3, 9–13, 16 |
+| L4-E-061-BH-007 | Employee Profile shall not redefine external-provider lifecycle, technical credential transport, or another domain's business decision. | L3-E-061 §§4.4, 5, 12 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-E-061-BH-009 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Employee Profile ownership. | L3-E-061 §14 |
+| L4-E-061-BH-008 | Employee Profile shall publish `CertificationAdded`, `CertificationUpdated`, `CertificationVerified`, and `CertificationExpired` at their corresponding canonical certification changes. | L3-E-061 §14.1 |
+| L4-E-061-BH-009 | External Education Integration shall publish `CertificateVerificationSubmitted`, `CertificateVerificationValidated`, and `CertificateVerificationFailed` for its external verification workflow where applicable. | L3-E-061 §14.1 |
+| L4-E-061-BH-010 | The H10 verification events shall remain H10-published events; Employee Profile shall remain the canonical owner of the certification record and its profile-level verification/validity position. | L3-E-061 §§5, 14.1–14.2 |
+| L4-E-061-BH-011 | L4 shall not invent the exact E07 consumer-side contract for applying an H10 verification result because the Locked parent records that detail as unresolved. | L3-E-061 §17.1 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Where a source-defined prerequisite, ownership condition, authoritative decision, or validation requirement is not satisfied, the system prevents the unsupported business result and preserves the last authoritative business position until the governed issue is resolved. No technical retry, rollback, transaction, queue, or infrastructure recovery behavior is specified.
+- Missing mandatory certification information prevents registration.
+- Duplicate detection prevents a second canonical record.
+- Verification that cannot establish authenticity shall not result in `CertificationVerified`.
+- Expiry shall not erase certification history.
+- External verification exception handling remains under H10 business governance without technical retry semantics.
 
 ## 7. Audit & Evidence Behavior
 
-The system recognizes only the business authority and evidence required by the parent scenario. The resulting decision, change, and relevant historical evidence remain traceable. No technical permission model or audit-storage design is specified.
+Certification registration, updates, verification status, expiry history and associated profile evidence shall remain traceable. External verification evidence remains associated with the H10 process where applicable.
 
 ## 8. Observable Completion Conditions
 
-- The parent-defined outcome is observable and authoritative where all source-defined conditions are satisfied. - Canonical ownership remains unchanged. - No unsupported state, event, authority, or adjacent-domain outcome is introduced. - Relevant historical business evidence remains traceable where required by the parent.
+The certification is registered or validly updated; verification status reflects the governed outcome; expiry is applied when required without deleting history; canonical certification events are published; and H10 ownership of external verification remains unchanged.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-E-061 — Employee Certification Registration and Validity Management  
-**Primary verification source:** Authoritative People & Workforce L2 workflow architecture.
+**Primary verification source:** L3-E-061 §§3, 5, 9, 11–17; L2-E07 and L2-H10.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact E07 consumer-side business contract applying H10 validation/failure events to a specific EmployeeProfile certification remains upstream-unconfirmed. No local contract or event name is invented. Technical APIs, transport and persistence remain deferred to L5.
 
 ## Canonical Validation Note
 
