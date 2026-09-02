@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-130 — Library Copy Condition Change to Operational Restriction  
 **Primary Business Owner:** Library Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,43 +16,44 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern a material change in library-copy condition and apply the resulting operational restriction where circulation eligibility is affected.
+SutraERP shall govern a material physical-condition change for a Library Copy and establish the appropriate operational status/restriction without inventing a `Restricted` copy lifecycle state.
 
 ## 3. Required Business Context
 
-- A registered library copy exists.
-- Condition assessment is authoritative within Library Management.
-- Applicable circulation and restriction policy is available.
+- The affected Library Copy exists.
+- Physical condition and current operational status can be established.
+- Applicable configured copy/circulation policy and authority are available.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-130-BH-001 | Register the identified condition change against the authoritative copy. | L3-G-130 |
-| L4-G-130-BH-002 | Evaluate the changed condition against applicable circulation criteria. | L3-G-130 |
-| L4-G-130-BH-003 | Determine the governed operational restriction where circulation eligibility is affected. | L3-G-130 |
-| L4-G-130-BH-004 | Apply the resulting restriction to the copy's operational circulation position. | L3-G-130 |
-| L4-G-130-BH-005 | Preserve previous condition and restriction history. | L3-G-130 |
+| L4-G-130-BH-001 | Identify the Library Copy and record the observed physical-condition change. | L3-G-130 §§7–9 |
+| L4-G-130-BH-002 | Assess whether the changed condition affects ordinary circulation eligibility. | L3-G-130 §§9,12 |
+| L4-G-130-BH-003 | Establish the applicable authoritative/configured operational status, such as `Under Verification`, `Damaged`, `Lost`, `Withdrawn`, or `Reference Only`, only when supported by the business assessment. | L3-G-130 §§9,12–13 |
+| L4-G-130-BH-004 | Prevent ordinary circulation while the resulting operational status does not permit it. | L3-G-130 §§3,9,16 |
+| L4-G-130-BH-005 | Preserve prior condition, resulting status/restriction and copy history. | L3-G-130 §§12,15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-130-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Library Management ownership. | L3-G-130 §14 |
+| L4-G-130-BH-006 | The retrieved G05 event catalogue exposes no dedicated Library Copy condition/status-change event; no `LibraryCopyDamaged`, `LibraryCopyRestricted`, or `CopyConditionChanged` event shall be invented. The resulting business fact remains Library Management-owned. | L3-G-130 §§14,17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Incomplete condition evidence shall prevent final restriction determination where evidence is required.
+- Insufficient condition evidence shall prevent unsupported status assignment.
 - A copy that remains circulation-eligible shall not be unnecessarily restricted.
-- Historical condition changes shall remain traceable.
+- Repair, replacement, fine, or later withdrawal outcomes remain separate governed processes where applicable.
+- No new `Restricted` lifecycle state shall be introduced.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve condition assessment, basis, authority, resulting restriction, effective position, and prior history.
+Preserve condition observation, assessment, authority, resulting operational status/restriction and prior history.
 
 ## 8. Observable Completion Conditions
 
-Completion occurs when the condition change is recorded and the resulting operational circulation position is effective and traceable.
+Completion occurs when the condition change and resulting operational status are authoritative, subsequent circulation respects that status, and history is traceable.
 
 ## 9. Traceability & Provenance
 
@@ -61,7 +62,7 @@ Completion occurs when the condition change is recorded and the resulting operat
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Dedicated Library Copy condition/status event vocabulary remains unresolved upstream. Exact status selection criteria remain configuration governed. Technical inventory/device mechanics, APIs, databases, UI and infrastructure are deferred to L5 Solution Architecture.
 
 ## Canonical Validation Note
 
