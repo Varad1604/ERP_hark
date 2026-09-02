@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-115 — Lost or Damaged Transport Pass to Replacement Pass  
 **Primary Business Owner:** Transport Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,50 +16,52 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern a lost or damaged Transport Pass through validation and replacement issuance.
+SutraERP shall govern a lost or damaged Transport Pass through validation and replacement issuance while preserving the authoritative pass history.
 
 ## 3. Required Business Context
 
-- Authoritative Transport Management context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- The affected pass and holder context are authoritative.
+- Replacement eligibility and policy can be evaluated.
+- Transport Management owns the Transport Pass lifecycle.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-115-BH-001 | Register the loss or damage against the authoritative Transport Pass. | L3-G-115 |
-| L4-G-115-BH-002 | Validate the report and applicable replacement eligibility. | L3-G-115 |
-| L4-G-115-BH-003 | Restrict or supersede the affected pass as required by the governed lifecycle. | L3-G-115 |
-| L4-G-115-BH-004 | Issue the replacement pass when authorised. | L3-G-115 |
-| L4-G-115-BH-005 | Preserve the original and replacement pass history. | L3-G-115 |
+| L4-G-115-BH-001 | Register the loss or damage against the authoritative Transport Pass. | L3-G-115 §§3, 8–9 |
+| L4-G-115-BH-002 | Validate holder context and applicable replacement eligibility. | L3-G-115 §§7, 9, 12 |
+| L4-G-115-BH-003 | Apply the authoritative replacement outcome without inventing a Lost or Damaged lifecycle state. | L3-G-115 §§12–13 |
+| L4-G-115-BH-004 | Issue the replacement pass when authorised and establish it as the authoritative operational pass. | L3-G-115 §§3, 9, 16 |
+| L4-G-115-BH-005 | Preserve the original pass, replacement relationship and validity history. | L3-G-115 §§12, 15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-115-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Transport Management ownership. | L3-G-115 §14 |
+| L4-G-115-BH-006 | On successful replacement issuance, Transport Management shall publish `PassReplaced`. | L3-G-115 §§14, 16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Unverified loss/damage or failed eligibility shall prevent replacement issuance. Duplicate replacement requests shall be governed against the existing pass history.
+- Unverified loss/damage or failed eligibility shall prevent replacement issuance.
+- Recovery of the original pass shall not create duplicate active authorisation; the applicable upstream pass policy governs it.
+- Failed approval shall leave the replacement non-effective.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve report, validation, authority, affected-pass status and replacement issuance evidence.
+Preserve report, validation, authority, affected-pass outcome, replacement issuance and original-to-replacement history.
 
 ## 8. Observable Completion Conditions
 
-The affected pass outcome and replacement outcome are recorded with complete historical traceability.
+The replacement pass is issued and authoritative, `PassReplaced` is published, and the original/replacement history remains traceable.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-G-115 — Lost or Damaged Transport Pass to Replacement Pass  
-**Primary verification source:** Authoritative Campus Operations L2 workflow architecture.
+**Primary verification source:** L3-G-115 §§3, 9–17; authoritative L2-G04 Transport Management workflow architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No unresolved event identifier remains for the core replacement outcome. Technical implementation remains deferred to L5/L6.
 
 ## Canonical Validation Note
 
