@@ -7,63 +7,66 @@
 **Domain:** Finance  
 **Realizes Scenario:** L3-F-002 — Published Student Charge to Governed Revision or Adjustment  
 **Primary Business Owner:** Student Charge & Fee Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-F-002; applicable locked F architecture sources  
+**Depends On:** L3-F-002; L2-F01; applicable Financial Adjustment architecture  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Govern a required change to a published Student Charge without rewriting the historical financial obligation. The behavior ends with preservation of the original charge or establishment of the applicable governed adjustment outcome; payment, refund execution, accounting correction, and technical mutation remain outside scope.
+Resolve a required correction to a Published Student Charge without rewriting the historical financial obligation. Student Charge remains F01-owned; any corrective Financial Adjustment remains owned by its canonical Finance capability.
 
 ## 3. Required Business Context
 
 - Canonical Published Student Charge.
-- Valid business reason for correction.
+- Valid correction reason and supporting evidence.
 - Applicable Financial Adjustment context where correction is required.
-- Historical charge lineage required for traceability.
+- Original-charge-to-correction lineage.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-F-002-BH-001 | When a Published Student Charge is identified as requiring correction, the system shall establish the correction context against the canonical charge. | L3-F-002 §§2–4,8–9 |
-| L4-F-002-BH-002 | The system shall preserve the Published Student Charge as the immutable historical financial obligation. | L3-F-002 §§2–4,12–13 |
-| L4-F-002-BH-003 | When a valid financial correction is required, the system shall establish the correction through the governed Financial Adjustment path. | L3-F-002 §§3–5,9 |
-| L4-F-002-BH-004 | The system shall preserve lineage between the original Student Charge and the governed corrective outcome. | L3-F-002 §§3,9,12 |
-| L4-F-002-BH-005 | When no valid correction is required, the system shall leave the Published Student Charge unchanged. | L3-F-002 §§3,10 |
+| L4-F-002-BH-001 | The system shall identify the canonical Published Student Charge and establish the governed correction context. | L3-F-002 §§3, 7–9 |
+| L4-F-002-BH-002 | The system shall preserve the Published Student Charge as an immutable historical financial obligation. | L3-F-002 §§2–4, 12–13 |
+| L4-F-002-BH-003 | If review establishes that no valid correction is required, the system shall leave the Published Student Charge unchanged. | L3-F-002 §§3, 9–10, 16 |
+| L4-F-002-BH-004 | If a valid correction is required, the system shall hand the correction context to the canonical Financial Adjustment capability rather than mutating the Student Charge. | L3-F-002 §§4.3–5, 9, 12, 14.2 |
+| L4-F-002-BH-005 | The system shall preserve lineage between the original Student Charge and the governed adjustment outcome. | L3-F-002 §§3, 9, 12, 15–16 |
+| L4-F-002-BH-006 | If the consequence requires monetary return, the resulting refund consequence shall be handed to Refund Management rather than executed locally. | L3-F-002 §§10–11, 14.2 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-F-002-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Student Charge & Fee Management ownership. | L3-F-002 §14 |
+| L4-F-002-BH-007 | Student Charge & Fee Management shall provide the Published Student Charge and correction context to Financial Adjustment Management without transferring Student Charge ownership. | L3-F-002 §§5, 14.2 |
+| L4-F-002-BH-008 | The system shall publish only the canonical event of the owning Financial Adjustment process when a governed adjustment is established; it shall not invent a Student Charge correction event. | L3-F-002 §§14.1, 17 |
+| L4-F-002-BH-009 | The authoritative correction outcome shall be available to downstream Student Charge, Accounting, Refund and other Finance consumers according to their canonical ownership boundaries. | L3-F-002 §§14.2, 16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- When the correction reason is insufficient, the system shall not alter the published charge.
-- When a requested correction would rewrite published history, the system shall reject that path and retain the original charge.
-- When the governed adjustment is rejected or invalid, the original charge shall remain unchanged.
-- When the consequence is a refund, the outcome shall proceed through the canonical Refund Management boundary.
+- Insufficient correction evidence shall leave the Published Student Charge unchanged.
+- Any path requiring direct rewrite of published history shall be rejected.
+- Invalid/rejected adjustments shall not alter the original Student Charge.
+- Refund and accounting consequences remain with their canonical owners.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve the correction reason, original charge identity, decision/outcome, adjustment lineage, and resulting financial position as attributable business evidence.
+The original Student Charge, correction reason, review outcome, adjustment lineage and resulting financial position shall remain historically reconstructable.
 
 ## 8. Observable Completion Conditions
 
-- Published charge remains historically immutable. - Correction requirement is resolved as no-change or governed adjustment. - Any adjustment retains lineage to the original charge. - No payment, refund execution, or accounting implementation is absorbed into this behavior.
+The Published Student Charge remains immutable, the correction need has reached a governed no-change or adjustment outcome, and any adjustment is traceably linked to the original obligation under its canonical owner.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-F-002 — Published Student Charge to Governed Revision or Adjustment  
-**Primary verification source:** Authoritative Finance L2 workflow architecture.
+**Primary verification source:** L3-F-002 §§3, 5, 9–17 and authoritative L2-F01/Financial Adjustment architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact Financial Adjustment command/state/event vocabulary belongs upstream to the applicable locked Financial Adjustment architecture. L4 does not invent it. Technical mutation and rollback mechanics remain deferred to L5.
 
 ## Canonical Validation Note
 
