@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-164 — Emergency Case to Ambulance Coordination  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,46 +16,43 @@
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern ambulance coordination for an Emergency Case when ambulance transport is determined to be required. The behavior ends with the applicable institutional coordination outcome recorded. Ambulance fleet, vehicle and crew management remain external.
+SutraERP shall record truthful institutional ambulance coordination for an Emergency Case when ambulance transport is medically required, without assuming ownership of external ambulance fleet, vehicle or crew operations.
 
 ## 3. Required Business Context
 
-- Emergency Case and patient context are G06-owned facts.
-- Ambulance Request, Provider, Destination, Departure Time and Arrival Confirmation are material business facts identified by L3-G-164.
-- G06 records institutional coordination; it does not own external ambulance operations.
-- H may support configured emergency notifications.
+- Emergency Case and patient context are established.
+- Ambulance need is determined by authorised healthcare authority.
+- Provider and destination can be established.
+- Departure and arrival confirmation are recorded only when evidenced.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-164-BH-001 | When ambulance support is required for an Emergency Case, the system shall establish an ambulance request associated with the Emergency Case and patient context. | L3-G-164 §§3, 8, 9 |
-| L4-G-164-BH-002 | When the request is established, the system shall preserve the applicable ambulance provider and destination information. | L3-G-164 §§9, 12 |
-| L4-G-164-BH-003 | When ambulance departure occurs, the system shall record the departure time as a business fact when supported by the institutional process. | L3-G-164 §§9, 16 |
-| L4-G-164-BH-004 | When arrival confirmation becomes available, the system shall distinguish confirmed arrival from an unconfirmed arrival condition. | L3-G-164 §§9, 11 |
-| L4-G-164-BH-005 | The system shall preserve traceability between the ambulance coordination outcome and the originating Emergency Case. | L3-G-164 §§3, 15, 16 |
+| L4-G-164-BH-001 | Establish the ambulance request and associate it with the Emergency Case and patient. | L3-G-164 §§3,8–9 |
+| L4-G-164-BH-002 | Record the authorised provider and destination without creating an external fleet lifecycle. | L3-G-164 §§4,9,12 |
+| L4-G-164-BH-003 | Record departure time only when departure is evidenced. | L3-G-164 §§9,11,16 |
+| L4-G-164-BH-004 | Record arrival confirmation only when available and distinguish confirmed from unconfirmed arrival. | L3-G-164 §§9,11,16 |
+| L4-G-164-BH-005 | Preserve traceability from ambulance coordination to the originating Emergency Case and any referral. | L3-G-164 §§9,15–16 |
+| L4-G-164-BH-006 | Where configured, provide emergency facts to H for notification delivery without transferring G06 ownership. | L3-G-164 §§5,9,14 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-164-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-164 §14 |
+| L4-G-164-BH-007 | No dedicated canonical ambulance event name is exposed in the Locked parent. No event shall be invented; G06 remains owner of the institutional coordination facts and H remains notification owner. | L3-G-164 §§14,17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If an ambulance provider cannot accept, the system shall retain the unresolved coordination condition and permit an authorised alternative-provider path.
-- If destination is not established, the system shall not record an invented destination.
-- If departure is not evidenced, the system shall not record departure as confirmed.
-- If arrival confirmation is unavailable, the system shall preserve the unconfirmed condition rather than asserting arrival.
-- If ambulance need is withdrawn by authorised medical reassessment, the system shall not represent a transport as having occurred.
+If provider, destination, departure or arrival evidence is unresolved, preserve the unresolved condition rather than asserting completion. If medical reassessment removes ambulance need, record that governed outcome without representing transport as having occurred.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve Emergency Case, Ambulance Request, provider, destination, departure time where applicable, arrival confirmation where available, responsible healthcare actor and resulting coordination outcome.
+Preserve Emergency Case, Ambulance Request, provider, destination, departure time where applicable, arrival confirmation where available, responsible healthcare actor and coordination outcome.
 
 ## 8. Observable Completion Conditions
 
-Completion is observable when the applicable ambulance coordination outcome has been recorded with truthful evidence and remains linked to the Emergency Case. External ambulance fleet operations are not represented as G06-owned outcomes.
+Completion occurs when the applicable ambulance coordination facts are truthfully recorded and linked to the Emergency Case; external ambulance operations remain outside G06.
 
 ## 9. Traceability & Provenance
 
@@ -64,7 +61,7 @@ Completion is observable when the applicable ambulance coordination outcome has 
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Provider selection, arrival evidence and a canonical ambulance event remain unresolved upstream. Technical dispatch, APIs and external fleet operations are outside scope/deferred.
 
 ## Canonical Validation Note
 
