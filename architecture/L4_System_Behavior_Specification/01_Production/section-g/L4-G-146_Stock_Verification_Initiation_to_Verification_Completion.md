@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-146 — Stock Verification Initiation to Verification Completion  
 **Primary Business Owner:** Library Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,42 +16,44 @@
 
 ## 2. Behavioral Objective & Boundary
 
-Govern an institutional library stock-verification activity from authorised initiation through verification completion, recording identified discrepancies without defining technical inventory mechanisms.
+SutraERP shall govern an authorised library stock-verification cycle from scheduled commencement through physical verification, difference analysis, reporting and **Administrative Closure**, while leaving downstream missing-resource investigation, write-off, procurement and Finance settlement outside this boundary.
 
 ## 3. Required Business Context
 
-- An authoritative library collection/copy context exists.
-- Stock verification authority and applicable rules are available.
+- An authorised/scheduled verification cycle exists.
+- Verification scope and a supported verification type are established.
+- Applicable collection/catalogue context and responsible personnel context are available.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-146-BH-001 | The system shall identify and validate the stock verification initiation to verification completion context and authoritative inputs. | L3-G-146 §§3, 9, 12 |
-| L4-G-146-BH-002 | The system shall validate required business eligibility and policy constraints under Library Management governance. | L3-G-146 §§3, 9, 12 |
-| L4-G-146-BH-003 | The system shall execute the canonical stock verification initiation to verification completion business evaluation. | L3-G-146 §§3, 9, 12 |
-| L4-G-146-BH-004 | The system shall record the resulting authoritative business position and preserve historical audit evidence. | L3-G-146 §§3, 9, 12 |
-| L4-G-146-BH-005 | The system shall prevent progression and maintain the last valid business position when governing conditions are not satisfied. | L3-G-146 §§3, 9, 12 |
+| L4-G-146-BH-001 | Identify the verification cycle, scope, verification type, applicable collection and responsible personnel context. | L3-G-146 §§7,9 |
+| L4-G-146-BH-002 | Progress through the authoritative workflow `Verification Scheduled → Physical Verification → Difference Analysis → Missing Resources → Verification Report → Administrative Closure` without inventing additional states. | L3-G-146 §§2,9,13 |
+| L4-G-146-BH-003 | During physical verification and difference analysis, record supported findings including available, missing, damaged, misplaced and duplicate-record outcomes as applicable. | L3-G-146 §§2,9,12 |
+| L4-G-146-BH-004 | Establish the verification report/outcome for the authorised scope and do not assert completion while required verification or difference analysis remains incomplete. | L3-G-146 §§9,11,16 |
+| L4-G-146-BH-005 | Establish Administrative Closure only when the verification cycle is authoritatively complete and preserve verification history. | L3-G-146 §§3,9,13,15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-146-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Library Management ownership. | L3-G-146 §14 |
+| L4-G-146-BH-006 | On authorised commencement, Library Management shall publish the canonical `LibraryVerificationStarted` event. On Administrative Closure/completion, Library Management shall publish the canonical `LibraryVerificationCompleted` event. E supplies personnel context where applicable and H owns notification delivery where required. | L3-G-146 §§2–3,9,14,16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- Verification shall not commence with an invented scope or unsupported verification type.
+- Incomplete physical verification or difference analysis shall prevent false completion.
+- Administrative Closure and `LibraryVerificationCompleted` shall not be asserted prematurely.
+- Downstream investigation/write-off shall remain separate even when discrepancies are found.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve verification identity, scope, type, responsible personnel context, physical-verification outcome, difference analysis, classified findings, verification report, Administrative Closure and canonical event history.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Library Management ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when the authorised scope has been verified, differences analysed, findings classified, the verification report established, Administrative Closure recorded and `LibraryVerificationCompleted` published by Library Management.
 
 ## 9. Traceability & Provenance
 
@@ -60,7 +62,7 @@ Completion requires governing conditions validated, the authoritative business p
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The upstream source does not define a detailed discrepancy-resolution matrix or mandatory verification-report approval rule. Those gaps are preserved. Technical scanning, devices, APIs, persistence, UI and infrastructure are deferred to L5.
 
 ## Canonical Validation Note
 
