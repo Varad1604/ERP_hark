@@ -5,9 +5,9 @@
 **Specification ID:** L4-G-161  
 **Architecture Level:** L4 — System Behavior Specification  
 **Domain:** Campus Operations  
-**Realizes Scenario:** L3-G-161 — Follow up Recommendation to Follow up Healthcare Activity  
+**Realizes Scenario:** L3-G-161 — Follow-up Recommendation to Follow-up Healthcare Activity  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,52 +16,52 @@
 
 ## 2. Behavioral Objective & Boundary
 
-The system shall govern follow up recommendation to follow up healthcare activity according to authoritative upstream policy and workflow governance. The behavior ends when the authoritative business outcome is recorded. APIs, persistence, UI, and infrastructure remain outside this specification.
+SutraERP shall preserve a G06 follow-up recommendation, determine its configured healthcare path, and hand the recommendation to the appropriate authoritative workflow without creating a universal follow-up lifecycle.
 
 ## 3. Required Business Context
 
-- Authoritative Institutional Health Services (G06) context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- An originating Medical Encounter exists.
+- An authorised healthcare professional has established a follow-up recommendation.
+- Recommendation type and applicable configurable follow-up policy can be determined.
+- C/E provide source-owned context; H owns notification delivery.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-161-BH-001 | The system shall identify and validate the follow up recommendation to follow up healthcare activity context and authoritative inputs. | L3-G-161 §§3, 9, 12 |
-| L4-G-161-BH-002 | The system shall validate required business eligibility and policy constraints under Institutional Health Services (G06) governance. | L3-G-161 §§3, 9, 12 |
-| L4-G-161-BH-003 | The system shall execute the canonical follow up recommendation to follow up healthcare activity business evaluation. | L3-G-161 §§3, 9, 12 |
-| L4-G-161-BH-004 | The system shall record the resulting authoritative business position and preserve historical audit evidence. | L3-G-161 §§3, 9, 12 |
-| L4-G-161-BH-005 | The system shall prevent progression and maintain the last valid business position when governing conditions are not satisfied. | L3-G-161 §§3, 9, 12 |
+| L4-G-161-BH-001 | Identify the originating Medical Encounter and record the follow-up recommendation and recommendation type. | L3-G-161 §§3,7–9 |
+| L4-G-161-BH-002 | Apply the configured follow-up policy without replacing medical-professional judgement. | L3-G-161 §§9,12,15 |
+| L4-G-161-BH-003 | Route Return Visit, Referral, Observation, Medical Certificate or Health Program Participation to the corresponding authoritative healthcare workflow. | L3-G-161 §§9–10,13 |
+| L4-G-161-BH-004 | Maintain association with the originating Medical Encounter while the selected follow-up workflow owns its own lifecycle. | L3-G-161 §§9,12–13 |
+| L4-G-161-BH-005 | Preserve the resulting follow-up outcome in immutable healthcare history and provide configured notification facts to H where applicable. | L3-G-161 §§9,14–16 |
+| L4-G-161-BH-006 | Do not create a generic `Follow-up Completed` state or universal completion rule across heterogeneous follow-up types. | L3-G-161 §§12–14,17 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-161-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-161 §14 |
+| L4-G-161-BH-007 | Publish `FollowUpRecommended` when the recommendation is established; G06 is the canonical publisher. No generic `FollowUpCompleted` event shall be invented. Downstream workflows publish only their own canonical events. | L3-G-161 §§9,14,16–17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+If follow-up type, patient context or a downstream entry condition cannot be established, preserve the recommendation as unresolved. Do not fabricate referral, observation, certificate or programme outcomes.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve originating Medical Encounter, recommendation, type, responsible professional, applicable policy, downstream handoff/outcome and relevant lifecycle transitions.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Institutional Health Services (G06) ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when `FollowUpRecommended` is published, the appropriate authoritative follow-up path is established, and its resulting business outcome or explicit unresolved condition is traceably preserved.
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-G-161 — Follow up Recommendation to Follow up Healthcare Activity  
+**Parent:** L3-G-161 — Follow-up Recommendation to Follow-up Healthcare Activity  
 **Primary verification source:** Authoritative Campus Operations L2 workflow architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No universal follow-up selection matrix, generic aggregate lifecycle or `FollowUpCompleted` event exists upstream. Technical scheduling and notification implementation are deferred.
 
 ## Canonical Validation Note
 
