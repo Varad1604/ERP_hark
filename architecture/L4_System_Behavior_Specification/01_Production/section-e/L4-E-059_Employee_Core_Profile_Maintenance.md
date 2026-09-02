@@ -7,61 +7,64 @@
 **Domain:** People & Workforce  
 **Realizes Scenario:** L3-E-059 — Employee Core Profile Maintenance  
 **Primary Business Owner:** Employee Profile  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-E-059; applicable locked E architecture sources  
+**Depends On:** L3-E-059; L2-E07; L2-A02  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Maintain valid core employee profile information within the canonical Employee Profile context. Workforce employment state and canonical Person identity remain outside this behavior.
+Maintain valid EmployeeProfile-owned personal, communication, address and emergency-contact information while preserving Person/Identity and workforce ownership boundaries.
 
 ## 3. Required Business Context
 
-- Existing Employee Profile.
-- Valid business need to establish, correct, or maintain supported core profile information.
-- Applicable business validations and invariants.
+- Existing canonical EmployeeProfile in a lifecycle position permitting maintenance.
+- Requested information belongs to EmployeeProfile.
+- Applicable Employee Profile validation and reference-data conditions are satisfied.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-E-059-BH-001 | When a valid core profile maintenance need is presented, the system shall validate the applicable employee profile information against the governing business rules. | L3-E-059 §§2–4 |
-| L4-E-059-BH-002 | The system shall maintain supported legal and demographic employee information within the canonical Employee Profile context. | L3-E-059 §4.3 |
-| L4-E-059-BH-003 | The system shall maintain supported employee communication channels and addresses. | L3-E-059 §4.3 |
-| L4-E-059-BH-004 | The system shall maintain supported employee emergency-contact information. | L3-E-059 §4.3 |
-| L4-E-059-BH-005 | When a valid profile change is accepted, the system shall establish the resulting information as authoritative within Employee Profile. | L3-E-059 §3 |
-| L4-E-059-BH-006 | The system shall preserve the business history of material accepted profile changes. | L3-E-059 §§3,4.3 |
+| L4-E-059-BH-001 | The system shall classify the requested change and accept it only when the affected information is owned by Employee Profile. | L3-E-059 §§5, 7–9, 12 |
+| L4-E-059-BH-002 | The system shall validate personal/demographic information against applicable Employee Profile rules before applying the change. | L3-E-059 §§9, 12 |
+| L4-E-059-BH-003 | Communication changes shall preserve at least one active communication channel and applicable verification requirements. | L3-E-059 §§10–12 |
+| L4-E-059-BH-004 | Emergency-contact changes shall preserve the single-primary-contact constraint while allowing supported secondary contacts. | L3-E-059 §§9, 12 |
+| L4-E-059-BH-005 | When valid, the system shall apply the requested core profile change to the canonical EmployeeProfile and preserve material historical change evidence. | L3-E-059 §§3, 9, 15–16 |
+| L4-E-059-BH-006 | The system shall not mutate Person, Identity, Workforce Engagement, Position Assignment or another separately owned aggregate through core-profile maintenance. | L3-E-059 §§4.4, 5, 11–12 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-E-059-BH-007 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Employee Profile ownership. | L3-E-059 §14 |
+| L4-E-059-BH-007 | For an accepted personal/demographic change, Employee Profile shall publish `PersonalInformationUpdated`. | L3-E-059 §14.1 |
+| L4-E-059-BH-008 | For an accepted communication-information change, Employee Profile shall publish `ContactInformationUpdated`. | L3-E-059 §14.1 |
+| L4-E-059-BH-009 | No new address- or emergency-contact-specific event name shall be invented because the Locked parent does not establish one. | L3-E-059 §14.1 |
 
 ## 6. Failure / Rejection / Continuation
 
-- When profile information fails an applicable business validation, the system shall not establish it as authoritative Employee Profile information.
-- When the requested change concerns workforce engagement or canonical Person identity ownership, the system shall not absorb that lifecycle responsibility into Employee Profile.
+- Invalid information or reference data is not accepted; the previous valid profile information remains authoritative.
+- A communication change that would remove all active communication channels is rejected.
+- Person/Identity or workforce/assignment changes are routed to their canonical owners rather than absorbed by Employee Profile.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable evidence of the accepted profile change, material prior/current business position, and applicable business validation outcome.
+Accepted profile changes, prior/current business positions and validation evidence shall remain traceable under Employee Profile governance.
 
 ## 8. Observable Completion Conditions
 
-- Requested profile information is validated. - Valid accepted information is authoritative within Employee Profile. - Material profile change history is preserved. - Person identity and workforce employment ownership remain unchanged.
+The requested supported profile information is valid and authoritative in EmployeeProfile; applicable invariants remain satisfied; history is preserved; the appropriate canonical event is published where defined; and external ownership boundaries remain unchanged.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-E-059 — Employee Core Profile Maintenance  
-**Primary verification source:** Authoritative People & Workforce L2 workflow architecture.
+**Primary verification source:** L3-E-059 §§3, 5, 9, 11–16; L2-E07 and L2-A02.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No material parent-defined architecture issue remains unresolved. No address/emergency-contact event name is introduced beyond the authoritative event catalogue.
 
 ## Canonical Validation Note
 
