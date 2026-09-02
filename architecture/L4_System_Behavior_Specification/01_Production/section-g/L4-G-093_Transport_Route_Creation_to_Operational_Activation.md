@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-093 — Transport Route Creation to Operational Activation  
 **Primary Business Owner:** Transport Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -39,7 +39,7 @@ SutraERP shall govern establishment, validation, review, authorization and activ
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-093-BH-007 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Transport Management ownership. | L3-G-093 §14 |
+| L4-G-093-BH-007 | On successful route activation, Transport Management shall publish `RouteActivated`. | L3-G-093 §§14, 16 |
 
 ## 6. Failure / Rejection / Continuation
 
