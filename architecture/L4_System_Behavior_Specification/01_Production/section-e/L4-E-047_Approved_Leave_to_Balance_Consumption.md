@@ -7,7 +7,7 @@
 **Domain:** People & Workforce  
 **Realizes Scenario:** L3-E-047 — Approved Leave to Balance Consumption  
 **Primary Business Owner:** Leave Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,41 +16,47 @@
 
 ## 2. Behavioral Objective & Boundary
 
-Specify observable behavior for converting approved leave reservation into authoritative leave consumption.
+SutraERP shall convert a valid approved-leave reservation into authoritative leave consumption at the applicable consumption point, preserving Leave Management ownership of the Leave Request, Leave Ledger and balance projection.
 
 ## 3. Required Business Context
 
-- Authoritative Leave Management context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- Leave has been approved.
+- A valid balance reservation exists.
+- The applicable consumption date has been reached.
+- Leave Management owns leave consumption, ledger transactions and balance projection.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-E-047-BH-001 | The system shall identify and validate the approved leave to balance consumption context and authoritative inputs. | L3-E-047 §§3, 9, 12 |
-| L4-E-047-BH-002 | The system shall validate required business eligibility and policy constraints under Leave Management governance. | L3-E-047 §§3, 9, 12 |
-| L4-E-047-BH-003 | The system shall execute the canonical approved leave to balance consumption business evaluation. | L3-E-047 §§3, 9, 12 |
-| L4-E-047-BH-004 | The system shall record the resulting authoritative business position and preserve historical audit evidence. | L3-E-047 §§3, 9, 12 |
-| L4-E-047-BH-005 | The system shall prevent progression and maintain the last valid business position when governing conditions are not satisfied. | L3-E-047 §§3, 9, 12 |
+| L4-E-047-BH-001 | The system shall confirm that approved leave has reached the applicable consumption point and that a valid balance reservation exists. | L3-E-047 §§7, 8, 9 |
+| L4-E-047-BH-002 | The system shall convert the valid reservation into leave consumption under Leave Management ownership. | L3-E-047 §§2, 3, 9, 12 |
+| L4-E-047-BH-003 | The system shall create the authoritative consumption transaction in the Leave Ledger before changing the represented balance. | L3-E-047 §§3, 9, 12 |
+| L4-E-047-BH-004 | The system shall update the leave balance projection from the recorded consumption ledger transaction. | L3-E-047 §§3, 9, 12, 16 |
+| L4-E-047-BH-005 | The system shall transition the Leave Request Aggregate from `Reserved` to `Consumed` when the governed consumption conditions are satisfied. | L3-E-047 §13 |
+| L4-E-047-BH-006 | The system shall preserve reservation validation, consumption decision, ledger transaction and balance outcome as traceable business evidence. | L3-E-047 §§12, 15, 16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-E-047-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Leave Management ownership. | L3-E-047 §14 |
+| L4-E-047-BH-007 | When leave consumption is established, the system shall publish `LeaveConsumed`. | L3-E-047 §§14.1, 16 |
+| L4-E-047-BH-008 | After the balance projection is updated, the system shall publish `EmployeeLeaveBalanceUpdated`. | L3-E-047 §§14.1, 16 |
+| L4-E-047-BH-009 | The consumption outcome may be made available to Attendance and other authoritative downstream participants without transferring ownership of the leave fact from Leave Management. | L3-E-047 §§5, 14.2 |
 
 ## 6. Failure / Rejection / Continuation
 
-- No valid reservation or unmet consumption condition leaves the leave unconsumed. The existing authoritative leave state remains unchanged until the applicable business conditions are met. No technical recovery mechanics are defined.
+- If no valid reservation exists, the system shall not establish consumption and shall preserve the existing authoritative leave state.
+- If governed consumption conditions are not met, the leave shall remain unconsumed until the applicable business point is reached.
+- Technical retry, rollback, queue and infrastructure recovery remain outside L4.
 
 ## 7. Audit & Evidence Behavior
 
-Reservation validation, consumption decision, ledger transaction, and resulting balance update remain attributable and traceable.
+The system shall preserve attributable evidence of reservation validation, the `Reserved` to `Consumed` transition, the consumption ledger transaction, resulting balance projection and published business events.
 
 ## 8. Observable Completion Conditions
 
-- Approved leave reaches its consumption point. - Reservation is converted to consumption. - Consumption transaction recorded. - Balance projection updated. - Applicable consumption/balance events published.
+Completion requires approved leave to reach its consumption point, a valid reservation to be converted into consumption, the consumption ledger transaction to be recorded, the balance projection to be updated, and both `LeaveConsumed` and `EmployeeLeaveBalanceUpdated` to be published.
 
 ## 9. Traceability & Provenance
 
@@ -59,7 +65,7 @@ Reservation validation, consumption decision, ledger transaction, and resulting 
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No material ownership, lifecycle or event uncertainty is identified by the Locked parent. Technical implementation details remain outside L4.
 
 ## Canonical Validation Note
 
