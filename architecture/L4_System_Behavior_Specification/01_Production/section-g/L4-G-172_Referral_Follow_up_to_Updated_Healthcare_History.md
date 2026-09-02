@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-172 — Referral Follow up to Updated Healthcare History  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,7 +16,7 @@
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern institutional follow-up after referral, preserve the authorised healthcare assessment, and update institutional medical history without acquiring ownership of external provider records. The behavior ends when the follow-up outcome is recorded and the applicable next-care path is established.
+The system shall govern institutional follow-up after referral, preserve the authorised healthcare assessment, and update institutional medical history without acquiring ownership of external provider records. The behavior ends when the follow-up outcome is recorded and the applicable next-care path is established.
 
 ## 3. Required Business Context
 
@@ -40,7 +40,8 @@ the system shall govern institutional follow-up after referral, preserve the aut
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-172-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-172 §14 |
+| L4-G-172-BH-006 | The retrieved upstream source does not explicitly identify a canonical event for completion of referral follow-up or healthcare-history update. No event shall be invented. Where a resulting activity uses an existing canonical G06 event, that event remains published by G06. | L3-G-172 §§14,17 |
+| L4-G-172-BH-007 | C and E remain authoritative for student/personnel context; external provider records remain externally owned. | L3-G-172 §§5,14 |
 
 ## 6. Failure / Rejection / Continuation
 
@@ -56,7 +57,7 @@ The system shall preserve patient reference, Medical Encounter, Referral referen
 
 ## 8. Observable Completion Conditions
 
-Completion is observable when the authorised follow-up outcome is recorded in institutional medical history, referral history remains traceable, and any subsequent healthcare workflow is established where required.
+Completion is observable when the authorised follow-up outcome is recorded in institutional medical history, referral history remains traceable, and any subsequent healthcare workflow is established where required. No generic follow-up-completion event is required unless upstream architecture defines one.
 
 ## 9. Traceability & Provenance
 
@@ -65,7 +66,7 @@ Completion is observable when the authorised follow-up outcome is recorded in in
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact event/contract semantics for referral follow-up completion and external clinical-result reconciliation are not fully defined upstream. These gaps remain explicit. Technical exchange mechanisms, APIs, persistence, UI and infrastructure remain deferred.
 
 ## Canonical Validation Note
 
