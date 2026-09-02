@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-104 — Trip Planning to Ready Transport Trip  
 **Primary Business Owner:** Transport Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,46 +16,46 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern transport trip planning through scheduling, required operational assignments, validation and readiness.
+SutraERP shall govern transport Trip planning through route, schedule, required operational assignments, validation and transition to the canonical Ready state.
 
 ## 3. Required Business Context
 
-- Authoritative Route and stop sequence exist.
-- Required driver and vehicle contexts can be evaluated.
-- Transport Management owns Trip.
+- An authoritative Route with operational stop sequence exists.
+- Required driver and vehicle operational contexts can be evaluated.
+- Transport Management owns the Trip and operational assignments while driver/personnel ownership remains with People & Workforce and vehicle ownership remains outside G04.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-104-BH-001 | Establish the authoritative route and stop context for the Trip. | L3-G-104 |
-| L4-G-104-BH-002 | Establish the Trip schedule under applicable transport policy. | L3-G-104 |
-| L4-G-104-BH-003 | Establish or confirm required operational vehicle and driver assignments. | L3-G-104 |
-| L4-G-104-BH-004 | Validate the planning constraints required for readiness. | L3-G-104 |
-| L4-G-104-BH-005 | Complete required operational review before readiness. | L3-G-104 |
-| L4-G-104-BH-006 | Transition Trip to Ready only when authoritative readiness conditions are satisfied. | L3-G-104 |
-| L4-G-104-BH-007 | Preserve planning and readiness history. | L3-G-104 |
+| L4-G-104-BH-001 | Establish the Trip against exactly one authoritative Route and its operational stop sequence. | L3-G-104 §§7, 9, 12 |
+| L4-G-104-BH-002 | Establish the Trip schedule under the applicable transport policy. | L3-G-104 §§9, 12 |
+| L4-G-104-BH-003 | Establish or confirm the required operational vehicle and driver assignments without transferring their source ownership. | L3-G-104 §§5, 9, 12 |
+| L4-G-104-BH-004 | Validate the planning constraints required for Trip readiness. | L3-G-104 §§9, 11–12 |
+| L4-G-104-BH-005 | Complete required operational review before readiness where configured policy requires it. | L3-G-104 §§9, 15 |
+| L4-G-104-BH-006 | Transition the Trip to Ready only when all authoritative planning and assignment conditions are satisfied. | L3-G-104 §§3, 13, 16 |
+| L4-G-104-BH-007 | Preserve route, schedule, assignment, validation, review and readiness history. | L3-G-104 §§12, 15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-104-BH-008 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Transport Management ownership. | L3-G-104 §14 |
+| L4-G-104-BH-008 | People & Workforce remains authoritative for driver/personnel context, and vehicle ownership remains outside G04; Transport Management owns the operational Trip assignments only. | L3-G-104 §§5, 14, 16 |
+| L4-G-104-BH-009 | The exact canonical event identifier for the Ready transition is unresolved upstream; this specification shall not invent one. | L3-G-104 §§14, 17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Missing route prevents readiness.
-- Missing driver or vehicle assignment prevents readiness.
-- Failed planning validation keeps Trip non-ready until corrected.
-- Cancellation follows the separate canonical cancellation scenario.
+- An unavailable Route, missing vehicle assignment, missing driver assignment, or failed planning validation shall prevent Ready.
+- Driver unavailability shall use the authoritative Driver Assignment/Replacement outcome.
+- Cancellation before execution remains with the separate Scheduled Trip Cancellation scenario.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve route, schedule, operational assignments, validation, review and readiness decision evidence.
+Preserve route, schedule, operational assignments, source context considered, validation, review, readiness transition, and planning history.
 
 ## 8. Observable Completion Conditions
 
-Trip has its required route, schedule and assignments, planning constraints are satisfied, review is complete, and Trip reaches Ready.
+The Trip has its authoritative Route, schedule, required operational assignments and satisfied planning constraints, and reaches Ready with its history preserved.
 
 ## 9. Traceability & Provenance
 
@@ -64,7 +64,7 @@ Trip has its required route, schedule and assignments, planning constraints are 
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact Ready-transition event identifier remains unresolved upstream and is deliberately not invented. Technical scheduling algorithms, APIs, persistence, UI, telemetry, and retry mechanics are deferred to later architecture levels.
 
 ## Canonical Validation Note
 
