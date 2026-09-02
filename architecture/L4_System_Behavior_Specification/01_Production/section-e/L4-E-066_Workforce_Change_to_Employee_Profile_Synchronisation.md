@@ -7,63 +7,67 @@
 **Domain:** People & Workforce  
 **Realizes Scenario:** L3-E-066 — Workforce Change to Employee Profile Synchronisation  
 **Primary Business Owner:** Employee Profile  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-E-066; applicable locked E architecture sources  
+**Depends On:** L3-E-066; L2-E07; L2-E01  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Specify observable system behavior for applying defined EmployeeProfile consequences of authoritative Workforce & Engagement changes without transferring workforce lifecycle ownership.
+Apply only defined EmployeeProfile consequences of authoritative completed Workforce & Engagement changes while preserving Workforce & Engagement as the canonical owner and publisher of workforce lifecycle facts.
 
 ## 3. Required Business Context
 
-- Authoritative Employee Profile context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- Existing canonical EmployeeProfile.
+- Completed authoritative workforce change represented by a canonical workforce event or approved business fact.
+- A defined EmployeeProfile-owned consequence exists for the supplied workforce fact.
+- Employee Profile does not mutate the workforce source state.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-E-066-BH-001 | The system shall recognize only authoritative completed workforce facts. | L3-E-066 §§3, 9, 12 |
-| L4-E-066-BH-002 | The system shall determine whether the authoritative workforce fact has a defined EmployeeProfile consequence. | L3-E-066 §§3, 9, 12 |
-| L4-E-066-BH-003 | The system shall apply only the profile-side change owned by Employee Profile. | L3-E-066 §§3, 9, 12 |
-| L4-E-066-BH-004 | The system shall do not mutate workforce-owned state from the Employee Profile boundary. | L3-E-066 §§3, 9, 12 |
-| L4-E-066-BH-005 | The system shall publish only canonical profile events for completed profile-side changes. | L3-E-066 §§3, 9, 12 |
-| L4-E-066-BH-006 | The system shall deciding or changing Workforce Engagement lifecycle state. | L3-E-066 §§3, 9, 12 |
-| L4-E-066-BH-007 | The system shall position Assignment, Reporting Relationship, Responsibility Assignment, payroll, or leave outcomes. | L3-E-066 §§3, 9, 12 |
-| L4-E-066-BH-008 | The system shall any unsupported synchronization trigger set. | L3-E-066 §§3, 9, 12 |
-| L4-E-066-BH-009 | The system shall aPIs, databases, services, queues, retries, rollback, infrastructure, technical access control, and UI design. | L3-E-066 §§3, 9, 12 |
+| L4-E-066-BH-001 | Employee Profile shall act only on a completed authoritative workforce fact published or handed off by Workforce & Engagement. | L3-E-066 §§7–9, 12, 14 |
+| L4-E-066-BH-002 | Employee Profile shall determine whether the workforce fact has a defined profile-side business consequence before applying any change. | L3-E-066 §§3, 9–10, 12 |
+| L4-E-066-BH-003 | Where a defined consequence exists, Employee Profile shall apply only the corresponding EmployeeProfile-owned change and preserve the source workforce fact unchanged. | L3-E-066 §§5, 9, 11–13 |
+| L4-E-066-BH-004 | If the workforce event has no defined EmployeeProfile consequence, the system shall perform no profile mutation. | L3-E-066 §10 |
+| L4-E-066-BH-005 | Employee Profile shall not decide or alter Workforce Engagement lifecycle state, Position Assignment, Reporting Relationship, Responsibility Assignment, Payroll or Leave outcomes. | L3-E-066 §§4.4, 5, 11–12 |
+| L4-E-066-BH-006 | Where a supplied workforce fact cannot validly be applied under Employee Profile rules, the system shall preserve the authoritative workforce fact and withhold the unsupported profile mutation pending governed correction. | L3-E-066 §11 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-E-066-BH-010 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Employee Profile ownership. | L3-E-066 §14 |
+| L4-E-066-BH-007 | Workforce & Engagement remains the canonical publisher of `WorkforceEngagementModified`, `WorkforceTransferred`, `WorkforcePromoted`, `WorkforceSuspended`, `WorkforceResumed`, `WorkforceEngagementClosed`, and `WorkforceRejoined`. | L3-E-066 §14.1 |
+| L4-E-066-BH-008 | Employee Profile may publish `PersonalInformationUpdated` or `ContactInformationUpdated` only when the completed workforce fact results in that corresponding defined profile-side change. | L3-E-066 §14.1 |
+| L4-E-066-BH-009 | L4 shall not prescribe an exact E01→E07 subscription set or synchronization contract because the Locked parent records that mapping as an upstream open issue. | L3-E-066 §17.1 |
+| L4-E-066-BH-010 | The source workforce lifecycle event/business fact remains a Workforce & Engagement-owned hand-off; any resulting EmployeeProfile event remains Employee Profile-owned. | L3-E-066 §§5, 14.2 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Where the source workforce fact is not authoritative or a profile-side change cannot satisfy EmployeeProfile rules, the system prevents the unsupported profile mutation while preserving the workforce source fact. No technical delivery, retry, queue, rollback, or infrastructure behavior is specified.
+- If no authoritative workforce change exists, no synchronization behavior shall occur.
+- If a workforce fact cannot validly be applied to EmployeeProfile, the source fact remains authoritative and the profile-side issue follows governed correction.
+- If the change concerns another canonical owner, Employee Profile performs no ownership transfer.
+- Technical delivery failure, queueing or retries are outside L4.
 
 ## 7. Audit & Evidence Behavior
 
-The workforce decision remains traceable under Workforce & Engagement. The resulting profile-side change remains traceable under Employee Profile. No technical permission or event-transport design is specified.
+The originating workforce decision remains traceable under Workforce & Engagement. Any applied profile-side consequence remains traceable under Employee Profile. No technical event-delivery or audit-storage design is introduced.
 
 ## 8. Observable Completion Conditions
 
-- A completed authoritative workforce fact exists. - Any defined profile consequence is applied under Employee Profile ownership. - No unsupported profile consequence is created. - Workforce lifecycle ownership remains unchanged.
+An authoritative completed workforce fact exists; Employee Profile has either applied the defined profile-side consequence or correctly performed no mutation; the applicable profile event is published where defined; and workforce lifecycle ownership remains unchanged.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-E-066 — Workforce Change to Employee Profile Synchronisation  
-**Primary verification source:** Authoritative People & Workforce L2 workflow architecture.
+**Primary verification source:** L3-E-066 §§3, 5, 9, 11–17; L2-E01 and L2-E07.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact E01→E07 synchronization mapping and the exact set of workforce events with defined EmployeeProfile consequences remain upstream-unconfirmed. L4 preserves this uncertainty and does not invent a subscription/contract set. Technical event delivery remains deferred to L5.
 
 ## Canonical Validation Note
 
