@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-182 — Medical Professional Unavailability to Alternative Operational Assignment  
 **Primary Business Owner:** Institutional Health Services  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,7 +16,7 @@
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern recognition of medical-professional unavailability, assessment of affected G06 healthcare responsibilities, and establishment of an authorised alternative assignment or governed alternative business disposition. It shall not modify E-owned workforce records.
+The system shall govern recognition of medical-professional unavailability, assessment of affected G06 healthcare responsibilities, and establishment of an authorised alternative assignment or governed alternative business disposition. It shall not modify E-owned workforce records.
 
 ## 3. Required Business Context
 
@@ -66,7 +66,7 @@ Completion occurs when each affected healthcare responsibility has an authorised
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No dedicated unavailability/reassignment event or universal professional-selection, staffing-ratio or priority rule is defined upstream. These remain upstream/configuration governed; technical scheduling and implementation remain deferred.
 
 ## Canonical Validation Note
 
