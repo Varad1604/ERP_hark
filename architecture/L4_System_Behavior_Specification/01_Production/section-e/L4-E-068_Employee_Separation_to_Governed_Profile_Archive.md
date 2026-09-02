@@ -7,63 +7,66 @@
 **Domain:** People & Workforce  
 **Realizes Scenario:** L3-E-068 — Employee Separation to Governed Profile Archive  
 **Primary Business Owner:** Employee Profile  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-E-068; applicable locked E architecture sources  
+**Depends On:** L3-E-068; applicable locked Workforce & Engagement and Employee Profile architecture  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Specify observable system behavior for applying the governed EmployeeProfile archival consequence of an authoritative employee separation.
+Apply the governed EmployeeProfile archival consequence of an authoritative completed employee separation while preserving Workforce & Engagement ownership of the employment lifecycle and preserving EmployeeProfile historical information.
 
 ## 3. Required Business Context
 
-- Authoritative Employee Profile context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- Existing canonical EmployeeProfile.
+- Workforce & Engagement has completed an authoritative separation outcome for the employee represented by that profile.
+- Employee Profile governance defines the applicable archival consequence.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-E-068-BH-001 | The system shall recognize only an authoritative workforce separation outcome. | L3-E-068 §§3, 9, 12 |
-| L4-E-068-BH-002 | The system shall apply the EmployeeProfile archival consequence defined upstream. | L3-E-068 §§3, 9, 12 |
-| L4-E-068-BH-003 | The system shall preserve historical EmployeeProfile information. | L3-E-068 §§3, 9, 12 |
-| L4-E-068-BH-004 | The system shall do not approve, reverse, or modify the workforce separation. | L3-E-068 §§3, 9, 12 |
-| L4-E-068-BH-005 | The system shall publish only the applicable canonical profile lifecycle fact. | L3-E-068 §§3, 9, 12 |
-| L4-E-068-BH-006 | The system shall resignation or separation approval. | L3-E-068 §§3, 9, 12 |
-| L4-E-068-BH-007 | The system shall payroll settlement, exit-clearance ownership, or workforce lifecycle modification. | L3-E-068 §§3, 9, 12 |
-| L4-E-068-BH-008 | The system shall any unresolved state or event name not established upstream. | L3-E-068 §§3, 9, 12 |
-| L4-E-068-BH-009 | The system shall aPIs, databases, services, queues, retries, rollback, infrastructure, technical access control, and UI design. | L3-E-068 §§3, 9, 12 |
+| L4-E-068-BH-001 | Employee Profile shall act only after an authoritative separation outcome has been completed by Workforce & Engagement. | L3-E-068 §§3, 7–9, 12 |
+| L4-E-068-BH-002 | Employee Profile shall confirm that the separation outcome corresponds to the affected canonical EmployeeProfile before applying archival treatment. | L3-E-068 §§7, 9, 11 |
+| L4-E-068-BH-003 | Employee Profile shall apply only the governed archival consequence defined by its canonical profile lifecycle. | L3-E-068 §§3, 9, 12–13 |
+| L4-E-068-BH-004 | Historical EmployeeProfile information shall remain preserved after archival treatment. | L3-E-068 §§3, 9, 12, 16 |
+| L4-E-068-BH-005 | Employee Profile shall not approve, reverse or modify the Workforce & Engagement separation outcome. | L3-E-068 §§4.4, 5, 12 |
+| L4-E-068-BH-006 | Payroll settlement, exit-clearance ownership and workforce lifecycle modification shall remain outside this profile-archival behavior. | L3-E-068 §§4.4, 12 |
+| L4-E-068-BH-007 | If a later authoritative workforce rejoin occurs, Employee Profile shall follow the canonical rejoin/profile lifecycle rather than independently reversing archival treatment. | L3-E-068 §§10–12 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-E-068-BH-010 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Employee Profile ownership. | L3-E-068 §14 |
+| L4-E-068-BH-008 | The separation event/business fact remains published and owned by Workforce & Engagement; the resulting profile archival event/fact remains published and owned by Employee Profile. | L3-E-068 §14 |
+| L4-E-068-BH-009 | The business hand-off is Workforce & Engagement → Employee Profile: authoritative separation outcome for the affected employee. | L3-E-068 §14 |
+| L4-E-068-BH-010 | L4 shall not invent the exact separation event name, archival event name or archival state vocabulary because the Locked parent explicitly records those Stage 3 mappings as unresolved upstream. | L3-E-068 §§14, 17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Where the separation outcome is incomplete or cannot be associated authoritatively with the EmployeeProfile, the system prevents the unsupported archival result and preserves the last authoritative profile position. No technical retry or storage-recovery behavior is specified.
+- Incomplete separation outcomes do not trigger profile archival treatment.
+- If the employee/profile relationship cannot be authoritatively established, archival treatment is withheld until the business relationship is resolved.
+- A later rejoin follows the canonical rejoin consequence; manual lifecycle bypass is not permitted.
+- Technical storage recovery, retries and rollback are outside L4.
 
 ## 7. Audit & Evidence Behavior
 
-The system recognizes only an already-authorized separation outcome. Separation evidence remains traceable under Workforce & Engagement and the profile archival consequence remains traceable under Employee Profile.
+The separation decision remains traceable under Workforce & Engagement. The profile archival consequence and preservation of historical profile information remain traceable under Employee Profile.
 
 ## 8. Observable Completion Conditions
 
-- The authoritative separation outcome exists. - The parent-defined profile archival consequence is applied. - Historical EmployeeProfile information remains preserved. - Workforce separation ownership remains unchanged.
+An authoritative separation outcome exists; the corresponding EmployeeProfile has received the governed archival treatment; historical profile information remains preserved; workforce separation ownership remains unchanged; and the profile-side lifecycle event/fact is published only according to confirmed canonical vocabulary.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-E-068 — Employee Separation to Governed Profile Archive  
-**Primary verification source:** Authoritative People & Workforce L2 workflow architecture.
+**Primary verification source:** L3-E-068 §§3, 5, 9, 11–17 and applicable locked Workforce & Engagement / Employee Profile architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact frozen Stage 3 separation event, EmployeeProfile archival transition/state and profile archival event remain unresolved upstream according to the Locked parent. L4 preserves those issues and does not invent vocabulary. Technical archival/storage mechanisms remain deferred to L5.
 
 ## Canonical Validation Note
 
