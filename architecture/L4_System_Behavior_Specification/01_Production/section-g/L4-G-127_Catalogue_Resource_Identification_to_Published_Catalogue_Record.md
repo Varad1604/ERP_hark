@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-127 — Catalogue Resource Identification to Published Catalogue Record  
 **Primary Business Owner:** Library Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,44 +16,43 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern identification and validation of a library resource through creation and publication of its authoritative catalogue record.
+SutraERP shall govern identification, preparation, verification and publication of an intellectual library resource as an authoritative Catalogue record without creating a physical Library Copy.
 
 ## 3. Required Business Context
 
-- The resource is identifiable within Library Management scope.
-- Applicable cataloguing rules are available.
-- Library Management owns the catalogue record lifecycle.
+- The intellectual resource is identifiable.
+- Applicable catalogue metadata, resource-type and classification rules are available.
+- Library Management owns the Catalogue lifecycle; Library Copy remains a separate aggregate.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-127-BH-001 | Register the identified resource for cataloguing. | L3-G-127 |
-| L4-G-127-BH-002 | Validate the information required to establish an authoritative catalogue record. | L3-G-127 |
-| L4-G-127-BH-003 | Establish the catalogue record with the governed resource identity. | L3-G-127 |
-| L4-G-127-BH-004 | Apply the governed review and publication path. | L3-G-127 |
-| L4-G-127-BH-005 | On successful publication, make the catalogue record Published and available for applicable library use. | L3-G-127 |
-| L4-G-127-BH-006 | Preserve catalogue history and evidence supporting publication. | L3-G-127 |
+| L4-G-127-BH-001 | Register the identified intellectual resource for catalogue preparation. | L3-G-127 §§4,9 |
+| L4-G-127-BH-002 | Prepare and validate supported bibliographic, classification, resource-type and configured metadata. | L3-G-127 §§9,12 |
+| L4-G-127-BH-003 | Apply configured catalogue review and approval. | L3-G-127 §§9,15 |
+| L4-G-127-BH-004 | Progress the Catalogue through `Draft → Verified → Published` when required conditions are satisfied. | L3-G-127 §§9,13,16 |
+| L4-G-127-BH-005 | Preserve catalogue preparation, verification, publication and historical evidence. | L3-G-127 §§12,15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-127-BH-007 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Library Management ownership. | L3-G-127 §14 |
+| L4-G-127-BH-006 | On publication, Library Management shall publish the exact canonical event `CatalogueCreated`. The event name shall not be renamed even though its locked meaning is Catalogue published. E may provide personnel context and H may consume published information without acquiring catalogue ownership. | L3-G-127 §§5,14,16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Incomplete catalogue information shall prevent publication.
-- Failed validation shall retain the record in its applicable correction/review position.
-- Publication shall not discard the underlying cataloguing history.
+- Incomplete or unverifiable catalogue information shall prevent publication.
+- Rejected review shall return the record to the applicable pre-publication business position without inventing a new lifecycle state.
+- Publication shall not imply that a physical Library Copy exists.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve resource identification, validation, catalogue record, review, publication authority, and publication evidence.
+Preserve resource identity, catalogue information, classification, verification, approval, publication and history.
 
 ## 8. Observable Completion Conditions
 
-Completion occurs when a valid catalogue record is Published with traceable resource and publication history, or a governed terminal non-publication outcome is recorded.
+Completion occurs when the Catalogue reaches `Published`, `CatalogueCreated` is published by Library Management, and the catalogue record is available to subsequent library operations while physical-copy management remains separate.
 
 ## 9. Traceability & Provenance
 
@@ -62,7 +61,7 @@ Completion occurs when a valid catalogue record is Published with traceable reso
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Metadata completeness, classification choice, multilingual metadata and approval requirements remain configuration governed. Technical search/indexing, APIs, database persistence schemas, UI screens and infrastructure are deferred to L5 Solution Architecture.
 
 ## Canonical Validation Note
 
