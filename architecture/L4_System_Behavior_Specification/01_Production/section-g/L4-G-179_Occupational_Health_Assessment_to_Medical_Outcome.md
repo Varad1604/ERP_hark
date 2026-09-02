@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-179 — Occupational Health Assessment to Medical Outcome  
 **Primary Business Owner:** Institutional Health Services  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,7 +16,7 @@
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern an occupational health assessment through a recorded G06 medical outcome while consuming authoritative workforce context from E. Employment, payroll and workforce decisions remain outside this behavior.
+The system shall govern an occupational health assessment through a recorded G06 medical outcome while consuming authoritative workforce context from E. Employment, payroll and workforce decisions remain outside this behavior.
 
 ## 3. Required Business Context
 
@@ -63,7 +63,7 @@ Completion occurs when the occupational assessment has an authoritative medical 
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No dedicated occupational-health event, universal fitness classification or employment consequence is defined upstream. Any such future requirement must be owned by the appropriate upstream architecture. Technical implementation remains deferred.
 
 ## Canonical Validation Note
 
