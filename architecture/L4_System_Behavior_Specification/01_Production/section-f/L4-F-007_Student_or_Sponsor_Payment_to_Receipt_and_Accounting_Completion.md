@@ -7,64 +7,69 @@
 **Domain:** Finance  
 **Realizes Scenario:** L3-F-007 — Student or Sponsor Payment to Receipt and Accounting Completion  
 **Primary Business Owner:** Payment Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-F-007; applicable locked F architecture sources  
+**Depends On:** L3-F-007; L2-F02 — Payment Management; L2-F05 — Accounting & General Ledger  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Process a student or sponsor payment through authoritative Payment creation, institutional receipt/reference establishment, applicable allocation and settlement, and downstream accounting completion. Payment and Accounting ownership remain separate.
+Process a received student or sponsor monetary payment into the canonical Payment, establish its immutable institutional Payment/Receipt Reference, derive allocation/settlement where applicable, and require authoritative Accounting completion before the end-to-end accounting outcome is claimed.
 
 ## 3. Required Business Context
 
-- Received monetary payment.
-- Payment Source, Instrument and Channel context.
-- Applicable Student Charge where allocation is possible.
-- Authoritative Accounting consumption context.
+- Received monetary payment and authoritative payer/source context.
+- Accepted Payment Instrument and Payment Channel.
+- Applicable canonical Student Charge context where allocation is possible.
+- Accounting consumption context.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-F-007-BH-001 | The system shall establish and validate the received payment context. | L3-F-007 §§3,7–9 |
-| L4-F-007-BH-002 | The system shall establish the canonical Payment with its Payment Source, Instrument and Channel. | L3-F-007 §§3,9 |
-| L4-F-007-BH-003 | The system shall establish the institutional Payment/Receipt Reference. | L3-F-007 §§3,9 |
-| L4-F-007-BH-004 | Where allocable, the system shall establish the Payment Allocation and resulting settlement outcome against the applicable Student Charge. | L3-F-007 §§3,9 |
-| L4-F-007-BH-005 | The system shall publish authoritative Payment facts for downstream Finance consumers. | L3-F-007 §9 |
-| L4-F-007-BH-006 | The system shall preserve Payment, receipt, settlement and accounting lineage. | L3-F-007 §§3,15–16 |
+| L4-F-007-BH-001 | The system shall establish Payment Source, Payment Instrument and Payment Channel from authoritative payment context and shall not infer unsupported payer identity. | L3-F-007 §§3, 7–9, 11–12 |
+| L4-F-007-BH-002 | The system shall validate the received monetary payment before establishing it as a canonical Payment. | L3-F-007 §§7, 9, 11–12 |
+| L4-F-007-BH-003 | When validation succeeds, the system shall establish the canonical Payment and its unique immutable institutional Payment Reference, including the applicable Receipt Reference. | L3-F-007 §§3, 9, 12, 16 |
+| L4-F-007-BH-004 | Where a canonical Student Charge is allocable, the system shall establish Payment Allocation without transferring ownership of Payment or Student Charge. | L3-F-007 §§5, 9, 12 |
+| L4-F-007-BH-005 | The system shall derive the settlement outcome from successful Payment Allocation rather than establishing an independent settlement aggregate. | L3-F-007 §§9, 12–13 |
+| L4-F-007-BH-006 | Where no valid allocation is available, the Payment shall follow the governed unallocated/advance path rather than being falsely represented as settled. | L3-F-007 §§10–11, 16 |
+| L4-F-007-BH-007 | Accounting completion shall be claimed only after Accounting & General Ledger has established its own authoritative posting outcome. | L3-F-007 §§3–5, 9, 11–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-F-007-BH-007 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Payment Management ownership. | L3-F-007 §14 |
+| L4-F-007-BH-008 | Payment Management shall publish `PaymentReceptionInitiated`, `PaymentValidationCompleted`, and `PaymentPublicationCompleted` at their corresponding canonical Payment milestones. | L3-F-007 §14.1 |
+| L4-F-007-BH-009 | Payment Management shall publish `PaymentAllocationCompleted` and `PaymentSettlementCompleted` only when allocation and settlement are actually established. | L3-F-007 §14.1 |
+| L4-F-007-BH-010 | Accounting & General Ledger shall remain the canonical owner and publisher of its accounting outcome; Payment Management shall provide authoritative settlement information without taking Accounting ownership. | L3-F-007 §§5, 14.1–14.2 |
+| L4-F-007-BH-011 | Student Lifecycle context and Student Charge ownership shall remain with their canonical owners throughout payment processing. | L3-F-007 §§5, 14.2 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Invalid payment context shall not be represented as a completed valid Payment.
-- Insufficient payer context shall not be inferred.
-- Unallocable payment shall follow the governed unallocated/advance path.
-- Accounting completion shall not be claimed until Accounting establishes its authoritative outcome.
+- Invalid payments shall not be represented as completed valid Payments.
+- Insufficient payer/source evidence shall not be inferred.
+- Missing receipt/reference identity prevents receipt completion.
+- Unallocable funds remain in the canonical unallocated/advance condition.
+- Accounting rejection/incompletion prevents accounting completion from being claimed.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve Payment identity, source, instrument, channel, receipt reference, allocation/settlement lineage and accounting outcome evidence.
+The Payment identity, Payment Source, Instrument, Channel, immutable Payment/Receipt Reference, allocation and settlement lineage, and Accounting outcome reference shall remain reconstructable.
 
 ## 8. Observable Completion Conditions
 
-A canonical Payment and receipt reference exist; applicable allocation/settlement is established or the payment is explicitly unallocated; Accounting has completed its outcome before accounting completion is claimed.
+A canonical Payment and immutable receipt reference exist; allocation/settlement is established or explicitly unallocated; Accounting has completed its authoritative posting outcome before accounting completion is claimed; ownership boundaries remain intact.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-F-007 — Student or Sponsor Payment to Receipt and Accounting Completion  
-**Primary verification source:** Authoritative Finance L2 workflow architecture.
+**Primary verification source:** L3-F-007 §§3, 5, 9, 11–16 and authoritative L2-F02/F05 architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No material scenario-specific upstream ambiguity is identified. L2-F02 records Payment authorization as externally governed and provides no actor catalogue; L4 introduces no unsupported role. Technical payment transport and persistence remain deferred to L5.
 
 ## Canonical Validation Note
 
