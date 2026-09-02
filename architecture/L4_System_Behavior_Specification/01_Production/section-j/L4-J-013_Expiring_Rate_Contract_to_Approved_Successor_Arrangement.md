@@ -7,11 +7,11 @@
 **Domain:** Procurement Planning & Sourcing  
 **Realizes Scenario:** L3-J-013  
 **Primary Business Owner:** Procurement Planning & Sourcing  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Chetan  
-**Last Updated:** 2026-08-30  
-**Depends On:** `L3-J-013_Expiring_Rate_Contract_to_Approved_Successor_Arrangement.md`; `L2-J00_Enterprise_Resource_Management_Architecture_and_Governance.md`; `L2-J01_Procurement_Planning_and_Sourcing_Workflows.md`; `L2-J02_Vendor_and_Supplier_Management_Workflows.md`; `L2-J03_Purchase_Requisition_and_Approval_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Locked.md`  
+**Last Updated:** 2026-09-02  
+**Depends On:** `L3-J-013_Expiring_Rate_Contract_to_Approved_Successor_Arrangement.md`; `L2-J00_Enterprise_Resource_Management_Architecture_and_Governance.md`; `L2-J01_Procurement_Planning_and_Sourcing_Workflows.md`; `L2-J02_Vendor_and_Supplier_Management_Workflows.md`; `L2-J03_Purchase_Requisition_and_Approval_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `ADR-J-RATE-SUCCESSION-001.md`  
 **Referenced By:** None yet  
 
 ---
@@ -22,9 +22,7 @@ SutraERP shall govern the transition from an expiring Rate Contract toward a sep
 
 The behavior begins when an `Active` predecessor Rate Contract enters its governed expiry-review window or continuing need is authoritatively identified before expiry.
 
-**Upstream blocking condition:** the parent L3 defines two materially different successful end positions. Section 4.2 permits completion when the successor reaches `Approved` **or** `Active`, while Section 16.2 states that the successor Rate Contract **is Active** as a postcondition. L4 cannot choose which lifecycle position constitutes the canonical successful end boundary without silently repairing the Locked parent.
-
-All behavior below is limited to unambiguous parent-supported obligations and does not resolve that completion conflict.
+For the successful successor path, the behavior completes when the successor Rate Contract has been authoritatively approved and reaches the canonical `Active` lifecycle position on its authorised effective date, with the predecessor-successor transition governed and historically traceable. Parent-supported non-successor, temporary-gap, permitted-extension, alternate-sourcing, or discontinuation dispositions remain governed by their own outcomes.
 
 This specification does not govern ordinary demand call-off, final predecessor closure, supplier lifecycle, Purchase Order lifecycle, receipt, payable, accounting, payment, or technical migration mechanics.
 
@@ -66,7 +64,7 @@ This specification does not govern ordinary demand call-off, final predecessor c
 | L4-J-013-BH-012 | When the governed renewal/successor business fact is created, the system shall publish `RateContractRenewalCreated` with Procurement Planning & Sourcing (J01) as the canonical publisher. | L3-J-013 §14.1; L2-J01 §35.10 |
 | L4-J-013-BH-013 | When a distinct successor Rate Contract is created, the system shall publish `RateContractCreated` with Procurement Planning & Sourcing (J01) as the canonical publisher. | L3-J-013 §14.1; L2-J01 §35.10 |
 | L4-J-013-BH-014 | When the successor Rate Contract is authoritatively approved, the system shall publish `RateContractApproved` with Procurement Planning & Sourcing (J01) as the canonical publisher. | L3-J-013 §14.1; L2-J01 §35.10 |
-| L4-J-013-BH-015 | If the successor subsequently reaches the parent-supported `Active` lifecycle position, the system shall publish `RateContractActivated` with Procurement Planning & Sourcing (J01) as the canonical publisher. | L3-J-013 §§9.15, 14.1; L2-J01 §§27.3, 35.10 |
+| L4-J-013-BH-015 | When the successor reaches the canonical `Active` lifecycle position on its authorised effective date, the system shall publish `RateContractActivated` with Procurement Planning & Sourcing (J01) as the canonical publisher; this activation is required for successful completion of the successor path. | L3-J-013 §§4.2, 9.15, 13, 14.1, 16; L2-J01 §§27.3, 35.10; ADR-J-RATE-SUCCESSION-001 |
 | L4-J-013-BH-016 | When the predecessor reaches the applicable expiry business fact, the system shall publish `RateContractExpired` with Procurement Planning & Sourcing (J01) as the canonical publisher. | L3-J-013 §§13, 14.1; L2-J01 §35.10 |
 | L4-J-013-BH-017 | When the predecessor reaches the applicable closed business fact, the system shall publish `RateContractClosed` with Procurement Planning & Sourcing (J01) as the canonical publisher. | L3-J-013 §§13, 14.1; L2-J01 §35.10 |
 
@@ -101,16 +99,18 @@ The system shall preserve or make attributable:
 
 ## 8. Observable Completion Conditions
 
-The unambiguous L4 behavior is observable when:
+For the successful successor path, L4 behavior is observable when:
 
 1. the predecessor and successor remain separately identified and historically traceable;
 2. successor sourcing/extension/interim decisions are governed by current authoritative evidence rather than silent carry-forward;
 3. predecessor cut-off and any controlled overlap or gap are explicit;
 4. new predecessor call-off sourcing is prevented after the governed cut-off or expiry except under an expressly authorised transition condition;
 5. existing J04-owned commitments remain separately governed;
-6. the applicable successor approval and predecessor expiry/closure facts are preserved.
+6. the successor approval fact has been preserved through `RateContractApproved`;
+7. the successor has reached `Active` on its authorised effective date and `RateContractActivated` has been published by Procurement Planning & Sourcing (J01);
+8. the applicable predecessor expiry/closure facts and predecessor-successor lineage remain auditable.
 
-**Canonical successful completion cannot be finalised at L4 until the Locked parent resolves whether the required successor end position is `Approved` or `Active`.**
+Parent-supported non-successor dispositions are complete only when their own governed outcome and evidence are preserved without silently extending or rewriting the predecessor.
 
 ---
 
@@ -118,26 +118,16 @@ The unambiguous L4 behavior is observable when:
 
 **Parent:** L3-J-013 — Expiring Rate Contract to Approved Successor Arrangement  
 **Primary verification source:** L2-J01 — Procurement Planning & Sourcing Workflows  
-**Additional verification sources:** L2-J00 — Enterprise Resource Management Architecture & Governance; L2-J02 — Vendor & Supplier Management Workflows; L2-J03 — Purchase Requisition & Approval Workflows; locked L1 Business Domain Architecture.  
+**Additional verification sources:** L2-J00 — Enterprise Resource Management Architecture & Governance; L2-J02 — Vendor & Supplier Management Workflows; L2-J03 — Purchase Requisition & Approval Workflows; locked L1 Business Domain Architecture; ADR-J-RATE-SUCCESSION-001.  
 
-The BHs above cover only parent-supported behavior unaffected by the unresolved completion-boundary conflict. No BH redefines the successful end state.
+The BHs above preserve the parent-supported lifecycle, ownership, event publishers, business rules, and cross-domain boundaries. The successful successor completion point is `Active` as established by the corrected parent and its approved governance decision.
 
 ---
 
 ## 10. Open Issues / Deferred Design
 
-### Blocking upstream issue
+The former L3 completion-boundary contradiction is resolved by `ADR-J-RATE-SUCCESSION-001` and L3-J-013 version 1.0.1: `Approved` remains an intermediate lifecycle position, while `Active` is mandatory for successful completion of the successor path.
 
-**BLOCKED BY UPSTREAM:** L3-J-013 §4.2 allows the scenario to end when the successor reaches `Approved` **or** `Active`, while §16.2 requires the successor Rate Contract to be `Active` as a successful postcondition. This materially affects the final outcome and end boundary. Under the locked L4 Validation Standard, choosing one interpretation locally would constitute an invalid parent baseline / silent upstream repair risk (HF-12 / HF-07).
-
-Architecture change control must establish whether:
-- `Approved` is a valid successful terminal position for this scenario with later activation outside its completion boundary; or
-- `Active` is mandatory for successful completion.
-
-Additional parent-level open issues remain institution-specific extension limits, treatment of pre-expiry call-offs delivered after expiry, and the boundary among extension, amendment, successor, interim arrangement, and emergency procurement.
-
-The parent also lists `Section_J_Canonical_Register.md`; that exact dependency has not been retrieved in the current repository checks, so no behavior is inferred from an assumed substitute.
+Parent-level open issues remain institution-specific extension limits, treatment of pre-expiry call-offs delivered after expiry, and the boundary among extension, amendment, successor, interim arrangement, and emergency procurement. These do not alter the canonical successful successor lifecycle position.
 
 API/interface design, persistence/data model, service/component design, event transport, technical access control, retry/transaction mechanics, infrastructure, and UI/UX remain deferred to L5/L6.
-
-**Review Verdict:** BLOCKED BY UPSTREAM
