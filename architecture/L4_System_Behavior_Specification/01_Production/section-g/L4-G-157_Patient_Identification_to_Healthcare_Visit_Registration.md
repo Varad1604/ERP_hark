@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-157 — Patient Identification to Healthcare Visit Registration  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,43 +16,43 @@
 
 ## 2. Behavioral Objective & Boundary
 
-The system shall govern patient identification to healthcare visit registration according to authoritative upstream policy and workflow governance. The behavior ends when the authoritative business outcome is recorded. APIs, persistence, UI, and infrastructure remain outside this specification.
+SutraERP shall validate an individual against authoritative institutional identity/context, retrieve relevant G06 medical history where available, register a healthcare visit and establish `Consultation Ready` without transferring person-identity ownership to G06.
 
 ## 3. Required Business Context
 
-- Authoritative Institutional Health Services (G06) context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- A person is seeking institutional healthcare.
+- Applicable identity source, campus and healthcare eligibility context can be evaluated.
+- C remains authoritative for student identity/status; E remains authoritative for employee/personnel context.
+- Existing medical history is available where it exists.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-157-BH-001 | The system shall identify and validate the patient identification to healthcare visit registration context and authoritative inputs. | L3-G-157 §§3, 9, 12 |
-| L4-G-157-BH-002 | The system shall validate required business eligibility and policy constraints under Institutional Health Services (G06) governance. | L3-G-157 §§3, 9, 12 |
-| L4-G-157-BH-003 | The system shall execute the canonical patient identification to healthcare visit registration business evaluation. | L3-G-157 §§3, 9, 12 |
-| L4-G-157-BH-004 | The system shall record the resulting authoritative business position and preserve historical audit evidence. | L3-G-157 §§3, 9, 12 |
-| L4-G-157-BH-005 | The system shall prevent progression and maintain the last valid business position when governing conditions are not satisfied. | L3-G-157 §§3, 9, 12 |
+| L4-G-157-BH-001 | Identify the individual and applicable patient category without creating a new canonical person identity in G06. | L3-G-157 §§5,9,12 |
+| L4-G-157-BH-002 | Validate institutional identity, campus, Active Status, Emergency Classification and Healthcare Eligibility according to configurable G06 rules. | L3-G-157 §§9,12 |
+| L4-G-157-BH-003 | Consume authoritative student context from C and employee/personnel context from E where applicable without changing source ownership. | L3-G-157 §§5,9 |
+| L4-G-157-BH-004 | Retrieve relevant existing medical history where available and preserve historical information as immutable. | L3-G-157 §§9,12 |
+| L4-G-157-BH-005 | Register the healthcare visit under G06 and associate it with exactly one validated patient. | L3-G-157 §§9,12,16 |
+| L4-G-157-BH-006 | Establish the registered visit as `Consultation Ready` and stop before consultation execution. | L3-G-157 §§3,9,13,16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-157-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-157 §14 |
+| L4-G-157-BH-007 | On successful visit registration, publish `PatientRegistered`; G06 is the canonical publisher. C and E provide identity/personnel facts but do not publish the G06 registration event. | L3-G-157 §§5,14,16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+Do not register against invented identity, campus, status or eligibility facts. If normal identity validation cannot complete, hand off to the authoritative registration-exception path. Missing medical history shall not be fabricated.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve patient/visit identity, source-domain context consumed, validation results, medical-history retrieval, registration outcome, `Consultation Ready` condition, responsible actor and `PatientRegistered` publication.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Institutional Health Services (G06) ownership, attributable audit evidence preserved, and canonical business events published.
+Completion requires validated patient context, healthcare visit registration, `Consultation Ready`, immutable history preservation and `PatientRegistered` published by G06.
 
 ## 9. Traceability & Provenance
 
@@ -61,7 +61,7 @@ Completion requires governing conditions validated, the authoritative business p
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Healthcare eligibility matrices, exceptional identification evidence and patient categories remain configurable/upstream governed. Technical identity matching, IAM, APIs, persistence and UI are deferred.
 
 ## Canonical Validation Note
 
