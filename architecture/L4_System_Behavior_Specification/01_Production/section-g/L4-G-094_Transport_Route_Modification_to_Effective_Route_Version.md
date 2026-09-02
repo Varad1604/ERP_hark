@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-094 — Transport Route Modification to Effective Route Version  
 **Primary Business Owner:** Transport Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -39,7 +39,7 @@ SutraERP shall govern an authorised modification to an existing Transport Route 
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-094-BH-007 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Transport Management ownership. | L3-G-094 §14 |
+| L4-G-094-BH-007 | The effective revised Transport Route shall remain authoritative under Transport Management and may be consumed by authorised downstream route consumers. The exact canonical event identifier for effective route modification is unresolved upstream; this specification shall not invent one. | L3-G-094 §§14, 17 |
 
 ## 6. Failure / Rejection / Continuation
 
@@ -62,7 +62,7 @@ The revised route version is authorised and effective, affected sequencing is va
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact canonical route-modification event identifier remains unresolved upstream and is deliberately not invented here. Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
 
 ## Canonical Validation Note
 
