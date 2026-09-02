@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-144 — Reading Room Closure to Restricted Library Usage  
 **Primary Business Owner:** Library Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,43 +16,44 @@
 
 ## 2. Behavioral Objective & Boundary
 
-Govern the transition of an operating Reading Room to **Operational Closure**, ending ordinary availability for the applicable operating period. “Restricted usage” is a business consequence and not a new lifecycle state. The behavior ends at Operational Closure and does not initiate a later opening.
+SutraERP shall govern an operating Reading Room to the authoritative **Operational Closure** condition, ending ordinary availability for the applicable operating period. “Restricted library usage” is a consequence of closure, not a separate lifecycle state, and a later opening remains a separate occurrence.
 
 ## 3. Required Business Context
 
-- Reading Room is in an applicable operating condition.
-- Operating period and closure condition are authoritative.
-- Applicable Reading Room rules and Library Management authority are available.
+- Reading Room is operationally available or within an active operating period.
+- Operating period, closing condition and applicable Reading Room rules are authoritative.
+- Required Library Management operational authority is available.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-144-BH-001 | The system shall identify and validate the reading room closure to restricted library usage context and authoritative inputs. | L3-G-144 §§3, 9, 12 |
-| L4-G-144-BH-002 | The system shall validate required business eligibility and policy constraints under Library Management governance. | L3-G-144 §§3, 9, 12 |
-| L4-G-144-BH-003 | The system shall execute the canonical reading room closure to restricted library usage business evaluation. | L3-G-144 §§3, 9, 12 |
-| L4-G-144-BH-004 | The system shall record the resulting authoritative business position and preserve historical audit evidence. | L3-G-144 §§3, 9, 12 |
-| L4-G-144-BH-005 | The system shall prevent progression and maintain the last valid business position when governing conditions are not satisfied. | L3-G-144 §§3, 9, 12 |
+| L4-G-144-BH-001 | Identify the Reading Room and establish its current operating condition, applicable operating period, closing condition and rules. | L3-G-144 §§7,9,12 |
+| L4-G-144-BH-002 | Complete the operational monitoring, usage supervision and active-usage handling required by the authoritative closure condition. | L3-G-144 §§3,9–10 |
+| L4-G-144-BH-003 | Establish **Operational Closure** only when the business closure condition is authoritative; do not falsely close the room where the condition is unclear. | L3-G-144 §§9,11,13 |
+| L4-G-144-BH-004 | End ordinary Reading Room availability for the applicable operating period and preserve closure history. | L3-G-144 §§3,9,15–16 |
+| L4-G-144-BH-005 | Do not create `Closing`, `Closed`, `Restricted`, `Locked` or other unsupported lifecycle states; a future opening remains a separate scenario. | L3-G-144 §§12–13,16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-144-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Library Management ownership. | L3-G-144 §14 |
+| L4-G-144-BH-006 | The retrieved source does not expose a dedicated canonical Reading Room closure event. This specification shall not invent `ReadingRoomClosed`, `ReadingRoomClosureCompleted` or `ReadingRoomRestricted`. G is the sole canonical owner of this outcome. | L3-G-144 §§5,14,17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- No default closing condition or rule shall be invented.
+- If active usage requires supervision, closure shall not be represented as complete until the authoritative business condition is satisfied.
+- If an authoritative decision is required, no substitute authority shall be invented.
+- Technical retry, rollback, queue, API and infrastructure mechanics remain outside L4 business behavior.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve Reading Room identity, operating period, closing condition, applicable rules, relevant monitoring/supervision evidence, closure decision and Operational Closure history.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Library Management ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when the correct Reading Room reaches its authoritative **Operational Closure**, ordinary use has ended for the period, closure history is auditable, and no library-wide closure, membership change or later opening has been implied.
 
 ## 9. Traceability & Provenance
 
@@ -61,7 +62,7 @@ Completion requires governing conditions validated, the authoritative business p
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No dedicated Reading Room closure event or detailed closure checklist is exposed upstream; neither is invented. Technical implementation remains deferred to L5.
 
 ## Canonical Validation Note
 
