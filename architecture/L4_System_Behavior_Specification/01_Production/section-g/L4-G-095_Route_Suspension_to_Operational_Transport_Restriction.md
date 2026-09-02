@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-095 — Route Suspension to Operational Transport Restriction  
 **Primary Business Owner:** Transport Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,43 +16,47 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern suspension of an operational Transport Route so that the route is restricted from further operational use while preserving its historical state and ownership.
+SutraERP shall govern suspension of an operational Transport Route so that the route reaches Suspended, further operational dispatch against it is restricted, affected trip/allocation consequences required by the parent scenario are represented, and the suspension outcome remains traceable.
 
 ## 3. Required Business Context
 
 - Transport Management owns the Transport Route lifecycle.
-- The route and suspension basis are identifiable.
-- Required authority for suspension is available.
+- The route is Active and the suspension basis is identifiable.
+- Required suspension authority is available.
+- Affected scheduled trips and commuter allocations can be identified from authoritative transport context.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-095-BH-001 | Identify the affected Transport Route and suspension basis. | L3-G-095 §§2–5 |
-| L4-G-095-BH-002 | Evaluate the suspension against applicable operational conditions and authority. | L3-G-095 §§3, 8–9 |
-| L4-G-095-BH-003 | Record the authorised suspension outcome. | L3-G-095 §§3, 16 |
-| L4-G-095-BH-004 | Restrict the suspended route from new operational use. | L3-G-095 §§2–3 |
-| L4-G-095-BH-005 | Preserve the prior route history and suspension evidence. | L3-G-095 §§3, 16 |
+| L4-G-095-BH-001 | Identify the Active Transport Route and the authoritative suspension basis. | L3-G-095 §§7–9 |
+| L4-G-095-BH-002 | Validate the suspension against the applicable operational authority and current route position. | L3-G-095 §§7, 9, 15 |
+| L4-G-095-BH-003 | When suspension is authorised, transition the Transport Route from Active to Suspended. | L3-G-095 §§9, 13, 16 |
+| L4-G-095-BH-004 | While the route is Suspended, prevent new trip dispatch against that route. | L3-G-095 §§3–4, 16 |
+| L4-G-095-BH-005 | Identify affected scheduled trips and apply the parent-required cancellation or re-routing outcome through the authoritative transport process. | L3-G-095 §§3–4, 9, 13 |
+| L4-G-095-BH-006 | Reflect the parent-required operational restriction or re-routing consequence for affected passenger allocations without transferring Student Lifecycle or Workforce ownership. | L3-G-095 §§3, 5, 9 |
+| L4-G-095-BH-007 | Preserve the suspension authority, basis, affected operational consequences, and historical route evidence. | L3-G-095 §§12, 15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-095-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Transport Management ownership. | L3-G-095 §14 |
+| L4-G-095-BH-008 | On authoritative route suspension, Transport Management shall publish `TransportRouteSuspended` for the parent-defined downstream consumers. | L3-G-095 §§9, 14, 16 |
+| L4-G-095-BH-009 | The authoritative suspension outcome shall be available for governed communication to affected commuters; communication ownership remains with the participating Institutional Services domain. | L3-G-095 §§3–5, 14 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Unauthorised suspension shall not change the route's operational position.
-- If the suspension basis is incomplete, the route shall remain governed by its current authoritative position until resolved.
-- Downstream allocations and trips are separate scenarios and are not silently rewritten by this specification.
+- An unauthorised or unresolved suspension shall not change the route from its current authoritative state.
+- If the route is not Active, this suspension path shall not force an unsupported lifecycle transition.
+- If an affected trip or allocation cannot be resolved through a parent-supported cancellation/re-routing outcome, the unresolved operational condition shall remain visible for governed Transport Management resolution rather than being silently completed.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve suspension request/basis, authority, resulting route position and affected operational history.
+Preserve the suspension trigger and evidence, authorizing decision, effective suspension, affected trip/allocation consequences, publication of `TransportRouteSuspended`, and resulting operational history.
 
 ## 8. Observable Completion Conditions
 
-The route has reached the governed suspended position, new operational use is restricted, and suspension evidence is preserved.
+The Transport Route is Suspended, new dispatch against it is restricted, the parent-required affected trip/allocation consequences are represented, `TransportRouteSuspended` is published, and suspension evidence is preserved.
 
 ## 9. Traceability & Provenance
 
@@ -61,7 +65,7 @@ The route has reached the governed suspended position, new operational use is re
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The locked parent names `Diverted` as an alternate route position but does not make that state part of this scenario's primary lifecycle path; this specification does not introduce it into the suspension transition. Technical notification channels, dispatch mechanisms, APIs, persistence, UI, routing algorithms, and retry mechanics are deferred to later architecture levels.
 
 ## Canonical Validation Note
 
