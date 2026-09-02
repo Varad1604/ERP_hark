@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-118 — Temporary Stop Change to Affected Passenger Reassignment  
 **Primary Business Owner:** Transport Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,50 +16,52 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern a temporary stop change and reassignment of affected passengers to the resulting operational stop context.
+SutraERP shall govern a temporary stop change and the resulting effective reassignment of affected transport allocations while preserving passenger identity ownership and prior allocation history.
 
 ## 3. Required Business Context
 
-- Authoritative Transport Management context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- Affected route, stop and active transport allocations are authoritative.
+- Passenger identity/context remains owned by C or E as applicable.
+- Transport Management owns stop and allocation changes.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-118-BH-001 | Identify the affected operational trip and stop context. | L3-G-118 |
-| L4-G-118-BH-002 | Establish the authorised temporary stop change. | L3-G-118 |
-| L4-G-118-BH-003 | Identify passengers affected by the stop change. | L3-G-118 |
-| L4-G-118-BH-004 | Reassign affected passengers to the governed temporary stop context. | L3-G-118 |
-| L4-G-118-BH-005 | Preserve original and temporary stop assignment history. | L3-G-118 |
+| L4-G-118-BH-001 | Identify the affected route, stop and active passenger allocations. | L3-G-118 §§3, 7, 9 |
+| L4-G-118-BH-002 | Establish the authorised temporary stop arrangement after applicable operational assessment and approval. | L3-G-118 §§9, 12, 15 |
+| L4-G-118-BH-003 | Reassign only affected Transport Allocations to the applicable temporary stop arrangement using authoritative passenger context. | L3-G-118 §§3, 9, 12, 16 |
+| L4-G-118-BH-004 | Leave unaffected allocations unchanged and prevent reassignment to an operationally unsuitable temporary stop. | L3-G-118 §§10–12 |
+| L4-G-118-BH-005 | Preserve previous stop/allocation context and effective temporary reassignment history. | L3-G-118 §§12, 15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-118-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Transport Management ownership. | L3-G-118 §14 |
+| L4-G-118-BH-006 | For each authoritative Transport Allocation update produced by the reassignment, Transport Management shall publish `TransportAllocationUpdated`. No `TemporaryStopChanged` or `PassengerReassigned` event shall be invented. | L3-G-118 §§14, 16–17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- An unauthorised stop change shall not be applied. Passenger reassignment shall not be completed where the temporary stop is operationally invalid.
+- An unauthorised or unsuitable temporary stop arrangement shall not become effective.
+- Passenger reassignment shall not complete where authoritative passenger context cannot be confirmed.
+- A permanent route revision shall follow its separate scenario.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve authority, affected stop, temporary stop, passenger reassignment and effective-period evidence.
+Preserve affected stop/route, temporary arrangement, authority, affected allocations, prior allocation context and effective reassignment evidence.
 
 ## 8. Observable Completion Conditions
 
-The temporary stop arrangement is authoritative, affected passenger assignments are governed against it, and prior assignment history remains traceable.
+The temporary stop arrangement is effective, affected allocations use the authorised temporary stop context, applicable `TransportAllocationUpdated` events are published, and prior allocation history remains traceable.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-G-118 — Temporary Stop Change to Affected Passenger Reassignment  
-**Primary verification source:** Authoritative Campus Operations L2 workflow architecture.
+**Primary verification source:** L3-G-118 §§3, 9–17; authoritative L2-G04 Transport Management workflow architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No dedicated temporary-stop/passenger-reassignment event is defined upstream. Only exact event-bearing transitions established by G04 are used. Technical implementation remains deferred to L5/L6.
 
 ## Canonical Validation Note
 
