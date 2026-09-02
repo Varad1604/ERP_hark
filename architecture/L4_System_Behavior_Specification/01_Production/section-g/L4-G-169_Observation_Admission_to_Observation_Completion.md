@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-169 — Observation Admission to Observation Completion  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,7 +16,7 @@
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern the complete G06 Observation Stay lifecycle from authorised admission through observation and release. It shall preserve the healthcare outcome and must not absorb external hospital care or other domain ownership.
+The system shall govern the complete G06 Observation Stay lifecycle from authorised admission through observation and release. It shall preserve the healthcare outcome and must not absorb external hospital care or other domain ownership.
 
 ## 3. Required Business Context
 
@@ -40,7 +40,8 @@ the system shall govern the complete G06 Observation Stay lifecycle from authori
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-169-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-169 §14 |
+| L4-G-169-BH-006 | The retrieved upstream event definitions do not expose canonical Observation Stay admission, observation or release event names. No event name shall be invented; G06 remains canonical owner/publisher of Observation Stay business facts. | L3-G-169 §§14,17 |
+| L4-G-169-BH-007 | H may consume applicable G06 healthcare facts for configured notification delivery; E supplies healthcare-professional context without acquiring Observation Stay ownership. | L3-G-169 §§5,14 |
 
 ## 6. Failure / Rejection / Continuation
 
@@ -55,7 +56,7 @@ The system shall preserve observation admission, observation outcome, release de
 
 ## 8. Observable Completion Conditions
 
-Completion is observable when the Observation Stay reaches `Released`, the authorised observation outcome is recorded, and any subsequent referral/follow-up path is established where required.
+Completion is observable when the Observation Stay reaches `Released`, the authorised observation outcome is recorded, and any subsequent referral/follow-up path is established where required. No invented observation event is required for completion.
 
 ## 9. Traceability & Provenance
 
@@ -64,7 +65,7 @@ Completion is observable when the Observation Stay reaches `Released`, the autho
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Exact canonical Observation Stay event names and universal clinical release thresholds/observation duration are not defined in the retrieved upstream source. These remain upstream verification items. Technical monitoring, APIs, persistence, UI and infrastructure remain deferred to later architecture levels.
 
 ## Canonical Validation Note
 
