@@ -1,72 +1,73 @@
-# Exceptional Requirement to Off Cycle Payroll Completion
+# Exceptional Requirement to Off-Cycle Payroll Completion
 
 ## 1. Specification Metadata
 
 **Specification ID:** L4-E-057  
 **Architecture Level:** L4 — System Behavior Specification  
 **Domain:** People & Workforce  
-**Realizes Scenario:** L3-E-057 — Exceptional Requirement to Off Cycle Payroll Completion  
+**Realizes Scenario:** L3-E-057 — Exceptional Requirement to Off-Cycle Payroll Completion  
 **Primary Business Owner:** Payroll  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-E-057; applicable locked E architecture sources  
+**Depends On:** L3-E-057; L2-E06 — Payroll Workflows  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Execute a governed exceptional payroll requirement outside the normal payroll cycle and establish the finalized off-cycle payroll outcome. Payment execution and accounting remain Finance responsibilities.
+Execute an authorized exceptional payroll requirement through the supported Off-Cycle Payroll path and establish an immutable finalized payroll outcome outside the normal payroll cycle. Payroll owns calculation and finalization; Finance owns downstream payment and accounting.
 
 ## 3. Required Business Context
 
-- Exceptional payroll requirement outside the normal cycle.
-- Established business basis for the requirement.
-- Applicable payroll rules/configuration.
-- Required authority for off-cycle execution.
-- Required authoritative source facts.
+- Governed exceptional payroll requirement and business basis.
+- Required authorization for off-cycle execution.
+- Applicable Payroll rules/configuration and authoritative source facts.
+- Authorized Payroll Approver.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-E-057-BH-001 | When a governed exceptional payroll requirement exists outside the normal cycle, the system shall establish the off-cycle payroll run context. | L3-E-057 §§3,7–9 |
-| L4-E-057-BH-002 | The system shall validate the business basis and required authority for off-cycle execution. | L3-E-057 §§4.3,6–9 |
-| L4-E-057-BH-003 | The system shall calculate the off-cycle payroll outcome using the applicable governed payroll rules and authoritative source facts. | L3-E-057 §§3,4.3 |
-| L4-E-057-BH-004 | The system shall validate the off-cycle payroll result before finalization. | L3-E-057 §4.3 |
-| L4-E-057-BH-005 | The system shall obtain the required Payroll approval before finalization. | L3-E-057 §§6,9 |
-| L4-E-057-BH-006 | When approval is granted, the system shall finalize the off-cycle payroll outcome as authoritative. | L3-E-057 §§3,4.2 |
-| L4-E-057-BH-007 | The system shall make the finalized off-cycle payroll outcome available to Finance for downstream financial processing. | L3-E-057 §§3,5 |
+| L4-E-057-BH-001 | The system shall establish the exceptional requirement and validate its business basis and authorization before off-cycle execution. | L3-E-057 §§7–9, 12, 15 |
+| L4-E-057-BH-002 | The system shall establish the Payroll Run using the supported Off-Cycle Payroll run type. | L3-E-057 §§9, 12–13 |
+| L4-E-057-BH-003 | The system shall calculate the off-cycle payroll result from authoritative source facts and applicable governed rules. | L3-E-057 §§9, 12 |
+| L4-E-057-BH-004 | The system shall validate the off-cycle payroll result and resolve business-level findings before approval. | L3-E-057 §§9, 11, 13 |
+| L4-E-057-BH-005 | The system shall record the authorized Payroll Approver decision before finalization. | L3-E-057 §§6, 9, 15 |
+| L4-E-057-BH-006 | When approval is granted, the system shall transition the Payroll Run/Result to `Finalized`, establishing an immutable off-cycle payroll outcome. | L3-E-057 §§9, 12–13, 16 |
+| L4-E-057-BH-007 | The system shall hand the finalized financial outcome to Finance without transferring Payroll-result ownership. | L3-E-057 §§5, 9, 14.2 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-E-057-BH-008 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Payroll ownership. | L3-E-057 §14 |
+| L4-E-057-BH-008 | The system shall publish `PayrollRunCreated`, `PayrollCalculationCompleted`, `PayrollValidationCompleted`, `PayrollApproved`, and `PayrollFinalized` at their corresponding canonical milestones. | L3-E-057 §14.1 |
+| L4-E-057-BH-009 | If the governed Payroll lifecycle proceeds through its later close position, Payroll shall publish `PayrollClosed` according to L2-E06; this does not change the scenario's finalized-and-handed-off completion boundary. | L3-E-057 §§13, 14.1, 16 |
+| L4-E-057-BH-010 | Source domains shall retain ownership of originating business facts; Finance shall retain ownership of payment and accounting after hand-off. | L3-E-057 §§5, 14.2 |
 
 ## 6. Failure / Rejection / Continuation
 
-- When the business basis or required authority is unavailable, the system shall not establish an authorized off-cycle outcome.
-- When required source facts or applicable rules are unavailable, the system shall not finalize the off-cycle result.
-- When approval is not granted, the system shall not finalize the off-cycle payroll outcome.
-- Payment execution and accounting remain outside Payroll ownership.
+- Missing authorization prevents off-cycle execution.
+- Missing authoritative source facts prevents valid calculation.
+- Unresolved validation findings or rejected approval prevent finalization.
+- Finance-owned downstream processing issues do not alter the finalized Payroll Result.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve evidence of the exceptional requirement, business basis, authority, applicable payroll rules, validation result, approval decision and finalized outcome.
+The exceptional requirement, business basis, authorization, source facts, rules, calculation, validation, approval and finalization history shall remain attributable and traceable.
 
 ## 8. Observable Completion Conditions
 
-- Exceptional requirement and business basis are established. - Off-cycle payroll run is authorized. - Calculation and validation are complete. - Approval is recorded. - Off-cycle payroll outcome is finalized. - Finalized outcome is available to Finance.
+The exceptional requirement is authorized; an Off-Cycle Payroll Run exists; calculation and validation complete; Payroll approval is recorded; the result reaches `Finalized` as an immutable payroll outcome; and Finance receives the finalized financial outcome.
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-E-057 — Exceptional Requirement to Off Cycle Payroll Completion  
-**Primary verification source:** Authoritative People & Workforce L2 workflow architecture.
+**Parent:** L3-E-057 — Exceptional Requirement to Off-Cycle Payroll Completion  
+**Primary verification source:** L3-E-057 §§3, 5, 9, 11–16 and authoritative L2-E06 Payroll architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No parent-defined architecture issue remains unresolved for this L4 behavior. Technical payment, accounting, APIs, persistence, queueing, transport and infrastructure mechanics remain deferred to L5.
 
 ## Canonical Validation Note
 
