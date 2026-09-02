@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-177 — Annual Health Checkup to Recorded Assessment Outcome  
 **Primary Business Owner:** Institutional Health Services  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,7 +16,7 @@
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern establishment, conduct and completion of an Annual Health Checkup while recording assessment findings and recommendations and keeping resulting healthcare activities separately governed.
+The system shall govern establishment, conduct and completion of an Annual Health Checkup while recording assessment findings and recommendations and keeping resulting healthcare activities separately governed.
 
 ## 3. Required Business Context
 
@@ -65,7 +65,7 @@ Completion occurs when the Annual Health Checkup reaches `Completed`, its requir
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Detailed clinical assessment criteria and exact evidence for the `Conducted` transition remain upstream/configuration governed. No events for `Scheduled` or `Conducted` are invented. Technical implementation remains deferred.
 
 ## Canonical Validation Note
 
