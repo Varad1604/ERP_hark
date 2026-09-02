@@ -7,7 +7,7 @@
 **Domain:** Student Lifecycle  
 **Realizes Scenario:** L3-C-013 — Inter Institute Student Transfer with Student Context Re establishment  
 **Primary Business Owner:** Student Lifecycle  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,7 +16,7 @@
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern an authorized inter-Institute Student transfer while preserving the canonical Student identity and historical source context and establishing a valid destination StudentContext. The exact upstream completion event and detailed transfer workflow remain deferred where not explicitly locked.
+The system shall govern an authorized inter-Institute Student transfer while preserving the canonical Student identity and historical source context and establishing a valid destination StudentContext. The specification does not assert a C-013-specific completion event or synchronous business hand-off because the Locked parent does not establish an exact one.
 
 ## 3. Required Business Context
 
@@ -41,7 +41,10 @@ the system shall govern an authorized inter-Institute Student transfer while pre
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-C-013-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Student Lifecycle ownership. | L3-C-013 §14 |
+| L4-C-013-BH-006 | When destination Institute validation is required, the system shall use authoritative Institution & Structure context to validate the destination Institute without transferring ownership of Student or StudentContext. | L3-C-013 §§5, 9, 14.2; L2-B02/L2-C02 |
+| L4-C-013-BH-007 | Where Programme Migration is separately required, the system shall consume the already-approved `ProgrammeMigrationApproved` outcome and shall not make or republish the Programme Migration decision. | L3-C-013 §§10 AF-03, 14.3; L2-C02/L2-C04 |
+
+No additional C-013-specific published event or synchronous business hand-off is asserted by this specification. The Locked parent requires any exact event or hand-off to be adopted only when established by authoritative upstream architecture.
 
 ## 6. Failure / Rejection / Continuation
 
@@ -57,7 +60,7 @@ Preserve evidence of transfer authorization, source context, destination context
 
 ## 8. Observable Completion Conditions
 
-Completion occurs when the authorized inter-Institute transfer is valid, canonical Student identity is preserved, source history remains traceable, destination StudentContext is established, and the authoritative upstream completion fact is published where defined.
+Completion occurs when the authorized inter-Institute transfer is valid, canonical Student identity is preserved, source history remains traceable, the destination StudentContext is established in the applicable active institutional lifecycle position, and the Student is established in the destination Institute.
 
 ## 9. Traceability & Provenance
 
@@ -66,7 +69,7 @@ Completion occurs when the authorized inter-Institute transfer is valid, canonic
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact C-013-specific published completion event, synchronous business hand-off, and exact canonical approving actor/role remain upstream-governed where not established by the Locked parent. Institution-specific configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
 
 ## Canonical Validation Note
 
