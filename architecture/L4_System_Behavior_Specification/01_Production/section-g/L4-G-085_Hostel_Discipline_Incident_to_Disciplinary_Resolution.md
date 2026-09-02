@@ -7,61 +7,63 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-085 — Hostel Discipline Incident to Disciplinary Resolution  
 **Primary Business Owner:** Hostel Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-G-085; applicable locked G architecture sources  
+**Depends On:** L3-G-085; L2-G03 — Hostel Management Workflows  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern a hostel discipline incident through investigation, decision, and disciplinary resolution without changing Student Lifecycle ownership.
+Govern a hostel discipline incident through review and an authorised hostel disciplinary resolution while preserving Student Lifecycle and Workforce ownership boundaries.
 
 ## 3. Required Business Context
 
-- A resident and hostel context are identifiable.
-- The incident is within Hostel Management scope.
-- Applicable disciplinary policy and authority are available.
+- Resident and hostel context are identifiable.
+- Incident falls within Hostel Management discipline scope.
+- Applicable configured discipline policy and authority are available.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-085-BH-001 | The system shall register the hostel discipline incident with its applicable resident and institutional context. | L3-G-085 §§2, 8, 9 |
-| L4-G-085-BH-002 | The system shall preserve the incident information required for governed review and investigation. | L3-G-085 §§3, 9, 15 |
-| L4-G-085-BH-003 | the system shall govern the applicable disciplinary review and decision process. | L3-G-085 §§3, 9, 12 |
-| L4-G-085-BH-004 | The system shall record the governed disciplinary resolution. | L3-G-085 §§3, 13, 16 |
-| L4-G-085-BH-005 | The system shall preserve attributable history of the incident, decision basis, authority, and resulting resolution. | L3-G-085 §§15, 16 |
+| L4-G-085-BH-001 | The system shall register the hostel discipline incident against the resident and applicable hostel context. | L3-G-085 §§7–9 |
+| L4-G-085-BH-002 | The system shall preserve incident evidence required for governed review and decision. | L3-G-085 §§9, 15 |
+| L4-G-085-BH-003 | The system shall progress the incident through the configured hostel disciplinary review and authority decision. | L3-G-085 §§6, 9, 12, 15 |
+| L4-G-085-BH-004 | The system shall record the authorised disciplinary action or non-disciplinary closure without inventing unsupported lifecycle state names. | L3-G-085 §§9–13, 16–17 |
+| L4-G-085-BH-005 | The system shall preserve incident, review, decision authority and final resolution history. | L3-G-085 §§15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-085-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Hostel Management ownership. | L3-G-085 §14 |
+| L4-G-085-BH-006 | G03 Hostel Management remains the canonical publisher of the authoritative disciplinary outcome; exact event identifiers shall not be invented because the Locked parent records them as unresolved. | L3-G-085 §§14, 17 |
+| L4-G-085-BH-007 | Where a separate Student Lifecycle consequence may be required, Hostel Management shall hand off the authoritative discipline outcome to C02 without changing Student Lifecycle state itself. | L3-G-085 §§5, 10–14 |
+| L4-G-085-BH-008 | Workforce and Notifications may participate through their own canonical contexts without acquiring ownership of Hostel Discipline. | L3-G-085 §§5, 14 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If investigation information is insufficient for a governed decision, the system shall retain the incident unresolved until the required business information is available.
-- If no disciplinary action is warranted, the system shall record the governed resolution without inventing an additional lifecycle state.
-- Student Lifecycle remains unchanged unless a separate authorised scenario governs a student lifecycle transition.
+- Insufficient evidence shall keep the incident unresolved.
+- Missing authority shall prevent an unauthorised disciplinary decision.
+- No Student Lifecycle transition shall be performed by Hostel Management.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable evidence of incident registration, investigation basis, authority decision, disciplinary outcome, and historical changes relevant to the resolution.
+Preserve incident registration, evidence considered, review, authority decision, resulting action/closure and cross-domain hand-off where applicable.
 
 ## 8. Observable Completion Conditions
 
-Completion occurs when the incident has a governed disciplinary resolution, the resolution history is preserved, and no out-of-scope Student Lifecycle transition is performed.
+Completion requires an authorised disciplinary resolution or non-disciplinary closure, preserved disciplinary history, and no out-of-scope Student Lifecycle mutation.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-G-085 — Hostel Discipline Incident to Disciplinary Resolution  
-**Primary verification source:** Authoritative Campus Operations L2 workflow architecture.
+**Primary verification source:** L3-G-085 §§3, 5, 9, 11–17 and authoritative L2-G03 architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Exact Hostel Discipline state/event vocabulary remains unresolved upstream. Technical evidence storage and notification delivery are deferred to L5.
 
 ## Canonical Validation Note
 
