@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-117 — Route Diversion Request to Emergency Operational Route  
 **Primary Business Owner:** Transport Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,50 +16,52 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall govern an authorised route diversion request through assessment and establishment of an emergency operational route.
+SutraERP shall govern an authorised temporary route diversion through operational assessment and establishment of the emergency route arrangement without converting it into a permanent route revision or invented route lifecycle state.
 
 ## 3. Required Business Context
 
-- Authoritative Transport Management context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- The affected route/transport operation is authoritative.
+- The diversion is temporary and governed by G04 policy.
+- Transport Management owns the route/diversion outcome.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-117-BH-001 | Register the route diversion request against the affected transport context. | L3-G-117 |
-| L4-G-117-BH-002 | Evaluate the proposed diversion against applicable operational constraints. | L3-G-117 |
-| L4-G-117-BH-003 | Establish the emergency operational route when authorised. | L3-G-117 |
-| L4-G-117-BH-004 | Associate the affected operational context with the authorised diversion outcome. | L3-G-117 |
-| L4-G-117-BH-005 | Preserve the original route and diversion history. | L3-G-117 |
+| L4-G-117-BH-001 | Register the diversion requirement against the affected route or transport operation. | L3-G-117 §§3, 8–9 |
+| L4-G-117-BH-002 | Evaluate the proposed temporary arrangement against applicable operational constraints and impact. | L3-G-117 §§9, 12 |
+| L4-G-117-BH-003 | Establish the authorised temporary emergency route arrangement when required approval and feasibility conditions are satisfied. | L3-G-117 §§3, 9, 15–16 |
+| L4-G-117-BH-004 | Preserve the original route separately from the temporary diversion and prevent the diversion from becoming a permanent route revision by implication. | L3-G-117 §§3, 12–13, 16 |
+| L4-G-117-BH-005 | Preserve diversion basis, authority, effective arrangement and route history. | L3-G-117 §§15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-117-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Transport Management ownership. | L3-G-117 §14 |
+| L4-G-117-BH-006 | The exact canonical event identifier for establishment of a temporary emergency route diversion is unresolved upstream; this L4 specification shall not invent `RouteDiverted`, `RouteDiversionCreated`, `EmergencyRouteActivated`, or an equivalent event. The authoritative G04 diversion fact shall remain available to approved consumers. | L3-G-117 §§14, 17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- An invalid or unauthorised diversion shall not become operational. If emergency-route constraints cannot be satisfied, the affected trip remains subject to its prior governed operational state.
+- An invalid or unauthorised diversion shall not become operational.
+- Where no acceptable diversion can be authorised, no diversion outcome shall be fabricated; the affected service remains subject to the applicable separately governed restriction or cancellation decision.
+- A condition requiring permanent change shall follow the permanent route-revision scenario.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve request, reason, authority, route assessment, emergency route and historical route relationship.
+Preserve request, reason, authority, impact assessment, temporary route arrangement and historical route relationship.
 
 ## 8. Observable Completion Conditions
 
-An authorised emergency operational route is established or a governed non-diversion outcome is recorded, with history preserved.
+An authorised temporary emergency route arrangement is effective for the applicable operation, or a governed non-diversion result is retained, with original route history preserved.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-G-117 — Route Diversion Request to Emergency Operational Route  
-**Primary verification source:** Authoritative Campus Operations L2 workflow architecture.
+**Primary verification source:** L3-G-117 §§3, 9–17; authoritative L2-G04 Transport Management workflow architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+A dedicated canonical diversion event is unresolved upstream and shall not be invented at L4. Technical implementation remains deferred to L5/L6.
 
 ## Canonical Validation Note
 
