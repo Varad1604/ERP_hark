@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-178 — Health Screening or Camp Finding to Follow up Recommendation  
 **Primary Business Owner:** Institutional Health Services  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,7 +16,7 @@
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern assessment of a material screening/camp finding and recording the resulting follow-up decision without creating a local finding lifecycle or absorbing the downstream healthcare activity.
+The system shall govern assessment of a material screening/camp finding and recording the resulting follow-up decision without creating a local finding lifecycle or absorbing the downstream healthcare activity.
 
 ## 3. Required Business Context
 
@@ -64,7 +64,7 @@ Completion occurs when the finding has an authorised assessment outcome and eith
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No generic screening-finding event or clinical severity/follow-up criteria are defined upstream. Only canonical events from resulting G06 workflows may be used. Technical implementation remains deferred.
 
 ## Canonical Validation Note
 
