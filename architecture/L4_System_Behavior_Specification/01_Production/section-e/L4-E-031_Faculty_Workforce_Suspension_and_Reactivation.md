@@ -40,7 +40,7 @@ SutraERP shall govern suspension and subsequent reactivation of an Active Facult
 
 ## 5. Cross-Domain & Event Behavior
 
-Other domains may consume the authoritative Faculty Workforce lifecycle facts according to their own responsibilities. Faculty Workforce retains lifecycle ownership. No additional C/E-domain synchronous business hand-off or completion event is required beyond the canonical `FacultySuspended` and `FacultyReactivated` events established above.
+Other domains may consume the authoritative Faculty Workforce lifecycle facts according to their own responsibilities. Faculty Workforce retains lifecycle ownership. No additional synchronous business hand-off or completion event is required beyond the canonical `FacultySuspended` and `FacultyReactivated` events established above.
 
 ## 6. Failure / Rejection / Continuation
 
