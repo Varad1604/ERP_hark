@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-168 — Medicine Inventory Threshold or Expiry to Medical Operations Alert  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -39,7 +39,8 @@ The system shall recognise a material medicine inventory threshold or expiry con
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-168-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-168 §14 |
+| L4-G-168-BH-006 | The retrieved upstream event definitions do not expose a dedicated medicine-threshold, medicine-expiry or medical-operations-alert event name. No event shall be invented; G06 remains owner of the medicine operational fact. | L3-G-168 §§14,17 |
+| L4-G-168-BH-007 | Where configured, H may consume the G06 operational alert fact for notification delivery; any replenishment/procurement hand-off remains owned by the authoritative enterprise process. | L3-G-168 §§5,9,14 |
 
 ## 6. Failure / Rejection / Continuation
 
@@ -54,7 +55,7 @@ The system shall preserve medicine, inventory condition, threshold/expiry classi
 
 ## 8. Observable Completion Conditions
 
-Completion is observable when the material inventory condition has been identified, the medical-operational alert is established, and any applicable downstream healthcare or enterprise hand-off is identified without transferring ownership.
+Completion is observable when the material inventory condition has been identified, the medical-operational alert is established, and any applicable downstream healthcare or enterprise hand-off is identified without transferring ownership. No dedicated threshold/expiry event is required unless upstream architecture later defines one.
 
 ## 9. Traceability & Provenance
 
@@ -63,7 +64,7 @@ Completion is observable when the material inventory condition has been identifi
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The upstream sources do not define universal numeric thresholds, an expiry-warning period, a dedicated event name, or the exact procurement hand-off contract. These gaps remain upstream-owned and are not filled locally. Technical APIs, persistence, UI, monitoring infrastructure and notification mechanics remain deferred to later architecture levels.
 
 ## Canonical Validation Note
 
