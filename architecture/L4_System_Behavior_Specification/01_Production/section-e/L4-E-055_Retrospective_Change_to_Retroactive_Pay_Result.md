@@ -7,61 +7,66 @@
 **Domain:** People & Workforce  
 **Realizes Scenario:** L3-E-055 — Retrospective Change to Retroactive Pay Result  
 **Primary Business Owner:** Payroll  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-E-055; applicable locked E architecture sources  
+**Depends On:** L3-E-055; L2-E06 — Payroll Workflows  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Process the payroll impact of an authoritative retrospective compensation change and establish the resulting retroactive pay outcome. Compensation policy and originating change remain owned upstream; payment and accounting remain downstream.
+Process the financial effect of an authoritative retrospective compensation change across affected prior payroll periods without editing historical finalized payroll. Compensation remains upstream-owned; Payroll owns the retro-pay calculation and resulting payroll outcome; Finance owns downstream payment and accounting.
 
 ## 3. Required Business Context
 
 - Authoritative compensation change and effective date.
-- Affected previously processed payroll periods.
-- Applicable payroll rules and calculation context.
+- Identifiable previously processed payroll periods affected by that change.
+- Applicable payroll rule/version and calculation context.
+- Required Payroll approval authority.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-E-055-BH-001 | When an authoritative compensation change affects previously processed payroll, the system shall identify the impacted payroll periods. | L3-E-055 §§3,7–9 |
-| L4-E-055-BH-002 | The system shall calculate the financial difference resulting from the retrospective change for the impacted periods. | L3-E-055 §§3,4.3 |
-| L4-E-055-BH-003 | The system shall establish the resulting difference through the governed arrear or retroactive-pay process. | L3-E-055 §§3,4.3 |
-| L4-E-055-BH-004 | The system shall include the established retroactive pay result in the applicable governed payroll outcome. | L3-E-055 §§3,4.2,9 |
-| L4-E-055-BH-005 | The system shall preserve the calculation and business audit history for the retrospective change and resulting pay outcome. | L3-E-055 §§3,4.3 |
+| L4-E-055-BH-001 | The system shall identify every previously processed payroll period affected by the authoritative retrospective compensation change. | L3-E-055 §§3, 7–9, 12 |
+| L4-E-055-BH-002 | The system shall calculate the difference between the prior processed outcome and the outcome applicable under the retrospective change for each affected period. | L3-E-055 §§3, 9, 12 |
+| L4-E-055-BH-003 | The system shall establish the resulting difference through the governed arrear/retro-pay transaction rather than directly editing historical finalized payroll. | L3-E-055 §§4.3, 9, 12 |
+| L4-E-055-BH-004 | The system shall validate the resulting retroactive payroll calculation before approval. | L3-E-055 §§9, 11, 16 |
+| L4-E-055-BH-005 | The system shall record the authorized Payroll Approver decision before finalization. | L3-E-055 §§6, 9, 15 |
+| L4-E-055-BH-006 | When approval is granted, the system shall include the retroactive pay result in the applicable governed payroll outcome and finalize that outcome without changing the original finalized historical payroll record. | L3-E-055 §§3, 9, 13, 16 |
+| L4-E-055-BH-007 | The system shall preserve impacted-period, input, rule/version, calculation, approval and resulting payroll history sufficient for reproducibility. | L3-E-055 §§12, 15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-E-055-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Payroll ownership. | L3-E-055 §14 |
+| L4-E-055-BH-008 | The system shall publish `PayrollAdjustmentCreated` when the controlled retrospective correction workflow is initiated. | L3-E-055 §14.1 |
+| L4-E-055-BH-009 | The system shall publish `PayrollCalculationCompleted`, `PayrollValidationCompleted`, `PayrollApproved`, and `PayrollFinalized` at their corresponding canonical Payroll milestones. | L3-E-055 §14.1 |
+| L4-E-055-BH-010 | The authoritative compensation change shall be consumed from its upstream owner; the finalized payroll financial outcome shall be handed to Finance without transferring Payroll calculation ownership. | L3-E-055 §§5, 14.2 |
 
 ## 6. Failure / Rejection / Continuation
 
-- When the authoritative compensation change or applicable calculation context is unavailable, the system shall not establish a valid retroactive pay result.
-- Historical finalized payroll shall not be directly edited to apply the retrospective change.
-- Where an affected result requires broader correction, the governed Payroll Adjustment scenario remains the applicable correction boundary.
+- If the affected period or authoritative compensation change cannot be established, no retroactive pay result shall be finalized.
+- If calculation validation fails or approval is not granted, the resulting payroll outcome shall remain unfinalized.
+- Broader correction remains governed by the Payroll Adjustment boundary; historical finalized payroll shall not be directly edited.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve evidence of the authoritative compensation change, effective date, impacted payroll periods, calculation basis, resulting retroactive difference and resulting payroll outcome.
+The retrospective change, effective date, impacted periods, calculation basis, applicable rule/version, approval decision and resulting retroactive amount shall remain attributable and traceable.
 
 ## 8. Observable Completion Conditions
 
-- Impacted historical payroll periods are identified. - Retroactive difference is calculated. - Governed arrear/retro-pay result is established. - Result is included in the applicable payroll outcome. - Calculation and audit history are preserved.
+Completion requires impacted periods to be identified, the retroactive difference to be calculated and represented through the governed arrear/retro-pay process, validation and approval to complete, the resulting payroll outcome to be finalized, and the original historical finalized payroll record to remain unchanged.
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-E-055 — Retrospective Change to Retroactive Pay Result  
-**Primary verification source:** Authoritative People & Workforce L2 workflow architecture.
+**Parent:** L3-E-055 — Employee Retrospective Change to Retroactive Pay Result  
+**Primary verification source:** L3-E-055 §§3, 5, 9, 11–16 and authoritative L2-E06 Payroll architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No parent-defined architecture issue remains unresolved for the L4 behavior. Technical APIs, persistence, queues, transport, UI and infrastructure mechanics remain deferred to L5.
 
 ## Canonical Validation Note
 
