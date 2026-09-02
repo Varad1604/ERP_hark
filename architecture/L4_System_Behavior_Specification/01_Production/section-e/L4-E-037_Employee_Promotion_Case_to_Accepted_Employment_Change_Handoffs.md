@@ -7,7 +7,7 @@
 **Domain:** People & Workforce  
 **Realizes Scenario:** L3-E-037 — Employee Promotion Case to Accepted Employment Change Handoffs  
 **Primary Business Owner:** HR  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,46 +16,50 @@
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall coordinate an authorised employee promotion case through acceptance of the resulting employment-change handoffs by their canonical owners before the HR case closes.
+SutraERP shall govern an employee promotion as an HR employment-change case through eligibility review, approval and accepted handoff to the authoritative Workforce & Engagement owner. HR shall record the promotion-case outcome without taking ownership of the resulting employment state.
 
 ## 3. Required Business Context
 
-- Authoritative HR context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- A promotion request exists.
+- Authoritative employee/workforce context is available.
+- Applicable promotion eligibility and policy constraints can be evaluated.
+- Required approval authority is available.
+- Workforce & Engagement remains authoritative for workforce/employment lifecycle state.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-E-037-BH-001 | The system shall establish and validate the promotion case. | L3-E-037 §§3, 9, 12 |
-| L4-E-037-BH-002 | The system shall validate eligibility and required approval context. | L3-E-037 §§3, 9, 12 |
-| L4-E-037-BH-003 | The system shall determine the resulting employment and organisational changes. | L3-E-037 §§3, 9, 12 |
-| L4-E-037-BH-004 | The system shall submit each required change to its canonical owner. | L3-E-037 §§3, 9, 12 |
-| L4-E-037-BH-005 | The system shall receive and record acceptance or rejection. | L3-E-037 §§3, 9, 12 |
-| L4-E-037-BH-006 | The system shall correct unresolved handoffs where required. | L3-E-037 §§3, 9, 12 |
-| L4-E-037-BH-007 | The system shall confirm all required consequences are accepted. | L3-E-037 §§3, 9, 12 |
-| L4-E-037-BH-008 | The system shall close the HR promotion case and preserve the complete decision/handoff history. | L3-E-037 §§3, 9, 12 |
+| L4-E-037-BH-001 | The system shall create and classify the promotion employment-change case under HR ownership. | L3-E-037 §§3, 5, 9 |
+| L4-E-037-BH-002 | The system shall evaluate promotion eligibility against the applicable business requirements before an approval outcome is established. | L3-E-037 §§7, 9, 12 |
+| L4-E-037-BH-003 | The system shall route the case through the applicable business approval chain and preserve each approval decision with its responsible actor and decision evidence. | L3-E-037 §§6, 9, 15 |
+| L4-E-037-BH-004 | If approval is granted, the system shall establish the approved promotion case outcome as ready for authoritative employment-change handoff. | L3-E-037 §§3, 9, 16 |
+| L4-E-037-BH-005 | The system shall hand the approved employment change to Workforce & Engagement for the authoritative workforce lifecycle transition without HR directly modifying workforce state. | L3-E-037 §§5, 9, 12, 14.2 |
+| L4-E-037-BH-006 | The system shall record the HR promotion-case outcome without duplicating the resulting authoritative employment state. | L3-E-037 §§9, 12, 16 |
+| L4-E-037-BH-007 | The system shall preserve the eligibility review, approval decisions, handoff status and HR case history. | L3-E-037 §§11, 15, 16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-E-037-BH-009 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under HR ownership. | L3-E-037 §14 |
+| L4-E-037-BH-008 | When the promotion is approved, the system shall publish the canonical **PromotionApproved Event** defined by the locked HR workflow. | L3-E-037 §14.1 |
+| L4-E-037-BH-009 | The system shall keep the PromotionApproved Event distinct from any authoritative workforce-state event published by Workforce & Engagement after its own successful lifecycle transition. | L3-E-037 §14.1 |
+| L4-E-037-BH-010 | The material synchronous business handoff shall be the accepted promotion case from HR to Workforce & Engagement for authoritative employment-change execution; this handoff shall not transfer workforce ownership to HR. | L3-E-037 §§5, 14.2 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- If eligibility requirements are not met, the system shall record the eligibility outcome and shall not establish an approved promotion.
+- If approval is rejected, the system shall record the rejection and shall not initiate an authoritative workforce employment transition.
+- If an approved change cannot yet be accepted by Workforce & Engagement, the system shall preserve the approved HR case outcome without falsely recording the authoritative employment change as completed.
+- Technical retry, queue, rollback and infrastructure recovery remain outside L4.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+The system shall preserve attributable evidence of promotion initiation, eligibility evaluation, approval actor and decision, accepted handoff status, HR case resolution and the distinction between HR-owned case outcome and Workforce & Engagement-owned employment state.
 
 ## 8. Observable Completion Conditions
 
-Completion requires authorised promotion outcome, accepted required handoffs, authoritative HR case completion and preserved history.
+Completion requires promotion eligibility to have been evaluated, the required approval decision to be recorded, the PromotionApproved Event to be published when approved, the approved employment-change handoff to be accepted by Workforce & Engagement, and the HR case outcome to be recorded without duplicating workforce state.
 
 ## 9. Traceability & Provenance
 
@@ -64,7 +68,7 @@ Completion requires authorised promotion outcome, accepted required handoffs, au
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Institution-specific approval roles and configurable promotion policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport and retry mechanics are deferred to L5 Solution Architecture.
 
 ## Canonical Validation Note
 
