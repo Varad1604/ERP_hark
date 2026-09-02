@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-159 — Medical History Review to Consultation Readiness  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,43 +16,42 @@
 
 ## 2. Behavioral Objective & Boundary
 
-The system shall govern medical history review to consultation readiness according to authoritative upstream policy and workflow governance. The behavior ends when the authoritative business outcome is recorded. APIs, persistence, UI, and infrastructure remain outside this specification.
+SutraERP shall support review of authoritative G06 medical history for an identified healthcare visit and establish consultation readiness without modifying historical clinical facts or performing diagnosis/treatment.
 
 ## 3. Required Business Context
 
-- Authoritative Institutional Health Services (G06) context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- Patient and current healthcare visit are identifiable.
+- Relevant medical history can be retrieved where it exists.
+- Review is performed under applicable healthcare authorization/confidentiality policy.
+- C/E remain owners of student/employee context used for identification.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-159-BH-001 | The system shall identify and validate the medical history review to consultation readiness context and authoritative inputs. | L3-G-159 §§3, 9, 12 |
-| L4-G-159-BH-002 | The system shall validate required business eligibility and policy constraints under Institutional Health Services (G06) governance. | L3-G-159 §§3, 9, 12 |
-| L4-G-159-BH-003 | The system shall execute the canonical medical history review to consultation readiness business evaluation. | L3-G-159 §§3, 9, 12 |
-| L4-G-159-BH-004 | The system shall record the resulting authoritative business position and preserve historical audit evidence. | L3-G-159 §§3, 9, 12 |
-| L4-G-159-BH-005 | The system shall prevent progression and maintain the last valid business position when governing conditions are not satisfied. | L3-G-159 §§3, 9, 12 |
+| L4-G-159-BH-001 | Identify the patient and current visit and preserve the link to authoritative institutional identity context. | L3-G-159 §§5,9 |
+| L4-G-159-BH-002 | Retrieve relevant previous visits, allergies, chronic conditions, vaccinations, prescriptions and referrals where available. | L3-G-159 §§3,9,12 |
+| L4-G-159-BH-003 | Preserve historical medical information as immutable during review and do not fabricate missing facts. | L3-G-159 §§9,11–12 |
+| L4-G-159-BH-004 | Preserve the distinction between historical facts and the upcoming current clinical assessment; do not create diagnosis, treatment or prescription here. | L3-G-159 §§4,9,12 |
+| L4-G-159-BH-005 | When required history review is complete, establish the visit as `Consultation Ready`. | L3-G-159 §§3,9,13,16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-159-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-159 §14 |
+| L4-G-159-BH-006 | No dedicated `MedicalHistoryReviewed` event is defined upstream; no event shall be invented. Existing patient/consultation events remain G06-owned and are published only at their authoritative boundaries. | L3-G-159 §§14,17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+Do not proceed against an invented patient or wrongly associated history. Preserve incomplete/conflicting history for professional review. If the required review cannot complete, do not establish `Consultation Ready` unless authoritative policy permits an alternative path.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve patient/visit context, history reviewed, responsible healthcare actor, confidentiality boundary and readiness outcome without unnecessary exposure of medical details.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Institutional Health Services (G06) ownership, attributable audit evidence preserved, and canonical business events published.
+Completion requires relevant history reviewed or absence confirmed, immutable history preserved, and the visit established as `Consultation Ready`; no diagnosis/treatment has been created by this behavior.
 
 ## 9. Traceability & Provenance
 
@@ -61,7 +60,7 @@ Completion requires governing conditions validated, the authoritative business p
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No canonical history-review checklist, dedicated event or universal definition of clinically relevant history is defined upstream. Technical access/storage implementation is deferred.
 
 ## Canonical Validation Note
 
