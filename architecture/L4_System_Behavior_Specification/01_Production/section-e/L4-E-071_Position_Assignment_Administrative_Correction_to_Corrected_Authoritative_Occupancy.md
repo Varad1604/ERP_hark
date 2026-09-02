@@ -7,64 +7,66 @@
 **Domain:** People & Workforce  
 **Realizes Scenario:** L3-E-071 — Position Assignment Administrative Correction to Corrected Authoritative Occupancy  
 **Primary Business Owner:** Position & Assignment  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-E-071; applicable locked E architecture sources  
+**Depends On:** L3-E-071; L2-E02 — Position & Assignment; L2-E01 — Workforce & Engagement; Organisation Position Definition context  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Correct an identified administrative error in an existing Position Assignment so the corrected occupancy becomes authoritative while preserving effective dating, version lineage, and historical traceability. Position Definition, Workforce Engagement, authorization policy, payroll, leave, and technical data-repair mechanics remain outside this behavior.
+Correct an administrative error in an existing Position Assignment so the authoritative occupancy is accurate while preserving effective dating, version lineage and historical traceability. Position Definition and Workforce Engagement remain separately owned and are not modified by this behavior.
 
 ## 3. Required Business Context
 
-- Existing Position Assignment.
-- Valid Workforce Engagement.
-- Valid Position Definition reference.
-- Identified administrative discrepancy.
-- Proposed correction satisfying applicable assignment rules.
+- Existing canonical Position Assignment.
+- Valid Workforce Engagement reference.
+- Valid Position Definition and organisational placement context.
+- Identified administrative discrepancy and correction evidence.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-E-071-BH-001 | When an administrative discrepancy is identified, the system shall establish the governed correction context for the affected Position Assignment. | L3-E-071 §§3,7–9 |
-| L4-E-071-BH-002 | The system shall validate the proposed correction against Position Definition, Workforce Engagement, organisational placement, effective dating, and Position Assignment rules. | L3-E-071 §§7,9,12 |
-| L4-E-071-BH-003 | When the correction is valid, the system shall establish the corrected Position Assignment through the governed assignment evolution model. | L3-E-071 §§3,9,13 |
-| L4-E-071-BH-004 | The system shall preserve the prior assignment state and effective history as reconstructable lineage. | L3-E-071 §§3,9,12 |
-| L4-E-071-BH-005 | The system shall publish the canonical Position Assignment correction outcome using the frozen event vocabulary where defined. | L3-E-071 §§4.3,14 |
+| L4-E-071-BH-001 | The system shall identify the affected canonical Position Assignment and establish the correction basis from authoritative business evidence. | L3-E-071 §§3, 7–9 |
+| L4-E-071-BH-002 | The system shall validate the proposed correction against Position Definition, Workforce Engagement, organisational placement, effective dating and Position Assignment invariants. | L3-E-071 §§7, 9, 11–12 |
+| L4-E-071-BH-003 | The system shall reject a correction that would require Position & Assignment to redefine Position Definition or Workforce Engagement ownership. | L3-E-071 §§4.4, 5, 10–12 |
+| L4-E-071-BH-004 | When valid, the system shall establish the corrected Position Assignment through the governed effective-dated/versioned assignment evolution model. | L3-E-071 §§3, 9, 12–13 |
+| L4-E-071-BH-005 | The system shall preserve the prior assignment state and effective history as immutable reconstructable lineage. | L3-E-071 §§9, 12–13, 15–16 |
+| L4-E-071-BH-006 | The corrected assignment shall become the authoritative current occupancy only after all Position Assignment invariants are satisfied. | L3-E-071 §§3, 9, 12, 16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-E-071-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Position & Assignment ownership. | L3-E-071 §14 |
+| L4-E-071-BH-007 | Organisation shall remain the authoritative source of Position Definition context and Workforce & Engagement shall remain the authoritative source of Workforce Engagement context consumed by the correction. | L3-E-071 §§5, 10, 13–14 |
+| L4-E-071-BH-008 | Position & Assignment shall make the corrected authoritative occupancy fact available to dependent consumers without transferring Position Assignment ownership. | L3-E-071 §§3, 14.2, 16 |
+| L4-E-071-BH-009 | The system shall not invent a correction event name because the Locked parent requires the exact frozen L2-E02/Stage-3 correction vocabulary to be confirmed upstream. | L3-E-071 §§14.1, 17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If the proposed correction violates an assignment invariant, the system shall not apply it.
-- If Position Definition is invalid or unavailable, the existing valid assignment shall remain authoritative pending resolution.
-- If Workforce Engagement is incompatible, the assignment correction shall not establish invalid occupancy.
-- If correction evidence is insufficient, the authoritative assignment shall remain unchanged.
+- Invalid assignment corrections shall not be applied.
+- Missing or invalid Position Definition context shall leave the current valid assignment authoritative.
+- Incompatible Workforce Engagement context shall prevent invalid occupancy.
+- Insufficient correction evidence shall leave the authoritative assignment unchanged.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve the correction basis, supporting evidence, prior assignment state, corrected state, effective dating, and lineage required for business reconstruction.
+The correction basis, evidence, prior assignment state, corrected state, effective dating and assignment lineage shall remain traceable.
 
 ## 8. Observable Completion Conditions
 
-- Correction is validated. - Corrected Position Assignment is authoritative. - Prior state remains reconstructable. - Ownership of Position Definition and Workforce Engagement remains unchanged. - Canonical correction outcome is published where defined.
+The corrected Position Assignment is authoritative, all assignment invariants are satisfied, prior assignment history remains reconstructable, and Position Definition and Workforce Engagement ownership remain unchanged.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-E-071 — Position Assignment Administrative Correction to Corrected Authoritative Occupancy  
-**Primary verification source:** Authoritative People & Workforce L2 workflow architecture.
+**Primary verification source:** L3-E-071 §§3, 5, 9, 11–17 and authoritative L2-E02 architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact canonical administrative-correction event and transition terminology remain upstream confirmation items in L3-E-071. L4 preserves that gap and does not invent vocabulary. Technical data-repair mechanisms remain deferred to L5.
 
 ## Canonical Validation Note
 
