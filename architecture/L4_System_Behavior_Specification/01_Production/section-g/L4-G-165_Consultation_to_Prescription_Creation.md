@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-165 — Consultation to Prescription Creation  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,47 +16,43 @@
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern creation of a valid G06 Prescription when an authorised healthcare professional determines through consultation that prescription treatment is required. The behavior ends when the prescription is available for the downstream dispensing workflow; dispensing itself is out of scope.
+SutraERP shall support creation of a valid G06 Prescription when an authorised medical professional determines through consultation that prescription treatment is required, ending before medicine dispensing.
 
 ## 3. Required Business Context
 
-- Medical Encounter is the authoritative healthcare context.
-- Prescription is G06-owned and belongs to exactly one Medical Encounter.
-- Prescription information includes prescribed medicines, dosage, duration and instructions.
-- E remains authoritative for healthcare-professional/personnel context.
-- Clinical judgement remains with the authorised medical professional.
+- A valid Medical Encounter exists.
+- The consultation has reached the treatment decision.
+- An authorised medical professional is established from E-owned personnel context.
+- Required prescription details can be established through professional judgement.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-165-BH-001 | When consultation determines that prescription treatment is required, the system shall establish the prescription requirement within the relevant Medical Encounter context. | L3-G-165 §§3, 8, 9 |
-| L4-G-165-BH-002 | When prescription information is established, the system shall associate the Prescription with exactly one Medical Encounter and preserve the responsible healthcare-professional context. | L3-G-165 §§5, 9, 12 |
-| L4-G-165-BH-003 | The system shall record prescribed medicines, dosage, duration and instructions required for the prescription outcome. | L3-G-165 §§3, 4, 12 |
-| L4-G-165-BH-004 | When required prescription information is complete, the system shall create the G06 Prescription without replacing clinical judgement with system-defined clinical rules. | L3-G-165 §§9, 12 |
-| L4-G-165-BH-005 | The system shall make the created prescription available for the separate medicine-dispensing workflow without representing medicine as dispensed. | L3-G-165 §§3, 9, 16 |
+| L4-G-165-BH-001 | Confirm the patient, Medical Encounter and responsible medical professional before prescription creation. | L3-G-165 §§7–9 |
+| L4-G-165-BH-002 | Record prescribed medicines, dosage, duration and instructions as established by the authorised professional. | L3-G-165 §§3,9,12 |
+| L4-G-165-BH-003 | Associate every Prescription with exactly one Medical Encounter and preserve responsible professional context. | L3-G-165 §§5,9,12 |
+| L4-G-165-BH-004 | Create the Prescription only when the clinical decision and required prescription information are complete; do not substitute system-defined clinical judgement. | L3-G-165 §§9,11–12,15 |
+| L4-G-165-BH-005 | Preserve prescription creation as healthcare history and make the Prescription available to the separate medicine-dispensing workflow. | L3-G-165 §§9,16 |
+| L4-G-165-BH-006 | Do not represent medicine as dispensed merely because a Prescription has been created. | L3-G-165 §§3,4,13,16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-165-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-165 §14 |
+| L4-G-165-BH-007 | The exact canonical prescription-creation event name is not exposed in the Locked parent; no `PrescriptionCreated` or substitute event shall be invented. G06 owns Prescription; E supplies personnel context only. | L3-G-165 §§5,14,17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If Medical Encounter association is invalid, the system shall prevent creation against an invalid encounter.
-- If professional authority cannot be established, the system shall prevent prescription creation.
-- If required prescription information is incomplete, the system shall retain the unresolved business condition until the responsible professional establishes the required information.
-- If clinical judgement changes before creation, the system shall not create a prescription based on an obsolete decision.
-- If no prescription is required, the system shall not create one merely to complete the scenario.
+Prevent creation against an invalid encounter, missing professional authority or incomplete prescription information. If no prescription is required, do not create one. If the clinical decision changes before creation, preserve the latest authoritative professional decision.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve Medical Encounter, patient context, responsible professional, prescription details, medicines, dosage, duration, instructions, creation outcome and relevant lifecycle transition.
+Preserve Medical Encounter, patient context, responsible professional, medicines, dosage, duration, instructions, creation outcome and relevant lifecycle position.
 
 ## 8. Observable Completion Conditions
 
-Completion is observable when a valid G06 Prescription is created, associated with exactly one Medical Encounter, contains the required prescription information, and is available for downstream dispensing. No dispensing outcome is implied by creation.
+Completion occurs when a valid G06 Prescription exists, is associated with exactly one Medical Encounter, contains the required prescription information and is available for downstream dispensing without implying dispense completion.
 
 ## 9. Traceability & Provenance
 
@@ -65,7 +61,7 @@ Completion is observable when a valid G06 Prescription is created, associated wi
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact canonical prescription event and precise `Created`/`Issued` transition semantics remain unresolved upstream. Clinical drug/dosage rules are not invented. Technical prescription generation/storage is deferred.
 
 ## Canonical Validation Note
 
