@@ -7,63 +7,66 @@
 **Domain:** Finance  
 **Realizes Scenario:** L3-F-013 — Payment Population to Governed Bulk Collection Outcome  
 **Primary Business Owner:** Payment Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-F-013; applicable locked F architecture sources  
+**Depends On:** L3-F-013; L2-F02 — Payment Management Architecture  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Establish a governed bulk payment collection outcome for an authorized population while preserving individual Payment ownership, applicable payment references and financial traceability.
+Govern a coordinated collection population while preserving every individual Payment as the canonical settlement aggregate. This behavior defines no new bulk-payment aggregate, lifecycle, state or event.
 
 ## 3. Required Business Context
 
-- Authorized collection requirement.
-- Defined payment population and collection context.
-- Applicable Student Charge/payment obligations.
-- Approved collection rules and channels.
+- Authoritative population definition and institutional collection purpose.
+- Canonical individual Payments and their source/reference context.
+- Applicable Student Lifecycle population context where relevant.
+- Existing Payment lifecycle/state architecture.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-F-013-BH-001 | The system shall establish the authorized population and collection context for bulk collection. | L3-F-013 §§2–4 |
-| L4-F-013-BH-002 | The system shall identify applicable payment obligations within the authorized population without merging individual Payment aggregates. | L3-F-013 §§2–4 |
-| L4-F-013-BH-003 | The system shall initiate the governed collection outcome through the applicable Payment Management business process. | L3-F-013 §3 |
-| L4-F-013-BH-004 | The system shall preserve individual Payment identity, source, reference and financial lineage for resulting payments. | L3-F-013 §§3–4 |
-| L4-F-013-BH-005 | The system shall distinguish successful, unsuccessful and unresolved collection outcomes according to the authorized business result. | L3-F-013 §§3–4 |
+| L4-F-013-BH-001 | The system shall establish the governed collection population from authoritative business context and shall not infer unsupported population membership. | L3-F-013 §§3, 7–9, 11 |
+| L4-F-013-BH-002 | The system shall preserve each participating Payment's identity, Payment Source, Instrument, Channel, references and current business position. | L3-F-013 §§5, 9, 12, 15–16 |
+| L4-F-013-BH-003 | The system shall govern the coordinated activity without creating a population-level substitute for individual Payment ownership, allocation or settlement. | L3-F-013 §§3–5, 12–13 |
+| L4-F-013-BH-004 | The system shall determine and preserve each individual Payment outcome using only canonical Payment states, lifecycle positions and completed business facts. | L3-F-013 §§9–13, 16 |
+| L4-F-013-BH-005 | An unsuccessful or unresolved Payment in the population shall retain its own financially truthful position and shall not be represented as successful because other Payments completed. | L3-F-013 §§10–12, 16 |
+| L4-F-013-BH-006 | The system shall preserve the population definition and individual Payment outcomes sufficient to reconstruct the governed collection activity. | L3-F-013 §§15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-F-013-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Payment Management ownership. | L3-F-013 §14 |
+| L4-F-013-BH-007 | The system shall publish only the canonical L2-F02 Payment events that correspond to each individual completed Payment fact. | L3-F-013 §14.1 |
+| L4-F-013-BH-008 | The system shall not publish `BulkCollectionCompleted`, `BulkPaymentProcessed` or an equivalent population event because no such canonical event is defined upstream. | L3-F-013 §§14.1, 17 |
+| L4-F-013-BH-009 | Where an individual Payment affects a Student Charge, Student Charge & Fee Management retains ownership of the obligation consequence. | L3-F-013 §§5, 9, 14.2 |
 
 ## 6. Failure / Rejection / Continuation
 
-- An unauthorized collection population shall not be processed as an approved bulk collection.
-- An unsuccessful individual collection shall not be represented as successful payment.
-- An unresolved outcome shall remain explicitly unresolved and financially truthful.
-- Individual payment history shall remain separately traceable.
+- Unauthoritative population membership shall prevent a governed population outcome from being claimed.
+- Individual Payment failure shall remain individually visible and financially truthful.
+- No new bulk Payment aggregate/state/event shall be created.
+- Downstream consequences remain with their canonical owners.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve collection authorization, population context, individual payment references, successful/failed outcomes and bulk-collection lineage.
+Preserve population basis, individual Payment identities/references, individual states/outcomes, applicable canonical Payment events and downstream consequence references.
 
 ## 8. Observable Completion Conditions
 
-The authorized collection population has been processed, individual outcomes are explicitly represented, and all resulting Payment records and exceptions remain independently traceable.
+The coordinated population has a reconstructable institutional outcome while every Payment retains its canonical identity and truthful individual outcome, with no invented population-level aggregate, state or event.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-F-013 — Payment Population to Governed Bulk Collection Outcome  
-**Primary verification source:** Authoritative Finance L2 workflow architecture.
+**Primary verification source:** L3-F-013 §§3, 5, 9, 11–17 and authoritative L2-F02 Payment architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+L3-F-013 §17 records a material upstream gap concerning the canonical definition/owner of bulk collection and any population-level outcome/state/event. L4 preserves this uncertainty rather than creating parallel architecture.
 
 ## Canonical Validation Note
 
