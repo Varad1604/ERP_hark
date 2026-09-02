@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-145 — Reading Room Operational Usage to Session Closure  
 **Primary Business Owner:** Library Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,44 +16,45 @@
 
 ## 2. Behavioral Objective & Boundary
 
-Govern permitted Reading Room usage through operational supervision to the closure of the individual reading session. Closing an individual session shall not automatically close the Reading Room.
+SutraERP shall govern permitted Reading Room usage under configured rules and supervision to an individual session closure outcome. Ending an individual session shall not automatically transition the Reading Room to **Operational Closure**.
 
 ## 3. Required Business Context
 
 - Reading Room is operationally available.
-- Permitted usage is established under applicable rules.
-- Monitoring/supervision is available.
+- Usage is permitted under authoritative Reading Room rules.
+- Applicable operating period and monitoring/supervision context are established.
 - E personnel context and H communication participation are used only where required.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-145-BH-001 | The system shall identify and validate the reading room operational usage to session closure context and authoritative inputs. | L3-G-145 §§3, 9, 12 |
-| L4-G-145-BH-002 | The system shall validate required business eligibility and policy constraints under Library Management governance. | L3-G-145 §§3, 9, 12 |
-| L4-G-145-BH-003 | The system shall execute the canonical reading room operational usage to session closure business evaluation. | L3-G-145 §§3, 9, 12 |
-| L4-G-145-BH-004 | The system shall record the resulting authoritative business position and preserve historical audit evidence. | L3-G-145 §§3, 9, 12 |
-| L4-G-145-BH-005 | The system shall prevent progression and maintain the last valid business position when governing conditions are not satisfied. | L3-G-145 §§3, 9, 12 |
+| L4-G-145-BH-001 | Identify the Reading Room, confirm operational availability and establish the permitted usage context and applicable rules. | L3-G-145 §§7,9,12 |
+| L4-G-145-BH-002 | Maintain applicable operational monitoring and usage supervision while the permitted reading activity is underway. | L3-G-145 §§2–3,9,12 |
+| L4-G-145-BH-003 | Establish the authoritative individual session closure condition and record the session closure outcome. | L3-G-145 §§3,8–9,16 |
+| L4-G-145-BH-004 | Preserve relevant operational history and any required E personnel context or H communication hand-off without transferring G ownership. | L3-G-145 §§5,9,15–16 |
+| L4-G-145-BH-005 | Keep the broader Reading Room lifecycle unchanged solely because one session ended; do not invent `Session Started`, `Session Active`, `Session Closed` or similar formal lifecycle states. | L3-G-145 §§12–13,16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-145-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Library Management ownership. | L3-G-145 §14 |
+| L4-G-145-BH-006 | The retrieved source does not expose dedicated canonical Reading Session start/closure events. This specification shall not invent `ReadingSessionStarted`, `ReadingSessionClosed` or `ReadingUsageCompleted`. G owns the usage/session outcome; E provides personnel context and H owns communication delivery where applicable. | L3-G-145 §§5,14,17 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- If session context or Reading Room availability cannot be established, no unsupported session outcome shall be recorded.
+- Missing rules shall not be replaced with invented usage policy.
+- An unclear closure condition keeps the session under applicable supervision until authoritative.
+- A room-level closure, if separately reached, remains governed by the Reading Room closure workflow.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve Reading Room identity, operating period, applicable rules, supervision context, session closure outcome, relevant personnel context and communication outcome where required.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Library Management ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when the individual usage session reaches its authoritative closure condition and its history is preserved while the broader Reading Room remains in its independently authoritative operational condition.
 
 ## 9. Traceability & Provenance
 
@@ -62,7 +63,7 @@ Completion requires governing conditions validated, the authoritative business p
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The upstream source defines no separate Reading Session aggregate lifecycle, dedicated session events or detailed closure matrix. None are invented at L4. Technical implementation remains deferred to L5.
 
 ## Canonical Validation Note
 
