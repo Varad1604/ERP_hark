@@ -5,9 +5,9 @@
 **Specification ID:** L4-G-160  
 **Architecture Level:** L4 — System Behavior Specification  
 **Domain:** Campus Operations  
-**Realizes Scenario:** L3-G-160 — Walk in Consultation to Completed Medical Encounter  
+**Realizes Scenario:** L3-G-160 — Walk-in Consultation to Completed Medical Encounter  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,52 +16,51 @@
 
 ## 2. Behavioral Objective & Boundary
 
-The system shall govern walk in consultation to completed medical encounter according to authoritative upstream policy and workflow governance. The behavior ends when the authoritative business outcome is recorded. APIs, persistence, UI, and infrastructure remain outside this specification.
+SutraERP shall support the G06 walk-in consultation from a consultation-ready registered patient through clinical assessment, diagnosis, treatment and authoritative consultation closure while leaving professional clinical judgement with the authorised medical professional.
 
 ## 3. Required Business Context
 
-- Authoritative Institutional Health Services (G06) context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- Patient and Medical Encounter are authoritative and consultation-ready.
+- An authorised healthcare professional is established from E-owned personnel context.
+- Relevant medical history and configurable consultation policy are available.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-160-BH-001 | The system shall identify and validate the walk in consultation to completed medical encounter context and authoritative inputs. | L3-G-160 §§3, 9, 12 |
-| L4-G-160-BH-002 | The system shall validate required business eligibility and policy constraints under Institutional Health Services (G06) governance. | L3-G-160 §§3, 9, 12 |
-| L4-G-160-BH-003 | The system shall execute the canonical walk in consultation to completed medical encounter business evaluation. | L3-G-160 §§3, 9, 12 |
-| L4-G-160-BH-004 | The system shall record the resulting authoritative business position and preserve historical audit evidence. | L3-G-160 §§3, 9, 12 |
-| L4-G-160-BH-005 | The system shall prevent progression and maintain the last valid business position when governing conditions are not satisfied. | L3-G-160 §§3, 9, 12 |
+| L4-G-160-BH-001 | Identify the patient, Medical Encounter, responsible healthcare professional and walk-in consultation context. | L3-G-160 §§7–9 |
+| L4-G-160-BH-002 | Record clinical assessment, symptoms/context, diagnosis and treatment as established by authorised professional judgement. | L3-G-160 §§9,12,15 |
+| L4-G-160-BH-003 | Determine whether prescription, follow-up, referral or observation is required and hand off each resulting outcome to its authoritative G06 workflow. | L3-G-160 §§9–10,12 |
+| L4-G-160-BH-004 | Do not represent medicine dispensing, referral completion or observation completion as part of the consultation lifecycle. | L3-G-160 §§4,9–10 |
+| L4-G-160-BH-005 | When required consultation information is established, complete/close the consultation according to the Medical Encounter lifecycle. | L3-G-160 §§9,13,16 |
+| L4-G-160-BH-006 | Preserve the complete auditable Medical Encounter history and relevant downstream handoffs. | L3-G-160 §§15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-160-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-160 §14 |
+| L4-G-160-BH-007 | Publish `ConsultationStarted` at consultation initiation and `ConsultationCompleted` at authoritative completion. Publish `FollowUpRecommended` only when follow-up is actually advised. G06 is the canonical publisher; H owns notification delivery. | L3-G-160 §§9,14,16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+Do not close the encounter against an invented patient, professional, diagnosis, treatment or incomplete clinical record. If emergency handling becomes applicable, hand off to the emergency workflow instead of continuing an ordinary consultation incorrectly.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve patient/encounter context, professional, consultation type, symptoms, assessment, diagnosis, treatment, follow-up/downstream outcomes, lifecycle transitions and canonical events.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Institutional Health Services (G06) ownership, attributable audit evidence preserved, and canonical business events published.
+Completion requires authoritative consultation closure, `ConsultationCompleted` published by G06, audit history preserved and any prescription/follow-up/referral/observation outcomes handed to their own workflows.
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-G-160 — Walk in Consultation to Completed Medical Encounter  
+**Parent:** L3-G-160 — Walk-in Consultation to Completed Medical Encounter  
 **Primary verification source:** Authoritative Campus Operations L2 workflow architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Consultation types, follow-up policy and detailed clinical assessment/diagnosis/treatment rules remain configurable/professional rather than invented at L4. Technical implementation is deferred.
 
 ## Canonical Validation Note
 
