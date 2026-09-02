@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-181 — Medical Event to Employee Portal Health Information  
 **Primary Business Owner:** Institutional Health Services  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -64,7 +64,7 @@ Completion occurs when permitted health information is available through the Emp
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The upstream disclosure matrix and exact business contract/read-model vocabulary for Employee Portal health information are not fully enumerated. No generic portal-publication event or employment consequence is invented.
 
 ## Canonical Validation Note
 
