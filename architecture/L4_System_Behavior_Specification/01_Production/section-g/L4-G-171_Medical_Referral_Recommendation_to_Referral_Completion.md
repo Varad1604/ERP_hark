@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-171 — Medical Referral Recommendation to Referral Completion  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,7 +16,7 @@
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern the institutional Referral lifecycle from an authorised medical recommendation through applicable provider acceptance and institutional completion. Completion shall represent fulfilment of G06 referral responsibility, not completion of external hospital treatment.
+The system shall govern the institutional Referral lifecycle from an authorised medical recommendation through applicable provider acceptance and institutional completion. Completion shall represent fulfilment of G06 referral responsibility, not completion of external hospital treatment.
 
 ## 3. Required Business Context
 
@@ -41,7 +41,8 @@ the system shall govern the institutional Referral lifecycle from an authorised 
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-171-BH-007 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-171 §14 |
+| L4-G-171-BH-007 | The retrieved upstream event catalogue does not expose exact canonical Referral Recommended, Accepted or Completed event names. No event name shall be invented; G06 remains canonical publisher of Referral business facts. | L3-G-171 §§14,17 |
+| L4-G-171-BH-008 | H may consume applicable G06 Referral facts for configured notifications; E supplies healthcare-professional context without acquiring Referral ownership. | L3-G-171 §§5,14 |
 
 ## 6. Failure / Rejection / Continuation
 
@@ -57,7 +58,7 @@ The system shall preserve referral reason, provider, responsible healthcare deci
 
 ## 8. Observable Completion Conditions
 
-Completion is observable when Referral reaches `Completed` under the authoritative institutional completion condition, with history and traceability preserved. External hospital treatment remains outside the completion criterion.
+Completion is observable when Referral reaches `Completed` under the authoritative institutional completion condition, with history and traceability preserved. External hospital treatment remains outside the completion criterion, and no invented Referral event is required.
 
 ## 9. Traceability & Provenance
 
@@ -66,7 +67,7 @@ Completion is observable when Referral reaches `Completed` under the authoritati
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Exact Referral lifecycle event names and detailed external-provider acceptance/completion evidence are not exposed in the retrieved upstream source. These remain upstream verification items. Technical communication, APIs, persistence, UI and infrastructure remain deferred.
 
 ## Canonical Validation Note
 
