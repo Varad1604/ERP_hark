@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-080 — Hostel Capacity Constraint to Waiting List Placement  
 **Primary Business Owner:** Hostel Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -31,40 +31,40 @@ SutraERP shall place an approved hostel applicant into the governed waiting-list
 |---|---|---|
 | L4-G-080-BH-001 | The system shall evaluate applicable hostel capacity for the approved applicant's accommodation context. | L3-G-080 §§3, 7, 9 |
 | L4-G-080-BH-002 | When eligible capacity is exhausted, the system shall apply the governed waiting-list eligibility and priority criteria. | L3-G-080 §§3, 9, 12 |
-| L4-G-080-BH-003 | The system shall establish the applicant's governed waiting-list position. | L3-G-080 §§3, 9, 16 |
-| L4-G-080-BH-004 | The system shall transition the applicable hostel application outcome to Waitlisted when waiting-list placement is permitted. | L3-G-080 §§3, 9, 13 |
-| L4-G-080-BH-005 | The system shall preserve the approved admission position while the applicant remains governed by the waiting-list process. | L3-G-080 §2 |
-| L4-G-080-BH-006 | The system shall preserve attributable evidence of capacity evaluation, priority determination, and waitlist placement. | L3-G-080 §15 |
+| L4-G-080-BH-003 | The system shall establish the applicant's authoritative waiting-list rank and queue position. | L3-G-080 §§3, 9, 16 |
+| L4-G-080-BH-004 | The system shall transition the applicable hostel application outcome to `Waitlisted` when waiting-list placement is permitted. | L3-G-080 §§3, 9, 13 |
+| L4-G-080-BH-005 | The system shall preserve the approved admission position while the applicant remains governed by the waiting-list process. | L3-G-080 §§2–3 |
+| L4-G-080-BH-006 | The system shall preserve attributable evidence of capacity evaluation, priority determination, rank assignment and waitlist placement. | L3-G-080 §§12, 15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-080-BH-007 | On governed waitlist placement, the system shall make the HostelApplicantWaitlisted business fact available through the canonical Hostel Management publisher. | L3-G-080 §14 |
-| L4-G-080-BH-008 | The system shall make the waitlist outcome available to participating Student Lifecycle and communication consumers without transferring Hostel Management ownership. | L3-G-080 §§5, 14 |
+| L4-G-080-BH-007 | On governed waitlist placement, Hostel Management shall publish `HostelApplicantWaitlisted`. | L3-G-080 §14 |
+| L4-G-080-BH-008 | The authoritative waitlist status and rank shall be made available to Student Lifecycle and governed communication consumers without transferring Hostel Management ownership. | L3-G-080 §§5, 14 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If a compatible alternative vacancy exists, the system shall govern the governed alternative allocation path before final waitlist placement.
-- If waiting-list capacity is closed, the system shall preserve the governed capacity-closed outcome rather than creating an invalid waitlist position.
-- If authoritative student context becomes inactive, the system shall prevent continuation of an invalid waitlist position.
+- If a compatible alternative vacancy exists, the system shall evaluate the permitted alternative-allocation path before final waitlist placement.
+- If waiting-list capacity is closed, the system shall preserve the source-supported capacity-closed outcome rather than creating an invalid queue position.
+- If authoritative student context becomes inactive, the waitlist position shall not continue as valid.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable evidence of capacity status, applicable priority basis, queue position, resulting Waitlisted state, and the published business outcome.
+Preserve capacity status, applicable priority basis, queue position, resulting `Waitlisted` state and the published `HostelApplicantWaitlisted` fact.
 
 ## 8. Observable Completion Conditions
 
-Completion occurs when: - eligible capacity is confirmed exhausted; - the applicant is placed on the authoritative waiting list; - the application is Waitlisted; - the queue position is preserved; and - HostelApplicantWaitlisted is made available.
+Completion requires eligible capacity to be confirmed exhausted, the applicant to have an authoritative queue position, the application to be `Waitlisted`, and `HostelApplicantWaitlisted` to be published.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-G-080 — Hostel Capacity Constraint to Waiting List Placement  
-**Primary verification source:** Authoritative Campus Operations L2 workflow architecture.
+**Primary verification source:** L3-G-080 §§3, 9, 12–16 and authoritative Hostel Management architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Institution-specific priority parameters and approval authorities remain policy/configuration governed. Technical capacity counters, queue implementation and notification delivery are deferred to L5.
 
 ## Canonical Validation Note
 
