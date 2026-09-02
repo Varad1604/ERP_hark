@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-108 — Vehicle Availability to Operational Vehicle Assignment  
 **Primary Business Owner:** Transport Management  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -28,17 +28,17 @@ SutraERP shall establish an operational vehicle assignment for a Trip from an av
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-G-108-BH-001 | Identify the Trip requirement for operational vehicle assignment. | L3-G-108 |
-| L4-G-108-BH-002 | Evaluate available vehicles against applicable operational eligibility conditions. | L3-G-108 |
-| L4-G-108-BH-003 | Establish the authorised operational vehicle assignment. | L3-G-108 |
-| L4-G-108-BH-004 | Prevent assignment of a vehicle that fails applicable operational conditions. | L3-G-108 |
-| L4-G-108-BH-005 | Preserve assignment history and the vehicle context used for the decision. | L3-G-108 |
+| L4-G-108-BH-001 | Identify the Trip requirement for operational vehicle assignment. | L3-G-108 §§3, 7, 9 |
+| L4-G-108-BH-002 | Evaluate available vehicles against applicable operational eligibility conditions. | L3-G-108 §§9, 12 |
+| L4-G-108-BH-003 | Establish the authorised operational vehicle assignment. | L3-G-108 §§3, 9, 16 |
+| L4-G-108-BH-004 | Prevent assignment of a vehicle that fails applicable operational conditions. | L3-G-108 §§10–12 |
+| L4-G-108-BH-005 | Preserve assignment history and the vehicle context used for the decision. | L3-G-108 §§12, 15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-108-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Transport Management ownership. | L3-G-108 §14 |
+| L4-G-108-BH-006 | The exact canonical event identifier for operational Vehicle Assignment is unresolved upstream; this L4 specification shall not invent one. The effective G04-owned operational vehicle assignment shall remain available to authorised downstream consumers. | L3-G-108 §§14, 17 |
 
 ## 6. Failure / Rejection / Continuation
 
@@ -61,7 +61,7 @@ An eligible vehicle is operationally assigned to the Trip and the assignment is 
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact canonical Vehicle Assignment event identifier remains unresolved upstream and shall not be invented at L4. Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
 
 ## Canonical Validation Note
 
