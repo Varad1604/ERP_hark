@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-170 — Observation Capacity Exception to Alternative Care Decision  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -39,7 +39,8 @@ The system shall recognise when clinically required observation cannot be accomm
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-170-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-170 §14 |
+| L4-G-170-BH-006 | The retrieved upstream architecture does not define a canonical Observation Capacity Exception event. No event name shall be invented; G06 remains owner of the healthcare decision. | L3-G-170 §§14,17 |
+| L4-G-170-BH-007 | If the alternative path creates a G06 Referral, Referral remains G06-owned and follows `Recommended → Accepted → Completed`; H may consume configured healthcare facts for notification. | L3-G-170 §§13–14 |
 
 ## 6. Failure / Rejection / Continuation
 
@@ -64,7 +65,7 @@ Completion is observable when the capacity exception is recorded, an authorised 
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No universal observation-capacity threshold/prioritisation rule or dedicated capacity-exception event is defined upstream. Those gaps remain upstream-owned. Technical capacity calculation, routing, APIs, persistence, UI and infrastructure remain deferred.
 
 ## Canonical Validation Note
 
