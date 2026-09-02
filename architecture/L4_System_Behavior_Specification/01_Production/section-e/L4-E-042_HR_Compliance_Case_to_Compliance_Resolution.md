@@ -7,7 +7,7 @@
 **Domain:** People & Workforce  
 **Realizes Scenario:** L3-E-042 — HR Compliance Case to Compliance Resolution  
 **Primary Business Owner:** HR  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,50 +16,58 @@
 
 ## 2. Behavioral Objective & Boundary
 
-Specify observable behavior for establishing, verifying, remediating, and completing an HR compliance case.
+SutraERP shall govern an HR compliance case from requirement identification through evidence collection, verification, remediation where verification fails, and completion when the governed compliance requirement is successfully verified.
 
 ## 3. Required Business Context
 
-- Authoritative HR context exists.
-- Applicable upstream business policy and governance conditions are satisfied.
-- Relevant cross-domain facts remain source-owned.
+- A compliance requirement exists.
+- The affected workforce context can be identified where required.
+- Evidence requirements and verification expectations are available from applicable policy or governance.
+- The Compliance Case Aggregate remains owned by HR Workflows.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-E-042-BH-001 | The system shall identify and validate the hr compliance case to compliance resolution context and authoritative inputs. | L3-E-042 §§3, 9, 12 |
-| L4-E-042-BH-002 | The system shall validate required business eligibility and policy constraints under HR governance. | L3-E-042 §§3, 9, 12 |
-| L4-E-042-BH-003 | The system shall execute the canonical hr compliance case to compliance resolution business evaluation. | L3-E-042 §§3, 9, 12 |
-| L4-E-042-BH-004 | The system shall record the resulting authoritative business position and preserve historical audit evidence. | L3-E-042 §§3, 9, 12 |
-| L4-E-042-BH-005 | The system shall prevent progression and maintain the last valid business position when governing conditions are not satisfied. | L3-E-042 §§3, 9, 12 |
+| L4-E-042-BH-001 | The system shall create the HR compliance case from the identified compliance requirement under HR ownership. | L3-E-042 §§2, 5, 9 |
+| L4-E-042-BH-002 | The system shall collect the business evidence required by the applicable compliance requirement without inventing local compliance criteria. | L3-E-042 §§7, 9, 12 |
+| L4-E-042-BH-003 | The system shall verify the collected evidence against the applicable compliance requirement and record the verification result. | L3-E-042 §§9, 12, 16 |
+| L4-E-042-BH-004 | If verification succeeds, the system shall complete the compliance case and establish the governed compliance resolution. | L3-E-042 §§3, 9, 13, 16 |
+| L4-E-042-BH-005 | If verification fails, the system shall record the failed verification, establish the applicable remediation outcome, and return the case to verification when remediation is available. | L3-E-042 §§9, 10, 11, 13 |
+| L4-E-042-BH-006 | If remediation does not resolve the requirement, the system shall preserve the failed business result and keep the case governed by the applicable institutional compliance process rather than treating it as a technical failure. | L3-E-042 §§10, 11 |
+| L4-E-042-BH-007 | The system shall preserve immutable business history for evidence collection, verification, remediation and completion outcomes. | L3-E-042 §§12, 15 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-E-042-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under HR ownership. | L3-E-042 §14 |
+| L4-E-042-BH-008 | On successful compliance completion, the system shall publish the canonical **ComplianceCompleted** business event identified by the locked Compliance workflow. | L3-E-042 §§14.1, 16 |
+| L4-E-042-BH-009 | The system shall not invent any additional compliance event beyond the parent-defined **ComplianceCompleted** event. | L3-E-042 §14.1 |
+| L4-E-042-BH-010 | Evidence collection and verification may involve business handoffs among HR and the relevant verification participant; these handoffs shall remain distinct from the **ComplianceCompleted** event and shall not redefine ownership. | L3-E-042 §§5, 14.2 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Incomplete evidence leaves the case pending evidence collection. Failed verification leaves the requirement unresolved until remediation and re-verification occur. No technical retry or infrastructure behavior is defined.
+- If required evidence is incomplete, the system shall keep the compliance case pending evidence collection until the required business evidence is available.
+- If verification fails, the system shall keep the compliance requirement unresolved and route the case through the parent-defined remediation and re-verification path.
+- If remediation does not resolve the requirement, the system shall preserve the failed business result and follow applicable institutional compliance governance.
+- Technical retries, queues, rollback and infrastructure recovery remain outside L4.
 
 ## 7. Audit & Evidence Behavior
 
-Evidence, verification outcome, remediation decision, and completion decision remain attributable and auditable.
+The system shall preserve attributable evidence of the compliance requirement, collected evidence, verification result, remediation outcome, applicable approval or authorization decision where present, and final completion decision.
 
 ## 8. Observable Completion Conditions
 
-- Required evidence collected. - Verification result recorded. - Remediation completed where necessary. - Compliance resolution recorded. - `ComplianceCompleted` published on successful completion.
+Completion requires the required evidence to have been collected to the extent required by the governing compliance rule, a successful verification result to be recorded, the compliance case to reach the parent-defined Completed state, and **ComplianceCompleted** to be published. Failed verification remains on the remediation and re-verification path until a governed business outcome is established.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-E-042 — HR Compliance Case to Compliance Resolution  
-**Primary verification source:** Authoritative People & Workforce L2 workflow architecture.
+**Primary verification source:** Authoritative People & Workforce L2 HR Workflows architecture.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Institution-specific compliance criteria, verification authorities and approval roles remain governed by upstream policy/configuration. Technical APIs, database persistence schemas, UI screens, network transport and retry mechanics are deferred to L5 Solution Architecture.
 
 ## Canonical Validation Note
 
