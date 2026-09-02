@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-174 — Medical Certificate Review to Certificate Revocation  
 **Primary Business Owner:** Institutional Health Services  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -64,7 +64,7 @@ Completion occurs when the review is authoritatively resolved: either the certif
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The upstream state matrix lists `Draft → Approved → Issued → Archived` while also defining `MedicalCertificateRevoked`; the exact revocation-state representation remains an upstream verification point and is not invented here. Technical implementation remains deferred.
 
 ## Canonical Validation Note
 
