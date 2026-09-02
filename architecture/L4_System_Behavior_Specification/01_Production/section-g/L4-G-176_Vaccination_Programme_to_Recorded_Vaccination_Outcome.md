@@ -7,7 +7,7 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-176 — Vaccination Programme to Recorded Vaccination Outcome  
 **Primary Business Owner:** Institutional Health Services  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
@@ -16,7 +16,7 @@
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern a G06 Vaccination Campaign from planning through running activity to completion and shall record each applicable vaccination outcome without inventing vaccine-specific clinical policy.
+The system shall govern a G06 Vaccination Campaign from planning through running activity to completion and shall record each applicable vaccination outcome without inventing vaccine-specific clinical policy.
 
 ## 3. Required Business Context
 
@@ -65,7 +65,7 @@ Completion occurs when the campaign reaches `Completed` with materially required
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Vaccine-specific eligibility, dosage, consent, public-health reporting and exact campaign completion evidence remain upstream/configuration governed. No campaign-start or campaign-completed event is invented because the retrieved L2 does not define one. Technical implementation is deferred.
 
 ## Canonical Validation Note
 
