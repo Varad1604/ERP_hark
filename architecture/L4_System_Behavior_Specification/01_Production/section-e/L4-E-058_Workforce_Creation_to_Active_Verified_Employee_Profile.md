@@ -7,62 +7,65 @@
 **Domain:** People & Workforce  
 **Realizes Scenario:** L3-E-058 — Workforce Creation to Active Verified Employee Profile  
 **Primary Business Owner:** Employee Profile  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
 **Last Updated:** 2026-09-02  
-**Depends On:** L3-E-058; applicable locked E architecture sources  
+**Depends On:** L3-E-058; L2-E01; L2-E07; L2-A02  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Complete the dependent Employee Profile lifecycle following approved workforce appointment context so that the employee profile reaches Active and Verified status. Workforce engagement creation/activation remains owned by Workforce & Engagement; Person and Identity remain owned by Platform Foundation.
+Coordinate the separate Workforce Engagement and EmployeeProfile lifecycles so that an approved appointment results in an active workforce engagement and an Active, verified EmployeeProfile, without merging or transferring ownership between Platform Foundation, Workforce & Engagement, and Employee Profile.
 
 ## 3. Required Business Context
 
-- Approved workforce appointment and required organisational context.
-- Required Person/Identity foundation.
-- Active workforce engagement context.
-- Employee profile verification requirements.
+- Approved institutional workforce appointment.
+- Verified Person and valid Identity foundation.
+- Valid organisational and prepared assignment context required by Workforce & Engagement.
+- No duplicate EmployeeProfile and required mandatory profile information/reference data.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-E-058-BH-001 | When the approved workforce appointment and required Person/Identity and organisational context are available, the system shall establish the dependent Employee Profile context. | L3-E-058 §§2–4 |
-| L4-E-058-BH-002 | The system shall submit the Employee Profile for the governed verification process. | L3-E-058 §4.3 |
-| L4-E-058-BH-003 | The system shall complete profile verification when the applicable business requirements are satisfied. | L3-E-058 §§2–4 |
-| L4-E-058-BH-004 | When verification is complete, the system shall establish the Employee Profile in its Active lifecycle state. | L3-E-058 §3 |
-| L4-E-058-BH-005 | The system shall preserve ownership boundaries between Person and Identity, Workforce & Engagement, and Employee Profile. | L3-E-058 §§2,4.3 |
+| L4-E-058-BH-001 | Workforce & Engagement shall establish the pending Workforce Engagement only when the approved appointment and required Person/Identity and organisational prerequisites are valid. | L3-E-058 §§7–9, 12 |
+| L4-E-058-BH-002 | Workforce & Engagement shall activate the engagement only when its canonical activation prerequisites are satisfied. | L3-E-058 §§9, 11–13 |
+| L4-E-058-BH-003 | Employee Profile shall create the EmployeeProfile only when the employee exists, no profile already exists, and mandatory profile information/reference data are valid. | L3-E-058 §§7, 9, 12 |
+| L4-E-058-BH-004 | Employee Profile shall progress the profile through `Created → PendingVerification → Verified → Active`, and shall not activate an unverified profile. | L3-E-058 §§9, 11–13 |
+| L4-E-058-BH-005 | Person and Identity shall remain owned by Platform Foundation; Workforce Engagement shall remain owned by Workforce & Engagement; EmployeeProfile shall remain owned by Employee Profile. | L3-E-058 §§5, 12–13 |
+| L4-E-058-BH-006 | Where verification is incomplete or rejected, Employee Profile shall preserve the governed non-active profile position until the profile verification process reaches a valid outcome. | L3-E-058 §§10–11 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-E-058-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Employee Profile ownership. | L3-E-058 §14 |
+| L4-E-058-BH-007 | Workforce & Engagement shall publish `PendingWorkforceEngagementCreated` and `WorkforceEngagementActivated` at their canonical lifecycle milestones. | L3-E-058 §14.1 |
+| L4-E-058-BH-008 | Employee Profile shall publish `EmployeeProfileCreated`, `ProfileSubmittedForVerification`, `ProfileVerified`, and `EmployeeProfileActivated` at their canonical profile milestones. | L3-E-058 §14.1 |
+| L4-E-058-BH-009 | Verified Person/Identity context shall be consumed by Workforce & Engagement; the established workforce fact shall be handed to Employee Profile for profile creation without ownership transfer. | L3-E-058 §14.2 |
 
 ## 6. Failure / Rejection / Continuation
 
-- When required Person/Identity, organisational, or workforce context is unavailable, the system shall not establish an Active verified Employee Profile.
-- When verification is incomplete or unsuccessful, the profile shall not be represented as Active and verified.
-- Workforce engagement lifecycle remains under Workforce & Engagement ownership.
+- Invalid Person/Identity or unmet workforce activation prerequisites prevent Workforce Engagement activation.
+- Existing EmployeeProfile prevents duplicate profile creation.
+- Incomplete verification prevents profile activation; rejected verification follows the governed correction/re-submission path.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve evidence of the approved workforce context, verification outcome, resulting Employee Profile lifecycle position, and material cross-domain facts used for the completed outcome.
+Workforce establishment/activation history remains under Workforce & Engagement; profile creation/verification/activation history remains under Employee Profile; Person/Identity verification evidence remains under Platform Foundation.
 
 ## 8. Observable Completion Conditions
 
-- Required workforce and identity context is available. - Employee Profile is established. - Verification is completed. - Employee Profile reaches Active. - Workforce engagement is active without ownership transfer.
+A valid Workforce Engagement is Active; one canonical EmployeeProfile exists; profile verification has completed; the profile reaches Active; all canonical lifecycle events have been published; and ownership boundaries remain unchanged.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-E-058 — Workforce Creation to Active Verified Employee Profile  
-**Primary verification source:** Authoritative People & Workforce L2 workflow architecture.
+**Primary verification source:** L3-E-058 §§3, 5, 9, 11–16; L2-E01, L2-E07 and L2-A02.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No parent-defined architecture issue remains unresolved for this L4 behavior. Technical integration, storage and access-control mechanics remain deferred to L5.
 
 ## Canonical Validation Note
 
