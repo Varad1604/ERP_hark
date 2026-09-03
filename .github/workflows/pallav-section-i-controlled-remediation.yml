@@ -84,10 +84,14 @@ jobs:
           for p in targets:
               text=p.read_text(encoding='utf-8')
               text=text.replace(f'`{marker}` — approved upstream remediation',f'`{marker}` — proposed controlled upstream remediation; pending architecture approval')
+              text=text.replace(f'`{marker}` — Architecture-Approved upstream remediation',f'`{marker}` — proposed controlled upstream remediation; pending architecture approval')
               text=text.replace('**Approved upstream remediation:**','**Proposed upstream remediation:**')
               text=text.replace('approved Section I remediation amendment','proposed Section I remediation amendment')
               text=text.replace('the approved Section I remediation amendment','the proposed Section I remediation amendment')
               text=text.replace('The approved upstream amendment corrects','Upon approval, the proposed upstream amendment corrects')
+              text=text.replace('the Architecture-Approved Section I L3 event-integrity remediation amendment','the proposed controlled Section I L3 event-integrity remediation amendment')
+              text=text.replace('Architecture-Approved L3 remediation amendment','proposed controlled L3 remediation amendment')
+              text=text.replace('Architecture-Approved `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md`','proposed controlled `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md`')
               text=text.replace('The 2026-09-03 Architecture Approval makes the Section I remediation amendment effective for the scoped parent correction. Repository locking remains a separate explicit governance action.',
                                 'The proposed Section I remediation amendment is not yet effective. This specification remains in Review and is BLOCKED BY UPSTREAM for final architecture approval until the amendment receives governed approval and this specification is revalidated.')
               text=re.sub(r'This specification is synchronized with the Architecture-Approved `'+re.escape(marker)+r'`\. Repository lock remains a separate governance action\.',
