@@ -6,66 +6,57 @@
 **Architecture Level:** L4 — System Behavior Specification  
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-158 — Completion Evidence Resolution to Restored Valid Evidence  
-**Primary Business Owner:** Examination  
-**Version:** 1.0.0  
+**Primary Business Owner:** Academic Completion & Completion Evidence  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-158; applicable locked I architecture sources  
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-158; L2-I13 Academic Completion, CGPA & Completion Evidence; L2-C05 Qualification Completion & Student Exit  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Restore a valid completion-evidence position after the authoritative cause of a prior invalid or blocked evidence position has been resolved. Start: a previously invalid, blocked or unresolved evidence position has an authoritative resolution basis. End: a restored valid evidence position is established within the existing evidence lifecycle. Out of scope: changing source-owned examination results, qualification ownership, or technical restoration mechanisms.
+Canonical L4 behavioral derivation is blocked because the Locked L3 parent is internally contradictory. The locked title identifies resolution leading to restored valid evidence, while L3-I-158 §§2–16 describe duplicate completion evidence being reduced to one authoritative current evidence position.
+
+L4 shall not select either interpretation or silently repair the parent from adjacent scenarios or L2.
 
 ## 3. Required Business Context
 
-- Prior completion-evidence position and its history are identifiable.
-- Authoritative resolution of the blocking/invalidating condition exists.
-- Supporting academic/examination evidence is current.
-- Applicable restoration authority is established.
+- L3-I-158 remains the canonical Locked parent and its title/identity are preserved.
+- The parent title describes evidence restoration.
+- The parent body describes duplicate-evidence resolution.
+- Both are distinct I13 evidence-governance outcomes and cannot be merged or substituted at L4.
 
 ## 4. System Behavioral Obligations
 
-| Behavior ID | Required System Behavior | Provenance |
-|---|---|---|
-| L4-I-158-BH-001 | The system shall identify the prior completion-evidence position and reason it became invalid, blocked or unresolved. | L3-I-158 §§3, 9, 12 |
-| L4-I-158-BH-002 | The system shall verify the authoritative resolution of that reason. | L3-I-158 §§3, 9, 12 |
-| L4-I-158-BH-003 | The system shall re-evaluate completion evidence against current authoritative inputs. | L3-I-158 §§3, 9, 12 |
-| L4-I-158-BH-004 | The system shall establish restored valid evidence where all applicable conditions are satisfied. | L3-I-158 §§3, 9, 12 |
-| L4-I-158-BH-005 | The system shall preserve prior invalid/blocked evidence history and the resolution basis. | L3-I-158 §§3, 9, 12 |
-| L4-I-158-BH-006 | The system shall prevent restoration where the underlying issue remains unresolved. | L3-I-158 §§3, 9, 12 |
-| L4-I-158-BH-007 | The system shall make restored evidence available for authorized downstream use. | L3-I-158 §§3, 9, 12 |
+No scenario-specific behavioral obligations are admitted while the parent semantic contradiction remains unresolved.
 
 ## 5. Cross-Domain & Event Behavior
 
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-I-158-BH-008 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Examination ownership. | L3-I-158 §14 |
+No scenario-specific event or hand-off is derived. No restoration or duplicate-resolution event, state, precedence rule, publisher, or owner is invented.
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+Canonical behavior derivation remains blocked until controlled L3 governance establishes one authoritative scenario meaning.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve the locked title, conflicting parent sections, this blocker disposition, and the eventual governed resolution as architecture traceability evidence.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Examination ownership, attributable audit evidence preserved, and canonical business events published.
+This Draft blocker is complete when the contradiction is explicitly recorded without selecting a semantic interpretation. Canonical L4 completion requires a governed upstream resolution.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-I-158 — Completion Evidence Resolution to Restored Valid Evidence  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Conflict anchors:** L3-I-158 title/Scenario ID; §§2–16 duplicate-evidence semantics  
+**Higher-level verification:** L2-I13 completion-evidence ownership and lifecycle governance
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+**BLOCKED BY UPSTREAM:** Resolve whether L3-I-158 is the evidence-restoration scenario named by its title or the duplicate-evidence-resolution scenario described by its body.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification intentionally remains Draft and blocked by upstream parent inconsistency. It is not eligible for Architecture Approval until the parent is governed and behavior is re-derived.
