@@ -6,66 +6,57 @@
 **Architecture Level:** L4 — System Behavior Specification  
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-160 — Completion Evidence Identity Mismatch to Correct Candidate Association  
-**Primary Business Owner:** Examination  
-**Version:** 1.0.0  
+**Primary Business Owner:** Academic Completion & Completion Evidence  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-160; applicable locked I architecture sources  
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-160; L2-I13 Academic Completion, CGPA & Completion Evidence; L2-C05 Qualification Completion & Student Exit  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Resolve an identity mismatch affecting completion evidence so the evidence is associated only with the authoritative candidate context. Start: completion evidence cannot be reliably associated with the intended candidate. End: the evidence is either correctly associated with the authoritative candidate or remains governed and blocked pending resolution. Out of scope: changing identity master data locally, redefining Student Lifecycle identity ownership, or prescribing technical matching algorithms.
+Canonical L4 behavioral derivation is blocked because the Locked L3 parent is internally contradictory. The locked title identifies a completion-evidence identity mismatch to correct candidate association, while L3-I-160 §§2–16 describe pre-release correction of a completion-evidence discrepancy.
+
+L4 shall not select either interpretation or silently repair the parent from adjacent scenarios or L2.
 
 ## 3. Required Business Context
 
-- Completion evidence is identifiable.
-- One or more candidate identity associations are inconsistent or ambiguous.
-- Student Lifecycle provides the authoritative candidate context.
-- Evidence source relationships are traceable.
+- L3-I-160 remains the canonical Locked parent and its title/identity are preserved.
+- The parent title describes candidate-association correction.
+- The parent body describes pre-release evidence correction.
+- These outcomes require different source facts and governance paths and cannot be treated as interchangeable at L4.
 
 ## 4. System Behavioral Obligations
 
-| Behavior ID | Required System Behavior | Provenance |
-|---|---|---|
-| L4-I-160-BH-001 | The system shall identify the completion evidence and conflicting identity associations. | L3-I-160 §§3, 9, 12 |
-| L4-I-160-BH-002 | The system shall retrieve the authoritative candidate context from Student Lifecycle. | L3-I-160 §§3, 9, 12 |
-| L4-I-160-BH-003 | The system shall determine whether the evidence can be reliably associated with that candidate. | L3-I-160 §§3, 9, 12 |
-| L4-I-160-BH-004 | The system shall correct the completion-evidence association only within the evidence-owning boundary. | L3-I-160 §§3, 9, 12 |
-| L4-I-160-BH-005 | The system shall prevent ambiguous or incorrect evidence from being treated as authoritative for the candidate. | L3-I-160 §§3, 9, 12 |
-| L4-I-160-BH-006 | The system shall preserve the prior association, mismatch evidence, determination and correction history. | L3-I-160 §§3, 9, 12 |
-| L4-I-160-BH-007 | The system shall re-evaluate downstream completion evidence where the corrected association changes applicability. | L3-I-160 §§3, 9, 12 |
+No scenario-specific behavioral obligations are admitted while the parent semantic contradiction remains unresolved.
 
 ## 5. Cross-Domain & Event Behavior
 
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-I-160-BH-008 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Examination ownership. | L3-I-160 §14 |
+No scenario-specific event or hand-off is derived. No identity-mismatch or evidence-correction event, lifecycle state, matching rule, publisher, or owner is invented.
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+Canonical behavior derivation remains blocked until controlled L3 governance establishes one authoritative scenario meaning.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve the locked title, conflicting parent sections, this blocker disposition, and the eventual governed resolution as architecture traceability evidence.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Examination ownership, attributable audit evidence preserved, and canonical business events published.
+This Draft blocker is complete when the contradiction is explicitly recorded without selecting a semantic interpretation. Canonical L4 completion requires governed upstream resolution.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-I-160 — Completion Evidence Identity Mismatch to Correct Candidate Association  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Conflict anchors:** L3-I-160 title/Scenario ID; §§2–16 pre-release evidence-correction semantics  
+**Higher-level verification:** L2-I13 completion-evidence ownership; Student Lifecycle authority for canonical student context
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+**BLOCKED BY UPSTREAM:** Resolve whether L3-I-160 is the candidate-association scenario named by its title or the pre-release evidence-correction scenario described by its body.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification intentionally remains Draft and blocked by upstream parent inconsistency. It is not eligible for Architecture Approval until the parent is governed and behavior is re-derived.
