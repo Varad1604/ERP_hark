@@ -6,66 +6,67 @@
 **Architecture Level:** L4 — System Behavior Specification  
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-135 — Subsequent Examination Schedule Revision to Authoritative Revised Schedule  
-**Primary Business Owner:** Examination  
-**Version:** 1.0.0  
+**Primary Business Owner:** Supplementary, Backlog & Improvement Examination  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-135; applicable locked I architecture sources  
-**Referenced By:** None yet
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-135; L2-I12; L2-I03; L2-I15 where disruption/contingency applies  
+**Referenced By:** Applicable downstream Examination workflows
 
 ## 2. Behavioral Objective & Boundary
 
-Govern a revision of the schedule associated with a subsequent-examination opportunity and establish the resulting revised schedule as authoritative. The behavior ends at the governed revised-schedule outcome.
+Govern an authorized revision to the Examination Schedule associated with a subsequent-examination opportunity. L2-I12 owns the opportunity and identifies the scheduling consequence; L2-I03 owns the schedule and revision lifecycle; L2-I15 owns exception/contingency decisions where applicable.
 
 ## 3. Required Business Context
 
-- An authoritative subsequent-examination opportunity exists.
-- A current examination schedule exists.
-- An authorized reason for revision exists.
-- Examination Scheduling remains the canonical schedule owner.
+- Current subsequent-examination opportunity and schedule are authoritative.
+- The revision reason and affected scope are authorized.
+- Academic/resource impacts are available from canonical owners.
+- L2-I03 revision, conflict-validation, approval and publication governance applies.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-I-135-BH-001 | The system shall identify the affected opportunity and current schedule. | L3-I-135 §§3, 9, 12 |
-| L4-I-135-BH-002 | The system shall establish the authoritative reason and scope for revision. | L3-I-135 §§3, 9, 12 |
-| L4-I-135-BH-003 | The system shall submit the revision requirement to the schedule-owning capability. | L3-I-135 §§3, 9, 12 |
-| L4-I-135-BH-004 | The system shall evaluate resulting schedule validity against the opportunity and academic context. | L3-I-135 §§3, 9, 12 |
-| L4-I-135-BH-005 | The system shall require applicable approval before the revised schedule becomes authoritative. | L3-I-135 §§3, 9, 12 |
-| L4-I-135-BH-006 | The system shall preserve the superseded schedule and revision rationale. | L3-I-135 §§3, 9, 12 |
-| L4-I-135-BH-007 | The system shall associate the approved revised schedule with the subsequent-examination opportunity. | L3-I-135 §§3, 9, 12 |
+| L4-I-135-BH-001 | Identify the affected opportunity, current schedule and authorized revision basis. | L3-I-135 §§3,7–9 |
+| L4-I-135-BH-002 | Assess candidate, academic, venue/resource and downstream impacts without changing their source ownership. | L3-I-135 §§5,9,12 |
+| L4-I-135-BH-003 | Route the revision requirement to L2-I03 and require conflict validation, review and approval. | L3-I-135 §§5,9,12,15 |
+| L4-I-135-BH-004 | Treat the revised schedule as authoritative only after L2-I03 publishes the approved successor. | L3-I-135 §§3,9,12–13,16 |
+| L4-I-135-BH-005 | Preserve the superseded schedule and revision rationale as historical evidence. | L3-I-135 §§3,9,12,16 |
+| L4-I-135-BH-006 | Prevent schedule revision from directly changing Registration, Hall Ticket, conduct, marks or results. | L3-I-135 §§4,12 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-I-135-BH-008 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Examination ownership. | L3-I-135 §14 |
+| L4-I-135-BH-007 | L2-I03 shall publish the applicable canonical schedule events, including `Schedule Revised` and `Schedule Published` when those milestones occur. L2-I12 retains its own `Examination Scheduled` lifecycle fact; L2-I15 retains its own contingency facts where applicable. | L3-I-135 §14 |
+| L4-I-135-BH-008 | The revised schedule shall become the authoritative business input for affected downstream workflows without transferring schedule ownership. | L3-I-135 §§14,16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- If the revised schedule cannot be approved, the current authoritative schedule remains in force until superseded or otherwise governed.
+- If no viable replacement can be established, the applicable contingency process determines the next outcome.
+- An unapproved exception decision shall not change the schedule.
+- No new `Rescheduled` state or scenario-specific event is introduced.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve the revision trigger, affected schedule, impact assessment, conflict resolution, approval, successor schedule, superseded schedule and relevant contingency basis.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Examination ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when L2-I03 has approved and published the revised schedule, the superseded schedule remains traceable, the opportunity references the authoritative successor schedule, and applicable canonical events are published.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-I-135 — Subsequent Examination Schedule Revision to Authoritative Revised Schedule  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Primary verification sources:** L2-I03, L2-I12, and L2-I15 where applicable.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+No dedicated subsequent-examination schedule-revision event is defined by the parent; none is invented. Technical scheduling, API, persistence, UI, transport and infrastructure concerns remain outside L4.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification preserves schedule ownership with L2-I03 and subsequent-examination administration with L2-I12.
