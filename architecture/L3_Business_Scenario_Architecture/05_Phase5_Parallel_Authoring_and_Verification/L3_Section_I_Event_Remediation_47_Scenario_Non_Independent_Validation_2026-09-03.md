@@ -1,78 +1,36 @@
-# L3 Section I Event Remediation — 47-Scenario Non-Independent Validation — 2026-09-03
+# SUPERSEDED — L3 Section I Event Remediation — 47-Scenario Non-Independent Validation — 2026-09-03
 
-**Review Type:** Technical validation by remediation stream; **not independent Architecture Approval**  
-**Branch:** `tmp-pallav-l3-i-47-review`  
-**Population:** 47 parents from the independent-review handoff  
-**Explicit Exclusion:** `L3-I-131`  
-**Architecture Approval Granted:** **No**
+**Status:** Superseded  
+**Superseded On:** 2026-09-03  
+**Original Review Type:** Technical validation by remediation stream; not independent Architecture Approval  
+**Original Branch:** `tmp-pallav-l3-i-47-review`  
 
-## 1. Validation Purpose
+## Reason for Supersession
 
-Validate the strengthened amendment with a stricter event-direction check: a retained event must occur in the same Published/Consumed direction in its cited Locked L2 source. This report does not replace the required independent reviewer.
+This validation record was created against an earlier amendment state and reported direction failures for:
 
-## 2. Per-Scenario Direction Result
+- `L3-I-046` — `Candidate Information Updated`;
+- `L3-I-075` — `Examination Policy Updated`;
+- `L3-I-078` — `Practical Examination Completed` and `Theory Examination Completed`.
 
-| Scenario | L2 Source | Direction Check |
-|---|---|---|
-| L3-I-005 | L2-I02 | **PASS** |
-| L3-I-006 | L2-I02 | **PASS** |
-| L3-I-008 | L2-I03 | **PASS** |
-| L3-I-009 | L2-I03 | **PASS** |
-| L3-I-010 | L2-I03 | **PASS** |
-| L3-I-011 | L2-I03 | **PASS** |
-| L3-I-012 | L2-I03 | **PASS** |
-| L3-I-013 | L2-I03 | **PASS** |
-| L3-I-014 | L2-I03 | **PASS** |
-| L3-I-015 | L2-I03 | **PASS** |
-| L3-I-016 | L2-I03 | **PASS** |
-| L3-I-043 | L2-I06 | **PASS** |
-| L3-I-044 | L2-I06 | **PASS** |
-| L3-I-045 | L2-I06 | **PASS** |
-| L3-I-046 | L2-I06 | **RETURN FOR CORRECTION** |
-| L3-I-047 | L2-I06 | **PASS** |
-| L3-I-048 | L2-I06 | **PASS** |
-| L3-I-049 | L2-I06 | **PASS** |
-| L3-I-050 | L2-I06 | **PASS** |
-| L3-I-051 | L2-I06 | **PASS** |
-| L3-I-052 | L2-I06 | **PASS** |
-| L3-I-053 | L2-I06 | **PASS** |
-| L3-I-054 | L2-I06 | **PASS** |
-| L3-I-072 | L2-I08 | **PASS** |
-| L3-I-073 | L2-I08 | **PASS** |
-| L3-I-074 | L2-I08 | **PASS** |
-| L3-I-075 | L2-I08 | **RETURN FOR CORRECTION** |
-| L3-I-076 | L2-I08 | **PASS** |
-| L3-I-077 | L2-I08 | **PASS** |
-| L3-I-078 | L2-I08 | **RETURN FOR CORRECTION** |
-| L3-I-079 | L2-I08 | **PASS** |
-| L3-I-080 | L2-I08 | **PASS** |
-| L3-I-081 | L2-I08 | **PASS** |
-| L3-I-082 | L2-I08 | **PASS** |
-| L3-I-119 | L2-I11 | **PASS** |
-| L3-I-120 | L2-I11 | **PASS** |
-| L3-I-121 | L2-I11 | **PASS** |
-| L3-I-122 | L2-I11 | **PASS** |
-| L3-I-123 | L2-I11 | **PASS** |
-| L3-I-124 | L2-I11 | **PASS** |
-| L3-I-125 | L2-I11 | **PASS** |
-| L3-I-126 | L2-I11 | **PASS** |
-| L3-I-127 | L2-I11 | **PASS** |
-| L3-I-128 | L2-I11 | **PASS** |
-| L3-I-129 | L2-I11 | **PASS** |
-| L3-I-130 | L2-I11 | **PASS** |
-| L3-I-132 | L2-I11 | **PASS** |
+Those direction defects were corrected before the current v2 amendment baseline:
 
-## 3. Material Direction Findings
+- `Candidate Information Updated` is retained only as **Consumed** by L2-I06;
+- `Examination Policy Updated` is retained only as **Consumed** by L2-I08;
+- `Practical Examination Completed` and `Theory Examination Completed` are retained only as **Consumed** by L2-I08.
 
-- `L3-I-046` — Published row `Candidate Information Updated` is canonical only as Consumed in L2-I06.
-- `L3-I-075` — Published row `Examination Policy Updated` is canonical only as Consumed in L2-I08.
-- `L3-I-078` — Published row `Practical Examination Completed` is canonical only as Consumed in L2-I08.
-- `L3-I-078` — Published row `Theory Examination Completed` is canonical only as Consumed in L2-I08.
+Subsequent independent review also identified broader governance corrections not represented in this report:
 
-## 4. Governance Result
+- the active event-only successor population is **42**, not 47;
+- `L3-I-120`, `L3-I-121`, `L3-I-124`, `L3-I-126`, `L3-I-131`, and `L3-I-132` are upstream-blocked;
+- `L3-I-119`, `L3-I-122`, `L3-I-123`, `L3-I-125`, and `L3-I-127` require exact canonical L2-I11 event restoration, now recorded in the v2 amendment.
 
-- Direction-pass population: **44 / 47**.
-- Direction-return population: **3 / 47**.
-- `L3-I-131` remains excluded and upstream-blocked.
-- This report grants no Architecture Approval and no Lock.
-- The independent reviewer must still execute the handoff against current files and record the governed decision.
+## Active Governance Sources
+
+Use the following documents for current review:
+
+1. `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_v2_2026-09-03.md`
+2. `Section_I_L3_Upstream_Disposition_Register_6_Blocked_Parents_2026-09-03.md`
+3. `L3_Independent_Architecture_Approval_Review_Handoff_Section_I_Event_Remediation_42_Scenarios_v2_2026-09-03.md`
+
+This superseded validation report grants no Architecture Approval, successor Lock, or L4 eligibility.
