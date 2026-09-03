@@ -1,81 +1,69 @@
-# L4-I-040 — Approved Special Arrangement to Valid Hall Ticket
+# Approved Special Arrangement to Valid Hall Ticket
 
-**Architecture Level:** L4 — Implementation Architecture  
-**Parent Scenario:** `L3-I-040` — Approved Special Arrangement to Valid Hall Ticket  
-**Canonical Owner:** Hall Ticket Management  
-**Governing L2:** `L2-I05` — Hall Ticket Management Workflows  
-**Status:** Draft for governed L4 authoring
+## 1. Specification Metadata
 
-## 1. Purpose
+**Specification ID:** L4-I-040  
+**Architecture Level:** L4 — System Behavior Specification  
+**Domain:** Examination  
+**Realizes Scenario:** L3-I-040 — Approved Special Arrangement to Valid Hall Ticket  
+**Primary Business Owner:** Hall Ticket Management  
+**Version:** 1.0.1  
+**Status:** Draft  
+**Owner:** Varad  
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-040; L2-I05 Hall Ticket Management; L2-I04 Examination Registration; authoritative source of approved special arrangement  
+**Referenced By:** Examination-entry and conduct workflows
 
-Define implementation-independent behaviour for reflecting an already approved, authoritative special examination arrangement in a valid Hall Ticket without transferring ownership of the arrangement, Examination Registration, or Hall Ticket lifecycle.
+## 2. Behavioral Objective & Boundary
 
-## 2. Required Behaviour
+Reflect an already approved, authoritative special examination arrangement in a valid Hall Ticket where the arrangement affects examination-entry information. The arrangement's canonical owner remains authoritative; Hall Ticket Management owns only the Hall Ticket consequence.
 
-The system shall:
+## 3. Required Business Context
 
-1. establish the candidate's valid Examination Registration and examination context;
-2. consume the authoritative approved special arrangement from its canonical source;
-3. establish applicability of the arrangement to the examination context;
-4. validate normal Hall Ticket prerequisites;
-5. incorporate the approved business outcome into Hall Ticket processing where it affects examination-entry information;
-6. complete required review;
-7. publish, reissue or replace the Hall Ticket using existing L2-I05 lifecycle behaviour;
-8. preserve traceability from the Hall Ticket outcome to the approved arrangement.
+- Valid Examination Registration and examination context.
+- Authoritative approved special arrangement and applicable scope.
+- Active session and Published schedule where required by I05.
+- Existing Hall Ticket lifecycle position and required review context.
 
-## 3. Ownership Constraints
+## 4. System Behavioral Obligations
 
-Hall Ticket Management owns Hall Ticket generation, publication and examination-entry authorization. The domain owning the special arrangement remains authoritative for that arrangement. Examination Registration remains I04-owned.
+| Behavior ID | Required System Behavior | Provenance |
+|---|---|---|
+| L4-I-040-BH-001 | Identify the candidate, valid Examination Registration, and applicable examination context. | L3-I-040 §§7–9 |
+| L4-I-040-BH-002 | Consume and verify the approved special arrangement from its canonical source and establish applicability. | L3-I-040 §§5,7–9,12 |
+| L4-I-040-BH-003 | Validate normal I05 Hall Ticket prerequisites without treating the arrangement as ownership of registration or Hall Ticket lifecycle. | L3-I-040 §§9,11–12 |
+| L4-I-040-BH-004 | Incorporate the approved arrangement into Hall Ticket examination-entry information where required. | L3-I-040 §§3,9,12 |
+| L4-I-040-BH-005 | Use existing I05 generation, review, publication, reissue, or replacement behavior according to the Hall Ticket's actual lifecycle position. | L3-I-040 §§9–13 |
+| L4-I-040-BH-006 | Preserve the arrangement-to-Hall-Ticket relationship and approval evidence. | L3-I-040 §§9,15–16 |
 
-L4 must not create a new special-arrangement aggregate or lifecycle merely to support this scenario.
+## 5. Cross-Domain & Event Behavior
 
-## 4. Decision Behaviour
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-I-040-BH-007 | Hall Ticket Management shall publish only the existing I05 lifecycle event corresponding to the actual transition, including `Hall Ticket Generated`, `Hall Ticket Reviewed`, `Hall Ticket Published`, `Hall Ticket Reissued`, or `Hall Ticket Replaced` as applicable. No special-arrangement Hall Ticket event is invented. | L3-I-040 §§14,16; L2-I05 |
+| L4-I-040-BH-008 | The approved arrangement remains owned by its canonical source and Examination Registration remains I04-owned. | L3-I-040 §§5,12,14–16 |
 
-| Business Position | Required Behaviour |
-|---|---|
-| Arrangement is authoritative, approved and applicable | Reflect it in Hall Ticket processing where required. |
-| Arrangement is not approved/authoritative | Do not rely on it for Hall Ticket authorization. |
-| Arrangement cannot be associated unambiguously | Do not apply it until the owning business process resolves the association. |
-| Hall Ticket not yet generated | Incorporate the arrangement during normal generation. |
-| Hall Ticket already published and must change | Use the existing reissue/replacement lifecycle. |
-| Arrangement does not affect entry authorization information | Preserve the valid Hall Ticket; do not create an unnecessary lifecycle transition. |
+## 6. Failure / Rejection / Continuation
 
-## 5. Lifecycle and Event Constraints
+An unapproved or non-authoritative arrangement shall not affect Hall Ticket authorization. An ambiguous arrangement-to-candidate/context relationship must be resolved by the owning process. If the Hall Ticket is already Published and must change, use the existing reissue/replacement path. If the arrangement does not affect Hall Ticket information, no unnecessary lifecycle transition is introduced.
 
-No new `Special Arrangement` Hall Ticket state or dedicated special-arrangement Hall Ticket event is introduced. Existing L2-I05 events such as Hall Ticket Generated, Reviewed, Published, Reissued and Replaced remain canonical.
+## 7. Audit & Evidence Behavior
 
-## 6. Cross-Domain Behaviour
+Preserve the approved arrangement, source owner, applicability decision, affected Hall Ticket, review/approval, I05 lifecycle transition, resulting valid Hall Ticket, and historical relationship.
 
-The arrangement is consumed as an authoritative business input from its owning process/domain. The interaction mechanism remains technology-neutral. No API, message, schema or technical contract is defined at this level.
+## 8. Observable Completion Conditions
 
-## 7. Audit Behaviour
+Completion occurs when the applicable approved arrangement is accurately reflected in the valid Hall Ticket where required, existing I05 lifecycle events have been published for actual transitions, upstream ownership is preserved, and the result is auditable.
 
-The resulting architecture shall retain evidence of:
+## 9. Traceability & Provenance
 
-- the authoritative approved arrangement;
-- its applicability to the candidate/examination context;
-- the Hall Ticket affected;
-- the review and lifecycle transition applied;
-- the resulting valid Hall Ticket position.
+**Parent:** L3-I-040 — Approved Special Arrangement to Valid Hall Ticket  
+**Primary verification source:** L2-I05 — Hall Ticket Management Workflows.
 
-## 8. Recovery and Exceptions
+## 10. Open Issues / Deferred Design
 
-If the arrangement becomes invalid or its authoritative source changes before publication, Hall Ticket processing must use the current authoritative position. If a published Hall Ticket must change, the applicable L2-I05 reissue/replacement path governs.
+The parent does not define a separate canonical special-arrangement lifecycle/event publisher beyond its owning upstream process; none is invented. Precise Hall Ticket content is configurable. Technical formatting, delivery, persistence, APIs, and infrastructure are outside L4.
 
-Technical recovery mechanisms are outside this business-behaviour specification.
+## Canonical Validation Note
 
-## 9. Validation Criteria
-
-Conformance requires that:
-
-1. only authoritative approved arrangements influence Hall Ticket behaviour;
-2. the arrangement's canonical owner is preserved;
-3. Hall Ticket Management remains the sole owner of Hall Ticket authorization;
-4. Examination Registration is not modified;
-5. existing Hall Ticket lifecycle states and events are used;
-6. the arrangement-to-Hall-Ticket relationship is auditable;
-7. no implementation-specific technology is prescribed.
-
-## 10. Traceability
-
-`L3-I-040` → `L2-I05`; Examination Registration authority → `L2-I04`; candidate context → Student Lifecycle / applicable upstream canonical owner.
+This specification is a canonical L4 System Behavior Specification and is not self-locked.

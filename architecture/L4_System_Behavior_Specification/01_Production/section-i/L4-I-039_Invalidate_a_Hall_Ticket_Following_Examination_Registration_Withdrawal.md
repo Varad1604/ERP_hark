@@ -1,95 +1,68 @@
-# L4-I-039 — Invalidate a Hall Ticket Following Examination Registration Withdrawal
+# Invalidate a Hall Ticket Following Examination Registration Withdrawal
 
-**Architecture Level:** L4 — Implementation Architecture  
-**Parent Scenario:** `L3-I-039` — Invalidate a Hall Ticket Following Examination Registration Withdrawal  
-**Canonical Owner:** Hall Ticket Management  
-**Governing L2:** `L2-I05` — Hall Ticket Management Workflows  
-**Related L2:** `L2-I04` — Examination Registration Workflows  
-**Status:** Draft for governed L4 authoring
+## 1. Specification Metadata
 
-## 1. Purpose
+**Specification ID:** L4-I-039  
+**Architecture Level:** L4 — System Behavior Specification  
+**Domain:** Examination  
+**Realizes Scenario:** L3-I-039 — Invalidate a Hall Ticket Following Examination Registration Withdrawal  
+**Primary Business Owner:** Hall Ticket Management  
+**Version:** 1.0.1  
+**Status:** Draft  
+**Owner:** Varad  
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-039; L2-I05 Hall Ticket Management; L2-I04 Examination Registration  
+**Referenced By:** Examination conduct workflows consuming Hall Ticket validity
 
-Define implementation-independent behaviour for removing Hall Ticket examination-entry authorization when the authoritative Examination Registration has been withdrawn.
+## 2. Behavioral Objective & Boundary
 
-## 2. Required Behaviour
+Remove Hall Ticket examination-entry authorization after the underlying Examination Registration has been authoritatively withdrawn, while preserving separate ownership of registration withdrawal and Hall Ticket validity. “Invalidate” is an outcome, not a new Hall Ticket state.
 
-The system shall:
+## 3. Required Business Context
 
-1. consume the authoritative `Registration Withdrawn` business fact from Examination Registration;
-2. identify the Hall Ticket associated with the withdrawn registration;
-3. determine the Hall Ticket's current business position;
-4. apply the existing L2-I05 withdrawal or cancellation lifecycle as appropriate;
-5. remove examination-entry authorization from the affected Hall Ticket;
-6. preserve the registration-to-Hall-Ticket historical relationship;
-7. publish the applicable canonical Hall Ticket lifecycle event;
-8. ensure downstream examination conduct cannot treat the affected Hall Ticket as valid authorization.
+- Authoritative Examination Registration and associated Hall Ticket.
+- Canonical `Registration Withdrawn` fact from I04.
+- Current I05 Hall Ticket lifecycle position.
+- Applicable Hall Ticket withdrawal/cancellation authority.
 
-## 3. Ownership
+## 4. System Behavioral Obligations
 
-Examination Registration owns the registration withdrawal decision. Hall Ticket Management owns the Hall Ticket consequence and entry authorization. Neither domain may assume the other's aggregate ownership.
+| Behavior ID | Required System Behavior | Provenance |
+|---|---|---|
+| L4-I-039-BH-001 | Consume the authoritative `Registration Withdrawn` fact from Examination Registration. | L3-I-039 §§8–9,12,14 |
+| L4-I-039-BH-002 | Identify the Hall Ticket associated with the withdrawn registration and establish its current lifecycle position. | L3-I-039 §§7,9 |
+| L4-I-039-BH-003 | Apply the existing I05 Hall Ticket Withdrawal or Cancellation path as governed by the current business position. | L3-I-039 §§9,12–13 |
+| L4-I-039-BH-004 | Remove examination-entry authorization without modifying the I04 registration lifecycle. | L3-I-039 §§3,5,12–13 |
+| L4-I-039-BH-005 | Preserve the causal and historical relationship between registration withdrawal and the Hall Ticket consequence. | L3-I-039 §§9,15–16 |
 
-Student Lifecycle remains authoritative for candidate context where required.
+## 5. Cross-Domain & Event Behavior
 
-## 4. Business Decision Rules
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-I-039-BH-006 | The canonical sequence is `Registration Withdrawn` published by Examination Registration, followed by `Hall Ticket Withdrawn` or `Hall Ticket Cancelled` published by Hall Ticket Management according to the applicable I05 lifecycle path. No new invalidation event is introduced. | L3-I-039 §§14,16; L2-I04; L2-I05 |
+| L4-I-039-BH-007 | Downstream examination conduct shall consume the resulting Hall Ticket validity and shall not treat a Withdrawn or Cancelled Hall Ticket as valid entry authorization. | L3-I-039 §§3,14,16 |
 
-| Condition | Behaviour |
-|---|---|
-| Authoritative registration withdrawal established | Identify and process the affected Hall Ticket. |
-| Withdrawal cannot be established | Do not invalidate based on an unconfirmed fact. |
-| Hall Ticket already Withdrawn | Preserve the existing position and history; do not create a duplicate outcome. |
-| Hall Ticket already Cancelled | Preserve the existing terminal business position. |
-| Multiple historical versions exist | Apply the consequence to the currently authoritative operational Hall Ticket while preserving history. |
-| Withdrawal affects a completed historical context | Preserve history and apply only the L2-I05-permitted lifecycle consequence. |
+## 6. Failure / Rejection / Continuation
 
-## 5. Lifecycle Constraints
+An unconfirmed registration-withdrawal fact shall not trigger Hall Ticket invalidation. If the Hall Ticket relationship cannot be established, the business relationship must be resolved before validity is changed. Already Withdrawn/Cancelled Hall Tickets retain their existing position without duplicate transition. Historical completed contexts remain governed by I05.
 
-The design shall use existing Hall Ticket states and transitions. It must not introduce an `Invalidated` state merely to represent this scenario outcome.
+## 7. Audit & Evidence Behavior
 
-The registration itself remains in the state established by L2-I04; Hall Ticket invalidation must not mutate the registration lifecycle.
+Preserve the I04 withdrawal fact, affected Hall Ticket, prior I05 position, applicable authority, resulting withdrawal/cancellation position, published event, and loss of entry authorization.
 
-## 6. Event Behaviour
+## 8. Observable Completion Conditions
 
-The canonical business sequence is:
+Completion occurs when the withdrawn registration remains I04-owned, its affected Hall Ticket is Withdrawn or Cancelled under I05 as applicable, the canonical Hall Ticket event is published, entry authorization is removed, and the complete causal chain is traceable.
 
-1. Examination Registration publishes `Registration Withdrawn`.
-2. Hall Ticket Management applies the appropriate existing Hall Ticket withdrawal/cancellation transition.
-3. Hall Ticket Management publishes the corresponding canonical Hall Ticket lifecycle event.
+## 9. Traceability & Provenance
 
-No new cross-domain event is created.
+**Parent:** L3-I-039 — Invalidate a Hall Ticket Following Examination Registration Withdrawal  
+**Primary verification sources:** L2-I04 Examination Registration; L2-I05 Hall Ticket Management.
 
-## 7. Audit and Traceability
+## 10. Open Issues / Deferred Design
 
-The implementation architecture shall preserve evidence linking:
+I05 permits Withdrawal and Cancellation as governed lifecycle consequences; this specification does not collapse them into an `Invalidated` state. Technical event delivery, retry, persistence, and integration mechanisms remain outside L4.
 
-- the authoritative registration withdrawal;
-- the affected Hall Ticket;
-- the lifecycle position before invalidation;
-- the resulting Hall Ticket lifecycle position;
-- the business authority for the transition;
-- the resulting loss of examination-entry authorization.
+## Canonical Validation Note
 
-## 8. Cross-Domain Interaction
-
-The interaction mechanism remains technology-neutral. The architecture shall support authoritative consumption of the Examination Registration withdrawal fact without prescribing API or messaging technology.
-
-## 9. Recovery Behaviour
-
-If the affected Hall Ticket cannot be safely identified, the business relationship must be resolved under the canonical Examination/Hall Ticket workflows before authorization is changed. If a competing administrative decision exists, existing examination governance determines the authoritative outcome.
-
-No technical retry, queue, rollback, storage or infrastructure design is introduced.
-
-## 10. Validation Criteria
-
-Conformance requires that:
-
-1. an authoritative registration withdrawal causes the governed Hall Ticket consequence;
-2. Hall Ticket Management remains the owner of Hall Ticket validity;
-3. Examination Registration remains owner of registration withdrawal;
-4. no new lifecycle state or event is invented;
-5. downstream conduct cannot consume the withdrawn/cancelled Hall Ticket as valid;
-6. the causal chain remains auditable;
-7. the design remains implementation-independent.
-
-## 11. Traceability
-
-`L3-I-039` → `L2-I05`; registration trigger and source authority → `L2-I04`; candidate context → Student Lifecycle authority where applicable.
+This specification is a canonical L4 System Behavior Specification and is not self-locked.
