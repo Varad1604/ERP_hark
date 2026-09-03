@@ -7,65 +7,56 @@
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-149 — Duplicate Completion Evaluation to Single Authoritative Evaluation  
 **Primary Business Owner:** Academic Completion & Completion Evidence  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-149; applicable locked I architecture sources  
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-149; L2-I13 Academic Completion, CGPA & Completion Evidence; L2-C05 Qualification Completion & Student Exit  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Govern identification and resolution of duplicate completion evaluations so one authoritative evaluation remains while all superseded evidence remains traceable.
+Canonical L4 behavioral derivation is blocked because the Locked L3 parent is internally contradictory. The locked title and scenario identity define **Duplicate Completion Evaluation to Single Authoritative Evaluation**, while L3-I-149 §§2–16 describe a revised examination result being consumed to re-evaluate completion eligibility and qualification position.
+
+L4 shall not select either interpretation or silently repair the Locked parent from L2.
 
 ## 3. Required Business Context
 
-- Completion-evaluation context is identifiable.
-- Candidate/student context is authoritative.
-- Potential duplicate evaluations are attributable to their source and basis.
-- Academic Completion & Completion Evidence owns the evaluation outcome within its scope.
+- L3-I-149 remains the canonical Locked parent and its title/identity are preserved.
+- The parent body describes revised-result re-evaluation rather than duplicate-evaluation resolution.
+- L2-I13 owns examination-derived completion evidence; L2-C05 alone owns institutional Qualification Completion and qualification consequences.
+- Upstream change governance is required before scenario-specific behavior can be derived safely.
 
 ## 4. System Behavioral Obligations
 
-| Behavior ID | Required System Behavior | Provenance |
-|---|---|---|
-| L4-I-149-BH-001 | The system shall identify potentially duplicate completion evaluations. | L3-I-149 §§3, 9, 12 |
-| L4-I-149-BH-002 | The system shall compare their student, programme, completion-context, source, timing, and evaluation basis. | L3-I-149 §§3, 9, 12 |
-| L4-I-149-BH-003 | The system shall determine the authoritative evaluation using governing rules and authority. | L3-I-149 §§3, 9, 12 |
-| L4-I-149-BH-004 | The system shall supersede duplicate evaluations without silently deleting historical evidence. | L3-I-149 §§3, 9, 12 |
-| L4-I-149-BH-005 | The system shall establish one current authoritative completion evaluation. | L3-I-149 §§3, 9, 12 |
-| L4-I-149-BH-006 | The system shall preserve the duplicate-resolution rationale and source history. | L3-I-149 §§3, 9, 12 |
-| L4-I-149-BH-007 | The system shall prevent superseded evaluations from being treated as current authoritative evidence. | L3-I-149 §§3, 9, 12 |
+No scenario-specific behavioral obligations are admitted while the parent title/body contradiction remains unresolved. Deriving duplicate-resolution behavior from the title or revised-result behavior from the body would constitute silent upstream repair.
 
 ## 5. Cross-Domain & Event Behavior
 
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-I-149-BH-008 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Academic Completion & Completion Evidence ownership. | L3-I-149 §14 |
+No scenario-specific event or hand-off is derived while the parent semantic boundary is unresolved. No new event, publisher, contract, state, lifecycle, rule, or owner is introduced.
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+Canonical behavior derivation remains blocked until L3 governance resolves the semantic contradiction and establishes one authoritative scenario meaning. Unaffected L4 specifications remain independent of this blocker.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve the parent identity, locked title, conflicting parent sections, this L4 blocker disposition, and the eventual governed upstream resolution as architecture traceability evidence.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Academic Completion & Completion Evidence ownership, attributable audit evidence preserved, and canonical business events published.
+This Draft blocker is complete when the contradiction is explicitly recorded without choosing a semantic interpretation. Canonical L4 behavioral completion is not achievable until the Locked L3 parent is resolved through controlled change governance.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-I-149 — Duplicate Completion Evaluation to Single Authoritative Evaluation  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Conflict anchors:** L3-I-149 title and Scenario ID; §§2–16 revised-result/re-evaluation semantics; §17 deferred event constraints  
+**Higher-level verification:** L2-I13 ownership resolution; L2-C05 Qualification Completion ownership
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+**BLOCKED BY UPSTREAM:** Resolve whether L3-I-149 is the duplicate-completion-evaluation scenario identified by its locked title or the revised-result completion-re-evaluation scenario described by its body. L4 must not resolve this contradiction locally.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification intentionally remains Draft and blocked by upstream parent inconsistency. It is not eligible for Architecture Approval until the parent conflict is governed and the resulting behavior is re-derived.
