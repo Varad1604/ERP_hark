@@ -7,65 +7,63 @@
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-147 — Conflicting Completion Inputs to Valid Completion Basis  
 **Primary Business Owner:** Academic Completion & Completion Evidence  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-147; applicable locked I architecture sources  
-**Referenced By:** None yet
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-147; applicable Academic Completion & Completion Evidence architecture; authoritative Student Lifecycle, Academic Delivery and Examination source workflows  
+**Referenced By:** Downstream completion evaluation/evidence workflows
 
 ## 2. Behavioral Objective & Boundary
 
-Govern resolution of conflicting completion inputs so that a valid authoritative completion-evidence basis is established without altering source-owned academic facts.
+Govern conflicting completion inputs so that one valid completion basis is assembled only from authoritative current source facts. The completion owner coordinates the outcome but does not arbitrate or transfer ownership of Student Lifecycle, Academic Delivery or Examination facts.
 
 ## 3. Required Business Context
 
-- Student/programme context is authoritative.
-- Academic Delivery and Examination source outcomes are identifiable.
-- Applicable completion-evidence rules are available.
-- Canonical ownership of each source input is known.
+- Affected student/programme/completion scope.
+- Materially conflicting source facts and their canonical owners.
+- Applicable completion-evidence rules.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-I-147-BH-001 | The system shall identify the conflicting completion inputs and their source owners. | L3-I-147 §§3, 9, 12 |
-| L4-I-147-BH-002 | The system shall validate provenance and authority of each input. | L3-I-147 §§3, 9, 12 |
-| L4-I-147-BH-003 | The system shall apply the governing completion-evidence rules to determine whether a conflict can be resolved. | L3-I-147 §§3, 9, 12 |
-| L4-I-147-BH-004 | The system shall obtain authoritative clarification where existing rules are insufficient. | L3-I-147 §§3, 9, 12 |
-| L4-I-147-BH-005 | The system shall establish the resulting valid completion basis only when authority is sufficient. | L3-I-147 §§3, 9, 12 |
-| L4-I-147-BH-006 | The system shall preserve conflicting inputs and resolution history. | L3-I-147 §§3, 9, 12 |
-| L4-I-147-BH-007 | The system shall prevent non-authoritative inputs from being treated as current completion evidence. | L3-I-147 §§3, 9, 12 |
+| L4-I-147-BH-001 | Identify each conflicting input, its provenance and canonical owner. | L3-I-147 §§3,7–9 |
+| L4-I-147-BH-002 | Distinguish historical/derived differences from genuinely conflicting current facts. | L3-I-147 §§9–10,12 |
+| L4-I-147-BH-003 | Route source-owned conflicts to their canonical owners rather than applying a local precedence rule. | L3-I-147 §§5,9,11–12 |
+| L4-I-147-BH-004 | Reassemble the completion basis only after authoritative source positions are established. | L3-I-147 §§3,9,12,16 |
+| L4-I-147-BH-005 | Prevent unresolved conflicting mandatory inputs from producing an authoritative completion position. | L3-I-147 §§11–12,16 |
+| L4-I-147-BH-006 | Preserve the conflicting positions, resolution history and resulting completion basis. | L3-I-147 §§3,9,15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-I-147-BH-008 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Academic Completion & Completion Evidence ownership. | L3-I-147 §14 |
+| L4-I-147-BH-007 | Student Lifecycle, Academic Delivery and Examination shall remain publishers of their own authoritative facts. Academic Completion & Completion Evidence shall make the resulting valid completion basis/position available through its authoritative workflow. No `CompletionInputsReconciled` event is introduced because the parent does not establish one. | L3-I-147 §14 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- If no canonical source can resolve a material conflict, completion remains unresolved/blocked under upstream governance.
+- Simultaneously conflicting authoritative facts shall be escalated; no local compromise is invented.
+- A later source correction triggers governed re-evaluation with prior decisions preserved.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve source provenance, conflict classification, owner resolution, decision basis, prior positions and resulting completion basis.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Academic Completion & Completion Evidence ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when every material conflict has an authoritative source resolution, one valid completion basis is assembled, and competing source positions are not treated as current truth.
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-I-147 — Conflicting Completion Inputs to Valid Completion Basis  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Parent:** L3-I-147  
+**Primary verification sources:** Parent §§3,5,9,11–14,16–17 and applicable source/completion workflows.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The parent does not define a local precedence hierarchy or a dedicated completion-input reconciliation event. Exact completion lifecycle labels remain upstream-owned.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification preserves one canonical owner per source fact and prohibits local conflict arbitration.
