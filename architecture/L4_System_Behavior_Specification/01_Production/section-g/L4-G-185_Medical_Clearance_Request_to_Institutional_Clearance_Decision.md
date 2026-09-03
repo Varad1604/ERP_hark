@@ -7,10 +7,10 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-185 — Medical Clearance Request to Institutional Clearance Decision  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
+**Last Updated:** 2026-09-03  
 **Depends On:** L3-G-185; applicable locked G architecture sources  
 **Referenced By:** None yet
 
@@ -45,7 +45,8 @@ SutraERP shall govern a legitimate medical clearance request through subject ide
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-185-BH-010 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-185 §14 |
+| L4-G-185-BH-010 | The authoritative sources do not define a dedicated generic Medical Clearance event. The system shall not invent `MedicalClearanceRequested`, `MedicalClearanceGranted`, or `MedicalClearanceRejected`; if the clearance is represented through an existing G06 aggregate, that aggregate's canonical lifecycle and event vocabulary shall remain authoritative. | L3-G-185 §§14,17 |
+| L4-G-185-BH-011 | C and E remain authoritative for subject identity/workforce context, and H may support permitted downstream communication without acquiring medical ownership. | L3-G-185 §§5,14–16 |
 
 ## 6. Failure / Rejection / Continuation
 
@@ -70,7 +71,7 @@ L4 behavior is complete when: - legitimate request and subject are established; 
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The upstream architecture does not define a dedicated Medical Clearance aggregate, lifecycle, generic event vocabulary, universal decision criteria, or universal downstream disclosure contract. These remain explicit upstream gaps. Technical APIs, persistence, UI, access control and delivery mechanics remain deferred to later architecture levels.
 
 ## Canonical Validation Note
 
