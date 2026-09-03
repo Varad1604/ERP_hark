@@ -6,64 +6,57 @@
 **Architecture Level:** L4 — System Behavior Specification  
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-159 — Duplicate Completion Evidence to Single Authoritative Evidence Position  
-**Primary Business Owner:** Examination  
-**Version:** 1.0.0  
+**Primary Business Owner:** Academic Completion & Completion Evidence  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-159; applicable locked I architecture sources  
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-159; L2-I13 Academic Completion, CGPA & Completion Evidence; L2-C05 Qualification Completion & Student Exit  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Resolve duplicate completion-evidence positions so one valid authoritative evidence position represents the governed completion outcome while historical alternatives remain traceable. Start: multiple evidence positions potentially represent the same completion scope. End: one authoritative evidence position is established and duplicate history is preserved. Out of scope: altering source examination facts, changing qualification ownership, or prescribing technical deduplication.
+Canonical L4 behavioral derivation is blocked because the Locked L3 parent is internally contradictory. The locked title identifies duplicate completion evidence being resolved to a single authoritative evidence position, while L3-I-159 §§2–16 describe correction of completion evidence associated with the wrong or inconsistent candidate identity/context.
+
+L4 shall not select either interpretation or silently repair the parent.
 
 ## 3. Required Business Context
 
-- Candidate/student and completion scope are authoritative.
-- Potential duplicate evidence positions are identifiable.
-- Evidence authority and source relationships are available.
+- L3-I-159 remains the canonical Locked parent and its title/identity are preserved.
+- The parent title describes duplicate-evidence resolution.
+- The parent body describes candidate-association/identity-mismatch correction.
+- These are distinct business outcomes with different required evidence and collaboration behavior.
 
 ## 4. System Behavioral Obligations
 
-| Behavior ID | Required System Behavior | Provenance |
-|---|---|---|
-| L4-I-159-BH-001 | The system shall identify potentially duplicate completion-evidence positions. | L3-I-159 §§3, 9, 12 |
-| L4-I-159-BH-002 | The system shall compare candidate, qualification/completion scope, evidence basis and authority. | L3-I-159 §§3, 9, 12 |
-| L4-I-159-BH-003 | The system shall determine the valid authoritative evidence position under governing rules. | L3-I-159 §§3, 9, 12 |
-| L4-I-159-BH-004 | The system shall prevent duplicate positions from independently representing the same current evidence. | L3-I-159 §§3, 9, 12 |
-| L4-I-159-BH-005 | The system shall preserve superseded/duplicate evidence and the resolution rationale. | L3-I-159 §§3, 9, 12 |
-| L4-I-159-BH-006 | The system shall establish the resulting evidence position as authoritative. | L3-I-159 §§3, 9, 12 |
+No scenario-specific behavioral obligations are admitted while the parent semantic contradiction remains unresolved.
 
 ## 5. Cross-Domain & Event Behavior
 
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-I-159-BH-007 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Examination ownership. | L3-I-159 §14 |
+No scenario-specific event or hand-off is derived. No duplicate-resolution or identity-correction event, state, matching rule, publisher, or owner is invented.
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+Canonical behavior derivation remains blocked until controlled L3 governance establishes one authoritative scenario meaning.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve the locked title, conflicting parent sections, this blocker disposition, and the eventual governed resolution as architecture traceability evidence.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Examination ownership, attributable audit evidence preserved, and canonical business events published.
+This Draft blocker is complete when the contradiction is recorded without selecting a semantic interpretation. Canonical L4 behavioral completion requires the Locked L3 parent to be resolved first.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-I-159 — Duplicate Completion Evidence to Single Authoritative Evidence Position  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Conflict anchors:** L3-I-159 title/Scenario ID; §§2–16 candidate-association mismatch semantics  
+**Higher-level verification:** L2-I13 completion-evidence ownership; Student Lifecycle authority for canonical student context
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+**BLOCKED BY UPSTREAM:** Resolve whether L3-I-159 is the duplicate-evidence scenario named by its title or the candidate-association correction scenario described by its body.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification intentionally remains Draft and blocked by upstream parent inconsistency. It is not eligible for Architecture Approval until the parent is governed and behavior is re-derived.
