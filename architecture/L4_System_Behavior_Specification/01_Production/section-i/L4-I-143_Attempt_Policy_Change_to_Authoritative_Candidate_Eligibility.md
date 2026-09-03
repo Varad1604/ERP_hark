@@ -7,66 +7,63 @@
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-143 — Attempt Policy Change to Authoritative Candidate Eligibility  
 **Primary Business Owner:** Supplementary, Backlog & Improvement Examination  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-143; applicable locked I architecture sources  
-**Referenced By:** None yet
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-143; L2-I01; L2-I12; authoritative Student Lifecycle context  
+**Referenced By:** Affected subsequent-examination workflows
 
 ## 2. Behavioral Objective & Boundary
 
-Govern re-evaluation of candidate examination eligibility when an authoritative attempt policy change affects the permitted attempt position. Out of scope: defining examination policy, changing Student Lifecycle ownership, altering historical attempts, or prescribing technical implementation.
+Re-evaluate current candidate eligibility when an authoritative I01 attempt-policy change becomes effective. I01 owns policy and effective scope; I12 owns subsequent-examination eligibility/attempt administration; Student Lifecycle owns student academic context.
 
 ## 3. Required Business Context
 
-- Candidate identity and examination context are authoritative.
-- Existing attempt history is available.
-- The policy change is authorised and applicable.
-- Student Lifecycle remains owner of student-status consequences.
-- Examination owns examination eligibility within its scope.
+- Authoritative effective policy change and scope.
+- Affected candidate population and examination scopes.
+- Preserved prior attempt and eligibility history.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-I-143-BH-001 | The system shall identify candidates and examination contexts affected by the policy change. | L3-I-143 §§3, 9, 12 |
-| L4-I-143-BH-002 | The system shall establish the authoritative policy version and effective applicability. | L3-I-143 §§3, 9, 12 |
-| L4-I-143-BH-003 | The system shall re-evaluate existing attempt history against the changed policy. | L3-I-143 §§3, 9, 12 |
-| L4-I-143-BH-004 | The system shall determine the resulting candidate examination-eligibility position. | L3-I-143 §§3, 9, 12 |
-| L4-I-143-BH-005 | The system shall preserve the prior eligibility basis and the policy-change rationale. | L3-I-143 §§3, 9, 12 |
-| L4-I-143-BH-006 | The system shall prevent historical attempts from being rewritten merely because eligibility changes. | L3-I-143 §§3, 9, 12 |
-| L4-I-143-BH-007 | The system shall hand any resulting student-status consequence to Student Lifecycle through its canonical ownership. | L3-I-143 §§3, 9, 12 |
+| L4-I-143-BH-001 | Identify the effective policy change and affected candidate/examination population. | L3-I-143 §§3,7–9 |
+| L4-I-143-BH-002 | Establish authoritative attempt history and required student context for each affected candidate. | L3-I-143 §§9,12 |
+| L4-I-143-BH-003 | Apply the effective policy to establish the candidate's current I12 eligibility position. | L3-I-143 §§3,9,12,16 |
+| L4-I-143-BH-004 | Preserve prior eligibility decisions and historical attempts rather than rewriting them. | L3-I-143 §§3,9,12,16 |
+| L4-I-143-BH-005 | Route downstream schedule/Hall Ticket/conduct consequences to their canonical owners where active processing is affected. | L3-I-143 §§9–11 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-I-143-BH-008 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Supplementary, Backlog & Improvement Examination ownership. | L3-I-143 §14 |
+| L4-I-143-BH-006 | I01 remains the owner/publisher of policy-change facts and I12 makes the resulting authoritative eligibility position available through its existing lifecycle. The parent does not establish a dedicated policy-change-to-eligibility event; none is invented. | L3-I-143 §14 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- Unclear policy effective date/scope remains unresolved with I01.
+- Incomplete or conflicting attempt history must be resolved before re-evaluation.
+- No retroactive rewriting of historical attempts is assumed.
+- Exceptional override requires authoritative upstream approval.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve policy version/effective scope, affected candidate population, attempt history, prior eligibility, re-evaluation basis and resulting current eligibility.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Supplementary, Backlog & Improvement Examination ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when every affected candidate has one authoritative current eligibility position under the effective policy while historical attempts and prior decisions remain traceable.
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-I-143 — Attempt Policy Change to Authoritative Candidate Eligibility  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Parent:** L3-I-143  
+**Primary verification sources:** L2-I01 and L2-I12.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Retroactivity and effective-scope rules remain I01-owned. No dedicated policy-driven eligibility event is defined by the parent.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+Policy ownership remains with I01; eligibility administration remains with I12.
