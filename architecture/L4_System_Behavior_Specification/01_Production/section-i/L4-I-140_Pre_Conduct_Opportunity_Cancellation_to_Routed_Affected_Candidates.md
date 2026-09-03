@@ -6,66 +6,64 @@
 **Architecture Level:** L4 — System Behavior Specification  
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-140 — Pre Conduct Opportunity Cancellation to Routed Affected Candidates  
-**Primary Business Owner:** Examination  
-**Version:** 1.0.0  
+**Primary Business Owner:** Supplementary, Backlog & Improvement Examination  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-140; applicable locked I architecture sources  
-**Referenced By:** None yet
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-140; L2-I12; L2-I15 where applicable; L2-I03; L2-I04; L2-I05  
+**Referenced By:** Affected downstream examination workflows
 
 ## 2. Behavioral Objective & Boundary
 
-Govern cancellation of a subsequent-examination opportunity before conduct and route the affected candidate consequences through the canonical downstream examination processes. End when the cancellation is authoritative and affected candidates are routed to the permitted next business path.
+Govern authoritative pre-conduct cancellation of a subsequent-examination opportunity and route each affected candidate through canonical schedule, registration, Hall Ticket or replacement-opportunity consequences without transferring ownership.
 
 ## 3. Required Business Context
 
-- Subsequent-examination opportunity exists.
-- Cancellation authority and reason are established.
-- Affected candidate population is identifiable.
-- Downstream examination lifecycle owners are known.
+- Existing opportunity and affected population.
+- Authoritative cancellation decision.
+- Current schedule, registration and Hall Ticket positions where applicable.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-I-140-BH-001 | The system shall identify the opportunity and its affected candidate population. | L3-I-140 §§3, 9, 12 |
-| L4-I-140-BH-002 | The system shall validate the authority and scope of the cancellation decision. | L3-I-140 §§3, 9, 12 |
-| L4-I-140-BH-003 | The system shall establish cancellation as the authoritative opportunity outcome. | L3-I-140 §§3, 9, 12 |
-| L4-I-140-BH-004 | The system shall determine affected candidate consequences within the permitted business rules. | L3-I-140 §§3, 9, 12 |
-| L4-I-140-BH-005 | The system shall route affected candidates to the canonical next examination/administrative workflow. | L3-I-140 §§3, 9, 12 |
-| L4-I-140-BH-006 | The system shall preserve prior opportunity and participation history. | L3-I-140 §§3, 9, 12 |
-| L4-I-140-BH-007 | The system shall prevent cancelled opportunity participation from proceeding as current without a new authorized path. | L3-I-140 §§3, 9, 12 |
+| L4-I-140-BH-001 | Identify the opportunity, cancellation authority and affected candidate population. | L3-I-140 §§3,7–9 |
+| L4-I-140-BH-002 | Prevent the cancelled opportunity from progressing into conduct. | L3-I-140 §§3,9,12,16 |
+| L4-I-140-BH-003 | Route schedule cancellation to I03, registration consequences to I04, and Hall Ticket consequences to I05 where applicable. | L3-I-140 §§5,9,12 |
+| L4-I-140-BH-004 | Establish a policy-permitted candidate route such as replacement/rescheduling without silently reviving the cancelled opportunity. | L3-I-140 §§3,9–12,16 |
+| L4-I-140-BH-005 | Preserve cancellation, affected-population and routing history. | L3-I-140 §§9,15–16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-I-140-BH-008 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Examination ownership. | L3-I-140 §14 |
+| L4-I-140-BH-006 | Canonical owners shall publish only their established lifecycle facts: I03 schedule cancellation facts, I04 `Registration Withdrawn` where applicable, I05 `Hall Ticket Withdrawn` or `Hall Ticket Cancelled` where applicable, and I15 contingency facts where it owns the decision. I12 retains the authoritative cancelled-opportunity outcome. No `SubsequentOpportunityCancelled` event is invented. | L3-I-140 §14 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- An unconfirmed cancellation decision shall not trigger downstream changes.
+- If the affected population is unresolved, candidate routing remains incomplete.
+- Unresolved registration/Hall Ticket consequences remain with I04/I05.
+- Replacement later authorized creates a distinct governed opportunity.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve decision authority, affected population, prior opportunity position, routed consequences and replacement/rescheduling basis.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Examination ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when the opportunity is authoritatively cancelled, cannot proceed to conduct, every affected candidate has an authoritative routed outcome, and canonical downstream consequences are traceable.
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-I-140 — Pre Conduct Opportunity Cancellation to Routed Affected Candidates  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Parent:** L3-I-140  
+**Primary verification sources:** L2-I12, I15, I03, I04 and I05.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Exact candidate routing categories remain policy/configuration governed. No cancellation-specific I12 event is established by the parent.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+Opportunity cancellation coordination does not transfer schedule, registration or Hall Ticket ownership.
