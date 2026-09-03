@@ -1,0 +1,201 @@
+name: Pallav L4 governance metadata remediation
+
+on:
+  push:
+    branches: [pallav]
+    paths:
+      - '.github/workflows/pallav-l4-governance-remediation.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  remediate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: pallav
+          fetch-depth: 0
+
+      - name: Normalize Pallav L4 governance metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('architecture/L4_System_Behavior_Specification/01_Production')
+          ranges = {
+              'B': [(1, 33)],
+              'D': [(1, 57)],
+              'F': [(33, 38), (67, 72), (80, 83)],
+              'G': [(16, 77), (216, 277)],
+              'I': [(4, 16), (43, 54), (71, 82), (118, 132)],
+              'J': [(43, 86), (94, 104)],
+          }
+
+          def assigned(section, number):
+              return any(lo <= number <= hi for lo, hi in ranges.get(section, []))
+
+          file_re = re.compile(r'^L4-([BDFGIJ])-(\d{3})_.*\.md$')
+          targets = []
+          for section_dir in root.glob('section-*'):
+              for path in sorted(section_dir.glob('L4-*.md')):
+                  m = file_re.match(path.name)
+                  if not m:
+                      continue
+                  section, number = m.group(1), int(m.group(2))
+                  if assigned(section, number):
+                      targets.append(path)
+
+          if len(targets) != 337:
+              raise SystemExit(f'Expected exactly 337 Pallav files, found {len(targets)}; refusing to edit.')
+
+          approval_meta_keys = {
+              'Architecture Approval',
+              'Architecture Approval Authority',
+              'Architecture Approval Date',
+              'Approved By',
+              'Approval Date',
+              'Approval Provenance',
+              'Approval Recorded',
+          }
+
+          changed = []
+          for path in targets:
+              original = path.read_text(encoding='utf-8')
+              text = original
+
+              # Canonical working state for authored-but-not-independently-approved specifications.
+              text, n_status = re.subn(
+                  r'^\*\*Status:\*\*\s+.*?(?:  )?$',
+                  '**Status:** Review  ',
+                  text,
+                  count=1,
+                  flags=re.MULTILINE,
+              )
+              if n_status != 1:
+                  raise SystemExit(f'{path}: expected exactly one Status line, replaced {n_status}.')
+
+              # Remove unsupported approval metadata from Specification Metadata only.
+              lines = text.splitlines()
+              out = []
+              in_metadata = False
+              for line in lines:
+                  if line.strip() == '## 1. Specification Metadata':
+                      in_metadata = True
+                  elif in_metadata and line.startswith('## 2.'):
+                      in_metadata = False
+
+                  if in_metadata:
+                      km = re.match(r'^\*\*(.+?):\*\*', line)
+                      if km and km.group(1).strip() in approval_meta_keys:
+                          continue
+                  out.append(line)
+              text = '\n'.join(out) + ('\n' if original.endswith('\n') else '')
+
+              # Remove review/approval process notes that do not belong in normative production behavior.
+              cleaned = []
+              for line in text.splitlines():
+                  stripped = line.strip()
+                  if stripped.startswith('**Architecture review status:**'):
+                      continue
+                  if stripped.startswith('**Architecture approval note:**'):
+                      continue
+                  if stripped.startswith('**Canonical Validation Note:**'):
+                      continue
+                  if stripped.startswith('**Review Readiness Classification:**'):
+                      continue
+
+                  # Remove L4-approval claims while preserving unrelated upstream/L3 statements.
+                  line = re.sub(
+                      r'\s*This L4 specification has been revalidated against its parent plus that approved amendment and is `Architecture Approved`\.',
+                      '',
+                      line,
+                  )
+                  line = re.sub(
+                      r'\s*This specification is therefore `Architecture Approved`\.',
+                      '',
+                      line,
+                  )
+                  line = re.sub(
+                      r'\s*Architecture Approval was granted by Vikram Desai, Enterprise Architecture Governance Lead, and recorded on 2026-09-03\.',
+                      '',
+                      line,
+                  )
+                  line = re.sub(
+                      r'\s*and is approved for repository push',
+                      '',
+                      line,
+                  )
+                  cleaned.append(line.rstrip())
+
+              text = '\n'.join(cleaned) + ('\n' if original.endswith('\n') else '')
+              text = re.sub(r'\n{4,}', '\n\n\n', text)
+
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(path)
+
+          if len(changed) != 337:
+              raise SystemExit(f'Expected all 337 assigned files to change, changed {len(changed)}; refusing partial remediation.')
+
+          # Post-edit governance checks.
+          forbidden_meta = re.compile(
+              r'^\*\*(?:Architecture Approval|Architecture Approval Authority|Architecture Approval Date|Approved By|Approval Date|Approval Provenance|Approval Recorded):\*\*',
+              re.MULTILINE,
+          )
+          for path in targets:
+              text = path.read_text(encoding='utf-8')
+              if len(re.findall(r'^\*\*Status:\*\* Review\s*$', text, flags=re.MULTILINE)) != 1:
+                  raise SystemExit(f'{path}: Status is not exactly Review.')
+              if forbidden_meta.search(text):
+                  raise SystemExit(f'{path}: unsupported approval metadata remains.')
+              if '**Status:** Locked' in text or '**Status:** Architecture Approved' in text:
+                  raise SystemExit(f'{path}: prohibited status remains.')
+              for marker in (
+                  '**Architecture review status:**',
+                  '**Architecture approval note:**',
+                  '**Canonical Validation Note:**',
+                  '**Review Readiness Classification:**',
+              ):
+                  if marker in text:
+                      raise SystemExit(f'{path}: review-process marker remains: {marker}')
+
+          print(f'Validated governance metadata remediation for {len(targets)} Pallav L4 files.')
+          PY
+
+      - name: Verify change boundary and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          workflow='.github/workflows/pallav-l4-governance-remediation.yml'
+          git rm "$workflow"
+
+          python - <<'PY'
+          import re
+          import subprocess
+
+          names = subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines()
+          workflow = '.github/workflows/pallav-l4-governance-remediation.yml'
+          l4 = [p for p in names if p.startswith('architecture/L4_System_Behavior_Specification/01_Production/')]
+          unexpected = [p for p in names if p != workflow and p not in l4]
+          if unexpected:
+              raise SystemExit(f'Unexpected changed paths: {unexpected}')
+          if len(l4) != 337:
+              raise SystemExit(f'Expected 337 changed L4 files, found {len(l4)}.')
+          pat = re.compile(r'/section-([bdfgij])/L4-([BDFGIJ])-(\d{3})_')
+          for p in l4:
+              if not pat.search(p):
+                  raise SystemExit(f'Unexpected L4 path in remediation: {p}')
+          print('Change boundary verified: exactly 337 Pallav L4 files plus temporary workflow deletion.')
+          PY
+
+          git config user.name 'SutraERP Architecture Remediation'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add architecture/L4_System_Behavior_Specification/01_Production
+          git commit -m 'Remediate Pallav L4 governance metadata'
+          git push origin HEAD:pallav
