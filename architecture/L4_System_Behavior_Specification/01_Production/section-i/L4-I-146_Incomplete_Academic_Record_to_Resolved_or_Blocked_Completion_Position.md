@@ -7,65 +7,63 @@
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-146 — Incomplete Academic Record to Resolved or Blocked Completion Position  
 **Primary Business Owner:** Academic Completion & Completion Evidence  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-146; applicable locked I architecture sources  
-**Referenced By:** None yet
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-146; applicable Academic Completion & Completion Evidence architecture; authoritative Student Lifecycle, Academic Delivery and Examination source workflows  
+**Referenced By:** Downstream completion evaluation/evidence workflows
 
 ## 2. Behavioral Objective & Boundary
 
-The system shall govern the identification and routing of missing or incomplete academic requirements encountered during completion evaluation, and either re-evaluate completion upon receiving authoritative resolution from the owning domain or establish a governed blocked completion position. The behavior ends when the incomplete input is resolved for completion evaluation or a governed blocked completion position is authoritative. Direct mutation of source records and degree award remain outside this specification.
+Govern an incomplete mandatory completion input by routing resolution to its canonical owner, then either re-evaluating from the authoritative resolved fact or retaining a governed blocked completion outcome. Exact lifecycle labels remain owned by the authoritative completion architecture.
 
 ## 3. Required Business Context
 
-- Completion evaluation has identified an incomplete, missing, or unavailable academic requirement.
-- Affected Student and completion evaluation scope are established.
-- Student Lifecycle (C), Academic Delivery (D), and Examination (I) retain canonical ownership of their respective source facts.
-- Academic Completion & Completion Evidence owns the completion determination and incomplete-record coordination.
+- Completion evaluation has identified a mandatory missing/incomplete input.
+- Student and completion scope are established.
+- The canonical owner of the missing source fact is identifiable.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-I-146-BH-001 | When completion evaluation encounters missing or incomplete academic information, the system shall identify the specific missing requirement and its canonical owning domain. | L3-I-146 §§3, 7, 9; L2-I09 |
-| L4-I-146-BH-002 | The system shall route the dependency resolution request to the authoritative owning workflow without creating substitute academic values or modifying source records. | L3-I-146 §§4, 5, 9, 12 |
-| L4-I-146-BH-003 | When the authoritative resolution is received from the owning domain, the system shall consume the resolved fact and trigger completion re-evaluation. | L3-I-146 §§3, 9, 12 |
-| L4-I-146-BH-004 | While the required input remains unresolved or cannot be authoritatively established, the system shall maintain the Student in a governed blocked completion position. | L3-I-146 §§3, 9, 11 |
-| L4-I-146-BH-005 | The system shall prevent a Student with an unresolved mandatory completion requirement from progressing to an approved completion outcome. | L3-I-146 §§4, 11, 12 |
+| L4-I-146-BH-001 | Identify the missing requirement and its canonical source owner. | L3-I-146 §§3,7–9 |
+| L4-I-146-BH-002 | Route the business dependency to the source owner without manufacturing or modifying source facts. | L3-I-146 §§4–5,9,12 |
+| L4-I-146-BH-003 | Consume the authoritative resolved fact and re-evaluate completion when resolution becomes available. | L3-I-146 §§9–10,12 |
+| L4-I-146-BH-004 | When the mandatory dependency remains unresolved, retain the completion evaluation in the applicable upstream-governed blocked position/outcome. | L3-I-146 §§3,9,11,13 |
+| L4-I-146-BH-005 | Prevent an unresolved mandatory requirement from progressing to approved completion eligibility. | L3-I-146 §§11–12,16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-I-146-BH-006 | The system shall consume resolved facts published by the canonical owner (C, D, or I) while preserving source domain ownership. | L3-I-146 §§5, 14 |
-| L4-I-146-BH-007 | On establishing a governed blocked completion position or completing re-evaluation, the system shall make the resulting completion status available under Academic Completion ownership. | L3-I-146 §§3, 14 |
+| L4-I-146-BH-006 | Student Lifecycle, Academic Delivery or Examination shall remain publishers/owners of their resolved source facts; Academic Completion & Completion Evidence shall consume those facts and expose the resulting completion-evaluation position. | L3-I-146 §§5,14 |
+| L4-I-146-BH-007 | No generic `AcademicRecordResolved` or `CompletionBlocked` event shall be introduced unless the authoritative completion architecture defines it. | L3-I-146 §14 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If the source owner cannot resolve the missing requirement, the completion evaluation remains blocked; no estimated or default value is substituted.
-- If conflicting source facts are encountered, completion evaluation stops until the owning domain establishes one authoritative position.
-- When an authoritative resolution is received after a blocked state, the system re-opens evaluation through the canonical completion workflow while preserving the historical blocked record.
-- Technical retry, persistence rollback, and queue recovery mechanisms are excluded.
+- No substitute/default value is permitted when the source owner cannot resolve the dependency.
+- Conflicting source facts remain unresolved until the canonical owner establishes one authoritative position.
+- Later authoritative resolution re-enters the existing completion re-evaluation path; no local restoration state is invented.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall maintain attributable audit records of the identified incomplete requirement, source domain routing, dependency resolution facts received, blocking decisions, and subsequent re-evaluation outcomes.
+Preserve missing-input identification, source owner, resolution request, received authoritative fact, blocking basis, re-evaluation and resulting completion position.
 
 ## 8. Observable Completion Conditions
 
-Completion requires the missing requirement to be either authoritatively resolved and completion re-evaluation initiated, or a governed blocked completion position established with the unresolved dependency traceable in audit history.
+Completion of this scenario outcome occurs when the missing input is authoritatively resolved and completion can be re-evaluated, or when the applicable governed blocked position is established with the unresolved dependency traceable.
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-I-146 — Incomplete Academic Record to Resolved or Blocked Completion Position  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Parent:** L3-I-146  
+**Primary verification sources:** Parent §§3,5,9,11–14,16–17 and applicable authoritative completion/source-domain workflows.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The parent explicitly does not establish exact completion lifecycle labels or generic resolution/blocking event names. Those remain upstream-owned and are not invented here.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification preserves source-domain ownership and does not turn scenario-outcome wording into new lifecycle states.
