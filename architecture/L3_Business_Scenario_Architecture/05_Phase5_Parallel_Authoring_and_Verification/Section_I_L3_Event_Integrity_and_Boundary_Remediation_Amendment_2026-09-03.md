@@ -86,11 +86,21 @@ The amendment does not authorize a broader parent outcome. Where downstream revi
 
 The original Locked L3 scenario files are not edited by this proposal. If approved, this amendment becomes the governed corrective overlay for the scoped event-classification and boundary interpretation. The original scenario files remain historical evidence of the pre-amendment Locked state.
 
-## 7. Downstream L4 Effect
+## 7. Downstream L4 Effect and Special Upstream Dispositions
 
 Until this amendment is approved, materially dependent L4 specifications remain in `Review` and are **BLOCKED BY UPSTREAM** for final architecture approval. They may cite this document only as a proposed controlled amendment. After approval, each affected L4 specification must be revalidated against its Locked parent, this amendment, and the cited Locked L2 primary verification source.
+
+### 7.1 L3-I-131 — Revaluation Reopening
+
+Current Locked `L2-I11` does not establish a review-reopening workflow, reopening lifecycle transition, reopening authority, or `Review Reopened` event sufficient to support the `L3-I-131` reopening premise. This proposal therefore does not manufacture L4 behavior for that scenario.
+
+A separate governed disposition is required before `L3-I-131` can become a valid downstream parent. The permitted architecture paths are:
+
+1. retire or merge `L3-I-131` through explicit corpus/index/parent-baseline change control; or
+2. approve a separately governed upstream L2 change that establishes the required reopening business lifecycle, authority, state/transition semantics and event semantics, followed by L3-I-131 revalidation.
+
+Until one of those paths is approved, `L4-I-131` remains `Review` / **BLOCKED BY UPSTREAM** and shall contain no invented reopening BH.
 
 ## 8. Approval / Lock Gate
 
 This document records a proposed controlled remediation. It does **not** assert Architecture Approval and does **not** alter the Locked status of any parent by itself. Independent architecture approval and any successor-lock authorization must be recorded through repository governance before this amendment becomes effective.
-
