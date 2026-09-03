@@ -7,63 +7,65 @@
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-031 — Examination Registration Withdrawal Due to Examination Opportunity Change  
 **Primary Business Owner:** Examination Registration  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-031; applicable locked I architecture sources  
-**Referenced By:** None yet
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-031; L2-I04 Examination Registration; applicable Examination Session, Planning & Scheduling, and exception architecture  
+**Referenced By:** Hall Ticket Management and downstream examination operations
 
 ## 2. Behavioral Objective & Boundary
 
-Govern withdrawal or adjustment of examination participation when an authoritative change removes or alters the underlying examination opportunity.
+Govern the Examination Registration consequence of an authoritative examination-opportunity change. The source workflow retains ownership of the opportunity change; Examination Registration owns only the resulting registration position.
 
 ## 3. Required Business Context
 
-- Existing Examination Registration is identifiable.
-- The examination opportunity change is authoritative.
-- Applicable examination withdrawal policy is available.
-- Any required approval is available.
+- Existing authoritative Examination Registration.
+- Authoritative examination-opportunity change from its owning workflow.
+- Affected candidate and registration scope.
+- Applicable withdrawal/exception policy and authority.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-I-031-BH-001 | Identify registrations affected by the authoritative opportunity change. | L3-I-031 |
-| L4-I-031-BH-002 | Determine whether the change invalidates or alters registered examination participation. | L3-I-031 |
-| L4-I-031-BH-003 | Apply the governed withdrawal or amendment decision. | L3-I-031 |
-| L4-I-031-BH-004 | Preserve the prior registration position and basis for withdrawal. | L3-I-031 |
-| L4-I-031-BH-005 | Establish the resulting registration lifecycle position as authoritative. | L3-I-031 |
+| L4-I-031-BH-001 | Identify the authoritative opportunity change and affected registration scope. | L3-I-031 §§3,7–9 |
+| L4-I-031-BH-002 | Determine whether the changed opportunity makes the current registration wholly or partly inapplicable. | L3-I-031 §§9–12 |
+| L4-I-031-BH-003 | Apply the existing I04 withdrawal or other source-supported registration consequence without inventing a new lifecycle state. | L3-I-031 §§9,12–13 |
+| L4-I-031-BH-004 | Preserve the prior registration position, affected scope, and business reason. | L3-I-031 §§9,12,15–16 |
+| L4-I-031-BH-005 | Prevent an obsolete withdrawn participation position from remaining authoritative downstream. | L3-I-031 §§3,12,16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-I-031-BH-006 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Examination Registration ownership. | L3-I-031 §14 |
+| L4-I-031-BH-006 | When withdrawal is established, Examination Registration shall publish the canonical `Registration Withdrawn` event. No `OpportunityChanged` or `RegistrationInvalidated` event is introduced by this specification. | L3-I-031 §§14,16; L2-I04 |
+| L4-I-031-BH-007 | The underlying examination-opportunity change remains owned and established by its canonical session, schedule, planning, or policy workflow; Hall Ticket Management consumes the resulting registration position without taking registration ownership. | L3-I-031 §§5,14 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Non-authoritative opportunity changes shall not alter registration.
-- Where the opportunity remains valid, withdrawal shall not be applied.
-- Required approval not granted shall retain the existing authoritative position.
+- An unconfirmed opportunity change shall not alter Examination Registration.
+- If the opportunity remains valid, withdrawal shall not be applied merely because context changed.
+- A locked registration shall follow the applicable governed exceptional path rather than silent modification.
+- Replacement opportunities shall follow their own governed registration path; a withdrawn registration is not silently reused.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve opportunity change, affected registration, evaluation, decision authority, resulting position, and historical evidence.
+Preserve the authoritative source change, affected registration, impact assessment, withdrawal/other governed decision, responsible authority, prior position, resulting position, and downstream consequence.
 
 ## 8. Observable Completion Conditions
 
-Completion occurs when the affected registration has the governed withdrawal/reconciled position and its history is traceable.
+Completion occurs when every affected registration has the source-supported authoritative consequence, `Registration Withdrawn` is published for actual withdrawals, history is traceable, and downstream workflows can distinguish the current registration position from obsolete participation.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-I-031 — Examination Registration Withdrawal Due to Examination Opportunity Change  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Primary verification source:** L2-I04 — Examination Registration Workflows.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact treatment of an opportunity change that does not require withdrawal remains policy-dependent and must use existing upstream lifecycle semantics. No dedicated opportunity-change or registration-invalidation event/state is created. Technical integration and implementation mechanics remain outside L4.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification is a canonical L4 artifact adhering to the governed L4 System Behavior Specification template and is not self-locked.
