@@ -1,0 +1,123 @@
+name: Review Pallav L3 I 47 event direction
+
+on:
+  push:
+    branches: [tmp-pallav-l3-i-47-review]
+    paths:
+      - '.github/workflows/review-pallav-l3-i-47-direction.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-pallav-l3-i-47-review
+          fetch-depth: 0
+      - name: Validate exact event direction and write review report
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          root=Path('architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification')
+          scen=root/'01_Scenario_Documents'/'section-i'
+          l2root=Path('architecture/L2_Domain_Workflow_Architecture/section-i')
+          amend=root/'Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md'
+          report=root/'L3_Section_I_Event_Remediation_47_Scenario_Non_Independent_Validation_2026-09-03.md'
+          ids=[5,6,8,9,10,11,12,13,14,15,16,43,44,45,46,47,48,49,50,51,52,53,54,72,73,74,75,76,77,78,79,80,81,82,119,120,121,122,123,124,125,126,127,128,129,130,132]
+          assert len(ids)==47
+
+          def section(text,start,end=None):
+              m=re.search(start,text,re.M|re.I)
+              if not m:return ''
+              s=m.end(); e=len(text)
+              if end:
+                  n=re.search(end,text[s:],re.M|re.I)
+                  if n:e=s+n.start()
+              return text[s:e]
+          def rows(block):
+              out=[]
+              for line in block.splitlines():
+                  if not line.strip().startswith('|'): continue
+                  cols=[c.strip() for c in line.strip().strip('|').split('|')]
+                  if not cols: continue
+                  v=cols[0].strip('`')
+                  if not v or v.lower() in {'event','---','business event'} or set(v)<=set('-: '): continue
+                  out.append(v)
+              return out
+          def l2dirs(text):
+              pub=set(rows(section(text,r'^#\s*11\.\s*Events Published\s*$',r'^#\s*12\.\s*Events Consumed\s*$')))
+              con=set(rows(section(text,r'^#\s*12\.\s*Events Consumed\s*$',r'^#\s*13\.')))
+              for block,target in [(section(text,r'^#\s*11\.\s*Events Published\s*$',r'^#\s*12\.\s*Events Consumed\s*$'),pub),(section(text,r'^#\s*12\.\s*Events Consumed\s*$',r'^#\s*13\.'),con)]:
+                  for line in block.splitlines():
+                      m=re.match(r'^\s*[-*]\s+`?([^`\n]+?)`?\s*$',line)
+                      if m and len(m.group(1).strip())<100: target.add(m.group(1).strip().rstrip('.'))
+              return pub,con
+
+          findings=[]; results=[]
+          for n in ids:
+              ps=list(scen.glob(f'L3-I-{n:03d}_*.md'))
+              if len(ps)!=1: raise SystemExit(f'parent count error I-{n:03d}: {len(ps)}')
+              txt=ps[0].read_text(encoding='utf-8')
+              sm=re.search(r'\*\*Primary L2 Source:\*\*\s*(L2-I\d{2})',txt)
+              if not sm: raise SystemExit(f'no L2 source {ps[0]}')
+              l2id=sm.group(1)
+              l2s=[p for p in l2root.glob(f'{l2id}_*.md') if 'Amendment' not in p.name]
+              if len(l2s)!=1: raise SystemExit(f'L2 ambiguity {l2id}: {len(l2s)}')
+              pubset,conset=l2dirs(l2s[0].read_text(encoding='utf-8'))
+              sec=section(txt,r'^#\s*14\.\s*Business Events and Cross-Domain Collaboration\s*$',r'^#\s*15\.')
+              pubs=rows(section(sec,r'^###\s*Published Events\s*$',r'^###\s*Consumed Events\s*$'))
+              cons=rows(section(sec,r'^###\s*Consumed Events\s*$',r'^##\s*14\.2'))
+              local=[]
+              for ev in pubs:
+                  if ev in pubset: pass
+                  elif ev in conset: local.append(f'Published row `{ev}` is canonical only as Consumed in {l2id}')
+              for ev in cons:
+                  if ev in conset: pass
+                  elif ev in pubset: local.append(f'Consumed row `{ev}` is canonical only as Published in {l2id}')
+              results.append((n,l2id,local))
+              findings += [(n,x) for x in local]
+
+          lines=['# L3 Section I Event Remediation — 47-Scenario Non-Independent Validation — 2026-09-03','',
+                 '**Review Type:** Technical validation by remediation stream; **not independent Architecture Approval**  ',
+                 '**Branch:** `tmp-pallav-l3-i-47-review`  ',
+                 '**Population:** 47 parents from the independent-review handoff  ',
+                 '**Explicit Exclusion:** `L3-I-131`  ',
+                 '**Architecture Approval Granted:** **No**','',
+                 '## 1. Validation Purpose','',
+                 'Validate the strengthened amendment with a stricter event-direction check: a retained event must occur in the same Published/Consumed direction in its cited Locked L2 source. This report does not replace the required independent reviewer.','',
+                 '## 2. Per-Scenario Direction Result','',
+                 '| Scenario | L2 Source | Direction Check |','|---|---|---|']
+          for n,l2id,local in results:
+              lines.append(f'| L3-I-{n:03d} | {l2id} | '+('**PASS**' if not local else '**RETURN FOR CORRECTION**')+' |')
+          lines += ['', '## 3. Material Direction Findings','']
+          if findings:
+              for n,f in findings: lines.append(f'- `L3-I-{n:03d}` — {f}.')
+          else:
+              lines.append('- None. No current row used an exact canonical event name in the opposite L2 direction.')
+          lines += ['', '## 4. Governance Result','',
+                    f'- Direction-pass population: **{sum(not x[2] for x in results)} / 47**.',
+                    f'- Direction-return population: **{sum(bool(x[2]) for x in results)} / 47**.',
+                    '- `L3-I-131` remains excluded and upstream-blocked.',
+                    '- This report grants no Architecture Approval and no Lock.',
+                    '- The independent reviewer must still execute the handoff against current files and record the governed decision.','']
+          report.write_text('\n'.join(lines),encoding='utf-8')
+          print('direction findings',len(findings))
+          PY
+      - name: Commit report and remove workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          REPORT='architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/L3_Section_I_Event_Remediation_47_Scenario_Non_Independent_Validation_2026-09-03.md'
+          git rm -f .github/workflows/review-pallav-l3-i-47-direction.yml
+          git add "$REPORT"
+          git config user.name 'SutraERP Architecture Review'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Validate Section I 47-scenario event direction'
+          git push origin HEAD:tmp-pallav-l3-i-47-review
