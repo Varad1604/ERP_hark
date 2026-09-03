@@ -150,7 +150,7 @@ Canonical publisher ownership remains exactly as defined by Locked L2. No event 
 | L3-I-045 | L2-I06 | Consumed | `Attendance Recording` | **REMOVE FROM EVENT CLASSIFICATION** |
 | L3-I-045 | L2-I06 | Consumed | `Theory Examination Conduct` | **REMOVE FROM EVENT CLASSIFICATION** |
 | L3-I-045 | L2-I06 | Consumed | `Candidate Check-in` | **REMOVE FROM EVENT CLASSIFICATION** |
-| L3-I-046 | L2-I06 | Published | `Candidate Information Updated` | **KEEP** |
+| L3-I-046 | L2-I06 | Published | `Candidate Information Updated` | **REMOVE FROM EVENT CLASSIFICATION** |
 | L3-I-046 | L2-I06 | Published | `Theory Examination Conduct` | **REMOVE FROM EVENT CLASSIFICATION** |
 | L3-I-046 | L2-I06 | Published | `Identity Verification` | **REMOVE FROM EVENT CLASSIFICATION** |
 | L3-I-046 | L2-I06 | Published | `Candidate Check-in` | **REMOVE FROM EVENT CLASSIFICATION** |
@@ -248,7 +248,7 @@ Canonical publisher ownership remains exactly as defined by Locked L2. No event 
 | L3-I-074 | L2-I08 | Consumed | `Marks Approval` | **REMOVE FROM EVENT CLASSIFICATION** |
 | L3-I-075 | L2-I08 | Published | `Marks Approved` | **KEEP** |
 | L3-I-075 | L2-I08 | Published | `Final Approved Marks Available` | **KEEP** |
-| L3-I-075 | L2-I08 | Published | `Examination Policy Updated` | **KEEP** |
+| L3-I-075 | L2-I08 | Published | `Examination Policy Updated` | **REMOVE FROM EVENT CLASSIFICATION** |
 | L3-I-075 | L2-I08 | Published | `Examination Policy Management` | **REMOVE FROM EVENT CLASSIFICATION** |
 | L3-I-075 | L2-I08 | Consumed | `Examination Policy Updated` | **KEEP** |
 | L3-I-075 | L2-I08 | Consumed | `Examination Policy Management` | **REMOVE FROM EVENT CLASSIFICATION** |
@@ -272,8 +272,8 @@ Canonical publisher ownership remains exactly as defined by Locked L2. No event 
 | L3-I-077 | L2-I08 | Consumed | `Examination Session Activated` | **KEEP** |
 | L3-I-078 | L2-I08 | Published | `Evaluation Completed` | **KEEP** |
 | L3-I-078 | L2-I08 | Published | `Evaluation Closed` | **KEEP** |
-| L3-I-078 | L2-I08 | Published | `Practical Examination Completed` | **KEEP** |
-| L3-I-078 | L2-I08 | Published | `Theory Examination Completed` | **KEEP** |
+| L3-I-078 | L2-I08 | Published | `Practical Examination Completed` | **REMOVE FROM EVENT CLASSIFICATION** |
+| L3-I-078 | L2-I08 | Published | `Theory Examination Completed` | **REMOVE FROM EVENT CLASSIFICATION** |
 | L3-I-078 | L2-I08 | Consumed | `Practical Examination Completed` | **KEEP** |
 | L3-I-078 | L2-I08 | Consumed | `Theory Examination Completed` | **KEEP** |
 | L3-I-078 | L2-I08 | Consumed | `Answer Script Management` | **REMOVE FROM EVENT CLASSIFICATION** |
