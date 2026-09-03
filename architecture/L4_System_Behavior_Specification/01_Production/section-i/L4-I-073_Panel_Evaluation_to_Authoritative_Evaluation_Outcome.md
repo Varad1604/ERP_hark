@@ -11,7 +11,7 @@
 **Status:** Review
 **Owner:** Pallav
 **Last Updated:** 2026-09-03
-**Depends On:** L3-I-073 — Locked canonical parent; L2-I08 — Locked primary verification source; `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md` — approved upstream remediation; L4 Governance and Architecture Standard; L4 Validation Standard
+**Depends On:** L3-I-073 — Locked canonical parent; L2-I08 — Locked primary verification source; `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md` — proposed controlled upstream remediation; pending architecture approval; L4 Governance and Architecture Standard; L4 Validation Standard
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -42,7 +42,7 @@ Only authoritative business context identified by the parent or its Locked verif
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-I-073-BH-005 | The system shall treat a collaboration occurrence as a business event only when its name exactly matches the canonical L2-I08 event vocabulary admitted by the approved Section I remediation amendment; workflow, capability, policy, configuration and activity labels shall not be emitted as events. | L3-I-073 §14; proposed L3 Section I remediation amendment §§3–5; L2-I08 §§11–12 |
+| L4-I-073-BH-005 | The system shall treat a collaboration occurrence as a business event only when its name exactly matches the canonical L2-I08 event vocabulary admitted by the proposed Section I remediation amendment; workflow, capability, policy, configuration and activity labels shall not be emitted as events. | L3-I-073 §14; proposed L3 Section I remediation amendment §§3–5; L2-I08 §§11–12 |
 | L4-I-073-BH-006 | When the source-defined transition represented by `Evaluation Completed` occurs within this scenario boundary, the system shall publish `Evaluation Completed` under the canonical L2-I08 publisher and shall not rename or republish it under another owner. | L3-I-073 §§9, 14, 16; proposed L3 Section I remediation amendment §5; L2-I08 §§11–12 |
 
 ## 6. Failure / Rejection / Continuation
@@ -69,17 +69,16 @@ This L4 behavior is complete when:
 ## 9. Traceability & Provenance
 
 **Parent:** L3-I-073 — Panel Evaluation to Authoritative Evaluation Outcome
-**Approved upstream remediation:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md`
+**Proposed upstream remediation:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md`
 **Primary verification source:** L2-I08 — locked Section I workflow architecture
 
-Every BH retains L3-I-073 as its single parent. The approved upstream amendment corrects the current parent's event classification and the explicit boundary clarifications recorded for affected scenarios. L2-I08 is used only to verify exact event names, publishers and already-established business semantics.
+Every BH retains L3-I-073 as its single parent. Upon approval, the proposed upstream amendment corrects the current parent's event classification and the explicit boundary clarifications recorded for affected scenarios. L2-I08 is used only to verify exact event names, publishers and already-established business semantics.
 
-The 2026-09-03 Architecture Approval makes the Section I remediation amendment effective for the scoped parent correction. Repository locking remains a separate explicit governance action.
+The proposed Section I remediation amendment is not yet effective. This specification remains in Review and is BLOCKED BY UPSTREAM for final architecture approval until the amendment receives governed approval and this specification is revalidated.
 
 ## 10. Open Issues / Deferred Design
 
-This specification is synchronized with the Architecture-Approved `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md`. Repository lock remains a separate governance action.
+This specification is synchronized with the proposed controlled `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md`. Repository lock remains a separate governance action.
 
-Architecture Approval was granted on the amended parent baseline for L3-I-073 by Vikram Desai, Enterprise Architecture Governance Lead, and recorded on 2026-09-03. No `Locked` status is asserted by this approval.
 
 API/interface design, persistence, event transport, technical access control, infrastructure and UI/UX remain deferred.

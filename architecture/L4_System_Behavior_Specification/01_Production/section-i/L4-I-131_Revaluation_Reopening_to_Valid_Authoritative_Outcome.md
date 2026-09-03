@@ -12,7 +12,7 @@
 **Architecture Review:** Excluded from Architecture Approval — unresolved upstream disposition for L3-I-131; the package approval does not create a review-reopening lifecycle, authority, state, or event.
 **Owner:** Pallav
 **Last Updated:** 2026-09-03
-**Depends On:** L3-I-131 — current Locked parent; L2-I11 — locked primary verification source; `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md` — Architecture-Approved upstream remediation; L4 Governance and Architecture Standard; L4 Validation Standard
+**Depends On:** L3-I-131 — current Locked parent; L2-I11 — locked primary verification source; `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md` — proposed controlled upstream remediation; pending architecture approval; L4 Governance and Architecture Standard; L4 Validation Standard
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -27,7 +27,7 @@ The only context established for this blocked draft is:
 
 - current parent `L3-I-131`;
 - locked `L2-I11 — Revaluation & Rechecking Workflows`;
-- the Architecture-Approved Section I L3 event-integrity remediation amendment;
+- the proposed controlled Section I L3 event-integrity remediation amendment;
 - the explicit upstream governance decision required by that amendment §7.
 
 No reopening authority, state, event or transition is assumed.
@@ -72,7 +72,7 @@ The conflict is explicit: L3-I-131 asserts reopening; current locked L2-I11 does
 
 **BLOCKED BY UPSTREAM — GOVERNANCE DECISION REQUIRED.**
 
-Preferred resolution options are recorded in the Architecture-Approved L3 remediation amendment §7:
+Preferred resolution options are recorded in the proposed controlled L3 remediation amendment §7:
 
 1. retire/merge `L3-I-131` with explicit corpus/index/parent-baseline updates; or
 2. perform a separately governed upstream L2 change before revalidating L3-I-131.
