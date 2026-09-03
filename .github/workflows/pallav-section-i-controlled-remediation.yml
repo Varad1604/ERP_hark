@@ -1,0 +1,149 @@
+name: Pallav Section I controlled upstream remediation
+
+on:
+  push:
+    branches: [pallav]
+    paths:
+      - '.github/workflows/pallav-section-i-controlled-remediation.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  remediate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: pallav
+          fetch-depth: 0
+
+      - name: Create proposed L3 amendment and normalize affected L4 traceability
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          l4root=Path('architecture/L4_System_Behavior_Specification/01_Production/section-i')
+          l2root=Path('architecture/L2_Domain_Workflow_Architecture/section-i')
+          marker='Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md'
+          amend_path=Path('architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification')/marker
+          ranges=[(4,16),(43,54),(71,82),(118,132)]
+
+          targets=[]
+          for p in sorted(l4root.glob('L4-I-*.md')):
+              m=re.match(r'L4-I-(\d{3})_',p.name)
+              if not m: continue
+              n=int(m.group(1))
+              if any(a<=n<=b for a,b in ranges) and marker in p.read_text(encoding='utf-8'):
+                  targets.append(p)
+          if len(targets)!=48:
+              raise SystemExit(f'Expected exactly 48 affected Pallav Section I files, found {len(targets)}')
+
+          rows=[]
+          for p in targets:
+              text=p.read_text(encoding='utf-8')
+              sid=re.search(r'\*\*Realizes Scenario:\*\*\s*(L3-I-\d{3})',text)
+              src=re.search(r'\*\*Primary verification source:\*\*\s*(L2-I\d{2})',text)
+              if not sid or not src:
+                  raise SystemExit(f'{p}: missing parent/source traceability')
+              sid=sid.group(1); l2id=src.group(1)
+              candidates=list(l2root.glob(f'{l2id}_*.md'))
+              if len(candidates)!=1:
+                  raise SystemExit(f'{p}: expected one {l2id} source, found {len(candidates)}')
+              l2text=candidates[0].read_text(encoding='utf-8')
+              admitted=[]
+              boundary=[]
+              for line in text.splitlines():
+                  if 'proposed L3 Section I remediation amendment' not in line:
+                      continue
+                  for term in re.findall(r'`([^`]+)`',line):
+                      if term in l2text and term not in admitted:
+                          admitted.append(term)
+                  if any(k in line.lower() for k in ('boundary','planning scenario','room-level','conduct-time','outside')):
+                      boundary.append(re.sub(r'^\|\s*[^|]+\|\s*','',line).split('|')[0].strip())
+              rows.append((sid,l2id,admitted,boundary))
+
+          ids=', '.join(s for s,_,_,_ in rows)
+          body=[]
+          body += ['# Section I L3 Event Integrity and Boundary Remediation Amendment — Proposed','']
+          body += ['**Architecture Level:** L3 — Business Scenario Architecture  ',
+                   '**Change Type:** Controlled amendment to Locked L3 corpus  ',
+                   '**Status:** Review  ',
+                   '**Date:** 2026-09-03  ',
+                   '**Effective State:** Not effective until independent architecture approval and governed successor-lock authorization  ',
+                   '**Authority Basis:** `L3_Final_Corpus_Lock_Decision_1084_2026-08-29.md` §5 Change-Control Rule After Lock  ','']
+          body += ['## 1. Finding','',
+                   'A subset of Locked Section I scenarios contains event-table rows that mix canonical business events with workflow, capability, configuration, session-type, policy, or activity labels. Downstream L4 authoring correctly identified this as an upstream integrity issue, but referenced an amendment that did not yet exist.','']
+          body += ['## 2. Scope','',f'This proposed amendment is limited to the following {len(rows)} Locked parent scenarios:','',ids,'']
+          body += ['Unaffected Section I scenarios remain frozen and are not reopened by this amendment. No scenario ID, canonical owner, business outcome, aggregate ownership, business rule, or lifecycle is changed merely by this proposal.','']
+          body += ['## 3. Governing Correction Rule','',
+                   'Upon approval, each affected scenario shall interpret its §14 Published / Consumed Business Events tables using the exact canonical event vocabulary of its cited Locked L2 primary verification source. A row is a business event only when the event label exactly matches a source-supported L2 event. Workflow names, capability names, policy/configuration labels, examination/session types, business activities, descriptive conditions, and source-document identifiers are context and shall not be treated as emitted or consumed business events.','',
+                   'Canonical publisher ownership remains the publisher defined by the Locked L2 source. This amendment shall not rename an event, create a new event, transfer ownership, or broaden a scenario boundary.','']
+          body += ['## 4. Per-Scenario Revalidation Register','',
+                   '| L3 Parent | Locked L2 Verification Source | Exact L2 event terms evidenced by downstream revalidation | Boundary note |',
+                   '|---|---|---|---|']
+          for sid,l2id,events,bounds in rows:
+              ev=', '.join(f'`{x}`' for x in events) if events else 'No scenario-specific event admission asserted by this proposal'
+              bn='; '.join(bounds) if bounds else 'No additional boundary clarification asserted'
+              body.append(f'| {sid} | {l2id} | {ev} | {bn} |')
+          body += ['', '## 5. Locked-Parent Preservation','',
+                   'The original Locked L3 scenario files are not edited by this proposal. If approved, this amendment becomes the governed corrective overlay for the scoped §14 event classification and explicit boundary clarifications listed above. The original files remain historical evidence of the pre-amendment locked state.','']
+          body += ['## 6. Downstream L4 Effect','',
+                   'Until this amendment is approved, materially dependent L4 specifications remain in `Review` and are **BLOCKED BY UPSTREAM** for final architecture approval. They may cite this document only as a proposed controlled amendment. After approval, each affected L4 specification must be revalidated against its Locked parent, this amendment, and its cited Locked L2 verification source before any Architecture Approved decision.','']
+          body += ['## 7. Approval / Lock Gate','',
+                   'This document records a proposed controlled remediation. It does **not** assert Architecture Approval and does **not** alter the Locked status of any parent by itself. Independent architecture approval and any successor-lock authorization must be recorded through the repository governance process before this amendment becomes effective.','']
+          amend_path.write_text('\n'.join(body)+'\n',encoding='utf-8')
+
+          for p in targets:
+              text=p.read_text(encoding='utf-8')
+              text=text.replace(f'`{marker}` — approved upstream remediation',f'`{marker}` — proposed controlled upstream remediation; pending architecture approval')
+              text=text.replace('**Approved upstream remediation:**','**Proposed upstream remediation:**')
+              text=text.replace('approved Section I remediation amendment','proposed Section I remediation amendment')
+              text=text.replace('the approved Section I remediation amendment','the proposed Section I remediation amendment')
+              text=text.replace('The approved upstream amendment corrects','Upon approval, the proposed upstream amendment corrects')
+              text=text.replace('The 2026-09-03 Architecture Approval makes the Section I remediation amendment effective for the scoped parent correction. Repository locking remains a separate explicit governance action.',
+                                'The proposed Section I remediation amendment is not yet effective. This specification remains in Review and is BLOCKED BY UPSTREAM for final architecture approval until the amendment receives governed approval and this specification is revalidated.')
+              text=re.sub(r'This specification is synchronized with the Architecture-Approved `'+re.escape(marker)+r'`\. Repository lock remains a separate governance action\.',
+                          'This specification is aligned to the proposed controlled `'+marker+'` for review purposes only. It remains BLOCKED BY UPSTREAM until that amendment is governed and effective.',text)
+              text=re.sub(r'Architecture Approval was granted on the amended parent baseline[^\n]*\n?', '', text)
+              text=text.replace('**Status:** Architecture Approved','**Status:** Review')
+              p.write_text(text,encoding='utf-8')
+
+          # Guard against false approval claims tied to the missing amendment.
+          for p in targets:
+              text=p.read_text(encoding='utf-8')
+              if '**Status:** Review' not in text:
+                  raise SystemExit(f'{p}: not in Review')
+              if 'approved upstream remediation' in text.lower() or 'Architecture-Approved `Section_I_L3_Event' in text:
+                  raise SystemExit(f'{p}: false upstream approval wording remains')
+              if marker not in text:
+                  raise SystemExit(f'{p}: amendment traceability missing')
+
+          print(f'Prepared proposed controlled amendment and normalized {len(targets)} affected L4 files.')
+          PY
+
+      - name: Verify boundary and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm -f .github/workflows/pallav-section-i-controlled-remediation.yml
+          rm -f .tmp_pallav_section_i_audit.md .tmp_pallav_section_i_ids.txt
+          git add -A
+          python - <<'PY'
+          import subprocess
+          names=subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines()
+          allowed_prefix='architecture/L4_System_Behavior_Specification/01_Production/section-i/'
+          amendment='architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md'
+          l4=[p for p in names if p.startswith(allowed_prefix) and p.endswith('.md')]
+          if len(l4)!=48: raise SystemExit(f'Expected 48 L4 changes, got {len(l4)}')
+          bad=[p for p in names if not (p in {amendment,'.tmp_pallav_section_i_audit.md','.tmp_pallav_section_i_ids.txt','.github/workflows/pallav-section-i-controlled-remediation.yml'} or p in l4)]
+          if bad: raise SystemExit(f'Unexpected paths: {bad}')
+          print('Verified: 48 affected L4 files + one proposed L3 amendment; temporary audit artifacts removed.')
+          PY
+          git config user.name 'SutraERP Controlled Architecture Remediation'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Stage controlled Section I L3 event-integrity remediation'
+          git push origin HEAD:pallav
