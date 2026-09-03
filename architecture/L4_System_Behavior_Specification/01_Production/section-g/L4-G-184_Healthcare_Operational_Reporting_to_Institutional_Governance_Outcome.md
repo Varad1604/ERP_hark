@@ -7,10 +7,10 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-184 — Healthcare Operational Reporting to Institutional Governance Outcome  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
+**Last Updated:** 2026-09-03  
 **Depends On:** L3-G-184; applicable locked G architecture sources  
 **Referenced By:** None yet
 
@@ -44,7 +44,7 @@ SutraERP shall govern production of healthcare operational reporting from author
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-184-BH-009 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-184 §14 |
+| L4-G-184-BH-009 | The authoritative sources do not define a generic healthcare-report-completion or governance-outcome event. The system shall not invent `HealthcareOperationalReportGenerated` or `HealthcareGovernanceOutcomeRecorded`; canonical events of underlying G06 healthcare facts remain unchanged and owned by their originating aggregates. | L3-G-184 §§14,17 |
 
 ## 6. Failure / Rejection / Continuation
 
@@ -69,7 +69,7 @@ L4 behavior is complete when: - the reporting purpose and scope are established;
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The upstream sources do not define a dedicated healthcare-report lifecycle, generic reporting event, or universal named governance authority. Those remain upstream-governed gaps and are not filled locally. Technical analytics infrastructure, APIs, databases, dashboards, pipelines, and delivery mechanisms remain outside L4 business behavior.
 
 ## Canonical Validation Note
 
