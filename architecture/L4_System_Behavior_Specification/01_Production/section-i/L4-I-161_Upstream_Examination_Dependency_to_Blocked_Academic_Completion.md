@@ -6,67 +6,57 @@
 **Architecture Level:** L4 — System Behavior Specification  
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-161 — Upstream Examination Dependency to Blocked Academic Completion  
-**Primary Business Owner:** Examination  
-**Version:** 1.0.0  
+**Primary Business Owner:** Academic Completion & Completion Evidence  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-161; applicable locked I architecture sources  
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-161; L2-I13 Academic Completion, CGPA & Completion Evidence; L2-C05 Qualification Completion & Student Exit  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Govern the completion-evidence position when a required upstream examination dependency is missing, unresolved, or otherwise prevents conclusive academic completion. The behavior explicitly prevents completion from being treated as established merely because a downstream evaluation is otherwise ready. Start: a required examination dependency for academic completion is absent or unresolved. End: the completion-evidence position is explicitly blocked pending the authoritative dependency, or the dependency is resolved and completion evaluation can proceed. Out of scope: changing examination result ownership, fabricating a result, making the final qualification decision, or defining technical dependency orchestration.
+Canonical L4 behavioral derivation is blocked because the Locked L3 parent is internally contradictory. The locked title identifies an unresolved upstream Examination dependency causing blocked academic completion, while L3-I-161 §§2–16 describe an authoritative Examination result change leading I13 to withdraw invalid completion evidence and establish a superseding evidence position.
+
+L4 shall not select either interpretation or silently repair the Locked parent.
 
 ## 3. Required Business Context
 
-- Student and programme context is authoritative.
-- The completion-evidence requirement that depends on Examination is established.
-- The relevant examination fact, result, or evidence is unavailable, unresolved, or later becomes authoritative.
-- Academic Completion & Completion Evidence owns the resulting completion-evidence position.
+- L3-I-161 remains the canonical Locked parent and its title/identity are preserved.
+- The parent title describes dependency-driven blockage.
+- The parent body describes post-result-change evidence withdrawal and supersession.
+- L2-I13 supports governed behavior for unresolved Examination conditions and for authoritative result-change evidence disposition, but those are distinct scenario outcomes.
 
 ## 4. System Behavioral Obligations
 
-| Behavior ID | Required System Behavior | Provenance |
-|---|---|---|
-| L4-I-161-BH-001 | The system shall identify the completion-evidence dependency that requires an Examination-owned fact. | L3-I-161 §§3, 9, 12 |
-| L4-I-161-BH-002 | The system shall identify the missing, unresolved, or invalid upstream examination position. | L3-I-161 §§3, 9, 12 |
-| L4-I-161-BH-003 | The system shall prevent the completion-evidence position from being treated as complete solely on the basis of partial information. | L3-I-161 §§3, 9, 12 |
-| L4-I-161-BH-004 | The system shall establish an explicit blocked/unresolved evidence position under the existing completion-evidence lifecycle. | L3-I-161 §§3, 9, 12 |
-| L4-I-161-BH-005 | The system shall preserve the dependency, source owner, reason for blockage, and evaluation context. | L3-I-161 §§3, 9, 12 |
-| L4-I-161-BH-006 | The system shall re-evaluate completion evidence when the authoritative Examination dependency becomes available or is corrected. | L3-I-161 §§3, 9, 12 |
-| L4-I-161-BH-007 | The system shall release the blocked position only when the required authoritative dependency satisfies the governing completion-evidence conditions. | L3-I-161 §§3, 9, 12 |
-| L4-I-161-BH-008 | the system shall verify any downstream qualification decision remains with its canonical owner. | L3-I-161 §§3, 9, 12 |
+No scenario-specific behavioral obligations are admitted while the parent semantic contradiction remains unresolved.
 
 ## 5. Cross-Domain & Event Behavior
 
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-I-161-BH-009 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Examination ownership. | L3-I-161 §14 |
+No scenario-specific event or hand-off is derived. No blocked-completion, result-change, or evidence-withdrawal event/state is invented or reassigned.
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+Canonical behavior derivation remains blocked until controlled L3 governance establishes whether the scenario governs dependency blockage or authoritative result-change evidence withdrawal.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve the locked title, conflicting parent sections, this blocker disposition, and the eventual governed resolution as architecture traceability evidence.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Examination ownership, attributable audit evidence preserved, and canonical business events published.
+This Draft blocker is complete when the contradiction is recorded without choosing an interpretation. Canonical L4 behavioral completion requires governed upstream resolution.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-I-161 — Upstream Examination Dependency to Blocked Academic Completion  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Conflict anchors:** L3-I-161 title/Scenario ID; §§2–16 result-change/evidence-withdrawal semantics  
+**Higher-level verification:** L2-I13 Ownership Resolution — unresolved Examination conditions and authoritative result-change evidence disposition remain distinct governed conditions
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+**BLOCKED BY UPSTREAM:** Resolve whether L3-I-161 is the upstream-dependency blockage scenario named by its title or the result-change evidence-withdrawal scenario described by its body.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification intentionally remains Draft and blocked by upstream parent inconsistency. It is not eligible for Architecture Approval until the parent is governed and behavior is re-derived.
