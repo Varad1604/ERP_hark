@@ -7,66 +7,56 @@
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-150 — Revised Result to Re Evaluated Completion Eligibility  
 **Primary Business Owner:** Academic Completion & Completion Evidence  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-150; applicable locked I architecture sources  
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-150; L2-I13 Academic Completion, CGPA & Completion Evidence; L2-C05 Qualification Completion & Student Exit  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-Re-evaluate completion eligibility when an authoritative examination result is revised, using the revised result as the current source without altering result ownership.
+Canonical L4 behavioral derivation is blocked because the Locked L3 parent is internally contradictory. The locked title identifies a revised-result completion re-evaluation scenario, while L3-I-150 §§2–16 describe an authoritative malpractice outcome and its completion consequence.
+
+L4 shall not select either interpretation or silently repair the Locked parent.
 
 ## 3. Required Business Context
 
-- Student/programme context is authoritative.
-- The revised examination result is authoritative.
-- Existing completion-evidence evaluation is identifiable.
-- I13 completion rules are available.
-- L2-C05 retains qualification-completion ownership.
+- L3-I-150 remains the canonical Locked parent and its title/identity are preserved.
+- The parent body describes malpractice-driven re-evaluation rather than revised-result re-evaluation.
+- L2-I13 owns examination-derived completion evidence; L2-C05 alone owns institutional Qualification Completion and qualification consequences.
+- Upstream governance must establish one authoritative semantic meaning before scenario-specific behavior is derived.
 
 ## 4. System Behavioral Obligations
 
-| Behavior ID | Required System Behavior | Provenance |
-|---|---|---|
-| L4-I-150-BH-001 | The system shall identify the affected student/programme and completion evaluation. | L3-I-150 §§3, 9, 12 |
-| L4-I-150-BH-002 | The system shall establish the revised examination result as the current authoritative examination input. | L3-I-150 §§3, 9, 12 |
-| L4-I-150-BH-003 | The system shall re-evaluate completion evidence against the revised result and applicable requirements. | L3-I-150 §§3, 9, 12 |
-| L4-I-150-BH-004 | The system shall establish the resulting completion-eligibility position. | L3-I-150 §§3, 9, 12 |
-| L4-I-150-BH-005 | The system shall preserve the prior evaluation, revised-result basis, and re-evaluation rationale. | L3-I-150 §§3, 9, 12 |
-| L4-I-150-BH-006 | The system shall publish canonical completion-eligibility evidence where the governing I13 workflow requires it. | L3-I-150 §§3, 9, 12 |
-| L4-I-150-BH-007 | The system shall do not recalculate or alter the source examination result locally. | L3-I-150 §§3, 9, 12 |
+No scenario-specific BH is admitted while the parent title/body contradiction remains unresolved. Deriving behavior from either side would create a downstream semantic decision not authorized at L4.
 
 ## 5. Cross-Domain & Event Behavior
 
-| Behavior ID | Required Behavior | Provenance |
-|---|---|---|
-| L4-I-150-BH-008 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Academic Completion & Completion Evidence ownership. | L3-I-150 §14 |
+No scenario-specific event or hand-off is derived. No new event, publisher, contract, lifecycle, state, rule, or owner is introduced.
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+Canonical behavior derivation remains blocked until L3 governance resolves the contradiction. This blocker does not alter or block unaffected scenarios.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve the locked title, conflicting parent sections, this blocker disposition, and the eventual controlled upstream resolution as architecture evidence.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Academic Completion & Completion Evidence ownership, attributable audit evidence preserved, and canonical business events published.
+This Draft blocker is complete when the contradiction is explicitly recorded without choosing an interpretation. Canonical L4 completion requires a governed L3 resolution first.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-I-150 — Revised Result to Re Evaluated Completion Eligibility  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Conflict anchors:** L3-I-150 title/Scenario ID; §§2–16 malpractice-outcome semantics  
+**Higher-level verification:** L2-I13 evidence ownership; L2-C05 Qualification Completion ownership
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+**BLOCKED BY UPSTREAM:** Resolve whether L3-I-150 is the revised-result scenario named by its locked title or the malpractice-outcome scenario described by its body.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification intentionally remains Draft and blocked by upstream parent inconsistency. It is not eligible for Architecture Approval until the parent is governed and behavior is re-derived.
