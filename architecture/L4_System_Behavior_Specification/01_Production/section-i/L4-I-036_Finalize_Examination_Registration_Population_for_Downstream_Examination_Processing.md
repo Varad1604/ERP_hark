@@ -7,64 +7,67 @@
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-036 — Finalize Examination Registration Population for Downstream Examination Processing  
 **Primary Business Owner:** Examination Registration  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-036; applicable locked I architecture sources  
-**Referenced By:** None yet
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-036; L2-I04 Examination Registration; L2-I02 Examination Session; L2-I03 Examination Planning & Scheduling  
+**Referenced By:** Hall Ticket, examination conduct, evaluation, and result workflows
 
 ## 2. Behavioral Objective & Boundary
 
-Govern finalisation of the authoritative Examination Registration population so downstream examination processing consumes a controlled and complete participation set.
+Govern establishment of the authoritative population of valid Examination Registrations for downstream examination processing. Population finalization is a business outcome of existing I04 lifecycle governance, not a new registration state or event.
 
 ## 3. Required Business Context
 
-- Examination Session and schedule are established.
-- Candidate registrations and applicable lifecycle positions are identifiable.
-- Registration eligibility and applicable policy are available.
-- Examination Registration owns participation population.
+- Applicable Examination Session and Published Examination Schedule.
+- All registrations relevant to the examination population.
+- Current I04 lifecycle position and eligibility/approval status for each registration.
+- Applicable locking, amendment, withdrawal, and exception rules.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-I-036-BH-001 | Identify the candidate registrations eligible for final examination processing. | L3-I-036 |
-| L4-I-036-BH-002 | Validate registration completeness and applicable eligibility conditions. | L3-I-036 |
-| L4-I-036-BH-003 | Exclude registrations that do not satisfy authoritative finalisation conditions. | L3-I-036 |
-| L4-I-036-BH-004 | Establish the final authoritative examination registration population. | L3-I-036 |
-| L4-I-036-BH-005 | Preserve the basis and history of finalisation decisions. | L3-I-036 |
-| L4-I-036-BH-006 | Make the final population available to downstream examination processing through established business collaboration. | L3-I-036 |
+| L4-I-036-BH-001 | Identify all registrations relevant to the applicable examination population. | L3-I-036 §§3,7–9 |
+| L4-I-036-BH-002 | Evaluate each registration using its current authoritative I04 lifecycle position and eligibility/approval outcome. | L3-I-036 §§9,11–13 |
+| L4-I-036-BH-003 | Exclude rejected, withdrawn, unresolved, or otherwise non-valid registrations from downstream participation. | L3-I-036 §§3,9,11–12 |
+| L4-I-036-BH-004 | Resolve permitted amendments and approvals before finalization and apply registration locking where required. | L3-I-036 §§9–13,15 |
+| L4-I-036-BH-005 | Establish and preserve the resulting authoritative population and its inclusion/exclusion basis. | L3-I-036 §§3,9,15–16 |
+| L4-I-036-BH-006 | Make the final valid registration population available to downstream Examination workflows without transferring registration ownership. | L3-I-036 §§3,5,14,16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-I-036-BH-007 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Examination Registration ownership. | L3-I-036 §14 |
+| L4-I-036-BH-007 | Where registration locking occurs, Examination Registration shall publish the canonical `Registration Locked` event. Other I04 events, including `Registration Confirmed`, `Registration Withdrawn`, and `Registration Amended`, remain tied only to their actual lifecycle transitions. No population-finalization event is invented. | L3-I-036 §§14,16; L2-I04 |
+| L4-I-036-BH-008 | The final population is an authoritative business hand-off to downstream examination workflows; those consumers shall not redefine registration validity or ownership. | L3-I-036 §§5,12,14,16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- Registrations failing final eligibility shall not enter the authoritative final population.
-- Incomplete authoritative inputs shall prevent finalisation until resolved.
-- A finalised population shall not be silently changed without the applicable governed amendment/reopening path.
+- A registration whose current validity cannot be established shall not be silently included.
+- Duplicate/conflicting registrations shall be resolved before inclusion.
+- An authoritative Student Lifecycle conflict remains with its canonical owner and prevents unsupported final inclusion.
+- Post-lock changes shall use the existing authorised exceptional path.
+- Downstream consumer readiness shall not alter the registration lifecycle or finalization authority.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve population criteria, candidate eligibility, exclusions, finalisation authority, final population, and historical changes.
+Preserve the population boundary, registrations evaluated, lifecycle positions, inclusion/exclusion basis, locking and exceptional decisions, responsible authority, and final authoritative population.
 
 ## 8. Observable Completion Conditions
 
-Completion occurs when the authoritative eligible registration population is finalised, traceable, and available for downstream examination processing.
+Completion occurs when all relevant registrations have been evaluated, only valid registration authority remains in the final population, required locking has occurred with `Registration Locked` published where applicable, audit evidence is complete, and downstream workflows can consume the authoritative population.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-I-036 — Finalize Examination Registration Population for Downstream Examination Processing  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Primary verification source:** L2-I04 — Examination Registration Workflows.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The exact institutional locking/finalization point remains policy-governed. No `Finalized Population` registration state or dedicated population event is introduced. Technical batch, persistence, transport, or orchestration mechanisms remain outside L4.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification is a canonical L4 artifact adhering to the governed L4 System Behavior Specification template and is not self-locked.
