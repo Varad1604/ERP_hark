@@ -56,7 +56,6 @@ jobs:
               pub=section(text,r'^#\s*11\.\s*Events Published\s*$',r'^#\s*12\.\s*Events Consumed\s*$')
               con=section(text,r'^#\s*12\.\s*Events Consumed\s*$',r'^#\s*13\.')
               vals=table_first_col(pub)+table_first_col(con)
-              # Also accept bullets in event sections only.
               for block in (pub,con):
                   for line in block.splitlines():
                       m=re.match(r'^\s*[-*]\s+`?([^`\n]+?)`?\s*$',line)
@@ -152,3 +151,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'Strengthen Section I L3 remediation amendment'
           git push origin HEAD:pallav-l3-i-amendment-strengthening
+
+# retrigger after workflow registration
