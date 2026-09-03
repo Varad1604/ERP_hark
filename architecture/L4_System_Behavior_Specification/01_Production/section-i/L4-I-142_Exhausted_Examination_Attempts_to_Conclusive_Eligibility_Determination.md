@@ -6,66 +6,64 @@
 **Architecture Level:** L4 — System Behavior Specification  
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-142 — Exhausted Examination Attempts to Conclusive Eligibility Determination  
-**Primary Business Owner:** Examination  
-**Version:** 1.0.0  
+**Primary Business Owner:** Supplementary, Backlog & Improvement Examination  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-142; applicable locked I architecture sources  
-**Referenced By:** None yet
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-142; L2-I12; L2-I01; authoritative Student Lifecycle context  
+**Referenced By:** Applicable downstream Examination and Student Lifecycle workflows
 
 ## 2. Behavioral Objective & Boundary
 
-Determine the authoritative eligibility position when the governed examination-attempt opportunities available to a candidate have been exhausted. End at a conclusive eligibility determination, without inventing a new academic or student lifecycle state.
+Determine one authoritative subsequent-examination eligibility position when the candidate's valid attempt history reaches the governing attempt-limit boundary. I12 applies the policy; I01 owns the examination policy; Student Lifecycle retains ownership of student academic state.
 
 ## 3. Required Business Context
 
-- Candidate identity is authoritative.
-- Subsequent-examination attempt history is complete enough for determination.
-- Applicable attempt and eligibility rules are authoritative.
-- Student Lifecycle remains owner of student status consequences.
+- Authoritative candidate and examination scope.
+- Complete, traceable valid-attempt history.
+- Applicable I01 attempt/eligibility policy.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-I-142-BH-001 | The system shall identify the candidate and applicable examination opportunity history. | L3-I-142 §§3, 9, 12 |
-| L4-I-142-BH-002 | The system shall establish the authoritative completed/exhausted attempt sequence. | L3-I-142 §§3, 9, 12 |
-| L4-I-142-BH-003 | The system shall evaluate remaining eligibility under the applicable governing rules. | L3-I-142 §§3, 9, 12 |
-| L4-I-142-BH-004 | The system shall determine whether another permitted examination opportunity remains. | L3-I-142 §§3, 9, 12 |
-| L4-I-142-BH-005 | The system shall establish a conclusive examination-eligibility outcome where attempts are exhausted. | L3-I-142 §§3, 9, 12 |
-| L4-I-142-BH-006 | The system shall preserve the attempt evidence and determination rationale. | L3-I-142 §§3, 9, 12 |
-| L4-I-142-BH-007 | The system shall hand any resulting student-status consequence to Student Lifecycle rather than changing it locally. | L3-I-142 §§3, 9, 12 |
+| L4-I-142-BH-001 | Establish the candidate, examination scope and authoritative valid-attempt sequence. | L3-I-142 §§3,7–9 |
+| L4-I-142-BH-002 | Apply the authoritative attempt policy without inventing a local numeric limit. | L3-I-142 §§9,12 |
+| L4-I-142-BH-003 | Determine whether another permitted attempt remains or eligibility is conclusively exhausted. | L3-I-142 §§3,9,16 |
+| L4-I-142-BH-004 | Preserve attempt evidence, policy basis and the resulting eligibility determination. | L3-I-142 §§9,15–16 |
+| L4-I-142-BH-005 | Make any student-status consequence available to Student Lifecycle rather than changing student state locally. | L3-I-142 §§5,12,14 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-I-142-BH-008 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Examination ownership. | L3-I-142 §14 |
+| L4-I-142-BH-006 | I12 shall make the authoritative eligibility outcome available through its existing eligibility/attempt lifecycle. The parent exposes no dedicated `AttemptsExhausted` event; none is invented. Student Lifecycle may consume the resulting examination fact under its own ownership. | L3-I-142 §14 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- Incomplete attempt history prevents a conclusive exhaustion decision.
+- Unknown policy remains unresolved; no default limit is assumed.
+- Conflicting attempts/registrations must be resolved by their canonical owners first.
+- Any exceptional attempt route requires upstream policy authority.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve counted attempts, excluded/non-counted attempts where relevant, policy version/basis, determination authority and resulting eligibility position.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Examination ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when one authoritative eligibility position exists: another permitted attempt remains, or the applicable attempt opportunity is conclusively exhausted under authoritative policy.
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-I-142 — Exhausted Examination Attempts to Conclusive Eligibility Determination  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Parent:** L3-I-142  
+**Primary verification sources:** L2-I12 and L2-I01.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The parent does not define a dedicated exhausted-attempt state or event. Numerical attempt limits and exceptional routes remain policy-owned.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification applies policy without redefining it and does not modify Student Lifecycle state.
