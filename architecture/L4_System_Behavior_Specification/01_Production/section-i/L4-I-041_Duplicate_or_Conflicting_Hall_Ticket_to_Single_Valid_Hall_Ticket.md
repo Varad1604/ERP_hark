@@ -1,84 +1,69 @@
-# L4-I-041 — Duplicate or Conflicting Hall Ticket to Single Valid Hall Ticket
+# Duplicate or Conflicting Hall Ticket to Single Valid Hall Ticket
 
-**Architecture Level:** L4 — Implementation Architecture  
-**Parent Scenario:** `L3-I-041` — Duplicate or Conflicting Hall Ticket to Single Valid Hall Ticket  
-**Canonical Owner:** Hall Ticket Management  
-**Governing L2:** `L2-I05` — Hall Ticket Management Workflows  
-**Status:** Draft for governed L4 authoring
+## 1. Specification Metadata
 
-## 1. Purpose
+**Specification ID:** L4-I-041  
+**Architecture Level:** L4 — System Behavior Specification  
+**Domain:** Examination  
+**Realizes Scenario:** L3-I-041 — Duplicate or Conflicting Hall Ticket to Single Valid Hall Ticket  
+**Primary Business Owner:** Hall Ticket Management  
+**Version:** 1.0.1  
+**Status:** Draft  
+**Owner:** Varad  
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-041; L2-I05 Hall Ticket Management; L2-I04 Examination Registration  
+**Referenced By:** Examination conduct and Hall Ticket population finalization
 
-Define implementation-independent behaviour for resolving duplicate or conflicting Hall Ticket positions so that exactly one operational Hall Ticket remains valid for the applicable candidate and Examination Session, while preserving historical traceability.
+## 2. Behavioral Objective & Boundary
 
-## 2. Required Behaviour
+Resolve duplicate or conflicting Hall Ticket positions so exactly one operational Hall Ticket remains valid for the candidate and applicable Examination Session while historical positions remain traceable. Duplicate/conflict is an outcome condition, not a new Hall Ticket state.
 
-The system shall:
+## 3. Required Business Context
 
-1. identify the candidate, Examination Registration and Examination Session;
-2. identify all Hall Ticket positions relevant to that context;
-3. distinguish the current authoritative operational Hall Ticket from superseded, withdrawn, cancelled or otherwise non-authorising positions;
-4. resolve an unresolved duplicate/conflict under the authority and lifecycle rules of L2-I05;
-5. ensure only one Hall Ticket represents operational examination-entry authorization for the applicable context;
-6. preserve historical Hall Ticket versions and their business relationships;
-7. publish only canonical Hall Ticket lifecycle events associated with actual governed transitions.
+- Candidate, Examination Session, and authoritative Examination Registration.
+- All Hall Ticket positions relevant to the apparent duplication/conflict.
+- Current I05 lifecycle position of each Hall Ticket.
+- Applicable institutional review/decision authority.
 
-## 3. Ownership
+## 4. System Behavioral Obligations
 
-Hall Ticket Management is the canonical owner of Hall Ticket validity and conflict resolution. Examination Registration remains authoritative for registration context. No downstream examination workflow becomes owner of Hall Tickets by consuming the resolution.
+| Behavior ID | Required System Behavior | Provenance |
+|---|---|---|
+| L4-I-041-BH-001 | Identify all Hall Tickets relevant to the candidate/session context and establish each current business position. | L3-I-041 §§7–9 |
+| L4-I-041-BH-002 | Distinguish legitimate reissue/replacement history from genuine competing operational authorization. | L3-I-041 §§9–12 |
+| L4-I-041-BH-003 | Establish the authoritative operational Hall Ticket using the applicable registration, session, and I05 business context; do not select arbitrarily. | L3-I-041 §§9,11–12 |
+| L4-I-041-BH-004 | Apply only existing I05 Withdrawal, Replacement, Cancellation, or other supported lifecycle behavior to a non-authoritative operational position where applicable. | L3-I-041 §§9,12–13 |
+| L4-I-041-BH-005 | Ensure exactly one Hall Ticket independently authorizes examination entry for the applicable context. | L3-I-041 §§3,9,16 |
+| L4-I-041-BH-006 | Preserve historical versions, resolution rationale, and decision authority. | L3-I-041 §§9,15–16 |
 
-## 4. Resolution Rules
+## 5. Cross-Domain & Event Behavior
 
-| Situation | Required Behaviour |
-|---|---|
-| One valid current Hall Ticket and historical superseded versions | Retain the valid current Hall Ticket; historical versions remain non-operational. |
-| Multiple apparently valid Hall Tickets | Do not expose competing operational authorization; resolve through L2-I05 authority before treating the context as valid. |
-| One Hall Ticket replaced by another | Replacement is operationally authoritative; replaced position is not a second authorization. |
-| One Hall Ticket reissued | Current governed reissue position is operational; prior position remains historical/non-competing. |
-| Hall Ticket withdrawn/cancelled | It cannot authorize examination entry. |
-| Conflict cannot be safely resolved | Do not silently choose a Hall Ticket; preserve the unresolved business condition and escalate through existing governance. |
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-I-041-BH-007 | Hall Ticket Management shall publish only the canonical I05 event corresponding to the actual lifecycle transition, such as `Hall Ticket Reissued`, `Hall Ticket Replaced`, `Hall Ticket Withdrawn`, or `Hall Ticket Cancelled`. No `DuplicateHallTicketResolved` event is introduced. | L3-I-041 §§14,16; L2-I05 |
+| L4-I-041-BH-008 | Examination Registration remains authoritative for registration context; downstream examination workflows consume the single valid Hall Ticket without acquiring Hall Ticket ownership. | L3-I-041 §§5,12,14,16 |
 
-## 5. Lifecycle Constraints
+## 6. Failure / Rejection / Continuation
 
-L4 shall use the existing Hall Ticket lifecycle. It must not create a generic `ConflictResolved`, `Duplicate`, or `Canonical` Hall Ticket state unless such a state is established by the governing L2 architecture.
+If the authoritative Hall Ticket cannot be determined, operational entry authorization remains unresolved rather than choosing an arbitrary position. Candidate-context conflict remains with Student Lifecycle. Underlying registration withdrawal follows the I04/I05 canonical relationship. Historical discovery after conduct shall not rewrite completed conduct outside I05 authority.
 
-The resolution is a business outcome supported by existing lifecycle transitions.
+## 7. Audit & Evidence Behavior
 
-## 6. Cross-Domain Behaviour
+Preserve every Hall Ticket considered, authoritative registration/session context, duplication/conflict classification, governing decision and authority, lifecycle transition, resulting operational Hall Ticket, and all historical non-operational positions.
 
-Authoritative registration and candidate context are consumed from their owning domains. Hall Ticket Management resolves the Hall Ticket-specific consequence. Cross-domain interaction remains technology-neutral.
+## 8. Observable Completion Conditions
 
-No new API, message schema, event, endpoint, or persistence design is defined.
+Completion occurs when one Hall Ticket is operationally authoritative, any competing authorization has an existing I05-governed disposition, applicable canonical I05 events are published, historical versions remain traceable, and downstream conduct has one valid Hall Ticket authority.
 
-## 7. Audit Behaviour
+## 9. Traceability & Provenance
 
-The implementation architecture shall retain evidence of:
+**Parent:** L3-I-041 — Duplicate or Conflicting Hall Ticket to Single Valid Hall Ticket  
+**Primary verification source:** L2-I05 — Hall Ticket Management Workflows.
 
-- all Hall Ticket positions considered;
-- the authoritative registration/session context;
-- the conflict or duplication identified;
-- the governing decision and authority;
-- the lifecycle transition used to resolve it;
-- the resulting single operational Hall Ticket;
-- historical versions excluded from operational authorization.
+## 10. Open Issues / Deferred Design
 
-## 8. Recovery and Exceptions
+No `Duplicate`, `Conflicting`, `Canonical`, or conflict-resolution Hall Ticket state/event is defined upstream. Technical duplicate detection, storage, or implementation mechanisms remain outside L4.
 
-If a conflict arises after publication, the current Hall Ticket validity must be re-evaluated under L2-I05. If an upstream registration withdrawal or other authoritative change affects the context, the corresponding canonical lifecycle consequence applies.
+## Canonical Validation Note
 
-No technical retry or storage-recovery behaviour is prescribed.
-
-## 9. Validation Criteria
-
-Conformance requires that:
-
-1. competing operational Hall Ticket authorization is prevented;
-2. exactly one valid operational Hall Ticket exists where the business context requires one;
-3. historical versions remain traceable;
-4. Hall Ticket Management remains canonical owner;
-5. no new lifecycle state/event is invented;
-6. resolution authority is auditable;
-7. implementation technology remains unspecified.
-
-## 10. Traceability
-
-`L3-I-041` → `L2-I05` Hall Ticket Management; upstream registration context → `L2-I04`; session context → `L2-I02`; applicable planning context → `L2-I03`.
+This specification is a canonical L4 System Behavior Specification and is not self-locked.
