@@ -9,10 +9,10 @@
 **Scenario Type:** Critical  
 **Priority:** P2  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.0.1  
 **Owner:** Chetan  
-**Last Updated:** 2026-08-20  
-**Depends On:** `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `L2-J00_Enterprise_Resource_Management_Architecture_and_Governance.md`; `L2-J01_Procurement_Planning_and_Sourcing_Workflows.md`; `L2-J02_Vendor_and_Supplier_Management_Workflows.md`; `L2-J03_Purchase_Requisition_and_Approval_Workflows.md`; `Section_J_Canonical_Register.md`; `L3_Final_Canonical_Scenario_ID_Register.md`; `L3_Business_Scenario_Template_v2.0.md`  
+**Last Updated:** 2026-09-02  
+**Depends On:** `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `L2-J00_Enterprise_Resource_Management_Architecture_and_Governance.md`; `L2-J01_Procurement_Planning_and_Sourcing_Workflows.md`; `L2-J02_Vendor_and_Supplier_Management_Workflows.md`; `L2-J03_Purchase_Requisition_and_Approval_Workflows.md`; `Section_J_Canonical_Register.md`; `L3_Final_Canonical_Scenario_ID_Register.md`; `L3_Business_Scenario_Template_v2.0.md`; `ADR-J-RATE-SUCCESSION-001.md`  
 **Referenced By:** L3-J-012 demand sourcing during transition; L3-J-014 closure of the predecessor arrangement  
 
 ---
@@ -24,7 +24,7 @@ This scenario governs continuity when an Active rate contract approaches expiry 
 
 # 3. Business Outcome
 
-An expiring rate contract is linked to an approved successor arrangement with controlled scope, suppliers, rates, validity, transition, overlap, ceilings, and effective dates, while the predecessor remains historically immutable.
+An expiring rate contract is linked to an approved successor arrangement that reaches its governed `Active` position on its authorised effective date, with controlled scope, suppliers, rates, validity, transition, overlap, ceilings, and effective dates, while the predecessor remains historically immutable. Where no successor becomes Active, the applicable governed no-successor, temporary-gap, permitted-extension, alternate-sourcing, or discontinuation outcome is recorded.
 
 ---
 
@@ -36,7 +36,7 @@ The scenario begins when an Active rate contract enters its governed renewal or 
 
 ## 4.2 End Boundary
 
-The scenario ends when a successor reaches Approved or Active with an authorised transition from the predecessor, or when the institution records no successor, temporary gap, permitted extension, alternate sourcing, or discontinuation.
+The scenario ends when the successor Rate Contract reaches `Active` with an authorised transition from the predecessor, or when the institution records a governed no-successor, temporary-gap, permitted-extension, alternate-sourcing, or discontinuation outcome.
 
 ## 4.3 In Scope
 
@@ -258,15 +258,16 @@ The institution must reconstruct why and when successor action began, whether de
 
 ## 16.1 Completion Criteria
 
-The scenario is complete only when all of the following criteria are satisfied:
+The scenario is complete only when all of the following criteria are satisfied for the successful successor path:
 
 - the expiring Rate Contract has been identified before its effective end date with a governance-accepted reason for succession;
-- a successor arrangement has been approved with a distinct identity, valid scope, effective dates, and clear predecessor lineage;
+- a successor arrangement has been approved and has reached `Active` on its authorised effective date, with a distinct identity, valid scope, effective dates, and clear predecessor lineage;
 - the transition boundary between the expiring and successor contracts is explicit and prevents a coverage gap for governed procurement categories;
 - no demand continues to be routed against the expired contract after its effective end;
 - approval authority, evidence, and the succession decision are preserved and attributable;
 - the expiring contract's history, outstanding obligations, and any transitional provisions are preserved and not silently overwritten.
 
+Parent-supported non-successor dispositions remain complete through their own governed outcomes as defined in Sections 4.2 and 10.
 
 ## 16.2 Postconditions
 
