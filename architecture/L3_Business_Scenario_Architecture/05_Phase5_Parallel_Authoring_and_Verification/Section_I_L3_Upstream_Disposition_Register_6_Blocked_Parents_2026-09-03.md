@@ -1,59 +1,48 @@
-# Section I L3 Upstream Disposition Register — 6 Parents — 2026-09-03
+# RESOLVED — Section I L3 Upstream Disposition Register — 6 Parents — 2026-09-03
 
 **Architecture Level:** L3 — Business Scenario Architecture Governance  
-**Status:** Upstream Resolved — L3 Revalidation Required  
+**Status:** Upstream Resolved — Six-Parent Revalidation Completed  
 **Date:** 2026-09-03  
 **Working Branch:** `pallav`  
 **Governing L2 Decision:** `ADR-I-REV-EXC-001`  
 **Governing L2 Amendment:** `L2-I11_Exception_Lifecycle_and_Adjudication_Amendment_2026-09-03.md`  
-**Governing Event Overlay:** `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_v2_2026-09-03.md`  
+**Active L3 Successor Overlay:** `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_v3_2026-09-03.md`
 
 ## 1. Resolution
 
-The previous upstream architecture gap for these six parents has been resolved through a controlled L2-I11 amendment. The six parent identities are retained because their outcomes are present in frozen Phase 1 discovery and Phase 4 canonical construction as distinct `KEEP` scenarios.
+The prior upstream architecture gap for these six parents is resolved. Their controlled remediation-stream L3 revalidation has also completed and is incorporated into the active 48-parent v3 successor-review baseline.
 
-This register no longer marks the parents `BLOCKED BY UPSTREAM ARCHITECTURE`. They remain blocked from downstream advancement until controlled L3 revalidation confirms exact rules, lifecycle impacts, events, authority and boundaries against the amended L2-I11 architecture.
+The six parent identities remain canonical `KEEP` scenarios; none is merged, retired, renamed or renumbered.
 
 ## 2. Parent Disposition
 
-| Parent | Upstream resolution | Canonical disposition | Current gate | L4 consequence |
+| Parent | Upstream / successor support | Canonical disposition | Current gate | L4 consequence |
 |---|---|---|---|---|
-| `L3-I-120` — Revaluation Request Withdrawal to Closed Revaluation Request | Shared Review Request Withdrawal capability; `Withdrawn` lifecycle state; `Review Request Withdrawn` event. | **KEEP** | **L3 REVALIDATION REQUIRED** | `L4-I-120` remains Review / blocked pending parent revalidation. |
-| `L3-I-121` — Rechecking Request Withdrawal to Closed Rechecking Request | Same shared withdrawal capability, parameterized by review type. | **KEEP** | **L3 REVALIDATION REQUIRED** | `L4-I-121` remains Review / blocked pending parent revalidation. |
-| `L3-I-124` — Revaluation Evaluator Conflict of Interest to Governed Replacement Evaluation | Evaluator independence constraint and governed replacement assignment inside L2-I11 Revaluation workflow; workforce ownership preserved. | **KEEP** | **L3 REVALIDATION REQUIRED** | `L4-I-124` remains Review / blocked pending parent revalidation. |
-| `L3-I-126` — Persistent Revaluation Difference to Adjudicated Revised Marks | Policy-governed additional/adjudicating revaluation inside L2-I11; existing verification/approval events reused. | **KEEP** | **L3 REVALIDATION REQUIRED** | `L4-I-126` remains Review / blocked pending parent revalidation. |
-| `L3-I-131` — Revaluation Reopening to Valid Authoritative Outcome | Authorized reopening from completed/verified review back to `Review In Progress`; `Review Reopened` event. | **KEEP** | **L3 REVALIDATION REQUIRED** | `L4-I-131` remains Review / blocked pending parent revalidation. |
-| `L3-I-132` — Finalized Revaluation Correction to Traceable Authoritative Outcome | Controlled pre-publication correction of finalized L2-I11 outcome; `Correction Review` lifecycle position; `Review Outcome Corrected` event. | **KEEP** | **L3 REVALIDATION REQUIRED** | `L4-I-132` remains Review / blocked pending parent revalidation. |
+| `L3-I-120` | Shared Review Request Withdrawal; terminal `Withdrawn`; `Review Request Withdrawn` | **KEEP** | **PENDING INDEPENDENT L3 APPROVAL** | `L4-I-120` remains Review pending approved parent successor interpretation. |
+| `L3-I-121` | Shared Review Request Withdrawal; terminal `Withdrawn`; `Review Request Withdrawn` | **KEEP** | **PENDING INDEPENDENT L3 APPROVAL** | `L4-I-121` remains Review pending approved parent successor interpretation. |
+| `L3-I-124` | Evaluator independence/conflict constraint; governed replacement assignment inside L2-I11; workforce fact ownership preserved | **KEEP** | **PENDING INDEPENDENT L3 APPROVAL** | `L4-I-124` remains Review pending approved parent successor interpretation. |
+| `L3-I-126` | Policy-governed adjudicating revaluation using existing L2-I11 verification/approval lifecycle and events | **KEEP** | **PENDING INDEPENDENT L3 APPROVAL** | `L4-I-126` remains Review pending approved parent successor interpretation. |
+| `L3-I-131` | Authorized reopening to `Review In Progress`; `Review Reopened`; prior evidence preserved | **KEEP** | **PENDING INDEPENDENT L3 APPROVAL** | `L4-I-131` remains Review pending approved parent successor interpretation. |
+| `L3-I-132` | Pre-publication `Correction Review`; `Review Outcome Corrected`; L2-I10 publication ownership preserved | **KEEP** | **PENDING INDEPENDENT L3 APPROVAL** | `L4-I-132` remains Review pending approved parent successor interpretation. |
 
 ## 3. Ownership Preservation
 
-- Revaluation & Rechecking remains the Primary Owner for all six outcomes.
-- L2-I08 ordinary Marks Collection & Evaluation ownership remains unchanged.
-- L2-I09 owns downstream recomputation.
-- L2-I10 owns official result publication/republication.
-- Finance owns monetary consequences.
-- People & Workforce retains workforce information ownership.
+- Revaluation & Rechecking remains Primary Owner for all six outcomes.
+- People & Workforce retains workforce/person fact ownership.
+- Finance retains monetary consequences.
+- L2-I08 remains owner of ordinary Marks Collection & Evaluation.
+- L2-I09 owns downstream result recomputation.
+- L2-I10 owns official result publication, correction, replacement and republication.
 
-No scenario is merged, retired, renamed or renumbered. Corpus size remains 1,084.
+No L0 or L1 ownership change is introduced.
 
-## 4. Required L3 Revalidation
-
-For each parent, revalidation must verify:
-
-1. trigger and end outcome remain aligned with frozen scenario identity;
-2. actor/authority wording uses only L2-I11-supported institutional roles;
-3. lifecycle section reflects only the newly amended L2-I11 states/transitions applicable to that scenario;
-4. §14 uses exact canonical L2-I11 event names, directions and publisher;
-5. no L2-I08 workflow is silently imported into Revaluation & Rechecking;
-6. no L3 scenario invents additional withdrawal, replacement, adjudication, reopening or correction events;
-7. result recomputation/publication consequences remain handed off to L2-I09/L2-I10 rather than absorbed.
-
-## 5. Current Governance State
+## 4. Current Governance State
 
 **Upstream L2 gap:** RESOLVED  
-**L3 successor interpretation:** NOT YET APPROVED  
-**L3 revalidation:** REQUIRED  
-**L4 parent readiness:** NOT YET ESTABLISHED  
-**L4 approval:** NOT GRANTED  
+**Six-parent remediation-stream revalidation:** COMPLETED  
+**Active successor baseline:** 48-parent v3  
+**Independent L3 Architecture Approval:** NOT YET GRANTED  
+**Successor Lock:** NOT YET GRANTED  
+**L4 parent readiness:** PENDING L3 APPROVAL  
 
-The previous event-remediation v2 overlay remains authoritative for its 42-parent correction population. A successor L3 revalidation/amendment must explicitly incorporate these six parents before the full 48-parent Section I remediation population can be treated as resolved.
+This register is retained as the resolution history for the six formerly blocked parents. The active approval scope is now the full 48-parent v3 successor baseline.
