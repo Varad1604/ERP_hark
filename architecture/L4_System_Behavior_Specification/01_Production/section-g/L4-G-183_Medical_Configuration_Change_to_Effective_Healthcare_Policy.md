@@ -7,10 +7,10 @@
 **Domain:** Campus Operations  
 **Realizes Scenario:** L3-G-183 — Medical Configuration Change to Effective Healthcare Policy  
 **Primary Business Owner:** Institutional Health Services (G06)  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
+**Last Updated:** 2026-09-03  
 **Depends On:** L3-G-183; applicable locked G architecture sources  
 **Referenced By:** None yet
 
@@ -44,7 +44,7 @@ SutraERP shall govern a G06 healthcare configuration or policy change from propo
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-G-183-BH-009 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Institutional Health Services (G06) ownership. | L3-G-183 §14 |
+| L4-G-183-BH-009 | The retrieved upstream architecture does not define a dedicated canonical medical-configuration-change event. The system shall not invent `MedicalConfigurationChanged` or `HealthcarePolicyActivated`; if an applicable platform configuration event is explicitly defined upstream, its exact canonical name and publisher shall be preserved while G06 remains owner of the healthcare meaning and operational effect. | L3-G-183 §§14,17 |
 
 ## 6. Failure / Rejection / Continuation
 
@@ -69,7 +69,7 @@ L4 behavior is complete when one of the parent-supported outcomes is established
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The upstream architecture does not define a dedicated medical-configuration lifecycle, canonical event, universal approval chain, or universal effective-date mechanism. These remain upstream-owned gaps and are not filled locally. Technical APIs, persistence, UI, deployment, and configuration-enforcement mechanics remain deferred to later architecture levels.
 
 ## Canonical Validation Note
 
