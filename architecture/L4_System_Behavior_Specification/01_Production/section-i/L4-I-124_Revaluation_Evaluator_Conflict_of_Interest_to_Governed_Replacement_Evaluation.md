@@ -2,19 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-I-124  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Examination — Revaluation & Rechecking  
-**Realizes Scenario:** L3-I-124  
-**Primary Business Owner:** Revaluation & Rechecking  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Architecture Approval:** Approved — Vikram Desai, Enterprise Architecture Governance Lead  
-**Approval Recorded:** 2026-09-03  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-03  
-**Depends On:** L3-I-124 — Locked canonical parent; L2-I11 — Locked primary verification source; `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md` — approved upstream remediation; L4 Governance and Architecture Standard; L4 Validation Standard  
-**Referenced By:** None yet  
+**Specification ID:** L4-I-124
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Examination — Revaluation & Rechecking
+**Realizes Scenario:** L3-I-124
+**Primary Business Owner:** Revaluation & Rechecking
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-03
+**Depends On:** L3-I-124 — Locked canonical parent; L2-I11 — Locked primary verification source; `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md` — approved upstream remediation; L4 Governance and Architecture Standard; L4 Validation Standard
+**Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
@@ -70,17 +68,17 @@ This L4 behavior is complete when:
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-I-124 — Revaluation Evaluator Conflict of Interest to Governed Replacement Evaluation  
-**Approved upstream remediation:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md`  
-**Primary verification source:** L2-I11 — locked Section I workflow architecture  
+**Parent:** L3-I-124 — Revaluation Evaluator Conflict of Interest to Governed Replacement Evaluation
+**Approved upstream remediation:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md`
+**Primary verification source:** L2-I11 — locked Section I workflow architecture
 
 Every BH retains L3-I-124 as its single parent. The approved upstream amendment corrects the current parent's event classification and the explicit boundary clarifications recorded for affected scenarios. L2-I11 is used only to verify exact event names, publishers and already-established business semantics.
 
-The 2026-09-03 Architecture Approval makes the Section I remediation amendment effective for the scoped parent correction. This L4 specification has been revalidated against its parent plus that approved amendment and is `Architecture Approved`. Repository locking remains a separate explicit governance action.
+The 2026-09-03 Architecture Approval makes the Section I remediation amendment effective for the scoped parent correction. Repository locking remains a separate explicit governance action.
 
 ## 10. Open Issues / Deferred Design
 
-This specification is synchronized with the Architecture-Approved `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md` and is approved for repository push. Repository lock remains a separate governance action.
+This specification is synchronized with the Architecture-Approved `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md`. Repository lock remains a separate governance action.
 
 Architecture Approval was granted on the amended parent baseline for L3-I-124 by Vikram Desai, Enterprise Architecture Governance Lead, and recorded on 2026-09-03. No `Locked` status is asserted by this approval.
 

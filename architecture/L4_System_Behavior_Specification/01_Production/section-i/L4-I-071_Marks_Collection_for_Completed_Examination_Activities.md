@@ -2,19 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-I-071  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Examination — Marks Collection & Evaluation  
-**Realizes Scenario:** L3-I-071  
-**Primary Business Owner:** Marks Collection & Evaluation  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Architecture Approval:** Approved — Vikram Desai, Enterprise Architecture Governance Lead  
-**Approval Recorded:** 2026-09-03  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-03  
-**Depends On:** L3-I-071 — Locked canonical parent; L2-I08 — Locked primary verification source; L4 Governance and Architecture Standard; L4 Validation Standard  
-**Referenced By:** None yet  
+**Specification ID:** L4-I-071
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Examination — Marks Collection & Evaluation
+**Realizes Scenario:** L3-I-071
+**Primary Business Owner:** Marks Collection & Evaluation
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-03
+**Depends On:** L3-I-071 — Locked canonical parent; L2-I08 — Locked primary verification source; L4 Governance and Architecture Standard; L4 Validation Standard
+**Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
@@ -67,13 +65,13 @@ The behavior is complete when authoritative completion evidence exists, evaluati
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-I-071 — Marks Collection for Completed Examination Activities  
-**Primary verification source:** L2-I08 — Marks Collection & Evaluation Workflows  
+**Parent:** L3-I-071 — Marks Collection for Completed Examination Activities
+**Primary verification source:** L2-I08 — Marks Collection & Evaluation Workflows
 
 Every BH derives from the corrected locked L3-I-071 parent. L2-I08 verifies exact events, evaluation rules and the submitted-marks boundary.
 
 ## 10. Open Issues / Deferred Design
 
-No material L4 issue remains after event/completeness correction. Architecture Approval was granted by Vikram Desai, Enterprise Architecture Governance Lead, and recorded on 2026-09-03. Repository lock remains a separate governance action.
+No material L4 issue remains after event/completeness correction. Repository lock remains a separate governance action.
 
 API/interface design, persistence, event transport, technical access control, infrastructure and UI/UX remain deferred.

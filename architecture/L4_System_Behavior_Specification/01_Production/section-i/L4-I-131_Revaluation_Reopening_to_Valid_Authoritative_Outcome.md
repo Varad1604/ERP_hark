@@ -2,18 +2,18 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-I-131  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Examination — Revaluation & Rechecking  
-**Realizes Scenario:** L3-I-131  
-**Primary Business Owner:** Revaluation & Rechecking  
-**Version:** 1.0.0  
-**Status:** Review  
-**Architecture Review:** Excluded from Architecture Approval — unresolved upstream disposition for L3-I-131; the package approval does not create a review-reopening lifecycle, authority, state, or event.  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-03  
-**Depends On:** L3-I-131 — current Locked parent; L2-I11 — locked primary verification source; `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md` — Architecture-Approved upstream remediation; L4 Governance and Architecture Standard; L4 Validation Standard  
-**Referenced By:** None yet  
+**Specification ID:** L4-I-131
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Examination — Revaluation & Rechecking
+**Realizes Scenario:** L3-I-131
+**Primary Business Owner:** Revaluation & Rechecking
+**Version:** 1.0.0
+**Status:** Review
+**Architecture Review:** Excluded from Architecture Approval — unresolved upstream disposition for L3-I-131; the package approval does not create a review-reopening lifecycle, authority, state, or event.
+**Owner:** Pallav
+**Last Updated:** 2026-09-03
+**Depends On:** L3-I-131 — current Locked parent; L2-I11 — locked primary verification source; `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md` — Architecture-Approved upstream remediation; L4 Governance and Architecture Standard; L4 Validation Standard
+**Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
@@ -62,9 +62,9 @@ This draft becomes authorable only after an explicit governance disposition crea
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-I-131 — Revaluation Reopening to Valid Authoritative Outcome  
-**Primary verification source:** L2-I11 — Revaluation & Rechecking Workflows  
-**Upstream remediation:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md` §7  
+**Parent:** L3-I-131 — Revaluation Reopening to Valid Authoritative Outcome
+**Primary verification source:** L2-I11 — Revaluation & Rechecking Workflows
+**Upstream remediation:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md` §7
 
 The conflict is explicit: L3-I-131 asserts reopening; current locked L2-I11 does not define it. No L2-derived substitute requirement is silently inserted into L4.
 

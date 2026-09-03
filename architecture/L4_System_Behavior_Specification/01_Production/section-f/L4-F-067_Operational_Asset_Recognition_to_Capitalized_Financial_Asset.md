@@ -2,20 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-F-067  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Asset Financial Accounting  
-**Realizes Scenario:** L3-F-067  
-**Primary Business Owner:** Asset Financial Accounting  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Architecture Approval Authority:** Dhruv / Lead Architect  
-**Architecture Approval Date:** 2026-09-02  
-**Approval Provenance:** Explicit Lead Architect approval reported by Pallav in the SutraERP project working session on 2026-09-02; recorded locally before repository push.  
-**Depends On:** `L3-F-067_Operational_Asset_Recognition_to_Capitalized_Financial_Asset.md`; `L2-F12_Asset_Financial_Accounting_Workflows.md`; `L2-J08_Asset_Lifecycle_Management.md`  
-**Referenced By:** None yet  
+**Specification ID:** L4-F-067
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Asset Financial Accounting
+**Realizes Scenario:** L3-F-067
+**Primary Business Owner:** Asset Financial Accounting
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `L3-F-067_Operational_Asset_Recognition_to_Capitalized_Financial_Asset.md`; `L2-F12_Asset_Financial_Accounting_Workflows.md`; `L2-J08_Asset_Lifecycle_Management.md`
+**Referenced By:** None yet
 
 ---
 
@@ -88,8 +85,8 @@ A Finance-owned capitalized financial Asset outcome exists with opening carrying
 
 ## 9. Traceability & Provenance
 
-**Parent:** `L3-F-067` — Operational Asset Recognition to Capitalized Financial Asset  
-**Primary verification source:** L2-F12 — Asset Financial Accounting Workflows  
+**Parent:** `L3-F-067` — Operational Asset Recognition to Capitalized Financial Asset
+**Primary verification source:** L2-F12 — Asset Financial Accounting Workflows
 **Additional verification:** L2-J08 — Asset Lifecycle Management; locked L1 Section F/J ownership boundaries.
 
 Every BH above is anchored to the approved Locked L3 parent. Higher-level/L2 sources are used only to verify exact ownership, event, rule, lifecycle, or dependency semantics; no material L3 omission is silently repaired.
@@ -102,4 +99,3 @@ No named institutional capitalization actor is established upstream. L4 requires
 
 ---
 
-**Review Readiness Classification:** PASS — author self-review complete; ready for independent architecture review.

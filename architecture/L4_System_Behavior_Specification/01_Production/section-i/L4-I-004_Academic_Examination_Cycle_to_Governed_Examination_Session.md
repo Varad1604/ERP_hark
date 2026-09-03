@@ -2,19 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-I-004  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Examination — Session Management  
-**Realizes Scenario:** L3-I-004  
-**Primary Business Owner:** Examination Session Management  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Architecture Approval:** Approved — Vikram Desai, Enterprise Architecture Governance Lead  
-**Approval Recorded:** 2026-09-03  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-03  
-**Depends On:** L3-I-004 — Locked canonical parent; L2-I02 — Locked primary verification source; L4 Governance and Architecture Standard; L4 Validation Standard  
-**Referenced By:** None yet  
+**Specification ID:** L4-I-004
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Examination — Session Management
+**Realizes Scenario:** L3-I-004
+**Primary Business Owner:** Examination Session Management
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-03
+**Depends On:** L3-I-004 — Locked canonical parent; L2-I02 — Locked primary verification source; L4 Governance and Architecture Standard; L4 Validation Standard
+**Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
@@ -69,14 +67,14 @@ The behavior is complete when the Examination Session is established in a source
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-I-004 — Academic Examination Cycle to Governed Examination Session  
-**Primary verification source:** L2-I02 — Examination Session Management Workflows  
-**Additional verification source:** L2-I02 Contracts and Locked Decisions Amendment 2026-08-24  
+**Parent:** L3-I-004 — Academic Examination Cycle to Governed Examination Session
+**Primary verification source:** L2-I02 — Examination Session Management Workflows
+**Additional verification source:** L2-I02 Contracts and Locked Decisions Amendment 2026-08-24
 
 Every BH derives from the locked parent. L2-I02 verifies exact lifecycle, rules, events, publishers and cross-domain boundary already represented by the parent.
 
 ## 10. Open Issues / Deferred Design
 
-No material L4 issue remains after event/completeness correction. Architecture Approval was granted by Vikram Desai, Enterprise Architecture Governance Lead, and recorded on 2026-09-03. Repository lock remains a separate governance action.
+No material L4 issue remains after event/completeness correction. Repository lock remains a separate governance action.
 
 API/interface design, persistence, event transport, technical access control, infrastructure and UI/UX remain deferred.

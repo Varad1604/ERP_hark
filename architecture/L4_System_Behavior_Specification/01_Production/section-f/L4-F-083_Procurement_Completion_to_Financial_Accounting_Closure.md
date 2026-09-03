@@ -2,20 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-F-083  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Procurement Finance Consumption  
-**Realizes Scenario:** L3-F-083  
-**Primary Business Owner:** Procurement Finance Consumption  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Architecture Approval Authority:** Dhruv / Lead Architect  
-**Architecture Approval Date:** 2026-09-02  
-**Approval Provenance:** Explicit Lead Architect approval reported by Pallav in the SutraERP project working session on 2026-09-02; recorded locally before repository push.  
-**Depends On:** `L3-F-083_Procurement_Completion_to_Financial_Accounting_Closure.md`; `L2-F14_Procurement_Finance_Consumption_Workflows.md`; `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F06_Budget_and_Cost_Center_Management.md`; `L2-F08_Accounts_Payable_Management.md`  
-**Referenced By:** None yet  
+**Specification ID:** L4-F-083
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Procurement Finance Consumption
+**Realizes Scenario:** L3-F-083
+**Primary Business Owner:** Procurement Finance Consumption
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `L3-F-083_Procurement_Completion_to_Financial_Accounting_Closure.md`; `L2-F14_Procurement_Finance_Consumption_Workflows.md`; `L2-F05_Accounting_and_General_Ledger_Management.md`; `L2-F06_Budget_and_Cost_Center_Management.md`; `L2-F08_Accounts_Payable_Management.md`
+**Referenced By:** None yet
 
 ---
 
@@ -90,8 +87,8 @@ All applicable Finance consequences are complete and traceable, `FinancialPostin
 
 ## 9. Traceability & Provenance
 
-**Parent:** `L3-F-083` — Procurement Completion to Financial Accounting Closure  
-**Primary verification source:** L2-F14 — Procurement Finance Consumption Workflows  
+**Parent:** `L3-F-083` — Procurement Completion to Financial Accounting Closure
+**Primary verification source:** L2-F14 — Procurement Finance Consumption Workflows
 **Additional verification:** L2-F05 Accounting & General Ledger; L2-F06 Budget & Cost Center; L2-F08 Accounts Payable; applicable Section J completion sources.
 
 Every BH above is anchored to the approved Locked L3 parent. Higher-level/L2 sources are used only to verify exact ownership, event, rule, lifecycle, or dependency semantics; no material L3 omission is silently repaired.
@@ -104,4 +101,3 @@ No named institutional Finance-closure actor is established upstream. The parent
 
 ---
 
-**Review Readiness Classification:** PASS — author self-review complete; ready for independent architecture review.

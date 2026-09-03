@@ -2,20 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-F-036  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Budget & Cost Center Management  
-**Realizes Scenario:** L3-F-036  
-**Primary Business Owner:** Budget & Cost Center Management  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Architecture Approval Authority:** Dhruv / Lead Architect  
-**Architecture Approval Date:** 2026-09-02  
-**Approval Provenance:** Explicit Lead Architect approval reported by Pallav in the SutraERP project working session on 2026-09-02; recorded locally before repository push.  
-**Depends On:** `L3-F-036_Financial_Demand_to_Budget_Control_Decision.md`; `L2-F06_Budget_and_Cost_Center_Management.md`; `L2-F14_Procurement_Finance_Consumption_Workflows.md`; `L2-J03_Purchase_Requisition_and_Approval_Workflows.md`  
-**Referenced By:** None yet  
+**Specification ID:** L4-F-036
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Budget & Cost Center Management
+**Realizes Scenario:** L3-F-036
+**Primary Business Owner:** Budget & Cost Center Management
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `L3-F-036_Financial_Demand_to_Budget_Control_Decision.md`; `L2-F06_Budget_and_Cost_Center_Management.md`; `L2-F14_Procurement_Finance_Consumption_Workflows.md`; `L2-J03_Purchase_Requisition_and_Approval_Workflows.md`
+**Referenced By:** None yet
 
 ---
 
@@ -87,8 +84,8 @@ A governed Budget-control decision exists, its reason is traceable, `BudgetValid
 
 ## 9. Traceability & Provenance
 
-**Parent:** `L3-F-036` — Financial Demand to Budget Control Decision  
-**Primary verification source:** L2-F14 — Procurement Finance Consumption; L2-F06 — Budget & Cost Center Management  
+**Parent:** `L3-F-036` — Financial Demand to Budget Control Decision
+**Primary verification source:** L2-F14 — Procurement Finance Consumption; L2-F06 — Budget & Cost Center Management
 **Additional verification:** L2-J03 — Purchase Requisition & Approval; DEPENDENCY_MAP runtime-consumption classification.
 
 Every BH above is anchored to the approved Locked L3 parent. Higher-level/L2 sources are used only to verify exact ownership, event, rule, lifecycle, or dependency semantics; no material L3 omission is silently repaired.
@@ -101,4 +98,3 @@ No named institutional Budget-control actor is established upstream. L4 preserve
 
 ---
 
-**Review Readiness Classification:** PASS — author self-review complete; ready for independent architecture review.

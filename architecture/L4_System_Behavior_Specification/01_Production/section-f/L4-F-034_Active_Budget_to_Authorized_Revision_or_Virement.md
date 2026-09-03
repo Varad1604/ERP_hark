@@ -2,20 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-F-034  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Budget & Cost Center Management  
-**Realizes Scenario:** L3-F-034  
-**Primary Business Owner:** Budget & Cost Center Management  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Architecture Approval Authority:** Dhruv / Lead Architect  
-**Architecture Approval Date:** 2026-09-02  
-**Approval Provenance:** Explicit Lead Architect approval reported by Pallav in the SutraERP project working session on 2026-09-02; recorded locally before repository push.  
-**Depends On:** `L3-F-034_Active_Budget_to_Authorized_Revision_or_Virement.md`; `L2-F06_Budget_and_Cost_Center_Management.md`; `L2-B02_Organisation_Workflows.md`  
-**Referenced By:** None yet  
+**Specification ID:** L4-F-034
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Budget & Cost Center Management
+**Realizes Scenario:** L3-F-034
+**Primary Business Owner:** Budget & Cost Center Management
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `L3-F-034_Active_Budget_to_Authorized_Revision_or_Virement.md`; `L2-F06_Budget_and_Cost_Center_Management.md`; `L2-B02_Organisation_Workflows.md`
+**Referenced By:** None yet
 
 ---
 
@@ -90,8 +87,8 @@ Completion requires the authorized structural change to be reflected in the Acti
 
 ## 9. Traceability & Provenance
 
-**Parent:** `L3-F-034` — Active Budget to Authorized Revision or Virement  
-**Primary verification source:** L2-F06 — Budget & Cost Center Management  
+**Parent:** `L3-F-034` — Active Budget to Authorized Revision or Virement
+**Primary verification source:** L2-F06 — Budget & Cost Center Management
 **Additional verification:** L2-B02 — Organisation Workflows; locked L1 Finance and organisation ownership rules.
 
 Every BH above is anchored to the approved Locked L3 parent. Higher-level/L2 sources are used only to verify exact ownership, event, rule, lifecycle, or dependency semantics; no material L3 omission is silently repaired.
@@ -104,4 +101,3 @@ L2/L3 do not name the institutional maker/checker roles. L4 preserves the requir
 
 ---
 
-**Review Readiness Classification:** PASS — author self-review complete; ready for independent architecture review.

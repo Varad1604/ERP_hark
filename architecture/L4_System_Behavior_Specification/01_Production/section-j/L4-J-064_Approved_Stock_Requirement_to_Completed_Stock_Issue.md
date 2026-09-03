@@ -2,17 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-J-064  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Section J — Enterprise Resource Management / Stock Operations & Distribution  
-**Realizes Scenario:** L3-J-064  
-**Primary Business Owner:** Stock Operations & Distribution (J07)  
-**Version:** 1.1.0  
-**Status:** Architecture Approved  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-03  
-**Depends On:** `L3-J-064_Approved_Stock_Requirement_to_Completed_Stock_Issue.md`; `architecture/L2_Domain_Workflow_Architecture/section-j/L2-J07_Stock_Operations_and_Distribution.md`; locked L4 governance/template/validation baseline  
-**Referenced By:** None yet  
+**Specification ID:** L4-J-064
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Section J — Enterprise Resource Management / Stock Operations & Distribution
+**Realizes Scenario:** L3-J-064
+**Primary Business Owner:** Stock Operations & Distribution (J07)
+**Version:** 1.1.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-03
+**Depends On:** `L3-J-064_Approved_Stock_Requirement_to_Completed_Stock_Issue.md`; `architecture/L2_Domain_Workflow_Architecture/section-j/L2-J07_Stock_Operations_and_Distribution.md`; locked L4 governance/template/validation baseline
+**Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
@@ -84,18 +84,16 @@ Completion shall remain traceable to L3-J-064 and shall not claim completion of 
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-J-064 — Approved Stock Requirement to Completed Stock Issue  
-**Primary verification source:** `L2-J07_Stock_Operations_and_Distribution.md`  
-**Higher-level constraints:** Locked L1 ownership; Dependency Map; L4 Governance and Architecture Standard; L4 Validation Standard  
+**Parent:** L3-J-064 — Approved Stock Requirement to Completed Stock Issue
+**Primary verification source:** `L2-J07_Stock_Operations_and_Distribution.md`
+**Higher-level constraints:** Locked L1 ownership; Dependency Map; L4 Governance and Architecture Standard; L4 Validation Standard
 
 BH provenance is limited to the locked parent scenario. L2/L1 are verification sources only and are not used to silently repair or extend L3.
 
 ## 10. Open Issues / Deferred Design
 
-**Architecture review status:** `PASS — READY FOR ARCHITECTURE APPROVAL` recorded for v1.1.0 by **Dhruv — Chief Enterprise Architect** for this 55-file review corpus.
 
 No API/interface design, persistence/data model, service/component design, event transport, technical access control, retry/rollback/transaction mechanics, infrastructure/deployment, or UI/UX design is specified here.
 
 ---
 
-**Architecture approval note:** Independent review PASS is recorded for v1.1.0 by **Dhruv — Chief Enterprise Architect**; the final `Approved` decision is recorded by **Vikram Desai — Enterprise Architecture Governance Lead**. This specification is therefore `Architecture Approved`. This decision does **not** authorize `Locked` status.

@@ -2,16 +2,16 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-B-025  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Institution & Structure — Curriculum Framework  
-**Realizes Scenario:** L3-B-025  
-**Primary Business Owner:** Curriculum Framework  
-**Version:** 1.0.0  
-**Status:** Locked  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Depends On:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/section-b/L3-B-025_Academic_Structure_or_Curriculum_Retirement.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Framework_Workflows.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Retirement_Event_Amendment_2026-08-24.md`; `governance/adr/ADR-B-CURR-RET-001.md`  
+**Specification ID:** L4-B-025
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Institution & Structure — Curriculum Framework
+**Realizes Scenario:** L3-B-025
+**Primary Business Owner:** Curriculum Framework
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/section-b/L3-B-025_Academic_Structure_or_Curriculum_Retirement.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Framework_Workflows.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B04_Curriculum_Retirement_Event_Amendment_2026-08-24.md`; `governance/adr/ADR-B-CURR-RET-001.md`
 **Referenced By:** None yet
 
 ---
@@ -81,8 +81,8 @@ Completion does not wait for unrelated downstream scenarios unless the approved 
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-B-025 — Academic Structure or Curriculum Retirement  
-**Primary verification source:** L2-B04 — Curriculum Framework Workflows (`L2-B04_Curriculum_Framework_Workflows.md`)  
+**Parent:** L3-B-025 — Academic Structure or Curriculum Retirement
+**Primary verification source:** L2-B04 — Curriculum Framework Workflows (`L2-B04_Curriculum_Framework_Workflows.md`)
 
 Every BH is anchored to material sections of the Locked L3 parent. L2 is used only to verify exact ownership, lifecycle, rule, event, authority, or dependency semantics and does not silently expand the approved L3 outcome.
 

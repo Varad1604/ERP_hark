@@ -2,20 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-F-082  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Procurement Finance Consumption  
-**Realizes Scenario:** L3-F-082  
-**Primary Business Owner:** Procurement Finance Consumption  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Architecture Approval Authority:** Dhruv / Lead Architect  
-**Architecture Approval Date:** 2026-09-02  
-**Approval Provenance:** Explicit Lead Architect approval reported by Pallav in the SutraERP project working session on 2026-09-02; recorded locally before repository push.  
-**Depends On:** `L3-F-082_Accepted_Supplier_Invoice_to_Vendor_Liability_Recognition.md`; `L2-F14_Procurement_Finance_Consumption_Workflows.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`; `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`  
-**Referenced By:** None yet  
+**Specification ID:** L4-F-082
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Procurement Finance Consumption
+**Realizes Scenario:** L3-F-082
+**Primary Business Owner:** Procurement Finance Consumption
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `L3-F-082_Accepted_Supplier_Invoice_to_Vendor_Liability_Recognition.md`; `L2-F14_Procurement_Finance_Consumption_Workflows.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`; `L2-F08_Accounts_Payable_Management.md`; `L2-F08_Accounts_Payable_Management_Amendment_2026-08-21.md`
+**Referenced By:** None yet
 
 ---
 
@@ -90,8 +87,8 @@ Finance has recognized the vendor liability and published `VendorLiabilityRecogn
 
 ## 9. Traceability & Provenance
 
-**Parent:** `L3-F-082` — Accepted Supplier Invoice to Vendor Liability Recognition  
-**Primary verification source:** L2-F14 — Procurement Finance Consumption Workflows  
+**Parent:** `L3-F-082` — Accepted Supplier Invoice to Vendor Liability Recognition
+**Primary verification source:** L2-F14 — Procurement Finance Consumption Workflows
 **Additional verification:** Locked L2-F14 amendment and corresponding L2-F08 Accounts Payable amendment (ADR-FIN-AP-001); applicable Section J procurement sources.
 
 Every BH above is anchored to the approved Locked L3 parent. Higher-level/L2 sources are used only to verify exact ownership, event, rule, lifecycle, or dependency semantics; no material L3 omission is silently repaired.
@@ -104,4 +101,3 @@ No named institutional liability-recognition/AP preparation actor is established
 
 ---
 
-**Review Readiness Classification:** PASS — author self-review complete; ready for independent architecture review.

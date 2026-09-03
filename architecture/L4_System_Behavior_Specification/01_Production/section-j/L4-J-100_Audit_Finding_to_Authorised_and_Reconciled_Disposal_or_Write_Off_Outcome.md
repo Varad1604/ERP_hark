@@ -2,17 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-J-100  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Section J — Enterprise Resource Management / Disposal, Scrap & Write-Off  
-**Realizes Scenario:** L3-J-100  
-**Primary Business Owner:** Disposal, Scrap & Write-Off (J10)  
-**Version:** 1.1.0  
-**Status:** Architecture Approved  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-03  
-**Depends On:** `L3-J-100_Audit_Finding_to_Authorised_and_Reconciled_Disposal_or_Write_Off_Outcome.md`; `architecture/L2_Domain_Workflow_Architecture/section-j/L2-J10_Disposal_Scrap_and_Write_Off.md`; locked L4 governance/template/validation baseline  
-**Referenced By:** None yet  
+**Specification ID:** L4-J-100
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Section J — Enterprise Resource Management / Disposal, Scrap & Write-Off
+**Realizes Scenario:** L3-J-100
+**Primary Business Owner:** Disposal, Scrap & Write-Off (J10)
+**Version:** 1.1.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-03
+**Depends On:** `L3-J-100_Audit_Finding_to_Authorised_and_Reconciled_Disposal_or_Write_Off_Outcome.md`; `architecture/L2_Domain_Workflow_Architecture/section-j/L2-J10_Disposal_Scrap_and_Write_Off.md`; locked L4 governance/template/validation baseline
+**Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
@@ -88,18 +88,16 @@ Completion shall remain traceable to L3-J-100 and shall not claim completion of 
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-J-100 — Audit Finding to Authorised and Reconciled Disposal or Write Off Outcome  
-**Primary verification source:** `L2-J10_Disposal_Scrap_and_Write_Off.md`  
-**Higher-level constraints:** Locked L1 ownership; Dependency Map; L4 Governance and Architecture Standard; L4 Validation Standard  
+**Parent:** L3-J-100 — Audit Finding to Authorised and Reconciled Disposal or Write Off Outcome
+**Primary verification source:** `L2-J10_Disposal_Scrap_and_Write_Off.md`
+**Higher-level constraints:** Locked L1 ownership; Dependency Map; L4 Governance and Architecture Standard; L4 Validation Standard
 
 BH provenance is limited to the locked parent scenario. L2/L1 are verification sources only and are not used to silently repair or extend L3.
 
 ## 10. Open Issues / Deferred Design
 
-**Architecture review status:** `PASS — READY FOR ARCHITECTURE APPROVAL` recorded for v1.1.0 by **Dhruv — Chief Enterprise Architect** for this 55-file review corpus.
 
 No API/interface design, persistence/data model, service/component design, event transport, technical access control, retry/rollback/transaction mechanics, infrastructure/deployment, or UI/UX design is specified here.
 
 ---
 
-**Architecture approval note:** Independent review PASS is recorded for v1.1.0 by **Dhruv — Chief Enterprise Architect**; the final `Approved` decision is recorded by **Vikram Desai — Enterprise Architecture Governance Lead**. This specification is therefore `Architecture Approved`. This decision does **not** authorize `Locked` status.

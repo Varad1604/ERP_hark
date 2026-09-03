@@ -2,20 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-F-035  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Budget & Cost Center Management  
-**Realizes Scenario:** L3-F-035  
-**Primary Business Owner:** Budget & Cost Center Management  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Architecture Approval Authority:** Dhruv / Lead Architect  
-**Architecture Approval Date:** 2026-09-02  
-**Approval Provenance:** Explicit Lead Architect approval reported by Pallav in the SutraERP project working session on 2026-09-02; recorded locally before repository push.  
-**Depends On:** `L3-F-035_Approved_Budget_to_Controlled_Allocation.md`; `L2-F06_Budget_and_Cost_Center_Management.md`; `L2-B02_Organisation_Workflows.md`  
-**Referenced By:** None yet  
+**Specification ID:** L4-F-035
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Budget & Cost Center Management
+**Realizes Scenario:** L3-F-035
+**Primary Business Owner:** Budget & Cost Center Management
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `L3-F-035_Approved_Budget_to_Controlled_Allocation.md`; `L2-F06_Budget_and_Cost_Center_Management.md`; `L2-B02_Organisation_Workflows.md`
+**Referenced By:** None yet
 
 ---
 
@@ -89,8 +86,8 @@ Every allocation references an active Cost Center, the aggregate allocation tota
 
 ## 9. Traceability & Provenance
 
-**Parent:** `L3-F-035` — Approved Budget to Controlled Allocation  
-**Primary verification source:** L2-F06 — Budget & Cost Center Management  
+**Parent:** `L3-F-035` — Approved Budget to Controlled Allocation
+**Primary verification source:** L2-F06 — Budget & Cost Center Management
 **Additional verification:** L2-B02 — Organisation Workflows; locked L1 ownership constraints.
 
 Every BH above is anchored to the approved Locked L3 parent. Higher-level/L2 sources are used only to verify exact ownership, event, rule, lifecycle, or dependency semantics; no material L3 omission is silently repaired.
@@ -103,4 +100,3 @@ No named institutional allocation approver is established upstream. L4 requires 
 
 ---
 
-**Review Readiness Classification:** PASS — author self-review complete; ready for independent architecture review.

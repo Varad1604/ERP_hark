@@ -2,20 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-F-072  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Asset Financial Accounting  
-**Realizes Scenario:** L3-F-072  
-**Primary Business Owner:** Asset Financial Accounting  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Architecture Approval Authority:** Dhruv / Lead Architect  
-**Architecture Approval Date:** 2026-09-02  
-**Approval Provenance:** Explicit Lead Architect approval reported by Pallav in the SutraERP project working session on 2026-09-02; recorded locally before repository push.  
-**Depends On:** `L3-F-072_Approved_Operational_Write_Off_to_Completed_Financial_Write_Off.md`; `L2-F12_Asset_Financial_Accounting_Workflows.md`; `L2-J08_Asset_Lifecycle_Management.md`; `L2-J10_Disposal_Scrap_and_Write_Off.md`  
-**Referenced By:** None yet  
+**Specification ID:** L4-F-072
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Asset Financial Accounting
+**Realizes Scenario:** L3-F-072
+**Primary Business Owner:** Asset Financial Accounting
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `L3-F-072_Approved_Operational_Write_Off_to_Completed_Financial_Write_Off.md`; `L2-F12_Asset_Financial_Accounting_Workflows.md`; `L2-J08_Asset_Lifecycle_Management.md`; `L2-J10_Disposal_Scrap_and_Write_Off.md`
+**Referenced By:** None yet
 
 ---
 
@@ -88,8 +85,8 @@ The financial write-off is completed and traceable, `AssetWriteOffAccountingComp
 
 ## 9. Traceability & Provenance
 
-**Parent:** `L3-F-072` — Approved Operational Write-Off to Completed Financial Write-Off  
-**Primary verification source:** L2-F12 — Asset Financial Accounting Workflows  
+**Parent:** `L3-F-072` — Approved Operational Write-Off to Completed Financial Write-Off
+**Primary verification source:** L2-F12 — Asset Financial Accounting Workflows
 **Additional verification:** L2-J08 — Asset Lifecycle Management; L2-J10 — Disposal, Scrap & Write-Off.
 
 Every BH above is anchored to the approved Locked L3 parent. Higher-level/L2 sources are used only to verify exact ownership, event, rule, lifecycle, or dependency semantics; no material L3 omission is silently repaired.
@@ -102,4 +99,3 @@ No named Finance write-off accounting actor or calculation method is established
 
 ---
 
-**Review Readiness Classification:** PASS — author self-review complete; ready for independent architecture review.

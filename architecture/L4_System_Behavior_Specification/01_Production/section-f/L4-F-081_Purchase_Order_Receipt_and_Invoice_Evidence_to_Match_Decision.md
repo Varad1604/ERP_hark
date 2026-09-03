@@ -2,20 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-F-081  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Procurement Finance Consumption  
-**Realizes Scenario:** L3-F-081  
-**Primary Business Owner:** Procurement Finance Consumption  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Architecture Approval Authority:** Dhruv / Lead Architect  
-**Architecture Approval Date:** 2026-09-02  
-**Approval Provenance:** Explicit Lead Architect approval reported by Pallav in the SutraERP project working session on 2026-09-02; recorded locally before repository push.  
-**Depends On:** `L3-F-081_Purchase_Order_Receipt_and_Invoice_Evidence_to_Match_Decision.md`; `L2-F14_Procurement_Finance_Consumption_Workflows.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`; `L2-J04_Purchase_Order_Management.md`; `L2-J05_Goods_Receipt_Inspection_and_Acceptance.md`  
-**Referenced By:** None yet  
+**Specification ID:** L4-F-081
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Procurement Finance Consumption
+**Realizes Scenario:** L3-F-081
+**Primary Business Owner:** Procurement Finance Consumption
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `L3-F-081_Purchase_Order_Receipt_and_Invoice_Evidence_to_Match_Decision.md`; `L2-F14_Procurement_Finance_Consumption_Workflows.md`; `L2-F14_Procurement_Finance_Consumption_Workflows_Amendment_2026-08-21.md`; `L2-J04_Purchase_Order_Management.md`; `L2-J05_Goods_Receipt_Inspection_and_Acceptance.md`
+**Referenced By:** None yet
 
 ---
 
@@ -89,8 +86,8 @@ A governed matched, unmatched, or exception outcome is recorded; `VendorInvoiceM
 
 ## 9. Traceability & Provenance
 
-**Parent:** `L3-F-081` — Purchase Order, Receipt, and Invoice Evidence to Match Decision  
-**Primary verification source:** L2-F14 — Procurement Finance Consumption Workflows  
+**Parent:** `L3-F-081` — Purchase Order, Receipt, and Invoice Evidence to Match Decision
+**Primary verification source:** L2-F14 — Procurement Finance Consumption Workflows
 **Additional verification:** Locked L2-F14 amendment 2026-08-21; L2-J04 Purchase Order; L2-J05 Goods Receipt/Acceptance.
 
 Every BH above is anchored to the approved Locked L3 parent. Higher-level/L2 sources are used only to verify exact ownership, event, rule, lifecycle, or dependency semantics; no material L3 omission is silently repaired.
@@ -103,4 +100,3 @@ No named institutional matching authority is established upstream. The F14 amend
 
 ---
 
-**Review Readiness Classification:** PASS — author self-review complete; ready for independent architecture review.

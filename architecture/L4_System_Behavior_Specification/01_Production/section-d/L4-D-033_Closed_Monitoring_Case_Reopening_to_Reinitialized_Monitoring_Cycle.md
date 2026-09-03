@@ -2,17 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-D-033  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Academic Delivery — Academic Monitoring  
-**Realizes Scenario:** L3-D-033  
-**Primary Business Owner:** Academic Monitoring  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Depends On:** `L3-D-033_Closed_Monitoring_Case_Reopening_to_Reinitialized_Monitoring_Cycle.md`; `L2-D05_Academic_Monitoring_Workflows.md`; Locked L4 governance/template/validation baseline  
-**Referenced By:** None yet  
+**Specification ID:** L4-D-033
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Academic Delivery — Academic Monitoring
+**Realizes Scenario:** L3-D-033
+**Primary Business Owner:** Academic Monitoring
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `L3-D-033_Closed_Monitoring_Case_Reopening_to_Reinitialized_Monitoring_Cycle.md`; `L2-D05_Academic_Monitoring_Workflows.md`; Locked L4 governance/template/validation baseline
+**Referenced By:** None yet
 
 ---
 
@@ -103,9 +103,9 @@ The specification is not complete merely because a technical action occurred; th
 
 ## 9. Traceability & Provenance
 
-**Parent:** `L3-D-033` — Closed Monitoring Case Reopening to Reinitialized Monitoring Cycle  
-**Primary verification source:** `L2-D05_Academic_Monitoring_Workflows.md`  
-**Architecture boundary:** Locked L4 Governance and Architecture Standard; Locked L4 Validation Standard  
+**Parent:** `L3-D-033` — Closed Monitoring Case Reopening to Reinitialized Monitoring Cycle
+**Primary verification source:** `L2-D05_Academic_Monitoring_Workflows.md`
+**Architecture boundary:** Locked L4 Governance and Architecture Standard; Locked L4 Validation Standard
 
 Every BH is derived from the Locked L3 parent. The L2 source is used only to verify exact owner, rule, lifecycle and event semantics already represented by the parent; this L4 specification does not silently repair or expand the L3 business scenario.
 
@@ -119,4 +119,3 @@ The following remain deferred to L5/L6: API/interface design, persistence/data m
 
 ---
 
-**Canonical Validation Note:** This specification is **Architecture Approved** under the final Architecture Approval issued by Dhruv / Lead Architect on 2026-09-02, as reported for this Section D batch. The specification is not `Locked`; movement to `Locked` requires separate explicit governance authorization.

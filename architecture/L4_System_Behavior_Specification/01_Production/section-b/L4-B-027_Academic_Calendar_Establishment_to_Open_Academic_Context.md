@@ -2,16 +2,16 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-B-027  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Institution & Structure — Academic Calendar  
-**Realizes Scenario:** L3-B-027  
-**Primary Business Owner:** Academic Calendar  
-**Version:** 1.0.0  
-**Status:** Locked  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Depends On:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/section-b/L3-B-027_Academic_Calendar_Establishment_to_Open_Academic_Context.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B05_Academic_Calendar_Workflows.md`  
+**Specification ID:** L4-B-027
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Institution & Structure — Academic Calendar
+**Realizes Scenario:** L3-B-027
+**Primary Business Owner:** Academic Calendar
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/section-b/L3-B-027_Academic_Calendar_Establishment_to_Open_Academic_Context.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B05_Academic_Calendar_Workflows.md`
 **Referenced By:** None yet
 
 ---
@@ -83,8 +83,8 @@ Completion does not wait for unrelated downstream scenarios unless the approved 
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-B-027 — Academic Calendar Establishment to Open Academic Context  
-**Primary verification source:** L2-B05 — Academic Calendar Workflows (`L2-B05_Academic_Calendar_Workflows.md`)  
+**Parent:** L3-B-027 — Academic Calendar Establishment to Open Academic Context
+**Primary verification source:** L2-B05 — Academic Calendar Workflows (`L2-B05_Academic_Calendar_Workflows.md`)
 
 Every BH is anchored to material sections of the Locked L3 parent. L2 is used only to verify exact ownership, lifecycle, rule, event, authority, or dependency semantics and does not silently expand the approved L3 outcome.
 

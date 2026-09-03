@@ -2,20 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-F-033  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Budget & Cost Center Management  
-**Realizes Scenario:** L3-F-033  
-**Primary Business Owner:** Budget & Cost Center Management  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Architecture Approval Authority:** Dhruv / Lead Architect  
-**Architecture Approval Date:** 2026-09-02  
-**Approval Provenance:** Explicit Lead Architect approval reported by Pallav in the SutraERP project working session on 2026-09-02; recorded locally before repository push.  
-**Depends On:** `L3-F-033_Budget_Proposal_to_Approved_Active_Budget.md`; `L2-F06_Budget_and_Cost_Center_Management.md`; `L2-B02_Organisation_Workflows.md`  
-**Referenced By:** None yet  
+**Specification ID:** L4-F-033
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Budget & Cost Center Management
+**Realizes Scenario:** L3-F-033
+**Primary Business Owner:** Budget & Cost Center Management
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `L3-F-033_Budget_Proposal_to_Approved_Active_Budget.md`; `L2-F06_Budget_and_Cost_Center_Management.md`; `L2-B02_Organisation_Workflows.md`
+**Referenced By:** None yet
 
 ---
 
@@ -88,8 +85,8 @@ Completion requires the Budget to be `Active`, approval/planning history to be p
 
 ## 9. Traceability & Provenance
 
-**Parent:** `L3-F-033` — Budget Proposal to Approved Active Budget  
-**Primary verification source:** L2-F06 — Budget & Cost Center Management  
+**Parent:** `L3-F-033` — Budget Proposal to Approved Active Budget
+**Primary verification source:** L2-F06 — Budget & Cost Center Management
 **Additional verification:** L2-B02 — Organisation Workflows; locked L1 Finance/Section B ownership rules.
 
 Every BH above is anchored to the approved Locked L3 parent. Higher-level/L2 sources are used only to verify exact ownership, event, rule, lifecycle, or dependency semantics; no material L3 omission is silently repaired.
@@ -102,4 +99,3 @@ The parent does not establish a named institutional approver. L4 therefore requi
 
 ---
 
-**Review Readiness Classification:** PASS — author self-review complete; ready for independent architecture review.

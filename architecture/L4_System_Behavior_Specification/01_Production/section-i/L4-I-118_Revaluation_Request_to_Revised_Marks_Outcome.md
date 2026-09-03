@@ -2,19 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-I-118  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Examination — Revaluation & Rechecking  
-**Realizes Scenario:** L3-I-118  
-**Primary Business Owner:** Revaluation & Rechecking  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Architecture Approval:** Approved — Vikram Desai, Enterprise Architecture Governance Lead  
-**Approval Recorded:** 2026-09-03  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-03  
-**Depends On:** L3-I-118 — Locked canonical parent; L2-I11 — Locked primary verification source; L4 Governance and Architecture Standard; L4 Validation Standard  
-**Referenced By:** None yet  
+**Specification ID:** L4-I-118
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Examination — Revaluation & Rechecking
+**Realizes Scenario:** L3-I-118
+**Primary Business Owner:** Revaluation & Rechecking
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-03
+**Depends On:** L3-I-118 — Locked canonical parent; L2-I11 — Locked primary verification source; L4 Governance and Architecture Standard; L4 Validation Standard
+**Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
@@ -77,13 +75,13 @@ The behavior is complete when the request reaches a source-supported completed/t
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-I-118 — Revaluation Request to Revised Marks Outcome  
-**Primary verification source:** L2-I11 — Revaluation & Rechecking Workflows  
+**Parent:** L3-I-118 — Revaluation Request to Revised Marks Outcome
+**Primary verification source:** L2-I11 — Revaluation & Rechecking Workflows
 
 Every BH derives from corrected locked L3-I-118. L2-I11 verifies exact actors, rules, events, publishers and downstream ownership boundaries.
 
 ## 10. Open Issues / Deferred Design
 
-No material L4 issue remains after completeness correction. Architecture Approval was granted by Vikram Desai, Enterprise Architecture Governance Lead, and recorded on 2026-09-03. Locking remains a separate governance action.
+No material L4 issue remains after completeness correction. Locking remains a separate governance action.
 
 API/interface design, persistence, event transport, technical access control, notification implementation, infrastructure and UI/UX remain deferred.

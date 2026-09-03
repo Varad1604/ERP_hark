@@ -2,19 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-I-007  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Examination — Planning & Scheduling  
-**Realizes Scenario:** L3-I-007  
-**Primary Business Owner:** Examination Planning & Scheduling  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Architecture Approval:** Approved — Vikram Desai, Enterprise Architecture Governance Lead  
-**Approval Recorded:** 2026-09-03  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-03  
-**Depends On:** L3-I-007 — Locked canonical parent; L2-I03 — Locked primary verification source; L4 Governance and Architecture Standard; L4 Validation Standard  
-**Referenced By:** None yet  
+**Specification ID:** L4-I-007
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Examination — Planning & Scheduling
+**Realizes Scenario:** L3-I-007
+**Primary Business Owner:** Examination Planning & Scheduling
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-03
+**Depends On:** L3-I-007 — Locked canonical parent; L2-I03 — Locked primary verification source; L4 Governance and Architecture Standard; L4 Validation Standard
+**Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
@@ -68,13 +66,13 @@ The behavior is complete when required planning, conflict validation and institu
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-I-007 — Plan and Approve an Examination Schedule  
-**Primary verification source:** L2-I03 — Examination Planning & Scheduling Workflows  
+**Parent:** L3-I-007 — Plan and Approve an Examination Schedule
+**Primary verification source:** L2-I03 — Examination Planning & Scheduling Workflows
 
 Every BH derives from the corrected and locked L3-I-007 parent. L2-I03 verifies exact event names, lifecycle entry and boundary conditions.
 
 ## 10. Open Issues / Deferred Design
 
-No material L4 issue remains after completeness correction. Architecture Approval was granted by Vikram Desai, Enterprise Architecture Governance Lead, and recorded on 2026-09-03. Locking remains a separate governance action.
+No material L4 issue remains after completeness correction. Locking remains a separate governance action.
 
 Scheduling algorithms, API/interface design, persistence, event transport, technical access control, infrastructure and UI/UX remain deferred.

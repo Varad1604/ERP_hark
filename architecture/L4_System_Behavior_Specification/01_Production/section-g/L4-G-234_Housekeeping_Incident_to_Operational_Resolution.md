@@ -2,20 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-G-234  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Campus Operations — Housekeeping Operations (G08)  
-**Realizes Scenario:** L3-G-234 — Housekeeping Incident to Operational Resolution  
-**Primary Business Owner:** Housekeeping Operations  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Approved By:** Dhruv / Lead Architect  
-**Approval Date:** 2026-09-03  
-**Approval Provenance:** Approval reported by Pallav in the SutraERP ChatGPT Project conversation; no ACR/reference number invented.  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-03  
-**Depends On:** `L3-G-234_Housekeeping_Incident_to_Operational_Resolution.md`; `L2-G08_Housekeeping_Operations_and_Service_Governance_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`; `L4_Governance_and_Architecture_Standard.md`; `L4_Validation_Standard.md`  
-**Referenced By:** None yet  
+**Specification ID:** L4-G-234
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Campus Operations — Housekeeping Operations (G08)
+**Realizes Scenario:** L3-G-234 — Housekeeping Incident to Operational Resolution
+**Primary Business Owner:** Housekeeping Operations
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-03
+**Depends On:** `L3-G-234_Housekeeping_Incident_to_Operational_Resolution.md`; `L2-G08_Housekeeping_Operations_and_Service_Governance_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`; `L4_Governance_and_Architecture_Standard.md`; `L4_Validation_Standard.md`
+**Referenced By:** None yet
 
 ---
 
@@ -103,11 +100,11 @@ L4 behavior is complete only when:
 
 ## 9. Traceability & Provenance
 
-**Parent:** `L3-G-234` — Housekeeping Incident to Operational Resolution  
-**Primary L2 verification source:** `L2-G08_Housekeeping_Operations_and_Service_Governance_Workflows.md`  
-**Higher-level ownership/dependency verification:** `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`  
-**Pinned repository evidence:** `4e98dc1075ef6e6e1990f9287d82ddf1185448f4` (`main`)  
-**Canonical parent path:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/section-g/L3-G-234_Housekeeping_Incident_to_Operational_Resolution.md`  
+**Parent:** `L3-G-234` — Housekeeping Incident to Operational Resolution
+**Primary L2 verification source:** `L2-G08_Housekeeping_Operations_and_Service_Governance_Workflows.md`
+**Higher-level ownership/dependency verification:** `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`
+**Pinned repository evidence:** `4e98dc1075ef6e6e1990f9287d82ddf1185448f4` (`main`)
+**Canonical parent path:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/section-g/L3-G-234_Housekeeping_Incident_to_Operational_Resolution.md`
 
 Every admitted BH is anchored to the exact Locked L3 parent. L2 is used as a semantic verification source only; this L4 does not silently repair an upstream omission.
 

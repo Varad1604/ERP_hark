@@ -2,16 +2,16 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-B-021  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Institution & Structure — Institutional Campus  
-**Realizes Scenario:** L3-B-021  
-**Primary Business Owner:** Institutional Campus  
-**Version:** 1.0.0  
-**Status:** Locked  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Depends On:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/section-b/L3-B-021_Institutional_Campus_Decommissioning_to_Decommissioned_Campus.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B03_Campus_Workflows.md`  
+**Specification ID:** L4-B-021
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Institution & Structure — Institutional Campus
+**Realizes Scenario:** L3-B-021
+**Primary Business Owner:** Institutional Campus
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/section-b/L3-B-021_Institutional_Campus_Decommissioning_to_Decommissioned_Campus.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B03_Campus_Workflows.md`
 **Referenced By:** None yet
 
 ---
@@ -77,8 +77,8 @@ Completion does not wait for unrelated downstream scenarios unless the approved 
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-B-021 — Institutional Campus Decommissioning to Decommissioned Campus  
-**Primary verification source:** L2-B03 — Campus Workflows (`L2-B03_Campus_Workflows.md`)  
+**Parent:** L3-B-021 — Institutional Campus Decommissioning to Decommissioned Campus
+**Primary verification source:** L2-B03 — Campus Workflows (`L2-B03_Campus_Workflows.md`)
 
 Every BH is anchored to material sections of the Locked L3 parent. L2 is used only to verify exact ownership, lifecycle, rule, event, authority, or dependency semantics and does not silently expand the approved L3 outcome.
 

@@ -2,20 +2,17 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L4-F-069  
-**Architecture Level:** L4 — System Behavior Specification  
-**Domain:** Asset Financial Accounting  
-**Realizes Scenario:** L3-F-069  
-**Primary Business Owner:** Asset Financial Accounting  
-**Version:** 1.0.0  
-**Status:** Architecture Approved  
-**Owner:** Pallav  
-**Last Updated:** 2026-09-02  
-**Architecture Approval Authority:** Dhruv / Lead Architect  
-**Architecture Approval Date:** 2026-09-02  
-**Approval Provenance:** Explicit Lead Architect approval reported by Pallav in the SutraERP project working session on 2026-09-02; recorded locally before repository push.  
-**Depends On:** `L3-F-069_Financial_Asset_Revaluation_to_Updated_Carrying_Value.md`; `L2-F12_Asset_Financial_Accounting_Workflows.md`; `L2-J08_Asset_Lifecycle_Management.md`  
-**Referenced By:** None yet  
+**Specification ID:** L4-F-069
+**Architecture Level:** L4 — System Behavior Specification
+**Domain:** Asset Financial Accounting
+**Realizes Scenario:** L3-F-069
+**Primary Business Owner:** Asset Financial Accounting
+**Version:** 1.0.0
+**Status:** Review
+**Owner:** Pallav
+**Last Updated:** 2026-09-02
+**Depends On:** `L3-F-069_Financial_Asset_Revaluation_to_Updated_Carrying_Value.md`; `L2-F12_Asset_Financial_Accounting_Workflows.md`; `L2-J08_Asset_Lifecycle_Management.md`
+**Referenced By:** None yet
 
 ---
 
@@ -87,8 +84,8 @@ The governed revaluation is posted, the Finance carrying value is traceably upda
 
 ## 9. Traceability & Provenance
 
-**Parent:** `L3-F-069` — Financial Asset Revaluation to Updated Carrying Value  
-**Primary verification source:** L2-F12 — Asset Financial Accounting Workflows  
+**Parent:** `L3-F-069` — Financial Asset Revaluation to Updated Carrying Value
+**Primary verification source:** L2-F12 — Asset Financial Accounting Workflows
 **Additional verification:** L2-J08 — Asset Lifecycle Management; locked Section F/J ownership rules.
 
 Every BH above is anchored to the approved Locked L3 parent. Higher-level/L2 sources are used only to verify exact ownership, event, rule, lifecycle, or dependency semantics; no material L3 omission is silently repaired.
@@ -101,4 +98,3 @@ No named institutional revaluation actor or valuation algorithm is established a
 
 ---
 
-**Review Readiness Classification:** PASS — author self-review complete; ready for independent architecture review.
