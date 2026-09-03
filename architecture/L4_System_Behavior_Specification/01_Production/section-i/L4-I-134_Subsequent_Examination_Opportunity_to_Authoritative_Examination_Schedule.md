@@ -6,66 +6,67 @@
 **Architecture Level:** L4 — System Behavior Specification  
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-134 — Subsequent Examination Opportunity to Authoritative Examination Schedule  
-**Primary Business Owner:** Examination  
-**Version:** 1.0.0  
+**Primary Business Owner:** Supplementary, Backlog & Improvement Examination  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-134; applicable locked I architecture sources  
-**Referenced By:** None yet
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-134; L2-I12 Supplementary / Backlog / Improvement Examination Execution; L2-I03 Examination Planning & Scheduling; L2-I02 Examination Session Management  
+**Referenced By:** Applicable Hall Ticket and examination-conduct workflows
 
 ## 2. Behavioral Objective & Boundary
 
-Govern establishment of an authoritative examination schedule for an established subsequent-examination opportunity. Begin with an eligible opportunity requiring scheduling and end with an approved/published schedule or a governed non-scheduling outcome. Out of scope: owning the Examination Schedule lifecycle, candidate registration, examination conduct, or technical scheduling implementation.
+Govern the conversion of an authorized subsequent-examination opportunity into an authoritative published Examination Schedule. L2-I12 owns the opportunity and scheduling requirement; L2-I03 exclusively owns the Examination Schedule lifecycle. The behavior ends when the published schedule is associated with the opportunity and available to downstream examination workflows.
 
 ## 3. Required Business Context
 
-- Subsequent examination opportunity is authoritative.
-- Applicable academic-delivery/calendar context is available.
-- Examination Scheduling owns the schedule lifecycle.
-- Required examination planning constraints are known.
+- The subsequent-examination opportunity and scope are authoritative under L2-I12.
+- A valid Examination Session exists under L2-I02.
+- Required Academic Delivery/calendar context is authoritative.
+- L2-I03 planning, conflict-validation, approval and publication governance applies.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-I-134-BH-001 | The system shall identify the subsequent-examination opportunity requiring a schedule. | L3-I-134 §§3, 9, 12 |
-| L4-I-134-BH-002 | The system shall establish the scheduling requirements and applicable examination window. | L3-I-134 §§3, 9, 12 |
-| L4-I-134-BH-003 | The system shall hand scheduling responsibility to the canonical Examination Scheduling capability. | L3-I-134 §§3, 9, 12 |
-| L4-I-134-BH-004 | The system shall validate the returned schedule against the opportunity's authoritative scope. | L3-I-134 §§3, 9, 12 |
-| L4-I-134-BH-005 | The system shall recognize an approved/published schedule as the authoritative scheduling outcome. | L3-I-134 §§3, 9, 12 |
-| L4-I-134-BH-006 | The system shall preserve the relationship between opportunity and resulting schedule. | L3-I-134 §§3, 9, 12 |
-| L4-I-134-BH-007 | The system shall prevent local creation of competing schedule ownership or lifecycle states. | L3-I-134 §§3, 9, 12 |
+| L4-I-134-BH-001 | Identify the authorized opportunity, subject/candidate scope and governing Examination Session. | L3-I-134 §§3,7–9 |
+| L4-I-134-BH-002 | Establish the scheduling requirement without creating a parallel schedule aggregate or lifecycle in L2-I12. | L3-I-134 §§5,9,12–13 |
+| L4-I-134-BH-003 | Hand the scheduling requirement to L2-I03 and consume the resulting schedule position. | L3-I-134 §§5,9,14 |
+| L4-I-134-BH-004 | Require conflict validation, institutional review and schedule approval before publication. | L3-I-134 §§9,12,15–16 |
+| L4-I-134-BH-005 | Associate the published authoritative schedule with the subsequent-examination opportunity and preserve that relationship. | L3-I-134 §§3,9,16 |
+| L4-I-134-BH-006 | Prevent schedule publication from independently establishing candidate eligibility or changing Examination Registration ownership. | L3-I-134 §§4,12 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-I-134-BH-008 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Examination ownership. | L3-I-134 §14 |
+| L4-I-134-BH-007 | L2-I03 shall remain the canonical publisher of schedule milestones, including `Schedule Approved` and `Schedule Published`; L2-I12 may publish its canonical `Examination Scheduled` lifecycle fact when that milestone is established. Each event remains owned by its canonical workflow. | L3-I-134 §§14,16 |
+| L4-I-134-BH-008 | The published Examination Schedule shall be made available to Hall Ticket and conduct workflows without transferring schedule ownership. | L3-I-134 §§9,14,16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- Without a valid Examination Session, scheduling shall not proceed.
+- Academic or resource conflicts shall remain unresolved until their canonical owners/L2-I03 establish an authoritative position.
+- An unapproved schedule shall not be treated as the official timetable.
+- A cancelled or superseded schedule shall follow the L2-I03 lifecycle; no local schedule state is invented.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve the opportunity scope, scheduling requirement, source context, conflict resolution, review/approval, published schedule, and opportunity-to-schedule association.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Examination ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when L2-I03 has approved and published the authoritative Examination Schedule, the schedule is associated with the L2-I12 opportunity, applicable canonical schedule/subsequent-examination events have occurred, and downstream workflows can consume the timetable.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-I-134 — Subsequent Examination Opportunity to Authoritative Examination Schedule  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Primary verification sources:** L2-I12 — Supplementary / Backlog / Improvement Examination Execution; L2-I03 — Examination Planning & Scheduling; L2-I02 — Examination Session Management.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+The repository does not expose a dedicated synchronous scheduling-contract name for the I12-to-I03 hand-off; none is invented. Technical scheduling algorithms, APIs, persistence, UI, transport, deployment and infrastructure remain outside this L4 business-behavior specification.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification preserves the locked separation between subsequent-examination administration and Examination Schedule ownership and is not self-locked.
