@@ -24,113 +24,75 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import re
-
           root=Path('architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification')
           scen=root/'01_Scenario_Documents'/'section-i'
           l2root=Path('architecture/L2_Domain_Workflow_Architecture/section-i')
           amend=root/'Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md'
           ids=[5,6,8,9,10,11,12,13,14,15,16,43,44,45,46,47,48,49,50,51,52,53,54,72,73,74,75,76,77,78,79,80,81,82,119,120,121,122,123,124,125,126,127,128,129,130,131,132]
-          if len(ids)!=48: raise SystemExit('scope mismatch')
-
-          def section(text, start_pat, end_pat=None):
-              m=re.search(start_pat,text,re.M|re.I)
+          def section(text,start,end=None):
+              m=re.search(start,text,re.M|re.I)
               if not m:return ''
               s=m.end(); e=len(text)
-              if end_pat:
-                  n=re.search(end_pat,text[s:],re.M|re.I)
+              if end:
+                  n=re.search(end,text[s:],re.M|re.I)
                   if n:e=s+n.start()
               return text[s:e]
-
-          def table_first_col(block):
-              vals=[]
+          def firstcol(block):
+              out=[]
               for line in block.splitlines():
                   if not line.strip().startswith('|'): continue
-                  cols=[c.strip() for c in line.strip().strip('|').split('|')]
-                  if not cols: continue
-                  v=cols[0]
-                  if not v or v.lower() in {'event','---','business event'} or set(v)<=set('-: '): continue
-                  vals.append(v.strip('`'))
-              return vals
-
-          def l2_events(text):
-              pub=section(text,r'^#\s*11\.\s*Events Published\s*$',r'^#\s*12\.\s*Events Consumed\s*$')
-              con=section(text,r'^#\s*12\.\s*Events Consumed\s*$',r'^#\s*13\.')
-              vals=table_first_col(pub)+table_first_col(con)
-              for block in (pub,con):
-                  for line in block.splitlines():
+                  c=[x.strip() for x in line.strip().strip('|').split('|')]
+                  if not c: continue
+                  v=c[0].strip('`')
+                  if not v or v.lower() in {'event','business event'} or set(v)<=set('-: '): continue
+                  out.append(v)
+              return out
+          def l2events(text):
+              p=section(text,r'^#\s*11\.\s*Events Published\s*$',r'^#\s*12\.\s*Events Consumed\s*$')
+              c=section(text,r'^#\s*12\.\s*Events Consumed\s*$',r'^#\s*13\.')
+              vals=firstcol(p)+firstcol(c)
+              for b in (p,c):
+                  for line in b.splitlines():
                       m=re.match(r'^\s*[-*]\s+`?([^`\n]+?)`?\s*$',line)
                       if m:
                           v=m.group(1).strip().rstrip('.')
                           if len(v)<100: vals.append(v)
               return set(vals)
-
           records=[]
           for n in ids:
               files=list(scen.glob(f'L3-I-{n:03d}_*.md'))
-              if len(files)!=1: raise SystemExit(f'I-{n:03d}: expected one parent, got {len(files)}')
-              p=files[0]; txt=p.read_text(encoding='utf-8')
+              if len(files)!=1: raise SystemExit(f'I-{n:03d}: parent count {len(files)}')
+              txt=files[0].read_text(encoding='utf-8')
               sm=re.search(r'\*\*Primary L2 Source:\*\*\s*(L2-I\d{2})',txt)
-              if not sm: raise SystemExit(f'{p}: no L2 source')
+              if not sm: raise SystemExit(f'I-{n:03d}: missing L2 source')
               l2id=sm.group(1)
               l2files=[q for q in l2root.glob(f'{l2id}_*.md') if 'Amendment' not in q.name]
-              if len(l2files)!=1: raise SystemExit(f'{l2id}: canonical source ambiguity {len(l2files)}')
-              allowed=l2_events(l2files[0].read_text(encoding='utf-8'))
-              sec14=section(txt,r'^#\s*14\.\s*Business Events and Cross-Domain Collaboration\s*$',r'^#\s*15\.')
-              pub=section(sec14,r'^###\s*Published Events\s*$',r'^###\s*Consumed Events\s*$')
-              con=section(sec14,r'^###\s*Consumed Events\s*$',r'^##\s*14\.2')
-              current=[]
-              for kind,blk in [('Published',pub),('Consumed',con)]:
-                  for ev in table_first_col(blk):
-                      current.append((kind,ev,'KEEP' if ev in allowed else 'REMOVE FROM EVENT CLASSIFICATION'))
-              if not current: raise SystemExit(f'{p}: no current event rows found')
-              records.append((n,l2id,p.name,current))
-
+              if len(l2files)!=1: raise SystemExit(f'{l2id}: canonical source count {len(l2files)}')
+              allowed=l2events(l2files[0].read_text(encoding='utf-8'))
+              s14=section(txt,r'^#\s*14\.\s*Business Events and Cross-Domain Collaboration\s*$',r'^#\s*15\.')
+              pub=section(s14,r'^###\s*Published Events\s*$',r'^###\s*Consumed Events\s*$')
+              con=section(s14,r'^###\s*Consumed Events\s*$',r'^##\s*14\.2')
+              cur=[]
+              for kind,b in [('Published',pub),('Consumed',con)]:
+                  for ev in firstcol(b): cur.append((kind,ev,'KEEP' if ev in allowed else 'REMOVE FROM EVENT CLASSIFICATION'))
+              if not cur: raise SystemExit(f'I-{n:03d}: no §14 rows')
+              records.append((n,l2id,cur))
           old=amend.read_text(encoding='utf-8')
-          header=old.split('## 2. Scope',1)[0]
-          lines=[]
-          lines.append(header.rstrip())
-          lines += ['', '## 2. Scope','',f'This proposed amendment is limited to the following **48** Locked parent scenarios:','']
-          lines.append(', '.join(f'L3-I-{n:03d}' for n in ids))
-          lines += ['', 'Unaffected Section I scenarios remain frozen and are not reopened. The amendment does not change scenario IDs, canonical owners, business outcomes, aggregate ownership, business rules, or lifecycle definitions except where a separately governed disposition is explicitly required.', '']
-          lines += ['## 3. Impact Assessment','',
-                    '- **L3 impact:** 48 Locked Section I parents contain one or more §14 rows whose labels are not canonical business events in their cited Locked L2 source. Their scenario identity, owner, outcome, rules and lifecycle remain unchanged by this event-integrity correction.',
-                    '- **L4 impact:** the 48 directly dependent Pallav L4-I specifications remain `Review` / **BLOCKED BY UPSTREAM** until this amendment is approved and the corresponding L3 successor interpretation is established.',
-                    '- **Repository impact:** no corpus renumbering, no owner transfer, no new event, no new publisher, no lifecycle invention and no change to the 1,084-scenario corpus size is authorized.',
-                    '- **Special impact — L3-I-131:** L2-I11 does not support the reopening premise; this scenario requires a separate disposition and cannot be cured by event-table cleanup alone.', '']
-          lines += ['## 4. Governing Event-Integrity Correction','',
-                    'For the scoped parents, §14 event rows are corrected by exact-name validation against the `Events Published` and `Events Consumed` sections of the cited Locked L2 source. A current row whose event label exactly matches a canonical L2 event is retained. A row that does not exactly match is removed from event classification; its underlying phrase may remain only as non-event business context where already supported elsewhere by the parent or L2.', '',
-                    'This amendment does **not** infer a replacement event merely because an unsupported row appears semantically similar to a valid L2 event. Any additional event needed by a scenario must already be demonstrably inside the existing scenario boundary and must use the exact canonical L2 name and publisher.', '',
-                    'Canonical publisher ownership remains exactly as defined by Locked L2. No event is renamed, created, re-owned, or republished.', '']
-          lines += ['## 5. Exact Per-Scenario Event Correction Register','',
-                    '| L3 Parent | L2 Source | Direction | Current §14 Row | Disposition |',
-                    '|---|---|---|---|---|']
-          for n,l2id,name,current in records:
-              for kind,ev,disp in current:
-                  esc=ev.replace('|','\\|')
-                  lines.append(f'| L3-I-{n:03d} | {l2id} | {kind} | `{esc}` | **{disp}** |')
-          lines += ['', '### 5.1 Correction semantics','',
-                    '- `KEEP` means the existing row label is an exact canonical event name in the cited Locked L2 event vocabulary. Publisher and direction must still remain consistent with L2.',
-                    '- `REMOVE FROM EVENT CLASSIFICATION` means the row is not a canonical event name in that L2 source. It shall not be published or consumed as an event by L3/L4.',
-                    '- This register is exhaustive for the current §14 Published/Consumed rows of the 48 scoped parent files at this amendment baseline.', '']
-          lines += ['## 6. Affected-Scenario Revalidation','',
-                    'Before this amendment can become effective, every scoped parent must pass revalidation confirming: (1) all remaining event rows are exact source-supported events; (2) publisher ownership matches L2; (3) no unsupported row remains classified as an event; (4) scenario start/end boundaries and final outcome are unchanged; (5) no rule, state, authority, contract or ownership has drifted.', '',
-                    'The revalidation result must be recorded as part of the governed amendment approval/successor decision. A generic package approval without the 48-scenario validation result is insufficient.', '']
-          lines += ['## 7. Successor-State and Versioning Decision','',
-                    'If approved, each of the 47 event-integrity-only parents other than `L3-I-131` advances to a **corrected Locked successor interpretation** under this amendment while retaining its existing canonical ID, title, owner, outcome and corpus position. The amendment is the authoritative overlay for the corrected §14 event classification.', '',
-                    'Because the physical Locked parent files are preserved as historical evidence in this remediation approach, their local version metadata is not silently rewritten by this proposal. The governed approval record must identify this amendment version as the successor correction baseline. If repository governance requires physical parent version increments, that shall be a separate mechanical synchronization step after approval, without semantic expansion.', '',
-                    '`L3-I-131` does **not** receive a valid successor state from this event-integrity amendment. It remains unresolved pending the separate disposition in §9.1.', '']
-          lines += ['## 8. Locked-Parent Preservation','',
-                    'The original Locked L3 scenario files are not directly edited by this proposal. This preserves historical evidence and complies with the post-lock prohibition on silent correction. Upon governed approval, this amendment becomes the controlled corrective overlay for the explicitly enumerated event rows only.', '']
-          lines += ['## 9. Downstream L4 Effect and Special Upstream Dispositions','',
-                    'Until this amendment is approved, materially dependent L4 specifications remain in `Review` and are **BLOCKED BY UPSTREAM** for final architecture approval. After approval, each affected L4 specification must be revalidated against its Locked parent, this amendment, and the cited Locked L2 source before any L4 approval decision.', '',
-                    '### 9.1 L3-I-131 — Revaluation Reopening','',
-                    'Current Locked `L2-I11` does not establish a review-reopening workflow, reopening lifecycle transition, reopening authority, or `Review Reopened` event sufficient to support the `L3-I-131` reopening premise. This amendment therefore does not manufacture behavior or declare that parent resolved.', '',
-                    'A separate governed disposition is required: either (1) retire/merge `L3-I-131` through explicit corpus/index/parent-baseline change control, or (2) approve a separately governed upstream L2 change establishing the required reopening lifecycle/authority/event semantics and then revalidate L3-I-131. Until then, `L4-I-131` remains `Review` / **BLOCKED BY UPSTREAM**.', '']
-          lines += ['## 10. Approval / Lock Gate','',
-                    'This document remains a **proposed controlled remediation**. It does not assert Architecture Approval. Approval requires an independent architecture review confirming the exact correction register, impact assessment, 48-parent revalidation requirements, and successor-state treatment against the Locked L1/L2/L3 governance baseline.', '',
-                    'Only after that governed approval may the resolved parents be treated as corrected Locked successors for downstream L4 revalidation. Final L4 approval and final L4 corpus lock remain separate decisions.', '']
-          amend.write_text('\n'.join(lines)+'\n',encoding='utf-8')
-          print(f'Generated exact correction register for {len(records)} parents.')
+          header=old.split('## 2. Scope',1)[0].rstrip()
+          x=[header,'','## 2. Scope','', 'This proposed amendment is limited to the following **48** Locked parent scenarios:','', ', '.join(f'L3-I-{n:03d}' for n in ids),'', 'Unaffected Section I scenarios remain frozen and are not reopened. The amendment does not change scenario IDs, canonical owners, business outcomes, aggregate ownership, business rules, or lifecycle definitions except where a separately governed disposition is explicitly required.','']
+          x += ['## 3. Impact Assessment','', '- **L3 impact:** 48 Locked Section I parents contain one or more §14 rows whose labels are not canonical business events in their cited Locked L2 source. Scenario identity, owner, outcome, rules and lifecycle remain unchanged by this event-integrity correction.', '- **L4 impact:** the 48 directly dependent Pallav L4-I specifications remain `Review` / **BLOCKED BY UPSTREAM** until this amendment is approved and the corresponding L3 successor interpretation is established.', '- **Repository impact:** no corpus renumbering, owner transfer, new event, new publisher, lifecycle invention, or change to the 1,084-scenario corpus size is authorized.', '- **Special impact — L3-I-131:** L2-I11 does not support the reopening premise; this scenario requires a separate governed disposition and cannot be cured by event-table cleanup alone.','']
+          x += ['## 4. Governing Event-Integrity Correction','', 'For the scoped parents, §14 event rows are corrected by exact-name validation against the `Events Published` and `Events Consumed` sections of the cited Locked L2 source. A current row whose event label exactly matches a canonical L2 event is retained. A row that does not exactly match is removed from event classification; its underlying phrase may remain only as non-event business context where already supported elsewhere by the parent or L2.','', 'This amendment does **not** infer a replacement event merely because an unsupported row appears semantically similar to a valid L2 event. Any additional event needed by a scenario must already be demonstrably inside the existing scenario boundary and must use the exact canonical L2 name and publisher.','', 'Canonical publisher ownership remains exactly as defined by Locked L2. No event is renamed, created, re-owned, or republished.','']
+          x += ['## 5. Exact Per-Scenario Event Correction Register','', '| L3 Parent | L2 Source | Direction | Current §14 Row | Disposition |','|---|---|---|---|---|']
+          for n,l2id,cur in records:
+              for kind,ev,disp in cur: x.append(f'| L3-I-{n:03d} | {l2id} | {kind} | `{ev.replace("|","\\|")}` | **{disp}** |')
+          x += ['', '### 5.1 Correction semantics','', '- `KEEP` means the existing row label is an exact canonical event name in the cited Locked L2 event vocabulary. Publisher and direction must still remain consistent with L2.', '- `REMOVE FROM EVENT CLASSIFICATION` means the row is not a canonical event name in that L2 source. It shall not be published or consumed as an event by L3/L4.', '- This register is exhaustive for the current §14 Published/Consumed rows of the 48 scoped parent files at this amendment baseline.','']
+          x += ['## 6. Affected-Scenario Revalidation','', 'Before this amendment can become effective, every scoped parent must pass revalidation confirming: (1) all remaining event rows are exact source-supported events; (2) publisher ownership matches L2; (3) no unsupported row remains classified as an event; (4) scenario start/end boundaries and final outcome are unchanged; and (5) no rule, state, authority, contract or ownership has drifted.','', 'The revalidation result must be recorded as part of the governed amendment approval/successor decision. A generic package approval without the 48-scenario validation result is insufficient.','']
+          x += ['## 7. Successor-State and Versioning Decision','', 'If approved, each of the 47 event-integrity-only parents other than `L3-I-131` advances to a **corrected Locked successor interpretation** under this amendment while retaining its existing canonical ID, title, owner, outcome and corpus position. The amendment is the authoritative overlay for corrected §14 event classification.','', 'The physical Locked parent files are preserved as historical evidence and their local version metadata is not silently rewritten by this proposal. The governed approval record must identify this amendment version as the successor correction baseline. If repository governance requires physical parent version increments, that is a separate mechanical synchronization after approval without semantic expansion.','', '`L3-I-131` does **not** receive a valid successor state from this event-integrity amendment. It remains unresolved pending §9.1.','']
+          x += ['## 8. Locked-Parent Preservation','', 'The original Locked L3 scenario files are not directly edited by this proposal. Upon governed approval, this amendment becomes the controlled corrective overlay for the explicitly enumerated event rows only.','']
+          x += ['## 9. Downstream L4 Effect and Special Upstream Dispositions','', 'Until this amendment is approved, materially dependent L4 specifications remain in `Review` and are **BLOCKED BY UPSTREAM** for final architecture approval. After approval, each affected L4 specification must be revalidated against its Locked parent, this amendment, and the cited Locked L2 source before any L4 approval decision.','', '### 9.1 L3-I-131 — Revaluation Reopening','', 'Current Locked `L2-I11` does not establish a review-reopening workflow, reopening lifecycle transition, reopening authority, or `Review Reopened` event sufficient to support the `L3-I-131` reopening premise. This amendment therefore does not manufacture behavior or declare that parent resolved.','', 'A separate governed disposition is required: either (1) retire/merge `L3-I-131` through explicit corpus/index/parent-baseline change control, or (2) approve a separately governed upstream L2 change establishing the required reopening lifecycle/authority/event semantics and then revalidate L3-I-131. Until then, `L4-I-131` remains `Review` / **BLOCKED BY UPSTREAM**.','']
+          x += ['## 10. Approval / Lock Gate','', 'This document remains a **proposed controlled remediation**. It does not assert Architecture Approval. Approval requires an independent architecture review confirming the exact correction register, impact assessment, 48-parent revalidation requirements, and successor-state treatment against the Locked L1/L2/L3 governance baseline.','', 'Only after that governed approval may the resolved parents be treated as corrected Locked successors for downstream L4 revalidation. Final L4 approval and final L4 corpus lock remain separate decisions.','']
+          amend.write_text('\n'.join(x)+'\n',encoding='utf-8')
+          print('Generated exact correction register for 48 parents.')
           PY
       - name: Verify and commit
         shell: bash
@@ -138,7 +100,7 @@ jobs:
           set -euo pipefail
           git rm -f .github/workflows/strengthen-l3-section-i-amendment.yml
           AMEND='architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md'
-          git add "$AMEND" .github/workflows/strengthen-l3-section-i-amendment.yml
+          git add "$AMEND"
           CHANGED=$(git diff --cached --name-only)
           test "$(echo "$CHANGED" | grep -c '^architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md$')" -eq 1
           test "$(echo "$CHANGED" | grep -c '^.github/workflows/strengthen-l3-section-i-amendment.yml$')" -eq 1
@@ -151,5 +113,3 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'Strengthen Section I L3 remediation amendment'
           git push origin HEAD:pallav-l3-i-amendment-strengthening
-
-# retrigger after workflow registration
