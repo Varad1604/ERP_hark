@@ -1,92 +1,68 @@
-# L4-I-038 — Unsatisfied Hall Ticket Conditions to Withheld Entry Authorization
+# Unsatisfied Hall Ticket Conditions to Withheld Entry Authorization
 
-**Architecture Level:** L4 — Implementation Architecture  
-**Parent Scenario:** `L3-I-038` — Unsatisfied Hall Ticket Conditions to Withheld Entry Authorization  
-**Canonical Owner:** Hall Ticket Management  
-**Governing L2:** `L2-I05` — Hall Ticket Management Workflows  
-**Status:** Draft for governed L4 authoring
+## 1. Specification Metadata
 
-## 1. Purpose
+**Specification ID:** L4-I-038  
+**Architecture Level:** L4 — System Behavior Specification  
+**Domain:** Examination  
+**Realizes Scenario:** L3-I-038 — Unsatisfied Hall Ticket Conditions to Withheld Entry Authorization  
+**Primary Business Owner:** Hall Ticket Management  
+**Version:** 1.0.1  
+**Status:** Draft  
+**Owner:** Varad  
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-038; L2-I05 Hall Ticket Management; L2-I04 Examination Registration; L2-I02 Examination Session; L2-I03 Examination Planning & Scheduling; applicable C, D, F sources  
+**Referenced By:** Hall Ticket issuance and examination-entry workflows
 
-Define implementation-independent behaviour that prevents examination-entry authorization when an authoritative Hall Ticket condition is unsatisfied, while preserving upstream ownership of the condition and the existing L2-I05 lifecycle.
+## 2. Behavioral Objective & Boundary
 
-## 2. Required Behaviour
+Prevent valid examination-entry authorization while any authoritative Hall Ticket condition remains unsatisfied. “Withheld” is a business outcome, not a Hall Ticket lifecycle state.
 
-The system shall:
+## 3. Required Business Context
 
-1. establish the candidate, Examination Registration and Examination Session under Hall Ticket processing;
-2. evaluate all applicable Hall Ticket prerequisites using authoritative business facts;
-3. identify any unsatisfied condition without redefining its upstream rule;
-4. prevent progression to a valid examination-entry authorization while the condition remains unsatisfied;
-5. preserve the business reason and audit evidence for the decision;
-6. accept subsequent authoritative corrections from the owning domain;
-7. re-evaluate the candidate through the existing Hall Ticket lifecycle when all required conditions become satisfied.
+- Candidate, Examination Registration, and Examination Session.
+- Applicable Hall Ticket prerequisites and their authoritative source facts.
+- Published schedule where required.
+- Existing I05 lifecycle position and required approval context.
 
-## 3. Ownership Constraints
+## 4. System Behavioral Obligations
 
-Hall Ticket Management owns the examination-entry authorization decision. Student Lifecycle, Academic Delivery and Finance retain ownership of their respective business facts where they participate. Examination Registration, Session Management and Planning retain their canonical responsibilities.
+| Behavior ID | Required System Behavior | Provenance |
+|---|---|---|
+| L4-I-038-BH-001 | Identify and evaluate every applicable Hall Ticket condition using authoritative business facts. | L3-I-038 §§7,9,12 |
+| L4-I-038-BH-002 | Identify each unsatisfied condition and preserve its canonical source ownership. | L3-I-038 §§5,9,12 |
+| L4-I-038-BH-003 | Prevent progression to valid examination-entry authorization while any required condition remains unsatisfied. | L3-I-038 §§3,9,12–13 |
+| L4-I-038-BH-004 | Preserve the business reason and audit evidence for the withheld outcome. | L3-I-038 §§9,15–16 |
+| L4-I-038-BH-005 | Re-evaluate through the existing I05 lifecycle after authoritative source conditions are corrected or satisfied. | L3-I-038 §§9–11,13 |
 
-Participation must never be interpreted as ownership transfer.
+## 5. Cross-Domain & Event Behavior
 
-## 4. Decision Behaviour
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-I-038-BH-006 | Hall Ticket Management shall publish only existing I05 lifecycle events when their corresponding transitions occur. No `HallTicketAuthorizationWithheld` event is introduced. | L3-I-038 §§14,16; L2-I05 |
+| L4-I-038-BH-007 | Student Lifecycle, Academic Delivery, Finance, Examination Registration, Session Management, and Planning retain ownership of their respective source facts. | L3-I-038 §§5,12,14–15 |
 
-| Business Position | Required Outcome |
-|---|---|
-| Registration not Confirmed | Do not authorize Hall Ticket entry; defer to L2-I04. |
-| Examination Session not Active | Do not establish valid entry authorization. |
-| Examination Schedule not Published | Do not establish valid Hall Ticket authorization. |
-| Applicable upstream/student/academic/financial condition unsatisfied | Withhold authorization through existing L2-I05 behaviour. |
-| Required administrative approval absent | Do not progress to the governed authorized position. |
-| All applicable conditions satisfied | Resume normal Hall Ticket issuance processing. |
+## 6. Failure / Rejection / Continuation
 
-“Withheld” is a business outcome, not a newly introduced lifecycle state.
+Registration not Confirmed, session not Active, schedule not Published, an applicable C/D/F condition unsatisfied, or required approval absent shall prevent valid authorization. Multiple unsatisfied conditions remain unresolved until all required source-owned conditions are satisfied. No new recovery state is invented.
 
-## 5. Lifecycle Constraints
+## 7. Audit & Evidence Behavior
 
-The design must realize the existing L2-I05 Hall Ticket lifecycle. It must not add a `Withheld` state or an equivalent technical state that becomes a competing canonical lifecycle definition.
+Preserve the registration/session context, each condition evaluated, source owner, withheld decision, business justification, later authoritative correction, re-evaluation, and eventual I05 lifecycle transition if any.
 
-A candidate whose conditions later become satisfied must re-enter the existing eligibility and issuance path rather than transition through an invented recovery state.
+## 8. Observable Completion Conditions
 
-## 6. Cross-Domain Behaviour
+Completion occurs when the withheld entry-authorization decision is authoritative and traceable while conditions remain unsatisfied, or when all required conditions become satisfied and the candidate re-enters normal I05 Hall Ticket issuance. No new state or event is created.
 
-The solution must consume authoritative business facts from the relevant owning domains. If a condition is corrected, the correction is established by its canonical owner and becomes an input to Hall Ticket re-evaluation.
+## 9. Traceability & Provenance
 
-No new API, event, message, schema, endpoint, or protocol is defined at this level.
+**Parent:** L3-I-038 — Unsatisfied Hall Ticket Conditions to Withheld Entry Authorization  
+**Primary verification source:** L2-I05 — Hall Ticket Management Workflows.
 
-## 7. Audit Behaviour
+## 10. Open Issues / Deferred Design
 
-The system shall preserve business evidence sufficient to identify:
+The frozen participating-domain set C, D, F, I is preserved without inventing detailed C/D/F eligibility rules. Technical retries, queues, persistence, APIs, and infrastructure remain outside L4.
 
-- the affected registration and examination session;
-- the condition evaluated;
-- the authoritative source of the condition;
-- the resulting withheld authorization decision;
-- the applicable business justification;
-- subsequent authoritative correction and re-evaluation;
-- eventual Hall Ticket lifecycle transition, if any.
+## Canonical Validation Note
 
-## 8. Event Constraints
-
-L2-I05 remains the canonical publisher of Hall Ticket lifecycle events. No `HallTicketAuthorizationWithheld` event is introduced. Upstream domains remain publishers of their own lifecycle facts.
-
-## 9. Exceptional Behaviour
-
-Where multiple conditions are unsatisfied, authorization remains withheld until all required conditions are satisfied. Resolution occurs through the owning upstream workflows. If the business position changes after Hall Ticket publication, the existing L2-I05 withdrawal, replacement or cancellation behaviour applies as appropriate.
-
-Technical retry, queue, infrastructure and persistence recovery mechanisms are not specified.
-
-## 10. Validation Criteria
-
-Conformance requires that:
-
-1. an unsatisfied authoritative condition cannot result in valid entry authorization;
-2. upstream business rules remain upstream-owned;
-3. no new Hall Ticket lifecycle state or event is created;
-4. the withholding decision is auditable;
-5. subsequent resolution uses the existing Hall Ticket lifecycle;
-6. Hall Ticket Management remains the sole owner of the authorization outcome;
-7. the design remains implementation-independent.
-
-## 11. Traceability
-
-`L3-I-038` → `L2-I05` Hall Ticket Management; related authority from `L2-I04`, `L2-I02`, `L2-I03`, and participating source domains C, D and F as applicable.
+This specification is a canonical L4 System Behavior Specification and is not self-locked.
