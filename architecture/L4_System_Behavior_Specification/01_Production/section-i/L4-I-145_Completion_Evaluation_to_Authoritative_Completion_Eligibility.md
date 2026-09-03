@@ -7,67 +7,62 @@
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-145 — Completion Evaluation to Authoritative Completion Eligibility  
 **Primary Business Owner:** Academic Completion & Completion Evidence  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-I-145; applicable locked I architecture sources  
-**Referenced By:** None yet
+**Last Updated:** 2026-09-03  
+**Depends On:** L3-I-145; L2-I13; L2-I09; L2-I10; authoritative Academic Delivery inputs; L2-C05 qualification-completion authority  
+**Referenced By:** Student Lifecycle qualification-completion review and completion-evidence workflows
 
 ## 2. Behavioral Objective & Boundary
 
-Establish the authoritative examination-derived completion-eligibility position from approved academic and examination inputs without recalculating upstream marks or conferring qualification completion.
+Establish I13's authoritative examination-derived completion-eligibility finding from authoritative academic and examination inputs without recalculating source facts or representing the finding as the institutional Qualification Completion decision. L2-C05 alone owns qualification completion, award and Student Exit.
 
 ## 3. Required Business Context
 
-- Student and programme context is authoritative.
-- Academic Delivery outcomes are authoritative or unresolved.
-- Examination outcomes are authoritative or unresolved.
-- I13 completion-evidence requirements are available.
-- L2-C05 retains qualification completion ownership.
+- Authoritative student/programme context.
+- Authoritative or explicitly unresolved Academic Delivery and Examination outcomes.
+- Applicable I13 completion-evidence requirements.
 
 ## 4. System Behavioral Obligations
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-I-145-BH-001 | The system shall identify the applicable student/programme context. | L3-I-145 §§3, 9, 12 |
-| L4-I-145-BH-002 | The system shall consume authoritative Academic Delivery completion inputs. | L3-I-145 §§3, 9, 12 |
-| L4-I-145-BH-003 | The system shall consume authoritative examination outcomes. | L3-I-145 §§3, 9, 12 |
-| L4-I-145-BH-004 | The system shall evaluate completion-evidence requirements using only approved inputs and governing rules. | L3-I-145 §§3, 9, 12 |
-| L4-I-145-BH-005 | The system shall establish the current completion-eligibility position. | L3-I-145 §§3, 9, 12 |
-| L4-I-145-BH-006 | The system shall preserve the evidence basis and contributing source context. | L3-I-145 §§3, 9, 12 |
-| L4-I-145-BH-007 | The system shall publish canonical completion evidence/eligibility events only where the applicable L2 workflow requires them. | L3-I-145 §§3, 9, 12 |
-| L4-I-145-BH-008 | The system shall make the result available to L2-C05 without representing it as a qualification award. | L3-I-145 §§3, 9, 12 |
+| L4-I-145-BH-001 | Identify the student/programme scope and required authoritative academic/examination inputs. | L3-I-145 §§3,7–9 |
+| L4-I-145-BH-002 | Evaluate I13 completion-evidence requirements without recalculating marks, grades, SGPA, CGPA, credits or Academic Standing. | L3-I-145 §§9,12 |
+| L4-I-145-BH-003 | Establish one current I13 completion-evidence eligibility position and preserve its evidence basis. | L3-I-145 §§3,9,16 |
+| L4-I-145-BH-004 | Prevent unresolved mandatory evidence from being treated as approved eligibility. | L3-I-145 §§10–12 |
+| L4-I-145-BH-005 | Make I13 evidence available to L2-C05 without representing a qualification as awarded. | L3-I-145 §§3,5,12,16 |
 
 ## 5. Cross-Domain & Event Behavior
 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
-| L4-I-145-BH-009 | On successful completion of the governed business outcome, the system shall publish the canonical business event or make the authoritative outcome available under Academic Completion & Completion Evidence ownership. | L3-I-145 §14 |
+| L4-I-145-BH-006 | When eligibility is confirmed, I13 shall publish the canonical `CompletionEligibilityApproved` event. Other I13 events such as `AcademicCompletionVerificationCompleted`, `ProgrammeCompletionVerified`, `CreditRequirementVerified`, and `ExaminationCompletionEvidencePrepared` shall be used only at their corresponding milestones. L2-C05 remains independently responsible for Qualification Completion. | L3-I-145 §§14,16 |
 
 ## 6. Failure / Rejection / Continuation
 
-- If required business eligibility or prerequisite conditions are not satisfied, prevent progression and maintain the prior valid state.
-- If conflicting or unverified source facts are received, retain the business position as unresolved without inferring missing values.
-- Technical retry, database rollback, queue recovery, and infrastructure mechanisms are excluded.
+- Missing or conflicting source facts return to their canonical owners for resolution.
+- A blocked/unresolved evidence position shall not become approved eligibility.
+- I13 may complete its evidence responsibility without awarding a qualification.
 
 ## 7. Audit & Evidence Behavior
 
-The system shall preserve attributable audit evidence of the initiation context, eligibility evaluation, governing policy basis, authorized decisions, resulting lifecycle state transitions, and completed business outcomes.
+Preserve contributing source facts, evaluated requirements, eligibility finding, approval evidence and event publication.
 
 ## 8. Observable Completion Conditions
 
-Completion requires governing conditions validated, the authoritative business position recorded under Academic Completion & Completion Evidence ownership, attributable audit evidence preserved, and canonical business events published.
+Completion occurs when one authoritative I13 completion-evidence eligibility position exists, evidence basis is traceable, and `CompletionEligibilityApproved` is published when eligibility is confirmed.
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-I-145 — Completion Evaluation to Authoritative Completion Eligibility  
-**Primary verification source:** Authoritative Examination L2 workflow architecture.
+**Parent:** L3-I-145  
+**Primary verification sources:** L2-I13 and locked I13/C05 ownership resolution.
 
 ## 10. Open Issues / Deferred Design
 
-Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+Institution-specific completion thresholds remain upstream policy/configuration. I13's finding is evidentiary and must never be conflated with C05 qualification completion.
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification preserves the locked I13/C05 ownership boundary and exact I13 event vocabulary.
