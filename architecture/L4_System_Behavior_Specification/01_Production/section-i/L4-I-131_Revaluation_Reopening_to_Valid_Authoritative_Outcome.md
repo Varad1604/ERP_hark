@@ -7,76 +7,80 @@
 **Domain:** Examination — Revaluation & Rechecking
 **Realizes Scenario:** L3-I-131
 **Primary Business Owner:** Revaluation & Rechecking
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Status:** Review
-**Architecture Review:** Excluded from Architecture Approval — unresolved upstream disposition for L3-I-131; the package approval does not create a review-reopening lifecycle, authority, state, or event.
 **Owner:** Pallav
-**Last Updated:** 2026-09-03
-**Depends On:** L3-I-131 — current Locked parent; L2-I11 — locked primary verification source; `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md` — proposed controlled upstream remediation; pending architecture approval; L4 Governance and Architecture Standard; L4 Validation Standard
+**Last Updated:** 2026-09-04
+**Depends On:** L3-I-131 — canonical parent interpreted through the Locked Section I v3 successor baseline; L2-I11 — Locked primary verification source and Locked exception amendment; `Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_v3_2026-09-03.md` — Architecture Approved and Locked authoritative corrective overlay; L4 Governance and Architecture Standard; L4 Validation Standard
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-No executable L4 system behavior is admitted for this scenario at present.
+SutraERP must realize **Revaluation Reopening to Valid Authoritative Outcome** by recognizing an authorized reopening of a completed/verified revaluation, returning the review to the earliest valid review stage required to cure the authorized defect, and supporting a newly verified authoritative outcome without erasing prior review evidence.
 
-The parent asserts a **Revaluation Reopening** business occurrence, but current locked L2-I11 does not define a review-reopening workflow, reopening lifecycle transition, reopening authority, or `Review Reopened` event. Authoring system behavior from that unsupported premise would violate HF-03, HF-06, HF-07 and HF-12.
+The behavior begins only after `Review Completed` / `Outcome Verified`, when a policy-authorized institutional review authority establishes a material authorized basis for reopening, and before final revised-marks approval. It ends when the reopened review has been completed and its outcome reverified, with revised-marks approval occurring only where the reopened review produces revised marks requiring approval.
 
 ## 3. Required Business Context
 
-The only context established for this blocked draft is:
+- An authoritative revaluation review that has reached `Review Completed` / `Outcome Verified`.
+- A material authorized reopening basis.
+- A policy-authorized institutional review authority.
+- The review has not passed the final revised-marks approval boundary that would make this reopening path inapplicable.
+- Candidate representation may supply evidence but does not itself constitute reopening authority.
 
-- current parent `L3-I-131`;
-- locked `L2-I11 — Revaluation & Rechecking Workflows`;
-- the proposed controlled Section I L3 event-integrity remediation amendment;
-- the explicit upstream governance decision required by that amendment §7.
-
-No reopening authority, state, event or transition is assumed.
+Only authoritative context defined by the approved successor baseline and Locked L2-I11 amendment may be used. No new approver, reopening authority, lifecycle state or event is introduced by L4.
 
 ## 4. System Behavioral Obligations
 
-**No BH is admitted.**
-
-L4 authoring is blocked until governance resolves whether `L3-I-131` is retired/merged or an upstream L2 architecture change explicitly establishes a controlled review-reopening business lifecycle.
+| Behavior ID | Required System Behavior | Provenance |
+|---|---|---|
+| L4-I-131-BH-001 | The system shall prevent reopening unless a policy-authorized institutional review authority and a material authorized reopening basis exist after `Review Completed` / `Outcome Verified` and before final revised-marks approval. | L3-I-131 successor interpretation; L2-I11 `BR-I11-EXC-006` |
+| L4-I-131-BH-002 | When reopening becomes authoritative, the system shall return the review lifecycle to `Review In Progress` at the earliest valid stage required to cure the authorized defect. | L3-I-131 successor interpretation; L2-I11 `BR-I11-EXC-006` |
+| L4-I-131-BH-003 | The system shall preserve the prior completed and verified review evidence as historical evidence and shall not replace it with the reopened review position. | L3-I-131 successor interpretation; L2-I11 `BR-I11-EXC-007` |
+| L4-I-131-BH-004 | The system shall require the reopened review to complete and its outcome to be reverified before a new authoritative review outcome is established. | L3-I-131 successor interpretation; L2-I11 reopening lifecycle |
+| L4-I-131-BH-005 | The system shall recognize `Revised Marks Approved` only where the reopened review produces revised marks that require approval under the source-defined review lifecycle. | L3-I-131 successor interpretation; Section I v3 §5.5 |
 
 ## 5. Cross-Domain & Event Behavior
 
-No reopening event is defined.
-
-The system shall not be specified to publish, consume or infer a `Review Reopened` event because current locked L2-I11 does not define one. Existing L2-I11 events remain unchanged and are not used to fabricate a reopening path.
+| Behavior ID | Required Behavior | Provenance |
+|---|---|---|
+| L4-I-131-BH-006 | When authorized reopening becomes authoritative, the system shall publish `Review Reopened` under the canonical L2-I11 publisher. | L3-I-131 successor interpretation; Section I v3 §5.5; L2-I11 exception amendment |
+| L4-I-131-BH-007 | When the reopened review completes, the system shall publish `Review Completed` under the canonical L2-I11 publisher. | L3-I-131 successor interpretation; Section I v3 §5.5 |
+| L4-I-131-BH-008 | When the reopened outcome is revalidated, the system shall publish `Review Outcome Verified` under the canonical L2-I11 publisher. | L3-I-131 successor interpretation; Section I v3 §5.5 |
+| L4-I-131-BH-009 | The system shall not invent a candidate-requested reopening event or transfer reopening authority to a candidate, another domain, or the system itself. | L3-I-131 successor interpretation; L2-I11 `BR-I11-EXC-006` |
 
 ## 6. Failure / Rejection / Continuation
 
-The applicable architecture behavior is to **prevent L4 derivation**, not to invent a business continuation path.
-
-No business recovery, reopening, successor-state or authority behavior is specified until the parent baseline is made valid through explicit upstream governance.
+- A candidate representation without the required institutional reopening authority shall not reopen the review.
+- If the material authorized basis is absent, the existing verified review position shall remain authoritative.
+- If final revised-marks approval has already crossed the source-defined reopening boundary, this scenario shall not establish reopening.
+- Once validly reopened, progression to a new authoritative outcome shall remain blocked until the reopened review completes and its outcome is reverified.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve the architecture-review evidence establishing the parent/L2 conflict and the eventual governance disposition. No additional business audit obligation is authored from the unsupported reopening premise.
+The system shall preserve the prior completed/verified outcome, the authorized reopening basis, the responsible institutional review authority, the `Review Reopened` occurrence, the return to `Review In Progress`, evidence considered during the reopened review, and the resulting completed and reverified outcome. Historical evidence shall remain traceable.
 
 ## 8. Observable Completion Conditions
 
-There is no valid L4 completion condition while the parent remains unsupported.
+This L4 behavior is complete when:
 
-This draft becomes authorable only after an explicit governance disposition creates a valid canonical parent baseline.
+- the reopening authority and material basis were validated;
+- an authorized reopening returned the review to `Review In Progress`, or an invalid reopening attempt preserved the existing authoritative position;
+- prior review evidence remained historically traceable;
+- the reopened review, when admitted, reached `Review Completed` and `Outcome Verified` again;
+- required canonical events were published by L2-I11; and
+- no downstream result publication/republication outcome was absorbed.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-I-131 — Revaluation Reopening to Valid Authoritative Outcome
-**Primary verification source:** L2-I11 — Revaluation & Rechecking Workflows
-**Upstream remediation:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_2026-09-03.md` §7
+**Authoritative successor overlay:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/Section_I_L3_Event_Integrity_and_Boundary_Remediation_Amendment_v3_2026-09-03.md`
+**Primary verification source:** L2-I11 — Locked Revaluation & Rechecking workflow architecture and Locked exception amendment
 
-The conflict is explicit: L3-I-131 asserts reopening; current locked L2-I11 does not define it. No L2-derived substitute requirement is silently inserted into L4.
+Every BH retains L3-I-131 as its single parent. The Locked successor overlay supplies the previously missing reopening authority, lifecycle transition and canonical `Review Reopened` event without changing scenario identity or ownership.
 
 ## 10. Open Issues / Deferred Design
 
-**BLOCKED BY UPSTREAM — GOVERNANCE DECISION REQUIRED.**
-
-Preferred resolution options are recorded in the proposed controlled L3 remediation amendment §7:
-
-1. retire/merge `L3-I-131` with explicit corpus/index/parent-baseline updates; or
-2. perform a separately governed upstream L2 change before revalidating L3-I-131.
-
-This file remains in `Review` as an explicit blocked disposition. The 2026-09-03 package approval does not approve this specification because the required upstream disposition for L3-I-131 remains unresolved.
+No upstream architecture blocker remains for this specification. It remains in `Review` pending L4 Architecture Approval under the L4 governance and validation standards.
 
 API/interface design, persistence, event transport, technical access control, infrastructure and UI/UX remain deferred.
