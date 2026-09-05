@@ -93,8 +93,12 @@ Every BH above is anchored to the approved Locked L3 parent. Higher-level/L2 sou
 
 ## 10. Open Issues / Deferred Design
 
-APPROVED DEFERRED UPSTREAM ISSUE: the Locked parent preserves the frozen title `Active or Closed Cost Center` but does not establish `Closed` as a canonical Cost Center terminal lifecycle state. The Lead Architect has approved this L4 specification with the terminal branch explicitly deferred rather than invented. This approval does not establish `Closed`, does not create a terminal event, and does not transfer ownership. Any future governed upstream lifecycle decision shall require controlled synchronization of this specification. Named Cost Center actors also remain upstream-deferred. Implementation details remain deferred.
+The final L3 corpus lock dated 2026-08-29 establishes `L3-F-037` as a Locked parent eligible for L4 derivation. Earlier parent wording describing the Cost Center terminal-lifecycle gap remains traceability evidence and does not, by itself, reopen that Locked parent. The lock decision does not create a new Cost Center terminal state or terminal event.
+
+Accordingly, this specification realizes the parent exactly as locked: the establishment path may complete at `Active` with `CostCenterActivated`; a terminal request that depends on an unestablished `Closed` transition remains at the last valid lifecycle position and shall not manufacture a terminal state or event. Any future controlled upstream/L3 amendment that establishes additional Cost Center terminal semantics requires synchronized revalidation of this L4 specification.
+
+Named Cost Center actors remain no more specific than the Locked parent permits. Implementation details remain deferred.
 
 ---
 
-**Architecture Approval Classification:** APPROVED WITH GOVERNED DEFERRAL — source-supported activation behavior is approved; the unsupported terminal `Closed` branch remains explicitly deferred and is not invented at L4.
+**Review Classification:** READY FOR ARCHITECTURE REVIEW — locked-parent activation behavior is fully specified; terminal processing preserves the Locked parent's governed deferral and introduces no unsupported state, event, or authority.
