@@ -46,7 +46,7 @@ No local threshold, actor, event, publisher, lifecycle state, business rule or a
 
 ## 5. Cross-Domain & Event Behavior
 
-Canonical event behavior is limited to the business facts explicitly listed in L3-J-{sid:03d} §14:
+Canonical event behavior is limited to the business facts explicitly listed in L3-J-076 §14:
 
 | Business Event | Canonical Publisher | L4 Obligation |
 |---|---|---|
