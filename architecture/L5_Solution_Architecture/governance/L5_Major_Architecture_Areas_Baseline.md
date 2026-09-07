@@ -14,11 +14,11 @@
 4. API & Contract Architecture
 5. Event & Messaging Architecture
 6. Database & Persistence Architecture
-7. Multi-Tenancy Architecture
+7. Tenant & Institutional Isolation Architecture
 8. IAM Architecture
 9. Detailed Authorization — RBAC + Scope + Policies
 10. Security & Cryptography Architecture
-11. Aadhaar Security Architecture
+11. Aadhaar Data Protection Architecture
 12. Payment & Gateway Integration Architecture
 13. Document/Object Storage Architecture
 14. Integration Architecture
