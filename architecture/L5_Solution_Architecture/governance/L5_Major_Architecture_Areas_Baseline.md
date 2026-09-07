@@ -8,27 +8,33 @@
 
 # Major L5 Architecture Areas
 
-1. System/Application Architecture
-2. Technology Stack Selection
-3. Domain/Module Technical Boundaries
-4. API & Contract Architecture
-5. Event & Messaging Architecture
-6. Database & Persistence Architecture
-7. Tenant & Institutional Isolation Architecture
-8. IAM Architecture
-9. Detailed Authorization — RBAC + Scope + Policies
-10. Security & Cryptography Architecture
-11. Aadhaar Data Protection Architecture
-12. Payment & Gateway Integration Architecture
-13. Document/Object Storage Architecture
-14. Integration Architecture
-15. Cache/Search/Background Jobs Architecture
-16. Audit & Evidence Architecture
-17. Data Classification, Retention & Privacy Architecture
-18. Availability, Resilience & Performance Architecture
-19. Backup, Restore & Disaster Recovery Architecture
-20. Container & Deployment Architecture
-21. Observability & Operations Architecture
-22. CI/CD & Software Supply Chain Security Architecture
-23. Testing Architecture
-24. Web & Future Mobile Client Architecture
+1. Application & Platform Architecture
+2. Technology Platform & Standards Architecture
+3. Module, Dependency & Technical Boundary Architecture
+4. Tenant & Institutional Isolation Architecture
+5. Workflow & Orchestration Architecture
+6. Configuration, Feature & Institutional Extensibility Architecture
+7. Secure Computational Engine Architecture
+8. Background Processing & Job Execution Architecture
+9. Search & Indexing Architecture
+10. Database & Persistence Architecture
+11. Master & Reference Data Technical Architecture
+12. Document, Media & Object Storage Architecture
+13. Data Classification, Retention & Privacy Architecture
+14. Reporting, Analytics & Data Projection Architecture
+15. API & Contract Architecture
+16. Event & Messaging Architecture
+17. External Integration & Connector Architecture
+18. Notification & Communication Architecture
+19. IAM Architecture
+20. Authorization — RBAC, Scope & Policy Architecture
+21. Security, Cryptography, Secrets & Key Management Architecture
+22. Audit & Evidence Architecture
+23. Availability & Resilience Architecture
+24. Performance & Capacity Architecture
+25. Backup, Restore & Disaster Recovery Architecture
+26. Runtime, Packaging & Deployment Architecture
+27. Observability & Operations Architecture
+28. CI/CD & Software Supply Chain Security Architecture
+29. Verification & Testing Architecture
+30. Client Platform Architecture — Web & Future Mobile
