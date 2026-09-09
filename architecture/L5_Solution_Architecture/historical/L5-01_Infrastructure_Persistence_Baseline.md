@@ -37,6 +37,7 @@ before it can be cited as canonical.
 
 # 3. Recorded Persistence Baseline
 
+
 ---
 
 ## 220. Persistence Philosophy
@@ -609,6 +610,9 @@ Events are published only after successful persistence.
 | Read Models | Query Layer |
 | Analytics | Analytics Domain |
 | Event Delivery | Integration Platform |
+
+---
+
 
 ---
 
