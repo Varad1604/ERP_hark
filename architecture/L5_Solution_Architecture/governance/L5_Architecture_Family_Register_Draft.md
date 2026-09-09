@@ -1,8 +1,8 @@
 # SutraERP L5 — Architecture Family Register
 
-**Status:** Draft  
+**Status:** Architecture Approved  
 **Architecture Level:** L5 — Solution Architecture  
-**Purpose:** Working governance register for grouping the approved major L5 architecture areas into technical architecture families with one primary family per area.
+**Purpose:** Approved governance register grouping the 30 major L5 architecture areas into seven technical architecture families with exactly one primary family per area.
 
 ---
 
@@ -113,3 +113,9 @@ Cross-family dependencies are expected and shall be explicit. Examples include:
 The L5 family letters identify technical architecture families. They do not correspond to L1 business-domain section letters and do not transfer or redefine upstream business ownership.
 
 L5 architecture shall implement approved L4 behavior without redefining L1/L2/L3/L4 business rules, canonical ownership, lifecycle states, events or institutional outcomes.
+
+---
+
+# 6. Corpus Relationship
+
+The seven families and 30 major areas define the approved organizational model for L5. They do not determine the final number of L5 specification documents. The exact corpus is maintained in the L5 corpus register and is subject to L4-to-L5 coverage validation before final lock.
