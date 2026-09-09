@@ -1,12 +1,12 @@
-# SutraERP L5 — Naming and Document Granularity Draft
+# SutraERP L5 — Naming and Document Granularity Specialization
 
-**Status:** Draft  
+**Status:** Architecture Approved  
 **Architecture Level:** L5 — Solution Architecture Governance  
-**Purpose:** Proposed specialization for stable L5 identifiers and document granularity. This draft does not supersede the current repository convention `L5-[SolutionName]` until formally adopted through governance.
+**Purpose:** Approved L5 specialization defining stable L5 family, major-area and specification identifiers, document granularity, filename rules and identifier immutability.
 
 ---
 
-# 1. Proposed Identifier Structure
+# 1. Canonical Identifier Structure
 
 Use three levels of identity:
 
@@ -20,7 +20,7 @@ The family identifies the technical architecture family. The two-digit area iden
 
 ---
 
-# 2. Proposed Major Area Codes
+# 2. Canonical Major Area Codes
 
 | Code | Major L5 Area |
 |---|---|
@@ -57,9 +57,7 @@ The family identifies the technical architecture family. The two-digit area iden
 
 ---
 
-# 3. Document Identity Rule
-
-Proposed canonical document identity:
+# 3. Canonical Document Identity Rule
 
 ```text
 L5-<Family>-<Area>-<Document>
@@ -68,18 +66,19 @@ L5-<Family>-<Area>-<Document>
 Example:
 
 ```text
-L5-A-07-001  Secure Computational Engine Baseline
+L5-A-07-001  Secure Computational Engine Architecture Baseline
 L5-A-07-002  Finance Computation Engine Architecture
 L5-A-07-003  Examination Result Computation Engine Architecture
-L5-A-07-004  General Rules & Formula Engine Architecture
-L5-A-07-005  Scheduling & Optimization Engine Architecture
+L5-A-07-004  Payroll Computation Engine Architecture
+L5-A-07-005  General Rules & Formula Engine Architecture
+L5-A-07-006  Scheduling & Optimization Engine Architecture
 ```
 
 ---
 
 # 4. Document Granularity Principle
 
-One L5 document should describe one coherent technical architecture responsibility that can be reviewed and changed independently without duplicating another document's decisions.
+One L5 document shall describe one coherent technical architecture responsibility that can be reviewed and changed independently without duplicating another document's decisions.
 
 A major area may contain one or many architecture documents.
 
@@ -94,7 +93,7 @@ Split a specification where there is a materially different:
 - compliance requirement; or
 - review scope that would otherwise become materially unmanageable.
 
-Do not split merely because multiple named concepts exist. Where concerns share the same architecture decisions, ownership and lifecycle, unnecessary splitting should be avoided.
+Do not split merely because multiple named concepts exist. Where concerns share the same architecture decisions, ownership and lifecycle, unnecessary splitting shall be avoided.
 
 ---
 
@@ -110,11 +109,11 @@ L5-C-03-002  Payment Gateway Integration Architecture
 L5-C-03-003  Government Education Connector Architecture
 ```
 
-A major area that requires only one specification may use `001` for the complete architecture without creating artificial child documents.
+A major area that requires only one specification may use `001` for the complete architecture without creating an artificial baseline document.
 
 ---
 
-# 6. Proposed Filename Convention
+# 6. Canonical Filename Convention
 
 ```text
 L5-<Family>-<Area>-<Document>_<Canonical_Solution_Slug>.md
@@ -128,15 +127,17 @@ L5-D-02-005_Privileged_Access_Architecture.md
 L5-E-03-001_Backup_Restore_and_Disaster_Recovery_Architecture.md
 ```
 
+The identifier is permanent. A descriptive slug may change only through controlled governance where terminology legitimately changes.
+
 ---
 
 # 7. Identifier Stability
 
-Once an L5 document identifier enters the canonical L5 document register, it shall not be silently renumbered or reused.
+Once an L5 major-area identifier or document identifier enters the canonical L5 register, it shall not be silently renumbered or reused.
 
-If a document is retired, its identifier remains retired. Gaps are permitted.
+If an area or document is retired, its identifier remains retired. Gaps are permitted.
 
-This protects traceability from later architecture levels, ADRs, implementation artifacts, tests, reviews and repository history.
+Before formal register approval, planning-draft identifiers may still be reorganized. Register approval is the boundary at which canonical identifier immutability begins.
 
 ---
 
@@ -144,11 +145,24 @@ This protects traceability from later architecture levels, ADRs, implementation 
 
 Architecture identifiers shall not contain author names or team-member identities.
 
-Author assignment belongs in the future L5 document register and workload allocation records, not in the architecture ID itself.
+Author assignment belongs in workload-allocation records and the L5 document register, not in the architecture ID itself.
 
 ---
 
-# 9. Traceability Principle
+# 9. L1 Ownership Independence
+
+L5 family letters identify technical solution-architecture families only.
+
+```text
+L5-A != L1-A
+L5-B != L1-B
+```
+
+L5 identifiers shall not create, transfer or imply L1/L2/L3/L4 business ownership.
+
+---
+
+# 10. Traceability Principle
 
 L5 does not use a one-L4-to-one-L5 document model.
 
@@ -158,10 +172,8 @@ Cross-level traceability shall be explicit without creating duplicate architectu
 
 ---
 
-# 10. Governance Status
+# 11. Corpus Status Rule
 
-This document records the currently approved planning direction but remains a Draft specialization.
+The approved naming specialization does not itself approve or freeze the candidate L5 document corpus.
 
-The locked repository naming rule `L5-[SolutionName]` remains authoritative until this specialization is formally adopted through the applicable repository governance process.
-
-The exact L5 document corpus, complexity scoring and five-member workload allocation have not yet been defined by this draft.
+The candidate corpus must pass full L4-to-L5 coverage, duplicate-ownership and completeness validation before its document IDs become canonical and immutable.
