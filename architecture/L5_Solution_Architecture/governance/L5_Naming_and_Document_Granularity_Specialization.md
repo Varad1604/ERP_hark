@@ -35,7 +35,7 @@ The family identifies the technical architecture family. The two-digit area iden
 | L5-B-01 | Search & Indexing Architecture |
 | L5-B-02 | Database & Persistence Architecture |
 | L5-B-03 | Master & Reference Data Technical Architecture |
-| L5-B-04 | Document, Media & Object Storage Architecture |
+| L5-B-04 | Document, Media & Object Platform Architecture |
 | L5-B-05 | Data Classification, Retention & Privacy Architecture |
 | L5-B-06 | Reporting, Analytics & Data Projection Architecture |
 | L5-C-01 | API & Contract Architecture |
