@@ -1,9 +1,9 @@
 # L5 Solution Architecture
 
 **Architecture Level:** L5 — Solution Architecture  
-**Current State:** Representative pilot completed; authoring methodology corrected and locked; candidate-corpus finalization pending  
-**Active Candidate Corpus:** 105 Architecture Approved candidate specifications  
-**Mass L5 Authoring:** Not authorized  
+**Current State:** Representative pilot completed; 105-specification authoring population frozen; workload allocation and dependency-gated execution model locked; broad-authoring authorization pending  
+**Frozen Authoring Population:** 105 specifications  
+**Broad L5 Authoring:** Not authorized  
 **Final L5 Corpus Lock:** Not authorized  
 
 ---
@@ -35,14 +35,18 @@ Current active planning/governance artifacts include:
 - `L5_Naming_and_Document_Granularity_Specialization.md` — Architecture Approved L5 identifier/granularity specialization;
 - `L5_Naming_Specialization_Approval_Decision_2026-09-09.md` — Locked approval of hierarchical L5 naming;
 - `L5_L4_to_L5_Coverage_Audit_Decision_105_2026-09-09.md` — Architecture Approved coverage decision;
-- `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md` — Architecture Approved revised 105-specification candidate corpus;
+- `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md` — Architecture Approved 105-specification register;
+- `L5_Authoring_Population_Freeze_Decision_105_2026-09-09.md` — Locked freeze of the 105 identifiers and responsibility boundaries for controlled authoring;
 - `L5_Governance_and_Architecture_Standard.md` — Locked v0.3.1 governance baseline with explicit technical-realization-depth rules;
 - `L5_Solution_Architecture_Specification_Template_v1.0.md` — Locked v1.0.1 compact technical authoring template;
 - `L5_Validation_Standard.md` — Locked v1.0.1 validation baseline with strengthened HF-11 technical-depth enforcement;
 - `L5_Technology_Selection_and_ADR_Methodology.md` — Locked v1.0.1 technology/ADR methodology clarifying that technology-neutral does not mean architecture-neutral;
 - `L5_L4_to_L5_Traceability_Methodology.md` — Locked many-to-many L4 BH ↔ L5 traceability methodology;
 - `L5_ADR_Register.md` — Locked central L5 ADR identity register;
-- `L5_Candidate_Document_Corpus_Register_99_2026-09-09.md` — preserved historical Proposed candidate register superseded for active candidate-corpus planning.
+- `L5_Pilot_ADR_Candidate_Disposition_2026-09-09.md` — Locked disposition of six material pilot ADR candidate decision areas; no ADR IDs allocated by this record;
+- `L5_Workload_Complexity_and_Five_Person_Allocation_Decision_2026-09-09.md` — Locked five-person authoring allocation;
+- `L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md` — Locked six-stage dependency-gated parallel execution model;
+- `L5_Candidate_Document_Corpus_Register_99_2026-09-09.md` — preserved historical Proposed candidate register superseded for active corpus planning.
 
 The approved L5 family model is:
 
@@ -60,11 +64,11 @@ The family letters are technical L5 identities and do not map to L1 business-dom
 
 ---
 
-## Active Candidate Corpus
+## Frozen Authoring Population
 
-The current revised candidate corpus contains **105 specifications**:
+The current L5 authoring population contains **105 specifications**:
 
-| Family | Candidate Specifications |
+| Family | Specifications |
 |---|---:|
 | L5-A | 20 |
 | L5-B | 21 |
@@ -75,9 +79,9 @@ The current revised candidate corpus contains **105 specifications**:
 | L5-G | 4 |
 | **Total** | **105** |
 
-This corpus supersedes the earlier 99-specification register for active L5 candidate planning. The 99-register remains historical evidence and shall not be deleted.
+The 105-register supersedes the earlier 99-specification register for active L5 corpus planning. The 99-register remains historical evidence and shall not be deleted.
 
-The 105-register does not authorize mass authoring or final L5 lock.
+The authoring-population freeze locks the 105 identifiers and responsibility boundaries for controlled authoring. It is **not** the Final L5 Corpus Lock and does **not** itself authorize broad L5 authoring.
 
 ---
 
@@ -119,7 +123,55 @@ Open decisions / ADR triggers
 
 Pilot methodology validation passed after targeted governance remediation. Individual pilot specifications remain Draft/planning artifacts unless and until their material L4 dependencies and required ADRs satisfy normal approval gates.
 
-Material ADR candidate areas identified by the pilot include reusable isolation enforcement, policy decision/enforcement realization, persistence/concurrency strategy, durable messaging/publication strategy, runtime/packaging strategy and secure-engine isolation. These are candidate decision areas, not automatically one ADR each.
+Six material ADR candidate decision areas were retained by the pilot disposition: isolation enforcement, authorization PDP/PEP realization, persistence/concurrency strategy, durable publication/delivery, runtime/packaging and secure-engine isolation. They remain candidates pending formal ADR necessity/scope review and are not yet allocated or approved ADRs.
+
+---
+
+## Locked Workload Allocation
+
+The frozen 105-specification authoring population is allocated as follows:
+
+| Author | Specifications | Workload Position |
+|---|---:|---|
+| Varad | 31 | Highest |
+| Pallav | 30 | Second |
+| Dhruv | 20 | Third — capped because L6 work begins in parallel |
+| Devang | 14 | Fourth |
+| Chetan | 10 | Lowest |
+| **Total** | **105** |  |
+
+This is an authoring allocation. It does not transfer canonical technical ownership or upstream business ownership.
+
+---
+
+## Dependency-Gated Parallel Execution
+
+L5 uses a six-stage dependency-gated parallel authoring model. The stages are **not strict serial waves**.
+
+```text
+Foundation
+    ↓
+Control Architecture
+    ↓
+Shared Execution & Operations
+    ↓
+Specialized Platforms
+    ↓
+External Integration & Recovery
+    ↓
+Technology + Verification Consolidation
+```
+
+A specification may begin as soon as its required upstream L5 dependency is architecturally stable enough that the author does not need to invent that upstream responsibility.
+
+The governing rule is:
+
+```text
+Do not wait for a whole stage.
+Wait only for the specific dependency needed.
+```
+
+Unrestricted independent authoring of all 105 specifications without dependency stabilization is not the approved execution pattern.
 
 ---
 
@@ -138,15 +190,12 @@ These documents predate the current L4 production corpus and current L5 governan
 
 ## Current Execution Boundary
 
-The representative pilot and methodology-remediation step are complete.
+The representative pilot, methodology remediation, 105-specification authoring-population freeze, pilot ADR-candidate disposition, five-person workload allocation, dependency-gated execution sequencing and repository-navigation synchronization are complete.
 
-The next controlled L5 work is:
+The next controlled L5 governance step is to issue an **explicit broad-authoring authorization**. That authorization remains a separate decision and has not been granted by the records above.
 
-1. finalize the canonical disposition of the 105-specification candidate register;
-2. consolidate and scope pilot-discovered ADR candidates without ADR inflation;
-3. score specification workload/complexity;
-4. approve balanced author/reviewer allocation;
-5. confirm repository navigation required for the finalized corpus;
-6. issue explicit controlled broad-authoring authorization.
+Once separately authorized, authoring shall follow the locked dependency-gated execution model. Formal ADR necessity/scope review shall occur where material decisions require it, and individual/corpus validation remains required before any Final L5 Corpus Lock.
 
-Technology choices, implementation code, detailed L6 UI/UX design and broad L5 authoring remain outside the authority of the current 105 candidate-corpus approval until the applicable gates are explicitly satisfied.
+Branch selection, manual task assignment and repository push mechanics are outside this navigation record and remain under Lead Architect control.
+
+Technology choices not supported by approved ADRs, implementation code and detailed L6 UI/UX design remain outside L5 authority.
