@@ -1,6 +1,6 @@
 # SutraERP L5 Technology Selection & ADR Methodology
 
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Locked  
 **Owner:** Lead Architect  
 **Architectural Level:** L5 — Solution Architecture Governance  
@@ -54,6 +54,34 @@ An ADR records **why a material architecture decision was made**.
 The applicable L5 specification or technical standard defines **the resulting architecture that must be followed**.
 
 An ADR does not create business authority.
+
+### 1.1 Architecture Specificity While Technology Selection Is Pending
+
+Technology selection may remain pending while ordinary solution architecture is defined.
+
+```text
+Technology-neutral
+        ≠
+Architecture-neutral
+```
+
+Before a product, framework or platform is selected, L5 may and shall where necessary define product-independent architectural structures and mechanisms such as:
+
+- logical components, modules, services and workers;
+- adapters and technical control points;
+- request/execution/job/message contexts;
+- API/contract responsibilities;
+- repositories and persistence boundaries;
+- transaction/consistency/concurrency mechanisms at architecture level;
+- event publishers/consumers and durable-delivery roles;
+- Policy Decision Points and Policy Enforcement Points;
+- trust boundaries and execution sandboxes;
+- cache, index and projection boundaries;
+- runtime and deployment units.
+
+A pending programming-language, framework, database, broker, cloud or orchestration decision shall not be used to defer technical architecture that can be defined independently of that selection.
+
+Conversely, where the architectural pattern itself establishes a reusable cross-specification standard, material trust boundary, persistence strategy, interaction strategy or another mandatory ADR trigger, that pattern shall still follow ADR governance even if no named technology has yet been selected.
 
 ---
 
