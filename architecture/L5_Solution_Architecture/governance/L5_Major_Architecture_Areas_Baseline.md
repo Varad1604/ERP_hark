@@ -19,7 +19,7 @@
 9. Search & Indexing Architecture
 10. Database & Persistence Architecture
 11. Master & Reference Data Technical Architecture
-12. Document, Media & Object Storage Architecture
+12. Document, Media & Object Platform Architecture
 13. Data Classification, Retention & Privacy Architecture
 14. Reporting, Analytics & Data Projection Architecture
 15. API & Contract Architecture
@@ -38,6 +38,16 @@
 28. CI/CD & Software Supply Chain Security Architecture
 29. Verification & Testing Architecture
 30. Client Platform Architecture — Web & Future Mobile
+
+---
+
+# Area 12 Controlled Clarification — 2026-09-09
+
+Area 12 is named **Document, Media & Object Platform Architecture** rather than the earlier **Document, Media & Object Storage Architecture** wording.
+
+The clarification reflects the verified downstream technical responsibility for reusable document ingestion, registry/versioning/storage, validation/verification, generation/rendering/issuance and credential-integrity mechanisms.
+
+This change does not transfer or redefine upstream business ownership. Business domains retain their canonical document acceptance, eligibility, approval, issuance and lifecycle decisions. L5 Area 12 owns only the reusable technical document/media/object platform required to implement approved system behavior. Cryptographic primitives and key ownership remain within L5-D Security, Cryptography, Secrets & Key Management Architecture.
 
 ---
 
