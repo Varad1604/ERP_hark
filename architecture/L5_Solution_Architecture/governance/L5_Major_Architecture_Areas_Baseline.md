@@ -1,8 +1,8 @@
 # SutraERP L5 — Major Architecture Areas Baseline
 
-**Status:** Draft  
+**Status:** Architecture Approved  
 **Architecture Level:** L5 — Solution Architecture  
-**Purpose:** Basic planning baseline for the major L5 architecture areas identified for further discussion.
+**Purpose:** Approved planning baseline defining the 30 major L5 solution-architecture areas that must be covered by the SutraERP L5 corpus.
 
 ---
 
@@ -38,3 +38,9 @@
 28. CI/CD & Software Supply Chain Security Architecture
 29. Verification & Testing Architecture
 30. Client Platform Architecture — Web & Future Mobile
+
+---
+
+# Governance Note
+
+These 30 areas define L5 coverage scope. They do not imply one document per area. The exact L5 document corpus is governed separately and may contain one or more specifications per major area according to approved document-granularity rules.
