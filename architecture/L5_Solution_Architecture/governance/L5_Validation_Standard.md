@@ -1,6 +1,6 @@
 # SutraERP L5 Validation Standard
 
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Locked  
 **Owner:** Lead Architect  
 **Architectural Level:** L5 — Solution Architecture Governance  
@@ -146,7 +146,7 @@ A material architecture or technology decision:
 - is selected solely from preference or familiarity;
 - exceeds the canonical authority of the specification.
 
-Until the L5 ADR methodology is approved, a material technology decision requiring that governance shall remain unresolved rather than being silently finalized.
+A material technology decision requiring ADR governance shall remain unresolved rather than being silently finalized.
 
 ---
 
@@ -160,16 +160,23 @@ A material assumption whose falsity could materially change the architecture is 
 
 ### HF-11 — Material Architecture Unimplementability
 
-A material omission or ambiguity prevents downstream teams from understanding the required architecture.
+A material omission, ambiguity or insufficient technical depth prevents downstream teams from understanding the required architecture without inventing major architecture themselves.
 
-Examples include unresolved:
+Examples include unresolved or materially absent:
 
 - ownership boundary;
-- critical component responsibility;
-- material interaction;
-- required dependency;
-- major technical decision;
-- trust boundary.
+- critical architectural element or component responsibility;
+- primary technical interaction/execution flow;
+- material failure path;
+- required dependency or governed handoff;
+- execution context, contract, state or data movement needed by the responsibility;
+- persistence/consistency/concurrency mechanism where material;
+- security/trust enforcement point;
+- major technical decision.
+
+A specification that primarily restates L4 behavior, invariants, policies, constraints, non-goals or ownership without defining the technical realization required by its owned responsibility is subject to HF-11.
+
+Technology neutrality does not excuse architecture vagueness.
 
 This hard failure applies only where the omission materially prevents implementation or architecture review.
 
@@ -261,11 +268,21 @@ A passing specification shall satisfy all applicable checks.
 ### 4.4 Solution Completeness
 
 - material technical responsibilities are understandable;
+- concrete architectural elements/control points are identified where required;
+- element responsibilities and boundaries are explicit;
+- primary technical execution or interaction flow is clear where runtime behavior exists;
+- material failure paths are defined where failure affects architecture;
+- contracts, execution context, state or data movement are clear where material;
+- persistence/consistency/concurrency interaction is defined or correctly delegated where material;
+- security/trust enforcement points are clear where material;
 - boundaries, dependencies and interactions are clear;
 - applicable technical views are sufficiently complete;
 - irrelevant views are not included as filler;
 - diagrams and written architecture agree;
+- technology-neutral architecture is still concrete and actionable;
 - implementation can proceed without inventing major architecture.
+
+A document that could be moved substantially unchanged into L4 should be treated as a warning of insufficient L5 depth and assessed against HF-11.
 
 ### 4.5 Architecture Decision & ADR Integrity
 
