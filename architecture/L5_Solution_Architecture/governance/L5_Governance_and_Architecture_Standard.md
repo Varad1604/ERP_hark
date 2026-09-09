@@ -1,6 +1,6 @@
 # SutraERP L5 Governance and Architecture Standard
 
-**Version:** 0.3.0  
+**Version:** 0.3.1  
 **Status:** Locked  
 **Owner:** Lead Architect  
 **Architectural Level:** L5 — Solution Architecture Governance  
@@ -64,6 +64,40 @@ Where justified by approved behavior or authoritative solution constraints, L5 m
 - governed technology selections and standards.
 
 L5 shall not redefine upstream business meaning merely because a technical mechanism is required to implement it.
+
+### 2.1 Technical Realization Depth
+
+L5 shall define sufficient concrete solution architecture that downstream implementation does not need to invent major architecture.
+
+A specification is not complete merely because it states constraints, invariants, ownership boundaries, non-goals or restates required behavior.
+
+Where materially applicable, L5 shall identify enough of the following to make its owned responsibility technically implementable:
+
+- architectural elements such as components, modules, services, workers, adapters or logical control points;
+- responsibilities and boundaries of those elements;
+- primary technical interaction or execution flow;
+- material failure flow and failure ownership;
+- contracts, execution context, state or data movement across boundaries;
+- persistence, consistency or concurrency interaction where state is material;
+- security, authorization or trust enforcement points where material;
+- asynchronous execution, retry or recovery behavior where material;
+- runtime, deployment or operational implications where material.
+
+Not every specification requires every view. A specification shall contain the views required by its actual technical responsibility and shall avoid filler.
+
+```text
+Technology-neutral
+        ≠
+Architecture-neutral
+```
+
+Technology-neutral L5 may define product-independent architectural constructs such as a Policy Decision Point, Policy Enforcement Point, scoped repository, durable delivery dispatcher, worker, execution context, sandbox, cache boundary or deployment unit before selecting a programming language, framework, database, broker, cloud provider or orchestration platform.
+
+L5 shall not intentionally remain vague merely because governed technology selection is pending.
+
+Conversely, L5 need not contain production source code, framework annotations, full configuration, complete DDL or deployment manifests unless a governed architecture decision makes such representation architecturally necessary.
+
+A specification whose principal content could be moved substantially unchanged into L4 is presumptively at insufficient L5 technical depth and shall be corrected before architecture approval.
 
 ---
 
