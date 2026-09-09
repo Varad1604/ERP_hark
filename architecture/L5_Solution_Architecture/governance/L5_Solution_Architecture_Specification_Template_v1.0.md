@@ -1,6 +1,6 @@
 # SutraERP L5 Solution Architecture Specification Template
 
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Locked  
 **Owner:** Lead Architect  
 **Architectural Level:** L5 — Solution Architecture  
@@ -23,13 +23,20 @@ An L5 specification shall:
 - identify dependencies instead of duplicating another L5 specification;
 - distinguish facts, constraints, assumptions and decisions;
 - remain precise enough for L6 and implementation;
-- keep unsupported or unresolved decisions visible.
+- keep unsupported or unresolved decisions visible;
+- define sufficient concrete technical realization that implementation does not need to invent major architecture.
+
+Prefer compact technical density over narrative length.
+
+Use architecture tables, contracts, flows, control points, decisions and conformance requirements where they communicate the architecture more precisely than prose.
 
 Optional technical views shall be included only when materially applicable.
 
 Do not add boilerplate solely because a heading exists.
 
 Where a technical view is irrelevant, omit the subsection rather than filling it with repetitive `Not applicable` content.
+
+Technology-neutral does not mean architecture-neutral.
 
 ---
 
@@ -198,7 +205,47 @@ Rules:
 
 ## 5. Solution Architecture
 
-Describe the technical architecture necessary to realize this specification's responsibility.
+Describe the concrete technical architecture necessary to realize this specification's responsibility.
+
+Constraints, invariants, non-goals and ownership statements are not substitutes for solution architecture.
+
+### 5.1 Technical Realization Model
+
+For each materially applicable responsibility, identify enough of the following to remove major implementation ambiguity:
+
+```markdown
+| Element | Type | Responsibility | State / Data | Depends On | Failure Boundary |
+|---|---|---|---|---|---|
+| ... | Component / Service / Worker / Adapter / Control Point / Store / Contract | ... | ... | ... | ... |
+```
+
+Where a runtime responsibility exists, include at least one compact primary technical flow.
+
+Example:
+
+```text
+Input / Trigger
+      ↓
+Technical Boundary
+      ↓
+Owned Processing / Control Point
+      ↓
+Owned or Governed Handoff
+      ↓
+Result
+```
+
+Where failure materially affects architecture, include the material failure path and state what does not execute or mutate after failure.
+
+Where applicable, define:
+
+- execution/request/job/message context;
+- contract or envelope shape at conceptual architecture level;
+- state/persistence interaction;
+- transaction/consistency/concurrency behavior;
+- security/trust enforcement point;
+- asynchronous/retry/recovery behavior;
+- runtime/deployment/operational implication.
 
 Use only the views materially applicable.
 
@@ -272,6 +319,10 @@ Technology position may be:
 - **Technology-neutral**
 - **Governed selection pending**
 - **Approved by ADR / technical standard**
+
+Technology neutrality permits product-independent architecture such as logical components, services, workers, adapters, repositories, contracts, execution contexts, policy/control points, message envelopes, trust boundaries and deployment units.
+
+It does not justify leaving required architecture unspecified.
 
 A material technology choice shall follow the approved ADR/technology-selection methodology.
 
@@ -371,18 +422,6 @@ A conformance requirement shall be:
 - derived from architecture already established in this specification;
 - precise enough for downstream implementation and testing.
 
-Examples:
-
-```text
-CR-001 — Components outside the canonical ownership boundary shall not directly modify the owned persistence state.
-
-CR-002 — Connector credentials shall use the canonical machine-credential architecture.
-
-CR-003 — The computation engine shall have no technical authority to approve or publish the business outcome it computes.
-
-CR-004 — Tenant context shall remain preserved across all technical execution paths defined by this architecture.
-```
-
 Do not turn this section into a complete test plan.
 
 Verification methodology belongs to the applicable L5-F architecture.
@@ -456,7 +495,7 @@ Completion of this template does not make an L5 specification `Architecture Appr
 A completed specification must pass:
 
 - the locked L5 Governance and Architecture Standard;
-- the future locked L5 Validation Standard;
+- the locked L5 Validation Standard;
 - applicable ADR/technology-selection governance;
 - applicable repository review gates.
 
