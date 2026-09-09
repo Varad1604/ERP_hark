@@ -38,7 +38,7 @@
 9. Search & Indexing Architecture
 10. Database & Persistence Architecture
 11. Master & Reference Data Technical Architecture
-12. Document, Media & Object Storage Architecture
+12. Document, Media & Object Platform Architecture
 13. Data Classification, Retention & Privacy Architecture
 14. Reporting, Analytics & Data Projection Architecture
 
@@ -101,6 +101,7 @@ Cross-family dependencies are expected and shall be explicit. Examples include:
 - L5-A Secure Computational Engines depend on L5-D trust and security controls.
 - L5-A Workflow & Orchestration may depend on L5-C event and messaging contracts.
 - L5-B Data capabilities depend on L5-D security, authorization and privacy controls.
+- L5-B Document Platform consumes L5-D cryptography/key-management capabilities for signing and credential integrity while retaining technical ownership of document-platform orchestration.
 - L5-C integrations depend on L5-D identities, secrets and security policies.
 - L5-E deployment consumes release artifacts governed by L5-F delivery architecture.
 - L5-G client platforms consume contracts from L5-C and identity/authorization services from L5-D.
