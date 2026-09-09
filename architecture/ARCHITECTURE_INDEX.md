@@ -356,22 +356,78 @@ All A–J production folders are pre-materialized. Folder existence carries no r
 
 # L5 — Solution Architecture
 
-> **Added 2026-08-06 under integrity finding INT-201.** Both documents below were created by earlier integrity remediation to remove level violations from upstream documents. They predate the canonical L4 production corpus and remain `Trust Certification Ready`. **This is not an approved L5 baseline.** Any future use of these artifacts must be revalidated against the applicable approved L4 behavior and may not redefine upstream business architecture.
+The active L5 program is governed by the current solution-architecture governance corpus under:
 
-| ID | Document | Owner | Status |
-|----|----------|-------|--------|
+```text
+architecture/L5_Solution_Architecture/governance/
+```
+
+The representative nine-specification pilot is complete, the L5 authoring methodology has been corrected and locked, and the **105-specification authoring population is frozen** for controlled authoring. Broad L5 authoring remains subject to a separate explicit authorization, and the Final L5 Corpus Lock has not been issued.
+
+## Canonical L5 Governance and Planning Records
+
+| Document | Owner | Status | Execution Relevance |
+|---|---|---|---|
+| L5 Major Architecture Areas Baseline | Lead Architect | Architecture Approved | Active 30-area baseline |
+| L5 Architecture Family Register | Lead Architect | Architecture Approved | Active seven-family model |
+| L5 Naming & Document Granularity Specialization | Lead Architect | Architecture Approved | Active naming/granularity model |
+| L5 Naming Specialization Approval Decision — 2026-09-09 | Lead Architect | Locked | Active naming approval |
+| L5 L4-to-L5 Coverage Audit Decision — 105 | Lead Architect | Architecture Approved | Active coverage decision |
+| L5 Candidate Document Corpus Register — 105 | Lead Architect | Architecture Approved | Active specification register |
+| L5 Authoring Population Freeze Decision — 105 | Lead Architect | Locked | Freezes 105 IDs/responsibility boundaries for controlled authoring |
+| L5 Governance and Architecture Standard | Lead Architect | Locked | Active governance baseline |
+| L5 Solution Architecture Specification Template v1.0 | Lead Architect | Locked | Active authoring template |
+| L5 Validation Standard | Lead Architect | Locked | Active validation baseline |
+| L5 Technology Selection and ADR Methodology | Lead Architect | Locked | Active technology/ADR governance |
+| L5 L4-to-L5 Traceability Methodology | Lead Architect | Locked | Active traceability governance |
+| L5 ADR Register | Lead Architect | Locked | Canonical ADR identity register |
+| L5 Pilot ADR Candidate Disposition — 2026-09-09 | Lead Architect | Locked | Six material ADR candidates retained; no ADR IDs allocated by this record |
+| L5 Workload Complexity and Five-Person Allocation Decision — 2026-09-09 | Lead Architect | Locked | Active authoring allocation |
+| L5 Dependency-Gated Parallel Authoring Execution Timeline — 2026-09-09 | Lead Architect | Locked | Active six-stage execution model |
+| L5 Candidate Document Corpus Register — 99 | Lead Architect | Proposed | Historical; superseded for active corpus planning |
+
+## Frozen Authoring Population
+
+| Family | Specifications |
+|---|---:|
+| L5-A — Core Platform & Application | 20 |
+| L5-B — Data & Information | 21 |
+| L5-C — Contracts, Events & Integration | 18 |
+| L5-D — Identity, Security & Trust | 19 |
+| L5-E — Reliability, Deployment & Operations | 16 |
+| L5-F — Engineering Delivery & Quality | 7 |
+| L5-G — Client Platform | 4 |
+| **Total** | **105** |
+
+The 105 identifiers and responsibility boundaries are frozen for controlled authoring. This freeze is not the Final L5 Corpus Lock and does not itself authorize broad L5 authoring.
+
+## Locked Authoring Allocation
+
+| Author | Specifications |
+|---|---:|
+| Varad | 31 |
+| Pallav | 30 |
+| Dhruv | 20 |
+| Devang | 14 |
+| Chetan | 10 |
+| **Total** | **105** |
+
+This table records authoring allocation only. It does not transfer canonical technical ownership or upstream business ownership.
+
+## Active Execution Model
+
+L5 uses **dependency-gated parallel authoring** across six execution stages. The stages are not strict serial waves. A specification may start once its required upstream L5 dependency is architecturally stable enough that the downstream author does not need to invent that responsibility.
+
+Broad L5 authoring is still **not authorized** until a separate explicit authorization decision is issued.
+
+## Historical Extracted L5 Documents
+
+| ID | Document | Historical Owner | Status |
+|----|----------|------------------|--------|
 | L5-00 | Technology Stack Baseline | Dhruv | Trust Certification Ready |
 | L5-01 | Infrastructure Persistence & Repository Baseline | Devang | Trust Certification Ready |
 
-**Section Total:** 2 Documents
-
-Provenance:
-
-- `L5-00_Technology_Stack_Baseline.md` — extracted from `architecture/L0_Business_Vision/SutraERP_Architecture_Workflow_Context_Baseline.md` section 3 under integrity finding INT-002.
-- `L5-01_Infrastructure_Persistence_Baseline.md` — extracted from `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B03_Campus_Workflows.md` Part 14 under integrity finding INT-008.
-
-> The Owner values above are the individuals named in each document's header.
-> `architecture/L2_Domain_Workflow_Architecture/TEAM_ASSIGNMENTS.md` defines capability owners for L2 only and carries no L5 ownership scheme. Assigning L5 capability owners is open and requires a Lead Architect decision.
+These two documents were created by earlier integrity remediation, predate the current L4 production corpus and current L5 governance, and are historical technical inputs only. They are not automatic authority for greenfield technology selection and require revalidation under the current L5 governance/ADR process before any decision is adopted from them.
 
 ---
 
@@ -412,7 +468,8 @@ Provenance:
 | Historical First-Wave Certified Parents | 48 |
 | L4 Active Execution Scope | Full corpus — 1,084 Locked L3 parents |
 | L4 Pilot Specifications Present | 3 |
-| L5 Solution Architecture Documents Present | 2 |
+| L5 Frozen Authoring Population | 105 specifications |
+| L5 Historical Extracted Root Documents | 2 |
 | L6 UI/UX Documents Present | 0 |
 | Active Architects | 5 |
 
@@ -442,11 +499,15 @@ Provenance:
 >
 > **As of 2026-08-07 L0, L1 and every L2 document are `Locked`.** L3 and L4 use their own governed scenario/specification lifecycle and are not globally implied Locked by the L0/L1/L2 decision.
 >
-> L5 is **not** covered by the L0/L1/L2 lock: `L5-00` and `L5-01` remain `Trust Certification Ready` and require downstream revalidation against approved L4 behavior before becoming an approved L5 baseline.
+> L5 is **not** covered by the L0/L1/L2 lock. Current L5 governance includes a frozen 105-specification authoring population and Locked governance/execution decisions, but the Final L5 Corpus Lock has not been issued and broad L5 authoring remains subject to a separate explicit authorization. Historical `L5-00` and `L5-01` remain `Trust Certification Ready` technical inputs requiring revalidation under current L5 governance before adoption.
 
 ---
 
 # Recent Changes
+
+**2026-09-09 — L5 planning/governance synchronization:** Recorded the current L5 state: representative pilot completed; 105-specification authoring population frozen; six pilot ADR candidate areas formally dispositioned; five-person workload allocation locked at Varad 31 / Pallav 30 / Dhruv 20 / Devang 14 / Chetan 10; and six-stage dependency-gated parallel execution locked. Broad L5 authoring and Final L5 Corpus Lock remain separately unauthorized.
+
+---
 
 **2026-08-29 — L4 full-corpus execution authorization:** Superseded the 48-parent production-wave limit as the active execution model. L4 now inherits the complete 1,084-scenario locked L3 Phase 5 human allocation, with a Locked readiness baseline of 1,084 / 1,084 and a normal no-drift check before authoring. All A–J production folders are active repository structure; historical 48-parent records remain decision provenance only.
 
@@ -468,7 +529,7 @@ Provenance:
 
 ---
 
-**Last Updated:** 2026-08-29
+**Last Updated:** 2026-09-09
 
 **Repository:** SutraERP
 
