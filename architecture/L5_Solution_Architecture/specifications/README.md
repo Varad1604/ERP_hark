@@ -28,64 +28,38 @@ The canonical specification identifiers and responsibility boundaries are frozen
 
 ---
 
-## Canonical Family → Major-Area Hierarchy
+## Canonical Family-Level Hierarchy
 
-Production files shall be placed under the exact family and exact major-area folder matching their canonical ID.
+Production specifications shall be placed directly under the exact family folder matching their canonical ID.
 
 ```text
 specifications/
 ├── L5-A/
-│   ├── L5-A-01/
-│   ├── L5-A-02/
-│   ├── L5-A-03/
-│   ├── L5-A-04/
-│   ├── L5-A-05/
-│   ├── L5-A-06/
-│   ├── L5-A-07/
-│   └── L5-A-08/
 ├── L5-B/
-│   ├── L5-B-01/
-│   ├── L5-B-02/
-│   ├── L5-B-03/
-│   ├── L5-B-04/
-│   ├── L5-B-05/
-│   └── L5-B-06/
 ├── L5-C/
-│   ├── L5-C-01/
-│   ├── L5-C-02/
-│   ├── L5-C-03/
-│   └── L5-C-04/
 ├── L5-D/
-│   ├── L5-D-01/
-│   ├── L5-D-02/
-│   ├── L5-D-03/
-│   └── L5-D-04/
 ├── L5-E/
-│   ├── L5-E-01/
-│   ├── L5-E-02/
-│   ├── L5-E-03/
-│   ├── L5-E-04/
-│   └── L5-E-05/
 ├── L5-F/
-│   ├── L5-F-01/
-│   └── L5-F-02/
 └── L5-G/
-    └── L5-G-01/
 ```
 
-Each major-area folder contains a minimal `README.md` identifying the canonical production specification IDs allowed in that area. These READMEs are placement controls only; they do not redefine the frozen corpus or architecture responsibility boundaries.
+Do not introduce major-area subdirectories such as `L5-A/L5-A-01/` or `L5-B/L5-B-02/`. Major-area identity is already encoded in each canonical specification ID and filename.
+
+Canonical placement:
+
+```text
+specifications/L5-<Family>/L5-<Family>-<Area>-<Document>_<Canonical_Solution_Slug>.md
+```
 
 Example:
 
 ```text
 L5-A-07-003
-→ specifications/L5-A/L5-A-07/
+→ specifications/L5-A/
 → L5-A-07-003_Examination_Result_Computation_Engine_Architecture.md
 ```
 
-Do not place a production specification directly under the family folder when a canonical major-area folder exists.
-
-Do not create new family or major-area folders without an explicit architecture-governance decision changing the frozen corpus structure.
+Do not create new family folders without an explicit architecture-governance decision changing the frozen corpus structure.
 
 ---
 
