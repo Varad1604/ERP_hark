@@ -11,39 +11,81 @@
 
 All newly authored canonical L5 Solution Architecture specifications belong under this directory.
 
-The frozen authoring population contains exactly **105 specifications** across seven technical architecture families:
+The frozen authoring population contains exactly **105 specifications** across seven technical architecture families and thirty canonical major areas:
 
-| Family | Specifications |
-|---|---:|
-| `L5-A` — Core Platform & Application Architecture | 20 |
-| `L5-B` — Data & Information Architecture | 21 |
-| `L5-C` — Contracts, Events & Integration Architecture | 18 |
-| `L5-D` — Identity, Security & Trust Architecture | 19 |
-| `L5-E` — Reliability, Deployment & Operations Architecture | 16 |
-| `L5-F` — Engineering Delivery & Quality Architecture | 7 |
-| `L5-G` — Client Platform Architecture | 4 |
-| **Total** | **105** |
+| Family | Specifications | Major Areas |
+|---|---:|---:|
+| `L5-A` — Core Platform & Application Architecture | 20 | 8 |
+| `L5-B` — Data & Information Architecture | 21 | 6 |
+| `L5-C` — Contracts, Events & Integration Architecture | 18 | 4 |
+| `L5-D` — Identity, Security & Trust Architecture | 19 | 4 |
+| `L5-E` — Reliability, Deployment & Operations Architecture | 16 | 5 |
+| `L5-F` — Engineering Delivery & Quality Architecture | 7 | 2 |
+| `L5-G` — Client Platform Architecture | 4 | 1 |
+| **Total** | **105** | **30** |
 
-The canonical specification identifiers and responsibility boundaries are frozen by `../governance/instruction/L5_Authoring_Population_Freeze_Decision_105_2026-09-09.md`.
+The canonical specification identifiers and responsibility boundaries are frozen by `../governance/instruction/L5_Authoring_Population_Freeze_Decision_105_2026-09-09.md` and defined by the active 105-specification register.
 
 ---
 
-## Family Directories
+## Canonical Family → Major-Area Hierarchy
 
-When the first real production specification for a family is committed, place it under the matching family directory:
+Production files shall be placed under the exact family and exact major-area folder matching their canonical ID.
 
 ```text
 specifications/
 ├── L5-A/
+│   ├── L5-A-01/
+│   ├── L5-A-02/
+│   ├── L5-A-03/
+│   ├── L5-A-04/
+│   ├── L5-A-05/
+│   ├── L5-A-06/
+│   ├── L5-A-07/
+│   └── L5-A-08/
 ├── L5-B/
+│   ├── L5-B-01/
+│   ├── L5-B-02/
+│   ├── L5-B-03/
+│   ├── L5-B-04/
+│   ├── L5-B-05/
+│   └── L5-B-06/
 ├── L5-C/
+│   ├── L5-C-01/
+│   ├── L5-C-02/
+│   ├── L5-C-03/
+│   └── L5-C-04/
 ├── L5-D/
+│   ├── L5-D-01/
+│   ├── L5-D-02/
+│   ├── L5-D-03/
+│   └── L5-D-04/
 ├── L5-E/
+│   ├── L5-E-01/
+│   ├── L5-E-02/
+│   ├── L5-E-03/
+│   ├── L5-E-04/
+│   └── L5-E-05/
 ├── L5-F/
+│   ├── L5-F-01/
+│   └── L5-F-02/
 └── L5-G/
+    └── L5-G-01/
 ```
 
-Do not create empty family folders merely as placeholders. Git itself does not preserve empty directories, and repository structure shall represent real content rather than implied completion/readiness.
+Each major-area folder contains a minimal `README.md` identifying the canonical production specification IDs allowed in that area. These READMEs are placement controls only; they do not redefine the frozen corpus or architecture responsibility boundaries.
+
+Example:
+
+```text
+L5-A-07-003
+→ specifications/L5-A/L5-A-07/
+→ L5-A-07-003_Examination_Result_Computation_Engine_Architecture.md
+```
+
+Do not place a production specification directly under the family folder when a canonical major-area folder exists.
+
+Do not create new family or major-area folders without an explicit architecture-governance decision changing the frozen corpus structure.
 
 ---
 
