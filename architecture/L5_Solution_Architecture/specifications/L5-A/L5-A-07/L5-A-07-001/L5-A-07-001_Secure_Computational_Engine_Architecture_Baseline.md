@@ -11,6 +11,7 @@
 | Major Area | L5-A-07 — Computation Engines |
 | Version | 1.0.0 |
 | Status | Draft — Authoring |
+| Author | Varad |
 | Canonical Technical Responsibility | Common secure computational execution baseline |
 | Upstream Parent Model | Reusable L5 capability consumed by specialized computation architectures |
 | Repository Baseline | `72acd91e1ea47b6c94698e5700b70b6a012fbdc2` |
