@@ -24,7 +24,7 @@ The frozen authoring population contains exactly **105 specifications** across s
 | `L5-G` — Client Platform Architecture | 4 |
 | **Total** | **105** |
 
-The canonical specification identifiers and responsibility boundaries are frozen by `../governance/L5_Authoring_Population_Freeze_Decision_105_2026-09-09.md`.
+The canonical specification identifiers and responsibility boundaries are frozen by `../governance/instruction/L5_Authoring_Population_Freeze_Decision_105_2026-09-09.md`.
 
 ---
 
@@ -65,19 +65,33 @@ Identifiers shall match the frozen 105-specification register exactly.
 
 ---
 
-## Authoring Controls
+## Required Governance Instruction Pack
 
-Every production specification shall conform to the current L5 governance corpus, including:
+For routine production authoring and review, start at:
 
-- `../governance/L5_Governance_and_Architecture_Standard.md`;
-- `../governance/L5_Solution_Architecture_Specification_Template_v1.0.md`;
-- `../governance/L5_Validation_Standard.md`;
-- `../governance/L5_L4_to_L5_Traceability_Methodology.md`;
-- `../governance/L5_Technology_Selection_and_ADR_Methodology.md`;
-- `../governance/L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md`;
-- `../governance/L5_Broad_Authoring_Authorization_105_2026-09-09.md`.
+```text
+../governance/instruction/README.md
+```
+
+Every production specification shall conform to the active instruction set, including:
+
+- `../governance/instruction/L5_Governance_and_Architecture_Standard.md`;
+- `../governance/instruction/L5_Solution_Architecture_Specification_Template_v1.0.md`;
+- `../governance/instruction/L5_Validation_Standard.md`;
+- `../governance/instruction/L5_Candidate_Document_Corpus_Register_105_2026-09-09.md`;
+- `../governance/instruction/L5_Workload_Complexity_and_Five_Person_Allocation_Decision_2026-09-09.md`;
+- `../governance/instruction/L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md`;
+- `../governance/instruction/L5_Naming_and_Document_Granularity_Specialization.md`;
+- `../governance/instruction/L5_Architecture_Family_Register.md`;
+- `../governance/instruction/L5_L4_to_L5_Traceability_Methodology.md`;
+- `../governance/instruction/L5_Technology_Selection_and_ADR_Methodology.md`;
+- `../governance/instruction/L5_ADR_Register.md`;
+- `../governance/instruction/L5_Broad_Authoring_Authorization_105_2026-09-09.md`;
+- `../governance/instruction/L5_Authoring_Population_Freeze_Decision_105_2026-09-09.md`.
 
 The execution model is dependency-gated parallel authoring. A specification may begin when its required upstream L5 dependencies are stable enough that the author does not need to invent those responsibilities.
+
+Supporting planning decisions and provenance records are available under `../governance/reference/` when needed; they are not part of the normal daily authoring pack.
 
 ---
 
@@ -85,7 +99,7 @@ The execution model is dependency-gated parallel authoring. A specification may 
 
 Do not place the following under `specifications/`:
 
-- governance standards, templates, registers or decisions — use `../governance/`;
+- governance material — use `../governance/instruction/` or `../governance/reference/` according to operational role;
 - historical extracted technical material — use `../historical/`;
 - canonical ADR decision documents — use `../adr/` once the first ADR is formally allocated;
 - L6 screen, navigation, journey or visual-design specifications;
