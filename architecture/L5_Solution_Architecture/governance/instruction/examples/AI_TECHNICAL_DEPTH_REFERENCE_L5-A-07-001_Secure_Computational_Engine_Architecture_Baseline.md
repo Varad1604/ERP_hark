@@ -5,12 +5,12 @@
 > **Reference status:** Training / authoring-depth benchmark only.  
 > **Modelled on canonical specification:** `L5-A-07-001` — Secure Computational Engine Architecture Baseline.  
 > **Part of frozen 105-specification production corpus:** No.  
-> **Purpose:** Show human authors and AI authoring agents the minimum expected level of technical specificity for SutraERP L5 mass authoring.  
-> **Important:** The real production `L5-A-07-001` must still be authored from the current authoritative repository sources under `architecture/L5_Solution_Architecture/specifications/L5-A/`.
+> **Purpose:** Show human authors and AI authoring agents the minimum expected level of technical specificity, evidence discipline and upstream traceability for SutraERP L5 mass authoring.  
+> **Important:** The real production `L5-A-07-001` must be authored from the current authoritative repository sources under `architecture/L5_Solution_Architecture/specifications/L5-A/`.
 
 ---
 
-# AI Authoring Directive — Mandatory Technical Depth and Zero-Guessing Standard
+# AI Authoring Directive — Mandatory Technical Depth, Zero Guessing and Exact Upstream Referencing
 
 This section is a mandatory authoring guardrail for AI-generated SutraERP L5 specifications.
 
@@ -22,17 +22,21 @@ The primary rule is:
 SUPPORTED ARCHITECTURE
         ↓
 AUTHOR IT TECHNICALLY
+        ↓
+REFERENCE THE EXACT AUTHORITATIVE SOURCE
 
 UNSUPPORTED / AMBIGUOUS / CONFLICTING ARCHITECTURE
         ↓
 DO NOT GUESS
 DO NOT COMPLETE BY PREFERENCE
-DO NOT INVENT A FRAMEWORK
+DO NOT INVENT A FRAMEWORK OR NUMBER
         ↓
 MARK ASSUMPTION / OPEN DECISION / ADR / UPSTREAM BLOCK
 ```
 
 A document that looks complete because the AI silently filled missing architecture is **worse than an explicitly incomplete Draft**.
+
+A document that contains technically plausible architecture but cannot show where its material obligations came from is also incomplete.
 
 The AI must produce architecture at approximately the technical depth of this reference or deeper where the owning responsibility requires it, while remaining strictly within the canonical responsibility of the specification.
 
@@ -53,10 +57,10 @@ At minimum it shall use, as applicable:
 7. dependency-gated authoring execution timeline;
 8. naming and granularity specialization;
 9. architecture family register;
-10. L4-to-L5 traceability methodology;
+10. `L5_L4_to_L5_Traceability_Methodology.md`;
 11. technology-selection and ADR methodology;
 12. ADR register and approved ADRs relevant to the specification;
-13. applicable approved L4 System Behavior Specifications and BH obligations;
+13. applicable approved L4 System Behavior Specifications and exact BH obligations;
 14. L1-L3 only for authoritative verification of ownership, terminology, rules, lifecycle semantics, event ownership and authority;
 15. collaborating L5 specifications only when they are sufficiently stable to be consumed under the dependency gate.
 
@@ -76,11 +80,78 @@ If a required source is unavailable, unapproved, contradictory or too incomplete
 
 ---
 
+# A.1 Mandatory Upstream Reference Protocol
+
+Every production L5 specification shall show exactly which upstream material justifies its architecture.
+
+The primary behavioral traceability unit is the approved **L4 BH**.
+
+Canonical mapping concept:
+
+```text
+L4 Specification + exact BH
+        ↓
+Material technical need
+        ↓
+Canonical L5 technical owner
+        ↓
+L5 Architecture Section / AD-* / CR-*
+```
+
+The AI shall not write vague source statements such as:
+
+```text
+Based on L4 requirements.
+Based on upstream architecture.
+Representative calculation behavior applies.
+According to existing business rules.
+```
+
+unless those statements are immediately resolved to exact canonical references.
+
+For every materially applicable upstream source, record enough information to identify it unambiguously.
+
+Minimum production reference format:
+
+```markdown
+| Source Level | Document / Decision | Version / Status | Exact Reference | What the Source Establishes | L5 Use |
+|---|---|---|---|---|---|
+| L4 | `L4-X-NNN` | `<version / status>` | `L4-X-NNN-BH-00Y` | `<approved observable behavior>` | `<specific technical contribution required from this L5 spec>` |
+| L3 | `<canonical L3 ID>` | `<version / status>` | `<scenario section / exact item>` | `<ownership/outcome verification only>` | `<constraint verification; not new L5 behavior>` |
+| L2 | `<canonical L2 source>` | `<version / status>` | `<workflow/state/event/rule reference>` | `<canonical workflow/state/event/rule>` | `<preserved upstream meaning>` |
+| L1 | `<canonical L1 source>` | `<version / status>` | `<domain/ownership reference>` | `<canonical owner/entity responsibility>` | `<ownership verification>` |
+| ADR | `<canonical ADR ID>` | `<status>` | `<decision section>` | `<approved technical choice>` | `<L5 architecture constraint>` |
+| L5 Peer | `<L5-X-XX-XXX>` | `<version / status>` | `<section / AD / CR if applicable>` | `<peer-owned technical capability>` | `<capability consumed; not redefined>` |
+```
+
+## Upstream-reference rules
+
+1. **L4 is the primary behavioral authority for L5.** Cite exact applicable L4 specification IDs and BH IDs wherever material behavior drives technical architecture.
+2. **Do not cite only a document title when an exact BH exists.** Use the atomic BH reference.
+3. **L1-L3 are verification sources, not a shortcut around missing L4 behavior.** Use them to verify canonical ownership, terminology, lifecycle semantics, business rules, events, publishers, authority and outcomes.
+4. **If L4 is missing required behavior, do not manufacture it from L1-L3.** Record an upstream blocker.
+5. **If an L4 source is Draft/unapproved, identify that status explicitly.** It may support controlled planning but must not be represented as approved behavioral authority.
+6. **If two upstream sources conflict, cite both exact sources and mark the affected architecture blocked or impacted according to governance.** Do not silently choose one unless repository authority precedence resolves the conflict unambiguously.
+7. **Every material `AD-*` shall have a traceable basis.** The basis may be an upstream BH, repository-wide technical constraint, approved ADR, canonical L5 ownership need or defensible technical derivation.
+8. **Every material `CR-*` shall derive from established L5 architecture and should identify the architecture section / AD / upstream relation it enforces.**
+9. **Peer L5 references must use exact canonical specification IDs where available.** Avoid wildcard-only references in final production documents when a specific dependency is known.
+10. **Do not fabricate versions, statuses, paths, section numbers or BH IDs.** Verify them from the live repository.
+11. **Do not copy large upstream passages into L5.** Reference and summarize the exact obligation; L5 should define technical realization, not duplicate upstream content.
+12. **Traceability does not transfer ownership.** A mapped L5 specification contributes technical realization to an L4 BH; it does not become owner of that BH.
+
+The canonical relation identity follows the locked traceability methodology:
+
+```text
+(L4 BH ID, L5 Specification ID)
+```
+
+A production L5 document should contain selective traceability sufficient to explain its applicability. Complete corpus coverage remains governed by the canonical repository traceability source.
+
+---
+
 # B. Evidence Classification — No Hidden Inference
 
-Every material architecture statement generated by AI must be mentally classified before it is written.
-
-Use this decision model:
+Every material architecture statement generated by AI must be classified before it is written.
 
 ```text
 1. ESTABLISHED REPOSITORY FACT
@@ -105,7 +176,7 @@ Use this decision model:
 
 Rules:
 
-- Category 1 may be stated as fact.
+- Category 1 may be stated as fact and must be traceable to the authoritative source.
 - Category 2 may become L5 architecture only when the derivation is necessary, within canonical L5 ownership, traceable and non-contradictory.
 - Category 3 must be recorded explicitly as an `AS-*` assumption with impact and resolution path where material.
 - Category 4 must be recorded as an `OD-*` item.
@@ -118,7 +189,7 @@ Rules:
 
 # C. Absolute No-Guessing Rules
 
-The AI shall not invent, assume or silently choose any of the following unless explicitly supported by authoritative architecture or justified through the approved L5/ADR process:
+The AI shall not invent, assume or silently choose any of the following unless explicitly supported by authoritative architecture or justified through the approved L5/ADR process.
 
 ## C.1 No invented business architecture
 
@@ -140,6 +211,8 @@ If L4 behavior is materially missing or ambiguous:
 
 ```text
 STOP AFFECTED DESIGN
+        ↓
+Record exact missing/ambiguous upstream reference
         ↓
 Record upstream issue / blocker
         ↓
@@ -183,7 +256,7 @@ Unless an approved ADR or technical standard explicitly selects them, the AI sha
 - commercial SaaS;
 - operating-system-specific mechanism.
 
-Examples of forbidden unsupported completion:
+Forbidden unsupported completion includes statements such as:
 
 ```text
 Use PostgreSQL for this store.
@@ -194,21 +267,7 @@ Implement the API in Spring Boot / .NET / Node.js.
 Use AWS KMS for key management.
 ```
 
-If the architecture only establishes a need, author the product-independent mechanism:
-
-```text
-relational persistence capability
-
-durable ordered messaging capability
-
-bounded cache capability
-
-isolated runtime unit
-
-key-management capability
-```
-
-and record the material product choice as unresolved/ADR-required when applicable.
+If architecture establishes only a need, describe the product-independent mechanism and record any material product choice as unresolved/ADR-required.
 
 ## C.4 No guessed numeric targets
 
@@ -235,9 +294,7 @@ If a number is architecturally required but not authoritative, use an `OD-*`, `A
 
 ## C.5 No guessed technical lifecycle
 
-AI may define **technical execution states** only when a state model is necessary to realize the owned technical responsibility.
-
-It shall not silently create a business lifecycle.
+AI may define technical execution states only when a state model is necessary to realize the owned technical responsibility.
 
 Any introduced technical state must:
 
@@ -245,41 +302,27 @@ Any introduced technical state must:
 - belong to the current L5 owner;
 - be justified by execution/recovery/concurrency needs;
 - not contradict upstream lifecycle states;
-- be recorded as architecture rather than implied prose.
+- identify the upstream lifecycle references checked for non-conflict where lifecycle proximity is material.
 
-If the state names or transitions are not justified, do not invent them.
+If state names or transitions are not justified, do not invent them.
 
 ## C.6 No guessed contract fields
 
 Conceptual L5 contracts may be defined only to the extent required to establish architecture boundaries.
 
-Every material field or information category must be supported by:
-
-- approved upstream behavior;
-- the canonical L5 responsibility;
-- an approved cross-L5 dependency;
-- or a necessary technical derivation.
+Every material field or information category must be supported by approved upstream behavior, canonical L5 responsibility, an approved cross-L5 dependency or a necessary technical derivation.
 
 Do not invent arbitrary fields because they are common in real systems.
 
-Do not define:
+Do not define programming-language types, framework annotations, serialization syntax, exact REST/GraphQL/gRPC wire definitions, physical database columns or full JSON schemas unless governed L5 architecture explicitly requires that representation.
 
-- programming-language types;
-- framework annotations;
-- serialization syntax;
-- exact REST/GraphQL/gRPC wire definitions;
-- physical database columns;
-- full JSON schemas;
-
-unless a governed L5 decision explicitly requires that representation.
-
-When exact contract shape belongs to another L5 owner, state the required semantic information and reference that owner.
+When exact contract shape belongs to another L5 owner, state the required semantic information and reference that owner by exact canonical specification ID.
 
 ## C.7 No guessed failure policy
 
 The AI must describe material failure behavior, but shall not invent exact operational policy.
 
-For example, it may establish:
+It may establish:
 
 ```text
 failure must not create an authoritative outcome
@@ -287,34 +330,13 @@ retry must not duplicate protected business effects
 resource exhaustion must remain contained
 ```
 
-but shall not invent:
-
-```text
-retry exactly 3 times
-wait 500 ms
-exponential backoff factor 2
-move to DLQ after 5 failures
-```
-
-unless supported by an authoritative technical decision.
+but shall not invent exact retry counts, delays, backoff factors or dead-letter thresholds unless supported by authoritative technical decisions.
 
 ## C.8 No guessed security mechanism
 
 The AI shall define required trust properties and enforcement points where owned, but shall not invent the exact security product or cryptographic design.
 
-It may define:
-
-```text
-credential isolation
-key-management boundary
-signed rule-package integrity
-mutual service authentication requirement
-sandboxed execution boundary
-```
-
-when supported.
-
-It shall not choose algorithms, providers, key sizes, HSM products, certificate topology or identity technologies without authoritative support or ADR governance.
+Do not choose algorithms, providers, key sizes, HSM products, certificate topology or identity technologies without authoritative support or ADR governance.
 
 ## C.9 No guessed deployment topology
 
@@ -330,9 +352,7 @@ Do not assume:
 - multi-region deployment;
 - active-active topology.
 
-Define logical runtime/deployment boundaries only where justified.
-
-The repository's supported on-premises-primary and provider-neutral cloud-capable direction must be preserved.
+Define logical runtime/deployment boundaries only where justified by exact repository constraints and the owning L5 responsibility.
 
 ## C.10 No guessed event semantics
 
@@ -342,7 +362,7 @@ Where messaging is needed, distinguish:
 
 ```text
 Business event meaning / publisher
-→ upstream canonical owner
+→ exact upstream canonical source
 
 Technical publication, delivery, ordering, retry, schema compatibility
 → applicable L5 technical owner
@@ -356,18 +376,18 @@ A technical message must not silently become a new canonical business event.
 
 If authoritative sources disagree, the AI shall not average them, merge them, select the more convenient version or invent a compromise.
 
-Required behavior:
-
 ```text
-Identify exact conflicting sources
+Identify exact conflicting source A
+        +
+Identify exact conflicting source B
         ↓
 State the conflicting propositions
         ↓
-Identify affected L5 section / decision
+Identify affected L5 section / AD / CR
         ↓
-Preserve higher-authority source where precedence is unambiguous
+Apply repository authority precedence only when unambiguous
         OR
-mark architecture BLOCKED where resolution is required
+mark architecture BLOCKED
         ↓
 Do not silently continue through the conflict
 ```
@@ -377,164 +397,88 @@ If a required dependency is not sufficiently stable:
 ```text
 DEPENDENCY NOT READY
         ↓
-Do not design the dependency internally
+Reference exact dependency specification / decision
         ↓
-Define only the consuming requirement that is already supported
+Do not design that dependency internally
+        ↓
+Define only the consuming requirement already supported
         ↓
 Record OD / dependency blocker
 ```
 
-A Draft may remain incomplete. An unsupported architecture may not be disguised as complete.
+A Draft may remain incomplete. Unsupported architecture may not be disguised as complete.
 
 ---
 
-# E. Technical-Depth Guardrail — Absolute Architecture, Not Generic Prose
+# E. Technical-Depth Guardrail — Concrete Architecture, Not Generic Prose
 
 Technology neutrality shall never be used as an excuse for architectural vagueness.
 
-Where applicable, the AI shall identify concrete architecture-level elements such as:
+Where applicable and supported, the AI may identify concrete architecture-level elements such as logical components, services, workers, adapters, repositories, execution contexts, policy decision/enforcement points, trust boundaries, transaction boundaries, durable publication handoffs, logical messaging mechanisms, schedulers, caches, projections, indexes, document/object stores, runtime units, deployment boundaries, observability signals and recovery boundaries.
 
-- logical components;
-- services;
-- workers;
-- adapters;
-- repositories;
-- execution contexts;
-- policy decision/enforcement points;
-- trust boundaries;
-- transaction boundaries;
-- durable publication handoffs;
-- queues/channels as logical messaging mechanisms;
-- schedulers;
-- caches;
-- projections;
-- indexes;
-- document/object stores;
-- runtime units;
-- deployment boundaries;
-- observability signals;
-- recovery boundaries.
-
-But every element must pass this test:
+Every proposed element must pass this test:
 
 ```text
 Is this element necessary to make this specification's
 canonical technical responsibility implementable?
 
+AND
+
+Can its necessity be traced to approved behavior,
+a repository constraint, canonical L5 ownership,
+an approved ADR or a defensible technical derivation?
+
 YES → define it precisely.
-NO / UNSUPPORTED → do not add it as decoration.
+NO / UNSUPPORTED → do not add it.
 ```
 
-The AI must not generate architecture by mechanically inserting every possible enterprise pattern into every file.
+The AI must not generate architecture by mechanically inserting enterprise patterns into every file.
 
 ---
 
 # F. Responsibility-Specific Minimum Technical Views
 
-The following are guardrails for depth, not permission to invent unsupported details.
+The following are depth guardrails, not permission to invent unsupported detail.
 
 ## API / Contract architecture
 
-Where applicable, address:
-
-- technical entry boundary;
-- request/response responsibility;
-- scope/context propagation;
-- validation boundary;
-- error/failure contract semantics;
-- idempotency responsibility;
-- contract versioning/compatibility ownership;
-- authentication/authorization handoff;
-- correlation.
+Where applicable, address technical entry boundary, request/response responsibility, scope/context propagation, validation boundary, error/failure semantics, idempotency responsibility, contract versioning/compatibility ownership, authentication/authorization handoff and correlation.
 
 Do not invent exact endpoint URLs, HTTP codes, field schemas or framework contracts unless governed.
 
 ## Persistence architecture
 
-Where applicable, address:
+Where applicable, address canonical technical persistence owner, repository/store boundary, transaction boundary, consistency model, concurrency-control responsibility, cross-owner write prohibition, schema-evolution responsibility, migration safety and state-to-event handoff.
 
-- canonical technical persistence owner;
-- repository/store boundary;
-- transaction boundary;
-- consistency model;
-- concurrency control responsibility;
-- cross-owner write prohibition;
-- schema-evolution responsibility;
-- migration safety;
-- state-to-event handoff where applicable.
-
-Do not invent tables/columns/product-specific SQL unless governed.
+Do not invent tables, columns or product-specific SQL unless governed.
 
 ## Event / Messaging architecture
 
-Where applicable, address:
-
-- canonical event ownership preservation;
-- publication handoff;
-- durable delivery responsibility;
-- ordering scope;
-- duplicate/idempotency handling boundary;
-- consumer failure containment;
-- schema/version compatibility;
-- observability/evidence.
+Where applicable, address canonical event ownership preservation, publication handoff, durable-delivery responsibility, ordering scope, duplicate/idempotency boundary, consumer-failure containment, schema/version compatibility and observability/evidence.
 
 Do not invent broker products, retry counts or new business events.
 
 ## IAM / Authorization architecture
 
-Where applicable, address:
-
-- identity/session/credential boundary;
-- authorization context;
-- decision point;
-- enforcement point;
-- scope/resource context;
-- privileged/delegated authority boundary;
-- fail-closed behavior;
-- audit/evidence handoff.
+Where applicable, address identity/session/credential boundary, authorization context, decision point, enforcement point, scope/resource context, privileged/delegated authority boundary, fail-closed behavior and audit/evidence handoff.
 
 Do not redefine Person, Role, Permission or business authority.
 
 ## Secure computation architecture
 
-Where applicable, address:
-
-- rule-package acceptance/validation;
-- version binding;
-- normalized inputs;
-- execution admission;
-- isolated runtime boundary;
-- deterministic evaluation constraints;
-- resource containment;
-- result/evidence production;
-- failure containment;
-- separation from authoritative business outcome.
+Where applicable, address rule-package acceptance/validation, version binding, normalized inputs, execution admission, isolated runtime boundary, deterministic evaluation constraints, resource containment, result/evidence production, failure containment and separation from authoritative business outcome.
 
 Do not let the engine own Finance, Examination, Payroll or other business rules/outcomes.
 
 ## Runtime / Deployment architecture
 
-Where applicable, address:
-
-- logical runtime units;
-- packaging boundary;
-- configuration/secrets boundary;
-- isolation expectations;
-- on-premises support;
-- provider-neutral cloud capability;
-- upgrade/rollback responsibility;
-- operational readiness/dependency implications.
+Where applicable, address logical runtime units, packaging boundary, configuration/secrets boundary, isolation expectations, on-premises support, provider-neutral cloud capability, upgrade/rollback responsibility and operational-readiness implications.
 
 Do not assume Kubernetes, a cloud vendor or physical topology without governance.
 
 ## Verification architecture
 
-Where applicable, address:
-
-- architecture-conformance verification responsibility;
-- component/integration/contract/E2E boundaries;
-- failure/resilience/security verification categories;
-- evidence required to show conformance.
+Where applicable, address architecture-conformance verification responsibility, component/integration/contract/E2E boundaries, failure/resilience/security verification categories and evidence required to demonstrate conformance.
 
 Do not invent product-specific test frameworks without approval.
 
@@ -542,7 +486,7 @@ Do not invent product-specific test frameworks without approval.
 
 # G. Mandatory Pre-Authoring AI Workframe
 
-Before generating prose for a production L5 file, the AI shall complete this workframe internally or explicitly in its working notes:
+Before generating prose for a production L5 file, the AI shall complete this workframe:
 
 ```text
 STEP 1 — IDENTIFY
@@ -553,40 +497,55 @@ What does this specification own?
 What must it not own?
 Which peers own adjacent responsibilities?
 
-STEP 3 — VERIFY AUTHORITY
-Which approved L4 BHs create the technical need?
+STEP 3 — BUILD UPSTREAM REFERENCE MATRIX
+List exact applicable L4 specifications and BH IDs.
+Record their version/status.
+List exact L1/L2/L3 references used only for ownership/rule/state/event/authority verification.
+List applicable repository decisions and ADRs.
+Do not proceed from vague references.
+
+STEP 4 — VERIFY AUTHORITY
+Which approved L4 BHs create each technical need?
 Which higher-level facts are only being verified?
 Are any material sources Draft/unapproved?
 
-STEP 4 — VERIFY DEPENDENCIES
-Which L5 dependencies are required?
+STEP 5 — VERIFY DEPENDENCIES
+Which exact L5 specifications are required?
 Are they stable enough to consume?
 What cannot yet be assumed?
 
-STEP 5 — EXTRACT CONSTRAINTS
+STEP 6 — EXTRACT CONSTRAINTS
 List only repository-supported constraints.
+Attach each material constraint to its source.
 Separate assumptions.
 
-STEP 6 — DESIGN OWNED TECHNICAL REALIZATION
+STEP 7 — DESIGN OWNED TECHNICAL REALIZATION
 Define necessary components/control points/contracts/flows/state/failure boundaries.
 Do not design peer internals.
 
-STEP 7 — DECISION GATE
+STEP 8 — DECISION GATE
 For each material choice:
-Established?
+Established and sourced?
 Derived and defensible?
 Assumption?
 OD?
 ADR-required?
 Upstream blocked?
 
-STEP 8 — CONFORMANCE
+STEP 9 — CONFORMANCE
 Convert established architecture into objective CR-* requirements.
+Trace CR-* to architecture / AD-* and relevant upstream basis.
 
-STEP 9 — SELF-REVIEW
+STEP 10 — TRACEABILITY REVIEW
+For every material architecture section / AD-*:
+Can the source or defensible derivation be identified?
+For every claimed L4 relation:
+Does this L5 section actually provide the claimed technical contribution?
+
+STEP 11 — SELF-REVIEW
 Run hard-fail checks against L5 Validation Standard.
 
-STEP 10 — STATUS
+STEP 12 — STATUS
 Keep Draft if any blocking dependency, ADR, conflict or upstream issue remains.
 ```
 
@@ -596,22 +555,24 @@ This workframe is mandatory for AI mass authoring.
 
 # H. Mandatory AI Stop Conditions
 
-The AI shall stop the affected portion of authoring and explicitly mark it unresolved when any of the following occurs:
+The AI shall stop the affected portion of authoring and explicitly mark it unresolved when:
 
 - canonical L5 ID or ownership cannot be verified;
-- applicable L4 behavior is missing, contradictory or materially unapproved;
+- applicable L4 behavior or exact BH reference cannot be identified;
+- a cited L4 source is materially unapproved and no governance authorization permits approval-level use;
+- L1/L2/L3 imply a technical need that is absent from L4 and would require inventing behavior;
+- two upstream sources conflict materially;
 - two L5 specifications appear to own the same technical responsibility;
 - a required peer architecture is not stable enough to consume;
 - a material technology choice requires ADR resolution;
 - a numeric requirement is necessary but unavailable;
-- a security/trust mechanism cannot be justified from authoritative constraints;
-- a proposed technical state would risk redefining a business lifecycle;
-- a proposed message would risk becoming a new canonical business event;
+- a proposed state risks redefining a business lifecycle;
+- a proposed message risks becoming a new canonical business event;
 - a contract field or data requirement has no defensible basis;
 - implementation feasibility appears to require changing upstream architecture;
-- repository sources conflict at the same effective authority and governance resolution is required.
+- a reference path, ID, version or status cannot be verified from the repository.
 
-The AI shall **not** use words such as “typically,” “usually,” “best practice,” “industry standard,” “commonly,” or “recommended” as a substitute for repository authority when making a normative L5 decision.
+The AI shall not use “typically,” “usually,” “best practice,” “industry standard,” “commonly” or “recommended” as a substitute for repository authority when making a normative L5 decision.
 
 ---
 
@@ -632,17 +593,20 @@ Before presenting a generated production specification as complete, the AI must 
 10. Did I hide an assumption as a fact?
 11. Did I hide an unresolved ADR/OD to make the document look complete?
 12. Did I redesign another L5 owner's internals?
-13. Is the primary technical flow concrete enough to implement?
-14. Are material failure boundaries explicit?
-15. Are AD-* decisions actually supported by the architecture?
-16. Are CR-* requirements objective and derived from established L5 architecture?
-17. Could implementation proceed without inventing a major mechanism owned by this specification?
-18. Could any major section be moved unchanged into L4? If yes, is L5 depth insufficient?
+13. Does every material L4-driven obligation cite the exact L4 spec and BH?
+14. Are L1-L3 references used only for proper verification rather than bypassing L4?
+15. Did I fabricate any source ID, path, version, status, BH or section reference?
+16. Can every material AD-* be traced to a source or defensible L5 derivation?
+17. Can every material CR-* be traced to established architecture?
+18. Is the primary technical flow concrete enough to implement?
+19. Are material failure boundaries explicit?
+20. Could implementation proceed without inventing a major mechanism owned by this specification?
+21. Could any major section be moved unchanged into L4? If yes, is L5 depth insufficient?
 ```
 
-Any “yes” to questions 1–12 is a correction/blocking signal unless explicitly supported by authority.
+Any “yes” to questions 1–12 or 15 is a correction/blocking signal unless explicitly supported by authority.
 
-A “no” to questions 13–17 is a technical-depth failure.
+A “no” to questions 13–14 and 16–20 is a traceability or technical-depth failure where applicable.
 
 The completed Draft must then be validated against the locked `L5_Validation_Standard.md`. A hard failure cannot be compensated for by strong prose or a high numerical score.
 
@@ -653,8 +617,11 @@ The completed Draft must then be validated against the locked `L5_Validation_Sta
 A production L5 file must distinguish clearly between:
 
 ```text
-ESTABLISHED TECHNICAL ARCHITECTURE
-        → written as normative architecture
+ESTABLISHED UPSTREAM FACT
+        → cite exact source / BH / decision
+
+DEFENSIBLE L5 TECHNICAL DERIVATION
+        → explain technical necessity and ownership basis
 
 ASSUMPTION
         → AS-* with validation/resolution path
@@ -663,7 +630,7 @@ LOCAL ARCHITECTURE DECISION
         → AD-* with rationale and traceability
 
 IMPLEMENTATION-CONFORMANCE CONDITION
-        → CR-* derived from architecture
+        → CR-* derived from established architecture
 
 UNRESOLVED MATERIAL ISSUE
         → OD-* / dependency block
@@ -681,6 +648,7 @@ The AI shall never make an unresolved item disappear by converting it into polis
 Before considering an AI-authored L5 Draft complete, the AI must be able to answer:
 
 ```text
+Which exact upstream documents and BHs justify this architecture?
 What technical elements exist?
 What does each element own?
 How do they interact?
@@ -691,13 +659,15 @@ What is the primary execution path?
 What happens under each material failure class?
 Where are trust and isolation enforced?
 How are persistence/consistency/async concerns handled or delegated?
-Which responsibilities belong to peer L5 specifications?
-Which architecture decisions are established?
+Which responsibilities belong to exact peer L5 specifications?
+Which architecture decisions are established and what supports them?
 Which decisions still require ADR/governance resolution?
 What CR-* requirements can later be verified objectively?
 ```
 
 **Depth rule:** implementation should not need to invent a major architectural mechanism that properly belongs to this L5 responsibility.
+
+**Evidence rule:** material architecture shall not exist without a defensible repository basis or explicitly recorded unresolved status.
 
 **Boundary rule:** additional technical detail is valuable only when it remains inside L5 ownership. Technical verbosity that steals another specification's responsibility or defines L6/implementation detail is incorrect.
 
@@ -709,11 +679,15 @@ What CR-* requirements can later be verified objectively?
 **Status:** Draft  
 **Technology:** Neutral
 
-**Primary Basis**
+**Primary Basis — Training Example**
+
+For this non-canonical training example, the basis is summarized only to illustrate technical depth:
 
 - approved L5 engine decomposition;
-- representative calculation L4 behavior;
+- representative calculation-related L4 behavior;
 - higher-level ownership of Finance, Examination and Payroll outcomes.
+
+> **Production rule:** the real `L5-A-07-001` must replace this summary with exact repository references: applicable L4 specification IDs + BH IDs + versions/statuses, exact higher-level sources used for ownership/rule/outcome verification, applicable locked decisions/ADRs and exact peer L5 dependencies. “Representative behavior” is not sufficient production traceability.
 
 **Child Engines**
 
@@ -723,13 +697,15 @@ What CR-* requirements can later be verified objectively?
 - General Rules & Formula;
 - Scheduling & Optimization.
 
-**Peers**
+**Peers — Training shorthand only**
 
 - `L5-D-03-*`;
 - `L5-D-04-*`;
 - `L5-A-08-*`;
 - `L5-E-04-*`;
 - `L5-F-02-*`.
+
+> **Production rule:** replace wildcard shorthand with exact canonical peer specification IDs wherever the actual dependency can be identified.
 
 ## 2. Owns
 
@@ -768,7 +744,7 @@ Owning Business Domain
 Validation / Approval / Publication
 ```
 
-The architecture intentionally separates **computation** from the business authority that decides whether a result becomes an authoritative institutional outcome.
+The architecture intentionally separates computation from the business authority that decides whether a result becomes an authoritative institutional outcome.
 
 The common baseline governs reusable computation behavior. Specialist engine documents refine only their engine-specific technical obligations and shall not redefine the shared controls established here.
 
@@ -805,6 +781,8 @@ The engine output is **not automatically an authoritative business outcome**.
 
 The owning business capability remains responsible for downstream validation, approval, posting, publication or finalization according to its canonical upstream architecture.
 
+> **Production traceability rule:** every material semantic input/output category shall be checked against the actual upstream L4 obligations and canonical peer architecture. Do not keep an illustrative field in the production document merely because it appears in this example.
+
 ## 5. Trust Boundary
 
 Engine execution shall prevent unauthorized:
@@ -815,8 +793,6 @@ Engine execution shall prevent unauthorized:
 - credential access;
 - cross-engine state access;
 - business-state mutation.
-
-Conceptually:
 
 ```text
 Untrusted / External Inputs
@@ -841,7 +817,7 @@ Owning Business Capability
 
 Exact sandbox/runtime mechanism remains a governed technical decision.
 
-The baseline therefore defines the required **security properties** of isolation without prematurely selecting a particular container, process-isolation, virtual-machine, WebAssembly, operating-system sandbox or other runtime mechanism.
+The baseline defines required security properties without prematurely selecting a particular container, process-isolation, virtual-machine, WebAssembly, operating-system sandbox or other runtime mechanism.
 
 ## 6. Determinism
 
@@ -859,9 +835,7 @@ shall produce reproducible computation within defined deterministic boundaries.
 
 Time, randomness or external mutable data may not silently influence deterministic calculations.
 
-Where time, randomness, reference data or other variable context is legitimately required, that input must become explicit, versioned or otherwise reproducible according to the specialist engine's governed architecture.
-
-The objective is not merely repeat execution; it is the ability to explain **which rule version and which normalized inputs produced a particular result**.
+Where time, randomness, reference data or other variable context is legitimately required, that input must become explicit, versioned or otherwise reproducible according to supported architecture.
 
 ## 7. Failure Model
 
@@ -883,22 +857,22 @@ Failure containment requirements:
 
 - an invalid or unacceptable rule package shall not execute;
 - invalid required inputs shall fail before authoritative computation output is produced;
-- resource exhaustion shall terminate or reject the computation according to the governed execution policy rather than escaping the engine boundary;
+- resource exhaustion shall terminate or reject computation according to governed execution policy rather than escaping the engine boundary;
 - a failed computation shall not be represented as a successful authoritative result;
 - computation failure shall not independently mutate owning-domain canonical business state;
-- evidence sufficient to identify the failed execution shall be retained or handed off according to the canonical audit/evidence architecture;
+- evidence sufficient to identify failed execution shall be retained or handed off according to canonical audit/evidence architecture;
 - retry behavior, when permitted, must not silently create duplicate authoritative business effects.
 
 ## 8. Decisions
 
-| ID | Decision |
-|---|---|
-| `AD-001` | Engines execute rules; domains own rules and business outcomes. |
-| `AD-002` | Every execution binds to an exact rule-package version. |
-| `AD-003` | High-integrity computation runs inside an explicit trust boundary. |
-| `AD-004` | Computation output cannot directly approve, post or publish a protected business outcome. |
-| `AD-005` | Execution produces reproducibility/audit evidence. |
-| `AD-006` | Specialist engines remain technically separable under the common baseline. |
+| ID | Decision | Production Traceability Expectation |
+|---|---|---|
+| `AD-001` | Engines execute rules; domains own rules and business outcomes. | Cite exact upstream ownership/rule/outcome sources plus L5 engine responsibility. |
+| `AD-002` | Every execution binds to an exact rule-package version. | Cite technical need from applicable behavior/engine governance; justify as L5 derivation if not explicit upstream. |
+| `AD-003` | High-integrity computation runs inside an explicit trust boundary. | Cite exact security/high-integrity constraints and applicable D03 dependency. |
+| `AD-004` | Computation output cannot directly approve, post or publish a protected business outcome. | Cite exact upstream owner/approval/publication authority. |
+| `AD-005` | Execution produces reproducibility/audit evidence. | Cite applicable L4 evidence obligations and/or canonical audit architecture. |
+| `AD-006` | Specialist engines remain technically separable under the common baseline. | Cite locked engine decomposition and relevant security/deployment rationale. |
 
 Engine isolation/runtime technology requires ADR review.
 
@@ -915,7 +889,7 @@ These `AD-*` identifiers are local architecture decisions within this specificat
 - `CR-007` — execution shall produce sufficient evidence for reproducibility.
 - `CR-008` — specialist engine isolation shall preserve common security controls.
 
-A production specification should make each conformance requirement sufficiently objective that later implementation validation can determine whether the architecture was followed.
+> **Production traceability rule:** each CR must point back to the established architecture section / AD-* and, where materially driven by L4, the exact upstream BH relation. A CR is not permitted to introduce a new business requirement.
 
 ## 10. Open Decisions
 
@@ -927,17 +901,20 @@ A production specification should make each conformance requirement sufficiently
 - engine deployment separation;
 - ADR requirements.
 
-Open decisions shall remain explicit until resolved by the proper L5 owner and governance mechanism. An AI author must never fill these gaps merely to make the document appear complete.
+Open decisions remain explicit until resolved by the proper L5 owner and governance mechanism. An AI author must never fill these gaps merely to make the document appear complete.
 
 ---
 
 # AI Quality Gate for Mass Authoring
 
-For every generated L5 specification, compare the Draft against this reference before submission.
+For every generated L5 specification, compare the Draft against this reference and the locked traceability methodology before submission.
 
 A Draft shall fail the depth/guardrail check if it:
 
 - repeats L4 behavior without technical realization;
+- uses vague upstream references instead of exact source IDs/BHs;
+- fabricates source IDs, statuses, versions, sections or BHs;
+- derives missing L4 behavior directly from L1-L3;
 - lists generic principles instead of concrete architecture;
 - names technologies without governed selection;
 - contains no concrete technical flow where runtime behavior exists;
@@ -945,15 +922,15 @@ A Draft shall fail the depth/guardrail check if it:
 - omits ownership boundaries;
 - duplicates a peer L5 responsibility;
 - provides `AD-*` decisions without corresponding architecture or traceable basis;
-- provides `CR-*` requirements that are vague or impossible to verify;
+- provides `CR-*` requirements that are vague, unsupported or impossible to verify;
 - hides unresolved architecture inside assumptions;
 - invents states, events, contract fields, numeric targets, retry policies or deployment topology without support;
 - uses framework conventions as architecture authority;
 - leaves implementation to invent major mechanisms that properly belong to L5.
 
-A Draft passes the **technical-depth intent** of this example when it gives implementation a concrete architectural model while preserving upstream business meaning, canonical technical ownership, governed unresolved decisions and downstream implementation freedom.
+A Draft passes the technical-depth and evidence intent of this example only when it gives implementation a concrete architectural model **and** provides defensible upstream references for the material obligations and decisions it realizes.
 
 ---
 
-**Reference Verdict:** TECHNICAL-DEPTH + ZERO-GUESSING BENCHMARK FOR L5 MASS AUTHORING  
+**Reference Verdict:** TECHNICAL-DEPTH + ZERO-GUESSING + EXACT-UPSTREAM-TRACEABILITY BENCHMARK FOR L5 MASS AUTHORING  
 **Canonical Production Status:** NON-CANONICAL TRAINING REFERENCE
