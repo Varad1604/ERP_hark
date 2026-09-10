@@ -18,6 +18,16 @@ This folder contains the governance files expected to be used directly during L5
 12. `L5_Broad_Authoring_Authorization_105_2026-09-09.md` — confirms mass authoring is authorized.
 13. `L5_Authoring_Population_Freeze_Decision_105_2026-09-09.md` — confirms IDs/responsibility boundaries are frozen.
 
+## Worked Authoring Example
+
+Before writing the first production L5 specification, review:
+
+`examples/WORKED_EXAMPLE_L5_Tenant_Institution_Isolation_Architecture.md`
+
+This is a **non-canonical training example** modelled on `L5-A-04-001`. It demonstrates the expected technical depth, ownership boundaries, L4 traceability, primary and failure flows, local `AD-*` decisions, `CR-*` conformance requirements, `OD-*` unresolved decisions and ADR treatment.
+
+It is not part of the frozen 105-specification corpus and must not be copied into `specifications/` as if it were the canonical production `L5-A-04-001` document.
+
 ## Working Rule
 
 Authors should not need to browse the full governance history for normal work. Start here, use the production specification location under `../../specifications/`, and consult `../reference/` only when a planning decision, coverage decision, approval record or provenance question must be checked.
