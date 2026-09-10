@@ -18,15 +18,43 @@ This folder contains the governance files expected to be used directly during L5
 12. `L5_Broad_Authoring_Authorization_105_2026-09-09.md` — confirms mass authoring is authorized.
 13. `L5_Authoring_Population_Freeze_Decision_105_2026-09-09.md` — confirms IDs/responsibility boundaries are frozen.
 
-## Worked Authoring Example
+## Primary Technical-Depth Benchmark for AI and Human Authors
 
-Before writing the first production L5 specification, review:
+Before mass-authoring any production L5 specification, review:
+
+`examples/AI_TECHNICAL_DEPTH_REFERENCE_L5-A-07-001_Secure_Computational_Engine_Architecture_Baseline.md`
+
+This is the **primary technical-depth benchmark** for L5 authoring. It is modelled on `L5-A-07-001` and demonstrates the level of concrete technical architecture expected from both human authors and AI authoring agents.
+
+It shows the expected treatment of:
+
+- technical ownership and explicit non-ownership;
+- peer and dependency boundaries;
+- architecture-level execution flows;
+- conceptual contracts;
+- trust and isolation boundaries;
+- deterministic behavior where applicable;
+- material failure behavior and containment;
+- local `AD-*` architecture decisions;
+- objective `CR-*` conformance requirements;
+- unresolved decisions and ADR escalation;
+- the distinction between concrete L5 architecture and vague technical prose.
+
+### Mandatory AI authoring rule
+
+AI-generated L5 specifications must be **at approximately this technical depth or deeper where the owning subject requires it**. The reference is not a rigid universal template: database, IAM, API, messaging, deployment, testing and client specifications will naturally require different technical content. However, an AI Draft is not acceptable merely because it follows headings or restates L4 behavior.
+
+An AI-authored Draft must define enough concrete architecture that implementation does not have to invent a major mechanism that properly belongs to the L5 responsibility. At the same time, the AI must not add technical detail that steals another L5 owner's responsibility, changes L1-L4 business meaning, selects technology without governance, becomes L6 UI/UX, or turns into source-code/physical-design documentation.
+
+The AI technical-depth reference is a **non-canonical training document**. It is not part of the frozen 105-specification production corpus and must not be copied into `specifications/` as if it were the canonical production `L5-A-07-001` document.
+
+## Secondary Worked Example
+
+A broader traceability-oriented training example also exists at:
 
 `examples/WORKED_EXAMPLE_L5_Tenant_Institution_Isolation_Architecture.md`
 
-This is a **non-canonical training example** modelled on `L5-A-04-001`. It demonstrates the expected technical depth, ownership boundaries, L4 traceability, primary and failure flows, local `AD-*` decisions, `CR-*` conformance requirements, `OD-*` unresolved decisions and ADR treatment.
-
-It is not part of the frozen 105-specification corpus and must not be copied into `specifications/` as if it were the canonical production `L5-A-04-001` document.
+Use the Secure Computational Engine reference above as the primary benchmark for technical depth. Use this secondary example only when additional illustration of L4 traceability, ownership boundaries, `AD-*`, `CR-*`, `OD-*` and ADR treatment is useful.
 
 ## Working Rule
 
