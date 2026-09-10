@@ -32,7 +32,6 @@ L5-A-07-002 owns **technical execution of approved financial calculations**. Fin
 ## 3. Upstream Applicability, Constraints & Assumptions
 
 ### 3.1 L4 Applicability
-
 **L4-F-001-BH-004:** when charging is applicable, the system resolves the applicable Fee Structure and calculates the monetary value of the Student Charge. L5-A-07-002 owns the technical calculation portion; Finance workflow retains business resolution and authority.
 
 **L4-F-005-BH-005:** installment structure must reconcile to the Student Charge amount and satisfy applicable configuration-driven rules before becoming authoritative. The engine can perform numerical reconciliation; Finance workflow determines authoritative progression.
