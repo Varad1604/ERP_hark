@@ -6,57 +6,90 @@
 |---|---|
 | Specification ID | L5-A-07-001 |
 | Specification Title | Secure Computational Engine Architecture Baseline |
-| L5 Family | L5-A — Core Platform & Application Architecture |
-| Major Area | L5-A-07 — Computational & Rules Engine Architecture |
-| Status | Draft — Authoring Authorized; Not Locked |
+| Architecture Level | L5 — Solution Architecture |
+| Family | L5-A — Core Platform & Application Architecture |
+| Major Area | L5-A-07 — Computation Engines |
 | Version | 1.0.0 |
-| Author | Varad |
+| Status | Draft — Authoring |
+| Canonical Technical Responsibility | Common secure computational execution baseline |
+| Upstream Parent Model | Reusable L5 capability consumed by specialized computation architectures |
+| Repository Baseline | `72acd91e1ea47b6c94698e5700b70b6a012fbdc2` |
+| Primary Upstream Business Architecture | L1/L2/L3 approved architecture and L4 System Behavior Specifications |
+| Specialized Peer Specifications | L5-A-07-002 Finance Computation Engine; L5-A-07-003 Examination Result Computation Engine; L5-A-07-004 Payroll Computation Engine; L5-A-07-005 General Rules & Formula Engine; L5-A-07-006 Scheduling & Optimization Engine |
+
+---
 
 ## 2. Purpose, Scope & Non-Goals
 
 ### 2.1 Purpose
 
-This specification defines the common L5 technical architecture baseline required for secure, controlled, reproducible and evidentiary computational execution across SutraERP where approved L4 behavior requires computational processing.
+This specification defines the common solution-architecture baseline for executing governed computational work securely, deterministically where the applicable business behavior requires reproducibility, with controlled admission, isolation of executable rule packages, bounded resource use, attributable computation evidence, and explicit separation between technical computation and business authority.
 
-It establishes the shared execution controls that specialized computation architectures can consume without transferring ownership of business rules, authoritative business facts, lifecycle semantics, approval authority, publication authority, or canonical business events.
+The baseline exists so that specialized computation architectures do not independently invent incompatible approaches for common concerns such as:
+
+- admitting a computation only when its required authoritative inputs and execution context are valid;
+- executing an approved computational definition without silently changing its semantics;
+- maintaining sufficient execution identity and provenance to reproduce or explain a computation;
+- isolating executable rule/configuration packages from unrelated computational work;
+- containing execution failures and resource exhaustion;
+- preventing a computational execution mechanism from becoming the owner of business rules, business facts, lifecycle states, approvals, or canonical business events;
+- preserving traceable relationships between computation inputs, execution context, outputs, validation evidence, and downstream business decisions.
 
 ### 2.2 Scope
 
-This specification covers the common technical architecture for:
+This baseline applies to computational execution capabilities used by SutraERP solution components where an upstream L4 behavior requires controlled computation.
 
-- admission of a computational request into a controlled execution boundary;
-- integrity of the execution context and its required inputs;
-- isolation of rule packages and computation context;
-- deterministic or reproducible execution where required by the parent behavior;
+It establishes the common technical architecture for:
+
+- controlled computation admission;
+- authoritative input and execution-context integrity;
+- isolation of computation and executable rule contexts;
+- deterministic/reproducible execution where required;
 - resource and execution containment;
-- integrity and provenance of computational outputs;
-- controlled recalculation and supersession of computational results;
-- prevention and handling of duplicate or conflicting computational outputs;
-- failure containment and safe execution termination;
-- technical evidence needed to reconstruct or verify a computation;
-- separation between technical computation and authoritative business outcome ownership.
+- output integrity and execution lineage;
+- controlled recalculation and supersession;
+- duplicate and conflicting computation handling;
+- technical failure containment;
+- computational evidence and provenance;
+- controlled handoff to specialized computation architectures and owning business workflows.
 
 ### 2.3 Non-Goals
 
 This specification does not define:
 
-- domain-specific business rules or formulas;
-- ownership of authoritative business facts;
-- business lifecycle definitions;
-- approval, finalization, publication, or certification authority;
-- canonical business event definitions or publishers;
-- APIs, payload schemas, protocols, queues, brokers, or transport mechanisms;
+- domain-specific business rules, formulas, policies, or eligibility criteria;
+- ownership of authoritative business facts or canonical entities;
+- business lifecycle definitions or lifecycle authority;
+- approval, finalization, publication, certification, or activation authority;
+- canonical business-event definitions or publishers;
+- APIs, payload schemas, transport protocols, queues, brokers, or message contracts;
 - database schemas or persistence implementation;
-- software classes, services, DTOs, or programming languages;
-- infrastructure or deployment technology;
+- software classes, services, DTOs, programming languages, or algorithms;
+- infrastructure, deployment topology, or technology selection;
 - user interface or UX behavior;
-- technology or product selection.
+- product or vendor selection.
+
+### 2.4 Ownership Boundary
+
+L5-A-07-001 owns the shared technical execution controls for computational work. Specialized computation specifications own their domain-specific computational responsibilities. Upstream business domains retain ownership of business meaning, authoritative facts, business rules, lifecycle states, decisions, and canonical business events.
+
+A technically successful computation does not become an authoritative business outcome merely because it has completed execution.
+
+---
 
 ## 3. Upstream Applicability, Constraints & Assumptions
 
 ### 3.1 Upstream Applicability
 
-The specification is a reusable technical baseline for L4 behaviors that require controlled computation. It is particularly applicable to examination-result computation behaviors mapped to L5-A-07-003 and provides the common computational foundation for finance, payroll, general rules/formula, and scheduling/optimization architectures.
+This specification is a reusable technical baseline for L4 behaviors that require controlled computation. It is consumed by specialized computation architectures where applicable, including:
+
+- L5-A-07-002 — Finance Computation Engine Architecture;
+- L5-A-07-003 — Examination Result Computation Engine Architecture;
+- L5-A-07-004 — Payroll Computation Engine Architecture;
+- L5-A-07-005 — General Rules & Formula Engine Architecture;
+- L5-A-07-006 — Scheduling & Optimization Engine Architecture.
+
+The baseline does not absorb the domain semantics or business authority of those specifications.
 
 ### 3.2 Architectural Constraints
 
@@ -68,12 +101,18 @@ The architecture shall preserve the following boundaries:
 4. Technical computation shall not create or redefine business lifecycle states.
 5. Technical computation shall not publish or redefine canonical business events independently of the owning business domain.
 6. A computational output shall not become an authoritative business outcome merely because it was technically computed.
+7. Authoritative source facts shall not be silently substituted with locally invented or altered values.
+8. Recalculation shall preserve technical lineage and shall not erase historical execution identity.
+9. Failure recovery shall follow the governing workflow and applicable L4 behavior rather than an invented computation policy.
 
 ### 3.3 Assumptions
 
-- The parent L4 behaviors define the business conditions under which computation is permitted and the authoritative sources of required business facts.
+- Parent L4 behaviors define the business conditions under which computation is permitted and the authoritative sources of required business facts.
 - Specialized L5 computation specifications define domain-specific computation responsibilities.
 - Security, audit/evidence, and reliability concerns are coordinated with their respective L5 specifications rather than duplicated here.
+- Where a computation requires deterministic or reproducible behavior, the applicable upstream behavior establishes that requirement.
+
+---
 
 ## 4. Technical Architecture
 
@@ -83,7 +122,7 @@ The common computation baseline is organized around a controlled execution bound
 
 **Request Admission → Context Validation → Rule/Execution Isolation → Controlled Computation → Output Integrity → Evidence Capture → Downstream Handoff**
 
-The execution boundary shall be capable of rejecting a computation before execution when required context, authority, integrity, or admissibility conditions are not satisfied.
+The execution boundary shall be capable of rejecting a computation before successful execution when required context, authority, integrity, or admissibility conditions are not satisfied.
 
 ### 4.2 Computation Admission
 
@@ -94,12 +133,12 @@ Admission shall establish, at minimum:
 - computation scope;
 - identity of the computational subject/context;
 - required source facts or references;
-- applicable rule context;
+- applicable rule or calculation context;
 - execution purpose or reason where required;
 - prerequisite validation state;
 - authorization to perform the technical computation where such authorization is required by the parent behavior.
 
-An invalid, incomplete, conflicting, or unauthorized execution context shall not proceed as a successful computation.
+An invalid, incomplete, conflicting, stale, or unauthorized execution context shall not proceed as a successful computation.
 
 ### 4.3 Execution-Context Integrity
 
@@ -116,9 +155,11 @@ The architecture shall distinguish between:
 
 The computation mechanism shall not silently replace an authoritative source fact with a locally invented or altered value.
 
+Where source context changes before successful completion, the execution shall be invalidated or re-evaluated through the governing workflow rather than silently continuing with an unverified context.
+
 ### 4.4 Rule-Package Isolation
 
-Business-rule execution shall be isolated from unrelated computational contexts so that one rule package or computation context cannot silently alter another.
+Business-rule or calculation execution shall be isolated from unrelated computational contexts so that one rule package or computation context cannot silently alter another.
 
 The common baseline shall support identification of the rule context used by an execution and preservation of sufficient information to establish which approved computational context produced an output.
 
@@ -135,7 +176,7 @@ The architecture shall preserve sufficient execution evidence to determine wheth
 - changed execution conditions;
 - an execution failure or integrity issue.
 
-The exact technical mechanism for achieving reproducibility is deferred to implementation design.
+The exact implementation mechanism for achieving reproducibility is deferred to implementation design, while the L5 obligation to preserve the required execution context and evidence is mandatory.
 
 ### 4.6 Resource Containment
 
@@ -143,20 +184,20 @@ Computational execution shall operate within controlled resource boundaries appr
 
 The architecture shall provide a means to prevent an individual computation from consuming uncontrolled resources or preventing unrelated required processing from continuing.
 
-When a computation exceeds an established execution boundary, the execution shall terminate or transition to an explicitly controlled failure state rather than producing an unqualified successful output.
+When a computation exceeds an established execution boundary, the execution shall terminate or transition to an explicitly controlled technical failure condition rather than producing an unqualified successful output.
 
 ### 4.7 Output Integrity
 
 A computed output shall remain associated with the execution context that produced it.
 
-The architecture shall preserve:
+The architecture shall preserve, as applicable:
 
 - computation identity;
 - relevant input references;
 - applicable rule-context reference;
 - execution status;
 - output status;
-- evidence necessary to distinguish current, superseded, rejected, failed, or otherwise non-current outputs where applicable.
+- evidence necessary to distinguish current, superseded, rejected, failed, or otherwise non-current technical outputs.
 
 The common baseline does not determine which output is the authoritative business outcome. That decision remains with the owning business domain and applicable L4 behavior.
 
@@ -166,7 +207,7 @@ Where L4 behavior requires recomputation, the architecture shall support a contr
 
 A newly produced computational output shall not silently overwrite the historical identity of the prior execution. The architecture shall preserve the relationship between prior and subsequent executions sufficiently to establish what changed and why.
 
-Supersession at the technical computation layer shall not be interpreted as business approval, publication, finalization, or other business authority.
+Technical supersession shall not be interpreted as business approval, publication, finalization, or other business authority.
 
 ### 4.9 Duplicate and Conflicting Computations
 
@@ -188,7 +229,7 @@ Failure handling shall preserve:
 - relevant input/context references;
 - evidence required for investigation or controlled continuation.
 
-Failure handling shall avoid corrupting unrelated computational executions and shall not create synthetic business lifecycle transitions.
+Failure handling shall avoid corrupting unrelated computational executions and shall not create synthetic business lifecycle transitions or canonical business events.
 
 ### 4.11 Business Authority Boundary
 
@@ -204,9 +245,11 @@ It may calculate, validate computational consistency, preserve execution evidenc
 - establish eligibility;
 - award a qualification;
 - change a business lifecycle state;
-- create a canonical business event.
+- create or redefine a canonical business event.
 
 Those responsibilities remain with their canonical owning domains and approved business workflows.
+
+---
 
 ## 5. Dependencies / Integration
 
@@ -226,19 +269,25 @@ These specifications retain their respective computational responsibilities. Thi
 
 The computation boundary depends on the applicable security and trust architecture for protection of execution context, sensitive inputs, credentials, integrity controls, and trust boundaries.
 
+This dependency does not transfer business authority to the security architecture.
+
 ### 5.3 Audit and Evidence Dependency
 
-The computation architecture produces technical evidence that must integrate with the governed audit and evidence architecture. It does not redefine the enterprise audit model or business meaning of audit events.
+The computation architecture produces technical evidence that integrates with the governed audit and evidence architecture. It does not redefine the enterprise audit model or business meaning of audit events.
 
 ### 5.4 Reliability and Operations Dependency
 
-Execution containment, failure handling, availability, and recovery shall align with the applicable reliability and operations architecture. This specification does not define deployment or operational technology.
+Execution containment, failure handling, availability, and recovery align with the applicable reliability and operations architecture. This specification does not define deployment or operational technology.
+
+### 5.5 Rules / Formula Dependency
+
+Where specialized computation requires reusable declarative rule or formula evaluation, it may consume **L5-A-07-005 — General Rules & Formula Engine Architecture**. The rule/formula engine remains responsible only for technical evaluation and does not acquire business-rule ownership.
+
+---
 
 ## 6. Technical Behavior / Failure Concerns
 
 ### 6.1 Required Technical Behaviors
-
-The architecture shall support the following observable behaviors:
 
 | Behavior | Required outcome |
 |---|---|
@@ -260,6 +309,7 @@ The architecture shall account for at least:
 - missing required input context;
 - invalid or inconsistent input references;
 - unavailable required authoritative context;
+- stale authoritative context;
 - invalid rule context;
 - execution limit breach;
 - computation failure;
@@ -270,6 +320,8 @@ The architecture shall account for at least:
 - inability to preserve required evidence.
 
 Where a failure is recoverable, continuation shall occur only through the governing workflow and applicable L4 behavior. The computation baseline shall not invent recovery policy.
+
+---
 
 ## 7. Security / Trust / Evidence
 
@@ -298,6 +350,12 @@ The computation architecture shall preserve evidence sufficient, subject to appl
 
 Evidence requirements shall be implemented consistently with the canonical audit and evidence architecture.
 
+### 7.4 Evidence Integrity Boundary
+
+Technical computation evidence shall be attributable to the execution that produced it and shall not be presented as independent proof of business approval or authority. Business decisions and canonical business events remain attributable to their owning workflow and domain.
+
+---
+
 ## 8. Conformance
 
 An implementation conforms to this specification when it demonstrates that the common computation capability:
@@ -315,6 +373,8 @@ An implementation conforms to this specification when it demonstrates that the c
 11. does not assume business authority that belongs to upstream or sibling architecture.
 
 Conformance shall be demonstrated through architecture-level evidence and later implementation-level verification without changing the business meaning established by L1–L4.
+
+---
 
 ## 9. Traceability
 
@@ -375,39 +435,17 @@ This specification traces through the approved architecture chain:
 
 The L4 Business Behavior IDs listed above are the atomic traceability anchors. No document-level phrase such as “based on L4” is treated as sufficient traceability.
 
+---
+
 ## 10. Open Issues / Deferred Design
 
-The following are intentionally deferred to later architecture or implementation decisions:
+The following are intentionally deferred to later architecture or implementation decisions without weakening the mandatory L5 behavior defined above:
 
 1. Exact technical isolation mechanism for computational execution.
-2. Exact mechanism for deterministic/reproducible execution evidence.
-3. Exact resource quota and execution-boundary implementation.
-4. Exact persistence mechanism for execution lineage and evidence.
-5. Exact integration mechanism between common and specialized computation capabilities.
-6. Exact technical trust-boundary implementation.
-7. Detailed ADRs required when implementation choices are subsequently made.
+2. Exact implementation mechanism for deterministic/reproducible execution.
+3. Exact persistence mechanism for execution lineage and technical evidence.
+4. Exact operational resource-governance mechanism.
+5. Exact integration/transport mechanism between the computation capability and consuming solution components.
+6. Exact cryptographic and key-management mechanism where required by the security architecture.
 
-These deferred items shall not be interpreted as permission to redefine L1–L4 business behavior.
-
-## Appendix A — Responsibility Boundary Summary
-
-| Responsibility | L5-A-07-001 | Other Owner |
-|---|---|---|
-| Common secure computation execution | **Owns** | — |
-| Computation admission controls | **Owns common baseline** | Parent/specialized L5 defines domain conditions |
-| Rule-package isolation | **Owns common baseline** | Specialized L5 owns rule semantics |
-| Deterministic/reproducible execution capability | **Owns common baseline** | Parent L4 determines when required |
-| Resource containment | **Owns common baseline** | L5-E reliability/operations governs broader operational behavior |
-| Finance rules/calculation semantics | Does not own | L5-A-07-002 |
-| Examination result computation semantics | Does not own | L5-A-07-003 |
-| Payroll rules/calculation semantics | Does not own | L5-A-07-004 |
-| General rule/formula semantics | Does not own | L5-A-07-005 |
-| Scheduling/optimization semantics | Does not own | L5-A-07-006 |
-| Business authority | Does not own | Canonical business domain/workflow |
-| Audit model | Does not own | L5-D-04 |
-| Security/trust architecture | Does not own | L5-D-03 |
-| Reliability/operations architecture | Does not own | L5-E |
-
-## Appendix B — Authoring Status
-
-This document is an **L5 authoring draft**. Broad L5 authoring is authorized, but this specification is not represented as approved or locked. Any later approval or lock shall occur through the repository's governed L5 review and corpus-lock process.
+These deferred items shall not be used to reassign canonical business ownership, business-rule ownership, lifecycle authority, or canonical event publication.
