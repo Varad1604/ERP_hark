@@ -1,6 +1,6 @@
 # SutraERP L5 Solution Architecture Specification Template
 
-**Version:** 1.0.2  
+**Version:** 1.0.3  
 **Status:** Locked  
 **Owner:** Lead Architect  
 **Architectural Level:** L5 — Solution Architecture  
@@ -13,7 +13,7 @@
 
 ## Authoring Rule
 
-Use the minimum content required to make approved L4 behavior technically implementable **without leaving major architecture for implementation to invent and without changing upstream business meaning**.
+Use the **minimum content necessary** to make approved L4 behavior technically implementable without leaving major architecture for implementation to invent and without changing upstream business meaning.
 
 An L5 specification shall:
 
@@ -29,7 +29,23 @@ An L5 specification shall:
 - remain technology-neutral where no governed technology choice exists;
 - stop rather than guess when required authority is absent, contradictory or unresolved.
 
-Prefer compact technical density over narrative length.
+Prefer **compact technical density over narrative length**.
+
+There is **no fixed line, word or page target** for an L5 specification. Length shall follow architectural necessity only.
+
+A specification shall contain only content that materially contributes to at least one of the following:
+
+- canonical technical ownership or boundary definition;
+- upstream applicability or authoritative constraint;
+- concrete technical realization;
+- primary or material failure behavior;
+- cross-L5 dependency or governed handoff;
+- architecture decision;
+- architecture conformance requirement;
+- unresolved architecture decision, dependency or blocker;
+- compact traceability needed for review or downstream navigation.
+
+If content does not materially contribute to one of these purposes, omit it.
 
 Use architecture tables, conceptual contracts, flows, control points, trust boundaries, decisions and conformance requirements where they communicate the architecture more precisely than prose.
 
@@ -44,6 +60,9 @@ Technology-neutral does not mean architecture-neutral.
 ---
 
 # 0. Mandatory AI / Mass-Authoring Guardrails
+
+> **AUTHORING CONTROL — NOT PRODUCTION CONTENT**  
+> This Section 0 governs how an AI or human author prepares the specification. Its checklists, workframes, reasoning steps and self-review answers shall **not be copied into the final production L5 specification**. Only resulting architectural facts, decisions, assumptions, open items, traceability and technical content belong in Sections 1–10.
 
 These guardrails are mandatory whenever an AI system authors, expands or materially edits a SutraERP L5 specification.
 
@@ -161,7 +180,7 @@ Do not use phrases such as `typically`, `usually`, `best practice`, `industry st
 
 ## 0.6 Mandatory Pre-Authoring Workframe
 
-Before generating the production document, complete this workframe:
+Before generating the production document, complete this workframe internally:
 
 ```text
 STEP 1 — IDENTIFY
@@ -209,6 +228,8 @@ STEP 11 — STATUS
 Remain Draft while any blocking upstream, dependency, ownership or ADR issue remains.
 ```
 
+Do not reproduce this workframe in the production specification.
+
 ## 0.7 Mandatory Technical-Depth Gate
 
 The specification is insufficient if its principal content could be moved substantially unchanged into L4.
@@ -229,6 +250,48 @@ Where materially applicable, L5 must define concrete architecture-level detail s
 - exact peer L5 handoffs.
 
 Every technical element must be necessary to make the canonical responsibility implementable. Do not add architecture patterns as decoration.
+
+## 0.8 Minimum-Necessary-Content and Non-Repetition Gate
+
+The AI shall optimize the production file for **architectural necessity, not document length**.
+
+There is no hard maximum or minimum size.
+
+The production specification shall include all material architecture needed for correctness and implementation readiness, and shall omit everything else.
+
+Mandatory rules:
+
+1. **Do not repeat the same architectural fact in multiple sections.** State it once in the most authoritative section and cross-reference the section, `AD-*`, `CR-*`, `AS-*` or `OD-*` elsewhere.
+2. **Do not duplicate upstream traceability.** Keep detailed source-to-obligation mapping in one place. Later sections should reference source IDs/BHs compactly rather than restating source explanations.
+3. **Do not reproduce governance instructions inside the production specification.** Governance documents govern the file; they are not content of the architecture unless a specific governance decision materially constrains the solution.
+4. **Do not reproduce AI self-checks, validation questionnaires, scoring worksheets or “pass/fail answers” inside the production file.** Perform them internally. Record only actual findings, blockers or open decisions that affect architecture.
+5. **Do not add explanatory prose after a table/flow if the prose merely repeats what the table/flow already states.** Add prose only when it introduces necessary semantics, rationale, boundaries or exceptions.
+6. **Do not restate `Owns` / `Must Not Own` throughout the document.** Reuse those boundaries by reference unless a specific technical flow requires clarification.
+7. **Do not create separate subsections for non-applicable technical concerns.** Omit them.
+8. **Do not enumerate every possible quality attribute.** Include only attributes that materially affect this specification's architecture.
+9. **Do not enumerate every possible failure mode.** Include material failure classes that change architecture, ownership, state, recovery or conformance.
+10. **Do not expand conceptual contracts beyond the information categories necessary to establish the L5 boundary.**
+11. **Do not repeat an upstream BH in prose, a matrix, an applicability table and a traceability summary with the same explanation.** Keep one detailed representation and use compact references elsewhere.
+12. **Do not include background education, generic definitions or software-engineering tutorials unless they are necessary to disambiguate a SutraERP architectural decision.**
+13. **Do not add content solely to demonstrate diligence.** Diligence is proven through correctness, traceability and validation—not volume.
+14. **Do not remove technically necessary content merely to shorten the file.** Compactness never overrides architecture completeness, security, ownership integrity or traceability.
+
+Use this inclusion test for every paragraph, table row, diagram, contract field and bullet:
+
+```text
+Does this content materially establish or constrain
+this specification's architecture?
+
+OR
+
+Is it required to prove exact upstream traceability,
+conformance or an unresolved architecture issue?
+
+YES → keep it.
+NO → omit it.
+```
+
+The target is a **compact, implementation-ready architecture specification**, not a transcript of the authoring or validation process.
 
 ---
 
@@ -258,6 +321,7 @@ Rules:
 - Use the approved L5 identifier and filename structure.
 - L5 family letters do not imply L1 domain ownership.
 - Do not fabricate metadata, dependency IDs, versions, statuses or ADR references.
+- Keep metadata concise; do not turn `Depends On` or `Referenced By` into narrative inventories when Section 4 already provides the material dependency detail.
 
 Canonical filename:
 
@@ -273,28 +337,27 @@ L5-<Family>-<Area>-<Document>_<Canonical_Solution_Slug>.md
 
 State the technical problem this specification resolves, why the architecture is required and the authoritative basis for that technical need.
 
+Keep this section concise. Do not repeat the architecture that belongs in Section 5.
+
 ### In Scope
 
-List the technical responsibilities canonically owned by this specification.
+List only the technical responsibilities canonically owned by this specification.
 
 ### Out of Scope / Non-Goals
 
-Explicitly identify responsibilities that remain:
+Identify only material boundary exclusions needed to prevent ownership confusion or architecture drift.
 
-- upstream-owned;
-- owned by another exact L5 specification;
-- owned by L6;
-- downstream implementation detail.
+Do not create an exhaustive inventory of everything in SutraERP that this specification does not own.
 
 The scope shall make technical ownership unambiguous.
-
-Do not repeat the entire candidate-register description.
 
 ---
 
 ## 3. Upstream Applicability, Constraints & Assumptions
 
-### 3.1 Mandatory Upstream Reference Matrix
+### 3.1 Canonical Upstream Reference Matrix
+
+Use one consolidated matrix for detailed upstream/source mapping.
 
 Every material L5 obligation must have a defensible source.
 
@@ -322,41 +385,31 @@ Rules:
 - If upstream sources conflict, cite the conflicting sources and apply governance; do not silently reconcile them.
 - Do not fabricate IDs, paths, versions, statuses, sections or BH references.
 - Do not copy large upstream passages; summarize the exact obligation and define the technical realization here.
+- Include only sources that materially constrain or justify this specification. Do not list governance files merely because the author read them.
 
-### 3.2 L4 Applicability
+### 3.2 L4 Applicability — Use Only When It Adds New Information
 
-Identify material L4 behavior creating the need for this architecture.
+If the matrix in 3.1 already makes L4 applicability sufficiently clear, **do not repeat the same mappings here**.
+
+Use this subsection only when a compact BH-to-evidence view materially improves reviewability.
 
 ```markdown
-| L4 Specification | Version / Status | Applicable BH | Technical Obligation | L5 Role | L5 Evidence Target |
-|---|---|---|---|---|---|
-| `L4-X-NNN` | `<version / status>` | `L4-X-NNN-BH-001` | `<Technical realization need>` | Owns / Supports | Section 5 / AD-001 / CR-001 |
+| L4 BH | L5 Role | L5 Evidence Target |
+|---|---|---|
+| `L4-X-NNN-BH-001` | Owns / Supports | Section 5 / AD-001 / CR-001 |
 ```
 
-Rules:
+Do not restate the BH text or technical obligation already captured in 3.1.
 
-- approved L4 behavior is the primary behavioral authority;
-- do not recreate BH wording as L5 requirements;
-- one BH may depend on multiple L5 specifications;
-- one L5 specification may contribute to many BHs;
-- traceability does not transfer ownership;
-- selective document traceability shall remain consistent with the canonical repository-level traceability mechanism.
-
-### 3.3 Higher-Level Verification
+### 3.3 Higher-Level Verification — Use Only When Material
 
 Use L1-L3 only where necessary to verify ownership, terminology, rule, lifecycle, event, authority or enterprise constraint.
 
-```markdown
-| Source | Version / Status | Exact Reference | Verified Constraint / Meaning | L5 Effect |
-|---|---|---|---|---|
-| `<L1/L2/L3/Locked Decision>` | ... | ... | ... | ... |
-```
-
-L5 shall not create missing L4 behavior directly from L1-L3.
+If those references already appear clearly in 3.1, do not reproduce them in another table.
 
 ### 3.4 Authoritative Constraints
 
-Record constraints already established by authoritative architecture or approved decisions.
+Record only constraints that materially shape the technical architecture and are not already obvious from 3.1.
 
 ```markdown
 | Constraint ID | Constraint | Exact Source | L5 Effect |
@@ -364,13 +417,11 @@ Record constraints already established by authoritative architecture or approved
 | C-001 | ... | `<exact source / decision / BH>` | ... |
 ```
 
-Examples may include Tenant-scoping, deployment direction, privacy obligations, canonical ownership and portability requirements.
-
 Do not convert preferences into constraints.
 
 ### 3.5 Assumptions
 
-Record material assumptions required for architecture reasoning.
+Record only material assumptions required for architecture reasoning.
 
 ```markdown
 | ID | Assumption | Why Needed | Impact if False | Validation / Resolution |
@@ -380,13 +431,11 @@ Record material assumptions required for architecture reasoning.
 
 An assumption is not an approved fact.
 
-Where an assumption materially changes the architecture if false, it shall remain visible until validated.
+If no material assumptions exist, a single concise statement is sufficient.
 
 ### L4 Approval Gate
 
-Draft or unapproved L4 material may be used for controlled planning.
-
-An L5 specification shall not advance to `Architecture Approved` or `Locked` while a material behavioral dependency relies solely on Draft or otherwise unapproved L4 behavior, unless an explicit governance decision authorizes that dependency.
+If a material behavioral dependency relies on Draft or otherwise unapproved L4 behavior, record that fact once as an approval blocker in Section 9. Do not repeat the same warning throughout the specification.
 
 ---
 
@@ -400,25 +449,19 @@ State exactly what this specification owns and how it relates to other L5 archit
 
 Each owned responsibility must be supported by the frozen corpus boundary, approved technical architecture or a defensible derivation necessary to realize applicable L4 behavior.
 
-### Consumes
+### Consumes / Collaborates With
+
+Prefer one consolidated dependency table unless ownership clarity requires separation.
 
 ```markdown
-| Exact L5 Specification | Version / Status | Capability Consumed | Boundary / Contract | Why Needed |
-|---|---|---|---|---|
-| `L5-X-XX-XXX` | ... | ... | ... | ... |
-```
-
-### Collaborates With
-
-```markdown
-| Exact L5 Specification | Version / Status | Collaboration | Approved Mechanism / Boundary | Ownership Preserved |
-|---|---|---|---|---|
-| `L5-X-XX-XXX` | ... | ... | ... | Yes |
+| Exact L5 Specification | Capability / Collaboration | Boundary | Why Needed |
+|---|---|---|---|
+| `L5-X-XX-XXX` | ... | ... | ... |
 ```
 
 ### Must Not Own
 
-- `<Business or technical responsibility owned elsewhere>`
+List only material exclusions needed to protect canonical ownership.
 
 Rules:
 
@@ -427,34 +470,40 @@ Rules:
 - do not redefine another L5 specification's internal architecture;
 - direct modification of another technical owner's persistence or internal state is prohibited unless explicitly allowed by canonical architecture;
 - cross-boundary interaction shall use approved contracts, events, workflows, projections or other governed mechanisms;
-- use exact peer specification IDs wherever identifiable; wildcard references are not sufficient for a known final dependency;
+- use exact peer specification IDs wherever identifiable;
 - if two specifications appear to own the same responsibility, stop and raise an ownership conflict.
+
+Do not repeat these ownership boundaries in later sections unless needed to explain a specific flow or decision.
 
 ---
 
 ## 5. Solution Architecture
 
+This is normally the most substantial section of the specification.
+
 Describe the concrete technical architecture necessary to realize this specification's canonical responsibility.
 
 Constraints, invariants, non-goals and ownership statements are not substitutes for solution architecture.
 
+Include only technical views that materially apply.
+
 ### 5.1 Technical Realization Model
 
-For each materially applicable responsibility, identify enough of the following to remove major implementation ambiguity:
+For each materially applicable responsibility, identify enough technical structure to remove major implementation ambiguity.
 
 ```markdown
-| Element | Type | Responsibility | Input / Context | State / Data | Output / Handoff | Depends On | Failure Boundary | Authoritative Basis |
+| Element | Type | Responsibility | Input / Context | State / Data | Output / Handoff | Depends On | Failure Boundary | Basis |
 |---|---|---|---|---|---|---|---|---|
-| ... | Component / Service / Worker / Adapter / Control Point / Store / Contract | ... | ... | ... | ... | ... | ... | `<BH / constraint / L5 dependency / derivation>` |
+| ... | Component / Service / Worker / Adapter / Control Point / Store / Contract | ... | ... | ... | ... | ... | ... | `<BH / constraint / dependency / derivation>` |
 ```
 
-Do not introduce an element merely because it is a common architecture pattern. Every material element must be necessary to the owned responsibility and have defensible architectural basis.
+Do not introduce an element merely because it is a common architecture pattern.
+
+Do not add explanatory prose after the table unless it establishes semantics that the table cannot communicate precisely.
 
 ### 5.2 Primary Technical Flow
 
 Where runtime behavior exists, include at least one concrete primary technical flow.
-
-Example:
 
 ```text
 Input / Trigger
@@ -470,133 +519,82 @@ Peer L5 Capability where required
 Result / Evidence
 ```
 
-For the flow, state:
-
-- what initiates execution;
-- which context is required;
-- where validation occurs;
-- which component owns processing;
-- where state may change;
-- where peer capabilities are consumed;
-- what constitutes successful completion;
-- what evidence/correlation must remain.
+Explain only material semantics not already obvious from the flow or realization model.
 
 ### 5.3 Material Failure Model
 
-Where failure materially affects architecture, define failure classes and containment explicitly.
+Where failure materially affects architecture, define only failure classes that change architecture, ownership, state mutation, recovery, security or conformance.
 
 ```markdown
-| Failure Class | Detection Boundary | Required Technical Outcome | Forbidden Outcome | Recovery / Delegated Owner | Source / Decision |
+| Failure Class | Detection Boundary | Required Technical Outcome | Forbidden Outcome | Recovery / Delegated Owner | Basis |
 |---|---|---|---|---|---|
 | ... | ... | ... | ... | ... | ... |
 ```
 
 Do not invent retry counts, delays, backoff factors, DLQ thresholds or timeout values unless an authoritative decision provides them.
 
-### 5.4 Conceptual Contracts / Context
+### 5.4 Conceptual Contracts / Context — Only Where Material
 
-Where architecture requires cross-boundary information, define only the conceptual information needed to establish the technical contract.
+Where architecture requires cross-boundary information, define only the conceptual information necessary to establish the technical boundary.
 
 ```text
 <ConceptualContract>
 {
   <Semantically required information category>
-  <Semantically required context>
+  <Required context>
   <Correlation/evidence reference where justified>
 }
 ```
 
-Rules:
+Do not add fields simply because they are conventional.
 
-- every material information category must have defensible basis;
-- do not add fields simply because they are conventional;
-- do not define programming-language types, framework annotations, exact endpoint schemas or physical columns unless governed;
-- when exact contract shape belongs to another L5 owner, specify the required semantics and reference that owner rather than designing the peer's contract internals.
+Do not repeat information already defined by the canonical peer owner; reference it.
 
-### 5.5 State / Persistence / Consistency
+### 5.5 State / Persistence / Consistency — Only Where Material
 
-Where state is material, define:
+Define only the state/persistence concerns that this specification owns or must constrain at a boundary.
 
-- canonical technical persistence owner;
-- state mutation boundary;
-- transaction boundary;
-- consistency/concurrency responsibility;
-- cross-owner write prohibition;
-- durable state-to-event handoff where applicable;
-- migration/schema-evolution dependency where applicable.
+Where another L5 specification owns persistence, transaction or consistency mechanics, state the consuming requirement and reference that owner instead of redesigning it.
 
-Do not invent database products, tables, columns, SQL or physical schema details unless governed.
+### 5.6 Asynchronous / Job / Messaging Behavior — Only Where Material
 
-### 5.6 Asynchronous / Job / Messaging Behavior
+Define only the async, messaging, idempotency, ordering, recovery or worker behavior that materially affects this specification.
 
-Where material, define:
+Do not enumerate generic messaging concerns when the specification merely consumes a canonical peer capability.
 
-- publication or work handoff;
-- async ownership;
-- ordering scope if established;
-- idempotency/duplicate handling responsibility;
-- consumer/worker failure containment;
-- recovery responsibility;
-- evidence/observability handoff.
+### 5.7 Security / Trust / Isolation — Only Where Material
 
-Do not invent broker technology or exact retry policy.
+Define only material trust boundaries, enforcement points or security dependencies that affect this specification's architecture.
 
-### 5.7 Security / Trust / Isolation
+Reference D-family/B05 owners rather than reproducing their architecture.
 
-Where material, define:
+### 5.8 Runtime / Deployment / Operations — Only Where Material
 
-- trust boundary;
-- authentication/authorization handoff;
-- security control point;
-- Tenant/Institution isolation requirement;
-- privileged access boundary;
-- secrets/credential/key-management dependency;
-- sensitive-data boundary;
-- fail-closed conditions.
-
-Do not invent cryptographic algorithms, key sizes, products or identity technologies unless approved by canonical technical governance.
-
-### 5.8 Runtime / Deployment / Operations
-
-Where material, define:
-
-- logical runtime unit;
-- packaging/deployment responsibility;
-- configuration/secrets boundary;
-- runtime isolation requirement;
-- on-premises compatibility;
-- provider-neutral cloud capability;
-- release/rollback responsibility;
-- observability/readiness dependency;
-- recovery implications.
+Define only runtime/deployment implications that materially constrain this specification.
 
 Do not assume microservices, Kubernetes, cloud-only operation, separate physical servers, regions or managed cloud services without authoritative support.
 
 ### Architecture Diagram
 
-Include a diagram only where it materially improves understanding.
+Include a diagram only where it materially improves understanding beyond the existing flow/table.
+
+Do not include both a flow and a diagram if they communicate substantially the same architecture unless each adds distinct necessary information.
 
 The written architecture remains authoritative.
-
-A diagram shall not silently introduce components, dependencies, states, flows or ownership not described and supported in the specification.
 
 ---
 
 ## 6. Architecture & Technology Decisions
 
-Record material architecture decisions using local identifiers.
+Record only material architecture decisions.
 
 ```markdown
-| Decision ID | Decision | Selected Architecture / Position | Authoritative Basis / Derivation | Rationale | Constraint / Traceability | ADR |
-|---|---|---|---|---|---|---|
-| AD-001 | ... | ... | `<BH / repository decision / peer / defensible derivation>` | ... | ... | ADR-... / None / Required |
+| Decision ID | Decision | Selected Architecture / Position | Basis / Derivation | Rationale | ADR |
+|---|---|---|---|---|---|
+| AD-001 | ... | ... | `<BH / repository decision / peer / defensible derivation>` | ... | ADR-... / None / Required |
 ```
 
 `AD-*` identifiers are local to this specification.
-
-They are not repository-level L5 specification IDs or ADR IDs.
-
-### Decision Rules
 
 A material decision shall:
 
@@ -608,95 +606,41 @@ A material decision shall:
 - remain consistent with collaborating L5 specifications;
 - remain unresolved when material authority is insufficient.
 
-Technology position may be:
-
-- **Technology-neutral**;
-- **Governed selection pending**;
-- **Approved by ADR / technical standard**.
-
-Technology neutrality permits product-independent architecture such as logical components, services, workers, adapters, repositories, contracts, execution contexts, policy/control points, message envelopes, trust boundaries and deployment units.
-
-It does not justify leaving required architecture unspecified.
+Do not create an `AD-*` for a statement already established unambiguously by another canonical owner unless this specification must make a distinct local technical decision from it.
 
 A material technology choice shall follow the approved ADR/technology-selection methodology.
-
-Do not silently select programming language, framework, ORM, database, broker, cache, search product, cloud provider, orchestration platform, security vendor, CI/CD product or other material platform where governed selection is required.
-
-An ADR cannot override upstream architecture, locked governance or canonical technical ownership.
 
 ---
 
 ## 7. Security, Privacy, Quality & Operational Impact
 
-Document only material non-functional architecture impacts.
+Include this section only for material non-functional impacts not already sufficiently captured in Section 5.
 
-### Security / Privacy / Trust
-
-Consider where applicable:
-
-- identity;
-- authentication;
-- authorization;
-- Tenant/Institution isolation;
-- privileged access;
-- sensitive information;
-- consent/purpose limitation;
-- cryptography;
-- secrets and certificates;
-- trust boundaries;
-- audit evidence;
-- misuse/abuse protection.
-
-Reference canonical L5-D or L5-B privacy/security ownership rather than duplicating it.
-
-High-integrity technical boundaries may require meaningful logical separation.
-
-Logical isolation does not automatically imply separate physical infrastructure.
-
-### Quality & Operational Attributes
+Do not enumerate every quality attribute.
 
 ```markdown
-| Attribute | Architectural Requirement / Decision | Exact Source / Rationale | Owning / Collaborating L5 Spec | Unresolved Target? |
-|---|---|---|---|---|
-| Availability | ... | ... | ... | Yes / No |
-| Performance | ... | ... | ... | Yes / No |
-| Recoverability | ... | ... | ... | Yes / No |
+| Attribute / Concern | Architectural Impact | Source / Rationale | Owning / Collaborating L5 Spec |
+|---|---|---|---|
+| ... | ... | ... | ... |
 ```
 
-Consider only materially applicable attributes:
-
-- availability;
-- resilience;
-- performance;
-- capacity;
-- scalability;
-- recoverability;
-- observability;
-- maintainability;
-- portability;
-- testability.
+Do not repeat detailed security architecture already stated in Section 5.7.
 
 Do not invent numeric targets.
 
-A missing but necessary target shall be recorded as an unresolved decision.
+A missing but necessary target shall be recorded as an `OD-*`.
 
 ---
 
 ## 8. Architecture Conformance Requirements
 
-Define objective technical conditions that downstream implementation must satisfy to conform to this specification.
-
-Use local identifiers:
+Define only objective technical conditions materially required for downstream implementation to conform to this specification.
 
 ```markdown
-| Requirement ID | Architecture Conformance Requirement | Derived From L5 Architecture | Upstream / Decision Basis | Verification Intent |
-|---|---|---|---|---|
-| CR-001 | ... | AD-001 / Section 5.2 | `L4-X-NNN-BH-001` / decision | `<What implementation must demonstrably satisfy>` |
+| Requirement ID | Architecture Conformance Requirement | Derived From | Upstream / Decision Basis |
+|---|---|---|---|
+| CR-001 | ... | AD-001 / Section 5.2 | `L4-X-NNN-BH-001` / decision |
 ```
-
-`CR-*` identifiers are local architecture-conformance references.
-
-They are not L4 BHs and shall not create new business behavior.
 
 A conformance requirement shall be:
 
@@ -704,18 +648,19 @@ A conformance requirement shall be:
 - implementation-verifiable;
 - derived from architecture already established in this specification;
 - traceable to a section, `AD-*`, L5 dependency and/or relevant upstream basis;
-- precise enough for downstream implementation and testing;
 - free of invented numeric thresholds or business semantics.
 
-Do not turn this section into a complete test plan.
+Do not create a CR merely to restate every sentence in Section 5.
 
-Verification methodology belongs to the applicable L5-F architecture.
+Use CRs for material architecture constraints whose implementation conformance must be demonstrable.
+
+Do not turn this section into a complete test plan.
 
 ---
 
 ## 9. Open Decisions & Deferred Design
 
-Record unresolved matters explicitly.
+Record only material unresolved matters.
 
 ```markdown
 | Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
@@ -728,103 +673,97 @@ Rules:
 - unresolved architecture decisions shall not be silently assumed;
 - upstream ambiguity shall be escalated rather than repaired locally;
 - peer-L5 dependency gaps shall not be implemented inside this specification;
-- L6 interaction design remains downstream;
-- implementation details may remain deferred where L5 does not require a decision;
 - a blocking architecture issue prevents `Architecture Approved`;
-- an unresolved material technology decision requiring ADR shall remain explicit;
-- `None` is valid only after an active review confirms that no material unresolved architecture remains.
+- an unresolved material technology decision requiring ADR shall remain explicit.
+
+Do not repeat the same blocker elsewhere once it is clearly recorded here; reference `OD-*` if needed.
 
 If none remain:
 
 ```text
-No material unresolved architecture decisions remain after source, dependency and ADR review.
+No material unresolved architecture decisions remain.
 ```
 
 ---
 
 ## 10. Traceability Summary
 
-Summarize architecture lineage without duplicating previous sections.
+Keep this section **strictly compact**.
+
+It is a navigation aid, not a second copy of Sections 3–9.
+
+Reference IDs only with a short contribution label where needed.
 
 ```markdown
 ### Primary L4 Applicability
-- `L4-X-NNN` vX.Y — `L4-X-NNN-BH-001` — <technical contribution>
-- `L4-Y-NNN` vX.Y — `L4-Y-NNN-BH-003` — <technical contribution>
+- `L4-X-NNN-BH-001` — <short contribution>
+- `L4-Y-NNN-BH-003` — <short contribution>
 
-### Material Higher-Level Verification
-- `<L1/L2/L3 exact source>` — `<ownership/rule/state/event/authority meaning verified>`
-
-### Locked Repository / ADR Constraints
-- `<Decision / ADR>` — `<constraint>`
-
-### Owned L5 Responsibility
-- <Canonical technical responsibility>
+### Material Higher-Level / ADR Constraints
+- `<exact source>` — <short constraint>
 
 ### Material L5 Dependencies
 - `L5-X-XX-XXX` — <capability consumed>
-- `L5-Y-YY-YYY` — <capability consumed>
 
 ### Architecture Decisions
-- `AD-001` — <basis>
-- `AD-002` — <basis>
+- `AD-001`, `AD-002`
 
 ### Conformance Requirements
-- `CR-001` — <derived from>
-- `CR-002` — <derived from>
+- `CR-001`–`CR-00N`
 
-### Blocking / Open Items
-- `OD-001` — <if applicable>
+### Open / Blocking Items
+- `OD-001` — <short label>
 ```
 
-This section exists as a compact downstream navigation and review aid.
-
-It shall not duplicate detailed architecture prose.
+Do not repeat detailed BH explanations, architecture decisions, ownership prose or CR wording here.
 
 ---
 
-# 11. Mandatory AI Completion Gate
+## Mandatory AI Completion Review — Authoring Control Only
 
-Before presenting the Draft as complete, the AI must answer all applicable checks below.
+> **DO NOT INCLUDE THIS CHECKLIST OR ITS ANSWERS IN THE PRODUCTION L5 FILE.**  
+> Run it before returning or committing the file. Record only actual architecture findings through `AS-*`, `AD-*`, `CR-*`, `OD-*` or reviewer findings.
+
+Verify internally:
 
 ```text
 AUTHORITY / NO-GUESSING
-1. Did I invent any business rule, state, event, owner or authority?
-2. Did I invent any L5 responsibility, ID, split/merge or duplicate technical owner?
-3. Did I select a framework/database/broker/cloud/runtime/vendor without approval?
-4. Did I invent any numeric target or retry/timeout/backoff policy?
-5. Did I invent contract fields merely because they are common?
-6. Did I assume microservices, Kubernetes, cloud-only or physical separation?
-7. Did I introduce a technical state machine without architectural necessity?
-8. Did I create or rename a canonical business event?
-9. Did I hide an assumption, dependency problem, ADR need or conflict as fact?
+1. No invented business rule, state, event, owner or authority.
+2. No invented L5 responsibility, ID, split/merge or duplicate technical owner.
+3. No unapproved framework/database/broker/cloud/runtime/vendor selection.
+4. No invented numeric target or retry/timeout/backoff policy.
+5. No arbitrary contract fields.
+6. No unjustified deployment topology.
+7. No unjustified technical lifecycle.
+8. No created/renamed canonical business event.
+9. No hidden assumption, dependency problem, ADR need or conflict.
 
 TRACEABILITY
-10. Does every material L4-driven obligation identify the exact L4 spec and BH?
-11. Are source versions/statuses correct where material?
-12. Are L1-L3 used only for verification rather than bypassing L4?
-13. Did I fabricate any source ID, path, status, version, section or BH?
-14. Can every material AD-* be traced to a source or defensible L5 derivation?
-15. Can every material CR-* be traced to established L5 architecture?
-16. Are exact peer L5 dependencies identified where known?
+10. Every material L4-driven obligation identifies the exact L4 spec/BH.
+11. Material source versions/statuses are correct.
+12. L1-L3 are used only for proper verification.
+13. No fabricated source reference.
+14. Every material AD-* has a source or defensible L5 derivation.
+15. Every material CR-* derives from established L5 architecture.
+16. Exact peer L5 dependencies are identified where known.
 
 TECHNICAL DEPTH
-17. Are concrete technical elements/control points defined where required?
-18. Is the primary technical flow implementable and unambiguous?
-19. Are material failure boundaries explicit?
-20. Are persistence/consistency/async/security/runtime concerns either defined or correctly delegated where material?
-21. Could implementation proceed without inventing a major mechanism owned by this specification?
-22. Could a major section be moved unchanged into L4? If yes, is L5 technical depth insufficient?
+17. Concrete technical elements/control points exist where required.
+18. Primary technical flow is implementable where applicable.
+19. Material failure boundaries are explicit.
+20. Persistence/consistency/async/security/runtime concerns are defined or correctly delegated where material.
+21. Implementation does not need to invent a major mechanism owned by this specification.
+22. Major sections are not merely L4 restatements.
 
-OWNERSHIP
-23. Did I redesign another L5 owner's internals?
-24. Does every cross-boundary interaction preserve canonical ownership?
+OWNERSHIP / COMPACTNESS
+23. No peer L5 internals are redesigned.
+24. Cross-boundary interactions preserve canonical ownership.
+25. No material information is unnecessarily repeated.
+26. No authoring-process, validation questionnaire or governance tutorial has leaked into the production artifact.
+27. Every retained section/table/paragraph materially contributes to architecture, traceability, conformance or a real unresolved issue.
 ```
 
-Any unsupported `Yes` to checks 1-9, 13 or 23 is a correction/blocking signal.
-
-Any material `No` to checks 10-12, 14-21, 24 is a traceability or technical-depth failure.
-
-The Draft must then pass the locked `L5_Validation_Standard.md` hard gates. Strong prose or a high numerical score cannot compensate for a hard failure.
+The Draft must then pass the locked `L5_Validation_Standard.md` hard gates. Strong prose, document length or a high numerical score cannot compensate for a hard failure.
 
 ---
 
@@ -840,18 +779,11 @@ A completed specification must pass:
 - applicable ADR/technology-selection governance;
 - applicable repository review gates;
 - the dependency-gated authoring rules;
-- the mandatory zero-guessing and source-verification guardrails in this template.
+- the mandatory zero-guessing, source-verification and minimum-necessary-content guardrails in this template.
 
 Broad L5 authoring is authorized **only for the frozen 105-specification population and only under the locked Broad Authoring Authorization, workload allocation, dependency gates, governance, validation and traceability rules**.
 
-Broad authoring authorization does not authorize:
-
-- changing the frozen 105-specification population;
-- bypassing dependency gates;
-- self-approving or locking specifications;
-- ungoverned technology selection;
-- inventing missing upstream architecture;
-- bypassing ADR requirements.
+Broad authoring authorization does not authorize changing the frozen corpus, bypassing dependency gates, self-approving/locking specifications, ungoverned technology selection, inventing missing upstream architecture or bypassing ADR requirements.
 
 ---
 
