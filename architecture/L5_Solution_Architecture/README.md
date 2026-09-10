@@ -22,26 +22,65 @@ Technology-neutral L5 remains technically concrete: product/framework selection 
 
 ## Canonical Repository Structure
 
-The active L5 repository structure is:
-
 ```text
 architecture/L5_Solution_Architecture/
 ├── README.md
-├── governance/          # governance, templates, registers, methodology and decisions
-├── specifications/      # canonical 105-specification production authoring area
-├── historical/          # preserved non-canonical extracted technical material
-├── adr/                 # created when the first canonical ADR is allocated
+├── governance/
+│   ├── README.md
+│   ├── instruction/       # required team authoring/review working set
+│   └── reference/         # supporting governance and provenance
+├── specifications/        # canonical 105-specification production authoring area
+├── historical/            # preserved non-canonical extracted technical material
+├── adr/                   # created when the first canonical ADR is allocated
 ├── L5-00_Technology_Stack_Baseline.md
 └── L5-01_Infrastructure_Persistence_Baseline.md
 ```
 
-The two `L5-00` / `L5-01` root files are temporary compatibility pointers only. Their substantive historical content now resides under `historical/`. They remain at the old paths solely to avoid breaking locked upstream and historical repository references during migration.
+The two `L5-00` / `L5-01` root files are temporary compatibility pointers only. Their substantive historical content resides under `historical/`.
 
-The canonical structure and placement rules are governed by:
+The base placement rules are recorded in:
 
-`governance/L5_Repository_Structure_and_Content_Placement_Decision_2026-09-09.md`
+`governance/reference/L5_Repository_Structure_and_Content_Placement_Decision_2026-09-09.md`
+
+The governance subfolder organization is recorded in:
+
+`governance/reference/L5_Governance_Subfolder_Organization_Decision_2026-09-10.md`
 
 The `adr/` directory shall not be materialized until the first canonical ADR document is actually allocated and authored.
+
+---
+
+## Team Governance Entry Point
+
+All authors and reviewers should start at:
+
+```text
+governance/instruction/README.md
+```
+
+The `instruction/` directory contains the active working set required for routine L5 execution:
+
+- L5 Governance and Architecture Standard;
+- L5 Solution Architecture Specification Template;
+- L5 Validation Standard;
+- canonical 105-specification register;
+- frozen-population decision;
+- workload and five-person allocation;
+- dependency-gated execution timeline;
+- naming and document-granularity rules;
+- architecture-family register;
+- L4-to-L5 traceability methodology;
+- technology-selection and ADR methodology;
+- ADR identity register;
+- broad-authoring authorization.
+
+Supporting planning decisions, approval provenance, coverage evidence and superseded planning artifacts are retained under:
+
+```text
+governance/reference/
+```
+
+Placement in `reference/` does not reduce a document's authority or status. It only means the record is not normally required in every authoring session.
 
 ---
 
@@ -53,9 +92,7 @@ All newly authored canonical L5 specifications belong under:
 architecture/L5_Solution_Architecture/specifications/
 ```
 
-The production entry point is:
-
-`specifications/README.md`
+The production entry point is `specifications/README.md`.
 
 Family folders are materialized only when their first real specification is committed:
 
@@ -69,45 +106,11 @@ specifications/L5-F/
 specifications/L5-G/
 ```
 
-Empty family folders are not used as readiness or completion placeholders.
-
 Every canonical specification filename shall follow:
 
 ```text
 L5-<Family>-<Area>-<Document>_<Canonical_Solution_Slug>.md
 ```
-
----
-
-## Current L5 Governance Baseline
-
-Canonical governance records are maintained under:
-
-```text
-architecture/L5_Solution_Architecture/governance/
-```
-
-The active governance set includes:
-
-- `L5_Major_Architecture_Areas_Baseline.md` — Architecture Approved 30-area baseline;
-- `L5_Architecture_Family_Register.md` — Architecture Approved seven-family model;
-- `L5_Naming_and_Document_Granularity_Specialization.md` — Architecture Approved identifier and granularity specialization;
-- `L5_Naming_Specialization_Approval_Decision_2026-09-09.md` — Locked naming approval;
-- `L5_L4_to_L5_Coverage_Audit_Decision_105_2026-09-09.md` — Architecture Approved coverage decision;
-- `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md` — Architecture Approved 105-specification register;
-- `L5_Authoring_Population_Freeze_Decision_105_2026-09-09.md` — Locked 105-specification authoring-population freeze;
-- `L5_Governance_and_Architecture_Standard.md` — Locked v0.3.1 governance baseline;
-- `L5_Solution_Architecture_Specification_Template_v1.0.md` — Locked v1.0.1 authoring template;
-- `L5_Validation_Standard.md` — Locked v1.0.1 validation baseline;
-- `L5_Technology_Selection_and_ADR_Methodology.md` — Locked technology/ADR methodology;
-- `L5_L4_to_L5_Traceability_Methodology.md` — Locked L4↔L5 traceability methodology;
-- `L5_ADR_Register.md` — Locked central ADR identity register;
-- `L5_Pilot_ADR_Candidate_Disposition_2026-09-09.md` — Locked disposition of six material ADR candidate areas;
-- `L5_Workload_Complexity_and_Five_Person_Allocation_Decision_2026-09-09.md` — Locked five-person authoring allocation;
-- `L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md` — Locked dependency-gated parallel execution model;
-- `L5_Broad_Authoring_Authorization_105_2026-09-09.md` — Locked broad-authoring authorization;
-- `L5_Repository_Structure_and_Content_Placement_Decision_2026-09-09.md` — Locked repository-structure and placement decision;
-- `L5_Candidate_Document_Corpus_Register_99_2026-09-09.md` — historical superseded planning evidence.
 
 ---
 
@@ -183,7 +186,7 @@ Current preserved artifacts are:
 - `historical/L5-00_Technology_Stack_Baseline.md` — extracted from earlier L0 technology content under INT-002;
 - `historical/L5-01_Infrastructure_Persistence_Baseline.md` — extracted from earlier L2 persistence content under INT-008.
 
-These documents predate the current L4 production corpus and current L5 governance methodology. They are historical technical inputs only, are not part of the frozen 105-specification production corpus, and are not automatic authority for technology or architecture selection.
+These documents are historical technical inputs only, are not part of the frozen 105-specification production corpus, and are not automatic authority for technology or architecture selection.
 
 ---
 
@@ -191,15 +194,19 @@ These documents predate the current L4 production corpus and current L5 governan
 
 Six material ADR candidate decision areas were retained by the representative pilot, but no canonical ADR IDs have yet been allocated by the candidate-disposition record.
 
-Canonical ADR decision documents will live under `adr/` when formally allocated through `governance/L5_ADR_Register.md`.
+The canonical ADR identity register is now located at:
+
+`governance/instruction/L5_ADR_Register.md`
+
+Canonical ADR decision documents will live under `adr/` when formally allocated.
 
 ---
 
 ## Current Execution Boundary
 
-The representative pilot, methodology remediation, 105-specification authoring-population freeze, ADR-candidate disposition, workload allocation, dependency-gated sequencing, repository navigation synchronization, repository-structure decision and broad-authoring authorization are complete.
+The representative pilot, methodology remediation, 105-specification authoring-population freeze, ADR-candidate disposition, workload allocation, dependency-gated sequencing, repository navigation synchronization, repository-structure governance and broad-authoring authorization are complete.
 
-The L5 program may now proceed with controlled mass authoring in `specifications/` according to the locked dependency gates.
+The L5 program may proceed with controlled mass authoring in `specifications/` according to the locked dependency gates.
 
 Branch selection, manual task assignment, push permissions and merge timing remain under Lead Architect control.
 
