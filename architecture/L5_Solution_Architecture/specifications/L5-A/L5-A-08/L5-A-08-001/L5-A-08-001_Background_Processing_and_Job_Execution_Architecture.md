@@ -60,15 +60,22 @@ This specification does not define:
 
 The architecture shall preserve all applicable upstream L1–L4 ownership, lifecycle, event, authority and business-outcome decisions. Background execution is a technical mechanism for realizing approved behavior; it shall not create a second business authority.
 
-The candidate corpus explicitly assigns L5-A-08-001 responsibility for trusted background/asynchronous execution, job identity and execution governance. L5-A-08-002 separately owns long-running, scheduled and technically retryable work execution. fileciteturn292file0L8-L31
+The candidate corpus explicitly assigns L5-A-08-001 responsibility for trusted background/asynchronous execution, job identity and execution governance. L5-A-08-002 separately owns long-running, scheduled and technically retryable work execution.
 
 ### 3.2 Context Preservation
 
 A background job shall retain the authoritative execution context required by its parent behavior. Where context is absent, contradictory, expired or otherwise invalid, execution shall not silently substitute a different business scope or authority.
 
-### 3.3 Assumptions / Open Applicability
+### 3.3 L4 Applicability and Status
 
-Exact L4 behavioral-obligation applicability has not been independently reconciled in this draft. No L4 BH identifiers are invented here. Exact atomic L4-to-L5 mappings, L4 version/status and validation status remain blocking traceability items until verified against the applicable approved L4 corpus.
+The broader L4 corpus scan identified two generic Workflow Engine specifications with direct architectural relevance to this reusable execution boundary:
+
+- `L4-A-015` — Workflow Initiation to Completed Orchestrated Execution.
+- `L4-A-016` — Workflow Execution Failure to Controlled Recovery Outcome.
+
+Both are currently `v1.0.0 / Draft` in the current repository branch. Therefore the mappings below are **current-baseline traceability candidates**, not claims that the upstream L4 wording is finally locked. No upstream L4 content is changed by this specification.
+
+Domain-specific L4 specifications that merely mention execution, workers, scheduling, batching or retries are not automatically mapped to L5-A-08-001. Such mappings require a distinct reusable technical obligation; domain execution semantics remain with their owning L4/L5 architecture. Long-running, scheduled and technically retryable execution is separately assigned to L5-A-08-002.
 
 ## 4. Technical Architecture
 
@@ -340,20 +347,36 @@ An implementation conforms to this architecture only if it can demonstrate, at m
 |---|---|
 | L1 Business Domain Architecture | Boundary preserved; no business ownership redefined |
 | L2 Domain Workflow Architecture | Business workflow authority preserved |
-| L3 Business Scenario Architecture | Scenario outcomes preserved; exact parent applicability pending verification |
-| L4 System Behavior Specification | Exact atomic BH mappings pending verification |
+| L3 Business Scenario Architecture | L3-A-015 and L3-A-016 applicability established through their current L4 parents; no L3 outcome redefined |
+| L4 System Behavior Specification | Atomic mappings recorded below; upstream L4 status remains Draft |
 
-### 9.2 Atomic L4-to-L5 Requirement
+### 9.2 Atomic L4-to-L5 Traceability
 
-The authoritative traceability relation for this specification shall use:
+| L4 BH ID | L4 Version | Relationship | L5 Specification ID | L5 Version | Rationale / Boundary |
+|---|---|---|---|---|---|
+| L4-A-015-BH-001 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Preserves valid execution context and controlled technical admission; workflow initiation authority remains L4-A-015. |
+| L4-A-015-BH-002 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Provides technical job identity and controlled execution-instance admission; Workflow Instance semantics remain L4-A-015. |
+| L4-A-015-BH-006 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Provides controlled deferred execution/resumption boundary; the source-defined wait condition remains Workflow Engine owned. |
+| L4-A-015-BH-007 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Provides execution identity/context continuity for governed suspension/resumption; authorization and workflow state remain upstream. |
+| L4-A-015-BH-010 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Preserves failed technical execution identity/evidence and prevents silent technical success; WorkflowFailed semantics and recovery authority remain upstream. |
+| L4-A-015-BH-011 | v1.0.0 Draft | Direct | L5-A-08-001 | v1.0.0 | Provides attributable, correlated technical execution evidence, including job identity, context, execution state and failure/termination evidence. |
+| L4-A-016-BH-003 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Preserves Tenant, execution identity/version/correlation and execution context across technical execution boundaries; business recovery semantics remain L4-A-016 owned. |
+| L4-A-016-BH-010 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Preserves attributable technical execution evidence through failure/recovery boundaries; recovery authorization and business outcome remain L4-A-016 owned. |
 
-`(L4 BH ID, L4 Version, L5 Specification ID, L5 Version)`
+### 9.3 Applicability Exclusions
 
-No document-level or inferred mapping shall be treated as final atomic traceability.
+The following are intentionally not mapped to L5-A-08-001 merely because their L4 wording contains execution, retry, scheduling or worker terminology:
 
-Current status: **OPEN / BLOCKING** pending exact L4 applicability and current L4 version/status reconciliation.
+- Domain-specific execution behaviors whose technical realization is owned by another frozen L5 specification.
+- L4-A-016 retry/recovery mechanics as a business recovery responsibility; L4 explicitly defers technical retry to downstream architecture, while L5-A-08-002 owns technically retryable work execution.
+- Scheduling, bulk and long-running execution responsibilities assigned to L5-A-08-002.
+- Canonical business event publication or business outcome ownership, which remain with their upstream owners.
 
-### 9.3 Peer L5 Traceability
+### 9.4 Upstream Status Qualification
+
+The current repository branch records `L4-A-015 v1.0.0 Draft` and `L4-A-016 v1.0.0 Draft`. The atomic relations above therefore establish **traceability to the current L4 baseline**, but they do not promote or lock either L4 specification. If either L4 specification is subsequently approved or changed, the affected atomic relations shall be revalidated against the approved/current version before L5 promotion.
+
+### 9.5 Peer L5 Traceability
 
 | Peer Specification | Relationship | Status |
 |---|---|---|
@@ -364,8 +387,8 @@ Current status: **OPEN / BLOCKING** pending exact L4 applicability and current L
 
 ## 10. Open Issues / Deferred Design
 
-- **OD-001:** Reconcile exact applicable L4 BH identifiers, versions and current repository status.
-- **OD-002:** Validate all atomic L4-to-L5 relations against the approved L4 corpus before promotion.
+- **OD-001:** Revalidate the atomic mappings if L4-A-015 or L4-A-016 changes before L5 promotion.
+- **OD-002:** Validate all atomic L4-to-L5 relations against the subsequently approved/current L4 corpus before promotion.
 - **OD-003:** Validate exact peer dependency relationships after the relevant L5 specifications are available.
 - **OD-004:** Confirm whether any applicable upstream behaviors require additional technical execution states beyond the baseline states defined here.
 - **OD-005:** Confirm operational recovery boundaries with L5-E without transferring business recovery policy into this specification.
