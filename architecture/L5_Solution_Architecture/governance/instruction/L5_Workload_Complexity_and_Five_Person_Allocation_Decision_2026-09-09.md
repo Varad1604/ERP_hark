@@ -35,7 +35,7 @@ It balances:
 - architectural coherence;
 - author capability focus;
 - cross-specification dependency concentration;
-- Dhruv's parallel L6 UI/UX responsibility.
+
 
 ---
 
