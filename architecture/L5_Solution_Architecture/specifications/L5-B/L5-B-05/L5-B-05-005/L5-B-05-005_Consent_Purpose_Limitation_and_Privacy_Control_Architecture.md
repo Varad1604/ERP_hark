@@ -61,11 +61,11 @@ This specification does not own or redefine:
 
 This specification is subordinate to locked L1 architecture and approved L2/L3/L4 behavior. It shall not redefine upstream business ownership, business rules, lifecycle states, canonical events, publishers, institutional authority or L3/L4 outcomes.
 
-The 2026-09-09 L5 coverage decision identified an explicit gap for cross-channel technical enforcement of authoritative consent state, withdrawal, approved purpose, minimization and disclosure constraints and added B05-005 to close that gap. fileciteturn395file0L8-L18
+The 2026-09-09 L5 coverage decision identified an explicit gap for cross-channel technical enforcement of authoritative consent state, withdrawal, approved purpose, minimization and disclosure constraints and added B05-005 to close that gap. fileciteturn395file0L8-L18
 
 ### 3.2 Canonical Ownership Boundary
 
-The originating business domain retains canonical ownership of consent and purpose facts. B05-005 consumes those authoritative facts and enforces them technically; it does not become the canonical consent owner. fileciteturn395file0L8-L18
+The originating business domain retains canonical ownership of consent and purpose facts. B05-005 consumes those authoritative facts and enforces them technically; it does not become the canonical consent owner. fileciteturn395file0L8-L18
 
 ### 3.3 Privacy-Control Model
 
@@ -73,7 +73,7 @@ The architecture treats consent, withdrawal, approved purpose, minimization and 
 
 ### 3.4 Cross-Channel Applicability
 
-The canonical coverage decision states that B05-005 is intended to enforce authoritative privacy constraints through APIs, integrations, reporting, document access, notifications and client access where required. fileciteturn395file0L8-L18
+The canonical coverage decision states that B05-005 is intended to enforce authoritative privacy constraints through APIs, integrations, reporting, document access, notifications and client access where required. fileciteturn395file0L8-L18
 
 This does not make B05-005 the owner of those channels; it provides the reusable privacy-control mechanism consumed by them.
 
@@ -81,11 +81,11 @@ This does not make B05-005 the owner of those channels; it provides the reusable
 
 Exact atomic L4 applicability has not been independently reconciled in this authoring draft. No L4 behavioral-obligation identifiers are invented here.
 
-Required atomic relation:
+The canonical traceability relation identity is:
 
-`(L4 BH ID, L4 Version, L5-B-05-005, L5 Version)`
+`(L4 BH ID, L5 Specification ID)`
 
-Exact L4 BH applicability, exact source version/status and validation status remain **OPEN / BLOCKING** until reconciled against the applicable current approved L4 corpus.
+A validated relation record shall additionally bind the applicable `L4 Version` and `L5 Version`. Exact L4 BH applicability, exact source version/status and validation status remain **OPEN / BLOCKING** until reconciled against the applicable current approved L4 corpus.
 
 ---
 
@@ -120,7 +120,7 @@ Authoritative Consent / Purpose / Privacy Context
 
 ### 4.2 Authoritative Consent State
 
-Where consent is an applicable prerequisite, technical processing shall resolve the authoritative current consent state and any authoritative withdrawal state before proceeding.
+Where consent is applicable, technical processing shall resolve the authoritative current consent state and any authoritative withdrawal state before proceeding.
 
 A technical component shall not manufacture consent from absence of a withdrawal, infer consent from authentication, or preserve an outdated consent state after a valid authoritative withdrawal becomes effective.
 
@@ -166,9 +166,9 @@ A downstream component shall not silently broaden purpose, disclosure scope or p
 
 ### 4.8 Scope Preservation
 
-Tenant, Institution, Person and other applicable scope shall remain associated with privacy-control evaluation.
+Tenant, Institution and other applicable canonical scope context shall remain associated with privacy-control evaluation.
 
-Technical reuse of a privacy decision across incompatible scopes shall be prevented unless the authoritative context explicitly permits it.
+Where Person context is relevant to an authoritative privacy decision, it shall be carried as a reference within the applicable Tenant-scoped Person context; this does not establish Person as an independent cross-Tenant scope or transfer Person ownership into B05-005.
 
 ### 4.9 Specialist Boundaries
 
@@ -183,7 +183,7 @@ Technical reuse of a privacy decision across incompatible scopes shall be preven
 | Security/cryptography/trust | L5-D-03 |
 | Audit/provenance/evidence | L5-D-04 |
 
-The candidate corpus explicitly assigns B05-005 the technical enforcement responsibility while retaining canonical consent ownership upstream. fileciteturn396file1L34-L50
+The candidate corpus explicitly assigns B05-005 the technical enforcement responsibility while retaining canonical consent ownership upstream. fileciteturn396file1L34-L50
 
 ### 4.10 No Privacy-Policy Fabrication
 
@@ -254,7 +254,7 @@ Privacy-control context shall remain resolvable across multi-component processin
 
 ### TB-008 — Scope Preservation
 
-Privacy decisions shall not be reused across incompatible Tenant, Institution, Person or other scopes without authoritative support.
+Privacy decisions shall not be reused across incompatible Tenant, Institution or other canonical scopes without authoritative support.
 
 ### TB-009 — No Policy Inference
 
@@ -327,15 +327,15 @@ A conforming implementation shall demonstrate that:
 | Exact L4 source version/status | OPEN / BLOCKING |
 | Peer L5 version/dependency validation | OPEN / BLOCKING |
 
-### Required Atomic Traceability Form
+### Canonical Traceability Form
 
-Each validated relation shall use:
+The canonical relation identity is:
 
-`L4 BH ID + L4 Version + L5-B-05-005 + L5 Version`
+`(L4 BH ID, L5 Specification ID)`
+
+A validated relation record shall additionally bind the applicable `L4 Version` and `L5 Version`.
 
 Document-level statements are insufficient for final traceability.
-
----
 
 ## 10. Open Issues / Deferred Design
 
