@@ -5,7 +5,7 @@
 **Owner:** Lead Architect  
 **Architectural Level:** L5 — Solution Architecture Governance  
 **Domain:** Cross-domain  
-**Last Updated:** 2026-09-09  
+**Last Updated:** 2026-09-11  
 **Depends On:** L5 Technology Selection & ADR Methodology  
 **Purpose:** Canonical allocation and lifecycle register for L5 Architecture Decision Record identifiers  
 
@@ -84,7 +84,8 @@ The next new ADR number is determined from the highest canonical allocated ADR n
 
 | ADR ID | Title | Scope | Decision Owner | Status | ADR Path | Affected L5 Specifications | Allocated On | Decision Date | Supersedes | Superseded By | Notes |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| — | No ADR allocated yet | — | — | — | — | — | — | — | — | — | First allocation will be `ADR-L5-0001` |
+| `ADR-L5-0001` | Canonical Trust Boundary & Segmentation Pattern | Shared / Family | L5-D-03 — Security, Cryptography, Secrets & Key Management Architecture | Proposed | — | `L5-D-03-001`; `L5-D-03-005` | 2026-09-11 | — | — | — | Allocated for D03 Stage-1 remediation; independent architecture approval required. |
+| `ADR-L5-0002` | Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern | Shared / Family | L5-D-03 — Security, Cryptography, Secrets & Key Management Architecture | Proposed | — | `L5-D-03-002`; `L5-D-03-003`; `L5-D-03-004` | 2026-09-11 | — | — | — | Allocated for D03 Stage-1 remediation; independent architecture approval required. |
 
 ### ADR Path
 
@@ -327,5 +328,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 0  
-**Initial Canonical Allocation:** `ADR-L5-0001`
+**ADR IDs Currently Canonically Allocated:** 2  
+**Next Canonical Allocation:** `ADR-L5-0003`
