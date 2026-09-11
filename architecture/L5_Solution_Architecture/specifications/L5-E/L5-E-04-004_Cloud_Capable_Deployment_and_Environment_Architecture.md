@@ -6,205 +6,165 @@
 **Architecture Level:** L5 — Solution Architecture  
 **Family:** L5-E — Reliability, Deployment & Operations Architecture  
 **Major Area:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
-**Canonical Technical Responsibility:** Provider-neutral cloud-capable deployment and environment architecture without hyperscaler assumption.  
+**Canonical Technical Responsibility:** Provider-neutral cloud-capable deployment and environment architecture preserving portability, ownership and isolation.  
 **Technical Architecture Owner:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-11`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-E-04-001/002`, `L5-A-04-*`, `L5-B-02-*`, `L5-B-04-*`, `L5-D-03-*`, `L5-E-01/02/05-*`, `L4-A-001`, `L4-A-028`, `L4-A-029`.  
-**Referenced By:** Cloud profiles, E01/E02/E05/F01.  
-**Applicable ADRs:** Required but unresolved — Container/orchestration platform; cloud-specific managed services; provider-specific infrastructure choices. No canonical ADR ID is currently allocated.
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-E-04-001`, `L5-E-04-002`, `L5-A-04-*`, `L5-B-02-*`, `L5-B-04-*`, `L5-D-03-*`, `L4-A-001`, `L4-A-028`, `L4-A-029`.  
+**Collaborates With / Referenced By:** `L5-E-01-*`, `L5-E-02-*`, `L5-E-05-*`, `L5-E-04-005`.  
+**Applicable ADRs:** `ADR-L5-0002`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0005`. Cloud provider, managed-service, container and orchestration products remain unresolved.
 
 ---
 
 ## 2. Purpose, Scope & Non-Goals
 
-### Purpose
-
-Define provider-neutral cloud-capable deployment that preserves SutraERP logical architecture and on-prem portability while allowing managed cloud capabilities behind canonical boundaries.
+Define a cloud-capable deployment model that can use cloud infrastructure without making any provider-specific managed service a hidden repository dependency.
 
 ### In Scope
 
-- Provider-neutral logical cloud profile.
-- Managed-service consumption boundaries.
-- Cloud environment separation.
-- Horizontal scaling and multi-zone capability.
-- Provider-specific dependency inventory.
-- Cloud ingress/secrets/observability abstraction boundaries.
-- Migration/exit visibility.
+- Cloud-capable environment and placement model.
+- Provider-neutral runtime and configuration expectations.
+- Multi-environment separation.
+- Cloud networking/identity/secret integration boundaries at architecture level.
+- Horizontal scaling eligibility for approved runtime units.
+- Optional managed-service substitution where canonical owner contracts remain preserved.
 
-### Out of Scope / Non-Goals
+### Out of Scope
 
-- Selecting AWS/Azure/GCP or Kubernetes distribution.
-- DB/object-store/secret/APM vendor selection.
-- Mandatory multi-region.
-- Numeric scaling/availability targets.
-- Tenant placement/business multitenancy semantics.
+- Cloud vendor selection.
+- Specific managed-service selection.
+- Exact orchestration platform.
+- Numeric autoscaling/availability/capacity targets.
+- Persistence technology selection.
+- Business lifecycle semantics.
 
 ---
 
-## 3. Upstream Applicability, Constraints & Assumptions
+## 3. Authoritative Basis
 
-### 3.1 Canonical Upstream Reference Matrix
-
-| Source Level | Document / Decision | Version / Status | Exact Reference | What the Source Establishes | L5 Use |
-| --- | --- | --- | --- | --- | --- |
-| L5 Governance | Candidate Register 105 | v1.1.0 / Architecture Approved | `L5-E-04-004` row | Provider-neutral cloud-capable deployment and environment architecture without hyperscaler assumption. | Establishes canonical responsibility. |
-| L4 | `L4-A-001` | v1.0.0 / Draft | `BH-003, BH-005, BH-009, BH-011, BH-013` | Tenant context/environment and downstream availability preserve isolation and failure semantics. | Cloud profile preserves Tenant isolation/readiness. |
-| L4 | `L4-A-028` | v1.0.0 / Draft | `BH-003, BH-007, BH-008, BH-009` | Capability/module governance is separate from deployment. | Cloud platform cannot redefine module activation. |
-| L4 | `L4-A-029` | v1.0.0 / Draft | `BH-003, BH-004, BH-006, BH-007` | Compatibility/transitional coexistence are governed. | Cloud rollout realizes coexistence only when compatible. |
-| L5 Peer | See Section 4 | Draft/planned as identified | Exact peer IDs below | Peer-owned technical capabilities. | Consumed without ownership transfer. |
+| Source | Effect |
+| --- | --- |
+| `L5-E-04-001/002` | Supplies baseline runtime, packaging and selective-isolation rules. |
+| `ADR-L5-0003` | Modular-core default remains valid; cloud does not imply microservice decomposition. |
+| `ADR-L5-0004` | Tenant/Institution isolation must remain technically enforced in cloud environments. |
+| `ADR-L5-0005` | Persistence ownership/tenant isolation remain canonical even when managed services are used. |
+| `ADR-L5-0002` | Cloud secret/key/credential integration must preserve canonical custody boundaries. |
+| `L4-A-001`, `L4-A-028`, `L4-A-029` | Deployment environment remains distinct from business/module lifecycle and compatibility authority. |
 
 Draft L4 sources support controlled Draft authoring only and are not treated as immutable approved behavioral authority.
 
-### 3.2 Authoritative Constraints
-
-| Constraint ID | Constraint | Exact Source | L5 Effect |
-| --- | --- | --- | --- |
-| C-001 | Cloud-capable is not cloud-mandatory. | E04 corpus boundary | On-prem remains supported. |
-| C-002 | Provider-specific services shall not redefine canonical responsibilities. | Repository ownership rules | Managed service is technical implementation only. |
-| C-003 | Portability means governed migration/exit, not identical physical infrastructure. | Defensible deployment derivation | Provider dependencies are bounded/documented. |
-| C-004 | Multi-region is not assumed without E01/E03/business target. | Validation standard | Capability only, not mandate. |
-
-### 3.3 Assumptions
-
-All product/framework/runtime choices discussed during authoring remain **preferred candidates only** unless an approved ADR or technical standard makes them canonical. No numeric timeout, retry, capacity, availability, retention, RPO/RTO, scaling or similar target is invented here.
-
 ---
 
-## 4. Technical Ownership, Boundaries & Dependencies
+## 4. Technical Ownership & Dependencies
 
 ### Owns
 
-- Cloud deployment profile/environment model.
-- Provider-neutral workload/runtime boundary.
-- Provider-specific dependency inventory.
-- Scaling/zone-placement hooks.
-- Managed-service consumption boundary.
-- Cloud exit/migration visibility.
+- Cloud-capable environment profile.
+- Provider-neutral deployment mapping.
+- Environment separation and placement rules.
+- Cloud scaling eligibility/constraints at E04 boundary.
+- Managed-service substitution constraints.
 
-### Consumes / Collaborates With
+### Relationships
 
-| Exact L5 Specification | Capability / Collaboration | Boundary |
+| Specification | Relationship | Boundary |
 | --- | --- | --- |
-| `L5-E-04-001/002` | Runtime/package model | Cloud profile specializes baseline. |
-| `L5-A-04-*` | Tenant isolation | Cloud infra preserves scope/isolation. |
-| `L5-B-02-* / L5-B-04-*` | Database/object platform | Managed services only as conformant realizations. |
-| `L5-D-03-*` | Secrets/crypto/trust | Provider services behind D03 boundary. |
-| `L5-E-01/02/05-*` | Availability/capacity/operations | Zones/scaling/telemetry. |
+| `L5-E-04-001/002` | Dependency | Baseline deployment/packaging model. |
+| `L5-A-04-*` | Dependency | Tenant/Institution isolation context. |
+| `L5-B-02-*`, `L5-B-04-*` | Dependency | Persistence/storage ownership remains with data architecture. |
+| `L5-D-03-*` | Dependency | Secrets/credentials/trust remain D03-owned. |
+| `L5-E-01-*` | Collaboration | Resilience architecture may realize cloud fault-containment patterns. |
+| `L5-E-02-*` | Collaboration | Capacity/performance architecture may define scaling thresholds. |
+| `L5-E-05-*` | Collaboration | Operations architecture consumes environment/runtime evidence. |
 
-### Must Not Own
-
-This specification shall not redefine peer-L5 internals, upstream business ownership/rules/states/events/authority, or material technology selections that require ADR governance. Cross-boundary interaction uses governed contracts, events, workflows or peer-owned technical boundaries.
+E01/E02/E05 are collaborators, not prerequisite dependencies for defining the cloud-capable E04 profile.
 
 ---
 
 ## 5. Solution Architecture
 
-**Draft decision gate:** Architecture in this section that depends on an `AD-*` whose ADR column contains `Required`, or on a blocking `OD-*`, is a provisional realization for architecture evaluation only. It is not a canonical implementation mandate until the required governance decision/dependency is resolved. Architecture supported independently by cited repository authority remains applicable.
-
-### 5.1 Technical Realization Model
-
-| Element | Type | Responsibility | Input / Context | State / Data | Output / Handoff | Depends On | Failure Boundary | Basis |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Cloud Deployment Profile | Architecture profile | Provider-neutral topology/dependency model. | Governed context/configuration as applicable | Owned technical state only | Cloud environment. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Managed-Service Adapter Boundary | Control point | Consume provider capability behind canonical owner responsibility. | Governed context/configuration as applicable | Owned technical state only | Managed dependency. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Scaling Controller Interface | Operational integration | Scale eligible runtime units from governed metrics. | Governed context/configuration as applicable | Owned technical state only | Replica/instance change. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Zone Placement Policy | Deployment policy | Spread eligible units across failure zones when E01 requires. | Governed context/configuration as applicable | Owned technical state only | Placement result. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Provider Dependency Inventory | Evidence registry | Record provider-specific service, owner, portability/exit impact. | Governed context/configuration as applicable | Owned technical state only | Migration/support evidence. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-
-### 5.2 Primary Technical Flow
+### 5.1 Cloud-Capable Environment Model
 
 ```text
-Select cloud profile → resolve provider-neutral runtime units → bind canonical persistence/security/observability dependencies → optionally map approved provider-managed services → deploy eligible units → apply governed scaling/zone placement → record provider dependency/exit evidence.
+verified deployable artifact
++ cloud-capable E04 profile
++ external configuration
++ D03-governed identity/credential integration
++ B02/B04-governed data services
+→ environment placement
+→ runtime instantiation
+→ readiness/health validation
+→ workload admission
+→ E01/E02/E05 operational handoffs.
 ```
 
-The flow is the current Draft technical realization. Portions dependent on unresolved ADRs or blocking peer/upstream decisions remain provisional and non-normative. Exact endpoint names, code classes, manifests, product configuration and numeric policies remain downstream implementation concerns unless later governed by ADR/technical standard.
+### 5.2 Portability Rules
 
-### 5.3 Material Failure Model
+- Canonical architecture shall describe required capabilities, not require one cloud provider's proprietary service unless an approved ADR explicitly selects it.
+- Managed-service use is permitted only when it preserves the canonical owner's contract, isolation and exit/migration position.
+- Provider-specific configuration shall remain outside business/domain semantics.
+- Runtime placement shall not weaken Tenant/Institution isolation or persistence ownership.
+- Cloud deployment shall not force all business domains into separately deployed services.
 
-| Failure Class | Detection Boundary | Required Technical Outcome | Forbidden Outcome | Recovery / Delegated Owner |
-| --- | --- | --- | --- | --- |
-| Provider service unavailable | Managed-service boundary | Apply owner/E01-defined failure behavior. | No provider-specific business fallback. | Canonical owner/E01 |
-| Scaling unsuitable for stateful unit | Scaling gate | Do not autoscale that unit. | No correctness-breaking replica changes. | B02/E02 |
-| Provider lock-in not recorded | Architecture review | Block approval of profile. | No hidden dependency. | E04 |
-| Secret/telemetry bypass | D03/E05 boundary | Reject direct app coupling. | No bypass of canonical security/ops owner. | D03/E05 |
+### 5.3 Scaling Rules
 
-### 5.4 State, Security, Runtime & Peer Boundaries
+- Only runtime units whose architecture permits independent scaling may scale independently.
+- Scaling shall not duplicate canonical business effects, bypass owner-local concurrency, or introduce cross-owner state sharing.
+- Numeric scaling thresholds belong to E02/operational profiles and are not invented here.
 
-State mutation, persistence, transaction/concurrency, identity, authorization, cryptography, secrets, resilience, observability and deployment concerns are owned by the exact peer L5 specifications identified in Section 4. This specification constrains only the boundary it canonically owns and shall not duplicate those peer architectures.
+### 5.4 Failure Model
 
----
-
-## 6. Architecture & Technology Decisions
-
-| Decision ID | Decision | Selected Architecture / Position | Basis / Derivation | Rationale | ADR |
-| --- | --- | --- | --- | --- | --- |
-| AD-001 | Cloud portability | **UNRESOLVED — candidate for ADR evaluation:** Same logical architecture; provider-specific realization behind canonical boundaries. | E04 responsibility | Avoids hyperscaler business architecture. | Required |
-| AD-002 | Managed services | **UNRESOLVED — candidate for ADR evaluation:** Allowed when owner boundary and portability impact stay explicit. | B02/B04/D03 | Operational leverage without ownership transfer. | Required when materially selected |
-| AD-003 | Orchestration candidate | **UNRESOLVED — candidate for ADR evaluation:** Kubernetes-compatible managed/self-managed platform for larger cloud profile. | Working decision | Portable enterprise operations candidate. | Required |
-| AD-004 | Autoscaling | Eligible runtime units may scale from governed metrics; not universal. | E02/E04 | Avoids blanket scaling. | None |
-| AD-005 | Zones/regions | Multi-zone supported when E01 requires; multi-region not assumed. | E01/E03 | No invented resilience target. | None |
-
-Any row whose ADR column contains `Required` is an **unresolved candidate position, not normative architecture**. It shall not become a conformance obligation until the required ADR is canonically allocated, evaluated and approved. Non-ADR rows remain valid only to the extent supported by the cited authority.
+| Failure | Required Outcome | Forbidden Outcome |
+| --- | --- | --- |
+| Cloud dependency unavailable | Explicit readiness/degraded/failure behavior according to owning contract. | Fabricated success. |
+| Managed service violates required ownership/isolation | Candidate rejected or exception governed. | Silent substitution. |
+| Provider-specific lock-in without approval | Block normative adoption. | Hidden mandatory dependency. |
+| Credential/trust failure | Protected path fails closed. | Shared/static fallback credential. |
 
 ---
 
-## 7. Security, Privacy, Quality & Operational Impact
+## 6. Architecture Decisions
 
-- Tenant/Institution scope and canonical ownership shall remain preserved across this specification's technical boundaries.
-- Authentication/authorization, secrets/cryptography and trust remain D-family owned where applicable.
-- Operational health, resilience, performance/capacity and observability are consumed from E-family owners rather than redefined here.
-- No unavailable numeric target is fabricated; deployment/profile-specific targets remain deferred to their canonical owners.
-
----
-
-## 8. Architecture Conformance Requirements
-
-| Requirement ID | Architecture Conformance Requirement | Derived From | Upstream / Decision Basis |
+| Decision ID | Decision | Position | Authority |
 | --- | --- | --- | --- |
-| CR-001 | Cloud deployment shall preserve canonical L5 ownership and governed contract boundaries; provider placement shall not transfer canonical responsibility. | §4–§5 | Repository ownership rules; A04/B02/D03 boundaries |
-| CR-002 | Any proposed provider-specific managed service shall identify its canonical L5 owner and portability/exit impact before it can become an approved deployment dependency. | §5 / OD-002 | L5 ADR methodology; repository ownership rules |
-| CR-003 | Autoscaling shall be enabled only for runtime units whose state/execution model supports independent scaling. | AD-004 | E02/B02 |
-| CR-004 | Multi-region shall not be mandatory absent authoritative E01/E03/business requirement. | AD-005 | No-invented-target rule |
-| CR-005 | Provider observability/secrets services shall not require application bypass of E05/D03 boundaries. | §5 | E05/D03 |
+| AD-001 | Provider neutrality | Canonical cloud-capable architecture remains provider-neutral until an ADR selects provider-specific technology. | E04 governance + ADR methodology |
+| AD-002 | Placement model | Cloud placement follows modular-core/selective-isolation rules; cloud does not imply microservices. | `ADR-L5-0003` |
+| AD-003 | Tenant isolation | Cloud environment/profile shall preserve enforced Tenant/Institution isolation. | `ADR-L5-0004` |
+| AD-004 | Persistence | Managed database/storage use shall preserve B-family ownership/isolation contracts. | `ADR-L5-0005` |
+| AD-005 | Credentials | Cloud identity/secrets integration shall preserve D03/key-custody boundaries. | `ADR-L5-0002` |
+| AD-006 | Managed services/orchestrator/provider | Unresolved technology choices; no vendor/product is canonical here. | ADR required for normative selection |
 
 ---
 
-## 9. Open Decisions & Deferred Design
+## 7. Conformance Requirements
 
-| Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
-| --- | --- | --- | --- | --- | --- | --- |
-| OD-001 | Cloud/orchestration platform | ADR | No approved canonical resolution / source remains pending | E04/Lead Architect | Yes | Evaluate Kubernetes/provider options. |
-| OD-002 | Provider-native managed services | ADR | No approved canonical resolution / source remains pending | Canonical owner + approver | Yes when selected | Evaluate per service. |
-| OD-003 | Zone/region/scaling numeric targets | Dependency | No approved canonical resolution / source remains pending | E01/E02/E03 | No | Define by profile. |
-| OD-004 | Material L4 parents remain Draft | Upstream | No approved canonical resolution / source remains pending | L4 governance | Yes | Resolve before Architecture Approved. |
-
-These blockers prevent `Architecture Approved` status where applicable, but they do not prevent controlled Draft authoring or repository submission under the broad-authoring authorization.
+| Requirement ID | Requirement |
+| --- | --- |
+| CR-001 | No cloud provider-specific service shall become a mandatory canonical dependency without approved ADR authority. |
+| CR-002 | Cloud deployment shall preserve Tenant/Institution isolation and persistence ownership. |
+| CR-003 | Cloud placement shall not decompose business domains into services solely because cloud infrastructure is available. |
+| CR-004 | Managed-service substitution shall preserve canonical contracts, evidence and migration/exit feasibility. |
+| CR-005 | E01/E02/E05 shall remain collaborators/consumers, not prerequisite authorities for E04-004. |
+| CR-006 | Numeric scaling/availability targets shall not be invented by E04-004. |
 
 ---
 
-## 10. Traceability Summary
+## 8. Open Decisions
 
-### Primary L4 Applicability
+| Item ID | Item | Blocking? | Resolution |
+| --- | --- | --- | --- |
+| OD-001 | Cloud provider strategy | No for provider-neutral architecture; Yes before provider mandate | Govern through ADR if selected. |
+| OD-002 | Container/orchestration platform | No for architecture pattern; Yes before platform mandate | ADR if standardized. |
+| OD-003 | Managed service selections | No until specific service is proposed | Evaluate per canonical owner and ADR triggers. |
+| OD-004 | Numeric scaling/availability thresholds | No | Define through E01/E02 approved profiles. |
+| OD-005 | Material L4 parents remain Draft | Yes for Architecture Approved | Resolve through L4 governance. |
 
-- `L4-A-001-BH-003/BH-005/BH-009/BH-011/BH-013` — Cloud profile preserves Tenant isolation/readiness.
-- `L4-A-028-BH-003/BH-007/BH-008/BH-009` — Cloud platform cannot redefine module activation.
-- `L4-A-029-BH-003/BH-004/BH-006/BH-007` — Cloud rollout realizes coexistence only when compatible.
+---
 
-### Material L5 Dependencies
+## 9. Traceability Summary
 
-`L5-E-04-001/002`, `L5-A-04-*`, `L5-B-02-*`, `L5-B-04-*`, `L5-D-03-*`, `L5-E-01/02/05-*`, `L4-A-001`, `L4-A-028`, `L4-A-029`
-
-### Architecture Decisions
-
-`AD-001`–`AD-005`
-
-### Conformance Requirements
-
-`CR-001`–`CR-005`
-
-### Open / Blocking Items
-
-`OD-001`–`OD-004`
+**Material Dependencies:** `L5-E-04-001`, `L5-E-04-002`, `L5-A-04-*`, `L5-B-02-*`, `L5-B-04-*`, `L5-D-03-*`, `L4-A-001`, `L4-A-028`, `L4-A-029`  
+**Material Collaborators:** `L5-E-01-*`, `L5-E-02-*`, `L5-E-05-*`, `L5-E-04-005`  
+**Applicable Approved ADRs:** `ADR-L5-0002`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0005`
