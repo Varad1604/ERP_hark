@@ -14,9 +14,11 @@
 | Version | 1.0.0 |
 | Status | Draft — Authoring |
 | Last Updated | 2026-09-11 |
-| Depends On | L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 coverage decision; L5-B-04-002; L5-B-04-003; L5-B-04-004; L5-B-04-005; L5-B-05; L5-D-03; L5-D-04; applicable current approved L4 behavior; L2/L3 document, media and object workflows |
+| Depends On | L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Coverage Audit Decision; L5-B-04-002; L5-B-04-003; L5-B-04-004; L5-B-04-005; L5-B-05; L5-D-03; L5-D-04; applicable current approved L4 behavior; L2/L3 document, media and object workflows |
 | Referenced By | L5-B-04-002 through L5-B-04-005 and downstream L6/implementation architecture |
 | Applicable ADRs | None identified; technology choices remain subject to ADR governance |
+
+---
 
 ## 2. Purpose, Scope & Non-Goals
 
@@ -24,7 +26,7 @@
 
 Define the reusable technical platform baseline for institutional documents, media and managed objects. The platform provides common technical capabilities consumed by specialized document-platform architectures while preserving each originating business domain as the owner of business facts, acceptance decisions, issuance decisions, eligibility and business lifecycle.
 
-The approved L5 corpus explicitly defines B04-001 as the common technical document/media/object platform spanning registry, ingestion, storage, generation, verification and credential integrity, without transferring business acceptance or issuance ownership. fileciteturn446file1L38-L40
+The approved L5 corpus explicitly defines B04-001 as the common technical document/media/object platform spanning registry, ingestion, storage, generation, verification and credential integrity, without transferring business acceptance or issuance ownership. Source: `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md`, `L5-B-04-001`.
 
 ### In Scope
 
@@ -66,14 +68,14 @@ The approved L5 corpus explicitly defines B04-001 as the common technical docume
 | L5-B-04-004 | Draft/Authoring or current repository state | Generation/rendering/issuance/template responsibility | Specialized technical realization delegated to B04-004. | Peer decomposition boundary |
 | L5-B-04-005 | Draft/Authoring or current repository state | Signing/seal/QR/credential integrity responsibility | Specialized technical realization delegated to B04-005; cryptographic services remain D03. | Peer decomposition boundary |
 
-The repository decision explicitly states that the business domain remains the owner of document eligibility, acceptance, approval and issuance decisions, while B04 owns only the reusable technical document platform. fileciteturn434file0L2-L2
+The repository decision explicitly states that the business domain remains the owner of document eligibility, acceptance, approval and issuance decisions, while B04 owns only the reusable technical document platform. Source: `L5_L4_to_L5_Coverage_Audit_Decision_105_2026-09-09.md`, B04 decomposition decision.
 
 ### 3.2 Canonical Constraints
 
 - Technical document/object handling shall not become a competing system of record for business facts.
 - Business acceptance, approval, issuance and related lifecycle decisions remain with the originating business domain.
 - B04-001 provides the common platform boundary; specialized B04 specifications own detailed mechanisms within their approved responsibilities.
-- Cryptographic primitives, certificates, secrets and key management remain under L5-D-03. fileciteturn434file0L2-L2
+- Cryptographic primitives, certificates, secrets and key management remain under L5-D-03.
 - Platform mechanics shall preserve source/business ownership and applicable scope.
 - A technical representation may be derived, transformed or stored without changing the authoritative business fact.
 
@@ -149,7 +151,7 @@ B04-001 establishes composition boundaries rather than duplicating specialized m
 - **B04-004** handles generation, rendering, issuance mechanics and templates; business issuance authority remains upstream.
 - **B04-005** handles digital-signing/seal/QR/credential-integrity mechanisms; cryptographic primitives remain D03.
 
-This decomposition follows the approved 105-corpus decision. fileciteturn434file0L2-L2
+This decomposition follows the approved 105-corpus decision. Source: `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md`, B04 entries.
 
 ### 4.6 Representation and Transformation Boundary
 
@@ -278,35 +280,41 @@ Evidence shall support technical reconstruction of object handling, including so
 ## 8. Conformance
 
 - **CR-001:** Every managed technical object shall have identifiable technical identity and applicable source reference/context where supplied.
-- **CR-002:** Technical representations shall not become competing canonical business facts.
-- **CR-003:** Business acceptance, approval and issuance authority shall remain outside B04-001.
-- **CR-004:** Specialized B04 responsibilities shall remain delegated to B04-002 through B04-005.
-- **CR-005:** Object transformations shall preserve traceable lineage.
-- **CR-006:** Integrity failures shall prevent invalid representations from proceeding as valid artifacts.
-- **CR-007:** Applicable Tenant/Institution and execution scope shall be preserved.
-- **CR-008:** Storage failure shall not be reported as successful business availability.
-- **CR-009:** Cryptographic primitives, keys and certificates shall remain delegated to L5-D-03.
-- **CR-010:** Technical evidence shall remain distinguishable from business audit meaning.
-- **CR-011:** The architecture shall remain independent of unapproved technology/product choices.
-- **CR-012:** No technical platform operation shall transfer canonical business ownership.
+- **CR-002:** Platform handling shall preserve source-domain ownership of business facts.
+- **CR-003:** Specialized capabilities shall have distinct technical boundaries.
+- **CR-004:** Integrity failures shall not pass as valid technical artifacts.
+- **CR-005:** Storage/retrieval failures shall remain distinguishable from successful business availability.
+- **CR-006:** Applicable Tenant/Institution scope shall remain preserved.
+- **CR-007:** Technical representations shall preserve lineage to the originating source.
+- **CR-008:** Business acceptance/approval/issuance authority shall remain upstream.
+- **CR-009:** Evidence shall be sufficient for technical reconstruction without unnecessary sensitive-content replication.
+- **CR-010:** No unsupported storage, API, infrastructure or product choice is silently introduced.
 
 ## 9. Traceability
 
-| L4 BH | L4 Status | L5 Contribution | Evidence |
-|---|---|---|---|
-| Applicable document/media/object L4 BHs | Approval-state reconciliation required | Common technical platform boundary, object identity/reference preservation, integrity and controlled handoff. | §§4.1–4.11, §6 |
-| Detailed registry/version/storage/retention BHs | Approval-state reconciliation required | Common platform consumes B04-002 capabilities; detailed realization delegated. | §4.5, §5.2 |
-| Detailed ingestion/validation/verification BHs | Approval-state reconciliation required | Common platform routes into B04-003; detailed realization delegated. | §4.5, §5.2 |
-| Detailed generation/rendering/issuance/template BHs | Approval-state reconciliation required | Common platform routes into B04-004; business issuance authority remains upstream. | §4.5, §4.9 |
-| Detailed signing/seal/QR/credential-integrity BHs | Approval-state reconciliation required | Common platform consumes B04-005; cryptographic authority remains D03. | §4.5, §4.8 |
+| Traceability Item | Status |
+|---|---|
+| Canonical L5 specification identity | Verified |
+| Canonical responsibility | Verified |
+| Production placement | Verified |
+| Exact atomic L4 BH applicability | Open / Blocking |
+| Exact L4 source version/status | Open / Blocking |
+| Validated relation version binding | Required before promotion |
+| Higher-level ownership boundary | Preserved |
 
-Atomic L4 BH IDs and versions shall be registered once the applicable current L4 approval state is reconciled. This specification does not invent those relations.
+### Canonical Traceability Rule
+
+The canonical relation identity is:
+
+`(L4 BH ID, L5 Specification ID)`
+
+A validated relation record shall additionally bind the applicable `L4 Version` and `L5 Version`.
 
 ## 10. Open Issues / Deferred Design
 
-1. **OI-001 — Exact L4 atomic mapping:** Applicable document/media/object L4 BH IDs and current approved versions require repository-state reconciliation before validated traceability is recorded.
-2. **OI-002 — Specialized B04 boundary confirmation:** B04-002 through B04-005 must retain the detailed responsibilities assigned by the approved 105-corpus decision without duplication.
-3. **OI-003 — Technology decisions:** Storage, object-management, rendering and related platform technology choices remain deferred to governed ADR/technology-selection processes.
-4. **OI-004 — Business issuance boundary:** Technical issuance mechanisms must remain distinct from the originating domain's issuance decision.
+- **OD-001 — Exact L4 BH Applicability:** Identify and register all material L4 behavioral obligations applicable to B04-001 before promotion.
+- **OD-002 — L4/L5 Version Binding:** Bind every validated relation to exact L4 and L5 versions.
+- **OD-003 — Peer Dependency Reconciliation:** Reconcile B04-002 through B04-005 and supporting D03/D04/B05 boundaries before promotion.
+- **OD-004 — Technical Technology Decisions:** Keep implementation-specific storage, rendering, signing and infrastructure selections under governed ADRs.
 
-No upstream business ownership, lifecycle, rule, event or authority has been redefined by this specification.
+**Current State:** Draft — Authoring
