@@ -6,7 +6,7 @@
 |---|---|
 | Specification ID | L5-B-05-004 |
 | Specification Title | Aadhaar Data Protection Architecture |
-| Architectural Level | L5 |
+| Architecture Level | L5 |
 | Architecture Family | L5-B — Data & Information Architecture |
 | Major Area | L5-B-05 — Data Classification, Retention & Privacy Architecture |
 | Version | 1.0.0 |
@@ -78,13 +78,11 @@ B05-005 remains the authority for consent, purpose limitation, minimization and 
 
 Exact atomic L4 applicability has not been independently reconciled in this authoring draft. No L4 behavioral-obligation identifiers are invented here.
 
-Required atomic relation:
+The canonical traceability relation identity is:
 
-`(L4 BH ID, L4 Version, L5-B-05-004, L5 Version)`
+`(L4 BH ID, L5 Specification ID)`
 
-Exact L4 BH applicability, exact source version/status and validation status remain **OPEN / BLOCKING** until reconciled against the applicable current approved L4 corpus.
-
----
+A validated relation record shall additionally bind the applicable `L4 Version` and `L5 Version`. Exact L4 BH applicability, exact source version/status and validation status remain **OPEN / BLOCKING** until reconciled against the applicable current approved L4 corpus.
 
 ## 4. Technical Architecture
 
@@ -160,8 +158,6 @@ Cryptographic protection, key management, secrets, credentials and trust segment
 
 Protection actions, blocked exposure and material failures may be evidenced through D04 without unnecessarily recording raw Aadhaar values.
 
----
-
 ## 5. Dependencies / Integration
 
 ### 5.1 Upstream
@@ -188,8 +184,6 @@ Exact peer versions remain an authoring-stage validation item.
 ### 5.3 Integration Rule
 
 B05-004 may strengthen technical protection of Aadhaar-related information but shall not weaken an applicable upstream privacy, authorization, retention or security constraint.
-
----
 
 ## 6. Technical Behavior / Failure Concerns
 
@@ -233,8 +227,6 @@ Technical evidence shall avoid unnecessary raw Aadhaar-value capture while prese
 
 Protection-control failure shall not be represented as successful authorized exposure or successful protected processing.
 
----
-
 ## 7. Security / Trust / Evidence
 
 ### 7.1 Security
@@ -256,8 +248,6 @@ Evidence may include:
 
 Evidence shall avoid unnecessary raw Aadhaar values.
 
----
-
 ## 8. Conformance
 
 A conforming implementation shall demonstrate that:
@@ -276,8 +266,6 @@ A conforming implementation shall demonstrate that:
 12. No legal/regulatory policy is invented by this specification.
 13. The architecture remains implementation-independent.
 
----
-
 ## 9. Traceability
 
 | Traceability Item | Status |
@@ -292,15 +280,15 @@ A conforming implementation shall demonstrate that:
 | Exact L4 source version/status | OPEN / BLOCKING |
 | Peer L5 version/dependency validation | OPEN / BLOCKING |
 
-### Required Atomic Traceability Form
+### Canonical Traceability Rule
 
-Each validated relation shall use:
+The canonical relation identity is:
 
-`L4 BH ID + L4 Version + L5-B-05-004 + L5 Version`
+`(L4 BH ID, L5 Specification ID)`
+
+A validated relation record shall additionally bind the applicable `L4 Version` and `L5 Version`.
 
 Document-level statements are insufficient for final traceability.
-
----
 
 ## 10. Open Issues / Deferred Design
 
