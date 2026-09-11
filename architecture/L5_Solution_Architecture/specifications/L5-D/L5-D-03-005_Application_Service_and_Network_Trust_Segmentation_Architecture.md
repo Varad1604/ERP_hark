@@ -5,16 +5,16 @@
 **Specification ID:** `L5-D-03-005`  
 **Architecture Level:** L5 — Solution Architecture  
 **Family:** L5-D — Identity, Security & Trust Architecture  
-**Major Area:** L5-D-03 — Security, Cryptography & Trust Architecture  
-**Canonical Technical Responsibility:** Define the reusable technical architecture for logical trust isolation among applications, services, computational components and network communication boundaries, including trust-zone assignment, restricted connectivity, boundary enforcement, compromise containment and context-preserving cross-boundary interaction, without owning business authorization policy, cryptographic/key-management internals, secrets/certificates, business rules or business authority.  
+**Major Area:** L5-D-03 — Security, Cryptography, Secrets & Key Management Architecture  
+**Canonical Technical Responsibility:** Define reusable technical architecture for logical trust isolation among applications, services, computational components and network communication boundaries, including trust-zone assignment, restricted connectivity, boundary enforcement, compromise containment and context-preserving cross-boundary interaction, without owning business authorization policy, cryptographic/key-management internals, secrets/certificates, business rules or business authority.  
 **Technical Architecture Owner:** L5-D-03-005 — Application, Service & Network Trust Segmentation Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** Draft  
-**Last Updated:** `2026-09-10`  
-**Depends On:** L5-D-03-001 Security Architecture & Trust Boundary Baseline; L5-D-03-002 Cryptography & Data Protection Architecture; L5-D-03-003 Key Management Architecture; L5-D-03-004 Secrets, Certificates & Machine Credential Architecture; L5-A-03 Module, Dependency & Technical Boundary Architecture; L5-A-04 Tenant & Institution Isolation; L5-E-04 Runtime, Packaging & Deployment; applicable approved L4 System Behavior Specifications; L5 Governance and Architecture Standard; L5 Validation Standard; L5 Solution Architecture Specification Template v1.0.3.  
-**Referenced By:** L5-D-03-001 through L5-D-03-004; L5-A-03; L5-A-04; applicable integration, runtime, data and client-platform specifications.  
-**Applicable ADRs:** None identified for this draft. Material network, runtime or deployment technology choices remain subject to governed ADR treatment.
+**Last Updated:** `2026-09-11`  
+**Primary Dependencies:** `L5-D-03-001`, `L5-A-03`, `L5-A-04`, `L5-E-04`.  
+**Collaborates With:** `L5-D-03-002`, `L5-D-03-003`, `L5-D-03-004`, `L5-D-01`, `L5-D-02`, `L5-D-04`, applicable integration/data/runtime architecture.  
+**Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern (`Architecture Approved`, 2026-09-11).
 
 ---
 
@@ -22,74 +22,62 @@
 
 ### Purpose
 
-This specification establishes the common technical architecture for segmenting application, service and network trust so that components communicate only across explicitly permitted trust boundaries and compromise of one component does not automatically establish trust in another.
-
-It defines logical trust zones, boundary admission, communication allowlisting, trust-context preservation, restricted east-west interaction, compromise containment and controlled cross-boundary handoff. It does not define business authorization decisions or replace the canonical business ownership model.
+Establish logical trust segmentation so components communicate only through explicitly permitted trust relationships and compromise of one component does not automatically establish trust in another.
 
 ### In Scope
 
-- logical trust-zone classification for applications, services and technical execution components;
-- explicit communication boundaries between trust zones;
-- default-deny and explicit-allow principles for material cross-zone communication;
-- admission checks before protected cross-boundary interaction;
-- preservation of Tenant, Institution and other authoritative execution context across permitted boundaries;
-- isolation of components with materially different trust requirements;
-- containment expectations when a component or boundary is compromised;
-- separation of public/external, application, privileged and restricted technical zones where justified by authoritative architecture;
-- controlled interaction between application components, background processing, computation engines, data services and integration boundaries;
-- interaction with security, cryptographic, credential and runtime architecture;
-- evidence of material trust-boundary decisions and denied cross-boundary attempts.
+- logical trust-zone assignment;
+- default-deny / explicit-allow material cross-zone interaction;
+- boundary admission conditions;
+- restricted east-west technical communication;
+- Tenant/Institution context preservation;
+- privileged/restricted component isolation;
+- compromise containment;
+- interaction with identity, authorization, cryptography, credentials and runtime/deployment architecture;
+- evidence of material allow/deny/containment decisions.
 
-### Out of Scope / Non-Goals
+### Out of Scope
 
-- business authorization policy, roles, permissions or approver decisions owned by L5-D-02;
-- authentication mechanisms and human identity lifecycle owned by L5-D-01;
-- cryptographic primitives and protected-data operations owned by L5-D-03-002;
-- key generation, custody, rotation, recovery and destruction owned by L5-D-03-003;
-- application/integration secrets, certificates and machine credentials owned by L5-D-03-004;
-- Tenant/Institution business semantics or canonical ownership;
-- business rules, lifecycle states, canonical business events, publishers or institutional authority;
-- database schema, physical network topology, infrastructure product selection or deployment-product selection;
-- invented network ports, protocols, addresses, firewall products or quantitative network-security targets absent from authoritative technical decisions.
+- business authorization policy — D02;
+- authentication/human identity lifecycle — D01;
+- cryptographic protection execution — D03-002;
+- key custody — D03-003;
+- secrets/certificates/machine credential lifecycle — D03-004;
+- business rules/lifecycle/events/publishers/authority;
+- physical topology, products, ports, addresses, protocols or quantitative network-security targets unless separately governed.
 
 ---
 
-## 3. Upstream Applicability, Constraints & Assumptions
+## 3. Authority, Constraints & Dependency Position
 
-### 3.1 Canonical Upstream Reference Matrix
+### 3.1 Authority Basis
 
-| Source Level | Document / Decision | Version / Status | Exact Reference | What the Source Establishes | L5 Use |
-|---|---|---|---|---|---|
-| L5 Governance | `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md` | v1.1.0 / Architecture Approved | `L5-D-03-005` | Canonical identity and responsibility for logical trust isolation among services/engines and restricted connectivity without requiring physical server separation. | Defines technical scope and ownership boundary. |
-| L5 Governance | `L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md` | v1.0.0 / Locked | Stage 1 — `L5-D-03` | D03 establishes the security/trust foundation. | Establishes dependency-gated execution position. |
-| L5 Governance | `L5_Solution_Architecture_Specification_Template_v1.0.3.md` | v1.0.3 / Locked | Sections 1–10 | L5 must define concrete technical realization without redefining upstream business architecture or inventing unsupported implementation choices. | Governs structure and depth. |
-| L5 Governance | `L5_Governance_and_Architecture_Standard.md` | Locked | Security/trust ownership requirements | Security architecture shall remain implementation-independent and ownership-preserving. | Governs segmentation boundaries. |
-| L5 Governance | `L5_Validation_Standard.md` | Locked | Ownership, implementation leakage, traceability and conformance requirements | L5 specifications must remain technically concrete, traceable and free of unauthorized upstream changes. | Defines validation expectations. |
-| L5 | `L5-D-03-001_Security_Architecture_and_Trust_Boundary_Baseline.md` | v1.0.0 / Draft | Trust zones and boundary model | Establishes the common security trust-boundary model. | Provides the baseline segmentation model consumed here. |
-| L5 | `L5-D-03-002` | v1.0.0 / Draft | Cryptographic protection boundary | Protected cross-boundary communication shall use the applicable cryptographic protection architecture. | Defines protection dependency, not segmentation ownership. |
-| L5 | `L5-D-03-003` | v1.0.0 / Draft | Key-management boundary | Key material remains governed by the key-management architecture. | Prevents key custody leakage into segmentation. |
-| L5 | `L5-D-03-004` | v1.0.0 / Draft | Credential boundary | Machine credentials and certificates remain governed by the credential architecture. | Prevents credential lifecycle leakage into segmentation. |
-| L5 | `L5-A-03` | Not yet stable | Technical module/dependency boundary | Technical coupling must align with canonical architecture boundaries. | Segmentation reinforces permitted technical dependency paths. |
-| L5 | `L5-A-04` | Not yet stable | Tenant/Institution isolation | Execution and data access must preserve authoritative Tenant/Institution context. | Segmentation must not create context ambiguity or bypass isolation. |
-| L5 | `L5-E-04` | Not yet stable | Runtime/deployment responsibility | Runtime and deployment realize technical isolation boundaries. | Required implementation realization dependency. |
-| L4 | Applicable L4 System Behavior Specifications | Current repository status requires controlled verification | Exact atomic BH applicability not yet established | L4 is authoritative for observable behavior this L5 architecture realizes. | **Blocking traceability item:** no unverified BH IDs are invented in this draft. |
+| Source | Use |
+|---|---|
+| L5 Candidate Corpus Register 105 | Establishes D03-005 responsibility for logical trust isolation/restricted connectivity. |
+| L5 Architecture Family + Naming Registers | Establish canonical D03 major-area identity. |
+| Locked dependency timeline | Establishes D03 as Stage-1 security foundation. |
+| `ADR-L5-0001` | Establishes explicit logical trust boundaries, default-deny protected crossing, contextual/non-transitive trust and logical segmentation without mandatory physical separation. |
+| `L5-D-03-001` | Supplies parent trust/security baseline. |
+| A03/A04/E04 | Supply module/dependency, Tenant/Institution isolation and runtime/deployment boundaries respectively. |
 
 ### 3.2 Architectural Constraints
 
-1. A trust boundary shall have an explicit technical purpose and an identified source of authority.
-2. Cross-boundary communication shall not be treated as trusted merely because the communicating components belong to the same application or institution.
-3. Permitted communication shall preserve the execution context required by upstream architecture, including Tenant and Institution context where applicable.
-4. A segmentation boundary shall not silently bypass authentication, authorization, cryptographic protection, credential controls or canonical business authority owned elsewhere.
-5. Compromise containment shall be considered at the trust-zone boundary rather than assuming compromise is impossible.
-6. Segmentation shall be logical and architecture-driven; physical separation is not required unless an authoritative technical decision establishes it.
-7. Exact protocols, ports, network products and deployment mechanisms remain deferred unless established by approved technical decisions.
+1. Material trust boundaries have explicit purpose and source of authority.
+2. Components are not trusted merely because they are internal or co-located.
+3. Cross-zone communication is denied by default unless explicitly permitted by architecture.
+4. Permitted crossings preserve required Tenant/Institution and security context.
+5. Segmentation does not replace identity, authorization, cryptography or credential controls.
+6. Trust is contextual and non-transitive.
+7. Privileged/restricted technical components have constrained interaction paths.
+8. Logical segmentation is required; physical server/network separation is not required unless separately governed.
+9. No unsupported protocol/port/product/topology is canonicalized here.
 
-### 3.3 Assumptions / Open Dependencies
+### 3.3 Dependency Position
 
-- Exact L4 atomic applicability is not yet established in this draft.
-- D03-001 through D03-004 are themselves Draft and require dependency validation before promotion.
-- L5-A-03, L5-A-04 and L5-E-04 remain external dependency inputs whose final technical boundaries must be reconciled before implementation readiness.
-- The repository's existing D03 major-area naming is retained without speculative rename; governance reconciliation remains outstanding.
+D03-002/003/004 are peer security-control contracts. Their approval state does not form a mutual finalization gate for D03-005 because ownership boundaries are already governed by the candidate corpus and approved ADRs.
+
+A03/A04/E04 remain material peer dependencies for module structure, scope isolation and physical realization respectively; D03-005 shall not redefine them.
 
 ---
 
@@ -97,297 +85,204 @@ It defines logical trust zones, boundary admission, communication allowlisting, 
 
 ### 4.1 Trust Segmentation Model
 
-Trust is represented as a set of logical zones and controlled transitions rather than as an implicit property of component location. Each material component is assigned to an appropriate trust zone according to its responsibilities, exposure, privilege and sensitivity established by authoritative architecture.
+```text
+External / Untrusted Zone
+        ↓ governed admission
+Application Interaction Zone
+        ↓ explicit permitted dependency
+Privileged / Restricted Execution Zone
+        ↓ separately governed access
+Protected Resource / Data Zone
 
-A zone assignment establishes:
+External integrations remain separate trust domains.
+```
 
-- permitted inbound interaction classes;
-- permitted outbound interaction classes;
-- required security context;
-- required credential posture;
-- required protection of the communication path;
-- containment expectations if the component is compromised.
+Trust zones are logical architecture constructs and do not mandate physical deployment topology.
 
-Zone assignment does not create business authority and does not override L1 ownership.
+### 4.2 Logical Zone Classes
 
-### 4.2 Canonical Logical Zones
+| Zone | Purpose |
+|---|---|
+| External / Untrusted | External actors/systems/inputs with no inherited internal trust. |
+| Application Interaction | Application-facing technical components coordinating approved behavior. |
+| Privileged Execution | Components requiring elevated technical capability. |
+| Restricted Resource / Data | Components/resources needing stronger isolation. |
+| Integration Boundary | Controlled communication with external/separately trusted systems. |
 
-The architecture supports the following logical zone classes where justified by the solution:
-
-1. **External / Untrusted Boundary** — external actors and systems whose trust is not inherited by internal components.
-2. **Application Interaction Zone** — application-facing components that coordinate approved business behavior without automatically receiving privileged technical access.
-3. **Privileged Execution Zone** — components requiring elevated technical capability, such as controlled computational or background-processing execution.
-4. **Restricted Data / Protected Resource Zone** — components or resources requiring stronger technical isolation from general application interaction.
-5. **Integration Boundary Zone** — controlled technical boundaries for communication with external or separately trusted systems.
-
-These are logical architecture classes, not a mandated physical topology.
+Zone use is justified by responsibility and risk; not every component requires every zone type.
 
 ### 4.3 Boundary Admission
 
-A cross-zone interaction shall be admitted only when the destination, source, interaction purpose and required execution context satisfy the applicable technical boundary controls.
+A protected cross-zone interaction establishes, as applicable:
 
-Admission shall establish, at minimum:
-
-- source and destination trust-zone identity;
-- permitted interaction class;
-- authenticated technical identity where required by the applicable identity architecture;
-- required authorization decision from the owning authorization architecture where access is policy-controlled;
+- source and destination trust zone;
+- permitted interaction/dependency class;
+- technical identity;
+- authorization outcome where policy-controlled;
 - required credential validity;
 - required cryptographic protection;
-- Tenant/Institution context preservation where applicable;
-- rejection behavior when any mandatory condition cannot be established.
+- Tenant/Institution context;
+- rejection/containment behavior if a mandatory prerequisite fails.
 
-Segmentation admission does not independently grant business access.
+Segmentation admission is not a business permission decision.
 
-### 4.4 Communication Allowlisting
+### 4.4 Explicit Allow Model
 
-Material cross-zone communication shall follow an explicit allow model. A component shall not gain connectivity solely because a route happens to exist or because another component is trusted for a different purpose.
+A route’s technical existence does not establish permission to communicate. Material cross-zone interactions must be explicitly permitted by the architecture.
 
-The architecture shall distinguish:
+The segmentation model distinguishes permitted, denied, unavailable and stronger-control-required interactions.
 
-- permitted communication;
-- denied communication;
-- temporarily unavailable communication;
-- communication requiring stronger trust or protection conditions.
+### 4.5 Context Preservation
 
-Rules shall be evaluated against the defined technical boundary rather than inferred from component naming or physical placement.
+A permitted crossing preserves authoritative scope. The receiving component shall not silently substitute, broaden or discard Tenant/Institution context.
 
-### 4.5 Trust Context Preservation
-
-Permitted cross-boundary interaction shall preserve the authoritative context needed to prevent scope confusion or privilege expansion. Where Tenant or Institution context applies, the receiving component shall not silently substitute, broaden or discard that context.
-
-A boundary crossing shall not convert a lower-trust caller into a higher-trust identity merely because the destination component has greater privilege.
+Crossing into a privileged zone does not elevate the caller’s authority.
 
 ### 4.6 Non-Transitive Trust
 
-Trust is non-transitive across components. A component trusted to perform one technical responsibility does not automatically become trusted for unrelated responsibilities.
+Successful access from component A to B does not imply permission from B to C or from A to C. Every material subsequent trust boundary remains independently governed.
 
-For example, access from an application component to a computational component does not by itself establish permission to access protected data resources. Each subsequent boundary remains subject to its own technical admission requirements.
+### 4.7 Privileged / Restricted Component Isolation
 
-### 4.7 Privileged Component Isolation
+Components with elevated capability—such as computational engines, background workers, protected data-processing components, signing support or external connectors—shall expose only the interaction paths required by their canonical responsibility.
 
-Components with elevated technical capabilities shall be isolated from general application interaction to the extent justified by their responsibility and risk.
-
-Examples include:
-
-- background-processing execution;
-- secure computational engines;
-- document generation or signing support;
-- protected data-processing components;
-- integration connectors with external-system credentials.
-
-Isolation shall limit unnecessary inbound and outbound interaction and shall prevent a component's technical privilege from becoming ambient privilege for callers.
+Technical privilege of the destination does not become ambient caller privilege.
 
 ### 4.8 Compromise Containment
 
-Segmentation shall reduce the blast radius of a compromised component by restricting subsequent communication and access paths.
+A compromised component or trust relationship shall be containable by restricting affected crossings while preserving unrelated trust boundaries.
 
-A compromise response boundary shall support:
+Containment supports:
 
-1. identification of the affected trust zone or component;
-2. restriction or suspension of affected cross-zone interactions;
-3. preservation of unaffected trust boundaries;
-4. continued operation of unaffected functions where their authoritative behavior permits continuation;
-5. evidence of material boundary enforcement decisions;
-6. controlled restoration after the underlying trust condition is re-established.
+1. identification of affected component/zone;
+2. restriction/suspension of affected crossings;
+3. preservation of unaffected boundaries;
+4. continued unaffected operation where authoritative behavior allows;
+5. evidence of enforcement decisions;
+6. controlled restoration after trust prerequisites are re-established.
 
-Containment does not independently determine business recovery or business lifecycle outcomes.
+### 4.9 Physical Realization Boundary
 
-### 4.9 Integration with D03 Security Controls
+E04 owns runtime/deployment topology. D03-005 defines logical isolation requirements that E04 must realize.
 
-Segmentation is one layer of the security architecture and shall work with, rather than replace:
+Physical co-location is permitted only when logical trust boundaries, protected communication and admission controls remain intact. Physical separation may be selected later where justified, but it is not the default architectural requirement.
 
-- D03-001 trust-boundary baseline;
-- D03-002 cryptographic protection;
-- D03-003 key management;
-- D03-004 secrets, certificates and machine credentials;
-- D01 identity architecture;
-- D02 authorization architecture;
-- D04 audit and evidence architecture.
+### 4.10 Security-Control Collaboration
 
-Failure of one control shall not be treated as evidence that another control can be bypassed.
-
-### 4.10 Technical Decision Boundaries
-
-This specification intentionally does not select:
-
-- network or service-mesh products;
-- firewall or gateway products;
-- specific protocols or port ranges;
-- physical network topology;
-- deployment infrastructure;
-- container or orchestration products;
-- vendor-specific policy mechanisms.
-
-Such choices remain subject to the applicable L5 technical owner and governed ADR process.
-
----
-
-## 5. Dependencies / Integration
-
-| Dependency | Relationship | Boundary |
+| Capability | Canonical Owner | D03-005 Relationship |
 |---|---|---|
-| L5-D-03-001 | Parent security/trust baseline | Defines common trust-boundary principles; D03-005 specializes logical segmentation. |
-| L5-D-03-002 | Peer security control | Provides cryptographic protection; D03-005 determines where protected boundary crossing is required. |
-| L5-D-03-003 | Peer security control | Governs key material; D03-005 does not own keys. |
-| L5-D-03-004 | Peer security control | Governs machine credentials/certificates; D03-005 does not own credential lifecycle. |
-| L5-A-03 | Technical dependency boundary | Defines technical module/dependency structure consumed by segmentation. |
-| L5-A-04 | Scope isolation | Preserves Tenant/Institution context and isolation requirements. |
-| L5-D-01 | Identity | Supplies technical identity/authentication boundary where applicable. |
-| L5-D-02 | Authorization | Supplies policy decision; segmentation does not create authorization policy. |
-| L5-D-04 | Evidence | Records material boundary decisions and security evidence. |
-| L5-E-04 | Runtime/deployment | Realizes technical segmentation boundaries in the eventual solution. |
+| Identity/authentication | D01 | Consumed at admission where required. |
+| Authorization | D02 | Consumed; segmentation does not create policy. |
+| Cryptographic protection | D03-002 | Consumed for protected crossings. |
+| Key lifecycle/custody | D03-003 | Not owned by segmentation. |
+| Machine credentials/certificates | D03-004 | Consumed; lifecycle remains D03-004-owned. |
+| Audit/evidence | D04 | Receives material boundary evidence. |
+| Runtime/deployment | E04 | Realizes logical segmentation. |
 
-### 5.1 Cross-Boundary Interaction Contract
+### 4.11 Failure Model
 
-A permitted interaction is conceptually represented as:
+| Failure | Required Outcome |
+|---|---|
+| Interaction not explicitly permitted | Reject. |
+| Required identity/auth unavailable | Reject protected crossing. |
+| Authorization denied/unavailable where required | Reject operation. |
+| Credential invalid | Reject affected crossing. |
+| Required cryptographic protection unavailable | Reject protected crossing. |
+| Tenant/Institution context missing/conflicting | Fail closed for affected interaction. |
+| Component compromised | Restrict affected trust relationship and prevent propagation. |
+| Runtime boundary unavailable | Do not bypass segmentation through alternate unrestricted path. |
 
-`Source Component → Boundary Admission → Required Identity/Credential → Required Authorization → Required Protection → Context Preservation → Destination Component`
+### 4.12 Architecture Decisions
 
-The contract expresses architectural responsibilities only. It does not define an API, payload, protocol or implementation mechanism.
-
----
-
-## 6. Technical Behavior / Failure Concerns
-
-### TB-001 — Deny Unapproved Cross-Zone Interaction
-
-A cross-zone interaction that does not satisfy the applicable technical boundary conditions shall be rejected rather than treated as trusted by default.
-
-### TB-002 — Preserve Required Execution Context
-
-A permitted boundary crossing shall preserve the authoritative execution context required for correct scope enforcement. Missing, ambiguous or conflicting required context shall prevent unsafe continuation.
-
-### TB-003 — Prevent Trust Transitivity
-
-Successful interaction with one trusted component shall not automatically authorize subsequent access to another trust zone or protected resource.
-
-### TB-004 — Contain Boundary Compromise
-
-When a material trust condition is known to be compromised, affected cross-boundary interaction shall be restrictable without requiring unrelated trust zones to be treated as compromised by default.
-
-### TB-005 — Prevent Privilege Expansion Through Segmentation
-
-A component crossing into a more privileged technical zone shall not inherit privileges beyond those independently established by the applicable identity and authorization controls.
-
-### TB-006 — Enforce Protected Boundary Crossing
-
-Where authoritative architecture requires protected communication, a boundary shall not silently downgrade the required protection and continue as if the protection requirement were satisfied.
-
-### TB-007 — Isolate Restricted Technical Components
-
-Components designated for restricted or privileged execution shall not expose unnecessary inbound or outbound interaction paths merely for convenience of integration.
-
-### TB-008 — Preserve Isolation Across Failure and Recovery
-
-Failure or recovery of one boundary shall not silently remove segmentation controls for unrelated interactions. Restoration shall re-establish the applicable boundary conditions before normal trusted interaction resumes.
-
-### TB-009 — Record Material Boundary Decisions
-
-Material allow, deny, containment or restoration decisions requiring security evidence shall produce evidence sufficient for the applicable audit architecture to establish what boundary decision occurred and its relevant technical context.
-
-### TB-010 — Reject Ambiguous Trust Context
-
-When source identity, destination identity, trust-zone assignment or required scope context is ambiguous or inconsistent, the boundary shall fail closed for the affected interaction rather than infer a more permissive interpretation.
-
-### Failure Ownership
-
-- Identity/authentication failure → L5-D-01.
-- Authorization policy failure → L5-D-02.
-- Cryptographic protection failure → L5-D-03-002.
-- Key-management failure → L5-D-03-003.
-- Credential/certificate failure → L5-D-03-004.
-- Audit/evidence persistence failure → L5-D-04.
-- Runtime/deployment realization failure → L5-E-04.
-- Trust-segmentation admission, isolation or containment failure → L5-D-03-005.
-
-No failure path in this specification changes a business lifecycle, business rule, canonical event, publisher or institutional authority.
-
----
-
-## 7. Security / Trust / Evidence
-
-### 7.1 Security Properties
-
-The architecture shall provide:
-
-- explicit trust boundaries;
-- least-connectivity principles at technical boundaries;
-- non-transitive trust;
-- context preservation;
-- privilege containment;
-- compromise blast-radius reduction;
-- protected boundary interaction where required;
-- evidence of material security-boundary decisions.
-
-### 7.2 Evidence Requirements
-
-Where evidence is required by authoritative security or audit architecture, evidence should establish the relevant:
-
-- source and destination technical identities;
-- trust-zone classification;
-- boundary decision;
-- security-control result;
-- relevant execution context;
-- containment or restoration action;
-- time/order information required by the applicable evidence architecture.
-
-Evidence shall not expose protected credentials, key material or secret values.
-
----
-
-## 8. Conformance
-
-A conforming implementation architecture shall demonstrate that:
-
-- CR-001: material application/service/network boundaries are explicitly identified;
-- CR-002: trust-zone assignment has an architectural purpose;
-- CR-003: cross-zone communication follows explicit allow conditions;
-- CR-004: unapproved cross-zone interaction is rejected;
-- CR-005: required Tenant/Institution context is preserved across permitted boundaries;
-- CR-006: trust is non-transitive across technical components;
-- CR-007: privileged technical components have restricted interaction paths;
-- CR-008: compromise containment can restrict affected boundary paths without automatically collapsing unrelated trust zones;
-- CR-009: segmentation does not replace identity or authorization controls;
-- CR-010: required cryptographic protection cannot be silently bypassed at a protected boundary;
-- CR-011: material boundary decisions can produce appropriate evidence without exposing secrets or key material;
-- CR-012: the specification does not introduce unsupported protocols, ports, products, physical topology or business authority.
-
----
-
-## 9. Traceability
-
-| Traceability Item | Status | Notes |
+| ID | Decision | Governance |
 |---|---|---|
-| Canonical L5 identity | Verified | Matches frozen 105-specification register. |
-| Canonical technical responsibility | Verified | Matches registered responsibility for logical trust isolation and restricted connectivity. |
-| Production placement | Verified | Located under canonical L5-D-03 major-area folder. |
-| Dependency-gated placement | Verified | D03-005 follows D03-001 through D03-004 in Varad's dependency sequence. |
-| L1/L2 ownership and terminology boundary | Baseline verified | No business ownership, lifecycle, event or rule ownership introduced. |
-| Exact atomic L4 BH applicability | **Open / Blocking** | Controlled extraction and validation required before promotion. |
-| Exact L4 version/status references | **Open / Blocking** | Current repository requires direct source verification. |
-| Peer L5 dependency stability | **Open** | D03-001 through D03-004 and A03/A04/E04 require final dependency reconciliation. |
-
-### Atomic Traceability Rule
-
-The required final relation is:
-
-`(L4 BH ID, L4 Version, L5 Specification ID, L5 Version)`
-
-No document-level statement is treated as a substitute for exact atomic traceability.
+| AD-001 | Material application/service/network trust boundaries are logical and explicit. | `ADR-L5-0001`. |
+| AD-002 | Protected cross-zone interaction is default-deny / explicit-allow. | `ADR-L5-0001`. |
+| AD-003 | Trust is contextual and non-transitive. | `ADR-L5-0001`. |
+| AD-004 | Physical co-location shall not erase logical trust isolation. | `ADR-L5-0001`. |
+| AD-005 | Privileged components expose only necessary interaction paths. | D03-005 derivation + ADR-0001. |
+| AD-006 | D03-002/003/004 remain peer security-control owners; D03-005 does not absorb them. | Candidate corpus + ADRs. |
+| AD-007 | E04 owns physical realization/topology. | Ownership boundary. |
+| AD-008 | Protocol/port/product/topology details require separate governance where material. | ADR methodology. |
 
 ---
 
-## 10. Open Issues / Deferred Design
+## 5. Technical Behaviors
 
-- **OD-001 — Exact L4 BH Applicability:** Blocking. Identify every applicable L4 behavioral obligation and map it atomically before promotion.
-- **OD-002 — D03-001 Boundary Reconciliation:** Blocking. Confirm the final trust-zone/boundary baseline consumed by D03-005.
-- **OD-003 — D03-002 Protection Boundary Reconciliation:** Blocking. Confirm exact protected-cross-boundary obligations and handoff boundary.
-- **OD-004 — D03-003 Key Boundary Reconciliation:** Blocking. Confirm that segmentation does not assume or duplicate key custody behavior.
-- **OD-005 — D03-004 Credential Boundary Reconciliation:** Blocking. Confirm machine-credential and certificate admission responsibilities.
-- **OD-006 — A03/A04/E04 Dependency Reconciliation:** Blocking for implementation readiness. Align module, Tenant/Institution isolation and runtime/deployment realization boundaries.
-- **OD-007 — Major-Area Naming Governance Reconciliation:** Open. Current D03 production README uses `Security, Cryptography & Trust Architecture`; other governance material may use a more specialized D03 naming. No speculative rename is made in this draft.
-- **OD-008 — Material Technical Decisions:** Deferred to governed ADRs where protocol, network, runtime or deployment product choices become necessary.
+**TB-001:** Unapproved material cross-zone interaction is denied.  
+**TB-002:** Required execution context is preserved across permitted crossings.  
+**TB-003:** Trust does not transit automatically across components.  
+**TB-004:** Compromised relationships can be contained without collapsing unrelated zones.  
+**TB-005:** More-privileged destinations do not expand caller authority.  
+**TB-006:** Required cryptographic protection cannot be silently bypassed.  
+**TB-007:** Restricted components expose only necessary paths.  
+**TB-008:** Failure/recovery does not remove segmentation controls.  
+**TB-009:** Material allow/deny/contain/restore outcomes expose evidence to D04.  
+**TB-010:** Ambiguous identity/zone/scope context fails closed.
 
-**Current State:** Draft — Authoring  
-**Promotion Gate:** Do not promote until exact atomic L4 applicability, upstream L4 status, peer dependency boundaries and repository naming governance are reconciled.
+---
+
+## 6. Security / Trust / Evidence
+
+The architecture reduces blast radius through explicit trust zones, non-transitive trust, restricted connectivity and context-preserving admission.
+
+Evidence may include source/destination technical identity, zone, interaction class, scope, decision, failure class, containment/restoration action and correlation information. Evidence shall not disclose protected credentials/key material.
+
+---
+
+## 7. Conformance
+
+| ID | Requirement |
+|---|---|
+| CR-001 | Material trust boundaries are explicitly identified. |
+| CR-002 | Zone assignment has architectural purpose. |
+| CR-003 | Material cross-zone communication is explicit-allow. |
+| CR-004 | Unapproved crossing is rejected. |
+| CR-005 | Tenant/Institution context is preserved where applicable. |
+| CR-006 | Trust is non-transitive. |
+| CR-007 | Privileged components have restricted interaction paths. |
+| CR-008 | Compromise containment preserves unrelated trust zones where possible. |
+| CR-009 | Segmentation does not replace identity/authorization. |
+| CR-010 | Required cryptographic protection cannot silently bypass. |
+| CR-011 | Evidence is available without credential/key disclosure. |
+| CR-012 | Logical segmentation does not require physical server separation. |
+| CR-013 | No unsupported port/protocol/product/topology is canonicalized. |
+| CR-014 | The implementation conforms to `ADR-L5-0001`. |
+
+---
+
+## 8. Traceability
+
+D03-005 has defensible technical purpose through the Architecture Approved candidate corpus and `ADR-L5-0001`.
+
+Where an authoritative L4 BH materially requires D03-005 trust-segmentation contribution, the canonical relation is:
+
+```text
+(L4 BH ID, L5-D-03-005)
+```
+
+Only materially supported direct relations shall be entered into the canonical traceability store; no BH is invented in this remediation.
+
+| Item | State |
+|---|---|
+| Canonical identity/responsibility | Verified |
+| Canonical major-area naming | Verified and synchronized |
+| Applicable ADR | Verified — `ADR-L5-0001` Architecture Approved |
+| D03-001 parent baseline | Verified |
+| D03 peer ownership | Stable responsibility contracts; no mutual finalization gate |
+| Physical deployment ownership | Preserved with E04 |
+| Direct L4 BH relations | Selective mapping pending validated evidence |
+
+---
+
+## 9. Open Issues / Deferred Design
+
+| ID | Issue | Blocking? |
+|---|---|---|
+| OD-001 | Add only defensible direct L4 BH relations when validated evidence exists. | No for Draft validity; required before relation validation. |
+| OD-002 | Reconcile material A03/A04/E04 changes that alter module, scope or deployment realization. | Conditional. |
+| OD-003 | Network/service-mesh/firewall/protocol/port/topology choices remain separately governed. | Conditional ADR/technical decision. |
+
+---
+
+**Current Status:** Draft — Remediated and ready for revalidation.
