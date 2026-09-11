@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Contract evolution, compatibility, technical errors and idempotent request handling without inventing business recovery.  
 **Technical Architecture Owner:** L5-C-01 — API & Contract Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-11`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-C-01-001`, `L5-C-01-002`, `L5-B-02-003`, `L5-E-04-005`, `L4-A-029`, `L4-A-031`, `L4-A-032`.  
-**Referenced By:** API consumers, `L5-C-03-*`, `L5-E-04-005`.  
-**Applicable ADRs:** Required but unresolved — Shared contract-versioning/compatibility/idempotency standard and selected contract tooling. No canonical ADR ID is currently allocated.
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-C-01-001`, `L5-C-01-002`, `L5-B-02-003`, `L4-A-029`, `L4-A-031`, `L4-A-032`.  
+**Collaborates With / Referenced By:** API consumers, `L5-C-03-*`, `L5-E-04-005`.  
+**Applicable ADRs:** `ADR-L5-0006`, `ADR-L5-0008`. Shared API version encoding/tooling remains unresolved if later selected as a reusable standard.
 
 ---
 
@@ -44,32 +44,26 @@ Define safe contract evolution, compatibility classification, technical errors a
 
 ---
 
-## 3. Upstream Applicability, Constraints & Assumptions
+## 3. Upstream Applicability & Constraints
 
-### 3.1 Canonical Upstream Reference Matrix
-
-| Source Level | Document / Decision | Version / Status | Exact Reference | What the Source Establishes | L5 Use |
-| --- | --- | --- | --- | --- | --- |
-| L5 Governance | Candidate Register 105 | v1.1.0 / Architecture Approved | `L5-C-01-003` row | Contract evolution, compatibility, technical errors and idempotent request handling without inventing business recovery. | Establishes canonical responsibility. |
-| L4 | `L4-A-029` | v1.0.0 / Draft | `BH-001, BH-003, BH-004, BH-006, BH-007, BH-008` | Successor versions are additive/traceable and compatibility governs activation/coexistence. | Drives successor contract and coexistence rules. |
-| L4 | `L4-A-031` | v1.0.0 / Draft | `BH-001, BH-002, BH-004, BH-005, BH-006, BH-007` | Deprecation/retirement requires successor, dependency/migration evidence and preserved history. | Drives contract deprecation/retirement gates. |
-| L4 | `L4-A-032` | v1.0.0 / Draft | `BH-001, BH-003, BH-004, BH-005, BH-006, BH-007, BH-008` | Dependency changes require version compatibility and governed approval. | Drives consumer compatibility validation. |
-| L5 Peer | See Section 4 | Draft/planned as identified | Exact peer IDs below | Peer-owned technical capabilities. | Consumed without ownership transfer. |
+| Source | Exact Reference | L5 Use |
+| --- | --- | --- |
+| Candidate Register 105 | `L5-C-01-003` | Establishes canonical responsibility. |
+| `L4-A-029` | `BH-001, BH-003, BH-004, BH-006, BH-007, BH-008` | Drives successor contract and coexistence rules. |
+| `L4-A-031` | `BH-001, BH-002, BH-004, BH-005, BH-006, BH-007` | Drives deprecation/retirement gates. |
+| `L4-A-032` | `BH-001, BH-003, BH-004, BH-005, BH-006, BH-007, BH-008` | Drives consumer compatibility validation. |
+| `ADR-L5-0006` | Owner-local transaction/concurrency strategy | Idempotency persistence executes inside owner-local consistency boundaries. |
+| `ADR-L5-0008` | Expand-Migrate-Transition-Contract schema evolution pattern | Establishes compatible evolution sequencing applicable to persisted/contracted structures. |
 
 Draft L4 sources support controlled Draft authoring only and are not treated as immutable approved behavioral authority.
 
-### 3.2 Authoritative Constraints
+### Authoritative Constraints
 
-| Constraint ID | Constraint | Exact Source | L5 Effect |
-| --- | --- | --- | --- |
-| C-001 | Prior governed versions/history shall not be silently rewritten. | A029-BH-001; A031-BH-007 | Breaking evolution creates successor. |
-| C-002 | Compatibility includes semantics/behavior, not schema shape alone. | A029-BH-003/004; A032-BH-003 | Semantic break can be breaking despite additive schema. |
-| C-003 | Retirement waits for dependency/migration evidence. | A031-BH-004 | Consumers are migrated/dispositioned first. |
-| C-004 | Promised idempotency prevents repeat technical submission from repeating one logical effect. | C01-002 + B02 | Transport retries map to one logical operation. |
-
-### 3.3 Assumptions
-
-All product/framework/runtime choices discussed during authoring remain **preferred candidates only** unless an approved ADR or technical standard makes them canonical. No numeric timeout, retry, capacity, availability, retention, RPO/RTO, scaling or similar target is invented here.
+- Prior governed versions/history shall not be silently rewritten.
+- Compatibility includes behavior/meaning and required context, not schema shape alone.
+- Retirement requires dependency/migration evidence.
+- Idempotency shall never create authority to repeat or compensate a business effect.
+- Idempotency state and result replay shall respect owner-local transaction/concurrency boundaries.
 
 ---
 
@@ -78,7 +72,7 @@ All product/framework/runtime choices discussed during authoring remain **prefer
 ### Owns
 
 - Contract change classification.
-- Technical Draft/Released/Deprecated/Retired status.
+- Technical Draft/Released/Deprecated/Retired contract status.
 - Compatibility validation obligations.
 - Technical error taxonomy.
 - Idempotency admission/deduplication/result replay semantics.
@@ -86,121 +80,115 @@ All product/framework/runtime choices discussed during authoring remain **prefer
 
 ### Consumes / Collaborates With
 
-| Exact L5 Specification | Capability / Collaboration | Boundary |
+| Specification | Relationship | Boundary |
 | --- | --- | --- |
-| `L5-C-01-001` | Contract catalogue | Lifecycle/version metadata. |
-| `L5-C-01-002` | Synchronous execution | Errors/idempotency applied during execution. |
-| `L5-B-02-003` | Transactions/concurrency | Durable deduplication and conflict behavior. |
-| `L5-E-04-005` | Release/upgrade | Consumes compatibility/coexistence status. |
+| `L5-C-01-001` | Dependency | Contract catalogue and ownership metadata. |
+| `L5-C-01-002` | Dependency | Synchronous execution applies these semantics. |
+| `L5-B-02-003` | Dependency | Durable deduplication/conflict handling remain owner-local. |
+| `L5-E-04-005` | Collaboration / consumer | E04-005 consumes compatibility/coexistence status for release and upgrade planning. C01-003 does **not** depend on E04-005. |
 
-### Must Not Own
-
-This specification shall not redefine peer-L5 internals, upstream business ownership/rules/states/events/authority, or material technology selections that require ADR governance. Cross-boundary interaction uses governed contracts, events, workflows or peer-owned technical boundaries.
+This removes the former circular dependency `C01-003 ↔ E04-005` while preserving the technical handoff direction.
 
 ---
 
 ## 5. Solution Architecture
 
-**Draft decision gate:** Architecture in this section that depends on an `AD-*` whose ADR column contains `Required`, or on a blocking `OD-*`, is a provisional realization for architecture evaluation only. It is not a canonical implementation mandate until the required governance decision/dependency is resolved. Architecture supported independently by cited repository authority remains applicable.
-
 ### 5.1 Technical Realization Model
 
-| Element | Type | Responsibility | Input / Context | State / Data | Output / Handoff | Depends On | Failure Boundary | Basis |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Compatibility Classifier | Control point | Classify proposed change as compatible/conditional/breaking. | Governed context/configuration as applicable | Owned technical state only | Change classification. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Contract Lifecycle Registry | Registry | Track released/deprecated/retired supported versions and lineage. | Governed context/configuration as applicable | Owned technical state only | Consumer-visible support state. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Idempotency Guard | Control point | Bind logical operation identity to request identity and prior outcome. | Governed context/configuration as applicable | Owned technical state only | Execute once / return prior outcome / reject mismatch. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Error Mapper | Contract boundary | Map technical conditions to stable machine-readable categories. | Governed context/configuration as applicable | Owned technical state only | Bounded error response. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Consumer Dependency Inventory | Registry/evidence | Record supported contract versions and migration evidence. | Governed context/configuration as applicable | Owned technical state only | Retirement decision input. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
+| Element | Responsibility | Output / Handoff |
+| --- | --- | --- |
+| Compatibility Classifier | Classify proposed change as compatible, conditional or breaking. | Change classification. |
+| Contract Lifecycle Registry | Track released/deprecated/retired versions and lineage. | Consumer-visible support state. |
+| Idempotency Guard | Bind logical-operation identity to request fingerprint and prior outcome. | Execute once / replay prior result / reject mismatch. |
+| Error Mapper | Map technical conditions to stable machine-readable categories. | Safe bounded technical error. |
+| Consumer Dependency Inventory | Record contract-version use and migration evidence. | Retirement decision input. |
 
-### 5.2 Primary Technical Flow
+### 5.2 Contract Evolution Flow
 
 ```text
-Proposed contract change → classify compatibility → breaking change creates successor → publish support/deprecation status → inventory dependent consumers → migrate/verify consumers → retire only when governed evidence allows.
+Proposed change
+→ compatibility classification
+→ compatible change may advance under governed release
+→ breaking change creates successor
+→ publish support/deprecation state
+→ identify dependent consumers
+→ migrate/verify consumers
+→ retire predecessor only when governed evidence permits.
 ```
 
-The flow is the current Draft technical realization. Portions dependent on unresolved ADRs or blocking peer/upstream decisions remain provisional and non-normative. Exact endpoint names, code classes, manifests, product configuration and numeric policies remain downstream implementation concerns unless later governed by ADR/technical standard.
+### 5.3 Idempotent Request Flow
 
-### 5.3 Material Failure Model
+```text
+Request + logical-operation identity
+→ validate identity and request fingerprint
+→ no prior record: execute in owner-local transaction boundary and persist outcome identity
+→ matching prior record: return governed prior outcome when allowed
+→ same identity with different request fingerprint: reject integrity conflict.
+```
 
-| Failure Class | Detection Boundary | Required Technical Outcome | Forbidden Outcome | Recovery / Delegated Owner |
-| --- | --- | --- | --- | --- |
-| Same idempotency identity, different content | Idempotency Guard | Reject mismatch. | Do not guess caller intent. | Integrity |
-| Unsupported/retired version | Contract boundary | Reject or governed migration path. | Do not silently reinterpret. | A031 |
-| Breaking change misclassified | Review/compatibility gate | Block release/retirement. | Do not mutate prior contract. | A029/A032 |
-| Technical internal failure | Error Mapper | Stable category + safe message. | No sensitive internals. | D03 |
+### 5.4 Material Failure Model
 
-### 5.4 State, Security, Runtime & Peer Boundaries
-
-State mutation, persistence, transaction/concurrency, identity, authorization, cryptography, secrets, resilience, observability and deployment concerns are owned by the exact peer L5 specifications identified in Section 4. This specification constrains only the boundary it canonically owns and shall not duplicate those peer architectures.
+| Failure | Required Outcome | Forbidden Outcome |
+| --- | --- | --- |
+| Same idempotency identity, different content | Reject mismatch/integrity conflict. | Guess caller intent or execute again. |
+| Unsupported/retired version | Reject or use explicitly governed migration path. | Silent reinterpretation. |
+| Breaking change misclassified | Block release/retirement. | Mutate prior contract in place. |
+| Internal technical failure | Stable error category + safe message. | Leak stack/storage/secret internals. |
 
 ---
 
 ## 6. Architecture & Technology Decisions
 
-| Decision ID | Decision | Selected Architecture / Position | Basis / Derivation | Rationale | ADR |
-| --- | --- | --- | --- | --- | --- |
-| AD-001 | Evolution model | **UNRESOLVED — candidate for ADR evaluation:** Additive compatibility preferred; breaking changes create successor. | A029/A031/A032 | Preserves consumers/history. | Required |
-| AD-002 | Compatibility scope | **UNRESOLVED — candidate for ADR evaluation:** Behavioral meaning/context are part of compatibility. | A029/A032 | Schema-only validation is insufficient. | Required |
-| AD-003 | Idempotency | **UNRESOLVED — candidate for ADR evaluation:** Operation-specific deduplication; same key/different content rejects. | C01-002/B02 | Prevents repeat effects. | Required |
-| AD-004 | Error model | Stable machine-readable technical categories; human message non-authoritative. | Security/operability | Automatable and non-leaky. | None |
-| AD-005 | Retirement | No universal support duration; dependency/migration evidence gates retirement. | A031 | Avoids invented dates/orphan consumers. | None |
+| Decision ID | Decision | Selected Architecture / Position | Basis | ADR |
+| --- | --- | --- | --- | --- |
+| AD-001 | Evolution model | Additive compatible evolution is preferred; breaking semantic change creates a successor rather than rewriting the released predecessor. | L4-A-029/A031/A032 + `ADR-L5-0008` | `ADR-L5-0008` |
+| AD-002 | Compatibility scope | Compatibility includes schema, behavior/meaning, required context and consumer obligations. | A029/A032 | Local architecture decision |
+| AD-003 | Idempotency | Idempotency is operation-specific; same logical identity with different request content is rejected. | C01-002 + `ADR-L5-0006` | Local architecture decision |
+| AD-004 | Error model | Stable machine-readable technical categories; human-readable message is non-authoritative. | Security/operability | None |
+| AD-005 | Retirement | No universal support duration is invented; dependency/migration evidence gates retirement. | A031 | None |
 
-Any row whose ADR column contains `Required` is an **unresolved candidate position, not normative architecture**. It shall not become a conformance obligation until the required ADR is canonically allocated, evaluated and approved. Non-ADR rows remain valid only to the extent supported by the cited authority.
-
----
-
-## 7. Security, Privacy, Quality & Operational Impact
-
-- Tenant/Institution scope and canonical ownership shall remain preserved across this specification's technical boundaries.
-- Authentication/authorization, secrets/cryptography and trust remain D-family owned where applicable.
-- Operational health, resilience, performance/capacity and observability are consumed from E-family owners rather than redefined here.
-- No unavailable numeric target is fabricated; deployment/profile-specific targets remain deferred to their canonical owners.
+Named API-version encodings, schema/contract tooling and idempotency storage products remain technology selections, not hidden architecture facts.
 
 ---
 
-## 8. Architecture Conformance Requirements
+## 7. Architecture Conformance Requirements
 
-| Requirement ID | Architecture Conformance Requirement | Derived From | Upstream / Decision Basis |
-| --- | --- | --- | --- |
-| CR-001 | Deprecated contracts shall not retire until dependency/migration evidence satisfies governed conditions. | AD-005 | A031 |
-| CR-002 | Technical errors shall expose stable categories without requiring human-text parsing or protected-internal leakage. | AD-004 | Security/operability |
-
----
-
-## 9. Open Decisions & Deferred Design
-
-| Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
-| --- | --- | --- | --- | --- | --- | --- |
-| OD-001 | Contract-versioning/compatibility standard | ADR | No approved canonical resolution / source remains pending | Lead Architect / C01 | Yes | Allocate/evaluate ADR. |
-| OD-002 | Concrete API version encoding/tooling | ADR | No approved canonical resolution / source remains pending | C01 | Yes | Resolve after API style decision. |
-| OD-003 | Idempotency retention/storage implementation | Dependency | No approved canonical resolution / source remains pending | B02/C01/E01 | No | Resolve by implementation profile. |
-| OD-004 | Material L4 parents remain Draft | Upstream | No approved canonical resolution / source remains pending | L4 governance | Yes | Resolve before Architecture Approved. |
-
-These blockers prevent `Architecture Approved` status where applicable, but they do not prevent controlled Draft authoring or repository submission under the broad-authoring authorization.
+| Requirement ID | Requirement |
+| --- | --- |
+| CR-001 | A released contract shall not be silently rewritten when the change is breaking in schema, behavior, meaning or required context. |
+| CR-002 | Deprecated contracts shall not retire until governed dependency/migration evidence satisfies retirement conditions. |
+| CR-003 | Same logical idempotency identity with materially different request content shall be rejected. |
+| CR-004 | Technical errors shall expose stable categories without requiring human-text parsing or protected-internal leakage. |
+| CR-005 | E04 release/upgrade architecture shall consume C01 compatibility/coexistence status; C01 shall not depend on E04 deployment mechanics. |
 
 ---
 
-## 10. Traceability Summary
+## 8. Open Decisions & Deferred Design
+
+| Item ID | Item | Classification | Blocking? | Required Resolution |
+| --- | --- | --- | --- | --- |
+| OD-001 | Concrete API version encoding and contract tooling | ADR if selected as a shared/repository standard | No for core C01-003 architecture; Yes before normative tool/encoding mandate | Govern through technology-selection/ADR process. |
+| OD-002 | Idempotency retention duration/storage technology | B02/E-family deployment decision | No | Define by approved data/operational profile; no invented numeric value here. |
+| OD-003 | Material L4 parents remain Draft | Upstream | Yes for Architecture Approved | Resolve through L4 governance. |
+
+---
+
+## 9. Traceability Summary
 
 ### Primary L4 Applicability
 
-- `L4-A-029-BH-001/BH-003/BH-004/BH-006/BH-007/BH-008` — Drives successor contract and coexistence rules.
-- `L4-A-031-BH-001/BH-002/BH-004/BH-005/BH-006/BH-007` — Drives contract deprecation/retirement gates.
-- `L4-A-032-BH-001/BH-003/BH-004/BH-005/BH-006/BH-007/BH-008` — Drives consumer compatibility validation.
+- `L4-A-029-BH-001/BH-003/BH-004/BH-006/BH-007/BH-008`
+- `L4-A-031-BH-001/BH-002/BH-004/BH-005/BH-006/BH-007`
+- `L4-A-032-BH-001/BH-003/BH-004/BH-005/BH-006/BH-007/BH-008`
 
-### Material L5 Dependencies
+### Material Dependencies
 
-`L5-C-01-001`, `L5-C-01-002`, `L5-B-02-003`, `L5-E-04-005`, `L4-A-029`, `L4-A-031`, `L4-A-032`
+`L5-C-01-001`, `L5-C-01-002`, `L5-B-02-003`, `L4-A-029`, `L4-A-031`, `L4-A-032`
 
-### Architecture Decisions
+### Material Collaborator / Consumer
 
-`AD-001`–`AD-005`
+`L5-E-04-005`
 
-### Conformance Requirements
+### Applicable Approved ADRs
 
-`CR-001`, `CR-002`
-
-### Open / Blocking Items
-
-`OD-001`–`OD-004`
+`ADR-L5-0006`, `ADR-L5-0008`
