@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Controlled persistence-schema evolution and internal migration while preserving canonical ownership, isolation and compatibility; excludes operational governed business import/export.  
 **Technical Architecture Owner:** L5-B-02 — Database & Persistence Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-11`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-B-02-001` v1.0.0 Draft; `L5-B-02-002` v1.0.0 Draft; `L5-B-02-003` v1.0.0 Draft; applicable `L5-E-03-*` recovery architecture; applicable `L5-E-04-005` release installation/upgrade/rollback architecture.  
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-B-02-001` v1.0.0 Draft; `L5-B-02-002` v1.0.0 Draft; `L5-B-02-003` v1.0.0 Draft.  
 **Referenced By:** Release/upgrade architecture, persistence implementation standards, recovery architecture, and owner-specific technical designs that evolve authoritative persistence structures.  
-**Applicable ADRs:** Required but unresolved — reusable schema-evolution and migration-governance pattern. No canonical L5 ADR ID is currently allocated for this decision.
+**Applicable ADRs:** `ADR-L5-0008` — Expand-Migrate-Transition-Contract Schema Evolution Pattern (`Architecture Approved`).
 
 ---
 
@@ -66,9 +66,10 @@ The specification establishes a compatibility-preserving evolution lifecycle, go
 | L5 Peer | `L5-B-02-001_Database_and_Persistence_Architecture_Baseline.md` | v1.0.0 / Draft | B02 responsibility split | Authoritative persistence remains owner-aligned; database product and exact DDL remain separate decisions. | Schema evolution cannot transfer business ownership or assume a vendor. |
 | L5 Peer | `L5-B-02-002_Domain_Persistence_Ownership_and_Isolation_Architecture.md` | v1.0.0 / Draft | privileged migration identity and owner isolation | Normal runtime identities are owner-scoped; privileged maintenance/migration access is separate and must not become a normal business write path. | Establishes migration authority separation and owner/Tenant isolation. |
 | L5 Peer | `L5-B-02-003_Transaction_Consistency_and_Concurrency_Architecture.md` | v1.0.0 / Draft | owner-local transactions, concurrency and publication-intent consistency | Migration must not invalidate transaction/concurrency/state-publication invariants. | Requires compatible structural/data transitions. |
-| L5 Governance | `L5_Technology_Selection_and_ADR_Methodology.md` | v1.0.1 / Locked | §1.1, §§2–3 | Reusable cross-specification patterns and material persistence/operational decisions require ADR governance. | Requires a formal ADR for the reusable migration pattern. |
-| L5 Corpus | `L5-E-03-001/002/003` | frozen responsibility definitions | backup/restore/PITR/DR responsibilities | Destructive migration recovery shall rely on governed recovery architecture rather than assuming every migration can be reversed. | Establishes recovery boundary. |
-| L5 Corpus | `L5-E-04-005` | frozen responsibility definition | controlled installation, upgrades and technical rollback | Release orchestration consumes B02 schema compatibility/migration requirements but remains E04-owned. | Prevents B02 from becoming release-management architecture. |
+| L5 Governance | `L5_Technology_Selection_and_ADR_Methodology.md` | v1.0.1 / Locked | §1.1, §§2–3 | Reusable cross-specification patterns and material persistence/operational decisions require ADR governance. | `ADR-L5-0008` governs the reusable migration pattern. |
+| L5 ADR | `ADR-L5-0008_Expand_Migrate_Transition_Contract_Schema_Evolution_Pattern.md` | Architecture Approved | Decision §§7–11 | Establishes the reusable B02 schema-evolution pattern and preserves E03/E04 responsibility boundaries. | Canonical decision authority for AD-001–AD-004. |
+| L5 Corpus | `L5-E-03-001/002/003` | frozen responsibility definitions | backup/restore/PITR/DR responsibilities | Destructive migration recovery shall rely on governed recovery architecture rather than assuming every migration can be reversed. | Establishes recovery collaboration boundary; E03 is not a prerequisite dependency of B02-004. |
+| L5 Corpus | `L5-E-04-005` | frozen responsibility definition | controlled installation, upgrades and technical rollback | Release orchestration consumes B02 schema compatibility/migration requirements but remains E04-owned. | Establishes downstream collaboration; E04-005 is not a prerequisite dependency of B02-004. |
 
 ### 3.2 Authoritative Constraints
 
@@ -81,19 +82,17 @@ The specification establishes a compatibility-preserving evolution lifecycle, go
 | `C-005` | Owner-local transaction/concurrency and publication-handoff invariants must remain valid during transition. | B02-003 | Compatibility windows cannot silently break write/concurrency/event guarantees. |
 | `C-006` | Release rollback does not imply schema reversal is always safe. | E04/E03 responsibility split | Irreversible/data-destructive changes require governed recovery or forward correction. |
 | `C-007` | Operational business import/export is not B02-004. | Frozen corpus register | Internal migration shall not become a backdoor bulk business-data integration mechanism. |
-| `C-008` | Applied migration history shall remain deterministic across governed environments. | Lead Architect decision 2026-09-11 | Applied migration definitions cannot be edited in place. |
+| `C-008` | Applied migration history shall remain deterministic across governed environments. | `ADR-L5-0008` | Applied migration definitions cannot be edited in place. |
 
 ### 3.3 Assumptions
 
 No database vendor, schema-migration product, ORM migration framework, deployment orchestrator, SQL dialect, DDL syntax, lock primitive or backup technology is assumed.
 
-The Lead Architect selected the following Draft architecture directions on 2026-09-11:
+`ADR-L5-0008` approves the following product-neutral architecture directions:
 
 - potentially breaking structural changes use a compatibility-preserving **Expand → Migrate → Transition → Contract** lifecycle unless a specifically governed exception proves an atomic change safe;
 - production schema/data migrations execute through a dedicated governed migration path and identity rather than normal application startup identities;
 - once a migration has been applied to a governed environment, its definition/history is immutable and corrections are introduced as new forward migrations.
-
-These decisions establish a reusable cross-specification migration pattern and therefore remain provisional pending ADR governance.
 
 ---
 
@@ -120,8 +119,8 @@ These decisions establish a reusable cross-specification migration pattern and t
 | `L5-B-02-003` | Transaction/concurrency/state-handoff invariants | Migration preserves operational consistency semantics while old/new structures coexist. |
 | `L5-A-04-*` | Tenant/Institution scope semantics | B02-004 preserves scope during data transformation but does not redefine it. |
 | `L5-D-02-*` / `L5-D-03-*` | Privileged authorization, credentials/secrets | Controls who/what may obtain migration authority and protects its credentials. |
-| `L5-E-03-*` | Backup/restore/PITR/DR | Supplies recovery capability when a migration is destructive or forward correction cannot safely restore service. |
-| `L5-E-04-005` | Release installation/upgrade/technical rollback | Coordinates when compatible runtime versions and B02 migrations are executed. |
+| `L5-E-03-*` | Backup/restore/PITR/DR | Supplies recovery capability when a migration is destructive or forward correction cannot safely restore service; collaborator/downstream recovery boundary, not B02-004 prerequisite. |
+| `L5-E-04-005` | Release installation/upgrade/technical rollback | Consumes B02-004 migration/compatibility requirements and coordinates when migrations execute; collaborator/downstream release boundary, not B02-004 prerequisite. |
 | `L5-E-05-*` | Operations/observability | Detects migration execution, failure, drift and incomplete transition conditions. |
 
 ### Must Not Own
@@ -379,10 +378,10 @@ The latter remains outside `L5-B-02-004`.
 
 | Decision ID | Decision | Status | Basis | Consequence | ADR |
 |---|---|---|---|---|---|
-| `AD-001` | Potentially breaking persistence changes use Expand → Migrate → Transition → Contract unless a governed exception proves atomic change safe. | **Provisional Draft direction** | Lead Architect selection 2026-09-11; compatibility/recovery requirements. | Allows rolling/controlled upgrades without coupling schema and runtime to one instantaneous change. | **ADR required — reusable cross-specification migration pattern; no ID allocated.** |
-| `AD-002` | Production schema/data migrations execute through a dedicated governed migration identity/path, not normal runtime startup credentials. | **Provisional Draft direction** | B02-002 privileged-identity separation; Lead Architect selection 2026-09-11. | Prevents runtime privilege expansion and migration races. | **ADR scope review required as part of migration pattern; no ID allocated.** |
-| `AD-003` | Applied migration definitions/history are immutable; corrections use new forward migrations. | **Provisional Draft direction** | Lead Architect selection 2026-09-11; deterministic environment requirement. | Prevents same migration identity from representing different schemas across environments. | **ADR scope review required as part of migration pattern; no ID allocated.** |
-| `AD-004` | Database rollback is not assumed to be universally reversible; destructive failures use safe forward correction or E03 recovery when reversal would lose/corrupt data. | Defensible technical derivation | E03/E04 responsibility split; authoritative data integrity. | Avoids unsafe automatic reverse migrations. | Govern with migration/recovery ADR scope if material. |
+| `AD-001` | Potentially breaking persistence changes use Expand → Migrate → Transition → Contract unless a governed exception proves atomic change safe. | **Architecture Approved** | `ADR-L5-0008`; compatibility/recovery requirements. | Allows rolling/controlled upgrades without coupling schema and runtime to one instantaneous change. | `ADR-L5-0008` |
+| `AD-002` | Production schema/data migrations execute through a dedicated governed migration identity/path, not normal runtime startup credentials. | **Architecture Approved** | `ADR-L5-0008`; B02-002 privileged-identity separation. | Prevents runtime privilege expansion and migration races. | `ADR-L5-0008` |
+| `AD-003` | Applied migration definitions/history are immutable; corrections use new forward migrations. | **Architecture Approved** | `ADR-L5-0008`; deterministic environment requirement. | Prevents same migration identity from representing different schemas across environments. | `ADR-L5-0008` |
+| `AD-004` | Database rollback is not assumed to be universally reversible; destructive failures use safe forward correction or E03 recovery when reversal would lose/corrupt data. | **Architecture Approved** | `ADR-L5-0008`; E03/E04 responsibility split; authoritative data integrity. | Avoids unsafe automatic reverse migrations. | `ADR-L5-0008` |
 
 No migration tool, ORM, database vendor, SQL dialect, checksum algorithm or deployment technology is selected here.
 
@@ -426,14 +425,13 @@ No migration tool, ORM, database vendor, SQL dialect, checksum algorithm or depl
 
 ## 9. Open Decisions & Deferred Design
 
+`ADR-L5-0008` resolves the former blocking migration-pattern ADR item. Remaining items are implementation/peer-detail decisions and do not reopen the approved reusable pattern.
+
 | ID | Item | Owner | Blocking Status | Resolution Path |
 |---|---|---|---|---|
-| `OD-001` | Formal ADR for the reusable schema-evolution/migration pattern covering expand–migrate–transition–contract, dedicated migration execution and immutable migration history. | L5-B-02 / Lead Architect | **Blocks Architecture Approved for AD-001–AD-003.** | Confirm ADR scope, allocate canonical ID on `main`, evaluate alternatives, approve/revise and propagate. |
 | `OD-002` | Select concrete database migration tooling/format after primary relational database technology/runtime choices are governed. | L5-B-02 with applicable technology owner | Does not block product-neutral Draft; blocks implementation standardization. | Technology evaluation + ADR if mandatory trigger applies. |
 | `OD-003` | Define exact schema/runtime compatibility metadata and execution gate with `L5-E-04-005`. | L5-B-02 / L5-E-04 | Does not block Draft; required before release implementation. | Cross-specification technical contract. |
 | `OD-004` | Define destructive-migration recovery evidence and restore/PITR integration once `L5-E-03-*` is stabilized. | L5-B-02 / L5-E-03 | Does not block Draft; required before destructive production migrations. | E03/B02 recovery mapping and validation. |
-
-No canonical L5 ADR number is allocated by this specification.
 
 ---
 
@@ -448,8 +446,9 @@ No canonical L5 ADR number is allocated by this specification.
 - `L5-B-02-001` — persistence ownership and platform baseline remain unchanged by migration.
 - `L5-B-02-002` — owner/Tenant isolation and privileged migration-identity separation remain mandatory.
 - `L5-B-02-003` — transaction/concurrency/state-publication invariants remain valid during structural transition.
-- `L5-E-03-*` — backup/restore/PITR/DR owns recovery mechanics.
-- `L5-E-04-005` — release installation/upgrade/rollback owns deployment sequencing; B02-004 supplies schema compatibility and migration constraints.
+- `L5-E-03-*` — backup/restore/PITR/DR owns recovery mechanics and is a collaborator/downstream recovery boundary, not a B02-004 prerequisite.
+- `L5-E-04-005` — release installation/upgrade/rollback consumes B02-004 schema compatibility/migration constraints and owns deployment sequencing; it is not a B02-004 prerequisite.
+- `ADR-L5-0008` — canonical reusable schema-evolution pattern.
 
 ### Resulting Evolution Model
 
@@ -477,4 +476,4 @@ new forward corrective migration
 E03 governed recovery
 ```
 
-This specification remains `Draft` while `OD-001` is unresolved and shall not be treated as the final approved repository-wide migration standard until the required ADR is allocated and approved.
+This specification remains `Draft` for implementation/tooling and peer-integration refinement; the reusable schema-evolution pattern itself is canonically established by `ADR-L5-0008`.
