@@ -6,212 +6,174 @@
 **Architecture Level:** L5 — Solution Architecture  
 **Family:** L5-E — Reliability, Deployment & Operations Architecture  
 **Major Area:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
-**Canonical Technical Responsibility:** Release installation, upgrade sequencing, compatibility validation, rollback-safe boundaries and forward-recovery behavior.  
+**Canonical Technical Responsibility:** Release installation, upgrade, compatibility validation and rollback architecture for supported SutraERP deployment profiles.  
 **Technical Architecture Owner:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-11`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-E-04-001/002/003/004`, `L5-C-01-003`, `L5-B-02-003/004`, `L5-E-03-*`, `L5-E-05-*`, `L5-F-01-*`, `L4-A-029`, `L4-A-030`, `L4-A-031`, `L4-A-032`.  
-**Referenced By:** Production operations, E03, F01.  
-**Applicable ADRs:** Required but unresolved — Major release/deployment strategy; packaging/orchestration technology; repository-wide upgrade pattern. No canonical ADR ID is currently allocated.
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-E-04-001`, `L5-E-04-002`, `L5-E-04-003`, `L5-E-04-004`, `L5-C-01-003`, `L5-B-02-003`, `L5-B-02-004`, `L4-A-029`, `L4-A-030`, `L4-A-031`, `L4-A-032`.  
+**Collaborates With / Referenced By:** `L5-E-03-*`, `L5-E-05-*`, `L5-F-01-*`.  
+**Applicable ADRs:** `ADR-L5-0006`, `ADR-L5-0007`, `ADR-L5-0008`; E04 placement/isolation decisions from `ADR-L5-0003` also constrain rollout topology. Exact rolling/blue-green/canary/orchestration tooling remains unresolved.
 
 ---
 
 ## 2. Purpose, Scope & Non-Goals
 
-### Purpose
-
-Define safe release installation and upgrade sequencing, mixed-version compatibility gates, rollback-safe boundaries and fix-forward/recovery behavior without inventing business rollback.
+Define how a governed SutraERP release is installed, upgraded, validated and, where technically safe, rolled back without inventing business recovery semantics or bypassing contract/data compatibility rules.
 
 ### In Scope
 
-- Pre-upgrade readiness/supported-path validation.
-- Controlled release serialization.
-- Mixed-version coexistence constraints.
-- Rolling/blue-green/canary/maintenance strategy boundary.
-- Rollback-safe point and forward-recovery condition.
-- Interrupted-upgrade resume metadata.
-- Post-deployment acceptance evidence.
+- Release/upgrade preflight.
+- Deployment serialization/coordination boundary.
+- Contract/schema compatibility gates.
+- Mixed-version coexistence rules at architecture level.
+- Post-deployment verification.
+- Rollback-safety classification.
+- Explicit handoff to recovery/operations architecture.
 
-### Out of Scope / Non-Goals
+### Out of Scope
 
-- Business/module lifecycle decisions.
-- Schema migration internals — B02-004.
-- Backup/restore/DR procedures — E03.
-- CI build/signing — F01.
-- Contract compatibility definition — C01-003.
-- Exact rollout percentages/timeouts.
+- Business compensation/reversal.
+- Backup/restore internals — E03.
+- Observability platform internals — E05.
+- CI/CD implementation internals — F01.
+- Database migration internals — B02.
+- Exact rollout/orchestrator product.
+- Invented maintenance windows or numeric SLOs.
 
 ---
 
-## 3. Upstream Applicability, Constraints & Assumptions
+## 3. Authoritative Basis
 
-### 3.1 Canonical Upstream Reference Matrix
-
-| Source Level | Document / Decision | Version / Status | Exact Reference | What the Source Establishes | L5 Use |
-| --- | --- | --- | --- | --- | --- |
-| L5 Governance | Candidate Register 105 | v1.1.0 / Architecture Approved | `L5-E-04-005` row | Release installation, upgrade sequencing, compatibility validation, rollback-safe boundaries and forward-recovery behavior. | Establishes canonical responsibility. |
-| L4 | `L4-A-029` | v1.0.0 / Draft | `BH-001, BH-003, BH-004, BH-005, BH-006, BH-007, BH-008` | Successor versions require compatibility/dependency evidence; coexistence is temporary/governed. | Upgrade validates supported predecessor/successor coexistence. |
-| L4 | `L4-A-030` | v1.0.0 / Draft | `BH-003, BH-005, BH-006, BH-007, BH-008` | Suspension/restoration requires preserved history and revalidation. | Deployment can technically withdraw/restore runtime only after authoritative decision. |
-| L4 | `L4-A-031` | v1.0.0 / Draft | `BH-001, BH-002, BH-004, BH-005, BH-006, BH-007, BH-008` | Retirement requires successor/dependency/migration completion/history. | Runtime decommission only after governed retirement. |
-| L4 | `L4-A-032` | v1.0.0 / Draft | `BH-001, BH-003, BH-004, BH-005, BH-006, BH-007, BH-008` | Dependency/version compatibility and graph integrity precede change. | Upgrade blocks unsupported dependency combinations. |
-| L5 Peer | See Section 4 | Draft/planned as identified | Exact peer IDs below | Peer-owned technical capabilities. | Consumed without ownership transfer. |
+| Source | Effect |
+| --- | --- |
+| `L5-C-01-003` | Provides contract compatibility, coexistence and retirement status consumed by E04 rollout decisions. |
+| `L5-B-02-003/004` | Persistence transaction/migration ownership remains B02-owned. |
+| `ADR-L5-0006` | Upgrade operations shall respect owner-local transaction/concurrency boundaries. |
+| `ADR-L5-0007` | Durable state-to-publication intent handoff constrains upgrade/rollback behavior where event publication state is involved. |
+| `ADR-L5-0008` | Expand-Migrate-Transition-Contract establishes safe schema evolution sequencing. |
+| `ADR-L5-0003` | Rollout topology follows modular-core/selective-isolation architecture; service decomposition is not invented by deployment strategy. |
+| `L4-A-029/A030/A031/A032` | Successor coexistence, suspension/restoration, retirement and dependency compatibility remain upstream-governed. |
 
 Draft L4 sources support controlled Draft authoring only and are not treated as immutable approved behavioral authority.
 
-### 3.2 Authoritative Constraints
-
-| Constraint ID | Constraint | Exact Source | L5 Effect |
-| --- | --- | --- | --- |
-| C-001 | Unsupported predecessor/successor/dependency combinations shall not be installed as governed progression. | A029/A032 | Pre-upgrade compatibility gate. |
-| C-002 | Runtime rollback is not business rollback or database restore. | Level separation/B02/E03 | Rollback categories remain distinct. |
-| C-003 | Mixed versions are allowed only with proven compatibility. | A029/C01-003 | Rollout coexistence gate. |
-| C-004 | If data/schema change makes rollback unsafe, use fix-forward or E03 recovery. | B02-004/E03 boundary | Explicit rollback-safe point. |
-
-### 3.3 Assumptions
-
-All product/framework/runtime choices discussed during authoring remain **preferred candidates only** unless an approved ADR or technical standard makes them canonical. No numeric timeout, retry, capacity, availability, retention, RPO/RTO, scaling or similar target is invented here.
-
 ---
 
-## 4. Technical Ownership, Boundaries & Dependencies
+## 4. Technical Ownership & Dependencies
 
 ### Owns
 
-- Upgrade execution state at technical level.
-- Supported version-jump/prerequisite gate.
-- Deployment-strategy selection constraints.
-- Mixed-version coexistence gate.
-- Rollback-safe/unsafe classification.
-- Interrupted-upgrade resume/fix-forward boundary.
-- Post-upgrade acceptance evidence.
+- Release/upgrade preflight orchestration.
+- Deployment serialization and phase coordination.
+- Consumption of compatibility/migration readiness evidence.
+- Runtime rollout sequencing across supported E04 profiles.
+- Post-deployment technical acceptance checks.
+- Rollback-safety determination at deployment boundary.
 
-### Consumes / Collaborates With
+### Relationships
 
-| Exact L5 Specification | Capability / Collaboration | Boundary |
+| Specification | Relationship | Boundary |
 | --- | --- | --- |
-| `L5-E-04-001/002/003/004` | Deployment profiles | E04-005 upgrades those profiles. |
-| `L5-C-01-003` | Contract compatibility | Determines mixed-version API safety. |
-| `L5-B-02-004` | Schema/data migration | E04 sequences but does not define migration. |
-| `L5-E-03-*` | Backup/restore/DR | Provides recovery protection. |
-| `L5-F-01-*` | Verified release artifacts | Supplies signed/provenance release. |
-| `L5-E-05-*` | Health/telemetry | Post-deploy acceptance. |
+| `L5-E-04-001/002/003/004` | Dependency | Supplies runtime, packaging, on-prem and cloud-capable deployment profiles. |
+| `L5-C-01-003` | Dependency / authoritative input | E04 consumes contract compatibility/coexistence status. C01 does not depend on E04. |
+| `L5-B-02-003/004` | Dependency | Data/schema migration correctness remains B02-owned. |
+| `L5-E-03-*` | Collaboration / delegated recovery | E04 hands off recovery when rollback is unsafe or recovery primitives are required; E04 does not depend on later-stage E03 internals to define its own rollout gates. |
+| `L5-E-05-*` | Collaboration / consumer | E05 supplies/consumes operational evidence and acceptance signals. |
+| `L5-F-01-*` | Collaboration / producer-consumer | F01 may automate delivery, but release architecture remains E04-owned. |
 
-### Must Not Own
-
-This specification shall not redefine peer-L5 internals, upstream business ownership/rules/states/events/authority, or material technology selections that require ADR governance. Cross-boundary interaction uses governed contracts, events, workflows or peer-owned technical boundaries.
+This establishes one-way authority: `C01-003 → E04-005` for compatibility evidence and removes the previous circular relationship.
 
 ---
 
 ## 5. Solution Architecture
 
-**Draft decision gate:** Architecture in this section that depends on an `AD-*` whose ADR column contains `Required`, or on a blocking `OD-*`, is a provisional realization for architecture evaluation only. It is not a canonical implementation mandate until the required governance decision/dependency is resolved. Architecture supported independently by cited repository authority remains applicable.
-
-### 5.1 Technical Realization Model
-
-| Element | Type | Responsibility | Input / Context | State / Data | Output / Handoff | Depends On | Failure Boundary | Basis |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Upgrade Preflight Gate | Control point | Validate source→target path, dependencies, config, compatibility and recovery protection. | Governed context/configuration as applicable | Owned technical state only | Proceed/block. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Upgrade Coordinator | Deployment controller | Serialize upgrade and execute selected rollout strategy. | Governed context/configuration as applicable | Owned technical state only | Deployment progression. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Migration Coordination Boundary | Dependency boundary | Invoke B02-004 migration sequence without owning it. | Governed context/configuration as applicable | Owned technical state only | Migration state. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Rollback-Safety Evaluator | Control point | Determine whether prior runtime/config can safely resume after each change point. | Governed context/configuration as applicable | Owned technical state only | Rollback/fix-forward classification. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Post-Deployment Validator | Operational control | Verify health/readiness/version/compatibility before acceptance. | Governed context/configuration as applicable | Owned technical state only | Accepted/failed outcome. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-
-### 5.2 Primary Technical Flow
+### 5.1 Upgrade Flow
 
 ```text
-Verified release → validate supported version path → validate config/dependency/contract compatibility → validate migration readiness → verify recovery protection → serialize upgrade → execute rollout strategy → coordinate migrations → post-deploy validation → accept OR rollback/fix-forward/E03 recovery.
+governed release candidate
+→ verify release/artifact identity
+→ verify target deployment profile
+→ evaluate C01 contract compatibility/coexistence
+→ evaluate B02 schema/data migration readiness
+→ evaluate runtime/dependency/security prerequisites
+→ acquire governed deployment coordination/serialization
+→ execute approved deployment phases
+→ validate runtime readiness + compatibility + technical acceptance evidence
+→ either accept release
+   or enter governed rollback/recovery path.
 ```
 
-The flow is the current Draft technical realization. Portions dependent on unresolved ADRs or blocking peer/upstream decisions remain provisional and non-normative. Exact endpoint names, code classes, manifests, product configuration and numeric policies remain downstream implementation concerns unless later governed by ADR/technical standard.
+### 5.2 Rollback-Safety Classification
 
-### 5.3 Material Failure Model
+Rollback is not assumed to be universally safe. Before rollback, E04 shall determine whether the release introduced irreversible or forward-only conditions, including:
 
-| Failure Class | Detection Boundary | Required Technical Outcome | Forbidden Outcome | Recovery / Delegated Owner |
-| --- | --- | --- | --- | --- |
-| Unsupported version jump | Preflight | Block upgrade. | No direct unsupported install. | A029/A032 |
-| Mixed-version incompatibility | Preflight/rollout | Use maintenance/alternate strategy or block. | No unsafe coexistence. | C01/B02 |
-| Irreversible migration reached | Rollback evaluator | Disable binary rollback; require fix-forward/E03 recovery. | No unsafe downgrade. | B02/E03 |
-| Interrupted upgrade | Coordinator | Preserve exact artifact/config/migration state for safe resume. | No restart-from-guess. | E03/E05 |
-| Post-deploy validation failed | Validator | Do not accept release. | No success from deployment command alone. | E05 |
+- schema/data transformations whose predecessor cannot safely interpret resulting state;
+- contract changes that invalidate predecessor compatibility;
+- durable publication/outbox state whose reversal would duplicate or contradict externally visible effects;
+- security/key/credential transitions that make predecessor execution unsafe;
+- other owner-declared forward-only technical changes.
 
-### 5.4 State, Security, Runtime & Peer Boundaries
+When rollback is unsafe, E04 shall stop treating “redeploy previous artifact” as recovery and hand off to the governed E03/B02 recovery/migration path.
 
-State mutation, persistence, transaction/concurrency, identity, authorization, cryptography, secrets, resilience, observability and deployment concerns are owned by the exact peer L5 specifications identified in Section 4. This specification constrains only the boundary it canonically owns and shall not duplicate those peer architectures.
+### 5.3 Mixed-Version Coexistence
 
----
+Mixed-version operation is permitted only where C01/B02 compatibility evidence confirms that participating versions can safely coexist for the intended phase. Deployment tooling shall not invent compatibility.
 
-## 6. Architecture & Technology Decisions
+### 5.4 Failure Model
 
-| Decision ID | Decision | Selected Architecture / Position | Basis / Derivation | Rationale | ADR |
-| --- | --- | --- | --- | --- | --- |
-| AD-001 | Deployment strategy | **UNRESOLVED — candidate for ADR evaluation:** Rolling default where proven compatible; blue-green/canary optional; maintenance valid. | A029/C01/B02 | Avoids fake zero-downtime mandate. | Required |
-| AD-002 | Compatibility gate | **UNRESOLVED — candidate for ADR evaluation:** No mixed versions without contract/persistence compatibility. | A029/A032/C01/B02 | Protects correctness. | Required/shared |
-| AD-003 | Rollback model | **UNRESOLVED — candidate for ADR evaluation:** Separate binary/config rollback, fix-forward and E03 restore. | B02/E03 | Avoids unsafe rollback. | Required |
-| AD-004 | Upgrade serialization | Prevent conflicting concurrent upgrades per environment/installation. | Operational integrity | Preserves known migration state. | None |
-| AD-005 | Acceptance | Deployment command completion alone does not equal accepted release. | E05 | Requires operational readiness. | None |
-
-Any row whose ADR column contains `Required` is an **unresolved candidate position, not normative architecture**. It shall not become a conformance obligation until the required ADR is canonically allocated, evaluated and approved. Non-ADR rows remain valid only to the extent supported by the cited authority.
+| Failure | Required Outcome | Forbidden Outcome |
+| --- | --- | --- |
+| Preflight compatibility failure | Block rollout before protected change. | Force deployment through incompatibility. |
+| Migration partially applied | Stop/contain and use B02-governed recovery semantics. | Ad-hoc reversal outside B02 authority. |
+| Runtime acceptance failure | Halt progression; rollback only if safety gate passes. | Blind previous-version redeploy. |
+| Rollback unsafe | Escalate to governed recovery path. | Claim rollback completed merely because old binaries started. |
+| Mixed-version incompatibility | Prevent/terminate incompatible coexistence safely. | Continue unsupported skew. |
 
 ---
 
-## 7. Security, Privacy, Quality & Operational Impact
+## 6. Architecture Decisions
 
-- Tenant/Institution scope and canonical ownership shall remain preserved across this specification's technical boundaries.
-- Authentication/authorization, secrets/cryptography and trust remain D-family owned where applicable.
-- Operational health, resilience, performance/capacity and observability are consumed from E-family owners rather than redefined here.
-- No unavailable numeric target is fabricated; deployment/profile-specific targets remain deferred to their canonical owners.
-
----
-
-## 8. Architecture Conformance Requirements
-
-| Requirement ID | Architecture Conformance Requirement | Derived From | Upstream / Decision Basis |
+| Decision ID | Decision | Position | Authority |
 | --- | --- | --- | --- |
-| CR-001 | Upgrade shall block unsupported direct version jumps or dependency combinations. | §5 | A029/A032 |
-| CR-002 | Any deployment strategy that permits old/new runtime coexistence shall require demonstrated contract and persistence compatibility for the overlap. | §5 | A029-BH-003/004/007; C01-003/B02 boundaries |
-| CR-003 | Before an upgrade design can be approved, rollback-safe versus forward-recovery/restore boundaries shall be explicitly resolved against B02 migration and E03 recovery architecture. | §5 / OD-002/003 | B02-004; E03-* |
-| CR-004 | Failed post-deployment validation shall prevent technical acceptance. | AD-005 | E05 |
-| CR-005 | Runtime rollback shall not be represented as database restore or business compensation. | C-002 | Level separation |
-| CR-006 | Upgrade execution shall preserve artifact/config/migration lineage for resume/recovery. | §5 | E03/E05/F01 |
+| AD-001 | Compatibility direction | E04 consumes C01-003 compatibility/coexistence decisions; C01-003 is not deployment-dependent. | Canonical ownership correction |
+| AD-002 | Schema evolution | Upgrades follow expand-migrate-transition-contract sequencing where applicable. | `ADR-L5-0008` |
+| AD-003 | Owner-local consistency | Upgrade/migration actions respect owner-local transaction/concurrency boundaries. | `ADR-L5-0006` |
+| AD-004 | Publication integrity | Rollback/recovery shall preserve durable publication-intent correctness. | `ADR-L5-0007` |
+| AD-005 | Rollback safety | Rollback is conditional on explicit compatibility/state safety; it is not a universal guarantee. | E04/B02/C01 correctness |
+| AD-006 | Deployment topology | Rollout follows modular-core/selective-isolation topology rather than inventing service boundaries. | `ADR-L5-0003` |
+| AD-007 | Rollout technique | Rolling, blue-green, canary or equivalent techniques remain profile/tool choices until governed. | ADR if standardized |
 
 ---
 
-## 9. Open Decisions & Deferred Design
+## 7. Conformance Requirements
 
-| Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
-| --- | --- | --- | --- | --- | --- | --- |
-| OD-001 | Shared release/deployment strategy | ADR | No approved canonical resolution / source remains pending | E04/Lead Architect | Yes | Evaluate rollout strategy family. |
-| OD-002 | Exact schema migration/backward-compatibility mechanics | Dependency | No approved canonical resolution / source remains pending | B02-004 | Yes | Consume B02-004 when stable. |
-| OD-003 | Recovery protection/restore details | Dependency | No approved canonical resolution / source remains pending | E03 | Yes | Consume E03 architecture. |
-| OD-004 | Material L4 parents remain Draft | Upstream | No approved canonical resolution / source remains pending | L4 governance | Yes | Resolve before Architecture Approved. |
-
-These blockers prevent `Architecture Approved` status where applicable, but they do not prevent controlled Draft authoring or repository submission under the broad-authoring authorization.
+| Requirement ID | Requirement |
+| --- | --- |
+| CR-001 | Every upgrade shall pass release identity, contract compatibility and data-migration readiness gates before protected rollout phases. |
+| CR-002 | E04 shall consume C01-003 compatibility evidence; C01-003 shall not depend on E04-005 deployment mechanics. |
+| CR-003 | Schema/data evolution shall preserve B02 ownership and `ADR-L5-0008` sequencing where applicable. |
+| CR-004 | Rollback shall not be attempted when the predecessor cannot safely interpret post-upgrade state. |
+| CR-005 | When rollback is unsafe, E04 shall hand off to governed recovery rather than inventing recovery behavior. |
+| CR-006 | E03/E05/F01 shall remain collaborators/consumers, not prerequisite authorities for E04-005. |
+| CR-007 | Rollout tooling shall not create business/module lifecycle states or redefine canonical compatibility. |
 
 ---
 
-## 10. Traceability Summary
+## 8. Open Decisions
 
-### Primary L4 Applicability
+| Item ID | Item | Blocking? | Resolution |
+| --- | --- | --- | --- |
+| OD-001 | Default rollout technique (rolling/blue-green/canary/etc.) | No for architecture pattern; Yes before normative shared rollout standard | Govern through ADR if standardized. |
+| OD-002 | Exact mixed-version support durations/windows | No | Derive from approved C01/B02 compatibility and operational profile; do not invent universal numbers. |
+| OD-003 | E03 recovery implementation details | No for E04 architecture | Consume E03 when authored; E04 owns only the handoff condition. |
+| OD-004 | E05 acceptance/health implementation details | No for E04 architecture | Consume E05 evidence contract when authored. |
+| OD-005 | Material L4 parents remain Draft | Yes for Architecture Approved | Resolve through L4 governance. |
 
-- `L4-A-029-BH-001/BH-003/BH-004/BH-005/BH-006/BH-007/BH-008` — Upgrade validates supported predecessor/successor coexistence.
-- `L4-A-030-BH-003/BH-005/BH-006/BH-007/BH-008` — Deployment can technically withdraw/restore runtime only after authoritative decision.
-- `L4-A-031-BH-001/BH-002/BH-004/BH-005/BH-006/BH-007/BH-008` — Runtime decommission only after governed retirement.
-- `L4-A-032-BH-001/BH-003/BH-004/BH-005/BH-006/BH-007/BH-008` — Upgrade blocks unsupported dependency combinations.
+---
 
-### Material L5 Dependencies
+## 9. Traceability Summary
 
-`L5-E-04-001/002/003/004`, `L5-C-01-003`, `L5-B-02-003/004`, `L5-E-03-*`, `L5-E-05-*`, `L5-F-01-*`, `L4-A-029`, `L4-A-030`, `L4-A-031`, `L4-A-032`
-
-### Architecture Decisions
-
-`AD-001`–`AD-005`
-
-### Conformance Requirements
-
-`CR-001`–`CR-006`
-
-### Open / Blocking Items
-
-`OD-001`–`OD-004`
+**Material Dependencies:** `L5-E-04-001`, `L5-E-04-002`, `L5-E-04-003`, `L5-E-04-004`, `L5-C-01-003`, `L5-B-02-003`, `L5-B-02-004`, `L4-A-029`, `L4-A-030`, `L4-A-031`, `L4-A-032`  
+**Material Collaborators:** `L5-E-03-*`, `L5-E-05-*`, `L5-F-01-*`  
+**Applicable Approved ADRs:** `ADR-L5-0003`, `ADR-L5-0006`, `ADR-L5-0007`, `ADR-L5-0008`
