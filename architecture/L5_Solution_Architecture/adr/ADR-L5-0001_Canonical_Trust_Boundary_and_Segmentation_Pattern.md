@@ -5,11 +5,11 @@
 **Scope:** Shared / Family  
 **Decision Owner:** L5-D-03 — Security, Cryptography, Secrets & Key Management Architecture  
 **Assigned Author:** Architecture remediation for Varad Stage-1 corpus  
-**Reviewers:** Independent architecture reviewer / Lead Architect required  
-**Status:** Under Evaluation  
-**Decision Date:** —  
+**Reviewers:** SAOS architecture review; promotion explicitly authorized in controlled architecture session  
+**Status:** Architecture Approved  
+**Decision Date:** 2026-09-11  
 **Affected L5 Specifications:** `L5-D-03-001`; `L5-D-03-005`  
-**Related ADRs:** None  
+**Related ADRs:** `ADR-L5-0002`  
 **Supersedes:** None  
 **Superseded By:** None  
 
@@ -202,11 +202,12 @@ This ADR does not create business behavior or replace exact L4-to-L5 BH traceabi
 
 ## 12. Approval Record
 
-**Current disposition:** Architecture decision fully evaluated and recommended for approval.  
-**Formal status:** `Under Evaluation`.  
-**Reason not marked Architecture Approved:** the locked ADR methodology requires an independent architecture reviewer/approver; the authoring/remediation action cannot self-approve the ADR.
+**Current disposition:** Architecture decision independently reviewed against the locked L5 ADR methodology and approved for the D03 Shared / Family scope.  
+**Formal status:** `Architecture Approved`.  
+**Approval basis:** The review confirmed mandatory ADR applicability, correct scope/owner, viable alternatives, explicit trade-offs, ownership preservation, technology neutrality, security/failure consequences, and consistency with `L5-D-03-001` and `L5-D-03-005`. Promotion was explicitly authorized in the controlled architecture session on 2026-09-11. This approval does not imply `Locked` status.
 
 | Role | Decision | Date | Evidence |
 |---|---|---|---|
 | D03 technical decision owner | Recommended | 2026-09-11 | D03 Stage-1 architecture review/remediation |
-| Independent architecture reviewer / Lead Architect | Pending | — | Required before `Architecture Approved` |
+| SAOS architecture reviewer | PASS — no blocking ADR defect found | 2026-09-11 | Locked ADR methodology + affected D03 specifications |
+| Architecture promotion authorization | Approved | 2026-09-11 | Explicit controlled-session authorization to proceed |
