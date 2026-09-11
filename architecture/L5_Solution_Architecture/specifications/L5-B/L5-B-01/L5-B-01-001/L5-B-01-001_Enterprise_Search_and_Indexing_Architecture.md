@@ -13,8 +13,8 @@
 | Assigned Author | Varad |
 | Version | 1.0.0 |
 | Status | Draft — Authoring |
-| Last Updated | 2026-09-10 |
-| Depends On | L5 governance baseline; L5 template v1.0.3; L5 validation standard; approved 105-specification corpus; L4 Enterprise Directory & Search behavior; L2-H03; L3-H017–H019 |
+| Last Updated | 2026-09-11 |
+| Depends On | L5 governance baseline; L5 template v1.0.3; L5 validation standard; approved 105-specification corpus; L4 Enterprise Directory & Search behavior; L2-H03; L3-H-017–H-019 |
 | Referenced By | L5-B-01-002 and downstream L6/implementation architecture |
 | Applicable ADRs | None identified; technology choices remain subject to ADR governance |
 
@@ -22,9 +22,7 @@
 
 ### Purpose
 
-Define the reusable technical architecture that provides enterprise search and indexing over H03 Searchable Projections derived from authoritative source domains. The architecture provides the search execution and indexing foundation while preserving source-domain ownership of every canonical business fact.
-
-L2-H03 establishes that H03 maintains optimized searchable projections rather than canonical business data. fileciteturn452file0L2-L2
+Define the reusable technical architecture that provides enterprise search and indexing over H03 Searchable Projections derived from authoritative source domains. The architecture provides search execution and indexing foundation while preserving source-domain ownership of every canonical business fact.
 
 ### In Scope
 
@@ -52,29 +50,30 @@ L2-H03 establishes that H03 maintains optimized searchable projections rather th
 
 | Source | Version / Status | Exact Reference | What It Establishes | L5 Use |
 |---|---|---|---|---|
-| 105-specification corpus | v1.1.0 / Architecture Approved | L5-B-01-001 | Enterprise technical search/indexing over authorized canonical sources; search never owns indexed facts. fileciteturn445file0L2-L2 | Canonical technical responsibility |
-| L2-H03 | Locked | Domain purpose/scope and Searchable Projection model | H03 is a discovery/search layer over projections; source domains remain system of record. fileciteturn452file0L2-L2 | Ownership and terminology verification |
-| L3-H-017 | v1.0 / Locked | §§2–5, 9–16 | Related-entity discovery returns permitted source-derived references without changing source ownership. fileciteturn430file0L2-L2 | Search/discovery technical contribution |
-| L4-H-017 | v1.0 / Draft | BH-001–004, BH-006–007 | Authorized discovery resolves relationships from searchable projections/canonical references and must not modify source entities. fileciteturn456file0L2-L2 | Planning applicability; not approval authority |
-| L3-H-018 | v1.0 / Locked | §§2–5, 9–16 | Source changes update H03 projection while source ownership remains unchanged. fileciteturn447file0L2-L2 | Indexing contribution |
-| L4-H-018 | v1.0 / Draft | BH-001–004, BH-006–007 | Canonical source changes are applied to H03 searchable representation under the indexing contract. fileciteturn455file0L2-L2 | Planning applicability; not approval authority |
-| L3-H-019 | v1.0 / Locked | §§2–5, 9–16 | Failed search representations are reconstructed from authoritative source information and validated before availability. fileciteturn432file0L2-L2 | Index architecture/recovery boundary |
-| L4-H-019 | v1.0 / Draft | BH-001–004, BH-006–007 | Recovery uses authoritative source information and validated source/synchronization lineage. fileciteturn446file0L2-L2 | Planning applicability; not approval authority |
+| 105-specification corpus | v1.1.0 / Architecture Approved | L5-B-01-001 | Enterprise technical search/indexing over authorized canonical sources; search never owns indexed facts. | Canonical technical responsibility |
+| L2-H03 | Locked | Domain purpose/scope and Searchable Projection model | H03 is a discovery/search layer over projections; source domains remain system of record. | Ownership and terminology verification |
+| L3-H-017 | v1.0 / Locked | §§2–5, 9–16 | Related-entity discovery returns permitted source-derived references without changing source ownership. | Search/discovery technical contribution |
+| L4-H-017 | v1.0 / Draft | BH-001–004, BH-006–007 | Authorized discovery resolves relationships from searchable projections/canonical references and must not modify source entities. | Planning applicability; not approval authority |
+| L3-H-018 | v1.0 / Locked | §§2–5, 9–16 | Source changes update H03 projection while source ownership remains unchanged. | Indexing contribution |
+| L4-H-018 | v1.0 / Draft | BH-001–004, BH-006–007 | Canonical source changes are applied to H03 searchable representation under the indexing contract. | Planning applicability; not approval authority |
+| L3-H-019 | v1.0 / Locked | §§2–5, 9–16 | Failed search representations are reconstructed from authoritative source information and validated before availability. | Index architecture/recovery boundary |
+| L4-H-019 | v1.0 / Draft | BH-001–004, BH-006–007 | Recovery uses authoritative source information and validated source/synchronization lineage. | Planning applicability; not approval authority |
 
-The L4 sources above are currently Draft. Under the locked traceability methodology, these references may support planning but cannot produce a `Validated` L4→L5 relation until the applicable L4 behavior is approved or explicitly governance-authorized. fileciteturn454file0L1-L2
+The L4 sources above are currently Draft. They support controlled planning but shall not be treated as immutable behavioral authority or as `Validated` L4→L5 mappings until approved or explicitly governance-authorized.
 
 ### 3.2 Canonical Constraints
 
-- Every Searchable Projection references one canonical source entity; H03 does not become the system of record. fileciteturn468file0L21-L28
-- Search execution shall return source-derived information only within the applicable authorization/visibility context. fileciteturn456file0L2-L2
-- H03 shall not modify source entities or execute source-domain workflows. fileciteturn456file0L2-L2
-- Search projection/index recovery must use authoritative source information and validated lineage. fileciteturn446file0L2-L2
+- Every Searchable Projection references its canonical source; H03 does not become the system of record.
+- Search execution shall return source-derived information only within the applicable authorization/visibility context.
+- H03 shall not modify source entities or execute source-domain workflows.
+- Search projection/index recovery shall use authoritative source information and validated lineage.
+- Search remains a derived technical capability; indexed data is not a competing source of truth.
 
 ### 3.3 Assumptions / Open Authority
 
-**AS-001 — L4 Approval State:** Applicable L4-H-017, L4-H-018 and L4-H-019 files currently show `Draft`; exact production traceability remains pending approval/current-state reconciliation.
+**AS-001 — L4 Approval State:** Applicable L4-H-017, L4-H-018 and L4-H-019 currently show `Draft`; exact production traceability remains pending approval/current-state reconciliation.
 
-**AS-002 — Technology Choice:** No search technology/product has been selected in the sources reviewed. Product/framework choices remain outside this specification until governed ADR/technology-selection decisions exist.
+**AS-002 — Technology Choice:** No search technology/product has been selected in the reviewed authoritative sources. Product/framework choices remain subject to ADR/technology-selection governance.
 
 ## 4. Technical Architecture
 
@@ -82,14 +81,14 @@ The L4 sources above are currently Draft. Under the locked traceability methodol
 
 | Component | Responsibility | Boundary |
 |---|---|---|
-| Search Request Boundary | Accepts a governed search/discovery request and establishes the technical search execution context. | Does not own authentication/authorization policy. |
-| Query Processing Layer | Normalizes and interprets the technical query into a search execution form. | Does not reinterpret business rules. |
-| Search Execution Coordinator | Coordinates retrieval across applicable search indexes and projection categories. | Does not own index lifecycle or synchronization. |
-| Index Abstraction | Provides product-neutral access to the active search index representation. | Underlying index lifecycle remains B01-002. |
-| Projection Reference Resolver | Resolves source-derived projection references and preserves canonical source identity. | Does not mutate canonical source entities. |
-| Result Assembly Boundary | Combines permitted source-derived references and search metadata into the governed result. | Does not become source-of-truth storage. |
-| Relevance / Ranking Processor | Applies H03 search-specific relevance/ranking behavior to eligible results. | Cannot override authorization/visibility controls. |
-| Search Evidence Boundary | Emits technical execution/evidence information required for diagnosis and assurance. | Canonical audit/evidence meaning remains D04. |
+| Search Request Boundary | Establishes governed search/discovery execution context. | Does not own authentication/authorization policy. |
+| Query Processing Layer | Normalizes and interprets technical query input. | Does not reinterpret business rules. |
+| Search Execution Coordinator | Coordinates retrieval across eligible search index/projection categories. | Does not own index lifecycle or synchronization. |
+| Index Abstraction | Provides product-neutral access to the eligible active search representation. | Underlying lifecycle remains B01-002. |
+| Projection Reference Resolver | Preserves canonical source identity and resolves source-derived references. | Does not mutate canonical source entities. |
+| Result Assembly Boundary | Combines permitted source-derived references and search metadata. | Does not become authoritative storage. |
+| Relevance / Ranking Processor | Executes H03 search-specific relevance/ranking behavior. | Cannot bypass visibility restrictions or source ownership. |
+| Search Evidence Boundary | Captures technical execution/evidence information. | Canonical business audit/evidence meaning remains D04. |
 
 ### 4.2 Primary Search Flow
 
@@ -119,41 +118,41 @@ Source-Derived Search Result
 Technical Evidence
 ```
 
-The authorization/visibility stage consumes the applicable security context; B01-001 does not define authorization policy or duplicate D02.
+The authorization/visibility stage consumes the applicable security/search control context; B01-001 does not define the authorization policy itself.
 
 ### 4.3 Searchable Projection Boundary
 
-The technical search architecture consumes the H03 Searchable Projection as the search-side representation. Its canonical source reference remains mandatory for preserving ownership and enabling source-aware navigation.
+The technical search architecture consumes the H03 Searchable Projection as a search-side representation. Canonical source references remain mandatory for preserving ownership and source-aware navigation.
 
-The projection may contain normalized searchable attributes, search metadata, security metadata, indexing information and synchronization lineage as defined by H03. The technical search layer treats these as search-side representations rather than alternative business facts. fileciteturn452file0L2-L2
+Search-side representations may contain normalized searchable attributes and technical metadata defined by H03. They remain derived representations, not alternative business facts.
 
 ### 4.4 Query Execution
 
-The query-processing layer shall transform the incoming technical search request into a bounded search operation without adding business semantics absent from the applicable H03 behavior.
+The query-processing layer transforms a technical search request into a bounded search operation without introducing business semantics absent from applicable upstream behavior.
 
-The execution coordinator may search multiple eligible projection categories, but every result remains traceable to its canonical source reference.
+The execution coordinator may search multiple eligible projection categories, while every returned result remains traceable to its canonical source reference.
 
 ### 4.5 Relevance and Ranking
 
 H03 owns search-specific relevance/ranking behavior. L5 realizes the technical execution boundary for that behavior without defining institutional business priority or authorization policy.
 
-Ranking cannot cause restricted or unauthorized information to appear. Visibility filtering remains a prerequisite supplied by the applicable security/search lifecycle architecture.
+Ranking operates only over eligible results and cannot cause restricted or unauthorized information to appear.
 
 ### 4.6 Cross-Entity Discovery
 
-For related-entity discovery, the architecture shall resolve relationships from searchable projections and canonical references and return source-derived references. It shall not create a new canonical relationship or modify source entities. This preserves the L3-H-017 outcome. fileciteturn430file0L2-L2
+For related-entity discovery, the architecture resolves relationships from searchable projections and canonical references and returns source-derived references. It shall not create a new canonical relationship or modify source entities.
 
 ### 4.7 Index Consumption Boundary
 
-B01-001 consumes an active index through a product-neutral abstraction. Index construction, lifecycle, synchronization, freshness and authorization-aware filtering are delegated to B01-002.
+B01-001 consumes an eligible active index through a product-neutral abstraction. Index construction, lifecycle, synchronization, freshness and authorization-aware filtering are delegated to B01-002.
 
-This separation prevents search execution architecture from duplicating the index lifecycle/synchronization owner.
+This separation prevents duplicate technical ownership between search execution and index lifecycle/synchronization.
 
 ### 4.8 Index and Projection Recovery Boundary
 
-When an index or projection is unavailable, corrupt or stale, B01-001 shall not invent replacement business data. Recovery consumes the validated representation made available by B01-002 and the applicable recovery architecture.
+When an index or projection is unavailable, corrupt or stale, B01-001 does not invent replacement business data. Recovery consumes the validated representation provided by B01-002 and the applicable recovery architecture.
 
-The L4-H-019 baseline explicitly requires recovery from authoritative source information and validation before reactivation. fileciteturn446file0L2-L2
+L4-H-019 requires recovery from authoritative source information and validation before reactivation; the L5 realization therefore preserves a strict handoff rather than independently rebuilding business meaning.
 
 ### 4.9 Data / State Boundary
 
@@ -165,7 +164,7 @@ Search indexes are derived technical artifacts and may be rebuilt from authorita
 
 Search execution receives authenticated and authorization-derived context from the applicable identity/security architecture. B01-001 shall not broaden that context during query execution, ranking or result assembly.
 
-Tenant/Institution and other applicable scope context shall remain attached to the search execution so that source-derived results are not merged across unrelated scopes.
+Tenant/Institution and other applicable scope context remains attached to the search execution so that source-derived results are not merged across unrelated scopes.
 
 ### 4.11 Technical Observability
 
@@ -176,14 +175,14 @@ Material search execution conditions shall be observable, including query-proces
 ### 5.1 Upstream Dependencies
 
 - L2-H03 — Enterprise Directory & Search Workflows.
-- L3-H-017, L3-H-018 and L3-H-019 for business outcome/ownership verification.
+- L3-H-017, L3-H-018 and L3-H-019 for business outcome and ownership verification.
 - Applicable current approved L4 behavior specifications once promoted.
 - Applicable authorization/security architecture from L5-D-02.
 - Applicable Tenant/Institution context architecture from L5-A-04.
 
 ### 5.2 Peer L5 Dependencies
 
-- **L5-B-01-002:** owns index lifecycle, freshness, synchronization and authorization-aware filtering. B01-001 consumes its active/eligible index boundary.
+- **L5-B-01-002:** owns index lifecycle, freshness, synchronization and authorization-aware filtering. B01-001 consumes its eligible index boundary.
 - **L5-D-02:** supplies authorization/policy evaluation and enforcement; B01-001 does not redefine policy.
 - **L5-D-04:** supplies technical audit/evidence architecture; B01-001 supplies search-specific evidence inputs.
 - **L5-E-01:** supplies availability/resilience constraints.
@@ -256,8 +255,8 @@ Material search failures and execution outcomes shall produce sufficient technic
 
 - Authorization policy remains external to B01-001.
 - Search execution shall not broaden caller scope.
-- Projection/index representations shall remain subject to applicable data-protection controls.
-- Trust and cryptographic controls remain with D03.
+- Projection/index representations remain subject to applicable data-protection controls.
+- Trust and cryptographic controls remain with L5-D-03.
 
 ### 7.2 Evidence
 
@@ -265,7 +264,7 @@ Search evidence shall be sufficient to correlate technical search execution with
 
 ## 8. Conformance
 
-- **CR-001:** Search execution shall use an identifiable active/eligible index boundary.
+- **CR-001:** Search execution shall use an identifiable eligible index boundary.
 - **CR-002:** Every returned source-derived result shall retain a canonical source reference.
 - **CR-003:** Search execution shall not modify canonical source entities.
 - **CR-004:** Query processing shall not execute or redefine source-domain business rules.
@@ -287,23 +286,23 @@ Search evidence shall be sufficient to correlate technical search execution with
 | L4-H-017-BH-004 | Draft | Technical read/discovery path does not mutate source entities or invoke source workflows. | §4.6, §6 TB-009 |
 | L4-H-017-BH-006 | Draft | Technical correlation/evidence for discovery execution. | §4.11, §7.2 |
 | L4-H-017-BH-007 | Draft | Completion of technical search execution with source-derived results. | §4.2, §8 |
-| L4-H-018-BH-001 | Draft | Search/index consumption boundary for authoritative source change processing. | §4.7 |
-| L4-H-018-BH-002 | Draft | Search side remains projection-only and does not mutate source entities. | §4.3, §4.9 |
+| L4-H-018-BH-001 | Draft | Search/index consumption boundary for authoritative source-change processing. | §4.7 |
+| L4-H-018-BH-002 | Draft | Search-side representation remains projection-only and does not mutate source entities. | §4.3, §4.9 |
 | L4-H-018-BH-003 | Draft | Consumption of current searchable representation after lifecycle-controlled update. | §4.7 |
-| L4-H-018-BH-006 | Draft | Search execution consumes traceable projection/index lineage. | §4.3, §7.2 |
-| L4-H-019-BH-001 | Draft | Search-side preservation of projection/source reference during failure/recovery handoff. | §4.8, TB-006 |
-| L4-H-019-BH-002 | Draft | Recovered representation is consumed only from authoritative-source-based recovery. | §4.8, TB-007 |
-| L4-H-019-BH-004 | Draft | Search availability only consumes a validated recovered representation. | §4.8, TB-005 |
+| L4-H-018-BH-006 | Draft | Technical correlation/evidence for source-change/search synchronization context. | §4.11, §7.2 |
+| L4-H-018-BH-007 | Draft | Technical consumption of a current validated search representation. | §4.7, §8 |
+| L4-H-019-BH-001 | Draft | Preservation of projection/index identity and source lineage at the search boundary. | §4.3, §4.9 |
+| L4-H-019-BH-002 | Draft | Recovered searchable representation is consumed only after authoritative reconstruction by the owning recovery/lifecycle architecture. | §4.8 |
+| L4-H-019-BH-003 | Draft | Search execution consumes the validated recovered index/projection state; lifecycle transition ownership remains B01-002/upstream H03. | §4.8 |
+| L4-H-019-BH-004 | Draft | Search availability is constrained to validated source/security/lineage context. | §4.8, §6 TB-005 |
 | L4-H-019-BH-006 | Draft | Technical recovery/search evidence correlation. | §4.11, §7.2 |
+| L4-H-019-BH-007 | Draft | Search resumes only against validated, current representation. | §4.8, §8 |
 
-**Relation state:** `Specified` for planning purposes; not `Validated` because the cited L4 sources are Draft. The locked traceability methodology requires approved/locked L4 and L5 versions plus independent review before `Validated`. fileciteturn454file0L1-L2
+These are controlled planning mappings, not final `Validated` relations while the applicable L4 specifications remain Draft.
 
 ## 10. Open Issues / Deferred Design
 
-- **OD-001 — L4 Approval Binding:** Revalidate every listed BH relation against the subsequently approved/current L4 state before architecture approval.
-- **OD-002 — Search Technology Selection:** Any material product/framework/search-engine selection remains subject to the repository's technology-selection and ADR governance.
-- **OD-003 — B01-002 Alignment:** Validate the exact active-index, lifecycle, freshness and filtering handoff once B01-002 is authored and reviewed.
-- **OD-004 — Performance Targets:** No latency, throughput or capacity numbers are invented; authoritative requirements remain to be consumed when established.
-- **OD-005 — Cross-Domain Search Coverage:** L2-H03 lists a broad set of source domains. Exact source-specific index contracts and mappings shall be established only where governed upstream/L4 evidence exists.
-
-**Promotion Gate:** Remain `Draft — Authoring` until blocking L4 applicability/status, peer dependency and ADR checks are resolved.
+- **OI-001 — L4 Approval Reconciliation:** L4-H-017, L4-H-018 and L4-H-019 remain Draft in the current branch. Promotion of these mappings to final validated status is gated on upstream approval/current-state reconciliation.
+- **OI-002 — Search Technology Selection:** No search product/framework is selected. Such selection remains subject to governed ADR/technology-selection methodology.
+- **OI-003 — Exact Repository Traceability Record:** The canonical atomic `(L4 BH ID, L4 Version, L5 Specification ID, L5 Version)` relation shall be registered in the repository-level L4→L5 traceability mechanism when the relevant L4 behaviors are approved.
+- **OI-004 — B01-002 Contract Detail:** Detailed interface/contract mechanics remain owned by the applicable contract/integration architecture and by B01-002 for index lifecycle/synchronization concerns; this specification does not invent protocol or payload design.
