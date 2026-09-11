@@ -86,6 +86,12 @@ The next new ADR number is determined from the highest canonical allocated ADR n
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | `ADR-L5-0001` | Canonical Trust Boundary & Segmentation Pattern | Shared / Family | L5-D-03 — Security, Cryptography, Secrets & Key Management Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0001_Canonical_Trust_Boundary_and_Segmentation_Pattern.md` | `L5-D-03-001`; `L5-D-03-005` | 2026-09-11 | 2026-09-11 | — | — | Approved after controlled independent architecture review; not Locked. |
 | `ADR-L5-0002` | Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern | Shared / Family | L5-D-03 — Security, Cryptography, Secrets & Key Management Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0002_Cryptographic_Protection_Key_Custody_and_Machine_Credential_Responsibility_Pattern.md` | `L5-D-03-002`; `L5-D-03-003`; `L5-D-03-004` | 2026-09-11 | 2026-09-11 | — | — | Approved after controlled independent architecture review; not Locked. |
+| `ADR-L5-0003` | Contract-Driven Modular Platform with Selective Isolation | Repository | L5-A-01 — Application & Platform Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0003_Contract_Driven_Modular_Platform_with_Selective_Isolation.md` | `L5-A-01-001`; `L5-A-03-001`; `L5-A-03-002` | 2026-09-11 | 2026-09-11 | — | — | Consolidates A01/A03 application and module-boundary decision scope; not Locked. |
+| `ADR-L5-0004` | Tenant and Institution Isolation Enforcement Pattern | Shared / Family | L5-A-04 — Tenant & Institution Isolation Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0004_Tenant_and_Institution_Isolation_Enforcement_Pattern.md` | `L5-A-04-001`; `L5-A-04-002` | 2026-09-11 | 2026-09-11 | — | — | Canonical allocation of pilot candidate ADR-C1; not Locked. |
+| `ADR-L5-0005` | Persistence Ownership, Hybrid Topology and Tenant Isolation Pattern | Shared / Family | L5-B-02 — Database & Persistence Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0005_Persistence_Ownership_Hybrid_Topology_and_Tenant_Isolation_Pattern.md` | `L5-B-02-001`; `L5-B-02-002` | 2026-09-11 | 2026-09-11 | — | — | Consolidates B02 persistence-topology and isolation decision scope; database product remains separate. |
+| `ADR-L5-0006` | Owner-Local Transaction and Optimistic Concurrency Strategy | Shared / Family | L5-B-02 — Database & Persistence Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0006_Owner_Local_Transaction_and_Optimistic_Concurrency_Strategy.md` | `L5-B-02-003` | 2026-09-11 | 2026-09-11 | — | — | Canonical allocation of pilot candidate ADR-C3; not Locked. |
+| `ADR-L5-0007` | Atomic State-to-Publication Intent Handoff Pattern | Repository | L5-B-02 — Database & Persistence Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0007_Atomic_State_to_Publication_Intent_Handoff_Pattern.md` | `L5-B-02-003`; materially constrains `L5-C-02-002` | 2026-09-11 | 2026-09-11 | — | — | Resolves pilot candidate ADR-C4 with B02 owning atomic handoff and C02 retaining delivery ownership. |
+| `ADR-L5-0008` | Expand-Migrate-Transition-Contract Schema Evolution Pattern | Shared / Family | L5-B-02 — Database & Persistence Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0008_Expand_Migrate_Transition_Contract_Schema_Evolution_Pattern.md` | `L5-B-02-004` | 2026-09-11 | 2026-09-11 | — | — | Reusable B02 schema-evolution pattern; not Locked. |
 
 ### ADR Path
 
@@ -328,5 +334,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 2  
-**Next Canonical Allocation:** `ADR-L5-0003`
+**ADR IDs Currently Canonically Allocated:** 8  
+**Next Canonical Allocation:** `ADR-L5-0009`
