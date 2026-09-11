@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Overall solution/application structure and platform responsibility boundaries without redefining business domains.  
 **Technical Architecture Owner:** L5-A-01 — Application & Platform Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Draft`  
-**Last Updated:** `2026-09-10`  
+**Last Updated:** `2026-09-11`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L4-A-001` v1.0.0 Draft; `L4-A-015` v1.0.0 Draft; `L4-A-019` v1.0.0 Draft; `L4-A-028` v1.0.0 Draft; SutraERP L1 Business Domain Architecture v2.1 Locked.  
 **Referenced By:** None yet  
-**Applicable ADRs:** Required but unresolved — overall application decomposition and selective-isolation architecture (`OD-001`).  
+**Applicable ADRs:** `ADR-L5-0003` — Contract-Driven Modular Platform with Selective Isolation (`Architecture Approved`).  
 
 ---
 
@@ -61,8 +61,9 @@ The term **platform** in this specification denotes the L5 technical application
 | L4 | `L4-A-019_Committed_Business_Fact_to_Reliable_Consumer_Delivery.md` | v1.0.0 / Draft — explicitly authorized for controlled A01 authoring | `BH-007` | An immutable event is made available to eligible consumers without transferring publisher ownership or consumer business-decision ownership. | Requires application/execution boundaries that do not alter upstream semantic ownership when communication crosses them. |
 | L4 | `L4-A-028_Module_Proposal_to_Active_Governed_Enterprise_Capability.md` | v1.0.0 / Draft — explicitly authorized for controlled A01 authoring | `BH-003`, `BH-008`, `BH-009` | Modules expose governed capabilities/dependencies and become discoverable when active; registry activation is not software deployment or runtime execution. | Requires explicit separation between logical module governance/composition and runtime/deployment realization. |
 | L1 | `SutraERP_L1_Business_Domain_Architecture_Locked.md` | v2.1 / Locked | §§2.1, 2.4 | Every business capability has one owner; only the owner modifies authoritative business data; cross-domain collaboration uses contracts/events; direct database access across domains is prohibited. | Preserves canonical ownership regardless of co-location or execution separation. |
-| L5 Governance | `L5_Technology_Selection_and_ADR_Methodology.md` | v1.0.1 / Locked | §§2–5, especially §3 | Reusable cross-specification structure, material module/service boundary decisions and major runtime patterns require ADR governance. | Makes `AD-001` ADR-required and prevents silent canonicalization in this Draft. |
-| L5 Governance | `L5_ADR_Register.md` | v1.0.0 / Locked | §§1–5 | ADR identifiers are allocated only through the canonical register on `main`; none are currently allocated. | Prevents this specification from inventing an ADR identifier. |
+| L5 Governance | `L5_Technology_Selection_and_ADR_Methodology.md` | v1.0.1 / Locked | §§2–5, especially §3 | Reusable cross-specification structure, material module/service boundary decisions and major runtime patterns require ADR governance. | Makes `AD-001` ADR-governed. |
+| L5 ADR | `ADR-L5-0003_Contract_Driven_Modular_Platform_with_Selective_Isolation.md` | Architecture Approved | Decision §§7–11 | Establishes the Contract-Driven Modular Platform with Selective Isolation as the canonical application-composition pattern. | Canonical decision authority for `AD-001`. |
+| L5 Governance | `L5_ADR_Register.md` | v1.0.0 / Locked | Canonical register row `ADR-L5-0003` | Allocates and tracks the approved application-composition ADR. | Confirms canonical identity and lifecycle state. |
 
 ### 3.2 Authoritative Constraints
 
@@ -77,7 +78,7 @@ The term **platform** in this specification denotes the L5 technical application
 
 ### 3.3 Assumptions
 
-No material architecture assumptions are required for this Draft. The selected decomposition model is recorded as `AD-001` and remains subject to canonical ADR resolution through `OD-001`.
+No material architecture assumptions are required for this Draft. `ADR-L5-0003` establishes the selected decomposition model recorded as `AD-001`.
 
 ---
 
@@ -85,7 +86,7 @@ No material architecture assumptions are required for this Draft. The selected d
 
 ### Owns
 
-- The overall SutraERP application-structure decision and, for this Draft, the provisionally selected **Contract-Driven Modular Platform with Selective Isolation** model pending `OD-001`.
+- The overall SutraERP application-structure decision established by `ADR-L5-0003`: **Contract-Driven Modular Platform with Selective Isolation**.
 - The top-level logical distinction between the **Modular Application Core** and **Selectively Isolated Execution Units**.
 - The rule that a business-domain boundary does not automatically create a network, process, service or deployment boundary.
 - The rule that execution isolation requires explicit technical justification from the canonical L5 owner and applicable ADR/governance, rather than preference or business-domain identity alone.
@@ -124,17 +125,17 @@ The peers below are referenced by their frozen canonical responsibility boundari
 
 ## 5. Solution Architecture
 
-The realization below implements the Lead-Architect-selected Draft direction in `AD-001`. It remains provisional until the required canonical ADR is allocated and approved through `OD-001`; this Draft does not represent the decision as repository-canonical.
+The realization below implements the approved application-composition direction in `ADR-L5-0003` and `AD-001`.
 
 ### 5.1 Technical Realization Model
 
 | Element | Type | Responsibility | Input / Context | State / Data | Output / Handoff | Depends On | Failure Boundary | Basis |
 |---|---|---|---|---|---|---|---|---|
-| SutraERP Application Composition Boundary | Logical application boundary | Defines the top-level technical composition within which platform capabilities, domain-aligned modules and selectively isolated units participate without changing business ownership. | Governed capability/module identities; applicable Tenant/Institution context. | Owns no canonical business data. | Establishes placement relationship to Modular Application Core or an explicitly justified isolated execution boundary. | A03, A04, B02, C01/C02, D03, E04 | Invalid/unsupported placement shall not be repaired by bypassing a canonical owner. | Frozen A01 responsibility; C-001–C-006. |
-| Modular Application Core | Logical composition | Default application composition for capabilities that do not have an explicit architecture requirement for separate execution isolation. Permits strong module boundaries without requiring a network/service boundary for every business domain. | A03-defined module composition; A04 context; peer-owned contracts. | Domain/business state remains owned by canonical domains and B02 persistence boundaries. | Core-local governed module invocation or peer-owned handoff. | A03, A04, B02, C01/C02 | Co-location shall not authorize cross-owner persistence writes, implicit trust or dependency bypass. | L1 §§2.1/2.4; AD-001. |
-| Selectively Isolated Execution Unit | Logical execution boundary | Provides a separately executable boundary only where the canonical technical owner or approved ADR requires isolation for security, workload, resilience or other material architecture reason. | Governed input/contract and propagated context. | State ownership remains with the canonical capability/domain and its persistence owner. | Governed synchronous or asynchronous handoff defined by C01/C02 and the owning L5 architecture. | A04, C01/C02, D03, E04; specialized owner such as A07 | Unit failure shall not be recovered through direct cross-boundary state modification or ownership transfer. Exact retry/recovery is delegated. | AD-001; L4-A-015-BH-004/005; L4-A-019-BH-007. |
+| SutraERP Application Composition Boundary | Logical application boundary | Defines the top-level technical composition within which platform capabilities, domain-aligned modules and selectively isolated units participate without changing business ownership. | Governed capability/module identities; applicable Tenant/Institution context. | Owns no canonical business data. | Establishes placement relationship to Modular Application Core or an explicitly justified isolated execution boundary. | A03, A04, B02, C01/C02, D03, E04 | Invalid/unsupported placement shall not be repaired by bypassing a canonical owner. | Frozen A01 responsibility; C-001–C-006; `ADR-L5-0003`. |
+| Modular Application Core | Logical composition | Default application composition for capabilities that do not have an explicit architecture requirement for separate execution isolation. Permits strong module boundaries without requiring a network/service boundary for every business domain. | A03-defined module composition; A04 context; peer-owned contracts. | Domain/business state remains owned by canonical domains and B02 persistence boundaries. | Core-local governed module invocation or peer-owned handoff. | A03, A04, B02, C01/C02 | Co-location shall not authorize cross-owner persistence writes, implicit trust or dependency bypass. | L1 §§2.1/2.4; `ADR-L5-0003`; AD-001. |
+| Selectively Isolated Execution Unit | Logical execution boundary | Provides a separately executable boundary only where the canonical technical owner or approved ADR requires isolation for security, workload, resilience or other material architecture reason. | Governed input/contract and propagated context. | State ownership remains with the canonical capability/domain and its persistence owner. | Governed synchronous or asynchronous handoff defined by C01/C02 and the owning L5 architecture. | A04, C01/C02, D03, E04; specialized owner such as A07 | Unit failure shall not be recovered through direct cross-boundary state modification or ownership transfer. Exact retry/recovery is delegated. | `ADR-L5-0003`; AD-001; L4-A-015-BH-004/005; L4-A-019-BH-007. |
 | Core-to-Isolated Handoff Boundary | Architecture boundary | Requires every core↔isolated interaction to cross a governed technical contract/event boundary while preserving source/target ownership and execution context. | Contract/event context defined by canonical peers. | No independent business state ownership. | C01 synchronous handoff or C02 asynchronous/event handoff. | C01/C02, A04, D03 | Missing/invalid context or incompatible/unavailable boundary prevents bypass execution. | C-001–C-003; L4-A-019-BH-007. |
-| Deployment Realization Handoff | Architecture boundary | Transfers the logical placement model to E04 for packaging/runtime/deployment realization without prescribing process, container, server or cloud topology. | A01 logical placement plus owner-specific isolation requirement. | No runtime/deployment state owned by A01. | E04 packaging/isolation/deployment architecture. | E04 | A deployment choice shall not collapse a required A01 isolated boundary or create an unapproved one that changes ownership semantics. | C-005; AD-001. |
+| Deployment Realization Handoff | Architecture boundary | Transfers the logical placement model to E04 for packaging/runtime/deployment realization without prescribing process, container, server or cloud topology. | A01 logical placement plus owner-specific isolation requirement. | No runtime/deployment state owned by A01. | E04 packaging/isolation/deployment architecture. | E04 | A deployment choice shall not collapse a required A01 isolated boundary or create an unapproved one that changes ownership semantics. | C-005; `ADR-L5-0003`; AD-001. |
 
 The **Modular Application Core is the default composition model, not a declaration that all capabilities must execute in one process or one deployment unit**. Conversely, the existence of an isolated execution unit does not convert its represented business domain into a separately owned business service. Runtime realization remains governed by E04.
 
@@ -259,7 +260,7 @@ These are logical architecture categories. E04 owns their realization into packa
 
 | Decision ID | Decision | Selected Architecture / Position | Basis / Derivation | Rationale | ADR |
 |---|---|---|---|---|---|
-| AD-001 | Overall SutraERP application decomposition model | **Provisional Draft direction — Contract-Driven Modular Platform with Selective Isolation**: the Modular Application Core is the default technical composition; separately executable isolation is introduced only where explicit canonical L5 architecture/ADR justifies it. A business-domain boundary does not automatically become a network/service/deployment boundary. This position is not repository-canonical until the required ADR is approved. | Frozen `L5-A-01-001` responsibility; L1 §§2.1/2.4; L4-A-001-BH-003/009; L4-A-015-BH-004/005; L4-A-019-BH-007; L4-A-028-BH-003/009; Lead Architect selection on 2026-09-10. | Preserves domain ownership and governed contracts while avoiding unjustified distributed-system boundaries; permits stronger isolation for specialized capabilities without forcing the entire ERP into microservices or permanently coupling all capabilities to one runtime. | **Required — canonical ADR not yet allocated; see OD-001.** |
+| AD-001 | Overall SutraERP application decomposition model | **Architecture Approved — Contract-Driven Modular Platform with Selective Isolation**: the Modular Application Core is the default technical composition; separately executable isolation is introduced only where explicit canonical L5 architecture/ADR justifies it. A business-domain boundary does not automatically become a network/service/deployment boundary. | `ADR-L5-0003`; frozen `L5-A-01-001` responsibility; L1 §§2.1/2.4; L4-A-001-BH-003/009; L4-A-015-BH-004/005; L4-A-019-BH-007; L4-A-028-BH-003/009. | Preserves domain ownership and governed contracts while avoiding unjustified distributed-system boundaries; permits stronger isolation for specialized capabilities without forcing the entire ERP into microservices or permanently coupling all capabilities to one runtime. | `ADR-L5-0003` |
 
 No programming language, framework, database, broker, cloud platform, container/orchestration platform or vendor product is selected by this specification.
 
@@ -283,22 +284,23 @@ No numeric availability, performance, capacity or recovery target is established
 
 | Requirement ID | Architecture Conformance Requirement | Derived From | Upstream / Decision Basis |
 |---|---|---|---|
-| CR-001 | Every application capability governed by A01 shall have an explicit architectural placement relationship to the Modular Application Core or to an explicitly justified Selectively Isolated Execution Unit; business-domain identity alone shall not mandate separate execution. | Section 5.1; AD-001 | Frozen A01 responsibility; AD-001 |
-| CR-002 | Introducing a Selectively Isolated Execution Unit shall require explicit support from the capability's canonical L5 architecture and applicable ADR/governance; implementation teams shall not create isolated services solely by preference. | Section 5.1; AD-001 | L5 ADR methodology §3 |
+| CR-001 | Every application capability governed by A01 shall have an explicit architectural placement relationship to the Modular Application Core or to an explicitly justified Selectively Isolated Execution Unit; business-domain identity alone shall not mandate separate execution. | Section 5.1; AD-001 | Frozen A01 responsibility; `ADR-L5-0003` |
+| CR-002 | Introducing a Selectively Isolated Execution Unit shall require explicit support from the capability's canonical L5 architecture and applicable ADR/governance; implementation teams shall not create isolated services solely by preference. | Section 5.1; AD-001 | L5 ADR methodology §3; `ADR-L5-0003` |
 | CR-003 | Co-located modules shall not use co-location to modify another canonical business owner's persistence directly or bypass A03/B02 ownership controls. | Sections 5.1, 5.4 | L1 v2.1 §2.1; C-001/C-002 |
 | CR-004 | Every core↔isolated interaction shall use a governed C01/C02 technical boundary and shall preserve the canonical source/target business ownership. | Sections 5.1–5.3 | L1 v2.1 §§2.1/2.4; L4-A-015-BH-004/005; L4-A-019-BH-007 |
 | CR-005 | Tenant/Institution execution context shall be preserved and enforced across both core-local and isolated execution according to A04; no A01 placement shall introduce an inferred/default cross-Tenant context. | Sections 5.2, 5.5 | L4-A-001-BH-003/005/009; C-003 |
 | CR-006 | Module Registry `Active` status shall not be interpreted by A01 as equivalent to deployment, process creation or runtime execution; concrete composition/deployment shall remain governed by A03/E04. | Sections 3.2, 5.1 | L4-A-028-BH-008/009 |
-| CR-007 | Concrete runtime packaging shall preserve any A01/A03/D03-required execution boundary while remaining owned by E04; A01 conformance shall not require Kubernetes, microservices, a single binary, a server count or a cloud provider. | Sections 5.5–5.6 | C-005/C-006; AD-001 |
+| CR-007 | Concrete runtime packaging shall preserve any A01/A03/D03-required execution boundary while remaining owned by E04; A01 conformance shall not require Kubernetes, microservices, a single binary, a server count or a cloud provider. | Sections 5.5–5.6 | C-005/C-006; `ADR-L5-0003` |
 | CR-008 | No platform-level technical element shall become canonical owner of a business fact, lifecycle or event merely because it hosts, executes, routes or persists the corresponding technical behavior. | Sections 4, 5.1 | L1 v2.1 §§2.1/2.4; L4-A-019-BH-007 |
 
 ---
 
 ## 9. Open Decisions & Deferred Design
 
+`ADR-L5-0003` resolves the former blocking application-decomposition ADR item. The remaining item concerns promotion evidence for cited upstream L4 sources and is not altered by this remediation.
+
 | Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
 |---|---|---|---|---|---|---|
-| OD-001 | Canonical ADR for `AD-001` — Contract-Driven Modular Platform with Selective Isolation | ADR | L5 ADR Register currently has no allocated ADR; the Lead Architect selected the architecture direction during controlled authoring but the decision is not yet a canonical repository ADR. | Lead Architect through L5 ADR allocation/approval governance | **Yes — blocks Architecture Approved/Locked status** | Re-check duplicate ADR coverage, allocate the next canonical ADR ID on `main`, author/evaluate the ADR, and update this specification to reference the approved ADR. |
 | OD-002 | Canonical repository evidence for controlled use of the cited Draft L4 sources | Governance / Upstream | `L4-A-001`, `L4-A-015`, `L4-A-019` and `L4-A-028` remain `Draft` on `main`; explicit Lead-Architect authorization was supplied for this authoring session. | Lead Architect / repository governance | **Yes — blocks promotion unless governance evidence or approved L4 state is canonicalized** | Before Architecture Approved status, either promote the applicable L4 material through its governance path or record the explicit Draft-L4 usage authorization in canonical repository governance. |
 
 Detailed module boundaries, isolation mechanics, persistence/transaction design, synchronous/asynchronous contract mechanics, security controls, runtime packaging and technology products are intentionally delegated to their canonical L5 owners and are not open A01 decisions.
@@ -317,7 +319,8 @@ Detailed module boundaries, isolation mechanics, persistence/transaction design,
 - L1 v2.1 §§2.1, 2.4 — canonical domain ownership, contracts/events and prohibition of cross-domain direct database access.
 - L5 Candidate Corpus Register v1.1.0 — A01 canonical responsibility.
 - L5 Technology Selection & ADR Methodology v1.0.1 — ADR requirement for AD-001.
-- L5 ADR Register v1.0.0 — no ADR currently allocated.
+- `ADR-L5-0003` — approved application-composition decision.
+- L5 ADR Register v1.0.0 — canonical identity/lifecycle allocation.
 
 ### Material L5 Dependencies
 - `L5-A-03-001` / `L5-A-03-002` — module boundaries and composition enforcement.
@@ -329,11 +332,10 @@ Detailed module boundaries, isolation mechanics, persistence/transaction design,
 - `L5-A-07-001`–`L5-A-07-004` — specialized secure computation consumers of selective isolation.
 
 ### Architecture Decisions
-- `AD-001`
+- `AD-001` → `ADR-L5-0003`
 
 ### Conformance Requirements
 - `CR-001`–`CR-008`
 
 ### Open / Blocking Items
-- `OD-001` — canonical ADR allocation and approval for the application decomposition model.
 - `OD-002` — canonical repository evidence for authorized Draft-L4 usage before promotion.
