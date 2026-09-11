@@ -88,11 +88,11 @@ These dependencies do not transfer canonical ownership.
 
 Exact atomic L4 applicability has not been independently reconciled in this authoring draft. No L4 behavioral-obligation identifiers are invented here.
 
-Required atomic relation:
+The canonical traceability relation identity is:
 
-`(L4 BH ID, L4 Version, L5-B-05-002, L5 Version)`
+`(L4 BH ID, L5 Specification ID)`
 
-Exact L4 BH applicability, exact source version/status and validation status remain **OPEN / BLOCKING** until reconciled against the applicable current approved L4 corpus.
+A validated relation record shall additionally bind the applicable `L4 Version` and `L5 Version`. Exact L4 BH applicability, exact source version/status and validation status remain **OPEN / BLOCKING** until reconciled against the applicable current approved L4 corpus.
 
 ---
 
@@ -260,76 +260,41 @@ Equivalent technical handling paths shall consume the same authoritative control
 
 ### 7.1 Security
 
-- Protected values and handling context shall be protected against unauthorized alteration or exposure.
-- Sensitive data shall not be unnecessarily copied into technical evidence.
-- Authorization remains governed by L5-D-02.
-- Trust and cryptographic mechanisms remain governed by L5-D-03.
+Sensitive-data handling shall remain subordinate to the canonical identity, authorization, security and privacy architectures.
 
 ### 7.2 Evidence
 
-The architecture shall support evidence of:
-
-- applicable handling context;
-- representation/control selected;
-- enforcement outcome;
-- unresolved or missing context; and
-- specialist handoff where applicable.
-
-Evidence shall avoid unnecessarily recording the unmasked sensitive value.
-
----
+Evidence shall record control application and outcome without unnecessary capture of protected source values.
 
 ## 8. Conformance
 
 A conforming implementation shall demonstrate that:
 
-1. Sensitive handling consumes authoritative classification/privacy/authorization context.
-2. Required handling context is checked before protected information is exposed.
-3. Missing or contradictory context cannot silently produce unrestricted exposure.
-4. Required masking/redaction cannot be bypassed through an equivalent uncontrolled technical path.
-5. Tenant/Institution scope is preserved.
-6. Masked or redacted representations do not become canonical business values.
-7. Export/exchange paths preserve applicable handling controls.
-8. Consent, purpose and disclosure decisions remain with their canonical authority.
-9. Security and authorization mechanisms remain with their canonical L5 owners.
-10. Material control outcomes are technically observable without unnecessary sensitive-data exposure.
-11. The architecture remains implementation-independent at the specification level.
-
----
+- **CR-001:** Required classification/privacy/authorization context is resolved before controlled handling.
+- **CR-002:** Sensitive values are not silently downgraded to less restrictive representations.
+- **CR-003:** Masked/redacted representations remain distinguishable from canonical source values.
+- **CR-004:** Unmasking is constrained by applicable authorization/security context.
+- **CR-005:** Tenant/Institution scope is preserved.
+- **CR-006:** Sensitive handling remains consistent across applicable technical paths.
+- **CR-007:** Material control outcomes remain observable without unnecessary protected-value replication.
+- **CR-008:** The architecture does not acquire canonical ownership of the source information or privacy decision.
 
 ## 9. Traceability
 
 | Traceability Item | Status |
 |---|---|
-| Canonical specification ID verified | PASS |
-| Canonical title verified | PASS |
-| Canonical major-area placement verified | PASS |
-| Responsibility boundary verified against 105-spec register | PASS |
-| B05 specialist ownership boundaries identified | PASS |
-| Upstream L1/L2/L3/L4 applicability | OPEN / BLOCKING |
-| Exact atomic L4 BH mapping | OPEN / BLOCKING |
-| Exact L4 source version/status | OPEN / BLOCKING |
-| Peer L5 version/dependency validation | OPEN / BLOCKING |
-
-### Required Atomic Traceability Form
-
-Each validated relation shall use:
-
-`L4 BH ID + L4 Version + L5-B-05-002 + L5 Version`
-
-Document-level statements such as “applies to sensitive-data scenarios” are insufficient for final traceability.
-
----
+| Canonical L5 identity | Verified |
+| Canonical responsibility | Verified |
+| Exact atomic L4 BH applicability | Open / Blocking |
+| Exact L4 source version/status | Open / Blocking |
+| Validated relation version binding | Required before promotion |
+| Higher-level ownership boundary | Preserved |
 
 ## 10. Open Issues / Deferred Design
 
-- **OB-001 — Exact L4 BH Applicability:** Reconcile exact L4 behavioral obligations against the current approved L4 corpus before promotion.
-- **OB-002 — L4 Version/Status:** Record exact source versions and current approval/lock status for every accepted atomic relation.
-- **OB-003 — Peer Dependency Validation:** Validate exact versions and boundaries of B05-001/B05-003/B05-004/B05-005, D01/D02/D03/D04, B02 and applicable L5-C exchange architectures.
-- **OB-004 — Classification Vocabulary:** Consume the authoritative classification vocabulary when confirmed; do not invent classification levels here.
-- **OB-005 — Masking Policy Inputs:** Consume authoritative handling restrictions; do not invent business disclosure or privacy policy.
-- **OB-006 — Aadhaar Boundary:** Where Aadhaar data is involved, hand off to B05-004 rather than duplicating specialized protection requirements.
-- **OB-007 — Consent/Purpose Boundary:** Where consent, purpose limitation, minimization or disclosure constraints apply, consume/enforce through B05-005 rather than creating a competing policy mechanism.
-- **OB-008 — Current L4 Baseline Reconciliation:** Where live L4 documents differ in status from the governance baseline, downstream traceability shall use the subsequently approved/current L4 state and shall not treat Draft wording as immutable.
+- **OD-001 — Exact L4 BH Applicability:** Blocking until applicable approved L4 behaviors are identified.
+- **OD-002 — L4/L5 Version Binding:** Blocking until each validated relation records the L4 and L5 versions.
+- **OD-003 — Specialist B05 Alignment:** Reconcile specialist boundaries during promotion.
+- **OD-004 — Technical Control Placement:** Resolve final enforcement placement where downstream L5 owners specialize a control.
 
-**Promotion Gate:** This specification shall remain `Draft — Authoring` until exact L4 applicability, upstream status and peer dependency checks are independently validated.
+**Current State:** Draft — Authoring
