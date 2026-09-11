@@ -5,6 +5,7 @@
 | Field | Value |
 |---|---|
 | Specification ID | L5-B-04-005 |
+| Specification Title | Digital Signing, Seal, QR & Credential Integrity Architecture |
 | Architecture Level | L5 — Solution Architecture |
 | Family | L5-B — Data & Information Architecture |
 | Major Area | L5-B-04 — Document, Media & Object Platform Architecture |
@@ -24,7 +25,7 @@
 
 Define the reusable technical architecture for applying digital signing, seals, QR/barcode representations and credential-integrity mechanisms to authorized document and credential representations while preserving source-domain ownership of business eligibility, approval, issuance and lifecycle decisions.
 
-The approved L5 corpus assigns B04-005 the application of signing/seal/QR/barcode credential-integrity mechanisms and explicitly retains cryptographic primitives and keys under L5-D-03. fileciteturn529file1L25-L31
+The approved L5 corpus assigns B04-005 the application of signing/seal/QR/barcode credential-integrity mechanisms and explicitly retains cryptographic primitives and keys under L5-D-03. Source: `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md`, `L5-B-04-005`.
 
 ### In Scope
 
@@ -33,6 +34,8 @@ The approved L5 corpus assigns B04-005 the application of signing/seal/QR/barcod
 - Application orchestration for digital signatures, seals and QR/barcode representations.
 - Credential-integrity representation generation and verification coordination.
 - Integrity and lineage preservation across enhanced representations.
+- Binding of integrity verification to the exact source/enhanced representation lineage to prevent silent substitution.
+- Technical controls against unauthorized re-signing, representation substitution or context mismatch where the integrity mechanism provides such detection.
 - Controlled handoff to registry/storage and owning business workflows.
 - Technical evidence for signing, sealing, encoding and credential-integrity outcomes.
 
@@ -72,6 +75,8 @@ The approved L5 corpus assigns B04-005 the application of signing/seal/QR/barcod
 - A technically signed or sealed representation does not by itself establish business approval or issuance.
 - QR/barcode content shall represent authorized information and shall not silently create new business facts.
 - Integrity enhancement shall preserve source representation lineage and applicable scope.
+- Integrity verification shall be bound to the representation and lineage for which the integrity result was established; a valid result for one representation shall not silently validate a substituted representation.
+- Technical processing shall detect or reject material source/representation/context mismatch where the applicable integrity mechanism is expected to provide that assurance.
 - Invalid, ambiguous or unverifiable integrity processing shall remain observable and shall not be represented as successful.
 - Tenant/Institution and security context shall remain preserved.
 
@@ -162,11 +167,15 @@ Where a QR/barcode is used for verification or reference, the verification path 
 
 Credential-integrity processing shall establish technical relationships among the authorized credential representation, integrity enhancement and verification result. It shall preserve sufficient lineage to determine which source representation was enhanced and under which context.
 
+Integrity validation shall be representation-specific: an integrity result established for one source/enhanced representation relationship shall not be reused for a materially different representation, scope or credential context without a new valid integrity result.
+
 Credential-integrity success shall remain distinct from the business decision that a credential is eligible, approved, issued or valid in the institutional sense.
 
 ### 4.8 Verification
 
-Where required, the platform shall verify that the applied integrity mechanism remains consistent with the expected representation and governed trust context. Verification failure, uncertainty or inability to establish trust shall remain observable and shall prevent the representation from being reported as technically verified.
+Where required, the platform shall verify that the applied integrity mechanism remains consistent with the expected representation, source/enhanced lineage and governed trust context. Verification failure, uncertainty or inability to establish trust shall remain observable and shall prevent the representation from being reported as technically verified.
+
+Material mismatch among source representation, enhanced representation, scope or required context shall result in verification failure or unresolved status rather than silent acceptance.
 
 ### 4.9 Cryptographic Boundary
 
@@ -189,6 +198,8 @@ Integrity processing shall preserve applicable Tenant, Institution and execution
 ### 4.13 Evidence and Lineage
 
 Material signing, sealing, QR/barcode and credential-integrity operations shall preserve technical evidence including source representation, applicable context, integrity operation, technical outcome and enhanced-representation lineage. Sensitive content shall not be unnecessarily replicated into evidence.
+
+Evidence shall distinguish the representation for which integrity was established from later or substituted representations so that a historical integrity result is not misapplied to a different artifact.
 
 ## 5. Dependencies / Integration
 
@@ -264,17 +275,17 @@ Technical signing, sealing, encoding or credential-integrity success shall not i
 
 Tenant, Institution and execution scope shall remain preserved throughout integrity processing.
 
-### TB-010 — Recovery Without Fabrication
-
-Recovery or re-processing shall use authoritative source representations and preserved lineage and shall not fabricate missing business information.
-
-### TB-011 — Evidence Continuity
+### TB-010 — Evidence Continuity
 
 Material integrity-processing attempts, failures and outcomes shall remain reconstructable through technical evidence and lineage.
 
-### TB-012 — Invalid Integrity Containment
+### TB-011 — Anti-Substitution Integrity
 
-An integrity-enhanced representation that fails required verification shall not be handed off as a technically verified artifact.
+An integrity result shall be accepted only for the representation and source/enhanced lineage for which it was established. Material representation substitution or context mismatch shall cause verification failure or unresolved status.
+
+### TB-012 — No Fabricated Credential Validity
+
+Technical integrity success shall not be represented as institutional credential validity, business issuance or business eligibility unless the owning business workflow independently establishes that outcome.
 
 ## 7. Security / Trust / Evidence
 
@@ -285,10 +296,11 @@ An integrity-enhanced representation that fails required verification shall not 
 - Sensitive representations remain subject to L5-B-05 classification/privacy controls.
 - Applicable Tenant/Institution scope shall remain preserved.
 - Untrusted integrity outcomes shall not be promoted into trusted processing paths.
+- Representation substitution and context mismatch shall not silently inherit trust from a prior integrity result.
 
 ### 7.2 Evidence
 
-Evidence shall support reconstruction of integrity enhancement, including source reference, processing context, mechanism applied, technical result, verification outcome and representation lineage. Business evidentiary meaning remains with the originating domain and D04.
+Evidence shall support reconstruction of integrity enhancement, including source reference, processing context, integrity operation, technical result, verification outcome and representation lineage. Business evidentiary meaning remains with the originating domain and D04.
 
 ## 8. Conformance
 
@@ -304,7 +316,8 @@ Evidence shall support reconstruction of integrity enhancement, including source
 - **CR-010:** Tenant/Institution and execution scope remain preserved.
 - **CR-011:** Integrity failures cannot be reported as successful verification.
 - **CR-012:** Technical evidence remains distinguishable from business audit meaning.
-- **CR-013:** The architecture remains independent of unapproved technology/product choices.
+- **CR-013:** Representation-specific integrity verification prevents silent substitution of a materially different artifact or context.
+- **CR-014:** The architecture remains independent of unapproved technology/product choices.
 
 ## 9. Traceability
 
@@ -315,12 +328,12 @@ Evidence shall support reconstruction of integrity enhancement, including source
 | Applicable QR/barcode BHs | Approval-state reconciliation required | Authorized QR/barcode representation and verification reference. | §§4.1, 4.6, §6 |
 | Applicable credential-integrity BHs | Approval-state reconciliation required | Credential integrity enhancement and technical verification. | §§4.7–4.8, §6 |
 
-**Traceability qualification:** Exact atomic `(L4 BH ID, L4 Version, L5 Specification ID, L5 Version)` relations remain deferred until the applicable L4 approval-state reconciliation is complete.
+**Traceability qualification:** Exact atomic `(L4 BH ID, L4 Version, L5 Specification ID, L5 Version)` relations remain gated until applicable L4 approval-state reconciliation is complete.
 
 ## 10. Open Issues / Deferred Design
 
-1. Resolve and register exact atomic L4→L5 mappings against the current approved L4 corpus.
+1. Reconcile exact atomic L4→L5 mappings against the current approved L4 corpus.
 2. Confirm source-specific signing, seal, QR/barcode and credential-integrity mechanisms required by approved L4 behavior.
-3. Reconcile final dependency versions and integration contracts during downstream implementation architecture.
-4. Select concrete cryptographic/signing/encoding technologies only through governed ADRs at the appropriate implementation level.
+3. Reconcile peer dependency versions and final security/integration boundaries during promotion.
+4. Determine implementation-level cryptographic/signing/encoding technology choices through ADR governance.
 5. Define implementation-level credential verification and trust-chain details without transferring D03 ownership.
