@@ -5,15 +5,16 @@
 | Field | Value |
 |---|---|
 | Specification ID | L5-A-07-003 |
-| Title | Examination Result Computation Engine Architecture |
-| Level | L5 — Solution Architecture |
+| Specification Title | Examination Result Computation Engine Architecture |
+| Architecture Level | L5 — Solution Architecture |
 | Family | L5-A — Core Platform & Application Architecture |
 | Major Area | L5-A-07 — Computation Engines |
+| Technical Architecture Owner | Examination Result Computation Engine Architecture |
+| Assigned Author | Varad |
 | Version | 1.0.0 |
 | Status | Draft — Authoring Authorized; Not Locked |
-| Author | Varad |
 
-**Responsibility:** Executes approved/versioned examination-result calculations. It cannot autonomously approve, finalise or publish official academic results.
+**Canonical Responsibility:** Executes approved/versioned examination-result calculations. It cannot autonomously approve, finalise or publish official academic results.
 
 ## 2. Purpose, Scope & Non-Goals
 
@@ -194,7 +195,7 @@ A conforming implementation shall demonstrate that it:
 ## 9. Traceability
 
 ### 9.1 Atomic Relation
-The canonical atomic relation is **(L4 Business Behavior ID, L5 Specification ID)**.
+The canonical atomic relation is **(L4 Business Behavior ID, L5 Specification ID)**. A validated relation record additionally binds the applicable **L4 Version** and **L5 Version**.
 
 ### 9.2 Direct / Supporting Mapping
 
@@ -241,30 +242,8 @@ The canonical atomic relation is **(L4 Business Behavior ID, L5 Specification ID
 | L4-I-100-BH-003 | Direct | Recomputes, validates and prepares replacement computation for parent approval. |
 | L4-I-100-BH-004 | Supporting | Preserves prior replaced result as historical/non-current. |
 
-### 9.3 Explicit Boundary Mapping
-L4-I-101 is not a direct computation parent. Its boundary establishes I09 as academic-computation owner and I10 as official-publication owner. L5-A-07-003 therefore stops at the I09 computation boundary.
-
-### 9.4 Upstream Chain
-**L1 Section I — Examination → L2-I09 Result Processing & Computation → L3 examination-result scenarios → L4-I-* computation behaviors → L5-A-07-003 Examination Result Computation Engine Architecture.**
-
-Common technical foundation: **L5-A-07-001 Secure Computational Engine Architecture Baseline.**
-
-Reusable formula capability where applicable: **L5-A-07-005 General Rules & Formula Engine Architecture.**
-
 ## 10. Open Issues / Deferred Design
 
-The following remain implementation-level decisions:
-
-- exact computation-isolation mechanism;
-- exact representation of academic calculation definitions and rule versions;
-- exact numeric precision implementation;
-- exact persistence/evidence mechanism;
-- exact interface/transport mechanism;
-- exact concurrency-control mechanism;
-- exact retry/recovery implementation.
-
-Technology/product selection is intentionally outside the current authoring scope.
-
-Any future examination-result calculation behavior shall be added through explicit BH-level traceability. It shall not be absorbed solely because it contains mathematical processing.
-
-**Status:** Draft — not approved or locked.
+- Exact L4 applicability/version/status remains subject to repository atomic traceability validation.
+- Concrete implementation mechanisms remain subject to downstream design and governed ADRs.
+- No technology or product selection is made by this specification.
