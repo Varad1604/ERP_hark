@@ -2,20 +2,19 @@
 
 ## 1. Specification Metadata
 
-**Specification ID:** L5-D-03-001  
+**Specification ID:** `L5-D-03-001`  
 **Architecture Level:** L5 — Solution Architecture  
-**Technical Architecture Family:** L5-D — Identity, Security & Trust Architecture  
-**Major Area:** L5-D-03 — Security, Cryptography & Trust Architecture  
-**Version:** 1.0.0  
+**Family:** L5-D — Identity, Security & Trust Architecture  
+**Major Area:** L5-D-03 — Security, Cryptography, Secrets & Key Management Architecture  
+**Canonical Technical Responsibility:** Define the cross-solution security architecture baseline, trust-boundary model, security-control placement principles and isolation requirements that constrain SutraERP technical architecture without owning authentication, authorization policy, cryptographic/key-management internals, audit storage, business rules or business authority.  
+**Technical Architecture Owner:** L5-D-03-001 — Security Architecture & Trust Boundary Baseline  
+**Assigned Author:** Varad  
+**Version:** `1.0.1`  
 **Status:** Draft  
-**Author:** Varad  
-**Canonical Responsibility:** Define the cross-solution security architecture baseline, trust-boundary model, security-control placement principles and isolation requirements that constrain all SutraERP technical architecture without owning authentication, authorization policy, cryptographic/key-management internals, audit storage, business rules or business authority.
-
-**Primary L5 Dependencies:** L5-D-01 — IAM; L5-D-02 — Authorization / RBAC; L5-A-04 — Tenant & Institution Isolation; L5-A-01 — Application & Platform Architecture; L5-E-04 — Runtime, Packaging & Deployment.
-
-**Related L5 Specifications:** L5-D-03-002, L5-D-03-003, L5-D-03-004, L5-D-03-005, L5-D-04-001, L5-D-04-002, L5-B-05-001 through L5-B-05-005, L5-C-01, L5-C-02, L5-C-03, L5-A-07-001, L5-A-08.
-
-**Applicable ADRs:** None identified for this baseline. Material technology choices remain subject to the approved L5 ADR methodology.
+**Last Updated:** `2026-09-11`  
+**Primary L5 Dependencies:** L5-D-01 — IAM; L5-A-04 — Tenant & Institutional Isolation; L5-A-01 — Application & Platform Architecture; L5-E-04 — Runtime, Packaging & Deployment.  
+**Collaborating / Downstream L5 Architecture:** L5-D-02 — Authorization / RBAC; L5-D-03-002; L5-D-03-003; L5-D-03-004; L5-D-03-005; L5-D-04; L5-B-05; L5-C-01; L5-C-02; L5-C-03; L5-A-07; L5-A-08.  
+**Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern (`Architecture Approved`, 2026-09-11).
 
 ---
 
@@ -23,88 +22,88 @@
 
 ### 2.1 Purpose
 
-This specification establishes the common technical security architecture required to protect SutraERP execution, data access, cross-boundary interactions and trusted technical components.
-
-It provides the baseline from which specialized security specifications derive concrete controls:
+This specification establishes the common technical security architecture for protected SutraERP execution, data access, cross-boundary interaction and trusted technical components.
 
 ```text
-Business / L4 authority
+Authoritative business / behavioral context
         ↓
 Approved technical context
         ↓
-Security & trust boundary enforcement
+Security & trust-boundary admission
         ↓
-Controlled component / data / integration execution
+Controlled technical execution / handoff
         ↓
-Evidence and governed handoff
+Security evidence where required
 ```
 
-The architecture is security-control oriented. It does not create new business security policy or become the authority for institutional decisions.
+The architecture defines technical trust and control boundaries. It does not create business security policy or institutional authority.
 
 ### 2.2 In Scope
 
-- enterprise trust-boundary model;
-- security-control placement across logical solution boundaries;
-- separation of trusted, conditionally trusted and untrusted execution contexts;
-- security enforcement points for application, service, integration and data access paths;
-- isolation principles for Tenant and Institution context;
-- protection of service-to-service and external interaction boundaries;
-- containment of compromised or untrusted components;
-- secure-default and fail-closed architectural principles where a security decision cannot be established;
-- dependency on IAM, authorization, cryptography, secrets, audit/evidence and runtime architecture;
-- security-relevant evidence requirements needed to demonstrate control operation.
+- explicit logical trust boundaries;
+- security-control placement across material technical boundaries;
+- trusted, conditionally trusted and untrusted execution contexts;
+- protected application, service, data and integration crossings;
+- Tenant/Institution context preservation at security boundaries;
+- non-transitive trust;
+- privileged/restricted technical execution isolation;
+- compromise containment;
+- fail-closed behavior where a mandatory security prerequisite is unavailable;
+- collaboration with IAM, authorization, cryptography, keys, credentials, segmentation and audit/evidence architecture.
 
 ### 2.3 Out of Scope / Non-Goals
 
-- canonical Person, identity or account ownership;
-- authentication mechanisms and credential lifecycle owned by L5-D-01;
-- authorization policy evaluation and permission models owned by L5-D-02;
-- cryptographic primitives, encryption implementation and key custody owned by L5-D-03-002/003;
-- secrets, certificates and machine credentials owned by L5-D-03-004;
-- detailed network/service segmentation mechanisms owned by L5-D-03-005;
-- audit event/provenance semantics and audit storage owned by L5-D-04;
-- business rules, lifecycle states, business events, publishers or institutional authority;
-- database schema or persistence implementation;
-- deployment-product selection or infrastructure-product selection.
+- Person, Identity, User Account or business-identity ownership;
+- authentication mechanisms and human credential lifecycle — L5-D-01;
+- authorization policy, permission evaluation, RBAC or approval semantics — L5-D-02;
+- cryptographic operations — L5-D-03-002;
+- key lifecycle/custody — L5-D-03-003;
+- secrets, certificates and machine credentials — L5-D-03-004;
+- concrete application/service/network trust segmentation — L5-D-03-005;
+- audit/evidence storage and audit semantics — L5-D-04;
+- Tenant/Institution business semantics — L5-A-04;
+- business rules, lifecycle states, canonical business events or publishers;
+- physical network topology, infrastructure products or deployment products.
 
 ---
 
 ## 3. Upstream Applicability, Constraints & Assumptions
 
-### 3.1 Canonical Upstream / Governance Reference Matrix
+### 3.1 Canonical Authority Matrix
 
-| Source Level | Document / Decision | Version / Status | Exact Reference | What the Source Establishes | L5 Use |
-|---|---|---|---|---|---|
-| L5 Governance | `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md` | v1.1.0 / Architecture Approved | `L5-D-03-001` | Canonical specification identity and responsibility: cross-solution threat/trust-boundary architecture and security-control principles. | Defines canonical scope and ownership boundary. |
-| L5 Governance | `L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md` | v1.0.0 / Locked | Stage 1 — `L5-D-03` | D03 is a Stage 1 security/trust foundation; later security-dependent areas consume its stable architecture. | Establishes execution/dependency position. |
-| L5 Governance | `L5_Solution_Architecture_Specification_Template_v1.0.md` | v1.0.3 / Locked | Sections 1–10 | L5 must provide concrete technical architecture while preserving upstream ownership and remaining technology-neutral where no governed choice exists. | Governs specification structure and technical depth. |
-| L5 Governance | `L5_Governance_and_Architecture_Standard.md` | Locked | L5 ownership, dependency and architecture-boundary requirements | L5 must realize approved upstream behavior without redefining business architecture. | Constrains all security architecture decisions. |
-| L5 Governance | `L5_Validation_Standard.md` | Locked | Security, trust, ownership and implementation-leakage controls | Security architecture must be concrete, traceable and ownership-preserving. | Defines conformance expectations. |
-| L5 Governance | `L5_Technology_Selection_and_ADR_Methodology.md` | v1.0.1 / Locked | Material security/trust decisions | Material trust-boundary or secure-engine isolation decisions require governed architectural treatment; unsupported technology choices must not be silently selected. | Keeps this baseline technology-neutral and decision-traceable. |
-| L1 | `SutraERP_L1_Business_Domain_Architecture_Locked.md` | Locked | Platform Foundation / Identity ownership | Platform Foundation owns enterprise identity/security foundations while business domains retain canonical business ownership. | Prevents security architecture from transferring business ownership. |
-| L1 | `SutraERP_L1_Business_Domain_Architecture_Amendment_2026-08-26.md` | Approved amendment | Tenant-scoped Person model | Person is Tenant-scoped; no cross-Tenant sharing is established by the amendment. | Security context must preserve Tenant boundaries and must not invent cross-Tenant identity sharing. |
-| L4 | Approved L4 System Behavior Corpus | Locked corpus | Exact atomic BH mappings pending controlled D03 coverage extraction | L4 defines observable system behavior that security architecture must technically protect/enforce. | No unverified BH identifiers are invented in this baseline. Detailed atomic mapping is an open traceability item. |
+| Source | Status | Authority Used Here |
+|---|---|---|
+| L5 Candidate Document Corpus Register 105 | Architecture Approved | Establishes `L5-D-03-001` identity and cross-solution trust/security responsibility. |
+| L5 Architecture Family Register | Architecture Approved | Establishes canonical major-area name `Security, Cryptography, Secrets & Key Management Architecture`. |
+| L5 Naming & Document Granularity Specialization | Architecture Approved | Governs canonical L5-D-03 naming and identity. |
+| L5 Dependency-Gated Parallel Authoring Timeline | Locked | Establishes D03 as Stage-1 foundation and D02 as downstream Stage-2 architecture depending on D03. |
+| L5 Validation Standard | Locked | Governs hard gates, ownership, traceability and promotion. |
+| L5 Technology Selection & ADR Methodology | Locked | Requires ADR governance for material trust-boundary/security decisions. |
+| `ADR-L5-0001` | Architecture Approved | Establishes explicit logical trust boundaries, governed admission, non-transitive trust and logical segmentation. |
+| Locked L1 architecture and amendment | Locked / Approved | Preserve Platform Foundation/security ownership and Tenant-scoped Person context. |
+| Applicable L4 behavior | Per canonical L4 status | Supplies behavioral obligations when a direct D03 technical contribution is established. |
 
 ### 3.2 Architectural Constraints
 
-1. Security controls shall preserve canonical business ownership and shall not become a substitute for business authorization.
-2. Tenant and Institution context shall be treated as security-relevant execution context; security architecture shall not weaken the locked upstream scope model.
-3. Authentication establishes technical identity; authorization remains a separate decision/enforcement responsibility under L5-D-02.
-4. Security boundaries shall be explicit where trust changes between actors, components, data classes, external integrations or execution contexts.
-5. A component shall not receive trust merely because it is internal to the solution.
-6. Failure to establish a required security condition shall not silently continue execution across a protected boundary.
-7. Specialized cryptographic, key, secret, certificate, audit and segmentation mechanisms shall be consumed through their canonical L5 owners rather than duplicated here.
-8. No unsupported security parameter, algorithm, key size, rotation period, timeout, rate limit or availability target is established by this specification.
+1. Security controls shall preserve canonical business ownership.
+2. Authentication and authorization are distinct technical responsibilities.
+3. Tenant and Institution context shall not be silently dropped, substituted or widened at a protected boundary.
+4. Internal placement alone shall not establish trust.
+5. Trust shall be contextual and non-transitive.
+6. Mandatory security-control failure shall not degrade into an unprotected path.
+7. Specialized D03 mechanisms remain with their canonical owners.
+8. Physical co-location shall not erase a logical trust boundary.
+9. No unsupported technology, algorithm, protocol, numeric security target or deployment topology is established here.
 
-### 3.3 Assumptions / Open Dependencies
+### 3.3 Assumptions / Dependency Position
 
-| ID | Classification | Statement | Impact / Resolution |
+| ID | Classification | Statement | Resolution / Effect |
 |---|---|---|---|
-| AS-001 | Dependency assumption | L5-D-01 will provide the canonical technical identity/authentication boundary consumed by security controls. | If D01 materially changes the identity boundary, this specification must be reconciled before downstream lock. |
-| AS-002 | Dependency assumption | L5-D-02 will provide the canonical authorization decision/enforcement architecture. | This specification defines trust prerequisites and enforcement placement, not authorization policy. |
-| AS-003 | Dependency assumption | L5-A-04 will provide the technical Tenant/Institution isolation model. | Security context propagation must align with that architecture; conflicts block finalization. |
-| AS-004 | Dependency assumption | L5-E-04 will define the concrete runtime/deployment realization consumed by trust boundaries. | This document remains logical and does not select deployment technology. |
-| OD-001 | Open decision | Exact atomic L4 BH applicability for D03-001 must be reconciled from the approved L4-to-L5 coverage evidence. | Blocking for final traceability completeness; no invented BH mapping is used. |
+| AS-001 | Stage-1 peer dependency | D01 supplies technical identity/authentication context where identity is required. | D03 consumes the D01 boundary; it does not own identity lifecycle. |
+| AS-002 | Downstream collaboration | D02 owns authorization decisions and enforcement semantics. D02 consumes D03 trust prerequisites under the locked execution timeline. | D02 finalization is **not** a prerequisite for stabilizing this D03 baseline. |
+| AS-003 | Stage-1 peer dependency | A04 owns Tenant/Institution technical isolation and context semantics. | D03 preserves validated scope and must be reconciled if A04 materially changes it. |
+| AS-004 | Stage-1 peer dependency | E04 owns physical runtime/deployment realization. | D03 remains logical; physical placement may strengthen but never weaken the trust model. |
+| AS-005 | Traceability | Exact BH relations are recorded only when an approved/authorized L4 BH materially requires this technical contribution. | No BH is inferred solely because it mentions “security”. |
 
 ---
 
@@ -112,434 +111,281 @@ The architecture is security-control oriented. It does not create new business s
 
 ### 4.1 Security Architecture Model
 
-The baseline uses explicit trust zones and controlled crossings rather than treating the solution as one implicitly trusted execution space.
+SutraERP uses explicit logical trust boundaries and controlled crossings rather than one implicitly trusted internal execution space.
 
 ```text
-                    EXTERNAL / UNTRUSTED CONTEXTS
-             ┌──────────────────────────────────────┐
-             │ users │ external systems │ devices   │
-             │ integrations │ submitted artifacts   │
-             └──────────────────┬───────────────────┘
-                                │
-                         [Boundary Control]
-                                │
-             ┌──────────────────▼───────────────────┐
-             │ APPLICATION / ACCESS CONTEXT         │
-             │ identity + authorization enforcement │
-             └──────────────────┬───────────────────┘
-                                │
-                         [Service Boundary]
-                                │
-       ┌────────────────────────▼────────────────────────┐
-       │ TRUSTED TECHNICAL EXECUTION CONTEXT             │
-       │ application components / workflows / workers    │
-       │ controlled computation / integration adapters   │
-       └───────────────┬───────────────────────┬────────┘
-                       │                       │
-                [Data Boundary]        [Integration Boundary]
-                       │                       │
-              ┌────────▼────────┐      ┌──────▼─────────┐
-              │ protected data │      │ external trust │
-              │ / projections  │      │ boundary       │
-              └─────────────────┘      └────────────────┘
+External / Untrusted Context
+        ↓
+Protected Boundary Admission
+        ↓
+Application / Access Context
+        ↓
+Service / Execution Boundary
+        ↓
+Trusted or Restricted Technical Execution
+        ├── Protected Data Boundary
+        └── External Integration Boundary
 ```
 
-The diagram is a logical security view. It does not prescribe network topology, deployment units or physical infrastructure.
+This is a logical security view and does not prescribe physical topology.
 
-### 4.2 Canonical Trust Zones
+### 4.2 Trust Contexts
 
-| Zone | Trust Characteristic | Required Architectural Treatment |
+| Context | Architectural Treatment |
+|---|---|
+| External / Untrusted | No inherited internal trust; validate identity/input/context as applicable. |
+| Authenticated Access | Identity established; no authorization is implied. |
+| Authorized Application | D02 authorization result may permit the requested operation; scope remains constrained. |
+| Trusted Technical Execution | Component/workload identity and permitted dependencies remain explicit. |
+| Protected Data | Applicable authorization, privacy/classification and cryptographic controls are consumed. |
+| External Integration | External system remains a distinct trust domain. |
+| Restricted / High-Risk Execution | Stronger logical isolation, constrained admission and evidence are required where justified. |
+
+### 4.3 Security Control Plane
+
+| Control Point | Responsibility | Canonical Owner |
 |---|---|---|
-| External / Untrusted | Input or interaction originates outside SutraERP-controlled execution. | Authenticate/validate as applicable; constrain input; do not inherit internal trust. |
-| Authenticated Access Context | Technical identity has been established by the applicable IAM architecture. | Pass only the minimum security context required downstream; authentication does not imply authorization. |
-| Authorized Application Context | Execution is permitted for the requested operation under L5-D-02 controls. | Enforce scoped access and preserve Tenant/Institution context. |
-| Trusted Technical Execution | Controlled internal component execution. | Component identity, boundary policy and permitted dependencies remain explicit; internal status alone does not grant unrestricted trust. |
-| Protected Data Context | Access to protected or sensitive information. | Apply applicable authorization, classification/privacy and cryptographic controls through canonical L5 owners. |
-| External Integration Context | Communication with external systems or connectors. | Treat external systems as distinct trust domains; validate inbound data and constrain outbound disclosure. |
-| Restricted / High-Risk Execution | Security-sensitive computation or privileged technical operation. | Require stronger isolation and evidence; specialized controls are delegated to the applicable L5 owner. |
-
-### 4.3 Core Security Control Plane
-
-The security architecture is composed of cooperating control points:
-
-| Control Point | Responsibility | Canonical Owner / Collaborator |
-|---|---|---|
-| Identity Establishment | Establish technical actor/service identity before protected execution. | L5-D-01 |
-| Authorization Enforcement | Determine and enforce whether an identified actor may perform the requested action in context. | L5-D-02 |
-| Context Isolation | Preserve Tenant, Institution and applicable lower-scope security context. | L5-A-04 + L5-D-02 |
-| Boundary Admission | Validate that the caller, context, input and trust relationship satisfy the conditions for crossing a protected technical boundary. | L5-D-03-001 |
-| Data Protection | Apply required encryption/protection mechanisms. | L5-D-03-002 |
-| Key / Secret Protection | Protect cryptographic keys, secrets, certificates and machine credentials. | L5-D-03-003/004 |
-| Trust Segmentation | Restrict component/service/network trust relationships and permitted connectivity. | L5-D-03-005 |
-| Evidence | Produce technical evidence that security-relevant controls operated and protected a boundary. | L5-D-04 |
+| Technical identity establishment | Establish actor/workload identity | L5-D-01 |
+| Authorization decision/enforcement | Decide permitted action in context | L5-D-02 |
+| Tenant/Institution isolation | Establish and preserve canonical technical scope | L5-A-04 |
+| Boundary admission | Validate trust prerequisites for protected crossing | **L5-D-03-001** |
+| Data protection | Cryptographic protection operations | L5-D-03-002 |
+| Key management | Key lifecycle/custody | L5-D-03-003 |
+| Secrets/certificates/machine credentials | Non-human credential lifecycle/use | L5-D-03-004 |
+| Trust segmentation | Application/service/network logical isolation | L5-D-03-005 |
+| Audit/evidence | Canonical technical evidence architecture | L5-D-04 |
 
 ### 4.4 Boundary Admission Pattern
 
-Every material protected boundary shall follow a consistent logical pattern:
-
 ```text
-Request / Invocation
-        ↓
-Identify caller / workload context
-        ↓
-Resolve Tenant / Institution context where applicable
-        ↓
-Validate boundary prerequisites
-        ↓
-Apply authorization decision
-        ↓
-Apply data / execution protection controls
-        ↓
-Cross boundary only when required controls succeed
-        ↓
-Record security-relevant evidence where applicable
+Invocation
+  ↓
+Resolve caller/workload identity where required
+  ↓
+Resolve authoritative Tenant/Institution scope where applicable
+  ↓
+Validate trust-boundary prerequisites
+  ↓
+Consume authorization outcome where policy-controlled
+  ↓
+Apply required cryptographic / credential / segmentation controls
+  ↓
+Cross boundary only if mandatory controls succeed
+  ↓
+Expose security evidence where required
 ```
 
-A failed prerequisite shall result in controlled denial or containment rather than implicit trust escalation.
+Boundary admission does not itself create business permission.
 
 ### 4.5 Trust Establishment Rules
 
-1. Trust is explicit and contextual rather than inferred solely from component location.
-2. A service or worker must have an identifiable technical execution identity before accessing a protected technical boundary.
-3. A trust relationship shall identify the permitted direction and purpose of interaction at the architecture level.
-4. External systems, integrations and device-originated inputs remain distinct trust contexts even when integrated into an internal workflow.
-5. Trust must not be transitive by default: permission to interact with one component does not automatically grant access to another component or protected data set.
-6. Security context must not be widened during cross-domain handoff without an authoritative basis.
+1. Trust is explicit and contextual.
+2. Trust granted for one interaction does not transit to another boundary.
+3. External systems remain distinct trust contexts.
+4. A privileged destination does not elevate the caller’s authority.
+5. Security context cannot be widened merely by crossing a technical boundary.
+6. Co-location does not imply trusted equivalence.
 
-### 4.6 Tenant / Institution Security Isolation
+### 4.6 Tenant / Institution Context Integrity
 
-The security baseline treats Tenant and Institution scope as part of protected execution context.
+Where Tenant or Institution context applies, a protected crossing shall preserve and validate that context. D03 consumes the canonical A04 isolation model and does not redefine Tenant or Institution semantics.
 
-```text
-Tenant Context
-      ↓
-Institution Context (where applicable)
-      ↓
-Organisational / Resource Context (where applicable)
-      ↓
-Authorized technical operation
-```
-
-The security architecture shall prevent a technical path from silently dropping, replacing or widening an established scope. Concrete propagation and persistence mechanisms remain owned by the relevant L5-A-04 and L5-D-02 specifications.
+A receiving component shall reject missing, conflicting or unsafe scope rather than infer a more permissive context.
 
 ### 4.7 Internal Component Trust
 
-Internal components are not automatically trusted. A protected component boundary shall consider:
+Internal components remain subject to explicit dependency and trust rules. Material protected access considers, as applicable:
 
-- caller identity;
-- calling component/workload identity;
+- actor/workload identity;
+- source and destination technical responsibility;
 - permitted dependency relationship;
-- security context and scope;
-- requested operation or purpose;
-- protected-data classification where applicable;
-- current trust relationship;
+- Tenant/Institution scope;
+- operation/purpose;
+- authorization result;
+- credential validity;
+- cryptographic protection;
 - evidence requirements;
 - failure/containment behavior.
 
-This establishes a technical control boundary without encoding business roles or business rules into the security architecture.
-
 ### 4.8 External Boundary Protection
 
-External interactions shall be treated as explicit trust transitions.
+Inbound external interaction is a trust transition and shall establish the applicable identity, validation, scope and authorization prerequisites before controlled internal handoff.
 
-Inbound:
-
-```text
-External source
-→ identity / trust assessment
-→ input validation
-→ scope/context validation
-→ authorization as applicable
-→ controlled internal handoff
-```
-
-Outbound:
-
-```text
-Internal authorized context
-→ disclosure / purpose checks where applicable
-→ external trust boundary controls
-→ controlled transmission
-→ delivery evidence where applicable
-```
-
-The architecture does not create external-system business authority or redefine the semantics of external records.
+Outbound external interaction shall preserve disclosure/security constraints and shall not treat the external recipient as an internal trusted component.
 
 ### 4.9 Compromise Containment
 
-Where a component, credential, integration or execution context is suspected to be untrusted or compromised, the architecture shall support isolation of the affected trust relationship without requiring unrelated components to inherit the same trust reduction.
+When a component, credential, integration or trust relationship is compromised or no longer trustworthy, the architecture shall support restriction of the affected relationship without automatically collapsing unrelated trust zones.
 
-Containment responsibilities include:
+Containment includes:
 
-- preventing continued privileged boundary crossing when trust prerequisites are no longer valid;
-- restricting access to protected resources from the affected context;
-- preserving security-relevant evidence needed for investigation;
-- avoiding automatic propagation of compromised trust to peer components;
-- handing business recovery or operational recovery decisions to their canonical owners.
+- blocking affected privileged crossings;
+- restricting protected-resource access;
+- preserving required evidence;
+- preventing trust propagation;
+- handing business/operational recovery decisions to their canonical owners.
 
-Exact isolation mechanics are delegated to L5-D-03-005 and runtime/deployment architecture.
+Concrete segmentation realization belongs to D03-005.
 
 ### 4.10 Security Context Integrity
 
-Security context passed between components shall be treated as protected technical context, not ordinary caller-supplied data.
+Security context is protected technical context. Caller-controlled assertions are not authoritative merely because they are present.
 
-The architecture shall preserve, at minimum where applicable:
+Where applicable, context includes:
 
 - technical actor/workload identity;
-- Tenant and Institution scope;
+- Tenant/Institution scope;
 - authorization result/context;
-- trust context;
-- correlation/provenance information needed for security evidence.
+- trust relationship;
+- correlation/provenance context.
 
-A downstream component shall not accept a caller-controlled assertion as authoritative merely because it is syntactically present.
+### 4.11 Failure Model
 
-### 4.11 Security Failure Behavior
-
-Material security failures shall be handled according to the following architectural classes:
-
-| Failure Class | Required Architectural Outcome |
+| Failure | Required Technical Outcome |
 |---|---|
-| Identity cannot be established | Do not cross the protected boundary. |
-| Required authorization is absent/denied | Do not perform the protected operation. |
-| Security context is missing, invalid or inconsistent | Reject or contain the operation; do not silently reconstruct privileged context. |
-| Trust relationship cannot be established | Prevent the trust-crossing operation. |
-| Protected data control cannot be established | Prevent access/disclosure requiring that control. |
-| Credential/key/secret trust is invalid | Stop the affected protected operation and hand off to the owning security mechanism. |
-| Boundary dependency is unavailable | Fail in a way that does not silently bypass the boundary; recovery is owned by the relevant operational architecture. |
-| Component becomes untrusted | Restrict the affected trust relationship and prevent automatic trust propagation. |
+| Identity cannot be established where required | Do not admit the protected crossing. |
+| Required authorization denied/unavailable | Do not perform the protected operation. |
+| Scope/context missing or inconsistent | Reject or contain; do not reconstruct privileged context. |
+| Trust relationship invalid | Prevent the crossing. |
+| Required cryptographic protection unavailable | Prevent the protected operation. |
+| Key/secret/credential invalid | Stop affected operation and hand off to owning D03 mechanism. |
+| Boundary dependency unavailable | Fail without bypassing the boundary. |
+| Component becomes untrusted | Restrict affected trust relationship and prevent propagation. |
 
-### 4.12 Security Architecture Decision Boundaries
+### 4.12 Architecture Decisions
 
-This specification establishes the following architecture-level decisions:
-
-| ID | Decision | Classification |
+| ID | Decision | Governance |
 |---|---|---|
-| AD-001 | SutraERP uses explicit logical trust boundaries rather than one implicit internal trust zone. | Defensible L5 technical derivation |
-| AD-002 | Trust is contextual and non-transitive by default across component and integration boundaries. | Defensible L5 technical derivation |
-| AD-003 | Tenant/Institution scope is security-relevant context and shall not be silently widened at technical boundaries. | Established constraint + L5 technical realization |
-| AD-004 | Authentication, authorization, cryptography, key management, secrets, segmentation and audit are cooperating but separately owned L5 responsibilities. | Established L5 corpus boundary |
-| AD-005 | Security failure shall not silently bypass a required control merely to continue execution. | Defensible L5 technical derivation |
-| AD-006 | No technology, algorithm, numeric security target or deployment topology is selected by this baseline without applicable governance/ADR authority. | Established governance constraint |
+| AD-001 | SutraERP uses explicit logical trust boundaries rather than one implicit internal trust zone. | Governed by `ADR-L5-0001`. |
+| AD-002 | Trust is contextual and non-transitive. | Governed by `ADR-L5-0001`. |
+| AD-003 | Tenant/Institution scope is protected security context and shall not be silently widened. | A04 constraint + `ADR-L5-0001` realization. |
+| AD-004 | Authentication, authorization, cryptography, key management, credentials, segmentation and audit remain separately owned. | Approved L5 corpus ownership. |
+| AD-005 | Required security-control failure is fail-closed for the affected protected operation. | `ADR-L5-0001`. |
+| AD-006 | Physical placement may strengthen but shall not weaken logical trust boundaries. | `ADR-L5-0001`; E04 retains deployment ownership. |
+| AD-007 | Product/protocol/algorithm/numeric selection remains outside this specification unless separately governed. | Locked ADR methodology. |
 
 ---
 
 ## 5. Dependencies / Integration
 
-### 5.1 L5 Dependency Matrix
-
-| Dependency | Relationship | Required Boundary |
+| L5 Architecture | Relationship | Boundary |
 |---|---|---|
-| L5-D-01 | Consumes technical identity/authentication capability. | D03-001 does not own account or authentication lifecycle. |
-| L5-D-02 | Consumes authorization decision/enforcement capability. | D03-001 establishes trust prerequisites; D02 owns authorization semantics. |
-| L5-A-04 | Consumes Tenant/Institution isolation architecture. | Security context must preserve the canonical scope model. |
-| L5-A-01 | Consumes logical application/platform boundaries. | Security boundaries align to approved technical component boundaries without redefining them. |
-| L5-E-04 | Consumes runtime/deployment realization. | Concrete placement of controls must respect runtime architecture; no deployment topology is invented here. |
-| L5-D-03-002 | Delegates cryptographic/data-protection mechanisms. | D03-001 specifies where protection is required; D03-002 owns cryptographic realization. |
-| L5-D-03-003 | Delegates key management. | D03-001 does not own key custody or rotation design. |
-| L5-D-03-004 | Delegates secrets/certificates/machine credentials. | D03-001 requires protected machine trust but does not define secret stores or credential lifecycle. |
-| L5-D-03-005 | Delegates concrete trust segmentation. | D03-001 defines logical trust relationships; D03-005 owns segmentation realization. |
-| L5-D-04 | Delegates audit/evidence mechanisms. | D03-001 defines evidence need; D04 owns technical audit/evidence architecture. |
-| L5-B-05 | Collaborates for privacy/sensitive-data controls. | D03-001 does not redefine classification, retention or privacy policy. |
-| L5-C-01 / C-02 / C-03 | Applies security boundary principles to contracts, events and external integrations. | Interaction architecture must preserve security context and trust boundaries. |
-| L5-A-07 / A-08 | Applies to computation and background execution. | Secure execution identity and trust boundaries are prerequisites; specialized execution remains separately owned. |
+| D01 | Stage-1 peer | Supplies identity/authentication context; no D03 identity ownership. |
+| D02 | Downstream collaborator/consumer | Consumes D03 trust prerequisites; retains authorization ownership. |
+| A04 | Stage-1 peer | Owns Tenant/Institution technical isolation; D03 preserves validated scope. |
+| A01 | Stage-1 peer | Supplies logical application/platform boundaries consumed by security architecture. |
+| E04 | Stage-1 peer | Realizes logical controls in deployment/runtime without redefining D03 trust semantics. |
+| D03-002 | Specialized child/peer | Cryptographic protection. |
+| D03-003 | Specialized child/peer | Key lifecycle/custody. |
+| D03-004 | Specialized child/peer | Secrets/certificates/machine credentials. |
+| D03-005 | Specialized child/peer | Application/service/network segmentation. |
+| D04 | Downstream control architecture | Owns audit/evidence architecture. |
+| B05 | Downstream control architecture | Consumes D03 protection capabilities for privacy/sensitive-data concerns. |
 
-### 5.2 Cross-L5 Handoff Contract
+D03-001 is the common baseline. D03-002/003/004/005 specialize it through stable responsibility boundaries; they do not require mutual final approval to establish their canonical ownership contracts.
 
-The reusable security boundary contract is conceptual rather than protocol-specific.
+### 5.1 Conceptual Boundary Contract
 
-**Security context presented to a protected boundary may include:**
+A protected boundary may consume:
 
-- authenticated technical identity or workload identity;
-- Tenant / Institution scope where applicable;
-- authorization context/result supplied by the canonical authorization architecture;
-- requested operation/context;
-- trust relationship or boundary classification;
-- correlation/provenance context needed for evidence.
+- established technical identity/workload identity;
+- validated Tenant/Institution context;
+- requested operation/purpose;
+- authorization result when required;
+- trust relationship/boundary classification;
+- credential/protection prerequisites;
+- correlation/evidence context.
 
-**Boundary response categories:**
-
-- permitted to proceed;
-- denied by security control;
-- rejected because required security context is invalid/incomplete;
-- contained because the trust relationship is unavailable or invalid;
-- deferred to an owning security mechanism for credential/key/secret handling.
-
-No new business event is introduced by this contract.
+Possible technical outcomes are permitted, denied, invalid-context rejection, trust containment, or handoff to an owning security mechanism. No business event is created by this contract.
 
 ---
 
 ## 6. Technical Behavior / Failure Concerns
 
-### 6.1 Required Technical Behaviors
+**TB-001 — Explicit Boundary Enforcement:** Material protected interactions cross an architecture-defined boundary.  
+**TB-002 — Context Preservation:** Required authoritative scope is preserved and validated.  
+**TB-003 — Identity/Authorization Separation:** Authentication does not imply authorization.  
+**TB-004 — Non-Transitive Trust:** One admitted relationship does not create unrelated trust.  
+**TB-005 — Governed Admission:** Required prerequisites must succeed before protected crossing.  
+**TB-006 — Fail-Closed Protection:** A missing mandatory security prerequisite does not create bypass.  
+**TB-007 — Compromise Containment:** Invalid trust can be isolated without automatically collapsing unrelated zones.  
+**TB-008 — Evidence Enablement:** Material boundary outcomes expose required technical evidence to D04.
 
-**TB-001 — Explicit Boundary Enforcement**  
-Protected technical interactions shall pass through an architecture-defined security control boundary rather than relying on implicit internal trust.
-
-**TB-002 — Context Preservation**  
-Where Tenant, Institution or other authoritative security context is required, the technical path shall preserve that context across the boundary and shall not silently widen scope.
-
-**TB-003 — Separation of Identity and Authorization**  
-A successfully identified actor shall not be treated as automatically authorized for a protected operation.
-
-**TB-004 — Non-Transitive Trust**  
-Trust granted for one technical interaction shall not automatically grant equivalent trust to unrelated components, resources or external systems.
-
-**TB-005 — Protected Boundary Admission**  
-A protected boundary shall admit execution only when its required security prerequisites are established.
-
-**TB-006 — Fail-Closed Security Boundary**  
-When a mandatory security prerequisite cannot be established, the protected operation shall not continue by silently bypassing the missing control.
-
-**TB-007 — Compromise Containment**  
-When a trust relationship becomes invalid or untrusted, the affected relationship shall be capable of restriction without automatically disabling or trusting unrelated components.
-
-**TB-008 — Evidence Enablement**  
-Security-relevant boundary decisions shall expose sufficient technical evidence to the canonical audit/evidence architecture where evidence is required.
-
-### 6.2 Failure Ownership
-
-Security failure handling must remain separated from business recovery:
-
-```text
-Security prerequisite failure
-        ↓
-Security control denies / contains
-        ↓
-Technical evidence where applicable
-        ↓
-Owning workflow / operations architecture decides recovery
-```
-
-D03-001 shall not invent business retries, compensating actions, lifecycle transitions or approval decisions.
-
-### 6.3 Implementation Neutrality
-
-This specification deliberately does not select:
-
-- a specific firewall, service mesh, gateway, IAM product or security product;
-- a cryptographic algorithm or key-management product;
-- a network topology;
-- a container, server or deployment pattern;
-- a programming framework or implementation library;
-- numerical security thresholds not established by governance.
-
-Such choices remain subject to the applicable L5 architecture and ADR process.
+Security failure handling remains separate from business recovery. D03-001 does not invent business retries, compensation, lifecycle transitions or approval decisions.
 
 ---
 
 ## 7. Security / Trust / Evidence
 
-### 7.1 Security Control Principles
+The baseline requires explicit trust boundaries, least necessary trust, identity/authorization separation, scope preservation, non-transitive trust, protected external boundaries, compromise containment and no silent bypass of mandatory controls.
 
-The baseline requires:
+Where D04 requires evidence, the boundary shall expose sufficient technical facts to identify the actor/workload context, applicable scope, boundary decision, trust context, failure class and correlation/provenance information without creating a new business event.
 
-- explicit trust boundaries;
-- least necessary trust and access;
-- separation of identity from authorization;
-- preservation of security scope;
-- non-transitive trust;
-- controlled external boundaries;
-- containment of invalid trust;
-- no silent bypass of mandatory security controls;
-- technical evidence for material security decisions where required.
-
-### 7.2 Evidence Requirements
-
-The security architecture shall make the following evidence categories available to the canonical audit/evidence architecture when applicable:
-
-| Evidence Category | Purpose |
-|---|---|
-| Boundary identity/context | Establish which technical actor/workload attempted the protected operation. |
-| Scope/context | Demonstrate Tenant/Institution context applied to the decision where applicable. |
-| Boundary decision | Demonstrate whether the security control permitted, denied or contained the interaction. |
-| Trust relationship | Demonstrate the technical trust context used for the boundary decision. |
-| Failure reason class | Demonstrate that a security failure was handled as a control failure rather than silently bypassed. |
-| Correlation/provenance | Connect related security-control observations without creating a new business event. |
-
-Exact audit-event structure and storage are owned by L5-D-04.
+Exact evidence structure/storage remains D04-owned.
 
 ---
 
 ## 8. Conformance
 
-### 8.1 Conformance Requirements
-
 | ID | Requirement |
 |---|---|
-| CR-001 | The solution shall represent material protected technical boundaries explicitly at architecture level. |
-| CR-002 | Protected technical boundaries shall not rely solely on implicit internal trust. |
-| CR-003 | Authentication and authorization shall remain distinct technical responsibilities. |
-| CR-004 | Required Tenant/Institution security context shall not be silently dropped or widened at a protected boundary. |
-| CR-005 | Trust shall not be automatically transitive across unrelated components or external systems. |
-| CR-006 | A protected operation shall not proceed when a mandatory security prerequisite cannot be established. |
-| CR-007 | External systems and external-originated inputs shall be treated as distinct trust contexts. |
-| CR-008 | Security-sensitive component or workload identities shall be attributable to the applicable technical identity architecture. |
-| CR-009 | Material security boundary decisions shall support evidence capture through the canonical audit/evidence architecture where required. |
-| CR-010 | Security architecture shall not create or modify canonical business rules, lifecycle states, business events, publishers or business authority. |
-| CR-011 | Specialized cryptography, key management, secrets, certificates and trust-segmentation mechanisms shall remain with their canonical L5 specifications. |
-| CR-012 | No unsupported technology selection or security numeric target shall be treated as an established architecture decision. |
-
-### 8.2 Validation Notes
-
-The specification remains `Draft` until the exact atomic L4 BH applicability is reconciled against the approved L4-to-L5 coverage evidence and material peer dependencies are stable enough for final conformance validation.
+| CR-001 | Material protected technical boundaries are explicit. |
+| CR-002 | Protected boundaries do not rely solely on implicit internal trust. |
+| CR-003 | Authentication and authorization remain distinct. |
+| CR-004 | Required Tenant/Institution context is not silently dropped or widened. |
+| CR-005 | Trust is non-transitive across unrelated components/boundaries. |
+| CR-006 | Mandatory security prerequisites fail closed for the affected operation. |
+| CR-007 | External systems and external-originated inputs remain distinct trust contexts. |
+| CR-008 | Security-sensitive workload identity is attributable through D01 where required. |
+| CR-009 | Material boundary outcomes support D04 evidence where applicable. |
+| CR-010 | D03-001 creates no business rule, business lifecycle, event publisher or institutional authority. |
+| CR-011 | Specialized D03 mechanisms remain with D03-002/003/004/005. |
+| CR-012 | No unsupported product, protocol, algorithm, topology or numeric target is canonicalized here. |
+| CR-013 | D02 is treated as downstream authorization architecture, not a finalization prerequisite for the Stage-1 D03 baseline. |
+| CR-014 | The implementation preserves `ADR-L5-0001`. |
 
 ---
 
 ## 9. Traceability
 
-### 9.1 Canonical Traceability Relation
+### 9.1 Traceability Basis
 
-The atomic L4-to-L5 relation is:
+`L5-D-03-001` has defensible repository-level technical purpose through the Architecture Approved candidate corpus, canonical family/naming registers, locked Stage-1 execution timeline and `ADR-L5-0001`.
+
+Where an approved or governance-authorized L4 BH materially requires the trust-boundary contribution, the canonical relation is:
 
 ```text
 (L4 BH ID, L5-D-03-001)
 ```
 
-The specification must not claim an L4 BH relationship merely because a related L4 document discusses security. The exact BH must materially require or be technically realized by the security/trust baseline.
+No BH relation shall be inferred merely because an L4 document contains generic security wording.
 
-### 9.2 Current Traceability Status
+### 9.2 Current Traceability State
 
-| Traceability Item | Status |
+| Item | State |
 |---|---|
-| Canonical L5 identity | Verified |
-| Canonical L5 responsibility | Verified |
-| L5 dependency-gated placement | Verified |
-| L1 ownership / terminology boundary | Verified at baseline level |
-| Exact atomic L4 BH applicability | **Open — controlled extraction required** |
-| Exact L4 version/status references | **Open — controlled extraction required** |
-| Peer L5 dependency stability | **Open — D01, D02, A04 and E04 are external dependencies** |
+| Canonical L5 identity/responsibility | Verified |
+| Canonical D03 major-area naming | Verified and synchronized |
+| Stage-1 placement | Verified |
+| Applicable shared ADR | Verified — `ADR-L5-0001` Architecture Approved |
+| Direct L4 BH relations | To be recorded selectively when materially established; none invented in this remediation |
+| D02 relationship | Corrected — downstream collaborator/consumer, not Stage-1 prerequisite |
 
-No fabricated L4 BH identifiers are included to make the traceability section appear complete.
-
-### 9.3 Boundary Traceability
-
-| Architecture Boundary | Canonical Owner |
-|---|---|
-| Technical identity/authentication | L5-D-01 |
-| Authorization | L5-D-02 |
-| Tenant/Institution technical isolation | L5-A-04 |
-| Cross-solution security/trust baseline | **L5-D-03-001** |
-| Cryptography/data protection | L5-D-03-002 |
-| Key management | L5-D-03-003 |
-| Secrets/certificates/machine credentials | L5-D-03-004 |
-| Application/service/network trust segmentation | L5-D-03-005 |
-| Audit/evidence baseline and provenance | L5-D-04-001 / L5-D-04-002 |
-| Tamper-evident audit storage/access/export | L5-D-04-003 |
+The absence of an invented BH mapping does not make the canonical D03 technical responsibility orphaned. Complete repository BH coverage remains governed by the canonical L4-to-L5 traceability store.
 
 ---
 
 ## 10. Open Issues / Deferred Design
 
-| ID | Type | Issue | Resolution Authority / Dependency | Blocking? |
-|---|---|---|---|---|
-| OD-001 | Traceability | Exact atomic L4 BH applicability has not yet been populated from controlled L4-to-L5 coverage evidence. | L5 L4-to-L5 Traceability Methodology + approved L4 corpus / coverage evidence | Yes for finalization |
-| OD-002 | Dependency | D01 IAM boundary must be consumed without duplicating identity ownership. | L5-D-01 owner | Yes for final dependency validation |
-| OD-003 | Dependency | D02 authorization boundary must be consumed without encoding authorization policy in D03-001. | L5-D-02 owner | Yes for final dependency validation |
-| OD-004 | Dependency | A04 Tenant/Institution isolation architecture must be reconciled with the security-context model. | L5-A-04 owner | Yes for final dependency validation |
-| OD-005 | Dependency | E04 runtime/deployment architecture must determine concrete placement implications without changing the logical trust model. | L5-E-04 owner | No for logical draft; yes for implementation-readiness validation |
-| OD-006 | ADR | Any material technology or deployment decision arising from this baseline must be handled through the approved ADR methodology. | L5 ADR governance | Conditional |
+| ID | Type | Issue | Blocking? |
+|---|---|---|---|
+| OD-001 | Traceability | Populate only defensible direct L4 BH→D03-001 relations in the canonical traceability store when validated evidence is available. | No for Draft architecture validity; required before any claimed relation becomes `Validated`. |
+| OD-002 | Stage-1 peer | Reconcile material D01 changes affecting identity context. | Only if D01 materially changes the consumed boundary. |
+| OD-003 | Stage-1 peer | Reconcile material A04 changes affecting Tenant/Institution scope. | Only if A04 materially changes the consumed boundary. |
+| OD-004 | Stage-1 peer | Reconcile material E04 changes affecting realization while preserving logical trust semantics. | No for logical baseline; required for implementation readiness where placement is material. |
+| OD-005 | Technology | Product/protocol/topology choices remain subject to separate ADR/technical governance where material. | Conditional. |
 
 ---
 
-**Production Status:** Draft — Authoring  
-**Next controlled action:** Validate the exact atomic L4 BH applicability and reconcile the stable D01/D02/A04/E04 dependency boundaries before requesting review or promotion beyond Draft.
+**Production Status:** Draft — Remediated and ready for revalidation.  
+**Next controlled action:** Revalidate hard gates against the current Stage-1 peer architecture and populate only defensible canonical L4 BH relations; do not wait for downstream D02 or B05 finalization.
