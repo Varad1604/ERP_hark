@@ -16,6 +16,8 @@
 **Referenced By:** L5-D-04-001; L5-D-04-003; applicable security, application, workflow, integration, data, computation and runtime specifications.  
 **Applicable ADRs:** None identified for this draft. Material evidence-model persistence, integrity and implementation choices remain subject to governed ADR treatment.
 
+---
+
 ## 2. Purpose, Scope & Non-Goals
 
 ### Purpose
@@ -300,9 +302,11 @@ A conforming solution architecture shall demonstrate that:
 
 ### Atomic Traceability Rule
 
-The required final relation is:
+The canonical relation identity is:
 
-`(L4 BH ID, L4 Version, L5 Specification ID, L5 Version)`
+`(L4 BH ID, L5 Specification ID)`
+
+A validated relation record shall additionally bind the applicable `L4 Version` and `L5 Version`.
 
 Document-level applicability statements are not substitutes for atomic traceability.
 
