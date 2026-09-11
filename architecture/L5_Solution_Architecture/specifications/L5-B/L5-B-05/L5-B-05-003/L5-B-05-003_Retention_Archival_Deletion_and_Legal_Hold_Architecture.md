@@ -6,15 +6,13 @@
 |---|---|
 | Specification ID | L5-B-05-003 |
 | Specification Title | Retention, Archival, Deletion & Legal Hold Architecture |
-| Architectural Level | L5 |
+| Architecture Level | L5 |
 | Architecture Family | L5-B — Data & Information Architecture |
 | Major Area | L5-B-05 — Data Classification, Retention & Privacy Architecture |
 | Version | 1.0.0 |
 | Status | Draft — Authoring |
 | Author | Varad |
 | Primary Responsibility | Technical enforcement of retention, archival, governed deletion and legal-hold controls without redefining business policy |
-
----
 
 ## 2. Purpose, Scope & Non-Goals
 
@@ -60,7 +58,7 @@ This specification does not own or redefine:
 
 This specification is subordinate to locked L1 architecture and approved L2/L3/L4 behavior. It shall not redefine upstream business ownership, business rules, lifecycle states, canonical events, publishers, institutional authority or L3/L4 outcomes.
 
-The approved L5 candidate corpus defines B05-003 as the technical owner for retention, archival, governed deletion and legal-hold enforcement without redefining business policy. fileciteturn388file1L25-L58
+The approved L5 candidate corpus defines B05-003 as the technical owner for retention, archival, governed deletion and legal-hold enforcement without redefining business policy.
 
 ### 3.2 Ownership Preservation
 
@@ -70,7 +68,7 @@ A technical archive or deletion action does not transfer ownership of the underl
 
 ### 3.3 Repository Boundary
 
-Repository workflow material establishes that statutory retention, legal hold, archival retention, regulatory deletion, data minimization and physical data pruning are governed through Platform Foundation retention policies, while domain workflows preserve business history conceptually and delegate physical enforcement to Platform services. fileciteturn390file0L2-L6
+Repository workflow material establishes that statutory retention, legal hold, archival retention, regulatory deletion, data minimization and physical data pruning are governed through Platform Foundation retention policies, while domain workflows preserve business history conceptually and delegate physical enforcement to Platform services.
 
 Accordingly, this L5 specification owns the reusable technical enforcement architecture; it does not create the governing policy itself.
 
@@ -90,11 +88,11 @@ Primary dependencies include:
 
 Exact atomic L4 applicability has not been independently reconciled in this authoring draft. No L4 behavioral-obligation identifiers are invented here.
 
-Required atomic relation:
+The canonical traceability relation identity is:
 
-`(L4 BH ID, L4 Version, L5-B-05-003, L5 Version)`
+`(L4 BH ID, L5 Specification ID)`
 
-Exact L4 BH applicability, exact source version/status and validation status remain **OPEN / BLOCKING** until reconciled against the applicable current approved L4 corpus.
+A validated relation record shall additionally bind the applicable `L4 Version` and `L5 Version`. Exact L4 BH applicability, exact source version/status and validation status remain **OPEN / BLOCKING** until reconciled against the applicable current approved L4 corpus.
 
 ---
 
@@ -215,8 +213,6 @@ Exact peer version alignment remains an authoring-stage validation item.
 
 No downstream technical process may use this architecture to justify deletion, archival or release from hold without the applicable authoritative decision/context. Conversely, technical inability to execute a permitted operation shall not alter the business policy or falsely report completion.
 
----
-
 ## 6. Technical Behavior / Failure Concerns
 
 ### TB-001 — Retention Context Availability
@@ -259,81 +255,59 @@ Material retention, archival, deletion and legal-hold actions and failures shall
 
 Technical retention/deletion handling shall not silently destroy evidence required by authoritative upstream business behavior or governance policy.
 
----
-
 ## 7. Security / Trust / Evidence
 
 ### 7.1 Security
 
-- Retention and hold context shall be protected against unauthorized alteration.
-- Destructive operations shall be subject to applicable authorization and trust boundaries.
-- Security mechanisms remain governed by L5-D-03.
+- Registry and storage access shall consume authoritative authorization/security context.
+- Applicable Tenant/Institution scope shall be preserved throughout technical operations.
+- Sensitive representations shall remain subject to applicable classification, masking and privacy controls.
+- Cryptographic operations, key custody, certificates and machine credentials remain under L5-D-03.
+- Retention and disposal execution shall respect applicable security and privacy constraints.
 
 ### 7.2 Evidence
 
-The architecture shall support evidence of:
-
-- retention policy/context used;
-- archival eligibility and action;
-- deletion eligibility and action;
-- legal-hold application/release;
-- blocked destructive operations; and
-- failure or unresolved outcomes.
-
-Evidence shall preserve necessary provenance without unnecessarily exposing sensitive data.
-
----
+Technical evidence should support reconstruction of registration, version, storage and retention actions, including technical identity, source/reference context, lineage, relevant storage outcome, retention evaluation, hold constraints and execution result. Business audit meaning remains with the originating domain and D04.
 
 ## 8. Conformance
 
-A conforming implementation shall demonstrate that:
-
-1. Authoritative retention context can be resolved for governed information.
-2. Missing/ambiguous retention context cannot silently authorize disposal.
-3. Active applicable legal holds prevent covered destructive operations.
-4. Hold release does not itself create deletion authority.
-5. Archival preserves required historical meaning and evidence.
-6. Deletion requires authoritative eligibility and applicable constraint checks.
-7. Tenant/Institution scope is preserved.
-8. Technical failure cannot be reported as successful destructive completion.
-9. Material retention/archival/deletion/hold outcomes are observable through audit/evidence architecture.
-10. The architecture does not invent retention periods, legal policy or business lifecycle states.
-11. The specification remains implementation-independent.
-
----
+- **CR-001:** Every managed technical object shall have stable technical identity and applicable source/scope context.
+- **CR-002:** Technical identity shall remain distinct from canonical business identity.
+- **CR-003:** Version lineage shall be traceable and shall not redefine business lifecycle semantics.
+- **CR-004:** Technical metadata shall not become competing business truth.
+- **CR-005:** Storage state shall remain distinct from business lifecycle state.
+- **CR-006:** Retention execution shall require authoritative retention context.
+- **CR-007:** Active authoritative holds shall block applicable destructive processing.
+- **CR-008:** Disposal shall distinguish eligibility, attempted execution and successful execution.
+- **CR-009:** Scope shall be preserved during retention and disposal processing.
+- **CR-010:** Technical failures shall not be reported as successful business disposal/archival outcomes.
+- **CR-011:** Business ownership and lifecycle authority shall remain upstream.
+- **CR-012:** No unsupported retention duration, legal interpretation or technology choice shall be silently introduced.
 
 ## 9. Traceability
 
 | Traceability Item | Status |
 |---|---|
-| Canonical specification ID verified | PASS |
-| Canonical title verified | PASS |
-| Canonical major-area placement verified | PASS |
-| Responsibility boundary verified against 105-spec register | PASS |
-| Platform Foundation retention-policy boundary identified | PASS |
-| Upstream L1/L2/L3/L4 applicability | OPEN / BLOCKING |
-| Exact atomic L4 BH mapping | OPEN / BLOCKING |
-| Exact L4 source version/status | OPEN / BLOCKING |
-| Peer L5 version/dependency validation | OPEN / BLOCKING |
+| Canonical L5 specification identity | Verified |
+| Canonical responsibility | Verified |
+| Exact atomic L4 BH applicability | Open / Blocking |
+| Exact L4 source version/status | Open / Blocking |
+| Validated relation version binding | Required before promotion |
+| Higher-level ownership boundary | Preserved |
 
-### Required Atomic Traceability Form
+### Canonical Traceability Rule
 
-Each validated relation shall use:
+The canonical relation identity is:
 
-`L4 BH ID + L4 Version + L5-B-05-003 + L5 Version`
+`(L4 BH ID, L5 Specification ID)`
 
-Document-level statements such as “applies to retention scenarios” are insufficient for final traceability.
-
----
+A validated relation record shall additionally bind the applicable `L4 Version` and `L5 Version`.
 
 ## 10. Open Issues / Deferred Design
 
-- **OB-001 — Exact L4 BH Applicability:** Reconcile exact L4 behavioral obligations against the current approved L4 corpus before promotion.
-- **OB-002 — L4 Version/Status:** Record exact source versions and current approval/lock status for every accepted atomic relation.
-- **OB-003 — Peer Dependency Validation:** Validate exact versions and boundaries of B05-001/B05-002/B05-005, B02, D03 and D04.
-- **OB-004 — Retention Policy Source:** Confirm the authoritative Platform Foundation retention-policy source and consume its decisions without duplicating policy.
-- **OB-005 — Legal Hold Authority:** Confirm the authoritative source and scope semantics for legal holds; do not invent legal authority.
-- **OB-006 — Domain Historical Requirements:** Reconcile applicable upstream requirements for reconstructable business history before destructive behavior is promoted.
-- **OB-007 — Current L4 Baseline Reconciliation:** Where live L4 documents differ in status from the governance baseline, downstream traceability shall use the subsequently approved/current L4 state and shall not treat Draft wording as immutable.
+- **OD-001 — Exact L4 BH Applicability:** Identify and register all material L4 behavioral obligations applicable to B05-003 before promotion.
+- **OD-002 — L4/L5 Version Binding:** Bind every validated relation to exact L4 and L5 versions.
+- **OD-003 — Peer Dependency Reconciliation:** Reconcile B05-001, B05-002, B05-005, B02, D03 and D04 boundaries before promotion.
+- **OD-004 — Policy Source Reconciliation:** Confirm authoritative retention/hold/disposal policy sources without inventing policy.
 
-**Promotion Gate:** This specification shall remain `Draft — Authoring` until exact L4 applicability, upstream status and peer dependency checks are independently validated.
+**Current State:** Draft — Authoring
