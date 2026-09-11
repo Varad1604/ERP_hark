@@ -6,208 +6,165 @@
 **Architecture Level:** L5 — Solution Architecture  
 **Family:** L5-E — Reliability, Deployment & Operations Architecture  
 **Major Area:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
-**Canonical Technical Responsibility:** Repeatable, supportable institution-controlled on-premises deployment and installation.  
+**Canonical Technical Responsibility:** On-premises deployment and installation architecture preserving portability, security boundaries and supportability.  
 **Technical Architecture Owner:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-11`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-E-04-001/002`, `L5-D-03-*`, `L5-B-02-*`, `L5-E-01-*`, `L5-E-05-*`, `L5-F-01-*`, `L4-A-001`, `L4-A-028`.  
-**Referenced By:** Installation operations, E03, E05, F01.  
-**Applicable ADRs:** Required but unresolved — Supported OS/runtime/container profile; reverse-proxy/ingress product; secrets/certificate integration products. No canonical ADR ID is currently allocated.
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-E-04-001`, `L5-E-04-002`, `L5-D-03-*`, `L5-B-02-*`, `L4-A-001`, `L4-A-028`.  
+**Collaborates With / Referenced By:** `L5-E-01-*`, `L5-E-05-*`, `L5-F-01-*`, `L5-E-04-005`.  
+**Applicable ADRs:** `ADR-L5-0002`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0005`. Operating-system, ingress, container/orchestration and offline-distribution product choices remain unresolved.
 
 ---
 
 ## 2. Purpose, Scope & Non-Goals
 
-### Purpose
-
-Define repeatable, supportable on-premises installation including restricted-network operation, artifact mirroring, prerequisite validation and technical conformance evidence.
+Define a supportable on-premises installation model for SutraERP without making cloud-only services mandatory or silently promising fully disconnected operation where repository authority does not yet exist.
 
 ### In Scope
 
-- Installation manifest and prerequisite validation.
-- Restricted/offline installation.
-- Local artifact/dependency mirroring.
-- Process-managed and containerized profiles.
-- Ingress/reverse-proxy and certificate integration boundary.
-- Installation validation/supportability classification.
-- Topology/dependency inventory.
+- On-premises installation topology and prerequisites.
+- Artifact/configuration/credential delivery boundaries.
+- Local dependency and ingress expectations.
+- Installation validation and supportability evidence.
+- Restricted-connectivity/offline-capable extension points where later governed.
 
-### Out of Scope / Non-Goals
+### Out of Scope
 
-- Exact OS distribution/version or proxy product.
-- Database product/topology.
-- Secret/PKI internals.
-- HA targets.
-- Business configuration/activation.
-- CI/CD build system.
+- Business activation/lifecycle.
+- Database technology selection.
+- Exact operating-system support matrix.
+- Exact ingress/load-balancer/container/orchestrator products.
+- CI/CD implementation internals.
+- Numeric availability/capacity targets.
 
 ---
 
-## 3. Upstream Applicability, Constraints & Assumptions
+## 3. Authoritative Basis
 
-### 3.1 Canonical Upstream Reference Matrix
-
-| Source Level | Document / Decision | Version / Status | Exact Reference | What the Source Establishes | L5 Use |
-| --- | --- | --- | --- | --- | --- |
-| L5 Governance | Candidate Register 105 | v1.1.0 / Architecture Approved | `L5-E-04-003` row | Repeatable, supportable institution-controlled on-premises deployment and installation. | Establishes canonical responsibility. |
-| L4 | `L4-A-001` | v1.0.0 / Draft | `BH-003, BH-005, BH-010, BH-011, BH-012, BH-013, BH-015` | Tenant environment is established; failed provisioning remains unavailable; remediation/re-entry is governed and evidenced. | Installation validates technical readiness without changing Tenant lifecycle. |
-| L4 | `L4-A-028` | v1.0.0 / Draft | `BH-003, BH-007, BH-008, BH-009` | Technical deployment is separate from module activation. | Installer cannot activate module/business lifecycle. |
-| L5 Peer | See Section 4 | Draft/planned as identified | Exact peer IDs below | Peer-owned technical capabilities. | Consumed without ownership transfer. |
+| Source | Effect |
+| --- | --- |
+| `L5-E-04-001` | Supplies baseline runtime/deployment model. |
+| `L5-E-04-002` | Supplies package composition and runtime-isolation rules. |
+| `ADR-L5-0002` | Credentials/secrets are externally governed and not embedded in installers/artifacts. |
+| `ADR-L5-0003` | On-prem placement does not imply one service per business domain; modular-core default remains valid. |
+| `ADR-L5-0004` | Tenant/Institution isolation is enforced on-prem as in any other profile. |
+| `ADR-L5-0005` | On-prem co-location does not transfer persistence ownership or bypass tenant isolation. |
+| `L4-A-001`, `L4-A-028` | Deployment readiness/availability remains distinct from business lifecycle and module governance. |
 
 Draft L4 sources support controlled Draft authoring only and are not treated as immutable approved behavioral authority.
 
-### 3.2 Authoritative Constraints
+### Assumption Boundary
 
-| Constraint ID | Constraint | Exact Source | L5 Effect |
-| --- | --- | --- | --- |
-| C-002 | Installation success is not Tenant/module activation. | A001/A028 | Report technical readiness only. |
-| C-003 | Secrets/certificates remain D03-owned. | D03 | Installer references/injects, never defines security internals. |
-| C-004 | Persistence topology remains B02-owned. | B02 | Installer validates approved connectivity only. |
-
-### 3.3 Assumptions
-
-| ID | Assumption | Why Needed | Impact if False | Validation / Resolution |
-| --- | --- | --- | --- | --- |
-| AS-001 | Restricted/offline-capable on-premises operation is a desired support profile for core SutraERP capability. | It is part of the approved working decision set but is not repository authority. | Artifact mirroring and disconnected installation architecture may become optional or change. | Resolve through E04 deployment-pattern/support-profile ADR or technical standard. |
-
-All product/framework/runtime choices discussed during authoring remain **preferred candidates only** unless an approved ADR or technical standard makes them canonical. No numeric timeout, retry, capacity, availability, retention, RPO/RTO, scaling or similar target is invented here.
+Restricted-network or fully offline operation is **not** treated as a locked repository requirement. The architecture shall avoid unnecessary continuous vendor-cloud dependence where practical, but any mandatory disconnected-support promise requires explicit governance.
 
 ---
 
-## 4. Technical Ownership, Boundaries & Dependencies
+## 4. Technical Ownership & Dependencies
 
 ### Owns
 
-- Installation Manifest/Prerequisite Validator.
-- Artifact/dependency import/mirroring flow.
-- On-Prem Deployment Profile.
-- Installation Validation Report/supportability classification.
-- Local runtime installation flow.
-- Technical ingress integration.
+- On-prem installation profile structure.
+- Installation prerequisite and validation model.
+- Local artifact/configuration/credential placement rules.
+- Supportability evidence for installed environments.
+- Installation handoff to release/upgrade architecture.
 
-### Consumes / Collaborates With
+### Relationships
 
-| Exact L5 Specification | Capability / Collaboration | Boundary |
+| Specification | Relationship | Boundary |
 | --- | --- | --- |
-| `L5-E-04-001/002` | Runtime/package model | Instantiates on-prem profile. |
-| `L5-D-03-*` | PKI/secrets/trust | Consumes institution-approved security services. |
-| `L5-B-02-*` | Persistence | Validates required dependencies. |
-| `L5-E-01/05` | HA/readiness/operations | Profile and validation evidence. |
-| `L5-F-01-*` | Signed artifacts/SBOM/provenance | Consumes verified release. |
+| `L5-E-04-001/002` | Dependency | Baseline runtime and packaging rules. |
+| `L5-D-03-*` | Dependency | Secrets/certificates/credentials. |
+| `L5-B-02-*` | Dependency | Persistence connectivity and topology remain B02-owned. |
+| `L5-E-01-*` | Collaboration | Later resilience architecture consumes on-prem profile hooks. |
+| `L5-E-05-*` | Collaboration | Later observability/operations architecture consumes installation/health evidence. |
+| `L5-F-01-*` | Collaboration | Delivery pipeline may produce/promote installation artifacts but is not a prerequisite authority. |
 
-### Must Not Own
-
-This specification shall not redefine peer-L5 internals, upstream business ownership/rules/states/events/authority, or material technology selections that require ADR governance. Cross-boundary interaction uses governed contracts, events, workflows or peer-owned technical boundaries.
+E01/E05/F01 are deliberately not encoded as prerequisites for the on-prem architecture.
 
 ---
 
 ## 5. Solution Architecture
 
-**Draft decision gate:** Architecture in this section that depends on an `AD-*` whose ADR column contains `Required`, or on a blocking `OD-*`, is a provisional realization for architecture evaluation only. It is not a canonical implementation mandate until the required governance decision/dependency is resolved. Architecture supported independently by cited repository authority remains applicable.
-
-### 5.1 Technical Realization Model
-
-| Element | Type | Responsibility | Input / Context | State / Data | Output / Handoff | Depends On | Failure Boundary | Basis |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Installation Manifest | Artifact metadata | List required artifacts, prerequisites, profile and compatibility. | Governed context/configuration as applicable | Owned technical state only | Installation plan. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Prerequisite Validator | Control point | Validate platform/resources/network/persistence/security prerequisites. | Governed context/configuration as applicable | Owned technical state only | Pass/fail findings. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Artifact Mirror Boundary | Repository integration | Import approved artifacts/dependencies into local controlled registry/repo. | Governed context/configuration as applicable | Owned technical state only | Offline-ready source. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Installer/Profile Executor | Deployment controller | Apply selected on-prem deployment profile and external config. | Governed context/configuration as applicable | Owned technical state only | Running units. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Installation Validator | Operational control | Check version, dependency reachability and readiness. | Governed context/configuration as applicable | Owned technical state only | Validation report. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-| Supportability Classifier | Control point | Classify conformant supported profile vs approved/custom deviation. | Governed context/configuration as applicable | Owned technical state only | Support status. | Peer L5 boundaries | Explicit failure/not-ready/rejection | L4/L5 basis |
-
-### 5.2 Primary Technical Flow
+### 5.1 Installation Model
 
 ```text
-Obtain approved release/mirror → verify artifact integrity/provenance → validate platform/prerequisites → validate network/persistence/security dependencies → apply profile → inject external config/secret references → start runtime → health/readiness checks → emit validation report/supportability classification.
+verified release artifact
++ approved on-prem deployment profile
++ environment configuration
++ D03-managed credential references
++ B02-owned persistence connectivity
+→ prerequisite validation
+→ installation/deployment
+→ runtime startup
+→ readiness/health validation
+→ supportability evidence
+→ operational handoff.
 ```
 
-The flow is the current Draft technical realization. Portions dependent on unresolved ADRs or blocking peer/upstream decisions remain provisional and non-normative. Exact endpoint names, code classes, manifests, product configuration and numeric policies remain downstream implementation concerns unless later governed by ADR/technical standard.
+### 5.2 Installation Rules
 
-### 5.3 Material Failure Model
+- Installation shall use the same governed release identity used by other supported profiles; site-specific rebuilding is not the default architecture.
+- Environment configuration is external to the release artifact.
+- Secrets, certificates and machine credentials are referenced/resolved through D03-owned mechanisms.
+- On-prem packaging shall not grant cross-owner persistence access.
+- Installation success is a technical deployment outcome and does not itself activate a business/module lifecycle state.
+- Where artifact mirroring or disconnected distribution is later approved, provenance and release identity must remain verifiable.
 
-| Failure Class | Detection Boundary | Required Technical Outcome | Forbidden Outcome | Recovery / Delegated Owner |
-| --- | --- | --- | --- | --- |
-| Unsupported prerequisite | Prerequisite Validator | Stop installation/readiness. | Do not continue best-effort into unsupported state. | E04 |
-| Missing mandatory dependency | Validator | Not-ready with actionable finding. | No partial operational acceptance. | E05 |
-| Missing secret/certificate | D03 boundary | Protected failure. | No embedded fallback secret. | D03 |
-| Post-install validation failure | Installation Validator | Installation not accepted. | Do not report success from process exit alone. | E05 |
+### 5.3 Failure Model
 
-### 5.4 State, Security, Runtime & Peer Boundaries
-
-State mutation, persistence, transaction/concurrency, identity, authorization, cryptography, secrets, resilience, observability and deployment concerns are owned by the exact peer L5 specifications identified in Section 4. This specification constrains only the boundary it canonically owns and shall not duplicate those peer architectures.
-
----
-
-## 6. Architecture & Technology Decisions
-
-| Decision ID | Decision | Selected Architecture / Position | Basis / Derivation | Rationale | ADR |
-| --- | --- | --- | --- | --- | --- |
-| AD-001 | On-prem profiles | **UNRESOLVED — candidate for ADR evaluation:** Standard, containerized and HA-capable profiles. | E04 responsibility | Accommodates different institutions. | Required |
-| AD-002 | Restricted network | **UNRESOLVED — candidate for ADR evaluation:** local registry/repository mirroring for restricted/offline profiles. | AS-001 | Enables controlled/offline sites if the support profile is approved. | Required |
-| AD-003 | OS candidate | **UNRESOLVED — candidate for ADR evaluation:** Linux-first approved support matrix; Windows secondary/optional. | Working decision | Operational standardization candidate. | Required |
-| AD-004 | Ingress | **UNRESOLVED — candidate for ADR evaluation:** Dedicated reverse-proxy/ingress boundary. | D03/E04 | Avoids direct runtime exposure. | Required |
-| AD-005 | Supportability | Every install emits validation evidence and profile classification. | E05/E04 | Controlled support. | None |
-
-Any row whose ADR column contains `Required` is an **unresolved candidate position, not normative architecture**. It shall not become a conformance obligation until the required ADR is canonically allocated, evaluated and approved. Non-ADR rows remain valid only to the extent supported by the cited authority.
+| Failure | Required Outcome | Forbidden Outcome |
+| --- | --- | --- |
+| Missing prerequisite/configuration | Installation blocks or runtime remains not-ready with evidence. | Silent default of security/ownership-critical values. |
+| Credential unavailable | Protected startup/path fails closed. | Embedded/shared fallback secret. |
+| Persistence dependency unavailable | Readiness/install validation reports dependency failure. | Local ad-hoc persistence replacing B02 owner. |
+| Unsupported platform/profile | Reject as unsupported configuration. | Implicit support promise. |
 
 ---
 
-## 7. Security, Privacy, Quality & Operational Impact
+## 6. Architecture Decisions
 
-- Tenant/Institution scope and canonical ownership shall remain preserved across this specification's technical boundaries.
-- Authentication/authorization, secrets/cryptography and trust remain D-family owned where applicable.
-- Operational health, resilience, performance/capacity and observability are consumed from E-family owners rather than redefined here.
-- No unavailable numeric target is fabricated; deployment/profile-specific targets remain deferred to their canonical owners.
-
----
-
-## 8. Architecture Conformance Requirements
-
-| Requirement ID | Architecture Conformance Requirement | Derived From | Upstream / Decision Basis |
+| Decision ID | Decision | Position | Authority |
 | --- | --- | --- | --- |
-| CR-001 | On-prem installation shall validate prerequisites and mandatory dependencies before technical readiness. | §5 | A001 |
-| CR-002 | Installation shall not treat deployment success as Tenant/module activation. | C-002 | A001/A028 |
-| CR-003 | Management/health interfaces shall not be exposed as ordinary public business APIs. | §5 | D03/E05 |
-| CR-004 | Installation evidence shall identify artifact/profile/config lineage without secret values. | AD-005 | D03/E05 |
+| AD-001 | On-prem profile | On-premises is a first-class deployment profile under E04, not a separate business architecture. | E04 canonical responsibility |
+| AD-002 | Artifact integrity | Use governed release identity with external environment configuration; avoid environment-specific rebuild as default. | E04-001 |
+| AD-003 | Credential boundary | Installers/artifacts do not embed canonical secrets or machine credentials. | `ADR-L5-0002` |
+| AD-004 | Modular placement | Modular-core default/selective isolation rules remain valid on-prem. | `ADR-L5-0003` |
+| AD-005 | Isolation/persistence | Tenant isolation and persistence ownership remain unchanged by on-prem co-location. | `ADR-L5-0004`, `ADR-L5-0005` |
+| AD-006 | OS/ingress/container/orchestrator | Unresolved technology choices; no specific platform is canonical here. | ADR if standardized |
+| AD-007 | Offline/restricted-network support | Optional architecture extension until explicitly governed as a mandatory support requirement. | Requires governance if made normative |
 
 ---
 
-## 9. Open Decisions & Deferred Design
+## 7. Conformance Requirements
 
-| Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
-| --- | --- | --- | --- | --- | --- | --- |
-| OD-001 | Supported OS distribution/version matrix | ADR/standard | No approved canonical resolution / source remains pending | E04 | Yes | Evaluate enterprise Linux/Windows scope. |
-| OD-002 | Reverse-proxy/ingress product | ADR | No approved canonical resolution / source remains pending | E04/D03 | Yes | Evaluate NGINX/HAProxy/Envoy class. |
-| OD-003 | Container runtime/profile technology | ADR | No approved canonical resolution / source remains pending | E04 | Yes | Resolve packaging/orchestration ADR. |
-| OD-004 | Restricted/offline support profile and mirroring requirement | ADR / working assumption | `AS-001` is conversation-derived and not repository authority | E04 / Lead Architect | Yes for making this normative | Resolve in deployment/support-profile ADR or technical standard. |
-| OD-005 | Material L4 parents remain Draft | Upstream | No approved canonical resolution / source remains pending | L4 governance | Yes | Resolve before Architecture Approved. |
-
-These blockers prevent `Architecture Approved` status where applicable, but they do not prevent controlled Draft authoring or repository submission under the broad-authoring authorization.
+| Requirement ID | Requirement |
+| --- | --- |
+| CR-001 | On-prem deployment shall not redefine business/domain/module ownership or lifecycle. |
+| CR-002 | Installation artifacts shall preserve verifiable release identity and shall not embed ordinary secrets/credentials. |
+| CR-003 | Shared host/process placement shall not grant cross-owner persistence access. |
+| CR-004 | Unsupported OS/runtime/topology combinations shall be rejected or explicitly classified unsupported; they shall not become accidental commitments. |
+| CR-005 | E01/E05/F01 shall remain collaborators/consumers, not prerequisite authorities for E04-003. |
+| CR-006 | Fully offline operation shall not be claimed as mandatory until repository governance explicitly establishes that requirement. |
 
 ---
 
-## 10. Traceability Summary
+## 8. Open Decisions
 
-### Primary L4 Applicability
+| Item ID | Item | Blocking? | Resolution |
+| --- | --- | --- | --- |
+| OD-001 | Supported OS matrix | Yes before normative support commitment | Govern through E04 technical standard/ADR where material. |
+| OD-002 | Ingress/proxy product | No for architecture pattern; Yes before normative product mandate | Technology selection. |
+| OD-003 | Container/orchestration standard | No for architecture pattern; Yes before normative platform mandate | ADR if shared standard selected. |
+| OD-004 | Mandatory restricted/offline operating profile | Yes only if claimed as supported requirement | Establish authoritative repository decision. |
+| OD-005 | Material L4 parents remain Draft | Yes for Architecture Approved | Resolve through L4 governance. |
 
-- `L4-A-001-BH-003/BH-005/BH-010/BH-011/BH-012/BH-013/BH-015` — Installation validates technical readiness without changing Tenant lifecycle.
-- `L4-A-028-BH-003/BH-007/BH-008/BH-009` — Installer cannot activate module/business lifecycle.
+---
 
-### Material L5 Dependencies
+## 9. Traceability Summary
 
-`L5-E-04-001/002`, `L5-D-03-*`, `L5-B-02-*`, `L5-E-01-*`, `L5-E-05-*`, `L5-F-01-*`, `L4-A-001`, `L4-A-028`
-
-### Architecture Decisions
-
-`AD-001`–`AD-005`
-
-### Conformance Requirements
-
-`CR-001`–`CR-004`
-
-### Open / Blocking Items
-
-`OD-001`–`OD-005`
+**Material Dependencies:** `L5-E-04-001`, `L5-E-04-002`, `L5-D-03-*`, `L5-B-02-*`, `L4-A-001`, `L4-A-028`  
+**Material Collaborators:** `L5-E-01-*`, `L5-E-05-*`, `L5-F-01-*`, `L5-E-04-005`  
+**Applicable Approved ADRs:** `ADR-L5-0002`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0005`
