@@ -89,11 +89,11 @@ These dependencies do not transfer canonical ownership to this specification.
 
 Exact atomic L4 applicability has not been independently reconciled in this authoring draft. No L4 behavioral-obligation identifiers are invented here.
 
-Required atomic relation:
+The canonical traceability relation identity is:
 
-`(L4 BH ID, L4 Version, L5 Specification ID, L5 Version)`
+`(L4 BH ID, L5 Specification ID)`
 
-Exact L4 BH applicability, exact source version/status and validation status remain **OPEN / BLOCKING** until reconciled against the applicable current approved L4 corpus. This follows the repository requirement for atomic L4-to-L5 traceability rather than vague document-level mapping.
+A validated relation record shall additionally bind the applicable `L4 Version` and `L5 Version`. Exact L4 BH applicability, exact source version/status and validation status remain **OPEN / BLOCKING** until reconciled against the applicable current approved L4 corpus. This follows the repository requirement for version-bound atomic L4-to-L5 traceability rather than vague document-level mapping.
 
 ---
 
@@ -221,35 +221,23 @@ A downstream component shall not silently downgrade, replace or reinterpret auth
 
 ### TB-003 — Privacy Context Availability
 
-Where a privacy constraint is required for an operation, missing or unresolved authoritative context shall prevent uncontrolled processing.
+Required privacy-control context shall be resolved before a technically controlled operation proceeds where that context materially governs the operation.
 
 ### TB-004 — Scope Preservation
 
-Technical propagation shall preserve applicable Tenant, Institution and other authoritative scope context.
+Tenant, Institution and applicable governed scope shall be preserved across technical control boundaries.
 
-### TB-005 — Constrained Processing
+### TB-005 — Fail-Closed on Required Context Loss
 
-Operations inconsistent with supplied classification/privacy constraints shall be prevented or constrained at the applicable technical boundary.
+Where a required classification/privacy constraint cannot be resolved or is contradictory, the affected operation shall be prevented or constrained according to the applicable authoritative behavior.
 
-### TB-006 — No Invented Authority
+### TB-006 — Specialist Handoff Integrity
 
-The technical architecture shall not infer consent, purpose approval, disclosure authority, retention exception or business authorization when the authoritative source does not provide it.
+Specialized B05 controls shall consume the common context without duplicating or contradicting their canonical technical responsibilities.
 
-### TB-007 — Specialist Handoff
+### TB-007 — Evidence of Enforcement
 
-Where the operation requires masking, retention/deletion/legal-hold, Aadhaar-specific protection or consent/purpose enforcement, processing shall hand off to the corresponding specialist architecture rather than duplicating its responsibility.
-
-### TB-008 — Failure Containment
-
-Control-evaluation failure, missing context or contradictory context shall not silently produce an unrestricted result. The operation shall be rejected, constrained or explicitly marked unresolved according to the applicable upstream behavior.
-
-### TB-009 — Evidence Preservation
-
-Material control decisions and failures shall remain technically observable through the applicable audit/evidence architecture without unnecessarily exposing protected information.
-
-### TB-010 — Cross-Channel Consistency
-
-Equivalent technical handling paths shall consume the same authoritative classification/privacy context rather than independently deriving conflicting control decisions.
+Material classification/privacy enforcement outcomes shall remain technically observable without unnecessary protected-data replication.
 
 ---
 
@@ -257,74 +245,40 @@ Equivalent technical handling paths shall consume the same authoritative classif
 
 ### 7.1 Security
 
-- Classification/privacy context shall be protected against unauthorized alteration.
-- Sensitive control context shall not be unnecessarily exposed to components that do not require it.
-- Trust-boundary enforcement remains subject to L5-D-03.
-- Authentication and authorization remain subject to L5-D-01/L5-D-02.
+Classification/privacy handling shall preserve applicable identity, authorization, security, privacy and scope boundaries.
 
 ### 7.2 Evidence
 
-The architecture shall support evidence of:
-
-- applicable classification/privacy context;
-- technical control evaluation;
-- enforcement outcome;
-- unresolved or missing control context; and
-- specialist-control handoff where relevant.
-
-Evidence shall preserve technical provenance without redefining the business meaning or ownership of the underlying record.
-
----
+Evidence shall establish, where applicable, the relevant control context, technical evaluation, enforcement outcome and scope without unnecessarily capturing protected values. Detailed evidence/provenance persistence remains with L5-D-04.
 
 ## 8. Conformance
 
-A conforming implementation of this architecture shall demonstrate that:
+A conforming implementation shall demonstrate that:
 
-1. Authoritative classification/privacy context can be associated with governed technical processing.
-2. Required control context is checked before classification/privacy-sensitive processing.
-3. Missing or contradictory required context cannot silently produce unrestricted processing.
-4. Tenant/Institution scope is preserved.
-5. Classification cannot be silently downgraded by downstream processing.
-6. Business authority is not fabricated by technical enforcement.
-7. Specialist B05 responsibilities are delegated to their canonical owners.
-8. Security and authorization mechanisms remain with their canonical L5 owners.
-9. Material control outcomes are technically observable through the audit/evidence architecture.
-10. The architecture remains implementation-independent at the specification level.
-
----
+1. authoritative classification/privacy context is resolvable where required;
+2. missing or contradictory required context cannot silently weaken handling;
+3. scope is preserved;
+4. specialist B05 controls remain separately owned;
+5. evidence of material control enforcement is available;
+6. no business classification, consent, purpose, retention or disclosure authority is invented by the technical baseline;
+7. the exact L4 BH-to-L5 relation is version-bound before promotion.
 
 ## 9. Traceability
 
 | Traceability Item | Status |
 |---|---|
-| Canonical specification ID verified | PASS |
-| Canonical title verified | PASS |
-| Canonical major-area placement verified | PASS |
-| Responsibility boundary verified against 105-spec register | PASS |
-| B05 peer ownership boundaries identified | PASS |
-| Upstream L1/L2/L3/L4 applicability | OPEN / BLOCKING |
-| Exact atomic L4 BH mapping | OPEN / BLOCKING |
-| Exact L4 source version/status | OPEN / BLOCKING |
-| Peer L5 version/dependency validation | OPEN / BLOCKING |
-
-### Required Atomic Traceability Form
-
-Each validated relation shall use:
-
-`L4 BH ID + L4 Version + L5-B-05-001 + L5 Version`
-
-Document-level statements such as “applies to privacy scenarios” are insufficient for final traceability.
-
----
+| Canonical L5 specification identity | Verified |
+| Canonical responsibility | Verified |
+| Exact atomic L4 BH applicability | Open / Blocking |
+| Exact L4 source version/status | Open / Blocking |
+| Validated relation version binding | Required before promotion |
+| Higher-level ownership boundary | Preserved |
 
 ## 10. Open Issues / Deferred Design
 
-- **OB-001 — Exact L4 BH Applicability:** Reconcile exact L4 behavioral obligations against the current approved L4 corpus before promotion.
-- **OB-002 — L4 Version/Status:** Record exact source versions and current approval/lock status for every accepted atomic relation.
-- **OB-003 — Peer Dependency Validation:** Validate exact versions and boundaries of D01/D02/D03/D04, B02 and B05-002 through B05-005.
-- **OB-004 — Classification Vocabulary:** Consume the authoritative classification vocabulary when the applicable upstream source is confirmed; do not invent classification levels here.
-- **OB-005 — Retention Policy Inputs:** Consume authoritative retention/legal-hold decisions through B05-003; do not define periods or legal rules here.
-- **OB-006 — Consent/Purpose Inputs:** Consume authoritative consent/purpose decisions through B05-005; do not establish consent or purpose policy here.
-- **OB-007 — Current L4 Baseline Reconciliation:** Where live repository L4 documents differ in status from the governance baseline, downstream traceability shall use the subsequently approved/current L4 state and shall not treat Draft wording as immutable.
+- **OD-001 — Exact L4 BH Applicability:** Blocking until applicable approved L4 behaviors are identified.
+- **OD-002 — L4/L5 Version Binding:** Blocking until each validated relation records the L4 and L5 versions.
+- **OD-003 — Specialist B05 Alignment:** Reconcile specialist boundaries during promotion.
+- **OD-004 — Technical Control Placement:** Resolve final enforcement placement where downstream L5 owners specialize a control.
 
-**Promotion Gate:** This specification shall remain `Draft — Authoring` until the exact L4 applicability, upstream status and peer dependency checks are independently validated.
+**Current State:** Draft — Authoring
