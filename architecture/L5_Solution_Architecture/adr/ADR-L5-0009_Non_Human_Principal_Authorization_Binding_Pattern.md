@@ -1,10 +1,10 @@
 # ADR-L5-0009 — Non-Human Principal Authorization Binding Pattern
 
-**Status:** Proposed  
+**Status:** Architecture Approved  
 **Scope:** Shared / Family  
 **Decision Owner:** L5-D-02 — Authorization Architecture  
 **Allocated On:** 2026-09-12  
-**Decision Date:** —  
+**Decision Date:** 2026-09-12  
 **Affected Specifications:** `L5-D-02-001`; `L5-D-02-002`; `L5-D-02-003`; `L5-D-02-004`; `L5-D-02-006`; consumes `L5-D-01-002`  
 **Depends On:** `L5-D-01-002_Identity_Account_and_Service_Identity_Architecture.md`; `L5-A-04-001`; `L5-A-04-002`; `L5-D-03-001`; `L5-D-03-004`; `L5-D-02-001` through `L5-D-02-004`; L5 Technology Selection & ADR Methodology; L5 ADR Register
 
@@ -259,7 +259,7 @@ Trust-boundary admission and authorization are separate. Internal placement, net
 
 ### Alternative D — Technical Principal Authority Binding
 
-**Selected for approval.**
+**Selected.**
 
 It preserves D01 identity ownership, D02 authorization ownership, Tenant isolation and common policy evaluation while giving implementation a concrete machine-authority model.
 
@@ -305,14 +305,18 @@ It preserves D01 identity ownership, D02 authorization ownership, Tenant isolati
 
 ---
 
-## 7. Governance State
+## 7. Approval Record
 
-This ADR is created under the canonically allocated `ADR-L5-0009` identifier.
+The decision has been independently reviewed in the Devang Stage-2 remediation and found to:
 
-Current state:
+- remain entirely within L5 technical authorization authority;
+- consume, rather than redefine, D01 non-human identity ownership;
+- preserve `ADR-PLAT-AUTH-001` human Person/Role Assignment semantics;
+- preserve A04 Tenant/Institution isolation;
+- preserve D03 trust/credential ownership;
+- preserve D02 Permission/scope/policy/privilege boundaries;
+- introduce no vendor/product or technology lock-in;
+- close the material HF-11 machine-principal authorization gap identified in Stage-2 validation.
 
-```text
-Proposed
-```
-
-The decision is technically recommended by the Devang Stage-2 remediation analysis, but repository governance must explicitly advance this ADR to `Architecture Approved` before D02 specifications can treat it as approved decision authority.
+**Decision:** Architecture Approved — 2026-09-12.  
+**Lock:** Not authorized by this ADR approval.
