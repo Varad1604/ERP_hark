@@ -10,11 +10,11 @@
 **Technical Architecture Owner:** L5-D-02 — Authorization Architecture  
 **Assigned Author:** Devang  
 **Version:** `1.0.0`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; working `L5-D-02-001_Authorization_Architecture_Baseline.md` v1.0.0 Draft; `L5-D-01-001` through `L5-D-01-004`; `L5-A-04-001`; `L5-A-04-002`; `L5-D-03-001`; `L4-A-010` v1.0.0 Draft; `L4-A-011` v1.0.0 Draft; `L4-A-012` v1.0.0 Draft; `L4-A-013` v1.0.0 Draft; `L4-A-050` v1.0.0 Draft; `L4-A-051` v1.0.0 Draft; `L4-A-052` v1.0.0 Draft; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`.  
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-02-001_Authorization_Architecture_Baseline.md` v1.0.0 Architecture Approved; `L5-D-01-001` through `L5-D-01-004`; `L5-A-04-001`; `L5-A-04-002`; `L5-D-03-001`; `L4-A-010` v1.0.0 Draft; `L4-A-011` v1.0.0 Draft; `L4-A-012` v1.0.0 Draft; `L4-A-013` v1.0.0 Draft; `L4-A-050` v1.0.0 Draft; `L4-A-051` v1.0.0 Draft; `L4-A-052` v1.0.0 Draft; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`; `ADR-L5-0009`.  
 **Referenced By:** `L5-D-02-003`; `L5-D-02-004`; `L5-D-02-005`; `L5-D-02-006`; `L5-D-02-007`; protected APIs/services/jobs/workflows; role-resolution and policy-evaluation implementations.  
-**Applicable ADRs:** `ADR-PLAT-AUTH-001`, `ADR-L5-0001`, and `ADR-L5-0004` constrain identity, trust, and Tenant scope. No D02-002-specific technology/product ADR is selected or allocated here.
+**Applicable ADRs:** `ADR-PLAT-AUTH-001`, `ADR-L5-0001`, and `ADR-L5-0004` constrain identity, trust, and Tenant scope. `ADR-L5-0009` governs the non-human Technical Principal Authority Binding used to make governed Permissions/capabilities effective for service/workload/job/integration principals.
 
 ---
 
@@ -109,7 +109,7 @@ This specification does not define:
 | Source | Status | Applicable Authority | D02-002 Effect |
 |---|---|---|---|
 | L5 Candidate Document Corpus Register 105 | Architecture Approved | D02-002 owns “technical permission/capability representation without encoding business ownership into generic roles.” | Establishes exact L5 responsibility. |
-| working `L5-D-02-001` | v1.0.0 Draft | Permission/Capability is an effective-authority input, not final Authorization Decision; detailed model delegated to D02-002. | D02-002 refines representation/resolution only. |
+| `L5-D-02-001` | v1.0.0 Architecture Approved | Permission/Capability is an effective-authority input, not final Authorization Decision; detailed model delegated to D02-002. | D02-002 refines representation/resolution only. |
 | L2-A04 AP-04 | Locked | Permissions protect business resources and authorize business actions; they are not UI-page definitions. | Resource + Action is the semantic basis. |
 | L2-A04 §§34–38 | Locked | Permission consists of Business Resource + Business Action; naming format `<Resource>.<Action>`; Permissions are assigned to Roles; users receive them indirectly via assigned/delegated/temporary/emergency authority. | Establishes identity, naming, and mapping rules. |
 | L2-A04 §42 | Locked | Permission invariants: independent of UI/navigation/dashboard/URL; Roles rather than users; decisions evaluate Permissions with Policies; Explicit Deny overrides granted Permissions. | Prevents permission checks from becoming final decision shortcuts. |
@@ -122,6 +122,9 @@ This specification does not define:
 | L4-A-052 | Draft | Policy versions reference/validate Roles and Permissions and decisions retain exact policy-version traceability. | Permission identifiers/references must be stable enough for deterministic policy/history reconstruction. |
 | `ADR-PLAT-AUTH-001` | Approved | Role Assignment subject is canonical Person; User Account/session is runtime authentication context. | Permission model does not attach permanent business authority directly to User Account/session. |
 | `ADR-L5-0004` | Architecture Approved | Tenant is mandatory protected root. | Permission resolution occurs inside valid Tenant scope without encoding Tenant widening into Permission identity. |
+| `ADR-L5-0009` | Architecture Approved | Non-human principals receive authorization authority through a D02 Technical Principal Authority Binding. | Machine principals can receive governed Permissions/capabilities without fabricated Person or human Role Assignment semantics. |
+
+For this controlled Stage-2 validation program, the cited canonical L4 System Behavior Specifications are accepted as behavioral authority even where their own metadata remains `Draft` or `Review`; that metadata status is not an approval blocker for D02-002.
 
 ### 3.2 Locked Permission Rules
 
@@ -141,10 +144,11 @@ The following upstream rules are treated as architectural constraints:
 | C-010 | Business domains retain ownership of business resources and actions. | D02 registers/represents authorization atoms but does not take ownership of domain behavior. |
 | C-011 | Tenant/Institution scope is separately governed. | Scope shall not be silently embedded into generic Permission names as a substitute for D02-003. |
 | C-012 | Historical policy/decision reconstruction requires stable references. | Permission identifiers shall not be silently repurposed to mean a materially different business action. |
+| C-013 | A non-human principal receives candidate Permission/capability authority only through a valid Tenant-bound Technical Principal Authority Binding; credential possession or machine identity alone does not grant authority. | ADR-L5-0009. |
 
 ### 3.3 Assumptions and Explicit Non-Assumptions
 
-This specification does not assume a canonical Permission lifecycle state machine because no applicable approved L4 behavior establishes one.
+This specification does not assume a canonical Permission lifecycle state machine because no applicable upstream behavior establishes one.
 
 It therefore does not invent states such as:
 
@@ -176,6 +180,7 @@ The term **Capability** in this specification means a technical reference to an 
 - safe change/deprecation compatibility requirements.
 - cross-channel capability reference.
 - technical model for non-human actors to request protected capabilities without fabricating human Roles.
+- permission/capability participation in `ADR-L5-0009` Technical Principal Authority Bindings.
 - contracts supplied to D02-003/D02-004.
 
 ### 4.2 D02-002 Does Not Own
@@ -186,6 +191,7 @@ The term **Capability** in this specification means a technical reference to an 
 - Role Assignment lifecycle;
 - Delegation/Temporary Access lifecycle;
 - Person/Identity/User Account;
+- non-human principal identity or credentials;
 - business resource definitions or lifecycle;
 - UI navigation;
 - workflow approval logic;
@@ -418,7 +424,7 @@ A Capability Reference is therefore a reference/projection, not a new business a
 
 ### 5.7 Permission Assignment Model
 
-Normal permanent authority follows:
+Normal permanent human authority follows:
 
 ```text
 Permission(s)
@@ -442,6 +448,18 @@ Person ── permanent direct Permission
 
 as a competing default authorization model.
 
+For non-human principals, the approved model is distinct:
+
+```text
+D01 Non-Human Principal
+        ↓
+Technical Principal Authority Binding
+        ↓
+Permission / Capability references
+```
+
+The binding is D02 authorization technical state, not a human Role Assignment and not an identity/credential record.
+
 ### 5.8 Effective Permission Sources
 
 A Permission may become effective for an authorization evaluation from one or more governed authority sources:
@@ -450,6 +468,8 @@ A Permission may become effective for an authorization evaluation from one or mo
 Active Role Assignment
         │
         ├── Role → Permission mapping
+        │
+Technical Principal Authority Binding
         │
 Authorization Delegation
         │
@@ -473,7 +493,7 @@ EffectivePermission
   permission_reference
   source_authority_type
   source_authority_reference
-  subject_reference
+  subject_or_technical_principal_reference
   actor_reference where distinct
   effective_period_reference
   scope_reference
@@ -481,7 +501,7 @@ EffectivePermission
 }
 ```
 
-Detailed source lifecycles remain D02-005/006/007.
+Detailed source lifecycles remain D02-005/006/007. Technical Principal Authority Binding semantics are governed by `ADR-L5-0009`.
 
 ### 5.9 Role-to-Permission Mapping
 
@@ -506,14 +526,15 @@ Conceptual resolution:
 
 ```text
 Input:
-  subject / actor
+  subject / actor or D01 non-human principal
   authoritative effective authority references
   requested Capability Reference
   time
   Tenant context
 
 Resolve:
-  applicable Role Assignments
+  applicable Role Assignments for human subjects
+  applicable Technical Principal Authority Binding for non-human principals
   applicable Role→Permission mappings
   delegated / temporary / privileged sources
   requested Permission descriptor
@@ -535,7 +556,7 @@ PermissionResolutionResult
   matched_permission_reference(s)
   source_authority_reference(s)
   source_role_reference(s) where applicable
-  subject_reference
+  subject_or_technical_principal_reference
   actor_reference
   effective_period_reference(s)
   scope_reference(s)
@@ -691,6 +712,7 @@ Because Permissions may be referenced by:
 
 - Roles;
 - policies;
+- Technical Principal Authority Bindings;
 - Delegations;
 - Temporary Access;
 - SoD definitions;
@@ -714,7 +736,7 @@ D02-002 does not declare whether a material change must create a new Permission 
 Where a Permission is intended to stop being used:
 
 - new protected operation mappings shall not silently continue to require an obsolete semantic;
-- active Role/policy/delegation/temp-access references shall be detected before destructive removal;
+- active Role/policy/technical-principal/delegation/temp-access references shall be detected before destructive removal;
 - historical decisions/evidence shall preserve the old reference;
 - removal shall not reinterpret old Permission IDs;
 - exact deprecation state names/events are not invented here.
@@ -729,10 +751,10 @@ For human subjects:
 For non-human principals:
 
 - D01 supplies the service/workload/job/integration identity;
-- the same Permission semantics may protect a business capability;
+- the same Permission semantics protect business capabilities;
 - a machine principal shall not require fabrication of a Person merely to receive authorization;
-- the exact canonical machine-authority assignment mechanism is not fully defined by current upstream A04 and remains open;
-- D02-002 can represent the required Permission/Capability without inventing a human Role Assignment lifecycle for machines.
+- D02 uses the `ADR-L5-0009` Technical Principal Authority Binding to associate the Tenant-bound non-human principal with explicit Permissions/capabilities and applicable scope/governance/validity references;
+- the binding contributes candidate effective authority only and remains subject to D02-003 scope/resource and D02-004 policy/Deny evaluation.
 
 ### 5.20 Least-Privilege Granularity
 
@@ -777,7 +799,7 @@ The specification does not prescribe a universal maximum/minimum granularity; bu
 | Different keys representing indistinguishable same capability | Flag duplication/normalization risk; do not silently merge historical references. |
 | UI route proposes a new Permission with no distinct business capability | Reject as canonical Permission definition. |
 | Permission embeds Tenant/department instance to avoid scope architecture | Reject/rework through D02-003 unless upstream explicitly defines a distinct capability. |
-| Unknown Permission referenced by Role/Policy | Treat reference as invalid; no permissive inference. |
+| Unknown Permission referenced by Role/Policy/Technical Principal Authority Binding | Treat reference as invalid; no permissive inference. |
 | Permission removed while active dependencies exist | Block destructive removal or require governed migration/correction. |
 | Permission source expires/revokes | Remove that source contribution from effective resolution; do not delete Permission catalog identity. |
 | Permission is granted but policy Deny applies | D02-004 returns Deny; granted Permission does not override policy. |
@@ -788,6 +810,7 @@ Technical implementations may maintain:
 
 - Permission lookup indexes;
 - Role→Permission projections;
+- Technical Principal Authority Binding projections;
 - effective Permission projections;
 - compiled capability maps;
 - distributed read caches.
@@ -808,8 +831,8 @@ Permission-resolution evidence may include:
 
 - requested Permission reference/key;
 - resolved resource/action;
-- contributing Role/authority references;
-- subject/actor references;
+- contributing Role/authority/Technical Principal Authority Binding references;
+- subject/actor or non-human principal references;
 - scope references;
 - effective-time reference;
 - catalog/provenance reference;
@@ -846,7 +869,7 @@ No metric threshold is defined here.
 | AD-008 | Role→Permission mapping cannot create business ownership or final authorization. | L2-A04; L4-A-010. | None. |
 | AD-009 | Silent semantic repurposing of a referenced Permission identifier is prohibited because policy/decision history must remain reconstructible. | L4-A-052 historical traceability; architectural integrity. | None. |
 | AD-010 | Derived Permission catalogs/projections/caches remain non-authoritative. | Canonical ownership + D02-001 freshness invariant. | None. |
-| AD-011 | Human and machine actors may request the same business capability semantics, but machine authorization shall not fabricate human Person/Role Assignment truth. | D01 non-human identity boundary; ownership preservation. | None; exact machine assignment remains open. |
+| AD-011 | Human and machine actors use the same governed business Permission/capability semantics, while machine authority is carried through a distinct Technical Principal Authority Binding rather than fabricated Person/Role Assignment truth. | D01 non-human identity boundary; ownership preservation. | `ADR-L5-0009`. |
 | AD-012 | No Permission management product, RBAC library, policy engine, claims format, cache, database or namespace technology is selected here. | L5 technology/ADR governance. | Future ADR only if required. |
 
 ---
@@ -863,7 +886,7 @@ No metric threshold is defined here.
 | Temporary authority | Delegation/temp/emergency sources remain derived and time/governance bounded. | D02-005/007 |
 | Historical integrity | Permission reference meaning is not silently repurposed. | D02-002 + D04 |
 | Business ownership | Resource/action semantics remain source-domain owned. | Business domains + D02 |
-| Machine access | Machine principal can be evaluated against business capabilities without false Person ownership. | D01 + D02-002/004 |
+| Machine access | Machine principal receives bounded Permission/capability authority through the Tenant-bound Technical Principal Authority Binding without false Person ownership. | D01 + D02-002/003/004 + ADR-L5-0009 |
 | Operational resilience | Derived maps/caches may optimize resolution but cannot become canonical authority. | B02/C02/D02-004 |
 | Auditability | Resolution provenance feeds later decision/evidence reconstruction. | D04 |
 | Privacy | Permission descriptors should not copy business-resource personal/sensitive content. | B05/D04 |
@@ -906,6 +929,7 @@ No numeric performance, availability, cache TTL, Permission-count or catalog-siz
 | CR-028 | Business domains shall use the shared Permission/capability model rather than inventing channel-specific parallel permission systems. | L2-A04 AP-13 / D02-001. |
 | CR-029 | Permission-resolution output shall be usable as input to D02-003/D02-004 without itself asserting final Allow. | AD-006. |
 | CR-030 | No implementation shall infer a mandatory authorization library/vendor, policy language, claims representation, cache, database or numeric limit from this specification. | AD-012. |
+| CR-031 | A non-human Permission/capability shall contribute to effective authority only through a valid, matching Tenant-bound Technical Principal Authority Binding and shall remain subject to D02-003/D02-004 evaluation. | ADR-L5-0009. |
 
 ---
 
@@ -913,15 +937,15 @@ No numeric performance, availability, cache TTL, Permission-count or catalog-siz
 
 | Item ID | Open / Deferred Item | Classification | Source / Gap | Blocking? | Resolution |
 |---|---|---|---|---|---|
-| OD-001 | Applicable L4 authorization behaviors remain Draft. | Upstream approval | L4-A-010/A011/A012/A013/A050/A051/A052 | **Yes for Architecture Approved; No for Draft** | Promote/authorize source L4 before final D02 approval. |
-| OD-002 | D02-001 is currently a working local Draft rather than a confirmed canonical repo dependency. | Peer stabilization | current authoring sequence | Yes before approval if baseline changes materially | Reconcile D02-002 after D02-001 is committed/stabilized. |
-| OD-003 | Exact global Permission namespace rules when two domains use the same Resource word. | L5 design | L2 fixes `<Resource>.<Action>` shape but not all cross-domain collision semantics. | No for core Draft; yes for enterprise catalog implementation | Resolve through architecture governance/D02-002 revision; avoid local ad hoc prefixes without governance. |
-| OD-004 | Canonical Permission lifecycle/state/commands/events for creation, change, deprecation or retirement are not sufficiently established by applicable L4. | Upstream behavior gap | current L2/L4 coverage | Yes for asserting canonical lifecycle/event behavior; no for stable representation | Preserve references/history and do not invent state/event names. |
-| OD-005 | Whether every material Permission semantic change requires a new Permission identity/version is not defined upstream. | Upstream/L5 governance | L4-A-052 governs policy versions, not Permission versions. | No for Draft; yes for automated catalog change governance | Require non-repurposing now; obtain explicit governance for versioning rule. |
-| OD-006 | Exact machine-principal authority-assignment model for service/workload/job/integration identities. | Cross-D01/D02 gap | D01 supports non-human principals; A04 Role Assignment is Person-focused. | Yes for production machine authorization model; no for Permission semantics | Govern machine authority binding in D02-004 or a dedicated approved decision without fabricating Person. |
-| OD-007 | Exact Permission catalog distribution, caching and invalidation technology. | Technology / child design | B02/C02/D02-004 responsibility | No for Draft; yes before implementation | Select under L5 technology/ADR governance. |
-| OD-008 | Exact source/governance workflow that approves new domain Permission definitions. | Upstream governance | A04 owns Permission but applicable L4 does not fully define Permission-definition governance. | Yes for self-service runtime Permission creation; no for model architecture | Use governed architecture/configuration process until upstream workflow is defined. |
-| OD-009 | Exact compatibility contract for removing a Permission with active Role/Policy/Delegation/Temporary Access references. | L5/upstream | no complete upstream lifecycle contract | Yes for destructive automated removal | Require dependency detection and explicit governance; do not infer cascade delete. |
+| OD-001 | Applicable L4 authorization behaviors remain `Draft` in their own metadata. | Governance disposition | Controlled Stage-2 validation rule | No | Resolved for D02-002 approval interpretation; source L4 metadata remains unchanged. |
+| OD-002 | D02-001 was a working authoring dependency. | Peer stabilization | D02 family reconciliation decision | No | Closed: D02-001 is committed and Architecture Approved; reopen only on material baseline change. |
+| OD-003 | Exact global Permission namespace rules when two domains use the same Resource word. | L5 design | L2 fixes `<Resource>.<Action>` shape but not all cross-domain collision semantics. | No for architecture approval; yes before an enterprise catalog must resolve a real collision | Resolve through architecture governance; avoid local ad hoc prefixes without governance. |
+| OD-004 | Canonical Permission lifecycle/state/commands/events for creation, change, deprecation or retirement are not sufficiently established upstream. | Upstream feature-realization gate | current L2/L4 coverage | No for reusable D02 architecture; yes for a feature requiring those exact lifecycle/event semantics | Preserve references/history and do not invent state/event names. |
+| OD-005 | Whether every material Permission semantic change requires a new Permission identity/version is not defined upstream. | Upstream/L5 governance | L4-A-052 governs policy versions, not Permission versions. | No for architecture approval; yes before automated semantic-version governance | Require non-repurposing now; obtain explicit governance before automating version-change rules. |
+| OD-006 | Exact machine-principal authority-assignment model for service/workload/job/integration identities. | Resolved cross-D01/D02 decision | `ADR-L5-0009` | No | Resolved by the approved Technical Principal Authority Binding pattern. |
+| OD-007 | Exact Permission catalog distribution, caching and invalidation technology. | Technology / child design | B02/C02/D02-004 responsibility | No for architecture approval; yes before concrete implementation where material | Select under L5 technology/ADR governance. |
+| OD-008 | Exact source/governance workflow that approves new domain Permission definitions. | Upstream feature-realization gate | A04 owns Permission but applicable L4 does not fully define Permission-definition governance. | No for reusable model; yes for self-service runtime Permission creation | Use governed architecture/configuration process until upstream workflow is defined. |
+| OD-009 | Exact compatibility contract for removing a Permission with active Role/Policy/Technical Principal Authority Binding/Delegation/Temporary Access references. | L5/upstream | no complete upstream lifecycle contract | No for architecture approval; yes for destructive automated removal | Require dependency detection and explicit governance; do not infer cascade delete. |
 
 ---
 
@@ -971,7 +995,7 @@ D02-002 Permission & Capability Model
 
 ### 10.6 Conformance Requirements
 
-`CR-001` through `CR-030`.
+`CR-001` through `CR-031`.
 
 ### 10.7 Open Decisions
 

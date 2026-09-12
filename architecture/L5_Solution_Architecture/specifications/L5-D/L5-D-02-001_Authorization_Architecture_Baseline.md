@@ -10,11 +10,11 @@
 **Technical Architecture Owner:** L5-D-02 — Authorization Architecture  
 **Assigned Author:** Devang  
 **Version:** `1.0.0`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-01-001` through `L5-D-01-004`; `L5-D-03-001` and applicable D03 specializations; `L5-A-04-001`; `L5-A-04-002`; `L4-A-010` v1.0.0 Draft; `L4-A-011` v1.0.0 Draft; `L4-A-012` v1.0.0 Draft; `L4-A-013` v1.0.0 Draft; `L4-A-050` v1.0.0 Draft; `L4-A-051` v1.0.0 Draft; `L4-A-052` v1.0.0 Draft; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; applicable L2-A02/L2-A03 ownership decisions; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`.  
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-01-001` through `L5-D-01-004`; `L5-D-03-001` and applicable D03 specializations; `L5-A-04-001`; `L5-A-04-002`; `L4-A-010` v1.0.0 Draft; `L4-A-011` v1.0.0 Draft; `L4-A-012` v1.0.0 Draft; `L4-A-013` v1.0.0 Draft; `L4-A-050` v1.0.0 Draft; `L4-A-051` v1.0.0 Draft; `L4-A-052` v1.0.0 Draft; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; applicable L2-A02/L2-A03 ownership decisions; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`; `ADR-L5-0009`.  
 **Referenced By:** `L5-D-02-002` through `L5-D-02-007`; protected business-domain APIs/services/jobs; workflow/orchestration architecture; client-platform architecture; audit/evidence architecture; verification/testing architecture.  
-**Applicable ADRs:** `ADR-PLAT-AUTH-001` for identity/authorization ownership; `ADR-L5-0001` for trust-boundary admission and non-transitive trust; `ADR-L5-0004` for Tenant/Institution isolation. No additional D02-specific technology/product ADR is selected or allocated here.
+**Applicable ADRs:** `ADR-PLAT-AUTH-001` for identity/authorization ownership; `ADR-L5-0001` for trust-boundary admission and non-transitive trust; `ADR-L5-0004` for Tenant/Institution isolation; `ADR-L5-0009` for non-human principal authorization binding.
 
 ---
 
@@ -117,7 +117,7 @@ This specification does not own or redefine:
 | Source | Status | Exact Authority Used by D02-001 | L5 Effect |
 |---|---|---|---|
 | L5 Candidate Document Corpus Register 105 | Architecture Approved | `L5-D-02-001` is the Authorization Architecture Baseline; D02-002 through D02-007 own detailed permission, scope, policy, delegation, privileged-access and SoD architecture. | Establishes this baseline as family-level architecture rather than a monolithic implementation document. |
-| L5 Dependency-Gated Parallel Authoring Timeline | Locked | D02 is Stage 2 and depends minimally on `D01 + D03 + A04`. | D02 Draft authoring proceeds only after those foundations are present/stable enough to prevent invention of identity, trust or scope semantics. |
+| L5 Dependency-Gated Parallel Authoring Timeline | Locked | D02 is Stage 2 and depends minimally on `D01 + D03 + A04`. | D02 authoring proceeds only after those foundations are present/stable enough to prevent invention of identity, trust or scope semantics. |
 | `L5-D-01-001` through `L5-D-01-004` | Draft | D01 owns identity/account/authentication/session/credential boundaries and supplies authenticated/attributable actor context. | D02 consumes actor context; it never authenticates the actor or changes account/session state. |
 | `L5-A-04-001` | v1.0.1 Draft | Tenant is mandatory root protected scope; Institution is subordinate; missing/mismatched/cross-Tenant scope fails closed. | Every D02 authorization request is evaluated inside validated A04 scope. |
 | `L5-A-04-002` | Draft | Propagates Tenant/Institution/lower context across execution and persistence boundaries. | D02 consumes propagated scope and must not silently widen, replace or reconstruct it. |
@@ -133,8 +133,9 @@ This specification does not own or redefine:
 | `ADR-PLAT-AUTH-001` | Approved | Role Assignment subject is canonical A02 Person; User Account is authentication/runtime context and not the authorization assignment subject. | Prevents D02 from assigning authorization truth to User Account/session identity. |
 | `ADR-L5-0001` | Architecture Approved | Explicit trust boundaries and fail-closed admission. | Authorization enforcement is a protected-boundary control, not optional application decoration. |
 | `ADR-L5-0004` | Architecture Approved | Tenant-rooted isolation and subordinate Institution context. | D02 cannot authorize across Tenant boundaries or widen A04 scope. |
+| `ADR-L5-0009` | Architecture Approved | Non-human service/workload/job/integration principals receive D02 authority through a Technical Principal Authority Binding rather than fabricated Person/Role Assignment semantics. | Makes non-human authorization implementable while preserving D01 identity ownership and D02 policy/scope enforcement. |
 
-All materially applicable L4 authorization specifications cited above currently remain `Draft` in repository metadata. They are sufficient for controlled L5 Draft architecture but not by themselves for Architecture Approved promotion.
+For this controlled Stage-2 validation program, the cited canonical L4 System Behavior Specifications are accepted as behavioral authority even where their repository metadata remains `Draft` or `Review`. Their metadata status is therefore not an approval blocker for this specification; the L4 files themselves are not silently promoted by this decision.
 
 ### 3.2 Core Authorization Invariants
 
@@ -158,12 +159,13 @@ All materially applicable L4 authorization specifications cited above currently 
 | C-016 | Missing, inconsistent or untrusted mandatory authorization context shall not degrade to a permissive result. | D03-001 fail-closed principle; A04; L2-A04. |
 | C-017 | Business domains supply protected-operation/resource/business context and retain business ownership; D02 determines authorization outcome without absorbing business lifecycle ownership. | L2-A04 §§5, 12–13. |
 | C-018 | Authorization semantics shall be consistent across UI, API, internal service, job, workflow and integration channels. | L2-A04 AP-13. |
+| C-019 | Non-human authority shall be represented through a D02 Technical Principal Authority Binding rooted in the same Tenant as the D01 non-human principal; the binding is not a human Role Assignment and never independently produces final Allow. | ADR-L5-0009. |
 
 ### 3.3 Assumptions
 
 No business authority is inferred merely to complete technical architecture.
 
-Where current L4 leaves policy lifecycle, Delegation approval authority, Temporary Access approver, SoD override authority or emergency approval semantics unresolved, D02 will carry those as explicit governed inputs or open items rather than invent actors/states/events.
+Where current L4 leaves policy lifecycle, Delegation approval authority, Temporary Access approver, SoD override authority or emergency approval semantics unresolved, D02 carries those as explicit governed inputs or feature-realization gates rather than inventing actors/states/events.
 
 ---
 
@@ -292,7 +294,7 @@ No element above owns the business operation itself.
 | Authorization Request Boundary | Normalizes a protected-operation authorization request without losing actor, scope, action or resource context. | authenticated actor/principal; Tenant/Institution scope; action; resource; business context; correlation | canonical technical Authorization Evaluation Context | Missing required context → no Allow. |
 | Subject & Actor Resolver | Resolves the canonical authorization subject and acting technical principal while preserving distinction between Person subject, authenticated user, delegated actor and workload identity. | D01 actor; canonical Person; subject references | attributable subject/actor context | User Account/session shall not replace canonical Role Assignment subject. |
 | Scope Admission Boundary | Confirms the requested authorization scope is within validated A04 Tenant/Institution context. | A04 scope; requested resource scope | admitted scope or rejection | Cross-Tenant/mismatched/widened scope → Deny/reject. |
-| Effective Authority Resolver | Resolves source-valid Role Assignments and later detailed delegated/temporary authority that may contribute to evaluation. | active Role Assignments; period/scope; delegation/temp access references | effective authority facts | Inactive/expired/out-of-scope authority does not participate. |
+| Effective Authority Resolver | Resolves source-valid Role Assignments, Technical Principal Authority Bindings, and governed delegated/temporary authority that may contribute to evaluation. | active Role Assignments; valid technical-principal bindings; period/scope; delegation/temp access references | effective authority facts | Inactive/expired/out-of-scope authority does not participate. |
 | Permission / Capability Resolution Boundary | Resolves the business action/resource capability represented by effective authority. | Roles/Permissions/capabilities; requested action/resource | candidate permitted capabilities | Detailed model belongs D02-002. |
 | Resource Context Resolver | Supplies governed resource state/classification/ownership/scope attributes needed by policy without transferring resource ownership to D02. | business-domain resource reference/state context | immutable evaluation snapshot/reference | Missing mandatory resource context → no permissive inference. |
 | Policy Version Resolver | Resolves the authoritative policy version applicable to Tenant/Institution/action/resource/time. | policy scope/version; configuration | exact governed policy reference | Undefined/unapproved successor must not silently replace current authority. |
@@ -321,6 +323,7 @@ AuthorizationEvaluationContext
   authoritative resource context required by policy
 
   effective Role Assignment references
+  effective Technical Principal Authority Binding reference where applicable
   effective Delegation references if any
   effective Temporary / privileged authority references if any
 
@@ -348,10 +351,11 @@ For human authorization:
 
 For non-human execution:
 
-- D01 supplies the attributable service/workload/job/integration principal.
-- D02 may authorize that technical actor only under explicitly governed permission/policy semantics.
-- A machine identity shall not be given human Person authority merely to reuse the human RBAC path.
-- Exact machine-authorization representation is refined by D02-002/D02-004 and applicable upstream governance.
+- D01 supplies the attributable Tenant-bound service/workload/job/integration principal.
+- D02 binds machine authority through the `ADR-L5-0009` **Technical Principal Authority Binding** rather than fabricating a Person, human User Account or human Role Assignment.
+- The binding references the D01 technical principal, governed Permission/capability authority, Tenant and applicable narrower scope, provenance/governance reference, and validity/freshness information.
+- A Technical Principal Authority Binding contributes candidate effective authority only; D02-003 scope/resource evaluation and D02-004 policy/deny enforcement still determine the final Authorization Decision.
+- A machine identity shall never acquire human Person authority merely to reuse the human RBAC path.
 
 ### 5.5 Role Assignment Participation
 
@@ -379,7 +383,7 @@ Baseline constraints:
 - permissions describe business actions/capabilities, not UI pages;
 - naming/identifier conventions remain D02-002;
 - a Permission alone does not establish a Person's effective authority;
-- permission resolution considers effective Role Assignment and any governed temporary/delegated authority;
+- permission resolution considers effective Role Assignment, Technical Principal Authority Binding where applicable, and any governed temporary/delegated authority;
 - resource/scope constraints remain part of evaluation;
 - policy can further restrict an otherwise available permission;
 - Deny can override otherwise permitting authority;
@@ -407,7 +411,7 @@ D02-001 requires that:
 - scope is validated against A04 Tenant/Institution context;
 - resource context comes from the business/resource owner;
 - authorization evaluation does not mutate resource state merely to decide access;
-- a Role Assignment valid at one scope does not automatically grant authority at another scope;
+- a Role Assignment or Technical Principal Authority Binding valid at one scope does not automatically grant authority at another scope;
 - a missing lower scope cannot be replaced by a broader scope merely to obtain an Allow;
 - Tenant mismatch is always non-permissive.
 
@@ -566,6 +570,7 @@ The architecture shall prevent stale permissive authority from surviving materia
 Material changes include, where applicable:
 
 - Role Assignment activation/suspension/expiry/revocation;
+- Technical Principal Authority Binding validity/expiry/revocation or scope change;
 - Delegation expiry/revocation;
 - Temporary Access expiry/revocation;
 - policy-version change;
@@ -584,10 +589,12 @@ D02-004/C02/B02 will realize freshness mechanisms under governed design.
 |---|---|
 | No authenticated/attributable actor where required | No Allow. |
 | Canonical subject cannot be resolved | No Allow. |
+| Non-human principal lacks a valid Technical Principal Authority Binding for the requested capability/scope | No Allow. |
 | Tenant scope missing or inconsistent | Fail closed. |
 | Institution/resource scope conflicts with Tenant | Fail closed. |
 | Protected action/resource cannot be resolved | Reject evaluation / Deny; never guess a broader permission. |
 | Role Assignment is inactive, expired, premature or out of scope | Exclude it from effective authority. |
+| Technical Principal Authority Binding is expired, revoked, stale or out of scope | Exclude it from effective authority. |
 | Delegation/temporary authority is expired/revoked/out of scope | Exclude it. |
 | Applicable policy version cannot be reliably resolved | No permissive default. |
 | Policy evaluation is ambiguous/non-deterministic | No Allow. |
@@ -601,6 +608,7 @@ D02-004/C02/B02 will realize freshness mechanisms under governed design.
 ### 5.18 Persistence / Consistency Boundaries
 
 - Canonical Role, Role Assignment, Permission, Delegation, Temporary Access, SoD Policy and Authorization Policy state remain authorization-domain-owned.
+- D02-owned Technical Principal Authority Bindings are authorization technical state and shall not become D01 identity or credential truth.
 - D02-001 defines no database schema.
 - Derived effective-authority/index/cache/projection structures may exist only as technical derivatives and may not become canonical authority.
 - Historical Authorization Decisions shall retain the policy-version reference evaluated.
@@ -639,7 +647,7 @@ A D03 trust admission does not itself produce authorization.
 | AD-003 | Canonical Role Assignment subject is Person; User Account/session are runtime authentication context, not assignment truth. | L4-A-010; ADR-PLAT-AUTH-001. | `ADR-PLAT-AUTH-001`. |
 | AD-004 | D02 authorization is Tenant-rooted and cannot widen A04 scope. | A04-001 and `ADR-L5-0004`. | `ADR-L5-0004`. |
 | AD-005 | Authorization is policy-driven and explicit Deny has precedence over Allow. | L2-A04 AP-05/AP-06; L4-A-051/A052. | None; direct upstream rule. |
-| AD-006 | Role Assignment, Permission, Delegation, Temporary Access, SoD and policy are effective-authority inputs; none alone is automatically the final Authorization Decision. | L4-A-010/A051; L2-A04. | None. |
+| AD-006 | Role Assignment, Permission, Technical Principal Authority Binding, Delegation, Temporary Access, SoD and policy are effective-authority inputs; none alone is automatically the final Authorization Decision. | L4-A-010/A051; L2-A04; ADR-L5-0009. | `ADR-L5-0009` for non-human binding. |
 | AD-007 | Decision and enforcement are distinct but inseparable controls: protected execution requires a valid final Allow. | L2-A04 AP-01/AP-03. | None. |
 | AD-008 | Workspace and client-side visibility are not security boundaries and never authorize execution. | L2-A04 AP-03/AP-07/AP-09; L4-A-050. | None. |
 | AD-009 | Authorization decisions bind exact evaluated scope, action/resource and policy-version provenance. | L4-A-052-BH-007/BH-008. | None. |
@@ -647,6 +655,7 @@ A D03 trust admission does not itself produce authorization.
 | AD-011 | D02 family uses one common authorization semantics across interactive, API, service, workflow, job and integration channels. | L2-A04 AP-13. | None. |
 | AD-012 | Detailed D02 responsibilities remain split across D02-002 through D02-007 rather than being duplicated in the baseline. | Frozen L5 corpus. | None. |
 | AD-013 | No authorization vendor, policy language, RBAC framework, ABAC engine, PDP/PEP product, cache, database or protocol is selected by this baseline. | L5 Technology Selection & ADR Methodology. | Future ADR only if material selection is required. |
+| AD-014 | Non-human service/workload/job/integration authority uses a D02-owned Technical Principal Authority Binding instead of fabricated human Person/Role Assignment semantics. | D01 non-human identity model plus D02 authorization ownership. | `ADR-L5-0009`. |
 
 ---
 
@@ -657,7 +666,8 @@ A D03 trust admission does not itself produce authorization.
 | Unauthorized access | Protected operations execute only after valid Allow. | D02-001 / D02-004 |
 | Tenant isolation | Every decision remains inside A04 Tenant root and compatible subordinate scope. | A04 + D02-003 |
 | Identity integrity | Role Assignment subject remains canonical Person; actor remains attributable through D01. | D01 + D02 |
-| Least privilege | Effective authority limited by Role Assignment, Permission, scope, period and policy. | D02-002/003/004 |
+| Machine authorization integrity | Non-human principals receive bounded D02 authority without fabricated Person/User Account semantics. | D01-002 + D02 + ADR-L5-0009 |
+| Least privilege | Effective authority limited by Role Assignment or Technical Principal Authority Binding, Permission, scope, period and policy. | D02-002/003/004 |
 | Policy consistency | Central policy evaluation prevents business modules from diverging. | D02-004 |
 | SoD | Effective responsibilities participate in conflict evaluation; conflict Deny precedence preserved. | D02-007 |
 | Privileged access | Administrative/privileged execution requires explicit governed authority and trust controls. | D02-006 + D03 |
@@ -708,6 +718,7 @@ No numeric latency, throughput, availability, cache TTL, policy evaluation timeo
 | CR-028 | Business domains shall not implement an independent weaker authorization model for alternate channels. | AP-13. |
 | CR-029 | No detailed child-spec responsibility shall be duplicated in D02-001 in a way that creates conflicting technical ownership with D02-002 through D02-007. | Frozen corpus / AD-012. |
 | CR-030 | No implementation shall infer a mandatory authorization product, policy language, token/claims format, cache technology, database or numeric target from this baseline. | AD-013. |
+| CR-031 | Every non-human protected operation shall resolve a valid D01 non-human principal and a matching Tenant-bound D02 Technical Principal Authority Binding before its authority can participate in final policy evaluation. | ADR-L5-0009; AD-014. |
 
 ---
 
@@ -715,17 +726,17 @@ No numeric latency, throughput, availability, cache TTL, policy evaluation timeo
 
 | Item ID | Open / Deferred Item | Classification | Source / Gap | Blocking? | Required Resolution |
 |---|---|---|---|---|---|
-| OD-001 | Material L4 authorization specifications remain Draft. | Upstream approval | L4-A-010/A011/A012/A013/A050/A051/A052 metadata | **Yes for Architecture Approved; No for Draft authoring** | Promote/authorize applicable L4 before D02 formal approval. |
-| OD-002 | Detailed Permission/Capability representation, naming, grouping, composability and machine-principal capability semantics. | D02 child design | Frozen responsibility assigned to D02-002 | No for baseline | Resolve in `L5-D-02-002`. |
-| OD-003 | Exact lower-scope hierarchy/resource-context technical model and inheritance semantics. | D02 child design | Frozen responsibility assigned to D02-003 | No for baseline | Resolve in `L5-D-02-003` while preserving A04 Tenant/Institution invariants. |
-| OD-004 | Detailed policy evaluator/enforcement topology, decision freshness model and any cache/invalidation realization. | D02 child / technology | D02-004 responsibility; technology not selected | No for baseline; Yes before implementation | Resolve in D02-004 and ADR if material technology choice is made. |
-| OD-005 | Authorization Policy lifecycle states, activation/rollback commands/events and policy governance actors remain undefined upstream. | Upstream behavior gap | L4-A-052 open issues | Yes for asserting canonical policy lifecycle/event mechanics | Keep technical evaluator bound to an authoritative policy reference; do not invent lifecycle. |
-| OD-006 | Delegation canonical approving authority, some lifecycle contracts/events and exact creation/expiry/revocation handoffs remain incompletely governed upstream. | Upstream behavior gap | L4-A-011 / parent gaps | Yes for exact business lifecycle implementation; No for baseline participation semantics | Resolve upstream and specialize in D02-005. |
-| OD-007 | Temporary Access approving role/authority and exact lifecycle contracts/events remain incompletely governed upstream. | Upstream behavior gap | L4-A-012 / parent gaps | Yes for exact business lifecycle implementation; No for baseline participation semantics | Resolve upstream and specialize in D02-005. |
-| OD-008 | SoD configuration lifecycle/events and platform/institution override authorities remain undefined. | Upstream behavior gap | L4-A-051 `A051-L4-OPEN-*` | Yes for exact policy-governance mechanics; No for evaluation invariant | Preserve Deny/no-bypass semantics; resolve detailed control in D02-007 after upstream decision. |
-| OD-009 | Detailed privileged/admin authority model and emergency approval/override authority. | D02 child + upstream | D02-006/D02-007; L4-A-013 | No for baseline; may block production privileged flows | Resolve in child specs using upstream authority without inventing universal admin roles. |
-| OD-010 | Exact audit evidence storage/schema/retention for Authorization Decisions. | Cross-L5 dependency | D04 responsibility | No for baseline | D02 supplies semantic evidence facts; D04 owns storage/provenance details. |
-| OD-011 | Exact authorization decision transport, claims representation, policy language, engine/product, deployment and persistence technology. | Technology/ADR | No D02 technology ADR selected here | No for Draft; Yes before concrete implementation where material | Use L5 Technology Selection & ADR Methodology; do not allocate ADR number locally. |
+| OD-001 | L4 authorization specifications remain `Draft` in their own metadata. | Governance disposition | Controlled Stage-2 validation rule and `L5_Devang_Stage2_Architecture_Remediation_and_Approval_Decision_2026-09-12.md` | No | Resolved for this specification's approval interpretation; source L4 metadata remains unchanged. |
+| OD-002 | Detailed Permission/Capability representation and non-human capability binding. | Resolved D02 child design | `L5-D-02-002`; `ADR-L5-0009` | No | Resolved by the approved D02-002 model and Technical Principal Authority Binding pattern. |
+| OD-003 | Exact lower-scope hierarchy/resource-context technical model and inheritance semantics. | Resolved D02 child design | `L5-D-02-003` | No | Resolved at reusable architecture level by `L5-D-02-003`; source-owned lower-scope semantics remain authoritative. |
+| OD-004 | Detailed policy evaluator/enforcement architecture and machine-protected-operation participation. | Resolved D02 child design / technology deferral | `L5-D-02-004`; `ADR-L5-0009` | No for architecture approval | Resolved at architecture level; product/topology/cache selections remain separately governed implementation decisions. |
+| OD-005 | Authorization Policy lifecycle states, activation/rollback commands/events and policy governance actors remain undefined upstream. | Upstream feature-realization gate | L4-A-052 open issues | No for reusable D02 architecture; Yes only for a feature that requires the undefined lifecycle/governance semantics | Keep evaluator bound to an authoritative policy reference and resolve missing business authority upstream before realizing that feature. |
+| OD-006 | Delegation canonical approving authority, some lifecycle contracts/events and exact creation/expiry/revocation handoffs remain incompletely governed upstream. | Upstream feature-realization gate | L4-A-011 / parent gaps | No for reusable D02 architecture; Yes only for the affected Delegation approval/lifecycle path | Preserve D02-005 mechanism; resolve business approver/command/event authority upstream without L5 invention. |
+| OD-007 | Temporary Access approving role/authority and exact lifecycle contracts/events remain incompletely governed upstream. | Upstream feature-realization gate | L4-A-012 / parent gaps | No for reusable D02 architecture; Yes only for the affected Temporary Access approval/lifecycle path | Preserve D02-005 mechanism; resolve business authority upstream. |
+| OD-008 | SoD configuration lifecycle/events and platform/institution override authorities remain undefined. | Upstream feature-realization gate | L4-A-051 `A051-L4-OPEN-*` | No for reusable D02 architecture; Yes only where the missing policy-governance authority is required | Preserve Deny/no-bypass semantics and resolve missing governance upstream before that feature is realized. |
+| OD-009 | Detailed business authority for selected privileged/admin and emergency approval/override paths remains source-governed. | Upstream feature-realization gate | D02-006/D02-007; L4-A-013 | No for reusable D02 architecture; Yes only for a flow requiring an undefined business authority | Use approved D02-006/D02-007 technical safeguards and obtain source authority before enabling the affected flow. |
+| OD-010 | Exact audit evidence storage/schema/retention for Authorization Decisions. | Cross-L5 dependency | D04 responsibility | No | D02 supplies semantic evidence facts; D04 owns storage/provenance details. |
+| OD-011 | Exact authorization decision transport, claims representation, policy language, engine/product, deployment and persistence technology. | Technology/ADR | No product selection is made here | No for architecture approval; governed before concrete implementation where material | Use L5 Technology Selection & ADR Methodology and ADR governance for material selections. |
 
 ---
 
@@ -757,6 +768,7 @@ No numeric latency, throughput, availability, cache TTL, policy evaluation timeo
 - `ADR-PLAT-AUTH-001`: Person is the authorization assignment subject; User Account is runtime/authentication context.
 - `ADR-L5-0001`: protected boundaries are explicit and fail closed.
 - `ADR-L5-0004`: Tenant is mandatory root protected scope.
+- `ADR-L5-0009`: non-human authority uses D02 Technical Principal Authority Binding without fabricated Person/Role Assignment semantics.
 
 ### 10.3 D02 Family Decomposition
 
@@ -780,13 +792,13 @@ The arrows above indicate authoring specialization/order for the D02 family, not
 
 ### 10.4 Architecture Decisions
 
-`AD-001` through `AD-013`.
+`AD-001` through `AD-014`.
 
 ### 10.5 Conformance Requirements
 
-`CR-001` through `CR-030`.
+`CR-001` through `CR-031`.
 
-### 10.6 Open / Blocking Items
+### 10.6 Open / Deferred Items
 
 `OD-001` through `OD-011`.
 

@@ -10,11 +10,11 @@
 **Technical Architecture Owner:** L5-D-02 — Authorization Architecture  
 **Assigned Author:** Devang  
 **Version:** `1.0.0`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; working `L5-D-02-001_Authorization_Architecture_Baseline.md` v1.0.0 Draft; working `L5-D-02-002_Permission_and_Capability_Model_Architecture.md` v1.0.0 Draft; `L5-A-04-001` v1.0.1 Draft; `L5-A-04-002` v1.0.1 Draft; `L5-D-01-001` through `L5-D-01-004`; `L5-D-03-001`; `L4-A-010` v1.0.0 Draft; `L4-A-011` v1.0.0 Draft; `L4-A-012` v1.0.0 Draft; `L4-A-013` v1.0.0 Draft; `L4-A-050` v1.0.0 Draft; `L4-A-051` v1.0.0 Draft; `L4-A-052` v1.0.0 Draft; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`.  
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-02-001_Authorization_Architecture_Baseline.md` v1.0.0 Architecture Approved; `L5-D-02-002_Permission_and_Capability_Model_Architecture.md` v1.0.0 Architecture Approved; `L5-A-04-001` v1.0.1 Draft; `L5-A-04-002` v1.0.1 Draft; `L5-D-01-001` through `L5-D-01-004`; `L5-D-03-001`; `L4-A-010` v1.0.0 Draft; `L4-A-011` v1.0.0 Draft; `L4-A-012` v1.0.0 Draft; `L4-A-013` v1.0.0 Draft; `L4-A-050` v1.0.0 Draft; `L4-A-051` v1.0.0 Draft; `L4-A-052` v1.0.0 Draft; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`; `ADR-L5-0009`.  
 **Referenced By:** `L5-D-02-004`; `L5-D-02-005`; `L5-D-02-006`; `L5-D-02-007`; workflow/orchestration, API, service, background-job, client and business-domain architectures requiring scoped authorization.  
-**Applicable ADRs:** `ADR-L5-0004` canonically constrains Tenant/Institution isolation and validated execution scope; `ADR-L5-0001` constrains trust-boundary admission; `ADR-PLAT-AUTH-001` constrains authorization subject ownership. No additional D02-003 product/technology ADR is selected here.
+**Applicable ADRs:** `ADR-L5-0004` canonically constrains Tenant/Institution isolation and validated execution scope; `ADR-L5-0001` constrains trust-boundary admission; `ADR-PLAT-AUTH-001` constrains authorization subject ownership; `ADR-L5-0009` governs Tenant/scope binding for non-human Technical Principal Authority Bindings. No additional D02-003 product/technology ADR is selected here.
 
 ---
 
@@ -58,6 +58,7 @@ This document owns the second and third layers above.
 - Scope narrowing.
 - Scope matching between subject authority and protected resource.
 - Role Assignment scope consumption.
+- Technical Principal Authority Binding scope consumption for non-human principals.
 - Delegation/Temporary Access/privileged authority scope consumption.
 - Resource identity/context references.
 - Resource ownership relationship context.
@@ -82,6 +83,7 @@ This specification does not own:
 - Permission identity or Resource.Action representation — D02-002.
 - Final policy evaluation / Allow / Deny engine — D02-004.
 - Role Assignment, Delegation or Temporary Access business lifecycle.
+- Non-human principal identity/credential lifecycle — D01/D03.
 - Privileged/admin authority lifecycle.
 - SoD/maker-checker/emergency semantics.
 - Authentication or identity lifecycle.
@@ -102,8 +104,8 @@ This specification does not own:
 | Source | Status | Applicable Authority | D02-003 Effect |
 |---|---|---|---|
 | L5 Candidate Document Corpus Register 105 | Architecture Approved | D02-003 owns Tenant, Institution, organisational-unit and resource-context authorization scope. | Establishes this specification’s exact L5 responsibility. |
-| working `L5-D-02-001` | Draft | Authorization is mandatory, Tenant-rooted, scope-aware, fail-closed and policy-driven. | D02-003 supplies scope/resource context into the D02 baseline. |
-| working `L5-D-02-002` | Draft | Permission answers “what”; scope is intentionally separate and delegated to D02-003. | Prevents Permission-key explosion and scope encoding. |
+| `L5-D-02-001` | Architecture Approved | Authorization is mandatory, Tenant-rooted, scope-aware, fail-closed and policy-driven. | D02-003 supplies scope/resource context into the D02 baseline. |
+| `L5-D-02-002` | Architecture Approved | Permission answers “what”; scope is intentionally separate and delegated to D02-003. | Prevents Permission-key explosion and scope encoding. |
 | `L5-A-04-001` | v1.0.1 Draft | Tenant is mandatory root protected scope; Institution is subordinate; missing/mismatched/cross-Tenant scope fails closed. | Establishes the outer isolation envelope D02-003 must never widen. |
 | `L5-A-04-002` | v1.0.1 Draft | Validated Execution Scope Context carries Tenant, Institution and lower scope across execution/persistence; narrowing is permitted when authoritative; widening requires revalidation. | D02-003 consumes and refines lower authorization scope while preserving A04 semantics. |
 | L2-A04 | v1.1 Locked | Role Assignment contains scope; policy may evaluate Institution, Department, Campus, time, resource state, ownership and attributes; Resource Scope Evaluation includes Tenant, Institution, Organization, Campus, Department, Academic Session and Financial Year; out-of-scope operations are denied. | Supplies the canonical authorization-scope and resource-context semantics. |
@@ -115,6 +117,9 @@ This specification does not own:
 | L4-A-051 | v1.0.0 Draft | Protected request resolves Tenant, institution, business-process/action/resource context and effective responsibilities for SoD evaluation. | D02-003 must provide deterministic resource/scope context to later SoD/policy evaluation. |
 | L4-A-052 | v1.0.0 Draft | Policy version resolves exact Tenant/institutional scope and validates Role/Permission/scope references. | Scope references must be stable/provenance-aware enough for deterministic policy evaluation. |
 | `ADR-L5-0004` | Architecture Approved | Tenant-rooted scope, subordinate Institution, propagation and fail-closed scope handling. | Governs the root isolation/scope model. |
+| `ADR-L5-0009` | Architecture Approved | A non-human Technical Principal Authority Binding is Tenant-bound and may include Institution/lower-scope constraints that only narrow the principal’s valid authorization scope. | Gives machine principals a canonical scoped-authority model without human Role Assignment fabrication. |
+
+For this controlled Stage-2 validation program, the cited canonical L4 System Behavior Specifications are accepted as behavioral authority even where their own metadata remains `Draft` or `Review`; that metadata status is not an approval blocker for D02-003.
 
 ### 3.2 Locked Scope and Resource Rules
 
@@ -123,7 +128,7 @@ This specification does not own:
 | C-001 | Tenant is the mandatory protected root. | Every D02-003 context is Tenant-bound. |
 | C-002 | Institution is subordinate to Tenant. | Institution cannot replace/widen Tenant. |
 | C-003 | Lower scope is conditional and source-owned. | D02-003 references lower scope but does not invent its business hierarchy. |
-| C-004 | Role Assignment contains scope. | Effective authority is constrained by assignment scope. |
+| C-004 | Role Assignment contains scope. | Effective human authority is constrained by assignment scope. |
 | C-005 | Role Assignment scope and effective period both constrain authority. | Correct Permission with wrong scope is insufficient. |
 | C-006 | Resource Scope Evaluation may include Tenant, Institution, Organization, Campus, Department, Academic Session and Financial Year. | D02-003 supports multi-dimensional operational scope. |
 | C-007 | Business operations outside authorized operational scope shall be denied. | Out-of-scope is a non-permissive result. |
@@ -135,6 +140,7 @@ This specification does not own:
 | C-013 | Scope loss or mismatch across async/workflow/background handoff fails closed. | Ambient/global context is prohibited. |
 | C-014 | Workspace does not grant authorization or scope. | Workspace selection is not a source of authority. |
 | C-015 | Permission identity should not encode organizational scope instances merely to avoid proper scope evaluation. | Permission and scope remain orthogonal. |
+| C-016 | A Technical Principal Authority Binding shall be rooted in the same Tenant as its D01 non-human principal; Institution/lower scope may only narrow authority and shall never bridge Tenant boundaries. | ADR-L5-0009. |
 
 ### 3.3 Explicit Non-Assumptions
 
@@ -174,6 +180,7 @@ Where upstream architecture does not establish whether one lower scope contains,
 - Scope-reference semantics.
 - Effective-scope intersection/narrowing rules.
 - Scope-match / scope-compatibility semantics.
+- Technical Principal Authority Binding scope compatibility and narrowing semantics under `ADR-L5-0009`.
 - Resource scope extraction boundary.
 - Resource ownership-context extraction boundary.
 - Resource state-context extraction boundary.
@@ -187,6 +194,7 @@ Where upstream architecture does not establish whether one lower scope contains,
 
 - Permission identity.
 - final policy decision.
+- non-human principal identity or credentials.
 - business hierarchy lifecycle.
 - authoritative Department/Campus/etc master data.
 - business resource lifecycle.
@@ -205,6 +213,7 @@ Where upstream architecture does not establish whether one lower scope contains,
 |---|---|---|
 | A04-001 | Tenant/Institution isolation envelope | Sets root and subordinate scope invariants. |
 | A04-002 | Validated Execution Scope Context | Supplies propagated Tenant/Institution/lower execution context. |
+| D01-002 | Human/non-human principal identity | Supplies Tenant-bound non-human principal identity referenced by Technical Principal Authority Binding. |
 | D02-001 | Authorization baseline | Defines fail-closed scope-aware authorization. |
 | D02-002 | Permission/Capability model | Supplies protected business action/resource capability. |
 | D02-004 | Policy decision/enforcement | Consumes scope/resource facts and returns final decision. |
@@ -255,7 +264,7 @@ AuthorizationScopeContext
   scope_dimension_types[]              // e.g. Campus, Department,
                                         // Academic Session, Financial Year
 
-  assignment_scope_reference(s)
+  assignment_or_technical_binding_scope_reference(s)
   delegated_or_temporary_scope_reference(s)
 
   requested_operation_scope_reference
@@ -296,13 +305,13 @@ D02-004 evaluates them.
 
 ### 5.4 Scope Is Not Permission
 
-A subject may possess:
+A subject or non-human technical principal may possess:
 
 ```text
 Student.Update
 ```
 
-but the Role Assignment may be scoped only to:
+but the Role Assignment or Technical Principal Authority Binding may be scoped only to:
 
 ```text
 Institution A
@@ -337,7 +346,7 @@ Rules:
 
 1. All lower scope references must be compatible with the same Tenant.
 2. A resource in Tenant T2 cannot be reached through authority rooted in Tenant T1.
-3. A Role Assignment from T1 cannot become valid in T2 through a matching Permission key.
+3. A Role Assignment or Technical Principal Authority Binding from T1 cannot become valid in T2 through a matching Permission key.
 4. Delegation/Temporary Access/privileged authority cannot cross Tenant by omission.
 5. A cross-Tenant target is rejected before any lower-scope inheritance is evaluated.
 6. Shared physical storage or shared services never create shared authorization scope.
@@ -349,6 +358,7 @@ Institution is subordinate to Tenant.
 Institution scope can constrain:
 
 - Role Assignment.
+- Technical Principal Authority Binding.
 - delegated authority.
 - temporary authority.
 - protected operation.
@@ -365,7 +375,7 @@ Tenant Authority
 Institution Authority
 ```
 
-unless upstream policy/assignment explicitly provides the broader scope.
+unless upstream policy/assignment/binding explicitly provides the broader scope.
 
 ### 5.7 Lower-Scope Dimensions
 
@@ -445,7 +455,7 @@ Scope narrowing is allowed when the target context is demonstrably inside author
 Example:
 
 ```text
-Role Assignment Scope:
+Authority Scope:
   Institution I1
 
 Requested Resource:
@@ -466,7 +476,7 @@ Scope widening cannot occur implicitly.
 Example:
 
 ```text
-Role Assignment Scope:
+Authority Scope:
   Department CSE
 
 Request:
@@ -484,7 +494,7 @@ Where multiple authority sources constrain scope, the effective scope is bounded
 Conceptually:
 
 ```text
-Base Role Assignment Scope
+Base Authority Scope
           ∩
 Delegation / Temporary Scope
           ∩
@@ -506,11 +516,11 @@ Examples:
 **Temporary Grant:** Department Mechanical  
 → no automatic union is inferred.
 
-Exact union behavior for multiple independent valid Role Assignments is handled as a set of separately attributable authority sources and later policy evaluation, not by silently widening one assignment.
+Exact union behavior for multiple independent valid Role Assignments or Technical Principal Authority Bindings is handled as a set of separately attributable authority sources and later policy evaluation, not by silently widening one source.
 
-### 5.13 Role Assignment Scope
+### 5.13 Role Assignment and Technical Principal Authority Scope
 
-L4-A-010 establishes Role Assignment scope as part of the governed assignment.
+For human authority, L4-A-010 establishes Role Assignment scope as part of the governed assignment.
 
 D02-003 requires that:
 
@@ -521,16 +531,24 @@ D02-003 requires that:
 - expiration/effective period and scope both remain constraints;
 - multiple assignments to the same Role at different scopes remain distinguishable.
 
+For non-human authority, `ADR-L5-0009` requires that:
+
+- the Technical Principal Authority Binding Tenant matches the D01 principal Tenant;
+- Institution/lower-scope references only narrow the binding;
+- missing/ambiguous scope fails closed;
+- the binding scope remains distinct from principal identity and credential material;
+- policy evaluation receives the binding scope and freshness/provenance reference.
+
 Conceptual result:
 
 ```text
-EffectiveRoleAuthority
+EffectiveAuthority
 {
-  role_reference
-  role_assignment_reference
+  authority_source_type
+  authority_source_reference
   permission_reference(s)
   scope_reference(s)
-  effective_period
+  effective_period_or_validity_reference
   source_basis_reference
 }
 ```
@@ -757,15 +775,15 @@ It does **not** decide Allow.
 
 D02-004 still evaluates the applicable policy, SoD, explicit Deny, emergency/temporary authority and any other conditions.
 
-### 5.24 Multi-Assignment Scope Resolution
+### 5.24 Multi-Authority Scope Resolution
 
-A Person may have multiple Role Assignments.
+A Person may have multiple Role Assignments, and a non-human principal may have multiple separately governed Technical Principal Authority Bindings.
 
 Example:
 
 ```text
-Role A → Department CSE
-Role B → Department AI
+Authority A → Department CSE
+Authority B → Department AI
 ```
 
 D02-003 does not merge these into:
@@ -795,12 +813,12 @@ child resource scope
 only if:
 
 1. parent-child relationship is authoritative;
-2. assignment/policy semantics permit descendant coverage;
+2. assignment/binding/policy semantics permit descendant coverage;
 3. Tenant root remains identical;
 4. no explicit Deny/child-specific constraint overrides;
 5. resource context remains within the authorized operation.
 
-D02-003 does not establish universal descendant inheritance for every Role or scope.
+D02-003 does not establish universal descendant inheritance for every Role, binding or scope.
 
 ### 5.26 Scope Overrides
 
@@ -900,7 +918,7 @@ Long-lived execution shall not depend on the current interactive user's later ac
 The workflow/job shall use:
 
 - attributable actor/workload identity;
-- captured/referenced governed authorization basis as applicable;
+- captured/referenced governed authorization basis as applicable, including a Technical Principal Authority Binding for non-human execution where required;
 - validated Tenant scope;
 - authoritative resource context;
 - current policy requirements where reauthorization is required.
@@ -983,8 +1001,9 @@ No cross-domain direct database coupling is implied.
 | Conflict | Required Outcome |
 |---|---|
 | Actor authority Tenant ≠ resource Tenant | Deny/reject immediately. |
+| Technical Principal Authority Binding Tenant ≠ D01 principal Tenant | Reject binding / no authority contribution. |
 | Institution mismatch inside same Tenant | No permissive inheritance; deny unless separate authority applies. |
-| Role Assignment Department ≠ resource Department | That assignment does not authorize the resource. |
+| Role Assignment or Technical Principal Authority Binding lower scope ≠ resource lower scope | That authority source does not authorize the resource. |
 | Delegation scope broader than source authority | Reject/ignore invalid broadening; governance correction required. |
 | Temporary grant scope missing where source requires scope | No permissive default. |
 | Resource has ambiguous Institution/Department | No Allow until authoritative context resolves. |
@@ -1074,10 +1093,11 @@ No field above is intended as a prescribed JSON/schema name.
 |---|---|
 | Tenant absent | Fail closed. |
 | Tenant mismatch | Fail closed. |
+| Technical Principal Authority Binding Tenant mismatch | Reject binding; no machine authority contribution. |
 | Institution incompatible | Deny/reject. |
 | Required lower scope absent | No permissive fallback. |
 | Scope hierarchy unresolved | Do not infer parent/child. |
-| Authority source scope expired/revoked | Exclude source. |
+| Authority source scope expired/revoked/stale | Exclude source. |
 | Resource scope cannot be resolved | No Allow. |
 | Required resource state cannot be resolved | No Allow. |
 | Required resource ownership cannot be resolved | No Allow. |
@@ -1102,6 +1122,7 @@ These remain derivative.
 Requirements:
 
 - source domain remains canonical;
+- D02-owned Technical Principal Authority Binding state remains separate from D01 identity state;
 - projections shall retain source/provenance;
 - stale projections shall not create enduring broadened access;
 - cross-Tenant hierarchy edges are invalid;
@@ -1116,13 +1137,14 @@ Scope/resource evaluation evidence may include:
 - Institution;
 - applicable lower scope;
 - authority-source scope;
+- Technical Principal Authority Binding reference where applicable;
 - target resource scope;
 - resource state reference;
 - resource ownership reference;
 - matched/unmatched scope dimensions;
 - hierarchy/provenance reference;
 - effective time;
-- actor/subject;
+- actor/subject/non-human principal;
 - Permission;
 - correlation;
 - reason for scope failure.
@@ -1142,11 +1164,12 @@ D04 owns evidence persistence/provenance architecture.
 | AD-005 | Scope narrowing is allowed only through authoritative hierarchy; implicit widening is prohibited. | A04-002 scope-change rules. | `ADR-L5-0004`. |
 | AD-006 | Resource state and ownership are authoritative policy inputs, not application-local authorization shortcuts. | L2-A04 §§71–72. | None. |
 | AD-007 | Workspace/client filters may request or hint context but never establish authorization scope. | L2-A04 AP-07/AP-09; L4-A-050. | None. |
-| AD-008 | Multiple Role Assignments retain separate scope provenance rather than being flattened into an unscoped union. | L4-A-010 + least privilege. | None. |
+| AD-008 | Multiple effective authority sources retain separate scope provenance rather than being flattened into an unscoped union. | L4-A-010 + least privilege. | None. |
 | AD-009 | Scope/resource context is resolved close enough to authorization/enforcement to prevent materially stale permissive access. | Resource-state/ownership semantics and D02 freshness invariant. | None; implementation mechanics D02-004/B02. |
 | AD-010 | Collection/bulk authorization must constrain every returned/modified resource to proven authorized scope. | Scope integrity and Tenant isolation. | None. |
 | AD-011 | D02-003 does not encode lower scope into Permission identity. | D02-002/D02-003 responsibility split. | None. |
 | AD-012 | No hierarchy database, graph engine, policy product, cache, query-filter technology or context-carrier format is selected here. | L5 technology governance. | Future ADR if material. |
+| AD-013 | Non-human authorization scope is carried through the Tenant-bound Technical Principal Authority Binding and may only narrow from that Tenant root. | D01/D02 ownership and Tenant isolation. | `ADR-L5-0009`. |
 
 ---
 
@@ -1156,6 +1179,7 @@ D04 owns evidence persistence/provenance architecture.
 |---|---|---|
 | Cross-Tenant access | Rejected before lower-scope evaluation. | A04 + D02-003 |
 | Institution isolation | Institution mismatch is non-permissive. | A04 + D02-003 |
+| Machine scope integrity | Technical Principal Authority Binding must match D01 principal Tenant and cannot become global/cross-Tenant authority. | D01-002 + D02-003 + ADR-L5-0009 |
 | Least privilege | Scope intersection/narrowing prevents broad authority from being inferred. | D02-003 |
 | Horizontal access | Resource ownership/context can participate in policy. | D02-003 + D02-004 |
 | State-based protection | Resource lifecycle state can constrain authorization without D02 owning lifecycle. | Business domain + D02-003/004 |
@@ -1180,7 +1204,7 @@ No numeric freshness, TTL, depth, hierarchy size, batch size or latency target i
 | CR-003 | Institution scope, where applicable, shall be validated as compatible with the Tenant root. | A04 / AD-002. |
 | CR-004 | Lower scope relationships shall be consumed from authoritative source semantics rather than invented by D02. | AD-003. |
 | CR-005 | A Role Assignment’s approved scope shall remain attached to its effective authority through Permission Resolution and policy evaluation. | L4-A-010. |
-| CR-006 | Role/Permission resolution shall not convert scoped authority into an unscoped Permission grant. | L4-A-010; D02-002 boundary. |
+| CR-006 | Human Role/Permission resolution shall not convert scoped authority into an unscoped Permission grant. | L4-A-010; D02-002 boundary. |
 | CR-007 | Scope narrowing shall require an authoritative compatible parent/child or equivalent relationship. | A04-002 / AD-005. |
 | CR-008 | Scope widening shall not occur implicitly. | A04-002 / AD-005. |
 | CR-009 | Workspace switching shall not by itself change or grant authorization scope. | L4-A-050. |
@@ -1191,7 +1215,7 @@ No numeric freshness, TTL, depth, hierarchy size, batch size or latency target i
 | CR-014 | Failure to resolve mandatory resource state/ownership context shall not produce a permissive default. | Fail-closed baseline. |
 | CR-015 | Business operations outside the authorized operational scope shall be denied. | L2-A04 §73. |
 | CR-016 | Tenant isolation shall be preserved during all lower-scope evaluation. | L2-A04 §73. |
-| CR-017 | Multiple Role Assignments at different scopes shall retain separate source/scope provenance. | AD-008. |
+| CR-017 | Multiple authority sources at different scopes shall retain separate source/scope provenance. | AD-008. |
 | CR-018 | Delegated or Temporary Authority shall not widen beyond source-governed scope. | D02-005 boundary. |
 | CR-019 | Privileged/emergency authority shall not become implicit cross-Tenant/global scope. | D02-006/007 boundary. |
 | CR-020 | Permission identity shall not encode scope instances merely to bypass D02-003. | D02-002 / AD-011. |
@@ -1205,6 +1229,7 @@ No numeric freshness, TTL, depth, hierarchy size, batch size or latency target i
 | CR-028 | Materially stale scope, state or ownership context shall not be reused to create permissive access after authoritative change. | AD-009. |
 | CR-029 | D02-003 shall not itself return final Allow merely because scope compatibility succeeds. | D02-004 ownership. |
 | CR-030 | No implementation shall infer a required graph engine, hierarchy database, cache, query-filter library, claims format or numeric target from this specification. | AD-012. |
+| CR-031 | Every Technical Principal Authority Binding shall match its D01 non-human principal Tenant and shall preserve any Institution/lower-scope constraints through D02-004 evaluation; no missing scope may be replaced by broader implicit scope. | ADR-L5-0009; AD-013. |
 
 ---
 
@@ -1212,15 +1237,15 @@ No numeric freshness, TTL, depth, hierarchy size, batch size or latency target i
 
 | Item ID | Open / Deferred Item | Classification | Source / Gap | Blocking? | Required Resolution |
 |---|---|---|---|---|---|
-| OD-001 | Material applicable L4 authorization behaviors remain Draft. | Upstream approval | L4-A-010/A011/A012/A013/A050/A051/A052 | **Yes for Architecture Approved; No for Draft authoring** | Promote/authorize applicable L4 before formal D02 approval. |
-| OD-002 | D02-001 and D02-002 remain working authoring artifacts and require stabilization/reconciliation. | Peer dependency | current D02 authoring sequence | Yes before approval if contracts change | Reconcile D02-003 against canonical committed revisions. |
-| OD-003 | Complete enterprise lower-scope hierarchy across Organization, Campus, Department, Academic Session, Financial Year and domain-specific structures is not defined as one canonical tree. | Upstream/domain design | L2-A04 lists scope dimensions but does not make one universal hierarchy. | No for framework Draft; yes for domain-specific inheritance rules | Each domain/source must provide authoritative relationships; do not invent universal containment. |
-| OD-004 | Exact inheritance semantics for a parent scope covering descendants are not universally defined. | Upstream/policy | source-specific | Yes for automatic generic descendant inheritance | Require explicit authoritative hierarchy + policy semantics before enabling inheritance. |
-| OD-005 | Exact technical resource-scope lookup contracts for every business domain. | Cross-L5/domain integration | business domains own resources | No for architecture Draft; yes for implementation | Define C01/domain contracts preserving ownership and provenance. |
-| OD-006 | Exact resource-state/ownership consistency and revalidation strategy at enforcement time. | D02-004/B02 design | implementation concern | No for D02-003; yes before sensitive implementation | Resolve in D02-004/B02, including transaction/freshness semantics. |
-| OD-007 | Exact collection/query authorization filter enforcement pattern. | D02-004/B02 technology/design | not selected | No for Draft; yes before query implementation | Define policy-enforcement + persistence-filter architecture under canonical ownership. |
-| OD-008 | Exact machine-principal scope assignment/binding semantics. | D01/D02 upstream gap | non-human identity supported, human Role Assignment Person-focused | Yes for production machine authorization | Govern dedicated machine authority binding without fabricating Person semantics. |
-| OD-009 | Exact scope relation storage/indexing technology. | Technology | no ADR selected | No for Draft | Select under L5 technology/ADR methodology only if material. |
+| OD-001 | Material applicable L4 authorization behaviors remain `Draft` in their own metadata. | Governance disposition | Controlled Stage-2 validation rule | No | Resolved for D02-003 approval interpretation; source L4 metadata remains unchanged. |
+| OD-002 | D02-001 and D02-002 were working authoring dependencies. | Peer stabilization | D02 family reconciliation decision | No | Closed: both are committed and Architecture Approved; reopen only on material peer change. |
+| OD-003 | Complete enterprise lower-scope hierarchy across Organization, Campus, Department, Academic Session, Financial Year and domain-specific structures is not defined as one canonical tree. | Upstream/domain design | L2-A04 lists scope dimensions but does not make one universal hierarchy. | No for reusable architecture; yes for a domain-specific inheritance rule that lacks authoritative relationships | Each domain/source must provide authoritative relationships; do not invent universal containment. |
+| OD-004 | Exact inheritance semantics for a parent scope covering descendants are not universally defined. | Upstream feature-realization gate | source-specific | No for reusable D02 architecture; yes only for a feature that attempts generic descendant inheritance without source authority | Require explicit authoritative hierarchy + policy semantics before enabling that inheritance. |
+| OD-005 | Exact technical resource-scope lookup contracts for every business domain. | Cross-L5/domain integration | business domains own resources | No for architecture approval; yes for concrete implementation of each domain integration | Define C01/domain contracts preserving ownership and provenance. |
+| OD-006 | Exact resource-state/ownership consistency and revalidation strategy at enforcement time. | D02-004/B02 implementation design | implementation concern | No for D02-003 architecture approval; yes before sensitive implementation | Resolve in D02-004/B02, including transaction/freshness semantics. |
+| OD-007 | Exact collection/query authorization filter enforcement pattern. | D02-004/B02 technology/design | not selected | No for architecture approval; yes before query implementation | Define policy-enforcement + persistence-filter architecture under canonical ownership. |
+| OD-008 | Exact machine-principal scope assignment/binding semantics. | Resolved D01/D02 decision | `ADR-L5-0009` | No | Resolved by the approved Tenant-bound Technical Principal Authority Binding pattern. |
+| OD-009 | Exact scope relation storage/indexing technology. | Technology | no product selection | No for architecture approval | Select under L5 technology/ADR methodology only if material. |
 
 ---
 
@@ -1249,6 +1274,7 @@ No numeric freshness, TTL, depth, hierarchy size, batch size or latency target i
 - `L5-A-04-001`: Tenant root, subordinate Institution, fail-closed isolation.
 - `L5-A-04-002`: Validated Execution Scope Context, propagation, narrowing, no implicit widening and no default/global Tenant fallback.
 - `ADR-L5-0004`: canonical isolation/propagation decision.
+- `ADR-L5-0009`: non-human authorization binding remains rooted in the D01 principal Tenant and may only narrow Institution/lower scope.
 
 ### 10.4 Primary L4 Traceability
 
@@ -1276,11 +1302,11 @@ D02-005 / D02-006 / D02-007 specialized authority controls
 
 ### 10.6 Architecture Decisions
 
-`AD-001` through `AD-012`.
+`AD-001` through `AD-013`.
 
 ### 10.7 Conformance Requirements
 
-`CR-001` through `CR-030`.
+`CR-001` through `CR-031`.
 
 ### 10.8 Open Decisions
 

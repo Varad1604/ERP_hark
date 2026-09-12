@@ -10,9 +10,9 @@
 **Technical Architecture Owner:** L5-D-02 — Authorization Architecture  
 **Assigned Author:** Devang  
 **Version:** `1.0.0`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; working `L5-D-02-001_Authorization_Architecture_Baseline.md`; working `L5-D-02-002_Permission_and_Capability_Model_Architecture.md`; working `L5-D-02-003_Hierarchical_Scope_and_Resource_Context_Architecture.md`; working `L5-D-02-004_Policy_Decision_and_Enforcement_Architecture.md`; working `L5-D-02-005_Delegation_and_Temporary_Authority_Architecture.md`; working `L5-D-02-006_Privileged_and_Administrative_Access_Architecture.md`; `L5-D-01-001` through `L5-D-01-004`; `L5-A-04-001`; `L5-A-04-002`; `L5-D-03-001`; `L4-A-051_Conflicting_Responsibility_Risk_to_Enforced_Separation_of_Duties.md` v1.0.0 Draft; `L4-A-013_Emergency_Access_Request_to_Audited_Emergency_Access_Closure.md` v1.0.0 Draft; `L4-A-011`; `L4-A-012`; `L4-A-052`; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`.  
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-02-001_Authorization_Architecture_Baseline.md` v1.0.0 Architecture Approved; `L5-D-02-002_Permission_and_Capability_Model_Architecture.md` v1.0.0 Architecture Approved; `L5-D-02-003_Hierarchical_Scope_and_Resource_Context_Architecture.md` v1.0.0 Architecture Approved; `L5-D-02-004_Policy_Decision_and_Enforcement_Architecture.md` v1.0.0 Architecture Approved; `L5-D-02-005_Delegation_and_Temporary_Authority_Architecture.md` v1.0.0 Architecture Approved; `L5-D-02-006_Privileged_and_Administrative_Access_Architecture.md` v1.0.0 Architecture Approved; `L5-D-01-001` through `L5-D-01-004`; `L5-A-04-001`; `L5-A-04-002`; `L5-D-03-001`; `L4-A-051_Conflicting_Responsibility_Risk_to_Enforced_Separation_of_Duties.md` v1.0.0 Draft; `L4-A-013_Emergency_Access_Request_to_Audited_Emergency_Access_Closure.md` v1.0.0 Draft; `L4-A-011`; `L4-A-012`; `L4-A-052`; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`.  
 **Referenced By:** protected workflows; approval and maker-checker business processes; privileged administration; emergency-access interfaces; policy decision/enforcement; audit/evidence; high-risk transaction processing.  
 **Applicable ADRs:** `ADR-PLAT-AUTH-001` constrains canonical subject ownership; `ADR-L5-0001` constrains default-deny protected-boundary behavior; `ADR-L5-0004` constrains Tenant-root scope. No D02-007-specific policy engine, workflow product, approval product, timer, notification, audit product, cache, graph or rule-language ADR is selected here.
 
@@ -116,12 +116,12 @@ This specification does not define:
 | Source | Status | Applicable Authority | D02-007 Effect |
 |---|---|---|---|
 | L5 Candidate Document Corpus Register 105 | Architecture Approved | D02-007 owns technical enforcement of upstream-defined SoD, maker-checker and emergency override without inventing approvers. | Exact L5 responsibility. |
-| working D02-001 | Draft | Central authorization, explicit Deny, least privilege, fail closed. | All D02-007 controls feed the same decision model. |
-| working D02-002 | Draft | Permissions represent business capabilities; Roles/responsibilities remain distinct from UI. | SoD evaluates effective responsibilities/capabilities without inventing new ones. |
-| working D02-003 | Draft | Tenant/resource/scope context is authoritative. | Conflict and emergency evaluation remain scope-bound. |
-| working D02-004 | Draft | Final policy decision/enforcement; no positive prerequisite alone equals Allow. | SoD/maker-checker/emergency are decision inputs. |
-| working D02-005 | Draft | Active Delegations and Granted Temporary Access contribute temporary authority. | They must participate in SoD/conflict evaluation. |
-| working D02-006 | Draft | High-risk privilege remains centrally authorized; emergency is separate. | Break-Glass is not ordinary admin access. |
+| D02-001 | Architecture Approved | Central authorization, explicit Deny, least privilege, fail closed. | All D02-007 controls feed the same decision model. |
+| D02-002 | Architecture Approved | Permissions represent business capabilities; Roles/responsibilities remain distinct from UI. | SoD evaluates effective responsibilities/capabilities without inventing new ones. |
+| D02-003 | Architecture Approved | Tenant/resource/scope context is authoritative. | Conflict and emergency evaluation remain scope-bound. |
+| D02-004 | Architecture Approved | Final policy decision/enforcement; no positive prerequisite alone equals Allow. | SoD/maker-checker/emergency are decision inputs. |
+| D02-005 | Architecture Approved | Active Delegations and Granted Temporary Access contribute temporary authority. | They must participate in SoD/conflict evaluation. |
+| D02-006 | Architecture Approved | High-risk privilege remains centrally authorized; emergency is separate. | Break-Glass is not ordinary admin access. |
 | L2-A04 | Locked | Separation of Duties Policy defines configurable Maker-Checker/Four-Eyes rules; Break-Glass is controlled emergency authorization. | Establishes the three control families. |
 | L4-A-051 | Draft | SoD centrally governed; platform defaults + only permitted institution overrides; all current responsibility sources participate; conflict Denies by default; permitted continuation still requires full Allow. | Primary SoD technical obligations. |
 | L4-A-013 | Draft | Emergency elevation requires context, justification, policy/SoD/Deny evaluation, approval, bounded scope/duration, notification, expiry/revocation removal and mandatory audit review. | Primary emergency obligations. |
@@ -129,6 +129,8 @@ This specification does not define:
 | L4-A-052 | Draft | Decisions bind exact authoritative policy version; deterministic policy semantics and history. | SoD/emergency decision evidence binds exact policy version. |
 | `ADR-L5-0001` | Architecture Approved | Default-deny protected-boundary crossing. | Missing control facts never become permissive. |
 | `ADR-L5-0004` | Architecture Approved | Tenant-rooted isolation. | SoD/override cannot bridge Tenants. |
+
+For this controlled Stage-2 validation program, the cited canonical L4 System Behavior Specifications are accepted as behavioral authority even where their own metadata remains `Draft` or `Review`; that metadata status is not an approval blocker for D02-007. This does not alter those L4 files' own status metadata.
 
 ### 3.2 SoD Invariants from L4-A-051
 
@@ -920,9 +922,9 @@ D02-003/004 bulk/resource controls remain applicable.
 
 Current L4-A-013 is expressed around canonical emergency-access subject/authenticated context and does not fully define machine emergency elevation.
 
-D02-007 does not invent machine Break-Glass semantics.
+D02-007 does not invent machine Break-Glass semantics. `ADR-L5-0009` defines ordinary and privileged non-human authorization binding, but it does not silently create machine emergency/Break-Glass authority.
 
-If required, upstream governance must define them.
+If machine emergency access is required, upstream governance must define that behavior before realization.
 
 ### 5.50 Conflict + Emergency Interaction
 
@@ -1232,26 +1234,26 @@ No numeric SoD matrix size, cache TTL, emergency duration, review SLA, notificat
 
 | Item ID | Open / Deferred Item | Classification | Source / Gap | Blocking? | Required Resolution |
 |---|---|---|---|---|---|
-| OD-001 | L4-A-051 and L4-A-013 remain Draft. | Upstream approval | metadata | **Yes for Architecture Approved; No for Draft authoring** | Promote/authorize before final D02 approval. |
-| OD-002 | D02-001 through D02-006 remain working authoring artifacts pending stabilization. | Peer dependency | current sequence | Yes before D02 family approval if contracts change | Reconcile D02-007 to committed peers. |
-| OD-003 | Canonical SoD Policy lifecycle states/transitions are undefined. | Upstream behavior gap | L4-A-051 open issue | Yes for lifecycle UI/API; no for runtime conflict evaluation | Do not invent. |
-| OD-004 | SoD policy creation/configuration/approval commands/workflows are undefined. | Upstream behavior gap | L4-A-051 | Yes for governance implementation | Define upstream. |
-| OD-005 | Canonical SoD policy events/publishers are undefined. | Event governance gap | L4-A-051 | No for Draft; yes for event integrations | A06/C02 governance later. |
-| OD-006 | Platform-default authority, institution-override authority, policy approver and continuation authority are unnamed. | Authority gap | L4-A-051 | Yes for governance workflow | Do not invent roles. |
-| OD-007 | Complete enterprise catalog of maker-checker/four-eyes applicability is not centrally defined. | Cross-domain business gap | L2-A04 defines mechanism, not all process mappings | No for framework Draft; yes per protected process | Source domains/policies identify applicable actions. |
-| OD-008 | Exact maker/checker qualification semantics per process are source-specific. | Business behavior gap | current upstream | Yes per process | Preserve source-defined actor/responsibility requirements. |
-| OD-009 | Delegator-vs-delegate equivalence semantics for specific SoD conflicts are not universally defined. | Policy gap | L4-A-051 only requires Delegations participate | Yes for such conflict cases | Define explicit SoD policy semantics. |
-| OD-010 | Break-Glass canonical lifecycle state names are undefined. | Emergency behavior gap | L4-A-013 | Yes for stateful emergency UI/API | Do not invent. |
-| OD-011 | Break-Glass requestor/subject/approver/revoker roles are undefined. | Authority gap | L4-A-013 | Yes for workflow implementation | Define upstream. |
-| OD-012 | Break-Glass commands/events/publishers are undefined. | Event/contract gap | L4-A-013 | Yes for canonical event integration | Do not invent; A06/C02 governance later. |
-| OD-013 | Administrator-notification recipient is undefined. | Governance gap | L4-A-013 | Yes for exact routing | Preserve required notification and unresolved recipient authority. |
-| OD-014 | Mandatory audit-review closing authority/criteria are undefined. | Governance gap | L4-A-013 | Yes for automated closure | D04/upstream must define; do not invent. |
-| OD-015 | Whether notification failure must revoke/block an already approved emergency elevation is not universally defined. | Policy gap | L4-A-013 requires notification but no failure semantics | Yes for strict runtime behavior | Source emergency policy must define. |
-| OD-016 | Machine-principal Break-Glass behavior is undefined. | D01/D02 gap | current emergency behavior human-centric | Yes if required | Define new upstream behavior rather than analogy. |
-| OD-017 | Exact SoD policy/rule engine technology. | Technology | not selected | No for Draft | L5 technology ADR if material. |
-| OD-018 | Exact effective-responsibility/conflict cache and invalidation mechanism. | D02/B02/C02 | not selected | No for Draft; yes before distributed implementation | Preserve fail-closed freshness. |
-| OD-019 | Exact race-safe transaction strategy for maker-checker/emergency execution. | D02-004/B02/A05 | implementation design | No for Draft; yes for high-risk flows | Define version/revalidation/transaction mechanism. |
-| OD-020 | Exact notification and emergency-review workflow technical orchestration. | A05/H02/D04 | not selected | No for architecture Draft | Implement only after source actors/contracts are resolved. |
+| OD-001 | L4-A-051 and L4-A-013 remain `Draft` in their own metadata. | Governance disposition | Controlled Stage-2 validation rule | No | Resolved for D02-007 approval interpretation; source L4 metadata remains unchanged. |
+| OD-002 | D02-001 through D02-006 were working authoring dependencies. | Peer stabilization | D02 family reconciliation decision | No | Closed: D02-001 through D02-006 are committed and Architecture Approved; reopen only on material peer change. |
+| OD-003 | Canonical SoD Policy lifecycle states/transitions are undefined. | Upstream feature-realization gate | L4-A-051 open issue | No for reusable runtime enforcement; yes only for a feature requiring exact lifecycle UI/API semantics | Do not invent; define upstream before realizing the affected lifecycle feature. |
+| OD-004 | SoD policy creation/configuration/approval commands/workflows are undefined. | Upstream feature-realization gate | L4-A-051 | No for reusable enforcement architecture; yes for the affected governance workflow | Define business authority/workflow upstream without L5 invention. |
+| OD-005 | Canonical SoD policy events/publishers are undefined. | Upstream event feature gate | L4-A-051 | No for architecture approval; yes for canonical event integration | Define through upstream/event governance; do not promote activity labels into events. |
+| OD-006 | Platform-default authority, institution-override authority, policy approver and continuation authority are unnamed. | Upstream authority feature gate | L4-A-051 | No for reusable enforcement architecture; yes for the exact governance workflow requiring those authorities | Preserve the gap and resolve upstream; do not invent roles. |
+| OD-007 | Complete enterprise catalog of maker-checker/four-eyes applicability is not centrally defined. | Cross-domain feature gate | L2-A04 defines mechanism, not all process mappings | No for reusable framework; yes per protected process | Source domains/policies identify applicable actions. |
+| OD-008 | Exact maker/checker qualification semantics per process are source-specific. | Business behavior feature gate | current upstream | No for reusable framework; yes per affected process | Preserve source-defined actor/responsibility requirements. |
+| OD-009 | Delegator-vs-delegate equivalence semantics for specific SoD conflicts are not universally defined. | Policy feature gate | L4-A-051 requires Delegations participate but does not define all equivalence rules | No for reusable conflict framework; yes where such equivalence affects a concrete conflict | Define explicit source SoD policy semantics. |
+| OD-010 | Break-Glass canonical lifecycle state names are undefined. | Emergency feature-realization gate | L4-A-013 | No for reusable emergency enforcement; yes for stateful emergency UI/API | Do not invent; resolve upstream before that feature is realized. |
+| OD-011 | Break-Glass requestor/subject/approver/revoker roles are undefined. | Upstream authority feature gate | L4-A-013 | No for reusable emergency control architecture; yes for exact workflow implementation | Define upstream. |
+| OD-012 | Break-Glass commands/events/publishers are undefined. | Event/contract feature gate | L4-A-013 | No for architecture approval; yes for canonical event integration | Do not invent; resolve through upstream/A06/C02 governance. |
+| OD-013 | Administrator-notification recipient is undefined. | Governance feature gate | L4-A-013 | No for reusable notification handoff; yes for exact routing | Preserve required notification and unresolved recipient authority. |
+| OD-014 | Mandatory audit-review closing authority/criteria are undefined. | Governance feature gate | L4-A-013 | No for reusable closure-gate architecture; yes for automated closure | D04/upstream must define; do not invent. |
+| OD-015 | Whether notification failure must revoke/block an already approved emergency elevation is not universally defined. | Policy feature gate | L4-A-013 requires notification but does not define failure semantics | No for reusable emergency architecture; yes for the affected strict runtime branch | Source emergency policy must define. |
+| OD-016 | Machine-principal Break-Glass behavior is undefined. | Upstream feature-realization gate | current emergency behavior is human-centric | No for current human-centric emergency architecture; yes if machine emergency access is required | Define new upstream behavior rather than analogy; `ADR-L5-0009` does not create machine Break-Glass semantics. |
+| OD-017 | Exact SoD policy/rule-engine technology. | Technology | not selected | No for architecture approval; yes before concrete implementation if material | Select through L5 technology ADR governance. |
+| OD-018 | Exact effective-responsibility/conflict cache and invalidation mechanism. | D02/B02/C02 implementation design | not selected | No for architecture approval; yes before distributed implementation | Preserve fail-closed freshness. |
+| OD-019 | Exact race-safe transaction strategy for maker-checker/emergency execution. | D02-004/B02/A05 implementation design | not selected | No for architecture approval; yes for high-risk implementation | Define version/revalidation/transaction mechanism. |
+| OD-020 | Exact notification and emergency-review workflow technical orchestration. | A05/H02/D04 implementation design | not selected | No for architecture approval; yes after source actors/contracts are resolved | Implement only after source actors/contracts are defined. |
 
 ---
 
