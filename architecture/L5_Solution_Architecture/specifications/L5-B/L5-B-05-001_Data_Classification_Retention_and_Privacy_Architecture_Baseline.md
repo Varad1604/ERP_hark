@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** Lead Solution Architect / Data & Information Architecture  
 **Assigned Author:** Varad  
 **Version:** 1.0.1  
-**Status:** Review  
+**Status:** Locked  
 **Last Updated:** 2026-09-12  
 **Depends On:** Locked L1 Domain Architecture; Approved L2/L3 Workflows; Applicable canonical L4 System Behavior Specifications; L5-D-03; L5-B-02  
 **Referenced By:** L5-B-05-002, L5-B-05-003, L5-B-05-004, L5-B-05-005, L5-B-04, L5-A-07, L5-C-01, L5-C-03  
@@ -187,4 +187,4 @@ Tenant and Institution context shall be preserved exactly as established by auth
 - **OD-002 — Integrity Mechanism:** Delegated to L5-D-03; no HMAC, signature or cipher is selected here.
 - **OD-003 — Runtime Integration Hooks:** Implementation binding is deferred; this specification requires an enforceable boundary but does not mandate HTTP, gRPC, ORM or broker-specific interceptors.
 
-**Current State:** Ready for Re-Review
+**Current State:** Locked
