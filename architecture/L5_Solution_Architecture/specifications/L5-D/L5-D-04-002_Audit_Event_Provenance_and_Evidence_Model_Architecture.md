@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-D-04-002 — Audit Event, Provenance & Evidence Model Architecture  
 **Assigned Author:** Varad  
 **Version:** `1.1.0`  
-**Status:** `Review`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-12`  
 **Planned Production Path:** `architecture/L5_Solution_Architecture/specifications/L5-D/L5-D-04-002_Audit_Event_Provenance_and_Evidence_Model_Architecture.md`  
 **Depends On:** `L5_Governance_and_Architecture_Standard.md`; `L5_Validation_Standard.md`; `L5_Solution_Architecture_Specification_Template_v1.0.md`; `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md`; `L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md`; `L5-D-04-001`; `L5-D-03-001`; `L5-A-04-001`; `L5-A-04-002`; `L5-B-02-003`; `L4-A-022`; `L4-A-023`; `L4-A-024`; `ADR-L5-0001`; `ADR-L5-0004`; `ADR-L5-0007`.  
