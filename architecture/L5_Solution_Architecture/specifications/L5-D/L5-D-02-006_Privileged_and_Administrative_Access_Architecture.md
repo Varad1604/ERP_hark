@@ -10,11 +10,11 @@
 **Technical Architecture Owner:** L5-D-02 — Authorization Architecture  
 **Assigned Author:** Devang  
 **Version:** `1.0.0`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; working `L5-D-02-001_Authorization_Architecture_Baseline.md`; working `L5-D-02-002_Permission_and_Capability_Model_Architecture.md`; working `L5-D-02-003_Hierarchical_Scope_and_Resource_Context_Architecture.md`; working `L5-D-02-004_Policy_Decision_and_Enforcement_Architecture.md`; working `L5-D-02-005_Delegation_and_Temporary_Authority_Architecture.md`; `L5-D-01-001` through `L5-D-01-004`; `L5-D-03-001` and applicable D03 specializations; `L5-A-04-001`; `L5-A-04-002`; `L4-A-013_Emergency_Access_Request_to_Audited_Emergency_Access_Closure.md` v1.0.0 Draft as emergency-access boundary evidence; `L4-A-051`; `L4-A-052`; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; applicable protected-domain L2/L4 behaviors requiring privileged authorization; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`.  
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-02-001_Authorization_Architecture_Baseline.md` v1.0.0 Architecture Approved; `L5-D-02-002_Permission_and_Capability_Model_Architecture.md` v1.0.0 Architecture Approved; `L5-D-02-003_Hierarchical_Scope_and_Resource_Context_Architecture.md` v1.0.0 Architecture Approved; `L5-D-02-004_Policy_Decision_and_Enforcement_Architecture.md` v1.0.0 Architecture Approved; `L5-D-02-005_Delegation_and_Temporary_Authority_Architecture.md` v1.0.0 Architecture Approved; `L5-D-01-001` through `L5-D-01-004`; `L5-D-03-001` and applicable D03 specializations; `L5-A-04-001`; `L5-A-04-002`; `L4-A-013_Emergency_Access_Request_to_Audited_Emergency_Access_Closure.md` v1.0.0 Draft as emergency-access boundary evidence; `L4-A-051`; `L4-A-052`; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; applicable protected-domain L2/L4 behaviors requiring privileged authorization; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`; `ADR-L5-0009`.  
 **Referenced By:** `L5-D-02-007`; administrative/platform operations; configuration and master-data administration; protected diagnostics; support/operations tooling; deployment/runtime operations where business authorization is required; verification/testing privileged execution; D04 Audit & Evidence.  
-**Applicable ADRs:** `ADR-PLAT-AUTH-001` for canonical authorization subject ownership; `ADR-L5-0001` for explicit trust boundaries/default-deny admission; `ADR-L5-0004` for Tenant/Institution isolation. No D02-006-specific privileged-access product, vault, session broker, workstation, network, MFA, approval-workflow, credential-management or recording product ADR is selected here.
+**Applicable ADRs:** `ADR-PLAT-AUTH-001` for canonical authorization subject ownership; `ADR-L5-0001` for explicit trust boundaries/default-deny admission; `ADR-L5-0004` for Tenant/Institution isolation; `ADR-L5-0009` for non-human Technical Principal Authority Binding. No D02-006-specific privileged-access product, vault, session broker, workstation, network, MFA, approval-workflow, credential-management or recording product ADR is selected here.
 
 ---
 
@@ -26,7 +26,7 @@ This specification defines the technical safeguards that apply when an operation
 
 The architecture treats privilege as:
 
-> **explicitly governed authorization to perform a high-risk protected operation within a bounded subject, Tenant, scope, resource and time context.**
+> **explicitly governed authorization to perform a high-risk protected operation within a bounded subject or technical principal, Tenant, scope, resource and time context.**
 
 Privilege is not:
 
@@ -133,11 +133,11 @@ This specification does **not** own or define:
 | Source | Status | Applicable Authority | D02-006 Effect |
 |---|---|---|---|
 | L5 Candidate Document Corpus Register 105 | Architecture Approved | `L5-D-02-006` owns high-risk privileged/administrative access safeguards. | Establishes exact L5 responsibility. |
-| working D02-001 | Draft | All protected operations use centralized authorization, least privilege and fail-closed enforcement. | Privileged operations cannot bypass family baseline. |
-| working D02-002 | Draft | Permissions represent business capabilities independent of UI/account. | Privileged authority is expressed through explicit governed capabilities, not vague admin status. |
-| working D02-003 | Draft | Authorization is Tenant-rooted and resource/scope bounded. | Privileged authority cannot become global/cross-Tenant by implication. |
-| working D02-004 | Draft | Policy decision/enforcement is mandatory across channels. | Privileged access remains subject to final D02-004 Allow/Deny. |
-| working D02-005 | Draft | Time-bounded approved authority can be represented without permanent Role mutation. | Temporary privileged elevation may use D02-005 only where source-governed. |
+| D02-001 | Architecture Approved | All protected operations use centralized authorization, least privilege and fail-closed enforcement. | Privileged operations cannot bypass family baseline. |
+| D02-002 | Architecture Approved | Permissions represent business capabilities independent of UI/account. | Privileged authority is expressed through explicit governed capabilities, not vague admin status. |
+| D02-003 | Architecture Approved | Authorization is Tenant-rooted and resource/scope bounded. | Privileged authority cannot become global/cross-Tenant by implication. |
+| D02-004 | Architecture Approved | Policy decision/enforcement is mandatory across channels. | Privileged access remains subject to final D02-004 Allow/Deny. |
+| D02-005 | Architecture Approved | Time-bounded approved authority can be represented without permanent Role mutation. | Temporary privileged elevation may use D02-005 only where source-governed. |
 | L2-A04 | Locked | Least privilege, policy-driven authorization, explicit Deny, server-side enforcement, Temporary Access, Break-Glass, SoD and auditable decisions. | Supplies privileged authorization invariants. |
 | applicable business/platform L2 | Locked/Draft by source | Administrative operations may explicitly require privileged authorization and audit. | D02-006 provides reusable technical safeguards without taking business ownership. |
 | `L4-A-013` | Draft | Emergency elevation is exceptional, least-privilege, scoped, time-bound, policy/SoD/Deny evaluated, and fully evidenced. | Defines the D02-007 emergency boundary and confirms no emergency mechanism may become permanent privilege. |
@@ -145,7 +145,10 @@ This specification does **not** own or define:
 | L4-A-052 | Draft | Policy decision binds exact policy version; historical traceability preserved. | Privileged decisions retain exact policy-version provenance. |
 | `ADR-L5-0001` | Architecture Approved | Explicit trust boundaries/default-deny protected-boundary crossing. | Internal placement never implies privilege. |
 | `ADR-L5-0004` | Architecture Approved | Tenant is mandatory protected root. | Privileged access cannot cross Tenant. |
-| `ADR-PLAT-AUTH-001` | Approved | Person is canonical human authorization subject; User Account/session is runtime authentication context. | Permanent privileged authority does not attach canonically to session/account identity. |
+| `ADR-PLAT-AUTH-001` | Approved | Person is canonical human authorization subject; User Account/session is runtime authentication context. | Permanent human privileged authority does not attach canonically to session/account identity. |
+| `ADR-L5-0009` | Architecture Approved | Non-human principals receive D02 authority through a Tenant-bound Technical Principal Authority Binding rather than human Person/Role Assignment fiction. | Privileged service/workload/job/integration access uses the same binding plus D02-006 heightened safeguards. |
+
+For this controlled Stage-2 validation program, the cited canonical L4 System Behavior Specifications are accepted as behavioral authority even where their own metadata remains `Draft` or `Review`; that metadata status is not an approval blocker for D02-006.
 
 ### 3.2 Privileged Access Invariants
 
@@ -165,6 +168,7 @@ This specification does **not** own or define:
 | P-C12 | Privileged authority changes/revocation must not leave stale effective access. | Freshness/revalidation mandatory. |
 | P-C13 | Business domains retain ownership of protected operations. | D02-006 safeguards access only. |
 | P-C14 | Privileged technical access to infrastructure does not grant business authority to change canonical business state outside governed contracts. | Technical/admin and business authorization remain distinct. |
+| P-C15 | Privileged non-human authority shall be explicit through a same-Tenant Technical Principal Authority Binding and shall remain subject to Permission, scope, policy, Deny, D03 trust and D02-006 safeguards. | ADR-L5-0009. |
 
 ### 3.3 Explicit Non-Assumptions
 
@@ -200,6 +204,7 @@ Where stronger controls are required, the source policy or collaborating D01/D03
 - privileged execution admission;
 - privileged authority freshness requirements;
 - privileged human/non-human attribution;
+- privileged Technical Principal Authority Binding safeguards;
 - privileged evidence requirements;
 - privileged read/export/query safeguards;
 - no-shared-authority invariant for attributable human execution;
@@ -228,13 +233,13 @@ Where stronger controls are required, the source policy or collaborating D01/D03
 
 | Architecture | Supplies / Owns | D02-006 Use |
 |---|---|---|
-| D01 | authenticated actor, account/session/credential context | Verifies attributable execution context; D02-006 may request stronger auth posture only where policy requires. |
+| D01 | authenticated actor, account/session/credential and non-human principal context | Verifies attributable execution context; D02-006 may request stronger auth posture only where policy requires. |
 | D03 | trust boundaries, secrets, cryptography, security controls | Privileged access consumes D03 protections; no implicit trust. |
 | A04 | Tenant/Institution scope | Bounds privileged operations. |
-| D02-002 | Permission/Capability | Defines privileged business/technical action capability. |
-| D02-003 | resource/scope context | Binds admin authority to exact Tenant/resource scope. |
+| D02-002 | Permission/Capability and TPAB capability references | Defines privileged business/technical action capability. |
+| D02-003 | resource/scope and TPAB scope context | Binds admin authority to exact Tenant/resource scope. |
 | D02-004 | policy decision/enforcement | Generates final Allow/Deny. |
-| D02-005 | temporary authority | Realizes temporary privileged access where source-governed. |
+| D02-005 | temporary authority | Realizes temporary privileged human access where source-governed. |
 | D02-007 | SoD, maker-checker, emergency override | Applies high-risk conflict/approval/emergency controls. |
 | D04 | audit/evidence | Stores privileged decision/action provenance. |
 | B05 | sensitive-data handling | Governs privileged exposure of sensitive data. |
@@ -306,7 +311,8 @@ PrivilegedAuthorizationContext
   tenant_reference
   institution / lower_scope_reference(s)
 
-  subject_reference
+  subject_reference where human
+  technical_principal_reference where non-human
   actor_reference
   authentication_context_reference
 
@@ -315,6 +321,7 @@ PrivilegedAuthorizationContext
   resource_reference
 
   privileged_authority_source_reference
+  technical_principal_authority_binding_reference where applicable
   authority_scope_reference
   effective_period_reference where applicable
 
@@ -410,13 +417,13 @@ resource / operation
 candidate privileged authority
 ```
 
-A Platform/Institution administrator role in one Tenant shall not become authority in another Tenant.
+A Platform/Institution administrator role or machine authority binding in one Tenant shall not become authority in another Tenant.
 
 ### 5.8 Standing Privileged Authority
 
 Some source-governed responsibilities may carry standing privileged capability.
 
-Where such authority exists:
+Where such human authority exists:
 
 - it still resolves through Role/Role Assignment or other approved authority;
 - it remains scoped;
@@ -427,9 +434,11 @@ Where such authority exists:
 
 D02-006 does not decide which Roles have standing privilege.
 
+For non-human principals, standing machine privilege uses a valid Technical Principal Authority Binding under `ADR-L5-0009`, not a fabricated Person/Role Assignment.
+
 ### 5.9 Temporary Privileged Authority
 
-Where source policy requires temporary administrative elevation:
+Where source policy requires temporary human administrative elevation:
 
 - D02-005 Temporary Access is the normal technical time-bounded mechanism unless upstream defines another authority source;
 - approved Permission/scope/period is explicit;
@@ -437,6 +446,8 @@ Where source policy requires temporary administrative elevation:
 - temporary privilege does not mutate permanent Roles.
 
 D02-006 adds privileged safeguards around use of that temporary authority.
+
+This specification does not infer that D02-005 human Delegation/Temporary Access semantics automatically apply to non-human principals.
 
 ### 5.10 Emergency Privileged Authority Boundary
 
@@ -489,13 +500,14 @@ The precise reauthentication/step-up flow belongs D01 plus policy.
 
 ### 5.12 Privileged Session Context
 
-An authenticated session used for privileged action remains a D01 session.
+An authenticated session used for privileged human action remains a D01 session.
 
 D02-006 may mark that a privileged decision occurred in that session context, but it shall not invent a second session aggregate.
 
 Privileged authority shall not be cached in session state in a way that survives:
 
 - authority revocation;
+- TPAB revocation/narrowing where applicable;
 - scope change;
 - policy change;
 - temporary-access expiry;
@@ -508,6 +520,7 @@ High-risk operations may require re-evaluation close to execution.
 Reasons include:
 
 - current authority may have changed;
+- Technical Principal Authority Binding may have changed for machine execution;
 - resource state may have changed;
 - approval/control evidence may be operation-specific;
 - privileged consequence may be irreversible or high impact.
@@ -518,14 +531,14 @@ Exact reauthorization frequency is not numerically prescribed.
 
 A privileged Allow is bound to:
 
-- subject;
+- human subject or non-human technical principal;
 - actual actor;
 - Tenant;
 - Institution/lower scope;
 - Permission/action;
 - target resource;
 - policy version;
-- authority source;
+- authority source, including TPAB where applicable;
 - satisfied heightened controls where applicable;
 - effective time.
 
@@ -647,6 +660,7 @@ Administration of:
 - Roles;
 - Permissions;
 - Role Assignments;
+- Technical Principal Authority Bindings;
 - policies;
 - SoD configuration;
 - Delegation/Temporary Access;
@@ -689,7 +703,7 @@ Operational diagnostic tools may expose sensitive runtime state.
 
 D02-006 requires:
 
-- authenticated attributable actor;
+- authenticated attributable actor/principal;
 - explicit diagnostic capability;
 - scope/target service context;
 - D03 boundary controls;
@@ -723,15 +737,18 @@ Service/workload/job/integration principals may need privileged capabilities.
 D02-006 requires:
 
 - canonical D01 non-human identity;
-- explicit capability;
-- Tenant/scope binding;
+- a valid same-Tenant `ADR-L5-0009` Technical Principal Authority Binding;
+- explicit privileged capability in that binding;
+- Tenant/Institution/lower-scope compatibility through D02-003;
 - least privilege;
 - workload/service trust under D03;
 - no use of human Role Assignment fiction merely to obtain privilege;
-- D02-004 decision/equivalent governed machine authorization path;
-- full technical attribution.
+- D02-004 final policy decision;
+- freshness/revocation awareness for the binding;
+- full technical attribution to the non-human principal, binding and technical owner/association reference;
+- D04 evidence.
 
-Exact machine-authority binding remains a known D01/D02 design gap where upstream is Person-focused.
+Infrastructure privilege, internal placement or possession of a powerful machine credential never substitutes for this authorization path.
 
 ### 5.29 Human Impersonation
 
@@ -794,7 +811,7 @@ D02-007 may deny actions where:
 
 ### 5.33 Temporary Privileged Elevation
 
-Where policy requires time-bounded elevation, D02-006 + D02-005 cooperate:
+Where policy requires time-bounded human elevation, D02-006 + D02-005 cooperate:
 
 ```text
 approved temporary access
@@ -808,6 +825,8 @@ D02-004 decision
 
 Expiry/removal semantics remain D02-005.
 
+For non-human principals, D02-006 uses the Technical Principal Authority Binding model unless future upstream governance explicitly defines temporary machine Delegation/Temporary Access semantics.
+
 ### 5.34 Privileged Access Revocation
 
 Revocation of privileged authority must become effective for future protected operations.
@@ -815,6 +834,7 @@ Revocation of privileged authority must become effective for future protected op
 Potential sources:
 
 - Role Assignment suspension/revocation;
+- Technical Principal Authority Binding expiry/revocation/narrowing;
 - Role→Permission change;
 - Temporary Access expiry/revocation;
 - policy change;
@@ -855,11 +875,11 @@ Long-running jobs such as administrative bulk correction, reindexing with protec
 
 The architecture shall not assume one initial Allow authorizes all future privileged mutations indefinitely.
 
-Each material protected step or governed batch execution must preserve current valid authority according to D02-004.
+Each material protected step or governed batch execution must preserve current valid authority according to D02-004, including current TPAB validity for non-human execution.
 
 ### 5.38 Administrative Automation
 
-Automated privileged maintenance requires a non-human principal and explicit machine capability.
+Automated privileged maintenance requires a D01 non-human principal, an applicable Technical Principal Authority Binding, and explicit privileged capability.
 
 It shall not rely on:
 
@@ -912,10 +932,10 @@ shall not each implement independent privilege rules.
 
 A privileged enforcement point shall verify:
 
-1. valid attributable actor;
+1. valid attributable human actor or D01 non-human principal;
 2. valid Tenant/scope;
 3. required privileged capability;
-4. authority source;
+4. authority source, including TPAB where applicable;
 5. any required heightened authentication/control evidence;
 6. resource/action match;
 7. current policy decision;
@@ -932,7 +952,8 @@ Caching is optional.
 If used:
 
 - privilege state is never cached as `isAdmin=true` without authority context;
-- cache keys bind Tenant, subject, capability, resource/scope and policy/authority version;
+- cache keys bind Tenant, subject/technical principal, capability, resource/scope and policy/authority version;
+- TPAB identity/version/freshness participates for non-human privilege;
 - revocation/expiry/policy change invalidates stale privilege;
 - cache miss does not default Allow;
 - cross-Tenant cache contamination is prohibited.
@@ -951,7 +972,9 @@ D02-006 does not prescribe HTTP status codes.
 
 Privileged evidence may include:
 
-- actor/subject;
+- actor/human subject or non-human technical principal;
+- Technical Principal Authority Binding reference where applicable;
+- technical owner/association reference where applicable;
 - Tenant/Institution/scope;
 - privileged capability;
 - protected resource/operation;
@@ -1018,7 +1041,9 @@ exceptional emergency need
 | Failure / Condition | Required Outcome |
 |---|---|
 | privileged capability unresolved | Deny / no execution. |
-| actor not attributable | No human privileged execution. |
+| human actor not attributable | No human privileged execution. |
+| non-human principal or required TPAB unresolved | No machine privileged execution. |
+| TPAB Tenant/scope/capability mismatch or stale/revoked binding | Exclude machine authority / Deny. |
 | Tenant missing/mismatched | Fail closed. |
 | scope broader than authority | Deny/restrict; no widening. |
 | authentication posture required by policy but not satisfied | No privileged Allow. |
@@ -1042,18 +1067,19 @@ exceptional emergency need
 | AD-001 | Privileged/administrative access remains part of the normal centralized D02 authorization model. | L2-A04 mandatory policy-driven authorization. | None. |
 | AD-002 | Privilege must be explicit through governed capability/authority; internal location/account type does not imply privilege. | Least privilege + D03 separation. | `ADR-L5-0001` constraint. |
 | AD-003 | No universal cross-Tenant `superuser` model is introduced. | Tenant isolation + zero-guessing. | `ADR-L5-0004`. |
-| AD-004 | Privileged authority is bound to subject/actor, capability, scope, resource, policy and effective authority source. | D02-002/003/004. | None. |
-| AD-005 | Standing privileged authority and temporary privileged authority are supported as distinct technical patterns where source-governed. | Avoids forcing all admin access into one model. | None. |
-| AD-006 | Temporary privileged elevation reuses D02-005 where applicable and does not mutate permanent Roles. | D02-005 invariants. | None. |
+| AD-004 | Privileged authority is bound to subject/principal, actor, capability, scope, resource, policy and effective authority source. | D02-002/003/004. | None. |
+| AD-005 | Standing privileged authority and temporary privileged human authority are supported as distinct technical patterns where source-governed. | Avoids forcing all admin access into one model. | None. |
+| AD-006 | Temporary privileged human elevation reuses D02-005 where applicable and does not mutate permanent Roles. | D02-005 invariants. | None. |
 | AD-007 | Authentication posture may be a privileged policy input, but D02-006 does not invent universal MFA/session rules. | D01 ownership + zero-guessing. | None. |
 | AD-008 | Privileged human execution must remain individually attributable; shared human privilege is not the normal architecture. | Auditability/security. | None. |
-| AD-009 | Privileged non-human execution requires explicit machine identity/capability/scope and cannot masquerade as human Person authority. | D01 non-human identity boundary. | None. |
+| AD-009 | Privileged non-human execution requires canonical D01 machine identity and an explicit Tenant-bound Technical Principal Authority Binding; it cannot masquerade as human Person authority. | D01 non-human identity boundary + D02 authorization ownership. | `ADR-L5-0009`. |
 | AD-010 | Infrastructure privilege and business authorization are distinct. | Canonical business ownership and least privilege. | None. |
 | AD-011 | Privileged read/export can require separate capability from ordinary read. | Sensitive-data/least-privilege boundary. | None. |
 | AD-012 | Emergency/Break-Glass remains D02-007-owned and is not treated as a synonym for privileged access. | L4-A-013 + frozen corpus. | None. |
 | AD-013 | Privileged authorization failure is non-permissive and cannot fall back to a weaker “internal admin” path. | D02-004 + D03 fail closed. | `ADR-L5-0001`. |
 | AD-014 | Privileged actions require enhanced evidence/correlation where applicable without logging credentials/secrets. | AP-11 + D04/D03. | None. |
 | AD-015 | No PAM, vault, bastion, privileged workstation, session recorder, IAM vendor, MFA product, database, cache or numeric privileged-session target is selected here. | L5 Technology Selection & ADR Methodology. | Future ADR only if material. |
+| AD-016 | Non-human privileged authority uses the same `ADR-L5-0009` Technical Principal Authority Binding as ordinary machine authorization, with D02-006 heightened safeguards layered on top rather than a separate machine-superuser model. | Repository-consistent machine authorization and least privilege. | `ADR-L5-0009`. |
 
 ---
 
@@ -1068,8 +1094,8 @@ exceptional emergency need
 | Internal service misuse | Trusted network/service does not equal business privilege. | D03/D02 |
 | Sensitive-data exposure | Privileged read/export separately governed; B05 still applies. | B05/D02 |
 | Shared accounts | Individual human attribution required for high-risk activity. | D01/D04 |
-| Machine privilege | Explicit workload identity and machine authority. | D01/D02 |
-| Stale privilege | Revalidation/invalidation after authority/policy change. | D02-004/B02/C02 |
+| Machine privilege | Explicit D01 workload identity + TPAB + scope/policy/D02-006 controls. | D01/D02 + ADR-L5-0009 |
+| Stale privilege | Revalidation/invalidation after authority/binding/policy change. | D02-004/B02/C02 |
 | SoD | Privileged authority remains visible to conflict evaluation. | D02-007 |
 | Emergency misuse | Emergency path is separate and governed. | D02-007 |
 | Audit integrity | Privileged users cannot implicitly rewrite evidence. | D04 |
@@ -1098,10 +1124,10 @@ No numeric SLA, privileged-session duration, reauthentication interval, approval
 | CR-010 | Stronger authentication posture may be required only through governed D01/policy semantics; D02-006 shall not invent universal factor/session rules. | D01 boundary. |
 | CR-011 | Valid authentication shall not independently grant privilege. | AuthN/AuthZ separation. |
 | CR-012 | Privileged human execution shall retain individual actor attribution. | audit/security. |
-| CR-013 | Permanent privileged business authority shall not be canonically attached to a User Account/session in place of Person/Role Assignment semantics. | `ADR-PLAT-AUTH-001`. |
-| CR-014 | Privileged non-human execution shall use explicit service/workload/job/integration identity and shall not fabricate human Person authority. | D01 boundary. |
-| CR-015 | Temporary privileged authority shall use governed temporary authority semantics and shall not permanently mutate Role/Permission state. | D02-005. |
-| CR-016 | Expired/revoked privileged authority shall not remain effective through stale cache/session context. | freshness. |
+| CR-013 | Permanent privileged human business authority shall not be canonically attached to a User Account/session in place of Person/Role Assignment semantics. | `ADR-PLAT-AUTH-001`. |
+| CR-014 | Privileged non-human execution shall use explicit D01 service/workload/job/integration identity and a valid Technical Principal Authority Binding; it shall not fabricate human Person authority. | D01 boundary; `ADR-L5-0009`. |
+| CR-015 | Temporary privileged human authority shall use governed temporary authority semantics and shall not permanently mutate Role/Permission state. | D02-005. |
+| CR-016 | Expired/revoked privileged authority or TPAB shall not remain effective through stale cache/session context. | freshness. |
 | CR-017 | A privileged Allow shall be bound to the actual operation/resource/scope and shall not be reused as generic administrator authority. | D02-004. |
 | CR-018 | Privileged query/list/export shall be constrained to authorized result scope before disclosure. | D02-003/004. |
 | CR-019 | Privileged export/download shall not be inferred solely from ordinary read capability unless upstream Permission semantics explicitly define that equivalence. | least privilege. |
@@ -1131,6 +1157,7 @@ No numeric SLA, privileged-session duration, reauthentication interval, approval
 | CR-043 | Policy changes shall apply to future privileged decisions using the authoritative current policy version. | L4-A-052. |
 | CR-044 | Historic privileged decisions shall retain the exact policy version and authority context evaluated. | L4-A-052/D04. |
 | CR-045 | No implementation shall infer a mandatory PAM, vault, bastion, workstation, recorder, IAM product, database, cache, MFA product, or numeric duration from this specification. | AD-015. |
+| CR-046 | A privileged non-human operation shall not execute unless the D01 principal, same-Tenant TPAB, privileged capability, applicable scope/resource context, D03 trust prerequisites and D02-004 final Allow are all valid; infrastructure privilege or credential possession shall not substitute. | ADR-L5-0009; AD-016. |
 
 ---
 
@@ -1138,22 +1165,22 @@ No numeric SLA, privileged-session duration, reauthentication interval, approval
 
 | Item ID | Open / Deferred Item | Classification | Source / Gap | Blocking? | Required Resolution |
 |---|---|---|---|---|---|
-| OD-001 | Applicable authorization L4 sources remain Draft. | Upstream approval | L4-A-013/A051/A052 and applicable protected-domain L4 | **Yes for Architecture Approved; No for Draft** | Promote/authorize applicable sources before formal D02 approval. |
-| OD-002 | D02-001 through D02-005 remain working authoring artifacts pending stabilization. | Peer dependency | current D02 sequence | Yes before family approval if contracts materially change | Reconcile D02-006 with committed canonical peers. |
-| OD-003 | Canonical enterprise taxonomy of privileged/high-risk operations is not defined in one upstream source. | Cross-domain governance | protected domains define administrative operations independently | No for framework Draft; yes for complete enterprise catalog | Define/register privileged operation classification through canonical owners without moving business ownership into D02. |
-| OD-004 | Whether specific privileged capabilities require standing Role authority versus Temporary Access. | Policy/governance | not universally defined | Yes per capability before implementation | Source Authorization Policy must decide; D02-006 supports both patterns. |
-| OD-005 | Which privileged operations require stronger authentication/step-up and what posture qualifies. | D01/D02 policy | no universal upstream rule | Yes for high-risk implementation requiring step-up | Define through Authentication/Authorization policy; do not hard-code here. |
-| OD-006 | Universal privileged-session duration/reauthentication rules are undefined. | D01/policy | not established | No for Draft; yes if product requires such session policy | Resolve in D01 + Authorization Policy. |
-| OD-007 | Whether privileged session recording is mandatory for any operation class. | Security/compliance policy | not universally established | No for Draft | Decide under D03/D04/compliance governance; select product only via ADR if material. |
-| OD-008 | Shared/legacy operational account exception handling. | Security governance | normal architecture requires attribution | Yes if legacy shared access exists | Define explicit exception/migration control; do not normalize shared human privilege. |
-| OD-009 | Exact non-human privileged authority binding model. | D01/D02 upstream gap | non-human principal supported; Role Assignment Person-focused | Yes for production machine privileged actions | Govern machine authority without fabricated Person semantics. |
-| OD-010 | Human support impersonation / “run as” semantics. | Upstream behavior gap | not canonically defined | Yes if feature is required | Create explicit upstream scenario/behavior and preserve actor/subject evidence. |
-| OD-011 | Exact privileged-access approval hooks / maker-checker requirements per operation. | D02-007/upstream | operation-specific | No for baseline; yes per governed operation | Resolve through source policy and D02-007. |
-| OD-012 | Exact privileged cache/invalidation mechanism. | D02-004/B02/C02 | technology not selected | No for Draft; yes before optimization | Select with fail-closed freshness. |
-| OD-013 | Exact infrastructure-access integration between D02 business authorization and D03/cloud/OS/database technical privilege. | Cross-L5 architecture | platform-specific | No for product-neutral Draft; yes before operational implementation | Define canonical technical control handoff without treating infrastructure privilege as business authority. |
-| OD-014 | Exact privileged evidence capture/recording granularity for high-risk operations. | D04/B05 | source/compliance-specific | No for Draft; yes before implementation | D04 defines evidence schema/retention; B05 governs sensitive content. |
-| OD-015 | Break-Glass lifecycle states, roles/authorities, commands/events and audit-review closure authority remain undefined. | Upstream emergency gap | L4-A-013 §10 | Not D02-006 blocking; **D02-007 blocking for exact emergency implementation** | Preserve boundary and resolve in upstream/D02-007. |
-| OD-016 | Exact privileged-access management, vault, bastion, device-trust or session-control technology. | Technology | no ADR selected | No for Draft | Select through L5 Technology Selection & ADR Methodology if required. |
+| OD-001 | Applicable authorization L4 sources remain `Draft` in their own metadata. | Governance disposition | Controlled Stage-2 validation rule | No | Resolved for D02-006 approval interpretation; source L4 metadata remains unchanged. |
+| OD-002 | D02-001 through D02-005 were working authoring dependencies. | Peer stabilization | D02 family reconciliation decision | No | Closed: D02-001 through D02-005 are committed and Architecture Approved; reopen only on material peer change. |
+| OD-003 | Canonical enterprise taxonomy of privileged/high-risk operations is not defined in one upstream source. | Cross-domain governance | protected domains define administrative operations independently | No for reusable framework; yes only for a complete enterprise catalog | Define/register privileged operation classification through canonical owners without moving business ownership into D02. |
+| OD-004 | Whether specific privileged human capabilities require standing Role authority versus Temporary Access. | Policy feature-realization gate | not universally defined | No for reusable architecture; yes per capability before implementation | Source Authorization Policy must decide; D02-006 supports both patterns. |
+| OD-005 | Which privileged human operations require stronger authentication/step-up and what posture qualifies. | D01/D02 policy feature gate | no universal upstream rule | No for reusable architecture; yes for a high-risk operation requiring step-up | Define through Authentication/Authorization policy; do not hard-code here. |
+| OD-006 | Universal privileged-session duration/reauthentication rules are undefined. | D01/policy feature gate | not established | No for architecture approval; yes only if product requires such session policy | Resolve in D01 + Authorization Policy. |
+| OD-007 | Whether privileged session recording is mandatory for any operation class. | Security/compliance policy | not universally established | No for architecture approval | Decide under D03/D04/compliance governance; select product only via ADR if material. |
+| OD-008 | Shared/legacy operational account exception handling. | Security governance feature gate | normal architecture requires attribution | No for reusable architecture; yes if legacy shared access exists | Define explicit exception/migration control; do not normalize shared human privilege. |
+| OD-009 | Exact non-human privileged authority binding model. | Resolved D01/D02 decision | `ADR-L5-0009` | No | Resolved: privileged machine execution uses the same Tenant-bound Technical Principal Authority Binding plus D02-006 heightened safeguards and D02-004 final policy decision. |
+| OD-010 | Human support impersonation / “run as” semantics. | Upstream behavior feature gate | not canonically defined | No for reusable architecture; yes if feature is required | Create explicit upstream scenario/behavior and preserve actor/subject evidence. |
+| OD-011 | Exact privileged-access approval hooks / maker-checker requirements per operation. | D02-007/upstream feature gate | operation-specific | No for baseline; yes per governed operation | Resolve through source policy and D02-007. |
+| OD-012 | Exact privileged cache/invalidation mechanism. | D02-004/B02/C02 | technology not selected | No for architecture approval; yes before optimization | Select with fail-closed freshness. |
+| OD-013 | Exact infrastructure-access integration between D02 business authorization and D03/cloud/OS/database technical privilege. | Cross-L5 implementation gate | platform-specific | No for product-neutral architecture; yes before operational implementation | Define canonical technical control handoff without treating infrastructure privilege as business authority. |
+| OD-014 | Exact privileged evidence capture/recording granularity for high-risk operations. | D04/B05 | source/compliance-specific | No for architecture approval; yes before implementation where required | D04 defines evidence schema/retention; B05 governs sensitive content. |
+| OD-015 | Break-Glass lifecycle states, roles/authorities, commands/events and audit-review closure authority remain undefined. | Upstream emergency feature gate | L4-A-013 §10 | No for D02-006 reusable architecture; D02-007 must preserve the upstream gap for exact emergency realization | Preserve boundary and resolve upstream before affected emergency workflow realization. |
+| OD-016 | Exact privileged-access management, vault, bastion, device-trust or session-control technology. | Technology | no ADR selected | No for architecture approval | Select through L5 Technology Selection & ADR Methodology if required. |
 
 ---
 
@@ -1168,11 +1195,12 @@ No numeric SLA, privileged-session duration, reauthentication interval, approval
 ### 10.2 Primary D02 Traceability
 
 - D02-001: authorization mandatory, least privilege, fail closed.
-- D02-002: privileged action uses explicit Permission/Capability.
+- D02-002: privileged action uses explicit Permission/Capability and machine TPAB capability references.
 - D02-003: privileged access remains Tenant/resource/scope bounded.
 - D02-004: final policy decision/enforcement remains mandatory.
-- D02-005: time-bounded privileged elevation may use governed Temporary Access.
+- D02-005: time-bounded privileged human elevation may use governed Temporary Access.
 - D02-007: SoD/maker-checker/emergency override remains separate.
+- `ADR-L5-0009`: non-human privileged authority uses TPAB without fabricated Person/Role Assignment semantics.
 
 ### 10.3 Locked L2 Traceability
 
@@ -1200,15 +1228,15 @@ D02-006 uses `L4-A-013` only to define the emergency boundary:
 ### 10.5 Architecture Flow
 
 ```text
-D01 actor/authentication
+D01 actor/principal + authentication
         +
 A04 Tenant/scope
         +
-D02-002 privileged capability
+D02-002 privileged capability / TPAB
         +
 D02-003 resource/scope context
         +
-D02-005 temporary authority when applicable
+D02-005 temporary human authority when applicable
         +
 D02-006 privileged safeguards
         +
@@ -1225,11 +1253,11 @@ D04 evidence
 
 ### 10.6 Architecture Decisions
 
-`AD-001` through `AD-015`.
+`AD-001` through `AD-016`.
 
 ### 10.7 Conformance Requirements
 
-`CR-001` through `CR-045`.
+`CR-001` through `CR-046`.
 
 ### 10.8 Open Decisions
 
