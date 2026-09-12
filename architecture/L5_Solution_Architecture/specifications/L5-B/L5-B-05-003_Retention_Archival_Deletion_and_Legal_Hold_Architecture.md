@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** Lead Solution Architect / Data & Information Architecture  
 **Assigned Author:** Varad  
 **Version:** 1.0.1  
-**Status:** Review  
+**Status:** Locked  
 **Last Updated:** 2026-09-12  
 **Depends On:** L5-B-05-001; L5-B-02; L5-D-03; L5-D-04; applicable canonical L4 behavior  
 **Referenced By:** L5-B-04, L5-A-08, L5-E-03, L5-A-05  
@@ -202,4 +202,4 @@ L5-B-05-003 defines a scheduler-neutral `DispositionEvaluationRequest` / result 
 - **OD-003 — Disposition State Model:** No universal L5 state model is established. Any lifecycle state must come from the authoritative source domain/workflow.
 - **OD-004 — Cryptographic Erasure:** Available only where L5-D-03 establishes an approved mechanism and the authoritative disposition permits it.
 
-**Current State:** Ready for Re-Review
+**Current State:** Locked
