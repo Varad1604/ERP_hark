@@ -93,6 +93,8 @@ The next new ADR number is determined from the highest canonical allocated ADR n
 | `ADR-L5-0007` | Atomic State-to-Publication Intent Handoff Pattern | Repository | L5-B-02 — Database & Persistence Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0007_Atomic_State_to_Publication_Intent_Handoff_Pattern.md` | `L5-B-02-003`; materially constrains `L5-C-02-002` | 2026-09-11 | 2026-09-11 | — | — | Resolves pilot candidate ADR-C4 with B02 owning atomic handoff and C02 retaining delivery ownership. |
 | `ADR-L5-0008` | Expand-Migrate-Transition-Contract Schema Evolution Pattern | Shared / Family | L5-B-02 — Database & Persistence Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0008_Expand_Migrate_Transition_Contract_Schema_Evolution_Pattern.md` | `L5-B-02-004` | 2026-09-11 | 2026-09-11 | — | — | Reusable B02 schema-evolution pattern; not Locked. |
 | `ADR-L5-0009` | Non-Human Principal Authorization Binding Pattern | Shared / Family | L5-D-02 — Authorization Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0009_Non_Human_Principal_Authorization_Binding_Pattern.md` | `L5-D-02-001`; `L5-D-02-002`; `L5-D-02-003`; `L5-D-02-004`; `L5-D-02-006`; consumes `L5-D-01-002` | 2026-09-12 | 2026-09-12 | — | — | Approved Stage-2 remediation decision resolving machine/service/workload/job/integration authority binding without fabricating Person/Role Assignment semantics; not Locked. |
+| `ADR-L5-0010` | Durable Event Delivery, Subscription, Ordering & Recovery Pattern | Shared / Family | L5-C-02 — Event & Messaging Architecture | Proposed | `architecture/L5_Solution_Architecture/adr/ADR-L5-0010_Durable_Event_Delivery_Subscription_Ordering_and_Recovery_Pattern.md` | `L5-C-02-001`; `L5-C-02-002` | 2026-09-12 | — | — | — | Allocated to govern shared C02 delivery, subscription, acknowledgement, ordering and recovery semantics; no broker/product selection. |
+| `ADR-L5-0011` | Event Contract Versioning & Consumer Compatibility Pattern | Shared / Family | L5-C-02 — Event & Messaging Architecture | Proposed | `architecture/L5_Solution_Architecture/adr/ADR-L5-0011_Event_Contract_Versioning_and_Consumer_Compatibility_Pattern.md` | `L5-C-02-003`; collaborates with `L5-C-02-001` | 2026-09-12 | — | — | — | Allocated to govern event-contract evolution and compatibility semantics; no registry/serialization product selection. |
 
 ### ADR Path
 
@@ -335,5 +337,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 9  
-**Next Canonical Allocation:** `ADR-L5-0010`
+**ADR IDs Currently Canonically Allocated:** 11  
+**Next Canonical Allocation:** `ADR-L5-0012`
