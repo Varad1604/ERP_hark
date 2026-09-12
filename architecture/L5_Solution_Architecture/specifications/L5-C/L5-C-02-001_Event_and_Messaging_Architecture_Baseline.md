@@ -8,8 +8,8 @@
 **Canonical Technical Responsibility:** Event/messaging infrastructure while canonical business-event ownership remains upstream.  
 **Technical Architecture Owner:** `L5-C-02 — Event & Messaging Architecture`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.2`  
-**Status:** `Review`  
+**Version:** `1.0.3`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`  
 **Depends On:** `L5-B-02-003`; `L5-C-01`; `ADR-L5-0007`; `ADR-L5-0010`  
 **Referenced By:** `L5-C-02-002`; `L5-C-02-003`; downstream event-consuming L5 specifications  
@@ -102,10 +102,13 @@ Use service identities and least-privilege publish/subscribe authorization. Tran
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Blocking state |
 |---|---|---|
-| OD-001 | Canonical broker/transport technology and protocol profile | Does not block Review; blocks any claim of product lock. |
+| OD-001 | Canonical broker/transport technology and protocol profile | Non-blocking; blocks only a claim of product lock. |
 | OD-002 | Numeric capacity/retention targets | Deferred to E02/approved operational profiles. |
 
 No unresolved L4-authority blocker remains for this validation cycle because canonical L4 behavior is being treated as authoritative by explicit review instruction.
 
 ## 10. Traceability Summary
 Canonical responsibility: approved L5 Candidate Corpus Register 105. Repository constraints: Locked hybrid communication baseline and domain-ownership rules. Validated BHs: L4-A-018, A-019, A-020. Cross-L5: B02/`ADR-L5-0007`, `ADR-L5-0010`, C01, C02-002/003, A04, D01/D02/D03, E01, E05.
+
+## 11. Review Position
+This specification is **Architecture Approved** following completed Stage-2 remediation and explicit architecture approval on 2026-09-12. It is lock-ready but shall not be marked `Locked` until distinct final-governance authorization is recorded.
