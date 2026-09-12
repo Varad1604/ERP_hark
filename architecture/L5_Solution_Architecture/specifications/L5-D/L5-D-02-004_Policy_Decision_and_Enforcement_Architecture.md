@@ -10,11 +10,11 @@
 **Technical Architecture Owner:** L5-D-02 — Authorization Architecture  
 **Assigned Author:** Devang  
 **Version:** `1.0.0`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; working `L5-D-02-001_Authorization_Architecture_Baseline.md` v1.0.0 Draft; working `L5-D-02-002_Permission_and_Capability_Model_Architecture.md` v1.0.0 Draft; working `L5-D-02-003_Hierarchical_Scope_and_Resource_Context_Architecture.md` v1.0.0 Draft; `L5-D-01-001` through `L5-D-01-004`; `L5-A-04-001`; `L5-A-04-002`; `L5-D-03-001`; `L4-A-010` v1.0.0 Draft; `L4-A-011` v1.0.0 Draft; `L4-A-012` v1.0.0 Draft; `L4-A-013` v1.0.0 Draft; `L4-A-050` v1.0.0 Draft; `L4-A-051` v1.0.0 Draft; `L4-A-052` v1.0.0 Draft; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`.  
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-02-001_Authorization_Architecture_Baseline.md` v1.0.0 Architecture Approved; `L5-D-02-002_Permission_and_Capability_Model_Architecture.md` v1.0.0 Architecture Approved; `L5-D-02-003_Hierarchical_Scope_and_Resource_Context_Architecture.md` v1.0.0 Architecture Approved; `L5-D-01-001` through `L5-D-01-004`; `L5-A-04-001`; `L5-A-04-002`; `L5-D-03-001`; `L4-A-010` v1.0.0 Draft; `L4-A-011` v1.0.0 Draft; `L4-A-012` v1.0.0 Draft; `L4-A-013` v1.0.0 Draft; `L4-A-050` v1.0.0 Draft; `L4-A-051` v1.0.0 Draft; `L4-A-052` v1.0.0 Draft; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`; `ADR-L5-0009`.  
 **Referenced By:** `L5-D-02-005`; `L5-D-02-006`; `L5-D-02-007`; application/API/service/workflow/background/integration enforcement points; D04 Audit & Evidence; B02 persistence; C01/C02 contracts; E-family operational architecture.  
-**Applicable ADRs:** `ADR-PLAT-AUTH-001`, `ADR-L5-0001`, and `ADR-L5-0004` constrain subject, trust and Tenant-root scope. No D02-004-specific product, policy-language, engine, cache, transport or deployment ADR is selected or allocated here.
+**Applicable ADRs:** `ADR-PLAT-AUTH-001`, `ADR-L5-0001`, and `ADR-L5-0004` constrain subject, trust and Tenant-root scope. `ADR-L5-0009` governs non-human Technical Principal Authority Binding participation in policy evaluation and enforcement. No D02-004-specific product, policy-language, engine, cache, transport or deployment ADR is selected here.
 
 ---
 
@@ -44,8 +44,9 @@ The objective is to guarantee that:
 - the authoritative current policy version is used;
 - explicit Deny retains precedence;
 - Permission possession alone never becomes execution authority;
+- Role Assignment or Technical Principal Authority Binding alone never becomes final execution authority;
 - SoD, delegated authority, temporary authority, privileged/emergency context and resource state can participate without bypass;
-- Allow is bound to the exact subject/action/resource/scope/policy context evaluated;
+- Allow is bound to the exact subject/principal/action/resource/scope/policy context evaluated;
 - Deny cannot be weakened by clients, downstream services or alternate channels;
 - policy/enforcement failure does not degrade into permissive execution.
 
@@ -59,12 +60,14 @@ The objective is to guarantee that:
 - evaluation ordering constraints;
 - policy reference validation;
 - Permission/Capability input consumption;
+- Role Assignment and Technical Principal Authority Binding effective-authority consumption;
 - scope/resource-context input consumption;
 - SoD/delegation/temp/privileged/emergency input consumption;
 - final Authorization Decision generation;
 - decision provenance;
 - decision freshness;
 - policy-change invalidation/re-evaluation;
+- authority-binding change/revocation invalidation/re-evaluation;
 - decision caching constraints;
 - enforcement-point architecture;
 - enforcement at API, service, workflow, background, scheduled, integration and persistence-sensitive boundaries;
@@ -86,6 +89,7 @@ This specification does not own:
 - policy authorship/approval authority where upstream is silent;
 - policy business lifecycle states/events;
 - Role Assignment lifecycle;
+- non-human principal identity or credential lifecycle — D01/D03;
 - Permission model definition — D02-002;
 - hierarchical/resource scope semantics — D02-003;
 - Delegation/Temporary Access lifecycle — D02-005;
@@ -114,9 +118,9 @@ This specification does not own:
 | Source | Status | Applicable Authority | D02-004 Effect |
 |---|---|---|---|
 | L5 Candidate Document Corpus Register 105 | Architecture Approved | D02-004 owns technical policy evaluation/enforcement while business/institutional policy ownership remains upstream. | Establishes exact technical responsibility. |
-| working `L5-D-02-001` | Draft | Authorization mandatory; centralized; policy-driven; explicit Deny; final Allow/Deny; decision/enforcement separation. | Supplies family-level invariants. |
-| working `L5-D-02-002` | Draft | Permission is Resource + Action, indirect authority input, not final decision. | D02-004 consumes resolved Permission/Capability. |
-| working `L5-D-02-003` | Draft | Tenant-rooted effective scope and resource state/ownership context. | D02-004 consumes authoritative scope/resource context. |
+| `L5-D-02-001` | Architecture Approved | Authorization mandatory; centralized; policy-driven; explicit Deny; final Allow/Deny; decision/enforcement separation. | Supplies family-level invariants. |
+| `L5-D-02-002` | Architecture Approved | Permission is Resource + Action, indirect authority input, not final decision. | D02-004 consumes resolved Permission/Capability. |
+| `L5-D-02-003` | Architecture Approved | Tenant-rooted effective scope and resource state/ownership context. | D02-004 consumes authoritative scope/resource context. |
 | L2-A04 AP-01 | Locked | Every protected business operation is authorized before execution. | Enforcement is mandatory. |
 | L2-A04 AP-02 | Locked | Authentication and authorization are independent. | Authenticated context never substitutes for policy decision. |
 | L2-A04 AP-03 | Locked | Server-side enforcement is mandatory. | Client/UI decisions are non-authoritative. |
@@ -135,6 +139,9 @@ This specification does not own:
 | L4-A-052 | Draft | Current authoritative policy version must be used; deterministic ordering and explicit Deny preserved; decision binds exact policy version; history remains immutable. | Defines policy-version and historical-decision traceability requirements. |
 | `ADR-L5-0001` | Architecture Approved | Default-deny protected boundary admission; explicit logical trust boundaries. | Policy/enforcement failure does not create bypass. |
 | `ADR-L5-0004` | Architecture Approved | Tenant-rooted validated execution context. | Policy decision is bound to validated Tenant/Institution scope. |
+| `ADR-L5-0009` | Architecture Approved | Non-human service/workload/job/integration principals receive bounded authority through a D02 Technical Principal Authority Binding. | D02-004 consumes the binding as an effective-authority input while still producing the final policy-governed Allow/Deny. |
+
+For this controlled Stage-2 validation program, the cited canonical L4 System Behavior Specifications are accepted as behavioral authority even where their own metadata remains `Draft` or `Review`; that metadata status is not an approval blocker for D02-004.
 
 ### 3.2 Locked Policy/Decision Invariants
 
@@ -158,6 +165,7 @@ This specification does not own:
 | C-016 | Enforcement is server-side/technical-boundary controlled. | Client claims are hints, not authority. |
 | C-017 | Allow is context-bound, not a transferable blanket capability. | Changed material context requires new/revalidated decision. |
 | C-018 | Protected-boundary security controls outside authorization still apply. | Authorization Allow does not bypass D03. |
+| C-019 | A Technical Principal Authority Binding is an effective-authority input only; it is valid only for the matching D01 non-human principal, Tenant, capability and applicable scope/validity context. | Machine authority remains bounded and cannot bypass policy. |
 
 ### 3.3 Explicit Non-Assumptions
 
@@ -188,6 +196,7 @@ At the architecture boundary, protected execution resolves to **Allow or Deny**.
 - decision-generation architecture.
 - decision-binding context.
 - decision freshness/revalidation semantics.
+- Technical Principal Authority Binding participation in final evaluation.
 - Policy Enforcement Boundary.
 - enforcement-point obligations.
 - query/bulk enforcement semantics.
@@ -202,7 +211,7 @@ At the architecture boundary, protected execution resolves to **Allow or Deny**.
 - policy lifecycle business commands/events;
 - Permission definition;
 - scope hierarchy;
-- identity/authentication;
+- human or non-human principal identity/authentication;
 - business resource lifecycle;
 - Delegation/Temporary Access lifecycle;
 - SoD business rules;
@@ -215,10 +224,10 @@ At the architecture boundary, protected execution resolves to **Allow or Deny**.
 
 | Architecture | Supplies / Owns | D02-004 Use |
 |---|---|---|
-| D01 | authenticated/attributable actor | subject/actor input. |
+| D01 | authenticated/attributable human/non-human actor | subject/principal/actor input. |
 | A04 | validated Tenant/Institution execution context | root scope prerequisite. |
-| D02-002 | Permission/Capability resolution | protected capability input. |
-| D02-003 | effective scope/resource state/ownership context | scope/resource policy input. |
+| D02-002 | Permission/Capability resolution and TPAB permission references | protected capability/effective-authority input. |
+| D02-003 | effective scope/resource state/ownership context and TPAB scope compatibility | scope/resource policy input. |
 | D02-005 | Delegation/Temporary Authority | effective authority input. |
 | D02-006 | privileged/admin authority | privileged context input. |
 | D02-007 | SoD/maker-checker/emergency controls | specialized deny/continuation inputs. |
@@ -239,16 +248,17 @@ At the architecture boundary, protected execution resolves to **Allow or Deny**.
 ```text
 Protected Operation Request
         ↓
-Actor / Subject Context           ← D01
+Actor / Subject / Technical Principal Context ← D01
         ↓
-Validated Tenant / Institution    ← A04
+Validated Tenant / Institution                ← A04
         ↓
-Permission / Capability           ← D02-002
+Permission / Capability                       ← D02-002
         ↓
-Scope / Resource Context          ← D02-003
+Scope / Resource Context                      ← D02-003
         ↓
 Effective Authority Inputs
-(Role Assignment / Delegation / Temporary / Privileged)
+(Role Assignment / Technical Principal Authority Binding /
+ Delegation / Temporary / Privileged)
         ↓
 Applicable Policy Version Resolver
         ↓
@@ -274,12 +284,12 @@ only when decision is valid Allow
 | Authorization Request Gate | Accept complete protected-operation context and reject structurally invalid requests. | Missing mandatory context → no Allow. |
 | Policy Applicability Resolver | Determines which governed policy/version applies to Tenant/scope/action/resource. | Ambiguous/unresolved applicable policy → no permissive default. |
 | Policy Version Authority Adapter | Obtains the authoritative current policy version/basis without owning policy lifecycle. | Successor not authoritatively active → use established authoritative version or deny if none exists. |
-| Context Completeness Validator | Verifies subject, Permission, scope, resource facts, authority sources, time and policy references. | Missing mandatory fact → Deny/reject. |
+| Context Completeness Validator | Verifies human subject or non-human principal, Permission, scope, resource facts, authority sources, time and policy references. | Missing mandatory fact → Deny/reject. |
 | Policy Evaluation Boundary | Evaluates applicable rules in deterministic order. | Non-deterministic/invalid evaluation → no Allow. |
 | Deny Combination Control | Ensures explicit Deny precedence. | Any applicable authoritative explicit Deny → final Deny unless source-defined exceptional continuation semantics explicitly require further governed evaluation; never silent override. |
 | Specialized-Control Adapter | Incorporates SoD, delegation/temp, privileged/emergency controls from D02-005/006/007. | Unavailable mandatory control → no Allow. |
 | Authorization Decision Generator | Produces context-bound Allow/Deny plus provenance. | Cannot establish complete authoritative basis → Deny. |
-| Decision Freshness Validator | Ensures decision remains valid against policy/authority/resource changes. | Material staleness → re-evaluate or reject. |
+| Decision Freshness Validator | Ensures decision remains valid against policy/authority/resource/binding changes. | Material staleness → re-evaluate or reject. |
 | Policy Enforcement Boundary | Blocks protected operation unless valid Allow matches actual execution context. | Mismatch or missing decision → block. |
 | Evidence Handoff | Emits non-secret decision/evaluation facts to D04. | Mandatory evidence failure must not be hidden. |
 
@@ -294,7 +304,8 @@ AuthorizationEvaluationContext
   institution_reference
   lower_scope_references[]
 
-  subject_reference
+  subject_reference where human authority applies
+  technical_principal_reference where non-human authority applies
   actor_reference
   actor_subject_relationship
 
@@ -307,6 +318,7 @@ AuthorizationEvaluationContext
   resource_ownership_context
 
   effective_role_assignment_references[]
+  technical_principal_authority_binding_reference(s)
   delegation_reference(s)
   temporary_authority_reference(s)
   privileged_or_emergency_reference(s)
@@ -363,6 +375,7 @@ Determinism requires:
 - deterministic rule ordering/combination semantics;
 - stable Permission references;
 - stable scope/resource inputs;
+- stable effective-authority references including Technical Principal Authority Binding where applicable;
 - explicit handling of Deny precedence;
 - no dependency on unordered implementation behavior;
 - no dependency on ambient client/session UI state;
@@ -375,10 +388,10 @@ The architecture does not require a specific policy language.
 A conceptual evaluation order is:
 
 ```text
-1. Validate attributable actor/subject.
+1. Validate attributable human subject / non-human principal / actor.
 2. Validate Tenant / Institution context.
 3. Validate requested Permission / action / resource.
-4. Validate effective authority source(s).
+4. Validate effective authority source(s), including TPAB when non-human.
 5. Validate effective scope / resource compatibility.
 6. Resolve authoritative policy version.
 7. Resolve mandatory policy attributes / resource facts.
@@ -399,9 +412,9 @@ This is architecture-level ordering. A compliant implementation may internally o
 Deny precedence is non-negotiable.
 
 ```text
-granted Permission
+governed effective authority
       +
-valid Role Assignment
+resolved Permission
       +
 valid scope
       +
@@ -420,9 +433,11 @@ If upstream specifically defines an exceptional continuation path, such as a sou
 
 The following facts are not independent Allows:
 
-- authenticated user;
+- authenticated human user;
+- authenticated non-human principal;
 - active account;
 - active Role Assignment;
+- valid Technical Principal Authority Binding;
 - resolved Permission;
 - matching scope;
 - no SoD conflict;
@@ -448,7 +463,8 @@ AuthorizationDecision
   tenant_reference
   institution / lower_scope_reference(s)
 
-  subject_reference
+  subject_reference where applicable
+  technical_principal_reference where applicable
   actor_reference
 
   permission / action_reference
@@ -478,13 +494,14 @@ Materially changing any of the following invalidates direct reuse unless a gover
 
 - Tenant;
 - Institution;
-- subject;
+- human subject or non-human technical principal;
 - actor when actor/subject distinction matters;
 - Permission/action;
 - resource;
 - lower scope;
 - resource state/ownership relevant to policy;
 - policy version;
+- Role Assignment or Technical Principal Authority Binding basis;
 - Delegation/Temporary/privileged/emergency basis;
 - SoD/process context;
 - effective time constraints.
@@ -498,7 +515,8 @@ Authorization facts change.
 Examples:
 
 - Role Assignment revoked/expired;
-- Permission removed from Role;
+- Technical Principal Authority Binding expires, is revoked/disabled, narrowed, or becomes stale;
+- Permission removed from Role or Technical Principal Authority Binding;
 - Delegation revoked;
 - Temporary Access expired;
 - emergency authority closed;
@@ -526,7 +544,7 @@ Decision caching is optional, not mandatory.
 
 If used:
 
-- cache key/context must include all materially decision-relevant identifiers/versions;
+- cache key/context must include all materially decision-relevant identifiers/versions, including TPAB reference/version/freshness where applicable;
 - Tenant must be part of the isolation boundary;
 - Deny precedence must remain intact;
 - policy/authority change must invalidate or supersede stale decisions;
@@ -539,7 +557,7 @@ If used:
 
 Caching an effective Permission set is not equivalent to caching the final decision.
 
-Even when the Permission set is current, the request may still be denied due to:
+Even when the Permission set or Technical Principal Authority Binding is current, the request may still be denied due to:
 
 - scope;
 - resource state;
@@ -557,7 +575,7 @@ Every protected operation has at least one authoritative technical enforcement b
 The enforcement boundary:
 
 1. obtains or invokes an authoritative D02 Authorization Decision;
-2. confirms the decision matches actual subject/action/resource/scope;
+2. confirms the decision matches actual subject/principal/action/resource/scope;
 3. blocks execution for Deny;
 4. blocks execution for missing/invalid/stale decision;
 5. executes only on valid Allow;
@@ -601,10 +619,11 @@ Internal placement does not imply authorization.
 
 If an internal service or worker invokes a protected operation:
 
-- actor/workload identity remains attributable;
+- D01 non-human principal remains attributable;
+- the applicable Technical Principal Authority Binding is resolved and must be valid;
 - Tenant/scope remains validated;
 - required Permission/policy evaluation still occurs;
-- the internal network or service role alone does not create Allow.
+- the internal network, service identity or credential alone does not create Allow.
 
 D03 trust and D02 authorization both apply.
 
@@ -629,11 +648,11 @@ For API/service operations:
 ```text
 API Request
    ↓
-authenticate / establish actor
+authenticate / establish actor or technical principal
    ↓
 validate Tenant/scope
    ↓
-resolve action/resource
+resolve authority + action/resource
    ↓
 D02 decision
    ↓
@@ -649,11 +668,12 @@ A workflow being valid/running does not automatically authorize the human or mac
 
 Protected workflow actions shall evaluate:
 
-- current actor;
+- current actor / technical principal;
+- applicable Role Assignment or Technical Principal Authority Binding;
 - Permission;
 - scope/resource;
 - workflow/process context if policy requires;
-- authority source;
+- other authority source(s);
 - SoD/maker-checker constraints;
 - current policy version.
 
@@ -667,8 +687,10 @@ Where a job performs protected business action:
 
 - D01 supplies attributable non-human principal;
 - A04 supplies Tenant scope;
-- D02 resolves governed machine/business authority;
-- D02-004 evaluates policy;
+- D02 resolves the applicable `ADR-L5-0009` Technical Principal Authority Binding;
+- D02-002 resolves governed Permission/capability authority;
+- D02-003 validates binding/request/resource scope;
+- D02-004 evaluates policy and produces Allow/Deny;
 - enforcement occurs before mutation/disclosure.
 
 The interactive user who originally scheduled the job does not automatically remain the valid authority at future execution unless upstream semantics explicitly establish such delegated authority.
@@ -679,7 +701,8 @@ External integration credentials establish technical identity/trust, not authori
 
 Protected integration operations require:
 
-- valid integration principal;
+- valid D01 integration principal;
+- valid Technical Principal Authority Binding;
 - Tenant/scope;
 - required Permission/capability;
 - resource context;
@@ -791,15 +814,15 @@ No numeric window is prescribed.
 
 ### 5.29 Scope TOCTOU
 
-Scope/ownership relationships may also change.
+Scope/ownership relationships and Technical Principal Authority Binding scope/validity may also change.
 
 Example:
 
 - authority valid when request begins;
-- subject/resource reassigned before mutation;
+- subject/resource reassigned or machine binding narrowed/revoked before mutation;
 - stale Allow would now be too broad.
 
-For high-risk operations, enforcement must use a consistency strategy appropriate to the authoritative scope/resource source.
+For high-risk operations, enforcement must use a consistency strategy appropriate to the authoritative scope/resource/authority source.
 
 ### 5.30 Nested Service Calls
 
@@ -813,7 +836,9 @@ A downstream service shall not trust an upstream “allowed=true” assertion un
 
 - source authenticity;
 - Tenant binding;
-- subject/action/resource binding;
+- human subject or non-human technical principal binding;
+- authority-source binding where material;
+- action/resource binding;
 - policy-version/freshness validity;
 - non-replay beyond intended context;
 - downstream operation equivalence.
@@ -831,7 +856,8 @@ Re-evaluation is required when:
 - Tenant/Institution changes;
 - material lower scope changes;
 - policy version changes;
-- authority source changes;
+- Role Assignment or Technical Principal Authority Binding changes;
+- another authority source changes;
 - resource state/ownership changes materially;
 - downstream service operation is broader/different;
 - freshness cannot be proven.
@@ -844,8 +870,8 @@ Long-lived workflows/jobs shall not assume an initial Allow remains valid foreve
 
 Reauthorization may be required at protected execution points based on:
 
-- current actor;
-- current authority;
+- current actor / technical principal;
+- current authority including TPAB validity where applicable;
 - current policy;
 - current resource state;
 - current scope.
@@ -883,8 +909,9 @@ D02-006 supplies privileged authority/safeguards.
 
 D02-004 guarantees:
 
-- privileged operation remains explicitly authorized;
-- “admin” status is not blanket bypass;
+- privileged human or non-human operation remains explicitly authorized;
+- non-human privileged execution uses the applicable Technical Principal Authority Binding plus D02-006 safeguards;
+- “admin” or infrastructure status is not blanket bypass;
 - protected operation/scope remain bound to decision;
 - privileged evidence requirements can be enforced.
 
@@ -913,7 +940,7 @@ D02-004 shall reject or refuse authoritative use of configuration that:
 - breaks Tenant isolation;
 - creates nondeterministic evaluation;
 - weakens explicit Deny;
-- references invalid Role/Permission/scope;
+- references invalid Role/Permission/scope/Technical Principal Authority Binding;
 - exceeds permitted institutional override boundaries;
 - lacks required upstream governance evidence.
 
@@ -951,6 +978,7 @@ Conceptual categories may include:
 
 ```text
 missing_identity_context
+technical_principal_binding_missing_or_invalid
 tenant_mismatch
 scope_mismatch
 permission_not_effective
@@ -974,7 +1002,8 @@ External/user-facing error disclosure may be more limited for security/privacy r
 D04 may receive:
 
 - outcome;
-- subject/actor;
+- human subject/actor or non-human technical principal/actor;
+- Technical Principal Authority Binding reference where applicable;
 - Tenant/Institution;
 - Permission/action;
 - resource;
@@ -997,11 +1026,12 @@ Secrets/credentials shall not be copied into decision evidence.
 | Applicable policy unresolved | No Allow. |
 | Policy version ambiguous | No Allow. |
 | Policy reference invalid | No Allow. |
+| Required non-human Technical Principal Authority Binding missing/invalid | No Allow. |
 | Evaluation throws/aborts | No Allow. |
 | Required resource fact unavailable | No Allow. |
 | Required SoD/delegation/temp control unavailable | No Allow. |
 | Decision serialization/transport invalid | Enforcement rejects. |
-| Decision mismatches actual action/resource/scope | Enforcement rejects. |
+| Decision mismatches actual action/resource/scope/principal | Enforcement rejects. |
 | Evidence correlation missing where mandatory | Do not silently report controlled success. |
 
 ### 5.43 Enforcement Failure
@@ -1018,6 +1048,7 @@ If enforcement infrastructure fails:
 Availability design may replicate decision/enforcement components, but:
 
 - replicas must use compatible authoritative policy versions;
+- replicas must not use stale permissive authority-binding state;
 - failover cannot switch to stale broad policy silently;
 - Tenant isolation remains;
 - explicit Deny remains;
@@ -1031,9 +1062,9 @@ During rolling change or distributed deployment, multiple component versions may
 D02-004 requires that:
 
 - policy/decision contracts remain compatible;
-- a consumer that cannot interpret required policy/decision semantics fails safely;
+- a consumer that cannot interpret required policy/decision/TPAB semantics fails safely;
 - old code must not reinterpret new Deny semantics as Allow;
-- unsupported new Permission/scope attributes do not default permissively.
+- unsupported new Permission/scope/authority attributes do not default permissively.
 
 ### 5.46 Observability
 
@@ -1043,6 +1074,7 @@ Operational observability may include:
 - Allow/Deny counts;
 - evaluation failures;
 - policy-resolution failures;
+- invalid/stale Technical Principal Authority Binding detections;
 - stale-decision detections;
 - cache hit/miss;
 - enforcement rejection due to context mismatch;
@@ -1071,8 +1103,9 @@ No alert thresholds are defined.
 | AD-010 | Decision caching is optional and derivative; stale permissive decisions must be invalidated/re-evaluated. | L4-A-052 + D02 freshness. | None; implementation ADR if needed. |
 | AD-011 | Protected internal service/job/integration calls remain subject to authorization; internal trust is not authorization. | AP-13 + D03. | `ADR-L5-0001`. |
 | AD-012 | Collection and bulk enforcement constrains all affected resources to authorized scope. | D02-003 scope model. | None. |
-| AD-013 | Resource/scope state affecting policy must be sufficiently current at enforcement to avoid stale permissive access. | Policy correctness / TOCTOU. | None. |
+| AD-013 | Resource/scope/authority state affecting policy must be sufficiently current at enforcement to avoid stale permissive access. | Policy correctness / TOCTOU. | None. |
 | AD-014 | No policy product, language, engine, gateway, service mesh, claims format, cache, database, TTL, timeout or deployment topology is selected by this specification. | L5 technology governance. | Future ADR only where material. |
+| AD-015 | Non-human protected actions consume an applicable `ADR-L5-0009` Technical Principal Authority Binding as an effective-authority input; that binding never bypasses D02-004 policy evaluation or final Allow/Deny generation. | D01 non-human identity + D02 authorization ownership. | `ADR-L5-0009`. |
 
 ---
 
@@ -1082,6 +1115,7 @@ No alert thresholds are defined.
 |---|---|---|
 | Unauthorized execution | Mandatory decision + enforcement prevents bypass. | D02-004 |
 | Cross-Tenant access | Tenant mismatch cannot be allowed by policy. | A04 + D02-003/004 |
+| Machine authorization | Non-human principal requires matching Tenant-bound TPAB and full policy evaluation; credential/internal placement alone never grants authority. | D01 + D02-002/003/004 + ADR-L5-0009 |
 | Over-privilege | Policy can restrict granted Permission using scope/state/SoD. | D02-004 |
 | Stale access | Policy/authority/resource change triggers invalidation/re-evaluation requirements. | D02-004 + B02/C02 |
 | Client tampering | Client Allow/hints are ignored as authority. | D02-004 + G01 |
@@ -1105,7 +1139,7 @@ No numeric SLA, SLO, latency, throughput, availability, cache duration or retry 
 |---|---|---|
 | CR-001 | Every protected business operation shall receive an authoritative D02 Authorization Decision before execution. | AP-01. |
 | CR-002 | Authentication success shall never be accepted as authorization success. | AP-02. |
-| CR-003 | A resolved Permission or active Role Assignment shall never by itself be treated as final Allow. | L4-A-010; D02-002. |
+| CR-003 | A resolved Permission, active Role Assignment or valid Technical Principal Authority Binding shall never by itself be treated as final Allow. | L4-A-010; D02-002; ADR-L5-0009. |
 | CR-004 | Authorization policy evaluation shall remain centralized/shared across protected channels. | AP-05/AP-13. |
 | CR-005 | Explicit Deny shall override conflicting Allow. | AP-06. |
 | CR-006 | Policy evaluation shall use one unambiguous authoritative policy version. | L4-A-052. |
@@ -1114,12 +1148,12 @@ No numeric SLA, SLO, latency, throughput, availability, cache duration or retry 
 | CR-009 | Policy predecessor/history shall not be rewritten as part of successor activation or rollback. | L4-A-052. |
 | CR-010 | D02-004 shall not invent missing policy lifecycle states, activation commands, rollback commands or canonical events. | L4-A-052 open issues. |
 | CR-011 | Evaluation ordering/combination shall be deterministic enough to avoid ambiguous outcomes. | L4-A-052-BH-003. |
-| CR-012 | Tenant, scope, Role/Permission and SoD references required by policy shall be validated before Allow. | L4-A-052-BH-004. |
+| CR-012 | Tenant, scope, effective-authority, Permission and SoD references required by policy shall be validated before Allow. | L4-A-052-BH-004; ADR-L5-0009. |
 | CR-013 | Absence of SoD conflict shall not independently generate Allow. | L4-A-051-BH-006. |
 | CR-014 | Prohibited SoD conflict shall Deny unless an already-approved policy explicitly permits continuation and the complete remaining evaluation Allows. | L4-A-051-BH-007/BH-008. |
 | CR-015 | Delegation/Temporary Access/privileged/emergency authority shall remain policy inputs and shall not bypass final evaluation. | D02-005/006/007 boundaries. |
 | CR-016 | Mandatory context uncertainty or control unavailability shall not default to Allow. | Fail-closed baseline. |
-| CR-017 | Final Allow shall be bound to the evaluated subject, action/Permission, resource, Tenant/scope and policy version. | §5.11. |
+| CR-017 | Final Allow shall be bound to the evaluated human subject or non-human principal, action/Permission, resource, Tenant/scope and policy version. | §5.11. |
 | CR-018 | Enforcement shall reject decisions whose context does not match the actual protected execution. | §5.15. |
 | CR-019 | Client/UI authorization hints shall never replace server-side enforcement. | AP-03/AP-09. |
 | CR-020 | Internal service, background, workflow and integration paths shall not be exempt from authorization. | AP-13. |
@@ -1130,16 +1164,17 @@ No numeric SLA, SLO, latency, throughput, availability, cache duration or retry 
 | CR-025 | Collection/query enforcement shall constrain results to authorized scope before protected disclosure. | §5.25. |
 | CR-026 | Bulk mutation shall validate all affected resources or a proven homogeneous authorization context; cross-Tenant bulk mutation is prohibited. | §5.26. |
 | CR-027 | Resource-state/ownership facts used by policy shall remain source-owned and sufficiently current for the protected operation. | D02-003 / §5.28–5.29. |
-| CR-028 | Decision propagation across services shall not be trusted unless subject/action/resource/scope/policy/freshness binding is verifiable; otherwise downstream re-evaluates. | §5.30–5.31. |
+| CR-028 | Decision propagation across services shall not be trusted unless principal/subject/action/resource/scope/policy/freshness binding is verifiable; otherwise downstream re-evaluates. | §5.30–5.31. |
 | CR-029 | Authorization Allow shall not bypass D03 trust, cryptographic, secret, credential or segmentation controls. | D03 boundary. |
 | CR-030 | Authorization-control failure shall not trigger a weaker local fallback that changes governed decision semantics. | §5.43. |
-| CR-031 | Policy-version skew across replicas/failover shall not result in silent broader authority. | §5.44. |
-| CR-032 | Unsupported/new policy semantics shall fail safely rather than being interpreted permissively by older components. | §5.45. |
+| CR-031 | Policy-version or authority-binding skew across replicas/failover shall not result in silent broader authority. | §5.44. |
+| CR-032 | Unsupported/new policy or authority-binding semantics shall fail safely rather than being interpreted permissively by older components. | §5.45. |
 | CR-033 | Material Authorization Decisions shall expose non-secret provenance to D04. | AP-11. |
 | CR-034 | External-facing Deny messages need not expose sensitive policy internals; internal evidence shall remain sufficient for governed reconstruction. | Security/privacy. |
 | CR-035 | D02-004 shall not mutate upstream business resource state as part of authorization evaluation. | Ownership boundary. |
 | CR-036 | D02-004 shall not become owner of Role/Permission/scope/Delegation/SoD business lifecycles. | D02 family boundaries. |
 | CR-037 | No implementation shall infer a mandatory policy language, PDP/PEP product, gateway, service mesh, token format, cache, database, numeric TTL or deployment topology from this specification. | AD-014. |
+| CR-038 | A protected non-human action shall not reach Allow unless the D01 technical principal is valid, an applicable same-Tenant Technical Principal Authority Binding is valid for the requested Permission/scope, and the complete D02-004 policy evaluation Allows. | ADR-L5-0009; AD-015. |
 
 ---
 
@@ -1147,18 +1182,18 @@ No numeric SLA, SLO, latency, throughput, availability, cache duration or retry 
 
 | Item ID | Open / Deferred Item | Classification | Source / Gap | Blocking? | Required Resolution |
 |---|---|---|---|---|---|
-| OD-001 | Applicable L4 authorization specifications remain Draft. | Upstream approval | L4-A-010/A011/A012/A013/A050/A051/A052 | **Yes for Architecture Approved; No for Draft** | Promote/authorize applicable L4 before D02 formal approval. |
-| OD-002 | D02-001/002/003 are working authoring artifacts and require stabilization/reconciliation. | Peer dependency | current sequence | Yes before approval if contracts materially change | Reconcile D02-004 with committed canonical revisions. |
-| OD-003 | Authorization Policy lifecycle states, activation/rollback commands/events and governance actors remain undefined. | Upstream behavior gap | L4-A-052 open issues | Yes for canonical policy lifecycle implementation | Consume authoritative version only; do not invent missing lifecycle. |
-| OD-004 | SoD policy lifecycle/events and override authorities remain undefined. | Upstream behavior gap | L4-A-051 open issues | Yes for exact governance mechanics; no for Deny invariant | D02-007 must preserve gaps and use approved continuation only. |
-| OD-005 | Exact policy evaluation language/runtime/product. | Technology | not selected | No for Draft; yes before concrete implementation | Evaluate/select through L5 technology ADR methodology. |
-| OD-006 | Exact deployment topology of decision and enforcement components. | Technology/runtime | not selected | No for Draft | Resolve with E04/C01/D03 and ADR if material. |
-| OD-007 | Exact authorization decision propagation/claims format across service boundaries. | C01/D02 technology | not selected | No for Draft; yes before distributed implementation | Define authenticated context-bound contract; avoid unsigned/self-asserted Allow. |
-| OD-008 | Exact decision/effective-authority cache strategy, TTL and invalidation mechanism. | D02/B02/C02/E02 | not selected | No for Draft; yes before optimization | Select without weakening freshness/fail-closed semantics. |
-| OD-009 | Exact transaction/TOCTOU strategy for state-sensitive authorization and mutation. | D02/B02 | implementation design | No for Draft; yes for high-risk mutable flows | Choose revalidation/version/transaction pattern per operation class. |
-| OD-010 | Exact collection/query authorization enforcement technique. | D02/B02 | implementation design | No for Draft; yes before search/list implementation | Define secure scoped-query/filter enforcement. |
-| OD-011 | Exact retry/failover behavior and availability targets for authorization control. | E01/E05 | operational design | No for architecture Draft | Define later; no bypass fallback allowed. |
-| OD-012 | Exact machine-principal business authority binding model. | D01/D02 upstream gap | non-human principal supported, Person-focused Role Assignment | Yes for production machine protected actions | Govern machine authority without fabricating Person assignment semantics. |
+| OD-001 | Applicable L4 authorization specifications remain `Draft` in their own metadata. | Governance disposition | Controlled Stage-2 validation rule | No | Resolved for D02-004 approval interpretation; source L4 metadata remains unchanged. |
+| OD-002 | D02-001/002/003 were working authoring dependencies. | Peer stabilization | D02 family reconciliation decision | No | Closed: D02-001/002/003 are committed and Architecture Approved; reopen only on material peer change. |
+| OD-003 | Authorization Policy lifecycle states, activation/rollback commands/events and governance actors remain undefined. | Upstream feature-realization gate | L4-A-052 open issues | No for reusable D02 architecture; yes only for a feature requiring the undefined lifecycle/governance mechanics | Consume an authoritative policy version only; resolve missing business governance upstream without L5 invention. |
+| OD-004 | SoD policy lifecycle/events and override authorities remain undefined. | Upstream feature-realization gate | L4-A-051 open issues | No for reusable D02 architecture; yes only for a feature requiring the undefined governance authority | D02-007 preserves the gap and uses only source-approved continuation. |
+| OD-005 | Exact policy evaluation language/runtime/product. | Technology | not selected | No for architecture approval; yes before concrete implementation | Evaluate/select through L5 technology ADR methodology. |
+| OD-006 | Exact deployment topology of decision and enforcement components. | Technology/runtime | not selected | No for architecture approval | Resolve with E04/C01/D03 and ADR if material. |
+| OD-007 | Exact authorization decision propagation/claims format across service boundaries. | C01/D02 technology | not selected | No for architecture approval; yes before distributed implementation | Define authenticated context-bound contract; avoid unsigned/self-asserted Allow. |
+| OD-008 | Exact decision/effective-authority cache strategy, TTL and invalidation mechanism. | D02/B02/C02/E02 | not selected | No for architecture approval; yes before optimization | Select without weakening freshness/fail-closed semantics. |
+| OD-009 | Exact transaction/TOCTOU strategy for state-sensitive authorization and mutation. | D02/B02 | implementation design | No for architecture approval; yes for high-risk mutable flows | Choose revalidation/version/transaction pattern per operation class. |
+| OD-010 | Exact collection/query authorization enforcement technique. | D02/B02 | implementation design | No for architecture approval; yes before search/list implementation | Define secure scoped-query/filter enforcement. |
+| OD-011 | Exact retry/failover behavior and availability targets for authorization control. | E01/E05 | operational design | No for architecture approval | Define later; no bypass fallback allowed. |
+| OD-012 | Exact machine-principal authority binding model. | Resolved D01/D02 decision | `ADR-L5-0009` | No | Resolved by the approved Technical Principal Authority Binding pattern. |
 
 ---
 
@@ -1204,10 +1239,12 @@ No numeric SLA, SLO, latency, throughput, availability, cache duration or retry 
 - `BH-008`: preserve historical decision/version references;
 - `BH-009`: rollback only through source-defined contract.
 
-### 10.4 D02 Family Handoff
+### 10.4 D02 / ADR Handoff
 
 ```text
-D02-001 Authorization Baseline
+D01 Non-Human Principal
+        ↓
+ADR-L5-0009 Technical Principal Authority Binding
         ↓
 D02-002 Permission & Capability
         ↓
@@ -1219,13 +1256,15 @@ D02-004 Policy Decision & Enforcement
         └── consumes D02-007 SoD / Maker-Checker / Emergency controls
 ```
 
+Human authority continues through canonical Person / Role Assignment semantics defined upstream.
+
 ### 10.5 Architecture Decisions
 
-`AD-001` through `AD-014`.
+`AD-001` through `AD-015`.
 
 ### 10.6 Conformance Requirements
 
-`CR-001` through `CR-037`.
+`CR-001` through `CR-038`.
 
 ### 10.7 Open Decisions
 
