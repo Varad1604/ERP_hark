@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Specialized technical protection architecture for Aadhaar-related information within authoritative privacy, security and access constraints  
 **Technical Architecture Owner:** Lead Solution Architect / Data & Information Architecture  
 **Assigned Author:** Varad  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Review  
 **Last Updated:** 2026-09-12  
-**Depends On:** L5-B-05-001 (Classification Baseline); L5-B-05-002 (Masking); L5-B-02 (Persistence); L5-D-02 (Authorization); L5-D-03 (Security & Cryptography); L5-D-04 (Audit & Evidence)  
+**Depends On:** L5-B-05-001; L5-B-05-002; L5-B-02; L5-D-02; L5-D-03; L5-D-04; applicable canonical L4 behavior  
 **Referenced By:** L5-B-04, L5-C-01, L5-C-03, L5-G-01  
-**Applicable ADRs:** ADR-L5-0001 (Canonical Trust Boundary & Segmentation Pattern), ADR-L5-0002 (Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern), ADR-L5-0003 (Contract-Driven Modular Platform with Selective Isolation), ADR-L5-0004 (Tenant and Institution Isolation Enforcement Pattern), ADR-L5-0005 (Persistence Ownership, Hybrid Topology and Tenant Isolation Pattern)  
+**Applicable ADRs:** ADR-L5-0001; ADR-L5-0002; ADR-L5-0004; ADR-L5-0005; ADR-L5-0009  
 
 ---
 
@@ -22,179 +22,162 @@
 
 ### 2.1 Purpose
 
-This specification defines the specialized technical architecture for protecting Aadhaar numbers and associated identity documents in strict compliance with statutory regulations (Aadhaar Act and UIDAI data protection regulations).
+This specification defines a specialized technical protection boundary for Aadhaar-related information. It minimizes propagation of the protected identifier, requires controlled technical access, and delegates persistence, authorization, cryptography and evidence to their canonical L5 owners.
 
-The architecture enforces an **Aadhaar Vault** pattern, ensuring that 12-digit Aadhaar numbers are never stored in operational transactional databases, never displayed in cleartext in standard application interfaces, never transmitted in cleartext across service boundaries, and never logged in system diagnostics. Operational tables store strictly synthetic, random surrogate tokens (AadhaarReferenceKey).
+This specification does not claim or determine institutional Aadhaar eligibility, collection authority, AUA/KUA status, statutory interpretation, or a specific cryptographic product/cipher. Those must come from authoritative governance and approved L5 security decisions.
 
 ### 2.2 In Scope
 
-- Technical specification of the **Aadhaar Vault** boundary, isolated from general application persistence.
-- Surrogate UUID tokenization pipeline converting 12-digit Aadhaar numbers to synthetic reference tokens (AadhaarReferenceKey).
-- Field-level authenticated envelope encryption with master key custody managed by L5-D-03 HSM/KMS infrastructure (using authenticated ciphers, with AES-256-GCM as regulatory reference standard pending final technology-selection ADR confirmation).
-- Mandatory display masking rules: only the last 4 digits may ever be displayed (XXXX-XXXX-1234).
-- Strict prohibition of core biometric storage (fingerprints, iris scans, raw face templates).
-- Attributable, tamper-evident audit logging of all vault token generation, verification, and unmasking requests via L5-D-04.
+- A logical Aadhaar protection boundary separating protected identifier material from ordinary operational projections.
+- Use of an opaque technical reference so normal consumers need not carry the protected identifier.
+- Controlled masked/protected projections derived from authoritative privacy rules.
+- Consumption of L5-D-02 authorization outcomes for protected-resolution requests.
+- Consumption of L5-D-03 approved cryptographic protection mechanisms.
+- Persistence integration through L5-B-02 without defining physical tables or storage products.
+- Attributable evidence handoff through L5-D-04.
 
 ### 2.3 Explicit Non-Goals
 
-This specification does not own or redefine:
+This specification does not own or define:
 
-- Institutional eligibility policies regarding whether Aadhaar collection is mandatory, voluntary, or prohibited.
-- AUA/KUA registration status, UIDAI business agreements, or official authentication provider agreements.
-- Canonical Person or Identity aggregate ownership (owned by Person / HR / Student domains).
-- General PII masking and redaction mechanics (owned by L5-B-05-002).
-- Key generation algorithms, key rotation schedules, or HSM physical security (owned by L5-D-03).
-- Verification workflows for non-Aadhaar identity proofs (Voter ID, Passport, PAN) owned by originating domains.
+- Whether Aadhaar may, must or must not be collected for a business scenario.
+- AUA/KUA registration, authentication-provider contracts or statutory business authority.
+- Canonical Person ownership. Canonical Person remains owned by the Identity domain as established by locked L1 architecture; this specification does not transfer that ownership.
+- Authorization permissions, MFA rules, step-up policy or privileged role definitions.
+- Cryptographic algorithms, key hierarchy, HSM/KMS product selection or key-rotation schedules.
+- Physical vault tables, database partitions, storage engines or service deployment topology.
+- Biometric business policy unless explicitly established by authoritative upstream architecture.
 
 ---
 
-## 3. Upstream Applicability, Constraints & Assumptions
+## 3. Architectural Constraints & Ownership
 
-### 3.1 Architectural Constraints
+### 3.1 Identity Ownership
 
-Subordinate to locked L1 architecture and approved L2/L3/L4 system behavior. L5 does not create legal policies or establish statutory authority.
+Aadhaar-related technical references may be associated with the canonical Person/Identity context, but L5-B-05-004 is not an identity owner. Person remains canonically owned by the Identity domain; HR, Student and other domains consume identity according to existing contracts.
 
-The canonical L5 Candidate Document Corpus Register defines L5-B-05-004 as the specialized Aadhaar Data Protection Architecture.
+### 3.2 Security Ownership
 
-### 3.2 Statutory Security Invariant
+L5-D-03 owns the cryptographic protection profile. L5-B-05-004 expresses the requirement that protected Aadhaar material use an approved D03 protection mechanism; it does not select AES-256-GCM, HSM, KMS, PKCS#11 or any equivalent technology.
 
-Storage of raw, unencrypted 12-digit Aadhaar numbers in operational business tables, application caches, browser local storage, or audit trails is strictly prohibited. Core biometrics shall never be captured or stored by SutraERP under any circumstance.
+### 3.3 Persistence Ownership
 
-### 3.3 Operational Assumptions
+L5-B-02 owns the physical persistence model. This specification requires logical isolation and least propagation of protected Aadhaar material but does not define a table schema, column types, tablespace or replication topology.
 
-- **AS-B05-006 — Dedicated Secure Storage Isolation:** The database persistence layer (L5-B-02) provides capability to logically or physically isolate the Aadhaar Vault table into a restricted tablespace with strict database privilege controls and encrypted storage separation.
+### 3.4 Authorization Ownership
+
+L5-D-02 owns authorization and any step-up/access-control decision. L5-B-05-004 consumes an affirmative authorization outcome where protected resolution is permitted by authoritative policy.
 
 ---
 
 ## 4. Technical Architecture
 
-### 4.1 Aadhaar Vault & Tokenization Execution Model
-
-The architecture implements an isolated Aadhaar Vault micro-boundary separating operational systems from sensitive identity data:
+### 4.1 Logical Protection Boundary
 
 ```text
-+-------------------------------------------------------------------------+
-|                  Operational Business Modules (HR / Admissions)         |
-|         Stores strictly synthetic surrogate 'AadhaarReferenceKey'       |
-|                  (e.g., UUID: 'e7b9c1d2-4f8a-4b6e-...')                  |
-+-------------------------------------------------------------------------+
-                                    |
-                    [ AadhaarVaultGateway (L5-B-05-004) ]
-                                    |
-                                    v
-+-------------------------------------------------------------------------+
-|                          Aadhaar Vault Boundary                         |
-|                                                                         |
-|  1. Ingress Tokenizer: 12-Digit Input -> Hash Check -> Generate UUID    |
-|  2. Encryption Engine: Encrypt using DEK (authenticated envelope cipher)|
-|  3. Key Envelope: DEK wrapped with KEK managed by L5-D-03 HSM/KMS       |
-|  4. Isolated Persistence: Secure Vault Table (Strict Logical Partition)  |
-+-------------------------------------------------------------------------+
-                                    |
-                                    v
-+-------------------------------------------------------------------------+
-|                             Vault Output Gate                           |
-|                                                                         |
-|  - Standard Consumers: Return ONLY Masked Value ('XXXX-XXXX-1234')      |
-|  - Storage Consumers:  Return ONLY 'AadhaarReferenceKey' (UUID)         |
-|  - Privileged Egress:  Require MFA + Signed Security Token (L5-D-02)    |
-|  - Audit Dispatcher:   Synchronously log access event to L5-D-04        |
-+-------------------------------------------------------------------------+
+Operational business consumer
+        |
+        | opaque Aadhaar protection reference
+        v
+AadhaarProtectionGateway
+        |
+        +--> validate Tenant / Institution scope
+        +--> resolve authoritative handling rule (B05-001)
+        +--> consume authorization decision (D02)
+        +--> request approved cryptographic operation (D03)
+        +--> persist/retrieve through B02-owned persistence boundary
+        +--> emit minimized evidence to D04
 ```
 
-### 4.2 Aadhaar Vault Data Contract
+The `AadhaarProtectionGateway` is a logical responsibility, not a mandated microservice, RPC protocol or deployment unit.
 
-The internal vault entity is strictly isolated from general application querying:
+### 4.2 Protection Reference Contract
 
 ```text
-AadhaarVaultRecord {
-    reference_key: UUID (Primary Key, synthetic surrogate)
-    tenant_id: UUID
-    institution_id: UUID
-    encrypted_aadhaar_payload: BYTEA (Authenticated ciphertext payload, AES-256-GCM reference baseline)
-    initialization_vector: BYTEA (Initialization vector / nonce)
-    authentication_tag: BYTEA (Authentication tag for integrity verification)
-    key_version: INTEGER (L5-D-03 Key Reference)
-    masked_representation: STRING(14) (Fixed format: 'XXXX-XXXX-1234')
-    created_timestamp: TIMESTAMP
-    last_accessed_timestamp: TIMESTAMP
+AadhaarProtectionReference {
+    tenant_context_ref
+    institution_context_ref
+    person_identity_ref
+    protected_identifier_ref
+    protection_policy_ref
 }
 ```
 
-### 4.3 Architecture Decision: Isolated Aadhaar Vault Architecture
+`protected_identifier_ref` is an opaque technical reference. Its physical key format, database representation and indexing strategy are owned by L5-B-02. It shall not be interpreted as a new canonical Person identifier.
 
-**Decision ID:** AD-B05-004  
-**Title:** Isolated Aadhaar Vault Architecture with Surrogate Key Tokenization  
-**Status:** Approved  
-**Decision:** All Aadhaar numbers collected by SutraERP must be immediately tokenized upon ingestion. Transactional modules, reporting tables, APIs, and logs shall reference the individual solely through a surrogate UUID (AadhaarReferenceKey). Cleartext Aadhaar numbers and their encrypted representations shall reside exclusively within a dedicated, restricted-access Aadhaar Vault table. Querying the cleartext requires explicit step-up authorization, emits an immediate audit record, and is forbidden in standard bulk operations.  
-**Rationale:** Satisfies statutory UIDAI regulations, minimizes data breach blast radius, and ensures that operational database compromises cannot leak citizen identity numbers.
+### 4.3 Protected Identifier Handling
 
-### 4.4 Mandatory Masking and Export Constraints
+- Normal operational consumers use the opaque reference or an authoritative masked representation rather than the protected identifier where the governing workflow allows.
+- Any protected resolution must pass D02 authorization and D03 security controls.
+- No cleartext protected value is copied into logs, traces, audit evidence or unrelated projections.
+- Masking format is supplied by authoritative policy or applicable L4 behavior; this specification does not invent a universal visible-digit pattern.
 
-- **Display Formatting:** All UI forms, document previews, and operational screens must present only masked_representation (XXXX-XXXX-1234).
-- **Bulk Export Prohibition:** Bulk exports, reporting projections, and data warehouse ETL pipelines shall never decrypt the vault. If identity verification evidence is required in reports, only the masked string or reference key may be exported.
-- **Biometric Exclusion:** If an external e-KYC integration returns biometric scores or templates, the biometric data must be discarded in memory immediately after transaction validation; persisting biometrics is a hard fail.
+### 4.4 Architecture Position — Logical Isolation Without Ungoverned Technology Selection
+
+SutraERP shall maintain a specialized logical protection boundary for Aadhaar-related information. Physical isolation, encryption algorithms, key custody, database topology and network/service segmentation are realized only through approved B02/D03 architecture and applicable ADRs.
 
 ---
 
 ## 5. Dependencies & Integration
 
-### 5.1 Peer Dependencies
-- **L5-B-05-001:** Enforces baseline classification and Tenant/Institution scope checks.
-- **L5-B-05-002:** Enforces general masking standards on non-Aadhaar PII.
-- **L5-B-02:** Manages the isolated, encrypted relational table hosting the vault.
-- **L5-D-02:** Validates elevated authorization tokens for vault access.
-- **L5-D-03:** Manages Data Encryption Keys (DEKs) and Key Encryption Keys (KEKs) in HSM/KMS.
-- **L5-D-04:** Records immutable audit events for every vault token generation and access.
+- **L5-B-05-001:** supplies authoritative data-control references.
+- **L5-B-05-002:** supplies generic masking/redaction mechanism behavior.
+- **L5-B-02:** owns persistence topology and schema realization.
+- **L5-D-02:** owns authorization decisions.
+- **L5-D-03:** owns cryptographic protection and trust controls.
+- **L5-D-04:** records attributable technical evidence.
+- **Identity domain:** remains canonical owner of Person; this specification references but does not own identity.
 
 ---
 
 ## 6. Technical Behavior & Failure Concerns
 
-- **TB-001: Token Generation Idempotency:** Providing the same Aadhaar within the same Tenant/Institution returns the existing surrogate reference key without creating duplicate vault entries.
-- **TB-002: Fail-Closed on Key Unavailable:** If L5-D-03 cryptographic services are unavailable, vault ingestion and resolution must fail immediately; cleartext fallback is prohibited.
-- **TB-003: Tamper Detection:** Any failure of the cryptographic authentication tag during decryption triggers an immediate high-severity security alert in L5-D-04.
-- **TB-004: Diagnostic Sanitization:** Application logs, exception messages, and traces must scrub all 12-digit continuous numeric patterns.
+- **TB-001 — Missing Security Capability:** if required D03 protection cannot be performed, protected ingestion/resolution fails closed; no cleartext fallback.
+- **TB-002 — Authorization Denial:** protected resolution is denied; this specification does not create an alternate approval path.
+- **TB-003 — Scope Mismatch:** a reference from one Tenant context shall not resolve in another Tenant context.
+- **TB-004 — Evidence Minimization:** D04 evidence records access outcome and decision references without raw Aadhaar values.
+- **TB-005 — Unknown Policy:** do not infer masking, export or collection authority; require authoritative policy resolution.
 
 ---
 
 ## 7. Security, Privacy & Trust Boundaries
 
-- **Network / Service Isolation:** The Aadhaar Vault service must execute within an isolated trust boundary, accessible only via internal secure RPC.
-- **Zero Cleartext Exposure:** Cleartext is transiently held in memory only during initial tokenization and encryption, followed by immediate zeroization of memory buffers.
-- **Audit Attributability:** Every query to resolve a reference key to cleartext logs the caller identity, purpose code, and timestamp to L5-D-04.
+- Trust-boundary placement follows ADR-L5-0001 and D03 architecture.
+- Cryptographic protection follows ADR-L5-0002 and D03-owned decisions.
+- Tenant/Institution isolation follows ADR-L5-0004.
+- Authorization follows D02 and ADR-L5-0009 where applicable to non-human principals.
+- No D03/B02 implementation detail is promoted to a B05 canonical decision.
 
 ---
 
 ## 8. Conformance Requirements
 
-- **CR-001:** Operational domain modules shall store only synthetic surrogate tokens (AadhaarReferenceKey), never raw 12-digit Aadhaar numbers.
-- **CR-002:** Cleartext Aadhaar numbers shall be stored exclusively inside the dedicated, encrypted Aadhaar Vault table.
-- **CR-003:** The Aadhaar Vault shall encrypt payloads using authenticated envelope encryption with keys managed under L5-D-03 (with AES-256-GCM representing the statutory reference implementation baseline pending final technology-selection ADR confirmation).
-- **CR-004:** Standard application interfaces and exports shall display only the masked representation (XXXX-XXXX-1234).
-- **CR-005:** The system shall under no circumstances persist or store core biometric data (fingerprints, iris scans, face templates).
-- **CR-006:** Resolving cleartext Aadhaar from a reference key shall require verified step-up authorization and emit an audit record to L5-D-04.
-- **CR-007:** Application diagnostic logs, stack traces, and monitoring metrics shall never capture raw Aadhaar numbers.
-- **CR-008:** The Aadhaar Vault shall strictly enforce Tenant and Institution scope isolation; reference keys from Tenant A shall not resolve in Tenant B.
+- **CR-001:** L5-B-05-004 shall not redefine Person ownership; canonical Person remains Identity-domain owned.
+- **CR-002:** Operational consumers shall use protected references/masked projections where authoritative policy permits rather than propagating raw Aadhaar values unnecessarily.
+- **CR-003:** Physical persistence schema/topology shall remain owned by L5-B-02.
+- **CR-004:** Cryptographic algorithm, key custody and security-control selection shall remain owned by L5-D-03 and applicable ADRs.
+- **CR-005:** Authorization and step-up decisions shall remain owned by L5-D-02.
+- **CR-006:** Protected resolution shall fail closed when required authorization/security context cannot be established.
+- **CR-007:** Raw protected values shall not be copied into audit logs, diagnostics or monitoring data.
+- **CR-008:** Tenant and Institution scope shall be preserved for all protected-reference operations.
 
 ---
 
 ## 9. Traceability
 
-| L4 Specification ID | Exact L4 BH ID | Candidate L5 Spec ID | Material Technical Contribution | Realization Status |
-| :--- | :--- | :--- | :--- | :--- |
-| L4-A-053 | L4-A-053-BH-006 | L5-B-05-004 | Enforces mandatory identity masking and archival anonymization for national identity records upon institutional closure. | Verified Realization |
-| L4-H-001 | L4-H-001-BH-001 | L5-B-05-004 | Supplies synthetic reference tokens to external government linking connectors while preventing raw citizen identifier disclosure. | Verified Realization |
-| L4-A-025 | L4-A-025-BH-001 | L5-B-05-004 | Binds specialized Aadhaar classification constraints and statutory protection directives to identity domain assets. | Verified Realization |
+| L4 Specification ID | Exact L4 BH ID | Material Technical Contribution | Realization Status |
+|---|---|---|---|
+| L4-A-053 | L4-A-053-BH-006 | Applies authoritative identity-protection/masking directives through a specialized protection boundary without changing Identity ownership. | Verified Realization |
+| L4-H-001 | L4-H-001-BH-001 | Supplies protected references or governed projections to external integration boundaries without unnecessary raw identifier propagation. | Verified Realization |
+| L4-A-025 | L4-A-025-BH-001 | Binds authoritative classification/privacy-control references to Aadhaar-related technical handling. | Verified Realization |
 
 ---
 
 ## 10. Open Decisions & Deferred Design
 
-- **OD-001 — Exact L4 BH Applicability:** Resolved. Atomic L4 BH relations mapped to L4-A-053-BH-006, L4-H-001-BH-001, and L4-A-025-BH-001.
-- **OD-002 — L4/L5 Version Binding:** Resolved. Mapped against locked canonical L4 production specifications and L5-B-05-004 v1.0.0.
-- **OD-003 — HSM Provider Interface:** Non-blocking. HSM vendor PKCS#11 vs. cloud KMS driver interfaces governed by L5-D-03.
-- **OD-004 — Vault High-Availability Replication:** Non-blocking. Read-replica synchronization for the encrypted vault governed by L5-B-02 / L5-E-01.
-- **OD-005 — Cryptographic Cipher Suite Allocation:** Non-blocking. Formal technology-selection ADR for the field-level authenticated encryption cipher suite (confirming the AES-256-GCM baseline under L5-D-03 governance).
+- **OD-001 — Cryptographic Profile:** Delegated to L5-D-03 / ADR governance. No cipher suite is selected here.
+- **OD-002 — Physical Persistence Pattern:** Delegated to L5-B-02. Logical protection does not mandate a dedicated table, database or service.
+- **OD-003 — Masking Format:** Must come from authoritative privacy/regulatory policy or applicable L4 behavior; no local universal format is established.
+- **OD-004 — Deployment Segmentation:** Governed by D03/ADR-L5-0001 and later deployment architecture; no internal-RPC or microservice mandate is created here.
 
-**Current State:** Ready for Review
+**Current State:** Ready for Re-Review
