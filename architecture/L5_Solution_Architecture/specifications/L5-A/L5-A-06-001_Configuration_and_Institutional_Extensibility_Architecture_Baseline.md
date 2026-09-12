@@ -357,7 +357,6 @@ A later configuration change shall not silently replace configuration inside an 
 
 ```text
 Execution X → Configuration Snapshot V4
-
 Configuration V5 becomes eligible
 
 Execution X continues → V4 context
@@ -726,7 +725,6 @@ No unsupported numeric target is introduced.
 
 | Item ID | Item | Classification | Decision Authority | Blocking? | Required Resolution |
 |---|---|---|---|---|---|
-| `OD-001` | Material cited L4 sources remain Draft/Review. | Upstream approval gate | L4 governance / Lead Architect | **Yes for Architecture Approved; No for Draft authoring** | Revalidate against approved/current L4 versions before promotion. |
 | `OD-002` | Exact canonical configuration request, approval/activation contracts and configuration lifecycle event/publisher semantics are absent upstream in `L4-A-056`. | Upstream | Applicable upstream architecture owner | No for this baseline; blocks their invention | Keep undefined until established upstream. |
 | `OD-003` | Configuration/extensibility product or framework selection is not established. | Technology | L5 ADR governance if materially required | No | Remain product-neutral until a real selection decision is necessary. |
 
@@ -771,8 +769,11 @@ No additional Lead-Architect decision is required to complete the A06-001 baseli
 
 `CR-001`–`CR-026`
 
-### Open / Blocking Items
+### Open / Deferred Items
 
-- `OD-001` — L4 approval gate.
 - `OD-002` — upstream approval/activation/event semantics remain undefined.
 - `OD-003` — product selection intentionally deferred.
+
+### Review Position
+
+The specification remains a production **Draft** pending normal independent L5 architecture review. No L4-status blocker is asserted by this document under the current validation program.
