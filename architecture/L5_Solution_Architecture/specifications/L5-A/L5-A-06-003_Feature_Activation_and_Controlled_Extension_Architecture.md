@@ -1039,7 +1039,6 @@ No new canonical business event is created by this requirement.
 
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| `OD-001` | Direct L4 sources remain Draft. | Upstream approval | Yes for Architecture Approved; no for Draft | Revalidate on upstream promotion. |
 | `OD-002` | Upstream Module suspension/deprecation documents do not fully define the runtime fate of already-active/in-flight executions. | Upstream semantic gap | No for Draft | A06 blocks new activation where safe; does not invent automatic termination. D03 containment remains available for security cases. |
 | `OD-003` | D02 authorization family may still be under Stage-2 finalization. | Peer dependency | No for Draft | A06 defines authorization handoff and shall reconcile with finalized D02. |
 | `OD-004` | Physical extension isolation/sandbox technology is not selected. | Technology | No | E04/D03/ADR governance chooses only when required. |
@@ -1083,8 +1082,6 @@ No new canonical business event is created by this requirement.
 
 `CR-001`–`CR-040`
 
-## Promotion Position
+## Review Position
 
-The specification is suitable as a production **Draft**.
-
-Formal Architecture Approved status remains blocked by the required upstream L4 promotion/revalidation and any material peer-governance reconciliation required by L5 standards.
+The specification remains a production **Draft** pending normal independent L5 architecture review. No L4-status blocker is asserted by this document under the current validation program.
