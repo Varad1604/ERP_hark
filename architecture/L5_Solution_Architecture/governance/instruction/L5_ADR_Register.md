@@ -95,6 +95,7 @@ The next new ADR number is determined from the highest canonical allocated ADR n
 | `ADR-L5-0009` | Non-Human Principal Authorization Binding Pattern | Shared / Family | L5-D-02 — Authorization Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0009_Non_Human_Principal_Authorization_Binding_Pattern.md` | `L5-D-02-001`; `L5-D-02-002`; `L5-D-02-003`; `L5-D-02-004`; `L5-D-02-006`; consumes `L5-D-01-002` | 2026-09-12 | 2026-09-12 | — | — | Approved Stage-2 remediation decision resolving machine/service/workload/job/integration authority binding without fabricating Person/Role Assignment semantics; not Locked. |
 | `ADR-L5-0010` | Durable Event Delivery, Subscription, Ordering & Recovery Pattern | Shared / Family | L5-C-02 — Event & Messaging Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0010_Durable_Event_Delivery_Subscription_Ordering_and_Recovery_Pattern.md` | `L5-C-02-001`; `L5-C-02-002` | 2026-09-12 | 2026-09-12 | — | — | Approved Stage-2 remediation decision governing C02 delivery, subscription, acknowledgement, ordering and recovery semantics; no broker/product selection. |
 | `ADR-L5-0011` | Event Contract Versioning & Consumer Compatibility Pattern | Shared / Family | L5-C-02 — Event & Messaging Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0011_Event_Contract_Versioning_and_Consumer_Compatibility_Pattern.md` | `L5-C-02-003`; collaborates with `L5-C-02-001` | 2026-09-12 | 2026-09-12 | — | — | Approved Stage-2 remediation decision governing event-contract evolution and compatibility semantics; no registry/serialization product selection. |
+| `ADR-L5-0012` | Tamper-Evident Audit Evidence Storage, Integrity Stream, Checkpoint & Anchor Pattern | Specification | L5-D-04-003 — Tamper-Evident Audit Storage, Access & Export Architecture | Proposed | — | `L5-D-04-003` | 2026-09-12 | — | — | — | Allocated for Stage-3 D04-003 storage/query topology, integrity-stream partitioning, sequential linkage, checkpoint sealing and independently protected checkpoint anchoring. |
 
 ### ADR Path
 
@@ -337,5 +338,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 11  
-**Next Canonical Allocation:** `ADR-L5-0012`
+**ADR IDs Currently Canonically Allocated:** 12  
+**Next Canonical Allocation:** `ADR-L5-0013`
