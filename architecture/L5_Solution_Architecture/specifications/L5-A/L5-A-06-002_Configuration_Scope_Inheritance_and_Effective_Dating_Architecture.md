@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-A-06 — Configuration, Feature & Institutional Extensibility Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.0.0`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`  
 **Depends On:** `L5-A-06-001`; `L5-A-04-001`; `L5-A-04-002`; `L5-B-02-001`; `L5-B-02-002`; `L5-B-02-003`; `L2-A01` v1.0.0 Locked; applicable L4 configuration specifications; L5 governance, validation, traceability and ADR standards.  
 **Referenced By:** Configuration-consuming L5 specifications and `L5-A-06-003` where feature/extension activation consumes resolved configuration.  
@@ -1086,8 +1086,8 @@ No new product or framework technology is selected.
 
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| `OD-002` | Exact approval/activation commands and lifecycle events remain undefined upstream. | Upstream gap | No for this architecture | Do not invent. |
-| `OD-003` | Individual Configuration Definitions may require domain-specific temporal granularity. | Domain-owned semantics | No for baseline | Owner supplies semantics through governed definition/policy. |
+| `OD-002` | Exact approval/activation commands and lifecycle events remain undefined upstream. | Upstream gap | No | Do not invent. |
+| `OD-003` | Individual Configuration Definitions may require domain-specific temporal granularity. | Domain-owned semantics | No | Owner supplies semantics through governed definition/policy. |
 | `OD-004` | Physical representation of Resolution Snapshot identity/view. | B02 realization | No | B02 selects a conformant consistent-read/version-set mechanism. |
 | `OD-005` | Physical enforcement mechanism for temporal overlap. | B02 realization | No | B02 may use optimistic concurrency or justified stronger local serialization. |
 
@@ -1132,4 +1132,4 @@ No new product or framework technology is selected.
 
 ## Review Position
 
-The specification remains a production **Draft** pending normal independent L5 architecture review. No conversation-level approval label or L4-status blocker is asserted by this document under the current validation program.
+The specification is **Architecture Approved** following full Stage-2 validation at repository baseline `2876bde9994bcd0a9ae17d9fb09c104a7be86d27`. No conversation-level approval label or L4-status blocker remains. The listed deferred items are non-blocking ownership-preserving deferrals. The specification is lock-ready but shall not be marked `Locked` until distinct final governance authorization is recorded.

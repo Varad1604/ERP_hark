@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-A-06 — Configuration, Feature & Institutional Extensibility Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.0.0`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; `L5-A-01-001` v1.0.1 Draft; `L5-A-03-001` v1.0.1 Draft; `L5-A-04-001` v1.0.1 Draft; `L5-A-04-002` v1.0.1 Draft; `L2-A01` v1.0.0 Locked; applicable L4 sources identified in §3.  
 **Referenced By:** `L5-A-06-002`; `L5-A-06-003`  
@@ -776,4 +776,4 @@ No additional Lead-Architect decision is required to complete the A06-001 baseli
 
 ### Review Position
 
-The specification remains a production **Draft** pending normal independent L5 architecture review. No L4-status blocker is asserted by this document under the current validation program.
+The specification is **Architecture Approved** following full Stage-2 validation at repository baseline `2876bde9994bcd0a9ae17d9fb09c104a7be86d27`. The remaining open items are non-blocking and prevent unsupported invention rather than preventing this architecture from being implemented. The specification is lock-ready but shall not be marked `Locked` until distinct final governance authorization is recorded.

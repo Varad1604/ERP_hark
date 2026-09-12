@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-B-03 — Master & Reference Data Technical Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.0.0`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`  
 **Depends On:** `L5-B-03-001`; `L5-B-02-001`; `L5-B-02-002`; `L5-B-02-003`; `L5-C-02-001`; `L5-C-02-002`; `L2-A09` v1.0 Locked; applicable L4 Master Data specifications identified in §3; L5 governance, validation, traceability and ADR standards.  
 **Referenced By:** L5 consumers requiring governed Master/Reference Data publication, synchronization or historical version access.  
@@ -70,7 +70,7 @@ This specification defines the technical realization through which a registered 
 | L4 | `L4-A-038` | v1.0.0 / Draft on `main` | `BH-001`–`BH-008` | Synchronization binds one Published source version, resolves eligible consumers, isolates outcomes and requires acknowledgement. | Drives distribution-work and consumer-isolation architecture. |
 | L4 | `L4-A-039` | v1.0.0 / Draft on `main` | `BH-001`–`BH-008` | Localized Dataset representations preserve canonical identity and use governed validation/approval/publication. | Drives localized-version linkage. |
 | L4 | `L4-A-040` | v1.0.0 / Draft on `main` | `BH-001`–`BH-009` | Published→Deprecated→Retired remains governed, historical data preserved, archival separate. | Drives retirement/distribution boundary without archival ownership. |
-| L5 Peer | `L5-B-03-001` | Draft | Dataset Registry, identity, descriptor and canonical representation boundary | Supplies registered Dataset and representation identity. | B03-002 evolves registered datasets without redefining identity. |
+| L5 Peer | `L5-B-03-001` | Architecture Approved | Dataset Registry, identity, descriptor and canonical representation boundary | Supplies registered Dataset and representation identity. | B03-002 evolves registered datasets without redefining identity. |
 | L5 Peer | `L5-B-02-003` | Draft | owner-local transactions, optimistic concurrency and atomic publication-intent handoff | Supplies persistence consistency and B02→C02 handoff. | Used for version publication/concurrency without distributed ACID. |
 | ADR | `ADR-L5-0007` | Architecture Approved | Atomic state + Durable Publication Intent | Committed publication state and durable publication intent are atomic; C02 owns delivery after handoff. | Prevents B03 from owning event transport. |
 
@@ -401,8 +401,7 @@ When upstream governance validly transitions a Dataset through deprecation/retir
 
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| `OD-001` | The cited canonical L4 Master Data specifications remain `Draft` on `main`. | Upstream approval state | Yes for Architecture Approved under ordinary repository governance; no for Draft authoring | Revalidate against governing L4 approval/authorization state before promotion. |
-| `OD-002` | Exact operational numeric targets for distribution lag/backlog/recovery are not defined here. | Quality target | No for product-neutral architecture | Consume E02/E05 approved targets when established; do not invent values. |
+| `OD-002` | Exact operational numeric targets for distribution lag/backlog/recovery are not defined here. | Quality target | No | Consume E02/E05 approved targets when established; do not invent values. |
 
 ---
 
@@ -422,3 +421,7 @@ When upstream governance validly transitions a Dataset through deprecation/retir
 - B02 owns persistence, transaction and concurrency mechanics.
 - C02 owns event/messaging transport and delivery mechanics.
 - D02/D03/B05/D04 supply authorization, trust, privacy and evidence controls without owning Dataset business meaning.
+
+### Review Position
+
+The specification is **Architecture Approved** following full Stage-2 validation at repository baseline `2876bde9994bcd0a9ae17d9fb09c104a7be86d27`. Under the governing Stage-2 validation authorization, the cited canonical L4 Master Data specifications are accepted as behavioral authority for this review. The remaining `OD-002` is non-blocking and intentionally defers unsupported numeric operational targets. The specification is lock-ready but shall not be marked `Locked` until distinct final governance authorization is recorded.

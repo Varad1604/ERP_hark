@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-A-06 — Configuration, Feature & Institutional Extensibility Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.0.0`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`
 
 **Depends On:**
@@ -1039,8 +1039,8 @@ No new canonical business event is created by this requirement.
 
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| `OD-002` | Upstream Module suspension/deprecation documents do not fully define the runtime fate of already-active/in-flight executions. | Upstream semantic gap | No for Draft | A06 blocks new activation where safe; does not invent automatic termination. D03 containment remains available for security cases. |
-| `OD-003` | D02 authorization family may still be under Stage-2 finalization. | Peer dependency | No for Draft | A06 defines authorization handoff and shall reconcile with finalized D02. |
+| `OD-002` | Upstream Module suspension/deprecation documents do not fully define the runtime fate of already-active/in-flight executions. | Upstream semantic gap | No | A06 blocks new activation where safe; does not invent automatic termination. D03 containment remains available for security cases. |
+| `OD-003` | D02 authorization family may still be under Stage-2 finalization. | Peer dependency | No | A06 defines authorization handoff and shall reconcile with finalized D02. |
 | `OD-004` | Physical extension isolation/sandbox technology is not selected. | Technology | No | E04/D03/ADR governance chooses only when required. |
 | `OD-005` | Canonical feature-activation lifecycle events are not established upstream. | Upstream event gap | No | Do not invent them; preserve technical evidence only. |
 | `OD-006` | Specific extension runtime limits/timeouts are not repository-defined. | Operational/technology | No | E02/E04/D03 may define later; no numeric invention here. |
@@ -1084,4 +1084,4 @@ No new canonical business event is created by this requirement.
 
 ## Review Position
 
-The specification remains a production **Draft** pending normal independent L5 architecture review. No L4-status blocker is asserted by this document under the current validation program.
+The specification is **Architecture Approved** following full Stage-2 validation at repository baseline `2876bde9994bcd0a9ae17d9fb09c104a7be86d27`. The remaining deferred items are non-blocking and preserve upstream ownership rather than filling semantic gaps. The specification is lock-ready but shall not be marked `Locked` until distinct final governance authorization is recorded.
