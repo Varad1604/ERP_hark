@@ -8,8 +8,8 @@
 **Canonical Technical Responsibility:** Technical event schema evolution and consumer compatibility while canonical event names/publishers remain upstream-owned.  
 **Technical Architecture Owner:** `L5-C-02 — Event & Messaging Architecture`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.2`  
-**Status:** `Review`  
+**Version:** `1.0.3`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`  
 **Depends On:** `L5-C-02-001`; `L5-C-02-002`; `ADR-L5-0011`  
 **Referenced By:** event publishers/consumers and downstream L5 specifications that depend on governed event-contract compatibility  
@@ -80,3 +80,6 @@ No unresolved L4-authority blocker remains for this validation cycle because can
 
 ## 10. Traceability Summary
 Candidate Corpus Register 105; validated BHs L4-A-018/A-019; `ADR-L5-0011`; C02-001/002; D03; C01-003 compatibility boundary. C01-003 retains synchronous/general contract compatibility responsibility while event-schema compatibility remains canonically owned by C02-003.
+
+## 11. Review Position
+This specification is **Architecture Approved** following completed Stage-2 remediation and explicit architecture approval on 2026-09-12. It is lock-ready but shall not be marked `Locked` until distinct final-governance authorization is recorded.

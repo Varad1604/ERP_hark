@@ -8,8 +8,8 @@
 **Canonical Technical Responsibility:** Durable delivery, technical retries, ordering, failure/dead-letter treatment and transactional publication after the durable publication handoff.  
 **Technical Architecture Owner:** `L5-C-02 — Event & Messaging Architecture`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.2`  
-**Status:** `Review`  
+**Version:** `1.0.3`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`  
 **Depends On:** `L5-B-02-003`; `L5-C-02-001`; `ADR-L5-0007`; `ADR-L5-0010`  
 **Referenced By:** downstream event-consuming L5 specifications requiring durable delivery/recovery semantics  
@@ -93,7 +93,7 @@ Replay/dead-message operations are privileged, least-privilege, Tenant-aware and
 `CR-009` Delivery lifecycle states shall remain technical C02 state and shall not redefine upstream business lifecycle state.
 
 ## 9. Open Decisions & Deferred Design
-- Broker/queue product: separate ADR required if canonically selected; not required for Review.
+- Broker/queue product: separate ADR required if canonically selected; non-blocking for Architecture Approved status.
 - Numeric retry/backoff/TTL/retention thresholds: externalized to governed operational profiles.
 - Peer-control internals from D04/E05 remain consumed capabilities until their canonical architecture is stable; C02 shall not invent them.
 
@@ -101,3 +101,6 @@ No unresolved L4-authority blocker remains for this validation cycle because can
 
 ## 10. Traceability Summary
 Primary decision authority: `ADR-L5-0007` and `ADR-L5-0010`; candidate corpus boundary; locked hybrid/event durability constraint. Validated BHs: L4-A-019 and L4-A-020. Dependencies: B02-003, C02-001/003, E01, E05, D04.
+
+## 11. Review Position
+This specification is **Architecture Approved** following completed Stage-2 remediation and explicit architecture approval on 2026-09-12. It is lock-ready but shall not be marked `Locked` until distinct final-governance authorization is recorded.
