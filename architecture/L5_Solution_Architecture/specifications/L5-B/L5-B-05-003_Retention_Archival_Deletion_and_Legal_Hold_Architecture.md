@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Technical enforcement of retention, archival, governed deletion and legal-hold controls without redefining business policy  
 **Technical Architecture Owner:** Lead Solution Architect / Data & Information Architecture  
 **Assigned Author:** Varad  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Review  
 **Last Updated:** 2026-09-12  
-**Depends On:** L5-B-05-001 (Classification Baseline); L5-B-02 (Persistence); L5-A-08 (Background Processing); L5-D-03 (Security & Cryptography); L5-D-04 (Audit & Evidence)  
-**Referenced By:** L5-B-04, L5-B-02, L5-E-03, L5-A-05  
-**Applicable ADRs:** ADR-L5-0001 (Canonical Trust Boundary & Segmentation Pattern), ADR-L5-0002 (Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern), ADR-L5-0003 (Contract-Driven Modular Platform with Selective Isolation), ADR-L5-0004 (Tenant and Institution Isolation Enforcement Pattern), ADR-L5-0005 (Persistence Ownership, Hybrid Topology and Tenant Isolation Pattern)  
+**Depends On:** L5-B-05-001; L5-B-02; L5-D-03; L5-D-04; applicable canonical L4 behavior  
+**Referenced By:** L5-B-04, L5-A-08, L5-E-03, L5-A-05  
+**Applicable ADRs:** ADR-L5-0001; ADR-L5-0002; ADR-L5-0004; ADR-L5-0005; ADR-L5-0006  
 
 ---
 
@@ -22,193 +22,184 @@
 
 ### 2.1 Purpose
 
-This specification defines the reusable technical architecture for enforcing authoritative data retention schedules, cold-tier archival migrations, governed physical deletions, and non-destructive legal hold locks across SutraERP data holdings.
+This specification defines the technical control contract for enforcing authoritative retention, archival, deletion and legal-hold decisions. It determines whether a requested technical disposition may proceed and coordinates with the canonical owners of persistence, storage, cryptography, audit and future job execution.
 
-It establishes background sweep workers, immutable legal-hold junction models, two-phase deletion execution, and tamper-evident destruction certificates, ensuring that business history is preserved and records subject to legal preservation are never purged.
+It does not create a universal record-deletion lifecycle, retention period, quarantine state, hold status vocabulary, database schema or scheduler design.
 
 ### 2.2 In Scope
 
-- Automated background retention evaluation sweep engine coordinated with L5-A-08 job execution.
-- Relational schema and concurrency mechanics for active Legal Hold locks (RecordHoldLock).
-- Strict precedence enforcement: active legal hold overrides and blocks all archival migrations, soft-deletions, and physical purges.
-- Two-phase deletion execution pipeline: Phase 1 (Governed Logical Deactivation / Tombstoning) and Phase 2 (Coordinated Physical Purge / Cryptographic Erasure).
-- Archival tier migration mechanics to cold object storage while maintaining queryable index lineage.
-- Audit evidence generation recording retention evaluations, hold placements, hold releases, and physical purge completions.
+- Resolution of authoritative retention/disposition directives.
+- Technical hold-precedence checks using authoritative hold decisions/references.
+- Validation that disposition is allowed before delegating execution.
+- Archival handoff to the canonical storage owner.
+- Persistence deletion/anonymization handoff to L5-B-02.
+- Cryptographic-erasure handoff to L5-D-03 only when the authoritative disposition and approved security architecture permit it.
+- Audit evidence of evaluation and execution outcomes via L5-D-04.
+- A future execution contract consumable by L5-A-08 without pre-designing A08 scheduling or worker topology.
 
 ### 2.3 Explicit Non-Goals
 
-This specification does not own or redefine:
+This specification does not own:
 
-- Institutional retention policies, statutory retention schedules, or tax/compliance retention durations (owned by upstream business governance).
-- Legal hold declaration, litigation case management, or authorization to lift legal holds (owned by institutional governance).
-- Database table DDL, indexing strategies, or tablespace partitioning (owned by L5-B-02).
-- Physical backup execution, snapshot frequency, or disaster recovery replication (owned by L5-E-03).
-- Object storage bucket provisioning or cloud storage infrastructure (owned by L5-B-04 / L5-E-04).
+- Retention schedules, statutory durations, legal-hold declaration/release authority or business disposal approval.
+- Canonical domain lifecycle states such as soft-deleted, quarantined or purge-pending.
+- Database tables, DDL, SQL queries, indexes, transactions or concurrency mechanisms.
+- Background scheduler, worker, retry or batch orchestration architecture.
+- Object-store topology or archive infrastructure.
+- Key-destruction mechanisms or cryptographic algorithms.
+- Backup/restore and disaster-recovery policy.
 
 ---
 
-## 3. Upstream Applicability, Constraints & Assumptions
+## 3. Architectural Constraints & Ownership
 
-### 3.1 Architectural Constraints
+### 3.1 Authoritative Disposition Input
 
-Subordinate to locked L1 domain architecture and approved L2/L3/L4 system behavior. L5 does not create or alter business retention rules or legal authority.
+Every disposition attempt must reference authoritative source decisions. L5-B-05-003 may evaluate and enforce those decisions but shall not derive a business retention period or deletion eligibility from locally invented rules.
 
-The canonical L5 Candidate Document Corpus Register defines L5-B-05-003 as the technical owner of retention, archival, governed deletion, and legal-hold execution.
+### 3.2 Legal-Hold Precedence
 
-### 3.2 Immutability and Precedence Rule
+Where authoritative upstream policy marks a record as subject to an active legal hold, technical disposal shall be blocked. The hold's lifecycle, authority, vocabulary and case semantics remain upstream-owned.
 
-A legal hold is an absolute technical block. If a record has one or more active legal hold bindings, no automated retention policy, administrative cleanup task, or tenant deprovisioning workflow shall physically delete, truncate, or overwrite that record.
+### 3.3 Canonical Peer Ownership
 
-### 3.3 Operational Assumptions
-
-- **AS-B05-005 — Cluster-Wide Clock Consistency:** Database engines, background workers (L5-A-08), and storage managers share a synchronized clock baseline to reliably evaluate retention schedules, calculate expiry dates, and verify quarantine expiration without temporal drift.
+- **L5-B-02:** owns physical persistence model, schema, SQL, transaction and concurrency realization.
+- **L5-B-04:** owns managed document/object storage realization used for archival content.
+- **L5-D-03:** owns cryptographic erasure capability and key-management behavior.
+- **L5-D-04:** owns audit/evidence recording.
+- **L5-A-08:** when authored and dependency-ready, owns scheduling/background execution. This specification exposes an execution contract for A08 to consume; it does not depend on A08 to define its own architecture.
+- **L5-C-02:** owns messaging delivery/retry semantics if disposition commands or completion notifications use events.
 
 ---
 
 ## 4. Technical Architecture
 
-### 4.1 Retention Evaluation Sweep and Hold Architecture
-
-Retention evaluation and legal-hold locking operate across two distinct operational pipelines:
+### 4.1 Policy-Neutral Disposition Evaluation
 
 ```text
-[ Authoritative Policy Event / Scheduled Trigger (L5-A-08) ]
-                              |
-                              v
-+-------------------------------------------------------------------------+
-|                  RetentionEvaluationSweepWorker                         |
-|                                                                         |
-|  1. Scan Entities by Tenant, Institution, and RetentionClass            |
-|  2. Calculate Expiry Date = CreationDate + PolicyRetentionPeriod        |
-|  3. Check Active Legal Holds in RecordHoldLock                          |
-+-------------------------------------------------------------------------+
-                              |
-        +---------------------+---------------------+
-        |                                           |
-  [Hold Active]                               [No Active Hold]
-        |                                           |
-        v                                           v
-+------------------------------------+   +------------------------------------+
-| Block Disposal & Log Hold Event    |   | Evaluate Expiry Status             |
-| (Preserve Record State)            |   +------------------------------------+
-+------------------------------------+              |                 |
-                                                    v                 v
-                                            [Expired]         [Archival Eligible]
-                                                    |                 |
-                                                    v                 v
-                                            +---------------+ +---------------+
-                                            | Two-Phase     | | Cold Archival |
-                                            | Deletion      | | Migration     |
-                                            +---------------+ +---------------+
+Authoritative disposition request / governance trigger
+                     |
+                     v
+Resolve retention + hold decision references
+                     |
+                     v
+Validate Tenant / Institution / target record scope
+                     |
+              +------+------+
+              |             |
+        hold blocks      disposition permitted
+              |             |
+              v             v
+          deny action    delegate execution
+                            |
+          +-----------------+------------------+
+          |                 |                  |
+       L5-B-02           L5-B-04            L5-D-03
+   persistence action   archive action   approved crypto action
+          |                 |                  |
+          +-----------------+------------------+
+                            v
+                    evidence to L5-D-04
 ```
 
-### 4.2 Legal Hold Schema and Locking Mechanics
+### 4.2 Disposition Control Contract
 
-Legal holds are realized via an immutable hold lock registry bound to canonical record identifiers:
+The contract carries references, not a new business lifecycle:
 
 ```text
-RecordHoldLock {
-    lock_id: UUID
-    tenant_id: UUID
-    institution_id: UUID
-    target_entity_type: STRING
-    target_record_id: UUID
-    hold_reference_id: STRING (Legal Case / Regulatory Investigation Ref)
-    applied_by: UUID (Authoritative Officer)
-    applied_timestamp: TIMESTAMP
-    status: ENUM [ ACTIVE, RELEASED ]
-    release_timestamp: TIMESTAMP (NULL while ACTIVE)
-    released_by: UUID (NULL while ACTIVE)
-    immutable_hash: STRING (Cryptographic integrity check)
+DispositionControlContext {
+    tenant_context_ref
+    institution_context_ref
+    target_record_ref
+    authoritative_retention_decision_ref
+    authoritative_hold_decision_refs[]
+    authorized_disposition_ref
+    requested_execution_ref
 }
 ```
 
-**Locking Rule:** A query evaluating deletion eligibility must perform an atomic check:
-`SELECT COUNT(*) FROM RecordHoldLock WHERE target_record_id = :id AND status = 'ACTIVE'`  
-If count > 0, deletion is rejected immediately with a `RECORD_UNDER_LEGAL_HOLD` exception.
+`authorized_disposition_ref` points to the action authorized by the source workflow/policy. This specification does not define a repository-wide enumeration of retention outcomes.
 
-### 4.3 Architecture Decision: Dual-Phase Retention Evaluation and Precedence-Enforced Legal Hold
+### 4.3 Execution Handoff
 
-**Decision ID:** AD-B05-003  
-**Title:** Dual-Phase Retention Evaluation and Precedence-Enforced Legal Hold Architecture  
-**Status:** Approved  
-**Decision:** All record disposals must follow a mandatory two-phase workflow: Phase 1 transitions records to GOVERNED_SOFT_DELETED and starts a mandatory quarantine window. Phase 2 executes irreversible physical deletion or cryptographic erasure only after verifying zero active RecordHoldLock bindings and confirming quarantine expiration. Active legal holds take strict precedence over any retention schedule, archival transition, or deletion command.  
-**Rationale:** Prevents accidental or malicious spoliation of legal evidence and ensures catastrophic deletion mistakes can be intercepted during the quarantine period.
+After validation:
 
-### 4.4 Deletion Pipeline Execution
+- persistence mutation/deletion/anonymization is delegated to L5-B-02 under B02-owned transactional rules;
+- archive movement/storage is delegated to L5-B-04;
+- cryptographic erasure is requested from L5-D-03 only when approved security architecture supports it;
+- evidence of the decision and returned execution result is sent to L5-D-04.
 
-1. **Phase 1: Governed Soft-Delete (Logical Tombstone):**
-   - The record status transitions to SOFT_DELETED.
-   - Access is restricted strictly to legal/compliance audit queries.
-   - Quarantine period timer initiates (e.g. 30 days; exact quarantine duration is an institutionally configurable governance parameter resolved via L5-A-06).
-2. **Phase 2: Coordinated Physical Purge:**
-   - Background worker validates that the quarantine period has lapsed.
-   - Worker verifies that no RecordHoldLock is active.
-   - For structured relational data: physical row deletion or irreversible anonymization is executed.
-   - For encrypted data: cryptographic erasure is executed via L5-D-03 by destroying the record's specific data encryption key (DEK).
-   - An immutable DataPurgeCertificate is emitted to L5-D-04.
+No SQL statement, table shape, lock table, universal tombstone field or deletion state is defined here.
+
+### 4.4 Future Background Execution Boundary
+
+L5-B-05-003 defines a scheduler-neutral `DispositionEvaluationRequest` / result contract. When L5-A-08 becomes dependency-ready, A08 may schedule or orchestrate evaluations using that contract. A08 remains sole owner of scheduling cadence, batching, worker topology, retry and execution timing.
 
 ---
 
 ## 5. Dependencies & Integration
 
-### 5.1 Peer Dependencies
-- **L5-B-05-001:** Provides baseline classification tags and scope verification.
-- **L5-B-02:** Executes database row soft-deletion, physical purging, and lock table queries.
-- **L5-A-08:** Schedules periodic retention sweep jobs.
-- **L5-D-03:** Executes cryptographic erasure via key destruction.
-- **L5-D-04:** Records immutable audit logs for hold application, hold release, and physical deletion.
+- **L5-B-05-001:** authoritative control references and scope validation.
+- **L5-B-02:** persistence execution and transaction/concurrency boundaries.
+- **L5-B-04:** archive/object storage realization where applicable.
+- **L5-D-03:** cryptographic mechanisms where approved.
+- **L5-D-04:** audit/evidence recording.
+- **L5-A-08:** downstream consumer of the scheduler-neutral contract after its own architecture is established; not an upstream dependency of this specification.
 
 ---
 
 ## 6. Technical Behavior & Failure Concerns
 
-- **TB-001: Absolute Hold Precedence:** An active hold halts all automated and manual deletion workflows.
-- **TB-002: Overlapping Holds:** When multiple holds apply to a record, release of one hold leaves all remaining active holds fully enforced.
-- **TB-003: Sweep Failure Containment:** Failure during a batch sweep marks the batch for retry without skipping unexamined records.
-- **TB-004: Audit Trail Preservation:** Purging an operational record must never delete the attributable audit trail in L5-D-04 documenting that record's lifecycle.
+- **TB-001 — Hold Block:** authoritative active hold => disposition fails closed.
+- **TB-002 — Missing Retention Decision:** no deletion/archive action is inferred.
+- **TB-003 — Conflicting Decisions:** fail closed and require authoritative resolution; do not choose locally.
+- **TB-004 — Execution Failure:** retain the authoritative request/result context and surface failure; retry mechanics remain with the canonical executor/transport owner.
+- **TB-005 — Audit Continuity:** disposition of operational data shall not silently remove audit evidence whose retention is independently governed.
+- **TB-006 — Tenant Isolation:** evaluation never crosses validated Tenant/Institution scope.
 
 ---
 
 ## 7. Security, Privacy & Trust Boundaries
 
-- **Hold Authority:** Hold application and release require elevated legal/administrative roles verified via L5-D-02.
-- **Audit Logging:** Every hold lifecycle event emits an immutable audit record containing officer identity, reference case ID, and target record UUID.
-- **Cryptographic Erasure:** Ensures compliance with privacy deletion mandates even where storage media cannot be physically degaussed.
+- Authorization to initiate or approve a disposition is consumed from its authoritative owner/D02; this specification does not create administrative roles.
+- D03 controls all cryptographic deletion mechanisms.
+- B02 controls all direct persistence mutation.
+- No protected data values are copied into disposition audit evidence unnecessarily.
 
 ---
 
 ## 8. Conformance Requirements
 
-- **CR-001:** The system shall require verified authoritative retention context before initiating any automated archival or deletion process.
-- **CR-002:** Active legal holds recorded in RecordHoldLock shall strictly block all archival, soft-deletion, and physical purge actions.
-- **CR-003:** Where multiple legal holds exist for a single record, releasing one hold shall not clear other active holds on that record.
-- **CR-004:** Record deletion shall strictly follow a two-phase process (logical quarantine followed by physical purge or cryptographic erasure).
-- **CR-005:** Technical archival migrations shall preserve record identity, historical meaning, and audit provenance.
-- **CR-006:** Physical deletion of business data shall never delete or corrupt associated historical audit evidence in L5-D-04.
-- **CR-007:** The retention evaluation engine shall maintain strict Tenant and Institution scope isolation during all batch sweep operations.
-- **CR-008:** The system shall emit an attributable DataPurgeCertificate record to L5-D-04 upon successful completion of any Phase 2 physical deletion.
+- **CR-001:** Every technical disposition shall be traceable to an authoritative retention/disposition decision.
+- **CR-002:** An authoritative active legal hold shall block technical disposal.
+- **CR-003:** L5-B-05-003 shall not define universal deletion lifecycle states, quarantine periods or soft-delete semantics.
+- **CR-004:** L5-B-05-003 shall not define database schemas, SQL, DDL or transaction mechanics.
+- **CR-005:** Persistence execution shall be delegated to L5-B-02.
+- **CR-006:** Background scheduling/batch/worker behavior shall remain owned by L5-A-08 and shall not be pre-designed here.
+- **CR-007:** Cryptographic erasure shall be delegated to L5-D-03 under approved security architecture.
+- **CR-008:** Archival storage realization shall be delegated to L5-B-04.
+- **CR-009:** Evaluation and execution outcomes shall be recorded through L5-D-04.
 
 ---
 
 ## 9. Traceability
 
-| L4 Specification ID | Exact L4 BH ID | Candidate L5 Spec ID | Material Technical Contribution | Realization Status |
-| :--- | :--- | :--- | :--- | :--- |
-| L4-A-025 | L4-A-025-BH-001 | L5-B-05-003 | Resolves Tenant/Institution scope, classification, and applicable retention policy before evaluating disposal eligibility. | Verified Realization |
-| L4-A-025 | L4-A-025-BH-002 | L5-B-05-003 | Enforces active legal hold locks (RecordHoldLock) to prevent premature release or deletion of protected evidence. | Verified Realization |
-| L4-A-025 | L4-A-025-BH-003 | L5-B-05-003 | Implements immutable Retention Governance Decision recording (Under Retention, Archival Eligible, Retention Completed). | Verified Realization |
-| L4-A-026 | L4-A-026-BH-006 | L5-B-05-003 | Enforces archival as non-destructive cold storage migration while preserving historical lineage and references. | Verified Realization |
-| L4-A-053 | L4-A-053-BH-004 | L5-B-05-003 | Validates retention and dependency prerequisites before marking Person and Identity records eligible for archival. | Verified Realization |
-| L4-A-053 | L4-A-053-BH-007 | L5-B-05-003 | Governs exceptional permanent deletion workflows, verifying security confirmations, retention clearance, and absence of holds. | Verified Realization |
+| L4 Specification ID | Exact L4 BH ID | Material Technical Contribution | Realization Status |
+|---|---|---|---|
+| L4-A-025 | L4-A-025-BH-001 | Resolves authoritative scope/classification/retention references before disposition evaluation. | Verified Realization |
+| L4-A-025 | L4-A-025-BH-002 | Enforces authoritative legal-hold blocking without defining hold lifecycle semantics. | Verified Realization |
+| L4-A-025 | L4-A-025-BH-003 | Records the authoritative retention-governance decision reference and technical outcome without inventing new status values. | Verified Realization |
+| L4-A-026 | L4-A-026-BH-006 | Delegates non-destructive archival realization while preserving identity and provenance. | Verified Realization |
+| L4-A-053 | L4-A-053-BH-004 | Evaluates authoritative retention/dependency prerequisites for Person/Identity archival eligibility. | Verified Realization |
+| L4-A-053 | L4-A-053-BH-007 | Enforces technical prerequisites for authorized exceptional permanent deletion without creating the approval rule. | Verified Realization |
 
 ---
 
 ## 10. Open Decisions & Deferred Design
 
-- **OD-001 — Exact L4 BH Applicability:** Resolved. Atomic L4 BH relations mapped to L4-A-025-BH-001, L4-A-025-BH-002, L4-A-025-BH-003, L4-A-026-BH-006, L4-A-053-BH-004, and L4-A-053-BH-007.
-- **OD-002 — L4/L5 Version Binding:** Resolved. Mapped against locked canonical L4 production specifications and L5-B-05-003 v1.0.0.
-- **OD-003 — Batch Sweep Chunk Size:** Non-blocking. Sweep batch size (e.g. 5,000 records per transaction chunk) configurable via L5-A-06.
-- **OD-004 — Cold Storage Protocol Adapter:** Non-blocking. Cold object storage archival tier adapters managed under L5-B-04 / L5-C-03.
+- **OD-001 — Execution Scheduling:** Deferred to L5-A-08; no cadence, chunk size or worker topology is specified here.
+- **OD-002 — Persistence Schema:** Delegated to L5-B-02; no `RecordHoldLock` table or SQL contract is owned here.
+- **OD-003 — Disposition State Model:** No universal L5 state model is established. Any lifecycle state must come from the authoritative source domain/workflow.
+- **OD-004 — Cryptographic Erasure:** Available only where L5-D-03 establishes an approved mechanism and the authoritative disposition permits it.
 
-**Current State:** Ready for Review
+**Current State:** Ready for Re-Review
