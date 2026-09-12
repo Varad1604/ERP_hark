@@ -10,9 +10,9 @@
 **Technical Architecture Owner:** L5-D-02 — Authorization Architecture  
 **Assigned Author:** Devang  
 **Version:** `1.0.0`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-12`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; working `L5-D-02-001_Authorization_Architecture_Baseline.md` v1.0.0 Draft; working `L5-D-02-002_Permission_and_Capability_Model_Architecture.md` v1.0.0 Draft; working `L5-D-02-003_Hierarchical_Scope_and_Resource_Context_Architecture.md` v1.0.0 Draft; working `L5-D-02-004_Policy_Decision_and_Enforcement_Architecture.md` v1.0.0 Draft; `L5-D-01-001` through `L5-D-01-004`; `L5-A-04-001`; `L5-A-04-002`; `L5-D-03-001`; `L4-A-011_Responsibility_Delegation_to_Automatic_Authority_Reversion.md` v1.0.0 Draft; `L4-A-012_Temporary_Access_Request_to_Governed_Access_Expiry.md` v1.0.0 Draft; `L4-A-010`; `L4-A-013`; `L4-A-051`; `L4-A-052`; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`.  
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-02-001_Authorization_Architecture_Baseline.md` v1.0.0 Architecture Approved; `L5-D-02-002_Permission_and_Capability_Model_Architecture.md` v1.0.0 Architecture Approved; `L5-D-02-003_Hierarchical_Scope_and_Resource_Context_Architecture.md` v1.0.0 Architecture Approved; `L5-D-02-004_Policy_Decision_and_Enforcement_Architecture.md` v1.0.0 Architecture Approved; `L5-D-01-001` through `L5-D-01-004`; `L5-A-04-001`; `L5-A-04-002`; `L5-D-03-001`; `L4-A-011_Responsibility_Delegation_to_Automatic_Authority_Reversion.md` v1.0.0 Draft; `L4-A-012_Temporary_Access_Request_to_Governed_Access_Expiry.md` v1.0.0 Draft; `L4-A-010`; `L4-A-013`; `L4-A-051`; `L4-A-052`; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`.  
 **Referenced By:** `L5-D-02-004`; `L5-D-02-006`; `L5-D-02-007`; workflow/orchestration; protected business services; audit/evidence; background processing; client/admin experiences that request or display temporary authority.  
 **Applicable ADRs:** `ADR-PLAT-AUTH-001` constrains authorization subject ownership; `ADR-L5-0001` constrains trust/fail-closed behavior; `ADR-L5-0004` constrains Tenant/Institution scope. No D02-005-specific product, scheduler, workflow, policy-engine, notification, cache, or storage ADR is selected here.
 
@@ -122,10 +122,10 @@ This specification does not own:
 | Source | Status | Applicable Authority | D02-005 Effect |
 |---|---|---|---|
 | L5 Candidate Document Corpus Register 105 | Architecture Approved | D02-005 owns technical realization of approved delegated/time-bounded authority. | Establishes exact L5 responsibility. |
-| working D02-001 | Draft | Delegation/Temporary Access are governed authorization inputs, not permanent role mutation or final decision. | D02-005 supplies effective temporary-authority facts. |
-| working D02-002 | Draft | Permissions remain stable business capability atoms; temporary sources do not mutate Permission definitions. | Temporary Access references existing governed Permissions. |
-| working D02-003 | Draft | temporary authority is Tenant-rooted and scope-bounded. | Delegation/Grant scope participates in effective-scope intersection. |
-| working D02-004 | Draft | final Authorization Decision still evaluates policy, scope, SoD, Deny and freshness. | D02-005 never returns final Allow. |
+| D02-001 | Architecture Approved | Delegation/Temporary Access are governed authorization inputs, not permanent role mutation or final decision. | D02-005 supplies effective temporary-authority facts. |
+| D02-002 | Architecture Approved | Permissions remain stable business capability atoms; temporary sources do not mutate Permission definitions. | Temporary Access references existing governed Permissions. |
+| D02-003 | Architecture Approved | temporary authority is Tenant-rooted and scope-bounded. | Delegation/Grant scope participates in effective-scope intersection. |
+| D02-004 | Architecture Approved | final Authorization Decision still evaluates policy, scope, SoD, Deny and freshness. | D02-005 never returns final Allow. |
 | L2-A04 §10.5 / Delegation | Locked | Delegation is temporary transfer of business responsibility, policy-controlled, time-bound, auditable and never permanently changes assigned Roles. | Core Delegation semantic. |
 | L2-A04 §10.6 / Temporary Access | Locked | Temporary Access is short-lived authorization elevation; every grant includes Reason, Scope, Duration and Approval. | Core Temporary Access semantic. |
 | `L4-A-011` | Draft | Canonical Delegation lifecycle `Requested → Approved → Active → Expired/Revoked`; Active contributes only approved delegated scope; expiry/revocation removes it; permanent authorization definitions remain unchanged. | Technical lifecycle realization boundary. |
@@ -134,6 +134,8 @@ This specification does not own:
 | L4-A-052 | Draft | decisions bind authoritative policy version and history remains reproducible. | Temporary authority provenance must be preserved in decision evidence. |
 | `ADR-PLAT-AUTH-001` | Approved | Person is canonical human authorization subject; User Account/session is runtime authentication context. | Delegation/Grant binds canonical subject references, not account ownership. |
 | `ADR-L5-0004` | Architecture Approved | Tenant-root scope cannot be widened. | All temporary authority remains Tenant-bound. |
+
+For this controlled Stage-2 validation program, the cited canonical L4 System Behavior Specifications are accepted as behavioral authority even where their own metadata remains `Draft` or `Review`; that metadata status is not an approval blocker for D02-005.
 
 ### 3.2 Delegation Invariants from L4-A-011
 
@@ -1244,23 +1246,23 @@ No numeric duration, expiry lead time, revocation SLA, timer interval, cache TTL
 
 | Item ID | Open / Deferred Item | Classification | Source / Gap | Blocking? | Required Resolution |
 |---|---|---|---|---|---|
-| OD-001 | Applicable L4-A-011/A012 remain Draft. | Upstream approval | metadata | **Yes for Architecture Approved; No for Draft authoring** | Promote/authorize source L4 before formal D02 approval. |
-| OD-002 | D02-001 through D02-004 remain working authoring artifacts pending stabilization. | Peer dependency | current sequence | Yes before D02 family approval if contracts change | Reconcile D02-005 after canonical peer stabilization. |
-| OD-003 | Canonical Delegation approver is undefined. | Upstream behavior gap | L4-A-011 §10 | Yes for exact approval workflow implementation | Do not invent; source architecture must govern. |
-| OD-004 | Delegation activation/revocation authority and lifecycle command contracts are undefined. | Upstream behavior gap | L4-A-011 §10 | Yes for command/API ownership | Preserve lifecycle result; define later upstream. |
-| OD-005 | Canonical Delegation events/publishers, including expiry event, are undefined. | Upstream event gap | L4-A-011 §5/§10 | No for state-safe Draft; yes for event integration | Do not invent; A06/C02 governance later. |
-| OD-006 | Temporary Access approver eligibility/role is undefined. | Upstream behavior gap | L4-A-012 §10 | Yes for exact approval workflow implementation | Do not invent. |
-| OD-007 | Temporary Access access-subject definition where distinct from Requestor is incomplete. | Upstream semantic gap | L4-A-012 §10 | Yes for edge-case business behavior; no for reference-preserving technical model | Preserve both references where supplied. |
-| OD-008 | Temporary Access grant/revocation authorities and lifecycle command contracts are undefined. | Upstream behavior gap | L4-A-012 §10 | Yes for command/API ownership | Do not invent. |
-| OD-009 | Canonical Temporary Access events/publishers are undefined. | Upstream event gap | L4-A-012 §5/§10 | No for Draft; yes for event integrations | Do not promote audit labels into events. |
-| OD-010 | Chained/re-delegation semantics are undefined. | Authorization policy gap | current upstream | Yes if product requires re-delegation | Require explicit upstream policy/behavior. |
-| OD-011 | Delegation extension/renewal semantics are undefined. | Upstream behavior gap | L4-A-011 does not state A012-style renewal rule | Yes if product requires extension | Do not infer; obtain canonical rule. |
-| OD-012 | Effect of source Role Assignment/reponsibility revocation on an otherwise Active Delegation is not fully specified as lifecycle transition behavior. | Upstream behavior gap | current L4 | Yes for exact automatic transition; no for fail-safe effective-authority exclusion | Link source validity; define canonical transition upstream. |
-| OD-013 | Whether expiry/revocation mandates Authentication Session termination for specific high-risk cases. | D01/D02 policy gap | not universal upstream | No for temporary-authority exclusion; yes for session-control policy | Resolve in D01/D02-006/007 or policy. |
-| OD-014 | Exact timer/scheduler/expiry reconciliation mechanism. | Technology / A08 | not selected | No for Draft; yes before implementation | Select under canonical L5 technology/ADR process. |
-| OD-015 | Exact revocation/expiry cache invalidation mechanism and propagation target. | D02-004/B02/C02 | not selected | No for Draft; yes before distributed implementation | Select without weakening fail-closed/freshness requirements. |
-| OD-016 | Exact concurrency/transaction semantics for expiry/revocation racing protected mutations. | B02/D02-004 | implementation design | No for Draft; yes for high-risk implementation | Define state/version/revalidation strategy. |
-| OD-017 | Machine-principal Delegation/Temporary Access semantics. | D01/D02 upstream gap | human A011/A012 semantics dominate current upstream | Yes if temporary machine authority is required | Do not reuse human semantics without governance. |
+| OD-001 | Applicable L4-A-011/A012 remain `Draft` in their own metadata. | Governance disposition | Controlled Stage-2 validation rule | No | Resolved for D02-005 approval interpretation; source L4 metadata remains unchanged. |
+| OD-002 | D02-001 through D02-004 were working authoring dependencies. | Peer stabilization | D02 family reconciliation decision | No | Closed: all four are committed and Architecture Approved; reopen only on material peer change. |
+| OD-003 | Canonical Delegation approver is undefined. | Upstream feature-realization gate | L4-A-011 §10 | No for reusable D02 architecture; yes only for the exact approval workflow | Do not invent; source architecture must govern before that workflow is realized. |
+| OD-004 | Delegation activation/revocation authority and lifecycle command contracts are undefined. | Upstream feature-realization gate | L4-A-011 §10 | No for reusable D02 architecture; yes for command/API ownership of the affected flow | Preserve lifecycle result; define business authority upstream. |
+| OD-005 | Canonical Delegation events/publishers, including expiry event, are undefined. | Upstream event feature gate | L4-A-011 §5/§10 | No for architecture approval; yes only for event integration requiring a canonical event | Do not invent; define through upstream/event governance. |
+| OD-006 | Temporary Access approver eligibility/role is undefined. | Upstream feature-realization gate | L4-A-012 §10 | No for reusable D02 architecture; yes only for exact approval workflow implementation | Do not invent; resolve upstream. |
+| OD-007 | Temporary Access access-subject definition where distinct from Requestor is incomplete. | Upstream semantic feature gate | L4-A-012 §10 | No for the reference-preserving technical model; yes for an edge-case flow requiring the missing business distinction | Preserve both references where supplied; resolve exact semantics upstream. |
+| OD-008 | Temporary Access grant/revocation authorities and lifecycle command contracts are undefined. | Upstream feature-realization gate | L4-A-012 §10 | No for reusable D02 architecture; yes for command/API ownership of the affected flow | Do not invent; resolve upstream. |
+| OD-009 | Canonical Temporary Access events/publishers are undefined. | Upstream event feature gate | L4-A-012 §5/§10 | No for architecture approval; yes only for event integration requiring a canonical event | Do not promote audit labels into events; define through governance. |
+| OD-010 | Chained/re-delegation semantics are undefined. | Authorization policy feature gate | current upstream | No for reusable D02 architecture; yes if the product requires re-delegation | Require explicit upstream policy/behavior. |
+| OD-011 | Delegation extension/renewal semantics are undefined. | Upstream behavior feature gate | L4-A-011 does not state A012-style renewal rule | No for reusable D02 architecture; yes if extension is required | Do not infer; obtain canonical rule. |
+| OD-012 | Effect of source Role Assignment/responsibility revocation on an otherwise Active Delegation is not fully specified as lifecycle transition behavior. | Upstream behavior feature gate | current L4 | No for fail-safe effective-authority exclusion; yes for an exact automatic business transition | Link source validity and exclude invalid authority; define canonical transition upstream. |
+| OD-013 | Whether expiry/revocation mandates Authentication Session termination for specific high-risk cases. | D01/D02 policy feature gate | not universal upstream | No for temporary-authority exclusion; yes only for a flow requiring session-control policy | Resolve in D01/D02-006/007 or source policy. |
+| OD-014 | Exact timer/scheduler/expiry reconciliation mechanism. | Technology / A08 | not selected | No for architecture approval; yes before implementation | Select under canonical L5 technology/ADR process. |
+| OD-015 | Exact revocation/expiry cache invalidation mechanism and propagation target. | D02-004/B02/C02 | not selected | No for architecture approval; yes before distributed implementation | Select without weakening fail-closed/freshness requirements. |
+| OD-016 | Exact concurrency/transaction semantics for expiry/revocation racing protected mutations. | B02/D02-004 | implementation design | No for architecture approval; yes for high-risk implementation | Define state/version/revalidation strategy. |
+| OD-017 | Machine-principal Delegation/Temporary Access semantics. | Upstream feature-realization gate | human A011/A012 semantics dominate current upstream | No for current human Delegation/Temporary Access architecture; yes if temporary machine authority is required | Do not reuse human semantics without explicit governance; `ADR-L5-0009` does not silently create machine Delegation/Temporary Access semantics. |
 
 ---
 
