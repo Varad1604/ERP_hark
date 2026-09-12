@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** Lead Solution Architect / Data & Information Architecture  
 **Assigned Author:** Varad  
 **Version:** 1.0.1  
-**Status:** Review  
+**Status:** Locked  
 **Last Updated:** 2026-09-12  
 **Depends On:** L5-B-05-001; L5-B-02; L5-D-02; L5-D-03; L5-D-04  
 **Referenced By:** L5-B-05-004, L5-B-04, L5-B-06, L5-C-01, L5-C-03, L5-G-01  
@@ -163,4 +163,4 @@ When an unmasked or specially transformed projection is released, L5-B-05-002 su
 - **OD-002 — Field Mask Patterns:** Must be supplied by authoritative policy/configuration; no repository-wide pattern is invented here.
 - **OD-003 — High-Volume Streaming Realization:** Implementation detail deferred; it may not weaken the same masking constraints.
 
-**Current State:** Ready for Re-Review
+**Current State:** Locked
