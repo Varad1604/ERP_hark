@@ -106,7 +106,7 @@ It does not transfer business-policy ownership to the configuration platform.
 
 ---
 
-## 3.2 Approved Decision-Led Architecture Decisions
+## 3.2 Decision-Led Architecture Decisions
 
 ### DEC-A06-002-01 — Override Mode
 
@@ -1000,21 +1000,21 @@ No cache technology or TTL is selected.
 
 # 6. Architecture & Technology Decisions
 
-| ID | Decision | Status |
+| ID | Decision | Architecture Basis / Classification |
 |---|---|---|
-| `AD-001` | Resolution follows Platform → Tenant → Institution → Organisation → Business Domain → Operational hierarchy. | Approved for Draft |
-| `AD-002` | Inheritance occurs only when explicitly permitted by the Resolution Policy bound to the applicable Configuration Definition version. | User-approved |
-| `AD-003` | Override mode is declared per configuration definition/policy as no override, full replacement or sparse override. | User-approved |
-| `AD-004` | Sparse override requires explicit composition semantics; structure alone never determines merge behavior. | Approved for Draft |
-| `AD-005` | Same-scope overlapping effective configuration is invalid ambiguity. | User-approved |
-| `AD-006` | Parent-to-child traversal defines deterministic precedence. | Approved for Draft |
-| `AD-007` | Source-owned temporal meaning is normalized into deterministic half-open technical intervals without changing business semantics. | Approved for Draft |
-| `AD-008` | Missing mandatory configuration after permitted inheritance causes resolution failure. | User-approved |
-| `AD-009` | Every resolution executes against one stable logical Resolution Snapshot. | Approved for Draft |
-| `AD-010` | Resolution produces provenance sufficient to reproduce the result. | Approved for Draft |
-| `AD-011` | Established executions retain their resolved context; later effective configuration applies to subsequent resolutions. | User-approved |
-| `AD-012` | No distributed ACID across business owners is required for configuration resolution. | Inherits B02 architecture |
-| `AD-013` | No implicit hardcoded/global/null fallback may bypass governed resolution. | Approved for Draft |
+| `AD-001` | Resolution follows Platform → Tenant → Institution → Organisation → Business Domain → Operational hierarchy. | Established repository fact from `L2-A01` §§6.4–6.8. |
+| `AD-002` | Inheritance occurs only when explicitly permitted by the Resolution Policy bound to the applicable Configuration Definition version. | Defensible L5 derivation from source-governed inheritance and version consistency. |
+| `AD-003` | Override mode is declared per configuration definition/policy as no override, full replacement or sparse override. | Defensible L5 technical decision within A06-002 ownership. |
+| `AD-004` | Sparse override requires explicit composition semantics; structure alone never determines merge behavior. | Defensible L5 technical derivation needed for deterministic resolution. |
+| `AD-005` | Same-scope overlapping effective configuration is invalid ambiguity. | Defensible L5 derivation from deterministic resolution and source-defined effective applicability. |
+| `AD-006` | Parent-to-child traversal defines deterministic precedence. | Established hierarchy plus defensible L5 resolution derivation. |
+| `AD-007` | Source-owned temporal meaning is normalized into deterministic half-open technical intervals without changing business semantics. | Defensible L5 technical normalization; upstream meaning remains authoritative. |
+| `AD-008` | Missing mandatory configuration after permitted inheritance causes resolution failure. | Established repository constraint from `L2-A01` §6.13. |
+| `AD-009` | Every resolution executes against one stable logical Resolution Snapshot. | Defensible L5 consistency derivation; physical mechanism delegated to B02. |
+| `AD-010` | Resolution produces provenance sufficient to reproduce the result. | Defensible L5 traceability derivation. |
+| `AD-011` | Established executions retain their resolved context; later effective configuration applies to subsequent resolutions. | Established/derived from `L2-A01` §6.14 and A06-001 execution-context boundary. |
+| `AD-012` | No distributed ACID across business owners is required for configuration resolution. | Consumes B02 owner-local transaction architecture / `ADR-L5-0006`. |
+| `AD-013` | No implicit hardcoded/global/null fallback may bypass governed resolution. | Defensible L5 derivation from mandatory completeness and Tenant-safe deterministic resolution. |
 
 No new product or framework technology is selected.
 
@@ -1086,7 +1086,6 @@ No new product or framework technology is selected.
 
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| `OD-001` | Primary L4 configuration sources remain Draft/Review. | Upstream approval | Yes for Architecture Approved; no for Draft | Revalidate upon upstream approval. |
 | `OD-002` | Exact approval/activation commands and lifecycle events remain undefined upstream. | Upstream gap | No for this architecture | Do not invent. |
 | `OD-003` | Individual Configuration Definitions may require domain-specific temporal granularity. | Domain-owned semantics | No for baseline | Owner supplies semantics through governed definition/policy. |
 | `OD-004` | Physical representation of Resolution Snapshot identity/view. | B02 realization | No | B02 selects a conformant consistent-read/version-set mechanism. |
@@ -1114,20 +1113,14 @@ No new product or framework technology is selected.
 - `L5-B-02-002`
 - `L5-B-02-003`
 
-## User-Approved Decisions
+## Decision Basis Highlights
 
-- Override model: explicit per definition/policy.
-- Same-scope overlap: reject ambiguity.
-- Inheritance: explicitly permitted only.
-- Missing mandatory configuration: resolution failure.
-- Existing execution after new effective version: retains existing context.
-
-## Feasibility Corrections
-
-- Stable Resolution Snapshot added.
-- Resolution Policy explicitly bound to Configuration Definition version.
-- Sparse composition requires explicit element/composite semantics.
-- Business temporal meaning is normalized rather than overwritten by technical interval conventions.
+- Override model is explicit per definition/policy.
+- Same-scope overlap is rejected as ambiguity.
+- Inheritance is explicitly permitted only.
+- Missing mandatory configuration causes resolution failure.
+- Existing execution after a new effective version retains its existing context.
+- Stable Resolution Snapshot, definition-bound Resolution Policy and explicit sparse composition keep resolution deterministic without inventing domain semantics.
 
 ## Architecture Decisions
 
@@ -1137,8 +1130,6 @@ No new product or framework technology is selected.
 
 `CR-001`–`CR-038`
 
-## Promotion Constraint
+## Review Position
 
-The specification is suitable as a production **Draft**.
-
-Formal Architecture Approved status remains blocked by material upstream L4 Draft/Review status until the required governance conditions are satisfied.
+The specification remains a production **Draft** pending normal independent L5 architecture review. No conversation-level approval label or L4-status blocker is asserted by this document under the current validation program.
