@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Technical privacy and data-classification control model derived from upstream policy and ownership  
 **Technical Architecture Owner:** Lead Solution Architect / Data & Information Architecture  
 **Assigned Author:** Varad  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Locked  
 **Last Updated:** 2026-09-12  
-**Depends On:** Locked L1 Domain Architecture; Approved L2/L3 Workflows; Applicable L4 System Behavior Specifications; L5-D-03 (Security & Trust); L5-B-02 (Persistence Baseline)  
+**Depends On:** Locked L1 Domain Architecture; Approved L2/L3 Workflows; Applicable canonical L4 System Behavior Specifications; L5-D-03; L5-B-02  
 **Referenced By:** L5-B-05-002, L5-B-05-003, L5-B-05-004, L5-B-05-005, L5-B-04, L5-A-07, L5-C-01, L5-C-03  
-**Applicable ADRs:** ADR-L5-0001 (Canonical Trust Boundary & Segmentation Pattern), ADR-L5-0002 (Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern), ADR-L5-0003 (Contract-Driven Modular Platform with Selective Isolation), ADR-L5-0004 (Tenant and Institution Isolation Enforcement Pattern), ADR-L5-0005 (Persistence Ownership, Hybrid Topology and Tenant Isolation Pattern)  
+**Applicable ADRs:** ADR-L5-0001; ADR-L5-0004; ADR-L5-0005  
 
 ---
 
@@ -22,31 +22,28 @@
 
 ### 2.1 Purpose
 
-This specification defines the reusable technical architecture baseline by which SutraERP represents, propagates, evaluates, and enforces data-classification and privacy-control constraints established by authoritative upstream business and governance sources.
-
-The architecture provides a common, fail-closed technical control boundary for classified information, privacy-relevant handling directives, scope preservation, and attributable enforcement evidence. It consumes authoritative policy and ownership facts without creating or altering institutional governance rules.
+This specification defines the reusable technical control baseline by which SutraERP carries, validates and enforces classification and privacy constraints supplied by authoritative upstream owners. It standardizes how technical components consume those decisions without creating a repository-wide classification taxonomy, privacy policy, retention rule, consent rule or business exception.
 
 ### 2.2 In Scope
 
-- Technical representation and propagation of authoritative data-classification metadata (ClassificationContext).
-- Standardized technical control evaluation pipeline for data access, transformation, projection, and exchange operations.
-- Interceptor-driven classification and handling constraint enforcement across synchronous services and asynchronous message dispatchers.
-- Preservation of Tenant and Institution scope across all classification and privacy evaluation points.
-- Fail-closed handling behavior when classification or privacy context is missing, malformed, or contradictory.
-- Attributable control evidence generation via L5-D-04 audit infrastructure without exposing raw sensitive payload data.
-- Foundational contract integration with specialized L5-B-05 specifications (masking, retention, Aadhaar protection, and consent).
+- A technical envelope for carrying authoritative classification and privacy-control references.
+- Scope validation for Tenant and Institution context.
+- Fail-closed treatment when required authoritative control context is absent, invalid or contradictory.
+- Propagation of authoritative control metadata across service, persistence-projection and messaging boundaries.
+- Audit-evidence handoff to L5-D-04 without copying protected payload content.
+- Common integration contract consumed by L5-B-05-002 through L5-B-05-005.
 
 ### 2.3 Explicit Non-Goals
 
-This specification does not own or redefine:
+This specification does not own or define:
 
-- Business ownership of canonical domain entities, records, or source-of-truth datastores.
-- Business policy defining classification rules, legal retention periods, or consent requirements.
-- Sensitive-data masking and presentation mechanics (canonically owned by L5-B-05-002).
-- Retention sweep execution, archival storage, and legal-hold locking (canonically owned by L5-B-05-003).
-- Specialized Aadhaar vault and tokenization architecture (canonically owned by L5-B-05-004).
-- Consent collection lifecycle and cross-channel purpose enforcement (canonically owned by L5-B-05-005).
-- Authentication, role-based access control, cryptographic key management, or machine credentials (owned by Family L5-D).
+- Classification category names, sensitivity tiers, handling labels or privacy taxonomies.
+- Retention periods, deletion eligibility, legal-hold authority or disposal lifecycle states.
+- Consent states, purpose categories, consent events or consent publishers.
+- Authorization permissions, roles, elevation rules or approval authority.
+- Cryptographic algorithms, keys, signatures or credential mechanisms.
+- Database schemas, physical persistence topology or job scheduling.
+- Canonical business entity ownership or source-of-truth records.
 
 ---
 
@@ -54,156 +51,140 @@ This specification does not own or redefine:
 
 ### 3.1 Architectural Constraints
 
-This specification is subordinate to the locked L1 architecture and approved L2/L3/L4 system behavior. L5 shall not redefine upstream business ownership, business rules, lifecycle states, canonical events, publishers, institutional authority, or L3/L4 outcomes.
-
-The canonical L5 Candidate Document Corpus Register defines L5-B-05-001 as the technical privacy and data-classification control baseline.
+This specification is subordinate to locked L1, approved L2/L3 and canonical L4 behavior. L5-B-05-001 may enforce an authoritative upstream rule but shall not create, rename, generalize or replace that rule.
 
 ### 3.2 Ownership Preservation
 
-The architecture consumes authoritative classification, privacy, and regulatory decisions; it does not originate them. A technical control may enforce a supplied constraint or block non-compliant processing, but it shall not invent a classification tag, retention schedule, consent state, purpose grant, disclosure clearance, or business exception.
+Classification and privacy semantics remain owned by their authoritative upstream business/governance source. This baseline carries opaque references and technical enforcement directives whose meaning is resolved against that authoritative source.
 
-### 3.3 Dependency Boundaries
+A downstream component shall never infer that a missing classification reference means public, unrestricted or retention-free data.
 
-- **L5-D-01 / L5-D-02:** Consumes caller identity, account context, and authorization tokens for actor attribution and entitlement verification.
-- **L5-D-03:** Consumes cryptographic primitives and trust boundary enforcement without managing cryptographic keys directly.
-- **L5-D-04:** Dispatches structured audit and evidence records documenting control evaluation outcomes.
-- **L5-B-02:** Cooperates with database persistence boundaries to ensure classified fields preserve associated metadata during persistence and query projection.
+### 3.3 Peer Ownership Boundaries
 
-### 3.4 Operational Assumptions
-
-- **AS-B05-001 — Host Interceptor Framework:** The host execution runtime, API gateways, and messaging dispatchers provide extensible in-process interceptor hooks capable of resolving ClassificationContext, evaluating directives, and halting unauthorized processing prior to business logic execution.
-- **AS-B05-002 — Cluster Clock Synchronization:** Distributed cluster nodes, database engines, and gateways operate with synchronized system clocks (via standard NTP infrastructure) ensuring temporal consistency of context signatures and audit timestamps.
+- **L5-B-02:** owns persistence topology, schema realization and transaction mechanics.
+- **L5-D-02:** owns authorization decisions and permissions.
+- **L5-D-03:** owns cryptographic protection and integrity mechanisms.
+- **L5-D-04:** owns audit/evidence capture and persistence handoff.
+- **L5-C-02:** owns durable event-delivery, retry, ordering and dead-letter behavior.
 
 ---
 
 ## 4. Technical Architecture
 
-### 4.1 Control Pipeline and Interceptor Architecture
+### 4.1 Authoritative Control Context
 
-The baseline establishes an interceptor-driven technical control model embedded at service boundaries:
-
-```text
-[ Incoming Request / Event ]
-           |
-           v
-+-------------------------------------------------------------+
-|        ClassificationEnforcementInterceptor (Gate)          |
-|                                                             |
-|  1. Context Resolution (Resolve ClassificationContext)      |
-|  2. Scope Verification (Assert Tenant & Institution Match)  |
-|  3. Directive Evaluation (Evaluate Handling Constraints)    |
-+-------------------------------------------------------------+
-           |
-     +-----+-----+
-     |           |
- [Valid]     [Missing / Contradictory]
-     |           |
-     v           v
-+-----------+  +----------------------------------------------+
-| Controlled|  | Fail-Closed Rejection & Security Audit Event |
-| Operation |  +----------------------------------------------+
-+-----------+
-     |
-     v
-+-------------------------------------------------------------+
-| Evidence Handoff (Emit Audit Evidence via L5-D-04)          |
-+-------------------------------------------------------------+
-```
-
-### 4.2 Classification Context Contract
-
-Classification context is represented as an immutable data structure bound to domain requests, entity projections, and event payloads:
+The baseline uses a policy-neutral technical envelope. Values are opaque references to authoritative source decisions rather than a taxonomy invented by this specification.
 
 ```text
-ClassificationContext {
-    tenant_id: UUID
-    institution_id: UUID
-    classification_tier: ENUM [ PUBLIC, INTERNAL, RESTRICTED, HIGHLY_CONFIDENTIAL ]
-    handling_tags: LIST [ PII, FINANCIAL, STATUTORY, BIOMETRIC_DERIVED ]
-    privacy_directives: LIST [ CONSENT_REQUIRED, MASKING_MANDATORY, RETENTION_GOVERNED ]
-    originating_domain: STRING
-    context_signature: STRING (HMAC/Digest for tamper-evidence)
+AuthoritativeDataControlContext {
+    tenant_context_ref
+    institution_context_ref
+    originating_owner_ref
+    classification_decision_ref
+    handling_directive_refs[]
+    retention_policy_ref? 
+    consent_or_privacy_policy_ref?
+    integrity_proof_ref?
 }
 ```
 
-### 4.3 Architecture Decision: Fail-Closed Interceptor Model
+Rules:
 
-**Decision ID:** AD-B05-001  
-**Title:** Fail-Closed Interceptor-Driven Classification Propagation Model  
-**Status:** Approved  
-**Decision:** All inter-module service invocations and asynchronous event dispatches carrying domain data must include an authoritative ClassificationContext. Technical handling components shall evaluate classification constraints via a common ClassificationEnforcementInterceptor. If context is missing, tampered with, or incompatible with the requested operation, the pipeline shall immediately reject the request (fail-closed) and log an attributable security event via L5-D-04.  
-**Rationale:** Prevents unauthorized downgrade, data leakage, and implicit assumptions regarding data sensitivity across modular boundaries.
+1. `classification_decision_ref` identifies an authoritative classification decision; this specification does not define its possible values.
+2. `handling_directive_refs` carry authoritative technical constraints without defining their business semantics here.
+3. Optional retention and consent references are present only where upstream behavior requires them.
+4. `integrity_proof_ref`, where required, is produced and verified using mechanisms governed by L5-D-03.
 
-### 4.4 Scope Preservation & Boundary Isolation
+### 4.2 Control Evaluation Flow
 
-Classification and privacy controls strictly enforce Tenant and Institution boundaries:
-- A component processing classified data in Tenant A shall never evaluate, merge, or expose data against Tenant B context.
-- Cross-institutional aggregation is prohibited unless an explicit cross-institutional contract is validated.
-- Any attempt to process classified information without valid Tenant/Institution scope triggers an immediate SCOPE_ENFORCEMENT_FAILURE.
+```text
+Authoritative request / event / projection
+                |
+                v
+Resolve authoritative control references
+                |
+                v
+Validate Tenant / Institution scope
+                |
+        +-------+-------+
+        |               |
+     valid          unresolved / invalid
+        |               |
+        v               v
+Apply supplied       fail closed for the
+technical control    protected operation
+        |               |
+        +-------+-------+
+                v
+       Evidence handoff to L5-D-04
+```
+
+### 4.3 Architecture Position — Policy-Neutral Fail-Closed Enforcement
+
+L5-B-05-001 standardizes **how** authoritative data-control decisions are carried and enforced. It does not standardize **what** classifications, purposes, retention rules or consent states exist. Where the governing source requires control context and that context cannot be resolved or validated, the protected operation fails closed.
+
+### 4.4 Scope Preservation
+
+Tenant and Institution context shall be preserved exactly as established by authoritative tenancy architecture. This specification does not create cross-institutional authority; any cross-scope operation must arrive with authority already established by its owning workflow/contract.
 
 ---
 
 ## 5. Dependencies & Integration
 
-### 5.1 Upstream Dependencies
-- Locked L1 Domain Architecture.
-- Approved L2/L3 Business Scenarios.
-- Locked L4 System Behavior Specifications.
-
-### 5.2 Peer L5 Dependencies
-- **L5-B-02:** Database persistence layer must enforce classification tag preservation on database entities.
-- **L5-D-03:** Security architecture supplies cryptographic integrity verification for classification tokens.
-- **L5-D-04:** Audit infrastructure consumes enforcement outcome evidence records.
-- **L5-B-05-002 through L5-B-05-005:** Specialist specifications consume the baseline classification model and apply domain-specific transformations (masking, retention, vaulting, consent).
+- **L5-B-02:** persists domain data and any technically required references under B02-owned schemas and transactions.
+- **L5-D-03:** supplies cryptographic/integrity mechanisms where approved.
+- **L5-D-04:** records attributable technical enforcement evidence.
+- **L5-B-05-002 through L5-B-05-005:** consume this policy-neutral context and specialize technical enforcement without changing upstream semantics.
 
 ---
 
 ## 6. Technical Behavior & Failure Concerns
 
-- **TB-001: Context Availability Check:** Required classification context must be present prior to executing data access or mutation.
-- **TB-002: Immutability of Classification:** Downstream components shall not downgrade or mutate classification tiers.
-- **TB-003: Fail-Closed on Conflict:** Contradictory tags (e.g., PUBLIC tier tagged with PII) cause immediate operation termination.
-- **TB-004: Tenant Scope Isolation:** Context resolution failure immediately halts request dispatch.
-- **TB-005: Audit Evidence Continuity:** Every failure to resolve classification generates an audit event containing caller identity, scope, and failed directive.
+- **TB-001 — Missing Required Context:** fail closed; do not substitute a default classification or policy.
+- **TB-002 — Conflicting Context:** fail closed and record attributable technical evidence.
+- **TB-003 — Scope Mismatch:** reject processing; never coerce one Tenant/Institution context into another.
+- **TB-004 — Unknown Policy Value:** preserve the opaque reference and delegate semantic interpretation to the authoritative owner/adapter; do not invent a mapping.
+- **TB-005 — Evidence Minimization:** evidence records contain decision references and outcomes, not protected payload values.
 
 ---
 
 ## 7. Security, Privacy & Trust Boundaries
 
-- **Authentication & Authorization:** Relies on tokens validated by L5-D-01/D-02.
-- **Least Authority:** Interceptors operate under minimal execution privileges and cannot modify business payloads.
-- **Data Minimization:** Control evidence dispatches metadata only; raw payload content is never replicated into audit trails.
+- Authorization outcomes are consumed from L5-D-02 and are not recreated here.
+- Cryptographic protection is consumed from L5-D-03.
+- Control metadata must not become a side channel that exposes protected payload values.
+- Cross-boundary processing requires validated Tenant/Institution context under ADR-L5-0004.
 
 ---
 
 ## 8. Conformance Requirements
 
-- **CR-001:** The system shall resolve a valid ClassificationContext for all service requests and messaging events crossing modular boundaries.
-- **CR-002:** The system shall fail closed and reject any operation where classification context is missing, invalid, or contradictory.
-- **CR-003:** The system shall preserve Tenant and Institution scope invariants across all classification evaluation points.
-- **CR-004:** Downstream technical components shall not alter, downgrade, or discard authoritative classification tiers.
-- **CR-005:** Technical classification controls shall not invent, approve, or alter upstream business classification policies.
-- **CR-006:** All rejected operations resulting from classification or privacy constraint violations shall emit attributable audit records via L5-D-04.
-- **CR-007:** Reusable classification evaluation components shall remain stateless with respect to business entity state.
-- **CR-008:** Classification context metadata shall be cryptographically verifiable to prevent in-transit tampering.
+- **CR-001:** L5-B-05-001 shall not define a canonical classification taxonomy, privacy taxonomy, consent taxonomy or retention taxonomy.
+- **CR-002:** Required authoritative control context shall be resolved before protected processing proceeds.
+- **CR-003:** Missing, invalid or contradictory required context shall fail closed.
+- **CR-004:** Tenant and Institution scope shall be preserved across all control-evaluation boundaries.
+- **CR-005:** Downstream components shall not downgrade, rename or reinterpret authoritative decisions without upstream authority.
+- **CR-006:** Authorization decisions shall remain owned by L5-D-02.
+- **CR-007:** Persistence schemas and transaction mechanics shall remain owned by L5-B-02.
+- **CR-008:** Cryptographic mechanisms shall remain owned by L5-D-03.
+- **CR-009:** Enforcement outcomes shall be handed to L5-D-04 as minimized evidence.
 
 ---
 
 ## 9. Traceability
 
-| L4 Specification ID | Exact L4 BH ID | Candidate L5 Spec ID | Material Technical Contribution | Realization Status |
-| :--- | :--- | :--- | :--- | :--- |
-| L4-A-025 | L4-A-025-BH-001 | L5-B-05-001 | Establishes ClassificationContext resolution, scope dimensions (Tenant/Institution), and baseline handling directives before evaluating downstream data operations. | Verified Realization |
-| L4-A-053 | L4-A-053-BH-006 | L5-B-05-001 | Provides classification tag validation and privacy directive propagation enforcing personal data protection across operational pipelines. | Verified Realization |
-| L4-H-001 | L4-H-001-BH-001 | L5-B-05-001 | Preserves and verifies Tenant/Institution boundary context and data classification prerequisites across external connector invocation boundaries. | Verified Realization |
+| L4 Specification ID | Exact L4 BH ID | Material Technical Contribution | Realization Status |
+|---|---|---|---|
+| L4-A-025 | L4-A-025-BH-001 | Carries authoritative classification/privacy references with Tenant/Institution scope before downstream control evaluation. | Verified Realization |
+| L4-A-053 | L4-A-053-BH-006 | Propagates authoritative personal-data protection directives without inventing their taxonomy or lifecycle. | Verified Realization |
+| L4-H-001 | L4-H-001-BH-001 | Preserves authoritative scope and protection references across external connector boundaries. | Verified Realization |
 
 ---
 
 ## 10. Open Decisions & Deferred Design
 
-- **OD-001 — Exact L4 BH Applicability:** Resolved. Atomic L4 BH relations mapped to L4-A-025-BH-001, L4-A-053-BH-006, and L4-H-001-BH-001.
-- **OD-002 — L4/L5 Version Binding:** Resolved. Mapped against locked canonical L4 production specifications and L5-B-05-001 v1.0.0.
-- **OD-003 — Pipeline Interceptor Integration Hook:** Non-blocking. Detail implementation framework binding for HTTP/gRPC pipeline filters deferred to L6 / implementation.
-- **OD-004 — High-Throughput Context Caching:** Non-blocking. Local ephemeral caching of verified classification tag templates permitted if cache invalidation integrates with configuration events.
+- **OD-001 — Global Classification Taxonomy:** Not owned here. Any repository-wide taxonomy requires authoritative upstream establishment and, where it materially constrains multiple L5 families, ADR/governance treatment before this specification may encode it.
+- **OD-002 — Integrity Mechanism:** Delegated to L5-D-03; no HMAC, signature or cipher is selected here.
+- **OD-003 — Runtime Integration Hooks:** Implementation binding is deferred; this specification requires an enforceable boundary but does not mandate HTTP, gRPC, ORM or broker-specific interceptors.
 
-**Current State:** Ready for Review
+**Current State:** Locked
