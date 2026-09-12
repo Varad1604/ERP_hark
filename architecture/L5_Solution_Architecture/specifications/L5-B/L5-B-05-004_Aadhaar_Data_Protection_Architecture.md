@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** Lead Solution Architect / Data & Information Architecture  
 **Assigned Author:** Varad  
 **Version:** 1.0.1  
-**Status:** Review  
+**Status:** Locked  
 **Last Updated:** 2026-09-12  
 **Depends On:** L5-B-05-001; L5-B-05-002; L5-B-02; L5-D-02; L5-D-03; L5-D-04; applicable canonical L4 behavior  
 **Referenced By:** L5-B-04, L5-C-01, L5-C-03, L5-G-01  
@@ -180,4 +180,4 @@ SutraERP shall maintain a specialized logical protection boundary for Aadhaar-re
 - **OD-003 — Masking Format:** Must come from authoritative privacy/regulatory policy or applicable L4 behavior; no local universal format is established.
 - **OD-004 — Deployment Segmentation:** Governed by D03/ADR-L5-0001 and later deployment architecture; no internal-RPC or microservice mandate is created here.
 
-**Current State:** Ready for Re-Review
+**Current State:** Locked
