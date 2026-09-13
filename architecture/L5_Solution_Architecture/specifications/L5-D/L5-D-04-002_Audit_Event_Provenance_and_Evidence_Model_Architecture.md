@@ -9,13 +9,14 @@
 **Canonical Technical Responsibility:** Define the reusable technical provenance and evidence model for audit events, including actor attribution, technical source attribution, causality, correlation and evidence relationships, while preserving source-domain ownership of business meaning, business rules, canonical events and institutional authority.  
 **Technical Architecture Owner:** L5-D-04-002 — Audit Event, Provenance & Evidence Model Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.1.0`  
+**Version:** `1.1.1`  
 **Status:** `Locked`  
-**Last Updated:** `2026-09-12`  
+**Last Updated:** `2026-09-13`  
 **Planned Production Path:** `architecture/L5_Solution_Architecture/specifications/L5-D/L5-D-04-002_Audit_Event_Provenance_and_Evidence_Model_Architecture.md`  
 **Depends On:** `L5_Governance_and_Architecture_Standard.md`; `L5_Validation_Standard.md`; `L5_Solution_Architecture_Specification_Template_v1.0.md`; `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md`; `L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md`; `L5-D-04-001`; `L5-D-03-001`; `L5-A-04-001`; `L5-A-04-002`; `L5-B-02-003`; `L4-A-022`; `L4-A-023`; `L4-A-024`; `ADR-L5-0001`; `ADR-L5-0004`; `ADR-L5-0007`.  
 **Referenced By:** `L5-D-04-001`; `L5-D-04-003`; cross-cutting application, workflow, security, integration, and computation specifications.  
-**Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern; `ADR-L5-0004` — Tenant and Institution Isolation Enforcement Pattern; `ADR-L5-0007` — Atomic State-to-Publication Intent Handoff Pattern.
+**Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern; `ADR-L5-0004` — Tenant and Institution Isolation Enforcement Pattern; `ADR-L5-0007` — Atomic State-to-Publication Intent Handoff Pattern.  
+**Boundary Correction Authority:** `L5_D04-002_Ownership_Boundary_Correction_and_Relock_Decision_2026-09-13.md`.
 
 ---
 
@@ -23,7 +24,7 @@
 
 ### 2.1 Purpose
 
-This specification defines the canonical technical data structures, conceptual contracts, and provenance relationship models used across SutraERP to represent audit evidence. It establishes how actor attribution, technical execution identities, causal linkages, workflow correlation, and entity delta descriptors are structured into a standardized, immutable evidence model. This model enables verifiable historical reconstruction, investigation querying, and cryptographic sealing without absorbing business domain entities or altering canonical business events.
+This specification defines the canonical technical data structures, conceptual contracts, and provenance relationship models used across SutraERP to represent audit evidence. It establishes how actor attribution, technical execution identities, causal linkages, workflow correlation, and entity delta descriptors are structured into a standardized, immutable evidence model. This model enables verifiable historical reconstruction, investigation querying, and cryptographic protection without absorbing business domain entities or altering canonical business events.
 
 ### 2.2 In Scope
 
@@ -37,7 +38,10 @@ This specification defines the canonical technical data structures, conceptual c
 ### 2.3 Out of Scope / Non-Goals
 
 - Shared capture boundaries, runtime interceptors, and buffer queues (owned by `L5-D-04-001`).
-- Physical database DDL, storage engine selection, Merkle tree sealing, and export archive packaging (owned by `L5-D-04-003`).
+- Physical database DDL, physical persistence schema, storage-engine selection, transaction primitives and physical persistence topology (owned by `L5-B-02`).
+- Cryptographic algorithm selection and cryptographic protection operations (owned by `L5-D-03-002`); cryptographic key custody/lifecycle remains `L5-D-03-003`-owned.
+- Audit-specific integrity-stream, sequential-linkage, checkpoint, anchor, verification-result persistence and audit-specific evidence/proof semantics (owned by `L5-D-04-003`).
+- Reusable export archive/file packaging, transport, large-file transfer and generic delivery-integrity mechanics (owned by `L5-C-03-008`).
 - Business domain entity schemas, master data truth, or lifecycle definitions (owned by originating business domains).
 - Authentication mechanisms, session management, or credential verification (owned by `L5-D-01`).
 - Authorization role definitions, policy rules, or permission evaluation (owned by `L5-D-02`).
@@ -75,7 +79,7 @@ This specification defines the canonical technical data structures, conceptual c
 ### 3.3 Assumptions
 
 - **AS-001:** `L5-D-04-001` provides the runtime capture boundaries, context extraction, and buffer pipelines that populate the contracts defined herein.
-- **AS-002:** `L5-D-04-003` consumes the `AuditEvidenceEnvelope` defined herein to implement cryptographic hash chaining, Merkle tree sealing, and physical storage.
+- **AS-002:** `L5-D-04-003` consumes the `AuditEvidenceEnvelope` defined herein to realize audit-specific deterministic integrity commitments, sequential integrity linkage, integrity streams/epochs, checkpoints/anchors, verification and proof semantics. `L5-B-02` remains owner of physical persistence/schema/transaction realization and `L5-D-03` remains owner of cryptographic protection operations and key custody.
 
 ---
 
@@ -95,7 +99,7 @@ This specification defines the canonical technical data structures, conceptual c
 | Exact L5 Specification | Capability / Collaboration | Boundary Description | Why Needed |
 |---|---|---|---|
 | `L5-D-04-001` | Audit Baseline | Supplies runtime context and raw observation events. | Populates and validates `AuditEvidenceEnvelope` instances at execution boundaries. |
-| `L5-D-04-003` | Tamper-Evident Storage | Hands off populated `AuditEvidenceEnvelope` records for cryptographic sealing and persistence. | Translates conceptual evidence contracts into physical immutable storage. |
+| `L5-D-04-003` | Tamper-Evident Storage | Hands off populated `AuditEvidenceEnvelope` records for audit-specific integrity protection, verification, proof and durable canonical-evidence semantics. | Protects conceptual evidence through D04-003-owned integrity-stream/checkpoint/anchor semantics while physical persistence stays B02-owned and cryptographic operations stay D03-owned. |
 | `L5-D-01-002` | Identity Account & Service Identity | Provides authenticated identity models (Person, Account, ServicePrincipal). | Binds authoritative identity structures into `ActorAttributionContext`. |
 | `L5-D-02-005` | Delegation Architecture | Provides time-bounded delegation records and authority chains. | Represents acting-on-behalf-of relationships without inventing delegation authority. |
 | `L5-A-04-002` | Tenant Context Propagation | Provides validated Tenant and Institution context tokens. | Guarantees strict multi-tenant boundary binding within evidence envelopes. |
@@ -104,7 +108,10 @@ This specification defines the canonical technical data structures, conceptual c
 ### 4.3 Must Not Own
 
 - Runtime evidence capture interceptors or buffer queues (owned by `L5-D-04-001`).
-- Physical database schemas, cryptographic storage algorithms, or export archives (owned by `L5-D-04-003`).
+- Physical database schemas, storage-engine selection, transaction mechanics or physical persistence topology (owned by `L5-B-02`).
+- Cryptographic algorithms/protection operations or key custody (owned by `L5-D-03-002/003`).
+- Audit-specific integrity-stream/checkpoint/anchor and evidence/proof persistence semantics (owned by `L5-D-04-003`).
+- Reusable export archive/file packaging, transport or delivery-integrity mechanics (owned by `L5-C-03-008`).
 - Business domain state, entities, or rules (owned by source domains).
 - Authentication mechanisms or identity account lifecycle (owned by `L5-D-01`).
 - Authorization decisions or policy evaluation (owned by `L5-D-02`).
@@ -242,7 +249,7 @@ CausalityLink {
 
 ### 5.5 State, Persistence & Consistency
 
-- **Contract Immutability:** Once an `AuditEvidenceEnvelope` is assembled, its fields are frozen. Downstream storage engines in `L5-D-04-003` compute cryptographic signatures and Merkle leaf hashes directly over the normalized canonical representation of this envelope.
+- **Contract Immutability:** Once an `AuditEvidenceEnvelope` is assembled, its fields are frozen. `L5-D-04-003` defines deterministic version-bound integrity commitment, sequential-linkage, checkpoint/anchor and proof semantics over that immutable envelope; cryptographic protection operations are invoked through `L5-D-03-002`, while physical persistence/schema/transaction realization remains `L5-B-02`-owned. No concrete Merkle construction or storage engine is mandated by this specification.
 - **Reference Alignment with `L5-B-02`:** `EntityChangeRecord` uses entity digests compatible with optimistic concurrency control fields established by `ADR-L5-0006` (consumed via `L5-B-02-003` — not a direct ADR applicability for `L5-D-04-002`) and transactional outbox boundaries defined under `ADR-L5-0007`.
 
 ### 5.6 Security, Privacy & Sensitive Data
@@ -272,7 +279,7 @@ CausalityLink {
 | **Data Minimization** | Entity change models avoid raw PII storage; rely on digests and field masks. | `L5-B-05` | `L5-B-05-001` |
 | **Attribution Non-Repudiation** | Actor context binds authentication decisions and delegation references. | `L4-A-022-BH-003` | `L5-D-01-002`, `L5-D-02-005` |
 | **Causal Graph Determinism** | Causal links strictly enforce acyclic directed graph invariants. | `L4-A-024-BH-004` | `L5-D-04-002` |
-| **Historical Integrity** | Evidence envelopes are frozen aggregates designed for cryptographic sealing. | `L4-A-022-BH-010` | `L5-D-04-003` |
+| **Historical Integrity** | Evidence envelopes are frozen aggregates designed for D04-003-owned audit integrity protection while physical persistence and cryptographic operations remain with B02 and D03 respectively. | `L4-A-022-BH-010` | `L5-D-04-003`, `L5-B-02`, `L5-D-03` |
 | **Audit Query Performance** | Correlation ID indexing enables fast reconstruction without deep graph traversal. | `AD-002` | `L5-D-04-003`, `L5-B-02` |
 | **Interoperability** | Model expressed as technology-neutral conceptual contracts prior to serialization. | Repository Standard | `L5-D-04-002` |
 
@@ -292,7 +299,7 @@ CausalityLink {
 | `CR-008` | Missing or ambiguous provenance elements shall be represented explicitly using standardized `UNKNOWN` or `AMBIGUOUS` markers. | `AD-004` | `L4-A-024-BH-005`, `C-004` |
 | `CR-009` | Evidence models shall reference source canonical business events by immutable identifier and digest without modifying the event. | `AD-005` | `L4-A-022-BH-010`, `C-005` |
 | `CR-010` | Provenance models shall not encode plain-text passwords, private cryptographic keys, or machine secrets. | Section 5.6 | `ADR-L5-0001`, `L5-D-03-001` |
-| `CR-011` | Structural validation of evidence envelopes shall be executable prior to dispatch to physical storage. | Section 5.1 | `L4-A-024-BH-002` |
+| `CR-011` | Structural validation of evidence envelopes shall be executable prior to dispatch to D04-003-owned audit integrity processing and B02-owned physical persistence realization. | Section 5.1 | `L4-A-024-BH-002` |
 | `CR-012` | The model shall not mandate a proprietary wire format or storage engine without governed ADR approval. | Section 2.3 | `L5_Technology_Selection_and_ADR_Methodology.md` |
 | `CR-013` | Delegated actions shall preserve the delegator identity and delegation authorization reference. | `AD-001` | `L4-A-022-BH-003`, `L5-D-02-005` |
 | `CR-014` | The model shall maintain distinct identifiers for distributed trace correlation versus immediate causal invocation. | `AD-002` | `L4-A-022-BH-005`, `L4-A-023-BH-004` |
@@ -305,8 +312,8 @@ CausalityLink {
 |---|---|---|---|---|---|---|
 | `OD-001` | Exact L4 BH Applicability | Upstream Traceability | None — Resolved against canonical `L4-A-022`, `L4-A-023`, and `L4-A-024`. | Lead Architect | **No (Closed)** | Mapped into Section 3.1 and Section 10. |
 | `OD-002` | L4 Upstream Status | Upstream Authority | `L4-A-022`, `L4-A-023`, `L4-A-024` carry Status: Draft in the repository. Treated as Locked under governance program assumption. Cannot be permanently closed until L4 governance approves or Lead Architect issues explicit authorization referencing this specification. | Lead Architect | **No (Conditionally Closed — pending L4 governance approval or explicit Lead Architect authorization referencing this specification)** | Update §3.1 status and this row once L4 governance is resolved. |
-| `OD-003` | Physical Envelope Serialization Encoding | Technology / ADR | Concrete serialization format (Protobuf, JSON-LD, Avro) for storage handoff. | Dhruv / ADR Governance | No | To be resolved in `L5-D-04-003` and governed ADR. |
-| `OD-004` | Provenance Graph Query Language | Technology / Architecture | Selection of graph traversal mechanisms for complex multi-hop investigation queries. | Persistence / Query Architecture | No | To be addressed during query read-model specialization in `L5-D-04-003`. |
+| `OD-003` | Physical Envelope Serialization Encoding | Technology / ADR | Concrete serialization format (Protobuf, JSON-LD, Avro) for storage handoff. | D04 / B02 / D03 ADR Governance | No | D04-003 requires a deterministic version-bound integrity representation but does not select a serialization product/format; resolve only if a concrete choice becomes materially architectural. |
+| `OD-004` | Provenance Graph Query Language | Technology / Architecture | Selection of graph traversal mechanisms for complex multi-hop investigation queries. | Persistence / Query Architecture | No | To be addressed during query read-model specialization without transferring evidence-model ownership. |
 
 ---
 
@@ -333,7 +340,7 @@ CausalityLink {
 ### Core L5 Dependencies
 
 - `L5-D-04-001` — Consumes runtime observation events; exports assembled `AuditEvidenceEnvelope`.
-- `L5-D-04-003` — Hands off conceptual evidence contracts for physical tamper-evident storage and sealing.
+- `L5-D-04-003` — Consumes conceptual evidence contracts for audit-specific integrity-stream, checkpoint/anchor, verification and evidence/proof semantics; physical persistence remains B02-owned and cryptographic protection remains D03-owned.
 - `L5-D-01-002` — Consumes authenticated identity models for actor attribution.
 - `L5-D-02-005` — Consumes delegation models for actor attribution.
 - `L5-B-02-003` — Aligns entity change digests with persistence models.
