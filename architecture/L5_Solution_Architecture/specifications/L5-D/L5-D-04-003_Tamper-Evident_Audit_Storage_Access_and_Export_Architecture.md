@@ -9,13 +9,13 @@
 **Canonical Technical Responsibility:** Integrity-protected audit storage, governed access and audit-specific export evidence/proof semantics without becoming owner of business records.  
 **Technical Architecture Owner:** L5-D-04-003 — Tamper-Evident Audit Storage, Access & Export Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Architecture Approved`  
-**Last Updated:** `2026-09-12`  
+**Last Updated:** `2026-09-13`  
 **Depends On:** `L5-D-04-001`; `L5-D-04-002`; `L5-B-02-003`; `L5-B-02-004`; `L5-D-03-001`; `L5-D-03-002`; `L5-D-03-003`; `L5-D-02`; `L5-A-04`; `L5-B-05-002`; `L5-B-05-003`; applicable `L4-A-022`–`L4-A-027`.  
 **Collaborating / Downstream Boundaries:** `L5-C-03-008`; `L5-E-03`; `L5-E-05`; `L5-A-08`.  
 **Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0005`; `ADR-L5-0006`; `ADR-L5-0008`; `ADR-L5-0012`.  
-**Governance Authorization:** `L5_Dhruv_Stage3_D04-003_Architecture_Approval_Decision_2026-09-12.md`.
+**Governance Authorization:** `L5_Dhruv_Stage3_D04-003_Architecture_Approval_Decision_2026-09-12.md`; `L5_Dhruv_Stage3_D04-003_Traceability_Refinement_Approval_2026-09-13.md`.
 
 **Canonical Production Path:**  
 `architecture/L5_Solution_Architecture/specifications/L5-D/L5-D-04-003_Tamper-Evident_Audit_Storage_Access_and_Export_Architecture.md`
@@ -44,6 +44,8 @@ It defines D04-003-specific storage semantics and integrity topology while consu
 - Safe concurrent stream-head advancement.
 - Store-level evidence persistence idempotency.
 - Integrity-verifiable evidence retrieval.
+- Durable preservation of immutable `Integrity Verification Result` outcomes.
+- Immutable investigation `Evidence Package` reference-manifest semantics without duplicating canonical evidence.
 - Rebuildable non-authoritative search/query projections.
 - Projection freshness/watermark architecture.
 - Non-destructive audit-evidence archival.
@@ -94,7 +96,7 @@ For this controlled Stage-3 validation, the cited L4 BHs below are authorized be
 | `L4-A-027` | v1.0.0 / Draft; Stage-3 authorized behavioral authority | BH-001–005 | Governed restored access is temporary/read-only while evidence remains archived. |
 | `L4-A-027` | same | BH-006–007 | Restoration closure duration/authority/event shall not be invented. |
 | `L5-D-04-001` | v1.1.1 / Locked | §§4–8 | D04-001 owns capture/admission/deduplication and hands validated evidence to D04-003; publication occurs only after the required persistence milestone. |
-| `L5-D-04-002` | v1.1.0 / Locked | §§2–5 | Supplies canonical `AuditEvidenceEnvelope` and provenance relationships consumed by D04-003. |
+| `L5-D-04-002` | v1.1.1 / Locked | §§2–5 | Supplies canonical `AuditEvidenceEnvelope` and provenance relationships consumed by D04-003; physical persistence remains B02-owned, cryptographic protection D03-owned, and reusable packaging/transfer C03-008-owned. |
 | `L5-B-02-003` | v1.0.1 / Draft | §§5–8 | Owner-local transaction and optimistic-concurrency mechanics govern D04-003 persistence commits. |
 | `L5-B-02-004` | v1.0.1 / Draft | §§3–5 | Persistence evolution uses compatibility-preserving migration without rewriting authoritative historical meaning. |
 | `L5-B-05-003` | v1.0.1 / Locked | §§3–8 | Retention/hold architecture authorizes technical disposition but does not define D04 physical integrity mechanics. |
@@ -118,6 +120,7 @@ For this controlled Stage-3 validation, the cited L4 BHs below are authorized be
 | C-007 | D04-003 does not own generic persistence mechanics. | B02 supplies transactions/concurrency/schema evolution. |
 | C-008 | D04-003 does not own reusable file-transfer infrastructure. | C03-008 owns packaging/transfer/delivery mechanics. |
 | C-009 | Integrity-stream topology changes may not rewrite historical stream assignment. | Topology evolves through versioned integrity epochs under `ADR-L5-0012`. |
+| C-010 | Integrity Verification Result and Evidence Package records are immutable audit artifacts, not replacements for canonical Audit Evidence. | They reference authoritative evidence/proof scope and never mutate source evidence. |
 
 ### 3.3 Assumptions
 
@@ -141,6 +144,8 @@ D04-003 owns:
 - checkpoint/seal semantics;
 - checkpoint-anchor requirements;
 - audit-specific integrity verification;
+- durable D04 persistence semantics for immutable `Integrity Verification Result` outcomes;
+- immutable investigation `Evidence Package` reference-manifest semantics that point to canonical evidence without duplicating it;
 - audit-query projection authority/freshness semantics;
 - audit archival integrity requirements;
 - archived-evidence access integrity boundary;
@@ -153,7 +158,7 @@ D04-003 owns:
 |---|---|---|
 | `L5-D-04-001` | Capture/admission/ingestion deduplication | Supplies validated evidence; consumes persistence receipt. |
 | `L5-D-04-002` | Canonical evidence/provenance model | D04-003 protects but does not redefine the envelope. |
-| `L5-B-02-003` | Transaction/concurrency mechanics | Realizes atomic append/link/head advancement. |
+| `L5-B-02-003` | Transaction/concurrency mechanics | Realizes atomic append/link/head advancement and durable audit-artifact persistence. |
 | `L5-B-02-004` | Schema/data migration | Realizes compatibility-safe persistence/proof evolution. |
 | `L5-D-03-002` | Cryptographic protection | Calculates/verifies cryptographic commitments and seals. |
 | `L5-D-03-003` | Key management | Supplies governed key capabilities/references. |
@@ -196,7 +201,9 @@ D04-003 shall not own:
 | `IntegrityStreamHead` | Technical State | Identify currently committed end of an integrity stream. | Current head reference/version. | Update only through governed B02 transaction. |
 | `CheckpointSealCoordinator` | Component | Seal bounded committed stream ranges and integrity-epoch boundaries. | Sealed checkpoint. | Failed seal remains incomplete. |
 | `CheckpointAnchorBoundary` | Control Point | Preserve independently protected reference to a closed checkpoint. | Anchor reference. | Anchor failure prevents strong closed-range claim. |
-| `EvidenceIntegrityVerifier` | Component | Verify content commitment, chain continuity, checkpoint/anchor and epoch-transition evidence. | Verification result/findings. | Never repairs evidence. |
+| `EvidenceIntegrityVerifier` | Component | Verify content commitment, chain continuity, checkpoint/anchor and epoch-transition evidence. | Verification outcome/findings. | Never repairs evidence. |
+| `IntegrityVerificationResultRecorder` | Component | Convert a completed verification outcome into one immutable durable `Integrity Verification Result` referencing verified evidence/scope and proof context. | Durable immutable result reference. | Failed result persistence prevents a durable-completion claim for the verification outcome. |
+| `EvidencePackageReferenceAssembler` | Component | Create an immutable investigation `Evidence Package` reference manifest over authorized canonical evidence and relevant proof/result references without duplicating canonical evidence. | Immutable Evidence Package reference manifest. | Invalid/missing references prevent package-completion claim. |
 | `EvidenceProjectionBuilder` | Worker/Component | Build searchable non-authoritative evidence projection. | Query projection + watermark. | Failure does not mutate canonical evidence. |
 | `EvidenceAccessGateway` | Control Point | Authorize discovery, resolve canonical evidence and return read-only results. | Canonical evidence/proofs. | Fails closed on scope/auth/integrity requirement failure. |
 | `AuditArchiveCoordinator` | Component | Realize authorized evidence archival while preserving evidence/proofs. | Archival execution result. | Partial archival cannot claim completion. |
@@ -436,6 +443,67 @@ authorized read-only result
 
 Authorization to query evidence does not grant authority to mutate evidence, stream heads, checkpoints, epochs or anchors.
 
+### 5.12A Immutable Integrity Verification Result Preservation
+
+`L4-A-024-BH-006`, `BH-008` and `BH-009` require the verification outcome itself to remain durable and immutable rather than existing only as a transient runtime response.
+
+```text
+authorized verification scope
+        ↓
+EvidenceIntegrityVerifier
+        ↓
+verification outcome + findings
+        ↓
+IntegrityVerificationResultRecorder
+        ↓
+B02 owner-local durable persistence
+        ↓
+immutable Integrity Verification Result reference
+```
+
+Each durably preserved `Integrity Verification Result` shall retain, at minimum, technical references sufficient to identify:
+
+- the authorized verification scope;
+- the canonical evidence references evaluated;
+- the applicable integrity stream/epoch/checkpoint/anchor context where relevant;
+- the verification time/context supplied by upstream authority;
+- the verification outcome and detected inconsistencies/findings.
+
+The result is an immutable audit outcome. It shall not rewrite, repair, relabel or replace canonical Audit Evidence.
+
+Persistence of the result uses B02-owned physical persistence mechanics. Cryptographic protection, when required, uses D03-owned operations. This specification does not invent the publication event described by non-authorized L4 behavior outside the Stage-3 BH scope.
+
+A verification execution for which durable-result preservation is required shall not be represented as durably complete if the result record fails to persist.
+
+### 5.12B Immutable Investigation Evidence Package Reference Manifest
+
+`L4-A-023-BH-005` requires an immutable `Evidence Package` that references canonical evidence. D04-003 realizes the durable audit-specific reference boundary without becoming owner of generic file packaging.
+
+```text
+authorized investigation scope
+        ↓
+canonical evidence references
+        +
+applicable Integrity Verification Result references
+        +
+applicable proof/checkpoint/anchor references
+        ↓
+EvidencePackageReferenceAssembler
+        ↓
+immutable Evidence Package reference manifest
+```
+
+The `Evidence Package` reference manifest shall:
+
+- identify its authorized investigation scope;
+- reference, rather than duplicate, canonical Audit Evidence;
+- retain the evidence identities/digests and relevant integrity/proof references needed to verify what was included;
+- retain applicable immutable `Integrity Verification Result` references where verification formed part of package assembly;
+- remain immutable after successful creation;
+- not create a second canonical owner for Audit Evidence.
+
+If the Evidence Package is later materialized into files, archives or transferred externally, reusable file/archive packaging, transport, large-transfer handling and generic delivery integrity remain `L5-C-03-008` responsibilities.
+
 ### 5.13 Immutable Evidence vs Storage / Availability Control
 
 Canonical evidence content and its integrity commitment are separate from upstream-defined Storage and Availability lifecycle dimensions.
@@ -619,6 +687,8 @@ D04-003 shall expose technical conditions sufficient for E05-owned observation o
 - projection watermark lag;
 - projection reconciliation failure;
 - integrity-verification failure;
+- integrity-verification-result persistence failure;
+- Evidence Package reference-manifest assembly/persistence failure;
 - archive verification/incompletion;
 - restored-access integrity failure;
 - export-proof generation/verification failure;
@@ -646,6 +716,8 @@ No threshold, timeout, retry count, alert product or SLA value is defined here.
 | AD-012 | Recovery reopening | Canonical append remains closed until recovered integrity continuity is verified. | D04 tamper-evident responsibility | Local |
 | AD-013 | Export boundary | D04-003 owns audit-specific evidence/proof semantics; C03-008 owns generic packaging/transfer/delivery. | Frozen corpus responsibility | Local boundary decision |
 | AD-014 | Privilege separation | Append, read/export and key-custody authorities remain logically separated. | `ADR-L5-0001/0002` | Existing ADRs |
+| AD-015 | Verification-result durability | Completed integrity verification outcomes required by L4-A-024 are preserved as immutable durable `Integrity Verification Result` artifacts referencing canonical evidence/proof scope; they never repair evidence. | L4-A-024-BH-006/008/009 | Local realization |
+| AD-016 | Evidence Package durability | Investigation `Evidence Package` is an immutable D04 reference manifest over canonical evidence/proof references; generic file/archive materialization remains C03-008-owned. | L4-A-023-BH-005; frozen C03-008 boundary | Local realization |
 
 No database, search engine, object store, cryptographic algorithm, KMS/HSM, cloud provider, runtime or deployment product is selected.
 
@@ -660,6 +732,8 @@ No database, search engine, object store, cryptographic algorithm, KMS/HSM, clou
 | Key custody | Raw key material remains outside D04-003. | D03 |
 | Authorization | Access/export/restoration consumes D02 decisions and fails closed when absent. | D02 |
 | Read vs write authority | Query/export capability does not imply canonical mutation authority. | D02 / D04 |
+| Verification result integrity | Verification outcomes are immutable durable audit artifacts and cannot be used to rewrite canonical evidence. | D04 / B02 / D03 |
+| Evidence Package integrity | Investigation packages remain immutable reference manifests to canonical evidence/proof scope; they do not duplicate evidence ownership. | D04 / C03 |
 | Projection degradation | Search may degrade while canonical evidence remains valid. | D04 / E05 |
 | Tamper rollback resistance | Anchored closed ranges have stronger rollback protection than the open tail. | D04 / D03 |
 | Historical portability | Representation/proof/epoch versions remain resolvable through migration. | D04 / B02 |
@@ -704,6 +778,8 @@ No database, search engine, object store, cryptographic algorithm, KMS/HSM, clou
 | CR-030 | Read/export authority shall not automatically include canonical evidence mutation authority. |
 | CR-031 | D04-003 shall not own raw cryptographic key material. |
 | CR-032 | Material D04 integrity failures shall be observable through E05-consumable technical signals. |
+| CR-033 | A completed integrity verification for which L4-A-024 requires durable outcome preservation shall persist one immutable `Integrity Verification Result` referencing the authorized scope, canonical evidence evaluated, applicable proof context, outcome and detected inconsistencies; the result shall not mutate or repair canonical evidence. |
+| CR-034 | An investigation `Evidence Package` shall be an immutable reference manifest to authorized canonical evidence and applicable proof/result references, shall not duplicate canonical Audit Evidence, and shall not absorb C03-008-owned generic file/archive packaging or transfer responsibilities. |
 
 ---
 
@@ -717,7 +793,7 @@ The former approval blockers are closed by `ADR-L5-0012` and `L5_Dhruv_Stage3_D0
 | OD-002 | Concrete persistence/search/object-storage technology | Technology | Non-blocking | Resolve through applicable B02/technology ADR governance if a product choice becomes material. |
 | OD-003 | Restoration expiry/closure basis | Upstream | Non-blocking for core storage; blocks automatic closure semantics only | Resolve upstream `L4-A-027` gap. |
 | OD-004 | Product-level routing/hash mechanism realizing deterministic stream assignment | Implementation / technology | Non-blocking | Must conform to `ADR-L5-0012`; do not make it business-semantic. |
-| OD-005 | D04-002 wording says “export archive packaging” is D04-003-owned while frozen C03-008 assigns reusable packaging/transfer to C03-008 | Repository wording harmonization | Non-blocking under authority precedence | Harmonize D04-002 wording on next controlled amendment; current canonical boundary is audit-specific proof semantics in D04 and reusable packaging/transfer in C03-008. |
+| OD-005 | D04-002 stale ownership wording for physical DDL/storage engine, physical immutable-storage realization, cryptographic/Merkle sealing and reusable export packaging | Repository wording harmonization | **Closed** by `L5-D-04-002` v1.1.1 and `L5_D04-002_Ownership_Boundary_Correction_and_Relock_Decision_2026-09-13.md` | Canonical boundary is now explicit: B02 physical persistence; D03 cryptographic protection/key custody; D04-003 audit-specific integrity/proof semantics; C03-008 reusable packaging/transfer/delivery. |
 | OD-006 | C03-008 concrete integration contract is not yet dependency-ready | Dependency | Non-blocking | Finalize exact handoff when C03-008 becomes stable enough to consume. |
 
 No blocking architecture decision remains for `L5-D-04-003`.
@@ -729,8 +805,10 @@ No blocking architecture decision remains for `L5-D-04-003`.
 ### Primary L4 Applicability
 
 - `L4-A-022-BH-007/009/010` — immutable canonical evidence and availability.
-- `L4-A-023-BH-001/002/005/007/008` — authorized discovery/access/Evidence Package.
-- `L4-A-024-BH-002/004/005/006/008/009` — integrity verification.
+- `L4-A-023-BH-001/002/007/008` — authorized discovery/access.
+- `L4-A-023-BH-005` — immutable investigation `Evidence Package` realized through `EvidencePackageReferenceAssembler`, `AD-016` and `CR-034`.
+- `L4-A-024-BH-002/004/005` — read-only integrity verification and explicit integrity findings.
+- `L4-A-024-BH-006/008/009` — immutable `Integrity Verification Result` preservation realized through `IntegrityVerificationResultRecorder`, `AD-015` and `CR-033`.
 - `L4-A-025-BH-002–005/007` — retention/disposition authority.
 - `L4-A-026-BH-001–008` — governed non-destructive archival.
 - `L4-A-027-BH-001–007` — restored archived access and explicit closure gap.
@@ -740,8 +818,8 @@ These BHs are Stage-3-authorized behavioral authority for this specification by 
 ### Primary L5 Dependencies
 
 - `L5-D-04-001` — capture/admission/deduplication/publication boundary.
-- `L5-D-04-002` — canonical evidence/provenance model.
-- `L5-B-02-003/004` — persistence concurrency and migration.
+- `L5-D-04-002` — canonical evidence/provenance model; v1.1.1 explicitly preserves B02/D03/C03 ownership boundaries.
+- `L5-B-02-003/004` — persistence concurrency, durable audit-artifact persistence and migration.
 - `L5-D-03-001/002/003` — security, cryptography and keys.
 - `L5-D-02` — authorization.
 - `L5-A-04` — Tenant/Institution isolation.
@@ -757,6 +835,8 @@ These BHs are Stage-3-authorized behavioral authority for this specification by 
 - `ADR-L5-0004` — Tenant/Institution isolation.
 - `ADR-L5-0005/0006` — persistence ownership and concurrency.
 - `ADR-L5-0008` — persistence evolution safety.
+- `L5_D04-002_Ownership_Boundary_Correction_and_Relock_Decision_2026-09-13.md` — resolves the stale locked D04-002 ownership wording without changing D04-002 canonical responsibility.
+- `L5_Dhruv_Stage3_D04-003_Traceability_Refinement_Approval_2026-09-13.md` — approves the explicit verification-result and Evidence Package realization refinements in v1.0.2.
 
 ### Governance Result
 
@@ -767,6 +847,8 @@ Dependency boundaries: PASS
 Security/trust boundaries: PASS
 ADR governance: PASS
 L4 behavioral-authority gate: PASS under narrow Stage-3 authorization
+Integrity Verification Result traceability: PASS
+Evidence Package traceability: PASS
 Blocking architecture findings: 0
 Status: Architecture Approved
 Lock-ready: YES
