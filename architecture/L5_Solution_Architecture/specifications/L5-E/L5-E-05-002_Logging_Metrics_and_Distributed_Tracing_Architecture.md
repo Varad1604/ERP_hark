@@ -3,40 +3,122 @@
 ## 1. Specification Metadata
 **Specification ID:** `L5-E-05-002`  
 **Architecture Level:** L5 — Solution Architecture  
+**Family:** L5-E — Reliability, Deployment & Operations Architecture  
+**Major Area:** L5-E-05 — Observability & Operations Architecture  
+**Canonical Technical Responsibility:** Technical logs/metrics/traces with privacy and sensitive-data boundaries.  
+**Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-12`  
-**Governing Sources:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register 105; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology; L5 ADR Register.  
-**Canonical Technical Responsibility:** Technical logs/metrics/traces with privacy and sensitive-data boundaries.
+**Last Updated:** `2026-09-13`  
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; `L5-E-05-001`; `L5-C-01-*`; `L5-C-02-*`; `L5-D-03-*`; `L5-D-04-*`; `L5-E-04-*`; persistence/data telemetry surfaces from `L5-B-02-*` where material.  
+**Referenced By:** `L5-E-05-003`, `L5-E-05-004`, operational consumers and technical readiness evidence.  
+**Applicable ADRs:** No logging, metrics, tracing backend, exporter or mandatory OpenTelemetry implementation profile is canonically selected unless approved through the L5 ADR process.
 
 ## 2. Purpose, Scope & Non-Goals
-Defines structured operational logs, metric semantics/cardinality, distributed tracing, async causal linkage, collection pipeline and signal-retention classes. It does not own audit evidence, business KPIs, alert/incident policy, or product selection.
+Defines the technical signal architecture for structured logging, metric semantics, distributed tracing and asynchronous causal linkage. It does not own business audit evidence, business KPI definitions, incident-management policy, deployment architecture or vendor selection.
 
 ## 3. Upstream Applicability, Constraints & Assumptions
-Authority derives from the approved L5 corpus boundary and E05-001. C01/C02 establish synchronous/asynchronous correlation surfaces; D04 remains audit owner.
+`L5-E-05-001` owns the shared collection/correlation baseline. `L5-C-01-*` and `L5-C-02-*` supply synchronous/asynchronous interaction surfaces; `L5-D-04-*` remains the canonical audit owner. Exact L4/BH mappings shall be added only when an approved behavior materially depends on this signal architecture.
 
 ## 4. Technical Ownership, Boundaries & Dependencies
-Owns log schema conventions, metric naming/type/cardinality rules, trace/span propagation, sampling/filtering and telemetry pipeline architecture. Consumes E05-001 collection context, C01/C02 correlation, D03/D04 protection boundaries, E04 runtime identity and B02/persistence telemetry surfaces without taking ownership.
+### 4.1 Owned technical elements
+- **Structured Log Contract:** required envelope and field-classification rules for operational log records.
+- **Metric Contract:** naming, type, unit, label/cardinality and aggregation semantics.
+- **Trace Context Contract:** creation, propagation, parent/child and causal-link semantics.
+- **Sampling & Filtering Policy Point:** configurable decision point for high-volume signals.
+- **Telemetry Export Boundary:** sends normalized signal batches to the E05-001 backend abstraction.
+- **Signal Quality Monitor:** detects malformed records, export failures, pressure/drop conditions and clock/correlation anomalies where observable.
+
+### 4.2 Boundary rules
+Business/domain identifiers may be used in logs/traces only when safe and necessary; they are not default metric dimensions. Diagnostic logs cannot replace immutable audit evidence. Tracing cannot redefine workflow/business state. Metric definitions cannot redefine business KPIs.
 
 ## 5. Solution Architecture
-Production logs are structured machine-readable records with timestamp, severity, component/version/environment, stable event/error code, trace/correlation context and safe Tenant/Institution scope where authorized. Exceptions are logged once at the handling boundary; audit records remain separate; production debug is off by default and temporarily governed.
+### 5.1 Logging flow
+```text
+runtime handling boundary
+→ create structured record
+→ attach safe runtime/correlation context
+→ classify/redact fields
+→ validate stable event/error code
+→ E05 collection/export boundary
+→ searchable operational log store abstraction
+```
 
-Metrics cover traffic, latency distributions, errors, saturation, dependency health and C02 publish/consume/lag/backlog/redelivery/dead-message indicators. Labels have controlled cardinality; IDs such as StudentId/EventId belong in logs/traces rather than default metric labels.
+A production record should contain timestamp, severity, component/service, version/environment, stable event or error code, outcome, technical correlation identifiers and safe contextual fields. Exceptions are recorded at the boundary that handles or translates them to avoid uncontrolled duplicate logging. Production debug/verbose logging is disabled by default and enabled only through governed temporary configuration.
 
-Tracing propagates standards-compatible context across service calls and, where supported, event boundaries. Async producer/consumer work is linked causally rather than modeled as one unbounded synchronous trace. Long-running workflows use stable business correlation plus bounded traces. Error/critical traces receive preferential preservation under sampling pressure.
+### 5.2 Metric flow
+```text
+instrumented operation
+→ metric observation
+→ semantic validation (name/type/unit/labels)
+→ cardinality guard
+→ aggregation/export
+→ E05 backend abstraction
+```
+
+Metrics may describe traffic, latency distributions, errors, saturation, dependency health and event-delivery signals such as publish/consume outcomes, backlog/lag, redelivery and dead-message conditions where owned surfaces expose them. Labels must be bounded. High-cardinality identifiers such as StudentId, EventId or request IDs belong in logs/traces rather than default metric labels.
+
+### 5.3 Distributed tracing flow
+```text
+incoming interaction
+→ validate/create trace context
+→ create bounded span
+→ propagate through synchronous dependency calls
+→ record status/error/dependency metadata
+→ close span
+```
+
+For asynchronous processing:
+```text
+producer span
+→ message/event context
+→ durable handoff
+→ consumer processing span linked causally to producer context
+```
+
+Asynchronous work is not modeled as one indefinitely open synchronous trace. Long-running workflows use stable business/workflow correlation plus bounded technical traces.
+
+### 5.4 Sampling and loss semantics
+Sampling/filtering is configurable and signal-specific. Error/critical traces may receive preferential preservation, but this specification sets no numeric sampling ratio. A dropped diagnostic signal does not imply a successful business operation, and preserved telemetry does not constitute audit proof. Export loss/drop counters should be observable where feasible.
+
+### 5.5 Time and ordering
+Telemetry timestamps are normalized consistently for cross-component diagnosis. Trace/span causality is authoritative for technical causal ordering within its scope; wall-clock ordering alone is not used to infer canonical business sequence across distributed components.
+
+### 5.6 Failure behavior
+Collector/exporter/backend failure follows E05-001 bounded-pressure rules. Application threads shall not block indefinitely on diagnostic export. Malformed telemetry is rejected/quarantined from the normal signal path without corrupting business state. Audit/security paths follow their own canonical owners.
 
 ## 6. Architecture & Technology Decisions
-Structured logging mandatory; bounded metric cardinality; standards-based distributed tracing; OpenTelemetry-compatible instrumentation preferred for evaluation; configurable risk-based sampling; backend product unselected.
+- **AD-001 — Structured production logs:** production operational logs use structured machine-readable records.
+- **AD-002 — Stable event/error codes:** operationally significant log events use stable codes where diagnosis/automation depends on them.
+- **AD-003 — Bounded metric cardinality:** metric dimensions are controlled and reviewed for cardinality risk.
+- **AD-004 — Distribution semantics:** traces represent bounded technical execution; asynchronous relationships use causal linking.
+- **AD-005 — Correlation separation:** workflow/business correlation remains distinct from technical trace/span identity.
+- **AD-006 — Configurable sampling:** sampling/filtering is policy-controlled and cannot silently redefine audit or business success semantics.
+- **AD-007 — Standards-oriented tracing:** OpenTelemetry-compatible instrumentation may be evaluated; no profile is canonical without ADR approval.
+- **AD-008 — Backend neutrality:** no logging/metrics/tracing backend is selected here.
 
 ## 7. Security, Privacy, Quality & Operations
-Default-deny sensitive data in logs/traces, explicit redaction/classification, least-privilege telemetry access, synchronized/UTC-normalized timestamps, signal-specific retention.
+Sensitive telemetry is default-deny. Credentials, secrets, private keys and unrestricted regulated payloads are prohibited. Field redaction/classification occurs before export where feasible. Telemetry query access is least privilege. Timestamp consistency, schema validation and signal-quality monitoring are operational requirements. Signal-specific retention is consumed from canonical policy; no duration is invented.
 
 ## 8. Architecture Conformance Requirements
-Structured production logs; no credentials in telemetry; metric labels cardinality-governed; business correlation separate from technical trace IDs; async tracing preserves causality; audit truth cannot be reconstructed solely from mutable diagnostic logs.
+- **CR-001:** Production logs shall be structured and machine-readable.
+- **CR-002:** Credentials, secrets and private keys shall not be written to general telemetry.
+- **CR-003:** Metric labels shall be cardinality-governed.
+- **CR-004:** Business/workflow correlation shall remain semantically separate from trace/span IDs.
+- **CR-005:** Asynchronous tracing shall preserve causal linkage without requiring an unbounded synchronous trace.
+- **CR-006:** Diagnostic logs shall not be used as the sole source of canonical audit truth.
+- **CR-007:** Export failure shall obey E05-001 bounded/non-blocking failure rules.
+- **CR-008:** Telemetry timestamps shall use a consistent normalization strategy.
+- **CR-009:** Debug/verbose production logging shall be governed and temporary.
+- **CR-010:** Product/exporter selection shall require the applicable ADR/governance decision.
 
 ## 9. Open Decisions & Deferred Design
-Backend/exporters and mandatory OpenTelemetry profile require ADR/standard if made canonical. Numeric sampling, cardinality budgets and retention are profile/configuration decisions, not invented here.
+- **OD-001:** Backend/exporter products and topology — unresolved.
+- **OD-002:** Mandatory OpenTelemetry profile — requires ADR if made canonical.
+- **OD-003:** Numeric sampling/cardinality/retention limits — delegated to governed profiles and canonical requirement owners.
+- **OD-004:** Exact L4/BH contribution set — pending validated material applicability; no artificial mapping permitted.
+- **OD-005:** Approval-level reliance on upstream Draft L5 peers — blocked until governance determines sufficient stability.
 
 ## 10. Traceability Summary
-Candidate corpus + E05-001 + C01/C02 + D03/D04 + E04. Selective BH mappings will be recorded only where a BH materially needs this contribution.
+Candidate Corpus Register 105 + `L5-E-05-001` establish the canonical technical responsibility. Dependency traceability is explicit to C01/C02, D03/D04, E04 and B02 telemetry surfaces. Exact approved L4/BH contribution links remain to be validated before architecture approval where material.
