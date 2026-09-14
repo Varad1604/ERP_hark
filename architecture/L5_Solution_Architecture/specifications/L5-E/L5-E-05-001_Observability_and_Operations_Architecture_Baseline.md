@@ -8,8 +8,8 @@
 **Canonical Technical Responsibility:** Operational observability/service operations without treating telemetry as business audit truth.  
 **Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.2`  
-**Status:** `Review`  
+**Version:** `1.0.3`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-13`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-E-04-*`; `L5-E-01-*`; `L5-E-02-*`; `L5-C-01-*`; `L5-C-02-*`; `L5-D-03-*`; `L5-D-04-*`; `L5-A-04-*` where Tenant/Institution execution context is consumed.  
 **Referenced By:** `L5-E-05-002`, `L5-E-05-003`, `L5-E-05-004`, `L5-F-01-*`, and downstream operational-readiness consumers.  
@@ -23,9 +23,23 @@ Defines the reusable L5 technical architecture for collecting, transporting, cor
 **Out of scope:** canonical business audit truth (`L5-D-04-*`); business KPIs/lifecycles; deployment topology ownership (`L5-E-04-*`); resilience policy (`L5-E-01-*`); business-readiness certification; vendor selection.
 
 ## 3. Upstream Applicability, Constraints & Assumptions
-The approved Candidate Corpus Register establishes this reusable technical responsibility. Traceability is many-to-many: this specification shall not invent one-to-one BH mappings merely to populate a table. Exact BH links are recorded only when an approved L4 behavior materially requires an E05 contribution.
+The approved Candidate Corpus Register establishes this reusable technical responsibility. Traceability is many-to-many: this specification shall not invent one-to-one BH mappings merely to populate a table. Exact BH links are recorded only when an L4 behavior materially requires an E05 contribution.
 
-Material peer dependencies remain governed by their own approval state. A Draft peer may inform controlled authoring but shall not be treated as immutable authority for approval-level reliance.
+### 3.1 Dependency-readiness assessment
+The locked dependency-gated execution model requires the consumed peer responsibility to be architecturally stable enough for downstream use; it does not require every peer file to have reached final approval status. For the E05 responsibility used here, the consumed E04 surface is limited to runtime/deployment identity, environment/profile context and deployment-owned boundaries. Those responsibilities are explicit in the current E04 architecture and are not replaced by E05. D03/D04 are consumed only through their canonical security/audit boundaries and approved ADR-backed responsibility assignments.
+
+Accordingly, peer `Draft` status is not by itself a blocker for this specification. E05 does not consume unresolved product/topology choices from those peers. A material change to any consumed boundary remains a revalidation trigger under L5 change governance.
+
+### 3.2 Material L4 applicability
+The following L4 obligations materially require the operational-evidence contribution supplied by this specification while preserving L2-A10 governance ownership:
+
+| L4 Specification | BH ID | E05-001 Technical Contribution | L5 Evidence |
+|---|---|---|---|
+| `L4-A-042` | `L4-A-042-BH-005` | Supplies governed operational telemetry evidence references and explicit loss/unavailability semantics when observability evidence is an applicable readiness input; it does not own the governance Assessment or evidence decision. | §§4.1, 5.1, 5.4; CR-001, CR-003, CR-008 |
+| `L4-A-045` | `L4-A-045-BH-001` | Makes attributable operational evidence references resolvable for remediation verification without converting telemetry into audit truth. | §§4.1, 5.1, 5.3; CR-001, CR-010 |
+| `L4-A-045` | `L4-A-045-BH-002` | Provides evidence quality, availability and correlation facts needed to determine whether operational evidence is usable for verification; governance still evaluates closure eligibility. | §§5.3–5.5, 7; CR-003, CR-004, CR-008 |
+
+No other BH coverage is claimed by this file merely because telemetry may be useful operationally.
 
 ## 4. Technical Ownership, Boundaries & Dependencies
 ### 4.1 Owned technical elements
@@ -105,11 +119,19 @@ Telemetry is classified by signal and field. Sensitive values are redacted befor
 - **CR-010:** E05 shall consume, not redefine, E04 deployment identity, D03 security controls or D04 audit truth.
 
 ## 9. Open Decisions & Deferred Design
-- **OD-001:** Canonical observability backend/product — blocking only if a downstream specification requires product-specific behavior.
-- **OD-002:** Mandatory repository-wide telemetry implementation profile — requires ADR if standardized.
-- **OD-003:** Numeric sampling, retention, SLO and capacity targets — delegated to canonical owners/configuration profiles.
-- **OD-004:** Exact BH contribution set — must be populated only from approved L4 behaviors that materially invoke E05; no artificial mapping is permitted.
-- **OD-005:** Approval-level reliance on upstream Draft L5 peers — blocked until governance determines those dependencies sufficiently stable.
+- **OD-001:** Canonical observability backend/product — non-blocking unless a downstream specification requires product-specific behavior.
+- **OD-002:** Mandatory repository-wide telemetry implementation profile — requires ADR if standardized; non-blocking while the architecture remains interoperable and product-neutral.
+- **OD-003:** Numeric sampling, retention, SLO and capacity targets — delegated to canonical owners/configuration profiles; no universal values are required for this architecture approval.
+- **OD-004:** Future BH relations — add only when a further L4 obligation materially requires E05-001; the validated current relation set is recorded in §3.2 and the canonical traceability store.
+- **OD-005:** Peer dependency drift — current consumed E04/D03/D04 responsibility surfaces are sufficiently stable for this approval; any material change to those surfaces requires impact revalidation.
 
 ## 10. Traceability Summary
-Candidate Corpus Register 105 establishes the canonical E05 responsibility. Technical dependency traceability is explicit to E04/E01/E02/C01/C02/D03/D04/A04. Exact L4/BH contribution links remain intentionally unclaimed until validated from approved L4 source; this document does not manufacture coverage.
+Candidate Corpus Register 105 establishes the canonical E05 responsibility. Technical dependency traceability is explicit to E04/E01/E02/C01/C02/D03/D04/A04.
+
+Validated material L4 contribution relations for this version are:
+
+- (`L4-A-042-BH-005`, `L5-E-05-001`)
+- (`L4-A-045-BH-001`, `L5-E-05-001`)
+- (`L4-A-045-BH-002`, `L5-E-05-001`)
+
+These relations provide operational-evidence architecture only. They do not transfer L2-A10 readiness-governance ownership, D04 audit ownership, or any L4 behavioral ownership to E05.
