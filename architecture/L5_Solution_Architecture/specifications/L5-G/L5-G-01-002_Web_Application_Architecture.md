@@ -12,7 +12,8 @@
 **Version:** `1.0.0`  
 **Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-15`  
-**Depends On:** `L5-G-01-001` v1.0.1 Architecture Approved; `L5-G-01-003` responsibility boundary; `L5-C-01`; `L5-D-01`; `L5-D-02`; `L5-A-04`; `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0015`.  
+**Depends On:** `L5-G-01-001` v1.0.1 Architecture Approved; `L5-C-01`; `L5-D-01`; `L5-D-02`; `L5-A-04`; `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0015`.  
+**Collaborates With:** `L5-G-01-003` — client security/session/state/safe contract-consumption architecture used by the web realization; this collaboration is not an upstream approval dependency for G01-002.  
 **Referenced By:** Future L6 web UI/UX architecture; web implementation standards; deployment/runtime consumers of the web artifact.  
 **Applicable ADRs:** `ADR-L5-0015` — Web Client Platform, Rendering & Deployment Pattern; `ADR-L5-0003`; `ADR-L5-0004`.
 
@@ -104,12 +105,12 @@ Technical routes/modules do not establish user-facing navigation semantics, scre
 - **Web Bootstrap Boundary** — technical initialization sequence before route features may execute protected work;
 - **Web Runtime Failure Boundary** — containment of route/module/client-runtime failures without fabricating business outcomes.
 
-### 4.2 Consumed Architecture
+### 4.2 Consumed / Collaborating Architecture
 
-| Owner | G01-002 dependency |
+| Owner | G01-002 relationship |
 |---|---|
-| `L5-G-01-001` | Shared client host, context, contract and trust invariants. |
-| `L5-G-01-003` | Security/session/state/safe contract-consumption mechanics. |
+| `L5-G-01-001` | Upstream shared client host, context, contract and trust invariants. |
+| `L5-G-01-003` | Collaborating sibling architecture that owns security/session/state/safe contract-consumption mechanics used by the web realization; it is not an upstream approval dependency for G01-002. |
 | `L5-C-01` | Released synchronous contracts and compatibility semantics. |
 | `L5-D-01` | Authenticated context. |
 | `L5-D-02` | Authorization enforcement. |
@@ -472,10 +473,10 @@ Runtime SSR is not part of the immediate architecture. If a later web surface de
 
 `L5-G-01-001` — Architecture Approved.
 
-### Material peer dependencies
+### Material peer dependencies and collaboration
 
 ```text
-L5-G-01-003 — client security/session/state/safe consumption
+L5-G-01-003 — collaborating sibling; client security/session/state/safe consumption
 L5-C-01     — released contract boundary
 L5-D-01     — authenticated context
 L5-D-02     — authorization enforcement
@@ -494,7 +495,7 @@ ADR-L5-0004 — Tenant and Institution Isolation Enforcement Pattern
 
 **Canonical responsibility:** satisfied.  
 **Technology decision:** resolved by `ADR-L5-0015`.  
-**Direct L4 dependency:** none required; this is a technology specialization of the approved G01 shared client architecture and does not claim new business behavior.  
+**Direct L4 dependency:** none required; this is a technology specialization of the approved G01 shared client architecture and does not claim new business behavior. Repository-level BH→L5 coverage remains governed by the canonical traceability methodology and shall not be fabricated by reintroducing rejected direct G01 mappings.  
 **G01-002-owned blocking findings:** none.  
 **Status:** `Architecture Approved`.  
 **Lock status:** not Locked; lock requires separate final governance authorization.
