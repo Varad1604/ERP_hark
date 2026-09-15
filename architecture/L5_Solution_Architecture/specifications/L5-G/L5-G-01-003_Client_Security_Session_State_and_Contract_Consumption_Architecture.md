@@ -9,10 +9,10 @@
 **Canonical Technical Responsibility:** Client security/session/state/safe contract consumption without becoming authorization authority.  
 **Technical Architecture Owner:** L5-G-01 — Client Platform Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.0`  
-**Status:** `Draft`  
+**Version:** `1.0.1`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-15`  
-**Depends On:** `L5-G-01-001` v1.0.1 Architecture Approved; `L5-G-01-002` v1.0.0 Architecture Approved; G01 dependency-readiness decision 2026-09-15; `L5-C-01-001/002/003`; `L5-D-01-001/003`; `L5-D-02-001/004`; `L5-A-04-001/002`; `L5-D-03-001`; `ADR-L5-0001`; `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0015`.  
+**Depends On:** `L5-G-01-001` v1.0.1 Architecture Approved; `L5-G-01-002` v1.0.0 Architecture Approved; `L5_G01_003_Client_Security_State_Architecture_Approval_Decision_2026-09-15.md`; G01 dependency-readiness decision 2026-09-15; `L5-C-01-001/002/003`; `L5-D-01-001/003`; `L5-D-02-001/004`; `L5-A-04-001/002`; `ADR-L5-0001`; `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0015`.  
 **Referenced By:** `L5-G-01-002`, planned `L5-G-01-004`, future L6 client architecture and implementation standards.  
 **Applicable ADRs:** `ADR-L5-0001`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0015`. No additional state-management, authentication-protocol, token-format or client-storage product is selected by this specification.
 
@@ -67,7 +67,8 @@ Define the technical client control plane that safely consumes authenticated con
 | `L5-D-02-001/004` | Architecture Approved | Authorization remains separate and every protected operation is server-enforced | Client visibility/capability state remains advisory only. |
 | `L5-A-04-001/002` | Draft / stable boundary for G01 consumption | Tenant-rooted isolation, validated scope propagation, fail-closed mismatch | Client state must be partitioned and invalidated by protected scope. |
 | `L5-C-01-001/002/003` | Draft / stable boundary for G01 consumption | Released contract boundary; synchronous execution; compatibility/error/idempotency ownership | Client consumes these semantics and shall not invent retries, compatibility or idempotency rules. |
-| `L5-D-03-001` + `ADR-L5-0001` | Draft + Architecture Approved ADR | Client/external execution is untrusted; trust is explicit/non-transitive; mandatory security failure must not degrade to bypass | Establishes client security posture and fail-closed trust handling. |
+| `ADR-L5-0001` | Architecture Approved | Explicit trust boundaries, non-transitive trust and fail-closed protected crossing | Establishes the approval-level client security posture. |
+| `L5-D-03-001` | Draft collaborator | Detailed trust/security baseline consistent with `ADR-L5-0001` | Collaboration reference only; not an approval dependency for G01-003. |
 | `ADR-L5-0015` | Architecture Approved | SPA-first static web client, online-first, no micro-frontends by default | Constrains web-specific state/session realization and prohibits offline authoritative mutation. |
 
 ### 3.2 Architecture Constraints
@@ -557,4 +558,6 @@ L5-D-03     → trust/security boundary
 **Technology position:** uses the approved G01-002 web platform; adds no new mandatory state/cache/authentication technology.  
 **Security position:** fail-closed, non-authoritative client with scope/session invalidation and no script-readable durable authentication-secret storage.  
 **L6 leakage:** none intended.  
-**Current status:** `Draft` pending hard-fail/architecture approval review.
+**Current Status:** `Architecture Approved`.  
+**Downstream Readiness:** ready for `L5-G-01-004` and downstream L6/implementation consumption.  
+**Lock Status:** not Locked; lock requires separate final governance authorization.
