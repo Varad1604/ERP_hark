@@ -1,275 +1,183 @@
-# L5-B-04-005: Digital Signing, Seal, QR, and Credential Integrity Architecture
+# L5-B-04-005 — Digital Signing, Seal, QR & Credential Integrity Architecture
 
-## 1. Document Metadata & Control
+## 1. Specification Metadata
 
-| Attribute | Value |
-| :--- | :--- |
-| **Specification ID** | `L5-B-04-005` |
-| **Version** | `1.0.3` |
-| **Status** | `APPROVED` |
-| **Classification** | `Internal Confidential` |
-| **Primary Architectural Module** | `Credential Trust, Cryptographic Signing & Public Verification` |
-| **Owning Solution Architect** | `Varad Deshpande` |
-| **Cross-Cutting Domain** | `Cryptographic Services, Institutional Trust, Identity & Public Verification` |
-| **Upstream Traceability** | `L4-H-002`, `L4-H-004`, `L4-H-005`, `L4-C-018` |
-| **Downstream Implementation Target** | `crypto-signing-service`, `public-verification-portal`, `hsm-gateway` |
-| **Effective Date** | `2026-09-15` |
-
----
-
-## 2. Executive Summary & Architectural Scope
-
-The **Digital Signing, Seal, QR, and Credential Integrity Architecture** (`L5-B-04-005`) defines the cryptographic trust framework, institutional digital signing pipeline, tamper-evident high-density QR encoding, and public verification architecture for SutraERP. Across academic degrees, transcripts, payroll disbursement slips, and official institutional communications, the platform establishes verifiable provenance and long-term non-repudiation.
-
-The architecture integrates Hardware Security Modules (Cloud KMS / FIPS 140-2 Level 3 HSM) for institutional key custody, implements PAdES-LTV (PDF Advanced Electronic Signatures - Long Term Validation) via qualified RFC 3161 Time-Stamping Authorities, generates cryptographically signed offline-verifiable QR codes (ECDSA P-256 + CBOR / COSE), and provides a zero-knowledge public verification gateway.
-
-```
-+---------------------------------------------------------------------------------------------------+
-|                        L5-B-04-005 CRYPTOGRAPHIC SIGNING & CREDENTIAL TRUST                       |
-|                                                                                                   |
-|  [ Ingestion Pipeline ]          [ Cryptographic Signing Engine ]        [ Key & Trust Services ] |
-|   - Rendered PDF Artifact        - PAdES B-LTA Compliant Signer          - Cloud KMS / Cloud HSM  |
-|   - Signing Request Metadata     - SHA-256 / SHA-384 Digest Compute      - FIPS 140-2 Level 3     |
-|   - Verification Payload         - Detached PKCS#7 / CMS Engine          - Institutional Root PKI |
-|             |                                |                                   |                |
-|             v                                v                                   v                |
-|  +----------------------+      +---------------------------+      +-----------------------------+ |
-|  | Verifiable QR Engine | ---> | Time-Stamping Authority   | ---> | Public Verification Gateway | |
-|  | - CBOR Payload Pack  |      | - RFC 3161 Qualified TSA  |      | - Air-Gapped Offline Scan   | |
-|  | - COSE Sign (P-256)  |      | - Secure Timestamp Token  |      | - Online Portal Lookup      | |
-|  | - Error Correct Lvl H|      | - Embedded OCSP / CRL     |      | - Merkle Proof Invalidation | |
-|  +----------------------+      +---------------------------+      +-----------------------------+ |
-|                                              |                                   |                |
-|                                              v                                   v                |
-|  [ Output Artifacts ]          [ Non-Repudiation Storage ]             [ Trust Federation ]       |
-|   - PAdES-LTV PDF Document      - Cryptographic Audit Log               - National Depository     |
-|   - Signed Verification Receipt - Tamper-Proof Signature Manifest         Integration (e.g., NAD) |
-|   - Public Verification URL     - Long-Term Archival (30+ Years)        - W3C Verifiable Cred.    |
-+---------------------------------------------------------------------------------------------------+
-```
+| Field | Value |
+|---|---|
+| Specification ID | L5-B-04-005 |
+| Specification Title | Digital Signing, Seal, QR & Credential Integrity Architecture |
+| Architecture Level | L5 — Solution Architecture |
+| Family | L5-B — Data & Information Architecture |
+| Major Area | L5-B-04 — Document, Media & Object Platform Architecture |
+| Canonical Technical Responsibility | Document/credential signing, seal, QR/barcode and verification orchestration while cryptographic primitives, key lifecycle and machine credentials remain D03-owned. |
+| Technical Architecture Owner | Document Credential Integrity Technical Architecture |
+| Assigned Author | Varad |
+| Version | 1.0.4 |
+| Status | Draft |
+| Last Updated | 2026-09-15 |
+| Depends On | L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5-B-04-001; L5-B-04-002; L5-B-04-004; L5-D-03-001; L5-D-03-002; L5-D-03-003; L5-D-03-004; L5-D-04-001; L4-H-002; L4-H-004; L4-H-005; L4-C-018 |
+| Referenced By | Domain credential issuance and verification workflows |
+| Applicable ADRs | ADR-L5-0001; ADR-L5-0002; ADR-L5-0012 |
 
 ---
 
-## 3. Upstream Traceability Matrix
+## 2. Purpose, Scope & Non-Goals
 
-This specification establishes direct, bidirectional traceability to L4 behavioral specifications as detailed below:
+### Purpose
 
-| L4 Specification ID | Behavioral Header | L4 Requirement Description | L5 Section Reference | Verification Method |
-| :--- | :--- | :--- | :--- | :--- |
-| `L4-H-002` | `L4-H-002-BH-001` | HSM key lifecycle, generation, rotation, and usage policy | Section 5.2 | Cloud HSM key policy audit & KMS rotation test |
-| `L4-H-002` | `L4-H-002-BH-002` | Digital signature generation for institutional academic transcripts | Section 5.1, 7.1 | Apache PDFBox PAdES signature validation harness |
-| `L4-H-002` | `L4-H-002-BH-003` | Institutional digital seal embedding and visual representation | Section 5.1 | PDF rendering visual inspection and layer test |
-| `L4-H-002` | `L4-H-002-BH-004` | Audit logging of all cryptographic signing operations | Section 5.6 | Audit trail tamper-resistance test |
-| `L4-H-004` | `L4-H-004-BH-001` | High-density tamper-evident QR code generation | Section 5.3, 7.2 | QR decoder and CBOR unpacking test suite |
-| `L4-H-004` | `L4-H-004-BH-002` | Elliptic curve digital signature embedding within QR payloads | Section 5.3 | ECDSA secp256r1 signature verification test |
-| `L4-H-004` | `L4-H-004-BH-003` | Offline verification support without network connectivity | Section 5.4 | Air-gapped mobile scanner verification harness |
-| `L4-H-004` | `L4-H-004-BH-004` | Public credential verification portal and API endpoint | Section 5.4, 7.3 | Public verification gateway integration test |
-| `L4-H-004` | `L4-H-004-BH-005` | Credential revocation, suspension, and status list checking | Section 5.5, 7.4 | Revocation status bit-vector validation test |
-| `L4-H-005` | `L4-H-005-BH-001` | RFC 3161 compliant cryptographic timestamping integration | Section 5.1 | RFC 3161 timestamp parsing and cert chain test |
-| `L4-H-005` | `L4-H-005-BH-002` | Long-Term Validation (PAdES-LTV) embedding (DSS & VRI) | Section 5.1 | 30-year archival simulation and LTV validation |
-| `L4-H-005` | `L4-H-005-BH-003` | Integration with national academic depository (NAD/DigiLocker) | Section 5.5 | Depository schema and push adapter contract test |
-| `L4-H-005` | `L4-H-005-BH-004` | Credential tamper detection and anomaly alerting | Section 5.4, 9.2 | Altered payload rejection and alert trigger test |
-| `L4-C-018` | `L4-C-018-BH-004` | Coordination of signature pipeline with document issuance | Section 5.1 | End-to-end issuance-to-signature orchestration |
-| `L4-C-018` | `L4-C-018-BH-005` | Watermark and institutional seal visual overlay controls | Section 5.1 | Visual layer separation inspection |
+This specification defines the B04 orchestration boundary for applying approved integrity services to already-authorized institutional documents and credentials, packaging machine-verifiable integrity references, and exposing verification outcomes without transferring cryptographic ownership from D03 or business publication authority from the owning domain.
 
----
+### In Scope
 
-## 4. Architectural Principles & Constraints
+- Accept an already-authorized credential/document integrity request.
+- Bind the exact artifact version and owning-domain credential/publication reference.
+- Request signing/integrity operations from approved D03 services.
+- Attach or associate returned integrity evidence, seal representation, QR/barcode verification reference or equivalent verification carrier.
+- Produce verification responses that report technical validity without inventing business status.
+- Preserve technical evidence and correlation to the owning business workflow.
 
-1. **Hardware-Guaranteed Non-Repudiation**: Private keys used for institutional seals and credential signing must reside in FIPS 140-2 Level 3 certified Hardware Security Modules (Cloud KMS / HSM). Export of raw private keys is cryptographically impossible.
-2. **Long-Term Validation (LTV) Self-Containment**: Signed PDF credentials must embed all certificate chains, revocation information (CRL/OCSP), and RFC 3161 timestamps into the Document Security Store (DSS). The document must remain verifiable decades into the future without depending on external PKI availability.
-3. **Dual-Mode Verification (Online & Air-Gapped Offline)**: High-density QR codes printed on physical or digital certificates must contain sufficient compressed, digitally signed payload data to permit full authentication by third parties in air-gapped environments without database access.
-4. **Instant Invalidation & Cryptographic Revocation**: When an academic degree or invoice is revoked, revocation status must immediately reflect across the public verification portal and external depository federations via cryptographically signed revocation lists.
+### Out of Scope / Non-Goals
+
+- Key generation, key custody, key activation, rotation, revocation, retirement or destruction.
+- Selection of cryptographic algorithms, key sizes, HSM/KMS products, PKI products, certificate authorities, timestamp services or credential standards.
+- Defining consent, government-publication eligibility or domain credential lifecycle.
+- Choosing QR payload encodings, signature formats, document-signature standards or validity periods without approved repository authority.
+- Owning external-government acknowledgement or business publication state.
 
 ---
 
-## 5. Detailed Solution Architecture & Component Design
+## 3. Upstream Applicability & Canonical Boundaries
 
-### 5.1 PAdES-LTV Cryptographic Signing Pipeline
-The signing pipeline transforms standard rendered PDF/A-3 documents into legally enforceable, digitally signed credentials conforming to ETSI EN 319 142 (PAdES Part 3 & 4):
-- **Digest Calculation**: A SHA-256 / SHA-384 cryptographic hash is computed over the byte ranges excluding the signature dictionary.
-- **Detached Signature Generation**: The computed hash is dispatched to the HSM Gateway, which executes an ECDSA/RSA signature operation using the institution's certified private key.
-- **RFC 3161 Trusted Timestamping**: The signature token is transmitted to a designated Qualified Time-Stamping Authority (Q-TSA) to obtain a cryptographically binding RFC 3161 timestamp token.
-- **DSS & VRI Injection**: The complete certificate path, intermediate CA certificates, current OCSP responses, and CRLs are written into the PDF's `/DSS` (Document Security Store) and `/VRI` dictionaries, achieving PAdES B-LTA status.
+### 3.1 L4 Alignment
 
-### 5.2 Hardware Security Module (HSM) Gateway & Key Lifecycle
-Key operations are isolated behind the HSM Gateway:
-- **Tenant Isolation**: Each higher-education institution or corporate entity holds a dedicated cryptographic key ring with separate IAM roles and access control boundaries.
-- **Key Rotation**: Root signing keys rotate every 24 months, while sub-keys for administrative signing rotate annually. Revoked or expired keys remain preserved in read-only HSM state to facilitate signature verification of historical documents.
-- **Role-Based Activation**: High-impact batch signing (e.g., annual degree convocation) requires multi-custodian quorum activation (M-of-N administrative authorization).
+`L4-H-002` is a locked business-behavior authority for approved credential publication to government channels. Its behaviors are not cryptographic design requirements:
 
-### 5.3 Verifiable High-Density QR Code Generator
-Documents stamped with physical or visual verification blocks embed an ISO/IEC 18004 compliant high-density QR code:
-- **Payload Serialization**: Critical credential claims (Student Name, Roll Number, Degree Awarded, CGPA/Classification, Issue Date, Document Unique ID) are encoded using Concise Binary Object Representation (CBOR - RFC 8949).
-- **Cryptographic Enclosure**: The CBOR payload is signed using COSE (CBOR Object Signing and Encryption - RFC 9052) via the institution's ECDSA P-256 public-private key pair.
-- **Error Correction**: QR codes are generated with Level H (30% recovery capability), ensuring readability even if physically abraded, stamped, or folded.
+| L4 Behavior | Canonical Meaning | L5-B-04-005 Treatment |
+|---|---|---|
+| `L4-H-002-BH-001` | An approved credential becomes eligible for government publication only when upstream business constraints are satisfied. | Consumed precondition. B04-005 does not decide publication eligibility. |
+| `L4-H-002-BH-002` | Publication consent, connector and duplicate constraints are evaluated. | Consumed precondition/dependency; B04-005 does not replace consent or connector ownership. |
+| `L4-H-002-BH-003` | Publication follows the locked business lifecycle. | No lifecycle ownership transfer; technical integrity evidence may accompany the publication artifact. |
+| `L4-H-002-BH-004` | Successful Published status requires government acknowledgement. | B04-005 cannot declare Published; it only reports integrity/signing outcomes to the owning workflow. |
 
-### 5.4 Public Verification Gateway & Air-Gapped Verification
-The verification architecture provides two operational paths:
-1. **Air-Gapped Offline Scan**:
-   - The third-party mobile or web scanner reads the QR code.
-   - It parses the COSE structure and extracts the institutional public key from an embedded trust store.
-   - It validates the ECDSA signature locally and renders the verified student/credential attributes without making any network calls.
-2. **Online Portal Lookup**:
-   - The user navigates to the public verification portal URL encoded in the QR.
-   - The portal executes an SHA-256 integrity lookup against the institutional issuance ledger, returning the canonical document metadata, issuing officer, exact signing timestamp, and active revocation status.
+`L4-H-004`, `L4-H-005` and `L4-C-018` may require document/credential integrity or verification support where their approved behaviors explicitly call for it. This specification consumes those requirements without redefining their business semantics.
 
-### 5.5 Revocation Lists & Depository Federation
-- **Status List Bit-Vectors**: High-efficiency W3C StatusList2021 bit-vectors track active vs revoked credentials. Revocation changes update the bitmask and generate an updated Merkle tree root hash.
-- **National Depository Adapters**: For accredited academic institutions, issued degrees and transcripts are simultaneously dispatched to national academic depositories (e.g., India's NAD/DigiLocker) via secure mutual-TLS API connectors.
+### 3.2 D03 Canonical Ownership
 
-### 5.6 Cryptographic Audit Ledger
-Every cryptographic operation (signing, timestamping, key access, verification attempt, revocation) records an immutable entry into the Cryptographic Audit Log containing the operator identity, key version, target document hash, and TSA receipt.
+Per `ADR-L5-0002` and the D03 architecture:
+
+- D03 owns cryptographic/data-protection realization.
+- D03 exclusively owns key lifecycle and custody.
+- D03 exclusively owns application/integration secrets, certificates and machine credentials.
+- Algorithms, key lengths, concrete HSM/KMS products, certificate authorities and rotation intervals are not selected here.
+
+B04-005 therefore owns **orchestration and document/credential binding**, not cryptography itself.
 
 ---
 
-## 6. Architectural Decisions
+## 4. Technical Ownership & Dependencies
 
-| Decision ID | Decision Title | Status | Rationale | Alternatives Considered | Trade-offs |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `AD-L5-B04-005-01` | PAdES B-LTA Profile with Embedded DSS over Basic PKCS#7 | `ACCEPTED` | Basic signatures break when intermediate CA certificates expire or CRL endpoints disappear. PAdES B-LTA guarantees decades-long validation. | Basic PKCS#7 detached signatures; Adobe XML Forms Architecture (XFA). | Increased file size (~35 KB additional PKI/OCSP metadata) and higher processing latency during PDF finalization. |
-| `AD-L5-B04-005-02` | Compressed CBOR/COSE Signatures in High-Density QR over Plain URLs | `ACCEPTED` | Enables tamper-proof verification in air-gapped environments without exposing private institutional databases to public scraping. | Plain URL redirect QR code; Raw uncompressed JSON QR. | Payload size is constrained; requires specialized client parsing libraries for CBOR/COSE verification. |
-| `AD-L5-B04-005-03` | Cloud HSM (FIPS 140-2 Level 3) Managed Keys over Software PKCS#12 Keystores | `ACCEPTED` | Eliminates risk of key exfiltration from server disk or memory; complies with national statutory standards for institutional degree issuance. | File-based `.pfx` / `.p12` keystores protected by software passwords. | Incurs API-based cryptographic latency (40-80ms per signature) and recurring cloud HSM service costs. |
-| `AD-L5-B04-005-04` | Dual RFC 3161 Qualified TSA Integration with Automatic Failover | `ACCEPTED` | Guarantees non-repudiation and prevents signing pipeline stalls during commercial TSA endpoint outages. | Single commercial TSA provider; Local uncertified system clock timestamps. | Requires maintaining commercial subscriptions and active health probes across two independent TSA providers. |
+### 4.1 Owns
+
+- Integrity-request admission after owning-domain authorization.
+- Exact artifact-version binding before integrity processing.
+- Invocation of approved D03 cryptographic capability through governed contracts.
+- Association of returned integrity evidence with the artifact/credential record.
+- Technical verification orchestration and response composition.
+- QR/barcode/seal carrier generation only as a presentation/transport of approved verification reference/evidence, without selecting cryptographic primitives.
+
+### 4.2 Consumes / Delegates
+
+| Owner | Responsibility Consumed |
+|---|---|
+| Owning domain | Credential approval, issuance/publication eligibility, consent and lifecycle. |
+| `L5-D-03-002` | Cryptographic protection operations and approved digest/signature capability. |
+| `L5-D-03-003` | Key lifecycle and custody. |
+| `L5-D-03-004` | Certificates, machine credentials and secret management. |
+| `L5-D-04` | Canonical audit evidence aggregation. |
+| `L5-B-04-002` | Artifact/credential technical identity, version and storage reference. |
+| `L5-B-04-004` | Generated artifact before integrity augmentation. |
+
+### 4.3 Must Not Own
+
+Cryptographic primitives, key material, cryptographic policy, certificate lifecycle, external publication decisions, government connector outcomes, business credential validity or revocation semantics, or repository-wide trust policy.
 
 ---
 
-## 7. Conceptual Data Models & Schema Contracts
+## 5. Solution Architecture
 
-### 7.1 Cryptographic Signing Job Request Schema
-```json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "CryptoSigningJobRequest",
-  "type": "object",
-  "required": ["request_id", "document_id", "tenant_id", "document_sha256", "signature_profile", "key_alias"],
-  "properties": {
-    "request_id": { "type": "string", "format": "uuid" },
-    "document_id": { "type": "string", "pattern": "^doc_[a-zA-Z0-9_-]{20,36}$" },
-    "tenant_id": { "type": "string" },
-    "document_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-    "signature_profile": { "type": "string", "enum": ["PADES_B_LTA", "PADES_B_T", "RAW_COSE_SIGN"] },
-    "key_alias": { "type": "string", "description": "KMS / HSM key identifier" },
-    "visible_seal_config": {
-      "type": "object",
-      "required": ["page_number", "x_coordinate", "y_coordinate", "width", "height"],
-      "properties": {
-        "page_number": { "type": "integer", "minimum": 1 },
-        "x_coordinate": { "type": "number" },
-        "y_coordinate": { "type": "number" },
-        "width": { "type": "number" },
-        "height": { "type": "number" },
-        "seal_image_asset_id": { "type": "string" }
-      }
-    }
-  }
-}
+### 5.1 Realization Components
+
+| Element | Responsibility | Input | Output | Failure Boundary |
+|---|---|---|---|---|
+| `IntegrityRequestAdmissionBoundary` | Verifies owning-domain authorization, artifact identity/version and requested integrity operation are present. | Authorized integrity request | Admitted request | Rejects missing context; never infers approval. |
+| `ArtifactBindingResolver` | Resolves the exact immutable artifact/version to which integrity evidence will apply. | Artifact reference | Bound artifact identity | Fails closed on ambiguity or version mismatch. |
+| `D03IntegrityBroker` | Calls the approved D03 cryptographic capability and receives opaque integrity/signature evidence. | Bound artifact or approved digest input | D03-produced integrity evidence | Does not inspect or manage key material. |
+| `VerificationCarrierAssembler` | Associates approved verification evidence/reference with a seal, QR/barcode or equivalent carrier required by the calling workflow. | D03 evidence + artifact reference | Verification carrier | Carrier construction cannot alter the signed/bound artifact identity. |
+| `IntegrityEvidenceRecorder` | Records artifact version, D03 operation reference, technical result and correlation evidence. | Integrity attempt | Technical evidence | Failure prevents reporting integrity application as complete. |
+| `VerificationGatewayBoundary` | Resolves a presented verification reference and returns a bounded technical verification result. | Verification request/reference | Valid/invalid/unavailable technical result plus authoritative business-status reference where supplied by owner | Must not infer business validity from cryptographic validity alone. |
+
+### 5.2 Primary Flow
+
+```text
+Owning Domain approval/issuance decision
+  -> IntegrityRequestAdmissionBoundary
+  -> ArtifactBindingResolver
+  -> D03IntegrityBroker
+  -> VerificationCarrierAssembler (when required)
+  -> IntegrityEvidenceRecorder
+  -> B04 registry/storage association
+  -> Owning Domain publication/issuance workflow
 ```
 
-### 7.2 Verifiable QR CBOR Payload Schema (COSE Sign1)
-```json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "VerifiableQRPayload",
-  "type": "object",
-  "required": ["iss", "sub", "doc_id", "deg", "gpa", "iat", "exp", "sig"],
-  "properties": {
-    "iss": { "type": "string", "description": "Institutional Issuer DID or Domain" },
-    "sub": { "type": "string", "description": "Subject Identifier (e.g., Student ID / Roll Number)" },
-    "doc_id": { "type": "string", "description": "Unique Document Tracking ID" },
-    "deg": { "type": "string", "description": "Degree or Credential Title" },
-    "gpa": { "type": "string", "description": "CGPA, Division, or Percentage" },
-    "iat": { "type": "integer", "description": "UNIX timestamp of issuance" },
-    "exp": { "type": "integer", "description": "UNIX timestamp of expiration (or 0 for perpetual)" },
-    "sig": { "type": "string", "description": "ECDSA P-256 signature over CBOR claims" }
-  }
-}
-```
+### 5.3 Verification Semantics
 
-### 7.3 Public Verification Response Schema
-```json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "PublicVerificationResponse",
-  "type": "object",
-  "required": ["verification_status", "document_id", "issuer_name", "issued_at", "cryptographic_validity"],
-  "properties": {
-    "verification_status": { "type": "string", "enum": ["VALID", "REVOKED", "EXPIRED", "TAMPERED", "NOT_FOUND"] },
-    "document_id": { "type": "string" },
-    "document_type": { "type": "string" },
-    "issuer_name": { "type": "string" },
-    "recipient_name": { "type": "string" },
-    "issued_at": { "type": "string", "format": "date-time" },
-    "tsa_timestamp": { "type": "string", "format": "date-time" },
-    "cryptographic_validity": {
-      "type": "object",
-      "required": ["signature_intact", "certificate_valid", "timestamp_valid", "hash_matched"],
-      "properties": {
-        "signature_intact": { "type": "boolean" },
-        "certificate_valid": { "type": "boolean" },
-        "timestamp_valid": { "type": "boolean" },
-        "hash_matched": { "type": "boolean" }
-      }
-    },
-    "revocation_details": {
-      "type": "object",
-      "properties": {
-        "revoked_at": { "type": "string", "format": "date-time" },
-        "reason": { "type": "string" }
-      }
-    }
-  }
-}
-```
+A successful technical verification means only that the presented artifact/reference satisfies the approved integrity check returned by D03 and corresponds to the bound artifact/version. Business validity, current standing, revocation by the owning domain, publication acknowledgement and entitlement remain authoritative outside B04-005.
+
+### 5.4 Failure & Recovery
+
+- Artifact/version mismatch: reject; never sign a substituted version.
+- D03 service unavailable: return technical-unavailable outcome; do not bypass cryptography or use local keys.
+- Integrity operation rejected by D03: preserve failure evidence; owning workflow decides business consequence.
+- Carrier generation failure: do not mark integrity application complete until the required carrier/evidence association is durably recorded.
+- Verification reference unknown: return not-resolved/invalid according to governed contract; do not leak unrelated credential data.
+
+### 5.5 Security & Privacy
+
+- B04-005 never receives raw private key material.
+- Verification responses disclose only information authorized by D02/privacy policy and the owning domain.
+- Public or external verification must be abuse-resistant and authorization/privacy aware, but concrete rate limits and anti-abuse products are downstream governed decisions.
+- Audit evidence is delegated to D04; B04 preserves correlation identifiers necessary for that handoff.
 
 ---
 
-## 8. Concrete Operational & Cross-Cutting Requirements
+## 6. Architecture Decisions & Open Decisions
 
-| Requirement ID | Category | Objective / Specification | Verification Target |
-| :--- | :--- | :--- | :--- |
-| `CR-B04-005-PERF-01` | Performance | End-to-end PAdES B-LTA signing latency | <= 180 ms (p95) including HSM signature and TSA stamping |
-| `CR-B04-005-PERF-02` | Performance | Verifiable QR code generation and COSE signing | <= 25 ms per payload |
-| `CR-B04-005-SEC-01` | Security | HSM Key Protection Standards | FIPS 140-2 Level 3 certified hardware compliance |
-| `CR-B04-005-SEC-02` | Security | Air-gapped QR signature validation | 100% cryptographic detection of altered payload bytes |
-| `CR-B04-005-REL-01` | Reliability | RFC 3161 TSA availability via dual-provider failover | >= 99.999% successful timestamp token acquisition |
-| `CR-B04-005-COMP-01` | Compliance | Signature archival longevity | Valid PAdES-LTV verification for minimum 30 years |
+| ID | Position | Classification |
+|---|---|---|
+| AD-B04-005-01 | B04 owns credential/document integrity orchestration; D03 owns cryptographic implementation and key lifecycle. | Repository fact / ADR-L5-0002 |
+| AD-B04-005-02 | Cryptographic validity does not by itself establish business validity or publication status. | Repository-derived boundary |
+| AD-B04-005-03 | Integrity evidence binds an exact artifact version and cannot silently migrate to a replacement version. | Defensible technical derivation |
+| OD-B04-005-01 | Algorithm, key size, signature/container standard, timestamp mechanism, QR payload encoding, certificate profile and HSM/KMS product remain unresolved until governed by D03/ADR or downstream design authority. | Open decision |
 
----
-
-## 9. Security, Governance & Failure Modes
-
-### 9.1 Cryptographic Attack Vectors & Mitigations
-- **Private Key Exfiltration**: Keys are stored exclusively inside cloud HSM enclosures with strict access control policies and audit trails; private key material never touches RAM or disk on application servers.
-- **Signature Replay / Identity Spoofing**: Each digital signature encapsulates the unique document SHA-256 hash and an RFC 3161 timestamp, precluding replay of signatures across altered documents.
-- **QR Code Tampering**: Any alteration of the CBOR data bytes causes immediate cryptographic signature verification failure during both online portal lookup and offline mobile scanning.
-
-### 9.2 Failure Modes & Resilience Patterns
-- **Primary TSA Outage**: If the primary RFC 3161 TSA fails to respond within 2500ms, the signing service automatically switches to the secondary qualified TSA without dropping the transaction.
-- **KMS / HSM Rate Throttling**: The HSM gateway maintains persistent connection pools and token buckets to smooth out peak batch signing bursts and prevent API throttling.
-- **OCSP Responder Degradation**: If an external CA's OCSP responder is slow, cached OCSP responses (within their authorized validity window) are utilized for DSS building.
+No local architecture decision in this document selects cryptographic algorithms, products, key lengths, rotation periods or public-credential standards.
 
 ---
 
-## 10. Traceability Verification & Test Harness Specifications
+## 7. Conformance Requirements
 
-### 10.1 PAdES Signature & Archival Validation Test Harness
-Verification is executed against the Apache PDFBox and Adobe Acrobat validation models:
-```bash
-# Execute PAdES-LTV cryptographic signature integrity test suite
-npm run test:crypto:pades -- --input=./test/fixtures/signed_degree_sample.pdf
-```
-Asserts:
-- Signature format is ETSI PAdES B-LTA.
-- Document has not been modified since signature application.
-- RFC 3161 timestamp token matches institutional clock within +/- 1000ms.
-- DSS contains complete certificate chain and valid revocation data.
+1. B04-005 shall never generate, custody, rotate, revoke or destroy cryptographic keys.
+2. Every integrity operation shall bind an exact artifact/version and an owning-domain authorization/correlation reference.
+3. Cryptographic operations shall be obtained through the approved D03 capability; no local fallback keys or algorithms are permitted.
+4. B04-005 shall not declare a credential business-valid, issued, published or acknowledged solely from cryptographic success.
+5. Verification responses shall preserve tenant/privacy/authorization boundaries and shall not disclose unrelated record data.
+6. Any material algorithm, key, certificate, HSM/KMS, signature-standard or rotation-period selection shall be governed by D03/ADR before becoming normative.
 
-### 10.2 Verifiable QR Air-Gapped Signature Harness
-```bash
-# Execute CBOR / COSE air-gapped signature and tamper test
-python test/verify_qr_cose.py --sample=./test/fixtures/sample_degree_qr.cbor
-```
-Tests:
-1. Normal payload: Asserts valid ECDSA P-256 signature and accurate field decoding.
-2. 1-bit corrupted payload: Asserts cryptographic signature verification fails with error code `SIGNATURE_MISMATCH`.
+---
+
+## 8. Traceability Summary
+
+- `L4-H-002-BH-001` — consumed as upstream publication-eligibility precondition.
+- `L4-H-002-BH-002` — consumed as upstream consent/connector/duplicate precondition.
+- `L4-H-002-BH-003` — business publication lifecycle remains upstream; B04 contributes integrity evidence only.
+- `L4-H-002-BH-004` — government acknowledgement remains outside B04; B04 cannot declare Published.
+- `ADR-L5-0002` — D03 cryptographic and key-custody ownership preserved.
