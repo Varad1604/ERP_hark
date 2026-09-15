@@ -4,7 +4,7 @@
 
 **Specification ID:** `L5-E-02-001`  
 **Architecture Level:** L5 — Solution Architecture  
-**Family:** L5-E — Reliability, Operations & Runtime Architecture  
+**Family:** L5-E — Reliability, Deployment & Operations Architecture  
 **Major Area:** L5-E-02 — Performance & Capacity Architecture  
 **Canonical Technical Responsibility:** Performance and capacity dimension model, admission/measurement boundaries and capacity-planning architecture without redefining business admission, persistence ownership or runtime deployment.  
 **Technical Architecture Owner:** L5-E-02 — Performance & Capacity Architecture  
@@ -155,8 +155,6 @@ E04 owns concrete process/container/host placement and scaling. E02 supplies loa
 ---
 
 ## 7. L4 Traceability
-
-For this validation program referenced L4 behavior is treated as locked behavioral authority despite Draft metadata.
 
 | L4 BH ID | Relationship | L5 contribution / boundary |
 |---|---|---|
