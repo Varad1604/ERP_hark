@@ -13,7 +13,7 @@
 | Technical Architecture Owner | General Rules & Formula Engine Platform Architecture |
 | Assigned Author | Varad |
 | Version | 1.0.1 |
-| Status | Draft |
+| Status | Locked |
 | Last Updated | 2026-09-15 |
 | Depends On | L5-A-07-001; L5-D-03-001; L5-E-04-001; applicable approved L4 behaviors; L5 governance/template/validation standards |
 | Referenced By | L5-A-07-002; L5-A-07-003; L5-A-07-004; L5-A-07-006 |
