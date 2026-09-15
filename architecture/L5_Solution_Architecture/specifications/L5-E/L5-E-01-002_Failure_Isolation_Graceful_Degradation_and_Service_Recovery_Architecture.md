@@ -4,7 +4,7 @@
 
 **Specification ID:** `L5-E-01-002`  
 **Architecture Level:** L5 — Solution Architecture  
-**Family:** L5-E — Reliability, Operations & Runtime Architecture  
+**Family:** L5-E — Reliability, Deployment & Operations Architecture  
 **Major Area:** L5-E-01 — Availability & Resilience Architecture  
 **Canonical Technical Responsibility:** Failure containment, declared graceful degradation and validated technical recovery/return-to-service without taking ownership of business recovery or peer-family runtime mechanisms.  
 **Technical Architecture Owner:** L5-E-01 — Availability & Resilience Architecture  
@@ -201,8 +201,6 @@ E01 declares containment/restart/failover eligibility and restoration criteria; 
 ---
 
 ## 8. L4 Traceability
-
-For this validation program referenced L4 behavior is treated as locked behavioral authority despite Draft metadata.
 
 | L4 BH ID | Relationship | L5 contribution / boundary |
 |---|---|---|
