@@ -13,7 +13,7 @@
 | Technical Architecture Owner | Examination Result Computation Technical Architecture |
 | Assigned Author | Varad |
 | Version | 1.0.1 |
-| Status | Draft |
+| Status | Locked |
 | Last Updated | 2026-09-15 |
 | Depends On | L5-A-07-001; L5-A-07-005; L5-B-02-001; L5-D-03-001; L5-A-08-001; L4-I-083; L4-I-084; L4-I-085; L4-I-086; L4-I-087; L5 governance/template/validation standards |
 | Referenced By | Examination result workflows |
