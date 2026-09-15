@@ -98,6 +98,7 @@ The next new ADR number is determined from the highest canonical allocated ADR n
 | `ADR-L5-0012` | Tamper-Evident Audit Evidence Storage, Integrity Stream, Checkpoint & Anchor Pattern | Specification | L5-D-04-003 — Tamper-Evident Audit Storage, Access & Export Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0012_Tamper_Evident_Audit_Evidence_Storage_Integrity_Stream_Checkpoint_and_Anchor_Pattern.md` | `L5-D-04-003` | 2026-09-12 | 2026-09-12 | — | — | Approved Stage-3 decision for canonical/query topology, Tenant-local versioned integrity streams, sequential linkage, checkpoint sealing and independently protected checkpoint anchoring; no product/algorithm selection. |
 | `ADR-L5-0013` | Governed Background Job, Work-Unit & Technical Retry Execution Pattern | Shared / Family | L5-A-08 — Background Processing & Job Execution Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0013_Governed_Background_Job_Work_Unit_and_Technical_Retry_Execution_Pattern.md` | `L5-A-08-001`; `L5-A-08-002`; constrains consumers including `L5-A-05-003` | 2026-09-15 | 2026-09-15 | — | — | Approved Varad Stage-3 remediation decision for product-neutral asynchronous execution, work-unit, attempt, retry and A05/A08 handoff semantics; not Locked. |
 | `ADR-L5-0014` | Repository Resilience, Health, Degradation & Recovery Pattern | Repository | L5-E-01 — Availability & Resilience Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0014_Repository_Resilience_Health_Degradation_and_Recovery_Pattern.md` | `L5-E-01-001`; `L5-E-01-002`; constrains reliability-aware L5 consumers | 2026-09-15 | 2026-09-15 | — | — | Approved Varad Stage-3 remediation decision for repository health, degradation, containment, validation and recovery semantics; not Locked. |
+| `ADR-L5-0015` | Web Client Platform, Rendering & Deployment Pattern | Specification | L5-G-01 — Client Platform Architecture | Proposed | — | `L5-G-01-002` | 2026-09-15 | — | — | — | Allocated for the immediate SutraERP web-client stack, rendering model and deployable artifact decision. |
 
 ### ADR Path
 
@@ -173,8 +174,9 @@ architecture/
 The register governs:
 
 - identifier allocation;
-- lifecycle visibility;
-- supersession linkage.
+- collision prevention;
+- lifecycle indexing;
+- supersession visibility.
 
 Individual ADR documents govern:
 
@@ -340,5 +342,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 14  
-**Next Canonical Allocation:** `ADR-L5-0015`
+**ADR IDs Currently Canonically Allocated:** 15  
+**Next Canonical Allocation:** `ADR-L5-0016`
