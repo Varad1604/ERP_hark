@@ -13,7 +13,7 @@
 | Technical Architecture Owner | Enterprise Search & Indexing Technical Architecture |
 | Assigned Author | Varad |
 | Version | 1.0.1 |
-| Status | Draft |
+| Status | Locked |
 | Last Updated | 2026-09-15 |
 | Depends On | L5-B-02-001; L5-C-02-001; L5-C-02-002; L5-D-02-001; L5-D-02-004; L5-D-03-001; L4-H-017; L4-H-018; L5 governance/template/validation standards |
 | Referenced By | L5-B-01-002 and authorized enterprise search consumers |
