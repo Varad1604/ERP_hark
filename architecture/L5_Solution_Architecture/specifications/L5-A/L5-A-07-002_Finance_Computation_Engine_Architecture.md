@@ -13,7 +13,7 @@
 | Technical Architecture Owner | Finance Computation Engine Technical Architecture |
 | Assigned Author | Varad |
 | Version | 1.0.1 |
-| Status | Draft |
+| Status | Locked |
 | Last Updated | 2026-09-15 |
 | Depends On | L5-A-07-001; L5-A-07-005; L5-B-02-001; L5-D-03-001; L5-A-08-001; L4-F-001; L4-F-005; L4-F-009; L4-F-012; L5 governance/template/validation standards |
 | Referenced By | Student billing and finance workflows requiring governed calculation |
