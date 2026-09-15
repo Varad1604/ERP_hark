@@ -725,7 +725,7 @@ Operational telemetry:
 | Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
 |---|---|---|---|---|---|---|
 | `OD-001` | Material C04-003 L4 sources `L4-H-010`, `L4-H-014`, `L4-H-015` and `L4-H-016` remain `Draft`; relations cannot be `Validated`. | Upstream / L4 | Current L4 lifecycle metadata | L4 governance / authorized architecture review | **Yes for Architecture Approved; No for this authorized Draft** | Approve applicable L4 behavior or issue explicit approval-level use authorization, then revalidate affected relations. |
-| `OD-002` | C04-001 and C04-002 are completed authoring-batch Drafts but are not yet canonical production specifications on `main`. | Dependency / C04 family | Current repository integration state | Chetan + architecture review / repository governance | No for Draft; family approval requires canonical integration/reconciliation | Integrate/review the three C04 files and perform cross-family contract/ownership validation before promotion. |
+| `OD-002` | C04-001, C04-002 and C04-003 are all present on canonical `main`; the family integration/reconciliation concern is resolved. | Resolved repository item / C04 family | Canonical repository state after family integration | Repository governance / architecture review | No | No further family-integration action is required; maintain synchronized cross-file contracts and ownership boundaries when any C04 specification changes materially. |
 | `OD-003` | Exact communication-provider vendors, provider APIs/SDKs, status-ingestion mechanism, request/response formats and provider endpoint topology are unselected. | Technology / Implementation | No approved provider technology selection | C04-003 technical owner + Lead Architect where ADR is material | No for technology-neutral Draft | Select only through governed technology/ADR process if repository-wide or material. |
 | `OD-004` | Numeric retry counts/backoff, timeout, rate-limit, provider-health thresholds and delivery SLAs are not defined canonically. | Configuration / Operations | No authoritative numeric policy/operational profile | H02 communication governance + E02/E05 / configuration owners as applicable | No for architecture | Supply through governed configuration/operational profiles; C04-003 shall not invent values. |
 | `OD-005` | Exceptional human operational reprocessing actor/authority for H02 dead-letter recovery remains undefined upstream. | Upstream authority | H015 §6 / §10 | Upstream business/governance + D02 | No for ordinary Draft execution; blocks any claim of universal manual-reprocessing authority | Preserve evidence and require a valid D02/upstream authorization decision when such recovery is requested; do not invent actor/role. |
@@ -777,7 +777,7 @@ All current relations are **Specified**, not `Validated`, while the cited L4 sou
 ### Open / Blocking Items
 
 - `OD-001` — Draft L4 sources block Architecture Approved status.
-- `OD-002` — C04 family canonical repository integration/reconciliation pending.
+- `OD-002` — C04 family canonical repository integration is resolved; no repository blocker remains.
 - `OD-003` — provider technology choices intentionally deferred.
 - `OD-004` — numeric retry/timeout/rate-limit/health/SLA values intentionally deferred.
 - `OD-005` — universal manual delivery-reprocessing authority remains upstream-defined and is not invented.
