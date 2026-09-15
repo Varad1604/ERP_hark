@@ -13,7 +13,7 @@
 | Technical Architecture Owner | Payroll Computation Engine Technical Architecture |
 | Assigned Author | Varad |
 | Version | 1.0.1 |
-| Status | Draft |
+| Status | Locked |
 | Last Updated | 2026-09-15 |
 | Depends On | L5-A-07-001; L5-A-07-005; L5-A-08-001; L5-B-02-001; L5-D-03-001; L4-E-053; L4-E-055; L4-E-056; L5 governance/template/validation standards |
 | Referenced By | Payroll and downstream Finance workflows |
