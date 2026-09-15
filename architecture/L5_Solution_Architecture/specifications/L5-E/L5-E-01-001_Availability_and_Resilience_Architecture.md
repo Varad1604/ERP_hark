@@ -4,7 +4,7 @@
 
 **Specification ID:** `L5-E-01-001`  
 **Architecture Level:** L5 — Solution Architecture  
-**Family:** L5-E — Reliability, Operations & Runtime Architecture  
+**Family:** L5-E — Reliability, Deployment & Operations Architecture  
 **Major Area:** L5-E-01 — Availability & Resilience Architecture  
 **Canonical Technical Responsibility:** Repository-wide technical availability model, resilience principles, scoped health states, redundancy expectations and restoration gates without redefining business lifecycle or deployment ownership.  
 **Technical Architecture Owner:** L5-E-01 — Availability & Resilience Architecture  
@@ -145,8 +145,6 @@ E01 supplies resilience requirements to E04: isolation need, restart/failover el
 ---
 
 ## 7. L4 Traceability
-
-For this validation program referenced L4 behavior is treated as locked behavioral authority despite Draft metadata.
 
 | L4 BH ID | Relationship | L5 contribution / boundary |
 |---|---|---|
