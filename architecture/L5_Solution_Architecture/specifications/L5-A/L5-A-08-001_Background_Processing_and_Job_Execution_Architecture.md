@@ -1,423 +1,317 @@
-﻿# L5-A-08-001 — Background Processing & Job Execution Architecture
+# L5-A-08-001 — Background Processing & Job Execution Architecture
 
 ## 1. Specification Metadata
 
-| Field | Value |
-|---|---|
-| Specification ID | L5-A-08-001 |
-| Specification Title | Background Processing & Job Execution Architecture |
-| Architecture Level | L5 — Solution Architecture |
-| Family | L5-A — Core Platform & Application Architecture |
-| Major Area | L5-A-08 — Background Processing & Job Execution Architecture |
-| Version | 1.0.0 |
-| Status | Draft |
-| Author | Varad |
-| Primary Responsibility | Trusted background/asynchronous execution, job identity and execution governance |
+**Specification ID:** `L5-A-08-001`  
+**Architecture Level:** L5 — Solution Architecture  
+**Family:** L5-A — Core Platform & Application Architecture  
+**Major Area:** L5-A-08 — Background Processing & Job Execution Architecture  
+**Canonical Technical Responsibility:** Trusted background/asynchronous execution, durable job identity, execution-context preservation and governed technical job lifecycle without redefining business ownership.  
+**Technical Architecture Owner:** L5-A-08 — Background Processing & Job Execution Architecture  
+**Assigned Author:** Varad  
+**Version:** `1.0.1`  
+**Status:** `Draft`  
+**Last Updated:** `2026-09-15`  
+**Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-A-01-001`; `L5-C-02-001`; `L5-C-02-002`; `L5-C-02-003`; `L5-E-04-001`; `L5-B-02-001`; `L5-B-02-003`; `L5-D-02-*`; `L5-D-04-*`; `L4-A-015`; `L4-A-016`.  
+**Referenced By:** `L5-A-08-002`; workflow/orchestration and other L5 consumers requiring generic background execution.  
+**Applicable ADRs:** `ADR-L5-0003`, `ADR-L5-0005`, `ADR-L5-0006`, `ADR-L5-0007`, `ADR-L5-0009`, `ADR-L5-0010`, `ADR-L5-0011`, `ADR-L5-0013`.  
 
+---
 
 ## 2. Purpose, Scope & Non-Goals
 
 ### 2.1 Purpose
 
-This specification defines the reusable solution architecture for executing approved work outside the initiating synchronous interaction while preserving execution identity, scope, authorization context, business-boundary ownership and observable execution state.
+This specification defines the reusable L5 technical boundary for controlled background/asynchronous execution. It establishes how approved work becomes a durable technical Job, how authoritative execution context is bound, how one execution attempt is exclusively claimed, how technical lifecycle state is persisted, and how completion/failure evidence is handed to canonical persistence, event-delivery and observability boundaries.
 
-The architecture provides a controlled technical execution boundary for background and asynchronous work. It is intended to ensure that deferred execution remains attributable to its initiating context, executes only within an admitted scope, and produces sufficient technical evidence for outcome assessment and operational diagnosis.
-
-The canonical boundary for this specification is: it provides the reusable technical architecture for controlled background job admission, identity, execution context, lifecycle observation and execution governance. It does not own business workflow decisions, business retry/recovery policy, canonical business events, or business outcomes. These remain with the upstream owning architecture.
+It does not create a second business authority. The originating domain or workflow retains ownership of business validity, business lifecycle, business retry/recovery and business outcome.
 
 ### 2.2 In Scope
 
-- Admission of background work for execution.
-- Creation and preservation of technical job identity.
-- Association of a job with its initiating context and execution scope.
-- Preservation of applicable Tenant, Institution and other authoritative execution context.
-- Controlled transition through technical job execution states.
-- Validation of execution eligibility before work begins.
-- Isolation of one background execution from unrelated work.
-- Controlled execution start, completion, failure and termination handling.
-- Technical execution evidence and provenance.
-- Detection and handling of invalid, stale or incomplete execution context.
-- Safe hand-off to domain-owned business processing.
-- Operationally observable execution status and outcome.
-- Boundary integration with workflow/orchestration, security/trust, persistence and observability architectures where applicable.
+- governed background-work admission;
+- stable Job identity and immutable source/context references;
+- durable Job lifecycle state;
+- execution eligibility and non-human authority validation;
+- exclusive execution claim and concurrency protection;
+- execution Attempt identity;
+- technical completion/failure/termination recording;
+- owner-local state-to-publication/evidence handoff;
+- restart/recovery of non-terminal technical execution;
+- A05-to-A08 generic execution contract;
+- integration with C02, B02, D02/D04 and E04.
 
 ### 2.3 Non-Goals
 
-This specification does not define:
+- workflow-specific timers, wait conditions, Workflow Instance state or workflow recovery — A05;
+- bulk partitioning, scheduled release and bounded retry policy — A08-002;
+- business retry/compensation/recovery;
+- canonical business-event semantics;
+- cross-owner persistence writes;
+- runtime packaging/deployment topology — E04;
+- worker/queue/scheduler/database/vendor selection;
+- L6 UI behavior.
 
-- Business workflow rules or business approval decisions.
-- Canonical business event ownership or event semantics.
-- Business retry, compensation or recovery policy.
-- Long-running, scheduled or bulk execution policy owned by L5-A-08-002.
-- Domain-specific business calculations or rules engines.
-- API contracts, payload schemas or communication protocols.
-- Database schemas or physical persistence implementation.
-- Infrastructure or technology/product selection.
-- User-interface behavior.
-- IAM policy or business authorization ownership.
+---
 
-## 3. Upstream Applicability, Constraints & Assumptions
+## 3. Authoritative Constraints & Assumptions
 
-### 3.1 Upstream Constraints
+### 3.1 Ownership Constraints
 
-The architecture shall preserve all applicable upstream L1–L4 ownership, lifecycle, event, authority and business-outcome decisions. Background execution is a technical mechanism for realizing approved behavior; it shall not create a second business authority.
+1. Background execution shall not change canonical business ownership.
+2. A Job may execute an operation only through the owning domain/workflow contract.
+3. A08 shall not mutate Workflow Instance state. Where A05 is the caller, A05 owns workflow-specific scheduling semantics and consumes only A08 technical status/outcome.
+4. Cross-owner direct database writes are prohibited.
+5. Non-human worker authority shall consume the canonical D02/D01 binding model; no Person/Role Assignment is fabricated.
+6. C02 owns durable event delivery, acknowledgement, ordering and recovery after A08 establishes any required owner-local publication intent.
+7. E04 owns physical runtime placement and deployment realization.
 
-The candidate corpus explicitly assigns L5-A-08-001 responsibility for trusted background/asynchronous execution, job identity and execution governance. L5-A-08-002 separately owns long-running, scheduled and technically retryable work execution.
+### 3.2 Stage-3 Dependency Gate
 
-### 3.2 Context Preservation
+This specification explicitly consumes the Stage-3 minimum gate:
 
-A background job shall retain the authoritative execution context required by its parent behavior. Where context is absent, contradictory, expired or otherwise invalid, execution shall not silently substitute a different business scope or authority.
+| Required dependency | Consumed responsibility |
+|---|---|
+| `L5-A-01-001` | application/execution boundary model and selective isolation constraints |
+| `L5-C-02-*` | durable technical-event/message delivery and compatibility after owner handoff |
+| `L5-E-04-001` | provider-neutral/on-premises-primary-capable runtime packaging and deployment realization |
 
-### 3.3 L4 Applicability and Status
+Additional B02/D02/D04 dependencies govern persistence, concurrency, execution authority and evidence.
 
-The broader L4 corpus scan identified two generic Workflow Engine specifications with direct architectural relevance to this reusable execution boundary:
+### 3.3 Assumptions
 
-- `L4-A-015` — Workflow Initiation to Completed Orchestrated Execution.
-- `L4-A-016` — Workflow Execution Failure to Controlled Recovery Outcome.
+**AS-001:** The caller supplies a stable source-work reference and enough authoritative scope to validate execution.  
+**AS-002:** The caller remains responsible for business validity and can revoke/cancel future technical execution through an explicit contract.  
+**AS-003:** Where business side effects may be repeated after infrastructure failure, the owning operation supplies an idempotency or duplicate-safety contract; A08 does not infer one.
 
-Both are currently `v1.0.0 / Draft` in the current repository branch. Therefore the mappings below are **current-baseline traceability candidates**, not claims that the upstream L4 wording is finally locked. No upstream L4 content is changed by this specification.
-
-Domain-specific L4 specifications that merely mention execution, workers, scheduling, batching or retries are not automatically mapped to L5-A-08-001. Such mappings require a distinct reusable technical obligation; domain execution semantics remain with their owning L4/L5 architecture. Long-running, scheduled and technically retryable execution is separately assigned to L5-A-08-002.
+---
 
 ## 4. Technical Architecture
 
-### 4.1 Architectural Model
+### 4.1 Logical Components
 
-The architecture establishes the following technical flow:
-
-```text
-Approved Work Request
-        ↓
-Job Admission
-        ↓
-Job Identity & Context Binding
-        ↓
-Execution Eligibility Validation
-        ↓
-Execution Isolation / Resource Admission
-        ↓
-Background Execution
-        ↓
-Outcome Capture
-        ↓
-Completion / Failure / Termination
-        ↓
-Technical Evidence & Observability
-```
-
-The flow is technical. The business meaning of the work remains owned by the originating business capability and its governing L1–L4 architecture.
-
-### 4.2 Job Admission
-
-A background job shall enter execution only through a controlled admission boundary.
-
-Admission shall establish, at minimum:
-
-- a unique technical job identity;
-- initiating context;
-- execution scope;
-- intended work classification sufficient for technical governance;
-- required execution context;
-- admission time or equivalent technical ordering evidence;
-- current admission status.
-
-The admission mechanism shall reject work that cannot be associated with a valid initiating context or that fails required technical admission checks.
-
-### 4.3 Job Identity
-
-Every admitted background execution shall have a stable technical job identity that remains associated with the execution for its complete technical lifecycle.
-
-Job identity shall support:
-
-- attribution of execution activity;
-- correlation of related technical evidence;
-- distinction between separate executions of otherwise similar work;
-- diagnosis of failure or incomplete execution;
-- controlled continuation or termination where permitted by the owning architecture.
-
-A job identity shall not be treated as a business entity identity unless explicitly established by an upstream business architecture.
-
-### 4.4 Execution Context Binding
-
-The job shall bind the execution context required to preserve the authority and scope of the originating behavior.
-
-Context binding shall prevent:
-
-- silent Tenant substitution;
-- silent Institution substitution;
-- loss of required scope information;
-- execution under an unrelated initiating context;
-- reuse of stale or invalid authority context.
-
-Where context cannot be validated, the job shall remain non-executable or enter a controlled failure state rather than inventing replacement context.
-
-### 4.5 Execution Eligibility
-
-Before execution begins, the technical execution boundary shall validate that the job is eligible to run.
-
-Eligibility validation shall consider applicable technical conditions such as:
-
-- valid job identity;
-- valid execution context;
-- required authorization context being available from the authoritative security boundary;
-- required inputs being available;
-- job not already terminally completed or terminated;
-- execution not conflicting with a technical exclusivity constraint;
-- execution state being compatible with start.
-
-These checks shall not replace or reinterpret business eligibility decisions.
-
-### 4.6 Execution Isolation
-
-Background executions shall be technically isolated sufficiently to prevent one execution from corrupting the execution context or evidence of another.
-
-Isolation shall preserve:
-
-- job identity;
-- execution context;
-- technical evidence boundaries;
-- failure containment;
-- resource governance;
-- separation between unrelated executions.
-
-The architecture shall not prescribe a particular infrastructure mechanism for achieving isolation.
-
-### 4.6a Concurrency Exclusivity
-
-Where a given admitted job identity must not have more than one active running instance simultaneously, the execution boundary shall enforce identity-level execution exclusivity at the admission and start boundary.
-
-The architecture shall prevent concurrent duplicate activation of the same admitted job identity where technical coordination is required. The mechanism (e.g., distributed lock, state-check gate) is an implementation decision; the architectural requirement is that duplicate simultaneous execution of the same admitted job identity is not silently permitted.
-
-### 4.6b Capacity and Resource Admission
-
-Before execution begins, the execution boundary shall assess whether sufficient execution capacity (e.g., worker availability, resource quota) is available for the admitted job.
-
-When capacity is insufficient, the architecture shall apply one of: defer execution (retain in queue), reject admission with an explicit technical status, or return the work to an eligible retry boundary. The architecture shall not silently drop admitted work or fabricate a successful execution completion when capacity is unavailable.
-
-The specific capacity admission strategy (queue depth, worker pool limit, priority-weighted admission) is an implementation or ADR decision. The architectural requirement is that capacity exhaustion results in an explicitly governed technical outcome, not silent failure.
-
-### 4.7 Technical Job Lifecycle
-
-The technical execution lifecycle shall distinguish at least these conceptual conditions where applicable:
-
-```text
-Admitted → Ready → Running → Completed
-                     ├→ Failed
-                     └→ Terminated
-```
-
-These are technical execution conditions, not business lifecycle states. They shall not replace, reinterpret or duplicate any upstream business lifecycle.
-
-A terminal technical state shall prevent accidental re-entry into the same execution as though it had never completed or terminated.
-
-### 4.8 Execution Start
-
-Starting execution shall atomically preserve the association between the job identity, execution context and active execution instance at the architectural level.
-
-A job shall not be represented as successfully running unless the execution boundary has established the required technical execution state.
-
-### 4.9 Completion
-
-On successful technical completion, the execution shall record sufficient evidence to establish that the admitted work reached its technical completion condition.
-
-Technical completion does not imply business approval, publication, posting, activation or any other business outcome unless the owning upstream architecture explicitly defines that relationship.
-
-### 4.10 Failure and Termination
-
-A failed execution shall preserve the distinction between:
-
-- failure before execution;
-- failure during execution;
-- controlled termination;
-- incomplete execution;
-- successful completion.
-
-Failure handling shall preserve the job identity and known execution evidence. The architecture shall not silently convert a failed execution into a successful business outcome.
-
-Business recovery or retry decisions remain outside this specification unless separately governed by the applicable architecture.
-
-### 4.11 Technical Evidence and Observability
-
-The execution boundary shall make the following technically observable where applicable:
-
-- job identity;
-- initiating context;
-- execution scope;
-- admission status;
-- execution start;
-- execution completion;
-- execution failure;
-- termination;
-- relevant technical cause or failure classification;
-- correlation to related technical evidence.
-
-Evidence shall preserve source context and shall not fabricate causality where the technical evidence cannot establish it.
-
-### 4.12 Security and Trust Boundary
-
-Background execution shall execute within an explicitly controlled trust boundary.
-
-The execution architecture shall:
-
-- preserve authenticated technical and initiating context as applicable;
-- prevent execution from acquiring broader authority merely because work is asynchronous;
-- reject execution when required trust context cannot be established;
-- maintain separation between execution governance and authorization policy;
-- integrate with the canonical security, cryptography, key, secret and trust-segmentation architectures rather than duplicating them.
-
-No secret, credential, key or authorization policy ownership is established by this specification.
-
-## 5. Dependencies / Integration
-
-### 5.1 Technical Dependencies
-
-Potential architectural dependencies include:
-
-- L5-A-01 — Application & Platform Architecture;
-- L5-A-03 — Module, Dependency & Technical Boundary Architecture;
-- L5-A-04 — Tenant & Institutional Isolation Architecture;
-- L5-A-05 — Workflow & Orchestration Architecture;
-- L5-D-03 — Security, Cryptography & Trust Architecture;
-- L5-D-04 — Audit & Evidence Architecture;
-- L5-B-02 — Database & Persistence Architecture;
-- L5-E reliability and operations architectures where execution recovery or runtime resilience is applicable.
-
-These are integration boundaries, not ownership transfers.
-
-### 5.2 Relationship to L5-A-08-002
-
-L5-A-08-001 owns the common trusted background job execution boundary, job identity and execution governance.
-
-L5-A-08-002 owns additional architecture for long-running, scheduled and technically retryable work. It shall consume the common execution boundary rather than redefine job identity or basic execution governance.
-
-Business retry/recovery policy remains outside both specifications unless explicitly assigned by upstream architecture.
-
-## 6. Technical Behavior / Failure Concerns
-
-### TB-001 — Controlled Admission
-Background work shall not execute unless admitted through the governed job boundary.
-
-### TB-002 — Stable Job Identity
-Each admitted execution shall remain attributable to one technical job identity throughout its execution lifecycle.
-
-### TB-003 — Context Preservation
-Required execution context shall remain associated with the job and shall not be silently replaced.
-
-### TB-004 — Invalid Context Prevention
-Execution shall be prevented when required context is invalid, contradictory, stale or unavailable.
-
-### TB-005 — State-Constrained Execution
-Execution shall begin only from a technically executable state and shall not re-enter a terminal execution as a new active execution without an explicitly governed new job identity.
-
-### TB-006 — Isolation
-A failure or invalid condition in one background execution shall not silently alter the identity, scope or evidence of an unrelated execution.
-
-### TB-007 — Failure Transparency
-Failed or terminated execution shall remain distinguishable from successful technical completion.
-
-### TB-008 — Evidence Preservation
-Known technical execution facts shall remain observable after failure, termination or incomplete execution.
-
-### TB-009 — Authority Boundary
-Asynchronous execution shall not expand business authority or create a competing business decision authority.
-
-### TB-010 — Business Outcome Boundary
-Technical job completion shall not be represented as a business outcome unless that outcome is explicitly governed upstream.
-
-## 7. Security / Trust / Evidence
-
-### 7.1 Trust Properties
-
-The architecture shall preserve least-authority execution context, scope isolation and trust-boundary enforcement appropriate to the work being executed.
-
-### 7.2 Evidence Properties
-
-Technical evidence shall support attribution, execution chronology, failure diagnosis and correlation without redefining the business meaning of the underlying work.
-
-### 7.3 Provenance Boundary
-
-Where audit/provenance architecture is used, job identity and execution context shall be available for technical provenance. Business event semantics and canonical publication remain with the owning business domain.
-
-## 8. Conformance
-
-An implementation conforms to this architecture only if it can demonstrate, at minimum:
-
-- C-001: Every background execution has a controlled admission point.
-- C-002: Every admitted execution has a stable technical job identity.
-- C-003: Required execution context is bound before execution.
-- C-004: Invalid or incomplete required context prevents execution or causes controlled failure.
-- C-005: Technical execution state is observable and distinguishable from upstream business lifecycle state.
-- C-006: Terminal execution cannot silently re-enter active execution.
-- C-007: Execution failures preserve attributable technical evidence.
-- C-008: One execution cannot silently alter another execution's context or identity.
-- C-009: Asynchronous execution cannot independently expand business authority.
-- C-010: Technical completion is not silently equated with business completion.
-- C-011: The architecture integrates with canonical security and audit/evidence boundaries rather than duplicating their ownership.
-- C-012: Exact applicable L4 behavioral obligations are traceable at atomic BH level before final approval.
-
-## 9. Traceability
-
-### 9.1 Upstream Traceability
-
-| Upstream Level | Traceability Status |
+| Component | Responsibility |
 |---|---|
-| L1 Business Domain Architecture | Boundary preserved; no business ownership redefined |
-| L2 Domain Workflow Architecture | Business workflow authority preserved |
-| L3 Business Scenario Architecture | L3-A-015 and L3-A-016 applicability established through their current L4 parents; no L3 outcome redefined |
-| L4 System Behavior Specification | Atomic mappings recorded below; upstream L4 status remains Draft |
+| Job Admission Controller | validates request shape, scope, source reference and permitted operation class |
+| Job State Store | durable owner-local Job and Attempt state under B02 constraints |
+| Eligibility Gate | validates lifecycle, authority/context, cancellation and runtime eligibility before start |
+| Execution Claim Coordinator | establishes exclusive claim/version before one Attempt becomes Running |
+| Background Executor | invokes only the declared owner contract using bound execution context |
+| Outcome Recorder | persists technical success/failure/termination and attempt evidence |
+| Publication/Evidence Handoff | creates governed downstream intent/evidence references without redefining business events |
 
-### 9.2 Atomic L4-to-L5 Traceability
+These are logical responsibilities, not mandated deployable services.
 
-| L4 BH ID | L4 Version | Relationship | L5 Specification ID | L5 Version | Rationale / Boundary |
-|---|---|---|---|---|---|
-| L4-A-015-BH-001 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Preserves valid execution context and controlled technical admission; workflow initiation authority remains L4-A-015. |
-| L4-A-015-BH-002 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Provides technical job identity and controlled execution-instance admission; Workflow Instance semantics remain L4-A-015. |
-| L4-A-015-BH-006 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Provides controlled deferred execution/resumption boundary; the source-defined wait condition remains Workflow Engine owned. |
-| L4-A-015-BH-007 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Provides execution identity/context continuity for governed suspension/resumption; authorization and workflow state remain upstream. |
-| L4-A-015-BH-010 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Preserves failed technical execution identity/evidence and prevents silent technical success; WorkflowFailed semantics and recovery authority remain upstream. |
-| L4-A-015-BH-011 | v1.0.0 Draft | Direct | L5-A-08-001 | v1.0.0 | Provides attributable, correlated technical execution evidence, including job identity, context, execution state and failure/termination evidence. |
-| L4-A-016-BH-003 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Preserves Tenant, execution identity/version/correlation and execution context across technical execution boundaries; business recovery semantics remain L4-A-016 owned. |
-| L4-A-016-BH-010 | v1.0.0 Draft | Supporting | L5-A-08-001 | v1.0.0 | Preserves attributable technical execution evidence through failure/recovery boundaries; recovery authorization and business outcome remain L4-A-016 owned. |
+### 4.2 Canonical Job Record
 
-### 9.3 Applicability Exclusions
+A durable Job shall include at minimum:
 
-The following are intentionally not mapped to L5-A-08-001 merely because their L4 wording contains execution, retry, scheduling or worker terminology:
+- `job_id` — stable technical identity;
+- `source_work_ref` — caller-owned source identity/reference;
+- `tenant_id` and Institution/scope reference where applicable;
+- correlation/causation references;
+- allowed technical operation class;
+- non-human authority binding reference;
+- admission timestamp/order evidence;
+- lifecycle status;
+- cancellation/revocation status;
+- optimistic version or equivalent concurrency token;
+- latest technical outcome/evidence reference.
 
-- Domain-specific execution behaviors whose technical realization is owned by another frozen L5 specification.
-- L4-A-016 retry/recovery mechanics as a business recovery responsibility; L4 explicitly defers technical retry to downstream architecture, while L5-A-08-002 owns technically retryable work execution.
-- Scheduling, bulk and long-running execution responsibilities assigned to L5-A-08-002.
-- Canonical business event publication or business outcome ownership, which remain with their upstream owners.
+Tenant/Institution/source-work identity shall not be silently rewritten after admission.
 
-The following L4-A-015 behavioral obligations are **explicitly excluded** from L5-A-08-001 because they govern Workflow Engine orchestration responsibilities, not background execution platform responsibilities:
+### 4.3 Technical Lifecycle
 
-- **L4-A-015-BH-003** (publication of `WorkflowStarted`): Canonical event publication belongs to the Workflow Engine; background execution provides technical evidence but does not own workflow event semantics or publisher identity.
-- **L4-A-015-BH-004** (coordinate only steps/routing defined by the Workflow Version): Orchestration coordination logic is a Workflow Engine responsibility; background execution is a technical substrate, not the orchestration policy owner.
-- **L4-A-015-BH-005** (obtain authoritative result from owning domain): Domain-result authority remains with the owning domain and Workflow Engine; L5-A-08-001 provides execution identity and evidence, not domain result ownership.
-- **L4-A-015-BH-008** (`Completed` transition and `WorkflowCompleted` publication): Workflow lifecycle state transitions and canonical event publication are Workflow Engine responsibilities; technical completion evidence is provided by A08-001 but does not replace or duplicate lifecycle authority.
-- **L4-A-015-BH-009** (`Cancelled` transition and `WorkflowCancelled` publication): Same rationale as BH-008; cancellation authority and canonical event publication remain with the Workflow Engine.
+Canonical conceptual lifecycle:
 
-### 9.4 Upstream Status Qualification
+```text
+Admitted -> Ready -> Running -> Completed
+                    |          -> Failed
+                    |          -> Terminated
+                    -> Terminated
+```
 
-The current repository branch records `L4-A-015 v1.0.0 Draft` and `L4-A-016 v1.0.0 Draft`. The atomic relations above therefore establish **traceability to the current L4 baseline**, but they do not promote or lock either L4 specification. If either L4 specification is subsequently approved or changed, the affected atomic relations shall be revalidated against the approved/current version before L5 promotion.
+`Completed`, `Failed` and `Terminated` are technical states. They do not imply business completion, business failure or compensation.
 
-### 9.5 Peer L5 Traceability
+Allowed transitions shall be checked against the durable current state/version. A terminal Job cannot silently re-enter Running. New work requires an explicit new Job or an A08-002-governed new Attempt when retry semantics apply.
 
-| Peer Specification | Relationship | Status |
+### 4.4 Admission Transaction
+
+Admission shall atomically establish the Job identity, immutable source/context binding and initial durable state. Admission is rejected when:
+
+- required Tenant/Institution/source scope cannot be resolved;
+- requested operation is not allowed for the supplied technical principal/context;
+- caller source reference is invalid or structurally incomplete;
+- a caller-required uniqueness key conflicts with an already-admitted equivalent Job;
+- mandatory persistence is unavailable and durable admission cannot be proven.
+
+No request is considered admitted before durable state exists.
+
+### 4.5 Eligibility Gate
+
+Before every start/restart, validate:
+
+1. Job is non-terminal and start-compatible;
+2. required execution context remains valid;
+3. non-human authority binding remains permitted;
+4. cancellation/revocation has not been asserted;
+5. prerequisites declared by the caller are satisfied;
+6. runtime capacity/health permits safe execution;
+7. no conflicting active claim exists.
+
+Failure of the gate leaves the Job non-running or moves it to an explicit technical failure/termination state as appropriate; it never fabricates success.
+
+### 4.6 Exclusive Execution Claim
+
+The transition to Running shall use an owner-local atomic compare-and-set/versioned update, lease/claim record or semantically equivalent concurrency mechanism. The invariant is:
+
+```text
+For an exclusive Job identity, at most one valid active Attempt may own execution authority at a time.
+```
+
+A stale claim holder shall not commit a newer technical state after its claim/version becomes invalid.
+
+### 4.7 Attempt Identity
+
+Every concrete run has an `attempt_id` associated with one `job_id`. A08-001 requires at least one Attempt for execution; A08-002 extends this to multiple bounded attempts.
+
+Attempt evidence records start, end, executor identity, claim/version, technical failure class and outcome reference. Attempt identity is never a business-request identity.
+
+### 4.8 Owner-Contract Invocation
+
+The executor invokes only a declared owner contract. Inputs include bound Job context and stable idempotency/source references where applicable. The owner remains responsible for its transaction, authoritative state and business result.
+
+A08 shall not read/write another owner’s authoritative tables directly.
+
+### 4.9 Durable Outcome and Publication Handoff
+
+A Job shall not expose `Completed`, `Failed` or `Terminated` as authoritative until that technical state and required evidence references are durably recorded.
+
+Where a technical status signal/event must be delivered:
+
+1. A08 records the state change and publication intent using the applicable B02/ADR-0007 owner-local handoff pattern;
+2. C02 owns durable delivery, subscription, acknowledgement, ordering and recovery;
+3. the signal remains a technical execution signal unless an upstream owner explicitly defines a canonical business event.
+
+### 4.10 Crash / Restart Recovery
+
+On process/host restart, the recovery controller examines durable non-terminal Jobs/Attempts. A previously Running Attempt whose claim is expired/invalid is not assumed successful. The system determines a technical recovery disposition from durable evidence:
+
+- re-establish safe execution eligibility;
+- mark technical failure/unresolved state; or
+- hand off to A08-002 retry rules where the work is retry-capable.
+
+Unknown business side-effect status must not be converted to automatic success or retry without the owner’s duplicate-safety contract.
+
+### 4.11 Security & Trust
+
+- worker execution uses least-authority non-human principal binding;
+- Tenant/Institution context is mandatory where the source work is scoped;
+- secrets/keys remain D03-owned;
+- executor logs/evidence must not expose protected values beyond D03/D04 policy;
+- cancellation, manual requeue/recovery and privileged execution operations require explicit authorization.
+
+### 4.12 Runtime Boundary
+
+A08 defines logical executor isolation, concurrency and restart requirements. E04 decides whether those logical responsibilities are co-located, separate processes, containers or hosts. The realization must remain on-premises-primary capable and provider-neutral unless separately governed.
+
+---
+
+## 5. Integration Contracts
+
+### 5.1 A05 -> A08 Generic Execution Request
+
+Minimum logical fields:
+
+- caller/source workflow reference;
+- stable requested-work identity;
+- Tenant/Institution context;
+- correlation/causation context;
+- allowed technical operation class;
+- earliest technical release condition if one exists;
+- cancellation/revocation reference;
+- authority-binding reference;
+- idempotency/duplicate-safety reference where required.
+
+A08 returns `job_id`, technical status and outcome/evidence references. A05 alone changes Workflow Instance state.
+
+### 5.2 A08 -> B02
+
+A08 owns its Job/Attempt records while obeying B02 persistence topology, transaction ownership and optimistic concurrency. No cross-owner database mutation is permitted.
+
+### 5.3 A08 -> C02
+
+C02 begins after A08 has a durable publication intent. A08 consumes C02 delivery semantics; it does not create a separate delivery subsystem.
+
+### 5.4 A08 -> E04
+
+E04 realizes deployment, scaling, restart and placement. A08 supplies logical requirements only.
+
+---
+
+## 6. Technical Failure Model
+
+| Failure | Required behavior |
+|---|---|
+| invalid context/authority | reject or fail closed before owner invocation |
+| concurrent duplicate claim | one claimant wins; stale claimant cannot commit |
+| executor crash before owner invocation | recover from durable state; never mark Completed |
+| crash during/after owner side effect | use owner evidence/idempotency contract; unresolved state is explicit |
+| persistence unavailable | no new durable admission/start that cannot be proven |
+| C02 unavailable after durable publication intent | Job state remains durable; C02 recovery owns delivery |
+| capacity unavailable | remain Ready/deferred or explicit technical failure; never silently drop |
+
+---
+
+## 7. Conformance Requirements
+
+| ID | Requirement |
+|---|---|
+| CR-001 | Every admitted background execution has a durable stable `job_id`. |
+| CR-002 | Source work, Tenant/Institution scope, correlation and authority binding are recorded before execution. |
+| CR-003 | A Job cannot become Running without an atomic exclusive claim/version check. |
+| CR-004 | A stale or competing executor cannot commit a newer technical lifecycle state. |
+| CR-005 | Terminal Job state is durably recorded before being exposed as authoritative. |
+| CR-006 | Technical completion is not equated with business completion unless the owner contract explicitly defines that relation. |
+| CR-007 | A08 never mutates Workflow Instance state or another owner’s authoritative persistence directly. |
+| CR-008 | Worker authority consumes the canonical non-human principal binding architecture. |
+| CR-009 | Required publication uses owner-local durable handoff then C02 delivery semantics. |
+| CR-010 | Crash/restart recovery uses durable Job/Attempt evidence and never assumes success from process disappearance. |
+| CR-011 | Runtime realization remains E04-owned and provider-neutral/on-premises-primary capable. |
+| CR-012 | Implementation evidence can reconstruct Job, Attempt, context, state transitions, claim ownership and terminal disposition. |
+
+---
+
+## 8. L4 Traceability
+
+For this validation program the referenced canonical L4 behaviors are treated as locked behavioral authority despite repository metadata still showing Draft.
+
+| L4 BH ID | Relationship | L5 contribution / ownership boundary |
 |---|---|---|
-| L5-A-08-002 | Extends common execution architecture for long-running, scheduled and technically retryable work | Applicable boundary established; exact dependency validation pending |
-| L5-A-05 | Workflow/orchestration may initiate or coordinate background work | Dependency boundary established; exact usage pending |
-| L5-D-04 | Provides audit/provenance evidence integration | Dependency boundary established; exact usage pending |
-| L5-E reliability/operations architecture | Provides runtime resilience and operational controls where applicable | Exact dependency set pending |
+| `L4-A-015-BH-001` | Supporting | A08 preserves validated execution context/admission; workflow-initiation authority remains A05/L4. |
+| `L4-A-015-BH-006` | Supporting | A08 can execute deferred technical work only after the A05-owned wait/release condition is satisfied. |
+| `L4-A-015-BH-007` | Supporting | Job context/identity survives technical suspension/resumption; workflow state/version remains A05-owned. |
+| `L4-A-015-BH-010` | Supporting | technical failure remains explicit and cannot be represented as workflow success. |
+| `L4-A-015-BH-011` | Direct | Job/Attempt evidence supplies attributable technical execution evidence. |
+| `L4-A-016-BH-003` | Supporting | Tenant, correlation and execution context are preserved across technical failure/recovery boundaries. |
+| `L4-A-016-BH-010` | Direct | execution/recovery evidence remains attributable and reconstructable. |
 
-## 10. Open Issues / Deferred Design
+No claim is made that A08 owns the business/workflow behavior represented by these BHs.
 
-- **OD-001:** Revalidate the atomic mappings if L4-A-015 or L4-A-016 changes before L5 promotion.
-- **OD-002:** Validate all atomic L4-to-L5 relations against the subsequently approved/current L4 corpus before promotion.
-- **OD-003:** Validate exact peer dependency relationships after the relevant L5 specifications are available.
-- **OD-004:** Confirm whether any applicable upstream behaviors require additional technical execution states beyond the baseline states defined here.
-- **OD-005:** Confirm operational recovery boundaries with L5-E without transferring business recovery policy into this specification.
-- **OD-006:** Confirm persistence and evidence realization boundaries with L5-B-02 and L5-D-04.
+---
 
-### Promotion Gate
+## 9. Architecture Decisions
 
-This specification is a **Draft** artifact. It shall not be treated as final L5 architecture authority or included in an L5 corpus lock until exact upstream applicability, atomic L4 traceability, dependency validation and independent review are completed.
+**AD-001 — Governed Background Execution Pattern:** `ADR-L5-0013` is the canonical shared decision for Job/Unit/Attempt identity, durable execution state, technical retry boundary and A05/A08 handoff.  
+**AD-002 — Owner-Local Persistence & Concurrency:** A08 consumes `ADR-L5-0005`, `0006` and `0007`; it does not invent alternate persistence ownership or cross-owner transactions.  
+**AD-003 — Non-Human Authority:** A08 consumes `ADR-L5-0009`.  
+**AD-004 — Durable Delivery:** required technical signals consume `ADR-L5-0010`/`0011` after durable handoff.
+
+---
+
+## 10. Open / Deferred Design
+
+**OD-001:** Concrete Job/Attempt storage schema and indexes are L6/implementation design under the invariants above.  
+**OD-002:** Numeric lease duration, worker limits and timeout values are governed configuration/operational profile, not fixed by this specification.  
+**OD-003:** Product selection for workers/queues/schedulers remains separate technology/ADR governance if material.  
+
+No open item blocks the ownership, lifecycle, persistence, claim, retry-boundary or dependency architecture defined here.
