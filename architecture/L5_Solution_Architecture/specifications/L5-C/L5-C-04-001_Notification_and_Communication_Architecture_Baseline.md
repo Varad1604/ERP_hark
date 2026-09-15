@@ -513,7 +513,7 @@ D04 owns enterprise evidence capture/storage/integrity. E05 owns operational tel
 | Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
 |---|---|---|---|---|---|---|
 | `OD-001` | Material Notification L4 sources `L4-H-010` through `L4-H-016` remain `Draft`; relations used here cannot be `Validated`. | Upstream / L4 | Current L4 lifecycle status | L4 governance / authorized architecture review | **Yes for Architecture Approved; No for this authorized Draft** | Approve applicable L4 behavior or issue explicit governance authorization for approval-level use, then revalidate affected C04 relations. |
-| `OD-002` | C04-002 and C04-003 production specifications are not yet present on canonical `main`; only their frozen corpus responsibilities are authoritative today. | Dependency / C04 family | Child production architecture not yet authored | Assigned author + architecture review | No for C04-001 Draft; family reconciliation required later | Author C04-002/003 against this baseline and perform cross-file ownership/contract consistency review. |
+| `OD-002` | C04-001, C04-002 and C04-003 are all present on canonical `main`; the former child-specification authoring/integration concern is resolved. | Resolved repository item / C04 family | Canonical repository state after family integration | Repository governance / architecture review | No | No further family-integration action is required; maintain cross-file ownership and contract consistency when any C04 sibling changes materially. |
 | `OD-003` | Shared synchronous API transport/style remains unresolved in C01. | Dependency / ADR | C01 technology decision intentionally open | C01 / Lead Architect under ADR governance | No for technology-neutral C04 Draft | Consume C01 abstract contract boundary; do not select a transport locally. |
 | `OD-004` | Provider/channel product selection and product-specific failover/receipt mechanics are intentionally deferred to C04-003 and applicable technology governance. | Dependency / Technology | No governed product selection | C04-003 technical owner / Lead Architect where ADR required | No for baseline | Keep baseline provider-neutral; resolve only in C04-003 or later approved ADR/technology standard if material. |
 
@@ -559,6 +559,6 @@ All above relations are **Specified**, not `Validated`, while their L4 sources r
 
 ### Open / Blocking Items
 - `OD-001` — Draft L4 sources block Architecture Approved status.
-- `OD-002` — child C04 production specifications pending authoring/reconciliation.
+- `OD-002` — C04 family canonical repository integration is resolved; no repository blocker remains.
 - `OD-003` — C01 transport/style intentionally unresolved and non-blocking for Draft.
 - `OD-004` — provider/product specifics deferred to C04-003/technology governance.
