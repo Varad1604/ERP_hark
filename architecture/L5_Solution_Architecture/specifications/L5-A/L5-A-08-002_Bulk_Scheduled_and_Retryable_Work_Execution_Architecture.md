@@ -210,8 +210,6 @@ A05 submits a generic execution request containing source workflow reference, wo
 
 ## 8. L4 Traceability
 
-For this validation program the referenced L4 behaviors are treated as locked behavioral authority despite Draft metadata.
-
 | L4 BH ID | Relationship | L5 contribution / boundary |
 |---|---|---|
 | `L4-A-015-BH-006` | Supporting | A08 enforces technical deferred release only after the caller-owned wait/release condition; workflow semantics remain upstream. |
@@ -237,5 +235,3 @@ For this validation program the referenced L4 behaviors are treated as locked be
 **OD-001:** Workload-specific numeric retry/backoff/parallelism values remain governed configuration.  
 **OD-002:** Product selection for scheduler/queue/worker runtime is separately governed if material.  
 **OD-003:** Concrete persistence schema and indexes are implementation design under the state/concurrency invariants above.
-
-The prior statement that C02 was not merged is removed because it is false on current `main`.
