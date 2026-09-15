@@ -9,13 +9,13 @@
 **Canonical Technical Responsibility:** Shared technical client-platform principles; excludes L6 screens, journeys, navigation and layout.  
 **Technical Architecture Owner:** L5-G-01 — Client Platform Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.0`  
-**Status:** `Draft`  
+**Version:** `1.0.1`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-15`  
 **Production Path:** `architecture/L5_Solution_Architecture/specifications/L5-G/L5-G-01-001_Client_Platform_Architecture_Baseline.md`
 
 **Depends On:**  
-L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; frozen L5 Candidate Document Corpus Register 105 v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-C-01-001`; applicable `L5-C-01` specializations; `L5-D-01-001`; applicable `L5-D-01` specializations; `L5-D-02-001`; applicable `L5-D-02` specializations; `L5-A-04-001`; `L5-A-04-002`.
+L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; frozen L5 Candidate Document Corpus Register 105 v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5_G01_Upstream_Dependency_Readiness_and_Architecture_Approval_Decision_2026-09-15.md`; `L5-C-01-001`; applicable `L5-C-01` specializations; `L5-D-01-001`; applicable `L5-D-01` specializations; `L5-D-02-001`; applicable `L5-D-02` specializations; `L5-A-04-001`; `L5-A-04-002`.
 
 **Referenced By:** Planned `L5-G-01-002`, `L5-G-01-003`, `L5-G-01-004`; future L6 architecture.
 
@@ -72,29 +72,29 @@ This specification does not own:
 - business validation;
 - business lifecycle state;
 - business events;
-- domain-owned business data.
+- domain-owned business data;
+- Workspace lifecycle, commands, events, publishers or approval authority.
 
 ---
 
 ## 3. Upstream Applicability, Constraints & Assumptions
 
-### 3.1 Canonical Upstream Reference Matrix
+### 3.1 Canonical Authority & Dependency Matrix
 
 | Source | Version / Status | Exact applicability | L5-G-01-001 use |
 |---|---|---|---|
 | L5 Candidate Corpus Register 105 | v1.1.0 / Architecture Approved | `L5-G-01-001` | Establishes shared client-platform ownership and L6 exclusion. |
 | L5 Architecture Family Register | Architecture Approved | L5-G family | Establishes Client Platform as the canonical L5 family. |
-| L5 Dependency-Gated Authoring Timeline | Locked | Stage 4 `L5-G-01`; minimum `C01 + D01 + D02 + A04` | Establishes mandatory peer dependencies. |
-| `L4-A-007` | v1.0.0 / Draft | `BH-001`, `BH-007`, `BH-008`, `BH-009` | Planning basis for Tenant-bound authenticated context, session availability, authentication/authorization separation and attributable evidence. |
-| `L4-A-050` | v1.0.0 / Draft | `BH-001`, `BH-003`, `BH-004`, `BH-006`, `BH-008` | Planning basis for governed experience context that never creates Permissions or overrides Authorization Decisions. |
+| L5 Dependency-Gated Authoring Timeline | Locked | Stage 4 `L5-G-01`; minimum `C01 + D01 + D02 + A04` | Establishes mandatory peer dependency set. |
+| `L5_G01_Upstream_Dependency_Readiness_and_Architecture_Approval_Decision_2026-09-15.md` | Architecture Approved | G01 scoped dependency-readiness and approval decision | Removes invalid direct A007/A050 approval dependencies and declares the consumed C01/D01/D02/A04 boundaries sufficiently stable for G01. |
 | `L5-C-01-001` | v1.0.1 / Draft | Contract Boundary and catalogue principles | Client calls cross the solution only through governed contracts. |
 | `L5-D-01-001` | v1.0.1 / Draft | IAM baseline | Supplies authenticated technical context without authorization semantics. |
 | `L5-D-02-001` | v1.0.0 / Architecture Approved | Authorization baseline | Supplies authoritative authorization evaluation/enforcement. |
-| `L5-A-04-001` | v1.0.1 / Draft | Tenant/Institution isolation | Client-supplied scope is not authoritative merely because it was presented by the client. |
-| `ADR-L5-0003` | Architecture Approved | Contract-driven modular platform with selective isolation | Client architecture shall target governed contracts rather than physical runtime placement or internal module structures. |
-| `ADR-L5-0004` | Architecture Approved | Tenant and Institution isolation enforcement | Client boundaries shall preserve Tenant/Institution isolation and fail closed on invalid scope. |
+| `L5-A-04-001` / `L5-A-04-002` | v1.0.1 / Draft | Tenant/Institution isolation and validated scope propagation | Client-supplied scope is not authoritative merely because it was presented by the client. |
+| `ADR-L5-0003` | Architecture Approved | Contract-driven modular platform with selective isolation | Client architecture targets governed contracts rather than physical runtime placement or internal module structures. |
+| `ADR-L5-0004` | Architecture Approved | Tenant and Institution isolation enforcement | Client boundaries preserve Tenant/Institution isolation and fail closed on invalid scope. |
 
-The Draft L4 sources above are planning authority only. They shall not be represented as approved behavioral authority.
+`L4-A-007` and `L4-A-050` are not direct approval authorities for this reusable G01 baseline. Authentication behavior remains upstream/D01-owned, and Workspace business behavior remains upstream/D02-owned. G01 consumes peer-owned technical results without redefining their business semantics.
 
 ### 3.2 Architecture Constraints
 
@@ -133,7 +133,7 @@ Technical client architecture shall not prescribe the screen, navigation, intera
 - Client Contract Consumption boundary.
 - shared client execution invariants;
 - client-side authoritative/non-authoritative data boundary;
-- common failure and context-change behavior;
+- common failure and protected scope-change behavior;
 - shared technical specialization contract for G01-002 through G01-004.
 
 ### 4.2 Consumed Architecture
@@ -156,6 +156,7 @@ G01-001 shall not own:
 - contract protocol/versioning internals;
 - domain persistence;
 - canonical domain data;
+- Workspace business lifecycle or authority;
 - UI composition semantics;
 - web/mobile implementation details.
 
@@ -300,32 +301,32 @@ The client may perform presentation-related checks or suppress obviously unavail
 
 They are never authorization enforcement.
 
-### 5.7 Scope-Context Change
+### 5.7 Protected Scope Change
 
-When a Tenant, Institution, Workspace or other protected execution context changes:
+When a Tenant, Institution or another peer-defined protected execution scope changes:
 
 ```text
-Requested context change
+Requested scope change
       ↓
 Validate / resolve through canonical owner
       ↓
-New context accepted
+New protected scope accepted
       ↓
 Previous scope-bound client context becomes ineligible for reuse
       ↓
 G01-003 applies required state/session consequences
       ↓
-Applicable capabilities/contracts are resolved for new context
+Applicable capabilities/contracts are resolved for the new scope
 ```
 
-A context change shall not:
+A protected scope change shall not:
 
 - transfer authority from the previous scope;
 - reuse protected information from the prior scope without revalidation;
 - create Permissions;
-- alter an Authorization Decision merely because the client context changed.
+- alter an Authorization Decision merely because client context changed.
 
-Detailed local-state invalidation and session mechanics belong to `L5-G-01-003`.
+Detailed local-state invalidation and session mechanics belong to `L5-G-01-003`. Business concepts such as Workspace remain owned by their canonical upstream/D02 architecture and are not defined by G01.
 
 ### 5.8 Authoritative State Boundary
 
@@ -376,7 +377,7 @@ This failure shall remain contained to the affected capability where possible.
 | Contract incompatible | Stop the affected capability until a governed compatible contract exists. |
 | Network interruption after mutation request | Do not infer success or automatically create a second business effect. Retry/reconciliation follows C01/G01-003 governed semantics. |
 | Client projection stale | Re-resolve from authoritative sources before using stale data for a protected decision. |
-| Context changes during active use | Prevent prior scope-bound context from being silently reused. |
+| Protected scope changes during active use | Prevent prior scope-bound context from being silently reused. |
 
 ### 5.11 Trust Boundary
 
@@ -505,15 +506,15 @@ Performance-specific architecture shall consume authoritative targets and `L5-E-
 
 ---
 
-## 8. Assumptions, Open Decisions & Dependency Blocks
+## 8. Assumptions, Open Decisions & Dependency Readiness
 
-### AS-001 — Peer Interface Stability
+### AS-001 — Peer Boundary Change Revalidation
 
-The Draft assumes that the fundamental responsibility boundaries presently expressed by `L5-C-01`, `L5-D-01` and `L5-A-04` will not reverse before their approval.
+The consumed C01, D01, D02 and A04 boundaries are declared sufficiently stable for G01 by `L5_G01_Upstream_Dependency_Readiness_and_Architecture_Approval_Decision_2026-09-15.md`.
 
-**Impact if false:** G01 contract/context adapters require impact review.
+**Impact if a peer boundary changes materially:** G01 contract/context adapters and conformance requirements require impact review.
 
-**Resolution:** Revalidate this specification whenever those peer specifications materially change.
+**Resolution:** Revalidate this specification whenever a consumed peer boundary materially changes.
 
 ### OD-001 — Shared Client Technology Selection
 
@@ -521,22 +522,19 @@ No client framework, runtime, rendering framework, client-state library or mobil
 
 A future material shared client-platform/framework selection is ADR-governed.
 
-**Blocking for this architectural baseline:** No.  
-**Blocking before implementation where a concrete platform selection is required:** Yes.
+**Blocking for this product-independent architectural baseline:** No.  
+**Blocking before technology-specific implementation where a concrete platform selection is required:** Yes.
 
-Decision authority shall be resolved through the applicable G01/A02 architecture governance without allocating an ADR number locally.
+No ADR identifier is allocated locally by this specification.
 
-### BLOCK-001 — L4 Behavioral Approval
+### Dependency Readiness Position
 
-`L4-A-007` and `L4-A-050` are currently Draft.
+- C01 contract boundary: stable for G01 consumption; transport/style/product decisions remain peer-owned.
+- D01 authenticated-context boundary: stable for G01 consumption; protocol/provider/session representation remains peer-owned.
+- D02 authorization boundary: Architecture Approved.
+- A04 Tenant/Institution isolation and validated scope propagation: stable for G01 consumption under `ADR-L5-0004`.
 
-They support planning but cannot by themselves justify `Architecture Approved` status for this specification where materially relied upon.
-
-### BLOCK-002 — Minimum Peer Dependency Readiness
-
-Current minimum dependency state includes Draft C01, Draft D01 and Draft A04 material, while D02 baseline is Architecture Approved.
-
-The Draft architecture may consume their current responsibility boundaries for controlled authoring, but peer status and material drift shall be revalidated before G01-001 may progress to Architecture Approved.
+No G01-owned blocking dependency remains.
 
 ---
 
@@ -550,7 +548,7 @@ The Draft architecture may consume their current responsibility boundaries for c
 | `CR-004` | A protected operation shall carry a Tenant/Institution context capable of authoritative A04 validation. |
 | `CR-005` | Authentication success shall not be interpreted by the client as authorization success. |
 | `CR-006` | Client-side visibility or capability checks shall remain advisory and shall not replace D02 enforcement. |
-| `CR-007` | Protected client state bound to one Tenant/Institution context shall not be silently reused after a context change without governed revalidation. |
+| `CR-007` | Protected client state bound to one Tenant/Institution context shall not be silently reused after a protected scope change without governed revalidation. |
 | `CR-008` | Contract incompatibility shall prevent the affected capability from silently using an ungoverned fallback. |
 | `CR-009` | Network, client or server technical failure shall never be converted by the client into a fabricated successful business outcome. |
 | `CR-010` | Client-local business representations shall remain projections of source-owned canonical data. |
@@ -563,22 +561,14 @@ The Draft architecture may consume their current responsibility boundaries for c
 
 ## 10. Traceability & Current Disposition
 
-### Primary applicability
+### Approval authority
 
-```text
-L4-A-007-BH-001
-L4-A-007-BH-007
-L4-A-007-BH-008
-L4-A-007-BH-009
+`L5_G01_Upstream_Dependency_Readiness_and_Architecture_Approval_Decision_2026-09-15.md` establishes that:
 
-L4-A-050-BH-001
-L4-A-050-BH-003
-L4-A-050-BH-004
-L4-A-050-BH-006
-L4-A-050-BH-008
-```
-
-All listed L4 obligations are currently Draft and are therefore planning references rather than approval-level behavioral authority.
+- direct `L4-A-007` dependency is unnecessary for this reusable client-platform baseline;
+- direct `L4-A-050` dependency is invalid while its parent Workspace architecture remains blocked;
+- G01 shall consume authentication, authorization and protected-scope outcomes through their canonical L5 peer owners;
+- the required C01, D01, D02 and A04 boundaries are sufficiently stable for G01 consumption.
 
 ### Primary peer dependencies
 
@@ -592,7 +582,8 @@ L5-A-04 — Tenant & Institutional Isolation Architecture
 ### Current disposition
 
 **Technical Architecture:** coherent and implementable at product-neutral L5 depth.  
-**Technology Selection:** intentionally unresolved.  
-**L6 Leakage:** none intended.  
-**Current Status:** `Draft`.  
-**Architecture Approval:** blocked until material L4/peer dependency readiness is revalidated and any required shared-client technology ADR is resolved when that technology decision becomes necessary.
+**Technology Selection:** intentionally unresolved and non-blocking for this baseline.  
+**L6 Leakage:** none.  
+**Current Status:** `Architecture Approved`.  
+**Downstream Readiness:** ready for `L5-G-01-002`, `L5-G-01-003` and `L5-G-01-004` consumption.  
+**Lock Status:** not Locked; lock requires separate final governance authorization.
