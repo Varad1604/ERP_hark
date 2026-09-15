@@ -1,345 +1,176 @@
-﻿# L5-E-01-001 — Availability & Resilience Architecture
+# L5-E-01-001 — Availability & Resilience Architecture
 
 ## 1. Specification Metadata
 
-| Field | Value |
-|---|---|
-| Specification ID | L5-E-01-001 |
-| Specification Title | Availability & Resilience Architecture |
-| Architecture Level | L5 — Solution Architecture |
-| Family | L5-E — Reliability, Deployment & Operations Architecture |
-| Major Area | L5-E-01 — Availability & Resilience Architecture |
-| Version | 1.0.0 |
-| Status | Draft |
-| Author | Varad |
-| Primary Responsibility | Availability, fault-tolerance and resilience principles independent of product choice |
+**Specification ID:** `L5-E-01-001`  
+**Architecture Level:** L5 — Solution Architecture  
+**Family:** L5-E — Reliability, Operations & Runtime Architecture  
+**Major Area:** L5-E-01 — Availability & Resilience Architecture  
+**Canonical Technical Responsibility:** Repository-wide technical availability model, resilience principles, scoped health states, redundancy expectations and restoration gates without redefining business lifecycle or deployment ownership.  
+**Technical Architecture Owner:** L5-E-01 — Availability & Resilience Architecture  
+**Assigned Author:** Varad  
+**Version:** `1.0.1`  
+**Status:** `Draft`  
+**Last Updated:** `2026-09-15`  
+**Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-A-01-001`; `L5-E-04-001`; `L5-E-01-002`; `L5-E-02-*`; `L5-A-08-*`; applicable B02/C02/D03/D04 architecture; `L4-A-015`; `L4-A-016`; `L4-A-057`.  
+**Referenced By:** L5 reliability-aware consumers, `L5-E-01-002`, `L5-E-02-*`.  
+**Applicable ADRs:** `ADR-L5-0003`, `ADR-L5-0014`.  
 
 ---
 
 ## 2. Purpose, Scope & Non-Goals
 
-### 2.1 Purpose
+This specification defines the shared technical model for availability and resilience across SutraERP. It establishes scoped technical health (`Healthy`, `Degraded`, `Unavailable`), resilience requirements, failure-domain separation, redundancy expectations and the conditions under which a technical capability may be returned to service.
 
-This specification defines the solution-level architecture principles and technical mechanisms required to keep SutraERP capabilities available and resilient when individual technical components, execution paths or supporting dependencies experience failure or disruption.
-
-It establishes availability and resilience as cross-solution technical qualities while preserving business ownership, business outcomes and recovery semantics with the appropriate upstream and peer architectures.
-
-### 2.2 In Scope
-
-- Availability architecture and service continuity principles.
-- Fault-tolerant solution structures where required to preserve service availability.
-- Detection and handling of technical component failure at the availability boundary.
-- Redundancy and continuity patterns at an implementation-independent architecture level.
-- Dependency-aware availability and resilience.
-- Recovery readiness and restoration of technical service availability.
-- Isolation of availability-impacting failures without redefining business recovery semantics.
-- Preservation of execution/business context across technically resilient paths.
-- Availability evidence, health state and operational observability at the architecture level.
-- Interaction with E-01-002 for detailed failure isolation, graceful degradation and service recovery.
-
-### 2.3 Explicit Non-Goals
-
-This specification does not own or redefine:
-
-- Business workflow recovery or compensation semantics.
-- Business lifecycle states or transitions.
-- Canonical business event ownership or publication.
-- Business transaction or approval authority.
-- Application/business-specific retry policy.
-- Detailed failure-isolation/degradation/recovery mechanisms owned by L5-E-01-002.
-- Performance/capacity mechanisms owned by L5-E-02.
-- Background/bulk/retry execution mechanics owned by L5-A-08.
-- APIs, database schemas, protocols, infrastructure products or technology/product selection.
+It does not define business SLA/SLO/RTO/RPO values, business continuity policy, workflow recovery, database replication technology, cloud services, deployment topology or product-specific failover.
 
 ---
 
-## 3. Upstream Applicability, Constraints & Assumptions
+## 3. Authoritative Constraints & Dependency Gate
 
-### 3.1 Architectural Constraints
+1. Health state is technical and shall not redefine business lifecycle state.
+2. A capability may be `Degraded` only when a declared degradation profile identifies what remains safe.
+3. No degraded path may fabricate success, freshness or authoritative availability.
+4. Restoration requires positive integrity/health validation; disappearance of an error is insufficient.
+5. E04 owns physical packaging, placement, orchestration and deployment topology.
+6. E02 owns capacity/performance mechanisms; E01 consumes their health/capacity signal where relevant.
+7. A08 owns job/retry mechanics; C02 owns event delivery/recovery; B02 owns persistence/concurrency.
+8. The architecture remains on-premises-primary capable, cloud-capable and provider-neutral.
 
-This specification is subordinate to locked L1 architecture and approved L2/L3/L4 behavior. It shall not redefine upstream business ownership, business rules, lifecycle states, canonical events, publishers, institutional authority or L3/L4 outcomes.
+The Stage-3 minimum dependency gate is explicitly consumed:
 
-The canonical L5 corpus assigns E-01-001 the responsibility for availability, fault-tolerance and resilience principles independent of product choice.
-
-### 3.2 Availability Boundary
-
-Availability is a technical property of the solution. It shall not be represented as a new business lifecycle or business status merely because a technical capability becomes unavailable.
-
-A technical availability failure may prevent or constrain a business operation, but it shall not silently create, advance, reverse or complete the corresponding business outcome.
-
-### 3.3 Resilience Boundary
-
-Resilience mechanisms may maintain or restore technical capability, but business recovery semantics remain with the responsible business workflow/domain and applicable L4 behavior.
-
-Detailed fault containment, graceful degradation and service recovery are delegated to L5-E-01-002. E-01-001 establishes the solution-wide availability/resilience baseline and boundary conditions.
-
-### 3.4 L4 Traceability Status
-
-Exact atomic L4 applicability has not been independently reconciled in this authoring draft. No L4 behavioral-obligation identifiers are invented here.
-
-Required atomic relation:
-
-`(L4 BH ID, L4 Version, L5-E-01-001, L5 Version)`
-
-Exact L4 BH applicability, exact source version/status and validation status remain **OPEN / BLOCKING** until reconciled against the applicable current approved L4 corpus.
+| Dependency | Consumption |
+|---|---|
+| `L5-A-01-001` | logical application/execution boundary and selective-isolation model |
+| `L5-E-04-001` | concrete runtime packaging/deployment realization and portability constraints |
 
 ---
 
 ## 4. Technical Architecture
 
-### 4.1 Availability Architecture Model
+### 4.1 Scoped Health Model
 
-```text
-Business-Capable Technical Services
-             ↓
-      Availability Boundary
-             ↓
-   Dependency Health Assessment
-             ↓
-      Failure Detection
-             ↓
-   Resilient Service Path
-      ↙             ↘
-Maintain Service   Constrain / Handoff
-      ↓             ↓
-Technical Recovery / E-01-002
-             ↓
-      Service Availability
-             ↓
-      Evidence / Health State
-```
+Every health assessment is bound to a declared technical scope such as capability, execution unit or dependency edge.
 
-The model deliberately separates **technical availability** from business continuity semantics.
+- **Healthy** — required operation and authoritative prerequisites are valid.
+- **Degraded** — operation is intentionally available with a declared limitation.
+- **Unavailable** — required operation cannot be provided safely.
 
-### 4.2 Availability Zones / Logical Redundancy
+Health inheritance is not automatically global: one unhealthy unit shall not mark unrelated units unavailable.
 
-The solution shall avoid unnecessary dependence on a single technical execution path where the required availability characteristic demands continuity across component failure.
+### 4.2 Resilience Control Points
 
-Redundancy shall be defined at the architectural responsibility level without selecting infrastructure topology or products in this specification.
-
-**Deployment Topology Constraint (from L5-E-04):** Redundancy and continuity mechanisms are constrained by the deployment topology established in L5-E-04 Runtime, Packaging & Deployment Architecture, including the on-premises-primary requirement and the provider-neutral cloud-capable constraint. Redundancy approaches shall not assume cloud-native multi-zone or Kubernetes-specific HA mechanisms unless explicitly governed by an approved ADR.
-
-**Redundancy Pattern Vocabulary:** The following conceptual redundancy patterns are architecturally recognized at the solution level. Pattern selection for a specific capability remains an implementation or ADR decision pending E-04 topology authority:
-
-- **Active-Passive Standby:** A primary execution path handles requests; a secondary path is promoted on primary failure. State replication or re-establishment is required for continuity.
-- **Active-Active with State Coordination:** Multiple execution paths serve requests concurrently; state consistency requires coordination. Applicable where on-premises topology supports it.
-- **N+1 Standby:** One or more spare execution units exist to absorb failures from a pool.
-- **Degraded Singleton:** A single path continues in a limited mode when redundancy is unavailable, subject to E-01-002 degradation admission conditions.
-
-The specific redundancy pattern applicable to a given SutraERP capability is an architecture decision (AD candidate) that depends on the deployment topology established by L5-E-04 and capability-specific availability requirements. This specification does not fix a universal redundancy pattern.
-
-### 4.3 Dependency-Aware Availability
-
-A capability's availability shall account for technically required dependencies. A component shall not claim full availability when a mandatory dependency is unavailable and the capability cannot safely operate.
-
-Where an optional dependency fails, the architecture may permit constrained operation only when the applicable business behavior remains valid and no unsupported business outcome is fabricated.
-
-### 4.4 Technical Health State
-
-Technical health state shall distinguish at least the conditions necessary to determine whether a capability is available for its intended technical responsibility.
-
-Technical health state is not a business lifecycle and shall not be substituted for business status.
-
-**Minimum Health State Vocabulary:** The architecture recognizes the following conceptual technical health states at minimum:
-
-- **Healthy:** The capability is operating within its required technical bounds; all mandatory dependencies are available.
-- **Degraded:** The capability is operating in a constrained mode; one or more non-mandatory capabilities or optional paths are unavailable. Degraded operation is subject to E-01-002 degradation admission conditions.
-- **Unavailable:** The capability cannot safely serve its required technical function; mandatory dependencies are absent or the capability has entered a failure-containment boundary.
-
-These state labels are conceptual architecture vocabulary. The implementation representation (e.g., enum values, health-check response codes) is an implementation decision. Cross-reference E-01-002 for the degradation admission and recovery conditions that govern transitions into and out of `Degraded` and `Unavailable`.
-
-### 4.5 Failure Detection and Continuity
-
-Availability-impacting technical failures shall be detectable sufficiently to trigger the applicable resilience or recovery boundary.
-
-The architecture shall preserve known execution context during technically resilient continuation and shall avoid duplicate or conflicting technical execution where the applicable peer architecture requires execution identity preservation.
-
-### 4.6 Resilient Continuation
-
-Where technical resilience permits continuation through an alternate healthy path, the alternate path shall remain subject to the same applicable security, authorization, data, privacy and business-boundary constraints.
-
-Resilience shall not become a mechanism for bypassing business authority or canonical source ownership.
-
-### 4.7 Recovery Handoff
-
-When technical availability cannot be maintained, the failure shall be handed to the appropriate recovery architecture without inventing business recovery semantics.
-
-E-01-002 owns detailed failure isolation, graceful degradation and service recovery behavior. A08 owns background/bulk/technical retry execution where applicable.
-
-### 4.8 Data and State Integrity
-
-Availability mechanisms shall preserve authoritative business state and shall not create competing copies that become alternative business truth.
-
-Where technical continuity requires replicated or reconstructed state, authoritative ownership remains with the canonical source architecture.
-
-### 4.9 Security and Trust Preservation
-
-Resilient paths shall preserve applicable identity, authorization, trust and security constraints. A failover or alternate execution path shall not automatically gain broader privileges.
-
-### 4.10 Evidence and Observability
-
-Material availability failures, continuity transitions and recovery handoffs shall be technically observable through the applicable reliability and audit/evidence architectures.
-
----
-
-## 5. Dependencies / Integration
-
-### 5.1 Upstream
-
-- Locked L1 Business Domain Architecture.
-- Applicable L2 workflows.
-- Approved/locked L3 scenarios.
-- Current approved L4 system behavior specifications.
-- L5 governance and candidate-corpus decisions.
-
-### 5.2 Peer L5 Dependencies
-
-- **L5-E-04 — Runtime, Packaging & Deployment Architecture:** deployment topology constraints (on-premises-primary, provider-neutral cloud-capable) that bound all redundancy and continuity mechanisms defined in this specification. E-04 is a required architectural input; no redundancy pattern shall be selected without E-04 alignment.
-- L5-E-01-002 — Failure Isolation, Graceful Degradation & Service Recovery Architecture.
-- L5-E-02 — Performance & Capacity Architecture.
-- L5-A-08 — Background Processing & Job Execution Architecture where asynchronous continuity applies.
-- L5-D-03 — Security, cryptography and trust.
-- L5-D-04 — Audit/evidence.
-- Applicable L5-A/B/C/D architectures that define the affected technical capability and its state/data boundaries.
-
-Exact peer version alignment remains an authoring-stage validation item.
-
-### 5.3 Integration Rule
-
-Availability architecture provides the technical continuity baseline; collaborating architectures retain ownership of their own business semantics and technical specialization.
-
----
-
-## 6. Technical Behavior / Failure Concerns
-
-### TB-001 — Availability Assessment
-
-The technical boundary shall determine whether required components and mandatory dependencies are sufficiently available for the intended capability.
-
-### TB-002 — Failure Detection
-
-Material technical availability failures shall be observable and shall trigger the applicable resilience or recovery boundary.
-
-### TB-003 — Redundant Continuity
-
-Where redundancy is required by the availability characteristic, failure of one eligible technical path shall not unnecessarily terminate the capability when an architecturally valid alternative exists.
-
-### TB-004 — Dependency Integrity
-
-A capability shall not claim healthy availability when a mandatory dependency prevents safe operation.
-
-### TB-005 — Constraint Preservation
-
-Resilient continuation shall preserve applicable security, authorization, data, privacy and business-boundary constraints.
-
-### TB-006 — Business Outcome Preservation
-
-Technical failover shall not independently create, complete, reverse or otherwise redefine a business outcome.
-
-### TB-007 — Context Preservation
-
-Where continuation occurs, required execution and business context shall remain consistent with the applicable owning architecture.
-
-### TB-008 — Recovery Handoff
-
-When continuity cannot be maintained, the technical failure shall be handed to the appropriate recovery architecture without silently inventing business recovery semantics.
-
-### TB-009 — State Integrity
-
-Technical continuity shall not create a competing authoritative business state.
-
-### TB-010 — Evidence
-
-Availability failures, material continuity actions and recovery handoffs shall produce sufficient technical evidence for diagnosis and assurance.
-
----
-
-## 7. Security / Trust / Evidence
-
-### 7.1 Security
-
-- Failover paths shall preserve applicable authentication, authorization and trust boundaries.
-- Resilience shall not weaken security controls.
-- Cryptographic and trust mechanisms remain governed by D03.
-
-### 7.2 Evidence
-
-Evidence shall support determination of:
-
-- availability state;
-- dependency failure;
-- continuity/failover action;
-- technical recovery handoff; and
-- unresolved availability conditions.
-
-Evidence shall avoid exposing unnecessary sensitive business data.
-
----
-
-## 8. Conformance
-
-A conforming implementation shall demonstrate that:
-
-1. Required technical availability conditions can be assessed.
-2. Material failures are detectable.
-3. Required redundancy/continuity is architecturally supported where applicable.
-4. Mandatory dependency failure prevents false health claims.
-5. Resilient paths preserve security and authorization constraints.
-6. Technical failover cannot redefine business outcomes.
-7. Required execution/business context is preserved during valid continuation.
-8. Unrecoverable technical failure is handed to the appropriate recovery architecture.
-9. Technical continuity does not create competing business truth.
-10. Material availability/recovery conditions are observable.
-11. The architecture remains independent of technology/product selection.
-
----
-
-## 9. Traceability
-
-| Traceability Item | Status |
+| Control point | Responsibility |
 |---|---|
-| Canonical specification ID verified | PASS |
-| Canonical title verified | PASS |
-| Canonical major-area placement verified | PASS |
-| Responsibility verified against 105-spec register | PASS |
-| E-01-002 boundary verified | PASS |
-| Upstream L1/L2/L3/L4 applicability | OPEN / BLOCKING |
-| Exact atomic L4 BH mapping | OPEN / BLOCKING |
-| Exact L4 source version/status | OPEN / BLOCKING |
-| Peer L5 version/dependency validation | OPEN / BLOCKING |
+| Health Evaluator | evaluates declared health evidence for one scope |
+| Dependency Guard | prevents an operation when a mandatory dependency cannot satisfy its contract |
+| Failure-Domain Boundary | limits propagation across unrelated execution/state owners |
+| Degradation Controller | activates only a predeclared safe degradation profile |
+| Recovery Validator | verifies state/dependency integrity before return to service |
+| Health Publisher | exposes scoped technical health to observability/consumers without redefining business state |
 
-### Required Atomic Traceability Form
+### 4.3 Degradation Profile
 
-Each validated relation shall use:
+A valid profile declares:
 
-`L4 BH ID + L4 Version + L5-E-01-001 + L5 Version`
+- affected capability/scope;
+- permitted operations;
+- blocked operations;
+- authoritative/staleness limits;
+- caller-visible technical signal;
+- required dependencies that may be bypassed or substituted safely;
+- exit/recovery conditions.
 
-Document-level statements are insufficient for final traceability.
+If no such profile exists for a material failure, the capability shall fail closed as `Unavailable`.
 
-### Candidate Atomic L4-to-L5 Traceability (Draft Baseline)
+### 4.4 Redundancy Pattern Vocabulary
 
-The following are candidate traceability relations against the current Draft L4 baseline. They shall be independently validated and revalidated if L4 is subsequently changed before L5 promotion.
+Where redundancy is required, logical patterns may include active-passive, active-active with state coordination, N+1 or intentionally degraded singleton operation. Pattern choice must preserve state ownership and consistency and is realized by E04/B02 as applicable. This vocabulary does not mandate a product or node count.
 
-| L4 BH ID | L4 Version | Relationship | L5 Specification ID | L5 Version | Rationale / Boundary |
-|---|---|---|---|---|---|
-| L4-A-015-BH-002 | v1.0.0 Draft | Supporting | L5-E-01-001 | v1.0.0 | Technical availability boundary governs whether Workflow Instance execution can be admitted and run; workflow lifecycle authority remains L4-A-015. |
-| L4-A-015-BH-006 | v1.0.0 Draft | Supporting | L5-E-01-001 | v1.0.0 | Availability architecture governs continuity of deferred/waiting execution paths; wait-condition authority remains Workflow Engine owned. |
-| L4-A-016-BH-001 | v1.0.0 Draft | Supporting | L5-E-01-001 | v1.0.0 | Availability failure detection boundary underlies the technical condition that triggers L4-A-016 failure classification; business failure ownership remains L4-A-016. |
-| L4-A-016-BH-003 | v1.0.0 Draft | Supporting | L5-E-01-001 | v1.0.0 | Availability architecture shall preserve Tenant/execution context and identity across resilient continuation; business recovery semantics remain L4-A-016 owned. |
-| L4-A-019-BH-001 | v1.0.0 Draft | Supporting | L5-E-01-001 | v1.0.0 | Event delivery reliability requires technical availability of delivery infrastructure; canonical event ownership remains with the publishing domain. |
-| L4-A-057-BH-001 | v1.0.0 Draft | Supporting | L5-E-01-001 | v1.0.0 | Platform change and availability restoration requires the availability architecture to define how restored technical availability is confirmed; business restoration authority remains upstream. |
+### 4.5 Failure-Domain Isolation
 
-**Upstream Status Qualification:** All referenced L4 specifications remain Draft. The candidate relations above establish traceability to the current L4 baseline without promoting or locking any L4 specification. Revalidation required before L5 promotion.
+A failure shall be contained to the smallest safe scope consistent with correctness. Isolation boundaries shall preserve:
+
+- Tenant/Institution separation;
+- owner-local persistence authority;
+- independent consumer/job execution where possible;
+- security/trust boundaries;
+- independent recovery of unrelated capabilities.
+
+### 4.6 Restoration Gate
+
+A scope may transition back to `Healthy` only after applicable validation establishes:
+
+1. required dependencies are healthy enough for normal operation;
+2. authoritative state is consistent/integral under the owning architecture;
+3. unresolved recovery work does not make normal operation unsafe;
+4. required security/context authority is valid;
+5. stale degradation overrides/traffic restrictions are removed in a controlled sequence;
+6. health evidence is recorded and observable.
+
+### 4.7 Runtime Boundary
+
+E01 supplies resilience requirements to E04: isolation need, restart/failover eligibility, redundancy intent and restoration criteria. E04 chooses processes/containers/hosts/orchestration and deployment topology.
 
 ---
 
-## 10. Open Issues / Deferred Design
+## 5. Failure / Recovery Concerns
 
-- **OD-001 — Exact L4 BH Applicability:** Reconcile exact L4 behavioral obligations against the current approved L4 corpus before promotion.
-- **OD-002 — L4 Version/Status:** Record exact source versions and current approval/lock status for accepted atomic relations.
-- **OD-003 — Peer Dependency Validation:** Validate exact versions and boundaries of E-01-002, E-02, A08, D03, D04 and affected technical capability architectures.
-- **OD-004 — Availability Objectives:** Consume authoritative availability objectives/quality requirements when established; do not invent business SLAs or service targets here.
-- **OD-005 — Resilience Scope:** Confirm capability-specific resilience requirements where applicable without transferring business recovery authority.
-- **OD-006 — Current L4 Baseline Reconciliation:** Where live L4 documents differ in status from the governance baseline, downstream traceability shall use the subsequently approved/current L4 state and shall not treat Draft wording as immutable.
+| Condition | Required behavior |
+|---|---|
+| optional dependency failure with approved profile | enter `Degraded`; expose limitation |
+| mandatory dependency failure | affected operation/scope becomes `Unavailable` |
+| state integrity uncertain | block restoration until owner validation succeeds |
+| one consumer/worker failure | isolate where correctness permits; do not fail unrelated scopes |
+| recovery action needs owner-state mutation | invoke owner contract; E01 performs no direct cross-owner write |
+| runtime instance loss | E04 realizes restart/failover; E01 restoration gate remains authoritative |
 
-**Promotion Gate:** This specification shall remain `Draft` until exact L4 applicability, upstream status and peer dependency checks are independently validated.
+---
+
+## 6. Conformance Requirements
+
+| ID | Requirement |
+|---|---|
+| CR-001 | Every reported health state is scoped and has attributable evidence. |
+| CR-002 | `Degraded` is used only with an explicit degradation profile. |
+| CR-003 | Degraded operation cannot fabricate authoritative freshness, success or business completion. |
+| CR-004 | Failure is contained to the smallest safe scope where ownership/correctness permit. |
+| CR-005 | E01 does not directly mutate another owner’s authoritative state during recovery. |
+| CR-006 | Return to `Healthy` requires explicit dependency/state/integrity validation. |
+| CR-007 | Physical topology/deployment realization remains E04-owned. |
+| CR-008 | A08/C02/B02 technical ownership is preserved. |
+| CR-009 | Architecture is provider-neutral and on-premises-primary capable. |
+| CR-010 | No business SLA/SLO/RTO/RPO is invented by this specification. |
+
+---
+
+## 7. L4 Traceability
+
+For this validation program referenced L4 behavior is treated as locked behavioral authority despite Draft metadata.
+
+| L4 BH ID | Relationship | L5 contribution / boundary |
+|---|---|---|
+| `L4-A-015-BH-002` | Supporting | technical execution availability must not cause a second Workflow Instance or duplicate ownership. |
+| `L4-A-015-BH-006` | Supporting | unavailable/degraded technical dependencies must not bypass the workflow-owned wait condition. |
+| `L4-A-016-BH-001` | Supporting | technical failure health classification may support containment while business recovery ownership remains upstream. |
+| `L4-A-016-BH-003` | Supporting | resilience/recovery preserves Tenant, execution and correlation context. |
+| `L4-A-057-BH-006` | Supporting | restoration after controlled platform change requires post-change integrity validation. |
+| `L4-A-057-BH-007` | Supporting | normal technical availability returns only after change+validation completes. |
+| `L4-A-057-BH-008` | Direct | failed/unresolved change must not be represented as restored availability. |
+
+`L4-A-019-BH-001` and `L4-A-057-BH-001` are intentionally not claimed because they do not establish the availability/restoration responsibilities previously attributed to them.
+
+---
+
+## 8. Architecture Decisions
+
+**AD-001:** `ADR-L5-0014` is the canonical repository-level resilience/health/degradation/recovery decision.  
+**AD-002:** `ADR-L5-0003` constrains logical application/isolation structure; E01 does not redefine it.
+
+---
+
+## 9. Open / Deferred Design
+
+**OD-001:** Numeric availability objectives, thresholds and alert windows require separate governed operational/SLO decisions.  
+**OD-002:** Concrete failover/replication/orchestration products and topology remain E04/B02/A02 governance.  
+**OD-003:** Capability-specific degradation profiles are defined by the owning L5 capability under `ADR-L5-0014` and must be reviewed before use.
