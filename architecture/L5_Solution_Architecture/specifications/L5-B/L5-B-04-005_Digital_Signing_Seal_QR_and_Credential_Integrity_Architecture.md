@@ -13,7 +13,7 @@
 | Technical Architecture Owner | Document Credential Integrity Technical Architecture |
 | Assigned Author | Varad |
 | Version | 1.0.4 |
-| Status | Draft |
+| Status | Locked |
 | Last Updated | 2026-09-15 |
 | Depends On | L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5-B-04-001; L5-B-04-002; L5-B-04-004; L5-D-03-001; L5-D-03-002; L5-D-03-003; L5-D-03-004; L5-D-04-001; L4-H-002; L4-H-004; L4-H-005; L4-C-018 |
 | Referenced By | Domain credential issuance and verification workflows |
