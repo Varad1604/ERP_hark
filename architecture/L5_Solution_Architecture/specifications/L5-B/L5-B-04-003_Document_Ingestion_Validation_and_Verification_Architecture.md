@@ -12,8 +12,8 @@
 | Canonical Technical Responsibility | Technical ingestion, file/content validation, evidence and verification mechanisms; owning domains retain semantic acceptance authority. |
 | Technical Architecture Owner | Document Ingestion & Verification Technical Architecture |
 | Assigned Author | Varad |
-| Version | 1.0.1 |
-| Status | Locked |
+| Version | 1.1.0 |
+| Status | Review |
 | Last Updated | 2026-09-15 |
 | Depends On | L5-B-04-001; L5-B-04-002; L5-B-02-001; L5-B-05-003; L5-D-03-001; L5-D-03-002; L5-D-04-001; L5-A-08-001; L4-C-007; L4-D-043; L4-E-060; L5 governance/template/validation standards |
 | Referenced By | Authorized domain workflows that ingest documents/media |
@@ -21,55 +21,137 @@
 
 ## 2. Purpose & Boundary
 
-Defines the technical ingestion pipeline for document/media/object content. It verifies transport/content integrity, structural validity and security-processing outcomes before B04 registration/storage. It does not decide whether a document is semantically acceptable for admission, employment, credit transfer or any other business purpose.
+Defines the technical ingestion pipeline for document/media/object content. It verifies transport/content integrity, structural validity and required security-processing outcomes before B04 registration/storage. It does not decide whether a document is semantically acceptable for admission, employment, credit transfer or any other business purpose.
 
-## 3. Canonical Constraints
+## 3. Architectural Invariants
 
-- Owning domains decide semantic acceptance/rejection and business consequences.
-- B04-003 may quarantine technically unsafe or structurally invalid content, but quarantine is a technical containment condition, not a business lifecycle state.
-- Integrity/digest operations consume D03-approved capability; no algorithm is selected here.
-- Malware/content-safety inspection is a required capability boundary where repository security policy requires it, but no scanning product, sidecar/process topology or signature technology is selected here.
-- File-size limits, decompression-ratio limits, synchronous/asynchronous cutoffs, quarantine duration and purge periods are governed configuration/downstream decisions, not canonical defaults.
+1. Technical validation is not business semantic acceptance.
+2. Required security inspection cannot be bypassed because a scanner/inspection dependency is unavailable.
+3. Quarantine is a technical containment condition, not an upstream business lifecycle state.
+4. Content integrity is obtained through D03-approved capability; no local digest/signature algorithm is selected.
+5. Every admitted content item remains correlated to tenant/institution, owner/workflow and technical ingestion attempt.
+6. Registration/storage occurs only after required technical validation/inspection gates have completed successfully.
+7. Unsafe, malformed or unverifiable content cannot be silently normalized into an accepted artifact.
+8. Numeric file-size, decompression, timing, quarantine and purge limits are governed downstream unless authoritative sources establish them.
 
 ## 4. Technical Realization
 
-| Element | Responsibility |
+| Element | Responsibility | Input | Output | Failure Boundary |
+|---|---|---|---|---|
+| `IngestionAdmissionBoundary` | Validate tenant/owner context, correlation identity, declared media/type metadata and required authorization/business reference. | Ingestion request | Admitted technical ingestion | Rejects missing owner/trust context. |
+| `ContentCaptureBoundary` | Receive content through approved trust boundary without granting semantic acceptance. | Admitted content stream/object | Captured technical content reference | Capture failure remains technical; no business conclusion. |
+| `IntegrityEvidenceResolver` | Obtain D03-approved integrity evidence for exact received content. | Captured content | Integrity reference | No local algorithm fallback. |
+| `StructuralValidator` | Validate container/file structure and declared profile constraints supplied by caller/policy. | Content + profile | Structural outcome | Malformed/incompatible content fails or quarantines according to policy. |
+| `SecurityInspectionBoundary` | Invoke approved content-safety/malware inspection capability and capture result. | Content | Security-inspection outcome | Required inspection unavailable fails closed. |
+| `QuarantineBoundary` | Isolate content that cannot safely proceed while preserving technical evidence and owner correlation. | Unsafe/unresolved content | Quarantined technical reference | Quarantine does not itself create business rejection. |
+| `VerificationReportAssembler` | Assemble integrity/structural/security outcomes for owning workflow. | Ingestion attempt | Technical verification report | Must preserve distinction between technical and semantic validity. |
+| `RegistrationHandoff` | Forward technically accepted content to B04-002 for identity/version/storage registration. | Accepted technical content | B04 registry handoff | Failure prevents ingestion completion from being reported. |
+
+## 5. Conceptual Ingestion Contract
+
+A request conceptually identifies tenant/institution, owning workflow/correlation reference, authorization/trust context, declared media/type/profile information and the content/reference to be ingested.
+
+A verification report conceptually returns ingestion-attempt reference, integrity reference, structural validation outcome, required security-inspection outcome, quarantine/technical disposition state where applicable, safe diagnostic classification and B04-002 registration reference when successful.
+
+Exact fields/protocols remain downstream design.
+
+## 6. Validation Stages & Ordering
+
+The architecture requires a fail-safe technical sequence but does not freeze product-specific pipeline implementation:
+
+```text
+Admission/context validation
+  -> capture within trust boundary
+  -> integrity evidence resolution
+  -> structural/profile validation
+  -> required security inspection
+  -> quarantine or technical acceptance
+  -> verification report
+  -> B04-002 registration/storage handoff
+```
+
+An implementation may optimize ordering where security/correctness is preserved, but it must not allow content to become normally consumable before all required gates have passed.
+
+## 7. Quarantine Semantics
+
+- Quarantine means technically isolated from normal consumption pending authorized technical resolution.
+- Quarantine must preserve owning-workflow correlation and enough evidence for investigation/reprocessing.
+- Quarantine does not mean business rejected, invalid credential, failed admission or any other domain outcome.
+- Release/reprocessing from quarantine requires the applicable technical/security authority; exact workflow/retention duration is not invented here.
+- B05 remains the authority for retention/disposition policy over quarantined content where applicable.
+
+## 8. Content Normalization & Transformation Constraints
+
+If a downstream implementation performs normalization/transcoding/decompression or similar technical transformation, it must:
+
+- preserve correlation to the received source content;
+- not silently change business meaning;
+- retain evidence sufficient to distinguish original received content from transformed derivative;
+- re-establish required integrity/validation on the exact derivative subsequently stored/used;
+- remain within governed resource/security limits.
+
+The architecture does not mandate a specific transformation technology or format.
+
+## 9. Failure & Recovery
+
+| Failure | Required Treatment |
 |---|---|
-| `IngestionAdmissionBoundary` | Validate tenant/owner context, declared media/type metadata and required business correlation reference. |
-| `ContentCaptureBoundary` | Receive content through the approved trust boundary without granting semantic acceptance. |
-| `IntegrityEvidenceResolver` | Obtain D03-approved integrity evidence for exact received content. |
-| `StructuralValidator` | Validate container/file structure and declared profile constraints supplied by the caller/policy. |
-| `SecurityInspectionBoundary` | Invoke approved content-safety/malware inspection capability and capture the result. |
-| `QuarantineBoundary` | Isolate content that cannot safely proceed while preserving technical evidence and owner correlation. |
-| `VerificationReportAssembler` | Return technical validation/inspection outcomes to the owning workflow. |
-| `RegistrationHandoff` | Forward technically accepted content to B04-002 for identity/version/storage registration. |
+| Declared type/content mismatch | Reject/quarantine technically and report to owner. |
+| Malformed structure | Reject/quarantine; do not attempt unsafe permissive parsing. |
+| Required security inspection unavailable | Fail closed; no bypass path. |
+| Security inspection indicates unsafe content | Quarantine and prevent normal consumption. |
+| Integrity check/evidence unresolved | Do not represent content as verified. |
+| Registration/storage unavailable after validation | Preserve technical correlation and retry only through A08-governed execution. |
+| Evidence handoff failure | Ingestion cannot be represented complete. |
+| Duplicate ingestion/retry | Correlate idempotently where caller-provided identity permits; do not create uncontrolled duplicate registrations. |
 
-## 5. Ownership
+## 10. Security, Privacy & Trust
 
-Owns technical ingestion, structural validation, security-inspection orchestration, quarantine containment and verification-report assembly. Does not own business document validity, applicant/employee/student acceptance, retention schedules, storage product, cryptographic primitives, scanner product, network-zone topology or fixed numeric thresholds.
+- Untrusted content is treated as hostile until technical validation/security requirements are satisfied.
+- Parsing/inspection/transformation must operate under least privilege and isolation controls supplied by D03/E04 architecture.
+- Content must not gain executable/process/network authority through ingestion.
+- Sensitive document content and diagnostics are minimized according to privacy/classification rules.
+- No scanner product, signature feed, sidecar model, network zone, container technology or file threshold is canonical without approved governance.
 
-## 6. Failure & Recovery
+## 11. Ownership
 
-- Declared type/content mismatch or malformed structure: reject/quarantine technically and report to owner.
-- Security inspection unavailable: fail closed according to the owning security policy; do not bypass required inspection.
-- Security inspection indicates unsafe content: quarantine and prevent downstream consumption.
-- Storage/registration unavailable after successful validation: preserve technical correlation and retry only through A08-governed work execution.
-- Evidence handoff failure: ingestion cannot be represented complete until required evidence is durably handed off.
+### Owns
 
-## 7. Architecture Decisions & Open Decisions
+Technical ingestion admission, capture correlation, structural validation, security-inspection orchestration, quarantine containment, verification-report assembly and registration handoff.
+
+### Does Not Own
+
+Business document validity, applicant/employee/student acceptance, semantic verification, retention policy, storage product, cryptographic primitives, malware-scanner product, network topology or fixed numeric thresholds.
+
+## 12. Observability & Evidence
+
+Technical evidence should include ingestion-attempt/correlation reference, declared profile/type, integrity-evidence reference, structural/security outcomes, quarantine/registration outcome, failure category and B04-002/D04 handoff state. Telemetry must avoid unnecessary sensitive content exposure.
+
+## 13. Architecture Decisions & Open Decisions
 
 | ID | Position | Classification |
 |---|---|---|
 | AD-B04-030 | Technical validation and business semantic acceptance are separate responsibilities. | Canonical ownership boundary |
 | AD-B04-031 | Unsafe/unverifiable content is contained before normal storage/consumption. | Security-derived architecture position |
 | AD-B04-032 | Cryptographic integrity is delegated to D03. | ADR-L5-0002 |
+| AD-B04-033 | Technical transformations must preserve source/derivative correlation and cannot silently alter business meaning. | Technical integrity derivation |
 | OD-B04-030 | Scanner product, deployment topology, file-size/decompression thresholds, quarantine duration, synchronous cutoff and performance targets remain governed downstream. | Open decision |
 
-## 8. Conformance Requirements
+## 14. Conformance Requirements
 
 1. B04-003 shall not decide business semantic acceptance.
 2. Required security inspection shall fail closed when unavailable; no local bypass is permitted.
 3. No fixed file-size, time, decompression, quarantine or purge threshold shall be normative without approved authority.
 4. No cryptographic algorithm or malware-scanning product shall be selected locally.
-5. Quarantined content shall remain unavailable to normal consumers until an authorized technical disposition is resolved.
-6. Background retry/scheduling shall remain A08-owned.
+5. Quarantined content shall remain unavailable to normal consumers until authorized technical resolution.
+6. Any transformation shall preserve source/derivative lineage and re-establish required integrity/validation for the derivative.
+7. Registration/storage shall not be considered complete until required validation/evidence handoff succeeds.
+8. Background retry/scheduling shall remain A08-owned.
+
+## 15. Architecture Acceptance Evidence
+
+A conforming design must demonstrate fail-closed inspection, safe quarantine, separation of technical versus semantic validity, traceable source/derivative lineage, no normal-consumption path before required validation gates, and no product/numeric assumptions promoted without governance.
+
+## 16. Traceability Summary
+
+Referenced L4 scenarios remain authoritative for business document meaning/acceptance. B04-003 supplies the reusable technical ingestion/security-validation boundary and hands technically accepted artifacts to B04-002 without transferring business acceptance authority.
