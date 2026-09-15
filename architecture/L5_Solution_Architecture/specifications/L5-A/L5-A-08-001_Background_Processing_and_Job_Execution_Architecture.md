@@ -283,8 +283,6 @@ E04 realizes deployment, scaling, restart and placement. A08 supplies logical re
 
 ## 8. L4 Traceability
 
-For this validation program the referenced canonical L4 behaviors are treated as locked behavioral authority despite repository metadata still showing Draft.
-
 | L4 BH ID | Relationship | L5 contribution / ownership boundary |
 |---|---|---|
 | `L4-A-015-BH-001` | Supporting | A08 preserves validated execution context/admission; workflow-initiation authority remains A05/L4. |
@@ -310,7 +308,7 @@ No claim is made that A08 owns the business/workflow behavior represented by the
 
 ## 10. Open / Deferred Design
 
-**OD-001:** Concrete Job/Attempt storage schema and indexes are L6/implementation design under the invariants above.  
+**OD-001:** Concrete Job/Attempt storage schema and indexes are downstream implementation/technical design under the invariants above and applicable B02 architecture.  
 **OD-002:** Numeric lease duration, worker limits and timeout values are governed configuration/operational profile, not fixed by this specification.  
 **OD-003:** Product selection for workers/queues/schedulers remains separate technology/ADR governance if material.  
 
