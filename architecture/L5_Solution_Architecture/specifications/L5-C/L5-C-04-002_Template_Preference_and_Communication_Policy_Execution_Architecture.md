@@ -598,7 +598,7 @@ Raw secrets, credentials and unnecessary sensitive Notification content shall no
 | Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
 |---|---|---|---|---|---|---|
 | `OD-001` | Material C04-002 L4 sources `L4-H-010`, `L4-H-012`, `L4-H-013` and `L4-H-014` remain `Draft`; relations cannot be `Validated`. | Upstream / L4 | Current L4 lifecycle metadata | L4 governance / authorized architecture review | **Yes for Architecture Approved; No for this authorized Draft** | Approve applicable L4 behavior or issue explicit approval-level use authorization, then revalidate relations. |
-| `OD-002` | `L5-C-04-001` exists in the current authoring batch but is not yet present on canonical `main`; `L5-C-04-003` is not yet authored on canonical `main`. | Dependency / C04 family | Current repository integration state | Chetan + architecture review / repository governance | No for Draft; family approval requires reconciliation | Integrate/review C04-001 and author C04-003, then run a three-file ownership/contract consistency review. |
+| `OD-002` | C04-001, C04-002 and C04-003 are all present on canonical `main`; the family repository-integration concern is resolved. | Resolved repository item / C04 family | Canonical repository state after family integration | Repository governance / architecture review | No | No further integration action is required; maintain synchronized ownership and handoff references when any C04 specification changes materially. |
 | `OD-003` | H02 lists multiple Preference scopes but does not establish one universal hard-coded precedence order across every Preference dimension. | Upstream policy/configuration | L2-H02 §20.2 + H013 require determinism but policy values/order are institution/governance dependent | H02 communication-policy owner using A06-governed configuration | No for architecture; required before a concrete policy is activated | Each active communication policy/configuration must supply deterministic applicability/precedence; ambiguous resolution fails. |
 | `OD-004` | Exact Template syntax, rendering/localization engine, policy-engine implementation and cache strategy are unselected. | Technology / Implementation | No approved technology decision | Applicable technical owner / Lead Architect if ADR is material | No for technology-neutral Draft | Select only through governed technology/ADR process if a canonical repository choice is needed. |
 
@@ -640,6 +640,6 @@ All current relations are **Specified**, not `Validated`, while the cited L4 sou
 
 ### Open / Blocking Items
 - `OD-001` — Draft L4 sources block Architecture Approved status.
-- `OD-002` — C04 family repository integration/reconciliation pending.
+- `OD-002` — C04 family canonical repository integration is resolved; no repository blocker remains.
 - `OD-003` — concrete active policy must supply deterministic preference precedence where needed.
 - `OD-004` — technology choices intentionally deferred.
