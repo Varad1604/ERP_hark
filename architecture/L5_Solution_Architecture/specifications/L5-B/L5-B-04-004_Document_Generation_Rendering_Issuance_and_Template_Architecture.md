@@ -13,7 +13,7 @@
 | Technical Architecture Owner | Document Generation & Rendering Technical Architecture |
 | Assigned Author | Varad |
 | Version | 1.0.4 |
-| Status | Draft |
+| Status | Locked |
 | Last Updated | 2026-09-15 |
 | Depends On | L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5-B-04-001; L5-B-04-002; L5-B-02-001; L5-B-05-003; L5-D-03-001; L5-D-04-001; L5-A-08-001; L4-C-018; L4-E-039 |
 | Referenced By | Domain workflows that request governed document generation or issuance |
