@@ -9,10 +9,10 @@
 **Canonical Technical Responsibility:** Future mobile technical architecture aligned to shared backend contracts; no offline-first assumption or L6 design.  
 **Technical Architecture Owner:** L5-G-01 — Client Platform Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.0`  
-**Status:** `Draft`  
+**Version:** `1.0.1`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-15`  
-**Depends On:** `L5-G-01-001` v1.0.1 Architecture Approved; `L5-G-01-003` v1.0.1 Architecture Approved; G01 dependency-readiness decision 2026-09-15; `L5-C-01-001/002/003`; `L5-D-01`; `L5-D-02`; `L5-A-04`; `ADR-L5-0001`; `ADR-L5-0003`; `ADR-L5-0004`.  
+**Depends On:** `L5-G-01-001` v1.0.1 Architecture Approved; `L5-G-01-003` v1.0.1 Architecture Approved; `L5_G01_004_Future_Mobile_Application_Architecture_Approval_Decision_2026-09-15.md`; G01 dependency-readiness decision 2026-09-15; `L5-C-01-001/002/003`; `L5-D-01`; `L5-D-02`; `L5-A-04`; `ADR-L5-0001`; `ADR-L5-0003`; `ADR-L5-0004`.  
 **Referenced By:** Future mobile implementation architecture, future L6 mobile UX architecture, mobile release/runtime architecture.  
 **Applicable ADRs:** `ADR-L5-0001`, `ADR-L5-0003`, `ADR-L5-0004`. No mobile framework, language, app-shell product, push-provider, local database, secure-storage product or offline-sync platform is selected by this specification.
 
@@ -462,4 +462,6 @@ ADR-L5-0004 → Tenant/Institution isolation enforcement
 **Technology position:** mobile framework/runtime intentionally deferred until implementation activation.  
 **Offline position:** online-first; no offline authoritative business mutation.  
 **L6 leakage:** none intended.  
-**Current Status:** `Draft` pending hard-fail/architecture approval review.
+**Current Status:** `Architecture Approved`.  
+**Implementation Activation:** future mobile framework/runtime ADR, D01 mobile session carrier and any C04 push technology remain activation gates.  
+**Lock Status:** not Locked; lock requires separate final governance authorization.
