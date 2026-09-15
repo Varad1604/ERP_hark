@@ -13,7 +13,7 @@
 | Technical Architecture Owner | Document & Media Platform Architecture |
 | Assigned Author | Varad |
 | Version | 1.0.1 |
-| Status | Draft |
+| Status | Locked |
 | Last Updated | 2026-09-15 |
 | Depends On | L5-B-02-001; L5-D-03-001; L5-D-03-002; L5-B-05-003; L5-D-04-001; applicable approved L4 document behaviors; L5 governance/template/validation standards |
 | Referenced By | L5-B-04-002; L5-B-04-003; L5-B-04-004; L5-B-04-005 |
