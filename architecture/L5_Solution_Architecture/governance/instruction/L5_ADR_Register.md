@@ -5,7 +5,7 @@
 **Owner:** Lead Architect  
 **Architectural Level:** L5 — Solution Architecture Governance  
 **Domain:** Cross-domain  
-**Last Updated:** 2026-09-12  
+**Last Updated:** 2026-09-15  
 **Depends On:** L5 Technology Selection & ADR Methodology  
 **Purpose:** Canonical allocation and lifecycle register for L5 Architecture Decision Record identifiers  
 
@@ -96,6 +96,8 @@ The next new ADR number is determined from the highest canonical allocated ADR n
 | `ADR-L5-0010` | Durable Event Delivery, Subscription, Ordering & Recovery Pattern | Shared / Family | L5-C-02 — Event & Messaging Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0010_Durable_Event_Delivery_Subscription_Ordering_and_Recovery_Pattern.md` | `L5-C-02-001`; `L5-C-02-002` | 2026-09-12 | 2026-09-12 | — | — | Approved Stage-2 remediation decision governing C02 delivery, subscription, acknowledgement, ordering and recovery semantics; no broker/product selection. |
 | `ADR-L5-0011` | Event Contract Versioning & Consumer Compatibility Pattern | Shared / Family | L5-C-02 — Event & Messaging Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0011_Event_Contract_Versioning_and_Consumer_Compatibility_Pattern.md` | `L5-C-02-003`; collaborates with `L5-C-02-001` | 2026-09-12 | 2026-09-12 | — | — | Approved Stage-2 remediation decision governing event-contract evolution and compatibility semantics; no registry/serialization product selection. |
 | `ADR-L5-0012` | Tamper-Evident Audit Evidence Storage, Integrity Stream, Checkpoint & Anchor Pattern | Specification | L5-D-04-003 — Tamper-Evident Audit Storage, Access & Export Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0012_Tamper_Evident_Audit_Evidence_Storage_Integrity_Stream_Checkpoint_and_Anchor_Pattern.md` | `L5-D-04-003` | 2026-09-12 | 2026-09-12 | — | — | Approved Stage-3 decision for canonical/query topology, Tenant-local versioned integrity streams, sequential linkage, checkpoint sealing and independently protected checkpoint anchoring; no product/algorithm selection. |
+| `ADR-L5-0013` | Governed Background Job, Work-Unit & Technical Retry Execution Pattern | Shared / Family | L5-A-08 — Background Processing & Job Execution Architecture | Proposed | `architecture/L5_Solution_Architecture/adr/ADR-L5-0013_Governed_Background_Job_Work_Unit_and_Technical_Retry_Execution_Pattern.md` | `L5-A-08-001`; `L5-A-08-002`; constrains consumers including `L5-A-05-003` | 2026-09-15 | — | — | — | Allocated for Varad Stage-3 remediation; product-neutral shared asynchronous execution decision. |
+| `ADR-L5-0014` | Repository Resilience, Health, Degradation & Recovery Pattern | Repository | L5-E-01 — Availability & Resilience Architecture | Proposed | `architecture/L5_Solution_Architecture/adr/ADR-L5-0014_Repository_Resilience_Health_Degradation_and_Recovery_Pattern.md` | `L5-E-01-001`; `L5-E-01-002`; constrains reliability-aware L5 consumers | 2026-09-15 | — | — | — | Allocated for Varad Stage-3 remediation; technology-neutral resilience/recovery decision. |
 
 ### ADR Path
 
@@ -338,5 +340,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 12  
-**Next Canonical Allocation:** `ADR-L5-0013`
+**ADR IDs Currently Canonically Allocated:** 14  
+**Next Canonical Allocation:** `ADR-L5-0015`
