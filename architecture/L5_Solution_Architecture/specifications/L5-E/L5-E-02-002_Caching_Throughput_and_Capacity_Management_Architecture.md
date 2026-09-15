@@ -1,371 +1,219 @@
-﻿# L5-E-02-002 — Caching, Throughput & Capacity Management Architecture
+# L5-E-02-002 — Caching, Throughput & Capacity Management Architecture
 
 ## 1. Specification Metadata
 
-| Field | Value |
-|---|---|
-| Specification ID | L5-E-02-002 |
-| Specification Title | Caching, Throughput & Capacity Management Architecture |
-| Architecture Level | L5 — Solution Architecture |
-| Family | L5-E — Reliability, Deployment & Operations Architecture |
-| Major Area | L5-E-02 — Performance & Capacity Architecture |
-| Version | 1.0.0 |
-| Status | Draft |
-| Author | Varad |
-| Primary Responsibility | Caching/throughput/capacity mechanisms without making caches authoritative business truth |
+**Specification ID:** `L5-E-02-002`  
+**Architecture Level:** L5 — Solution Architecture  
+**Family:** L5-E — Reliability, Operations & Runtime Architecture  
+**Major Area:** L5-E-02 — Performance & Capacity Architecture  
+**Canonical Technical Responsibility:** Caching validity/invalidation boundaries, throughput control, backpressure and capacity admission mechanisms that preserve authoritative ownership and consistency.  
+**Technical Architecture Owner:** L5-E-02 — Performance & Capacity Architecture  
+**Assigned Author:** Varad  
+**Version:** `1.0.1`  
+**Status:** `Draft`  
+**Last Updated:** `2026-09-15`  
+**Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-E-02-001`; `L5-A-01-001`; `L5-B-02-001`; `L5-B-02-002`; `L5-B-02-003`; `L5-E-04-001`; `L5-E-01-*`; `L5-A-08-*`; `L5-C-02-*`; applicable E05 architecture; `L4-A-015`; `L4-A-016`.  
+**Referenced By:** L5 capabilities using caching, throughput throttling or backpressure.  
+**Applicable ADRs:** `ADR-L5-0005`, `ADR-L5-0006`, `ADR-L5-0010`, `ADR-L5-0011`, `ADR-L5-0014`.  
 
 ---
 
 ## 2. Purpose, Scope & Non-Goals
 
-### 2.1 Purpose
+This specification defines concrete L5 mechanisms for safe caching, throughput shaping and capacity admission. It establishes how cached values retain provenance and validity, how invalidation/refresh is governed, and how producers/consumers react to throughput pressure without silently dropping work or bypassing owner authority.
 
-This specification defines reusable technical mechanisms for managing repeated access, throughput pressure and constrained technical capacity while preserving authoritative business state and upstream business semantics.
-
-### 2.2 In Scope
-
-- Cache architecture and cache-use boundaries.
-- Throughput management mechanisms.
-- Technical admission and flow-control mechanisms where capacity is constrained.
-- Capacity allocation and protection mechanisms at solution level.
-- Cache consistency and invalidation responsibilities.
-- Derived/accelerated representations and their relationship to authoritative sources.
-- Throughput protection across competing workloads.
-- Technical observability for cache, throughput and capacity-management behavior.
-
-### 2.3 Explicit Non-Goals
-
-This specification does not own or redefine:
-
-- Business rules, workflows or business outcomes.
-- Business lifecycle states or transitions.
-- Canonical business event ownership or publication.
-- Business authority or approval decisions.
-- Overall performance/capacity quality attributes owned by E-02-001.
-- Overall availability/resilience owned by E-01.
-- Business-specific retry semantics.
-- APIs, database schemas, infrastructure products, protocols or technology/product selection.
-- UI/client caching behavior owned by L6 unless explicitly consumed as a downstream constraint.
+It does not make cached data authoritative, select a cache/broker/database product, define business priority, create universal TTL values, redefine C02 delivery or A08 retry, or own runtime deployment.
 
 ---
 
-## 3. Upstream Applicability, Constraints & Assumptions
+## 3. Constraints & Stage-3 Dependency Gate
 
-### 3.1 Canonical Responsibility
+The Stage-3 minimum dependency set is explicitly consumed:
 
-The L5 candidate corpus assigns E-02-002 responsibility for **caching/throughput/capacity mechanisms without making caches authoritative business truth**.
+- `L5-A-01-001` for application/execution boundaries;
+- `L5-B-02-*` for persistence ownership, consistency and transaction boundaries;
+- `L5-E-04-001` for runtime/deployment realization.
 
-### 3.2 Boundary with E-02-001
+Additional rules:
 
-E-02-001 establishes performance quality attributes, capacity dimensions and architectural principles. E-02-002 provides reusable mechanisms that operate within that architectural envelope.
-
-### 3.3 Cache Authority Boundary
-
-A cache, derived representation or accelerated copy shall never become an alternative authoritative business source merely because it is faster or more available.
-
-Authoritative business data remains owned by its canonical source architecture.
-
-### 3.4 Staleness Boundary
-
-Where cached or derived information may become stale, the architecture shall preserve explicit knowledge of its non-authoritative nature. A consuming capability shall not silently treat stale data as authoritative where current authoritative information is required.
-
-### 3.5 Throughput Boundary
-
-Throughput controls regulate technical processing demand. They shall not independently determine business priority, approval or institutional entitlement unless an upstream authoritative policy explicitly supplies those semantics.
-
-### 3.6 L4 Traceability Status
-
-Exact atomic L4 applicability has not been independently reconciled in this authoring draft. No L4 BH identifiers are invented.
-
-Required relation:
-
-`(L4 BH ID, L4 Version, L5-E-02-002, L5 Version)`
-
-Exact L4 BH applicability, source version/status and validation remain **OPEN / BLOCKING** until reconciled against the current approved L4 corpus.
+1. Cache is a derived acceleration structure unless a separate canonical owner explicitly declares otherwise.
+2. The authoritative owner remains the source of truth; a cache may never silently become a cross-owner write path.
+3. Throughput control may defer/throttle/reject technically but may not invent business priority/approval.
+4. C02 owns message-delivery backlog/retry; A08 owns job/unit retry; E02 provides pressure/backpressure controls only.
+5. Numeric TTL, batch, queue and concurrency thresholds are governed configuration/workload profiles.
 
 ---
 
 ## 4. Technical Architecture
 
-### 4.1 Caching / Throughput Management Model
+### 4.1 Logical Components
 
-```text
-Authoritative Source
-       ↓
-Derived / Cached Representation
-       ↓
-Freshness & Validity Assessment
-       ↓
-Consumption Decision
-       ↓
-Fast Path / Authoritative Refresh
+| Component | Responsibility |
+|---|---|
+| Cache Policy Resolver | selects the declared cache policy for a data/use-case scope |
+| Cache Read Gate | decides whether cached representation is usable for the requested operation |
+| Refresh/Invalidation Controller | applies version/change-driven, explicit invalidation or governed expiry rules |
+| Provenance Recorder | preserves source owner, source identity/version and refresh evidence |
+| Throughput Gate | applies technical concurrency/rate admission to a scope |
+| Backpressure Controller | signals producers/callers to defer/throttle when downstream capacity is saturated |
+| Pressure Meter | measures queue/backlog/concurrency/latency signals and feeds E02-001/E01/E05 |
 
-Workload Demand
-       ↓
-Throughput Assessment
-       ↓
-Flow / Admission Control
-       ↓
-Capacity Allocation
-       ↓
-Protected Technical Execution
-       ↓
-Observability / Evidence
-```
+These are logical control points, not required deployable services.
 
-### 4.2 Cache Placement
+### 4.2 Cache Entry Contract
 
-Caching shall be applied only where the cached representation has a defined source of authority and an understood freshness boundary.
+Every material cache entry shall preserve enough metadata to decide validity, including as applicable:
 
-Cache placement shall not obscure ownership of the underlying business fact.
+- cache key and Tenant/Institution scope;
+- authoritative source owner/reference;
+- source version/change token or equivalent provenance;
+- value creation/refresh evidence;
+- policy/profile identifier;
+- expiry/staleness bound where time-based validity is permitted;
+- invalidation generation/version where used;
+- sensitivity/classification reference where required.
 
-### 4.3 Cache Validity
+A cache key shall not collapse unrelated Tenant/Institution or owner scope.
 
-A cached representation shall have sufficient metadata or contextual controls to determine whether it remains usable for its intended technical purpose.
+### 4.3 Cache Read Gate
 
-When validity cannot be established, the safe technical response is to avoid relying on the representation for operations that require authoritative/current information.
+A cached value may be used only when the declared policy permits the requested operation and the entry is valid under its source/provenance rule.
 
-### 4.4 Invalidation and Refresh
+Possible outcomes:
 
-Changes to authoritative source data shall provide a governed mechanism for determining when dependent cached representations are no longer suitable.
+- `CacheHitValid` — value may be returned/used;
+- `CacheMiss` — fetch/compute from authoritative owner;
+- `CacheStaleRefreshAllowed` — only when policy explicitly permits bounded stale use;
+- `CacheInvalid` — bypass/remove entry and use owner path;
+- `OwnerUnavailableNoSafeCache` — fail/degrade according to E01 profile; do not fabricate authoritative freshness.
 
-Invalidation/refresh mechanisms shall not redefine the authoritative source's lifecycle or business event ownership.
+### 4.4 Invalidation / Refresh Patterns
 
-### 4.5 Cache Consistency
+Allowed logical patterns include:
 
-Where strict currentness is required by the consuming capability, cached data shall not be used as a substitute for authoritative state when its freshness cannot be established.
+- source/change-event-driven invalidation or refresh;
+- explicit owner invalidation;
+- version/token comparison on read;
+- governed TTL/expiry where freshness requirements permit;
+- read-through refresh after a miss.
 
-Where eventual freshness is acceptable, that acceptance shall come from authoritative requirements rather than being inferred by the cache mechanism.
+Pattern selection must be declared per cache policy. A universal TTL-only model is not assumed.
 
-### 4.6 Throughput Management
+When change-event-driven invalidation is used, C02 owns durable event delivery and compatibility. Loss/delay of an invalidation event must be bounded by another validity control where stale data would be unsafe.
 
-The solution shall provide mechanisms to prevent uncontrolled workload demand from overwhelming technical processing capacity.
+### 4.5 Consistency Boundary
 
-Throughput management may include admission control, flow regulation, workload shaping or controlled concurrency at the architecture level without selecting a particular product or protocol.
+For write/command decisions that require current authoritative state, policy shall either bypass cache or validate against an authoritative version/token before committing. Cache state shall never be used to directly mutate another owner’s persistence.
 
-### 4.7 Capacity Protection
+### 4.6 Throughput Gate
 
-When demand exceeds available technical capacity, capacity-management mechanisms may protect critical technical resources and preserve system integrity.
+For a declared technical scope, the gate evaluates current capacity pressure and returns one of:
 
-A protected or rejected technical request shall not be represented as successful business completion.
+- `Accept`;
+- `Defer`;
+- `Throttle`;
+- `RejectTechnical`.
 
-### 4.8 Workload Fairness and Priority
+The caller/owner maps this result to its own workflow/business behavior. E02 does not own the business decision.
 
-Technical scheduling or resource allocation shall not invent business priority semantics. Where priority is required, the technical mechanism shall consume authoritative priority information supplied by the relevant upstream architecture.
+### 4.7 Backpressure
 
-### 4.9 Backpressure / Flow Control
+Backpressure shall be explicit and propagate toward the producing boundary before unsafe saturation causes silent loss.
 
-Where downstream technical capacity is constrained, upstream demand shall be regulated sufficiently to prevent uncontrolled propagation of resource pressure.
+Examples of ownership-preserving handoff:
 
-Flow control shall preserve request/execution context and shall not silently drop authoritative business work.
+- A08 retains durable Jobs/Units in Ready/deferred state instead of dropping them;
+- C02 retains durable delivery/backlog state under its recovery model;
+- synchronous callers receive an explicit technical throttle/retry-later outcome through the owning contract;
+- E01 may mark the affected scope Degraded/Unavailable if safe capacity cannot be maintained.
 
-### 4.10 Cache Failure
+### 4.8 Priority
 
-Loss, corruption, staleness or unavailability of a cache shall not corrupt authoritative business state.
+Technical priority may exist only when supplied by an authoritative workload/business policy or a separately governed technical class. E02 shall not infer business importance from endpoint/domain names.
 
-The architecture shall distinguish cache failure from authoritative-source failure and shall hand the latter to the appropriate availability/recovery architecture.
+### 4.9 Failure Handling
 
-### 4.11 Security and Privacy Preservation
+If cache infrastructure fails, the owner path is used when safe and available. If the owner path cannot support the load or the cache was required for safe bounded operation, apply E01 degradation/unavailability policy rather than pretending normal operation.
 
-Cached or derived representations shall remain within applicable security, authorization and privacy boundaries. Performance optimisation shall not justify broader data exposure.
-
-### 4.12 Observability
-
-Material cache misses, stale/invalid representations, throughput pressure, capacity rejection and significant flow-control conditions shall be observable for diagnosis and capacity planning.
-
----
-
-## 5. Dependencies / Integration
-
-### 5.1 Upstream
-
-- Locked L1 Business Domain Architecture.
-- Applicable L2 workflows.
-- Approved/locked L3 scenarios.
-- Current approved L4 system behavior specifications.
-- L5 governance and candidate-corpus decisions.
-
-### 5.2 Peer L5 Dependencies
-
-- **L5-E-02-001 — Performance & Capacity Architecture:** architectural performance/capacity envelope.
-- **L5-E-01-001 — Availability & Resilience Architecture:** availability and resilience constraints.
-- **L5-E-01-002 — Failure Isolation, Graceful Degradation & Service Recovery Architecture:** cache/throughput failure and recovery implications.
-- **L5-A-08 — Background Processing & Job Execution Architecture:** asynchronous workload execution where applicable.
-- **L5-B data architectures:** authoritative source and derived-data boundaries.
-- **L5-C integration architectures:** throughput constraints on technical contracts/interactions where applicable.
-- **L5-D security/privacy architectures:** protection of cached and derived sensitive representations.
-
-Exact peer versions remain an authoring-stage validation item.
-
-### 5.3 Integration Rule
-
-E-02-002 provides technical acceleration, flow-control and capacity-management mechanisms; E-02-001 defines the broader performance/capacity architecture envelope and source architectures retain authority over business data and semantics.
+If invalidation evidence is uncertain, the affected entry is treated as invalid unless the declared policy proves bounded stale use is safe.
 
 ---
 
-## 6. Technical Behavior / Failure Concerns
+## 5. Cross-Family Handoffs
 
-### TB-001 — Source Authority Preservation
+### E02 ↔ B02
+B02 remains authoritative for persisted source data, transaction/concurrency and topology. E02 caches derived representations and consumes source version/change evidence.
 
-Every cached or derived representation shall have an identifiable authoritative source boundary.
+### E02 ↔ C02
+C02 owns delivery of invalidation/change messages. E02 owns what a cache does with a valid received change signal and its fallback validity rule.
 
-### TB-002 — Cache Validity
+### E02 ↔ A08
+E02 supplies throughput/backpressure signal. A08 owns durable Job/Unit admission, release and retry.
 
-The architecture shall determine whether a cached representation is sufficiently valid for its intended technical use before relying on it where freshness matters.
+### E02 ↔ E01
+E02 supplies pressure/saturation state. E01 owns `Healthy`/`Degraded`/`Unavailable` interpretation and declared degradation behavior.
 
-### TB-003 — Stale Data Protection
+### E02 ↔ E04
+E02 supplies capacity requirements; E04 owns placement/scaling/deployment realization.
 
-A stale or indeterminate representation shall not be presented as authoritative current business state when current authority is required.
+---
 
-### 4.x Cache Invalidation Trigger Patterns
+## 6. Failure Concerns
 
-The architecture shall identify applicable cache invalidation trigger mechanisms at the architecture level. The following patterns are architecturally recognized:
+| Condition | Required behavior |
+|---|---|
+| stale/invalid cache entry | bypass/invalidate; do not present as authoritative current state |
+| invalidation delivery delayed | use secondary validity control or fail closed for freshness-critical use |
+| cache unavailable | safe owner-path fallback or E01-governed degradation/unavailability |
+| downstream saturated | explicit defer/throttle/reject; no silent drop |
+| queue/backlog grows | owning A08/C02 mechanism retains durable work; E02 exposes pressure |
+| capacity/pressure evidence unavailable | conservative governed fallback; do not fabricate headroom |
 
-| Pattern | Description | Cross-L5 Implication |
+---
+
+## 7. Conformance Requirements
+
+| ID | Requirement |
+|---|---|
+| CR-001 | Every material cache policy declares authoritative source owner and validity rule. |
+| CR-002 | Cache entries preserve Tenant/Institution scope and sufficient provenance/version evidence. |
+| CR-003 | Cache data cannot become an unauthorized cross-owner write path or implicit source of truth. |
+| CR-004 | Freshness-critical operations bypass or revalidate cache when current owner state is required. |
+| CR-005 | Invalidation/refresh pattern is explicit; unsafe universal TTL assumptions are prohibited. |
+| CR-006 | C02 remains owner of invalidation/change-event delivery when event-driven invalidation is used. |
+| CR-007 | Throughput saturation produces explicit admission/backpressure behavior; work is not silently dropped. |
+| CR-008 | A08/C02 retain ownership of durable work/backlog retry and recovery. |
+| CR-009 | E01 owns degradation/unavailability state when capacity/cache failure affects service health. |
+| CR-010 | Stage-3 A01+B02+E04 dependencies are explicitly consumed. |
+| CR-011 | Numeric TTL/rate/concurrency/queue limits are governed configuration, not invented constants. |
+| CR-012 | Cache and throughput evidence is attributable to scope/policy/source. |
+
+---
+
+## 8. L4 Traceability
+
+For this validation program referenced L4 behavior is treated as locked behavioral authority despite Draft metadata.
+
+| L4 BH ID | Relationship | L5 contribution / boundary |
 |---|---|---|
-| **Push Invalidation** | The authoritative source actively signals the cache to invalidate on state change. | Requires a write-back/notification path from the source architecture to the cache boundary. Source architecture remains authoritative owner. |
-| **Time-to-Live (TTL) Expiry** | Cached representations are invalidated after a governed elapsed time. | TTL duration is a governed architectural parameter, not an arbitrary value; authoritative freshness requirements shall be consumed from upstream, not invented. |
-| **Read-Through Miss** | On cache miss, the system fetches from the authoritative source and optionally re-caches. | Standard read path; source architecture remains authoritative; no cross-L5 dependency beyond B02/B04 data architectures. |
-| **Event-Driven Invalidation** | A canonical business event (e.g., data change event) triggers cache invalidation. | Requires L5-C-02 (Event & Messaging Architecture) as a dependency for event consumption. Event ownership remains with the canonical event publisher; E-02-002 only consumes the event as an invalidation signal. |
+| `L4-A-015-BH-001` | Supporting | throughput gate may technically constrain workflow initiation after upstream validation; workflow authority remains upstream. |
+| `L4-A-015-BH-006` | Supporting | deferred technical capacity shall not bypass a workflow-owned wait/release condition. |
+| `L4-A-016-BH-003` | Supporting | cached/throughput/recovery paths preserve Tenant/execution/correlation context. |
 
-Pattern selection for a given cached representation is an implementation decision or ADR candidate. The architectural requirement is that invalidation patterns are explicitly declared and do not silently allow stale representations to become authoritative business truth.
-
----
-
-### TB-004 — Invalidation / Refresh
-
-Authoritative source changes shall cause dependent representations to be invalidated or refreshed according to their defined technical consistency boundary.
-
-### TB-005 — Cache Failure Containment
-
-Cache failure shall not corrupt or replace authoritative business state.
-
-### TB-006 — Throughput Protection
-
-Technical throughput controls shall protect processing capacity from uncontrolled demand.
-
-### TB-007 — Capacity Admission
-
-When technical capacity is insufficient, admission controls may constrain processing, but shall not fabricate successful completion.
-
-### TB-008 — Backpressure
-
-Material downstream capacity constraints shall be capable of propagating controlled flow regulation upstream where applicable.
-
-### TB-009 — Priority Integrity
-
-Technical resource allocation shall consume authoritative priority semantics where provided and shall not invent business priority.
-
-### TB-010 — Context Preservation
-
-Caching and throughput controls shall preserve applicable execution, Tenant/Institution and security context.
-
-### TB-011 — Security / Privacy Preservation
-
-Cached and derived representations shall remain subject to applicable security, authorization and privacy constraints.
-
-### TB-012 — Observability
-
-Material cache, throughput and capacity-management conditions shall be observable.
-
-### TB-013 — Business Outcome Preservation
-
-Technical caching, flow control or capacity protection shall not independently create, reverse, approve or complete business outcomes.
+`L4-A-019-BH-001` is intentionally not claimed as an event-throughput behavior. `L4-A-038-BH-001` is intentionally not claimed because immutable source-version binding is not established by caching acceleration itself.
 
 ---
 
-## 7. Security / Trust / Evidence
+## 9. Architecture Decisions
 
-### 7.1 Security
-
-- Cached sensitive data shall remain within applicable protection and authorization boundaries.
-- Cache access shall not create privilege escalation.
-- Derived representations shall not bypass privacy controls.
-- Trust and cryptographic mechanisms remain governed by D03.
-
-### 7.2 Evidence
-
-Evidence shall support reconstruction of:
-
-- cache validity/staleness conditions;
-- invalidation or refresh actions;
-- throughput pressure;
-- admission/flow-control decisions;
-- capacity-protection conditions; and
-- material technical failures.
-
-Evidence shall avoid unnecessary replication of sensitive business data.
+**AD-001:** Cache validity follows authoritative source ownership and B02 consistency boundaries; no alternate source of truth is created.  
+**AD-002:** C02 ADRs `0010`/`0011` govern event-driven invalidation delivery and compatibility when used.  
+**AD-003:** Capacity-induced service health consumes `ADR-L5-0014` rather than creating a separate health model.
 
 ---
 
-## 8. Conformance
+## 10. Open / Deferred Design
 
-A conforming implementation shall demonstrate that:
-
-| CR ID | Conformance Requirement |
-|---|---|
-| CR-001 | Cached and derived representations have identifiable authoritative source boundaries. |
-| CR-002 | Cache validity is assessed where freshness matters before relying on a cached representation. |
-| CR-003 | Stale or indeterminate cached data cannot silently become authoritative current business truth. |
-| CR-004 | Source changes can invalidate or refresh dependent representations according to defined consistency needs, using a declared invalidation pattern. |
-| CR-005 | Cache failure cannot corrupt or replace authoritative business state. |
-| CR-006 | Throughput controls protect technical processing capacity from uncontrolled demand. |
-| CR-007 | Capacity admission controls cannot fabricate successful completion of a business outcome. |
-| CR-008 | Backpressure can regulate materially constrained technical paths where applicable. |
-| CR-009 | Technical resource allocation consumes authoritative business priority where provided and does not invent priority. |
-| CR-010 | Execution, Tenant/Institution and security context are preserved by caching and throughput controls. |
-| CR-011 | Cached and derived representations remain within applicable security, authorization and privacy boundaries. |
-| CR-012 | Material cache, throughput and capacity-management conditions are observable. |
-| CR-013 | The architecture remains independent of technology or product selection. |
-
----
-
-## 9. Traceability
-
-| Traceability Item | Status |
-|---|---|
-| Canonical specification ID verified | PASS |
-| Canonical title verified | PASS |
-| Canonical major-area placement verified | PASS |
-| Responsibility verified against 105-spec register | PASS |
-| E-02-001 boundary verified | PASS |
-| Cache-authority boundary verified | PASS |
-| Upstream L1/L2/L3/L4 applicability | OPEN / BLOCKING |
-| Exact atomic L4 BH mapping | OPEN / BLOCKING |
-| Exact L4 source version/status | OPEN / BLOCKING |
-| Peer L5 version/dependency validation | OPEN / BLOCKING |
-
-### Required Atomic Traceability Form
-
-Each validated relation shall use:
-
-`L4 BH ID + L4 Version + L5-E-02-002 + L5 Version`
-
-Document-level statements are insufficient for final traceability.
-
-### Candidate Atomic L4-to-L5 Traceability (Draft Baseline)
-
-The following are candidate traceability relations against the current Draft L4 baseline. They shall be independently validated and revalidated if L4 is subsequently changed before L5 promotion.
-
-| L4 BH ID | L4 Version | Relationship | L5 Specification ID | L5 Version | Rationale / Boundary |
-|---|---|---|---|---|---|
-| L4-A-015-BH-001 | v1.0.0 Draft | Supporting | L5-E-02-002 | v1.0.0 | Throughput controls may gate workflow initiation admission; caching may accelerate context lookup for initiation validation. Workflow authority remains L4-A-015. |
-| L4-A-015-BH-006 | v1.0.0 Draft | Supporting | L5-E-02-002 | v1.0.0 | Caching and throughput mechanisms may affect deferred/waiting execution performance; wait-condition authority remains Workflow Engine owned. |
-| L4-A-016-BH-003 | v1.0.0 Draft | Supporting | L5-E-02-002 | v1.0.0 | Cache/throughput mechanisms must preserve Tenant/execution context across recovery paths; business recovery semantics remain L4-A-016 owned. |
-| L4-A-019-BH-001 | v1.0.0 Draft | Supporting | L5-E-02-002 | v1.0.0 | Event delivery throughput constraints are governed by throughput/flow-control architecture; canonical event ownership and delivery remain C02 and publishing-domain owned. |
-| L4-A-038-BH-001 | v1.0.0 Draft | Supporting | L5-E-02-002 | v1.0.0 | Published dataset synchronization may be accelerated or cached; authoritative dataset ownership remains with the master/reference data architecture (L5-B-03). |
-
-**Upstream Status Qualification:** All referenced L4 specifications remain Draft. The candidate relations establish traceability to the current L4 baseline without promoting any L4 specification. Revalidation required before L5 promotion.
-
----
-
-## 10. Open Issues / Deferred Design
-
-- **OD-001 — Exact L4 BH Applicability:** Reconcile exact L4 behavioral obligations against the current approved L4 corpus before promotion.
-- **OD-002 — L4 Version/Status:** Record exact source versions and current approval/lock status for accepted atomic relations.
-- **OD-003 — Peer Dependency Validation:** Validate exact versions and boundaries of E-02-001, E-01-001, E-01-002, A08, relevant B/C/D architectures and affected capability specifications.
-- **OD-004 — Freshness Requirements:** Consume authoritative freshness/consistency requirements; do not invent universal cache durations or stale-data tolerances.
-- **OD-005 — Business Priority Inputs:** Consume authoritative priority semantics where required; technical mechanisms shall not invent institutional priority.
-- **OD-006 — Current L4 Baseline Reconciliation:** Where live L4 documents differ in status from the governance baseline, downstream traceability shall use the subsequently approved/current L4 state and shall not treat Draft wording as immutable.
-
-**Promotion Gate:** This specification shall remain `Draft` until exact L4 applicability, upstream status and peer dependency checks are independently validated.
+**OD-001:** Concrete cache technology/topology and eviction algorithm remain implementation/technology governance.  
+**OD-002:** Workload-specific TTL, stale bounds, concurrency and rate limits require governed profiles and evidence.  
+**OD-003:** Concrete API error/status representation for throttle/defer outcomes is owned by the applicable contract/API architecture.
