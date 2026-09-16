@@ -454,11 +454,30 @@ These documents are historical technical inputs only. They are not part of the f
 
 ---
 
-# Future L6 Architecture Placeholder
+# L6 — UI / UX Architecture
 
-| Level | Future Artifact Type | Indexing Rule |
-|-------|----------------------|---------------|
-| L6 | UI / UX Architecture | Add only after an approved L6 source document exists and traces to L5. |
+The active L6 foundation is located under:
+
+```text
+architecture/L6_UI_UX_Architecture/
+├── README.md
+├── 00_Governance/
+└── 01_Foundation/
+```
+
+The foundation package currently consists of six Draft working artifacts plus the Architecture Approved controlled-authorization decision dated 2026-09-16.
+
+| Document | Owner | Status | Execution Relevance |
+|---|---|---|---|
+| L6 Governance and Architecture Standard — Draft | Lead Architect | Draft | Controlled working governance |
+| L6 UI / UX Architecture Template v0.1 — Draft | Lead Architect | Draft | Controlled working template |
+| L6 Validation Standard — Draft | Lead Architect | Draft | Controlled working validation |
+| L6 Design System Foundation — Draft | Lead Architect | Draft | Controlled working foundation |
+| L6 Application Shell and Information Architecture — Draft | Lead Architect | Draft | Controlled working foundation |
+| L6 Interaction, State and Feedback Standard — Draft | Lead Architect | Draft | Controlled working foundation |
+| L6 Foundation Controlled Authorization — 2026-09-16 | Lead Architect | Architecture Approved | Active controlled-authoring authorization |
+
+Controlled L6 authoring is authorized, but permanent L6 numbering, the full screen/workspace corpus, final folder taxonomy and Final L6 Corpus Lock remain unresolved. Frontend implementation shall not work ahead of a sufficiently approved/authorized L6 interaction boundary.
 
 ---
 
@@ -494,7 +513,8 @@ These documents are historical technical inputs only. They are not part of the f
 | L5 Frozen Authoring Population | 105 specifications |
 | L5 Broad Authoring | Authorized |
 | L5 Historical Extracted Documents | 2 substantive artifacts + 2 temporary root compatibility pointers |
-| L6 UI/UX Documents Present | 0 |
+| L6 UI/UX Documents Present | 7 active foundation/governance artifacts |
+| L6 Controlled Authoring | Authorized 2026-09-16 |
 | Active Architects | 5 |
 
 ---
@@ -524,10 +544,16 @@ These documents are historical technical inputs only. They are not part of the f
 > **As of 2026-08-07 L0, L1 and every L2 document are `Locked`.** L3 and L4 use their own governed scenario/specification lifecycle and are not globally implied Locked by the L0/L1/L2 decision.
 >
 > L5 is **not** covered by the L0/L1/L2 lock. Current L5 governance freezes a 105-specification authoring population and authorizes broad authoring under dependency-gated execution, but the Final L5 Corpus Lock has not been issued. Historical `L5-00` and `L5-01` remain non-canonical technical inputs requiring current-governance revalidation before adoption.
+>
+> L6 is **not** globally Locked. Effective 2026-09-16, controlled L6 authoring is explicitly authorized by `L6_Foundation_Controlled_Authorization_2026-09-16.md`; the six foundation artifacts remain Draft working authorities under that decision until individually promoted through governance.
 
 ---
 
 # Recent Changes
+
+**2026-09-16 — L6 controlled foundation authorization:** Recorded the Architecture Approved L6 foundation authorization after review of the implemented SutraERP visual direction. Controlled L6 production authoring may now proceed for defined slices. The approved direction establishes one shared persona-sensitive design system, Administrator Institution Pulse/priority-work hierarchy, Faculty teaching-day hierarchy without an enterprise work queue, Student semester/deadline hierarchy without an enterprise work queue, and a responsive light-theme-first shell. Permanent L6 numbering, complete screen corpus, exact token values, dark mode and several implementation-library choices remain deferred.
+
+---
 
 **2026-09-09 — L5 broad-authoring and repository-structure synchronization:** Broad authoring of the frozen 105-specification L5 corpus was formally authorized under dependency-gated parallel execution. The canonical production location is now `architecture/L5_Solution_Architecture/specifications/`; governance remains under `governance/`; substantive `L5-00` / `L5-01` historical extractions moved under `historical/`; temporary root compatibility pointers preserve older locked/historical references; and `adr/` will materialize only when the first canonical ADR exists.
 
@@ -557,7 +583,7 @@ These documents are historical technical inputs only. They are not part of the f
 
 ---
 
-**Last Updated:** 2026-09-09
+**Last Updated:** 2026-09-16
 
 **Repository:** SutraERP
 
