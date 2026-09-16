@@ -8,89 +8,113 @@
 **Canonical Technical Responsibility:** DR/failover models and proof of recoverability without assuming a cloud provider.  
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
-**Depends On:** `L5-E-03-001`; `L5-E-03-002`; `L5-E-01`; `L5-E-04`; `L5-D-03`; `L5-C-02`; `L5-C-03`; `L5-E-05`  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0010`; `ADR-L5-0014`; repository recovery-strategy ADR required but not yet canonically allocated
+**Depends On:** `L5-E-03-001`; `L5-E-03-002`; `L5-E-01`; `L5-E-04`; `L5-B-02`; `L5-C-02`; `L5-C-03`; `L5-D-03`; `L5-E-05`  
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0010`; `ADR-L5-0014`; repository recovery-strategy ADR required but not yet canonically allocated
 
 ## 2. Purpose, Scope & Non-Goals
-Defines provider-neutral disaster-recovery topology selection, failover/failback control, split-brain prevention, dependency restoration and evidence-based recovery validation. It does not assume a hyperscaler, mandate active-active architecture, define business continuity policy or invent RTO/RPO values.
+Defines provider-neutral disaster-recovery topology selection rules, failover/failback controls, split-brain prevention requirements, recovery validation and exercise evidence. It does not mandate active-active, active-passive, a cloud region model, orchestration product or numeric RTO/RPO.
 
 ## 3. Upstream Applicability & Constraints
-E01 owns resilience and service-recovery semantics; E03-001/002 supply recovery classification and recoverable data; E04 defines supported deployment models; D03 governs trust/credential recovery; C02/C03 supply messaging/external-dependency recovery boundaries. Exact L4 BH mappings remain `OD-001`.
+| Source | Status | Exact Reference | E03-003 Contribution |
+|---|---|---|---|
+| `L5-E-03-001` | Draft | recovery profile/class and recovery-set model | Supplies required objectives/context for topology/failover choice. |
+| `L5-E-03-002` | Draft | backup/restore/PITR architecture | Supplies trusted recovery points and restore capability. |
+| `ADR-L5-0014` | Architecture Approved | repository resilience, health, degradation, recovery | Requires contain → recover → validate → controlled return and no ownership transfer. |
+| `L4-A-057` | Draft | `BH-005`–`BH-009` | Supporting behavior: preserve state/history and do not claim restored availability before successful integrity validation. |
+| `L5-E-04-*` | Draft/current | on-premises-primary and cloud-capable runtime/deployment | Constrains DR to supported provider-neutral deployment models. |
+
+The supporting L4 relation remains `Specified`, not `Validated`, while L4-A-057 is Draft.
+
+### Authoritative Constraints
+- DR topology is chosen from approved recovery profile, deployment model, consistency/ownership constraints and cost/risk requirements; no universal topology is mandated.
+- Failover shall not create concurrent authoritative writers for state requiring single-writer semantics.
+- Automatic failover is permitted only where detection/consistency controls make false failover and split brain acceptably governed; otherwise authorization remains explicit.
+- In-flight external/provider effects remain unresolved until idempotency/reconciliation determines outcome.
+- Failback is a controlled recovery action, not an automatic consequence of the former primary becoming reachable.
 
 ## 4. Technical Ownership & Dependencies
-**Owns:** DR topology classes, failover control, authoritative-writer transfer/fencing requirement, dependency readiness sequence, failback validation, recovery exercises and recoverability evidence.  
-**Must not own:** canonical business recovery decisions, data ownership, event semantics, external-provider business outcomes, security credential policy or deployment platform selection.
+**Owns:** DR topology selection framework, recovery-site readiness requirements, failover/fencing coordination, failback sequencing, cross-capability recovery validation, DR exercise model and recovery evidence.  
+**Consumes:** E03-001/002 recovery profiles/restore points; E01 health/controlled return; E04 deployment/runtime; B02 consistency/replication capabilities; C02 durable event guarantees; C03 external integration recovery; D03 trusted credentials/keys; E05 operations telemetry.  
+**Must not own:** canonical business state, business-continuity prioritization, persistence internals, provider-specific infrastructure provisioning, event semantics, external-provider business outcomes or security/key architecture.
 
 ## 5. Solution Architecture
-### 5.1 Elements
-| Element | Responsibility |
-|---|---|
-| DR Topology Profile | Selects cold/warm/pre-provisioned or other provider-neutral recovery pattern according to approved recovery class. |
-| Failure Qualification Control | Uses multiple health/dependency signals to determine whether failover criteria are met. |
-| Authority Transfer / Fencing Control | Prevents simultaneous authoritative writers and split-brain during failover/failback. |
-| Recovery Orchestrator | Restores data/services/dependencies in governed sequence. |
-| Dependency Readiness Gate | Confirms messaging, connectors, secrets, routing and critical peers are usable before service declaration. |
-| Recovery Validator | Executes integrity, service-health and critical-path validation. |
-| Exercise Evidence Recorder | Captures scenario, recovery point, elapsed stages, deviations, failed dependencies and corrective actions. |
+### 5.1 DR Topology Classes
+The architecture supports topology choices such as backup-and-restore, pre-provisioned/warm recovery capacity, or multi-site failover only where the approved recovery profile and selected technologies support them. These are capability classes, not mandated physical topologies.
 
-### 5.2 Failover Flow
+### 5.2 Technical Elements
+| Element | Responsibility | Boundary |
+|---|---|---|
+| DR Plan Resolver | Maps recovery profile + deployment model + dependencies to the approved recovery procedure/topology. | Does not invent business priority/RTO. |
+| Failure Qualification Control | Uses multiple relevant E01 health/dependency signals to distinguish transient component failure from site/service unavailability. | Does not redefine E01 health model. |
+| Authority/Fencing Control | Prevents concurrent authoritative writers where required during role/site transition. | Uses selected store/runtime capabilities; product-neutral requirement. |
+| Failover Coordinator | Executes authorized transition of recoverable runtime/data/dependencies. | Canonical business ownership unchanged. |
+| Failback Coordinator | Re-establishes trusted primary readiness, synchronizes/validates state and returns traffic only after approval/validation. | No immediate automatic snap-back. |
+| Recovery Validator | Verifies integrity, dependencies, security/trust and required critical paths before controlled return. | Consumes owner-domain validation criteria. |
+| DR Exercise Recorder | Captures scenario, recovery point, stages, deviations, evidence and corrective actions. | Technical evidence is not business audit ownership. |
+
+### 5.3 Failover Flow
 ```text
-Qualified site/service failure
-→ containment and authority/fencing decision
-→ activate approved recovery topology
-→ restore/synchronize authoritative state
-→ recover required secrets/configuration/dependencies
-→ validate data integrity + service health + critical paths
-→ transfer production authority/traffic
-→ record recovery evidence
+Material outage/disaster signal
+→ E01 multi-signal qualification + scope classification
+→ resolve recovery profile / DR plan
+→ establish trusted recovery point/state
+→ fence/transfer authoritative technical write role where required
+→ recover runtime + data + required configuration/dependencies
+→ reconcile C02 queues and C03 in-flight external effects according to their owners
+→ integrity/security/dependency/critical-path validation
+→ E01 controlled return
+→ preserve DR evidence
 ```
 
-### 5.3 Failback Flow
+### 5.4 Failback Flow
 ```text
-Primary site returns
-→ validate clean health and security posture
-→ synchronize authoritative state
-→ validate dependency readiness
-→ controlled authority transfer/fencing
-→ restore normal routing
-→ verify no competing writer/divergence
+Former primary becomes technically reachable
+→ validate platform/security health
+→ synchronize/reconcile technical state
+→ prove authoritative ownership/write-role safety
+→ validate dependencies and critical paths
+→ authorized traffic/write-role transition
+→ preserve failback evidence
 ```
 
-### 5.4 Material Failure Rules
-Automatic failover is allowed only where false-failover and split-brain risks are acceptably controlled; otherwise detection may be automated while authorization remains governed. In-flight external operations after failure remain unresolved until C01/C03 idempotency/reconciliation establishes outcome. Event queues are recovered according to C02 durability rules. Ransomware recovery uses a trusted recovery point and clean isolated restoration; potentially compromised secrets are rotated through D03 before reconnecting affected boundaries.
+### 5.5 Material Failure / Security Rules
+- Split brain or uncertain authoritative write role blocks write-service return for the affected state boundary.
+- A compromised environment/recovery point requires containment and trusted credential/key handling through D03 before reconnecting.
+- Durable C02 work shall be recovered according to C02 guarantees; E03 shall not fabricate business events.
+- C03 operations interrupted after external submission remain ambiguous until C03/owner reconciliation; DR shall not replay them blindly.
 
 ## 6. Architecture Decisions
-| ID | Decision | Position |
-|---|---|---|
-| AD-001 | DR topology | Recovery-class-driven and provider-neutral; no single topology for all services. |
-| AD-002 | Failover control | Multi-signal qualification; automatic authority transfer only where safe. |
-| AD-003 | Split-brain prevention | Fencing/quorum/authority-transfer mechanism is mandatory where multiple sites could write. |
-| AD-004 | Failback | Validate health, state synchronization and dependencies before controlled return. |
-| AD-005 | Recovery proof | Recovery success requires technical health, data integrity, dependencies and critical business-path validation. |
-| AD-006 | Cyber recovery | Trusted recovery point, isolated clean restoration and credential/key recovery precede reconnection after compromise. |
+| ID | Decision | Position | Basis | ADR |
+|---|---|---|---|---|
+| AD-001 | DR topology | Select by recovery profile/deployment/consistency/risk; no universal active-active/active-passive topology. | E03 scope + technology neutrality. | Repository recovery ADR required before approval. |
+| AD-002 | Failover authority | Automatic only where failure qualification and consistency/fencing are sufficient; otherwise governed authorization. | E01/ADR0014 + split-brain risk. | Recovery ADR. |
+| AD-003 | Split brain | Prevent competing authoritative writers using capability-appropriate fencing/quorum/ownership-transfer mechanism. | Canonical ownership + B02 consistency. | Recovery ADR. |
+| AD-004 | Failback | Controlled validation/synchronization before return; no automatic snap-back. | A-057 BH006–009 + ADR0014. | Recovery ADR. |
+| AD-005 | Recovery proof | Infrastructure running is insufficient; integrity, dependencies, trust and critical paths must pass. | ADR0014 + A-057. | Recovery ADR. |
 
-## 7. Security, Privacy, Quality & Operations
-Recovery environments inherit production sensitivity and authorization requirements. Emergency secret/key rotation and trusted administrative access consume D03. Exercises use sandboxes/mocks/test endpoints for external dependencies where real failover cannot safely be exercised. E05 observes recovery stages and unresolved gaps.
+## 7. Security, Privacy & Operations
+DR environments consume D03 trusted identity/credentials/keys and E04 deployment controls. Exercises should use safe external test/sandbox/mocked dependencies where production-provider failover cannot be exercised. DR evidence records scope, recovery point, stage outcomes, deviations, dependency failures and corrective actions without copying sensitive business payloads unnecessarily.
 
 ## 8. Architecture Conformance Requirements
-- `CR-001`: DR topology shall be selected from approved recovery class and supported deployment model, not by ungoverned provider preference.
-- `CR-002`: Failover/failback shall prevent simultaneous authoritative writers.
-- `CR-003`: Service recovery shall not be declared solely because infrastructure processes are running.
-- `CR-004`: Critical dependencies and authoritative data integrity shall be validated before restored service is declared usable.
-- `CR-005`: In-flight external operations with ambiguous outcomes shall be reconciled before replay that could duplicate effects.
-- `CR-006`: Recovery exercises shall generate durable technical evidence and corrective-action visibility.
-- `CR-007`: Recovery from security compromise shall not automatically reuse credentials known or suspected to be compromised.
+- `CR-001`: DR topology shall trace to an approved recovery profile and supported E04 deployment model.
+- `CR-002`: Failover shall preserve canonical ownership and prevent competing authoritative writers where required.
+- `CR-003`: Automatic failover shall not be used without adequate failure qualification and consistency/fencing capability.
+- `CR-004`: Failback shall validate state/dependency/security readiness before authoritative return.
+- `CR-005`: In-flight external operations shall not be blindly replayed when external effect is uncertain.
+- `CR-006`: Recovery success shall require integrity, dependency and critical-path validation before E01 controlled return.
+- `CR-007`: DR exercises shall produce reconstructable technical recovery evidence.
+- `CR-008`: No cloud provider, region count, orchestration platform or numeric target becomes canonical without governed selection/requirements.
 
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| OD-001 | Exact L4 BH traceability for disaster recovery and critical business paths. | Traceability | Yes for Architecture Approved. | Complete recovery-impact mapping. |
-| OD-002 | Repository/shared recovery-strategy ADR. | ADR | Yes for Architecture Approved. | Allocate/evaluate canonically through ADR Register. |
-| OD-003 | Site/region topology, automated-failover eligibility and numeric RTO/RPO per service. | Deployment/Operations | No for Draft. | Bind from E03-001 approved profiles and deployment evidence. |
-| OD-004 | Named DR/orchestration/cloud technology. | Technology | No. | Remain provider-neutral until governed selection. |
+| OD-001 | Repository recovery strategy ADR not yet allocated/approved. | ADR | Yes for Architecture Approved. | Allocate/evaluate canonically. |
+| OD-002 | E03-001/002, E04, B02 and other material peer dependencies must be stable for final approval. | Dependency | Yes if unresolved at approval gate. | Revalidate peer status/content. |
+| OD-003 | Supporting L4-A-057 is Draft. | Traceability | Yes for any claimed Validated BH relation. | Keep relation Specified until approved/authorized. |
+| OD-004 | Named topology/product and numeric recovery objectives. | Technology / Requirement | No. | Decide only from approved requirements through ADR/technology governance. |
 
 ## 10. Traceability Summary
-**Corpus:** `L5-E-03-003`. **Peers:** E03-001/002, E01, E04, D03, C02, C03, E05. **Decisions:** AD-001–006. **Conformance:** CR-001–007. **Blocking for approval:** OD-001, OD-002.
+**Primary:** E03-001/002, `ADR-L5-0014`, E04/B02. **Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Cross-capability recovery:** C02, C03, D03, E05. **Blocking:** OD-001 and applicable dependency gate.
