@@ -1,10 +1,10 @@
 # SutraERP L6 UI / UX Architecture Template v0.1 — Draft
 
-**Version:** 0.1.0  
+**Version:** 0.1.1  
 **Status:** Draft  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture  
-**Depends On:** L6 Governance and Architecture Standard; applicable approved L5 specifications.  
+**Depends On:** L6 Governance and Architecture Standard; `L6_Product_UX_Decision_Field_Map_DRAFT.md`; applicable approved L5 specifications.  
 
 > Review draft only. Do not treat this file as the locked canonical template until governance approval.
 
@@ -24,7 +24,10 @@
 **Last Updated:** <YYYY-MM-DD>  
 **Depends On:** <approved L5 sources>  
 **Material Upstream Verification:** <L4/L3 references where required>  
+**Applicable UX Decision Fields:** <relevant UXD-* identifiers; distinguish inherited/resolved/open where material>  
 **Frontend Implementation Reference:** <future path/feature reference; no source-code ownership implied>  
+
+Before opening any product-direction decision, apply `L6_Product_UX_Decision_Field_Map_DRAFT.md`: derive upstream-fixed matters, inherit existing L6 decisions/defaults, and escalate only genuinely unresolved product/UX choices that materially affect this slice.
 
 ## 2. Purpose and User Outcome
 
@@ -213,12 +216,15 @@ State objective conditions for an acceptable UI/UX realization, for example:
 **Primary L5 sources:** <...>  
 **Material L4/L3 verification:** <...>  
 **L6 foundation dependencies:** <...>  
+**UX decision field inheritance:** <applicable UXD-* fields and controlling decision/default>  
 
 Explain any material derived constraint.
 
 ## 20. Open Issues / Deferred Decisions
 
 Record only unresolved matters affecting L6 correctness or downstream implementation.
+
+For material unresolved product/UX matters, reference the applicable `UXD-*` field rather than creating untracked free-form preference questions.
 
 Implementation-specific choices remain deferred unless explicitly governed at L6/L5.
 
@@ -233,6 +239,7 @@ A reviewer shall confirm:
 - no authorization/authentication authority leakage;
 - no server/client authority inversion;
 - coherent user outcome and navigation placement;
+- applicable `UXD-*` fields identified and existing decisions/defaults inherited before opening new product choices;
 - complete primary and material exception journeys;
 - state feedback distinguishes success/rejection/pending/indeterminate/failure;
 - accessibility and responsive behavior are addressed;
