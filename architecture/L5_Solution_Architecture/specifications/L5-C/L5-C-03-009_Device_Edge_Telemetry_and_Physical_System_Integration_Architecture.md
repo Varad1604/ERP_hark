@@ -9,11 +9,12 @@
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-02`; `L5-A-08`; `L5-D-01`; `L5-D-02`; `L5-D-03`; `L5-E-01`; `L5-E-05`; applicable business-domain L5 architecture  
 **Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0013`; `ADR-L5-0014`; `ADR-L5-0016`  
-**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`  
+**Governance Lock:** `L5_Pallav_Stage5_Final_Lock_Decision_2026-09-16.md`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines the reusable secure technical boundary for physical devices, edge systems, telemetry, evidence feeds and controlled actuators while ensuring device observations/commands never become business decisions merely because hardware produced or executed them.
