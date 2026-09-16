@@ -8,83 +8,93 @@
 **Canonical Technical Responsibility:** Backup sets, restoration and point-in-time recovery across governed data stores.  
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
-**Depends On:** `L5-E-03-001`; `L5-B-02`; `L5-D-03`; `L5-E-04`; `L5-E-05`  
+**Depends On:** `L5-E-03-001`; `L5-B-02`; `L5-D-03`; `L5-E-01`; `L5-E-05`; applicable data-store owners  
 **Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; repository recovery-strategy ADR required but not yet canonically allocated
 
 ## 2. Purpose, Scope & Non-Goals
-Defines how governed SutraERP data stores produce recoverable backup sets, execute restores and support point-in-time recovery where the selected store and recovery class require it. It does not select a database/storage vendor or invent business recovery semantics.
+Defines backup-set construction, protected recovery copies, restore execution and point-in-time recovery mechanics across governed data stores. It does not choose a database/storage product, invent RPO/RTO/retention values or redefine business-record retention.
 
 ## 3. Upstream Applicability & Constraints
-E03-001 supplies recovery classification. B02 remains owner of store/persistence topology. D03 governs encryption/key custody. Exact recovery-sensitive L4 BH traceability remains `OD-001`.
+| Source | Status | Exact Reference | E03-002 Use |
+|---|---|---|---|
+| `L5-E-03-001` | Draft | recovery class/profile and recovery-set model | Supplies class/objective boundary consumed here. |
+| `L5-B-02-*` | Draft/current | persistence ownership/topology/transaction capabilities | Supplies store ownership and consistency characteristics; E03 does not redesign persistence. |
+| `ADR-L5-0014` | Architecture Approved | validation + controlled return | Restoration does not imply service readiness. |
+| `L4-A-057` | Draft | `BH-005`–`BH-009` | Supporting requirement to preserve data/config/history and validate integrity before restored availability. |
+
+The L4 relation is `Specified`, not `Validated`, while L4-A-057 remains Draft.
+
+### Authoritative Constraints
+- Backup method/frequency must satisfy an approved recovery profile; E03 shall not invent numeric objectives.
+- Point-in-time recovery is used only where supported by the selected persistence technology and required by the recovery profile.
+- Recovery copies/keys shall be protected against the primary failure/security domain according to the approved class.
+- Restore shall target a known recovery point and preserve multi-store compatibility where a recovery set spans dependent stores.
+- Rebuildable derived stores may be reconstructed from canonical sources when explicitly classified as such.
 
 ## 4. Technical Ownership & Dependencies
-**Owns:** backup-set composition, recoverable base-copy/change-log relationship, restore orchestration boundary, PITR target selection mechanics, restore validation and recovery-copy lifecycle.  
-**Must not own:** database product internals, business retention, source-domain acceptance criteria or availability SLA definition.
+**Owns:** backup-set coordination, recovery-point catalog, restore/PITR orchestration, protected-copy verification, multi-store recovery-set ordering/compatibility checks and restore-validation evidence.  
+**Consumes:** B02 store-specific backup/log/snapshot capabilities, D03 encryption/key controls, E01 health/controlled return, E05 telemetry.  
+**Must not own:** business data retention, database technology, canonical data ownership, application business reconciliation or DR failover topology (`L5-E-03-003`).
 
 ## 5. Solution Architecture
 ### 5.1 Elements
-| Element | Responsibility |
-|---|---|
-| Backup Coordinator | Schedules/initiates backups according to recovery class and approved objectives. |
-| Base Recovery Copy | Provides a recoverable full/base state appropriate to the store technology. |
-| Change Capture / Recovery Log | Preserves sufficiently granular change history for PITR where supported/required. |
-| Recovery Catalog | Tracks backup identity, scope, integrity, encryption/key reference, recovery window and validation evidence. |
-| Restore Orchestrator | Restores an isolated target from a selected recovery set/point. |
-| Integrity Validator | Verifies readability, structural integrity and required cross-store/application consistency before release. |
+| Element | Responsibility | Boundary |
+|---|---|---|
+| Recovery-Point Catalog | Records available backup/base/change-log recovery points and protected-copy status. | Metadata only; not canonical business data. |
+| Backup Set Coordinator | Ensures class-appropriate backup components form a recoverable set. | Uses B02/storage-native mechanisms; does not prescribe product. |
+| Protected Copy Verifier | Confirms required isolation/immutability/protection properties for the profile. | Does not select vendor/WORM technology. |
+| Restore Planner | Resolves target recovery point, dependent stores, ordering and required credentials/keys. | No business-state mutation beyond restoration. |
+| Restore Executor | Invokes selected technology's restore/PITR mechanism. | Store-specific mechanics remain implementation/technology-specific. |
+| Post-Restore Validator | Verifies integrity, compatibility and required application/dependency readiness before E01 controlled return. | Business truth remains with canonical owners. |
 
-### 5.2 Backup Flow
+### 5.2 Backup / PITR Model
+For transactional stores requiring fine-grained recovery, the architecture supports a recoverable base plus continuous or sufficiently granular change history where the selected store provides such capability. This is a capability requirement, not a mandate for a specific WAL/log technology. Snapshot-only protection is acceptable only where the recovery profile and consistency requirements support it.
+
+### 5.3 Restore Flow
 ```text
-Recovery class + store capability
-→ create protected base copy
-→ preserve required change-log/PITR material
-→ verify integrity/catalog evidence
-→ replicate/isolate per E03-001
-→ retention lifecycle
+Authorized restore request + approved recovery profile
+→ select trusted recovery point / recovery set
+→ resolve D03 keys/credentials
+→ isolate target recovery context
+→ restore base + applicable change history / selected store mechanism
+→ reconcile dependent-store compatible point
+→ integrity + application/dependency validation
+→ E01 controlled return
+→ preserve recovery evidence
 ```
 
-### 5.3 Restore / PITR Flow
-```text
-Approved recovery request
-→ choose validated recovery point
-→ provision isolated restore target
-→ restore base copy
-→ replay/apply change material to target point where applicable
-→ validate store + application consistency
-→ authorize handoff to E03-003/service recovery process
-```
-
-### 5.4 Failure Rules
-A corrupt/incomplete backup is excluded from eligible recovery points and recorded as a recoverability defect. Restore occurs into an isolated target unless an approved recovery procedure explicitly provides another safe boundary. PITR shall not create a concurrent competing authoritative writer.
+### 5.4 Material Failure Rules
+Unreadable/corrupt/untrusted backup components are not promoted. Missing key material is a recovery blocker rather than justification for bypassing encryption. A restored store that is technically readable but inconsistent with its recovery set is not ready for return. Backup deletion/expiry follows governed retention/privilege controls and evidence requirements.
 
 ## 6. Architecture Decisions
-| ID | Decision | Position |
-|---|---|---|
-| AD-001 | PITR pattern | Base recoverable copy plus sufficiently granular change capture where required/supported. |
-| AD-002 | Validation | Restore validation includes technical integrity and required application consistency. |
-| AD-003 | Isolation | Restore is validated in an isolated recovery target before authoritative service return. |
-| AD-004 | Derived data | Rebuild caches/indexes from authoritative stores when safe instead of mandating backup. |
-| AD-005 | Retention | Technical backup retention is policy-driven and distinct from business-record retention. |
+| ID | Decision | Position | Basis | ADR |
+|---|---|---|---|---|
+| AD-001 | PITR posture | Support PITR/change-history recovery only where profile requires it and selected store supports it. | E03 scope + product neutrality. | Repository recovery ADR required before approval. |
+| AD-002 | Protected copies | Class-appropriate recovery copies may require isolation/immutability/geographic separation, expressed as capabilities rather than vendor products. | Recovery-risk derivation + D03/E04 boundaries. | Recovery ADR. |
+| AD-003 | Restore proof | Restore success requires integrity/compatibility/application readiness, not mere file/database readability. | A-057 BH006–009 + ADR0014. | Recovery ADR. |
+| AD-004 | Derived data | Safely reconstructable derived stores may be rebuilt from canonical sources instead of backed up, when classified in the recovery profile. | Ownership + recovery efficiency. | Recovery ADR. |
 
 ## 7. Security, Privacy & Operations
-Backups are encrypted in transit/at rest according to D03. Key custody remains separated from backup storage sufficiently to preserve compromise isolation and recoverability. Backup deletion/expiry and restore initiation are privileged, auditable operations.
+Backup data and transfer consume D03 protection. Key custody remains separated from backup media according to D03. Privileged restore/delete operations require authorization/evidence. Telemetry includes backup age/status, copy-verification result, restore duration stages, validation disposition and failures; no unsupported numeric thresholds are fixed.
 
 ## 8. Architecture Conformance Requirements
-- `CR-001`: Backup sets shall be catalogued with sufficient evidence to identify scope, integrity and eligible recovery point.
-- `CR-002`: PITR shall only be claimed where the store/recovery design actually preserves required change history.
-- `CR-003`: Restore validation shall occur before the recovered state is returned to authoritative service.
-- `CR-004`: Corrupt or unverified copies shall not be treated as proven recovery points.
-- `CR-005`: Recovery shall not introduce concurrent authoritative writers or silently merge divergent states.
-- `CR-006`: Backup retention/deletion shall be governed and attributable.
+- `CR-001`: Every backup/restore method shall trace to an approved recovery profile and B02-supported store capability.
+- `CR-002`: E03 shall not invent RPO/RTO, retention, backup frequency or PITR granularity values.
+- `CR-003`: Protected recovery copies shall satisfy class-required isolation/protection without assuming a specific vendor.
+- `CR-004`: Multi-store recovery shall restore to a compatible recovery-set point before return to service.
+- `CR-005`: Missing/corrupt/untrusted recovery material shall block promotion rather than bypass integrity/security.
+- `CR-006`: Post-restore validation shall precede E01 controlled return.
+- `CR-007`: Business-record retention remains owned outside E03.
 
 ## 9. Open Decisions & Deferred Design
-| ID | Item | Blocking? | Resolution |
-|---|---|---|---|
-| OD-001 | Exact L4 BH mappings for recovery-sensitive data stores. | Yes for Architecture Approved. | Complete traceability extraction. |
-| OD-002 | Store-specific backup/PITR commands and products. | No. | Define after governed persistence/storage selections. |
-| OD-003 | Numeric backup frequency, recovery windows and retention. | No. | Bind to approved recovery profiles only. |
+| ID | Item | Classification | Blocking? | Resolution |
+|---|---|---|---|---|
+| OD-001 | Repository recovery pattern ADR not yet allocated/approved. | ADR | Yes for Architecture Approved. | Allocate/evaluate canonically. |
+| OD-002 | B02/E03-001 dependency decisions must be stable for final approval. | Dependency | Yes if unresolved at approval gate. | Revalidate dependency status/content. |
+| OD-003 | Named database/storage backup technology and numeric profile values. | Technology / Operations | No. | Decide only through governed technology selection and approved requirements. |
 
 ## 10. Traceability Summary
-**Corpus:** `L5-E-03-002`. **Peers:** E03-001, B02, D03, E04, E05. **Decisions:** AD-001–005. **Conformance:** CR-001–006.
+**Primary:** `L5-E-03-001`, B02, `ADR-L5-0014`. **Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Peers:** D03, E01, E05. **Blocking:** OD-001 and dependency gate as applicable.
