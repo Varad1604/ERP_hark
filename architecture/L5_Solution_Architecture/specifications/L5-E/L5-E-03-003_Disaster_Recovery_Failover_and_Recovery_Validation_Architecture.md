@@ -9,10 +9,11 @@
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-E-03-001`; `L5-E-03-002`; `L5-E-01`; `L5-E-04`; `L5-B-02`; `L5-C-02`; `L5-C-03`; `L5-D-03`; `L5-E-05`  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0010`; `ADR-L5-0014`; `ADR-L5-0017`
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0010`; `ADR-L5-0014`; `ADR-L5-0017`  
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines provider-neutral disaster-recovery topology selection rules, failover/failback controls, split-brain prevention requirements, recovery validation and exercise evidence. It does not mandate active-active, active-passive, a cloud region model, orchestration product or numeric RTO/RPO.
@@ -20,14 +21,14 @@ Defines provider-neutral disaster-recovery topology selection rules, failover/fa
 ## 3. Upstream Applicability & Constraints
 | Source | Status | Exact Reference | E03-003 Contribution |
 |---|---|---|---|
-| `L5-E-03-001` | Draft | recovery profile/class and recovery-set model | Supplies required objectives/context for topology/failover choice. |
-| `L5-E-03-002` | Draft | backup/restore/PITR architecture | Supplies trusted recovery points and restore capability. |
+| `L5-E-03-001` | Architecture Approved | recovery profile/class and recovery-set model | Supplies required objectives/context for topology/failover choice. |
+| `L5-E-03-002` | Architecture Approved | backup/restore/PITR architecture | Supplies trusted recovery points and restore capability. |
 | `ADR-L5-0014` | Architecture Approved | repository resilience, health, degradation, recovery | Requires contain → recover → validate → controlled return and no ownership transfer. |
 | `ADR-L5-0017` | Architecture Approved | repository recovery classification/protected-copy/restore/DR validation | Governs DR topology selection, fencing, failover/failback and recovery validation. |
 | `L4-A-057` | Draft | `BH-005`–`BH-009` | Supporting behavior: preserve state/history and do not claim restored availability before successful integrity validation. |
 | `L5-E-04-*` | Draft/current | on-premises-primary and cloud-capable runtime/deployment | Constrains DR to supported provider-neutral deployment models. |
 
-The supporting L4 relation remains `Specified`, not `Validated`, while L4-A-057 is Draft.
+`L4-A-057` remains Draft, but its cited behavior is explicitly governance-authorized for this Stage-5 approval. The relation remains `Specified`, not `Validated`, until normal traceability source-status conditions are met. E04/B02/E01/C02/C03/D03 consumed boundaries are declared stable enough for the scoped Stage-5 use by the Stage-5 approval decision.
 
 ### Authoritative Constraints
 - DR topology is chosen from approved recovery profile, deployment model, consistency/ownership constraints and cost/risk requirements; no universal topology is mandated.
@@ -112,9 +113,8 @@ DR environments consume D03 trusted identity/credentials/keys and E04 deployment
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| OD-001 | E03-001/002, E04, B02 and other material peer dependencies must be stable for final approval. | Dependency | Yes if unresolved at approval gate. | Revalidate peer status/content. |
-| OD-002 | Supporting L4-A-057 is Draft. | Traceability | Yes for any claimed Validated BH relation. | Keep relation Specified until approved/authorized. |
-| OD-003 | Named topology/product and numeric recovery objectives. | Technology / Requirement | No. | Decide only from approved requirements through ADR/technology governance. |
+| OD-001 | Promotion of supporting `L4-A-057` relation from `Specified` to `Validated`. | Traceability | No for this Architecture Approved specification. | Revalidate after applicable L4 approval. |
+| OD-002 | Named topology/product and numeric recovery objectives. | Technology / Requirement | No. | Decide only from approved requirements through ADR/technology governance. |
 
 ## 10. Traceability Summary
-**Primary:** E03-001/002, `ADR-L5-0014`, `ADR-L5-0017`, E04/B02. **Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Cross-capability recovery:** C02, C03, D03, E05. **Blocking:** applicable dependency/traceability gate.
+**Primary:** E03-001/002, `ADR-L5-0014`, `ADR-L5-0017`, E04/B02, Stage-5 approval decision. **Governance-authorized / Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Cross-capability recovery:** C02, C03, D03, E05. **Blocking:** none.
