@@ -8,83 +8,101 @@
 **Canonical Technical Responsibility:** Reusable secure integration for scanners/readers, RFID/NFC, biometrics, ANPR, GPS, telemetry, IoT, CCTV/evidence feeds and controlled actuators; devices do not own business decisions.  
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-02`; `L5-A-08`; `L5-D-01`; `L5-D-02`; `L5-D-03`; `L5-E-01`; `L5-E-05`; applicable business-domain L5 architecture  
-**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0013`; `ADR-L5-0014`
+**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0013`; `ADR-L5-0014`; shared C03 family ADR required but not yet canonically allocated
 
 ## 2. Purpose, Scope & Non-Goals
-Defines the secure technical boundary for physical devices, edge systems and telemetry while ensuring observations never become business decisions merely because hardware reported them.
+Defines the reusable secure technical boundary for physical devices, edge systems, telemetry, evidence feeds and controlled actuators while ensuring device observations/commands never become business decisions merely because hardware produced or executed them.
 
 ## 3. Upstream Applicability & Constraints
-The frozen corpus explicitly separates device integration from business authorization, identity, asset, trip, examination and other domain ownership. Exact cross-domain L4 BH mappings remain `OD-001`.
+### 3.1 Canonical Upstream Reference Matrix
+| Source | Version / Status | Exact Reference | What It Establishes | C03 Technical Use |
+|---|---|---|---|---|
+| L5 Coverage Audit Decision | Architecture Approved | Device / Edge / Physical-System Integration finding | L4/scenarios explicitly defer scanner/reader, RFID/NFC, biometric, ANPR, GPS, telemetry, IoT, CCTV/evidence and controller mechanisms; a reusable L5 owner is required and devices must not own business decisions. | Primary authority for C03-009 technical scope. |
+| `L4-G-106` | Draft | §10 Open Issues / Deferred Design | GPS tracking, telemetry, dispatch/API/persistence mechanisms are deliberately deferred from Trip business behavior. | C03 may supply telemetry/GPS integration while G04 retains Trip decisions/state. |
+| `L4-G-107` | Draft | §10 Open Issues / Deferred Design | GPS/tracking/telemetry/routing technical mechanisms are deferred while route-deviation business semantics remain upstream. | C03 carries observations; Transport remains authoritative. |
+| L2-G07 | Locked | future QR/NFC/GPS verification statement | Future device technologies integrate without redesign. | Requires adapter-based extensibility without transferring Security Operations authority. |
+
+The Architecture Approved coverage decision establishes the technical owner. Draft L4 examples may support `Specified` relations only and are not approval-level BH authority.
+
+### 3.2 Authoritative Constraints
+- Device/edge observations are evidence/input; canonical domains determine attendance, access, trip, asset, examination, identity, disciplinary or safety outcomes.
+- Device identity is not Person identity.
+- Business commands originate from an authorized canonical owner; C03 only transports/executes the technical command.
+- Offline replay/store-and-forward shall not create duplicate business effect.
+- Raw biometric/location/video data movement shall be minimized and governed by applicable privacy/security owners.
 
 ## 4. Technical Ownership & Dependencies
-**Owns:** device/edge adapters, protocol normalization, device identity binding, telemetry ingestion, bounded offline buffering/store-forward where required, command dispatch/acknowledgement, device health and evidence references.  
-**Consumes:** D01/D02/D03 identity/trust, C02 messaging, A08 background work, E01 resilience, E05 observability, owning-domain command/decision contracts.  
-**Must not own:** attendance, access authorization, transport trip state, asset ownership, biometric identity truth, disciplinary outcome, examination outcome or safety policy.
+**Owns:** device/edge adapters, protocol normalization, registered device identity binding, telemetry ingestion, bounded store-and-forward where required, actuator command dispatch/acknowledgement, device health and evidence references.  
+**Consumes:** D01/D02/D03 identity/trust/authorization, C02 messaging, A08 background execution, E01 resilience, E05 observability and owner-domain command/decision contracts.  
+**Must not own:** attendance, access authorization, Trip/route business state, asset ownership, biometric Person truth, examination outcome, disciplinary outcome or safety policy.
 
 ## 5. Solution Architecture
 ### 5.1 Elements
-| Element | Responsibility |
-|---|---|
-| Device/Edge Adapter | Encapsulates vendor/protocol-specific connectivity and normalizes observations/commands. |
-| Device Identity Resolver | Binds registered device identity and authorization context without equating device ID to Person. |
-| Telemetry Ingest Boundary | Validates timestamp/context, deduplicates where justified and routes observations. |
-| Store-and-Forward Buffer | Retains bounded offline observations where the use case requires intermittent connectivity. |
-| Actuator Command Gateway | Sends only authorized commands, requires acknowledgement and exposes failure/safety state. |
-| Evidence Reference Adapter | Links CCTV/media/telemetry evidence without copying continuous media unless required. |
+| Element | Responsibility | Boundary |
+|---|---|---|
+| Device/Edge Adapter | Encapsulates vendor/protocol connectivity and normalizes observations/commands. | No business decision authority. |
+| Device Identity Resolver | Binds a registered non-human/device identity and applicable scope. | Device ID never becomes Person ID. |
+| Telemetry Ingest Boundary | Validates technical context, correlation and duplicate characteristics before handoff. | Owner domain interprets business meaning. |
+| Store-and-Forward Buffer | Retains bounded offline observations where the approved use case requires intermittent connectivity. | No new canonical business lifecycle. |
+| Actuator Command Gateway | Sends an already-authorized command and returns acknowledgement/failure evidence. | C03 cannot authorize the substantive action. |
+| Evidence Reference Adapter | Carries governed references/metadata for media/telemetry evidence. | Continuous media is not copied into ERP stores unless an explicit governed requirement exists. |
 
 ### 5.2 Observation Flow
 ```text
-Device observation
-→ authenticated/registered edge boundary
-→ protocol validation + normalization
-→ timestamp/correlation/deduplication
-→ owning business workflow
-→ business decision by canonical owner
-→ E05 telemetry/evidence reference
+Registered device observation
+→ authenticated/authorized edge boundary
+→ protocol validation + normalization + correlation
+→ optional governed buffering/deduplication
+→ canonical owning workflow
+→ owner makes business decision/state transition
+→ E05 telemetry / governed evidence reference
 ```
 
 ### 5.3 Command Flow
 ```text
-Owning domain authorizes action
-→ D02 policy enforcement
-→ Actuator Command Gateway
+Canonical owner authorizes action
+→ D02 policy enforcement / non-human authority binding
+→ C03 Actuator Command Gateway
 → device/edge adapter
 → physical actuator
-→ command acknowledgement / failure evidence
+→ acknowledgement/failure evidence
+→ canonical owner decides any business consequence
 ```
 
 ### 5.4 Failure Rules
-Offline devices may buffer and later forward observations only with sequence/deduplication controls appropriate to the use case. Reconnection shall not create duplicate business effects. Device failure shall degrade only dependent capability. Raw biometric/video payload propagation is minimized.
+Device loss/degradation shall affect only dependent capability under E01 semantics. Reconnection/offline replay preserves ordering/correlation only to the degree required by the use case and shall prevent duplicate effect. Failure acknowledgement never invents owner-domain recovery behavior.
 
 ## 6. Architecture Decisions
-| ID | Decision | Position |
-|---|---|---|
-| AD-001 | Device model | Device/edge adapters normalize heterogeneous protocols into governed internal contracts. |
-| AD-002 | Decision authority | Devices produce observations; canonical domains make business decisions. |
-| AD-003 | Offline behavior | Bounded store-and-forward is supported where required, with reconciliation/deduplication. |
-| AD-004 | Actuators | Commands require explicit authorization, acknowledgement and fail-safe handling. |
-| AD-005 | Media | Prefer governed metadata/evidence references over continuous-media replication into ERP stores. |
+| ID | Decision | Position | Basis | ADR |
+|---|---|---|---|---|
+| AD-001 | Device integration model | Heterogeneous devices integrate through provider/device adapters and normalized internal contracts. | Approved coverage decision. | Shared C03 ADR required before approval. |
+| AD-002 | Decision authority | Devices produce observations/execute commands; canonical domains decide business meaning. | Approved coverage decision + ownership rules. | None. |
+| AD-003 | Offline behavior | Bounded store-and-forward is available only where required, with duplicate/reconciliation controls. | Technical derivation; consumes A08/C02/E01. | C03 ADR may govern shared pattern. |
+| AD-004 | Actuators | Commands require authoritative owner decision, technical authorization and acknowledgement/failure evidence. | D02/D03 ownership + device boundary. | Existing D-family ADRs; C03 specialization if material. |
+| AD-005 | Media | Prefer governed evidence/metadata references over continuous-media replication absent explicit requirement. | Data minimization and corpus boundary. | None. |
 
 ## 7. Security, Privacy & Operations
-Device identities, certificates and authorization are D-family governed. Sensitive biometric/location/video data is minimized, access-scoped and excluded from general logs. E05 receives connector/device health, last contact, backlog and failure telemetry.
+Device identities/certificates consume D-family controls. Sensitive biometric/location/video data is excluded from general telemetry and minimized at boundaries. E05 receives device/connector health, last contact, backlog and failure signals without becoming business audit truth.
 
 ## 8. Architecture Conformance Requirements
-- `CR-001`: Device observations shall not directly establish business outcomes.
-- `CR-002`: Devices/edge nodes shall be authenticated/authorized before accepted exchange.
-- `CR-003`: Offline replay shall include controls preventing duplicate technical/business effect.
-- `CR-004`: Actuator commands shall originate from an authorized owning-domain decision and return acknowledgement/evidence.
-- `CR-005`: Continuous media shall not be copied into ERP persistence without an explicit governed requirement.
-- `CR-006`: Device-specific protocols shall remain isolated behind adapters.
+- `CR-001`: Device observations shall not directly establish canonical business outcomes.
+- `CR-002`: Devices/edge nodes shall be authenticated and authorized before accepted exchange.
+- `CR-003`: Offline replay/store-forward shall include duplicate/reconciliation controls preventing duplicate effect.
+- `CR-004`: Actuator commands shall originate from an authorized canonical owner and return technical acknowledgement/failure evidence.
+- `CR-005`: Continuous media shall not be copied into general ERP persistence without an explicit governed requirement.
+- `CR-006`: Device/provider-specific protocols shall remain isolated behind adapters.
+- `CR-007`: C03 technical health shall consume E01 semantics and remain distinct from business lifecycle state.
 
 ## 9. Open Decisions & Deferred Design
-| ID | Item | Blocking? | Resolution |
-|---|---|---|---|
-| OD-001 | Exact L4 BH mappings across attendance/access/transport/assets/exams/facilities. | Yes for Architecture Approved. | Complete cross-domain L4 traceability extraction. |
-| OD-002 | Device protocol/vendor profiles and numeric buffer limits. | No. | Decide from concrete device/provider requirements through governance. |
+| ID | Item | Classification | Blocking? | Resolution |
+|---|---|---|---|---|
+| OD-001 | Shared C03 adapter/device outcome-isolation pattern. | ADR | Yes for Architecture Approved if retained as family standard. | Allocate/evaluate canonically. |
+| OD-002 | Concrete device vendor/protocol profiles and numeric buffer limits. | Technology / Operations | No. | Decide only from concrete device/provider requirements and capacity evidence. |
+| OD-003 | Draft L4 device-specific examples cannot be `Validated` traceability until approved. | Traceability | No for technical ownership purpose; yes for any claimed Validated BH relation. | Keep examples Specified until upstream approval/review. |
 
 ## 10. Traceability Summary
-**Corpus:** `L5-C-03-009`. **Peers:** C03-001, C02, A08, D01/D02/D03, E01/E05 and applicable business-domain L5 owners.
+**Approved purpose authority:** L5 Coverage Audit Decision — Device/Edge/Physical-System Integration finding. **Specified examples:** `L4-G-106` §10; `L4-G-107` §10; locked L2-G07 future-device integration constraint. **Peers:** C03-001, C02, A08, D01/D02/D03, E01/E05. **Blocking:** OD-001.
