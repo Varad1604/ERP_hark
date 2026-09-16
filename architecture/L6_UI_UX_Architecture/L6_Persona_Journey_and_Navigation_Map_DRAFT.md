@@ -1,39 +1,40 @@
 # SutraERP L6 — Persona Journey and Navigation Map — Draft
 
-**Version:** 0.1.0  
+**Version:** 0.1.1  
 **Status:** Draft  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture  
 **Last Updated:** 2026-09-16  
-**Depends On:** `L6_Screen_and_Workspace_Inventory_DRAFT.md`; `00_Governance/L6_Foundation_Controlled_Authorization_2026-09-16.md`; existing L6 foundation drafts; Locked L1/L2 business architecture; Locked L3 canonical corpus; L4 full-corpus production behavior; approved L5 client/security/authorization architecture.  
-**Downstream:** `L6_Screen_Journey_Traceability_Register_DRAFT.md`; production L6 slice specifications; SutraERP frontend navigation and journey implementation.  
+**Depends On:** `L6_Screen_and_Workspace_Inventory_DRAFT.md`; `L6_Screen_Journey_Traceability_Register_DRAFT.md`; `00_Governance/L6_Foundation_Controlled_Authorization_2026-09-16.md`; existing L6 foundation drafts; Locked L1/L2 architecture; Locked L3 canonical corpus; L4 production behavior; approved L5 client/security/authorization architecture.  
+**Downstream:** production L6 slice specifications; SutraERP frontend navigation and journey implementation.  
 
-> This document defines UX navigation profiles and journey composition. It does **not** create authorization roles, assign permissions, alter actor authority, or transfer canonical business ownership.
+> UX navigation profiles are presentation compositions. They are not security roles, do not assign permissions, do not alter actor authority, and do not transfer canonical business ownership.
 
 ---
 
 ## 1. Purpose
 
-Define how SutraERP presents its 104 current L6 inventory units as coherent user journeys and navigation rather than exposing the repository's architecture structure directly.
+Define how SutraERP presents its **105 current L6 inventory units** as coherent user journeys and navigation rather than exposing repository architecture directly.
 
-The core problem is intentionally asymmetric:
+The corrected 105-unit baseline consists of:
 
-- a Student should see an academic self-service experience;
-- a Faculty member should see a teaching-day experience;
-- a Guardian should see relationship- and responsibility-scoped services;
-- an institutional specialist should see the work relevant to that specialist role;
-- a broad institutional administrator may span several work families;
-- a platform administrator should not make platform-governance surfaces dominate ordinary institutional users.
+- 99 business workspace families, including the L3-derived `W-G00 Campus Operations Governance` family;
+- 6 shared L6 surfaces.
 
-This map resolves **experience organization**, not business authority.
+The experience is intentionally asymmetric:
+
+- Student → academic self-service and progress;
+- Faculty → teaching-day and assigned academic responsibility;
+- Guardian → relationship- and responsibility-scoped services;
+- institutional specialists → focused operational work;
+- broad administrators → cross-institution intervention and governance;
+- platform administrators → specialist platform/tenant governance.
 
 ---
 
-## 2. Authority and Safety Rules
+## 2. Authority and Composition Rules
 
-### 2.1 UX Profile Is Not an Authorization Role
-
-A navigation profile is a presentation composition chosen from upstream-resolved responsibility/capability context.
+### 2.1 Navigation Profile Is Not Authorization
 
 ```text
 Upstream identity + responsibility + authorized scope
@@ -43,134 +44,95 @@ Upstream identity + responsibility + authorized scope
           visible destinations
 ```
 
-The inverse is prohibited:
+But:
 
 ```text
-visible destination
-        ≠
-permission / authority / business eligibility
+visible destination ≠ permission / authority / eligibility
 ```
 
-Server-side upstream authorization remains authoritative for protected operations.
+Protected operations remain server-authoritative.
 
-### 2.2 Multi-Role Users
+### 2.2 Multi-Responsibility Users
 
-A Person may hold multiple institutional responsibilities. L6 shall therefore support a composed experience rather than assume one permanent persona label.
+One Person may hold several responsibilities. L6 shall compose navigation rather than force one permanent persona identity.
 
-Examples supported by repository actor patterns include faculty members who also act as Teacher Guardians, researchers, coordinators or institutional decision participants.
+Examples supported by upstream actor patterns include:
 
-L6 may adapt navigation based on resolved responsibilities but shall not create new roles.
+- Faculty + Teacher Guardian;
+- Faculty + Research responsibility;
+- Academic Administrator + timetable coordination;
+- Registrar + institutional governance;
+- Finance Manager + reporting responsibility.
 
-### 2.3 Domain Ownership Is Not Navigation Ownership
+Duplicate destinations are merged; authority is never inferred from the merged presentation.
 
-Navigation may compose several canonical owners into one user journey. The underlying owner remains unchanged.
+### 2.3 Navigation Does Not Change Ownership
 
-Example:
+A user-facing workspace may compose projections from several canonical owners. Each owner remains unchanged.
 
-```text
-Student view of "Fees"
-    ↓
-Finance-owned charge/payment projections
-    + Student-owned context
-    + optional Guardian responsibility context
-```
+### 2.4 Progressive Disclosure
 
-L6 owns the presentation only.
+Primary navigation is for high-frequency recognizable work. Lower-frequency governance, history and configuration remain reachable through contextual navigation, global search, secondary administration areas, task entry and deep links.
 
-### 2.4 Primary Navigation Is for Frequent Work
+### 2.5 Architecture IDs Are Not UX Labels
 
-Primary navigation shall optimize recognition and frequency.
-
-Lower-frequency governance, history, configuration and specialist work shall remain available through:
-
-- contextual workspace links;
-- global search;
-- secondary navigation;
-- administration/settings areas;
-- direct task entry;
-- deep links where authorized.
-
-### 2.5 Architecture Sections A–J Are Never User Navigation
-
-The labels `Section A` through `Section J`, L2 IDs, L3 IDs, L5 families and React route-module names shall not be exposed as primary UX taxonomy.
+Sections A–J, L2/L3/L4 IDs, L5 families and React route names shall not become primary navigation taxonomy.
 
 ---
 
-## 3. Navigation Model
-
-SutraERP uses five navigational layers.
+## 3. Navigation Layers
 
 | Layer | Purpose | Examples |
 |---|---|---|
-| **Home** | Immediate orientation and next work | Institution Pulse; Teaching Pulse; My Semester |
-| **Primary navigation** | Stable, high-frequency user work families | Students; Teaching; Examinations; Finance |
-| **Workspace local navigation** | Sections supporting one coherent subject/task | Student Overview; Registration; Finance; Examination |
-| **Contextual/task navigation** | Bounded actions reached from the current context | Review admission documents; Take attendance; Revaluation request |
-| **Global discovery** | Search/command navigation across authorized discoverable destinations | Student, course, invoice, report, workspace search |
+| Home | Immediate orientation and next work | Institution Pulse; Teaching Pulse; My Semester |
+| Primary navigation | Stable user work families | Students; Teaching; Examinations; Finance |
+| Workspace local navigation | Sections within one coherent subject/task | Overview; Registration; Finance; History |
+| Contextual/task navigation | Bounded actions reached from context | Review documents; take attendance; revaluation request |
+| Global discovery | Search/command access to permitted destinations | Student, course, invoice, asset, report, workspace |
 
-Primary navigation should normally remain short enough to scan without scrolling on standard desktop layouts. The 104 inventory units are therefore deliberately consolidated below.
+The 105 inventory units must remain consolidated; primary navigation shall not become a module dump.
 
 ---
 
 ## 4. UX Navigation Profiles
 
-These profiles are L6 presentation cohorts, not canonical business roles.
-
-| Profile key | UX profile | Repository-supported actor basis | Core mental model |
+| Profile key | UX profile | Repository-supported basis | Core mental model |
 |---|---|---|---|
-| `P-STUDENT` | Student | Student / Candidate actors across Student Lifecycle, Academic Delivery and Examination | "What is happening, what is due, and am I on track?" |
-| `P-FACULTY` | Faculty / Teacher | Faculty Member, Teacher Guardian and faculty workforce/teaching actors | "What am I teaching or responsible for today?" |
-| `P-GUARDIAN` | Parent / Guardian / Authorized Representative | Guardian relationship actors, custody/consent/communication/financial responsibility architecture | "What am I authorized to know or do for the student relationships I hold?" |
-| `P-INST-ADMIN` | Institutional Administrator | Institute Administrator, Registrar, Academic Administrator and other broad institutional governance actors where assigned | "How is the institution operating and what requires intervention?" |
-| `P-STUDENT-OPS` | Admissions & Student Operations | Admission, student-services, registration, progression and qualification/exit operational actors | "Which student lifecycle work requires processing or resolution?" |
-| `P-ACADEMIC-OPS` | Academic Operations | Academic Scheduler, Department Timetable Coordinator, Programme Coordinator, Academic Administrator and related academic-operational actors | "What academic delivery must be planned, coordinated or corrected?" |
-| `P-EXAM-OPS` | Examination Operations | Controller of Examination and other examination actors defined by I01–I16 | "What examination cycle work must be prepared, conducted, evaluated or published?" |
-| `P-FINANCE` | Finance Operations | Accountant, Senior Accountant, Finance Manager, CFO/finance authorities and other F00–F14 actors | "What financial work must be processed, reconciled, controlled or closed?" |
-| `P-PEOPLE` | People / HR Operations | HR Administrator, HR Executive and workforce/assignment/payroll actors | "What workforce and people-service work requires action?" |
-| `P-CAMPUS` | Campus Operations | Facility/lab/hostel/transport/library/medical/security/housekeeping/TGS/infrastructure actors | "What campus service or operational work requires attention?" |
-| `P-RESOURCE` | Procurement / Inventory / Asset Operations | Procurement, supplier, warehouse, stock, asset and verification actors | "What resource lifecycle work requires processing or control?" |
-| `P-SERVICES` | Institutional Services / Intelligence | Placement, Research, Alumni, statutory reporting, accreditation/compliance, dashboard and external-integration actors | "What institutional service, intelligence or compliance outcome am I responsible for?" |
-| `P-PLATFORM` | Platform / Tenant Administration | Platform Administrator and specialist Platform Foundation actors | "What platform, identity, access, workflow, audit, data or readiness governance requires action?" |
-
-### 4.1 Profile Composition
-
-A user may receive a composed navigation model from more than one profile.
-
-Examples:
-
-- Faculty + Research responsibility;
-- Faculty + Teacher Guardian responsibility;
-- Academic Administrator + Timetable coordination;
-- Registrar + institutional administration;
-- Finance Manager + institutional reporting responsibility.
-
-Composition shall merge duplicate destinations rather than create duplicated menu trees.
+| `P-STUDENT` | Student | Student/Candidate actors across C/D/I and applicable services | What is happening, what is due, and am I on track? |
+| `P-FACULTY` | Faculty / Teacher | Faculty Member, Teacher Guardian and academic/faculty actors | What am I teaching or responsible for today? |
+| `P-GUARDIAN` | Parent / Guardian / Authorized Representative | C06 guardian relationship, custody, consent, communication and responsibility architecture | What am I authorized to know or do for the student relationships I hold? |
+| `P-INST-ADMIN` | Institutional Administrator | Institute Administrator, Registrar, Academic Administrator and other broad governance actors where assigned | How is the institution operating and what requires intervention? |
+| `P-STUDENT-OPS` | Admissions & Student Operations | Admissions, registration, progression, qualification/exit operational actors | Which student-lifecycle work requires processing or resolution? |
+| `P-ACADEMIC-OPS` | Academic Operations | Scheduler, timetable/programme coordinators, Academic Administrator and related actors | What academic delivery must be planned, coordinated or corrected? |
+| `P-EXAM-OPS` | Examination Operations | Controller of Examination and I01–I16 actors | What examination-cycle work must be prepared, conducted, evaluated or published? |
+| `P-FINANCE` | Finance Operations | Accountant, Senior Accountant, Finance Manager and other F actors | What financial work must be processed, reconciled, controlled or closed? |
+| `P-PEOPLE` | People / HR Operations | HR Administrator, HR Executive and workforce/payroll actors | What workforce and people-service work requires action? |
+| `P-CAMPUS` | Campus Operations | Campus governance plus facilities/lab/hostel/transport/library/health/security/housekeeping/TGS/infrastructure actors | What campus service, operational or governance work requires attention? |
+| `P-RESOURCE` | Procurement / Inventory / Asset Operations | Procurement, supplier, warehouse, stock, asset and verification actors | What resource-lifecycle work requires processing or control? |
+| `P-SERVICES` | Institutional Services / Intelligence | Placement, Research, Alumni, reporting, accreditation/compliance, dashboard and external-integration actors | What institutional service, intelligence or compliance outcome am I responsible for? |
+| `P-PLATFORM` | Platform / Tenant Administration | Platform Administrator and specialist Platform Foundation actors | What platform, identity, access, workflow, audit, data or readiness governance requires action? |
 
 ---
 
-# 5. Shared Shell for All Authenticated Profiles
+## 5. Shared Authenticated Shell
 
-The following remain common shell capabilities where upstream-supported:
+Where upstream-supported, all authenticated profiles may receive:
 
 - Home;
-- current Institution / academic context presentation;
-- global search / command discovery;
+- Institution/academic context presentation;
+- global search/command discovery;
 - notifications;
-- task/work entry when the user actually has workflow tasks;
+- task/work entry only when an actual workflow task exists;
 - help/support;
 - user/account/session presentation.
 
-Context presentation must remain visually quiet but unmistakable before protected actions.
-
-A context switch must follow L5-G-01-003 state invalidation and revalidation semantics before prior protected projections are reused.
+Context change follows L5-G-01-003/A04 invalidation and revalidation before previous protected projections are reused.
 
 ---
 
-# 6. Student Navigation and Journeys
+# 6. Student Experience
 
-## 6.1 Student Primary Navigation
-
-Recommended working labels:
+## 6.1 Primary Navigation
 
 ```text
 Home
@@ -183,68 +145,56 @@ Campus
 More
 ```
 
-`More` is progressive disclosure, not a domain dump. It may expose only upstream-supported destinations relevant to the current student, such as flexible learning, placements, external education or alumni transition when applicable.
+`More` is progressive disclosure, not a domain dump.
 
-### 6.2 Student Workspace Mapping
+### 6.2 Mapping
 
-| Student label | Primary inventory sources | Notes |
+| Student label | Inventory sources | Boundary |
 |---|---|---|
-| Home | `S-01`, `W-D03`, `W-D04`, `W-D07`, `W-I*`, `W-F01` | My Semester, Up Next, Due Soon and chronological day. |
-| My Academics | `W-C03`, `W-C04`, `W-D01`, `W-D04`, `W-D06` | Registration, progress/credits, course context, attendance and eligible learning opportunities. |
-| Timetable | `W-D03` | Student schedule projection; no timetable governance controls. |
-| Assessments & Exams | `W-D07`, `W-I04`, `W-I05`, `W-I10`, `W-I11`, `W-I12`, `W-I13` | Candidate-facing assessment/exam journeys only where supported. |
-| Fees | `W-F01`, `W-F02`, `W-F03`, `W-F11` | Student-facing financial projection/action surfaces only where the user is an authorized participant. |
-| Documents & Services | `W-C02`, `W-C05`, `W-H01`, applicable `W-H02/H03` | Certificates/documents, government credential interactions and relevant services. |
-| Campus | applicable `W-G03–G06`, `W-G09`, other G workspaces only where a student-facing interaction exists | Never expose campus operational administration merely because the service exists. |
+| Home | `S-01`, applicable D/I/F projections | My Semester, Up Next, Due Soon and day context. |
+| My Academics | `W-C03`, `W-C04`, `W-D01`, `W-D04`, `W-D06` | Registration, credits/progress, course context, attendance and eligible learning. |
+| Timetable | `W-D03` | Student schedule projection only. |
+| Assessments & Exams | `W-D07`, `W-I04`, `W-I05`, `W-I10`, `W-I11`, `W-I12`, `W-I13` | Candidate-facing journeys only where applicable. |
+| Fees | `W-F01`, `W-F02`, `W-F03`, `W-F11` | Student-facing participation/projection only where authorized. |
+| Documents & Services | `W-C02`, `W-C05`, `W-H01`, applicable H02/H03 | Documents, credentials and relevant services. |
+| Campus | applicable `W-G03–G06`, `W-G09` and other G services only where a student interaction exists | Never expose campus operational/governance administration merely because it exists. |
 
-### 6.3 Student Home Journey
+### 6.3 Home Journey
 
 ```text
 Home
  ↓
-My Semester orientation
+My Semester
  ↓
-Up Next
- ↓
-class / timetable context
+Up Next → class/timetable context
 
 or
 
-Due Soon
- ↓
-assessment / exam / academic obligation
- ↓
-relevant detail or bounded action
+Due Soon → assessment/exam/academic obligation → detail/action
 ```
 
-The Student home shall not use an enterprise work-queue/table mental model.
+No generic enterprise work queue.
 
-### 6.4 Student Academic Registration Journey
+### 6.4 Academic Registration Journey
 
 ```text
 My Academics
  ↓
 Registration
  ↓
-current registration window/context
+current registration context
  ↓
-eligible academic-registration action
+upstream-supported action
  ↓
-authoritative outcome / rejection / pending / indeterminate state
+authoritative success / rejection / pending / indeterminate state
  ↓
-updated registration projection
+updated projection
 ```
 
-L6 shall not calculate eligibility or interpret successful local submission as canonical registration success.
-
-### 6.5 Student Examination Journey
-
-Candidate journey family, subject to exact I-domain traceability:
+### 6.5 Examination Journey
 
 ```text
 Assessments & Exams
- ↓
-exam context
  ├─ Registration
  ├─ Hall Ticket
  ├─ Published Result
@@ -252,15 +202,13 @@ exam context
  └─ Supplementary / Backlog / Improvement
 ```
 
-No examination function appears merely because the user is a Student; applicability is determined upstream.
+Applicability remains upstream-determined.
 
 ---
 
-# 7. Faculty Navigation and Journeys
+# 7. Faculty Experience
 
-## 7.1 Faculty Primary Navigation
-
-Recommended working labels:
+## 7.1 Primary Navigation
 
 ```text
 Home
@@ -272,81 +220,50 @@ Academic Work
 More
 ```
 
-Optional responsibility-driven additions such as `Research` or `Mentoring` may appear when the faculty member has corresponding upstream responsibility.
+Responsibility-driven additions such as Research or Mentoring may appear when upstream responsibility exists.
 
-### 7.2 Faculty Workspace Mapping
+### 7.2 Mapping
 
-| Faculty label | Primary inventory sources | Notes |
+| Faculty label | Inventory sources | Boundary |
 |---|---|---|
 | Home | `S-01`, `W-D02`, `W-D03`, `W-D04`, `W-D07` | Teaching Pulse, Next Class, Today's Teaching, day schedule. |
-| Teaching | `W-D01`, `W-D02`, `W-D04` | Assigned course/class context, teaching sessions, attendance and syllabus progress. |
-| Timetable | `W-D03` | Faculty schedule projection; planning controls only through Academic Operations responsibility. |
-| Students | contextual projections from `W-C02`, `W-C04`, `W-D04`, `W-D05` | Only students/contexts supported by the faculty member's resolved responsibility. |
-| Assessments | `W-D07`; applicable `W-I06–I08` only where examination responsibility exists | Internal-assessment teaching/review work by default; exam roles are separate responsibility. |
-| Academic Work | `W-D05`, `W-D06`; optional `W-G09`, `W-H05` | Monitoring/flexible learning, mentoring, research or other assigned academic work. |
+| Teaching | `W-D01`, `W-D02`, `W-D04` | Assigned course/class, teaching sessions, attendance and progress. |
+| Timetable | `W-D03` | Faculty schedule; planning controls require Academic Operations responsibility. |
+| Students | contextual `W-C02`, `W-C04`, `W-D04`, `W-D05` | Only supported student/class responsibility scope. |
+| Assessments | `W-D07`; applicable `W-I06–I08` only where examination responsibility exists | Internal assessment by default; exam authority is separate. |
+| Academic Work | `W-D05`, `W-D06`; optional `W-G09`, `W-H05` | Monitoring, flexible learning, mentoring, research or other assigned work. |
 
-### 7.3 Faculty Teaching-Day Journey
-
-```text
-Home
- ↓
-Teaching Pulse
- ↓
-Next Class
- ↓
-Class workspace
- ├─ session context
- ├─ attendance action
- ├─ teaching progress
- └─ relevant student/class context
- ↓
-authoritative completion / pending / rejection state
-```
-
-The Faculty experience shall not present this as an administrator ticket queue.
-
-### 7.4 Faculty Assessment Journey
+### 7.3 Teaching-Day Journey
 
 ```text
-Assessments
- ↓
-assigned assessment / submissions
- ↓
-review / evaluation action supported by upstream behavior
- ↓
-moderation/finalization boundary where applicable
- ↓
-authoritative result state
+Home → Teaching Pulse → Next Class → Class workspace
+      ├─ session context
+      ├─ attendance
+      ├─ teaching progress
+      └─ relevant student/class context
+      ↓
+authoritative completion / pending / rejection
 ```
 
-### 7.5 Faculty Multi-Responsibility Journey
+No administrator ticket-queue metaphor.
 
-A Faculty member who is also a Teacher Guardian or researcher should not switch to an unrelated application shell.
-
-Instead:
+### 7.4 Multi-Responsibility Addition
 
 ```text
 Faculty base navigation
-      +
-responsibility-specific destination
+      + Mentoring → W-G09
+      + Research → W-H05
 ```
 
-Examples:
-
-- `Mentoring` → `W-G09`;
-- `Research` → `W-H05`.
-
-These additions remain upstream responsibility-driven.
+Only where upstream responsibility supports the addition.
 
 ---
 
-# 8. Guardian Navigation and Journeys
+# 8. Guardian Experience
 
-Guardian access must remain relationship- and authorization-scoped. Guardian existence does **not** imply unrestricted student access.
+Guardian navigation is relationship- and authorization-scoped. Guardian existence does not imply unrestricted student access.
 
-## 8.1 Guardian Primary Navigation
-
-Recommended working labels:
+## 8.1 Primary Navigation
 
 ```text
 Home
@@ -357,25 +274,23 @@ Financial Responsibility
 Services
 ```
 
-Additional student academic, attendance, fee or campus projections may appear only where a separate upstream authorization/relationship rule permits them.
+### 8.2 Mapping
 
-### 8.2 Guardian Mapping
-
-| Guardian label | Primary inventory sources | Notes |
+| Label | Inventory sources | Boundary |
 |---|---|---|
-| Home | `S-01`, `W-C06`, applicable `W-H02` | Relationship-relevant status, notices and bounded actions. |
-| My Students | `W-C06` + permitted student projection | Lists only active/authorized relationships. |
-| Relationships & Consents | `W-C06` | Custody, consent, communication authorization, emergency contact, pickup and relationship lifecycle as applicable. |
-| Communications | `W-H02` + `W-C06` communication-authorization context | Delivery/preferences remain H02/A-owned as applicable. |
-| Financial Responsibility | `W-C06`, `W-F01`, `W-F02` | Only where canonical guardian financial responsibility has been established. |
-| Services | applicable campus/student services | No generic visibility to all Student or Campus workspaces. |
+| Home | `S-01`, `W-C06`, applicable `W-H02` | Relationship status, notices and bounded actions. |
+| My Students | `W-C06` + permitted student projection | Active/authorized relationships only. |
+| Relationships & Consents | `W-C06` | Custody, consent, communication, emergency contact, pickup and lifecycle. |
+| Communications | `W-H02` + C06 authorization context | Notification delivery/preferences remain upstream-owned. |
+| Financial Responsibility | `W-C06`, `W-F01`, `W-F02` | Only where canonical financial responsibility exists. |
+| Services | applicable campus/student services | No generic access to all Student/Campus workspaces. |
 
-### 8.3 Guardian Relationship Journey
+### 8.3 Relationship Journey
 
 ```text
 Home / My Students
  ↓
-select authorized relationship context
+authorized relationship context
  ↓
 relationship overview
  ↓
@@ -384,17 +299,11 @@ allowed consent / communication / financial-responsibility action
 authoritative outcome
 ```
 
-Where legal/custody status changes, L6 must present the resulting access implications clearly but shall not calculate them itself.
-
 ---
 
-# 9. Institutional Administrator Navigation
-
-The Administrator experience is broad but must still use progressive disclosure.
+# 9. Institutional Administrator Experience
 
 ## 9.1 Primary Navigation
-
-The current approved navigation family is retained as the institutional broad-work model:
 
 ```text
 Home
@@ -409,9 +318,9 @@ Insights & Reports
 Administration
 ```
 
-`Institutional Services` may be exposed as its own family or through contextual/secondary navigation after later validation; it shall not be silently merged into another canonical owner.
+Institutional Services may later become a separate top-level family after validation; no ownership changes are implied either way.
 
-### 9.2 Administrator Home
+### 9.2 Home
 
 ```text
 Context / greeting
@@ -424,52 +333,38 @@ Priority Work / true work queue
  ↓
 Recent work
  ↓
-Today / lower-priority institutional updates
+Today / lower-priority updates
 ```
 
-### 9.3 Broad Navigation Mapping
+### 9.3 Broad Mapping
 
-| Navigation family | Inventory workspace families |
+| Family | Inventory workspace families |
 |---|---|
-| Students | `W-C01–C08` plus permitted cross-domain student projections |
+| Students | `W-C01–C08` plus permitted cross-domain projections |
 | Academics | `W-B04–B05`, `W-D01–D07` |
 | Examinations | `W-I01–I16` |
 | Finance | `W-F00–F14` |
 | People | `W-E01–E07` |
-| Campus | `W-G01–G10` |
-| Resources | `W-J01–J10`, with F14 cross-domain finance consumption shown contextually |
-| Insights & Reports | `W-H07–H09`, `W-F13`, other approved reporting projections |
-| Administration | `W-B01–B03`, applicable `W-A*`, configuration surfaces appropriate to the user's responsibilities |
+| Campus | `W-G00–G10` |
+| Resources | `W-J01–J10`, with F14 finance consumption contextual |
+| Insights & Reports | `W-H07–H09`, `W-F13`, `W-G00` governance projections where authorized, other approved reporting projections |
+| Administration | `W-B01–B03`, applicable `W-A*`, responsibility-appropriate configuration surfaces |
 
-This broad mapping is a composition layer only. It does not mean every institutional administrator sees every family.
+No broad institutional administrator automatically sees every destination or action.
 
-### 9.4 Administrator Exception-to-Resolution Journey
+### 9.4 Exception-to-Resolution Journey
 
 ```text
-Home
- ↓
-attention / priority work item
- ↓
-canonical owning workspace
- ↓
-context + evidence
- ↓
-approved decision/action UI
- ↓
-authoritative outcome
- ↓
-return to priority work / owning workspace
+Home → priority/attention item → canonical owning workspace
+     → context/evidence → supported decision/action
+     → authoritative outcome → return to queue/workspace
 ```
-
-A task is never resolved merely because the local UI closes or disappears.
 
 ---
 
-# 10. Specialist Institutional Navigation Profiles
+# 10. Specialist Navigation Profiles
 
-Specialists should see a focused subset rather than the full Administrator navigation.
-
-## 10.1 Admissions & Student Operations (`P-STUDENT-OPS`)
+## 10.1 Admissions & Student Operations
 
 ```text
 Home
@@ -482,23 +377,9 @@ Documents
 More
 ```
 
-Primary inventory: `W-C01–C08`, plus contextual `W-F01/F11`, `W-D01`, `W-I13`, `W-H01/H02/H03` only when needed by the supported journey.
+Primary: `W-C01–C08`; contextual D/F/H/I work only where required by the journey.
 
-Typical journey:
-
-```text
-Admissions attention
- ↓
-candidate/admission workspace
- ↓
-document/evidence review
- ↓
-upstream-supported decision
- ↓
-student activation / rejection / pending outcome
-```
-
-## 10.2 Academic Operations (`P-ACADEMIC-OPS`)
+## 10.2 Academic Operations
 
 ```text
 Home
@@ -511,23 +392,9 @@ Monitoring
 Assessments
 ```
 
-Primary inventory: `W-B04–B05`, `W-D01–D07`, contextual `W-E03`, `W-C03/C04`.
+Primary: `W-B04–B05`, `W-D01–D07`; contextual `W-E03`, `W-C03/C04`.
 
-Typical journey:
-
-```text
-Academic requirement
- ↓
-Course Offering / Timetable workspace
- ↓
-capacity / assignment / schedule context
- ↓
-validation / review
- ↓
-activation or governed revision outcome
-```
-
-## 10.3 Examination Operations (`P-EXAM-OPS`)
+## 10.3 Examination Operations
 
 ```text
 Home
@@ -542,11 +409,9 @@ Reviews & Exceptions
 Closure
 ```
 
-Primary inventory: `W-I01–I16`.
+Primary: `W-I01–I16`.
 
-The information architecture intentionally keeps planning, conduct, evaluation, publication, review and closure distinguishable because upstream examination architecture separates them.
-
-## 10.4 Finance Operations (`P-FINANCE`)
+## 10.4 Finance Operations
 
 ```text
 Home
@@ -561,11 +426,9 @@ Assets
 Reports
 ```
 
-Primary inventory: `W-F00–F14`.
+Primary: `W-F00–F14`. Maker-checker and approval separation remains upstream-authoritative.
 
-Finance roles may receive different actions within the same workspace due to maker-checker and approval separation; L6 navigation must not collapse that separation into a single unrestricted "Finance Admin" authority.
-
-## 10.5 People / HR Operations (`P-PEOPLE`)
+## 10.5 People / HR Operations
 
 ```text
 Home
@@ -578,12 +441,13 @@ Payroll
 Employee Profiles
 ```
 
-Primary inventory: `W-E01–E07`, contextual `W-B02`, `W-D02`.
+Primary: `W-E01–E07`; contextual B02/D02.
 
-## 10.6 Campus Operations (`P-CAMPUS`)
+## 10.6 Campus Operations
 
 ```text
 Home
+Governance & Readiness
 Facilities
 Laboratories
 Hostel
@@ -596,11 +460,9 @@ Mentoring
 Infrastructure
 ```
 
-Primary inventory: `W-G01–G10`.
+Primary: `W-G00–G10`. `Governance & Readiness` maps to `W-G00` and is intended only for actors with the corresponding campus-governance responsibility. A specific operator receives only the applicable subset.
 
-A specific campus operator should receive only the applicable subset.
-
-## 10.7 Procurement / Resources (`P-RESOURCE`)
+## 10.7 Procurement / Resources
 
 ```text
 Home
@@ -616,11 +478,11 @@ Verification
 Disposal
 ```
 
-Primary inventory: `W-J01–J10`; finance handoffs from `W-F14/F08/F12` are contextual rather than ownership transfer.
+Primary: `W-J01–J10`; F14/F08/F12 handoffs stay contextual.
 
-## 10.8 Institutional Services / Intelligence (`P-SERVICES`)
+## 10.8 Institutional Services / Intelligence
 
-Because H contains materially different institutional jobs, this profile may decompose into subprofiles during traceability:
+Potential subprofiles:
 
 ```text
 Placement
@@ -633,9 +495,9 @@ External Education
 Digital Credentials
 ```
 
-Notification and Enterprise Search remain shared shell/services rather than necessarily permanent primary-nav items.
+Notifications and Search remain shared services rather than necessarily permanent primary-nav items.
 
-## 10.9 Platform / Tenant Administration (`P-PLATFORM`)
+## 10.9 Platform / Tenant Administration
 
 ```text
 Home
@@ -650,49 +512,23 @@ Master Data
 Readiness
 ```
 
-Primary inventory: `W-A01–A10`.
-
-This profile is specialist administration and shall not appear in ordinary Student, Faculty or Guardian navigation.
+Primary: `W-A01–A10`; specialist only.
 
 ---
 
 # 11. Cross-Workspace Journey Rules
 
-## 11.1 Preserve Context Through Handoffs
-
-When a user follows a cross-domain journey, SutraERP should carry presentation context such as:
-
-- current Person/Student/Employee/Offering/Exam/financial subject identity;
-- current Institution/academic context;
-- source workspace;
-- reason for handoff.
-
-It must not carry prior-domain authority as if it were permission in the destination.
-
-## 11.2 Contextual Links Beat Duplicate Data Entry
-
-When the authoritative record belongs elsewhere, L6 should deep-link or compose a projection rather than duplicate an editable copy.
-
-## 11.3 Tasks Link to Owners
-
-A work item should open the owning workspace/task context rather than becoming an independent shadow record in the Home queue.
-
-## 11.4 Return Path
-
-After bounded work completes, users should have a predictable return path:
-
-- owning workspace;
-- originating task queue;
-- prior list/search context;
-- Home only when no more specific return context exists.
+1. Preserve subject and Institution/academic context through handoffs, but never carry prior-domain authority as permission in the destination.
+2. Prefer contextual links or source-owned projections over duplicate editable copies.
+3. A Home/task item opens the canonical owning workspace/task context rather than becoming a shadow business record.
+4. After bounded work, return to the owning workspace, originating queue/list/search context, or Home only when no more specific context exists.
+5. Cross-domain composition never changes canonical ownership.
 
 ---
 
-# 12. Search and Command Navigation
+# 12. Search / Command Navigation
 
-Global discovery should help users bypass deep menu traversal.
-
-Search/command results may include, where authorized and supported:
+Global discovery may expose authorized/discoverable:
 
 - people/students/employees;
 - courses/offerings;
@@ -705,35 +541,28 @@ Search/command results may include, where authorized and supported:
 
 Rules:
 
-1. search visibility is not mutation permission;
-2. results preserve Institution/scope identity;
-3. result types are visually distinguishable;
-4. deep links resolve through normal context/auth validation;
-5. sensitive result categories follow upstream privacy/authorization constraints;
-6. command shortcuts cannot bypass protected business preconditions.
+- search visibility is not mutation authority;
+- scope identity is preserved;
+- result types are distinguishable;
+- deep links revalidate normal context/auth boundaries;
+- shortcuts cannot bypass business preconditions.
 
 ---
 
 # 13. Notifications vs Tasks
 
-The UI shall preserve the architecture distinction:
-
-- **Notification** = information delivered to a user;
+- **Notification** = information delivered to a user.
 - **Task** = an upstream workflow requires a human action/decision.
 
-A notification may deep-link to a workspace without becoming a task.
-
-A task may appear in Home / Task Entry while its canonical context remains the owning workflow/domain.
-
-Faculty and Student Home may show action-oriented items, but they shall not automatically be represented as generic workflow tasks unless upstream workflow semantics actually create one.
+A notification may link to a workspace without becoming a task. Faculty/Student Home may show action-oriented items without falsely converting them into generic workflow tasks.
 
 ---
 
-# 14. Workspace Local Navigation Pattern
+# 14. Workspace Local Navigation
 
-Each sustained workspace should choose only the local sections needed for its user goal.
+A sustained workspace should expose only local sections required by its user goal.
 
-Example — Student Workspace candidate composition:
+Candidate Student Workspace composition:
 
 ```text
 Overview
@@ -749,113 +578,92 @@ Progression / Qualification
 History
 ```
 
-This composition is still candidate-level. Exact sections require the traceability register and relevant L6 slice specification.
-
-The same data shall not be made editable in multiple local sections merely for convenience if ownership is elsewhere.
+Exact sections require the traceability register and slice specification. The same canonical fact shall not become editable in multiple places merely for convenience.
 
 ---
 
-# 15. Responsive Navigation Strategy
+# 15. Responsive Navigation
 
-## Desktop
+### Desktop
 
-- persistent side navigation for broad institutional/specialist work where viewport permits;
-- Home + profile-relevant work families;
-- context/search/user controls remain visible;
-- local workspace tabs/sections may remain persistent where density requires.
+Persistent primary navigation for broad institutional/specialist work where width permits; current scope and workspace remain visible.
 
-## Tablet
+### Tablet
 
-- collapsible primary navigation;
-- retain current workspace and scope orientation;
-- reduce simultaneous columns before removing information.
+Collapsible navigation while retaining orientation and context.
 
-## Mobile
+### Mobile
 
-Mobile is task-oriented, not a compressed desktop ERP.
+Task-oriented rather than compressed desktop ERP.
 
 Prioritize:
 
 - Student: timetable, due work, exams/results, fees/documents, relevant services;
 - Faculty: next class, timetable, attendance, bounded review work;
-- Guardian: student relationship, consents/communications/responsibility-scoped services;
-- institutional specialists: approvals, alerts, quick lookup and bounded operational tasks where safe.
+- Guardian: relationships, consents/communications and responsibility-scoped services;
+- specialists: approvals, alerts, quick lookup and bounded tasks where safe.
 
-Complex finance close, timetable planning, bulk administration, configuration or multi-panel governance may remain desktop/tablet-primary unless later L6 evidence justifies full mobile optimization.
-
----
-
-# 16. Navigation Labels and Language
-
-Prefer institutional/user language:
-
-- `Students`, not `Student Lifecycle Domain`;
-- `Teaching`, not `Academic Delivery D04`;
-- `Fees`, not `Student Charge & Fee Management` for Student-facing navigation;
-- `Assessments & Exams`, not internal workflow names;
-- `People`, not Section E;
-- `Resources`, not Section J.
-
-However, friendly labels must not distort business meaning. Exact names for states, decisions, evidence and legal/governance concepts remain upstream-controlled.
+Complex finance close, timetable planning, bulk administration, platform governance and multi-panel campus governance may remain desktop/tablet-primary unless later L6 evidence justifies full mobile optimization.
 
 ---
 
-# 17. Profile-Specific Home Rules
+# 16. Language
+
+Prefer user/institutional language such as `Students`, `Teaching`, `Fees`, `Assessments & Exams`, `People`, `Campus`, `Resources` rather than architecture IDs or bounded-context names.
+
+Friendly labels must not rename canonical business states, decisions, evidence or legal/governance concepts.
+
+---
+
+# 17. Home Rules by Profile
 
 | Profile | Home emphasis | Queue model |
 |---|---|---|
 | Student | My Semester, Up Next, Due Soon | No generic enterprise queue |
 | Faculty | Teaching Pulse, Next Class, Today's Teaching | No generic enterprise queue |
 | Guardian | Relationships, notices, authorized responsibilities | No generic enterprise queue by default |
-| Institutional Administrator | Institution Pulse, exceptions, Priority Work | True work queue appropriate |
-| Student/Academic/Exam/Finance/HR/Campus/Resource/Services specialists | domain-relevant pulse/attention/task summary | Work queue only where upstream human-task semantics justify it |
-| Platform Administrator | platform health/governance attention and tasks | Work queue appropriate where governed workflows create tasks |
+| Institutional Administrator | Institution Pulse, exceptions, Priority Work | True queue appropriate |
+| Institutional specialists | Responsibility-relevant pulse/attention/tasks | Queue only where upstream human-task semantics justify it |
+| Campus governance actors | Campus readiness/operational attention from `W-G00` where authorized | Queue only where upstream task semantics exist |
+| Platform Administrator | platform governance attention/tasks | Queue appropriate where workflows create tasks |
 
 ---
 
-# 18. Open Decisions Deliberately Preserved
+# 18. Open Decisions
 
-The following are not locked by this draft:
+Still not locked:
 
-- final order and exact wording of every profile's primary navigation;
-- exact merged navigation for multi-role users;
-- whether Institutional Services is a separate broad-admin primary item;
-- exact mobile-supported institutional specialist task set;
-- command-palette keyboard shortcuts;
+- exact final ordering/wording of all primary navigation;
+- exact multi-role merge behavior;
+- whether Institutional Services becomes separate broad-admin navigation;
+- final mobile specialist task set;
+- command-palette shortcuts;
 - exact Guardian self-service exposure beyond canonical relationship/responsibility functions;
-- exact Student/Faculty exposure to Campus/Research/Placement/External Education based on responsibility and lifecycle;
-- final local tabs inside each of the 98 business workspace families;
-- permanent L6 IDs and production folder structure.
-
-These require the traceability register and subsequent L6 slice validation.
+- exact Student/Faculty access to Campus/Research/Placement/External Education;
+- final local tabs inside the 99 business workspace families;
+- permanent L6 IDs/folder taxonomy.
 
 ---
 
-# 19. Validation Against Repository Principles
+# 19. Traceability Dependency
 
-This draft preserves:
+`L6_Screen_Journey_Traceability_Register_DRAFT.md` is the controlled provenance companion to this map. It resolves the final L3/L4 scenario population for every workspace family and records the mandatory L5 web-client baseline plus per-slice L5 binding gate.
 
-- one canonical business owner per concept/entity/lifecycle;
-- server-authoritative permissions and protected scope;
-- L6 independence from L5 technical route/module structure;
-- persona-sensitive UX without persona-as-security;
-- progressive disclosure instead of a 104-item navigation dump;
-- cross-domain workspace composition without cross-domain ownership transfer;
-- Administrator / Faculty / Student Home asymmetry already approved by the L6 Foundation Authorization;
-- explicit unresolved areas instead of invented detail.
+The traceability audit corrected the inventory by adding `W-G00`; this document now consumes that correction.
 
 ---
 
 # 20. Proceed Gate
 
-**Result:** PASS — suitable as the controlled working journey/navigation map for traceability authoring.
+**Result:** PASS — suitable as the controlled working journey/navigation map for production-slice trace authoring.
 
-The next required artifact is:
+Next controlled step:
 
-`L6_Screen_Journey_Traceability_Register_DRAFT.md`
-
-That register must resolve exact L3 scenario IDs, L4 behavior specifications, L5 dependencies, actors and expected L6 surface types before individual production UI slices are authorized.
+- select a production L6 slice;
+- bind its exact L4 BHs to applicable L5 specifications/evidence;
+- author the full L6 screen/workspace specification using the controlled template;
+- validate it before frontend production implementation.
 
 ---
 
-**Draft verdict:** SutraERP now has a repository-derived persona/task navigation architecture covering self-service, teaching, guardian, broad administration and specialist institutional work without converting UX profiles into authorization roles.
+**Draft verdict:** repository-derived persona/task navigation architecture synchronized with the corrected 105-unit inventory and full-corpus traceability baseline.
