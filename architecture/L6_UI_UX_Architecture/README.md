@@ -1,7 +1,7 @@
 # L6 UI / UX Architecture
 
 **Architecture Level:** L6 — UI / UX Architecture  
-**Current State:** Controlled Foundation Authorized  
+**Current State:** Controlled Foundation Authorized + First Production Slice Architecture Approved  
 **Broad Production Authoring:** Controlled slices authorized; full corpus not yet frozen or locked  
 **Downstream:** SutraERP frontend implementation repository after applicable L6 slice approval/authorization  
 
@@ -22,7 +22,8 @@ Frontend Implementation
 ├── L6_Governance_and_Architecture_Standard_DRAFT.md
 ├── L6_UI_UX_Architecture_Template_v0.1_DRAFT.md
 ├── L6_Validation_Standard_DRAFT.md
-└── L6_Foundation_Controlled_Authorization_2026-09-16.md
+├── L6_Foundation_Controlled_Authorization_2026-09-16.md
+└── L6_Authenticated_Shell_Slice_Architecture_Approval_Decision_2026-09-16.md
 
 01_Foundation/
 ├── L6_Design_System_Foundation_DRAFT.md
@@ -30,7 +31,9 @@ Frontend Implementation
 └── L6_Interaction_State_and_Feedback_Standard_DRAFT.md
 ```
 
-The six foundation artifacts remain `Draft`; they have not been silently renamed, locked, or assigned permanent L6 specification IDs. `L6_Foundation_Controlled_Authorization_2026-09-16.md` is the active Architecture Approved decision authorizing controlled L6 production authoring and implementation slices while those drafts mature through normal governance.
+The six foundation artifacts remain `Draft`; they have not been silently renamed, locked, or assigned permanent L6 specification IDs. `L6_Foundation_Controlled_Authorization_2026-09-16.md` is the active Architecture Approved foundation decision authorizing controlled L6 production authoring while those drafts mature through normal governance.
+
+`L6_Authenticated_Shell_Slice_Architecture_Approval_Decision_2026-09-16.md` is the first production-slice approval decision. It authorizes controlled frontend implementation of the shared authenticated shell, Institution/academic context presentation and switching, global search/discovery, notification presentation framework, account/session projection affordance, responsive shell behavior and accessibility requirements within its recorded boundaries.
 
 ## Current Planning and Traceability Package
 
@@ -75,9 +78,32 @@ The traceability register establishes:
 - coverage reconciliation across the full **1,084 final L3 scenarios**;
 - the mandatory shared Web Client Baseline inherited by L6 web surfaces;
 - actor/profile presentation scope without converting UX profiles into authorization roles;
-- an explicit per-slice gate requiring material L4 BH→L5 specification/evidence binding before a production slice can become `Slice Ready`.
+- an explicit per-slice gate requiring material L4 BH→L5 specification/evidence binding before a production slice can become implementation-authorized.
 
 The three planning/traceability artifacts remain `Draft`. They do not constitute a final screen corpus, final navigation lock or Final L6 Corpus Lock.
+
+## First Production Slice
+
+```text
+L6_Authenticated_Application_Shell_Context_Search_and_Notifications_DRAFT.md
+```
+
+This first production slice is **Architecture Approved for controlled frontend implementation** by `00_Governance/L6_Authenticated_Shell_Slice_Architecture_Approval_Decision_2026-09-16.md`.
+
+The approved implementation boundary includes:
+
+- authenticated shell framing and orientation;
+- responsibility-sensitive navigation composition;
+- Institution and academic-context presentation;
+- context-switch pending/revalidation/stale-state behavior;
+- global enterprise search/discovery presentation against approved/released search contracts;
+- search empty/degraded/stale/unavailable states;
+- notification entry/list/detail presentation framework;
+- explicit separation of Notifications from workflow Tasks;
+- account/session projection affordance without client ownership of credentials/session authority;
+- responsive and accessibility behavior.
+
+Live notification integration remains constrained to released upstream contracts because `L5-C-04-001/002/003` still carry `Review` metadata. The approval does not promote those L5 documents or authorize provider/retry/channel/template-administration behavior in L6.
 
 ## Controlled Foundation Authorization
 
@@ -103,11 +129,12 @@ The reviewed frontend implementation recorded in the authorization is evidence, 
 2. Repository-wide screen/workspace inventory — **Draft established and corrected to 105 units**.
 3. Persona/task journey and navigation mapping — **Draft established**.
 4. Screen/journey full-corpus traceability register — **Draft established; 1,084 final L3 scenarios reconciled at workspace-family level**.
-5. Exact production-slice L4 BH→L5 specification/evidence binding — **required next**.
-6. Production L6 slice authoring using the controlled template.
-7. Independent L6 validation / proceed gate.
-8. Frontend implementation only after the corresponding L6 boundary is sufficiently approved/authorized.
-9. Material usability or feasibility findings return through controlled L6 amendment rather than silently changing architecture in code.
+5. First production slice L4/L5 binding — **completed for authenticated shell/context/search/notification presentation**.
+6. First production L6 slice authoring — **completed**.
+7. Independent L6 validation / proceed gate — **passed with controlled C04 live-integration constraint**.
+8. Frontend implementation of the approved shell slice — **authorized to proceed within the approval decision boundary**.
+9. Next production L6 slice — **Student Workspace overview/read-only orientation recommended next**.
+10. Material usability or feasibility findings return through controlled L6 amendment rather than silently changing architecture in code.
 
 This authorization is not a Final L6 Corpus Lock and does not freeze the final screen population.
 
