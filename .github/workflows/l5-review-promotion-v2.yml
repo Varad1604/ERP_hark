@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '.github/workflows/l5-review-promotion-v2.yml'
+      - l5-review-trigger
 
 permissions:
   contents: write
@@ -15,7 +14,7 @@ jobs:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
+      - name: Checkout trigger ref
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -44,10 +43,7 @@ jobs:
           if len(changed) != 50:
               raise SystemExit(f'Expected 50 canonical Draft L5 specifications, found {len(changed)}. Aborting without commit.')
 
-          remaining = [
-              str(path) for path in root.rglob('*.md')
-              if old in path.read_text(encoding='utf-8')
-          ]
+          remaining = [str(path) for path in root.rglob('*.md') if old in path.read_text(encoding='utf-8')]
           if remaining:
               raise SystemExit('Draft status remains after promotion: ' + ', '.join(sorted(remaining)))
 
@@ -58,10 +54,7 @@ jobs:
 
           governance = Path('architecture/L5_Solution_Architecture/governance/reference/L5_Full_Corpus_Draft_to_Review_Promotion_Decision_2026-09-16.md')
           changed_list = '\n'.join(f'- `{path.as_posix()}`' for path in changed)
-          family_table = '\n'.join(
-              f'| `{family}` | {expected[family]} | `Draft → Review` |'
-              for family in ['L5-A', 'L5-B', 'L5-C', 'L5-D', 'L5-E', 'L5-F']
-          )
+          family_table = '\n'.join(f'| `{family}` | {expected[family]} | `Draft → Review` |' for family in ['L5-A','L5-B','L5-C','L5-D','L5-E','L5-F'])
           governance.write_text(f'''# SutraERP L5 — Full Corpus Draft-to-Review Promotion Decision
 
 **Version:** 1.0.0  
@@ -93,15 +86,11 @@ Specifications already marked `Review`, `Architecture Approved`, or `Locked` rem
 {family_table}
 | **Total** | **50** | **`Draft → Review`** |
 
-After this promotion, no canonical L5 specification under `architecture/L5_Solution_Architecture/specifications/` retains the exact lifecycle marker `**Status:** `Draft``.
-
 ---
 
 ## 3. Meaning of `Review`
 
-`Review` means staged authoring is complete and the specification is submitted to formal L5 validation.
-
-It does **not** mean Architecture Approved, Locked, or that corpus-wide hard-fail validation has already passed. Any defect identified during final validation remains subject to normal remediation and governance.
+`Review` means staged authoring is complete and the specification is submitted to formal L5 validation. It does not mean Architecture Approved or Locked.
 
 ---
 
@@ -110,10 +99,8 @@ It does **not** mean Architecture Approved, Locked, or that corpus-wide hard-fai
 1. Only exact canonical `Draft` lifecycle markers are promoted to `Review`.
 2. Architecture bodies are not rewritten by this promotion.
 3. Existing `Architecture Approved` and `Locked` specifications are not downgraded.
-4. Canonical ownership, event ownership, dependency boundaries, and business/technical responsibilities remain unchanged.
-5. ADR lifecycle states are not changed by implication.
-6. Traceability relation states are not promoted by implication.
-7. The next gate is formal full-corpus L5 validation before any additional corpus-wide approval or lock decision.
+4. Canonical ownership, dependency boundaries, ADR lifecycle states, and traceability states remain unchanged.
+5. The next gate is formal full-corpus L5 validation.
 
 ---
 
