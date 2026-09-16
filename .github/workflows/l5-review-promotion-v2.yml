@@ -1,141 +1,32 @@
-name: L5 Draft to Review Promotion v2
+name: L5 Review Promotion
 
 on:
   push:
-    branches:
-      - main
-      - l5-review-trigger
+    branches: [l5-review-trigger]
 
 permissions:
   contents: write
 
 jobs:
   promote:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout trigger ref
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Promote remaining canonical L5 Draft specifications to Review
-        shell: bash
+      - name: Promote Draft metadata to Review
         run: |
-          python - <<'PY'
-          from collections import Counter
-          from pathlib import Path
-
-          root = Path('architecture/L5_Solution_Architecture/specifications')
-          old = '**Status:** `Draft`'
-          new = '**Status:** `Review`'
-          changed = []
-
-          for path in sorted(root.rglob('*.md')):
-              text = path.read_text(encoding='utf-8')
-              count = text.count(old)
-              if count:
-                  if count != 1:
-                      raise SystemExit(f'{path}: expected exactly one canonical Draft status marker; found {count}')
-                  path.write_text(text.replace(old, new, 1), encoding='utf-8')
-                  changed.append(path)
-
-          if len(changed) != 50:
-              raise SystemExit(f'Expected 50 canonical Draft L5 specifications, found {len(changed)}. Aborting without commit.')
-
-          remaining = [str(path) for path in root.rglob('*.md') if old in path.read_text(encoding='utf-8')]
-          if remaining:
-              raise SystemExit('Draft status remains after promotion: ' + ', '.join(sorted(remaining)))
-
-          family_counts = Counter(path.parent.name for path in changed)
-          expected = {'L5-A': 9, 'L5-B': 7, 'L5-C': 8, 'L5-D': 12, 'L5-E': 10, 'L5-F': 4}
-          if dict(sorted(family_counts.items())) != expected:
-              raise SystemExit(f'Family distribution mismatch: expected {expected}; got {dict(sorted(family_counts.items()))}')
-
-          governance = Path('architecture/L5_Solution_Architecture/governance/reference/L5_Full_Corpus_Draft_to_Review_Promotion_Decision_2026-09-16.md')
-          changed_list = '\n'.join(f'- `{path.as_posix()}`' for path in changed)
-          family_table = '\n'.join(f'| `{family}` | {expected[family]} | `Draft → Review` |' for family in ['L5-A','L5-B','L5-C','L5-D','L5-E','L5-F'])
-          governance.write_text(f'''# SutraERP L5 — Full Corpus Draft-to-Review Promotion Decision
-
-**Version:** 1.0.0  
-**Status:** Locked  
-**Owner:** Lead Architect  
-**Architecture Level:** L5 — Solution Architecture Governance  
-**Decision Date:** 2026-09-16  
-**Decision Type:** Corpus Lifecycle Promotion / Review Readiness  
-**Scope:** Remaining canonical L5 specifications carrying `Draft` lifecycle metadata  
-
----
-
-## 1. Decision
-
-Following completion of the dependency-gated L5 authoring stages, the Lead Architect authorizes every remaining canonical L5 specification carrying the exact lifecycle marker `Draft` to advance to **`Review`**.
-
-Exactly **50** canonical L5 specifications are promoted by this decision.
-
-This is a lifecycle synchronization action only. It does not alter technical architecture content, canonical ownership, dependency boundaries, ADR decisions, L4→L5 relation states, or any specification already at a stronger lifecycle state.
-
-Specifications already marked `Review`, `Architecture Approved`, or `Locked` remain unchanged.
-
----
-
-## 2. Promotion Summary
-
-| Family | Promoted Specifications | Transition |
-|---|---:|---|
-{family_table}
-| **Total** | **50** | **`Draft → Review`** |
-
----
-
-## 3. Meaning of `Review`
-
-`Review` means staged authoring is complete and the specification is submitted to formal L5 validation. It does not mean Architecture Approved or Locked.
-
----
-
-## 4. Repository Integrity Conditions
-
-1. Only exact canonical `Draft` lifecycle markers are promoted to `Review`.
-2. Architecture bodies are not rewritten by this promotion.
-3. Existing `Architecture Approved` and `Locked` specifications are not downgraded.
-4. Canonical ownership, dependency boundaries, ADR lifecycle states, and traceability states remain unchanged.
-5. The next gate is formal full-corpus L5 validation.
-
----
-
-## 5. Promoted Canonical Specifications
-
-{changed_list}
-
----
-
-## 6. Final Disposition
-
-```text
-Remaining canonical Draft specifications before promotion = 50
-Draft → Review promotions                                  = 50
-Remaining exact canonical Draft lifecycle markers          = 0
-Existing stronger lifecycle states                         = PRESERVED
-Architecture content changes                               = NONE
-Whole-corpus final approval/lock                           = NOT IMPLIED
-Next gate                                                  = FULL L5 CORPUS VALIDATION
-```
-
-**Final Decision:** `AUTHORIZED — PROMOTE ALL REMAINING CANONICAL L5 DRAFT SPECIFICATIONS TO REVIEW`
-''', encoding='utf-8')
-          PY
-
-      - name: Commit lifecycle synchronization and remove one-shot workflow
-        shell: bash
-        run: |
-          rm -f .github/workflows/l5-review-promotion-v2.yml
+          set -euo pipefail
+          root='architecture/L5_Solution_Architecture/specifications'
+          count=$(grep -RIl --include='*.md' -F '**Status:** `Draft`' "$root" | wc -l)
+          test "$count" -eq 50
+          grep -RIl --include='*.md' -F '**Status:** `Draft`' "$root" | while IFS= read -r file; do
+            sed -i '0,/\*\*Status:\*\* `Draft`/s//**Status:** `Review`/' "$file"
+          done
+          remaining=$(grep -RIl --include='*.md' -F '**Status:** `Draft`' "$root" | wc -l)
+          test "$remaining" -eq 0
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          if git diff --cached --quiet; then
-            echo 'No changes staged; refusing silent success.'
-            exit 1
-          fi
+          git add "$root"
           git commit -m 'Promote remaining L5 Draft specifications to Review'
           git push origin HEAD:main
