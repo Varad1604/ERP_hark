@@ -8,11 +8,11 @@
 **Canonical Technical Responsibility:** Governed exchange with government/statutory portals without owning source-domain facts.  
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-03-002`; `L5-C-01`; `L5-D-01`; `L5-D-02`; `L5-D-03`; applicable source-domain L5 architecture  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`; shared C03 family ADR required but not yet canonically allocated
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines reusable technical exchange with government/statutory portals through authorized machine interfaces while preserving source-domain ownership of package content, reporting facts, compliance decisions and regulatory meaning.
@@ -24,6 +24,7 @@ Defines reusable technical exchange with government/statutory portals through au
 | `L4-H-059` | 1.0.1 / Draft | `BH-001`–`BH-008` | Admit only governed approved submission, transport it without mutating the package/snapshot, correlate external acknowledgement/outcome, and preserve evidence. |
 | L2-H08 | Locked + 2026-09-01 amendment | submission execution/closure governance | Separates institutional package approval, submission authority and external regulator decision ownership. |
 | L5 corpus | approved population | `L5-C-03-005` | Assigns portal exchange mechanics to C03 without source-domain ownership transfer. |
+| `ADR-L5-0016` | Architecture Approved | shared C03 connector pattern | Governs portal adapter isolation, configuration, credentials, correlation and failure containment. |
 
 `L4-H-059` is Draft, so the BH relations are `Specified`, not `Validated`.
 
@@ -65,10 +66,10 @@ Failed/incomplete transmission shall not be represented as acknowledged or accep
 ## 6. Architecture Decisions
 | ID | Decision | Position | Basis | ADR |
 |---|---|---|---|---|
-| AD-001 | Portal isolation | Portal-specific adapters behind common C03 boundary. | Frozen C03 responsibility; schema/provider isolation. | Shared C03 ADR required before approval. |
-| AD-002 | Acknowledgement authority | Provider acknowledgement is evidence; source workflow owns accepted/rejected/compliance outcome. | `L4-H-059-BH-004`–`BH-008`. | None. |
-| AD-003 | Source immutability | Technical packaging must not mutate approved package/snapshot meaning. | `L4-H-059-BH-003`. | None. |
-| AD-004 | Interface selection | Use only provider-authorized/governed interfaces; no repository-wide protocol/product is selected here. | Technology-selection governance. | Required if a material shared technology is selected. |
+| AD-001 | Portal isolation | Portal-specific adapters behind common C03 boundary. | Frozen C03 responsibility; schema/provider isolation. | `ADR-L5-0016` |
+| AD-002 | Acknowledgement authority | Provider acknowledgement is evidence; source workflow owns accepted/rejected/compliance outcome. | `L4-H-059-BH-004`–`BH-008`. | `ADR-L5-0016` ownership-preserving handoff. |
+| AD-003 | Source immutability | Technical packaging must not mutate approved package/snapshot meaning. | `L4-H-059-BH-003`. | `ADR-L5-0016` |
+| AD-004 | Interface selection | Use only provider-authorized/governed interfaces; no repository-wide protocol/product is selected here. | Technology-selection governance. | `ADR-L5-0016` for shared pattern; separate ADR if a material product is selected. |
 
 ## 7. Security, Privacy & Operations
 Only purpose-authorized data is transmitted. Service identity, certificates and secrets consume D-family controls. Telemetry/evidence includes correlation, portal reference, time and technical disposition while minimizing sensitive payloads.
@@ -85,8 +86,7 @@ Only purpose-authorized data is transmitted. Service identity, certificates and 
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
 | OD-001 | `L4-H-059` is Draft. | Upstream / Traceability | Yes for Architecture Approved absent authorization. | Approve/review upstream or authorize approval-level use, then validate relation. |
-| OD-002 | Shared C03 connector pattern. | ADR | Yes for Architecture Approved if retained as family standard. | Allocate/evaluate canonically. |
-| OD-003 | Any browser/RPA portal integration. | Architecture/Security | Yes only if proposed. | Prove no supported interface and complete governed review. |
+| OD-002 | Any browser/RPA portal integration. | Architecture/Security | Yes only if proposed. | Prove no supported interface and complete governed review. |
 
 ## 10. Traceability Summary
-**Specified L4:** `L4-H-059-BH-001`–`008`. **Higher-level verification:** locked L2-H08 + submission amendment. **Peers:** C03-001/002, C01, D01/D02/D03, E01/E05. **Blocking:** OD-001, OD-002.
+**Specified L4:** `L4-H-059-BH-001`–`008`. **Higher-level verification:** locked L2-H08 + submission amendment. **Peers:** C03-001/002, C01, D01/D02/D03, E01/E05. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** OD-001.
