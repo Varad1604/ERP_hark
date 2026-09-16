@@ -456,16 +456,19 @@ These documents are historical technical inputs only. They are not part of the f
 
 # L6 — UI / UX Architecture
 
-The active L6 foundation is located under:
+The active L6 area is located under:
 
 ```text
 architecture/L6_UI_UX_Architecture/
 ├── README.md
 ├── 00_Governance/
-└── 01_Foundation/
+├── 01_Foundation/
+├── L6_Screen_and_Workspace_Inventory_DRAFT.md
+├── L6_Persona_Journey_and_Navigation_Map_DRAFT.md
+└── L6_Screen_Journey_Traceability_Register_DRAFT.md
 ```
 
-The foundation package currently consists of six Draft working artifacts plus the Architecture Approved controlled-authorization decision dated 2026-09-16.
+The active package consists of six Draft foundation artifacts, one Architecture Approved controlled-authorization decision, and three Draft planning/traceability artifacts.
 
 | Document | Owner | Status | Execution Relevance |
 |---|---|---|---|
@@ -476,8 +479,23 @@ The foundation package currently consists of six Draft working artifacts plus th
 | L6 Application Shell and Information Architecture — Draft | Lead Architect | Draft | Controlled working foundation |
 | L6 Interaction, State and Feedback Standard — Draft | Lead Architect | Draft | Controlled working foundation |
 | L6 Foundation Controlled Authorization — 2026-09-16 | Lead Architect | Architecture Approved | Active controlled-authoring authorization |
+| L6 Screen and Workspace Inventory — Draft | Lead Architect | Draft | 105-unit repository-wide planning baseline |
+| L6 Persona Journey and Navigation Map — Draft | Lead Architect | Draft | Persona/task navigation composition |
+| L6 Screen / Journey Traceability Register — Draft | Lead Architect | Draft | Full-corpus L3/L4 workspace-family traceability and per-slice L5 gate |
 
-Controlled L6 authoring is authorized, but permanent L6 numbering, the full screen/workspace corpus, final folder taxonomy and Final L6 Corpus Lock remain unresolved. Frontend implementation shall not work ahead of a sufficiently approved/authorized L6 interaction boundary.
+### Active L6 Planning Baseline
+
+The corrected L6 inventory contains:
+
+- 98 L2-anchored business workspace families;
+- 1 L3-derived `W-G00 Campus Operations Governance` workspace family covering final `L3-G-001…015` without redefining the review-only `L2-G00` artifact;
+- **99 business workspace families** total;
+- 6 shared L6 shell/task surfaces;
+- **105 total draft inventory units**.
+
+The traceability register reconciles the full **1,084 final L3 scenarios** to L6 workspace-family/shared presentation coverage and uses the canonical L3→L4 parent identity convention. Exact material L4 BH→L5 specification/evidence binding remains a required per-production-slice gate under the Locked L5 traceability methodology.
+
+Controlled L6 authoring is authorized, but permanent L6 numbering, the final screen corpus, final folder taxonomy and Final L6 Corpus Lock remain unresolved. Frontend implementation shall not work ahead of a sufficiently approved/authorized L6 interaction boundary.
 
 ---
 
@@ -513,7 +531,11 @@ Controlled L6 authoring is authorized, but permanent L6 numbering, the full scre
 | L5 Frozen Authoring Population | 105 specifications |
 | L5 Broad Authoring | Authorized |
 | L5 Historical Extracted Documents | 2 substantive artifacts + 2 temporary root compatibility pointers |
-| L6 UI/UX Documents Present | 7 active foundation/governance artifacts |
+| L6 UI/UX Documents Present | 10 active governance/foundation/planning artifacts |
+| L6 Business Workspace Families | 99 draft families |
+| L6 Shared Surfaces | 6 draft surfaces |
+| L6 Planning Inventory Units | 105 |
+| L6 Full-Corpus L3 Workspace Traceability | 1,084 / 1,084 reconciled at planning level |
 | L6 Controlled Authoring | Authorized 2026-09-16 |
 | Active Architects | 5 |
 
@@ -545,11 +567,15 @@ Controlled L6 authoring is authorized, but permanent L6 numbering, the full scre
 >
 > L5 is **not** covered by the L0/L1/L2 lock. Current L5 governance freezes a 105-specification authoring population and authorizes broad authoring under dependency-gated execution, but the Final L5 Corpus Lock has not been issued. Historical `L5-00` and `L5-01` remain non-canonical technical inputs requiring current-governance revalidation before adoption.
 >
-> L6 is **not** globally Locked. Effective 2026-09-16, controlled L6 authoring is explicitly authorized by `L6_Foundation_Controlled_Authorization_2026-09-16.md`; the six foundation artifacts remain Draft working authorities under that decision until individually promoted through governance.
+> L6 is **not** globally Locked. Effective 2026-09-16, controlled L6 authoring is explicitly authorized by `L6_Foundation_Controlled_Authorization_2026-09-16.md`; the six foundation artifacts and three planning/traceability artifacts remain Draft working authorities unless individually promoted through governance.
 
 ---
 
 # Recent Changes
+
+**2026-09-16 — L6 inventory, journey and full-corpus planning traceability:** Added the Screen and Workspace Inventory, Persona Journey and Navigation Map, and Screen / Journey Traceability Register. Exact final-L3 reconciliation identified and corrected a coverage gap for `L3-G-001…015` by introducing provisional L6 workspace key `W-G00 Campus Operations Governance` without redefining `L2-G00`. The corrected planning baseline is 99 business workspace families + 6 shared surfaces = 105 inventory units. All 1,084 final L3 scenarios now reconcile to an L6 workspace/shared presentation family at planning level. Exact material L4 BH→L5 evidence binding remains mandatory before a production L6 slice can be treated as ready.
+
+---
 
 **2026-09-16 — L6 controlled foundation authorization:** Recorded the Architecture Approved L6 foundation authorization after review of the implemented SutraERP visual direction. Controlled L6 production authoring may now proceed for defined slices. The approved direction establishes one shared persona-sensitive design system, Administrator Institution Pulse/priority-work hierarchy, Faculty teaching-day hierarchy without an enterprise work queue, Student semester/deadline hierarchy without an enterprise work queue, and a responsive light-theme-first shell. Permanent L6 numbering, complete screen corpus, exact token values, dark mode and several implementation-library choices remain deferred.
 
