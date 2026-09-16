@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Recovery objectives and common backup/restore/DR architecture for supported deployment models.  
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-B-02`; `L5-E-04`; `L5-E-01`; `L5-D-03`; `L5-E-05`; applicable data owners  
 **Referenced By:** `L5-E-03-002`; `L5-E-03-003`; recoverability-aware L5 specifications  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; repository recovery-strategy ADR required but not yet canonically allocated
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; `ADR-L5-0017`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines the repository-level recovery architecture that classifies recoverability needs and coordinates backup, restore and disaster-recovery capabilities across supported on-premises-primary and cloud-capable deployment models. It does not invent business RPO/RTO values, storage products, cloud services or deployment topology.
@@ -24,6 +24,7 @@ Defines the repository-level recovery architecture that classifies recoverabilit
 |---|---|---|---|
 | L5 corpus | approved population | `L5-E-03-001` | Assigns recovery objectives/common backup-restore-DR architecture to E03. |
 | `ADR-L5-0014` | Architecture Approved | repository resilience/recovery pattern | Requires dependency-aware containment, validation and controlled return without transferring canonical state ownership. |
+| `ADR-L5-0017` | Architecture Approved | repository recovery classification/protected-copy/restore/DR-validation pattern | Governs the E03 recovery strategy realized by this specification. |
 | `L4-A-057` | 1.0.0 / Draft | `BH-005`–`BH-009` | Preserve data/configuration/history; restoration to normal availability only after successful integrity validation; failed/unresolved change is not restored availability. |
 | `L5-B-02-*` | Draft/current | persistence ownership/topology capabilities | Identifies governed data-store responsibilities consumed by backup/restore. |
 | `L5-E-04-*` | Draft/current | runtime/deployment models | Establishes supported deployment contexts that E03 must recover without assuming one cloud provider. |
@@ -80,10 +81,10 @@ A compromised or untrusted recovery point shall not be promoted solely because i
 ## 6. Architecture Decisions
 | ID | Decision | Position | Basis | ADR |
 |---|---|---|---|---|
-| AD-001 | Recovery classification | Use recovery classes/profiles rather than one universal backup/RPO/RTO policy. | Frozen E03 responsibility + no-invented-number governance. | Repository recovery ADR required before approval. |
-| AD-002 | Recoverability proof | Backup completion is insufficient; restoration and validation evidence are required. | A-057 BH006–009 + E01/ADR0014. | Recovery ADR. |
-| AD-003 | Ownership | Recovery copies never become alternate canonical business owners. | Repository ownership constitution. | None. |
-| AD-004 | Deployment portability | Recovery requirements remain provider-neutral across supported E04 deployment models. | E04 boundary + technology-selection governance. | Recovery ADR if pattern approved repository-wide. |
+| AD-001 | Recovery classification | Use recovery classes/profiles rather than one universal backup/RPO/RTO policy. | Frozen E03 responsibility + no-invented-number governance. | `ADR-L5-0017` |
+| AD-002 | Recoverability proof | Backup completion is insufficient; restoration and validation evidence are required. | A-057 BH006–009 + E01/ADR0014. | `ADR-L5-0017` |
+| AD-003 | Ownership | Recovery copies never become alternate canonical business owners. | Repository ownership constitution. | `ADR-L5-0017` |
+| AD-004 | Deployment portability | Recovery requirements remain provider-neutral across supported E04 deployment models. | E04 boundary + technology-selection governance. | `ADR-L5-0017` |
 
 ## 7. Security, Privacy, Quality & Operational Impact
 Backups/restores consume D03 encryption/key controls and applicable B05 retention/privacy policy where relevant. Recovery telemetry includes backup freshness/status, restore-test disposition, recovery progress, validation failures and dependency readiness; unsupported numeric thresholds are not invented.
@@ -99,10 +100,9 @@ Backups/restores consume D03 encryption/key controls and applicable B05 retentio
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Required Resolution |
 |---|---|---|---|---|
-| OD-001 | Repository-level recovery classification/protected-copy/validation strategy requires an ADR distinct from ADR-L5-0014's health/degradation pattern. | ADR | Yes for Architecture Approved. | Allocate/evaluate through canonical ADR Register. |
-| OD-002 | Supporting `L4-A-057` is Draft and cannot yield Validated relation yet. | Upstream / Traceability | Yes for any claimed Validated BH relation; approval impact depends on governance use of this supporting source. | Approve/review upstream or authorize approval-level use. |
-| OD-003 | B02/E04/E01 are current peer dependencies and must remain stable enough for final approval. | Dependency | Yes for Architecture Approved if material peer decisions remain unresolved. | Revalidate dependency status/content before approval gate. |
-| OD-004 | Numeric RPO/RTO, backup frequency and retention profiles. | Operations / Business requirement | No for baseline authoring. | Populate only from approved requirements. |
+| OD-001 | Supporting `L4-A-057` is Draft and cannot yield Validated relation yet. | Upstream / Traceability | Yes for any claimed Validated BH relation; approval impact depends on governance use of this supporting source. | Approve/review upstream or authorize approval-level use. |
+| OD-002 | B02/E04/E01 are current peer dependencies and must remain stable enough for final approval. | Dependency | Yes for Architecture Approved if material peer decisions remain unresolved. | Revalidate dependency status/content before approval gate. |
+| OD-003 | Numeric RPO/RTO, backup frequency and retention profiles. | Operations / Business requirement | No for baseline authoring. | Populate only from approved requirements. |
 
 ## 10. Traceability Summary
-**Primary authority:** frozen `L5-E-03-001` responsibility; `ADR-L5-0014`. **Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Peers:** B02, E04, E01, D03, E05. **Blocking:** OD-001 and dependency/upstream gates as stated.
+**Primary authority:** frozen `L5-E-03-001` responsibility; `ADR-L5-0014`; `ADR-L5-0017`. **Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Peers:** B02, E04, E01, D03, E05. **Blocking:** dependency/upstream gates as stated.
