@@ -22,7 +22,8 @@ The first L6 foundation review package is located under:
 ```text
 00_Governance/
 ├── L6_Governance_and_Architecture_Standard_DRAFT.md
-└── L6_UI_UX_Architecture_Template_v0.1_DRAFT.md
+├── L6_UI_UX_Architecture_Template_v0.1_DRAFT.md
+└── L6_Validation_Standard_DRAFT.md
 
 01_Foundation/
 ├── L6_Design_System_Foundation_DRAFT.md
@@ -30,7 +31,7 @@ The first L6 foundation review package is located under:
 └── L6_Interaction_State_and_Feedback_Standard_DRAFT.md
 ```
 
-All five artifacts are `Draft`. Their presence does not establish a Locked L6 baseline, canonical L6 numbering scheme or broad production-authoring authorization.
+All six artifacts are `Draft`. Their presence does not establish a Locked L6 baseline, canonical L6 numbering scheme or broad production-authoring authorization.
 
 ## Foundation Gate
 
@@ -38,6 +39,7 @@ Before broad frontend production implementation begins, repository governance sh
 
 - L6 ownership/boundary and cross-repository governance;
 - canonical L6 artifact template;
+- L6 validation/proceed-gate rules;
 - Sutra design-system foundation;
 - application shell and information architecture;
 - interaction/state/feedback semantics.
