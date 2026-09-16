@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-C-01 — API & Contract Architecture  
 **Assigned Author:** Pallav  
 **Version:** `1.0.1`  
-**Status:** `Draft`  
+**Status:** `Review`  
 **Last Updated:** `2026-09-11`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-C-01-001`, `L5-A-04-002`, `L5-B-02-003`, `L4-A-015`, `L4-A-050`.  
 **Collaborates With / Referenced By:** `L5-C-01-003`, `L5-D-02-*`, `L5-E-01-*`, `L5-E-05-*`, `L5-C-03-*`.  

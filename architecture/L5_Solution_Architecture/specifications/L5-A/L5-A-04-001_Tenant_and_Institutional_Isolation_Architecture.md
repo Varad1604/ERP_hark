@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-A-04 — Tenant & Institutional Isolation Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.0.1`  
-**Status:** `Draft`  
+**Status:** `Review`  
 **Last Updated:** `2026-09-11`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; L5 Pilot ADR Candidate Disposition v1.0.0; `L5-A-01-001` v1.0.1 Draft; `L4-A-001` v1.0.0 Draft; `L4-A-002` v1.0.0 Draft; `L4-A-003` v1.0.0 Draft; `L4-B-001` v1.0.0 Review; `L4-B-002` v1.0.0 Review; `L4-B-003` v1.0.0 Review; `L2-A01_Platform_Tenant_Foundation_Architecture.md`; `L2-B01_Institution_Workflow.md`; SutraERP L1 Business Domain Architecture v2.1 Locked.  
 **Referenced By:** `L5-A-04-002` and peer architectures requiring validated Tenant/Institution isolation semantics.  

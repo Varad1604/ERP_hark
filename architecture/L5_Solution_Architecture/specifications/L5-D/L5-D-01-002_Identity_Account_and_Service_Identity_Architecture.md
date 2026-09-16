@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-D-01 — IAM Architecture  
 **Assigned Author:** Devang  
 **Version:** `1.0.0`  
-**Status:** `Draft`  
+**Status:** `Review`  
 **Last Updated:** `2026-09-11`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; working `L5-D-01-001` v1.0.1 Draft; `L4-A-004` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-008` v1.0.0 Draft; `L4-A-053` v1.0.0 Draft; `L2-A01` v1.0.0 Locked; `L2-A02` Locked; `L2-A03` Locked; `ADR-PLAT-AUTH-001` Approved.  
 **Referenced By:** Planned `L5-D-01-003`, `L5-D-01-004`, `L5-D-02-*`, `L5-A-08-*`, `L5-C-03-*`, and other technical consumers requiring an authenticated human or non-human principal context.  
