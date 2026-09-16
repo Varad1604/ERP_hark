@@ -8,11 +8,11 @@
 **Canonical Technical Responsibility:** Governed bulk/file exchange: controlled upload, structural validation, staging, batches, export packaging, large transfer and delivery integrity; no imported/exported business-data ownership.  
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-01`; `L5-A-08`; `L5-D-03`; `L5-B-02`; `L5-E-05`; applicable source-domain L5 architecture  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0013`; shared C03 family ADR required but not yet canonically allocated
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0013`; `ADR-L5-0016`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines reusable large-volume import/export and secure file-exchange mechanics without making staging or transferred data canonical business truth.
@@ -24,6 +24,7 @@ Defines reusable large-volume import/export and secure file-exchange mechanics w
 | L5 Coverage Audit Decision | Architecture Approved | governed bulk import/export finding | Establishes reusable owner for controlled file transfer, structural validation, staging, packaging, large-transfer integrity and owner-domain semantic handoff. |
 | `L4-A-036` | 1.0.0 / Draft | `BH-001`–`BH-008` | Authorize intake, validate structure/schema/mapping, report duplicates/findings, commit nothing until owning-domain semantic acceptance and preserve evidence. |
 | `L4-H-006` | 1.0.0 / Draft | `BH-001`–`BH-008` | Bulk credential publication preserves independent item outcomes and must not invent a first-class business Batch aggregate/lifecycle. |
+| `ADR-L5-0016` | Architecture Approved | shared C03 connector pattern | Governs adapter/handoff isolation, correlation, credentials and failure containment for file-exchange consumers. |
 
 The L4 relations are `Specified`, not `Validated`, while those files remain Draft. The Architecture Approved coverage decision nevertheless establishes the C03-008 technical ownership boundary.
 
@@ -69,11 +70,11 @@ Malformed records/items produce explicit diagnostics and are never silently disc
 ## 6. Architecture Decisions
 | ID | Decision | Position | Basis | ADR |
 |---|---|---|---|---|
-| AD-001 | Processing model | Intake → integrity/structure validation → non-authoritative staging → owner-domain acceptance. | Coverage decision + `L4-A-036`. | Shared C03 ADR may govern family pattern. |
-| AD-002 | Large workload execution | Durable asynchronous technical work consumes A08. | `ADR-L5-0013`; implementation readiness. | `ADR-L5-0013`. |
-| AD-003 | Format posture | Contract/provider-specific governed formats; no universal repository format selected. | Product/protocol neutrality. | None until material shared format standard is selected. |
-| AD-004 | Partial acceptance | Owner-domain business policy; C03 only executes the declared technical handoff. | `L4-A-036-BH-003`–`006`; ownership. | None. |
-| AD-005 | Export privacy | Purpose-scoped authorized export, secure delivery and evidence. | Security/privacy derivation; owner scope remains upstream. | None. |
+| AD-001 | Processing model | Intake → integrity/structure validation → non-authoritative staging → owner-domain acceptance. | Coverage decision + `L4-A-036`. | `ADR-L5-0016` |
+| AD-002 | Large workload execution | Durable asynchronous technical work consumes A08. | `ADR-L5-0013`; implementation readiness. | `ADR-L5-0013`; `ADR-L5-0016` |
+| AD-003 | Format posture | Contract/provider-specific governed formats; no universal repository format selected. | Product/protocol neutrality. | `ADR-L5-0016` for shared pattern; separate ADR only if a material shared format standard is selected. |
+| AD-004 | Partial acceptance | Owner-domain business policy; C03 only executes the declared technical handoff. | `L4-A-036-BH-003`–`006`; ownership. | `ADR-L5-0016` ownership-preserving handoff. |
+| AD-005 | Export privacy | Purpose-scoped authorized export, secure delivery and evidence. | Security/privacy derivation; owner scope remains upstream. | `ADR-L5-0016` |
 
 ## 7. Security, Privacy & Operations
 Transfers consume D03 protection and credentials. Sensitive contents are excluded from general logs. Operational signals include operation identity, bytes/items processed, backlog/progress, validation-failure counts/classes and delivery outcome. Temporary staging follows governed retention/disposal supplied by the appropriate retention/privacy owner; C03 does not invent durations.
@@ -91,8 +92,7 @@ Transfers consume D03 protection and credentials. Sensitive contents are exclude
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
 | OD-001 | A-036/H-006 are Draft; canonical traceability cannot be `Validated` yet. | Upstream / Traceability | Yes for Architecture Approved absent authorization where these BHs are material. | Approve/review upstream or authorize approval-level use. |
-| OD-002 | Shared C03 pattern. | ADR | Yes for Architecture Approved if retained as family standard. | Allocate/evaluate canonically. |
-| OD-003 | Numeric file/batch/chunk limits, transfer thresholds and retention periods. | Operations | No. | Derive from approved capacity/provider/regulatory profiles. |
+| OD-002 | Numeric file/batch/chunk limits, transfer thresholds and retention periods. | Operations | No. | Derive from approved capacity/provider/regulatory profiles. |
 
 ## 10. Traceability Summary
-**Approved purpose:** L5 Coverage Audit Decision bulk-import/export finding. **Specified L4:** `L4-A-036-BH-001`–`008`; `L4-H-006-BH-001`–`008`. **Peers:** C03-001, C01, A08, D03, B02, E05. **Blocking:** OD-001, OD-002.
+**Approved purpose:** L5 Coverage Audit Decision bulk-import/export finding. **Specified L4:** `L4-A-036-BH-001`–`008`; `L4-H-006-BH-001`–`008`. **Peers:** C03-001, C01, A08, D03, B02, E05. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** OD-001.
