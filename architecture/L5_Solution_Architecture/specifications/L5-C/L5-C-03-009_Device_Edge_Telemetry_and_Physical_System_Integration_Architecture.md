@@ -8,11 +8,11 @@
 **Canonical Technical Responsibility:** Reusable secure integration for scanners/readers, RFID/NFC, biometrics, ANPR, GPS, telemetry, IoT, CCTV/evidence feeds and controlled actuators; devices do not own business decisions.  
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-02`; `L5-A-08`; `L5-D-01`; `L5-D-02`; `L5-D-03`; `L5-E-01`; `L5-E-05`; applicable business-domain L5 architecture  
-**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0013`; `ADR-L5-0014`; shared C03 family ADR required but not yet canonically allocated
+**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0013`; `ADR-L5-0014`; `ADR-L5-0016`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines the reusable secure technical boundary for physical devices, edge systems, telemetry, evidence feeds and controlled actuators while ensuring device observations/commands never become business decisions merely because hardware produced or executed them.
@@ -22,6 +22,7 @@ Defines the reusable secure technical boundary for physical devices, edge system
 | Source | Version / Status | Exact Reference | What It Establishes | C03 Technical Use |
 |---|---|---|---|---|
 | L5 Coverage Audit Decision | Architecture Approved | Device / Edge / Physical-System Integration finding | L4/scenarios explicitly defer scanner/reader, RFID/NFC, biometric, ANPR, GPS, telemetry, IoT, CCTV/evidence and controller mechanisms; a reusable L5 owner is required and devices must not own business decisions. | Primary authority for C03-009 technical scope. |
+| `ADR-L5-0016` | Architecture Approved | shared C03 connector pattern | Governs device/provider adapter isolation, correlation, credentials and failure containment. | Supplies reusable C03 integration mechanics. |
 | `L4-G-106` | Draft | §10 Open Issues / Deferred Design | GPS tracking, telemetry, dispatch/API/persistence mechanisms are deliberately deferred from Trip business behavior. | C03 may supply telemetry/GPS integration while G04 retains Trip decisions/state. |
 | `L4-G-107` | Draft | §10 Open Issues / Deferred Design | GPS/tracking/telemetry/routing technical mechanisms are deferred while route-deviation business semantics remain upstream. | C03 carries observations; Transport remains authoritative. |
 | L2-G07 | Locked | future QR/NFC/GPS verification statement | Future device technologies integrate without redesign. | Requires adapter-based extensibility without transferring Security Operations authority. |
@@ -79,11 +80,11 @@ Device loss/degradation shall affect only dependent capability under E01 semanti
 ## 6. Architecture Decisions
 | ID | Decision | Position | Basis | ADR |
 |---|---|---|---|---|
-| AD-001 | Device integration model | Heterogeneous devices integrate through provider/device adapters and normalized internal contracts. | Approved coverage decision. | Shared C03 ADR required before approval. |
-| AD-002 | Decision authority | Devices produce observations/execute commands; canonical domains decide business meaning. | Approved coverage decision + ownership rules. | None. |
-| AD-003 | Offline behavior | Bounded store-and-forward is available only where required, with duplicate/reconciliation controls. | Technical derivation; consumes A08/C02/E01. | C03 ADR may govern shared pattern. |
-| AD-004 | Actuators | Commands require authoritative owner decision, technical authorization and acknowledgement/failure evidence. | D02/D03 ownership + device boundary. | Existing D-family ADRs; C03 specialization if material. |
-| AD-005 | Media | Prefer governed evidence/metadata references over continuous-media replication absent explicit requirement. | Data minimization and corpus boundary. | None. |
+| AD-001 | Device integration model | Heterogeneous devices integrate through provider/device adapters and normalized internal contracts. | Approved coverage decision. | `ADR-L5-0016` |
+| AD-002 | Decision authority | Devices produce observations/execute commands; canonical domains decide business meaning. | Approved coverage decision + ownership rules. | `ADR-L5-0016` ownership-preserving handoff. |
+| AD-003 | Offline behavior | Bounded store-and-forward is available only where required, with duplicate/reconciliation controls. | Technical derivation; consumes A08/C02/E01. | `ADR-L5-0016`; `ADR-L5-0013`; `ADR-L5-0010` as applicable. |
+| AD-004 | Actuators | Commands require authoritative owner decision, technical authorization and acknowledgement/failure evidence. | D02/D03 ownership + device boundary. | `ADR-L5-0009`; `ADR-L5-0016` |
+| AD-005 | Media | Prefer governed evidence/metadata references over continuous-media replication absent explicit requirement. | Data minimization and corpus boundary. | `ADR-L5-0016` |
 
 ## 7. Security, Privacy & Operations
 Device identities/certificates consume D-family controls. Sensitive biometric/location/video data is excluded from general telemetry and minimized at boundaries. E05 receives device/connector health, last contact, backlog and failure signals without becoming business audit truth.
@@ -100,9 +101,8 @@ Device identities/certificates consume D-family controls. Sensitive biometric/lo
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| OD-001 | Shared C03 adapter/device outcome-isolation pattern. | ADR | Yes for Architecture Approved if retained as family standard. | Allocate/evaluate canonically. |
-| OD-002 | Concrete device vendor/protocol profiles and numeric buffer limits. | Technology / Operations | No. | Decide only from concrete device/provider requirements and capacity evidence. |
-| OD-003 | Draft L4 device-specific examples cannot be `Validated` traceability until approved. | Traceability | No for technical ownership purpose; yes for any claimed Validated BH relation. | Keep examples Specified until upstream approval/review. |
+| OD-001 | Concrete device vendor/protocol profiles and numeric buffer limits. | Technology / Operations | No. | Decide only from concrete device/provider requirements and capacity evidence. |
+| OD-002 | Draft L4 device-specific examples cannot be `Validated` traceability until approved. | Traceability | No for technical ownership purpose; yes for any claimed Validated BH relation. | Keep examples Specified until upstream approval/review. |
 
 ## 10. Traceability Summary
-**Approved purpose authority:** L5 Coverage Audit Decision — Device/Edge/Physical-System Integration finding. **Specified examples:** `L4-G-106` §10; `L4-G-107` §10; locked L2-G07 future-device integration constraint. **Peers:** C03-001, C02, A08, D01/D02/D03, E01/E05. **Blocking:** OD-001.
+**Approved purpose authority:** L5 Coverage Audit Decision — Device/Edge/Physical-System Integration finding. **Specified examples:** `L4-G-106` §10; `L4-G-107` §10; locked L2-G07 future-device integration constraint. **Peers:** C03-001, C02, A08, D01/D02/D03, E01/E05. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** no ADR blocker; only traceability status limits remain for Draft L4 examples.
