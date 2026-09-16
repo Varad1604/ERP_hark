@@ -8,136 +8,133 @@
 **Canonical Technical Responsibility:** Common external integration/connector boundary and ownership-preserving principles.  
 **Technical Architecture Owner:** `L5-C-03 — External Integration & Connector Architecture`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-01`; `L5-C-02`; `L5-D-03`; `L5-E-04`; `L5-E-05`; `L5-A-04`; applicable source-domain L5 architecture  
 **Referenced By:** `L5-C-03-002`–`L5-C-03-009`  
-**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0009`; `ADR-L5-0014`; shared C03 connector-pattern ADR required but not yet canonically allocated  
-**Governing Sources:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Candidate Document Corpus Register 105; L5 Technology Selection & ADR Methodology; L5 ADR Register; L5 Broad Authoring Authorization.
+**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0009`; `ADR-L5-0014`; shared C03 family ADR required but not yet canonically allocated  
+**Governing Sources:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Candidate Document Corpus Register 105; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology; L5 ADR Register; L5 Broad Authoring Authorization.
 
 ## 2. Purpose, Scope & Non-Goals
-This specification defines the reusable technical boundary through which SutraERP communicates with external providers, government platforms, financial networks, education systems, file-exchange partners and physical/edge systems while preserving upstream canonical ownership.
+Defines the reusable technical boundary through which SutraERP communicates with external providers, government platforms, financial networks, education systems, file-exchange partners and physical/edge systems while preserving canonical ownership.
 
-**In scope:** connector/adaptor boundary, protocol abstraction, provider configuration, request/callback correlation, technical validation, provider-model mapping, tenant/institution context propagation, failure isolation, evidence handoff and protocol-selection posture.
+**In scope:** connector/adaptor boundary, provider protocol adaptation, technical validation, provider-model mapping, request/callback correlation, Tenant/Institution context propagation, failure isolation, evidence handoff and provider-profile isolation.
 
-**Out of scope:** ownership of external-facing business facts, Finance state, academic facts, identity facts, statutory business decisions, device-originated business decisions, provider-specific business policy, product/vendor selection, and numeric timeout/retry/rate-limit targets.
+**Out of scope:** source-domain business facts/rules/lifecycles, Finance state, academic facts, statutory business decisions, device-originated business decisions, provider commercial policy, named integration products, and unsupported numeric timeout/retry/rate-limit targets.
 
 ## 3. Upstream Applicability, Constraints & Assumptions
 ### 3.1 Canonical Upstream Reference Matrix
-| Source | Exact Reference | What It Establishes | L5-C-03-001 Use |
-|---|---|---|---|
-| L5 corpus | `L5-C-03-001` boundary | Common connector architecture without ownership transfer. | Defines this specification's canonical scope. |
-| Repository baseline | Hybrid communication and canonical-owner rules | Cross-domain interaction does not transfer source-domain ownership. | External systems remain technical peers, not canonical owners. |
-| L5 peer | `L5-C-01` | Governed synchronous contract, compatibility, error and idempotency architecture. | Connector synchronous calls consume C01 rather than redefine it. |
-| L5 peer | `L5-C-02` | Durable event/messaging and compatibility architecture. | Connector asynchronous handoffs consume C02 where applicable. |
-| L5 peer | `L5-D-03` | Trust, cryptography, secrets, certificates and segmentation. | Connector trust controls consume D03. |
-| ADR | `ADR-L5-0009` | Non-human principal authorization binding. | Connector/service identities shall be separately authorized. |
-| ADR | `ADR-L5-0014` | Repository resilience, health, degradation and recovery. | Connector failure is isolated and externally degraded without collapsing unrelated capability. |
+| Source | Version / Status | Exact Reference | What It Establishes | L5-C-03-001 Use |
+|---|---|---|---|---|
+| L5 coverage decision | 1.0.0 / Architecture Approved | §5, §6, §9 | Reusable integration boundary; bulk/file and device integration are distinct reusable technical responsibilities; no canonical business ownership transfer. | Establishes the family purpose and ownership-preserving integration boundary. |
+| L5 corpus | current approved population | `L5-C-03-001`–`009` | Frozen C03 responsibilities. | Fixes family decomposition and prevents split/merge drift. |
+| L4 | 1.0.1 / Draft | `L4-H-073-BH-001`–`012` | Governed external connector configuration/effective history while authentication facts remain upstream-owned. | Requires a connector realization boundary without duplicating H10 business lifecycle. |
+| L4 | 1.0.1 / Draft | `L4-H-059-BH-003`–`008` | External submission, acknowledgement/outcome and evidence must preserve reporting ownership. | Requires transport/correlation/evidence handoff without owning regulatory completion. |
+| L4 | 1.0.0 / Draft | `L4-A-036-BH-001`–`008` | Governed bulk import requires authorization, structure/schema validation, semantic-owner handoff and evidence. | Requires technical intake/validation/staging boundary specialized by C03-008. |
+| L4 | 1.0.1 / Draft | `L4-F-061-BH-003`–`015` | External banking evidence may be failed/returned/uncertain; Treasury remains authoritative. | Requires ambiguous external outcomes to remain evidence for owner reconciliation. |
+| ADR | Architecture Approved | `ADR-L5-0014` | Shared health, containment and validated recovery semantics. | Constrains provider failure isolation and return to service. |
 
-Exact applicable L4 BH allocation across all connector-consuming business scenarios is not fabricated here; it remains a review-gate item in `OD-001`.
+All cited L4 specifications are currently `Draft`; therefore these relations are `Specified`, not `Validated`, under the locked traceability methodology. They cannot be used as final approval authority without upstream approval or explicit governance authorization.
 
 ### 3.2 Authoritative Constraints
 - External providers, adapters and connectors shall not become canonical owners of SutraERP business facts.
-- Provider-specific models shall be translated at the connector boundary rather than propagated into canonical internal models.
-- Tenant and Institution context shall remain explicit where applicable and shall not be inferred from endpoint naming alone.
-- Security, secrets, authorization and audit capabilities are consumed from their canonical L5 owners.
-- No protocol, gateway or vendor may require direct modification of another technical owner's internal persistence.
+- Provider-specific representations shall be isolated at the connector/mapping boundary rather than force source-domain model changes.
+- Tenant and Institution context remains explicit where applicable and consumes A04 controls.
+- Identity, authorization, secrets, cryptography, audit and observability remain owned by their canonical peer specifications.
+- External integration shall not directly modify another technical owner's persistence.
+- Technical health/degradation shall use E01 semantics and shall not be represented as a business lifecycle state.
 
 ## 4. Technical Ownership, Boundaries & Dependencies
 ### Owns
 - Shared connector/adaptor execution boundary.
-- Provider protocol adaptation and transport-level validation.
-- Provider request/callback correlation and technical outcome classification.
-- Provider schema-to-internal-contract mapping boundary.
-- Common external-dependency health and isolation semantics.
+- Provider protocol and representation adaptation.
+- Request/callback correlation and technical outcome classification.
+- Provider schema-to-internal integration-contract mapping boundary.
+- Common external-dependency health and failure-containment integration points.
 
 ### Consumes / Collaborates With
 | L5 Specification | Capability | Boundary |
 |---|---|---|
-| `L5-C-01` | Synchronous contracts, versioning, technical error/idempotency rules | C03 invokes/serves governed contracts; C01 owns contract rules. |
-| `L5-C-02` | Durable asynchronous messaging | C03 may publish/consume through C02 but does not redefine event semantics. |
-| `L5-D-01/D-02/D-03` | Service identity, authorization, trust, secrets and transport protection | C03 owns no independent IAM/crypto store. |
-| `L5-A-04` | Tenant/Institution isolation | Context is propagated and enforced at connector boundaries. |
-| `L5-E-01/E-05` | Resilience and observability | C03 emits health/telemetry and applies declared degradation behavior. |
-| `L5-E-04` | Runtime/deployment capability | Connector deployment remains compatible with supported on-prem/cloud-capable models. |
+| `L5-C-01-*` | Synchronous contracts, compatibility, technical error/idempotency | C03 consumes contract rules; it does not redefine them. |
+| `L5-C-02-*` | Durable asynchronous messaging | C03 consumes messaging where applicable; canonical business events/publishers remain upstream-owned. |
+| `L5-D-01-*`, `L5-D-02-*`, `L5-D-03-*` | Service identity, authorization, trust, secrets and transport protection | C03 owns no parallel IAM/crypto/secrets capability. |
+| `L5-A-04-*` | Tenant/Institution isolation | Context is carried/enforced at connector boundaries. |
+| `L5-E-01-*`, `L5-E-05-*` | Resilience and observability | C03 exposes dependency health/telemetry and follows declared degradation/recovery semantics. |
+| `L5-E-04-*` | Runtime/deployment | Connector realization must remain compatible with supported on-premises-primary and cloud-capable deployment. |
 
 ### Must Not Own
-Source-domain business rules, canonical external-facing facts, financial/academic/identity lifecycles, business reconciliation outcomes, canonical business events, or repository-wide security/observability architecture.
+Source-domain business rules/facts/lifecycles, canonical financial/academic/identity outcomes, canonical business events, regulatory meaning, or repository-wide security/observability/deployment policy.
 
 ## 5. Solution Architecture
 ### 5.1 Technical Realization Model
 | Element | Responsibility | Input / Context | Output / Handoff | Failure Boundary |
 |---|---|---|---|---|
-| Connector Entry Boundary | Accepts approved internal invocation or trusted inbound exchange. | Contract/event context, Tenant/Institution, provider profile. | Validated connector work item. | Rejects unauthenticated, unauthorized or malformed technical input. |
-| Provider Adapter | Encapsulates provider-specific protocol, endpoint and payload behavior. | Canonical connector request. | Provider request/normalized response. | Provider failures remain adapter-scoped. |
-| Credential Resolver | Obtains D03-owned machine credential/secret reference. | Provider + tenant/institution scope. | Runtime credential material/reference. | Credential unavailability prevents call; no insecure fallback. |
-| Mapping Boundary | Converts provider representations to/from internal integration contracts. | Provider payload/schema. | Normalized technical representation. | Schema mismatch is quarantined/rejected, not leaked into domain model. |
-| Correlation & Evidence Hook | Preserves operation identity, provider reference, timestamps and technical outcome. | Request/callback lifecycle. | D04/E05-compatible evidence/telemetry handoff. | Evidence failure shall not fabricate business completion. |
-| Dependency Health Guard | Applies timeout boundary, rate-limit awareness, circuit/failure isolation and health classification. | Provider health and call outcome. | Available/degraded/unavailable technical state for operations. | Prevents repeated provider failure from cascading. |
+| Connector Entry Boundary | Accepts an authorized internal invocation or trusted inbound exchange. | Contract/event context, Tenant/Institution, provider profile. | Validated connector work item. | Rejects unsupported, unauthenticated or unauthorized technical input. |
+| Provider Adapter | Encapsulates provider-specific protocol, endpoint and payload behavior. | Governed internal integration request. | Provider request / normalized response. | Provider failure remains adapter-scoped. |
+| Credential Resolver | Obtains D03-owned credential/certificate reference/material at runtime. | Provider + applicable scope. | Authorized provider call context. | No insecure fallback when unavailable. |
+| Mapping Boundary | Converts provider representation to/from governed integration contracts. | Provider schema/payload. | Normalized technical representation. | Incompatibility is rejected/quarantined; canonical models are not rewritten. |
+| Correlation & Evidence Hook | Preserves operation identity, provider reference, time and technical outcome. | Request/callback lifecycle. | D04/E05-compatible evidence/telemetry handoff. | Evidence loss never fabricates business completion. |
+| Dependency Health Guard | Integrates bounded-call, provider-pressure and failure-isolation behavior with E01. | Dependency health/call outcome. | Scoped technical health/degradation signal. | Prevents provider failure from cascading into unrelated capabilities. |
 
 ### 5.2 Primary Technical Flow
 ```text
-Approved internal request / trusted external callback
+Approved internal request / trusted external input
 → Connector Entry Boundary
-→ authenticate + authorize + resolve Tenant/Institution context
-→ resolve provider profile + D03 credential
-→ map canonical integration request to provider representation
-→ invoke provider using approved protocol profile
+→ authenticate + authorize + resolve required Tenant/Institution context
+→ resolve authoritative provider/effective connector profile + D03 credential
+→ adapt governed integration contract to provider representation
+→ invoke/receive using the provider-authorized transport
 → classify technical outcome + correlate provider reference
-→ map validated response/evidence
-→ hand result to owning business capability
+→ validate/normalize response or callback evidence
+→ hand evidence/result to the canonical owning capability
 → emit E05 telemetry / D04-compatible technical evidence
 ```
 
-A browser redirect, device signal, provider callback or transport acknowledgement is never by itself promoted to authoritative business success unless the owning domain's approved behavior says so.
+A redirect, transport acknowledgement, device signal or provider callback is technical evidence only unless the applicable authoritative business behavior defines the corresponding business outcome.
 
 ### 5.3 Material Failure Model
-| Failure Class | Required Outcome | Forbidden Outcome | Recovery Owner |
+| Failure Class | Required Technical Outcome | Forbidden Outcome | Recovery / Owner |
 |---|---|---|---|
-| Authentication/authorization failure | Reject and record technical evidence. | Credential downgrade or anonymous fallback. | D01/D02/D03 + connector. |
-| Timeout/transport ambiguity | Return unresolved technical outcome and preserve correlation. | Invent success/failure or duplicate non-idempotent action. | C03 + owning domain reconciliation. |
-| Provider rate limit/unavailability | Isolate provider; honor provider-aware throttling/back-pressure. | Unbounded retry storm. | C03/E01. |
-| Provider schema incompatibility | Reject/quarantine incompatible representation. | Mutate canonical internal model to match provider. | C03/C01 compatibility process. |
-| Callback replay/duplication | Apply replay/idempotency controls where contract supports them. | Duplicate business effect. | C03/C01 + owning domain. |
+| Authentication/authorization failure | Reject and preserve protected technical evidence. | Credential downgrade or anonymous fallback. | D01/D02/D03 + C03. |
+| Timeout/ambiguous external outcome | Preserve correlation and return unresolved technical disposition. | Invent business success/failure or blindly duplicate non-idempotent effect. | C03 + canonical owner reconciliation. |
+| Provider rate/availability pressure | Apply provider-aware containment and E01 degradation/unavailability semantics. | Unbounded retry storm. | C03/E01. |
+| Provider schema incompatibility | Reject/quarantine incompatible representation. | Change canonical domain model to fit provider. | C03/C01 compatibility governance. |
+| Callback/replay duplication | Apply contract-supported authenticity/replay/idempotency controls. | Duplicate technical/business effect. | C03/C01 + owner. |
 
-### 5.4 Protocol & Standards Posture
-When SutraERP controls the contract, HTTPS with JSON is the preferred synchronous representation. OAuth 2.x machine-to-machine authorization is preferred where supported; mTLS is supported where provider/risk requirements demand it. Secure file exchange, webhooks, messaging, provider SDKs and device protocols remain valid behind adapters when required by the external contract. No named gateway, cloud integration service or connector product is selected here.
+### 5.4 Protocol / Provider Profile Boundary
+C03 does not define one universal protocol. Each connector profile shall use only provider-authorized and repository-governed transport/authentication mechanisms. Where upstream architecture explicitly supports REST APIs, webhooks, secure file exchange, events or OAuth2/OIDC/mTLS-style trust mechanisms, C03 realizes them behind provider adapters without converting those examples into a repository-wide mandatory product/protocol selection. Any shared mandatory product, runtime, gateway or protocol choice follows ADR governance.
 
 ## 6. Architecture & Technology Decisions
-| ID | Decision | Selected Position | Basis | ADR |
+| ID | Decision | Selected Position | Basis / Derivation | ADR |
 |---|---|---|---|---|
-| AD-001 | Integration structure | Shared connector framework plus provider-specific adapters; business domains retain ownership. | Corpus boundary + ownership rules. | Required shared/family ADR; unallocated. |
-| AD-002 | Provider model isolation | Anti-corruption mapping at connector boundary. | Defensible L5 derivation needed to preserve canonical models. | Covered by future C03 ADR if material. |
-| AD-003 | Protocol posture | Standards-based portfolio; HTTPS/JSON preferred when SutraERP controls contract. | Interoperability without vendor lock-in. | None unless a repository-wide technology is selected. |
-| AD-004 | Failure containment | Explicit bounded calls, provider-aware throttling and circuit/failure isolation without invented numeric values. | `ADR-L5-0014` + C03 responsibility. | `ADR-L5-0014`; C03 ADR may specialize. |
-| AD-005 | Evidence boundary | Integration evidence is technical evidence, not canonical business audit truth. | Ownership preservation. | None. |
+| AD-001 | Integration structure | Shared C03 boundary with provider-specific adapters; source domains retain business ownership. | Approved coverage/corpus boundary + exact L4 exemplars. | Shared/family ADR required before approval. |
+| AD-002 | Provider-model isolation | Mapping/anti-corruption boundary prevents provider schemas from becoming canonical domain models. | Ownership preservation; L4-A-036/H-059/H-073 obligations. | To be evaluated in shared C03 ADR. |
+| AD-003 | Protocol posture | Provider-authorized governed portfolio; no single protocol/product selected here. | Upstream variability + technology-selection governance. | None unless a material shared technology is selected. |
+| AD-004 | Failure containment | Ambiguous outcomes remain unresolved; dependency failures use E01 containment/health semantics. | F-061 + `ADR-L5-0014`. | `ADR-L5-0014`; C03 ADR may specialize. |
+| AD-005 | Evidence boundary | Connector evidence supports traceability but does not become canonical business truth. | H-059/F-061 ownership constraints. | None. |
 
 ## 7. Security, Privacy, Quality & Operational Impact
-Connector credentials are D03-owned and shall never be committed in source/configuration artifacts. Sensitive provider payloads are minimized and redacted from operational telemetry. Production/sandbox endpoints and credentials are isolated by environment. Capacity planning considers provider quotas, concurrent operations, backlog, payload size and recovery throughput without inventing numeric thresholds.
+Connector credentials consume D03 and shall not be committed in source-controlled configuration. Sensitive provider payloads are minimized in telemetry. Production and non-production provider profiles/credentials remain isolated where applicable. Capacity concerns include provider quotas, concurrency, backlog, payload size and recovery throughput; unsupported numeric values are not fixed here.
 
 ## 8. Architecture Conformance Requirements
-| ID | Requirement |
-|---|---|
-| CR-001 | Every external provider integration shall enter through a governed connector/adaptor boundary rather than directly mutating another owner's persistence. |
-| CR-002 | Provider-specific models shall not become canonical SutraERP domain models. |
-| CR-003 | Connector identities/credentials shall use D01/D02/D03-governed mechanisms and least privilege. |
-| CR-004 | Ambiguous external outcomes shall remain unresolved until governed reconciliation; they shall not be guessed. |
-| CR-005 | Provider failure shall be isolated from unrelated ERP capability in accordance with E01 resilience semantics. |
-| CR-006 | External callbacks shall be authenticated where provider capability permits and protected against replay/duplicate technical effect. |
-| CR-007 | Product/vendor selection shall remain non-canonical until governed ADR/technology selection occurs. |
+- `CR-001`: Every C03 external integration shall enter through a governed connector/adaptor boundary rather than directly modifying another owner's persistence.
+- `CR-002`: Provider-specific representations shall not become canonical SutraERP domain models.
+- `CR-003`: Connector identities/credentials shall consume D-family controls and least-privilege authorization.
+- `CR-004`: Ambiguous external outcomes shall remain unresolved until authoritative reconciliation; C03 shall not guess a business outcome.
+- `CR-005`: Provider failure shall be contained according to E01 semantics and shall not automatically collapse unrelated ERP capability.
+- `CR-006`: Inbound callbacks/exchanges shall use provider-supported authenticity/replay/duplicate controls where applicable.
+- `CR-007`: Named product/vendor/shared protocol selection remains non-canonical until governed selection/ADR approval.
 
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Required Resolution |
 |---|---|---|---|---|
-| OD-001 | Exact L4 BH-to-C03-001 traceability set across connector-consuming scenarios. | Traceability | Yes for Architecture Approved; no for Draft authoring. | Complete repository BH extraction before approval. |
-| OD-002 | Shared C03 connector architecture ADR allocation/approval. | ADR | Yes for Architecture Approved because AD-001 is reusable across the family. | Allocate next canonical ADR only through `L5_ADR_Register.md`, then evaluate/approve. |
-| OD-003 | Named integration platform/gateway product. | Technology | No. | Keep unselected unless evidence requires a product; then use ADR methodology. |
+| OD-001 | Material L4 exemplars are Draft, so C03 relations cannot yet be `Validated`. | Upstream / Traceability | Yes for Architecture Approved absent governance authorization. | Approve applicable L4 or record explicit approval-level-use authorization; then review relation evidence. |
+| OD-002 | Shared C03 connector/adaptor architecture decision. | ADR | Yes for Architecture Approved. | Allocate/evaluate through canonical ADR Register; no local ADR number may be invented. |
+| OD-003 | Named integration gateway/platform/product or repository-wide mandatory protocol profile. | Technology | No until such selection is required. | Use Technology Selection & ADR Methodology if proposed. |
 
 ## 10. Traceability Summary
-**Corpus:** `L5-C-03-001` approved responsibility.  
-**Material L5 dependencies:** C01 contracts; C02 messaging; D01/D02/D03 trust; A04 isolation; E01 resilience; E04 runtime; E05 observability.  
-**Approved ADR constraints:** `ADR-L5-0001`, `0002`, `0004`, `0009`, `0014`.  
-**Local decisions:** `AD-001`–`AD-005`.  
-**Conformance:** `CR-001`–`CR-007`.  
-**Blocking for approval:** `OD-001`, `OD-002`.
+**Approved purpose authority:** L5 Coverage Audit Decision §5/§6/§9; frozen `L5-C-03-001` responsibility.  
+**Specified L4 exemplars:** `L4-H-073-BH-001`–`012`; `L4-H-059-BH-003`–`008`; `L4-A-036-BH-001`–`008`; `L4-F-061-BH-003`–`015`.  
+**Material peers:** C01, C02, D01/D02/D03, A04, E01, E04, E05.  
+**Decisions:** AD-001–005. **Conformance:** CR-001–007. **Blocking:** OD-001, OD-002.
