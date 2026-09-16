@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Solution-wide verification strategy and quality gates traceable to L4 behavior.  
 **Technical Architecture Owner:** L5-F-02 — Verification & Testing Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.0.0`  
+**Version:** `1.0.2`  
 **Status:** `Draft`  
-**Last Updated:** `2026-09-10`  
-**Depends On:** `L5_Governance_and_Architecture_Standard.md`; `L5_Solution_Architecture_Specification_Template_v1.0.md`; `L5_Validation_Standard.md`; `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md`; `L5_Architecture_Family_Register.md`; `L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md`; `L5_L4_to_L5_Traceability_Methodology.md`; `L5_Technology_Selection_and_ADR_Methodology.md`; `L5_ADR_Register.md`; `L5_Broad_Authoring_Authorization_105_2026-09-09.md`; locked L4 governance and applicable current canonical L4 System Behavioral Obligations.  
-**Referenced By:** `L5-F-02-002`; `L5-F-02-003`; `L5-F-02-004`; verification-result consumers defined by collaborating L5 architecture.  
-**Applicable ADRs:** None currently allocated in the canonical L5 ADR Register.
+**Last Updated:** `2026-09-16`  
+**Depends On:** `L5_Governance_and_Architecture_Standard.md`; `L5_Solution_Architecture_Specification_Template_v1.0.md` v1.0.3; `L5_Validation_Standard.md` v1.0.1; `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md` v1.1.0; `L5_Architecture_Family_Register.md`; `L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md`; `L5_L4_to_L5_Traceability_Methodology.md`; `L5_Technology_Selection_and_ADR_Methodology.md`; `L5_ADR_Register.md`; `L5_Broad_Authoring_Authorization_105_2026-09-09.md`; `L5_Pallav_Stage5_Final_Lock_Decision_2026-09-16.md`; applicable current canonical L4 System Behavioral Obligations and L5 Architecture Conformance Requirements.  
+**Referenced By:** `L5-F-02-002`; `L5-F-02-003`; `L5-F-02-004`; `L5-F-01-002`; authorized architecture/release/operational consumers of verification evidence.  
+**Applicable ADRs:** None currently allocated specifically to `L5-F-02-001` in the canonical L5 ADR Register.  
 
 ---
 
@@ -22,31 +22,36 @@
 
 ### Purpose
 
-This specification defines the common technical architecture by which SutraERP verification obligations are identified, bound to authoritative requirement versions, routed to the appropriate verification specialization, evaluated through evidence-backed conformance gates, and exposed as attributable verification results.
+This specification defines the common technical architecture by which SutraERP verification obligations are identified from exact authoritative L4 Behavioral Obligations and L5 Architecture Conformance Requirements, bound to the exact target/version under verification, routed to the correct F02 verification specialization, evaluated through attributable evidence, normalized into common conformance semantics, and aggregated into explicitly scoped technical quality gates.
 
-The baseline exists so that approved L4 System Behavioral Obligations and L5 Architecture Conformance Requirements can be verified without each implementation area inventing incompatible traceability, result, evidence, or gate semantics.
+The baseline exists so that solution-wide verification remains traceable and comparable across component, integration, security, performance, resilience and recovery verification without allowing testing machinery to redefine upstream behavior, architecture ownership or release authority.
 
 ### In Scope
 
-- common verification-obligation representation and applicability resolution;
-- exact source-requirement and target-version binding;
-- common handoff from a verification obligation to the applicable L5-F-02 specialization;
-- normalization of verification outcomes into a common conformance result;
-- binding verification evidence to the requirement and technical target it verifies;
-- solution-level conformance-gate evaluation over an explicitly declared verification scope;
-- common verification-result and evidence handoff to authorized downstream consumers;
-- preservation of the distinction between verification evidence and release, architecture, or business approval.
+- common verification-obligation representation;
+- source requirement/version binding;
+- technical target/version binding;
+- applicability and verification-scope resolution;
+- routing to `L5-F-02-002`, `003`, or `004`;
+- common verification-result semantics;
+- evidence binding and provenance references;
+- coverage/completeness assessment;
+- currentness/staleness rules for verification evidence;
+- technical conformance-gate evaluation;
+- verification-result handoff to authorized downstream consumers.
 
 ### Out of Scope / Non-Goals
 
-- component, unit, and domain-verification mechanics owned by `L5-F-02-002`;
-- integration, contract, event, connector, and end-to-end verification mechanics owned by `L5-F-02-003`;
-- security, performance, resilience, and recovery testing mechanics owned by `L5-F-02-004`;
-- build, artifact creation, promotion, and release decisions owned by L5-F-01;
-- definition or reinterpretation of L4 BHs, L3 outcomes, business rules, lifecycle states, canonical business events, publishers, or institutional authority;
-- persistence-engine design, audit-storage design, IAM/authorization design, security architecture, or deployment topology owned by peer L5 specifications;
-- selection of a testing framework, programming language, CI/CD product, database, cloud platform, or other implementation technology;
-- L6 UI/UX design.
+- component/unit/domain verification mechanics — `L5-F-02-002`;
+- integration/contract/event/connector/end-to-end mechanics — `L5-F-02-003`;
+- security/performance/resilience/recovery testing mechanics — `L5-F-02-004`;
+- build, artifact, promotion or release decision mechanics — L5-F-01;
+- redefining L4 BHs, L3 outcomes, business rules, lifecycle states, business events, publishers or institutional authority;
+- redefining any peer L5 architecture or its CRs;
+- architecture approval, repository locking or canonical L4→L5 relation validation authority;
+- persistence, authorization, audit, privacy, security, runtime, deployment or observability internals owned by peer L5 specifications;
+- selection of test frameworks, languages, CI/CD products, databases, brokers, clouds or deployment products;
+- L6 UI/UX verification design.
 
 ---
 
@@ -54,34 +59,50 @@ The baseline exists so that approved L4 System Behavioral Obligations and L5 Arc
 
 ### 3.1 Canonical Upstream Reference Matrix
 
-| Source Level | Document / Decision | Version / Status | Exact Reference | What the Source Establishes | L5 Use |
-|---|---|---|---|---|---|
-| L5 Governance | `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md` | v1.1.0 / Architecture Approved | L5-F register row for `L5-F-02-001` | Canonical responsibility is “Solution-wide verification strategy and quality gates traceable to L4 behavior.” | Defines the immutable authoring boundary for this specification. |
-| L5 Governance | `L5_Architecture_Family_Register.md` | Architecture Approved | L5-F family; Major Area 29; Cross-Family Dependency Principle | L5-F owns verification/testing architecture and all technical families are subject to L5-F verification obligations. | Establishes family ownership and solution-wide applicability. |
-| L5 Governance | `L5_L4_to_L5_Traceability_Methodology.md` | v1.0.0 / Locked | §§2–5, 7, 10, 13 | L4 BH is the atomic upstream traceability unit; L4↔L5 is many-to-many; validated relations are version-bound and require L5 evidence. | Requires exact requirement/version binding and evidence-backed verification traceability. |
-| L5 Governance | `L5_Validation_Standard.md` | v1.0.1 / Locked | §§2–5 | L5 architecture and CRs must be technically implementable, objectively verifiable, traceable, and free of false/stale authority claims. | Establishes verification-conformance and hard-fail integrity requirements. |
-| L4 Governance | `L4_Governance_and_Architecture_Standard.md` | v1.0.1 / Locked | §4 Behavioral Obligation Model; §6 Traceability | Each BH is a concise, observable, testable, implementation-independent system responsibility with defensible provenance. | Establishes the behavior unit that L5 verification must be able to verify. |
-| L4 Governance | `L4_System_Behavior_Specification_Template_v1.0.md` | v1.0.1 / Locked | §§4, 7, 8 | L4 defines BHs, audit/evidence behavior, and observable completion conditions while technical testing remains downstream. | Establishes the observable inputs against which technical verification evidence is derived. |
-| L4 Behavioral Applicability | `L4-C-001_Approved_Candidate_to_Active_Student.md` | v1.0.0 / Draft | `L4-C-001-BH-004`, `BH-005`, `BH-006`; §7 | Defines observable StudentContext activation, prevention of invalid activation, canonical `StudentActivated` publication, and attributable activation evidence. | Supplies selective behavioral applicability for requirement binding, result/evidence association, and gate semantics; exact BH contributions and L5 evidence are recorded in §10. |
-| L4 Behavioral Applicability | `L4-F-035_Approved_Budget_to_Controlled_Allocation.md` | v1.0.0 / Review | `L4-F-035-BH-002`, `BH-006`, `BH-008`; §8 | Defines exact allocation-balance enforcement, canonical allocation-event publication, and attributable evidence preservation. | Supplies selective behavioral applicability for objective verification, event-result evidence binding, and conformance-gate completeness; exact BH contributions and L5 evidence are recorded in §10. |
-| L4 Behavioral Applicability | `L4-F-001_Business_Obligation_to_Published_Student_Charge.md` | v1.0.1 / Draft | `L4-F-001-BH-005`, `BH-006`, `BH-009`, `BH-011`; §§7–8 | Defines validation, duplicate prevention, canonical publication milestones, downstream availability, and traceable evidence. | Supplies selective behavioral applicability for verification obligations, non-conformance detection, evidence binding, and downstream conformance handoff; exact BH contributions and L5 evidence are recorded in §10. |
+| Source | Version / Status | Exact Reference | What It Establishes | F02-001 Use |
+|---|---|---|---|---|
+| `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md` | v1.1.0 / Architecture Approved | `L5-F-02-001` row | Solution-wide verification strategy and quality gates traceable to L4 behavior. | Freezes this specification's canonical responsibility. |
+| Same corpus | v1.1.0 / Architecture Approved | `L5-F-02-002`–`004` rows | Component/domain, integration/E2E and non-functional verification are separate child responsibilities. | Prevents baseline ownership duplication. |
+| `L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md` | v1.0.0 / Locked | Stage 1 and Stage 6 | F02-001 is the working baseline; final F02 consolidation occurs after most L5 architecture is authored. | Establishes Stage-6 consolidation role. |
+| `L5_Pallav_Stage5_Final_Lock_Decision_2026-09-16.md` | Locked | §§1–6 | C03 external integration and E03 recovery architecture are locked and stable for downstream verification use. | Confirms Stage-6 child verification may now consume stable integration/recovery boundaries without inventing them. |
+| `L5_L4_to_L5_Traceability_Methodology.md` | v1.0.0 / Locked | §§2–5, 7, 10, 13 | L4 BH is an atomic upstream mapping unit; relations are version-bound; `Validated` requires governed evidence/review. | Requires exact requirement/version/evidence binding and prevents self-validation. |
+| `L5_Validation_Standard.md` | v1.0.1 / Locked | §§2–5 | L5 CRs must be implementable, objectively verifiable and traceable; false realization/unsupported architecture is a hard-fail concern. | Establishes conformance integrity. |
+| L4 Governance / Template | Locked | BH model; evidence; observable completion | L4 BHs are testable implementation-independent system responsibilities. | Defines behavioral verification source. |
+| Current canonical L5 corpus | mixed governed statuses | applicable `CR-*` | Each L5 spec exposes objective architecture conformance requirements. | Defines architecture-conformance verification source. |
+| `L5-F-01-002` | v1.0.1 / Review | §5.5 Promotion Gates | Release eligibility consumes F02 verification evidence but F01 owns promotion/release decisions. | Defines output-consumer boundary. |
+| `L5-C-04-*` | Draft | current main | Notification/communication architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
+| `L5-B-06-*` | Draft | current main | Reporting/analytics/projection architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
 
-The repository-local statuses above are recorded accurately as source context. This Draft does not self-declare any repository-level L4→L5 relation `Validated`; relation-state approval remains governed independently by the locked traceability methodology and authorized architecture review. The source statuses therefore do not, by themselves, create a local technical blocker inside this Stage 1 verification baseline.
+The current F02-001 consolidation does not convert any Draft L4 source or Draft peer L5 specification into an approved/locked source. It only establishes the verification architecture capable of evaluating the exact requirements those sources authoritatively expose at their governed status.
 
-### 3.4 Authoritative Constraints
+### 3.2 Authoritative Constraints
 
-| Constraint ID | Constraint | Exact Source | L5 Effect |
-|---|---|---|---|
-| C-001 | Verification traceability shall identify the exact requirement and bind material source/target versions. | `L5_L4_to_L5_Traceability_Methodology.md` §§2, 5, 7, 13 | Verification results cannot be detached from the requirement version and technical target they evaluate. |
-| C-002 | L4/L5 document status and L4→L5 relation state are distinct governance concerns; this specification shall preserve source status accurately and shall not self-declare a traceability relation `Validated`. | `L5_L4_to_L5_Traceability_Methodology.md` §§5, 7, 9–10 | Verification applicability can be specified without inventing relation approval; canonical relation-state validation remains an authorized review action. |
-| C-003 | L5 conformance requirements must be objectively implementation-verifiable and derive from established architecture. | `L5_Validation_Standard.md` §§4.9, 5.2 | Gate and evidence semantics must permit objective verification. |
-| C-004 | The baseline shall not duplicate the responsibilities frozen for `L5-F-02-002`, `003`, or `004`. | `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md`, L5-F rows | This file defines common strategy, traceability, results, evidence, and gates; verification technique specializations remain in child specifications. |
-| C-005 | Material technology choices require governed ADR/technology selection; the baseline shall not silently choose tools or platforms. | `L5_Technology_Selection_and_ADR_Methodology.md` §§1–3 | Architecture is product-neutral until governed selections exist. |
-| C-006 | Verification does not transfer upstream business ownership or redefine L4 behavior. | `L5_Governance_and_Architecture_Standard.md` §§1, 3, 9 | A verification result reports technical conformance only; it cannot create a business outcome or alter a BH. |
+| ID | Constraint | Effect |
+|---|---|---|
+| `C-001` | Verification shall identify the exact BH/CR and material source version/status. | No requirement-free verification claim. |
+| `C-002` | Verification shall identify the exact technical target/version/scope evaluated. | No target-free or stale conformance claim. |
+| `C-003` | F02-001 shall not self-declare canonical L4→L5 relation state `Validated`. | Relation validation remains governance-owned. |
+| `C-004` | Common verification semantics shall remain separate from F02-002/003/004 specialist mechanics. | One owner per verification responsibility. |
+| `C-005` | Verification evidence is not business, architecture or release approval. | Result consumers retain their own authority. |
+| `C-006` | Material requirement/target change invalidates silent reuse of prior evidence unless continued applicability is governed. | Stale evidence cannot prove current conformance. |
+| `C-007` | Positive gate assessment requires complete current evidence for all mandatory in-scope obligations. | No pass-by-omission. |
+| `C-008` | Technology choices require separate governance. | F02-001 remains product-neutral. |
+| `C-009` | Verification cannot bypass D02/D03/A04/B05/D04 controls. | Evidence obtained through unauthorized/untrusted paths cannot prove conformance. |
 
-### 3.5 Assumptions
+### 3.3 Stage-6 Consolidation Position
 
-No material architecture assumption is treated as an approved fact in this Draft. Repository-level traceability relation validation remains a separate governance action and is recorded as a non-blocking deferred item in Section 9.
+Current repository and authoring maturity establishes:
+
+- Stage 5 C03 and E03 specifications are locked;
+- C04 and B06 Stage-4 specifications are present on `main` as Drafts;
+- F02-001 exists as the Stage-1 working baseline;
+- F02-002, F02-003 and F02-004 have now been authored as Draft child specifications and reconciled against this common baseline.
+
+Therefore the four-spec F02 Draft authoring set is complete. The family remains `Draft`: canonical repository synchronization, final dependency/status re-checks, governed traceability review and authorized architecture validation remain outside author authority.
+
+### 3.4 Assumptions
+
+No product, framework, numeric coverage percentage, pass-rate, timeout, execution duration, retention period or testing technology is assumed.
 
 ---
 
@@ -89,293 +110,422 @@ No material architecture assumption is treated as an approved fact in this Draft
 
 ### Owns
 
-- common verification-obligation and applicability model;
-- source-requirement and target-version binding required for verification;
-- common verification-result semantics across L5-F-02 specializations;
-- verification-evidence binding to requirement, execution, and target context;
-- solution-level conformance-gate evaluation semantics;
-- common handoff of verification results/evidence without granting release, architecture, or business approval.
+`L5-F-02-001` owns:
+
+- common Verification Obligation semantics;
+- exact requirement/target/version binding;
+- Verification Scope semantics;
+- specialization routing;
+- common Verification Result semantics;
+- evidence association/provenance reference semantics;
+- coverage/completeness evaluation;
+- evidence-currentness rules;
+- technical Conformance Gate evaluation;
+- common verification-result/evidence handoff.
 
 ### Consumes / Collaborates With
 
-| Exact L5 Specification | Capability / Collaboration | Boundary | Why Needed |
-|---|---|---|---|
-| `L5-F-02-002` | Component, Unit & Domain Verification | Owns lower-scope verification mechanics; this baseline owns the common result/evidence/gate model. | Supplies specialized verification results for baseline aggregation. |
-| `L5-F-02-003` | Integration, Contract & End-to-End Verification | Owns cross-boundary verification mechanics; this baseline does not define contract/event/E2E test techniques. | Supplies specialized cross-boundary verification results. |
-| `L5-F-02-004` | Security, Performance, Resilience & Recovery Testing | Owns non-functional verification mechanics; this baseline does not define security/load/recovery test methods. | Supplies specialized non-functional verification results. |
-| `L5-F-01-002` | Build, Artifact, Promotion & Release Pipeline Architecture | Release/promotion architecture may consume verification gate results; verification does not authorize promotion. | Separates evidence production from release decision authority. |
-| `L5-B-02-001` | Database & Persistence Architecture Baseline | Owns physical persistence architecture for any durable verification records. | Prevents L5-F-02 from inventing a persistence technology or cross-owner store. |
-| `L5-B-05-002` | Sensitive Data Handling & Masking Architecture | Owns technical handling/masking of classified sensitive information. | Verification evidence may contain source-derived sensitive information. |
-| `L5-D-02-004` | Policy Decision & Enforcement Architecture | Owns technical authorization decision/enforcement. | Verification execution and evidence access must not bypass canonical authorization. |
-| `L5-D-02-006` | Privileged & Administrative Access Architecture | Owns safeguards for high-risk privileged/administrative technical access. | Verification activities requiring privileged technical access must remain governed. |
-| `L5-D-03-001` | Security Architecture & Trust Boundary Baseline | Owns cross-solution trust/security boundary principles. | Verification components must preserve canonical trust boundaries. |
-| `L5-D-04-002` | Audit Event, Provenance & Evidence Model Architecture | Owns shared audit/provenance/evidence model. | Verification evidence requiring governed provenance must integrate without duplicating the evidence model. |
-| `L5-D-04-003` | Tamper-Evident Audit Storage, Access & Export Architecture | Owns integrity-protected audit/evidence storage/access/export. | Verification does not invent its own audit-grade integrity store. |
-
-The locked dependency-gated execution timeline authorizes `L5-F-02-001` as a Stage 1 working baseline without a minimum peer-L5 prerequisite. The dependencies above therefore constrain boundaries and later integration; they do not require this Draft to invent peer internals before those specifications are stable.
+| L5 Spec | Capability | Boundary |
+|---|---|---|
+| `L5-F-02-002` | component/unit/domain verification | Supplies specialized results; baseline does not own technique. |
+| `L5-F-02-003` | integration/contract/event/connector/E2E verification | Supplies cross-boundary results; baseline does not own technique. |
+| `L5-F-02-004` | security/performance/resilience/recovery testing | Supplies non-functional results; baseline does not own technique. |
+| `L5-F-01-002` | promotion/release gates | Consumes F02 results; release authority remains F01. |
+| `L5-B-02-*` | persistence/consistency/schema | Owns any physical persistence used for durable verification records. |
+| `L5-A-08-*` | background/scheduled/retryable execution | May execute long-running verification work where child F02 architecture requires it. |
+| `L5-D-02-*` | authorization/privileged access | Protects verification execution and evidence access. |
+| `L5-D-03-*` | trust/cryptography/secrets | Protects verification execution boundaries and credentials. |
+| `L5-B-05-*` | sensitive-data/privacy controls | Constrains test data and evidence handling. |
+| `L5-D-04-*` | audit/provenance/evidence storage | Supplies enterprise evidence integrity/provenance capability. |
+| `L5-E-05-*` | observability/operations | Observes verifier execution; telemetry alone is not conformance proof. |
 
 ### Must Not Own
 
-- the meaning, lifecycle, rule, event, publisher, authority, or expected business outcome of any L4 BH;
-- architecture-approval status or L4→L5 relation validation authority;
-- build, artifact promotion, or release authorization;
-- persistence, audit-store, authorization, security, privacy, observability, or runtime internals canonically owned by peer L5 specifications;
-- detailed verification mechanics allocated to `L5-F-02-002`, `003`, or `004`;
-- product/framework/vendor selection.
+F02-001 shall not:
+
+- define or reinterpret the requirement being verified;
+- create a new business lifecycle/event/publisher;
+- declare architecture/release/business approval;
+- change peer architecture to make a test pass;
+- treat a verifier/harness failure as target non-conformance without target evidence;
+- treat absence of detected failure as proof of conformance when mandatory coverage is incomplete;
+- select implementation technologies.
 
 ---
 
 ## 5. Solution Architecture
 
-The elements in this section are technology-neutral L5 elements derived as necessary to make the frozen `L5-F-02-001` responsibility implementable. They do not prescribe a framework, process topology, database, CI product, or deployment platform.
-
-### 5.1 Technical Realization Model
-
-| Element | Type | Responsibility | Input / Context | State / Data | Output / Handoff | Depends On | Failure Boundary | Basis |
-|---|---|---|---|---|---|---|---|---|
-| Verification Applicability Resolver | Control Point | Determines whether a referenced BH/CR and target are eligible for the requested verification use, including source status/version and the requested relation/conformance context. | Exact requirement reference; source status/version; target identity/version; requested verification scope. | No canonical business state. | Eligible verification obligation or unresolved/ineligible result. | L4/L5 traceability metadata. | Cannot invent requirement identity/version/status or self-create repository relation approval; unresolved authority is surfaced explicitly. | C-001, C-002; traceability methodology. |
-| Verification Obligation Model | Logical Architecture Model | Represents the minimum common technical information needed to verify one requirement against one defined target/scope. | Requirement identity/version; verification objective; target scope; evidence expectation; specialization classification. | Logical verification definition; physical storage delegated to B02 if required. | Verification obligation for execution. | F02 responsibility boundary. | An obligation lacking exact requirement/target basis cannot proceed as approval-level verification. | Frozen F02-001 responsibility; C-001. |
-| Verification Scope Router | Control Point | Routes a verification obligation to the responsible F02 specialization without absorbing that specialization’s internal test mechanics. | Verified obligation and technical target context. | No business state. | Handoff to `F02-002`, `F02-003`, or `F02-004` as applicable. | F02 child specifications. | Unsupported or unavailable specialization produces no false conformance result. | Frozen F02 decomposition. |
-| Verification Result Normalizer | Component | Converts specialized verification output into common conformance semantics while distinguishing detected non-conformance from inability to establish a verification result. | Specialized execution result; obligation reference; target context. | Normalized verification result. | Result to Evidence Binder and Gate Evaluator. | F02 child outputs. | Execution/harness failure cannot be reported as target conformance or target non-conformance without evidence. | L5 validation hard-fail integrity; defensible L5 derivation. |
-| Verification Evidence Binder | Control Point | Binds verification result to its requirement, target version, execution reference, and attributable evidence reference. | Normalized result and evidence/provenance references. | Verification evidence association; durable storage delegated where required. | Bound result/evidence set. | D04 evidence architecture; B02 persistence where material. | Missing, mismatched, or non-attributable evidence cannot satisfy an approval-level gate. | Traceability version/evidence rules; C-001, C-003. |
-| Conformance Gate Evaluator | Control Point | Evaluates a declared verification scope using current applicable results and evidence without creating business/release/architecture approval. | Gate scope; required obligation set; current bound results/evidence. | Gate assessment for the declared target/version. | Conformance assessment to authorized consumers. | Verification result/evidence model. | Missing/stale/unresolved required evidence prevents a positive conformance determination. | Frozen “quality gates” responsibility; L5 validation. |
-| Verification Result Handoff | Conceptual Contract Boundary | Exposes verification result, coverage, and evidence references to authorized downstream architecture such as delivery/release or architecture review. | Gate assessment or individual bound verification result. | No independent authority state. | Governed result/evidence handoff. | F01, D04, repository traceability as applicable. | Consumer must not infer authority beyond the result/evidence supplied. | Ownership separation; traceability methodology. |
-
-### 5.2 Primary Technical Flow
+### 5.1 Common Verification Flow
 
 ```text
-Exact L4 BH or established L5 CR
-+ source version/status
-+ target identity/version
+Authoritative Requirement
+(L4 BH or L5 CR)
         ↓
 Verification Applicability Resolver
         ↓
-Verification Obligation Model
+Verification Obligation
         ↓
 Verification Scope Router
+   ┌────────────┬────────────┬────────────┐
+   ↓            ↓            ↓
+F02-002       F02-003       F02-004
+   └────────────┴────────────┴────────────┘
         ↓
-Applicable F02 Specialization
-(F02-002 / F02-003 / F02-004)
-        ↓
-Specialized Execution Result + Evidence
+Specialized Execution Result
         ↓
 Verification Result Normalizer
         ↓
 Verification Evidence Binder
         ↓
+Coverage / Currentness Evaluation
+        ↓
 Conformance Gate Evaluator
         ↓
-Verification Result / Gate Assessment
-        ↓
-Authorized Consumer
-(release architecture / architecture review / traceability)
+Authorized Result Handoff
+(F01 / architecture review / other governed consumer)
 ```
 
-Source document status is carried through applicability and evidence context rather than being hidden or rewritten. Execution of this technical flow does not itself establish repository-level L4→L5 relation state; that governance action remains separate from verification execution.
+### 5.2 Verification Obligation
 
-A positive gate assessment means that the declared technical verification scope has acceptable current evidence. It does **not** approve the L4 behavior, approve the L5 specification, validate a repository traceability relation, authorize a release, or create a business outcome.
-
-### 5.3 Material Failure Model
-
-| Failure Class | Detection Boundary | Required Technical Outcome | Forbidden Outcome | Recovery / Delegated Owner | Basis |
-|---|---|---|---|---|---|
-| Requirement reference or source status cannot be established | Applicability Resolver | Mark the affected verification obligation unresolved for the requested conformance/relation context. | Guess a BH/CR, version, status, or relation authority. | Correct the authoritative source/reference or resolve governance applicability before re-evaluation. | Zero-guessing; C-001, C-002. |
-| Target identity/version is missing or mismatched | Obligation Model / Evidence Binder | Prevent current-target conformance from being established. | Reuse evidence from an unbound or different target version as current proof. | Re-establish target binding and execute applicable verification. | Traceability version binding. |
-| Specialized verification cannot execute or cannot establish a result | F02 specialization / Result Normalizer | Represent verification as not established and preserve diagnostic/evidence handoff where available. | Report target conformance or target non-conformance without a valid execution basis. | Delegated to applicable F02 specialization/runtime owner. | HF-08/HF-11 prevention; defensible technical derivation. |
-| Target non-conformance is detected | Result Normalizer | Produce an attributable non-conformance result for the exact obligation and target. | Convert a detected failure into a positive gate result. | Remediation belongs to the owning implementation/architecture; re-verification follows change. | L5 validation and verification responsibility. |
-| Required evidence is absent, stale, or not attributable | Evidence Binder / Gate Evaluator | Treat required verification as insufficient for a positive gate. | Treat missing/stale evidence as successful conformance. | Re-execute/re-establish evidence; D04/B02 handle their owned evidence/persistence concerns. | C-001, C-003; traceability methodology. |
-| Gate scope is incomplete or contains unresolved mandatory obligations | Gate Evaluator | Return a non-positive/incomplete assessment for the declared scope. | Declare full conformance from partial coverage. | Resolve coverage or source readiness before re-evaluation. | Frozen quality-gate responsibility; HF-08/HF-10 prevention. |
-| Verification evidence integrity/access is not trustworthy | Evidence Binder / handoff boundary | Reject the affected evidence for conformance use and preserve the failure reference. | Bypass D04/D02/D03 controls or accept unverifiable evidence. | Delegate integrity/access remediation to canonical D04/D02/D03 owners. | L5 ownership and trust-boundary rules. |
-
-No retry count, timeout, backoff, retention period, or numeric pass threshold is defined by this baseline.
-
-### 5.4 Conceptual Contracts / Context
-
-The following are architecture-level information categories only; they are not API payloads, classes, database schemas, or serialization definitions.
+Conceptually:
 
 ```text
 VerificationObligation
 {
   exact requirement reference
-  source version and approval status
+  requirement source/version/status
+  technical target reference/version/scope
   verification objective
-  technical target identity/version/scope
-  required evidence category
+  mandatory/declared applicability
   responsible F02 specialization
+  expected evidence category
 }
 ```
 
-```text
-VerificationExecutionContext
-{
-  verification-obligation reference
-  technical target reference/version
-  controlled execution-context reference
-}
-```
+This is an architecture contract, not a mandatory wire schema.
+
+A verification obligation is invalid for approval-level use when the requirement or target cannot be identified precisely enough to determine what is being verified.
+
+### 5.3 Verification Scope
+
+A gate shall declare its scope explicitly.
+
+The scope identifies:
+
+- target/version;
+- applicable requirement set;
+- mandatory obligations inside the declared gate;
+- obligations explicitly outside the gate and the authoritative basis for exclusion;
+- current evidence/result references.
+
+An obligation is not considered satisfied merely because it was omitted from execution.
+
+F02-001 does not invent waiver authority. Any governed exception/exclusion authority must come from its actual canonical owner.
+
+### 5.4 Specialization Routing
+
+Routing follows the frozen F02 decomposition.
+
+| Requirement / Target Characteristic | F02 Specialization |
+|---|---|
+| technical component, local module/domain implementation, local architecture contract | `L5-F-02-002` |
+| synchronous contract, event, integration, connector, cross-boundary or end-to-end behavior | `L5-F-02-003` |
+| security, performance/capacity, failure isolation/resilience or backup/recovery/DR behavior | `L5-F-02-004` |
+
+A requirement may legitimately require evidence from more than one specialization. Routing does not transfer technical ownership from the architecture being verified.
+
+### 5.5 Common Verification Result
+
+Conceptually:
 
 ```text
 VerificationResult
 {
-  verification-obligation reference
+  obligation reference
   technical target reference/version
-  conformance outcome
   execution reference
-  evidence reference
+  evidence reference set
+  conformance outcome
+  result applicability/currentness context
 }
 ```
+
+The common `conformance outcome` shall semantically distinguish at minimum:
+
+- **Demonstrated Conformance** — attributable evidence shows the declared requirement is satisfied for the exact evaluated target/scope.
+- **Detected Non-Conformance** — attributable target evidence shows the requirement is not satisfied.
+- **Verification Not Established** — execution/evidence/applicability is insufficient to establish either conformance or target non-conformance.
+
+These are technical verification outcomes, not business lifecycle states.
+
+### 5.6 Evidence Binding
+
+A positive verification result requires evidence attributable to:
+
+```text
+exact requirement
++ requirement version/status
++ exact target/version/scope
++ verification execution
++ produced observation/result
+```
+
+Where audit-grade provenance or integrity is required, D04 supplies that capability.
+
+F02-001 owns the verification meaning of the evidence association, not D04 storage internals.
+
+### 5.7 Evidence Currentness
+
+A prior result shall not silently remain current after a material change to:
+
+- the requirement;
+- target implementation/version;
+- contract/event/schema relevant to the obligation;
+- security/trust boundary;
+- configuration materially affecting the requirement;
+- runtime/recovery architecture relevant to the requirement.
+
+Re-use is allowed only when governed impact assessment establishes continued applicability.
+
+Otherwise re-verification is required.
+
+### 5.8 Coverage & Completeness
+
+For a declared gate:
+
+```text
+mandatory applicable obligations
+        ↓
+current result/evidence exists for each?
+        ↓
+all demonstrate conformance?
+   /                 \
+ no                   yes
+ ↓                     ↓
+gate not positive     positive technical
+                      conformance assessment
+```
+
+A gate must distinguish:
+
+- non-conformance;
+- missing verification;
+- stale evidence;
+- unresolved applicability;
+- verified conformance.
+
+No numeric coverage threshold is invented by this baseline.
+
+### 5.9 Conformance Gate Evaluator
+
+A positive technical gate requires:
+
+1. exact declared target/scope;
+2. complete applicable mandatory obligation set;
+3. current attributable evidence;
+4. no mandatory detected non-conformance;
+5. no unresolved mandatory verification;
+6. no stale evidence counted as current.
+
+The output is a technical conformance assessment only.
+
+It does not:
+
+- approve architecture;
+- promote a release;
+- approve a business outcome;
+- lock a repository document;
+- validate a canonical L4→L5 relation.
+
+### 5.10 Release / Delivery Handoff
+
+`L5-F-01-002` may consume the gate result as one release-eligibility input.
+
+F02 supplies:
 
 ```text
 VerificationGateAssessment
 {
   declared gate scope
+  target/version
   evaluated obligation references
-  current verification-result/evidence references
-  conformance determination for that scope
-  unresolved coverage references, when present
+  current result/evidence references
+  conformance determination
+  unresolved coverage references
 }
 ```
 
-The `conformance outcome` must semantically distinguish at minimum:
-- demonstrated conformance;
-- detected non-conformance; and
-- verification that could not be established.
+F01 retains promotion/release authority and its own gate composition.
 
-These distinctions are technical verification semantics, not business lifecycle states.
+Human approval or release workflow does not retroactively change the truth of F02 verification evidence.
 
-### 5.5 State / Persistence / Consistency
+### 5.11 Persistence / Consistency
 
-`L5-F-02-001` does not own canonical business state or physical persistence.
+F02-001 owns no physical store.
 
-If verification obligations, results, evidence associations, or gate assessments require durable storage, physical persistence, transaction, consistency, concurrency, schema evolution, and migration mechanics remain under the applicable L5-B-02 architecture.
+If obligations/results/gate assessments are durable:
 
-Evidence requiring audit-grade provenance or integrity-protected storage remains under L5-D-04. This baseline owns only the verification meaning and requirement/target/evidence association required to make conformance demonstrable.
+- physical persistence belongs to B02;
+- concurrency/conflict handling belongs to B02;
+- audit-grade provenance/integrity belongs to D04;
+- retention/privacy handling follows B05 and authoritative policy.
 
-A verification result used against a target version must not silently remain current after a material target or authoritative requirement change. Reuse of prior evidence requires a governed determination that the evidence remains applicable; otherwise re-verification is required.
+### 5.12 Long-Running / Asynchronous Verification
 
-### 5.6 Asynchronous / Job / Messaging Behavior
+F02-001 does not create a job engine, queue, retry mechanism or broker.
 
-This baseline does not require synchronous or asynchronous execution and does not define brokers, queues, retries, dead-letter handling, or background-job topology.
+Where specialized verification is long-running or scheduled, F02-002/003/004 consume A08/C02/E05 as applicable while preserving this baseline's common obligation/result/evidence semantics.
 
-Where a verification specialization requires asynchronous or long-running execution, the applicable F02 specialization shall consume canonical execution/messaging architecture rather than `L5-F-02-001` creating a competing mechanism. The common obligation/result/evidence semantics in this specification remain independent of transport choice.
+### 5.13 Security / Trust / Test Data
 
-### 5.7 Security / Trust / Isolation
+Verification is never an authorization bypass.
 
-Verification is not a bypass path around SutraERP security.
+- D02 governs technical access;
+- D03 governs trust, secrets and protected exchanges;
+- A04 preserves Tenant/Institution isolation;
+- B05 constrains sensitive test/evidence data;
+- privileged execution consumes D02-006 where applicable;
+- credentials/secrets are not copied into ordinary verification evidence;
+- production-derived data does not become unrestricted test data merely because the purpose is verification.
 
-- technical access used to execute verification or inspect evidence shall remain subject to canonical authorization and privileged-access architecture;
-- verification components shall preserve Tenant/Institution and trust boundaries established by their canonical owners;
-- source-derived sensitive information in verification inputs or evidence shall consume applicable privacy/masking controls;
-- credentials, secrets, cryptographic mechanisms, and trust enforcement shall be consumed from their canonical L5 owners rather than embedded in this baseline;
-- a verification result shall not be strengthened by evidence obtained through an unauthorized or untrustworthy path.
+### 5.14 Operational Failure Boundary
 
-### 5.8 Runtime / Deployment / Operations
+Verifier infrastructure/harness/tool failure produces **Verification Not Established** unless target evidence independently proves non-conformance.
 
-The logical elements in this specification may be implemented within one or more runtime units according to canonical runtime/deployment architecture. This baseline does not require a microservice, separate process, container, physical server, cloud service, or orchestration platform.
-
-Operational diagnostics may support investigation of verification execution failures, but operational telemetry is not by itself proof that the target conforms to a BH/CR. Conformance evidence must remain bound through the Verification Evidence Binder.
+Operational telemetry may explain why verification failed to execute but is not by itself evidence that the target satisfies or violates the requirement.
 
 ---
 
 ## 6. Architecture & Technology Decisions
 
-| Decision ID | Decision | Selected Architecture / Position | Basis / Derivation | Rationale | ADR |
-|---|---|---|---|---|---|
-| AD-001 | Verification is requirement-centered and version-bound. | Every approval-level verification obligation/result binds an exact BH/CR and material source/target versions. | `L5_L4_to_L5_Traceability_Methodology.md` §§2, 5, 13; C-001. | Prevents orphan, stale, or ambiguous verification claims. | None |
-| AD-002 | Common verification semantics are separated from specialized verification mechanics. | F02-001 owns common obligation/result/evidence/gate architecture; F02-002/003/004 own their frozen verification techniques. | Frozen 105-register F02 boundaries. | Preserves one technical owner per responsibility and avoids duplicated test architecture. | None |
-| AD-003 | Verification evidence is separate from release, architecture, and business approval. | F02 produces conformance results/evidence; consuming governance or L5-F-01 determines actions within its own authority. | L5 governance ownership rules; frozen F01/F02 boundaries. | Prevents verification machinery from acquiring decision authority it does not own. | None |
-| AD-004 | Execution inability and target non-conformance are distinct verification outcomes. | Common result semantics must distinguish failure to establish verification from evidence that the target violates the requirement. | L5 validation HF-08/HF-11; defensible technical derivation necessary to prevent false reporting. | A broken verifier cannot prove that the target is either conformant or non-conformant. | None |
-| AD-005 | Positive gate assessment requires current attributable evidence for mandatory in-scope obligations. | Missing, stale, mismatched, or unresolved required evidence cannot be counted as positive conformance. | Traceability version binding; L5 validation; frozen quality-gate responsibility. | Prevents partial or stale evidence from being represented as complete technical conformance. | None |
-| AD-006 | The baseline remains product-neutral. | No testing framework, CI/CD product, language, database, broker, cloud platform, or deployment product is selected here. | `L5_Technology_Selection_and_ADR_Methodology.md`; canonical ADR Register currently has no allocated ADR. | Avoids preference-driven technology lock and preserves governed selection. | None |
+| ID | Decision | Position | Basis |
+|---|---|---|---|
+| `AD-001` | Verification unit | Verification is centered on exact L4 BHs and L5 CRs bound to exact target versions/scopes. | Traceability methodology + validation standard |
+| `AD-002` | Family split | F02-001 owns common semantics; F02-002/003/004 own specialized verification mechanics. | Frozen corpus |
+| `AD-003` | Result model | Conformance, non-conformance and inability to establish verification are distinct. | Validation integrity |
+| `AD-004` | Gate completeness | Positive gates require current evidence for every mandatory in-scope obligation; omission is not success. | Quality-gate responsibility |
+| `AD-005` | Evidence currentness | Material requirement/target change invalidates silent evidence reuse. | Version-bound traceability |
+| `AD-006` | Authority separation | Verification evidence does not grant architecture, release or business approval. | L5 ownership rules + F01 boundary |
+| `AD-007` | Security | Verification execution/evidence access uses canonical authorization/trust/privacy boundaries. | D02/D03/A04/B05 |
+| `AD-008` | Product neutrality | No verification product/framework/platform or numeric threshold is selected. | Technology/ADR governance |
 
 ---
 
 ## 7. Security, Privacy, Quality & Operational Impact
 
-| Attribute / Concern | Architectural Impact | Source / Rationale | Owning / Collaborating L5 Spec |
-|---|---|---|---|
-| Testability / Traceability | Verification obligations and evidence remain explicitly bound to exact requirements and target versions. | L4 BH testability; L5 traceability methodology. | `L5-F-02-001` |
-| Security / Privileged Access | Verification cannot use ungoverned privileged bypasses to create or inspect evidence. | L5 governance and trust-boundary integrity. | `L5-D-02-004`, `L5-D-02-006`, `L5-D-03-001` |
-| Privacy / Sensitive Evidence | Source-derived sensitive information used in verification must consume canonical masking/handling controls. | Ownership and privacy boundary preservation. | `L5-B-05-002` |
-| Evidence Integrity | Verification meaning is owned here; provenance/integrity/storage controls are consumed from audit/evidence architecture. | Avoid duplicate evidence ownership. | `L5-D-04-002`, `L5-D-04-003` |
-| Change Impact | Material requirement or target-version change invalidates silent reuse of prior conformance evidence unless continued applicability is governed. | Version-bound traceability methodology. | `L5-F-02-001` with repository traceability |
-| Portability | Verification architecture is defined without a product/vendor/runtime dependency. | L5 ADR/technology-selection governance. | L5-A/L5-E/F01 peers when selections are governed |
-| Operational Clarity | Verification-execution failure is distinguishable from target non-conformance. | AD-004. | F02 specializations; operational peers as applicable |
+| Concern | Required Position |
+|---|---|
+| Traceability | Exact requirement and exact target/version must be identifiable. |
+| Evidence integrity | Attributable evidence must remain linked to execution and target; D04 supplies enterprise integrity/provenance capability. |
+| Security | Verification cannot bypass D02/D03 controls. |
+| Privileged verification | Uses governed privileged access; privilege does not become business authority. |
+| Privacy | Test data/evidence consumes B05 controls; no automatic production-data reuse assumption. |
+| Tenant isolation | Verification context and evidence preserve Tenant/Institution boundaries. |
+| Change impact | Material change triggers applicability review/re-verification. |
+| Release integration | F01 consumes results but owns release decision. |
+| Operations | Tool/harness failure is observable but does not become target conformance/non-conformance. |
 
-No numeric availability, throughput, execution-time, coverage percentage, pass-rate, retention, or recovery target is created by this specification.
+No numeric coverage, pass-rate, execution-time, retention, availability or capacity target is introduced.
 
 ---
 
 ## 8. Architecture Conformance Requirements
 
-| Requirement ID | Architecture Conformance Requirement | Derived From | Upstream / Decision Basis |
-|---|---|---|---|
-| CR-001 | An approval-level verification obligation shall identify an exact source BH/CR and its material source version/status. | AD-001; §5.1 | Traceability methodology §§2, 5; C-001 |
-| CR-002 | A verification result used for conformance shall identify the exact technical target and target version/scope evaluated. | AD-001; §5.4 | Traceability version-binding requirement |
-| CR-003 | Evidence used for conformance shall be attributable to the applicable obligation, technical target, and verification execution. | §5.1 Evidence Binder; AD-005 | L5 traceability and validation evidence integrity |
-| CR-004 | A gate shall not report positive conformance when a mandatory in-scope obligation lacks current acceptable evidence. | AD-005; §5.3 | Frozen quality-gate responsibility; L5 validation |
-| CR-005 | Verification reporting shall distinguish detected target non-conformance from inability to establish verification. | AD-004; §5.3 | L5 validation HF-08/HF-11 prevention |
-| CR-006 | Outputs from F02-002/003/004 that participate in a solution-level gate shall be representable through the common VerificationResult and evidence-binding semantics without redefining their specialist mechanics. | AD-002; §5.1 | Frozen F02 decomposition |
-| CR-007 | Verification results or gate assessments shall not directly create a business outcome, architecture approval, release promotion, or canonical L4→L5 relation validation. | AD-003; §5.2 | L5 governance ownership; traceability relation-state authority |
-| CR-008 | Verification execution and evidence access shall not bypass canonical authorization, privileged-access, security, Tenant/Institution, or sensitive-data boundaries. | §5.7 | L5 security/ownership integrity |
-| CR-009 | Implementations conforming to this baseline shall not depend on a product-specific testing framework, CI/CD product, persistence product, broker, cloud provider, or deployment topology unless separately governed. | AD-006; §5.8 | L5 Technology Selection & ADR Methodology |
+| ID | Requirement |
+|---|---|
+| `CR-001` | Every approval-level verification obligation shall identify an exact L4 BH or L5 CR and its material source version/status. |
+| `CR-002` | Every conformance result shall identify the exact technical target and target version/scope evaluated. |
+| `CR-003` | Evidence counted toward conformance shall be attributable to the requirement, target and execution that produced it. |
+| `CR-004` | Verification reporting shall distinguish Demonstrated Conformance, Detected Non-Conformance and Verification Not Established. |
+| `CR-005` | A positive gate shall not omit a mandatory applicable obligation. |
+| `CR-006` | A positive gate shall not count missing, unresolved, mismatched or stale evidence as current conformance evidence. |
+| `CR-007` | Material requirement/target changes shall trigger evidence applicability review; prior evidence shall not silently remain current. |
+| `CR-008` | Results from F02-002/003/004 participating in a solution gate shall map into the common result/evidence semantics without redefining child mechanics. |
+| `CR-009` | Verification results/gates shall not directly create architecture approval, repository lock, release promotion, business approval or canonical L4→L5 relation validation. |
+| `CR-010` | Verification execution and evidence access shall enforce canonical authorization, privileged-access, security, Tenant/Institution and sensitive-data controls. |
+| `CR-011` | Verifier/harness failure shall not be reported as target conformance or target non-conformance unless attributable target evidence establishes that outcome. |
+| `CR-012` | F02-001 shall not require a product-specific testing framework, CI/CD platform, persistence product, broker, cloud provider or deployment topology unless separately governed. |
+| `CR-013` | Gate scope and exclusions shall be explicit; F02-001 shall not invent waiver/exemption authority. |
 
 ---
 
 ## 9. Open Decisions & Deferred Design
 
-| Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
-|---|---|---|---|---|---|---|
-| OD-001 | Repository-level `Validated` state for the selective BH→F02-001 relations is not established by this Draft. | Governance | `L5_L4_to_L5_Traceability_Methodology.md` §§5, 7, 10 requires authorized review and version-bound evidence for relation validation; an assigned author does not self-validate relations. | Lead Architect / authorized traceability reviewers | No | During traceability review, record the canonical relation state and review reference for the exact BH/L5 pairs in §10. No change to F02-001 architecture is required merely to create that governance record. |
-| OD-002 | Complete canonical repository-level BH→F02-001 relation coverage is not materialized in this Draft. | Dependency / Governance | `L5_L4_to_L5_Traceability_Methodology.md` defines one canonical repository traceability source; individual L5 specifications are required to carry selective applicability only. | Lead Architect / authorized traceability reviewers | No | Populate/review canonical traceability relations as the repository traceability corpus is materialized; keep this document’s selective mappings synchronized. |
+| ID | Item | Classification | Blocking? | Required Resolution |
+|---|---|---|---|---|
+| `OD-001` | Canonical repository `Validated` state for the selective BH→F02-001 relations is not established by this Draft. | Governance | No for Draft; required for canonical relation validation | Authorized traceability review records exact version-bound relation/evidence for the BH/L5 pairs in Section 10. |
+| `OD-002` | Complete canonical repository-level BH→F02-001 relation coverage is not materialized in this Draft. | Dependency / Governance | No | Populate/review the canonical repository traceability source and keep this document's selective mappings synchronized. |
+| `OD-003` | C04/B06 remain Draft and no Chetan Stage-4 approval/lock decision is identified in the current repository review. | Peer maturity | No for F02 Draft; may affect approval-level claims for those verification targets | Re-check final peer status before F02 family promotion/approval. |
+| `OD-004` | Exact testing tools/frameworks, evidence serialization, physical verification-result store and numeric quality targets remain unselected unless separately governed. | Technology / Operations | No | Resolve only through the canonical owner, approved ADR/technology governance or approved operational requirements when made normative. |
+| `OD-005` | The reconciled four-file F02 authoring package is not yet synchronized into the canonical repository. | Repository synchronization | No architectural blocker; procedural prerequisite to repository submission | Submit the reconciled Drafts under their exact canonical paths, then re-run repository-level reference/status validation. |
 
 ---
 
 ## 10. Traceability Summary
 
+### Canonical Responsibility
+
+`L5-F-02-001` — **Solution-wide verification strategy and quality gates traceable to L4 behavior.**
+
 ### Primary L4 Applicability
 
-The following selective mappings identify the exact material contribution of `L5-F-02-001`. They do not claim that this baseline alone provides complete technical realization of each BH, and they do not self-declare repository relation state.
+The following selective mappings preserve the existing canonical F02-001 traceability from the repository baseline while applying the Stage-6 common verification model. They identify F02-001's material contribution only; they do not claim that this baseline alone realizes the complete BH and they do not self-declare repository relation state.
 
 | L4 Specification / Version | Exact BH | Material `L5-F-02-001` Contribution | L5 Evidence |
 |---|---|---|---|
-| `L4-C-001` v1.0.0 | `L4-C-001-BH-004` | Binds the activation BH and exact target version into a verification obligation and exposes a gateable conformance result for the required transition. | §5.1 Verification Applicability Resolver / Obligation Model / Gate Evaluator; `AD-001`; `AD-005`; `CR-001`–`CR-004` |
-| `L4-C-001` v1.0.0 | `L4-C-001-BH-005` | Provides requirement/target binding and non-conformance semantics needed to prove that invalid activation is prevented rather than silently accepted. | §5.1 Result Normalizer / Evidence Binder; §5.3; `AD-004`; `AD-005`; `CR-003`–`CR-005` |
-| `L4-C-001` v1.0.0 | `L4-C-001-BH-006` | Provides evidence/result binding for verification that the canonical `StudentActivated` publication obligation occurred for the evaluated target without transferring event ownership. | §5.1 Evidence Binder / Result Handoff; `AD-003`; `CR-003`; `CR-007` |
-| `L4-F-035` v1.0.0 | `L4-F-035-BH-002` | Provides objective verification-obligation, result and gate semantics for the exact allocation-equality condition while leaving the Finance rule/formula upstream-owned. | §5.1 Obligation Model / Result Normalizer / Gate Evaluator; `AD-001`; `AD-003`; `AD-005`; `CR-001`–`CR-005` |
-| `L4-F-035` v1.0.0 | `L4-F-035-BH-006` | Provides attributable verification-result/evidence binding for the required canonical allocation-event publication without becoming the event publisher. | §5.1 Evidence Binder / Result Handoff; `AD-003`; `CR-003`; `CR-007` |
-| `L4-F-035` v1.0.0 | `L4-F-035-BH-008` | Provides the common evidence-association model needed to demonstrate that the BH's required evidence is attributable to the exact requirement, target and execution context. | §5.1 Evidence Binder; §5.4; `AD-005`; `CR-002`–`CR-004` |
-| `L4-F-001` v1.0.1 | `L4-F-001-BH-005` | Provides verification-obligation and gate semantics for the BH's validation conditions and distinguishes demonstrated conformance from inability to establish verification. | §5.1 Applicability Resolver / Result Normalizer / Gate Evaluator; `AD-004`; `AD-005`; `CR-001`, `CR-004`, `CR-005` |
-| `L4-F-001` v1.0.1 | `L4-F-001-BH-006` | Provides attributable non-conformance/conformance evidence semantics for duplicate-prevention verification against the exact target version. | §5.1 Result Normalizer / Evidence Binder; §5.3; `AD-004`; `CR-002`, `CR-003`, `CR-005` |
-| `L4-F-001` v1.0.1 | `L4-F-001-BH-009` | Provides evidence/result binding for verification of the BH's canonical publication milestones without acquiring Finance event ownership. | §5.1 Evidence Binder / Result Handoff; `AD-003`; `CR-003`; `CR-007` |
-| `L4-F-001` v1.0.1 | `L4-F-001-BH-011` | Provides verification-result and evidence handoff semantics for proving downstream availability while preserving Student Charge ownership and consumer boundaries. | §5.1 Gate Evaluator / Result Handoff; `AD-003`; `CR-006`; `CR-007` |
+| `L4-C-001` v1.0.0 | `L4-C-001-BH-004` | Binds the activation BH and exact target version into a verification obligation and exposes a gateable conformance result for the required transition. | §5 Verification Applicability / Obligation / Gate semantics; `AD-001`; `AD-004`; `CR-001`–`CR-006` |
+| `L4-C-001` v1.0.0 | `L4-C-001-BH-005` | Provides requirement/target binding and non-conformance semantics needed to prove that invalid activation is prevented rather than silently accepted. | §5 Result Normalizer / Evidence Binder; `AD-003`; `AD-004`; `CR-003`–`CR-006`; `CR-011` |
+| `L4-C-001` v1.0.0 | `L4-C-001-BH-006` | Provides evidence/result binding for verification that the canonical `StudentActivated` publication obligation occurred for the evaluated target without transferring event ownership. | §5 Evidence Binder / Result Handoff; `AD-006`; `CR-003`; `CR-009` |
+| `L4-F-035` v1.0.0 | `L4-F-035-BH-002` | Provides objective verification-obligation, result and gate semantics for the exact allocation-equality condition while leaving the Finance rule/formula upstream-owned. | §5 Obligation / Result / Gate semantics; `AD-001`; `AD-004`; `AD-006`; `CR-001`–`CR-006` |
+| `L4-F-035` v1.0.0 | `L4-F-035-BH-006` | Provides attributable verification-result/evidence binding for the required canonical allocation-event publication without becoming the event publisher. | §5 Evidence Binder / Result Handoff; `AD-006`; `CR-003`; `CR-009` |
+| `L4-F-035` v1.0.0 | `L4-F-035-BH-008` | Provides the common evidence-association/currentness model needed to demonstrate that required evidence is attributable to the exact requirement, target and execution context. | §5 Evidence Binder / Evidence Currentness; `AD-005`; `CR-002`, `CR-003`, `CR-006`, `CR-007` |
+| `L4-F-001` v1.0.1 | `L4-F-001-BH-005` | Provides verification-obligation and gate semantics for the BH's validation conditions and distinguishes demonstrated conformance from inability to establish verification. | §5 Applicability / Result / Gate semantics; `AD-003`; `AD-004`; `CR-001`, `CR-004`–`CR-006`, `CR-011` |
+| `L4-F-001` v1.0.1 | `L4-F-001-BH-006` | Provides attributable non-conformance/conformance evidence semantics for duplicate-prevention verification against the exact target version. | §5 Result Normalizer / Evidence Binder; `AD-003`; `CR-002`–`CR-004`; `CR-011` |
+| `L4-F-001` v1.0.1 | `L4-F-001-BH-009` | Provides evidence/result binding for verification of the BH's canonical publication milestones without acquiring Finance event ownership. | §5 Evidence Binder / Result Handoff; `AD-006`; `CR-003`; `CR-009` |
+| `L4-F-001` v1.0.1 | `L4-F-001-BH-011` | Provides common verification-result/evidence handoff semantics for proving downstream availability while preserving Student Charge ownership and consumer boundaries. | §5 Gate Evaluator / Result Handoff; `AD-006`; `CR-008`; `CR-009` |
 
-### Material Higher-Level / Governance Constraints
+### F02 Family Decomposition
 
-- `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md` — frozen F02-001 responsibility.
-- `L5_Architecture_Family_Register.md` — L5-F family ownership and solution-wide verification applicability.
-- `L4_Governance_and_Architecture_Standard.md` §4 — BHs are observable, testable, and verifiable.
-- `L5_L4_to_L5_Traceability_Methodology.md` — exact BH/L5 relation, version binding, evidence, and relation-state governance.
-- `L5_Validation_Standard.md` — hard-fail and conformance integrity.
+- `L5-F-02-002` — lower-scope component/unit/domain verification;
+- `L5-F-02-003` — contract/event/connector/integration/end-to-end verification;
+- `L5-F-02-004` — security/performance/resilience/recovery testing.
 
-### Material L5 Dependencies
+### Verification Source Types
 
-- `L5-F-02-002`, `L5-F-02-003`, `L5-F-02-004` — specialized verification execution.
-- `L5-F-01-002` — release/promotion consumer boundary.
-- `L5-B-02-001` — persistence boundary where durable verification records are required.
-- `L5-B-05-002` — sensitive verification-data handling.
-- `L5-D-02-004`, `L5-D-02-006`, `L5-D-03-001` — authorization/privileged access/trust.
-- `L5-D-04-002`, `L5-D-04-003` — evidence provenance and integrity-protected storage.
+- exact L4 Behavioral Obligations (`BH-*`);
+- exact L5 Architecture Conformance Requirements (`CR-*`);
+- approved/locked ADRs only through the L5 requirements/architecture they govern, unless separate architecture explicitly requires direct ADR verification evidence.
+
+### Current Stage-6 Context
+
+- Stage 5 C03/E03: Locked and stable for downstream verification use.
+- C04/B06: Authored on `main`, currently Draft.
+- F02-001: reconciled Stage-6 baseline, remains Draft.
+- F02-002/003/004: authored and family-reconciled as Draft child specifications.
+- The four-spec F02 Draft authoring set is complete; canonical repository synchronization and governed validation remain pending.
+
+### Material Cross-L5 Boundaries
+
+- F01 consumes verification evidence for release gating but retains promotion/release authority.
+- B02 owns physical persistence/consistency.
+- A08/C02 own shared execution/messaging mechanics where child verification requires them.
+- D02/D03/A04/B05 own security/isolation/privacy controls.
+- D04 owns enterprise evidence provenance/integrity.
+- E01/E02/E03 own resilience, capacity and recovery architecture verified by F02-004.
+- E05 owns operational telemetry.
+- A02 owns approved technology standards; F02 does not select test products.
 
 ### Architecture Decisions
 
-- `AD-001`–`AD-006`
+`AD-001`–`AD-008`
 
 ### Conformance Requirements
 
-- `CR-001`–`CR-009`
+`CR-001`–`CR-013`
 
-### Open / Deferred Items
+### Current Status
 
-- `OD-001` — repository-level relation validation remains an authorized traceability-review action; non-blocking to this Stage 1 technical baseline.
-- `OD-002` — canonical repository-level relation corpus synchronization remains downstream governance work; non-blocking to this specification's selective applicability.
+**Draft — Stage-6 family-reconciled baseline.**
+
+The F02 Draft authoring set is complete and internally reconciled. Final repository synchronization, traceability review, architecture approval and lock remain outside author authority.
+
