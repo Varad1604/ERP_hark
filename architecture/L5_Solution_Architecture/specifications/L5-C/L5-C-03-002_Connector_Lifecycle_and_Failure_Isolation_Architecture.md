@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Connector configuration/lifecycle, credentials, health and failure isolation.  
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-01`; `L5-D-03`; `L5-E-01`; `L5-E-05`; `L5-A-04`; applicable upstream connector-governance behavior  
 **Referenced By:** `L5-C-03-003`–`L5-C-03-009`  
-**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0009`; `ADR-L5-0014`  
+**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`  
 **Governing Sources:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Candidate Document Corpus Register 105; L5 Technology Selection & ADR Methodology; L5 ADR Register.
 
 ## 2. Purpose, Scope & Non-Goals
@@ -24,6 +24,7 @@ Defines technical realization for governed connector configuration, effective ru
 | Source | Version / Status | Exact Reference | L5-C-03-002 Contribution |
 |---|---|---|---|
 | L5 corpus | Approved candidate baseline | `L5-C-03-002` | Assigns connector configuration/lifecycle, credentials, health and failure isolation to this specification. |
+| `ADR-L5-0016` | Architecture Approved | shared C03 connector pattern | Governs configuration realization, adapter isolation, credential binding, ambiguous-outcome handling and failure containment. |
 | L4 | 1.0.1 / Draft | `L4-H-073-BH-001`–`BH-008` | Requires governed configuration/version progression, activation, suspension/restoration, rollback and retirement without rewriting history. C03 realizes the technical configuration/effective-runtime consequences only. |
 | L4 | 1.0.1 / Draft | `L4-H-073-BH-010` | Authentication Provider/Credential lifecycle remains upstream-owned; C03 consumes credential references. |
 | L4 | 1.0.1 / Draft | `L4-H-073-BH-011`–`BH-012` | Unauthorized lifecycle actions leave authoritative state unchanged and configuration/decision history remains reconstructable. |
@@ -80,10 +81,10 @@ Upstream rollback establishes which eligible prior configuration becomes newly e
 ## 6. Architecture & Technology Decisions
 | ID | Decision | Selected Position | Basis | ADR |
 |---|---|---|---|---|
-| AD-001 | Configuration realization | Environment-scoped, version-addressable runtime configuration derived from the effective upstream-approved version. | `L4-H-073-BH-001`–`BH-008`; corpus boundary. | Shared C03 ADR required before approval if the reusable family pattern is retained. |
-| AD-002 | Credential model | Reference D03-owned secrets/certificates; never embed secret material in connector configuration. | D03 ownership; `L4-H-073-BH-010`. | `ADR-L5-0002` |
-| AD-003 | Health model | Reuse E01 `Healthy` / `Degraded` / `Unavailable`; do not create a parallel connector business lifecycle. | `ADR-L5-0014`. | `ADR-L5-0014` |
-| AD-004 | Recovery | Runtime re-entry requires authoritative configuration eligibility plus health validation. | `ADR-L5-0014`; ownership preservation. | Shared C03 ADR may specialize. |
+| AD-001 | Configuration realization | Environment-scoped, version-addressable runtime configuration derived from the effective upstream-approved version. | `L4-H-073-BH-001`–`BH-008`; corpus boundary. | `ADR-L5-0016` |
+| AD-002 | Credential model | Reference D03-owned secrets/certificates; never embed secret material in connector configuration. | D03 ownership; `L4-H-073-BH-010`. | `ADR-L5-0002`; `ADR-L5-0016` |
+| AD-003 | Health model | Reuse E01 `Healthy` / `Degraded` / `Unavailable`; do not create a parallel connector business lifecycle. | `ADR-L5-0014`. | `ADR-L5-0014`; `ADR-L5-0016` |
+| AD-004 | Recovery | Runtime re-entry requires authoritative configuration eligibility plus health validation. | `ADR-L5-0014`; ownership preservation. | `ADR-L5-0014`; `ADR-L5-0016` |
 
 ## 7. Security, Privacy, Quality & Operational Impact
 Configuration/effective-version changes and credential-binding changes require upstream authority plus D02/D03 controls where applicable. Telemetry exposes effective configuration reference, health, last contact, failure class, backlog/pressure and recovery progress without leaking credentials or sensitive provider payloads.
@@ -101,11 +102,11 @@ Configuration/effective-version changes and credential-binding changes require u
 | ID | Item | Classification | Blocking? | Required Resolution |
 |---|---|---|---|---|
 | OD-001 | `L4-H-073` is Draft, so its BH mappings cannot yet be `Validated`. | Upstream | Yes for Architecture Approved absent explicit governance authorization. | Approve/review L4-H-073 or record governance authorization for approval-level use. |
-| OD-002 | Shared C03 connector architecture ADR. | ADR | Yes for Architecture Approved if reusable family decisions remain. | Allocate/evaluate through the canonical L5 ADR Register; do not invent an ADR number locally. |
-| OD-003 | Numeric timeout/retry/circuit thresholds. | Operations | No. | Bind only from approved provider/operational profiles. |
+| OD-002 | Numeric timeout/retry/circuit thresholds. | Operations | No. | Bind only from approved provider/operational profiles. |
 
 ## 10. Traceability Summary
 **Specified L4 applicability:** `L4-H-073-BH-001`–`008`, `010`–`012`.  
 **Peers:** C03-001, C01, D03, E01, E05, A04.  
+**Applicable shared ADR:** `ADR-L5-0016`.  
 **Decisions:** AD-001–004. **Conformance:** CR-001–007.  
-**Blocking:** OD-001, OD-002.
+**Blocking:** OD-001.
