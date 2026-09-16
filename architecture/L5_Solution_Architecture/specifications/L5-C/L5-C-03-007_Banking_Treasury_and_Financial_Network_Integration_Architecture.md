@@ -8,11 +8,11 @@
 **Canonical Technical Responsibility:** Banking/treasury/network integration while Finance retains business ownership.  
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-03-002`; `L5-C-01`; `L5-D-03`; `L5-E-01`; applicable Finance/Treasury L5 architecture  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`; shared C03 family ADR required but not yet canonically allocated
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines secure provider-neutral integration with banks, treasury services and financial networks while Finance/Treasury remain authoritative for execution, settlement, Cash Position, reconciliation and ledger outcomes.
@@ -23,6 +23,7 @@ Defines secure provider-neutral integration with banks, treasury services and fi
 |---|---|---|---|
 | `L4-F-057` | 1.0.0 / Draft | `BH-001`–`BH-013` | Submit only approved payment instructions, preserve execution/settlement distinction, correlate per-payment outcomes and return evidence to Treasury. |
 | `L4-F-061` | 1.0.0 / Draft | `BH-001`–`BH-015` | Compare bank evidence with Treasury facts, keep uncertain outcomes unresolved, prevent false/duplicate settlement, preserve final evidence. |
+| `ADR-L5-0016` | Architecture Approved | shared C03 connector pattern | Governs financial-network adapter isolation, correlation, credentials and ambiguous-outcome containment. |
 
 Both L4 sources are Draft, so the mappings are `Specified`, not `Validated`.
 
@@ -65,10 +66,10 @@ Failed/returned/uncertain provider outcomes remain evidence until Treasury deter
 ## 6. Architecture Decisions
 | ID | Decision | Position | Basis | ADR |
 |---|---|---|---|---|
-| AD-001 | Integration modes | Common adapter boundary may support API, secure-file and network-specific provider mechanisms. | Frozen C03-007 responsibility + provider variability. | Shared C03 ADR required before approval. |
-| AD-002 | Financial authority | Bank/network responses remain evidence; Treasury/Finance owns canonical outcome. | F-057/F-061. | None. |
-| AD-003 | Reconciliation boundary | C03 normalizes external evidence; Finance/Treasury owns matching/reconciliation. | `L4-F-061-BH-003`,`012`–`015`. | None. |
-| AD-004 | Ambiguous outcome | Preserve unresolved correlation; no inferred settlement or blind replay. | `L4-F-061-BH-004`,`007`–`008`. | `ADR-L5-0014` + C03 specialization. |
+| AD-001 | Integration modes | Common adapter boundary may support API, secure-file and network-specific provider mechanisms. | Frozen C03-007 responsibility + provider variability. | `ADR-L5-0016` |
+| AD-002 | Financial authority | Bank/network responses remain evidence; Treasury/Finance owns canonical outcome. | F-057/F-061. | `ADR-L5-0016` ownership-preserving handoff. |
+| AD-003 | Reconciliation boundary | C03 normalizes external evidence; Finance/Treasury owns matching/reconciliation. | `L4-F-061-BH-003`,`012`–`015`. | `ADR-L5-0016` |
+| AD-004 | Ambiguous outcome | Preserve unresolved correlation; no inferred settlement or blind replay. | `L4-F-061-BH-004`,`007`–`008`. | `ADR-L5-0014`; `ADR-L5-0016` |
 
 ## 7. Security, Privacy & Operations
 Provider credentials/certificates consume D03. Sensitive bank/account/payment data is minimized in telemetry. Provider health is independently observable and isolated under E01/E05. File-based exchanges consume C03-008 rather than create a second file-transfer architecture.
@@ -85,8 +86,7 @@ Provider credentials/certificates consume D03. Sensitive bank/account/payment da
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
 | OD-001 | F-057/F-061 are Draft. | Upstream / Traceability | Yes for Architecture Approved absent authorization. | Approve/review upstream or authorize approval-level use, then validate mappings. |
-| OD-002 | Shared C03 pattern. | ADR | Yes for Architecture Approved if retained as family standard. | Allocate/evaluate canonically. |
-| OD-003 | Specific bank/network/provider protocol/product. | Technology | No. | Bind only from approved provider requirements. |
+| OD-002 | Specific bank/network/provider protocol/product. | Technology | No. | Bind only from approved provider requirements. |
 
 ## 10. Traceability Summary
-**Specified L4:** `L4-F-057-BH-001`–`013`; `L4-F-061-BH-001`–`015`. **Peers:** C03-001/002/008, C01, D03, E01, Finance/Treasury. **Blocking:** OD-001, OD-002.
+**Specified L4:** `L4-F-057-BH-001`–`013`; `L4-F-061-BH-001`–`015`. **Peers:** C03-001/002/008, C01, D03, E01, Finance/Treasury. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** OD-001.
