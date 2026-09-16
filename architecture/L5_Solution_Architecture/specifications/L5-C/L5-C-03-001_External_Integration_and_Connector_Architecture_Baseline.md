@@ -9,12 +9,13 @@
 **Technical Architecture Owner:** `L5-C-03 — External Integration & Connector Architecture`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-01`; `L5-C-02`; `L5-D-03`; `L5-E-04`; `L5-E-05`; `L5-A-04`; applicable source-domain L5 architecture  
 **Referenced By:** `L5-C-03-002`–`L5-C-03-009`  
 **Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`  
 **Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`  
+**Governance Lock:** `L5_Pallav_Stage5_Final_Lock_Decision_2026-09-16.md`  
 **Governing Sources:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Candidate Document Corpus Register 105; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology; L5 ADR Register; L5 Broad Authoring Authorization.
 
 ## 2. Purpose, Scope & Non-Goals
