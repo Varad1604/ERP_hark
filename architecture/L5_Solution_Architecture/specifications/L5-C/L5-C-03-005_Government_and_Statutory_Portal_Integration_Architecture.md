@@ -8,70 +8,85 @@
 **Canonical Technical Responsibility:** Governed exchange with government/statutory portals without owning source-domain facts.  
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-03-002`; `L5-C-01`; `L5-D-01`; `L5-D-02`; `L5-D-03`; applicable source-domain L5 architecture  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`; shared C03 family ADR required but not yet canonically allocated
 
 ## 2. Purpose, Scope & Non-Goals
-Defines the reusable technical architecture for exchanges with government and statutory portals through official APIs, secure files or other authorized machine interfaces. It does not own the source-domain facts, statutory business determinations, compliance approval or regulatory meaning of submitted data.
+Defines reusable technical exchange with government/statutory portals through authorized machine interfaces while preserving source-domain ownership of package content, reporting facts, compliance decisions and regulatory meaning.
 
 ## 3. Upstream Applicability & Constraints
-The L5 corpus fixes this boundary as technical exchange only. Source domains remain canonical. Exact L4 BH allocation across government/statutory scenarios remains `OD-001` and is not fabricated.
+### 3.1 Canonical Upstream Reference Matrix
+| Source | Version / Status | Exact BHs | C03 Technical Contribution |
+|---|---|---|---|
+| `L4-H-059` | 1.0.1 / Draft | `BH-001`–`BH-008` | Admit only governed approved submission, transport it without mutating the package/snapshot, correlate external acknowledgement/outcome, and preserve evidence. |
+| L2-H08 | Locked + 2026-09-01 amendment | submission execution/closure governance | Separates institutional package approval, submission authority and external regulator decision ownership. |
+| L5 corpus | approved population | `L5-C-03-005` | Assigns portal exchange mechanics to C03 without source-domain ownership transfer. |
+
+`L4-H-059` is Draft, so the BH relations are `Specified`, not `Validated`.
+
+### 3.2 Authoritative Constraints
+- Transmission/submission attempt is not external acceptance.
+- C03 shall preserve the approved source package/snapshot meaning and shall not mutate authoritative source-domain facts.
+- External acknowledgement, rejection, remarks or resubmission requirement is correlated evidence; business reporting/compliance state remains with the source workflow.
+- C03 shall not invent statutory interpretation, compliance approval or regulatory events.
 
 ## 4. Technical Ownership & Dependencies
-**Owns:** portal-specific adapters, transport/profile mapping, submission correlation, acknowledgement/status retrieval, technical validation, environment/certification configuration.  
-**Consumes:** source-domain contracts, D01/D02/D03 trust controls, E01 resilience, E05 telemetry.  
-**Must not own:** regulatory rule interpretation, business compliance status, source business record, statutory approval, canonical audit meaning.
+**Owns:** portal adapters, transport/profile mapping, technical packaging, submission correlation, acknowledgement/status retrieval, structural/transport validation and environment/certification binding.  
+**Consumes:** source-domain approved submission contracts, D01/D02/D03 trust controls, E01 resilience, E05 telemetry.  
+**Must not own:** regulatory rule interpretation, institutional package approval, external regulator decision, reporting lifecycle, source data or canonical audit meaning.
 
 ## 5. Solution Architecture
 ### 5.1 Elements
-| Element | Responsibility |
-|---|---|
-| Portal Adapter | Encapsulates portal-specific protocol, authentication, schema and submission mechanics. |
-| Submission Packager | Maps approved source-domain information into provider-required technical representation. |
-| Acknowledgement Correlator | Binds provider acknowledgement/reference/status to the originating SutraERP request. |
-| Status Poll/Callback Handler | Retrieves or receives provider technical disposition where supported. |
-| Certification Profile | Separates sandbox/UAT/certification/production endpoints and credentials. |
+| Element | Responsibility | Boundary |
+|---|---|---|
+| Portal Adapter | Encapsulates provider-specific machine interface, authentication and schema mechanics. | No regulatory/business interpretation. |
+| Submission Packager | Maps the approved source package into provider-required technical representation. | Cannot alter approved business meaning. |
+| Acknowledgement Correlator | Binds external reference/acknowledgement/status to originating SutraERP Submission Record/request. | Does not declare acceptance/compliance. |
+| Status/Callback Handler | Retrieves or receives external technical disposition. | Returns normalized evidence to source workflow. |
+| Environment Profile | Separates provider-authorized non-production/certification and production endpoints/credentials where applicable. | D03 owns secrets/certificates. |
 
 ### 5.2 Primary Flow
 ```text
-Owning domain approved submission
-→ authorize + resolve portal profile
-→ map/package technical payload
-→ secure portal exchange
-→ provider acknowledgement/reference
-→ status/callback correlation
-→ owning domain decides business completion/compliance state
+Authoritative approved package/submission instruction
+→ verify source authorization + portal profile
+→ technical map/package without changing source meaning
+→ secure external exchange
+→ provider acknowledgement/reference/status
+→ correlate + normalize technical evidence
+→ source reporting/compliance workflow establishes authoritative outcome
 ```
 
 ### 5.3 Material Failure Rules
-A submission attempt is not equivalent to statutory acceptance. Portal unavailability, timeouts or conflicting statuses remain technical conditions until the owning business workflow resolves the authoritative outcome. Browser automation is not the preferred architecture; where no supported machine interface exists, any RPA fallback requires separately governed approval.
+Failed/incomplete transmission shall not be represented as acknowledged or accepted. Conflicting/ambiguous provider statuses remain technical evidence for source-domain resolution. Unsupported browser automation is not silently substituted for an authorized interface; if a portal has no supported machine interface, any automation fallback remains a separate architecture/security decision.
 
 ## 6. Architecture Decisions
-| ID | Decision | Position |
-|---|---|---|
-| AD-001 | Integration priority | Official API/file interfaces are preferred over browser automation. |
-| AD-002 | Acknowledgement authority | Provider acknowledgement is technical evidence; source domain decides business completion. |
-| AD-003 | Provider isolation | Each portal uses a provider-specific adapter behind the common C03 boundary. |
-| AD-004 | Certification | Non-production certification profiles are isolated from production credentials/endpoints. |
+| ID | Decision | Position | Basis | ADR |
+|---|---|---|---|---|
+| AD-001 | Portal isolation | Portal-specific adapters behind common C03 boundary. | Frozen C03 responsibility; schema/provider isolation. | Shared C03 ADR required before approval. |
+| AD-002 | Acknowledgement authority | Provider acknowledgement is evidence; source workflow owns accepted/rejected/compliance outcome. | `L4-H-059-BH-004`–`BH-008`. | None. |
+| AD-003 | Source immutability | Technical packaging must not mutate approved package/snapshot meaning. | `L4-H-059-BH-003`. | None. |
+| AD-004 | Interface selection | Use only provider-authorized/governed interfaces; no repository-wide protocol/product is selected here. | Technology-selection governance. | Required if a material shared technology is selected. |
 
 ## 7. Security, Privacy & Operations
-Only minimum required statutory data is transmitted. Service identities, certificates and secrets are D03-governed. Operational evidence includes correlation, portal reference, time, technical outcome and status without copying unnecessary sensitive payloads.
+Only purpose-authorized data is transmitted. Service identity, certificates and secrets consume D-family controls. Telemetry/evidence includes correlation, portal reference, time and technical disposition while minimizing sensitive payloads.
 
 ## 8. Architecture Conformance Requirements
-- `CR-001`: Government portal connectors shall not directly mutate source-domain persistence.
-- `CR-002`: Submission attempt shall not be represented as accepted/compliant without authoritative upstream rules.
-- `CR-003`: Official supported machine interfaces shall be preferred to scraping/RPA.
-- `CR-004`: Sandbox/UAT/certification and production credentials shall be isolated.
-- `CR-005`: Portal-specific schema changes shall be contained within the adapter/mapping boundary.
+- `CR-001`: Portal connectors shall not directly mutate source-domain persistence or approved package meaning.
+- `CR-002`: Submission attempt shall not be represented as external acceptance/compliance.
+- `CR-003`: External acknowledgement/outcome shall remain correlated to the authoritative source Submission Record/request.
+- `CR-004`: Portal-specific schema/protocol changes shall be contained inside C03 adapters/mapping.
+- `CR-005`: Provider environment credentials shall consume D03 controls and remain appropriately isolated.
+- `CR-006`: Browser/RPA fallback, if ever required, shall not be introduced without separate governed architecture/security review.
 
 ## 9. Open Decisions & Deferred Design
-| ID | Item | Blocking? | Resolution |
-|---|---|---|---|
-| OD-001 | Exact L4 BH mapping for all statutory/government exchanges. | Yes for Architecture Approved. | Complete scenario-to-BH extraction. |
-| OD-002 | Any RPA-based portal integration. | Yes if proposed. | Requires explicit architecture/security review and evidence no supported machine interface exists. |
+| ID | Item | Classification | Blocking? | Resolution |
+|---|---|---|---|---|
+| OD-001 | `L4-H-059` is Draft. | Upstream / Traceability | Yes for Architecture Approved absent authorization. | Approve/review upstream or authorize approval-level use, then validate relation. |
+| OD-002 | Shared C03 connector pattern. | ADR | Yes for Architecture Approved if retained as family standard. | Allocate/evaluate canonically. |
+| OD-003 | Any browser/RPA portal integration. | Architecture/Security | Yes only if proposed. | Prove no supported interface and complete governed review. |
 
 ## 10. Traceability Summary
-**Corpus:** `L5-C-03-005`. **Peers:** C03-001/002, C01, D01/D02/D03, E01/E05, applicable source-domain L5 owners.
+**Specified L4:** `L4-H-059-BH-001`–`008`. **Higher-level verification:** locked L2-H08 + submission amendment. **Peers:** C03-001/002, C01, D01/D02/D03, E01/E05. **Blocking:** OD-001, OD-002.
