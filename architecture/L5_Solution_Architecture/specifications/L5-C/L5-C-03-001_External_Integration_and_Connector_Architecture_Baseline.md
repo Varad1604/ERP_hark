@@ -9,11 +9,12 @@
 **Technical Architecture Owner:** `L5-C-03 — External Integration & Connector Architecture`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-01`; `L5-C-02`; `L5-D-03`; `L5-E-04`; `L5-E-05`; `L5-A-04`; applicable source-domain L5 architecture  
 **Referenced By:** `L5-C-03-002`–`L5-C-03-009`  
 **Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`  
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`  
 **Governing Sources:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Candidate Document Corpus Register 105; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology; L5 ADR Register; L5 Broad Authoring Authorization.
 
 ## 2. Purpose, Scope & Non-Goals
@@ -36,7 +37,7 @@ Defines the reusable technical boundary through which SutraERP communicates with
 | L4 | 1.0.0 / Draft | `L4-F-061-BH-003`–`015` | External banking evidence may be failed/returned/uncertain; Treasury remains authoritative. | Requires ambiguous external outcomes to remain evidence for owner reconciliation. |
 | ADR | Architecture Approved | `ADR-L5-0014` | Shared health, containment and validated recovery semantics. | Constrains provider failure isolation and return to service. |
 
-All cited L4 specifications are currently `Draft`; therefore these relations are `Specified`, not `Validated`, under the locked traceability methodology. They cannot be used as final approval authority without upstream approval or explicit governance authorization.
+The cited L4 specifications remain `Draft`. Their identified behavior is explicitly governance-authorized for this Stage-5 approval by `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`. Canonical L4→L5 relation state therefore remains `Specified`, not `Validated`, until the locked traceability methodology's normal source-status conditions are met.
 
 ### 3.2 Authoritative Constraints
 - External providers, adapters and connectors shall not become canonical owners of SutraERP business facts.
@@ -130,11 +131,11 @@ Connector credentials consume D03 and shall not be committed in source-controlle
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Required Resolution |
 |---|---|---|---|---|
-| OD-001 | Material L4 exemplars are Draft, so C03 relations cannot yet be `Validated`. | Upstream / Traceability | Yes for Architecture Approved absent governance authorization. | Approve applicable L4 or record explicit approval-level-use authorization; then review relation evidence. |
+| OD-001 | Draft-L4 relation promotion from `Specified` to `Validated`. | Traceability | No for this Architecture Approved specification. | Revalidate after applicable L4 approval under the locked traceability methodology. |
 | OD-002 | Named integration gateway/platform/product or repository-wide mandatory protocol profile. | Technology | No until such selection is required. | Use Technology Selection & ADR Methodology if proposed. |
 
 ## 10. Traceability Summary
-**Approved purpose authority:** L5 Coverage Audit Decision §5/§6/§9; frozen `L5-C-03-001` responsibility; `ADR-L5-0016`.  
-**Specified L4 exemplars:** `L4-H-073-BH-001`–`012`; `L4-H-059-BH-003`–`008`; `L4-A-036-BH-001`–`008`; `L4-F-061-BH-003`–`015`.  
+**Approved purpose authority:** L5 Coverage Audit Decision §5/§6/§9; frozen `L5-C-03-001` responsibility; `ADR-L5-0016`; Stage-5 approval decision 2026-09-16.  
+**Governance-authorized / Specified L4 exemplars:** `L4-H-073-BH-001`–`012`; `L4-H-059-BH-003`–`008`; `L4-A-036-BH-001`–`008`; `L4-F-061-BH-003`–`015`.  
 **Material peers:** C01, C02, D01/D02/D03, A04, E01, E04, E05.  
-**Decisions:** AD-001–005. **Conformance:** CR-001–007. **Blocking:** OD-001.
+**Decisions:** AD-001–005. **Conformance:** CR-001–007. **Blocking:** none.
