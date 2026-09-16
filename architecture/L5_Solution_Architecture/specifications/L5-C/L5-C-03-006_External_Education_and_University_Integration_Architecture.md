@@ -8,11 +8,11 @@
 **Canonical Technical Responsibility:** LMS/university/external-education interoperability and credential/academic handoffs.  
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-03-002`; `L5-C-01`; `L5-C-02`; `L5-D-03`; applicable Academic/Examination L5 architecture  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0011`; shared C03 family ADR required but not yet canonically allocated
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0016`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines provider-neutral interoperability with LMSs, universities and external education platforms while preserving canonical academic, Student, Examination and credit ownership.
@@ -25,6 +25,7 @@ Defines provider-neutral interoperability with LMSs, universities and external e
 | `L4-H-078` | 1.0.1 / Draft | `BH-001`–`BH-011` | Carry verified external credit evidence to the canonical academic owner and synchronize its authoritative decision without updating the Academic Credit Ledger. |
 | `L4-H-081` | 1.0.1 / Draft | `BH-001`–`BH-012` | Govern technical exchange/send/receipt/evidence while source-domain facts remain canonical; quarantine is business-governed, not a C03 retry state. |
 | L2-H10 | 1.0 / Locked | External Education Integration Workflows | Establishes external-provider orchestration, standards-capable interoperability and canonical-ownership preservation. |
+| `ADR-L5-0016` | Architecture Approved | shared C03 connector pattern | Governs provider-adapter isolation, configuration, credentials, correlation and failure containment. |
 
 The L4 relations are `Specified`, not `Validated`, while their source files remain Draft.
 
@@ -66,10 +67,10 @@ Invalid mapping/provider evidence shall not alter canonical academic facts. Fail
 ## 6. Architecture Decisions
 | ID | Decision | Position | Basis | ADR |
 |---|---|---|---|---|
-| AD-001 | Interoperability | Provider-authorized APIs/events/secure files and recognized interoperability profiles may be supported through adapters; no single mandatory standard is selected here. | L2-H10 + C03 product-neutrality. | Required only if a shared mandatory technology/profile is selected. |
-| AD-002 | Academic authority | Import requires canonical owner acceptance; transport validity does not confer authority. | H-077/H-078/H-081. | None. |
-| AD-003 | Schema isolation | External evolution is absorbed at mapping/adaptor boundary. | H-081 ownership preservation. | Shared C03 ADR may govern family pattern. |
-| AD-004 | Async compatibility | Asynchronous exchange consumes C02 delivery/versioning semantics. | C02 + H-077/H-078 handoffs. | `ADR-L5-0010`, `0011`. |
+| AD-001 | Interoperability | Provider-authorized APIs/events/secure files and recognized interoperability profiles may be supported through adapters; no single mandatory standard is selected here. | L2-H10 + C03 product-neutrality. | `ADR-L5-0016` for shared adapter pattern; separate ADR only if a mandatory product/profile is selected. |
+| AD-002 | Academic authority | Import requires canonical owner acceptance; transport validity does not confer authority. | H-077/H-078/H-081. | `ADR-L5-0016` ownership-preserving handoff. |
+| AD-003 | Schema isolation | External evolution is absorbed at mapping/adaptor boundary. | H-081 ownership preservation. | `ADR-L5-0016` |
+| AD-004 | Async compatibility | Asynchronous exchange consumes C02 delivery/versioning semantics. | C02 + H-077/H-078 handoffs. | `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0016` |
 
 ## 7. Security, Privacy & Operations
 Identity, authorization, secrets and certificates consume D-family owners. Student/academic payloads are minimized in logs. Provider profiles and credentials are environment-scoped. C03 exposes exchange correlation, status and dependency health to E05 without treating telemetry as academic audit truth.
@@ -86,8 +87,7 @@ Identity, authorization, secrets and certificates consume D-family owners. Stude
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
 | OD-001 | H-077/H-078/H-081 are Draft. | Upstream / Traceability | Yes for Architecture Approved absent authorization. | Approve/review upstream or authorize approval-level use; then validate relations. |
-| OD-002 | Shared C03 adapter/outcome-isolation pattern. | ADR | Yes for Architecture Approved if retained as family standard. | Allocate/evaluate canonically. |
-| OD-003 | Mandatory interoperability standard/profile, if any. | Technology | No. | Select only from concrete provider/institution requirements through governance. |
+| OD-002 | Mandatory interoperability standard/profile, if any. | Technology | No. | Select only from concrete provider/institution requirements through governance. |
 
 ## 10. Traceability Summary
-**Specified L4:** `L4-H-077-BH-001`–`008`; `L4-H-078-BH-001`–`011`; `L4-H-081-BH-001`–`012`. **Higher-level:** locked L2-H10. **Blocking:** OD-001, OD-002.
+**Specified L4:** `L4-H-077-BH-001`–`008`; `L4-H-078-BH-001`–`011`; `L4-H-081-BH-001`–`012`. **Higher-level:** locked L2-H10. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** OD-001.
