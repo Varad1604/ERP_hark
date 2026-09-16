@@ -9,10 +9,11 @@
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-01`; `L5-A-08`; `L5-D-03`; `L5-B-02`; `L5-E-05`; applicable source-domain L5 architecture  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0013`; `ADR-L5-0016`
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0013`; `ADR-L5-0016`  
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines reusable large-volume import/export and secure file-exchange mechanics without making staging or transferred data canonical business truth.
@@ -26,7 +27,7 @@ Defines reusable large-volume import/export and secure file-exchange mechanics w
 | `L4-H-006` | 1.0.0 / Draft | `BH-001`–`BH-008` | Bulk credential publication preserves independent item outcomes and must not invent a first-class business Batch aggregate/lifecycle. |
 | `ADR-L5-0016` | Architecture Approved | shared C03 connector pattern | Governs adapter/handoff isolation, correlation, credentials and failure containment for file-exchange consumers. |
 
-The L4 relations are `Specified`, not `Validated`, while those files remain Draft. The Architecture Approved coverage decision nevertheless establishes the C03-008 technical ownership boundary.
+The cited L4 sources remain Draft, but their identified behavior is explicitly governance-authorized for this Stage-5 approval. Canonical relation state remains `Specified`, not `Validated`, until the locked traceability methodology's normal source-status conditions are met. The Architecture Approved coverage decision establishes the C03-008 technical ownership boundary.
 
 ### 3.2 Authoritative Constraints
 - Technical staging is non-authoritative until the owning business domain accepts content.
@@ -91,8 +92,8 @@ Transfers consume D03 protection and credentials. Sensitive contents are exclude
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| OD-001 | A-036/H-006 are Draft; canonical traceability cannot be `Validated` yet. | Upstream / Traceability | Yes for Architecture Approved absent authorization where these BHs are material. | Approve/review upstream or authorize approval-level use. |
+| OD-001 | Promotion of A-036/H-006 mappings from `Specified` to `Validated`. | Traceability | No for this Architecture Approved specification. | Revalidate after applicable L4 approval. |
 | OD-002 | Numeric file/batch/chunk limits, transfer thresholds and retention periods. | Operations | No. | Derive from approved capacity/provider/regulatory profiles. |
 
 ## 10. Traceability Summary
-**Approved purpose:** L5 Coverage Audit Decision bulk-import/export finding. **Specified L4:** `L4-A-036-BH-001`–`008`; `L4-H-006-BH-001`–`008`. **Peers:** C03-001, C01, A08, D03, B02, E05. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** OD-001.
+**Approved purpose:** L5 Coverage Audit Decision bulk-import/export finding. **Governance-authorized / Specified L4:** `L4-A-036-BH-001`–`008`; `L4-H-006-BH-001`–`008`. **Peers:** C03-001, C01, A08, D03, B02, E05. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** none.
