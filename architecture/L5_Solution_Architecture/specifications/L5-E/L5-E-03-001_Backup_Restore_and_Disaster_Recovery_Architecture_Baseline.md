@@ -9,12 +9,13 @@
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-B-02`; `L5-E-04`; `L5-E-01`; `L5-D-03`; `L5-E-05`; applicable data owners  
 **Referenced By:** `L5-E-03-002`; `L5-E-03-003`; recoverability-aware L5 specifications  
 **Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; `ADR-L5-0017`  
-**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`  
+**Governance Lock:** `L5_Pallav_Stage5_Final_Lock_Decision_2026-09-16.md`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines the repository-level recovery architecture that classifies recoverability needs and coordinates backup, restore and disaster-recovery capabilities across supported on-premises-primary and cloud-capable deployment models. It does not invent business RPO/RTO values, storage products, cloud services or deployment topology.
