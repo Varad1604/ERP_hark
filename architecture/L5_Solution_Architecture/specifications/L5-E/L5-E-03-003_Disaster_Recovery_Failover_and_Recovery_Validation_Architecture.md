@@ -8,7 +8,7 @@
 **Canonical Technical Responsibility:** DR/failover models and proof of recoverability without assuming a cloud provider.  
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.2`  
+**Version:** `1.0.3`  
 **Status:** `Locked`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-E-03-001`; `L5-E-03-002`; `L5-E-01`; `L5-E-04`; `L5-B-02`; `L5-C-02`; `L5-C-03`; `L5-D-03`; `L5-E-05`  
@@ -22,8 +22,8 @@ Defines provider-neutral disaster-recovery topology selection rules, failover/fa
 ## 3. Upstream Applicability & Constraints
 | Source | Status | Exact Reference | E03-003 Contribution |
 |---|---|---|---|
-| `L5-E-03-001` | Architecture Approved | recovery profile/class and recovery-set model | Supplies required objectives/context for topology/failover choice. |
-| `L5-E-03-002` | Architecture Approved | backup/restore/PITR architecture | Supplies trusted recovery points and restore capability. |
+| `L5-E-03-001` | Locked | recovery profile/class and recovery-set model | Supplies required objectives/context for topology/failover choice. |
+| `L5-E-03-002` | Locked | backup/restore/PITR architecture | Supplies trusted recovery points and restore capability. |
 | `ADR-L5-0014` | Architecture Approved | repository resilience, health, degradation, recovery | Requires contain → recover → validate → controlled return and no ownership transfer. |
 | `ADR-L5-0017` | Architecture Approved | repository recovery classification/protected-copy/restore/DR validation | Governs DR topology selection, fencing, failover/failback and recovery validation. |
 | `L4-A-057` | Draft | `BH-005`–`BH-009` | Supporting behavior: preserve state/history and do not claim restored availability before successful integrity validation. |
