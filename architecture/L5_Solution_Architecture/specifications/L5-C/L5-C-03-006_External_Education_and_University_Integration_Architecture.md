@@ -9,10 +9,11 @@
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-03-002`; `L5-C-01`; `L5-C-02`; `L5-D-03`; applicable Academic/Examination L5 architecture  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0016`
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0016`  
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines provider-neutral interoperability with LMSs, universities and external education platforms while preserving canonical academic, Student, Examination and credit ownership.
@@ -27,7 +28,7 @@ Defines provider-neutral interoperability with LMSs, universities and external e
 | L2-H10 | 1.0 / Locked | External Education Integration Workflows | Establishes external-provider orchestration, standards-capable interoperability and canonical-ownership preservation. |
 | `ADR-L5-0016` | Architecture Approved | shared C03 connector pattern | Governs provider-adapter isolation, configuration, credentials, correlation and failure containment. |
 
-The L4 relations are `Specified`, not `Validated`, while their source files remain Draft.
+The cited L4 sources remain Draft, but their identified behavior is explicitly governance-authorized for this Stage-5 approval. Canonical relation state remains `Specified`, not `Validated`, until the locked traceability methodology's normal source-status conditions are met.
 
 ### 3.2 Authoritative Constraints
 - Imported learning/result/credential/credit data shall not become authoritative solely because transport/schema validation succeeds.
@@ -86,8 +87,8 @@ Identity, authorization, secrets and certificates consume D-family owners. Stude
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| OD-001 | H-077/H-078/H-081 are Draft. | Upstream / Traceability | Yes for Architecture Approved absent authorization. | Approve/review upstream or authorize approval-level use; then validate relations. |
+| OD-001 | Promotion of H-077/H-078/H-081 mappings from `Specified` to `Validated`. | Traceability | No for this Architecture Approved specification. | Revalidate after applicable L4 approval. |
 | OD-002 | Mandatory interoperability standard/profile, if any. | Technology | No. | Select only from concrete provider/institution requirements through governance. |
 
 ## 10. Traceability Summary
-**Specified L4:** `L4-H-077-BH-001`–`008`; `L4-H-078-BH-001`–`011`; `L4-H-081-BH-001`–`012`. **Higher-level:** locked L2-H10. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** OD-001.
+**Governance-authorized / Specified L4:** `L4-H-077-BH-001`–`008`; `L4-H-078-BH-001`–`011`; `L4-H-081-BH-001`–`012`. **Higher-level:** locked L2-H10. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** none.
