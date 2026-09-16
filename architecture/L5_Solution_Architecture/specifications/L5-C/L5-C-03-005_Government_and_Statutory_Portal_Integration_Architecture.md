@@ -9,10 +9,11 @@
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-03-002`; `L5-C-01`; `L5-D-01`; `L5-D-02`; `L5-D-03`; applicable source-domain L5 architecture  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`  
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines reusable technical exchange with government/statutory portals through authorized machine interfaces while preserving source-domain ownership of package content, reporting facts, compliance decisions and regulatory meaning.
@@ -26,7 +27,7 @@ Defines reusable technical exchange with government/statutory portals through au
 | L5 corpus | approved population | `L5-C-03-005` | Assigns portal exchange mechanics to C03 without source-domain ownership transfer. |
 | `ADR-L5-0016` | Architecture Approved | shared C03 connector pattern | Governs portal adapter isolation, configuration, credentials, correlation and failure containment. |
 
-`L4-H-059` is Draft, so the BH relations are `Specified`, not `Validated`.
+`L4-H-059` remains Draft, but its cited behavior is explicitly governance-authorized for this Stage-5 approval. The relation remains `Specified`, not `Validated`, until the locked traceability methodology's normal source-status conditions are met.
 
 ### 3.2 Authoritative Constraints
 - Transmission/submission attempt is not external acceptance.
@@ -85,8 +86,8 @@ Only purpose-authorized data is transmitted. Service identity, certificates and 
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| OD-001 | `L4-H-059` is Draft. | Upstream / Traceability | Yes for Architecture Approved absent authorization. | Approve/review upstream or authorize approval-level use, then validate relation. |
+| OD-001 | Promotion of `L4-H-059` relation from `Specified` to `Validated`. | Traceability | No for this Architecture Approved specification. | Revalidate after applicable L4 approval. |
 | OD-002 | Any browser/RPA portal integration. | Architecture/Security | Yes only if proposed. | Prove no supported interface and complete governed review. |
 
 ## 10. Traceability Summary
-**Specified L4:** `L4-H-059-BH-001`–`008`. **Higher-level verification:** locked L2-H08 + submission amendment. **Peers:** C03-001/002, C01, D01/D02/D03, E01/E05. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** OD-001.
+**Governance-authorized / Specified L4:** `L4-H-059-BH-001`–`008`. **Higher-level verification:** locked L2-H08 + submission amendment. **Peers:** C03-001/002, C01, D01/D02/D03, E01/E05. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** none.
