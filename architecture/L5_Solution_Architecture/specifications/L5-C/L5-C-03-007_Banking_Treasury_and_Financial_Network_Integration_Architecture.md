@@ -8,70 +8,85 @@
 **Canonical Technical Responsibility:** Banking/treasury/network integration while Finance retains business ownership.  
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-03-002`; `L5-C-01`; `L5-D-03`; `L5-E-01`; applicable Finance/Treasury L5 architecture  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`; shared C03 family ADR required but not yet canonically allocated
 
 ## 2. Purpose, Scope & Non-Goals
-Defines secure provider-neutral integration with banks, treasury services and financial networks through APIs, secure files or network-specific interfaces. Finance/Treasury remain authoritative for payment, settlement, cash, reconciliation and ledger outcomes.
+Defines secure provider-neutral integration with banks, treasury services and financial networks while Finance/Treasury remain authoritative for execution, settlement, Cash Position, reconciliation and ledger outcomes.
 
 ## 3. Upstream Applicability & Constraints
-Known applicable L4 behavior includes `L4-F-057` bank execution outcomes and `L4-F-061` failed/returned/uncertain bank transaction resolution. Exact BH-level mapping remains `OD-001`.
+### 3.1 Canonical Upstream Reference Matrix
+| Source | Version / Status | Exact BHs | C03 Technical Contribution |
+|---|---|---|---|
+| `L4-F-057` | 1.0.0 / Draft | `BH-001`–`BH-013` | Submit only approved payment instructions, preserve execution/settlement distinction, correlate per-payment outcomes and return evidence to Treasury. |
+| `L4-F-061` | 1.0.0 / Draft | `BH-001`–`BH-015` | Compare bank evidence with Treasury facts, keep uncertain outcomes unresolved, prevent false/duplicate settlement, preserve final evidence. |
+
+Both L4 sources are Draft, so the mappings are `Specified`, not `Validated`.
+
+### 3.2 Authoritative Constraints
+- Provider receipt/acknowledgement is not final settlement.
+- Cash Position shall not be changed by C03.
+- Bank statement/transaction data is external evidence for Treasury/Finance reconciliation, not direct ledger truth.
+- Ambiguous external outcomes shall not be blindly resubmitted where duplicate settlement is possible.
+- Each item in a payment population remains separately correlatable.
 
 ## 4. Technical Ownership & Dependencies
-**Owns:** bank/network adapters, payment-file/API submission, bank-status retrieval, statement/import normalization, external reference correlation and delivery evidence.  
-**Must not own:** payment approval, settlement truth, cash position, reconciliation rules, accounting entries, treasury policy.
+**Owns:** bank/network adapters, payment API/file submission, status retrieval, statement/transaction normalization, external reference correlation and secure delivery evidence.  
+**Must not own:** payment approval, Treasury business lifecycle, settlement truth, Cash Position, reconciliation rules, journal/accounting entries or treasury policy.
 
 ## 5. Solution Architecture
 ### 5.1 Elements
-| Element | Responsibility |
-|---|---|
-| Financial Network Adapter | Encapsulates bank/network API, file and protocol specifics. |
-| Payment Submission Correlator | Preserves approved payment-batch/item references and provider references. |
-| Statement/Transaction Importer | Validates and normalizes bank-provided evidence before Finance reconciliation. |
-| Status Resolver | Retrieves provider execution status for submitted operations. |
-| Secure File Exchange Boundary | Packages/signals approved files and verifies receipt/integrity where file-based integration is required. |
+| Element | Responsibility | Boundary |
+|---|---|---|
+| Financial Network Adapter | Encapsulates bank/network API, secure-file or network-specific interface. | No Treasury business decision. |
+| Payment Submission Correlator | Preserves approved batch/item reference and provider reference. | Maintains per-item traceability. |
+| Statement/Transaction Importer | Validates/normalizes provider evidence. | Hands to Finance/Treasury reconciliation; no direct ledger mutation. |
+| Status Resolver | Retrieves provider execution/settlement evidence. | Returns unresolved disposition where evidence is inconclusive. |
+| Secure File Exchange Boundary | Packages and verifies file-based delivery where provider contract requires it. | Reuses C03-008 mechanics rather than duplicating business ownership. |
 
 ### 5.2 Primary Flow
 ```text
-Finance/Treasury-approved instruction
-→ financial-network adapter
+Treasury/Finance-approved instruction
+→ bank/network adapter + D03 credential
 → secure provider exchange
-→ provider acknowledgement/status
-→ normalized execution evidence
-→ Finance/Treasury establishes authoritative business outcome
+→ acknowledgement/status/settlement evidence
+→ correlate and normalize evidence
+→ Treasury/Finance establishes authoritative execution/settlement/cash outcome
 ```
 
-For inbound statements: bank evidence is normalized and handed to Finance reconciliation; it is never posted directly as ledger truth by C03.
+Inbound statement flow terminates at Finance/Treasury reconciliation intake, not at ledger mutation.
 
 ### 5.3 Failure Rules
-Failed or uncertain provider outcomes remain unresolved until Finance/Treasury reconciliation. Automatic resubmission is prohibited where duplicate settlement risk cannot be excluded. File/API receipt does not equal settlement.
+Failed/returned/uncertain provider outcomes remain evidence until Treasury determines the authoritative disposition. Automatic resubmission is prohibited where duplicate settlement cannot be excluded. A technical file/API receipt shall not be represented as `SettlementCompleted`.
 
 ## 6. Architecture Decisions
-| ID | Decision | Position |
-|---|---|---|
-| AD-001 | Integration modes | Common adapter boundary supports API, secure-file and network-specific mechanisms. |
-| AD-002 | Financial authority | Bank/network responses are evidence; Finance/Treasury owns canonical outcome. |
-| AD-003 | Reconciliation | C03 normalizes evidence; Finance owns match/reconciliation rules. |
-| AD-004 | Ambiguous outcome | Preserve correlation and unresolved state; do not infer settlement. |
+| ID | Decision | Position | Basis | ADR |
+|---|---|---|---|---|
+| AD-001 | Integration modes | Common adapter boundary may support API, secure-file and network-specific provider mechanisms. | Frozen C03-007 responsibility + provider variability. | Shared C03 ADR required before approval. |
+| AD-002 | Financial authority | Bank/network responses remain evidence; Treasury/Finance owns canonical outcome. | F-057/F-061. | None. |
+| AD-003 | Reconciliation boundary | C03 normalizes external evidence; Finance/Treasury owns matching/reconciliation. | `L4-F-061-BH-003`,`012`–`015`. | None. |
+| AD-004 | Ambiguous outcome | Preserve unresolved correlation; no inferred settlement or blind replay. | `L4-F-061-BH-004`,`007`–`008`. | `ADR-L5-0014` + C03 specialization. |
 
 ## 7. Security, Privacy & Operations
-Provider credentials/certificates are D03-governed. Sensitive bank/account/payment data is minimized in logs. Financial network availability is independently observable and isolated from unrelated providers.
+Provider credentials/certificates consume D03. Sensitive bank/account/payment data is minimized in telemetry. Provider health is independently observable and isolated under E01/E05. File-based exchanges consume C03-008 rather than create a second file-transfer architecture.
 
 ## 8. Architecture Conformance Requirements
-- `CR-001`: C03 shall not create ledger or cash-position truth from transport acknowledgements.
-- `CR-002`: Bank statements shall be inputs to Finance reconciliation, not direct authoritative updates.
-- `CR-003`: Ambiguous submissions shall not be blindly resent when duplicate settlement is possible.
-- `CR-004`: Every submitted financial operation shall preserve SutraERP/provider correlation evidence.
-- `CR-005`: Provider-specific protocols shall remain encapsulated by the adapter boundary.
+- `CR-001`: C03 shall not create Treasury/Finance settlement, Cash Position, ledger or reconciliation truth from transport acknowledgement alone.
+- `CR-002`: Bank statements/transactions shall be evidence inputs to canonical reconciliation, not direct authoritative updates.
+- `CR-003`: Ambiguous submissions shall not be blindly resent where duplicate settlement is possible.
+- `CR-004`: Every submitted financial operation shall preserve SutraERP/provider correlation and per-item traceability.
+- `CR-005`: Provider-specific interfaces shall remain isolated behind C03 adapters.
+- `CR-006`: File-based banking integration shall consume C03-008 generic transfer mechanics.
 
 ## 9. Open Decisions & Deferred Design
-| ID | Item | Blocking? | Resolution |
-|---|---|---|---|
-| OD-001 | Exact Finance/Treasury L4 BH mapping. | Yes for Architecture Approved. | Extract all materially applicable BHs including F-057/F-061. |
-| OD-002 | Specific bank/network products and protocols. | No. | Bind only from approved institution/provider requirements. |
+| ID | Item | Classification | Blocking? | Resolution |
+|---|---|---|---|---|
+| OD-001 | F-057/F-061 are Draft. | Upstream / Traceability | Yes for Architecture Approved absent authorization. | Approve/review upstream or authorize approval-level use, then validate mappings. |
+| OD-002 | Shared C03 pattern. | ADR | Yes for Architecture Approved if retained as family standard. | Allocate/evaluate canonically. |
+| OD-003 | Specific bank/network/provider protocol/product. | Technology | No. | Bind only from approved provider requirements. |
 
 ## 10. Traceability Summary
-**Corpus:** `L5-C-03-007`. **Known L4:** `L4-F-057`, `L4-F-061`. **Peers:** C03-001/002, C01, D03, E01 and Finance/Treasury L5 owners.
+**Specified L4:** `L4-F-057-BH-001`–`013`; `L4-F-061-BH-001`–`015`. **Peers:** C03-001/002/008, C01, D03, E01, Finance/Treasury. **Blocking:** OD-001, OD-002.
