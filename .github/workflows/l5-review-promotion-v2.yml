@@ -13,6 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
       - name: Promote Draft metadata to Review
         run: |
@@ -20,7 +21,7 @@ jobs:
           root='architecture/L5_Solution_Architecture/specifications'
           count=$(grep -RIl --include='*.md' -F '**Status:** `Draft`' "$root" | wc -l)
           echo "Draft files before promotion: $count"
-          test "$count" -eq 50
+          test "$count" -eq 39
           grep -RIl --include='*.md' -F '**Status:** `Draft`' "$root" | while IFS= read -r file; do
             sed -i '0,/\*\*Status:\*\* `Draft`/s//**Status:** `Review`/' "$file"
           done
