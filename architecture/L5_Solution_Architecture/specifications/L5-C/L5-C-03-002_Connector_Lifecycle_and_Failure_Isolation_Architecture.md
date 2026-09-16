@@ -9,11 +9,12 @@
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-01`; `L5-D-03`; `L5-E-01`; `L5-E-05`; `L5-A-04`; applicable upstream connector-governance behavior  
 **Referenced By:** `L5-C-03-003`–`L5-C-03-009`  
 **Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`  
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`  
 **Governing Sources:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Candidate Document Corpus Register 105; L5 Technology Selection & ADR Methodology; L5 ADR Register.
 
 ## 2. Purpose, Scope & Non-Goals
@@ -31,7 +32,7 @@ Defines technical realization for governed connector configuration, effective ru
 | ADR | Architecture Approved | `ADR-L5-0014` | Supplies canonical technical health/degradation/recovery semantics. |
 | L5 peer | current | `L5-D-03` | Owns secrets, certificates and machine-credential controls. |
 
-The cited L4 file is presently `Draft`. These mappings are therefore `Specified` planning evidence, not `Validated` L4→L5 relations under the locked traceability methodology. This remains an approval blocker unless governance authorizes approval-level use of that L4 behavior.
+`L4-H-073` remains `Draft`, but its cited behavior is explicitly governance-authorized for this Stage-5 approval. The L4→L5 relations remain `Specified`, not `Validated`, until the locked traceability methodology's normal source-status conditions are met.
 
 ### 3.2 Authoritative Constraints
 - H10-owned connector configuration states/events shall not be duplicated as C03 technical lifecycle states.
@@ -101,12 +102,12 @@ Configuration/effective-version changes and credential-binding changes require u
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Required Resolution |
 |---|---|---|---|---|
-| OD-001 | `L4-H-073` is Draft, so its BH mappings cannot yet be `Validated`. | Upstream | Yes for Architecture Approved absent explicit governance authorization. | Approve/review L4-H-073 or record governance authorization for approval-level use. |
+| OD-001 | Promotion of `L4-H-073` mappings from `Specified` to `Validated`. | Traceability | No for this Architecture Approved specification. | Revalidate after applicable L4 approval. |
 | OD-002 | Numeric timeout/retry/circuit thresholds. | Operations | No. | Bind only from approved provider/operational profiles. |
 
 ## 10. Traceability Summary
-**Specified L4 applicability:** `L4-H-073-BH-001`–`008`, `010`–`012`.  
+**Governance-authorized / Specified L4 applicability:** `L4-H-073-BH-001`–`008`, `010`–`012`.  
 **Peers:** C03-001, C01, D03, E01, E05, A04.  
 **Applicable shared ADR:** `ADR-L5-0016`.  
 **Decisions:** AD-001–004. **Conformance:** CR-001–007.  
-**Blocking:** OD-001.
+**Blocking:** none.
