@@ -9,10 +9,11 @@
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-03-002`; `L5-C-01`; `L5-D-03`; `L5-E-01`; applicable Finance L5 architecture  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`  
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines provider-neutral payment-gateway integration for provider initiation, redirect/callback handling, trusted provider verification, refunds and technical reconciliation evidence. Finance remains owner of Payment, refund, settlement, ledger and reconciliation business state.
@@ -25,7 +26,7 @@ Defines provider-neutral payment-gateway integration for provider initiation, re
 | `L4-F-010` | 1.0.1 / Draft | `BH-001`–`007`, `BH-010` | Preserve uncertain payment outcome without claiming settlement; maintain identity/references/evidence; Finance controls authorized lifecycle resolution. |
 | `L4-F-061` | 1.0.0 / Draft | `BH-003`–`008`, `BH-012`, `BH-014`–`015` | Compare external evidence, keep uncertainty unresolved, prevent duplicate settlement/automatic reversal, preserve reconciliation evidence. |
 
-These L4 files are Draft, so the relations are `Specified` rather than `Validated`. They cannot support Architecture Approved status without upstream approval or explicit governance authorization.
+These L4 files remain Draft. Their cited behavior is explicitly governance-authorized for this Stage-5 approval; canonical relation state remains `Specified`, not `Validated`, until the normal traceability source-status conditions are met.
 
 ### 3.2 Authoritative Constraints
 - Gateway evidence shall not directly establish canonical Finance state.
@@ -94,9 +95,9 @@ Machine credentials/certificates consume D03. Sensitive payment data is minimize
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| OD-001 | Applicable F-007/F-010/F-061 L4 specifications remain Draft. | Upstream / Traceability | Yes for Architecture Approved absent explicit authorization. | Approve/review upstream or record approval-level-use authorization, then validate relations. |
+| OD-001 | Promotion of F-007/F-010/F-061 relations from `Specified` to `Validated`. | Traceability | No for this Architecture Approved specification. | Revalidate after applicable L4 approval. |
 | OD-002 | Named payment gateway/provider and provider-specific authentication/profile. | Technology | No. | Govern only when concrete provider selection is required. |
 
 ## 10. Traceability Summary
-**Specified L4:** `L4-F-007-BH-001`–`003`,`007`–`011`; `L4-F-010-BH-001`–`007`,`010`; `L4-F-061-BH-003`–`008`,`012`,`014`–`015`.  
-**Peers:** C03-001/002, C01, D03, E01, Finance architecture. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** OD-001.
+**Governance-authorized / Specified L4:** `L4-F-007-BH-001`–`003`,`007`–`011`; `L4-F-010-BH-001`–`007`,`010`; `L4-F-061-BH-003`–`008`,`012`,`014`–`015`.  
+**Peers:** C03-001/002, C01, D03, E01, Finance architecture. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** none.
