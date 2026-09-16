@@ -19,11 +19,13 @@ jobs:
           set -euo pipefail
           root='architecture/L5_Solution_Architecture/specifications'
           count=$(grep -RIl --include='*.md' -F '**Status:** `Draft`' "$root" | wc -l)
+          echo "Draft files before promotion: $count"
           test "$count" -eq 50
           grep -RIl --include='*.md' -F '**Status:** `Draft`' "$root" | while IFS= read -r file; do
             sed -i '0,/\*\*Status:\*\* `Draft`/s//**Status:** `Review`/' "$file"
           done
-          remaining=$(grep -RIl --include='*.md' -F '**Status:** `Draft`' "$root" | wc -l)
+          remaining=$(grep -RIl --include='*.md' -F '**Status:** `Draft`' "$root" | wc -l || true)
+          echo "Draft files after promotion: $remaining"
           test "$remaining" -eq 0
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
