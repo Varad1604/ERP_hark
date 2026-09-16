@@ -9,10 +9,11 @@
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-E-03-001`; `L5-B-02`; `L5-D-03`; `L5-E-01`; `L5-E-05`; applicable data-store owners  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; `ADR-L5-0017`
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; `ADR-L5-0017`  
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines backup-set construction, protected recovery copies, restore execution and point-in-time recovery mechanics across governed data stores. It does not choose a database/storage product, invent RPO/RTO/retention values or redefine business-record retention.
@@ -20,13 +21,13 @@ Defines backup-set construction, protected recovery copies, restore execution an
 ## 3. Upstream Applicability & Constraints
 | Source | Status | Exact Reference | E03-002 Use |
 |---|---|---|---|
-| `L5-E-03-001` | Draft | recovery class/profile and recovery-set model | Supplies class/objective boundary consumed here. |
+| `L5-E-03-001` | Architecture Approved | recovery class/profile and recovery-set model | Supplies class/objective boundary consumed here. |
 | `L5-B-02-*` | Draft/current | persistence ownership/topology/transaction capabilities | Supplies store ownership and consistency characteristics; E03 does not redesign persistence. |
 | `ADR-L5-0014` | Architecture Approved | validation + controlled return | Restoration does not imply service readiness. |
 | `ADR-L5-0017` | Architecture Approved | recovery classification/protected-copy/restore/DR validation | Governs protected-copy, restore/PITR and recovery-validation pattern. |
 | `L4-A-057` | Draft | `BH-005`–`BH-009` | Supporting requirement to preserve data/config/history and validate integrity before restored availability. |
 
-The L4 relation is `Specified`, not `Validated`, while L4-A-057 remains Draft.
+`L4-A-057` remains Draft, but its cited behavior is explicitly governance-authorized for this Stage-5 approval. The relation remains `Specified`, not `Validated`, until normal traceability source-status conditions are met. The B02 boundary is declared stable enough for scoped E03 consumption by the Stage-5 approval decision.
 
 ### Authoritative Constraints
 - Backup method/frequency must satisfy an approved recovery profile; E03 shall not invent numeric objectives.
@@ -93,8 +94,8 @@ Backup data and transfer consume D03 protection. Key custody remains separated f
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| OD-001 | B02/E03-001 dependency decisions must be stable for final approval. | Dependency | Yes if unresolved at approval gate. | Revalidate dependency status/content. |
-| OD-002 | Named database/storage backup technology and numeric profile values. | Technology / Operations | No. | Decide only through governed technology selection and approved requirements. |
+| OD-001 | Named database/storage backup technology and numeric profile values. | Technology / Operations | No. | Decide only through governed technology selection and approved requirements. |
+| OD-002 | Promotion of supporting `L4-A-057` relation from `Specified` to `Validated`. | Traceability | No for this Architecture Approved specification. | Revalidate after applicable L4 approval. |
 
 ## 10. Traceability Summary
-**Primary:** `L5-E-03-001`, B02, `ADR-L5-0014`, `ADR-L5-0017`. **Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Peers:** D03, E01, E05. **Blocking:** dependency gate as applicable.
+**Primary:** `L5-E-03-001`, B02, `ADR-L5-0014`, `ADR-L5-0017`, Stage-5 approval decision. **Governance-authorized / Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Peers:** D03, E01, E05. **Blocking:** none.
