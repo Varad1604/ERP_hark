@@ -9,10 +9,11 @@
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-03-002`; `L5-C-01`; `L5-D-01`; `L5-D-02`; `L5-D-03`; applicable Academic/Identity L5 architecture  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0016`
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0016`  
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines provider-facing integration for APAAR, DigiLocker and academic-credit exchange capabilities while preserving SutraERP canonical Person, Student, academic-result, credential and credit ownership.
@@ -27,7 +28,7 @@ Defines provider-facing integration for APAAR, DigiLocker and academic-credit ex
 | L2-H01 | Locked | APAAR & DigiLocker workflows/amendments | Establishes canonical H01 ownership, consent and connector-governance meaning. |
 | `ADR-L5-0016` | Architecture Approved | shared connector pattern | Governs provider adapter isolation, configuration, credentials, correlation and failure containment. |
 
-The L4 sources are Draft; all mappings are `Specified`, not `Validated`, until upstream approval or explicit governance authorization.
+The cited L4 sources remain Draft, but their identified behavior is explicitly governance-authorized for this Stage-5 approval. Canonical relation state remains `Specified`, not `Validated`, until the locked traceability methodology's normal source-status conditions are met.
 
 ### 3.2 Authoritative Constraints
 - APAAR/provider identifiers remain external references; they do not replace canonical Person/Student identifiers.
@@ -86,8 +87,8 @@ Authorization, service identity, credentials and transport protection consume D0
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| OD-001 | H-001/H-002/H-006 are Draft. | Upstream / Traceability | Yes for Architecture Approved absent authorization. | Approve/review upstream or explicitly authorize approval-level use; then validate mappings. |
+| OD-001 | Promotion of H-001/H-002/H-006 mappings from `Specified` to `Validated`. | Traceability | No for this Architecture Approved specification. | Revalidate after applicable L4 approval. |
 | OD-002 | Provider-specific protocol/onboarding profile. | Provider / Technology | No. | Bind from official provider contracts through governance. |
 
 ## 10. Traceability Summary
-**Specified L4:** `L4-H-001-BH-001`–`008`; `L4-H-002-BH-001`–`007`; `L4-H-006-BH-001`–`008`. **Higher-level verification:** locked L2-H01. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** OD-001.
+**Governance-authorized / Specified L4:** `L4-H-001-BH-001`–`008`; `L4-H-002-BH-001`–`007`; `L4-H-006-BH-001`–`008`. **Higher-level verification:** locked L2-H01. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** none.
