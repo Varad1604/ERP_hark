@@ -8,7 +8,7 @@
 **Canonical Technical Responsibility:** Backup sets, restoration and point-in-time recovery across governed data stores.  
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.2`  
+**Version:** `1.0.3`  
 **Status:** `Locked`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-E-03-001`; `L5-B-02`; `L5-D-03`; `L5-E-01`; `L5-E-05`; applicable data-store owners  
@@ -22,7 +22,7 @@ Defines backup-set construction, protected recovery copies, restore execution an
 ## 3. Upstream Applicability & Constraints
 | Source | Status | Exact Reference | E03-002 Use |
 |---|---|---|---|
-| `L5-E-03-001` | Architecture Approved | recovery class/profile and recovery-set model | Supplies class/objective boundary consumed here. |
+| `L5-E-03-001` | Locked | recovery class/profile and recovery-set model | Supplies class/objective boundary consumed here. |
 | `L5-B-02-*` | Draft/current | persistence ownership/topology/transaction capabilities | Supplies store ownership and consistency characteristics; E03 does not redesign persistence. |
 | `ADR-L5-0014` | Architecture Approved | validation + controlled return | Restoration does not imply service readiness. |
 | `ADR-L5-0017` | Architecture Approved | recovery classification/protected-copy/restore/DR validation | Governs protected-copy, restore/PITR and recovery-validation pattern. |
