@@ -101,6 +101,7 @@ The next new ADR number is determined from the highest canonical allocated ADR n
 | `ADR-L5-0015` | Web Client Platform, Rendering & Deployment Pattern | Specification | L5-G-01 — Client Platform Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0015_Web_Client_Platform_Rendering_and_Deployment_Pattern.md` | `L5-G-01-002` | 2026-09-15 | 2026-09-15 | — | — | Approved immediate web-client stack: TypeScript + React + React Router Framework Mode, SPA-first static artifact and one modular web application; not Locked. |
 | `ADR-L5-0016` | External Connector Adapter, Configuration & Failure-Isolation Pattern | Shared / Family | L5-C-03 — External Integration & Connector Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0016_External_Connector_Adapter_Configuration_and_Failure_Isolation_Pattern.md` | `L5-C-03-001`–`L5-C-03-009` | 2026-09-16 | 2026-09-16 | — | — | Approved Stage-5 C03 family pattern; provider/product selection remains outside this ADR. |
 | `ADR-L5-0017` | Recovery Classification, Protected Copy, Restore & Disaster-Recovery Validation Pattern | Repository | L5-E-03 — Backup, Restore & Disaster Recovery Architecture | Architecture Approved | `architecture/L5_Solution_Architecture/adr/ADR-L5-0017_Recovery_Classification_Protected_Copy_Restore_and_Disaster_Recovery_Validation_Pattern.md` | `L5-E-03-001`; `L5-E-03-002`; `L5-E-03-003`; constrains recovery-aware L5 consumers | 2026-09-16 | 2026-09-16 | — | — | Approved Stage-5 E03 recovery strategy; provider/product and numeric RPO/RTO selection remain outside this ADR. |
+| `ADR-L5-0018` | Primary Server Platform, Rust Standardization & Governed Runtime Exception Pattern | Repository | L5-A-02 — Technology Platform & Standards Architecture | Proposed | — | `L5-A-02-001`; constrains server-side SutraERP implementations and technology selections | 2026-09-16 | — | — | — | Canonically allocated for the Stage-6 primary server-platform decision; ADR file to be created after allocation. |
 
 ### ADR Path
 
@@ -344,5 +345,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 17  
-**Next Canonical Allocation:** `ADR-L5-0018`
+**ADR IDs Currently Canonically Allocated:** 18  
+**Next Canonical Allocation:** `ADR-L5-0019`
