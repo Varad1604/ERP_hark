@@ -34,6 +34,25 @@ The initial L6 foundation package is located under:
 
 The six foundation artifacts remain `Draft`; they have not been silently renamed, locked, or assigned permanent L6 specification IDs. `L6_Foundation_Controlled_Authorization_2026-09-16.md` is the active Architecture Approved decision authorizing controlled L6 production authoring and implementation slices while the drafts mature through normal governance.
 
+## Current Inventory Package
+
+The first repository-wide inventory artifact is:
+
+```text
+L6_Screen_and_Workspace_Inventory_DRAFT.md
+```
+
+It establishes:
+
+- 98 business workspace families covering the active non-review L2 workflow/foundation areas;
+- 6 shared L6 shell/task surfaces;
+- 104 total draft inventory units;
+- the approved asymmetric Administrator / Faculty / Student home composition;
+- the rule that inventory rows are not automatically navigation items or final screens;
+- the requirement to resolve exact L3/L4/L5 traceability before production slice authorization.
+
+This inventory is a `Draft`. It is workspace-family complete, not yet a final screen corpus and not a Final L6 Corpus Lock.
+
 ## Controlled Foundation Authorization
 
 Effective 2026-09-16, repository governance has explicitly authorized the initial L6 foundation for controlled production use.
@@ -56,13 +75,14 @@ The reviewed frontend implementation at authorization time is recorded as eviden
 
 The foundation gate is now **passed for controlled L6 authoring**, subject to the boundaries in `L6_Foundation_Controlled_Authorization_2026-09-16.md`.
 
-The next governed work is:
+Current governed sequence:
 
-1. derive the complete screen/workspace and user-journey inventory from approved upstream architecture;
-2. validate persona/task navigation;
-3. define production L6 slices using the controlled draft template;
-4. implement frontend slices only after the corresponding L6 boundary is sufficiently approved/authorized;
-5. feed material usability or feasibility findings back through controlled L6 amendment rather than silently changing architecture in code.
+1. repository-wide screen/workspace inventory — **Draft established**;
+2. persona/task journey and navigation mapping — next;
+3. exact screen/journey L3/L4/L5 traceability register;
+4. production L6 slice authoring using the controlled draft template;
+5. frontend implementation only after the corresponding L6 boundary is sufficiently approved/authorized;
+6. material usability or feasibility findings return through controlled L6 amendment rather than silently changing architecture in code.
 
 This authorization is not a Final L6 Corpus Lock and does not freeze a complete screen population.
 
