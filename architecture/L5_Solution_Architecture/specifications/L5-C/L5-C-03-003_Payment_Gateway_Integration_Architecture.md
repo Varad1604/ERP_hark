@@ -8,11 +8,11 @@
 **Canonical Technical Responsibility:** Multi-gateway payment integration while Finance retains canonical financial/payment state.  
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-03-002`; `L5-C-01`; `L5-D-03`; `L5-E-01`; applicable Finance L5 architecture  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`; shared C03 family ADR required but not yet canonically allocated
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines provider-neutral payment-gateway integration for provider initiation, redirect/callback handling, trusted provider verification, refunds and technical reconciliation evidence. Finance remains owner of Payment, refund, settlement, ledger and reconciliation business state.
@@ -73,10 +73,10 @@ Finance-authorized payment intent/reference
 ## 6. Architecture Decisions
 | ID | Decision | Position | Basis | ADR |
 |---|---|---|---|---|
-| AD-001 | Gateway structure | Multi-provider abstraction with provider-specific adapters. | Frozen C03-003 responsibility; provider independence. | Shared C03 ADR required before approval. |
-| AD-002 | Authority | Finance owns Payment/refund/reconciliation state; gateway responses are evidence. | F-007/F-010/F-061 ownership. | None. |
-| AD-003 | Confirmation | Canonical outcome requires trusted server-side provider evidence interpreted by Finance rules; redirect is insufficient. | F-010/F-061 evidence constraints. | C03 ADR may govern common technical pattern. |
-| AD-004 | Ambiguity | Preserve unresolved technical outcome until provider/Finance reconciliation. | `L4-F-010-BH-001`–`007`; `L4-F-061-BH-007`–`008`. | `ADR-L5-0014` + C03 specialization. |
+| AD-001 | Gateway structure | Multi-provider abstraction with provider-specific adapters. | Frozen C03-003 responsibility; provider independence. | `ADR-L5-0016` |
+| AD-002 | Authority | Finance owns Payment/refund/reconciliation state; gateway responses are evidence. | F-007/F-010/F-061 ownership. | `ADR-L5-0016` ownership-preserving handoff. |
+| AD-003 | Confirmation | Canonical outcome requires trusted server-side provider evidence interpreted by Finance rules; redirect is insufficient. | F-010/F-061 evidence constraints. | `ADR-L5-0016` |
+| AD-004 | Ambiguity | Preserve unresolved technical outcome until provider/Finance reconciliation. | `L4-F-010-BH-001`–`007`; `L4-F-061-BH-007`–`008`. | `ADR-L5-0014`; `ADR-L5-0016` |
 | AD-005 | Card-data boundary | Provider-hosted/tokenized mechanisms are preferred when provider contracts support them; raw card credential persistence is not required by this architecture. | Data-minimization/security derivation; no card platform selected. | None unless a material payment technology is selected. |
 
 ## 7. Security, Privacy & Operations
@@ -95,9 +95,8 @@ Machine credentials/certificates consume D03. Sensitive payment data is minimize
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
 | OD-001 | Applicable F-007/F-010/F-061 L4 specifications remain Draft. | Upstream / Traceability | Yes for Architecture Approved absent explicit authorization. | Approve/review upstream or record approval-level-use authorization, then validate relations. |
-| OD-002 | Shared C03 connector/provider-outcome pattern. | ADR | Yes for Architecture Approved if retained as family standard. | Allocate/evaluate canonically. |
-| OD-003 | Named payment gateway/provider and provider-specific authentication/profile. | Technology | No. | Govern only when concrete provider selection is required. |
+| OD-002 | Named payment gateway/provider and provider-specific authentication/profile. | Technology | No. | Govern only when concrete provider selection is required. |
 
 ## 10. Traceability Summary
 **Specified L4:** `L4-F-007-BH-001`–`003`,`007`–`011`; `L4-F-010-BH-001`–`007`,`010`; `L4-F-061-BH-003`–`008`,`012`,`014`–`015`.  
-**Peers:** C03-001/002, C01, D03, E01, Finance architecture. **Blocking:** OD-001, OD-002.
+**Peers:** C03-001/002, C01, D03, E01, Finance architecture. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** OD-001.
