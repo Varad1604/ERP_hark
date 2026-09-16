@@ -8,11 +8,11 @@
 **Canonical Technical Responsibility:** DR/failover models and proof of recoverability without assuming a cloud provider.  
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-E-03-001`; `L5-E-03-002`; `L5-E-01`; `L5-E-04`; `L5-B-02`; `L5-C-02`; `L5-C-03`; `L5-D-03`; `L5-E-05`  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0010`; `ADR-L5-0014`; repository recovery-strategy ADR required but not yet canonically allocated
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0010`; `ADR-L5-0014`; `ADR-L5-0017`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines provider-neutral disaster-recovery topology selection rules, failover/failback controls, split-brain prevention requirements, recovery validation and exercise evidence. It does not mandate active-active, active-passive, a cloud region model, orchestration product or numeric RTO/RPO.
@@ -23,6 +23,7 @@ Defines provider-neutral disaster-recovery topology selection rules, failover/fa
 | `L5-E-03-001` | Draft | recovery profile/class and recovery-set model | Supplies required objectives/context for topology/failover choice. |
 | `L5-E-03-002` | Draft | backup/restore/PITR architecture | Supplies trusted recovery points and restore capability. |
 | `ADR-L5-0014` | Architecture Approved | repository resilience, health, degradation, recovery | Requires contain → recover → validate → controlled return and no ownership transfer. |
+| `ADR-L5-0017` | Architecture Approved | repository recovery classification/protected-copy/restore/DR validation | Governs DR topology selection, fencing, failover/failback and recovery validation. |
 | `L4-A-057` | Draft | `BH-005`–`BH-009` | Supporting behavior: preserve state/history and do not claim restored availability before successful integrity validation. |
 | `L5-E-04-*` | Draft/current | on-premises-primary and cloud-capable runtime/deployment | Constrains DR to supported provider-neutral deployment models. |
 
@@ -89,11 +90,11 @@ Former primary becomes technically reachable
 ## 6. Architecture Decisions
 | ID | Decision | Position | Basis | ADR |
 |---|---|---|---|---|
-| AD-001 | DR topology | Select by recovery profile/deployment/consistency/risk; no universal active-active/active-passive topology. | E03 scope + technology neutrality. | Repository recovery ADR required before approval. |
-| AD-002 | Failover authority | Automatic only where failure qualification and consistency/fencing are sufficient; otherwise governed authorization. | E01/ADR0014 + split-brain risk. | Recovery ADR. |
-| AD-003 | Split brain | Prevent competing authoritative writers using capability-appropriate fencing/quorum/ownership-transfer mechanism. | Canonical ownership + B02 consistency. | Recovery ADR. |
-| AD-004 | Failback | Controlled validation/synchronization before return; no automatic snap-back. | A-057 BH006–009 + ADR0014. | Recovery ADR. |
-| AD-005 | Recovery proof | Infrastructure running is insufficient; integrity, dependencies, trust and critical paths must pass. | ADR0014 + A-057. | Recovery ADR. |
+| AD-001 | DR topology | Select by recovery profile/deployment/consistency/risk; no universal active-active/active-passive topology. | E03 scope + technology neutrality. | `ADR-L5-0017` |
+| AD-002 | Failover authority | Automatic only where failure qualification and consistency/fencing are sufficient; otherwise governed authorization. | E01/ADR0014 + split-brain risk. | `ADR-L5-0017` |
+| AD-003 | Split brain | Prevent competing authoritative writers using capability-appropriate fencing/quorum/ownership-transfer mechanism. | Canonical ownership + B02 consistency. | `ADR-L5-0017` |
+| AD-004 | Failback | Controlled validation/synchronization before return; no automatic snap-back. | A-057 BH006–009 + ADR0014. | `ADR-L5-0017` |
+| AD-005 | Recovery proof | Infrastructure running is insufficient; integrity, dependencies, trust and critical paths must pass. | ADR0014 + A-057. | `ADR-L5-0017` |
 
 ## 7. Security, Privacy & Operations
 DR environments consume D03 trusted identity/credentials/keys and E04 deployment controls. Exercises should use safe external test/sandbox/mocked dependencies where production-provider failover cannot be exercised. DR evidence records scope, recovery point, stage outcomes, deviations, dependency failures and corrective actions without copying sensitive business payloads unnecessarily.
@@ -111,10 +112,9 @@ DR environments consume D03 trusted identity/credentials/keys and E04 deployment
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| OD-001 | Repository recovery strategy ADR not yet allocated/approved. | ADR | Yes for Architecture Approved. | Allocate/evaluate canonically. |
-| OD-002 | E03-001/002, E04, B02 and other material peer dependencies must be stable for final approval. | Dependency | Yes if unresolved at approval gate. | Revalidate peer status/content. |
-| OD-003 | Supporting L4-A-057 is Draft. | Traceability | Yes for any claimed Validated BH relation. | Keep relation Specified until approved/authorized. |
-| OD-004 | Named topology/product and numeric recovery objectives. | Technology / Requirement | No. | Decide only from approved requirements through ADR/technology governance. |
+| OD-001 | E03-001/002, E04, B02 and other material peer dependencies must be stable for final approval. | Dependency | Yes if unresolved at approval gate. | Revalidate peer status/content. |
+| OD-002 | Supporting L4-A-057 is Draft. | Traceability | Yes for any claimed Validated BH relation. | Keep relation Specified until approved/authorized. |
+| OD-003 | Named topology/product and numeric recovery objectives. | Technology / Requirement | No. | Decide only from approved requirements through ADR/technology governance. |
 
 ## 10. Traceability Summary
-**Primary:** E03-001/002, `ADR-L5-0014`, E04/B02. **Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Cross-capability recovery:** C02, C03, D03, E05. **Blocking:** OD-001 and applicable dependency gate.
+**Primary:** E03-001/002, `ADR-L5-0014`, `ADR-L5-0017`, E04/B02. **Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Cross-capability recovery:** C02, C03, D03, E05. **Blocking:** applicable dependency/traceability gate.
