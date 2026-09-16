@@ -9,12 +9,14 @@
 **Canonical Technical Responsibility:** Governed technology-selection criteria and approved standards after ADR decisions; no silent framework/product lock.  
 **Technical Architecture Owner:** L5-A-02 — Technology Platform & Standards Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.0`  
-**Status:** `Architecture Approved`  
+**Version:** `1.0.1`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; L5 Dependency-Gated Parallel Authoring Execution Timeline; `L5-A-01-001`; applicable material peer L5 specifications and approved ADRs  
 **Referenced By:** Server-side implementation architecture and technology-governed L5 consumers  
-**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0015`; `ADR-L5-0018`
+**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0015`; `ADR-L5-0018`  
+**Governance Authorization:** `L5_Dhruv_Stage6_A02_ADR0018_Independent_Architecture_Approval_Decision_2026-09-16.md`  
+**Governance Lock:** `L5_Dhruv_Stage6_Final_Lock_and_Completion_Decision_2026-09-16.md`
 
 ---
 
@@ -295,8 +297,8 @@ Material downstream architecture links include:
 
 ## 10. Approval Disposition
 
-`L5-A-02-001` is `Architecture Approved` with the primary server-platform decision established by `ADR-L5-0018`.
+`L5-A-02-001` is `Locked` under `L5_Dhruv_Stage6_Final_Lock_and_Completion_Decision_2026-09-16.md`.
 
-Approval does not convert unresolved peer-owned products into standards. Those choices remain explicitly deferred to their canonical technical owners and applicable ADR governance.
+The lock preserves the primary server-platform decision established by `ADR-L5-0018` and does not convert unresolved peer-owned products into standards. Those choices remain explicitly deferred to their canonical technical owners and applicable ADR governance.
 
-The specification is not Locked; lock requires separate final governance authorization.
+Material change requires governed impact assessment and controlled relock.
