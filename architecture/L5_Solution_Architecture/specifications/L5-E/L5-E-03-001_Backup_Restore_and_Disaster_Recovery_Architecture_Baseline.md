@@ -9,11 +9,12 @@
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-B-02`; `L5-E-04`; `L5-E-01`; `L5-D-03`; `L5-E-05`; applicable data owners  
 **Referenced By:** `L5-E-03-002`; `L5-E-03-003`; recoverability-aware L5 specifications  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; `ADR-L5-0017`
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; `ADR-L5-0017`  
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines the repository-level recovery architecture that classifies recoverability needs and coordinates backup, restore and disaster-recovery capabilities across supported on-premises-primary and cloud-capable deployment models. It does not invent business RPO/RTO values, storage products, cloud services or deployment topology.
@@ -29,7 +30,7 @@ Defines the repository-level recovery architecture that classifies recoverabilit
 | `L5-B-02-*` | Draft/current | persistence ownership/topology capabilities | Identifies governed data-store responsibilities consumed by backup/restore. |
 | `L5-E-04-*` | Draft/current | runtime/deployment models | Establishes supported deployment contexts that E03 must recover without assuming one cloud provider. |
 
-`L4-A-057` is a supporting recovery-sensitive behavior, not the sole source of E03. Its Draft status means any BH relation is `Specified`, not `Validated`. B02/E04/E01 dependency readiness must also remain explicit until their approval/stability gates are satisfied.
+`L4-A-057` remains Draft, but its cited behavior is explicitly governance-authorized for this Stage-5 approval. The relation remains `Specified`, not `Validated`, until the locked traceability methodology's normal source-status conditions are met. The consumed B02/E04/E01 boundaries are declared stable enough for the scoped Stage-5 use by the Stage-5 approval decision; their unrelated open decisions remain peer-owned.
 
 ### 3.2 Authoritative Constraints
 - Recovery shall preserve canonical ownership; backup or DR copies do not become alternate business owners.
@@ -100,9 +101,8 @@ Backups/restores consume D03 encryption/key controls and applicable B05 retentio
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Required Resolution |
 |---|---|---|---|---|
-| OD-001 | Supporting `L4-A-057` is Draft and cannot yield Validated relation yet. | Upstream / Traceability | Yes for any claimed Validated BH relation; approval impact depends on governance use of this supporting source. | Approve/review upstream or authorize approval-level use. |
-| OD-002 | B02/E04/E01 are current peer dependencies and must remain stable enough for final approval. | Dependency | Yes for Architecture Approved if material peer decisions remain unresolved. | Revalidate dependency status/content before approval gate. |
-| OD-003 | Numeric RPO/RTO, backup frequency and retention profiles. | Operations / Business requirement | No for baseline authoring. | Populate only from approved requirements. |
+| OD-001 | Promotion of supporting `L4-A-057` relation from `Specified` to `Validated`. | Traceability | No for this Architecture Approved specification. | Revalidate after applicable L4 approval. |
+| OD-002 | Numeric RPO/RTO, backup frequency and retention profiles. | Operations / Business requirement | No. | Populate only from approved requirements. |
 
 ## 10. Traceability Summary
-**Primary authority:** frozen `L5-E-03-001` responsibility; `ADR-L5-0014`; `ADR-L5-0017`. **Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Peers:** B02, E04, E01, D03, E05. **Blocking:** dependency/upstream gates as stated.
+**Primary authority:** frozen `L5-E-03-001` responsibility; `ADR-L5-0014`; `ADR-L5-0017`; Stage-5 approval decision. **Governance-authorized / Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Peers:** B02, E04, E01, D03, E05. **Blocking:** none.
