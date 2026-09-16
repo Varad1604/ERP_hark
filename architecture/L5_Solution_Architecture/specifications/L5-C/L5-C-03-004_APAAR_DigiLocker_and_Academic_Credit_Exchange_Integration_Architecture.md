@@ -8,11 +8,11 @@
 **Canonical Technical Responsibility:** Technical education identity/credential/credit exchange integration without owning institutional academic facts.  
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-03-002`; `L5-C-01`; `L5-D-01`; `L5-D-02`; `L5-D-03`; applicable Academic/Identity L5 architecture  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; shared C03 family ADR required but not yet canonically allocated
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0016`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines provider-facing integration for APAAR, DigiLocker and academic-credit exchange capabilities while preserving SutraERP canonical Person, Student, academic-result, credential and credit ownership.
@@ -25,6 +25,7 @@ Defines provider-facing integration for APAAR, DigiLocker and academic-credit ex
 | `L4-H-002` | 1.0.0 / Draft | `BH-001`–`BH-007` | Publish an already approved credential, require government acknowledgement for `Published`, preserve source ownership and evidence. |
 | `L4-H-006` | 1.0.0 / Draft | `BH-001`–`BH-008` | Bulk publication preserves per-credential eligibility/outcome and shall not invent a separate business Batch aggregate/lifecycle. |
 | L2-H01 | Locked | APAAR & DigiLocker workflows/amendments | Establishes canonical H01 ownership, consent and connector-governance meaning. |
+| `ADR-L5-0016` | Architecture Approved | shared connector pattern | Governs provider adapter isolation, configuration, credentials, correlation and failure containment. |
 
 The L4 sources are Draft; all mappings are `Specified`, not `Validated`, until upstream approval or explicit governance authorization.
 
@@ -66,10 +67,10 @@ Provider rejection, timeout or publication failure shall not revoke/correct the 
 ## 6. Architecture Decisions
 | ID | Decision | Position | Basis | ADR |
 |---|---|---|---|---|
-| AD-001 | Provider roles | Issuer/requester/provider roles are enabled only where authoritative onboarding permits them. | H01 prerequisites and connector eligibility. | Shared C03 ADR may govern adapter pattern. |
-| AD-002 | Identity linkage | External education IDs are governed references, not canonical Person keys. | `L4-H-001-BH-002`; canonical identity ownership. | None. |
-| AD-003 | Academic authority | External exchange transports evidence; source academic owners retain truth. | `L4-H-002-BH-002`; `L4-H-006`. | None. |
-| AD-004 | External conflict | Mismatch becomes reconciliation input; no automatic overwrite. | Ownership preservation. | None. |
+| AD-001 | Provider roles | Issuer/requester/provider roles are enabled only where authoritative onboarding permits them. | H01 prerequisites and connector eligibility. | `ADR-L5-0016` |
+| AD-002 | Identity linkage | External education IDs are governed references, not canonical Person keys. | `L4-H-001-BH-002`; canonical identity ownership. | `ADR-L5-0016` ownership-preserving handoff. |
+| AD-003 | Academic authority | External exchange transports evidence; source academic owners retain truth. | `L4-H-002-BH-002`; `L4-H-006`. | `ADR-L5-0016` |
+| AD-004 | External conflict | Mismatch becomes reconciliation input; no automatic overwrite. | Ownership preservation. | `ADR-L5-0016` |
 
 ## 7. Security, Privacy & Operations
 Authorization, service identity, credentials and transport protection consume D01/D02/D03. Purpose/consent is consumed from authoritative upstream state rather than recreated in C03. Non-production certification/sandbox and production profiles/credentials remain isolated where provider contracts require them. Sensitive identity/education data is minimized in telemetry.
@@ -86,8 +87,7 @@ Authorization, service identity, credentials and transport protection consume D0
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
 | OD-001 | H-001/H-002/H-006 are Draft. | Upstream / Traceability | Yes for Architecture Approved absent authorization. | Approve/review upstream or explicitly authorize approval-level use; then validate mappings. |
-| OD-002 | Shared C03 adapter/outcome-isolation pattern. | ADR | Yes for Architecture Approved if retained as family standard. | Allocate/evaluate through ADR Register. |
-| OD-003 | Provider-specific protocol/onboarding profile. | Provider / Technology | No. | Bind from official provider contracts through governance. |
+| OD-002 | Provider-specific protocol/onboarding profile. | Provider / Technology | No. | Bind from official provider contracts through governance. |
 
 ## 10. Traceability Summary
-**Specified L4:** `L4-H-001-BH-001`–`008`; `L4-H-002-BH-001`–`007`; `L4-H-006-BH-001`–`008`. **Higher-level verification:** locked L2-H01. **Blocking:** OD-001, OD-002.
+**Specified L4:** `L4-H-001-BH-001`–`008`; `L4-H-002-BH-001`–`007`; `L4-H-006-BH-001`–`008`. **Higher-level verification:** locked L2-H01. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** OD-001.
