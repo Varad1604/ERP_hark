@@ -22,6 +22,7 @@ Frontend Implementation
 ├── L6_Governance_and_Architecture_Standard_DRAFT.md
 ├── L6_UI_UX_Architecture_Template_v0.1_DRAFT.md
 ├── L6_Validation_Standard_DRAFT.md
+├── L6_Product_UX_Decision_Field_Map_DRAFT.md
 ├── L6_Foundation_Controlled_Authorization_2026-09-16.md
 └── L6_Authenticated_Shell_Slice_Architecture_Approval_Decision_2026-09-16.md
 
@@ -32,6 +33,8 @@ Frontend Implementation
 ```
 
 The six foundation artifacts remain `Draft`; they have not been silently renamed, locked, or assigned permanent L6 specification IDs. `L6_Foundation_Controlled_Authorization_2026-09-16.md` is the active Architecture Approved foundation decision authorizing controlled L6 production authoring while those drafts mature through normal governance.
+
+`L6_Product_UX_Decision_Field_Map_DRAFT.md` is the controlled working taxonomy for product/UX decisions during L6 authoring. It defines 64 core decision fields across eight families, distinguishes upstream-fixed, product-direction, architecture-derived, slice-specific and implementation-local matters, and requires reuse of previously resolved fields before new product questions are opened.
 
 `L6_Authenticated_Shell_Slice_Architecture_Approval_Decision_2026-09-16.md` is the first production-slice approval decision. It authorizes controlled frontend implementation of the shared authenticated shell, Institution/academic context presentation and switching, global search/discovery, notification presentation framework, account/session projection affordance, responsive shell behavior and accessibility requirements within its recorded boundaries.
 
@@ -82,6 +85,32 @@ The traceability register establishes:
 
 The three planning/traceability artifacts remain `Draft`. They do not constitute a final screen corpus, final navigation lock or Final L6 Corpus Lock.
 
+## Product / UX Decision Field Governance
+
+`00_Governance/L6_Product_UX_Decision_Field_Map_DRAFT.md` defines the controlled decision field catalogue used by L6 authoring.
+
+The map contains **64 core fields across eight families**:
+
+1. Product Experience Foundation;
+2. Global Shell and Information Architecture;
+3. Persona, Responsibility and Home Experience;
+4. Workspace Composition and Local Information Architecture;
+5. Actions, Forms and Workflow Interaction;
+6. Data Presentation, Exploration and Insight;
+7. State, Feedback, Attention and Communication;
+8. Responsive, Accessibility and Input Model.
+
+It also defines conditional decision fields for capabilities such as onboarding, localization, files/evidence, printing, session recovery, degraded connectivity, live updates, high-risk confirmation, external-system handoffs, analytics and bulk operations.
+
+The decision map shall be used to avoid re-asking choices already fixed upstream or already resolved by L6. A production slice should open new product-direction decisions only where a genuine unresolved UX choice materially affects the slice.
+
+Current Student Workspace working selections recorded by the map are **Selected — Pending Formalization**:
+
+- one canonical Student context with responsibility-sensitive Student self-view and authorized staff presentation;
+- core Student-owned record plus governed read-only cross-domain projections, with detailed work returning to canonical owning workspaces.
+
+These are not Architecture Approved until incorporated into a reviewed/approved Student Workspace slice artifact or decision.
+
 ## First Production Slice
 
 ```text
@@ -129,12 +158,13 @@ The reviewed frontend implementation recorded in the authorization is evidence, 
 2. Repository-wide screen/workspace inventory — **Draft established and corrected to 105 units**.
 3. Persona/task journey and navigation mapping — **Draft established**.
 4. Screen/journey full-corpus traceability register — **Draft established; 1,084 final L3 scenarios reconciled at workspace-family level**.
-5. First production slice L4/L5 binding — **completed for authenticated shell/context/search/notification presentation**.
-6. First production L6 slice authoring — **completed**.
-7. Independent L6 validation / proceed gate — **passed with controlled C04 live-integration constraint**.
-8. Frontend implementation of the approved shell slice — **authorized to proceed within the approval decision boundary**.
-9. Next production L6 slice — **Student Workspace overview/read-only orientation recommended next**.
-10. Material usability or feasibility findings return through controlled L6 amendment rather than silently changing architecture in code.
+5. Product/UX decision field map — **Draft established; reusable field taxonomy active for controlled authoring**.
+6. First production slice L4/L5 binding — **completed for authenticated shell/context/search/notification presentation**.
+7. First production L6 slice authoring — **completed**.
+8. Independent L6 validation / proceed gate — **passed with controlled C04 live-integration constraint**.
+9. Frontend implementation of the approved shell slice — **authorized to proceed within the approval decision boundary**.
+10. Next production L6 slice — **Student Workspace overview/read-only orientation recommended next; two working product selections are pending formalization**.
+11. Material usability or feasibility findings return through controlled L6 amendment rather than silently changing architecture in code.
 
 This authorization is not a Final L6 Corpus Lock and does not freeze the final screen population.
 
