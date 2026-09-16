@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Common external integration/connector boundary and ownership-preserving principles.  
 **Technical Architecture Owner:** `L5-C-03 — External Integration & Connector Architecture`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-01`; `L5-C-02`; `L5-D-03`; `L5-E-04`; `L5-E-05`; `L5-A-04`; applicable source-domain L5 architecture  
 **Referenced By:** `L5-C-03-002`–`L5-C-03-009`  
-**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0009`; `ADR-L5-0014`; shared C03 family ADR required but not yet canonically allocated  
+**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`  
 **Governing Sources:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Candidate Document Corpus Register 105; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology; L5 ADR Register; L5 Broad Authoring Authorization.
 
 ## 2. Purpose, Scope & Non-Goals
@@ -29,10 +29,11 @@ Defines the reusable technical boundary through which SutraERP communicates with
 |---|---|---|---|---|
 | L5 coverage decision | 1.0.0 / Architecture Approved | §5, §6, §9 | Reusable integration boundary; bulk/file and device integration are distinct reusable technical responsibilities; no canonical business ownership transfer. | Establishes the family purpose and ownership-preserving integration boundary. |
 | L5 corpus | current approved population | `L5-C-03-001`–`009` | Frozen C03 responsibilities. | Fixes family decomposition and prevents split/merge drift. |
+| `ADR-L5-0016` | Architecture Approved | shared C03 connector pattern | Shared adapter, configuration, credential, correlation and failure-isolation pattern. | Governs reusable C03 technical structure. |
 | L4 | 1.0.1 / Draft | `L4-H-073-BH-001`–`012` | Governed external connector configuration/effective history while authentication facts remain upstream-owned. | Requires a connector realization boundary without duplicating H10 business lifecycle. |
 | L4 | 1.0.1 / Draft | `L4-H-059-BH-003`–`008` | External submission, acknowledgement/outcome and evidence must preserve reporting ownership. | Requires transport/correlation/evidence handoff without owning regulatory completion. |
 | L4 | 1.0.0 / Draft | `L4-A-036-BH-001`–`008` | Governed bulk import requires authorization, structure/schema validation, semantic-owner handoff and evidence. | Requires technical intake/validation/staging boundary specialized by C03-008. |
-| L4 | 1.0.1 / Draft | `L4-F-061-BH-003`–`015` | External banking evidence may be failed/returned/uncertain; Treasury remains authoritative. | Requires ambiguous external outcomes to remain evidence for owner reconciliation. |
+| L4 | 1.0.0 / Draft | `L4-F-061-BH-003`–`015` | External banking evidence may be failed/returned/uncertain; Treasury remains authoritative. | Requires ambiguous external outcomes to remain evidence for owner reconciliation. |
 | ADR | Architecture Approved | `ADR-L5-0014` | Shared health, containment and validated recovery semantics. | Constrains provider failure isolation and return to service. |
 
 All cited L4 specifications are currently `Draft`; therefore these relations are `Specified`, not `Validated`, under the locked traceability methodology. They cannot be used as final approval authority without upstream approval or explicit governance authorization.
@@ -108,11 +109,11 @@ C03 does not define one universal protocol. Each connector profile shall use onl
 ## 6. Architecture & Technology Decisions
 | ID | Decision | Selected Position | Basis / Derivation | ADR |
 |---|---|---|---|---|
-| AD-001 | Integration structure | Shared C03 boundary with provider-specific adapters; source domains retain business ownership. | Approved coverage/corpus boundary + exact L4 exemplars. | Shared/family ADR required before approval. |
-| AD-002 | Provider-model isolation | Mapping/anti-corruption boundary prevents provider schemas from becoming canonical domain models. | Ownership preservation; L4-A-036/H-059/H-073 obligations. | To be evaluated in shared C03 ADR. |
-| AD-003 | Protocol posture | Provider-authorized governed portfolio; no single protocol/product selected here. | Upstream variability + technology-selection governance. | None unless a material shared technology is selected. |
-| AD-004 | Failure containment | Ambiguous outcomes remain unresolved; dependency failures use E01 containment/health semantics. | F-061 + `ADR-L5-0014`. | `ADR-L5-0014`; C03 ADR may specialize. |
-| AD-005 | Evidence boundary | Connector evidence supports traceability but does not become canonical business truth. | H-059/F-061 ownership constraints. | None. |
+| AD-001 | Integration structure | Shared C03 boundary with provider-specific adapters; source domains retain business ownership. | Approved coverage/corpus boundary + exact L4 exemplars. | `ADR-L5-0016` |
+| AD-002 | Provider-model isolation | Mapping/anti-corruption boundary prevents provider schemas from becoming canonical domain models. | Ownership preservation; L4-A-036/H-059/H-073 obligations. | `ADR-L5-0016` |
+| AD-003 | Protocol posture | Provider-authorized governed portfolio; no single protocol/product selected here. | Upstream variability + technology-selection governance. | `ADR-L5-0016` for shared pattern; separate ADR only if a material product is selected. |
+| AD-004 | Failure containment | Ambiguous outcomes remain unresolved; dependency failures use E01 containment/health semantics. | F-061 + `ADR-L5-0014`. | `ADR-L5-0014`; `ADR-L5-0016` |
+| AD-005 | Evidence boundary | Connector evidence supports traceability but does not become canonical business truth. | H-059/F-061 ownership constraints. | `ADR-L5-0016` |
 
 ## 7. Security, Privacy, Quality & Operational Impact
 Connector credentials consume D03 and shall not be committed in source-controlled configuration. Sensitive provider payloads are minimized in telemetry. Production and non-production provider profiles/credentials remain isolated where applicable. Capacity concerns include provider quotas, concurrency, backlog, payload size and recovery throughput; unsupported numeric values are not fixed here.
@@ -130,11 +131,10 @@ Connector credentials consume D03 and shall not be committed in source-controlle
 | ID | Item | Classification | Blocking? | Required Resolution |
 |---|---|---|---|---|
 | OD-001 | Material L4 exemplars are Draft, so C03 relations cannot yet be `Validated`. | Upstream / Traceability | Yes for Architecture Approved absent governance authorization. | Approve applicable L4 or record explicit approval-level-use authorization; then review relation evidence. |
-| OD-002 | Shared C03 connector/adaptor architecture decision. | ADR | Yes for Architecture Approved. | Allocate/evaluate through canonical ADR Register; no local ADR number may be invented. |
-| OD-003 | Named integration gateway/platform/product or repository-wide mandatory protocol profile. | Technology | No until such selection is required. | Use Technology Selection & ADR Methodology if proposed. |
+| OD-002 | Named integration gateway/platform/product or repository-wide mandatory protocol profile. | Technology | No until such selection is required. | Use Technology Selection & ADR Methodology if proposed. |
 
 ## 10. Traceability Summary
-**Approved purpose authority:** L5 Coverage Audit Decision §5/§6/§9; frozen `L5-C-03-001` responsibility.  
+**Approved purpose authority:** L5 Coverage Audit Decision §5/§6/§9; frozen `L5-C-03-001` responsibility; `ADR-L5-0016`.  
 **Specified L4 exemplars:** `L4-H-073-BH-001`–`012`; `L4-H-059-BH-003`–`008`; `L4-A-036-BH-001`–`008`; `L4-F-061-BH-003`–`015`.  
 **Material peers:** C01, C02, D01/D02/D03, A04, E01, E04, E05.  
-**Decisions:** AD-001–005. **Conformance:** CR-001–007. **Blocking:** OD-001, OD-002.
+**Decisions:** AD-001–005. **Conformance:** CR-001–007. **Blocking:** OD-001.
