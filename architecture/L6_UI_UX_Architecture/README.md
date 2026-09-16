@@ -34,15 +34,16 @@ The initial L6 foundation package is located under:
 
 The six foundation artifacts remain `Draft`; they have not been silently renamed, locked, or assigned permanent L6 specification IDs. `L6_Foundation_Controlled_Authorization_2026-09-16.md` is the active Architecture Approved decision authorizing controlled L6 production authoring and implementation slices while the drafts mature through normal governance.
 
-## Current Inventory Package
+## Current Inventory and Journey Package
 
-The first repository-wide inventory artifact is:
+The current repository-wide L6 planning artifacts are:
 
 ```text
 L6_Screen_and_Workspace_Inventory_DRAFT.md
+L6_Persona_Journey_and_Navigation_Map_DRAFT.md
 ```
 
-It establishes:
+The screen/workspace inventory establishes:
 
 - 98 business workspace families covering the active non-review L2 workflow/foundation areas;
 - 6 shared L6 shell/task surfaces;
@@ -51,7 +52,16 @@ It establishes:
 - the rule that inventory rows are not automatically navigation items or final screens;
 - the requirement to resolve exact L3/L4/L5 traceability before production slice authorization.
 
-This inventory is a `Draft`. It is workspace-family complete, not yet a final screen corpus and not a Final L6 Corpus Lock.
+The persona journey/navigation map establishes:
+
+- UX navigation profiles for Student, Faculty, Guardian, Institutional Administrator and specialist institutional work;
+- presentation profiles as non-authoritative UX compositions rather than security roles;
+- primary navigation consolidation of the 104 inventory units into task-recognizable user-facing families;
+- shared shell, contextual navigation, task entry, search/discovery and deep-link behavior;
+- representative student, faculty, guardian, administrator and specialist journeys;
+- responsive navigation direction and explicit open decisions that still require traceability/slice validation.
+
+Both artifacts are `Draft`. They establish controlled planning architecture but do not constitute a final screen corpus, final navigation lock or Final L6 Corpus Lock.
 
 ## Controlled Foundation Authorization
 
@@ -78,8 +88,8 @@ The foundation gate is now **passed for controlled L6 authoring**, subject to th
 Current governed sequence:
 
 1. repository-wide screen/workspace inventory — **Draft established**;
-2. persona/task journey and navigation mapping — next;
-3. exact screen/journey L3/L4/L5 traceability register;
+2. persona/task journey and navigation mapping — **Draft established**;
+3. exact screen/journey L3/L4/L5 traceability register — next;
 4. production L6 slice authoring using the controlled draft template;
 5. frontend implementation only after the corresponding L6 boundary is sufficiently approved/authorized;
 6. material usability or feasibility findings return through controlled L6 amendment rather than silently changing architecture in code.
