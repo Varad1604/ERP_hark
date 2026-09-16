@@ -9,11 +9,12 @@
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-03-002`; `L5-C-01`; `L5-D-03`; `L5-E-01`; applicable Finance/Treasury L5 architecture  
 **Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`  
-**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`  
+**Governance Lock:** `L5_Pallav_Stage5_Final_Lock_Decision_2026-09-16.md`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines secure provider-neutral integration with banks, treasury services and financial networks while Finance/Treasury remain authoritative for execution, settlement, Cash Position, reconciliation and ledger outcomes.
