@@ -9,10 +9,11 @@
 **Technical Architecture Owner:** `L5-C-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Draft`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-C-03-001`; `L5-C-02`; `L5-A-08`; `L5-D-01`; `L5-D-02`; `L5-D-03`; `L5-E-01`; `L5-E-05`; applicable business-domain L5 architecture  
-**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0013`; `ADR-L5-0014`; `ADR-L5-0016`
+**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0013`; `ADR-L5-0014`; `ADR-L5-0016`  
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines the reusable secure technical boundary for physical devices, edge systems, telemetry, evidence feeds and controlled actuators while ensuring device observations/commands never become business decisions merely because hardware produced or executed them.
@@ -27,7 +28,7 @@ Defines the reusable secure technical boundary for physical devices, edge system
 | `L4-G-107` | Draft | §10 Open Issues / Deferred Design | GPS/tracking/telemetry/routing technical mechanisms are deferred while route-deviation business semantics remain upstream. | C03 carries observations; Transport remains authoritative. |
 | L2-G07 | Locked | future QR/NFC/GPS verification statement | Future device technologies integrate without redesign. | Requires adapter-based extensibility without transferring Security Operations authority. |
 
-The Architecture Approved coverage decision establishes the technical owner. Draft L4 examples may support `Specified` relations only and are not approval-level BH authority.
+The Architecture Approved coverage decision establishes the technical owner. The cited Draft L4 examples are explicitly governance-authorized as supporting Stage-5 evidence; canonical relation state remains `Specified`, not `Validated`, until normal traceability source-status conditions are met.
 
 ### 3.2 Authoritative Constraints
 - Device/edge observations are evidence/input; canonical domains determine attendance, access, trip, asset, examination, identity, disciplinary or safety outcomes.
@@ -102,7 +103,7 @@ Device identities/certificates consume D-family controls. Sensitive biometric/lo
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
 | OD-001 | Concrete device vendor/protocol profiles and numeric buffer limits. | Technology / Operations | No. | Decide only from concrete device/provider requirements and capacity evidence. |
-| OD-002 | Draft L4 device-specific examples cannot be `Validated` traceability until approved. | Traceability | No for technical ownership purpose; yes for any claimed Validated BH relation. | Keep examples Specified until upstream approval/review. |
+| OD-002 | Promotion of Draft-L4 device examples from `Specified` to `Validated`. | Traceability | No for this Architecture Approved specification. | Revalidate after applicable L4 approval. |
 
 ## 10. Traceability Summary
-**Approved purpose authority:** L5 Coverage Audit Decision — Device/Edge/Physical-System Integration finding. **Specified examples:** `L4-G-106` §10; `L4-G-107` §10; locked L2-G07 future-device integration constraint. **Peers:** C03-001, C02, A08, D01/D02/D03, E01/E05. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** no ADR blocker; only traceability status limits remain for Draft L4 examples.
+**Approved purpose authority:** L5 Coverage Audit Decision — Device/Edge/Physical-System Integration finding. **Governance-authorized / Specified examples:** `L4-G-106` §10; `L4-G-107` §10; locked L2-G07 future-device integration constraint. **Peers:** C03-001, C02, A08, D01/D02/D03, E01/E05. **Applicable shared ADR:** `ADR-L5-0016`. **Blocking:** none.
