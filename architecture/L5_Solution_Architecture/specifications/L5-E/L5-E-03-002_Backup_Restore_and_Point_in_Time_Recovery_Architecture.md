@@ -9,11 +9,12 @@
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
 **Version:** `1.0.2`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-E-03-001`; `L5-B-02`; `L5-D-03`; `L5-E-01`; `L5-E-05`; applicable data-store owners  
 **Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; `ADR-L5-0017`  
-**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`
+**Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`  
+**Governance Lock:** `L5_Pallav_Stage5_Final_Lock_Decision_2026-09-16.md`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines backup-set construction, protected recovery copies, restore execution and point-in-time recovery mechanics across governed data stores. It does not choose a database/storage product, invent RPO/RTO/retention values or redefine business-record retention.
