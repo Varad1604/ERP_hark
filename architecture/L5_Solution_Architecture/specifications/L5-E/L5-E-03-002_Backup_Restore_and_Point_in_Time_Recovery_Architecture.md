@@ -8,11 +8,11 @@
 **Canonical Technical Responsibility:** Backup sets, restoration and point-in-time recovery across governed data stores.  
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Draft`  
 **Last Updated:** `2026-09-16`  
 **Depends On:** `L5-E-03-001`; `L5-B-02`; `L5-D-03`; `L5-E-01`; `L5-E-05`; applicable data-store owners  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; repository recovery-strategy ADR required but not yet canonically allocated
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; `ADR-L5-0017`
 
 ## 2. Purpose, Scope & Non-Goals
 Defines backup-set construction, protected recovery copies, restore execution and point-in-time recovery mechanics across governed data stores. It does not choose a database/storage product, invent RPO/RTO/retention values or redefine business-record retention.
@@ -23,6 +23,7 @@ Defines backup-set construction, protected recovery copies, restore execution an
 | `L5-E-03-001` | Draft | recovery class/profile and recovery-set model | Supplies class/objective boundary consumed here. |
 | `L5-B-02-*` | Draft/current | persistence ownership/topology/transaction capabilities | Supplies store ownership and consistency characteristics; E03 does not redesign persistence. |
 | `ADR-L5-0014` | Architecture Approved | validation + controlled return | Restoration does not imply service readiness. |
+| `ADR-L5-0017` | Architecture Approved | recovery classification/protected-copy/restore/DR validation | Governs protected-copy, restore/PITR and recovery-validation pattern. |
 | `L4-A-057` | Draft | `BH-005`–`BH-009` | Supporting requirement to preserve data/config/history and validate integrity before restored availability. |
 
 The L4 relation is `Specified`, not `Validated`, while L4-A-057 remains Draft.
@@ -72,10 +73,10 @@ Unreadable/corrupt/untrusted backup components are not promoted. Missing key mat
 ## 6. Architecture Decisions
 | ID | Decision | Position | Basis | ADR |
 |---|---|---|---|---|
-| AD-001 | PITR posture | Support PITR/change-history recovery only where profile requires it and selected store supports it. | E03 scope + product neutrality. | Repository recovery ADR required before approval. |
-| AD-002 | Protected copies | Class-appropriate recovery copies may require isolation/immutability/geographic separation, expressed as capabilities rather than vendor products. | Recovery-risk derivation + D03/E04 boundaries. | Recovery ADR. |
-| AD-003 | Restore proof | Restore success requires integrity/compatibility/application readiness, not mere file/database readability. | A-057 BH006–009 + ADR0014. | Recovery ADR. |
-| AD-004 | Derived data | Safely reconstructable derived stores may be rebuilt from canonical sources instead of backed up, when classified in the recovery profile. | Ownership + recovery efficiency. | Recovery ADR. |
+| AD-001 | PITR posture | Support PITR/change-history recovery only where profile requires it and selected store supports it. | E03 scope + product neutrality. | `ADR-L5-0017` |
+| AD-002 | Protected copies | Class-appropriate recovery copies may require isolation/immutability/geographic separation, expressed as capabilities rather than vendor products. | Recovery-risk derivation + D03/E04 boundaries. | `ADR-L5-0017` |
+| AD-003 | Restore proof | Restore success requires integrity/compatibility/application readiness, not mere file/database readability. | A-057 BH006–009 + ADR0014. | `ADR-L5-0017` |
+| AD-004 | Derived data | Safely reconstructable derived stores may be rebuilt from canonical sources instead of backed up, when classified in the recovery profile. | Ownership + recovery efficiency. | `ADR-L5-0017` |
 
 ## 7. Security, Privacy & Operations
 Backup data and transfer consume D03 protection. Key custody remains separated from backup media according to D03. Privileged restore/delete operations require authorization/evidence. Telemetry includes backup age/status, copy-verification result, restore duration stages, validation disposition and failures; no unsupported numeric thresholds are fixed.
@@ -92,9 +93,8 @@ Backup data and transfer consume D03 protection. Key custody remains separated f
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| OD-001 | Repository recovery pattern ADR not yet allocated/approved. | ADR | Yes for Architecture Approved. | Allocate/evaluate canonically. |
-| OD-002 | B02/E03-001 dependency decisions must be stable for final approval. | Dependency | Yes if unresolved at approval gate. | Revalidate dependency status/content. |
-| OD-003 | Named database/storage backup technology and numeric profile values. | Technology / Operations | No. | Decide only through governed technology selection and approved requirements. |
+| OD-001 | B02/E03-001 dependency decisions must be stable for final approval. | Dependency | Yes if unresolved at approval gate. | Revalidate dependency status/content. |
+| OD-002 | Named database/storage backup technology and numeric profile values. | Technology / Operations | No. | Decide only through governed technology selection and approved requirements. |
 
 ## 10. Traceability Summary
-**Primary:** `L5-E-03-001`, B02, `ADR-L5-0014`. **Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Peers:** D03, E01, E05. **Blocking:** OD-001 and dependency gate as applicable.
+**Primary:** `L5-E-03-001`, B02, `ADR-L5-0014`, `ADR-L5-0017`. **Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Peers:** D03, E01, E05. **Blocking:** dependency gate as applicable.
