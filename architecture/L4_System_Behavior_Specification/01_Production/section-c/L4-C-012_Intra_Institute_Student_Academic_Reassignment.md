@@ -7,16 +7,16 @@
 **Domain:** Student Lifecycle  
 **Realizes Scenario:** L3-C-012 — Intra Institute Student Academic Reassignment  
 **Primary Business Owner:** Student Lifecycle  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
+**Last Updated:** 2026-09-17  
 **Depends On:** L3-C-012; applicable locked C architecture sources  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern an authorized same-Institute, non-Programme Student Transfer outcome, preserving prior assignment history and applying the destination organisational/placement context. The behavior ends after `Transferred → Active` completion and the canonical transfer fact is published.
+The system shall govern an authorized same-Institute, non-Programme Student Transfer outcome, preserving prior assignment history and applying the destination organisational/placement context. The behavior ends after `Transferred → Active` completion and the canonical transfer fact is published.
 
 ## 3. Required Business Context
 
@@ -42,7 +42,7 @@ the system shall govern an authorized same-Institute, non-Programme Student Tran
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
 | L4-C-012-BH-006 | On successful transfer completion, the system shall publish the canonical `StudentTransferred` business fact under Student Lifecycle ownership. | L3-C-012 §§9, 14; L2-C02 |
-| L4-C-012-BH-007 | Institution & Structure participation shall provide context without acquiring StudentContext ownership. | L3-C-012 §§5, 14; L2-B02/L2-C02 |
+| L4-C-012-BH-007 | When validating a requested destination, the system shall use the authoritative Institution & Structure organisational context and shall not modify that source-owned context as part of the Student transfer. | L3-C-012 §§5, 9, 14; L2-B02/L2-C02 |
 
 ## 6. Failure / Rejection / Continuation
 
