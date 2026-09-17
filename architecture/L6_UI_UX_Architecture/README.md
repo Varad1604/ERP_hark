@@ -1,7 +1,7 @@
 # L6 UI / UX Architecture
 
 **Architecture Level:** L6 — UI / UX Architecture  
-**Current State:** Controlled Foundation Authorized + First Production Slice Architecture Approved + Student Workspace Draft Authored  
+**Current State:** Controlled Foundation Authorized + Authenticated Shell Approved + W-C02 Student Workspace Approved for Controlled Frontend Implementation  
 **Broad Production Authoring:** Controlled slices authorized; full corpus not yet frozen or locked  
 **Downstream:** SutraERP frontend implementation repository after applicable L6 slice approval/authorization  
 
@@ -26,23 +26,32 @@ Frontend Implementation
 ├── L6_Foundation_Controlled_Authorization_2026-09-16.md
 ├── L6_Authenticated_Shell_Slice_Architecture_Approval_Decision_2026-09-16.md
 ├── L6_Student_Workspace_Product_UX_Decision_Record_2026-09-17.md
-└── L6_Student_Workspace_Validation_and_Proceed_Gate_Decision_2026-09-17.md
+├── L6_Student_Workspace_Validation_and_Proceed_Gate_Decision_2026-09-17.md
+└── L6_Frontend_Backend_Integration_Guardrails.md
 
 01_Foundation/
 ├── L6_Design_System_Foundation_DRAFT.md
 ├── L6_Application_Shell_and_Information_Architecture_DRAFT.md
 └── L6_Interaction_State_and_Feedback_Standard_DRAFT.md
+
+02_Implementation_Review/
+├── README.md
+└── W-C02_Student_Workspace_Review_Pack.md
 ```
 
 The six foundation artifacts remain `Draft`; they have not been silently renamed, locked, or assigned permanent L6 specification IDs. `L6_Foundation_Controlled_Authorization_2026-09-16.md` is the active Architecture Approved foundation decision authorizing controlled L6 production authoring while those drafts mature through normal governance.
 
 `L6_Product_UX_Decision_Field_Map_DRAFT.md` is the controlled working taxonomy for product/UX decisions during L6 authoring. It defines 64 core decision fields across eight families, distinguishes upstream-fixed, product-direction, architecture-derived, slice-specific and implementation-local matters, and requires reuse of previously resolved fields before new product questions are opened.
 
-`L6_Authenticated_Shell_Slice_Architecture_Approval_Decision_2026-09-16.md` is the first production-slice approval decision. It authorizes controlled frontend implementation of the shared authenticated shell, Institution/academic context presentation and switching, global search/discovery, notification presentation framework, account/session projection affordance, responsive shell behavior and accessibility requirements within its recorded boundaries.
+`L6_Authenticated_Shell_Slice_Architecture_Approval_Decision_2026-09-16.md` authorizes controlled frontend implementation of the shared authenticated shell, Institution/academic context presentation and switching, global search/discovery, notification presentation framework, account/session projection affordance, responsive shell behavior and accessibility requirements within its recorded boundaries.
 
-`L6_Student_Workspace_Product_UX_Decision_Record_2026-09-17.md` records the selected W-C02 product/UX direction. Its decisions remain pending formal L6 slice approval and do not independently authorize frontend implementation.
+`L6_Student_Workspace_Product_UX_Decision_Record_2026-09-17.md` records the selected W-C02 product/UX direction.
 
-`L6_Student_Workspace_Validation_and_Proceed_Gate_Decision_2026-09-17.md` records the current W-C02 validation result: draft authoring and product decisions are complete, but HF-L6-12 remains open because exact domain-specific BH→L5 validated evidence is not yet proven. W-C02 is therefore not Architecture Approved and not authorized for production frontend implementation.
+`L6_Student_Workspace_Validation_and_Proceed_Gate_Decision_2026-09-17.md` is the current W-C02 authority. The former HF-L6-12 traceability blocker has been closed; W-C02 is **Architecture Approved — Controlled Frontend Implementation Authorized**.
+
+`L6_Frontend_Backend_Integration_Guardrails.md` is derived L6 governance for AI-assisted frontend implementation. It does not define backend/API architecture; it constrains the frontend to consume released authoritative contracts without inventing business rules, authorization, lifecycle outcomes, endpoint semantics or canonical ownership.
+
+`02_Implementation_Review/` defines the incremental UI review model. It exists so implementation is evaluated through reproducible journeys, fixtures, alternate states, failure states, responsive behavior and accessibility rather than only polished default screens.
 
 ## Current Planning and Traceability Package
 
@@ -110,7 +119,7 @@ It also defines conditional decision fields for capabilities such as onboarding,
 
 The decision map shall be used to avoid re-asking choices already fixed upstream or already resolved by L6. A production slice should open new product-direction decisions only where a genuine unresolved UX choice materially affects the slice.
 
-Student Workspace product/UX selections have now been recorded in `00_Governance/L6_Student_Workspace_Product_UX_Decision_Record_2026-09-17.md` and incorporated into `L6_Student_Workspace_DRAFT.md`. They remain **Selected — Pending Formal L6 Slice Approval** rather than Architecture Approved.
+Student Workspace product/UX selections are recorded in `00_Governance/L6_Student_Workspace_Product_UX_Decision_Record_2026-09-17.md`, incorporated into `L6_Student_Workspace_DRAFT.md`, and approved for controlled frontend implementation by the W-C02 proceed-gate decision.
 
 The selected direction includes:
 
@@ -124,7 +133,7 @@ The selected direction includes:
 - source-owned Student Lifecycle attention and ownership-preserving cross-workspace handoff;
 - progressive detail, authoritative mutation-state feedback and task-sensitive responsive/mobile behavior.
 
-No additional W-C02 product/UX question is currently open.
+No additional W-C02 product/UX decision is currently open.
 
 ## First Production Slice
 
@@ -132,7 +141,7 @@ No additional W-C02 product/UX question is currently open.
 L6_Authenticated_Application_Shell_Context_Search_and_Notifications_DRAFT.md
 ```
 
-This first production slice is **Architecture Approved for controlled frontend implementation** by `00_Governance/L6_Authenticated_Shell_Slice_Architecture_Approval_Decision_2026-09-16.md`.
+This slice is **Architecture Approved for controlled frontend implementation** by `00_Governance/L6_Authenticated_Shell_Slice_Architecture_Approval_Decision_2026-09-16.md`.
 
 The approved implementation boundary includes:
 
@@ -147,7 +156,7 @@ The approved implementation boundary includes:
 - account/session projection affordance without client ownership of credentials/session authority;
 - responsive and accessibility behavior.
 
-Live notification integration remains constrained to released upstream contracts because `L5-C-04-001/002/003` still carry `Review` metadata. The approval does not promote those L5 documents or authorize provider/retry/channel/template-administration behavior in L6.
+Live notification integration remains constrained to released upstream contracts because applicable live-integration architecture remains outside L6 ownership. The approval does not authorize provider/retry/channel/template-administration behavior in L6.
 
 ## Second Production Slice — Student Workspace
 
@@ -155,30 +164,56 @@ Live notification integration remains constrained to released upstream contracts
 L6_Student_Workspace_DRAFT.md
 ```
 
-The Student Workspace draft has been authored against exact workspace scope:
+The Student Workspace was authored against exact workspace scope:
 
 ```text
 L3/L4-C-001
 L3/L4-C-008 … L3/L4-C-019
 ```
 
-The draft preserves Student Lifecycle ownership, Person & Identity boundaries, read-only cross-domain projections, non-authoritative client state, server-authoritative authorization and protected-scope behavior.
+The slice preserves Student Lifecycle ownership, Person & Identity boundaries, read-only cross-domain projections, non-authoritative client state, server-authoritative authorization and protected-scope behavior.
 
 Current W-C02 status:
 
 ```text
-Product / UX decision phase        = complete
-L6 draft authoring                 = complete
-Exact L3/L4 scenario boundary      = resolved
-Mandatory Web Client Baseline      = resolved
-Domain-specific BH→L5 evidence     = open
-Architecture Approval              = not yet authorized
-Frontend implementation gate       = not yet authorized
+Product / UX decision phase        = COMPLETE
+L6 draft authoring                 = COMPLETE
+Exact L3/L4 scenario boundary      = RESOLVED
+Mandatory Web Client Baseline      = RESOLVED
+L4 parent readiness                = 13 / 13 ARCHITECTURE APPROVED
+Domain BH→L5 technical coverage    = 89 / 89 VALIDATED COVERAGE
+L6 hard fails 01–12                = PASS
+Architecture Approval              = AUTHORIZED
+Frontend implementation gate       = AUTHORIZED WITHIN CONTROLLED BOUNDARY
 ```
 
-The blocking issue is **HF-L6-12 / parent traceability maturity**, not an unresolved UX preference. The locked L5 traceability methodology requires BH-level many-to-many L4→L5 evidence; Draft L4 relations cannot become `Validated`. At least some W-C02 parent L4 artifacts still carry `Draft` metadata, and the live repository does not currently expose a canonical Section-C BH→L5 relation store sufficient to prove validated coverage for the full W-C02 slice.
+The current governing decision is `00_Governance/L6_Student_Workspace_Validation_and_Proceed_Gate_Decision_2026-09-17.md`.
 
-Therefore W-C02 is a controlled production-slice draft but is **not `Slice Ready` and is not yet authorized for production frontend implementation**.
+Controlled frontend implementation is authorized for the approved W-C02 composition, read-only projections, supported lifecycle action entry where released contracts exist, lifecycle/history presentation, document-request/status/result presentation, required outcome states, responsive behavior and accessibility within the recorded boundary.
+
+The approval does **not** authorize backend/API/database/service redesign, new Student Lifecycle rules/states/events, new Person/Identity merge semantics, cross-domain edit ownership, client-side authorization authority or invented contract semantics.
+
+## Incremental UI Implementation Review
+
+SutraERP frontend work shall not rely on static happy-path screen review alone.
+
+For every implementation-authorized workspace, the preferred flow is:
+
+```text
+approved L6 slice
+→ reviewer scenario pack
+→ explicit non-authoritative fixtures
+→ primary interactive journey
+→ alternate / failure / stale / denied states
+→ responsive + accessibility review
+→ classify findings
+→ implementation fix or controlled architecture amendment
+→ next increment
+```
+
+`02_Implementation_Review/README.md` defines the review framework. `02_Implementation_Review/W-C02_Student_Workspace_Review_Pack.md` is the first concrete review pack.
+
+The frontend should provide an explicit non-production **UI Review Mode** capable of selecting representative personas, records, scenario states and outcome conditions. Review Mode is not authorization and is not a backend simulator; it exists to make approved UI behavior reproducible and critiqueable before backend integration is complete.
 
 ## Controlled Foundation Authorization
 
@@ -196,7 +231,7 @@ The authorization establishes, for current L6 work:
 - global shell context, search, notifications and responsive navigation as presentation concerns only, never security authority;
 - dark mode, permanent numbering, exact token values and several implementation-library choices remain deferred.
 
-The reviewed frontend implementation recorded in the authorization is evidence, not architecture authority.
+The reviewed frontend implementation is evidence, not architecture authority.
 
 ## Current Governed Sequence
 
@@ -205,15 +240,15 @@ The reviewed frontend implementation recorded in the authorization is evidence, 
 3. Persona/task journey and navigation mapping — **Draft established**.
 4. Screen/journey full-corpus traceability register — **Draft established; 1,084 final L3 scenarios reconciled at workspace-family level**.
 5. Product/UX decision field map — **Draft established; reusable field taxonomy active for controlled authoring**.
-6. First production slice L4/L5 binding — **completed for authenticated shell/context/search/notification presentation**.
-7. First production L6 slice authoring — **completed**.
-8. Independent L6 validation / proceed gate — **passed with controlled C04 live-integration constraint**.
-9. Frontend implementation of the approved shell slice — **authorized to proceed within the approval decision boundary**.
-10. W-C02 Student Workspace product/UX decisions — **selected and recorded**.
-11. W-C02 Student Workspace production-slice draft — **authored**.
-12. W-C02 validation/proceed-gate review — **completed; blocked by HF-L6-12 upstream traceability**.
-13. W-C02 domain-specific BH→L5 evidence / parent maturity remediation — **required before Architecture Approval and frontend implementation authorization**.
-14. Material usability or feasibility findings return through controlled L6 amendment rather than silently changing architecture in code.
+6. Authenticated shell L4/L5 binding and L6 approval — **completed**.
+7. Authenticated shell frontend implementation — **authorized within its approval boundary**.
+8. W-C02 Student Workspace product/UX decisions — **complete**.
+9. W-C02 Student Workspace production-slice draft — **complete**.
+10. W-C02 parent/L5 traceability remediation — **complete; 13/13 parents and 89/89 BHs validated**.
+11. W-C02 validation/proceed gate — **passed; controlled frontend implementation authorized**.
+12. Frontend/backend integration guardrails — **active derived L6 guidance**.
+13. Incremental UI implementation review framework — **active; W-C02 review pack established**.
+14. Material usability or feasibility findings return through controlled classification/amendment rather than silently changing architecture in code.
 
 This authorization is not a Final L6 Corpus Lock and does not freeze the final screen population.
 
