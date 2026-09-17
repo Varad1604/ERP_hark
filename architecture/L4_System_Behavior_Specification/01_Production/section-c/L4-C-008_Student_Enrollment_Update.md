@@ -8,15 +8,15 @@
 **Realizes Scenario:** L3-C-008 — Student Enrollment Update  
 **Primary Business Owner:** Student Lifecycle  
 **Version:** 1.0.0  
-**Status:** Draft  
+**Status:** Architecture Approved  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
+**Last Updated:** 2026-09-17  
 **Depends On:** L3-C-008; applicable locked C architecture sources  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern an authorized update to enrollment information for an Active Student while preserving prior enrollment history and current-enrollment uniqueness. The behavior ends when the enrollment update is complete and `EnrollmentUpdated` is published.
+The system shall govern an authorized update to enrollment information for an Active Student while preserving prior enrollment history and current-enrollment uniqueness. The behavior ends when the enrollment update is complete and `EnrollmentUpdated` is published.
 
 ## 3. Required Business Context
 
@@ -69,4 +69,4 @@ Institution-specific approval roles and configurable policies remain upstream/co
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification is Architecture Approved under the W-C02 parent-set validation decision and is not Locked.
