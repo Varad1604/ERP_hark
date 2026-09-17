@@ -2,11 +2,12 @@
 
 **Partition:** Section C — Student Lifecycle originating L4 BHs  
 **Architecture Level:** L5 — Solution Architecture Governance  
-**Status:** Active — Population Pending  
+**Status:** Active — W-C02 Stage 3 Population In Progress  
 **Owner:** Lead Architect  
 **Established:** 2026-09-17  
+**Last Reviewed:** 2026-09-17  
 **Governing Methodology:** `../../governance/instruction/L5_L4_to_L5_Traceability_Methodology.md`  
-**Canonical Store:** `README.md`  
+**Canonical Store:** `README.md`
 
 ---
 
@@ -14,123 +15,180 @@
 
 This file is the canonical traceability partition for relations originating from approved `L4-C-*` System Behavioral Obligations.
 
-A row may be added only when a defensible material technical contribution from a canonical L5 specification has been derived from the L4 BH and recorded according to the Locked methodology.
-
-No relationship is implied by physical proximity, naming similarity, shared domain language or an L5 document's selective traceability section.
+A canonical row means only that the identified L5 specification supplies the stated material technical contribution. It does not transfer business ownership or imply that one L5 specification realizes the entire BH.
 
 ---
 
-## 2. W-C02 Initial Approved Parent Scope
-
-The W-C02 Student Workspace upstream-readiness effort establishes the following 13 Architecture Approved L4 parents as the initial Section-C population scope:
+## 2. W-C02 Approved Parent Scope
 
 | L4 Specification | Current Version | Architecture Status | BH Count | Relation Population Status |
 |---|---:|---|---:|---|
-| `L4-C-001` | 1.0.1 | Architecture Approved | 7 | Pending Stage 3 derivation/review |
-| `L4-C-008` | 1.0.0 | Architecture Approved | 6 | Pending Stage 3 derivation/review |
-| `L4-C-009` | 1.0.0 | Architecture Approved | 6 | Pending Stage 3 derivation/review |
-| `L4-C-010` | 1.0.0 | Architecture Approved | 7 | Pending Stage 3 derivation/review |
-| `L4-C-011` | 1.0.1 | Architecture Approved | 7 | Pending Stage 3 derivation/review |
-| `L4-C-012` | 1.0.1 | Architecture Approved | 7 | Pending Stage 3 derivation/review |
-| `L4-C-013` | 1.0.1 | Architecture Approved | 7 | Pending Stage 3 derivation/review |
-| `L4-C-014` | 1.0.0 | Architecture Approved | 6 | Pending Stage 3 derivation/review |
-| `L4-C-015` | 1.0.0 | Architecture Approved | 6 | Pending Stage 3 derivation/review |
-| `L4-C-016` | 1.0.1 | Architecture Approved | 7 | Pending Stage 3 derivation/review |
-| `L4-C-017` | 1.0.1 | Architecture Approved | 8 | Pending Stage 3 derivation/review |
-| `L4-C-018` | 1.0.1 | Architecture Approved | 8 | Pending Stage 3 derivation/review |
-| `L4-C-019` | 1.0.1 | Architecture Approved | 7 | Pending Stage 3 derivation/review |
-| **Total** | — | — | **89** | **No canonical relations recorded yet** |
+| `L4-C-001` | 1.0.1 | Architecture Approved | 7 | Validated in Batch 1 |
+| `L4-C-008` | 1.0.0 | Architecture Approved | 6 | Validated in Batch 1 |
+| `L4-C-009` | 1.0.0 | Architecture Approved | 6 | Validated in Batch 1 |
+| `L4-C-010` | 1.0.0 | Architecture Approved | 7 | Validated in Batch 1 |
+| `L4-C-011` | 1.0.1 | Architecture Approved | 7 | Validated in Batch 1 |
+| `L4-C-012` | 1.0.1 | Architecture Approved | 7 | Validated in Batch 1 |
+| `L4-C-013` | 1.0.1 | Architecture Approved | 7 | Pending Batch 2 |
+| `L4-C-014` | 1.0.0 | Architecture Approved | 6 | Pending Batch 2 |
+| `L4-C-015` | 1.0.0 | Architecture Approved | 6 | Pending Batch 2 |
+| `L4-C-016` | 1.0.1 | Architecture Approved | 7 | Pending Batch 2 |
+| `L4-C-017` | 1.0.1 | Architecture Approved | 8 | Pending Batch 2 |
+| `L4-C-018` | 1.0.1 | Architecture Approved | 8 | Pending Batch 2 |
+| `L4-C-019` | 1.0.1 | Architecture Approved | 7 | Pending Batch 2 |
+| **Total** | — | — | **89** | **40 BHs validated in Batch 1; 49 pending Batch 2** |
 
-The parent-set Architecture Approval decision is:
+The parent-set approval decision is:
 
-```text
-architecture/L4_System_Behavior_Specification/00_Governance/
-L4_W-C02_Student_Workspace_Parent_Set_Architecture_Approval_Decision_2026-09-17.md
-```
+`architecture/L4_System_Behavior_Specification/00_Governance/L4_W-C02_Student_Workspace_Parent_Set_Architecture_Approval_Decision_2026-09-17.md`
+
+The reusable B02/C01 lifecycle-synchronization authority used by validated relations is:
+
+`architecture/L5_Solution_Architecture/governance/reference/L5_W-C02_Shared_Foundation_Lifecycle_Synchronization_Approval_2026-09-17.md`
 
 ---
 
 ## 3. Controlled Upstream Constraints
 
-The following approved upstream constraints must be preserved during relation derivation:
-
 ### L4-C-013
 
-The approved L4 parent intentionally does not invent a C-013-specific inter-Institute completion event, synchronous hand-off or approving actor that is not established by authoritative upstream architecture.
-
-L5 traceability must not use a technical mapping to manufacture a missing business event, actor or ownership decision.
+No C-013-specific inter-Institute completion event, synchronous hand-off or approving actor is invented. Technical relations may realize the approved state/context behavior only.
 
 ### L4-C-018
 
-The approved L4 parent is bounded to the Student Lifecycle request lifecycle and the exact Document Services ownership/event facts established upstream, including `StudentDocumentRequested` and consumed `StudentDocumentReady`.
-
-L5 traceability may map technical document-generation responsibilities where authoritative L5 architecture exists, but it must not reinterpret that technical architecture as ownership of the Student-side request lifecycle.
+The Student-side request lifecycle remains Student Lifecycle-owned. `L5-B-04-004` contributes reusable document-generation/rendering/evidence infrastructure only; it does not own eligibility, approval or the Student-side request lifecycle.
 
 ---
 
 ## 4. Canonical Relation Table
 
-The table below is the only canonical Section-C relation store.
-
-No relation rows are populated in Stage 2. Stage 3 must derive technical needs from each approved BH, resolve canonical L5 technical owners, bind current versions, cite exact evidence and apply the appropriate relation state.
-
 | L4 Specification | L4 Version | BH ID | L5 Specification | L5 Version | Technical Contribution | L5 Evidence | Relation State | Review Reference | Last Reviewed |
 |---|---|---|---|---|---|---|---|---|---|
+| `L4-C-001` | 1.0.1 | `L4-C-001-BH-001` | `L5-C-02-001` | 1.0.3 | Canonical event publication/consumption, routing and delivery while preserving upstream publisher and event meaning. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-008 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-001` | 1.0.1 | `L4-C-001-BH-002` | `L5-B-02-001` | 1.0.1 | Owner-scoped authoritative persistence and historical state preservation without cross-owner persistence bypass. | §5.1 and §5.4; CR-001–CR-007; ADR-L5-0005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-001` | 1.0.1 | `L4-C-001-BH-002` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-001` | 1.0.1 | `L4-C-001-BH-003` | `L5-B-02-001` | 1.0.1 | Owner-scoped authoritative persistence and historical state preservation without cross-owner persistence bypass. | §5.1 and §5.4; CR-001–CR-007; ADR-L5-0005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-001` | 1.0.1 | `L4-C-001-BH-003` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-001` | 1.0.1 | `L4-C-001-BH-004` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-001` | 1.0.1 | `L4-C-001-BH-005` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-001` | 1.0.1 | `L4-C-001-BH-006` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-001` | 1.0.1 | `L4-C-001-BH-006` | `L5-C-02-001` | 1.0.3 | Canonical event publication/consumption, routing and delivery while preserving upstream publisher and event meaning. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-008 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-001` | 1.0.1 | `L4-C-001-BH-007` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-001` | 1.0.1 | `L4-C-001-BH-007` | `L5-C-02-001` | 1.0.3 | Canonical event publication/consumption, routing and delivery while preserving upstream publisher and event meaning. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-008 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-008` | 1.0.0 | `L4-C-008-BH-001` | `L5-C-01-002` | 1.0.1 | Provider-owned request admission/execution with scope/authority validation and explicit governed outcomes. | §5.1–§5.3; AD-001–AD-007; CR-001–CR-006 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-008` | 1.0.0 | `L4-C-008-BH-001` | `L5-D-02-004` | 1.0.0 | Server-side policy decision and enforcement of authoritative approval/authority context before protected execution. | §5 authorization decision pipeline and enforcement model; approved D02 family decision | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-008` | 1.0.0 | `L4-C-008-BH-002` | `L5-B-02-001` | 1.0.1 | Owner-scoped authoritative persistence and historical state preservation without cross-owner persistence bypass. | §5.1 and §5.4; CR-001–CR-007; ADR-L5-0005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-008` | 1.0.0 | `L4-C-008-BH-002` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-008` | 1.0.0 | `L4-C-008-BH-003` | `L5-B-02-001` | 1.0.1 | Owner-scoped authoritative persistence and historical state preservation without cross-owner persistence bypass. | §5.1 and §5.4; CR-001–CR-007; ADR-L5-0005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-008` | 1.0.0 | `L4-C-008-BH-004` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-008` | 1.0.0 | `L4-C-008-BH-005` | `L5-C-01-001` | 1.0.1 | Ownership-preserving governed contract boundary for cross-capability context/fact consumption without persistence bypass. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-008` | 1.0.0 | `L4-C-008-BH-006` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-008` | 1.0.0 | `L4-C-008-BH-006` | `L5-C-02-001` | 1.0.3 | Canonical event publication/consumption, routing and delivery while preserving upstream publisher and event meaning. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-008 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-009` | 1.0.0 | `L4-C-009-BH-001` | `L5-C-01-001` | 1.0.1 | Ownership-preserving governed contract boundary for cross-capability context/fact consumption without persistence bypass. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-009` | 1.0.0 | `L4-C-009-BH-001` | `L5-C-01-002` | 1.0.1 | Provider-owned request admission/execution with scope/authority validation and explicit governed outcomes. | §5.1–§5.3; AD-001–AD-007; CR-001–CR-006 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-009` | 1.0.0 | `L4-C-009-BH-002` | `L5-C-02-001` | 1.0.3 | Canonical event publication/consumption, routing and delivery while preserving upstream publisher and event meaning. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-008 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-009` | 1.0.0 | `L4-C-009-BH-003` | `L5-B-02-001` | 1.0.1 | Owner-scoped authoritative persistence and historical state preservation without cross-owner persistence bypass. | §5.1 and §5.4; CR-001–CR-007; ADR-L5-0005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-009` | 1.0.0 | `L4-C-009-BH-003` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-009` | 1.0.0 | `L4-C-009-BH-004` | `L5-B-02-001` | 1.0.1 | Owner-scoped authoritative persistence and historical state preservation without cross-owner persistence bypass. | §5.1 and §5.4; CR-001–CR-007; ADR-L5-0005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-009` | 1.0.0 | `L4-C-009-BH-005` | `L5-C-02-001` | 1.0.3 | Canonical event publication/consumption, routing and delivery while preserving upstream publisher and event meaning. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-008 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-009` | 1.0.0 | `L4-C-009-BH-006` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-009` | 1.0.0 | `L4-C-009-BH-006` | `L5-C-02-001` | 1.0.3 | Canonical event publication/consumption, routing and delivery while preserving upstream publisher and event meaning. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-008 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-010` | 1.0.0 | `L4-C-010-BH-001` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-010` | 1.0.0 | `L4-C-010-BH-001` | `L5-D-02-004` | 1.0.0 | Server-side policy decision and enforcement of authoritative approval/authority context before protected execution. | §5 authorization decision pipeline and enforcement model; approved D02 family decision | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-010` | 1.0.0 | `L4-C-010-BH-002` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-010` | 1.0.0 | `L4-C-010-BH-003` | `L5-B-02-001` | 1.0.1 | Owner-scoped authoritative persistence and historical state preservation without cross-owner persistence bypass. | §5.1 and §5.4; CR-001–CR-007; ADR-L5-0005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-010` | 1.0.0 | `L4-C-010-BH-004` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-010` | 1.0.0 | `L4-C-010-BH-004` | `L5-D-02-004` | 1.0.0 | Server-side policy decision and enforcement of authoritative approval/authority context before protected execution. | §5 authorization decision pipeline and enforcement model; approved D02 family decision | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-010` | 1.0.0 | `L4-C-010-BH-005` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-010` | 1.0.0 | `L4-C-010-BH-006` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-010` | 1.0.0 | `L4-C-010-BH-006` | `L5-C-02-001` | 1.0.3 | Canonical event publication/consumption, routing and delivery while preserving upstream publisher and event meaning. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-008 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-010` | 1.0.0 | `L4-C-010-BH-007` | `L5-C-02-001` | 1.0.3 | Canonical event publication/consumption, routing and delivery while preserving upstream publisher and event meaning. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-008 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-011` | 1.0.1 | `L4-C-011-BH-001` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-011` | 1.0.1 | `L4-C-011-BH-002` | `L5-D-02-004` | 1.0.0 | Server-side policy decision and enforcement of authoritative approval/authority context before protected execution. | §5 authorization decision pipeline and enforcement model; approved D02 family decision | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-011` | 1.0.1 | `L4-C-011-BH-003` | `L5-C-01-001` | 1.0.1 | Ownership-preserving governed contract boundary for cross-capability context/fact consumption without persistence bypass. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-011` | 1.0.1 | `L4-C-011-BH-004` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-011` | 1.0.1 | `L4-C-011-BH-005` | `L5-B-02-001` | 1.0.1 | Owner-scoped authoritative persistence and historical state preservation without cross-owner persistence bypass. | §5.1 and §5.4; CR-001–CR-007; ADR-L5-0005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-011` | 1.0.1 | `L4-C-011-BH-006` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-011` | 1.0.1 | `L4-C-011-BH-006` | `L5-C-02-001` | 1.0.3 | Canonical event publication/consumption, routing and delivery while preserving upstream publisher and event meaning. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-008 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-011` | 1.0.1 | `L4-C-011-BH-007` | `L5-C-01-001` | 1.0.1 | Ownership-preserving governed contract boundary for cross-capability context/fact consumption without persistence bypass. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-012` | 1.0.1 | `L4-C-012-BH-001` | `L5-C-01-001` | 1.0.1 | Ownership-preserving governed contract boundary for cross-capability context/fact consumption without persistence bypass. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-012` | 1.0.1 | `L4-C-012-BH-001` | `L5-C-01-002` | 1.0.1 | Provider-owned request admission/execution with scope/authority validation and explicit governed outcomes. | §5.1–§5.3; AD-001–AD-007; CR-001–CR-006 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-012` | 1.0.1 | `L4-C-012-BH-002` | `L5-C-01-002` | 1.0.1 | Provider-owned request admission/execution with scope/authority validation and explicit governed outcomes. | §5.1–§5.3; AD-001–AD-007; CR-001–CR-006 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-012` | 1.0.1 | `L4-C-012-BH-003` | `L5-C-01-001` | 1.0.1 | Ownership-preserving governed contract boundary for cross-capability context/fact consumption without persistence bypass. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-012` | 1.0.1 | `L4-C-012-BH-004` | `L5-B-02-001` | 1.0.1 | Owner-scoped authoritative persistence and historical state preservation without cross-owner persistence bypass. | §5.1 and §5.4; CR-001–CR-007; ADR-L5-0005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-012` | 1.0.1 | `L4-C-012-BH-004` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-012` | 1.0.1 | `L4-C-012-BH-005` | `L5-C-01-001` | 1.0.1 | Ownership-preserving governed contract boundary for cross-capability context/fact consumption without persistence bypass. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-012` | 1.0.1 | `L4-C-012-BH-006` | `L5-B-02-003` | 1.0.1 | Owner-local transaction, concurrency/invariant protection, and atomic state-to-publication-intent consistency. | §5.1–§5.4; AD-001–AD-004; CR-001–CR-010; ADR-L5-0006/0007 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-012` | 1.0.1 | `L4-C-012-BH-006` | `L5-C-02-001` | 1.0.3 | Canonical event publication/consumption, routing and delivery while preserving upstream publisher and event meaning. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-008 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
+| `L4-C-012` | 1.0.1 | `L4-C-012-BH-007` | `L5-C-01-001` | 1.0.1 | Ownership-preserving governed contract boundary for cross-capability context/fact consumption without persistence bypass. | §5.1–§5.3; AD-001–AD-005; CR-001–CR-005 | Validated | `L5_W-C02_Traceability_Validation_Decision_2026-09-17.md` | 2026-09-17 |
 
 ---
 
-## 5. Relation Authoring Controls
+## 5. Batch-1 BH Coverage Review
 
-For each proposed row:
+The following 40 BHs have been independently reviewed against all recorded material contributions in this batch.
 
-1. The L4 BH must exist in one of the approved parents above and the recorded version must match the reviewed source.
-2. The L5 specification ID must already exist in the canonical L5 corpus/register; no new L5 ID may be invented for traceability convenience.
-3. `Technical Contribution` must describe the exact material technical responsibility supplied by that L5 specification.
-4. `L5 Evidence` must cite the relevant architecture section, `AD-*`, `CR-*`, or approved ADR where materially relevant.
-5. The pair `(BH ID, L5 Specification ID)` must be unique in this partition.
-6. `Validated` may be used only when every validation precondition in the Locked methodology is satisfied.
-7. Mapping a BH to multiple L5 specifications is permitted when multiple distinct material technical contributions are genuinely required.
-8. Mapping multiple BHs to one reusable L5 specification is expected where canonical technical architecture is shared.
-9. Do not over-map merely to increase apparent coverage.
-10. Do not omit a material contribution merely because another mapped specification provides adjacent functionality.
+| L4 Specification | BH ID | Coverage State |
+|---|---|---|
+| `L4-C-001` | L4-C-001-BH-001 | VALIDATED COVERAGE |
+| `L4-C-001` | L4-C-001-BH-002 | VALIDATED COVERAGE |
+| `L4-C-001` | L4-C-001-BH-003 | VALIDATED COVERAGE |
+| `L4-C-001` | L4-C-001-BH-004 | VALIDATED COVERAGE |
+| `L4-C-001` | L4-C-001-BH-005 | VALIDATED COVERAGE |
+| `L4-C-001` | L4-C-001-BH-006 | VALIDATED COVERAGE |
+| `L4-C-001` | L4-C-001-BH-007 | VALIDATED COVERAGE |
+| `L4-C-008` | L4-C-008-BH-001 | VALIDATED COVERAGE |
+| `L4-C-008` | L4-C-008-BH-002 | VALIDATED COVERAGE |
+| `L4-C-008` | L4-C-008-BH-003 | VALIDATED COVERAGE |
+| `L4-C-008` | L4-C-008-BH-004 | VALIDATED COVERAGE |
+| `L4-C-008` | L4-C-008-BH-005 | VALIDATED COVERAGE |
+| `L4-C-008` | L4-C-008-BH-006 | VALIDATED COVERAGE |
+| `L4-C-009` | L4-C-009-BH-001 | VALIDATED COVERAGE |
+| `L4-C-009` | L4-C-009-BH-002 | VALIDATED COVERAGE |
+| `L4-C-009` | L4-C-009-BH-003 | VALIDATED COVERAGE |
+| `L4-C-009` | L4-C-009-BH-004 | VALIDATED COVERAGE |
+| `L4-C-009` | L4-C-009-BH-005 | VALIDATED COVERAGE |
+| `L4-C-009` | L4-C-009-BH-006 | VALIDATED COVERAGE |
+| `L4-C-010` | L4-C-010-BH-001 | VALIDATED COVERAGE |
+| `L4-C-010` | L4-C-010-BH-002 | VALIDATED COVERAGE |
+| `L4-C-010` | L4-C-010-BH-003 | VALIDATED COVERAGE |
+| `L4-C-010` | L4-C-010-BH-004 | VALIDATED COVERAGE |
+| `L4-C-010` | L4-C-010-BH-005 | VALIDATED COVERAGE |
+| `L4-C-010` | L4-C-010-BH-006 | VALIDATED COVERAGE |
+| `L4-C-010` | L4-C-010-BH-007 | VALIDATED COVERAGE |
+| `L4-C-011` | L4-C-011-BH-001 | VALIDATED COVERAGE |
+| `L4-C-011` | L4-C-011-BH-002 | VALIDATED COVERAGE |
+| `L4-C-011` | L4-C-011-BH-003 | VALIDATED COVERAGE |
+| `L4-C-011` | L4-C-011-BH-004 | VALIDATED COVERAGE |
+| `L4-C-011` | L4-C-011-BH-005 | VALIDATED COVERAGE |
+| `L4-C-011` | L4-C-011-BH-006 | VALIDATED COVERAGE |
+| `L4-C-011` | L4-C-011-BH-007 | VALIDATED COVERAGE |
+| `L4-C-012` | L4-C-012-BH-001 | VALIDATED COVERAGE |
+| `L4-C-012` | L4-C-012-BH-002 | VALIDATED COVERAGE |
+| `L4-C-012` | L4-C-012-BH-003 | VALIDATED COVERAGE |
+| `L4-C-012` | L4-C-012-BH-004 | VALIDATED COVERAGE |
+| `L4-C-012` | L4-C-012-BH-005 | VALIDATED COVERAGE |
+| `L4-C-012` | L4-C-012-BH-006 | VALIDATED COVERAGE |
+| `L4-C-012` | L4-C-012-BH-007 | VALIDATED COVERAGE |
+
+The remaining 49 W-C02 BHs are not yet assigned a coverage verdict in this intermediate commit.
 
 ---
 
-## 6. BH Coverage Review Register
+## 6. Relation Authoring Controls
 
-BH-level coverage status is not inferred from row count. After all material relations for a BH are assessed, Stage 3 shall record one of the Locked methodology coverage states:
-
-- `VALIDATED COVERAGE`
-- `PARTIAL COVERAGE`
-- `BLOCKED`
-- `IMPACTED`
-- `VALIDATED — NO ADDITIONAL L5 SPECIFICATION REQUIRED`
-
-Initial state for all 89 W-C02 BHs is:
-
-```text
-NOT YET ASSESSED FOR CANONICAL L4→L5 COVERAGE
-```
-
-A coverage state shall not be upgraded solely because an individual L5 specification contains a selective traceability reference.
+1. Relation identity is `(L4 BH ID, L5 Specification ID)`.
+2. `Validated` requires approved/locked L4 and L5 lifecycle authority, current bound versions, exact evidence and independent review.
+3. Cross-owner context uses governed contract/event boundaries; direct peer persistence access is never inferred.
+4. Event infrastructure never becomes the canonical business-event publisher.
+5. D02 enforces authoritative authority/approval context; it does not create business approval authority.
+6. B02 supplies persistence/consistency mechanics; it does not own Student Lifecycle business meaning.
+7. D04 captures technical evidence; it does not become owner of the underlying business fact.
+8. Over-mapping to generic platform, workflow or observability specifications is prohibited.
 
 ---
 
-## 7. Stage Boundary
-
-Stage 2 is complete when:
-
-- the canonical `L4_to_L5` store exists;
-- this Section-C partition exists;
-- the approved W-C02 parent scope and BH population are registered;
-- the canonical schema and governance controls are present; and
-- no unreviewed relation has been presented as validated coverage.
-
-Stage 3 begins with BH-by-BH technical-need derivation and L5 evidence review.
-
----
-
-**Section-C Canonical Store:** ESTABLISHED  
 **W-C02 Approved BH Population:** 89  
-**Canonical Relation Rows:** 0  
-**Coverage Validation:** Pending Stage 3
+**Batch-1 BHs with VALIDATED COVERAGE:** 40  
+**Batch-1 Canonical Relation Rows:** 57  
+**Remaining BHs:** 49
