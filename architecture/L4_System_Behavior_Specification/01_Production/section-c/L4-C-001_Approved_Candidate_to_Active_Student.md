@@ -7,16 +7,16 @@
 **Domain:** Student Lifecycle  
 **Realizes Scenario:** L3-C-001 — Approved Candidate to Active Student  
 **Primary Business Owner:** Student Lifecycle  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
+**Last Updated:** 2026-09-17  
 **Depends On:** L3-C-001; applicable locked C architecture sources  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall execute the governed transition from an approved admission through confirmation and Student establishment to an Active StudentContext. The behavior ends when the StudentContext is Active and `StudentActivated` is published. Finance, institutional structure, identity, admission and downstream registration ownership remain outside this specification.
+The system shall realize the governed transition from an approved Admission through authoritative Admissions confirmation, canonical Student establishment and StudentContext activation. The behavior ends when the StudentContext is `Active` and `StudentActivated` is published. Admissions retains confirmation ownership; Student Lifecycle retains Student and StudentContext establishment and activation ownership. Finance, institutional structure, identity and downstream academic registration remain outside this specification.
 
 ## 3. Required Business Context
 
@@ -30,7 +30,7 @@ the system shall execute the governed transition from an approved admission thro
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-C-001-BH-001 | When an approved Admission satisfies remaining governed confirmation conditions, the system shall make the confirmed-admission outcome available for Student establishment. | L3-C-001 §§7, 9; L2-C01 |
+| L4-C-001-BH-001 | When Admissions reaches its authoritative confirmation outcome, the system shall recognize the Admissions-published `AdmissionConfirmed` fact as the valid basis for Student establishment. | L3-C-001 §§8, 9, 14; L2-C01 |
 | L4-C-001-BH-002 | When a confirmed admission is received, the system shall establish the canonical Student without creating a competing identity. | L3-C-001 §§9, 12; L2-C02 |
 | L4-C-001-BH-003 | When Student establishment is valid for the applicable Institute, the system shall establish the corresponding StudentContext. | L3-C-001 §§9, 13; L2-C02 |
 | L4-C-001-BH-004 | When activation authority and required conditions are satisfied, the system shall transition the StudentContext to `Active`. | L3-C-001 §§6, 12, 13; L2-C02 |
@@ -41,6 +41,9 @@ the system shall execute the governed transition from an approved admission thro
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
 | L4-C-001-BH-006 | On successful Student activation, the system shall publish the canonical `StudentActivated` business event under Student Lifecycle ownership. | L3-C-001 §§3, 14; L2-C02 |
+| L4-C-001-BH-007 | When the canonical Student has been established, the system shall publish `StudentCreated` under Student Lifecycle ownership without changing Admissions ownership of the confirmed-admission hand-off. | L3-C-001 §§9, 14; L2-C02 |
+
+Where the locked Admissions flow also uses `StudentCreationRequested`, that fact remains Admissions-published and is consumed only as an authorised Student-establishment request; this specification does not republish it under Student Lifecycle ownership.
 
 ## 6. Failure / Rejection / Continuation
 
@@ -55,7 +58,7 @@ Preserve attributable evidence of Student establishment and activation, includin
 
 ## 8. Observable Completion Conditions
 
-The canonical Student exists, the applicable StudentContext is `Active`, required authority/conditions are satisfied, and `StudentActivated` has been published. Academic registration remains downstream.
+The canonical Student exists, the applicable StudentContext is `Active`, required authority/conditions are satisfied, `StudentCreated` has been published for canonical Student establishment, and `StudentActivated` has been published for the completed activation outcome. Academic registration remains downstream.
 
 ## 9. Traceability & Provenance
 
