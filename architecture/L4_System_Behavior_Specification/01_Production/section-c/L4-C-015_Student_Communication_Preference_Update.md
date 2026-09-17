@@ -8,15 +8,15 @@
 **Realizes Scenario:** L3-C-015 — Student Communication Preference Update  
 **Primary Business Owner:** Student Lifecycle  
 **Version:** 1.0.0  
-**Status:** Draft  
+**Status:** Architecture Approved  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
+**Last Updated:** 2026-09-17  
 **Depends On:** L3-C-015; applicable locked C architecture sources  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern governed updates to Student communication preferences. The behavior ends when valid preferences are updated, audit evidence is preserved and `StudentCommunicationPreferencesUpdated` is published. Communication delivery remains outside this specification.
+The system shall govern updates to Student communication preferences. The behavior ends when valid preferences are updated, audit evidence is preserved and `StudentCommunicationPreferencesUpdated` is published. Communication delivery remains outside this specification.
 
 ## 3. Required Business Context
 
@@ -68,4 +68,4 @@ Institution-specific approval roles and configurable policies remain upstream/co
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification is Architecture Approved under the W-C02 parent-set validation decision and is not Locked.
