@@ -7,16 +7,16 @@
 **Domain:** Student Lifecycle  
 **Realizes Scenario:** L3-C-011 — Student Restoration After Suspension  
 **Primary Business Owner:** Student Lifecycle  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
+**Last Updated:** 2026-09-17  
 **Depends On:** L3-C-011; applicable locked C architecture sources  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-the system shall govern governed restoration of a Suspended Student to Active when authoritative restoration conditions are satisfied. The behavior ends when `StudentRestored` is published. Suspension history and Student identity remain preserved.
+The system shall govern restoration of a Suspended Student to Active when authoritative restoration conditions are satisfied. The behavior ends when `StudentRestored` is published. Suspension history and Student identity remain preserved.
 
 ## 3. Required Business Context
 
@@ -41,7 +41,7 @@ the system shall govern governed restoration of a Suspended Student to Active wh
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
 | L4-C-011-BH-006 | On successful restoration, the system shall publish `StudentRestored` under Student Lifecycle ownership. | L3-C-011 §§3, 14; L2-C02 |
-| L4-C-011-BH-007 | Finance participation shall remain limited to Finance-owned clearance/consequence decisions. | L3-C-011 §§5, 14, 15; L2-C02 |
+| L4-C-011-BH-007 | When Finance-owned clearance is required for restoration, the system shall consume the authoritative Finance clearance outcome as a prerequisite without modifying or republishing the Finance decision. | L3-C-011 §§5, 7, 9, 14, 15; L2-C02 |
 
 ## 6. Failure / Rejection / Continuation
 
