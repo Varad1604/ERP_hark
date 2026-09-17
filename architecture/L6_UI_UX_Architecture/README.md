@@ -25,7 +25,8 @@ Frontend Implementation
 ├── L6_Product_UX_Decision_Field_Map_DRAFT.md
 ├── L6_Foundation_Controlled_Authorization_2026-09-16.md
 ├── L6_Authenticated_Shell_Slice_Architecture_Approval_Decision_2026-09-16.md
-└── L6_Student_Workspace_Product_UX_Decision_Record_2026-09-17.md
+├── L6_Student_Workspace_Product_UX_Decision_Record_2026-09-17.md
+└── L6_Student_Workspace_Validation_and_Proceed_Gate_Decision_2026-09-17.md
 
 01_Foundation/
 ├── L6_Design_System_Foundation_DRAFT.md
@@ -40,6 +41,8 @@ The six foundation artifacts remain `Draft`; they have not been silently renamed
 `L6_Authenticated_Shell_Slice_Architecture_Approval_Decision_2026-09-16.md` is the first production-slice approval decision. It authorizes controlled frontend implementation of the shared authenticated shell, Institution/academic context presentation and switching, global search/discovery, notification presentation framework, account/session projection affordance, responsive shell behavior and accessibility requirements within its recorded boundaries.
 
 `L6_Student_Workspace_Product_UX_Decision_Record_2026-09-17.md` records the selected W-C02 product/UX direction. Its decisions remain pending formal L6 slice approval and do not independently authorize frontend implementation.
+
+`L6_Student_Workspace_Validation_and_Proceed_Gate_Decision_2026-09-17.md` records the current W-C02 validation result: draft authoring and product decisions are complete, but HF-L6-12 remains open because exact domain-specific BH→L5 validated evidence is not yet proven. W-C02 is therefore not Architecture Approved and not authorized for production frontend implementation.
 
 ## Current Planning and Traceability Package
 
@@ -208,8 +211,9 @@ The reviewed frontend implementation recorded in the authorization is evidence, 
 9. Frontend implementation of the approved shell slice — **authorized to proceed within the approval decision boundary**.
 10. W-C02 Student Workspace product/UX decisions — **selected and recorded**.
 11. W-C02 Student Workspace production-slice draft — **authored**.
-12. W-C02 domain-specific BH→L5 evidence / parent maturity gate — **open; blocks Architecture Approval and frontend implementation authorization**.
-13. Material usability or feasibility findings return through controlled L6 amendment rather than silently changing architecture in code.
+12. W-C02 validation/proceed-gate review — **completed; blocked by HF-L6-12 upstream traceability**.
+13. W-C02 domain-specific BH→L5 evidence / parent maturity remediation — **required before Architecture Approval and frontend implementation authorization**.
+14. Material usability or feasibility findings return through controlled L6 amendment rather than silently changing architecture in code.
 
 This authorization is not a Final L6 Corpus Lock and does not freeze the final screen population.
 
