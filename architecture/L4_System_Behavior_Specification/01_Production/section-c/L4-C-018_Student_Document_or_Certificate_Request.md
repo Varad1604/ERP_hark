@@ -8,7 +8,7 @@
 **Realizes Scenario:** L3-C-018 — Student Document or Certificate Request  
 **Primary Business Owner:** Student Lifecycle  
 **Version:** 1.0.1  
-**Status:** Draft  
+**Status:** Architecture Approved  
 **Owner:** Varad  
 **Last Updated:** 2026-09-17  
 **Depends On:** L3-C-018; applicable locked C architecture sources  
@@ -74,4 +74,4 @@ The Locked L3 parent records the absence of a dedicated locked Document Services
 
 ## Canonical Validation Note
 
-This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+This specification is Architecture Approved under the W-C02 parent-set validation decision and is not Locked. Approval is limited to the Student-side request lifecycle and upstream-established H-side facts; it does not approve invented Document Services lifecycle detail.
