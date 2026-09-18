@@ -359,3 +359,14 @@ The purpose of AI acceleration is not to generate more screens.
 
 The purpose is to make the entire ERP **navigable, reviewable and architecturally coherent faster**, while spending deep design effort on the journeys that expose the information, authority, state and interaction requirements the backend must support.
 
+
+
+---
+
+## Day 1 Global UX Foundation
+
+The reusable production foundation for the accelerated programme is governed by:
+
+`L6_Day1_Global_UX_Foundation_DRAFT.md`
+
+That artifact preserves this plan's 99-business-workspace + 6-shared-surface baseline and adds the controlled UX archetype mapping, Global Experience Lab convention, fixture/integration maturity conventions, shared interaction patterns and static validation expectations. It does not authorize mass workspace implementation or change upstream business ownership.
