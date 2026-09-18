@@ -110,11 +110,11 @@ The catalogue contains **64 core fields in eight decision families**. These are 
 | ID | Decision field | Typical class | Current control |
 |---|---|---|---|
 | `UXD-3.01` | Persona/home information priority | P | Admin, Faculty and Student home priorities resolved by Approved L6 Decision |
-| `UXD-3.02` | Self-service vs operational/staff presentation of the same canonical context | P/S | Student Workspace: Selected — Pending Formalization as one canonical context with distinct student/staff presentations |
+| `UXD-3.02` | Self-service vs operational/staff presentation of the same canonical context | P/S | Student Workspace: **Resolved by Approved L6 Decision** — one canonical context with distinct Student/staff presentations; controlling decision `L6_Student_Workspace_Validation_and_Proceed_Gate_Decision_2026-09-17.md` |
 | `UXD-3.03` | Multi-responsibility navigation composition | P/A | Governed direction: compose responsibilities without creating UX-defined Roles |
 | `UXD-3.04` | Default landing experience after authenticated entry | P/S | Partially resolved; Home/deep-link rules governed, exact profile defaults slice-dependent |
 | `UXD-3.05` | Work-queue philosophy by persona | P | Resolved: true queue for Admin where appropriate; not default for Student/Faculty |
-| `UXD-3.06` | Cross-domain projection depth within persona/workspace experiences | P/S | Student Workspace: Selected — Pending Formalization as core record + governed projections |
+| `UXD-3.06` | Cross-domain projection depth within persona/workspace experiences | P/S | Student Workspace: **Resolved by Approved L6 Decision** — core Student record + governed read-only projections with ownership-preserving handoff; controlling decision `L6_Student_Workspace_Validation_and_Proceed_Gate_Decision_2026-09-17.md` |
 | `UXD-3.07` | User-facing terminology/tone by persona | P/A | Partially resolved; exact copy remains slice-level |
 | `UXD-3.08` | User-controlled personalization depth | P | Open; shall not alter authority or canonical business semantics |
 
@@ -321,7 +321,7 @@ The following cross-cutting areas already have meaningful controlled direction a
 - Student Workspace working direction: one canonical Student context with different Student self-view and authorized staff presentation;
 - Student Workspace working direction: core Student-owned record plus governed read-only cross-domain projections, with detailed work returning to canonical owning workspaces.
 
-The two Student Workspace directions above are currently **Selected — Pending Formalization**. They shall not be represented as Architecture Approved until incorporated into a reviewed/approved Student Workspace slice decision or specification.
+The two Student Workspace directions above were originally selected pending formalization. They are now **Resolved by Approved L6 Decision** through `L6_Student_Workspace_Validation_and_Proceed_Gate_Decision_2026-09-17.md`. The historical selection record remains preserved; the proceed-gate decision controls current status.
 
 ---
 

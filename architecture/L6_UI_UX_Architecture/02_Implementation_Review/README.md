@@ -2,257 +2,232 @@
 
 **Architecture Level:** L6 — UI / UX Architecture Support  
 **Status:** Active Review Framework  
-**Purpose:** Make frontend implementation reviewable as realistic, interactive workflow slices before backend integration is complete.  
+**Purpose:** Make implementation-authorized frontend work reviewable as realistic, reproducible user outcomes before backend integration is complete.  
+**Controlling Guidance:** `../00_Governance/L6_Frontend_Backend_Integration_Guardrails.md`; applicable approved L6 package/proceed gate.
 
 ---
 
-## 1. Why This Area Exists
+## 1. Delivery Unit
 
-Static screen review is not enough for SutraERP.
+The architecture coverage baseline remains 99 business workspace families + 6 shared surfaces.
 
-A production-grade ERP UI must be reviewable through realistic user journeys, alternate paths, failures, empty states, authorization outcomes, stale context and high-consequence interactions. Reviewers should be able to use the frontend like a real institutional product and discover UX defects before backend implementation is complete.
+Frontend delivery uses **experience slices** inside approved L6 packages:
 
-This area governs **implementation review evidence**. It does not create business rules, backend contracts or new L6 ownership.
+> An experience slice is a bounded, traceable increment in which a specified user, in a specified context, can achieve one meaningful observable outcome—or reach a clearly defined handoff—with the material alternate, failure, accessibility and responsive behavior reviewable.
+
+Experience slices are delivery/review increments, not new architecture levels. Flow descriptions, state sets, fixture sets and acceptance evidence support a slice; they do not become separate central architecture registers.
 
 ---
 
-## 2. New Delivery Model
+## 2. Delivery Loop
 
-Every implementation-authorized L6 workspace shall be developed as a **reviewable vertical UI slice**.
-
-Do not use this sequence:
+Do not use:
 
 ```text
 make static screen
 → approve appearance
 → later add workflow
-→ later discover navigation/state problems
 ```
 
-Use this sequence:
+Use:
 
 ```text
-approved L6 workspace
-→ reviewer scenario pack
-→ interactive fixture/data states
-→ complete primary journey
-→ alternate/error/edge states
-→ responsive + accessibility review
-→ UX findings
-→ controlled adjustment
-→ next increment
+verify controlling L6 package
+→ select bounded experience slice
+→ define flow + acceptance boundary
+→ prepare provenance-labelled fixtures
+→ implement using production-intended components
+→ exercise normal + applicable alternate/failure paths
+→ review keyboard/mobile behavior
+→ classify findings
+→ fix locally or obtain controlled amendment
+→ verify connected journey
+→ continue
 ```
 
-The goal is not to fake the backend. The goal is to expose enough controlled state and interaction for meaningful UX testing without inventing business semantics.
+A visually complete screen is not a completed journey.
 
 ---
 
-## 3. Required Reviewer Mode
+## 3. Required Review Case Shape
 
-The frontend should provide a non-production **UI Review Mode** for controlled visual/workflow evaluation.
+Every material case should be reproducible and record:
 
-Reviewer Mode may allow a reviewer to select approved fixture conditions such as:
+- case ID and experience-slice reference;
+- starting presentation profile;
+- starting Institution / academic / subject context;
+- normal entry path;
+- user goal;
+- actions performed in sequence;
+- expected observable behavior;
+- alternate or failure outcomes applicable to the case;
+- fixture reference and provenance/fidelity classification;
+- accessibility checkpoints;
+- responsive checkpoints;
+- trace reference to the controlling L6 package/upstream scenario span;
+- completion boundary;
+- exclusions/blockers;
+- actual review result and finding references.
 
-- persona/presentation profile;
-- Institution / academic context;
-- representative record;
-- scenario/journey;
-- current authoritative-looking fixture state;
-- pending mutation state;
-- authoritative success fixture;
-- authoritative rejection fixture;
-- technical failure fixture;
-- indeterminate fixture;
-- stale/invalidated context fixture;
-- authorization-denied fixture;
-- legitimate empty/no-data fixture.
-
-Reviewer Mode is not authorization, not a backend simulator and not canonical business state.
-
-It must be visibly marked as review/test functionality and must not be confused with the production experience.
+A review case should test interaction sequence where sequence matters, not only a screenshot of a final state.
 
 ---
 
-## 4. Workspace Review Pack
+## 4. State Applicability
 
-Each implementation-authorized workspace should have a review pack in this folder, for example:
+The shared review vocabulary is:
 
-```text
-02_Implementation_Review/
-├── README.md
-├── W-C02_Student_Workspace_Review_Pack.md
-├── W-C03_Academic_Registration_Review_Pack.md
-└── ...
-```
-
-A review pack should contain:
-
-1. workspace and approved L6 source;
-2. personas/presentation profiles to test;
-3. primary user journeys;
-4. alternate journeys;
-5. high-consequence actions;
-6. required fixture records;
-7. required UI states;
-8. cross-domain projections/handoffs;
-9. responsive checkpoints;
-10. accessibility checkpoints;
-11. issues discovered during visual/workflow review;
-12. disposition: implementation-local fix vs L6 amendment vs upstream issue.
-
----
-
-## 5. Minimum State Matrix
-
-For each meaningful data surface or mutation-capable journey, test applicable states from this matrix:
-
-| State | Review question |
+| State | Meaning |
 |---|---|
-| Normal populated | Can the user understand the current context and next action? |
-| Loading | Is progress clear without layout instability or false data? |
-| Legitimate empty | Does the UI explain that no data is valid, rather than appearing broken? |
-| Pending | Does the UI avoid claiming completion too early? |
-| Authoritative success | Is the completed outcome clear and does the view re-resolve correctly? |
-| Authoritative rejection | Can the user understand what happened without confusing it with a technical error? |
-| Technical failure | Can the user safely recover without inferring business failure/success incorrectly? |
-| Indeterminate | Does the UI prevent unsafe repeat action and explain that outcome must be reconciled? |
-| Stale / invalidated | Is old protected data quarantined and re-resolution clear? |
-| Authorization denied | Is access refusal clear without treating hidden UI as the security mechanism? |
-| Partial/degraded projection | Can the user tell which source is unavailable while other data remains usable? |
+| Normal populated | Current resolved data can be presented |
+| Loading | Current data has not yet resolved |
+| Legitimate empty | Source returned a valid no-data condition |
+| Client submission pending | Client is awaiting the immediate authoritative response/acceptance position |
+| Business request in progress | Source confirms a business request exists but is not complete |
+| Authoritative success | Owning source confirms the relevant completion boundary |
+| Business rejection / denial | Source confirms the requested business operation did not proceed |
+| Technical failure | Technical execution failed; business success is not inferred |
+| Indeterminate | Client cannot determine whether the mutation completed; unsafe repeat is constrained pending reconciliation |
+| Stale / invalidated | Prior protected projection cannot be treated as current |
+| Authorization denied | Server-authoritative refusal is presented clearly |
+| Degraded source | One source is unavailable while unaffected content remains usable |
+
+Not every state applies to every slice. Review packs must record **applicable states and justified exclusions** rather than mechanically manufacturing every combination.
 
 ---
 
-## 6. Scenario Fixture Rules
+## 5. Fixture Provenance and Fidelity
 
-Fixtures exist only to make approved UI behavior testable.
+Every review fixture must state one of:
 
-Fixtures may represent:
+- **Presentation fixture** — architecture-supported representative content used only to exercise approved UI behavior.
+- **Contract-backed integration fixture** — shaped by an actually released/stable contract and suitable for integration-oriented UI verification.
+- **Integrated environment data** — returned through the real connected application boundary in a controlled environment.
 
-- valid upstream state combinations already supported by architecture;
-- sample records and histories;
-- alternate outcome states;
-- source-owned cross-domain projections;
-- simulated latency/error/rejection/indeterminate technical outcomes.
-
-Fixtures shall not invent:
+Presentation fixtures shall not invent:
 
 - lifecycle states;
 - business events;
 - approval authorities;
-- eligibility rules;
-- backend endpoints;
-- payloads;
-- business calculations;
-- unsupported persona authority;
+- eligibility/business rules;
+- backend endpoints/payloads;
+- calculations;
+- authorization outcomes not supported by approved architecture;
 - canonical ownership.
 
-Every fixture source must be obviously non-authoritative in code/review mode.
+Fixture acceptance proves presentation behavior only. It does not prove released-contract integration or production correctness.
 
 ---
 
-## 7. Incremental Review Checkpoints
+## 6. Non-Production UI Review Mode
 
-A workspace should pass through these frontend review checkpoints:
+The frontend should provide a visibly non-production **UI Review Mode** that uses the actual production-intended workspace components and handlers.
 
-### R1 — Orientation
+It may expose only curated supported review cases, for example:
 
-Reviewer can identify:
+- presentation profile;
+- representative record/context;
+- selected approved journey/slice;
+- normal/loading/empty;
+- pending/success/rejection/failure/indeterminate;
+- stale/authorization-denied;
+- independently degraded related source.
 
-- where they are;
-- whose/which record is active;
-- Institution/academic context;
-- workspace purpose;
-- primary next actions.
+Requirements:
 
-### R2 — Primary Journey
+1. deterministic reset;
+2. stable reproducible case IDs;
+3. visible review-only indicator;
+4. architecture revision, frontend revision and fixture/case revision metadata;
+5. no real authorization grant;
+6. no real institutional mutation from fixture controls;
+7. no unrestricted combinatorial scenario builder;
+8. no separate review-only reimplementation of the user journey;
+9. no simple production URL parameter that enables privileged review controls.
 
-Reviewer can complete the main approved user journey using fixtures without dead ends.
-
-### R3 — Alternate and Exception Paths
-
-Reviewer can test alternate outcomes, rejection, failure, stale context and authorization denial.
-
-### R4 — Cross-Workspace Continuity
-
-Read-only projections and handoffs clearly preserve the canonical owning workspace.
-
-### R5 — Responsive and Accessibility
-
-The same critical journey is usable by keyboard and across approved viewport classes.
-
-### R6 — Visual / Cognitive Review
-
-A reviewer unfamiliar with implementation can identify confusing labels, hierarchy problems, unnecessary elements, missing context and unclear consequences.
-
-### R7 — Conformance
-
-Implementation is checked against the approved L6 slice and `00_Governance/L6_Frontend_Backend_Integration_Guardrails.md`.
+Production enablement must be controlled at build/configuration time or an equivalently non-user-toggleable boundary.
 
 ---
 
-## 8. Issue Classification
+## 7. Connected-Journey Acceptance
 
-Every review finding must be classified before changing architecture:
+A delivery slice is not accepted merely because its local component renders correctly.
 
-| Classification | Meaning | Action |
+Where applicable, review:
+
+- meaningful entry into the slice;
+- preserved subject/context across section/action transitions;
+- owner-preserving handoff;
+- meaningful return path;
+- context re-resolution after mutation;
+- old-context late-response containment;
+- keyboard entry, dialog interaction and focus return;
+- supported mobile task completion.
+
+If the owner destination or real integration does not exist, record a bounded preview/unavailable continuation and do not claim end-to-end acceptance.
+
+---
+
+## 8. Separate Readiness Dimensions
+
+Track separately:
+
+1. **Architecture authorization**
+2. **Frontend implementation**
+3. **Fixture-based UX acceptance**
+4. **Released-contract integration**
+5. **Integrated production validation**
+
+`Workspace represented` does not mean `workspace complete`.  
+`Fixture journey passed` does not mean `production ERP ready`.
+
+---
+
+## 9. Finding Classification and Disposition
+
+| Classification | Meaning | Disposition |
 |---|---|---|
-| Implementation defect | Code does not realize already-approved L6 behavior | Fix frontend |
-| L6 UX architecture defect | Approved presentation/journey is materially insufficient or contradictory | Controlled L6 amendment |
-| L5 feasibility/integration issue | Approved UI cannot be realized within technical architecture/contract boundary | Escalate to L5 |
-| L4/L3/L2 business architecture issue | Problem is actually business behavior/ownership/state/rule ambiguity | Escalate upstream; do not patch in UI |
-| Review preference | Subjective/local preference that does not improve approved user outcome | Do not automatically change architecture |
+| Implementation defect | Approved behavior missing/broken in code | Fix frontend |
+| L6 UX architecture defect | Approved presentation/journey materially inadequate or contradictory | Controlled L6 amendment |
+| L5 feasibility / integration issue | UI cannot be realized safely within technical/contract boundary | Record and escalate to L5 |
+| L4/L3/L2 business architecture issue | Ownership/state/rule/authority ambiguity | Escalate upstream; do not patch in UI |
+| Review-process issue | Case/fixture/evidence does not make behavior reproducible | Improve review tooling/evidence |
+| Implementation-local improvement | Non-material code/presentation refinement within approved semantics | Fix locally |
+
+Do not silently solve upstream uncertainty in frontend code.
 
 ---
 
-## 9. Frontend File Strategy
+## 10. Frontend Organization Principle
 
-Frontend implementation should favor reusable workspace architecture rather than one oversized file per domain.
-
-Recommended conceptual shape:
+Frontend code should separate, as useful:
 
 ```text
-app/
-├── features/
-│   └── student-workspace/
-│       ├── student-workspace.tsx
-│       ├── sections/
-│       ├── components/
-│       ├── review-fixtures.ts
-│       ├── review-scenarios.ts
-│       └── types.ts
-├── review/
-│   ├── review-mode.tsx
-│   └── review-state.ts
-└── components/
-    └── shared design-system/application components
+feature workspace composition
+staff/self-service sections
+action flows
+integration adapters
+local presentation state
+review fixtures
+scripted review cases
+shared UI/client infrastructure
 ```
 
-Exact filenames remain implementation-local. The architectural requirement is separation of:
-
-- production UI composition;
-- shared reusable components;
-- explicit review fixtures/scenarios;
-- backend integration seams;
-- local presentation state.
-
-Do not embed large fixture datasets and all workflow variants directly inside a single production component.
+Do not create one route/folder/component per experience-slice row automatically. Do not embed all fixtures, action metadata and every workspace section in one monolithic component when separation improves reviewability.
 
 ---
 
-## 10. Review Acceptance Principle
+## 11. Review Evidence
 
-A frontend slice is not considered sufficiently reviewable merely because the normal/default screen looks polished.
+For each reviewed case record:
 
-Before moving on, reviewers should be able to answer:
+- architecture commit/revision;
+- frontend commit/revision;
+- review-pack/case revision;
+- fixture fidelity;
+- automated checks run and result;
+- browser interaction review performed or not performed;
+- accessibility/responsive checks performed or not performed;
+- findings and disposition.
 
-- Can I understand the workflow without architecture knowledge?
-- Can I find the action I expect?
-- Can I tell what happened after I act?
-- Can I distinguish pending, rejected, failed and unknown outcomes?
-- Can I recover from errors?
-- Can I understand ownership when information comes from another domain?
-- Can I identify stale or wrong context before acting?
-- Can I use the critical path on keyboard/mobile where required?
-- Can another reviewer reproduce the same scenario and report a UI problem precisely?
-
-That is the standard this folder exists to enforce.
+Screenshots may supplement evidence but are never sufficient proof of journey correctness.

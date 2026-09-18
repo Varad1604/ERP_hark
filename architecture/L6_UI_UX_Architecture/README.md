@@ -100,6 +100,43 @@ The traceability register establishes:
 
 The three planning/traceability artifacts remain `Draft`. They do not constitute a final screen corpus, final navigation lock or Final L6 Corpus Lock.
 
+### Architecture Coverage vs Delivery Planning
+
+The 99 business workspace families + 6 shared surfaces remain the **architecture coverage baseline** for the 1,084 canonical L3 scenarios. They are not a direct frontend backlog and do not imply one workspace = one implementation task.
+
+For controlled delivery, L6 distinguishes:
+
+- **workspace family** — sustained architecture coverage/context;
+- **UX journey** — meaningful user goal, which may cross workspace families;
+- **delivery experience slice** — bounded implementation/review increment inside an approved L6 package;
+- **flows, states, fixtures and acceptance evidence** — supporting review material, not new architecture levels.
+
+`L6_Experience_Slice_Register_DRAFT.md` is the thin locator for selected delivery increments. It does not duplicate canonical BH→L5 relations, allocate permanent L6 IDs, or create a new approval authority.
+
+Architecture authorization, frontend implementation, fixture-based UX acceptance, released-contract integration and integrated production validation remain separate status dimensions.
+
+### AI-First UI / UX Execution Plan
+
+`L6_AI_First_UI_UX_Execution_Plan_DRAFT.md` is the active accelerated delivery plan for the current L6/frontend cycle.
+
+It preserves the 105-unit architecture coverage baseline while changing the implementation method from bespoke workspace-by-workspace delivery to:
+
+```text
+architecture coverage
+→ UX archetype mapping
+→ workspace registry
+→ reusable UX patterns
+→ navigable ERP breadth
+→ selected deep experience slices
+→ global Experience Lab review
+→ controlled findings / amendment
+→ backend-ready interaction evidence
+```
+
+The plan uses Day-based sequencing only. It does not create calendar-date commitments, new architecture ownership, permanent L6 IDs or a new approval authority.
+
+Its target is 99/99 workspace families UX-mapped and meaningfully navigable, with approximately 12–18 backend-defining workspace families deeply interactive enough to expose data, authority, handoff and integration needs. This is an implementation-ready frontend/UX baseline, not a claim of full production integration across all 99 families.
+
 ## Product / UX Decision Field Governance
 
 `00_Governance/L6_Product_UX_Decision_Field_Map_DRAFT.md` defines the controlled decision field catalogue used by L6 authoring.

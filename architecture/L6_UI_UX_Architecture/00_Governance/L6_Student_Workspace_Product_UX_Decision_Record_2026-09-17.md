@@ -3,7 +3,7 @@
 **Decision Date:** 2026-09-17  
 **Architecture Level:** L6 — UI / UX Architecture Governance  
 **Workspace:** `W-C02 — Student Workspace`  
-**Status:** Selected — Pending Formal L6 Slice Approval  
+**Status:** Historical Selection Record — subsequently resolved by Architecture Approved proceed-gate decision  
 **Owner:** Lead Architect  
 **Authority Boundary:** Product/UX direction only; no upstream business, lifecycle, authorization, API, database or technical-ownership change is authorized by this record.  
 
@@ -12,6 +12,8 @@
 ## 1. Purpose
 
 This record preserves the explicit product/UX selections made for the `W-C02 — Student Workspace` production slice before formal L6 architecture approval.
+
+**Current disposition:** The selections in this record were subsequently incorporated into and approved by `L6_Student_Workspace_Validation_and_Proceed_Gate_Decision_2026-09-17.md`. This file preserves the dated decision history; it is not the current proceed-gate authority.
 
 It exists to prevent implementation agents or later L6 authors from silently re-opening or replacing already-selected product direction.
 
@@ -268,7 +270,7 @@ Client-side hiding, disabling or persona composition is usability behavior only.
 All decisions in this record are:
 
 ```text
-Selected — Pending Formal L6 Slice Approval
+Historical selection — resolved by subsequent approved proceed gate
 ```
 
 They are authorized inputs to the Student Workspace L6 draft. They are **not** a substitute for:

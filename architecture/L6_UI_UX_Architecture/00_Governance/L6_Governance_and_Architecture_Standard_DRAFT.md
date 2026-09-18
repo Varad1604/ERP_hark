@@ -285,3 +285,27 @@ These require review and, where technology/material implementation choices are i
 ---
 
 **Draft verdict:** suitable for architecture review; not yet canonical or Locked.
+
+
+---
+
+## 16. Delivery Experience Slice Model
+
+The repository-wide workspace inventory exists for architecture coverage and sustained context. It shall not be treated as a one-row-per-frontend-task plan.
+
+For implementation-authorized L6 packages, delivery may be decomposed into **experience slices**:
+
+> An experience slice is a bounded, traceable increment in which a specified user, in a specified context, can achieve one meaningful observable outcome—or reach a clearly defined handoff—with the material alternate, failure, accessibility and responsive behavior reviewable.
+
+Rules:
+
+1. A delivery experience slice is not a new architecture level.
+2. One L3 scenario does not automatically equal one experience slice.
+3. One workspace family does not automatically equal one implementation task.
+4. One component, tab, modal, route or API call does not automatically equal one experience slice.
+5. A UX journey may cross workspace-family boundaries while canonical ownership remains unchanged.
+6. A delivery experience slice may inherit an existing approved L6 package boundary; implementation-local refactors, fixtures and review cases do not require a new formal architecture approval unless they materially change approved L6 semantics.
+7. Flow descriptions, state matrices, fixture sets and acceptance evidence support a slice but shall not become separate central architecture registers.
+8. Delivery status shall distinguish architecture authorization, frontend implementation, fixture-based UX acceptance, released-contract integration and integrated production validation.
+
+`L6_Experience_Slice_Register_DRAFT.md` may be used as a thin delivery locator for selected work. It shall link—not duplicate—canonical traceability evidence.

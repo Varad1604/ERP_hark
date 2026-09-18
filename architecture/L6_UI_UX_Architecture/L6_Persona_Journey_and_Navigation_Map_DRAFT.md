@@ -667,3 +667,22 @@ Next controlled step:
 ---
 
 **Draft verdict:** repository-derived persona/task navigation architecture synchronized with the corrected 105-unit inventory and full-corpus traceability baseline.
+
+
+---
+
+## 11. Journey-to-Delivery Relationship
+
+A **UX journey** is a meaningful user-goal path. It may remain within one workspace family or cross several workspace families through ownership-preserving handoffs.
+
+A **delivery experience slice** is a bounded increment used to design, implement, review and demonstrate part of a journey. It does not replace the journey map or create business ownership.
+
+```text
+workspace-family coverage
+→ UX journey / user goal
+→ delivery experience slice
+→ supporting flow + states + fixtures + acceptance evidence
+→ frontend implementation
+```
+
+The final navigation model shall continue to optimize for user goals and workflow continuity rather than exposing delivery-slice identifiers or repository taxonomy to ordinary users.

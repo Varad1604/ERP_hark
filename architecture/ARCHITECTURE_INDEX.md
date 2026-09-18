@@ -463,12 +463,16 @@ architecture/L6_UI_UX_Architecture/
 ├── README.md
 ├── 00_Governance/
 ├── 01_Foundation/
+├── 02_Implementation_Review/
 ├── L6_Screen_and_Workspace_Inventory_DRAFT.md
 ├── L6_Persona_Journey_and_Navigation_Map_DRAFT.md
-└── L6_Screen_Journey_Traceability_Register_DRAFT.md
+├── L6_Screen_Journey_Traceability_Register_DRAFT.md
+├── L6_Experience_Slice_Register_DRAFT.md
+├── L6_AI_First_UI_UX_Execution_Plan_DRAFT.md
+└── L6_Student_Workspace_DRAFT.md
 ```
 
-The active package consists of six Draft foundation artifacts, one Architecture Approved controlled-authorization decision, and three Draft planning/traceability artifacts.
+The active L6 package contains the controlled foundation, approved slice decisions, Draft planning/traceability artifacts, the approved W-C02 controlled draft package, and implementation-review support artifacts. The 105-unit inventory remains the architecture coverage baseline; delivery experience slices are a separate implementation/review planning view.
 
 | Document | Owner | Status | Execution Relevance |
 |---|---|---|---|
@@ -482,6 +486,10 @@ The active package consists of six Draft foundation artifacts, one Architecture 
 | L6 Screen and Workspace Inventory — Draft | Lead Architect | Draft | 105-unit repository-wide planning baseline |
 | L6 Persona Journey and Navigation Map — Draft | Lead Architect | Draft | Persona/task navigation composition |
 | L6 Screen / Journey Traceability Register — Draft | Lead Architect | Draft | Full-corpus L3/L4 workspace-family traceability and per-slice L5 gate |
+| L6 Experience Slice Register — Draft | Lead Architect | Draft | Thin locator for selected delivery experience slices; no new approval authority |
+| L6 AI-First UI / UX Execution Plan — Draft | Lead Architect | Draft Active Execution Plan | Day-based accelerated UX archetype, workspace breadth and deep-journey delivery plan |
+| W-C02 Student Workspace — Controlled Draft | Lead Architect | Architecture Approved by controlling proceed-gate decision; underlying document remains Draft-form | Approved W-C02 interaction package for controlled frontend implementation |
+| L6 Implementation Review Framework | Lead Architect | Active supporting guidance | Reproducible experience-slice review cases and acceptance evidence |
 
 ### Active L6 Planning Baseline
 
@@ -494,6 +502,8 @@ The corrected L6 inventory contains:
 - **105 total draft inventory units**.
 
 The traceability register reconciles the full **1,084 final L3 scenarios** to L6 workspace-family/shared presentation coverage and uses the canonical L3→L4 parent identity convention. Exact material L4 BH→L5 specification/evidence binding remains a required per-production-slice gate under the Locked L5 traceability methodology.
+
+The W-C02 proceed-gate decision dated 2026-09-17 records `ARCHITECTURE APPROVED / SLICE READY / CONTROLLED FRONTEND IMPLEMENTATION AUTHORIZED` for its stated boundary. The delivery experience-slice register does not expand that approval and does not duplicate canonical BH→L5 evidence.
 
 Controlled L6 authoring is authorized, but permanent L6 numbering, the final screen corpus, final folder taxonomy and Final L6 Corpus Lock remain unresolved. Frontend implementation shall not work ahead of a sufficiently approved/authorized L6 interaction boundary.
 

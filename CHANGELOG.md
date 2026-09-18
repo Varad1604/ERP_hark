@@ -1,5 +1,16 @@
 # SutraERP Architecture Changelog
 
+## [Unreleased] - 2026-09-18 — L6 experience-slice planning pilot
+
+**Draft branch / PR-pending change. No new Architecture Approval is asserted by this entry.**
+
+- Retains the 99 business workspace families + 6 shared L6 surfaces as the architecture coverage baseline for the 1,084 canonical L3 scenarios.
+- Adds `L6_Experience_Slice_Register_DRAFT.md` as a thin delivery locator for selected implementation increments; it does not replace the workspace inventory, journey map, traceability register, or canonical BH→L5 relation store.
+- Clarifies the distinction between workspace-family coverage, UX journeys, delivery experience slices, supporting flows/states/fixtures, and frontend acceptance evidence.
+- Synchronizes W-C02 planning/status language with the existing 2026-09-17 controlling proceed-gate decision; historical pre-remediation blocker wording is preserved only as superseded evidence.
+- Strengthens `02_Implementation_Review/` with reproducible W-C02 cases, fixture-fidelity rules, state applicability, connected-journey acceptance, and separate architecture/implementation/integration readiness dimensions.
+- No L0–L5 ownership, business rule, lifecycle, event, API, persistence, or authorization architecture is changed.
+
 This document tracks changes to the SutraERP Architecture Repository layout, guidelines, baseline, and locks.
 
 ## [1.11.0] - 2026-08-17

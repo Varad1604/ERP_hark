@@ -193,7 +193,7 @@ The final B ranges account for the approved `CAN-L3-B-021` split; candidate numb
 | Key | Workspace | Final L3/L4 scenario span | UX profiles | State |
 |---|---|---|---|---|
 | `W-C01` | Admissions | `C:001–007` | Admissions & Student Operations; Institutional Admin | Scenario Anchored / L5 Slice Resolution Pending |
-| `W-C02` | Student Workspace | `C:001,008–019` | Student Operations; Institutional Admin; Student self-service projections where supported | Scenario Anchored / L5 Slice Resolution Pending |
+| `W-C02` | Student Workspace | `C:001,008–019` | Student Operations; Institutional Admin; Student self-service projections where supported | **Slice Ready — governed by `L6_Student_Workspace_Validation_and_Proceed_Gate_Decision_2026-09-17.md`; delivery increments tracked separately** |
 | `W-C03` | Academic Registration | `C:020–026` | Student; Student Operations; Academic Operations | Scenario Anchored / L5 Slice Resolution Pending |
 | `W-C04` | Academic Progression & Credits | `C:027–038,075` | Student; Student Operations; Academic Operations | Scenario Anchored / L5 Slice Resolution Pending |
 | `W-C05` | Qualification & Exit | `C:039–050` | Student Operations; Institutional Admin; Student evidence/status where supported | Scenario Anchored / L5 Slice Resolution Pending |
@@ -437,3 +437,14 @@ Still required before production slice authorization:
 ---
 
 **Draft verdict:** complete repository-wide L3/L4 workspace-family traceability baseline established; exact per-slice L5 evidence binding remains the next controlled authoring gate.
+
+
+---
+
+## 8. Delivery Slice Linkage
+
+This register remains the workspace-family/upstream traceability view. It does not expand each workspace row into delivery experience slices and does not duplicate canonical BH→L5 relations.
+
+Where an approved L6 package is decomposed for implementation, `L6_Experience_Slice_Register_DRAFT.md` may point back to this workspace row, the controlling L6 specification/proceed-gate decision, the canonical L4→L5 trace evidence, the applicable review pack and implementation/test evidence.
+
+A delivery slice inherits only the approved boundary it actually uses; it does not enlarge the governing package.
