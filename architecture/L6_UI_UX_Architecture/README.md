@@ -48,6 +48,8 @@ The prior `L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md` remai
 ├── L6_Authenticated_Shell_Slice_Architecture_Approval_Decision_2026-09-16.md
 ├── L6_Student_Workspace_Product_UX_Decision_Record_2026-09-17.md
 ├── L6_Student_Workspace_Validation_and_Proceed_Gate_Decision_2026-09-17.md
+├── L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md
+├── L6_Full_Workflow_Mock_ERP_Expansion_Authorization_2026-09-19.md
 └── L6_Frontend_Backend_Integration_Guardrails.md
 
 01_Foundation/
@@ -60,7 +62,7 @@ The prior `L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md` remai
 └── W-C02_Student_Workspace_Review_Pack.md
 ```
 
-The six foundation artifacts remain `Draft`; they have not been silently renamed, locked, or assigned permanent L6 specification IDs. `L6_Foundation_Controlled_Authorization_2026-09-16.md` is the active Architecture Approved foundation decision authorizing controlled L6 production authoring while those drafts mature through normal governance.
+The six foundation artifacts remain `Draft`; they have not been silently renamed, locked, or assigned permanent L6 specification IDs. `L6_Foundation_Controlled_Authorization_2026-09-16.md` remains the controlling foundation authorization. The current programme-level authority is `L6_Full_Workflow_Mock_ERP_Expansion_Authorization_2026-09-19.md`.
 
 `L6_Product_UX_Decision_Field_Map_DRAFT.md` is the controlled working taxonomy for product/UX decisions during L6 authoring. It defines 64 core decision fields across eight families, distinguishes upstream-fixed, product-direction, architecture-derived, slice-specific and implementation-local matters, and requires reuse of previously resolved fields before new product questions are opened.
 
@@ -80,6 +82,10 @@ The six foundation artifacts remain `Draft`; they have not been silently renamed
 L6_Screen_and_Workspace_Inventory_DRAFT.md
 L6_Persona_Journey_and_Navigation_Map_DRAFT.md
 L6_Screen_Journey_Traceability_Register_DRAFT.md
+L6_Workflow_Realization_Register_DRAFT.md
+L6_Experience_Slice_Register_DRAFT.md
+L6_AI_First_UI_UX_Execution_Plan_DRAFT.md                     # historical Days 1–13 plan
+L6_Full_Workflow_Realization_and_Mock_ERP_Execution_Plan_DRAFT.md  # active expansion plan
 ```
 
 ### Screen / Workspace Inventory
@@ -119,7 +125,7 @@ The traceability register establishes:
 - actor/profile presentation scope without converting UX profiles into authorization roles;
 - an explicit per-slice gate requiring material L4 BH→L5 specification/evidence binding before a production slice can become implementation-authorized.
 
-The three planning/traceability artifacts remain `Draft`. They do not constitute a final screen corpus, final navigation lock or Final L6 Corpus Lock.
+The planning/traceability/realization artifacts remain controlled Draft working records. The workflow-realization register is the new full-corpus realization view and must reach 1,084/1,084 before the expansion may claim complete UI realization.
 
 ### Architecture Coverage vs Delivery Planning
 
@@ -138,7 +144,7 @@ Architecture authorization, frontend implementation, fixture-based UX acceptance
 
 ### AI-First UI / UX Execution Plan
 
-`L6_AI_First_UI_UX_Execution_Plan_DRAFT.md` is the active accelerated delivery plan for the current L6/frontend cycle.
+`L6_AI_First_UI_UX_Execution_Plan_DRAFT.md` is the historical execution plan for the completed Days 1–13 baseline. The active expansion plan is `L6_Full_Workflow_Realization_and_Mock_ERP_Execution_Plan_DRAFT.md`.
 
 It preserves the 105-unit architecture coverage baseline while changing the implementation method from bespoke workspace-by-workspace delivery to:
 
