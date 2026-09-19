@@ -488,6 +488,8 @@ The active L6 package contains the controlled foundation, approved slice decisio
 | L6 Screen / Journey Traceability Register — Draft | Lead Architect | Draft | Full-corpus L3/L4 workspace-family traceability and per-slice L5 gate |
 | L6 Experience Slice Register — Draft | Lead Architect | Draft | Thin locator for selected delivery experience slices; no new approval authority |
 | L6 AI-First UI / UX Execution Plan — Draft | Lead Architect | Draft Active Execution Plan | Day-based accelerated UX archetype, workspace breadth and deep-journey delivery plan |
+| L6 Days 3–5 Reference UX System — Draft | Lead Architect | Draft | Multi-domain reference-workspace proof using the established 99-workspace / 12-archetype foundation; no L0–L5 semantics changed |
+| L6 Days 3–5 Reference UX Validation & Readiness Record | Lead Architect | Draft | Records reference-set counts, CI evidence, W-C02 regression result, evidence gaps and proceed verdict |
 | W-C02 Student Workspace — Controlled Draft | Lead Architect | Architecture Approved by controlling proceed-gate decision; underlying document remains Draft-form | Approved W-C02 interaction package for controlled frontend implementation |
 | L6 Implementation Review Framework | Lead Architect | Active supporting guidance | Reproducible experience-slice review cases and acceptance evidence |
 

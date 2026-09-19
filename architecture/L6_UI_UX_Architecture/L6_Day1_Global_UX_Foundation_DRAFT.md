@@ -4,7 +4,7 @@
 **Status:** Draft  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture  
-**Repository State:** Day-1 baseline merged to `main`; Day-2 hardening continues under controlled branch governance.  
+**Repository State:** Days 1–2 global UX foundation merged to `main`; Reference UX System work proceeds only through separately governed downstream branches.  
 **Depends On:** existing L6 controlled foundation, workspace inventory, persona/journey map, experience-slice register, implementation-review framework, approved L5 client architecture, locked upstream architecture.  
 **Purpose:** Govern the reusable frontend/L6 foundation for workspace mapping, UX archetypes, review evidence, shared interaction patterns and maturity reporting without redefining business behavior.
 
@@ -177,6 +177,21 @@ Integration maturity is separate:
 - `integrated`
 
 Day 1 rule: all workspace families remain `UX-MAPPED` except where live implementation evidence supports a stronger state. W-C02 remains an interactive fixture-backed reference implementation and is **not** represented as production-integrated.
+
+## 4A. Evidence-Dimension Maturity Clarification
+
+The original broad UX maturity vocabulary remains historical provenance, but a single vocabulary shall not be reused across semantically different evidence dimensions.
+
+For frontend and L6 reporting from Days 3–5 onward:
+
+- **Implementation evidence** describes what interaction composition exists: `UX-MAPPED`, `SHELL-IMPLEMENTED`, or `INTERACTIVE-FIXTURE-IMPLEMENTED`.
+- **UX review evidence** describes what review actually occurred: `NOT-REVIEWED`, `STATIC-REVIEWED`, or `UX-REVIEWED`.
+- **Integration evidence** remains: `presentation-only`, `contract-backed`, or `integrated`.
+- **Production validation evidence** is independent: `not-validated` or `production-validated`.
+
+This is a controlled L6 vocabulary refinement, not an upgrade of any workspace. It preserves prior implementation meaning while removing the invalid implication that an implementation state is itself review evidence.
+
+W-C02 therefore remains `INTERACTIVE-FIXTURE-IMPLEMENTED` for implementation evidence, becomes `STATIC-REVIEWED` for current review evidence, remains `presentation-only` for integration evidence, and remains `not-validated` for production validation. It shall not be marked `UX-REVIEWED` until actual browser/UX review evidence exists.
 
 ## 5. Global Experience Lab
 
