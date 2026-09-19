@@ -6,8 +6,8 @@
 **Architecture Level:** L6 — UI / UX Architecture Governance  
 **Architecture Base:** `e0cb58fe0e22dc32b53dca2438ea6f17ecf5e38c`  
 **Frontend Base:** `f14a54d095280ca82214db7fa7f7d9fe3c924cad`  
-**Frontend Validated Head:** `78a1fe540a496e3f6ab46b51b7b1697901f81402`  
-**Frontend Workflow Run:** `35424230402` — Frontend PR Validation #30  
+**Frontend Validated Head:** `45c857e750b4e177638b8b8f71b5142591440c7e`  
+**Frontend Workflow Run:** `35424479616` — Frontend PR Validation #30  
 
 ## 1. Scope
 
@@ -112,7 +112,7 @@ All new fixtures are `presentation-fixture` fidelity with explicit provenance an
 
 ## 7. Validation Commands
 
-The frontend pull-request workflow executed the required commands at commit `78a1fe540a496e3f6ab46b51b7b1697901f81402`.
+The frontend pull-request workflow executed the required commands at commit `45c857e750b4e177638b8b8f71b5142591440c7e`.
 
 | Command | Result |
 |---|---|
@@ -121,7 +121,7 @@ The frontend pull-request workflow executed the required commands at commit `78a
 | `npm run typecheck` | **PASS** |
 | `npm run build` | **PASS** |
 
-Workflow run: `35424230402`.
+Workflow run: `35424479616`.
 
 ## 8. Browser / UX Evidence
 
@@ -148,6 +148,14 @@ Static safeguards remain in place for:
 - narrow-screen reduction of master/detail and row structures.
 
 Hands-on desktop/tablet/mobile review remains pending.
+
+## 9A. Second-Pass Architecture Alignment
+
+A second independent repository review detected and corrected one presentation-scope mismatch: `W-I08 — Marks & Evaluation` had inherited a generic Student presentation profile in the Day-1 registry although the authoritative L6 traceability row limits the workspace to Examination Operations / authorized evaluators.
+
+The frontend registry was corrected to Administrator + Faculty presentation only, and static validation now prevents reintroduction of a Student presentation profile.
+
+This was an L6/frontend consistency correction only; no upstream Examination semantics changed.
 
 ## 10. W-C02 Regression
 
