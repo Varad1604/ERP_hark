@@ -494,6 +494,7 @@ The active L6 package contains the controlled foundation, approved slice decisio
 | L6 Days 6–8 Full ERP UX Breadth Validation & Readiness Record | Lead Architect | Draft | Records 99/99 breadth counts, CI evidence, maturity distribution, regression checks and phase verdict |
 | W-C02 Student Workspace — Controlled Draft | Lead Architect | Architecture Approved by controlling proceed-gate decision; underlying document remains Draft-form | Approved W-C02 interaction package for controlled frontend implementation |
 | L6 Implementation Review Framework | Lead Architect | Active supporting guidance | Reproducible experience-slice review cases and acceptance evidence |
+| L6 UX Baseline Lock and Backend Proceed Decision — 2026-09-19 | Lead Architect | Locked | Current L6 baseline authority; freezes the established UX baseline and authorizes backend/integration proceed |
 
 ### Active L6 Planning Baseline
 
@@ -509,7 +510,7 @@ The traceability register reconciles the full **1,084 final L3 scenarios** to L6
 
 The W-C02 proceed-gate decision dated 2026-09-17 records `ARCHITECTURE APPROVED / SLICE READY / CONTROLLED FRONTEND IMPLEMENTATION AUTHORIZED` for its stated boundary. The delivery experience-slice register does not expand that approval and does not duplicate canonical BH→L5 evidence.
 
-Controlled L6 authoring is authorized, but permanent L6 numbering, the final screen corpus, final folder taxonomy and Final L6 Corpus Lock remain unresolved. Frontend implementation shall not work ahead of a sufficiently approved/authorized L6 interaction boundary.
+The established L6 UX baseline is Locked by `00_Governance/L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md`. The lock freezes the 99-workspace + 6-shared-surface coverage baseline, 12 archetypes, shared UX rules and backend-readiness interaction contract while preserving separate per-slice L4/L5 evidence gates for future detailed interactions. Permanent numbering for every future L6 artifact remains outside this baseline lock.
 
 ---
 
@@ -546,11 +547,12 @@ Controlled L6 authoring is authorized, but permanent L6 numbering, the final scr
 | L5 Broad Authoring | Authorized |
 | L5 Historical Extracted Documents | 2 substantive artifacts + 2 temporary root compatibility pointers |
 | L6 UI/UX Documents Present | 10 active governance/foundation/planning artifacts |
-| L6 Business Workspace Families | 99 draft families |
-| L6 Shared Surfaces | 6 draft surfaces |
-| L6 Planning Inventory Units | 105 |
-| L6 Full-Corpus L3 Workspace Traceability | 1,084 / 1,084 reconciled at planning level |
-| L6 Controlled Authoring | Authorized 2026-09-16 |
+| L6 Business Workspace Families | 99 — Locked baseline |
+| L6 Shared Surfaces | 6 — Locked baseline |
+| L6 Architecture Coverage Units | 105 — Locked baseline |
+| L6 Full-Corpus L3 Workspace Traceability | 1,084 / 1,084 reconciled at workspace-family/shared-presentation level |
+| L6 UX Baseline | Locked 2026-09-19 |
+| L6 Backend / Integration Proceed | Authorized 2026-09-19 |
 | Active Architects | 5 |
 
 ---
@@ -581,11 +583,16 @@ Controlled L6 authoring is authorized, but permanent L6 numbering, the final scr
 >
 > L5 is **not** covered by the L0/L1/L2 lock. Current L5 governance freezes a 105-specification authoring population and authorizes broad authoring under dependency-gated execution, but the Final L5 Corpus Lock has not been issued. Historical `L5-00` and `L5-01` remain non-canonical technical inputs requiring current-governance revalidation before adoption.
 >
-> L6 is **not** globally Locked. Effective 2026-09-16, controlled L6 authoring is explicitly authorized by `L6_Foundation_Controlled_Authorization_2026-09-16.md`; the six foundation artifacts and three planning/traceability artifacts remain Draft working authorities unless individually promoted through governance.
+> Effective 2026-09-19, the established L6 UX baseline is **Locked** by `L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md`. The lock governs the established baseline as a whole and supersedes earlier current-state statements that the freeze gate remained pending. Draft-form supporting artifacts remain historical/working evidence under that lock; future material L6 changes require controlled amendment.
 
 ---
 
 # Recent Changes
+
+**2026-09-19 — L6 UX baseline lock and backend proceed:** Locked the established 99-workspace + 6-shared-surface L6 UX baseline, 12 archetypes, shared navigation/state/handoff/reviewer-boundary rules, 81 shell implementations, 18 interactive fixture-backed workspaces and backend-readiness interaction evidence. Backend/integration work is authorized to proceed against this stable UX contract. `UX-REVIEWED`, released-contract integration, accessibility certification and production validation remain separate downstream evidence dimensions.
+
+---
+
 
 **2026-09-16 — L6 inventory, journey and full-corpus planning traceability:** Added the Screen and Workspace Inventory, Persona Journey and Navigation Map, and Screen / Journey Traceability Register. Exact final-L3 reconciliation identified and corrected a coverage gap for `L3-G-001…015` by introducing provisional L6 workspace key `W-G00 Campus Operations Governance` without redefining `L2-G00`. The corrected planning baseline is 99 business workspace families + 6 shared surfaces = 105 inventory units. All 1,084 final L3 scenarios now reconcile to an L6 workspace/shared presentation family at planning level. Exact material L4 BH→L5 evidence binding remains mandatory before a production L6 slice can be treated as ready.
 
@@ -623,7 +630,7 @@ Controlled L6 authoring is authorized, but permanent L6 numbering, the final scr
 
 ---
 
-**Last Updated:** 2026-09-16
+**Last Updated:** 2026-09-19
 
 **Repository:** SutraERP
 
