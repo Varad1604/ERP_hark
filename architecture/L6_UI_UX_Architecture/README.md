@@ -1,8 +1,8 @@
 # L6 UI / UX Architecture
 
 **Architecture Level:** L6 — UI / UX Architecture  
-**Current State:** L6 UX Baseline Locked; 99-Workspace Breadth + 12 Archetypes + 18 Interactive Fixture Workspaces; Backend / Integration Proceed Authorized  
-**Broad Production Authoring:** Locked UX baseline active; future material L6 changes require controlled amendment  
+**Current State:** Controlled L6 Reopening Authorized for Full Workflow UI Realization + Mock-Operational ERP; Days 1–13 Baseline Preserved  
+**Broad Production Authoring:** Full 1,084-scenario UI-realization audit and mock-operational frontend expansion authorized under controlled amendment  
 **Downstream:** SutraERP frontend implementation repository after applicable L6 slice approval/authorization  
 
 L6 defines user interaction, navigation, screens, workspaces and user journeys derived from approved upstream architecture without owning business logic.
@@ -16,13 +16,25 @@ Frontend Implementation
 ```
 
 
-## L6 UX Baseline Lock
+## Current Controlled Expansion
 
-`00_Governance/L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md` is the current corpus-level L6 baseline authority.
+`00_Governance/L6_Full_Workflow_Mock_ERP_Expansion_Authorization_2026-09-19.md` is the current L6 programme authority.
 
-It locks the established 99 business workspace families + 6 shared surfaces, 12 reusable UX archetypes, shared navigation/state/handoff/reviewer-boundary rules, 81 shell implementations, 18 interactive fixture-backed workspaces, and the backend-readiness interaction baseline. It also authorizes backend/integration work to proceed against that stable UX contract.
+It preserves the completed Days 1–13 baseline but reopens L6 in a controlled manner for a stronger product-review objective:
 
-The lock does **not** claim `UX-REVIEWED`, accessibility certification, contract-backed integration, production validation, or complete per-slice L4-BH→L5 evidence for every future detailed interaction. Those remain separate downstream gates. Material L6 changes require controlled amendment.
+- classify **1,084 / 1,084** canonical L3 scenarios into explicit UI-realization dispositions;
+- make every legitimate user-addressable workflow discoverable in the ERP;
+- make appropriate system/background workflows observable without inventing user actions;
+- turn all 99 workspace families into meaningfully browseable end-user ERP workspaces;
+- establish one coherent fictional institution dataset across domains;
+- permit deterministic frontend-only mock updates and reset behavior;
+- perform a full end-user mock-ERP review before significant backend integration.
+
+The prior `L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md` remains preserved historical baseline evidence. It is not deleted. Its closed-baseline/backend-next current-state interpretation is superseded by the controlled reopening authorization.
+
+`L6_Full_Workflow_Realization_and_Mock_ERP_Execution_Plan_DRAFT.md` governs execution.
+
+`L6_Workflow_Realization_Register_DRAFT.md` defines the controlled 1,084-scenario realization schema. It currently establishes the schema only; its 1,084 rows must be populated during the full-corpus audit before any completion claim.
 
 ## Current Foundation Package
 
@@ -142,9 +154,32 @@ architecture coverage
 → backend-ready interaction evidence
 ```
 
-The plan uses Day-based sequencing only. It does not create calendar-date commitments, new architecture ownership, permanent L6 IDs or a new approval authority.
+The earlier AI-first plan established the Days 1–13 baseline. Its original 12–18-deep-workspace target is now historical for that completed phase. The active expansion target is governed by `L6_Full_Workflow_Realization_and_Mock_ERP_Execution_Plan_DRAFT.md`: 1,084/1,084 scenario realization dispositions, 99/99 browseable workspaces, full workflow discoverability, coherent mock data, and deterministic mock interactions where legitimate.
 
-Its target is 99/99 workspace families UX-mapped and meaningfully navigable, with approximately 12–18 backend-defining workspace families deeply interactive enough to expose data, authority, handoff and integration needs. This is an implementation-ready frontend/UX baseline, not a claim of full production integration across all 99 families.
+## Workflow Realization & Mock ERP Expansion
+
+The expansion distinguishes:
+
+- **scenario** — canonical L3 institutional outcome;
+- **workspace family** — sustained L6 UI context;
+- **workflow realization** — how a scenario is interacted with or observed in the UI;
+- **UX journey** — user-goal path that may cross workspaces;
+- **delivery experience slice** — bounded implementation/review increment;
+- **fixture/mock state** — non-authoritative review evidence.
+
+Primary realization categories are:
+
+1. interactive workflow;
+2. review/approval workflow;
+3. tracking workflow;
+4. exception/recovery workflow;
+5. cross-workspace handoff;
+6. system/background observable outcome;
+7. no direct end-user interaction required.
+
+The permanent sidebar shall remain curated. Full workflow discoverability should come from workflow-aware search, workspace-local workflow/task/exception surfaces, contextual handoffs, task/work entry and an optional Browse Workflows / Workflow Explorer surface.
+
+Mock ERP behavior requires **no database and no backend**. Mock updates are local, deterministic, resettable, fictional and explicitly non-authoritative.
 
 ## Product / UX Decision Field Governance
 
