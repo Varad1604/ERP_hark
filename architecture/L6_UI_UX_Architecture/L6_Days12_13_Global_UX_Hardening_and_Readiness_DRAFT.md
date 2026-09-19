@@ -5,8 +5,8 @@
 **Scope:** Days 12–13 global UX hardening, review and freeze-readiness preparation  
 **Architecture Baseline:** `61f69f483fe62810227c5f46ea520f17885f5083`  
 **Frontend Baseline:** `a7a257633b19bb7a10d1ee1e6676613c4224d26a`  
-**Final Frontend Hardening Head:** `3975d86ce5f966d02b040f5e55f34e8f53c23f99`  
-**Frontend Validation Run:** GitHub Actions `35443317913`  
+**Final Frontend Hardening Head:** `0ca8e1246b8b4687c78949e98010d3b7bac033ad`  
+**Frontend Validation Run:** GitHub Actions `35451617780`  
 **Rule:** This record does not upgrade integration, production validation, business authority, lifecycle ownership, or upstream architecture.
 
 ## 1. Audit Purpose
@@ -274,11 +274,11 @@ No visual/code hardening correction was used as evidence for a maturity upgrade.
 
 Final frontend head:
 
-`3975d86ce5f966d02b040f5e55f34e8f53c23f99`
+`0ca8e1246b8b4687c78949e98010d3b7bac033ad`
 
 GitHub Actions workflow run:
 
-`35443317913` — **success**
+`35451617780` — **success**
 
 The final-head CI executed and passed:
 
