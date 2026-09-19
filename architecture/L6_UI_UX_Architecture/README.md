@@ -322,3 +322,8 @@ Permanent IDs shall be introduced only through an approved naming/numbering deci
 ## Days 3–5 Reference UX System
 
 `L6_Days3_5_Reference_UX_System_DRAFT.md` records the controlled multi-domain reference implementation phase. It preserves the 99-workspace and 12-archetype baselines, separates implementation/review/integration/production-validation evidence, and does not authorize Final L6 Corpus Lock.
+
+
+## Days 6–8 Full ERP UX Breadth
+
+`L6_Days6_8_Full_ERP_UX_Breadth_DRAFT.md` governs the full-corpus breadth phase. It keeps the 99-workspace / 12-archetype architecture baseline, uses the locked frontend visual system as the presentation baseline, requires meaningful shell-level representation and Global Search discovery for all 99 workspaces, and does not authorize deep workflow semantics or Final L6 Corpus Lock.
