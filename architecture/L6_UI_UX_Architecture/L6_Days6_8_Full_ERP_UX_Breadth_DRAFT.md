@@ -24,16 +24,18 @@ Workspace identity, scenario span and supported UX-profile language remain deriv
 - approved L2/L3/L4/L5 upstream sources;
 - Days 1–5 L6 foundation/reference records.
 
-The frontend may carry compact trace metadata for presentation/review, but that copy is not a new canonical relation store.
+The frontend may carry compact trace metadata for reviewer tooling and evidence, but that copy is not a new canonical relation store.
+
+**UX boundary clarification (Days 1–8 cleanup):** internal architecture, traceability and review metadata is reviewer-only and shall not appear in normal end-user presentation. This includes workspace keys, L2/L3/L4/L6 identifiers, scenario spans, UX-profile labels, archetype names, implementation maturity, review maturity, fixture fidelity and revision metadata. Such fields may remain in registries, validation code and the Global Experience Lab. Ordinary ERP presentation must use task-oriented, human-readable business language and may communicate ownership or unavailable capability only where it materially helps the user's work. This clarification applies the Day-1 controlling rule and does not change workspace ownership, scenario ownership, archetype mapping, maturity classification or breadth coverage.
 
 ## 3. Breadth Completion Meaning
 
 A workspace is `SHELL-IMPLEMENTED` when the production-intended frontend can:
 
 1. discover/enter the canonical workspace through search or task/domain navigation;
-2. identify the workspace and owning L2 source;
+2. identify the workspace and relevant institutional ownership/context in human-readable business language;
 3. present a meaningful architecture-grounded primary user goal;
-4. show the approved L3/L4 scenario span and L6 UX-profile description for review context;
+4. retain approved L3/L4 scenario span and L6 UX-profile description in reviewer evidence / Global Experience Lab, not ordinary end-user presentation;
 5. compose the workspace from approved archetype primitives;
 6. expose meaningful information areas and major action categories without inventing business rules;
 7. show applicable loading, empty and degraded-source boundaries;
@@ -68,11 +70,11 @@ Breadth-level workspaces use the first approved archetype as the primary shell c
 
 Reusable breadth sections are:
 
-- **Current context** — canonical workspace, upstream source, scenario span, presentation profile;
+- **Current context** — workspace identity, current institutional/business context and applicable user presentation in human-readable language;
 - **Primary work** — archetype-appropriate orientation/worklist/configuration/schedule/ledger/tracking surface;
 - **What users can do here** — bounded presentation/action categories only;
 - **Ownership & continuation** — source ownership and handoff boundary;
-- **Integration boundary** — current maturity and unavailable/deep-workflow boundary.
+- **Integration boundary** — task-relevant availability and unavailable/deep-workflow boundary without exposing internal maturity labels.
 
 This convention is configuration, not a thirteenth archetype.
 
@@ -82,7 +84,7 @@ The shell shall not expand into an unreadable list of all 99 workspaces.
 
 All canonical workspaces must be discoverable through Global Search. Existing task/domain navigation remains curated.
 
-Internal workspace IDs are permitted in review/trace surfaces but must not be required for ordinary discovery.
+Internal workspace IDs are permitted in review/trace surfaces but shall not appear in ordinary discovery or end-user presentation.
 
 Visibility in search/navigation is not authorization.
 
@@ -148,6 +150,6 @@ Days 6–8 may pass only if:
 
 ## 13. Exit Condition
 
-Days 6–8 exit when the ERP is broadly navigable, all 99 workspace families are meaningfully represented at shell level, architecture coverage is inspectable through the frontend, and no architecture hard fail remains.
+Days 6–8 exit when the ERP is broadly navigable, all 99 workspace families are meaningfully represented at shell level, architecture coverage remains inspectable through reviewer tooling/evidence, and no architecture hard fail remains.
 
 This does not authorize Days 9–11 deep-workflow semantics, backend integration, Final L6 Corpus Lock or production readiness.
