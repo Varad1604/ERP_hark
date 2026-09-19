@@ -469,10 +469,12 @@ architecture/L6_UI_UX_Architecture/
 ├── L6_Screen_Journey_Traceability_Register_DRAFT.md
 ├── L6_Experience_Slice_Register_DRAFT.md
 ├── L6_AI_First_UI_UX_Execution_Plan_DRAFT.md
+├── L6_Full_Workflow_Realization_and_Mock_ERP_Execution_Plan_DRAFT.md
+├── L6_Workflow_Realization_Register_DRAFT.md
 └── L6_Student_Workspace_DRAFT.md
 ```
 
-The active L6 package contains the controlled foundation, approved slice decisions, Draft planning/traceability artifacts, the approved W-C02 controlled draft package, and implementation-review support artifacts. The 105-unit inventory remains the architecture coverage baseline; delivery experience slices are a separate implementation/review planning view.
+The active L6 package contains the preserved Days 1–13 foundation/baseline, approved slice decisions, Draft planning/traceability artifacts, the current full-workflow mock-ERP expansion authority, the new 1,084-scenario realization register, the approved W-C02 controlled draft package, and implementation-review support artifacts. The 105-unit inventory remains the architecture coverage baseline; workflow realization and delivery experience slices are separate controlled views.
 
 | Document | Owner | Status | Execution Relevance |
 |---|---|---|---|
@@ -487,7 +489,7 @@ The active L6 package contains the controlled foundation, approved slice decisio
 | L6 Persona Journey and Navigation Map — Draft | Lead Architect | Draft | Persona/task navigation composition |
 | L6 Screen / Journey Traceability Register — Draft | Lead Architect | Draft | Full-corpus L3/L4 workspace-family traceability and per-slice L5 gate |
 | L6 Experience Slice Register — Draft | Lead Architect | Draft | Thin locator for selected delivery experience slices; no new approval authority |
-| L6 AI-First UI / UX Execution Plan — Draft | Lead Architect | Draft Active Execution Plan | Day-based accelerated UX archetype, workspace breadth and deep-journey delivery plan |
+| L6 AI-First UI / UX Execution Plan — Draft | Lead Architect | Historical Active-Phase Record | Completed Days 1–13 archetype/workspace-breadth/deep-journey plan; superseded as active target |
 | L6 Days 3–5 Reference UX System — Draft | Lead Architect | Draft | Multi-domain reference-workspace proof using the established 99-workspace / 12-archetype foundation; no L0–L5 semantics changed |
 | L6 Days 3–5 Reference UX Validation & Readiness Record | Lead Architect | Draft | Records reference-set counts, CI evidence, W-C02 regression result, evidence gaps and proceed verdict |
 | L6 Days 6–8 Full ERP UX Breadth — Draft | Lead Architect | Draft | Governs meaningful shell-level UX representation and search discovery across all 99 canonical workspace families using the established 12-archetype/locked-visual baseline |
@@ -549,7 +551,7 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 | L5 Frozen Authoring Population | 105 specifications |
 | L5 Broad Authoring | Authorized |
 | L5 Historical Extracted Documents | 2 substantive artifacts + 2 temporary root compatibility pointers |
-| L6 UI/UX Documents Present | 10 active governance/foundation/planning artifacts |
+| L6 UI/UX Package | Expanded controlled package; see L6 README and current programme authority |
 | L6 Business Workspace Families | 99 — Locked baseline |
 | L6 Shared Surfaces | 6 — Locked baseline |
 | L6 Architecture Coverage Units | 105 — Locked baseline |
