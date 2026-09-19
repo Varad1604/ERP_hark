@@ -306,6 +306,17 @@ Current L6 web work inherits approved L5 client architecture, including:
 
 L6 may define how these constraints are experienced by users but shall not weaken or redefine them.
 
+
+## Days 9–11 Deep Backend-Defining Journeys
+
+`L6_Days9_11_Deep_Backend_Defining_Journeys_DRAFT.md` controls the selected 18-family deep-interaction phase. It preserves the 99-workspace / 12-archetype baseline while exposing source-owned information, authoritative-decision dependencies, material outcome classes, reconciliation needs and owner-preserving handoffs required for later backend planning.
+
+`L6_Backend_Readiness_Interaction_Evidence_Register_DRAFT.md` is the implementation-independent evidence register for those deep journeys. It is explicitly not an API, payload, database or transport specification.
+
+Validation and readiness evidence is recorded in `00_Governance/L6_Days9_11_Deep_Backend_Defining_Journeys_Validation_and_Readiness_Record_2026-09-19.md`.
+
+The phase keeps ordinary user UX free of L-level/workspace/reviewer metadata and retains integration maturity independently from fixture interaction depth.
+
 ## Existing Repository Template
 
 `templates/L6_UIUX_Template.md` is the earlier lightweight repository placeholder. It remains repository history while `00_Governance/L6_UI_UX_Architecture_Template_v0.1_DRAFT.md` is the controlled working template under the current foundation authorization.
