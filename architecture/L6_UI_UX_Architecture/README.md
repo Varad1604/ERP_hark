@@ -1,7 +1,7 @@
 # L6 UI / UX Architecture
 
 **Architecture Level:** L6 — UI / UX Architecture  
-**Current State:** Controlled Foundation Authorized + Authenticated Shell Approved + W-C02 Student Workspace Approved for Controlled Frontend Implementation  
+**Current State:** Days 12–13 Global UX Hardening Complete on Review Branch; 99-Workspace Breadth + 12 Archetypes + 18 Interactive Fixture Workspaces; Formal L6 UX Baseline Freeze Gate Pending  
 **Broad Production Authoring:** Controlled slices authorized; full corpus not yet frozen or locked  
 **Downstream:** SutraERP frontend implementation repository after applicable L6 slice approval/authorization  
 
@@ -316,6 +316,16 @@ L6 may define how these constraints are experienced by users but shall not weake
 Validation and readiness evidence is recorded in `00_Governance/L6_Days9_11_Deep_Backend_Defining_Journeys_Validation_and_Readiness_Record_2026-09-19.md`.
 
 The phase keeps ordinary user UX free of L-level/workspace/reviewer metadata and retains integration maturity independently from fixture interaction depth.
+
+## Days 12–13 Global UX Hardening
+
+`L6_Days12_13_Global_UX_Hardening_and_Readiness_DRAFT.md` records the global hardening pass over the Days 1–11 L6/frontend corpus.
+
+The phase preserves the established 99-workspace / 12-archetype / 81-shell / 18-interactive baseline and corrects implementation defects without redesigning the locked visual system or changing upstream business architecture.
+
+The recorded hardening evidence includes persona-sensitive navigation alignment, Administrator-only Administration navigation, unsupported-profile action blocking, W-C02 persona-boundary correction, review-shell gating behind the non-production Experience Lab, reviewer/integration-language removal from ordinary W-C02 and owner-handoff copy, stronger governed-action/state language, 24-fixture / 121-case Experience Lab validation, unchanged maturity, and final frontend CI success.
+
+No live browser or assistive-technology review was available in the hardening execution environment. `UX-REVIEWED` therefore remains **0**. The phase recommends proceeding to the formal L6 UX Baseline Readiness / Freeze Gate without claiming Final L6 Corpus Lock, integration or production readiness.
 
 ## Existing Repository Template
 
