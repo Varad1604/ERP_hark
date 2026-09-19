@@ -490,6 +490,8 @@ The active L6 package contains the controlled foundation, approved slice decisio
 | L6 AI-First UI / UX Execution Plan — Draft | Lead Architect | Draft Active Execution Plan | Day-based accelerated UX archetype, workspace breadth and deep-journey delivery plan |
 | L6 Days 3–5 Reference UX System — Draft | Lead Architect | Draft | Multi-domain reference-workspace proof using the established 99-workspace / 12-archetype foundation; no L0–L5 semantics changed |
 | L6 Days 3–5 Reference UX Validation & Readiness Record | Lead Architect | Draft | Records reference-set counts, CI evidence, W-C02 regression result, evidence gaps and proceed verdict |
+| L6 Days 6–8 Full ERP UX Breadth — Draft | Lead Architect | Draft | Governs meaningful shell-level UX representation and search discovery across all 99 canonical workspace families using the established 12-archetype/locked-visual baseline |
+| L6 Days 6–8 Full ERP UX Breadth Validation & Readiness Record | Lead Architect | Draft | Records 99/99 breadth counts, CI evidence, maturity distribution, regression checks and phase verdict |
 | W-C02 Student Workspace — Controlled Draft | Lead Architect | Architecture Approved by controlling proceed-gate decision; underlying document remains Draft-form | Approved W-C02 interaction package for controlled frontend implementation |
 | L6 Implementation Review Framework | Lead Architect | Active supporting guidance | Reproducible experience-slice review cases and acceptance evidence |
 
