@@ -6,6 +6,8 @@
 
 ---
 
+> **SUPERSEDED AS ACTIVE PROGRAMME TARGET — 2026-09-19:** This plan remains the authoritative historical execution record for the completed Days 1–13 baseline. Its target of approximately 12–18 deeply interactive workspaces is no longer the active completion target. The current programme is governed by `00_Governance/L6_Full_Workflow_Mock_ERP_Expansion_Authorization_2026-09-19.md` and `L6_Full_Workflow_Realization_and_Mock_ERP_Execution_Plan_DRAFT.md`, which require 1,084/1,084 scenario UI-realization dispositions and a full browseable mock-operational ERP.
+
 ## 1. Objective
 
 The objective of this execution plan is not to claim that all 99 business workspace families are production-complete.
@@ -304,7 +306,7 @@ Classify findings as:
 - Review-process issue
 - Implementation-local improvement
 
-**Exit condition:** frontend breadth is frozen into a coherent reviewable baseline and the project can begin backend implementation without pretending the entire frontend is production-final.
+**Historical Days 12–13 exit condition:** frontend breadth was frozen into a coherent reviewable baseline. A later controlled reopening identified full workflow realization and mock-operational end-user review as the preferred next programme before significant backend integration.
 
 ---
 
