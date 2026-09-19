@@ -1,8 +1,8 @@
 # L6 UI / UX Architecture
 
 **Architecture Level:** L6 — UI / UX Architecture  
-**Current State:** Days 12–13 Global UX Hardening Complete on Review Branch; 99-Workspace Breadth + 12 Archetypes + 18 Interactive Fixture Workspaces; Formal L6 UX Baseline Freeze Gate Pending  
-**Broad Production Authoring:** Controlled slices authorized; full corpus not yet frozen or locked  
+**Current State:** L6 UX Baseline Locked; 99-Workspace Breadth + 12 Archetypes + 18 Interactive Fixture Workspaces; Backend / Integration Proceed Authorized  
+**Broad Production Authoring:** Locked UX baseline active; future material L6 changes require controlled amendment  
 **Downstream:** SutraERP frontend implementation repository after applicable L6 slice approval/authorization  
 
 L6 defines user interaction, navigation, screens, workspaces and user journeys derived from approved upstream architecture without owning business logic.
@@ -14,6 +14,15 @@ L6 UI / UX Architecture
         ↓
 Frontend Implementation
 ```
+
+
+## L6 UX Baseline Lock
+
+`00_Governance/L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md` is the current corpus-level L6 baseline authority.
+
+It locks the established 99 business workspace families + 6 shared surfaces, 12 reusable UX archetypes, shared navigation/state/handoff/reviewer-boundary rules, 81 shell implementations, 18 interactive fixture-backed workspaces, and the backend-readiness interaction baseline. It also authorizes backend/integration work to proceed against that stable UX contract.
+
+The lock does **not** claim `UX-REVIEWED`, accessibility certification, contract-backed integration, production validation, or complete per-slice L4-BH→L5 evidence for every future detailed interaction. Those remain separate downstream gates. Material L6 changes require controlled amendment.
 
 ## Current Foundation Package
 
@@ -287,7 +296,7 @@ The reviewed frontend implementation is evidence, not architecture authority.
 13. Incremental UI implementation review framework — **active; W-C02 review pack established**.
 14. Material usability or feasibility findings return through controlled classification/amendment rather than silently changing architecture in code.
 
-This authorization is not a Final L6 Corpus Lock and does not freeze the final screen population.
+The 2026-09-19 L6 UX Baseline Lock supersedes this earlier controlled-authoring-only current-state statement for the established baseline. Future material detailed slices remain subject to normal per-slice upstream evidence gates and controlled amendment.
 
 ## L5 Client Architecture Inheritance
 
@@ -325,7 +334,7 @@ The phase preserves the established 99-workspace / 12-archetype / 81-shell / 18-
 
 The recorded hardening evidence includes persona-sensitive navigation alignment, Administrator-only Administration navigation, unsupported-profile action blocking, W-C02 persona-boundary correction, review-shell gating behind the non-production Experience Lab, reviewer/integration-language removal from ordinary W-C02 and owner-handoff copy, stronger governed-action/state language, 24-fixture / 121-case Experience Lab validation, unchanged maturity, and final frontend CI success.
 
-No live browser or assistive-technology review was available in the hardening execution environment. `UX-REVIEWED` therefore remains **0**. The phase recommends proceeding to the formal L6 UX Baseline Readiness / Freeze Gate without claiming Final L6 Corpus Lock, integration or production readiness.
+No live browser or assistive-technology review was available in the hardening execution environment. `UX-REVIEWED` therefore remains **0**. The subsequent 2026-09-19 L6 UX Baseline Lock freezes the architecture/UX contract without upgrading UX review, integration or production-readiness maturity.
 
 ## Existing Repository Template
 
