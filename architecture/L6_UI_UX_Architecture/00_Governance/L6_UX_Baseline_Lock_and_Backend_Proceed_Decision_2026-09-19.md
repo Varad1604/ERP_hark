@@ -12,6 +12,8 @@
 
 ---
 
+> **CURRENT-STATE SUPERSESSION — 2026-09-19:** This lock decision remains valid historical evidence for the completed Days 1–13 baseline, but its closed-baseline/backend-next interpretation is superseded by `L6_Full_Workflow_Mock_ERP_Expansion_Authorization_2026-09-19.md`. The 99-workspace + 6-shared-surface / 12-archetype baseline remains preserved as the starting baseline; L6 is now reopened in a controlled manner for 1,084-scenario workflow UI realization and mock-operational ERP review before significant backend integration.
+
 ## 1. Decision
 
 The Lead Architect authorizes the **L6 UX baseline Lock** and backend/integration proceed gate.

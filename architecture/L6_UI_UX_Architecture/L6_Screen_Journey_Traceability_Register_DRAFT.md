@@ -448,3 +448,31 @@ This register remains the workspace-family/upstream traceability view. It does n
 Where an approved L6 package is decomposed for implementation, `L6_Experience_Slice_Register_DRAFT.md` may point back to this workspace row, the controlling L6 specification/proceed-gate decision, the canonical L4→L5 trace evidence, the applicable review pack and implementation/test evidence.
 
 A delivery slice inherits only the approved boundary it actually uses; it does not enlarge the governing package.
+
+
+---
+
+## 12. Workflow Realization Expansion Linkage
+
+The 2026-09-19 controlled L6 reopening adds a new realization question without changing this register's authority:
+
+> For every canonical L3 scenario already reconciled to workspace-family/shared-presentation coverage, how is that scenario actually interacted with or observed in the frontend?
+
+That question is owned by `L6_Workflow_Realization_Register_DRAFT.md`.
+
+This traceability register continues to own workspace-family/upstream provenance. The workflow-realization register shall reference this evidence rather than duplicate or replace it.
+
+Required expansion relationship:
+
+```text
+canonical L3 scenario
+→ this register: upstream/workspace-family traceability
+→ workflow realization register: primary UI disposition + user-facing realization
+→ workspace/search/task/handoff/history destination
+→ mock interaction or observable outcome
+→ review evidence
+```
+
+A scenario's presence in this register does not mean it is interactively implemented. The expansion completion gate requires an explicit realization disposition for all 1,084 canonical scenarios.
+
+System/background scenarios must not be converted into user actions merely to satisfy coverage.
