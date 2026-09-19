@@ -50,12 +50,14 @@ No live browser or assistive-technology execution capability was available in th
 
 ### Implementation defects — corrected
 
-1. **Persona-sensitive navigation mismatch.** The L6 journey map defines distinct Student, Faculty and Administrator navigation compositions, while the frontend shell rendered the Administrator-oriented group set to every persona. The shell and command palette now use curated persona-sensitive navigation without exposing all 99 workspaces in the sidebar.
+1. **Persona-sensitive navigation mismatch.** The L6 journey map defines distinct Student, Faculty and Administrator navigation compositions, while the frontend shell rendered the Administrator-oriented group set to every persona. The shell and command palette now use curated persona-sensitive navigation without exposing all 99 workspaces in the sidebar. The separately rendered Administration destination is now restricted to the Administrator presentation.
 2. **Unsupported persona action exposure.** Reference and deep workspace compositions showed task bodies and governed actions after warning that the selected persona was unsupported. Unsupported presentations now stop at a bounded unavailable state.
 3. **W-C02 Faculty leakage.** W-C02 treated every non-Student persona as staff, despite the registry supporting Administrator + Student only. Faculty now receives a bounded unavailable presentation instead of staff controls.
 4. **Owner-handoff reviewer metadata leakage.** Ordinary W-C02 handoff presentation exposed workspace IDs, “owner-preserving continuation,” “bounded experience,” implementation availability and fabricated-completion language. It now uses ordinary institutional wording while preserving the ownership boundary.
 5. **Governed-action reviewer/fixture wording.** Shared confirmed/pending/failure/indeterminate copy exposed fixture/client/reconciliation language. User-facing copy now distinguishes outcomes using normal institutional language while retaining unsafe-repeat protection for indeterminate outcomes.
 6. **Student maintenance integration jargon.** Ordinary W-C02 maintenance copy exposed “upstream-owned” and browser/production-field vocabulary. It now states the responsible institutional process determines requirements, validation, eligibility and cross-area effects.
+7. **Review-shell leakage.** Persona-preview, sample-data and visual-review shell controls were visible as ordinary shell chrome. They now render only when the non-production Experience Lab gate is active; ordinary shell presentation no longer exposes those review controls.
+8. **W-C02 integration-review wording.** Ordinary Student Workspace copy still referred to an “integration boundary.” It now uses user-facing request-status and next-step language.
 
 ### L6 UX architecture defects
 
@@ -81,7 +83,7 @@ State copy and navigation/search curation were normalized without changing busin
 
 The Administrator navigation remains broad and curated. Student and Faculty navigation now use persona-sensitive subsets aligned to the established L6 journey map rather than inheriting Administrator-oriented groups.
 
-Global Search continues to use the 99-workspace registry as the complete discovery mechanism and filters destinations by the selected presentation profile. Ordinary results do not render workspace IDs, architecture IDs, scenario spans, maturity or reviewer metadata.
+Global Search continues to use the 99-workspace registry as the complete discovery mechanism. Student and Faculty discovery is filtered by supported presentation profile. The Administrator presentation intentionally retains repository-wide workspace discovery for governed institutional review. Ordinary results do not render workspace IDs, architecture IDs, scenario spans, maturity or reviewer metadata.
 
 No mega-menu of 99 workspace families was introduced. Sidebar curation remains separate from global discovery.
 
@@ -97,7 +99,7 @@ The existing direction remains Teaching Pulse, next teaching context and teachin
 
 ### Student
 
-The existing direction remains My Semester, Up Next and Due Soon. Student navigation now excludes broad Administrator/People/Campus-operational destinations while retaining student-relevant academic, examination, finance and resource destinations.
+The existing direction remains My Semester, Up Next and Due Soon. Student navigation now excludes broad Administrator/People/Campus-operational destinations, including the separately rendered Administration destination, while retaining student-relevant academic, examination, finance and resource destinations.
 
 ## 7. Interactive Workspace Review
 
@@ -183,7 +185,7 @@ W-C02 handoff presentation was corrected so ordinary users see subject, responsi
 
 **PASS — static repository evidence.**
 
-The hardening validator protects against raw maturity/architecture/reviewer vocabulary in ordinary workspace presentation, preserves reviewer metadata inside Experience Lab, and adds explicit owner-handoff/W-C02 language regression checks.
+The hardening validator protects against raw maturity/architecture/reviewer vocabulary in ordinary workspace presentation, preserves reviewer metadata inside Experience Lab, requires Administration navigation to remain Administrator-only, requires preview-persona/review shell controls to remain behind the Experience Lab gate, and adds explicit owner-handoff/W-C02 language regression checks.
 
 Reviewer-only metadata remains valid inside Experience Lab, validation and architecture evidence.
 
@@ -301,7 +303,9 @@ The strengthened validator now protects:
 - indeterminate unsafe-repeat protection;
 - reviewer metadata isolation;
 - owner-handoff language;
-- persona-sensitive navigation;
+- persona-sensitive navigation, including Administrator-only Administration navigation;
+- Experience Lab gating for persona-preview/sample-review shell controls;
+- W-C02 ordinary-copy protection against integration-review vocabulary;
 - responsive/accessibility foundation signals.
 
 ## 18. Remaining Risks
@@ -328,4 +332,4 @@ It does **not** mean Final L6 Corpus Lock, `UX-REVIEWED`, backend integration, p
 
 ## 20. Final Verdict
 
-**DAYS 12–13 GLOBAL UX HARDENING PASS**
+**DAYS 12–13 GLOBAL UX HARDENING PASS — TARGETED INDEPENDENT-REVIEW CORRECTIONS APPLIED**
