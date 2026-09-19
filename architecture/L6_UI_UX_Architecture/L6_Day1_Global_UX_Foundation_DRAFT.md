@@ -1,10 +1,10 @@
 # SutraERP L6 — Day 1 Global UX Foundation
 
-**Version:** 0.1.0  
+**Version:** 0.2.0  
 **Status:** Draft  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture  
-**Working Branch:** `l6-day1-global-ux-foundation`  
+**Repository State:** Day-1 baseline merged to `main`; Day-2 hardening continues under controlled branch governance.  
 **Depends On:** existing L6 controlled foundation, workspace inventory, persona/journey map, experience-slice register, implementation-review framework, approved L5 client architecture, locked upstream architecture.  
 **Purpose:** Govern the reusable frontend/L6 foundation for workspace mapping, UX archetypes, review evidence, shared interaction patterns and maturity reporting without redefining business behavior.
 
@@ -273,3 +273,115 @@ Static inspection is evidence only. **WCAG conformance is not claimed without br
 - Static validation rules: established.
 - Browser accessibility/responsive acceptance: pending evidence.
 - Released-contract integration beyond existing repository evidence: not claimed.
+
+
+## 12. Day-2 Foundation Hardening
+
+Day 2 completes the second half of the global foundation phase without beginning broad bespoke workspace implementation.
+
+### Reusable archetype implementation layer
+
+The frontend now binds every approved UX archetype to a reusable presentation/composition primitive. These primitives define layout and interaction composition only. They do not define business rules, eligibility, authority, lifecycle transitions, events, APIs, payloads, or canonical ownership.
+
+The shared composition set includes:
+
+- Workspace Frame;
+- Entity 360 layout;
+- Search / Worklist layout;
+- Master / Detail layout;
+- Guided Flow layout;
+- Governed Action primitive;
+- Roster layout;
+- Schedule layout;
+- Ledger layout;
+- Request / Tracking layout;
+- Configuration layout;
+- Analytics layout;
+- Persona Home layout.
+
+A workspace may compose several of these patterns where the Day-1 mapping requires it.
+
+### Standard feature-module contract
+
+Implemented workspaces use a typed frontend module registration seam keyed only by the existing global workspace registry.
+
+The module contract does not create routes, permissions, lifecycle rules, integration contracts, or architecture traceability. It exists only to make frontend composition predictable and prevent ad hoc workspace registration.
+
+W-C02 is the first existing deep implementation adapted to this module contract. This adaptation does not change W-C02 business semantics.
+
+### Accessibility and responsive hardening
+
+The shared frontend foundation now protects:
+
+- visible keyboard focus;
+- global reduced-motion behavior;
+- a 12px minimum supporting-text floor across loaded application styles;
+- responsive archetype collapse behavior;
+- 40px general interactive-control minimums for governed shared patterns;
+- 44px minimum targets for coarse-pointer/touch contexts;
+- existing dialog focus restoration and semantic native controls.
+
+These are implementation safeguards. They are not a claim of WCAG conformance. Browser, assistive-technology and device evidence remain separately required.
+
+### Experience Lab synchronization
+
+The canonical non-production tooling name is **Global Experience Lab**.
+
+The build/config flag is:
+
+`VITE_ENABLE_EXPERIENCE_LAB`
+
+The older W-C02 `ReviewModePanel` naming remains only as a compatibility bridge where needed by the current route composition. It does not create a second review framework.
+
+### Day-2 static protection
+
+Frontend validation now additionally requires:
+
+- exactly 12 archetypes with reusable implementation bindings;
+- exactly 99 unique workspace registrations;
+- presentation profile, user-goal, navigation and archetype metadata for every workspace;
+- typed workspace keys;
+- typed feature-module registration;
+- W-C02 registration through the common module seam;
+- the Global Experience Lab build/config boundary;
+- no simple URL-based review enablement;
+- no deprecated review-mode environment flag;
+- loaded global foundation CSS;
+- no 8–11px supporting-text regression in loaded application styles;
+- global visible-focus and reduced-motion rules;
+- coarse-pointer touch-target hardening;
+- W-C02 case and production-truth safeguards.
+
+### Phase exit interpretation
+
+The Days 1–2 foundation phase is complete when repository CI confirms the shared registry, archetype layer, feature-module contract, Experience Lab, state/action/handoff primitives, responsive/accessibility safeguards and W-C02 regression controls all typecheck and build successfully.
+
+This phase exit does **not** mean:
+
+- all 99 workspaces are implemented;
+- the 99 workspace families are shell-complete;
+- browser accessibility acceptance is complete;
+- backend integration exists;
+- fixture outcomes are production truth.
+
+The next execution phase remains the planned **Reference UX System** work using representative Student, Academic Registration, Teaching/Attendance, Examination, Finance, Timetable, Documents and Institution Administration journeys.
+
+
+### Day-2 validation evidence
+
+Frontend evidence at `fcb1cb57b38b50eafbdee4055a9cf3bf6449a4de`:
+
+- `npm ci` — PASS;
+- `npm run review:validate` — PASS;
+- `npm run typecheck` — PASS;
+- `npm run build` — PASS;
+- workspace registry static count — 99;
+- UX archetype implementation bindings — 12 / 12;
+- loaded stylesheet 8–11px regression check — zero findings;
+- W-C02 feature-module registration and Experience Lab safety checks — PASS.
+
+Independent source review also corrected a nested-landmark defect in the initial archetype composition draft before final validation.
+
+Browser interaction, assistive-technology and physical-device testing were not performed in this validation pass and remain explicit future UX evidence rather than an implied conformance claim.
+
+**Days 1–2 foundation exit condition: SATISFIED for progression to the Reference UX System phase, subject to normal PR review/merge governance.**

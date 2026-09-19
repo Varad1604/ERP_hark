@@ -154,6 +154,24 @@ Do not start broad bespoke workspace implementation during this phase.
 
 **Exit condition:** AI can take an approved workspace mapping and assemble it using shared patterns without inventing business authority.
 
+### Days 1–2 implementation status
+
+The foundation phase is implemented through the controlled Day-1/Day-2 global foundation baseline:
+
+- 99 / 99 workspace families UX-mapped;
+- 12 UX archetypes registered;
+- reusable archetype implementation bindings established;
+- typed feature-module registration established;
+- Global Experience Lab established with W-C02 as the initial curated case population;
+- shared state, governed-action and owner-handoff primitives established;
+- fixture fidelity and integration-maturity conventions established;
+- global readability, focus, reduced-motion, responsive and coarse-pointer safeguards established;
+- static CI protection extended across the above rules.
+
+Broad workspace implementation remains intentionally deferred to later phases. Browser/assistive-technology acceptance remains separate evidence and is not implied by foundation completion.
+
+**Phase proceed rule:** move to Days 3–5 only after the Day-2 frontend branch passes review validation, typecheck and production build with no merge-blocking foundation defect.
+
 ---
 
 ### Days 3–5 — Establish the Reference UX System
