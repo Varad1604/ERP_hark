@@ -494,6 +494,7 @@ The active L6 package contains the controlled foundation, approved slice decisio
 | L6 Days 6–8 Full ERP UX Breadth Validation & Readiness Record | Lead Architect | Draft | Records 99/99 breadth counts, CI evidence, maturity distribution, regression checks and phase verdict |
 | W-C02 Student Workspace — Controlled Draft | Lead Architect | Architecture Approved by controlling proceed-gate decision; underlying document remains Draft-form | Approved W-C02 interaction package for controlled frontend implementation |
 | L6 Implementation Review Framework | Lead Architect | Active supporting guidance | Reproducible experience-slice review cases and acceptance evidence |
+| L6 UX Baseline Lock and Backend Proceed Decision — 2026-09-19 | Lead Architect | Locked | Current L6 baseline authority; freezes the established UX baseline and authorizes backend/integration proceed |
 
 ### Active L6 Planning Baseline
 
@@ -546,10 +547,10 @@ The established L6 UX baseline is Locked by `00_Governance/L6_UX_Baseline_Lock_a
 | L5 Broad Authoring | Authorized |
 | L5 Historical Extracted Documents | 2 substantive artifacts + 2 temporary root compatibility pointers |
 | L6 UI/UX Documents Present | 10 active governance/foundation/planning artifacts |
-| L6 Business Workspace Families | 99 draft families |
-| L6 Shared Surfaces | 6 draft surfaces |
-| L6 Planning Inventory Units | 105 |
-| L6 Full-Corpus L3 Workspace Traceability | 1,084 / 1,084 reconciled at planning level |
+| L6 Business Workspace Families | 99 — Locked baseline |
+| L6 Shared Surfaces | 6 — Locked baseline |
+| L6 Architecture Coverage Units | 105 — Locked baseline |
+| L6 Full-Corpus L3 Workspace Traceability | 1,084 / 1,084 reconciled at workspace-family/shared-presentation level |
 | L6 UX Baseline | Locked 2026-09-19 |
 | L6 Backend / Integration Proceed | Authorized 2026-09-19 |
 | Active Architects | 5 |
