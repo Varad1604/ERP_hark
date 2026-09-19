@@ -122,3 +122,20 @@ Do not collapse these into one “complete” flag:
 
 `Workspace represented` does not mean `workspace complete`.  
 `Fixture journey passed` does not mean `production ERP ready`.
+
+
+---
+
+## 7. Relationship to Full Workflow Realization Expansion
+
+The full workflow realization programme does not turn this register into a 1,084-row scenario register.
+
+Roles remain distinct:
+
+- `L6_Workflow_Realization_Register_DRAFT.md` records the primary UI realization disposition for every canonical L3 scenario;
+- this Experience Slice Register records only selected bounded delivery/review increments where deeper interaction evidence is useful;
+- workspace-family coverage remains in the Workspace Inventory and Screen/Journey Traceability Register.
+
+A workflow realization may be implemented through one existing experience slice, multiple slices, shared workspace behavior, or an observable non-interactive surface.
+
+Do not create one experience slice per scenario mechanically.
