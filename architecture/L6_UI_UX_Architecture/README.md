@@ -327,3 +327,8 @@ Permanent IDs shall be introduced only through an approved naming/numbering deci
 ## Days 6–8 Full ERP UX Breadth
 
 `L6_Days6_8_Full_ERP_UX_Breadth_DRAFT.md` governs the full-corpus breadth phase. It keeps the 99-workspace / 12-archetype architecture baseline, uses the locked frontend visual system as the presentation baseline, requires meaningful shell-level representation and Global Search discovery for all 99 workspaces, and does not authorize deep workflow semantics or Final L6 Corpus Lock.
+
+
+Validation evidence for this phase is recorded in:
+
+`00_Governance/L6_Days6_8_Full_ERP_UX_Breadth_Validation_and_Readiness_Record_2026-09-19.md`.
