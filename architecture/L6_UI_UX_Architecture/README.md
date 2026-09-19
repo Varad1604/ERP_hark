@@ -317,3 +317,8 @@ Do not silently delete or replace the earlier placeholder. Final template promot
 No final L6 naming and numbering scheme has been locked yet.
 
 Permanent IDs shall be introduced only through an approved naming/numbering decision. Controlled authoring before that decision shall use descriptive governed filenames and explicit upstream traceability rather than inventing permanent identifiers.
+
+
+## Days 3–5 Reference UX System
+
+`L6_Days3_5_Reference_UX_System_DRAFT.md` records the controlled multi-domain reference implementation phase. It preserves the 99-workspace and 12-archetype baselines, separates implementation/review/integration/production-validation evidence, and does not authorize Final L6 Corpus Lock.
