@@ -494,7 +494,10 @@ The active L6 package contains the controlled foundation, approved slice decisio
 | L6 Days 6–8 Full ERP UX Breadth Validation & Readiness Record | Lead Architect | Draft | Records 99/99 breadth counts, CI evidence, maturity distribution, regression checks and phase verdict |
 | W-C02 Student Workspace — Controlled Draft | Lead Architect | Architecture Approved by controlling proceed-gate decision; underlying document remains Draft-form | Approved W-C02 interaction package for controlled frontend implementation |
 | L6 Implementation Review Framework | Lead Architect | Active supporting guidance | Reproducible experience-slice review cases and acceptance evidence |
-| L6 UX Baseline Lock and Backend Proceed Decision — 2026-09-19 | Lead Architect | Locked | Current L6 baseline authority; freezes the established UX baseline and authorizes backend/integration proceed |
+| L6 UX Baseline Lock and Backend Proceed Decision — 2026-09-19 | Lead Architect | Locked / Historical Baseline | Preserved Days 1–13 baseline; closed-baseline current-state interpretation superseded by controlled workflow-realization expansion |
+| L6 Full Workflow Mock-ERP Expansion Authorization — 2026-09-19 | Lead Architect | Architecture Approved | Current L6 programme authority; reopens L6 for 1,084-scenario UI realization and mock-operational ERP review |
+| L6 Full Workflow Realization & Mock-ERP Execution Plan — Draft | Lead Architect | Draft Active Execution Plan | Governs full-corpus workflow realization, coherent mock data/state, discoverability and human review |
+| L6 Workflow Realization Register — Draft | Lead Architect | Draft Expansion Register | Controlled 1,084-scenario UI-realization schema; population pending full-corpus audit |
 
 ### Active L6 Planning Baseline
 
@@ -510,7 +513,7 @@ The traceability register reconciles the full **1,084 final L3 scenarios** to L6
 
 The W-C02 proceed-gate decision dated 2026-09-17 records `ARCHITECTURE APPROVED / SLICE READY / CONTROLLED FRONTEND IMPLEMENTATION AUTHORIZED` for its stated boundary. The delivery experience-slice register does not expand that approval and does not duplicate canonical BH→L5 evidence.
 
-The established L6 UX baseline is Locked by `00_Governance/L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md`. The lock freezes the 99-workspace + 6-shared-surface coverage baseline, 12 archetypes, shared UX rules and backend-readiness interaction contract while preserving separate per-slice L4/L5 evidence gates for future detailed interactions. Permanent numbering for every future L6 artifact remains outside this baseline lock.
+The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md`, but the active programme is now governed by `00_Governance/L6_Full_Workflow_Mock_ERP_Expansion_Authorization_2026-09-19.md`. L6 is reopened in a controlled manner for 1,084-scenario UI-realization mapping, 99-workspace mock-operational breadth, workflow-aware discovery and end-user review. The previous baseline is extended, not discarded.
 
 ---
 
@@ -551,8 +554,9 @@ The established L6 UX baseline is Locked by `00_Governance/L6_UX_Baseline_Lock_a
 | L6 Shared Surfaces | 6 — Locked baseline |
 | L6 Architecture Coverage Units | 105 — Locked baseline |
 | L6 Full-Corpus L3 Workspace Traceability | 1,084 / 1,084 reconciled at workspace-family/shared-presentation level |
-| L6 UX Baseline | Locked 2026-09-19 |
-| L6 Backend / Integration Proceed | Authorized 2026-09-19 |
+| L6 Days 1–13 UX Baseline | Preserved historical locked baseline |
+| L6 Active Programme | Controlled workflow-realization + mock-ERP expansion authorized 2026-09-19 |
+| L6 Workflow Realization Register | Schema established; 0 / 1,084 rows populated pending Stage-2 audit |
 | Active Architects | 5 |
 
 ---
@@ -583,11 +587,16 @@ The established L6 UX baseline is Locked by `00_Governance/L6_UX_Baseline_Lock_a
 >
 > L5 is **not** covered by the L0/L1/L2 lock. Current L5 governance freezes a 105-specification authoring population and authorizes broad authoring under dependency-gated execution, but the Final L5 Corpus Lock has not been issued. Historical `L5-00` and `L5-01` remain non-canonical technical inputs requiring current-governance revalidation before adoption.
 >
-> Effective 2026-09-19, the established L6 UX baseline is **Locked** by `L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md`. The lock governs the established baseline as a whole and supersedes earlier current-state statements that the freeze gate remained pending. Draft-form supporting artifacts remain historical/working evidence under that lock; future material L6 changes require controlled amendment.
+> The Days 1–13 L6 UX baseline remains preserved as a Locked historical baseline. Effective later on 2026-09-19, `L6_Full_Workflow_Mock_ERP_Expansion_Authorization_2026-09-19.md` became the current programme authority and explicitly reopened L6 under controlled amendment for full 1,084-scenario UI realization and mock-operational ERP review. No L0–L5 decision is reopened automatically.
 
 ---
 
 # Recent Changes
+
+**2026-09-19 — L6 controlled reopening for full workflow realization:** Preserved the completed Days 1–13 baseline but superseded its closed-programme interpretation. Authorized a full 1,084-scenario UI-realization audit, coherent fictional-institution mock dataset, deterministic frontend-only mock updates/reset, workflow-aware discovery, 99/99 browseable ERP workspaces and full end-user mock-ERP review before significant backend integration. Added the Full Workflow Realization & Mock-ERP Execution Plan and Workflow Realization Register schema.
+
+---
+
 
 **2026-09-19 — L6 UX baseline lock and backend proceed:** Locked the established 99-workspace + 6-shared-surface L6 UX baseline, 12 archetypes, shared navigation/state/handoff/reviewer-boundary rules, 81 shell implementations, 18 interactive fixture-backed workspaces and backend-readiness interaction evidence. Backend/integration work is authorized to proceed against this stable UX contract. `UX-REVIEWED`, released-contract integration, accessibility certification and production validation remain separate downstream evidence dimensions.
 
