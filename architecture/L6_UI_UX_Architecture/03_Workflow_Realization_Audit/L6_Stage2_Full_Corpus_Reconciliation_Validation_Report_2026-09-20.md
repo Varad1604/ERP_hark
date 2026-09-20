@@ -133,15 +133,15 @@ The generated worker baseline contains near-scenario-cardinality labels. Those l
 
 The upstream semantic blockers are now resolved. Full-corpus workflow normalization is therefore unblocked and remains the active Stage-2 task.
 
-Completed PASS-group reconciliation covers Groups 1–4; Group 5 is fully reconciled but blocked:
+Completed PASS-group reconciliation now covers Groups 1–5:
 
 - Group 1 — A+B: 95 scenarios → 50 distinct workflows;
 - Group 2 — C: 75 scenarios → 32 distinct workflows;
 - Group 3 — D: 57 scenarios → 38 distinct workflows;
 - Group 4 — E: 75 scenarios → 55 distinct workflows;
-- Group 5 — F: 85 scenarios → 59 provisional workflows — **BLOCKED by L3/L4-F-076 upstream F13 KPI/Analytical-Model governance gap**.
+- Group 5 — F: 85 scenarios → 59 distinct workflows — **PASS after canonical F13 KPI Definition / Analytical Model governance remediation**.
 
-Cumulative semantic reconciliation coverage is **387 / 1,084 scenarios**. PASS groups contribute **175 distinct workflows**; blocked Group 5 contributes **59 provisional workflows**. There is **1 material Stage-2 group blocker**: F13 lacks authoritative KPI Definition / Analytical Model lifecycle, approval/effective authority, and definition-version events required by `L3-F-076` / `L4-F-076`. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
+Cumulative semantic reconciliation coverage is **387 / 1,084 scenarios** across Groups 1–5, contributing **234 distinct workflows**. There are **0 material Stage-2 group blockers**. The former F076 blocker was resolved through ADR-FIN-ANALYTICS-001, the locked 2026-09-20 F13 analytics-governance amendment, targeted L3 revalidation, and re-derived L4-F-076 behavior. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
 
 The following values remain **PENDING DISCOVERY THROUGH SEMANTIC NORMALIZATION** rather than blocked by architecture:
 
