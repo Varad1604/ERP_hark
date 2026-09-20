@@ -64,3 +64,25 @@ See:
 
 `L6_Stage2_Full_Corpus_Reconciliation_Validation_Report_2026-09-20.md`
 
+## Group reconciliation progress
+
+| Group | Scope | Scenarios | Status | Distinct workflows |
+|---|---|---:|---|---:|
+| 1 | A + B | 95 | **PASS — complete for master cross-group reconciliation** | 50 |
+| 2–14 | C through J remaining controlled groups | 989 | Pending | Pending |
+
+Group 1 evidence:
+
+`group-reconciliation/STAGE2_GROUP_01_AB_RECONCILIATION.md`
+
+Current cumulative Stage-2 group reconciliation coverage:
+
+```text
+Scenario rows semantically group-reconciled   95 / 1,084
+Distinct workflows discovered in completed groups  50
+Completed group blockers                         0
+Canonical Workflow Realization Register rows      0 / 1,084
+```
+
+The canonical register remains unpopulated until all groups and the final cross-group normalization pass complete.
+
