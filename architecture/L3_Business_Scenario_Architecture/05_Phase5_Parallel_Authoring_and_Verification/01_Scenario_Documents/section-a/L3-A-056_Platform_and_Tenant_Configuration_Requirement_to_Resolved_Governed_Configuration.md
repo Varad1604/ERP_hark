@@ -9,10 +9,10 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Last Updated:** 2026-09-20  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; `L2-A01_Configuration_Governance_Completion_Amendment_2026-09-20.md`; ADR-PLAT-CONFIG-001; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
 **Referenced By:** Every domain consuming resolved platform configuration
 
 ---
@@ -27,7 +27,7 @@ Govern a platform- or Tenant-layer configuration requirement through ownership, 
 
 The configuration is authored at its owning layer, validated, approved, versioned and activated, and is resolved through the governed inheritance hierarchy so consuming domains execute against a consistent configuration context
 
-Locked L2-A01 defines configuration ownership, hierarchy, validation, lifecycle and resolution principles but no actors, workflow, commands, canonical events or publishers. The scenario is `BLOCKED`.
+The locked 2026-09-20 A01 configuration-governance amendment now supplies the owner-scoped Configuration Approval Authority, implementation-independent governance operations, lifecycle progression rules, and canonical framework events/publishers required for completion.
 
 ---
 
@@ -39,7 +39,7 @@ A platform-layer or tenant-layer configuration value must be established or chan
 
 ## 4.2 End Boundary
 
-The intended configuration version is Active and included in a complete, Tenant-aware, version-consistent resolved context. Exact canonical completion cannot be specified with the current L2-A01 contracts.
+The scenario ends when the owned successor configuration version is validated, approved by the applicable owner-scoped Configuration Approval Authority, Active at its governed effective boundary, any prior Active version is Superseded, and deterministic Tenant-aware resolution produces the governed read-only context.
 
 ## 4.3 In Scope
 
@@ -79,7 +79,7 @@ The intended configuration version is Active and included in a complete, Tenant-
 
 # 6. Business Actors, Roles and Responsibilities
 
-L2-A01 explicitly records Actors as absent. It does not name the author, validator, approver, activation authority or resolution authority. No Platform Administrator or Tenant Administrator is invented.
+**Configuration Approval Authority** is the canonical business approval authority for configuration owned by the applicable configuration layer. For Platform Defaults and Tenant Configuration it acts on behalf of Platform Foundation / A01. Authorized configuration authors/administrators may propose and validate candidates within scope, but authoring/validation does not imply approval.
 
 ---
 
@@ -90,7 +90,7 @@ L2-A01 explicitly records Actors as absent. It does not name the author, validat
 - Parent configuration exists where required.
 - Proposed value, scope and effective version are known.
 - Validation, inheritance and security rules can be applied.
-- Approval is expected but its actor and contract are undefined.
+- The applicable owner-scoped Configuration Approval Authority is resolvable.
 
 ---
 
@@ -106,15 +106,14 @@ A platform-layer or tenant-layer configuration value must be established or chan
 |---|---|---|---|
 | 1 | Receive and classify the configuration requirement. | Platform & Tenant | Owning layer and scope are identified. |
 | 2 | Resolve the current value, parent hierarchy and affected consumers. | Platform & Tenant | Change context is established. |
-| 3 | Author a new configuration version without modifying historical versions. | Platform & Tenant | Intended Draft version exists; command is undefined. |
+| 3 | Propose a distinct successor configuration version without modifying historical versions. | Platform & Tenant | Draft successor exists and `ConfigurationVersionProposed` is published by A01. |
 | 4 | Validate ownership, scope, integrity, supported values, dependencies, compatibility, security and completeness. | Platform & Tenant | Invalid configuration cannot progress. |
-| 5 | Complete required approval. | Platform & Tenant | Intended Approved state is reached; actor and transition are undefined. |
-| 6 | Activate the approved version and supersede the prior version where applicable. | Platform & Tenant | Intended Active configuration exists; command and event are undefined. |
+| 5 | Obtain the applicable Configuration Approval Authority decision. | Configuration Approval Authority / owning layer | The validated successor enters Approved only on an affirmative governed decision; `ConfigurationVersionApproved` is published by A01. |
+| 6 | At the governed effective boundary, activate the approved version and supersede the prior Active version where applicable. | Platform Configuration Framework / A01 | The successor becomes Active; A01 publishes activation and, where applicable, supersession facts. |
 | 7 | Resolve Platform Defaults through Tenant and lower permitted layers using deterministic inheritance. | Platform & Tenant | A complete resolved configuration is produced. |
 | 8 | Publish the read-only, immutable-during-execution configuration context to consumers. | Platform & Tenant | Consumers execute consistently. |
 | 9 | Preserve version, validation, approval, activation and resolution evidence. | Platform & Tenant; Audit Infrastructure | Intended outcome is traceable. |
 
-Steps 3, 5 and 6 cannot be finalized canonically because L2-A01 lacks actors, commands and events.
 
 ---
 
@@ -136,7 +135,7 @@ Steps 3, 5 and 6 cannot be finalized canonically because L2-A01 lacks actors, co
 | Ownership overlaps. | Canonical responsibility is ambiguous. | Reject the proposal. | Platform & Tenant |
 | Circular inheritance exists. | Resolution is non-deterministic. | Reject activation. | Platform & Tenant |
 | Approval is absent. | Configuration cannot become Active. | Retain current Active version. | Platform & Tenant |
-| Activation is interrupted. | Active version is uncertain. | Do not publish a resolved successor context; canonical recovery is undefined. | Platform & Tenant |
+| Activation conditions fail at the effective boundary. | Successor cannot become Active. | Keep the current Active version authoritative; withhold activation and resolved-successor publication until guards pass. | Platform & Tenant |
 | Resolution is incomplete. | Consumers lack valid context. | Terminate execution before business processing. | Platform & Tenant |
 
 ---
@@ -169,7 +168,7 @@ Steps 3, 5 and 6 cannot be finalized canonically because L2-A01 lacks actors, co
 
 ## 14.1 Event Determination
 
-L2-A01 states that dedicated event cataloguing is not performed. No canonical configuration-created, validated, approved, activated, superseded or resolved event and publisher are defined; none are invented.
+The locked A01 amendment establishes Platform Configuration Framework / A01 as sole publisher of `ConfigurationVersionProposed`, `ConfigurationVersionValidated`, `ConfigurationVersionApproved`, `ConfigurationVersionActivated`, `ConfigurationVersionSuperseded`, `ConfigurationVersionArchived`, and `ResolvedConfigurationPublished`.
 
 ## 14.2 Synchronous Contracts and Hand-offs
 
@@ -190,7 +189,7 @@ Privileged configuration changes require authorization; configuration does not g
 
 ## 15.2 Approval and Separation of Duty
 
-The lifecycle includes `Approved`, but L2-A01 names no approver or SoD rule.
+The lifecycle includes `Approved`; the applicable owner-scoped Configuration Approval Authority makes that decision. Authoring/validation does not imply approval. No additional mandatory SoD rule is introduced beyond owner-domain policy.
 
 ## 15.3 Audit Obligations
 
@@ -200,16 +199,12 @@ Tenant, layer, owner, prior/new version, value classification, validation, appro
 
 # 16. Completion Criteria and Postconditions
 
-The intended outcome requires an owned, validated, approved, versioned and Active configuration plus a complete resolved context consumed read-only. Because actors, workflow, commands, canonical events and publishers are absent, these criteria cannot be certified as a complete canonical L3 outcome. The scenario remains `BLOCKED`.
+The scenario completes when an owned successor version is validated, approved, activated at its effective boundary, any predecessor is superseded without destructive rewrite, and a deterministic resolved configuration context is published read-only.
 
 ---
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-| ID | Severity | Issue | Required Resolution |
-|---|---|---|---|
-| A056-BLOCKER-01 | Blocking | L2-A01 defines states and rules but no configuration authoring, validation, approval, activation or supersession workflow and commands. | Define the canonical configuration workflow and owned commands. |
-| A056-BLOCKER-02 | Blocking | Actors are explicitly absent, including author, validator, approver and activation authority. | Define authoritative roles and approval boundaries. |
-| A056-BLOCKER-03 | Blocking | No canonical configuration lifecycle or resolution events and publishers exist. | Define exact event contracts, publication conditions and publishers. |
+No material upstream architecture issue remains after `L2-A01_Configuration_Governance_Completion_Amendment_2026-09-20.md` and ADR-PLAT-CONFIG-001.
 
-No missing contract is supplied by inference.
+**Source Assessment:** **READY**
