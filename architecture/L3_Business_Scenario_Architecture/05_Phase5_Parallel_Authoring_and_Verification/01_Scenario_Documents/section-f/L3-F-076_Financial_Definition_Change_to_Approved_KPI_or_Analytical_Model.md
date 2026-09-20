@@ -9,10 +9,10 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-F13 — Financial Reporting & Analytics Workflows  
+**Last Updated:** 2026-09-20  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-F13 — Financial Reporting & Analytics Workflows; `L2-F13_KPI_and_Analytical_Model_Governance_Amendment_2026-09-20.md`; ADR-FIN-ANALYTICS-001  
 **Referenced By:** KPI calculation, financial analytics and dashboard-projection scenarios
 
 # 2. Scenario Purpose
@@ -31,20 +31,20 @@ An authorized governance decision changes a financial KPI, metric, forecast, or 
 
 ## 4.2 End Boundary
 
-The intended scenario end is an approved and effective successor definition whose future calculations use the new version while prior results retain their historical configuration context. Locked F13 does not define the lifecycle, approval authority, activation transition or events required to prove that end state, so completion is blocked.
+The scenario ends when a distinct successor KPI Definition or Analytical Model version has completed the canonical Finance configuration governance lifecycle through approval, publication and activation, becomes the Active version for new eligible calculations/projections, any replaced predecessor is preserved as Superseded, and historical results retain their original governing version.
 
 ## 4.3 In Scope
 
 - Preservation of the existing KPI Definition or Analytical Model version.
 - Composition and validation of a successor definition.
 - Version-controlled configuration and historical reproducibility.
-- Identification of missing approval/effective-state semantics.
+- Governed approval, publication, activation and supersession of the successor definition/model.
 
 ## 4.4 Out of Scope
 
 - Rewriting historical KPI or analytical results.
 - Modifying operational Finance facts.
-- Inventing definition lifecycle states, approval roles or definition-change events.
+- Inventing any lifecycle state, approval role or event outside the locked F13 amendment.
 - Dashboard composition or presentation.
 
 # 5. Ownership and Participating Domains
@@ -56,7 +56,10 @@ The intended scenario end is an approved and effective successor definition whos
 
 # 6. Business Actors, Roles and Responsibilities
 
-L2-F13 has no canonical Actors section and defines no business actor for KPI/Analytical Model definition authoring, approval or activation. No local actor is introduced.
+- Financial Reporting & Analytics owns KPI Definition and Analytical Model governance.
+- **Financial Analytics Definition Approval Authority** provides the canonical business approval for new or revised KPI Definition / Analytical Model versions.
+- F13-authorized business participants may prepare and validate candidate definitions/models under institutional policy.
+- Institutional policy maps the approval authority to the applicable level of the existing Finance approval hierarchy; no universal local job title is invented.
 
 # 7. Preconditions and Entry Criteria
 
@@ -77,11 +80,19 @@ An authorized governance decision changes a financial KPI, metric, forecast, or 
 | 2 | Preserve the predecessor definition/model and its historical calculation context. | Financial Reporting & Analytics / F | Existing results remain reproducible. |
 | 3 | Establish a version-controlled successor configuration containing the intended changed definition. | Financial Reporting & Analytics / F | A successor configuration candidate exists under CP-04. |
 | 4 | Validate that the proposed definition uses canonical Finance information and preserves reporting ownership/invariants. | Financial Reporting & Analytics / F | The candidate is evaluated without altering source facts. |
-| 5 | Stop before asserting approval, effective activation or supersession because F13 defines no authoritative lifecycle, transition, actor or business event for those outcomes. | Financial Reporting & Analytics / F | Upstream resolution is required before the frozen outcome can be completed. |
+| 5 | Progress the validated candidate to `Approval` and obtain the Financial Analytics Definition Approval Authority decision. | Financial Reporting & Analytics / Approval Authority | The candidate is approved or remains outside effective use. |
+| 6 | Publish the approved candidate and activate it at its governed effective boundary. | Financial Reporting & Analytics / F | The successor becomes the Active version for new eligible calculations/projections. |
+| 7 | Where an Active predecessor exists for the same governed scope, transition the predecessor to `Superseded` without changing historical results. | Financial Reporting & Analytics / F | Current and historical versions remain unambiguous and reconstructable. |
+| 8 | Publish the aggregate-specific approval, activation and supersession business facts. | KPI Definition or Analytical Model / F13 | Downstream consumers can trace the governed definition/model version. |
 
 # 10. Alternate Business Flows
 
-No scenario-specific alternate business flow is defined by the authoritative L2 architecture for KPI Definition or Analytical Model version activation.
+| Condition | Alternate Path | Result |
+|---|---|---|
+| Validation fails | Correct the candidate and repeat validation; do not progress to approval | Existing Active version remains authoritative |
+| Approval is rejected or absent | Keep the candidate outside Published/Active | Existing Active version remains authoritative |
+| No predecessor exists | Activate the approved first version | First Active definition/model becomes effective |
+| Superseded version reaches retention eligibility | Archive it under governed retention | Historical version remains reconstructable |
 
 # 11. Failure, Interruption and Business Recovery
 
@@ -89,7 +100,8 @@ No scenario-specific alternate business flow is defined by the authoritative L2 
 |---|---|---|---|
 | Proposed definition would change or re-own canonical financial facts | The analytical definition would violate ownership | Reject the proposed definition change | F13 / applicable Finance owner |
 | Historical configuration context would be lost | Prior results would cease to be reproducible | Do not replace the predecessor version | F13 |
-| Approval/effective transition is required | The frozen final outcome cannot be completed canonically | Obtain an authoritative L2-F13 lifecycle and authority decision | F13 architecture owner |
+| Approval is rejected or unavailable | Candidate cannot become effective | Retain candidate outside Active; current Active version remains authoritative | F13 |
+| Activation would lose historical reproducibility | Historical integrity would be violated | Reject activation until lineage/version references are preserved | F13 |
 
 # 12. Business Rules and Decision Constraints
 
@@ -103,13 +115,24 @@ No scenario-specific alternate business flow is defined by the authoritative L2 
 
 # 13. State and Lifecycle Impact
 
-F13 names KPI Definition and Analytical Model aggregates/configurations but does **not** define authoritative lifecycle states or transitions for definition versioning, approval, activation, supersession or retirement. No lifecycle transition is authored locally.
+KPI Definition and Analytical Model consume the locked F13/F00 Finance configuration lifecycle:
+
+`Draft → Validation → Approval → Published → Active → Superseded → Archived`
+
+Only `Active` versions govern new eligible calculations/projections. A successor version does not rewrite the predecessor or historical results.
 
 # 14. Business Events and Cross-Domain Collaboration
 
 ## 14.1 Published / Consumed Business Events
 
-`FinancialKPICalculated` is an authoritative **calculation-completion** event published by KPI Definition. It is not a definition-version approval or activation event. F13 defines no canonical event for KPI Definition or Analytical Model creation/version approval/effective activation/supersession/retirement, so no such event is invented.
+The locked F13 amendment establishes:
+
+- KPI Definition Aggregate / F13 publishes `KPIDefinitionApproved`, `KPIDefinitionActivated`, `KPIDefinitionSuperseded`, and `KPIDefinitionArchived`.
+- Analytical Model Aggregate / F13 publishes `AnalyticalModelApproved`, `AnalyticalModelActivated`, `AnalyticalModelSuperseded`, and `AnalyticalModelArchived`.
+- `FinancialKPICalculated` remains the KPI calculation-completion event.
+- `FinancialDashboardProjectionUpdated` remains the analytical projection-completion event.
+
+Governance events and calculation/projection completion events are not interchangeable.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
@@ -119,11 +142,11 @@ Applicable Finance domains provide canonical financial information for later cal
 
 ## 15.1 Initiation and Decision Authority
 
-The frozen trigger states that an authorized governance decision initiates the change. F13 does not define the actor or authority that approves the successor definition or makes it effective.
+The Financial Analytics Definition Approval Authority is the canonical business authority for approving a new or revised KPI Definition or Analytical Model version. Institutional policy maps this authority to the applicable Finance approval level. Activation follows the approved F13 configuration lifecycle.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-No scenario-specific separation-of-duty, override or exception rule is defined upstream.
+Existing L2-F00 Finance segregation-of-duties controls apply where configured. Preparation/validation does not itself imply approval authority.
 
 ## 15.3 Business Audit and Evidence Obligations
 
@@ -133,23 +156,19 @@ F13 requires immutable audit evidence for configuration changes and preservation
 
 ## 16.1 Completion Criteria
 
-The frozen scenario cannot be certified complete until authoritative lifecycle states/transitions, approval authority and definition-version business events are defined for KPI Definitions and Analytical Models.
+The scenario completes when the successor version has been validated, approved, published and activated; any replaced Active predecessor is Superseded; applicable governance events are published; and historical results preserve their original governing definition/model version.
 
 ## 16.2 Postconditions
 
-The predecessor definition/model and historical result context remain preserved. No successor is asserted to be approved or effective by this Draft.
+The predecessor definition/model and historical result context remain preserved. The approved successor is Active for new eligible calculations/projections. Any predecessor is Superseded and remains historically reconstructable.
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
 ## 17.1 Open Issues
 
-| Issue | Architecture Impact | Required Resolution |
-|---|---|---|
-| No KPI Definition or Analytical Model lifecycle states/transitions are defined | The required approved/effective successor cannot be represented canonically | Define lifecycle and effective-version semantics in L2-F13 |
-| No canonical business actor/authority is defined for definition approval/activation | The frozen authorization/approval outcome is unsupported | Define governing authority in L2-F13 |
-| No definition-version approval/activation/supersession events and publishers are defined | Cross-domain traceability of the frozen outcome cannot be stated | Define canonical events/publishers if required |
+No material upstream architecture issue remains for this scenario after `L2-F13_KPI_and_Analytical_Model_Governance_Amendment_2026-09-20.md` and ADR-FIN-ANALYTICS-001.
 
-**Architecture assessment:** `BLOCKED`
+**Architecture assessment:** `READY`
 
 ## 17.2 Assumptions
 
