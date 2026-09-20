@@ -142,7 +142,7 @@ Completed PASS-group reconciliation now covers Groups 1–6:
 - Group 5 — F: 85 scenarios → 59 distinct workflows — **PASS after canonical F13 KPI Definition / Analytical Model governance remediation**;
 - Group 6 — G1: 77 scenarios → 39 distinct workflows — **PASS after canonical G00 exception-recovery and A01 configuration-governance remediation**.
 
-Cumulative semantic reconciliation coverage is **464 / 1,084 scenarios** across Groups 1–6, contributing **273 distinct workflows**. There are **0 material Stage-2 group blockers**. The former F076 blocker was resolved through ADR-FIN-ANALYTICS-001, the locked 2026-09-20 F13 analytics-governance amendment, targeted L3 revalidation, and re-derived L4-F-076 behavior. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
+Cumulative semantic reconciliation coverage is **464 / 1,084 scenarios** across Groups 1–6, contributing **273 distinct workflows**. There are **0 material Stage-2 group blockers**. The former F076 blocker was resolved through ADR-FIN-ANALYTICS-001, the locked 2026-09-20 F13 analytics-governance amendment, targeted L3 revalidation, and re-derived L4-F-076 behavior. The Group-6 G013/G014 blockers were resolved through ADR-G-EXCEPTION-001, ADR-PLAT-CONFIG-001, locked 2026-09-20 G00/A01 amendments, targeted L3 revalidation, and re-derived L4-A-056/L4-G-013/L4-G-014 behavior. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
 
 The following values remain **PENDING DISCOVERY THROUGH SEMANTIC NORMALIZATION** rather than blocked by architecture:
 
