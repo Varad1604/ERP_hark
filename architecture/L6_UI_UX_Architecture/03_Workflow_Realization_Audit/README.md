@@ -69,20 +69,21 @@ See:
 | Group | Scope | Scenarios | Status | Distinct workflows |
 |---|---|---:|---|---:|
 | 1 | A + B | 95 | **PASS — complete for master cross-group reconciliation** | 50 |
-| 2–14 | C through J remaining controlled groups | 989 | Pending | Pending |
+| 2 | C | 75 | **PASS — complete for master cross-group reconciliation** | 32 |
+| 3–14 | D through J remaining controlled groups | 914 | Pending | Pending |
 
-Group 1 evidence:
+Group evidence:
 
-`group-reconciliation/STAGE2_GROUP_01_AB_RECONCILIATION.md`
+- `group-reconciliation/STAGE2_GROUP_01_AB_RECONCILIATION.md`
+- `group-reconciliation/STAGE2_GROUP_02_C_RECONCILIATION.md`
 
 Current cumulative Stage-2 group reconciliation coverage:
 
 ```text
-Scenario rows semantically group-reconciled   95 / 1,084
-Distinct workflows discovered in completed groups  50
+Scenario rows semantically group-reconciled   170 / 1,084
+Distinct workflows discovered in completed groups  82
 Completed group blockers                         0
 Canonical Workflow Realization Register rows      0 / 1,084
 ```
 
 The canonical register remains unpopulated until all groups and the final cross-group normalization pass complete.
-
