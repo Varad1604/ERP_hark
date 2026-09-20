@@ -70,18 +70,20 @@ See:
 |---|---|---:|---|---:|
 | 1 | A + B | 95 | **PASS — complete for master cross-group reconciliation** | 50 |
 | 2 | C | 75 | **PASS — complete for master cross-group reconciliation** | 32 |
-| 3–14 | D through J remaining controlled groups | 914 | Pending | Pending |
+| 3 | D | 57 | **PASS — complete for master cross-group reconciliation** | 38 |
+| 4–14 | E through J remaining controlled groups | 857 | Pending | Pending |
 
 Group evidence:
 
 - `group-reconciliation/STAGE2_GROUP_01_AB_RECONCILIATION.md`
 - `group-reconciliation/STAGE2_GROUP_02_C_RECONCILIATION.md`
+- `group-reconciliation/STAGE2_GROUP_03_D_RECONCILIATION.md`
 
 Current cumulative Stage-2 group reconciliation coverage:
 
 ```text
-Scenario rows semantically group-reconciled   170 / 1,084
-Distinct workflows discovered in completed groups  82
+Scenario rows semantically group-reconciled   227 / 1,084
+Distinct workflows discovered in completed groups  120
 Completed group blockers                         0
 Canonical Workflow Realization Register rows      0 / 1,084
 ```
