@@ -7,18 +7,18 @@
 **Domain:** Financial Reporting & Analytics  
 **Realizes Scenario:** L3-F-076  
 **Primary Business Owner:** Financial Reporting & Analytics  
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Status:** Draft  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** `L3-F-076_Financial_Definition_Change_to_Approved_KPI_or_Analytical_Model.md`; L2-F13 — Financial Reporting & Analytics Workflows; `L2-F13_Financial_Reporting_and_Analytics_Workflows_Amendment_2026-08-26.md`  
+**Last Updated:** 2026-09-20  
+**Depends On:** `L3-F-076_Financial_Definition_Change_to_Approved_KPI_or_Analytical_Model.md`; L2-F13 — Financial Reporting & Analytics Workflows; `L2-F13_KPI_and_Analytical_Model_Governance_Amendment_2026-09-20.md`; ADR-FIN-ANALYTICS-001  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
-SutraERP shall preserve an existing KPI Definition or Analytical Model and govern a version-controlled successor candidate for future financial calculation, ensuring canonical Finance facts remain source-owned and historical analytical results retain the configuration context under which they were produced.
+SutraERP shall govern an existing KPI Definition or Analytical Model through version-controlled successor creation, validation, approval, publication, activation and supersession while preserving canonical Finance-fact ownership and the exact historical definition/model version used by prior results.
 
-The behavior begins when an authorized governance decision requires a KPI, metric, forecast or Analytical Model definition change. It reaches only the source-supported point of a validated version-controlled successor candidate; approval/effective activation cannot be asserted until L2-F13 defines definition-specific lifecycle and authority semantics.
+The behavior begins when a governed definition/model change is initiated and ends when the approved successor is Active for new eligible calculations/projections, any replaced predecessor is Superseded, required governance events are published, and historical results remain reproducible.
 
 ## 3. Required Business Context
 
@@ -26,7 +26,8 @@ The behavior begins when an authorized governance decision requires a KPI, metri
 - The proposed change remains inside Financial Reporting & Analytics ownership.
 - Canonical Finance inputs and source ownership are identifiable.
 - Historical results must remain reproducible under their original definition/configuration context.
-- The 2026-08-26 F13 amendment defines report actors and pre-publication report correction, but does not define KPI/Analytical Model definition-version approval or activation authority.
+- The Financial Analytics Definition Approval Authority is available for the governed approval decision.
+- The canonical Finance configuration lifecycle is available for KPI Definition / Analytical Model governance.
 
 ## 4. System Behavioral Obligations
 
@@ -36,36 +37,43 @@ The behavior begins when an authorized governance decision requires a KPI, metri
 | L4-F-076-BH-002 | The system shall represent a changed financial definition as a distinct version-controlled successor candidate. | L3-F-076 §§2–4, 9, 12 |
 | L4-F-076-BH-003 | The system shall validate that the successor definition references canonical Finance information without modifying or re-owning the underlying financial facts. | L3-F-076 §§4–5, 7, 9, 11–12 |
 | L4-F-076-BH-004 | The system shall preserve the information needed to reproduce historical results under the predecessor definition/configuration context after a successor candidate exists. | L3-F-076 §§2–4, 9, 12, 16 |
-| L4-F-076-BH-005 | The system shall not assert that a successor KPI Definition or Analytical Model is approved, effective, active, superseding or retired unless those lifecycle positions and transitions are established by authoritative F13 architecture. | L3-F-076 §§3–4, 9, 13, 16–17 |
-| L4-F-076-BH-006 | Future calculation shall not use the successor as the governed effective definition merely because the successor candidate has been composed and validated. | L3-F-076 §§3, 9, 13, 16 |
+| L4-F-076-BH-005 | The system shall progress KPI Definition / Analytical Model versions only through the canonical `Draft → Validation → Approval → Published → Active → Superseded → Archived` governance lifecycle. | L3-F-076 §§9, 12–13; locked F13 amendment §1 |
+| L4-F-076-BH-006 | The system shall recognize approval only when the Financial Analytics Definition Approval Authority records the governed decision; an unapproved candidate shall not become Published or Active. | L3-F-076 §§6, 9, 15; locked F13 amendment §2 |
+| L4-F-076-BH-007 | Only an Active KPI Definition or Analytical Model version shall govern new eligible KPI calculations or analytical projections for its applicable scope/effective boundary. | L3-F-076 §§3, 9, 12–13; locked F13 amendment §1 |
+| L4-F-076-BH-008 | When an Active successor replaces an Active predecessor for the same governed scope, the system shall transition the predecessor to Superseded without rewriting historical results. | L3-F-076 §§3, 9, 12–13, 16; locked F13 amendment §1 |
+| L4-F-076-BH-009 | Historical KPI results, analytical projections and governed reports shall retain the exact definition/model version used when they were produced. | L3-F-076 §§2–4, 12, 16; locked F13 amendment §§1,5 |
 
 ## 5. Cross-Domain & Event Behavior
 
 Applicable Finance capabilities retain ownership of source financial facts. Financial Reporting & Analytics owns the KPI Definition/Analytical Model meaning and version-controlled reporting configuration.
 
-`FinancialKPICalculated` is a canonical calculation-completion event, not a definition-version approval or activation event. Neither original F13 nor its 2026-08-26 amendment defines KPI/Analytical Model version creation, approval, activation, supersession or retirement events. No such event is invented.
+KPI Definition Aggregate / F13 shall publish `KPIDefinitionApproved`, `KPIDefinitionActivated`, `KPIDefinitionSuperseded`, and `KPIDefinitionArchived` for their corresponding successful business transitions.
+
+Analytical Model Aggregate / F13 shall publish `AnalyticalModelApproved`, `AnalyticalModelActivated`, `AnalyticalModelSuperseded`, and `AnalyticalModelArchived` for their corresponding successful business transitions.
+
+`FinancialKPICalculated` and `FinancialDashboardProjectionUpdated` remain calculation/projection completion facts and shall not be used as substitutes for governance lifecycle events.
 
 ## 6. Failure / Rejection / Continuation
 
-If the proposed definition would modify source-owned Finance facts, lose historical configuration context, or cannot be validated within F13 ownership, the system shall reject or retain the candidate outside effective use. If approval/effective activation is required, the behavior shall stop at the unresolved upstream contract rather than infer a lifecycle, actor or event.
+If the proposed definition would modify source-owned Finance facts, lose historical configuration context, fail validation, or lack required approval, the system shall keep it outside Active use and preserve the current Active version. If activation would break predecessor/successor lineage or historical reproducibility, activation shall not occur.
 
 ## 7. Audit & Evidence Behavior
 
 | Behavior ID | Required System Behavior | Provenance |
 |---|---|---|
-| L4-F-076-BH-007 | The system shall preserve immutable evidence of the definition-change basis, predecessor and successor identity/version context, validation result, canonical source references and preserved historical calculation context. | L3-F-076 §§12, 15–16 |
+| L4-F-076-BH-010 | The system shall preserve immutable evidence of definition/model identity and version, governed scope, predecessor/successor lineage, validation result, approving authority and approval reference, Published/Active effective boundary, Superseded/Archived disposition, canonical source references and historical result-version references. | L3-F-076 §§12, 15–16; locked F13 amendment §5 |
 
 ## 8. Observable Completion Conditions
 
-The source-supported portion completes when the predecessor remains intact, a distinct successor candidate has been versioned and validated, canonical Finance ownership is preserved, and historical results remain reproducible. The frozen outcome of an approved/effective successor is not asserted until F13 supplies authoritative definition lifecycle and approval/effective-version semantics.
+Completion requires a distinct successor version to pass validation, receive Financial Analytics Definition Approval Authority approval, become Published then Active, publish the applicable aggregate-specific governance events, supersede any replaced Active predecessor, preserve canonical Finance ownership, and retain historical results under their original governing version.
 
 ## 9. Traceability & Provenance
 
 **Parent:** L3-F-076 — Financial Definition Change to Approved KPI or Analytical Model  
-**Primary verification sources:** L2-F13 — Financial Reporting & Analytics Workflows; L2-F13 Locked Amendment 2026-08-26
+**Primary verification sources:** L2-F13 — Financial Reporting & Analytics Workflows; `L2-F13_KPI_and_Analytical_Model_Governance_Amendment_2026-09-20.md`; ADR-FIN-ANALYTICS-001
 
-The amendment closes generic Financial Report actor and pre-publication correction gaps only. It does not provide KPI Definition or Analytical Model version-approval/activation authority, so the parent blocker remains materially valid.
+The locked 2026-09-20 F13 amendment resolves the former lifecycle, authority and event-publisher gap for KPI Definition / Analytical Model governance.
 
 ## 10. Open Issues / Deferred Design
 
-F13 still lacks authoritative KPI Definition/Analytical Model lifecycle states and transitions for version approval, effective activation, supersession and retirement; it also lacks a canonical definition approval/activation authority and corresponding version-governance events/publishers. Those gaps must be resolved upstream before the frozen final outcome can be fully observable.
+No material upstream architecture issue remains. Implementation-specific UI, API, persistence, technical authorization and event-transport design remain deferred to later architecture levels.
