@@ -1,6 +1,6 @@
 # SutraERP L6 Stage 2 — Full-Corpus Reconciliation & Validation Report — 2026-09-20
 
-**Status:** UPSTREAM BLOCKERS RESOLVED — STAGE-2 RECONCILIATION IN PROGRESS  
+**Status:** STAGE-2 RECONCILIATION IN PROGRESS — GROUP-6 UPSTREAM BLOCKERS IDENTIFIED  
 **Architecture Level:** L6 — UI / UX Architecture Governance  
 **Branch:** `l6-stage2-full-scenario-realization-audit`  
 **Base Architecture Main:** `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`  
@@ -107,7 +107,7 @@ Controlled evidence:
 - `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Controlled_Semantic_Amendment_Decision_I148_I150_I157_I160_2026-09-20.md`
 - `architecture/L4_System_Behavior_Specification/00_Governance/L4_Section_I_Corrected_Parent_Revalidation_I148_I150_I157_I160_2026-09-20.md`
 
-**Material upstream blockers remaining:** **0**
+**Material upstream blockers remaining after Group-6 reconciliation:** **2** — `L3/L4-G-013` generic governance-exception recovery authority/event semantics and `L3/L4-G-014` shared A01/G00 configuration approval authority.
 
 ## 6. Canonical Register Decision
 
@@ -133,15 +133,16 @@ The generated worker baseline contains near-scenario-cardinality labels. Those l
 
 The upstream semantic blockers are now resolved. Full-corpus workflow normalization is therefore unblocked and remains the active Stage-2 task.
 
-Completed PASS-group reconciliation now covers Groups 1–5:
+Completed PASS-group reconciliation covers Groups 1–5; Group 6 is fully reconciled but blocked:
 
 - Group 1 — A+B: 95 scenarios → 50 distinct workflows;
 - Group 2 — C: 75 scenarios → 32 distinct workflows;
 - Group 3 — D: 57 scenarios → 38 distinct workflows;
 - Group 4 — E: 75 scenarios → 55 distinct workflows;
-- Group 5 — F: 85 scenarios → 59 distinct workflows — **PASS after canonical F13 KPI Definition / Analytical Model governance remediation**.
+- Group 5 — F: 85 scenarios → 59 distinct workflows — **PASS after canonical F13 KPI Definition / Analytical Model governance remediation**;
+- Group 6 — G1: 77 scenarios → 39 provisional workflows — **BLOCKED by G013 exception-recovery authority/event semantics and G014 shared configuration approval authority**.
 
-Cumulative semantic reconciliation coverage is **387 / 1,084 scenarios** across Groups 1–5, contributing **234 distinct workflows**. There are **0 material Stage-2 group blockers**. The former F076 blocker was resolved through ADR-FIN-ANALYTICS-001, the locked 2026-09-20 F13 analytics-governance amendment, targeted L3 revalidation, and re-derived L4-F-076 behavior. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
+Cumulative semantic reconciliation coverage is **464 / 1,084 scenarios** across Groups 1–6. PASS groups contribute **234 distinct workflows**; blocked Group 6 contributes **39 provisional workflows**. There are **2 material Stage-2 group blockers**. The former F076 blocker was resolved through ADR-FIN-ANALYTICS-001, the locked 2026-09-20 F13 analytics-governance amendment, targeted L3 revalidation, and re-derived L4-F-076 behavior. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
 
 The following values remain **PENDING DISCOVERY THROUGH SEMANTIC NORMALIZATION** rather than blocked by architecture:
 
@@ -181,15 +182,15 @@ This does not replace architecture semantic review.
 | Invalid archetype references = 0 | PASS |
 | Invalid controlled values = 0 | PASS |
 | Canonical realization rows = 1,084 / 1,084 | **PENDING — 0 / 1,084 until final normalization** |
-| Unexplained / conflicting primary realizations = 0 | **PASS for discovered upstream conflicts — 0 remaining** |
-| Material unresolved blockers = 0 | **PASS — 0** |
+| Unexplained / conflicting primary realizations = 0 | **PENDING — Group-6 upstream semantics require owner-domain resolution** |
+| Material unresolved blockers = 0 | **FAIL — 2** |
 | Distinct user-addressable workflow count discovered | **PENDING NORMALIZATION** |
 | Mock-interaction-required workflow population discovered | **PENDING NORMALIZATION** |
 | Observable non-interactive workflow population discovered | **PENDING NORMALIZATION** |
 
 ## 10. Verdict
 
-**STAGE 2: IN PROGRESS — UPSTREAM BLOCKERS RESOLVED**
+**STAGE 2: IN PROGRESS — GROUP-6 UPSTREAM BLOCKERS REQUIRE RESOLUTION**
 
 The worker corpus is mechanically complete and the discovered upstream semantic drift has been corrected under controlled L3/L4 governance.
 
