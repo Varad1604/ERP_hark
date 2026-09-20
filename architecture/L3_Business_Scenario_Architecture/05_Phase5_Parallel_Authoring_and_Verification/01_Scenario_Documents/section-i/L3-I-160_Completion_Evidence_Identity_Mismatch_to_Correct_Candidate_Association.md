@@ -3,126 +3,110 @@
 **Scenario ID:** L3-I-160
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Academic Completion & Completion Evidence  
-**Participating Domains:** C, H, I  
+**Participating Domains:** A — Platform Foundation / Identity; C — Student Lifecycle; H — Institutional Services & Intelligence; I — Examination  
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Varad  
-**Last Updated:** 2026-08-21  
-**Depends On:** L2-I13 — Academic Completion, CGPA & Completion Evidence Workflows; L2-C05 — Qualification Completion & Student Exit Workflows; applicable Examination result/revaluation workflows and participating Section H architecture  
-**Referenced By:** Downstream qualification, completion-evidence and institutional-service consumers as applicable
+**Last Updated:** 2026-09-20  
+**Depends On:** Locked L1 Business Domain Architecture; L2-I13 Academic Completion, CGPA & Completion Evidence Workflows; L2-C05 Qualification Completion & Student Exit; applicable source-domain architecture  
+**Amendment Authority:** L3_Controlled_Semantic_Amendment_Decision_I148_I150_I157_I160_2026-09-20.md
 
 ## 1. Scenario Metadata
 
-This Draft preserves the frozen canonical scenario semantics and final L3 identity. Academic Completion & Completion Evidence remains the canonical owner of examination-derived completion evidence. Cross-domain participation does not transfer ownership of Examination results, Student Lifecycle qualification decisions, or downstream service responsibilities.
+This controlled successor restores the frozen canonical semantics for L3-I-160 without changing its final identity, title, owner, Type, Priority or repository placement.
 
 ## 2. Scenario Purpose
 
-Correct examination-owned completion evidence before its downstream institutional use is treated as final, ensuring that the current evidence position accurately reflects authoritative academic outcomes and remains distinct from the institutional Qualification Completion decision.
+Correct a completion-evidence association when the evidence is linked to the wrong or inconsistent candidate identity/context, while preserving canonical Identity and Student Lifecycle ownership.
 
 ## 3. Business Outcome
 
-One corrected and authoritative completion-evidence position is established for the affected student and scope before final downstream use, with the prior evidence position retained as history and without changing qualification ownership.
+The completion evidence is associated only with the correct authoritative candidate/context; the erroneous association remains traceable and cannot produce an incorrect downstream outcome.
 
 ## 4. Scenario Boundary and Scope
 
-**Start Boundary:** An examination-owned completion-evidence position exists but a material correction is required before final downstream use.
+**Start Boundary:** A completion-evidence position cannot be reliably associated with the authoritative candidate identity/Student Context.
 
-**End Boundary:** The corrected evidence position is authoritative and available for its governed downstream purpose.
+**End Boundary:** The evidence is authoritatively associated with the correct candidate and completion scope.
 
-**In Scope:** identify the evidence discrepancy; determine whether the discrepancy is evidence-only or caused by an upstream Examination change; apply the applicable correction/re-evaluation path; preserve history; establish the corrected evidence position.
+**In Scope:** the business actions required to reach the stated outcome while preserving canonical ownership and authoritative source facts.
 
-**Out of Scope:** recalculating Examination results, changing Qualification Completion, or inventing a downstream evidence lifecycle.
-
-**Related Scenarios:** I161 addresses an authoritative Examination result change that withdraws invalid completion evidence; this scenario addresses pre-release correction of the evidence position.
+**Out of Scope:** redefining Person/Identity, Student Lifecycle, Examination results, Qualification Completion, technical implementation, APIs, databases, UI design or new business authority.
 
 ## 5. Ownership and Participating Domains
 
-Academic Completion & Completion Evidence owns the examination-derived completion-evidence lifecycle and its authoritative evidence position. Student Lifecycle (C) remains the sole owner of the institutional Qualification Completion decision under L2-C05. Examination (I) owns examination results and any underlying academic outcome changes. Section H participates in governed downstream use where applicable and does not acquire ownership of qualification or examination evidence.
+Academic Completion & Completion Evidence owns only its completion evaluation/evidence responsibilities under L2-I13. Source domains retain ownership of their authoritative facts. Student Lifecycle alone owns the institutional Qualification Completion decision under L2-C05.
 
 ## 6. Business Actors, Roles and Responsibilities
 
-- **Academic Completion & Completion Evidence authority:** evaluates and governs the examination-owned completion-evidence position.
-- **Examination authority:** establishes the authoritative examination result or revised examination outcome when the underlying academic fact changes.
-- **Student Lifecycle authority:** determines the institutional Qualification Completion consequence.
-- **Student:** is the subject of the academic completion evidence.
-- **Section H participating business authority/consumer:** uses governed completion evidence for its defined institutional purpose where applicable.
+- Academic Completion / Completion Evidence authority governs the I13-owned evaluation/evidence position.
+- Applicable Examination authorities establish authoritative examination outcomes under their owning workflows.
+- Platform Identity and Student Lifecycle authorities retain their source responsibilities where identity/context facts participate.
+- Student is the subject of the completion/evidence outcome.
+- Section H consumers, where applicable, consume governed evidence without acquiring ownership.
 
-No additional actor, approval authority, or responsibility is introduced beyond authoritative upstream architecture.
+No new actor or approval authority is introduced.
 
 ## 7. Preconditions and Entry Criteria
 
-- An examination-owned completion-evidence position exists.
-- The affected student and completion scope are identifiable.
-- Underlying Examination facts are authoritative unless separately identified as changed.
-- The correction is within the existing I13 evidence-governance boundary.
+- The affected student/candidate and completion scope are identifiable.
+- Required source facts are available or the scenario explicitly governs their unresolved condition.
+- Existing I13 evidence/completion governance applies.
+- Source-domain ownership remains unchanged.
 
 ## 8. Trigger
 
-A material discrepancy in completion evidence is identified before final downstream use.
+A completion-evidence position cannot be reliably associated with the authoritative candidate identity/Student Context.
 
 ## 9. Main Business Flow
 
-1. Identify the affected completion-evidence position, student and completion scope.
-2. Determine whether the discrepancy is confined to the evidence position or originates from an underlying Examination fact.
-3. If the underlying Examination fact has not changed, apply the existing I13 evidence correction/disposition path.
-4. If the underlying Examination fact has changed, consume the newly authoritative Examination outcome and re-evaluate the completion evidence.
-5. Preserve the prior evidence position and correction basis as history.
-6. Establish one corrected current completion-evidence position through the existing I13 lifecycle.
-7. Make the corrected position available to the participating downstream domains for authorized use.
-8. Do not treat evidence correction as a new Qualification Completion decision.
-9. End when the corrected evidence position is authoritative.
+1. Identify the affected completion-evidence position and its current candidate/context association.
+2. Verify canonical Person/Identity and Student Context through their owning domains.
+3. Determine whether the defect is only in the I13 evidence association or in the source identity/context itself.
+4. If source identity/context is wrong, route correction to the canonical owner and hold I13 reassociation.
+5. After authoritative source correction/verification, reassociate the evidence to the correct candidate/context within I13.
+6. Preserve the erroneous association and correction basis as historical evidence.
+7. Expose the corrected authoritative evidence association to governed downstream consumers.
 
 ## 10. Alternate Business Flows
 
-**Evidence-only correction:** correct the I13-owned evidence position while leaving underlying Examination results unchanged.
+### 10.1
 
-**Underlying result changed:** stop treating the case as evidence-only correction and consume the canonical Examination result outcome before re-evaluating evidence.
+If source identity/context is already correct, correct only the I13 evidence association.
 
-**No material correction required:** retain the current evidence position and close the correction concern without creating a new business outcome.
+### 10.2
+
+If multiple candidate/context positions remain unresolved, hold the evidence from authoritative downstream use until the canonical owners resolve them.
 
 ## 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Underlying Examination fact is not authoritative | Corrected evidence cannot be finalized | Resolve the Examination fact first | Examination |
-| Evidence correction cannot be completed | Current evidence remains unsuitable for final downstream use | Preserve history and retain the governed current position until correction completes | Academic Completion & Completion Evidence |
-| Student context is inconsistent | Evidence may be associated with the wrong student | Resolve context through Student Lifecycle before finalizing evidence | Student Lifecycle |
-| Downstream consumer has the earlier evidence | An obsolete position may continue to be used | Establish the corrected authoritative position and follow applicable downstream correction governance | Academic Completion & Completion Evidence / participating domain |
+I13 does not alter Person identity or Student Context. Evidence remains blocked from authoritative downstream use while the canonical candidate association is unresolved.
 
 ## 12. Business Rules and Decision Constraints
 
-- I13 owns examination-derived completion evidence; it does not own the underlying Examination result.
-- Evidence correction must use authoritative upstream facts.
-- Evidence correction does not itself confer, revoke, or redefine qualification.
-- Historical evidence positions remain traceable.
-- No local correction threshold or unsupported precedence rule is invented.
+- Person/Identity remains Platform/Identity-owned.
+- Student Context remains Student Lifecycle-owned.
+- I13 owns only the completion-evidence association to authoritative source facts.
+- Historical erroneous association remains traceable.
 
 ## 13. State and Lifecycle Impact
 
-The existing I13 completion-evidence lifecycle is used. No new `Corrected` lifecycle state is created unless already defined upstream.
-
-Where an underlying Examination outcome changes, the evidence lifecycle follows the locked post-conferment ordering: Examination establishes the current outcome first; I13 re-evaluates its own evidence; Student Lifecycle alone determines any qualification consequence.
+No new identity or completion-evidence lifecycle state is introduced. Existing I13 evidence governance is used for reassociation.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-The existing `ExaminationCompletionEvidencePrepared` event remains the canonical I13 evidence boundary to L2-C05 where the corrected current evidence is supplied for qualification review.
-
-No new `CompletionEvidenceCorrected` event is invented. Existing upstream event names and publishers remain authoritative.
+Identity/Student Context correction facts remain published by their canonical owners. I13 uses existing evidence boundaries for its corrected current evidence; no local IdentityMismatchCorrected event is invented.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-Correction authority remains within the existing I13 evidence governance. Where the underlying academic result changes, Examination retains its own approval/result authority. Any institutional Qualification Completion consequence remains with L2-C05.
-
-The discrepancy, source facts, correction basis, current evidence and downstream consequence must remain auditable. No technical authorization mechanism is specified.
+Evidence reassociation follows I13 evidence governance. Source identity/context changes require their canonical owners. Audit evidence preserves mismatch detection, source verification/correction, old/new association and downstream release.
 
 ## 16. Completion Criteria and Postconditions
 
-**Complete when:** the discrepancy is resolved through the correct canonical owner; the current completion evidence is corrected and authoritative; prior evidence history is preserved; and the corrected position is available for its governed downstream use.
-
-**Postconditions:** one current evidence position is authoritative; Examination facts remain owned by Examination; Student Lifecycle retains Qualification Completion authority; downstream consumers can use the corrected evidence.
+The evidence points to the correct authoritative candidate/context; source ownership is preserved; erroneous association history is retained; and downstream use is safe.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
-L2-I13 explicitly governs examination-owned completion evidence and distinguishes it from Qualification Completion. It does not expose a dedicated pre-release correction event, so none is invented. If a correction materially changes an Examination result, this scenario must hand back to the canonical Examination result workflow before evidence is re-evaluated.
+No L3-local blocker remains after the controlled semantic amendment. No implementation detail or unsupported business authority is introduced.
