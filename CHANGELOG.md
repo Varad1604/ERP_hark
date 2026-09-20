@@ -1,5 +1,13 @@
 # SutraERP Architecture Changelog
 
+## [Unreleased] - 2026-09-20 — F13 analytics-definition governance remediation
+
+- Added `ADR-FIN-ANALYTICS-001` to resolve the Stage-2 Group-5 blocker for `L3-F-076`.
+- Added locked `L2-F13_KPI_and_Analytical_Model_Governance_Amendment_2026-09-20.md`.
+- Bound KPI Definition and Analytical Model governance to the canonical Finance configuration lifecycle `Draft → Validation → Approval → Published → Active → Superseded → Archived`.
+- Established `Financial Analytics Definition Approval Authority` and aggregate-specific KPI Definition / Analytical Model lifecycle events with one canonical publisher per event.
+- Revalidated `L3-F-076`, re-derived `L4-F-076`, and cleared the Stage-2 Group-5 blocker without changing Finance ownership, source-fact ownership, H07 dashboard ownership, or implementation architecture.
+
 ## [Unreleased] - 2026-09-18 — L6 experience-slice planning pilot
 
 **Draft branch / PR-pending change. No new Architecture Approval is asserted by this entry.**
