@@ -1,6 +1,6 @@
 # SutraERP L6 Stage 2 — Full-Corpus Reconciliation & Validation Report — 2026-09-20
 
-**Status:** STAGE-2 RECONCILIATION IN PROGRESS — GROUP 9 RECONCILED  
+**Status:** STAGE-2 RECONCILIATION IN PROGRESS — GROUP 10 RECONCILED  
 **Architecture Level:** L6 — UI / UX Architecture Governance  
 **Branch:** `l6-stage2-full-scenario-realization-audit`  
 **Base Architecture Main:** `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`  
@@ -133,7 +133,7 @@ The generated worker baseline contains near-scenario-cardinality labels. Those l
 
 The upstream semantic blockers are now resolved. Full-corpus workflow normalization is therefore unblocked and remains the active Stage-2 task.
 
-Completed PASS-group reconciliation now covers Groups 1–9:
+Completed PASS-group reconciliation now covers Groups 1–10:
 
 - Group 1 — A+B: 95 scenarios → 50 distinct workflows;
 - Group 2 — C: 75 scenarios → 32 distinct workflows;
@@ -143,9 +143,10 @@ Completed PASS-group reconciliation now covers Groups 1–9:
 - Group 6 — G1: 77 scenarios → 39 distinct workflows — **PASS after canonical G00 exception-recovery and A01 configuration-governance remediation**;
 - Group 7 — G2: 77 scenarios → 38 distinct workflows — **PASS after semantic correction of under-classified Hostel, Transport and Library realization rows**;
 - Group 8 — G3: 97 scenarios → 46 distinct workflows — **PASS after semantic correction of under-classified Health Services, Security Operations and Housekeeping realization rows, while consuming the corrected G200/G212/G214 authority baseline**;
-- Group 9 — G4: 69 scenarios → 31 distinct workflows — **PASS after semantic correction of under-classified Teacher Guardian Scheme and Infrastructure Management realization rows while preserving Academic, B03 and G01 ownership boundaries**.
+- Group 9 — G4: 69 scenarios → 31 distinct workflows — **PASS after semantic correction of under-classified Teacher Guardian Scheme and Infrastructure Management realization rows while preserving Academic, B03 and G01 ownership boundaries**;
+- Group 10 — H: 81 scenarios → 54 distinct workflows — **PASS after semantic reconciliation across H01–H10, preserving genuine automatic behavior and consuming current H governance amendments**.
 
-Cumulative semantic reconciliation coverage is **707 / 1,084 scenarios** across Groups 1–9, contributing **388 distinct workflows**. There are **0 material Stage-2 group blockers**. The former F076 blocker was resolved through ADR-FIN-ANALYTICS-001, the locked 2026-09-20 F13 analytics-governance amendment, targeted L3 revalidation, and re-derived L4-F-076 behavior. The Group-6 G013/G014 blockers were resolved through ADR-G-EXCEPTION-001, ADR-PLAT-CONFIG-001, locked 2026-09-20 G00/A01 amendments, targeted L3 revalidation, and re-derived L4-A-056/L4-G-013/L4-G-014 behavior. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
+Cumulative semantic reconciliation coverage is **788 / 1,084 scenarios** across Groups 1–10, contributing **442 distinct workflows**. There are **0 material Stage-2 group blockers**. The former F076 blocker was resolved through ADR-FIN-ANALYTICS-001, the locked 2026-09-20 F13 analytics-governance amendment, targeted L3 revalidation, and re-derived L4-F-076 behavior. The Group-6 G013/G014 blockers were resolved through ADR-G-EXCEPTION-001, ADR-PLAT-CONFIG-001, locked 2026-09-20 G00/A01 amendments, targeted L3 revalidation, and re-derived L4-A-056/L4-G-013/L4-G-014 behavior. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
 
 The following values remain **PENDING DISCOVERY THROUGH SEMANTIC NORMALIZATION** rather than blocked by architecture:
 
@@ -193,9 +194,9 @@ This does not replace architecture semantic review.
 
 ## 10. Verdict
 
-**STAGE 2: IN PROGRESS — GROUP 9 RECONCILED**
+**STAGE 2: IN PROGRESS — GROUP 10 RECONCILED**
 
-The worker corpus is mechanically complete, the discovered upstream semantic drift has been corrected under controlled L3/L4 governance, and Groups 7–9 have completed semantic reconciliation with no new upstream blocker.
+The worker corpus is mechanically complete, the discovered upstream semantic drift has been corrected under controlled L3/L4 governance, and Groups 7–10 have completed semantic reconciliation with no new upstream blocker.
 
 Stage 2 is not yet complete because distinct workflow normalization, final workflow-count discovery, canonical 1,084-row register population, and final independent validation still remain.
 
@@ -319,4 +320,46 @@ Scenarios semantically reconciled   707 / 1,084
 Distinct group-normalized workflows 388
 Material Stage-2 blockers             0
 Remaining unreconciled scenarios    377
+```
+
+
+## 14. Group 10 — Institutional Services Reconciliation
+
+Group 10 covers `L3-H-001 … L3-H-081` (81 scenarios) across ten workspaces `W-H01 … W-H10`.
+
+The H worker artifact is mechanically complete. Semantic review found a mixed pattern: many rows marked background actually contain explicit business authorities, while a smaller set is genuinely automatic/policy-driven and must not receive fake UI actions.
+
+Group 10 normalization result:
+
+```text
+Scenarios reconciled                 81 / 81
+Distinct workflows                   54
+User-addressable workflows           52
+Tracking / non-mock workflows         2
+Material blockers                     0
+Verdict                              PASS
+```
+
+Scenario-level mock realization:
+
+```text
+REQUIRED                             71
+NOT-REQUIRED                          3
+PROHIBITED                            7
+```
+
+Current H amendments for H01/H02/H03/H04/H08/H09/H10 were consumed. No superseded pre-amendment authority interpretation was restored.
+
+Canonical evidence:
+
+`group-reconciliation/STAGE2_GROUP_10_H_RECONCILIATION.md`
+
+Updated cumulative position after Group 10:
+
+```text
+Groups PASS                          10 / 14
+Scenarios semantically reconciled   788 / 1,084
+Distinct group-normalized workflows 442
+Material Stage-2 blockers             0
+Remaining unreconciled scenarios    296
 ```
