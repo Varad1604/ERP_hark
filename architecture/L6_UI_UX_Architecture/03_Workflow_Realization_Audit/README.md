@@ -1,6 +1,6 @@
 # SutraERP L6 Stage 2 — Full Scenario Realization Audit Control Area
 
-**Status:** Stage-2 reconciliation BLOCKED BY UPSTREAM — 2 Locked L3 semantic conflicts  
+**Status:** Stage-2 reconciliation IN PROGRESS — upstream semantic blockers resolved  
 **Integration Branch:** `l6-stage2-full-scenario-realization-audit`  
 **Canonical Base Verified:** architecture `main` at `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`; frontend `main` at `e2560877eac4446b925e45f04b7dfa4c24d3625c`  
 **Purpose:** Hold range-scoped worker prompts and normalized worker results for the 1,084-scenario UI-realization audit before master reconciliation.
@@ -54,12 +54,11 @@ Stage 3 remains blocked until the Stage-2 exit gate passes.
 
 The 15 worker artifacts are mechanically complete at 1,084 / 1,084 rows with zero missing or duplicate canonical IDs and zero invalid workspace/archetype/taxonomy references after reconciliation.
 
-Evidence-backed L6 classification defects have been corrected in the worker review artifacts. Two material upstream blockers remain:
+Evidence-backed L6 classification defects have been corrected in the worker review artifacts.
 
-- `L3-I-148` — locked title describes completion identity / Student Context association correction, while the locked body defines duplicate completion-evaluation reconciliation;
-- `L3-I-160` — locked title describes completion-evidence identity / Candidate association correction, while the locked body defines pre-release completion-evidence correction.
+The Section-I Phase-5 semantic drift discovered during master review has also been corrected under controlled upstream governance for `L3-I-148`, `149`, `150`, `157`, `158`, `159`, and `160`. Their dependent L4 blocker-only drafts were re-derived and the corresponding Stage-2 rows were revalidated. Material upstream blockers now equal **0**.
 
-Because L6 may not silently choose between conflicting Locked L3 semantics, the canonical Workflow Realization Register remains intentionally unpopulated and Stage 2 cannot pass.
+The canonical Workflow Realization Register remains intentionally unpopulated only because cross-worker workflow normalization, distinct-workflow counting and final independent validation are still in progress.
 
 See:
 
