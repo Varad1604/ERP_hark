@@ -3,127 +3,110 @@
 **Scenario ID:** L3-I-157
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Academic Completion & Completion Evidence  
-**Participating Domains:** C, H, I  
+**Participating Domains:** C — Student Lifecycle; H — Institutional Services & Intelligence; I — Examination  
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Varad  
-**Last Updated:** 2026-08-21  
-**Depends On:** L2-I13 — Academic Completion, CGPA & Completion Evidence Workflows; L2-C05 — Qualification Completion & Student Exit Workflows; applicable Section H architecture for downstream institutional evidence use  
-**Referenced By:** Downstream qualification and institutional evidence consumers as applicable
+**Last Updated:** 2026-09-20  
+**Depends On:** Locked L1 Business Domain Architecture; L2-I13 Academic Completion, CGPA & Completion Evidence Workflows; L2-C05 Qualification Completion & Student Exit; applicable source-domain architecture  
+**Amendment Authority:** L3_Controlled_Semantic_Amendment_Decision_I148_I150_I157_I160_2026-09-20.md
 
 ## 1. Scenario Metadata
 
-This Draft preserves the frozen Stage 3 canonical title, Primary Owner, participating domains, Scenario Type, Priority and final L3 identity. Cross-domain participation does not transfer ownership of qualification, examination, or student lifecycle facts.
+This controlled successor restores the frozen canonical semantics for L3-I-157 without changing its final identity, title, owner, Type, Priority or repository placement.
 
 ## 2. Scenario Purpose
 
-Restore a completion-evidence position to valid active use after the condition that made the evidence unusable has been authoritatively resolved, while preserving the evidence lifecycle and ownership boundaries.
+Withdraw I13-owned completion evidence from active use when an authoritative Examination result change makes that evidence invalid, while preserving history and leaving Qualification Completion consequences to Student Lifecycle.
 
 ## 3. Business Outcome
 
-The examination-owned completion evidence is authoritatively restored to a valid current position and can again support its governed downstream use without changing the institutional Qualification Completion decision unless an authoritative academic outcome also changes.
+The invalid completion-evidence position is no longer active for downstream use; its prior history remains traceable and the superseding current evidence position is communicated through existing I13 governance.
 
 ## 4. Scenario Boundary and Scope
 
-**Start Boundary:** Examination-owned completion evidence is not currently valid for active use and the underlying condition has been authoritatively resolved.
+**Start Boundary:** Previously valid completion evidence exists and an authoritative Examination outcome changes in a way that makes that evidence invalid.
 
-**End Boundary:** One restored, valid completion-evidence position is authoritative for the affected student and completion scope.
+**End Boundary:** The invalid evidence is withdrawn from active use, history is preserved, and the current evidence position is available to governed downstream consumers.
 
-**In Scope:** confirm resolution of the condition; verify the evidence basis; restore the evidence position; preserve historical disposition; make the current evidence available for governed downstream use.
+**In Scope:** the business actions required to reach the stated outcome while preserving canonical ownership and authoritative source facts.
 
-**Out of Scope:** recalculating examination results, changing qualification ownership, or creating a new downstream evidence lifecycle.
-
-**Related Scenarios:** This scenario is distinct from evidence correction where the evidence itself must be changed, and from result-change scenarios where the underlying Examination fact changes.
+**Out of Scope:** redefining Person/Identity, Student Lifecycle, Examination results, Qualification Completion, technical implementation, APIs, databases, UI design or new business authority.
 
 ## 5. Ownership and Participating Domains
 
-Academic Completion & Completion Evidence owns the examination-derived completion-evidence lifecycle and its authoritative evidence position. Student Lifecycle (C) remains the canonical owner of the institutional Qualification Completion decision. Section H participates in governed downstream institutional use where applicable; participation does not transfer ownership. Examination-owned academic outcomes remain owned by Examination.
+Academic Completion & Completion Evidence owns only its completion evaluation/evidence responsibilities under L2-I13. Source domains retain ownership of their authoritative facts. Student Lifecycle alone owns the institutional Qualification Completion decision under L2-C05.
 
 ## 6. Business Actors, Roles and Responsibilities
 
-- **Academic Completion & Completion Evidence authority:** determines and governs the examination-owned completion-evidence position.
-- **Student Lifecycle authority:** retains authority for the institutional Qualification Completion decision.
-- **Student:** is the subject of the completion evidence.
-- **Section H participating business authority/consumer:** uses governed evidence for its own downstream institutional purpose where defined by its architecture.
-- **Examination authority:** remains responsible for any underlying examination result or academic fact that is consumed as evidence.
+- Academic Completion / Completion Evidence authority governs the I13-owned evaluation/evidence position.
+- Applicable Examination authorities establish authoritative examination outcomes under their owning workflows.
+- Platform Identity and Student Lifecycle authorities retain their source responsibilities where identity/context facts participate.
+- Student is the subject of the completion/evidence outcome.
+- Section H consumers, where applicable, consume governed evidence without acquiring ownership.
 
-No additional actor or authority is introduced without an authoritative upstream definition.
+No new actor or approval authority is introduced.
 
 ## 7. Preconditions and Entry Criteria
 
-- The prior evidence disposition is known and traceable.
-- The condition preventing active evidence use has an authoritative resolution.
-- The affected student and completion scope are established.
-- Any underlying Examination fact required for restoration is authoritative.
-- Student Lifecycle remains the owner of the institutional Qualification Completion decision.
+- The affected student/candidate and completion scope are identifiable.
+- Required source facts are available or the scenario explicitly governs their unresolved condition.
+- Existing I13 evidence/completion governance applies.
+- Source-domain ownership remains unchanged.
 
 ## 8. Trigger
 
-An authoritative resolution makes previously invalid, withdrawn, or otherwise inactive completion evidence eligible for restoration.
+Previously valid completion evidence exists and an authoritative Examination outcome changes in a way that makes that evidence invalid.
 
 ## 9. Main Business Flow
 
-1. Identify the affected completion-evidence position and the condition that caused its prior invalid/inactive status.
-2. Confirm that the responsible upstream condition has been authoritatively resolved.
-3. Confirm the underlying academic evidence remains valid for the affected completion scope.
-4. Reassess the examination-owned completion evidence against the resolved condition.
-5. Restore the evidence to the applicable valid current position through the existing I13 lifecycle.
-6. Preserve the prior invalid/inactive history and the basis for restoration.
-7. Make the restored current evidence available to the governed downstream consumers.
-8. Do not reinterpret the restored evidence as a new Qualification Completion decision.
-9. End when one restored valid evidence position is authoritative.
+1. Identify the affected completion-evidence position and the authoritative Examination result change.
+2. Verify that the changed Examination outcome materially invalidates the active evidence position.
+3. Preserve the prior evidence, provenance and result basis as immutable history.
+4. Withdraw the invalid evidence from active downstream use under I13 governance.
+5. Establish the current I13 evidence position without inventing a qualification decision.
+6. Publish the superseding current evidence position through the existing ExaminationCompletionEvidencePrepared boundary where applicable.
+7. Allow L2-C05 alone to determine whether the qualification requires correction, revocation or no change.
 
 ## 10. Alternate Business Flows
 
-**Underlying Examination result also changed:** do not restore from the old basis; consume the new authoritative Examination outcome and re-evaluate completion evidence.
+### 10.1
 
-**Resolution has no effect on evidence validity:** retain the existing disposition rather than restoring evidence without sufficient basis.
+If the authoritative result change does not invalidate the evidence, retain the current evidence position and record the review basis.
 
-**Qualification was already conferred:** restoration of examination evidence does not itself alter the qualification; any qualification consequence remains with L2-C05 if an authoritative academic change requires one.
+### 10.2
+
+If the underlying Examination change is not yet authoritative, no evidence withdrawal is finalized.
 
 ## 11. Failure, Interruption and Business Recovery
 
-| Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
-|---|---|---|---|
-| Resolution is not authoritative | Evidence cannot safely be restored | Retain the existing disposition until the canonical owner establishes resolution | Relevant source owner |
-| Underlying Examination fact changed | Previous evidence basis may no longer be valid | Consume the current authoritative Examination fact and re-evaluate | Examination / Academic Completion |
-| Student context is uncertain | Evidence may be restored to the wrong student | Resolve context through Student Lifecycle before restoration | Student Lifecycle |
-| Downstream consumer still has the former disposition | Obsolete evidence may remain in use | Establish the restored current evidence as authoritative and preserve history | Academic Completion & Completion Evidence |
+Evidence is not withdrawn by assumption or by a downstream consumer. I13 waits for an authoritative Examination result change and preserves the last valid position until its own governed evidence disposition is established.
 
 ## 12. Business Rules and Decision Constraints
 
-- Restoration requires an authoritative resolution of the condition that prevented active evidence use.
-- Restoration does not create a new qualification decision.
-- Examination-owned academic facts remain owned by Examination.
-- Historical evidence dispositions remain traceable.
-- No local rule is invented to override an upstream evidence disposition.
+- Examination owns the changed result.
+- I13 owns withdrawal/disposition of its completion evidence.
+- L2-C05 owns qualification correction/revocation/no-change decisions.
+- Withdrawal preserves evidence history and does not physically delete evidence.
 
 ## 13. State and Lifecycle Impact
 
-The scenario uses the existing I13 completion-evidence lifecycle. It does not introduce a new `Restored` state unless that state is already defined by the locked L2 architecture.
-
-The business outcome is a restored valid evidence position; exact lifecycle labels remain upstream-controlled.
+Use the existing I13 evidence lifecycle/governance. No new Withdrawn lifecycle state is introduced unless already authoritative upstream; withdrawal is an evidence disposition under the ownership-resolution rule.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-L2-I13 identifies `ExaminationCompletionEvidencePrepared` as the existing Examination-owned evidence boundary to L2-C05. Where the restored current evidence is supplied through that boundary, the existing event remains authoritative.
-
-No new `CompletionEvidenceRestored` event is invented.
+Consume existing Examination facts such as ExaminationResultPublished or RevaluationCompleted as applicable. Reuse ExaminationCompletionEvidencePrepared to communicate the superseding current evidence position; no new EvidenceWithdrawn event is invented.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-Restoration must follow the business authority defined by the existing I13 evidence governance. The basis for restoration, prior disposition, current evidence, and any consequential qualification review must be auditable.
-
-No technical access control or access-control mechanism is defined.
+Evidence withdrawal follows existing I13 completion-evidence governance. The underlying result change requires Examination authority; any qualification consequence requires L2-C05 authority.
 
 ## 16. Completion Criteria and Postconditions
 
-**Complete when:** the resolution is authoritative; the evidence basis is valid; the evidence is restored through the existing lifecycle; the current restored position is authoritative; and prior history remains traceable.
-
-**Postconditions:** the restored evidence can support its governed downstream purpose; Student Lifecycle retains Qualification Completion authority; Examination retains ownership of underlying academic facts.
+Invalid evidence is no longer active; prior evidence remains traceable; the current I13 evidence position is authoritative; and downstream qualification consequences remain owner-correct.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
-The accessible locked L2-I13 source explicitly states that evidence may be restored or re-established only after the Examination-owned condition is authoritatively resolved. It also prohibits direct cross-domain modification. The source does not define a dedicated restoration event or universally named restoration state, so neither is invented at L3.
+No L3-local blocker remains after the controlled semantic amendment. No implementation detail or unsupported business authority is introduced.

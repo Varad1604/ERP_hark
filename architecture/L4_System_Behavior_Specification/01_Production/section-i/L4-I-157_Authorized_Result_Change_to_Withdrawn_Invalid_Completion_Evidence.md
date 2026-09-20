@@ -7,56 +7,66 @@
 **Domain:** Examination  
 **Realizes Scenario:** L3-I-157 — Authorized Result Change to Withdrawn Invalid Completion Evidence  
 **Primary Business Owner:** Academic Completion & Completion Evidence  
-**Version:** 1.0.1  
+**Version:** 1.1.0  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-03  
-**Depends On:** L3-I-157; L2-I13 Academic Completion, CGPA & Completion Evidence; L2-C05 Qualification Completion & Student Exit  
-**Referenced By:** None yet
+**Last Updated:** 2026-09-20  
+**Depends On:** corrected Locked L3-I-157; L2-I13 Academic Completion, CGPA & Completion Evidence; L2-C05 Qualification Completion & Student Exit; applicable canonical source-domain architecture  
+**Amendment Basis:** L3_Controlled_Semantic_Amendment_Decision_I148_I150_I157_I160_2026-09-20.md
 
 ## 2. Behavioral Objective & Boundary
 
-Canonical L4 behavioral derivation is blocked because the Locked L3 parent is internally contradictory. The locked title identifies an authorized result change leading to withdrawal of invalid completion evidence, while L3-I-157 §§2–16 describe restoration of previously invalid, withdrawn, or inactive completion evidence after resolution of the underlying condition.
+Realize the corrected Locked L3 parent as observable, implementation-independent system behavior without redefining upstream ownership, states, events, rules or authority.
 
-L4 shall not select either semantic interpretation or silently repair the Locked parent.
+The system shall support only the business outcome defined by the corrected parent. No new EvidenceWithdrawn event or technical deletion behavior may be introduced.
 
 ## 3. Required Business Context
 
-- L3-I-157 remains the canonical Locked parent and its title/identity are preserved.
-- The parent title describes withdrawal following result change.
-- The parent body describes restoration/re-establishment of evidence.
-- L2-I13 governs both withdrawal and restoration of its own evidence under different authoritative conditions, so choosing one path at L4 would materially alter the parent scenario.
+- Academic Completion & Completion Evidence owns only its I13 completion evaluation/evidence responsibilities.
+- Authoritative Identity, Student Lifecycle and Examination facts remain source-owned.
+- L2-C05 alone owns the institutional Qualification Completion decision.
+- Historical evidence and prior positions remain reconstructable where the scenario changes, supersedes, withdraws, restores, de-duplicates or reassociates an I13 position.
 
 ## 4. System Behavioral Obligations
 
-No scenario-specific behavioral obligations are admitted while the title/body contradiction remains unresolved.
+| Behavior ID | Required System Behavior | Provenance |
+|---|---|---|
+| L4-I-157-BH-001 | Consume the authoritative Examination result change that affects previously valid completion evidence. | Corrected L3-I-157; L2-I13 / applicable canonical owner |
+| L4-I-157-BH-002 | Determine whether the changed result invalidates the active I13 evidence position. | Corrected L3-I-157; L2-I13 / applicable canonical owner |
+| L4-I-157-BH-003 | Where invalidated, prevent that evidence from remaining active for governed downstream use while preserving its full history and provenance. | Corrected L3-I-157; L2-I13 / applicable canonical owner |
+| L4-I-157-BH-004 | Establish the superseding current I13 evidence position using existing evidence governance. | Corrected L3-I-157; L2-I13 / applicable canonical owner |
+| L4-I-157-BH-005 | Communicate the current evidence position through ExaminationCompletionEvidencePrepared where applicable; leave any qualification correction/revocation/no-change decision to Student Lifecycle. | Corrected L3-I-157; L2-I13 / applicable canonical owner |
 
 ## 5. Cross-Domain & Event Behavior
 
-No scenario-specific event or hand-off is derived. No new withdrawal/restoration event, state, rule, publisher, or owner is introduced.
+Cross-domain collaboration shall preserve canonical ownership. The system shall consume source-owned authoritative facts rather than reproducing them in I13. Existing canonical events may be used only with their source-defined meaning and publisher.
+
+Where a current I13 completion-evidence position must be supplied to Student Lifecycle, `ExaminationCompletionEvidencePrepared` remains the existing evidence boundary. It does not represent a Qualification Completion decision.
 
 ## 6. Failure / Rejection / Continuation
 
-Canonical behavior derivation remains blocked until controlled L3 governance establishes whether this scenario governs result-change withdrawal or evidence restoration.
+When an authoritative prerequisite or source-owned fact is unresolved, the system shall preserve the last valid I13 position, expose the unresolved condition, and prevent the scenario from reaching a false authoritative outcome. Recovery resumes only after the applicable canonical owner establishes the required business fact.
 
 ## 7. Audit & Evidence Behavior
 
-Preserve the locked title, conflicting parent sections, this blocker disposition, and the eventual governed resolution as architecture traceability evidence.
+The system shall preserve enough business evidence to reconstruct the prior position, current position, authoritative source facts, governing decision/disposition, owner-preserving handoffs, and completion of the scenario.
 
 ## 8. Observable Completion Conditions
 
-This Draft blocker is complete when the contradiction is recorded without selecting an interpretation. Canonical L4 behavioral completion requires the Locked L3 parent to be resolved first.
+The corrected L3 business outcome is observable; conflicting/non-current positions can no longer act as current authority; source-domain ownership remains intact; and any resulting current I13 evidence position is traceable.
 
 ## 9. Traceability & Provenance
 
-**Parent:** L3-I-157 — Authorized Result Change to Withdrawn Invalid Completion Evidence  
-**Conflict anchors:** L3-I-157 title/Scenario ID; §§2–16 restoration semantics  
-**Higher-level verification:** L2-I13 Ownership Resolution — evidence withdrawal after invalidating Examination change; restoration only after authoritative resolution
+**Parent:** corrected Locked L3-I-157  
+**Canonical source:** frozen Phase-4/Stage-3 semantic mapping recorded by the controlled L3 amendment.  
+**Ownership:** L2-I13 for examination-owned completion evidence; L2-C05 for institutional Qualification Completion; source domains for their own authoritative facts.
 
 ## 10. Open Issues / Deferred Design
 
-**BLOCKED BY UPSTREAM:** Resolve whether L3-I-157 is the result-change withdrawal scenario named by its title or the evidence-restoration scenario described by its body.
+No scenario-specific upstream semantic blocker remains after the 2026-09-20 controlled L3 correction.
+
+Implementation choices remain deferred to L5/L6 and may not redefine this behavior.
 
 ## Canonical Validation Note
 
-This specification intentionally remains Draft and blocked by upstream parent inconsistency. It is not eligible for Architecture Approval until the parent is governed and behavior is re-derived.
+The prior blocker-only L4 draft is superseded by this corrected Draft derivation. Independent L4 review remains required before Architecture Approval.

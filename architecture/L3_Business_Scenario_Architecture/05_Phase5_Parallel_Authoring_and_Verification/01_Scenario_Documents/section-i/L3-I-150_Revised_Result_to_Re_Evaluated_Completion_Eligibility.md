@@ -7,127 +7,106 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Varad  
-**Last Updated:** 2026-08-21  
-**Depends On:** L2-C05 Qualification Completion & Student Exit; applicable locked Examination Malpractice workflow; L2-I09 Result Processing & Computation; Examination completion-evidence workflow
+**Last Updated:** 2026-09-20  
+**Depends On:** Locked L1 Business Domain Architecture; L2-I13 Academic Completion, CGPA & Completion Evidence Workflows; L2-C05 Qualification Completion & Student Exit; applicable source-domain architecture  
+**Amendment Authority:** L3_Controlled_Semantic_Amendment_Decision_I148_I150_I157_I160_2026-09-20.md
 
 ## 1. Scenario Metadata
 
-The canonical Stage 3 semantics and Stage 4 final identity are preserved. The scenario remains owned by Academic Completion & Completion Evidence. Cross-domain participation does not transfer ownership of examination or student lifecycle facts.
+This controlled successor restores the frozen canonical semantics for L3-I-150 without changing its final identity, title, owner, Type, Priority or repository placement.
 
 ## 2. Scenario Purpose
 
-Re-evaluate a student's qualification completion position when an authoritative examination malpractice outcome changes or materially affects the examination evidence used by completion evaluation.
+Re-evaluate completion eligibility when an authoritative Examination result is revised, while preserving Examination ownership of the revised result and Student Lifecycle ownership of Qualification Completion.
 
 ## 3. Business Outcome
 
-The authoritative malpractice outcome is reflected in the examination evidence consumed by completion, and the completion position is re-evaluated. Any qualification consequence is determined by Academic Completion & Completion Evidence rather than by the malpractice workflow.
+The revised authoritative Examination result is consumed, completion eligibility/evidence is re-evaluated, and the current completion position reflects the revised result without I13 recomputing it.
 
 ## 4. Scenario Boundary and Scope
 
-**Start Boundary:** An authoritative malpractice outcome is established and it affects examination evidence relevant to a student's completion position.
+**Start Boundary:** An authoritative revised Examination result affects a student whose completion eligibility/evidence has already been evaluated.
 
-**In Scope:** consume the authoritative examination/malpractice consequence; establish the current examination evidence position; re-evaluate completion; preserve prior completion history; apply any completion consequence through L2-C05.
+**End Boundary:** The current I13 completion position has been re-evaluated using the revised authoritative result and any downstream Qualification Completion consequence remains with L2-C05.
 
-**Out of Scope:** adjudicating malpractice, determining penalties, changing examination results locally, or making the qualification decision within Examination.
+**In Scope:** the business actions required to reach the stated outcome while preserving canonical ownership and authoritative source facts.
+
+**Out of Scope:** redefining Person/Identity, Student Lifecycle, Examination results, Qualification Completion, technical implementation, APIs, databases, UI design or new business authority.
 
 ## 5. Ownership and Participating Domains
 
-Malpractice & Examination Committee/Examination owns malpractice adjudication and its examination consequences.
-
-Examination owns examination evidence and result facts.
-
-Academic Completion & Completion Evidence owns the completion decision and any qualification correction/revocation.
-
-Student Lifecycle remains authoritative for student context.
+Academic Completion & Completion Evidence owns only its completion evaluation/evidence responsibilities under L2-I13. Source domains retain ownership of their authoritative facts. Student Lifecycle alone owns the institutional Qualification Completion decision under L2-C05.
 
 ## 6. Business Actors, Roles and Responsibilities
 
-- Malpractice authority/committee: establishes the authoritative malpractice outcome.
-- Examination/result authority: establishes the resulting examination evidence position.
-- Completion authority: re-evaluates qualification completion.
-- Student Lifecycle: provides authoritative student context.
+- Academic Completion / Completion Evidence authority governs the I13-owned evaluation/evidence position.
+- Applicable Examination authorities establish authoritative examination outcomes under their owning workflows.
+- Platform Identity and Student Lifecycle authorities retain their source responsibilities where identity/context facts participate.
+- Student is the subject of the completion/evidence outcome.
+- Section H consumers, where applicable, consume governed evidence without acquiring ownership.
+
+No new actor or approval authority is introduced.
 
 ## 7. Preconditions and Entry Criteria
 
-- A malpractice case involving examination evidence has an authoritative outcome.
-- The affected student and completion scope can be identified.
-- The malpractice consequence has been reflected in the canonical Examination evidence/result workflow before completion re-evaluation.
-- Prior completion history is traceable.
+- The affected student/candidate and completion scope are identifiable.
+- Required source facts are available or the scenario explicitly governs their unresolved condition.
+- Existing I13 evidence/completion governance applies.
+- Source-domain ownership remains unchanged.
 
 ## 8. Trigger
 
-An authoritative malpractice outcome changes or confirms examination evidence relevant to a student's completion position.
+An authoritative revised Examination result affects a student whose completion eligibility/evidence has already been evaluated.
 
 ## 9. Main Business Flow
 
-1. Identify the affected student and qualification-completion scope.
-2. Consume the authoritative malpractice/examination consequence after it has been established by the owning Examination workflow.
-3. Establish the current examination evidence position available to completion.
-4. Preserve the prior completion and examination evidence history.
-5. Determine whether the malpractice outcome changes a completion requirement.
-6. Re-evaluate qualification completion using the current authoritative evidence.
-7. If completion eligibility changes, establish the new completion position through L2-C05.
-8. If a qualification has already been conferred, determine through L2-C05 whether correction, revocation or no change is required.
-9. Publish the applicable completion-domain outcome.
-10. End when the current completion position is authoritative.
+1. Identify the affected student and completion scope.
+2. Consume the authoritative revised Examination result and preserve the prior result/evidence history.
+3. Determine which completion requirements are affected by the revised result.
+4. Re-evaluate I13-owned completion eligibility/evidence using the current authoritative result and other source facts.
+5. If the completion position is unchanged, preserve the existing outcome with re-evaluation evidence.
+6. If the completion position changes, establish the new current I13 evidence/eligibility position through existing governance.
+7. Publish the current completion-evidence position through existing I13 boundaries where applicable; Student Lifecycle alone determines any qualification consequence.
 
 ## 10. Alternate Business Flows
 
-**Malpractice outcome has no completion impact:** retain the completion position after documented re-evaluation.
+### 10.1
 
-**Outcome invalidates examination evidence:** consume the Examination-owned invalid/superseding evidence position and re-evaluate completion.
+If the revised result has no material completion impact, retain the current completion position and record the evaluation basis.
 
-**Outcome restores examination evidence:** consume the restored Examination evidence position and re-evaluate completion.
+### 10.2
 
-**Qualification already conferred:** L2-C05 makes the qualification consequence decision after receiving the current Examination evidence; Examination does not revoke the qualification.
+If the revised result is not yet authoritative, completion re-evaluation remains pending.
 
 ## 11. Failure, Interruption and Business Recovery
 
-**Malpractice decision is not final:** no completion consequence is treated as authoritative.
-
-**Examination evidence not yet dispositioned:** completion waits for the Examination-owned evidence position.
-
-**Conflicting malpractice decisions:** Examination malpractice governance establishes the authoritative outcome before completion re-evaluation.
-
-**Student context conflict:** Student Lifecycle remains authoritative.
+I13 does not recompute, reinterpret or publish the revised Examination result. Re-evaluation is blocked until the authoritative Examination outcome is available.
 
 ## 12. Business Rules and Decision Constraints
 
-- Malpractice adjudication and penalty ownership remain with Examination.
-- Completion consumes the resulting authoritative examination evidence and does not adjudicate malpractice.
-- A malpractice outcome may trigger completion re-evaluation when it changes authoritative examination evidence.
-- Qualification correction/revocation remains solely a completion-domain decision.
-- Historical examination and completion decisions remain traceable.
+- Examination owns the revised result.
+- I13 owns only its completion eligibility/evidence position.
+- L2-C05 alone owns Qualification Completion and award/exit consequences.
+- Prior result/evidence history remains traceable.
 
 ## 13. State and Lifecycle Impact
 
-The scenario reuses the existing completion lifecycle. No new `MalpracticeAffected` completion state is created.
-
-Where Examination withdraws or restores its own completion evidence, L2-C05 consumes the resulting `ExaminationCompletionEvidencePrepared` current evidence position and determines the qualification consequence.
+Existing I13 lifecycle is reused. No new Re-Evaluated state is introduced.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-The malpractice workflow and Examination evidence workflow publish their own canonical events. L2-C05 explicitly identifies `ExaminationCompletionEvidencePrepared` as the canonical evidence boundary into completion.
-
-No new malpractice-to-completion event is invented.
+I13 consumes the applicable authoritative Examination fact, including existing revised-result publication/revaluation facts. Where the current evidence position is supplied to Student Lifecycle, existing ExaminationCompletionEvidencePrepared remains the evidence boundary.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-- Malpractice adjudication follows the authority defined by Examination.
-- Completion re-evaluation and any qualification consequence follow L2-C05 authority.
-- Decisions must be auditable across the malpractice outcome, examination evidence disposition and completion decision.
-- Separation of duties between malpractice adjudication and qualification decision is preserved.
+Re-evaluation follows existing I13 evidence governance. Any Examination result correction remains subject to Examination authority; qualification consequences remain subject to Student Lifecycle authority.
 
 ## 16. Completion Criteria and Postconditions
 
-**Complete when:** the malpractice outcome is authoritative; Examination has established the current evidence position; completion has re-evaluated the affected requirements; one current completion position is authoritative; and any qualification consequence is processed through L2-C05.
-
-**Postconditions:** the completion position reflects the authoritative malpractice-derived examination evidence; examination ownership remains intact; qualification decisions remain owned by Academic Completion & Completion Evidence.
+Completion eligibility/evidence has been evaluated against the current authoritative revised result, with ownership and prior history preserved.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
-1. L2-C05 explicitly establishes that Examination-derived completion evidence is an input, not the qualification decision, and that post-conferment Examination changes are processed by Examination first.
-2. The accessible repository retrieval did not expose the complete malpractice L2 document/event catalogue, so no malpractice-specific event name is asserted.
-3. No local penalty, malpractice severity or qualification consequence rule is invented; those remain upstream-owned.
+No L3-local blocker remains after the controlled semantic amendment. No implementation detail or unsupported business authority is introduced.

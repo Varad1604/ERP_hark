@@ -133,6 +133,12 @@ L3-I-001 … L3-I-192
 L3-J-001 … L3-J-104
 ```
 
+### Controlled Locked-Successor Amendment — 2026-09-20
+
+Stage-2 L6 reconciliation exposed Phase-5 copied-body semantic drift in seven Locked Section-I scenarios: `L3-I-148`, `149`, `150`, `157`, `158`, `159`, and `160`.
+
+Under `00_Governance/L3_Controlled_Semantic_Amendment_Decision_I148_I150_I157_I160_2026-09-20.md`, those seven files were restored to their frozen canonical meanings while preserving final IDs, canonical titles, owners, Type, Priority and the 1,084-scenario corpus size. Each corrected file is a Locked v1.1 successor. Unaffected scenarios remain unchanged.
+
 ---
 
 ## 5. Locked Canonical Scenario Structure

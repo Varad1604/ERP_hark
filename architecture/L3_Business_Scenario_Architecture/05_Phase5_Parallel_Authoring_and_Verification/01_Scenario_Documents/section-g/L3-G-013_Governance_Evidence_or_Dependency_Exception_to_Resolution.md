@@ -9,10 +9,10 @@
 **Scenario Type:** Simple  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance  
+**Last Updated:** 2026-09-20  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; `L2-G00_Exception_Recovery_Governance_Amendment_2026-09-20.md`; ADR-G-EXCEPTION-001  
 **Referenced By:** L3-G-001, L3-G-003, L3-G-005, L3-G-006 and other G00 governance journeys that encounter an evidence or dependency exception
 
 ---
@@ -29,7 +29,7 @@ The scenario applies the L2-G00 exception workflow and preserves ownership of ev
 
 The exception is validated and corrected, deferred, or escalated so the governance journey can continue without an invented outcome.
 
-The locked source defines the exception workflow but does not define the business authority for selecting every recovery outcome or the canonical event required before governance continuation. Those gaps materially prevent a fully executable canonical L3 path, so this Draft is classified **BLOCKED**.
+The locked 2026-09-20 G00 exception-recovery amendment now assigns canonical recovery authorities, guards the allowed recovery strategies, and defines the exact recovery event required for non-escalation continuation.
 
 ---
 
@@ -84,9 +84,11 @@ The frozen participating-domain value remains exactly `G`; this does not transfe
 
 # 6. Business Actors, Roles and Responsibilities
 
-L2-G00 defines typical governance roles, but it does **not** assign a canonical business actor or role to exception validation, deferral approval, administrative override, or manual-verification authority for this workflow.
-
-The known business responsibility remains with Campus Operations Governance. The missing scenario-specific decision authority is recorded as a blocking issue in Section 17 rather than converted into a new role.
+| Business Actor / Role | Responsibility in Scenario | Participation / Authority |
+|---|---|---|
+| Governance Coordinator | Identifies and coordinates the exception, obtains corrected source evidence and records recovery evidence. | Coordinates; does not override source ownership. |
+| Campus Operations Manager | Decides ordinary G00 recovery strategy within configured policy, including correction acceptance, rescheduling, reassignment, reassessment, extension, manual verification and bounded deferral. | Canonical ordinary recovery decision authority. |
+| Executive Reviewer | Decides Administrative Override and recoveries escalated beyond ordinary authority. | Canonical material override / escalated recovery authority. |
 
 ---
 
@@ -113,12 +115,12 @@ Required readiness evidence, risk classification, action ownership, or dependenc
 | 1 | Identify the missing or inconsistent information and the G00 governance journey it prevents from progressing. | Campus Operations Governance | The affected governance context and interruption are explicit. |
 | 2 | Validate the exception against the expected source information, canonical owner, and current lifecycle position. | Campus Operations Governance | The condition is confirmed as a governance exception or rejected as invalid. |
 | 3 | Preserve the affected aggregate at its current source-defined lifecycle position while recovery is determined. | Campus Operations Governance | No unsupported lifecycle transition occurs. |
-| 4 | Determine whether correction, deferral, or escalation is the permitted recovery outcome under authoritative governance. | Campus Operations Governance | **Blocked at authority boundary:** L2-G00 does not define the actor/authority for all recovery selections. |
+| 4 | Determine the permitted recovery strategy under configured G00 governance policy. | Campus Operations Manager; Executive Reviewer where override/escalated authority is required | An authorized recovery strategy is selected without changing source-domain ownership. |
 | 5 | Where correction is permitted, obtain the corrected fact from its canonical owner and revalidate it without changing source ownership. | Canonical source owner; Campus Operations Governance | Correct source information becomes available to the affected governance journey. |
 | 6 | Where escalation is required, raise the source-defined governance escalation and preserve linkage to the interrupted item. | Campus Operations Review (G00) | `GovernanceEscalationRaised` may represent the escalation fact. |
-| 7 | Record the recovery outcome in governance history and continue the affected journey only when the source-defined conditions are satisfied. | Campus Operations Governance | The frozen outcome can be reached only after the blocking authority/event gaps are resolved upstream. |
+| 7 | Record the recovery outcome, publish the applicable recovery event, and continue the affected journey only when all recovery guards are satisfied. | Campus Operations Governance | `GovernanceExceptionRecoveryRecorded` or `GovernanceEscalationRaised` establishes the recovery fact and the journey may lawfully continue. |
 
-The L2-G00 exception workflow places a domain-event publication step before governance continuation, but it does not define a canonical generic exception event. This Draft therefore does not invent one.
+The §28 domain-event publication step is satisfied by `GovernanceExceptionRecoveryRecorded` for non-escalation recovery or by existing `GovernanceEscalationRaised` for escalation.
 
 ---
 
@@ -129,7 +131,7 @@ The L2-G00 exception workflow places a domain-event publication step before gove
 | Correction | The canonical source owner can correct the missing or inconsistent information. | Correct the source-owned fact, return the authoritative reference to G00, and revalidate the interrupted governance journey. | The governance journey may continue from its existing lifecycle position if all other conditions are satisfied. | Canonical source owner; Campus Operations Governance |
 | Escalation | The exception cannot be resolved within the current governance authority. | Use the source-defined governance escalation path. | The exception is escalated without fabricating a corrected outcome. | Campus Operations Governance |
 
-L2-G00 also lists recovery approaches such as administrative override, review rescheduling, action reassignment, risk reassessment, governance review extension, and manual verification. They are not expanded here because the exact authority and transition guards are not defined.
+Recovery approaches remain configuration-driven within the locked authority/ownership guards. Manual verification cannot replace a missing authoritative source fact; deferral must be bounded; Administrative Override applies only to explicitly overridable G00 process requirements.
 
 ---
 
@@ -175,9 +177,8 @@ No new exception lifecycle state is introduced by this Draft.
 
 | Business Event | Canonical Publisher | Consumer(s) / Interested Domain(s) | Scenario Purpose | Authoritative Source |
 |---|---|---|---|---|
-| `GovernanceEscalationRaised` | Campus Operations Review (G00) | Authorized governance, notification, audit, and reporting consumers | Represents the escalation fact when escalation is the selected recovery. | L2-G00 §21 |
-
-L2-G00 requires a `Domain Event Published` step in the generic exception workflow but does not define an exact canonical event for corrected or deferred exceptions. The missing event name is a blocking gap; no placeholder event is listed.
+| `GovernanceExceptionRecoveryRecorded` | Campus Operations Review (G00) | Authorized governance, notification, audit and reporting consumers | Records an authorized non-escalation recovery for an identified G00 governance exception. | Locked G00 exception-recovery amendment |
+| `GovernanceEscalationRaised` | Campus Operations Review (G00) | Authorized governance, notification, audit and reporting consumers | Represents escalation when ordinary recovery is not sufficient or authorized. | L2-G00 §21; locked G00 exception-recovery amendment |
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
@@ -194,12 +195,13 @@ L2-G00 requires a `Domain Event Published` step in the generic exception workflo
 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
-| Coordinate exception handling | Not assigned to a scenario-specific role upstream | L2-G00 assigns the responsibility to G00 but does not define a canonical actor for this exception workflow. | Campus Operations Governance |
-| Select deferral, administrative override, or manual verification | Not defined upstream | The decision cannot be made canonical at L3 until the responsible authority is defined. | Campus Operations Governance |
+| Coordinate exception handling | Governance Coordinator | Coordination and evidence responsibility only. | Campus Operations Governance |
+| Select ordinary recovery strategy | Campus Operations Manager | Must remain within configured policy and locked recovery guards. | Campus Operations Governance |
+| Authorize Administrative Override / escalated recovery | Executive Reviewer | May override only explicitly overridable G00 process requirements; cannot override another domain or statutory/source obligations. | Campus Operations Governance |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
-L2-G00 lists administrative override and manual verification as possible recovery actions but does not define their business authority, eligibility, approval, or separation-of-duty constraints. No local rule is introduced.
+Administrative Override requires Executive Reviewer authority. Manual verification and bounded deferral are ordinary recovery decisions of the Campus Operations Manager where policy permits. None may fabricate source facts or alter another domain's lifecycle.
 
 ## 15.3 Business Audit and Evidence Obligations
 
@@ -222,7 +224,7 @@ The intended frozen outcome is complete only when:
 - the affected governance journey can continue from a valid existing lifecycle position without an invented fact; and
 - every event required by the authoritative exception workflow is canonically defined and published by its canonical publisher.
 
-These criteria cannot all be established from the current locked sources.
+These criteria are established by the locked 2026-09-20 G00 exception-recovery amendment.
 
 ## 16.2 Postconditions
 
@@ -237,20 +239,6 @@ If the blocking gaps are resolved upstream and the scenario completes:
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+No material upstream architecture issue remains after `L2-G00_Exception_Recovery_Governance_Amendment_2026-09-20.md` and ADR-G-EXCEPTION-001.
 
-| Issue | Architecture Impact | Required Resolution |
-|---|---|---|
-| L2-G00 requires a domain-event publication step in the exception workflow but defines no canonical generic exception event for correction or deferral. | The authoritative workflow cannot be completed exactly without inventing an event name. This materially affects event integrity and scenario completion. | L2-G00 / architecture governance must define the required canonical event(s) and publisher or explicitly remove the event requirement for these branches. |
-| L2-G00 does not assign business authority for deferral, administrative override, manual verification, or the general recovery-strategy decision. | A required recovery decision cannot be attributed to a source-supported actor or authority. | L2-G00 / architecture governance must define the permitted decision authority and any applicable guards. |
-| No dedicated exception business contract or aggregate is defined. | The exception can be described only as a workflow around existing G00 aggregates; downstream L4 cannot assume a separate exception object or command. | Upstream architecture should clarify whether the workflow remains aggregate-relative or receives a canonical business contract. |
-
-**Source Assessment:** **BLOCKED**
-
-## 17.2 Assumptions
-
-No assumptions.
-
-## 17.3 Deferred Questions
-
-No scenario-specific deferred questions.
+**Source Assessment:** **READY**
