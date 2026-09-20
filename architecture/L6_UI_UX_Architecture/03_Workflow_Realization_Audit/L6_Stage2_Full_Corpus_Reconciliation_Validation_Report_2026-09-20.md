@@ -13,8 +13,8 @@
 Verified before modification:
 
 - Architecture `main`: `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`
-- Stage-2 branch: `713bcf5f729c60f51829c8d9c3f8ad65b52c07b8`
-- Stage-2 branch relation: 52 commits ahead / 0 behind `main`
+- Stage-2 branch: `l6-stage2-full-scenario-realization-audit` (current working head advanced during controlled reconciliation)
+- Stage-2 branch relation after Group 7 reconciliation: 132 commits ahead / 0 behind `main`
 - Frontend `main`: `e2560877eac4446b925e45f04b7dfa4c24d3625c`
 - Frontend was not modified by this Stage-2 work.
 
