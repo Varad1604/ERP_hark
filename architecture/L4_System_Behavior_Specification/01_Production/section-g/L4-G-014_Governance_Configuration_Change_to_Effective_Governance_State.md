@@ -58,7 +58,7 @@ Completion is observable when the G00-owned successor version is validated, appr
 
 **Parent:** L3-G-014 — Governance Configuration Change to Effective Governance State  
 **Primary verification sources:** L2-G00 — Campus Operations Review & Governance; L2-A01 — Platform & Tenant Foundation  
-**Selective current-source check:** Locked G00 Amendment 2026-08-26; it does not define G00 configuration approval authority.
+**Selective current-source check:** Locked A01 Configuration Governance Completion Amendment 2026-09-20; owner-scoped configuration approval authority and generic lifecycle-event publication are now defined.
 
 ## 10. Open Issues / Deferred Design
 
