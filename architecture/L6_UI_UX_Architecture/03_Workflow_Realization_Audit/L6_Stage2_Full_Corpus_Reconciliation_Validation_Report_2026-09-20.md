@@ -1,6 +1,6 @@
 # SutraERP L6 Stage 2 — Full-Corpus Reconciliation & Validation Report — 2026-09-20
 
-**Status:** STAGE-2 RECONCILIATION IN PROGRESS — GROUP 7 RECONCILED  
+**Status:** STAGE-2 RECONCILIATION IN PROGRESS — GROUP 8 RECONCILED  
 **Architecture Level:** L6 — UI / UX Architecture Governance  
 **Branch:** `l6-stage2-full-scenario-realization-audit`  
 **Base Architecture Main:** `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`  
@@ -133,7 +133,7 @@ The generated worker baseline contains near-scenario-cardinality labels. Those l
 
 The upstream semantic blockers are now resolved. Full-corpus workflow normalization is therefore unblocked and remains the active Stage-2 task.
 
-Completed PASS-group reconciliation now covers Groups 1–7:
+Completed PASS-group reconciliation now covers Groups 1–8:
 
 - Group 1 — A+B: 95 scenarios → 50 distinct workflows;
 - Group 2 — C: 75 scenarios → 32 distinct workflows;
@@ -141,9 +141,10 @@ Completed PASS-group reconciliation now covers Groups 1–7:
 - Group 4 — E: 75 scenarios → 55 distinct workflows;
 - Group 5 — F: 85 scenarios → 59 distinct workflows — **PASS after canonical F13 KPI Definition / Analytical Model governance remediation**;
 - Group 6 — G1: 77 scenarios → 39 distinct workflows — **PASS after canonical G00 exception-recovery and A01 configuration-governance remediation**;
-- Group 7 — G2: 77 scenarios → 38 distinct workflows — **PASS after semantic correction of under-classified Hostel, Transport and Library realization rows**.
+- Group 7 — G2: 77 scenarios → 38 distinct workflows — **PASS after semantic correction of under-classified Hostel, Transport and Library realization rows**;
+- Group 8 — G3: 97 scenarios → 46 distinct workflows — **PASS after semantic correction of under-classified Health Services, Security Operations and Housekeeping realization rows, while consuming the corrected G200/G212/G214 authority baseline**.
 
-Cumulative semantic reconciliation coverage is **541 / 1,084 scenarios** across Groups 1–7, contributing **311 distinct workflows**. There are **0 material Stage-2 group blockers**. The former F076 blocker was resolved through ADR-FIN-ANALYTICS-001, the locked 2026-09-20 F13 analytics-governance amendment, targeted L3 revalidation, and re-derived L4-F-076 behavior. The Group-6 G013/G014 blockers were resolved through ADR-G-EXCEPTION-001, ADR-PLAT-CONFIG-001, locked 2026-09-20 G00/A01 amendments, targeted L3 revalidation, and re-derived L4-A-056/L4-G-013/L4-G-014 behavior. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
+Cumulative semantic reconciliation coverage is **638 / 1,084 scenarios** across Groups 1–8, contributing **357 distinct workflows**. There are **0 material Stage-2 group blockers**. The former F076 blocker was resolved through ADR-FIN-ANALYTICS-001, the locked 2026-09-20 F13 analytics-governance amendment, targeted L3 revalidation, and re-derived L4-F-076 behavior. The Group-6 G013/G014 blockers were resolved through ADR-G-EXCEPTION-001, ADR-PLAT-CONFIG-001, locked 2026-09-20 G00/A01 amendments, targeted L3 revalidation, and re-derived L4-A-056/L4-G-013/L4-G-014 behavior. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
 
 The following values remain **PENDING DISCOVERY THROUGH SEMANTIC NORMALIZATION** rather than blocked by architecture:
 
@@ -191,9 +192,9 @@ This does not replace architecture semantic review.
 
 ## 10. Verdict
 
-**STAGE 2: IN PROGRESS — GROUP 7 RECONCILED**
+**STAGE 2: IN PROGRESS — GROUP 8 RECONCILED**
 
-The worker corpus is mechanically complete, the discovered upstream semantic drift has been corrected under controlled L3/L4 governance, and Group 7 has completed semantic reconciliation with no new upstream blocker.
+The worker corpus is mechanically complete, the discovered upstream semantic drift has been corrected under controlled L3/L4 governance, and Groups 7–8 have completed semantic reconciliation with no new upstream blocker.
 
 Stage 2 is not yet complete because distinct workflow normalization, final workflow-count discovery, canonical 1,084-row register population, and final independent validation still remain.
 
@@ -235,4 +236,44 @@ Scenarios semantically reconciled   541 / 1,084
 Distinct group-normalized workflows 311
 Material Stage-2 blockers             0
 Remaining unreconciled scenarios    543
+```
+
+
+## 12. Group 8 — Campus Operations G3 Reconciliation
+
+Group 8 covers `L3-G-155 … L3-G-251` (97 scenarios) across:
+
+- `W-G06` — Institutional Health Services / Medical;
+- `W-G07` — Security Operations;
+- `W-G08` — Housekeeping Operations & Service Governance.
+
+The G3 worker artifact was mechanically complete but materially under-classified explicit human healthcare, security and housekeeping work as background/system-owned behavior. Exact Locked L3 review, authoritative L2 verification and representative/exact L4 behavior confirmed 77 row corrections.
+
+The current repository also contains the controlled 2026-09-01 authority correction for `G200`, `G212` and `G214`; Group 8 consumes those corrected Locked successor scenarios rather than the superseded authority interpretations.
+
+Group 8 normalization result:
+
+```text
+Scenarios reconciled                 97 / 97
+Distinct workflows                   46
+User-addressable workflows           46
+Tracking / non-mock workflows         0
+Material blockers                     0
+Verdict                              PASS
+```
+
+Shared A01 configuration governance is consumed only where appropriate. Domain-specific G07/G08 lifecycle and event semantics remain authoritative and are not overwritten.
+
+Canonical evidence:
+
+`group-reconciliation/STAGE2_GROUP_08_G3_RECONCILIATION.md`
+
+Updated cumulative position after Group 8:
+
+```text
+Groups PASS                          8 / 14
+Scenarios semantically reconciled   638 / 1,084
+Distinct group-normalized workflows 357
+Material Stage-2 blockers             0
+Remaining unreconciled scenarios    446
 ```
