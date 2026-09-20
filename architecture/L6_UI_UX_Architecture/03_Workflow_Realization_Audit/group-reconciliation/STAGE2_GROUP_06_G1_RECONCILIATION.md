@@ -1,6 +1,6 @@
 # SutraERP L6 Stage 2 — Group 6 Section G1 Reconciliation
 
-**Status:** RECONCILED — BLOCKED BY TWO MATERIAL UPSTREAM GAPS  
+**Status:** COMPLETE-FOR-MASTER-CROSS-GROUP-RECONCILIATION  
 **Scope:** Section G — Campus Operations G1 (`L3-G-001 … L3-G-077`)  
 **Scenario population:** 77  
 **Architecture Level:** L6 — UI / UX Architecture Support  
@@ -18,42 +18,34 @@ Unique scenario IDs                77
 Missing scenarios                  0
 Duplicate scenario assignments     0
 Cross-workspace workflow merges    0
-Material open issues               2
-Distinct normalized workflows      39 (provisional pending blocker resolution)
-User-addressable workflows         35
+Material open issues               0
+Distinct normalized workflows      39
+User-addressable workflows         37
 Tracking / non-mock workflows      2
-Upstream-blocked workflows         2
+Upstream-blocked workflows         0
 ```
 
-The G1 population is fully reconciled for Stage-2 analysis, but Group 6 **does not pass its group exit gate** because `L3-G-013/L4-G-013` and `L3-G-014/L4-G-014` remain materially blocked upstream.
+The G1 population is fully reconciled and Group 6 now passes its group exit gate after canonical G00 exception-recovery governance and shared A01 configuration governance were resolved upstream and re-derived through L3/L4.
 
-## 2. Material Upstream Blockers
+## 2. Former Upstream Blockers — Resolved
 
-### 2.1 G013 — Governance evidence/dependency exception recovery
+Group 6 originally identified two material upstream blockers:
 
-`L3-G-013 — Governance Evidence or Dependency Exception to Resolution` explicitly states that G00 does not assign canonical authority for exception validation outcomes involving deferral, administrative override, or manual verification.
+1. `L3/L4-G-013` lacked authoritative recovery-selection roles/guards and a canonical non-escalation recovery event.
+2. `L3/L4-G-014` lacked the owner-scoped approval authority and generic lifecycle-event semantics required by the shared A01 configuration framework.
 
-The scenario can safely:
-- identify and validate the interrupted governance journey;
-- preserve the current valid lifecycle position;
-- consume a corrected fact from its canonical owner; and
-- escalate through the source-supported governance escalation path.
+They are now resolved through:
 
-It cannot canonically complete all frozen recovery branches because:
-- recovery-selection authority is undefined for deferral / override / manual verification; and
-- G00 requires a completion event for the generic exception path but defines no canonical generic correction/deferral event and publisher.
+- ADR-G-EXCEPTION-001;
+- locked `L2-G00_Exception_Recovery_Governance_Amendment_2026-09-20.md`;
+- ADR-PLAT-CONFIG-001;
+- locked `L2-A01_Configuration_Governance_Completion_Amendment_2026-09-20.md`;
+- targeted L3 revalidation; and
+- re-derived L4 behavior / parent-readiness reconciliation.
 
-`L4-G-013` preserves the same blocker and correctly refuses to fabricate a generic Governance Exception aggregate, authority, lifecycle or event.
+G013 now uses Campus Operations Manager for ordinary configured recovery, Executive Reviewer for Administrative Override/escalated recovery, and `GovernanceExceptionRecoveryRecorded` for authorized non-escalation recovery.
 
-### 2.2 G014 — Governance configuration approval/effective activation
-
-`L3-G-014 — Governance Configuration Change to Effective Governance State` preserves G00 ownership of governance semantics and A01 ownership of the shared configuration framework.
-
-The Campus Operations Administrator is authorized to configure G00 values, but neither G00 nor A01 defines the canonical business authority that approves the A01 configuration lifecycle's `Approved` position for this scenario. The parent therefore cannot safely assert approved/effective activation.
-
-`L4-G-014` preserves this boundary and explicitly states that `Configure Governance` authority must not be treated as configuration-approval authority.
-
-This issue also exposes a broader shared-platform dependency: the generic A01 configuration-governance gap must be resolved at its owning architecture level rather than locally inside G00.
+G014 now uses the shared A01 lifecycle with Configuration Approval Authority acting on behalf of Campus Operations Governance for G00-owned domain configuration. A01 remains sole publisher of generic configuration lifecycle events. G00 retains semantic ownership of its configuration values.
 
 ## 3. Semantic Reconciliation Findings
 
@@ -79,21 +71,20 @@ No G00/G01/G02 owner, actor authority, lifecycle, state, event, rule, cross-doma
 | Disposition | Rows |
 |---|---:|
 | INTERACTIVE-WORKFLOW | 18 |
-| REVIEW-APPROVAL-WORKFLOW | 26 |
+| REVIEW-APPROVAL-WORKFLOW | 27 |
 | TRACKING-WORKFLOW | 5 |
-| EXCEPTION-RECOVERY-WORKFLOW | 23 |
+| EXCEPTION-RECOVERY-WORKFLOW | 24 |
 | CROSS-WORKSPACE-HANDOFF | 3 |
-| UPSTREAM-BLOCKED | 2 |
 | **Total** | **77** |
 
 | Mock interaction | Rows |
 |---|---:|
-| REQUIRED | 70 |
+| REQUIRED | 72 |
 | NOT-REQUIRED | 5 |
-| PROHIBITED | 2 |
+| PROHIBITED | 0 |
 | **Total** | **77** |
 
-The two prohibited rows are blocker treatments for `L3-G-013` and `L3-G-014`; they do not mean the intended institutional outcomes should permanently remain non-interactive.
+`L3-G-013` is now an exception/recovery workflow with governed mock interaction. `L3-G-014` is now a review/approval workflow using the shared A01 configuration-governance contract.
 
 ## 5. Workflow Normalization Method
 
@@ -126,8 +117,8 @@ No normalized Group-6 workflow crosses a workspace boundary.
 | G6-WF-010 | W-G00 | Operational Maturity Assessment | 1 | L3-G-010 | REVIEW-APPROVAL-WORKFLOW | REQUIRED |
 | G6-WF-011 | W-G00 | Governance Finding and corrective-action decision | 1 | L3-G-011 | REVIEW-APPROVAL-WORKFLOW | REQUIRED |
 | G6-WF-012 | W-G00 | Executive Governance Resolution | 1 | L3-G-012 | REVIEW-APPROVAL-WORKFLOW | REQUIRED |
-| G6-WF-013 | W-G00 | Governance evidence/dependency exception recovery | 1 | L3-G-013 | **UPSTREAM-BLOCKED** | PROHIBITED |
-| G6-WF-014 | W-G00 | Governance configuration lifecycle | 1 | L3-G-014 | **UPSTREAM-BLOCKED** | PROHIBITED |
+| G6-WF-013 | W-G00 | Governance evidence/dependency exception recovery | 1 | L3-G-013 | EXCEPTION-RECOVERY-WORKFLOW | REQUIRED |
+| G6-WF-014 | W-G00 | Governance configuration lifecycle | 1 | L3-G-014 | REVIEW-APPROVAL-WORKFLOW | REQUIRED |
 | G6-WF-015 | W-G01 | Facility Service Request and administrative closure | 2 | L3-G-016; L3-G-046 | INTERACTIVE-WORKFLOW | REQUIRED |
 | G6-WF-016 | W-G01 | Facility Complaint lifecycle, duplicate consolidation and split work | 3 | L3-G-017; L3-G-018; L3-G-019 | INTERACTIVE-WORKFLOW | REQUIRED |
 | G6-WF-017 | W-G01 | Work Order lifecycle, reopening, reassignment and replanning | 5 | L3-G-020; L3-G-021; L3-G-022; L3-G-047; L3-G-048 | INTERACTIVE-WORKFLOW | REQUIRED |
@@ -159,25 +150,24 @@ No normalized Group-6 workflow crosses a workspace boundary.
 | Workflow realization | Distinct workflows |
 |---|---:|
 | INTERACTIVE-WORKFLOW | 12 |
-| REVIEW-APPROVAL-WORKFLOW | 17 |
+| REVIEW-APPROVAL-WORKFLOW | 18 |
 | TRACKING-WORKFLOW | 2 |
-| EXCEPTION-RECOVERY-WORKFLOW | 4 |
+| EXCEPTION-RECOVERY-WORKFLOW | 5 |
 | CROSS-WORKSPACE-HANDOFF | 2 |
-| UPSTREAM-BLOCKED | 2 |
 | **Total** | **39** |
 
 | Workflow mock realization | Distinct workflows |
 |---|---:|
-| REQUIRED | 35 |
+| REQUIRED | 37 |
 | NOT-REQUIRED | 2 |
-| PROHIBITED | 2 |
+| PROHIBITED | 0 |
 | **Total** | **39** |
 
 ## 8. Cross-Group / Repository Impact
 
-The G014 blocker is not safely resolvable as a local G00 exception because its approval gap is rooted in the shared A01 configuration framework. The final master cross-group reconciliation must therefore recheck any earlier normalized workflow that depends on the same unresolved A01 generic configuration-approval semantics.
+The A01 remediation also resolves the generic Platform/Tenant configuration-governance gaps previously recorded by `L3/L4-A-056`. Group 1's normalized A056 workflow count does not change, but its upstream basis is now fully authoritative.
 
-This finding does **not** automatically invalidate completed Groups 1–5. It does mean the final Stage-2 master gate must verify the shared configuration-governance dependency after the upstream owner resolves it.
+The final master cross-group reconciliation should continue to check other scenarios that reference generic A01 configuration governance and consume the new locked amendment where relevant. No earlier PASS-group workflow count is changed by this remediation.
 
 ## 9. Group Exit Gate
 
@@ -189,17 +179,12 @@ This finding does **not** automatically invalidate completed Groups 1–5. It do
 | Missing IDs = 0 | PASS |
 | Duplicate scenario assignment = 0 | PASS |
 | Cross-workspace normalized merge = 0 | PASS |
-| Distinct workflows discovered | PASS — 39 provisional |
-| User-addressable workflows discovered | PASS — 35 |
-| Material upstream blockers = 0 | **FAIL — 2** |
-| G013 canonical frozen outcome safely realizable | **FAIL** |
-| G014 canonical frozen outcome safely realizable | **FAIL** |
+| Distinct workflows discovered | PASS — 39 |
+| User-addressable workflows discovered | PASS — 37 |
+| Material upstream blockers = 0 | PASS |
+| G013 canonical frozen outcome safely realizable | PASS |
+| G014 canonical frozen outcome safely realizable | PASS |
 
-**GROUP 6 VERDICT:** **BLOCKED — NOT COMPLETE FOR MASTER CROSS-GROUP RECONCILIATION**
+**GROUP 6 VERDICT:** **PASS — COMPLETE FOR MASTER CROSS-GROUP RECONCILIATION**
 
-Required upstream resolutions:
-
-1. G00 must define canonical authority and completion-event semantics for the supported G013 exception-recovery branches without creating a competing generic exception aggregate.
-2. A01/G00 configuration governance must define the business approval authority required for G014's governed configuration to reach its approved/effective lifecycle position.
-
-Stage-2 reconciliation may continue with later groups, but the final Stage-2 exit gate remains blocked until these owner-domain issues are resolved.
+The former G013/G014 upstream blockers are resolved at L2, synchronized through L3/L4, and revalidated. Stage 2 may continue to Group 7.
