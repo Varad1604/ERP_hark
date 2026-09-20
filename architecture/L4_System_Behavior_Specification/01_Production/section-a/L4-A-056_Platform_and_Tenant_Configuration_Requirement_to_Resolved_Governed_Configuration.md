@@ -7,18 +7,18 @@
 **Domain:** Platform & Tenant  
 **Realizes Scenario:** L3-A-056  
 **Primary Business Owner:** Platform & Tenant  
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Status:** Draft  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** `L3-A-056_Platform_and_Tenant_Configuration_Requirement_to_Resolved_Governed_Configuration.md`; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Last Updated:** 2026-09-20  
+**Depends On:** `L3-A-056_Platform_and_Tenant_Configuration_Requirement_to_Resolved_Governed_Configuration.md`; L2-A01 — Platform & Tenant Foundation; `L2-A01_Configuration_Governance_Completion_Amendment_2026-09-20.md`; ADR-PLAT-CONFIG-001; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
 
 SutraERP shall govern a Platform- or Tenant-layer configuration requirement so the configuration remains owned by its canonical layer, is validated and version-governed before effective use, and is resolved through the source-defined inheritance hierarchy as a consistent read-only business context.
 
-The behavior begins when a Platform- or Tenant-layer configuration value must be established or changed. It ends only when a source-governed configuration version is eligible for effective use and participates in a deterministic Tenant-aware resolved context. Exact request, approval, activation and publication contracts remain deferred because Locked L2-A01 does not define them.
+The behavior begins when a Platform- or Tenant-layer configuration value must be established or changed and ends when the successor is validly Active at its governed effective boundary and participates in deterministic Tenant-aware resolution. Approval and lifecycle-event semantics derive from the locked 2026-09-20 A01 amendment.
 
 ## 3. Required Business Context
 
@@ -43,13 +43,11 @@ The behavior begins when a Platform- or Tenant-layer configuration value must be
 
 ## 5. Cross-Domain & Event Behavior
 
-No canonical Platform/Tenant configuration lifecycle event or sole publisher is defined by Locked L2-A01 for this parent. The system shall therefore not invent configuration-created, approved, activated, superseded or resolution events.
-
-Authorization & Policy may supply authorization decisions, Event Infrastructure may distribute a canonical event if one is later defined, and Audit Infrastructure preserves required evidence; none of those domains becomes the configuration owner.
+A01 / Platform Configuration Framework is the sole canonical publisher of `ConfigurationVersionProposed`, `ConfigurationVersionValidated`, `ConfigurationVersionApproved`, `ConfigurationVersionActivated`, `ConfigurationVersionSuperseded`, `ConfigurationVersionArchived`, and `ResolvedConfigurationPublished`. Event distribution may use Event Infrastructure without transferring configuration ownership.
 
 ## 6. Failure / Rejection / Continuation
 
-If ownership, Tenant scope, hierarchy integrity, parent context, version consistency, validation or required governance cannot be established, the system shall keep the candidate outside effective resolution and preserve the current governed configuration. If the exact approval or activation contract cannot be identified, the system shall not infer an approver, command, transition trigger or completion event.
+If ownership, Tenant scope, hierarchy integrity, parent context, version consistency, validation, approval evidence or effective-boundary guards cannot be established, the system shall keep the candidate outside effective resolution and preserve the current governed Active configuration.
 
 ## 7. Audit & Evidence Behavior
 
@@ -59,7 +57,7 @@ If ownership, Tenant scope, hierarchy integrity, parent context, version consist
 
 ## 8. Observable Completion Conditions
 
-Completion is observable only when the configuration remains under its canonical owner, the candidate satisfies source-defined validation and governance conditions, an eligible Active version can be identified, and deterministic Tenant-aware resolution returns a version-consistent read-only context. Until the missing approval/activation workflow contracts are defined upstream, the system shall not fabricate how that completion is authorized or published.
+Completion is observable when the configuration remains under its canonical owner, validation succeeds, the applicable Configuration Approval Authority approves the version, the effective boundary is reached, the successor becomes Active, any predecessor is Superseded as applicable, and deterministic Tenant-aware resolution publishes a version-consistent read-only context.
 
 ## 9. Traceability & Provenance
 
@@ -70,4 +68,4 @@ Every BH is derived from the Locked parent and preserves its configuration-owner
 
 ## 10. Open Issues / Deferred Design
 
-Locked L2-A01 defines configuration ownership, hierarchy, validation, lifecycle and resolution principles but does not define the canonical configuration request/workflow commands, requestor/approver/activation authorities, or lifecycle events and publishers required to explain exact progression to effective Active use. Those gaps remain deferred. No actor, command, event or publisher is inferred.
+No material upstream configuration-governance issue remains for this parent after the locked 2026-09-20 A01 configuration-governance amendment and ADR-PLAT-CONFIG-001. Implementation-specific persistence, APIs, scheduling and event transport remain deferred.
