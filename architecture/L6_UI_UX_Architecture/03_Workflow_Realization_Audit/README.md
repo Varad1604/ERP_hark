@@ -1,6 +1,6 @@
 # SutraERP L6 Stage 2 — Full Scenario Realization Audit Control Area
 
-**Status:** Stage-2 controlled working area  
+**Status:** Stage-2 reconciliation BLOCKED BY UPSTREAM — 2 Locked L3 semantic conflicts  
 **Integration Branch:** `l6-stage2-full-scenario-realization-audit`  
 **Canonical Base Verified:** architecture `main` at `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`; frontend `main` at `e2560877eac4446b925e45f04b7dfa4c24d3625c`  
 **Purpose:** Hold range-scoped worker prompts and normalized worker results for the 1,084-scenario UI-realization audit before master reconciliation.
@@ -49,3 +49,19 @@ The G and I splits intentionally align with existing contiguous L6 workspace-fam
 Worker labels are proposals, not workflow IDs. The master controller alone performs cross-worker semantic normalization, distinct-workflow counting, complete mechanical validation, architecture semantic review, UX normalization, open-issue resolution/escalation, and canonical register population.
 
 Stage 3 remains blocked until the Stage-2 exit gate passes.
+
+## Current reconciliation state — 2026-09-20
+
+The 15 worker artifacts are mechanically complete at 1,084 / 1,084 rows with zero missing or duplicate canonical IDs and zero invalid workspace/archetype/taxonomy references after reconciliation.
+
+Evidence-backed L6 classification defects have been corrected in the worker review artifacts. Two material upstream blockers remain:
+
+- `L3-I-148` — locked title describes completion identity / Student Context association correction, while the locked body defines duplicate completion-evaluation reconciliation;
+- `L3-I-160` — locked title describes completion-evidence identity / Candidate association correction, while the locked body defines pre-release completion-evidence correction.
+
+Because L6 may not silently choose between conflicting Locked L3 semantics, the canonical Workflow Realization Register remains intentionally unpopulated and Stage 2 cannot pass.
+
+See:
+
+`L6_Stage2_Full_Corpus_Reconciliation_Validation_Report_2026-09-20.md`
+
