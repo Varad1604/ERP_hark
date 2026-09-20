@@ -1,12 +1,12 @@
 # SutraERP L6 Stage 2 — Full-Corpus Reconciliation & Validation Report — 2026-09-20
 
-**Status:** BLOCKED BY UPSTREAM  
+**Status:** UPSTREAM BLOCKERS RESOLVED — STAGE-2 RECONCILIATION IN PROGRESS  
 **Architecture Level:** L6 — UI / UX Architecture Governance  
 **Branch:** `l6-stage2-full-scenario-realization-audit`  
 **Base Architecture Main:** `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`  
 **Frontend Main Verified:** `e2560877eac4446b925e45f04b7dfa4c24d3625c`  
 **Canonical L3 Population:** 1,084  
-**Purpose:** Record the independent Stage-2 reconciliation result after validating the 15 worker artifacts, correcting evidence-backed L6 mapping defects, and identifying upstream blockers that prevent safe canonical register population.
+**Purpose:** Record the independent Stage-2 reconciliation state after validating the 15 worker artifacts, correcting evidence-backed L6 mapping defects, resolving the discovered upstream semantic drift through controlled L3/L4 correction, and continuing workflow normalization before canonical register population.
 
 ## 1. Live Repository Baseline
 
@@ -35,7 +35,7 @@ Verified before modification:
 | Invalid mock-interaction values | 0 |
 | Ordinary UX architecture-ID leakage | 0 |
 | Unsupported Stage-2 maturity upgrades | 0 |
-| Worker rows with material open issue after reconciliation | 2 |
+| Worker rows with material open issue after reconciliation | 0 |
 
 All 15 worker artifacts use the required assigned ranges and remain at `SCENARIO-REALIZATION-MAPPED`.
 
@@ -63,9 +63,9 @@ These are scenario-realization counts, not distinct workflow counts.
 | INTERACTIVE-WORKFLOW | 210 |
 | REVIEW-APPROVAL-WORKFLOW | 173 |
 | TRACKING-WORKFLOW | 18 |
-| EXCEPTION-RECOVERY-WORKFLOW | 190 |
-| CROSS-WORKSPACE-HANDOFF | 10 |
-| SYSTEM-BACKGROUND-OBSERVABLE | 474 |
+| EXCEPTION-RECOVERY-WORKFLOW | 186 |
+| CROSS-WORKSPACE-HANDOFF | 12 |
+| SYSTEM-BACKGROUND-OBSERVABLE | 476 |
 | NO-DIRECT-END-USER-INTERACTION | 9 |
 | **Total** | **1,084** |
 
@@ -73,52 +73,41 @@ Mock-interaction row population after the evidence-backed corrections:
 
 | Mock interaction | Scenario rows |
 |---|---:|
-| REQUIRED | 428 |
-| NOT-REQUIRED | 173 |
-| PROHIBITED | 483 |
+| REQUIRED | 432 |
+| NOT-REQUIRED | 167 |
+| PROHIBITED | 485 |
 | **Total** | **1,084** |
 
 These row counts do not establish the final number of distinct user-addressable workflows. Workflow normalization must not use unique labels as workflow identity.
 
-## 5. Upstream Architecture Blockers
+## 5. Upstream Architecture Correction and Resolution
 
-### BLOCKER-01 — L3-I-148 semantic/title contradiction
+The initial semantic review found seven Phase-5 Section-I scenario bodies whose content had drifted onto neighbouring frozen canonical scenario meanings:
 
-Canonical locked title:
+- `L3-I-148`
+- `L3-I-149`
+- `L3-I-150`
+- `L3-I-157`
+- `L3-I-158`
+- `L3-I-159`
+- `L3-I-160`
 
-`Completion Identity Mismatch to Correct Student Context Association`
+A controlled L3 amendment was created and the seven scenarios were restored to their frozen canonical meanings without changing final IDs, canonical titles, ownership, Type, Priority or total corpus size.
 
-But the locked scenario purpose, business outcome, boundary and main flow define:
+Downstream action:
 
-- duplicate/competing completion evaluations;
-- selection of one authoritative current completion evaluation;
-- preservation/supersession of duplicate evaluation positions.
+- 7 / 7 L3 scenarios corrected as Locked v1.1 successors;
+- 7 / 7 dependent L4 blocker-only Drafts re-derived as real behavioral Drafts v1.1.0;
+- direct L5 artifacts keyed to these seven identities found: 0;
+- corresponding Stage-2 rows revalidated and reconciled;
+- prior open issues on `L3-I-148` and `L3-I-160` cleared.
 
-The title and body describe different business scenarios.
+Controlled evidence:
 
-**Authority level:** L3/upstream architecture issue.  
-**Stage-2 consequence:** L6 cannot determine the canonical user-facing realization safely because choosing title semantics or body semantics would silently amend Locked L3.  
-**Required resolution:** controlled L3 amendment/revalidation.
+- `architecture/L3_Business_Scenario_Architecture/00_Governance/L3_Controlled_Semantic_Amendment_Decision_I148_I150_I157_I160_2026-09-20.md`
+- `architecture/L4_System_Behavior_Specification/00_Governance/L4_Section_I_Corrected_Parent_Revalidation_I148_I150_I157_I160_2026-09-20.md`
 
-### BLOCKER-02 — L3-I-160 semantic/title contradiction
-
-Canonical locked title:
-
-`Completion Evidence Identity Mismatch to Correct Candidate Association`
-
-But the locked scenario purpose, business outcome, boundary and main flow define:
-
-- pre-release completion-evidence discrepancy/correction;
-- evidence-only correction versus underlying Examination-result change;
-- corrected authoritative completion-evidence position.
-
-The title and body describe different business scenarios.
-
-**Authority level:** L3/upstream architecture issue.  
-**Stage-2 consequence:** L6 cannot determine the canonical user-facing realization safely without silently deciding upstream semantics.  
-**Required resolution:** controlled L3 amendment/revalidation.
-
-Both blockers are now explicitly recorded in the corresponding Stage-2 worker rows as `L4/L3/L2/L1 architecture issue`.
+**Material upstream blockers remaining:** **0**
 
 ## 6. Canonical Register Decision
 
@@ -126,25 +115,25 @@ Both blockers are now explicitly recorded in the corresponding Stage-2 worker ro
 
 This is intentional and correct.
 
-The Stage-2 process requires semantic reconciliation before canonicalization. Populating 1,084 canonical rows while two Locked L3 parents contain unresolved semantic contradictions would convert ambiguous upstream architecture into apparently authoritative L6 realization data.
+The Stage-2 process requires completion of cross-worker semantic normalization and distinct-workflow discovery before canonicalization. The previously discovered Locked-L3 contradictions have been corrected; canonical population remains deferred only until the remaining Stage-2 normalization work is completed.
 
 Therefore:
 
 ```text
 Canonical realization rows          0 / 1,084
-Canonical register population       BLOCKED
+Canonical register population       PENDING FINAL NORMALIZATION
 Completion claim                     NOT AUTHORIZED
 ```
 
-No L0–L5 document was modified.
+Controlled L3 and L4 corrections were made under explicit change governance. No L0, L1, L2 or direct L5 artifact was modified.
 
 ## 7. Workflow Count Decision
 
-The generated worker baseline contains 1,084 distinct `userFacingLabel` strings. That is not a valid workflow count and is not used as one.
+The generated worker baseline contains near-scenario-cardinality labels. Those labels are not canonical workflow identities and are not counted as workflows.
 
-A preliminary semantic-key comparison still yields near-scenario cardinality and is not sufficient proof of distinct workflow identity.
+The upstream semantic blockers are now resolved. Full-corpus workflow normalization is therefore unblocked and remains the active Stage-2 task.
 
-Because BLOCKER-01 and BLOCKER-02 prevent complete semantic normalization, the following remain **NOT SAFELY DISCOVERED**:
+The following values remain **PENDING DISCOVERY THROUGH SEMANTIC NORMALIZATION** rather than blocked by architecture:
 
 - Distinct user-addressable workflows
 - Distinct interactive/review workflows
@@ -154,7 +143,7 @@ Because BLOCKER-01 and BLOCKER-02 prevent complete semantic normalization, the f
 - Final mock-interaction-required workflow population
 - Final observable non-interactive workflow population
 
-Scenario-row disposition counts in Section 4 remain valid provisional accounting evidence only.
+Scenario-row disposition counts in Section 4 remain valid realization-accounting evidence only.
 
 ## 8. Validator Hardening
 
@@ -181,19 +170,19 @@ This does not replace architecture semantic review.
 | Invalid workspace references = 0 | PASS |
 | Invalid archetype references = 0 | PASS |
 | Invalid controlled values = 0 | PASS |
-| Canonical realization rows = 1,084 / 1,084 | **FAIL — 0 / 1,084** |
-| Unexplained / conflicting primary realizations = 0 | **FAIL — 2 upstream semantic conflicts** |
-| Material unresolved blockers = 0 | **FAIL — 2** |
-| Distinct user-addressable workflow count discovered | **BLOCKED** |
-| Mock-interaction-required workflow population discovered | **BLOCKED** |
-| Observable non-interactive workflow population discovered | **BLOCKED** |
+| Canonical realization rows = 1,084 / 1,084 | **PENDING — 0 / 1,084 until final normalization** |
+| Unexplained / conflicting primary realizations = 0 | **PASS for discovered upstream conflicts — 0 remaining** |
+| Material unresolved blockers = 0 | **PASS — 0** |
+| Distinct user-addressable workflow count discovered | **PENDING NORMALIZATION** |
+| Mock-interaction-required workflow population discovered | **PENDING NORMALIZATION** |
+| Observable non-interactive workflow population discovered | **PENDING NORMALIZATION** |
 
 ## 10. Verdict
 
-**STAGE 2: FAIL / BLOCKED BY UPSTREAM**
+**STAGE 2: IN PROGRESS — UPSTREAM BLOCKERS RESOLVED**
 
-The worker corpus is mechanically complete and materially improved, but Stage 2 cannot legitimately pass because two Locked L3 parents contain internal semantic contradictions that L6 is forbidden to resolve silently.
+The worker corpus is mechanically complete and the discovered upstream semantic drift has been corrected under controlled L3/L4 governance.
 
-Stage 3 remains blocked.
+Stage 2 is not yet complete because distinct workflow normalization, final workflow-count discovery, canonical 1,084-row register population, and final independent validation still remain.
 
-The required next action is a controlled upstream architecture correction for L3-I-148 and L3-I-160, followed by targeted revalidation of their dependent L4/L5 evidence and then resumption of Stage-2 normalization/canonical register population.
+Stage 3 remains blocked until those Stage-2 exit conditions pass.
