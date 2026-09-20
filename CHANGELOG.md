@@ -1,5 +1,15 @@
 # SutraERP Architecture Changelog
 
+## [Unreleased] - 2026-09-20 — Group-6 G00/A01 upstream remediation
+
+- Added `ADR-G-EXCEPTION-001` and locked `L2-G00_Exception_Recovery_Governance_Amendment_2026-09-20.md`.
+- Established G00 exception-recovery responsibilities: Governance Coordinator coordination, Campus Operations Manager ordinary recovery decisions, Executive Reviewer Administrative Override/escalated recovery authority.
+- Added canonical G00 `GovernanceExceptionRecoveryRecorded` for non-escalation recovery while preserving existing `GovernanceEscalationRaised`.
+- Added `ADR-PLAT-CONFIG-001` and locked `L2-A01_Configuration_Governance_Completion_Amendment_2026-09-20.md`.
+- Completed the shared A01 configuration governance contract with owner-scoped Configuration Approval Authority, lifecycle operations and generic framework lifecycle events.
+- Revalidated and updated `L3/L4-A-056`, `L3/L4-G-013` and `L3/L4-G-014`.
+- Cleared both Stage-2 Group-6 blockers and marked Group 6 PASS without changing canonical domain ownership or introducing implementation architecture.
+
 ## [Unreleased] - 2026-09-20 — F13 analytics-definition governance remediation
 
 - Added `ADR-FIN-ANALYTICS-001` to resolve the Stage-2 Group-5 blocker for `L3-F-076`.
