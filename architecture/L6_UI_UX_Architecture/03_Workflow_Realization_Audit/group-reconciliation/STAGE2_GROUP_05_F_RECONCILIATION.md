@@ -1,6 +1,6 @@
 # SutraERP L6 Stage 2 — Group 5 Section F Reconciliation
 
-**Status:** RECONCILED — BLOCKED BY ONE MATERIAL UPSTREAM GAP  
+**Status:** COMPLETE-FOR-MASTER-CROSS-GROUP-RECONCILIATION  
 **Scope:** Section F — Finance  
 **Scenario population:** 85  
 **Architecture Level:** L6 — UI / UX Architecture Support  
@@ -18,41 +18,29 @@ Unique scenario IDs                85
 Missing scenarios                  0
 Duplicate scenario assignments     0
 Cross-workspace workflow merges    0
-Material open issues               1
-Distinct normalized workflows      59 (provisional pending blocker resolution)
-User-addressable workflows         46
+Material open issues               0
+Distinct normalized workflows      59
+User-addressable workflows         47
 Observable non-interactive         12
-Upstream-blocked workflows         1
+Upstream-blocked workflows         0
 ```
 
-The Section-F population is fully reconciled for Stage-2 analysis, but Group 5 **does not pass its group exit gate** because `L3-F-076` / `L4-F-076` remain materially blocked upstream.
+The Section-F population is fully reconciled and Group 5 now passes its group exit gate after canonical F13 analytics-definition governance was resolved upstream and re-derived through L3-F-076 and L4-F-076.
 
-## 2. Material Upstream Blocker
+## 2. Former Upstream Blocker — Resolved
 
-### F13 KPI Definition / Analytical Model governance
+Stage-2 Group 5 originally identified `L3-F-076 / L4-F-076` as materially blocked because F13 did not define KPI Definition / Analytical Model lifecycle, approval authority, or lifecycle events.
 
-`L3-F-076 — Financial Definition Change to Approved KPI or Analytical Model` requires an approved/effective successor definition. Its authoritative L2-F13 architecture does not establish:
+This has now been resolved by:
 
-- KPI Definition / Analytical Model lifecycle states and transitions for approval, activation, supersession or retirement;
-- the canonical business authority for definition approval/activation; or
-- canonical definition-version approval / activation / supersession events and publishers.
+- `ADR-FIN-ANALYTICS-001`;
+- locked `L2-F13_KPI_and_Analytical_Model_Governance_Amendment_2026-09-20.md`;
+- targeted L3-F-076 revalidation; and
+- re-derived L4-F-076 behavior.
 
-`L4-F-076` explicitly preserves the same blocker and stops at a validated successor candidate. It states that the frozen approved/effective outcome cannot be asserted until F13 supplies authoritative definition-governance semantics.
+KPI Definition and Analytical Model now consume the canonical Finance configuration lifecycle `Draft → Validation → Approval → Published → Active → Superseded → Archived`. `Financial Analytics Definition Approval Authority` is the canonical business approval authority. Aggregate-specific approval, activation, supersession and archival events each have exactly one canonical publisher.
 
-The locked `L2-F13_Financial_Reporting_and_Analytics_Workflows_Amendment_2026-08-26.md` resolves **Financial Report** actors and pre-publication correction only. The locked `L2-F13_Post_Publication_Report_Disposition_Amendment_2026-09-01.md` resolves **Financial Report** supersession/withdrawal/archive only. Neither amendment establishes KPI Definition / Analytical Model lifecycle governance.
-
-Therefore L6 must not invent a mock approval workflow for `L3-F-076`.
-
-### F085 is not a blocker
-
-The older `L3-F-085` text records missing Financial Rule approval authority and lifecycle events. That note is superseded by the later locked `L2-F00_Financial_Rule_Governance_Amendment_2026-09-01.md`, which explicitly:
-
-- establishes **Finance Financial Rule Governance Authority**;
-- preserves the canonical Financial Rule lifecycle;
-- establishes `FinancialRuleApproved`, `FinancialRuleActivated`, `FinancialRuleDeprecated`, and `FinancialRuleArchived`; and
-- states that it resolves the gaps recorded by `L3-F-085`.
-
-`L4-F-085` correctly consumes that locked amendment and records no material upstream blocker. Stage-2 therefore treats F085 as a valid governed review/approval workflow while retaining the repository note that the older L3 open-issue wording is stale relative to the later locked amendment.
+F085 remains valid under its separate locked 2026-09-01 Financial Rule Governance amendment.
 
 ## 3. Semantic Reconciliation Findings
 
@@ -83,22 +71,22 @@ No new Finance actor, approval chain, state, event, rule, ownership or implement
 | Disposition | Rows |
 |---|---:|
 | INTERACTIVE-WORKFLOW | 7 |
-| REVIEW-APPROVAL-WORKFLOW | 38 |
+| REVIEW-APPROVAL-WORKFLOW | 39 |
 | TRACKING-WORKFLOW | 3 |
 | EXCEPTION-RECOVERY-WORKFLOW | 15 |
 | CROSS-WORKSPACE-HANDOFF | 3 |
 | SYSTEM-BACKGROUND-OBSERVABLE | 17 |
-| NO-DIRECT-END-USER-INTERACTION | 2 |
+| NO-DIRECT-END-USER-INTERACTION | 1 |
 | **Total** | **85** |
 
 | Mock interaction | Rows |
 |---|---:|
-| REQUIRED | 60 |
+| REQUIRED | 61 |
 | NOT-REQUIRED | 6 |
-| PROHIBITED | 19 |
+| PROHIBITED | 18 |
 | **Total** | **85** |
 
-`L3-F-076` is included in NO-DIRECT-END-USER-INTERACTION / PROHIBITED for Stage-2 realization until its upstream governance is resolved; this is a blocker treatment, not a claim that the intended business scenario should permanently remain non-interactive.
+`L3-F-076` is now realized as a governed review/approval workflow using the resolved canonical F13 lifecycle and Financial Analytics Definition Approval Authority.
 
 ## 5. Normalized Workflow Population
 
@@ -156,7 +144,7 @@ No new Finance actor, approval chain, state, event, rule, ownership or implement
 | G5-WF-050 | W-F13 | Official Financial Report lifecycle and disposition | 2 | L3-F-073; L3-F-078 | REVIEW-APPROVAL-WORKFLOW | REQUIRED |
 | G5-WF-051 | W-F13 | Statutory financial-reporting handoff | 1 | L3-F-074 | CROSS-WORKSPACE-HANDOFF | REQUIRED |
 | G5-WF-052 | W-F13 | Management financial reporting | 1 | L3-F-075 | REVIEW-APPROVAL-WORKFLOW | REQUIRED |
-| G5-WF-053 | W-F13 | KPI Definition / Analytical Model version governance | 1 | L3-F-076 | **UPSTREAM-BLOCKED** | PROHIBITED |
+| G5-WF-053 | W-F13 | KPI Definition / Analytical Model version governance | 1 | L3-F-076 | REVIEW-APPROVAL-WORKFLOW | REQUIRED |
 | G5-WF-054 | W-F13 | Financial KPI and dashboard projection | 1 | L3-F-077 | SYSTEM-BACKGROUND-OBSERVABLE | PROHIBITED |
 | G5-WF-055 | W-F13 | Financial report audit and historical reconstruction | 1 | L3-F-079 | TRACKING-WORKFLOW | NOT-REQUIRED |
 | G5-WF-056 | W-F14 | Procurement budget commitment | 1 | L3-F-080 | REVIEW-APPROVAL-WORKFLOW | REQUIRED |
@@ -169,19 +157,18 @@ No new Finance actor, approval chain, state, event, rule, ownership or implement
 | Workflow realization | Distinct workflows |
 |---|---:|
 | INTERACTIVE-WORKFLOW | 7 |
-| REVIEW-APPROVAL-WORKFLOW | 27 |
+| REVIEW-APPROVAL-WORKFLOW | 28 |
 | TRACKING-WORKFLOW | 2 |
 | EXCEPTION-RECOVERY-WORKFLOW | 9 |
 | CROSS-WORKSPACE-HANDOFF | 3 |
 | SYSTEM-BACKGROUND-OBSERVABLE | 10 |
-| UPSTREAM-BLOCKED | 1 |
 | **Total** | **59** |
 
 | Workflow mock realization | Distinct workflows |
 |---|---:|
-| REQUIRED | 46 |
+| REQUIRED | 47 |
 | NOT-REQUIRED | 2 |
-| PROHIBITED | 11 |
+| PROHIBITED | 10 |
 | **Total** | **59** |
 
 ## 7. Group Exit Gate
@@ -196,13 +183,9 @@ No new Finance actor, approval chain, state, event, rule, ownership or implement
 | Cross-workspace normalized merge = 0 | PASS |
 | Distinct workflows discovered | PASS — 59 provisional |
 | User-addressable workflows discovered | PASS — 46 |
-| Material upstream blockers = 0 | **FAIL — 1** |
-| F076 canonical realization safely derivable | **FAIL** |
+| Material upstream blockers = 0 | PASS |
+| F076 canonical realization safely derivable | PASS |
 
-**GROUP 5 VERDICT:** **BLOCKED — NOT COMPLETE FOR MASTER CROSS-GROUP RECONCILIATION**
+**GROUP 5 VERDICT:** **PASS — COMPLETE FOR MASTER CROSS-GROUP RECONCILIATION**
 
-Required repository decision before Group 5 can pass:
-
-> Extend canonical L2-F13 governance for KPI Definition / Analytical Model version lifecycle, approval/effective authority and required lifecycle events/publishers, then re-derive L3-F-076 and L4-F-076 before canonical L6 realization.
-
-Stage-2 reconciliation may continue with later groups in parallel, but the final Stage-2 exit gate remains blocked until this issue is resolved.
+The former F076 upstream blocker has been resolved at L2, synchronized through L3/L4, and revalidated. Stage 2 may continue to Group 6.
