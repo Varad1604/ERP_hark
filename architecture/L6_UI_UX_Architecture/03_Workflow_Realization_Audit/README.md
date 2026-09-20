@@ -72,7 +72,8 @@ See:
 | 2 | C | 75 | **PASS — complete for master cross-group reconciliation** | 32 |
 | 3 | D | 57 | **PASS — complete for master cross-group reconciliation** | 38 |
 | 4 | E | 75 | **PASS — complete for master cross-group reconciliation** | 55 |
-| 5–14 | F through J remaining controlled groups | 782 | Pending | Pending |
+| 5 | F | 85 | **BLOCKED — reconciled; one material upstream F13 blocker** | 59 provisional |
+| 6–14 | G through J remaining controlled groups | 697 | Pending | Pending |
 
 Group evidence:
 
@@ -80,13 +81,15 @@ Group evidence:
 - `group-reconciliation/STAGE2_GROUP_02_C_RECONCILIATION.md`
 - `group-reconciliation/STAGE2_GROUP_03_D_RECONCILIATION.md`
 - `group-reconciliation/STAGE2_GROUP_04_E_RECONCILIATION.md`
+- `group-reconciliation/STAGE2_GROUP_05_F_RECONCILIATION.md`
 
 Current cumulative Stage-2 group reconciliation coverage:
 
 ```text
-Scenario rows semantically group-reconciled   302 / 1,084
-Distinct workflows discovered in completed groups  175
-Completed group blockers                         0
+Scenario rows semantically group-reconciled   387 / 1,084
+Distinct workflows discovered in PASS groups      175
+Provisional workflows in blocked Group 5          59
+Material Stage-2 group blockers                    1
 Canonical Workflow Realization Register rows      0 / 1,084
 ```
 
