@@ -181,8 +181,8 @@ No new Finance actor, approval chain, state, event, rule, ownership or implement
 | Missing IDs = 0 | PASS |
 | Duplicate scenario assignment = 0 | PASS |
 | Cross-workspace normalized merge = 0 | PASS |
-| Distinct workflows discovered | PASS — 59 provisional |
-| User-addressable workflows discovered | PASS — 46 |
+| Distinct workflows discovered | PASS — 59 |
+| User-addressable workflows discovered | PASS — 47 |
 | Material upstream blockers = 0 | PASS |
 | F076 canonical realization safely derivable | PASS |
 
