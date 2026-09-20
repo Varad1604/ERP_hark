@@ -1,6 +1,6 @@
 # SutraERP L6 Stage 2 — Full-Corpus Reconciliation & Validation Report — 2026-09-20
 
-**Status:** STAGE-2 RECONCILIATION IN PROGRESS — GROUP 8 RECONCILED  
+**Status:** STAGE-2 RECONCILIATION IN PROGRESS — GROUP 9 RECONCILED  
 **Architecture Level:** L6 — UI / UX Architecture Governance  
 **Branch:** `l6-stage2-full-scenario-realization-audit`  
 **Base Architecture Main:** `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`  
@@ -133,7 +133,7 @@ The generated worker baseline contains near-scenario-cardinality labels. Those l
 
 The upstream semantic blockers are now resolved. Full-corpus workflow normalization is therefore unblocked and remains the active Stage-2 task.
 
-Completed PASS-group reconciliation now covers Groups 1–8:
+Completed PASS-group reconciliation now covers Groups 1–9:
 
 - Group 1 — A+B: 95 scenarios → 50 distinct workflows;
 - Group 2 — C: 75 scenarios → 32 distinct workflows;
@@ -142,9 +142,10 @@ Completed PASS-group reconciliation now covers Groups 1–8:
 - Group 5 — F: 85 scenarios → 59 distinct workflows — **PASS after canonical F13 KPI Definition / Analytical Model governance remediation**;
 - Group 6 — G1: 77 scenarios → 39 distinct workflows — **PASS after canonical G00 exception-recovery and A01 configuration-governance remediation**;
 - Group 7 — G2: 77 scenarios → 38 distinct workflows — **PASS after semantic correction of under-classified Hostel, Transport and Library realization rows**;
-- Group 8 — G3: 97 scenarios → 46 distinct workflows — **PASS after semantic correction of under-classified Health Services, Security Operations and Housekeeping realization rows, while consuming the corrected G200/G212/G214 authority baseline**.
+- Group 8 — G3: 97 scenarios → 46 distinct workflows — **PASS after semantic correction of under-classified Health Services, Security Operations and Housekeeping realization rows, while consuming the corrected G200/G212/G214 authority baseline**;
+- Group 9 — G4: 69 scenarios → 31 distinct workflows — **PASS after semantic correction of under-classified Teacher Guardian Scheme and Infrastructure Management realization rows while preserving Academic, B03 and G01 ownership boundaries**.
 
-Cumulative semantic reconciliation coverage is **638 / 1,084 scenarios** across Groups 1–8, contributing **357 distinct workflows**. There are **0 material Stage-2 group blockers**. The former F076 blocker was resolved through ADR-FIN-ANALYTICS-001, the locked 2026-09-20 F13 analytics-governance amendment, targeted L3 revalidation, and re-derived L4-F-076 behavior. The Group-6 G013/G014 blockers were resolved through ADR-G-EXCEPTION-001, ADR-PLAT-CONFIG-001, locked 2026-09-20 G00/A01 amendments, targeted L3 revalidation, and re-derived L4-A-056/L4-G-013/L4-G-014 behavior. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
+Cumulative semantic reconciliation coverage is **707 / 1,084 scenarios** across Groups 1–9, contributing **388 distinct workflows**. There are **0 material Stage-2 group blockers**. The former F076 blocker was resolved through ADR-FIN-ANALYTICS-001, the locked 2026-09-20 F13 analytics-governance amendment, targeted L3 revalidation, and re-derived L4-F-076 behavior. The Group-6 G013/G014 blockers were resolved through ADR-G-EXCEPTION-001, ADR-PLAT-CONFIG-001, locked 2026-09-20 G00/A01 amendments, targeted L3 revalidation, and re-derived L4-A-056/L4-G-013/L4-G-014 behavior. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
 
 The following values remain **PENDING DISCOVERY THROUGH SEMANTIC NORMALIZATION** rather than blocked by architecture:
 
@@ -192,9 +193,9 @@ This does not replace architecture semantic review.
 
 ## 10. Verdict
 
-**STAGE 2: IN PROGRESS — GROUP 8 RECONCILED**
+**STAGE 2: IN PROGRESS — GROUP 9 RECONCILED**
 
-The worker corpus is mechanically complete, the discovered upstream semantic drift has been corrected under controlled L3/L4 governance, and Groups 7–8 have completed semantic reconciliation with no new upstream blocker.
+The worker corpus is mechanically complete, the discovered upstream semantic drift has been corrected under controlled L3/L4 governance, and Groups 7–9 have completed semantic reconciliation with no new upstream blocker.
 
 Stage 2 is not yet complete because distinct workflow normalization, final workflow-count discovery, canonical 1,084-row register population, and final independent validation still remain.
 
@@ -276,4 +277,46 @@ Scenarios semantically reconciled   638 / 1,084
 Distinct group-normalized workflows 357
 Material Stage-2 blockers             0
 Remaining unreconciled scenarios    446
+```
+
+
+## 13. Group 9 — Campus Operations G4 Reconciliation
+
+Group 9 covers `L3-G-252 … L3-G-320` (69 scenarios) across:
+
+- `W-G09` — Teacher Guardian Scheme;
+- `W-G10` — Infrastructure Management.
+
+The G4 worker artifact was mechanically complete but materially under-classified explicit Teacher Guardian and Infrastructure work as background/system-owned behavior. Exact Locked L3 review and authoritative L2 verification confirmed that mentoring, closure, disclosure, reporting, infrastructure administration, compliance, maintenance governance, recovery, decommissioning, archival and reporting all expose explicit business actors, decisions or owner-preserving hand-offs.
+
+Group 9 normalization result:
+
+```text
+Scenarios reconciled                 69 / 69
+Distinct workflows                   31
+User-addressable workflows           31
+Tracking / non-mock workflows         0
+Material blockers                     0
+Verdict                              PASS
+```
+
+Key ownership boundaries preserved:
+
+- Academic owns Teacher Guardian assignment and scheduling; G09 owns the Mentorship Case and mentoring history.
+- B03 owns institutional campus governance and Institution-to-Campus association; G10 owns Physical Campus and physical hierarchy.
+- G01 owns maintenance planning/execution; G10 owns infrastructure facts, condition, availability and maintenance-requirement evidence.
+- Generic A01 configuration governance remains owner-scoped and does not transfer G09/G10 semantics.
+
+Canonical evidence:
+
+`group-reconciliation/STAGE2_GROUP_09_G4_RECONCILIATION.md`
+
+Updated cumulative position after Group 9:
+
+```text
+Groups PASS                          9 / 14
+Scenarios semantically reconciled   707 / 1,084
+Distinct group-normalized workflows 388
+Material Stage-2 blockers             0
+Remaining unreconciled scenarios    377
 ```
