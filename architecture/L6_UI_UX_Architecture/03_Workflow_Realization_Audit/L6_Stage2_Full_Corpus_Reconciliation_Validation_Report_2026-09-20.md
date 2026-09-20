@@ -133,13 +133,14 @@ The generated worker baseline contains near-scenario-cardinality labels. Those l
 
 The upstream semantic blockers are now resolved. Full-corpus workflow normalization is therefore unblocked and remains the active Stage-2 task.
 
-Completed group reconciliation now covers Groups 1–3:
+Completed group reconciliation now covers Groups 1–4:
 
 - Group 1 — A+B: 95 scenarios → 50 distinct workflows;
 - Group 2 — C: 75 scenarios → 32 distinct workflows;
-- Group 3 — D: 57 scenarios → 38 distinct workflows.
+- Group 3 — D: 57 scenarios → 38 distinct workflows;
+- Group 4 — E: 75 scenarios → 55 distinct workflows.
 
-Cumulative completed-group coverage is **227 / 1,084 scenarios** and **120 distinct workflows**, with **0 completed-group blockers**. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
+Cumulative completed-group coverage is **302 / 1,084 scenarios** and **175 distinct workflows**, with **0 completed-group blockers**. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
 
 The following values remain **PENDING DISCOVERY THROUGH SEMANTIC NORMALIZATION** rather than blocked by architecture:
 
