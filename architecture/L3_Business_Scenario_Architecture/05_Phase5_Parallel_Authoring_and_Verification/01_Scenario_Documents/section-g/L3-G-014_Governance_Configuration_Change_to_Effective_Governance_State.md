@@ -9,10 +9,10 @@
 **Scenario Type:** Simple  
 **Priority:** P2  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-22  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; L2-A01 — Platform & Tenant Foundation  
+**Last Updated:** 2026-09-20  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-G00 — Campus Operations Review & Governance; L2-A01 — Platform & Tenant Foundation; `L2-A01_Configuration_Governance_Completion_Amendment_2026-09-20.md`; ADR-PLAT-CONFIG-001  
 **Referenced By:** Subsequent G00 readiness, review, risk, action-plan, KPI and notification-governance activity that consumes effective governance configuration
 
 ---
@@ -29,7 +29,7 @@ The scenario must use the platform configuration lifecycle and G00 configuration
 
 Governance configuration is changed, versioned/effective-dated, audited, and made available for subsequent governance operations.
 
-The locked sources establish the configuration framework, lifecycle, ownership split, G00 configurable elements, version control, effective dating, audit requirement, and a role authorized to configure governance. They do not establish the business actor authorized to approve the configuration before it becomes Active, and they define no canonical configuration-change event for G00. Because the A01 lifecycle requires `Approved` before `Active`, the missing approval authority materially blocks canonical completion. This Draft is therefore **BLOCKED**.
+The locked 2026-09-20 A01 configuration-governance amendment supplies the owner-scoped Configuration Approval Authority and generic lifecycle events required for G00-owned domain configuration to progress through the shared framework without transferring G00 semantic ownership.
 
 ---
 
@@ -89,7 +89,7 @@ L2-A01 explicitly states that Business Domain Configuration is owned by the resp
 |---|---|---|
 | Campus Operations Administrator | Configures governance within the authorization defined by L2-G00. | L2-G00 authorizes `Configure Governance`; this does not establish approval authority for the A01 `Approved` lifecycle position. |
 
-L2-A01 contains no actor section and L2-G00 does not name a configuration approver. The missing approval authority is blocking and recorded in Section 17.
+The applicable **Configuration Approval Authority** acts on behalf of Campus Operations Governance for G00-owned Business Domain Configuration. The Campus Operations Administrator may configure values but authoring/configuration authority does not itself imply approval.
 
 ---
 
@@ -119,8 +119,8 @@ An authorized governance configuration change is required.
 | 3 | Create or revise the domain configuration under the common Platform Configuration Framework. | Campus Operations Administrator / Campus Operations Governance; Platform Foundation | The change enters the A01 configuration lifecycle without transferring G00 semantic ownership. |
 | 4 | Validate ownership, scope, supported values, dependency consistency, version compatibility, and required completeness before activation. | Platform Foundation; Campus Operations Governance for domain semantics | The configuration satisfies the A01 validation requirements or remains non-active. |
 | 5 | Progress the configuration from `Draft` through `Validation` toward `Approved`. | Platform Foundation framework; Campus Operations Governance values | Lifecycle progression follows A01. |
-| 6 | Obtain the business approval required for the `Approved` lifecycle position. | **Not defined upstream** | **Blocking point:** no canonical business actor/authority is defined for this approval. |
-| 7 | When valid approval authority is defined and approval occurs, make only the `Active` configuration available for business execution. | Platform Foundation framework; Campus Operations Governance | Subsequent G00 operations consume validated resolved configuration. |
+| 6 | Obtain the owner-scoped Configuration Approval Authority decision for the validated G00 configuration version. | Configuration Approval Authority acting on behalf of Campus Operations Governance | The candidate reaches Approved only on an affirmative governed decision; A01 publishes `ConfigurationVersionApproved`. |
+| 7 | At the governed effective boundary, activate the approved configuration if all framework guards remain satisfied. | Platform Configuration Framework / A01; Campus Operations Governance retains semantic ownership | The successor becomes Active and A01 publishes `ConfigurationVersionActivated`; any prior Active version is Superseded where applicable. |
 | 8 | Preserve version, effective-dating and configuration-change audit history. | Campus Operations Governance; Platform Foundation framework | The frozen outcome can be completed only after the blocking approval gap is resolved. |
 
 ---
@@ -139,7 +139,7 @@ An authorized governance configuration change is required.
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
 | Configuration validation fails. | The candidate configuration cannot become Active. | Keep it outside the Active lifecycle position and correct the G00-owned values under the existing configuration framework. | Campus Operations Governance; Platform Foundation |
-| Required approval authority is undefined. | The configuration cannot canonically reach the A01 `Approved` and then `Active` positions. | Stop lifecycle progression and obtain upstream architecture resolution; do not infer that `Configure Governance` includes approval. | Campus Operations Governance; Platform Foundation |
+| Approval is absent or rejected. | The candidate cannot reach Approved/Active. | Keep the current Active configuration authoritative and retain the successor outside Active. | Campus Operations Governance; Platform Foundation |
 | A requested value would redefine Platform configuration architecture. | Ownership and dependency boundaries would be violated. | Reject the change or confine it to G00-owned domain configuration semantics. | Platform Foundation; Campus Operations Governance |
 
 ---
@@ -160,7 +160,7 @@ An authorized governance configuration change is required.
 
 | Owned Business Concept / Aggregate | Relevant Entry State(s) | Scenario Impact | Resulting State / Lifecycle Position | Canonical Owner | Authoritative Source |
 |---|---|---|---|---|---|
-| Platform-governed configuration item containing G00-owned domain values | `Draft`, `Validation` | The configuration is validated under the Platform Configuration Framework. | `Approved` and then `Active` are required before use; the approval actor is currently undefined. | Platform Foundation owns lifecycle governance; G00 owns domain configuration values | L2-A01 §§6.5, 6.10, 6.12 |
+| Platform-governed configuration item containing G00-owned domain values | `Draft`, `Validation` | The configuration is validated under the Platform Configuration Framework and decided by the owner-scoped Configuration Approval Authority. | `Approved` then `Active` when the effective boundary and framework guards are satisfied. | Platform Foundation owns lifecycle governance; G00 owns domain configuration values | L2-A01 §§6.5, 6.10, 6.12; locked A01 amendment |
 | Existing G00 resolved configuration | `Active` | Remains authoritative while a successor is not validly Active. | `Superseded` only when a valid successor becomes Active. | Platform Foundation lifecycle framework; G00 semantic ownership | L2-A01 §6.10 |
 
 No G00-specific lifecycle states are introduced.
@@ -171,9 +171,7 @@ No G00-specific lifecycle states are introduced.
 
 ## 14.1 Published / Consumed Business Events
 
-No exact canonical G00 or A01 business event is defined for this scenario-specific governance-configuration activation. L3 therefore does not invent a configuration event.
-
-Because L2-G00 states that significant governance transitions publish canonical events, the absence of a configuration-change event is recorded as an upstream issue in Section 17.
+A01 / Platform Configuration Framework publishes the generic lifecycle facts `ConfigurationVersionProposed`, `ConfigurationVersionValidated`, `ConfigurationVersionApproved`, `ConfigurationVersionActivated`, `ConfigurationVersionSuperseded`, `ConfigurationVersionArchived`, and `ResolvedConfigurationPublished`. No separate G00 configuration-activation event is required unless G00 later defines an additional domain-semantic event.
 
 ## 14.2 Business Contracts and Cross-Domain Hand-offs
 
@@ -191,7 +189,7 @@ Because L2-G00 states that significant governance transitions publish canonical 
 | Business Action / Decision | Authorized Business Actor / Role | Business Authority / Constraint | Business-Domain Owner |
 |---|---|---|---|
 | Configure G00 governance | Campus Operations Administrator | Explicitly authorized by L2-G00 to `Configure Governance`. | Campus Operations Governance |
-| Approve a configuration so it may reach `Approved` and then `Active` | Not defined upstream | A01 requires the lifecycle position but does not define the business approver; L2-G00 does not assign this approval. | Platform Configuration Framework / Campus Operations Governance semantic values |
+| Approve a G00-owned configuration version | Configuration Approval Authority acting on behalf of Campus Operations Governance | Approval is owner-scoped under the shared A01 framework; it does not transfer G00 semantic ownership. | Campus Operations Governance |
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
@@ -220,11 +218,11 @@ The frozen outcome is complete only when:
 - the configuration change is auditable; and
 - subsequent G00 operations receive the valid resolved configuration.
 
-The current locked sources do not define the required approval authority, so these criteria cannot all be established.
+The locked A01 amendment defines the required owner-scoped approval authority and lifecycle-event semantics, so the completion criteria are now fully derivable.
 
 ## 16.2 Postconditions
 
-If the blocking authority gap is resolved and the scenario completes:
+If the scenario completes:
 
 - G00 remains the owner of the governance configuration values and policies;
 - Platform Foundation remains owner of the common configuration framework and lifecycle governance;
@@ -235,19 +233,6 @@ If the blocking authority gap is resolved and the scenario completes:
 
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
+No material upstream architecture issue remains after `L2-A01_Configuration_Governance_Completion_Amendment_2026-09-20.md` and ADR-PLAT-CONFIG-001.
 
-| Issue | Architecture Impact | Required Resolution |
-|---|---|---|
-| L2-A01 requires `Approved` before `Active`, but neither L2-A01 nor L2-G00 defines the business actor authorized to approve G00 domain configuration. | The final outcome cannot canonically reach effective/Active availability without inventing approval authority. | Platform Foundation / Campus Operations Governance architecture must define the approval authority for domain configuration activation. |
-| L2-G00 states significant governance transitions publish canonical events, but no exact configuration-change/activation event is defined in G00 or A01 for this outcome. | Downstream event-based behavior cannot be specified without invention. | Upstream architecture must define the canonical event and publisher or explicitly state that no event is required. |
-
-**Source Assessment:** **BLOCKED**
-
-## 17.2 Assumptions
-
-No assumptions.
-
-## 17.3 Deferred Questions
-
-No scenario-specific deferred questions.
+**Source Assessment:** **READY**
