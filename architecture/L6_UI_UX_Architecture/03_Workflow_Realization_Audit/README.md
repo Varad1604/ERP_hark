@@ -1,6 +1,6 @@
 # SutraERP L6 Stage 2 — Full Scenario Realization Audit Control Area
 
-**Status:** Stage-2 reconciliation IN PROGRESS — Group-6 upstream blockers resolved  
+**Status:** Stage-2 reconciliation IN PROGRESS — Group 7 reconciled  
 **Integration Branch:** `l6-stage2-full-scenario-realization-audit`  
 **Canonical Base Verified:** architecture `main` at `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`; frontend `main` at `e2560877eac4446b925e45f04b7dfa4c24d3625c`  
 **Purpose:** Hold range-scoped worker prompts and normalized worker results for the 1,084-scenario UI-realization audit before master reconciliation.
@@ -56,7 +56,7 @@ The 15 worker artifacts are mechanically complete at 1,084 / 1,084 rows with zer
 
 Evidence-backed L6 classification defects have been corrected in the worker review artifacts.
 
-The Section-I Phase-5 semantic drift discovered during master review has also been corrected under controlled upstream governance for `L3-I-148`, `149`, `150`, `157`, `158`, `159`, and `160`. Their dependent L4 blocker-only drafts were re-derived and the corresponding Stage-2 rows were revalidated. Group-6 reconciliation identified two upstream blockers in G013/G014; both are now resolved through locked G00/A01 amendments, targeted L3 revalidation and re-derived L4 behavior. Material Stage-2 group blockers now equal **0**.
+The Section-I Phase-5 semantic drift discovered during master review has also been corrected under controlled upstream governance for `L3-I-148`, `149`, `150`, `157`, `158`, `159`, and `160`. Their dependent L4 blocker-only drafts were re-derived and the corresponding Stage-2 rows were revalidated. Group-6 reconciliation identified two upstream blockers in G013/G014; both are now resolved through locked G00/A01 amendments, targeted L3 revalidation and re-derived L4 behavior. Group 7 G2 has now also passed after semantic correction of the mechanically under-classified Hostel, Transport and Library worker rows. Material Stage-2 group blockers remain **0**.
 
 The canonical Workflow Realization Register remains intentionally unpopulated only because cross-worker workflow normalization, distinct-workflow counting and final independent validation are still in progress.
 
@@ -74,7 +74,8 @@ See:
 | 4 | E | 75 | **PASS — complete for master cross-group reconciliation** | 55 |
 | 5 | F | 85 | **PASS — complete for master cross-group reconciliation** | 59 |
 | 6 | G1 (`G-001…077`) | 77 | **PASS — complete for master cross-group reconciliation** | 39 |
-| 7–14 | G2 through J remaining controlled groups | 620 | Pending | Pending |
+| 7 | G2 (`G-078…154`) | 77 | **PASS — complete for master cross-group reconciliation** | 38 |
+| 8–14 | G3 through J remaining controlled groups | 543 | Pending | Pending |
 
 Group evidence:
 
@@ -84,12 +85,13 @@ Group evidence:
 - `group-reconciliation/STAGE2_GROUP_04_E_RECONCILIATION.md`
 - `group-reconciliation/STAGE2_GROUP_05_F_RECONCILIATION.md`
 - `group-reconciliation/STAGE2_GROUP_06_G1_RECONCILIATION.md`
+- `group-reconciliation/STAGE2_GROUP_07_G2_RECONCILIATION.md`
 
 Current cumulative Stage-2 group reconciliation coverage:
 
 ```text
-Scenario rows semantically group-reconciled   464 / 1,084
-Distinct workflows discovered in PASS groups      273
+Scenario rows semantically group-reconciled   541 / 1,084
+Distinct workflows discovered in PASS groups      311
 Material Stage-2 group blockers                    0
 Canonical Workflow Realization Register rows      0 / 1,084
 ```
