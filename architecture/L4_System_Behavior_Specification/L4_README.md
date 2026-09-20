@@ -78,6 +78,12 @@ Before authoring each assigned L4 file, perform only the normal no-drift check r
 
 No parent requires addition to the historical 48-parent list. If a future change reopens one parent, pause only that affected parent; all unaffected assigned parents remain authorable.
 
+### Corrected Section-I Parent Revalidation — 2026-09-20
+
+Controlled L3 correction of `L3-I-148`, `149`, `150`, `157`, `158`, `159`, and `160` required targeted re-derivation of their matching L4 parents. The prior blocker-only L4 drafts have been replaced by implementation-independent behavioral Drafts v1.1.0. Revalidation evidence is recorded in `00_Governance/L4_Section_I_Corrected_Parent_Revalidation_I148_I150_I157_I160_2026-09-20.md`.
+
+These seven L4 files remain Draft and still require normal independent review before Architecture Approval.
+
 ---
 
 ## Full-Corpus Human Allocation
