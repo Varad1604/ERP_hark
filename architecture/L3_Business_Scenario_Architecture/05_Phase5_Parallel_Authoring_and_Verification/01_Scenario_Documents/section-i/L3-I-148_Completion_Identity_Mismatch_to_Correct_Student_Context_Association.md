@@ -3,130 +3,110 @@
 **Scenario ID:** L3-I-148
 **Architecture Level:** L3 — Business Scenario Architecture  
 **Primary Owner:** Academic Completion & Completion Evidence  
-**Participating Domains:** C — Student Lifecycle; I — Examination  
+**Participating Domains:** A — Platform Foundation / Identity; C — Student Lifecycle; I — Examination  
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Varad  
-**Last Updated:** 2026-08-21  
-**Depends On:** Locked L1 Business Domain Architecture; L2-C05 Qualification Completion & Student Exit; applicable Examination completion-evidence workflow
+**Last Updated:** 2026-09-20  
+**Depends On:** Locked L1 Business Domain Architecture; L2-I13 Academic Completion, CGPA & Completion Evidence Workflows; L2-C05 Qualification Completion & Student Exit; applicable source-domain architecture  
+**Amendment Authority:** L3_Controlled_Semantic_Amendment_Decision_I148_I150_I157_I160_2026-09-20.md
 
 ## 1. Scenario Metadata
 
-The canonical Stage 3 semantics and Stage 4 final identity are preserved. The scenario remains owned by Academic Completion & Completion Evidence. Cross-domain participation does not transfer ownership of examination or student lifecycle facts.
+This controlled successor restores the frozen canonical semantics for L3-I-148 without changing its final identity, title, owner, Type, Priority or repository placement.
 
 ## 2. Scenario Purpose
 
-Ensure that duplicate completion evaluations for the same student and completion scope do not produce competing current completion positions, and that one authoritative evaluation remains current while historical evaluations remain traceable.
+Resolve a completion-evaluation identity/context mismatch so that completion evaluation proceeds only against the authoritative Student Context, without Academic Completion & Completion Evidence taking ownership of Person/Identity or Student Lifecycle facts.
 
 ## 3. Business Outcome
 
-A single authoritative completion evaluation is established for the affected student and scope. Duplicate evaluations are recognized as historical or superseded and cannot compete as the current completion basis.
+The affected completion evaluation is associated with the correct authoritative Student Context; the erroneous association is preserved as history and cannot drive a completion outcome.
 
 ## 4. Scenario Boundary and Scope
 
-**Start Boundary:** More than one completion evaluation exists or is initiated for the same student and materially identical completion scope.
+**Start Boundary:** Completion-relevant records or an in-progress completion evaluation cannot be reliably associated with the authoritative candidate/Student Context.
 
-**In Scope:** identify the student/scope; distinguish legitimate re-evaluation from duplicate evaluation; determine the canonical current evaluation; preserve evaluation history; and establish one authoritative completion-evaluation position.
+**End Boundary:** The correct Student Context association is authoritative and completion evaluation may safely continue.
 
-**Out of Scope:** recomputing examination results, changing Student Lifecycle facts, creating a new completion rule, or deleting historical evaluations.
+**In Scope:** the business actions required to reach the stated outcome while preserving canonical ownership and authoritative source facts.
 
-**End Boundary:** One current completion evaluation is authoritative for the scope.
+**Out of Scope:** redefining Person/Identity, Student Lifecycle, Examination results, Qualification Completion, technical implementation, APIs, databases, UI design or new business authority.
 
 ## 5. Ownership and Participating Domains
 
-Academic Completion & Completion Evidence owns the completion evaluation and authoritative completion basis.
-
-Student Lifecycle owns student identity and academic lifecycle context.
-
-Examination owns examination results/evidence that may be consumed as completion inputs.
-
-The duplicate-resolution outcome remains within the completion owner.
+Academic Completion & Completion Evidence owns only its completion evaluation/evidence responsibilities under L2-I13. Source domains retain ownership of their authoritative facts. Student Lifecycle alone owns the institutional Qualification Completion decision under L2-C05.
 
 ## 6. Business Actors, Roles and Responsibilities
 
-- Completion Administrator/authority: identifies and resolves duplicate completion evaluations.
-- Student Lifecycle: provides authoritative student context.
-- Examination: provides authoritative examination evidence where relevant.
-- Required academic approval authority: applies existing completion governance.
+- Academic Completion / Completion Evidence authority governs the I13-owned evaluation/evidence position.
+- Applicable Examination authorities establish authoritative examination outcomes under their owning workflows.
+- Platform Identity and Student Lifecycle authorities retain their source responsibilities where identity/context facts participate.
+- Student is the subject of the completion/evidence outcome.
+- Section H consumers, where applicable, consume governed evidence without acquiring ownership.
 
-No new authority is created.
+No new actor or approval authority is introduced.
 
 ## 7. Preconditions and Entry Criteria
 
-- A student and completion scope are identifiable.
-- More than one evaluation position exists or has been initiated.
-- The completion lifecycle and its authoritative evaluation context are available.
-- Source facts used by the evaluations remain traceable.
+- The affected student/candidate and completion scope are identifiable.
+- Required source facts are available or the scenario explicitly governs their unresolved condition.
+- Existing I13 evidence/completion governance applies.
+- Source-domain ownership remains unchanged.
 
 ## 8. Trigger
 
-A duplicate or competing completion evaluation is identified for the same student and completion scope.
+Completion-relevant records or an in-progress completion evaluation cannot be reliably associated with the authoritative candidate/Student Context.
 
 ## 9. Main Business Flow
 
-1. Identify the student, programme and completion scope.
-2. Identify all evaluation positions associated with that scope.
-3. Determine whether each position is a legitimate re-evaluation or an unintended duplicate.
-4. Establish the evaluation that represents the current authoritative completion position under the existing completion lifecycle.
-5. Preserve legitimate historical evaluations and their decision basis.
-6. Supersede or otherwise disposition the duplicate current position using the existing completion lifecycle.
-7. Reconcile any downstream completion-evidence processing with the single authoritative evaluation.
-8. Publish applicable completion facts through the canonical completion owner.
-9. End when exactly one evaluation position is authoritative for the current scope.
+1. Identify the affected completion evaluation, candidate reference and completion scope.
+2. Compare the evaluation association with authoritative Person/Identity and Student Lifecycle context.
+3. If the source identity or Student Context itself is incorrect, route correction to its canonical owner and hold completion evaluation.
+4. Consume the corrected authoritative identity/context fact after the owning workflow completes.
+5. Reassociate the completion evaluation to the correct Student Context without rewriting source-owned identity/history.
+6. Preserve the prior erroneous association and correction basis as traceable history.
+7. Resume completion evaluation only against the corrected authoritative Student Context.
 
 ## 10. Alternate Business Flows
 
-**Legitimate re-evaluation:** retain the latest/current evaluation as authoritative while preserving the prior evaluation history.
+### 10.1
 
-**Duplicate with identical basis:** consolidate current use around one authoritative evaluation without deleting historical evidence.
+If verification shows the existing association is already authoritative, retain it and close the mismatch concern.
 
-**Evaluation basis changed:** the newer authoritative evaluation supersedes the prior current position under existing completion governance.
+### 10.2
+
+If multiple Student Contexts are implicated, Student Lifecycle resolves the authoritative context before I13 continues.
 
 ## 11. Failure, Interruption and Business Recovery
 
-**No canonical evaluation can be selected:** do not invent a precedence rule; escalate through completion governance.
-
-**Student context differs:** Student Lifecycle remains authoritative and the evaluations must be associated with the correct context before completion is finalized.
-
-**Underlying examination evidence differs:** Examination remains the owner of examination evidence; completion waits for the authoritative evidence position.
-
-**Downstream evidence already produced:** completion-evidence consequences remain governed by the existing completion-evidence lifecycle.
+Completion evaluation remains blocked while authoritative identity/context facts are unresolved or conflicting. I13 must not select a Student Context by assumption.
 
 ## 12. Business Rules and Decision Constraints
 
-- One current completion evaluation must be authoritative for a given student and completion scope.
-- Legitimate re-evaluation is distinct from unintended duplicate evaluation.
-- Historical evaluation decisions remain traceable.
-- Source-owned examination/student facts are not rewritten by duplicate resolution.
-- No local rule is invented for choosing between materially different authoritative evaluations.
+- Person/Identity facts remain owned by Platform Foundation / Identity.
+- Student Context remains owned by Student Lifecycle.
+- Academic Completion & Completion Evidence may correct only its own association to authoritative source facts.
+- No local identity-merge, context-selection or precedence rule is invented.
 
 ## 13. State and Lifecycle Impact
 
-No new `Duplicate` or `Resolved` completion state is introduced. The existing completion-evaluation lifecycle remains authoritative. Duplicate handling is a business disposition within that lifecycle.
+No new completion or Student Context state is introduced. The completion evaluation remains at its last valid position until authoritative association is restored.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
-The completion-owning workflow publishes the authoritative evaluation/completion facts. Student Lifecycle and Examination publish their own source facts.
-
-No `DuplicateCompletionEvaluationResolved` event is invented. Existing completion-domain event names must be used where defined by L2-C05.
+Identity/Student Context correction events, if any, remain owned by their canonical domains. I13 publishes only its existing completion-evidence facts when those facts occur; no local identity-correction event is invented.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-- Duplicate evaluation disposition follows the existing completion approval/governance authority.
-- The selected authoritative evaluation and disposition basis must be auditable.
-- Historical evaluations must remain traceable.
-- Any correction to examination evidence remains subject to Examination authority.
+Completion/evidence authorities may identify and reconcile the I13-owned association. Any source identity/context correction requires the canonical owning authority. Audit evidence preserves old/new association, source resolution and resumption.
 
 ## 16. Completion Criteria and Postconditions
 
-**Complete when:** all duplicate/competing evaluations are identified; legitimate re-evaluation is distinguished from duplication; one current evaluation is authoritative; historical evaluations remain traceable; and applicable completion facts are published.
-
-**Postconditions:** downstream completion processing has one current evaluation basis and cannot treat duplicate positions as competing authoritative outcomes.
+The completion evaluation references the correct authoritative Student Context; source ownership is preserved; erroneous association history is retained; and completion evaluation can continue safely.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
-1. L2-C05 is locked and explicitly owns qualification-completion eligibility, degree audit, completion approval and completion events.
-2. The accessible source does not expose a dedicated duplicate-evaluation event or state; none is invented.
-3. Exact duplicate-selection precedence remains completion-governance owned rather than created at L3.
+No L3-local blocker remains after the controlled semantic amendment. No implementation detail or unsupported business authority is introduced.
