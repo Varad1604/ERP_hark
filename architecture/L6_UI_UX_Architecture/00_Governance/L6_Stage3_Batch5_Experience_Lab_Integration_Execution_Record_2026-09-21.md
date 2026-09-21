@@ -282,7 +282,7 @@ Verified implementation properties:
 - context uses `dl/dt/dd` semantics;
 - operational groups use headings and list structure;
 - semantic meaning is stated in text and is not color-only;
-- responsive layout collapses four-column context/counts to two columns and then one column;
+- responsive layout collapses four-column context/counts to two columns; at narrow width the Institution context spans the full row while the remaining context/count cards retain a compact two-column layout;
 - operational inspection collapses to one column at narrow width.
 
 No destructive-confirmation modal was added for deterministic non-persistent demo reset.
@@ -329,7 +329,7 @@ Observed desktop rendering:
 
 Observed narrow rendering:
 
-- context and counts collapse to one column;
+- context and counts use a compact two-column layout, with the Institution context spanning the full row;
 - operational collections remain readable and scrollable;
 - Reset Demo Data remains full-width and reachable;
 - no horizontal clipping is visible;
