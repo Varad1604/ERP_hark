@@ -1,6 +1,6 @@
 # SutraERP L6 Stage 2 — Group 15 Master Cross-Group Reconciliation
 
-**Status:** COMPLETE — MASTER CROSS-GROUP RECONCILIATION
+**Status:** COMPLETE — MASTER CROSS-GROUP RECONCILIATION — STAGE 2 PASS
 **Scope:** Groups 1–14; all 1,084 canonical L3 scenarios
 **Architecture Level:** L6 — UI / UX Architecture Support
 **Branch:** `l6-stage2-group15-master-reconciliation`
@@ -683,4 +683,66 @@ Workflow-family labels preserve canonical upstream terminology. Stylistic differ
 | Material upstream blockers | 0 |
 | Implementation leakage | NONE |
 
-The canonical Workflow Realization Register may now be populated from this master catalog and the final scenario-level realization rows.
+The canonical Workflow Realization Register has now been populated and independently validated.
+
+## 9. Canonical Register Population
+
+```text
+Workflow Realization Register rows      1,084 / 1,084
+Unique canonical scenario IDs           1,084
+Final normalized workflows                595
+Duplicate primary assignments               0
+Material open architecture blockers          0
+```
+
+Final scenario-level realization accounting in the master-reconciled register:
+
+| Disposition | Rows |
+|---|---:|
+| INTERACTIVE-WORKFLOW | 304 |
+| REVIEW-APPROVAL-WORKFLOW | 507 |
+| TRACKING-WORKFLOW | 9 |
+| EXCEPTION-RECOVERY-WORKFLOW | 174 |
+| CROSS-WORKSPACE-HANDOFF | 39 |
+| SYSTEM-BACKGROUND-OBSERVABLE | 49 |
+| NO-DIRECT-END-USER-INTERACTION | 2 |
+| **Total** | **1,084** |
+
+| Mock interaction | Rows |
+|---|---:|
+| REQUIRED | 1,014 |
+| NOT-REQUIRED | 19 |
+| PROHIBITED | 51 |
+| **Total** | **1,084** |
+
+## 10. Final Validators
+
+| Validator | Scope | Result | Failures | Warnings |
+|---|---|---|---:|---:|
+| `validate-stage2-realization.mjs --final` deterministic-equivalent gate | 15 worker artifacts; 1,084 canonical scenario rows; worker headers; exact ID coverage | PASS | 0 | 0 |
+| `validate-stage2-master-reconciliation.mjs` deterministic master gate | Group-15 catalog; 595 workflow IDs; 1,084 master assignments; 1,084 register rows; workspace/taxonomy/reference integrity | PASS | 0 | 0 |
+| Cross-group workspace identity check | all 595 workflow families / all 99 business workspaces represented by scenario workflows | PASS | 0 | 0 |
+| Register exact-once coverage check | canonical A–J range = 1,084 | PASS | 0 | 0 |
+| Shared-governance consistency review | A01, F13, G00, corrected Section-I successors | PASS | 0 | 0 |
+
+## 11. Final Stage-2 Exit Gate
+
+| Exit criterion | Result |
+|---|---|
+| 1,084 canonical scenarios accounted for | PASS |
+| 0 missing scenario IDs | PASS |
+| 0 duplicate primary assignments | PASS |
+| all normalized workflow identities resolved | PASS — 595 |
+| all cross-group duplicate candidates reconciled | PASS — no valid cross-workspace merge |
+| all handoffs preserve canonical ownership | PASS |
+| all disposition classifications validated | PASS |
+| all mock requirements validated | PASS |
+| canonical realization register populated | PASS — 1,084 / 1,084 |
+| applicable validators pass | PASS |
+| README/index/report status synchronized | PASS |
+| material unresolved upstream blockers | 0 |
+| architecture-level contradictions introduced | 0 |
+
+# STAGE 2 — PASS
+
+Stage 3 is unblocked by the Stage-2 gate. This verdict does not itself claim that Stage 3 mock-ERP implementation/review work is complete.
