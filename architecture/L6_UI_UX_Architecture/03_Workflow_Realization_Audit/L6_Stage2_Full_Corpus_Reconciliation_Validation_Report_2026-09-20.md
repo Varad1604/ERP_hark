@@ -2,21 +2,22 @@
 
 **Status:** STAGE-2 RECONCILIATION IN PROGRESS — GROUP 12 RECONCILED  
 **Architecture Level:** L6 — UI / UX Architecture Governance  
-**Branch:** `l6-stage2-full-scenario-realization-audit`  
-**Base Architecture Main:** `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`  
+**Working-Branch Model:** Controlled group-scoped Stage-2 branches merged into canonical `main` after validated batches  
+**Canonical Architecture Base:** repository `main`; exact commit advances as controlled Stage-2 groups are merged  
 **Frontend Main Verified:** `e2560877eac4446b925e45f04b7dfa4c24d3625c`  
 **Canonical L3 Population:** 1,084  
 **Purpose:** Record the independent Stage-2 reconciliation state after validating the 15 worker artifacts, correcting evidence-backed L6 mapping defects, resolving the discovered upstream semantic drift through controlled L3/L4 correction, and continuing workflow normalization before canonical register population.
 
-## 1. Live Repository Baseline
+## 1. Repository Integration Baseline
 
-Verified before modification:
+Stage 2 is executed on controlled group-scoped working branches. Validated batches are merged into architecture `main`; this report records the logical reconciliation state and must not be interpreted as binding the programme to one permanent integration branch or one historical base SHA.
 
-- Architecture `main`: `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`
-- Stage-2 branch: `l6-stage2-full-scenario-realization-audit` (current working head advanced during controlled reconciliation)
-- Stage-2 branch relation after Group 7 reconciliation: ahead of `main` / 0 behind; exact ahead count advances with each controlled Stage-2 commit
-- Frontend `main`: `e2560877eac4446b925e45f04b7dfa4c24d3625c`
-- Frontend was not modified by this Stage-2 work.
+At the Group-12 checkpoint:
+
+- Groups 1–10 are already integrated into architecture `main`;
+- Groups 11–12 are validated together on the Group-12 continuation branch and are ready for canonical merge;
+- the continuation branch is 0 commits behind `main` at validation time;
+- frontend was not modified by Groups 11–12.
 
 ## 2. Mechanical Corpus Validation
 
@@ -54,9 +55,13 @@ Corrections made:
 | L3-I-092 | EXCEPTION-RECOVERY-WORKFLOW / NOT-REQUIRED | CROSS-WORKSPACE-HANDOFF / REQUIRED | I09 holds result processing and routes source-owned identity/student correction to canonical A/C owners. |
 | L3-I-101 | SYSTEM-BACKGROUND-OBSERVABLE / PROHIBITED | REVIEW-APPROVAL-WORKFLOW / REQUIRED | Publication staff verify readiness and publication authorization before official publication. |
 
-## 4. Reconciled Provisional Disposition Distribution
+## 4. Historical Worker-Baseline Distribution — Not Current Reconciled Counts
 
-These are scenario-realization counts, not distinct workflow counts.
+The table below is retained only as evidence of the original mechanically generated 1,084-row worker baseline before controlled group reconciliation. It is **not** the current semantic distribution after Groups 1–12 because later group reconciliation deliberately corrected many worker classifications.
+
+Do not use these figures for current workflow or mock-population decisions. Current authoritative Stage-2 evidence is the set of completed group-reconciliation artifacts plus the final master reconciliation that will occur after Groups 13–14.
+
+These are historical scenario-realization counts, not distinct workflow counts.
 
 | Primary disposition | Scenario rows |
 |---|---:|
@@ -160,7 +165,7 @@ The following values remain **PENDING DISCOVERY THROUGH SEMANTIC NORMALIZATION**
 - Final mock-interaction-required workflow population
 - Final observable non-interactive workflow population
 
-Scenario-row disposition counts in Section 4 remain valid realization-accounting evidence only.
+Section 4 remains historical worker-baseline evidence only; it is no longer a current reconciled distribution after the controlled Group 1–12 semantic corrections.
 
 ## 8. Validator Hardening
 
