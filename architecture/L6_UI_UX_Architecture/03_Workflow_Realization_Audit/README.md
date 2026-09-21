@@ -1,8 +1,8 @@
 # SutraERP L6 Stage 2 — Full Scenario Realization Audit Control Area
 
-**Status:** Stage-2 reconciliation IN PROGRESS — Group 10 reconciled  
-**Integration Branch:** `l6-stage2-full-scenario-realization-audit`  
-**Canonical Base Verified:** architecture `main` at `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`; frontend `main` at `e2560877eac4446b925e45f04b7dfa4c24d3625c`  
+**Status:** Stage-2 reconciliation IN PROGRESS — Group 12 reconciled  
+**Working-Branch Model:** controlled group-scoped Stage-2 branches merged into architecture `main` after validated batches  
+**Canonical Base:** architecture `main`; exact commit advances as controlled groups are integrated; frontend remains outside this Stage-2 reconciliation work  
 **Purpose:** Hold range-scoped worker prompts and normalized worker results for the 1,084-scenario UI-realization audit before master reconciliation.
 
 This area is review/support material only. It does not replace or amend canonical L1–L5 architecture and does not itself populate `L6_Workflow_Realization_Register_DRAFT.md`.
@@ -56,7 +56,7 @@ The 15 worker artifacts are mechanically complete at 1,084 / 1,084 rows with zer
 
 Evidence-backed L6 classification defects have been corrected in the worker review artifacts.
 
-The Section-I Phase-5 semantic drift discovered during master review has also been corrected under controlled upstream governance for `L3-I-148`, `149`, `150`, `157`, `158`, `159`, and `160`. Their dependent L4 blocker-only drafts were re-derived and the corresponding Stage-2 rows were revalidated. Group-6 reconciliation identified two upstream blockers in G013/G014; both are now resolved through locked G00/A01 amendments, targeted L3 revalidation and re-derived L4 behavior. Groups 7–8 passed after semantic correction of under-classified Campus Operations rows. Group 9 G4 passed after reconciling Teacher Guardian Scheme and Infrastructure Management. Group 10 H has now also passed after reconciling all ten Institutional Services workspaces while preserving genuinely automatic notification/search/reporting behavior and consuming the current H amendments. Material Stage-2 group blockers remain **0**.
+The Section-I Phase-5 semantic drift discovered during master review has also been corrected under controlled upstream governance for `L3-I-148`, `149`, `150`, `157`, `158`, `159`, and `160`. Their dependent L4 blocker-only drafts were re-derived and the corresponding Stage-2 rows were revalidated. Group-6 reconciliation identified two upstream blockers in G013/G014; both are now resolved through locked G00/A01 amendments, targeted L3 revalidation and re-derived L4 behavior. Groups 7–8 passed after semantic correction of under-classified Campus Operations rows. Group 9 G4 passed after reconciling Teacher Guardian Scheme and Infrastructure Management. Group 10 H passed after reconciling all ten Institutional Services workspaces. Group 11 I1 passed after reconciling Examination Policy through Marks & Evaluation. Group 12 I2 has now also passed after reconciling Result Processing, Result Publication, Revaluation/Rechecking and Subsequent Examination Execution, including the current I11 exception/adjudication amendment. Material Stage-2 group blockers remain **0**.
 
 The canonical Workflow Realization Register remains intentionally unpopulated only because cross-worker workflow normalization, distinct-workflow counting and final independent validation are still in progress.
 
@@ -78,7 +78,9 @@ See:
 | 8 | G3 (`G-155…251`) | 97 | **PASS — complete for master cross-group reconciliation** | 46 |
 | 9 | G4 (`G-252…320`) | 69 | **PASS — complete for master cross-group reconciliation** | 31 |
 | 10 | H (`H-001…081`) | 81 | **PASS — complete for master cross-group reconciliation** | 54 |
-| 11–14 | I1 through J remaining controlled groups | 296 | Pending | Pending |
+| 11 | I1 (`I-001…082`) | 82 | **PASS — complete for master cross-group reconciliation** | 41 |
+| 12 | I2 (`I-083…144`) | 62 | **PASS — complete for master cross-group reconciliation** | 34 |
+| 13–14 | I3 through J remaining controlled groups | 152 | Pending | Pending |
 
 Group evidence:
 
@@ -92,12 +94,14 @@ Group evidence:
 - `group-reconciliation/STAGE2_GROUP_08_G3_RECONCILIATION.md`
 - `group-reconciliation/STAGE2_GROUP_09_G4_RECONCILIATION.md`
 - `group-reconciliation/STAGE2_GROUP_10_H_RECONCILIATION.md`
+- `group-reconciliation/STAGE2_GROUP_11_I1_RECONCILIATION.md`
+- `group-reconciliation/STAGE2_GROUP_12_I2_RECONCILIATION.md`
 
 Current cumulative Stage-2 group reconciliation coverage:
 
 ```text
-Scenario rows semantically group-reconciled   788 / 1,084
-Distinct workflows discovered in PASS groups      442
+Scenario rows semantically group-reconciled   932 / 1,084
+Distinct workflows discovered in PASS groups      517
 Material Stage-2 group blockers                    0
 Canonical Workflow Realization Register rows      0 / 1,084
 ```
