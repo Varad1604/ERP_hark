@@ -1,8 +1,8 @@
 # L6 UI / UX Architecture
 
 **Architecture Level:** L6 — UI / UX Architecture  
-**Current State:** Controlled L6 Reopening Authorized for Full Workflow UI Realization + Mock-Operational ERP; Days 1–13 Baseline Preserved  
-**Broad Production Authoring:** Full 1,084-scenario UI-realization audit and mock-operational frontend expansion authorized under controlled amendment  
+**Current State:** Stage-2 full-corpus workflow realization audit **PASS**; 1,084 scenarios master-reconciled into 595 L6 realization workflows; mock-operational expansion continues  
+**Broad Production Authoring:** Stage-2 1,084-scenario UI-realization audit complete; subsequent mock-operational frontend expansion remains controlled by the programme authority  
 **Downstream:** SutraERP frontend implementation repository after applicable L6 slice approval/authorization  
 
 L6 defines user interaction, navigation, screens, workspaces and user journeys derived from approved upstream architecture without owning business logic.
@@ -34,7 +34,7 @@ The prior `L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md` remai
 
 `L6_Full_Workflow_Realization_and_Mock_ERP_Execution_Plan_DRAFT.md` governs execution.
 
-`L6_Workflow_Realization_Register_DRAFT.md` defines the controlled 1,084-scenario realization schema. It currently establishes the schema only; its 1,084 rows must be populated during the full-corpus audit before any completion claim.
+`L6_Workflow_Realization_Register_DRAFT.md` is now the Stage-2 master-reconciled realization register: **1,084 / 1,084 rows populated**, mapped to **595 final L6 realization workflows**, with zero missing or duplicate primary assignments. Stage 2 has passed its final validation gate.
 
 ## Current Foundation Package
 

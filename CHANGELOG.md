@@ -1,5 +1,17 @@
 # SutraERP Architecture Changelog
 
+## [Unreleased] - 2026-09-21 — L6 Stage-2 full-corpus workflow realization PASS
+
+- Completed semantic reconciliation of all **1,084 / 1,084** canonical L3 scenarios across Stage-2 Groups 1–14.
+- Completed Group-15 master cross-group reconciliation and established **595** final L6 realization workflows.
+- Populated `L6_Workflow_Realization_Register_DRAFT.md` with **1,084 / 1,084** master-reconciled rows and final `L6-RWF-####` reviewer-trace identities.
+- Confirmed zero missing canonical scenario IDs, zero duplicate primary assignments, zero invalid cross-group workflow merges, and zero material unresolved upstream blockers.
+- Added `validate-stage2-master-reconciliation.mjs`; the worker-corpus and master-register validation gates both pass with zero errors.
+- Preserved A01 configuration governance, F13 analytics-definition governance, G00 exception recovery, corrected Section-I successors, and all canonical cross-domain ownership boundaries.
+- Marked **STAGE 2 — PASS** and unblocked Stage 3 under its separate programme controls.
+- No L0–L5 ownership, lifecycle, event, state, rule, authority, API, persistence, deployment or implementation architecture was redefined by Group 15.
+
+
 ## [Unreleased] - 2026-09-20 — Group-6 G00/A01 upstream remediation
 
 - Added `ADR-G-EXCEPTION-001` and locked `L2-G00_Exception_Recovery_Governance_Amendment_2026-09-20.md`.

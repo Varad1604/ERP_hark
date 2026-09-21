@@ -499,7 +499,7 @@ The active L6 package contains the preserved Days 1–13 foundation/baseline, ap
 | L6 UX Baseline Lock and Backend Proceed Decision — 2026-09-19 | Lead Architect | Locked / Historical Baseline | Preserved Days 1–13 baseline; closed-baseline current-state interpretation superseded by controlled workflow-realization expansion |
 | L6 Full Workflow Mock-ERP Expansion Authorization — 2026-09-19 | Lead Architect | Architecture Approved | Current L6 programme authority; reopens L6 for 1,084-scenario UI realization and mock-operational ERP review |
 | L6 Full Workflow Realization & Mock-ERP Execution Plan — Draft | Lead Architect | Draft Active Execution Plan | Governs full-corpus workflow realization, coherent mock data/state, discoverability and human review |
-| L6 Workflow Realization Register — Draft | Lead Architect | Draft Expansion Register | Controlled 1,084-scenario UI-realization schema; population pending full-corpus audit |
+| L6 Workflow Realization Register — Draft | Lead Architect | Architecture Approved | Stage-2 master-reconciled register: 1,084 / 1,084 scenario rows, 595 final realization workflows, zero missing/duplicate primary assignments |
 
 ### Active L6 Planning Baseline
 
@@ -558,7 +558,7 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 | L6 Full-Corpus L3 Workspace Traceability | 1,084 / 1,084 reconciled at workspace-family/shared-presentation level |
 | L6 Days 1–13 UX Baseline | Preserved historical locked baseline |
 | L6 Active Programme | Controlled workflow-realization + mock-ERP expansion authorized 2026-09-19 |
-| L6 Workflow Realization Register | Schema established; 0 / 1,084 rows populated pending Stage-2 audit |
+| L6 Workflow Realization Register | **1,084 / 1,084 rows populated; 595 final realization workflows; Stage 2 PASS** |
 | Active Architects | 5 |
 
 ---
@@ -594,6 +594,11 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 ---
 
 # Recent Changes
+
+**2026-09-21 — L6 Stage-2 full-corpus workflow realization PASS:** Completed controlled reconciliation of all 1,084 canonical L3 scenarios across Groups 1–14 and the Group-15 enterprise master pass. Established 595 final L6 realization workflows, populated the 1,084-row Workflow Realization Register, validated zero missing/duplicate primary assignments and zero material blockers, and passed both worker-corpus and master-register validation gates. Stage 3 is unblocked under its own controls; no L0–L5 ownership or business semantics were changed by the master pass.
+
+---
+
 
 **2026-09-19 — L6 controlled reopening for full workflow realization:** Preserved the completed Days 1–13 baseline but superseded its closed-programme interpretation. Authorized a full 1,084-scenario UI-realization audit, coherent fictional-institution mock dataset, deterministic frontend-only mock updates/reset, workflow-aware discovery, 99/99 browseable ERP workspaces and full end-user mock-ERP review before significant backend integration. Added the Full Workflow Realization & Mock-ERP Execution Plan and Workflow Realization Register schema.
 
