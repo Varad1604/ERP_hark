@@ -1,6 +1,6 @@
 # SutraERP L6 Stage 2 — Full-Corpus Reconciliation & Validation Report — 2026-09-20
 
-**Status:** STAGE-2 RECONCILIATION IN PROGRESS — GROUP 11 RECONCILED  
+**Status:** STAGE-2 RECONCILIATION IN PROGRESS — GROUP 12 RECONCILED  
 **Architecture Level:** L6 — UI / UX Architecture Governance  
 **Branch:** `l6-stage2-full-scenario-realization-audit`  
 **Base Architecture Main:** `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`  
@@ -133,7 +133,7 @@ The generated worker baseline contains near-scenario-cardinality labels. Those l
 
 The upstream semantic blockers are now resolved. Full-corpus workflow normalization is therefore unblocked and remains the active Stage-2 task.
 
-Completed PASS-group reconciliation now covers Groups 1–11:
+Completed PASS-group reconciliation now covers Groups 1–12:
 
 - Group 1 — A+B: 95 scenarios → 50 distinct workflows;
 - Group 2 — C: 75 scenarios → 32 distinct workflows;
@@ -145,9 +145,10 @@ Completed PASS-group reconciliation now covers Groups 1–11:
 - Group 8 — G3: 97 scenarios → 46 distinct workflows — **PASS after semantic correction of under-classified Health Services, Security Operations and Housekeeping realization rows, while consuming the corrected G200/G212/G214 authority baseline**;
 - Group 9 — G4: 69 scenarios → 31 distinct workflows — **PASS after semantic correction of under-classified Teacher Guardian Scheme and Infrastructure Management realization rows while preserving Academic, B03 and G01 ownership boundaries**;
 - Group 10 — H: 81 scenarios → 54 distinct workflows — **PASS after semantic reconciliation across H01–H10, preserving genuine automatic behavior and consuming current H governance amendments**;
-- Group 11 — I1: 82 scenarios → 41 distinct workflows — **PASS after semantic correction of under-classified Examination policy, session, scheduling, registration, Hall Ticket, conduct and evaluation rows**.
+- Group 11 — I1: 82 scenarios → 41 distinct workflows — **PASS after semantic correction of under-classified Examination policy, session, scheduling, registration, Hall Ticket, conduct and evaluation rows**;
+- Group 12 — I2: 62 scenarios → 34 distinct workflows — **PASS after semantic correction of under-classified Result Processing, Result Publication, Revaluation/Rechecking and Subsequent Examination rows, consuming the current I11 exception/adjudication amendment**.
 
-Cumulative semantic reconciliation coverage is **870 / 1,084 scenarios** across Groups 1–11, contributing **483 distinct workflows**. There are **0 material Stage-2 group blockers**. The former F076 blocker was resolved through ADR-FIN-ANALYTICS-001, the locked 2026-09-20 F13 analytics-governance amendment, targeted L3 revalidation, and re-derived L4-F-076 behavior. The Group-6 G013/G014 blockers were resolved through ADR-G-EXCEPTION-001, ADR-PLAT-CONFIG-001, locked 2026-09-20 G00/A01 amendments, targeted L3 revalidation, and re-derived L4-A-056/L4-G-013/L4-G-014 behavior. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
+Cumulative semantic reconciliation coverage is **932 / 1,084 scenarios** across Groups 1–12, contributing **517 distinct workflows**. There are **0 material Stage-2 group blockers**. The former F076 blocker was resolved through ADR-FIN-ANALYTICS-001, the locked 2026-09-20 F13 analytics-governance amendment, targeted L3 revalidation, and re-derived L4-F-076 behavior. The Group-6 G013/G014 blockers were resolved through ADR-G-EXCEPTION-001, ADR-PLAT-CONFIG-001, locked 2026-09-20 G00/A01 amendments, targeted L3 revalidation, and re-derived L4-A-056/L4-G-013/L4-G-014 behavior. These remain temporary group-normalized workflow identities pending final cross-group reconciliation.
 
 The following values remain **PENDING DISCOVERY THROUGH SEMANTIC NORMALIZATION** rather than blocked by architecture:
 
@@ -195,9 +196,9 @@ This does not replace architecture semantic review.
 
 ## 10. Verdict
 
-**STAGE 2: IN PROGRESS — GROUP 11 RECONCILED**
+**STAGE 2: IN PROGRESS — GROUP 12 RECONCILED**
 
-The worker corpus is mechanically complete, the discovered upstream semantic drift has been corrected under controlled L3/L4 governance, and Groups 7–11 have completed semantic reconciliation with no new upstream blocker.
+The worker corpus is mechanically complete, the discovered upstream semantic drift has been corrected under controlled L3/L4 governance, and Groups 7–12 have completed semantic reconciliation with no new upstream blocker.
 
 Stage 2 is not yet complete because distinct workflow normalization, final workflow-count discovery, canonical 1,084-row register population, and final independent validation still remain.
 
@@ -397,4 +398,38 @@ Scenarios semantically reconciled   870 / 1,084
 Distinct group-normalized workflows 483
 Material Stage-2 blockers             0
 Remaining unreconciled scenarios    214
+```
+
+
+## 16. Group 12 — Examination I2 Reconciliation
+
+Group 12 covers `L3-I-083 … L3-I-144` (62 scenarios) across `W-I09 … W-I12`.
+
+The I2 worker artifact is mechanically complete but materially under-classified explicit Result Processing, Result Publication, Revaluation/Rechecking and Subsequent Examination work as background/system-owned behavior. Current Locked L3 review confirms human result-processing, publication, review, reconciliation, scheduling, eligibility and exception-governance participation throughout the range.
+
+Group 12 normalization result:
+
+```text
+Scenarios reconciled                 62 / 62
+Distinct workflows                   34
+User-addressable workflows           34
+Tracking / non-mock workflows         0
+Material blockers                     0
+Verdict                              PASS
+```
+
+All 62 scenario rows require meaningful mock interaction. The current I11 exception/adjudication amendment is consumed, and source-owned identity/result facts remain outside local Examination ownership where hand-off is required.
+
+Canonical evidence:
+
+`group-reconciliation/STAGE2_GROUP_12_I2_RECONCILIATION.md`
+
+Updated cumulative position after Group 12:
+
+```text
+Groups PASS                          12 / 14
+Scenarios semantically reconciled   932 / 1,084
+Distinct group-normalized workflows 517
+Material Stage-2 blockers             0
+Remaining unreconciled scenarios    152
 ```
