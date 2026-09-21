@@ -17,9 +17,9 @@ The live repositories and Batch-4 merge state were rechecked before Batch-5 impl
 
 ```text
 Architecture main:        564605a2e207125cbd093d4f9407b7da8422e57c
-Architecture Stage-3:     e0020a5c... before synchronization
+Architecture Stage-3:     e0020a5c2ee4aa86ef840440fa95d4fadf72e229 before synchronization
 Frontend main:            0892d63ba5beb4af9c066a4a0655a26e69f5f942
-Frontend Stage-3:         133bbfd73... before synchronization
+Frontend Stage-3:         133bbfd73d0b6b6d92cc667d86a9a01f03a78dd4 before synchronization
 ```
 
 Batch-4 merge verification:
