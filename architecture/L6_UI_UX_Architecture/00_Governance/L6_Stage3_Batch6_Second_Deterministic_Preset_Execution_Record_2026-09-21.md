@@ -588,3 +588,129 @@ Neither was started in Batch 6.
 ```text
 STAGE 3 — BATCH 6 PASS
 ```
+
+
+---
+
+## 18. Batch-6 Integrity & Quality Hardening Addendum — 2026-09-21
+
+A post-verification hardening pass strengthened Batch 6 without changing L0–L5 semantics, preset scope, canonical institutional facts, or the single-active-state architecture.
+
+### 18.1 Preset terminology
+
+The reviewer heading was changed from:
+
+```text
+Coherent demo baseline
+```
+
+to the preset-neutral:
+
+```text
+Coherent demo context
+```
+
+so the heading remains accurate for both `Baseline` and `Exception-rich`.
+
+### 18.2 Stronger preset integrity validation
+
+`scripts/validate-mock-presets.mjs` now additionally proves:
+
+- operational IDs are unique within each preset;
+- the Exception-rich overlay adds exactly seven reviewer-local operational records;
+- the expected collection deltas remain exactly +2 tasks, +1 notification, +2 review-attention records and +2 activity records;
+- task timestamps are valid, creation is not after `mockNow`, and due time is not before creation;
+- notification and review-attention timestamps are valid and not after `mockNow`;
+- activity timestamps are valid, not after `mockNow`, and chronologically ordered;
+- Person → Student Context pairing remains coherent for referenced records;
+- Person → Workforce Context pairing remains coherent;
+- Workforce → Faculty Context pairing remains coherent;
+- Academic Assignment → Faculty Context pairing remains coherent;
+- Academic Assignment → Course Offering pairing remains coherent.
+
+New hardening counters on the final validated revision:
+
+```text
+presetOperationalIdFailures:        0
+presetTemporalCoherenceFailures:    0
+presetReferenceIntegrityFailures:   0
+```
+
+The previously established Batch-1 through Batch-6 validation counters also remain zero.
+
+### 18.3 Exception-rich rendered interaction evidence
+
+The CI evidence harness now performs an actual browser interaction with the reviewer control.
+
+For both desktop and 390px narrow viewports, CI:
+
+1. opens the existing Student Workspace Experience Lab;
+2. locates the visible `Exception-rich` preset control;
+3. selects it through the visible label;
+4. verifies that the radio becomes selected;
+5. verifies the live status message:
+   `Exception-rich review state loaded.`;
+6. verifies the operational summary becomes exactly:
+
+```text
+tasks:             5
+notifications:     4
+review attention:  4
+activity:          7
+```
+
+7. captures full-page Exception-rich evidence.
+
+The evidence artifact therefore contains the existing Baseline desktop/narrow captures plus explicit Exception-rich desktop/narrow captures.
+
+### 18.4 CI harness corrections during hardening
+
+Three intermediate hardening runs exposed evidence-harness issues only:
+
+- the DOM assertion initially retained the pre-hardening heading `Coherent demo baseline`;
+- the ephemeral Playwright test package required explicit CI-local module installation;
+- the visually hidden radio input correctly delegates pointer interaction to its visible label, so the browser test was changed to click the label as a reviewer does.
+
+These corrections did not weaken product assertions or alter Batch-6 production semantics.
+
+Final validated frontend revision:
+
+```text
+d06ed3980bce6f069dfb0ac9b5676478a957c054
+```
+
+Final CI evidence:
+
+```text
+Workflow:                Frontend PR Validation
+Run ID:                  35591005536
+Run number:              94
+Job ID:                  106305148256
+Validated frontend SHA:  d06ed3980bce6f069dfb0ac9b5676478a957c054
+Result:                  SUCCESS
+Visual artifact:         experience-lab-visual-evidence
+Visual artifact ID:      10634587260
+```
+
+Final hardening gates:
+
+```text
+npm run review:validate                  PASS
+npm run mock:validate                    PASS
+npm run typecheck                        PASS
+npm run build                            PASS
+Baseline desktop/narrow render           PASS
+Exception-rich preset browser switch     PASS
+Exception-rich 5 / 4 / 4 / 7 assertion  PASS
+Exception-rich desktop capture           PASS
+Exception-rich narrow capture            PASS
+```
+
+### 18.5 Hardening verdict
+
+```text
+BATCH 6 INTEGRITY HARDENING — PASS
+BATCH 6 QUALITY HARDENING — PASS
+```
+
+No Batch-7 fixture-convergence work was introduced.
