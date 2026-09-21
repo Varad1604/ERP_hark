@@ -296,18 +296,18 @@ These implementation checks and rendered screenshots do not constitute a complet
 Final frontend revision used for rendered responsive inspection:
 
 ```text
-3f7aaa036bd6d0fbbd1246f726658f4a9acc5ec6
+1eb8d9e2414766fa09d80b4a24c4a0fbf147d284
 ```
 
 CI-rendered evidence:
 
 ```text
 Workflow: Frontend PR Validation
-Run ID:   35577821313
-Run no.:  81
-Job ID:   106263536541
+Run ID:   35582658286
+Run no.:  86
+Job ID:   106278822452
 Artifact: experience-lab-visual-evidence
-Artifact ID: 10628669569
+Artifact ID: 10631155680
 ```
 
 Captured widths:
@@ -354,6 +354,8 @@ taskInspectionFailures:               0
 notificationInspectionFailures:       0
 exceptionInspectionFailures:          0
 activityInspectionFailures:           0
+collapsibleInspectionFailures:         0
+resetActionClarityFailures:            0
 resetControlBindingFailures:          0
 resetUiRefreshFailures:               0
 reviewerBoundaryFailures:             0
@@ -408,10 +410,10 @@ CI evidence:
 
 ```text
 Workflow:                Frontend PR Validation
-Run ID:                  35577821313
-Run number:              81
-Job ID:                   106263536541
-Validated frontend SHA:  3f7aaa036bd6d0fbbd1246f726658f4a9acc5ec6
+Run ID:                  35582658286
+Run number:              86
+Job ID:                   106278822452
+Validated frontend SHA:  1eb8d9e2414766fa09d80b4a24c4a0fbf147d284
 Result:                  SUCCESS
 ```
 
@@ -491,12 +493,31 @@ Stage-3 PASS/FAIL decision
 
 None of these was started in Batch 5.
 
+### UX hardening validation
+
+The post-Batch-5 UX hardening final frontend revision is `1eb8d9e2414766fa09d80b4a24c4a0fbf147d284`. GitHub Actions `Frontend PR Validation` run `35582658286` / run number `86`, job `106278822452`, completed successfully. The final responsive evidence artifact is `10631155680`.
+
+The hardening-specific validator counters are:
+
+```text
+collapsibleInspectionFailures: 0
+resetActionClarityFailures:    0
+```
+
+Rendered desktop and 390px evidence was reviewed for visible overlap, overflow, clipping and excessive reviewer-panel obstruction. No new Batch-5 defect was found. The fixed mobile application navigation remains an existing shell behavior; the hardening did not redesign that shell.
+
 ---
 
 ## 17. Batch Verdict
 
 ```text
 STAGE 3 — BATCH 5 PASS
+```
+
+Post-completion UX hardening verdict:
+
+```text
+BATCH 5 UX HARDENING — PASS
 ```
 
 Batch-5 PRs remain unmerged pending explicit Lead Architect instruction.
