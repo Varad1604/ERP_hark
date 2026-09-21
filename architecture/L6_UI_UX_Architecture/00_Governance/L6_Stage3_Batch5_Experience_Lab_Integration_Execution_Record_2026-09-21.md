@@ -101,7 +101,7 @@ Reviewer tooling · deterministic · non-production
 
 No `Mock Admin`, `Demo Admin`, fixture console, developer dashboard or second application shell was introduced.
 
-The previously existing per-review-case reset icon remains separate and is now named `Reset review case` for semantic clarity.
+The previously existing per-review-case reset remains a separate control and is now presented with explicit visible text `Reset Review Case`; it does not share behavior with `Reset Demo Data`.
 
 ---
 
@@ -135,7 +135,7 @@ Review attention:  2
 Activity:          5
 ```
 
-All four collections are read-only.
+All four collections are read-only. Their detailed records are presented in native collapsible disclosures that default collapsed, keeping the Stage-3 context, counts and Reset Demo Data control visible without forcing the full operational detail set to dominate the reviewer page.
 
 Presentation semantics:
 
@@ -273,7 +273,7 @@ The pre-existing Global Experience Lab retains its existing architecture/reviewe
 
 ## 10. Accessibility Review
 
-Verified properties:
+Verified implementation properties:
 
 - `Reset Demo Data` is a semantic `button`;
 - keyboard operation follows native button behavior;
@@ -287,11 +287,13 @@ Verified properties:
 
 No destructive-confirmation modal was added for deterministic non-persistent demo reset.
 
+These implementation checks and rendered screenshots do not constitute a complete accessibility audit or assistive-technology certification. They confirm the implemented semantics, keyboard-native controls, responsive rendering and visible focus conventions that are mechanically or visually inspectable in this batch.
+
 ---
 
-## 11. Visual Verification Evidence
+## 11. Rendered Responsive Evidence
 
-Final frontend revision visually inspected:
+Final frontend revision used for rendered responsive inspection:
 
 ```text
 3f7aaa036bd6d0fbbd1246f726658f4a9acc5ec6
@@ -315,7 +317,7 @@ Desktop: 1440 × 1100 viewport, full-page capture
 Narrow:   390 × 844 viewport, full-page capture
 ```
 
-Observed desktop result:
+Observed desktop rendering:
 
 - Stage-3 reviewer panel is visible and visually separated from ordinary ERP workspace content;
 - deterministic institution/time/student/faculty context is visible;
@@ -325,7 +327,7 @@ Observed desktop result:
 - no Batch-5 clipping or component overlap is present;
 - existing Student Workspace remains visually intact below the Experience Lab.
 
-Observed narrow result:
+Observed narrow rendering:
 
 - context and counts collapse to one column;
 - operational collections remain readable and scrollable;
@@ -333,7 +335,7 @@ Observed narrow result:
 - no horizontal clipping is visible;
 - the existing mobile bottom-navigation overlay remains unchanged from the locked shell behavior and does not make Batch-5 content unreachable.
 
-The first visual-evidence attempt produced blank captures because the evidence files themselves were written inside the Vite-watched repository and the first browser navigation triggered Vite dependency optimization/reload. The evidence harness was corrected by storing evidence outside the watched repository and warming Vite before the asserted capture. The final run validates the actual rendered content.
+The first visual-evidence attempt produced blank captures because the evidence files themselves were written inside the Vite-watched repository and the first browser navigation triggered Vite dependency optimization/reload. The evidence harness was corrected by storing evidence outside the watched repository and warming Vite before the asserted capture. The final run proves that the requested desktop and narrow rendered states were captured and reviewed for visible overlap, clipping and responsive obstruction; screenshots alone do not prove complete accessibility or overall UX quality.
 
 A non-blocking pre-existing development-server observation remains: `/favicon.ico` returns a route 404 in dev logs. It did not affect rendered Batch-5 content and was not introduced by Batch 5.
 
@@ -498,3 +500,45 @@ STAGE 3 — BATCH 5 PASS
 ```
 
 Batch-5 PRs remain unmerged pending explicit Lead Architect instruction.
+
+
+---
+
+## 18. Batch-5 UX Hardening Addendum — 2026-09-21
+
+A focused post-Batch-5 UX hardening pass addressed three reviewer-experience findings without changing Batch-1 through Batch-4 state semantics or upstream architecture.
+
+### Reviewer-panel vertical dominance
+
+The persistent Stage-3 header, demo context, deterministic mock time, operational counts and `Reset Demo Data` remain visible.
+
+Detailed operational content for:
+
+- Demo review tasks;
+- Demo notifications;
+- Review attention;
+- Demo activity;
+
+is now exposed through four native `details/summary` disclosures. They default collapsed on desktop and narrow layouts so the reviewer can opt into detail without the panel obscuring the workspace by default.
+
+No operational record, count, semantic classification or state behavior was removed.
+
+### Reset-action clarity
+
+Two separate actions remain:
+
+```text
+Reset Demo Data
+→ resets the authoritative Stage-3 demo state through resetDemoState()
+
+Reset Review Case
+→ resets only the pre-existing Experience Lab review-case selection/state
+```
+
+The review-case action is no longer icon-only; it has visible text and an accessible name. The behaviors were not merged.
+
+### Evidence-claim boundary
+
+Desktop and 390px screenshots remain CI evidence for rendered responsive inspection. They are used to review visible overlap, overflow, clipping and reviewer-panel obstruction.
+
+They are not treated as proof of complete accessibility, assistive-technology compatibility or total UX quality. Accessibility claims remain limited to implemented semantics and checks that can be supported by source/CI evidence.
