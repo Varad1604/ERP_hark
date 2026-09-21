@@ -472,7 +472,7 @@ Architecture Batch-8 evidence vehicle:
 
 ```text
 PR #52 — L6 Stage 3 Batch 8 — final validation and closure evidence
-State: OPEN / NOT MERGED
+State: OPEN / PENDING FINAL MERGE
 Scope: closure/evidence synchronization only
 ```
 
@@ -496,7 +496,8 @@ Frontend PR:
 
 ```text
 #17 — Stage 3 Batch 8 — final validation evidence
-State: OPEN / NOT MERGED
+State: MERGED
+Merge commit: 8273504deb53dd8934eff51515b7bfe60aa14f08
 Purpose: validation/evidence only
 ```
 
