@@ -434,3 +434,163 @@ Batch 7 is complete at the Stage-3 branch / PR evidence gate.
 No PR is merged by this execution record.
 
 Do not automatically continue to Batch 8.
+
+
+---
+
+## 13. Batch-7 Integrity & Quality Hardening Addendum — 2026-09-21
+
+A post-validation hardening pass addressed the remaining fixture-convergence and evidence-quality gaps without expanding canonical Stage-3 business truth.
+
+### 13.1 Residual recurring course literals removed
+
+Remaining CS201 / Data Structures display facts in `app/data/demo.ts` were converted to derive from the existing shared adapter.
+
+The following now come from `canonicalFixtureContext.courseByCode.CS201` rather than independent repeated literals:
+
+- recent-item course/section display;
+- Data Structures laboratory display;
+- Student practice-assignment description.
+
+This reduces future drift without moving workflow, assessment, attendance, lifecycle or other business semantics into the adapter.
+
+### 13.2 Noncanonical shell contexts explicitly classified
+
+The existing alternate selector examples are retained only as unavailable presentation contexts:
+
+```text
+Sutra School of Management · preview only
+2025–26 · Semester 2 · preview only
+```
+
+They remain absent from the canonical Stage-3 institutional seed.
+
+Selecting either continues to enter the existing no-sample-data state rather than fabricating a second coherent institution or academic-period world.
+
+No Institution, Academic Period, Person, Student Context or related canonical entity was added to support those presentation-only choices.
+
+### 13.3 Executable convergence validator
+
+`scripts/validate-fixture-convergence.mjs` was strengthened from source-text presence checks into an executable integrity proof.
+
+It now transpiles and executes the real:
+
+```text
+app/mock/selectors/index.ts
+app/mock/adapters/existing-fixtures.ts
+```
+
+against the real canonical Stage-3 seed.
+
+Mechanical proof now verifies:
+
+- fixture islands consume the shared adapter;
+- Aarav canonical Person / Student Context multiplicity and identity;
+- Meera canonical Person / Workforce / Faculty multiplicity and identity;
+- adapter Institution equals the canonical Institution;
+- adapter Academic Period equals the canonical Academic Period;
+- School of Engineering / Computer Science organisation context matches canonical IDs;
+- Programme display equals the canonical Programme record;
+- CS201 course, offering and Section A mapping equals Meera's canonical assignment;
+- CS203 course, offering and Section B mapping equals Meera's canonical assignment;
+- adapter Aarav values agree with the real Student projection;
+- adapter Meera/course values agree with the real Faculty assignment projection;
+- remaining high-value CS201/Data Structures literals are not independently duplicated;
+- exactly two deterministic presets remain;
+- the single active-state / reconstructive-reset path remains recognizable;
+- convergence code does not introduce browser persistence;
+- ordinary fixture code does not leak architecture/reviewer IDs;
+- the adapter does not introduce backend, URL-fetch, workflow-engine or event-bus behavior.
+
+### 13.4 Exact mechanical counters
+
+The earlier validation-counter summary in this record should be read as the architectural review checklist. The final mechanical Batch-7 validator emits the following exact counters:
+
+```text
+fixtureInventoryFailures:                  0
+canonicalIdentityConvergenceFailures:      0
+duplicateSubjectFailures:                  0
+selectorReuseFailures:                     0
+crossWorkspaceCoherenceFailures:           0
+fixtureAdapterFailures:                    0
+presetCompatibilityFailures:               0
+activeStateAuthorityFailures:              0
+reviewerBoundaryFailures:                  0
+persistenceBoundaryViolations:             0
+architectureBoundaryFailures:              0
+```
+
+Canonical proof values from the same exact CI run:
+
+```text
+Institution:
+Sutra Institute of Technology
+
+Academic Period:
+2026–27 · Semester 1
+
+Aarav:
+person-aarav-desai
+student-context-aarav-sit
+Aarav Desai
+
+Meera:
+person-meera-shah
+workforce-context-meera-sit
+faculty-context-meera-sit
+Dr. Meera Shah
+
+CS201:
+course-cs201
+Data Structures
+offering-cs201-a-2026s1
+Section A
+
+CS203:
+course-cs203
+Database Systems
+offering-cs203-b-2026s1
+Section B
+```
+
+### 13.5 Hardening CI evidence
+
+Final validated frontend revision:
+
+```text
+c272fd6c1a8253b0d5a01627dd29363a9734db9b
+```
+
+Final successful workflow evidence:
+
+```text
+Workflow:           Frontend PR Validation
+Run ID:             35597463147
+Run number:         103
+Job ID:             106325491223
+Frontend SHA:       c272fd6c1a8253b0d5a01627dd29363a9734db9b
+Result:             SUCCESS
+Visual artifact ID: 10636624977
+Artifact:           experience-lab-visual-evidence
+```
+
+Required gates on the final hardened head:
+
+```text
+npm run review:validate   PASS
+npm run mock:validate     PASS
+npm run typecheck         PASS
+npm run build             PASS
+rendered evidence         PASS
+```
+
+The first executable-validator hardening run intentionally failed because the validator duplicated a Programme label without the canonical separator. The assertion was corrected to compare directly against the canonical Programme record rather than introducing another literal. No production fixture semantics were weakened.
+
+### 13.6 Hardening verdict
+
+```text
+BATCH 7 INTEGRITY HARDENING — PASS
+BATCH 7 QUALITY HARDENING — PASS
+```
+
+No Batch-8 final-validation work was introduced.
