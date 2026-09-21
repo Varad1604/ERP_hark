@@ -112,7 +112,7 @@ Batch 2 may consume the projection for user-facing discovery/search work only af
   - `npm run mock:validate`: **PASS**
   - `npm run typecheck`: **PASS**
   - `npm run build`: **PASS**
-  - existing screenshot/regression evidence: CI continuation recorded on PR #18
+  - existing screenshot/regression evidence: **PASS**
 
 Repository diff inspection confirms the frontend branch changes only the generated projection, destination-binding seam, generator/validator scripts, and package validation wiring. The architecture branch changes only this L6 Stage-4 evidence record.
 
@@ -164,3 +164,10 @@ Repository diff inspection confirms the frontend branch changes only the generat
 1. Future architecture-table structural changes require an intentional generator update; current behavior is fail-loud rather than heuristic.
 2. Future user-facing discovery must keep internal IDs and architecture paths out of ordinary result copy.
 3. Batch 2 should define ranking/grouping behavior without turning presentation profiles into access control or workflow existence into execution permission.
+
+
+## Final Batch-1 Gate State
+
+Frontend CI run **#105 / Frontend PR Validation**: **PASS**.
+
+All required Batch-1 execution gates are green. PRs remain open for repository review/merge; Batch 2 and Stage 5 are not started.
