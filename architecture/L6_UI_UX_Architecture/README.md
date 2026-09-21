@@ -406,3 +406,8 @@ Permanent IDs shall be introduced only through an approved naming/numbering deci
 Validation evidence for this phase is recorded in:
 
 `00_Governance/L6_Days6_8_Full_ERP_UX_Breadth_Validation_and_Readiness_Record_2026-09-19.md`.
+
+
+## Stage 3 Closure
+
+- `00_Governance/L6_Stage3_Final_Validation_and_Closure_Decision_2026-09-21.md` — final Stage-3 Batch-8 validation, integrity audit and closure decision.

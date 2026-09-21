@@ -195,7 +195,7 @@ Objective exit gate:
 
 **Planning state:** `STAGE 3 PLAN — READY TO EXECUTE`.
 
-**Execution state:** implementation has not started and requires separate explicit approval.
+**Execution state:** `STAGE 3 — PASS WITH NON-BLOCKING DEFERRED FINDINGS` under `00_Governance/L6_Stage3_Final_Validation_and_Closure_Decision_2026-09-21.md`. Stage 3 is complete and may be closed. Stage 4 has not started.
 
 ---
 
