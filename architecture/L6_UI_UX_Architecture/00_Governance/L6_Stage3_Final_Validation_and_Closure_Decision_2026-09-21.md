@@ -468,6 +468,14 @@ No browser persistence, API, server or database is required for deterministic St
 
 ## 14. Final Batch-8 CI Evidence
 
+Architecture Batch-8 evidence vehicle:
+
+```text
+PR #52 — L6 Stage 3 Batch 8 — final validation and closure evidence
+State: OPEN / NOT MERGED
+Scope: closure/evidence synchronization only
+```
+
 A dedicated Batch-8 validation branch was created from the exact merged frontend Stage-3 baseline.
 
 The only Batch-8 frontend repository change is a documentation-only validation marker:
