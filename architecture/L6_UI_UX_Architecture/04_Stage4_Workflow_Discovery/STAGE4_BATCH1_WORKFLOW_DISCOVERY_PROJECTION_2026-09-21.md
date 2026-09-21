@@ -171,3 +171,12 @@ Repository diff inspection confirms the frontend branch changes only the generat
 Frontend CI run **#105 / Frontend PR Validation**: **PASS**.
 
 All required Batch-1 execution gates are green. PRs remain open for repository review/merge; Batch 2 and Stage 5 are not started.
+
+
+## Merge Synchronization
+
+Frontend PR **#18** merged successfully to `main`.
+
+**Frontend ending main SHA:** `a6c2bff7c3cd903f9f7e5ff28021354c765b180e`
+
+This synchronization records the actual merged frontend state used by the Batch-1 closure evidence.
