@@ -34,6 +34,8 @@ The prior `L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md` remai
 
 `L6_Full_Workflow_Realization_and_Mock_ERP_Execution_Plan_DRAFT.md` governs execution.
 
+`00_Governance/L6_Stage3_Coherent_Mock_ERP_Foundation_Reviewed_Gameplan_2026-09-21.md` is the reviewed Stage-3 planning baseline. It records `STAGE 3 PLAN — READY TO EXECUTE` while keeping implementation explicitly not started until separate approval.
+
 `L6_Workflow_Realization_Register_DRAFT.md` is now the Stage-2 master-reconciled realization register: **1,084 / 1,084 rows populated**, mapped to **595 final L6 realization workflows**, with zero missing or duplicate primary assignments. Stage 2 has passed its final validation gate.
 
 ## Current Foundation Package
@@ -86,6 +88,7 @@ L6_Workflow_Realization_Register_DRAFT.md
 L6_Experience_Slice_Register_DRAFT.md
 L6_AI_First_UI_UX_Execution_Plan_DRAFT.md                     # historical Days 1–13 plan
 L6_Full_Workflow_Realization_and_Mock_ERP_Execution_Plan_DRAFT.md  # active expansion plan
+00_Governance/L6_Stage3_Coherent_Mock_ERP_Foundation_Reviewed_Gameplan_2026-09-21.md  # reviewed Stage-3 plan; implementation not started
 ```
 
 ### Screen / Workspace Inventory
