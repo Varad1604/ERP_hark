@@ -123,55 +123,79 @@ The audit shall discover the actual number of unique user-facing workflows; no t
 
 ## 6. Stage 3 — Coherent Mock ERP Foundation
 
-Frontend shall establish one coherent fictional institution.
+The reviewed Stage-3 planning baseline is:
 
-Minimum principles:
+`00_Governance/L6_Stage3_Coherent_Mock_ERP_Foundation_Reviewed_Gameplan_2026-09-21.md`
 
-- deterministic seed;
-- stable fictional identities;
-- referential coherence across domains;
-- reusable local mock data access;
-- local mock state updates;
+That document supersedes the earlier illustrative Stage-3 folder proposal as the active detailed Stage-3 gameplan without changing the programme objective.
+
+Stage 3 shall establish:
+
+- one deterministic institutional seed rather than disconnected per-screen fixture islands;
+- stable fictional identities and stable mock references;
+- cross-domain referential coherence;
+- domain-owned mock facts aligned to canonical upstream ownership;
+- reusable read/projection access;
+- controlled frontend-only mutable demo state;
 - deterministic reset;
-- optional scenario presets;
-- mock date/time where useful;
-- seeded notifications/tasks/exceptions/history.
+- one deterministic mock clock;
+- seeded tasks, notifications, exceptions and history/activity;
+- review/demo controls through the existing Global Experience Lab;
+- deterministic referential-integrity and reset validation.
 
-Recommended frontend organization may include a dedicated mock-data area, for example:
+The existing frontend fixture, workspace, archetype, visual-system and Experience Lab foundations shall be extended rather than replaced.
+
+Default browser persistence is deferred for Stage 3. The default review model is fresh-load/reset to the deterministic canonical seed.
+
+Initial scenario presets are limited to:
+
+1. baseline institution;
+2. exception-rich review state.
+
+Stage 3 consumes the final Stage-2 realization authority:
 
 ```text
-app/
-  mock-data/
-    institution/
-    people/
-    students/
-    admissions/
-    academics/
-    timetable/
-    attendance/
-    assessment/
-    examinations/
-    finance/
-    documents/
-    workforce/
-    campus/
-    resources/
-    tasks/
-    notifications/
-    index.ts
-  mock-state/
-    store.ts
-    actions/
-    reset.ts
+Final L6 realization workflows          595
+Mock REQUIRED                           551
+Mock NOT-REQUIRED                        11
+Mock PROHIBITED                          33
 ```
 
-This path is implementation guidance, not a mandatory technical architecture contract. The frontend team may use an equivalent organization that preserves the same responsibilities.
+Stage 3 does not implement all 595 workflows. In particular, no fake user mutation may be attached to a mock-`PROHIBITED` realization merely to increase interactivity.
 
-Exit gate:
+Controlled implementation batches are:
 
-- one coherent fictional institution can be browsed across multiple domains;
-- reset restores a deterministic seed;
-- no backend/database is required.
+```text
+0. authority and baseline freeze
+1. canonical fictional seed + integrity validator
+2. shared read/projection layer
+3. demo state + deterministic reset
+4. mock clock + seeded tasks/notifications/exceptions/history
+5. Experience Lab integration
+6. second deterministic preset
+7. existing fixture convergence
+8. final Stage-3 validation and evidence
+```
+
+Objective exit gate:
+
+- one coherent fictional institutional world exists;
+- stable identities and valid cross-domain references exist;
+- multiple domains resolve the same subjects;
+- mock read and controlled mutation paths work;
+- reset restores exact deterministic seed;
+- one deterministic mock timeline exists;
+- seeded tasks/notifications/exceptions/history exist;
+- review/demo mode is understandable;
+- ordinary UX remains free of reviewer/architecture IDs;
+- Stage-2 mock-`PROHIBITED` workflows receive no fake actions;
+- no backend/database is required;
+- no L0–L5 semantics are invented;
+- review validation, mock-integrity validation, typecheck and production build pass.
+
+**Planning state:** `STAGE 3 PLAN — READY TO EXECUTE`.
+
+**Execution state:** implementation has not started and requires separate explicit approval.
 
 ---
 
