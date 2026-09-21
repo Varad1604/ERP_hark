@@ -188,18 +188,19 @@ Required gates:
 - `npm run stage4:validate`
 - frontend PR CI including targeted browser evidence
 
-Final frontend branch SHA: `fbc218ad99aa098c9fdb354b470f3cc59e41e993`.
+Final frontend branch SHA: `5fe44db5614a3a8a47f55c599d708ee9a27b6145`.
 
-Frontend PR validation run `35627433003` completed successfully. The required gates passed:
+Frontend PR validation run `35627731069` completed successfully. The required gates passed:
 
 - `npm run review:validate` — PASS, including Batch-1 and Batch-2 Stage-4 validators;
+- `npm run stage4:validate` — PASS as an explicit named CI gate;
 - `npm run mock:validate` — PASS;
 - `npm run typecheck` — PASS;
 - `npm run build` — PASS;
 - targeted Batch-2 browser evidence — PASS, 3 / 3 tests;
 - visual-evidence artifact upload — PASS.
 
-Evidence artifact: `experience-lab-visual-evidence`, artifact ID `10651799266`, SHA-256 `46385e105b330c61c4838eeac5ae381cd542c0e2375cd0036f6a0a934eb64b9f`.
+Evidence artifact: `experience-lab-visual-evidence`, artifact ID `10651804725`, SHA-256 `f792fa1e4456fcf7dd6e2c158c0db760e34e47d7b080bc3e1fd83eeb80693203`.
 
 ## 11. Stage-3 Regression Assessment
 
@@ -264,7 +265,7 @@ STAGE 4 — BATCH 2 PASS
 Frontend implementation head:
 
 ```text
-fbc218ad99aa098c9fdb354b470f3cc59e41e993
+5fe44db5614a3a8a47f55c599d708ee9a27b6145
 ```
 
 Frontend PR:
