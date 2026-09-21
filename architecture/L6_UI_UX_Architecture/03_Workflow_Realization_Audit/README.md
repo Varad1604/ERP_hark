@@ -1,8 +1,8 @@
 # SutraERP L6 Stage 2 — Full Scenario Realization Audit Control Area
 
 **Status:** Stage-2 reconciliation IN PROGRESS — Group 12 reconciled  
-**Integration Branch:** `l6-stage2-full-scenario-realization-audit`  
-**Canonical Base Verified:** architecture `main` at `11bc2088568d8cb682f606d14e50ba0ca6dd7ae5`; frontend `main` at `e2560877eac4446b925e45f04b7dfa4c24d3625c`  
+**Working-Branch Model:** controlled group-scoped Stage-2 branches merged into architecture `main` after validated batches  
+**Canonical Base:** architecture `main`; exact commit advances as controlled groups are integrated; frontend remains outside this Stage-2 reconciliation work  
 **Purpose:** Hold range-scoped worker prompts and normalized worker results for the 1,084-scenario UI-realization audit before master reconciliation.
 
 This area is review/support material only. It does not replace or amend canonical L1–L5 architecture and does not itself populate `L6_Workflow_Realization_Register_DRAFT.md`.
