@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Physical persistence architecture and principles without changing domain ownership.  
 **Technical Architecture Owner:** L5-B-02 — Database & Persistence Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.1.0`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Architecture Family Register; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; L5 Broad Authoring Authorization v1.0.0; L5 Dependency-Gated Parallel Authoring Execution Timeline v1.0.0; `L5-A-01-001` v1.0.1 Draft; `L5-A-03-001` v1.0.1 Draft; `L5-A-04-001` v1.0.1 Draft; `L5-A-04-002` v1.0.1 Draft; `L4-A-001` v1.0.0 Draft; `L4-A-019` v1.0.0 Draft; SutraERP L1 Business Domain Architecture v2.1 Locked.  
 **Referenced By:** Dependency-gated downstream areas including L5-B-03, L5-C-02, L5-B-05, L5-E-02, L5-A-07, L5-B-01, L5-B-04, L5-B-06 and L5-E-03.  
-**Applicable ADRs:** `ADR-L5-0005`; `ADR-L5-0006`; `ADR-L5-0007`; `ADR-L5-0008`; `ADR-L5-0020`.
+**Applicable ADRs:** existing B02 ADRs plus `ADR-L5-0020` and `ADR-L5-0036`.
 
 ---
 
@@ -208,3 +208,9 @@ Downstream consumers shall depend on the owner-scoped persistence boundary, not 
 
 **Applicable locked decision:** `ADR-L5-0020`  
 PostgreSQL 18.x + SQLx are canonical. Logical owner boundaries, transaction ownership and no fixed physical database count remain unchanged.
+
+
+## 2026-09-22 Backend Readiness Group 2 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0036`  
+PostgreSQL owner-scoped logical schemas/roles are the default co-located realization; UUIDv7 is the default technical persistent identifier; technical instants use `timestamptz` normalized to UTC with explicit business timezone where required; no universal soft delete; SQLx pools are baseline and PgBouncer is profile-driven; extensions require approval.

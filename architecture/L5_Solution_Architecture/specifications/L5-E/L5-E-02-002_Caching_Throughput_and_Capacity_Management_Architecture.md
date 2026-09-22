@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Caching validity/invalidation boundaries, throughput control, backpressure and capacity admission mechanisms that preserve authoritative ownership and consistency.  
 **Technical Architecture Owner:** L5-E-02 — Performance & Capacity Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.0.1`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-15`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-E-02-001`; `L5-A-01-001`; `L5-B-02-001`; `L5-B-02-002`; `L5-B-02-003`; `L5-E-04-001`; `L5-E-01-*`; `L5-A-08-*`; `L5-C-02-*`; applicable E05 architecture; `L4-A-015`; `L4-A-016`.  
 **Referenced By:** L5 capabilities using caching, throughput throttling or backpressure.  
-**Applicable ADRs:** `ADR-L5-0005`, `ADR-L5-0006`, `ADR-L5-0010`, `ADR-L5-0011`, `ADR-L5-0014`.  
+**Applicable ADRs:** `ADR-L5-0014`; `ADR-L5-0037`.
 
 ---
 
@@ -212,6 +212,11 @@ E02 supplies capacity requirements; E04 owns placement/scaling/deployment realiz
 
 ## 10. Open / Deferred Design
 
-**OD-001:** Concrete cache technology/topology and eviction algorithm remain implementation/technology governance.  
+**OD-001:** **Product resolved:** Valkey. Topology and eviction algorithm remain deployment/capacity-profile decisions.  
 **OD-002:** Workload-specific TTL, stale bounds, concurrency and rate limits require governed profiles and evidence.  
 **OD-003:** Concrete API error/status representation for throttle/defer outcomes is owned by the applicable contract/API architecture.
+
+## 2026-09-22 Backend Readiness Group 2 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0037`  
+Valkey is the canonical distributed cache. Cache content is derived/non-authoritative; freshness-critical operations revalidate/bypass; cache failure uses the canonical owner path where safe or explicit degradation, never cross-owner database bypass.

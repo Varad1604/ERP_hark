@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Controlled persistence-schema evolution and internal migration while preserving canonical ownership, isolation and compatibility; excludes operational governed business import/export.  
 **Technical Architecture Owner:** L5-B-02 — Database & Persistence Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.1`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-B-02-001` v1.0.0 Draft; `L5-B-02-002` v1.0.0 Draft; `L5-B-02-003` v1.0.0 Draft.  
 **Referenced By:** Release/upgrade architecture, persistence implementation standards, recovery architecture, and owner-specific technical designs that evolve authoritative persistence structures.  
-**Applicable ADRs:** `ADR-L5-0008` — Expand-Migrate-Transition-Contract Schema Evolution Pattern (`Architecture Approved`).
+**Applicable ADRs:** `ADR-L5-0008`; `ADR-L5-0036`.
 
 ---
 
@@ -477,3 +477,8 @@ E03 governed recovery
 ```
 
 This specification remains `Draft` for implementation/tooling and peer-integration refinement; the reusable schema-evolution pattern itself is canonically established by `ADR-L5-0008`.
+
+## 2026-09-22 Backend Readiness Group 2 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0036`  
+Production schema changes remain explicit version-controlled migrations using Expand → Migrate/Backfill → Transition → Contract. Automatic ORM/schema synchronization is prohibited for production migration.

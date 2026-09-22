@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Governed reporting/analytics/projection architecture; source domains remain owners of operational facts.  
 **Technical Architecture Owner:** L5-B-06 — Reporting, Analytics & Data Projection Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.0.0`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-15`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Stage 3 Final Closure & Stage 4 Proceed Decision 2026-09-15; `L5-B-02-003`; `L5-D-02-004`; `L5-C-02-001`; `L5-A-04-002`; `L5-D-04-001`; applicable source-domain L4/L2 architecture.  
 **Referenced By:** `L5-B-06-002`; `L5-B-06-003`; authorized reporting/dashboard consumers.  
 **Applicable ADRs:** `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0010`; `ADR-L5-0011`.  
@@ -310,3 +310,15 @@ D04 owns enterprise evidence persistence. E05 owns operational telemetry such as
 - Material L4: `L4-H-048-BH-001/003/004/006/007`; `L4-H-057-BH-001/002/007/010/013`; `L4-F-077-BH-002/007/008`.
 - Material L2: H07 Enterprise Dashboard; H08 Regulatory Reporting; F13 Financial Reporting & Analytics.
 - Core L5 dependencies: B02, D02, C01/C02, A04, D04, B05, E05.
+
+
+## 2026-09-22 Backend Readiness Group 2 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0036`  
+Cross-domain/read-heavy query needs shall use governed B06 projections/read models rather than direct joins across authoritative owner tables. Projections remain derived, non-authoritative and rebuildable.
+
+
+## 2026-09-22 Backend Readiness Group 2 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0037`  
+Valkey may accelerate projection/query access where freshness policy permits, but it shall not become the projection's or source domain's canonical state.

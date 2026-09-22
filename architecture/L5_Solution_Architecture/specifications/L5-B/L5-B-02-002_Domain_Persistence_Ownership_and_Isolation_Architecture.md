@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Enforce technical persistence ownership and prevent unauthorized cross-domain writes.  
 **Technical Architecture Owner:** L5-B-02 — Database & Persistence Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.1`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; L5 Broad Authoring Authorization v1.0.0; L5 Dependency-Gated Parallel Authoring Execution Timeline v1.0.0; `L5-B-02-001` v1.0.1 Draft; `L5-A-03-001` v1.0.1 Draft; `L5-A-04-001` v1.0.1 Draft; `L5-A-04-002` v1.0.1 Draft; `L4-A-001` v1.0.0 Draft; `L4-A-015` v1.0.0 Draft; `L4-A-019` v1.0.0 Draft; SutraERP L1 Business Domain Architecture v2.1 Locked.  
 **Referenced By:** Downstream persistence, privacy, reporting, secure-engine, recovery and integration architecture consuming owner-scoped persistence boundaries.  
-**Applicable ADRs:** `ADR-L5-0005` — Persistence Ownership, Hybrid Topology and Tenant Isolation Pattern (`Architecture Approved`).
+**Applicable ADRs:** `ADR-L5-0005`; `ADR-L5-0036`.
 
 ---
 
@@ -198,3 +198,9 @@ Schema/data migration or governed maintenance may require authority beyond norma
 Canonical architecture: `AD-001`–`AD-003` → `ADR-L5-0005`.
 
 A04 owns Tenant scope semantics; B02-002 enforces those semantics at persistence boundaries. B02-001 owns the persistence baseline; B02-003/004 own transaction and migration mechanics.
+
+
+## 2026-09-22 Backend Readiness Group 2 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0036`  
+Normal runtime code shall not directly read or write another canonical owner's authoritative tables/schema. Co-location in the same PostgreSQL instance does not weaken owner boundaries.
