@@ -27,3 +27,5 @@ For routine L5 work, start at `../instruction/README.md`.
 - `L5_Production_Validation_Batch0_Authority_and_Baseline_Freeze_2026-09-22.md` through `L5_Production_Validation_Batch7C_Approved_Locked_E_F_G_Impact_Revalidation_2026-09-22.md` — completed validation and impact-revalidation evidence.
 - `L5_Full_105_Row_Production_Validation_Register_2026-09-22.md` — canonical Batch-8 row-level disposition register for all 105 production specifications.
 - `L5_Production_Validation_Batch8_Full_Traceability_and_105_Row_Validation_Register_2026-09-22.md` — Batch-8 corpus reconciliation and proceed verdict.
+
+- `L5_Production_Validation_Batch9_Final_Corpus_Lock_Gate_2026-09-22.md` — final programme gate; records programme COMPLETE with Final L5 Corpus Lock NOT AUTHORIZED because mandatory final-lock conditions remain unmet.
