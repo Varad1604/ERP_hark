@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Technical API/contract principles and ownership-preserving synchronous boundaries.  
 **Technical Architecture Owner:** L5-C-01 — API & Contract Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.1.0`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-A-01-001`, `L5-A-03-001`, `L5-A-04-002`, `L5-B-02-001/002/003`, `L5-D-01-001`, `L5-D-03-001`, `L4-A-001`, `L4-A-015`, `L4-A-028`, `L4-A-050`.  
 **Referenced By:** `L5-C-01-002`, `L5-C-01-003`, `L5-C-02-*`, `L5-C-03-*`.  
-**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0019`; `ADR-L5-0021`.
+**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0019`; `ADR-L5-0021`; `ADR-L5-0034`.
 
 ---
 
@@ -163,3 +163,9 @@ Consumer
 
 **Applicable locked decision:** `ADR-L5-0021`  
 The synchronous API profile is HTTPS REST/JSON + OpenAPI 3.2. gRPC is scope-exception only; API-management products remain non-mandatory.
+
+
+## 2026-09-22 Backend Readiness Group 1 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0034`  
+Synchronous APIs use contract-first OpenAPI 3.2, camelCase SutraERP JSON members, URL major-version routing, RFC 9457 Problem Details plus governed SutraERP extensions, selective `Idempotency-Key`, and REST/OpenAPI as the default internal/external synchronous profile.

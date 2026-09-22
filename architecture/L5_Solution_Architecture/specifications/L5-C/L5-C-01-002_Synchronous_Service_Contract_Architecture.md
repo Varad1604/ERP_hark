@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Authoritative synchronous interaction, request/response and service-consumption architecture.  
 **Technical Architecture Owner:** L5-C-01 — API & Contract Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-C-01-001`, `L5-A-04-002`, `L5-B-02-003`, `L4-A-015`, `L4-A-050`.  
 **Collaborates With / Referenced By:** `L5-C-01-003`, `L5-D-02-*`, `L5-E-01-*`, `L5-E-05-*`, `L5-C-03-*`.  
-**Applicable ADRs:** `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0006`. Repository-wide synchronous interaction strategy and selected transport/runtime technology remain unresolved and shall be governed separately if mandatory ADR triggers apply.
+**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0019`; `ADR-L5-0021`; `ADR-L5-0034`.
 
 ---
 
@@ -183,7 +183,7 @@ Receive released request
 | Item ID | Item | Classification | Decision Authority | Blocking? | Required Resolution |
 | --- | --- | --- | --- | --- | --- |
 | OD-001 | Repository-wide synchronous transport/API style | ADR if selected as shared standard | Lead Architect / C01 | Yes for Architecture Approved where the selected style is made normative | Evaluate and approve through canonical ADR process. |
-| OD-002 | Primary runtime/language/framework | ADR | Lead Architect | No for this specification's architecture definition; Yes before any normative technology mandate | Resolve in canonical technology-selection owner. |
+| OD-002 | **Resolved:** Rust + Axum + Tokio server realization; C01 contracts remain framework-independent. | ADR | `ADR-L5-0018`; `ADR-L5-0019` | Locked | No further selection required unless superseded. |
 | OD-003 | Numeric deadline/retry/overload targets | Deployment/operations decision | E-family owners with C01 constraints | No | Define per approved deployment/service profile. |
 | OD-004 | Material L4 parents remain Draft | Upstream | L4 governance | Yes for Architecture Approved | Resolve upstream approval; do not bypass from L5. |
 
@@ -207,3 +207,9 @@ Receive released request
 ### Applicable Approved ADRs
 
 `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0006`
+
+
+## 2026-09-22 Backend Readiness Group 1 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0034`  
+This specification inherits camelCase JSON, contract-first OpenAPI, `/api/v{major}` breaking-version routing, RFC 9457 Problem Details, selective `Idempotency-Key`, and REST/OpenAPI as the default synchronous interaction profile.

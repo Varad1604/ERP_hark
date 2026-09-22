@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Technical event schema evolution and consumer compatibility while canonical event names/publishers remain upstream-owned.  
 **Technical Architecture Owner:** `L5-C-02 — Event & Messaging Architecture`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.3`  
+**Version:** `1.2.0`  
 **Status:** `Architecture Approved`  
-**Last Updated:** `2026-09-12`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** `L5-C-02-001`; `L5-C-02-002`; `ADR-L5-0011`  
 **Referenced By:** event publishers/consumers and downstream L5 specifications that depend on governed event-contract compatibility  
-**Applicable ADRs:** `ADR-L5-0011`  
+**Applicable ADRs:** `ADR-L5-0011`; `ADR-L5-0035`.
 **Governing Sources:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register 105; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology; L5 ADR Register.
 
 ## 2. Purpose, Scope & Non-Goals
@@ -54,7 +54,7 @@ Consumers declare supported versions, rely only on documented fields, and fail s
 | AD-003 | Compatibility | Backward-compatible additive evolution is preferred where contract guarantees allow it. | `ADR-L5-0011`. |
 | AD-004 | Breaking changes | Distinct breaking successor version + governed coexistence/deprecation; no SemVer convention implied. | `ADR-L5-0011`. |
 | AD-005 | Registry | Central governed catalog capability; product remains unselected. | `ADR-L5-0011`. |
-| AD-006 | Envelope | Transport-neutral information categories collaborate with C02-001; a concrete envelope/wire standard requires separate governance if selected. | C02-001 + `ADR-L5-0011`. |
+| AD-006 | Envelope | CloudEvents 1.0-compatible envelope; JSON payload; governed JSON Schema 2020-12-family contract representation. | `ADR-L5-0035` |
 
 ## 7. Security, Privacy, Quality & Operations
 Schema metadata carries classification where needed. Test fixtures must not copy production-sensitive data. Consumers receive only necessary facts. Registry and consumer-discovery access is least-privilege and does not grant event-payload access.
@@ -74,7 +74,7 @@ Schema metadata carries classification where needed. Test fixtures must not copy
 - `CR-012`: Event-contract compatibility behavior shall conform to `ADR-L5-0011`.
 
 ## 9. Open Decisions & Deferred Design
-Schema representation/serialization, registry product and optional concrete envelope/wire standard remain deferred and require ADR/technical-standard governance if made canonical.
+Schema representation/serialization and envelope are resolved by `ADR-L5-0035` as JSON + governed JSON Schema with a CloudEvents-compatible envelope. Registry product remains separately governed; numeric payload/retention/capacity limits remain deferred.
 
 No unresolved L4-authority blocker remains for this validation cycle because canonical L4 behavior is being treated as authoritative by explicit review instruction.
 
@@ -83,3 +83,9 @@ Candidate Corpus Register 105; validated BHs L4-A-018/A-019; `ADR-L5-0011`; C02-
 
 ## 11. Review Position
 This specification is **Architecture Approved** following completed Stage-2 remediation and explicit architecture approval on 2026-09-12. It is lock-ready but shall not be marked `Locked` until distinct final-governance authorization is recorded.
+
+
+## 2026-09-22 Backend Readiness Group 1 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0035`  
+Event schemas use governed JSON Schema; compatible additive evolution is preferred and breaking successors follow ADR-L5-0011. Binary serialization is exception-only for measured bounded technical streams.

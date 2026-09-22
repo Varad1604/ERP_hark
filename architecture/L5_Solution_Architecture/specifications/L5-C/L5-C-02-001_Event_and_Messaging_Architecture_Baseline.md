@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Event/messaging infrastructure while canonical business-event ownership remains upstream.  
 **Technical Architecture Owner:** `L5-C-02 — Event & Messaging Architecture`  
 **Assigned Author:** Pallav  
-**Version:** `1.1.0`  
+**Version:** `1.2.0`  
 **Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-B-02-003`; `L5-C-01`; `ADR-L5-0007`; `ADR-L5-0010`  
 **Referenced By:** `L5-C-02-002`; `L5-C-02-003`; downstream event-consuming L5 specifications  
-**Applicable ADRs:** `ADR-L5-0007`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0022`.
+**Applicable ADRs:** `ADR-L5-0007`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0022`; `ADR-L5-0035`.
 **Governing Sources:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register 105; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology; L5 ADR Register.
 
 ## 2. Purpose, Scope & Non-Goals
@@ -83,7 +83,7 @@ Critical delivery is designed for at-least-once-compatible processing, requiring
 | AD-002 | Messaging topology | Topic-oriented pub/sub with independent consumer subscriptions. | `ADR-L5-0010`. |
 | AD-003 | Critical QoS | Durable, at-least-once-compatible delivery; idempotent consumers. | `ADR-L5-0010` + `ADR-L5-0007` handoff. |
 | AD-004 | Ordering | Scoped only; no global ordering. | `ADR-L5-0010`. |
-| AD-005 | Envelope portability | Transport-neutral information categories; wire representation remains unselected. | Product neutrality; C02-003/ADR-L5-0011 governs compatibility. |
+| AD-005 | Envelope portability | CloudEvents 1.0-compatible envelope with JSON payload and governed JSON Schema; SutraERP-defined JSON members use camelCase. | `ADR-L5-0035` |
 | AD-006 | Product selection | NATS JetStream is the canonical broker/transport product. | `ADR-L5-0022` |
 
 ## 7. Security, Privacy, Quality & Operations
@@ -102,7 +102,7 @@ Use service identities and least-privilege publish/subscribe authorization. Tran
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Blocking state |
 |---|---|---|
-| OD-001 | **Resolved product:** NATS JetStream. Subject naming/payload representation remain C02-governed. | Locked. |
+| OD-001 | **Resolved:** NATS JetStream transport + JSON/JSON Schema + CloudEvents-compatible envelope. Subject naming remains C02-governed technical routing. | `ADR-L5-0022`; `ADR-L5-0035` |
 | OD-002 | Numeric capacity/retention targets | Deferred to E02/approved operational profiles. |
 
 No unresolved L4-authority blocker remains for this validation cycle because canonical L4 behavior is being treated as authoritative by explicit review instruction.
@@ -118,3 +118,9 @@ This specification is **Architecture Approved** following completed Stage-2 reme
 
 **Applicable locked decision:** `ADR-L5-0022`  
 NATS JetStream is canonical while ADR-L5-0007/0010/0011 delivery, ownership and compatibility semantics remain authoritative.
+
+
+## 2026-09-22 Backend Readiness Group 1 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0035`  
+Canonical business-event wire representation is JSON governed by JSON Schema with a CloudEvents 1.0-compatible envelope. NATS subjects are routing identifiers only, not canonical business-event identity.

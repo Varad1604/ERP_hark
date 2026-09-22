@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Contract evolution, compatibility, technical errors and idempotent request handling without inventing business recovery.  
 **Technical Architecture Owner:** L5-C-01 — API & Contract Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-C-01-001`, `L5-C-01-002`, `L5-B-02-003`, `L4-A-029`, `L4-A-031`, `L4-A-032`.  
 **Collaborates With / Referenced By:** API consumers, `L5-C-03-*`, `L5-E-04-005`.  
-**Applicable ADRs:** `ADR-L5-0006`, `ADR-L5-0008`. Shared API version encoding/tooling remains unresolved if later selected as a reusable standard.
+**Applicable ADRs:** existing C01 ADRs plus `ADR-L5-0021` and `ADR-L5-0034`.
 
 ---
 
@@ -192,3 +192,9 @@ Named API-version encodings, schema/contract tooling and idempotency storage pro
 ### Applicable Approved ADRs
 
 `ADR-L5-0006`, `ADR-L5-0008`
+
+
+## 2026-09-22 Backend Readiness Group 1 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0034`  
+Breaking contract generations use URL major versioning; additive compatible changes stay within the major version. Technical errors use RFC 9457 Problem Details plus governed SutraERP extensions. Retry-sensitive mutating commands use `Idempotency-Key`; the same key with materially different content is rejected.
