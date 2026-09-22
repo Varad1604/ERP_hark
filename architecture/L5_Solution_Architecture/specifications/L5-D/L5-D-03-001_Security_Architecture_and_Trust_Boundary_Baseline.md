@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-D-03-001 — Security Architecture & Trust Boundary Baseline  
 **Assigned Author:** Varad  
 **Version:** `1.2.1`  
-**Status:** Draft  
+**Status:** Review  
 **Last Updated:** `2026-09-22`  
 **Primary L5 Dependencies:** L5-D-01 — IAM; L5-A-04 — Tenant & Institutional Isolation; L5-A-01 — Application & Platform Architecture; L5-E-04 — Runtime, Packaging & Deployment.  
 **Collaborating / Downstream L5 Architecture:** L5-D-02 — Authorization / RBAC; L5-D-03-002; L5-D-03-003; L5-D-03-004; L5-D-03-005; L5-D-04; L5-B-05; L5-C-01; L5-C-02; L5-C-03; L5-A-07; L5-A-08.  
@@ -387,7 +387,7 @@ The absence of an invented BH mapping does not make the canonical D03 technical 
 
 ---
 
-**Production Status:** Draft — Remediated and ready for revalidation.  
+**Production Status:** Review — Remediated and ready for revalidation.  
 **Next controlled action:** Revalidate hard gates against the current Stage-1 peer architecture and populate only defensible canonical L4 BH relations; do not wait for downstream D02 or B05 finalization.
 
 ## 2026-09-22 Locked Technology Decision Synchronization
@@ -405,3 +405,6 @@ Protected cross-process/service communication uses authenticated encrypted trans
 ## 2026-09-22 Full-Corpus Post-Decision Synchronization
 
 Lifecycle status restored to `Review` in accordance with the locked 2026-09-16 full-corpus Draft→Review promotion decision. OpenBao/rustls and the Group-3 trust/crypto/secrets profile are inherited where applicable; this synchronization does not promote the specification beyond Review.
+
+
+**Lifecycle restoration authority:** `L5_Full_Corpus_Draft_to_Review_Promotion_Decision_2026-09-16.md` — restored to `Review` during the 2026-09-22 full-corpus post-decision audit; no Architecture Approved/Locked promotion is implied.

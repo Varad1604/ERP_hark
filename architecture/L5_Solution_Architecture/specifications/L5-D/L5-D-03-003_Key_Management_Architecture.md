@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-D-03-003 — Key Management Architecture  
 **Assigned Author:** Varad  
 **Version:** `1.2.1`  
-**Status:** Draft  
+**Status:** Review  
 **Last Updated:** `2026-09-22`  
 **Primary Dependencies:** `L5-D-03-001`, `L5-A-04`, authoritative protection requirements.  
 **Collaborates With:** `L5-D-03-002`, `L5-D-03-004`, `L5-D-01`, `L5-D-02`, `L5-D-04`, `L5-B-05`.  
@@ -322,3 +322,6 @@ Protected cross-process/service communication uses authenticated encrypted trans
 ## 2026-09-22 Full-Corpus Post-Decision Synchronization
 
 Lifecycle status restored to `Review` in accordance with the locked 2026-09-16 full-corpus Draft→Review promotion decision. OpenBao/rustls and the Group-3 trust/crypto/secrets profile are inherited where applicable; this synchronization does not promote the specification beyond Review.
+
+
+**Lifecycle restoration authority:** `L5_Full_Corpus_Draft_to_Review_Promotion_Decision_2026-09-16.md` — restored to `Review` during the 2026-09-22 full-corpus post-decision audit; no Architecture Approved/Locked promotion is implied.

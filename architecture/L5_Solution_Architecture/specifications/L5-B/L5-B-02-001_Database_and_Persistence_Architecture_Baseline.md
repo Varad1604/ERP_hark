@@ -20,7 +20,7 @@
 
 ## 2. Purpose, Scope & Non-Goals
 
-This specification establishes the product-neutral persistence baseline for authoritative SutraERP data while preserving canonical business ownership. It defines logical persistence boundaries and their allowed relationship to physical database infrastructure; it does not select a database product or fixed database count.
+This specification establishes the authoritative persistence baseline while preserving canonical business ownership. It defines logical persistence boundaries and their allowed relationship to physical database infrastructure. PostgreSQL 18.x + SQLx are selected by `ADR-L5-0020`; no fixed physical database count is canonical.
 
 ### In Scope
 
@@ -33,7 +33,7 @@ This specification establishes the product-neutral persistence baseline for auth
 
 ### Out of Scope
 
-- Concrete database product/engine selection.
+- Vendor-specific PostgreSQL features, physical topology/count and deployment-profile tuning beyond the canonical PostgreSQL/SQLx baseline.
 - Table/column/index schema design.
 - Owner/Tenant identity mechanics — B02-002.
 - Transaction/concurrency — B02-003.
@@ -51,7 +51,7 @@ This specification establishes the product-neutral persistence baseline for auth
 | `L4-A-019` | Committed business facts/events retain publisher/owner authority across consumer delivery. |
 | A04-001/002 | Tenant is root protected scope and validated Tenant/Institution context must reach protected persistence. |
 | `ADR-L5-0005` | Canonically approves owner-scoped persistence with hybrid physical placement. |
-| ADR methodology | Database product selection requires separate governed technology ADR. |
+| `ADR-L5-0020` | PostgreSQL 18.x + SQLx are the Locked primary persistence technology baseline. |
 
 ### Constraints
 
@@ -163,7 +163,7 @@ Caches, indexes, search structures, projections, analytics stores or similar der
 
 - Shared physical placement requires enforceable owner and Tenant isolation.
 - Physical separation may strengthen security/resilience but does not create business ownership.
-- Database product and vendor-specific isolation features remain non-canonical until selected through ADR governance.
+- PostgreSQL 18.x + SQLx are canonical; vendor-specific optional features, physical topology and isolation/tuning choices remain non-canonical until governed by the applicable B02/deployment profile.
 - No numeric performance/capacity/recovery target is invented here.
 
 ---
