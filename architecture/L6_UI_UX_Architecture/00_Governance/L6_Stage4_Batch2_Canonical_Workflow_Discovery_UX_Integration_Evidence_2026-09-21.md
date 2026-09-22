@@ -200,7 +200,7 @@ Screenshots are treated as visual evidence only, not as proof of accessibility.
 Final corrected frontend branch SHA:
 
 ```text
-b6db426c92b4fb9eb1431abd25b60bdfa048cd73
+37aa13e61bd1881a3f4c77db50c55458f747d718
 ```
 
 Fresh Frontend PR validation:
@@ -262,7 +262,7 @@ L6_Stage4_Workflow_Presentation_Relevance_Map.json
 b47748cb2cbf9b692d41fbfea2f147f63159bb7a
 ```
 
-These blob identities were revalidated directly against the current Architecture Batch-2 branch.
+These blob identities were revalidated directly against the canonical Architecture `main` sources for the two established Stage-2 authority files and against the controlled Batch-2 relevance-map source pending its merge to `main`.
 
 `validate-workflow-discovery-sync.mjs` performs:
 
@@ -274,7 +274,7 @@ These blob identities were revalidated directly against the current Architecture
 
 Its `--prove-drift-detection` mode creates only a temporary copy of the Architecture sources, intentionally alters one source, requires the guard to reject it, removes the temporary copy, revalidates the pristine sources, then runs generator `--check`.
 
-A dedicated `Stage 4 Cross-Repository Discovery Sync` workflow executes this guard using a repository secret named `ARCHITECTURE_READ_TOKEN`.
+A dedicated `Stage 4 Cross-Repository Discovery Sync` workflow executes this guard using a repository secret named `ARCHITECTURE_READ_TOKEN` and checks out canonical `DhruvNaik26/SutraERP_Architecture` `main` as its authority.
 
 The default frontend `GITHUB_TOKEN` was empirically proven unable to checkout the separate private Architecture repository (GitHub returned `Repository not found`). Therefore the cross-repository workflow intentionally fails closed when the dedicated read credential is absent rather than weakening repository privacy.
 
@@ -343,7 +343,7 @@ STAGE 4 — BATCH 2 PASS WITH NON-BLOCKING FINDING
 Frontend implementation head:
 
 ```text
-b6db426c92b4fb9eb1431abd25b60bdfa048cd73
+37aa13e61bd1881a3f4c77db50c55458f747d718
 ```
 
 Frontend PR:
@@ -375,6 +375,6 @@ as a hosted GitHub Actions gate.
 
 This is an Actions credential/configuration requirement, not an architecture ambiguity or product-code defect. The default repository-scoped `GITHUB_TOKEN` cannot read the separate private Architecture repository.
 
-The current authoritative Architecture source blobs match the checked-in frontend provenance exactly, and the current frontend head passes all normal PR, Stage-4, Stage-3, typecheck, build, and browser gates.
+The current authoritative source blobs match the checked-in frontend provenance for the present Batch-2 source state. The final corrected frontend head retargets the hosted cross-repository guard to canonical Architecture `main`; final PR-CI evidence must be read from the latest current-head run before merge.
 
 Batch 3 may begin only after explicit instruction and normal live-state reconstruction. Stage 5 has not started.
