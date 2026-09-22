@@ -9,10 +9,10 @@
 **Canonical Technical Responsibility:** Account provisioning/recovery/disablement synchronized with authoritative identity facts.  
 **Technical Architecture Owner:** L5-D-01 — IAM Architecture  
 **Assigned Author:** Devang  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-01-001` v1.0.1 Draft; working `L5-D-01-002` v1.0.0 Draft; working `L5-D-01-003` v1.0.0 Draft; `L4-A-004` v1.0.0 Draft; `L4-A-005` v1.0.0 Draft; `L4-A-006` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-008` v1.0.0 Draft; `L4-A-053` v1.0.0 Draft; `L4-A-054` v1.0.0 Draft; `L2-A02` Locked; `L2-A03` v1.1.0 Locked; `ADR-PLAT-AUTH-001` Approved.  
+**Last Updated:** `2026-09-22`  
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-01-001` v1.0.1 Draft; Review `L5-D-01-002` v1.0.0 Draft; Review `L5-D-01-003` v1.0.0 Draft; `L4-A-004` v1.0.0 Draft; `L4-A-005` v1.0.0 Draft; `L4-A-006` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-008` v1.0.0 Draft; `L4-A-053` v1.0.0 Draft; `L4-A-054` v1.0.0 Draft; `L2-A02` Locked; `L2-A03` v1.1.0 Locked; `ADR-PLAT-AUTH-001` Approved.  
 **Referenced By:** Planned `L5-D-02-*`, account/identity lifecycle consumers, onboarding/integration architecture, and implementation specifications requiring governed IAM provisioning or lifecycle synchronization.  
 **Applicable ADRs:** `ADR-PLAT-AUTH-001` constrains Person/User Account and authentication/authorization ownership. No canonical L5 ADR is currently allocated for IAM provisioning product, workflow engine, directory, transport, persistence, recovery product or lifecycle technology; none is selected here.  
 
@@ -143,8 +143,8 @@ No material business or technology assumption is promoted to fact. Missing User 
 | Exact L5 Specification | Capability / Collaboration | Boundary | Why Needed |
 |---|---|---|---|
 | `L5-D-01-001` | IAM Architecture Baseline | Owns D01 family boundaries/invariants. | D01-004 must preserve identity/account ownership and authentication/authorization separation. |
-| working `L5-D-01-002` | Identity Account & Service Identity Architecture | Owns human User Account principal binding and service/workload/job/integration principal records. | D01-004 provisions/synchronizes lifecycle against those technical identities without redefining them. |
-| working `L5-D-01-003` | Authentication, Session & Credential Architecture | Owns Credential/factor/provider/session mechanisms, Credential cutover and session invalidation controls. | D01-004 orchestrates recovery/closure consequences by invoking D01-003-owned mechanisms. |
+| Review `L5-D-01-002` | Identity Account & Service Identity Architecture | Owns human User Account principal binding and service/workload/job/integration principal records. | D01-004 provisions/synchronizes lifecycle against those technical identities without redefining them. |
+| Review `L5-D-01-003` | Authentication, Session & Credential Architecture | Owns Credential/factor/provider/session mechanisms, Credential cutover and session invalidation controls. | D01-004 orchestrates recovery/closure consequences by invoking D01-003-owned mechanisms. |
 | `L5-D-02-*` | Authorization architecture | Owns Roles, Permissions, policy decision/enforcement and authorization scope. | Provisioning or account activation shall never create authorization grants. |
 | `L5-A-04-001` / `L5-A-04-002` | Tenant/Institution isolation and context propagation | Owns technical isolation/context mechanisms. | Lifecycle processing must remain inside one Tenant and preserve context. |
 | `L5-D-03-*` | Security, cryptography, keys, secrets and machine credentials | Owns protection of secret/cryptographic material. | Recovery/provisioning may need protected Credential or machine-credential capability without D01-004 owning secret internals. |
@@ -613,8 +613,8 @@ No numeric availability, retry, timeout, TTL, retention, throughput, lockout or 
 | OD-005 | Exact coordination ordering among `PersonArchived`, `IdentityDisabled` and `IdentityArchived` is not defined upstream. | Upstream | L4-A-053 `A053-L4-OPEN-02` | A02/L4 governance | **No for fail-safe authentication prevention; Yes for claiming a canonical ordered lifecycle sequence** | Resolve upstream ordering. D01-004 may enforce “no authentication + required session termination” without inventing aggregate transition order. |
 | OD-006 | Exact previous-Credential invalidation transition and canonical recovery-completion event remain unresolved. | Upstream | L4-A-008 §10 | A03/L3/L4 Authentication governance | **Yes for those exact state/event semantics; No for the D01-004 recovery completion barrier** | Resolve upstream; D01-004 continues to require the observable result that covered previous Credentials cannot authenticate. |
 | OD-007 | Exact provisioning authority, lifecycle state model, disablement semantics and canonical events for service/workload/job/integration principals remain unresolved. | Upstream / L5 | D01-002 `OD-003`; current L4 does not supply exact non-human lifecycle semantics | Lead Architect / Platform security architecture | **Yes for exact non-human lifecycle implementation; No for generic coordination boundary** | Govern the non-human lifecycle model before production implementation; do not borrow human User Account states/events. |
-| OD-008 | D01-002 and D01-003 are working Draft peer artifacts in this authoring sequence and require stabilization/reconciliation before D01-004 can be approved. | Dependency | Dependency-gated L5 authoring model | Lead Architect / D01 owner | **Yes for Architecture Approved if peer changes affect boundaries/contracts** | Reconcile against canonical committed/stable D01-002 and D01-003 revisions before approval. |
-| OD-009 | Concrete orchestration runtime, persistence technology, message transport, directory/IAM product and operational retry/timeout strategy remain unselected. | Technology / ADR | No applicable allocated L5 ADR currently identified | Lead Architect / L5 ADR governance | **No for technology-neutral Draft; Yes before implementation where a material choice is required** | Select only under L5 Technology Selection & ADR Methodology; do not allocate an ADR number locally. |
+| OD-008 | D01-002 and D01-003 are now canonical Review peers and have been reconciled to the current IAM/security ADR baseline. | Dependency | Current canonical repository state | Lead Architect / D01 owner | **No standalone blocker after reconciliation** | Continue normal impact review. |
+| OD-009 | Core platform technology is governed by the Locked Rust/Axum/Tokio, PostgreSQL/SQLx, NATS JetStream, Flowable, Keycloak and Group-3 security decisions. Exact lifecycle-policy semantics and numeric retry/timeout values remain upstream/profile-governed. | Technology / ADR | `ADR-L5-0019`; `ADR-L5-0020`; `ADR-L5-0022`; `ADR-L5-0023`; `ADR-L5-0024`; `ADR-L5-0038`; `ADR-L5-0039`; `ADR-L5-0040`; `ADR-L5-0041` | Canonical owners | **Core technology resolved; no standalone blocker** | Do not use technical resolution to invent missing account/non-human lifecycle business semantics. |
 
 ---
 
@@ -640,8 +640,8 @@ No numeric availability, retry, timeout, TTL, retention, throughput, lockout or 
 ### Material L5 Dependencies
 
 - `L5-D-01-001` — IAM baseline.
-- working `L5-D-01-002` — principal/account/service-identity models.
-- working `L5-D-01-003` — Authentication, Credential and session mechanisms.
+- Review `L5-D-01-002` — principal/account/service-identity models.
+- Review `L5-D-01-003` — Authentication, Credential and session mechanisms.
 - `L5-D-02-*` — authorization.
 - `L5-A-04-*` — Tenant/Institution isolation/context.
 - `L5-D-03-*` — security/cryptography/secrets.
@@ -668,5 +668,5 @@ No numeric availability, retry, timeout, TTL, retention, throughput, lockout or 
 - `OD-005` — closure aggregate ordering unresolved.
 - `OD-006` — recovery state/event semantics unresolved.
 - `OD-007` — non-human lifecycle semantics unresolved.
-- `OD-008` — D01 peer stabilization required.
-- `OD-009` — technology/ADR choices pending.
+- `OD-008` — D01 peer stabilization reconciled; ordinary impact review remains.
+- `OD-009` — core technology resolved; policy/profile values remain governed.

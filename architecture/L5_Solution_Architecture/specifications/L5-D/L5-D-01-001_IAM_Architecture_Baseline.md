@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Technical identity/authentication/account architecture; canonical Person/business relationships remain upstream-owned.  
 **Technical Architecture Owner:** L5-D-01 — IAM Architecture  
 **Assigned Author:** Devang  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L4-A-004` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-008` v1.0.0 Draft; `L4-A-009` v1.0.0 Draft; `L4-A-053` v1.0.0 Draft; `L4-A-055` v1.0.0 Draft; `L2-A02` Locked; `L2-A03` Locked; `ADR-PLAT-AUTH-001` Approved.  
@@ -77,7 +77,7 @@ The baseline establishes common technical boundaries and handoffs that the detai
 | L2 | `L2-A03_Authentication_Workflows.md` | v1.1.0 / Locked | `Scope`; `Out of Scope`; `Architectural Position`; `Canonical Ownership` | Authentication owns Credential, Authentication Session, Refresh Token, Trusted Device, Authentication Provider/Method, MFA Enrollment, Authentication Policy and Authentication Attempt; it consumes A02 identity/account references and supplies authenticated context to A04. | Establishes the Authentication-side business ownership that the D01 technical family realizes without absorbing Authorization. |
 | Upstream ADR | `governance/adr/ADR-PLAT-AUTH-001.md` | Approved | §2; §3.1; §3.2 | Authentication remains separate from authorization; canonical Person is Tenant-scoped; User Account is authentication/runtime context and is not the canonical Role Assignment subject. | Constrains authenticated-context design and prevents D01 from encoding authorization assignments into account/session state. |
 
-The cited canonical L4 files currently carry `Draft` metadata in live `main`. For this validation program, their canonical BH content is explicitly treated as Locked behavioral authority. This specification therefore uses the cited BHs as behavioral authority without changing their repository metadata or claiming that the L4 file statuses themselves were modified.
+The cited canonical L4 files currently carry `Draft` metadata in live `main`. They may support controlled planning/review but are not approval-level behavioral authority unless a canonical governance record explicitly authorizes that use. No D01-specific approval-level authorization has been identified by this validation batch; therefore D01-001 remains blocked from Architecture Approved on the material Draft-L4 dependency.
 
 ### 3.2 Authoritative Constraints
 
@@ -94,7 +94,7 @@ The cited canonical L4 files currently carry `Draft` metadata in live `main`. Fo
 
 ### 3.3 Assumptions
 
-No material architecture assumption is promoted to fact in this Draft. Peer-L5 stabilization and intentionally deferred technology choices remain explicit open items in Section 9.
+No material architecture assumption is promoted to fact in this Review. Peer-L5 stabilization, Draft-L4 approval authority and intentionally deferred/profile technology details remain explicit in Section 9.
 
 ---
 
@@ -335,7 +335,7 @@ This baseline establishes no local `AD-*` decision. The material positions that 
 
 Section 5 defines the D01-owned technical realization of those constraints. Section 8 makes that realization objectively conformable.
 
-No material technology selection is made by this Draft. Any later product, protocol, cryptographic, persistence, runtime or other ADR-class choice remains subject to the canonical L5 Technology Selection & ADR Methodology and ADR Register.
+Technology decisions already locked by `ADR-L5-0024`, `ADR-L5-0038`, `ADR-L5-0039` and `ADR-L5-0040` are inherited here; remaining provider-specific, numeric/session and deployment details remain with their canonical owners.
 
 ---
 
@@ -376,7 +376,7 @@ No numeric availability, latency, timeout, session duration, credential lifetime
 
 | Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
 |---|---|---|---|---|---|---|
-| OD-001 | Peer technical details for Tenant context/isolation, D03 trust/secret controls, D04 evidence durability, B02 persistence, and C01/C02 handoff mechanics are not established in this Draft and must be cross-validated as those Stage 1/Stage 2 specifications stabilize. | Dependency | `L5-A-04-*`, `L5-D-03-*`, `L5-D-04-*`, `L5-B-02-*`, `L5-C-01-*`, `L5-C-02-*` | Respective canonical L5 owners + Lead Architect consistency review | **Yes for final architecture approval where the dependency affects a material boundary** | Reconcile D01 boundary contracts/invariants against stable peer specifications; remediate only D01-owned details and escalate ownership conflicts. |
+| OD-001 | Material D01-001 L4 sources remain Draft; peer boundaries have been substantially stabilized but do not convert Draft L4 behavior into approval authority. | Upstream / dependency | `L4-A-004/007/008/009/053/055` plus A04/D03/D04/B02/C01/C02 peers | L4/repository governance + canonical L5 owners | **Yes for Architecture Approved because material L4 authority remains Draft** | Approve/authorize the material L4 behavior through canonical governance; continue impact review of peer changes. |
 | OD-002 | **Partially resolved:** Keycloak 26.x is the Locked IAM/authentication platform. Federation protocol profiles, token/session representation, credential protection and runtime placement remain detailed-owner decisions where not otherwise governed. | L5 / ADR / Technology | `ADR-L5-0024` | Applicable canonical owners | Product resolved | Preserve canonical Person/Identity and D02 authorization boundaries. |
 
 ---
@@ -419,8 +419,8 @@ No numeric availability, latency, timeout, session duration, credential lifetime
 
 ### Open / Blocking Items
 
-- `OD-001` — peer-L5 stabilization/cross-consistency gate.
-- `OD-002` — technology/ADR decisions intentionally deferred.
+- `OD-001` — material Draft-L4 approval gate remains; peer-L5 cross-consistency is substantially stabilized.
+- `OD-002` — core IAM technology is resolved; remaining provider/profile details stay governed.
 
 
 ## 2026-09-22 Locked Technology Decision Synchronization
