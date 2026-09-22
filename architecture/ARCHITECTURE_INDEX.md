@@ -372,6 +372,30 @@ Intentionally deferred/profile-driven matters remain: scheduling solver product 
 
 
 
+### Full Production Validation & Lock Readiness — Batch 8
+
+As of 2026-09-22, the L5 Full Production Validation & Lock-Readiness Programme has completed Batches 0–8.
+
+```text
+Canonical production specifications      105 / 105
+Review specifications validated           51 / 51
+Approved/Locked impact-revalidated         54 / 54
+Current validation dispositions           105 / 105
+
+Draft                                         0
+Review                                       51
+Architecture Approved                        21
+Locked                                       33
+```
+
+The canonical row-level validation source is:
+
+`L5_Solution_Architecture/governance/reference/L5_Full_105_Row_Production_Validation_Register_2026-09-22.md`
+
+Batch 8 also revalidated current-version bindings for the existing 130-row W-C02 canonical L4→L5 relation population. Relation identity and BH coverage were unchanged.
+
+**Final L5 Corpus Lock remains NOT AUTHORIZED.** Thirty Review specifications retain upstream authority/semantics blockers; additional Review specifications remain intentionally unpromoted pending separate lifecycle governance. Batch 9 is the next and final programme gate.
+
 ## Canonical L5 Repository Structure
 
 ```text
@@ -603,6 +627,10 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 # Recent Changes
 
+**2026-09-22 — L5 Batch-8 full-corpus validation register:** Completed 105/105 production-validation disposition reconciliation across Batches 1–7C, rebound the existing W-C02 canonical Validated relations to current L5 specification versions where non-material changes permitted it, synchronized L5 navigation, and established the canonical 105-row validation register. Lifecycle remains 0 Draft / 51 Review / 21 Architecture Approved / 33 Locked. Final L5 Corpus Lock remains not authorized; Batch 9 is next.
+
+---
+
 **2026-09-21 — L6 Stage-2 full-corpus workflow realization PASS:** Completed controlled reconciliation of all 1,084 canonical L3 scenarios across Groups 1–14 and the Group-15 enterprise master pass. Established 595 final L6 realization workflows, populated the 1,084-row Workflow Realization Register, validated zero missing/duplicate primary assignments and zero material blockers, and passed both worker-corpus and master-register validation gates. Stage 3 is unblocked under its own controls; no L0–L5 ownership or business semantics were changed by the master pass.
 
 ---
@@ -654,7 +682,7 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 ---
 
-**Last Updated:** 2026-09-19
+**Last Updated:** 2026-09-22
 
 **Repository:** SutraERP
 
