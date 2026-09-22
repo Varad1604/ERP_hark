@@ -127,6 +127,12 @@ The next new ADR number is determined from the highest canonical allocated ADR n
 
 | `ADR-L5-0037` | Valkey Derived Cache & Failure Behavior Standard | Shared / Family | L5-E-02 — Performance & Capacity Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0037_Valkey_Derived_Cache_and_Failure_Behavior_Standard.md` | `L5-E-02-002`; constrains cache-using L5 capabilities | 2026-09-22 | 2026-09-22 | — | — | Locked Backend Readiness Group-2 cache standard. |
 
+| `ADR-L5-0038` | Custom Credential API, Server Session & MFA Profile | Shared / Family | L5-D-01 — IAM Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0038_Custom_Credential_API_Server_Session_and_MFA_Profile.md` | `L5-D-01-001`; `L5-D-01-003`; `L5-D-01-004` | 2026-09-22 | 2026-09-22 | — | — | Locked Group-3 human authentication/session/MFA profile. |
+
+| `ADR-L5-0039` | Non-Human Service Authentication & Authorization Binding Profile | Shared / Family | L5-D-01 — IAM Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0039_Non_Human_Service_Authentication_and_Authorization_Binding_Profile.md` | `L5-D-01-002`; `L5-D-01-003`; constrains `L5-D-02-001` | 2026-09-22 | 2026-09-22 | — | — | Locked Group-3 service/workload identity profile. |
+
+| `ADR-L5-0040` | Internal Transport, Cryptography, Secrets & Key Custody Profile | Repository | L5-D-03 — Security, Cryptography, Secrets & Key Management Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0040_Internal_Transport_Cryptography_Secrets_and_Key_Custody_Profile.md` | `L5-D-03-001`…`L5-D-03-005`; protected runtime/persistence consumers | 2026-09-22 | 2026-09-22 | — | — | Locked Group-3 trust/crypto/secrets profile. |
+
 ### ADR Path
 
 Once the ADR file exists, record its canonical repository path.
@@ -369,5 +375,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 37  
-**Next Canonical Allocation:** `ADR-L5-0038`
+**ADR IDs Currently Canonically Allocated:** 40  
+**Next Canonical Allocation:** `ADR-L5-0041`

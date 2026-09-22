@@ -215,3 +215,14 @@ Locked on 2026-09-22:
 - `ADR-L5-0037` — Valkey derived-cache and failure-behavior standard.
 
 The canonical ADR register now allocates 37 ADRs; next allocation is `ADR-L5-0038`.
+
+
+## Backend Readiness Decision Group 3 — IAM, Security & Service Trust
+
+Locked on 2026-09-22:
+
+- `ADR-L5-0038` — custom credential API, server session and MFA profile.
+- `ADR-L5-0039` — non-human service authentication and authorization binding profile.
+- `ADR-L5-0040` — internal transport, cryptography, secrets and key-custody profile.
+
+The default human login surface is a SutraERP custom username/password API backed by Keycloak credential authority; OAuth Direct Access Grant is explicitly not the canonical realization. The ADR register now allocates 40 ADRs; next allocation is `ADR-L5-0041`.
