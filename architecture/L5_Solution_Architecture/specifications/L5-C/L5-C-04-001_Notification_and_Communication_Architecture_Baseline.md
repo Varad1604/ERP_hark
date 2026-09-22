@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Enterprise notification/communication capability; triggering business facts remain source-domain owned.  
 **Technical Architecture Owner:** L5-C-04 — Notification & Communication Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.0.0`  
+**Version:** `1.1.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-15`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Stage 3 Final Closure & Stage 4 Proceed Decision 2026-09-15; `L2-H02_Notification_Workflows.md` v1.0 Locked; `L5-C-01-001`; `L5-C-02-001`; `L5-A-04-002`; `L5-B-02-003`; `L5-D-02-004`; `L5-A-08-001`; `L5-A-08-002`; `L5-D-04-001`; `L5-E-05-001`.  
 **Referenced By:** `L5-C-04-002`; `L5-C-04-003`; business/platform capabilities requiring governed notification/communication.  
 **Applicable ADRs:** `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0007`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0013`.  
@@ -562,3 +562,9 @@ All above relations are **Specified**, not `Validated`, while their L4 sources r
 - `OD-002` — C04 family canonical repository integration is resolved; no repository blocker remains.
 - `OD-003` — C01 transport/style intentionally unresolved and non-blocking for Draft.
 - `OD-004` — provider/product specifics deferred to C04-003/technology governance.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0033`  
+Payment, banking/treasury and communication providers remain deployment/institution choices behind C03/C04 adapters. No repository-wide external-provider vendor is canonical; provider-specific semantics may not become business architecture.

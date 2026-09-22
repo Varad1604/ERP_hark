@@ -8,9 +8,9 @@
 **Canonical Technical Responsibility:** Common external integration/connector boundary and ownership-preserving principles.  
 **Technical Architecture Owner:** `L5-C-03 — External Integration & Connector Architecture`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.2`  
+**Version:** `1.1.0`  
 **Status:** `Locked`  
-**Last Updated:** `2026-09-16`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** `L5-C-01`; `L5-C-02`; `L5-D-03`; `L5-E-04`; `L5-E-05`; `L5-A-04`; applicable source-domain L5 architecture  
 **Referenced By:** `L5-C-03-002`–`L5-C-03-009`  
 **Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0009`; `ADR-L5-0014`; `ADR-L5-0016`  
@@ -140,3 +140,9 @@ Connector credentials consume D03 and shall not be committed in source-controlle
 **Governance-authorized / Specified L4 exemplars:** `L4-H-073-BH-001`–`012`; `L4-H-059-BH-003`–`008`; `L4-A-036-BH-001`–`008`; `L4-F-061-BH-003`–`015`.  
 **Material peers:** C01, C02, D01/D02/D03, A04, E01, E04, E05.  
 **Decisions:** AD-001–005. **Conformance:** CR-001–007. **Blocking:** none.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0033`  
+Payment, banking/treasury and communication providers remain deployment/institution choices behind C03/C04 adapters. No repository-wide external-provider vendor is canonical; provider-specific semantics may not become business architecture.
