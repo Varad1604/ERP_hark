@@ -366,9 +366,9 @@ The representative nine-specification pilot is complete, the L5 authoring method
 
 ### Locked Technology Decision Wave — 2026-09-22
 
-The canonical L5 ADR register now contains **33 allocated ADRs**. `ADR-L5-0019` through `ADR-L5-0033` are **Locked** and establish the immediate implementation technology baseline: Axum/Tokio, PostgreSQL/SQLx, REST/OpenAPI, NATS JetStream, BPMN/Flowable, Keycloak, OpenSearch, S3/Ceph RGW, OpenBao/rustls, OCI/Kubernetes, OpenTelemetry/Prometheus/Loki/Tempo/Grafana, GitHub Actions/GHCR/Cosign, CEL, rust_decimal, and external-provider pluggability.
+The canonical L5 ADR register now contains **47 allocated ADRs**. Backend-readiness decisions through `ADR-L5-0047` establish the implementation-facing architecture baseline for contracts, persistence/cache, IAM/security, asynchronous execution, deployment/operations, and measured capacity/recovery/optimization governance.
 
-Explicitly deferred decisions remain open: scheduling/optimization solver, universal numeric capacity/SLO targets, RPO/RTO/retention values, mobile/cache selections where still open, exact deployment-provider details, and Final L5 Corpus Lock.
+Intentionally deferred/profile-driven matters remain: scheduling solver product pending benchmark evidence, numeric capacity/SLO values, numeric RPO/RTO/retention profiles, future mobile client platform, institution/provider/deployment-profile-specific choices, and Final L5 Corpus Lock.
 
 
 

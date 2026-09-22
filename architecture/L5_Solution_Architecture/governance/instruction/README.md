@@ -65,4 +65,13 @@ The distinction between `instruction/` and `reference/` is operational convenien
 
 ## 2026-09-22 Locked Technology Decision Wave
 
-`ADR-L5-0019` through `ADR-L5-0033` are canonical Locked decisions. Do not re-select these technologies locally. The next ADR allocation is `ADR-L5-0034`. Final L5 Corpus Lock remains not authorized.
+`ADR-L5-0019` through `ADR-L5-0047` contain the current canonical Locked technology/backend-readiness decisions. Do not re-select these decisions locally. The next ADR allocation is `ADR-L5-0048`. Final L5 Corpus Lock remains not authorized.
+
+
+## 2026-09-22 Post-Decision Corpus Audit
+
+The full 105-specification corpus has completed a post-decision synchronization audit. Confirmed stale contradictions were repaired; D03 lifecycle metadata was restored to the `Review` state required by the locked full-corpus Draft-to-Review promotion decision.
+
+Current lifecycle distribution: **0 Draft / 51 Review / 21 Architecture Approved / 33 Locked**.
+
+Do not infer Final L5 Corpus Lock from backend-readiness completion. Remaining Review specifications require formal validation, and materially impacted approved specifications remain subject to normal impact revalidation.

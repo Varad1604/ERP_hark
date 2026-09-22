@@ -132,4 +132,9 @@ Broad L5 authoring is authorized, but no authored specification becomes Architec
 
 ## Locked Technology Decision Wave — 2026-09-22
 
-Production specifications shall inherit applicable Locked decisions `ADR-L5-0019` through `ADR-L5-0033`. This does not alter the frozen 105-specification responsibility population and does not authorize Final L5 Corpus Lock.
+Production specifications shall inherit all applicable Locked decisions through `ADR-L5-0047`. Backend-readiness ADRs `ADR-L5-0034`–`ADR-L5-0047` add contract, persistence/cache, IAM/security, asynchronous execution, deployment/operations and capacity/recovery/optimization governance without altering the frozen 105-specification responsibility population. Final L5 Corpus Lock is not authorized.
+
+
+## Post-Decision Audit State
+
+As of 2026-09-22, the 105 canonical specification headers are synchronized to **0 Draft / 51 Review / 21 Architecture Approved / 33 Locked**. Lifecycle status shall not be strengthened merely because a technology ADR is Locked.

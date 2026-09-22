@@ -31,7 +31,7 @@ architecture/L5_Solution_Architecture/
 │   └── reference/         # supporting governance and provenance
 ├── specifications/        # canonical 105-specification production authoring area
 ├── historical/            # preserved non-canonical extracted technical material
-├── adr/                   # created when the first canonical ADR is allocated
+├── adr/                   # canonical ADR decision documents
 ├── L5-00_Technology_Stack_Baseline.md
 └── L5-01_Infrastructure_Persistence_Baseline.md
 ```
@@ -46,7 +46,7 @@ The governance subfolder organization is recorded in:
 
 `governance/reference/L5_Governance_Subfolder_Organization_Decision_2026-09-10.md`
 
-The `adr/` directory shall not be materialized until the first canonical ADR document is actually allocated and authored.
+The `adr/` directory is active and contains the canonical L5 ADR decision documents.
 
 ---
 
@@ -192,7 +192,7 @@ These documents are historical technical inputs only, are not part of the frozen
 
 ## ADR Boundary
 
-The canonical ADR register now contains **33 allocated ADRs**. `ADR-L5-0019` through `ADR-L5-0033` are Locked by the 2026-09-22 Technology Decision Wave. New allocation continues from `ADR-L5-0034`. Canonical ADR documents live under `adr/`.
+The canonical ADR register now contains **47 allocated ADRs**. Backend-readiness decisions through `ADR-L5-0047` are recorded under `adr/`; new allocation continues from `ADR-L5-0048`.
 
 ---
 
@@ -204,7 +204,7 @@ The L5 program may proceed with controlled mass authoring in `specifications/` a
 
 Branch selection, manual task assignment, push permissions and merge timing remain under Lead Architect control.
 
-Individual specifications still require normal validation and remediation where applicable. The immediate technology/product decisions are now governed by Locked ADR-L5-0019 through ADR-L5-0033. Solver selection, universal numeric capacity/SLO values, RPO/RTO/retention values, mobile/cache choices where still open, exact deployment-provider details and Final L5 Corpus Lock remain unresolved. The Final L5 Corpus Lock has not been issued.
+All six backend-readiness decision groups are complete through `ADR-L5-0047`. Evidence-dependent numeric capacity/SLO values, numeric RPO/RTO/retention profiles, the scheduling solver product pending benchmark evidence, the future mobile client platform and deployment/provider-specific profile choices remain intentionally governed rather than guessed. A full 105-specification post-decision audit has repaired confirmed ADR/status contradictions; formal corpus validation and lock authorization remain outstanding. The Final L5 Corpus Lock has not been issued.
 
 
 ## Backend Readiness Decision Group 2 — Data, Caching & Persistence
@@ -260,3 +260,20 @@ All six backend-readiness decision groups are complete and Locked as of 2026-09-
 - Group 6: `ADR-L5-0045`–`0047`
 
 The backend architecture is decision-ready for future implementation planning, but **Final L5 Corpus Lock remains not authorized**. The next required activity is a full 105-specification post-decision synchronization and integrity audit. The ADR register now allocates 47 ADRs; next allocation is `ADR-L5-0048`.
+
+
+## Post-Decision Corpus Audit — 2026-09-22
+
+The full 105-specification corpus was audited after completion of Backend Readiness Groups 1–6.
+
+| Status | Count |
+|---|---:|
+| Draft | 0 |
+| Review | 51 |
+| Architecture Approved | 21 |
+| Locked | 33 |
+| **Total** | **105** |
+
+Confirmed stale ADR/product wording and D03 lifecycle regression were repaired without changing canonical business ownership or intentionally deferred evidence-dependent decisions.
+
+**Final L5 Corpus Lock remains NOT AUTHORIZED.** The next gate is formal production validation of the remaining Review specifications, revalidation of materially affected approved specifications where required, and a distinct final lock decision after zero blocking hard failures.
