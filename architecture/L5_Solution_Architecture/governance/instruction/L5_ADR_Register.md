@@ -119,6 +119,14 @@ The next new ADR number is determined from the highest canonical allocated ADR n
 | `ADR-L5-0032` | Rust Decimal Monetary Computation Representation Standard | Shared / Family | L5-A-07 — Secure Computational Engine Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0032_Rust_Decimal_Monetary_Computation_Representation_Standard.md` | `L5-A-07-002`; `L5-A-07-004` | 2026-09-22 | 2026-09-22 | — | — | Locked by 2026-09-22 technology decision wave. |
 | `ADR-L5-0033` | External Provider Pluggability & No Repository-Wide Vendor Default | Repository | L5-C-03 / L5-C-04 — External Integration & Communication Provider Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0033_External_Provider_Pluggability_and_No_Repository_Wide_Vendor_Default.md` | `L5-C-03-*`; `L5-C-04-*` | 2026-09-22 | 2026-09-22 | — | — | Locked by 2026-09-22 technology decision wave. |
 
+| `ADR-L5-0034` | Synchronous API Wire, Versioning, Error & Idempotency Profile | Shared / Family | L5-C-01 — API & Contract Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0034_Synchronous_API_Wire_Versioning_Error_and_Idempotency_Profile.md` | `L5-C-01-001`; `L5-C-01-002`; `L5-C-01-003` | 2026-09-22 | 2026-09-22 | — | — | Locked Group-1 backend contract profile. |
+
+| `ADR-L5-0035` | Event Wire, Envelope & Schema Serialization Profile | Shared / Family | L5-C-02 — Event & Messaging Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0035_Event_Wire_Envelope_and_Schema_Serialization_Profile.md` | `L5-C-02-001`; `L5-C-02-003` | 2026-09-22 | 2026-09-22 | — | — | Locked Group-1 backend event-wire profile. |
+
+| `ADR-L5-0036` | Persistence Implementation Conventions & Technical Identity Standard | Shared / Family | L5-B-02 — Database & Persistence Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0036_Persistence_Implementation_Conventions_and_Technical_Identity_Standard.md` | `L5-B-02-001`; `L5-B-02-002`; `L5-B-02-003`; `L5-B-02-004`; constrains `L5-B-06-001/002` | 2026-09-22 | 2026-09-22 | — | — | Locked Backend Readiness Group-2 persistence conventions. |
+
+| `ADR-L5-0037` | Valkey Derived Cache & Failure Behavior Standard | Shared / Family | L5-E-02 — Performance & Capacity Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0037_Valkey_Derived_Cache_and_Failure_Behavior_Standard.md` | `L5-E-02-002`; constrains cache-using L5 capabilities | 2026-09-22 | 2026-09-22 | — | — | Locked Backend Readiness Group-2 cache standard. |
+
 ### ADR Path
 
 Once the ADR file exists, record its canonical repository path.
@@ -361,5 +369,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 35  
-**Next Canonical Allocation:** `ADR-L5-0036`
+**ADR IDs Currently Canonically Allocated:** 37  
+**Next Canonical Allocation:** `ADR-L5-0038`

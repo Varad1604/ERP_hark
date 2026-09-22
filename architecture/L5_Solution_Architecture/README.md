@@ -205,3 +205,13 @@ The L5 program may proceed with controlled mass authoring in `specifications/` a
 Branch selection, manual task assignment, push permissions and merge timing remain under Lead Architect control.
 
 Individual specifications still require normal validation and remediation where applicable. The immediate technology/product decisions are now governed by Locked ADR-L5-0019 through ADR-L5-0033. Solver selection, universal numeric capacity/SLO values, RPO/RTO/retention values, mobile/cache choices where still open, exact deployment-provider details and Final L5 Corpus Lock remain unresolved. The Final L5 Corpus Lock has not been issued.
+
+
+## Backend Readiness Decision Group 2 — Data, Caching & Persistence
+
+Locked on 2026-09-22:
+
+- `ADR-L5-0036` — persistence implementation conventions and technical identity standard.
+- `ADR-L5-0037` — Valkey derived-cache and failure-behavior standard.
+
+The canonical ADR register now allocates 37 ADRs; next allocation is `ADR-L5-0038`.
