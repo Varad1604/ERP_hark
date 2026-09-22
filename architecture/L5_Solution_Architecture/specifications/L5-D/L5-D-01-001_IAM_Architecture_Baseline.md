@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Technical identity/authentication/account architecture; canonical Person/business relationships remain upstream-owned.  
 **Technical Architecture Owner:** L5-D-01 — IAM Architecture  
 **Assigned Author:** Devang  
-**Version:** `1.0.1`  
+**Version:** `1.1.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-10`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L4-A-004` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-008` v1.0.0 Draft; `L4-A-009` v1.0.0 Draft; `L4-A-053` v1.0.0 Draft; `L4-A-055` v1.0.0 Draft; `L2-A02` Locked; `L2-A03` Locked; `ADR-PLAT-AUTH-001` Approved.  
 **Referenced By:** Planned canonical dependents `L5-D-01-002`, `L5-D-01-003`, `L5-D-01-004`, and `L5-D-02-001`.  
-**Applicable ADRs:** `ADR-PLAT-AUTH-001` constrains upstream authentication/authorization separation and Person/User Account semantics. No canonical L5 ADR is currently allocated; no product, protocol, cryptographic or runtime technology is selected by this baseline.  
+**Applicable ADRs:** `ADR-PLAT-AUTH-001`; `ADR-L5-0024`.
 
 ---
 
@@ -377,7 +377,7 @@ No numeric availability, latency, timeout, session duration, credential lifetime
 | Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
 |---|---|---|---|---|---|---|
 | OD-001 | Peer technical details for Tenant context/isolation, D03 trust/secret controls, D04 evidence durability, B02 persistence, and C01/C02 handoff mechanics are not established in this Draft and must be cross-validated as those Stage 1/Stage 2 specifications stabilize. | Dependency | `L5-A-04-*`, `L5-D-03-*`, `L5-D-04-*`, `L5-B-02-*`, `L5-C-01-*`, `L5-C-02-*` | Respective canonical L5 owners + Lead Architect consistency review | **Yes for final architecture approval where the dependency affects a material boundary** | Reconcile D01 boundary contracts/invariants against stable peer specifications; remediate only D01-owned details and escalate ownership conflicts. |
-| OD-002 | Exact IAM product, provider/federation protocol, token/session representation, credential protection technology and runtime placement are intentionally unresolved. | L5 / ADR / Technology | No canonical L5 ADR has been allocated; this baseline has no authority to select these technologies. | Lead Architect / L5 ADR governance / applicable detailed L5 owner | **No for this technology-neutral baseline** | Resolve only when a detailed specification demonstrates a material need; use the canonical ADR register before assigning any ADR identifier. |
+| OD-002 | **Partially resolved:** Keycloak 26.x is the Locked IAM/authentication platform. Federation protocol profiles, token/session representation, credential protection and runtime placement remain detailed-owner decisions where not otherwise governed. | L5 / ADR / Technology | `ADR-L5-0024` | Applicable canonical owners | Product resolved | Preserve canonical Person/Identity and D02 authorization boundaries. |
 
 ---
 
@@ -421,3 +421,9 @@ No numeric availability, latency, timeout, session duration, credential lifetime
 
 - `OD-001` — peer-L5 stabilization/cross-consistency gate.
 - `OD-002` — technology/ADR decisions intentionally deferred.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0024`  
+Keycloak 26.x is canonical for authentication/federation. It does not become the canonical Person/Identity master and does not own authorization policy.

@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Technical API/contract principles and ownership-preserving synchronous boundaries.  
 **Technical Architecture Owner:** L5-C-01 — API & Contract Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.1.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-A-01-001`, `L5-A-03-001`, `L5-A-04-002`, `L5-B-02-001/002/003`, `L5-D-01-001`, `L5-D-03-001`, `L4-A-001`, `L4-A-015`, `L4-A-028`, `L4-A-050`.  
 **Referenced By:** `L5-C-01-002`, `L5-C-01-003`, `L5-C-02-*`, `L5-C-03-*`.  
-**Applicable ADRs:** `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0006`. Exact API transport/style, API-management product and primary runtime/framework remain unresolved technology/shared-pattern decisions.
+**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0019`; `ADR-L5-0021`.
 
 ---
 
@@ -125,8 +125,8 @@ Consumer
 | AD-003 | Tenant/Institution context | Required scope is explicit and fail-closed. | `ADR-L5-0004` |
 | AD-004 | Transaction ownership | Synchronous contract crossing does not propagate a caller transaction across owners. | `ADR-L5-0006` |
 | AD-005 | External exposure | External contracts pass through a governed technical ingress/API-management boundary that owns no business logic. | Local architecture decision; product selection deferred |
-| AD-006 | API transport/style | Unresolved; REST/HTTP/OpenAPI, gRPC or other styles are candidates only until governed. | ADR if shared/repository standard selected |
-| AD-007 | Runtime/framework | Unresolved; no language/framework is canonical from this file. | ADR required for normative selection |
+| AD-006 | API transport/style | HTTPS REST/JSON + OpenAPI 3.2 is default; gRPC is exception-only. | `ADR-L5-0021` |
+| AD-007 | Runtime/framework | Rust + Axum + Tokio is canonical server realization; C01 contracts stay framework-independent. | `ADR-L5-0018`; `ADR-L5-0019` |
 
 ---
 
@@ -146,9 +146,9 @@ Consumer
 
 | Item ID | Item | Blocking? | Resolution |
 | --- | --- | --- | --- |
-| OD-001 | Shared synchronous API transport/style | No for technology-neutral architecture; Yes before normative shared style mandate | Govern through ADR if repository/shared standard is required. |
+| OD-001 | **Resolved:** HTTPS REST/JSON + OpenAPI 3.2; gRPC exception-only. | Locked | `ADR-L5-0021` |
 | OD-002 | Primary runtime/language/framework | No for C01 architecture; Yes before normative technology mandate | Govern through canonical technology selection. |
-| OD-003 | API-management product | No for boundary architecture; Yes before normative product mandate | Evaluate through ADR if a shared platform is selected. |
+| OD-003 | **Resolved architectural position:** no mandatory heavyweight API-management product; governed deployment ingress is sufficient unless a later ADR justifies more. | Locked | `ADR-L5-0021` |
 | OD-004 | Material L4 parents remain Draft | Yes for Architecture Approved | Resolve through L4 governance. |
 
 ---
@@ -157,3 +157,9 @@ Consumer
 
 **Material Dependencies:** `L5-A-01-001`, `L5-A-03-001`, `L5-A-04-002`, `L5-B-02-001/002/003`, `L5-D-01-001`, `L5-D-03-001`, `L4-A-001`, `L4-A-015`, `L4-A-028`, `L4-A-050`  
 **Applicable Approved ADRs:** `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0006`
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0021`  
+The synchronous API profile is HTTPS REST/JSON + OpenAPI 3.2. gRPC is scope-exception only; API-management products remain non-mandatory.

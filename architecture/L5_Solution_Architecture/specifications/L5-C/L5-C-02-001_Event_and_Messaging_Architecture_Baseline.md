@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Event/messaging infrastructure while canonical business-event ownership remains upstream.  
 **Technical Architecture Owner:** `L5-C-02 — Event & Messaging Architecture`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.3`  
+**Version:** `1.1.0`  
 **Status:** `Architecture Approved`  
-**Last Updated:** `2026-09-12`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** `L5-B-02-003`; `L5-C-01`; `ADR-L5-0007`; `ADR-L5-0010`  
 **Referenced By:** `L5-C-02-002`; `L5-C-02-003`; downstream event-consuming L5 specifications  
-**Applicable ADRs:** `ADR-L5-0007`; `ADR-L5-0010`  
+**Applicable ADRs:** `ADR-L5-0007`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0022`.
 **Governing Sources:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register 105; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology; L5 ADR Register.
 
 ## 2. Purpose, Scope & Non-Goals
@@ -84,7 +84,7 @@ Critical delivery is designed for at-least-once-compatible processing, requiring
 | AD-003 | Critical QoS | Durable, at-least-once-compatible delivery; idempotent consumers. | `ADR-L5-0010` + `ADR-L5-0007` handoff. |
 | AD-004 | Ordering | Scoped only; no global ordering. | `ADR-L5-0010`. |
 | AD-005 | Envelope portability | Transport-neutral information categories; wire representation remains unselected. | Product neutrality; C02-003/ADR-L5-0011 governs compatibility. |
-| AD-006 | Product selection | Broker/protocol/product remains unselected. | Requires separate governed selection if made canonical. |
+| AD-006 | Product selection | NATS JetStream is the canonical broker/transport product. | `ADR-L5-0022` |
 
 ## 7. Security, Privacy, Quality & Operations
 Use service identities and least-privilege publish/subscribe authorization. Transport protection is mandatory through D03-owned controls. Sensitive payload content is minimized. Production/non-production messaging is logically isolated. Capacity considerations include publish rate, consumer lag, backlog age, connection pressure and recovery throughput; numeric targets are not invented.
@@ -102,7 +102,7 @@ Use service identities and least-privilege publish/subscribe authorization. Tran
 ## 9. Open Decisions & Deferred Design
 | ID | Item | Blocking state |
 |---|---|---|
-| OD-001 | Canonical broker/transport technology and protocol profile | Non-blocking; blocks only a claim of product lock. |
+| OD-001 | **Resolved product:** NATS JetStream. Subject naming/payload representation remain C02-governed. | Locked. |
 | OD-002 | Numeric capacity/retention targets | Deferred to E02/approved operational profiles. |
 
 No unresolved L4-authority blocker remains for this validation cycle because canonical L4 behavior is being treated as authoritative by explicit review instruction.
@@ -112,3 +112,9 @@ Canonical responsibility: approved L5 Candidate Corpus Register 105. Repository 
 
 ## 11. Review Position
 This specification is **Architecture Approved** following completed Stage-2 remediation and explicit architecture approval on 2026-09-12. It is lock-ready but shall not be marked `Locked` until distinct final-governance authorization is recorded.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0022`  
+NATS JetStream is canonical while ADR-L5-0007/0010/0011 delivery, ownership and compatibility semantics remain authoritative.

@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Physical persistence architecture and principles without changing domain ownership.  
 **Technical Architecture Owner:** L5-B-02 — Database & Persistence Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.1`  
+**Version:** `1.1.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Architecture Family Register; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; L5 Broad Authoring Authorization v1.0.0; L5 Dependency-Gated Parallel Authoring Execution Timeline v1.0.0; `L5-A-01-001` v1.0.1 Draft; `L5-A-03-001` v1.0.1 Draft; `L5-A-04-001` v1.0.1 Draft; `L5-A-04-002` v1.0.1 Draft; `L4-A-001` v1.0.0 Draft; `L4-A-019` v1.0.0 Draft; SutraERP L1 Business Domain Architecture v2.1 Locked.  
 **Referenced By:** Dependency-gated downstream areas including L5-B-03, L5-C-02, L5-B-05, L5-E-02, L5-A-07, L5-B-01, L5-B-04, L5-B-06 and L5-E-03.  
-**Applicable ADRs:** `ADR-L5-0005` — Persistence Ownership, Hybrid Topology and Tenant Isolation Pattern (`Architecture Approved`). Primary relational database technology remains a separate unresolved technology-selection decision and is not selected here.
+**Applicable ADRs:** `ADR-L5-0005`; `ADR-L5-0006`; `ADR-L5-0007`; `ADR-L5-0008`; `ADR-L5-0020`.
 
 ---
 
@@ -155,7 +155,7 @@ Caches, indexes, search structures, projections, analytics stores or similar der
 | `AD-001` | Authoritative ERP persistence is relational-first and aligned to canonical owner boundaries. | Architecture Approved for pattern; database product remains unresolved | `ADR-L5-0005` |
 | `AD-002` | Logical owner persistence boundaries may share physical database infrastructure when constraints permit; physical separation is selectively justified. | Architecture Approved | `ADR-L5-0005` |
 | `AD-003` | No fixed physical database count is canonical. | Architecture Approved | `ADR-L5-0005` |
-| `AD-004` | Primary relational database technology selection is deferred to separate Repository ADR/technology evaluation. | Unresolved technology selection; non-blocking for product-neutral Draft | Future governed ADR |
+| `AD-004` | PostgreSQL 18.x is the primary relational database and SQLx the default Rust access layer; no mandatory full ORM. | Locked | `ADR-L5-0020` |
 
 ---
 
@@ -191,7 +191,7 @@ Caches, indexes, search structures, projections, analytics stores or similar der
 
 | ID | Item | Blocking Status | Resolution Path |
 |---|---|---|---|
-| `OD-002` | Select the primary relational database technology. | Does not block product-neutral Draft; blocks canonical technology standardization/implementation standard. | Define criteria, evaluate viable products and approve a Repository technology ADR; A02 then consolidates the approved technology standard as applicable. |
+| `OD-002` | **Resolved:** PostgreSQL 18.x + SQLx. | Locked implementation standard. | `ADR-L5-0020`. |
 
 ---
 
@@ -202,3 +202,9 @@ Canonical architecture pattern: `AD-001`–`AD-003` → `ADR-L5-0005`.
 Technology choice remains intentionally unresolved: `AD-004` / `OD-002`.
 
 Downstream consumers shall depend on the owner-scoped persistence boundary, not a presumed physical database count or vendor.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0020`  
+PostgreSQL 18.x + SQLx are canonical. Logical owner boundaries, transaction ownership and no fixed physical database count remain unchanged.

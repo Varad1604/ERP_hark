@@ -12,12 +12,12 @@
 | Canonical Technical Responsibility | Enterprise technical search/indexing over authorized canonical sources; search never owns indexed facts. |
 | Technical Architecture Owner | Enterprise Search & Indexing Technical Architecture |
 | Assigned Author | Varad |
-| Version | 1.0.1 |
+| Version | 1.1.0 |
 | Status | Locked |
-| Last Updated | 2026-09-15 |
+| Last Updated | 2026-09-22 |
 | Depends On | L5-B-02-001; L5-C-02-001; L5-C-02-002; L5-D-02-001; L5-D-02-004; L5-D-03-001; L4-H-017; L4-H-018; L5 governance/template/validation standards |
 | Referenced By | L5-B-01-002 and authorized enterprise search consumers |
-| Applicable ADRs | ADR-L5-0005; ADR-L5-0007; ADR-L5-0009; ADR-L5-0010; ADR-L5-0014 |
+| Applicable ADRs | ADR-L5-0005; ADR-L5-0007; ADR-L5-0009; ADR-L5-0010; ADR-L5-0014; **ADR-L5-0025** |
 
 ## 2. Purpose & Boundary
 
@@ -57,7 +57,7 @@ Index unavailable/corrupt: return degraded/unavailable or use a separately gover
 | AD-B01-001 | Search indexes are disposable read-only projections and never canonical fact owners. | Canonical responsibility |
 | AD-B01-002 | Search degradation may not bypass the canonical owner through direct relational access. | Repository ownership boundary |
 | AD-B01-003 | Authorization filtering consumes D02 decisions and fails closed. | Security boundary |
-| OD-B01-001 | Search product, ranking implementation, topology, page limits and latency targets remain unresolved pending governed downstream design. | Open decision |
+| OD-B01-001 | **Product resolved:** OpenSearch. Ranking implementation, topology, page limits and latency targets remain governed downstream. | `ADR-L5-0025` |
 
 ## 8. Conformance Requirements
 
@@ -66,3 +66,13 @@ Index unavailable/corrupt: return degraded/unavailable or use a separately gover
 3. Every result shall retain a canonical owner/reference sufficient for authoritative resolution.
 4. Authorization filtering shall consume D02 authority and fail closed.
 5. Product/topology/numeric SLO choices shall not become normative without approved decision authority.
+
+## 2026-09-22 Controlled Technology Amendment
+
+This Locked specification is amended and re-locked under `L5_Technology_Decision_Wave_Lock_Decision_2026-09-22.md`. The amendment changes implementation technology only; upstream business architecture is unchanged.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0025`  
+OpenSearch is canonical for disposable authorized search projections; indexed facts remain non-authoritative.

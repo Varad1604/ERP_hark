@@ -12,12 +12,12 @@
 | Canonical Technical Responsibility | Common technical document/media/object platform spanning registry, ingestion, storage, generation, verification and credential integrity; no business acceptance/issuance ownership transfer. |
 | Technical Architecture Owner | Document & Media Platform Architecture |
 | Assigned Author | Varad |
-| Version | 1.0.1 |
+| Version | 1.1.0 |
 | Status | Locked |
-| Last Updated | 2026-09-15 |
+| Last Updated | 2026-09-22 |
 | Depends On | L5-B-02-001; L5-D-03-001; L5-D-03-002; L5-B-05-003; L5-D-04-001; applicable approved L4 document behaviors; L5 governance/template/validation standards |
 | Referenced By | L5-B-04-002; L5-B-04-003; L5-B-04-004; L5-B-04-005 |
-| Applicable ADRs | ADR-L5-0001; ADR-L5-0002; ADR-L5-0005; ADR-L5-0012; ADR-L5-0014 |
+| Applicable ADRs | ADR-L5-0001; ADR-L5-0002; ADR-L5-0005; ADR-L5-0012; ADR-L5-0014; **ADR-L5-0026** |
 
 ## 2. Purpose & Boundary
 
@@ -55,7 +55,7 @@ Object access is tenant/institution scoped and least privilege. Retrieval/upload
 | AD-B04-001 | B04 is technical infrastructure; business acceptance/issuance authority remains upstream. | Canonical boundary |
 | AD-B04-002 | Storage references are abstract/opaque at L5 to avoid product ownership leakage. | Repository-consistent design |
 | AD-B04-003 | Cryptographic integrity capability is D03-owned. | ADR-L5-0002 |
-| OD-B04-001 | Storage product, physical namespace, replication, access-token technology and numeric limits remain downstream governed choices. | Open decision |
+| OD-B04-001 | **Storage interface/reference resolved:** S3-compatible + Ceph RGW clustered/on-prem reference. Namespace, replication, access-token technology and numeric limits remain downstream choices. | `ADR-L5-0026` |
 
 ## 7. Conformance Requirements
 
@@ -64,3 +64,13 @@ Object access is tenant/institution scoped and least privilege. Retrieval/upload
 3. Business acceptance/issuance and retention/legal-hold policy shall remain with canonical owners.
 4. Retrieval/upload authorization shall fail closed and consume approved identity/policy controls.
 5. All specialized B04 documents shall preserve the same ownership boundaries established by this baseline.
+
+## 2026-09-22 Controlled Technology Amendment
+
+This Locked specification is amended and re-locked under `L5_Technology_Decision_Wave_Lock_Decision_2026-09-22.md`. The amendment changes implementation technology only; upstream business architecture is unchanged.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0026`  
+S3-compatible storage is canonical and Ceph RGW is the clustered/on-prem reference backend. Object references remain opaque; MinIO is not the repository default.

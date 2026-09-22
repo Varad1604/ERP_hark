@@ -9,14 +9,14 @@
 **Canonical Technical Responsibility:** Governed technology-selection criteria and approved standards after ADR decisions; no silent framework/product lock.  
 **Technical Architecture Owner:** L5-A-02 — Technology Platform & Standards Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.1`  
+**Version:** `1.1.0`  
 **Status:** `Locked`  
-**Last Updated:** `2026-09-16`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; L5 Dependency-Gated Parallel Authoring Execution Timeline; `L5-A-01-001`; applicable material peer L5 specifications and approved ADRs  
 **Referenced By:** Server-side implementation architecture and technology-governed L5 consumers  
-**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0015`; `ADR-L5-0018`  
+**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0015`; `ADR-L5-0018`; `ADR-L5-0019`–`ADR-L5-0033` as applicable  
 **Governance Authorization:** `L5_Dhruv_Stage6_A02_ADR0018_Independent_Architecture_Approval_Decision_2026-09-16.md`  
-**Governance Lock:** `L5_Dhruv_Stage6_Final_Lock_and_Completion_Decision_2026-09-16.md`
+**Governance Lock:** `L5_Dhruv_Stage6_Final_Lock_and_Completion_Decision_2026-09-16.md`; `L5_Technology_Decision_Wave_Lock_Decision_2026-09-22.md`
 
 ---
 
@@ -148,19 +148,19 @@ Implementation shall not promote `UNRESOLVED` or `NON-AUTHORITATIVE / HISTORICAL
 | Primary server language/toolchain | **Rust — APPROVED STANDARD** | `ADR-L5-0018` |
 | Server technology policy | **Rust primary, governed exceptions — APPROVED STANDARD** | `ADR-L5-0018` |
 | Rust toolchain lifecycle | **Pinned stable toolchain with controlled promotion — APPROVED STANDARD** | `ADR-L5-0018` |
-| Backend framework | `UNRESOLVED` | A02 / applicable framework ADR |
-| Rust async runtime | `UNRESOLVED` | A02 / applicable runtime ADR if material |
-| Database product | `UNRESOLVED` | B02 + ADR |
-| Database access/ORM technology | `UNRESOLVED` unless B02 establishes a shared standard | B02 |
-| Messaging/broker product | `UNRESOLVED` | C02 + ADR |
-| Search/index product | `UNRESOLVED` | B01 + ADR |
-| Object-storage product | `UNRESOLVED` | B04 + ADR |
-| Workflow/orchestration product | `UNRESOLVED` | A05 + ADR |
-| IAM product | `UNRESOLVED` | D01 + ADR |
+| Backend framework | **Axum — LOCKED** | `ADR-L5-0019` |
+| Rust async runtime | **Tokio — LOCKED** | `ADR-L5-0019` |
+| Database product | **PostgreSQL 18.x — LOCKED** | `ADR-L5-0020` |
+| Database access/ORM technology | **SQLx; no mandatory full ORM — LOCKED** | `ADR-L5-0020` |
+| Messaging/broker product | **NATS JetStream — LOCKED** | `ADR-L5-0022` |
+| Search/index product | **OpenSearch — LOCKED** | `ADR-L5-0025` |
+| Object-storage product | **S3-compatible; Ceph RGW reference — LOCKED** | `ADR-L5-0026` |
+| Workflow/orchestration product | **BPMN 2.x + Flowable OSS 8.x — LOCKED** | `ADR-L5-0023` |
+| IAM product | **Keycloak 26.x — LOCKED** | `ADR-L5-0024` |
 | Security/cryptographic products | `UNRESOLVED` unless explicitly approved by D03 | D03 + ADR |
-| Container/orchestration platform | `UNRESOLVED` | E04 + ADR |
-| Observability platform | `UNRESOLVED` | E05 + ADR |
-| CI/CD/tooling platform | `UNRESOLVED` unless F01 approves one | F01 |
+| Container/orchestration platform | **OCI + Kubernetes clustered profile — LOCKED** | `ADR-L5-0028` |
+| Observability platform | **OpenTelemetry + Prometheus/Loki/Tempo/Grafana — LOCKED** | `ADR-L5-0029` |
+| CI/CD/tooling platform | **GitHub Actions + GHCR + Cosign/Sigstore — LOCKED** | `ADR-L5-0030` |
 | Web client language | **TypeScript — APPROVED STANDARD** | `ADR-L5-0015` |
 | Web application framework | **React — APPROVED STANDARD** | `ADR-L5-0015` |
 | Web routing/application mode | **React Router Framework Mode — APPROVED STANDARD** | `ADR-L5-0015` |
@@ -302,3 +302,14 @@ Material downstream architecture links include:
 The lock preserves the primary server-platform decision established by `ADR-L5-0018` and does not convert unresolved peer-owned products into standards. Those choices remain explicitly deferred to their canonical technical owners and applicable ADR governance.
 
 Material change requires governed impact assessment and controlled relock.
+
+
+## 2026-09-22 Controlled Technology Amendment
+
+This Locked specification is amended and re-locked under `L5_Technology_Decision_Wave_Lock_Decision_2026-09-22.md`. The amendment changes implementation technology only; upstream business architecture is unchanged.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0019`  
+Axum + Tokio now resolves the backend framework/runtime slot; peer-owned locked technology choices are indexed in ADR-L5-0020 through ADR-L5-0033. Explicit deferred items remain deferred.
