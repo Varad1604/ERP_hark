@@ -8,11 +8,11 @@
 **Canonical Technical Responsibility:** Backup sets, restoration and point-in-time recovery across governed data stores.  
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-E-03-001`; `L5-B-02`; `L5-D-03`; `L5-E-01`; `L5-E-05`; applicable data-store owners  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; `ADR-L5-0017`  
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; `ADR-L5-0017`; `ADR-L5-0046`  
 **Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`  
 **Governance Lock:** `L5_Pallav_Stage5_Final_Lock_Decision_2026-09-16.md`
 
@@ -23,7 +23,7 @@ Defines backup-set construction, protected recovery copies, restore execution an
 | Source | Status | Exact Reference | E03-002 Use |
 |---|---|---|---|
 | `L5-E-03-001` | Locked | recovery class/profile and recovery-set model | Supplies class/objective boundary consumed here. |
-| `L5-B-02-*` | Draft/current | persistence ownership/topology/transaction capabilities | Supplies store ownership and consistency characteristics; E03 does not redesign persistence. |
+| `L5-B-02-*` | Review/current | persistence ownership/topology/transaction capabilities | Supplies store ownership and consistency characteristics; E03 does not redesign persistence. |
 | `ADR-L5-0014` | Architecture Approved | validation + controlled return | Restoration does not imply service readiness. |
 | `ADR-L5-0017` | Architecture Approved | recovery classification/protected-copy/restore/DR validation | Governs protected-copy, restore/PITR and recovery-validation pattern. |
 | `L4-A-057` | Draft | `BH-005`–`BH-009` | Supporting requirement to preserve data/config/history and validate integrity before restored availability. |
@@ -111,3 +111,8 @@ This Locked specification is amended and re-locked under the explicit 2026-09-22
 
 **Applicable locked decision:** `ADR-L5-0046`  
 Recovery uses Critical/Important/Standard/Reconstructible classification. Numeric RPO/RTO/retention and exercise cadence bind from authoritative recovery profiles rather than universal repository numbers. Derived data is reconstructed where its class objective permits; PostgreSQL uses base/full backup plus WAL/PITR where its class requires it; restore plus integrity/application validation is required proof.
+
+
+## 2026-09-22 Batch 7C Impact Revalidation Synchronization
+
+Non-material lifecycle/ADR metadata synchronization only. Peer lifecycle labels and applicable locked recovery/runtime governance references now reflect current canonical repository state. Recovery ownership, recovery-class semantics, RPO/RTO/retention authority, restore/failover behavior, conformance requirements, traceability relation state and the existing lock boundary are unchanged. No relock is required.
