@@ -8,9 +8,9 @@
 **Canonical Technical Responsibility:** Controlled build, artifact creation, release-manifest formation, environment promotion and release-eligibility gates.  
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.1.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-12`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-01-001`; `L5-E-04-*`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*`; applicable B02/C01 compatibility evidence where releases include persistence/contract changes; `L5-E-03-*` for recovery ownership boundaries.  
 **Referenced By:** E04 release/deployment architecture and operational acceptance.  
 **Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern; `ADR-L5-0002` — Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern; `ADR-L5-0008` — Expand-Migrate-Transition-Contract Schema Evolution Pattern where persistence schema evolution is part of a release; `ADR-L5-0009` — Non-Human Principal Authorization Binding Pattern. No pipeline or registry product is selected.
@@ -149,3 +149,9 @@ Build/registry/promotion failures are observable through E05, including repeated
 
 ## 10. Traceability Summary
 Parent baseline: `L5-F-01-001`. Deployment boundary: `L5-E-04-005`. Authorization boundary: `L5-D-02-001` / `L5-D-02-004` with `ADR-L5-0009`. Security/credential boundary: `L5-D-03-*` with `ADR-L5-0001` / `ADR-L5-0002`. Persistence evolution: `ADR-L5-0008` where applicable. Verification boundary: `L5-F-02-*`. Recovery boundary: `L5-E-03-*`.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0030`  
+GitHub Actions is canonical while source remains on GitHub; GHCR is the default OCI registry; Cosign/Sigstore handles signing/attestation; high-trust paths use ephemeral self-hosted runners where required.

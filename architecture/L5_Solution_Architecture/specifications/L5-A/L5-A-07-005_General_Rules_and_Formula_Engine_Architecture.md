@@ -12,9 +12,9 @@
 | Canonical Technical Responsibility | Constrained declarative formula/rule execution; no arbitrary code, SQL, filesystem or unrestricted network execution. |
 | Technical Architecture Owner | General Rules & Formula Engine Platform Architecture |
 | Assigned Author | Varad |
-| Version | 1.0.1 |
+| Version | 1.1.0 |
 | Status | Locked |
-| Last Updated | 2026-09-15 |
+| Last Updated | 2026-09-22 |
 | Depends On | L5-A-07-001; L5-D-03-001; L5-E-04-001; applicable approved L4 behaviors; L5 governance/template/validation standards |
 | Referenced By | L5-A-07-002; L5-A-07-003; L5-A-07-004; L5-A-07-006 |
 | Applicable ADRs | ADR-L5-0001; ADR-L5-0002; ADR-L5-0014 |
@@ -56,7 +56,7 @@ Unsupported syntax, unsafe operation, unresolved reference, type mismatch or det
 |---|---|---|
 | AD-A07-050 | Rule execution is declarative and capability-constrained; arbitrary code/SQL/filesystem/unrestricted network execution is forbidden. | Canonical corpus responsibility |
 | AD-A07-051 | Business rule content and precedence remain owned upstream; A07-005 executes supplied definitions only. | Repository ownership rule |
-| OD-A07-050 | Concrete DSL syntax, parser/runtime technology, operator catalog and numeric execution limits remain unresolved pending governed design. | Open decision |
+| OD-A07-050 | **DSL resolved:** CEL. Exact Rust evaluator implementation, operator allow-list and numeric execution limits remain governed. | `ADR-L5-0031` |
 
 ## 8. Conformance Requirements
 
@@ -65,3 +65,13 @@ Unsupported syntax, unsafe operation, unresolved reference, type mismatch or det
 3. Exact resource limits shall not be hardcoded into L5 without authoritative decision.
 4. Evaluation must be isolated from direct persistence/filesystem/network side effects.
 5. Rule results must be returned to the invoking owner; this engine shall not mutate business state directly.
+
+## 2026-09-22 Controlled Technology Amendment
+
+This Locked specification is amended and re-locked under `L5_Technology_Decision_Wave_Lock_Decision_2026-09-22.md`. Only implementation technology is changed; upstream business architecture is unchanged.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0031`  
+CEL is the canonical constrained declarative rules/formula language; arbitrary code, SQL, filesystem, process and unrestricted network execution remain prohibited.

@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Engineering delivery, pipeline trust and artifact-promotion principles while branch workflow governance, deployment execution, security primitives, audit truth and verification semantics remain separately owned.  
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.1.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-12`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-E-04-*`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*` where verification evidence is consumed; `L5-D-04-*`; `L5-E-05-*`; `L5-E-03-*` for backup/recovery ownership boundaries.  
 **Referenced By:** `L5-F-01-002`, `L5-F-01-003`, `L5-E-04-*`, downstream release and operations architecture.  
-**Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern; `ADR-L5-0002` — Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern; `ADR-L5-0009` — Non-Human Principal Authorization Binding Pattern. No CI/CD product, artifact registry, signing product or pipeline engine is canonically selected.
+**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0028`; `ADR-L5-0030`.
 
 ## 2. Purpose, Scope & Non-Goals
 Define the shared technical architecture by which governed source changes become traceable, integrity-protected release artifacts.
@@ -161,7 +161,7 @@ Capacity dimensions include concurrent pipelines, queue time, build duration, ar
 ## 9. Open Decisions
 | ID | Item | Blocking? |
 |---|---|---|
-| OD-001 | Canonical CI/CD engine/source-control integration/registry product | No for Review |
+| OD-001 | **Resolved:** GitHub Actions + GHCR + Cosign/Sigstore. | Locked by `ADR-L5-0030` |
 | OD-002 | Artifact retention durations and numeric pipeline SLOs | No for Review |
 | OD-003 | Final F02 machine-readable gate contract | No for Review; align before approval if material |
 | OD-004 | Draft status of material E04/D03 peers | Yes for approval-level reliance unless governance authorizes |
@@ -170,3 +170,9 @@ Capacity dimensions include concurrent pipelines, queue time, build duration, ar
 ## 10. Traceability Summary
 Canonical scope: `L5-F-01-001` in Candidate Corpus Register 105.  
 Primary peer boundaries: `L5-E-04-*`, `L5-D-03-*`, `L5-D-02-001`, `L5-D-02-004`, `L5-F-02-*`, `L5-D-04-*`, `L5-E-05-*`, `L5-E-03-*`. Applicable approved ADRs: `ADR-L5-0001`, `ADR-L5-0002`, `ADR-L5-0009`.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0030`  
+GitHub Actions is canonical while source remains on GitHub; GHCR is the default OCI registry; Cosign/Sigstore handles signing/attestation; high-trust paths use ephemeral self-hosted runners where required.

@@ -12,9 +12,9 @@
 | Canonical Technical Responsibility | Executes approved/versioned financial calculations; cannot autonomously approve or post canonical financial transactions. |
 | Technical Architecture Owner | Finance Computation Engine Technical Architecture |
 | Assigned Author | Varad |
-| Version | 1.0.1 |
+| Version | 1.1.0 |
 | Status | Locked |
-| Last Updated | 2026-09-15 |
+| Last Updated | 2026-09-22 |
 | Depends On | L5-A-07-001; L5-A-07-005; L5-B-02-001; L5-D-03-001; L5-A-08-001; L4-F-001; L4-F-005; L4-F-009; L4-F-012; L5 governance/template/validation standards |
 | Referenced By | Student billing and finance workflows requiring governed calculation |
 | Applicable ADRs | ADR-L5-0001; ADR-L5-0005; ADR-L5-0013; ADR-L5-0014 |
@@ -69,3 +69,13 @@ Owns calculation execution mechanics and technical reconciliation. Does not own 
 ## 8. Traceability Summary
 
 `L4-F-001-BH-004` supports financial calculation from an applicable Fee Structure. Other referenced L4 Finance specifications remain authoritative for their business semantics; this engine consumes their resolved rules rather than redefining them.
+
+## 2026-09-22 Controlled Technology Amendment
+
+This Locked specification is amended and re-locked under `L5_Technology_Decision_Wave_Lock_Decision_2026-09-22.md`. Only implementation technology is changed; upstream business architecture is unchanged.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0032`  
+`rust_decimal::Decimal` is the default authoritative Rust monetary scalar. Precision, scale, minor-unit and rounding semantics remain authoritative rule inputs; no global default is invented.

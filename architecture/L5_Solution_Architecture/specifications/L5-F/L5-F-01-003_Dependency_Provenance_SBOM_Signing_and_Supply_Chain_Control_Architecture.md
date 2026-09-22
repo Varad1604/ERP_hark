@@ -8,9 +8,9 @@
 **Canonical Technical Responsibility:** Dependency provenance, SBOM generation/binding, artifact provenance attestation, signing integration and software-supply-chain assurance.  
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.1.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-12`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-01-001/002`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*`; `L5-E-04-*`; `L5-D-04-*`; `L5-E-05-*`.  
 **Referenced By:** F01-002 promotion gates, E04 artifact verification, security/operations impact analysis.  
 **Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern; `ADR-L5-0002` — Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern; `ADR-L5-0009` — Non-Human Principal Authorization Binding Pattern for protected automated actions. No SBOM format, signing product, artifact registry or SLSA level is canonically selected.
@@ -136,3 +136,9 @@ Evidence retention preserves historical verification after key/credential rotati
 
 ## 10. Traceability Summary
 Canonical scope: `L5-F-01-003`. Parent architecture: `L5-F-01-001/002`. Authorization owner: `L5-D-02-001` / `L5-D-02-004` with `ADR-L5-0009`. Security/key/credential owner: `L5-D-03-*` with `ADR-L5-0001` / `ADR-L5-0002`. Deployment consumer: `L5-E-04-*`. Operations/evidence collaborators: `L5-E-05-*`, `L5-D-04-*`.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0030`  
+GitHub Actions is canonical while source remains on GitHub; GHCR is the default OCI registry; Cosign/Sigstore handles signing/attestation; high-trust paths use ephemeral self-hosted runners where required.

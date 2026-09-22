@@ -12,9 +12,9 @@
 | Canonical Technical Responsibility | Executes approved payroll calculations while Payroll retains business ownership and Finance owns downstream monetary consequences. |
 | Technical Architecture Owner | Payroll Computation Engine Technical Architecture |
 | Assigned Author | Varad |
-| Version | 1.0.1 |
+| Version | 1.1.0 |
 | Status | Locked |
-| Last Updated | 2026-09-15 |
+| Last Updated | 2026-09-22 |
 | Depends On | L5-A-07-001; L5-A-07-005; L5-A-08-001; L5-B-02-001; L5-D-03-001; L4-E-053; L4-E-055; L4-E-056; L5 governance/template/validation standards |
 | Referenced By | Payroll and downstream Finance workflows |
 | Applicable ADRs | ADR-L5-0001; ADR-L5-0005; ADR-L5-0013; ADR-L5-0014 |
@@ -63,3 +63,13 @@ Missing rule/version or authoritative input causes admission failure. A violated
 ## 8. Traceability Summary
 
 Referenced L4-E payroll behaviors remain the authority for exact payroll semantics. This L5 specification provides execution infrastructure only and deliberately removes previously unsupported statutory/business-policy assertions.
+
+## 2026-09-22 Controlled Technology Amendment
+
+This Locked specification is amended and re-locked under `L5_Technology_Decision_Wave_Lock_Decision_2026-09-22.md`. Only implementation technology is changed; upstream business architecture is unchanged.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0032`  
+`rust_decimal::Decimal` is the default authoritative Rust monetary scalar. Precision, scale, minor-unit and rounding semantics remain authoritative rule inputs; no global default is invented.

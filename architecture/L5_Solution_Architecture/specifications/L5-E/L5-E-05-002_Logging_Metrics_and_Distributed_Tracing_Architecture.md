@@ -8,9 +8,9 @@
 **Canonical Technical Responsibility:** Technical logs/metrics/traces with privacy and sensitive-data boundaries.  
 **Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.2`  
+**Version:** `1.1.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-13`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; `L5-E-05-001`; `L5-C-01-*`; `L5-C-02-*`; `L5-D-03-*`; `L5-D-04-*`; `L5-E-04-*`; persistence/data telemetry surfaces from `L5-B-02-*` where material.  
 **Referenced By:** `L5-E-05-003`, `L5-E-05-004`, operational consumers and technical readiness evidence.  
 **Applicable ADRs:** No logging, metrics, tracing backend, exporter or mandatory OpenTelemetry implementation profile is canonically selected unless approved through the L5 ADR process.
@@ -122,3 +122,9 @@ Sensitive telemetry is default-deny. Credentials, secrets, private keys and unre
 
 ## 10. Traceability Summary
 Candidate Corpus Register 105 + `L5-E-05-001` establish the canonical technical responsibility. Dependency traceability is explicit to C01/C02, D03/D04, E04 and B02 telemetry surfaces. Exact approved L4/BH contribution links remain to be validated before architecture approval where material.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0029`  
+OpenTelemetry/OTLP + Collector is the canonical telemetry boundary; Prometheus, Loki, Tempo and Grafana are the default metrics/logs/traces/visualization stack.
