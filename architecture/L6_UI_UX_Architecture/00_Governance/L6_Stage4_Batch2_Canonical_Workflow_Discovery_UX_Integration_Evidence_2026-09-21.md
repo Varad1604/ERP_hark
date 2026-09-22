@@ -125,13 +125,20 @@ This wording does not grant authority or imply execution.
 
 Cross-workspace handoffs preserve the canonical responsible workspace. Global Search does not become the owner of the discovered workflow.
 
-## 6. Presentation Profiles
+## 6. Presentation Relevance
 
-Workspace presentation profiles may reduce irrelevant results for non-administrator presentation contexts.
+Workflow relevance is derived from exact L6 presentation-profile expressions in the canonical realization register through the controlled `L6_Stage4_Workflow_Presentation_Relevance_Map.json`.
 
-This is presentation relevance only.
+The mapping is exhaustive over source expressions, has no runtime fallback, and generates workflow-level `presentationPersonas` in the end-user-safe runtime projection.
 
-It is not authorization, RBAC, eligibility, permission, or business authority.
+Workspace `presentationProfiles` are not used as a proxy for workflow relevance.
+
+This remains presentation relevance only. It is not authorization, RBAC, eligibility, permission, or business authority.
+
+Regression evidence includes:
+- Student-visible `Guardian Relationships` workspace while `Guardian relationship lifecycle` remains administrator-only;
+- Faculty-visible `Curriculum Framework` workspace while `Curriculum lifecycle` remains administrator-only;
+- legitimate Student and Faculty workflows remain discoverable in their respective presentations.
 
 ## 7. Safety Boundaries
 
@@ -155,11 +162,22 @@ No L0–L5 architecture artifact was modified.
 
 ## 8. Files Changed — Frontend
 
-- `app/registry/workflow-discovery-search.ts`
+Batch-2 hardening now includes:
+
 - `app/components/command-palette.tsx`
+- `app/registry/workflow-discovery-search.ts`
+- `app/registry/workflow-discovery-bindings.ts`
+- `app/registry/workflow-discovery-runtime.generated.ts`
+- `app/registry/workflow-discovery-provenance.generated.json`
+- `scripts/generate-workflow-discovery.mjs`
+- `scripts/validate-workflow-discovery.mjs`
 - `scripts/validate-workflow-discovery-ux.mjs`
+- `scripts/validate-workflow-discovery-sync.mjs`
 - `package.json`
 - `.github/workflows/frontend-pr-validation.yml`
+- `.github/workflows/stage4-cross-repo-sync.yml`
+
+The rich reviewer projection remains canonical for validation and traceability. Ordinary Global Search consumes only the generated end-user-safe runtime projection.
 
 ## 9. Browser Evidence
 
@@ -179,28 +197,88 @@ Screenshots are treated as visual evidence only, not as proof of accessibility.
 
 ## 10. Validation
 
-Required gates:
+Final corrected frontend branch SHA:
 
-- `npm run review:validate`
-- `npm run mock:validate`
-- `npm run typecheck`
-- `npm run build`
-- `npm run stage4:validate`
-- frontend PR CI including targeted browser evidence
+```text
+b6db426c92b4fb9eb1431abd25b60bdfa048cd73
+```
 
-Final frontend branch SHA: `5fe44db5614a3a8a47f55c599d708ee9a27b6145`.
+Fresh Frontend PR validation:
 
-Frontend PR validation run `35627731069` completed successfully. The required gates passed:
+```text
+Workflow: Frontend PR Validation
+Run: #139
+Run ID: 35689379981
+Conclusion: SUCCESS
+```
 
-- `npm run review:validate` — PASS, including Batch-1 and Batch-2 Stage-4 validators;
-- `npm run stage4:validate` — PASS as an explicit named CI gate;
+Current-head gates:
+
+- `npm run review:validate` — PASS;
+- `npm run stage4:validate` — PASS;
+- Stage-4 provenance-structure validation — PASS;
 - `npm run mock:validate` — PASS;
 - `npm run typecheck` — PASS;
 - `npm run build` — PASS;
-- targeted Batch-2 browser evidence — PASS, 3 / 3 tests;
+- Stage-3 browser evidence — PASS;
+- Batch-2 browser suite — PASS, 8 / 8 tests;
 - visual-evidence artifact upload — PASS.
 
-Evidence artifact: `experience-lab-visual-evidence`, artifact ID `10651804725`, SHA-256 `f792fa1e4456fcf7dd6e2c158c0db760e34e47d7b080bc3e1fd83eeb80693203`.
+Current-head Stage-4 validation reports:
+
+```text
+workflows: 595
+studentRelevant: 261
+facultyRelevant: 156
+workspaceProxyRegressions: 2
+mixedWorkflows: 10
+routeEntries: 1
+reviewerMetadataInRuntime: 0
+reviewerProjectionBytes: 690561
+runtimeProjectionBytes: 135847
+runtimeSourceReductionPercent: 80.3
+```
+
+Evidence artifact:
+
+```text
+experience-lab-visual-evidence
+Artifact ID: 10678207286
+SHA-256: 05b94dfcf59e9af04760756cfb494147321eebc5b2ea589d3fd001f0ebd3b6db
+```
+
+### Cross-repository synchronization guard
+
+The frontend now records Git blob identities for the three canonical Architecture sources:
+
+```text
+STAGE2_GROUP_15_MASTER_CROSS_GROUP_RECONCILIATION.md
+22dd6e0f38067936c7171c7e4386ebb58564f3f8
+
+L6_Workflow_Realization_Register_DRAFT.md
+53448e586a066c08745ec6be27f9e58016f34483
+
+L6_Stage4_Workflow_Presentation_Relevance_Map.json
+b47748cb2cbf9b692d41fbfea2f147f63159bb7a
+```
+
+These blob identities were revalidated directly against the current Architecture Batch-2 branch.
+
+`validate-workflow-discovery-sync.mjs` performs:
+
+1. exact source-blob comparison;
+2. generator `--check`;
+3. byte-for-byte comparison of the reviewer projection;
+4. byte-for-byte comparison of the end-user runtime projection;
+5. byte-for-byte comparison of the provenance manifest.
+
+Its `--prove-drift-detection` mode creates only a temporary copy of the Architecture sources, intentionally alters one source, requires the guard to reject it, removes the temporary copy, revalidates the pristine sources, then runs generator `--check`.
+
+A dedicated `Stage 4 Cross-Repository Discovery Sync` workflow executes this guard using a repository secret named `ARCHITECTURE_READ_TOKEN`.
+
+The default frontend `GITHUB_TOKEN` was empirically proven unable to checkout the separate private Architecture repository (GitHub returned `Repository not found`). Therefore the cross-repository workflow intentionally fails closed when the dedicated read credential is absent rather than weakening repository privacy.
+
+The credentialed cross-repository workflow has not been claimed as executed in this evidence because this session cannot provision or confirm repository Actions secrets. Normal frontend PR CI validates the provenance structure on every run.
 
 ## 11. Stage-3 Regression Assessment
 
@@ -259,19 +337,19 @@ Stage 5 has not started.
 ## 15. Final Batch-2 Verdict
 
 ```text
-STAGE 4 — BATCH 2 PASS
+STAGE 4 — BATCH 2 PASS WITH NON-BLOCKING FINDING
 ```
 
 Frontend implementation head:
 
 ```text
-5fe44db5614a3a8a47f55c599d708ee9a27b6145
+b6db426c92b4fb9eb1431abd25b60bdfa048cd73
 ```
 
 Frontend PR:
 
 ```text
-#19 — OPEN / UNMERGED
+#19 — OPEN / UNMERGED / MERGEABLE
 ```
 
 Architecture evidence PR:
@@ -280,8 +358,23 @@ Architecture evidence PR:
 #54 — OPEN / UNMERGED
 ```
 
-No material defect remains from the independent self-review or devil's-advocate review.
+The four targeted Batch-2 hardening findings have been addressed in repository code and validation:
 
-The only recorded execution-history failures were superseded CI evidence attempts while hardening the browser harness. They did not indicate a failed product gate: the final current-head CI run passed all required validation and browser checks.
+1. exact workspace/navigation precedence is protected without weakening exact workflow-label matching;
+2. ordinary runtime search uses the generated end-user-safe projection instead of reviewer-rich metadata;
+3. workflow-level presentation relevance is controlled from exact L6 presentation metadata and is not inherited from workspace visibility;
+4. deterministic cross-repository source/projection drift detection is implemented, including reversible intentional-drift proof mode and a dedicated credentialed workflow.
 
-Batch 3 is ready only from the final Batch-2 branch state and only after explicit instruction and normal repository-state reconstruction. Stage 5 has not started.
+Non-blocking repository-infrastructure finding:
+
+```text
+ARCHITECTURE_READ_TOKEN must be configured for the frontend repository
+before the private cross-repository synchronization workflow can execute
+as a hosted GitHub Actions gate.
+```
+
+This is an Actions credential/configuration requirement, not an architecture ambiguity or product-code defect. The default repository-scoped `GITHUB_TOKEN` cannot read the separate private Architecture repository.
+
+The current authoritative Architecture source blobs match the checked-in frontend provenance exactly, and the current frontend head passes all normal PR, Stage-4, Stage-3, typecheck, build, and browser gates.
+
+Batch 3 may begin only after explicit instruction and normal live-state reconstruction. Stage 5 has not started.
