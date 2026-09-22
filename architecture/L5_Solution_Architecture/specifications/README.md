@@ -138,3 +138,24 @@ Production specifications shall inherit all applicable Locked decisions through 
 ## Post-Decision Audit State
 
 As of 2026-09-22, the 105 canonical specification headers are synchronized to **0 Draft / 51 Review / 21 Architecture Approved / 33 Locked**. Lifecycle status shall not be strengthened merely because a technology ADR is Locked.
+
+
+## Production Validation Register — 2026-09-22
+
+The canonical full-corpus production-validation source is:
+
+`../governance/reference/L5_Full_105_Row_Production_Validation_Register_2026-09-22.md`
+
+It records exactly one current validation disposition for each of the 105 canonical production specifications.
+
+Current lifecycle distribution remains:
+
+```text
+0 Draft
+51 Review
+21 Architecture Approved
+33 Locked
+105 Total
+```
+
+Validation completion does not itself promote specification lifecycle state and does not authorize Final L5 Corpus Lock. Batch 9 remains the final lock gate.
