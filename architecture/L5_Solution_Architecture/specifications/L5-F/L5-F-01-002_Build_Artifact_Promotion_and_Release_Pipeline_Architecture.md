@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Controlled build, artifact creation, release-manifest formation, environment promotion and release-eligibility gates.  
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-01-001`; `L5-E-04-*`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*`; applicable B02/C01 compatibility evidence where releases include persistence/contract changes; `L5-E-03-*` for recovery ownership boundaries.  
 **Referenced By:** E04 release/deployment architecture and operational acceptance.  
-**Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern; `ADR-L5-0002` — Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern; `ADR-L5-0008` — Expand-Migrate-Transition-Contract Schema Evolution Pattern where persistence schema evolution is part of a release; `ADR-L5-0009` — Non-Human Principal Authorization Binding Pattern. No pipeline or registry product is selected.
+**Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern; `ADR-L5-0002` — Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern; `ADR-L5-0008` — Expand-Migrate-Transition-Contract Schema Evolution Pattern where persistence schema evolution is part of a release; `ADR-L5-0009` — Non-Human Principal Authorization Binding Pattern. GitHub Actions is the canonical CI/CD engine and GHCR the default OCI registry under `ADR-L5-0030`; this specification still does not own E04 deployment sequencing.
 
 ## 2. Purpose, Scope & Non-Goals
 Define the technical path from governed source revision to an immutable release candidate that E04 may deploy.
@@ -161,3 +161,8 @@ GitHub Actions is canonical while source remains on GitHub; GHCR is the default 
 
 **Applicable locked decision:** `ADR-L5-0043`  
 Promotion targets use the governed four-stage environment progression while preserving F01's existing build-once/promote-unchanged rule.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Reconciled pipeline/registry wording with `ADR-L5-0030`. The existing immutable build-once/promote-unchanged architecture remains authoritative.

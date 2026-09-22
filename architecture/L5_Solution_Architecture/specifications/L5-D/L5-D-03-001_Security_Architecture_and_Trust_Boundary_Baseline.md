@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Define the cross-solution security architecture baseline, trust-boundary model, security-control placement principles and isolation requirements that constrain SutraERP technical architecture without owning authentication, authorization policy, cryptographic/key-management internals, audit storage, business rules or business authority.  
 **Technical Architecture Owner:** L5-D-03-001 — Security Architecture & Trust Boundary Baseline  
 **Assigned Author:** Varad  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** Draft  
 **Last Updated:** `2026-09-22`  
 **Primary L5 Dependencies:** L5-D-01 — IAM; L5-A-04 — Tenant & Institutional Isolation; L5-A-01 — Application & Platform Architecture; L5-E-04 — Runtime, Packaging & Deployment.  
 **Collaborating / Downstream L5 Architecture:** L5-D-02 — Authorization / RBAC; L5-D-03-002; L5-D-03-003; L5-D-03-004; L5-D-03-005; L5-D-04; L5-B-05; L5-C-01; L5-C-02; L5-C-03; L5-A-07; L5-A-08.  
-**Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern (`Architecture Approved`, 2026-09-11).
+**Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern (`Architecture Approved`, 2026-09-11).; `ADR-L5-0027`; `ADR-L5-0040`
 
 ---
 
@@ -400,3 +400,8 @@ OpenBao is the canonical secrets/transit-cryptography service and rustls is the 
 
 **Applicable locked decision:** `ADR-L5-0040`  
 Protected cross-process/service communication uses authenticated encrypted transport; TLS 1.3 is preferred; mTLS is profile-driven where workload identity at transport boundary is required; no service mesh is mandatory initially. OpenBao remains production-secret authority; infrastructure encryption-at-rest is baseline with classification-driven field protection; HSM/KMS custody is profile-driven; no universal rotation interval is invented.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Lifecycle status restored to `Review` in accordance with the locked 2026-09-16 full-corpus Draft→Review promotion decision. OpenBao/rustls and the Group-3 trust/crypto/secrets profile are inherited where applicable; this synchronization does not promote the specification beyond Review.

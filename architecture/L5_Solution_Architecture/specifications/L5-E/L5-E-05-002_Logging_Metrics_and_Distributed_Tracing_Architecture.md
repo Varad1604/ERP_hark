@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Technical logs/metrics/traces with privacy and sensitive-data boundaries.  
 **Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.1.0`  
+**Version:** `1.1.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; `L5-E-05-001`; `L5-C-01-*`; `L5-C-02-*`; `L5-D-03-*`; `L5-D-04-*`; `L5-E-04-*`; persistence/data telemetry surfaces from `L5-B-02-*` where material.  
 **Referenced By:** `L5-E-05-003`, `L5-E-05-004`, operational consumers and technical readiness evidence.  
-**Applicable ADRs:** No logging, metrics, tracing backend, exporter or mandatory OpenTelemetry implementation profile is canonically selected unless approved through the L5 ADR process.
+**Applicable ADRs:** `ADR-L5-0029` — OpenTelemetry/OTLP + Collector with Prometheus/Loki/Tempo/Grafana is the canonical observability profile.
 
 ## 2. Purpose, Scope & Non-Goals
 Defines the technical signal architecture for structured logging, metric semantics, distributed tracing and asynchronous causal linkage. It does not own business audit evidence, business KPI definitions, incident-management policy, deployment architecture or vendor selection.
@@ -96,7 +96,7 @@ Collector/exporter/backend failure follows E05-001 bounded-pressure rules. Appli
 - **AD-005 — Correlation separation:** workflow/business correlation remains distinct from technical trace/span identity.
 - **AD-006 — Configurable sampling:** sampling/filtering is policy-controlled and cannot silently redefine audit or business success semantics.
 - **AD-007 — Standards-oriented tracing:** OpenTelemetry-compatible instrumentation may be evaluated; no profile is canonical without ADR approval.
-- **AD-008 — Backend neutrality:** no logging/metrics/tracing backend is selected here.
+- **AD-008 — Locked backend profile:** OpenTelemetry/OTLP + Collector; Prometheus metrics; Loki logs; Tempo traces; Grafana visualization. Producer contracts remain backend-decoupled.
 
 ## 7. Security, Privacy, Quality & Operations
 Sensitive telemetry is default-deny. Credentials, secrets, private keys and unrestricted regulated payloads are prohibited. Field redaction/classification occurs before export where feasible. Telemetry query access is least privilege. Timestamp consistency, schema validation and signal-quality monitoring are operational requirements. Signal-specific retention is consumed from canonical policy; no duration is invented.
@@ -114,7 +114,7 @@ Sensitive telemetry is default-deny. Credentials, secrets, private keys and unre
 - **CR-010:** Product/exporter selection shall require the applicable ADR/governance decision.
 
 ## 9. Open Decisions & Deferred Design
-- **OD-001:** Backend/exporter products and topology — unresolved.
+- **OD-001:** **Products resolved by `ADR-L5-0029`;** exact deployment topology, retention, sampling and cardinality limits remain E02/E05 profile decisions.
 - **OD-002:** Mandatory OpenTelemetry profile — requires ADR if made canonical.
 - **OD-003:** Numeric sampling/cardinality/retention limits — delegated to governed profiles and canonical requirement owners.
 - **OD-004:** Exact L4/BH contribution set — pending validated material applicability; no artificial mapping permitted.
@@ -128,3 +128,8 @@ Candidate Corpus Register 105 + `L5-E-05-001` establish the canonical technical 
 
 **Applicable locked decision:** `ADR-L5-0029`  
 OpenTelemetry/OTLP + Collector is the canonical telemetry boundary; Prometheus, Loki, Tempo and Grafana are the default metrics/logs/traces/visualization stack.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Reconciled telemetry-product wording with the locked observability stack while preserving profile-driven operational limits.

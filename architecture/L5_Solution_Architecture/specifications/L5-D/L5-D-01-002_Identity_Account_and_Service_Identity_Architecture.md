@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** User-account, service/workload/job/integration identity technical models without duplicating Person.  
 **Technical Architecture Owner:** L5-D-01 — IAM Architecture  
 **Assigned Author:** Devang  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; working `L5-D-01-001` v1.0.1 Draft; `L4-A-004` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-008` v1.0.0 Draft; `L4-A-053` v1.0.0 Draft; `L2-A01` v1.0.0 Locked; `L2-A02` Locked; `L2-A03` Locked; `ADR-PLAT-AUTH-001` Approved.  
@@ -91,7 +91,7 @@ The specification also defines the technical boundary required to preserve attri
 | C-006 | Identity/account eligibility must remain source-governed. | L4-A-007-BH-002; L4-A-008-BH-001/BH-004; L4-A-053-BH-002/BH-004 | D01-002 propagates eligibility/binding context but shall not invent an `Active`/`Enabled` mapping or override upstream lifecycle state. |
 | C-007 | Principal identity and credential secret material are separate technical responsibilities. | Frozen D01 split; L2-A02 INT-301; L2-A03 canonical ownership | D01-002 owns principal/binding identity; D01-003 owns credential/session/authentication mechanisms; D03 owns secret/cryptographic controls. |
 | C-008 | Authenticated identity context is not authorization. | L4-A-007-BH-008; ADR-PLAT-AUTH-001 | D01-002 outputs principal identity context only; D02 remains mandatory for permission/policy decisions. |
-| C-009 | Technology/product selection requires canonical L5 governance. | L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0 | No directory, IdP, workload-identity platform, token technology, database or cloud identity mechanism is selected here. |
+| C-009 | Technology/product selection requires canonical L5 governance. | L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0 | Keycloak 26.x is the canonical IAM platform and non-human service/workload authentication is governed by `ADR-L5-0039`; database/cloud identity details not otherwise selected remain with their canonical owners. |
 
 ### 3.3 Assumptions
 
@@ -394,7 +394,7 @@ No numeric credential lifetime, inactivity period, session duration, identity-re
 | OD-001 | Material L4 sources used for human principal/account behavior (`L4-A-004`, `L4-A-007`, `L4-A-008`, `L4-A-053`) remain Draft. | Upstream approval | L5 Validation Standard allows Draft L4 for controlled planning but not approval-level authority without governance authorization. | L4 / repository architecture governance | **Yes for Architecture Approved; No for Draft authoring** | Approve the material L4 behavior or issue explicit approval-level governance authorization before this specification advances beyond Draft. |
 | OD-002 | `L5-D-01-001` exists only as the current working Draft artifact and is not yet a verified canonical repository dependency; A04/B02/D03/D04/C01/C02 peer details also require stabilization/reconciliation. | Dependency | Working D01-001 artifact plus dependency-gated L5 authoring state | Lead Architect + respective L5 owners | **Yes for final approval where materially affecting boundaries** | Reconcile this file against the committed/stable D01 baseline and relevant peer specifications before architecture approval. |
 | OD-003 | Exact provisioning authority, lifecycle state model, disablement/revocation semantics and canonical lifecycle events for service/workload/job/integration principals are not sufficiently defined by current applicable L4 behavior. | Upstream / L5 ownership clarification | Frozen D01-002 responsibility requires the technical model; L2-A01/A03 require Tenant-aware non-human identities, but exact lifecycle/event semantics are not authoritative here. | Lead Architect / Platform security architecture / applicable L5 governance | **Yes for any implementation that requires those exact lifecycle semantics; No for the identity model itself** | Define or approve the non-human principal provisioning/lifecycle authority through the appropriate upstream/L5 governance; do not invent states/events locally. |
-| OD-004 | Product/protocol choices for human account directory binding, service/workload identity issuance, federation and machine credential mechanisms remain unselected. | ADR / Technology | No canonical L5 ADR is allocated for these selections. | Lead Architect / applicable L5 ADR governance | **No for this technology-neutral specification** | Resolve only when implementation selection becomes material; allocate ADR ID canonically before recording a governed material decision. |
+| OD-004 | **Partially resolved:** Keycloak 26.x is canonical and non-human service/workload identity uses the governed `ADR-L5-0039` profile. Exact federation/provider-specific details remain D01/D03/profile-governed where not otherwise selected. | ADR / Technology | `ADR-L5-0024`; `ADR-L5-0039` | Applicable canonical owners | Product/profile resolved; remaining provider details governed | Preserve D01/D02 ownership. |
 
 ---
 
@@ -449,3 +449,8 @@ No numeric credential lifetime, inactivity period, session duration, identity-re
 
 **Applicable locked decision:** `ADR-L5-0039`  
 Every protected service/workload/job/integration execution uses an explicit non-human principal. Shared ambient API keys and implicit internal-network trust are not the default. Human initiator and technical executor are preserved separately.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Reconciled IAM/service-identity wording with Keycloak and the locked non-human identity profile. Upstream lifecycle/provisioning semantics explicitly marked unresolved by source architecture remain unchanged.

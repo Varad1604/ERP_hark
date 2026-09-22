@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Technology-neutral runtime/deployment architecture supporting on-premises and cloud-capable deployment without transferring business ownership.  
 **Technical Architecture Owner:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-A-01-001`, `L5-A-03-001`, `L5-A-04-*`, `L5-B-02-*`, `L5-D-03-*`, `L4-A-001`, `L4-A-028`, `L4-A-029`, `L4-A-030`, `L4-A-031`.  
@@ -173,7 +173,7 @@ Verified artifact
 
 | Item ID | Item | Classification | Blocking? | Required Resolution |
 | --- | --- | --- | --- | --- |
-| OD-001 | Primary runtime/language/framework | ADR | No for technology-neutral E04 baseline; Yes before normative runtime mandate | Resolve through canonical technology selection. |
+| OD-001 | **Resolved:** Rust + Axum + Tokio primary server runtime/framework. | ADR | Locked. | `ADR-L5-0018`; `ADR-L5-0019`. |
 | OD-002 | **Resolved:** OCI images + Kubernetes clustered profile; simple OCI non-clustered profile retained. | ADR | Locked. | `ADR-L5-0028`. |
 | OD-003 | Exact profile sizing/availability targets | E01/E02 dependency | No | Define by approved reliability/capacity profiles. |
 | OD-004 | Continuous vendor-cloud independence for core on-premises operation | Architecture/ADR decision | Yes only if this is to become a mandatory support promise | Establish repository authority before making normative. |
@@ -212,3 +212,8 @@ Distribution-neutral Kubernetes is the clustered baseline; Podman is the default
 
 **Applicable locked decision:** `ADR-L5-0044`  
 Runtime units use governed immutable artifacts/configuration, separate startup/liveness/readiness semantics and graceful draining/shutdown; emergency mutation is exceptional and reconciled.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Reconciled the stale primary-runtime open decision with the Rust/Axum/Tokio baseline. Deployment sizing/availability values remain E01/E02 profile decisions.

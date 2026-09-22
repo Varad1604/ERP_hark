@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Define reusable technical architecture for logical trust isolation among applications, services, computational components and network communication boundaries, including trust-zone assignment, restricted connectivity, boundary enforcement, compromise containment and context-preserving cross-boundary interaction, without owning business authorization policy, cryptographic/key-management internals, secrets/certificates, business rules or business authority.  
 **Technical Architecture Owner:** L5-D-03-005 — Application, Service & Network Trust Segmentation Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** Draft  
 **Last Updated:** `2026-09-22`  
 **Primary Dependencies:** `L5-D-03-001`, `L5-A-03`, `L5-A-04`, `L5-E-04`.  
 **Collaborates With:** `L5-D-03-002`, `L5-D-03-003`, `L5-D-03-004`, `L5-D-01`, `L5-D-02`, `L5-D-04`, applicable integration/data/runtime architecture.  
-**Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern (`Architecture Approved`, 2026-09-11).
+**Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern (`Architecture Approved`, 2026-09-11).; `ADR-L5-0027`; `ADR-L5-0040`
 
 ---
 
@@ -291,3 +291,8 @@ Only materially supported direct relations shall be entered into the canonical t
 
 **Applicable locked decision:** `ADR-L5-0040`  
 Protected cross-process/service communication uses authenticated encrypted transport; TLS 1.3 is preferred; mTLS is profile-driven where workload identity at transport boundary is required; no service mesh is mandatory initially. OpenBao remains production-secret authority; infrastructure encryption-at-rest is baseline with classification-driven field protection; HSM/KMS custody is profile-driven; no universal rotation interval is invented.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Lifecycle status restored to `Review` in accordance with the locked 2026-09-16 full-corpus Draft→Review promotion decision. OpenBao/rustls and the Group-3 trust/crypto/secrets profile are inherited where applicable; this synchronization does not promote the specification beyond Review.

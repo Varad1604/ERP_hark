@@ -8,7 +8,7 @@
 **Canonical Technical Responsibility:** Engineering delivery, pipeline trust and artifact-promotion principles while branch workflow governance, deployment execution, security primitives, audit truth and verification semantics remain separately owned.  
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.1.0`  
+**Version:** `1.1.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-E-04-*`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*` where verification evidence is consumed; `L5-D-04-*`; `L5-E-05-*`; `L5-E-03-*` for backup/recovery ownership boundaries.  
@@ -59,7 +59,7 @@ Draft peer L5 material is consumed for dependency/boundary planning and is not t
 6. F02 owns verification semantics; F01 consumes outcomes.
 7. E04 owns runtime deployment and rollback.
 8. E03 owns backup/restore/DR; F01 only identifies critical pipeline/artifact metadata dependencies.
-9. Product choices remain unresolved until governed selection.
+9. GitHub Actions, GHCR and Cosign/Sigstore are governed by `ADR-L5-0030`; remaining pipeline policy/profile choices stay explicit.
 
 ### Assumptions
 | ID | Assumption | Resolution |
@@ -137,7 +137,7 @@ Policy exceptions are scoped and time-bounded; expiry automatically removes futu
 | AD-005 | Identity & authorization | CI/CD uses governed non-human identities; D02 authorization and `ADR-L5-0009` bind allowed actions with least privilege |
 | AD-006 | Separation | F01 owns eligibility/promotion; E04 deployment; F02 verification semantics; D03 credentials/crypto |
 | AD-007 | Exceptions | Bypasses are explicit, scoped, authorized, evidenced and time-bounded |
-| AD-008 | Technology | CI/CD products remain unselected pending governed selection |
+| AD-008 | Technology | GitHub Actions + GHCR + Cosign/Sigstore are canonical under `ADR-L5-0030`; high-trust paths use ephemeral self-hosted runners where required. |
 | AD-009 | Source references | Production release paths use protected/governed source refs; release refs are immutable or equivalently protected |
 | AD-010 | Runner trust | High-trust production build/signing workloads are segmented from general CI; ephemeral execution is preferred where supported |
 | AD-011 | Evidence | Production release evidence is coherently bound across source, build, artifact, verification, provenance, authorization and deployment handoff |
@@ -176,3 +176,8 @@ Primary peer boundaries: `L5-E-04-*`, `L5-D-03-*`, `L5-D-02-001`, `L5-D-02-004`,
 
 **Applicable locked decision:** `ADR-L5-0030`  
 GitHub Actions is canonical while source remains on GitHub; GHCR is the default OCI registry; Cosign/Sigstore handles signing/attestation; high-trust paths use ephemeral self-hosted runners where required.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Reconciled F01 product status with the locked delivery/supply-chain standard.

@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Authentication/session/credential mechanisms separate from authorization policy.  
 **Technical Architecture Owner:** L5-D-01 — IAM Architecture  
 **Assigned Author:** Devang  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-01-001` v1.0.1 Draft; working `L5-D-01-002` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-008` v1.0.0 Draft; `L4-A-009` v1.0.0 Draft; `L4-A-053` v1.0.0 Draft; `L4-A-055` v1.0.0 Draft; `L2-A02` Locked; `L2-A03` v1.1.0 Locked; `ADR-PLAT-AUTH-001` Approved.  
@@ -109,7 +109,7 @@ All materially applicable L4 files currently carry `Draft` metadata on `main`. T
 | C-007 | Policy-required session consequences shall be enforceable after Credential recovery or identity/account closure. | `L4-A-008-BH-007`; `L4-A-053-BH-002/BH-009` | Session invalidation/termination is an explicit technical control, not an incidental cleanup action. |
 | C-008 | Only active verified MFA factors may satisfy required MFA. | `L4-A-009-BH-004`–`BH-008` | Factor challenge verification must confirm source-governed factor eligibility before contributing to success. |
 | C-009 | Runtime provider selection must respect governed provider eligibility/priority/availability/fallback without becoming vendor-specific architecture. | `L4-A-055-BH-002/BH-005/BH-006/BH-009/BH-010` | Provider adapters normalize provider execution under one D01 contract. |
-| C-010 | Material technology/protocol/cryptographic choices require applicable ADR/technical governance. | L5 Technology Selection & ADR Methodology v1.0.1 | Logical architecture is concrete; product, protocol, token and cryptographic choices remain unresolved until governed. |
+| C-010 | Material technology/protocol/cryptographic choices require applicable ADR/technical governance. | L5 Technology Selection & ADR Methodology v1.0.1 | Logical architecture is concrete; Keycloak, the custom credential API/session profile and D03 cryptographic standards are governed by `ADR-L5-0024`, `ADR-L5-0038`, `ADR-L5-0039` and `ADR-L5-0040`. Numeric session lifetimes and profile-specific controls remain governed separately. |
 
 ### 3.3 Assumptions
 
@@ -462,7 +462,7 @@ Runtime realization must preserve:
 - permission-free authenticated context;
 - observable health/failure signals without leaking secrets.
 
-No microservice requirement, server topology, cache product, session-store product, IAM platform or cloud service is selected here.
+Keycloak is the canonical IAM platform; Valkey is the canonical shared cache where a cache is appropriate, but session authority remains D01-owned. No microservice topology or cloud vendor is selected here.
 
 ---
 
@@ -480,7 +480,7 @@ No microservice requirement, server topology, cache product, session-store produ
 | AD-008 | Explicit session invalidation control | Account/identity closure and policy-required recovery consequences use a first-class session invalidation/termination control rather than incidental expiry. | `L4-A-008-BH-007`; `L4-A-053-BH-002/BH-009` | Allows upstream lifecycle closure to obtain a verifiable Authentication-side consequence. | None. |
 | AD-009 | MFA factor eligibility at challenge time | Required MFA challenge execution verifies that the selected factor is source-eligible/active/verified before it may satisfy Authentication policy. | `L4-A-009-BH-004`–`BH-008`; `L4-A-007-BH-005` | Prevents stale or unverified factor enrollment from satisfying MFA. | None. |
 
-No product, protocol, token format, cryptographic primitive or runtime technology is selected by these local decisions.
+Local decisions inherit the locked Keycloak/custom-login/session/security technology profiles; exact token/session representation and numeric lifetimes remain D01/D03-governed.
 
 ---
 
@@ -534,7 +534,7 @@ No numeric security, performance, availability, retention, timeout, TTL, lockout
 | OD-001 | Material L4 sources (`L4-A-007`, `L4-A-008`, `L4-A-009`, `L4-A-053`, `L4-A-055`) remain `Draft` in current repository metadata. | Upstream approval | L5 Validation Standard permits Draft L4 for controlled planning but requires approval/governance authorization before approval-level reliance. | L4 / repository architecture governance | **Yes for Architecture Approved; No for Draft authoring** | Approve the material L4 behavior or provide explicit governance authorization before this specification advances beyond Draft. |
 | OD-002 | `L5-D-01-002` is currently a working Draft artifact rather than a verified canonical repository dependency; other collaborating A04/B02/D03/D04/C01/C02 peers may continue to evolve. | Dependency | Dependency-gated L5 authoring state | Lead Architect + respective L5 owners | **Yes for final approval where peer changes affect contract/boundary semantics** | Reconcile D01-003 against committed/stable D01-002 and material peer specifications before Architecture Approved status. |
 | OD-003 | Exact session/Refresh Token lifetimes, renewal limits, inactivity/absolute expiry rules, replay controls, token representation and continuation artifact format are not selected here. | L5 / ADR / Security | No approved canonical L5 ADR/standard with exact choices or numeric targets is identified. | Lead Architect + D01/D03 architecture governance | **No for logical Draft; Yes before implementation where concrete values/mechanisms are required** | Resolve through governed security/technology decisions; allocate ADR only when mandatory under methodology. |
-| OD-004 | Exact IAM/IdP/provider products, federation/authentication protocols, MFA technologies, Credential verifier algorithms and session-store technology remain unselected. | ADR / Technology | L5 ADR Register has no allocated decision for these selections. | Lead Architect / L5 ADR governance | **No for technology-neutral Draft** | Evaluate/select only under L5 Technology Selection & ADR Methodology. |
+| OD-004 | **Partially resolved:** Keycloak 26.x + SutraERP custom username/password API, secure server-side session, privileged/high-risk MFA, WebAuthn/passkeys preferred where approved/stable with TOTP fallback. Exact provider-specific federation, token representation, verifier implementation and session-store internals remain governed details. | ADR / Technology | `ADR-L5-0024`; `ADR-L5-0038`; `ADR-L5-0040` | D01/D03 | Core profile resolved | Preserve numeric/profile deferrals. |
 | OD-005 | L4-A-008 preserves unresolved semantics for the exact prior-Credential invalidation transition and canonical recovery-completion event. | Upstream | `L4-A-008` §10 / parent ambiguity | L2/L3/L4 Authentication governance | **Yes for any implementation requiring those exact business state/event semantics; No for the technical cutover outcome** | Resolve upstream; until then implement only the technical guarantee that covered previous Credentials cannot authenticate and do not invent a new canonical state/event. |
 | OD-006 | Exact canonical lifecycle/event semantics for session renewal/continuation beyond the explicitly sourced session creation/activation and closure consequences are not sufficiently established at L4 for new business event naming. | Upstream / L5 | L2-A03 owns Refresh Token/session lifecycle, but this specification shall not manufacture missing L4 canonical event semantics. | Authentication architecture governance | **No for continuation mechanics; Yes for introducing new canonical event names** | Use technical continuation state without new canonical business events until upstream/event semantics are explicitly governed. |
 
@@ -599,3 +599,8 @@ Human authentication uses the SutraERP custom credential API backed by Keycloak 
 
 **Applicable locked decision:** `ADR-L5-0039`  
 System/service credentials are distinct from human credentials; non-human principals authenticate explicitly and remain separately revocable.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Reconciled authentication/session product wording with the locked custom credential API, Keycloak authority and D03 security profile. No OAuth Direct Access Grant is made canonical.
