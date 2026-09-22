@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Technical API/contract principles and ownership-preserving synchronous boundaries.  
 **Technical Architecture Owner:** L5-C-01 — API & Contract Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-A-01-001`, `L5-A-03-001`, `L5-A-04-002`, `L5-B-02-001/002/003`, `L5-D-01-001`, `L5-D-03-001`, `L4-A-001`, `L4-A-015`, `L4-A-028`, `L4-A-050`.  
@@ -147,7 +147,7 @@ Consumer
 | Item ID | Item | Blocking? | Resolution |
 | --- | --- | --- | --- |
 | OD-001 | **Resolved:** HTTPS REST/JSON + OpenAPI 3.2; gRPC exception-only. | Locked | `ADR-L5-0021` |
-| OD-002 | Primary runtime/language/framework | No for C01 architecture; Yes before normative technology mandate | Govern through canonical technology selection. |
+| OD-002 | **Resolved:** Rust + Tokio + Axum primary server realization; C01 contracts remain framework-independent. | Locked | `ADR-L5-0018`; `ADR-L5-0019`. |
 | OD-003 | **Resolved architectural position:** no mandatory heavyweight API-management product; governed deployment ingress is sufficient unless a later ADR justifies more. | Locked | `ADR-L5-0021` |
 | OD-004 | Material L4 parents remain Draft | Yes for Architecture Approved | Resolve through L4 governance. |
 

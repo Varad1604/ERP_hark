@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Contract evolution, compatibility, technical errors and idempotent request handling without inventing business recovery.  
 **Technical Architecture Owner:** L5-C-01 — API & Contract Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-C-01-001`, `L5-C-01-002`, `L5-B-02-003`, `L4-A-029`, `L4-A-031`, `L4-A-032`.  
@@ -167,7 +167,7 @@ Named API-version encodings, schema/contract tooling and idempotency storage pro
 
 | Item ID | Item | Classification | Blocking? | Required Resolution |
 | --- | --- | --- | --- | --- |
-| OD-001 | Concrete API version encoding and contract tooling | ADR if selected as a shared/repository standard | No for core C01-003 architecture; Yes before normative tool/encoding mandate | Govern through technology-selection/ADR process. |
+| OD-001 | **Resolved wire convention:** breaking majors use explicit `/api/vN/...` routing and released OpenAPI 3.2 is contract authority. Concrete code-generation/lint tooling remains F01/F02 implementation tooling. | ADR / tooling | Locked wire convention; tooling non-blocking | `ADR-L5-0034`. |
 | OD-002 | Idempotency retention duration/storage technology | B02/E-family deployment decision | No | Define by approved data/operational profile; no invented numeric value here. |
 | OD-003 | Material L4 parents remain Draft | Upstream | Yes for Architecture Approved | Resolve through L4 governance. |
 

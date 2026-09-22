@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Authoritative synchronous interaction, request/response and service-consumption architecture.  
 **Technical Architecture Owner:** L5-C-01 — API & Contract Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-C-01-001`, `L5-A-04-002`, `L5-B-02-003`, `L4-A-015`, `L4-A-050`.  
@@ -182,7 +182,7 @@ Receive released request
 
 | Item ID | Item | Classification | Decision Authority | Blocking? | Required Resolution |
 | --- | --- | --- | --- | --- | --- |
-| OD-001 | Repository-wide synchronous transport/API style | ADR if selected as shared standard | Lead Architect / C01 | Yes for Architecture Approved where the selected style is made normative | Evaluate and approve through canonical ADR process. |
+| OD-001 | **Resolved:** HTTPS REST/JSON + OpenAPI 3.2; contract-first wire profile with URL-major versioning, RFC 9457 errors and `Idempotency-Key`. | ADR | C01 / Lead Architect | Locked | `ADR-L5-0021`; `ADR-L5-0034`. |
 | OD-002 | **Resolved:** Rust + Axum + Tokio server realization; C01 contracts remain framework-independent. | ADR | `ADR-L5-0018`; `ADR-L5-0019` | Locked | No further selection required unless superseded. |
 | OD-003 | Numeric deadline/retry/overload targets | Deployment/operations decision | E-family owners with C01 constraints | No | Define per approved deployment/service profile. |
 | OD-004 | Material L4 parents remain Draft | Upstream | L4 governance | Yes for Architecture Approved | Resolve upstream approval; do not bypass from L5. |

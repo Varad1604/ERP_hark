@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Controlled persistence-schema evolution and internal migration while preserving canonical ownership, isolation and compatibility; excludes operational governed business import/export.  
 **Technical Architecture Owner:** L5-B-02 — Database & Persistence Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-B-02-001` v1.0.0 Draft; `L5-B-02-002` v1.0.0 Draft; `L5-B-02-003` v1.0.0 Draft.  
@@ -429,7 +429,7 @@ No migration tool, ORM, database vendor, SQL dialect, checksum algorithm or depl
 
 | ID | Item | Owner | Blocking Status | Resolution Path |
 |---|---|---|---|---|
-| `OD-002` | Select concrete database migration tooling/format after primary relational database technology/runtime choices are governed. | L5-B-02 with applicable technology owner | Does not block product-neutral Draft; blocks implementation standardization. | Technology evaluation + ADR if mandatory trigger applies. |
+| `OD-002` | Primary relational technology is resolved as PostgreSQL 18.x + SQLx. Concrete migration runner/tooling and migration-file conventions remain implementation standardization. | L5-B-02 | Non-blocking for L5; required before implementation standardization. | Govern through B02/F01 conventions; ADR only if material. |
 | `OD-003` | Define exact schema/runtime compatibility metadata and execution gate with `L5-E-04-005`. | L5-B-02 / L5-E-04 | Does not block Draft; required before release implementation. | Cross-specification technical contract. |
 | `OD-004` | Define destructive-migration recovery evidence and restore/PITR integration once `L5-E-03-*` is stabilized. | L5-B-02 / L5-E-03 | Does not block Draft; required before destructive production migrations. | E03/B02 recovery mapping and validation. |
 
@@ -476,7 +476,7 @@ new forward corrective migration
 E03 governed recovery
 ```
 
-This specification remains `Draft` for implementation/tooling and peer-integration refinement; the reusable schema-evolution pattern itself is canonically established by `ADR-L5-0008`.
+This specification remains `Review`; the reusable schema-evolution pattern is canonically established by `ADR-L5-0008`, while migration tooling/file conventions and peer implementation contracts remain non-blocking downstream design.
 
 ## 2026-09-22 Backend Readiness Group 2 Synchronization
 
