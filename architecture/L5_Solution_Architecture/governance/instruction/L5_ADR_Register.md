@@ -361,5 +361,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 33  
-**Next Canonical Allocation:** `ADR-L5-0034`
+**ADR IDs Currently Canonically Allocated:** 35  
+**Next Canonical Allocation:** `ADR-L5-0036`
