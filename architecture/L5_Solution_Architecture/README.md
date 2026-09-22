@@ -226,3 +226,13 @@ Locked on 2026-09-22:
 - `ADR-L5-0040` — internal transport, cryptography, secrets and key-custody profile.
 
 The default human login surface is a SutraERP custom username/password API backed by Keycloak credential authority; OAuth Direct Access Grant is explicitly not the canonical realization. The ADR register now allocates 40 ADRs; next allocation is `ADR-L5-0041`.
+
+
+## Backend Readiness Decision Group 4 — Workflow, Jobs & Asynchronous Execution
+
+Locked on 2026-09-22:
+
+- `ADR-L5-0041` — Rust worker, JetStream background execution and retry profile.
+- `ADR-L5-0042` — Flowable workflow runtime, task, timer, version and compensation profile.
+
+Two backend-readiness decision groups remain after this group: Group 5 Runtime/Deployment/Operations and Group 6 Capacity/DR/Optimization Targets. Final corpus synchronization/validation remains a separate closure activity. The ADR register now allocates 42 ADRs; next allocation is `ADR-L5-0043`.

@@ -133,6 +133,10 @@ The next new ADR number is determined from the highest canonical allocated ADR n
 
 | `ADR-L5-0040` | Internal Transport, Cryptography, Secrets & Key Custody Profile | Repository | L5-D-03 — Security, Cryptography, Secrets & Key Management Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0040_Internal_Transport_Cryptography_Secrets_and_Key_Custody_Profile.md` | `L5-D-03-001`…`L5-D-03-005`; protected runtime/persistence consumers | 2026-09-22 | 2026-09-22 | — | — | Locked Group-3 trust/crypto/secrets profile. |
 
+| `ADR-L5-0041` | Rust Worker, JetStream Background Execution & Retry Profile | Shared / Family | L5-A-08 — Background Processing & Job Execution Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0041_Rust_Worker_JetStream_Background_Execution_and_Retry_Profile.md` | `L5-A-08-001`; `L5-A-08-002`; constrains C02/C01/A05 | 2026-09-22 | 2026-09-22 | — | — | Locked Group-4 background execution profile. |
+
+| `ADR-L5-0042` | Flowable Workflow Runtime, Task, Timer, Version & Compensation Profile | Shared / Family | L5-A-05 — Workflow & Orchestration Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0042_Flowable_Workflow_Runtime_Task_Timer_Version_and_Compensation_Profile.md` | `L5-A-05-001`; `L5-A-05-002`; `L5-A-05-003` | 2026-09-22 | 2026-09-22 | — | — | Locked Group-4 workflow runtime profile. |
+
 ### ADR Path
 
 Once the ADR file exists, record its canonical repository path.
@@ -375,5 +379,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 40  
-**Next Canonical Allocation:** `ADR-L5-0041`
+**ADR IDs Currently Canonically Allocated:** 42  
+**Next Canonical Allocation:** `ADR-L5-0043`
