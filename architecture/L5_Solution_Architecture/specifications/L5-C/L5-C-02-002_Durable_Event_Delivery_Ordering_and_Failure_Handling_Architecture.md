@@ -8,9 +8,9 @@
 **Canonical Technical Responsibility:** Durable delivery, technical retries, ordering, failure/dead-letter treatment and transactional publication after the durable publication handoff.  
 **Technical Architecture Owner:** `L5-C-02 — Event & Messaging Architecture`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.3`  
+**Version:** `1.2.0`  
 **Status:** `Architecture Approved`  
-**Last Updated:** `2026-09-12`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** `L5-B-02-003`; `L5-C-02-001`; `ADR-L5-0007`; `ADR-L5-0010`  
 **Referenced By:** downstream event-consuming L5 specifications requiring durable delivery/recovery semantics  
 **Applicable ADRs:** `ADR-L5-0007`; `ADR-L5-0010`  
@@ -104,3 +104,9 @@ Primary decision authority: `ADR-L5-0007` and `ADR-L5-0010`; candidate corpus bo
 
 ## 11. Review Position
 This specification is **Architecture Approved** following completed Stage-2 remediation and explicit architecture approval on 2026-09-12. It is lock-ready but shall not be marked `Locked` until distinct final-governance authorization is recorded.
+
+
+## 2026-09-22 Backend Readiness Group 4 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0041`  
+A08 work delivery uses C02 durable acknowledgement/retry/recovery semantics. Exhausted work remains recoverable with failure evidence; transport dead-letter handling does not become canonical business state.

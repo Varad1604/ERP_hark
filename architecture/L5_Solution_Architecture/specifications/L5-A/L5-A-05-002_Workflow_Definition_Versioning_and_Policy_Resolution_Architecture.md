@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Technical workflow definition/versioning, scope resolution and effective policy selection.  
 **Technical Architecture Owner:** `L5-A-05 — Workflow & Orchestration Architecture`  
 **Assigned Author:** Devang  
-**Version:** `1.0.0`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-12`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register 105 v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-A-05-001_Workflow_and_Orchestration_Architecture_Baseline.md`; `L5-D-02-001` through `L5-D-02-007`; `L5-C-01-001` through `L5-C-01-003`; `L5-C-02-001` through `L5-C-02-003`; `L5-A-04-001/002`; `L5-B-02-002/003`; applicable `L5-D-04`; `L2-A05_Workflow_Engine_Workflows.md`; `L4-A-014_Workflow_Definition_to_Activated_Orchestration_Availability.md`; `L4-A-017_Workflow_Change_to_Governed_New_Version_Availability.md`; supporting `L4-A-015` and `L4-A-016` for runtime/version binding.  
 **Referenced By:** `L5-A-05-003`; workflow-owning domains; workflow administration/governance capabilities; runtime version resolver; D02 policy decision/enforcement; C01/C02 integration architecture; D04 evidence architecture.  
 **Applicable ADRs:** `ADR-L5-0003` Contract-Driven Modular Platform with Selective Isolation; `ADR-L5-0004` Tenant and Institution Isolation Enforcement Pattern; `ADR-L5-0006` Owner-Local Transaction and Optimistic Concurrency Strategy; `ADR-L5-0007` Atomic State-to-Publication Intent Handoff Pattern; `ADR-L5-0010` Durable Event Delivery, Subscription, Ordering & Recovery Pattern; `ADR-L5-0011` Event Contract Versioning & Consumer Compatibility Pattern. No workflow definition notation, workflow product, policy engine, registry product, storage product or version-numbering scheme is selected here.
@@ -1334,3 +1334,9 @@ architecture/
 ```
 
 No `L5-A/L5-A-05/` major-area subfolder is introduced.
+
+
+## 2026-09-22 Backend Readiness Group 4 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0042`  
+Flowable stores orchestration/runtime state only; canonical business state remains source-owned. Human task assignment is not authorization and D02 re-evaluates authority at action time. Workflow timers stay A05-owned, running instances are version-pinned by default, migration is explicit, and compensation invokes only owner-provided actions.

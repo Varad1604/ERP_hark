@@ -169,3 +169,9 @@ The synchronous API profile is HTTPS REST/JSON + OpenAPI 3.2. gRPC is scope-exce
 
 **Applicable locked decision:** `ADR-L5-0034`  
 Synchronous APIs use contract-first OpenAPI 3.2, camelCase SutraERP JSON members, URL major-version routing, RFC 9457 Problem Details plus governed SutraERP extensions, selective `Idempotency-Key`, and REST/OpenAPI as the default internal/external synchronous profile.
+
+
+## 2026-09-22 Backend Readiness Group 4 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0041`  
+Long-running work is accepted asynchronously where appropriate and returns a governed work/reference identity, with later status/result retrieval or completion event rather than holding synchronous HTTP requests open.

@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Reusable workflow/orchestration capability; business domains retain workflow rules and decisions.  
 **Technical Architecture Owner:** `L5-A-05 — Workflow & Orchestration Architecture`  
 **Assigned Author:** Devang  
-**Version:** `1.1.0`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register 105 v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; L5 Dependency-Gated Parallel Authoring Execution Timeline; `L5_Devang_Stage2_Architecture_Remediation_and_Approval_Decision_2026-09-12.md`; `L5-D-02-001` through `L5-D-02-007`; `L5-C-01-001` through `L5-C-01-003`; `L5-C-02-001` through `L5-C-02-003`; `L5-A-04-001/002`; `L5-B-02-002/003`; `L5-D-01-002/003`; `L5-D-03-001`; applicable `L5-D-04`; `L2-A05_Workflow_Engine_Workflows.md`; `L4-A-014`; `L4-A-015`; `L4-A-016`; `L4-A-017`.  
@@ -1207,3 +1207,9 @@ No major-area subfolder such as `L5-A/L5-A-05/` is introduced.
 
 **Applicable locked decision:** `ADR-L5-0023`  
 BPMN 2.x + Flowable OSS 8.x are canonical. Flowable coordinates orchestration only; source domains and D01/D02 retain business and authorization authority.
+
+
+## 2026-09-22 Backend Readiness Group 4 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0042`  
+Flowable stores orchestration/runtime state only; canonical business state remains source-owned. Human task assignment is not authorization and D02 re-evaluates authority at action time. Workflow timers stay A05-owned, running instances are version-pinned by default, migration is explicit, and compensation invokes only owner-provided actions.

@@ -124,3 +124,9 @@ NATS JetStream is canonical while ADR-L5-0007/0010/0011 delivery, ownership and 
 
 **Applicable locked decision:** `ADR-L5-0035`  
 Canonical business-event wire representation is JSON governed by JSON Schema with a CloudEvents 1.0-compatible envelope. NATS subjects are routing identifiers only, not canonical business-event identity.
+
+
+## 2026-09-22 Backend Readiness Group 4 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0041`  
+JetStream may transport A08 technical work messages under C02 delivery semantics. Technical work messages are not canonical business events merely because they share the broker; job/work truth stays A08/B02-owned.

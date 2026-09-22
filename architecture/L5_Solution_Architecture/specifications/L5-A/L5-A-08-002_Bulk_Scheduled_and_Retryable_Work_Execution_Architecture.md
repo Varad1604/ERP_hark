@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Long-running, bulk, scheduled and technically retryable work execution using durable work-unit and attempt state while preserving upstream business/workflow authority.  
 **Technical Architecture Owner:** L5-A-08 — Background Processing & Job Execution Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.0.1`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-15`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-A-08-001`; `L5-A-01-001`; `L5-C-02-001`; `L5-C-02-002`; `L5-C-02-003`; `L5-E-04-001`; `L5-A-05-003`; `L5-B-02-003`; `L5-D-02-*`; `L4-A-015`; `L4-A-016`.  
 **Referenced By:** L5 consumers requiring reusable bulk/scheduled/technical-retry execution.  
 **Applicable ADRs:** `ADR-L5-0006`, `ADR-L5-0007`, `ADR-L5-0009`, `ADR-L5-0010`, `ADR-L5-0011`, `ADR-L5-0013`.  
@@ -235,3 +235,8 @@ A05 submits a generic execution request containing source workflow reference, wo
 **OD-001:** Workload-specific numeric retry/backoff/parallelism values remain governed configuration.  
 **OD-002:** Product selection for scheduler/queue/worker runtime is separately governed if material.  
 **OD-003:** Concrete persistence schema and indexes are implementation design under the state/concurrency invariants above.
+
+## 2026-09-22 Backend Readiness Group 4 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0041`  
+Dedicated Rust workers execute technical/background work; NATS JetStream supplies durable work delivery; owner-local persistence holds job/work truth; retries are classified/bounded with exponential backoff+jitter; failed work is recoverable and never silently dropped; A08 owns technical schedules; no default global distributed lock.
