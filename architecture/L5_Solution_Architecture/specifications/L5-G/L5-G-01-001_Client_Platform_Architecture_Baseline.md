@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Shared technical client-platform principles; excludes L6 screens, journeys, navigation and layout.  
 **Technical Architecture Owner:** L5-G-01 — Client Platform Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Architecture Approved`  
-**Last Updated:** `2026-09-15`  
+**Last Updated:** `2026-09-22`  
 **Production Path:** `architecture/L5_Solution_Architecture/specifications/L5-G/L5-G-01-001_Client_Platform_Architecture_Baseline.md`
 
 **Depends On:**  
@@ -87,10 +87,10 @@ This specification does not own:
 | L5 Architecture Family Register | Architecture Approved | L5-G family | Establishes Client Platform as the canonical L5 family. |
 | L5 Dependency-Gated Authoring Timeline | Locked | Stage 4 `L5-G-01`; minimum `C01 + D01 + D02 + A04` | Establishes mandatory peer dependency set. |
 | `L5_G01_Upstream_Dependency_Readiness_and_Architecture_Approval_Decision_2026-09-15.md` | Architecture Approved | G01 scoped dependency-readiness and approval decision | Removes invalid direct A007/A050 approval dependencies and declares the consumed C01/D01/D02/A04 boundaries sufficiently stable for G01. |
-| `L5-C-01-001` | v1.0.1 / Draft | Contract Boundary and catalogue principles | Client calls cross the solution only through governed contracts. |
-| `L5-D-01-001` | v1.0.1 / Draft | IAM baseline | Supplies authenticated technical context without authorization semantics. |
-| `L5-D-02-001` | v1.0.0 / Architecture Approved | Authorization baseline | Supplies authoritative authorization evaluation/enforcement. |
-| `L5-A-04-001` / `L5-A-04-002` | v1.0.1 / Draft | Tenant/Institution isolation and validated scope propagation | Client-supplied scope is not authoritative merely because it was presented by the client. |
+| `L5-C-01-001` | v1.2.1 / Review | Contract Boundary and catalogue principles | Client calls cross the solution only through governed contracts. |
+| `L5-D-01-001` | v1.2.1 / Review | IAM baseline | Supplies authenticated technical context without authorization semantics. |
+| `L5-D-02-001` | v1.2.1 / Architecture Approved | Authorization baseline | Supplies authoritative authorization evaluation/enforcement. |
+| `L5-A-04-001` / `L5-A-04-002` | v1.0.1 / Review | Tenant/Institution isolation and validated scope propagation | Client-supplied scope is not authoritative merely because it was presented by the client. |
 | `ADR-L5-0003` | Architecture Approved | Contract-driven modular platform with selective isolation | Client architecture targets governed contracts rather than physical runtime placement or internal module structures. |
 | `ADR-L5-0004` | Architecture Approved | Tenant and Institution isolation enforcement | Client boundaries preserve Tenant/Institution isolation and fail closed on invalid scope. |
 
@@ -587,3 +587,8 @@ L5-A-04 — Tenant & Institutional Isolation Architecture
 **Current Status:** `Architecture Approved`.  
 **Downstream Readiness:** ready for `L5-G-01-002`, `L5-G-01-003` and `L5-G-01-004` consumption.  
 **Lock Status:** not Locked; lock requires separate final governance authorization.
+
+
+## 2026-09-22 Batch 7C Impact Revalidation Synchronization
+
+Non-material dependency/ADR metadata synchronization only. Current peer lifecycle/version labels and applicable authentication/session governance references now match canonical repository state. Client non-authority, server-side authorization, Tenant/Institution validation, safe contract consumption, online-first posture, L6 separation and future mobile technology deferral are unchanged. No lifecycle promotion is performed.
