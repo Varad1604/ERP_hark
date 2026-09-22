@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Technical representation and distribution boundary for governed Master Data and Reference Data while `L2-A09` and the applicable business domains retain governance and business meaning.  
 **Technical Architecture Owner:** L5-B-03 — Master & Reference Data Technical Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Architecture Approved`  
-**Last Updated:** `2026-09-12`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-B-02-001`; `L5-B-02-002`; `L2-A09` v1.0 Locked; applicable L4 Master Data specifications identified in §3.  
 **Referenced By:** `L5-B-03-002` and L5 consumers requiring governed Master/Reference Data discovery or consumption.  
 **Applicable ADRs:** `ADR-L5-0005` — Persistence Ownership, Hybrid Topology and Tenant Isolation Pattern. No Master Data product/platform technology is selected by this specification.
@@ -70,7 +70,7 @@ It establishes the baseline technical boundary consumed by `L5-B-03-002` for ver
 | L4 | `L4-A-039` | v1.0.0 / Draft on `main` | `BH-002`, `BH-006`, `BH-008` | Localization shall preserve canonical identifiers/business meaning and historical localized versions. | Requires canonical identity to remain independent of localized representations. |
 | L4 | `L4-A-040` | v1.0.0 / Draft on `main` | `BH-005`, `BH-006`, `BH-008`, `BH-009` | Retired Dataset information remains read-only/historical and archival is a separate outcome. | Requires historical registry/discovery without absorbing archival ownership. |
 | L5 Corpus | `L5-B-03-001` | Frozen 105-specification baseline | Canonical responsibility | Technical representation/distribution of governed Master/Reference Data while L2-A09 retains business governance. | Defines the exact B03-001 responsibility boundary. |
-| L5 Peer | `L5-B-02-001/002` | Draft | Owner-scoped persistence and isolation | Authoritative persistence remains owner-scoped; direct cross-owner persistence is prohibited. | Constrains Dataset technical state and access. |
+| L5 Peer | `L5-B-02-001/002` | Review | Owner-scoped persistence and isolation | Authoritative persistence remains owner-scoped; direct cross-owner persistence is prohibited. | Constrains Dataset technical state and access. |
 
 ### 3.2 Authoritative Constraints
 
@@ -353,3 +353,7 @@ No blocking open decision remains under the current Stage-2 validation program. 
 ### Review Position
 
 The specification is **Architecture Approved** following full Stage-2 validation at repository baseline `2876bde9994bcd0a9ae17d9fb09c104a7be86d27`. Under the governing Stage-2 validation authorization, the cited canonical L4 Master Data specifications are accepted as behavioral authority for this review. The specification is lock-ready but shall not be marked `Locked` until distinct final governance authorization is recorded.
+
+## 2026-09-22 Batch 7A Impact Revalidation Synchronization
+
+Non-material lifecycle synchronization only: the `L5-B-02-001/002` peer dependency is now identified as `Review`, matching current canonical metadata. No Master Data ownership, architecture semantics, conformance requirement, traceability relation state, or Architecture Approved basis changed.
