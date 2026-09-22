@@ -364,6 +364,14 @@ architecture/L5_Solution_Architecture/governance/
 
 The representative nine-specification pilot is complete, the L5 authoring methodology is locked, the **105-specification authoring population is frozen**, workload and execution sequencing are locked, and **broad L5 authoring is authorized**. The Final L5 Corpus Lock has not been issued.
 
+### Locked Technology Decision Wave — 2026-09-22
+
+The canonical L5 ADR register now contains **33 allocated ADRs**. `ADR-L5-0019` through `ADR-L5-0033` are **Locked** and establish the immediate implementation technology baseline: Axum/Tokio, PostgreSQL/SQLx, REST/OpenAPI, NATS JetStream, BPMN/Flowable, Keycloak, OpenSearch, S3/Ceph RGW, OpenBao/rustls, OCI/Kubernetes, OpenTelemetry/Prometheus/Loki/Tempo/Grafana, GitHub Actions/GHCR/Cosign, CEL, rust_decimal, and external-provider pluggability.
+
+Explicitly deferred decisions remain open: scheduling/optimization solver, universal numeric capacity/SLO targets, RPO/RTO/retention values, mobile/cache selections where still open, exact deployment-provider details, and Final L5 Corpus Lock.
+
+
+
 ## Canonical L5 Repository Structure
 
 ```text
@@ -372,12 +380,12 @@ architecture/L5_Solution_Architecture/
 ├── governance/          # standards, templates, registers, methodology and decisions
 ├── specifications/      # canonical production authoring location
 ├── historical/          # non-canonical preserved extracted technical material
-├── adr/                 # materialize when first canonical ADR exists
+├── adr/                 # canonical ADR decision documents
 ├── L5-00_Technology_Stack_Baseline.md  # temporary compatibility pointer
 └── L5-01_Infrastructure_Persistence_Baseline.md  # temporary compatibility pointer
 ```
 
-No empty `adr/` or family folders are required. Family directories under `specifications/` are materialized when their first real specification is committed.
+The `adr/` directory is active and contains canonical ADR decision documents. Family directories under `specifications/` contain the canonical production corpus.
 
 ## Canonical L5 Governance and Planning Records
 
