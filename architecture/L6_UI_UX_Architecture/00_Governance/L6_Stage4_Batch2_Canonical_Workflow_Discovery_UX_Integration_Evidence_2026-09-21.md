@@ -207,8 +207,8 @@ Fresh Frontend PR validation:
 
 ```text
 Workflow: Frontend PR Validation
-Run: #139
-Run ID: 35689379981
+Run: #140
+Run ID: 35691123777
 Conclusion: SUCCESS
 ```
 
@@ -375,6 +375,6 @@ as a hosted GitHub Actions gate.
 
 This is an Actions credential/configuration requirement, not an architecture ambiguity or product-code defect. The default repository-scoped `GITHUB_TOKEN` cannot read the separate private Architecture repository.
 
-The current authoritative source blobs match the checked-in frontend provenance for the present Batch-2 source state. The final corrected frontend head retargets the hosted cross-repository guard to canonical Architecture `main`; final PR-CI evidence must be read from the latest current-head run before merge.
+The current authoritative source blobs match the checked-in frontend provenance for the present Batch-2 source state. The final corrected frontend head retargets the hosted cross-repository guard to canonical Architecture `main`. Frontend PR Validation #140 (run 35691123777) passed completely on that corrected head.
 
 Batch 3 may begin only after explicit instruction and normal live-state reconstruction. Stage 5 has not started.
