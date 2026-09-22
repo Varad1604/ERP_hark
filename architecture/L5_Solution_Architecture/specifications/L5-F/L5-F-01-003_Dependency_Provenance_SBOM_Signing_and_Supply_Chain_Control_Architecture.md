@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Dependency provenance, SBOM generation/binding, artifact provenance attestation, signing integration and software-supply-chain assurance.  
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.1.1`  
+**Version:** `1.1.2`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-01-001/002`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*`; `L5-E-04-*`; `L5-D-04-*`; `L5-E-05-*`.  
 **Referenced By:** F01-002 promotion gates, E04 artifact verification, security/operations impact analysis.  
-**Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern; `ADR-L5-0002` — Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern; `ADR-L5-0009` — Non-Human Principal Authorization Binding Pattern for protected automated actions. Cosign/Sigstore is the canonical signing/attestation toolchain and GHCR the default OCI registry under `ADR-L5-0030`. SBOM serialization format and any required SLSA level remain separately governed.
+**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0009`; `ADR-L5-0027`; `ADR-L5-0030`; `ADR-L5-0040`.
 
 ## 2. Purpose, Scope & Non-Goals
 Define how SutraERP proves what a release artifact contains, where its inputs came from, which controlled build produced it and whether its integrity/trust evidence remains valid.
@@ -27,10 +27,10 @@ Define how SutraERP proves what a release artifact contains, where its inputs ca
 |---|---|---|---|
 | Candidate Corpus Register 105 | Architecture Approved | F01-003 canonical responsibility | Scope authority |
 | `L5-F-01-001/002` | Review | Trusted build, immutable artifact, promotion gate model | Evidence attaches to exact artifact/release |
-| `L5-D-03-003/004` | Draft | Key custody and machine credentials are D03-owned | Signing uses D03 services/credentials |
+| `L5-D-03-003/004` | Review | Key custody and machine credentials are D03-owned | Signing uses D03 services/credentials |
 | `L5-D-02-001` / `L5-D-02-004` | Architecture Approved | Authorization and policy enforcement | Protected supply-chain actions require governed authority |
 | `ADR-L5-0009` | Architecture Approved | Non-human authority binding | Build/sign/promotion automation authority remains explicit |
-| `L5-E-04-005` | Draft | Deployment verifies release/artifact identity | E04 consumes F01 trust evidence |
+| `L5-E-04-005` | Review | Deployment verifies release/artifact identity | E04 consumes F01 trust evidence |
 | L5 Validation Standard | Locked | Security/ADR/implementability hard gates | No silent algorithm/vendor/threshold choices |
 
 ### Assumptions
@@ -128,10 +128,10 @@ Evidence retention preserves historical verification after key/credential rotati
 | ID | Item | Blocking? |
 |---|---|---|
 | OD-001 | Canonical SBOM serialization (`SPDX`, `CycloneDX`, other) | No for Review |
-| OD-002 | Canonical signing/provenance implementation incl. keyless model | No for Review |
+| OD-002 | **Partially resolved:** Cosign/Sigstore is canonical for signing/attestation; exact keyless/identity-backed signing mode remains security/profile governed. | No for Review |
 | OD-003 | Formal SLSA target level | No; cannot be claimed without demonstrated evidence |
 | OD-004 | Vulnerability/license thresholds and exception durations | No; require authoritative policy |
-| OD-005 | Draft peer dependency status | Yes for Architecture Approved where material |
+| OD-005 | Material D03/E04 peers are Review; lifecycle promotion still requires sufficient governed peer authority where material. | Yes for Architecture Approved where material |
 | OD-006 | Exact dependency mirror/allow-deny/malware-detection implementation | No for Review; product/policy selection remains governed |
 
 ## 10. Traceability Summary

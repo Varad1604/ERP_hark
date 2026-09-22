@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Controlled build, artifact creation, release-manifest formation, environment promotion and release-eligibility gates.  
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.1`  
+**Version:** `1.2.2`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-01-001`; `L5-E-04-*`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*`; applicable B02/C01 compatibility evidence where releases include persistence/contract changes; `L5-E-03-*` for recovery ownership boundaries.  
 **Referenced By:** E04 release/deployment architecture and operational acceptance.  
-**Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern; `ADR-L5-0002` — Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern; `ADR-L5-0008` — Expand-Migrate-Transition-Contract Schema Evolution Pattern where persistence schema evolution is part of a release; `ADR-L5-0009` — Non-Human Principal Authorization Binding Pattern. GitHub Actions is the canonical CI/CD engine and GHCR the default OCI registry under `ADR-L5-0030`; this specification still does not own E04 deployment sequencing.
+**Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0002`; `ADR-L5-0008`; `ADR-L5-0009`; `ADR-L5-0030`; `ADR-L5-0043`; `ADR-L5-0044`; `ADR-L5-0046`.
 
 ## 2. Purpose, Scope & Non-Goals
 Define the technical path from governed source revision to an immutable release candidate that E04 may deploy.
@@ -27,8 +27,8 @@ Define the technical path from governed source revision to an immutable release 
 |---|---|---|---|
 | Candidate Corpus Register 105 | Architecture Approved | F01-002 build/artifact/promotion/release boundary | Canonical scope |
 | `L5-F-01-001` | Review | Pipeline trust baseline | Parent architecture |
-| `L5-E-04-005` | Draft | E04 owns install/upgrade/rollback | Deployment handoff |
-| `L5-D-03-004` | Draft | Machine credential/secret lifecycle | Pipeline credential consumption |
+| `L5-E-04-005` | Review | E04 owns install/upgrade/rollback | Deployment handoff |
+| `L5-D-03-004` | Review | Machine credential/secret lifecycle | Pipeline credential consumption |
 | `L5-D-02-001` / `L5-D-02-004` | Architecture Approved | Non-human authorization and policy enforcement | Build/promotion actions require governed authorization, not credential possession alone |
 | `ADR-L5-0009` | Architecture Approved | Non-human principal authority binding | Promotion automation authority is explicit and attributable |
 | B02/C01 peer architecture | peer | Migration/compatibility evidence | Promotion gate consumes evidence; does not own internals |
@@ -144,7 +144,7 @@ Build/registry/promotion failures are observable through E05, including repeated
 | OD-001 | Exact release-manifest serialization/schema standard | No for Review |
 | OD-002 | **Resolved baseline progression:** Local/Development → Integration/Test → Staging/Pre-production → Production; ephemeral verification environments remain CI-managed. | `ADR-L5-0043` |
 | OD-003 | Default promotion implementation | No; must preserve immutability |
-| OD-004 | Draft peer dependency status | Yes for Architecture Approved where material |
+| OD-004 | E04/D03 material peers are Review; downstream use is governed, but lifecycle promotion still requires approval-level peer authority where material. | Yes for Architecture Approved where material |
 | OD-005 | Exact source-ref protection/tag-authenticity mechanism | No for Review; depends on selected source-control platform |
 
 ## 10. Traceability Summary

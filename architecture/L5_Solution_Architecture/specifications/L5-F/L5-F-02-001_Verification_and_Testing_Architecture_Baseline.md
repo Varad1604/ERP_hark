@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Solution-wide verification strategy and quality gates traceable to L4 behavior.  
 **Technical Architecture Owner:** L5-F-02 — Verification & Testing Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.0.2`  
+**Version:** `1.0.3`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-16`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** `L5_Governance_and_Architecture_Standard.md`; `L5_Solution_Architecture_Specification_Template_v1.0.md` v1.0.3; `L5_Validation_Standard.md` v1.0.1; `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md` v1.1.0; `L5_Architecture_Family_Register.md`; `L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md`; `L5_L4_to_L5_Traceability_Methodology.md`; `L5_Technology_Selection_and_ADR_Methodology.md`; `L5_ADR_Register.md`; `L5_Broad_Authoring_Authorization_105_2026-09-09.md`; `L5_Pallav_Stage5_Final_Lock_Decision_2026-09-16.md`; applicable current canonical L4 System Behavioral Obligations and L5 Architecture Conformance Requirements.  
 **Referenced By:** `L5-F-02-002`; `L5-F-02-003`; `L5-F-02-004`; `L5-F-01-002`; authorized architecture/release/operational consumers of verification evidence.  
-**Applicable ADRs:** None currently allocated specifically to `L5-F-02-001` in the canonical L5 ADR Register.  
+**Applicable ADRs:** No ADR is allocated specifically to `L5-F-02-001`; F02-001 consumes applicable Locked architecture decisions without reinterpreting them, including `ADR-L5-0030`, `ADR-L5-0045`, `ADR-L5-0046` and `ADR-L5-0047` where verification scope requires them.
 
 ---
 
@@ -70,8 +70,8 @@ The baseline exists so that solution-wide verification remains traceable and com
 | L4 Governance / Template | Locked | BH model; evidence; observable completion | L4 BHs are testable implementation-independent system responsibilities. | Defines behavioral verification source. |
 | Current canonical L5 corpus | mixed governed statuses | applicable `CR-*` | Each L5 spec exposes objective architecture conformance requirements. | Defines architecture-conformance verification source. |
 | `L5-F-01-002` | v1.0.1 / Review | §5.5 Promotion Gates | Release eligibility consumes F02 verification evidence but F01 owns promotion/release decisions. | Defines output-consumer boundary. |
-| `L5-C-04-*` | Draft | current main | Notification/communication architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
-| `L5-B-06-*` | Draft | current main | Reporting/analytics/projection architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
+| `L5-C-04-*` | Review | current main | Notification/communication architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
+| `L5-B-06-*` | Review | current main | Reporting/analytics/projection architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
 
 The current F02-001 consolidation does not convert any Draft L4 source or Draft peer L5 specification into an approved/locked source. It only establishes the verification architecture capable of evaluating the exact requirements those sources authoritatively expose at their governed status.
 
@@ -94,11 +94,11 @@ The current F02-001 consolidation does not convert any Draft L4 source or Draft 
 Current repository and authoring maturity establishes:
 
 - Stage 5 C03 and E03 specifications are locked;
-- C04 and B06 Stage-4 specifications are present on `main` as Drafts;
+- C04 and B06 specifications are present on `main` as Review;
 - F02-001 exists as the Stage-1 working baseline;
-- F02-002, F02-003 and F02-004 have now been authored as Draft child specifications and reconciled against this common baseline.
+- F02-002, F02-003 and F02-004 are canonical Review child specifications reconciled against this common baseline.
 
-Therefore the four-spec F02 Draft authoring set is complete. The family remains `Draft`: canonical repository synchronization, final dependency/status re-checks, governed traceability review and authorized architecture validation remain outside author authority.
+Therefore the four-spec F02 family is canonical and synchronized at `Review`. Stage-6 closure approves downstream consumption; exact relation validation and lifecycle promotion remain governed separately.
 
 ### 3.4 Assumptions
 
@@ -455,9 +455,9 @@ No numeric coverage, pass-rate, execution-time, retention, availability or capac
 |---|---|---|---|---|
 | `OD-001` | Canonical repository `Validated` state for the selective BH→F02-001 relations is not established by this Draft. | Governance | No for Draft; required for canonical relation validation | Authorized traceability review records exact version-bound relation/evidence for the BH/L5 pairs in Section 10. |
 | `OD-002` | Complete canonical repository-level BH→F02-001 relation coverage is not materialized in this Draft. | Dependency / Governance | No | Populate/review the canonical repository traceability source and keep this document's selective mappings synchronized. |
-| `OD-003` | C04/B06 remain Draft and no Chetan Stage-4 approval/lock decision is identified in the current repository review. | Peer maturity | No for F02 Draft; may affect approval-level claims for those verification targets | Re-check final peer status before F02 family promotion/approval. |
+| `OD-003` | C04/B06 are now canonical Review dependencies; their material upstream L4 authority remains unapproved. | Peer maturity | No for downstream verification; may affect lifecycle-promotion claims | Preserve their current Review boundaries and re-check if their authority changes. |
 | `OD-004` | Exact testing tools/frameworks, evidence serialization, physical verification-result store and numeric quality targets remain unselected unless separately governed. | Technology / Operations | No | Resolve only through the canonical owner, approved ADR/technology governance or approved operational requirements when made normative. |
-| `OD-005` | The reconciled four-file F02 authoring package is not yet synchronized into the canonical repository. | Repository synchronization | No architectural blocker; procedural prerequisite to repository submission | Submit the reconciled Drafts under their exact canonical paths, then re-run repository-level reference/status validation. |
+| `OD-005` | **Resolved:** the four canonical F02 specifications are synchronized on `main` and Stage-6 is closed for downstream consumption. | Repository synchronization | Closed | Maintain impact revalidation on material change. |
 
 ---
 
@@ -499,10 +499,10 @@ The following selective mappings preserve the existing canonical F02-001 traceab
 ### Current Stage-6 Context
 
 - Stage 5 C03/E03: Locked and stable for downstream verification use.
-- C04/B06: Authored on `main`, currently Draft.
-- F02-001: reconciled Stage-6 baseline, remains Draft.
-- F02-002/003/004: authored and family-reconciled as Draft child specifications.
-- The four-spec F02 Draft authoring set is complete; canonical repository synchronization and governed validation remain pending.
+- C04/B06: Authored on `main`, currently Review.
+- F02-001: reconciled Stage-6 baseline, current Review.
+- F02-002/003/004: authored and family-reconciled as Review child specifications.
+- The four-spec F02 family is canonical on `main`; governed lifecycle promotion and exact traceability validation remain pending.
 
 ### Material Cross-L5 Boundaries
 
@@ -525,7 +525,7 @@ The following selective mappings preserve the existing canonical F02-001 traceab
 
 ### Current Status
 
-**Draft — Stage-6 family-reconciled baseline.**
+**Review — Stage-6 family-reconciled baseline; downstream consumption approved.**
 
-The F02 Draft authoring set is complete and internally reconciled. Final repository synchronization, traceability review, architecture approval and lock remain outside author authority.
+The F02 family is synchronized and internally reconciled. Stage-6 downstream consumption is approved; exact traceability promotion, Architecture Approved status and lock remain separately governed.
 

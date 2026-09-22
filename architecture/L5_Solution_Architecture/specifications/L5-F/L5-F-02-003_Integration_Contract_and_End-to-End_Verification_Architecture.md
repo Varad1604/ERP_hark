@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Contract/event/connector/end-to-end verification across technical boundaries.  
 **Technical Architecture Owner:** L5-F-02 — Verification & Testing Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.0.2`  
+**Version:** `1.0.3`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-02-001_Verification_and_Testing_Architecture_Baseline.md`; `L5-C-01-002_Synchronous_Service_Contract_Architecture.md`; `L5-C-01-003_Contract_Versioning_Compatibility_Error_and_Idempotency_Architecture.md`; `L5-C-02-001_Event_and_Messaging_Architecture_Baseline.md`; `L5-C-02-002_Durable_Event_Delivery_Ordering_and_Failure_Handling_Architecture.md`; `L5-C-02-003_Event_Schema_Versioning_and_Consumer_Compatibility_Architecture.md`; `L5-C-03-001_External_Integration_and_Connector_Architecture_Baseline.md`; `L5-C-03-002_Connector_Lifecycle_and_Failure_Isolation_Architecture.md`; `L5-A-04-002_Tenant_and_Institution_Context_Propagation_and_Data_Isolation_Architecture.md`; `L5-A-02-001_Technology_Platform_and_Standards_Architecture.md`; L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; current applicable L4 Behavioral Obligations and L5 Architecture Conformance Requirements.  
 **Referenced By:** `L5-F-02-001`; `L5-F-01-*`; cross-boundary architecture-review/release evidence consumers.  
-**Applicable ADRs:** No ADR is currently allocated specifically to `L5-F-02-003`. Verification obligations may target architecture governed by applicable approved ADRs, including `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0006`, `ADR-L5-0007`, `ADR-L5-0008`, `ADR-L5-0010`, `ADR-L5-0011`, `ADR-L5-0014`, `ADR-L5-0016`, and `ADR-L5-0018` where relevant. F02-003 consumes those decisions without reinterpreting or owning them.  
+**Applicable ADRs:** F02-003 consumes the applicable locked profiles including `ADR-L5-0021`, `ADR-L5-0022`, `ADR-L5-0034`, `ADR-L5-0035`, plus the existing contract/event/integration ADRs; it does not reinterpret or own them.
 
 ---
 
@@ -77,15 +77,15 @@ F02-003 does not own:
 | Source | Status | Exact Responsibility | F02-003 Use |
 |---|---|---|---|
 | Candidate Document Corpus Register 105 | Architecture Approved | `L5-F-02-003` = contract/event/connector/end-to-end verification across technical boundaries | Freezes canonical responsibility. |
-| `L5-F-02-001` | Stage-6 consolidated Draft authoring baseline | common Verification Obligation, Result, Evidence, Currentness and Gate semantics | Parent verification contract. |
-| `L5-C-01-002` | Draft v1.0.1 | authoritative synchronous request/response execution, unknown outcome, overload, correlation | Synchronous boundary verification target. |
-| `L5-C-01-003` | Draft v1.0.1 | compatibility, version coexistence, technical errors and idempotency | Contract evolution/interoperability verification target. |
+| `L5-F-02-001` | Stage-6 closed / Review baseline | common Verification Obligation, Result, Evidence, Currentness and Gate semantics | Parent verification contract. |
+| `L5-C-01-002` | current / Review | authoritative synchronous request/response execution, unknown outcome, overload, correlation | Synchronous boundary verification target. |
+| `L5-C-01-003` | current / Review | compatibility, version coexistence, technical errors and idempotency | Contract evolution/interoperability verification target. |
 | `L5-C-02-001` | Architecture Approved v1.0.3 | event publication/routing/subscription/delivery baseline | Event-path verification target. |
 | `L5-C-02-002` | Architecture Approved v1.0.3 | durable delivery, retry/redelivery, ordering, replay, failure isolation | Delivery/recovery-path verification target. |
 | `L5-C-02-003` | Architecture Approved v1.0.3 | event schema/version/consumer compatibility | Producer/consumer compatibility verification target. |
 | `L5-C-03-001` | Locked v1.0.2 | common connector/adaptor/provider integration boundary | External integration verification target. |
 | `L5-C-03-002` | Locked v1.0.2 | connector technical configuration, health and failure isolation | Connector readiness/failure-boundary verification target. |
-| `L5-A-04-002` | Draft v1.0.1 | Tenant/Institution scope propagation/revalidation | Scope-continuity verification target across real handoffs. |
+| `L5-A-04-002` | current / Review | Tenant/Institution scope propagation/revalidation | Scope-continuity verification target across real handoffs. |
 | `L5-A-02-001` | Architecture Approved v1.0.0 | approved technology standards, including Rust primary server platform | Implementation targets must conform to approved platform standards; F02-003 still owns no testing framework. |
 
 ### 3.2 Authoritative Constraints
@@ -497,9 +497,9 @@ F02-003 shall therefore verify the actual approved implementation target, whethe
 
 | ID | Item | Classification | Blocking? | Required Resolution |
 |---|---|---|---|---|
-| `OD-001` | The four-file F02 Draft authoring package is now family-reconciled locally but is not yet synchronized into the canonical repository. | Repository synchronization | No architectural blocker; procedural prerequisite to repository submission | Submit the reconciled F02-001/002/003/004 Drafts under their exact canonical paths, then re-run repository-level reference/status validation. |
-| `OD-002` | C01-002/003 remain Draft while C02 is Architecture Approved and C03 is Locked. | Peer maturity | No for Draft; may affect approval-level evidence for C01-specific targets | Re-check C01 governance status during final F02 validation. |
-| `OD-003` | Concrete API transport/style and broker product remain unresolved by canonical owners. | Technology | No | Verification remains contract-driven and product-neutral until governed. |
+| `OD-001` | **Resolved:** the four-file F02 family is canonical on `main` and Stage-6 is closed for downstream consumption. | Repository synchronization | Closed | Maintain impact review. |
+| `OD-002` | C01-002/003 are Review while C02 is Architecture Approved and C03 is Locked; C01 remains blocked by Draft L4 authority. | Peer maturity | Non-blocking for verification; relevant to lifecycle-promotion evidence | Preserve governed peer status. |
+| `OD-003` | **Resolved dependencies:** HTTPS REST/JSON + OpenAPI 3.2 and NATS JetStream are canonical under the C01/C02 ADRs. | Technology | Closed | Verification targets the locked profiles without owning them. |
 | `OD-004` | Exact provider sandbox/simulation capability varies by integration. | External dependency | No | Each C03 specialization/provider profile establishes available governed verification endpoint/evidence. |
 | `OD-005` | Exact end-to-end verification environment topology is not repository-wide standardized. | Runtime/quality | No | Preserve E04/A02/F01 boundaries and declare actual environment per verification scope. |
 | `OD-006` | No repository-wide numeric integration-test pass-rate, latency, timeout or retry threshold exists. | Quality/operations | No | Numeric targets require explicit canonical authority; do not invent locally. |
@@ -567,9 +567,9 @@ F02-003 may observe ordinary contract/integration failures, but adversarial secu
 
 ### Current Status
 
-**Draft — Stage-6 F02 child specification.**
+**Review — Stage-6 F02 child specification; downstream consumption approved.**
 
-F02-003 has been reconciled with `L5-F-02-001`, `L5-F-02-002`, and `L5-F-02-004` at Draft authoring level. Final repository synchronization, governed validation, approval and lock remain outside author authority.
+F02-003 is reconciled with F02-001/002/004 on `main`. Stage-6 downstream consumption is approved; Architecture Approved/lock status remains separate governance.
 
 
 ## 2026-09-22 Full-Corpus Post-Decision Synchronization

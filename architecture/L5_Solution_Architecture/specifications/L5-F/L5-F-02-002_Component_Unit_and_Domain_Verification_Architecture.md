@@ -9,10 +9,10 @@
 **Canonical Technical Responsibility:** Lower-scope verification of technical components/domain implementations against architecture contracts.  
 **Technical Architecture Owner:** L5-F-02 — Verification & Testing Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-16`  
-**Depends On:** `L5-F-02-001_Verification_and_Testing_Architecture_Baseline.md`; L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; `L5-A-03-001` v1.0.1 Draft; `L5-A-03-002` v1.0.1 Draft; `L5-B-02-003` v1.0.1 Draft; `L5-A-04-002` v1.0.1 Draft; applicable current L5 Architecture Conformance Requirements and L4 Behavioral Obligations routed by F02-001.  
+**Last Updated:** `2026-09-22`  
+**Depends On:** `L5-F-02-001_Verification_and_Testing_Architecture_Baseline.md`; L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; `L5-A-03-001` current Review; `L5-A-03-002` current Review; `L5-B-02-003` current Review; `L5-A-04-002` current Review; applicable current L5 Architecture Conformance Requirements and L4 Behavioral Obligations routed by F02-001.  
 **Referenced By:** `L5-F-02-001`; `L5-F-01-*`; architecture-review and implementation-verification consumers.  
 **Applicable ADRs:** No ADR is allocated specifically to F02-002. Verification obligations may target architecture governed by applicable approved ADRs such as `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0006`, and `ADR-L5-0007`; F02-002 does not reinterpret those decisions.  
 
@@ -65,15 +65,15 @@ This specification does not own:
 | Source | Version / Status | Exact Reference | What It Establishes | F02-002 Use |
 |---|---|---|---|---|
 | L5 Candidate Document Corpus Register 105 | v1.1.0 / Architecture Approved | `L5-F-02-002` | Lower-scope verification of technical components/domain implementations against architecture contracts. | Freezes canonical responsibility. |
-| `L5-F-02-001` | Stage-6 consolidated Draft | common Verification Obligation, Result, Evidence, Scope and Gate semantics | F02-002 is one specialization supplying lower-scope results into the common baseline. | Parent verification contract. |
-| `L5-A-03-001` | v1.0.1 / Draft | `CR-001`–`CR-010` | Technical Module ownership/boundaries, one parent, public-boundary and persistence restrictions. | Provides structural/component verification targets. |
-| `L5-A-03-002` | v1.0.1 / Draft | §§5.1–5.7; `CR-001`–`CR-012` | Technical Composition Declaration, dependency drift detection, fail-fast enforcement and attributable evidence. | Provides composition/dependency verification targets. |
-| `L5-B-02-003` | v1.0.1 / Draft | §§5.1–5.5; `CR-001`–`CR-011` | Owner-local transaction, concurrency conflict and state-to-publication-intent semantics. | Provides owner-local consistency verification targets. |
-| `L5-A-04-002` | v1.0.1 / Draft | §§5.1–5.8; `CR-001`–`CR-010` | Validated Tenant/Institution scope propagation and fail-closed isolation rules. | Provides lower-scope isolation verification targets when applicable. |
+| `L5-F-02-001` | Stage-6 closed / Review | common Verification Obligation, Result, Evidence, Scope and Gate semantics | F02-002 is one specialization supplying lower-scope results into the common baseline. | Parent verification contract. |
+| `L5-A-03-001` | current / Review | `CR-001`–`CR-010` | Technical Module ownership/boundaries, one parent, public-boundary and persistence restrictions. | Provides structural/component verification targets. |
+| `L5-A-03-002` | current / Review | §§5.1–5.7; `CR-001`–`CR-012` | Technical Composition Declaration, dependency drift detection, fail-fast enforcement and attributable evidence. | Provides composition/dependency verification targets. |
+| `L5-B-02-003` | current / Review | §§5.1–5.5; `CR-001`–`CR-011` | Owner-local transaction, concurrency conflict and state-to-publication-intent semantics. | Provides owner-local consistency verification targets. |
+| `L5-A-04-002` | current / Review | §§5.1–5.8; `CR-001`–`CR-010` | Validated Tenant/Institution scope propagation and fail-closed isolation rules. | Provides lower-scope isolation verification targets when applicable. |
 | L5 Validation Standard | v1.0.1 / Locked | objective CR verification and hard-fail integrity | Verification claims must be attributable, implementable and non-invented. | Governs result/evidence integrity. |
 | L5 L4-to-L5 Traceability Methodology | v1.0.0 / Locked | version-bound BH/L5 evidence | Lower-scope behavior verification cannot silently create canonical relation validation. | Governs traceability status. |
 
-The Draft statuses of A03/B02/A04 are preserved. F02-002 may author verification mechanics against their current explicit CRs for controlled Stage-6 Draft work, but does not promote or lock those peer specifications.
+The Review statuses of A03/B02/A04 are preserved. F02-002 may verify their explicit CRs for governed implementation evidence but does not promote or lock those peer specifications.
 
 ### 3.2 Verification-Level Definitions
 
@@ -440,8 +440,8 @@ The classification labels are technical verification metadata, not canonical bus
 
 | ID | Item | Classification | Blocking? | Required Resolution |
 |---|---|---|---|---|
-| `OD-001` | The four-file F02 Draft authoring package is now family-reconciled locally but is not yet synchronized into the canonical repository. | Repository synchronization | No architectural blocker; procedural prerequisite to repository submission | Submit the reconciled F02-001/002/003/004 Drafts under their exact canonical paths, then re-run repository-level reference/status validation. |
-| `OD-002` | A03-001/002, B02-003 and A04-002 are Draft peer specifications, although their cited ADR patterns are approved. | Peer maturity | No for Stage-6 Draft authoring; may affect final approval evidence | Re-check peer status during F02 family validation. |
+| `OD-001` | **Resolved:** the four-file F02 family is canonical on `main` and Stage-6 is closed for downstream consumption. | Repository synchronization | Closed | Maintain impact review. |
+| `OD-002` | A03-001/002, B02-003 and A04-002 are Review peers and remain blocked from Architecture Approved by upstream authority. | Peer maturity | Non-blocking for verification; relevant to lifecycle-promotion evidence | Preserve their current governed status. |
 | `OD-003` | Exact implementation-unit granularity is implementation-specific. | Implementation | No | Each target declares its own lower-scope boundary without creating a new canonical architecture level. |
 | `OD-004` | Exact test framework, runner, fixture representation and automation technology are unselected. | Technology | No | Select only through governed technology standards if made canonical. |
 | `OD-005` | No repository-wide numeric lower-scope coverage threshold is established by authoritative architecture. | Quality governance | No | Any mandatory numeric target requires explicit governed authority; do not invent locally. |
@@ -510,6 +510,6 @@ Those are F02-004 responsibilities.
 
 ### Current Status
 
-**Draft — Stage-6 F02 child specification.**
+**Review — Stage-6 F02 child specification; downstream consumption approved.**
 
-F02-002 has been reconciled with F02-001, F02-003 and F02-004 at Draft authoring level. Final repository synchronization, governed validation, approval and lock remain outside author authority.
+F02-002 is reconciled with F02-001/003/004 on `main`. Stage-6 downstream consumption is approved; Architecture Approved/lock status remains separate governance.
