@@ -158,4 +158,21 @@ Current lifecycle distribution remains:
 105 Total
 ```
 
-Validation completion does not itself promote specification lifecycle state and does not authorize Final L5 Corpus Lock. Batch 9 remains the final lock gate.
+Validation completion does not itself promote specification lifecycle state. Batch 9 has now completed with a NO-LOCK verdict; Final L5 Corpus Lock remains not authorized.
+
+
+## Batch 9 Final-Gate Result
+
+The Full Production Validation & Lock-Readiness Programme is complete.
+
+Final result:
+
+```text
+105 / 105 validation dispositions present
+30 Review specifications blocked by upstream authority/semantics
+Final L5 Corpus Lock = NOT AUTHORIZED
+```
+
+See:
+
+`../governance/reference/L5_Production_Validation_Batch9_Final_Corpus_Lock_Gate_2026-09-22.md`
