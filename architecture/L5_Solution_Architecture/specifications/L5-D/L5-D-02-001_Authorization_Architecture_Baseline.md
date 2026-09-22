@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Authorization architecture separate from IAM, including policy decision/enforcement and least privilege.  
 **Technical Architecture Owner:** L5-D-02 — Authorization Architecture  
 **Assigned Author:** Devang  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-01-001` through `L5-D-01-004`; `L5-D-03-001` and applicable D03 specializations; `L5-A-04-001`; `L5-A-04-002`; `L4-A-010` v1.0.0 Draft; `L4-A-011` v1.0.0 Draft; `L4-A-012` v1.0.0 Draft; `L4-A-013` v1.0.0 Draft; `L4-A-050` v1.0.0 Draft; `L4-A-051` v1.0.0 Draft; `L4-A-052` v1.0.0 Draft; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; applicable L2-A02/L2-A03 ownership decisions; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`; `ADR-L5-0009`.  
@@ -118,10 +118,10 @@ This specification does not own or redefine:
 |---|---|---|---|
 | L5 Candidate Document Corpus Register 105 | Architecture Approved | `L5-D-02-001` is the Authorization Architecture Baseline; D02-002 through D02-007 own detailed permission, scope, policy, delegation, privileged-access and SoD architecture. | Establishes this baseline as family-level architecture rather than a monolithic implementation document. |
 | L5 Dependency-Gated Parallel Authoring Timeline | Locked | D02 is Stage 2 and depends minimally on `D01 + D03 + A04`. | D02 authoring proceeds only after those foundations are present/stable enough to prevent invention of identity, trust or scope semantics. |
-| `L5-D-01-001` through `L5-D-01-004` | Draft | D01 owns identity/account/authentication/session/credential boundaries and supplies authenticated/attributable actor context. | D02 consumes actor context; it never authenticates the actor or changes account/session state. |
-| `L5-A-04-001` | v1.0.1 Draft | Tenant is mandatory root protected scope; Institution is subordinate; missing/mismatched/cross-Tenant scope fails closed. | Every D02 authorization request is evaluated inside validated A04 scope. |
-| `L5-A-04-002` | Draft | Propagates Tenant/Institution/lower context across execution and persistence boundaries. | D02 consumes propagated scope and must not silently widen, replace or reconstruct it. |
-| `L5-D-03-001` | v1.0.1 Draft | Explicit trust boundaries, non-transitive trust and fail-closed protected-boundary admission. | Authorization is one mandatory control consumed at protected boundaries where policy applies; D02 does not own D03 trust admission. |
+| `L5-D-01-001` through `L5-D-01-004` | Review | D01 owns identity/account/authentication/session/credential boundaries and supplies authenticated/attributable actor context. | D02 consumes actor context; it never authenticates the actor or changes account/session state. |
+| `L5-A-04-001` | v1.0.1 Review | Tenant is mandatory root protected scope; Institution is subordinate; missing/mismatched/cross-Tenant scope fails closed. | Every D02 authorization request is evaluated inside validated A04 scope. |
+| `L5-A-04-002` | Review | Propagates Tenant/Institution/lower context across execution and persistence boundaries. | D02 consumes propagated scope and must not silently widen, replace or reconstruct it. |
+| `L5-D-03-001` | v1.2.2 Review | Explicit trust boundaries, non-transitive trust and fail-closed protected-boundary admission. | Authorization is one mandatory control consumed at protected boundaries where policy applies; D02 does not own D03 trust admission. |
 | `L2-A04` | v1.1 Locked | Canonical owner of Role, Role Assignment, Permission, Authorization Policy, Authorization Decision, Authorization Context, Authorization Delegation, Temporary Access, SoD, Break-Glass and Resource Authorization. | Establishes D02 business-semantic source and mandatory separation from Identity/Authentication. |
 | `L4-A-010` | v1.0.0 Draft | Active Role Assignment is available to Role/Permission Resolution only inside approved scope/effective period; assignment itself is not a final Authorization Decision. | D02 baseline separates entitlement facts from final protected-operation decision. |
 | `L4-A-011` | v1.0.0 Draft | Governed Authorization Delegation is temporary and reverts at expiry/revocation; unresolved authority/contract details shall not be invented. | Delegation can contribute only when source-governed and effective. |
@@ -819,3 +819,8 @@ No `L5-D/L5-D-02/` nested major-area folder is introduced by this specification.
 
 **Applicable locked decision:** `ADR-L5-0039`  
 D01-authenticated human/non-human principal context is an input only. D02 remains the canonical authority for permissions, scope, delegation, SoD/maker-checker and emergency-access decisions; Keycloak roles/claims do not become permanent authorization truth.
+
+
+## 2026-09-22 Batch 7B Impact Revalidation Synchronization
+
+Non-material dependency-metadata synchronization only: D01, A04 and D03 peer lifecycle references now reflect current canonical `Review` states and the current D03 baseline version where explicitly stated. The controlled Stage-2 authorization for cited Draft L4 behavior is unchanged. No authorization ownership, policy semantics, conformance requirement, traceability relation state, or Architecture Approved basis changed.
