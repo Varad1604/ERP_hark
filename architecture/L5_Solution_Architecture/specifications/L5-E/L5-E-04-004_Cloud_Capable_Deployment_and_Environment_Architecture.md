@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Provider-neutral cloud-capable deployment and environment architecture preserving portability, ownership and isolation.  
 **Technical Architecture Owner:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-E-04-001`, `L5-E-04-002`, `L5-A-04-*`, `L5-B-02-*`, `L5-B-04-*`, `L5-D-03-*`, `L4-A-001`, `L4-A-028`, `L4-A-029`.  
@@ -134,7 +134,7 @@ verified deployable artifact
 | AD-003 | Tenant isolation | Cloud environment/profile shall preserve enforced Tenant/Institution isolation. | `ADR-L5-0004` |
 | AD-004 | Persistence | Managed database/storage use shall preserve B-family ownership/isolation contracts. | `ADR-L5-0005` |
 | AD-005 | Credentials | Cloud identity/secrets integration shall preserve D03/key-custody boundaries. | `ADR-L5-0002` |
-| AD-006 | Managed services/orchestrator/provider | Unresolved technology choices; no vendor/product is canonical here. | ADR required for normative selection |
+| AD-006 | Managed services/orchestrator/provider | Kubernetes + Envoy Gateway + Helm + OpenTofu deployment conventions are canonical; cloud provider and optional managed-service substitutions remain provider/profile-specific. | `ADR-L5-0028`; `ADR-L5-0043` |
 
 ---
 

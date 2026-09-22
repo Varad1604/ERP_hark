@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Release installation, upgrade, compatibility validation and rollback architecture for supported SutraERP deployment profiles.  
 **Technical Architecture Owner:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-E-04-001`, `L5-E-04-002`, `L5-E-04-003`, `L5-E-04-004`, `L5-C-01-003`, `L5-B-02-003`, `L5-B-02-004`, `L4-A-029`, `L4-A-030`, `L4-A-031`, `L4-A-032`.  
 **Collaborates With / Referenced By:** `L5-E-03-*`, `L5-E-05-*`, `L5-F-01-*`.  
-**Applicable ADRs:** `ADR-L5-0006`, `ADR-L5-0007`, `ADR-L5-0008`; E04 placement/isolation decisions from `ADR-L5-0003` also constrain rollout topology. Exact rolling/blue-green/canary/orchestration tooling remains unresolved.
+**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0006`; `ADR-L5-0007`; `ADR-L5-0008`; `ADR-L5-0028`; `ADR-L5-0030`; `ADR-L5-0043`; `ADR-L5-0044`; `ADR-L5-0046`.
 
 ---
 
@@ -166,7 +166,7 @@ Mixed-version operation is permitted only where C01/B02 compatibility evidence c
 | --- | --- | --- | --- |
 | OD-001 | Default rollout technique (rolling/blue-green/canary/etc.) | No for architecture pattern; Yes before normative shared rollout standard | Govern through ADR if standardized. |
 | OD-002 | Exact mixed-version support durations/windows | No | Derive from approved C01/B02 compatibility and operational profile; do not invent universal numbers. |
-| OD-003 | E03 recovery implementation details | No for E04 architecture | Consume E03 when authored; E04 owns only the handoff condition. |
+| OD-003 | E03 recovery profile details | No for E04 architecture | Consume `ADR-L5-0046` recovery-class/PITR/restore-validation governance; numeric RPO/RTO/retention remain E03 profile values. |
 | OD-004 | E05 acceptance/health implementation details | No for E04 architecture | Consume E05 evidence contract when authored. |
 | OD-005 | Material L4 parents remain Draft | Yes for Architecture Approved | Resolve through L4 governance. |
 

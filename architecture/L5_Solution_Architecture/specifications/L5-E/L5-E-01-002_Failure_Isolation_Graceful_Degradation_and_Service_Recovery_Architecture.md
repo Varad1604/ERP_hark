@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Failure containment, declared graceful degradation and validated technical recovery/return-to-service without taking ownership of business recovery or peer-family runtime mechanisms.  
 **Technical Architecture Owner:** L5-E-01 — Availability & Resilience Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-15`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-E-01-001`; `L5-A-01-001`; `L5-E-04-001`; `L5-E-02-*`; `L5-A-08-*`; applicable B02/C02/D03/D04 architecture; `L4-A-015`; `L4-A-016`; `L4-A-057`.  
 **Referenced By:** L5 capabilities that declare degradation/recovery profiles.  
-**Applicable ADRs:** `ADR-L5-0014`, `ADR-L5-0013`, `ADR-L5-0010`.  
+**Applicable ADRs:** `ADR-L5-0014`; `ADR-L5-0013`; `ADR-L5-0010`; `ADR-L5-0041`; `ADR-L5-0044`; `ADR-L5-0045`.
 
 ---
 
@@ -228,5 +228,5 @@ E01 declares containment/restart/failover eligibility and restoration criteria; 
 ## 10. Open / Deferred Design
 
 **OD-001:** Capability-specific degradation profiles are separate owner-authored controlled artifacts/sections under this architecture.  
-**OD-002:** Concrete runtime failover/orchestration mechanisms remain E04 implementation/technology governance.  
+**OD-002:** Runtime packaging, health/readiness and graceful lifecycle are resolved by E04 ADRs; exact failover topology/replication realization remains deployment/recovery-profile governance.  
 **OD-003:** Numeric recovery thresholds/timers remain governed operational configuration.

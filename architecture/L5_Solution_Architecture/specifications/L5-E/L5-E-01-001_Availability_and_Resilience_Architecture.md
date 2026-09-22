@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Repository-wide technical availability model, resilience principles, scoped health states, redundancy expectations and restoration gates without redefining business lifecycle or deployment ownership.  
 **Technical Architecture Owner:** L5-E-01 — Availability & Resilience Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.0.1`  
+**Version:** `1.0.2`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-15`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-A-01-001`; `L5-E-04-001`; `L5-E-01-002`; `L5-E-02-*`; `L5-A-08-*`; applicable B02/C02/D03/D04 architecture; `L4-A-015`; `L4-A-016`; `L4-A-057`.  
 **Referenced By:** L5 reliability-aware consumers, `L5-E-01-002`, `L5-E-02-*`.  
-**Applicable ADRs:** `ADR-L5-0003`, `ADR-L5-0014`.  
+**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0014`; `ADR-L5-0028`; `ADR-L5-0043`; `ADR-L5-0044`; `ADR-L5-0045`.
 
 ---
 
@@ -170,5 +170,5 @@ E01 supplies resilience requirements to E04: isolation need, restart/failover el
 ## 9. Open / Deferred Design
 
 **OD-001:** Numeric availability objectives, thresholds and alert windows require separate governed operational/SLO decisions.  
-**OD-002:** Concrete failover/replication/orchestration products and topology remain E04/B02/A02 governance.  
+**OD-002:** **Partially resolved:** OCI/Kubernetes clustered deployment, Podman non-clustered deployment and E04 runtime lifecycle/health conventions are Locked. Exact failover/replication topology and profile-specific managed-service choices remain E04/B02/E03 deployment governance.  
 **OD-003:** Capability-specific degradation profiles are defined by the owning L5 capability under `ADR-L5-0014` and must be reviewed before use.

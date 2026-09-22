@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Performance and capacity dimension model, admission/measurement boundaries and capacity-planning architecture without redefining business admission, persistence ownership or runtime deployment.  
 **Technical Architecture Owner:** L5-E-02 — Performance & Capacity Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-A-01-001`; `L5-B-02-001`; `L5-B-02-002`; `L5-B-02-003`; `L5-E-04-001`; `L5-E-01-*`; `L5-A-08-*`; applicable C02/E05 architecture; `L4-A-015`; `L4-A-016`.  
 **Referenced By:** `L5-E-02-002`; L5 capabilities that consume capacity/performance constraints.  
-**Applicable ADRs:** existing E02 ADRs plus `ADR-L5-0045`.
+**Applicable ADRs:** `ADR-L5-0014`; `ADR-L5-0029`; `ADR-L5-0043`; `ADR-L5-0045`.
 
 ---
 
@@ -176,8 +176,8 @@ E04 owns concrete process/container/host placement and scaling. E02 supplies loa
 ## 9. Open / Deferred Design
 
 **OD-001:** **Governance resolved by `ADR-L5-0045`:** workload/service classes and evidence-driven profile method are Locked; concrete numeric thresholds, forecast horizons and service objectives remain deployment/workload-profile values.  
-**OD-002:** Scaling technologies and deployment topology remain E04/A02/ADR governance.  
-**OD-003:** Concrete telemetry implementation remains E05-owned while preserving the E02 dimension/scope model.
+**OD-002:** **Partially resolved:** Kubernetes is the clustered production baseline and Podman the non-clustered profile; workload-specific scaling bounds/triggers and provider topology remain E02/E04 profile decisions.  
+**OD-003:** **Resolved implementation family:** OpenTelemetry/OTLP + Collector, Prometheus, Loki, Tempo and Grafana are canonical under `ADR-L5-0029`; E02 continues to own workload/capacity dimensions and numeric profile evidence.
 
 ## 2026-09-22 Backend Readiness Group 6 Synchronization
 
