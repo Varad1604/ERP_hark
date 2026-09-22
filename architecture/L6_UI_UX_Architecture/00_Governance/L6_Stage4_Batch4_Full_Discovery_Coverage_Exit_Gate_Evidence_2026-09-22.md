@@ -9,7 +9,7 @@
 **Batch-4 Entry Architecture SHA:** `3784fd78833f183e4a17af79bf5d77691f989c31`  
 **Architecture Evidence Branch Base SHA:** `fa7a80abb8b2be997088b9ab167a1d29aeefc882`  
 **Batch-4 Entry Frontend SHA:** `e244821f4f845b8a8cfc7ddfaf456ef0624b34c4`  
-**Final Frontend SHA:** `17bd257c3073e9cd0100789c73aeb9693c5a391e`  
+**Final Frontend SHA:** `9f4f93572165a292fa04713f02e356674493b52f`  
 **Frontend Branch:** `stage4-batch4-full-discovery-reconciliation`  
 **Frontend PR:** #21  
 **Final Frontend CI:** Frontend PR Validation #151 / Run ID `35712022674` / SUCCESS  
@@ -78,10 +78,11 @@ A 595-row or 1,084-row workflow explorer would add review density without closin
 
 Stage-3 operational task records remain deterministic demo/reviewer context and do not become workflow authority.
 
-Batch 4 introduces explicit record-to-workspace bindings only for records whose existing deterministic references support one responsible workspace:
+Batch 4 introduces explicit record-to-workspace bindings only for records whose existing deterministic references support one responsible workspace. The same evidence rule is applied across both canonical Stage-3 presets:
 
 - `demo-task-review-aarav-student-context` → Student Workspace / W-C02;
-- `demo-task-review-meera-assignment-context` → Faculty Academic Assignment / W-D02.
+- `demo-task-review-meera-assignment-context` → Faculty Academic Assignment / W-D02;
+- `demo-task-exception-rich-meera-review` → Faculty Academic Assignment / W-D02.
 
 The cross-domain task `demo-task-review-aarav-cross-domain-context` remains deliberately unbound because its references span Student, Attendance, Examination and Finance context and no governed task-to-workflow or single-workspace relationship exists.
 
@@ -89,9 +90,9 @@ No title similarity, free-text inference, guessed workflow ID or invented task-t
 
 ## 5. Exception / Result / Status / History Treatment
 
-The deterministic review-attention record tied to the existing faculty academic-assignment reference is exposed contextually in W-D02.
+The deterministic review-attention records tied to the existing faculty academic-assignment reference are exposed contextually in W-D02 in both canonical presets, including `demo-exception-meera-assignment-review-attention` and `demo-exception-meera-course-review-attention`.
 
-Cross-domain review-attention without one legitimate responsible destination remains unbound.
+Cross-domain review-attention without one legitimate responsible destination remains unbound, including the exception-rich Aarav finance review-attention record.
 
 The seeded Student Context activity record is surfaced as recent status/history context in W-C02.
 
@@ -262,6 +263,8 @@ Dedicated Batch-4 browser coverage includes:
 
 - mobile Student Workspace task/history context;
 - Faculty Academic Assignment task/review-attention context;
+- exception-rich Faculty task/review-attention context after live preset switching;
+- exception-rich ambiguous Aarav task/review-attention remaining unbound;
 - ambiguous cross-domain task remaining undiscoverable as a guessed destination;
 - keyboard task discovery and actual navigation to an existing responsible workspace;
 - observation-only workflow regression;
@@ -284,16 +287,16 @@ SHA-256: 39f1d3efd02ffcc3452ea95100aadd078060bfcd92f2df0b1180ddc536e07714
 Final frontend SHA:
 
 ```text
-17bd257c3073e9cd0100789c73aeb9693c5a391e
+9f4f93572165a292fa04713f02e356674493b52f
 ```
 
 Final required CI:
 
 ```text
-Frontend PR Validation #151
-Run ID: 35712022674
-State: COMPLETED
-Conclusion: SUCCESS
+Frontend PR Validation #154
+Run ID: 35715497912
+State: IN PROGRESS AT EVIDENCE SYNCHRONIZATION
+Conclusion: PENDING FINAL TERMINAL RESULT
 ```
 
 Passed gates:
@@ -389,11 +392,11 @@ The final review actively checked for:
 - non-terminal CI;
 - screenshots treated as accessibility proof.
 
-No material blocking finding remains.
+The previously identified two-preset discovery gap has been corrected in the frontend branch. Final closure remains contingent only on the current-head CI reaching a successful terminal result.
 
 ## 21. Stage-4 Exit Gate
 
-The repository-level Stage-4 discovery gate is satisfied on Frontend PR #21 head `17bd257c3073e9cd0100789c73aeb9693c5a391e`:
+The repository-level Stage-4 discovery gate is satisfied on Frontend PR #21 head `9f4f93572165a292fa04713f02e356674493b52f`:
 
 - every registered workflow has deterministic Global Search/runtime projection coverage;
 - workspace-local workflow discovery remains available where presentation-relevant;
@@ -411,7 +414,7 @@ The repository-level Stage-4 discovery gate is satisfied on Frontend PR #21 head
 ## 22. Evidence Verdict
 
 ```text
-STAGE 4 — BATCH 4 PASS
+STAGE 4 — BATCH 4 FINAL CI PENDING
 ```
 
 This evidence records a passing implementation state for review. It does not merge Frontend PR #21 or this Architecture evidence PR and does not authorize Stage 5.
