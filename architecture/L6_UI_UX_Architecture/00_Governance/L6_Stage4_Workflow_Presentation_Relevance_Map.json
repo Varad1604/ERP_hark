@@ -29,7 +29,8 @@
     ],
     "Academic Operations; Institutional Administrator; read projections for Student/Faculty": [
       "administrator",
-      "faculty"
+      "faculty",
+      "student"
     ],
     "Admissions & Student Operations; Institutional Admin": [
       "administrator"
@@ -66,7 +67,8 @@
     ],
     "Campus Operations; authorized Student/Faculty service-request projections where supported": [
       "administrator",
-      "faculty"
+      "faculty",
+      "student"
     ],
     "Campus Operations; contextual institutional users": [
       "administrator"
