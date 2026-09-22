@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Define the reusable technical provenance and evidence model for audit events, including actor attribution, technical source attribution, causality, correlation and evidence relationships, while preserving source-domain ownership of business meaning, business rules, canonical events and institutional authority.  
 **Technical Architecture Owner:** L5-D-04-002 — Audit Event, Provenance & Evidence Model Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.1.1`  
+**Version:** `1.1.2`  
 **Status:** `Locked`  
-**Last Updated:** `2026-09-13`  
+**Last Updated:** `2026-09-22`  
 **Planned Production Path:** `architecture/L5_Solution_Architecture/specifications/L5-D/L5-D-04-002_Audit_Event_Provenance_and_Evidence_Model_Architecture.md`  
 **Depends On:** `L5_Governance_and_Architecture_Standard.md`; `L5_Validation_Standard.md`; `L5_Solution_Architecture_Specification_Template_v1.0.md`; `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md`; `L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md`; `L5-D-04-001`; `L5-D-03-001`; `L5-A-04-001`; `L5-A-04-002`; `L5-B-02-003`; `L4-A-022`; `L4-A-023`; `L4-A-024`; `ADR-L5-0001`; `ADR-L5-0004`; `ADR-L5-0007`.  
 **Referenced By:** `L5-D-04-001`; `L5-D-04-003`; cross-cutting application, workflow, security, integration, and computation specifications.  
@@ -56,7 +56,7 @@ This specification defines the canonical technical data structures, conceptual c
 
 | Source Level | Document / Decision | Version / Status | Exact Reference | What the Source Establishes | L5 Realization / Contribution |
 |---|---|---|---|---|---|
-| L4 | `L4-A-022` | v1.0.0 / Draft — treated as Locked behavioral authority under governance program assumption (see OD-002) | `L4-A-022-BH-003` | Attributes accountable actor using authoritative identity, actor-type, delegation, auth references. | Realized by `ActorAttributionResolver` producing canonical `ActorAttributionContext` (`AD-001`). |
+| L4 | `L4-A-022` | v1.0.0 / Draft — explicitly authorized as behavioral authority for this controlled L5 validation scope (see OD-002) | `L4-A-022-BH-003` | Attributes accountable actor using authoritative identity, actor-type, delegation, auth references. | Realized by `ActorAttributionResolver` producing canonical `ActorAttributionContext` (`AD-001`). |
 | L4 | `L4-A-022` | v1.0.0 / Draft — see OD-002 | `L4-A-022-BH-004` | Records affected business-entity references and logical changes without duplicating full aggregates. | Realized by `EntityChangeDescriptor` producing `EntityChangeRecord` (`AD-003`, `CR-003`). |
 | L4 | `L4-A-022` | v1.0.0 / Draft — see OD-002 | `L4-A-022-BH-005` | Associates authoritative correlation identifier and at most one direct causation reference. | Realized by `CorrelationContextBinder` and `CausalityGraphBuilder` enforcing at most one parent (`AD-002`). |
 | L4 | `L4-A-022` | v1.0.0 / Draft — see OD-002 | `L4-A-022-BH-010` | Preserves immutable evidence identity, source event, context, actor, changes, correlation, causation. | Realized by `AuditEvidenceEnvelope` schema in Section 5.4 (`CR-001`). |
@@ -311,7 +311,7 @@ CausalityLink {
 | Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
 |---|---|---|---|---|---|---|
 | `OD-001` | Exact L4 BH Applicability | Upstream Traceability | None — Resolved against canonical `L4-A-022`, `L4-A-023`, and `L4-A-024`. | Lead Architect | **No (Closed)** | Mapped into Section 3.1 and Section 10. |
-| `OD-002` | L4 Upstream Status | Upstream Authority | `L4-A-022`, `L4-A-023`, `L4-A-024` carry Status: Draft in the repository. Treated as Locked under governance program assumption. Cannot be permanently closed until L4 governance approves or Lead Architect issues explicit authorization referencing this specification. | Lead Architect | **No (Conditionally Closed — pending L4 governance approval or explicit Lead Architect authorization referencing this specification)** | Update §3.1 status and this row once L4 governance is resolved. |
+| `OD-002` | L4 Upstream Status | Upstream Authority | `L4-A-022`, `L4-A-023`, `L4-A-024` carry Status: Draft in the repository. Explicitly authorized as behavioral authority for this controlled L5 validation scope; the L4 files remain Draft and are not promoted by this L5 decision. | Lead Architect | **No (Conditionally Closed — pending L4 governance approval or explicit Lead Architect authorization referencing this specification)** | Update §3.1 status and this row once L4 governance is resolved. |
 | `OD-003` | Physical Envelope Serialization Encoding | Technology / ADR | Concrete serialization format (Protobuf, JSON-LD, Avro) for storage handoff. | D04 / B02 / D03 ADR Governance | No | D04-003 requires a deterministic version-bound integrity representation but does not select a serialization product/format; resolve only if a concrete choice becomes materially architectural. |
 | `OD-004` | Provenance Graph Query Language | Technology / Architecture | Selection of graph traversal mechanisms for complex multi-hop investigation queries. | Persistence / Query Architecture | No | To be addressed during query read-model specialization without transferring evidence-model ownership. |
 
@@ -356,3 +356,8 @@ CausalityLink {
 ### Conformance Requirements
 
 - `CR-001` through `CR-014`
+
+
+## 2026-09-22 Batch 7B Impact Revalidation Synchronization
+
+Non-material repository synchronization only. Current dependency metadata and/or authority wording is aligned to canonical governance without changing business authority, technical ownership, behavioral semantics, conformance requirements, traceability relation state, or lifecycle approval/lock basis.
