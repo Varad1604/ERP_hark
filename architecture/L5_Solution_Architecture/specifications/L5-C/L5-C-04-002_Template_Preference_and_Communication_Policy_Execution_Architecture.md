@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Technical template/preference resolution and approved communication-policy execution.  
 **Technical Architecture Owner:** L5-C-04 — Notification & Communication Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-15`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Stage 3 Final Closure & Stage 4 Proceed Decision 2026-09-15; `L2-H02_Notification_Workflows.md` v1.0 Locked; `L2-H02_Notification_Template_Approval_Amendment_2026-09-01.md` v1.1.0 Locked; `L5-C-04-001` Draft; `L5-A-06-001`; `L5-A-06-002`; `L5-A-04-002`; `L5-B-02-003`; `L5-B-05-002`; `L5-D-01-001`; `L5-D-02-004`; `L5-D-04-001`; `L5-C-01-001`.  
 **Referenced By:** `L5-C-04-001`; `L5-C-04-003`; Notification-consuming capabilities requiring a resolved Template, recipient and communication-policy context.  
 **Applicable ADRs:** `ADR-L5-0004`; `ADR-L5-0006`. No C04-002-specific technology/product ADR is selected by this Draft.  
@@ -88,10 +88,10 @@ This specification does not own:
 | L4 | `L4-H-012` | v1.1.0 / Draft | `BH-001`–`BH-006`; §§5–8 | Exact Template lifecycle, validation, approval/publication authority, immutable Published versions, retirement, no new Template event and preserved evidence. | Drives Template technical realization. Relation state: **Specified** only. |
 | L4 | `L4-H-013` | v1.0.0 / Draft | `BH-001`–`BH-007` | Resolve recipient/scope, recipient-control eligibility, enterprise-policy precedence, deterministic preference inheritance, future-effective permitted changes, mandatory obligations, no invented Preference/Subscription event and preserved history. | Drives Preference/Subscription and policy-resolution architecture. Relation state: **Specified** only. |
 | L4 | `L4-H-014` | v1.0.0 / Draft | `BH-001`–`BH-003`, `BH-006`, `BH-007` | H02 consumes authoritative Emergency/Critical fact, applies only expressly permitted overrides, resolves eligible recipients/channels and preserves override evidence. | Drives Emergency/Critical communication-policy execution without source-emergency ownership. Relation state: **Specified** only. |
-| L5 Peer | `L5-C-04-001` | v1.0.0 / Draft | §5.5 Resolution Boundary | Baseline delegates Template/version, recipient, preference/subscription, quiet-hour and communication-policy resolution to C04-002 and consumes `ResolvedNotificationContext`. | Defines the C04 family handoff. |
+| L5 Peer | `L5-C-04-001` | current / Review | §5.5 Resolution Boundary | Baseline delegates Template/version, recipient, preference/subscription, quiet-hour and communication-policy resolution to C04-002 and consumes `ResolvedNotificationContext`. | Defines the C04 family handoff. |
 | L5 Peer | `L5-A-06-001` | v1.0.0 / Architecture Approved | §§2, 4–5 | Generic governed configuration registration/versioning/effective-use control while upstream owners retain configuration meaning. | C04 policy/config artifacts consume generic configuration control-plane mechanics without transferring H02 policy ownership. |
 | L5 Peer | `L5-A-06-002` | v1.0.0 / Architecture Approved | §§2–5 | Deterministic configuration scope, inheritance, override, effective-dating and immutable execution-resolution context. | Resolves governed communication configuration where H02 policy is represented through shared configuration. |
-| L5 Peer | `L5-A-04-002` | v1.0.1 / Draft | §§2–4 | Tenant/Institution context propagation and fail-closed scope integrity. | Constrains Template, Preference and recipient resolution scope. |
+| L5 Peer | `L5-A-04-002` | current / Review | §§2–4 | Tenant/Institution context propagation and fail-closed scope integrity. | Constrains Template, Preference and recipient resolution scope. |
 | L5 Peer | `L5-D-01-001` | v1.0.1 / Draft | §§2–4 | IAM consumes authoritative Person/Identity/User Account truth without owning it. | C04 consumes authoritative recipient identity/account references; it does not create Person/Identity truth. |
 | L5 Peer | `L5-D-02-004` | v1.0.0 / Architecture Approved | §§2–4 | Technical policy decision/enforcement while upstream owns authority/policy meaning. | Enforces protected Template/Preference operations and Template Approval Authority decisions. |
 | L5 Peer | `L5-B-02-003` | v1.0.1 / Draft | §§5–8 | Owner-local transaction/concurrency and explicit conflict detection. | Governs Template/Preference mutation consistency; no distributed transaction is introduced. |

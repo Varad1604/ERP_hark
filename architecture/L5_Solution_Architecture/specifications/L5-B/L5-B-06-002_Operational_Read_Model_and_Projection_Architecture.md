@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Operational read models/projections and freshness/ownership boundaries.  
 **Technical Architecture Owner:** L5-B-06 — Reporting, Analytics & Data Projection Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-B-06-001`; `L5-B-02-003`; `L5-D-02-004`; `L5-C-01-*`; `L5-C-02-*`; `L5-A-04-002`; applicable source-domain L4/L2 architecture.  
 **Referenced By:** H07 dashboard/query consumers; `L5-B-06-003`; other authorized operational read consumers.  
-**Applicable ADRs:** `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0010`; `ADR-L5-0011`.  
+**Applicable ADRs:** `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0036`; `ADR-L5-0037`; `ADR-L5-0045`; `ADR-L5-0046`.
 
 ---
 

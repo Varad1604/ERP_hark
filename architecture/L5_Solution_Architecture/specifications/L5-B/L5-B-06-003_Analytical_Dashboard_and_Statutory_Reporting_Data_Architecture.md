@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Analytical/statutory datasets and dashboard projections without transferring KPI/fact ownership.  
 **Technical Architecture Owner:** L5-B-06 — Reporting, Analytics & Data Projection Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-15`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** `L5-B-06-001`; `L5-B-06-002`; `L5-B-02-003`; `L5-D-02-004`; `L5-C-01-*`; `L5-C-02-*`; `L5-A-04-002`; `L5-D-04-001`; `L5-B-05-*`; L2-H07; L2-H08; applicable source reporting domains such as L2-F13.  
 **Referenced By:** H07 dashboard composition; H08 regulatory reporting; authorized analytical/reporting consumers.  
-**Applicable ADRs:** `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0010`; `ADR-L5-0011`.  
+**Applicable ADRs:** `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0036`; `ADR-L5-0037`; `ADR-L5-0045`; `ADR-L5-0046`.
 
 ---
 
@@ -63,7 +63,7 @@ This specification defines the technical data architecture for analytical datase
 | L4-H-048 | Draft | `BH-001`, `BH-003`, `BH-005`–`BH-007` | H07 composes authoritative source projections and retains dashboard governance only. **Specified**. |
 | L4-H-057 | Draft v1.0.1 | `BH-001`–`BH-003`, `BH-006`, `BH-007`, `BH-010`, `BH-013` | H08 creates immutable validated/locked Reporting Snapshot from authoritative source facts with lineage. **Specified**. |
 | L4-F-077 | Draft | `BH-001`–`BH-011` | Finance-owned KPI/projection generation is governed by F13 definitions/models/config; H07 is only a consumer. **Specified**. |
-| B06-001/002 | Draft | owned B06 baseline/read model boundaries | Supplies source binding, freshness, rebuild and query controls. |
+| B06-001/002 | Review | owned B06 baseline/read model boundaries | Supplies source binding, freshness, rebuild and query controls. |
 | D02-004 | Architecture Approved | query/policy enforcement | Protects analytical/report dataset access. |
 
 ### 3.2 Constraints

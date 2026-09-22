@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Multi-channel provider abstraction, controlled failover and delivery evidence.  
 **Technical Architecture Owner:** L5-C-04 — Notification & Communication Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.1.0`  
+**Version:** `1.1.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Stage 3 Final Closure & Stage 4 Proceed Decision 2026-09-15; `L2-H02_Notification_Workflows.md` v1.0 Locked; `L5-C-04-001` Draft; `L5-C-04-002` Draft; `L5-A-06-001`; `L5-A-06-002`; `L5-A-04-002`; `L5-B-02-003`; `L5-A-08-001`; `L5-A-08-002`; `L5-D-02-004`; `L5-D-03-002`; `L5-D-03-004`; `L5-D-04-001`; `L5-E-05-001`; `L5-C-02-001`.  
 **Referenced By:** `L5-C-04-001`; Notification-consuming capabilities requiring provider-independent delivery outcome/evidence.  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0010`; `ADR-L5-0011`. No C04-003-specific provider/product ADR is selected by this Draft.  
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0027`; `ADR-L5-0033`; `ADR-L5-0040`; `ADR-L5-0041`; `ADR-L5-0045`.
 
 ---
 
@@ -96,14 +96,14 @@ This specification does not own:
 | L4 | `L4-H-014` | v1.0.0 / Draft | `BH-003`–`BH-007` | Critical eligible Notifications may use governed multi-channel delivery with independent channel outcomes; source emergency ownership is unchanged. | Drives priority/multi-channel execution boundary. Relation state: **Specified** only. |
 | L4 | `L4-H-015` | v1.0.0 / Draft | `BH-001`–`BH-007` | Failed Delivery Attempt recovery/fallback uses same Notification identity; each later attempt is distinct immutable evidence; no provider-fallback/terminal-recovery event is invented. | Primary retry/failover/recovery authority. Relation state: **Specified** only. |
 | L4 | `L4-H-016` | v1.0.0 / Draft | `BH-001`–`BH-007` | Provider evidence is associated with exactly one Delivery Attempt, normalized through H02 receipt semantics, preserved chronologically and used only for permitted H02 consequences. | Primary provider-receipt/evidence authority. Relation state: **Specified** only. |
-| L5 Peer | `L5-C-04-001` | v1.0.0 / Draft | §5.7 C04-003 Delivery Boundary; §5.8 | Supplies `DeliveryReadyNotification`; consumes provider-independent `DeliveryOutcome`; retains Notification lifecycle and lifecycle-event publication. | Defines C04 family ingress/egress contract. |
-| L5 Peer | `L5-C-04-002` | v1.0.0 / Draft | §5.9 Resolved Notification Context | Supplies rendered content, policy-eligible recipients and permitted channel/policy constraints. | Defines delivery eligibility input; C04-003 does not re-run policy. |
+| L5 Peer | `L5-C-04-001` | current / Review | §5.7 C04-003 Delivery Boundary; §5.8 | Supplies `DeliveryReadyNotification`; consumes provider-independent `DeliveryOutcome`; retains Notification lifecycle and lifecycle-event publication. | Defines C04 family ingress/egress contract. |
+| L5 Peer | `L5-C-04-002` | current / Review | §5.9 Resolved Notification Context | Supplies rendered content, policy-eligible recipients and permitted channel/policy constraints. | Defines delivery eligibility input; C04-003 does not re-run policy. |
 | L5 Peer | `L5-A-06-001/002` | v1.0.0 / Architecture Approved | configuration registration/resolution architecture | Generic configuration/version/scope/inheritance/effective dating. | Supports provider priority, failover/retry configuration without C04 duplicating generic configuration mechanics. |
-| L5 Peer | `L5-A-04-002` | v1.0.1 / Draft | §§2–4 | Tenant/Institution scope propagation and fail-closed isolation. | Constrains provider configuration, delivery execution and evidence scope. |
+| L5 Peer | `L5-A-04-002` | current / Review | §§2–4 | Tenant/Institution scope propagation and fail-closed isolation. | Constrains provider configuration, delivery execution and evidence scope. |
 | L5 Peer | `L5-B-02-003` | v1.0.1 / Draft | §§5–8 | Owner-local transaction/concurrency and explicit conflict handling. | Governs Delivery/Attempt/Receipt persistence consistency. |
 | L5 Peer | `L5-D-02-004` | v1.0.0 / Architecture Approved | policy decision/enforcement | Authorization remains external to C04. | Protects provider configuration, controlled operational recovery/reprocessing and privileged actions without inventing roles. |
-| L5 Peer | `L5-D-03-002` | v1.0.1 / Draft | §§2–7 | Owns cryptographic protection for protected technical exchanges; mandatory protection does not silently downgrade. | Protects provider communication where required. |
-| L5 Peer | `L5-D-03-004` | v1.0.1 / Draft | §§2–7 | Owns application/integration secrets, certificates and machine credentials; secret material cannot propagate into ordinary config/log/evidence. | Supplies provider credentials/certificates without C04 owning secret lifecycle. |
+| L5 Peer | `L5-D-03-002` | current / Review | §§2–7 | Owns cryptographic protection for protected technical exchanges; mandatory protection does not silently downgrade. | Protects provider communication where required. |
+| L5 Peer | `L5-D-03-004` | current / Review | §§2–7 | Owns application/integration secrets, certificates and machine credentials; secret material cannot propagate into ordinary config/log/evidence. | Supplies provider credentials/certificates without C04 owning secret lifecycle. |
 | L5 Peer | `L5-D-04-001` | v1.1.1 / Locked | §§2–4 | Shared audit/evidence capture without transferring business meaning. | Receives immutable delivery-attempt/receipt/failover evidence references. |
 | L5 Peer | `L5-E-05-001` | v1.0.3 / Review; Stage-3 downstream-consumption approved | §§2–5 | Operational telemetry/observability remains distinct from business audit truth. | Receives provider/channel health, latency, failure and backlog diagnostics. |
 | L5 Peer | `L5-C-02-001` | v1.0.3 / Architecture Approved | §§4–8 | Owns enterprise event/message transport while event semantics/publishers remain upstream-owned. | Carries H02 lifecycle events after C04-001 publication handoff; does not transport provider-delivery work as a competing C04 mechanism. |

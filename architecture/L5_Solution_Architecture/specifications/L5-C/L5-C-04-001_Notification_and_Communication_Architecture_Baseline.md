@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Enterprise notification/communication capability; triggering business facts remain source-domain owned.  
 **Technical Architecture Owner:** L5-C-04 — Notification & Communication Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.1.1`  
+**Version:** `1.1.2`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Stage 3 Final Closure & Stage 4 Proceed Decision 2026-09-15; `L2-H02_Notification_Workflows.md` v1.0 Locked; `L5-C-01-001`; `L5-C-02-001`; `L5-A-04-002`; `L5-B-02-003`; `L5-D-02-004`; `L5-A-08-001`; `L5-A-08-002`; `L5-D-04-001`; `L5-E-05-001`.  
@@ -83,10 +83,10 @@ This specification does not own:
 | L4 | `L4-H-016` | v1.0.0 / Draft | `BH-005`, `BH-007` | Provider-derived delivery evidence may drive permitted H02 transitions/events and final H02 outcome without changing source-business ownership. | Defines C04-003-to-baseline outcome handoff and lifecycle-event publication boundary. Relation state: **Specified** only. |
 | L5 Peer | `L5-C-01-001` | current / Review | §§4–6; `CR-001`–`CR-005` | Ownership-preserving synchronous contract boundary with HTTPS REST/JSON + OpenAPI 3.2 and the Group-1 wire profile. | Governs authorized synchronous Notification-request admission; C04 consumes rather than redefines the API profile. |
 | L5 Peer | `L5-C-02-001` | v1.0.3 / Architecture Approved | §§4–8; `AD-001`–`AD-006`; `CR-001`–`CR-008` | Canonical event/messaging transport, durable subscriptions and consumer delivery while event semantics/publisher remain upstream-owned. | Carries incoming canonical source events and outgoing H02 lifecycle events; C04 does not duplicate event transport. |
-| L5 Peer | `L5-A-04-002` | v1.0.1 / Draft | §§2–4 | Tenant/Institution context propagation and fail-closed scope handling. | Governs scope binding across Notification admission, state, background execution and delivery handoffs. |
+| L5 Peer | `L5-A-04-002` | current / Review | §§2–4 | Tenant/Institution context propagation and fail-closed scope handling. | Governs scope binding across Notification admission, state, background execution and delivery handoffs. |
 | L5 Peer | `L5-B-02-003` | v1.0.1 / Draft | §§5–8; `AD-001`–`AD-004`; `CR-001`–`CR-011` | Owner-local transactions, optimistic concurrency and atomic state + Durable Publication Intent handoff. | Governs Notification state mutation/concurrency and lifecycle-event publication intent. |
 | L5 Peer | `L5-D-02-004` | v1.0.0 / Architecture Approved | §§2–4 | Technical policy decision/enforcement with fail-closed protected execution. | Supplies authorization decisions for protected Notification admission/operations without C04 owning authorization policy. |
-| L5 Peer | `L5-A-08-001`, `L5-A-08-002` | v1.0.1 / Draft; Stage-3 downstream-consumption approved | execution/job/retry boundaries | Generic background, scheduled and technically retryable execution with durable Job/Work Unit/Attempt identities. | Executes deferred/background technical work while C04 retains Notification/schedule semantics. |
+| L5 Peer | `L5-A-08-001`, `L5-A-08-002` | current / Review; Stage-3 downstream-consumption approved | execution/job/retry boundaries | Generic background, scheduled and technically retryable execution with durable Job/Work Unit/Attempt identities. | Executes deferred/background technical work while C04 retains Notification/schedule semantics. |
 | L5 Peer | `L5-D-04-001` | v1.1.1 / Locked | §§2–4 | Shared audit/evidence capture and handoff while source capabilities retain business meaning. | Receives Notification evidence; C04 does not become enterprise audit-storage owner. |
 | L5 Peer | `L5-E-05-001` | v1.0.3 / Review; Stage-3 downstream-consumption approved | §§2–5 | Operational telemetry/observability distinct from business audit truth. | Receives operational Notification telemetry and diagnostics. |
 | ADR | `ADR-L5-0004` | Architecture Approved | Tenant/Institution isolation pattern | Validated scope must survive technical boundaries. | Constrains Notification scope propagation. |
