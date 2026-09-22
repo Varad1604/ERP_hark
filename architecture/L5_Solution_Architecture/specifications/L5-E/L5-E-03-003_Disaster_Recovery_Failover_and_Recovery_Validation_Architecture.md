@@ -8,11 +8,11 @@
 **Canonical Technical Responsibility:** DR/failover models and proof of recoverability without assuming a cloud provider.  
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-E-03-001`; `L5-E-03-002`; `L5-E-01`; `L5-E-04`; `L5-B-02`; `L5-C-02`; `L5-C-03`; `L5-D-03`; `L5-E-05`  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0010`; `ADR-L5-0014`; `ADR-L5-0017`  
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0010`; `ADR-L5-0014`; `ADR-L5-0017`; `ADR-L5-0046`  
 **Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`  
 **Governance Lock:** `L5_Pallav_Stage5_Final_Lock_Decision_2026-09-16.md`
 
@@ -27,7 +27,7 @@ Defines provider-neutral disaster-recovery topology selection rules, failover/fa
 | `ADR-L5-0014` | Architecture Approved | repository resilience, health, degradation, recovery | Requires contain → recover → validate → controlled return and no ownership transfer. |
 | `ADR-L5-0017` | Architecture Approved | repository recovery classification/protected-copy/restore/DR validation | Governs DR topology selection, fencing, failover/failback and recovery validation. |
 | `L4-A-057` | Draft | `BH-005`–`BH-009` | Supporting behavior: preserve state/history and do not claim restored availability before successful integrity validation. |
-| `L5-E-04-*` | Draft/current | on-premises-primary and cloud-capable runtime/deployment | Constrains DR to supported provider-neutral deployment models. |
+| `L5-E-04-*` | Review/current | on-premises-primary and cloud-capable runtime/deployment | Constrains DR to supported provider-neutral deployment models. |
 
 `L4-A-057` remains Draft, but its cited behavior is explicitly governance-authorized for this Stage-5 approval. The relation remains `Specified`, not `Validated`, until normal traceability source-status conditions are met. E04/B02/E01/C02/C03/D03 consumed boundaries are declared stable enough for the scoped Stage-5 use by the Stage-5 approval decision.
 
@@ -130,3 +130,8 @@ This Locked specification is amended and re-locked under the explicit 2026-09-22
 
 **Applicable locked decision:** `ADR-L5-0046`  
 Recovery uses Critical/Important/Standard/Reconstructible classification. Numeric RPO/RTO/retention and exercise cadence bind from authoritative recovery profiles rather than universal repository numbers. Derived data is reconstructed where its class objective permits; PostgreSQL uses base/full backup plus WAL/PITR where its class requires it; restore plus integrity/application validation is required proof.
+
+
+## 2026-09-22 Batch 7C Impact Revalidation Synchronization
+
+Non-material lifecycle/ADR metadata synchronization only. Peer lifecycle labels and applicable locked recovery/runtime governance references now reflect current canonical repository state. Recovery ownership, recovery-class semantics, RPO/RTO/retention authority, restore/failover behavior, conformance requirements, traceability relation state and the existing lock boundary are unchanged. No relock is required.
