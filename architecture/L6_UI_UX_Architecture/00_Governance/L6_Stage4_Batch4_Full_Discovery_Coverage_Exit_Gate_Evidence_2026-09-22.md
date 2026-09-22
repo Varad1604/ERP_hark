@@ -9,7 +9,7 @@
 **Batch-4 Entry Architecture SHA:** `3784fd78833f183e4a17af79bf5d77691f989c31`  
 **Architecture Evidence Branch Base SHA:** `fa7a80abb8b2be997088b9ab167a1d29aeefc882`  
 **Batch-4 Entry Frontend SHA:** `e244821f4f845b8a8cfc7ddfaf456ef0624b34c4`  
-**Final Frontend SHA:** `9f4f93572165a292fa04713f02e356674493b52f`  
+**Final Frontend SHA:** `eec69310c2078a2af7cd796439c6adff3cf86e8d`  
 **Frontend Branch:** `stage4-batch4-full-discovery-reconciliation`  
 **Frontend PR:** #21  
 **Final Frontend CI:** Frontend PR Validation #151 / Run ID `35712022674` / SUCCESS  
@@ -278,8 +278,8 @@ Final artifact:
 
 ```text
 stage4-batch4-visual-evidence
-Artifact ID: 10686552588
-SHA-256: 39f1d3efd02ffcc3452ea95100aadd078060bfcd92f2df0b1180ddc536e07714
+Artifact ID: 10690335319
+SHA-256: 9118e8357f3f16040606980c5c6d66e63da02bd8ff3a3fbedfa0a78b6e57e9d2
 ```
 
 ## 16. Validation Evidence
@@ -287,16 +287,16 @@ SHA-256: 39f1d3efd02ffcc3452ea95100aadd078060bfcd92f2df0b1180ddc536e07714
 Final frontend SHA:
 
 ```text
-9f4f93572165a292fa04713f02e356674493b52f
+eec69310c2078a2af7cd796439c6adff3cf86e8d
 ```
 
 Final required CI:
 
 ```text
-Frontend PR Validation #154
-Run ID: 35715497912
-State: IN PROGRESS AT EVIDENCE SYNCHRONIZATION
-Conclusion: PENDING FINAL TERMINAL RESULT
+Frontend PR Validation #156
+Run ID: 35716209191
+State: COMPLETED
+Conclusion: SUCCESS
 ```
 
 Passed gates:
@@ -308,7 +308,7 @@ Passed gates:
 - `npm run build` — PASS;
 - Batch-2 browser regression — PASS;
 - Batch-3 browser regression — PASS;
-- Batch-4 browser suite — PASS;
+- Batch-4 browser suite — PASS, 8 / 8 tests;
 - screenshot/evidence upload — PASS.
 
 ## 17. Cross-Repository Synchronization
@@ -342,7 +342,7 @@ The final Batch-4 diff was reviewed before evidence freeze for:
 
 Typecheck/build are clean and no material Batch-4 dead scaffolding remains.
 
-The browser-harness correction from the failed CI #149 was committed before the final evidence SHA. The failed run is retained as history and is not used as pass evidence.
+The browser-harness correction from the earlier failed CI #149 and the exception-rich test-harness corrections from failed runs #154 and #155 were committed before the final evidence SHA. Those failed runs are retained as history and are not used as pass evidence.
 
 ## 19. Risks, Open Questions and Assumptions
 
@@ -392,11 +392,11 @@ The final review actively checked for:
 - non-terminal CI;
 - screenshots treated as accessibility proof.
 
-The previously identified two-preset discovery gap has been corrected in the frontend branch. Final closure remains contingent only on the current-head CI reaching a successful terminal result.
+The previously identified two-preset discovery gap has been corrected. Current-head CI proves the exception-rich Faculty task/review-attention bindings, preserves ambiguous Aarav records as unbound, and retains all Batch-2/3 regressions. No material blocking finding remains.
 
 ## 21. Stage-4 Exit Gate
 
-The repository-level Stage-4 discovery gate is satisfied on Frontend PR #21 head `9f4f93572165a292fa04713f02e356674493b52f`:
+The repository-level Stage-4 discovery gate is satisfied on Frontend PR #21 head `eec69310c2078a2af7cd796439c6adff3cf86e8d`:
 
 - every registered workflow has deterministic Global Search/runtime projection coverage;
 - workspace-local workflow discovery remains available where presentation-relevant;
@@ -414,7 +414,7 @@ The repository-level Stage-4 discovery gate is satisfied on Frontend PR #21 head
 ## 22. Evidence Verdict
 
 ```text
-STAGE 4 — BATCH 4 FINAL CI PENDING
+STAGE 4 — BATCH 4 PASS
 ```
 
 This evidence records a passing implementation state for review. It does not merge Frontend PR #21 or this Architecture evidence PR and does not authorize Stage 5.
