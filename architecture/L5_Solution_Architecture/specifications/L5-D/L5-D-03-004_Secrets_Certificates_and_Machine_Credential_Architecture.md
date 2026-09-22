@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Define reusable technical architecture for application/integration secrets, certificates and machine credentials, including protected provisioning, controlled retrieval/use, scope binding, renewal/replacement, revocation, retirement and exposure containment, without owning human authentication, authorization policy, cryptographic key custody, business rules or business authority.  
 **Technical Architecture Owner:** L5-D-03-004 — Secrets, Certificates & Machine Credential Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.2.1`  
+**Version:** `1.2.2`  
 **Status:** Review  
 **Last Updated:** `2026-09-22`  
 **Primary Dependencies:** `L5-D-03-001`, `L5-A-04`.  
@@ -277,14 +277,14 @@ Only materially supported direct relations shall be entered into the canonical t
 
 | ID | Issue | Blocking? |
 |---|---|---|
-| OD-001 | Add only defensible direct L4 BH relations when validated evidence exists. | No for Draft validity; required before relation validation. |
+| OD-001 | Add only defensible direct L4 BH relations when validated evidence exists. | No for Review validity; required before relation validation. |
 | OD-002 | Reconcile material A04 scope changes. | Conditional. |
 | OD-003 | **Secret store resolved:** OpenBao. CA/provider/certificate-profile choices remain separately governed. | `ADR-L5-0027`; remaining choices conditional. |
 | OD-004 | Credential validity/rotation/recovery timing remains authoritative-policy or ADR territory where material. | Conditional. |
 
 ---
 
-**Current Status:** Draft — Remediated and ready for revalidation.
+**Current Status:** Review — Remediated and revalidated in Batch 4; lifecycle promotion requires explicit governance authorization.
 
 ## 2026-09-22 Locked Technology Decision Synchronization
 
@@ -304,3 +304,8 @@ Lifecycle status restored to `Review` in accordance with the locked 2026-09-16 f
 
 
 **Lifecycle restoration authority:** `L5_Full_Corpus_Draft_to_Review_Promotion_Decision_2026-09-16.md` — restored to `Review` during the 2026-09-22 full-corpus post-decision audit; no Architecture Approved/Locked promotion is implied.
+
+
+## 2026-09-22 Production Validation Batch 4
+
+D03 local hard gates remain PASS under `L5_D03_L4_Traceability_Extraction_and_Promotion_Gate_2026-09-11.md`. Later Locked ADRs `ADR-L5-0027` and `ADR-L5-0040` strengthen implementation readiness without transferring security ownership. This specification is **Architecture-Approval eligible**, but remains `Review` until a distinct approval decision is issued.

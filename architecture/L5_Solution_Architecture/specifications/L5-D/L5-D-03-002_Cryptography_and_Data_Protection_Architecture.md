@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Define reusable cryptographic and technical data-protection architecture for SutraERP data and protected technical exchanges, including protection boundaries, cryptographic-operation responsibilities and protected-data handling, without owning business data-classification policy, key custody, secrets/certificates, authorization policy or business authority.  
 **Technical Architecture Owner:** L5-D-03-002 — Cryptography & Data Protection Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.2.1`  
+**Version:** `1.2.2`  
 **Status:** Review  
 **Last Updated:** `2026-09-22`  
 **Primary Dependencies:** `L5-D-03-001`, `L5-A-04`, applicable canonical persistence/runtime boundaries, and authoritative protection requirements.  
@@ -275,14 +275,14 @@ Only materially supported relations shall be added to the canonical traceability
 
 | ID | Issue | Blocking? |
 |---|---|---|
-| OD-001 | Add only defensible direct L4 BH relations to the canonical traceability store when verified. | No for Draft validity; required before a relation is `Validated`. |
+| OD-001 | Add only defensible direct L4 BH relations to the canonical traceability store when verified. | No for Review validity; required before a relation is `Validated`. |
 | OD-002 | Reconcile material A04 changes affecting context/isolation. | Conditional. |
 | OD-003 | Reconcile material D03-003/004 contract changes if ADR-0002 is amended. | Conditional. |
 | OD-004 | **Partially resolved:** modern AEAD/hash/TLS baseline is governed by `ADR-L5-0040`; exact key sizes, HSM/KMS provider and certificate topology remain security-profile decisions. | Conditional remaining detail. |
 
 ---
 
-**Current Status:** Draft — Remediated and ready for revalidation.
+**Current Status:** Review — Remediated and revalidated in Batch 4; lifecycle promotion requires explicit governance authorization.
 
 ## 2026-09-22 Locked Technology Decision Synchronization
 
@@ -302,3 +302,8 @@ Lifecycle status restored to `Review` in accordance with the locked 2026-09-16 f
 
 
 **Lifecycle restoration authority:** `L5_Full_Corpus_Draft_to_Review_Promotion_Decision_2026-09-16.md` — restored to `Review` during the 2026-09-22 full-corpus post-decision audit; no Architecture Approved/Locked promotion is implied.
+
+
+## 2026-09-22 Production Validation Batch 4
+
+D03 local hard gates remain PASS under `L5_D03_L4_Traceability_Extraction_and_Promotion_Gate_2026-09-11.md`. Later Locked ADRs `ADR-L5-0027` and `ADR-L5-0040` strengthen implementation readiness without transferring security ownership. This specification is **Architecture-Approval eligible**, but remains `Review` until a distinct approval decision is issued.

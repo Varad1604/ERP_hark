@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Define the cross-solution security architecture baseline, trust-boundary model, security-control placement principles and isolation requirements that constrain SutraERP technical architecture without owning authentication, authorization policy, cryptographic/key-management internals, audit storage, business rules or business authority.  
 **Technical Architecture Owner:** L5-D-03-001 — Security Architecture & Trust Boundary Baseline  
 **Assigned Author:** Varad  
-**Version:** `1.2.1`  
+**Version:** `1.2.2`  
 **Status:** Review  
 **Last Updated:** `2026-09-22`  
 **Primary L5 Dependencies:** L5-D-01 — IAM; L5-A-04 — Tenant & Institutional Isolation; L5-A-01 — Application & Platform Architecture; L5-E-04 — Runtime, Packaging & Deployment.  
@@ -379,7 +379,7 @@ The absence of an invented BH mapping does not make the canonical D03 technical 
 
 | ID | Type | Issue | Blocking? |
 |---|---|---|---|
-| OD-001 | Traceability | Populate only defensible direct L4 BH→D03-001 relations in the canonical traceability store when validated evidence is available. | No for Draft architecture validity; required before any claimed relation becomes `Validated`. |
+| OD-001 | Traceability | Populate only defensible direct L4 BH→D03-001 relations in the canonical traceability store when validated evidence is available. | No for Review architecture validity; required before any claimed relation becomes `Validated`. |
 | OD-002 | Stage-1 peer | Reconcile material D01 changes affecting identity context. | Only if D01 materially changes the consumed boundary. |
 | OD-003 | Stage-1 peer | Reconcile material A04 changes affecting Tenant/Institution scope. | Only if A04 materially changes the consumed boundary. |
 | OD-004 | Stage-1 peer | Reconcile material E04 changes affecting realization while preserving logical trust semantics. | No for logical baseline; required for implementation readiness where placement is material. |
@@ -408,3 +408,8 @@ Lifecycle status restored to `Review` in accordance with the locked 2026-09-16 f
 
 
 **Lifecycle restoration authority:** `L5_Full_Corpus_Draft_to_Review_Promotion_Decision_2026-09-16.md` — restored to `Review` during the 2026-09-22 full-corpus post-decision audit; no Architecture Approved/Locked promotion is implied.
+
+
+## 2026-09-22 Production Validation Batch 4
+
+D03 local hard gates remain PASS under `L5_D03_L4_Traceability_Extraction_and_Promotion_Gate_2026-09-11.md`. Later Locked ADRs `ADR-L5-0027` and `ADR-L5-0040` strengthen implementation readiness without transferring security ownership. This specification is **Architecture-Approval eligible**, but remains `Review` until a distinct approval decision is issued.

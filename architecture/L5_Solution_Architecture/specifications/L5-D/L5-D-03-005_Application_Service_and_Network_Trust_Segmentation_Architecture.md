@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Define reusable technical architecture for logical trust isolation among applications, services, computational components and network communication boundaries, including trust-zone assignment, restricted connectivity, boundary enforcement, compromise containment and context-preserving cross-boundary interaction, without owning business authorization policy, cryptographic/key-management internals, secrets/certificates, business rules or business authority.  
 **Technical Architecture Owner:** L5-D-03-005 — Application, Service & Network Trust Segmentation Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.2.1`  
+**Version:** `1.2.2`  
 **Status:** Review  
 **Last Updated:** `2026-09-22`  
 **Primary Dependencies:** `L5-D-03-001`, `L5-A-03`, `L5-A-04`, `L5-E-04`.  
@@ -279,13 +279,13 @@ Only materially supported direct relations shall be entered into the canonical t
 
 | ID | Issue | Blocking? |
 |---|---|---|
-| OD-001 | Add only defensible direct L4 BH relations when validated evidence exists. | No for Draft validity; required before relation validation. |
+| OD-001 | Add only defensible direct L4 BH relations when validated evidence exists. | No for Review validity; required before relation validation. |
 | OD-002 | Reconcile material A03/A04/E04 changes that alter module, scope or deployment realization. | Conditional. |
-| OD-003 | Network/service-mesh/firewall/protocol/port/topology choices remain separately governed. | Conditional ADR/technical decision. |
+| OD-003 | **Partially resolved:** authenticated encrypted cross-service transport is required; TLS 1.3 is preferred; mTLS is trust-profile driven; no service mesh is mandatory initially. Exact firewall/port/topology and any later mesh product remain deployment/security-profile decisions. | `ADR-L5-0040`. |
 
 ---
 
-**Current Status:** Draft — Remediated and ready for revalidation.
+**Current Status:** Review — Remediated and revalidated in Batch 4; lifecycle promotion requires explicit governance authorization.
 
 ## 2026-09-22 Backend Readiness Group 3 Synchronization
 
@@ -299,3 +299,8 @@ Lifecycle status restored to `Review` in accordance with the locked 2026-09-16 f
 
 
 **Lifecycle restoration authority:** `L5_Full_Corpus_Draft_to_Review_Promotion_Decision_2026-09-16.md` — restored to `Review` during the 2026-09-22 full-corpus post-decision audit; no Architecture Approved/Locked promotion is implied.
+
+
+## 2026-09-22 Production Validation Batch 4
+
+D03 local hard gates remain PASS under `L5_D03_L4_Traceability_Extraction_and_Promotion_Gate_2026-09-11.md`. Later Locked ADRs `ADR-L5-0027` and `ADR-L5-0040` strengthen implementation readiness without transferring security ownership. This specification is **Architecture-Approval eligible**, but remains `Review` until a distinct approval decision is issued.
