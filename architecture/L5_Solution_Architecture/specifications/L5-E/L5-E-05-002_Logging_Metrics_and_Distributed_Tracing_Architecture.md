@@ -8,7 +8,7 @@
 **Canonical Technical Responsibility:** Technical logs/metrics/traces with privacy and sensitive-data boundaries.  
 **Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.1.1`  
+**Version:** `1.1.2`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; `L5-E-05-001`; `L5-C-01-*`; `L5-C-02-*`; `L5-D-03-*`; `L5-D-04-*`; `L5-E-04-*`; persistence/data telemetry surfaces from `L5-B-02-*` where material.  
@@ -95,7 +95,7 @@ Collector/exporter/backend failure follows E05-001 bounded-pressure rules. Appli
 - **AD-004 — Distribution semantics:** traces represent bounded technical execution; asynchronous relationships use causal linking.
 - **AD-005 — Correlation separation:** workflow/business correlation remains distinct from technical trace/span identity.
 - **AD-006 — Configurable sampling:** sampling/filtering is policy-controlled and cannot silently redefine audit or business success semantics.
-- **AD-007 — Standards-oriented tracing:** OpenTelemetry-compatible instrumentation may be evaluated; no profile is canonical without ADR approval.
+- **AD-007 — Standards-oriented tracing:** OpenTelemetry-compatible instrumentation is canonical under `ADR-L5-0029`.
 - **AD-008 — Locked backend profile:** OpenTelemetry/OTLP + Collector; Prometheus metrics; Loki logs; Tempo traces; Grafana visualization. Producer contracts remain backend-decoupled.
 
 ## 7. Security, Privacy, Quality & Operations
@@ -115,10 +115,10 @@ Sensitive telemetry is default-deny. Credentials, secrets, private keys and unre
 
 ## 9. Open Decisions & Deferred Design
 - **OD-001:** **Products resolved by `ADR-L5-0029`;** exact deployment topology, retention, sampling and cardinality limits remain E02/E05 profile decisions.
-- **OD-002:** Mandatory OpenTelemetry profile — requires ADR if made canonical.
+- **OD-002:** **Resolved:** canonical telemetry profile is established by `ADR-L5-0029`.
 - **OD-003:** Numeric sampling/cardinality/retention limits — delegated to governed profiles and canonical requirement owners.
 - **OD-004:** Exact L4/BH contribution set — pending validated material applicability; no artificial mapping permitted.
-- **OD-005:** Approval-level reliance on upstream Draft L5 peers — blocked until governance determines sufficient stability.
+- **OD-005:** Stage-3 closure approved downstream consumption of peer responsibility surfaces; material peer changes require impact revalidation. Draft L4/BH approval remains separately governed.
 
 ## 10. Traceability Summary
 Candidate Corpus Register 105 + `L5-E-05-001` establish the canonical technical responsibility. Dependency traceability is explicit to C01/C02, D03/D04, E04 and B02 telemetry surfaces. Exact approved L4/BH contribution links remain to be validated before architecture approval where material.

@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Technical readiness/service-acceptance evidence without replacing L1 dynamic business readiness or L2-A10 governance certification.  
 **Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.2`  
+**Version:** `1.0.3`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-13`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; `L5-E-05-001`; `L5-E-05-002`; `L5-E-05-003`; `L5-E-01-*`; `L5-E-02-*`; `L5-E-03-*`; `L5-E-04-*`; `L5-C-02-*`; `L5-D-*` where security/audit evidence is consumed; `L5-F-01-*` where delivery/release evidence is consumed.  
 **Referenced By:** Production technical acceptance and downstream operational-readiness consumers.  
-**Applicable ADRs:** Evidence repository/tooling and canonical operational acceptance workflow integration remain unselected unless approved through the L5 ADR/governance process.
+**Applicable ADRs:** `ADR-L5-0014`; `ADR-L5-0017`; `ADR-L5-0029`; `ADR-L5-0030`; `ADR-L5-0044`; `ADR-L5-0045`; `ADR-L5-0046`.
 
 ## 2. Purpose, Scope & Non-Goals
 Defines the evidence-based technical gate by which a specific service/version/configuration is determined suitable for supported production operation.
@@ -137,7 +137,7 @@ Evidence packages must not contain secrets or unrestricted sensitive payloads wh
 - **OD-002:** Evidence repository/tool product — unresolved and non-blocking while the logical evidence contract is preserved.
 - **OD-003:** Numeric SLO/RTO/RPO/performance thresholds — consumed from canonical owners; not invented here.
 - **OD-004:** Exact L4/BH contribution set — pending validated material applicability; no artificial mapping permitted.
-- **OD-005:** Approval-level reliance on upstream Draft L5 peers — blocked until governance determines sufficient stability.
+- **OD-005:** Stage-3 closure approved downstream consumption of peer technical responsibility surfaces; material peer changes require impact revalidation. Draft L4/BH relations remain non-validated.
 
 ## 10. Traceability Summary
 Candidate Corpus Register 105 establishes E05-004 as technical readiness/service-acceptance architecture. Explicit peer traceability covers E01/E02/E03/E04/E05/C02/D/F01. The document deliberately preserves the L1/L2-A10 business/governance readiness boundary. Exact approved L4/BH contribution links remain to be validated before architecture approval where material.

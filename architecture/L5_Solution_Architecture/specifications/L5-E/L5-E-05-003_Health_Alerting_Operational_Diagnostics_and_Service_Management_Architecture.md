@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Health signals, alerting, diagnostics and service-operations integration.  
 **Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.2`  
+**Version:** `1.0.3`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-13`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; `L5-E-05-001`; `L5-E-05-002`; `L5-E-04-*`; `L5-E-01-*`; `L5-E-02-*`; `L5-C-02-*`; `L5-D-02-*`; `L5-D-03-*`; `L5-D-04-*`.  
 **Referenced By:** `L5-E-05-004`, operational support/readiness consumers and service-management integrations.  
-**Applicable ADRs:** Alerting, incident-management, service-management and diagnostic tooling remain unselected unless canonically approved through the L5 ADR process.
+**Applicable ADRs:** `ADR-L5-0014`; `ADR-L5-0029`; `ADR-L5-0040`; `ADR-L5-0044`; `ADR-L5-0045`.
 
 ## 2. Purpose, Scope & Non-Goals
 Defines the L5 technical architecture for service health semantics, alert evaluation, incident context, safe diagnostics, runbook/service-catalog linkage and bounded automated remediation.
@@ -122,7 +122,7 @@ Detailed diagnostics are privileged. Break-glass access is time-bound, attributa
 - **OD-002:** Numeric alert thresholds, response times and escalation timing — consumed from canonical operational requirements/configuration profiles.
 - **OD-003:** Remediation action catalog and authorization integration — requires canonical approval before production enablement.
 - **OD-004:** Exact L4/BH contribution set — pending validated material applicability; no artificial mapping permitted.
-- **OD-005:** Approval-level reliance on upstream Draft L5 peers — blocked until governance determines sufficient stability.
+- **OD-005:** Stage-3 closure approved downstream consumption of peer responsibility surfaces; material peer changes require impact revalidation. Draft L4/BH validation remains separate.
 
 ## 10. Traceability Summary
 Candidate Corpus Register 105 and `L5-E-05-001/002` establish the technical area. Explicit dependencies include E04 runtime identity, E01/E02 reliability/performance context, C02 event signals and D02/D03/D04 controls. Exact approved L4/BH links remain to be validated before architecture approval where material.

@@ -8,12 +8,12 @@
 **Canonical Technical Responsibility:** Operational observability/service operations without treating telemetry as business audit truth.  
 **Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-E-04-*`; `L5-E-01-*`; `L5-E-02-*`; `L5-C-01-*`; `L5-C-02-*`; `L5-D-03-*`; `L5-D-04-*`; `L5-A-04-*` where Tenant/Institution execution context is consumed.  
 **Referenced By:** `L5-E-05-002`, `L5-E-05-003`, `L5-E-05-004`, `L5-F-01-*`, and downstream operational-readiness consumers.  
-**Applicable ADRs:** `ADR-L5-0014`; `ADR-L5-0028`; `ADR-L5-0029`.
+**Applicable ADRs:** `ADR-L5-0014`; `ADR-L5-0028`; `ADR-L5-0029`; `ADR-L5-0040`; `ADR-L5-0044`; `ADR-L5-0045`.
 
 ## 2. Purpose, Scope & Non-Goals
 Defines the reusable L5 technical architecture for collecting, transporting, correlating, protecting and consuming operational telemetry across SutraERP runtime components.
@@ -100,7 +100,7 @@ E05 consumes runtime identity and environment placement from E04. It may require
 - **AD-003 — Correlation separation:** technical trace/span IDs remain distinct from business/workflow correlation identifiers.
 - **AD-004 — Non-blocking general telemetry:** general observability failure normally cannot fail business processing.
 - **AD-005 — Bounded pressure handling:** telemetry buffering is bounded and overload behavior is explicit by signal class.
-- **AD-006 — Standards-oriented interoperability:** OpenTelemetry-compatible approaches may be evaluated; no implementation standard is canonical without ADR approval.
+- **AD-006 — Standards-oriented interoperability:** OpenTelemetry/OTLP is canonical under `ADR-L5-0029`; producers remain backend-decoupled.
 - **AD-007 — Locked observability standard:** OpenTelemetry/OTLP + Collector, Prometheus metrics, Loki logs, Tempo traces and Grafana visualization; producers remain backend-decoupled.
 
 ## 7. Security, Privacy, Quality & Operations
@@ -120,7 +120,7 @@ Telemetry is classified by signal and field. Sensitive values are redacted befor
 
 ## 9. Open Decisions & Deferred Design
 - **OD-001:** **Resolved:** OpenTelemetry + Prometheus/Loki/Tempo/Grafana under `ADR-L5-0029`.
-- **OD-002:** Mandatory repository-wide telemetry implementation profile — requires ADR if standardized; non-blocking while the architecture remains interoperable and product-neutral.
+- **OD-002:** **Resolved:** repository-wide observability profile = OpenTelemetry/OTLP + Collector, Prometheus, Loki, Tempo and Grafana under `ADR-L5-0029`.
 - **OD-003:** Numeric sampling, retention, SLO and capacity targets — delegated to canonical owners/configuration profiles; no universal values are required at Review stage.
 - **OD-004:** Current direct BH applicability is specified in §3.2. Relation validation remains blocked by the Draft status of those L4 sources and must be performed only after upstream approval/authorization.
 - **OD-005:** Peer dependency drift — current consumed E04/D03/D04 responsibility surfaces are sufficiently stable for Stage 3 Review; any material change to those surfaces requires impact revalidation.
