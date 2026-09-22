@@ -34,7 +34,9 @@ The prior `L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md` remai
 
 `L6_Full_Workflow_Realization_and_Mock_ERP_Execution_Plan_DRAFT.md` governs execution.
 
-`00_Governance/L6_Stage3_Coherent_Mock_ERP_Foundation_Reviewed_Gameplan_2026-09-21.md` is the reviewed Stage-3 planning baseline. It records `STAGE 3 PLAN — READY TO EXECUTE` while keeping implementation explicitly not started until separate approval.
+`00_Governance/L6_Stage3_Coherent_Mock_ERP_Foundation_Reviewed_Gameplan_2026-09-21.md` is the reviewed Stage-3 planning baseline. Stage 3 has since completed and closed under its final validation decision.
+
+`00_Governance/L6_Stage5_Domain_By_Domain_Mock_Operational_Implementation_Reviewed_Gameplan_2026-09-22.md` is the active reviewed Stage-5 planning baseline. It defines the single-chat-safe 31-batch execution topology and records `STAGE 5 MASTER PLAN — READY WITH NON-BLOCKING FINDINGS`; implementation has not started.
 
 `L6_Workflow_Realization_Register_DRAFT.md` is now the Stage-2 master-reconciled realization register: **1,084 / 1,084 rows populated**, mapped to **595 final L6 realization workflows**, with zero missing or duplicate primary assignments. Stage 2 has passed its final validation gate.
 
@@ -88,7 +90,8 @@ L6_Workflow_Realization_Register_DRAFT.md
 L6_Experience_Slice_Register_DRAFT.md
 L6_AI_First_UI_UX_Execution_Plan_DRAFT.md                     # historical Days 1–13 plan
 L6_Full_Workflow_Realization_and_Mock_ERP_Execution_Plan_DRAFT.md  # active expansion plan
-00_Governance/L6_Stage3_Coherent_Mock_ERP_Foundation_Reviewed_Gameplan_2026-09-21.md  # reviewed Stage-3 plan; implementation not started
+00_Governance/L6_Stage3_Coherent_Mock_ERP_Foundation_Reviewed_Gameplan_2026-09-21.md  # historical reviewed Stage-3 plan; Stage 3 complete
+00_Governance/L6_Stage5_Domain_By_Domain_Mock_Operational_Implementation_Reviewed_Gameplan_2026-09-22.md  # active reviewed Stage-5 plan; implementation not started
 ```
 
 ### Screen / Workspace Inventory
@@ -411,3 +414,11 @@ Validation evidence for this phase is recorded in:
 ## Stage 3 Closure
 
 - `00_Governance/L6_Stage3_Final_Validation_and_Closure_Decision_2026-09-21.md` — final Stage-3 Batch-8 validation, integrity audit and closure decision.
+
+## Stage 4 Closure
+
+- `00_Governance/L6_Stage4_Batch4_Full_Discovery_Coverage_Exit_Gate_Evidence_2026-09-22.md` — final Stage-4 discovery coverage and exit-gate evidence; Stage 4 is complete and merged.
+
+## Stage 5 Planning
+
+- `00_Governance/L6_Stage5_Domain_By_Domain_Mock_Operational_Implementation_Reviewed_Gameplan_2026-09-22.md` — active Stage-5 master execution plan; 31 bounded batches numbered 0–30; implementation not started.
