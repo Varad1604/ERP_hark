@@ -192,13 +192,7 @@ These documents are historical technical inputs only, are not part of the frozen
 
 ## ADR Boundary
 
-Six material ADR candidate decision areas were retained by the representative pilot, but no canonical ADR IDs have yet been allocated by the candidate-disposition record.
-
-The canonical ADR identity register is now located at:
-
-`governance/instruction/L5_ADR_Register.md`
-
-Canonical ADR decision documents will live under `adr/` when formally allocated.
+The canonical ADR register now contains **33 allocated ADRs**. `ADR-L5-0019` through `ADR-L5-0033` are Locked by the 2026-09-22 Technology Decision Wave. New allocation continues from `ADR-L5-0034`. Canonical ADR documents live under `adr/`.
 
 ---
 
@@ -210,4 +204,4 @@ The L5 program may proceed with controlled mass authoring in `specifications/` a
 
 Branch selection, manual task assignment, push permissions and merge timing remain under Lead Architect control.
 
-Individual specifications still require normal validation, remediation and ADR resolution where applicable. The Final L5 Corpus Lock has not been issued.
+Individual specifications still require normal validation and remediation where applicable. The immediate technology/product decisions are now governed by Locked ADR-L5-0019 through ADR-L5-0033. Solver selection, universal numeric capacity/SLO values, RPO/RTO/retention values, mobile/cache choices where still open, exact deployment-provider details and Final L5 Corpus Lock remain unresolved. The Final L5 Corpus Lock has not been issued.

@@ -128,3 +128,8 @@ Do not place the following under `specifications/`:
 This directory defines canonical document placement only. Branch selection, push permissions, merge timing and manual assignment remain under Lead Architect control.
 
 Broad L5 authoring is authorized, but no authored specification becomes Architecture Approved or Locked merely by being committed here.
+
+
+## Locked Technology Decision Wave — 2026-09-22
+
+Production specifications shall inherit applicable Locked decisions `ADR-L5-0019` through `ADR-L5-0033`. This does not alter the frozen 105-specification responsibility population and does not authorize Final L5 Corpus Lock.
