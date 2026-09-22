@@ -8,7 +8,7 @@
 **Canonical Technical Responsibility:** Controlled build, artifact creation, release-manifest formation, environment promotion and release-eligibility gates.  
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.1.0`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-01-001`; `L5-E-04-*`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*`; applicable B02/C01 compatibility evidence where releases include persistence/contract changes; `L5-E-03-*` for recovery ownership boundaries.  
@@ -142,7 +142,7 @@ Build/registry/promotion failures are observable through E05, including repeated
 | ID | Item | Blocking? |
 |---|---|---|
 | OD-001 | Exact release-manifest serialization/schema standard | No for Review |
-| OD-002 | Exact environment stage names/count | No |
+| OD-002 | **Resolved baseline progression:** Local/Development → Integration/Test → Staging/Pre-production → Production; ephemeral verification environments remain CI-managed. | `ADR-L5-0043` |
 | OD-003 | Default promotion implementation | No; must preserve immutability |
 | OD-004 | Draft peer dependency status | Yes for Architecture Approved where material |
 | OD-005 | Exact source-ref protection/tag-authenticity mechanism | No for Review; depends on selected source-control platform |
@@ -155,3 +155,9 @@ Parent baseline: `L5-F-01-001`. Deployment boundary: `L5-E-04-005`. Authorizatio
 
 **Applicable locked decision:** `ADR-L5-0030`  
 GitHub Actions is canonical while source remains on GitHub; GHCR is the default OCI registry; Cosign/Sigstore handles signing/attestation; high-trust paths use ephemeral self-hosted runners where required.
+
+
+## 2026-09-22 Backend Readiness Group 5 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0043`  
+Promotion targets use the governed four-stage environment progression while preserving F01's existing build-once/promote-unchanged rule.

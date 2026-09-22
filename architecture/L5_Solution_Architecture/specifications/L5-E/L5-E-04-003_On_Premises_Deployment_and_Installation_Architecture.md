@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** On-premises deployment and installation architecture preserving portability, security boundaries and supportability.  
 **Technical Architecture Owner:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-E-04-001`, `L5-E-04-002`, `L5-D-03-*`, `L5-B-02-*`, `L4-A-001`, `L4-A-028`.  
 **Collaborates With / Referenced By:** `L5-E-01-*`, `L5-E-05-*`, `L5-F-01-*`, `L5-E-04-005`.  
-**Applicable ADRs:** `ADR-L5-0002`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0005`. Operating-system, ingress, container/orchestration and offline-distribution product choices remain unresolved.
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0005`; `ADR-L5-0028`; `ADR-L5-0043`; `ADR-L5-0044`.
 
 ---
 
@@ -133,7 +133,7 @@ verified release artifact
 | AD-003 | Credential boundary | Installers/artifacts do not embed canonical secrets or machine credentials. | `ADR-L5-0002` |
 | AD-004 | Modular placement | Modular-core default/selective isolation rules remain valid on-prem. | `ADR-L5-0003` |
 | AD-005 | Isolation/persistence | Tenant isolation and persistence ownership remain unchanged by on-prem co-location. | `ADR-L5-0004`, `ADR-L5-0005` |
-| AD-006 | OS/ingress/container/orchestrator | Unresolved technology choices; no specific platform is canonical here. | ADR if standardized |
+| AD-006 | OS/ingress/container/orchestrator | Podman is default non-clustered OCI runtime; Kubernetes clustered profile uses Envoy Gateway/Gateway API. OS matrix remains profile-governed. | `ADR-L5-0043` |
 | AD-007 | Offline/restricted-network support | Optional architecture extension until explicitly governed as a mandatory support requirement. | Requires governance if made normative |
 
 ---
@@ -156,8 +156,8 @@ verified release artifact
 | Item ID | Item | Blocking? | Resolution |
 | --- | --- | --- | --- |
 | OD-001 | Supported OS matrix | Yes before normative support commitment | Govern through E04 technical standard/ADR where material. |
-| OD-002 | Ingress/proxy product | No for architecture pattern; Yes before normative product mandate | Technology selection. |
-| OD-003 | Container/orchestration standard | No for architecture pattern; Yes before normative platform mandate | ADR if shared standard selected. |
+| OD-002 | **Resolved clustered default:** Envoy Gateway + Kubernetes Gateway API. | Locked | `ADR-L5-0043`. |
+| OD-003 | **Resolved:** Podman non-clustered; Kubernetes clustered. | Locked | `ADR-L5-0028`; `ADR-L5-0043`. |
 | OD-004 | Mandatory restricted/offline operating profile | Yes only if claimed as supported requirement | Establish authoritative repository decision. |
 | OD-005 | Material L4 parents remain Draft | Yes for Architecture Approved | Resolve through L4 governance. |
 
@@ -168,3 +168,9 @@ verified release artifact
 **Material Dependencies:** `L5-E-04-001`, `L5-E-04-002`, `L5-D-03-*`, `L5-B-02-*`, `L4-A-001`, `L4-A-028`  
 **Material Collaborators:** `L5-E-01-*`, `L5-E-05-*`, `L5-F-01-*`, `L5-E-04-005`  
 **Applicable Approved ADRs:** `ADR-L5-0002`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0005`
+
+
+## 2026-09-22 Backend Readiness Group 5 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0043`  
+On-premises deployments may remain non-clustered using Podman; Kubernetes is not mandatory for small installations. OpenTofu manages infrastructure and configuration remains external/typed with OpenBao secrets.

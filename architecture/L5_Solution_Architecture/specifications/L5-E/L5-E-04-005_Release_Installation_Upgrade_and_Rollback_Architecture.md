@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Release installation, upgrade, compatibility validation and rollback architecture for supported SutraERP deployment profiles.  
 **Technical Architecture Owner:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-E-04-001`, `L5-E-04-002`, `L5-E-04-003`, `L5-E-04-004`, `L5-C-01-003`, `L5-B-02-003`, `L5-B-02-004`, `L4-A-029`, `L4-A-030`, `L4-A-031`, `L4-A-032`.  
 **Collaborates With / Referenced By:** `L5-E-03-*`, `L5-E-05-*`, `L5-F-01-*`.  
 **Applicable ADRs:** `ADR-L5-0006`, `ADR-L5-0007`, `ADR-L5-0008`; E04 placement/isolation decisions from `ADR-L5-0003` also constrain rollout topology. Exact rolling/blue-green/canary/orchestration tooling remains unresolved.
@@ -177,3 +177,9 @@ Mixed-version operation is permitted only where C01/B02 compatibility evidence c
 **Material Dependencies:** `L5-E-04-001`, `L5-E-04-002`, `L5-E-04-003`, `L5-E-04-004`, `L5-C-01-003`, `L5-B-02-003`, `L5-B-02-004`, `L4-A-029`, `L4-A-030`, `L4-A-031`, `L4-A-032`  
 **Material Collaborators:** `L5-E-03-*`, `L5-E-05-*`, `L5-F-01-*`  
 **Applicable Approved ADRs:** `ADR-L5-0003`, `ADR-L5-0006`, `ADR-L5-0007`, `ADR-L5-0008`
+
+
+## 2026-09-22 Backend Readiness Group 5 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0044`  
+E04 consumes the same immutable artifact digest promoted by F01. Durable production changes flow through governed pipelines; emergency changes are attributable and reconciled. Readiness/drain behavior gates rollout/termination.

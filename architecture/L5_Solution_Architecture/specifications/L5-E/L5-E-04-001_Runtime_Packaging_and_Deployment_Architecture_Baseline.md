@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Technology-neutral runtime/deployment architecture supporting on-premises and cloud-capable deployment without transferring business ownership.  
 **Technical Architecture Owner:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.1.0`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-A-01-001`, `L5-A-03-001`, `L5-A-04-*`, `L5-B-02-*`, `L5-D-03-*`, `L4-A-001`, `L4-A-028`, `L4-A-029`, `L4-A-030`, `L4-A-031`.  
 **Collaborates With / Referenced By:** `L5-E-04-002`–`005`, `L5-E-01-*`, `L5-E-03-*`, `L5-E-05-*`, `L5-F-01-*`.  
-**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0005`; `ADR-L5-0018`; `ADR-L5-0019`; `ADR-L5-0028`.
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0005`; `ADR-L5-0018`; `ADR-L5-0019`; `ADR-L5-0028`; `ADR-L5-0043`; `ADR-L5-0044`.
 
 ---
 
@@ -200,3 +200,15 @@ Verified artifact
 
 **Applicable locked decision:** `ADR-L5-0028`  
 OCI is the artifact standard; Kubernetes is the clustered orchestrator; non-clustered on-prem may use an approved OCI runtime; cloud vendor remains pluggable.
+
+
+## 2026-09-22 Backend Readiness Group 5 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0043`  
+Distribution-neutral Kubernetes is the clustered baseline; Podman is the default non-clustered on-prem OCI runtime; Envoy Gateway + Gateway API, OpenTofu and Helm are canonical deployment tools; GitOps controller remains optional; supporting stateful platforms are independently operated.
+
+
+## 2026-09-22 Backend Readiness Group 5 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0044`  
+Runtime units use governed immutable artifacts/configuration, separate startup/liveness/readiness semantics and graceful draining/shutdown; emergency mutation is exceptional and reconciled.

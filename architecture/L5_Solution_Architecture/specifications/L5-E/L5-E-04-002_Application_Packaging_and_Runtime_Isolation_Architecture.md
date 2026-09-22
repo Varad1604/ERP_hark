@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Application packaging, runtime isolation and service-boundary realization without mandating a specific orchestrator.  
 **Technical Architecture Owner:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-E-04-001`, `L5-A-01-001`, `L5-A-03-001`, `L5-C-01-*`, `L5-D-03-005`, `L5-B-02-*`, `L4-A-028`, `L4-A-029`, `L4-A-032`.  
 **Collaborates With / Referenced By:** `L5-C-02-*`, `L5-E-04-003/004/005`, `L5-E-01-*`, `L5-E-05-*`, `L5-F-01-*`.  
-**Applicable ADRs:** `ADR-L5-0002`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0005`. Container/package format and orchestration product selection remain unresolved.
+**Applicable ADRs:** `ADR-L5-0002`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0005`. OCI packaging and Kubernetes clustered orchestration are resolved by `ADR-L5-0028`; Podman/Helm/Gateway realization is governed by `ADR-L5-0043`.
 
 ---
 
@@ -136,7 +136,7 @@ Approved application/module composition
 | AD-003 | Credential handling | No embedded runtime secrets/credentials. | `ADR-L5-0002` |
 | AD-004 | Persistence ownership | Co-location/isolation does not change persistence ownership. | `ADR-L5-0005` |
 | AD-005 | Tenant isolation | Placement changes do not weaken Tenant/Institution isolation. | `ADR-L5-0004` |
-| AD-006 | Package/orchestrator technology | Unresolved; OCI/Kubernetes remain candidates only. | ADR required if standardized |
+| AD-006 | Package/orchestrator technology | OCI + Kubernetes clustered profile; Podman non-clustered profile; Helm packaging. | `ADR-L5-0028`; `ADR-L5-0043` |
 
 ---
 
@@ -157,8 +157,8 @@ Approved application/module composition
 
 | Item ID | Item | Blocking? | Resolution |
 | --- | --- | --- | --- |
-| OD-001 | Package/container standard | No for architecture pattern; Yes before normative technology mandate | Govern through ADR if a shared standard is selected. |
-| OD-002 | Orchestration platform | No for architecture pattern; Yes before normative platform mandate | Evaluate Kubernetes and alternatives through ADR governance. |
+| OD-001 | **Resolved:** OCI artifacts; Helm for Kubernetes package configuration. | Locked | `ADR-L5-0028`; `ADR-L5-0043`. |
+| OD-002 | **Resolved:** Kubernetes for clustered production; Podman non-clustered on-prem profile. | Locked | `ADR-L5-0028`; `ADR-L5-0043`. |
 | OD-003 | Material L4 parents remain Draft | Yes for Architecture Approved | Resolve through L4 governance. |
 
 ---
@@ -168,3 +168,9 @@ Approved application/module composition
 **Material Dependencies:** `L5-E-04-001`, `L5-A-01-001`, `L5-A-03-001`, `L5-C-01-*`, `L5-D-03-005`, `L5-B-02-*`, `L4-A-028`, `L4-A-029`, `L4-A-032`  
 **Material Collaborator:** `L5-C-02-*`  
 **Applicable Approved ADRs:** `ADR-L5-0002`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0005`
+
+
+## 2026-09-22 Backend Readiness Group 5 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0044`  
+Startup/liveness/readiness are separate operational semantics and shutdown drains accepted work safely before termination.

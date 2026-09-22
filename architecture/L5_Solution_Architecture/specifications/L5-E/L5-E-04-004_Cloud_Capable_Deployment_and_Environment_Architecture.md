@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Provider-neutral cloud-capable deployment and environment architecture preserving portability, ownership and isolation.  
 **Technical Architecture Owner:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-E-04-001`, `L5-E-04-002`, `L5-A-04-*`, `L5-B-02-*`, `L5-B-04-*`, `L5-D-03-*`, `L4-A-001`, `L4-A-028`, `L4-A-029`.  
 **Collaborates With / Referenced By:** `L5-E-01-*`, `L5-E-02-*`, `L5-E-05-*`, `L5-E-04-005`.  
-**Applicable ADRs:** `ADR-L5-0002`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0005`. Cloud provider, managed-service, container and orchestration products remain unresolved.
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0005`; `ADR-L5-0028`; `ADR-L5-0043`; `ADR-L5-0044`.
 
 ---
 
@@ -156,7 +156,7 @@ verified deployable artifact
 | Item ID | Item | Blocking? | Resolution |
 | --- | --- | --- | --- |
 | OD-001 | Cloud provider strategy | No for provider-neutral architecture; Yes before provider mandate | Govern through ADR if selected. |
-| OD-002 | Container/orchestration platform | No for architecture pattern; Yes before platform mandate | ADR if standardized. |
+| OD-002 | **Resolved:** Kubernetes clustered-production model. | Locked | `ADR-L5-0028`; `ADR-L5-0043`. |
 | OD-003 | Managed service selections | No until specific service is proposed | Evaluate per canonical owner and ADR triggers. |
 | OD-004 | Numeric scaling/availability thresholds | No | Define through E01/E02 approved profiles. |
 | OD-005 | Material L4 parents remain Draft | Yes for Architecture Approved | Resolve through L4 governance. |
@@ -168,3 +168,9 @@ verified deployable artifact
 **Material Dependencies:** `L5-E-04-001`, `L5-E-04-002`, `L5-A-04-*`, `L5-B-02-*`, `L5-B-04-*`, `L5-D-03-*`, `L4-A-001`, `L4-A-028`, `L4-A-029`  
 **Material Collaborators:** `L5-E-01-*`, `L5-E-02-*`, `L5-E-05-*`, `L5-E-04-005`  
 **Applicable Approved ADRs:** `ADR-L5-0002`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0005`
+
+
+## 2026-09-22 Backend Readiness Group 5 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0043`  
+Canonical cloud architecture remains provider-neutral while using Kubernetes/Gateway API/Helm/OpenTofu conventions. Managed PostgreSQL or other services may substitute only through approved deployment profiles.

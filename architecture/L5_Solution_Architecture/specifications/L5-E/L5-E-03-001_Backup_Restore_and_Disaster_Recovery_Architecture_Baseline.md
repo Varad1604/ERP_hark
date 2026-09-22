@@ -8,9 +8,9 @@
 **Canonical Technical Responsibility:** Recovery objectives and common backup/restore/DR architecture for supported deployment models.  
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.2`  
+**Version:** `1.2.0`  
 **Status:** `Locked`  
-**Last Updated:** `2026-09-16`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** `L5-B-02`; `L5-E-04`; `L5-E-01`; `L5-D-03`; `L5-E-05`; applicable data owners  
 **Referenced By:** `L5-E-03-002`; `L5-E-03-003`; recoverability-aware L5 specifications  
 **Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0014`; `ADR-L5-0017`  
@@ -107,3 +107,9 @@ Backups/restores consume D03 encryption/key controls and applicable B05 retentio
 
 ## 10. Traceability Summary
 **Primary authority:** frozen `L5-E-03-001` responsibility; `ADR-L5-0014`; `ADR-L5-0017`; Stage-5 approval decision. **Governance-authorized / Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Peers:** B02, E04, E01, D03, E05. **Blocking:** none.
+
+
+## 2026-09-22 Backend Readiness Group 5 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0044`  
+E03 remains the centralized backup/restore/DR owner for PostgreSQL, object storage, platform configuration and other stateful supporting services; application modules do not invent independent backup authority.
