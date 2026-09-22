@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Technology-neutral runtime/deployment architecture supporting on-premises and cloud-capable deployment without transferring business ownership.  
 **Technical Architecture Owner:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.1`  
+**Version:** `1.1.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-A-01-001`, `L5-A-03-001`, `L5-A-04-*`, `L5-B-02-*`, `L5-D-03-*`, `L4-A-001`, `L4-A-028`, `L4-A-029`, `L4-A-030`, `L4-A-031`.  
 **Collaborates With / Referenced By:** `L5-E-04-002`–`005`, `L5-E-01-*`, `L5-E-03-*`, `L5-E-05-*`, `L5-F-01-*`.  
-**Applicable ADRs:** `ADR-L5-0002`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0005`. Packaging/container/orchestration technology remains unresolved and shall be governed separately if selected as a shared deployment standard.
+**Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0005`; `ADR-L5-0018`; `ADR-L5-0019`; `ADR-L5-0028`.
 
 ---
 
@@ -152,7 +152,7 @@ Verified artifact
 | AD-003 | Credential handling | Runtime resolves D03-governed machine credentials/secrets externally; artifacts do not embed them. | `ADR-L5-0002` | `ADR-L5-0002` |
 | AD-004 | Persistence boundary | Co-location or shared infrastructure shall not grant cross-owner persistence access. | `ADR-L5-0005` | `ADR-L5-0005` |
 | AD-005 | Isolation preservation | Tenant/Institution isolation remains enforced independent of deployment profile. | `ADR-L5-0004` | `ADR-L5-0004` |
-| AD-006 | Packaging/orchestration technology | Unresolved. OCI/container/orchestration products are candidates only until governed. | Technology selection | ADR required if shared standard is selected |
+| AD-006 | Packaging/orchestration technology | OCI images are canonical; Kubernetes is the clustered-production model; non-clustered profiles may use an approved OCI-compatible runtime. | `ADR-L5-0028` | Locked |
 
 ---
 
@@ -174,7 +174,7 @@ Verified artifact
 | Item ID | Item | Classification | Blocking? | Required Resolution |
 | --- | --- | --- | --- | --- |
 | OD-001 | Primary runtime/language/framework | ADR | No for technology-neutral E04 baseline; Yes before normative runtime mandate | Resolve through canonical technology selection. |
-| OD-002 | Packaging/container/orchestration standard | ADR | No for technology-neutral E04 baseline; Yes before normative platform mandate | Evaluate and approve if repository/shared standard is required. |
+| OD-002 | **Resolved:** OCI images + Kubernetes clustered profile; simple OCI non-clustered profile retained. | ADR | Locked. | `ADR-L5-0028`. |
 | OD-003 | Exact profile sizing/availability targets | E01/E02 dependency | No | Define by approved reliability/capacity profiles. |
 | OD-004 | Continuous vendor-cloud independence for core on-premises operation | Architecture/ADR decision | Yes only if this is to become a mandatory support promise | Establish repository authority before making normative. |
 | OD-005 | Material L4 parents remain Draft | Upstream | Yes for Architecture Approved | Resolve through L4 governance. |
@@ -194,3 +194,9 @@ Verified artifact
 ### Applicable Approved ADRs
 
 `ADR-L5-0002`, `ADR-L5-0003`, `ADR-L5-0004`, `ADR-L5-0005`
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0028`  
+OCI is the artifact standard; Kubernetes is the clustered orchestrator; non-clustered on-prem may use an approved OCI runtime; cloud vendor remains pluggable.

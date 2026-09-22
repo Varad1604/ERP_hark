@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Define reusable technical architecture for cryptographic key lifecycle, generation/provisioning, scope and purpose binding, custody, controlled use, rotation/version transition, suspension/revocation, recovery, retirement/destruction and separation of key-management responsibilities across SutraERP, without owning cryptographic protection operations, application secrets/certificates/machine credentials, authorization policy, business rules or business authority.  
 **Technical Architecture Owner:** L5-D-03-003 — Key Management Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.0.1`  
+**Version:** `1.1.0`  
 **Status:** Draft  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Primary Dependencies:** `L5-D-03-001`, `L5-A-04`, authoritative protection requirements.  
 **Collaborates With:** `L5-D-03-002`, `L5-D-03-004`, `L5-D-01`, `L5-D-02`, `L5-D-04`, `L5-B-05`.  
 **Applicable ADRs:** `ADR-L5-0002` — Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern (`Architecture Approved`, 2026-09-11).
@@ -306,3 +306,8 @@ Only materially supported direct relations shall be added to the canonical trace
 ---
 
 **Current Status:** Draft — Remediated and ready for revalidation.
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0027`  
+OpenBao is the canonical secrets/transit-cryptography service and rustls is the default in-process Rust TLS implementation. D03-003 retains key-custody ownership and external HSM/KMS integration remains valid.

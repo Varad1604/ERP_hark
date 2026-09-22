@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Define reusable technical architecture for application/integration secrets, certificates and machine credentials, including protected provisioning, controlled retrieval/use, scope binding, renewal/replacement, revocation, retirement and exposure containment, without owning human authentication, authorization policy, cryptographic key custody, business rules or business authority.  
 **Technical Architecture Owner:** L5-D-03-004 — Secrets, Certificates & Machine Credential Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.0.1`  
+**Version:** `1.1.0`  
 **Status:** Draft  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Primary Dependencies:** `L5-D-03-001`, `L5-A-04`.  
 **Collaborates With:** `L5-D-03-002`, `L5-D-03-003`, `L5-D-03-005`, `L5-D-01`, `L5-D-02`, `L5-D-04`, applicable integration/runtime architecture.  
 **Applicable ADRs:** `ADR-L5-0002` — Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern (`Architecture Approved`, 2026-09-11).
@@ -279,9 +279,14 @@ Only materially supported direct relations shall be entered into the canonical t
 |---|---|---|
 | OD-001 | Add only defensible direct L4 BH relations when validated evidence exists. | No for Draft validity; required before relation validation. |
 | OD-002 | Reconcile material A04 scope changes. | Conditional. |
-| OD-003 | Secret-store / CA / provider / certificate-profile choices remain separately governed. | Conditional ADR/technical decision. |
+| OD-003 | **Secret store resolved:** OpenBao. CA/provider/certificate-profile choices remain separately governed. | `ADR-L5-0027`; remaining choices conditional. |
 | OD-004 | Credential validity/rotation/recovery timing remains authoritative-policy or ADR territory where material. | Conditional. |
 
 ---
 
 **Current Status:** Draft — Remediated and ready for revalidation.
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0027`  
+OpenBao is the canonical secrets/transit-cryptography service and rustls is the default in-process Rust TLS implementation. D03-003 retains key-custody ownership and external HSM/KMS integration remains valid.

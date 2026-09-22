@@ -12,9 +12,9 @@
 | Canonical Technical Responsibility | Technical document/object identity, immutable version lineage, storage realization and B05-authorized archival/disposition execution. |
 | Technical Architecture Owner | Document Registry & Storage Technical Architecture |
 | Assigned Author | Varad |
-| Version | 1.0.1 |
+| Version | 1.1.0 |
 | Status | Locked |
-| Last Updated | 2026-09-15 |
+| Last Updated | 2026-09-22 |
 | Depends On | L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5-B-04-001; L5-B-02-001; L5-B-02-002; L5-B-02-003; L5-B-05-003; L5-D-03-001; L5-D-03-002; L5-D-04-001; L5-A-08-001; L4-C-018; L4-E-064; L4-H-004 |
 | Referenced By | L5-B-04-003; L5-B-04-004; L5-B-04-005; domain document consumers |
 | Applicable ADRs | ADR-L5-0001; ADR-L5-0002; ADR-L5-0005; ADR-L5-0006; ADR-L5-0013; ADR-L5-0014 |
@@ -137,7 +137,7 @@ B04-002 never initiates disposition merely because elapsed time or a local defau
 | AD-B04-002-01 | B04 owns technical object/version lineage; upstream domains retain business identity and business lifecycle. | Repository-derived boundary |
 | AD-B04-002-02 | B04 executes archival/disposal storage actions only from B05 authorization. | Locked B05-003 ownership |
 | AD-B04-002-03 | Historical technical versions are append-only lineage; replacement creates a new version. | Defensible technical derivation |
-| OD-B04-002-01 | Concrete object-store product, storage tiering, namespace layout and replication topology remain unresolved pending governed downstream design. | Open decision |
+| OD-B04-002-01 | **Storage contract/reference resolved:** S3-compatible + Ceph RGW clustered/on-prem reference. Storage tiering, namespace layout and replication topology remain governed downstream. | `ADR-L5-0026` |
 
 ---
 
@@ -156,3 +156,13 @@ B04-002 never initiates disposition merely because elapsed time or a local defau
 ## 8. Traceability Summary
 
 This revision resolves the prior B04/B05 ownership collision by making `L5-B-05-003` authoritative for retention, legal hold and disposition while preserving B04's canonical responsibility for document/object registry, technical version lineage and storage realization.
+
+## 2026-09-22 Controlled Technology Amendment
+
+This Locked specification is amended and re-locked under `L5_Technology_Decision_Wave_Lock_Decision_2026-09-22.md`. Only implementation technology is changed; upstream business architecture is unchanged.
+
+
+## 2026-09-22 Locked Technology Decision Synchronization
+
+**Applicable locked decision:** `ADR-L5-0026`  
+The registry keeps opaque storage references. S3 compatibility and the Ceph RGW clustered/on-prem reference are locked; physical namespace and replication remain deployment-governed.
