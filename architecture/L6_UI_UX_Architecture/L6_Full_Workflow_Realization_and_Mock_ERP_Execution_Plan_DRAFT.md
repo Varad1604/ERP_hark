@@ -195,7 +195,7 @@ Objective exit gate:
 
 **Planning state:** `STAGE 3 PLAN — READY TO EXECUTE`.
 
-**Execution state:** `STAGE 3 — PASS WITH NON-BLOCKING DEFERRED FINDINGS` under `00_Governance/L6_Stage3_Final_Validation_and_Closure_Decision_2026-09-21.md`. Stage 3 is complete and may be closed. Stage 4 has not started.
+**Execution state:** `STAGE 3 — PASS WITH NON-BLOCKING DEFERRED FINDINGS` under `00_Governance/L6_Stage3_Final_Validation_and_Closure_Decision_2026-09-21.md`. Stage 3 is complete and may be closed. Stage 4 is complete and merged. Stage 5 has not started.
 
 ---
 
@@ -231,41 +231,75 @@ Exit gate:
 
 ## 8. Stage 5 — Domain-by-Domain Mock-Operational Implementation
 
-Implement using the existing 12 archetypes.
+The reviewed Stage-5 planning baseline is:
 
-Recommended domain sequence:
+`00_Governance/L6_Stage5_Domain_By_Domain_Mock_Operational_Implementation_Reviewed_Gameplan_2026-09-22.md`
 
-1. Platform / Administration
-2. Institution & Structure
-3. Student Lifecycle
-4. Academic Delivery
-5. People & Workforce
-6. Finance
-7. Campus Operations
-8. Institutional Services & Intelligence
-9. Examination
-10. Enterprise Resource Management
+That document supersedes the earlier coarse one-domain/one-batch Stage-5 hypothesis as the active detailed execution model.
 
-For each workflow where interaction is legitimate, implement enough deterministic behavior to review:
+Stage 5 shall:
+
+- preserve the existing deterministic Stage-3 demo-state authority;
+- extend existing interaction primitives rather than create a parallel workflow engine;
+- respect all 551 REQUIRED, 11 NOT-REQUIRED and 33 PROHIBITED workflow dispositions;
+- preserve scenario-level overrides for all 10 mixed workflows;
+- keep background/system workflows observable rather than artificially actionable;
+- preserve canonical owner at all cross-workspace handoffs;
+- use deterministic mock outcomes, related projection updates and clearly bounded demo history;
+- preserve exact reset and preset integrity;
+- keep ordinary UX free of reviewer architecture IDs;
+- remain frontend-only and non-authoritative.
+
+The active Stage-5 execution topology is intentionally split into **31 batches numbered 0–30** so every batch can reasonably complete research, implementation, validation, browser evidence, accessibility review, cleanup, self-review, architecture evidence and reporting in one execution conversation.
+
+The detailed batch topology is governed by the reviewed gameplan. Large domains are decomposed rather than treated as giant PRs:
+
+```text
+Foundation / Census / Golden Slices          Batches 0–2
+Platform / Administration                   Batches 3–4
+Institution & Structure                     Batch 5
+Student Lifecycle                           Batches 6–7
+Academic Delivery                           Batches 8–9
+People & Workforce                          Batches 10–11
+Finance                                     Batches 12–13
+Campus Operations                           Batches 14–19
+Institutional Services & Intelligence       Batches 20–21
+Examination                                 Batches 22–25
+Enterprise Resource Management              Batches 26–27
+Enterprise convergence                      Batch 28
+Full 595-workflow reconciliation            Batch 29
+Final validation / cleanup / closure        Batch 30
+```
+
+Batch sizing rule:
+
+```text
+normal target:     15–30 workflows
+preferred ceiling: ~30 workflows
+exception ceiling: ~35 only when reuse makes the work demonstrably bounded
+```
+
+If a planned batch cannot realistically finish end-to-end in one execution conversation, the Stage-5 master-control chat shall split it before issuing the execution prompt.
+
+For each legitimate interactive workflow, Stage 5 should support enough deterministic experience to review:
 
 ```text
 enter/discover
 → inspect context
-→ perform mock intent
-→ intermediate state if applicable
+→ express mock intent
+→ intermediate state if legitimate
 → confirmed/rejected/failed/indeterminate/handoff outcome
-→ updated related presentation
-→ history/activity visibility
+→ related presentation update
+→ demo history/activity visibility
 ```
 
 For background/system workflows, implement the correct observable consequence rather than a fake action.
 
-Exit gate per domain:
+Stage-5 closure requires complete 595-workflow reconciliation, preservation of all protected counts, deterministic reset/preset behavior, owner-safe cross-domain behavior, dedicated browser/accessibility evidence and no false INTEGRATED or PRODUCTION-VALIDATED maturity claim.
 
-- all domain scenarios have realizations;
-- all user-addressable workflows are reachable;
-- representative records are coherent;
-- no architecture hard fail is introduced.
+**Planning state:** `STAGE 5 MASTER PLAN — READY WITH NON-BLOCKING FINDINGS`.
+
+**Execution state:** Stage 5 has not started.
 
 ---
 
