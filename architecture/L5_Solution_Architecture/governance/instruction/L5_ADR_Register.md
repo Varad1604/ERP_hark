@@ -141,6 +141,12 @@ The next new ADR number is determined from the highest canonical allocated ADR n
 
 | `ADR-L5-0044` | Runtime Health, Configuration Change & Graceful Lifecycle Profile | Shared / Family | L5-E-04 — Runtime, Packaging & Deployment Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0044_Runtime_Health_Configuration_Change_and_Graceful_Lifecycle_Profile.md` | `L5-E-04-001`; `L5-E-04-002`; `L5-E-04-005` | 2026-09-22 | 2026-09-22 | — | — | Locked Group-5 runtime lifecycle profile. |
 
+| `ADR-L5-0045` | Measured Performance, Capacity & Workload Profile Standard | Shared / Family | L5-E-02 — Performance & Capacity Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0045_Measured_Performance_Capacity_and_Workload_Profile_Standard.md` | `L5-E-02-001`; `L5-E-02-002`; capacity-sensitive L5 consumers | 2026-09-22 | 2026-09-22 | — | — | Locked Group-6 performance/capacity governance. |
+
+| `ADR-L5-0046` | Recovery Class, RPO/RTO, Retention & Validation Governance Standard | Repository | L5-E-03 — Backup, Restore & Disaster Recovery Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0046_Recovery_Class_RPO_RTO_Retention_and_Validation_Governance_Standard.md` | `L5-E-03-001`; `L5-E-03-002`; `L5-E-03-003`; recovery-sensitive L5 consumers | 2026-09-22 | 2026-09-22 | — | — | Locked Group-6 recovery/retention governance. |
+
+| `ADR-L5-0047` | Scheduling Optimization Benchmark Gate & Authority Boundary | Specification | L5-A-07-006 — Scheduling & Optimization Engine Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0047_Scheduling_Optimization_Benchmark_Gate_and_Authority_Boundary.md` | `L5-A-07-006`; scheduling consumers/F02 | 2026-09-22 | 2026-09-22 | — | — | Locked Group-6 solver benchmark gate; product intentionally not yet selected. |
+
 ### ADR Path
 
 Once the ADR file exists, record its canonical repository path.
@@ -383,5 +389,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 44  
-**Next Canonical Allocation:** `ADR-L5-0045`
+**ADR IDs Currently Canonically Allocated:** 47  
+**Next Canonical Allocation:** `ADR-L5-0048`

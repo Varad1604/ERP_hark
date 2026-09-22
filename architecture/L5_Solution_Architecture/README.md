@@ -246,3 +246,17 @@ Locked on 2026-09-22:
 - `ADR-L5-0044` — runtime health, configuration-change and graceful-lifecycle profile.
 
 Only Backend Readiness Group 6 remains before the repository-wide L5 consistency/closure audit. The ADR register now allocates 44 ADRs; next allocation is `ADR-L5-0045`.
+
+
+## Backend Readiness Decision Groups — COMPLETE
+
+All six backend-readiness decision groups are complete and Locked as of 2026-09-22.
+
+- Group 1: `ADR-L5-0034`–`0035`
+- Group 2: `ADR-L5-0036`–`0037`
+- Group 3: `ADR-L5-0038`–`0040`
+- Group 4: `ADR-L5-0041`–`0042`
+- Group 5: `ADR-L5-0043`–`0044`
+- Group 6: `ADR-L5-0045`–`0047`
+
+The backend architecture is decision-ready for future implementation planning, but **Final L5 Corpus Lock remains not authorized**. The next required activity is a full 105-specification post-decision synchronization and integrity audit. The ADR register now allocates 47 ADRs; next allocation is `ADR-L5-0048`.
