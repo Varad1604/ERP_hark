@@ -236,3 +236,13 @@ Locked on 2026-09-22:
 - `ADR-L5-0042` — Flowable workflow runtime, task, timer, version and compensation profile.
 
 Two backend-readiness decision groups remain after this group: Group 5 Runtime/Deployment/Operations and Group 6 Capacity/DR/Optimization Targets. Final corpus synchronization/validation remains a separate closure activity. The ADR register now allocates 42 ADRs; next allocation is `ADR-L5-0043`.
+
+
+## Backend Readiness Decision Group 5 — Runtime, Deployment & Operations
+
+Locked on 2026-09-22:
+
+- `ADR-L5-0043` — deployment toolchain, environment and stateful-platform profile.
+- `ADR-L5-0044` — runtime health, configuration-change and graceful-lifecycle profile.
+
+Only Backend Readiness Group 6 remains before the repository-wide L5 consistency/closure audit. The ADR register now allocates 44 ADRs; next allocation is `ADR-L5-0045`.

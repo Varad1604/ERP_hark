@@ -137,6 +137,10 @@ The next new ADR number is determined from the highest canonical allocated ADR n
 
 | `ADR-L5-0042` | Flowable Workflow Runtime, Task, Timer, Version & Compensation Profile | Shared / Family | L5-A-05 — Workflow & Orchestration Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0042_Flowable_Workflow_Runtime_Task_Timer_Version_and_Compensation_Profile.md` | `L5-A-05-001`; `L5-A-05-002`; `L5-A-05-003` | 2026-09-22 | 2026-09-22 | — | — | Locked Group-4 workflow runtime profile. |
 
+| `ADR-L5-0043` | Deployment Toolchain, Environment & Stateful Platform Profile | Repository | L5-E-04 — Runtime, Packaging & Deployment Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0043_Deployment_Toolchain_Environment_and_Stateful_Platform_Profile.md` | `L5-E-04-001`…`L5-E-04-005`; constrains F01/E03/E05 | 2026-09-22 | 2026-09-22 | — | — | Locked Group-5 deployment/toolchain profile. |
+
+| `ADR-L5-0044` | Runtime Health, Configuration Change & Graceful Lifecycle Profile | Shared / Family | L5-E-04 — Runtime, Packaging & Deployment Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0044_Runtime_Health_Configuration_Change_and_Graceful_Lifecycle_Profile.md` | `L5-E-04-001`; `L5-E-04-002`; `L5-E-04-005` | 2026-09-22 | 2026-09-22 | — | — | Locked Group-5 runtime lifecycle profile. |
+
 ### ADR Path
 
 Once the ADR file exists, record its canonical repository path.
@@ -379,5 +383,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 42  
-**Next Canonical Allocation:** `ADR-L5-0043`
+**ADR IDs Currently Canonically Allocated:** 44  
+**Next Canonical Allocation:** `ADR-L5-0045`
