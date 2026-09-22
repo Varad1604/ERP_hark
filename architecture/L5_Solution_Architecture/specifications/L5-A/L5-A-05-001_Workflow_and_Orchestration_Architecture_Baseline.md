@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Reusable workflow/orchestration capability; business domains retain workflow rules and decisions.  
 **Technical Architecture Owner:** `L5-A-05 — Workflow & Orchestration Architecture`  
 **Assigned Author:** Devang  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register 105 v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; L5 Dependency-Gated Parallel Authoring Execution Timeline; `L5_Devang_Stage2_Architecture_Remediation_and_Approval_Decision_2026-09-12.md`; `L5-D-02-001` through `L5-D-02-007`; `L5-C-01-001` through `L5-C-01-003`; `L5-C-02-001` through `L5-C-02-003`; `L5-A-04-001/002`; `L5-B-02-002/003`; `L5-D-01-002/003`; `L5-D-03-001`; applicable `L5-D-04`; `L2-A05_Workflow_Engine_Workflows.md`; `L4-A-014`; `L4-A-015`; `L4-A-016`; `L4-A-017`.  
 **Referenced By:** `L5-A-05-002`; `L5-A-05-003`; business-domain workflow consumers; `L5-A-08`; `L5-C-01`; `L5-C-02`; `L5-D-02`; `L5-D-04`; operational/observability architecture.  
-**Applicable ADRs:** `ADR-L5-0003` Contract-Driven Modular Platform with Selective Isolation; `ADR-L5-0004` Tenant and Institution Isolation Enforcement Pattern; `ADR-L5-0006` Owner-Local Transaction and Optimistic Concurrency Strategy; `ADR-L5-0007` Atomic State-to-Publication Intent Handoff Pattern; `ADR-L5-0009` Non-Human Principal Authorization Binding Pattern; `ADR-L5-0010` Durable Event Delivery, Subscription, Ordering & Recovery Pattern; `ADR-L5-0011` Event Contract Versioning & Consumer Compatibility Pattern. `ADR-L5-0023` is the Locked workflow notation/runtime decision.
+**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0007`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0023`; `ADR-L5-0041`; `ADR-L5-0042`.
 
 ---
 
@@ -1124,12 +1124,12 @@ Operational tooling may inspect/control runtime only through governed privileged
 | `OD-001` | **Resolved:** BPMN 2.x. | Technology / representation | Locked. | `ADR-L5-0023`. |
 | `OD-002` | **Resolved:** Flowable OSS 8.x isolated governed JVM runtime. | Technology | Locked. | `ADR-L5-0023`. |
 | `OD-003` | Exact A05 runtime persistence representation/schema. | B02/A05 implementation | No for baseline. | A05-003 + B02 realization. |
-| `OD-004` | Exact timer/scheduler execution mechanism and A05↔A08 runtime handoff. | A05/A08 technical boundary | No for baseline; yes before implementation of shared timer execution. | Resolve in A05-003/A08 without transferring workflow semantics. |
+| `OD-004` | **Resolved boundary:** Flowable owns workflow-instance timers; A08 Rust workers own recurring/generic technical background scheduling and JetStream work delivery. | A05/A08 technical boundary | Locked. | `ADR-L5-0041`; `ADR-L5-0042`. |
 | `OD-005` | Exact workflow-instance migration technical mechanism. | A05-002/A05-003 | No for baseline; feature-blocking when migration is implemented. | Must preserve L4-A-017 safeguards; no invented state/event. |
-| `OD-006` | Exact generic human-task assignment representation. | A05-003/D02 | No for baseline. | Define without treating task assignment as authorization. |
-| `OD-007` | Exact technical compensation execution strategy. | A05-003 | No for baseline; feature-blocking for compensation-capable flows. | Preserve source-owned compensation policy/commands. |
+| `OD-006` | **Resolved authority rule:** Flowable may hold candidate/task-routing information, but assignment never grants authority; D02 re-authorizes the protected action. Exact internal assignment representation remains implementation design. | A05-003/D02 | Non-blocking. | `ADR-L5-0042`. |
+| `OD-007` | **Resolved architecture:** compensation invokes explicit owner-provided compensating actions only where source architecture permits them; exact implementation sequencing remains workflow design. | A05-003 | Non-blocking. | `ADR-L5-0042`. |
 | `OD-008` | C01 family remains a live peer architecture and may evolve before final lock. | Peer dependency | Non-blocking for controlled Stage-3 authoring while current contract boundaries remain stable. | Perform impact review if C01 changes materially. |
-| `OD-009` | Whether a new A05-specific ADR is required for workflow runtime realization after A05-002/A05-003 expose concrete alternatives. | ADR governance | Non-blocking now. | Apply ADR-necessity test before selecting a normative engine/runtime pattern. |
+| `OD-009` | **Resolved:** workflow runtime and runtime-behavior ADRs are canonical and Locked. | ADR governance | Closed. | `ADR-L5-0023`; `ADR-L5-0042`. |
 
 No unresolved upstream business-authority gap is silently repaired here.
 

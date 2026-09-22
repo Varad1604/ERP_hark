@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Trusted background/asynchronous execution, durable job identity, execution-context preservation and governed technical job lifecycle without redefining business ownership.  
 **Technical Architecture Owner:** L5-A-08 — Background Processing & Job Execution Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-A-01-001`; `L5-C-02-001`; `L5-C-02-002`; `L5-C-02-003`; `L5-E-04-001`; `L5-B-02-001`; `L5-B-02-003`; `L5-D-02-*`; `L5-D-04-*`; `L4-A-015`; `L4-A-016`.  
 **Referenced By:** `L5-A-08-002`; workflow/orchestration and other L5 consumers requiring generic background execution.  
-**Applicable ADRs:** `ADR-L5-0003`, `ADR-L5-0005`, `ADR-L5-0006`, `ADR-L5-0007`, `ADR-L5-0009`, `ADR-L5-0010`, `ADR-L5-0011`, `ADR-L5-0013`.  
+**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0005`; `ADR-L5-0006`; `ADR-L5-0007`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0013`; `ADR-L5-0019`; `ADR-L5-0022`; `ADR-L5-0037`; `ADR-L5-0041`.
 
 ---
 
@@ -310,7 +310,7 @@ No claim is made that A08 owns the business/workflow behavior represented by the
 
 **OD-001:** Concrete Job/Attempt storage schema and indexes are downstream implementation/technical design under the invariants above and applicable B02 architecture.  
 **OD-002:** Numeric lease duration, worker limits and timeout values are governed configuration/operational profile, not fixed by this specification.  
-**OD-003:** Product selection for workers/queues/schedulers remains separate technology/ADR governance if material.  
+**OD-003:** **Resolved architecture:** dedicated Rust/Tokio workers + NATS JetStream durable work delivery; A08 owns technical/background scheduling. Exact process-count/topology and profile values remain E02/E04 implementation/deployment concerns. See `ADR-L5-0041`.  
 
 No open item blocks the ownership, lifecycle, persistence, claim, retry-boundary or dependency architecture defined here.
 
