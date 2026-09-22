@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** User-account, service/workload/job/integration identity technical models without duplicating Person.  
 **Technical Architecture Owner:** L5-D-01 — IAM Architecture  
 **Assigned Author:** Devang  
-**Version:** `1.0.0`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; working `L5-D-01-001` v1.0.1 Draft; `L4-A-004` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-008` v1.0.0 Draft; `L4-A-053` v1.0.0 Draft; `L2-A01` v1.0.0 Locked; `L2-A02` Locked; `L2-A03` Locked; `ADR-PLAT-AUTH-001` Approved.  
 **Referenced By:** Planned `L5-D-01-003`, `L5-D-01-004`, `L5-D-02-*`, `L5-A-08-*`, `L5-C-03-*`, and other technical consumers requiring an authenticated human or non-human principal context.  
-**Applicable ADRs:** `ADR-PLAT-AUTH-001` constrains Person/User Account and authentication/authorization separation. No canonical L5 ADR is allocated for identity-provider, account-store, workload-identity, credential or federation technology; none is selected here.  
+**Applicable ADRs:** `ADR-PLAT-AUTH-001`; `ADR-L5-0039`.
 
 ---
 
@@ -443,3 +443,9 @@ No numeric credential lifetime, inactivity period, session duration, identity-re
 - `OD-002` — working D01 baseline and peer-L5 stabilization gate.
 - `OD-003` — non-human principal lifecycle/provisioning authority unresolved.
 - `OD-004` — material technology/ADR selections intentionally deferred.
+
+
+## 2026-09-22 Backend Readiness Group 3 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0039`  
+Every protected service/workload/job/integration execution uses an explicit non-human principal. Shared ambient API keys and implicit internal-network trust are not the default. Human initiator and technical executor are preserved separately.

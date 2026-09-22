@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Define reusable cryptographic and technical data-protection architecture for SutraERP data and protected technical exchanges, including protection boundaries, cryptographic-operation responsibilities and protected-data handling, without owning business data-classification policy, key custody, secrets/certificates, authorization policy or business authority.  
 **Technical Architecture Owner:** L5-D-03-002 — Cryptography & Data Protection Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.1.0`  
+**Version:** `1.2.0`  
 **Status:** Draft  
 **Last Updated:** `2026-09-22`  
 **Primary Dependencies:** `L5-D-03-001`, `L5-A-04`, applicable canonical persistence/runtime boundaries, and authoritative protection requirements.  
@@ -278,7 +278,7 @@ Only materially supported relations shall be added to the canonical traceability
 | OD-001 | Add only defensible direct L4 BH relations to the canonical traceability store when verified. | No for Draft validity; required before a relation is `Validated`. |
 | OD-002 | Reconcile material A04 changes affecting context/isolation. | Conditional. |
 | OD-003 | Reconcile material D03-003/004 contract changes if ADR-0002 is amended. | Conditional. |
-| OD-004 | Algorithm/key-size/provider/certificate topology choices remain separately governed. | Conditional ADR/technical decision. |
+| OD-004 | **Partially resolved:** modern AEAD/hash/TLS baseline is governed by `ADR-L5-0040`; exact key sizes, HSM/KMS provider and certificate topology remain security-profile decisions. | Conditional remaining detail. |
 
 ---
 
@@ -288,3 +288,9 @@ Only materially supported relations shall be added to the canonical traceability
 
 **Applicable locked decision:** `ADR-L5-0027`  
 OpenBao is the canonical secrets/transit-cryptography service and rustls is the default in-process Rust TLS implementation. D03-003 retains key-custody ownership and external HSM/KMS integration remains valid.
+
+
+## 2026-09-22 Backend Readiness Group 3 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0040`  
+Protected cross-process/service communication uses authenticated encrypted transport; TLS 1.3 is preferred; mTLS is profile-driven where workload identity at transport boundary is required; no service mesh is mandatory initially. OpenBao remains production-secret authority; infrastructure encryption-at-rest is baseline with classification-driven field protection; HSM/KMS custody is profile-driven; no universal rotation interval is invented.

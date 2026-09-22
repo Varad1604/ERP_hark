@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Technical identity/authentication/account architecture; canonical Person/business relationships remain upstream-owned.  
 **Technical Architecture Owner:** L5-D-01 — IAM Architecture  
 **Assigned Author:** Devang  
-**Version:** `1.1.0`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L4-A-004` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-008` v1.0.0 Draft; `L4-A-009` v1.0.0 Draft; `L4-A-053` v1.0.0 Draft; `L4-A-055` v1.0.0 Draft; `L2-A02` Locked; `L2-A03` Locked; `ADR-PLAT-AUTH-001` Approved.  
 **Referenced By:** Planned canonical dependents `L5-D-01-002`, `L5-D-01-003`, `L5-D-01-004`, and `L5-D-02-001`.  
-**Applicable ADRs:** `ADR-PLAT-AUTH-001`; `ADR-L5-0024`.
+**Applicable ADRs:** `ADR-PLAT-AUTH-001`; `ADR-L5-0024`; `ADR-L5-0038`; `ADR-L5-0039`.
 
 ---
 
@@ -427,3 +427,15 @@ No numeric availability, latency, timeout, session duration, credential lifetime
 
 **Applicable locked decision:** `ADR-L5-0024`  
 Keycloak 26.x is canonical for authentication/federation. It does not become the canonical Person/Identity master and does not own authorization policy.
+
+
+## 2026-09-22 Backend Readiness Group 3 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0038`  
+The default human login surface is a SutraERP D01-owned username/password API backed by Keycloak credential authority. Passwords are transient only, never persisted by SutraERP, and OAuth Direct Access Grant is not the canonical realization. Browser sessions are server-side/opaque-cookie based with privileged/high-risk MFA.
+
+
+## 2026-09-22 Backend Readiness Group 3 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0039`  
+Non-human principals use explicit governed identities and Keycloak/service-account or approved workload authentication; D02 remains authorization authority and internal network location never substitutes for authentication.

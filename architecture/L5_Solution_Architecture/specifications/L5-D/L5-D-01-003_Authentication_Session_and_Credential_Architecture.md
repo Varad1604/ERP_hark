@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Authentication/session/credential mechanisms separate from authorization policy.  
 **Technical Architecture Owner:** L5-D-01 — IAM Architecture  
 **Assigned Author:** Devang  
-**Version:** `1.0.0`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-01-001` v1.0.1 Draft; working `L5-D-01-002` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-008` v1.0.0 Draft; `L4-A-009` v1.0.0 Draft; `L4-A-053` v1.0.0 Draft; `L4-A-055` v1.0.0 Draft; `L2-A02` Locked; `L2-A03` v1.1.0 Locked; `ADR-PLAT-AUTH-001` Approved.  
 **Referenced By:** Planned `L5-D-01-004`, `L5-D-02-*`, `L5-G-01-003`, and technical consumers requiring authenticated principal/session context.  
-**Applicable ADRs:** `ADR-PLAT-AUTH-001` constrains authentication/authorization separation and Person/User Account semantics. No canonical L5 ADR is allocated for IAM product, authentication/federation protocol, credential-verifier technology, token format, session-store technology, cryptographic primitive, or provider product; none is selected here.  
+**Applicable ADRs:** `ADR-L5-0024`; `ADR-L5-0038`; `ADR-L5-0039`; `ADR-L5-0040`.
 
 ---
 
@@ -587,3 +587,15 @@ No numeric security, performance, availability, retention, timeout, TTL, lockout
 - `OD-004` — product/protocol/cryptographic technology selection.
 - `OD-005` — prior-Credential invalidation/recovery event semantics unresolved upstream.
 - `OD-006` — continuation/renewal canonical event semantics deferred.
+
+
+## 2026-09-22 Backend Readiness Group 3 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0038`  
+Human authentication uses the SutraERP custom credential API backed by Keycloak credential authority, server-side secure cookie sessions, bounded JWT use, privileged/high-risk MFA, WebAuthn/passkeys preferred where approved/stable, and TOTP fallback.
+
+
+## 2026-09-22 Backend Readiness Group 3 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0039`  
+System/service credentials are distinct from human credentials; non-human principals authenticate explicitly and remain separately revocable.

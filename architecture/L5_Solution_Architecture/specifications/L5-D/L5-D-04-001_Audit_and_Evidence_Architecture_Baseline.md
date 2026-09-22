@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Define the shared technical audit and evidence capability used to capture, qualify, correlate and make available evidence of material system behavior, while source domains retain ownership of business meaning, business evidence requirements and institutional authority.  
 **Technical Architecture Owner:** L5-D-04-001 — Audit & Evidence Architecture Baseline  
 **Assigned Author:** Varad  
-**Version:** `1.1.1`  
+**Version:** `1.2.0`  
 **Status:** `Locked`  
-**Last Updated:** `2026-09-12`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** `L5-D-03-001`; `L5-A-04-001`; `L5-A-04-002`; `L5-B-02-003`; `L5-C-02-001`; `L4-A-022`; `L4-A-023`; `ADR-L5-0001`; `ADR-L5-0004`; `ADR-L5-0007`; `ADR-L5-0010`; `ADR-L5-0011`.  
 **Referenced By:** `L5-D-04-002`; `L5-D-04-003`; cross-cutting application, workflow, integration, security and computational engine specifications.  
 **Applicable ADRs:** `ADR-L5-0001`; `ADR-L5-0004`; `ADR-L5-0007`; `ADR-L5-0010`; `ADR-L5-0011`.
@@ -227,3 +227,9 @@ Those are owned by L5-C-02 and governed by ADR-L5-0010 / ADR-L5-0011 where appli
 - **OD-004 — Event Delivery Recovery:** closed as an ownership question: L5-C-02 owns retries, ordering and dead-letter handling. D04-001 owns only publication intent and handoff.
 
 **Current State:** Locked
+
+
+## 2026-09-22 Backend Readiness Group 3 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0040`  
+Security-relevant operations may emit operational telemetry, but audit-grade evidence remains D04-owned and protected by D04 integrity/provenance rules. Secret/key material must never be included merely for audit completeness.

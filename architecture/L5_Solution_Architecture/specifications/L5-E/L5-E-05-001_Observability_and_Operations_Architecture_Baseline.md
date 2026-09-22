@@ -8,7 +8,7 @@
 **Canonical Technical Responsibility:** Operational observability/service operations without treating telemetry as business audit truth.  
 **Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.1.0`  
+**Version:** `1.2.0`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-E-04-*`; `L5-E-01-*`; `L5-E-02-*`; `L5-C-01-*`; `L5-C-02-*`; `L5-D-03-*`; `L5-D-04-*`; `L5-A-04-*` where Tenant/Institution execution context is consumed.  
@@ -141,3 +141,9 @@ These relations provide operational-evidence architecture only. They do not tran
 
 **Applicable locked decision:** `ADR-L5-0029`  
 OpenTelemetry/OTLP with Collector is canonical; Prometheus/Loki/Tempo/Grafana are default backends. D04 audit/evidence remains separate.
+
+
+## 2026-09-22 Backend Readiness Group 3 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0040`  
+E05 may observe security operations, health and failures, but logs/metrics/traces are not the canonical audit record. Audit-grade evidence is handed to D04.

@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Define reusable technical architecture for application/integration secrets, certificates and machine credentials, including protected provisioning, controlled retrieval/use, scope binding, renewal/replacement, revocation, retirement and exposure containment, without owning human authentication, authorization policy, cryptographic key custody, business rules or business authority.  
 **Technical Architecture Owner:** L5-D-03-004 — Secrets, Certificates & Machine Credential Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.1.0`  
+**Version:** `1.2.0`  
 **Status:** Draft  
 **Last Updated:** `2026-09-22`  
 **Primary Dependencies:** `L5-D-03-001`, `L5-A-04`.  
@@ -290,3 +290,9 @@ Only materially supported direct relations shall be entered into the canonical t
 
 **Applicable locked decision:** `ADR-L5-0027`  
 OpenBao is the canonical secrets/transit-cryptography service and rustls is the default in-process Rust TLS implementation. D03-003 retains key-custody ownership and external HSM/KMS integration remains valid.
+
+
+## 2026-09-22 Backend Readiness Group 3 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0040`  
+Protected cross-process/service communication uses authenticated encrypted transport; TLS 1.3 is preferred; mTLS is profile-driven where workload identity at transport boundary is required; no service mesh is mandatory initially. OpenBao remains production-secret authority; infrastructure encryption-at-rest is baseline with classification-driven field protection; HSM/KMS custody is profile-driven; no universal rotation interval is invented.

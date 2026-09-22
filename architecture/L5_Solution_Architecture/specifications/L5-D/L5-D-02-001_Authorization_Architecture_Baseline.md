@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Authorization architecture separate from IAM, including policy decision/enforcement and least privilege.  
 **Technical Architecture Owner:** L5-D-02 — Authorization Architecture  
 **Assigned Author:** Devang  
-**Version:** `1.0.0`  
+**Version:** `1.2.0`  
 **Status:** `Architecture Approved`  
-**Last Updated:** `2026-09-12`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-01-001` through `L5-D-01-004`; `L5-D-03-001` and applicable D03 specializations; `L5-A-04-001`; `L5-A-04-002`; `L4-A-010` v1.0.0 Draft; `L4-A-011` v1.0.0 Draft; `L4-A-012` v1.0.0 Draft; `L4-A-013` v1.0.0 Draft; `L4-A-050` v1.0.0 Draft; `L4-A-051` v1.0.0 Draft; `L4-A-052` v1.0.0 Draft; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; applicable L2-A02/L2-A03 ownership decisions; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`; `ADR-L5-0009`.  
 **Referenced By:** `L5-D-02-002` through `L5-D-02-007`; protected business-domain APIs/services/jobs; workflow/orchestration architecture; client-platform architecture; audit/evidence architecture; verification/testing architecture.  
 **Applicable ADRs:** `ADR-PLAT-AUTH-001` for identity/authorization ownership; `ADR-L5-0001` for trust-boundary admission and non-transitive trust; `ADR-L5-0004` for Tenant/Institution isolation; `ADR-L5-0009` for non-human principal authorization binding.
@@ -813,3 +813,9 @@ architecture/
 ```
 
 No `L5-D/L5-D-02/` nested major-area folder is introduced by this specification.
+
+
+## 2026-09-22 Backend Readiness Group 3 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0039`  
+D01-authenticated human/non-human principal context is an input only. D02 remains the canonical authority for permissions, scope, delegation, SoD/maker-checker and emergency-access decisions; Keycloak roles/claims do not become permanent authorization truth.
