@@ -259,7 +259,7 @@ All six backend-readiness decision groups are complete and Locked as of 2026-09-
 - Group 5: `ADR-L5-0043`–`0044`
 - Group 6: `ADR-L5-0045`–`0047`
 
-The backend architecture is decision-ready for future implementation planning, but **Final L5 Corpus Lock remains not authorized**. The next required activity is a full 105-specification post-decision synchronization and integrity audit. The ADR register now allocates 47 ADRs; next allocation is `ADR-L5-0048`.
+The backend architecture is decision-ready for future implementation planning. The post-decision synchronization audit and Production Validation Batches 0–8 are complete. **Final L5 Corpus Lock remains not authorized**; the next programme gate is Batch 9 — Final Corpus Lock Gate. The ADR register allocates 47 ADRs; next allocation remains `ADR-L5-0048`.
 
 
 ## Post-Decision Corpus Audit — 2026-09-22
@@ -276,4 +276,30 @@ The full 105-specification corpus was audited after completion of Backend Readin
 
 Confirmed stale ADR/product wording and D03 lifecycle regression were repaired without changing canonical business ownership or intentionally deferred evidence-dependent decisions.
 
-**Final L5 Corpus Lock remains NOT AUTHORIZED.** The next gate is formal production validation of the remaining Review specifications, revalidation of materially affected approved specifications where required, and a distinct final lock decision after zero blocking hard failures.
+**Final L5 Corpus Lock remains NOT AUTHORIZED.** Production Validation Batches 0–8 are now complete, including validation of all 51 Review specifications, impact revalidation of all 54 Architecture Approved/Locked specifications, current-version revalidation of the canonical W-C02 traceability rows, and creation of the canonical 105-row validation register. The next gate is Batch 9 — Final Corpus Lock Gate.
+
+
+## Full Production Validation — Batch 8 State
+
+As of 2026-09-22:
+
+```text
+Canonical specifications              105 / 105
+Review validation dispositions         51 / 51
+Approved/Locked impact revalidation    54 / 54
+Total validation dispositions         105 / 105
+
+Draft                                    0
+Review                                  51
+Architecture Approved                   21
+Locked                                  33
+
+Final L5 Corpus Lock         NOT AUTHORIZED
+Next programme gate          Batch 9
+```
+
+Canonical row-level source:
+
+`governance/reference/L5_Full_105_Row_Production_Validation_Register_2026-09-22.md`
+
+Batch-8 traceability maintenance also rebound the existing canonical W-C02 Validated relations to current L5 versions without changing relation identity, technical contribution semantics, or BH coverage state.
