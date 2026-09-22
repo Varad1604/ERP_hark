@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Technical versioning, validation execution, publication and distribution of approved Master/Reference Data while upstream owners retain business semantics, governance authority and canonical event ownership.  
 **Technical Architecture Owner:** L5-B-03 — Master & Reference Data Technical Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.0`  
+**Version:** `1.0.1`  
 **Status:** `Architecture Approved`  
-**Last Updated:** `2026-09-12`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** `L5-B-03-001`; `L5-B-02-001`; `L5-B-02-002`; `L5-B-02-003`; `L5-C-02-001`; `L5-C-02-002`; `L2-A09` v1.0 Locked; applicable L4 Master Data specifications identified in §3; L5 governance, validation, traceability and ADR standards.  
 **Referenced By:** L5 consumers requiring governed Master/Reference Data publication, synchronization or historical version access.  
 **Applicable ADRs:** `ADR-L5-0005` — Persistence Ownership, Hybrid Topology and Tenant Isolation Pattern; `ADR-L5-0006` — Owner-Local Transaction and Optimistic Concurrency Strategy; `ADR-L5-0007` — Atomic State-to-Publication Intent Handoff Pattern. No broker, MDM product or database product is selected here.
@@ -71,7 +71,7 @@ This specification defines the technical realization through which a registered 
 | L4 | `L4-A-039` | v1.0.0 / Draft on `main` | `BH-001`–`BH-008` | Localized Dataset representations preserve canonical identity and use governed validation/approval/publication. | Drives localized-version linkage. |
 | L4 | `L4-A-040` | v1.0.0 / Draft on `main` | `BH-001`–`BH-009` | Published→Deprecated→Retired remains governed, historical data preserved, archival separate. | Drives retirement/distribution boundary without archival ownership. |
 | L5 Peer | `L5-B-03-001` | Architecture Approved | Dataset Registry, identity, descriptor and canonical representation boundary | Supplies registered Dataset and representation identity. | B03-002 evolves registered datasets without redefining identity. |
-| L5 Peer | `L5-B-02-003` | Draft | owner-local transactions, optimistic concurrency and atomic publication-intent handoff | Supplies persistence consistency and B02→C02 handoff. | Used for version publication/concurrency without distributed ACID. |
+| L5 Peer | `L5-B-02-003` | Review | owner-local transactions, optimistic concurrency and atomic publication-intent handoff | Supplies persistence consistency and B02→C02 handoff. | Used for version publication/concurrency without distributed ACID. |
 | ADR | `ADR-L5-0007` | Architecture Approved | Atomic state + Durable Publication Intent | Committed publication state and durable publication intent are atomic; C02 owns delivery after handoff. | Prevents B03 from owning event transport. |
 
 ### 3.2 Authoritative Constraints
@@ -425,3 +425,7 @@ When upstream governance validly transitions a Dataset through deprecation/retir
 ### Review Position
 
 The specification is **Architecture Approved** following full Stage-2 validation at repository baseline `2876bde9994bcd0a9ae17d9fb09c104a7be86d27`. Under the governing Stage-2 validation authorization, the cited canonical L4 Master Data specifications are accepted as behavioral authority for this review. The remaining `OD-002` is non-blocking and intentionally defers unsupported numeric operational targets. The specification is lock-ready but shall not be marked `Locked` until distinct final governance authorization is recorded.
+
+## 2026-09-22 Batch 7A Impact Revalidation Synchronization
+
+Non-material lifecycle synchronization only: the `L5-B-02-003` peer dependency is now identified as `Review`, matching current canonical metadata. No Master Data versioning/publication ownership, architecture semantics, conformance requirement, traceability relation state, or Architecture Approved basis changed.
