@@ -8,9 +8,9 @@
 **Canonical Technical Responsibility:** DR/failover models and proof of recoverability without assuming a cloud provider.  
 **Technical Architecture Owner:** `L5-E-03`  
 **Assigned Author:** Pallav  
-**Version:** `1.0.3`  
+**Version:** `1.2.0`  
 **Status:** `Locked`  
-**Last Updated:** `2026-09-16`  
+**Last Updated:** `2026-09-22`  
 **Depends On:** `L5-E-03-001`; `L5-E-03-002`; `L5-E-01`; `L5-E-04`; `L5-B-02`; `L5-C-02`; `L5-C-03`; `L5-D-03`; `L5-E-05`  
 **Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0005`; `ADR-L5-0010`; `ADR-L5-0014`; `ADR-L5-0017`  
 **Governance Authorization:** `L5_Pallav_Stage5_Architecture_Approval_Decision_2026-09-16.md`  
@@ -119,3 +119,14 @@ DR environments consume D03 trusted identity/credentials/keys and E04 deployment
 
 ## 10. Traceability Summary
 **Primary:** E03-001/002, `ADR-L5-0014`, `ADR-L5-0017`, E04/B02, Stage-5 approval decision. **Governance-authorized / Specified supporting L4:** `L4-A-057-BH-005`–`009`. **Cross-capability recovery:** C02, C03, D03, E05. **Blocking:** none.
+
+
+## Backend Readiness Group 6 Controlled Amendment
+
+This Locked specification is amended and re-locked under the explicit 2026-09-22 Backend Readiness Group-6 authority. The amendment adds implementation-governance detail only and does not change upstream business ownership.
+
+
+## 2026-09-22 Backend Readiness Group 6 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0046`  
+Recovery uses Critical/Important/Standard/Reconstructible classification. Numeric RPO/RTO/retention and exercise cadence bind from authoritative recovery profiles rather than universal repository numbers. Derived data is reconstructed where its class objective permits; PostgreSQL uses base/full backup plus WAL/PITR where its class requires it; restore plus integrity/application validation is required proof.

@@ -113,3 +113,14 @@ Backups/restores consume D03 encryption/key controls and applicable B05 retentio
 
 **Applicable locked decision:** `ADR-L5-0044`  
 E03 remains the centralized backup/restore/DR owner for PostgreSQL, object storage, platform configuration and other stateful supporting services; application modules do not invent independent backup authority.
+
+
+## Backend Readiness Group 6 Controlled Amendment
+
+This Locked specification is amended and re-locked under the explicit 2026-09-22 Backend Readiness Group-6 authority. The amendment adds implementation-governance detail only and does not change upstream business ownership.
+
+
+## 2026-09-22 Backend Readiness Group 6 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0046`  
+Recovery uses Critical/Important/Standard/Reconstructible classification. Numeric RPO/RTO/retention and exercise cadence bind from authoritative recovery profiles rather than universal repository numbers. Derived data is reconstructed where its class objective permits; PostgreSQL uses base/full backup plus WAL/PITR where its class requires it; restore plus integrity/application validation is required proof.

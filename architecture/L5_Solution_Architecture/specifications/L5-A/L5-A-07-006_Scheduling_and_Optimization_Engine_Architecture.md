@@ -12,9 +12,9 @@
 | Canonical Technical Responsibility | Reusable scheduling/conflict/optimization computation without owning timetable, examination or resource business decisions. |
 | Technical Architecture Owner | Scheduling & Optimization Engine Technical Architecture |
 | Assigned Author | Varad |
-| Version | 1.0.1 |
+| Version | 1.2.0 |
 | Status | Locked |
-| Last Updated | 2026-09-15 |
+| Last Updated | 2026-09-22 |
 | Depends On | L5-A-07-001; L5-A-07-005; L5-A-08-001; L5-B-02-001; L5-D-03-001; L4-D-020; L4-I-083; L5 governance/template/validation standards |
 | Referenced By | Timetabling, examination scheduling and resource-allocation workflows |
 | Applicable ADRs | ADR-L5-0001; ADR-L5-0005; ADR-L5-0013; ADR-L5-0014 |
@@ -60,7 +60,7 @@ Owns technical optimization execution and conflict evidence. Does not own timeta
 |---|---|---|
 | AD-A07-060 | Optimization consumes authoritative constraints/objectives and returns candidates; business selection remains upstream. | Repository-derived boundary |
 | AD-A07-061 | Hard constraints are never silently relaxed by the engine. | Defensible technical derivation |
-| OD-A07-060 | Solver family, algorithm, search heuristic, parallelization, resource limits and candidate-count targets remain unresolved pending governed downstream design. | Open decision |
+| OD-A07-060 | **Product remains intentionally deferred under `ADR-L5-0047`:** CP-SAT, MILP and bounded heuristic approaches must pass a representative benchmark/PoC gate before canonical solver selection. Resource/candidate limits remain E02 profile values. | Governed deferred decision |
 
 ## 8. Conformance Requirements
 
@@ -69,3 +69,13 @@ Owns technical optimization execution and conflict evidence. Does not own timeta
 3. Hard constraints supplied by the owner shall not be silently relaxed.
 4. Returned candidates shall include traceability to the exact constraint/objective versions used.
 5. Candidate results shall not be represented as approved/published schedules by this engine alone.
+
+## Backend Readiness Group 6 Controlled Amendment
+
+This Locked specification is amended and re-locked under the explicit 2026-09-22 Backend Readiness Group-6 authority. The amendment adds implementation-governance detail only and does not change upstream business ownership.
+
+
+## 2026-09-22 Backend Readiness Group 6 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0047`  
+No scheduling solver is canonical yet. A07/F02 must benchmark representative SutraERP scheduling scenarios for hard-constraint coverage, feasibility, reproducibility, solution quality, explainability, runtime/resource cost and portability before a later solver-selection ADR. Source domains retain rule/acceptance authority; AI/ML is non-authoritative.

@@ -220,3 +220,9 @@ E02 supplies capacity requirements; E04 owns placement/scaling/deployment realiz
 
 **Applicable locked decision:** `ADR-L5-0037`  
 Valkey is the canonical distributed cache. Cache content is derived/non-authoritative; freshness-critical operations revalidate/bypass; cache failure uses the canonical owner path where safe or explicit degradation, never cross-owner database bypass.
+
+
+## 2026-09-22 Backend Readiness Group 6 Synchronization
+
+**Applicable locked decision:** `ADR-L5-0045`  
+Valkey/cache throughput, worker concurrency, backlog thresholds and scaling bounds remain measured profile values. Backlog health considers age/lag, count and processing rate rather than one universal raw-count threshold.
