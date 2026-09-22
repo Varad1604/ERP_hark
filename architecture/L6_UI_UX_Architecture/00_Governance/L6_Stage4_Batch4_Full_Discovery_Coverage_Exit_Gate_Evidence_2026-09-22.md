@@ -10,6 +10,7 @@
 **Architecture Evidence Branch Base SHA:** `fa7a80abb8b2be997088b9ab167a1d29aeefc882`  
 **Batch-4 Entry Frontend SHA:** `e244821f4f845b8a8cfc7ddfaf456ef0624b34c4`  
 **Final Frontend SHA:** `eec69310c2078a2af7cd796439c6adff3cf86e8d`  
+**Frontend Merge Commit:** `cc723c2379bd2d7085db2b3823708352bbe5dc96`  
 **Frontend Branch:** `stage4-batch4-full-discovery-reconciliation`  
 **Frontend PR:** #21  
 **Final Frontend CI:** Frontend PR Validation #151 / Run ID `35712022674` / SUCCESS  
@@ -417,4 +418,4 @@ The repository-level Stage-4 discovery gate is satisfied on Frontend PR #21 head
 STAGE 4 — BATCH 4 PASS
 ```
 
-This evidence records a passing implementation state for review. It does not merge Frontend PR #21 or this Architecture evidence PR and does not authorize Stage 5.
+This evidence records the passing implementation now merged through Frontend PR #21. This Architecture evidence PR remains the final Stage-4 repository record and does not authorize Stage 5.
