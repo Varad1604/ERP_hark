@@ -259,7 +259,7 @@ All six backend-readiness decision groups are complete and Locked as of 2026-09-
 - Group 5: `ADR-L5-0043`–`0044`
 - Group 6: `ADR-L5-0045`–`0047`
 
-The backend architecture is decision-ready for future implementation planning. The post-decision synchronization audit and Production Validation Batches 0–8 are complete. **Final L5 Corpus Lock remains not authorized**; the next programme gate is Batch 9 — Final Corpus Lock Gate. The ADR register allocates 47 ADRs; next allocation remains `ADR-L5-0048`.
+The backend architecture is decision-ready for future implementation planning. The post-decision synchronization audit and Production Validation Batches 0–9 are complete. **Final L5 Corpus Lock remains not authorized** because the final gate recorded a NO-LOCK verdict with 30 upstream authority/semantics blockers. The ADR register allocates 47 ADRs; next allocation remains `ADR-L5-0048`.
 
 
 ## Post-Decision Corpus Audit — 2026-09-22
@@ -276,7 +276,7 @@ The full 105-specification corpus was audited after completion of Backend Readin
 
 Confirmed stale ADR/product wording and D03 lifecycle regression were repaired without changing canonical business ownership or intentionally deferred evidence-dependent decisions.
 
-**Final L5 Corpus Lock remains NOT AUTHORIZED.** Production Validation Batches 0–8 are now complete, including validation of all 51 Review specifications, impact revalidation of all 54 Architecture Approved/Locked specifications, current-version revalidation of the canonical W-C02 traceability rows, and creation of the canonical 105-row validation register. The next gate is Batch 9 — Final Corpus Lock Gate.
+**Final L5 Corpus Lock remains NOT AUTHORIZED.** Production Validation Batches 0–9 are complete. The canonical 105-row register remains current at 0 Draft / 51 Review / 21 Architecture Approved / 33 Locked. Batch 9 concluded with a NO-LOCK verdict because 30 Review specifications retain upstream authority/semantics blockers and no distinct Final L5 Corpus Lock authorization exists.
 
 
 ## Full Production Validation — Batch 8 State
@@ -303,3 +303,23 @@ Canonical row-level source:
 `governance/reference/L5_Full_105_Row_Production_Validation_Register_2026-09-22.md`
 
 Batch-8 traceability maintenance also rebound the existing canonical W-C02 Validated relations to current L5 versions without changing relation identity, technical contribution semantics, or BH coverage state.
+
+
+## Final Corpus Lock Gate — Batch 9
+
+Batch 9 is complete.
+
+```text
+Full Production Validation Programme   COMPLETE
+Final L5 Corpus Lock                  NOT AUTHORIZED
+Final gate verdict                    NO-LOCK
+Blocking upstream-authority rows      30
+Lifecycle promotions in Batch 9        0
+New ADRs in Batch 9                     0
+```
+
+Canonical decision:
+
+`governance/reference/L5_Production_Validation_Batch9_Final_Corpus_Lock_Gate_2026-09-22.md`
+
+A future final-lock gate requires resolution or explicit governance authorization of the remaining upstream authority/traceability blockers, affected-spec revalidation, and a distinct Lead Architect final-lock authorization.
