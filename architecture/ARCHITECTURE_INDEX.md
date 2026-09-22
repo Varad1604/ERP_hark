@@ -394,7 +394,25 @@ The canonical row-level validation source is:
 
 Batch 8 also revalidated current-version bindings for the existing 130-row W-C02 canonical L4→L5 relation population. Relation identity and BH coverage were unchanged.
 
-**Final L5 Corpus Lock remains NOT AUTHORIZED.** Thirty Review specifications retain upstream authority/semantics blockers; additional Review specifications remain intentionally unpromoted pending separate lifecycle governance. Batch 9 is the next and final programme gate.
+**Final L5 Corpus Lock remains NOT AUTHORIZED.** Batch 9 is complete and records a NO-LOCK verdict. Thirty Review specifications retain upstream authority/semantics blockers; additional Review specifications remain intentionally unpromoted pending separate lifecycle governance.
+
+### Final Corpus Lock Gate — Batch 9
+
+Batch 9 completed on 2026-09-22.
+
+```text
+Full Production Validation Programme   COMPLETE
+Final L5 Corpus Lock                  NOT AUTHORIZED
+NO-LOCK blocker rows                  30
+Lifecycle promotions                   0
+New ADRs                               0
+```
+
+The final gate passed corpus identity, validation coverage, zero-Draft, ownership, ADR-consistency, deferral-governance, impact-revalidation and traceability-reconciliation checks. It failed the mandatory zero-blocking-hard-fail condition because 30 Review specifications retain HF-01/HF-14 upstream authority/semantics blockers. No distinct Lead Architect Final L5 Corpus Lock authorization exists.
+
+Canonical gate decision:
+
+`L5_Solution_Architecture/governance/reference/L5_Production_Validation_Batch9_Final_Corpus_Lock_Gate_2026-09-22.md`
 
 ## Canonical L5 Repository Structure
 
@@ -626,6 +644,10 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 ---
 
 # Recent Changes
+
+**2026-09-22 — L5 Batch-9 final lock gate:** Completed the Full Production Validation & Lock-Readiness Programme. The final gate produced a NO-LOCK verdict: 105/105 specifications have current validation dispositions, but 30 Review specifications retain upstream authority/semantics blockers under HF-01/HF-14 and no distinct Final L5 Corpus Lock authorization exists. Lifecycle remains 0 Draft / 51 Review / 21 Architecture Approved / 33 Locked.
+
+---
 
 **2026-09-22 — L5 Batch-8 full-corpus validation register:** Completed 105/105 production-validation disposition reconciliation across Batches 1–7C, rebound the existing W-C02 canonical Validated relations to current L5 specification versions where non-material changes permitted it, synchronized L5 navigation, and established the canonical 105-row validation register. Lifecycle remains 0 Draft / 51 Review / 21 Architecture Approved / 33 Locked. Final L5 Corpus Lock remains not authorized; Batch 9 is next.
 
