@@ -1,0 +1,304 @@
+{
+  "version": "1.0.0",
+  "architectureLevel": "L6",
+  "purpose": "Presentation relevance for Stage-4 workflow discovery only. This mapping is not authorization, RBAC, eligibility, or business authority.",
+  "sourceRegister": "architecture/L6_UI_UX_Architecture/L6_Workflow_Realization_Register_DRAFT.md",
+  "controlledPersonas": [
+    "administrator",
+    "faculty",
+    "student"
+  ],
+  "rules": [
+    "Every exact L6 presentation-profile expression present in the source register must have one explicit mapping entry.",
+    "Unknown presentation-profile expressions are validation failures; there is no runtime fallback.",
+    "administrator is the broad institutional-review presentation and remains discoverable across the governed workflow corpus.",
+    "student and faculty relevance is granted only by this controlled mapping, not by workspace presentationProfiles."
+  ],
+  "profileMappings": {
+    "Academic Operations; Faculty": [
+      "administrator",
+      "faculty"
+    ],
+    "Academic Operations; Faculty/Student projections where supported": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "Academic Operations; Institutional Administrator": [
+      "administrator"
+    ],
+    "Academic Operations; Institutional Administrator; read projections for Student/Faculty": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "Admissions & Student Operations; Institutional Admin": [
+      "administrator"
+    ],
+    "All applicable users via authentication entry": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "Campus Operations; Faculty/Student laboratory context where supported": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "Campus Operations; Institutional Administrator": [
+      "administrator"
+    ],
+    "Campus Operations; Student service context where supported": [
+      "administrator",
+      "student"
+    ],
+    "Campus Operations; Student/Employee health-service context where supported": [
+      "administrator",
+      "student"
+    ],
+    "Campus Operations; Student/Employee service context where supported": [
+      "administrator",
+      "student"
+    ],
+    "Campus Operations; Student/Faculty/Employee library services where supported": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "Campus Operations; authorized Student/Faculty service-request projections where supported": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "Campus Operations; contextual institutional users": [
+      "administrator"
+    ],
+    "Campus Operations; contextual service requesters": [
+      "administrator"
+    ],
+    "Examination Operations": [
+      "administrator"
+    ],
+    "Examination Operations; Faculty/Student timetable projection where supported": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "Examination Operations; Faculty/examiners; Candidate context": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "Examination Operations; Faculty/invigilators; Candidate context": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "Examination Operations; Student/Candidate": [
+      "administrator",
+      "student"
+    ],
+    "Examination Operations; Student/Candidate read outcome": [
+      "administrator",
+      "student"
+    ],
+    "Examination Operations; Student/Candidate request context": [
+      "administrator",
+      "student"
+    ],
+    "Examination Operations; Student/Student Operations contextual evidence": [
+      "administrator",
+      "student"
+    ],
+    "Examination Operations; authorized evaluators": [
+      "administrator",
+      "faculty"
+    ],
+    "Examination Operations; authorized historical evidence users": [
+      "administrator"
+    ],
+    "Examination Operations; committee/authorized review actors": [
+      "administrator"
+    ],
+    "Examination Operations; institutional governance": [
+      "administrator"
+    ],
+    "Faculty/Teacher Guardian; Student; Campus Operations": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "Faculty; Academic Operations; Student contextual projection where supported": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "Faculty; Student; Academic Operations": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "Finance Operations": [
+      "administrator"
+    ],
+    "Finance Operations; Institutional Admin/Insights where authorized": [
+      "administrator"
+    ],
+    "Finance Operations; Procurement/Resources contextual handoff": [
+      "administrator"
+    ],
+    "Finance Operations; Resource/Asset contextual handoff": [
+      "administrator"
+    ],
+    "Finance Operations; Student contextual projection where supported": [
+      "administrator",
+      "student"
+    ],
+    "Finance Operations; Student/Guardian payment participation where supported": [
+      "administrator",
+      "student"
+    ],
+    "Finance Operations; Student/Guardian projections where responsibility permits": [
+      "administrator",
+      "student"
+    ],
+    "Finance Operations; authorized budget stakeholders": [
+      "administrator"
+    ],
+    "Finance Operations; procurement contextual handoff": [
+      "administrator"
+    ],
+    "Finance Operations; requesting participant where supported": [
+      "administrator"
+    ],
+    "Guardian; Student Operations; Institutional Admin": [
+      "administrator"
+    ],
+    "Institutional Administrator": [
+      "administrator"
+    ],
+    "Institutional Administrator; Campus Operations": [
+      "administrator"
+    ],
+    "Institutional Administrator; Campus Operations; Insights/Compliance contextual use": [
+      "administrator"
+    ],
+    "Institutional Administrator; People/HR contextual use": [
+      "administrator"
+    ],
+    "Institutional Administrator; specialist intelligence users": [
+      "administrator"
+    ],
+    "Institutional Services / Intelligence; authorized evidence owners": [
+      "administrator"
+    ],
+    "Institutional Services / Intelligence; institutional governance": [
+      "administrator"
+    ],
+    "Institutional Services; Alumni-transition participants": [
+      "administrator"
+    ],
+    "Institutional Services; Faculty/Research actors": [
+      "administrator",
+      "faculty"
+    ],
+    "Institutional Services; Student where applicable": [
+      "administrator",
+      "student"
+    ],
+    "Institutional Services; Student/Academic contextual interactions where supported": [
+      "administrator",
+      "student"
+    ],
+    "Institutional Services; Student; relevant staff": [
+      "administrator",
+      "student"
+    ],
+    "Institutional Services; shared shell users": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "People / HR Operations; Faculty; Academic Operations": [
+      "administrator",
+      "faculty"
+    ],
+    "People / HR Operations; Finance contextual handoff; employee read projections where supported": [
+      "administrator"
+    ],
+    "People / HR Operations; Institutional Admin": [
+      "administrator"
+    ],
+    "People / HR Operations; employee self-service where supported": [
+      "administrator"
+    ],
+    "People / HR Operations; employee/faculty self-service where supported": [
+      "administrator",
+      "faculty"
+    ],
+    "Platform / Tenant Administration": [
+      "administrator"
+    ],
+    "Platform / Tenant Administration; authorized auditors/investigators": [
+      "administrator"
+    ],
+    "Platform / Tenant Administration; authorized data-governance specialists": [
+      "administrator"
+    ],
+    "Platform / Tenant Administration; authorized institutional governance actors": [
+      "administrator"
+    ],
+    "Platform / Tenant Administration; contextual institutional specialists": [
+      "administrator"
+    ],
+    "Platform / Tenant Administration; institutional governance": [
+      "administrator"
+    ],
+    "Platform / Tenant Administration; task-owning specialists": [
+      "administrator"
+    ],
+    "Procurement / Resource Operations": [
+      "administrator"
+    ],
+    "Procurement / Resource Operations; Finance contextual handoff": [
+      "administrator"
+    ],
+    "Procurement / Resource Operations; asset custodians where supported": [
+      "administrator"
+    ],
+    "Procurement / Resource Operations; auditors/verifiers": [
+      "administrator"
+    ],
+    "Procurement / Resource Operations; authorized requesters/approvers": [
+      "administrator"
+    ],
+    "Procurement / Resource Operations; contextual requesting domains": [
+      "administrator"
+    ],
+    "Student Operations; Institutional Admin; Student evidence/status where supported": [
+      "administrator",
+      "student"
+    ],
+    "Student Operations; Institutional Admin; Student self-service projections where supported": [
+      "administrator",
+      "student"
+    ],
+    "Student/Alumni transition; Student Operations; Institutional Services": [
+      "administrator",
+      "student"
+    ],
+    "Student; Faculty; Academic Operations": [
+      "administrator",
+      "faculty",
+      "student"
+    ],
+    "Student; Student Operations; Academic Operations": [
+      "administrator",
+      "student"
+    ],
+    "Student; Student Operations; Finance contextual handoff": [
+      "administrator",
+      "student"
+    ]
+  }
+}
