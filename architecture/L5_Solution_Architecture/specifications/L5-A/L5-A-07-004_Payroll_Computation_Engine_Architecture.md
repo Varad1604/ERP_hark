@@ -12,12 +12,12 @@
 | Canonical Technical Responsibility | Executes approved payroll calculations while Payroll retains business ownership and Finance owns downstream monetary consequences. |
 | Technical Architecture Owner | Payroll Computation Engine Technical Architecture |
 | Assigned Author | Varad |
-| Version | 1.1.0 |
+| Version | 1.1.1 |
 | Status | Locked |
 | Last Updated | 2026-09-22 |
 | Depends On | L5-A-07-001; L5-A-07-005; L5-A-08-001; L5-B-02-001; L5-D-03-001; L4-E-053; L4-E-055; L4-E-056; L5 governance/template/validation standards |
 | Referenced By | Payroll and downstream Finance workflows |
-| Applicable ADRs | ADR-L5-0001; ADR-L5-0005; ADR-L5-0013; ADR-L5-0014 |
+| Applicable ADRs | ADR-L5-0001; ADR-L5-0005; ADR-L5-0013; ADR-L5-0014; ADR-L5-0031; ADR-L5-0032; ADR-L5-0045 |
 
 ## 2. Purpose & Boundary
 
@@ -50,7 +50,7 @@ Missing rule/version or authoritative input causes admission failure. A violated
 |---|---|---|
 | AD-A07-040 | Payroll policies and statutory constraints are authoritative inputs, not local engine rules. | Repository-corrected boundary |
 | AD-A07-041 | Payroll computation is separated from approval, payment and accounting posting. | Canonical ownership boundary |
-| OD-A07-040 | Concrete monetary representation, payroll formula technology and numeric performance/resource limits remain unresolved until governed. | Open decision |
+| OD-A07-040 | **Technical representation/language resolved:** `rust_decimal::Decimal` for monetary values and CEL where the general governed formula/rule engine is used. Payroll-owned formula/policy semantics and measured performance/resource limits remain source/profile-governed. | `ADR-L5-0031`; `ADR-L5-0032`; `ADR-L5-0045` |
 
 ## 7. Conformance Requirements
 
@@ -73,3 +73,8 @@ This Locked specification is amended and re-locked under `L5_Technology_Decision
 
 **Applicable locked decision:** `ADR-L5-0032`  
 `rust_decimal::Decimal` is the default authoritative Rust monetary scalar. Precision, scale, minor-unit and rounding semantics remain authoritative rule inputs; no global default is invented.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Resolved the stale technical representation deferral without transferring payroll formula/policy ownership into A07.

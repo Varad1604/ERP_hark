@@ -9,7 +9,7 @@
 **Canonical Technical Responsibility:** Governed technology-selection criteria and approved standards after ADR decisions; no silent framework/product lock.  
 **Technical Architecture Owner:** L5-A-02 — Technology Platform & Standards Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.1.0`  
+**Version:** `1.1.1`  
 **Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; L5 Dependency-Gated Parallel Authoring Execution Timeline; `L5-A-01-001`; applicable material peer L5 specifications and approved ADRs  
@@ -157,7 +157,7 @@ Implementation shall not promote `UNRESOLVED` or `NON-AUTHORITATIVE / HISTORICAL
 | Object-storage product | **S3-compatible; Ceph RGW reference — LOCKED** | `ADR-L5-0026` |
 | Workflow/orchestration product | **BPMN 2.x + Flowable OSS 8.x — LOCKED** | `ADR-L5-0023` |
 | IAM product | **Keycloak 26.x — LOCKED** | `ADR-L5-0024` |
-| Security/cryptographic products | `UNRESOLVED` unless explicitly approved by D03 | D03 + ADR |
+| Security/cryptographic products | **OpenBao secrets/transit + rustls default Rust TLS — LOCKED**; HSM/KMS/CA details remain profile-governed | `ADR-L5-0027`; `ADR-L5-0040` |
 | Container/orchestration platform | **OCI + Kubernetes clustered profile — LOCKED** | `ADR-L5-0028` |
 | Observability platform | **OpenTelemetry + Prometheus/Loki/Tempo/Grafana — LOCKED** | `ADR-L5-0029` |
 | CI/CD/tooling platform | **GitHub Actions + GHCR + Cosign/Sigstore — LOCKED** | `ADR-L5-0030` |
@@ -262,7 +262,7 @@ An exception changes the implementation technology, not the architectural author
 
 **CR-A02-009** — `unsafe` Rust shall not become an uncontrolled general implementation mechanism; its safety boundary shall be explicit and reviewable.
 
-**CR-A02-010** — Unresolved database, broker, search, object-storage, IAM, orchestration, observability and deployment products shall remain visibly unresolved until their canonical decisions exist.
+**CR-A02-010** — Technology slots resolved by canonical ADRs shall be recorded as approved/locked standards; only genuinely undecided peer-owned choices (for example mobile client platform and evidence-dependent solver/profile details) remain visibly unresolved.
 
 ---
 
@@ -270,14 +270,14 @@ An exception changes the implementation technology, not the architectural author
 
 | ID | Item | Owner | Blocking? |
 |---|---|---|---|
-| `OD-A02-001` | Backend framework selection | A02 / ADR governance if material | No |
-| `OD-A02-002` | Rust asynchronous runtime selection | A02 / ADR governance if material | No |
-| `OD-A02-003` | Database product | B02 | No; must remain unresolved |
-| `OD-A02-004` | Broker/messaging product | C02 | No; must remain unresolved |
-| `OD-A02-005` | Container/orchestration platform | E04 | No; must remain unresolved |
-| `OD-A02-006` | Other peer-owned product selections | Applicable canonical owner | No; must remain unresolved |
+| `OD-A02-001` | **Resolved:** Axum | `ADR-L5-0019` | Locked |
+| `OD-A02-002` | **Resolved:** Tokio | `ADR-L5-0019` | Locked |
+| `OD-A02-003` | **Resolved:** PostgreSQL 18.x + SQLx | `ADR-L5-0020` | Locked |
+| `OD-A02-004` | **Resolved:** NATS JetStream | `ADR-L5-0022` | Locked |
+| `OD-A02-005` | **Resolved:** OCI images + Kubernetes clustered profile; Podman non-clustered profile | `ADR-L5-0028`; `ADR-L5-0043` | Locked |
+| `OD-A02-006` | Remaining peer-owned product/profile selections not resolved by current ADRs | Applicable canonical owner | Governed/open only where still explicitly deferred |
 
-These unresolved items do not block A02's approved standards architecture because A02 explicitly preserves their canonical ownership and does not invent a product choice.
+The remaining unresolved items do not block A02's approved standards architecture because they are explicitly deferred/profile-driven and remain with their canonical owners; resolved technology slots are inherited from their Locked ADRs.
 
 ---
 
@@ -299,7 +299,7 @@ Material downstream architecture links include:
 
 `L5-A-02-001` is `Locked` under `L5_Dhruv_Stage6_Final_Lock_and_Completion_Decision_2026-09-16.md`.
 
-The lock preserves the primary server-platform decision established by `ADR-L5-0018` and does not convert unresolved peer-owned products into standards. Those choices remain explicitly deferred to their canonical technical owners and applicable ADR governance.
+The lock preserves the primary server-platform decision established by `ADR-L5-0018` and imports later Locked peer-owned technology standards through the canonical ADR register without transferring ownership. Only explicitly deferred choices remain open.
 
 Material change requires governed impact assessment and controlled relock.
 
@@ -313,3 +313,8 @@ This Locked specification is amended and re-locked under `L5_Technology_Decision
 
 **Applicable locked decision:** `ADR-L5-0019`  
 Axum + Tokio now resolves the backend framework/runtime slot; peer-owned locked technology choices are indexed in ADR-L5-0020 through ADR-L5-0033. Explicit deferred items remain deferred.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Reconciled the technology table/open-decision text with `ADR-L5-0019` through `ADR-L5-0047`. Mobile client platform, solver product pending benchmark evidence, provider-specific deployment choices and numeric profile values remain intentionally open.

@@ -12,12 +12,12 @@
 | Canonical Technical Responsibility | Executes approved/versioned financial calculations; cannot autonomously approve or post canonical financial transactions. |
 | Technical Architecture Owner | Finance Computation Engine Technical Architecture |
 | Assigned Author | Varad |
-| Version | 1.1.0 |
+| Version | 1.1.1 |
 | Status | Locked |
 | Last Updated | 2026-09-22 |
 | Depends On | L5-A-07-001; L5-A-07-005; L5-B-02-001; L5-D-03-001; L5-A-08-001; L4-F-001; L4-F-005; L4-F-009; L4-F-012; L5 governance/template/validation standards |
 | Referenced By | Student billing and finance workflows requiring governed calculation |
-| Applicable ADRs | ADR-L5-0001; ADR-L5-0005; ADR-L5-0013; ADR-L5-0014 |
+| Applicable ADRs | ADR-L5-0001; ADR-L5-0005; ADR-L5-0013; ADR-L5-0014; ADR-L5-0032; ADR-L5-0045 |
 
 ## 2. Purpose & Boundary
 
@@ -56,7 +56,7 @@ Owns calculation execution mechanics and technical reconciliation. Does not own 
 | AD-A07-020 | Finance computation consumes authoritative monetary/rule semantics rather than hardcoding them. | Repository-corrected architecture position |
 | AD-A07-021 | Reconciliation is mandatory where the parent workflow provides an invariant to be checked. | L4-derived |
 | AD-A07-022 | Calculation and canonical posting remain separate responsibilities. | Corpus/L4-derived |
-| OD-A07-020 | Concrete numeric type, precision, scale, rounding implementation and performance targets remain unresolved until governed by authoritative financial/technical decisions. | Open decision |
+| OD-A07-020 | **Numeric representation resolved:** `rust_decimal::Decimal`. Finance-owned precision/scale/rounding semantics and measured performance targets remain authoritative/profile-governed. | `ADR-L5-0032`; `ADR-L5-0045` |
 
 ## 7. Conformance Requirements
 
@@ -79,3 +79,8 @@ This Locked specification is amended and re-locked under `L5_Technology_Decision
 
 **Applicable locked decision:** `ADR-L5-0032`  
 `rust_decimal::Decimal` is the default authoritative Rust monetary scalar. Precision, scale, minor-unit and rounding semantics remain authoritative rule inputs; no global default is invented.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+`rust_decimal::Decimal` is now the technical monetary representation. No finance-owned rounding/precision rule or universal performance number is invented by this synchronization.

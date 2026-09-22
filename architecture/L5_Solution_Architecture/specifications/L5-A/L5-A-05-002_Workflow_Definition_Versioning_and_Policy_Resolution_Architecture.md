@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Technical workflow definition/versioning, scope resolution and effective policy selection.  
 **Technical Architecture Owner:** `L5-A-05 — Workflow & Orchestration Architecture`  
 **Assigned Author:** Devang  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register 105 v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-A-05-001_Workflow_and_Orchestration_Architecture_Baseline.md`; `L5-D-02-001` through `L5-D-02-007`; `L5-C-01-001` through `L5-C-01-003`; `L5-C-02-001` through `L5-C-02-003`; `L5-A-04-001/002`; `L5-B-02-002/003`; applicable `L5-D-04`; `L2-A05_Workflow_Engine_Workflows.md`; `L4-A-014_Workflow_Definition_to_Activated_Orchestration_Availability.md`; `L4-A-017_Workflow_Change_to_Governed_New_Version_Availability.md`; supporting `L4-A-015` and `L4-A-016` for runtime/version binding.  
 **Referenced By:** `L5-A-05-003`; workflow-owning domains; workflow administration/governance capabilities; runtime version resolver; D02 policy decision/enforcement; C01/C02 integration architecture; D04 evidence architecture.  
-**Applicable ADRs:** `ADR-L5-0003` Contract-Driven Modular Platform with Selective Isolation; `ADR-L5-0004` Tenant and Institution Isolation Enforcement Pattern; `ADR-L5-0006` Owner-Local Transaction and Optimistic Concurrency Strategy; `ADR-L5-0007` Atomic State-to-Publication Intent Handoff Pattern; `ADR-L5-0010` Durable Event Delivery, Subscription, Ordering & Recovery Pattern; `ADR-L5-0011` Event Contract Versioning & Consumer Compatibility Pattern. No workflow definition notation, workflow product, policy engine, registry product, storage product or version-numbering scheme is selected here.
+**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0007`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0023`; `ADR-L5-0042`. BPMN 2.x and Flowable OSS 8.x are canonical; exact Workflow Version numbering, persistence schema/indexing and registry storage realization remain governed implementation details.
 
 ---
 
@@ -1144,7 +1144,7 @@ Only A05-002-owned technical choices are recorded here.
 | `AD-005` | New instance version resolution uses an explicit Active Version Resolver; existing instances use their persisted originating-version binding instead of the current-active lookup. | Prevents silent in-flight behavior change. |
 | `AD-006` | Workflow publication state and workflow-event publication intent use owner-local atomic handoff rather than distributed transaction with C02. | `ADR-L5-0007`. |
 | `AD-007` | Migration admission is separated from migration execution and remains deny-by-default when any source-required safeguard is absent. | L4-A017-BH-008/BH-009 and ownership preservation. |
-| `AD-008` | Workflow notation, version numbering, registry/storage product and workflow engine remain unselected until governed technology decision is necessary. | Vendor independence / ADR methodology. |
+| `AD-008` | BPMN 2.x + Flowable OSS 8.x are canonical under `ADR-L5-0023`; Workflow Version numbering and registry/storage implementation remain separately governed. | Locked ADR + implementation boundary. |
 
 ---
 
@@ -1240,15 +1240,15 @@ Operational views are projections, not authoritative definition state.
 
 | Item ID | Open / Deferred Item | Classification | Blocking? | Resolution |
 |---|---|---|---|---|
-| `OD-001` | Exact workflow definition notation / serialization format. | Technology / contract | Non-blocking for architecture; blocking before normative format mandate. | Evaluate in A05 technology selection; ADR if shared/material. |
+| `OD-001` | **Resolved notation:** BPMN 2.x. Exact file serialization/packaging conventions beyond the BPMN standard remain implementation-governed. | Technology / contract | Locked notation. | `ADR-L5-0023`. |
 | `OD-002` | Exact Workflow Version numbering scheme. | Local representation | Non-blocking. | Select during implementation unless repository-wide semantics require ADR. |
 | `OD-003` | Exact definition/version persistence schema and indexing. | B02/A05 implementation | Non-blocking. | Define under B02 ownership/isolation/concurrency constraints. |
 | `OD-004` | Exact active-version cache implementation and invalidation transport. | Runtime optimization | Non-blocking. | Select without weakening deterministic/fresh resolution. |
-| `OD-005` | Exact workflow engine / definition registry product. | Technology | Non-blocking for product-neutral L5; blocking before product lock. | Apply L5 Technology Selection & ADR Methodology. |
+| `OD-005` | **Resolved runtime:** Flowable OSS 8.x. Definition-registry persistence/storage implementation remains A05/B02-governed. | Technology | Locked runtime. | `ADR-L5-0023`; `ADR-L5-0042`. |
 | `OD-006` | Exact generic migration execution algorithm/state transfer mechanism. | A05-003 runtime | Non-blocking for A05-002; feature-blocking if migration is implemented. | A05-003 must preserve A017 safeguards and cannot invent lifecycle/event. |
 | `OD-007` | Canonical governance approver, publication/activation authority and migration administrator actor remain undefined upstream. | Upstream business authority | Non-blocking for reusable technical architecture; blocking for any concrete feature needing those actors. | Preserve source-owned gap; do not invent in L5. |
 | `OD-008` | Whether specific workflow policy references require policy-version pinning rather than authoritative-current resolution. | Upstream/policy semantics | Non-blocking baseline; feature-specific. | Canonical policy owner must specify when required. |
-| `OD-009` | Whether A05 runtime realization requires a dedicated ADR after A05-003 exposes product/topology alternatives. | ADR governance | Non-blocking now. | Apply ADR necessity test before normative runtime selection. |
+| `OD-009` | **Resolved:** runtime/product ADRs exist and are Locked. | ADR governance | Closed. | `ADR-L5-0023`; `ADR-L5-0042`. |
 
 ---
 
@@ -1340,3 +1340,8 @@ No `L5-A/L5-A-05/` major-area subfolder is introduced.
 
 **Applicable locked decision:** `ADR-L5-0042`  
 Flowable stores orchestration/runtime state only; canonical business state remains source-owned. Human task assignment is not authorization and D02 re-evaluates authority at action time. Workflow timers stay A05-owned, running instances are version-pinned by default, migration is explicit, and compensation invokes only owner-provided actions.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Removed stale product/notation deferrals now resolved by the Flowable/BPMN ADRs. Upstream publication authority, policy-pinning semantics and implementation-level version/index/cache details remain intentionally open.

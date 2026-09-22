@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Enterprise notification/communication capability; triggering business facts remain source-domain owned.  
 **Technical Architecture Owner:** L5-C-04 — Notification & Communication Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.1.0`  
+**Version:** `1.1.1`  
 **Status:** `Review`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Stage 3 Final Closure & Stage 4 Proceed Decision 2026-09-15; `L2-H02_Notification_Workflows.md` v1.0 Locked; `L5-C-01-001`; `L5-C-02-001`; `L5-A-04-002`; `L5-B-02-003`; `L5-D-02-004`; `L5-A-08-001`; `L5-A-08-002`; `L5-D-04-001`; `L5-E-05-001`.  
 **Referenced By:** `L5-C-04-002`; `L5-C-04-003`; business/platform capabilities requiring governed notification/communication.  
-**Applicable ADRs:** `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0007`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0013`.  
+**Applicable ADRs:** `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0007`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0013`; `ADR-L5-0021`; `ADR-L5-0022`; `ADR-L5-0033`; `ADR-L5-0034`; `ADR-L5-0041`.
 
 ---
 
@@ -81,7 +81,7 @@ This specification does not own:
 | L4 | `L4-H-014` | v1.0.0 / Draft | `BH-001`, `BH-004`, `BH-005`, `BH-006`, `BH-007` | Emergency/critical source facts remain source-owned; H02 owns only its Notification outcome/events/evidence. | Constrains admission, identity, source isolation and lifecycle-event/evidence handling; policy/channel internals remain C04-002/003. Relation state: **Specified** only. |
 | L4 | `L4-H-015` | v1.0.0 / Draft | `BH-004`, `BH-005`, `BH-006` | Delivery recovery keeps the same Notification identity, never repeats/reverses source transaction and emits only defined H02 events. | Constrains baseline identity/source boundary and lifecycle-event publication after delivery recovery. Relation state: **Specified** only. |
 | L4 | `L4-H-016` | v1.0.0 / Draft | `BH-005`, `BH-007` | Provider-derived delivery evidence may drive permitted H02 transitions/events and final H02 outcome without changing source-business ownership. | Defines C04-003-to-baseline outcome handoff and lifecycle-event publication boundary. Relation state: **Specified** only. |
-| L5 Peer | `L5-C-01-001` | v1.0.1 / Draft | §§4–6; `CR-001`–`CR-005` | Ownership-preserving synchronous contract boundary with explicit scope/correlation context; exact transport remains unresolved. | Governs authorized synchronous Notification-request admission; C04 does not select transport/API technology. |
+| L5 Peer | `L5-C-01-001` | current / Review | §§4–6; `CR-001`–`CR-005` | Ownership-preserving synchronous contract boundary with HTTPS REST/JSON + OpenAPI 3.2 and the Group-1 wire profile. | Governs authorized synchronous Notification-request admission; C04 consumes rather than redefines the API profile. |
 | L5 Peer | `L5-C-02-001` | v1.0.3 / Architecture Approved | §§4–8; `AD-001`–`AD-006`; `CR-001`–`CR-008` | Canonical event/messaging transport, durable subscriptions and consumer delivery while event semantics/publisher remain upstream-owned. | Carries incoming canonical source events and outgoing H02 lifecycle events; C04 does not duplicate event transport. |
 | L5 Peer | `L5-A-04-002` | v1.0.1 / Draft | §§2–4 | Tenant/Institution context propagation and fail-closed scope handling. | Governs scope binding across Notification admission, state, background execution and delivery handoffs. |
 | L5 Peer | `L5-B-02-003` | v1.0.1 / Draft | §§5–8; `AD-001`–`AD-004`; `CR-001`–`CR-011` | Owner-local transactions, optimistic concurrency and atomic state + Durable Publication Intent handoff. | Governs Notification state mutation/concurrency and lifecycle-event publication intent. |
@@ -467,7 +467,7 @@ D04 owns enterprise evidence capture/storage/integrity. E05 owns operational tel
 | `AD-004` | Owner-local lifecycle commit and publication handoff | Notification state updates use B02 owner-local concurrency, and a required lifecycle event is coupled through atomic state + Durable Publication Intent before C02 delivery. | `L5-B-02-003`; L2-H02 §32.3. | Prevents state/event divergence without extending transactions across owners. | `ADR-L5-0006`, `ADR-L5-0007` |
 | `AD-005` | Generic background execution is delegated | C04 retains Notification scheduling meaning while A08 supplies generic Job/Work Unit/Attempt execution for deferred/background work. | L2-H02 §19; Stage-3 closure; A08 boundaries. | Avoids a second scheduler/executor architecture and prevents technical Job states from redefining Notification lifecycle. | `ADR-L5-0013` |
 | `AD-006` | C04 family decomposition | 001 owns common admission/identity/lifecycle/handoffs; 002 owns Template/preference/policy execution; 003 owns multi-channel/provider/failover/delivery evidence. | Frozen 105-specification corpus. | Preserves exactly one technical owner for each C04 responsibility. | None |
-| `AD-007` | Technology position | No provider, broker, API style, queue, database, framework, runtime or deployment technology is selected by this baseline. | L5 governance; C01/C02/B02/A08 ownership; ADR methodology. | Keeps unresolved product choices with their canonical decision owners. | Required only if a later material selection is made canonical |
+| `AD-007` | Technology position | C04 inherits canonical C01 REST/OpenAPI, C02 NATS JetStream and A08 worker standards; communication-provider vendors remain intentionally pluggable under `ADR-L5-0033`. | L5 governance + canonical peer ADRs. | Prevents local re-selection while preserving provider neutrality. | Existing Locked ADRs |
 
 ---
 
@@ -514,7 +514,7 @@ D04 owns enterprise evidence capture/storage/integrity. E05 owns operational tel
 |---|---|---|---|---|---|---|
 | `OD-001` | Material Notification L4 sources `L4-H-010` through `L4-H-016` remain `Draft`; relations used here cannot be `Validated`. | Upstream / L4 | Current L4 lifecycle status | L4 governance / authorized architecture review | **Yes for Architecture Approved; No for this authorized Draft** | Approve applicable L4 behavior or issue explicit governance authorization for approval-level use, then revalidate affected C04 relations. |
 | `OD-002` | C04-001, C04-002 and C04-003 are all present on canonical `main`; the former child-specification authoring/integration concern is resolved. | Resolved repository item / C04 family | Canonical repository state after family integration | Repository governance / architecture review | No | No further family-integration action is required; maintain cross-file ownership and contract consistency when any C04 sibling changes materially. |
-| `OD-003` | Shared synchronous API transport/style remains unresolved in C01. | Dependency / ADR | C01 technology decision intentionally open | C01 / Lead Architect under ADR governance | No for technology-neutral C04 Draft | Consume C01 abstract contract boundary; do not select a transport locally. |
+| `OD-003` | **Resolved dependency:** C01 synchronous profile is HTTPS REST/JSON + OpenAPI 3.2 with the Group-1 wire/version/error/idempotency standard. | Dependency / ADR | `ADR-L5-0021`; `ADR-L5-0034` | C01 | No blocker | Consume C01; do not redefine it locally. |
 | `OD-004` | Provider/channel product selection and product-specific failover/receipt mechanics are intentionally deferred to C04-003 and applicable technology governance. | Dependency / Technology | No governed product selection | C04-003 technical owner / Lead Architect where ADR required | No for baseline | Keep baseline provider-neutral; resolve only in C04-003 or later approved ADR/technology standard if material. |
 
 ---
@@ -560,7 +560,7 @@ All above relations are **Specified**, not `Validated`, while their L4 sources r
 ### Open / Blocking Items
 - `OD-001` — Draft L4 sources block Architecture Approved status.
 - `OD-002` — C04 family canonical repository integration is resolved; no repository blocker remains.
-- `OD-003` — C01 transport/style intentionally unresolved and non-blocking for Draft.
+- `OD-003` — C01 transport/style dependency is resolved by `ADR-L5-0021` and `ADR-L5-0034`; no C04 blocker remains.
 - `OD-004` — provider/product specifics deferred to C04-003/technology governance.
 
 
@@ -568,3 +568,8 @@ All above relations are **Specified**, not `Validated`, while their L4 sources r
 
 **Applicable locked decision:** `ADR-L5-0033`  
 Payment, banking/treasury and communication providers remain deployment/institution choices behind C03/C04 adapters. No repository-wide external-provider vendor is canonical; provider-specific semantics may not become business architecture.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Reconciled C04 with the locked API/broker/background-execution standards while preserving `ADR-L5-0033` provider pluggability and the separate L4-source approval blocker.

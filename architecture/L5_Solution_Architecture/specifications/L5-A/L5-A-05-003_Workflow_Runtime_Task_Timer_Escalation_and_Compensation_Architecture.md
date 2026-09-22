@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Runtime task/timer/escalation/technical compensation mechanics without inventing business recovery policy.  
 **Technical Architecture Owner:** `L5-A-05 — Workflow & Orchestration Architecture`  
 **Assigned Author:** Devang  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register 105 v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-A-05-001_Workflow_and_Orchestration_Architecture_Baseline.md`; `L5-A-05-002_Workflow_Definition_Versioning_and_Policy_Resolution_Architecture.md`; `L5-D-02-001` through `L5-D-02-007`; `L5-C-01-001` through `L5-C-01-003`; `L5-C-02-001` through `L5-C-02-003`; `L5-A-04-001/002`; `L5-B-02-002/003`; applicable `L5-D-04`; applicable `L5-A-08`; `L2-A05_Workflow_Engine_Workflows.md`; `L4-A-015_Workflow_Initiation_to_Completed_Orchestrated_Execution.md`; `L4-A-016_Workflow_Execution_Failure_to_Controlled_Recovery_Outcome.md`; `L4-A-058_Human_Decision_Requirement_to_Completed_or_Escalated_Task_Resolution.md`; supporting `L4-A-017`.  
 **Referenced By:** workflow-consuming business domains; workflow administration; human-task experiences; background/timer execution; operational monitoring; D04 evidence; E01/E05 resilience and operations architecture.  
-**Applicable ADRs:** `ADR-L5-0003` Contract-Driven Modular Platform with Selective Isolation; `ADR-L5-0004` Tenant and Institution Isolation Enforcement Pattern; `ADR-L5-0006` Owner-Local Transaction and Optimistic Concurrency Strategy; `ADR-L5-0007` Atomic State-to-Publication Intent Handoff Pattern; `ADR-L5-0009` Non-Human Principal Authorization Binding Pattern; `ADR-L5-0010` Durable Event Delivery, Subscription, Ordering & Recovery Pattern; `ADR-L5-0011` Event Contract Versioning & Consumer Compatibility Pattern. No runtime engine, scheduler, lock service, task inbox, timer service, queue, cache, database or observability product is selected here.  
+**Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0007`; `ADR-L5-0009`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0023`; `ADR-L5-0041`; `ADR-L5-0042`. Flowable OSS 8.x is the canonical workflow runtime; A08 Rust workers/JetStream own generic background execution; exact runtime persistence schema and numeric operational values remain separately governed.
 **Governance Closure:** Stage-3 final closure authorizes this specification as architecture-complete while preserving unresolved upstream event nomenclature and recovery-actor authority as explicit non-L5 decisions. This specification shall not choose or invent those semantics.
 
 ---
@@ -546,3 +546,8 @@ No deferred item transfers ownership, changes lifecycle semantics, or blocks Sta
 
 **Applicable locked decision:** `ADR-L5-0042`  
 Flowable stores orchestration/runtime state only; canonical business state remains source-owned. Human task assignment is not authorization and D02 re-evaluates authority at action time. Workflow timers stay A05-owned, running instances are version-pinned by default, migration is explicit, and compensation invokes only owner-provided actions.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Removed the obsolete claim that no runtime/scheduler product was selected. Flowable, A08 Rust workers and the timer/scheduling responsibility split now follow `ADR-L5-0023`, `ADR-L5-0041` and `ADR-L5-0042`; unresolved upstream event nomenclature/actor authority remains intentionally preserved.

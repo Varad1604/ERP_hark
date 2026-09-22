@@ -8,7 +8,7 @@
 **Canonical Technical Responsibility:** Technical event schema evolution and consumer compatibility while canonical event names/publishers remain upstream-owned.  
 **Technical Architecture Owner:** `L5-C-02 — Event & Messaging Architecture`  
 **Assigned Author:** Pallav  
-**Version:** `1.2.0`  
+**Version:** `1.2.1`  
 **Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-C-02-001`; `L5-C-02-002`; `ADR-L5-0011`  
@@ -32,7 +32,7 @@ For this production validation/remediation cycle, canonical L4 specifications ar
 - Canonical event meaning, name and publisher authority remain upstream-owned.
 - Technical compatibility/versioning semantics are governed by `ADR-L5-0011`.
 - Registry/catalog capability never becomes the business owner of event semantics.
-- No schema language, serialization format, envelope standard or registry product is silently selected here.
+- JSON + governed JSON Schema and a CloudEvents 1.0-compatible envelope are canonical under `ADR-L5-0035`; only the concrete registry/catalog product remains unselected.
 
 ## 4. Technical Ownership, Boundaries & Dependencies
 **Owns:** Event Contract Definition model, Schema Catalog/Registry abstraction, compatibility classifier, producer conformance, consumer supported-version declaration, deprecation/retirement technical control.  
@@ -70,7 +70,7 @@ Schema metadata carries classification where needed. Test fixtures must not copy
 - `CR-008`: Historical replay shall preserve the original event-contract version.
 - `CR-009`: Retirement shall require consumer-impact evidence or approved exception.
 - `CR-010`: Registry/catalog capability shall not become canonical owner of business-event semantics.
-- `CR-011`: Schema representation, serialization, envelope standard and registry product remain non-canonical until separately governed.
+- `CR-011`: JSON/JSON Schema and the CloudEvents-compatible envelope are canonical under `ADR-L5-0035`; the concrete schema-registry/catalog product remains non-canonical until separately governed.
 - `CR-012`: Event-contract compatibility behavior shall conform to `ADR-L5-0011`.
 
 ## 9. Open Decisions & Deferred Design
@@ -89,3 +89,8 @@ This specification is **Architecture Approved** following completed Stage-2 reme
 
 **Applicable locked decision:** `ADR-L5-0035`  
 Event schemas use governed JSON Schema; compatible additive evolution is preferred and breaking successors follow ADR-L5-0011. Binary serialization is exception-only for measured bounded technical streams.
+
+
+## 2026-09-22 Full-Corpus Post-Decision Synchronization
+
+Reconciled event schema/envelope text with `ADR-L5-0035`; registry product and numeric payload/retention/capacity limits remain intentionally deferred.
