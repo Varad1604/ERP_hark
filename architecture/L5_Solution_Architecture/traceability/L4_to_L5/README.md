@@ -5,7 +5,7 @@
 **Status:** Established — Active  
 **Owner:** Lead Architect  
 **Established:** 2026-09-17  
-**Last Updated:** 2026-09-17  
+**Last Updated:** 2026-09-22  
 **Governing Methodology:** `../../governance/instruction/L5_L4_to_L5_Traceability_Methodology.md`  
 
 ---
@@ -191,3 +191,24 @@ Any material change to a bound L4 BH, L5 specification, ADR or technical respons
 **W-C02 Canonical Relation Population:** VALIDATED  
 **W-C02 BH Coverage:** 89 / 89 VALIDATED COVERAGE  
 **Final L5 Corpus Lock:** Not changed by W-C02 traceability validation
+
+
+## 10. Batch 8 Current-Version Revalidation
+
+On 2026-09-22, Batch 8 revalidated the existing W-C02 `Validated` relation population against the current bound L5 specification versions after the production-validation synchronization programme.
+
+Result:
+
+```text
+Canonical W-C02 relation population     130
+Validated relation rows                 130
+Affected rows rebound to current L5      YES
+Relation identity changes                 0
+Technical-contribution semantic changes   0
+Coverage-state changes                    0
+Residual stale L5 version bindings        0
+```
+
+Affected current L5 versions include the current B02, C01, C02, D02 and D04 versions referenced by the canonical relation store. Rebinding was permitted only after confirming that intervening specification changes were non-material to the exact recorded technical contribution. The existing relation-review authority remains preserved and Batch 8 is recorded as the current-version revalidation reference.
+
+This revalidation does not extend W-C02 coverage to another L4 section and does not imply full-repository L4→L5 relation validation.
