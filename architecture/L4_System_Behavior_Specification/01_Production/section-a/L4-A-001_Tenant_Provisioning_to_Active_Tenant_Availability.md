@@ -7,10 +7,10 @@
 **Domain:** Platform & Tenant  
 **Realizes Scenario:** L3-A-001  
 **Primary Business Owner:** Platform & Tenant  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-30  
+**Last Updated:** 2026-09-23  
 **Depends On:** `L3-A-001_Tenant_Provisioning_to_Active_Tenant_Availability.md`; `L2-A01_Platform_Tenant_Foundation_Architecture.md`; `L2-A01_Tenant_Provisioning_Authority_and_Event_Amendment_2026-08-26.md`; `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`  
 **Referenced By:** None yet
 
@@ -89,6 +89,11 @@ Every BH above traces to the Locked L3 parent. L2/L1 sources are used only to ve
 
 ## 10. Open Issues / Deferred Design
 
-No L4 correctness issue remains for this draft.
+No L4 correctness issue remains. This specification is Architecture Approved under the R1A Tenant/Institution authority decision dated 2026-09-23.
 
 Implementation decisions including provisioning mechanisms, APIs/interfaces, persistence, service/component design, event transport, technical access control, transaction/recovery mechanics, infrastructure/deployment, and UI/UX are deferred to L5/L6 as applicable.
+
+
+## Canonical Validation Note
+
+This specification passed the scoped R1A hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R1A_Tenant_Institution_Authority_Architecture_Approval_Decision_2026-09-23.md`. This approval does not Lock the specification and does not invent upstream actor authority, lifecycle semantics, events, or implementation design.
