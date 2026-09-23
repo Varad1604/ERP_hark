@@ -552,7 +552,7 @@ The active L6 package contains the preserved Days 1–13 foundation/baseline, ap
 | L6 Workflow Realization Register — Draft | Lead Architect | Architecture Approved | Stage-2 master-reconciled register: 1,084 / 1,084 scenario rows, 595 final realization workflows, zero missing/duplicate primary assignments |
 | L6 Stage 5 Reviewed Mock-Operational Gameplan — 2026-09-22 | Lead Architect | Architecture Approved — Planning Baseline | Active 31-batch Stage-5 execution topology |
 | L6 Stage 5 Batch 0 Authority/Census Baseline Evidence — 2026-09-22 | Lead Architect | Review — hardened evidence | Batch-0 merged/complete baseline and protected Stage-5 census provenance |
-| L6 Stage 5 Batch 1 Mock-Operation Core Foundation Final Evidence & Closure — 2026-09-23 | Lead Architect | Review | Batch-closure evidence under correction review; 9 of 9 planned steps executed, merge gate not yet PASS |
+| L6 Stage 5 Batch 1 Mock-Operation Core Foundation Final Evidence & Closure — 2026-09-23 | Lead Architect | Architecture Approved | Batch-1 final evidence; corrections closed, 9 of 9 steps complete, merge gate PASS subject to explicit authorization |
 
 ### Active L6 Execution Baseline
 
