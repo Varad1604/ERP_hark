@@ -65,7 +65,7 @@ The distinction between `instruction/` and `reference/` is operational convenien
 
 ## 2026-09-22 Locked Technology Decision Wave
 
-`ADR-L5-0019` through `ADR-L5-0048` contain the current canonical Locked technology/backend-readiness decisions. Do not re-select these decisions locally. The next ADR allocation is `ADR-L5-0049`. Final L5 Corpus Lock remains not authorized.
+`ADR-L5-0019` through `ADR-L5-0048` contain the current canonical Locked technology/backend-readiness decisions. Do not re-select these decisions locally. The next ADR allocation is `ADR-L5-0049`. The Final L5 Corpus Lock was explicitly authorized on 2026-09-23 and is executed on the controlled final-lock branch; canonicalization remains pending Final Lock PR merge.
 
 
 ## 2026-09-22 Post-Decision Corpus Audit
@@ -80,3 +80,25 @@ Do not infer Final L5 Corpus Lock from backend-readiness completion. Remaining R
 ## 2026-09-23 R3C Non-Human Principal Lifecycle
 
 `ADR-L5-0048` is the Locked canonical non-human technical-principal lifecycle decision. Current ADR allocation is 48; next allocation is `ADR-L5-0049`. This decision does not alter the Batch-9 NO-LOCK verdict.
+
+
+## Final L5 Corpus Lock — 2026-09-23
+
+The final-lock gate passed with zero current hard failures and zero mandatory pending architecture decisions. Explicit Lead Architect authorization was then issued for the distinct Final L5 Corpus Lock action.
+
+The controlled lock branch records:
+
+```text
+Canonical L5 specifications       105
+Draft                               0
+Review                              0
+Architecture Approved               0
+Locked                             105
+ADR allocations                     48
+Next ADR                   ADR-L5-0049
+L4→L5 relations                    571
+Duplicate relation identities        0
+Stale L5 bindings                    0
+```
+
+The final lock changes lifecycle governance only. Material future changes to locked L5 architecture require governed impact assessment and revalidation.
