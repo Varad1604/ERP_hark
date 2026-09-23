@@ -3,7 +3,7 @@
 **Architecture Level:** L5 — Solution Architecture  
 **Purpose:** Canonical repository location for the frozen 105-specification L5 production corpus  
 **Broad Authoring:** Authorized  
-**Final L5 Corpus Lock:** Not Authorized  
+**Final L5 Corpus Lock:** Ready for explicit authorization; not yet executed  
 
 ---
 
@@ -137,7 +137,7 @@ Production specifications shall inherit all applicable Locked decisions through 
 
 ## Post-Decision Audit State
 
-As of 2026-09-22, the 105 canonical specification headers are synchronized to **0 Draft / 51 Review / 21 Architecture Approved / 33 Locked**. Lifecycle status shall not be strengthened merely because a technology ADR is Locked.
+As of 2026-09-23, the 105 canonical specification headers are synchronized to **0 Draft / 0 Review / 72 Architecture Approved / 33 Locked**. Lifecycle status was strengthened only through explicit validation/governance decisions; Architecture Approved does not itself imply Final Corpus Lock.
 
 
 ## Production Validation Register — 2026-09-22
@@ -152,13 +152,13 @@ Current lifecycle distribution remains:
 
 ```text
 0 Draft
-51 Review
-21 Architecture Approved
+0 Review
+72 Architecture Approved
 33 Locked
 105 Total
 ```
 
-Validation completion does not itself promote specification lifecycle state. Batch 9 has now completed with a NO-LOCK verdict; Final L5 Corpus Lock remains not authorized.
+Validation completion does not itself promote specification lifecycle state. The historical Batch-9 NO-LOCK verdict remains historical; subsequent governed remediation has closed its blockers. Final L5 Corpus Lock is ready for a distinct explicit authorization and has not yet been executed.
 
 
 ## Batch 9 Final-Gate Result
@@ -169,10 +169,16 @@ Final result:
 
 ```text
 105 / 105 validation dispositions present
-30 Review specifications blocked by upstream authority/semantics
-Final L5 Corpus Lock = NOT AUTHORIZED
+0 Review specifications
+0 current hard blockers
+Final L5 Corpus Lock = READY FOR DISTINCT EXPLICIT AUTHORIZATION; NOT EXECUTED
 ```
 
 See:
 
 `../governance/reference/L5_Production_Validation_Batch9_Final_Corpus_Lock_Gate_2026-09-22.md`
+
+
+## Independent Final Synchronization Audit — 2026-09-23
+
+A fresh repository-based synchronization audit confirms the living 105-row corpus at **0 Draft / 0 Review / 72 Architecture Approved / 33 Locked**, with zero current hard blockers. Historical Batch-9 counts and verdicts remain valid only as historical milestones and shall not be read as current lifecycle state. Evidence/profile/future-feature deferrals remain intentionally governed and do not constitute current L5 architecture blockers. Final Corpus Lock remains a separate explicit governance action.
