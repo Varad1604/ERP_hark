@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Multi-channel provider abstraction, controlled failover and delivery evidence.  
 **Technical Architecture Owner:** L5-C-04 — Notification & Communication Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.1.1`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Version:** `1.2.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Stage 3 Final Closure & Stage 4 Proceed Decision 2026-09-15; `L2-H02_Notification_Workflows.md` v1.0 Locked; `L5-C-04-001` Draft; `L5-C-04-002` Draft; `L5-A-06-001`; `L5-A-06-002`; `L5-A-04-002`; `L5-B-02-003`; `L5-A-08-001`; `L5-A-08-002`; `L5-D-02-004`; `L5-D-03-002`; `L5-D-03-004`; `L5-D-04-001`; `L5-E-05-001`; `L5-C-02-001`.  
 **Referenced By:** `L5-C-04-001`; Notification-consuming capabilities requiring provider-independent delivery outcome/evidence.  
 **Applicable ADRs:** `ADR-L5-0002`; `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0027`; `ADR-L5-0033`; `ADR-L5-0040`; `ADR-L5-0041`; `ADR-L5-0045`.
@@ -787,3 +787,8 @@ All current relations are **Specified**, not `Validated`, while the cited L4 sou
 
 **Applicable locked decision:** `ADR-L5-0033`  
 Payment, banking/treasury and communication providers remain deployment/institution choices behind C03/C04 adapters. No repository-wide external-provider vendor is canonical; provider-specific semantics may not become business architecture.
+
+
+## 2026-09-23 R6 Targeted Revalidation Synchronization
+
+R6 revalidated this specification against HF-01…HF-15 after canonical R1/R2 upstream authority consolidation and R5 affected L4→L5 traceability validation. The former Draft/Review-L4 promotion blocker is resolved. Earlier embedded source-status labels describing Draft/Review L4 state are retained only as authoring provenance and are superseded for current authority by the Architecture Approved R1/R2 parent decisions. No business ownership, event ownership, lifecycle authority, or technical responsibility is transferred by this promotion. HF-01…HF-15: PASS. Lifecycle: Architecture Approved. Final corpus lock remains separate governance.
