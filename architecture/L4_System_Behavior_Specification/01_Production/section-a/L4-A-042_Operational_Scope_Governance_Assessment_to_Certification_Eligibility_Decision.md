@@ -6,10 +6,10 @@
 **Domain:** Operational Readiness Governance & Certification  
 **Realizes Scenario:** L3-A-042  
 **Primary Business Owner:** Operational Readiness Governance & Certification  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-30  
+**Last Updated:** 2026-09-23  
 **Depends On:** `L3-A-042_Operational_Scope_Governance_Assessment_to_Certification_Eligibility_Decision.md`; L2-A10 — Operational Readiness Governance & Certification Workflows  
 **Referenced By:** None yet
 
@@ -52,3 +52,7 @@ One immutable governance Assessment has a recorded certification-eligibility dec
 
 ## 10. Open Issues / Deferred Design
 Parent metadata contains `Depends On: undefined`; no dependency set is invented. Upstream metadata should be corrected before L4 lock.
+
+## Canonical Validation Note
+
+This specification passed the scoped R4A hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R4A_Operational_Readiness_Evidence_Authority_Architecture_Approval_Decision_2026-09-23.md`. Existing bounded upstream metadata gaps remain explicit; this approval does not invent actors, lifecycle states, commands, events, publishers, technical acceptance authority, implementation design, or UI behavior.
