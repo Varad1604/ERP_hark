@@ -483,4 +483,4 @@ BROWSER / CI — PASS
 BATCH 7 — ENTRY-READY / NOT STARTED
 ```
 
-Batch 6 is repository-ready for Architecture closure merge. Batch 7 must not start until this evidence is merged and the canonical L6 status is updated.
+Architecture closure PR #102 merged as `2f31112d158e442f9fbd6183f3504ddbb5bf231b`. Batch 6 is repository-canonical PASS / COMPLETE / MERGED. Batch 7 is ENTRY-READY / NOT STARTED.
