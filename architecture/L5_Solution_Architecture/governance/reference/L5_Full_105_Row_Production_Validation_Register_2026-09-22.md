@@ -7,13 +7,13 @@
 **Corpus:** 105 canonical production specifications  
 **Validation Coverage:** Batches 1–7C plus R3D targeted D01 revalidation  
 **ADR Baseline:** `ADR-L5-0001` through `ADR-L5-0048`  
-**Final L5 Corpus Lock:** NOT AUTHORIZED by this register
+**Final L5 Corpus Lock:** AUTHORIZED 2026-09-23; executed on final-lock branch; canonicalization pending Final Lock PR merge
 
 ## 1. Register Semantics
 
 This register gives every canonical L5 production specification exactly one current production-validation disposition.
 
-It does not itself promote lifecycle state, approve Draft L4 authority, create a new ADR, or authorize Final L5 Corpus Lock.
+It does not itself approve Draft L4 authority or create a new ADR. The distinct Final L5 Corpus Lock authorization was issued on 2026-09-23 and is recorded separately; this register reflects that branch-level lock execution.
 
 `Traceability State` is deliberately conservative:
 
