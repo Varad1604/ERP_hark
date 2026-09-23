@@ -394,7 +394,7 @@ The canonical row-level validation source is:
 
 Batch 8 also revalidated current-version bindings for the existing 130-row W-C02 canonical L4→L5 relation population. Relation identity and BH coverage were unchanged.
 
-**Final L5 Corpus Lock remains NOT AUTHORIZED.** Batch 9 is complete and records a NO-LOCK verdict. Thirty Review specifications retain upstream authority/semantics blockers; additional Review specifications remain intentionally unpromoted pending separate lifecycle governance.
+**Historical Batch-9 state:** Batch 9 completed with a NO-LOCK verdict because 30 Review specifications then retained upstream authority/semantics blockers. Subsequent governed remediation resolved those blockers; this paragraph is retained as historical programme chronology and is not the current L5 state.
 
 ### Final Corpus Lock Gate — Batch 9
 
@@ -650,6 +650,11 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 ---
 
 # Recent Changes
+
+**2026-09-23 — Independent final L5 synchronization audit:** fresh repository validation confirms 105/105 canonical L5 rows at 0 Draft / 0 Review / 72 Architecture Approved / 33 Locked, 0 current hard blockers, and no newly required ADR. Canonical navigation and selected stale peer-lifecycle/dependency wording were synchronized. Intentionally deferred evidence/profile/future-feature choices remain non-blocking. Final L5 Corpus Lock is ready for a distinct explicit authorization but has not been executed.
+
+---
+
 
 **2026-09-23 — Final A05 governance closure:** resolved Workflow Definition/Version governance at canonical L2-A05 ownership, reconciled L3-A-014/A-017, approved L4-A-014/A-017, and promoted L5-A-05-001/002. Current L5 corpus: 0 Draft / 0 Review / 72 Architecture Approved / 33 Locked / 0 hard blockers. Canonical L4→L5 relations: 571, duplicates 0, stale bindings 0. Final L5 Corpus Lock re-entry is ready but requires separate explicit authorization.
 
