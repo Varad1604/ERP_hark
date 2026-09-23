@@ -1,12 +1,12 @@
 # SutraERP L5 — Full 105-Row Production Validation Register — 2026-09-22
 
-**Version:** 1.0.0  
-**Status:** Complete — Batch 8 Canonical Validation Register  
+**Version:** 1.1.0  
+**Status:** Active — Batch 8 Canonical Register with Post-Batch-9 R3D Reconciliation  
 **Owner:** Lead Architect  
 **Architecture Level:** L5 — Solution Architecture Governance  
 **Corpus:** 105 canonical production specifications  
-**Validation Coverage:** Batches 1–7C  
-**ADR Baseline:** `ADR-L5-0001` through `ADR-L5-0047`  
+**Validation Coverage:** Batches 1–7C plus R3D targeted D01 revalidation  
+**ADR Baseline:** `ADR-L5-0001` through `ADR-L5-0048`  
 **Final L5 Corpus Lock:** NOT AUTHORIZED by this register
 
 ## 1. Register Semantics
@@ -28,13 +28,13 @@ It does not itself promote lifecycle state, approve Draft L4 authority, create a
 |---|---:|
 | Canonical specifications | 105 |
 | Draft | 0 |
-| Review | 51 |
-| Architecture Approved | 21 |
+| Review | 47 |
+| Architecture Approved | 25 |
 | Locked | 33 |
-| Blocked — upstream authority/semantics | 30 |
+| Blocked — upstream authority/semantics | 26 |
 | Pass with non-blocking deferrals — remain Review | 16 |
 | Architecture-Approval eligible — remain Review | 5 |
-| Pass — remains Architecture Approved | 21 |
+| Pass — Architecture Approved | 25 |
 | Pass — remains Locked | 33 |
 | Validation dispositions present | 105 / 105 |
 
@@ -101,10 +101,10 @@ It does not itself promote lifecycle state, approve Draft L4 authority, create a
 | L5-C-04-001 | L5-C | 1.1.2 | Review | 3 | BLOCKED — HF-01/HF-14 | Specified; approval-level upstream authority unresolved | PASS — no new ADR required | PASS | Draft/unapproved L4 behavioral authority | BLOCKED — UPSTREAM AUTHORITY/SEMANTICS | Not promotion-eligible | Resolve upstream authority/traceability; then revalidate |
 | L5-C-04-002 | L5-C | 1.0.1 | Review | 3 | BLOCKED — HF-01/HF-14 | Specified; approval-level upstream authority unresolved | PASS — no new ADR required | PASS | Draft/unapproved L4 behavioral authority | BLOCKED — UPSTREAM AUTHORITY/SEMANTICS | Not promotion-eligible | Resolve upstream authority/traceability; then revalidate |
 | L5-C-04-003 | L5-C | 1.1.1 | Review | 3 | BLOCKED — HF-01/HF-14 | Specified; approval-level upstream authority unresolved | PASS — no new ADR required | PASS | Draft/unapproved L4 behavioral authority | BLOCKED — UPSTREAM AUTHORITY/SEMANTICS | Not promotion-eligible | Resolve upstream authority/traceability; then revalidate |
-| L5-D-01-001 | L5-D | 1.2.1 | Review | 4 | BLOCKED — HF-01/HF-14 | Specified; approval-level upstream authority unresolved | PASS — no new ADR required | PASS | Draft/unapproved L4 behavioral authority | BLOCKED — UPSTREAM AUTHORITY/SEMANTICS | Not promotion-eligible | Resolve upstream authority/traceability; then revalidate |
-| L5-D-01-002 | L5-D | 1.2.2 | Review | 4 | BLOCKED — HF-01/HF-14 | Specified; approval-level upstream authority unresolved | PASS — no new ADR required | PASS | Draft/unapproved L4 behavioral authority | BLOCKED — UPSTREAM AUTHORITY/SEMANTICS | Not promotion-eligible | Resolve upstream authority/traceability; then revalidate |
-| L5-D-01-003 | L5-D | 1.2.2 | Review | 4 | BLOCKED — HF-01/HF-14 | Specified; approval-level upstream authority unresolved | PASS — no new ADR required | PASS | Draft/unapproved L4 behavioral authority | BLOCKED — UPSTREAM AUTHORITY/SEMANTICS | Not promotion-eligible | Resolve upstream authority/traceability; then revalidate |
-| L5-D-01-004 | L5-D | 1.0.1 | Review | 4 | BLOCKED — HF-01/HF-14 | Specified; approval-level upstream authority unresolved | PASS — no new ADR required | PASS | Draft L4 authority plus unresolved provisioning/recovery lifecycle authority | BLOCKED — UPSTREAM AUTHORITY/SEMANTICS | Not promotion-eligible | Resolve upstream authority/traceability; then revalidate |
+| L5-D-01-001 | L5-D | 1.3.0 | Architecture Approved | R3D | PASS — HF-01…HF-15 | Validated — Section-A D01 relations current-bound | PASS — no unresolved ADR blocker | PASS | None blocking; implementation/profile deferrals remain governed | PASS — ARCHITECTURE APPROVED | Lock requires separate authorization | Maintain current-version traceability; include in final-lock readiness audit |
+| L5-D-01-002 | L5-D | 1.4.0 | Architecture Approved | R3D | PASS — HF-01…HF-15 | Validated — Section-A D01 relations current-bound | PASS — ADR-L5-0048 resolves non-human lifecycle | PASS | None blocking; provider-specific details remain governed | PASS — ARCHITECTURE APPROVED | Lock requires separate authorization | Maintain current-version traceability; include in final-lock readiness audit |
+| L5-D-01-003 | L5-D | 1.3.0 | Architecture Approved | R3D | PASS — HF-01…HF-15 | Validated — Section-A D01 relations current-bound | PASS — existing IAM/security ADR set remains current | PASS | None blocking; numeric/session/profile details remain governed | PASS — ARCHITECTURE APPROVED | Lock requires separate authorization | Maintain current-version traceability; include in final-lock readiness audit |
+| L5-D-01-004 | L5-D | 1.2.0 | Architecture Approved | R3D | PASS — HF-01…HF-15 | Validated — Section-A D01 relations current-bound | PASS — ADR-L5-0048 plus R3B upstream decisions current | PASS | None blocking; source-ordered closure details remain bounded/non-blocking | PASS — ARCHITECTURE APPROVED | Lock requires separate authorization | Maintain current-version traceability; include in final-lock readiness audit |
 | L5-D-02-001 | L5-D | 1.2.1 | Architecture Approved | 7B | PASS | Preserved; no Batch-7 relation-state promotion | PASS — no new ADR required | PASS | None | PASS — REMAINS ARCHITECTURE APPROVED | Lock requires separate authorization | No change unless Batch 9 governance authorizes lock |
 | L5-D-02-002 | L5-D | 1.0.1 | Architecture Approved | 7B | PASS | Preserved; no Batch-7 relation-state promotion | PASS — no new ADR required | PASS | None | PASS — REMAINS ARCHITECTURE APPROVED | Lock requires separate authorization | No change unless Batch 9 governance authorizes lock |
 | L5-D-02-003 | L5-D | 1.0.2 | Architecture Approved | 7B | PASS | Preserved; no Batch-7 relation-state promotion | PASS — no new ADR required | PASS | None | PASS — REMAINS ARCHITECTURE APPROVED | Lock requires separate authorization | No change unless Batch 9 governance authorizes lock |
@@ -152,8 +152,8 @@ It does not itself promote lifecycle state, approve Draft L4 authority, create a
 
 ```text
 Draft                  0
-Review                51
-Architecture Approved 21
+Review                47
+Architecture Approved 25
 Locked                 33
 Total                 105
 ```
@@ -179,7 +179,7 @@ Batch 7C  7
 Total    54 / 54
 
 Whole corpus:
-51 + 54 = 105 / 105
+47 + 58 = 105 / 105
 ```
 
 Every canonical specification therefore has exactly one current validation-batch disposition.
@@ -191,3 +191,30 @@ The register proves complete validation coverage but does not prove Final L5 Cor
 The principal unresolved corpus-level blocker remains higher-level approval/traceability authority for specifications whose material L4 basis remains Draft or otherwise lacks approval-level authority. Those rows remain explicitly blocked rather than being repaired inside L5.
 
 Final L5 Corpus Lock remains subject to Batch 9 and explicit Lead Architect authorization.
+
+
+---
+
+## Post-Batch-9 R3D Reconciliation — 2026-09-23
+
+R3D performed targeted remediation, canonical traceability validation and HF-01…HF-15 revalidation for the D01 IAM family.
+
+Result:
+
+```text
+L5-D-01-001    Architecture Approved
+L5-D-01-002    Architecture Approved
+L5-D-01-003    Architecture Approved
+L5-D-01-004    Architecture Approved
+
+D01 blocked rows cleared          4
+Current blocked population       26
+Current Review population        47
+Current Architecture Approved    25
+Current Locked                   33
+Canonical specification total   105
+```
+
+Canonical relation evidence is stored in `traceability/L4_to_L5/section-a.md` and governed by `L5_R3D_D01_Targeted_Revalidation_and_Traceability_Decision_2026-09-23.md`.
+
+This reconciliation does not alter the historical Batch-9 decision that Final L5 Corpus Lock was not authorized at that time. Final Lock remains not authorized pending resolution/revalidation of the remaining 26 current blockers and a distinct final-lock gate.
