@@ -9,10 +9,10 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows; L2-A03 — Authentication Workflows; L2-A04 — Authorization & Policy Workflows; L2-A05 — Workflow Engine Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows; L3-A-015 — Workflow Initiation to Completed Orchestrated Execution  
+**Last Updated:** 2026-09-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows; L2-A03 — Authentication Workflows; L2-A04 — Authorization & Policy Workflows; L2-A05 — Workflow Engine Workflows; `L2-A05_Workflow_Recovery_Authority_Amendment_2026-09-23.md`; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows; L3-A-015 — Workflow Initiation to Completed Orchestrated Execution  
 **Referenced By:** Workflow-owning domains requiring governed failed-execution outcomes
 
 ---
@@ -25,9 +25,9 @@ Govern the business-visible lifecycle of a failed Workflow Instance so recovery 
 
 # 3. Business Outcome
 
-Execution is recovered from a valid persisted checkpoint and either resumes toward completion or reaches an explicitly governed terminal outcome without losing workflow integrity.
+Execution is recovered from a valid governed continuation position and either resumes toward completion or reaches the governed `Cancelled` terminal recovery outcome without losing workflow integrity.
 
-The frozen outcome requires a persisted-checkpoint recovery mechanism that is below normal L3 business-scenario detail, while L2-A05 does not define a canonical generic recovery command or the authority for retry, recovery and terminal resolution. The scenario is therefore classified `BLOCKED`.
+The Locked L2-A05 recovery amendment defines Workflow Recovery Authority, recovery operations and the business boundary between Workflow Engine, Authorization & Policy and the Workflow-Owning Domain. Persistence/checkpoint implementation remains below L3.
 
 ---
 
@@ -88,7 +88,7 @@ The frozen Participating Domains value remains exactly `A, VAR:Workflow-Owning D
 
 # 6. Business Actors, Roles and Responsibilities
 
-L2-A05 records Actors as absent. It does not name the actor authorized to request retry, approve recovery, resume a failed instance or choose cancellation. `RetryWorkflow` appears only as a representative runtime command, without a complete authority contract. No workflow administrator, support operator, approver or recovery authority is invented.
+`Workflow Recovery Authority` is the canonical abstract authority for protected recovery, resumption and recovery-cancellation decisions. Institutional policy maps that authority locally. Workflow Engine owns execution/lifecycle; the Workflow-Owning Domain owns domain-business outcomes; Authorization & Policy enforces the protected action.
 
 ---
 
@@ -119,15 +119,15 @@ An active workflow instance fails because of a runtime, integration, timeout, po
 | 3 | Complete the permitted transition to `Failed` and publish `WorkflowFailed`. | Workflow Engine | Normal execution stops and the failure becomes a canonical fact. |
 | 4 | Preserve Tenant, instance, originating version, correlation, completed activity outcomes and the latest valid execution position. | Workflow Engine | Workflow integrity and traceability are retained. |
 | 5 | Determine whether recovery is allowed by the originating version, applicable policy, failure category and current lifecycle state. | Workflow Engine; Authorization & Policy; VAR:Workflow-Owning Domain supplies its rules | A governed recovery-eligibility outcome is established. |
-| 6 | Obtain the required authorization for retry or recovery. | Canonical recovery authority undefined; Authorization & Policy | Recovery may proceed only when authorized. |
+| 6 | Obtain the required protected-action authorization and Workflow Recovery Authority decision for recovery. | Workflow Recovery Authority; Authorization & Policy | Recovery may proceed only when authorized. |
 | 7 | Complete `Failed → Recovering` while retaining the originating Workflow Version. | Workflow Engine | The instance enters the governed recovery lifecycle. |
 | 8 | Validate that the recovery point is usable without changing completed domain outcomes or replaying business decisions without authority. | Workflow Engine; participating domains | The intended resumption preserves business integrity. |
-| 9 | If recovery succeeds, complete `Recovering → Running`, publish `WorkflowRecovered` and `WorkflowResumed` according to their canonical transition conditions, and return control to A015. | Workflow Engine | The same instance resumes toward its defined outcome. |
-| 10 | If governed recovery cannot or must not resume, obtain the required terminal-resolution authority and complete `Recovering → Cancelled`. | Canonical terminal-resolution authority undefined; Workflow Engine | The failed execution reaches its defined execution-terminal outcome. |
+| 9 | If recovery succeeds, complete `Recovering → Running`, publish `WorkflowRecovered`, and return control to A015. | Workflow Engine | The same instance resumes toward its defined outcome. |
+| 10 | If governed recovery cannot or must not resume, obtain Workflow Recovery Authority approval for terminal recovery closure and complete `Recovering → Cancelled`. | Workflow Recovery Authority; Workflow Engine | The failed execution reaches its defined execution-terminal outcome. |
 | 11 | Publish `WorkflowCancelled` only after cancellation succeeds and return the governed outcome to the Workflow-Owning Domain. | Workflow Engine | Consumers receive the canonical closure fact. |
 | 12 | Preserve immutable evidence of failure, classification, authorization, recovery decision, lifecycle transitions and final outcome. | Workflow Engine; Audit Infrastructure | The recovery outcome is fully traceable. |
 
-Steps 6, 8 and 10 cannot be finalized as exact L3 business-authority behaviour because L2-A05 does not define the universal authority or complete recovery contract. The mechanics of persisted-checkpoint restoration are deliberately not specified at L3.
+Steps 6, 8 and 10 consume the Locked L2-A05 recovery authority amendment. The mechanics of persistence/checkpoint restoration remain deliberately unspecified at L3.
 
 ---
 
@@ -151,7 +151,7 @@ Steps 6, 8 and 10 cannot be finalized as exact L3 business-authority behaviour b
 | Recovery is not authorized. | The instance cannot enter or continue recovery. | Retain `Failed` or apply an independently authorized cancellation outcome. | Authorization & Policy; Workflow Engine |
 | No valid recovery position can be established. | Resumption could duplicate or corrupt business effects. | Do not resume; seek the governed terminal resolution. | Workflow Engine; participating domains |
 | Participating-domain outcome is ambiguous. | Orchestration cannot safely determine what already occurred. | Ask the owning domain for an authoritative outcome; do not infer or overwrite it. | VAR:Workflow-Owning Domain; Workflow Engine |
-| Recovery action fails. | The instance cannot return to `Running`. | Preserve `Recovering` or follow authorized cancellation; do not publish `WorkflowRecovered` or `WorkflowResumed`. | Workflow Engine |
+| Recovery action fails. | The instance cannot return to `Running`. | Preserve `Recovering` or follow authorized cancellation; do not publish `WorkflowRecovered`. | Workflow Engine |
 | Cancellation is not authorized. | No governed terminal outcome can be reached. | Preserve the unresolved lifecycle state and escalate through an upstream-defined authority when available. | Authorization & Policy; Workflow Engine |
 | Event publication condition is not satisfied. | Consumers cannot rely on an incomplete recovery fact. | Do not publish the corresponding success or cancellation event. | Workflow Engine; Event Infrastructure |
 
@@ -197,9 +197,7 @@ No `Recovered`, `Retrying` or `Abandoned` state is introduced because L2-A05 def
 | Event | Canonical Publisher | Publication Condition | Business Effect / Consumers |
 |---|---|---|---|
 | `WorkflowFailed` | Workflow Engine | The Workflow Instance reaches `Failed`. | Owning domain, monitoring and audit receive the failure fact. |
-| `WorkflowCheckpointCreated` | Workflow Engine | L2-A05's governed checkpoint condition completes. | Recovery and audit consumers receive the checkpoint fact; this Draft does not define persistence mechanics. |
 | `WorkflowRecovered` | Workflow Engine | Recovery succeeds and the instance is eligible to return to execution. | Owning domain and audit receive the recovery fact. |
-| `WorkflowResumed` | Workflow Engine | The instance completes its governed transition back to `Running`. | Normal orchestration under A015 continues. |
 | `WorkflowCancelled` | Workflow Engine | The governed cancellation transition succeeds. | Owning domain and audit receive the execution-closure fact. |
 
 ## 14.2 Business Contracts and Hand-offs
@@ -227,8 +225,8 @@ L2-A05 lists `RetryWorkflow` only as a representative command. It does not defin
 
 ## 15.2 Approval and Separation of Duty
 
-- L2-A05 does not define a universal recovery approver, terminal-resolution authority or scenario-specific SoD rule.
-- No administrator or override authority is inferred from the representative `RetryWorkflow` command.
+- Workflow Recovery Authority is the canonical abstract recovery/resumption/cancellation authority.
+- No universal named institutional job title or universal separation-of-duty rule is introduced.
 - Any policy-specific approval must be explicit before it can be used by this scenario.
 
 ## 15.3 Audit Obligations
@@ -245,12 +243,12 @@ The intended completion criteria are:
 - Tenant, instance, originating version, correlation and prior authoritative outcomes were preserved;
 - recovery eligibility and authorization were established;
 - the instance entered `Recovering` through its canonical transition;
-- a valid persisted checkpoint was used as required by the frozen outcome, without specifying its implementation at L3;
+- a valid governed continuation position was established without specifying persistence implementation at L3;
 - the instance either returned to `Running` with the appropriate recovery/resumption events or reached authorized `Cancelled` with `WorkflowCancelled`;
 - the Workflow-Owning Domain received the outcome; and
 - immutable evidence was preserved.
 
-These criteria cannot yet be validated as a complete canonical business outcome because the recovery authority, terminal-resolution authority and complete generic recovery contract are undefined, and the frozen checkpoint wording crosses the L3 technical-detail boundary.
+These criteria are now source-supported by the Locked L2-A05 recovery amendment. Persistence/checkpoint mechanics remain downstream design.
 
 Postconditions:
 
@@ -267,9 +265,9 @@ Postconditions:
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
-| **A016-BLOCKER-01:** The frozen outcome mandates recovery from a “valid persisted checkpoint,” while L3 validation rules prohibit technical retry, persistence and recovery-mechanism design. | The outcome must be preserved verbatim, but its implementation-level mechanism cannot be specified or validated at L3. | Reframe the frozen outcome as a governed recovery position or explicitly authorize checkpoint semantics at L3 while deferring persistence design to L4/L5. |
-| **A016-BLOCKER-02:** L2-A05 lists `RetryWorkflow` as a representative command but defines no complete canonical command/contract for entering recovery, selecting a recovery position, approving resumption or choosing terminal cancellation. | The state path exists, but its authoritative business operations and inputs are incomplete. | Define canonical recovery commands and their lifecycle preconditions and outcomes. |
-| **A016-BLOCKER-03:** L2-A05 records Actors as absent and names no retry initiator, recovery approver, resumption authority or terminal-resolution authority. | Sections 6, 9 and 15 cannot allocate the required business authority without invention. | Define the canonical recovery actors and authority boundaries. |
+| **A016-BLOCKER-01 — RESOLVED:** Recovery uses a valid governed continuation position; persistence/checkpoint mechanics remain downstream. | No L3 implementation leakage remains. | Closed by L2-A05 recovery amendment. |
+| **A016-BLOCKER-02 — RESOLVED:** canonical recovery operations and lifecycle preconditions are defined by the L2-A05 recovery amendment. | Exact business operations are now authoritative. | Closed. |
+| **A016-BLOCKER-03 — RESOLVED:** Workflow Recovery Authority is the canonical abstract authority; Workflow Engine, owning domain and Authorization & Policy boundaries are explicit. | No actor invention required. | Closed. |
 | **A016-ISSUE-01:** The frozen outcome permits an “explicitly governed terminal outcome,” while the L2 recovery transition matrix provides only `Recovering → Cancelled` before later archival. | This Draft treats `Cancelled` as the only defined execution-terminal recovery outcome. | Confirm whether any other governed terminal outcome is intended and, if so, add its state and transition. |
 
 ## 17.2 Assumptions
@@ -279,3 +277,8 @@ No assumptions.
 ## 17.3 Deferred Questions
 
 No scenario-specific deferred questions.
+
+
+## 2026-09-23 Upstream Authority Reconciliation
+
+L3-A-016 is reconciled to `L2-A05_Workflow_Recovery_Authority_Amendment_2026-09-23.md`. The prior blocking recovery-authority and checkpoint-boundary gaps are closed. No new Workflow Instance state or domain-business ownership is introduced.
