@@ -253,3 +253,52 @@ historical validation
 **Current hard blockers:** 0  
 **Canonical merge:** PENDING EXPLICIT AUTHORIZATION
 
+
+## 13. Post-Execution Branch Validation
+
+The completed lock branch was independently rechecked against canonical `main` before PR creation.
+
+```text
+Canonical base                      04936532e489dbd1b9cdfd0da4f6c55d32424168
+Branch behind main                  0
+Canonical register rows           105
+Draft rows                           0
+Review rows                          0
+Architecture Approved rows          0
+Locked rows                        105
+
+Specifications promoted            72
+Specification diff shape       +1 / -1 each
+Specification content drift          0 detected
+Already-Locked specs changed          0
+
+ADR allocation changes               0
+Traceability relation changes        0
+Ownership changes                     0
+Business-semantic changes             0
+L6 boundary changes                   0
+```
+
+Hard-fail revalidation result:
+
+```text
+HF-01 Invalid Behavioral Authority             PASS
+HF-02 Orphan Architecture                      PASS
+HF-03 Business-Semantics Corruption            PASS
+HF-04 Canonical Ownership Transfer             PASS
+HF-05 Silent Upstream Repair                   PASS
+HF-06 Duplicate Technical Ownership            PASS
+HF-07 Cross-Boundary Bypass                    PASS
+HF-08 L4 Realization Failure                   PASS
+HF-09 Ungoverned Material Decision             PASS
+HF-10 Unsupported Constraint                   PASS
+HF-11 Material Unimplementability              PASS
+HF-12 Security / Privacy / Trust Violation     PASS
+HF-13 L6 Boundary Violation                    PASS
+HF-14 Blocking Unresolved Architecture         PASS
+HF-15 Identity / Metadata Integrity            PASS
+```
+
+HF-01 through HF-14 retain the final gate's validated architecture basis because the lock introduces no architecture-semantic change. HF-15 was rechecked against the executed lifecycle state, including the D03 header reconciliation, the 105-row register, and current navigation.
+
+**Final lock branch validation:** `PASS`
