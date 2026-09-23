@@ -6,10 +6,10 @@
 **Domain:** NEP, NAAC & AISHE Reporting  
 **Realizes Scenario:** L3-H-057  
 **Primary Business Owner:** NEP, NAAC & AISHE Reporting  
-**Version:** 1.0.1  
-**Status:** Draft  
+**Version:** 1.0.2  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-09-01  
+**Last Updated:** 2026-09-23  
 **Depends On:** L3-H-057; L2-H08 — NEP, NAAC & AISHE Reporting Workflows; applicable Locked source-domain architecture; `DEPENDENCY_MAP.md`  
 **Referenced By:** None yet
 
@@ -57,3 +57,8 @@ The behavior is complete when either a validated and `Locked` H08 Reporting Snap
 
 ## 10. Open Issues / Deferred Design
 The parent records a non-blocking H08 business-actor definition gap and the historical phrase "active reporting cycle" although the canonical Reporting Cycle lifecycle contains no `Active` state. This L4 specification does not invent either a named approval actor or an `Active` cycle state. Reporting data model, transport and UI design remain deferred.
+
+
+## Canonical Validation Note
+
+This specification passed the scoped R2A hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R2A_Reporting_Projection_Authority_Architecture_Approval_Decision_2026-09-23.md`. Existing non-blocking upstream gaps remain bounded exactly as recorded; this approval does not invent actors, lifecycle states, reporting rules, events, publishers, implementation design, or dashboard UI/composition.
