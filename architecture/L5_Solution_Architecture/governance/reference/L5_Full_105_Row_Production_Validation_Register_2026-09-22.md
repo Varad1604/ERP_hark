@@ -28,8 +28,8 @@ It does not itself promote lifecycle state, approve Draft L4 authority, create a
 |---|---:|
 | Canonical specifications | 105 |
 | Draft | 0 |
-| Review | 2 |
-| Architecture Approved | 70 |
+| Review | 0 |
+| Architecture Approved | 72 |
 | Locked | 33 |
 | Blocked — upstream authority/semantics | 0 |
 | Pass with non-blocking deferrals — remain Review | 16 |
@@ -48,8 +48,8 @@ It does not itself promote lifecycle state, approve Draft L4 authority, create a
 | L5-A-03-002 | L5-A | 1.1.0 | Architecture Approved | R6 | PASS — HF-01…HF-15 | Validated — R5 current-bound BH relations | PASS — no new ADR required | PASS | None blocking; implementation/profile deferrals remain governed | PASS — ARCHITECTURE APPROVED | Lock requires separate authorization | Maintain current-version traceability; include in R8 final-lock readiness audit |
 | L5-A-04-001 | L5-A | 1.1.0 | Architecture Approved | R6 | PASS — HF-01…HF-15 | PASS — no new direct BH row required; claimed technical contribution remains defensible under HF-08 | PASS — no new ADR required | PASS | None blocking; implementation/profile deferrals remain governed | PASS — ARCHITECTURE APPROVED | Lock requires separate authorization | Maintain current-version traceability; include in R8 final-lock readiness audit |
 | L5-A-04-002 | L5-A | 1.1.0 | Architecture Approved | R6 | PASS — HF-01…HF-15 | PASS — no new direct BH row required; claimed technical contribution remains defensible under HF-08 | PASS — no new ADR required | PASS | None blocking; implementation/profile deferrals remain governed | PASS — ARCHITECTURE APPROVED | Lock requires separate authorization | Maintain current-version traceability; include in R8 final-lock readiness audit |
-| L5-A-05-001 | L5-A | 1.2.1 | Review | 1 | PASS | Specified/current; no lifecycle or relation-state promotion | PASS — no new ADR required | PASS | None blocking; lifecycle promotion remains separate governance | PASS WITH NON-BLOCKING DEFERRALS — REMAINS REVIEW | Separate lifecycle decision required | Preserve deferrals; promote only by explicit governance |
-| L5-A-05-002 | L5-A | 1.2.1 | Review | 1 | PASS | Specified/current; no lifecycle or relation-state promotion | PASS — no new ADR required | PASS | None blocking; lifecycle promotion remains separate governance | PASS WITH NON-BLOCKING DEFERRALS — REMAINS REVIEW | Separate lifecycle decision required | Preserve deferrals; promote only by explicit governance |
+| L5-A-05-001 | L5-A | 1.3.0 | Architecture Approved | Final A05 governance closure | PASS — prior production-validation gate retained; upstream A014/A017 governance and current exact traceability validated | Validated — final current-bound Section-A A014/A017 BH relations | PASS — no new ADR required | PASS | None blocking; implementation representation/mechanism deferrals remain non-blocking | PASS — ARCHITECTURE APPROVED | Lock requires separate explicit authorization | Include in final-lock readiness audit |
+| L5-A-05-002 | L5-A | 1.3.0 | Architecture Approved | Final A05 governance closure | PASS — prior production-validation gate retained; upstream A014/A017 governance and current exact traceability validated | Validated — final current-bound Section-A A014/A017 BH relations | PASS — no new ADR required | PASS | None blocking; implementation representation/mechanism deferrals remain non-blocking | PASS — ARCHITECTURE APPROVED | Lock requires separate explicit authorization | Include in final-lock readiness audit |
 | L5-A-05-003 | L5-A | 1.2.1 | Architecture Approved | 7A | PASS | Preserved; no Batch-7 relation-state promotion | PASS — no new ADR required | PASS | None | PASS — REMAINS ARCHITECTURE APPROVED | Lock requires separate authorization | No change unless Batch 9 governance authorizes lock |
 | L5-A-06-001 | L5-A | 1.0.1 | Architecture Approved | 7A | PASS | Preserved; no Batch-7 relation-state promotion | PASS — no new ADR required | PASS | None | PASS — REMAINS ARCHITECTURE APPROVED | Lock requires separate authorization | No change unless Batch 9 governance authorizes lock |
 | L5-A-06-002 | L5-A | 1.0.0 | Architecture Approved | 7A | PASS | Preserved; no Batch-7 relation-state promotion | PASS — no new ADR required | PASS | None | PASS — REMAINS ARCHITECTURE APPROVED | Lock requires separate authorization | No change unless Batch 9 governance authorizes lock |
@@ -267,8 +267,8 @@ R8 confirms the current living lifecycle distribution remains unchanged from R7:
 
 ```text
 Draft                       0
-Review                      2
-Architecture Approved      70
+Review                      0
+Architecture Approved      72
 Locked                     33
 Total                     105
 Current hard blockers       0
@@ -293,3 +293,17 @@ Current hard blockers             0
 ```
 
 The two remaining Review specifications are `L5-A-05-001` and `L5-A-05-002`. They retain exact material mappings to Draft `L4-A-014` and `L4-A-017`; no silent promotion is permitted. Final L5 Corpus Lock remains NOT AUTHORIZED.
+
+
+## Final A05 Governance Closure Reconciliation — 2026-09-23
+
+```text
+Draft                       0
+Review                      0
+Architecture Approved      72
+Locked                     33
+Total                     105
+Current hard blockers       0
+```
+
+`L5-A-05-001` and `L5-A-05-002` are Architecture Approved after Locked L2-A05 governance remediation, L3-A-014/A-017 reconciliation, L4-A-014/A-017 approval and validation of 36 exact current-bound Section-A relations. This completes lifecycle approval readiness for all 105 L5 rows. Final L5 Corpus Lock remains a separate explicit governance action and is not automatically authorized by this reconciliation.

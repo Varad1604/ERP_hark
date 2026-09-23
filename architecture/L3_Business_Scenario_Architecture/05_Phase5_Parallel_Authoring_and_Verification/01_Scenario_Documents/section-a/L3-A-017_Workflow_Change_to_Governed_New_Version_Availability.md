@@ -9,10 +9,10 @@
 **Scenario Type:** Cross-domain  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows; L2-A03 — Authentication Workflows; L2-A04 — Authorization & Policy Workflows; L2-A05 — Workflow Engine Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows; L3-A-014 — Workflow Definition to Activated Orchestration Availability  
+**Last Updated:** 2026-09-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows; L2-A03 — Authentication Workflows; L2-A04 — Authorization & Policy Workflows; L2-A05 — Workflow Engine Workflows; `L2-A05_Workflow_Definition_and_Version_Governance_Authority_Amendment_2026-09-23.md`; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows; L3-A-014 — Workflow Definition to Activated Orchestration Availability  
 **Referenced By:** Workflow-owning domains requiring governed orchestration change
 
 ---
@@ -27,7 +27,7 @@ Create and govern a successor Workflow Version for an approved structural or orc
 
 A new validated immutable workflow version becomes available for new executions while existing instances retain their originating version or follow an explicitly governed migration path.
 
-L2-A05 defines version immutability, validation, publication, activation and migration safeguards, but does not define the canonical change approver, publication/activation authorities or definition-version command contracts. The scenario is therefore classified `BLOCKED`.
+The Locked L2-A05 Workflow Definition and Version Governance Authority amendment defines the canonical preparation, governance, publication/activation and migration authority boundaries and business operations required for this scenario.
 
 ---
 
@@ -91,7 +91,7 @@ The frozen Participating Domains value remains exactly `A, VAR:Workflow-Owning D
 
 # 6. Business Actors, Roles and Responsibilities
 
-L2-A05 records Actors as absent. It requires governance approval and, for migration, Administrator Authorization, but does not identify the canonical change requester, definition author, governance approver, publishing authority, activation authority or administrator role. The Workflow-Owning Domain is a participant, not a substitute actor. None of these roles is invented.
+`Authorized Workflow Designer / Administrator` prepares successor Drafts; `Workflow Governance Authority` governs approval, publication, activation and migration approval; `Workflow Migration Administrator` is the canonical abstract migration request/execution actor. Institutional policy maps these abstractions locally.
 
 ---
 
@@ -124,15 +124,15 @@ An active workflow requires an approved structural or orchestration change.
 | 4 | Apply the approved changes to workflow structure, routing, assignments, references and input/output contracts while preserving domain ownership. | Workflow Engine; VAR:Workflow-Owning Domain supplies business semantics | The proposed successor definition is complete. |
 | 5 | Evaluate the effect on policy references, event contracts, dependencies, data/contract compatibility and active-instance behaviour. | Workflow Engine; applicable participating domains | Version and cross-domain impacts are known before approval. |
 | 6 | Complete mandatory structural, policy, event, version, dependency and compatibility validation. | Workflow Engine | The Draft either satisfies validation or remains ineligible for approval. |
-| 7 | Obtain governance approval and complete `Validation → Approved`. | Canonical governance approver undefined; Workflow Engine | The successor is approved for publication. |
+| 7 | Obtain Workflow Governance Authority approval and complete `Validation → Approved`. | Workflow Governance Authority; Workflow Engine | The successor is approved for publication. |
 | 8 | Publish the successor as an immutable Workflow Version, complete `Approved → Published` and publish `WorkflowVersionPublished`. | Workflow Engine | The governed successor version becomes executable. |
-| 9 | Activate the published successor for new Workflow Instances, complete `Published → Activated` and publish `WorkflowVersionActivated`. | Canonical activation authority undefined; Workflow Engine | New executions may select the successor version. |
+| 9 | After Workflow Governance Authority activation authorization, activate the published successor, complete `Published → Activated` and publish `WorkflowVersionActivated`. | Workflow Governance Authority; Workflow Engine | New executions may select the successor version. |
 | 10 | Preserve every existing Workflow Instance on its originating Workflow Version by default. | Workflow Engine | No active instance changes silently. |
-| 11 | If migration is proposed, require a Migration Plan, Compatibility Validation, Governance Approval, Administrator Authorization and Audit Recording before changing any eligible instance-version relationship. | Workflow Engine; canonical authorities undefined | Migration is explicit and separately governed. |
+| 11 | If migration is proposed, require a Migration Plan, Compatibility Validation, Workflow Governance Authority approval, Workflow Migration Administrator authorization and Audit Recording before changing any eligible instance-version relationship. | Workflow Governance Authority; Workflow Migration Administrator; Workflow Engine | Migration is explicit and separately governed. |
 | 12 | When migration is unsafe or not approved, continue the existing instance on its original version. | Workflow Engine | Execution integrity takes precedence over version convergence. |
 | 13 | Preserve immutable evidence of change rationale, validation, approval, publication, activation and every migration decision. | Workflow Engine; Audit Infrastructure | The successor-version outcome is traceable. |
 
-Steps 7, 9 and 11 cannot be finalized as exact business-authority behaviour because the relevant actors and commands are not defined upstream.
+Steps 7, 9 and 11 consume the Locked L2-A05 governance amendment; implementation/API contracts remain downstream.
 
 ---
 
@@ -267,7 +267,7 @@ The intended completion criteria are:
 - any migration followed all mandatory safeguards, and unsafe or unauthorized migration did not proceed; and
 - change and migration evidence was preserved.
 
-These criteria cannot yet be validated as a complete canonical outcome because change approval, publication, activation and migration authorities and their command contracts are not fully defined.
+These criteria are source-supported by the Locked L2-A05 governance amendment.
 
 Postconditions:
 
@@ -285,10 +285,10 @@ Postconditions:
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
-| **A017-BLOCKER-01:** L2-A05 records Actors as absent. It requires governance approval and Administrator Authorization for migration but identifies no change requester, governance approver, publishing authority, activation authority or canonical administrator. | Required authority in Sections 6, 9 and 15 cannot be allocated without invention. | Define canonical actors and their approval, activation and migration authority boundaries. |
-| **A017-BLOCKER-02:** L2-A05 defines runtime commands but no canonical definition/version or migration commands. | The state paths and safeguards exist, but the authoritative change, approval, publication, activation and migration contracts are missing. | Define canonical commands, inputs, preconditions and outcomes for Workflow Version change and migration. |
-| **A017-BLOCKER-03:** L2-A05 defines no canonical migration event or migration-specific lifecycle state. | A governed migration can be described only as safeguards and an auditable relationship change; its exact event-driven completion contract is unavailable. | Define whether migration is an owned lifecycle, its states, canonical event(s) and sole publisher. |
-| **A017-ISSUE-01:** The definition lifecycle includes `Draft`, `Validation`, `Approved`, `Published`, `Activated` and `Retired`, while Workflow Metadata lists only `Draft`, `Published` and `Retired`. | Version-state vocabulary is internally inconsistent, although the transition path is otherwise explicit. | Align Workflow Metadata with the canonical definition/version lifecycle. |
+| **A017-BLOCKER-01 — RESOLVED:** canonical preparation, Workflow Governance Authority and Workflow Migration Administrator boundaries are defined by the Locked L2-A05 amendment. | Required authority is now allocable without invention. | Closed. |
+| **A017-BLOCKER-02 — RESOLVED:** architecture-level definition/version and migration operations, preconditions and outcomes are defined by the Locked L2-A05 amendment. | No implementation contract is invented at L3. | Closed. |
+| **A017-BLOCKER-03 — RESOLVED:** migration is explicitly governed as an exceptional instance/version relationship change and is not a separate lifecycle; no migration-specific state/event is canonical. | Existing Workflow Engine ownership and audit evidence are sufficient. | Closed. |
+| **A017-ISSUE-01 — RESOLVED:** the Locked L2-A05 amendment establishes the complete canonical lifecycle-status vocabulary. | Vocabulary is aligned. | Closed. |
 
 ## 17.2 Assumptions
 
@@ -297,3 +297,8 @@ No assumptions.
 ## 17.3 Deferred Questions
 
 No scenario-specific deferred questions.
+
+
+## 2026-09-23 Upstream Governance Reconciliation
+
+L3-A-017 is reconciled to the Locked L2-A05 Workflow Definition and Version Governance Authority amendment. The prior authority, operation-contract, migration-semantics and lifecycle-vocabulary blockers are closed. Migration remains exceptional and has no invented lifecycle state/event.

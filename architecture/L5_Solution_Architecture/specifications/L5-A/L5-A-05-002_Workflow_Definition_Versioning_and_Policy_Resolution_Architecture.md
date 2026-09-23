@@ -9,8 +9,8 @@
 **Canonical Technical Responsibility:** Technical workflow definition/versioning, scope resolution and effective policy selection.  
 **Technical Architecture Owner:** `L5-A-05 — Workflow & Orchestration Architecture`  
 **Assigned Author:** Devang  
-**Version:** `1.2.1`  
-**Status:** `Review`  
+**Version:** `1.3.0`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register 105 v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-A-05-001_Workflow_and_Orchestration_Architecture_Baseline.md`; `L5-D-02-001` through `L5-D-02-007`; `L5-C-01-001` through `L5-C-01-003`; `L5-C-02-001` through `L5-C-02-003`; `L5-A-04-001/002`; `L5-B-02-002/003`; applicable `L5-D-04`; `L2-A05_Workflow_Engine_Workflows.md`; `L4-A-014_Workflow_Definition_to_Activated_Orchestration_Availability.md`; `L4-A-017_Workflow_Change_to_Governed_New_Version_Availability.md`; supporting `L4-A-015` and `L4-A-016` for runtime/version binding.  
 **Referenced By:** `L5-A-05-003`; workflow-owning domains; workflow administration/governance capabilities; runtime version resolver; D02 policy decision/enforcement; C01/C02 integration architecture; D04 evidence architecture.  
@@ -196,7 +196,7 @@ Technical sub-status, lock/version stamps or processing markers may exist only a
 | `L4-A-014-BH-002` | Technical creation establishes the source-defined `Draft` representation and workflow-owned publication handoff for `WorkflowDefinitionCreated`. |
 | `L4-A-014-BH-003` | Definition model stores orchestration references only; business rules/decisions/states/commands/events remain source-owned. |
 | `L4-A-014-BH-004` | Definition Validation Pipeline performs source-required structural, policy, event, version, dependency and compatibility validation before progression. |
-| `L4-A-014-BH-005` | Publication gate requires the source-governed approval outcome without inventing approver identity. |
+| `L4-A-014-BH-005` | Publication gate requires the Workflow Governance Authority approval outcome without inventing approver identity. |
 | `L4-A-014-BH-006` | Publication creates an immutable published Workflow Version and workflow-owned `WorkflowVersionPublished` publication intent. |
 | `L4-A-014-BH-007` | Activation resolver rejects any version that is not validly `Published`. |
 | `L4-A-014-BH-008` | Activation makes the version resolvable for new instances and exposes governed input/output contract references; `WorkflowVersionActivated` remains workflow-owned. |
@@ -420,7 +420,7 @@ Definition Validation Pipeline
   ├─ Version/Compatibility Validator
   └─ Tenant/Scope Validator
         ↓
-source-governed approval outcome
+Workflow Governance Authority approval outcome
         ↓
 Version Publication Boundary
         ↓
@@ -813,7 +813,7 @@ The activation boundary confirms at minimum:
 
 - version is validly Published;
 - Tenant/owning-domain context is valid;
-- required activation authority/outcome exists where upstream requires it;
+- Workflow Governance Authority activation authorization exists;
 - no mandatory dependency/compatibility condition has become invalid;
 - activation does not mutate version contents.
 
@@ -1246,7 +1246,7 @@ Operational views are projections, not authoritative definition state.
 | `OD-004` | Exact active-version cache implementation and invalidation transport. | Runtime optimization | Non-blocking. | Select without weakening deterministic/fresh resolution. |
 | `OD-005` | **Resolved runtime:** Flowable OSS 8.x. Definition-registry persistence/storage implementation remains A05/B02-governed. | Technology | Locked runtime. | `ADR-L5-0023`; `ADR-L5-0042`. |
 | `OD-006` | Exact generic migration execution algorithm/state transfer mechanism. | A05-003 runtime | Non-blocking for A05-002; feature-blocking if migration is implemented. | A05-003 must preserve A017 safeguards and cannot invent lifecycle/event. |
-| `OD-007` | Canonical governance approver, publication/activation authority and migration administrator actor remain undefined upstream. | Upstream business authority | Non-blocking for reusable technical architecture; blocking for any concrete feature needing those actors. | Preserve source-owned gap; do not invent in L5. |
+| `OD-007` | **Resolved:** Workflow Governance Authority is the canonical approval/publication/activation/migration-governance authority; Workflow Migration Administrator is the canonical migration request/execution actor category. | Upstream business authority | Closed. | `L2-A05_Workflow_Definition_and_Version_Governance_Authority_Amendment_2026-09-23.md`. |
 | `OD-008` | Whether specific workflow policy references require policy-version pinning rather than authoritative-current resolution. | Upstream/policy semantics | Non-blocking baseline; feature-specific. | Canonical policy owner must specify when required. |
 | `OD-009` | **Resolved:** runtime/product ADRs exist and are Locked. | ADR governance | Closed. | `ADR-L5-0023`; `ADR-L5-0042`. |
 
@@ -1345,3 +1345,8 @@ Flowable stores orchestration/runtime state only; canonical business state remai
 ## 2026-09-22 Full-Corpus Post-Decision Synchronization
 
 Removed stale product/notation deferrals now resolved by the Flowable/BPMN ADRs. Upstream publication authority, policy-pinning semantics and implementation-level version/index/cache details remain intentionally open.
+
+
+## 2026-09-23 Final A05 Governance Closure
+
+Promoted from Review to Architecture Approved after `L4-A-014` and `L4-A-017` reached Architecture Approved on the basis of the Locked L2-A05 Workflow Definition and Version Governance Authority amendment. Workflow Engine ownership, Workflow-Owning Domain business-semantic ownership, immutable published versions, default instance→originating-version binding, and exceptional governed migration remain unchanged. No new ADR or implementation technology is introduced by this promotion.

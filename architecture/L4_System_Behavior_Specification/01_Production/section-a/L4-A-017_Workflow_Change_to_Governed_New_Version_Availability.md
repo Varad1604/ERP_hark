@@ -7,11 +7,11 @@
 **Domain:** Workflow Engine  
 **Realizes Scenario:** L3-A-017  
 **Primary Business Owner:** Workflow Engine  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** `L3-A-017_Workflow_Change_to_Governed_New_Version_Availability.md`; `L2-A05_Workflow_Engine_Workflows.md`; `L2-A04_Authorization_and_Policy_Workflows.md`; `L2-A06_Event_Infrastructure_Workflows.md`; `L2-A07_Audit_Infrastructure_Workflows.md`; `L3-A-014`  
+**Last Updated:** 2026-09-23  
+**Depends On:** `L3-A-017_Workflow_Change_to_Governed_New_Version_Availability.md`; `L2-A05_Workflow_Engine_Workflows.md`; `L2-A05_Workflow_Definition_and_Version_Governance_Authority_Amendment_2026-09-23.md`; `L2-A04_Authorization_and_Policy_Workflows.md`; `L2-A06_Event_Infrastructure_Workflows.md`; `L2-A07_Audit_Infrastructure_Workflows.md`; `L3-A-014`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -68,4 +68,9 @@ Completion requires an immutable successor Workflow Version to be validated, app
 
 ## 10. Open Issues / Deferred Design
 
-The parent leaves the canonical change requester, governance approver, publishing/activation authority, Administrator Authorization actor and definition/version/migration command contracts undefined. No unsupported authority or migration event is introduced.
+The prior authority/operation gap is resolved by the Locked L2-A05 Workflow Definition and Version Governance Authority amendment. Migration remains an exceptional governed instance/version relationship change; no migration-specific lifecycle state/event is introduced.
+
+
+## 2026-09-23 Architecture Approval
+
+Promoted to Architecture Approved after reconciliation with L3-A-017 v1.1 and the Locked L2-A05 Workflow Definition and Version Governance Authority amendment. Published versions remain immutable and existing instances retain their originating version unless an explicitly governed migration succeeds.
