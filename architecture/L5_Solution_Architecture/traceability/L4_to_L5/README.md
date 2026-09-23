@@ -252,3 +252,20 @@ Stale version bindings          0
 The canonical current partition is `section-a.md`. The prior R3D-only and R4B-only branch populations remain provenance in their respective governance decisions; neither branch-local file is authoritative by itself after consolidation.
 
 No direct rows were fabricated for `L5-E-05-002`, `L5-E-05-003`, or `L5-E-05-004`.
+
+
+## 13. R5 Affected R1/R2 Traceability Validation
+
+On 2026-09-23, R5 validated the affected post-remediation R1/R2 relation population:
+
+```text
+Section A additions   120
+Section F additions    18
+Section H additions    96
+R5 total              234
+Duplicates              0
+Missing BHs             0
+Stale bindings          0
+```
+
+R5 validates only relations already asserted at BH level by the affected L5 specifications. It creates no new direct BH rows for A04-001/002, B02-001/002/003 or E04-003/004/005 where current source architecture does not assert an exact direct realization relation. See `L5_R5_Affected_L4_to_L5_Traceability_Validation_Decision_2026-09-23.md`.
