@@ -1,6 +1,6 @@
 # SutraERP L6 — Stage 5 Batch 3 — Platform / Administration Part 1 — Final Evidence & Pre-Merge Closure
 
-**Version:** 1.0.1  
+**Version:** 1.0.2  
 **Status:** Architecture Approved  
 **Evidence Type:** Batch Closure Evidence  
 **Owner:** Lead Architect  
@@ -8,8 +8,8 @@
 **Decision Date:** 2026-09-23  
 **Batch Result:** PASS  
 **Merge Gate:** PASS  
-**Repository State:** NOT YET MERGED  
-**Next Batch:** BATCH 4 — DEFERRED UNTIL BATCH 3 MERGE AUTHORIZATION AND CANONICALIZATION  
+**Repository State:** PASS / COMPLETE / MERGED  
+**Next Batch:** BATCH 4 — ENTRY-READY  
 
 ---
 
@@ -24,7 +24,7 @@ Batch 3 was reconstructed from live repository state rather than from historical
 - Batch-3 branch: `l6-stage5-batch3-platform-admin-part1`
 - Validated Batch-3 head: `c3ec624390240a5fad7995e4c349ccd4d153b392`
 - Frontend PR: #28
-- Frontend PR state: OPEN / NOT MERGED
+- Frontend PR state: MERGED
 
 ### Architecture
 
@@ -32,8 +32,8 @@ Batch 3 was reconstructed from live repository state rather than from historical
 - Canonical `main` used: `2f9226e85d0ba07f57a8b47727182d0872fb4c84`
 - This head includes canonical L5 R7 lifecycle governance and 105-row reconciliation. Current L5 corpus state is 0 Draft / 16 Review / 56 Architecture Approved / 33 Locked / 0 blockers, while Final L5 Corpus Lock remains NOT AUTHORIZED.
 - Batch-3 evidence branch: `l6-stage5-batch3-platform-admin-part1-evidence-r7`
-- Architecture PR: #84 — OPEN / NOT MERGED. The stale R6-based PR #82 is superseded and must not be merged.
-- Repository State remains NOT YET MERGED.
+- Architecture PR: #84 — MERGED as `5611857b4c347796bb76b6a84170fca8117cd442`. Frontend PR #28 — MERGED as `4d70619626e5d91dacfbc722d755a69c9d5cafa5`. The stale R6-based PR #82 remains closed/superseded.
+- Repository State is PASS / COMPLETE / MERGED.
 
 Batch 2 remains canonical PASS / COMPLETE / MERGED and its closure evidence records Batch 3 as ENTRY-READY.
 
@@ -381,8 +381,8 @@ Independent post-completion verification also found and corrected one governance
 | Metadata leakage | PASS |
 | Protected census / provenance | PASS |
 | Independent audit | PASS |
-| Frontend PR merged | NO — intentionally not authorized |
-| Architecture evidence PR merged | NO — intentionally not authorized |
+| Frontend PR merged | YES — `4d70619626e5d91dacfbc722d755a69c9d5cafa5` |
+| Architecture evidence PR merged | YES — `5611857b4c347796bb76b6a84170fca8117cd442` |
 
 ---
 
@@ -408,9 +408,9 @@ Batch 3 does not claim Domain A completion.
 STAGE 5 BATCH 3 — PASS
 STATUS — ARCHITECTURE APPROVED
 MERGE GATE — PASS
-REPOSITORY STATE — NOT YET MERGED
+REPOSITORY STATE — PASS / COMPLETE / MERGED
 DOMAIN A — NOT COMPLETE
-BATCH 4 — DEFERRED
+BATCH 4 — ENTRY-READY
 ```
 
-**Next action:** await explicit merge authorization.  
+**Next action:** Batch 4 may begin in a new controlled execution chat.  
