@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Define reusable technical architecture for cryptographic key lifecycle, generation/provisioning, scope and purpose binding, custody, controlled use, rotation/version transition, suspension/revocation, recovery, retirement/destruction and separation of key-management responsibilities across SutraERP, without owning cryptographic protection operations, application secrets/certificates/machine credentials, authorization policy, business rules or business authority.  
 **Technical Architecture Owner:** L5-D-03-003 — Key Management Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.2.2`  
+**Version:** `1.3.0`  
 **Status:** Review  
-**Last Updated:** `2026-09-22`  
+**Last Updated:** `2026-09-23`  
 **Primary Dependencies:** `L5-D-03-001`, `L5-A-04`, authoritative protection requirements.  
 **Collaborates With:** `L5-D-03-002`, `L5-D-03-004`, `L5-D-01`, `L5-D-02`, `L5-D-04`, `L5-B-05`.  
 **Applicable ADRs:** `ADR-L5-0002` — Cryptographic Protection, Key Custody & Machine Credential Responsibility Pattern (`Architecture Approved`, 2026-09-11).; `ADR-L5-0027`; `ADR-L5-0040`
@@ -330,3 +330,8 @@ Lifecycle status restored to `Review` in accordance with the locked 2026-09-16 f
 ## 2026-09-22 Production Validation Batch 4
 
 D03 local hard gates remain PASS under `L5_D03_L4_Traceability_Extraction_and_Promotion_Gate_2026-09-11.md`. Later Locked ADRs `ADR-L5-0027` and `ADR-L5-0040` strengthen implementation readiness without transferring security ownership. This specification is **Architecture-Approval eligible**, but remains `Review` until a distinct approval decision is issued.
+
+
+## 2026-09-23 R7 Lifecycle Promotion Decision
+
+R7 issues the distinct lifecycle decision previously required by the D03 promotion gate. The specification had already passed its local HF-01…HF-15 gate and was Architecture-Approval eligible; R7 therefore promotes it from Review to Architecture Approved without changing canonical security ownership, trust boundaries, cryptographic responsibility, secret/key ownership, or business semantics. Final corpus lock remains a separate governance action.
