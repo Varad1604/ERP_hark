@@ -288,3 +288,20 @@ Current canonical L4→L5 relation population: **535**. Duplicate relation ident
 ## 15. Final A05 Governance Closure Traceability
 
 Final A05 closure adds **36** exact A014/A017→A05 relations already asserted by A05-001/A05-002. Current canonical relation population: **571**. Duplicate relation identities: **0**. Stale bound L5 versions: **0**. All 105 L5 rows are now Architecture Approved or Locked.
+
+
+## 16. Final L5 Corpus Lock — Traceability Preservation
+
+The authorized 2026-09-23 Final L5 Corpus Lock changes specification lifecycle state only. It does not create, remove, duplicate, or reinterpret canonical L4→L5 relations.
+
+Final-lock branch traceability state:
+
+```text
+Canonical L4→L5 relation population   571
+Duplicate relation identities           0
+Stale bound L5 versions                 0
+Relation identity changes               0
+Technical-contribution changes          0
+```
+
+All relations retain their existing governed relation states and review provenance. Locking an L5 specification does not transfer upstream business ownership or technical ownership between L5 specifications.
