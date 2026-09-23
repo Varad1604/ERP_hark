@@ -12,7 +12,7 @@
 **Version:** `1.1.0`  
 **Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-23`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L4-A-001` v1.0.0 Draft; `L4-A-015` v1.0.0 Draft; `L4-A-019` v1.0.0 Draft; `L4-A-028` v1.0.0 Draft; SutraERP L1 Business Domain Architecture v2.1 Locked.  
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L4-A-001` v1.0.1 Architecture Approved; `L4-A-015` v1.0.1 Architecture Approved; `L4-A-019` v1.0.1 Architecture Approved; `L4-A-028` v1.0.1 Architecture Approved; SutraERP L1 Business Domain Architecture v2.1 Locked.  
 **Referenced By:** None yet  
 **Applicable ADRs:** `ADR-L5-0003` — Contract-Driven Modular Platform with Selective Isolation (`Architecture Approved`).  
 
@@ -22,7 +22,7 @@
 
 ### Purpose
 
-This specification defines the Draft logical structure of the SutraERP application platform: how platform and domain-aligned technical capabilities compose into one governed modular application model, how selectively isolated execution units may coexist with that model, and where A01 stops so that module composition, persistence, contracts, security and deployment remain owned by their canonical peer L5 specifications.
+This specification defines the current approved logical structure of the SutraERP application platform: how platform and domain-aligned technical capabilities compose into one governed modular application model, how selectively isolated execution units may coexist with that model, and where A01 stops so that module composition, persistence, contracts, security and deployment remain owned by their canonical peer L5 specifications.
 
 The term **platform** in this specification denotes the L5 technical application/platform structure. It does not transfer or redefine the upstream business ownership of the Platform & Tenant domain or any other business domain.
 
@@ -78,7 +78,7 @@ The term **platform** in this specification denotes the L5 technical application
 
 ### 3.3 Assumptions
 
-No material architecture assumptions are required for this Draft. `ADR-L5-0003` establishes the selected decomposition model recorded as `AD-001`.
+No material architecture assumptions are required for this specification. `ADR-L5-0003` establishes the selected decomposition model recorded as `AD-001`.
 
 ---
 

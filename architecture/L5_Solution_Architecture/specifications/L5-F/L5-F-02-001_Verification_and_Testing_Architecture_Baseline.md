@@ -69,9 +69,9 @@ The baseline exists so that solution-wide verification remains traceable and com
 | `L5_Validation_Standard.md` | v1.0.1 / Locked | §§2–5 | L5 CRs must be implementable, objectively verifiable and traceable; false realization/unsupported architecture is a hard-fail concern. | Establishes conformance integrity. |
 | L4 Governance / Template | Locked | BH model; evidence; observable completion | L4 BHs are testable implementation-independent system responsibilities. | Defines behavioral verification source. |
 | Current canonical L5 corpus | mixed governed statuses | applicable `CR-*` | Each L5 spec exposes objective architecture conformance requirements. | Defines architecture-conformance verification source. |
-| `L5-F-01-002` | v1.0.1 / Review | §5.5 Promotion Gates | Release eligibility consumes F02 verification evidence but F01 owns promotion/release decisions. | Defines output-consumer boundary. |
-| `L5-C-04-*` | Review | current main | Notification/communication architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
-| `L5-B-06-*` | Review | current main | Reporting/analytics/projection architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
+| `L5-F-01-002` | v1.3.0 / Architecture Approved | §5.5 Promotion Gates | Release eligibility consumes F02 verification evidence but F01 owns promotion/release decisions. | Defines output-consumer boundary. |
+| `L5-C-04-*` | Architecture Approved | current canonical state | Notification/communication architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
+| `L5-B-06-*` | Architecture Approved | current canonical state | Reporting/analytics/projection architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
 
 The current F02-001 consolidation does not convert any Draft L4 source or Draft peer L5 specification into an approved/locked source. It only establishes the verification architecture capable of evaluating the exact requirements those sources authoritatively expose at their governed status.
 
@@ -453,9 +453,9 @@ No numeric coverage, pass-rate, execution-time, retention, availability or capac
 
 | ID | Item | Classification | Blocking? | Required Resolution |
 |---|---|---|---|---|
-| `OD-001` | Canonical repository `Validated` state for the selective BH→F02-001 relations is not established by this Draft. | Governance | No for Draft; required for canonical relation validation | Authorized traceability review records exact version-bound relation/evidence for the BH/L5 pairs in Section 10. |
-| `OD-002` | Complete canonical repository-level BH→F02-001 relation coverage is not materialized in this Draft. | Dependency / Governance | No | Populate/review the canonical repository traceability source and keep this document's selective mappings synchronized. |
-| `OD-003` | C04/B06 are Architecture Approved after R6; their upstream authority/traceability blockers are resolved. | Peer maturity | No for downstream verification; may affect lifecycle-promotion claims | Preserve their current Review boundaries and re-check if their authority changes. |
+| `OD-001` | Canonical repository `Validated` state for the selective BH→F02-001 relations is established by the post-R8 traceability validation. | Governance | Resolved — current canonical relations are validated | Authorized traceability review records exact version-bound relation/evidence for the BH/L5 pairs in Section 10. |
+| `OD-002` | The selective canonical repository-level BH→F02-001 relation set asserted by this specification is materialized and current-bound. | Dependency / Governance | No | Maintain the canonical repository traceability source and keep this document's selective mappings synchronized. |
+| `OD-003` | C04/B06 are Architecture Approved; their upstream authority/traceability blockers are resolved. | Peer maturity | No — current peer lifecycle is reconciled | Preserve their current Architecture Approved boundaries and re-check if their authority changes. |
 | `OD-004` | Exact testing tools/frameworks, evidence serialization, physical verification-result store and numeric quality targets remain unselected unless separately governed. | Technology / Operations | No | Resolve only through the canonical owner, approved ADR/technology governance or approved operational requirements when made normative. |
 | `OD-005` | **Resolved:** the four canonical F02 specifications are synchronized on `main` and Stage-6 is closed for downstream consumption. | Repository synchronization | Closed | Maintain impact revalidation on material change. |
 

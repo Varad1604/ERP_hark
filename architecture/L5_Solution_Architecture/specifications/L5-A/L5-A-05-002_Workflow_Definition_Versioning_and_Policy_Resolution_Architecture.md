@@ -268,7 +268,7 @@ It shall not copy wire schemas or transport implementation into the Workflow Ver
 
 ### 3.9 No Hidden Assumptions
 
-This Draft does not assume:
+This specification does not assume:
 
 - one specific workflow notation;
 - one version-numbering scheme;

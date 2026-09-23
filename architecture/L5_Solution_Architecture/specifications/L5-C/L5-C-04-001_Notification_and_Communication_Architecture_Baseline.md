@@ -81,14 +81,14 @@ This specification does not own:
 | L4 | `L4-H-014` | v1.0.0 / Draft | `BH-001`, `BH-004`, `BH-005`, `BH-006`, `BH-007` | Emergency/critical source facts remain source-owned; H02 owns only its Notification outcome/events/evidence. | Constrains admission, identity, source isolation and lifecycle-event/evidence handling; policy/channel internals remain C04-002/003. Relation state: **Specified** only. |
 | L4 | `L4-H-015` | v1.0.0 / Draft | `BH-004`, `BH-005`, `BH-006` | Delivery recovery keeps the same Notification identity, never repeats/reverses source transaction and emits only defined H02 events. | Constrains baseline identity/source boundary and lifecycle-event publication after delivery recovery. Relation state: **Specified** only. |
 | L4 | `L4-H-016` | v1.0.0 / Draft | `BH-005`, `BH-007` | Provider-derived delivery evidence may drive permitted H02 transitions/events and final H02 outcome without changing source-business ownership. | Defines C04-003-to-baseline outcome handoff and lifecycle-event publication boundary. Relation state: **Specified** only. |
-| L5 Peer | `L5-C-01-001` | current / Review | §§4–6; `CR-001`–`CR-005` | Ownership-preserving synchronous contract boundary with HTTPS REST/JSON + OpenAPI 3.2 and the Group-1 wire profile. | Governs authorized synchronous Notification-request admission; C04 consumes rather than redefines the API profile. |
+| L5 Peer | `L5-C-01-001` | v1.3.0 / Architecture Approved | §§4–6; `CR-001`–`CR-005` | Ownership-preserving synchronous contract boundary with HTTPS REST/JSON + OpenAPI 3.2 and the Group-1 wire profile. | Governs authorized synchronous Notification-request admission; C04 consumes rather than redefines the API profile. |
 | L5 Peer | `L5-C-02-001` | v1.0.3 / Architecture Approved | §§4–8; `AD-001`–`AD-006`; `CR-001`–`CR-008` | Canonical event/messaging transport, durable subscriptions and consumer delivery while event semantics/publisher remain upstream-owned. | Carries incoming canonical source events and outgoing H02 lifecycle events; C04 does not duplicate event transport. |
-| L5 Peer | `L5-A-04-002` | current / Review | §§2–4 | Tenant/Institution context propagation and fail-closed scope handling. | Governs scope binding across Notification admission, state, background execution and delivery handoffs. |
-| L5 Peer | `L5-B-02-003` | v1.0.1 / Draft | §§5–8; `AD-001`–`AD-004`; `CR-001`–`CR-011` | Owner-local transactions, optimistic concurrency and atomic state + Durable Publication Intent handoff. | Governs Notification state mutation/concurrency and lifecycle-event publication intent. |
+| L5 Peer | `L5-A-04-002` | v1.1.0 / Architecture Approved | §§2–4 | Tenant/Institution context propagation and fail-closed scope handling. | Governs scope binding across Notification admission, state, background execution and delivery handoffs. |
+| L5 Peer | `L5-B-02-003` | v1.1.0 / Architecture Approved | §§5–8; `AD-001`–`AD-004`; `CR-001`–`CR-011` | Owner-local transactions, optimistic concurrency and atomic state + Durable Publication Intent handoff. | Governs Notification state mutation/concurrency and lifecycle-event publication intent. |
 | L5 Peer | `L5-D-02-004` | v1.0.0 / Architecture Approved | §§2–4 | Technical policy decision/enforcement with fail-closed protected execution. | Supplies authorization decisions for protected Notification admission/operations without C04 owning authorization policy. |
-| L5 Peer | `L5-A-08-001`, `L5-A-08-002` | current / Review; Stage-3 downstream-consumption approved | execution/job/retry boundaries | Generic background, scheduled and technically retryable execution with durable Job/Work Unit/Attempt identities. | Executes deferred/background technical work while C04 retains Notification/schedule semantics. |
+| L5 Peer | `L5-A-08-001`, `L5-A-08-002` | v1.3.0 / Architecture Approved | execution/job/retry boundaries | Generic background, scheduled and technically retryable execution with durable Job/Work Unit/Attempt identities. | Executes deferred/background technical work while C04 retains Notification/schedule semantics. |
 | L5 Peer | `L5-D-04-001` | v1.1.1 / Locked | §§2–4 | Shared audit/evidence capture and handoff while source capabilities retain business meaning. | Receives Notification evidence; C04 does not become enterprise audit-storage owner. |
-| L5 Peer | `L5-E-05-001` | v1.0.3 / Review; Stage-3 downstream-consumption approved | §§2–5 | Operational telemetry/observability distinct from business audit truth. | Receives operational Notification telemetry and diagnostics. |
+| L5 Peer | `L5-E-05-001` | v1.3.0 / Architecture Approved | §§2–5 | Operational telemetry/observability distinct from business audit truth. | Receives operational Notification telemetry and diagnostics. |
 | ADR | `ADR-L5-0004` | Architecture Approved | Tenant/Institution isolation pattern | Validated scope must survive technical boundaries. | Constrains Notification scope propagation. |
 | ADR | `ADR-L5-0006` | Architecture Approved | Owner-local transaction/concurrency pattern | Owner-local state mutation with explicit concurrency handling. | Constrains Notification state updates. |
 | ADR | `ADR-L5-0007` | Architecture Approved | Atomic state-to-publication-intent handoff | State and required publication intent commit atomically; C02 owns delivery afterward. | Governs H02 lifecycle-event handoff. |
@@ -97,7 +97,7 @@ This specification does not own:
 
 ### 3.2 L4 Applicability
 
-All L4-H relations in this Draft are **Specified**, not `Validated`, because the current `L4-H-010` through `L4-H-016` source documents are `Draft`. This specification does not promote those relations.
+All L4-H relations in this specification are **Specified**, not `Validated`, because the current `L4-H-010` through `L4-H-016` source documents are `Draft`. This specification does not promote those relations.
 
 | L4 BH | L5-C-04-001 Role | L5 Evidence Target | Relation State |
 |---|---|---|---|
@@ -124,7 +124,7 @@ All L4-H relations in this Draft are **Specified**, not `Validated`, because the
 
 ### 3.4 Assumptions
 
-No material architectural assumption is treated as an approved fact in this Draft. Unresolved source/dependency items are recorded in Section 9.
+No material architectural assumption is treated as an approved fact in this specification. Unresolved source/dependency items are recorded in Section 9.
 
 ---
 

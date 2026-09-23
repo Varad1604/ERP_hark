@@ -127,7 +127,7 @@ No material architecture assumption is promoted to fact in this approved baselin
 | `L5-C-02-001` / `L5-C-02-002` | Event/messaging baseline and durable messaging | Own event transport/durable delivery mechanics. | Provides governed transport for lifecycle/event/evidence handoffs where asynchronous interaction is selected. |
 | `L5-E-04-001` / `L5-E-04-002` | Runtime/deployment baseline and runtime isolation | Own packaging/runtime/deployment realization. | D01 logical control boundaries do not imply a service/process/container topology. |
 
-These peers are consumed by canonical responsibility. This Draft does not assume their unverified implementation details.
+These peers are consumed by canonical responsibility. This specification does not assume unverified implementation details from those peers.
 
 ### Must Not Own
 
