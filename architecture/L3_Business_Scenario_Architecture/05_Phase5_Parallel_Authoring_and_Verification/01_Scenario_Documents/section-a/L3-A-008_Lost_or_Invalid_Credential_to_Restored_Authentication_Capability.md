@@ -9,10 +9,10 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows, including the approved 2026-08-20 sequencing decision; L2-A03 — Authentication Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Last Updated:** 2026-09-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows, including the approved 2026-08-20 sequencing decision; L2-A03 — Authentication Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  ; `L2-A03_Authentication_Recovery_Session_and_MFA_Clarification_Amendment_2026-09-23.md`
 **Referenced By:** L3-A-007 — Eligible Identity to Authenticated Session Availability
 
 ---
@@ -327,17 +327,21 @@ Accordingly, this Draft cannot claim the canonical business outcome has been ful
 
 ---
 
+## Canonical R3B Remediation
+
+This scenario consumes the Locked A03 R3B amendment. Earlier recovery blockers are resolved as follows:
+
+- A008 is credential-generic where Authentication Method/Policy supports governed recovery;
+- replacement Credential is created in `Pending Activation`, then transitions to `Active` and publishes `CredentialActivated`;
+- previous Credentials covered by the recovery decision are revoked using `RevokeCredential` / `CredentialRevoked`;
+- no generic “Credential Reset Event” is canonical;
+- Authentication Recovery Authority governs exceptional administrative recovery;
+- recovery is complete only after all policy-required Credential and Authentication Session consequences are confirmed.
+
+Unsupported Credential types fail closed to their own governed recovery path.
+
 # 17. Open Issues, Assumptions and Deferred Questions
 
-| ID | Severity | Issue / Deferred Question | Precise Scenario Impact | Required Resolution |
-|---|---|---|---|---|
-| A008-BLOCKER-01 | Blocking | The frozen A008 scenario concerns a lost or invalid `Credential`, but locked L2-A03 defines only a concrete `Password Reset Workflow`. | The Draft cannot determine whether password, passkey, federation, API, recovery-code and other Credential types use one common recovery lifecycle or distinct canonical variants. | L2-A03 must define the credential-generic recovery boundary or explicitly restrict A008 to a supported Credential class without changing the frozen title. |
-| A008-BLOCKER-02 | Blocking | Password Reset creates a new Credential but does not define its transition from `Pending Activation` to `Active` or publish `CredentialActivated`. | The exact restoration transition required for valid authentication capability cannot be specified. | L2-A03 must define the reset-specific replacement-Credential activation sequence. |
-| A008-BLOCKER-03 | Blocking | Password Reset instructs “Deactivate Previous Credential,” but `Deactivated` or `Inactive` is not a canonical Credential state. Available authoritative actions are rotation, suspension, expiration and revocation. | The previous-Credential state, transition and canonical event cannot be selected without invention. | L2-A03 must identify the exact invalidation action, resulting state and event. |
-| A008-BLOCKER-04 | Blocking | Password Reset instructs publication of a “Credential Reset Event,” but this is not an exact canonical event name in L2-A03. | Section 14 cannot identify a canonical recovery-completion event and publisher. | L2-A03 must add or select the canonical event name and its sole publisher. |
-| A008-ISSUE-01 | Non-blocking | L2-A02 lists `PasswordResetRequested` and `PasswordResetCompleted`, but INT-301 assigns Credential events and lifecycle to A03 and supersedes conflicting later A02 wording. | The A02 event names cannot safely fill A03’s missing recovery event contract. | Align A02 security-event references with the authoritative A03 event catalogue. |
-| A008-ISSUE-02 | Non-blocking | L2-A03 has no canonical Actors section and does not name who evaluates recovery evidence or authorizes Administrative Recovery. | Business responsibility and approval authority cannot be assigned beyond the frozen “legitimate user” subject and authoritative domains. | Define the recovery actor and any administrative decision authority upstream. |
-| A008-ISSUE-03 | Non-blocking | L2-A03 states that existing sessions may terminate according to Authentication Policy but does not define the recovery-specific decision, resulting session state or event sequence. | The Draft cannot state whether recovery preserves, terminates or revokes existing sessions in a given policy outcome. | Define the recovery-session policy outcomes and canonical events. |
-| A008-ISSUE-04 | Non-blocking | Locked L1 §3.4 uses an Institute-scoped Person boundary while locked L2-A01, L2-A02 and L2-A03 use Tenant-scoped identity and Credential boundaries. | The Draft follows the L2 Tenant workflow, but the enterprise scope of the recovered Identity remains inconsistent across architecture levels. | Lead Architect alignment is required before Architecture Approval or locking. |
+No blocking issues remain after the Locked R3B upstream amendment(s).
 
-No unsupported actor, approval authority, Credential state, transition, event, publisher or session consequence is assumed by this Draft.
+No assumptions.
