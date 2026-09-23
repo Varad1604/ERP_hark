@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-D-03-001 — Security Architecture & Trust Boundary Baseline  
 **Assigned Author:** Varad  
 **Version:** `1.3.0`  
-**Status:** Review  
+**Status:** Locked  
 **Last Updated:** `2026-09-23`  
 **Primary L5 Dependencies:** L5-D-01 — IAM; L5-A-04 — Tenant & Institutional Isolation; L5-A-01 — Application & Platform Architecture; L5-E-04 — Runtime, Packaging & Deployment.  
 **Collaborating / Downstream L5 Architecture:** L5-D-02 — Authorization / RBAC; L5-D-03-002; L5-D-03-003; L5-D-03-004; L5-D-03-005; L5-D-04; L5-B-05; L5-C-01; L5-C-02; L5-C-03; L5-A-07; L5-A-08.  

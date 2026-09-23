@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** `L5-A-05 — Workflow & Orchestration Architecture`  
 **Assigned Author:** Devang  
 **Version:** `1.2.1`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register 105 v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-A-05-001_Workflow_and_Orchestration_Architecture_Baseline.md`; `L5-A-05-002_Workflow_Definition_Versioning_and_Policy_Resolution_Architecture.md`; `L5-D-02-001` through `L5-D-02-007`; `L5-C-01-001` through `L5-C-01-003`; `L5-C-02-001` through `L5-C-02-003`; `L5-A-04-001/002`; `L5-B-02-002/003`; applicable `L5-D-04`; applicable `L5-A-08`; `L2-A05_Workflow_Engine_Workflows.md`; `L4-A-015_Workflow_Initiation_to_Completed_Orchestrated_Execution.md`; `L4-A-016_Workflow_Execution_Failure_to_Controlled_Recovery_Outcome.md`; `L4-A-058_Human_Decision_Requirement_to_Completed_or_Escalated_Task_Resolution.md`; supporting `L4-A-017`.  
 **Referenced By:** workflow-consuming business domains; workflow administration; human-task experiences; background/timer execution; operational monitoring; D04 evidence; E01/E05 resilience and operations architecture.  

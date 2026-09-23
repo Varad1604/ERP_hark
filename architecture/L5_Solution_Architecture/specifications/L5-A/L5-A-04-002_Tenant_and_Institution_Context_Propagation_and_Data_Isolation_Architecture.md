@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-A-04 — Tenant & Institutional Isolation Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.1.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; L5 Pilot ADR Candidate Disposition v1.0.0; `L5-A-04-001` v1.1.0 Architecture Approved; `L5-A-01-001` v1.1.0 Architecture Approved; `L4-A-001` v1.0.1 Architecture Approved; `L4-A-007` v1.0.1 Architecture Approved; `L4-A-015` v1.0.1 Architecture Approved; `L4-A-019` v1.0.1 Architecture Approved; `L4-A-050` v1.0.1 Architecture Approved; `L4-B-001` v1.0.1 Architecture Approved; `L2-A01_Platform_Tenant_Foundation_Architecture.md`; `L2-B01_Institution_Workflow.md`; SutraERP L1 Business Domain Architecture v2.1 Locked.  
 **Referenced By:** Peer L5 execution, contract, persistence, security and runtime architectures carrying protected execution scope.  

@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-D-02 — Authorization Architecture  
 **Assigned Author:** Devang  
 **Version:** `1.2.1`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-02-001_Authorization_Architecture_Baseline.md` v1.2.1 Architecture Approved; `L5-D-02-002_Permission_and_Capability_Model_Architecture.md` v1.0.1 Architecture Approved; `L5-D-02-003_Hierarchical_Scope_and_Resource_Context_Architecture.md` v1.0.2 Architecture Approved; `L5-D-02-004_Policy_Decision_and_Enforcement_Architecture.md` v1.2.1 Architecture Approved; `L5-D-02-005_Delegation_and_Temporary_Authority_Architecture.md` v1.0.1 Architecture Approved; `L5-D-01-001` through `L5-D-01-004`; `L5-D-03-001` and applicable D03 specializations; `L5-A-04-001`; `L5-A-04-002`; `L4-A-013_Emergency_Access_Request_to_Audited_Emergency_Access_Closure.md` v1.0.0 Draft as emergency-access boundary evidence; `L4-A-051`; `L4-A-052`; `L2-A04_Authorization_and_Policy_Workflows.md` v1.1 Locked; applicable protected-domain L2/L4 behaviors requiring privileged authorization; `ADR-PLAT-AUTH-001`; `ADR-L5-0001`; `ADR-L5-0004`; `ADR-L5-0009`.  
 **Referenced By:** `L5-D-02-007`; administrative/platform operations; configuration and master-data administration; protected diagnostics; support/operations tooling; deployment/runtime operations where business authorization is required; verification/testing privileged execution; D04 Audit & Evidence.  

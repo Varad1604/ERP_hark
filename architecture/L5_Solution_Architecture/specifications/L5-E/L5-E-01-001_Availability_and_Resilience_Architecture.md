@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-E-01 — Availability & Resilience Architecture  
 **Assigned Author:** Varad  
 **Version:** `1.1.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-A-01-001`; `L5-E-04-001`; `L5-E-01-002`; `L5-E-02-*`; `L5-A-08-*`; applicable B02/C02/D03/D04 architecture; `L4-A-015`; `L4-A-016`; `L4-A-057`.  
 **Referenced By:** L5 reliability-aware consumers, `L5-E-01-002`, `L5-E-02-*`.  

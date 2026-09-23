@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-G-01 — Client Platform Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.0.3`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-G-01-001` v1.0.1 Architecture Approved; `L5-G-01-002` v1.0.0 Architecture Approved; `L5_G01_003_Client_Security_State_Architecture_Approval_Decision_2026-09-15.md`; G01 dependency-readiness decision 2026-09-15; `L5-C-01-001/002/003`; `L5-D-01-001/003`; `L5-D-02-001/004`; `L5-A-04-001/002`; `ADR-L5-0001`; `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0015`.  
 **Referenced By:** `L5-G-01-002`, planned `L5-G-01-004`, future L6 client architecture and implementation standards.  

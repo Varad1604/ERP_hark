@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-F-02 — Verification & Testing Architecture  
 **Assigned Author:** Chetan  
 **Version:** `1.1.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-02-001_Verification_and_Testing_Architecture_Baseline.md`; L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; `L5-A-03-001` current Review; `L5-A-03-002` current Review; `L5-B-02-003` current Review; `L5-A-04-002` current Review; applicable current L5 Architecture Conformance Requirements and L4 Behavioral Obligations routed by F02-001.  
 **Referenced By:** `L5-F-02-001`; `L5-F-01-*`; architecture-review and implementation-verification consumers.  

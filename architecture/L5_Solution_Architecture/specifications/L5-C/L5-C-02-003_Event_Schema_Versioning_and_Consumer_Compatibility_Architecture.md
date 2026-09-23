@@ -9,7 +9,7 @@
 **Technical Architecture Owner:** `L5-C-02 — Event & Messaging Architecture`  
 **Assigned Author:** Pallav  
 **Version:** `1.2.1`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-C-02-001`; `L5-C-02-002`; `ADR-L5-0011`  
 **Referenced By:** event publishers/consumers and downstream L5 specifications that depend on governed event-contract compatibility  

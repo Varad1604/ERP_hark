@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-A-01 — Application & Platform Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.1.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L4-A-001` v1.0.1 Architecture Approved; `L4-A-015` v1.0.1 Architecture Approved; `L4-A-019` v1.0.1 Architecture Approved; `L4-A-028` v1.0.1 Architecture Approved; SutraERP L1 Business Domain Architecture v2.1 Locked.  
 **Referenced By:** None yet  

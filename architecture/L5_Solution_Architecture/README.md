@@ -4,7 +4,7 @@
 **Current State:** Broad authoring authorized for the frozen 105-specification corpus under dependency-gated parallel execution  
 **Frozen Authoring Population:** 105 specifications  
 **Broad L5 Authoring:** Authorized  
-**Final L5 Corpus Lock:** Not authorized  
+**Final L5 Corpus Lock:** Executed on final-lock branch; canonicalization pending Final Lock PR merge  
 
 ---
 
@@ -387,3 +387,25 @@ The final remaining A05 upstream governance gap is closed through a Locked L2-A0
 ## 2026-09-23 Independent Final Synchronization Audit
 
 Fresh repository validation confirms 105/105 canonical L5 rows at 0 Draft / 0 Review / 72 Architecture Approved / 33 Locked, zero current hard blockers, and no newly required ADR. Stale current-state wording in canonical navigation and selected production peer references was synchronized without changing architecture ownership or decisions. Intentionally deferred evidence/profile/future-feature choices remain non-blocking. Final L5 Corpus Lock is ready for explicit authorization but has not been executed.
+
+
+## 2026-09-23 Final L5 Corpus Lock Execution
+
+The independent Final L5 Corpus Lock Gate passed at canonical baseline `04936532e489dbd1b9cdfd0da4f6c55d32424168`. Following explicit Lead Architect authorization, the controlled Final Lock branch transitioned the remaining 72 Architecture Approved specifications to `Locked` while preserving the 33 already-Locked specifications.
+
+Branch result:
+
+- 105 canonical L5 specifications;
+- 0 Draft;
+- 0 Review;
+- 0 Architecture Approved;
+- 105 Locked;
+- 0 current hard blockers;
+- 48 allocated ADRs; next `ADR-L5-0049`;
+- 571 canonical L4→L5 relations;
+- 0 duplicate relation identities;
+- 0 stale bound L5 versions.
+
+A latent lifecycle-header synchronization defect was detected during execution: five D03 files still displayed `Review` even though the canonical R7 lifecycle decision had explicitly promoted them to Architecture Approved. Their headers were reconciled under that existing authority and then transitioned to Locked under the Final Corpus Lock authorization. No new architecture decision was created.
+
+The lock is executed on the controlled branch. It becomes canonical repository state only after the Final Lock PR is explicitly authorized for merge.

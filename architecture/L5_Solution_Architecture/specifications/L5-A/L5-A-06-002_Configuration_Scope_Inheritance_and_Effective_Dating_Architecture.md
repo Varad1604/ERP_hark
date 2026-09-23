@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-A-06 — Configuration, Feature & Institutional Extensibility Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.0.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-12`  
 **Depends On:** `L5-A-06-001`; `L5-A-04-001`; `L5-A-04-002`; `L5-B-02-001`; `L5-B-02-002`; `L5-B-02-003`; `L2-A01` v1.0.0 Locked; applicable L4 configuration specifications; L5 governance, validation, traceability and ADR standards.  
 **Referenced By:** Configuration-consuming L5 specifications and `L5-A-06-003` where feature/extension activation consumes resolved configuration.  

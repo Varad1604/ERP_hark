@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-D-04-003 — Tamper-Evident Audit Storage, Access & Export Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.0.3`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-D-04-001`; `L5-D-04-002`; `L5-B-02-003`; `L5-B-02-004`; `L5-D-03-001`; `L5-D-03-002`; `L5-D-03-003`; `L5-D-02`; `L5-A-04`; `L5-B-05-002`; `L5-B-05-003`; applicable `L4-A-022`–`L4-A-027`.  
 **Collaborating / Downstream Boundaries:** `L5-C-03-008`; `L5-E-03`; `L5-E-05`; `L5-A-08`.  

@@ -362,7 +362,7 @@ The active L5 program is governed under:
 architecture/L5_Solution_Architecture/governance/
 ```
 
-The representative nine-specification pilot is complete, the L5 authoring methodology is locked, the **105-specification authoring population is frozen**, workload and execution sequencing are locked, and **broad L5 authoring is authorized**. The Final L5 Corpus Lock has not been issued.
+The representative nine-specification pilot is complete, the L5 authoring methodology is locked, the **105-specification authoring population is frozen**, workload and execution sequencing are locked, and **broad L5 authoring is authorized**. The Final L5 Corpus Lock has been explicitly authorized and executed on the controlled final-lock branch; canonicalization is pending merge of the Final Lock PR.
 
 ### Locked Technology Decision Wave — 2026-09-22
 
@@ -764,3 +764,5 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 **Repository:** SutraERP
 
 **Maintained By:** Dhruv
+
+**2026-09-23 — Final L5 Corpus Lock execution:** following an independent Final L5 Corpus Lock Gate PASS at canonical baseline `04936532e489dbd1b9cdfd0da4f6c55d32424168` and explicit Lead Architect authorization, the controlled lock branch transitioned the remaining 72 Architecture Approved L5 specifications to Locked. Branch lifecycle state is 0 Draft / 0 Review / 0 Architecture Approved / 105 Locked. Existing 33 Locked specifications were preserved. ADR population remains 48 with next allocation `ADR-L5-0049`; canonical L4→L5 relation population remains 571 with 0 duplicate identities and 0 stale L5 bindings. Five stale D03 `Review` headers were reconciled under the already-authoritative R7 Architecture Approval decision before final lock. Final lock becomes canonical only after explicit merge authorization for the Final Lock PR.

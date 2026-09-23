@@ -9,7 +9,7 @@
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
 **Version:** `1.3.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-01-001`; `L5-E-04-*`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*`; applicable B02/C01 compatibility evidence where releases include persistence/contract changes; `L5-E-03-*` for recovery ownership boundaries.  
 **Referenced By:** E04 release/deployment architecture and operational acceptance.  

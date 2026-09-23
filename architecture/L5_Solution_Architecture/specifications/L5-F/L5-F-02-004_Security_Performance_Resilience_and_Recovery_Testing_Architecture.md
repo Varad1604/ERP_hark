@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-F-02 — Verification & Testing Architecture  
 **Assigned Author:** Chetan  
 **Version:** `1.3.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-02-001_Verification_and_Testing_Architecture_Baseline.md`; `L5-D-03-001_Security_Architecture_and_Trust_Boundary_Baseline.md`; `L5-D-03-002_Cryptography_and_Data_Protection_Architecture.md`; `L5-D-03-004_Secrets_Certificates_and_Machine_Credential_Architecture.md`; `L5-D-03-005_Application_Service_and_Network_Trust_Segmentation_Architecture.md`; applicable `L5-D-01-*`, `L5-D-02-*`, `L5-D-03-003`, `L5-D-04-*`; `L5-E-01-001_Availability_and_Resilience_Architecture.md`; `L5-E-01-002_Failure_Isolation_Graceful_Degradation_and_Service_Recovery_Architecture.md`; `L5-E-02-001_Performance_and_Capacity_Architecture.md`; `L5-E-02-002_Caching_Throughput_and_Capacity_Management_Architecture.md`; `L5-E-03-001_Backup_Restore_and_Disaster_Recovery_Architecture_Baseline.md`; `L5-E-03-002_Backup_Restore_and_Point_in_Time_Recovery_Architecture.md`; `L5-E-03-003_Disaster_Recovery_Failover_and_Recovery_Validation_Architecture.md`; applicable `L5-E-04-*`, `L5-E-05-*`, `L5-A-02-001_Technology_Platform_and_Standards_Architecture.md`; L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; current exact L4 Behavioral Obligations and L5 Architecture Conformance Requirements routed by F02-001.  
 **Referenced By:** `L5-F-02-001`; `L5-F-01-*`; architecture-review, operational-readiness and release-evidence consumers.  

@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-A-06 — Configuration, Feature & Institutional Extensibility Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.0.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-12`
 
 **Depends On:**

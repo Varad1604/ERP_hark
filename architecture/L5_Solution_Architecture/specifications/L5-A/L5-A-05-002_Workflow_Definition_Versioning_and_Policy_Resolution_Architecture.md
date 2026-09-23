@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** `L5-A-05 — Workflow & Orchestration Architecture`  
 **Assigned Author:** Devang  
 **Version:** `1.3.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register 105 v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-A-05-001_Workflow_and_Orchestration_Architecture_Baseline.md`; `L5-D-02-001` through `L5-D-02-007`; `L5-C-01-001` through `L5-C-01-003`; `L5-C-02-001` through `L5-C-02-003`; `L5-A-04-001/002`; `L5-B-02-002/003`; applicable `L5-D-04`; `L2-A05_Workflow_Engine_Workflows.md`; `L4-A-014_Workflow_Definition_to_Activated_Orchestration_Availability.md`; `L4-A-017_Workflow_Change_to_Governed_New_Version_Availability.md`; supporting `L4-A-015` and `L4-A-016` for runtime/version binding.  
 **Referenced By:** `L5-A-05-003`; workflow-owning domains; workflow administration/governance capabilities; runtime version resolver; D02 policy decision/enforcement; C01/C02 integration architecture; D04 evidence architecture.  
