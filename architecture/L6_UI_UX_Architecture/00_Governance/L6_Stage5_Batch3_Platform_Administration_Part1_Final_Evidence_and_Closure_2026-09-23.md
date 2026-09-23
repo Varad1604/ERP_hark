@@ -32,7 +32,7 @@ Batch 3 was reconstructed from live repository state rather than from historical
 - Canonical `main` used: `2f9226e85d0ba07f57a8b47727182d0872fb4c84`
 - This head includes canonical L5 R7 lifecycle governance and 105-row reconciliation. Current L5 corpus state is 0 Draft / 16 Review / 56 Architecture Approved / 33 Locked / 0 blockers, while Final L5 Corpus Lock remains NOT AUTHORIZED.
 - Batch-3 evidence branch: `l6-stage5-batch3-platform-admin-part1-evidence-r7`
-- Architecture PR: pending creation on the R7-reconciled branch; the stale R6-based PR #82 is superseded and must not be merged.
+- Architecture PR: #84 — OPEN / NOT MERGED. The stale R6-based PR #82 is superseded and must not be merged.
 - Repository State remains NOT YET MERGED.
 
 Batch 2 remains canonical PASS / COMPLETE / MERGED and its closure evidence records Batch 3 as ENTRY-READY.
