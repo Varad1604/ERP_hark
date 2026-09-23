@@ -7,11 +7,11 @@
 **Domain:** Person & Identity  
 **Realizes Scenario:** L3-A-004  
 **Primary Business Owner:** Person & Identity  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-30  
-**Depends On:** `L3-A-004_Person_Establishment_to_Active_Canonical_Identity.md`; `L2-A02_Person_and_Identity_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Amendment_2026-08-26.md`; `DEPENDENCY_MAP.md`  
+**Last Updated:** 2026-09-23  
+**Depends On:** `L3-A-004_Person_Establishment_to_Active_Canonical_Identity.md`; `L2-A02_Person_and_Identity_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Amendment_2026-08-26.md`; `DEPENDENCY_MAP.md`  ; `L2-A02_User_Account_and_Person_Reconciliation_Authority_Amendment_2026-09-23.md`; L3-A-004 v1.1
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -68,6 +68,21 @@ Completion requires one canonical Tenant-scoped Person and one associated Identi
 
 The L1 amendment supersedes the older Institute-scoped Person wording and establishes Tenant-scoped canonical Person identity.
 
+## R3B Canonical Behavioral Addendum
+
+| Behavior ID | Required System Behavior | Provenance |
+|---|---|---|
+| L4-A-004-BH-013 | Completion of Person/Identity activation shall not automatically create a User Account. | L3-A-004 v1.1; A02 R3B amendment §1 |
+| L4-A-004-BH-014 | Where login capability is required after activation, the system shall require both authoritative login-capability basis and User Account Provisioning Authority before invoking the separate A02 User Account lifecycle. | L3-A-004 v1.1; A02 R3B amendment §1 |
+| L4-A-004-BH-015 | Absence of login-capability authority shall leave the Active Person/Identity valid without fabricating an account. | L3-A-004 v1.1; A02 R3B amendment §1 |
+
 ## 10. Open Issues / Deferred Design
 
-The canonical role initiating Person establishment and the role granting verification approval where policy requires it are not named upstream. This draft therefore enforces the existence of required approval without inventing that authority. Technical identity storage, matching algorithms, APIs and UI remain deferred.
+No blocking L4 issue remains after the Locked R3B upstream amendment(s) and synchronized L3-A-004 v1.1.
+
+Implementation-specific APIs, persistence, cryptographic mechanisms, provider/product choices and UI remain downstream concerns.
+
+
+## Canonical Validation Note
+
+This specification passed the scoped R3B hard-fail validation and is `Architecture Approved` under `L4_R3B_Core_IAM_Semantics_Architecture_Approval_Decision_2026-09-23.md`. This approval does not Lock the specification or automatically validate any L4→L5 relation.
