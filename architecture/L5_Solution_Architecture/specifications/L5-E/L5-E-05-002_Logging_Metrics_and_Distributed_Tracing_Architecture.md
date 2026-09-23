@@ -9,7 +9,7 @@
 **Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
 **Version:** `1.2.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; `L5-E-05-001`; `L5-C-01-*`; `L5-C-02-*`; `L5-D-03-*`; `L5-D-04-*`; `L5-E-04-*`; persistence/data telemetry surfaces from `L5-B-02-*` where material.  
 **Referenced By:** `L5-E-05-003`, `L5-E-05-004`, operational consumers and technical readiness evidence.  
