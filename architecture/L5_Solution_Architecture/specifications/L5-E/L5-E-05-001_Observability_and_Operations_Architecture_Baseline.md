@@ -8,9 +8,9 @@
 **Canonical Technical Responsibility:** Operational observability/service operations without treating telemetry as business audit truth.  
 **Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.1`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Version:** `1.3.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-E-04-*`; `L5-E-01-*`; `L5-E-02-*`; `L5-C-01-*`; `L5-C-02-*`; `L5-D-03-*`; `L5-D-04-*`; `L5-A-04-*` where Tenant/Institution execution context is consumed.  
 **Referenced By:** `L5-E-05-002`, `L5-E-05-003`, `L5-E-05-004`, `L5-F-01-*`, and downstream operational-readiness consumers.  
 **Applicable ADRs:** `ADR-L5-0014`; `ADR-L5-0028`; `ADR-L5-0029`; `ADR-L5-0040`; `ADR-L5-0044`; `ADR-L5-0045`.
@@ -31,13 +31,13 @@ The locked dependency-gated execution model requires the consumed peer responsib
 Accordingly, peer `Draft` status is not by itself a blocker for continued Stage 3 authoring/review. E05 does not consume unresolved product/topology choices from those peers. A material change to any consumed boundary remains a revalidation trigger under L5 change governance.
 
 ### 3.2 Material L4 applicability
-The following current L4 obligations provide defensible material applicability for the operational-evidence contribution supplied by this specification while preserving L2-A10 governance ownership. Their current L4 status is `Draft`; therefore these relations are **Specified**, not `Validated`, and do not authorize L5 Architecture Approved status until the upstream behavioral authority is approved/authorized under L5 governance.
+The following current L4 obligations provide defensible material applicability for the operational-evidence contribution supplied by this specification while preserving L2-A10 governance ownership. The cited L4 parents are Architecture Approved under R4A. These exact relations are therefore `Validated` by the R4B targeted revalidation; E05-001 does not acquire readiness-governance ownership.
 
 | L4 Specification | BH ID | E05-001 Technical Contribution | L5 Evidence | Relation State |
 |---|---|---|---|---|
-| `L4-A-042` | `L4-A-042-BH-005` | Supplies governed operational telemetry evidence references and explicit loss/unavailability semantics when observability evidence is an applicable readiness input; it does not own the governance Assessment or evidence decision. | §§4.1, 5.1, 5.4; CR-001, CR-003, CR-008 | Specified |
-| `L4-A-045` | `L4-A-045-BH-001` | Makes attributable operational evidence references resolvable for remediation verification without converting telemetry into audit truth. | §§4.1, 5.1, 5.3; CR-001, CR-010 | Specified |
-| `L4-A-045` | `L4-A-045-BH-002` | Provides evidence quality, availability and correlation facts needed to determine whether operational evidence is usable for verification; governance still evaluates closure eligibility. | §§5.3–5.5, 7; CR-003, CR-004, CR-008 | Specified |
+| `L4-A-042` | `L4-A-042-BH-005` | Supplies governed operational telemetry evidence references and explicit loss/unavailability semantics when observability evidence is an applicable readiness input; it does not own the governance Assessment or evidence decision. | §§4.1, 5.1, 5.4; CR-001, CR-003, CR-008 | Validated |
+| `L4-A-045` | `L4-A-045-BH-001` | Makes attributable operational evidence references resolvable for remediation verification without converting telemetry into audit truth. | §§4.1, 5.1, 5.3; CR-001, CR-010 | Validated |
+| `L4-A-045` | `L4-A-045-BH-002` | Provides evidence quality, availability and correlation facts needed to determine whether operational evidence is usable for verification; governance still evaluates closure eligibility. | §§5.3–5.5, 7; CR-003, CR-004, CR-008 | Validated |
 
 No other BH coverage is claimed by this file merely because telemetry may be useful operationally.
 
@@ -122,7 +122,7 @@ Telemetry is classified by signal and field. Sensitive values are redacted befor
 - **OD-001:** **Resolved:** OpenTelemetry + Prometheus/Loki/Tempo/Grafana under `ADR-L5-0029`.
 - **OD-002:** **Resolved:** repository-wide observability profile = OpenTelemetry/OTLP + Collector, Prometheus, Loki, Tempo and Grafana under `ADR-L5-0029`.
 - **OD-003:** Numeric sampling, retention, SLO and capacity targets — delegated to canonical owners/configuration profiles; no universal values are required at Review stage.
-- **OD-004:** Current direct BH applicability is specified in §3.2. Relation validation remains blocked by the Draft status of those L4 sources and must be performed only after upstream approval/authorization.
+- **OD-004:** Current direct BH applicability is specified in §3.2. Resolved by R4A approval of L4-A-042/L4-A-045 and R4B current-version relation validation.
 - **OD-005:** Peer dependency drift — current consumed E04/D03/D04 responsibility surfaces are sufficiently stable for Stage 3 Review; any material change to those surfaces requires impact revalidation.
 
 ## 10. Traceability Summary
@@ -130,11 +130,11 @@ Candidate Corpus Register 105 establishes the canonical E05 responsibility. Tech
 
 Specified material L4 contribution relations for this version are:
 
-- (`L4-A-042-BH-005`, `L5-E-05-001`) — Specified
-- (`L4-A-045-BH-001`, `L5-E-05-001`) — Specified
-- (`L4-A-045-BH-002`, `L5-E-05-001`) — Specified
+- (`L4-A-042-BH-005`, `L5-E-05-001`) — Validated
+- (`L4-A-045-BH-001`, `L5-E-05-001`) — Validated
+- (`L4-A-045-BH-002`, `L5-E-05-001`) — Validated
 
-These relations provide operational-evidence architecture only. They do not transfer L2-A10 readiness-governance ownership, D04 audit ownership, or any L4 behavioral ownership to E05. Because the cited L4 specifications are currently Draft, this L5 file remains `Review`; it shall not claim `Architecture Approved` on their authority.
+These relations provide operational-evidence architecture only. They do not transfer L2-A10 readiness-governance ownership, D04 audit ownership, or any L4 behavioral ownership to E05. The cited L4 specifications are Architecture Approved under R4A; exact E05-001 relations are Validated and this specification passes R4B targeted revalidation.
 
 
 ## 2026-09-22 Locked Technology Decision Synchronization
@@ -147,3 +147,16 @@ OpenTelemetry/OTLP with Collector is canonical; Prometheus/Loki/Tempo/Grafana ar
 
 **Applicable locked decision:** `ADR-L5-0040`  
 E05 may observe security operations, health and failures, but logs/metrics/traces are not the canonical audit record. Audit-grade evidence is handed to D04.
+
+
+## 2026-09-23 R4B Targeted Revalidation
+
+**Result:** PASS — Architecture Approved.
+
+This specification was revalidated against R4A-approved operational-readiness evidence parents where directly material, the Locked L5 governance/validation standards, applicable Locked ADRs, current E05 peer boundaries, and the R4B Technical Service Acceptance Authority decision.
+
+No HF-01…HF-15 blocker remains for this specification.
+
+Direct L4/BH relations are recorded only where material. Absence of an artificial direct BH mapping is not treated as a traceability defect for reusable technical responsibilities whose authority is established by the canonical corpus and approved peer architecture.
+
+Final L5 Corpus Lock remains separately governed and is not authorized by this approval.
