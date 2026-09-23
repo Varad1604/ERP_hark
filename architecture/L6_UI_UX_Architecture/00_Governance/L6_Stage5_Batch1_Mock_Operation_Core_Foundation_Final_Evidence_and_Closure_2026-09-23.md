@@ -9,14 +9,44 @@
 **Stage:** Stage 5 — REVIEW / PERFORM THE WORK  
 **Batch:** Batch 1 — Mock-Operation Core Foundation  
 **Decision Date:** 2026-09-23  
-**Frontend PR:** #26 — open / draft / not merged at closure review  
+**Frontend PR:** #26 — merged 2026-09-23; merge commit `476ed264ef6145dc56baf29b260eecf2e2be7766`  
 **Frontend Branch:** `stage5-batch1-step5-outcome-reset-history-hardening`  
 **Current Revalidation Frontend Head:** `770646eb0cf83b91db6d5a49a5004f4cf5d3ef60`  
 **Frontend Base:** `aacfbddb42ef460b28edb461ae5b125953ad0696`  
 **Current Revalidation CI:** Frontend PR Validation #204 / Run ID `35820208941` / SUCCESS  
 **Browser Evidence Artifact:** `stage5-batch1-browser-evidence` / Artifact ID `10732484956` / SHA-256 `7eef97e4c82e2df878a0d4aec7dd22f8823eeaf25b4494cad54241fdda87d682`  
 **Architecture Baseline:** current `main` at Batch-1 closure review  
-**Review State:** **PASS — CORRECTIONS CLOSED; BATCH 1 MERGE GATE PASS; MERGE STILL REQUIRES EXPLICIT AUTHORIZATION**
+**Review State:** **PASS — CORRECTIONS CLOSED; BATCH 1 CANONICALIZED / MERGED**
+
+---
+
+## 0A. Post-Merge Canonicalization Reconciliation — 2026-09-23
+
+Following explicit merge authorization:
+
+```text
+Frontend PR #26       MERGED
+Frontend merge commit 476ed264ef6145dc56baf29b260eecf2e2be7766
+
+Architecture PR #62       MERGED
+Architecture merge commit 7cb0dd97fda97b2ee9af72ef67e8818ae7b2bf14
+```
+
+Post-merge verification reconfirmed:
+
+- both Batch-1 PRs are merged;
+- all five protected Stage-5 Architecture provenance blob SHAs still match exactly;
+- the protected census remains 595 workflows / 1,084 scenarios / 99 workspaces / 12 archetypes / 10 mixed workflows;
+- no new Batch-1 integrity defect emerged during canonicalization;
+- Batch 1 is therefore canonicalized and closed;
+- Batch 2 entry is permitted after the normal live-repository reconstruction at its own start.
+
+Current canonical state:
+
+```text
+STAGE 5 BATCH 1 — PASS / COMPLETE / MERGED
+BATCH 2 — ENTRY-READY
+```
 
 ---
 
