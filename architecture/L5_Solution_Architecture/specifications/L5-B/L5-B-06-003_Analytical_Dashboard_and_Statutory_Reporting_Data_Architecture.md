@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-B-06 — Reporting, Analytics & Data Projection Architecture  
 **Assigned Author:** Chetan  
 **Version:** `1.1.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-23`  
 **Depends On:** `L5-B-06-001`; `L5-B-06-002`; `L5-B-02-003`; `L5-D-02-004`; `L5-C-01-*`; `L5-C-02-*`; `L5-A-04-002`; `L5-D-04-001`; `L5-B-05-*`; L2-H07; L2-H08; applicable source reporting domains such as L2-F13.  
 **Referenced By:** H07 dashboard composition; H08 regulatory reporting; authorized analytical/reporting consumers.  
