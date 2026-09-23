@@ -7,10 +7,10 @@
 **Domain:** Module Registry  
 **Realizes Scenario:** L3-A-032 — Module Dependency Change to Validated Architectural Dependency Outcome  
 **Primary Business Owner:** Module Registry  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
+**Last Updated:** 2026-09-23  
 **Depends On:** SutraERP L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-A01; L2-A04; L2-A06; L2-A07; L2-A08; L3-A-032  
 **Referenced By:** None yet
 
@@ -97,3 +97,8 @@ Preserve requester/actor, source and target Modules/versions, dependency type, p
 | A032-L4-OPEN-01 | L2-A08 defines `Register Dependency` but no explicit Update Dependency command/workflow; L4 therefore specifies the approved update outcome without naming a new command. | Preserve the gap explicitly; do not invent missing architecture at L4. |
 
 No implementation design is introduced by these deferred items.
+
+
+## Canonical Validation Note
+
+This specification passed the scoped R1B hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R1B_Workflow_Event_Module_Authority_Architecture_Approval_Decision_2026-09-23.md`. Non-blocking upstream gaps remain bounded exactly as recorded; this approval does not invent actors, commands, events, lifecycle semantics, or implementation design.
