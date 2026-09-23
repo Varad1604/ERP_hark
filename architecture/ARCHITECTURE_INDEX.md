@@ -645,6 +645,10 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 # Recent Changes
 
+**2026-09-23 — R1C Workspace upstream blocker remediation:** Locked a targeted L2-A04 Workspace Governance Authority and Lifecycle Amendment adopting Workspace as the single governed aggregate with Workspace Mapping as versioned configuration; established the canonical `Draft → Under Review → Active → Retired` lifecycle, abstract Workspace Governance Authority, successor-version change rule, and `WorkspaceActivated` / `WorkspaceRetired` events. Synchronized Locked `L3-A-050` to v1.1 and promoted `L4-A-050` to Architecture Approved v1.0.1 after scoped hard-fail validation. No L5 disposition, ADR, lifecycle status or Final Corpus Lock state changed by this remediation.
+
+---
+
 **2026-09-22 — L5 Batch-9 final lock gate:** Completed the Full Production Validation & Lock-Readiness Programme. The final gate produced a NO-LOCK verdict: 105/105 specifications have current validation dispositions, but 30 Review specifications retain upstream authority/semantics blockers under HF-01/HF-14 and no distinct Final L5 Corpus Lock authorization exists. Lifecycle remains 0 Draft / 51 Review / 21 Architecture Approved / 33 Locked.
 
 ---
@@ -704,7 +708,7 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 ---
 
-**Last Updated:** 2026-09-22
+**Last Updated:** 2026-09-23
 
 **Repository:** SutraERP
 
