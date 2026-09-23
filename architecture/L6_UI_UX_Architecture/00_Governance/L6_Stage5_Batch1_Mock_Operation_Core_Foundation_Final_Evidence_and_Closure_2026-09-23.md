@@ -1,7 +1,8 @@
 # SutraERP L6 — Stage 5 Batch 1 — Mock-Operation Core Foundation — Final Evidence, Integrity Audit & Closure
 
 **Version:** 1.0.0  
-**Status:** Architecture Approved — Batch Closure Evidence  
+**Status:** Review  
+**Evidence Type:** Batch Closure Evidence  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture Support  
 **Programme:** SutraERP Full Workflow Realization & Mock ERP Programme  
@@ -10,12 +11,44 @@
 **Decision Date:** 2026-09-23  
 **Frontend PR:** #26 — open / draft / not merged at closure review  
 **Frontend Branch:** `stage5-batch1-step5-outcome-reset-history-hardening`  
-**Frontend Closure Head:** `9923477bfbd884b0ff8e403b2bffdf13fbb8b442`  
+**Current Revalidation Frontend Head:** `770646eb0cf83b91db6d5a49a5004f4cf5d3ef60`  
 **Frontend Base:** `aacfbddb42ef460b28edb461ae5b125953ad0696`  
-**Final Frontend CI:** Frontend PR Validation #202 / Run ID `35818228637` / SUCCESS  
+**Current Revalidation CI:** Frontend PR Validation #204 / Run ID `35820208941` / SUCCESS  
 **Browser Evidence Artifact:** `stage5-batch1-browser-evidence` / Artifact ID `10732138082`  
 **Architecture Baseline:** current `main` at Batch-1 closure review  
-**Final Verdict:** **PASS — BATCH 1 COMPLETE; MERGE STILL REQUIRES EXPLICIT USER AUTHORIZATION**
+**Review State:** **RETURN FOR CORRECTION — FIX 1 VERIFIED; REMAINING CORRECTIONS PENDING**
+
+---
+
+## 0. Post-Closure Independent Verification Amendment — 2026-09-23
+
+The original Step-8 closure assessment below is retained as historical execution evidence and is **not** silently rewritten.
+
+A subsequent independent integrity and quality verification identified three correction items before merge:
+
+1. shared `GovernedAction` review semantics regressed non-connected reference-workspace UX;
+2. this closure record used a non-canonical compound lifecycle status;
+3. Frontend PR #26 description remained stale after Step 8.
+
+Correction status at this revision:
+
+```text
+Fix 1 — shared GovernedAction semantics        PASS / VERIFIED
+Fix 2 — canonical Architecture status          IN PROGRESS IN THIS REVISION
+Fix 3 — frontend PR traceability metadata      NOT STARTED
+```
+
+Fix 1 is validated at frontend head `770646eb0cf83b91db6d5a49a5004f4cf5d3ef60` by Frontend PR Validation #204 / Run ID `35820208941` / SUCCESS.
+
+Until all correction items are resolved and the independent closure verification is rerun, the governing state of this document is:
+
+```text
+Status: Review
+Batch 1 merge gate: NOT YET PASS
+Batch 2: NOT AUTHORIZED TO START
+```
+
+The original Step-8 PASS remains part of the audit trail but is superseded for merge-readiness purposes by this later independent verification.
 
 ---
 
@@ -521,7 +554,7 @@ The locked L2/L3 semantics support the bounded proof. Draft L4-H-013 remains Dra
 
 ## 16. Remaining Risks / Deferred Conditions
 
-No material defect blocks Batch-1 closure.
+The original Step-8 review found no material defect at that time. The later independent verification identified correction items; therefore this statement is historical and does not represent the current merge gate.
 
 The following are intentional continuing constraints:
 
@@ -534,7 +567,7 @@ The following are intentional continuing constraints:
 
 ## 17. Batch-2 Readiness
 
-Batch 1 is technically complete.
+The nine planned Batch-1 steps have been executed, but Batch 1 is currently under correction review and is not merge-ready until the independent verification findings are closed.
 
 Batch 2 may begin only after the normal Stage-5 entry gate is satisfied:
 
@@ -552,8 +585,8 @@ affected upstream sources rechecked
 Therefore the current state is:
 
 ```text
-BATCH 1 — PASS / COMPLETE
-BATCH 2 — READY AFTER BATCH-1 CANONICALIZATION
+BATCH 1 — REVIEW / RETURN FOR CORRECTION
+BATCH 2 — NOT AUTHORIZED UNTIL CORRECTIONS CLOSE AND BATCH-1 CANONICALIZATION COMPLETES
 ```
 
 Batch 2 shall not treat the Batch-1 H02 golden proof as category completion.
@@ -576,10 +609,10 @@ Step 6  PASS
 Step 7  PASS
 Step 8  PASS
 
-9 / 9 STEPS COMPLETE
+9 / 9 PLANNED STEPS EXECUTED
 
-BATCH 1 RESULT:
-PASS — COMPLETE
+BATCH 1 CURRENT REVIEW RESULT:
+RETURN FOR CORRECTION
 
 FRONTEND PR #26:
 OPEN / DRAFT / NOT MERGED
