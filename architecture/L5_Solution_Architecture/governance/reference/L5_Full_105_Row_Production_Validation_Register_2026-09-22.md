@@ -259,3 +259,19 @@ Total                                             105
 ```
 
 R7 does not promote the remaining 16 Review specifications because their prior validation explicitly preserved separate lifecycle decisions and/or non-blocking deferrals. PASS is not treated as automatic Architecture Approved. Final L5 Corpus Lock remains a separate explicit governance action.
+
+
+## R8 Final-Lock Re-entry Readiness Audit — 2026-09-23
+
+R8 confirms the current living lifecycle distribution remains unchanged from R7:
+
+```text
+Draft                       0
+Review                     16
+Architecture Approved      56
+Locked                     33
+Total                     105
+Current hard blockers       0
+```
+
+Repository-wide final-lock re-entry is **not yet eligible** because 16 specifications remain Review. This is a lifecycle-governance gap, not a return of the former 22 upstream hard blockers. A targeted lifecycle-closure programme is required before the final-lock gate is rerun.
