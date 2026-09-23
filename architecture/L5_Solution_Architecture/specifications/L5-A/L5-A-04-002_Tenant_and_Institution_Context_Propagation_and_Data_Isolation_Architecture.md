@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Propagation/enforcement of Tenant, Institution and lower-scope context across execution and persistence.  
 **Technical Architecture Owner:** L5-A-04 — Tenant & Institutional Isolation Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.1`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Version:** `1.1.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; L5 Pilot ADR Candidate Disposition v1.0.0; `L5-A-04-001` v1.0.1 Draft; `L5-A-01-001` v1.0.1 Draft; `L4-A-001` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-015` v1.0.0 Draft; `L4-A-019` v1.0.0 Draft; `L4-A-050` v1.0.0 Draft; `L4-B-001` v1.0.0 Review; `L2-A01_Platform_Tenant_Foundation_Architecture.md`; `L2-B01_Institution_Workflow.md`; SutraERP L1 Business Domain Architecture v2.1 Locked.  
 **Referenced By:** Peer L5 execution, contract, persistence, security and runtime architectures carrying protected execution scope.  
 **Applicable ADRs:** `ADR-L5-0004` — Tenant and Institution Isolation Enforcement Pattern (`Architecture Approved`).
@@ -206,3 +206,8 @@ Canonical decision: `AD-001`–`AD-003` → `ADR-L5-0004`.
 Historical candidate provenance: `ADR-C1`.
 
 Primary peers: C01/C02, A05/A08, B02, D01/D02/D03/D04 and E04.
+
+
+## 2026-09-23 R6 Targeted Revalidation Synchronization
+
+R6 revalidated this specification against HF-01…HF-15 after canonical R1/R2 upstream authority consolidation and R5 affected L4→L5 traceability validation. The former Draft/Review-L4 promotion blocker is resolved. Earlier embedded source-status labels describing Draft/Review L4 state are retained only as authoring provenance and are superseded for current authority by the Architecture Approved R1/R2 parent decisions. No business ownership, event ownership, lifecycle authority, or technical responsibility is transferred by this promotion. HF-01…HF-15: PASS. Lifecycle: Architecture Approved. Final corpus lock remains separate governance.

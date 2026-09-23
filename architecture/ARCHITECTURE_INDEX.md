@@ -648,6 +648,11 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 # Recent Changes
 
+**2026-09-23 — L5 R6 targeted remaining revalidation:** revalidated the complete 22-spec upstream-blocker population against HF-01…HF-15 after R1/R2 authority consolidation and R5 traceability validation. All 22 pass and were promoted to Architecture Approved. Current living L5 corpus: 0 Draft / 21 Review / 51 Architecture Approved / 33 Locked / 0 blockers. Traceability version bindings were synchronized across Sections A/C/F/H. Final L5 Corpus Lock remains unauthorized pending R7/R8 governance.
+
+---
+
+
 **2026-09-23 — L5 R5 affected L4→L5 traceability validation:** validated 234 existing BH-level relations across Sections A/F/H after R1/R2 upstream approval consolidation; 0 duplicates, 0 missing BH identities and 0 stale bindings. Eight affected specs intentionally receive no invented direct BH rows where current source architecture asserts only parent applicability. The 22-spec blocker population remains unchanged until R6 targeted hard-fail revalidation; Final L5 Corpus Lock remains unauthorized.
 
 ---

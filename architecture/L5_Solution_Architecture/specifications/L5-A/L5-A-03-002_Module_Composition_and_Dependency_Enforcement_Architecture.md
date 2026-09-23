@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Enforceable technical dependency/composition rules and prevention of unauthorized coupling.  
 **Technical Architecture Owner:** L5-A-03 — Module, Dependency & Technical Boundary Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.1`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Version:** `1.1.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** `L5-A-03-001` v1.0.1 Draft; `L5-A-01-001` v1.0.1 Draft; L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L2-A08_Module_Registry_Configuration_Workflows.md` v1.0.0 Locked; `L4-A-032_Module_Dependency_Change_to_Validated_Architectural_Dependency_Outcome.md` v1.0.0 Draft; `DEPENDENCY_MAP.md`.  
 **Referenced By:** repository/build validation architecture; implementation composition rules derived from A03.  
 **Applicable ADRs:** `ADR-L5-0003` — Contract-Driven Modular Platform with Selective Isolation (`Architecture Approved`).
@@ -248,3 +248,8 @@ Primary upstream applicability: `L4-A-032-BH-001`–`BH-008`, L2-A08, `DEPENDENC
 Architecture decisions: `AD-001`–`AD-003` → `ADR-L5-0003`.
 
 Execution/verification collaborators: `L5-F-01-*` and `L5-F-02-*`; they do not own A03 rules.
+
+
+## 2026-09-23 R6 Targeted Revalidation Synchronization
+
+R6 revalidated this specification against HF-01…HF-15 after canonical R1/R2 upstream authority consolidation and R5 affected L4→L5 traceability validation. The former Draft/Review-L4 promotion blocker is resolved. Earlier embedded source-status labels describing Draft/Review L4 state are retained only as authoring provenance and are superseded for current authority by the Architecture Approved R1/R2 parent decisions. No business ownership, event ownership, lifecycle authority, or technical responsibility is transferred by this promotion. HF-01…HF-15: PASS. Lifecycle: Architecture Approved. Final corpus lock remains separate governance.

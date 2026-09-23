@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Analytical/statutory datasets and dashboard projections without transferring KPI/fact ownership.  
 **Technical Architecture Owner:** L5-B-06 — Reporting, Analytics & Data Projection Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.0.1`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Version:** `1.1.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** `L5-B-06-001`; `L5-B-06-002`; `L5-B-02-003`; `L5-D-02-004`; `L5-C-01-*`; `L5-C-02-*`; `L5-A-04-002`; `L5-D-04-001`; `L5-B-05-*`; L2-H07; L2-H08; applicable source reporting domains such as L2-F13.  
 **Referenced By:** H07 dashboard composition; H08 regulatory reporting; authorized analytical/reporting consumers.  
 **Applicable ADRs:** `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0036`; `ADR-L5-0037`; `ADR-L5-0045`; `ADR-L5-0046`.
@@ -295,3 +295,8 @@ Neither B06 dataset telemetry nor projection state becomes audit truth or operat
 - Material L4: `L4-H-048-BH-001/003/005/006/007`; `L4-H-057-BH-001/002/003/006/007/010/013`; `L4-F-077-BH-001`–`BH-011`.
 - Material L2: H07 Enterprise Dashboard; H08 Regulatory Reporting; F13 Financial Reporting & Analytics.
 - Material L5: B06-001/002, B02, D02, C01/C02, A04, B05, D04, E05.
+
+
+## 2026-09-23 R6 Targeted Revalidation Synchronization
+
+R6 revalidated this specification against HF-01…HF-15 after canonical R1/R2 upstream authority consolidation and R5 affected L4→L5 traceability validation. The former Draft/Review-L4 promotion blocker is resolved. Earlier embedded source-status labels describing Draft/Review L4 state are retained only as authoring provenance and are superseded for current authority by the Architecture Approved R1/R2 parent decisions. No business ownership, event ownership, lifecycle authority, or technical responsibility is transferred by this promotion. HF-01…HF-15: PASS. Lifecycle: Architecture Approved. Final corpus lock remains separate governance.
