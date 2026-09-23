@@ -8,7 +8,7 @@
 **Decision Date:** 2026-09-23  
 **Canonical Baseline:** `04936532e489dbd1b9cdfd0da4f6c55d32424168`  
 **Execution Branch:** `l5-final-corpus-lock-2026-09-23`  
-**Canonicalization:** Pending explicit merge authorization for the Final Lock PR
+**Canonicalization:** COMPLETE — merged to canonical `main` as `fe9d03d6b70f17f071340b60394589cadb31d5b4`
 
 ---
 
@@ -251,7 +251,7 @@ historical validation
 **New ADR required:** NO  
 **Traceability identity changes:** NONE  
 **Current hard blockers:** 0  
-**Canonical merge:** PENDING EXPLICIT AUTHORIZATION
+**Canonical merge:** COMPLETE — `fe9d03d6b70f17f071340b60394589cadb31d5b4`
 
 
 ## 13. Post-Execution Branch Validation
