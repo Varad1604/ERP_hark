@@ -1,4 +1,4 @@
-# SutraERP L6 — Stage 5 Batch 5 — Institution & Structure — Final Evidence & Pre-Merge Closure
+# SutraERP L6 — Stage 5 Batch 5 — Institution & Structure — Final Evidence & Closure
 
 **Version:** 1.0.0  
 **Status:** Architecture Approved  
@@ -8,9 +8,9 @@
 **Decision Date:** 2026-09-23  
 **Batch Result:** PASS  
 **Merge Gate:** PASS  
-**Repository State:** PASS / COMPLETE / FRONTEND MERGED / ARCHITECTURE CLOSURE PROPOSED  
+**Repository State:** PASS / COMPLETE / MERGED  
 **Domain B:** COMPLETE AT STAGE-5 BATCH-5 SCOPE  
-**Next Batch:** Batch 6 ENTRY-READY ONLY AFTER THIS CLOSURE IS CANONICAL; NOT STARTED  
+**Next Batch:** Batch 6 ENTRY-READY / NOT STARTED  
 
 ---
 
@@ -39,6 +39,15 @@ Stage 5 Batch 5 — Institution & Structure mock-operational realization
 MERGED
 merge commit:
 39f3754961fb24ec183bb1ebb741a9bcf9d14e33
+```
+
+Architecture closure PR #96:
+
+```text
+L6 Stage 5 Batch 5 — Institution & Structure closure evidence
+MERGED
+merge commit:
+d7f715230627a1afc7044b5f7fb0dd2dcaa1526e
 ```
 
 Final frontend validation:
@@ -545,11 +554,11 @@ These are not Batch-5 implementation failures:
 ```text
 STAGE 5 BATCH 5 — PASS
 FRONTEND — COMPLETE / MERGED
-ARCHITECTURE CLOSURE — MERGE GATE PASS
+ARCHITECTURE CLOSURE — MERGED — PR #96 / d7f715230627a1afc7044b5f7fb0dd2dcaa1526e
 SECTION B BATCH-5 COHORT — 15 / 15 WORKFLOWS COMPLETE
 SECTION B BATCH-5 SCENARIOS — 33 / 33 ACCOUNTED FOR
 BROWSER EVIDENCE — 73 / 73 PASS
-BATCH 6 — NOT STARTED
+BATCH 6 — ENTRY-READY / NOT STARTED
 ```
 
-After this evidence is merged to canonical Architecture `main`, Batch 5 becomes repository-canonical PASS / COMPLETE / MERGED and Batch 6 may be marked ENTRY-READY under its own explicit execution instruction.
+This evidence was merged to canonical Architecture `main` by PR #96 as `d7f715230627a1afc7044b5f7fb0dd2dcaa1526e`. Batch 5 is repository-canonical PASS / COMPLETE / MERGED. Batch 6 is ENTRY-READY but remains NOT STARTED and requires its own explicit execution instruction.
