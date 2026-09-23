@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** User-account, service/workload/job/integration identity technical models without duplicating Person.  
 **Technical Architecture Owner:** L5-D-01 — IAM Architecture  
 **Assigned Author:** Devang  
-**Version:** `1.2.2`  
+**Version:** `1.3.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-01-001` current Review; `L4-A-004` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-008` v1.0.0 Draft; `L4-A-053` v1.0.0 Draft; `L2-A01` v1.0.0 Locked; `L2-A02` Locked; `L2-A03` Locked; `ADR-PLAT-AUTH-001` Approved.  
 **Referenced By:** Planned `L5-D-01-003`, `L5-D-01-004`, `L5-D-02-*`, `L5-A-08-*`, `L5-C-03-*`, and other technical consumers requiring an authenticated human or non-human principal context.  
-**Applicable ADRs:** `ADR-PLAT-AUTH-001`; `ADR-L5-0039`.
+**Applicable ADRs:** `ADR-PLAT-AUTH-001`; `ADR-L5-0039`; `ADR-L5-0048`.
 
 ---
 
@@ -154,7 +154,7 @@ The specification deliberately avoids defining non-human identity lifecycle stat
 |---|---|---|---|---|---|---|---|---|
 | Principal Classification Boundary | Control Point | Classifies the technical subject as a human account principal or one of the frozen non-human categories: service, workload, job or integration identity. The classification determines which authoritative reference and credential path may be used. | Tenant context; request/execution origin; available authoritative identity/account or technical-owner reference. | D01-002 principal type/classification and immutable technical principal reference. | Routed human binding or non-human registration/binding path. | A04; D01-001; B02 | Ambiguous or conflicting principal type prevents successful principal-context construction. | Frozen D01-002 responsibility; C-004/C-005. |
 | Human Account Principal Binding | Adapter / Identity Binding | Binds a D01 technical principal reference to authoritative Tenant, Person, Identity and User Account references where login capability is required, while preserving upstream ownership and source-governed eligibility. | One Tenant; canonical Person/Identity references; User Account reference when applicable; source eligibility/lifecycle reference. | D01-owned technical binding/reference metadata only; no duplicate Person/Identity/User Account business state. | Human principal context to D01-003, D02 or other governed consumers. | A02 source; D01-004; A04; B02 | Missing, cross-Tenant, stale or contradictory references shall not be repaired by creating local canonical identity truth. | L4-A-004-BH-011; L4-A-007-BH-001/BH-002; C-001/C-002/C-006. |
-| Non-Human Principal Registry | Technical Identity Store / Boundary | Provides the canonical L5 technical identity record for service, workload, job and integration principals. Each record is Tenant-bound and associated with the technical capability/execution owner that is accountable for its use. | Tenant context; non-human principal category; governed technical owner/association reference; provisioning/lifecycle basis when available. | D01-002-owned non-human principal identity and binding metadata; no Person/User Account business record. | Stable non-human principal reference for D01-003 authentication and D02 authorization. | A01/A04; B02; D03; D01-004 where lifecycle coordination applies | Orphaned owner, unresolved Tenant, duplicate/ambiguous identity or unsupported category prevents normal activation/use. Exact lifecycle states remain unresolved under `OD-003`. | Frozen D01-002 boundary; L2-A01/A03 non-human identity rules. |
+| Non-Human Principal Registry | Technical Identity Store / Boundary | Provides the canonical L5 technical identity record for service, workload, job and integration principals. Each record is Tenant-bound and associated with the technical capability/execution owner that is accountable for its use. | Tenant context; non-human principal category; governed technical owner/association reference; provisioning/lifecycle basis when available. | D01-002-owned non-human principal identity and binding metadata; no Person/User Account business record. | Stable non-human principal reference for D01-003 authentication and D02 authorization. | A01/A04; B02; D03; D01-004 where lifecycle coordination applies | Orphaned owner, unresolved Tenant, duplicate/ambiguous identity or unsupported category prevents normal activation/use. Lifecycle state and transition semantics are governed by `ADR-L5-0048`. | Frozen D01-002 boundary; L2-A01/A03 non-human identity rules. |
 | Credential Association Boundary | Contract Boundary | Associates a human or non-human principal reference with D01-003-owned authentication credential/mechanism references without owning or exposing credential secret material. | D01-002 principal reference; D01-003 credential/authentication-mechanism reference; Tenant context. | Binding reference only; secret material remains outside D01-002. | Principal-to-authentication handoff. | D01-003; D03; B02 | Missing/mismatched Tenant or wrong principal class prevents the credential association from being used for authentication. | C-005/C-007; L4-A-008-BH-004/BH-008. |
 | Execution Principal Context Builder | Control Point / Context Builder | Constructs the principal identity context used by downstream execution while preserving the distinction between original human actor and current calling/executing non-human principal when both participate. | Tenant context; authenticated human principal when present; calling service/workload/job/integration principal when present; correlation reference. | Context only; no business lifecycle or authorization decision. | `ExecutionPrincipalContext` to D02, A08, C03, D04 and governed technical consumers. | D01-003; A04; D04; C01/C02 | The builder shall not replace the originating human identity with a service identity or collapse distinct actors into one principal. Missing required attribution prevents claims of attributable execution. | Frozen D01-002 responsibility; L2 platform/non-human identity rules; D04 collaboration. |
 | Principal Eligibility Reference Boundary | Adapter / Control Point | Carries source-governed account/identity eligibility into authentication and lifecycle processing without inventing status mappings. | Human upstream eligibility/account status reference or governed non-human principal availability/lifecycle basis. | Reference to source fact/decision; no duplicated business state. | Eligibility signal/context to D01-003/D01-004. | A02; D01-004; C01/C02 | Unknown or contradictory eligibility is treated as non-eligible for success paths that require positive eligibility; D01-002 shall not infer `Active`/`Enabled` equivalence. | L4-A-007-BH-002; L4-A-008-BH-001; C-006. |
@@ -305,7 +305,7 @@ ExecutionPrincipalContext
 - D01-002 may persist its own **technical principal identity**, classification and binding metadata, subject to B02 persistence/isolation architecture.
 - For human principals, authoritative Person, Identity and User Account business state remains upstream A02-owned. D01-002 stores references and technical binding metadata only.
 - For non-human principals, D01-002 is the canonical L5 technical owner of the service/workload/job/integration principal identity model within the frozen corpus boundary.
-- The exact lifecycle states for non-human principals are **not** invented by this specification. Existence, eligibility and lifecycle transitions shall follow governed provisioning/security architecture once resolved under `OD-003`.
+- The exact lifecycle states for non-human principals are governed by `ADR-L5-0048`: `Provisioned → Active ↔ Suspended → Retired`, with `Retired` terminal. This specification owns the technical-principal identity/state representation while D01-004 coordinates transition execution and D01-003/D03 retain authentication/credential mechanics.
 - Principal references shall be unique within their governed Tenant scope and shall not be silently rebound across Tenants.
 - A human principal binding shall not be reassigned to a different canonical Person/Identity merely as a technical shortcut; upstream identity reconciliation remains upstream-owned.
 - Credential secret state, Authentication Session state and provider/factor state are not stored as D01-002 principal state; only governed association references may be retained.
@@ -361,7 +361,7 @@ No technology selection is made by these decisions.
 | Secret minimization | Principal records carry credential references, never credential secret values. | L4-A-008-BH-008; AD-003 | `L5-D-01-003`; `L5-D-03-*` |
 | Attribution | When both human initiator and technical executor exist, both references remain distinguishable for provenance. | L4-A-007-BH-009; AD-004 | D01-002; `L5-D-04-*` |
 | Authorization separation | Principal identity alone never establishes permission. | L4-A-007-BH-008; ADR-PLAT-AUTH-001 | `L5-D-02-*` |
-| Lifecycle integrity | Human account eligibility remains source-governed; non-human lifecycle states are not invented locally. | L2-A02; L4-A-007-BH-002; `OD-003` | `L5-D-01-004`; upstream A02 / platform security governance |
+| Lifecycle integrity | Human account eligibility remains source-governed; non-human principal lifecycle is governed by ADR-L5-0048. | L2-A02; L4-A-007-BH-002; ADR-L5-0048 | `L5-D-01-004`; upstream A02 / D01 governance |
 | Reference integrity | Stale, orphaned or cross-Tenant principal bindings fail closed rather than being silently repaired locally. | Canonical ownership + Tenant constraints | D01-002; B02; A04 |
 
 No numeric credential lifetime, inactivity period, session duration, identity-retention period, rotation interval, retry count, timeout or capacity target is introduced here.
@@ -441,7 +441,7 @@ No numeric credential lifetime, inactivity period, session duration, identity-re
 
 - `OD-001` — Draft L4 approval gate.
 - `OD-002` — working D01 baseline and peer-L5 stabilization gate.
-- `OD-003` — non-human principal lifecycle/provisioning authority unresolved.
+- `OD-003` — **resolved by ADR-L5-0048**.
 - `OD-004` — material technology/ADR selections intentionally deferred.
 
 
@@ -454,3 +454,20 @@ Every protected service/workload/job/integration execution uses an explicit non-
 ## 2026-09-22 Full-Corpus Post-Decision Synchronization
 
 Reconciled IAM/service-identity wording with Keycloak and the locked non-human identity profile. Upstream lifecycle/provisioning semantics explicitly marked unresolved by source architecture remain unchanged.
+
+
+## 2026-09-23 R3C Non-Human Principal Lifecycle Synchronization
+
+**Applicable locked decision:** `ADR-L5-0048`
+
+The Non-Human Principal Registry owns the canonical technical lifecycle:
+
+```text
+Provisioned → Active ↔ Suspended → Retired
+```
+
+with `Retired` terminal.
+
+The registry also owns the technical lifecycle facts `TechnicalPrincipalProvisioned`, `TechnicalPrincipalActivated`, `TechnicalPrincipalSuspended`, `TechnicalPrincipalResumed`, and `TechnicalPrincipalRetired`.
+
+This lifecycle does not create Person/User Account records and does not grant authority. D02 remains authorization owner; D01-003/D03 remain authentication/credential/secret owners; D01-004 coordinates lifecycle execution and reconciliation.
