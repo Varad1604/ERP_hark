@@ -651,6 +651,11 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 # Recent Changes
 
+**2026-09-23 — Final A05 governance closure:** resolved Workflow Definition/Version governance at canonical L2-A05 ownership, reconciled L3-A-014/A-017, approved L4-A-014/A-017, and promoted L5-A-05-001/002. Current L5 corpus: 0 Draft / 0 Review / 72 Architecture Approved / 33 Locked / 0 hard blockers. Canonical L4→L5 relations: 571, duplicates 0, stale bindings 0. Final L5 Corpus Lock re-entry is ready but requires separate explicit authorization.
+
+---
+
+
 **2026-09-23 — Post-R8 final lifecycle closure:** after canonical upstream remediation, promoted 14 of the 16 remaining Review L5 specifications in dependency order. Current L5 corpus: 0 Draft / 2 Review / 70 Architecture Approved / 33 Locked / 0 current hard blockers. Added 32 exact validated L4→L5 relations; canonical relation population is 535 with 0 duplicates and 0 stale L5 bindings. L5-A-05-001/002 remain Review because Draft L4-A-014/L4-A-017 still depend on unresolved Workflow Definition/Version governance authority and command contracts. Final L5 Corpus Lock remains unauthorized.
 
 ---
