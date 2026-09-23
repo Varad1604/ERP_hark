@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Contract evolution, compatibility, technical errors and idempotent request handling without inventing business recovery.  
 **Technical Architecture Owner:** L5-C-01 — API & Contract Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.1`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Version:** `1.3.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-C-01-001`, `L5-C-01-002`, `L5-B-02-003`, `L4-A-029`, `L4-A-031`, `L4-A-032`.  
 **Collaborates With / Referenced By:** API consumers, `L5-C-03-*`, `L5-E-04-005`.  
 **Applicable ADRs:** existing C01 ADRs plus `ADR-L5-0021` and `ADR-L5-0034`.
@@ -198,3 +198,8 @@ Named API-version encodings, schema/contract tooling and idempotency storage pro
 
 **Applicable locked decision:** `ADR-L5-0034`  
 Breaking contract generations use URL major versioning; additive compatible changes stay within the major version. Technical errors use RFC 9457 Problem Details plus governed SutraERP extensions. Retry-sensitive mutating commands use `Idempotency-Key`; the same key with materially different content is rejected.
+
+
+## 2026-09-23 R6 Targeted Revalidation Synchronization
+
+R6 revalidated this specification against HF-01…HF-15 after canonical R1/R2 upstream authority consolidation and R5 affected L4→L5 traceability validation. The former Draft/Review-L4 promotion blocker is resolved. Earlier embedded source-status labels describing Draft/Review L4 state are retained only as authoring provenance and are superseded for current authority by the Architecture Approved R1/R2 parent decisions. No business ownership, event ownership, lifecycle authority, or technical responsibility is transferred by this promotion. HF-01…HF-15: PASS. Lifecycle: Architecture Approved. Final corpus lock remains separate governance.
