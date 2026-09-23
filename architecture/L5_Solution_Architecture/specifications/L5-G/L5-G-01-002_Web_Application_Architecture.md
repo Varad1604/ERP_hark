@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-G-01 — Client Platform Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.0.1`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-G-01-001` v1.0.1 Architecture Approved; `L5-C-01`; `L5-D-01`; `L5-D-02`; `L5-A-04`; `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0015`.  
 **Collaborates With:** `L5-G-01-003` — client security/session/state/safe contract-consumption architecture used by the web realization; this collaboration is not an upstream approval dependency for G01-002.  
