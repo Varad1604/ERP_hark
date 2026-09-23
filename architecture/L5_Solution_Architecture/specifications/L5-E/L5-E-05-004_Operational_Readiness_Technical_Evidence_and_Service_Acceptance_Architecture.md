@@ -8,9 +8,9 @@
 **Canonical Technical Responsibility:** Technical readiness/service-acceptance evidence without replacing L1 dynamic business readiness or L2-A10 governance certification.  
 **Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.3`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Version:** `1.1.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; `L5-E-05-001`; `L5-E-05-002`; `L5-E-05-003`; `L5-E-01-*`; `L5-E-02-*`; `L5-E-03-*`; `L5-E-04-*`; `L5-C-02-*`; `L5-D-*` where security/audit evidence is consumed; `L5-F-01-*` where delivery/release evidence is consumed.  
 **Referenced By:** Production technical acceptance and downstream operational-readiness consumers.  
 **Applicable ADRs:** `ADR-L5-0014`; `ADR-L5-0017`; `ADR-L5-0029`; `ADR-L5-0030`; `ADR-L5-0044`; `ADR-L5-0045`; `ADR-L5-0046`.
@@ -103,7 +103,14 @@ Where applicable, technical acceptance should be able to reference proof for: de
 These are evidence categories, not new business behaviors.
 
 ### 5.7 Acceptance authority integration
-The Service Acceptance Gate produces a technical decision record for an authorized governance/operations acceptance actor or workflow. This specification intentionally does not invent the organizational role or approval hierarchy. Until the canonical acceptance authority/workflow is governed, automation may prepare evidence and evaluate deterministic checks but cannot fabricate authorization.
+
+The Service Acceptance Gate produces a technical decision record for the canonical **Technical Service Acceptance Authority** established by `L5_R4B_Technical_Service_Acceptance_Authority_Decision_2026-09-23.md`.
+
+The authority decides `Ready`, `Ready with conditions`, or `Not ready` for one explicit Acceptance Subject.
+
+Automation may assemble evidence, evaluate deterministic checks and recommend an outcome, but shall not fabricate accountable acceptance authorization.
+
+Technical Service Acceptance Authority is distinct from L2-A10 Governance Authority. E05 technical acceptance may be consumed as governance evidence by L2-A10 but does not issue Operational Readiness Certificates or create institutional/business readiness.
 
 ## 6. Architecture & Technology Decisions
 - **AD-001 — Evidence-bound acceptance:** technical readiness is determined from governed evidence tied to an explicit acceptance subject.
@@ -133,11 +140,24 @@ Evidence packages must not contain secrets or unrestricted sensitive payloads wh
 - **CR-012:** Evidence provenance and decision attribution shall remain auditable through canonical D04 controls.
 
 ## 9. Open Decisions & Deferred Design
-- **OD-001:** Canonical organizational acceptance authority and workflow integration — governance-dependent and blocking for production authorization automation.
+- **OD-001:** **Resolved:** Technical Service Acceptance Authority and its decision workflow are governed by `L5_R4B_Technical_Service_Acceptance_Authority_Decision_2026-09-23.md`.
 - **OD-002:** Evidence repository/tool product — unresolved and non-blocking while the logical evidence contract is preserved.
 - **OD-003:** Numeric SLO/RTO/RPO/performance thresholds — consumed from canonical owners; not invented here.
-- **OD-004:** Exact L4/BH contribution set — pending validated material applicability; no artificial mapping permitted.
-- **OD-005:** Stage-3 closure approved downstream consumption of peer technical responsibility surfaces; material peer changes require impact revalidation. Draft L4/BH relations remain non-validated.
+- **OD-004:** R4B review found no direct material L4/BH realization claim required for E05-004 itself. E05-004 consumes approved E05-001 evidence relations and peer technical evidence; do not fabricate a business-behavior relation.
+- **OD-005:** Stage-3 closure approved downstream consumption of peer technical responsibility surfaces; material peer changes require impact revalidation. E05-001 direct evidence relations are Validated after R4A; E05-004 itself makes no unsupported direct L4 realization claim.
 
 ## 10. Traceability Summary
-Candidate Corpus Register 105 establishes E05-004 as technical readiness/service-acceptance architecture. Explicit peer traceability covers E01/E02/E03/E04/E05/C02/D/F01. The document deliberately preserves the L1/L2-A10 business/governance readiness boundary. Exact approved L4/BH contribution links remain to be validated before architecture approval where material.
+Candidate Corpus Register 105 establishes E05-004 as technical readiness/service-acceptance architecture. Explicit peer traceability covers E01/E02/E03/E04/E05/C02/D/F01. The document deliberately preserves the L1/L2-A10 business/governance readiness boundary. R4B establishes that E05-004 is a technical-governance responsibility rather than a direct L4 business-behavior realization; architecture approval therefore does not require an artificial BH relation.
+
+
+## 2026-09-23 R4B Targeted Revalidation
+
+**Result:** PASS — Architecture Approved.
+
+This specification was revalidated against R4A-approved operational-readiness evidence parents where directly material, the Locked L5 governance/validation standards, applicable Locked ADRs, current E05 peer boundaries, and the R4B Technical Service Acceptance Authority decision.
+
+No HF-01…HF-15 blocker remains for this specification.
+
+Direct L4/BH relations are recorded only where material. Absence of an artificial direct BH mapping is not treated as a traceability defect for reusable technical responsibilities whose authority is established by the canonical corpus and approved peer architecture.
+
+Final L5 Corpus Lock remains separately governed and is not authorized by this approval.
