@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Define the cross-solution security architecture baseline, trust-boundary model, security-control placement principles and isolation requirements that constrain SutraERP technical architecture without owning authentication, authorization policy, cryptographic/key-management internals, audit storage, business rules or business authority.  
 **Technical Architecture Owner:** L5-D-03-001 — Security Architecture & Trust Boundary Baseline  
 **Assigned Author:** Varad  
-**Version:** `1.2.2`  
+**Version:** `1.3.0`  
 **Status:** Review  
-**Last Updated:** `2026-09-22`  
+**Last Updated:** `2026-09-23`  
 **Primary L5 Dependencies:** L5-D-01 — IAM; L5-A-04 — Tenant & Institutional Isolation; L5-A-01 — Application & Platform Architecture; L5-E-04 — Runtime, Packaging & Deployment.  
 **Collaborating / Downstream L5 Architecture:** L5-D-02 — Authorization / RBAC; L5-D-03-002; L5-D-03-003; L5-D-03-004; L5-D-03-005; L5-D-04; L5-B-05; L5-C-01; L5-C-02; L5-C-03; L5-A-07; L5-A-08.  
 **Applicable ADRs:** `ADR-L5-0001` — Canonical Trust Boundary & Segmentation Pattern (`Architecture Approved`, 2026-09-11).; `ADR-L5-0027`; `ADR-L5-0040`
@@ -413,3 +413,8 @@ Lifecycle status restored to `Review` in accordance with the locked 2026-09-16 f
 ## 2026-09-22 Production Validation Batch 4
 
 D03 local hard gates remain PASS under `L5_D03_L4_Traceability_Extraction_and_Promotion_Gate_2026-09-11.md`. Later Locked ADRs `ADR-L5-0027` and `ADR-L5-0040` strengthen implementation readiness without transferring security ownership. This specification is **Architecture-Approval eligible**, but remains `Review` until a distinct approval decision is issued.
+
+
+## 2026-09-23 R7 Lifecycle Promotion Decision
+
+R7 issues the distinct lifecycle decision previously required by the D03 promotion gate. The specification had already passed its local HF-01…HF-15 gate and was Architecture-Approval eligible; R7 therefore promotes it from Review to Architecture Approved without changing canonical security ownership, trust boundaries, cryptographic responsibility, secret/key ownership, or business semantics. Final corpus lock remains a separate governance action.
