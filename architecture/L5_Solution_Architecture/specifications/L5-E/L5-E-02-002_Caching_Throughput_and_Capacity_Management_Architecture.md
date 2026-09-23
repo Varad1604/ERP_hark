@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Caching validity/invalidation boundaries, throughput control, backpressure and capacity admission mechanisms that preserve authoritative ownership and consistency.  
 **Technical Architecture Owner:** L5-E-02 — Performance & Capacity Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.2.1`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Version:** `1.3.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-E-02-001`; `L5-A-01-001`; `L5-B-02-001`; `L5-B-02-002`; `L5-B-02-003`; `L5-E-04-001`; `L5-E-01-*`; `L5-A-08-*`; `L5-C-02-*`; applicable E05 architecture; `L4-A-015`; `L4-A-016`.  
 **Referenced By:** L5 capabilities using caching, throughput throttling or backpressure.  
 **Applicable ADRs:** `ADR-L5-0014`; `ADR-L5-0034`; `ADR-L5-0037`; `ADR-L5-0045`.
@@ -226,3 +226,8 @@ Valkey is the canonical distributed cache. Cache content is derived/non-authorit
 
 **Applicable locked decision:** `ADR-L5-0045`  
 Valkey/cache throughput, worker concurrency, backlog thresholds and scaling bounds remain measured profile values. Backlog health considers age/lag, count and processing rate rather than one universal raw-count threshold.
+
+
+## 2026-09-23 Post-R8 Lifecycle Closure
+
+This specification is promoted from Review to Architecture Approved after the post-R8 upstream authority remediation made its material A016/A057 parent behavior Architecture Approved and the specification's existing HF/open-decision profile was rechecked. No new ownership, business lifecycle, event publisher, or implementation technology is introduced by this promotion. Final corpus lock remains separate governance.
