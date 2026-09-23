@@ -8,9 +8,9 @@
 **Canonical Technical Responsibility:** Technical logs/metrics/traces with privacy and sensitive-data boundaries.  
 **Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.1.2`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Version:** `1.2.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; `L5-E-05-001`; `L5-C-01-*`; `L5-C-02-*`; `L5-D-03-*`; `L5-D-04-*`; `L5-E-04-*`; persistence/data telemetry surfaces from `L5-B-02-*` where material.  
 **Referenced By:** `L5-E-05-003`, `L5-E-05-004`, operational consumers and technical readiness evidence.  
 **Applicable ADRs:** `ADR-L5-0029` — OpenTelemetry/OTLP + Collector with Prometheus/Loki/Tempo/Grafana is the canonical observability profile.
@@ -19,7 +19,7 @@
 Defines the technical signal architecture for structured logging, metric semantics, distributed tracing and asynchronous causal linkage. It does not own business audit evidence, business KPI definitions, incident-management policy, deployment architecture or vendor selection.
 
 ## 3. Upstream Applicability, Constraints & Assumptions
-`L5-E-05-001` owns the shared collection/correlation baseline. `L5-C-01-*` and `L5-C-02-*` supply synchronous/asynchronous interaction surfaces; `L5-D-04-*` remains the canonical audit owner. Exact L4/BH mappings shall be added only when an approved behavior materially depends on this signal architecture.
+`L5-E-05-001` owns the shared collection/correlation baseline. `L5-C-01-*` and `L5-C-02-*` supply synchronous/asynchronous interaction surfaces; `L5-D-04-*` remains the canonical audit owner. No direct L4/BH relation is claimed by default. Exact mappings shall be added only when an approved behavior materially depends directly on this signal architecture; current R4B review found no additional direct material BH beyond the E05-001 evidence contribution.
 
 ## 4. Technical Ownership, Boundaries & Dependencies
 ### 4.1 Owned technical elements
@@ -117,11 +117,11 @@ Sensitive telemetry is default-deny. Credentials, secrets, private keys and unre
 - **OD-001:** **Products resolved by `ADR-L5-0029`;** exact deployment topology, retention, sampling and cardinality limits remain E02/E05 profile decisions.
 - **OD-002:** **Resolved:** canonical telemetry profile is established by `ADR-L5-0029`.
 - **OD-003:** Numeric sampling/cardinality/retention limits — delegated to governed profiles and canonical requirement owners.
-- **OD-004:** Exact L4/BH contribution set — pending validated material applicability; no artificial mapping permitted.
-- **OD-005:** Stage-3 closure approved downstream consumption of peer responsibility surfaces; material peer changes require impact revalidation. Draft L4/BH approval remains separately governed.
+- **OD-004:** R4B review found no direct material L4/BH contribution requiring a separate E05-002 relation. Do not create artificial mappings; E05-002 remains a reusable technical responsibility consumed through approved E05/peer architecture.
+- **OD-005:** Stage-3 closure approved downstream consumption of peer responsibility surfaces; material peer changes require impact revalidation. No direct L4 relation is required for this reusable technical responsibility unless future material applicability is established.
 
 ## 10. Traceability Summary
-Candidate Corpus Register 105 + `L5-E-05-001` establish the canonical technical responsibility. Dependency traceability is explicit to C01/C02, D03/D04, E04 and B02 telemetry surfaces. Exact approved L4/BH contribution links remain to be validated before architecture approval where material.
+Candidate Corpus Register 105 + `L5-E-05-001` establish the canonical technical responsibility. Dependency traceability is explicit to C01/C02, D03/D04, E04 and B02 telemetry surfaces. No direct material L4/BH contribution was established in R4B; architecture approval relies on the canonical corpus responsibility, E05-001 approved baseline, locked ADR-L5-0029 and peer-boundary validation.
 
 
 ## 2026-09-22 Locked Technology Decision Synchronization
@@ -133,3 +133,16 @@ OpenTelemetry/OTLP + Collector is the canonical telemetry boundary; Prometheus, 
 ## 2026-09-22 Full-Corpus Post-Decision Synchronization
 
 Reconciled telemetry-product wording with the locked observability stack while preserving profile-driven operational limits.
+
+
+## 2026-09-23 R4B Targeted Revalidation
+
+**Result:** PASS — Architecture Approved.
+
+This specification was revalidated against R4A-approved operational-readiness evidence parents where directly material, the Locked L5 governance/validation standards, applicable Locked ADRs, current E05 peer boundaries, and the R4B Technical Service Acceptance Authority decision.
+
+No HF-01…HF-15 blocker remains for this specification.
+
+Direct L4/BH relations are recorded only where material. Absence of an artificial direct BH mapping is not treated as a traceability defect for reusable technical responsibilities whose authority is established by the canonical corpus and approved peer architecture.
+
+Final L5 Corpus Lock remains separately governed and is not authorized by this approval.
