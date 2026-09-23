@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Release installation, upgrade, compatibility validation and rollback architecture for supported SutraERP deployment profiles.  
 **Technical Architecture Owner:** L5-E-04 — Runtime, Packaging & Deployment Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.1`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Version:** `1.3.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-E-04-001`, `L5-E-04-002`, `L5-E-04-003`, `L5-E-04-004`, `L5-C-01-003`, `L5-B-02-003`, `L5-B-02-004`, `L4-A-029`, `L4-A-030`, `L4-A-031`, `L4-A-032`.  
 **Collaborates With / Referenced By:** `L5-E-03-*`, `L5-E-05-*`, `L5-F-01-*`.  
 **Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0006`; `ADR-L5-0007`; `ADR-L5-0008`; `ADR-L5-0028`; `ADR-L5-0030`; `ADR-L5-0043`; `ADR-L5-0044`; `ADR-L5-0046`.
@@ -183,3 +183,8 @@ Mixed-version operation is permitted only where C01/B02 compatibility evidence c
 
 **Applicable locked decision:** `ADR-L5-0044`  
 E04 consumes the same immutable artifact digest promoted by F01. Durable production changes flow through governed pipelines; emergency changes are attributable and reconciled. Readiness/drain behavior gates rollout/termination.
+
+
+## 2026-09-23 R6 Targeted Revalidation Synchronization
+
+R6 revalidated this specification against HF-01…HF-15 after canonical R1/R2 upstream authority consolidation and R5 affected L4→L5 traceability validation. The former Draft/Review-L4 promotion blocker is resolved. Earlier embedded source-status labels describing Draft/Review L4 state are retained only as authoring provenance and are superseded for current authority by the Architecture Approved R1/R2 parent decisions. No business ownership, event ownership, lifecycle authority, or technical responsibility is transferred by this promotion. HF-01…HF-15: PASS. Lifecycle: Architecture Approved. Final corpus lock remains separate governance.
