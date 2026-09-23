@@ -97,7 +97,7 @@ This specification does not own:
 
 ### 3.2 L4 Applicability
 
-All L4-H relations in this Draft are **Specified**, not `Validated`, because the current `L4-H-010` through `L4-H-016` source documents are `Draft`. This specification does not promote those relations.
+All L4-H relations in this specification are **Specified**, not `Validated`, because the current `L4-H-010` through `L4-H-016` source documents are `Draft`. This specification does not promote those relations.
 
 | L4 BH | L5-C-04-001 Role | L5 Evidence Target | Relation State |
 |---|---|---|---|
@@ -124,7 +124,7 @@ All L4-H relations in this Draft are **Specified**, not `Validated`, because the
 
 ### 3.4 Assumptions
 
-No material architectural assumption is treated as an approved fact in this Draft. Unresolved source/dependency items are recorded in Section 9.
+No material architectural assumption is treated as an approved fact in this specification. Unresolved source/dependency items are recorded in Section 9.
 
 ---
 
