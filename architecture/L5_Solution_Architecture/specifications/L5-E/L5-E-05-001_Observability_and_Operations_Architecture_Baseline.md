@@ -128,7 +128,7 @@ Telemetry is classified by signal and field. Sensitive values are redacted befor
 ## 10. Traceability Summary
 Candidate Corpus Register 105 establishes the canonical E05 responsibility. Technical dependency traceability is explicit to E04/E01/E02/C01/C02/D03/D04/A04.
 
-Specified material L4 contribution relations for this version are:
+Validated material L4 contribution relations for this version are:
 
 - (`L4-A-042-BH-005`, `L5-E-05-001`) — Validated
 - (`L4-A-045-BH-001`, `L5-E-05-001`) — Validated
