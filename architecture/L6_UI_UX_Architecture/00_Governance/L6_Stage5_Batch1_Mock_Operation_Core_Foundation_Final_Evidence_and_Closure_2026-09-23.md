@@ -1,7 +1,7 @@
 # SutraERP L6 — Stage 5 Batch 1 — Mock-Operation Core Foundation — Final Evidence, Integrity Audit & Closure
 
 **Version:** 1.0.0  
-**Status:** Review  
+**Status:** Architecture Approved  
 **Evidence Type:** Batch Closure Evidence  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture Support  
@@ -14,9 +14,9 @@
 **Current Revalidation Frontend Head:** `770646eb0cf83b91db6d5a49a5004f4cf5d3ef60`  
 **Frontend Base:** `aacfbddb42ef460b28edb461ae5b125953ad0696`  
 **Current Revalidation CI:** Frontend PR Validation #204 / Run ID `35820208941` / SUCCESS  
-**Browser Evidence Artifact:** `stage5-batch1-browser-evidence` / Artifact ID `10732138082`  
+**Browser Evidence Artifact:** `stage5-batch1-browser-evidence` / Artifact ID `10732484956` / SHA-256 `7eef97e4c82e2df878a0d4aec7dd22f8823eeaf25b4494cad54241fdda87d682`  
 **Architecture Baseline:** current `main` at Batch-1 closure review  
-**Review State:** **RETURN FOR CORRECTION — FIX 1 VERIFIED; REMAINING CORRECTIONS PENDING**
+**Review State:** **PASS — CORRECTIONS CLOSED; BATCH 1 MERGE GATE PASS; MERGE STILL REQUIRES EXPLICIT AUTHORIZATION**
 
 ---
 
@@ -30,25 +30,38 @@ A subsequent independent integrity and quality verification identified three cor
 2. this closure record used a non-canonical compound lifecycle status;
 3. Frontend PR #26 description remained stale after Step 8.
 
-Correction status at this revision:
+Correction status after final independent revalidation:
 
 ```text
 Fix 1 — shared GovernedAction semantics        PASS / VERIFIED
-Fix 2 — canonical Architecture status          IN PROGRESS IN THIS REVISION
-Fix 3 — frontend PR traceability metadata      NOT STARTED
+Fix 2 — canonical Architecture status          PASS / VERIFIED
+Fix 3 — frontend PR traceability metadata      PASS / VERIFIED
 ```
 
-Fix 1 is validated at frontend head `770646eb0cf83b91db6d5a49a5004f4cf5d3ef60` by Frontend PR Validation #204 / Run ID `35820208941` / SUCCESS.
+The corrected frontend is validated at head `770646eb0cf83b91db6d5a49a5004f4cf5d3ef60` by Frontend PR Validation #204 / Run ID `35820208941` / SUCCESS. The dedicated Stage-5 Batch-1 browser suite is 6 / 6 PASS, including explicit regression proof that review-only reference workspaces remain unavailable/non-connected while the H02 proof remains explicitly actionable.
 
-Until all correction items are resolved and the independent closure verification is rerun, the governing state of this document is:
+Final independent revalidation also reconfirmed:
+
+- all five protected Stage-5 Architecture provenance blob SHAs still match canonical `main`;
+- the Stage-5 census remains 595 workflows / 1,084 scenarios / 99 workspaces / 12 archetypes / 10 mixed workflows;
+- the H02 operation remains confirmed-only and source-traced to `L6-RWF-0396` / `L3-H-013` / `W-H02`;
+- exactly one active demo-state assignment and one notification occur in the mock-operation state-authority seam;
+- no browser persistence, network/backend coupling, workflow-engine, event-bus or scheduler authority is introduced;
+- reviewer-local history remains non-canonical;
+- current canonical `main` still has `L4-H-013` at Draft and Final L5 Corpus Lock NOT AUTHORIZED.
+
+A concurrent unmerged Architecture PR (#65) proposes promotion of `L4-H-013` to `Architecture Approved`. It has no file overlap with this Batch-1 closure PR and its proposed H013 semantics are forward-compatible with the bounded L6 proof: Notification ownership is preserved, mandatory communications/history remain protected, and no Preference/Subscription state machine or change event is invented. Because PR #65 is unmerged, it is not used as authority for this Batch-1 decision. If canonical Architecture `main` changes before merge, the normal no-drift recheck still applies.
+
+The governing state after this final revalidation is:
 
 ```text
-Status: Review
-Batch 1 merge gate: NOT YET PASS
-Batch 2: NOT AUTHORIZED TO START
+Status: Architecture Approved
+Batch 1 merge gate: PASS
+Batch 1: COMPLETE / READY FOR EXPLICIT MERGE AUTHORIZATION
+Batch 2: READY ONLY AFTER BATCH-1 FRONTEND + ARCHITECTURE CANONICALIZATION
 ```
 
-The original Step-8 PASS remains part of the audit trail but is superseded for merge-readiness purposes by this later independent verification.
+The original Step-8 PASS and subsequent correction cycle remain preserved as audit history; this final independent revalidation is the current merge-readiness decision.
 
 ---
 
@@ -403,9 +416,9 @@ Reviewer-only IDs were removed from the ordinary H02 proof surface.
 Final Frontend validation:
 
 ```text
-Frontend PR Validation #202
-Run ID: 35818228637
-Head: 9923477bfbd884b0ff8e403b2bffdf13fbb8b442
+Frontend PR Validation #204
+Run ID: 35820208941
+Head: 770646eb0cf83b91db6d5a49a5004f4cf5d3ef60
 Conclusion: SUCCESS
 ```
 
@@ -433,16 +446,16 @@ Stage-4 Batch-2 discovery           8 / 8 PASS
 Stage-4 Batch-3 discovery           7 / 7 PASS
 Stage-4 Batch-4 discovery           8 / 8 PASS
 Stage-5 Batch-0 regression          1 / 1 PASS
-Stage-5 Batch-1 H02                 5 / 5 PASS
+Stage-5 Batch-1 H02                 6 / 6 PASS
 ```
 
 Evidence artifact:
 
 ```text
 stage5-batch1-browser-evidence
-Artifact ID: 10732138082
+Artifact ID: 10732484956
 SHA-256:
-5b52e08d0ee67a4a6ddc6f6d4f9a20e7094455789c3ac0273aeaf05908e2d4e5
+7eef97e4c82e2df878a0d4aec7dd22f8823eeaf25b4494cad54241fdda87d682
 ```
 
 ---
@@ -567,7 +580,7 @@ The following are intentional continuing constraints:
 
 ## 17. Batch-2 Readiness
 
-The nine planned Batch-1 steps have been executed, but Batch 1 is currently under correction review and is not merge-ready until the independent verification findings are closed.
+The nine planned Batch-1 steps have been executed and the subsequent independent correction findings are closed. Batch 1 is merge-ready subject to explicit authorization and the normal pre-merge no-drift check.
 
 Batch 2 may begin only after the normal Stage-5 entry gate is satisfied:
 
@@ -585,8 +598,8 @@ affected upstream sources rechecked
 Therefore the current state is:
 
 ```text
-BATCH 1 — REVIEW / RETURN FOR CORRECTION
-BATCH 2 — NOT AUTHORIZED UNTIL CORRECTIONS CLOSE AND BATCH-1 CANONICALIZATION COMPLETES
+BATCH 1 — PASS / COMPLETE / MERGE-READY
+BATCH 2 — READY AFTER BATCH-1 CANONICALIZATION
 ```
 
 Batch 2 shall not treat the Batch-1 H02 golden proof as category completion.
@@ -609,10 +622,10 @@ Step 6  PASS
 Step 7  PASS
 Step 8  PASS
 
-9 / 9 PLANNED STEPS EXECUTED
+9 / 9 STEPS COMPLETE
 
 BATCH 1 CURRENT REVIEW RESULT:
-RETURN FOR CORRECTION
+PASS — COMPLETE / MERGE-READY
 
 FRONTEND PR #26:
 OPEN / DRAFT / NOT MERGED
