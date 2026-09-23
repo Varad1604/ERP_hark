@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-D-03-003 — Key Management Architecture  
 **Assigned Author:** Varad  
 **Version:** `1.3.0`  
-**Status:** Review  
+**Status:** Locked  
 **Last Updated:** `2026-09-23`  
 **Primary Dependencies:** `L5-D-03-001`, `L5-A-04`, authoritative protection requirements.  
 **Collaborates With:** `L5-D-03-002`, `L5-D-03-004`, `L5-D-01`, `L5-D-02`, `L5-D-04`, `L5-B-05`.  
