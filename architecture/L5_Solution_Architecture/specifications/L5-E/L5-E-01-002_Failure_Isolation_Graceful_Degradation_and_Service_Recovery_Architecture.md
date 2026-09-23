@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Failure containment, declared graceful degradation and validated technical recovery/return-to-service without taking ownership of business recovery or peer-family runtime mechanisms.  
 **Technical Architecture Owner:** L5-E-01 — Availability & Resilience Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.0.2`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Version:** `1.1.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-E-01-001`; `L5-A-01-001`; `L5-E-04-001`; `L5-E-02-*`; `L5-A-08-*`; applicable B02/C02/D03/D04 architecture; `L4-A-015`; `L4-A-016`; `L4-A-057`.  
 **Referenced By:** L5 capabilities that declare degradation/recovery profiles.  
 **Applicable ADRs:** `ADR-L5-0014`; `ADR-L5-0013`; `ADR-L5-0010`; `ADR-L5-0041`; `ADR-L5-0044`; `ADR-L5-0045`.
@@ -230,3 +230,7 @@ E01 declares containment/restart/failover eligibility and restoration criteria; 
 **OD-001:** Capability-specific degradation profiles are separate owner-authored controlled artifacts/sections under this architecture.  
 **OD-002:** Runtime packaging, health/readiness and graceful lifecycle are resolved by E04 ADRs; exact failover topology/replication realization remains deployment/recovery-profile governance.  
 **OD-003:** Numeric recovery thresholds/timers remain governed operational configuration.
+
+## 2026-09-23 Post-R8 Lifecycle Closure
+
+This specification is promoted from Review to Architecture Approved after the post-R8 upstream authority remediation made its material A016/A057 parent behavior Architecture Approved and the specification's existing HF/open-decision profile was rechecked. No new ownership, business lifecycle, event publisher, or implementation technology is introduced by this promotion. Final corpus lock remains separate governance.

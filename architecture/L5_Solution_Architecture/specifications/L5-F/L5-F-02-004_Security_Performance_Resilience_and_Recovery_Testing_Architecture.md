@@ -9,8 +9,8 @@
 **Canonical Technical Responsibility:** Non-functional verification for security, capacity, failure isolation and disaster recovery.  
 **Technical Architecture Owner:** L5-F-02 — Verification & Testing Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.2.1`  
-**Status:** `Review`  
+**Version:** `1.3.0`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-02-001_Verification_and_Testing_Architecture_Baseline.md`; `L5-D-03-001_Security_Architecture_and_Trust_Boundary_Baseline.md`; `L5-D-03-002_Cryptography_and_Data_Protection_Architecture.md`; `L5-D-03-004_Secrets_Certificates_and_Machine_Credential_Architecture.md`; `L5-D-03-005_Application_Service_and_Network_Trust_Segmentation_Architecture.md`; applicable `L5-D-01-*`, `L5-D-02-*`, `L5-D-03-003`, `L5-D-04-*`; `L5-E-01-001_Availability_and_Resilience_Architecture.md`; `L5-E-01-002_Failure_Isolation_Graceful_Degradation_and_Service_Recovery_Architecture.md`; `L5-E-02-001_Performance_and_Capacity_Architecture.md`; `L5-E-02-002_Caching_Throughput_and_Capacity_Management_Architecture.md`; `L5-E-03-001_Backup_Restore_and_Disaster_Recovery_Architecture_Baseline.md`; `L5-E-03-002_Backup_Restore_and_Point_in_Time_Recovery_Architecture.md`; `L5-E-03-003_Disaster_Recovery_Failover_and_Recovery_Validation_Architecture.md`; applicable `L5-E-04-*`, `L5-E-05-*`, `L5-A-02-001_Technology_Platform_and_Standards_Architecture.md`; L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; current exact L4 Behavioral Obligations and L5 Architecture Conformance Requirements routed by F02-001.  
 **Referenced By:** `L5-F-02-001`; `L5-F-01-*`; architecture-review, operational-readiness and release-evidence consumers.  
@@ -74,14 +74,14 @@ F02-004 does not own:
 |---|---|---|---|
 | L5 Candidate Document Corpus Register 105 | Architecture Approved | `L5-F-02-004` = non-functional verification for security, capacity, failure isolation and disaster recovery | Freezes canonical responsibility. |
 | `L5-F-02-001` | Stage-6 closed / Review baseline | common obligation/result/evidence/currentness/gate semantics | Parent verification contract. |
-| `L5-D-03-001` | current / Review | explicit trust boundaries, contextual/non-transitive trust, fail-closed protected crossings | Security verification source. |
-| `L5-D-03-002` | current / Review | mandatory cryptographic protection, no silent downgrade, protected representation handling | Cryptographic boundary verification source. |
-| `L5-D-03-004` | current / Review | controlled credential provisioning/use, scope binding, revocation and compromise containment | Credential-handling verification source. |
-| `L5-D-03-005` | current / Review | logical segmentation, explicit-allow protected crossing, compromise containment | Segmentation verification source. |
-| `L5-E-01-001` | current / Review | scoped `Healthy`/`Degraded`/`Unavailable`, degradation profiles, restoration gate | Resilience verification source. |
-| `L5-E-01-002` | current / Review | failure classification, containment, degradation gate, delegated recovery, validated return | Failure-isolation/recovery verification source. |
-| `L5-E-02-001` | current / Review | capacity dimensions/envelope, pressure states, admission signal | Performance/capacity verification source. |
-| `L5-E-02-002` | current / Review | cache validity, throughput gate, backpressure, no-silent-drop behavior | Throughput/cache-pressure verification source. |
+| `L5-D-03-001` | current / Architecture Approved | explicit trust boundaries, contextual/non-transitive trust, fail-closed protected crossings | Security verification source. |
+| `L5-D-03-002` | current / Architecture Approved | mandatory cryptographic protection, no silent downgrade, protected representation handling | Cryptographic boundary verification source. |
+| `L5-D-03-004` | current / Architecture Approved | controlled credential provisioning/use, scope binding, revocation and compromise containment | Credential-handling verification source. |
+| `L5-D-03-005` | current / Architecture Approved | logical segmentation, explicit-allow protected crossing, compromise containment | Segmentation verification source. |
+| `L5-E-01-001` | current / Architecture Approved | scoped `Healthy`/`Degraded`/`Unavailable`, degradation profiles, restoration gate | Resilience verification source. |
+| `L5-E-01-002` | current / Architecture Approved | failure classification, containment, degradation gate, delegated recovery, validated return | Failure-isolation/recovery verification source. |
+| `L5-E-02-001` | current / Architecture Approved | capacity dimensions/envelope, pressure states, admission signal | Performance/capacity verification source. |
+| `L5-E-02-002` | current / Architecture Approved | cache validity, throughput gate, backpressure, no-silent-drop behavior | Throughput/cache-pressure verification source. |
 | `L5-E-03-001` | Locked v1.0.2 | recovery profiles/sets; backup success alone is insufficient proof | Recoverability verification source. |
 | `L5-E-03-002` | Locked v1.0.3 | backup sets, protected copies, restore/PITR, post-restore validation | Restore/PITR verification source. |
 | `L5-E-03-003` | Locked v1.0.3 | DR topology, fencing, failover/failback and recovery validation | DR exercise verification source. |
@@ -632,7 +632,7 @@ This maps into the F02-001 common result/evidence semantics.
 | ID | Item | Classification | Blocking? | Required Resolution |
 |---|---|---|---|---|
 | `OD-001` | **Resolved:** the four-file F02 family is canonical on `main` and Stage-6 is closed for downstream consumption. | Repository synchronization | Closed | Maintain impact review. |
-| `OD-002` | E01/E02 are Review and Stage-3 closed for downstream use; their Draft-L4 traceability still limits lifecycle promotion. | Peer maturity | Non-blocking for verification; relevant to promotion evidence | Preserve current status. |
+| `OD-002` | E01/E02 are Architecture Approved after post-R8 A016/A057 remediation and lifecycle closure. | Peer maturity | Non-blocking for verification; relevant to promotion evidence | Preserve current status. |
 | `OD-003` | **Resolved for peer maturity:** D03 specifications are Architecture Approved after the explicit R7 lifecycle decision and remain governed by `ADR-L5-0027`/`0040`. | Peer maturity | Non-blocking for verification | Maintain dependency impact review. |
 | `OD-004` | Numeric performance/capacity/security/recovery objectives are not universally established. | Requirement / operations | No | Use only approved workload/service/recovery/security profile values when available. |
 | `OD-005` | Exact testing/scanning/load/fault-injection/recovery products are not selected. | Technology | No | Select only through A02/canonical owner/ADR governance if made normative. |
@@ -718,7 +718,7 @@ F02-004 verifies the actual approved implementation target but does not select s
 
 ### Current Status
 
-**Review — Stage-6 F02 final child specification; downstream consumption approved.**
+**Architecture Approved — post-R8 lifecycle closure.**
 
 With this file authored, the four-spec F02 family has a complete Draft authoring set:
 
@@ -746,3 +746,8 @@ Recovery tests must prove restore/integrity/application/dependency/security vali
 
 **Applicable locked decision:** `ADR-L5-0047`  
 Scheduling solver selection requires F02-supported comparative PoC evidence before a technology ADR may lock CP-SAT, MILP or another solver.
+
+
+## 2026-09-23 Post-R8 Lifecycle Closure
+
+This specification is promoted from Review to Architecture Approved after current peer maturity and upstream L4 authority were revalidated. F02-001's selective BH mappings are separately materialized in the canonical L4→L5 store; child specifications retain their established verification responsibilities without creating new business ownership or release authority. Final corpus lock remains separate governance.

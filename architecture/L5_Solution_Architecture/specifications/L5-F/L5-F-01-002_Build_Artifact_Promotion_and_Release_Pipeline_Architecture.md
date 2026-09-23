@@ -8,8 +8,8 @@
 **Canonical Technical Responsibility:** Controlled build, artifact creation, release-manifest formation, environment promotion and release-eligibility gates.  
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.2`  
-**Status:** `Review`  
+**Version:** `1.3.0`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-01-001`; `L5-E-04-*`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*`; applicable B02/C01 compatibility evidence where releases include persistence/contract changes; `L5-E-03-*` for recovery ownership boundaries.  
 **Referenced By:** E04 release/deployment architecture and operational acceptance.  
@@ -26,9 +26,9 @@ Define the technical path from governed source revision to an immutable release 
 | Source | Status | Establishes | Use |
 |---|---|---|---|
 | Candidate Corpus Register 105 | Architecture Approved | F01-002 build/artifact/promotion/release boundary | Canonical scope |
-| `L5-F-01-001` | Review | Pipeline trust baseline | Parent architecture |
-| `L5-E-04-005` | Review | E04 owns install/upgrade/rollback | Deployment handoff |
-| `L5-D-03-004` | Review | Machine credential/secret lifecycle | Pipeline credential consumption |
+| `L5-F-01-001` | Architecture Approved | Pipeline trust baseline | Parent architecture |
+| `L5-E-04-005` | Architecture Approved | E04 owns install/upgrade/rollback | Deployment handoff |
+| `L5-D-03-004` | Architecture Approved | Machine credential/secret lifecycle | Pipeline credential consumption |
 | `L5-D-02-001` / `L5-D-02-004` | Architecture Approved | Non-human authorization and policy enforcement | Build/promotion actions require governed authorization, not credential possession alone |
 | `ADR-L5-0009` | Architecture Approved | Non-human principal authority binding | Promotion automation authority is explicit and attributable |
 | B02/C01 peer architecture | peer | Migration/compatibility evidence | Promotion gate consumes evidence; does not own internals |
@@ -144,7 +144,7 @@ Build/registry/promotion failures are observable through E05, including repeated
 | OD-001 | Exact release-manifest serialization/schema standard | No for Review |
 | OD-002 | **Resolved baseline progression:** Local/Development → Integration/Test → Staging/Pre-production → Production; ephemeral verification environments remain CI-managed. | `ADR-L5-0043` |
 | OD-003 | Default promotion implementation | No; must preserve immutability |
-| OD-004 | E04/D03 material peers are Review; downstream use is governed, but lifecycle promotion still requires approval-level peer authority where material. | Yes for Architecture Approved where material |
+| OD-004 | **Resolved:** E04/D03 material peers are Architecture Approved and F02 verification semantics are Architecture Approved. | Closed for lifecycle promotion; preserve impact review on material peer change |
 | OD-005 | Exact source-ref protection/tag-authenticity mechanism | No for Review; depends on selected source-control platform |
 
 ## 10. Traceability Summary
@@ -166,3 +166,8 @@ Promotion targets use the governed four-stage environment progression while pres
 ## 2026-09-22 Full-Corpus Post-Decision Synchronization
 
 Reconciled pipeline/registry wording with `ADR-L5-0030`. The existing immutable build-once/promote-unchanged architecture remains authoritative.
+
+
+## 2026-09-23 Post-R8 Lifecycle Closure
+
+This specification is promoted from Review to Architecture Approved after F02 verification architecture and all material E04/D03 peer dependencies reached approval-level authority. Existing release/promotion, deployment, verification, credential and supply-chain ownership boundaries are unchanged. No new technology selection or business authority is introduced. Final corpus lock remains separate governance.

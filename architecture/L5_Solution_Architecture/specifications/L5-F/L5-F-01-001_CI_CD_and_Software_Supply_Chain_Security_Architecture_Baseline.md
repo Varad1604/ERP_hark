@@ -8,8 +8,8 @@
 **Canonical Technical Responsibility:** Engineering delivery, pipeline trust and artifact-promotion principles while branch workflow governance, deployment execution, security primitives, audit truth and verification semantics remain separately owned.  
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.1.2`  
-**Status:** `Review`  
+**Version:** `1.2.0`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-E-04-*`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*` where verification evidence is consumed; `L5-D-04-*`; `L5-E-05-*`; `L5-E-03-*` for backup/recovery ownership boundaries.  
 **Referenced By:** `L5-F-01-002`, `L5-F-01-003`, `L5-E-04-*`, downstream release and operations architecture.  
@@ -41,14 +41,14 @@ Define the shared technical architecture by which governed source changes become
 |---|---|---|---|
 | Candidate Corpus Register 105 | Architecture Approved | F01-001 pipeline trust/artifact-promotion boundary | Canonical scope |
 | L5 execution timeline | Locked | Stage 3; F01 depends on `E04 + D03` | Dependency order |
-| `L5-E-04-005` | Review | E04 owns install/upgrade/rollback; F01 is collaborator | F01 stops at release eligibility/deployment handoff |
-| `L5-D-03-004` | Review | D03 owns secrets/certificates/machine credentials | Pipeline credentials are consumed, not owned |
+| `L5-E-04-005` | Architecture Approved | E04 owns install/upgrade/rollback; F01 is collaborator | F01 stops at release eligibility/deployment handoff |
+| `L5-D-03-004` | Architecture Approved | D03 owns secrets/certificates/machine credentials | Pipeline credentials are consumed, not owned |
 | `L5-D-02-001` | Architecture Approved | D02 owns authorization and least privilege | Pipeline/service principals require governed authorization, not credential possession alone |
 | `L5-D-02-004` | Architecture Approved | D02 owns policy decision and enforcement | Promotion/build/deployment-adjacent protected actions consume D02 authorization decisions |
 | `ADR-L5-0009` | Architecture Approved | Non-human principal authority binding | Pipeline/workload identities require explicit technical authority binding |
 | L5 Validation Standard | Locked | HF-09/HF-11/HF-12/HF-15 | ADR, completeness, trust and metadata gates |
 
-Draft peer L5 material is consumed for dependency/boundary planning and is not treated as immutable upstream business authority.
+Material E04/D03/F02 peer architecture is now governed at Architecture Approved or Locked lifecycle states; later material changes remain subject to impact review.
 
 ### Constraints
 1. Production artifacts originate from governed version-controlled source.
@@ -163,7 +163,7 @@ Capacity dimensions include concurrent pipelines, queue time, build duration, ar
 |---|---|---|
 | OD-001 | **Resolved:** GitHub Actions + GHCR + Cosign/Sigstore. | Locked by `ADR-L5-0030` |
 | OD-002 | Artifact retention durations and numeric pipeline SLOs | No for Review |
-| OD-003 | Final F02 machine-readable gate contract | No for Review; align before approval if material |
+| OD-003 | Exact machine-readable F02 gate serialization/transport | No; F02 verification semantics are Architecture Approved and representation remains implementation-governed |
 | OD-004 | **Resolved for peer maturity:** material E04 and D03 peers are Architecture Approved after R6/R7. Later material changes still require impact review. | No current blocker; preserve dependency impact review |
 | OD-005 | Exact runner isolation/ephemerality/network-egress implementation | No for Review; product/topology selection remains governed |
 
@@ -181,3 +181,8 @@ GitHub Actions is canonical while source remains on GitHub; GHCR is the default 
 ## 2026-09-22 Full-Corpus Post-Decision Synchronization
 
 Reconciled F01 product status with the locked delivery/supply-chain standard.
+
+
+## 2026-09-23 Post-R8 Lifecycle Closure
+
+This specification is promoted from Review to Architecture Approved after F02 verification architecture and all material E04/D03 peer dependencies reached approval-level authority. Existing release/promotion, deployment, verification, credential and supply-chain ownership boundaries are unchanged. No new technology selection or business authority is introduced. Final corpus lock remains separate governance.

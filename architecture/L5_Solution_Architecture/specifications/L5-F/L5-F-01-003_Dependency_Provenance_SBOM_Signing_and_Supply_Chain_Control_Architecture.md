@@ -8,8 +8,8 @@
 **Canonical Technical Responsibility:** Dependency provenance, SBOM generation/binding, artifact provenance attestation, signing integration and software-supply-chain assurance.  
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.1.2`  
-**Status:** `Review`  
+**Version:** `1.2.0`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-01-001/002`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*`; `L5-E-04-*`; `L5-D-04-*`; `L5-E-05-*`.  
 **Referenced By:** F01-002 promotion gates, E04 artifact verification, security/operations impact analysis.  
@@ -26,11 +26,11 @@ Define how SutraERP proves what a release artifact contains, where its inputs ca
 | Source | Status | Establishes | Use |
 |---|---|---|---|
 | Candidate Corpus Register 105 | Architecture Approved | F01-003 canonical responsibility | Scope authority |
-| `L5-F-01-001/002` | Review | Trusted build, immutable artifact, promotion gate model | Evidence attaches to exact artifact/release |
-| `L5-D-03-003/004` | Review | Key custody and machine credentials are D03-owned | Signing uses D03 services/credentials |
+| `L5-F-01-001/002` | Architecture Approved | Trusted build, immutable artifact, promotion gate model | Evidence attaches to exact artifact/release |
+| `L5-D-03-003/004` | Architecture Approved | Key custody and machine credentials are D03-owned | Signing uses D03 services/credentials |
 | `L5-D-02-001` / `L5-D-02-004` | Architecture Approved | Authorization and policy enforcement | Protected supply-chain actions require governed authority |
 | `ADR-L5-0009` | Architecture Approved | Non-human authority binding | Build/sign/promotion automation authority remains explicit |
-| `L5-E-04-005` | Review | Deployment verifies release/artifact identity | E04 consumes F01 trust evidence |
+| `L5-E-04-005` | Architecture Approved | Deployment verifies release/artifact identity | E04 consumes F01 trust evidence |
 | L5 Validation Standard | Locked | Security/ADR/implementability hard gates | No silent algorithm/vendor/threshold choices |
 
 ### Assumptions
@@ -131,7 +131,7 @@ Evidence retention preserves historical verification after key/credential rotati
 | OD-002 | **Partially resolved:** Cosign/Sigstore is canonical for signing/attestation; exact keyless/identity-backed signing mode remains security/profile governed. | No for Review |
 | OD-003 | Formal SLSA target level | No; cannot be claimed without demonstrated evidence |
 | OD-004 | Vulnerability/license thresholds and exception durations | No; require authoritative policy |
-| OD-005 | Material D03/E04 peers are Review; lifecycle promotion still requires sufficient governed peer authority where material. | Yes for Architecture Approved where material |
+| OD-005 | **Resolved:** material D03/E04 peers are Architecture Approved; F01 parent pipeline architecture is Architecture Approved. | Closed for lifecycle promotion; preserve impact review on material peer change |
 | OD-006 | Exact dependency mirror/allow-deny/malware-detection implementation | No for Review; product/policy selection remains governed |
 
 ## 10. Traceability Summary
@@ -147,3 +147,8 @@ GitHub Actions is canonical while source remains on GitHub; GHCR is the default 
 ## 2026-09-22 Full-Corpus Post-Decision Synchronization
 
 Reconciled signing/registry product wording with `ADR-L5-0030`; SBOM format remains legitimately open.
+
+
+## 2026-09-23 Post-R8 Lifecycle Closure
+
+This specification is promoted from Review to Architecture Approved after F02 verification architecture and all material E04/D03 peer dependencies reached approval-level authority. Existing release/promotion, deployment, verification, credential and supply-chain ownership boundaries are unchanged. No new technology selection or business authority is introduced. Final corpus lock remains separate governance.
