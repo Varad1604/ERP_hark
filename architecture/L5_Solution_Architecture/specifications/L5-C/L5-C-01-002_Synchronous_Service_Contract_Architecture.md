@@ -51,8 +51,8 @@ Define synchronous request admission, authoritative provider execution, bounded 
 | Source Level | Document / Decision | Version / Status | Exact Reference | What the Source Establishes | L5 Use |
 | --- | --- | --- | --- | --- | --- |
 | L5 Governance | Candidate Register 105 | v1.1.0 / Architecture Approved | `L5-C-01-002` row | Authoritative synchronous interaction, request/response and service-consumption architecture. | Establishes canonical responsibility. |
-| L4 | `L4-A-015` | v1.0.0 / Draft | `BH-001, BH-004, BH-005, BH-006, BH-007, BH-008, BH-009, BH-010, BH-011` | Valid initiation, owner-authoritative calls, wait/suspend/completion/cancel/failure and evidence. | Defines synchronous execution and outcome boundaries. |
-| L4 | `L4-A-050` | v1.0.0 / Draft | `BH-001, BH-003, BH-006, BH-008` | Scope context is resolved/revalidated separately from authorization. | Requires scope revalidation at call boundaries. |
+| L4 | `L4-A-015` | v1.0.1 / Architecture Approved | `BH-001, BH-004, BH-005, BH-006, BH-007, BH-008, BH-009, BH-010, BH-011` | Valid initiation, owner-authoritative calls, wait/suspend/completion/cancel/failure and evidence. | Defines synchronous execution and outcome boundaries. |
+| L4 | `L4-A-050` | v1.0.1 / Architecture Approved | `BH-001, BH-003, BH-006, BH-008` | Scope context is resolved/revalidated separately from authorization. | Requires scope revalidation at call boundaries. |
 | L5 ADR | `ADR-L5-0003` | Architecture Approved | Contract-Driven Modular Platform with Selective Isolation | Business-domain identity alone does not require a remote boundary; governed contracts survive placement choices. | Keeps synchronous contract semantics independent of deployment placement. |
 | L5 ADR | `ADR-L5-0004` | Architecture Approved | Tenant and Institution Isolation Enforcement Pattern | Tenant/Institution isolation must be technically enforced. | Requires fail-closed scope handling. |
 | L5 ADR | `ADR-L5-0006` | Architecture Approved | Owner-Local Transaction and Optimistic Concurrency Strategy | Transaction/concurrency remain owner-local. | Prohibits cross-owner transaction propagation. |
