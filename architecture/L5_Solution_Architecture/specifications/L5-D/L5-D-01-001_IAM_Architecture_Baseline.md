@@ -94,7 +94,7 @@ The cited canonical L4 parents are Architecture Approved under R3A/R3B and have 
 
 ### 3.3 Assumptions
 
-No material architecture assumption is promoted to fact in this Review. Peer-L5 stabilization, Draft-L4 approval authority and intentionally deferred/profile technology details remain explicit in Section 9.
+No material architecture assumption is promoted to fact in this approved baseline. Applicable L4 authority is Architecture Approved under R3A/R3B and current-bound under R3D; peer-L5 stabilization and intentionally deferred/profile technology details remain explicit in Section 9.
 
 ---
 
