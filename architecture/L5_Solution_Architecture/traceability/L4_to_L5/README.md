@@ -235,3 +235,20 @@ Review authority:
 `L5_R3D_D01_Targeted_Revalidation_and_Traceability_Decision_2026-09-23.md`
 
 This population validates D01's material technical contribution only. It does not claim full Section-A BH coverage.
+
+
+## 12. R4C Consolidated Section-A Population
+
+On 2026-09-23, R4C reconciled the two validated parallel Section-A populations by exact relation identity:
+
+```text
+R3D D01 validated relations   136
+R4B E05 validated relations     3
+Canonical Section-A total     139
+Duplicate relation identities   0
+Stale version bindings          0
+```
+
+The canonical current partition is `section-a.md`. The prior R3D-only and R4B-only branch populations remain provenance in their respective governance decisions; neither branch-local file is authoritative by itself after consolidation.
+
+No direct rows were fabricated for `L5-E-05-002`, `L5-E-05-003`, or `L5-E-05-004`.
