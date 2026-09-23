@@ -9,10 +9,10 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows, including the approved 2026-08-20 Person–Identity establishment and activation sequencing decision; L2-A03 — Authentication Workflows; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Last Updated:** 2026-09-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows, including the approved 2026-08-20 Person–Identity establishment and activation sequencing decision; L2-A03 — Authentication Workflows; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  ; `L2-A02_User_Account_and_Person_Reconciliation_Authority_Amendment_2026-09-23.md`; `L2-A03_Authentication_Recovery_Session_and_MFA_Clarification_Amendment_2026-09-23.md`
 **Referenced By:** L2-A04 — Authorization & Policy Workflows; business domains requiring authenticated execution
 
 ---
@@ -321,14 +321,21 @@ Postconditions:
 
 ---
 
+## Canonical R3B Remediation
+
+This scenario consumes the Locked A02 and A03 R3B amendments. Earlier authentication blockers are resolved as follows:
+
+- authentication-eligible User Account state is `Enabled`; legacy “Active User Account” wording means `Enabled`;
+- Authentication Requestor is the logical initiating actor;
+- generic execution events are published by Authentication Attempt;
+- Authentication Session creation and activation are distinct;
+- `AuthSessionCreated` records `Created`; `SessionActivated` records `Created → Active`;
+- successful authentication does not grant authorization.
+
+The canonical Tenant-scoped Person/Identity boundary remains unchanged.
+
 # 17. Open Issues, Assumptions and Deferred Questions
 
-| ID | Type | Issue / Deferred Question | Precise Scenario Impact | Disposition |
-|---|---|---|---|---|
-| A007-ISSUE-01 | Upstream gap | L2-A03’s canonical crosswalk explicitly records that an Actors section is absent, and the workflow does not name the business actor or role that initiates authentication. | Section 6 and the flow cannot assign initiation to a named canonical business actor. Responsibilities are therefore assigned only to authoritative domains and aggregates. | Requires upstream actor definition before Architecture Approval or locking. |
-| A007-ISSUE-02 | Upstream terminology conflict | L2-A02 defines User Account states as `Created`, `Enabled`, `Locked`, `Disabled` and `Archived`, but its Authentication Rules require an “Active User Account.” L2-A03 validates Account Status without defining the exact eligible-state mapping. | The Draft can require that account status permit authentication but cannot safely assert whether the canonical required state name is `Enabled`, `Active`, or another governed mapping. | Requires L2-A02/L2-A03 alignment before Architecture Approval or locking. |
-| A007-ISSUE-03 | Upstream publisher gap | L2-A03 requires each Authentication aggregate to publish its own events, but the generic events `AuthenticationStarted`, `AuthenticationSucceeded`, `PlatformAuthenticationFailed`, `AuthenticationChallenged` and `AuthenticationCompleted` are described only as published by “Authentication execution” and are not assigned to an aggregate in the Aggregate-to-Event Matrix. | Section 14 preserves “Authentication execution” as the sole source-stated publisher and does not invent an aggregate publisher. Later specifications cannot assign these events to a concrete aggregate until L2-A03 is clarified. | Requires L2-A03 event-ownership clarification. |
-| A007-ISSUE-04 | Upstream lifecycle ambiguity | L2-A03 defines `Created` and `Active` Authentication Session states, depicts creation followed by activation, and defines both `AuthSessionCreated` and `SessionActivated`, while also stating that sessions begin in `Active`. | The Draft requires creation and activation events and an `Active` final session but does not treat `Created` as a durable intermediate state. L4 cannot define its observability without clarification. | Requires L2-A03 lifecycle wording alignment. |
-| A007-ISSUE-05 | Upstream boundary conflict | Locked L1 §3.4 states that one Person exists inside an Institute, while locked L2-A01, L2-A02 and L2-A03 use Tenant-scoped identity and authentication boundaries. | Authentication is drafted within the authoritative L2 Tenant workflow, but the enterprise scope of the underlying canonical Person reference remains inconsistent across architecture levels. | Requires Lead Architect alignment before Architecture Approval or locking. |
+No blocking issues remain after the Locked R3B upstream amendment(s).
 
-No unsupported actor, approval authority, lifecycle state, transition, business event, publisher, authorization rule or recovery mechanism is assumed by this Draft.
+No assumptions.
