@@ -9,10 +9,10 @@
 **Canonical Technical Responsibility:** Controlled persistence-schema evolution and internal migration while preserving canonical ownership, isolation and compatibility; excludes operational governed business import/export.  
 **Technical Architecture Owner:** L5-B-02 — Database & Persistence Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.2.1`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-B-02-001` v1.0.0 Draft; `L5-B-02-002` v1.0.0 Draft; `L5-B-02-003` v1.0.0 Draft.  
+**Version:** `1.3.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-B-02-001` v1.3.0 Architecture Approved; `L5-B-02-002` v1.3.0 Architecture Approved; `L5-B-02-003` v1.1.0 Architecture Approved.  
 **Referenced By:** Release/upgrade architecture, persistence implementation standards, recovery architecture, and owner-specific technical designs that evolve authoritative persistence structures.  
 **Applicable ADRs:** `ADR-L5-0008`; `ADR-L5-0036`.
 
@@ -63,9 +63,9 @@ The specification establishes a compatibility-preserving evolution lifecycle, go
 | Source Level | Document / Decision | Version / Status | Exact Reference | What the Source Establishes | L5-B-02-004 Use |
 |---|---|---|---|---|---|
 | L5 Governance | `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md` | v1.1.0 / Architecture Approved | `L5-B-02-004` row | B02-004 owns controlled persistence-schema evolution/internal migration and excludes operational governed business import/export. | Establishes canonical scope. |
-| L5 Peer | `L5-B-02-001_Database_and_Persistence_Architecture_Baseline.md` | v1.0.0 / Draft | B02 responsibility split | Authoritative persistence remains owner-aligned; database product and exact DDL remain separate decisions. | Schema evolution cannot transfer business ownership or assume a vendor. |
-| L5 Peer | `L5-B-02-002_Domain_Persistence_Ownership_and_Isolation_Architecture.md` | v1.0.0 / Draft | privileged migration identity and owner isolation | Normal runtime identities are owner-scoped; privileged maintenance/migration access is separate and must not become a normal business write path. | Establishes migration authority separation and owner/Tenant isolation. |
-| L5 Peer | `L5-B-02-003_Transaction_Consistency_and_Concurrency_Architecture.md` | v1.0.0 / Draft | owner-local transactions, concurrency and publication-intent consistency | Migration must not invalidate transaction/concurrency/state-publication invariants. | Requires compatible structural/data transitions. |
+| L5 Peer | `L5-B-02-001_Database_and_Persistence_Architecture_Baseline.md` | v1.3.0 / Architecture Approved | B02 responsibility split | Authoritative persistence remains owner-aligned; database product and exact DDL remain separate decisions. | Schema evolution cannot transfer business ownership or assume a vendor. |
+| L5 Peer | `L5-B-02-002_Domain_Persistence_Ownership_and_Isolation_Architecture.md` | v1.3.0 / Architecture Approved | privileged migration identity and owner isolation | Normal runtime identities are owner-scoped; privileged maintenance/migration access is separate and must not become a normal business write path. | Establishes migration authority separation and owner/Tenant isolation. |
+| L5 Peer | `L5-B-02-003_Transaction_Consistency_and_Concurrency_Architecture.md` | v1.1.0 / Architecture Approved | owner-local transactions, concurrency and publication-intent consistency | Migration must not invalidate transaction/concurrency/state-publication invariants. | Requires compatible structural/data transitions. |
 | L5 Governance | `L5_Technology_Selection_and_ADR_Methodology.md` | v1.0.1 / Locked | §1.1, §§2–3 | Reusable cross-specification patterns and material persistence/operational decisions require ADR governance. | `ADR-L5-0008` governs the reusable migration pattern. |
 | L5 ADR | `ADR-L5-0008_Expand_Migrate_Transition_Contract_Schema_Evolution_Pattern.md` | Architecture Approved | Decision §§7–11 | Establishes the reusable B02 schema-evolution pattern and preserves E03/E04 responsibility boundaries. | Canonical decision authority for AD-001–AD-004. |
 | L5 Corpus | `L5-E-03-001/002/003` | frozen responsibility definitions | backup/restore/PITR/DR responsibilities | Destructive migration recovery shall rely on governed recovery architecture rather than assuming every migration can be reversed. | Establishes recovery collaboration boundary; E03 is not a prerequisite dependency of B02-004. |
@@ -482,3 +482,8 @@ This specification remains `Review`; the reusable schema-evolution pattern is ca
 
 **Applicable locked decision:** `ADR-L5-0036`  
 Production schema changes remain explicit version-controlled migrations using Expand → Migrate/Backfill → Transition → Contract. Automatic ORM/schema synchronization is prohibited for production migration.
+
+
+## 2026-09-23 Post-R8 Lifecycle Closure Decision
+
+This specification is promoted from Review to Architecture Approved after targeted lifecycle-closure review. Its reusable migration architecture had already passed production validation with no blocking hard failure; the remaining historical peer-maturity references are now resolved because B02-001/002/003 are Architecture Approved. No upstream business behavior, ownership, event publisher, or implementation product decision is introduced by this promotion. Final corpus lock remains separate governance.
