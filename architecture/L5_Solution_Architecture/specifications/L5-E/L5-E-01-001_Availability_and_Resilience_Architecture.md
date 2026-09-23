@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Repository-wide technical availability model, resilience principles, scoped health states, redundancy expectations and restoration gates without redefining business lifecycle or deployment ownership.  
 **Technical Architecture Owner:** L5-E-01 — Availability & Resilience Architecture  
 **Assigned Author:** Varad  
-**Version:** `1.0.2`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Version:** `1.1.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard; L5 Technology Selection & ADR Methodology; L5 ADR Register; `L5-A-01-001`; `L5-E-04-001`; `L5-E-01-002`; `L5-E-02-*`; `L5-A-08-*`; applicable B02/C02/D03/D04 architecture; `L4-A-015`; `L4-A-016`; `L4-A-057`.  
 **Referenced By:** L5 reliability-aware consumers, `L5-E-01-002`, `L5-E-02-*`.  
 **Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0014`; `ADR-L5-0028`; `ADR-L5-0043`; `ADR-L5-0044`; `ADR-L5-0045`.
@@ -172,3 +172,7 @@ E01 supplies resilience requirements to E04: isolation need, restart/failover el
 **OD-001:** Numeric availability objectives, thresholds and alert windows require separate governed operational/SLO decisions.  
 **OD-002:** **Partially resolved:** OCI/Kubernetes clustered deployment, Podman non-clustered deployment and E04 runtime lifecycle/health conventions are Locked. Exact failover/replication topology and profile-specific managed-service choices remain E04/B02/E03 deployment governance.  
 **OD-003:** Capability-specific degradation profiles are defined by the owning L5 capability under `ADR-L5-0014` and must be reviewed before use.
+
+## 2026-09-23 Post-R8 Lifecycle Closure
+
+This specification is promoted from Review to Architecture Approved after the post-R8 upstream authority remediation made its material A016/A057 parent behavior Architecture Approved and the specification's existing HF/open-decision profile was rechecked. No new ownership, business lifecycle, event publisher, or implementation technology is introduced by this promotion. Final corpus lock remains separate governance.
