@@ -3,7 +3,7 @@
 **Architecture Level:** L5 — Solution Architecture  
 **Purpose:** Canonical repository location for the frozen 105-specification L5 production corpus  
 **Broad Authoring:** Authorized  
-**Final L5 Corpus Lock:** Ready for explicit authorization; not yet executed  
+**Final L5 Corpus Lock:** Executed on final-lock branch; canonicalization pending Final Lock PR merge  
 
 ---
 
@@ -137,7 +137,7 @@ Production specifications shall inherit all applicable Locked decisions through 
 
 ## Post-Decision Audit State
 
-As of 2026-09-23, the 105 canonical specification headers are synchronized to **0 Draft / 0 Review / 72 Architecture Approved / 33 Locked**. Lifecycle status was strengthened only through explicit validation/governance decisions; Architecture Approved does not itself imply Final Corpus Lock.
+As of the authorized 2026-09-23 Final Corpus Lock branch, the 105 canonical specification headers are synchronized to **0 Draft / 0 Review / 0 Architecture Approved / 105 Locked**. The 72 final promotions are governed by the distinct Final L5 Corpus Lock authorization; the locked state becomes canonical only after the Final Lock PR is merged.
 
 
 ## Production Validation Register — 2026-09-22
@@ -153,8 +153,8 @@ Current lifecycle distribution remains:
 ```text
 0 Draft
 0 Review
-72 Architecture Approved
-33 Locked
+0 Architecture Approved
+105 Locked
 105 Total
 ```
 
@@ -182,3 +182,22 @@ See:
 ## Independent Final Synchronization Audit — 2026-09-23
 
 A fresh repository-based synchronization audit confirms the living 105-row corpus at **0 Draft / 0 Review / 72 Architecture Approved / 33 Locked**, with zero current hard blockers. Historical Batch-9 counts and verdicts remain valid only as historical milestones and shall not be read as current lifecycle state. Evidence/profile/future-feature deferrals remain intentionally governed and do not constitute current L5 architecture blockers. Final Corpus Lock remains a separate explicit governance action.
+
+
+## Final L5 Corpus Lock Execution — 2026-09-23
+
+Following the independent Final L5 Corpus Lock Gate PASS and explicit Lead Architect authorization, the remaining 72 Architecture Approved specifications were transitioned to `Locked` on the controlled final-lock branch.
+
+Branch lifecycle result:
+
+```text
+0 Draft
+0 Review
+0 Architecture Approved
+105 Locked
+105 Total
+```
+
+No specification identity, version, canonical technical ownership, ADR decision, L4→L5 relation identity, or business semantic was changed by the lock transition. Five D03 headers that still displayed historical `Review` text were reconciled under the already-established R7 Architecture Approval authority before being locked.
+
+**Canonicalization status:** pending explicit merge authorization for the Final Lock PR.
