@@ -4,7 +4,7 @@
 **Current State:** Broad authoring authorized for the frozen 105-specification corpus under dependency-gated parallel execution  
 **Frozen Authoring Population:** 105 specifications  
 **Broad L5 Authoring:** Authorized  
-**Final L5 Corpus Lock:** Executed on final-lock branch; canonicalization pending Final Lock PR merge  
+**Final L5 Corpus Lock:** COMPLETE — canonical on `main` as `fe9d03d6b70f17f071340b60394589cadb31d5b4`  
 
 ---
 
@@ -408,4 +408,4 @@ Branch result:
 
 A latent lifecycle-header synchronization defect was detected during execution: five D03 files still displayed `Review` even though the canonical R7 lifecycle decision had explicitly promoted them to Architecture Approved. Their headers were reconciled under that existing authority and then transitioned to Locked under the Final Corpus Lock authorization. No new architecture decision was created.
 
-The lock is executed on the controlled branch. It becomes canonical repository state only after the Final Lock PR is explicitly authorized for merge.
+The lock is executed on the controlled branch. It is canonical repository state on `main` as of merge commit `fe9d03d6b70f17f071340b60394589cadb31d5b4`.
