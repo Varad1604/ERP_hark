@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-B-02 — Database & Persistence Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.3.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; L5 Broad Authoring Authorization v1.0.0; L5 Dependency-Gated Parallel Authoring Execution Timeline v1.0.0; `L5-B-02-001` v1.3.0 Architecture Approved; `L5-A-03-001` v1.1.0 Architecture Approved; `L5-A-04-001` v1.1.0 Architecture Approved; `L5-A-04-002` v1.1.0 Architecture Approved; `L4-A-001` v1.0.1 Architecture Approved; `L4-A-015` v1.0.1 Architecture Approved; `L4-A-019` v1.0.1 Architecture Approved; SutraERP L1 Business Domain Architecture v2.1 Locked.  
 **Referenced By:** Downstream persistence, privacy, reporting, secure-engine, recovery and integration architecture consuming owner-scoped persistence boundaries.  
