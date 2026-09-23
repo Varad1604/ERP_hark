@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-G-01 — Client Platform Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.0.2`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Production Path:** `architecture/L5_Solution_Architecture/specifications/L5-G/L5-G-01-001_Client_Platform_Architecture_Baseline.md`
 
