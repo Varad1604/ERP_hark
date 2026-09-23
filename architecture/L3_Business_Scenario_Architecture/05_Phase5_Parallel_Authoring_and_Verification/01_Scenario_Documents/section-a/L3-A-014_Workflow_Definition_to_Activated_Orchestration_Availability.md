@@ -9,10 +9,10 @@
 **Scenario Type:** Cross-domain  
 **Priority:** P0  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows; L2-A03 — Authentication Workflows; L2-A04 — Authorization & Policy Workflows; L2-A05 — Workflow Engine Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Last Updated:** 2026-09-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows; L2-A03 — Authentication Workflows; L2-A04 — Authorization & Policy Workflows; L2-A05 — Workflow Engine Workflows; `L2-A05_Workflow_Definition_and_Version_Governance_Authority_Amendment_2026-09-23.md`; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
 **Referenced By:** Workflow-owning domains and L3-A-015 — Workflow Initiation to Completed Orchestrated Execution
 
 ---
@@ -27,7 +27,7 @@ Establish a governed Workflow Definition and immutable Workflow Version that coo
 
 A validated, approved, immutable workflow version is published and activated for use by the owning business domain.
 
-L2-A05 does not define the canonical governance-approval actor, activation authority or definition-lifecycle command contracts required to complete the outcome exactly. The scenario is therefore classified `BLOCKED`.
+The Locked L2-A05 Workflow Definition and Version Governance Authority amendment defines the canonical preparation actor category, Workflow Governance Authority and definition/version business operations required for the outcome.
 
 ---
 
@@ -90,14 +90,7 @@ The frozen Participating Domains value remains exactly `A, VAR:Workflow-Owning D
 
 # 6. Business Actors, Roles and Responsibilities
 
-L2-A05 explicitly records that its Actors section is absent. It does not name:
-
-- the actor who submits or authors a Workflow Definition;
-- the governance approver;
-- the actor authorized to publish a Workflow Version; or
-- the actor authorized to activate it.
-
-The workflow-owning domain is a canonical participant, not a substitute business actor. No author, administrator, approver or activation authority is invented.
+`Authorized Workflow Designer / Administrator` is the canonical abstract preparation actor category. `Workflow Governance Authority` is the canonical approval, publication and activation authority. Institutional policy maps these abstractions locally. The Workflow-Owning Domain remains the business-process owner.
 
 ---
 
@@ -127,13 +120,13 @@ A business domain requires a governed workflow to coordinate an approved busines
 | 3 | Create the Workflow Definition in `Draft` and publish `WorkflowDefinitionCreated`. | Workflow Engine | The governed definition lifecycle begins. |
 | 4 | Define the workflow metadata, orchestration structure, business references, input/output contracts, policy references, event references and validation metadata. | Workflow Engine; VAR:Workflow-Owning Domain supplies business semantics | A complete definition is available for validation. |
 | 5 | Validate graph integrity, connectivity, routing, variables, assignments, policies, events, version compatibility and cross-domain dependencies. | Workflow Engine | The definition enters `Validation` and either satisfies or fails mandatory validation. |
-| 6 | Obtain governance approval and complete `Validation → Approved`. | Canonical governance approver undefined; Workflow Engine | The definition is approved for publication. |
-| 7 | Publish an immutable Workflow Version, complete `Approved → Published` and publish `WorkflowVersionPublished`. | Workflow Engine | An immutable executable version becomes available. |
-| 8 | Activate the published version, complete `Published → Activated` and publish `WorkflowVersionActivated`. | Canonical activation authority undefined; Workflow Engine | The version becomes current for new Workflow Instances. |
+| 6 | Obtain Workflow Governance Authority approval and complete `Validation → Approved`. | Workflow Governance Authority; Workflow Engine | The definition is approved for publication. |
+| 7 | After Workflow Governance Authority publication authorization, publish an immutable Workflow Version, complete `Approved → Published` and publish `WorkflowVersionPublished`. | Workflow Governance Authority; Workflow Engine | An immutable executable version becomes available. |
+| 8 | After Workflow Governance Authority activation authorization, complete `Published → Activated` and publish `WorkflowVersionActivated`. | Workflow Governance Authority; Workflow Engine | The version becomes current for new Workflow Instances. |
 | 9 | Make the activated version and its governed input/output contracts available to the Workflow-Owning Domain. | Workflow Engine | The owning domain may initiate later executions without owning workflow infrastructure. |
 | 10 | Preserve immutable evidence of definition, validation, approval, publication and activation. | Workflow Engine; Audit Infrastructure | The orchestration-availability outcome remains traceable. |
 
-Steps 6–8 cannot be finalized as exact authority and contract behaviour because the approver, activation authority and canonical definition commands are absent from L2-A05.
+Steps 6–8 consume the Locked L2-A05 governance amendment; exact implementation/API contracts remain downstream.
 
 ---
 
@@ -226,7 +219,7 @@ L2-A05 does not define canonical commands for creating, validating, approving, p
 |---|---|---|---|
 | Establish business-process semantics | Canonical actor undefined | The Workflow-Owning Domain owns the approved business process and its decisions. | VAR:Workflow-Owning Domain |
 
-The governance approver, publication authority and activation authority are not named upstream.
+`Workflow Governance Authority` is the canonical abstract governance approver and publication/activation authority.
 
 ## 15.2 Separation of Duties, Overrides and Exceptions
 
@@ -259,7 +252,7 @@ No scenario-specific separation-of-duty, override or exception role is defined f
 - `WorkflowDefinitionCreated`, `WorkflowVersionPublished` and `WorkflowVersionActivated` were published by the Workflow Engine.
 - Definition, approval, publication and activation remained auditable.
 
-These criteria cannot yet be validated as a complete canonical outcome because the approval and activation actors and definition-lifecycle commands are undefined.
+These criteria are source-supported by the Locked L2-A05 governance amendment.
 
 ## 16.2 Postconditions
 
@@ -277,9 +270,9 @@ These criteria cannot yet be validated as a complete canonical outcome because t
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
-| **A014-BLOCKER-01:** L2-A05 records Actors as absent and names no governance approver, publication authority or activation authority. | Material approval and activation responsibility cannot be assigned in Sections 6, 9 and 15. | Define the canonical business actors and authority boundaries. |
-| **A014-BLOCKER-02:** L2-A05's canonical command catalogue contains runtime commands but no definition/version commands for creation, validation, approval, publication or activation. | The governed state-changing contracts required by later L4 behaviour are missing. | Define canonical Workflow Definition and Workflow Version command contracts. |
-| **A014-ISSUE-01:** The §26 lifecycle contains `Draft`, `Validation`, `Approved`, `Published`, `Activated` and `Retired`, while §28 metadata Status lists only `Draft`, `Published` and `Retired`. | Metadata and lifecycle-state vocabulary are internally inconsistent, although the §26 transition path is explicit. | Align Workflow Metadata with the canonical definition lifecycle. |
+| **A014-BLOCKER-01 — RESOLVED:** canonical preparation and Workflow Governance Authority boundaries are defined by the Locked L2-A05 amendment. | No authority invention remains. | Closed. |
+| **A014-BLOCKER-02 — RESOLVED:** architecture-level definition/version operations and preconditions are defined by the Locked L2-A05 amendment. | L4 can realize behavior without inventing API/message contracts. | Closed. |
+| **A014-ISSUE-01 — RESOLVED:** the Locked L2-A05 amendment establishes the complete lifecycle-status vocabulary `Draft → Validation → Approved → Published → Activated → Retired` and supersedes the abbreviated metadata list for status interpretation. | Vocabulary is aligned. | Closed. |
 
 ## 17.2 Assumptions
 
@@ -288,3 +281,8 @@ No assumptions.
 ## 17.3 Deferred Questions
 
 No scenario-specific deferred questions.
+
+
+## 2026-09-23 Upstream Governance Reconciliation
+
+L3-A-014 is reconciled to the Locked L2-A05 Workflow Definition and Version Governance Authority amendment. The prior actor/authority, definition-operation and lifecycle-vocabulary blockers are closed without transferring business-process ownership from the Workflow-Owning Domain.
