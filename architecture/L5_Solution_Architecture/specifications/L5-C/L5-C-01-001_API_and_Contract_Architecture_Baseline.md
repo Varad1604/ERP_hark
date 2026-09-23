@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Technical API/contract principles and ownership-preserving synchronous boundaries.  
 **Technical Architecture Owner:** L5-C-01 — API & Contract Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.2.1`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Version:** `1.3.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register; `L5-A-01-001`, `L5-A-03-001`, `L5-A-04-002`, `L5-B-02-001/002/003`, `L5-D-01-001`, `L5-D-03-001`, `L4-A-001`, `L4-A-015`, `L4-A-028`, `L4-A-050`.  
 **Referenced By:** `L5-C-01-002`, `L5-C-01-003`, `L5-C-02-*`, `L5-C-03-*`.  
 **Applicable ADRs:** `ADR-L5-0003`; `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0019`; `ADR-L5-0021`; `ADR-L5-0034`.
@@ -175,3 +175,8 @@ Synchronous APIs use contract-first OpenAPI 3.2, camelCase SutraERP JSON members
 
 **Applicable locked decision:** `ADR-L5-0041`  
 Long-running work is accepted asynchronously where appropriate and returns a governed work/reference identity, with later status/result retrieval or completion event rather than holding synchronous HTTP requests open.
+
+
+## 2026-09-23 R6 Targeted Revalidation Synchronization
+
+R6 revalidated this specification against HF-01…HF-15 after canonical R1/R2 upstream authority consolidation and R5 affected L4→L5 traceability validation. The former Draft/Review-L4 promotion blocker is resolved. Earlier embedded source-status labels describing Draft/Review L4 state are retained only as authoring provenance and are superseded for current authority by the Architecture Approved R1/R2 parent decisions. No business ownership, event ownership, lifecycle authority, or technical responsibility is transferred by this promotion. HF-01…HF-15: PASS. Lifecycle: Architecture Approved. Final corpus lock remains separate governance.
