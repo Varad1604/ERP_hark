@@ -648,6 +648,9 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 # Recent Changes
 
+**2026-09-23 — L6 Stage-5 Batch-2 corrected merge-gate PASS:** Corrected Golden-Slice Interaction Proof passed independent revalidation on frontend head `4061471ae98b487ba85fc0180ac2008624438f49`, with frontend PR #27 merged as `14cd33f0ae3be79677c52f6cb93c4af8d12f8186`. Final frontend validation #226 passed all structural/type/build gates, permanent Batch-1 H02 regression 6/6, and corrected Batch-2 browser evidence 12/12. Architecture closure is reconciled onto current post-R1/R2 main `a5853d7e9008a2c495300f1c287b7ff072422e54`; all five protected Stage-5 provenance blobs remain unchanged. Architecture merge is authorized and pending; Batch 3 has not started.
+
+
 **2026-09-23 — R1/R2 upstream authority consolidation:** Consolidated the validated R1A/R1B/R1C and R2A/R2B remediation lines on the current post-R4C main baseline. Added the Locked L2-A04 Workspace governance amendment, synchronized Locked L3-A-050, and preserved Architecture Approved L4 authority across the tenant/institution, workflow/event/module, Workspace, reporting-projection, and notification parent sets. This consolidation changes no L5 lifecycle disposition by itself; it establishes the upstream authority baseline for R5/R6 targeted traceability and revalidation. Final L5 Corpus Lock remains unauthorized.
 
 ---
