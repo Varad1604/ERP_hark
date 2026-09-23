@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-B-06 — Reporting, Analytics & Data Projection Architecture  
 **Assigned Author:** Chetan  
 **Version:** `1.3.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology; L5 Stage 3 Final Closure & Stage 4 Proceed Decision 2026-09-15; `L5-B-02-003`; `L5-D-02-004`; `L5-C-02-001`; `L5-A-04-002`; `L5-D-04-001`; applicable source-domain L4/L2 architecture.  
 **Referenced By:** `L5-B-06-002`; `L5-B-06-003`; authorized reporting/dashboard consumers.  
