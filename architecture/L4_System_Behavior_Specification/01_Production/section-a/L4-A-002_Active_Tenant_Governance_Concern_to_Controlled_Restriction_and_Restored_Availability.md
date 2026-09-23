@@ -7,10 +7,10 @@
 **Domain:** Platform & Tenant  
 **Realizes Scenario:** L3-A-002  
 **Primary Business Owner:** Platform & Tenant  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-30  
+**Last Updated:** 2026-09-23  
 **Depends On:** `L3-A-002_Active_Tenant_Governance_Concern_to_Controlled_Restriction_and_Restored_Availability.md`; `L2-A01_Platform_Tenant_Foundation_Architecture.md`; `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`  
 **Referenced By:** None yet
 
@@ -70,6 +70,10 @@ Every BH is derived from the Locked L3 parent. Higher-level sources verify lifec
 
 ## 10. Open Issues / Deferred Design
 
-The upstream architecture does not name the specific business actor authorized to decide Tenant suspension or restoration. This draft therefore requires an authoritative source decision without assigning that authority to a role. No additional L4 correctness issue is introduced.
+The upstream architecture does not name the specific business actor authorized to decide Tenant suspension or restoration. This specification therefore requires an authoritative source decision without assigning that authority to a role. This bounded upstream role ambiguity does not prevent approval of the observable system behavior because no unsupported actor or authority is invented.
 
 Implementation mechanisms for restricting execution, persistence, technical access enforcement, infrastructure and UI/UX remain deferred to L5/L6.
+
+## Canonical Validation Note
+
+This specification passed the scoped R1A hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R1A_Tenant_Institution_Authority_Architecture_Approval_Decision_2026-09-23.md`. This approval does not Lock the specification and does not invent upstream actor authority, lifecycle semantics, events, or implementation design.
