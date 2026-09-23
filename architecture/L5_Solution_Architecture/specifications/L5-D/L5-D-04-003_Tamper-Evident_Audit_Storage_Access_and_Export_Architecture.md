@@ -97,8 +97,8 @@ For this controlled Stage-3 validation, the cited L4 BHs below are authorized be
 | `L4-A-027` | same | BH-006–007 | Restoration closure duration/authority/event shall not be invented. |
 | `L5-D-04-001` | v1.1.1 / Locked | §§4–8 | D04-001 owns capture/admission/deduplication and hands validated evidence to D04-003; publication occurs only after the required persistence milestone. |
 | `L5-D-04-002` | v1.1.1 / Locked | §§2–5 | Supplies canonical `AuditEvidenceEnvelope` and provenance relationships consumed by D04-003; physical persistence remains B02-owned, cryptographic protection D03-owned, and reusable packaging/transfer C03-008-owned. |
-| `L5-B-02-003` | v1.0.1 / Review | §§5–8 | Owner-local transaction and optimistic-concurrency mechanics govern D04-003 persistence commits. |
-| `L5-B-02-004` | v1.2.1 / Review | §§3–5 | Persistence evolution uses compatibility-preserving migration without rewriting authoritative historical meaning. |
+| `L5-B-02-003` | v1.1.0 / Architecture Approved | §§5–8 | Owner-local transaction and optimistic-concurrency mechanics govern D04-003 persistence commits. |
+| `L5-B-02-004` | v1.3.0 / Architecture Approved | §§3–5 | Persistence evolution uses compatibility-preserving migration without rewriting authoritative historical meaning. |
 | `L5-B-05-003` | v1.0.1 / Locked | §§3–8 | Retention/hold architecture authorizes technical disposition but does not define D04 physical integrity mechanics. |
 | `ADR-L5-0002` | Architecture Approved | Decision | D03-002 owns cryptographic operation; D03-003 owns key custody/lifecycle. |
 | `ADR-L5-0004` | Architecture Approved | Decision | Tenant/Institution scope isolation is mandatory. |
@@ -794,7 +794,7 @@ The former approval blockers are closed by `ADR-L5-0012` and `L5_Dhruv_Stage3_D0
 | OD-003 | Restoration expiry/closure basis | Upstream | Non-blocking for core storage; blocks automatic closure semantics only | Resolve upstream `L4-A-027` gap. |
 | OD-004 | Product-level routing/hash mechanism realizing deterministic stream assignment | Implementation / technology | Non-blocking | Must conform to `ADR-L5-0012`; do not make it business-semantic. |
 | OD-005 | D04-002 stale ownership wording for physical DDL/storage engine, physical immutable-storage realization, cryptographic/Merkle sealing and reusable export packaging | Repository wording harmonization | **Closed** by `L5-D-04-002` v1.1.1 and `L5_D04-002_Ownership_Boundary_Correction_and_Relock_Decision_2026-09-13.md` | Canonical boundary is now explicit: B02 physical persistence; D03 cryptographic protection/key custody; D04-003 audit-specific integrity/proof semantics; C03-008 reusable packaging/transfer/delivery. |
-| OD-006 | C03-008 concrete integration contract is not yet dependency-ready | Dependency | Non-blocking | Finalize exact handoff when C03-008 becomes stable enough to consume. |
+| OD-006 | C03-008 exact handoff remains delegated to the canonical integration owner; no D04 ownership is implied. | Dependency | Non-blocking | Consume the current C03-008 contract when implementation requires the handoff; revalidate on material peer change. |
 
 No blocking architecture decision remains for `L5-D-04-003`.
 

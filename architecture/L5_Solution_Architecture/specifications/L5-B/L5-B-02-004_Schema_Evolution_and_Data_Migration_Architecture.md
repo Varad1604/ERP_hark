@@ -430,8 +430,8 @@ No migration tool, ORM, database vendor, SQL dialect, checksum algorithm or depl
 | ID | Item | Owner | Blocking Status | Resolution Path |
 |---|---|---|---|---|
 | `OD-002` | Primary relational technology is resolved as PostgreSQL 18.x + SQLx. Concrete migration runner/tooling and migration-file conventions remain implementation standardization. | L5-B-02 | Non-blocking for L5; required before implementation standardization. | Govern through B02/F01 conventions; ADR only if material. |
-| `OD-003` | Define exact schema/runtime compatibility metadata and execution gate with `L5-E-04-005`. | L5-B-02 / L5-E-04 | Does not block Draft; required before release implementation. | Cross-specification technical contract. |
-| `OD-004` | Define destructive-migration recovery evidence and restore/PITR integration once `L5-E-03-*` is stabilized. | L5-B-02 / L5-E-03 | Does not block Draft; required before destructive production migrations. | E03/B02 recovery mapping and validation. |
+| `OD-003` | Define exact schema/runtime compatibility metadata and execution gate with `L5-E-04-005`. | L5-B-02 / L5-E-04 | Non-blocking for Architecture Approved; required before release implementation. | Cross-specification technical contract. |
+| `OD-004` | Define destructive-migration recovery evidence and restore/PITR integration once `L5-E-03-*` is stabilized. | L5-B-02 / L5-E-03 | Non-blocking for Architecture Approved; required before destructive production migrations. | E03/B02 recovery mapping and validation. |
 
 ---
 
@@ -476,7 +476,7 @@ new forward corrective migration
 E03 governed recovery
 ```
 
-This specification remains `Review`; the reusable schema-evolution pattern is canonically established by `ADR-L5-0008`, while migration tooling/file conventions and peer implementation contracts remain non-blocking downstream design.
+Historical review note: the reusable schema-evolution pattern was canonically established by `ADR-L5-0008`; migration tooling/file conventions and peer implementation contracts remained non-blocking downstream design. The later targeted lifecycle-closure decision promoted this specification to Architecture Approved.
 
 ## 2026-09-22 Backend Readiness Group 2 Synchronization
 

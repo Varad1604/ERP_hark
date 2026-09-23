@@ -63,12 +63,12 @@ Define the technical client control plane that safely consumes authenticated con
 | `L5-G-01-001` | Architecture Approved | Non-authoritative client, context coordination, contract-consumption boundary, authoritative-state boundary, context-change isolation | Establishes the shared client invariants specialized here. |
 | `L5-G-01-002` | Architecture Approved | React + TypeScript + React Router Framework Mode, SPA-first static web artifact | Establishes the immediate browser runtime in which G01-003 controls are realized. |
 | G01 dependency-readiness decision 2026-09-15 | Architecture Approved | C01/D01/D02/A04 boundaries stable for G01 consumption | Authorizes consumption of the exact peer boundaries used here without promoting peer metadata. |
-| `L5-D-01-003` | current / Review | Authentication Session authority with custom credential API, secure server-side cookie session and governed MFA profile; token/session internals remain D01-owned | Client consumes session outcome/context but does not own or redefine Authentication Session mechanics. |
+| `L5-D-01-003` | v1.3.0 / Architecture Approved | Authentication Session authority with custom credential API, secure server-side cookie session and governed MFA profile; token/session internals remain D01-owned | Client consumes session outcome/context but does not own or redefine Authentication Session mechanics. |
 | `L5-D-02-001/004` | Architecture Approved | Authorization remains separate and every protected operation is server-enforced | Client visibility/capability state remains advisory only. |
-| `L5-A-04-001/002` | Review / stable boundary for G01 consumption | Tenant-rooted isolation, validated scope propagation, fail-closed mismatch | Client state must be partitioned and invalidated by protected scope. |
-| `L5-C-01-001/002/003` | Review / stable boundary for G01 consumption | Released contract boundary; synchronous execution; compatibility/error/idempotency ownership | Client consumes these semantics and shall not invent retries, compatibility or idempotency rules. |
+| `L5-A-04-001/002` | v1.1.0 / Architecture Approved | Tenant-rooted isolation, validated scope propagation, fail-closed mismatch | Client state must be partitioned and invalidated by protected scope. |
+| `L5-C-01-001/002/003` | v1.3.0 / Architecture Approved | Released contract boundary; synchronous execution; compatibility/error/idempotency ownership | Client consumes these semantics and shall not invent retries, compatibility or idempotency rules. |
 | `ADR-L5-0001` | Architecture Approved | Explicit trust boundaries, non-transitive trust and fail-closed protected crossing | Establishes the approval-level client security posture. |
-| `L5-D-03-001` | Review collaborator | Detailed trust/security baseline consistent with `ADR-L5-0001` | Collaboration reference only; not an approval dependency for G01-003. |
+| `L5-D-03-001` | v1.3.0 / Architecture Approved collaborator | Detailed trust/security baseline consistent with `ADR-L5-0001` | Collaboration reference only; not an approval dependency for G01-003. |
 | `ADR-L5-0015` | Architecture Approved | SPA-first static web client, online-first, no micro-frontends by default | Constrains web-specific state/session realization and prohibits offline authoritative mutation. |
 
 ### 3.2 Architecture Constraints
