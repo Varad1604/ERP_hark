@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-A-03 — Module, Dependency & Technical Boundary Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.1.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-23`  
 **Depends On:** `L5-A-01-001` v1.1.0 Architecture Approved; L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L2-A08_Module_Registry_Configuration_Workflows.md` v1.0.0 Locked; `L4-A-028` v1.0.1 Architecture Approved; `L4-A-029` v1.0.1 Architecture Approved; `L4-A-032` v1.0.1 Architecture Approved; SutraERP L1 Business Domain Architecture v2.1 Locked; `DEPENDENCY_MAP.md`.  
 **Referenced By:** `L5-A-03-002` and downstream technical composition architecture.  
