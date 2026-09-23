@@ -328,3 +328,8 @@ A future final-lock gate requires resolution or explicit governance authorizatio
 ## 2026-09-23 R3C Non-Human Principal Lifecycle
 
 `ADR-L5-0048 — Non-Human Technical Principal Lifecycle Profile` is Locked. It defines the D01 technical-principal lifecycle `Provisioned → Active ↔ Suspended → Retired`, with `Retired` terminal, while preserving D02 authorization and D03 credential/secret ownership. The next ADR allocation is `ADR-L5-0049`.
+
+
+## 2026-09-23 R3D D01 Targeted Revalidation
+
+R3D reconciles R3A/R3B/R3C IAM remediation, validates 136 canonical Section-A D01 relations, and promotes `L5-D-01-001…004` to Architecture Approved after HF-01…HF-15 PASS. The current corpus blocker population is 26. Final L5 Corpus Lock remains not authorized.
