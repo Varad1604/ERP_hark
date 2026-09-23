@@ -647,7 +647,7 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 ---
 
 # Recent Changes
-
+\n**2026-09-23 — L5 R4C remediation consolidation:** Consolidated validated R3D IAM and R4A/R4B operational-evidence/service-acceptance remediation on a fresh current-main branch. Current L5 living register: 105 total / 0 Draft / 43 Review / 29 Architecture Approved / 33 Locked / 22 blockers. Section-A traceability is the exact 139-row union of 136 D01 + 3 E05 relations with zero duplicate relation identities and current version bindings. ADR-L5-0048 remains Locked; 48 ADRs allocated; next ADR-L5-0049. Historical Batch-9 NO-LOCK remains historical and Final L5 Corpus Lock remains unauthorized.\n\n---\n\n
 **2026-09-22 — L5 Batch-9 final lock gate:** Completed the Full Production Validation & Lock-Readiness Programme. The final gate produced a NO-LOCK verdict: 105/105 specifications have current validation dispositions, but 30 Review specifications retain upstream authority/semantics blockers under HF-01/HF-14 and no distinct Final L5 Corpus Lock authorization exists. Lifecycle remains 0 Draft / 51 Review / 21 Architecture Approved / 33 Locked.
 
 ---
@@ -707,7 +707,7 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 ---
 
-**Last Updated:** 2026-09-22
+**Last Updated:** 2026-09-23
 
 **Repository:** SutraERP
 
