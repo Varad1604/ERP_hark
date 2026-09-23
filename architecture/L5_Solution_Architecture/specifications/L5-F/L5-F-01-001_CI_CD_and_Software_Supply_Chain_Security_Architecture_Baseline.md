@@ -9,7 +9,7 @@
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
 **Version:** `1.2.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-E-04-*`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*` where verification evidence is consumed; `L5-D-04-*`; `L5-E-05-*`; `L5-E-03-*` for backup/recovery ownership boundaries.  
 **Referenced By:** `L5-F-01-002`, `L5-F-01-003`, `L5-E-04-*`, downstream release and operations architecture.  
