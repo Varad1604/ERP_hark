@@ -9,10 +9,10 @@
 **Canonical Technical Responsibility:** User-account, service/workload/job/integration identity technical models without duplicating Person.  
 **Technical Architecture Owner:** L5-D-01 — IAM Architecture  
 **Assigned Author:** Devang  
-**Version:** `1.3.0`  
-**Status:** `Review`  
+**Version:** `1.4.0`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-23`  
-**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-01-001` current Review; `L4-A-004` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-008` v1.0.0 Draft; `L4-A-053` v1.0.0 Draft; `L2-A01` v1.0.0 Locked; `L2-A02` Locked; `L2-A03` Locked; `ADR-PLAT-AUTH-001` Approved.  
+**Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-01-001` current Review; `L4-A-004` v1.0.1 Architecture Approved; `L4-A-007` v1.0.1 Architecture Approved; `L4-A-008` v1.0.1 Architecture Approved; `L4-A-053` v1.0.1 Architecture Approved; `L2-A01` v1.0.0 Locked; `L2-A02` Locked; `L2-A03` Locked; `ADR-PLAT-AUTH-001` Approved.  
 **Referenced By:** Planned `L5-D-01-003`, `L5-D-01-004`, `L5-D-02-*`, `L5-A-08-*`, `L5-C-03-*`, and other technical consumers requiring an authenticated human or non-human principal context.  
 **Applicable ADRs:** `ADR-PLAT-AUTH-001`; `ADR-L5-0039`; `ADR-L5-0048`.
 
@@ -68,11 +68,11 @@ The specification also defines the technical boundary required to preserve attri
 | Source Level | Document / Decision | Version / Status | Exact Reference | What the Source Establishes | L5 Use |
 |---|---|---|---|---|---|
 | L5 Governance | `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md` | v1.1.0 / Architecture Approved | `L5-D-01-002` row | This specification owns user-account and service/workload/job/integration identity technical models without duplicating Person. | Establishes the canonical L5 responsibility and permits a distinct non-human technical-principal model. |
-| L4 | `L4-A-004_Person_Establishment_to_Active_Canonical_Identity.md` | v1.0.0 / Draft | `L4-A-004-BH-011`; §8 completion boundary | Active canonical Person/Identity references become available for governed downstream use without ownership transfer; A004 itself does not create User Account or authentication state. | Human principal binding consumes canonical upstream references and shall not reproduce Person/Identity truth. |
-| L4 | `L4-A-007_Eligible_Identity_to_Authenticated_Session_Availability.md` | v1.0.0 / Draft | `L4-A-007-BH-001`, `BH-002` | Authentication is bound to exactly one Tenant and canonical Identity and shall not proceed when User Account status does not permit authentication. | Requires D01-002 to provide unambiguous Tenant/Identity/account technical principal context and source-governed eligibility to D01-003. |
-| L4 | `L4-A-007_Eligible_Identity_to_Authenticated_Session_Availability.md` | v1.0.0 / Draft | `L4-A-007-BH-008`, `BH-009` | Successful authentication exposes authenticated context to Authorization without granting permission and preserves attributable authentication evidence. | Requires a principal context that is identifiable and attributable but carries no authorization grant. |
-| L4 | `L4-A-008_Lost_or_Invalid_Credential_to_Restored_Authentication_Capability.md` | v1.0.0 / Draft | `L4-A-008-BH-001`, `BH-004`, `BH-008` | Recovery requires resolvable Tenant/Identity/User Account context; replacement Credential handling does not change Person, Identity or User Account lifecycle; evidence excludes Credential values. | Reinforces separation between authoritative account identity and D01-003 credential state. |
-| L4 | `L4-A-053_Person_Institutional_Exit_to_Governed_Identity_Closure.md` | v1.0.0 / Draft | `L4-A-053-BH-001`, `BH-002`, `BH-004` | Closure resolves Person/Identity/User Account references, disables login capability and prevents authentication while preserving canonical identity ownership and historical references. | D01-002 must preserve stable principal/reference identity while allowing D01-004/D01-003 to enforce source-governed login consequences. |
+| L4 | `L4-A-004_Person_Establishment_to_Active_Canonical_Identity.md` | v1.0.1 / Architecture Approved | `L4-A-004-BH-011`; §8 completion boundary | Active canonical Person/Identity references become available for governed downstream use without ownership transfer; A004 itself does not create User Account or authentication state. | Human principal binding consumes canonical upstream references and shall not reproduce Person/Identity truth. |
+| L4 | `L4-A-007_Eligible_Identity_to_Authenticated_Session_Availability.md` | v1.0.1 / Architecture Approved | `L4-A-007-BH-001`, `BH-002` | Authentication is bound to exactly one Tenant and canonical Identity and shall not proceed when User Account status does not permit authentication. | Requires D01-002 to provide unambiguous Tenant/Identity/account technical principal context and source-governed eligibility to D01-003. |
+| L4 | `L4-A-007_Eligible_Identity_to_Authenticated_Session_Availability.md` | v1.0.1 / Architecture Approved | `L4-A-007-BH-008`, `BH-009` | Successful authentication exposes authenticated context to Authorization without granting permission and preserves attributable authentication evidence. | Requires a principal context that is identifiable and attributable but carries no authorization grant. |
+| L4 | `L4-A-008_Lost_or_Invalid_Credential_to_Restored_Authentication_Capability.md` | v1.0.1 / Architecture Approved | `L4-A-008-BH-001`, `BH-004`, `BH-008` | Recovery requires resolvable Tenant/Identity/User Account context; replacement Credential handling does not change Person, Identity or User Account lifecycle; evidence excludes Credential values. | Reinforces separation between authoritative account identity and D01-003 credential state. |
+| L4 | `L4-A-053_Person_Institutional_Exit_to_Governed_Identity_Closure.md` | v1.0.1 / Architecture Approved | `L4-A-053-BH-001`, `BH-002`, `BH-004` | Closure resolves Person/Identity/User Account references, disables login capability and prevents authentication while preserving canonical identity ownership and historical references. | D01-002 must preserve stable principal/reference identity while allowing D01-004/D01-003 to enforce source-governed login consequences. |
 | L2 | `L2-A01_Platform_Tenant_Foundation_Architecture.md` | v1.0.0 / Locked | `P4 Tenant Isolation`, `P5 Context-Driven Execution`, `AP-06 Tenant Awareness`; shared security governance for non-human identities | Every operation executes inside one Tenant; non-human identities are explicitly modeled and Tenant-aware; shared platform security contracts govern service-to-service trust. | Establishes Tenant binding for all human and non-human principal records and forbids context-free technical identities. |
 | L2 | `L2-A02_Person_and_Identity_Workflows.md` | Locked | `Canonical Ownership Amendment — INT-301`; `Canonical Person–Identity Establishment and Activation Sequencing Decision — 2026-08-20`; `Canonical Ownership` | A02 owns Person, Identity and User Account; User Account is created only after Person/Identity activation where login is required; Credential/session/MFA/provider remain A03-owned. | D01-002 binds to, but never becomes, canonical owner of human Person/Identity/User Account business truth. |
 | L2 | `L2-A03_Authentication_Workflows.md` | Locked | `Out of Scope`; `Canonical Ownership`; non-human identity/service-account security rules | Authentication owns credential/session/provider execution; service accounts and machine identities are non-human and Tenant-aware; API credentials are for system integrations and are not human login credentials. | Requires hard separation between human account principals, non-human principals and their D01-003 credential mechanisms. |
@@ -391,7 +391,7 @@ No numeric credential lifetime, inactivity period, session duration, identity-re
 
 | Item ID | Item | Classification | Missing / Conflicting Source | Decision Authority | Blocking? | Required Resolution |
 |---|---|---|---|---|---|---|
-| OD-001 | Material L4 sources used for human principal/account behavior (`L4-A-004`, `L4-A-007`, `L4-A-008`, `L4-A-053`) remain Draft. | Upstream approval | L5 Validation Standard allows Draft L4 for controlled planning but not approval-level authority without governance authorization. | L4 / repository architecture governance | **Yes for Architecture Approved; No for Draft authoring** | Approve the material L4 behavior or issue explicit approval-level governance authorization before this specification advances beyond Draft. |
+| OD-001 | Material human-principal/account L4 authority was previously Draft. | **Resolved** | R3A/R3B approval decisions; R3D traceability validation | L4/repository governance | **No** | Closed: applicable L4 parents are Architecture Approved and current-version relations are validated. |
 | OD-002 | D01-001 and material A04/B02/D03/D04/C01/C02 peers are now canonical repository dependencies; later material changes still require impact review. | Dependency | Current canonical repository state | Lead Architect + respective L5 owners | **No standalone blocker after this reconciliation** | Maintain impact review; Draft-L4 authority under OD-001 remains the approval blocker. |
 | OD-003 | Non-human principal lifecycle/provisioning authority was previously unresolved. | Resolved L5-owned architecture decision | `ADR-L5-0048` | D01 / Lead Architect | **No** | Closed by the canonical D01 technical-principal lifecycle and event/ownership model. |
 | OD-004 | **Partially resolved:** Keycloak 26.x is canonical and non-human service/workload identity uses the governed `ADR-L5-0039` profile. Exact federation/provider-specific details remain D01/D03/profile-governed where not otherwise selected. | ADR / Technology | `ADR-L5-0024`; `ADR-L5-0039` | Applicable canonical owners | Product/profile resolved; remaining provider details governed | Preserve D01/D02 ownership. |
@@ -439,7 +439,7 @@ No numeric credential lifetime, inactivity period, session duration, identity-re
 
 ### Open / Blocking Items
 
-- `OD-001` — Draft L4 approval gate.
+- `OD-001` — **resolved by R3A/R3B approval + R3D validation**.
 - `OD-002` — working D01 baseline and peer-L5 stabilization gate.
 - `OD-003` — **resolved by ADR-L5-0048**.
 - `OD-004` — material technology/ADR selections intentionally deferred.
@@ -471,3 +471,14 @@ with `Retired` terminal.
 The registry also owns the technical lifecycle facts `TechnicalPrincipalProvisioned`, `TechnicalPrincipalActivated`, `TechnicalPrincipalSuspended`, `TechnicalPrincipalResumed`, and `TechnicalPrincipalRetired`.
 
 This lifecycle does not create Person/User Account records and does not grant authority. D02 remains authorization owner; D01-003/D03 remain authentication/credential/secret owners; D01-004 coordinates lifecycle execution and reconciliation.
+
+
+## 2026-09-23 R3D Targeted Revalidation
+
+**Review result:** PASS — Architecture Approved.
+
+The R3D review revalidated this specification against the current approved R3A/R3B L4 parent versions, the Locked R3B upstream amendments, applicable Locked/Approved ADRs including `ADR-L5-0048`, and the D01 peer set.
+
+No applicable HF-01…HF-15 failure remains. Exact L4 BH→L5 relations are recorded in the canonical Section-A traceability partition under the R3D validation decision.
+
+This approval does not authorize Final L5 Corpus Lock and does not resolve unrelated intentionally deferred implementation/profile choices.
