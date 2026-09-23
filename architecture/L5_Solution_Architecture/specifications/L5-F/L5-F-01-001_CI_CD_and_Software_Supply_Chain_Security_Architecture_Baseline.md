@@ -164,7 +164,7 @@ Capacity dimensions include concurrent pipelines, queue time, build duration, ar
 | OD-001 | **Resolved:** GitHub Actions + GHCR + Cosign/Sigstore. | Locked by `ADR-L5-0030` |
 | OD-002 | Artifact retention durations and numeric pipeline SLOs | No for Review |
 | OD-003 | Final F02 machine-readable gate contract | No for Review; align before approval if material |
-| OD-004 | Material E04/D03 peers are now Review; Stage-3 downstream consumption is authorized, but Architecture-Approval-level reliance still requires their governed maturity/authority where material. | Yes for lifecycle promotion where material |
+| OD-004 | **Resolved for peer maturity:** material E04 and D03 peers are Architecture Approved after R6/R7. Later material changes still require impact review. | No current blocker; preserve dependency impact review |
 | OD-005 | Exact runner isolation/ephemerality/network-egress implementation | No for Review; product/topology selection remains governed |
 
 ## 10. Traceability Summary
