@@ -6,10 +6,10 @@
 **Domain:** Enterprise Dashboard  
 **Realizes Scenario:** L3-H-048  
 **Primary Business Owner:** Enterprise Dashboard  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
+**Last Updated:** 2026-09-23  
 **Depends On:** L3-H-048; L2-H07 — Enterprise Dashboard Workflows; `L2-H07_Dashboard_Governance_Lifecycle_Amendment_2026-08-26.md`; A04 authorization  
 **Referenced By:** None yet
 
@@ -51,3 +51,7 @@ Rejected or unpublishable Dashboards preserve evidence; later retirement/restora
 
 ## 10. Open Issues / Deferred Design
 Former Dashboard rejection/authority/event gaps are resolved upstream.
+
+## Canonical Validation Note
+
+This specification passed the scoped R2A hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R2A_Reporting_Projection_Authority_Architecture_Approval_Decision_2026-09-23.md`. Existing non-blocking upstream gaps remain bounded exactly as recorded; this approval does not invent actors, lifecycle states, reporting rules, events, publishers, implementation design, or dashboard UI/composition.
