@@ -7,11 +7,11 @@
 **Domain:** Workflow Engine  
 **Realizes Scenario:** L3-A-014  
 **Primary Business Owner:** Workflow Engine  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** `L3-A-014_Workflow_Definition_to_Activated_Orchestration_Availability.md`; `L2-A05_Workflow_Engine_Workflows.md`; `L2-A04_Authorization_and_Policy_Workflows.md`; `L2-A06_Event_Infrastructure_Workflows.md`; `L2-A07_Audit_Infrastructure_Workflows.md`  
+**Last Updated:** 2026-09-23  
+**Depends On:** `L3-A-014_Workflow_Definition_to_Activated_Orchestration_Availability.md`; `L2-A05_Workflow_Engine_Workflows.md`; `L2-A05_Workflow_Definition_and_Version_Governance_Authority_Amendment_2026-09-23.md`; `L2-A04_Authorization_and_Policy_Workflows.md`; `L2-A06_Event_Infrastructure_Workflows.md`; `L2-A07_Audit_Infrastructure_Workflows.md`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -46,7 +46,7 @@ The system shall preserve the exact Workflow Engine publisher for `WorkflowDefin
 
 ## 6. Failure / Rejection / Continuation
 
-Incomplete definition information, failed mandatory validation, absent governance approval, incomplete publication or incomplete activation shall prevent the version from being treated as activated. Partial publication is prohibited. No undefined approval or activation actor is inferred.
+Incomplete definition information, failed mandatory validation, absent governance approval, incomplete publication or incomplete activation shall prevent the version from being treated as activated. Partial publication is prohibited. Workflow Governance Authority supplies the governed approval/publication/activation authority; no universal named institutional actor is inferred.
 
 ## 7. Audit & Evidence Behavior
 
@@ -66,4 +66,9 @@ Completion requires a valid Workflow Definition, successful mandatory validation
 
 ## 10. Open Issues / Deferred Design
 
-The parent leaves the canonical governance-approval actor, publication/activation authority and definition-lifecycle command contracts undefined. This Draft requires the authoritative outcomes but does not assign unsupported actors or commands.
+The prior authority/operation gap is resolved by the Locked L2-A05 Workflow Definition and Version Governance Authority amendment. L4 realizes the authoritative outcomes without defining API/message contracts.
+
+
+## 2026-09-23 Architecture Approval
+
+Promoted to Architecture Approved after reconciliation with L3-A-014 v1.1 and the Locked L2-A05 Workflow Definition and Version Governance Authority amendment. Workflow Engine remains lifecycle owner and the Workflow-Owning Domain retains business-process semantics.
