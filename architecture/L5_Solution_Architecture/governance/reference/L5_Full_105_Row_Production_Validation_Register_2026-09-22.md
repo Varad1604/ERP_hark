@@ -28,8 +28,8 @@ It does not itself promote lifecycle state, approve Draft L4 authority, create a
 |---|---:|
 | Canonical specifications | 105 |
 | Draft | 0 |
-| Review | 21 |
-| Architecture Approved | 51 |
+| Review | 16 |
+| Architecture Approved | 56 |
 | Locked | 33 |
 | Blocked — upstream authority/semantics | 0 |
 | Pass with non-blocking deferrals — remain Review | 16 |
@@ -112,11 +112,11 @@ It does not itself promote lifecycle state, approve Draft L4 authority, create a
 | L5-D-02-005 | L5-D | 1.0.1 | Architecture Approved | 7B | PASS | Preserved; no Batch-7 relation-state promotion | PASS — no new ADR required | PASS | None | PASS — REMAINS ARCHITECTURE APPROVED | Lock requires separate authorization | No change unless Batch 9 governance authorizes lock |
 | L5-D-02-006 | L5-D | 1.2.1 | Architecture Approved | 7B | PASS | Preserved; no Batch-7 relation-state promotion | PASS — no new ADR required | PASS | None | PASS — REMAINS ARCHITECTURE APPROVED | Lock requires separate authorization | No change unless Batch 9 governance authorizes lock |
 | L5-D-02-007 | L5-D | 1.0.1 | Architecture Approved | 7B | PASS | Preserved; no Batch-7 relation-state promotion | PASS — no new ADR required | PASS | None | PASS — REMAINS ARCHITECTURE APPROVED | Lock requires separate authorization | No change unless Batch 9 governance authorizes lock |
-| L5-D-03-001 | L5-D | 1.2.2 | Review | 4 | PASS | No direct L4 relation required by D03 promotion gate | PASS — no new ADR required | PASS | None blocking | PASS — ARCHITECTURE APPROVAL ELIGIBLE; REMAINS REVIEW | Architecture Approval eligible | Separate Lead Architect lifecycle promotion if authorized |
-| L5-D-03-002 | L5-D | 1.2.2 | Review | 4 | PASS | No direct L4 relation required by D03 promotion gate | PASS — no new ADR required | PASS | None blocking | PASS — ARCHITECTURE APPROVAL ELIGIBLE; REMAINS REVIEW | Architecture Approval eligible | Separate Lead Architect lifecycle promotion if authorized |
-| L5-D-03-003 | L5-D | 1.2.2 | Review | 4 | PASS | No direct L4 relation required by D03 promotion gate | PASS — no new ADR required | PASS | None blocking | PASS — ARCHITECTURE APPROVAL ELIGIBLE; REMAINS REVIEW | Architecture Approval eligible | Separate Lead Architect lifecycle promotion if authorized |
-| L5-D-03-004 | L5-D | 1.2.2 | Review | 4 | PASS | No direct L4 relation required by D03 promotion gate | PASS — no new ADR required | PASS | None blocking | PASS — ARCHITECTURE APPROVAL ELIGIBLE; REMAINS REVIEW | Architecture Approval eligible | Separate Lead Architect lifecycle promotion if authorized |
-| L5-D-03-005 | L5-D | 1.2.2 | Review | 4 | PASS | No direct L4 relation required by D03 promotion gate | PASS — no new ADR required | PASS | None blocking | PASS — ARCHITECTURE APPROVAL ELIGIBLE; REMAINS REVIEW | Architecture Approval eligible | Separate Lead Architect lifecycle promotion if authorized |
+| L5-D-03-001 | L5-D | 1.3.0 | Architecture Approved | R7 | PASS — prior D03 HF-01…HF-15 gate retained | No direct L4 relation required by D03 promotion gate | PASS — no new ADR required | PASS | None blocking | PASS — ARCHITECTURE APPROVED | Lock requires separate authorization | Include in R8 final-lock readiness audit |
+| L5-D-03-002 | L5-D | 1.3.0 | Architecture Approved | R7 | PASS — prior D03 HF-01…HF-15 gate retained | No direct L4 relation required by D03 promotion gate | PASS — no new ADR required | PASS | None blocking | PASS — ARCHITECTURE APPROVED | Lock requires separate authorization | Include in R8 final-lock readiness audit |
+| L5-D-03-003 | L5-D | 1.3.0 | Architecture Approved | R7 | PASS — prior D03 HF-01…HF-15 gate retained | No direct L4 relation required by D03 promotion gate | PASS — no new ADR required | PASS | None blocking | PASS — ARCHITECTURE APPROVED | Lock requires separate authorization | Include in R8 final-lock readiness audit |
+| L5-D-03-004 | L5-D | 1.3.0 | Architecture Approved | R7 | PASS — prior D03 HF-01…HF-15 gate retained | No direct L4 relation required by D03 promotion gate | PASS — no new ADR required | PASS | None blocking | PASS — ARCHITECTURE APPROVED | Lock requires separate authorization | Include in R8 final-lock readiness audit |
+| L5-D-03-005 | L5-D | 1.3.0 | Architecture Approved | R7 | PASS — prior D03 HF-01…HF-15 gate retained | No direct L4 relation required by D03 promotion gate | PASS — no new ADR required | PASS | None blocking | PASS — ARCHITECTURE APPROVED | Lock requires separate authorization | Include in R8 final-lock readiness audit |
 | L5-D-04-001 | L5-D | 1.2.0 | Locked | 7B | PASS | W-C02 Validated rows current-bound; broader relations preserved/Specified as applicable | PASS — no new ADR required | PASS | None | PASS — REMAINS LOCKED | Locked; no relock required | Maintain under governed change control |
 | L5-D-04-002 | L5-D | 1.1.2 | Locked | 7B | PASS | Preserved; no Batch-7 relation-state promotion | PASS — no new ADR required | PASS | None | PASS — REMAINS LOCKED | Locked; no relock required | Maintain under governed change control |
 | L5-D-04-003 | L5-D | 1.0.3 | Architecture Approved | 7B | PASS | Preserved; no Batch-7 relation-state promotion | PASS — no new ADR required | PASS | None | PASS — REMAINS ARCHITECTURE APPROVED | Lock requires separate authorization | No change unless Batch 9 governance authorizes lock |
@@ -152,8 +152,8 @@ It does not itself promote lifecycle state, approve Draft L4 authority, create a
 
 ```text
 Draft                  0
-Review                21
-Architecture Approved 51
+Review                16
+Architecture Approved 56
 Locked                 33
 Total                 105
 ```
@@ -179,7 +179,7 @@ Batch 7C  7
 Total    54 / 54
 
 Whole corpus:
-21 + 84 = 105 / 105
+16 + 89 = 105 / 105
 ```
 
 Every canonical specification therefore has exactly one current validation-batch disposition.
@@ -242,3 +242,20 @@ Total                          105
 ```
 
 R6 does not authorize Final L5 Corpus Lock. R7 must reconcile lifecycle/navigation/current-state records, followed by R8 final-lock re-entry readiness audit.
+
+
+## R7 Lifecycle Governance Reconciliation — 2026-09-23
+
+R7 reviewed the 21 remaining Review rows after R6.
+
+```text
+D03 Architecture-Approval eligible rows promoted    5
+Pass/non-blocking Review rows preserved            16
+Current Review                                     16
+Current Architecture Approved                      56
+Current Locked                                     33
+Current blockers                                    0
+Total                                             105
+```
+
+R7 does not promote the remaining 16 Review specifications because their prior validation explicitly preserved separate lifecycle decisions and/or non-blocking deferrals. PASS is not treated as automatic Architecture Approved. Final L5 Corpus Lock remains a separate explicit governance action.
