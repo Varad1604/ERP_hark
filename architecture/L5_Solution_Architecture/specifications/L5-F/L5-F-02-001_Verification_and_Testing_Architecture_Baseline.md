@@ -69,9 +69,9 @@ The baseline exists so that solution-wide verification remains traceable and com
 | `L5_Validation_Standard.md` | v1.0.1 / Locked | §§2–5 | L5 CRs must be implementable, objectively verifiable and traceable; false realization/unsupported architecture is a hard-fail concern. | Establishes conformance integrity. |
 | L4 Governance / Template | Locked | BH model; evidence; observable completion | L4 BHs are testable implementation-independent system responsibilities. | Defines behavioral verification source. |
 | Current canonical L5 corpus | mixed governed statuses | applicable `CR-*` | Each L5 spec exposes objective architecture conformance requirements. | Defines architecture-conformance verification source. |
-| `L5-F-01-002` | v1.0.1 / Review | §5.5 Promotion Gates | Release eligibility consumes F02 verification evidence but F01 owns promotion/release decisions. | Defines output-consumer boundary. |
-| `L5-C-04-*` | Review | current main | Notification/communication architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
-| `L5-B-06-*` | Review | current main | Reporting/analytics/projection architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
+| `L5-F-01-002` | v1.3.0 / Architecture Approved | §5.5 Promotion Gates | Release eligibility consumes F02 verification evidence but F01 owns promotion/release decisions. | Defines output-consumer boundary. |
+| `L5-C-04-*` | Architecture Approved | current canonical state | Notification/communication architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
+| `L5-B-06-*` | Architecture Approved | current canonical state | Reporting/analytics/projection architecture has been authored and exposes verification targets. | Stage-6 verification target population; no ownership transfer. |
 
 The current F02-001 consolidation does not convert any Draft L4 source or Draft peer L5 specification into an approved/locked source. It only establishes the verification architecture capable of evaluating the exact requirements those sources authoritatively expose at their governed status.
 
