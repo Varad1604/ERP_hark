@@ -8,8 +8,8 @@
 **Decision Date:** 2026-09-23  
 **Batch Result:** PASS  
 **Merge Gate:** PASS  
-**Repository State:** NOT YET MERGED  
-**Domain A:** COMPLETE — PENDING MERGE  
+**Repository State:** PASS / COMPLETE / MERGED  
+**Domain A:** COMPLETE  
 
 ---
 
@@ -359,8 +359,8 @@ Domain A is now fully accounted for across the two Platform / Administration bat
 | Cohort | Workspaces | Workflows | Scenarios | State |
 |---|---|---:|---:|---|
 | Batch 3 | W-A01…W-A05 | 17 | 26 | PASS / COMPLETE / MERGED |
-| Batch 4 | W-A06…W-A10 | 18 | 36 | PASS / PENDING MERGE |
-| **Domain A** | **W-A01…W-A10** | **35 / 35** | **62 / 62** | **COMPLETE — PENDING BATCH-4 MERGE** |
+| Batch 4 | W-A06…W-A10 | 18 | 36 | PASS / COMPLETE / MERGED |
+| **Domain A** | **W-A01…W-A10** | **35 / 35** | **62 / 62** | **COMPLETE** |
 
 Audit result:
 
@@ -373,7 +373,7 @@ Audit result:
 - no NOT-REQUIRED or PROHIBITED row gained an operation path;
 - Batch-3 regressions remain green.
 
-Domain A completion is therefore valid at the Batch-4 merge gate, but canonical repository completion remains pending actual merges.
+Domain A is canonically complete after the validated Batch-4 frontend and Architecture merges.
 
 ---
 
@@ -411,8 +411,8 @@ Domain A completion is therefore valid at the Batch-4 merge gate, but canonical 
 | Independent audit | PASS |
 | Domain-A workflows | PASS — 35/35 |
 | Domain-A scenarios | PASS — 62/62 |
-| Frontend PR merged | **NO — explicit authorization required** |
-| Architecture evidence PR merged | **NO — explicit authorization required** |
+| Frontend PR merged | **YES — PR #29 as `52b76e4cffe58aff4ce4641196c5454bbe3d0639`** |
+| Architecture evidence PR merged | **YES — PR #91 as `cd230fcb31ebea0a2f49da27ea509ff73b05c89e`** |
 
 ---
 
@@ -422,9 +422,9 @@ Domain A completion is therefore valid at the Batch-4 merge gate, but canonical 
 STAGE 5 BATCH 4 — PASS
 STATUS — ARCHITECTURE APPROVED
 MERGE GATE — PASS
-REPOSITORY STATE — NOT YET MERGED
-DOMAIN A — COMPLETE — PENDING MERGE
-BATCH 5 — NOT STARTED
+REPOSITORY STATE — PASS / COMPLETE / MERGED
+DOMAIN A — COMPLETE
+BATCH 5 — ENTRY-READY / NOT STARTED
 ```
 
-**Next action:** await explicit merge authorization. Do not start Batch 5.
+**Next action:** Batch 5 is ENTRY-READY but has not started. Begin Batch 5 only under its own explicit execution instruction.
