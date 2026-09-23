@@ -7,10 +7,10 @@
 **Domain:** Financial Reporting & Analytics  
 **Realizes Scenario:** L3-F-077  
 **Primary Business Owner:** Financial Reporting & Analytics  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-30  
+**Last Updated:** 2026-09-23  
 **Depends On:** `L3-F-077_Financial_Facts_to_Published_KPI_and_Dashboard_Projection.md`; L2-F13 — Financial Reporting & Analytics Workflows; L2-H07 — Enterprise Dashboard Workflows  
 **Referenced By:** None yet
 
@@ -73,3 +73,7 @@ The parent explicitly treats the absent human-actor detail and absent KPI-result
 ## 10. Open Issues / Deferred Design
 
 No L4 correctness blocker remains. The parent retains non-blocking upstream actor and result/projection lifecycle clarifications if future scenarios require them. APIs, data models, calculation implementation, event transport, technical authorization and dashboard UI/composition remain deferred.
+
+## Canonical Validation Note
+
+This specification passed the scoped R2A hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R2A_Reporting_Projection_Authority_Architecture_Approval_Decision_2026-09-23.md`. Existing non-blocking upstream gaps remain bounded exactly as recorded; this approval does not invent actors, lifecycle states, reporting rules, events, publishers, implementation design, or dashboard UI/composition.
