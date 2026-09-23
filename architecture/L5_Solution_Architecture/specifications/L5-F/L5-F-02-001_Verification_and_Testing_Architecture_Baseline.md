@@ -9,8 +9,8 @@
 **Canonical Technical Responsibility:** Solution-wide verification strategy and quality gates traceable to L4 behavior.  
 **Technical Architecture Owner:** L5-F-02 — Verification & Testing Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.0.3`  
-**Status:** `Review`  
+**Version:** `1.1.0`  
+**Status:** `Architecture Approved`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5_Governance_and_Architecture_Standard.md`; `L5_Solution_Architecture_Specification_Template_v1.0.md` v1.0.3; `L5_Validation_Standard.md` v1.0.1; `L5_Candidate_Document_Corpus_Register_105_2026-09-09.md` v1.1.0; `L5_Architecture_Family_Register.md`; `L5_Dependency_Gated_Parallel_Authoring_Execution_Timeline_2026-09-09.md`; `L5_L4_to_L5_Traceability_Methodology.md`; `L5_Technology_Selection_and_ADR_Methodology.md`; `L5_ADR_Register.md`; `L5_Broad_Authoring_Authorization_105_2026-09-09.md`; `L5_Pallav_Stage5_Final_Lock_Decision_2026-09-16.md`; applicable current canonical L4 System Behavioral Obligations and L5 Architecture Conformance Requirements.  
 **Referenced By:** `L5-F-02-002`; `L5-F-02-003`; `L5-F-02-004`; `L5-F-01-002`; authorized architecture/release/operational consumers of verification evidence.  
@@ -455,7 +455,7 @@ No numeric coverage, pass-rate, execution-time, retention, availability or capac
 |---|---|---|---|---|
 | `OD-001` | Canonical repository `Validated` state for the selective BH→F02-001 relations is not established by this Draft. | Governance | No for Draft; required for canonical relation validation | Authorized traceability review records exact version-bound relation/evidence for the BH/L5 pairs in Section 10. |
 | `OD-002` | Complete canonical repository-level BH→F02-001 relation coverage is not materialized in this Draft. | Dependency / Governance | No | Populate/review the canonical repository traceability source and keep this document's selective mappings synchronized. |
-| `OD-003` | C04/B06 are now canonical Review dependencies; their material upstream L4 authority remains unapproved. | Peer maturity | No for downstream verification; may affect lifecycle-promotion claims | Preserve their current Review boundaries and re-check if their authority changes. |
+| `OD-003` | C04/B06 are Architecture Approved after R6; their upstream authority/traceability blockers are resolved. | Peer maturity | No for downstream verification; may affect lifecycle-promotion claims | Preserve their current Review boundaries and re-check if their authority changes. |
 | `OD-004` | Exact testing tools/frameworks, evidence serialization, physical verification-result store and numeric quality targets remain unselected unless separately governed. | Technology / Operations | No | Resolve only through the canonical owner, approved ADR/technology governance or approved operational requirements when made normative. |
 | `OD-005` | **Resolved:** the four canonical F02 specifications are synchronized on `main` and Stage-6 is closed for downstream consumption. | Repository synchronization | Closed | Maintain impact revalidation on material change. |
 
@@ -473,16 +473,16 @@ The following selective mappings preserve the existing canonical F02-001 traceab
 
 | L4 Specification / Version | Exact BH | Material `L5-F-02-001` Contribution | L5 Evidence |
 |---|---|---|---|
-| `L4-C-001` v1.0.0 | `L4-C-001-BH-004` | Binds the activation BH and exact target version into a verification obligation and exposes a gateable conformance result for the required transition. | §5 Verification Applicability / Obligation / Gate semantics; `AD-001`; `AD-004`; `CR-001`–`CR-006` |
-| `L4-C-001` v1.0.0 | `L4-C-001-BH-005` | Provides requirement/target binding and non-conformance semantics needed to prove that invalid activation is prevented rather than silently accepted. | §5 Result Normalizer / Evidence Binder; `AD-003`; `AD-004`; `CR-003`–`CR-006`; `CR-011` |
-| `L4-C-001` v1.0.0 | `L4-C-001-BH-006` | Provides evidence/result binding for verification that the canonical `StudentActivated` publication obligation occurred for the evaluated target without transferring event ownership. | §5 Evidence Binder / Result Handoff; `AD-006`; `CR-003`; `CR-009` |
-| `L4-F-035` v1.0.0 | `L4-F-035-BH-002` | Provides objective verification-obligation, result and gate semantics for the exact allocation-equality condition while leaving the Finance rule/formula upstream-owned. | §5 Obligation / Result / Gate semantics; `AD-001`; `AD-004`; `AD-006`; `CR-001`–`CR-006` |
-| `L4-F-035` v1.0.0 | `L4-F-035-BH-006` | Provides attributable verification-result/evidence binding for the required canonical allocation-event publication without becoming the event publisher. | §5 Evidence Binder / Result Handoff; `AD-006`; `CR-003`; `CR-009` |
-| `L4-F-035` v1.0.0 | `L4-F-035-BH-008` | Provides the common evidence-association/currentness model needed to demonstrate that required evidence is attributable to the exact requirement, target and execution context. | §5 Evidence Binder / Evidence Currentness; `AD-005`; `CR-002`, `CR-003`, `CR-006`, `CR-007` |
-| `L4-F-001` v1.0.1 | `L4-F-001-BH-005` | Provides verification-obligation and gate semantics for the BH's validation conditions and distinguishes demonstrated conformance from inability to establish verification. | §5 Applicability / Result / Gate semantics; `AD-003`; `AD-004`; `CR-001`, `CR-004`–`CR-006`, `CR-011` |
-| `L4-F-001` v1.0.1 | `L4-F-001-BH-006` | Provides attributable non-conformance/conformance evidence semantics for duplicate-prevention verification against the exact target version. | §5 Result Normalizer / Evidence Binder; `AD-003`; `CR-002`–`CR-004`; `CR-011` |
-| `L4-F-001` v1.0.1 | `L4-F-001-BH-009` | Provides evidence/result binding for verification of the BH's canonical publication milestones without acquiring Finance event ownership. | §5 Evidence Binder / Result Handoff; `AD-006`; `CR-003`; `CR-009` |
-| `L4-F-001` v1.0.1 | `L4-F-001-BH-011` | Provides common verification-result/evidence handoff semantics for proving downstream availability while preserving Student Charge ownership and consumer boundaries. | §5 Gate Evaluator / Result Handoff; `AD-006`; `CR-008`; `CR-009` |
+| `L4-C-001` v1.0.1 | `L4-C-001-BH-004` | Binds the activation BH and exact target version into a verification obligation and exposes a gateable conformance result for the required transition. | §5 Verification Applicability / Obligation / Gate semantics; `AD-001`; `AD-004`; `CR-001`–`CR-006` |
+| `L4-C-001` v1.0.1 | `L4-C-001-BH-005` | Provides requirement/target binding and non-conformance semantics needed to prove that invalid activation is prevented rather than silently accepted. | §5 Result Normalizer / Evidence Binder; `AD-003`; `AD-004`; `CR-003`–`CR-006`; `CR-011` |
+| `L4-C-001` v1.0.1 | `L4-C-001-BH-006` | Provides evidence/result binding for verification that the canonical `StudentActivated` publication obligation occurred for the evaluated target without transferring event ownership. | §5 Evidence Binder / Result Handoff; `AD-006`; `CR-003`; `CR-009` |
+| `L4-F-035` v1.0.1 | `L4-F-035-BH-002` | Provides objective verification-obligation, result and gate semantics for the exact allocation-equality condition while leaving the Finance rule/formula upstream-owned. | §5 Obligation / Result / Gate semantics; `AD-001`; `AD-004`; `AD-006`; `CR-001`–`CR-006` |
+| `L4-F-035` v1.0.1 | `L4-F-035-BH-006` | Provides attributable verification-result/evidence binding for the required canonical allocation-event publication without becoming the event publisher. | §5 Evidence Binder / Result Handoff; `AD-006`; `CR-003`; `CR-009` |
+| `L4-F-035` v1.0.1 | `L4-F-035-BH-008` | Provides the common evidence-association/currentness model needed to demonstrate that required evidence is attributable to the exact requirement, target and execution context. | §5 Evidence Binder / Evidence Currentness; `AD-005`; `CR-002`, `CR-003`, `CR-006`, `CR-007` |
+| `L4-F-001` v1.0.2 | `L4-F-001-BH-005` | Provides verification-obligation and gate semantics for the BH's validation conditions and distinguishes demonstrated conformance from inability to establish verification. | §5 Applicability / Result / Gate semantics; `AD-003`; `AD-004`; `CR-001`, `CR-004`–`CR-006`, `CR-011` |
+| `L4-F-001` v1.0.2 | `L4-F-001-BH-006` | Provides attributable non-conformance/conformance evidence semantics for duplicate-prevention verification against the exact target version. | §5 Result Normalizer / Evidence Binder; `AD-003`; `CR-002`–`CR-004`; `CR-011` |
+| `L4-F-001` v1.0.2 | `L4-F-001-BH-009` | Provides evidence/result binding for verification of the BH's canonical publication milestones without acquiring Finance event ownership. | §5 Evidence Binder / Result Handoff; `AD-006`; `CR-003`; `CR-009` |
+| `L4-F-001` v1.0.2 | `L4-F-001-BH-011` | Provides common verification-result/evidence handoff semantics for proving downstream availability while preserving Student Charge ownership and consumer boundaries. | §5 Gate Evaluator / Result Handoff; `AD-006`; `CR-008`; `CR-009` |
 
 ### F02 Family Decomposition
 
@@ -499,10 +499,10 @@ The following selective mappings preserve the existing canonical F02-001 traceab
 ### Current Stage-6 Context
 
 - Stage 5 C03/E03: Locked and stable for downstream verification use.
-- C04/B06: Authored on `main`, currently Review.
-- F02-001: reconciled Stage-6 baseline, current Review.
-- F02-002/003/004: authored and family-reconciled as Review child specifications.
-- The four-spec F02 family is canonical on `main`; governed lifecycle promotion and exact traceability validation remain pending.
+- C04/B06: Architecture Approved on `main` after R6.
+- F02-001: Architecture Approved by post-R8 lifecycle closure.
+- F02-002/003/004: Architecture Approved by post-R8 lifecycle closure.
+- The four-spec F02 family is canonical and Architecture Approved; exact F02-001 relation validation is recorded in the canonical L4→L5 store.
 
 ### Material Cross-L5 Boundaries
 
@@ -529,3 +529,8 @@ The following selective mappings preserve the existing canonical F02-001 traceab
 
 The F02 family is synchronized and internally reconciled. Stage-6 downstream consumption is approved; exact traceability promotion, Architecture Approved status and lock remain separately governed.
 
+
+
+## 2026-09-23 Post-R8 Lifecycle Closure
+
+This specification is promoted from Review to Architecture Approved after current peer maturity and upstream L4 authority were revalidated. F02-001's selective BH mappings are separately materialized in the canonical L4→L5 store; child specifications retain their established verification responsibilities without creating new business ownership or release authority. Final corpus lock remains separate governance.
