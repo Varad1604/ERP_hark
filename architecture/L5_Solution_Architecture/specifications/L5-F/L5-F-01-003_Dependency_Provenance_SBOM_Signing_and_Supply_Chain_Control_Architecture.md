@@ -9,7 +9,7 @@
 **Technical Architecture Owner:** L5-F-01 — CI/CD & Software Supply Chain Security Architecture  
 **Assigned Author:** Pallav  
 **Version:** `1.2.0`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** `L5-F-01-001/002`; `L5-D-03-*`; `L5-D-02-001`; `L5-D-02-004`; `L5-F-02-*`; `L5-E-04-*`; `L5-D-04-*`; `L5-E-05-*`.  
 **Referenced By:** F01-002 promotion gates, E04 artifact verification, security/operations impact analysis.  
