@@ -65,7 +65,7 @@ The distinction between `instruction/` and `reference/` is operational convenien
 
 ## 2026-09-22 Locked Technology Decision Wave
 
-`ADR-L5-0019` through `ADR-L5-0048` contain the current canonical Locked technology/backend-readiness decisions. Do not re-select these decisions locally. The next ADR allocation is `ADR-L5-0049`. The Final L5 Corpus Lock was explicitly authorized on 2026-09-23 and is executed on the controlled final-lock branch; canonicalization remains pending Final Lock PR merge.
+`ADR-L5-0019` through `ADR-L5-0048` contain the current canonical Locked technology/backend-readiness decisions. Do not re-select these decisions locally. The next ADR allocation is `ADR-L5-0049`. The Final L5 Corpus Lock was explicitly authorized on 2026-09-23 and is canonical on `main` as merge commit `fe9d03d6b70f17f071340b60394589cadb31d5b4`.
 
 
 ## 2026-09-22 Post-Decision Corpus Audit
