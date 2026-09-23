@@ -192,7 +192,7 @@ These documents are historical technical inputs only, are not part of the frozen
 
 ## ADR Boundary
 
-The canonical ADR register now contains **47 allocated ADRs**. Backend-readiness decisions through `ADR-L5-0047` are recorded under `adr/`; new allocation continues from `ADR-L5-0048`.
+The canonical ADR register now contains **48 allocated ADRs**. Backend-readiness decisions through `ADR-L5-0048` are recorded under `adr/`; new allocation continues from `ADR-L5-0049`.
 
 ---
 
@@ -204,7 +204,7 @@ The L5 program may proceed with controlled mass authoring in `specifications/` a
 
 Branch selection, manual task assignment, push permissions and merge timing remain under Lead Architect control.
 
-All six backend-readiness decision groups are complete through `ADR-L5-0047`. Evidence-dependent numeric capacity/SLO values, numeric RPO/RTO/retention profiles, the scheduling solver product pending benchmark evidence, the future mobile client platform and deployment/provider-specific profile choices remain intentionally governed rather than guessed. A full 105-specification post-decision audit has repaired confirmed ADR/status contradictions; formal corpus validation and lock authorization remain outstanding. The Final L5 Corpus Lock has not been issued.
+All six backend-readiness decision groups are complete through `ADR-L5-0048`. Evidence-dependent numeric capacity/SLO values, numeric RPO/RTO/retention profiles, the scheduling solver product pending benchmark evidence, the future mobile client platform and deployment/provider-specific profile choices remain intentionally governed rather than guessed. A full 105-specification post-decision audit has repaired confirmed ADR/status contradictions; formal corpus validation and lock authorization remain outstanding. The Final L5 Corpus Lock has not been issued.
 
 
 ## Backend Readiness Decision Group 2 — Data, Caching & Persistence
@@ -259,7 +259,7 @@ All six backend-readiness decision groups are complete and Locked as of 2026-09-
 - Group 5: `ADR-L5-0043`–`0044`
 - Group 6: `ADR-L5-0045`–`0047`
 
-The backend architecture is decision-ready for future implementation planning. The post-decision synchronization audit and Production Validation Batches 0–9 are complete. **Final L5 Corpus Lock remains not authorized** because the final gate recorded a NO-LOCK verdict with 30 upstream authority/semantics blockers. The ADR register allocates 47 ADRs; next allocation remains `ADR-L5-0048`.
+The backend architecture is decision-ready for future implementation planning. The post-decision synchronization audit and Production Validation Batches 0–9 are complete. **Final L5 Corpus Lock remains not authorized** because the final gate recorded a NO-LOCK verdict with 30 upstream authority/semantics blockers. The ADR register allocates 48 ADRs; next allocation is `ADR-L5-0049`.
 
 
 ## Post-Decision Corpus Audit — 2026-09-22
@@ -276,7 +276,7 @@ The full 105-specification corpus was audited after completion of Backend Readin
 
 Confirmed stale ADR/product wording and D03 lifecycle regression were repaired without changing canonical business ownership or intentionally deferred evidence-dependent decisions.
 
-**Final L5 Corpus Lock remains NOT AUTHORIZED.** Production Validation Batches 0–9 are complete. The canonical 105-row register remains current at 0 Draft / 51 Review / 21 Architecture Approved / 33 Locked. Batch 9 concluded with a NO-LOCK verdict because 30 Review specifications retain upstream authority/semantics blockers and no distinct Final L5 Corpus Lock authorization exists.
+**Final L5 Corpus Lock remains NOT AUTHORIZED.** Production Validation Batches 0–9 remain the historical completed validation programme. After R4C consolidation, the living 105-row register is current at 0 Draft / 43 Review / 29 Architecture Approved / 33 Locked with 22 upstream authority/semantics blockers. The historical Batch-9 NO-LOCK verdict remains unchanged and no distinct Final L5 Corpus Lock authorization exists.
 
 
 ## Full Production Validation — Batch 8 State
@@ -323,3 +323,32 @@ Canonical decision:
 `governance/reference/L5_Production_Validation_Batch9_Final_Corpus_Lock_Gate_2026-09-22.md`
 
 A future final-lock gate requires resolution or explicit governance authorization of the remaining upstream authority/traceability blockers, affected-spec revalidation, and a distinct Lead Architect final-lock authorization.
+
+
+## 2026-09-23 R3C Non-Human Principal Lifecycle
+
+`ADR-L5-0048 — Non-Human Technical Principal Lifecycle Profile` is Locked. It defines the D01 technical-principal lifecycle `Provisioned → Active ↔ Suspended → Retired`, with `Retired` terminal, while preserving D02 authorization and D03 credential/secret ownership. The next ADR allocation is `ADR-L5-0049`.
+
+
+## 2026-09-23 R3D D01 Targeted Revalidation
+
+R3D reconciled R3A/R3B/R3C IAM remediation, validated 136 canonical Section-A D01 relations, and promoted `L5-D-01-001…004` to Architecture Approved after HF-01…HF-15 PASS. Its branch-level blocker population was 26; this current-state count is superseded by R4C consolidation.
+
+
+## 2026-09-23 R4C Remediation Consolidation
+
+R4C consolidates the validated R3D IAM remediation and R4A/R4B operational-evidence/service-acceptance remediation on a fresh branch from current `main`.
+
+Current consolidated state:
+
+- 105 canonical L5 specifications;
+- 0 Draft;
+- 43 Review;
+- 29 Architecture Approved;
+- 33 Locked;
+- 22 upstream authority/semantics blockers;
+- 139 validated Section-A relations = 136 D01 + 3 E05;
+- 48 allocated ADRs; next `ADR-L5-0049`;
+- Final L5 Corpus Lock remains **NOT AUTHORIZED**.
+
+Governance record: `governance/reference/L5_R4C_R3_R4_Remediation_Consolidation_Decision_2026-09-23.md`.

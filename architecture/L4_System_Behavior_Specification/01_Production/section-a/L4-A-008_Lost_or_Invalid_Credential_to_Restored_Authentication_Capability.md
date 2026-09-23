@@ -7,11 +7,11 @@
 **Domain:** Authentication  
 **Realizes Scenario:** L3-A-008  
 **Primary Business Owner:** Authentication  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** `L3-A-008_Lost_or_Invalid_Credential_to_Restored_Authentication_Capability.md`; `L2-A02_Person_and_Identity_Workflows.md`; `L2-A03_Authentication_Workflows.md`; `L2-A06_Event_Infrastructure_Workflows.md`; `L2-A07_Audit_Infrastructure_Workflows.md`  
+**Last Updated:** 2026-09-23  
+**Depends On:** `L3-A-008_Lost_or_Invalid_Credential_to_Restored_Authentication_Capability.md`; `L2-A02_Person_and_Identity_Workflows.md`; `L2-A03_Authentication_Workflows.md`; `L2-A06_Event_Infrastructure_Workflows.md`; `L2-A07_Audit_Infrastructure_Workflows.md`  ; `L2-A03_Authentication_Recovery_Session_and_MFA_Clarification_Amendment_2026-09-23.md`; L3-A-008 v1.1
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -63,6 +63,23 @@ Completion requires successful governed identity recovery, a replacement Credent
 **Primary verification source:** L2-A03 — Authentication Workflows  
 **Additional verification:** L2-A02 — Person & Identity; L2-A06 — Event Infrastructure; L2-A07 — Audit Infrastructure
 
+## R3B Canonical Behavioral Addendum
+
+| Behavior ID | Required System Behavior | Provenance |
+|---|---|---|
+| L4-A-008-BH-009 | The system shall apply this recovery flow only to Credential types whose method/policy supports governed recovery; unsupported types shall fail closed to another governed path. | L3-A-008 v1.1; A03 R3B amendment §3 |
+| L4-A-008-BH-010 | After successful recovery verification, replacement Credential shall be created `Pending Activation`, validated, transitioned to `Active`, and publish `CredentialActivated`. | L3-A-008 v1.1; A03 R3B amendment §4 |
+| L4-A-008-BH-011 | Every previous Credential covered by the recovery decision shall be permanently invalidated using `RevokeCredential` and `CredentialRevoked`. | L3-A-008 v1.1; A03 R3B amendment §4 |
+| L4-A-008-BH-012 | Exceptional administrative recovery shall require Authentication Recovery Authority and shall not bypass identity verification or policy. | L3-A-008 v1.1; A03 R3B amendment §5 |
+| L4-A-008-BH-013 | Where policy requires session termination/revocation, recovery shall remain incomplete until those session consequences are confirmed. | L3-A-008 v1.1; A03 R3B amendment §6 |
+
 ## 10. Open Issues / Deferred Design
 
-The Locked parent preserves unresolved A03 semantics for the exact previous-Credential invalidation transition, reset-specific activation sequence, canonical recovery-completion event, and administrative-recovery authority. This Draft therefore defines observable gates and outcomes without choosing an unsupported state, event, or approver.
+No blocking L4 issue remains after the Locked R3B upstream amendment(s) and synchronized L3-A-008 v1.1.
+
+Implementation-specific APIs, persistence, cryptographic mechanisms, provider/product choices and UI remain downstream concerns.
+
+
+## Canonical Validation Note
+
+This specification passed the scoped R3B hard-fail validation and is `Architecture Approved` under `L4_R3B_Core_IAM_Semantics_Architecture_Approval_Decision_2026-09-23.md`. This approval does not Lock the specification or automatically validate any L4→L5 relation.

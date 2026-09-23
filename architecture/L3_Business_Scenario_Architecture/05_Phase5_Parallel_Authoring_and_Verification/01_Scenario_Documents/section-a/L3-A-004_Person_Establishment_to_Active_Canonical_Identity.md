@@ -9,10 +9,10 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows, including the approved 2026-08-20 Person–Identity establishment and activation sequencing decision  
+**Last Updated:** 2026-09-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows, including the approved 2026-08-20 Person–Identity establishment and activation sequencing decision  ; `L2-A02_User_Account_and_Person_Reconciliation_Authority_Amendment_2026-09-23.md`
 **Referenced By:** None yet  
 
 ---
@@ -239,19 +239,21 @@ No scenario-specific separation-of-duty requirement is defined by the authoritat
 
 ---
 
+## Canonical R3B Remediation
+
+This scenario consumes the Locked A02 R3B amendment. Earlier ambiguity about Person-establishment/verification actors and User Account creation is superseded as follows:
+
+- Person/Identity establishment remains A02-owned.
+- User Account creation is a separate post-activation action and is **not** part of A004 completion.
+- `IdentityActivated` alone does not authorize a User Account.
+- A User Account may be created only when an authoritative login-capability requirement exists and User Account Provisioning Authority authorizes it.
+- A Person may remain Active without a User Account.
+- The Tenant-scoped Person boundary remains governed by the Locked L1 amendment dated 2026-08-26.
+
+A004 therefore completes when the canonical Person/Identity establishment outcome is achieved; account provisioning remains downstream A02 behavior.
+
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
-
-| Issue | Architecture Impact | Required Resolution |
-|---|---|---|
-| Locked L1 §3.4 states that every real individual has one Person record inside an Institute, while locked L2-A01, locked L2-A02, and frozen Phase 2/Stage 3 semantics establish Tenant-scoped Person and Identity ownership. | The Draft follows the frozen Tenant-scoped scenario semantics, but the higher-level wording conflict prevents final architecture approval or locking until the canonical uniqueness boundary is aligned. | Lead Architect must clarify or amend the locked L1 wording so the Person uniqueness scope is consistently Tenant or Institution across L1 and L2. |
-| L2-A02 does not name the canonical role that initiates Person establishment or the role that grants verification approval when Tenant policy requires approval. | The scenario can describe the governed responsibility but cannot assign unsupported business authority. | Person & Identity architecture must name the applicable business role or explicitly delegate role determination to an existing authoritative policy without creating a new role in L3. |
-
-## 17.2 Assumptions
+No blocking issues remain after the Locked R3B upstream amendment(s).
 
 No assumptions.
-
-## 17.3 Deferred Questions
-
-No scenario-specific deferred questions.

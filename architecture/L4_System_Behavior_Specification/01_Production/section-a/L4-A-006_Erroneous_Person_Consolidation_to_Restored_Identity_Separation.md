@@ -7,11 +7,11 @@
 **Domain:** Person & Identity  
 **Realizes Scenario:** L3-A-006  
 **Primary Business Owner:** Person & Identity  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** `L3-A-006_Erroneous_Person_Consolidation_to_Restored_Identity_Separation.md`; `L2-A02_Person_and_Identity_Workflows.md`; `L2-A04_Authorization_and_Policy_Workflows.md`; `L2-A07_Audit_Infrastructure_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Amendment_2026-08-26.md`  
+**Last Updated:** 2026-09-23  
+**Depends On:** `L3-A-006_Erroneous_Person_Consolidation_to_Restored_Identity_Separation.md`; `L2-A02_Person_and_Identity_Workflows.md`; `L2-A04_Authorization_and_Policy_Workflows.md`; `L2-A07_Audit_Infrastructure_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Amendment_2026-08-26.md`  ; `L2-A02_User_Account_and_Person_Reconciliation_Authority_Amendment_2026-09-23.md`; L3-A-006 v1.1
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -66,6 +66,22 @@ Completion requires the approved separation determination and all mandatory vali
 **Primary verification source:** L2-A02 — Person & Identity Workflows  
 **Additional verification:** L2-A04 — Authorization & Policy; L2-A07 — Audit Infrastructure; Locked L1 Person-scope amendment 2026-08-26
 
+## R3B Canonical Behavioral Addendum
+
+| Behavior ID | Required System Behavior | Provenance |
+|---|---|---|
+| L4-A-006-BH-010 | The system shall require Person Reconciliation Authority approval before completing split. | L3-A-006 v1.1; A02 R3B amendment §3 |
+| L4-A-006-BH-011 | The system shall restore the evidence-supported number of canonical Persons using normal A02 establishment semantics and shall not assume one-to-two cardinality. | L3-A-006 v1.1; A02 R3B amendment §5 |
+| L4-A-006-BH-012 | Each associated Identity/User Account shall receive an explicit retain/reassociate/disable/archive/hold disposition; Credential/MFA/session state shall remain A03-owned. | L3-A-006 v1.1; A02 R3B amendment §5.1 |
+| L4-A-006-BH-013 | The system shall publish `PersonSplit` after authoritative A02 reconciliation; downstream owners redistribute their own references after that fact. | L3-A-006 v1.1; A02 R3B amendment §5.2 |
+
 ## 10. Open Issues / Deferred Design
 
-The current Locked L1 amendment confirms Tenant-scoped canonical Person identity. Upstream still does not define the specific split-approving role, the exact Person/Identity lifecycle effects of split-created or reassociated identities, or the cross-domain contract for reference redistribution. These remain explicit deferred architecture issues.
+No blocking L4 issue remains after the Locked R3B upstream amendment(s) and synchronized L3-A-006 v1.1.
+
+Implementation-specific APIs, persistence, cryptographic mechanisms, provider/product choices and UI remain downstream concerns.
+
+
+## Canonical Validation Note
+
+This specification passed the scoped R3B hard-fail validation and is `Architecture Approved` under `L4_R3B_Core_IAM_Semantics_Architecture_Approval_Decision_2026-09-23.md`. This approval does not Lock the specification or automatically validate any L4→L5 relation.

@@ -7,11 +7,11 @@
 **Domain:** Authentication  
 **Realizes Scenario:** L3-A-009  
 **Primary Business Owner:** Authentication  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-30  
-**Depends On:** `L3-A-009_Multi_Factor_Enrollment_to_Active_Verified_Authentication_Factor.md`; `L2-A03_Authentication_Workflows.md`; `L2-A02_Person_and_Identity_Workflows.md`; `L2-A04_Authorization_and_Policy_Workflows.md`  
+**Last Updated:** 2026-09-23  
+**Depends On:** `L3-A-009_Multi_Factor_Enrollment_to_Active_Verified_Authentication_Factor.md`; `L2-A03_Authentication_Workflows.md`; `L2-A02_Person_and_Identity_Workflows.md`; `L2-A04_Authorization_and_Policy_Workflows.md`  ; `L2-A03_Authentication_Recovery_Session_and_MFA_Clarification_Amendment_2026-09-23.md`; L3-A-009 v1.1
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -61,6 +61,21 @@ Completion requires an MFA Enrollment associated with one Tenant and one Identit
 **Parent:** L3-A-009 — Multi-Factor Enrollment to Active Verified Authentication Factor  
 **Primary verification source:** L2-A03 — Authentication Workflows
 
+## R3B Canonical Behavioral Addendum
+
+| Behavior ID | Required System Behavior | Provenance |
+|---|---|---|
+| L4-A-009-BH-010 | `EnrollMFAFactor` shall create the enrollment directly in `Pending Verification` and publish `MFAEnrollmentStarted`; no durable `Enrolled` state is created. | L3-A-009 v1.1; A03 R3B amendment §7 |
+| L4-A-009-BH-011 | `VerifyMFAFactor` shall transition `Pending Verification → Verified` and publish `MFAEnrollmentVerified`. | L3-A-009 v1.1; A03 R3B amendment §7 |
+| L4-A-009-BH-012 | `ActivateMFAFactor` shall transition `Verified → Active` and publish `MFAActivated`; no `MFAEnrolled` event is canonical. | L3-A-009 v1.1; A03 R3B amendment §7 |
+
 ## 10. Open Issues / Deferred Design
 
-The parent records an upstream inconsistency around an `Enrolled` label and a missing activation command. This L4 uses only the explicit parent lifecycle and does not invent a durable `Enrolled` state or command contract. Implementation mechanisms remain deferred.
+No blocking L4 issue remains after the Locked R3B upstream amendment(s) and synchronized L3-A-009 v1.1.
+
+Implementation-specific APIs, persistence, cryptographic mechanisms, provider/product choices and UI remain downstream concerns.
+
+
+## Canonical Validation Note
+
+This specification passed the scoped R3B hard-fail validation and is `Architecture Approved` under `L4_R3B_Core_IAM_Semantics_Architecture_Approval_Decision_2026-09-23.md`. This approval does not Lock the specification or automatically validate any L4→L5 relation.

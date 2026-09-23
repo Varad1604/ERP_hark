@@ -8,9 +8,9 @@
 **Canonical Technical Responsibility:** Health signals, alerting, diagnostics and service-operations integration.  
 **Technical Architecture Owner:** L5-E-05 — Observability & Operations Architecture  
 **Assigned Author:** Pallav  
-**Version:** `1.0.3`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Version:** `1.1.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; Candidate Document Corpus Register 105; `L5-E-05-001`; `L5-E-05-002`; `L5-E-04-*`; `L5-E-01-*`; `L5-E-02-*`; `L5-C-02-*`; `L5-D-02-*`; `L5-D-03-*`; `L5-D-04-*`.  
 **Referenced By:** `L5-E-05-004`, operational support/readiness consumers and service-management integrations.  
 **Applicable ADRs:** `ADR-L5-0014`; `ADR-L5-0029`; `ADR-L5-0040`; `ADR-L5-0044`; `ADR-L5-0045`.
@@ -21,7 +21,7 @@ Defines the L5 technical architecture for service health semantics, alert evalua
 It does not own business recovery policy, business-state correction, deployment internals, staffing/escalation policy, audit truth or vendor products.
 
 ## 3. Upstream Applicability, Constraints & Assumptions
-`L5-E-05-001/002` provide telemetry/correlation. `L5-E-04-*` provides runtime/deployment identity. `L5-E-01-*` owns resilience/failure-isolation principles. Exact L4/BH links shall be recorded only when approved L4 behavior materially requires this capability.
+`L5-E-05-001/002` provide telemetry/correlation. `L5-E-04-*` provides runtime/deployment identity. `L5-E-01-*` owns resilience/failure-isolation principles. No direct L4/BH relation is claimed by default. Exact links shall be recorded only when approved L4 behavior materially requires this capability directly; current R4B review found no separate direct material BH.
 
 ## 4. Technical Ownership, Boundaries & Dependencies
 ### 4.1 Owned technical elements
@@ -120,9 +120,22 @@ Detailed diagnostics are privileged. Break-glass access is time-bound, attributa
 ## 9. Open Decisions & Deferred Design
 - **OD-001:** Alert/incident/service-management product — unresolved.
 - **OD-002:** Numeric alert thresholds, response times and escalation timing — consumed from canonical operational requirements/configuration profiles.
-- **OD-003:** Remediation action catalog and authorization integration — requires canonical approval before production enablement.
-- **OD-004:** Exact L4/BH contribution set — pending validated material applicability; no artificial mapping permitted.
-- **OD-005:** Stage-3 closure approved downstream consumption of peer responsibility surfaces; material peer changes require impact revalidation. Draft L4/BH validation remains separate.
+- **OD-003:** Remediation action catalog remains profile/governance controlled. Production enablement of any automated remediation action requires explicit pre-approval under the owning technical/security authority; this is an enablement gate, not an architecture-approval blocker.
+- **OD-004:** R4B review found no direct material L4/BH contribution requiring a separate E05-003 relation. Do not create artificial mappings.
+- **OD-005:** Stage-3 closure approved downstream consumption of peer responsibility surfaces; material peer changes require impact revalidation. No direct L4 relation is required unless future material applicability is established.
 
 ## 10. Traceability Summary
-Candidate Corpus Register 105 and `L5-E-05-001/002` establish the technical area. Explicit dependencies include E04 runtime identity, E01/E02 reliability/performance context, C02 event signals and D02/D03/D04 controls. Exact approved L4/BH links remain to be validated before architecture approval where material.
+Candidate Corpus Register 105 and `L5-E-05-001/002` establish the technical area. Explicit dependencies include E04 runtime identity, E01/E02 reliability/performance context, C02 event signals and D02/D03/D04 controls. No direct material L4/BH link was established in R4B; architecture approval rests on the corpus responsibility, approved E05 baseline/telemetry peers, locked ADRs and explicit remediation-authorization guardrails.
+
+
+## 2026-09-23 R4B Targeted Revalidation
+
+**Result:** PASS — Architecture Approved.
+
+This specification was revalidated against R4A-approved operational-readiness evidence parents where directly material, the Locked L5 governance/validation standards, applicable Locked ADRs, current E05 peer boundaries, and the R4B Technical Service Acceptance Authority decision.
+
+No HF-01…HF-15 blocker remains for this specification.
+
+Direct L4/BH relations are recorded only where material. Absence of an artificial direct BH mapping is not treated as a traceability defect for reusable technical responsibilities whose authority is established by the canonical corpus and approved peer architecture.
+
+Final L5 Corpus Lock remains separately governed and is not authorized by this approval.

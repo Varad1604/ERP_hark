@@ -9,10 +9,10 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows, including the approved 2026-08-20 sequencing decision; L2-A03 — Authentication Workflows; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Last Updated:** 2026-09-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows, including the approved 2026-08-20 sequencing decision; L2-A03 — Authentication Workflows; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  ; `L2-A03_Authentication_Recovery_Session_and_MFA_Clarification_Amendment_2026-09-23.md`
 **Referenced By:** L3-A-007 — Eligible Identity to Authenticated Session Availability; authentication workflows requiring multi-factor verification
 
 ---
@@ -330,14 +330,21 @@ Postconditions:
 
 ---
 
+## Canonical R3B Remediation
+
+This scenario consumes the Locked A03 R3B amendment. Earlier MFA blockers are resolved as follows:
+
+- new enrollment begins in `Pending Verification`; `Enrolled` is not a separate durable state;
+- `EnrollMFAFactor` publishes `MFAEnrollmentStarted`;
+- verification performs `Pending Verification → Verified` and publishes `MFAEnrollmentVerified`;
+- `ActivateMFAFactor` performs `Verified → Active` and publishes `MFAActivated`;
+- “MFA Enrolled Event” wording is superseded; no `MFAEnrolled` event is canonical;
+- Authenticated User remains the scenario initiator already identified in A03.
+
+No extra administrator or approval role is introduced.
+
 # 17. Open Issues, Assumptions and Deferred Questions
 
-| ID | Type | Issue / Deferred Question | Precise Scenario Impact | Disposition |
-|---|---|---|---|---|
-| A009-ISSUE-01 | Upstream lifecycle inconsistency | L2-A03’s MFA Enrollment transition matrix begins with `Enrolled → Pending Verification`, and lifecycle-ownership prose includes `enrolled`, but the MFA state-definition table omits `Enrolled`. | The Draft cannot treat `Enrolled` as an independently defined canonical state. Registration is therefore described as placing the enrollment into the explicitly defined `Pending Verification` state. | Align the transition matrix and state-definition table before Architecture Approval or locking. |
-| A009-ISSUE-02 | Upstream event wording inconsistency | The MFA Enrollment Workflow says “Publish MFA Enrolled Event,” but no event with that exact name exists in the canonical MFA event catalogue. | The Draft uses the exact aggregate events `MFAEnrollmentStarted`, `MFAEnrollmentVerified` and `MFAActivated` and does not invent `MFAEnrolled`. | Correct the workflow wording to the selected canonical event sequence. |
-| A009-ISSUE-03 | Upstream command gap | L2-A03 defines `Verified → Active` and `MFAActivated`, but the MFA Enrollment aggregate’s Owned Commands table does not include an activation command. | The business transition and event are clear enough for L3, but L4 cannot identify the canonical activation command contract without clarification. | Add or identify the authoritative activation command before L4 specification. |
-| A009-ISSUE-04 | Upstream actor documentation inconsistency | L2-A03’s crosswalk records Actors as absent, while the MFA Enrollment Workflow explicitly names `Authenticated User`. | The Draft uses only the scenario-specific actor explicitly present in the workflow and does not infer any administrator or approver. | Align the crosswalk with the workflow actor before Architecture Approval or locking. |
-| A009-ISSUE-05 | Upstream boundary conflict | Locked L1 §3.4 states that one Person exists inside an Institute, while locked L2-A01, L2-A02 and L2-A03 use Tenant-scoped Identity, session and MFA Enrollment boundaries. | The Draft follows the authoritative L2 Tenant workflow, but the scope of the referenced canonical Person remains inconsistent across levels. | Lead Architect alignment is required before Architecture Approval or locking. |
+No blocking issues remain after the Locked R3B upstream amendment(s).
 
-No unsupported factor type, actor, approval authority, lifecycle state, transition, event, publisher, authorization rule or implementation mechanism is assumed by this Draft.
+No assumptions.

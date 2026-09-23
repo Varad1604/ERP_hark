@@ -7,11 +7,11 @@
 **Domain:** Authentication  
 **Realizes Scenario:** L3-A-007  
 **Primary Business Owner:** Authentication  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-30  
-**Depends On:** `L3-A-007_Eligible_Identity_to_Authenticated_Session_Availability.md`; `L2-A03_Authentication_Workflows.md`; `L2-A02_Person_and_Identity_Workflows.md`; `L2-A04_Authorization_and_Policy_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Amendment_2026-08-26.md`  
+**Last Updated:** 2026-09-23  
+**Depends On:** `L3-A-007_Eligible_Identity_to_Authenticated_Session_Availability.md`; `L2-A03_Authentication_Workflows.md`; `L2-A02_Person_and_Identity_Workflows.md`; `L2-A04_Authorization_and_Policy_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Amendment_2026-08-26.md`  ; `L2-A02_User_Account_and_Person_Reconciliation_Authority_Amendment_2026-09-23.md`; `L2-A03_Authentication_Recovery_Session_and_MFA_Clarification_Amendment_2026-09-23.md`; L3-A-007 v1.1
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -61,6 +61,21 @@ Completion requires successful policy-governed authentication, an `Active` Authe
 **Parent:** L3-A-007 — Eligible Identity to Authenticated Session Availability  
 **Primary verification source:** L2-A03 — Authentication Workflows
 
+## R3B Canonical Behavioral Addendum
+
+| Behavior ID | Required System Behavior | Provenance |
+|---|---|---|
+| L4-A-007-BH-010 | Authentication shall treat only A02 `Enabled` User Accounts as account-state eligible; `Locked`, `Disabled`, or `Archived` accounts shall not authenticate. | L3-A-007 v1.1; A02 R3B amendment §2 |
+| L4-A-007-BH-011 | Generic authentication execution facts shall be published by Authentication Attempt; Authentication Session facts remain published by Authentication Session. | L3-A-007 v1.1; A03 R3B amendment §1 |
+| L4-A-007-BH-012 | Successful Authentication Attempt shall first establish a session in `Created`, publish `AuthSessionCreated`, then activate it and publish `SessionActivated` before the session becomes usable. | L3-A-007 v1.1; A03 R3B amendment §2 |
+
 ## 10. Open Issues / Deferred Design
 
-The parent records unresolved account-status terminology, generic authentication-event publisher wording and session-creation wording. This draft preserves the parent’s safe abstractions rather than selecting unsupported mappings. Technical credential handling, session persistence, protocols and UI remain deferred.
+No blocking L4 issue remains after the Locked R3B upstream amendment(s) and synchronized L3-A-007 v1.1.
+
+Implementation-specific APIs, persistence, cryptographic mechanisms, provider/product choices and UI remain downstream concerns.
+
+
+## Canonical Validation Note
+
+This specification passed the scoped R3B hard-fail validation and is `Architecture Approved` under `L4_R3B_Core_IAM_Semantics_Architecture_Approval_Decision_2026-09-23.md`. This approval does not Lock the specification or automatically validate any L4→L5 relation.

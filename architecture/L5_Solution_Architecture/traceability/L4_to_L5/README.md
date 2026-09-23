@@ -5,7 +5,7 @@
 **Status:** Established — Active  
 **Owner:** Lead Architect  
 **Established:** 2026-09-17  
-**Last Updated:** 2026-09-22  
+**Last Updated:** 2026-09-23  
 **Governing Methodology:** `../../governance/instruction/L5_L4_to_L5_Traceability_Methodology.md`  
 
 ---
@@ -212,3 +212,43 @@ Residual stale L5 version bindings        0
 Affected current L5 versions include the current B02, C01, C02, D02 and D04 versions referenced by the canonical relation store. Rebinding was permitted only after confirming that intervening specification changes were non-material to the exact recorded technical contribution. The existing relation-review authority remains preserved and Batch 8 is recorded as the current-version revalidation reference.
 
 This revalidation does not extend W-C02 coverage to another L4 section and does not imply full-repository L4→L5 relation validation.
+
+
+## 11. R3D Section-A D01 Validated Population
+
+On 2026-09-23, R3D established the canonical Section-A D01 relation partition:
+
+`section-a.md`
+
+Result:
+
+```text
+Validated D01 relation rows       136
+Bound approved L4 parents           9
+Bound D01 specifications             4
+Duplicate relation identities        0
+Stale bound versions                 0
+```
+
+Review authority:
+
+`L5_R3D_D01_Targeted_Revalidation_and_Traceability_Decision_2026-09-23.md`
+
+This population validates D01's material technical contribution only. It does not claim full Section-A BH coverage.
+
+
+## 12. R4C Consolidated Section-A Population
+
+On 2026-09-23, R4C reconciled the two validated parallel Section-A populations by exact relation identity:
+
+```text
+R3D D01 validated relations   136
+R4B E05 validated relations     3
+Canonical Section-A total     139
+Duplicate relation identities   0
+Stale version bindings          0
+```
+
+The canonical current partition is `section-a.md`. The prior R3D-only and R4B-only branch populations remain provenance in their respective governance decisions; neither branch-local file is authoritative by itself after consolidation.
+
+No direct rows were fabricated for `L5-E-05-002`, `L5-E-05-003`, or `L5-E-05-004`.

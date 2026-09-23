@@ -7,10 +7,10 @@
 **Domain:** Authentication  
 **Realizes Scenario:** L3-A-055 — Institutional Authentication Provider Onboarding to Governed Provider Availability  
 **Primary Business Owner:** Authentication  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
+**Last Updated:** 2026-09-23  
 **Depends On:** SutraERP L1 Business Domain Architecture; DEPENDENCY_MAP.md; L2-A01; L2-A02; L2-A03; L2-A06; L2-A07; L3-A-055  
 **Referenced By:** None yet
 
@@ -100,3 +100,8 @@ Preserve Tenant, provider identifier/type, supported methods, non-secret configu
 | A055-L4-OPEN-02 | Canonical human actor/approval authority for provider onboarding is not defined even though provider commands are defined. | Preserve the gap explicitly; do not invent missing architecture at L4. |
 
 No implementation design is introduced by these deferred items.
+
+
+## Canonical Validation Note
+
+This specification passed the scoped R3A hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R3A_IAM_Safe_Authority_Architecture_Approval_Decision_2026-09-23.md`. Existing non-blocking upstream gaps remain bounded exactly as recorded; this approval does not invent missing actors, lifecycle states, events, publishers, recovery contracts, provider mechanics, or implementation design.
