@@ -645,6 +645,10 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 # Recent Changes
 
+**2026-09-23 — R3B core IAM semantic remediation:** Locked targeted L2-A02 and L2-A03 amendments resolving User Account provisioning authority, merge/split Identity/User Account consequences, authentication-eligible account state, Authentication Attempt event ownership, Authentication Session creation/activation, credential-generic recovery, administrative recovery authority, prior-Credential revocation, and MFA activation semantics. Reconciled Locked `L3-A-004…009` to v1.1 and promoted `L4-A-004…009` to Architecture Approved v1.0.1 after scoped hard-fail validation. Non-human technical-principal lifecycle remains a separate L5-owned item; no L5 disposition changed.
+
+---
+
 **2026-09-22 — L5 Batch-9 final lock gate:** Completed the Full Production Validation & Lock-Readiness Programme. The final gate produced a NO-LOCK verdict: 105/105 specifications have current validation dispositions, but 30 Review specifications retain upstream authority/semantics blockers under HF-01/HF-14 and no distinct Final L5 Corpus Lock authorization exists. Lifecycle remains 0 Draft / 51 Review / 21 Architecture Approved / 33 Locked.
 
 ---
@@ -704,7 +708,7 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 ---
 
-**Last Updated:** 2026-09-22
+**Last Updated:** 2026-09-23
 
 **Repository:** SutraERP
 
