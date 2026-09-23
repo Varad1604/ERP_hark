@@ -10,7 +10,7 @@
 **Technical Architecture Owner:** L5-B-03 — Master & Reference Data Technical Architecture  
 **Assigned Author:** Dhruv  
 **Version:** `1.0.1`  
-**Status:** `Architecture Approved`  
+**Status:** `Locked`  
 **Last Updated:** `2026-09-22`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-B-02-001`; `L5-B-02-002`; `L2-A09` v1.0 Locked; applicable L4 Master Data specifications identified in §3.  
 **Referenced By:** `L5-B-03-002` and L5 consumers requiring governed Master/Reference Data discovery or consumption.  
