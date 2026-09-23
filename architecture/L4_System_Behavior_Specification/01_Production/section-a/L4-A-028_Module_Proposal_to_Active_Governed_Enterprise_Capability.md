@@ -7,10 +7,10 @@
 **Domain:** Module Registry  
 **Realizes Scenario:** L3-A-028  
 **Primary Business Owner:** Module Registry  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-30  
+**Last Updated:** 2026-09-23  
 **Depends On:** `L3-A-028_Module_Proposal_to_Active_Governed_Enterprise_Capability.md`; L2-A08 — Module Registry & Configuration Workflows; L2-A04 — Authorization & Policy Workflows  
 **Referenced By:** None yet
 
@@ -65,3 +65,7 @@ Completion requires a unique Active Module, an identified active Module Version,
 ## 10. Open Issues / Deferred Design
 
 No L4 correctness issue remains. Runtime module execution, deployment, packaging, technical interfaces, persistence and UI remain deferred.
+
+## Canonical Validation Note
+
+This specification passed the scoped R1B hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R1B_Workflow_Event_Module_Authority_Architecture_Approval_Decision_2026-09-23.md`. Non-blocking upstream gaps remain bounded exactly as recorded; this approval does not invent actors, commands, events, lifecycle semantics, or implementation design.

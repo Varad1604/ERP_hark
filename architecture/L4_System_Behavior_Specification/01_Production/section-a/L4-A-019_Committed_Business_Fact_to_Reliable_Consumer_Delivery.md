@@ -7,10 +7,10 @@
 **Domain:** Event Infrastructure  
 **Realizes Scenario:** L3-A-019  
 **Primary Business Owner:** Event Infrastructure  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-30  
+**Last Updated:** 2026-09-23  
 **Depends On:** `L3-A-019_Committed_Business_Fact_to_Reliable_Consumer_Delivery.md`; `L2-A06_Event_Infrastructure_Workflows.md`; `L3-A-018_Event_Definition_Proposal_to_Active_Canonical_Event_Contract.md`  
 **Referenced By:** None yet
 
@@ -65,3 +65,7 @@ Completion requires one immutable published Event Instance, deterministic eligib
 ## 10. Open Issues / Deferred Design
 
 The parent records missing infrastructure commands/events and technical `Queued` mechanics. This draft uses only business-observable publication/routing/delivery outcomes and does not prescribe transport, queues or transactional mechanisms.
+
+## Canonical Validation Note
+
+This specification passed the scoped R1B hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R1B_Workflow_Event_Module_Authority_Architecture_Approval_Decision_2026-09-23.md`. Non-blocking upstream gaps remain bounded exactly as recorded; this approval does not invent actors, commands, events, lifecycle semantics, or implementation design.
