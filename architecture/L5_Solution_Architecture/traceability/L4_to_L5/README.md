@@ -269,3 +269,17 @@ Stale bindings          0
 ```
 
 R5 validates only relations already asserted at BH level by the affected L5 specifications. It creates no new direct BH rows for A04-001/002, B02-001/002/003 or E04-003/004/005 where current source architecture does not assert an exact direct realization relation. See `L5_R5_Affected_L4_to_L5_Traceability_Validation_Decision_2026-09-23.md`.
+
+
+## 14. Post-R8 Final Lifecycle Closure Traceability
+
+The post-R8 lifecycle-closure programme validated **32** additional exact relations already asserted by current specifications:
+
+```text
+A08/E01/E02 Section A    22
+F02-001 Section C         3
+F02-001 Section F         7
+Total                    32
+```
+
+Current canonical L4→L5 relation population: **535**. Duplicate relation identities: **0**. Stale bound L5 versions: **0**. No new relation was invented for A05; A05 remains Review pending approval-level authority for L4-A-014/L4-A-017.
