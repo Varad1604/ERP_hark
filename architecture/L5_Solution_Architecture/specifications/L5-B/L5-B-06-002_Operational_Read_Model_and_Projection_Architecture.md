@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Operational read models/projections and freshness/ownership boundaries.  
 **Technical Architecture Owner:** L5-B-06 — Reporting, Analytics & Data Projection Architecture  
 **Assigned Author:** Chetan  
-**Version:** `1.2.1`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Version:** `1.3.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** `L5-B-06-001`; `L5-B-02-003`; `L5-D-02-004`; `L5-C-01-*`; `L5-C-02-*`; `L5-A-04-002`; applicable source-domain L4/L2 architecture.  
 **Referenced By:** H07 dashboard/query consumers; `L5-B-06-003`; other authorized operational read consumers.  
 **Applicable ADRs:** `ADR-L5-0004`; `ADR-L5-0006`; `ADR-L5-0010`; `ADR-L5-0011`; `ADR-L5-0036`; `ADR-L5-0037`; `ADR-L5-0045`; `ADR-L5-0046`.
@@ -280,3 +280,8 @@ Cross-domain/read-heavy query needs shall use governed B06 projections/read mode
 
 **Applicable locked decision:** `ADR-L5-0037`  
 Valkey may accelerate projection/query access where freshness policy permits, but it shall not become the projection's or source domain's canonical state.
+
+
+## 2026-09-23 R6 Targeted Revalidation Synchronization
+
+R6 revalidated this specification against HF-01…HF-15 after canonical R1/R2 upstream authority consolidation and R5 affected L4→L5 traceability validation. The former Draft/Review-L4 promotion blocker is resolved. Earlier embedded source-status labels describing Draft/Review L4 state are retained only as authoring provenance and are superseded for current authority by the Architecture Approved R1/R2 parent decisions. No business ownership, event ownership, lifecycle authority, or technical responsibility is transferred by this promotion. HF-01…HF-15: PASS. Lifecycle: Architecture Approved. Final corpus lock remains separate governance.
