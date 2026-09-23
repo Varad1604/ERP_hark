@@ -1,6 +1,6 @@
 # SutraERP L6 — Stage 5 Batch 2 — Golden-Slice Interaction Proof — Final Evidence & Pre-Merge Closure
 
-**Version:** 1.2.0  
+**Version:** 1.3.0  
 **Status:** Architecture Approved  
 **Evidence Type:** Batch Closure Evidence  
 **Owner:** Lead Architect  
@@ -17,11 +17,12 @@
 **Frontend CI:** Frontend PR Validation #226 / Run ID `35831310799` / SUCCESS  
 **Browser Evidence Artifact:** `stage5-batch2-browser-evidence` / Artifact ID `10737166682` / SHA-256 `bdccb3018ca4fb9b69717e006a02a28e2a4a38a5e42cd765dda8b02d59dbcaa7`  
 **Architecture Validation Baseline:** `200417d5a5c4373cce0de6ba2ffdf1ef25a2c161`
-**Architecture Merge Baseline:** `a5853d7e9008a2c495300f1c287b7ff072422e54`  
+**Architecture Merge Baseline:** `a5853d7e9008a2c495300f1c287b7ff072422e54`
+**Architecture Merge Commit:** `7bdbe0e93a99b841f4704cd4e0a6cdc102a8f298`  
 **Batch Result:** PASS  
 **Merge Gate:** PASS  
-**Repository State:** FRONTEND MERGED / ARCHITECTURE NOT YET MERGED  
-**Next Batch:** NOT STARTED  
+**Repository State:** PASS / COMPLETE / MERGED  
+**Next Batch:** BATCH 3 — ENTRY-READY  
 
 ---
 
@@ -468,17 +469,18 @@ Merge Gate: PASS
 Repository State: NOT YET MERGED
 ```
 
-Frontend PR #27 is merged at `14cd33f0ae3be79677c52f6cb93c4af8d12f8186`. Architecture closure remains not yet merged at this evidence stage.
+Frontend PR #27 is merged at `14cd33f0ae3be79677c52f6cb93c4af8d12f8186`. Architecture closure is merged at `7bdbe0e93a99b841f4704cd4e0a6cdc102a8f298`.
 
 This document does not claim that either repository merge occurred.
 
-Merge authorization has been granted. The remaining post-merge reconciliation is:
+Post-merge reconciliation is complete:
 
-1. merge the reconciled Architecture evidence PR;
-2. verify canonical heads;
-3. recheck all five protected Stage-5 provenance SHAs;
-4. amend canonical Architecture state to `Batch 2 — PASS / COMPLETE / MERGED`;
-5. only then mark Batch 3 entry-ready.
+1. frontend merged at `14cd33f0ae3be79677c52f6cb93c4af8d12f8186`;
+2. Architecture merged at `7bdbe0e93a99b841f4704cd4e0a6cdc102a8f298`;
+3. both canonical heads verified;
+4. all five protected Stage-5 provenance SHAs rechecked and matched;
+5. Batch 2 is `PASS / COMPLETE / MERGED`;
+6. Batch 3 is `ENTRY-READY`.
 
 ---
 
@@ -505,8 +507,9 @@ STATUS: PASS
 
 Batch 2 merge gate — PASS
 Frontend PR #27 — MERGED
-Architecture evidence — NOT YET MERGED
+Architecture evidence — MERGED
 Batch 3 — NOT STARTED
 
-Architecture merge is authorized and pending execution.
+STAGE 5 BATCH 2 — PASS / COMPLETE / MERGED
+BATCH 3 — ENTRY-READY
 ```
