@@ -6,10 +6,10 @@
 **Domain:** Operational Readiness Governance & Certification  
 **Realizes Scenario:** L3-A-045  
 **Primary Business Owner:** Operational Readiness Governance & Certification  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-30  
+**Last Updated:** 2026-09-23  
 **Depends On:** `L3-A-045_Remediation_Completion_to_Verified_Readiness_Finding_Closure.md`; L2-A10 — Operational Readiness Governance & Certification Workflows; L3-A-044  
 **Referenced By:** None yet
 
@@ -51,3 +51,7 @@ Each in-scope Finding is either closed after verified approved remediation or fo
 
 ## 10. Open Issues / Deferred Design
 Upstream defines `Reopened` but no canonical reopen command/event; this specification uses only the lifecycle outcome and invents neither. Parent metadata contains `Depends On: undefined`; upstream metadata should be corrected before L4 lock.
+
+## Canonical Validation Note
+
+This specification passed the scoped R4A hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R4A_Operational_Readiness_Evidence_Authority_Architecture_Approval_Decision_2026-09-23.md`. Existing bounded upstream metadata gaps remain explicit; this approval does not invent actors, lifecycle states, commands, events, publishers, technical acceptance authority, implementation design, or UI behavior.
