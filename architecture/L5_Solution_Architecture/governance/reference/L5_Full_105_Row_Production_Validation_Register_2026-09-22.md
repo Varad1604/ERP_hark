@@ -32,10 +32,10 @@ It does not itself promote lifecycle state, approve Draft L4 authority, create a
 | Architecture Approved | 72 |
 | Locked | 33 |
 | Blocked — upstream authority/semantics | 0 |
-| Pass with non-blocking deferrals — remain Review | 16 |
-| Architecture-Approval eligible — remain Review | 5 |
-| Pass — Architecture Approved | 51 |
-| Pass — remains Locked | 33 |
+| Historical Batch-9 disposition — pass with non-blocking deferrals; then Review | 16 |
+| Historical Batch-9 disposition — Architecture-Approval eligible; then Review | 5 |
+| Historical Batch-9 disposition — pass; then Architecture Approved | 51 |
+| Historical Batch-9 disposition — pass; remained Locked | 33 |
 | Validation dispositions present | 105 / 105 |
 
 ## 3. Canonical 105-Row Register
