@@ -9,9 +9,9 @@
 **Canonical Technical Responsibility:** Overall solution/application structure and platform responsibility boundaries without redefining business domains.  
 **Technical Architecture Owner:** L5-A-01 — Application & Platform Architecture  
 **Assigned Author:** Dhruv  
-**Version:** `1.0.1`  
-**Status:** `Review`  
-**Last Updated:** `2026-09-11`  
+**Version:** `1.1.0`  
+**Status:** `Architecture Approved`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L4-A-001` v1.0.0 Draft; `L4-A-015` v1.0.0 Draft; `L4-A-019` v1.0.0 Draft; `L4-A-028` v1.0.0 Draft; SutraERP L1 Business Domain Architecture v2.1 Locked.  
 **Referenced By:** None yet  
 **Applicable ADRs:** `ADR-L5-0003` — Contract-Driven Modular Platform with Selective Isolation (`Architecture Approved`).  
@@ -339,3 +339,8 @@ Detailed module boundaries, isolation mechanics, persistence/transaction design,
 
 ### Open / Blocking Items
 - `OD-002` — canonical repository evidence for authorized Draft-L4 usage before promotion.
+
+
+## 2026-09-23 R6 Targeted Revalidation Synchronization
+
+R6 revalidated this specification against HF-01…HF-15 after canonical R1/R2 upstream authority consolidation and R5 affected L4→L5 traceability validation. The former Draft/Review-L4 promotion blocker is resolved. Earlier embedded source-status labels describing Draft/Review L4 state are retained only as authoring provenance and are superseded for current authority by the Architecture Approved R1/R2 parent decisions. No business ownership, event ownership, lifecycle authority, or technical responsibility is transferred by this promotion. HF-01…HF-15: PASS. Lifecycle: Architecture Approved. Final corpus lock remains separate governance.
