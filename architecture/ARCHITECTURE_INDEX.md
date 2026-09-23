@@ -648,6 +648,10 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 # Recent Changes
 
+**2026-09-23 — L5 R3C non-human principal lifecycle:** allocated and Locked `ADR-L5-0048`, establishing the D01 technical-principal lifecycle `Provisioned → Active ↔ Suspended → Retired` with terminal retirement; updated D01-002/D01-004 and closed their non-human lifecycle open decisions without changing D02 authorization or D03 credential/secret ownership. Canonical ADR count becomes 48 after merge; next allocation `ADR-L5-0049`. L5 Final Corpus Lock remains unauthorized.
+
+---
+
 **2026-09-22 — L5 Batch-9 final lock gate:** Completed the Full Production Validation & Lock-Readiness Programme. The final gate produced a NO-LOCK verdict: 105/105 specifications have current validation dispositions, but 30 Review specifications retain upstream authority/semantics blockers under HF-01/HF-14 and no distinct Final L5 Corpus Lock authorization exists. Lifecycle remains 0 Draft / 51 Review / 21 Architecture Approved / 33 Locked.
 
 ---
