@@ -94,7 +94,7 @@ Authentication proves a principal under governed conditions. It does **not** det
 | L2 | `L2-A03_Authentication_Workflows.md` | v1.1.0 / Locked | `Scope`; `Out of Scope`; `Canonical Ownership`; Credential Management; Authentication Session/Refresh Token ownership; Authentication Provider/Method; MFA architecture | Authentication owns Credential, Authentication Session, Refresh Token, Trusted Device, Authentication Provider/Method, MFA Enrollment, Authentication Policy and Authentication Attempt; Authorization remains outside A03. | Establishes the canonical Authentication-owned aggregates/mechanisms realized by this L5 specification. |
 | ADR | `ADR-PLAT-AUTH-001.md` | Approved | §§2, 3.1, 3.2 | Authentication remains separate from authorization; User Account is authentication/runtime account context, not the Role Assignment subject. | Prevents D01-003 session/token state from becoming an authorization assignment or permission cache of record. |
 
-All materially applicable L4 files currently carry `Draft` metadata on `main`. This specification therefore remains `Draft`; Section 9 records the approval gate rather than silently promoting Draft L4 content to approval-level authority.
+All materially applicable L4 files cited above are Architecture Approved at the current versions under R3A/R3B, and R3D validated their D01 relations. This specification is therefore Architecture Approved at the current version; later material upstream change requires governed impact revalidation.
 
 ### 3.2 Authoritative Constraints
 
