@@ -73,7 +73,7 @@ This specification does not own:
 | L5 Validation Standard | v1.0.1 / Locked | objective CR verification and hard-fail integrity | Verification claims must be attributable, implementable and non-invented. | Governs result/evidence integrity. |
 | L5 L4-to-L5 Traceability Methodology | v1.0.0 / Locked | version-bound BH/L5 evidence | Lower-scope behavior verification cannot silently create canonical relation validation. | Governs traceability status. |
 
-The Review statuses of A03/B02/A04 are preserved. F02-002 may verify their explicit CRs for governed implementation evidence but does not promote or lock those peer specifications.
+A03/B02/A04 are Architecture Approved after R6. F02-002 may verify their explicit CRs for governed implementation evidence but does not promote or lock those peer specifications.
 
 ### 3.2 Verification-Level Definitions
 
