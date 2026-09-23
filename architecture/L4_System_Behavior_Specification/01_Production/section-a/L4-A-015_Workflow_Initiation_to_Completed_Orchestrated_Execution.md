@@ -7,10 +7,10 @@
 **Domain:** Workflow Engine  
 **Realizes Scenario:** L3-A-015  
 **Primary Business Owner:** Workflow Engine  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-30  
+**Last Updated:** 2026-09-23  
 **Depends On:** `L3-A-015_Workflow_Initiation_to_Completed_Orchestrated_Execution.md`; `L2-A05_Workflow_Engine_Workflows.md`; `L2-A04_Authorization_and_Policy_Workflows.md`; `L2-A06_Event_Infrastructure_Workflows.md`  
 **Referenced By:** None yet
 
@@ -66,3 +66,7 @@ Completion requires the instance to reach `Completed` or `Cancelled`, the corres
 ## 10. Open Issues / Deferred Design
 
 The parent records non-blocking actor, event-vocabulary and execution-terminal-versus-archival terminology issues. This draft uses the explicit runtime contract and event semantics without inventing universal human actors or treating `Archived` as an A015 completion state.
+
+## Canonical Validation Note
+
+This specification passed the scoped R1B hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R1B_Workflow_Event_Module_Authority_Architecture_Approval_Decision_2026-09-23.md`. Non-blocking upstream gaps remain bounded exactly as recorded; this approval does not invent actors, commands, events, lifecycle semantics, or implementation design.
