@@ -362,3 +362,8 @@ R5 validates **234** affected R1/R2 BH→L5 relations across Sections A, F and H
 ## 2026-09-23 R6 Targeted Remaining L5 Revalidation
 
 R6 revalidated the remaining 22 upstream-blocked L5 specifications against HF-01…HF-15 after R1/R2 authority consolidation and R5 traceability validation. All 22 pass and are promoted to Architecture Approved. Current living corpus state: 0 Draft / 21 Review / 51 Architecture Approved / 33 Locked / 0 blockers. Final L5 Corpus Lock remains NOT AUTHORIZED pending R7 lifecycle reconciliation and R8 final-lock re-entry audit.
+
+
+## 2026-09-23 R7 Lifecycle Governance
+
+R7 explicitly promotes the five D03 specifications that were already Architecture-Approval eligible and held in Review solely pending a distinct lifecycle decision. The remaining 16 pass/non-blocking Review rows are preserved as Review. Current living L5 corpus: 0 Draft / 16 Review / 56 Architecture Approved / 33 Locked / 0 blockers. Final L5 Corpus Lock remains NOT AUTHORIZED pending R8 final-lock re-entry readiness audit.
