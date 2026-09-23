@@ -372,3 +372,8 @@ R7 explicitly promotes the five D03 specifications that were already Architectur
 ## 2026-09-23 R8 Final-Lock Re-entry Readiness Audit
 
 R8 confirms the remediated L5 corpus is technically clean at the current authority boundary: 105/105 rows, 0 Draft, 0 current blockers, 503 canonical L4→L5 relations with 0 duplicate identities and 0 stale L5 bindings, and 48 ADRs with next allocation ADR-L5-0049. Final-lock re-entry is **not yet eligible** because 16 specifications remain Review and no distinct Final L5 Corpus Lock authorization exists. A targeted lifecycle-closure programme is required before the final lock gate can be rerun.
+
+
+## 2026-09-23 Post-R8 Final Lifecycle Closure
+
+After the four canonical upstream authority remediations were merged, targeted dependency-order revalidation promoted 14 of the 16 remaining Review specifications. Current living L5 corpus: 0 Draft / 2 Review / 70 Architecture Approved / 33 Locked / 0 current hard blockers. The only remaining Review specifications are L5-A-05-001 and L5-A-05-002 because they materially realize Draft L4-A-014/L4-A-017 whose Locked L3 parents still lack Workflow Definition/Version governance authority and command contracts. Canonical L4→L5 relation count is 535 with 0 duplicate identities and 0 stale L5 bindings. Final L5 Corpus Lock remains NOT AUTHORIZED.
