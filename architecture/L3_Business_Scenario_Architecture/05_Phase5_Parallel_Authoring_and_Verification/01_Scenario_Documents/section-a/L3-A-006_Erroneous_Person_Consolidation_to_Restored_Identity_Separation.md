@@ -9,10 +9,10 @@
 **Scenario Type:** Critical  
 **Priority:** P2  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows; L2-A04 — Authorization & Policy Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Last Updated:** 2026-09-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows; L2-A04 — Authorization & Policy Workflows; L2-A07 — Audit Infrastructure Workflows  ; `L2-A02_User_Account_and_Person_Reconciliation_Authority_Amendment_2026-09-23.md`
 **Referenced By:** None yet  
 
 ---
@@ -261,23 +261,22 @@ Completion cannot be confirmed until the Person and Identity lifecycle effects a
 
 ---
 
+## Canonical R3B Remediation
+
+This scenario consumes the Locked A02 R3B amendment. Earlier split blockers are resolved as follows:
+
+- Person Reconciliation Authority is the abstract split-approval authority;
+- corrective split may restore two or more canonical Persons according to evidence and is not limited to one-to-two;
+- each resulting Person follows normal A02 establishment/activation semantics appropriate to recovered evidence;
+- each Identity/User Account receives an explicit governed disposition;
+- A02 does not directly reassign Credential/MFA/Authentication Session state;
+- downstream domains redistribute their own references after `PersonSplit`;
+- A006 completes at authoritative A02 reconciliation and publication of `PersonSplit`.
+
+No cross-domain business data is directly rewritten by Person & Identity.
+
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
-
-| Issue | Architecture Impact | Required Resolution |
-|---|---|---|
-| Locked L1 §3.4 defines one Person inside an Institute, while locked L2-A01, L2-A02 and frozen Phase 2/Stage 3 semantics use a Tenant-scoped Person and Identity boundary. | The uniqueness boundary and valid separation scope cannot become architecture-approved or locked while L1 and L2 differ. | Lead Architect must align the canonical Person boundary through architecture change control. |
-| The frozen trigger begins after an approved administrative review, while L2-A02 separately requires administrative approval for split. L2-A02 and L2-A04 do not identify the canonical approving role or state whether the trigger approval satisfies split approval. | Initiation and approval sequencing and business authority cannot be specified definitively. | Person & Identity and Authorization & Policy architecture must define the canonical approving role and whether one or two approval decisions are required. |
-| The L2-A02 split workflow creates a new Person but does not define its entry state, resulting state or permitted lifecycle transition. It also does not state whether the normal A004 establishment sequence applies or whether `PersonCreated` must be published. | The corrective Person cannot be established through an authoritative lifecycle, preventing correct L4 behavior and completion validation. | L2-A02 must define the split-created Person lifecycle and exact events, and clarify the relationship to L3-A-004. |
-| L2-A02 does not define how associated Identity aggregates, User Accounts or identity references are separated, reassigned or transitioned. L2-A03 and L2-A04 contain no `PersonSplit` handling. | The frozen restored-identity-separation outcome cannot be completed without inventing Identity and dependent-reference behavior. | L2-A02 must define split-specific Identity and User Account effects and identify any authoritative A03/A04 collaboration required. |
-| L2-A02 requires reference redistribution but prohibits Person & Identity from modifying downstream-owned business data. Frozen Stage 3 lists only Domain A as participating, and no synchronous cross-domain contract or exact `PersonSplit` consumers are defined. | The mandatory redistribution responsibility, participating-domain boundary and scenario end boundary are unresolved. | Lead Architect must determine whether downstream redistribution is inside A006 or follows `PersonSplit`, then amend the Stage 3 participation value or L2 collaboration sequence and contracts as required. |
-| L2-A02 defines Identity Split as separating one Person into two independent canonical Person records, while the frozen trigger and outcome do not constrain the number of records originally consolidated or the number of Persons that must result. | A consolidation involving more than two real individuals has no authoritative split cardinality or iteration rule. | L2-A02 or frozen scenario semantics must define whether A006 is strictly one-to-two or supports governed separation into more than two canonical Persons. |
-
-## 17.2 Assumptions
+No blocking issues remain after the Locked R3B upstream amendment(s).
 
 No assumptions.
-
-## 17.3 Deferred Questions
-
-No scenario-specific deferred questions.
