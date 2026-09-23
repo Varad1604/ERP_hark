@@ -7,10 +7,10 @@
 **Domain:** Institution & Structure — Institution
 **Realizes Scenario:** L3-B-001
 **Primary Business Owner:** Institution
-**Version:** 1.0.0
-**Status:** Review
+**Version:** 1.0.1
+**Status:** Architecture Approved
 **Owner:** Pallav
-**Last Updated:** 2026-09-02
+**Last Updated:** 2026-09-23
 **Depends On:** `architecture/L3_Business_Scenario_Architecture/05_Phase5_Parallel_Authoring_and_Verification/01_Scenario_Documents/section-b/L3-B-001_Institution_Establishment_to_Final_Activation_Decision.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Workflow.md`; `architecture/L2_Domain_Workflow_Architecture/section-b/L2-B01_Institution_Activation_Authority_Amendment_2026-08-24.md`; `governance/adr/ADR-B-INST-ACT-001.md`
 **Referenced By:** None yet
 
@@ -99,3 +99,8 @@ Every BH is anchored to material sections of the Locked L3 parent. L2 is used on
 No material L4 issue remains. Institution Activation Authority stays an abstract business authority; local role mapping and technical authorization are deferred.
 
 API/interface design, persistence/data model, service/component design, event transport, technical access control, retry/transaction mechanics, infrastructure/deployment, and UI/UX remain deferred to later architecture levels.
+
+
+## Canonical Validation Note
+
+This specification passed the scoped R1A hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R1A_Tenant_Institution_Authority_Architecture_Approval_Decision_2026-09-23.md`. This approval does not Lock the specification and does not invent upstream actor authority, lifecycle semantics, events, or implementation design.
