@@ -9,10 +9,10 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows; L2-A04 — Authorization & Policy Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Last Updated:** 2026-09-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A02 — Person & Identity Workflows; L2-A04 — Authorization & Policy Workflows; L2-A07 — Audit Infrastructure Workflows  ; `L2-A02_User_Account_and_Person_Reconciliation_Authority_Amendment_2026-09-23.md`
 **Referenced By:** None yet  
 
 ---
@@ -248,22 +248,22 @@ Completion cannot be confirmed for associated Identity aggregates or for downstr
 
 ---
 
+## Canonical R3B Remediation
+
+This scenario consumes the Locked A02 R3B amendment. Earlier merge blockers are resolved as follows:
+
+- Person Reconciliation Authority is the abstract merge-approval authority.
+- one surviving canonical Person is explicitly selected;
+- non-surviving Persons become historical only through valid source lifecycle transitions;
+- each associated Identity/User Account receives an explicit retain/reassociate/disable/archive/hold disposition;
+- A02 does not directly reassign Credentials, MFA factors or Authentication Sessions;
+- downstream domains update their own references **after** `PersonMerged` through owner-preserving contracts/events;
+- A005 ends with authoritative A02 reconciliation and publication of `PersonMerged`, not completion of every downstream reference update.
+
+No downstream business ownership transfers to A02.
+
 # 17. Open Issues, Assumptions and Deferred Questions
 
-## 17.1 Open Issues
-
-| Issue | Architecture Impact | Required Resolution |
-|---|---|---|
-| Locked L1 §3.4 states that every real individual has one Person record inside an Institute, while locked L2-A01, locked L2-A02 and the frozen Phase 2/Stage 3 semantics establish Tenant-scoped Person and Identity ownership. | Duplicate uniqueness, same-boundary validation and merge eligibility cannot become architecture-approved or locked while the canonical scope differs between L1 and L2. | Lead Architect must align the Person uniqueness boundary across locked L1 and L2 through architecture change control. |
-| L2-A02 requires administrative review and approval for Person merge but does not identify the canonical approving role; L2-A04 defines authorization policy ownership without mapping Person merge approval to a specific role. | The Draft can preserve mandatory approval but cannot assign complete business authority for L4 behavior. | Person & Identity and Authorization & Policy architecture must identify the canonical approving role or define an authoritative policy-based role-resolution rule. |
-| L2-A02 describes an “Identity Merge” as consolidation of Person records but does not define what happens to the associated Identity aggregates, including their associations, states, lifecycle transitions or canonical references. | The frozen outcome requires duplicate identity reconciliation, but the Identity lifecycle portion of that outcome cannot be specified without inventing architecture. | L2-A02 must define merge behavior for every associated Identity aggregate and any exact resulting events. |
-| The L2-A02 merge workflow archives duplicate Person records without constraining their entry state, while its allowed Person transitions permit `Active → Archived` and `Inactive → Archived` only. | A duplicate Person in `Draft`, `Created` or `Verified` has no authoritative transition to the merge workflow’s required archived historical-source outcome. | L2-A02 must define merge eligibility by Person state and add any approved lifecycle transitions through architecture change control. |
-| L2-A02 requires Admissions, Student, HR, Examination, Finance, Library and Hostel references to be transferred before the duplicate Person is archived and `PersonMerged` is published. The same document prohibits Person & Identity from modifying business-domain data. Frozen Stage 3 lists only Domain A as participating, and no synchronous business contract or hand-off is defined for the transfer. | The mandatory reference-transfer responsibility, participating-domain boundary and exact scenario end boundary cannot be completed without either changing frozen participation or defining an approved collaboration contract. | Lead Architect must clarify whether downstream reference updates are inside A005 or post-event downstream outcomes. If inside, the Stage 3 participating-domain value and authoritative L2 contracts require controlled amendment; if outside, L2-A02 must move reference synchronization after `PersonMerged` and define the resulting boundary. |
-
-## 17.2 Assumptions
+No blocking issues remain after the Locked R3B upstream amendment(s).
 
 No assumptions.
-
-## 17.3 Deferred Questions
-
-No scenario-specific deferred questions.
