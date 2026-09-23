@@ -36,7 +36,7 @@ The prior `L6_UX_Baseline_Lock_and_Backend_Proceed_Decision_2026-09-19.md` remai
 
 `00_Governance/L6_Stage3_Coherent_Mock_ERP_Foundation_Reviewed_Gameplan_2026-09-21.md` is the reviewed Stage-3 planning baseline. Stage 3 has since completed and closed under its final validation decision.
 
-`00_Governance/L6_Stage5_Domain_By_Domain_Mock_Operational_Implementation_Reviewed_Gameplan_2026-09-22.md` is the active reviewed Stage-5 planning baseline. It defines the single-chat-safe 31-batch execution topology and records `STAGE 5 MASTER PLAN — READY WITH NON-BLOCKING FINDINGS`; implementation has not started.
+`00_Governance/L6_Stage5_Domain_By_Domain_Mock_Operational_Implementation_Reviewed_Gameplan_2026-09-22.md` remains the active reviewed Stage-5 execution topology. Its original planning-time statement that implementation had not started is historical. Stage-5 Batch 0 is merged/complete. Batch 1 has completed all 9 steps and passed final independent revalidation; frontend and Architecture changes are merge-ready subject to explicit authorization.
 
 `L6_Workflow_Realization_Register_DRAFT.md` is now the Stage-2 master-reconciled realization register: **1,084 / 1,084 rows populated**, mapped to **595 final L6 realization workflows**, with zero missing or duplicate primary assignments. Stage 2 has passed its final validation gate.
 
@@ -419,6 +419,8 @@ Validation evidence for this phase is recorded in:
 
 - `00_Governance/L6_Stage4_Batch4_Full_Discovery_Coverage_Exit_Gate_Evidence_2026-09-22.md` — final Stage-4 discovery coverage and exit-gate evidence; Stage 4 is complete and merged.
 
-## Stage 5 Planning
+## Stage 5 Execution
 
-- `00_Governance/L6_Stage5_Domain_By_Domain_Mock_Operational_Implementation_Reviewed_Gameplan_2026-09-22.md` — active Stage-5 master execution plan; 31 bounded batches numbered 0–30; implementation not started.
+- `00_Governance/L6_Stage5_Domain_By_Domain_Mock_Operational_Implementation_Reviewed_Gameplan_2026-09-22.md` — active Stage-5 master execution topology; 31 bounded batches numbered 0–30.
+- `00_Governance/L6_Stage5_Batch0_Authority_Census_Baseline_Freeze_Evidence_2026-09-22.md` — Batch-0 authority/census baseline evidence; merged and complete.
+- `00_Governance/L6_Stage5_Batch1_Mock_Operation_Core_Foundation_Final_Evidence_and_Closure_2026-09-23.md` — Batch-1 final closure evidence; Architecture Approved after final independent revalidation, 9 of 9 steps complete, merge gate PASS subject to explicit authorization.
