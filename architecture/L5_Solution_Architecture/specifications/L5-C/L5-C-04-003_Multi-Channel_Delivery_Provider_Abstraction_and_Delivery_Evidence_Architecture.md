@@ -102,10 +102,10 @@ This specification does not own:
 | L5 Peer | `L5-A-04-002` | v1.1.0 / Architecture Approved | §§2–4 | Tenant/Institution scope propagation and fail-closed isolation. | Constrains provider configuration, delivery execution and evidence scope. |
 | L5 Peer | `L5-B-02-003` | v1.1.0 / Architecture Approved | §§5–8 | Owner-local transaction/concurrency and explicit conflict handling. | Governs Delivery/Attempt/Receipt persistence consistency. |
 | L5 Peer | `L5-D-02-004` | v1.0.0 / Architecture Approved | policy decision/enforcement | Authorization remains external to C04. | Protects provider configuration, controlled operational recovery/reprocessing and privileged actions without inventing roles. |
-| L5 Peer | `L5-D-03-002` | current / Review | §§2–7 | Owns cryptographic protection for protected technical exchanges; mandatory protection does not silently downgrade. | Protects provider communication where required. |
-| L5 Peer | `L5-D-03-004` | current / Review | §§2–7 | Owns application/integration secrets, certificates and machine credentials; secret material cannot propagate into ordinary config/log/evidence. | Supplies provider credentials/certificates without C04 owning secret lifecycle. |
+| L5 Peer | `L5-D-03-002` | v1.3.0 / Architecture Approved | §§2–7 | Owns cryptographic protection for protected technical exchanges; mandatory protection does not silently downgrade. | Protects provider communication where required. |
+| L5 Peer | `L5-D-03-004` | v1.3.0 / Architecture Approved | §§2–7 | Owns application/integration secrets, certificates and machine credentials; secret material cannot propagate into ordinary config/log/evidence. | Supplies provider credentials/certificates without C04 owning secret lifecycle. |
 | L5 Peer | `L5-D-04-001` | v1.1.1 / Locked | §§2–4 | Shared audit/evidence capture without transferring business meaning. | Receives immutable delivery-attempt/receipt/failover evidence references. |
-| L5 Peer | `L5-E-05-001` | v1.0.3 / Review; Stage-3 downstream-consumption approved | §§2–5 | Operational telemetry/observability remains distinct from business audit truth. | Receives provider/channel health, latency, failure and backlog diagnostics. |
+| L5 Peer | `L5-E-05-001` | v1.3.0 / Architecture Approved | §§2–5 | Operational telemetry/observability remains distinct from business audit truth. | Receives provider/channel health, latency, failure and backlog diagnostics. |
 | L5 Peer | `L5-C-02-001` | v1.0.3 / Architecture Approved | §§4–8 | Owns enterprise event/message transport while event semantics/publishers remain upstream-owned. | Carries H02 lifecycle events after C04-001 publication handoff; does not transport provider-delivery work as a competing C04 mechanism. |
 
 ### 3.2 L4 Applicability
@@ -716,7 +716,7 @@ Operational telemetry:
 | `CR-027` | Mandatory protected provider exchange shall consume D03-002 and shall not silently downgrade to an unprotected path. | §5.7; `AD-009` | D03-002 |
 | `CR-028` | Provider/retry/failover configuration may consume A06 generic configuration mechanics, but C04-003 retains only communication-provider policy meaning and shall not duplicate A06 configuration architecture. | §§5.6, 5.8; `AD-010` | L2-H02 §36; A06 |
 | `CR-029` | D04 evidence and E05 telemetry shall remain distinct; telemetry shall not substitute for immutable delivery evidence. | §§5.12–5.13 | D04/E05 boundaries |
-| `CR-030` | No provider vendor, SDK, callback protocol, queue/broker, secret store, crypto algorithm, database, retry count, timeout, rate limit or numeric threshold shall become canonical through this Draft without applicable governance. | `AD-012` | L5 Governance / ADR methodology |
+| `CR-030` | No provider vendor, SDK, callback protocol, queue/broker, secret store, crypto algorithm, database, retry count, timeout, rate limit or numeric threshold shall become canonical through this specification without applicable governance. | `AD-012` | L5 Governance / ADR methodology |
 
 ---
 
