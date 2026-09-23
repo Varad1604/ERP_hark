@@ -633,7 +633,7 @@ This maps into the F02-001 common result/evidence semantics.
 |---|---|---|---|---|
 | `OD-001` | **Resolved:** the four-file F02 family is canonical on `main` and Stage-6 is closed for downstream consumption. | Repository synchronization | Closed | Maintain impact review. |
 | `OD-002` | E01/E02 are Review and Stage-3 closed for downstream use; their Draft-L4 traceability still limits lifecycle promotion. | Peer maturity | Non-blocking for verification; relevant to promotion evidence | Preserve current status. |
-| `OD-003` | D03 specifications are Review and Batch-4 Architecture-Approval eligible; they are governed by `ADR-L5-0027`/`0040`. | Peer maturity | Non-blocking for verification | Preserve D03 lifecycle governance. |
+| `OD-003` | **Resolved for peer maturity:** D03 specifications are Architecture Approved after the explicit R7 lifecycle decision and remain governed by `ADR-L5-0027`/`0040`. | Peer maturity | Non-blocking for verification | Maintain dependency impact review. |
 | `OD-004` | Numeric performance/capacity/security/recovery objectives are not universally established. | Requirement / operations | No | Use only approved workload/service/recovery/security profile values when available. |
 | `OD-005` | Exact testing/scanning/load/fault-injection/recovery products are not selected. | Technology | No | Select only through A02/canonical owner/ADR governance if made normative. |
 | `OD-006` | Exact safe environments for destructive security/fault/DR exercises vary by deployment/integration. | Operations / deployment | No | E04/F01/E03 and applicable provider profiles establish safe execution context. |

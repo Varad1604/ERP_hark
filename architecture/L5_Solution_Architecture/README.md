@@ -367,3 +367,8 @@ R6 revalidated the remaining 22 upstream-blocked L5 specifications against HF-01
 ## 2026-09-23 R7 Lifecycle Governance
 
 R7 explicitly promotes the five D03 specifications that were already Architecture-Approval eligible and held in Review solely pending a distinct lifecycle decision. The remaining 16 pass/non-blocking Review rows are preserved as Review. Current living L5 corpus: 0 Draft / 16 Review / 56 Architecture Approved / 33 Locked / 0 blockers. Final L5 Corpus Lock remains NOT AUTHORIZED pending R8 final-lock re-entry readiness audit.
+
+
+## 2026-09-23 R8 Final-Lock Re-entry Readiness Audit
+
+R8 confirms the remediated L5 corpus is technically clean at the current authority boundary: 105/105 rows, 0 Draft, 0 current blockers, 503 canonical L4→L5 relations with 0 duplicate identities and 0 stale L5 bindings, and 48 ADRs with next allocation ADR-L5-0049. Final-lock re-entry is **not yet eligible** because 16 specifications remain Review and no distinct Final L5 Corpus Lock authorization exists. A targeted lifecycle-closure programme is required before the final lock gate can be rerun.

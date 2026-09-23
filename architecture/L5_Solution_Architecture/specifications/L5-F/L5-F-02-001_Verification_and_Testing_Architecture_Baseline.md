@@ -94,7 +94,7 @@ The current F02-001 consolidation does not convert any Draft L4 source or Draft 
 Current repository and authoring maturity establishes:
 
 - Stage 5 C03 and E03 specifications are locked;
-- C04 and B06 specifications are present on `main` as Review;
+- C04 and B06 specifications are present on `main` as Architecture Approved after R6;
 - F02-001 exists as the Stage-1 working baseline;
 - F02-002, F02-003 and F02-004 are canonical Review child specifications reconciled against this common baseline.
 
