@@ -276,7 +276,7 @@ The full 105-specification corpus was audited after completion of Backend Readin
 
 Confirmed stale ADR/product wording and D03 lifecycle regression were repaired without changing canonical business ownership or intentionally deferred evidence-dependent decisions.
 
-**Final L5 Corpus Lock remains NOT AUTHORIZED.** Production Validation Batches 0–9 are complete. The canonical 105-row register remains current at 0 Draft / 51 Review / 21 Architecture Approved / 33 Locked. Batch 9 concluded with a NO-LOCK verdict because 30 Review specifications retain upstream authority/semantics blockers and no distinct Final L5 Corpus Lock authorization exists.
+**Final L5 Corpus Lock remains NOT AUTHORIZED.** Production Validation Batches 0–9 remain the historical completed validation programme. After R4C consolidation, the living 105-row register is current at 0 Draft / 43 Review / 29 Architecture Approved / 33 Locked with 22 upstream authority/semantics blockers. The historical Batch-9 NO-LOCK verdict remains unchanged and no distinct Final L5 Corpus Lock authorization exists.
 
 
 ## Full Production Validation — Batch 8 State
@@ -332,4 +332,23 @@ A future final-lock gate requires resolution or explicit governance authorizatio
 
 ## 2026-09-23 R3D D01 Targeted Revalidation
 
-R3D reconciles R3A/R3B/R3C IAM remediation, validates 136 canonical Section-A D01 relations, and promotes `L5-D-01-001…004` to Architecture Approved after HF-01…HF-15 PASS. The current corpus blocker population is 26. Final L5 Corpus Lock remains not authorized.
+R3D reconciled R3A/R3B/R3C IAM remediation, validated 136 canonical Section-A D01 relations, and promoted `L5-D-01-001…004` to Architecture Approved after HF-01…HF-15 PASS. Its branch-level blocker population was 26; this current-state count is superseded by R4C consolidation.
+
+
+## 2026-09-23 R4C Remediation Consolidation
+
+R4C consolidates the validated R3D IAM remediation and R4A/R4B operational-evidence/service-acceptance remediation on a fresh branch from current `main`.
+
+Current consolidated state:
+
+- 105 canonical L5 specifications;
+- 0 Draft;
+- 43 Review;
+- 29 Architecture Approved;
+- 33 Locked;
+- 22 upstream authority/semantics blockers;
+- 139 validated Section-A relations = 136 D01 + 3 E05;
+- 48 allocated ADRs; next `ADR-L5-0049`;
+- Final L5 Corpus Lock remains **NOT AUTHORIZED**.
+
+Governance record: `governance/reference/L5_R4C_R3_R4_Remediation_Consolidation_Decision_2026-09-23.md`.
