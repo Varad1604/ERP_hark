@@ -357,3 +357,8 @@ Governance record: `governance/reference/L5_R4C_R3_R4_Remediation_Consolidation_
 ## 2026-09-23 R5 Affected L4→L5 Traceability Validation
 
 R5 validates **234** affected R1/R2 BH→L5 relations across Sections A, F and H with zero duplicate relation identities, zero missing BHs and zero stale version bindings. The 22-spec blocker population remains unchanged pending R6 HF-01…HF-15 targeted revalidation. No lifecycle promotion or Final L5 Corpus Lock is authorized by R5.
+
+
+## 2026-09-23 R6 Targeted Remaining L5 Revalidation
+
+R6 revalidated the remaining 22 upstream-blocked L5 specifications against HF-01…HF-15 after R1/R2 authority consolidation and R5 traceability validation. All 22 pass and are promoted to Architecture Approved. Current living corpus state: 0 Draft / 21 Review / 51 Architecture Approved / 33 Locked / 0 blockers. Final L5 Corpus Lock remains NOT AUTHORIZED pending R7 lifecycle reconciliation and R8 final-lock re-entry audit.
