@@ -20,22 +20,23 @@ Batch 4 was reconstructed from live repository state, not from historical prompt
 ### Frontend
 
 - Repository: `DhruvNaik26/SutraERP_frontend`
-- Canonical `main` used: `4d70619626e5d91dacfbc722d755a69c9d5cafa5`
-- Batch-4 branch: `l6-stage5-batch4-platform-admin-part2`
-- Validated Batch-4 head: `f6cb385df876c27062d5e4fa329073f11d6c5dda`
-- Frontend PR: **#29 — OPEN / NOT MERGED**
-- Frontend PR validation run: **#246 / 35850248727 — SUCCESS**
+- Historical validation baseline `main`: `4d70619626e5d91dacfbc722d755a69c9d5cafa5`.
+- Batch-4 validation branch: `l6-stage5-batch4-platform-admin-part2`.
+- Validated Batch-4 head: `f6cb385df876c27062d5e4fa329073f11d6c5dda`.
+- Frontend PR validation run: **#246 / 35850248727 — SUCCESS**.
+- Frontend PR #29 subsequently merged as `52b76e4cffe58aff4ce4641196c5454bbe3d0639`; the merge commit has zero file differences from the validated head.
 
 ### Architecture
 
 - Repository: `DhruvNaik26/SutraERP_Architecture`
-- Canonical `main` used: `ff445a06fb4904ee655ca4e25c89768663da3a45`.
-- This baseline includes canonical L5 R8 plus merged PR #88 upstream business-authority remediation.
-- PR #88 changed A016/A057 and F001/F035 authority only; it does **not** change any Batch-4 A018…A062 parent.
-- Current canonical L5 state at this baseline remains **0 Draft / 16 Review / 56 Architecture Approved / 33 Locked / 0 hard blockers**.
-- Canonical L4→L5 relation count remains **503**, with zero duplicate relation identities and zero stale bindings at the R8 boundary.
+- Historical Team-C reconstruction baseline: `ff445a06fb4904ee655ca4e25c89768663da3a45`.
+- That historical baseline included canonical L5 R8 plus merged PR #88 upstream business-authority remediation.
+- PR #88 changed A016/A057 and F001/F035 authority only; it did **not** change any Batch-4 A018…A062 parent.
+- At that reconstruction point the L5 state was **0 Draft / 16 Review / 56 Architecture Approved / 33 Locked / 0 hard blockers**, with **503** canonical L4→L5 relations.
+- Architecture PR #90 subsequently merged as `9796e0d217c5f97e3f2f8c2e31744b8bcf7c3e49`.
+- Current canonical L5 state is now **0 Draft / 2 Review / 70 Architecture Approved / 33 Locked / 0 current hard blockers**, with **535** canonical L4→L5 relations, zero duplicate relation identities and zero stale L5 bindings.
+- PR #90 did not change any Batch-4 L2/L3/L4 parent and added or removed no L4→L5 relation for the 36 Batch-4 parents; Batch-4 scope and authority interpretation therefore remain unchanged.
 - Final L5 Corpus Lock remains **NOT AUTHORIZED**.
-- Concurrent Architecture PR #90 is open and non-canonical. It proposes later L5 lifecycle/traceability changes and must not be treated as current authority until merged.
 
 Batch 3 remains canonical **PASS / COMPLETE / MERGED** and records Batch 4 as ENTRY-READY.
 
@@ -316,19 +317,17 @@ No material ownership, fixture, state-authority, mixed-workflow, non-actionable,
 
 ---
 
-## 12. Concurrent Architecture / L5 Result
+## 12. Architecture / L5 Reconciliation
 
-Canonical Architecture `main` at Team-C rebuild is:
+### Historical Batch-4 reconstruction baseline
+
+Team C rebuilt the Batch-4 evidence on Architecture `main`:
 
 ```text
 ff445a06fb4904ee655ca4e25c89768663da3a45
 ```
 
-This main includes merged PR #88 — post-R8 upstream business-authority remediation.
-
-PR #88 reconciled A016/A057 and F001/F035 authority. It did not change any Batch-4 parent in A018…A062, so the Batch-4 scope, Locked L3 authority and L4 lifecycle interpretation remain unchanged.
-
-Canonical L5 state on this main remains:
+At that time the canonical L5 state was:
 
 ```text
 Draft                       0
@@ -343,12 +342,37 @@ Stale L5 bindings           0
 Final L5 Corpus Lock        NOT AUTHORIZED
 ```
 
-Concurrent work:
+That snapshot is retained as historical provenance for the Batch-4 validation decision.
 
-- PR #90 — `L5 post-R8: finalize lifecycle closure after upstream remediation` — is OPEN / NOT MERGED and therefore non-canonical.
-- PR #90 proposes lifecycle/traceability changes beyond the current R8 canonical state; this Batch-4 evidence does not pre-adopt them.
-- PR #89 is the stale predecessor Batch-4 evidence branch based on pre-PR88 main. It is superseded by this rebuilt evidence and must not be merged.
-- If Architecture `main` advances before final Batch-4 merge, the evidence branch must be reconciled again rather than force-merged.
+### Current canonical post-closure state
+
+After Batch 4 was merged and canonicalized, PR #90 — `L5 post-R8: finalize lifecycle closure after upstream remediation` — merged as:
+
+```text
+9796e0d217c5f97e3f2f8c2e31744b8bcf7c3e49
+```
+
+Current canonical L5 state is:
+
+```text
+Draft                       0
+Review                      2
+Architecture Approved      70
+Locked                     33
+Total                     105
+Current hard blockers       0
+Canonical L4→L5 relations 535
+Duplicate relation IDs      0
+Stale L5 bindings           0
+Final L5 Corpus Lock        NOT AUTHORIZED
+```
+
+Post-merge reconciliation result:
+
+- PR #90 changed L5 lifecycle/traceability state but did not modify any Batch-4 L2/L3/L4 parent.
+- PR #90 added or removed no L4→L5 relation for the 36 Batch-4 parents.
+- The Batch-4 workflow census, Locked L3 authority, L4 lifecycle interpretation, ownership boundaries, non-actionable dispositions and L6 realization therefore remain valid.
+- PR #89 remains the closed/superseded pre-PR88 evidence branch and is not canonical.
 
 ---
 
