@@ -648,6 +648,11 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 # Recent Changes
 
+**2026-09-23 — L5 R7 lifecycle governance:** explicitly promoted the five D03 Architecture-Approval-eligible specifications to Architecture Approved and preserved the remaining 16 pass/non-blocking Review rows without silent promotion. Current L5 corpus: 0 Draft / 16 Review / 56 Architecture Approved / 33 Locked / 0 blockers. R8 final-lock re-entry readiness audit is authorized; Final L5 Corpus Lock remains unauthorized.
+
+---
+
+
 **2026-09-23 — L5 R6 targeted remaining revalidation:** revalidated the complete 22-spec upstream-blocker population against HF-01…HF-15 after R1/R2 authority consolidation and R5 traceability validation. All 22 pass and were promoted to Architecture Approved. Current living L5 corpus: 0 Draft / 21 Review / 51 Architecture Approved / 33 Locked / 0 blockers. Traceability version bindings were synchronized across Sections A/C/F/H. Final L5 Corpus Lock remains unauthorized pending R7/R8 governance.
 
 ---
