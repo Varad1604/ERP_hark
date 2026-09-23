@@ -5,7 +5,7 @@
 **Owner:** Lead Architect  
 **Architectural Level:** L5 — Solution Architecture Governance  
 **Domain:** Cross-domain  
-**Last Updated:** 2026-09-22  
+**Last Updated:** 2026-09-23  
 **Depends On:** L5 Technology Selection & ADR Methodology  
 **Purpose:** Canonical allocation and lifecycle register for L5 Architecture Decision Record identifiers  
 
@@ -146,6 +146,7 @@ The next new ADR number is determined from the highest canonical allocated ADR n
 | `ADR-L5-0046` | Recovery Class, RPO/RTO, Retention & Validation Governance Standard | Repository | L5-E-03 — Backup, Restore & Disaster Recovery Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0046_Recovery_Class_RPO_RTO_Retention_and_Validation_Governance_Standard.md` | `L5-E-03-001`; `L5-E-03-002`; `L5-E-03-003`; recovery-sensitive L5 consumers | 2026-09-22 | 2026-09-22 | — | — | Locked Group-6 recovery/retention governance. |
 
 | `ADR-L5-0047` | Scheduling Optimization Benchmark Gate & Authority Boundary | Specification | L5-A-07-006 — Scheduling & Optimization Engine Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0047_Scheduling_Optimization_Benchmark_Gate_and_Authority_Boundary.md` | `L5-A-07-006`; scheduling consumers/F02 | 2026-09-22 | 2026-09-22 | — | — | Locked Group-6 solver benchmark gate; product intentionally not yet selected. |
+| `ADR-L5-0048` | Non-Human Technical Principal Lifecycle Profile | Shared / Family | L5-D-01 — IAM Architecture | Locked | `architecture/L5_Solution_Architecture/adr/ADR-L5-0048_Non_Human_Technical_Principal_Lifecycle_Profile.md` | `L5-D-01-002`; `L5-D-01-004`; constrains `L5-D-01-003`, `L5-D-02-*`, `L5-D-03-*`, `L5-A-08-*`, `L5-C-03-*` | 2026-09-23 | 2026-09-23 | — | — | Locked R3C decision defining the canonical non-human technical-principal lifecycle without fabricating Person/User Account semantics. |
 
 ### ADR Path
 
@@ -389,5 +390,5 @@ It does not:
 
 **Status:** Locked  
 **Authority:** Lead Architect — L5 ADR Allocation and Lifecycle Register Baseline  
-**ADR IDs Currently Canonically Allocated:** 47  
-**Next Canonical Allocation:** `ADR-L5-0048`
+**ADR IDs Currently Canonically Allocated:** 48  
+**Next Canonical Allocation:** `ADR-L5-0049`
