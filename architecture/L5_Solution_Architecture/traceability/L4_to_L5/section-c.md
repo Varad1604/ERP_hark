@@ -123,3 +123,14 @@ All 40 BHs represented in this file have `VALIDATED COVERAGE`. The remaining 49 
 ## 2026-09-22 Batch 8 Version-Binding Revalidation
 
 Batch 8 revalidated every existing W-C02 `Validated` relation whose bound L5 specification version advanced after the 2026-09-17 relation review. The later L5 changes were assessed against the exact recorded technical contributions and did not alter those contribution semantics, canonical ownership, upstream L4 behavior, or relation validity. Affected rows are rebound to the current L5 version, retain `Validated`, and record the Batch-8 review reference. No new relation was created and no BH coverage state changed.
+
+
+---
+
+## Post-R8 F02 Verification Relations — 2026-09-23
+
+| L4 Specification | L4 Version | BH ID | L5 Specification | L5 Version | Technical Contribution | L5 Evidence | Relation State | Review Reference | Last Reviewed |
+|---|---|---|---|---|---|---|---|---|---|
+| L4-C-001 | 1.0.1 | L4-C-001-BH-004 | L5-F-02-001 | 1.1.0 | Existing selective verification contribution explicitly claimed by F02-001; relation validates verification obligation/evidence/gate semantics without taking source-domain ownership. | F02-001 §10 selective mapping + post-R8 lifecycle closure review | Validated | L5_Post_R8_Final_Lifecycle_Closure_Decision_2026-09-23.md | 2026-09-23 |
+| L4-C-001 | 1.0.1 | L4-C-001-BH-005 | L5-F-02-001 | 1.1.0 | Existing selective verification contribution explicitly claimed by F02-001; relation validates verification obligation/evidence/gate semantics without taking source-domain ownership. | F02-001 §10 selective mapping + post-R8 lifecycle closure review | Validated | L5_Post_R8_Final_Lifecycle_Closure_Decision_2026-09-23.md | 2026-09-23 |
+| L4-C-001 | 1.0.1 | L4-C-001-BH-006 | L5-F-02-001 | 1.1.0 | Existing selective verification contribution explicitly claimed by F02-001; relation validates verification obligation/evidence/gate semantics without taking source-domain ownership. | F02-001 §10 selective mapping + post-R8 lifecycle closure review | Validated | L5_Post_R8_Final_Lifecycle_Closure_Decision_2026-09-23.md | 2026-09-23 |
