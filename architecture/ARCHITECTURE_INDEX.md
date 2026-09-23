@@ -648,6 +648,10 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 # Recent Changes
 
+**2026-09-23 — R3D D01 targeted revalidation:** integrated R3A/R3B/R3C IAM remediation, Locked `ADR-L5-0048`, established 136 validated Section-A D01 BH→L5 relations, and promoted `L5-D-01-001…004` to Architecture Approved after HF-01…HF-15 PASS. The current L5 blocker population is reduced from 30 to 26; Final L5 Corpus Lock remains unauthorized.
+
+---
+
 **2026-09-22 — L5 Batch-9 final lock gate:** Completed the Full Production Validation & Lock-Readiness Programme. The final gate produced a NO-LOCK verdict: 105/105 specifications have current validation dispositions, but 30 Review specifications retain upstream authority/semantics blockers under HF-01/HF-14 and no distinct Final L5 Corpus Lock authorization exists. Lifecycle remains 0 Draft / 51 Review / 21 Architecture Approved / 33 Locked.
 
 ---
