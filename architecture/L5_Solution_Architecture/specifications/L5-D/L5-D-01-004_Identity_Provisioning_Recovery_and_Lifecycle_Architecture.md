@@ -9,12 +9,12 @@
 **Canonical Technical Responsibility:** Account provisioning/recovery/disablement synchronized with authoritative identity facts.  
 **Technical Architecture Owner:** L5-D-01 — IAM Architecture  
 **Assigned Author:** Devang  
-**Version:** `1.0.1`  
+**Version:** `1.1.0`  
 **Status:** `Review`  
-**Last Updated:** `2026-09-22`  
+**Last Updated:** `2026-09-23`  
 **Depends On:** L5 Governance and Architecture Standard v0.3.1; L5 Solution Architecture Specification Template v1.0.3; L5 Validation Standard v1.0.1; L5 Candidate Document Corpus Register v1.1.0; L5 L4-to-L5 Traceability Methodology v1.0.0; L5 Technology Selection & ADR Methodology v1.0.1; L5 ADR Register v1.0.0; `L5-D-01-001` v1.0.1 Draft; Review `L5-D-01-002` v1.0.0 Draft; Review `L5-D-01-003` v1.0.0 Draft; `L4-A-004` v1.0.0 Draft; `L4-A-005` v1.0.0 Draft; `L4-A-006` v1.0.0 Draft; `L4-A-007` v1.0.0 Draft; `L4-A-008` v1.0.0 Draft; `L4-A-053` v1.0.0 Draft; `L4-A-054` v1.0.0 Draft; `L2-A02` Locked; `L2-A03` v1.1.0 Locked; `ADR-PLAT-AUTH-001` Approved.  
 **Referenced By:** Planned `L5-D-02-*`, account/identity lifecycle consumers, onboarding/integration architecture, and implementation specifications requiring governed IAM provisioning or lifecycle synchronization.  
-**Applicable ADRs:** `ADR-PLAT-AUTH-001` constrains Person/User Account and authentication/authorization ownership. No canonical L5 ADR is currently allocated for IAM provisioning product, workflow engine, directory, transport, persistence, recovery product or lifecycle technology; none is selected here.  
+**Applicable ADRs:** `ADR-PLAT-AUTH-001`; `ADR-L5-0039`; `ADR-L5-0048`. Product/workflow-engine/directory/transport/persistence choices remain governed separately.  
 
 ---
 
@@ -188,7 +188,7 @@ No material business or technology assumption is promoted to fact. Missing User 
 | Lifecycle Reconciliation Control | Control Point | Detects stale, duplicate, out-of-order or contradictory lifecycle inputs; compares current authoritative source state before replaying a technical consequence and routes unresolved semantic conflicts to governance/manual resolution. | Incoming lifecycle work; previously processed correlation; current authoritative refs/state/version where exposed by source. | Processing history/correlation only. | No-op, safe replay/resume, or blocked reconciliation finding. | B02; C01/C02; D04 | Shall not use stale events to reactivate disabled access, duplicate accounts or undo later authoritative closure. | C-012; D01-003 stale-state rules. |
 | Bulk Onboarding Provisioning Handoff | Coordinator / Adapter | Consumes per-record accepted canonical identity outcomes from A054 and evaluates each independently for later account provisioning eligibility; does not own source migration/onboarding business state. | Per-record Tenant/Person/Identity outcome; legacy mapping reference; provisioning/login-required authority if available. | Technical per-record correlation/result. | Individual Account Provisioning Gate invocation, link/no-op, or evidenced blocked/rejected outcome. | A02; D01-002; D04; B02 | No job-level invented business status/event; failed records do not corrupt successful records. | `L4-A-054-BH-006`–`BH-010`; C-009. |
 | Merge/Split Lifecycle Hold | Safety Control Point | Prevents automatic account/principal rebinding, duplicate suppression, disablement or reassociation when a Person merge/split arrives without authoritative Identity/User Account consequences. | `PersonMerged`/`PersonSplit` context; associated principal/account refs; current authoritative Identity/account consequence if any. | Block/hold/reconciliation reference only. | Proceed only when authoritative Identity/account effect exists; otherwise explicit blocked lifecycle item. | A02; D01-002; D04 | Guessing Identity merge/split, transferring account ownership or rewriting account bindings is prohibited. | L4-A-005 §10; L4-A-006 §10; C-010. |
-| Non-Human Lifecycle Coordination Boundary | Control Point | Applies the same source-authority, Tenant, idempotency and evidence principles to D01-002 service/workload/job/integration principals once an authoritative technical provisioning/lifecycle basis is available. | Tenant; non-human principal ref; accountable technical owner; approved provisioning/lifecycle instruction. | D01-004 coordination metadata only; exact non-human lifecycle semantics remain externally governed. | D01-002 principal availability/binding update and D01-003 machine-auth capability handoff where authorized. | D01-002; D01-003; D03 | No invented non-human states/events/owner; no human Person/User Account fabrication for machine identities. | Frozen D01-002/D01-004 responsibilities; `OD-007`. |
+| Non-Human Lifecycle Coordination Boundary | Control Point | Applies the same source-authority, Tenant, idempotency and evidence principles to D01-002 service/workload/job/integration principals once an authoritative technical provisioning/lifecycle basis is available. | Tenant; non-human principal ref; accountable technical owner; approved provisioning/lifecycle instruction. | D01-004 coordination metadata only; non-human lifecycle semantics are governed by `ADR-L5-0048`. | D01-002 principal availability/binding update and D01-003 machine-auth capability handoff where authorized. | D01-002; D01-003; D03 | No invented non-human states/events/owner; no human Person/User Account fabrication for machine identities. | Frozen D01-002/D01-004 responsibilities; `OD-007`. |
 | Lifecycle Evidence Handoff | Contract Boundary | Supplies non-secret provisioning/recovery/disablement/reconciliation facts, actors/source authority references, step outcomes and correlation to D04. | Lifecycle processing context and outcomes. | No immutable audit store; no Credential secrets. | D04 evidence/provenance input and E05 operational signal where applicable. | D04; E05 | Evidence failure shall not be hidden where evidence is required to assert completion. | L4-A-008-BH-008; L4-A-053 §7; L4-A-054 §7. |
 
 The elements above are logical architecture boundaries. They do not prescribe service/process/container decomposition.
@@ -361,7 +361,7 @@ Tenant-bound non-human principal basis
 Lifecycle Synchronization Intake
         ↓
 D01-002 non-human principal exists / may be provisioned under governed semantics?
-        ├─ No / semantics unresolved → blocked under OD-007
+        ├─ No / lifecycle preconditions fail → blocked / remain non-active
         └─ Yes
              ↓
 Apply authorized D01-002 principal lifecycle/binding consequence
@@ -667,6 +667,30 @@ No numeric availability, retry, timeout, TTL, retention, throughput, lockout or 
 - `OD-004` — merge/split Identity/account effects unresolved.
 - `OD-005` — closure aggregate ordering unresolved.
 - `OD-006` — recovery state/event semantics unresolved.
-- `OD-007` — non-human lifecycle semantics unresolved.
+- `OD-007` — **resolved by ADR-L5-0048**.
 - `OD-008` — D01 peer stabilization reconciled; ordinary impact review remains.
 - `OD-009` — core technology resolved; policy/profile values remain governed.
+
+
+## 2026-09-23 R3C Non-Human Lifecycle Coordination Synchronization
+
+**Applicable locked decision:** `ADR-L5-0048`
+
+D01-004 coordinates non-human principal lifecycle transitions against the D01-002-owned canonical state model:
+
+```text
+Provisioned → Active ↔ Suspended → Retired
+```
+
+with `Retired` terminal.
+
+Coordination rules:
+
+- provisioning establishes the technical principal and required Tenant/technical-owner context before activation;
+- activation requires current authentication/credential readiness and applicable authorization-binding readiness;
+- suspension blocks new authenticated execution and coordinates required credential/session consequences;
+- resume revalidates current Tenant, owner, authentication and authorization-binding conditions;
+- retirement is permanent, preserves history, and coordinates credential/session revocation;
+- duplicate/replayed requests are idempotent;
+- stale activation cannot override later suspension or retirement;
+- D01-004 never fabricates Person/User Account records or grants D02 authority.
