@@ -3,7 +3,7 @@
 **Architecture Level:** L5 — Solution Architecture  
 **Purpose:** Canonical repository location for the frozen 105-specification L5 production corpus  
 **Broad Authoring:** Authorized  
-**Final L5 Corpus Lock:** Executed on final-lock branch; canonicalization pending Final Lock PR merge  
+**Final L5 Corpus Lock:** COMPLETE — canonical on `main` as `fe9d03d6b70f17f071340b60394589cadb31d5b4`  
 
 ---
 
@@ -137,7 +137,7 @@ Production specifications shall inherit all applicable Locked decisions through 
 
 ## Post-Decision Audit State
 
-As of the authorized 2026-09-23 Final Corpus Lock branch, the 105 canonical specification headers are synchronized to **0 Draft / 0 Review / 0 Architecture Approved / 105 Locked**. The 72 final promotions are governed by the distinct Final L5 Corpus Lock authorization; the locked state becomes canonical only after the Final Lock PR is merged.
+As of the authorized 2026-09-23 Final Corpus Lock branch, the 105 canonical specification headers are synchronized to **0 Draft / 0 Review / 0 Architecture Approved / 105 Locked**. The 72 final promotions are governed by the distinct Final L5 Corpus Lock authorization; the locked state is canonical on `main` as of merge commit `fe9d03d6b70f17f071340b60394589cadb31d5b4`.
 
 
 ## Production Validation Register — 2026-09-22
@@ -200,4 +200,4 @@ Branch lifecycle result:
 
 No specification identity, version, canonical technical ownership, ADR decision, L4→L5 relation identity, or business semantic was changed by the lock transition. Five D03 headers that still displayed historical `Review` text were reconciled under the already-established R7 Architecture Approval authority before being locked.
 
-**Canonicalization status:** pending explicit merge authorization for the Final Lock PR.
+**Canonicalization status:** COMPLETE — Final Lock PR #100 merged to canonical `main`.
