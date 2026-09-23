@@ -9,10 +9,10 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Locked  
-**Version:** 1.1  
+**Version:** 1.2  
 **Owner:** Pallav  
-**Last Updated:** 2026-08-25  
-**Depends On:** L2-F00; L2-F06; L2-B02; SutraERP L1 Business Domain Architecture (Locked); DEPENDENCY_MAP.md; L3 Business Scenario Template v2.0; Stage 3 Canonical Scenario Register — Section F  
+**Last Updated:** 2026-09-23  
+**Depends On:** L2-F00; L2-F06; `L2-F06_Budget_Allocation_Authority_Amendment_2026-09-23.md`; L2-B02; SutraERP L1 Business Domain Architecture (Locked); DEPENDENCY_MAP.md; L3 Business Scenario Template v2.0; Stage 3 Canonical Scenario Register — Section F  
 **Referenced By:** None yet
 
 ## 2. Scenario Purpose
@@ -58,7 +58,7 @@ No additional relationship is required to define this scenario boundary.
 
 ## 6. Business Actors, Roles and Responsibilities
 
-L2-F06 does not define canonical business actors for Budget allocation. Budget & Cost Center Management owns the business responsibilities in this scenario, but the actor/decision-authority mapping required to assign those responsibilities to institutional roles remains an upstream architecture gap; see Section 17.
+`Authorized Budget Administrator` is the canonical abstract preparation actor and `Budget Governance Authority` is the canonical allocation-decision authority under the Locked L2-F06 amendment. Budget & Cost Center Management retains aggregate ownership.
 
 ## 7. Preconditions and Entry Criteria
 
@@ -124,11 +124,11 @@ The allocation structure may cover departments, campuses, administrative units, 
 
 ### 15.1 Initiation and Decision Authority
 
-L2-F06 requires governed authorization for Budget allocation but does not define the canonical institutional actor or role that exercises that authority. No L3 actor is assigned until that upstream mapping is governed.
+`Budget Governance Authority` makes the governed allocation decision. Institutional policy maps that abstract authority to the appropriate office, committee, administrator or governance body.
 
 ### 15.2 Separation of Duties, Overrides and Exceptions
 
-L2-F06 requires governed authorization for structural changes but does not define the allocation approver or separation roles. No additional separation-of-duty, override or exception authority is introduced at L3.
+Preparation and allocation approval are distinct canonical responsibilities. No universal requirement is imposed that they be different persons; institutional policy may impose stronger separation of duties.
 
 ### 15.3 Business Audit and Evidence Obligations
 
@@ -158,7 +158,7 @@ Section A retains ownership of Authorization and Audit infrastructure; Budget & 
 
 | Issue | Architecture Impact | Required Resolution |
 |---|---|---|
-| L2-F06 records no canonical Actors section and does not define the institutional actor/decision-authority mapping for Budget allocation. The repository contains scenario references to `ACR-F-2026-08-21-001`, but no independently traceable governance/ADR/approval artifact establishing that ACR was found. | The business allocation behaviour is source-supported, but L3 cannot authoritatively assign named institutional actors or claim that the authority gap is resolved. The scenario therefore remains Review. | Resolve the actor/decision-authority mapping in authoritative L2/governance and provide independently traceable approval provenance before promotion beyond Review. |
+| RESOLVED — L2-F06 Budget Allocation Authority Amendment | Canonical preparation actor, decision authority and approval provenance are now explicit without naming a universal institutional job title. | Closed by Locked L2-F06 amendment approved 2026-09-23. |
 
 ### 17.2 Assumptions
 
@@ -170,5 +170,10 @@ No scenario-specific deferred questions.
 
 ---
 
-**Authoring Validation Classification:** REVIEW REQUIRED  
-**Validation Note:** Business semantics remain grounded in L2-F06. Unsupported ACR-based actor/authority claims were removed; the unresolved upstream actor/approval-provenance gap is recorded rather than invented at L3.
+**Authoring Validation Classification:** PASS  
+**Validation Note:** Business semantics remain grounded in L2-F06. Actor/decision authority and approval provenance are supplied by the Locked L2-F06 Budget Allocation Authority Amendment; no unsupported ACR or universal job title is used.
+
+
+## 2026-09-23 Upstream Authority Reconciliation
+
+L3-F-035 is reconciled to `L2-F06_Budget_Allocation_Authority_Amendment_2026-09-23.md`. Authorized Budget Administrator prepares proposed allocations; Budget Governance Authority makes the governed allocation decision; L2-F06 remains canonical owner and publisher of `BudgetAllocationCreated`.

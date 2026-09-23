@@ -650,6 +650,11 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 # Recent Changes
 
+**2026-09-23 — Post-R8 upstream business-authority remediation:** explicit Lead Architect decisions resolved four remaining upstream gaps: Workflow Recovery Authority (A016), Tenant Change Authority (A057), standard Student Charge publication authority (F001), and Budget Allocation Authority (F035). Locked L2 amendments were added; L3-A-016/A-057/F-001/F-035 were reconciled; L4-A-016/A-057/F-001/F-035 are now Architecture Approved. No L5 lifecycle promotion or Final Corpus Lock is authorized by this upstream remediation.
+
+---
+
+
 **2026-09-23 — L5 R8 final-lock re-entry readiness audit:** repository-wide audit confirms 105/105 L5 rows, 0 Draft, 0 current hard blockers, 16 Review / 56 Architecture Approved / 33 Locked, 503 canonical L4→L5 relations with 0 duplicate identities and 0 stale L5 bindings, and 48 ADRs with next ADR-L5-0049. Four stale peer-lifecycle references in surviving Review specs were mechanically corrected. Final-lock re-entry remains not eligible because 16 specifications are still Review and no distinct Final L5 Corpus Lock authorization exists.
 
 ---

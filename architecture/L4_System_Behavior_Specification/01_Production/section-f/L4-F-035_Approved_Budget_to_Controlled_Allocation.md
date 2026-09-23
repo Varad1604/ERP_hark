@@ -7,11 +7,11 @@
 **Domain:** Budget & Cost Center Management
 **Realizes Scenario:** L3-F-035
 **Primary Business Owner:** Budget & Cost Center Management
-**Version:** 1.0.0
-**Status:** Review
+**Version:** 1.0.1
+**Status:** Architecture Approved
 **Owner:** Pallav
-**Last Updated:** 2026-09-02
-**Depends On:** `L3-F-035_Approved_Budget_to_Controlled_Allocation.md`; `L2-F06_Budget_and_Cost_Center_Management.md`; `L2-B02_Organisation_Workflows.md`
+**Last Updated:** 2026-09-23
+**Depends On:** `L3-F-035_Approved_Budget_to_Controlled_Allocation.md`; `L2-F06_Budget_and_Cost_Center_Management.md`; `L2-F06_Budget_Allocation_Authority_Amendment_2026-09-23.md`; `L2-B02_Organisation_Workflows.md`
 **Referenced By:** None yet
 
 ---
@@ -96,7 +96,12 @@ Every BH above is anchored to the approved Locked L3 parent. Higher-level/L2 sou
 
 ## 10. Open Issues / Deferred Design
 
-No named institutional allocation approver is established upstream. L4 requires the authoritative governed authorization outcome without naming one. Implementation details remain deferred.
+`Budget Governance Authority` is the canonical abstract allocation-decision authority and `Authorized Budget Administrator` is the canonical preparation actor under the Locked L2-F06 amendment. Institutional policy maps them locally. Implementation details remain deferred.
 
 ---
 
+
+
+## 2026-09-23 Architecture Approval
+
+Promoted to Architecture Approved after reconciliation with L3-F-035 v1.2 and the Locked L2-F06 Budget Allocation Authority amendment. Budget & Cost Center Management remains owner and semantic publisher of governed allocation facts.

@@ -7,11 +7,11 @@
 **Domain:** Platform & Tenant  
 **Realizes Scenario:** L3-A-057  
 **Primary Business Owner:** Platform & Tenant  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** `L3-A-057_Controlled_Platform_Change_to_Restored_Tenant_Operational_Availability.md`; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Last Updated:** 2026-09-23  
+**Depends On:** `L3-A-057_Controlled_Platform_Change_to_Restored_Tenant_Operational_Availability.md`; L2-A01 — Platform & Tenant Foundation; `L2-A01_Tenant_Controlled_Change_Authority_Amendment_2026-09-23.md`; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -27,7 +27,7 @@ The behavior begins when a controlled maintenance activity or platform upgrade m
 - A governed maintenance or upgrade condition exists.
 - Applicable operation restrictions can be determined from the Tenant lifecycle semantics.
 - Required post-change integrity validation can be evaluated.
-- Authorization and audit context are available, although exact maintenance/upgrade actors are not defined upstream.
+- Tenant Change Authority and Authorized Platform Actor responsibilities are available from the Locked L2-A01 controlled-change amendment.
 
 ## 4. System Behavioral Obligations
 
@@ -60,7 +60,7 @@ If transition eligibility, authorization, change completion or post-change integ
 
 ## 8. Observable Completion Conditions
 
-Completion requires a source-permitted `Active → Maintenance → Active` or `Active → Upgrade → Active` progression, enforcement of the applicable temporary restriction, successful integrity validation before restoration, and preserved Tenant data/configuration/audit history. Exact initiating/approving authority and canonical event publication remain unresolved upstream.
+Completion requires a source-permitted `Active → Maintenance → Active` or `Active → Upgrade → Active` progression, enforcement of the applicable temporary restriction, successful integrity validation, Tenant Change Authority acceptance before restoration, and preserved Tenant data/configuration/audit history. Dedicated Maintenance/Upgrade event publication is intentionally not required.
 
 ## 9. Traceability & Provenance
 
@@ -71,4 +71,9 @@ This specification describes only observable business-system behavior. It does n
 
 ## 10. Open Issues / Deferred Design
 
-Locked L2-A01 does not define canonical maintenance/upgrade workflow commands, requestor/approver/change authorities, or lifecycle events/publishers for the source-defined Tenant transitions. Those gaps remain explicit. No human role, command, event or technical execution mechanism is inferred.
+The authority/operation gap is resolved by the Locked L2-A01 controlled-change amendment. No dedicated Maintenance/Upgrade event names are canonical; technical execution/deployment mechanisms remain downstream.
+
+
+## 2026-09-23 Architecture Approval
+
+Promoted to Architecture Approved after reconciliation with L3-A-057 v1.1 and the Locked L2-A01 Controlled Tenant Change Authority amendment. Tenant lifecycle ownership remains exclusively with Platform & Tenant.

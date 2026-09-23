@@ -7,11 +7,11 @@
 **Domain:** Workflow Engine  
 **Realizes Scenario:** L3-A-016  
 **Primary Business Owner:** Workflow Engine  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** `L3-A-016_Workflow_Execution_Failure_to_Controlled_Recovery_Outcome.md`; `L2-A05_Workflow_Engine_Workflows.md`; `L2-A04_Authorization_and_Policy_Workflows.md`; `L2-A06_Event_Infrastructure_Workflows.md`; `L2-A07_Audit_Infrastructure_Workflows.md`; `L3-A-015`  
+**Last Updated:** 2026-09-23  
+**Depends On:** `L3-A-016_Workflow_Execution_Failure_to_Controlled_Recovery_Outcome.md`; `L2-A05_Workflow_Engine_Workflows.md`; `L2-A05_Workflow_Recovery_Authority_Amendment_2026-09-23.md`; `L2-A04_Authorization_and_Policy_Workflows.md`; `L2-A06_Event_Infrastructure_Workflows.md`; `L2-A07_Audit_Infrastructure_Workflows.md`; `L3-A-015`  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -37,13 +37,13 @@ SutraERP shall expose controlled business-visible recovery for a failed Workflow
 | L4-A-016-BH-004 | The system shall prevent recovery progression when recovery is not permitted by the originating version, applicable policy, failure category or current lifecycle state. | L3-A-016 §§9, 11–12 |
 | L4-A-016-BH-005 | The system shall prevent `Failed → Recovering` until the required recovery authorization outcome exists. | L3-A-016 §§9, 13, 15 |
 | L4-A-016-BH-006 | While `Recovering`, the system shall require an authoritative valid continuation position and shall not rewrite completed domain outcomes or silently change the originating version. | L3-A-016 §§9–13 |
-| L4-A-016-BH-007 | When governed recovery succeeds, the system shall transition `Recovering → Running` and publish only the source-supported recovery/resumption events whose transition conditions are satisfied. | L3-A-016 §§9, 13–14 |
+| L4-A-016-BH-007 | When governed recovery succeeds, the system shall transition `Recovering → Running` and publish `WorkflowRecovered`. | L3-A-016 §§9, 13–14 |
 | L4-A-016-BH-008 | When governed recovery cannot resume and authorized closure exists, the system shall transition `Recovering → Cancelled` and publish `WorkflowCancelled`. | L3-A-016 §§9, 11, 13–14 |
 | L4-A-016-BH-009 | The system shall never resume a `Completed` or `Cancelled` instance through A016. | L3-A-016 §§4, 12–13 |
 
 ## 5. Cross-Domain & Event Behavior
 
-The Workflow Engine remains sole publisher of `WorkflowFailed`, `WorkflowCheckpointCreated`, `WorkflowRecovered`, `WorkflowResumed` and `WorkflowCancelled` under their source-defined conditions. The Workflow-Owning Domain remains authoritative for whether its business action completed, failed or may be performed again. No recovery event may overwrite a domain result.
+The Workflow Engine remains sole semantic publisher of `WorkflowFailed`, `WorkflowRecovered` and `WorkflowCancelled` under their source-defined conditions. The Workflow-Owning Domain remains authoritative for whether its business action completed, failed or may be performed again. No recovery event may overwrite a domain result.
 
 ## 6. Failure / Rejection / Continuation
 
@@ -67,4 +67,9 @@ Completion is observable when the failed instance has either returned from `Reco
 
 ## 10. Open Issues / Deferred Design
 
-The parent leaves the universal recovery initiator/approver, terminal-resolution authority and complete generic recovery contract undefined. It also references a persisted checkpoint as a required recovery position; L4 preserves the observable requirement for a valid prior execution position while deferring persistence and retry mechanics to later architecture.
+The recovery-authority gap is resolved by the Locked L2-A05 Workflow Recovery Authority amendment. L4 preserves the observable requirement for a valid governed continuation position while deferring persistence/checkpoint and retry implementation mechanics to later architecture.
+
+
+## 2026-09-23 Architecture Approval
+
+Promoted to Architecture Approved after reconciliation with L3-A-016 v1.1 and the Locked L2-A05 Workflow Recovery Authority amendment. No new workflow lifecycle state, domain-business authority, or implementation mechanism is introduced.

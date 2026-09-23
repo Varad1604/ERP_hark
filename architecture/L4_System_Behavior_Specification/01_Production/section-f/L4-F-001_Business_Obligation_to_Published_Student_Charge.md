@@ -7,11 +7,11 @@
 **Domain:** Finance  
 **Realizes Scenario:** L3-F-001 — Business Obligation to Published Student Charge  
 **Primary Business Owner:** Student Charge & Fee Management  
-**Version:** 1.0.1  
-**Status:** Draft  
+**Version:** 1.0.2  
+**Status:** Architecture Approved  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-F-001; L2-F00; L2-F01; authoritative source-domain obligation events  
+**Last Updated:** 2026-09-23  
+**Depends On:** L3-F-001; L2-F00; L2-F01; `L2-F01_Student_Charge_Publication_Authority_Amendment_2026-09-23.md`; authoritative source-domain obligation events  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -67,8 +67,13 @@ A canonical Student Charge exists, is traceable to exactly one Charge Source, ha
 
 ## 10. Open Issues / Deferred Design
 
-L2-F01 explicitly lacks an authoritative actor catalogue. This L4 therefore introduces no Finance-specific actor or approval role. Technical event transport, APIs, persistence and retries remain deferred to L5.
+Standard event-driven Student Charge generation/publication is governed by the Locked L2-F01 publication-authority amendment and requires no universal human approval. Manual/exceptional charge authority remains separately governed when policy requires it. Technical event transport, APIs, persistence and retries remain deferred to L5.
 
 ## Canonical Validation Note
 
 This specification is a canonical L4 artifact adhering to L4 Template v1.0 and is not self-locked.
+
+
+## 2026-09-23 Architecture Approval
+
+Promoted to Architecture Approved after reconciliation with L3-F-001 v1.2 and the Locked L2-F01 Student Charge Publication Authority amendment. Source-domain fact ownership and L2-F01 Student Charge ownership remain unchanged.

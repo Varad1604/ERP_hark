@@ -9,10 +9,10 @@
 **Scenario Type:** Critical  
 **Priority:** P1  
 **Status:** Locked  
-**Version:** 1.0  
+**Version:** 1.1  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-20  
-**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
+**Last Updated:** 2026-09-23  
+**Depends On:** SutraERP L1 Business Domain Architecture; `DEPENDENCY_MAP.md`; L2-A01 — Platform & Tenant Foundation; `L2-A01_Tenant_Controlled_Change_Authority_Amendment_2026-09-23.md`; L2-A04 — Authorization & Policy Workflows; L2-A06 — Event Infrastructure Workflows; L2-A07 — Audit Infrastructure Workflows  
 **Referenced By:** Every business domain dependent on Tenant operational state
 
 ---
@@ -27,7 +27,7 @@ Govern an Active Tenant through controlled Maintenance or Upgrade restrictions, 
 
 The Tenant enters the governed Maintenance or Upgrade state with the applicable operation restrictions in force, the change completes under Platform control, and the Tenant returns to Active with data, configuration and audit history intact
 
-Locked L2-A01 defines Tenant states, restrictions and allowed transitions but no actors, maintenance/upgrade workflow, commands, canonical events or publishers. The scenario is `BLOCKED`.
+The Locked L2-A01 controlled-change amendment defines the abstract Tenant Change Authority, controlled Maintenance/Upgrade operations and governed return-to-Active validation. It intentionally introduces no dedicated Maintenance/Upgrade event names.
 
 ---
 
@@ -78,7 +78,7 @@ The intended change has completed and the Tenant has returned to `Active` after 
 
 # 6. Business Actors, Roles and Responsibilities
 
-L2-A01 explicitly records Actors as absent. It does not name the change initiator, maintenance authority, upgrade authority, validator or reactivation authority. No actor is invented.
+`Tenant Change Authority` is the canonical abstract authority for Maintenance/Upgrade entry and governed restoration. An Authorized Platform Actor may request/execute an approved change. Platform & Tenant retains sole Tenant lifecycle ownership.
 
 ---
 
@@ -89,7 +89,7 @@ L2-A01 explicitly records Actors as absent. It does not name the change initiato
 - Applicable restriction and validation policies are known.
 - Data, configuration, security and audit preservation obligations can be satisfied.
 - Affected consumers can observe Tenant state through Platform Context.
-- Required authorization and approval are expected but their contracts are undefined.
+- Tenant Change Authority approval and applicable Authorization & Policy enforcement govern protected lifecycle progression.
 
 ---
 
@@ -106,11 +106,11 @@ A controlled maintenance activity or platform upgrade must be applied to an Acti
 | 1 | Receive and classify the controlled Platform change. | Platform & Tenant | Maintenance or Upgrade path is selected. |
 | 2 | Resolve the Active Tenant, configuration, dependencies and affected operations. | Platform & Tenant | Change scope is established. |
 | 3 | Validate authorization, preservation controls, restrictions and completion criteria. | Platform & Tenant | Change is eligible to begin. |
-| 4 | Transition `Active → Maintenance` or `Active → Upgrade`. | Platform & Tenant | Tenant enters Platform control; command and event are undefined. |
+| 4 | After Tenant Change Authority approval, transition `Active → Maintenance` or `Active → Upgrade`. | Tenant Change Authority; Platform & Tenant | Tenant enters the governed restricted lifecycle state. |
 | 5 | Enforce applicable read, write and administrative restrictions through Tenant Context. | Platform & Tenant | Invalid business execution is prevented. |
 | 6 | Perform the controlled Platform change. | Platform & Tenant | Intended maintenance or upgrade work completes. |
 | 7 | Validate data, configuration, security, services, context and audit integrity. | Platform & Tenant | Return-to-service eligibility is established. |
-| 8 | Transition `Maintenance → Active` or `Upgrade → Active`. | Platform & Tenant | Tenant operational availability is restored; command and event are undefined. |
+| 8 | After successful integrity validation and Tenant Change Authority acceptance, transition `Maintenance → Active` or `Upgrade → Active`. | Tenant Change Authority; Platform & Tenant | Tenant operational availability is restored. |
 | 9 | Publish an Active Tenant Context to downstream domains. | Platform & Tenant | Business execution may resume. |
 | 10 | Preserve change authority, restrictions, validations, transitions and correlation evidence. | Platform & Tenant; Audit Infrastructure | Intended outcome is auditable. |
 
@@ -188,7 +188,7 @@ All lifecycle and Platform-change actions require privileged Tenant-scoped autho
 
 ## 15.2 Approval and Separation of Duty
 
-L2-A01 provides no named authority, approval workflow or separation-of-duty rule for maintenance, upgrade or reactivation.
+Tenant Change Authority is the canonical abstract authority for maintenance/upgrade and reactivation. No universal named job title or universal separation-of-duty rule is imposed.
 
 ## 15.3 Audit Obligations
 
@@ -198,7 +198,7 @@ Record Tenant, change classification, authority, prior/resulting state, restrict
 
 # 16. Completion Criteria and Postconditions
 
-The intended outcome requires governed entry to Maintenance or Upgrade, enforced restrictions, completed change, successful integrity validation, restored Active Tenant Context and preserved history. Missing actors, workflow, commands and canonical events prevent exact validation. The scenario remains `BLOCKED`.
+The intended outcome is now fully governed by the Locked L2-A01 controlled-change amendment. Dedicated Maintenance/Upgrade event names are intentionally not required; authoritative Tenant lifecycle state and Tenant context remain the source of truth.
 
 ---
 
@@ -206,8 +206,13 @@ The intended outcome requires governed entry to Maintenance or Upgrade, enforced
 
 | ID | Severity | Issue | Required Resolution |
 |---|---|---|---|
-| A057-BLOCKER-01 | Blocking | L2-A01 defines states and allowed transitions but no controlled maintenance or upgrade workflow and commands. | Define canonical initiation, completion, failure and reactivation operations. |
-| A057-BLOCKER-02 | Blocking | Actors and approval authorities are explicitly absent. | Define change, validation and reactivation authorities and SoD rules. |
-| A057-BLOCKER-03 | Blocking | No canonical Tenant lifecycle events and publishers are defined. | Define exact events for restricted entry, completion/failure and restored Active state. |
+| A057-BLOCKER-01 — RESOLVED | Closed | Controlled change initiation, authorization, validation and restoration operations are defined by the L2-A01 amendment. | Closed. |
+| A057-BLOCKER-02 — RESOLVED | Closed | Tenant Change Authority and Authorized Platform Actor boundaries are defined without inventing a universal job title. | Closed. |
+| A057-BLOCKER-03 — RESOLVED | Closed | The amendment explicitly decides that no dedicated Maintenance/Upgrade event family is required; Tenant lifecycle state/context is authoritative. | Closed. |
 
-No missing authority, state transition contract, event or recovery mechanism is supplied by inference.
+No missing authority, transition or event is supplied by inference; the scenario consumes the explicit Locked L2-A01 amendment.
+
+
+## 2026-09-23 Upstream Authority Reconciliation
+
+L3-A-057 is reconciled to `L2-A01_Tenant_Controlled_Change_Authority_Amendment_2026-09-23.md`. The prior actor/authority and event-governance blockers are closed without introducing a new Tenant state or event family.

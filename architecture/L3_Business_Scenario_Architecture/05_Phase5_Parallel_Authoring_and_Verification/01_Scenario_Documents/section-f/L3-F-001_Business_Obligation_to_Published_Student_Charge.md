@@ -7,10 +7,10 @@
 **Scenario Type:** Critical  
 **Priority:** P0  
 **Status:** Locked  
-**Version:** 1.1  
+**Version:** 1.2  
 **Owner:** Varad  
-**Last Updated:** 2026-08-22  
-**Depends On:** L2-F00 — Finance Domain Model & Foundation; L2-F01 — Student Charge & Fee Management; authoritative source-domain business event architectures  
+**Last Updated:** 2026-09-23  
+**Depends On:** L2-F00 — Finance Domain Model & Foundation; L2-F01 — Student Charge & Fee Management; `L2-F01_Student_Charge_Publication_Authority_Amendment_2026-09-23.md`; authoritative source-domain business event architectures  
 **Referenced By:** Payment Management, Refund Management, Financial Adjustments, Accounting, Budget Management, Financial Reporting, Analytics and Notification consumers as applicable
 
 ## 1. Scenario Metadata
@@ -85,7 +85,7 @@ The originating domain publishes the authoritative business fact; Finance create
 
 ## 6. Business Actors, Roles and Responsibilities
 
-`L2-F01 — Student Charge & Fee Management` does not define a canonical actor catalogue and explicitly records Actors as an upstream governance gap. Therefore this scenario does not invent a Finance-specific actor or approval authority.
+Standard event-driven charge generation is domain-authoritative and policy-driven under the Locked L2-F01 publication-authority amendment. No universal human approver is required for standard F001 processing; manual/exceptional charge authority remains separately governed when policy requires it.
 
 Where a source domain has an actor under its own locked architecture, that actor remains owned by the source domain and is not redefined as a Finance actor.
 
@@ -220,7 +220,7 @@ This follows the L2-F01 publish-own-consume model and its prohibition on externa
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
-L2-F01 does not provide an authoritative actor/approval catalogue for Student Charge creation. Accordingly, this scenario does not invent a Finance-specific role or approval authority.
+The Locked L2-F01 publication-authority amendment establishes that standard event-driven Student Charge creation/publication proceeds under L2-F01 policy/validation authority without mandatory human approval. Source domains retain ownership of originating business facts.
 
 The financial obligation must satisfy the authoritative policy and validation architecture before publication. Student Charge & Fee Management preserves business traceability across charge generation, classification, policy evaluation, Fee Structure resolution, calculation, validation, publication, lifecycle progression and state changes as required by L2-F01.
 
@@ -247,7 +247,7 @@ The published obligation does not mean it has been paid or accounted. Settlement
 
 ### 17.1 Open Issues
 
-`L2-F01 — Student Charge & Fee Management` explicitly records Actors and Locked Decisions as missing required-section counterparts. This L3 does not resolve that upstream governance gap by inventing an actor or approval model.
+The prior actor/approval gap affecting standard F001 processing is resolved by `L2-F01_Student_Charge_Publication_Authority_Amendment_2026-09-23.md`. Manual/exceptional charges remain subject to separately governed authority when applicable.
 
 ### 17.2 Assumptions
 
@@ -257,4 +257,9 @@ None. No assumption overrides the locked architecture.
 
 Confirm any scenario-specific business actor or approval mapping only if an authoritative upstream governance source defines it before Architecture Approval.
 
-**Authoring Classification:** PASS WITH UPSTREAM ACTOR GAP — source-grounded Draft.
+**Authoring Classification:** PASS — upstream standard-charge authority resolved by Locked L2-F01 amendment.
+
+
+## 2026-09-23 Upstream Authority Reconciliation
+
+L3-F-001 consumes the Locked L2-F01 Student Charge publication-authority amendment. Standard event-driven charge generation/publication requires no universal human approval; L2-F01 retains Student Charge ownership and `ChargePublicationCompleted` publication authority. No source-domain ownership is transferred.
