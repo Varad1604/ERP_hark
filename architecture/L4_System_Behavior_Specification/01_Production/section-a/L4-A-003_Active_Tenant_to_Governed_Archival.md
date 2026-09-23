@@ -7,10 +7,10 @@
 **Domain:** Platform & Tenant  
 **Realizes Scenario:** L3-A-003  
 **Primary Business Owner:** Platform & Tenant  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-30  
+**Last Updated:** 2026-09-23  
 **Depends On:** `L3-A-003_Active_Tenant_to_Governed_Archival.md`; `L2-A01_Platform_Tenant_Foundation_Architecture.md`; `SutraERP_L1_Business_Domain_Architecture_Locked.md`; `DEPENDENCY_MAP.md`  
 **Referenced By:** None yet
 
@@ -63,4 +63,8 @@ Completion requires the Tenant to be `Archived`, read-only, unavailable for norm
 
 ## 10. Open Issues / Deferred Design
 
-The authoritative architecture requires approval for permanent Tenant retirement but does not identify the canonical approving business role. This draft therefore requires the approved decision without assigning unsupported authority. Technical archival, persistence and access-control mechanisms remain deferred to L5/L6.
+The authoritative architecture requires approval for permanent Tenant retirement but does not identify the canonical approving business role. This specification therefore requires the approved decision without assigning unsupported authority. The bounded absence of a named approving role does not prevent approval of the observable system behavior because the specification does not invent that role. Technical archival, persistence and access-control mechanisms remain deferred to L5/L6.
+
+## Canonical Validation Note
+
+This specification passed the scoped R1A hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R1A_Tenant_Institution_Authority_Architecture_Approval_Decision_2026-09-23.md`. This approval does not Lock the specification and does not invent upstream actor authority, lifecycle semantics, events, or implementation design.
