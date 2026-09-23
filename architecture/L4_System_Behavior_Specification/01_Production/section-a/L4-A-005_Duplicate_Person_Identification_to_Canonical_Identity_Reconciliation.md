@@ -7,11 +7,11 @@
 **Domain:** Person & Identity  
 **Realizes Scenario:** L3-A-005  
 **Primary Business Owner:** Person & Identity  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
-**Depends On:** `L3-A-005_Duplicate_Person_Identification_to_Canonical_Identity_Reconciliation.md`; `L2-A02_Person_and_Identity_Workflows.md`; `L2-A04_Authorization_and_Policy_Workflows.md`; `L2-A07_Audit_Infrastructure_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Amendment_2026-08-26.md`  
+**Last Updated:** 2026-09-23  
+**Depends On:** `L3-A-005_Duplicate_Person_Identification_to_Canonical_Identity_Reconciliation.md`; `L2-A02_Person_and_Identity_Workflows.md`; `L2-A04_Authorization_and_Policy_Workflows.md`; `L2-A07_Audit_Infrastructure_Workflows.md`; `SutraERP_L1_Business_Domain_Architecture_Amendment_2026-08-26.md`  ; `L2-A02_User_Account_and_Person_Reconciliation_Authority_Amendment_2026-09-23.md`; L3-A-005 v1.1
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -68,6 +68,22 @@ Completion requires one canonical surviving Person, all mandatory validations an
 **Primary verification source:** L2-A02 — Person & Identity Workflows  
 **Additional verification:** L2-A04 — Authorization & Policy; L2-A07 — Audit Infrastructure; Locked L1 Person-scope amendment 2026-08-26
 
+## R3B Canonical Behavioral Addendum
+
+| Behavior ID | Required System Behavior | Provenance |
+|---|---|---|
+| L4-A-005-BH-010 | The system shall require Person Reconciliation Authority approval before completing merge. | L3-A-005 v1.1; A02 R3B amendment §3 |
+| L4-A-005-BH-011 | The system shall select one surviving canonical Person and move each non-surviving Person only through a valid source lifecycle path. | L3-A-005 v1.1; A02 R3B amendment §4 |
+| L4-A-005-BH-012 | For each associated Identity/User Account, the system shall record an explicit retain/reassociate/disable/archive/hold disposition and shall not blindly merge authentication state. | L3-A-005 v1.1; A02 R3B amendment §4.1 |
+| L4-A-005-BH-013 | The system shall publish `PersonMerged` only after A02 reconciliation is complete; downstream owners shall reconcile their own references after that fact without A02 direct mutation. | L3-A-005 v1.1; A02 R3B amendment §4.2 |
+
 ## 10. Open Issues / Deferred Design
 
-The parent’s former Person-scope conflict is resolved by the Locked 2026-08-26 L1 amendment establishing Tenant-scoped canonical Person identity. Still unresolved upstream are the specific merge-approving business role, split/merge effects on associated Identity aggregates, and the governed cross-domain contract for reconciling downstream-owned references. This Draft preserves those gaps and does not repair them locally.
+No blocking L4 issue remains after the Locked R3B upstream amendment(s) and synchronized L3-A-005 v1.1.
+
+Implementation-specific APIs, persistence, cryptographic mechanisms, provider/product choices and UI remain downstream concerns.
+
+
+## Canonical Validation Note
+
+This specification passed the scoped R3B hard-fail validation and is `Architecture Approved` under `L4_R3B_Core_IAM_Semantics_Architecture_Approval_Decision_2026-09-23.md`. This approval does not Lock the specification or automatically validate any L4→L5 relation.
