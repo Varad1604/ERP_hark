@@ -6,10 +6,10 @@
 **Domain:** Notification  
 **Realizes Scenario:** L3-H-015  
 **Primary Business Owner:** Notification  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.0.1  
+**Status:** Architecture Approved  
 **Owner:** Dhruv  
-**Last Updated:** 2026-08-31  
+**Last Updated:** 2026-09-23  
 **Depends On:** L3-H-015; L2-H02 — Notification Workflows  
 **Referenced By:** None yet
 
@@ -51,3 +51,7 @@ If human operational follow-up is required, the unresolved condition and evidenc
 
 ## 10. Open Issues / Deferred Design
 Exceptional operational reprocessing actor and dedicated fallback/terminal-recovery events are not defined upstream; technical retry mechanics remain downstream.
+
+## Canonical Validation Note
+
+This specification passed the scoped R2B hard-fail validation against the Locked L4 Governance and Architecture Standard and L4 Validation Standard and is `Architecture Approved` under `L4_R2B_Notification_Authority_Architecture_Approval_Decision_2026-09-23.md`. Existing non-blocking upstream gaps remain bounded exactly as recorded; this approval does not invent universal actors, lifecycle states, events, publishers, provider mechanics, technical retry behavior, or implementation design.
