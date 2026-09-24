@@ -56,7 +56,7 @@ Architecture closure authoring baseline:
 4c030112651d7d4dafe8a59cb075c29ddfaab74d
 ```
 
-This document is repository-canonical through Architecture PR #107, merged to `main` as `a7a639d1117644bea809ad4d17263c029065363b`.
+Architecture closure PR #107 merged to `main` as `a7a639d1117644bea809ad4d17263c029065363b`. The subsequent post-merge status-synchronization PR #108 merged as `a425e37a2be52a5197c9c300be752ca10b40c55f`, which is the canonical Architecture `main` state containing the final Batch-7 closure wording.
 
 ---
 
@@ -377,7 +377,9 @@ BROWSER / CI — PASS
 
 ARCHITECTURE CLOSURE — PASS / COMPLETE / MERGED
 ARCHITECTURE PR #107 — MERGED
-ARCHITECTURE MERGE — a7a639d1117644bea809ad4d17263c029065363b
+ARCHITECTURE CLOSURE PR #107 MERGE — a7a639d1117644bea809ad4d17263c029065363b
+POST-MERGE STATUS-SYNC PR #108 — MERGED
+FINAL CANONICAL ARCHITECTURE MAIN — a425e37a2be52a5197c9c300be752ca10b40c55f
 BATCH 8 — ENTRY-READY / NOT STARTED
 ```
 
