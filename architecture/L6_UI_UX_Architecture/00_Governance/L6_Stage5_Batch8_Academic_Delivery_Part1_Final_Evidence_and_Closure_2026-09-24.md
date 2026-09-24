@@ -68,16 +68,7 @@ Merge commit:
 03c839c087f85d6c920d75e09833b3c3def57f11
 ```
 
-Post-merge status synchronization:
-
-```text
-Post-merge status-sync PR #112
-Merged: 2026-09-24
-Merge commit:
-c3fd67c94ba13de611ed5e709ff0e9424a47e32b
-```
-
-The immutable Architecture closure PR/merge event and post-merge status-sync PR/merge event together form the canonical Architecture closure provenance. No moving "final main SHA" field is maintained.
+This immutable PR/merge event is the canonical Architecture closure provenance. No moving "final main SHA" field is maintained.
 
 ---
 
