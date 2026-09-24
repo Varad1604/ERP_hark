@@ -56,7 +56,7 @@ Architecture closure authoring baseline:
 4c030112651d7d4dafe8a59cb075c29ddfaab74d
 ```
 
-Architecture closure PR #107 merged to `main` as `a7a639d1117644bea809ad4d17263c029065363b`. The subsequent post-merge status-synchronization PR #108 merged as `a425e37a2be52a5197c9c300be752ca10b40c55f`, which is the canonical Architecture `main` state containing the final Batch-7 closure wording.
+Architecture closure PR #107 merged to `main` as `a7a639d1117644bea809ad4d17263c029065363b`. The subsequent post-merge status-synchronization PR #108 merged as `a425e37a2be52a5197c9c300be752ca10b40c55f`. These immutable merge events provide the stable Architecture provenance chain for Batch 7; no moving "final main SHA" field is maintained.
 
 ---
 
@@ -379,7 +379,6 @@ ARCHITECTURE CLOSURE — PASS / COMPLETE / MERGED
 ARCHITECTURE PR #107 — MERGED
 ARCHITECTURE CLOSURE PR #107 MERGE — a7a639d1117644bea809ad4d17263c029065363b
 POST-MERGE STATUS-SYNC PR #108 — MERGED
-FINAL CANONICAL ARCHITECTURE MAIN — a425e37a2be52a5197c9c300be752ca10b40c55f
 BATCH 8 — ENTRY-READY / NOT STARTED
 ```
 
