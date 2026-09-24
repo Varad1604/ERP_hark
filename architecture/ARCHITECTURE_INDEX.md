@@ -558,7 +558,7 @@ The active L6 package contains the preserved Days 1–13 foundation/baseline, ap
 | L6 Stage 5 Batch 4 Platform / Administration Part 2 Final Evidence & Closure — 2026-09-23 | Lead Architect | Architecture Approved | PASS / COMPLETE / MERGED; W-A06–W-A10 / 18 workflows / 36 scenarios; frontend PR #29 merged `52b76e4c…`; Architecture PR #91 merged `cd230fcb…`; validation #246 and 62/62 combined browser evidence PASS; Domain A 35/35 workflows / 62/62 scenarios COMPLETE; Batch 5 ENTRY-READY |
 | L6 Stage 5 Batch 5 Institution & Structure Final Evidence & Closure — 2026-09-23 | Lead Architect | Architecture Approved | PASS / COMPLETE / MERGED; W-B01–W-B05 / 15 workflows / 33 scenarios / 0 mixed workflows; frontend PR #30 merged `39f37549…`; Architecture PR #96 merged `d7f71523…`; validation #251 and 73/73 combined browser evidence PASS; Batch 6 ENTRY-READY / NOT STARTED |
 | L6 Stage 5 Batch 6 Student Lifecycle Part 1 Final Evidence & Closure — 2026-09-23 | Lead Architect | Architecture Approved | PASS / COMPLETE / MERGED; W-C01–W-C04 / 19 workflows / 39 scenarios / 16 REQUIRED / 3 PROHIBITED / 0 mixed; frontend PR #31 merged `dc9c06cc87…`; Architecture PR #102 merged `2f31112d15…`; validation #266 PASS; Batch 7 frontend work subsequently completed |
-| L6 Stage 5 Batch 7 Student Lifecycle Part 2 Final Evidence & Closure — 2026-09-24 | Lead Architect | Architecture Approved | PASS / COMPLETE / FRONTEND-MERGED; W-C05–W-C08 / 13 workflows / 36 scenarios / 9 REQUIRED / 2 PROHIBITED / 2 NOT-REQUIRED / 0 mixed; frontend PR #32 merged `472f4ca5a3…`; validation run ID `35958815945` PASS; Architecture closure pending canonical merge; Batch 8 ENTRY-READY / NOT STARTED |
+| L6 Stage 5 Batch 7 Student Lifecycle Part 2 Final Evidence & Closure — 2026-09-24 | Lead Architect | Architecture Approved | PASS / COMPLETE / MERGED; W-C05–W-C08 / 13 workflows / 36 scenarios / 9 REQUIRED / 2 PROHIBITED / 2 NOT-REQUIRED / 0 mixed; frontend PR #32 merged `472f4ca5a3…`; validation run ID `35958815945` PASS; Architecture PR #107 merged `a7a639d111…`; Batch 8 ENTRY-READY / NOT STARTED |
 
 ### Active L6 Execution Baseline
 
@@ -654,7 +654,7 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 # Recent Changes
 
-**2026-09-24 — L6 Stage-5 Batch-7 frontend closure:** frontend PR #32 merged as `472f4ca5a32210d47a99b02356990c5b927c6b61` after exact PR-head validation run `35958815945` succeeded, including full browser evidence. Batch-7 Architecture closure evidence is prepared in the corresponding L6 closure PR; until that PR merges, canonical status is frontend merged / Architecture closure pending. Batch 8 remains ENTRY-READY / NOT STARTED.
+**2026-09-24 — L6 Stage-5 Batch-7 canonical closure:** frontend PR #32 merged as `472f4ca5a32210d47a99b02356990c5b927c6b61` after exact PR-head validation run `35958815945` succeeded, including full browser evidence. Architecture closure PR #107 merged as `a7a639d1117644bea809ad4d17263c029065363b`. Stage 5 Batch 7 is PASS / COMPLETE / MERGED. Batch 8 remains ENTRY-READY / NOT STARTED.
 
 ---
 
