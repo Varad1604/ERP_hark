@@ -654,6 +654,11 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 # Recent Changes
 
+**2026-09-24 — L6 Stage-5 Batch-8 frontend canonical / Architecture closure pending:** frontend PR #33 merged as `86e53f4d50593befce2fe32111c5c40c44a4c2f7` after exact PR-head validation run `35984123516` succeeded on head `28a6a8434aa9e293580df65e1b6fe7f87c6fedcb`, including full browser evidence artifact `10801393093`. Batch 8 covers W-D01…W-D04 with 19/19 workflows, 26/26 scenarios and 19/19 exact bindings; `L6-RWF-0100` reuses the existing Batch-2 operation with no duplicate binding. Frontend implementation is canonical; Architecture closure is prepared and pending merge. Batch 9 remains NOT STARTED.
+
+---
+
+
 **2026-09-24 — L6 Stage-5 Batch-7 canonical closure:** frontend PR #32 merged as `472f4ca5a32210d47a99b02356990c5b927c6b61` after exact PR-head validation run `35958815945` succeeded, including full browser evidence. Architecture closure PR #107 merged as `a7a639d1117644bea809ad4d17263c029065363b`. Stage 5 Batch 7 is PASS / COMPLETE / MERGED. Batch 8 remains ENTRY-READY / NOT STARTED.
 
 ---
