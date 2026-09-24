@@ -8,7 +8,7 @@
 **Decision Date:** 2026-09-24  
 **Batch Result:** PASS  
 **Frontend State:** PASS / COMPLETE / MERGED  
-**Architecture Closure State:** PENDING CANONICAL MERGE  
+**Architecture Closure State:** PASS / COMPLETE / MERGED  
 **Next Batch:** Batch 8 ENTRY-READY / NOT STARTED  
 
 ---
@@ -56,7 +56,7 @@ Architecture closure authoring baseline:
 4c030112651d7d4dafe8a59cb075c29ddfaab74d
 ```
 
-This document records a frontend-canonical Batch-7 result. Architecture closure becomes repository-canonical only when the Architecture PR containing this document is merged to `main`.
+This document is repository-canonical through Architecture PR #107, merged to `main` as `a7a639d1117644bea809ad4d17263c029065363b`.
 
 ---
 
@@ -375,8 +375,10 @@ NOT-REQUIRED — 2 / 2 WITH ZERO OPERATION BINDINGS
 MIXED — 0
 BROWSER / CI — PASS
 
-ARCHITECTURE CLOSURE — PENDING CANONICAL MERGE
+ARCHITECTURE CLOSURE — PASS / COMPLETE / MERGED
+ARCHITECTURE PR #107 — MERGED
+ARCHITECTURE MERGE — a7a639d1117644bea809ad4d17263c029065363b
 BATCH 8 — ENTRY-READY / NOT STARTED
 ```
 
-No Batch-7 claim of full repository closure is made until this Architecture evidence/status change is canonical on `main`.
+Batch 7 is now repository-canonical PASS / COMPLETE / MERGED across frontend and Architecture. Batch 8 remains ENTRY-READY / NOT STARTED.
