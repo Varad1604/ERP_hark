@@ -654,7 +654,7 @@ The Days 1–13 L6 UX baseline remains preserved by `00_Governance/L6_UX_Baselin
 
 # Recent Changes
 
-**2026-09-24 — L6 Stage-5 Batch-8 canonical closure:** frontend PR #33 merged as `86e53f4d50593befce2fe32111c5c40c44a4c2f7` after exact PR-head validation run `35984123516` succeeded on head `28a6a8434aa9e293580df65e1b6fe7f87c6fedcb`, including full browser evidence artifact `10801393093`. Batch 8 covers W-D01…W-D04 with 19/19 workflows, 26/26 scenarios and 19/19 exact bindings; `L6-RWF-0100` reuses the existing Batch-2 operation with no duplicate binding. Architecture closure PR #111 merged as `03c839c087f85d6c920d75e09833b3c3def57f11`; post-merge status-sync PR #112 merged as `c3fd67c94ba13de611ed5e709ff0e9424a47e32b`. Stage 5 Batch 8 is PASS / COMPLETE / MERGED. Batch 9 is ENTRY-READY / NOT STARTED.
+**2026-09-24 — L6 Stage-5 Batch-8 canonical closure:** frontend PR #33 merged as `86e53f4d50593befce2fe32111c5c40c44a4c2f7` after exact PR-head validation run `35984123516` succeeded on head `28a6a8434aa9e293580df65e1b6fe7f87c6fedcb`, including full browser evidence artifact `10801393093`. Batch 8 covers W-D01…W-D04 with 19/19 workflows, 26/26 scenarios and 19/19 exact bindings; `L6-RWF-0100` reuses the existing Batch-2 operation with no duplicate binding. Architecture closure PR #111 merged as `03c839c087f85d6c920d75e09833b3c3def57f11`. Stage 5 Batch 8 is PASS / COMPLETE / MERGED. Batch 9 is ENTRY-READY / NOT STARTED.
 
 ---
 
