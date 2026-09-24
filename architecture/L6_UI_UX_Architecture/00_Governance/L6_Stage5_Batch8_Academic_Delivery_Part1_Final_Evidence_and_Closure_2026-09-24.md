@@ -1,15 +1,15 @@
 # SutraERP L6 — Stage 5 Batch 8 — Academic Delivery Part 1 — Final Evidence & Closure
 
 **Version:** 1.0.0  
-**Status:** Architecture Approved — Closure PR Pending Merge  
+**Status:** Architecture Approved  
 **Evidence Type:** Batch Closure Evidence  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture Support  
 **Decision Date:** 2026-09-24  
 **Batch Result:** PASS  
 **Frontend State:** PASS / COMPLETE / MERGED  
-**Architecture Closure State:** PREPARED / PENDING CANONICAL MERGE  
-**Next Batch:** Batch 9 NOT STARTED  
+**Architecture Closure State:** PASS / COMPLETE / MERGED  
+**Next Batch:** Batch 9 ENTRY-READY / NOT STARTED  
 
 ---
 
@@ -59,7 +59,16 @@ aa460232693fe1d009283db811d72940e46cc394
 
 This document intentionally does not maintain a moving "final Architecture main SHA" field.
 
-The immutable Architecture closure PR and merge event will be recorded after explicit merge authorization and canonical merge.
+Immutable Architecture closure event:
+
+```text
+Architecture closure PR #111
+Merged: 2026-09-24
+Merge commit:
+03c839c087f85d6c920d75e09833b3c3def57f11
+```
+
+This immutable PR/merge event is the canonical Architecture closure provenance. No moving "final main SHA" field is maintained.
 
 ---
 
@@ -432,8 +441,10 @@ BINDINGS — 19 / 19 EXACTLY ONE
 L6-RWF-0100 — REUSED / EXACTLY ONE BINDING
 BROWSER / CI — PASS
 
-ARCHITECTURE CLOSURE — PREPARED / PENDING CANONICAL MERGE
-BATCH 9 — NOT STARTED
+ARCHITECTURE CLOSURE — PASS / COMPLETE / MERGED
+ARCHITECTURE PR #111 — MERGED
+ARCHITECTURE CLOSURE MERGE — 03c839c087f85d6c920d75e09833b3c3def57f11
+BATCH 9 — ENTRY-READY / NOT STARTED
 ```
 
-Batch 8 frontend implementation is canonical. Repository-level Batch-8 closure becomes PASS / COMPLETE / MERGED only after the Architecture closure PR is explicitly authorized and merged.
+Batch 8 is repository-canonical PASS / COMPLETE / MERGED across frontend and Architecture. Batch 9 is ENTRY-READY / NOT STARTED.
