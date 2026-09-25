@@ -8,7 +8,7 @@
 **Decision Date:** 2026-09-25  
 **Batch Result:** PASS  
 **Frontend State:** PASS / COMPLETE / MERGED  
-**Architecture Closure State:** PENDING MERGE AUTHORIZATION  
+**Architecture Closure State:** PASS / COMPLETE / MERGED  
 **Domain Result:** Section D — Academic Delivery COMPLETE after Architecture closure  
 **Next Batch:** Batch 10 ENTRY-READY / NOT STARTED  
 
@@ -371,8 +371,8 @@ NOT-REQUIRED — 0
 MIXED — 1 / 1
 BROWSER / CI — PASS
 
-ARCHITECTURE CLOSURE — PENDING MERGE AUTHORIZATION
-DOMAIN D — FRONTEND COMPLETE; REPOSITORY CLOSURE PENDING
+ARCHITECTURE CLOSURE — PASS / COMPLETE / MERGED
+DOMAIN D — COMPLETE
 BATCH 10 — ENTRY-READY / NOT STARTED
 ```
 
