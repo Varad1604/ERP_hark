@@ -1,6 +1,6 @@
 # SutraERP L6 — Full Workflow Realization & Mock-Operational ERP Execution Plan — Draft
 
-**Version:** 0.3.0  
+**Version:** 0.4.0  
 **Status:** Draft Active Execution Plan  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture Support  
@@ -299,7 +299,9 @@ Stage-5 closure requires complete 595-workflow reconciliation, preservation of a
 
 Effective 2026-09-26, the Stage-5 reviewed gameplan also governs **product convergence**. A subsequent evidence-based consolidation decision supersedes the original remaining Batch 12–30 topology after Batch 11. Stage 5 now completes through Batches 12–20: five domain-completion batches, Product-Surface Convergence, Enterprise Cross-Domain Journey & Exception Convergence, Full Corpus Reconciliation, and Final Validation / Stage-6 Readiness.
 
-From consolidated Batch 12 onward, implementation shall prefer reusable product-facing workspace composition over new batch-specific proof surfaces where existing governed patterns are sufficient. Large domain batches execute through bounded chunks/workstreams; conversation-size boundaries are not architecture boundaries.
+From consolidated Batch 12 onward, implementation shall prefer reusable product-facing workspace composition over new batch-specific proof surfaces where existing governed patterns are sufficient. Large domain batches execute through bounded response-safe chunks/workstreams; conversation-size boundaries are not architecture boundaries.
+
+No consolidated batch is required to complete in one ChatGPT response. The execution unit for a response is a bounded chunk; the governance unit remains the batch. Chunks continue on the same batch branch/PR by default and do not receive separate Architecture closure records unless a material architectural decision requires one.
 
 Reviewer/provenance tooling remains required but shall be separated from ordinary ERP UX. The final Stage-5 product surface must be understandable without knowledge of Stage, Batch, Chunk, proof-case, reviewer IDs or architecture identifiers.
 
