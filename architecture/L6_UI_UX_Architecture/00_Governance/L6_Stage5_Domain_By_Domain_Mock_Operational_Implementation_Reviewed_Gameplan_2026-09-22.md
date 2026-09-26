@@ -1,12 +1,12 @@
 # SutraERP L6 — Stage 5 Domain-by-Domain Mock-Operational Implementation — Reviewed Gameplan — 2026-09-22
 
-**Version:** 1.1.0  
+**Version:** 1.2.0  
 **Status:** Architecture Approved — Planning Baseline  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture Support  
 **Programme:** SutraERP Full Workflow Realization & Mock ERP Programme  
 **Stage:** Stage 5 — Domain-by-Domain Mock-Operational Implementation  
-**Execution State:** PLAN APPROVED; BATCHES 0–10 COMPLETE; BATCH 11 IN EXECUTION; PRODUCT-CONVERGENCE AMENDMENT ACTIVE  
+**Execution State:** PLAN APPROVED; BATCHES 0–10 COMPLETE; BATCH 11 IN EXECUTION; REMAINING-TOPOLOGY CONSOLIDATION DECISION ACTIVE  
 **Depends On:** `../L6_Full_Workflow_Realization_and_Mock_ERP_Execution_Plan_DRAFT.md`; `L6_Stage3_Final_Validation_and_Closure_Decision_2026-09-21.md`; `L6_Stage4_Batch4_Full_Discovery_Coverage_Exit_Gate_Evidence_2026-09-22.md`; Stage-2 Group-15 master reconciliation; current live L5 architecture; current frontend Stage-4 canonical main.
 
 ---
@@ -191,7 +191,7 @@ Stage 5 does not create a universal workflow engine.
 
 ### Product-convergence rule
 
-From Batch 12 onward, new realization work shall prefer reusable product-facing workspace composition and shared interaction patterns over new batch-specific proof surfaces where the existing foundations can express the required behavior safely.
+From consolidated Batch 12 onward, new realization work shall prefer reusable product-facing workspace composition and shared interaction patterns over new batch-specific proof surfaces where the existing foundations can express the required behavior safely.
 
 Existing Batch 0–11 proof/reviewer surfaces remain valid evidence and shall not be rewritten merely for cosmetic uniformity. They may be progressively moved behind Review / Experience Lab boundaries when product-facing equivalents exist.
 
@@ -697,243 +697,31 @@ Completion of Domain E.
 
 ---
 
-### Batch 12 — Finance Core
+### Batches 12–20 — Consolidated Remaining Topology
 
-Recommended workspace range:
+The original Batch 12–30 topology below is superseded for future execution by:
 
-```text
-W-F00 … W-F07
-```
+`L6_Stage5_Remaining_Batch_Consolidation_Decision_2026-09-26.md`
 
-Population:
+The controlling remaining topology is:
 
-```text
-31 workflows
-8 workspaces
-```
+| Batch | Scope |
+|---|---|
+| 12 | Finance — complete Domain F |
+| 13 | Campus Operations — complete Domain G through mandatory internal chunks/workstreams |
+| 14 | Institutional Services & Intelligence — complete Domain H |
+| 15 | Examination — complete Domain I through mandatory high-consequence chunks |
+| 16 | Enterprise Resource Management — complete Domain J |
+| 17 | Product-Surface Convergence |
+| 18 | Enterprise Cross-Domain Journey & Exception Convergence |
+| 19 | Full Corpus Reconciliation |
+| 20 | Final Stage-5 Validation, Cleanup & Stage-6 Readiness |
 
-Special protections:
+Batches 0–11 retain their historical/canonical identities.
 
-- no fake settlement;
-- accepted request does not equal completed financial operation;
-- indeterminate results suppress unsafe duplicate execution.
+The consolidation changes execution boundaries only. It does not change protected corpus counts, workflow/scenario dispositions, canonical ownership, workspaces, archetypes, business rules, lifecycle states, events or validation obligations.
 
----
-
-### Batch 13 — Finance Extended Operations & Intelligence
-
-Recommended workspace range:
-
-```text
-W-F08 … W-F14
-```
-
-Population:
-
-```text
-28 workflows
-7 workspaces
-```
-
-Completion of Domain F.
-
----
-
-### Batch 14 — Campus Operations G00 + G01
-
-```text
-27 workflows
-2 workspaces
-```
-
----
-
-### Batch 15 — Campus Operations G02 + G03
-
-```text
-22 workflows
-2 workspaces
-```
-
----
-
-### Batch 16 — Campus Operations G04 + G05
-
-```text
-28 workflows
-2 workspaces
-```
-
----
-
-### Batch 17 — Campus Operations G06
-
-```text
-18 workflows
-1 workspace
-```
-
----
-
-### Batch 18 — Campus Operations G07 + G08
-
-```text
-28 workflows
-2 workspaces
-```
-
----
-
-### Batch 19 — Campus Operations G09 + G10
-
-```text
-31 workflows
-2 workspaces
-```
-
-Completion of Domain G.
-
----
-
-### Batch 20 — Institutional Services & Intelligence Part 1
-
-Target: approximately 24 workflows.
-
----
-
-### Batch 21 — Institutional Services & Intelligence Part 2
-
-Target: approximately 30 workflows.
-
-Completion of Domain H.
-
----
-
-### Batch 22 — Examination I01–I05
-
-```text
-21 workflows
-5 workspaces
-```
-
----
-
-### Batch 23 — Examination I06–I08
-
-```text
-20 workflows
-3 workspaces
-```
-
----
-
-### Batch 24 — Examination I09–I11
-
-```text
-26 workflows
-3 workspaces
-```
-
----
-
-### Batch 25 — Examination I12–I16
-
-```text
-32 workflows
-5 workspaces
-```
-
-Completion of Domain I.
-
----
-
-### Batch 26 — Enterprise Resource Management Part 1
-
-Target: approximately 24 workflows.
-
----
-
-### Batch 27 — Enterprise Resource Management Part 2
-
-Target: approximately 30 workflows.
-
-Completion of Domain J.
-
----
-
-### Batch 28 — Enterprise Product / Cross-Domain / Handoff / Exception Convergence
-
-Primary reconciliation population:
-
-```text
-28 CROSS-WORKSPACE-HANDOFF
-103 EXCEPTION-RECOVERY-WORKFLOW
-10 mixed workflows
-```
-
-This batch validates already implemented domain behavior. It does not reimplement all 141 workflows.
-
-Batch 28 is also the formal **Product Convergence Gate**. It shall prove that the accumulated domain implementations operate as one ERP rather than as a collection of batch proof surfaces.
-
-Required product-convergence evidence includes:
-
-- ordinary ERP navigation across representative domains without reviewer terminology;
-- representative records retaining coherent subject/context across domain boundaries;
-- legitimate business actions expressed in business language;
-- state changes reflected in related product projections;
-- owner-preserving handoffs that continue naturally in the destination workspace;
-- exceptions/rejections/recovery paths that do not dead-end the user;
-- reviewer/provenance controls separated from ordinary ERP UX;
-- no requirement for a reviewer to understand Stage, Batch, Chunk, proof-case or architecture IDs;
-- reusable workspace/action composition demonstrated across multiple domains;
-- no new batch-specific product shell where an existing governed workspace pattern is sufficient.
-
-Failure of product convergence is a Batch-28 hard fail even when raw workflow counts reconcile.
-
----
-
-### Batch 29 — Full 595-Workflow Reconciliation
-
-Required proof:
-
-```text
-595 / 595 workflows accounted for
-551 / 551 REQUIRED legitimately treated
-11 / 11 NOT-REQUIRED explicitly treated
-33 / 33 PROHIBITED mutation-free
-10 / 10 mixed workflows override-safe
-1,084 / 1,084 scenario mappings intact
-99 / 99 workspaces intact
-12 / 12 archetypes intact
-ordinary ERP product surface coherent
-reviewer / architecture instrumentation separated
-representative cross-domain institutional journeys executable
-```
-
----
-
-### Batch 30 — Final Stage-5 Validation, Cleanup, Evidence & Closure
-
-Responsibilities:
-
-- final CI;
-- full validator suite;
-- browser-evidence reconciliation;
-- accessibility review;
-- deterministic reset/replay proof;
-- preset leakage check;
-- dead-code cleanup;
-- reviewer metadata leakage scan;
-- maturity-claim audit;
-- Architecture evidence;
-- Stage-6 readiness decision;
-- ordinary-product/reviewer-surface separation audit;
-- product-language leakage scan for Stage/Batch/Chunk/proof/reviewer terminology;
-- representative end-to-end institutional journey replay;
-- workspace-composition duplication audit;
-- end-user dead-end and cross-domain continuity audit.
-
-No new functional scope should normally be introduced here except corrections discovered by final validation.
+Large consolidated domain batches shall be implemented through bounded chunks/workstreams and integrated before one domain closure decision. Conversation-size limits are not architecture boundaries.
 
 ---
 
@@ -1206,7 +994,7 @@ Worker-reported PASS is not merge authority.
 | cross-domain duplicate mutation | High | owner-only fact mutation + shared projections |
 | preset state leakage | High | reconstructive reset/preset tests |
 | workflow-engine creep | High | Foundation scope gate |
-| oversized G/I execution | High | six G batches + four I batches |
+| oversized G/I execution | High | one governance batch per domain with mandatory bounded chunks/workstreams and integrated domain closure |
 | shell-local fixture silos | High | reusable archetype operation primitives |
 | reviewer metadata leakage | High | ordinary-UX validator |
 | accessibility debt | High | batch browser/keyboard/accessibility gate |
@@ -1229,8 +1017,9 @@ Stage 5 may close only when:
 99 / 99 workspaces intact
 12 / 12 archetypes intact
 
-all domain batches closed
-enterprise convergence closed
+all consolidated domain batches closed
+product-surface convergence closed
+enterprise journey/exception convergence closed
 
 one deterministic state authority preserved
 exact preset reset proven
@@ -1272,7 +1061,7 @@ The batch topology above supersedes the earlier coarse Stage-5 hypothesis in the
 
 ## 28. Product-Convergence Amendment — 2026-09-26
 
-This amendment refines execution method only. It does not change L0–L5 authority, the 1,084-scenario corpus, the 595-workflow register, the 99-workspace baseline, the 12 archetypes, mock dispositions, canonical ownership, lifecycle states, business events or the 31-batch topology.
+This amendment refines execution method only. It does not change L0–L5 authority, the 1,084-scenario corpus, the 595-workflow register, the 99-workspace baseline, the 12 archetypes, mock dispositions, canonical ownership, lifecycle states or business events. Its original preservation of the 31-batch topology is superseded by the 2026-09-26 Remaining Batch Consolidation Decision.
 
 ### 28.1 Realization depth is risk-based
 
