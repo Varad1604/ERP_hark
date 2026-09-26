@@ -1,6 +1,6 @@
 # SutraERP L6 — Stage 5 Remaining Batch Consolidation Decision — 2026-09-26
 
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Status:** Architecture Decision — Proposed Replacement Topology  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture Support  
@@ -284,22 +284,83 @@ No broad human UX redesign belongs here. Human institution-like review is Stage 
 
 ---
 
-## 5. Internal Chunking Rule
+## 5. Response-Safe Internal Chunking Standard
 
 Consolidation does not authorize oversized unreviewable execution.
+
+A governance batch is **not** a ChatGPT-response boundary. No large consolidated batch is expected to complete in one response.
+
+For Batches 12–16, and for any later convergence/reconciliation batch whose work cannot safely complete in one response, execution shall be decomposed into bounded response-safe chunks before implementation begins.
+
+The chunk plan shall be derived from the live census, dependency seams, shared-state touch points, workspace boundaries and risk. Chunk count is therefore evidence-driven rather than pre-fixed.
 
 For Batches 12–16:
 
 ```text
 one governance batch
-→ multiple bounded implementation chunks/workstreams
-→ chunk-local tests
-→ integrated domain test
+→ pre-declared bounded chunk plan
+→ one response performs one bounded chunk unless two small adjacent chunks clearly fit
+→ chunk-local implementation + targeted validation
+→ commit/checkpoint on the same batch branch
+→ next response continues the same batch
+→ integrated domain validation
 → independent domain audit
 → one domain closure decision
 ```
 
+A normal chunk should perform only the work necessary to finish its assigned slice:
+
+1. reconstruct the relevant current state;
+2. implement the bounded scope;
+3. run targeted validators/tests;
+4. correct defects discovered in that slice;
+5. commit/checkpoint the completed slice;
+6. report compact execution status;
+7. stop.
+
+A chunk shall not automatically perform full-domain audit, final Architecture closure, merge, or programme-level reconciliation unless it is explicitly the final/integration chunk.
+
 Chunks may run in parallel only when they do not compete for the same state authority, shared component seam or unresolved ownership decision.
+
+### 5.1 Mandatory end-of-response status
+
+Every chunked execution response shall end with a compact status containing:
+
+```text
+Batch X — Chunk Y/N — COMPLETE | BLOCKED
+Batch workflows completed: A/B
+Current chunk workflows: C/C
+Chunks remaining: N
+Blocking findings: count / summary
+Next chunk: concise scope
+```
+
+The status is conversational execution metadata, not canonical architecture authority.
+
+### 5.2 Branch / PR discipline
+
+The default model for a consolidated batch is:
+
+```text
+one batch branch
+→ multiple chunk commits/checkpoints
+→ one frontend PR for the batch
+→ integrated validation
+→ independent audit
+→ one canonical Architecture closure record
+```
+
+Do not open a separate PR merely because a new ChatGPT response begins.
+
+A separate PR/workstream is justified only when repository isolation, independent parallel ownership, conflict avoidance or risk containment materially requires it.
+
+### 5.3 Architecture-document discipline
+
+A chunk is not an architecture lifecycle object.
+
+Do not create one Architecture evidence document per chunk merely to record progress.
+
+Chunk evidence may remain in commits, PR descriptions, CI/test evidence or concise execution logs. Architecture governance records material decisions, governed scope, validation outcomes and batch closure.
 
 A chunk is not a new canonical batch and does not require a separate architecture closure document unless a material architectural decision occurs.
 
