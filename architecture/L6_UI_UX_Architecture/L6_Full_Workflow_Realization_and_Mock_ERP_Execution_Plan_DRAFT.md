@@ -1,6 +1,6 @@
 # SutraERP L6 — Full Workflow Realization & Mock-Operational ERP Execution Plan — Draft
 
-**Version:** 0.1.0  
+**Version:** 0.2.0  
 **Status:** Draft Active Execution Plan  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture Support  
@@ -297,6 +297,10 @@ For background/system workflows, implement the correct observable consequence ra
 
 Stage-5 closure requires complete 595-workflow reconciliation, preservation of all protected counts, deterministic reset/preset behavior, owner-safe cross-domain behavior, dedicated browser/accessibility evidence and no false INTEGRATED or PRODUCTION-VALIDATED maturity claim.
 
+Effective 2026-09-26, the Stage-5 reviewed gameplan also governs **product convergence**. The 31-batch topology remains unchanged. From Batch 12 onward, implementation shall prefer reusable product-facing workspace composition over new batch-specific proof surfaces where existing governed patterns are sufficient. Batch 28 is the formal Product Convergence Gate, and Batches 29–30 must reconcile both workflow coverage and ordinary end-user ERP coherence.
+
+Reviewer/provenance tooling remains required but shall be separated from ordinary ERP UX. The final Stage-5 product surface must be understandable without knowledge of Stage, Batch, Chunk, proof-case, reviewer IDs or architecture identifiers.
+
 **Planning state:** `STAGE 5 MASTER PLAN — READY WITH NON-BLOCKING FINDINGS`.
 
 **Execution state:** Stage 5 has not started.
@@ -343,7 +347,11 @@ Every finding is classified before correction.
 Exit gate:
 
 - major product/UX blockers resolved or explicitly escalated;
-- no unexplained workflow coverage gap remains.
+- no unexplained workflow coverage gap remains;
+- representative cross-domain institutional journeys can be replayed coherently;
+- ordinary ERP UX is product-facing rather than architecture/reviewer-facing;
+- reviewer instrumentation is available without being required for normal product use;
+- material workflow/UX defects found through cross-domain replay are resolved or explicitly escalated.
 
 ---
 
@@ -392,6 +400,10 @@ The programme is complete only when the repository can evidence:
 - no backend/database requirement for demo mode;
 - no broken workflow destinations;
 - no silent ownership/rule/state invention;
-- a completed human end-user review pass with findings dispositioned.
+- a completed human end-user review pass with findings dispositioned;
+- representative cross-domain institutional journey evidence;
+- ordinary-product/reviewer-surface separation;
+- no material dependency on batch/proof terminology in normal ERP use;
+- evidence that the frontend can serve as an executable ERP product blueprint for pre-backend workflow and UX validation.
 
 The final counts of unique workflows shall be discovered from the audit and recorded as evidence.
