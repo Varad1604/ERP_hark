@@ -1,14 +1,14 @@
 # SutraERP L6 — Stage 5 Batch 10 — People & Workforce Part 1 — Final Evidence & Closure
 
 **Version:** 1.0.0  
-**Status:** Architecture Closure Pending  
+**Status:** Architecture Approved  
 **Evidence Type:** Batch Closure Evidence  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture Support  
 **Decision Date:** 2026-09-26  
 **Batch Result:** PASS  
 **Frontend State:** PASS / COMPLETE / MERGED  
-**Architecture Closure State:** Pending merge of this closure PR  
+**Architecture Closure State:** PASS / COMPLETE / MERGED  
 **Domain Result:** Section E — People & Workforce PARTIALLY COMPLETE; Batch 11 remains  
 **Next Batch:** Batch 11 ENTRY-READY / NOT STARTED only after Architecture closure  
 
@@ -371,12 +371,12 @@ NOT-REQUIRED — 0
 MIXED — 0
 BROWSER / CI — PASS
 
-ARCHITECTURE CLOSURE — PENDING THIS PR
+ARCHITECTURE CLOSURE — PASS / COMPLETE / MERGED
 DOMAIN E — PARTIALLY COMPLETE
 BATCH 11 — NOT STARTED
 ```
 
-After this Architecture closure PR is explicitly authorized and merged, the canonical repository state becomes:
+Canonical repository state after Architecture closure merge:
 
 ```text
 STAGE 5 BATCH 10 — PASS / COMPLETE / MERGED
@@ -385,4 +385,4 @@ DOMAIN E — PARTIALLY COMPLETE — BATCH 11 REMAINING
 BATCH 11 — ENTRY-READY / NOT STARTED
 ```
 
-No separate PR shall be created merely to record this Architecture PR's merge SHA.
+This single terminal status synchronization records only the post-merge canonical status. No further Batch-10 status/provenance PR is required.
