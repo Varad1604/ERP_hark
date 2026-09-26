@@ -1,12 +1,12 @@
 # SutraERP L6 — Stage 5 Domain-by-Domain Mock-Operational Implementation — Reviewed Gameplan — 2026-09-22
 
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Status:** Architecture Approved — Planning Baseline  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture Support  
 **Programme:** SutraERP Full Workflow Realization & Mock ERP Programme  
 **Stage:** Stage 5 — Domain-by-Domain Mock-Operational Implementation  
-**Execution State:** PLAN APPROVED; IMPLEMENTATION NOT STARTED  
+**Execution State:** PLAN APPROVED; BATCHES 0–10 COMPLETE; BATCH 11 IN EXECUTION; PRODUCT-CONVERGENCE AMENDMENT ACTIVE  
 **Depends On:** `../L6_Full_Workflow_Realization_and_Mock_ERP_Execution_Plan_DRAFT.md`; `L6_Stage3_Final_Validation_and_Closure_Decision_2026-09-21.md`; `L6_Stage4_Batch4_Full_Discovery_Coverage_Exit_Gate_Evidence_2026-09-22.md`; Stage-2 Group-15 master reconciliation; current live L5 architecture; current frontend Stage-4 canonical main.
 
 ---
@@ -34,6 +34,18 @@ Stage-5 closure
 ```
 
 Stage 5 shall extend the Stage-3 state authority and Stage-4 discovery layer. It shall not replace either.
+
+Stage 5 has two inseparable success dimensions:
+
+```text
+architecture / workflow fidelity
+        +
+coherent ordinary ERP product experience
+```
+
+A batch is not considered strategically successful merely because its assigned workflows have proof coverage. The accumulated frontend must progressively converge toward one browseable, stateful SutraERP product in which ordinary users encounter business terminology, business context, legitimate actions, outcomes and handoffs rather than programme/batch/proof/reviewer terminology.
+
+Reviewer tooling, architecture provenance, deterministic scenario controls, failure injection and validation evidence remain required, but they are support instrumentation and shall be separated from ordinary ERP UX.
 
 The Stage-5 implementation model is intentionally split into small batches that can be executed, validated, browser-tested, self-reviewed, evidenced, and reported in one execution conversation. Large batches that cannot reliably complete end-to-end in one execution chat must be split before work starts.
 
@@ -176,6 +188,22 @@ inspect demo history / evidence / activity
 The exact path varies by workflow.
 
 Stage 5 does not create a universal workflow engine.
+
+### Product-convergence rule
+
+From Batch 12 onward, new realization work shall prefer reusable product-facing workspace composition and shared interaction patterns over new batch-specific proof surfaces where the existing foundations can express the required behavior safely.
+
+Existing Batch 0–11 proof/reviewer surfaces remain valid evidence and shall not be rewritten merely for cosmetic uniformity. They may be progressively moved behind Review / Experience Lab boundaries when product-facing equivalents exist.
+
+Ordinary ERP UX shall not expose, as user-facing product concepts:
+
+- Stage / Batch / Chunk identities;
+- workflow-reviewer IDs;
+- proof-case IDs;
+- architecture-level IDs or repository paths;
+- "reviewer replay", "bounded review", "proof" or equivalent validation-language where a normal business term is available.
+
+This rule does not prohibit reviewer-only tooling. It requires separation between the product surface and the validation surface.
 
 ---
 
@@ -833,7 +861,7 @@ Completion of Domain J.
 
 ---
 
-### Batch 28 — Cross-Domain / Handoff / Exception Convergence
+### Batch 28 — Enterprise Product / Cross-Domain / Handoff / Exception Convergence
 
 Primary reconciliation population:
 
@@ -844,6 +872,23 @@ Primary reconciliation population:
 ```
 
 This batch validates already implemented domain behavior. It does not reimplement all 141 workflows.
+
+Batch 28 is also the formal **Product Convergence Gate**. It shall prove that the accumulated domain implementations operate as one ERP rather than as a collection of batch proof surfaces.
+
+Required product-convergence evidence includes:
+
+- ordinary ERP navigation across representative domains without reviewer terminology;
+- representative records retaining coherent subject/context across domain boundaries;
+- legitimate business actions expressed in business language;
+- state changes reflected in related product projections;
+- owner-preserving handoffs that continue naturally in the destination workspace;
+- exceptions/rejections/recovery paths that do not dead-end the user;
+- reviewer/provenance controls separated from ordinary ERP UX;
+- no requirement for a reviewer to understand Stage, Batch, Chunk, proof-case or architecture IDs;
+- reusable workspace/action composition demonstrated across multiple domains;
+- no new batch-specific product shell where an existing governed workspace pattern is sufficient.
+
+Failure of product convergence is a Batch-28 hard fail even when raw workflow counts reconcile.
 
 ---
 
@@ -860,6 +905,9 @@ Required proof:
 1,084 / 1,084 scenario mappings intact
 99 / 99 workspaces intact
 12 / 12 archetypes intact
+ordinary ERP product surface coherent
+reviewer / architecture instrumentation separated
+representative cross-domain institutional journeys executable
 ```
 
 ---
@@ -878,7 +926,12 @@ Responsibilities:
 - reviewer metadata leakage scan;
 - maturity-claim audit;
 - Architecture evidence;
-- Stage-6 readiness decision.
+- Stage-6 readiness decision;
+- ordinary-product/reviewer-surface separation audit;
+- product-language leakage scan for Stage/Batch/Chunk/proof/reviewer terminology;
+- representative end-to-end institutional journey replay;
+- workspace-composition duplication audit;
+- end-user dead-end and cross-domain continuity audit.
 
 No new functional scope should normally be introduced here except corrections discovered by final validation.
 
@@ -924,7 +977,10 @@ Every implementation batch shall prove, where applicable:
 - build passes;
 - dedicated browser evidence passes;
 - accessibility review passes;
-- Architecture evidence is synchronized.
+- Architecture evidence is synchronized;
+- ordinary product UX remains business-facing rather than validation-facing;
+- new batch-specific UI scaffolding is justified where reusable product composition cannot safely satisfy the workflow;
+- representative user paths introduced or affected by the batch remain coherent outside Review / Experience Lab mode.
 
 ---
 
@@ -959,7 +1015,11 @@ The validator should eventually hard-fail on:
 - nondeterministic timestamps in canonical demo behavior;
 - preset mutation leakage;
 - history referencing nonexistent operation;
-- false INTEGRATED or PRODUCTION-VALIDATED maturity.
+- false INTEGRATED or PRODUCTION-VALIDATED maturity;
+- Stage / Batch / Chunk / proof-case / reviewer terminology leaked into ordinary ERP UX;
+- reviewer-only interaction required to perform a product-facing workflow;
+- new batch-specific product shell introduced without a demonstrated reuse gap;
+- product-facing workflow implemented only as a proof card when a normal workspace interaction is required by the realization disposition.
 
 ---
 
@@ -1206,3 +1266,78 @@ STAGE 5 MASTER PLAN — READY WITH NON-BLOCKING FINDINGS
 Stage-5 implementation has not started.
 
 The batch topology above supersedes the earlier coarse Stage-5 hypothesis in the programme execution plan. In particular, large domains are deliberately decomposed so every batch can be completed and independently validated in one execution conversation.
+
+
+---
+
+## 28. Product-Convergence Amendment — 2026-09-26
+
+This amendment refines execution method only. It does not change L0–L5 authority, the 1,084-scenario corpus, the 595-workflow register, the 99-workspace baseline, the 12 archetypes, mock dispositions, canonical ownership, lifecycle states, business events or the 31-batch topology.
+
+### 28.1 Realization depth is risk-based
+
+Complete workflow coverage remains mandatory, but bespoke UI/proof machinery is not required uniformly.
+
+Deeper interactive realization is expected where workflows involve one or more of:
+
+- lifecycle transition;
+- approval/authority consequence;
+- cross-domain handoff;
+- financial consequence;
+- examination/result consequence;
+- correction/reversal/rollback;
+- bulk or roster operation;
+- exception/recovery;
+- indeterminate outcome;
+- material downstream projection change.
+
+Straightforward reference, configuration, read-only, tracking or simple bounded workflows may reuse established workspace/archetype patterns when that preserves the registered realization semantics and validation evidence.
+
+This does not downgrade REQUIRED workflows. It prevents implementation ceremony from becoming a parallel product architecture.
+
+### 28.2 Representative institutional journeys
+
+Stage-5 closure shall include cross-domain journey evidence. Exact journey composition must be derived from canonical workflow authority at execution time; this amendment does not invent new business workflows.
+
+At minimum, the final corpus shall demonstrate representative journeys spanning:
+
+1. institution/academic setup into downstream operational readiness;
+2. applicant/admission into active Student context;
+3. Student registration into academic delivery and assessment/examination consequences;
+4. workforce engagement/assignment into faculty or payroll-relevant downstream context where upstream authority supports it;
+5. procurement/resource acquisition into receiving/inventory/financial consequences where upstream authority supports it;
+6. Student completion/exit into qualification/alumni consequences where upstream authority supports it.
+
+A journey is validation composition across existing canonical workflows. It is not a new canonical workflow or ownership transfer.
+
+### 28.3 Frontend structural convergence
+
+Batch-specific implementation modules may remain as evidence/internal organization during Stage 5, but Stage-5 closure shall not leave the ordinary product runtime architecturally dependent on an ever-growing chain of batch-specific product shells.
+
+The preferred end state is:
+
+```text
+workspace registry
+→ governed workspace composition
+→ reusable action / outcome / handoff patterns
+→ deterministic mock-operation/state layer
+→ reviewer instrumentation behind explicit review boundaries
+```
+
+Any refactor toward this structure must preserve current behavior and traceability and must not rewrite upstream architecture.
+
+### 28.4 Final L6 product target
+
+Stage 5 and Stage 6 together shall leave a frontend that functions as an **executable ERP product blueprint**:
+
+- browseable as SutraERP by ordinary users;
+- stateful and deterministic without a backend;
+- capable of representative legitimate workflow execution;
+- capable of showing rejection, failure, indeterminate and handoff outcomes where supported;
+- cross-domain coherent;
+- resettable and replayable;
+- architecture-traceable in reviewer tooling;
+- suitable for discovering workflow and UX defects before backend integration;
+- explicitly not production-integrated or production-validated merely because mock behavior is complete.
+
+This product target is a refinement of the existing programme purpose, not a new architecture level or upstream business decision.
