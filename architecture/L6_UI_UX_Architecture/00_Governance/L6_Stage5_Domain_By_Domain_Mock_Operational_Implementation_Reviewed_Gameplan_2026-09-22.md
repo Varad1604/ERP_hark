@@ -1,6 +1,6 @@
 # SutraERP L6 — Stage 5 Domain-by-Domain Mock-Operational Implementation — Reviewed Gameplan — 2026-09-22
 
-**Version:** 1.2.0  
+**Version:** 1.3.0  
 **Status:** Architecture Approved — Planning Baseline  
 **Owner:** Lead Architect  
 **Architecture Level:** L6 — UI / UX Architecture Support  
@@ -723,6 +723,37 @@ The consolidation changes execution boundaries only. It does not change protecte
 
 Large consolidated domain batches shall be implemented through bounded chunks/workstreams and integrated before one domain closure decision. Conversation-size limits are not architecture boundaries.
 
+The response-safe execution standard is governed by `L6_Stage5_Remaining_Batch_Consolidation_Decision_2026-09-26.md`. A batch shall not be forced into one ChatGPT response. The batch branch, batch PR, validation boundary and closure identity persist across as many bounded execution responses as necessary.
+
+---
+
+## 18A. Response-Safe Execution Gate
+
+Before implementation of a consolidated batch begins, the executor shall derive a bounded chunk plan from the live workflow census and repository state.
+
+The plan shall:
+
+- divide work by coherent workflow/workspace/dependency seams;
+- avoid one response attempting a complete large domain;
+- identify shared-state or shared-component seams that prevent unsafe parallel work;
+- reserve integrated domain validation and independent audit for the final integration phase;
+- keep all chunks on the same batch governance boundary unless isolation is materially required;
+- avoid per-chunk Architecture closure records.
+
+Each execution response shall normally complete one bounded chunk and stop after targeted validation and checkpointing.
+
+At the end of each response report:
+
+```text
+Batch X — Chunk Y/N
+workflows completed / total
+chunks remaining
+blocking findings
+next chunk
+```
+
+Chunk numbering may be refined before implementation if repository evidence shows the original chunk plan is unsafe or oversized. Such refinement does not change the canonical batch identity or scope.
+
 ---
 
 ## 19. Batch Entry Gate
@@ -1054,7 +1085,7 @@ STAGE 5 MASTER PLAN — READY WITH NON-BLOCKING FINDINGS
 
 Stage-5 implementation has not started.
 
-The batch topology above supersedes the earlier coarse Stage-5 hypothesis in the programme execution plan. In particular, large domains are deliberately decomposed so every batch can be completed and independently validated in one execution conversation.
+The batch topology above supersedes the earlier coarse Stage-5 hypothesis in the programme execution plan. Consolidated governance batches may span multiple execution responses and bounded chunks; independent validation occurs at chunk scope where useful and at integrated batch scope before closure.
 
 
 ---
