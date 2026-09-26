@@ -421,7 +421,7 @@ Validation evidence for this phase is recorded in:
 
 ## Stage 5 Execution
 
-- `00_Governance/L6_Stage5_Domain_By_Domain_Mock_Operational_Implementation_Reviewed_Gameplan_2026-09-22.md` — active Stage-5 master execution topology; 31 bounded batches numbered 0–30.
+- `00_Governance/L6_Stage5_Domain_By_Domain_Mock_Operational_Implementation_Reviewed_Gameplan_2026-09-22.md` — active Stage-5 master execution governance. Batches 0–11 retain historical identities; after Batch 11 the remaining topology is consolidated to Batches 12–20. Large batches execute through bounded response-safe chunks/workstreams rather than one-response execution.
 - `00_Governance/L6_Stage5_Batch0_Authority_Census_Baseline_Freeze_Evidence_2026-09-22.md` — Batch-0 authority/census baseline evidence; merged and complete.
 - `00_Governance/L6_Stage5_Batch1_Mock_Operation_Core_Foundation_Final_Evidence_and_Closure_2026-09-23.md` — Batch-1 final closure evidence; Architecture Approved, 9 of 9 steps complete, corrections closed, frontend and Architecture canonicalized/merged, post-merge provenance verified.
 - `00_Governance/L6_Stage5_Batch2_Golden_Slice_Interaction_Proof_Final_Evidence_and_Closure_2026-09-23.md` — Batch-2 corrected final closure evidence; frontend and Architecture canonicalized/merged, post-merge provenance verified, corrected frontend validation #226 and 12/12 Batch-2 browser evidence PASS.
@@ -431,3 +431,19 @@ Validation evidence for this phase is recorded in:
 - `00_Governance/L6_Stage5_Batch6_Student_Lifecycle_Part1_Final_Evidence_and_Closure_2026-09-23.md` — Batch-6 final evidence; W-C01…W-C04 / 19 workflows / 39 scenarios / 16 REQUIRED / 3 PROHIBITED / 0 mixed workflows, Batch-2 bindings 0052/0053 reused, frontend PR #31 merged as `dc9c06cc87…`, final validation #266 PASS; Architecture closure PR #102 merged as `2f31112d15…`; Batch 6 PASS / COMPLETE / MERGED.
 - `00_Governance/L6_Stage5_Batch7_Student_Lifecycle_Part2_Final_Evidence_and_Closure_2026-09-24.md` — Batch-7 closure evidence; W-C05…W-C08 / 13 workflows / 36 scenarios / 9 REQUIRED / 2 PROHIBITED / 2 NOT-REQUIRED / 0 mixed workflows; frontend PR #32 merged as `472f4ca5a3…`; exact PR-head validation run #275 / run ID `35958815945` PASS with browser artifact `10791772184`; Architecture closure PR #107 merged as `a7a639d111…` and post-merge status-sync PR #108 merged as `a425e37a2b…`; Batch 7 PASS / COMPLETE / MERGED.
 - `00_Governance/L6_Stage5_Batch8_Academic_Delivery_Part1_Final_Evidence_and_Closure_2026-09-24.md` — Batch-8 closure evidence; W-D01…W-D04 / 19 workflows / 26 scenarios / 19 REQUIRED / 0 PROHIBITED / 0 NOT-REQUIRED / 0 mixed workflows; frontend PR #33 merged as `86e53f4d50…`; exact PR-head validation run #306 / run ID `35984123516` PASS with browser artifact `10801393093`; `L6-RWF-0100` reused with exactly one global binding; Architecture closure PR #111 merged as `03c839c087…`; Batch 8 PASS / COMPLETE / MERGED; Batch 9 ENTRY-READY / NOT STARTED.
+
+
+## Stage-5 Response-Safe Execution Standard — 2026-09-26
+
+The consolidated Stage-5 topology does not imply that a large governance batch should fit inside one ChatGPT response.
+
+For Batches 12–20:
+
+- derive a bounded chunk plan before implementation where needed;
+- execute one safe chunk per response by default;
+- keep the same batch branch and normally one batch PR across chunks;
+- run targeted validation per chunk and integrated validation before batch closure;
+- do not create Architecture closure documents merely for chunk progress;
+- end each execution response with Batch/Chunk progress, workflows completed, chunks remaining, blockers and next scope.
+
+The governing rule is: **one governance batch may span many execution responses; response limits never redefine architecture scope.**
