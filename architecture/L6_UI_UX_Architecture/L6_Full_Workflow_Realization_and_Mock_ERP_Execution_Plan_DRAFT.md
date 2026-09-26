@@ -250,9 +250,9 @@ Stage 5 shall:
 - keep ordinary UX free of reviewer architecture IDs;
 - remain frontend-only and non-authoritative.
 
-The active Stage-5 execution topology is intentionally split into **31 batches numbered 0–30** so every batch can reasonably complete research, implementation, validation, browser evidence, accessibility review, cleanup, self-review, architecture evidence and reporting in one execution conversation.
+The Stage-5 governance topology began with 31 batches numbered 0–30. Batches 0–11 retain their historical identities. Effective 2026-09-26, the remaining topology is consolidated to Batches 12–20 under the approved consolidation decision.
 
-The detailed batch topology is governed by the reviewed gameplan. Large domains are decomposed rather than treated as giant PRs:
+The current topology is:
 
 ```text
 Foundation / Census / Golden Slices          Batches 0–2
@@ -261,25 +261,18 @@ Institution & Structure                     Batch 5
 Student Lifecycle                           Batches 6–7
 Academic Delivery                           Batches 8–9
 People & Workforce                          Batches 10–11
-Finance                                     Batches 12–13
-Campus Operations                           Batches 14–19
-Institutional Services & Intelligence       Batches 20–21
-Examination                                 Batches 22–25
-Enterprise Resource Management              Batches 26–27
-Enterprise convergence                      Batch 28
-Full 595-workflow reconciliation            Batch 29
-Final validation / cleanup / closure        Batch 30
+Finance                                     Batch 12
+Campus Operations                           Batch 13
+Institutional Services & Intelligence       Batch 14
+Examination                                 Batch 15
+Enterprise Resource Management              Batch 16
+Product-Surface Convergence                 Batch 17
+Cross-Domain Journey / Exception Convergence Batch 18
+Full 595-workflow reconciliation            Batch 19
+Final validation / cleanup / closure        Batch 20
 ```
 
-Batch sizing rule:
-
-```text
-normal target:     15–30 workflows
-preferred ceiling: ~30 workflows
-exception ceiling: ~35 only when reuse makes the work demonstrably bounded
-```
-
-If a planned batch cannot realistically finish end-to-end in one execution conversation, the Stage-5 master-control chat shall split it before issuing the execution prompt.
+Batch size is no longer constrained by one-response limits. Large governance batches shall be decomposed into bounded response-safe chunks/workstreams derived from the live census, dependency seams, shared-state touch points and risk. Each response normally completes one bounded chunk and stops after targeted validation/checkpointing.
 
 For each legitimate interactive workflow, Stage 5 should support enough deterministic experience to review:
 
