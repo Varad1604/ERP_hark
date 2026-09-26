@@ -47,7 +47,7 @@ A batch is not considered strategically successful merely because its assigned w
 
 Reviewer tooling, architecture provenance, deterministic scenario controls, failure injection and validation evidence remain required, but they are support instrumentation and shall be separated from ordinary ERP UX.
 
-The Stage-5 implementation model is intentionally split into small batches that can be executed, validated, browser-tested, self-reviewed, evidenced, and reported in one execution conversation. Large batches that cannot reliably complete end-to-end in one execution chat must be split before work starts.
+The Stage-5 implementation model uses governance batches for coherent scope and bounded response-safe chunks for execution. A governance batch may span multiple ChatGPT responses. Large scopes shall be decomposed into chunks/workstreams before implementation so no response is forced to carry an unsafe end-to-end workload.
 
 ---
 
