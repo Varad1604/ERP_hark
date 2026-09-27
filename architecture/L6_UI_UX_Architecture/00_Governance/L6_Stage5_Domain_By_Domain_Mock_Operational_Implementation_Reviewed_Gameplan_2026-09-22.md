@@ -758,7 +758,7 @@ Chunk numbering may be refined before implementation if repository evidence show
 
 ## 19. Batch Entry Gate
 
-Every implementation batch must begin only after:
+The default Stage-5 batch-entry model remains serialized:
 
 ```text
 previous batch merged
@@ -771,6 +771,40 @@ Stage-5 census unchanged or governed difference explained
 protected counts unchanged
 affected live L5 sources rechecked
 ```
+
+### 19.1 Dependency-safe parallel-batch exception
+
+Effective 2026-09-27, a later consolidated domain batch may begin implementation before the immediately preceding domain batch is merged **only** when all of the following are satisfied:
+
+```text
+all foundational architecture dependencies for the later batch are already canonical
+the later batch does not consume unfinished implementation as canonical truth
+each concurrently active batch uses an isolated implementation branch
+shared/global seams are isolated, deferred, or centrally reconciled
+no unresolved ownership/lifecycle/event/rule conflict exists between the batches
+architecture-level conflicts stop affected implementation rather than being improvised
+canonical batch closure remains controlled and serialized where cross-batch runtime verification is required
+```
+
+This exception permits dependency-safe parallel **implementation**; it does not transfer ownership, change foundational dependencies, weaken protected Stage-5 counts, or authorize one batch to manufacture another domain's outcome.
+
+Where the later batch consumes runtime/read-model behavior from the earlier concurrent batch, the later batch shall:
+
+1. implement only against already-canonical upstream architecture and contracts;
+2. avoid treating the earlier batch's unfinished frontend implementation as authority;
+3. record the affected runtime seams for final convergence;
+4. rebase/update safely after the earlier batch is merged where shared seams require it;
+5. revalidate the affected workflows against the earlier batch's final merged result before the later batch receives canonical closure.
+
+For Batch 12 Finance and Batch 13 Campus Operations specifically:
+
+- Section G foundational dependencies are satisfied independently of unfinished Finance implementation;
+- Batch 13 may therefore begin on its own branch while Batch 12 remains active;
+- Finance-facing Campus behavior must preserve Section F ownership of financial truth;
+- shared/global files touched by both batches shall not be independently redesigned;
+- Batch 13 final closure shall wait for Finance-facing revalidation against the final merged Batch-12 result.
+
+This exception is governed by `L6_Stage5_Parallel_Batch_Execution_Amendment_2026-09-27.md`.
 
 Prompts shall never assume historical SHAs remain current.
 
