@@ -239,7 +239,7 @@ Security Operations references security agencies operationally.
 
 ## Physical Security Assets
 
-Owned by G10.
+Owned by G01 Facilities Management.
 
 Examples:
 
