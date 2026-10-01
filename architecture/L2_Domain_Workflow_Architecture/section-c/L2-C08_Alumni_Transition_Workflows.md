@@ -186,7 +186,7 @@ All upstream integrations shall adhere to the following architectural principles
 | Qualification Completion (L2-C05) | Qualification completion outcome, published as the canonical `QualificationAwarded` event | Alumni Transition |
 | Examination (L2-I13) | Examination-owned completion evidence via `ExaminationCompletionEvidencePrepared` | Alumni Transition |
 | Institutional Clearance (aggregated by `L2-C05`) | Financial, library, hostel and administrative clearances, aggregated by the Qualification Completion Aggregate and published as `InstitutionalClearanceCompleted` | Alumni Transition |
-| Policy Management — **unresolved, no owner** | Institutional transition policies | Alumni Transition |
+| Institution (`L2-B01`) — institutional policy owner | Institutional transition policy definitions and versions | Alumni Transition (`L2-C08`) |
 
 > **Corrected 2026-08-06 under integrity finding INT-206.** This table previously named
 > three upstream bounded contexts that do not exist in the repository:
@@ -198,24 +198,31 @@ All upstream integrations shall adhere to the following architectural principles
 > - **Approval Management** — row removed. Alumni transition approval is not upstream of
 >   this context; this document publishes `AlumniTransitionApproved` itself (see §10.4,
 >   "Institutional approval completed / Approval workflow completed").
-> - **Policy Management** — retained and marked. No document in the repository defines,
->   owns or publishes it. Recorded as a missing bounded context in `DEPENDENCY_MAP.md`
->   section 7B, with the evidence excluding `L2-A04` and `L2-A08` as its home.
+> - **Policy Management** — historical shorthand resolved under approved
+>   Dependency Map RC-03 (2026-08-15). Institutional **business policy definitions
+>   and versions are owned by L2-B01 Institution**, not a separate invented
+>   Policy Management bounded context. `L2-C08` evaluates applicable transition
+>   policy and publishes its own `TransitionPolicyValidated` decision.
 >
-> **This note governs every occurrence of all three names throughout this document** —
-> the service-contract, workflow, failure-mode and sequence tables further below still use
-> them as shorthand, and are to be read as follows:
+> **Controlled RC-03 reconciliation, 2026-10-01 (documentation only).** This note
+> governs historical shorthand throughout the service-contract, workflow,
+> decision, failure-mode and sequence tables below, without creating any API,
+> policy payload, permission or new implementation contract:
 >
-> | Name as written elsewhere in this document | Read as |
+> | Historical name elsewhere in this document | Canonical interpretation |
 > |---|---|
-> | Clearance Management | `L2-C05` Qualification Completion, aggregating clearances from Sections F, G03 and G05 |
-> | Approval Management | This context's own approval workflow, publishing `AlumniTransitionApproved` (§10.4) — **not an upstream domain** |
-> | Policy Management | **Unresolved.** No owner. See `DEPENDENCY_MAP.md` section 7B. |
+> | Clearance Management | `L2-C05` aggregates institutional clearance; participating F/G03/G05 domains retain individual clearance authority. |
+> | Approval Management | The `L2-C08` Alumni Transition approval workflow itself, publishing `AlumniTransitionApproved`; not an upstream domain. |
+> | Policy Management / Policy Service | Institutional policy definition/version is owned by `L2-B01`; `L2-C08` independently evaluates and owns its transition-policy decision. No separate Policy Management bounded context. |
 >
-> Those occurrences were left in place rather than rewritten across fifteen tables, to
-> avoid churn in a document of this size. They carry no independent authority; this note
-> governs. **Do not implement a subscriber or query client against Policy Management until
-> an owner is assigned.**
+> `AlumniTransitionPolicyUpdated` is assigned to `L2-C08` as the publisher
+> by approved RC-03; it is **not** a new B01-published inbound event. B01
+> remains the canonical owner of institutional business policy definitions.
+> RC-03 lifts the former blanket ban on legitimate, approved B01 policy
+> consumption. This correction does not by itself specify a new subscription,
+> event transport, query schema, policy-version validation contract or H06
+> activation condition. Such runtime interactions still require traceable
+> approved owner evidence before Batch-18 J06 may be certified.
 
 ---
 
@@ -2506,6 +2513,7 @@ The following Domain Events are published by the Alumni Transition bounded conte
 | AlumniTransitionInitiated | Transition process created. | Transition Record created |
 | TransitionEligibilityValidated | Eligibility evaluation completed. | Eligibility determined |
 | TransitionPolicyValidated | Policy evaluation completed. | Policy compliance established |
+| AlumniTransitionPolicyUpdated | Transition-policy-specific change notification; institutional policy definition remains B01-owned (RC-03). | Authorized transition-policy change notification under the approved policy contract |
 | AlumniTransitionApproved | Institutional approval completed. | Approval workflow completed |
 | StudentRelationshipClosed | Student relationship closed. | Transition execution |
 | AlumniRelationshipActivated | Alumni relationship activated. | Transition execution |
@@ -2524,7 +2532,6 @@ The Alumni Transition bounded context consumes business events published by upst
 | Examination (`L2-I13`) | ProgrammeCompletionVerified | Initiate transition eligibility |
 | Qualification Completion (`L2-C05`) | QualificationAwarded | Validate academic completion |
 | Qualification Completion (`L2-C05`) | InstitutionalClearanceCompleted | Validate institutional clearance |
-| **Unresolved — no publisher** | AlumniTransitionPolicyUpdated | Resolve applicable transition policies |
 
 > **Corrected 2026-08-06 under integrity finding INT-206.** Every row in this table
 > previously named an event or a publishing domain that does not exist. Each was traced to
@@ -2537,12 +2544,15 @@ The Alumni Transition bounded context consumes business events published by upst
 > | Clearance Management / `ClearanceCompleted` | `L2-C05` / `InstitutionalClearanceCompleted` | "Clearance Management" is not a repository section. `L2-C05` line 4085 states the Qualification Completion Aggregate owns institutional clearance coordination, and publishes `InstitutionalClearanceCompleted`. |
 > | Approval Management / `AlumniTransitionApprovalCompleted` | **row deleted** | Not a consumed event. This bounded context publishes `AlumniTransitionApproved` itself — see §10.4, "Institutional approval completed / Approval workflow completed". The row duplicated our own published event under an invented upstream domain. |
 >
-> **One row remains unresolved.** `AlumniTransitionPolicyUpdated` has no publisher
-> anywhere in the repository. No document defines or updates Alumni Transition policy:
-> this context publishes `TransitionPolicyValidated` (it *evaluates* policy) but owns no
-> policy aggregate, and Sections A04 and A08 declare no policy-change events. The row is
-> retained and marked so the missing upstream contract stays visible rather than being
-> silently dropped. **Do not implement a subscriber for it.**
+> **RC-03 reconciliation (approved 2026-08-15):** The historical
+> `AlumniTransitionPolicyUpdated` orphan-publisher finding is superseded.
+> `L2-C08` publishes this transition-specific change notification; `L2-B01`
+> owns the underlying institutional policy definition/version. The B01 row
+> above expresses the **ownership dependency**, not an approved new event name
+> or message transport. Actual publication and consumption remain gated by
+> their separately approved contracts; neither an inbound C08 self-subscription
+> nor an invented B01 event is implied. The existing C08 policy-validation
+> responsibility and `TransitionPolicyValidated` remain unchanged.
 
 The Alumni Transition domain never assumes ownership of consumed events.
 
