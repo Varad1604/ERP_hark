@@ -27,6 +27,41 @@ The Lead Architect must approve **whether** F01 may create a Student Charge for 
 
 **Preferred investigation direction (not approval):** Examine A before designing a brand-new alternate path because F00 depicts Admission Approved → Finance charge and F01 lists Admission charges as a supported source. The missing pre-Student identity/validation semantics are consequential; if any locked F01 invariant rules out A, reject A rather than weaken it.
 
+## 2A. Option A formal specification — investigation authorized, contract NOT approved (2026-10-02)
+
+**Authorization scope:** The Lead Architect has authorized formal investigation/specification of Option A within this existing draft PR. This is not approval of pre-Student F01 charge eligibility, any event/API, source identity, financial settlement rule, C01 monetary calculation, or downstream implementation.
+
+### 2A.1 Exact architectural contract decisions to be entered in a governed amendment
+
+| Contract boundary | Existing source support | Decision still required before implementation |
+|---|---|---|
+| C01 originating fact → F01 | F00 §4 illustrates Admission Approved leading to Finance-created Admission Charges; locked F01 publication amendment requires a valid owner-authored source fact. | Confirm whether the existing `AdmissionApproved` business fact is sufficient and its exact approved publication/consumption semantics; do not create an additional event by implication. |
+| Pre-Student financial subject | F01 owns Admission charges and the Student Charge aggregate but references Student Scope/Student Context in validation inputs. | Explicitly permit or reject conditional absence of Student/StudentContext, define the authoritative Admission and Person references, institute/institution/tenant and applicable Programme/Session scope and every validation condition. Distinguish source-Admission identity from F01 charge identity. |
+| F01 lifecycle | Locked 2026-09-23 amendment assigns charge-source resolution, Charge Policy, calculations, validation and `ChargePublicationCompleted` to F01. | Confirm pre-Student charge-source classification and idempotent source-obligation uniqueness under existing F01 invariants; do not silently create a new lifecycle state, universal manual approver or charge policy. |
+| Received receipt → F02 | F02 and locked L3-F-009 treat unallocated advances as liabilities until eligible allocation. | Define authoritative payer/Payment and charge correlation, multi/partial allocation policy, surplus treatment and exact grounds for `PaymentAllocationCompleted` and `PaymentSettlementCompleted`. Preserve uncertainty, reversal and no-match failure boundaries. |
+| Finance evidence → C01 | C01 consumes `FinancialClearanceCompleted` and owns its admission decision; F02 settlement alone is not automatically admission clearance. | Identify the approved owner of the clearance-completed source fact, how F01/F02 evidence and any authorized policy alternatives are evaluated, required charge coverage, version/scope checks and the exact admission-reference correlation. Do not declare F02 an automatic publisher of C01's clearance fact without source evidence. |
+| C01 confirmation → C02 | Locked L3-C-001 and C02 require an already confirmed Admission before Student/StudentContext creation. | Specify the immutable link between pre-Student charge/Admission/Person and the later C02 Student/StudentContext, including reuse of valid historical Student identity and one ACTIVE StudentContext per Institute. The late linkage cannot retroactively rewrite financial history. |
+
+### 2A.2 Explicitly unapproved decisions / conflicts
+
+1. **Pre-Student F01 validation remains open:** F01 Student Scope and Student Context validation passages must be reviewed and formally amended or authoritatively interpreted *before* an Admission-scoped obligation is considered legal. The presence of Admission Fees in F01 does not waive these conditions.
+2. **C01 Step 2 correction required:** C01 WF-C01-04 §2.5 Step 2 currently instructs “Calculate financial obligations”; C01 BR-C01-025 explicitly prohibits Admissions financial balance calculation. The proposed governed text is: “Determine applicable admission financial-obligation types and clearance requirements under institutional admission policy; obtain authoritative F01-calculated charges and Finance clearance evidence. Admissions shall not calculate financial monetary values or modify Finance aggregates.” This is proposed wording only; the locked C01 source is unchanged.
+3. **Clearance evidence owner must be resolved:** C01's named `FinancialClearanceCompleted` input, F02 allocation/settlement publications and F01 charge publication are distinct facts. Document their existing approved producer/consumer lineage or escalate the genuine gap before drafting a technical or mock implementation.
+4. **Source-only evidence is not an executable journey:** Approval would require affected L2 source and locked-amendment governance; derived L3-C-001, L3-F-001/L3-F-009, L4, locked L5, L6 and J02 mock test traces must be checked. No automatic alteration of locked downstream documents is authorized here.
+
+### 2A.3 Acceptance gates for the subsequent decision (not test claims)
+
+- **Identity positive:** Approved C01 fact and the identical canonical Person/Admission/Institute scope yield one legitimate F01 obligation when its full configured conditions are satisfied.
+- **Identity negative:** Missing/wrong Admission, mismatched tenant/Institute, duplicate source request, mismatched Person or missing policy/version cannot produce a charge or grant clearance.
+- **Finance positive:** F02 matches an existing Payment to the exact F01 charge under allowed allocation rules, independently records eligible allocation and applicable settlement and preserves remaining liability/obligation accurately.
+- **Finance negative:** Received-only advance, ambiguous payer/charge, insufficient partial allocation, excess unapplied balance, reversal or uncertain outcome must not be represented as paid-in-full or cleared absent a distinct approved policy rule.
+- **C01/C02 sequence:** C01 uses only approved clearance evidence for the same Admission, subsequently confirms that Admission; C02 alone creates/links and activates the eligible StudentContext with unchanged canonical identity and immutable prior histories.
+- **Provenance:** Each acceptance artifact cites approved L2 decision/revision, L3/L4/L5/L6 mapping and genuine owner/state evidence. Static manifests or reviewer-local disconnected actions do not certify J02.
+
+**Stop condition:** If existing locked F01 validation prohibits a pre-Student charge and governance declines a compatible controlled amendment, Option A is rejected; reconsider Option B through a separate explicit decision rather than inferring clearance. Until a complete approved decision is recorded, the dependent J02 path remains blocked.
+
+---
+
 ## 3. Decision B — existing policy-permitted alternate clearance (if A is not approved)
 
 The Lead Architect may choose the already described C01 policy path (approved waiver, approved scholarship or valid installment arrangement), **but must identify** the owner/service for the exact alternate decision, its canonical approved evidence, Admission/Person/Institute correlation, Finance obligations/status, and which C01 rule permits `FinancialCleared`.
