@@ -141,6 +141,19 @@ Do not equate `PaymentSettlementCompleted` with full Admission clearance: severa
 
 ---
 
+## 2D. Controlled amendment candidates now attached to this PR (2026-10-02)
+
+Two **independently proposed** L2 companion documents have been drafted under the existing G2 proposal branch:
+
+1. `architecture/L2_Domain_Workflow_Architecture/section-f/L2-F01_PreStudent_Admission_Charge_Context_Amendment_PROPOSED_2026-10-02.md` — Gate A: narrowly scoped prospective Admission-origin charge identity and conditional pre-Student context-validation text.
+2. `architecture/L2_Domain_Workflow_Architecture/section-c/L2-C01_Admission_Finance_Clearance_Evidence_Amendment_PROPOSED_2026-10-02.md` — Gate B: proposed B2 evaluation of **existing** source-owned Finance facts by C01, with optional B1 if an existing approved `FinancialClearanceCompleted` owner contract is proven, and controlled correction of C01's monetary-calculation and §20.5 source wording.
+
+**Selection for review, not an architectural approval:** Gate A's narrow eligible prospective-Admission context and Gate B2's C01-owned clearance decision require less speculative new business-event ownership than inventing a universal Finance clearance publisher. This remains dependent on demonstrated owner-controlled, current and correlated F01/F02 evidence; if those existing contracts cannot safely supply it, B2 is blocked and the architecture must be revised through governance.
+
+**No locked documents changed.** These companion files have status Proposed and are neither authoritative amendments nor permissions to implement J02. They must undergo Finance/Admissions/source-owner review, explicit Lead Architect approval, versioning and required cross-level traceability checks before any adoption. Merging the **proposal** without such decisions cannot silently confer approval upon the proposed L2 text.
+
+---
+
 ## 3. Decision B — existing policy-permitted alternate clearance (if A is not approved)
 
 The Lead Architect may choose the already described C01 policy path (approved waiver, approved scholarship or valid installment arrangement), **but must identify** the owner/service for the exact alternate decision, its canonical approved evidence, Admission/Person/Institute correlation, Finance obligations/status, and which C01 rule permits `FinancialCleared`.
