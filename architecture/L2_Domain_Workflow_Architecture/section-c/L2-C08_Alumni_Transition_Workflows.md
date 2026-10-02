@@ -258,7 +258,7 @@ Qualification Completion
           │
 Examination
           │
-Policy Management
+Institution (L2-B01 institutional policy definition)
           │
 Approval Management
           │
@@ -1134,7 +1134,7 @@ The following business participants collaborate throughout the workflows.
 | Student Lifecycle | Provides Student relationship information. |
 | Examination | Provides Qualification Completion Verification. |
 | Qualification Completion | Provides qualification completion outcome. |
-| Policy Management | Provides institutional transition policies. |
+| Institution (`L2-B01`) | Owns and provides institutional business policy definitions/versions under approved RC-03. |
 | Approval Management | Provides approval decisions. |
 | Clearance Management | Provides institutional clearance status. |
 | Alumni Transition | Governs transition execution. |
@@ -1421,7 +1421,7 @@ Completion of Transition Initiation.
 | Qualification Completion | Qualification outcome. |
 | Examination | Qualification Completion verification. |
 | Clearance Management | Clearance status. |
-| Policy Management | Eligibility policies. |
+| Institution (`L2-B01`) | Provides institutional policy definitions/versions; `L2-C08` owns transition eligibility evaluation. |
 | Alumni Transition | Eligibility evaluation. |
 
 ---
@@ -1526,7 +1526,7 @@ Successful completion of Transition Eligibility Evaluation.
 
 | Participant | Responsibility |
 |-------------|----------------|
-| Policy Management | Provides applicable transition policies. |
+| Institution (`L2-B01`) | Owns applicable institutional policy definitions/versions; `L2-C08` evaluates transition policy compliance. |
 | Institution Management | Provides institutional context. |
 | Alumni Transition | Evaluates policy compliance. |
 
@@ -2970,7 +2970,7 @@ The Alumni Transition bounded context collaborates with external bounded context
 | Student Lifecycle | Student relationship reference |
 | Examination | Qualification Completion verification |
 | Qualification Completion | Qualification completion |
-| Policy Management | Policy resolution |
+| Institution (`L2-B01`) | Source ownership of institutional policy definitions/versions; runtime resolution remains subject to separately approved contracts |
 | Approval Management | Approval workflow |
 | Alumni Management | Completed transition events |
 | Reporting | Business reporting |
@@ -3590,7 +3590,7 @@ Determine whether a completed Transition satisfies archival requirements.
 | Decision | Business Owner | Supporting Domains |
 |----------|----------------|--------------------|
 | Eligibility | Alumni Transition | Examination, Qualification, Clearance |
-| Policy Validation | Alumni Transition | Policy Management |
+| Policy Validation | Alumni Transition | Institution (`L2-B01`) — institutional policy definition/version |
 | Approval | Alumni Transition | Approval Management |
 | Execution | Alumni Transition | Student Lifecycle, Alumni Management |
 | Completion | Alumni Transition | Audit |
@@ -3789,7 +3789,7 @@ Resolve policy violations and repeat policy validation.
 
 ## Failure Condition
 
-The required institutional policy definition or policy version cannot be resolved from the canonical Policy Management bounded context.
+The required institutional policy definition or version owned by Institution (`L2-B01`) is unavailable or cannot be resolved through an approved source boundary.
 
 ## Business Impact
 
@@ -3803,7 +3803,7 @@ No approval workflow shall be initiated until the required policy information be
 
 # Recovery
 
-Await availability of the required policy definition from the Policy Management bounded context and repeat Policy Validation using the same Aggregate version.
+Await the required `L2-B01`-owned institutional policy definition/version through an approved source boundary; repeat `L2-C08` Policy Validation using the same Aggregate version. This recovery instruction does not establish an API, event transport or subscription contract.
 
 
 ## FM-AT-005 — Approval Rejected
@@ -4259,7 +4259,7 @@ Each validation depends upon the successful completion of preceding validations.
 |---------------------|-----------------------|-----------------------|
 | Identity Validation | Aggregate Root | Alumni Transition |
 | Eligibility Validation | Eligibility Service | Examination, Qualification, Clearance |
-| Policy Validation | Policy Service | Policy Management |
+| Policy Validation | Policy Service (`L2-C08` evaluation) | Institution (`L2-B01`) policy definition/version |
 | Approval Validation | Approval Service | Approval Management |
 | Execution Validation | Aggregate Root | Aggregate State |
 | Lifecycle Validation | Aggregate Root | State Transition Matrix |
