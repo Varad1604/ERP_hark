@@ -10,11 +10,11 @@
 | Bounded Context | Alumni Transition |
 | Canonical Aggregate | Alumni Transition Record |
 | Primary Owner | Student Lifecycle Domain |
-| Version | 1.0 |
+| Version | 1.0.1 |
 | Status | Locked |
 | Dependencies | See Sections 3 & 4 |
 | Audience | Enterprise Architects, Solution Architects, Developers, Business Analysts |
-| Last Updated | YYYY-MM-DD |
+| Last Updated | 2026-10-02 |
 
 ---
 
