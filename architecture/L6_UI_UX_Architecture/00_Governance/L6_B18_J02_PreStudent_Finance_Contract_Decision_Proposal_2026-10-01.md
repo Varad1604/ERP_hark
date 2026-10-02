@@ -1,10 +1,20 @@
 # Batch 18 J02 — Pre-Student Financial Clearance Contract Decision
 
-**Status:** PROPOSED / DECISION REQUIRED — not approved architecture, not an executable API or event contract  
+**Status:** Lead Architect approved Option A + Gate B2 design direction (2026-10-02); mandatory Finance/domain review, exact contract verification and canonical L2 adoption remain pending — no executable API/event contract  
 **Date:** 2026-10-01  
 **Decision owner:** Lead Architect / canonical Architecture governance  
 **Tracks:** Architecture issue #132; B18-J02 admission-approved applicant → Active StudentContext  
 **Evidence baseline:** Architecture `main` `257094b95e2c3ce7c6b1bd91340fc6422cf97c4c`.
+
+## W1 disposition — approved direction versus pending incorporation (2026-10-02)
+
+The Lead Architect explicitly approved proceeding following the review of Gate A and B2. The selected design direction and remaining review gates are recorded in `governance/adr/ADR-B18-FIN-001_PreStudent_Admission_Charge_and_Clearance_Decision_2026-10-02.md` (ADR-B18-FIN-001). This supersedes only earlier *choice-pending* language in this dossier; historical decision alternatives below are retained to preserve their rationale.
+
+**Selected for controlled adoption review:** Option A prospective Admission-scoped F01 charge (only when authoritative identity, owner-scoped context and F01 charging policy permit it) **plus B2** C01-owned clearance evaluation from existing Finance-owned evidence and controlled removal/reconciliation of C01's unsupported composite inbound event reference. No new Finance composite event is authorized. C01's monetary-calculation wording must be repaired under governed amendment.
+
+**Important:** Approval of this design direction does **not** certify the missing event-specific C01 Person/Institute references or prove exact approved Finance→C01 evidence contracts, and cannot substitute for Chetan's domain review and Varad/Devang's Finance Review Team review required by locked governance. The separate F01 and C01 documents remain explicitly **Proposed**, and the present PR must not be merged as authoritative L2 architecture until these reviews, exact source contracts, versioned amendments and cross-level validation are completed. B18-J02's dependent execution path remains blocked.
+
+---
 
 ## 1. Verified constraints (not new decisions)
 
