@@ -100,6 +100,47 @@ This wording intentionally does **not** settle unresolved source policy, record 
 
 ---
 
+## 2C. Two-gate formal decision package — escalation-ready, NOT adopted (2026-10-02)
+
+A wider repository code search for exact `FinancialClearanceCompleted` returned **only** `L2-C01_Admissions_Workflows.md` among indexed main-branch files. The exact term occurs there as a consumed input; the same C01 source publishes **`FinancialCleared`** as its own subsequent decision. Additional source inspection covered L2-F07 Accounts Receivable, the locked F07 amendment, L2-F11 financial aid, locked L3-F-007/L3-F-009, and corresponding L4-F-007/L4-F-009. These documents establish Finance-owned, *distinct* obligation, settlement, receivable and aid representations; no inspected source defines an authoritative publisher of the C01-named composite event. **This is a scoped negative search finding, not a proof that no unpublished or non-indexed approved contract exists.**
+
+### Gate A — pre-Student Student Charge subject
+
+**Proposed governing resolution, awaiting Lead Architect's contract approval:** An already-published C01 `AdmissionApproved` may represent a legitimate admission-fee business obligation *before* C01 confirmation where applicable F01 Charge Policy makes the obligation due. F01, not C01, must decide whether the exact approved Admission, immutable A02 PersonID and authorized tenant/institution/Institute plus relevant academic/session/financial-period scope satisfy F01's mandatory structural, context, policy and financial validation. An expressly approved **prospective Admission-scoped context** may be used instead of a not-yet-existent C02 StudentContext *only for that governed class of pre-Student obligations*. This is a proposed narrowly conditional interpretation, not a general StudentContext waiver.
+
+Required source amendments if approved:
+- **L2-F01 controlled amendment** must state whether the prospective Admission subject is legal, its accepted source-context requirements and precise scope of the StudentContext-absent case; preserve all unaffected F01 invariants. Review §§9.6, 12.4, 13.4, 20.4–20.5 and 22.4 explicitly. Disallow charge publication on unresolved A02 identity, invalid institution/Institute or absent required charging policy.
+- **L2-C01 alignment** may cite the existing `AdmissionApproved` event and its existing Finance consumption from §9.12, clarify the qualifying approval/business-obligation timing and require owner-accurate source identifiers. It cannot create a Student Charge, compute its monetary value or emit F01 publication events.
+- **C02 linkage rule** must be recorded only as an immutable association of the *existing* prospective Admission/Person financial lineage with the legitimately subsequent C02 Student/StudentContext. Whether the link is F01-maintained, a read projection or another approved mechanism remains an L5 design choice contingent on approved L2 contracts; it cannot rewrite the original source reference.
+
+**Gate A remains unapproved** until the full identity/context exception and exact F01 validation predicates are accepted, not merely because F00 includes an illustrative approved-admission charge path.
+
+### Gate B — authoritative Finance evidence into C01
+
+**Existing verified parts:** F01 owns the published Student Charge, F02 owns Payment Source, Payment allocation and applicable `PaymentAllocationCompleted` / `PaymentSettlementCompleted`; F07 represents receivable state from Finance facts; C01 owns its policy-dependent `FinancialCleared` admission decision. C01 already references an inbound `FinancialClearanceCompleted` but no inspected Finance source owns that exact published event.
+
+**Explicit architectural choice required, do not silently choose:**
+
+- **B1 — reuse existing approved source contract:** supply the precise current approved source document, semantic owner, business-fact name, eligibility basis and version proving that `FinancialClearanceCompleted` already exists as a valid published Finance/clearance decision applicable to the same Admission and source obligations. Reconcile C01 consumption and required traceability against that actual contract.
+- **B2 — controlled new/revised cross-domain contract:** if no existing owner is verified, Lead Architect must separately designate a suitable canonical Finance capability for authoritative *clearance evidence aggregation* or approve C01's own governed assessment from source-owned Finance obligation/payment/receivable facts **without falsely attributing a new Finance-owned decision**. Review the C01 named input for rename/removal through controlled source approval; assign any new event's publisher **only after** an explicit decision. If C01 assesses compliance, it can publish its existing `FinancialCleared` only when its institutional-policy and source-validation requirements are actually met; it cannot calculate amounts or mutate Finance aggregates.
+
+Do not equate `PaymentSettlementCompleted` with full Admission clearance: several qualifying obligations, installment-policy exceptions, reversal holds and approved waiver/scholarship conditions can affect admission eligibility differently. Any adopted contract needs exact admission, payer, canonical charge, current outstanding position, applicable policy version, effective-time and reversal/exception semantics without presuming a new schema.
+
+### Cross-gate mandatory tests and stop conditions
+
+| Evidence family | Minimum independently verifiable condition |
+|---|---|
+| Source identity | The existing `AdmissionApproved` belongs to the exact A02 Person/Tenant, C01 Admission, authorized B01 institution/Institute and applicable session/scope; unrelated applicants and stale or cancelled admissions fail. |
+| Charge authority | F01 policy applicability, permitted pre-Student context, unique source obligation, correct amount owner and actual `ChargePublicationCompleted` must be verified. Missing or unresolved StudentContext absence *without an approved exception* fails. |
+| Allocation | F02 actual Payment Source/Payment ID and the precise F01 charge are matched; only legitimately allocable value produces allocation and derivative settlement. Unallocated liability, ambiguity, surplus, invalid partial payment, failed or reversed payment cannot be disguised as clearance. |
+| Clearance | Gate B produces only its approved owner-specific source evidence and policy-eligible result for the same Admission and obligation set; unrelated Finance events alone do not grant C01 `FinancialCleared`. |
+| Confirmation and activation | C01 confirmation occurs only after its own permitted clearance determination; C02 thereafter creates/links StudentContext without duplicating canonical Student identity or violating one Active StudentContext per Institute. |
+| Traceability | Approval record states authoritative source revision, exactly who owns each fact, L3-C-001/F-001/F-007/F-009 and L4 correspondences, L5 provider/consumer contribution and L6 J02 genuine-vs-mock evidence boundaries. |
+
+**Approval dependency:** Gate A and Gate B are independent decisions, both necessary for Option A's representative end-to-end J02 route. The previously authorized selection of Option A for *formal investigation* did not resolve either. This proposal, and the branch containing it, must remain unmerged and must not unblock dependent J02 until those decisions and source-controlled amendments are approved.
+
+---
+
 ## 3. Decision B — existing policy-permitted alternate clearance (if A is not approved)
 
 The Lead Architect may choose the already described C01 policy path (approved waiver, approved scholarship or valid installment arrangement), **but must identify** the owner/service for the exact alternate decision, its canonical approved evidence, Admission/Person/Institute correlation, Finance obligations/status, and which C01 rule permits `FinancialCleared`.
