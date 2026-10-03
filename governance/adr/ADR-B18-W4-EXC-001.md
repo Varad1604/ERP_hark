@@ -6,9 +6,12 @@
 | Prepared | 2026-10-03 |
 | Workstream | Batch 18 W4, Procurement-to-Payables J05 |
 | Tracking | Architecture issue #140; frontend implementation issue #49 |
-| Required domain review | **Pallav (J05)**, **Chetan (F08 / Finance)**, relevant J06/F14/F04 and platform recovery owners as consequences require |
+| Required domain review | **Chetan (J05/J06/F08/F14/F04; accountable for Sections J and F)**, **Dhruv (A04/A06 platform and cross-domain Lead Architect)**, and **Varad/Devang (mandatory Finance peer-review team)** as their respective review roles require |
 | Approval rule | ADR does not amend Locked sources. Named approvers must record decisions; then amend/re-lock affected sources if changes are needed. |
 | Scope | The precise policy and missing interface decisions only; do not reopen already-locked L2/L3 ownership |
+
+
+> **Accountability correction (2026-10-03):** Checked against `architecture/L2_Domain_Workflow_Architecture/TEAM_ASSIGNMENTS.md` on Architecture main: **Chetan owns both Section J (J05/J06) and Section F (F08/F14/F04)**. **Dhruv owns Section A and leads cross-domain governance**. **Varad and Devang are the required Finance review team**. Pallav owns Sections B and D, not J05; historical mention as an L3 contributor does not confer J05 domain approval authority. The draft previously misassigned J05 to Pallav; all D1/D2 review requests have been corrected here. Because Chetan spans multiple consuming domains, distinguish each J05, J06, F14 and F08 decision and obtain the appropriate independent Finance peer review; shared human accountability is not permission to collapse domain boundaries or waive SoD.
 
 ## 1. Verified locked baseline — not open for reinvention
 
@@ -24,24 +27,24 @@
 
 **Recommended conservative fixed Stage-5 mock policy:** Under one exact issued PO/line, identical tenant/institution/item/supplier, allow multiple independently inspected receipt identities with total **physical received** quantity not exceeding original ordered quantity. Separately accumulate received, accepted, rejected/nonaccepted. The already-tested fictional path is *two* partial receipts totalling 10 received, 7 accepted, and 3 nonaccepted; no claim of actual institutional tolerance or automatic PO closeout.
 
-**Pallav must determine:** (a) permitted PO-line or quantity tolerance and policy version when receipt sum would exceed ordered quantity; (b) whether rejected physical delivery may be **replaced** without exhausting available delivered quantity, and which original/reference IDs and approvals qualify; (c) policy for short, excess, damage, substitution and return/reinspection and whether each is an existing event/inspection supplemental fact; (d) when J04 independently determines PO partial/exceptional/full closure. These decisions cannot be inferred by W4.
+**Chetan, as the documented J05 accountable architect, must determine:** (a) permitted PO-line or quantity tolerance and policy version when receipt sum would exceed ordered quantity; (b) whether rejected physical delivery may be **replaced** without exhausting available delivered quantity, and which original/reference IDs and approvals qualify; (c) policy for short, excess, damage, substitution and return/reinspection and whether each is an existing event/inspection supplemental fact; (d) when J04 independently determines PO partial/exceptional/full closure. These decisions cannot be inferred by W4.
 
 **Safe fallback until approval:** deny over-receipt/replacement attempts, preserve the factual evidence and provenance, allow bounded under-PO multiple receipts. Never claim all multi-receipt cases are complete under that fallback.
 
-- [ ] Pallav: approved with exact policy/source references and any limits
-- [ ] Pallav: amendments required — specify target Locked section and impact
-- [ ] Pallav: blocked — provide the accountable dependency
+- [ ] Chetan/J05: approved with exact policy/source references and any limits
+- [ ] Chetan/J05: amendments required — specify target Locked section and impact
+- [ ] Chetan/J05: blocked — provide the accountable dependency
 
 ### D2 — J05 finalised corrective fact and independent downstream compensation
 
 **Recommended L3-conformant demonstration:** Represent correction as a **supplemental J05 owner-history fact** referencing the exact immutable finalised receipt ID and current history witness, error originator + independent variance approver, changed lines/quantities/reason/inspection evidence and a separately visible **pending downstream action**. Record existing canonical business meaning `ReceiptVarianceRecorded` only for source-governed approved corrective outcomes. Do **not** rewrite prior `GoodsAccepted`; J06, J08 and F14 independently consume the correction and create their own governed consequences. A mock correction lacking approved actual policy/SoD source validation is explicitly **SIMULATED** and must not masquerade as a genuine correction or publish a real canonical event.
 
-**Pallav must determine:** (a) exact institutional admissibility and required approval/evidence for each correction class, especially after an original `GoodsAccepted` has been consumed; (b) whether compensation may be recorded for the selected *fictional* Stage-5 example and the immutable evidence names/identity scope; (c) authoritative J05 correction fact supplied to J06 and F14 and who validates actual J06 stock reversal and Finance adjustment. **Chetan and the J06 owner** must decide their respective independent downstream effects; never assume correction in J05 automatically changes stock or liability.
+**Chetan, as the documented J05 accountable architect, must determine:** (a) exact institutional admissibility and required approval/evidence for each correction class, especially after an original `GoodsAccepted` has been consumed; (b) whether compensation may be recorded for the selected *fictional* Stage-5 example and the immutable evidence names/identity scope; (c) authoritative J05 correction fact supplied to J06 and F14 and who validates actual J06 stock reversal and Finance adjustment. **Chetan as the accountable J05/J06/F14 architect, with independent receipt, inventory and Finance responsibility checks,** must decide each separately owned downstream effect; never assume correction in J05 automatically changes stock or liability.
 
 **Safe fallback:** capture observable **correction request / awaiting approval** with original unchanged, or deny the command when approved owner evidence cannot be established. No positive integrated correction or financial/stock reversal claim until the relevant domain decisions exist.
 
-- [ ] Pallav: approve exact J05 compensation/evidence semantics and source references
-- [ ] J06 owner and Chetan/F14: separately approve any stock / Finance consequence
+- [ ] Chetan/J05: approve exact J05 compensation/evidence semantics and source references
+- [ ] Chetan/J06 and Chetan/F14: separately evidence and approve distinct any stock / Finance consequence
 - [ ] Architecture: confirm any required amendment and L4 promotion
 
 ### D3 — F08 dispute/hold and release authority
@@ -78,10 +81,10 @@
 
 ## 4. Decision record — currently blank by design
 
-**Pallav (J05) decision / source link / date:** _PENDING_  
-**Chetan (F08/F14) decision / source link / date:** _PENDING_  
+**Chetan (J05 decision D1–D2) / source link / date:** _PENDING_  
+**Chetan (F08/F14 decision D2–D3, reviewed separately) / source link / date:** _PENDING_  
 **J06 / F04 / A04 / A06 relevant-owner decisions:** _PENDING AS APPLICABLE_  
-**Lead Architecture review and approved amendment scope:** _PENDING_  
+**Dhruv (A04/A06/platform and Lead Architecture) review and approved amendment scope:** _PENDING_  
 **Required canonical L2/L3/L4 updates and re-lock evidence:** _NONE PERFORMED_  
 **Effect on W4 closure:** **OPEN; no final handoff, J05 certification or amended gate.**
 
