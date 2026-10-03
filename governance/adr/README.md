@@ -43,9 +43,9 @@ This index satisfies the continuous ADR-indexing obligation in Repository Consti
 | `ADR-FIN-PERIOD-001.md` | Finance — Financial Period |
 | `ADR-FIN-TREAS-001.md` | Finance — Treasury |
 | `ADR-B18-W4-TECHNICAL-DESIGN-REVIEW-INDEX-2026-10-03.md` | **Non-authoritative** D1–D4 technical design review index and dependency gates |
-| `ADR-B18-W4-D1-D2-RECEIPT-CORRECTION-DESIGN-PROPOSAL-2026-10-03.md` | **PROPOSED** J05 quantity, replacement and finalized receipt-correction contract |
-| `ADR-B18-W4-D2-D3-FINANCE-COMPENSATION-AP-HOLD-DESIGN-PROPOSAL-2026-10-03.md` | **PROPOSED** independent F14/F04 consequences and F08 material hold/release |
-| `ADR-B18-W4-D4-TRUSTED-OUTCOME-RECONCILIATION-DESIGN-PROPOSAL-2026-10-03.md` | **PROPOSED** authenticated source-owner command result and atomic NOT_APPLIED fencing |
+| `ADR-B18-W4-D1-D2-RECEIPT-CORRECTION-DESIGN-PROPOSAL-2026-10-03.md` | **PROPOSED ADR v0.2; blank human Decision** J05 quantity, replacement and finalized receipt-correction contract |
+| `ADR-B18-W4-D2-D3-FINANCE-COMPENSATION-AP-HOLD-DESIGN-PROPOSAL-2026-10-03.md` | **PROPOSED ADR v0.2; blank human Decision** independent F14/F04 consequences and F08 material hold/release |
+| `ADR-B18-W4-D4-TRUSTED-OUTCOME-RECONCILIATION-DESIGN-PROPOSAL-2026-10-03.md` | **PROPOSED ADR v0.2; blank human Decision** authenticated source-owner command result and atomic NOT_APPLIED fencing |
 | `ADR-PLAT-AUTH-001.md` | Platform Authorization — Role Assignment Governance and Person Scope Alignment |
 | `ADR-STU-ADM-EXP-001.md` | Student Lifecycle — Admission Expiry Lifecycle |
 | `ADR-STU-PROG-EVT-001.md` | Student Lifecycle — Academic Progression Event Canonicalization |
@@ -55,3 +55,8 @@ This index satisfies the continuous ADR-indexing obligation in Repository Consti
 | `STUDENT_LIFECYCLE_UPSTREAM_L2_APPROVAL_RECORD_2026-08-22.md` | Student Lifecycle upstream L2 approval/incorporation record |
 
 When new ADR files or approval records are added, this index must be updated as part of repository maintenance.
+
+
+## Batch 18 W4 v0.2 review note (2026-10-03)
+
+The three W4 records and the review index in this folder were amended in draft PR #148 in response to [independent review #5399884517](https://github.com/DhruvNaik26/SutraERP_Architecture/pull/148#pullrequestreview-5399884517). Their formal Decisions remain **blank and unapproved**, pending accountable J/F source-owner reviews, independent Finance review and platform/Lead governance. The prior limited synthetic approval is recorded in separate **still-unmerged draft [PR #143](https://github.com/DhruvNaik26/SutraERP_Architecture/pull/143)**; that record is not canonical main history or approval of these positive production contracts. See the W4 technical review index §6 for finding-by-finding remediation, source traceability, open event/permission/policy blockers and acceptance conditions. No locked L2/L3/L4/L5 file was changed here.
