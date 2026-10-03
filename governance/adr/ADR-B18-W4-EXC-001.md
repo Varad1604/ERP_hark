@@ -2,12 +2,12 @@
 
 | Field | Value |
 |---|---|
-| Status | **PROPOSED — NON-AUTHORITATIVE; source-owner and Architecture approval pending** |
+| Status | **BOUNDED STAGE-5 MOCK EXECUTION APPROVED by Lead Architect; D1–D4 positive real/technical contracts still PROPOSED / BLOCKED** |
 | Prepared | 2026-10-03 |
 | Workstream | Batch 18 W4, Procurement-to-Payables J05 |
 | Tracking | Architecture issue #140; frontend implementation issue #49 |
 | Required domain review | **Chetan (J05/J06/F08/F14/F04; accountable for Sections J and F)**, **Dhruv (A04/A06 platform and cross-domain Lead Architect)**, and **Varad/Devang (mandatory Finance peer-review team)** as their respective review roles require |
-| Approval rule | ADR does not amend Locked sources. Named approvers must record decisions; then amend/re-lock affected sources if changes are needed. |
+| Approval rule | Lead Architect's bounded decision is recorded separately in `ADR-B18-W4-EXC-001_LEAD_ARCHITECT_APPROVAL_2026-10-03.md`. This proposal does not amend Locked sources or replace missing real policies, technical source contracts or required Finance review. |
 | Scope | The precise policy and missing interface decisions only; do not reopen already-locked L2/L3 ownership |
 
 
@@ -21,7 +21,7 @@
 4. **AP exception**: Locked L3-F-046 governs an **existing validated** Payable's dispute/hold and three possible AP positions: governed resolution and readiness review, continued hold, or referral to the **separately owned** correction process. Locked L3-F-047/-048 preserve F04/F14/J05 correction and write-off ownership. L4-F-046 is **Draft**, not a locked implementation interface.
 5. **Unknown command outcome**: L2-A06 owns transport/retry, A04 policy/SoD and A07 enterprise evidence. Locked business scenarios do **not** specify a trusted technical `NOT_APPLIED` verifier. The currently isolated W4 mock correctly retains an indeterminate retry lock and rejects arbitrary `verified:true` caller flags.
 
-## 2. Proposed precise domain-owner decision options (not adopted)
+## 2. Detailed decision options — bounded mock dispositions approved separately, remaining positive contracts not adopted
 
 ### D1 — J05 multiple/partial deliveries, variance tolerance, replacement quantity
 
@@ -79,12 +79,12 @@
 - **Evidence:** W4 frontend issue #49 and isolated branch `stage5-b18-w4-exceptions-followup`; newer combined HOME review candidate is still unmerged. All synthetic permissions must be visibly labeled.
 - **Risk tradeoff:** unapproved positive transitions produce false business authority; indefinite blocking without accountable decisions prevents Stage-5 completion. The intended resolution is narrow source-owner decisions plus targeted implementation, not silent deferral to Stage 6.
 
-## 4. Decision record — currently blank by design
+## 4. Decision record — Lead-bounded approval recorded, technical owner decisions still pending
 
 **Chetan (J05 decision D1–D2) / source link / date:** _PENDING_  
 **Chetan (F08/F14 decision D2–D3, reviewed separately) / source link / date:** _PENDING_  
 **J06 / F04 / A04 / A06 relevant-owner decisions:** _PENDING AS APPLICABLE_  
-**Dhruv (A04/A06/platform and Lead Architecture) review and approved amendment scope:** _PENDING_  
+**Dhruv Lead Architect decision:** **APPROVED only for conservative synthetic behavior D1–D4 and fail-closed recovery**, as recorded in [`ADR-B18-W4-EXC-001_LEAD_ARCHITECT_APPROVAL_2026-10-03.md`](ADR-B18-W4-EXC-001_LEAD_ARCHITECT_APPROVAL_2026-10-03.md); **actual A04/A06 verifier contract and canonical amendment review still PENDING**  
 **Required canonical L2/L3/L4 updates and re-lock evidence:** _NONE PERFORMED_  
 **Effect on W4 closure:** **OPEN; no final handoff, J05 certification or amended gate.**
 
