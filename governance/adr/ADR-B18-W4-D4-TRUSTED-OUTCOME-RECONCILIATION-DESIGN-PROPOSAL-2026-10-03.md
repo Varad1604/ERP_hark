@@ -3,7 +3,7 @@
 | Metadata | Value |
 |---|---|
 | ADR/version | B18-W4-D4 / v0.3 consolidated proposal (2026-10-03) |
-| Status | **PROPOSED; Decision deliberately blank; no deployed verifier claimed** |
+| Status | **LEAD-ACCEPTED DESIGN DIRECTION; positive production contracts BLOCKED** |
 | Target | Locked L2-A04/A05/A06/A07, A05 September 23 recovery amendment and affected J05/F08 source boundaries |
 | Accountable review | Dhruv A04/A05/A06/platform/Lead, Chetan for separate J05/F08 domain consistency |
 | Tracking | Architecture #146 and parent #140; frontend W4 #49 |
@@ -180,7 +180,9 @@ These labels are **proposed operational implementation markers**; they do not cr
 
 ### Decision
 
-<!-- Deliberately blank for named human architecture approvals against exact commit. -->
+**LEAD-LEVEL CONDITIONAL DESIGN-DIRECTION ACCEPTANCE — NOT PRODUCTION CONTRACT APPROVAL (2026-10-03).** Lead approves **D4 safety design direction only**, with reported off-platform collaborator consensus. Actual source-owner durable verifier/tombstone/intent uniqueness, permission binding and positive runtime tests remain **UNVERIFIED/BLOCKED**. Existing UNKNOWN/fail-closed remains mandatory.
+
+**Provenance:** Dhruv's direct instruction and his report that collaborators approved off-platform, recorded in [Lead direction and reported review attestation](B18_W4_LEAD_DESIGN_DIRECTION_AND_REPORTED_REVIEW_ATTESTATION_2026-10-03.md). Individual GitHub reviews, precise unseen policy references, and backend evidence are not invented. This decision records the reviewed v0.3 baseline, not an unrestricted approval of unstated details.
 
 ### Acceptance checklist (positive implementation unverified)
 
