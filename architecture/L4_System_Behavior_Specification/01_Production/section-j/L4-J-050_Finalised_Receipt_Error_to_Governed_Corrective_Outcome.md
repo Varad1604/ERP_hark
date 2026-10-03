@@ -7,10 +7,11 @@
 **Domain:** Section J — Enterprise Resource Management / Goods Receipt, Inspection & Acceptance
 **Realizes Scenario:** L3-J-050
 **Primary Business Owner:** Goods Receipt, Inspection & Acceptance (J05)
-**Version:** 1.1.0
+**Version:** 1.1.1 (metadata-only owner reconciliation; no behavioral change)
 **Status:** Review
-**Owner:** Pallav
-**Last Updated:** 2026-09-03
+**Owner:** Chetan (controlling Section J architectural accountability under `TEAM_ASSIGNMENTS.md`)
+**Last Updated:** 2026-10-03
+**Historical metadata provenance:** The prior Review draft listed Pallav. This metadata correction preserves that record in Git history without attributing authorship or approval to Pallav or implying Chetan has reviewed this patch.
 **Depends On:** `L3-J-050_Finalised_Receipt_Error_to_Governed_Corrective_Outcome.md`; `architecture/L2_Domain_Workflow_Architecture/section-j/L2-J05_Goods_Receipt_Inspection_and_Acceptance.md`; locked L4 governance/template/validation baseline
 **Referenced By:** None yet
 
