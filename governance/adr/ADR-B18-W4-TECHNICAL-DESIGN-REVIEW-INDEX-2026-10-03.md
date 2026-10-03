@@ -48,20 +48,20 @@ An issue may be closed once its *specified accountable decision and implementati
 - Do not merge this proposal PR or any changes to canonical locked documents as if a proposal alone were the required source-owner decision.
 
 
-## 6. Independent review #5399884517 — v0.2 finding disposition
+## 6. Independent review #5399884517 — v0.3 editorial consolidation of v0.2 findings
 
 The initial full review on original head `49d400df184341d4b51dfadf35d9404ccd44bf56` remains historically visible. The changes below are **proposed design remedies**, not actual production capability, policy adoption or human approval.
 
 | Finding | Verified issue and v0.2 design disposition | Required outstanding decision/evidence |
 |---|---|---|
-| 1. D1 quantities/replacement | Confirmed contradiction. D1 §6 counts N ordinary, R replacement and G gross physical separately, with disjoint entitlement T/C and independent approved E, safe deny without ratified policy. | Chetan/J05 ratifies exact entitlement, units/custody and tolerance; J04 controls PO commitment/version |
-| 2. D2 correction persistence | Confirmed ambiguity. D1 §7 selects supplemental request/decision/outcome within canonical J05 GoodsReceipt consistency boundary and atomic registered ReceiptVarianceRecorded outbox on actual completion. | Ratify positive correction categories, A04 SoD and existing event schema sufficiency |
-| 3. Finance correction | Confirmed reference ambiguity. Finance §7 separates changed F14 original liability, ordinary new F04 adjustment, and correction/reversal of **an earlier published F04**; distinguish Published from Applied. | Chetan F14/F04/F08 plus Varad/Devang independently review money/event contract and one-economic-effect policy |
-| 4. D4 late application | Confirmed unsafe temporary-fence wording. D4 §8 requires permanent original tombstone/non-revocable owner execution prohibition across crash, failover and migration. | Actual source-owner atomic implementation/retention proof; absent it UNKNOWN/no new retry |
-| 5. D4 different ID | Confirmed missing intent admission. D4 §9 requires owner-defined stable business-intent key, atomic unique reservation, one authorized successor and concurrency tests. | Owner-certified source identity/unique-key and A04/domain permissions; not currently implemented evidence |
-| 6. J07/J08/F12 | Confirmed omission. D1 §7 and Finance §§7–8 route J07 movement, J06 ledger, J08 asset, applicable F12 asset accounting separately. | Owner-specific real contract applicability and post-consumption tests |
+| 1. D1 quantities/replacement | Confirmed contradiction. D1 §2 counts N ordinary, R replacement and G gross physical separately, with disjoint entitlement T/C and independent approved E, safe deny without ratified policy. | Chetan/J05 ratifies exact entitlement, units/custody and tolerance; J04 controls PO commitment/version |
+| 2. D2 correction persistence | Confirmed ambiguity. D1 §§3–4 selects supplemental request/decision/outcome within canonical J05 GoodsReceipt consistency boundary and atomic registered ReceiptVarianceRecorded outbox on actual completion. | Ratify positive correction categories, A04 SoD and existing event schema sufficiency |
+| 3. Finance correction | Confirmed reference ambiguity. Finance §3 separates changed F14 original liability, ordinary new F04 adjustment, and correction/reversal of **an earlier published F04**; distinguish Published from Applied. | Chetan F14/F04/F08 plus Varad/Devang independently review money/event contract and one-economic-effect policy |
+| 4. D4 late application | Confirmed unsafe temporary-fence wording. D4 §4 requires permanent original tombstone/non-revocable owner execution prohibition across crash, failover and migration. | Actual source-owner atomic implementation/retention proof; absent it UNKNOWN/no new retry |
+| 5. D4 different ID | Confirmed missing intent admission. D4 §5 requires owner-defined stable business-intent key, atomic unique reservation, one authorized successor and concurrency tests. | Owner-certified source identity/unique-key and A04/domain permissions; not currently implemented evidence |
+| 6. J07/J08/F12 | Confirmed omission. D1 §§3–4 and Finance §§3–4 route J07 movement, J06 ledger, J08 asset, applicable F12 asset accounting separately. | Owner-specific real contract applicability and post-consumption tests |
 | 7. ADR governance | Confirmed structure/provenance gap. Each proposal now has explicit target/Need/Proposal/Impact, empty human Decision and acceptance checklist; #143 explicitly still unmerged. | Named human approvals and separate governed L4-J-050 Pallav-versus-Chetan metadata resolution |
-| 8. F08 lifecycle | Confirmed upstream semantic inconsistency: lifecycle shows Suspended→Reopened; existing PayableReopened event describes a *previously closed* payable. Finance §8 defaults to hold until governed clarification. | Chetan/F08 authoritative suspended-release transition/event and real A04 policy |
+| 8. F08 lifecycle | Confirmed upstream semantic inconsistency: lifecycle shows Suspended→Reopened; existing PayableReopened event describes a *previously closed* payable. Finance §4 defaults to hold until governed clarification. | Chetan/F08 authoritative suspended-release transition/event and real A04 policy |
 | 9. Cross-domain completion | Confirmed original incompleteness. Below dependency gates require independent source version/owner witnesses, consumer-specific NOT_NEEDED and explicit partial/UNKNOWN outcomes. | Positive integration and owner review after missing policy/contracts are approved |
 
 ### Owner-separated dependency, handoff and acceptance matrix
@@ -79,10 +79,15 @@ The initial full review on original head `49d400df184341d4b51dfadf35d9404ccd44bf
 
 ### Canonical-source traceability
 
-- **Locked J04/J05, L3-J-049/-050** → D1 §§6–7 PO admission, source-linked arrival/correction, J05 ReceiptVarianceRecorded.
-- **Locked J06/J07/J08 and applicable F12** → D1 §7 and Finance §§7–8 independent stock movement/ledger, operational asset and asset-finance consequences.
-- **Locked F14/F08 August 21 amendments, F04 §29.1/§29.4 and L3-F-046/-047/-048** → Finance §§7–8 exact invoice/liability handoff, proper F04 original F04 reference and F08 hold/readiness source gate.
-- **Locked A04/A05 September 23 recovery amendment/A06/A07** → D4 §§8–9 owner-certified command outcome, permanent execution protection, independent permission/workflow/event transport/audit.
+- **Locked J04/J05, L3-J-049/-050** → D1 §§2–4 PO admission, source-linked arrival/correction, J05 ReceiptVarianceRecorded.
+- **Locked J06/J07/J08 and applicable F12** → D1 §§3–4 and Finance §§3–4 independent stock movement/ledger, operational asset and asset-finance consequences.
+- **Locked F14/F08 August 21 amendments, F04 §29.1/§29.4 and L3-F-046/-047/-048** → Finance §§3–4 exact invoice/liability handoff, proper F04 original F04 reference and F08 hold/readiness source gate.
+- **Locked A04/A05 September 23 recovery amendment/A06/A07** → D4 §§4–6 owner-certified command outcome, permanent execution protection, independent permission/workflow/event transport/audit.
 - **TEAM_ASSIGNMENTS, Volume 5, ADR README** → Chetan F/J accountability, Varad/Devang independent Finance review, Dhruv platform/Lead review; original L4-J-050 Pallav metadata left untouched for governed reconciliation.
 
-**Actual acceptance state:** v0.2 source-grounded proposal corrections only. Positive entitlement, F14 revised-liability event, F08 suspended-reopen publication, real A04 grants, permanent tombstone verifier/business-intent storage and runtime tests remain unverified or blocked pending their specified owners/contracts. Separate PR #143 remains unmerged. W4 remains OPEN; no CI, merge or frontend modification is authorized by this index.
+**Actual acceptance state:** v0.3 consolidated source-grounded proposal corrections only. Positive entitlement, F14 revised-liability event, F08 suspended-reopen publication, real A04 grants, permanent tombstone verifier/business-intent storage and runtime tests remain unverified or blocked pending their specified owners/contracts. Separate PR #143 remains unmerged. W4 remains OPEN; no CI, merge or frontend modification is authorized by this index.
+
+
+## 7. Editorial consolidation checkpoint — v0.3
+
+The v0.3 drafts **replace the duplicative v0.2 “controlling remediation” appendices with one ordered candidate decision in each of D1/D2, Finance D2/D3 and D4**, preserving the protected original independent review and the decision-specific test obligations. The amended v0.3 source headings are D1 §§2–5, Finance §§3–6 and D4 §§3–9; cross-document citations in this index have been updated. Reviewer comments on earlier commits remain historical evidence only. All decisions are intentionally blank; no positive production authority was added. Any residual cross-owner policy or event ambiguity is a BLOCKED dependency, not editorially assumed resolved.
