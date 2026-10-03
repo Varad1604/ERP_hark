@@ -27,3 +27,13 @@ A06 must present the actually approved active Event Definition (name, owner, ver
 - Platform: permanent NOT_APPLIED source-owner verifier and durable intent fence remain unresolved Architecture #146 decisions.
 
 **Current disposition:** Documentary preferred name identified and exact conflict isolated; runtime registry, positive production correction and cross-domain compensation **NOT VERIFIED / BLOCKED**.
+
+## Lead-attested owner verification and controlled incorporation disposition
+
+**Attestation source:** In the active SutraERP project conversation on 2026-10-03, Lead Architect Dhruv explicitly stated: “Owners verifred you verify if its ok go ahead withnext steps.” This is the Lead's report that affected owners verified the proposed resolution, **not** individually submitted Chetan/A06 review artifacts or a supplied active A06 event-definition export. Public PR #151 had no independent GitHub APPROVED reviews at the time of this recheck.
+
+**Technical assessment:** The proposed documentary choice `ReceiptVarianceRecorded` is supported by Locked specialized L2-J05 and L3-J-049/-050 and affected downstream Finance usage; the differing `GoodsReceiptVarianceRecorded` Section J overview row is isolated. The patch and its versioned amendment can be **incorporated as a reviewed documentation proposal with this owner-review provenance**, retaining the original Locked L2-J00 text until a separate final activation decision confirms authoritative active A06 name/schema/version and compatibility. This incorporation itself neither registers an event nor establishes the independent source-owner A06 runtime verification gate.
+
+**Before the catalog correction becomes operative:** Record an exact owner/A06 registry export or approved definition ID, active name, schema/version/hash and authorized consumer compatibility. If it uses `GoodsReceiptVarianceRecorded` rather than the proposed `ReceiptVarianceRecorded`, reopen the ADR and choose a safe governed compatible migration; do not silently rename production events. Any real correction remains blocked by Architecture #144's institutional policy, true A04/SoD, J04/J05 concurrency and atomic J05 outbox evidence.
+
+**Review classification:** Documentary design selection: **Lead-accepted, owner verification Lead-attested**. Runtime event definition/implementation: **UNVERIFIED**. No independent collaborator GitHub review is asserted.
