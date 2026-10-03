@@ -7,11 +7,11 @@
 **Domain:** Student Lifecycle  
 **Realizes Scenario:** L3-C-046 — Institutional Exit Clearance Completion  
 **Primary Business Owner:** Student Lifecycle / Qualification Completion & Student Exit  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Status:** Draft  
 **Owner:** Varad  
-**Last Updated:** 2026-09-02  
-**Depends On:** L3-C-046; applicable locked C architecture sources  
+**Last Updated:** 2026-10-03  
+**Depends On:** L3-C-046 controlled v1.1 successor candidate (pending acceptance); locked L2-C05; applicable locked C architecture sources  
 **Referenced By:** None yet
 
 ## 2. Behavioral Objective & Boundary
@@ -40,6 +40,7 @@ The system shall coordinate applicable institutional clearances and establish a 
 | Behavior ID | Required Behavior | Provenance |
 |---|---|---|
 | L4-C-046-BH-006 | The system shall recognize individual clearance decisions from canonical owning domains while retaining their ownership. | L3-C-046 §§5,14 |
+| L4-C-046-BH-007 | Only after all policy-applicable mandatory source-owned clearances are authoritatively satisfied, the C05 Qualification Completion Aggregate shall publish its **existing** `InstitutionalClearanceCompleted` event. Pending, Failed or unknown mandatory source positions prohibit this event. The event is not issued by the UI or another source domain. | Locked L2-C05 §§12.2,12.6,12.7; proposed controlled L3-C-046 v1.1 §14 |
 
 ## 6. Failure / Rejection / Continuation
 
@@ -61,6 +62,10 @@ Clearance completion occurs only when every mandatory applicable clearance is au
 ## 10. Open Issues / Deferred Design
 
 Institution-specific approval roles and configurable policies remain upstream/configuration governed. Technical APIs, database persistence schemas, UI screens, network transport, and retry mechanics are deferred to L5 Solution Architecture.
+
+## Conditional Derivation Note
+
+This is a **Draft L4 correction candidate** corresponding to proposed controlled L3-C-046 v1.1. No source-owned clearance publisher, event schema, integration transport or working C05 owner reducer is certified by this document. The original L3 v1.0 is retained in Git history; the proposed parent requires affected C05-domain review and acceptance before this behavioral draft can be independently approved.
 
 ## Canonical Validation Note
 
