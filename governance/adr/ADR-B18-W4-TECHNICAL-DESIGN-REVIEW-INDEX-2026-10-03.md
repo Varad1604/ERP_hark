@@ -43,6 +43,6 @@ An issue may be closed once its *specified accountable decision and implementati
 
 ## 5. Approval and implementation status
 
-- Lead Architect formally approved the **bounded existing Stage-5 synthetic** D1–D4 mock/fail-closed behavior in [the separate Lead-approved record](ADR-B18-W4-EXC-001_LEAD_ARCHITECT_APPROVAL_2026-10-03.md) on draft PR #143. That existing approval is not retroactively extended to every proposal here.
+- Lead Architect formally approved the **bounded existing Stage-5 synthetic** D1–D4 mock/fail-closed behavior in [the separate Lead-approved record](https://github.com/DhruvNaik26/SutraERP_Architecture/blob/stage5-b18-w4-source-owner-decision-packet-20261003/governance/adr/ADR-B18-W4-EXC-001_LEAD_ARCHITECT_APPROVAL_2026-10-03.md) on draft PR #143. That existing approval is not retroactively extended to every proposal here.
 - These three new documents are **architect-generated candidate specifications submitted for review**. No claim is made that the named owners separately approved them, that a trusted verifier already exists or that full W4 positive exception development is complete.
 - Do not merge this proposal PR or any changes to canonical locked documents as if a proposal alone were the required source-owner decision.
