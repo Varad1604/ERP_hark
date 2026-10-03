@@ -6,10 +6,10 @@
 **Participating Domains:** C  
 **Scenario Type:** Critical  
 **Priority:** P1  
-**Status:** Locked  
-**Version:** 1.0  
+**Status:** Review — proposed controlled successor; pending affected-domain acceptance  
+**Version:** 1.1  
 **Owner:** Varad  
-**Last Updated:** 2026-08-20  
+**Last Updated:** 2026-10-03  
 **Depends On:** Locked L1 Business Domain Architecture; L2-C05 Qualification Completion & Student Exit Workflows; DEPENDENCY_MAP.md  
 **Referenced By:** Qualification Completion and Student Exit scenarios
 
@@ -118,9 +118,9 @@ An outstanding obligation is resolved by its canonical owner; C05 re-evaluates t
 | Business Event / Hand-off | Owner | Purpose |
 |---|---|---|
 | Individual clearance decision | Respective owning domain | Supplies authoritative clearance fact. |
-| Consolidated clearance outcome | C05 Qualification Completion Aggregate | Supplies completion condition to qualification/exit processing. |
+| Consolidated clearance outcome — `InstitutionalClearanceCompleted` | C05 Qualification Completion Aggregate | Publishes the existing C05-owned completed-clearance event only after all policy-applicable mandatory, source-owned clearances have been authoritatively satisfied; supplies the consolidated outcome to the governing C05 qualification or exit process. |
 
-The retrieved C05 source does not provide a dedicated canonical clearance-completed event name; none is invented.
+Locked L2-C05 §§12.2, 12.6 and 12.7 already define the C05-owned `InstitutionalClearanceCompleted` event. This scenario reuses that existing name; it does not invent an event, schema, implementation or source-domain clearance authority. C05 must not publish completed clearance while any mandatory applicable source-owned clearance is Pending, Failed or otherwise unresolved.
 
 ## 15. Business Authorization, Approval and Audit Obligations
 
@@ -136,13 +136,13 @@ Clearance decisions must be attributable to canonical owning domains and auditab
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
-**OI-C046-01 — Dedicated event name:** C05 defines clearance workflow/outcomes but no dedicated clearance-completed event was identified. None is invented.
+**OI-C046-01 — Named event reconciled; runtime contract deferred:** Locked L2-C05 already defines `InstitutionalClearanceCompleted`. The original L3 omission was incorrect; this controlled successor restores the exact existing event name. The specific publisher implementation, approved versioned payload/read interface and owner-verifiable cross-domain source clearances are separate unverified integration gates. This L3 correction does not certify their execution.
 
 **OI-C046-02 — Applicable clearance set:** C05 lists Finance, Library, Hostel, Department, Laboratory, Scholarship Office, Placement Cell and institution-specific departments; L1 additionally shows Transport. The exact mandatory set remains policy-driven.
 
 **OI-C046-03 — Cross-domain participation:** Participating domains provide authoritative facts but do not own the consolidated C05 outcome.
 
-**Classification:** PASS WITH ISSUES.
+**Classification:** CONTROLLED CORRECTION — existing L2-C05 event name reconciled; source-runtime interface remains unverified.
 
 ## Production Verification Record
 
@@ -152,4 +152,5 @@ Clearance decisions must be attributable to canonical owning domains and auditab
 - [x] No invented event or authority.
 - [x] All 17 mandatory sections present.
 - [x] Material gaps recorded in Section 17.
-- [x] Status remains Draft per Phase 5 governance.
+- [x] Candidate corrects only the existing L2-C05 event-name discrepancy and dependent traceability; historical v1.0 remains available in Git history.
+- [ ] Affected C05 domain review and controlled successor acceptance required before merge and canonical lock.
