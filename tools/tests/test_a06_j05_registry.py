@@ -48,6 +48,22 @@ class TestEvidenceStructure(unittest.TestCase):
         sample=valid()
         sample["definitions"][0]["owner"]="A06"
         self.assertTrue(any("does not declare J05 owner" in x for x in checker.inspect(sample)))
+    def test_malformed_name_fails_closed_without_exception(self):
+        sample=valid()
+        sample["definitions"][0]["name"] = []
+        self.assertTrue(checker.inspect(sample))
+    def test_malformed_status_fails_closed_without_exception(self):
+        sample=valid()
+        sample["definitions"][0]["status"] = []
+        self.assertTrue(checker.inspect(sample))
+    def test_malformed_consumer_owner_fails_closed_without_exception(self):
+        sample=valid()
+        sample["consumerChecks"][0]["owner"] = []
+        self.assertTrue(checker.inspect(sample))
+    def test_blocked_consumer_rejects_structure(self):
+        sample=valid()
+        sample["consumerChecks"][0]["status"] = "BLOCKED"
+        self.assertTrue(any("unresolved consumer" in x for x in checker.inspect(sample)))
     def test_missing_schema_blocks(self):
         sample=valid()
         del sample["definitions"][0]["schemaSha256"]
