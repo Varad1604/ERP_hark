@@ -42,6 +42,10 @@ This index satisfies the continuous ADR-indexing obligation in Repository Consti
 | `ADR-FIN-GL-001.md` | Finance — General Ledger |
 | `ADR-FIN-PERIOD-001.md` | Finance — Financial Period |
 | `ADR-FIN-TREAS-001.md` | Finance — Treasury |
+| `ADR-B18-W4-TECHNICAL-DESIGN-REVIEW-INDEX-2026-10-03.md` | **Non-authoritative** D1–D4 technical design review index and dependency gates |
+| `ADR-B18-W4-D1-D2-RECEIPT-CORRECTION-DESIGN-PROPOSAL-2026-10-03.md` | **PROPOSED** J05 quantity, replacement and finalized receipt-correction contract |
+| `ADR-B18-W4-D2-D3-FINANCE-COMPENSATION-AP-HOLD-DESIGN-PROPOSAL-2026-10-03.md` | **PROPOSED** independent F14/F04 consequences and F08 material hold/release |
+| `ADR-B18-W4-D4-TRUSTED-OUTCOME-RECONCILIATION-DESIGN-PROPOSAL-2026-10-03.md` | **PROPOSED** authenticated source-owner command result and atomic NOT_APPLIED fencing |
 | `ADR-PLAT-AUTH-001.md` | Platform Authorization — Role Assignment Governance and Person Scope Alignment |
 | `ADR-STU-ADM-EXP-001.md` | Student Lifecycle — Admission Expiry Lifecycle |
 | `ADR-STU-PROG-EVT-001.md` | Student Lifecycle — Academic Progression Event Canonicalization |
