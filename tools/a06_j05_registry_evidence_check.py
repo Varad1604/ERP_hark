@@ -33,7 +33,7 @@ def inspect(bundle):
     need(isinstance(defs, list) and len(defs) >= 1, "both-name registry lookup results required")
     if not isinstance(defs, list):
         return problems
-    listed = {x.get("name") for x in defs if isinstance(x, dict)}
+    listed = {x.get("name") for x in defs if isinstance(x, dict) and isinstance(x.get("name"), str)}
     need(listed == NAMES and len(defs) == 2, "include exactly both candidate-name lookup results")
     active = []
     for item in defs:
@@ -42,8 +42,8 @@ def inspect(bundle):
             continue
         name = item.get("name", "")
         status = item.get("status")
-        need(name in NAMES, "unrecognized event name")
-        need(status in {"ACTIVE", "NOT_FOUND", "INACTIVE"}, f"lookup status invalid for {name}")
+        need(isinstance(name, str) and name in NAMES, "unrecognized event name")
+        need(isinstance(status, str) and status in {"ACTIVE", "NOT_FOUND", "INACTIVE"}, f"lookup status invalid for {name}")
         if status == "ACTIVE":
             active.append(item)
             for field in ("definitionId", "owner", "version", "schemaId", "schemaSha256",
@@ -57,7 +57,7 @@ def inspect(bundle):
     subscriptions = bundle.get("consumerChecks")
     need(isinstance(subscriptions, list), "consumer check entries required")
     if isinstance(subscriptions, list):
-        names = [c.get("owner") for c in subscriptions if isinstance(c, dict)]
+        names = [c.get("owner") for c in subscriptions if isinstance(c, dict) and isinstance(c.get("owner"), str)]
         need(len(names) == len(set(names)), "duplicate consumer owner entries")
         need(CONSUMERS.issubset(set(names)), "require explicit J06, J08 and F14 consumer checks")
         for c in subscriptions:
@@ -65,10 +65,12 @@ def inspect(bundle):
                 problems.append("consumer check must be object")
                 continue
             owner = c.get("owner", "<unknown>")
-            need(c.get("status") in {"SUPPORTED", "NOT_SUBSCRIBED", "BLOCKED"},
+            need(isinstance(c.get("status"), str) and c.get("status") in {"SUPPORTED", "NOT_SUBSCRIBED", "BLOCKED"},
                  f"invalid consumer check status: {owner}")
             need(nonblank(c, "registryEvidenceReference") and nonblank(c, "ownerDecisionReference"),
                  f"missing independent subscriber and owner evidence for {owner}")
+            if c.get("status") == "BLOCKED":
+                problems.append(f"unresolved consumer blocks structural completeness: {owner}")
             if c.get("status") == "SUPPORTED":
                 need(nonblank(c, "supportedVersion") and nonblank(c, "compatibilityEvidenceReference"),
                      f"missing version/compatibility proof for {owner}")
