@@ -3,7 +3,7 @@
 | Metadata | Value |
 |---|---|
 | ADR/version | B18-W4-D2-D3 / v0.3 editorial consolidation (2026-10-03) |
-| Status | **PROPOSED; decision blank; not production authorization** |
+| Status | **LEAD-ACCEPTED DESIGN DIRECTION; positive production contracts BLOCKED** |
 | Target | Locked L2-F04 §29.1/§29.4, F08/F14 and 2026-08-21 amendments; L3-F-046/-047/-048, L4-F-046 Draft |
 | Accountable review | Chetan for each F14/F04/F08 scope; independent Finance reviewers Varad/Devang; Dhruv platform/Lead |
 | Earlier authorization | Only bounded fictional Stage-5 approval on separate still-unmerged [PR #143](https://github.com/DhruvNaik26/SutraERP_Architecture/pull/143) |
@@ -109,7 +109,9 @@ These fields describe an **illustrative composite read model**, not an approved 
 
 ### Decision
 
-<!-- Deliberately blank until formal human source-owner, Finance review and Lead disposition against exact PR version. -->
+**LEAD-LEVEL CONDITIONAL DESIGN-DIRECTION ACCEPTANCE — NOT PRODUCTION CONTRACT APPROVAL (2026-10-03).** Lead approves **D2/D3 Finance design direction only**, with reported off-platform collaborator consensus. F14 monetary revision contract, actual F04 applicability/calculation and production F08 suspension-release event meaning remain **UNRESOLVED/BLOCKED**. The fictional AP documentary example retains only its prior separately bounded approval; no actual material-source release or payment readiness is inferred.
+
+**Provenance:** Dhruv's direct instruction and his report that collaborators approved off-platform, recorded in [Lead direction and reported review attestation](B18_W4_LEAD_DESIGN_DIRECTION_AND_REPORTED_REVIEW_ATTESTATION_2026-10-03.md). Individual GitHub reviews, precise unseen policy references, and backend evidence are not invented. This decision records the reviewed v0.3 baseline, not an unrestricted approval of unstated details.
 
 ### Acceptance checklist (production validation unexecuted)
 
