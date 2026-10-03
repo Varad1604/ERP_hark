@@ -42,6 +42,7 @@ This index satisfies the continuous ADR-indexing obligation in Repository Consti
 | `ADR-FIN-GL-001.md` | Finance — General Ledger |
 | `ADR-FIN-PERIOD-001.md` | Finance — Financial Period |
 | `ADR-FIN-TREAS-001.md` | Finance — Treasury |
+| `B18_W4_PRODUCTION_CONTRACT_CLOSURE_PACKET_2026-10-03.md` | **PROPOSED production contract closure input** — J05 quantity/version, F14/F08 event contracts, D4 owner verifier and exact acceptance evidence; candidate event names NOT canonical |
 | `ADR-B18-W4-TECHNICAL-DESIGN-REVIEW-INDEX-2026-10-03.md` | **Non-authoritative** D1–D4 technical design review index and dependency gates |
 | `ADR-B18-W4-D1-D2-RECEIPT-CORRECTION-DESIGN-PROPOSAL-2026-10-03.md` | **LEAD-ACCEPTED DESIGN; production policy BLOCKED** J05 quantity, replacement and finalized receipt-correction contract |
 | `ADR-B18-W4-D2-D3-FINANCE-COMPENSATION-AP-HOLD-DESIGN-PROPOSAL-2026-10-03.md` | **LEAD-ACCEPTED DESIGN; production policy BLOCKED** independent F14/F04 consequences and F08 material hold/release |
