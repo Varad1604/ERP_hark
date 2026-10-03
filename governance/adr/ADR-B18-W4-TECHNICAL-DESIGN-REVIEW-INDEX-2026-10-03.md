@@ -91,3 +91,8 @@ The initial full review on original head `49d400df184341d4b51dfadf35d9404ccd44bf
 ## 7. Editorial consolidation checkpoint — v0.3
 
 The v0.3 drafts **replace the duplicative v0.2 “controlling remediation” appendices with one ordered candidate decision in each of D1/D2, Finance D2/D3 and D4**, preserving the protected original independent review and the decision-specific test obligations. The amended v0.3 source headings are D1 §§2–5, Finance §§3–6 and D4 §§3–9; cross-document citations in this index have been updated. Reviewer comments on earlier commits remain historical evidence only. All decisions are intentionally blank; no positive production authority was added. Any residual cross-owner policy or event ambiguity is a BLOCKED dependency, not editorially assumed resolved.
+
+
+## 8. Lead-level design disposition and reported consensus — 2026-10-03
+
+Dhruv directly authorized proceeding and reported unanimous off-platform approval of the v0.3 direction. [The attributable Lead direction/report](B18_W4_LEAD_DESIGN_DIRECTION_AND_REPORTED_REVIEW_ATTESTATION_2026-10-03.md) records **conditional Lead-level design acceptance** of the three proposals reviewed at baseline `05b3db1a5715435aa224a08650219e23c4bf78cd`, not fabricated Chetan/Varad/Devang GitHub reviews or unstated institutional policy. The three ADR Decision sections now record precisely that *limited* approval. Prior statements in this index saying the Decision fields are blank describe the historical pre-decision v0.3 checkpoint, not current status. All missing positive source/event/permission/verifier contracts listed above remain BLOCKED; do not merge as fully accepted production architecture or close W4 on this evidence alone.
