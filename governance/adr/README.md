@@ -42,6 +42,7 @@ This index satisfies the continuous ADR-indexing obligation in Repository Consti
 | `ADR-FIN-GL-001.md` | Finance — General Ledger |
 | `ADR-FIN-PERIOD-001.md` | Finance — Financial Period |
 | `ADR-FIN-TREAS-001.md` | Finance — Treasury |
+| `ADR-B18-W4-EXC-001.md` | **Proposed/non-authoritative** — Batch 18 W4 outstanding J05 receipt variance/correction, F08 holds, and verified recovery decisions |
 | `ADR-PLAT-AUTH-001.md` | Platform Authorization — Role Assignment Governance and Person Scope Alignment |
 | `ADR-STU-ADM-EXP-001.md` | Student Lifecycle — Admission Expiry Lifecycle |
 | `ADR-STU-PROG-EVT-001.md` | Student Lifecycle — Academic Progression Event Canonicalization |
