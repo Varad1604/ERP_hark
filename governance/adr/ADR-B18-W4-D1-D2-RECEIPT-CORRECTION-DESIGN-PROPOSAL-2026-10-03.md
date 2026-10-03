@@ -3,7 +3,7 @@
 | Metadata | Value |
 |---|---|
 | ADR/version | B18-W4-D1-D2 / v0.3 editorial consolidation (2026-10-03) |
-| Status | **PROPOSED — NON-AUTHORITATIVE; Decision deliberately blank** |
+| Status | **LEAD-ACCEPTED DESIGN DIRECTION; positive production contracts BLOCKED** |
 | Target | Locked L2-J04/J05/J06/J07/J08 and L3-J-049/-050; applicable downstream L4/L5 contracts |
 | Accountable disposition | Chetan (Section J / J05; separately affected Section J owners), Dhruv (A04/A06 and cross-domain governance); Finance owners/reviewers for downstream implications |
 | Related work | Architecture #144, #140, draft PR #148; frontend W4 #49 |
@@ -96,7 +96,9 @@ Per-owner observational reconciliation values may be NOT_NEEDED, WAITING, APPLIE
 
 ### Decision
 
-<!-- Intentionally blank. Human source-owner and governance approval must identify exact PR head/version, applied policy and contract scope. -->
+**LEAD-LEVEL CONDITIONAL DESIGN-DIRECTION ACCEPTANCE — NOT PRODUCTION CONTRACT APPROVAL (2026-10-03).** Lead approves **D1/D2 design direction only** at reviewed v0.3 baseline `05b3db1...`, with reported off-platform collaborator consensus. The exact institutional replacement/excess policy, J04 concurrency/version handshake, actual positive J05 permission/SoD and registered correction-event schema remain **UNRESOLVED/BLOCKED**. No real positive correction/compensation is authorized without these facts.
+
+**Provenance:** Dhruv's direct instruction and his report that collaborators approved off-platform, recorded in [Lead direction and reported review attestation](B18_W4_LEAD_DESIGN_DIRECTION_AND_REPORTED_REVIEW_ATTESTATION_2026-10-03.md). Individual GitHub reviews, precise unseen policy references, and backend evidence are not invented. This decision records the reviewed v0.3 baseline, not an unrestricted approval of unstated details.
 
 ### Acceptance checklist — currently unexecuted
 
