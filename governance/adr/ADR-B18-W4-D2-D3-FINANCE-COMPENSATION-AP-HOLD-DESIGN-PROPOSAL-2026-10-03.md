@@ -38,7 +38,7 @@ These fields describe an **illustrative composite read model**, not an approved 
 
 ### Proposed monetary-evidence rule
 
-F14 may reconsider recognized monetary exposure only on source-authoritative receipt/PO/vendor/invoice facts, true Finance matching/approval policy and exact original invoice/liability identity; determine whether it must re-match, reject or issue a separately governed revised Finance interpretation. If an F04 correction/reversal is required, initiate a **separate** F04 adjustment with immutable original reference; wait for independently witnessed F04 approved/applied outcome. Reconcile F14 and F04 without double-posting or aliasing their canonical event publishers. Never simply subtract quantity times a fixed demo price from the Payable, directly mutate outstanding liability from a J05 fact, or infer a credit-note authority from receipt discrepancy alone.
+F14 may reconsider recognized monetary exposure only on source-authoritative receipt/PO/vendor/invoice facts, true Finance matching/approval policy and exact original invoice/liability identity; determine whether it must re-match, reject or issue a separately governed revised Finance interpretation. Distinguish a new ordinary F04 adjustment arising from changed authoritative facts from correcting/reversing an **earlier published F04 adjustment**. The canonical Reversed/Corrected Adjustment Reference always points to that published F04 original, **not** an F14 invoice or liability. See controlling §7. Reconcile F14 and F04 without double-posting or aliasing their canonical event publishers. Never simply subtract quantity times a fixed demo price from the Payable, directly mutate outstanding liability from a J05 fact, or infer a credit-note authority from receipt discrepancy alone.
 
 **Chetan/F14 + Varad/Devang review decision required:** exact invoice matching tolerances, adjustment applicability matrix for received/accepted/rejected/damaged/returned/substituted quantity or invoice amount changes, currency/tax/discount effects and whether any revised liability publication is permitted using established event registry. If no canonical event covers a required final business fact, propose an upstream governed addition instead of inventing event semantics locally.
 
@@ -103,3 +103,46 @@ Before a real hold or release, evaluate an A04 decision under effective role ass
 | No actual correction contracts | Continue already validated fixed synthetic hold and **deny** all material release | Current Lead-approved fixture; not full W4 certification |
 
 **Disposition: PROPOSED, unmerged and non-authoritative.** No false claim that F14 publishes a new liability-correction event, that `PayableReopened` means a particular technical implementation, or that the real policy permits the sample fixture's `VALIDATED/PENDING` transition. Preserve locked source meanings until explicit accountable decision and any formally approved amendments.
+
+  
+## 7. Controlling D2 Finance decision matrix: source liability, new F04, prior F04 correction
+
+**Proposal pending actual Finance policy and registered contract.** Require exact tenant/institution, original and current J05 correction fact/receipt version, J04 issued version, F14 invoice/match/recognized-liability identity/version, F04 identity/category/original-adjustment reference/current stage, F08 current Payable/settlement version. Preserve L2-F04 §29.4 frozen initiation references: never retroactively edit an already created F04 adjustment because its source changed. No J05-induced direct payable/liability/journal mutation.
+
+| Case | Proper owner and immutable reference | F04 treatment | AP evidence and safety gate |
+|---|---|---|---|
+| Corrected J05 fact has no monetary effect | F14 independently attests its original invoice/liability interpretation still holds | No automatic adjustment | F08 independently assesses other holds; absence of event is not NOT_NEEDED |
+| A — underlying procurement/Finance original liability changes | **F14** re-evaluates original source invoice/match/liability using current J05/J04/vendor and institutional financial policy | Not automatically F04. If policy explicitly requires distinct financial-position adjustment, use B below; any needed F14 *revised liability event* not present in registry is an **upstream contract blocker** | F08 remains non-ready until authenticated F14 completed interpretation and any independently required F04 result; never infer a revised liability event |
+| B — a new approved modification to financial position from authoritative changed facts, **without an erroneous prior F04** | **F04** initiates an ordinary new Financial Adjustment using valid source and financial-position references | F04's normal separate approval, Published then Pending Application/Applied; **do not use** Corrected/Reversed Adjustment Reference to an F14 invoice/liability | Published may be observed but does **not** prove balance applied; consumption changing Payable liability waits for owner-witnessed **Applied** plus applicable F14/F08 source policy |
+| C — correct or reverse an **earlier published F04 Financial Adjustment** | **F04** creates a *successor* Correction Adjustment or Reversal Adjustment with its **Corrected/Reversed Adjustment Reference pointing to original published F04 ID** (locked L2-F04 §29.1) | Original F04 remains immutable; new successor follows full normal lifecycle; publication and application are different facts | Do not apply successor economic effect to Payable before independently proven Applied where financial position changes |
+| Prior F04 merely Draft/unpublished | F04 uses its existing pre-publication review/cancellation process | §29.1 published-original correction/reversal reference inapplicable | Do not consume draft/referred adjustments |
+| J07-issued stock, J08-registered asset or applicable F12 capitalization already occurred | J07 governs operational return/movement; J06 ledger; J08 operational asset; F12 applicable financial asset accounting; F14 still owns vendor liability | F04 only if an **additional, nonduplicative** financial modification is required by policy | All owner effects independent; no silent negative stock, operational asset deletion or double financial posting |
+| Partial/full F10 settlement or unknown F04/F14 outcome | Treasury/Finance owner correction required, no unilateral F08 rollback | F04 only through its governed policy | Maintain hold and preserve settlement references |
+
+**No double posting:** obtain source-owner classification and calculation of one economic effect with currency, tax, discount, prior liability, correction version, financial period and prior F04/Accounting application witnesses. A unique owner-defined source-effect key binds that classification to one responsible application path; F14 original-liability reinterpretation, F04 delta and Accounting posting must not each independently debit/credit the same change. Require owner-certified NOT_NEEDED from any participating owner whose action is omitted. No source-reviewed F14 revised-liability contract, exact monetary policy, applicable F04 reason or idempotent posting mechanism has been verified as deployed; do not guess one.
+
+## 8. Controlling D3 production F08 flow and lifecycle conflict
+
+**Proposed production sequence:** current F08 Payable with exact F14 recognized-liability witness and settlement/version → F08-owned authorized hold/suspension → source-referral to J05/J04/F14, J07/J06, J08/applicable F12, F04 where relevant → independent owner-completed results or certified NOT_NEEDED → new true A04-authorized F08 reviewer decision against latest Payable/source versions → only the actually ratified F08 reopening lifecycle operation → **separate** payment-readiness decision. Missing source result/UNKNOWN, conflicting holds, expired permission, already settled payment or changed version means remain non-ready. F10 independently owns payment execution; F05/Accounting independently own journal consequences.
+
+**Verified upstream ambiguity:** locked F08 lifecycle illustrates `Suspended → Reopened`; its canonical `PayableReopened` event description refers to a **previously closed** Payable. Chetan/F08 must reconcile whether a suspended-case resolution can publish that exact event under an approved semantic clarification or needs a separate governed registry contract. Neither is established by the fictional HOME projection `SUSPENDED → VALIDATED/PENDING`. Until this source clarification and real A04 permission/evidence mapping is ratified, **positive production suspended-case release is BLOCKED**, including documentary-only release. Do not infer that a released hold itself means payment-ready or paid; preserve current liability and settlement evidence.
+
+**Acceptance cases:** F04 source-liability versus ordinary-new-adjustment versus published-prior-adjustment successor; Published without Applied; two paths claim same monetary delta; registered J08 asset with already posted F12 capitalization; prior J07 issue/return; documentary-only proof versus concealed material source discrepancy; concurrent Payable version change; source corrected but F14 still UNKNOWN; F10 partially settled; F08 audit and independent readiness, never inferred settlement.
+
+## 9. Formal ADR fields — version 0.2; human decision not recorded
+
+**Target:** locked L2-F04 §29.1/§29.4, F08/F14 plus 2026-08-21 amendments, L3-F-046/-047/-048 and affected L4-F-046 Draft; no locked source changed. **Need:** disambiguate original liability, independent new F04 and previously published F04 corrective successors; resolve unsafe production F08 release mapping. **Proposed decision:** controlling §§7–8, subject to accountable source approval. **Impact analysis:** J05/J07/J06/J08 and applicable F12, F14, F04, F08, F10, F05, A04/A06/A07 each separately owns effects. **Review:** Chetan/F14/F04/F08 and Section J as relevant, independently Varad/Devang for Finance, Dhruv/A04/Lead.
+
+### Decision
+
+<!-- Deliberately blank until formal human source-owner, Finance review and Lead disposition against exact PR version. -->
+
+### Acceptance checklist (production validation unexecuted)
+
+- [ ] F14 exact liability correction/republication contract and monetary policy ratified, or recorded as upstream blocker.
+- [ ] Ordinary new F04 vs published original F04 correction/reversal references and Published/Applied lifecycle independently accepted.
+- [ ] Original/source-version and one-economic-effect idempotency tests including F05 posting and actual F10 settlement safeguards.
+- [ ] F08 suspended-case release event semantics and A04 policy resolved with independent payment-readiness verification.
+- [ ] J07/J06, J08 and applicable F12 cross-domain consequences independently verified.
+
+**Approval provenance:** prior bounded synthetic Lead approval exists only on separate still-unmerged draft [PR #143](https://github.com/DhruvNaik26/SutraERP_Architecture/pull/143); it does not authorize these real monetary/reopening contracts.
