@@ -61,7 +61,7 @@ The exact H-domain role is not invented where the applicable H L2 workflow does 
 
 ## 8. Trigger
 
-An authoritative academic completion decision becomes ready to produce the governed completion-evidence outcome for downstream institutional use.
+An authoritative C05 qualification-completion decision is recorded, and applicable C05-owned qualification information becomes eligible for downstream use under the existing owner and receiving-domain governance. This does not authorize I13 to initiate or control that release.
 
 ## 9. Main Business Flow
 
@@ -122,7 +122,7 @@ C05's qualification decision and I13's independent supporting evidence history a
 
 **Complete when:** a pre-existing authoritative C05 qualification outcome and the applicable current I13 evidence can be separately verified; the applicable canonical owners permit the downstream use of their information through existing approved boundaries; and downstream use remains subordinate to the C05 qualification decision. No execution claim follows from this business-architecture condition.
 
-**Postconditions:** the qualification outcome remains authoritative; downstream participating domains can consume the governed evidence; no downstream domain acquires qualification ownership; historical completion evidence remains traceable.
+**Postconditions:** the C05 qualification outcome remains authoritative; participating downstream domains may consume only owner-released information through their independently approved interfaces (if available); no downstream domain acquires qualification ownership; I13's independent Examination evidence and supersession history remain traceable. No new cross-domain executable interface is asserted.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
