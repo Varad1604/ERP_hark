@@ -2,54 +2,53 @@
 
 **Scenario ID:** L3-I-153  
 **Architecture Level:** L3 — Business Scenario Architecture  
-**Primary Owner:** Academic Completion & Completion Evidence  
+**Primary Owner:** Academic Completion & Completion Evidence — limited to stewardship of I13-owned Examination completion evidence; DOES NOT govern C05 qualification, its publication or downstream credentials  
 **Participating Domains:** C — Student Lifecycle; H — Institutional Services & Intelligence; I — Examination  
 **Scenario Type:** Critical  
 **Priority:** P0  
-**Status:** Locked  
-**Version:** 1.0  
+**Status:** Review — controlled successor candidate; affected-domain acceptance pending  
+**Version:** 1.1  
 **Owner:** Varad  
-**Last Updated:** 2026-08-21  
+**Last Updated:** 2026-10-03  
 **Depends On:** L2-C05 Qualification Completion & Student Exit Workflows; L2-I09 Result Processing & Computation; L2-I10 Result Publication; applicable Section H credential/communication workflows  
 **Referenced By:** Downstream completion, student-lifecycle, and evidence consumers as applicable
 
 ## 1. Scenario Metadata
 
-This scenario preserves the frozen Stage 3 semantics, final L3 identity, canonical owner, participating domains, Scenario Type, and Priority. Phase 5 author assignment does not transfer canonical ownership.
+This proposed successor retains the frozen Stage 3 final L3 identity, title, C/H/I participants, P0 priority and historical Section-I primary-owner designation. The Section-I primary owner is accountable **only for I13-owned Examination evidence and its integrity contribution** within the cross-domain scenario; C05 remains independently accountable for the decisive institutional qualification outcome and authoritative downstream qualification publication. This scenario is a **business-level collaboration/traceability description**; it does not constitute an I13-issued cross-domain qualification orchestration command, a novel joint aggregate or a new source contract. The Lead Architect has explicitly approved this limited design interpretation in the issue #136 direction record; independent Examination/C05 affected-domain acceptance of this actual successor remains a separate required gate.
 
 ## 2. Scenario Purpose
 
-Translate an authoritative academic completion decision into the governed completion evidence outcome consumed by downstream institutional services, while preserving Academic Completion as the canonical authority for qualification completion.
+Represent the governed institutional use of already authoritative C05 qualification information alongside the independently authoritative I13 Examination evidence on which completion was based. The Section-I capability remains accountable solely for the provenance and currentness of **its own I13 evidence**; it neither triggers nor coordinates C05's qualification-information publication or the downstream services' separate lifecycles.
 
 ## 3. Business Outcome
 
-An authoritative academic completion outcome is established and the corresponding governed completion evidence is made available to downstream participating domains without any downstream domain reinterpreting or replacing the qualification decision.
+For the original post-completion business scenario, an authoritative C05 qualification outcome is represented to applicable downstream domains only through the existing C05-owned business facts and each consumer's approved boundary. Separately, the I13 Examination evidence supporting C05's decision retains its independently verifiable provenance. There is **no new combined completion-evidence artifact** and no I13 publication of a C05 qualification outcome.
 
 ## 4. Scenario Boundary and Scope
 
-**Start Boundary:** Academic Completion & Completion Evidence has established the authoritative qualification-completion outcome and the evidence basis required for its downstream institutional use.
+**Start Boundary:** L2-C05 has established the authoritative qualification-completion outcome after consuming applicable current I13 evidence and other required independently owned prerequisites. The Section-I completion-evidence capability does not make that qualification decision.
 
-**In Scope:** confirm the authoritative completion outcome; identify the governed evidence that may be released; coordinate its hand-off to participating downstream services; preserve the qualification decision as canonical.
+**In Scope:** preserve the correlation between the already recorded C05 qualification outcome and the I13-owned Examination evidence position **as understood through existing approved owner interactions**; describe that C05—not I13—publishes any governing qualification facts to its authorized downstream consumers, which then operate under their own approved policies. I13 remains accountable for the accuracy of its own evidence contribution. This architectural narrative does **not** imply that I13 directly subscribes to C05 award events, commands C05 publication, authorizes credential release or owns a cross-domain aggregate.
 
-**Out of Scope:** recalculating examination results, changing qualification eligibility, generating a qualification decision in Section H, or prescribing certificate/credential implementation.
+**Out of Scope:** recalculating Examination results; making or revising C04 eligibility or C05 qualification approval, award, revocation, correction or Student Exit; publishing a C05-owned event from I13; directly creating H06 Alumni profiles or specifying certificate/credential execution.
 
-**End Boundary:** The governed completion evidence outcome is established for authorized downstream use.
+**End Boundary:** C05 has made its authoritative completion/award information available where appropriate through existing governed C05 publication, and the relevant downstream owner handles only that authorized information. I13's separate evidence record and currentness history remain its own. No invented joint release step or technical subscription is implied.
 
 ## 5. Ownership and Participating Domains
 
-Academic Completion & Completion Evidence is the canonical owner of qualification completion and the authoritative institutional qualification outcome.
+Academic Completion & Completion Evidence (I13) owns the provenance, accuracy and currentness of the Examination evidence it supplies to C05 under the **already defined** `ExaminationCompletionEvidencePrepared` boundary. In this cross-domain scenario its primary-owner designation is historical responsibility for that evidence contribution, **not** authority to orchestrate qualification or downstream institutional evidence release. No I13→H entitlement or C05→I13 award subscription is inferred.
 
-Student Lifecycle provides authoritative student context and consumes applicable qualification outcomes.
+Student Lifecycle (C05) owns the authoritative qualification decision, permitted qualification-information release and Student Exit; C02 owns authoritative Student context. C05 is a required participant, not a subordinate evidence consumer for any post-qualification decision.
 
-Section H provides downstream institutional services/projections and does not own canonical examination or qualification entities.
-
-Examination remains the owner of examination results/evidence consumed upstream by completion.
+Section H may perform its existing downstream institutional services/projections only on properly authorized canonical source information. H06 creates its distinct Alumni Profile only after consuming the exact C08-owned `AlumniTransitionCompleted` event, never from raw I13 evidence.
 
 ## 6. Business Actors, Roles and Responsibilities
 
-- Completion authority: establishes the authoritative qualification outcome and determines what completion evidence is governed for downstream use.
-- Student Lifecycle: provides/consumes authoritative student context as applicable.
-- Section H service/consumer roles: receive governed completion information for their respective downstream business responsibilities.
+- C05 completion authority: owns the already established qualification outcome, its applicable release/consumption conditions and any qualification-specific correction/revocation decision.
+- I13 evidence authority: supplies its independently authoritative Examination completion-evidence position and retains control of evidence disposition.
+- C02 Student Lifecycle: supplies authoritative Student context without transferring identity ownership.
+- Section H service/consumer roles: consume only canonical information authorized by their own approved downstream workflows.
 
 The exact H-domain role is not invented where the applicable H L2 workflow does not define one.
 
@@ -66,34 +65,36 @@ An authoritative academic completion decision becomes ready to produce the gover
 
 ## 9. Main Business Flow
 
-1. Establish the authoritative qualification-completion outcome.
-2. Confirm that the completion decision is supported by the required authoritative academic and institutional evidence.
-3. Determine the governed completion-evidence information that may be made available downstream.
-4. Preserve the distinction between the qualification decision and the evidence representing that decision.
-5. Provide the governed completion evidence to the participating downstream business domains through the existing governed collaboration boundary.
-6. Ensure downstream consumers use the completion outcome as authoritative and do not recompute or reinterpret the qualification decision.
-7. End when the governed completion-evidence outcome is established and available for its authorized downstream purpose.
+1. Observe the already recorded authoritative C05 qualification outcome; do not create or republish it from the Examination capability.
+2. Preserve the identity/scope relationship between the I13 Examination evidence **previously consumed by C05** and the resulting independent C05 qualification decision; do not assume a new C05→I13 result feed or combine these facts into a synthetic new event.
+3. C05 alone determines whether its already recorded qualification facts may be released to a given authorized downstream consumer under established C05 and consumer governance. I13 neither selects those consumers nor grants qualification-information release authority.
+4. Preserve the distinction between I13 academic evidence and the governing C05 qualification decision, including currentness and supersession.
+5. Applicable downstream owners receive information **only** through their separately approved canonical boundaries. For example, H01 publishes only an officially approved credential following its own `Credential Ready` and publication/consent governance; H06 Alumni Profile creation remains gated by C08's exact `AlumniTransitionCompleted`. Neither receives an invented direct I13 qualification assertion.
+6. If current I13 evidence conflicts with the prior award, refer it to C05 for its independent qualification correction/revocation/no-change determination; do not revise the qualification within I13.
+7. End when the relevant C05-owned qualification information has been made available through an approved existing C05/consumer boundary and the independently I13-owned evidence remains historically traceable. A consumer that lacks an approved interface remains blocked; this narrative alone authorizes no runtime integration.
 
 ## 10. Alternate Business Flows
 
-**Completion outcome does not require a downstream evidence release:** retain the authoritative completion decision and do not create an unsupported evidence outcome.
+**Completion outcome does not require downstream evidence use:** retain C05's decision and the independent I13 evidence; do not invent an evidence-release event or outcome.
 
-**Downstream consumer requires correction:** the correction remains subject to the canonical completion owner and the applicable downstream workflow; Section H cannot redefine the qualification outcome.
+**Examination evidence changes after qualification:** I13 independently re-evaluates its evidence and publishes its existing `ExaminationCompletionEvidencePrepared` current position to C05; C05 alone decides qualification correction, revocation or no change.
 
-**Student context changes:** Student Lifecycle remains authoritative for student context, while the completion decision remains owned by Academic Completion & Completion Evidence.
+**A C05-originated qualification revocation requires I13 evidence review:** I13 evaluates only its evidence after applicable existing C05 `QualificationAwardRevoked`; receipt does not automatically withdraw Examination evidence.
+
+**Student context changes:** C02/Student Lifecycle resolves Student context. No identity change silently revises either I13 evidence or the C05 qualification decision.
 
 ## 11. Failure, Interruption and Business Recovery
 
 | Situation | Business Consequence | Business Resolution / Recovery | Responsible Domain |
 |---|---|---|---|
-| Completion decision is not yet authoritative | Governed completion evidence cannot represent a final qualification outcome | Complete the existing L2-C05 approval/completion lifecycle first | Academic Completion & Completion Evidence |
+| C05 completion decision is not yet authoritative | Governed downstream representation cannot claim institutional qualification completion | Wait for C05-owned approval/award under its existing governed lifecycle | L2-C05 |
 | Required completion evidence basis is unresolved | Evidence cannot be treated as final | Resolve the authoritative upstream evidence dependency before establishing the governed outcome | Canonical source owner |
-| Downstream representation conflicts with the completion decision | Competing institutional interpretations may arise | Reconcile against the authoritative completion outcome; downstream consumer does not alter the qualification decision | Academic Completion & Completion Evidence |
+| Downstream representation conflicts with the completion decision | Competing institutional interpretations may arise | Reconcile against C05's authoritative decision; I13 resolves only its own evidence and cannot alter qualification | L2-C05 / L2-I13 within separate domains |
 | Student context is incorrect | Evidence may be associated with the wrong student | Resolve student context through Student Lifecycle before final downstream use | Student Lifecycle |
 
 ## 12. Business Rules and Decision Constraints
 
-- Qualification completion is the authoritative institutional decision and is not replaced by downstream evidence.
+- Qualification completion and any governed qualification-information release remain C05-owned and are not replaced by I13 or downstream evidence.
 - Examination evidence is an input to completion, not the qualification decision.
 - Section H provides services/projections and does not own canonical qualification or examination entities.
 - Downstream consumers must not recompute, reinterpret, or replace the qualification decision.
@@ -101,15 +102,13 @@ An authoritative academic completion decision becomes ready to produce the gover
 
 ## 13. State and Lifecycle Impact
 
-The scenario affects the existing Academic Completion lifecycle only through the established completion outcome and its governed evidence representation.
-
-No new qualification lifecycle state is introduced. Any evidence lifecycle used downstream remains owned by the applicable downstream architecture. Academic Completion retains ownership of the qualification decision throughout.
+This scenario does not establish or mutate the C05 qualification lifecycle. The Section-I capability retains its existing I13 completion-evidence state and historical current-position supersession only. Each downstream evidence lifecycle remains owned by its actual canonical domain; C05 retains exclusive qualification decision authority.
 
 ## 14. Business Events and Cross-Domain Collaboration
 
 L2-C05 states that the Qualification Completion domain publishes canonical qualification events and that downstream domains consume authoritative qualification information.
 
-The locked L1 canonical event catalogue includes `QualificationEligible` and `QualificationAwarded`. These are canonical institutional facts; their publishers remain the canonical qualification owner.
+`QualificationEligible` is the C04-owned academic-progression eligibility fact; `QualificationAwarded` is the C05-owned institutional award fact. I13's existing `ExaminationCompletionEvidencePrepared` supplies current Examination evidence to C05 and is never itself qualification approval, award or direct H06 Alumni Profile authority.
 
 No new `CompletionEvidencePublished` event is invented because the accessible sources do not establish that exact event name.
 
@@ -117,17 +116,18 @@ No new `CompletionEvidencePublished` event is invented because the accessible so
 
 Qualification completion approval and conferment follow L2-C05 authority. Downstream use of governed completion evidence follows the applicable participating-domain governance.
 
-The authoritative qualification decision and the evidence basis supporting it must be auditable. Any separation-of-duty requirements defined by the completion workflow remain unchanged. No technical access-control design is specified.
+C05's qualification decision and I13's independent supporting evidence history and current disposition must remain separately auditable. Any separation-of-duty requirements defined by the completion workflow remain unchanged. No technical access-control design is specified.
 
 ## 16. Completion Criteria and Postconditions
 
-**Complete when:** an authoritative qualification-completion outcome exists; its evidence basis is established; the governed completion-evidence outcome is made available for its authorized downstream purpose; and the downstream use remains subordinate to the canonical qualification decision.
+**Complete when:** a pre-existing authoritative C05 qualification outcome and the applicable current I13 evidence can be separately verified; the applicable canonical owners permit the downstream use of their information through existing approved boundaries; and downstream use remains subordinate to the C05 qualification decision. No execution claim follows from this business-architecture condition.
 
 **Postconditions:** the qualification outcome remains authoritative; downstream participating domains can consume the governed evidence; no downstream domain acquires qualification ownership; historical completion evidence remains traceable.
 
 ## 17. Open Issues, Assumptions and Deferred Questions
 
-1. The Stage 3 scenario is `Academic Completion to Governed Completion Evidence` with owner Academic Completion & Completion Evidence and participating domains C, H, I.
-2. L2-C05 explicitly states that completion is the sole authority for qualification eligibility, approval, conferment and canonical qualification events, while Examination-derived evidence is only academic evidence.
+1. Frozen Stage 3 `CAN-L3-I-158` maps to final `L3-I-153` under the approved Phase 4 offset; the exact title, C/H/I participation and P0 priority remain preserved. **Proposed controlled decision:** retain historical Section-I/I13 primary-owner metadata strictly for the I13-owned source-evidence stewardship component of this multi-owner business narrative. C05 alone owns and publishes institutional qualification outcomes, and H owners alone govern their downstream lifecycles. The Lead Architect has approved the bounded interpretation recorded in `L3_I153_Lead_Architect_Direction_and_Impact_Record_2026-10-02.md`. Responsible Examination and C05 domain review of this proposed successor remains unverified; retain Review until that acceptance is recorded, or re-open the controlled design if material domain objections arise.
+2. L2-C04 publishes `QualificationEligible`; L2-C05 independently owns qualification-completion eligibility evaluation, clearance, approval, conferment and canonical qualification events; I13 supplies independent academic evidence and does not own the C05 decision.
 3. The accessible sources do not define a dedicated `CompletionEvidencePublished` event, so no such event is asserted.
-4. Exact Section H downstream evidence/credential lifecycle details must remain in the applicable H L2 source and are not invented here.
+4. Exact Section H downstream evidence/credential lifecycle details remain in the respective locked H-domain sources; specifically H06 requires the exact C08 `AlumniTransitionCompleted` handoff. Neither the frozen C/H/I participation nor this amendment alone creates a direct I13→H event/consumer contract.
+5. The Lead Architect approved the limited historical Section-I primary-owner reading for this multi-owner documentary scenario. Independent affected-domain review and controlled successor lock remain outstanding. If not, a controlled scenario/owner change is required, not a covert transfer. Currently Draft L4-I-153 may be re-derived only after that decision and must not implement an I13→H or C05→I13 event unsupported by locked L2. No new technical contracts, subscriptions, permissions or publishable aggregate are defined here.
