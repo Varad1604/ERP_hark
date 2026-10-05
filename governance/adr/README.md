@@ -51,3 +51,5 @@ This index satisfies the continuous ADR-indexing obligation in Repository Consti
 | `STUDENT_LIFECYCLE_UPSTREAM_L2_APPROVAL_RECORD_2026-08-22.md` | Student Lifecycle upstream L2 approval/incorporation record |
 
 When new ADR files or approval records are added, this index must be updated as part of repository maintenance.
+
+| `ADR-B18-W4-J05-EVENT-001_Receipt_Variance_Event_Naming_2026-10-03.md` | PROPOSED — J05 variance event-name reconciliation; A06 active definition and Section J review outstanding |
