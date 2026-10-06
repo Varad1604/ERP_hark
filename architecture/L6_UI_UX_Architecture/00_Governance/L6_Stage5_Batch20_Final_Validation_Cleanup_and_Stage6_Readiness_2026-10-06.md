@@ -4,7 +4,7 @@
 **Programme:** SutraERP Full Workflow Realization & Mock ERP Programme  
 **Stage:** Stage 5 — Final Validation, Cleanup & Stage-6 Readiness  
 **Batch:** 20  
-**Current status:** **PASS / STAGE-6 READY — FRONTEND CANONICAL MERGE VERIFIED / ARCHITECTURE MERGE AUTHORIZED**  
+**Current status:** **PASS / COMPLETE — STAGE-6 READY**  
 **Frontend repository:** `DhruvNaik26/SutraERP_frontend`  
 **Frontend PR:** #95  
 **Certified frontend candidate:** `229994720a0ffad9367610411bbadc86a2749f03`  
@@ -12,7 +12,7 @@
 **Exact-head validation:** Frontend PR Validation run #739 / Actions run `37442430477` — **SUCCESS**  
 **Architecture repository baseline:** `2c58a3698a01b4de32ea7d4ae16adc09614674d5`  
 **Architecture PR:** #158  
-**Canonical merge state:** frontend PR #95 is merged as `372376d23ac6478fa4ac3f209cb97c71317d89d2` with exact certified tree `a457962c7d3d13d1f5038baf6fab2a6c194b8974`; Architecture PR #158 is authorized for merge.
+**Canonical merge state:** frontend PR #95 is merged as `372376d23ac6478fa4ac3f209cb97c71317d89d2` with exact certified tree `a457962c7d3d13d1f5038baf6fab2a6c194b8974`; Architecture PR #158 is merged as `4e64e7363c401f6d9beaaa98b7e748f9d6e6ae84`.
 
 ---
 
@@ -233,17 +233,17 @@ Independent review of frontend PR #95 confirms:
 | G8 Maturity audit | 5 | PASS |
 | G9 Architecture reconciliation | 8 | PASS |
 | G10 Independent final audit | 10 | PASS |
-| G11 Stage-6 readiness / canonical closure | 5 | **FRONTEND MERGED / ARCHITECTURE MERGE AUTHORIZED** |
+| G11 Stage-6 readiness / canonical closure | 5 | **PASS** |
 
-**Current score before Architecture merge: 95 / 100.**
+**Final score: 100 / 100.**
 
-Frontend canonicalization is complete with exact certified-tree preservation. G11 will receive full credit when this Architecture closure is merged and final Architecture `main` is verified.
+Frontend and Architecture canonicalization are complete. Final repository verification confirms both merges and exact certified-tree preservation for the frontend.
 
 ---
 
 # Final decision
 
-**Stage 5 Batch 20 is PASS / STAGE-6 READY, subject only to canonical merge of this Architecture closure.**
+**Stage 5 Batch 20 is PASS / COMPLETE — STAGE-6 READY.**
 
 The certified frontend candidate is:
 
@@ -254,6 +254,6 @@ The certified frontend candidate is:
 
 Frontend PR #95 is now merged as `372376d23ac6478fa4ac3f209cb97c71317d89d2`; its Git tree is exactly the certified candidate tree `a457962c7d3d13d1f5038baf6fab2a6c194b8974`, so no source drift occurred during canonicalization.
 
-The user explicitly authorized both merges. On merge of Architecture PR #158 and verification of final Architecture `main`, G11 becomes PASS and Batch 20 is canonicalized as **100% — STAGE-6 READY / COMPLETE**.
+The user explicitly authorized both merges. Architecture PR #158 merged as `4e64e7363c401f6d9beaaa98b7e748f9d6e6ae84`; final Architecture `main` verification succeeded. G11 is PASS and Batch 20 is canonicalized as **100% — STAGE-6 READY / COMPLETE**.
 
 This closure remains strictly scoped to the approved Stage-5 deterministic mock-operational frontend programme and does not constitute production backend certification.
