@@ -4,7 +4,7 @@
 **Programme:** SutraERP Full Workflow Realization & Mock ERP Programme  
 **Stage:** Stage 5 — Domain-by-Domain Mock-Operational Frontend  
 **Batch:** 18  
-**Architecture status:** CLOSURE READY — FRONTEND MERGE AUTHORIZATION GATE  
+**Architecture status:** FINAL EVIDENCE COMPLETE — FRONTEND AND ARCHITECTURE MERGE AUTHORIZATION GATES  
 **Frontend repository:** `DhruvNaik26/SutraERP_frontend`  
 **Frontend branch:** `dev/batch18`  
 **Exact candidate head:** `601e142b460f1e58f8e0925c2bb7a1c63c0f7afc`  
@@ -17,7 +17,7 @@
 
 ## 1. Purpose and Authority
 
-This record closes the Batch-18 implementation/evidence work to the highest level currently supported by repository evidence.
+This record closes the Batch-18 implementation/evidence work to final pre-merge evidence completion, while preserving frontend and Architecture merge as separate explicit authorization gates.
 
 Batch 18 is a bounded Stage-5 deterministic mock-operational frontend acceptance package for six representative end-to-end journeys. It does **not** create production backend authority, live institutional authorization, production event transport, accounting authority, policy-service authority or production-readiness certification.
 
@@ -207,44 +207,42 @@ No scheduler engine, workflow engine, state-machine engine, event bus, BPM runti
 
 ## 10. Independent C9 Status
 
-The project owner has attested that an independent all-six C9 audit returned **PASS** against the exact candidate head.
+Independent all-six C9 evidence is now repository-backed under Architecture PR #155:
 
-At the time this record was prepared, that independent C9 PASS was **not yet repository-backed** by any of the following:
+- PR: **#155 — docs(B18): record C9 independent acceptance PASS**
+- evidence commit: `82af6775fdba722415c01218dbbccd5629de6c50`
+- accepted frontend candidate: `601e142b460f1e58f8e0925c2bb7a1c63c0f7afc`
+- C9 verdict: **PASS**
+- scope: approved **Stage-5 deterministic mock-operational** acceptance only.
 
-- PR #94 review submission;
-- PR #94 comment/thread;
-- committed frontend C9 evidence document;
-- committed Architecture C9 evidence record.
+The independent record verifies C8 Run #5, same-SHA PR Validation #735, protected census, J01–J06 ownership, architecture dependencies, negative/replay/duplicate/tamper/reset coverage and mock-versus-production boundaries.
 
-Therefore this record must distinguish two states:
+It also records one non-blocking evidence-hygiene finding: the J02 manifest retains stale historical narrative that should be reconciled later. The finding does not reject the exact candidate and does not reopen the accepted Stage-5 C9 decision.
 
-- **Owner-attested C9 result:** PASS
-- **Repository-verifiable independent C9 artifact:** NOT PRESENT at record-preparation time
-
-This distinction is deliberate. It preserves the reported independent result without inventing or overstating missing repository evidence.
-
-If a repository-backed independent C9 artifact is subsequently attached without changing the certified frontend source tree, this record may be updated administratively without rerunning unchanged C8 evidence.
+Architecture PR #155 is still open and unmerged at this record update, so the C9 decision is repository-backed but not yet canonicalized on Architecture `main`.
 
 ---
 
 ## 11. Package-E and Batch Closure Status
 
-Repository-verified Package-E evidence currently proves:
+Repository-backed Package-E evidence now proves:
 
 - terminal manifests / A–D outputs;
 - exact-head C8 PASS;
 - exact-head TypeScript PASS;
 - production build PASS;
 - exact-head browser PASS;
-- exact-head source immutability.
+- exact-head source immutability;
+- independent all-six C9 PASS under Architecture PR #155 / commit `82af6775fdba722415c01218dbbccd5629de6c50`;
+- terminal closure record prepared.
 
-The owner additionally attests independent C9 PASS.
+Therefore Package E is **100% evidence-complete** and the overall Batch-18 evidence programme is **100% complete at the pre-merge gate**.
 
-Because the C9 artifact itself is not repository-verifiable at the time of this record, the defensible formal status is:
+The formal repository state is:
 
-**CLOSURE READY**
+**FINAL EVIDENCE COMPLETE — MERGE AUTHORIZATION PENDING**
 
-—not **COMPLETE**.
+—not **MERGED**, not production-ready, and not canonically closed on `main` until the frontend and Architecture merge gates complete.
 
 No sub-gate is being silently waived.
 
@@ -294,4 +292,4 @@ The recommended sequence is:
 
 # Final Decision
 
-**Batch 18 All-Six Representative Journeys: exact-head technical validation PASS; C8 42/42 PASS; protected Stage-5 corpus and ownership boundaries preserved; owner-attested independent C9 PASS; repository-backed C9 artifact not present at record preparation; Batch status = CLOSURE READY; frontend and Architecture merge authorization remain pending.**
+**Batch 18 All-Six Representative Journeys: exact-head technical validation PASS; C8 42/42 PASS; protected Stage-5 corpus and ownership boundaries preserved; repository-backed independent C9 PASS under Architecture PR #155 / commit `82af6775fdba722415c01218dbbccd5629de6c50`; Package E and the Batch-18 evidence programme are 100% complete at the pre-merge gate; Batch status = FINAL EVIDENCE COMPLETE — FRONTEND AND ARCHITECTURE MERGE AUTHORIZATION PENDING.**
